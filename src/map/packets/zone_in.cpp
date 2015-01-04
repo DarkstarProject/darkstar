@@ -41,23 +41,23 @@
 
 uint16 GetMogHouseID(CCharEntity * PChar)
 {
-	if ( (PChar->loc.prevzone >= 48) && (PChar->loc.prevzone <= 50) )
+	if ( (PChar->getZone() >= 48) && (PChar->getZone() <= 50) )
 	{
 		return 0x00D6;
 	}
-	if ( (PChar->loc.prevzone >= 230) && (PChar->loc.prevzone <= 232) )
+	if ( (PChar->getZone() >= 230) && (PChar->getZone() <= 232) )
 	{
 		return (PChar->profile.nation == 0 ? 0x0121 : 0x0101);
 	}
-	if ( (PChar->loc.prevzone >= 234) && (PChar->loc.prevzone <= 236) )
+	if ( (PChar->getZone() >= 234) && (PChar->getZone() <= 236) )
 	{
 		return (PChar->profile.nation == 1 ? 0x0122 : 0x0102);
 	}
-	if ( (PChar->loc.prevzone >= 238) && (PChar->loc.prevzone <= 241) )
+	if ( (PChar->getZone() >= 238) && (PChar->getZone() <= 241) )
 	{
 		return (PChar->profile.nation == 2 ?  0x0123 : 0x0120);
 	}
-	if ( (PChar->loc.prevzone >= 243) && (PChar->loc.prevzone <= 246) )
+	if ( (PChar->getZone() >= 243) && (PChar->getZone() <= 246) )
 	{
 		return 0x0100;
 	}
@@ -72,23 +72,23 @@ uint16 GetMogHouseID(CCharEntity * PChar)
 
 uint8 GetMosHouseFlag(CCharEntity* PChar)
 {
-    if ((PChar->loc.prevzone >= 48) && (PChar->loc.prevzone <= 50))
+    if ((PChar->getZone() >= 48) && (PChar->getZone() <= 50))
 	{
 		if (PChar->profile.mhflag & 0x10) return 5;
 	}
-	if ((PChar->loc.prevzone >= 230) && (PChar->loc.prevzone <= 232))
+	if ((PChar->getZone() >= 230) && (PChar->getZone() <= 232))
 	{
 		if (PChar->profile.mhflag & 0x01) return 1;
 	}
-	if ((PChar->loc.prevzone >= 234) && (PChar->loc.prevzone <= 236))
+	if ((PChar->getZone() >= 234) && (PChar->getZone() <= 236))
 	{
         if (PChar->profile.mhflag & 0x02) return 2;
 	}
-	if ((PChar->loc.prevzone >= 238) && (PChar->loc.prevzone <= 241))
+	if ((PChar->getZone() >= 238) && (PChar->getZone() <= 241))
 	{
 		if (PChar->profile.mhflag & 0x04) return 3;
 	}
-	if ((PChar->loc.prevzone >= 243) && (PChar->loc.prevzone <= 246))
+	if ((PChar->getZone() >= 243) && (PChar->getZone() <= 246))
 	{
 		if (PChar->profile.mhflag & 0x08) return 4;
 	}
@@ -176,17 +176,16 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 		WBUFW(data,(0x64)-4) = csid;
 	}
 
-	if (PChar->getZone() == 0) 
+    WBUFW(data, (0x30) - 4) = PChar->getZone();
+    WBUFW(data, (0x42) - 4) = PChar->getZone();
+
+	if (PChar->m_moghouseID != 0) 
 	{
 		WBUFB(data,(0x80)-4) = 1;
-		WBUFW(data,(0x30)-4) = PChar->loc.prevzone;             // form zone
-		WBUFW(data,(0x42)-4) = PChar->loc.prevzone;             // from zone
 	    WBUFW(data,(0xAA)-4) = GetMogHouseID(PChar);            // Mog House id
 		WBUFB(data,(0xAE)-4) = GetMosHouseFlag(PChar);          // Mog House leaving flag
 	} else {
 		WBUFB(data,(0x80)-4) = 2;
-		WBUFW(data,(0x30)-4) = PChar->getZone();                // to zone
-		WBUFW(data,(0x42)-4) = PChar->getZone();                // to zone
 	    WBUFW(data,(0xAA)-4) = 0x01FF;
         WBUFB(data,(0xAC)-4) = csid > 0 ? 0x01 : 0x00;          //if 0x01 then pause between zone
 		WBUFB(data,(0xAF)-4) = PChar->loc.zone->CanUseMisc(MISC_MOGMENU);	// флаг, позволяет использовать mog menu за пределами mog house

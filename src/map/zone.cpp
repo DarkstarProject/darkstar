@@ -936,7 +936,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
                           SET server_addr = %u, server_port = %u, pos_zone = %u, pos_prevzone = %u WHERE chars.charid = %u;", 
                           (uint32)ipp, (uint32)(ipp >> 32), PChar->loc.destination, GetID(), PChar->id);
 
-    if (PChar->PParty)
+    if (PChar->PParty && PChar->loc.destination != 0 && PChar->m_moghouseID != 0)
     {
         uint8 data[4];
         WBUFL(data, 0) = PChar->PParty->GetPartyID();

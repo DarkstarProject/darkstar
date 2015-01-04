@@ -454,32 +454,35 @@ void CZoneEntities::SpawnPETs(CCharEntity* PChar)
 
 void CZoneEntities::SpawnNPCs(CCharEntity* PChar)
 {
-	for (EntityList_t::const_iterator it = m_npcList.begin(); it != m_npcList.end(); ++it)
-	{
-		CNpcEntity* PCurrentNpc = (CNpcEntity*)it->second;
-		SpawnIDList_t::iterator NPC = PChar->SpawnNPCList.lower_bound(PCurrentNpc->id);
+    if (!PChar->m_moghouseID)
+    {
+        for (EntityList_t::const_iterator it = m_npcList.begin(); it != m_npcList.end(); ++it)
+        {
+            CNpcEntity* PCurrentNpc = (CNpcEntity*)it->second;
+            SpawnIDList_t::iterator NPC = PChar->SpawnNPCList.lower_bound(PCurrentNpc->id);
 
-		if (PCurrentNpc->status == STATUS_NORMAL || PCurrentNpc->status == STATUS_UPDATE)
-		{
-			if (distance(PChar->loc.p, PCurrentNpc->loc.p) < 50)
-			{
-				if (NPC == PChar->SpawnNPCList.end() ||
-					PChar->SpawnNPCList.key_comp()(PCurrentNpc->id, NPC->first))
-				{
-					PChar->SpawnNPCList.insert(NPC, SpawnIDList_t::value_type(PCurrentNpc->id, PCurrentNpc));
-                    PChar->pushPacket(new CEntityUpdatePacket(PCurrentNpc, ENTITY_SPAWN, UPDATE_ALL_MOB));
-				}
-			}
-			else{
-				if (NPC != PChar->SpawnNPCList.end() &&
-					!(PChar->SpawnNPCList.key_comp()(PCurrentNpc->id, NPC->first)))
-				{
-					PChar->SpawnNPCList.erase(NPC);
-					PChar->pushPacket(new CEntityUpdatePacket(PCurrentNpc, ENTITY_DESPAWN, UPDATE_NONE));
-				}
-			}
-		}
-	}
+            if (PCurrentNpc->status == STATUS_NORMAL || PCurrentNpc->status == STATUS_UPDATE)
+            {
+                if (distance(PChar->loc.p, PCurrentNpc->loc.p) < 50)
+                {
+                    if (NPC == PChar->SpawnNPCList.end() ||
+                        PChar->SpawnNPCList.key_comp()(PCurrentNpc->id, NPC->first))
+                    {
+                        PChar->SpawnNPCList.insert(NPC, SpawnIDList_t::value_type(PCurrentNpc->id, PCurrentNpc));
+                        PChar->pushPacket(new CEntityUpdatePacket(PCurrentNpc, ENTITY_SPAWN, UPDATE_ALL_MOB));
+                    }
+                }
+                else{
+                    if (NPC != PChar->SpawnNPCList.end() &&
+                        !(PChar->SpawnNPCList.key_comp()(PCurrentNpc->id, NPC->first)))
+                    {
+                        PChar->SpawnNPCList.erase(NPC);
+                        PChar->pushPacket(new CEntityUpdatePacket(PCurrentNpc, ENTITY_DESPAWN, UPDATE_NONE));
+                    }
+                }
+            }
+        }
+    }
 }
 
 void CZoneEntities::SpawnPCs(CCharEntity* PChar)
@@ -491,7 +494,7 @@ void CZoneEntities::SpawnPCs(CCharEntity* PChar)
 
 		if (PChar != PCurrentChar)
 		{
-			if (distance(PChar->loc.p, PCurrentChar->loc.p) < 50)
+			if (distance(PChar->loc.p, PCurrentChar->loc.p) < 50 && PChar->m_moghouseID == PCurrentChar->m_moghouseID)
 			{
 				if (PC == PChar->SpawnPCList.end())
 				{

@@ -2,7 +2,7 @@
 package.loaded["scripts/zones/Mog_Garden/TextIDs"] = nil;
 require("scripts/zones/Mog_Garden/TextIDs");
 
-require("scripts/globals/moglocker")
+require("scripts/globals/moghouse")
 require("scripts/globals/shop");
 
 local BRONZE_PIECE_ITEMID = 2184;
@@ -12,16 +12,7 @@ local BRONZE_PIECE_ITEMID = 2184;
 -----------------------------------
 
 function onTrade(player, npc, trade)
-    local numBronze = trade:getItemQty(BRONZE_PIECE_ITEMID);
-    if (numBronze > 0) then
-        if (addMogLockerExpiryTime(player, numBronze)) then
-            -- Remove bronze pieces..
-            player:tradeComplete();
-            
-            -- Send event..
-            player:messageSpecial(MOGLOCKER_MESSAGE_OFFSET, getMogLockerExpiryTimestamp(player));
-        end
-    end
+    moogleTrade(player, npc, trade)
 end;
 
 -----------------------------------

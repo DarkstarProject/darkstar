@@ -3506,7 +3506,7 @@ void SaveCharPosition(CCharEntity* PChar)
         "WHERE charid = %u;";
 
     Sql_Query(SqlHandle, Query,
-        PChar->getZone(),
+        PChar->m_moghouseID ? 0 : PChar->getZone(),
         PChar->loc.prevzone,
         PChar->loc.p.rotation,
         PChar->loc.p.x,

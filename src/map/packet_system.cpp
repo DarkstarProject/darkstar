@@ -239,20 +239,27 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->loc.destination = destination = ZONE_RESIDENTIAL_AREA;
         }
 
-        if (destination != ZONE_RESIDENTIAL_AREA &&
-            destination != ZONE_214)
+        if (destination == ZONE_RESIDENTIAL_AREA ||
+            destination == ZONE_214 && PChar->m_moghouseID == 0)
         {
-            zoneutils::GetZone(destination)->IncreaseZoneCounter(PChar);
+            PChar->m_moghouseID = PChar->id;
+            destination = PChar->loc.prevzone;
         }
-        else {
-            PChar->loc.zone = zoneutils::GetZone(destination);
+        else
+        {
+            PChar->m_moghouseID = 0;
         }
+
+        zoneutils::GetZone(destination)->IncreaseZoneCounter(PChar);
 
         bool firstLogin = true;
         for (uint32 i = 0; i < sizeof(PChar->m_ZonesList); ++i)
         {
             if (PChar->m_ZonesList[i] != 0)
+            {
                 firstLogin = false;
+                break;
+            }
         }
 
         PChar->m_ZonesList[PChar->getZone() >> 3] |= (1 << (PChar->getZone() % 8));
@@ -806,9 +813,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
     break;
     case 0x14: // complete character update
     {
-        if (PChar->getZone() == 0)
+        if (PChar->m_moghouseID != 0)
         {
-            zoneutils::GetZone(PChar->loc.prevzone)->SpawnMoogle(PChar);
+            PChar->loc.zone->SpawnMoogle(PChar);
         }
         else{
             PChar->loc.zone->SpawnPCs(PChar);
@@ -1192,18 +1199,6 @@ void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, int8* dat
     uint16 targid = RBUFW(data, (0x3A));
 
     CBaseEntity* PNpc = PChar->GetEntity(targid, TYPE_NPC);
-
-    // Moogles are zone dependent, and zoneid = 0 is for all residential areas, so if a char trades to a moogle
-    // then you won't find the right NPC if you used zoneid=0. Thankfully, the prevzone is the real zone we want
-    // so this should return an NPC.
-    if (PNpc == NULL && PChar->loc.prevzone != 0) {
-        PNpc = zoneutils::GetZone(PChar->loc.prevzone)->GetEntity(targid, TYPE_NPC);
-        if (strcmp(PNpc->GetName(), "Moogle") != 0) {
-            // we must restrict this check only for Moogles else other NPCs could be interpreted
-            // incorrectly as targetted.
-            return;
-        }
-    }
 
     if ((PNpc != NULL) && (PNpc->id == npcid))
     {
@@ -2585,28 +2580,41 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->status = STATUS_DISAPPEAR;
         PChar->loc.boundary = 0;
 
-        zoneLine_t* PZoneLine = PChar->loc.zone->GetZoneLine(zoneLineID);
-
-        // Ensure the zone line exists..
-        if (PZoneLine == NULL)
+        // Exiting Mog House..
+        if (zoneLineID == 1903324538)
         {
-            ShowError(CL_RED"SmallPacket0x5E: Zone line %u not found\n" CL_RESET, zoneLineID);
+            uint16 prevzone = PChar->loc.prevzone;
 
-            PChar->loc.p.rotation += 128;
+            // If zero, return to previous zone.. otherwise, determine the zone..
+            if (zone != 0)
+            {
+                switch (town)
+                {
+                case 1: prevzone = zone + 0xE5; break;
+                case 2: prevzone = zone + 0xE9; break;
+                case 3: prevzone = zone + 0xED; break;
+                case 4: prevzone = zone + 0xF2; break;
+                case 5: prevzone = zone + (zone == 1 ? 0x2F : 0x30); break;
+                }
 
-            PChar->pushPacket(new CMessageSystemPacket(0, 0, 2));
-            PChar->pushPacket(new CCSPositionPacket(PChar));
-
-            PChar->status = STATUS_UPDATE;
-            return;
+                // Handle case for mog garden.. (Above addition does not work for this zone.)
+                if (zone == 127)
+                {
+                    prevzone = 280;
+                }
+            }
+            PChar->m_moghouseID = 0;
+            PChar->loc.destination = prevzone;
+            memset(&PChar->loc.p, 0, sizeof(PChar->loc.p));
         }
         else
         {
-            // Ensure the destination exists..
-            CZone* PDestination = zoneutils::GetZone(PZoneLine->m_toZone);
-            if (PDestination && PDestination->GetIP() == 0)
+            zoneLine_t* PZoneLine = PChar->loc.zone->GetZoneLine(zoneLineID);
+
+            // Ensure the zone line exists..
+            if (PZoneLine == NULL)
             {
-                ShowDebug(CL_CYAN"SmallPacket0x5E: Zone %u closed to chars\n" CL_RESET, PZoneLine->m_toZone);
+                ShowError(CL_RED"SmallPacket0x5E: Zone line %u not found\n" CL_RESET, zoneLineID);
 
                 PChar->loc.p.rotation += 128;
 
@@ -2616,36 +2624,27 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 PChar->status = STATUS_UPDATE;
                 return;
             }
-            else {
-                // Exiting Mog House..
-                if (PZoneLine->m_zoneLineID == 1903324538)
+            else
+            {
+                // Ensure the destination exists..
+                CZone* PDestination = zoneutils::GetZone(PZoneLine->m_toZone);
+                if (PDestination && PDestination->GetIP() == 0)
                 {
-                    uint16 prevzone = PChar->loc.prevzone;
+                    ShowDebug(CL_CYAN"SmallPacket0x5E: Zone %u closed to chars\n" CL_RESET, PZoneLine->m_toZone);
 
-                    // If zero, return to previous zone.. otherwise, determine the zone..
-                    if (zone != 0)
-                    {
-                        switch (town)
-                        {
-                        case 1: prevzone = zone + 0xE5; break;
-                        case 2: prevzone = zone + 0xE9; break;
-                        case 3: prevzone = zone + 0xED; break;
-                        case 4: prevzone = zone + 0xF2; break;
-                        case 5: prevzone = zone + (zone == 1 ? 0x2F : 0x30); break;
-                        }
+                    PChar->loc.p.rotation += 128;
 
-                        // Handle case for mog garden.. (Above addition does not work for this zone.)
-                        if (zone == 127)
-                        {
-                            prevzone = 280;
-                        }
-                    }
-                    PChar->loc.destination = prevzone;
+                    PChar->pushPacket(new CMessageSystemPacket(0, 0, 2));
+                    PChar->pushPacket(new CCSPositionPacket(PChar));
+
+                    PChar->status = STATUS_UPDATE;
+                    return;
                 }
-                else {
+                else
+                {
                     PChar->loc.destination = PZoneLine->m_toZone;
+                    PChar->loc.p = PZoneLine->m_toPos;
                 }
-                PChar->loc.p = PZoneLine->m_toPos;
             }
         }
         ShowInfo(CL_WHITE"Zoning from zone %u to zone %u: %s\n" CL_RESET, PChar->getZone(), PChar->loc.destination, PChar->GetName());
@@ -3875,7 +3874,7 @@ void SmallPacket0x0D2(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 {
                     CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i);
 
-                    if (PPartyMember->getZone() == PChar->getZone())
+                    if (PPartyMember->getZone() == PChar->getZone() && PPartyMember->m_moghouseID == PChar->m_moghouseID)
                     {
                         PChar->pushPacket(new CPartyMapPacket(PPartyMember));
                     }
@@ -3889,7 +3888,7 @@ void SmallPacket0x0D2(map_session_data_t* session, CCharEntity* PChar, int8* dat
             {
                 CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->members.at(i);
 
-                if (PPartyMember->getZone() == PChar->getZone())
+                if (PPartyMember->getZone() == PChar->getZone() && PPartyMember->m_moghouseID == PChar->m_moghouseID)
                 {
                     PChar->pushPacket(new CPartyMapPacket(PPartyMember));
                 }

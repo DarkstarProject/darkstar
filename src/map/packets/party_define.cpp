@@ -44,7 +44,7 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 			allianceid = PParty->m_PAlliance->m_AllianceID;
 		}
 
-		int ret = Sql_Query(SqlHandle, "SELECT chars.charid, partyflag, pos_zone FROM accounts_parties \
+		int ret = Sql_Query(SqlHandle, "SELECT chars.charid, partyflag, pos_zone, pos_prevzone FROM accounts_parties \
 									   	LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
 										IF (allianceid <> 0, allianceid = %d, partyid = %d) ORDER BY partyflag & %u, timestamp;", 
 										allianceid, PParty->GetPartyID(), PARTY_SECOND | PARTY_THIRD);
@@ -59,7 +59,7 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 				WBUFL(data, 12 * i + (0x08) - 4) = Sql_GetUIntData(SqlHandle, 0);
 				WBUFW(data, 12 * i + (0x0C) - 4) = targid;
 				WBUFW(data, 12 * i + (0x0E) - 4) = Sql_GetUIntData(SqlHandle, 1);
-				WBUFW(data, 12 * i + (0x10) - 4) = Sql_GetUIntData(SqlHandle, 2);
+                WBUFW(data, 12 * i + (0x10) - 4) = Sql_GetUIntData(SqlHandle, 2) ? Sql_GetUIntData(SqlHandle, 2) : Sql_GetUIntData(SqlHandle, 3);
 				i++;
 			}
 		}

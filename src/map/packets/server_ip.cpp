@@ -34,14 +34,8 @@ CServerIPPacket::CServerIPPacket(CCharEntity* PChar, uint8 type)
 
 	WBUFB(data,(0x04)-4) = type;
     uint64 ipp = 0;
-    if (PChar->loc.destination == 0)
-    {
-        ipp = zoneutils::GetZoneIPP(PChar->loc.zone->GetID());
-    }
-    else
-    {
-        ipp = zoneutils::GetZoneIPP(PChar->loc.destination);
-    }
+    ipp = zoneutils::GetZoneIPP(PChar->loc.destination);
+
 	WBUFL(data,(0x08)-4) = ipp;
 	WBUFW(data,(0x0C)-4) = (ipp >> 32);
 }
