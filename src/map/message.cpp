@@ -81,6 +81,7 @@ namespace message
                     PChar->status = STATUS_SHUTDOWN;
                     PChar->pushPacket(new CServerIPPacket(PChar, 1));
                 }
+                break;
             }
 			case MSG_CHAT_TELL:
 			{
@@ -265,6 +266,7 @@ namespace message
 						}
 					}
 				}
+                break;
 			}
             case MSG_PT_RELOAD:
 			{
@@ -315,6 +317,7 @@ namespace message
                         }
                     }
                 }
+                break;
             }
 			case MSG_DIRECT:
 			{
@@ -335,6 +338,7 @@ namespace message
                 {
                     PLinkshell->ChangeMemberRank((int8*)extra->data() + 4, RBUFB(extra->data(), 28));
                 }
+                break;
             }
             case MSG_LINKSHELL_REMOVE:
             {
@@ -349,6 +353,7 @@ namespace message
                         PChar->PLinkshell->RemoveMemberByName((int8*)extra->data() + 4);
                     }
                 }
+                break;
             }
             default:
             {

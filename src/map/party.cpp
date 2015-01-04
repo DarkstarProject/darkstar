@@ -657,7 +657,7 @@ void CParty::ReloadParty()
                 PChar->ReloadPartyDec();
 				uint16 alliance = 0;
 				PChar->pushPacket(new CPartyDefinePacket(m_PAlliance->partyList.at(a)));
-				int ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, partyid FROM accounts_parties \
+				int ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, pos_prevzone FROM accounts_parties \
 												LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
 												allianceid = %d ORDER BY partyflag & %u, timestamp;",
 												m_PAlliance->m_AllianceID, PARTY_SECOND | PARTY_THIRD);
@@ -678,9 +678,10 @@ void CParty::ReloadParty()
 						}
 						else
 						{
+                            uint16 zoneid = Sql_GetUIntData(SqlHandle, 3) == 0 ? Sql_GetUIntData(SqlHandle, 4) : Sql_GetUIntData(SqlHandle, 3);
 							PChar->pushPacket(new CPartyMemberUpdatePacket(
 								Sql_GetUIntData(SqlHandle, 0), Sql_GetData(SqlHandle, 1),
-								Sql_GetUIntData(SqlHandle, 2), Sql_GetUIntData(SqlHandle, 3)));
+								Sql_GetUIntData(SqlHandle, 2), zoneid));
 						}
 						j++;
 					}
@@ -700,7 +701,7 @@ void CParty::ReloadParty()
 		PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
         PChar->ReloadPartyDec();
 		PChar->pushPacket(new CPartyDefinePacket(this));
-		int ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, partyid FROM accounts_parties \
+		int ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, pos_prevzone FROM accounts_parties \
 									   	LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
 										partyid = %d ORDER BY timestamp;",
 										m_PartyID);
@@ -715,11 +716,12 @@ void CParty::ReloadParty()
 					PChar->pushPacket(new CPartyMemberUpdatePacket(PPartyMember, j, PChar->getZone()));
 				}
 				else
-				{
-					PChar->pushPacket(new CPartyMemberUpdatePacket(
-						Sql_GetUIntData(SqlHandle, 0), Sql_GetData(SqlHandle, 1),
-						Sql_GetUIntData(SqlHandle, 2), Sql_GetUIntData(SqlHandle, 3)));
-				}
+                {
+                    uint16 zoneid = Sql_GetUIntData(SqlHandle, 3) == 0 ? Sql_GetUIntData(SqlHandle, 4) : Sql_GetUIntData(SqlHandle, 3);
+                    PChar->pushPacket(new CPartyMemberUpdatePacket(
+                        Sql_GetUIntData(SqlHandle, 0), Sql_GetData(SqlHandle, 1),
+                        Sql_GetUIntData(SqlHandle, 2), zoneid));
+                }
 				j++;
 			}
 		}
@@ -744,14 +746,14 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
 
     if (m_PAlliance)
     {
-        ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, partyid FROM accounts_parties \
+        ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, pos_prevzone FROM accounts_parties \
                                     LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
                                     allianceid = %d ORDER BY partyflag & %u, timestamp;",
                                     m_PAlliance->m_AllianceID, PARTY_SECOND | PARTY_THIRD);
     }
     else
     {
-        ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, partyid FROM accounts_parties \
+        ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, pos_prevzone FROM accounts_parties \
                                     LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
                                     partyid = %d ORDER BY timestamp;",
                                     m_PartyID);
@@ -774,9 +776,10 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
             }
             else
             {
+                uint16 zoneid = Sql_GetUIntData(SqlHandle, 3) == 0 ? Sql_GetUIntData(SqlHandle, 4) : Sql_GetUIntData(SqlHandle, 3);
                 PChar->pushPacket(new CPartyMemberUpdatePacket(
                     Sql_GetUIntData(SqlHandle, 0), Sql_GetData(SqlHandle, 1),
-                    Sql_GetUIntData(SqlHandle, 2), Sql_GetUIntData(SqlHandle, 3)));
+                    Sql_GetUIntData(SqlHandle, 2), zoneid));
             }
             j++;
         }

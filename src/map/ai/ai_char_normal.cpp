@@ -622,16 +622,18 @@ void CAICharNormal::ActionItemUsing()
             m_PItemUsable->setLastUseTime(CVanaTime::getInstance()->getVanaTime());
 			m_PChar->pushPacket(new CInventoryItemPacket(m_PItemUsable, m_PItemUsable->getLocationID(), m_PItemUsable->getSlotID()));
 
+            int8 extra[sizeof(m_PItemUsable->m_extra) * 2 + 1];
+            Sql_EscapeStringLen(SqlHandle, extra, (const char*)m_PItemUsable->m_extra, sizeof(m_PItemUsable->m_extra));
+
 			const int8* Query =
                 "UPDATE char_inventory "
-                "SET currCharges = %u, lastUseTime = %u "
+                "SET extra = '%s' "
                 "WHERE charid = %u AND location = %u AND slot = %u;";
 
 			Sql_Query(
 				SqlHandle,
 				Query,
-				m_PItemUsable->getCurrentCharges(),
-				m_PItemUsable->getLastUseTime(),
+                extra,
 				m_PChar->id,
 				m_PItemUsable->getLocationID(),
 				m_PItemUsable->getSlotID());

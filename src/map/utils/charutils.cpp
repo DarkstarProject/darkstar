@@ -809,7 +809,7 @@ void LoadInventory(CCharEntity* PChar)
                 CItem* PItem = (CItem*)PItemContainer->GetItem(y);
 
                 // check if the item is valid and can have an augment applied to it
-                if (PItem != NULL && (PItem->isType(ITEM_ARMOR) || PItem->isType(ITEM_WEAPON)))
+                if (PItem != NULL && ((PItem->isType(ITEM_ARMOR) || PItem->isType(ITEM_WEAPON)) && !PItem->isSubType(ITEM_CHARGED)))
                 {
                     // check if there are any valid augments to be applied to the item
                     for (uint8 j = 0; j < 4; ++j)
@@ -3506,7 +3506,7 @@ void SaveCharPosition(CCharEntity* PChar)
         "WHERE charid = %u;";
 
     Sql_Query(SqlHandle, Query,
-        PChar->getZone(),
+        PChar->m_moghouseID ? 0 : PChar->getZone(),
         PChar->loc.prevzone,
         PChar->loc.p.rotation,
         PChar->loc.p.x,
