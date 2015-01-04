@@ -622,14 +622,8 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             return;
         }
         CBaseEntity* PNpc = NULL;
-        if (PChar->getZone() == 0)
-        {
-            PNpc = zoneutils::GetZone(PChar->loc.prevzone)->GetEntity(TargID, TYPE_NPC);
-        }
-        else
-        {
-            PNpc = PChar->GetEntity(TargID, TYPE_NPC);
-        }
+
+        PNpc = PChar->GetEntity(TargID, TYPE_NPC);
 
         if (PNpc != NULL && distance(PNpc->loc.p, PChar->loc.p) <= 10)
         {
@@ -2756,14 +2750,6 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         return;
     }
 
-    if (PChar->getZone() == 0)
-    {
-        // Initiator is in Mog House.  Send error message.
-        // Don't know if this is retail, but because of the way DSP currently handles MH it's necessary to block sending invite
-        PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 32));
-        return;
-    }
-
     switch (RBUFB(data, (0x0A)))
     {
     case 0: // party - must by party leader or solo
@@ -3666,7 +3652,7 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
     break;
     case 3: // change merit
     {
-        if (PChar->getZone() == 0)
+        if (PChar->m_moghouseID)
         {
             MERIT_TYPE merit = (MERIT_TYPE)(RBUFW(data, (0x06)) << 1);
 
@@ -4217,7 +4203,7 @@ void SmallPacket0x0E7(map_session_data_t* session, CCharEntity* PChar, int8* dat
     if (PChar->status != STATUS_NORMAL)
         return;
 
-    if (PChar->getZone() == 0 ||
+    if (PChar->m_moghouseID ||
         PChar->nameflags.flags & FLAG_GM ||
         PChar->m_GMlevel > 0)
     {

@@ -637,7 +637,7 @@ int32 doSynthFail(CCharEntity* PChar)
 	double synthDiff    = getSynthDifficulty(PChar, carrentCraft);
 	double moghouseAura = 0;
 
-	if (PChar->getZone() == 0) // неправильное условие, т.к. аура действует лишь в собственном доме
+	if (PChar->m_moghouseID) // неправильное условие, т.к. аура действует лишь в собственном доме
 	{
 		// Проверяем элемент синтеза
 		switch (PChar->CraftContainer->getType())
