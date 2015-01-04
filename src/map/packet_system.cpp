@@ -4687,7 +4687,7 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    if (PChar->loc.zone->CanUseMisc(MISC_MOGMENU))
+    if (PChar->loc.zone->CanUseMisc(MISC_MOGMENU) || PChar->m_moghouseID)
     {
         uint8 mjob = RBUFB(data, (0x04));
         uint8 sjob = RBUFB(data, (0x05));
