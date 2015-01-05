@@ -22,6 +22,7 @@
 */
 
 #include "../../common/socket.h"
+#include "../../common/strlib.h"
 
 #include "item_linkshell.h"
 
@@ -29,10 +30,6 @@
 CItemLinkshell::CItemLinkshell(uint16 id) : CItem(id)
 {
 	setType(ITEM_LINKSHELL);
-
-    m_LinkshellID = 0;
-
-	WBUFW(&m_LSColor,0) = 0;
 }
 
 CItemLinkshell::~CItemLinkshell()
@@ -41,12 +38,12 @@ CItemLinkshell::~CItemLinkshell()
 
 uint32 CItemLinkshell::GetLSID()
 {
-    return m_LinkshellID;
+    return RBUFL(m_extra, 0x00);
 }
 
 void CItemLinkshell::SetLSID(uint32 lsid)
 {
-    m_LinkshellID = lsid;
+    WBUFL(m_extra, 0x00) = lsid;
 }
 
 LSTYPE CItemLinkshell::GetLSType()
@@ -56,15 +53,25 @@ LSTYPE CItemLinkshell::GetLSType()
 
 lscolor_t CItemLinkshell::GetLSColor()
 {
-	return m_LSColor;
+	return *(lscolor_t*)(m_extra+0x06);
 }
 
 uint16 CItemLinkshell::GetLSRawColor()
 {
-    return RBUFW(&m_LSColor,0);
+    return RBUFW(m_extra, 0x06);
 }
 
 void CItemLinkshell::SetLSColor(uint16 color)
 {
-	WBUFW(&m_LSColor,0) = color;
+	WBUFW(m_extra,0x06) = color;
+}
+
+const int8* CItemLinkshell::getSignature()
+{
+    return (int8*)m_extra + 0x09;
+}
+
+void CItemLinkshell::setSignature(int8* signature)
+{
+    memcpy(m_extra + 0x09, signature, sizeof(m_extra) - 0x09);
 }

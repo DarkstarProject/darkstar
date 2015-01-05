@@ -128,6 +128,7 @@ public:
     int32 getSpawnPos(lua_State*);          // Get Mob spawn position (x,y,z)
     int32 getZone(lua_State*);              // Get Entity zone
     int32 getZoneName(lua_State*);          // Get Entity zone name
+    int32 isInMogHouse(lua_State*);         // Check if entity inside a mog house
     int32 getCurrentRegion(lua_State*);     // Get Entity conquest region
     int32 getPreviousZone(lua_State*);      // Get Entity previous zone
     int32 getContinentID(lua_State*);       // узнаем континент, на котором находится сущность
@@ -313,9 +314,9 @@ public:
     int32 sendTractor(lua_State*);          // send tractor request to char
     int32 SendRevision(lua_State*);         // send Git revision to char
 
-	int32 updateEnmity(lua_State*);           // Adds Enmity to player for specified mob
+    int32 updateEnmity(lua_State*);           // Adds Enmity to player for specified mob
 	int32 updateClaim(lua_State*);           // Adds Enmity to player for specified mob and claims
-	int32 updateEnmityFromDamage(lua_State*); // Adds Enmity to player for specified mob for the damage specified
+    int32 updateEnmityFromDamage(lua_State*); // Adds Enmity to player for specified mob for the damage specified
     int32 updateEnmityFromCure(lua_State*);
     int32 addEnmity(lua_State*);            // Add specified amount of enmity (target, CE, VE)
     int32 resetEnmity(lua_State*);          //resets enmity to player for specificed mob
@@ -591,7 +592,15 @@ public:
     int32 setAggroFlag(lua_State* L);
     int32 unsetAggroFlag(lua_State* L);
 	int32 addFishingZone(lua_State* L);
-	int32 addFishingZonePoint()
+	//int32 addFishingZonePoint()
+    int32 instantiateMob(lua_State* L);
+
+    int32 getActiveManeuvers(lua_State*);
+    int32 removeOldestManeuver(lua_State*);
+    int32 removeAllManeuvers(lua_State*);
+    int32 addBurden(lua_State* L);
+
+    int32 setElevator(lua_State* L);
 };
 
 #endif

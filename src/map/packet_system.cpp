@@ -209,9 +209,11 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
     {
         if (PChar->loc.zone != NULL)
         {
+            //remove the char from previous zone, and unset shuttingDown (already in next zone)
             PacketParser[0x00D](session, PChar, NULL);
         }
 
+        session->shuttingDown = 0;
         session->blowfish.key[4] += 2;
         session->blowfish.status = BLOWFISH_SENT;
 
@@ -237,20 +239,27 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->loc.destination = destination = ZONE_RESIDENTIAL_AREA;
         }
 
-        if (destination != ZONE_RESIDENTIAL_AREA &&
-            destination != ZONE_214)
+        if (destination == ZONE_RESIDENTIAL_AREA ||
+            destination == ZONE_214 && PChar->m_moghouseID == 0)
         {
-            zoneutils::GetZone(destination)->IncreaseZoneCounter(PChar);
+            PChar->m_moghouseID = PChar->id;
+            destination = PChar->loc.prevzone;
         }
-        else {
-            PChar->loc.zone = zoneutils::GetZone(destination);
+        else
+        {
+            PChar->m_moghouseID = 0;
         }
+
+        zoneutils::GetZone(destination)->IncreaseZoneCounter(PChar);
 
         bool firstLogin = true;
         for (uint32 i = 0; i < sizeof(PChar->m_ZonesList); ++i)
         {
             if (PChar->m_ZonesList[i] != 0)
+            {
                 firstLogin = false;
+                break;
+            }
         }
 
         PChar->m_ZonesList[PChar->getZone() >> 3] |= (1 << (PChar->getZone() % 8));
@@ -288,14 +297,13 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
     {
         PChar->loc.prevzone = PChar->getZone();
     }
-    int16 EventID = luautils::OnZoneIn(PChar);
 
     charutils::SaveCharPosition(PChar);
     charutils::SaveZonesVisited(PChar);
     charutils::SavePlayTime(PChar);
 
     PChar->pushPacket(new CDownloadingDataPacket());
-    PChar->pushPacket(new CZoneInPacket(PChar, EventID));
+    PChar->pushPacket(new CZoneInPacket(PChar, PChar->m_event.EventID));
     PChar->pushPacket(new CZoneVisitedPacket(PChar));
     CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
     charutils::RecoverFailedSendBox(PChar);
@@ -367,6 +375,7 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
     if (PChar->animation == ANIMATION_ATTACK)
     {
         PChar->animation = ANIMATION_NONE;
+        PChar->updatemask |= UPDATE_HP;
     }
 
     PChar->PRecastContainer->Del(RECAST_MAGIC);
@@ -407,11 +416,14 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
         }
         session->shuttingDown = 1;
+        Sql_Query(SqlHandle, "UPDATE char_stats SET zoning = 0 WHERE charid = %u", PChar->id);
     }
     else
     {
         session->shuttingDown = 2;
+        Sql_Query(SqlHandle, "UPDATE char_stats SET zoning = 1 WHERE charid = %u", PChar->id);
         charutils::CheckEquipLogic(PChar, SCRIPT_CHANGEZONE, PChar->getZone());
+        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
     }
 
     if (PChar->loc.zone != NULL)
@@ -558,7 +570,6 @@ void SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* dat
         if (PEntity && PEntity->objtype == TYPE_PC)
         {
             PChar->pushPacket(new CCharPacket((CCharEntity*)PEntity, ENTITY_SPAWN, UPDATE_ALL_CHAR));
-            PChar->pushPacket(new CCharUpdatePacket((CCharEntity*)PEntity));
         }
         else
         {
@@ -611,14 +622,8 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             return;
         }
         CBaseEntity* PNpc = NULL;
-        if (PChar->getZone() == 0)
-        {
-            PNpc = zoneutils::GetZone(PChar->loc.prevzone)->GetEntity(TargID, TYPE_NPC);
-        }
-        else
-        {
-            PNpc = PChar->GetEntity(TargID, TYPE_NPC);
-        }
+
+        PNpc = PChar->GetEntity(TargID, TYPE_NPC);
 
         if (PNpc != NULL && distance(PNpc->loc.p, PChar->loc.p) <= 10)
         {
@@ -719,6 +724,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
         PChar->status = STATUS_DISAPPEAR;
         PChar->animation = ANIMATION_NONE;
+        PChar->updatemask |= UPDATE_HP;
 
         PChar->clearPacketList();
         PChar->pushPacket(new CServerIPPacket(PChar, 2));
@@ -776,6 +782,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
     {
         PChar->status = STATUS_UPDATE;
         PChar->animation = ANIMATION_NONE;
+        PChar->updatemask |= UPDATE_HP;
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
         PChar->pushPacket(new CCharUpdatePacket(PChar));
         PChar->pushPacket(new CChangeMusicPacket(0, PChar->loc.zone->GetBackgroundMusic()));
@@ -800,9 +807,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
     break;
     case 0x14: // complete character update
     {
-        if (PChar->getZone() == 0)
+        if (PChar->m_moghouseID != 0)
         {
-            zoneutils::GetZone(PChar->loc.prevzone)->SpawnMoogle(PChar);
+            PChar->loc.zone->SpawnMoogle(PChar);
         }
         else{
             PChar->loc.zone->SpawnPCs(PChar);
@@ -1186,18 +1193,6 @@ void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, int8* dat
     uint16 targid = RBUFW(data, (0x3A));
 
     CBaseEntity* PNpc = PChar->GetEntity(targid, TYPE_NPC);
-
-    // Moogles are zone dependent, and zoneid = 0 is for all residential areas, so if a char trades to a moogle
-    // then you won't find the right NPC if you used zoneid=0. Thankfully, the prevzone is the real zone we want
-    // so this should return an NPC.
-    if (PNpc == NULL && PChar->loc.prevzone != 0) {
-        PNpc = zoneutils::GetZone(PChar->loc.prevzone)->GetEntity(targid, TYPE_NPC);
-        if (strcmp(PNpc->GetName(), "Moogle") != 0) {
-            // we must restrict this check only for Moogles else other NPCs could be interpreted
-            // incorrectly as targetted.
-            return;
-        }
-    }
 
     if ((PNpc != NULL) && (PNpc->id == npcid))
     {
@@ -2579,28 +2574,41 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->status = STATUS_DISAPPEAR;
         PChar->loc.boundary = 0;
 
-        zoneLine_t* PZoneLine = PChar->loc.zone->GetZoneLine(zoneLineID);
-
-        // Ensure the zone line exists..
-        if (PZoneLine == NULL)
+        // Exiting Mog House..
+        if (zoneLineID == 1903324538)
         {
-            ShowError(CL_RED"SmallPacket0x5E: Zone line %u not found\n" CL_RESET, zoneLineID);
+            uint16 prevzone = PChar->loc.prevzone;
 
-            PChar->loc.p.rotation += 128;
+            // If zero, return to previous zone.. otherwise, determine the zone..
+            if (zone != 0)
+            {
+                switch (town)
+                {
+                case 1: prevzone = zone + 0xE5; break;
+                case 2: prevzone = zone + 0xE9; break;
+                case 3: prevzone = zone + 0xED; break;
+                case 4: prevzone = zone + 0xF2; break;
+                case 5: prevzone = zone + (zone == 1 ? 0x2F : 0x30); break;
+                }
 
-            PChar->pushPacket(new CMessageSystemPacket(0, 0, 2));
-            PChar->pushPacket(new CCSPositionPacket(PChar));
-
-            PChar->status = STATUS_UPDATE;
-            return;
+                // Handle case for mog garden.. (Above addition does not work for this zone.)
+                if (zone == 127)
+                {
+                    prevzone = 280;
+                }
+            }
+            PChar->m_moghouseID = 0;
+            PChar->loc.destination = prevzone;
+            memset(&PChar->loc.p, 0, sizeof(PChar->loc.p));
         }
         else
         {
-            // Ensure the destination exists..
-            CZone* PDestination = zoneutils::GetZone(PZoneLine->m_toZone);
-            if (PDestination && PDestination->GetIP() == 0)
+            zoneLine_t* PZoneLine = PChar->loc.zone->GetZoneLine(zoneLineID);
+
+            // Ensure the zone line exists..
+            if (PZoneLine == NULL)
             {
-                ShowDebug(CL_CYAN"SmallPacket0x5E: Zone %u closed to chars\n" CL_RESET, PZoneLine->m_toZone);
+                ShowError(CL_RED"SmallPacket0x5E: Zone line %u not found\n" CL_RESET, zoneLineID);
 
                 PChar->loc.p.rotation += 128;
 
@@ -2610,36 +2618,27 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 PChar->status = STATUS_UPDATE;
                 return;
             }
-            else {
-                // Exiting Mog House..
-                if (PZoneLine->m_zoneLineID == 1903324538)
+            else
+            {
+                // Ensure the destination exists..
+                CZone* PDestination = zoneutils::GetZone(PZoneLine->m_toZone);
+                if (PDestination && PDestination->GetIP() == 0)
                 {
-                    uint16 prevzone = PChar->loc.prevzone;
+                    ShowDebug(CL_CYAN"SmallPacket0x5E: Zone %u closed to chars\n" CL_RESET, PZoneLine->m_toZone);
 
-                    // If zero, return to previous zone.. otherwise, determine the zone..
-                    if (zone != 0)
-                    {
-                        switch (town)
-                        {
-                        case 1: prevzone = zone + 0xE5; break;
-                        case 2: prevzone = zone + 0xE9; break;
-                        case 3: prevzone = zone + 0xED; break;
-                        case 4: prevzone = zone + 0xF2; break;
-                        case 5: prevzone = zone + (zone == 1 ? 0x2F : 0x30); break;
-                        }
+                    PChar->loc.p.rotation += 128;
 
-                        // Handle case for mog garden.. (Above addition does not work for this zone.)
-                        if (zone == 127)
-                        {
-                            prevzone = 280;
-                        }
-                    }
-                    PChar->loc.destination = prevzone;
+                    PChar->pushPacket(new CMessageSystemPacket(0, 0, 2));
+                    PChar->pushPacket(new CCSPositionPacket(PChar));
+
+                    PChar->status = STATUS_UPDATE;
+                    return;
                 }
-                else {
+                else
+                {
                     PChar->loc.destination = PZoneLine->m_toZone;
+                    PChar->loc.p = PZoneLine->m_toPos;
                 }
-                PChar->loc.p = PZoneLine->m_toPos;
             }
         }
         ShowInfo(CL_WHITE"Zoning from zone %u to zone %u: %s\n" CL_RESET, PChar->getZone(), PChar->loc.destination, PChar->GetName());
@@ -2725,7 +2724,7 @@ void SmallPacket0x066(map_session_data_t* session, CCharEntity* PChar, int8* dat
     uint16 stamina = RBUFW(data, (0x08));
     uint8  action = RBUFB(data, (0x0E));
 
-    fishingutils::FishingAction(PChar, (FISHACTION)action, stamina);
+    fishingutils::FishingAction(PChar, (FISHACTION)action, stamina, 0);
     return;
 	//fishingutils::FishingAction(PChar, (FISHACTION)action, stamina);
 	return;
@@ -2750,14 +2749,6 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
     {
         // Initiator is in prison.  Send error message.
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
-        return;
-    }
-
-    if (PChar->getZone() == 0)
-    {
-        // Initiator is in Mog House.  Send error message.
-        // Don't know if this is retail, but because of the way DSP currently handles MH it's necessary to block sending invite
-        PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 32));
         return;
     }
 
@@ -3236,6 +3227,7 @@ void SmallPacket0x084(map_session_data_t* session, CCharEntity* PChar, int8* dat
             (PItem->getID() == itemID) &&
             !(PItem->getFlag() & ITEM_FLAG_NOSALE))
         {
+            quantity = dsp_min(quantity, PItem->getQuantity());
             PChar->Container->setItem(PChar->Container->getSize() - 1, itemID, slotID, quantity);
             PChar->pushPacket(new CShopAppraisePacket(slotID, PItem->getBasePrice()));
         }
@@ -3662,7 +3654,7 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
     break;
     case 3: // change merit
     {
-        if (PChar->getZone() == 0)
+        if (PChar->m_moghouseID)
         {
             MERIT_TYPE merit = (MERIT_TYPE)(RBUFW(data, (0x06)) << 1);
 
@@ -3686,7 +3678,6 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 charutils::CheckValidEquipment(PChar);
                 charutils::BuildingCharAbilityTable(PChar);
                 charutils::BuildingCharTraitsTable(PChar);
-                charutils::BuildingCharWeaponSkills(PChar);
 
                 PChar->UpdateHealth();
                 PChar->addHP(PChar->GetMaxHP());
@@ -3763,16 +3754,19 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
             if (LinkshellID = linkshell::RegisterNewLinkshell(DecodedName, LinkshellColor))
             {
-                const int8* Query = "UPDATE char_inventory SET signature = '%s', itemId = 513 WHERE charid = %u AND location = 0 AND slot = %u LIMIT 1";
+                PItemLinkshell->setID(513);
+                PItemLinkshell->SetLSID(LinkshellID);
+                PItemLinkshell->setSignature(EncodedName); //because apparently the format from the packet isn't right, and is missing terminators
+                PItemLinkshell->SetLSColor(LinkshellColor);
 
-                if (Sql_Query(SqlHandle, Query, DecodedName, PChar->id, SlotID) != SQL_ERROR &&
+                int8 extra[sizeof(PItemLinkshell->m_extra) * 2 + 1];
+                Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItemLinkshell->m_extra, sizeof(PItemLinkshell->m_extra));
+
+                const int8* Query = "UPDATE char_inventory SET signature = '%s', extra = '%s', itemId = 513 WHERE charid = %u AND location = 0 AND slot = %u LIMIT 1";
+
+                if (Sql_Query(SqlHandle, Query, DecodedName, extra, PChar->id, SlotID) != SQL_ERROR &&
                     Sql_AffectedRows(SqlHandle) != 0)
                 {
-                    PItemLinkshell->setID(513);
-                    PItemLinkshell->SetLSID(LinkshellID);
-                    PItemLinkshell->setSignature(EncodedName); //because apparently the format from the packet isn't right, and is missing terminators
-                    PItemLinkshell->SetLSColor(LinkshellColor);
-
                     PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
                 }
             }
@@ -3798,6 +3792,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 PChar->equip[SLOT_LINK] = 0;
                 PChar->equipLoc[SLOT_LINK] = 0;
                 PChar->nameflags.flags &= ~FLAG_LINKSHELL;
+                PChar->updatemask |= UPDATE_HP;
 
                 PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_NORMAL));
             }
@@ -3828,6 +3823,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 PChar->equip[SLOT_LINK] = SlotID;
                 PChar->equipLoc[SLOT_LINK] = LOC_INVENTORY;
                 PChar->nameflags.flags |= FLAG_LINKSHELL;
+                PChar->updatemask |= UPDATE_HP;
 
                 PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_LINKSHELL));
             }
@@ -3866,7 +3862,7 @@ void SmallPacket0x0D2(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 {
                     CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i);
 
-                    if (PPartyMember->getZone() == PChar->getZone())
+                    if (PPartyMember->getZone() == PChar->getZone() && PPartyMember->m_moghouseID == PChar->m_moghouseID)
                     {
                         PChar->pushPacket(new CPartyMapPacket(PPartyMember));
                     }
@@ -3880,7 +3876,7 @@ void SmallPacket0x0D2(map_session_data_t* session, CCharEntity* PChar, int8* dat
             {
                 CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->members.at(i);
 
-                if (PPartyMember->getZone() == PChar->getZone())
+                if (PPartyMember->getZone() == PChar->getZone() && PPartyMember->m_moghouseID == PChar->m_moghouseID)
                 {
                     PChar->pushPacket(new CPartyMapPacket(PPartyMember));
                 }
@@ -3939,6 +3935,7 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, int8* dat
     }
     charutils::SaveCharStats(PChar);
 
+    PChar->updatemask |= UPDATE_HP;
     PChar->status = STATUS_UPDATE;
     PChar->pushPacket(new CMenuConfigPacket(PChar));
     PChar->pushPacket(new CCharUpdatePacket(PChar));
@@ -4208,7 +4205,7 @@ void SmallPacket0x0E7(map_session_data_t* session, CCharEntity* PChar, int8* dat
     if (PChar->status != STATUS_NORMAL)
         return;
 
-    if (PChar->getZone() == 0 ||
+    if (PChar->m_moghouseID ||
         PChar->nameflags.flags & FLAG_GM ||
         PChar->m_GMlevel > 0)
     {
@@ -4305,6 +4302,7 @@ void SmallPacket0x0EA(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     PChar->status = STATUS_UPDATE;
     PChar->animation = (PChar->animation == ANIMATION_SIT ? ANIMATION_NONE : ANIMATION_SIT);
+    PChar->updatemask |= UPDATE_HP;
     PChar->pushPacket(new CCharUpdatePacket(PChar));
     return;
 }
@@ -4566,25 +4564,26 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             rotation = (col >= 2 ? 3 : 1);
         }
+
+        PItem->setInstalled(true);
+        PItem->setCol(col);
+        PItem->setRow(row);
+        PItem->setLevel(level);
+        PItem->setRotation(rotation);
+
+        PItem->setSubType(ITEM_LOCKED);
+
+        int8 extra[sizeof(PItem->m_extra) * 2 + 1];
+        Sql_EscapeStringLen(SqlHandle, extra, (const int8*)PItem->m_extra, sizeof(PItem->m_extra));
+
         const int8* Query =
             "UPDATE char_inventory "
             "SET "
-            "locked = 1,"
-            "col = %u,"
-            "row = %u,"
-            "level = %u,"
-            "rotation = %u "
+            "extra = '%s' "
             "WHERE location = 1 AND slot = %u AND charid = %u";
 
-        if (Sql_Query(SqlHandle, Query, col, row, level, rotation, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
+        if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
         {
-            PItem->setCol(col);
-            PItem->setRow(row);
-            PItem->setLevel(level);
-            PItem->setRotation(rotation);
-
-            PItem->setSubType(ITEM_LOCKED);
-
             PChar->getStorage(LOC_STORAGE)->AddBuff(PItem->getStorage());
 
             PChar->pushPacket(new CInventorySizePacket(PChar));
@@ -4626,25 +4625,25 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
         if (PItemContainer->GetFreeSlotsCount() >= RemovedSize)
         {
+            PItem->setInstalled(false);
+            PItem->setCol(0);
+            PItem->setRow(0);
+            PItem->setLevel(0);
+            PItem->setRotation(0);
+
+            PItem->setSubType(ITEM_UNLOCKED);
+
+            int8 extra[sizeof(PItem->m_extra) * 2 + 1];
+            Sql_EscapeStringLen(SqlHandle, extra, (const int8*)PItem->m_extra, sizeof(PItem->m_extra));
+
             const int8* Query =
                 "UPDATE char_inventory "
                 "SET "
-                "locked = 0,"
-                "col = 0,"
-                "row = 0,"
-                "level = 0,"
-                "rotation = 0 "
+                "extra = '%s' "
                 "WHERE location = 1 AND slot = %u AND charid = %u";
 
-            if (Sql_Query(SqlHandle, Query, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
+            if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
             {
-                PItem->setCol(0);
-                PItem->setRow(0);
-                PItem->setLevel(0);
-                PItem->setRotation(0);
-
-                PItem->setSubType(ITEM_UNLOCKED);
-
                 uint8 NewSize = PItemContainer->GetSize() - RemovedSize;
                 for (uint8 SlotID = PItemContainer->GetSize(); SlotID > NewSize; --SlotID)
                 {
@@ -4676,7 +4675,7 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    if (PChar->loc.zone->CanUseMisc(MISC_MOGMENU))
+    if (PChar->loc.zone->CanUseMisc(MISC_MOGMENU) || PChar->m_moghouseID)
     {
         uint8 mjob = RBUFB(data, (0x04));
         uint8 sjob = RBUFB(data, (0x05));
@@ -4800,10 +4799,10 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
             charutils::BuildingCharTraitsTable(PChar);
             PChar->status = STATUS_UPDATE;
+            PChar->pushPacket(new CCharAbilitiesPacket(PChar));
             PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
             PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
             PChar->pushPacket(new CCharStatsPacket(PChar));
-            charutils::CalculateStats(PChar);
             PChar->UpdateHealth();
             PChar->pushPacket(new CCharHealthPacket(PChar));
         }
@@ -4824,10 +4823,10 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
                     charutils::BuildingCharTraitsTable(PChar);
                     PChar->status = STATUS_UPDATE;
+                    PChar->pushPacket(new CCharAbilitiesPacket(PChar));
                     PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
                     PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
                     PChar->pushPacket(new CCharStatsPacket(PChar));
-                    charutils::CalculateStats(PChar);
                     PChar->UpdateHealth();
                     PChar->pushPacket(new CCharHealthPacket(PChar));
                 }
@@ -5056,6 +5055,7 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* dat
         if (BazaarIsEmpty)
         {
             PTarget->status = STATUS_UPDATE;
+            PTarget->updatemask |= UPDATE_HP;
             PTarget->nameflags.flags &= ~FLAG_BAZAAR;
             PTarget->pushPacket(new CCharUpdatePacket(PTarget));
         }
@@ -5083,6 +5083,7 @@ void SmallPacket0x109(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             PChar->status = STATUS_UPDATE;
             PChar->nameflags.flags |= FLAG_BAZAAR;
+            PChar->updatemask |= UPDATE_HP;
             PChar->pushPacket(new CCharUpdatePacket(PChar));
             return;
         }
@@ -5137,6 +5138,7 @@ void SmallPacket0x10B(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     PChar->status = STATUS_UPDATE;
     PChar->nameflags.flags &= ~FLAG_BAZAAR;
+    PChar->updatemask |= UPDATE_HP;
     PChar->pushPacket(new CCharUpdatePacket(PChar));
     return;
 }

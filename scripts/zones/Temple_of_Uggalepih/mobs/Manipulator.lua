@@ -65,7 +65,7 @@ function onMobSpawn(mob)
 	onMobRoam(mob);
 end;
 
-function onMobPath(mob)
+function onPath(mob)
 	pathfind.patrol(mob, path);
 end;
 

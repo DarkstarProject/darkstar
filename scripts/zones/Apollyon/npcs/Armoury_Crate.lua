@@ -42,12 +42,12 @@ function onTrigger(player,npc)
 	  end	  
   end
   
- printf("CofferID : %u",CofferID-16932864);
- printf("Coffertype %u",CofferType);
- printf("InstanceRegion: %u",InstanceRegion);
- printf("addtime: %u",addtime);
- printf("MimicID: %u",MimicID);
- printf("lootID: %u",lootID);
+-- printf("CofferID : %u",CofferID-16932864);
+-- printf("Coffertype %u",CofferType);
+-- printf("InstanceRegion: %u",InstanceRegion);
+-- printf("addtime: %u",addtime);
+-- printf("MimicID: %u",MimicID);
+-- printf("lootID: %u",lootID);
  
  
     if(CofferType == cTIME)then 

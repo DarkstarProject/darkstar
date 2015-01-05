@@ -50,17 +50,17 @@
 
 enum QUESTAREA
 {
-	QUESTS_SANDORIA		= 0,
-	QUESTS_BASTOK		= 1,
-	QUESTS_WINDURST		= 2,
-	QUESTS_JEUNO		= 3,
-	QUESTS_OTHER		= 4,
-	QUESTS_OUTLANDS		= 5,
-	QUESTS_AHTURHGAN	= 6,
-	QUESTS_CRYSTALWAR	= 7,
-	QUESTS_ABYSSEA		= 8,
-	QUESTS_ADOULIN		= 9,
-	QUESTS_COALITION	= 10
+    QUESTS_SANDORIA = 0,
+    QUESTS_BASTOK = 1,
+    QUESTS_WINDURST = 2,
+    QUESTS_JEUNO = 3,
+    QUESTS_OTHER = 4,
+    QUESTS_OUTLANDS = 5,
+    QUESTS_AHTURHGAN = 6,
+    QUESTS_CRYSTALWAR = 7,
+    QUESTS_ABYSSEA = 8,
+    QUESTS_ADOULIN = 9,
+    QUESTS_COALITION = 10
 };
 
 #define MAX_QUESTAREA	 11
@@ -90,8 +90,8 @@ struct event_t
 	void reset()
     {
 		EventID = -1;
-        Option  =  0;
-        Target  =  0;
+        Option = 0;
+        Target = 0;
 		Script.clear();
 		Function.clear();
 	}
@@ -133,7 +133,8 @@ struct PetInfo_t
 	bool		respawnPet;		// used for spawning pet on zone
 	uint8		petID;			// id as in wyvern(48) , carbuncle(8) ect..
 	PETTYPE		petType;		// type of pet being transfered
-	int32		petHP;			// pets hp
+    int16		petHP;			// pets hp
+    int16       petMP;
 	float		petTP;			// pets tp
 };
 
@@ -168,7 +169,7 @@ struct GearSetMod_t
 class CBasicPacket;
 
 typedef std::deque<CBasicPacket*> PacketList_t;
-typedef std::map<uint32,CBaseEntity*> SpawnIDList_t;
+typedef std::map<uint32, CBaseEntity*> SpawnIDList_t;
 typedef std::vector<EntityID_t> BazaarList_t;
 
 class CCharEntity : public CBattleEntity
@@ -291,6 +292,7 @@ public:
 
     uint8             m_mentor;                     // Mentor flag status.
     bool              m_isNewPlayer;                // New player flag..
+    uint32            m_moghouseID;
 
 	int8			  getShieldSize();
 
@@ -298,15 +300,11 @@ public:
 	void			  setWeaponSkillKill(bool isWeaponSkillKill);
 	bool			  getMijinGakure();
 	void			  setMijinGakure(bool isMijinGakure);
-	bool                      getStyleLocked();
-	void                      setStyleLocked(bool isStyleLocked);
+    bool              getStyleLocked();
+    void              setStyleLocked(bool isStyleLocked);
 
 	bool			  isRapidShot;										// Flag to track rapid shot
 	bool			  secondDoubleShotTaken;							// Flag to track number of double shots taken
-
-	bool			  isWeaponUnlocked(uint16 indexid);					// return if weapon is broken
-	bool			  addWsPoints(uint8 points, uint16 WeaponIndex);	// return if weapon is broken
-	UnlockedWeapons_t unlockedWeapons[MAX_UNLOCKABLE_WEAPONS];			// chars unlocked weapon status
 
 	int16 addTP(int16 tp) override;
 	int32 addHP(int32 hp) override;

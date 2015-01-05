@@ -22,6 +22,7 @@
 */
 
 #include "item_furnishing.h"
+#include "../map.h"
 
 CItemFurnishing::CItemFurnishing(uint16 id) : CItem(id)
 {
@@ -31,15 +32,23 @@ CItemFurnishing::CItemFurnishing(uint16 id) : CItem(id)
 	m_moghancement = 0;
 	m_element      = 0;
 	m_aura         = 0;
-
-	m_col		   = 0;
-	m_row		   = 0;
-	m_level		   = 0;
-	m_rotation	   = 0;
 }
 
 CItemFurnishing::~CItemFurnishing()
 {
+}
+
+void CItemFurnishing::setInstalled(bool installed)
+{
+    if (installed)
+        WBUFB(m_extra, 0x01) |= 0x40;
+    else
+        WBUFB(m_extra, 0x01) &= ~0x40;
+}
+
+bool CItemFurnishing::isInstalled()
+{
+    return WBUFB(m_extra, 0x01) & 0x40;
 }
 
 void CItemFurnishing::setStorage(uint8 storage)
@@ -84,40 +93,40 @@ uint8 CItemFurnishing::getAura()
 
 void CItemFurnishing::setCol(uint8 col)
 {
-	m_col = col;
+	WBUFB(m_extra, 0x06) = col;
 }
 	
 uint8 CItemFurnishing::getCol()
 {
-	return m_col;
+    return RBUFB(m_extra, 0x06);
 }
 
 void CItemFurnishing::setRow(uint8 row)
 {
-	m_row = row;
+    WBUFB(m_extra, 0x08) = row;
 }
 
 uint8 CItemFurnishing::getRow()
 {
-	return m_row;
+    return RBUFB(m_extra, 0x08);
 }
 
 void CItemFurnishing::setLevel(uint8 level)
 {
-	m_level = level;
+    WBUFB(m_extra, 0x07) = level;
 }
 
 uint8 CItemFurnishing::getLevel()
 {
-	return m_level;
+    return RBUFB(m_extra, 0x07);
 }
 
 void CItemFurnishing::setRotation(uint8 rotation)
 {
-	m_rotation = rotation;
+    WBUFB(m_extra, 0x09) = rotation;
 }
 
 uint8 CItemFurnishing::getRotation()
 {
-	return m_rotation;
+    return RBUFB(m_extra, 0x09);
 }

@@ -441,8 +441,6 @@ void LoadAutomatonStats(CCharEntity* PChar)
             break;
     }
     PChar->PPet = NULL; //already saved as PAutomaton, don't need it twice unless it's summoned
-    PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
-    PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
 }
 
 }

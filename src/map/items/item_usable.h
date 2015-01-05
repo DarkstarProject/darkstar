@@ -63,14 +63,12 @@ public:
 private:
 
 	uint8	m_UseDelay;         // задержка использования после экипировки 
-	uint8	m_CurrCharges;      // текущее количество зарядов предмета
 	uint8	m_MaxCharges;       // максимальное количество зарядов предмета
 	uint16	m_Animation;
 	uint16	m_AnimationTime;    // время анимации для правильного отображения сообщения (эффектов)
 	uint16	m_ActivationTime;   // время активации предмета во время использования
 	uint8	m_ValidTarget;
 	uint32	m_ReuseDelay;       // задержка между использованием предмета
-	uint32	m_LastUseTime;      // время последнего использования
     uint32  m_AssignTime;       // время экипировки предмета
     uint16  m_AoE;
 };

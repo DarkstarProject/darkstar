@@ -153,6 +153,7 @@ CCharEntity::CCharEntity()
 	m_reloadParty = 0;
 
     m_LastYell = 0;
+    m_moghouseID = 0;
 }
 
 CCharEntity::~CCharEntity()
@@ -224,45 +225,6 @@ CBasicPacket* CCharEntity::popPacket()
 	CBasicPacket* PPacket = PacketList.front();
 	PacketList.pop_front();
 	return PPacket;
-}
-
-
-/************************************************************************
-*																		*
-*	has char unlocked this weapon										*
-*																		*
-************************************************************************/
-bool CCharEntity::isWeaponUnlocked(uint16 indexid)
-{
-	return unlockedWeapons[indexid-1].unlocked;
-}
-
-
-/************************************************************************
-*																		*
-*	add WS points to a weapon											*
-*																		*
-************************************************************************/
-bool CCharEntity::addWsPoints(uint8 points, uint16 WeaponIndex)
-{
-	this->unlockedWeapons[WeaponIndex].points += points;
-
-	if (unlockedWeapons[WeaponIndex].points >= unlockedWeapons[WeaponIndex].required)
-	{
-		// char has unlocked weapon
-		unlockedWeapons[WeaponIndex].unlocked = true;					// unlock the weapon
-
-		charutils::saveCharWsPoints(this, WeaponIndex, 0);				// remove the temp points count, we are done with it
-		charutils::SaveCharUnlockedWeapons(this);						// save chars unlocked status's
-		this->unlockedWeapons[WeaponIndex].points = 0;
-		return true;
-	}
-	else
-	{
-		// char has not unlocked weapon, add points
-		charutils::saveCharWsPoints(this, WeaponIndex, unlockedWeapons[WeaponIndex].points);			// update temp points count variable
-		return false;
-	}
 }
 
 /************************************************************************

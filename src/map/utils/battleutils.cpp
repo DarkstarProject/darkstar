@@ -2889,6 +2889,7 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
             if(PDefender->animation == ANIMATION_SIT)
             {
                 PDefender->animation = ANIMATION_NONE;
+                PDefender->updatemask |= UPDATE_HP;
                 ((CCharEntity*)PDefender)->pushPacket(new CCharUpdatePacket((CCharEntity*)PDefender));
             }
 
@@ -2949,6 +2950,7 @@ void MakeEntityStandUp(CBattleEntity* PEntity)
         if (PPlayer->animation == ANIMATION_HEALING)
         {
             PPlayer->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+            PPlayer->updatemask |= UPDATE_HP;
         }
     }
 }
@@ -3674,6 +3676,7 @@ void applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 charmTim
 
         // this will make him transition back to roaming if sleeping
         PCharmer->PPet->animation = ANIMATION_NONE;
+        PCharmer->updatemask |= UPDATE_HP;
 
         // only move to roaming action if not asleep
         if (!PCharmer->PPet->StatusEffectContainer->HasPreventActionEffect())

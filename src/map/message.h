@@ -40,4 +40,5 @@ namespace message
 {
 	void init(const char* chatIp, uint16 chatPort);
     void send(MSGSERVTYPE type, void* data, size_t datalen, CBasicPacket* packet);
+    void close();
 };

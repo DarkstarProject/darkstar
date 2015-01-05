@@ -299,7 +299,7 @@ namespace itemutils
                 "w.dmg,"            // 25
                 "w.dmgType,"        // 26
                 "w.hit,"            // 27
-                "w.unlock_index,"   // 28
+                "w.unlock_points,"  // 28
 								       
                 "f.storage,"        // 29
                 "f.moghancement,"   // 30
@@ -377,7 +377,7 @@ namespace itemutils
 					    ((CItemWeapon*)PItem)->setDamage(Sql_GetUIntData(SqlHandle,25));
 					    ((CItemWeapon*)PItem)->setDmgType(Sql_GetUIntData(SqlHandle,26));
                         ((CItemWeapon*)PItem)->setMaxHit(Sql_GetUIntData(SqlHandle,27));
-                        ((CItemWeapon*)PItem)->setUnlockable(Sql_GetUIntData(SqlHandle,28));
+                        ((CItemWeapon*)PItem)->setUnlockablePoints(Sql_GetUIntData(SqlHandle,28));
 				    }
 				    if (PItem->isType(ITEM_FURNISHING))
 				    {
@@ -546,41 +546,3 @@ namespace itemutils
 	    }
     }
 }; // namespace itemutils
-
-
-
-namespace nameSpaceUnlockableWeapons
-{
-
-	UnlockedWeapons_t g_pWeaponUnlockable[MAX_UNLOCKABLE_WEAPONS] = {0};
-
-
-	/************************************************************************
-    *                                                                       *
-    *  load unlockable weapons from DB					                    *
-    *                                                                       *
-    ************************************************************************/
-
-    void LoadUnlockableWeaponList()
-    {
-        int32 ret = Sql_Query(SqlHandle, "SELECT itemid, points FROM item_weapon_unlocked WHERE Id < %u;", MAX_UNLOCKABLE_WEAPONS);
-
-	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	    {
-			uint16 index = 0;
-
-		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
-			{
-				UnlockedWeapons_t UnlockedWeapon = {0};
-
-				UnlockedWeapon.itemid = Sql_GetUIntData(SqlHandle,0);
-				UnlockedWeapon.required = Sql_GetUIntData(SqlHandle,1);
-
-				g_pWeaponUnlockable[index] = UnlockedWeapon;
-				index++;
-		    }
-	    }
-
-    }
-
-};

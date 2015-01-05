@@ -45,9 +45,9 @@ namespace message
 
     void send_queue()
     {
-        std::lock_guard<std::mutex> lk(send_mutex);
         while (!message_queue.empty())
         {
+            std::lock_guard<std::mutex> lk(send_mutex);
             chat_message_t msg = message_queue.front();
             message_queue.pop();
             try
@@ -81,6 +81,7 @@ namespace message
                     PChar->status = STATUS_SHUTDOWN;
                     PChar->pushPacket(new CServerIPPacket(PChar, 1));
                 }
+                break;
             }
 			case MSG_CHAT_TELL:
 			{
@@ -265,6 +266,7 @@ namespace message
 						}
 					}
 				}
+                break;
 			}
             case MSG_PT_RELOAD:
 			{
@@ -315,6 +317,7 @@ namespace message
                         }
                     }
                 }
+                break;
             }
 			case MSG_DIRECT:
 			{
@@ -335,6 +338,7 @@ namespace message
                 {
                     PLinkshell->ChangeMemberRank((int8*)extra->data() + 4, RBUFB(extra->data(), 28));
                 }
+                break;
             }
             case MSG_LINKSHELL_REMOVE:
             {
@@ -349,6 +353,7 @@ namespace message
                         PChar->PLinkshell->RemoveMemberByName((int8*)extra->data() + 4);
                     }
                 }
+                break;
             }
             default:
             {
@@ -367,6 +372,10 @@ namespace message
 
             try
             {
+                if (!zSocket)
+                {
+                    return;
+                }
                 if (!zSocket->recv(&type))
                 {
                     if (!message_queue.empty())
@@ -450,6 +459,13 @@ namespace message
 
 		listen();
 	}
+
+    void close()
+    {
+        zSocket->close();
+        zSocket = NULL;
+        zContext.close();
+    }
 
 	void send(MSGSERVTYPE type, void* data, size_t datalen, CBasicPacket* packet)
 	{

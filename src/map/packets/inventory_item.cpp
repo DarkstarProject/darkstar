@@ -45,6 +45,7 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 		WBUFL(data,(0x04)-4) = PItem->getQuantity();
 		WBUFL(data,(0x08)-4) = PItem->getCharPrice();
 		WBUFW(data,(0x0C)-4) = PItem->getID();
+        memcpy(data + 0x11 - 4, PItem->m_extra, sizeof(PItem->m_extra));
 
 		if (PItem->isSubType(ITEM_CHARGED))
 		{
@@ -56,8 +57,6 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 
             if (((CItemUsable*)PItem)->getCurrentCharges() > 0)
             {
-			    WBUFB(data,(0x12)-4) = ((CItemUsable*)PItem)->getCurrentCharges();              // количество оставшихся зарядов
-
                 if (((CItemUsable*)PItem)->getReuseTime() == 0)
                 {
                     WBUFB(data,(0x14)-4) = 0xD0;
@@ -77,52 +76,19 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 		{
 			WBUFB(data,(0x10)-4) = 0x19;
 		}
-        memcpy(data+(0x1D)-4, PItem->getSignature(), dsp_cap(strlen(PItem->getSignature()), 0, 12));
-
-        if (PItem->isType(ITEM_ARMOR))
+        if (PItem->isType(ITEM_WEAPON) && ((CItemWeapon*)PItem)->isUnlockable())
         {
-            if (PItem->isSubType(ITEM_AUGMENTED))
-		    {
-			    WBUFB(data,(0x11)-4) = 0x02;
-                WBUFB(data,(0x12)-4) = 0x03;
-
-			    if (((CItemArmor*)PItem) != 0)
-			    {
-				    WBUFB(data,(0x12)-4) = 0x43;
-				    WBUFW(data,(0x1B)-4) = ((CItemArmor*)PItem)->getTrialNumber();
-			    }
-                WBUFW(data,(0x13)-4) = ((CItemArmor*)PItem)->getAugment(0);
-                WBUFW(data,(0x15)-4) = ((CItemArmor*)PItem)->getAugment(1);
-                WBUFW(data,(0x17)-4) = ((CItemArmor*)PItem)->getAugment(2);
-                WBUFW(data,(0x19)-4) = ((CItemArmor*)PItem)->getAugment(3);
-		    }
-            return;
+            WBUFW(data, (0x11) - 4) = 0;
         }
-		if (PItem->isType(ITEM_FURNISHING))
-		{
-			if (PItem->isSubType(ITEM_LOCKED))
-			{
-				WBUFB(data,(0x12)-4) = 0x40;
 
-				WBUFB(data,(0x17)-4) = ((CItemFurnishing*)PItem)->getCol();
-				WBUFB(data,(0x18)-4) = ((CItemFurnishing*)PItem)->getLevel();
-				WBUFB(data,(0x19)-4) = ((CItemFurnishing*)PItem)->getRow();
-				WBUFB(data,(0x1A)-4) = ((CItemFurnishing*)PItem)->getRotation();
-			}
-            return;
-		}
         if (PItem->isType(ITEM_LINKSHELL))
         {
             if (PItem->isSubType(ITEM_LOCKED))
             {
                 WBUFB(data,(0x10)-4) = 0x13;
             }
-            WBUFL(data,(0x11)-4) = ((CItemLinkshell*)PItem)->GetLSID();
-            WBUFW(data,(0x17)-4) = ((CItemLinkshell*)PItem)->GetLSRawColor();
             WBUFB(data,(0x19)-4) = ((CItemLinkshell*)PItem)->GetLSType();
 
-            memset(data+(0x1A)-4, 0, 15);
-            memcpy(data+(0x1A)-4, PItem->getSignature(), dsp_cap(strlen(PItem->getSignature()), 0, 15));
             return;
         }
 	}

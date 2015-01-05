@@ -134,6 +134,7 @@ namespace fishingutils
 
 		PChar->status = STATUS_UPDATE;
 		PChar->animation = ANIMATION_NEW_FISHING_START;
+		PChar->updatemask |= UPDATE_HP;
 
 		PChar->pushPacket(new CCharUpdatePacket(PChar));
 		PChar->pushPacket(new CCharSyncPacket(PChar));
@@ -319,13 +320,14 @@ namespace fishingutils
 
 				}
 				PChar->animation = ANIMATION_NEW_FISHING_FISH;
-
+				PChar->updatemask |= UPDATE_HP;
 				PChar->pushPacket(new CFishingPacket(2500, 128, 8, 800, 50, 200, 40, isMonster, 30));
 
 			}
 			else { //if we didn't catch something
 
 				PChar->animation = ANIMATION_NEW_FISHING_STOP;
+				PChar->updatemask |= UPDATE_HP;
 				PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x04));
 
 			}
@@ -347,6 +349,7 @@ namespace fishingutils
 
 					// <Player> caught a monster!
 					PChar->animation = ANIMATION_NEW_FISHING_MONSTER;
+					PChar->updatemask |= UPDATE_HP;
 					LureLoss(PChar, false);
 					PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtMonsterPacket(PChar, MessageOffset + 0x05));
 
@@ -359,7 +362,7 @@ namespace fishingutils
 					DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == NULL);
 
 					PChar->animation = ANIMATION_NEW_FISHING_CAUGHT;
-
+					PChar->updatemask |= UPDATE_HP;
 					CItem* PFish = PChar->UContainer->GetItem(0);
 
 					// TODO: анализируем RodFlag
@@ -379,6 +382,7 @@ namespace fishingutils
 				// сообщение: "Your line breaks!"
 
 				PChar->animation = ANIMATION_NEW_FISHING_LINE_BREAK;
+				PChar->updatemask |= UPDATE_HP;
 				LureLoss(PChar, true);
 				PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x06));
 			}
@@ -387,7 +391,7 @@ namespace fishingutils
 				// сообщение: "You give up!"
 
 				PChar->animation = ANIMATION_NEW_FISHING_STOP;
-
+				PChar->updatemask |= UPDATE_HP;
 				if (PChar->UContainer->GetType() == UCONTAINER_FISHING &&
 					LureLoss(PChar, false))
 				{
@@ -402,6 +406,7 @@ namespace fishingutils
 				// сообщение: "You lost your catch!"
 
 				PChar->animation = ANIMATION_NEW_FISHING_STOP;
+				PChar->updatemask |= UPDATE_HP;
 				LureLoss(PChar, false);
 				PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x09));
 				// + 60 = You lost your catch. Whatever caught the hook was too large to catch with this rod.
@@ -438,6 +443,7 @@ namespace fishingutils
 			//charutils::SaveCharSkills(PChar, SKILL_FSH);
 
 			PChar->animation = ANIMATION_NONE;
+			PChar->updatemask |= UPDATE_HP;
 		}
 		break;
 		}

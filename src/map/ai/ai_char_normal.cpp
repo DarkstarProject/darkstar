@@ -48,6 +48,7 @@
 #include "../packets/char_abilities.h"
 #include "../packets/char_health.h"
 #include "../packets/char_skills.h"
+#include "../packets/char_stats.h"
 #include "../packets/char_update.h"
 #include "../packets/inventory_assign.h"
 #include "../packets/inventory_finish.h"
@@ -318,6 +319,7 @@ void CAICharNormal::ActionEngage()
 					m_PChar->animation = ANIMATION_ATTACK;
 					m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
 					m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+                    m_PChar->updatemask |= UPDATE_HP;
 					return;
 				}
                 else
@@ -401,6 +403,7 @@ void CAICharNormal::ActionDisengage()
 	if (m_PChar->status != STATUS_DISAPPEAR)
 		m_PChar->status = STATUS_UPDATE;
 	m_PChar->animation = ANIMATION_NONE;
+    m_PChar->updatemask |= UPDATE_HP;
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 
     if (m_PChar->PPet != NULL && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
@@ -619,16 +622,18 @@ void CAICharNormal::ActionItemUsing()
             m_PItemUsable->setLastUseTime(CVanaTime::getInstance()->getVanaTime());
 			m_PChar->pushPacket(new CInventoryItemPacket(m_PItemUsable, m_PItemUsable->getLocationID(), m_PItemUsable->getSlotID()));
 
+            int8 extra[sizeof(m_PItemUsable->m_extra) * 2 + 1];
+            Sql_EscapeStringLen(SqlHandle, extra, (const char*)m_PItemUsable->m_extra, sizeof(m_PItemUsable->m_extra));
+
 			const int8* Query =
                 "UPDATE char_inventory "
-                "SET currCharges = %u, lastUseTime = %u "
+                "SET extra = '%s' "
                 "WHERE charid = %u AND location = %u AND slot = %u;";
 
 			Sql_Query(
 				SqlHandle,
 				Query,
-				m_PItemUsable->getCurrentCharges(),
-				m_PItemUsable->getLastUseTime(),
+                extra,
 				m_PChar->id,
 				m_PItemUsable->getLocationID(),
 				m_PItemUsable->getSlotID());
@@ -2215,20 +2220,6 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
-    	// Message "player uses..."  for most abilities
-        // TODO: all abilities should display their own messages!
-    	if(m_PJobAbility->getID() < ABILITY_HEALING_RUBY &&
-    		m_PJobAbility->getID() != ABILITY_JUMP &&
-    		m_PJobAbility->getID() != ABILITY_HIGH_JUMP &&
-    		m_PJobAbility->getID() != ABILITY_SUPER_JUMP &&
-    		m_PJobAbility->getID() != ABILITY_REWARD &&
-    		m_PJobAbility->getID() != ABILITY_SNARL &&
-    		m_PJobAbility->getID() != ABILITY_GAUGE)
-    	{
-    		if (m_PJobAbility->getMessage() == 0)
-    			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, MSGBASIC_USES_JA));
-    	}
-
     } // end paralysis if
 
     uint32 chargeTime = 0;
@@ -2416,6 +2407,12 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	//apply TP Bonus
 	float bonusTp = m_PChar->getMod(MOD_TP_BONUS);
 
+    uint8 damslot = SLOT_MAIN;
+    if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 221)
+    {
+        damslot = SLOT_RANGED;
+    }
+
 	//remove TP Bonus from offhand weapon
 	if (m_PChar->equip[SLOT_SUB] != 0)
 	{
@@ -2431,7 +2428,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	}
 
 	//if ranged WS, remove TP bonus from mainhand weapon
-	if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 221)
+	if (damslot == SLOT_RANGED)
 	{
 		if(m_PChar->equip[SLOT_MAIN] != 0)
 		{
@@ -2538,27 +2535,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 	if (!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
 	{
-		uint8 damslot = SLOT_MAIN;
-		if (m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218)
-		{
-			//ranged WS IDs
-			damslot = SLOT_RANGED;
-		}
-
-
-		// check for ws points
-		CItemWeapon* PWeapon = (CItemWeapon*)m_PChar->m_Weapons[damslot];
-
-		if (PWeapon->isUnlockable() && !m_PChar->unlockedWeapons[PWeapon->getUnlockId()-1].unlocked)
-		{
-			if (m_PChar->addWsPoints(1,PWeapon->getUnlockId()-1))
-			{
-				// weapon is now broken
-				m_PChar->PLatentEffectContainer->CheckLatentsWeaponBreak(damslot);
-			}
-		}
-
-
 		// add overwhelm damage bonus
 		damage = battleutils::getOverWhelmDamageBonus(m_PChar, m_PBattleSubTarget, damage);
 
@@ -2607,10 +2583,13 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		m_PChar->addMP(damage);
 	}
 
+    uint8 wspoints = 0;
+
 	// try to skill up if ws hit
 	if(Action.reaction == REACTION_HIT)
 	{
 		charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PWeaponSkill->getType(), m_PBattleSubTarget->GetMLevel());
+        wspoints = 1;
 	}
 
 	if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 218)
@@ -2665,7 +2644,31 @@ void CAICharNormal::ActionWeaponSkillFinish()
             Action.addEffectMessage = 287 + effect;
             Action.additionalEffect = effect;
 
+            if (effect >= 7)
+                wspoints += 1;
+            else if (effect >= 3)
+                wspoints += 2;
+            else
+                wspoints += 4;
         }
+    }
+
+    // check for ws points
+    CItemWeapon* PWeapon = (CItemWeapon*)m_PChar->m_Weapons[damslot];
+
+    if (PWeapon->isUnlockable() && !PWeapon->isUnlocked())
+    {
+        if (PWeapon->addWsPoints(wspoints))
+        {
+            // weapon is now broken
+            m_PChar->PLatentEffectContainer->CheckLatentsWeaponBreak(damslot);
+            m_PChar->pushPacket(new CCharStatsPacket(m_PChar));
+        }
+        int8 extra[sizeof(PWeapon->m_extra) * 2 + 1];
+        Sql_EscapeStringLen(SqlHandle, extra, (const char*)PWeapon->m_extra, sizeof(PWeapon->m_extra));
+
+        const int8* Query = "UPDATE char_inventory SET extra = '%s' WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
+        Sql_Query(SqlHandle, Query, extra, m_PChar->id, PWeapon->getLocationID(), PWeapon->getSlotID());
     }
 
 	m_PChar->m_ActionList.push_back(Action);
@@ -2981,6 +2984,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
         ratioReturned = ((m_PChar->GetMLevel() <= 50) ? 0.50f : 0.90f) * (1 - map_config.exp_retain);
     }
 	m_PChar->addHP(((hpReturned < 1) ? 1 : hpReturned));
+    m_PChar->updatemask |= UPDATE_HP;
     Action.reaction   = REACTION_NONE;
     Action.speceffect = SPECEFFECT_RAISE;
     Action.messageID  = 0;

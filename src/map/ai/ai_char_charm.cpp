@@ -103,6 +103,7 @@ void CAICharCharm::ActionEngage()
 
     m_PChar->status = STATUS_UPDATE;
     m_PChar->animation = ANIMATION_ATTACK;
+    m_PChar->updatemask |= UPDATE_HP;
     return;
 }
 
@@ -121,6 +122,7 @@ void CAICharCharm::ActionDisengage()
     {
         m_PChar->PPet->PBattleAI->SetBattleTarget(NULL);
     }
+    m_PChar->updatemask |= UPDATE_HP;
 }
 
 void CAICharCharm::ActionAttack()

@@ -318,8 +318,6 @@ void LoadChar(CCharEntity* PChar)
 	uint8 meritPoints = 0;
 	uint16 limitPoints = 0;
 
-	LoadCharUnlockedWeapons(PChar);
-
 	const int8* fmtQuery =
         "SELECT "
           "charname,"				//  0
@@ -591,11 +589,12 @@ void LoadChar(CCharEntity* PChar)
 
 
 
-	fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, 2h \
+	fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, 2h, zoning \
 				FROM char_stats \
 				WHERE charid = %u;";
 
 	ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
+    bool zoning = false;
 
 	if (ret != SQL_ERROR &&
 		Sql_NumRows(SqlHandle) != 0 &&
@@ -635,6 +634,8 @@ void LoadChar(CCharEntity* PChar)
 				PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), RecastTime - gettick());
 			}
 		}
+
+        zoning = Sql_GetUIntData(SqlHandle, 9);
 	}
 
 	fmtQuery = "SELECT skillid, value, rank \
@@ -686,31 +687,40 @@ void LoadChar(CCharEntity* PChar)
 	PChar->PMeritPoints->SetMeritPoints(meritPoints);
 	PChar->PMeritPoints->SetLimitPoints(limitPoints);
 
-    blueutils::LoadSetSpells(PChar);
-	BuildingCharSkillsTable(PChar);
-    PChar->PRecastContainer->ResetAbilities();
-	BuildingCharAbilityTable(PChar);
-	BuildingCharTraitsTable(PChar);
-	CalculateStats(PChar);
-    puppetutils::LoadAutomaton(PChar);
-
-	PChar->animation = (PChar->health.hp == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
-
     fmtQuery =
         "SELECT "
-          "gmlevel,"    // 0
-          "mentor "     // 1
+        "gmlevel,"    // 0
+        "mentor "     // 1
         "FROM chars "
         "WHERE charid = %u;";
 
-    ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
+    ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
 
     if (ret != SQL_ERROR &&
         Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle,0);
-        PChar->m_mentor = (uint8)Sql_GetUIntData(SqlHandle,1);
+        PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle, 0);
+        PChar->m_mentor = (uint8)Sql_GetUIntData(SqlHandle, 1);
+    }
+
+    CalculateStats(PChar);
+    blueutils::LoadSetSpells(PChar);
+	BuildingCharSkillsTable(PChar);
+    PChar->PRecastContainer->ResetAbilities();
+	BuildingCharAbilityTable(PChar);
+	BuildingCharTraitsTable(PChar);
+    puppetutils::LoadAutomaton(PChar);
+    PChar->UpdateHealth();
+
+    PChar->m_event.EventID = luautils::OnZoneIn(PChar);
+
+	PChar->animation = (PChar->health.hp == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
+
+    charutils::LoadInventory(PChar);
+    if (!zoning)
+    {
+        luautils::OnGameIn(PChar);
     }
 }
 
@@ -729,24 +739,9 @@ void LoadInventory(CCharEntity* PChar)
           "slot,"           // 2
           "quantity,"       // 3
           "bazaar,"         // 4
-          "signature,"      // 5
-          "currCharges,"    // 6
-          "lastUseTime,"    // 7
-          "linkshellid,"    // 8
-          "color,"          // 9
-          "locked,"         // 10
-          "col," 	        // 11
-          "row,"            // 12
-          "level,"          // 13
-          "rotation,"       // 14
-		  "worn,"			// 15
-		  "augment0,"       // 16
-		  "augment1,"       // 17
-		  "augment2,"       // 18
-		  "augment3,"       // 19
-		  "trialNumber "    // 20
+          "signature, "     // 5
+          "extra "          // 6
         "FROM char_inventory "
-        "LEFT JOIN linkshells ON signature = name "
         "WHERE charid = %u "
         "ORDER BY location ASC";
 
@@ -764,52 +759,34 @@ void LoadInventory(CCharEntity* PChar)
 				PItem->setSlotID(Sql_GetUIntData(SqlHandle,2));
 				PItem->setQuantity(Sql_GetUIntData(SqlHandle,3));
 				PItem->setCharPrice(Sql_GetUIntData(SqlHandle,4));
-				PItem->setWornItem(Sql_GetUIntData(SqlHandle,15));
+
+                size_t length = 0;
+                int8* extra = NULL;
+                Sql_GetData(SqlHandle, 6, &extra, &length);
+                memcpy(PItem->m_extra, extra, (length > sizeof(PItem->m_extra) ? sizeof(PItem->m_extra) : length));
 
 				if (PItem->getCharPrice() != 0)
 				{
 					PItem->setSubType(ITEM_LOCKED);
 				}
-				if (PItem->isType(ITEM_USABLE) && PItem->isSubType(ITEM_CHARGED))
-				{
-					((CItemUsable*)PItem)->setCurrentCharges(Sql_GetUIntData(SqlHandle,6));
-					((CItemUsable*)PItem)->setLastUseTime(Sql_GetUIntData(SqlHandle,7));
-				}
 
-                if (PItem->isType(ITEM_ARMOR))
-                {
-				    ((CItemArmor*)PItem)->LoadAugment(0, (uint16)Sql_GetUIntData(SqlHandle,16));
-				    ((CItemArmor*)PItem)->LoadAugment(1, (uint16)Sql_GetUIntData(SqlHandle,17));
-				    ((CItemArmor*)PItem)->LoadAugment(2, (uint16)Sql_GetUIntData(SqlHandle,18));
-				    ((CItemArmor*)PItem)->LoadAugment(3, (uint16)Sql_GetUIntData(SqlHandle,19));
-
-                    ((CItemArmor*)PItem)->setTrialNumber(Sql_GetUIntData(SqlHandle,20));
-                }
                 if (PItem->isType(ITEM_LINKSHELL))
                 {
-                    int8 EncodedString [16];
-                    EncodeStringLinkshell(Sql_GetData(SqlHandle,5), EncodedString);
+                    int8 EncodedString[16];
+                    EncodeStringLinkshell(Sql_GetData(SqlHandle, 5), EncodedString);
                     PItem->setSignature(EncodedString);
-                    ((CItemLinkshell*)PItem)->SetLSID(Sql_GetUIntData(SqlHandle,8));
-                    ((CItemLinkshell*)PItem)->SetLSColor(Sql_GetIntData(SqlHandle,9));
                 }
-                else if (PItem->getFlag() & ITEM_FLAG_INSCRIBABLE)
-				{
-                    int8 EncodedString [13];
-                    EncodeStringSignature(Sql_GetData(SqlHandle,5), EncodedString);
-					PItem->setSignature(EncodedString);
-				}
+                else if (PItem->getFlag() & (ITEM_FLAG_INSCRIBABLE))
+                {
+                    int8 EncodedString[13];
+                    EncodeStringSignature(Sql_GetData(SqlHandle, 5), EncodedString);
+                    PItem->setSignature(EncodedString);
+                }
+
                 if (PItem->isType(ITEM_FURNISHING) && PItem->getLocationID() == LOC_MOGSAFE)
                 {
-                    if (Sql_GetIntData(SqlHandle,10) != 0) // способ узнать, что предмет действительно установлен
+                    if (((CItemFurnishing*)PItem)->isInstalled()) // способ узнать, что предмет действительно установлен
                     {
-                        ((CItemFurnishing*)PItem)->setSubType(ITEM_LOCKED);
-
-                        ((CItemFurnishing*)PItem)->setCol(Sql_GetIntData(SqlHandle,11));
-		                ((CItemFurnishing*)PItem)->setRow(Sql_GetIntData(SqlHandle,12));
-		                ((CItemFurnishing*)PItem)->setLevel(Sql_GetIntData(SqlHandle,13));
-		                ((CItemFurnishing*)PItem)->setRotation(Sql_GetIntData(SqlHandle,14));
-
                         PChar->getStorage(LOC_STORAGE)->AddBuff(((CItemFurnishing*)PItem)->getStorage());
                     }
                 }
@@ -832,10 +809,10 @@ void LoadInventory(CCharEntity* PChar)
                 CItem* PItem = (CItem*)PItemContainer->GetItem(y);
 
                 // check if the item is valid and can have an augment applied to it
-                if (PItem != NULL && (PItem->isType(ITEM_ARMOR) || PItem->isType(ITEM_WEAPON)))
+                if (PItem != NULL && ((PItem->isType(ITEM_ARMOR) || PItem->isType(ITEM_WEAPON)) && !PItem->isSubType(ITEM_CHARGED)))
                 {
                     // check if there are any valid augments to be applied to the item
-                    for (uint8 j = 0; j < AUGMENT_COUNT; ++j)
+                    for (uint8 j = 0; j < 4; ++j)
                     {
                         // found a match, apply the augment
                         if (((CItemArmor*)PItem)->getAugment(j) != 0)
@@ -1072,13 +1049,8 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem, bool silence)
                 "itemId,"
                 "quantity,"
                 "signature,"
-                "currCharges,"
-                "augment0,"
-                "augment1,"
-                "augment2,"
-                "augment3,"
-                "trialNumber) "
-            "VALUES(%u,%u,%u,%u,%u,'%s',%u,%u,%u,%u,%u,%u)";
+                "extra) "
+            "VALUES(%u,%u,%u,%u,%u,'%s','%s')";
 
         int8 signature[21];
         if (PItem->isType(ITEM_LINKSHELL))
@@ -1090,6 +1062,9 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem, bool silence)
             DecodeStringSignature((int8*)PItem->getSignature(), signature);
         }
 
+        int8 extra[sizeof(PItem->m_extra) * 2 + 1];
+        Sql_EscapeStringLen(SqlHandle, extra, (const int8*)PItem->m_extra, sizeof(PItem->m_extra));
+
         if( Sql_Query(SqlHandle, Query,
             PChar->id,
             LocationID,
@@ -1097,12 +1072,7 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem, bool silence)
             PItem->getID(),
             PItem->getQuantity(),
             signature,
-            charges,
-            PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getAugment(0) : 0,
-            PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getAugment(1) : 0,
-            PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getAugment(2) : 0,
-            PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getAugment(3) : 0,
-            PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getTrialNumber() : 0 ) == SQL_ERROR )
+            extra ) == SQL_ERROR )
         {
             ShowError(CL_RED"charplugin::AddItem: Cannot insert item to database\n" CL_RESET);
             PChar->getStorage(LocationID)->InsertItem(NULL, SlotID);
@@ -1146,7 +1116,6 @@ void UpdateSubJob(CCharEntity* PChar)
     PChar->PRecastContainer->ResetAbilities();
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
-    charutils::BuildingCharWeaponSkills(PChar);
 
     PChar->UpdateHealth();
     PChar->health.hp = PChar->GetMaxHP();
@@ -1439,8 +1408,8 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 			}
 			break;
 		}
+
         charutils::BuildingCharSkillsTable(PChar);
-        charutils::CalculateStats(PChar);
 
         PChar->UpdateHealth();
 		PChar->m_EquipSwap = true;
@@ -1739,8 +1708,6 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 contai
             RemoveSub(PChar);
 
 		PChar->status = STATUS_UPDATE;
-		PChar->m_EquipSwap = true;
-        PChar->updatemask |= UPDATE_LOOK;
 		PChar->pushPacket(new CEquipPacket(slotID, equipSlotID, containerID));
 	}
 	else
@@ -1803,10 +1770,10 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 contai
 		}
 
         BuildingCharWeaponSkills(PChar);
+        PChar->pushPacket(new CCharAbilitiesPacket(PChar));
     }
 
     charutils::BuildingCharSkillsTable(PChar);
-    charutils::CalculateStats(PChar);
 
     PChar->UpdateHealth();
 	PChar->m_EquipSwap = true;
@@ -1880,7 +1847,6 @@ void RemoveAllEquipment(CCharEntity* PChar)
     }
 	// Determines the UnarmedItem to use, since all slots are empty now.
 	CheckUnarmedWeapon(PChar);
-    PChar->pushPacket(new CCharAppearancePacket(PChar));
 
     BuildingCharWeaponSkills(PChar);
     SaveCharEquip(PChar);
@@ -1987,7 +1953,6 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 			}
 		}
 	}
-	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 }
 
 void BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 PetID){
@@ -2337,7 +2302,6 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 
     PChar->m_magicEvasion = battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PChar->GetMLevel());
 	PChar->addModifier(MOD_MEVA, PChar->m_magicEvasion);
-	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 }
 
 /************************************************************************
@@ -3521,64 +3485,6 @@ void SetLevelRestriction(CCharEntity* PChar, uint8 lvl)
 
 }
 
-
-/************************************************************************
-*																		*
-*  save char unlocked weapons											*
-*																		*
-************************************************************************/
-
-void SaveCharUnlockedWeapons(CCharEntity* PChar)
-{
-	const int8* Query =  "UPDATE chars SET unlocked_weapons = '%s' WHERE charid = %u";
-
-	int8 points[MAX_UNLOCKABLE_WEAPONS*2+1];
-    int8 UnlockedWeapons[MAX_UNLOCKABLE_WEAPONS];
-
-    for (uint16 i = 0; i < MAX_UNLOCKABLE_WEAPONS; ++i)
-    {
-		UnlockedWeapons[i] = PChar->unlockedWeapons[i].unlocked;
-    }
-
-	Sql_EscapeStringLen(SqlHandle, points, (const int8*)UnlockedWeapons, MAX_UNLOCKABLE_WEAPONS);
-	Sql_Query(SqlHandle, Query, points, PChar->id);
-
-}
-
-
-/************************************************************************
-*																		*
-*  load char unlocked weapons											*
-*																		*
-************************************************************************/
-
-void LoadCharUnlockedWeapons(CCharEntity* PChar)
-{
-	memcpy(PChar->unlockedWeapons, nameSpaceUnlockableWeapons::g_pWeaponUnlockable, sizeof(PChar->unlockedWeapons));
-
-    const int8* Query = "SELECT unlocked_weapons FROM chars WHERE charid = %u";
-
-	if (Sql_Query(SqlHandle, Query, PChar->id) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		size_t length = 0;
-        int8*  unlocked = 0;
-
-        Sql_GetData(SqlHandle, 0, &unlocked, &length);
-
-        if (length == MAX_UNLOCKABLE_WEAPONS)
-        {
-			for (uint16 i = 0; i < MAX_UNLOCKABLE_WEAPONS; ++i)
-		    {
-				PChar->unlockedWeapons[i].unlocked = unlocked[i];
-            }
-        }
-
-		loadCharWsPoints(PChar);
-	}
-
-}
-
-
 /************************************************************************
 *																		*
 *  Сохраняем позицию													*
@@ -3600,7 +3506,7 @@ void SaveCharPosition(CCharEntity* PChar)
         "WHERE charid = %u;";
 
     Sql_Query(SqlHandle, Query,
-        PChar->getZone(),
+        PChar->m_moghouseID ? 0 : PChar->getZone(),
         PChar->loc.prevzone,
         PChar->loc.p.rotation,
         PChar->loc.p.x,
@@ -3982,6 +3888,7 @@ void SaveCharJob(CCharEntity* PChar, JOBTYPE job)
     if (PChar->m_isNewPlayer && PChar->jobs.job[job] >= 10)
     {
         PChar->m_isNewPlayer = false;
+        PChar->updatemask |= UPDATE_HP;
         Sql_Query(SqlHandle, "UPDATE chars SET isnewplayer = 0 WHERE charid = %u LIMIT 1", PChar->id);
     }
 }
@@ -4203,56 +4110,6 @@ uint16 AvatarPerpetuationReduction(CCharEntity* PChar)
 		reduction = reduction + PChar->getMod(MOD_WEATHER_REDUCTION);
 
 	return reduction;
-}
-
-/************************************************************************
-*																		*
-*  get player weapon points	for 1 weapon								*
-*																		*
-************************************************************************/
-
-void loadCharWsPoints(CCharEntity* PChar)
-{
-	int8 fmtQuery[] = "SELECT itemindex, points "
-					 "FROM char_weapon_skill_points "
-					 "WHERE charid = %u "
-					 "ORDER BY itemindex ASC;";
-
-	int32 ret = Sql_Query(SqlHandle,fmtQuery, PChar->id);
-
-	uint8 index = 0;
-
-	while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		index  = (uint16)Sql_GetUIntData(SqlHandle,0)-1;
-
-        if(index < MAX_UNLOCKABLE_WEAPONS && index >= 0){
-    		PChar->unlockedWeapons[index].points = (uint16)Sql_GetUIntData(SqlHandle,1);
-        } else {
-            ShowWarning("charutils::loadCharWsPoints Warning bad index from database. Index = %d", index);
-        }
-	}
-
-}
-
-/************************************************************************
-*																		*
-*  set char weapon points, set to zero to delete						*
-*																		*
-************************************************************************/
-
-void saveCharWsPoints(CCharEntity* PChar, uint16 indexid, int32 points)
-{
-	DSP_DEBUG_BREAK_IF(indexid > MAX_UNLOCKABLE_WEAPONS);
-	if (points == 0)
-	{
-		Sql_Query(SqlHandle,"DELETE FROM char_weapon_skill_points WHERE itemindex = %u AND charid = '%u' LIMIT 1;", indexid+1, PChar->id);
-		return;
-	}
-
-	const int8* fmtQuery = "INSERT INTO char_weapon_skill_points SET itemindex = %u, charid = %u, points = %u ON DUPLICATE KEY UPDATE points = %u;";
-
-	Sql_Query(SqlHandle,fmtQuery, indexid+1, PChar->id, points, points);
 }
 
 /************************************************************************

@@ -30,7 +30,7 @@ CAutomatonEntity::CAutomatonEntity()
     memset(&m_Equip, 0, sizeof m_Equip);
     memset(&m_ElementMax, 0, sizeof m_ElementMax);
     memset(&m_ElementEquip, 0, sizeof m_ElementEquip);
-    memset(&m_Burden, 0, sizeof m_Burden);
+    memset(&m_Burden, 40, sizeof m_Burden);
 }
 
 CAutomatonEntity::~CAutomatonEntity()
@@ -98,5 +98,37 @@ uint8 CAutomatonEntity::getElementCapacity(uint8 element)
 {
     if (element < 8)
         return m_ElementEquip[element];
+    return 0;
+}
+
+void CAutomatonEntity::burdenTick()
+{
+    for (int i = 0; i < 8; i++)
+    {
+        if (m_Burden[i] > 0)
+        {
+            //TODO: heat sink attachment
+            m_Burden[i]--;
+        }
+    }
+}
+
+uint8 CAutomatonEntity::addBurden(uint8 element, uint8 burden)
+{
+    //TODO: tactical processor attachment
+    uint8 thresh = 30 + PMaster->getMod(MOD_OVERLOAD_THRESH);
+    if (element < 8)
+    {
+        m_Burden[element] += burden;
+        //check for overload
+        if (m_Burden[element] > thresh)
+        {
+            if (WELL512::irand() % 100 < (m_Burden[element] - thresh))
+            {
+                //return overload duration
+                return m_Burden[element] - thresh;
+            }
+        }
+    }
     return 0;
 }

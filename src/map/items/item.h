@@ -91,7 +91,6 @@ public:
 	uint32		getCharPrice();
 	uint8		getLocationID();
 	uint8		getSlotID();
-	uint8		getWornItem();
 
     bool        isSent();
     bool        isType(ITEM_TYPE);
@@ -109,7 +108,6 @@ public:
 	void		setCharPrice(uint32);
 	void		setLocationID(uint8 LocationID);
 	void		setSlotID(uint8 SlotID);
-	void		setWornItem(uint8 mode);
     void        setSent(bool sent);
 
 	const int8* getName();
@@ -121,8 +119,10 @@ public:
     const int8* getReceiver();
     void        setReceiver(int8* receiver);
 
-	const int8* getSignature();
-	void		setSignature(int8* signature);
+	virtual const int8* getSignature();
+	virtual void setSignature(int8* signature);
+
+    uint8		m_extra[0x18];	// any extra data pertaining to item (augments, furniture location, etc)
 
 protected:
 
@@ -141,7 +141,6 @@ private:
 	uint32		m_CharPrice;    // стоимость предмета в bazaar
 	uint8		m_ahCat;        // категоряи предмета на укционе
 	uint16		m_flag;
-	uint8		m_wornItem;		// worn item (BCNM item, maat testimony)
 
 	uint8		m_slotID;       // ячейка предмета в хранилище
 	uint8		m_locationID;   // номер хранилища предмета
@@ -151,7 +150,6 @@ private:
 	string_t	m_name;
     string_t	m_send;
     string_t    m_recv;
-	string_t	m_sign;
 };
 
 #endif

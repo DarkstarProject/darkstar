@@ -5,6 +5,10 @@
 -- Involved in Mission: ASA-4 Sugar Coated Directive
 -----------------------------------------------------
 
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/status");
+
 -----------------------------------
 -- OnMobFight Action
 -----------------------------------

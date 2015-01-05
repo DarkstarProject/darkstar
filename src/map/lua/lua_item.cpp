@@ -105,7 +105,7 @@ inline int32 CLuaItem::getWornItem(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
 
-    lua_pushinteger(L, m_PLuaItem->getWornItem());
+    lua_pushinteger(L, m_PLuaItem->m_extra[0]);
     return 1;
 }
 
@@ -190,8 +190,9 @@ inline int32 CLuaItem::getAugment(lua_State* L)
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
 
     uint8 slot = lua_tointeger(L, 1);
-    uint16 augmentid = unpackBitsBE((uint8*)(PItem->m_augments + slot), 0, 11);
-    uint8 augmentVal = unpackBitsBE((uint8*)(PItem->m_augments + slot), 11, 5);
+    uint16 augment = PItem->getAugment(slot);
+    uint16 augmentid = unpackBitsBE((uint8*)(&augment), 0, 11);
+    uint8 augmentVal = unpackBitsBE((uint8*)(&augment), 11, 5);
 
     lua_pushinteger(L, augmentid);
     lua_pushinteger(L, augmentVal);

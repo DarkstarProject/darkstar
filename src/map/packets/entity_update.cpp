@@ -47,6 +47,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 		case ENTITY_DESPAWN:
 		{
 			WBUFB(data,(0x0A)-4) = 0x20;
+            updatemask = UPDATE_ALL_MOB;
 		}
 		break;
 		case ENTITY_SPAWN:
@@ -59,8 +60,8 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 			if (PEntity->look.size == MODEL_EQUIPED || PEntity->look.size == MODEL_CHOCOBO)
 			{
 				updatemask = 0x57;
-				WBUFB(data,(0x0A)-4) = updatemask;
 			}
+            WBUFB(data,(0x0A)-4) = updatemask;
 		}
 		break;
 	}
@@ -128,7 +129,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 					WBUFB(data,(0x27)-4) = PMob->m_name_prefix;
 					if (PMob->PMaster != NULL && PMob->PMaster->objtype == TYPE_PC)
 						WBUFB(data,(0x27)-4) |= 0x08;
-                    WBUFB(data,(0x28)-4) = (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR) ? 0x10 : 0x00);
+                    WBUFB(data,(0x28)-4) |= (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR) ? 0x10 : 0x00);
 					WBUFB(data,(0x29)-4) = PEntity->allegiance;
                     WBUFB(data, (0x2B) - 4) = 0;//PEntity->namevis;
 				}
@@ -163,7 +164,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 					WBUFB(data,(0x1E)-4) = ((CPetEntity*)PEntity)->GetHPP();
                     WBUFB(data,(0x1F)-4) = PEntity->animation;
                     WBUFB(data,(0x2A)-4) = PEntity->animationsub;
-                    WBUFB(data,(0x28)-4) = (((CPetEntity*)PEntity)->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR) ? 0x10 : 0x00);
+                    WBUFB(data,(0x28)-4) |= (((CPetEntity*)PEntity)->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR) ? 0x10 : 0x00);
                     WBUFB(data,(0x29)-4) = PEntity->allegiance;
 				}
 				if (updatemask & UPDATE_STATUS)
