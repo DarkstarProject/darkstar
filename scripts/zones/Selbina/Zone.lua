@@ -18,16 +18,15 @@ require("scripts/zones/Selbina/TextIDs");
 
 function onInitialize(zone)
 
-    SetExplorerMoogles(17793128);
-    
+    SetExplorerMoogles(17793127);
+
 end;
 
------------------------------------		
--- onZoneIn		
------------------------------------		
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
 function onZoneIn(player,prevZone)
-	
 	local cs = -1;
 
 	if((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
@@ -38,56 +37,55 @@ function onZoneIn(player,prevZone)
 			player:setPos(17.981,-16.806,99.83,64);
 		end
 	end
-	
+
 	if(player:hasKeyItem(SEANCE_STAFF) and player:getVar("Enagakure_Killed") == 1) then
 		cs = 0x044d;
 	end
-	
-	return cs;
-	
-end;		
 
------------------------------------		
--- onConquestUpdate		
------------------------------------		
+	return cs;
+end;
+
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
 
------------------------------------		
--- onTransportEvent		
------------------------------------		
+-----------------------------------
+-- onTransportEvent
+-----------------------------------
 
-function onTransportEvent(player,transport)	
+function onTransportEvent(player,transport)
 	player:startEvent(0x00c8);
-end;	
+end;
 
------------------------------------	
--- onEventUpdate	
------------------------------------	
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
-function onEventUpdate(player,csid,option)	
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;	
+function onEventUpdate(player,csid,option)
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
+end;
 
------------------------------------	
--- onEventFinish	
------------------------------------	
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
-function onEventFinish(player,csid,option)	
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-	
-	if(csid == 0x00c8) then	
+function onEventFinish(player,csid,option)
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
+
+	if(csid == 0x00c8) then
 		player:setPos(0,0,0,0,221);
 	elseif(csid == 0x044d) then
-		if(player:getFreeSlotsCount() < 1) then 
+		if(player:getFreeSlotsCount() < 1) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14226);
 		else
 			player:delKeyItem(SEANCE_STAFF);
@@ -99,5 +97,5 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(OUTLANDS,I_LL_TAKE_THE_BIG_BOX);
 		end
 	end
-	
-end;	
+
+end;
