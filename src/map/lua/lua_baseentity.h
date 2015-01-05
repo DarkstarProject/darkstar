@@ -590,6 +590,8 @@ public:
     int32 setModelId(lua_State* L);
     int32 setAggroFlag(lua_State* L);
     int32 unsetAggroFlag(lua_State* L);
+	int32 addFishingZone(lua_State* L);
+	int32 addFishingZonePoint()
 };
 
 #endif
