@@ -28,6 +28,7 @@
 #include "../../common/malloc.h"
 
 #include <string.h>
+#include <unordered_map>
 
 #include "luautils.h"
 #include "lua_ability.h"
@@ -68,6 +69,9 @@
 namespace luautils
 {
 lua_State*  LuaHandle = NULL;
+
+bool expansionRestrictionEnabled;
+std::unordered_map<std::string, bool> expansionEnabledMap;
 
 /************************************************************************
 *																		*
@@ -140,6 +144,8 @@ int32 init()
     Lunar<CLuaItem>::Register(LuaHandle);
 
     luaL_dostring(LuaHandle, "require('bit')");
+
+	expansionRestrictionEnabled = (GetSettingsVariable("RESTRICT_BY_EXPANSION") != 0);
 
 	ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 	return 0;
@@ -277,7 +283,6 @@ int32 GetNPCByID(lua_State* L)
         }
 
 		if(PNpc == NULL){
-			ShowWarning("luautils::GetNPCByID NPC doesn't exist (%d)\n", npcid);
 			lua_pushnil(L);
 		} else {
 			lua_getglobal(L,CLuaBaseEntity::className);
@@ -979,10 +984,10 @@ int32 GetTextIDVariable(uint16 ZoneID, const char* variable)
 *                                                                       *
 ************************************************************************/
 
-uint8 GetSettingsVariable(const char* variable)
+uint8 GetSettingsVariable(std::string variable)
 {
 	lua_pushnil(LuaHandle);
-	lua_setglobal(LuaHandle, variable);
+	lua_setglobal(LuaHandle, variable.c_str());
 
 	int8 File[255];
 	memset(File, 0, sizeof(File));
@@ -994,7 +999,7 @@ uint8 GetSettingsVariable(const char* variable)
 		return 0;
 	}
 
-	lua_getglobal(LuaHandle, variable);
+	lua_getglobal(LuaHandle, variable.c_str());
 
 	if (lua_isnil(LuaHandle, -1) || !lua_isnumber(LuaHandle, -1))
 	{
@@ -1016,12 +1021,24 @@ uint8 GetSettingsVariable(const char* variable)
 bool IsExpansionEnabled(const char* expansionCode)
 {
 	if (expansionCode != NULL){
-		char* expansionVariable = new char[14];
-		sprintf(expansionVariable, "ENABLE_%s", expansionCode);
+		std::string expansionVariable ("ENABLE_");
+		expansionVariable.append(expansionCode);
+		
+		bool expansionEnabled;
 
-		uint8 expansionEnabled = GetSettingsVariable(expansionVariable);
+		std::unordered_map<std::string, bool>::iterator expansionMapIterator = expansionEnabledMap.find(expansionVariable);
 
-		if (expansionEnabled == 0){
+		// Cache Expansion Lookups in a Map so that we don't re-hit the Lua file every time
+		if (expansionMapIterator == expansionEnabledMap.end())
+		{
+			expansionEnabled = (GetSettingsVariable(expansionVariable) != 0);
+			expansionEnabledMap[expansionVariable] = expansionEnabled;
+		}
+		else {
+			expansionEnabled = expansionMapIterator->second;
+		}
+
+		if (expansionEnabled == false && expansionRestrictionEnabled == true){
 			return false;
 		}
 	}
