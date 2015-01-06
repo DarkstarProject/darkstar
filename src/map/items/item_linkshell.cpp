@@ -22,6 +22,7 @@
 */
 
 #include "../../common/socket.h"
+#include "../../common/strlib.h"
 
 #include "item_linkshell.h"
 
