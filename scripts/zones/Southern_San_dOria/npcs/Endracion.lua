@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Northern San d'Oria
+-- Area: Southern San d'Oria
 -- NPC:  Endracion
 -- @pos -110 1 -34 230
 -----------------------------------
