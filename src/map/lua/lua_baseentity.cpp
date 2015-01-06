@@ -52,7 +52,6 @@
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
 #include "../packets/chat_message.h"
-#include "../packets/send_box.h"
 #include "../packets/entity_animation.h"
 #include "../packets/entity_update.h"
 #include "../packets/entity_visual.h"

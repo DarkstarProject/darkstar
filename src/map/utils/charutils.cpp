@@ -46,6 +46,7 @@
 #include "../packets/char_stats.h"
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
+#include "../packets/delivery_box.h"
 #include "../packets/inventory_item.h"
 #include "../packets/inventory_assign.h"
 #include "../packets/inventory_finish.h"
@@ -57,7 +58,6 @@
 #include "../packets/message_debug.h"
 #include "../packets/message_special.h"
 #include "../packets/message_standard.h"
-#include "../packets/send_box.h"
 #include "../packets/quest_mission_log.h"
 #include "../packets/conquest_map.h"
 
@@ -718,10 +718,7 @@ void LoadChar(CCharEntity* PChar)
 	PChar->animation = (PChar->health.hp == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
 
     charutils::LoadInventory(PChar);
-    if (!zoning)
-    {
-        luautils::OnGameIn(PChar);
-    }
+    luautils::OnGameIn(PChar, zoning);
 }
 
 /************************************************************************
@@ -4198,7 +4195,7 @@ void OpenSendBox(CCharEntity* PChar)
             }
 		}
     }
-	PChar->pushPacket(new CSendBoxPacket(0x0D, 0, 0x01));
+	PChar->pushPacket(new CDeliveryBoxPacket(0x0D, 2, 0, 0x01));
     return;
 }
 

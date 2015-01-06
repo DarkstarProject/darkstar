@@ -1072,7 +1072,7 @@ int32 OnZoneInitialise(uint16 ZoneID)
 *																		*
 ************************************************************************/
 
-int32 OnGameIn(CCharEntity* PChar)
+int32 OnGameIn(CCharEntity* PChar, bool zoning)
 {
     lua_prepscript("scripts/globals/player.lua");
 
@@ -1085,8 +1085,9 @@ int32 OnGameIn(CCharEntity* PChar)
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
 
 	lua_pushboolean(LuaHandle, PChar->GetPlayTime(false) == 0); // first login
+    lua_pushboolean(LuaHandle, zoning);
 
-	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::onGameIn: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
