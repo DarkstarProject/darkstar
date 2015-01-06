@@ -793,7 +793,7 @@ void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action)
 *                                                                       *
 ************************************************************************/
 
-void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 hitNumber, CItemWeapon* weapon, uint32 finaldamage)
+void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, bool isFirstSwing, CItemWeapon* weapon, uint32 finaldamage)
 {
     CCharEntity* PChar = NULL;
 
@@ -865,7 +865,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
 
             PDefender->addHP(-Action->addEffectParam);
         }
-        else if ((enspell > 6 && enspell <= 8) || (enspell > 8 && enspell <= 14 && hitNumber == 0))
+        else if ((enspell > 6 && enspell <= 8) || (enspell > 8 && enspell <= 14 && isFirstSwing))
         {
             Action->additionalEffect = subeffects[enspell-7];
             Action->addEffectMessage = 163;
@@ -890,7 +890,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
                 charutils::UpdateHealth(PChar);
             }
         }
-		else if (enspell == ENSPELL_AUSPICE && hitNumber == 0){
+		else if (enspell == ENSPELL_AUSPICE && isFirstSwing){
 			Action->additionalEffect = SUBEFFECT_LIGHT_DAMAGE;
 			Action->addEffectMessage = 163;
 			Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 2, 7);

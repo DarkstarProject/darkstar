@@ -72,7 +72,7 @@ public:
 	bool						IsCritical();			// Returns the isCritical flag.
 	void						SetCritical(bool);		// Sets the isCritical flag;
 	bool						IsFirstSwing();			// Returns the isFirstSwing flag.
-	void						SetAsFirstSwing();		// Sets this attack as the first swing.
+	void						SetAsFirstSwing(bool isFirst = true);		// Sets this attack as the first swing.
 	float						GetDamageRatio();		// Gets the damage ratio.
 	void						SetGuarded(bool);		// Sets the isGuarded flag.
 	bool						IsGuarded();			// Sets the isGuarded flag. Also alters the damage ratio accordingly. 
