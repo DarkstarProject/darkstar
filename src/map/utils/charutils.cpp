@@ -4202,51 +4202,6 @@ void OpenSendBox(CCharEntity* PChar)
     return;
 }
 
-/************************************************************************
-*																		*
-*  Recovers items that were inserted into send box but were not			*
-*  successfully delivered or retrieved                                  *
-*																		*
-************************************************************************/
-
-void RecoverFailedSendBox(CCharEntity* PChar)
-{
-	const int8* fmtQuery = "SELECT itemid, quantity \
-                            FROM delivery_box \
-							WHERE senderid = %u \
-                            AND box = 2 \
-                            AND slot < 8 \
-                            AND sent = 0 \
-							ORDER BY slot;";
-
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
-
-    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0)
-    {
-        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-            uint8 loc = PChar->getStorage(LOC_INVENTORY)->SearchItemWithSpace(Sql_GetIntData(SqlHandle,0), Sql_GetIntData(SqlHandle,1));
-            if(loc != ERROR_SLOTID)
-            {
-                UpdateItem(PChar, LOC_INVENTORY, loc, Sql_GetIntData(SqlHandle,1));
-            }
-            else
-            {
-                uint8 add = AddItem(PChar, LOC_INVENTORY, Sql_GetIntData(SqlHandle,0), Sql_GetIntData(SqlHandle,1), true);
-                DSP_DEBUG_BREAK_IF(add == ERROR_SLOTID);
-            }
-        }
-        fmtQuery = "DELETE FROM delivery_box \
-							WHERE senderid = %u \
-                            AND box = 2 \
-                            AND slot < 8 \
-                            AND sent = 0 \
-							ORDER BY slot;";
-        ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
-        DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
-    }
-}
-
 bool CheckAbilityAddtype(CCharEntity* PChar, CAbility* PAbility)
 {
     if (PAbility->getAddType() & ADDTYPE_MERIT)

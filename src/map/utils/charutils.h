@@ -150,7 +150,6 @@ namespace charutils
 	uint16	AvatarPerpetuationReduction(CCharEntity* PChar);
 
     void    OpenSendBox(CCharEntity* PChar);
-    void    RecoverFailedSendBox(CCharEntity* PChar);
 
     bool    CheckAbilityAddtype(CCharEntity* PChar, CAbility* PAbility);
 

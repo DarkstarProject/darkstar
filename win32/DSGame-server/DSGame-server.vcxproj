@@ -357,7 +357,6 @@
     <ClInclude Include="..\..\src\map\packets\message_text.h" />
     <ClInclude Include="..\..\src\map\packets\synth_result.h" />
     <ClInclude Include="..\..\src\map\packets\synth_suggestion.h" />
-    <ClInclude Include="..\..\src\map\packets\send_box.h" />
     <ClInclude Include="..\..\src\map\packets\trade_action.h" />
     <ClInclude Include="..\..\src\map\packets\trade_item.h" />
     <ClInclude Include="..\..\src\map\packets\trade_request.h" />
@@ -589,7 +588,6 @@
     <ClCompile Include="..\..\src\map\packets\message_standard.cpp" />
     <ClCompile Include="..\..\src\map\packets\message_system.cpp" />
     <ClCompile Include="..\..\src\map\packets\message_text.cpp" />
-    <ClCompile Include="..\..\src\map\packets\send_box.cpp" />
     <ClCompile Include="..\..\src\map\packets\synth_result.cpp" />
     <ClCompile Include="..\..\src\map\packets\synth_suggestion.cpp" />
     <ClCompile Include="..\..\src\map\packets\trade_action.cpp" />

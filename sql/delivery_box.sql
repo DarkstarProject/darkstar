@@ -30,13 +30,14 @@ CREATE TABLE IF NOT EXISTS `delivery_box` (
   `charid` int(10) unsigned NOT NULL,
   `charname` varchar(15) DEFAULT NULL,
   `box` tinyint(1) unsigned NOT NULL,
-  `slot` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `slot` smallint(3) unsigned NOT NULL DEFAULT '0',
   `itemid` smallint(5) unsigned NOT NULL,
   `itemsubid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `quantity` int(10) unsigned NOT NULL,
+  `extra` blob(24) DEFAULT NULL,
   `senderid` int(10) unsigned NOT NULL DEFAULT '0',
   `sender` varchar(15) DEFAULT NULL,
-  `received` bit(1) NOT NULL DEFAULT 0,
-  `sent` bit(1) NOT NULL DEFAULT 0,
+  `received` tinyint(1) NOT NULL DEFAULT 0,
+  `sent` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`charid`,`box`,`slot`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
