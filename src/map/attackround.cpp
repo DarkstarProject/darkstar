@@ -36,9 +36,7 @@ CAttackRound::CAttackRound(CBattleEntity* attacker)
 	m_tripleAttackOccured = false;
 	m_quadAttackOccured = false;
 	m_kickAttackOccured = false;
-	m_zanshinOccured = false;
 	m_sataOccured = false;
-	m_missOccured = false;
     m_subWeaponType = 0;
 
     if (attacker->m_Weapons[SLOT_SUB]->isType(ITEM_WEAPON))
@@ -139,57 +137,12 @@ bool CAttackRound::GetSATAOccured()
 
 /************************************************************************
 *																		*
-*  Sets the SATA flag.													*
-*																		*
-************************************************************************/
-void CAttackRound::SetZanshinOccured(bool value)
-{
-	m_zanshinOccured = value; 
-}
-
-/************************************************************************
-*																		*
-*  Returns the SATA flag.												*
-*																		*
-************************************************************************/
-bool CAttackRound::GetZanshinOccured()
-{
-	return m_zanshinOccured; 
-}
-
-/************************************************************************
-*																		*
 *  Returns the TA entity.												*
 *																		*
 ************************************************************************/
 CBattleEntity*	CAttackRound::GetTAEntity()
 {
 	return m_taEntity;
-}
-
-/************************************************************************
-*																		*
-*  Sets the miss occured flag.											*
-*																		*
-************************************************************************/
-void CAttackRound::SetMissOccured(bool value)
-{
-	m_missOccured = value;
-
-	if (value == true)
-	{
-		CreateZanshinAttacks();
-	}
-}
-
-/************************************************************************
-*																		*
-*  Returns the miss occured flag.										*
-*																		*
-************************************************************************/
-bool CAttackRound::GetMissOccured()
-{
-	return m_sataOccured; 
 }
 
 /************************************************************************
@@ -335,36 +288,6 @@ void CAttackRound::CreateKickAttacks()
 		if (m_kickAttackOccured && rand()%100 < m_attacker->getMod(MOD_EXTRA_KICK_ATTACK))
 		{
 			AddAttackSwing(KICK_ATTACK, LEFTATTACK, 1);
-		}
-	}
-}
-
-/************************************************************************
-*                                                                       *
-*  Creates zanshin attacks.										        *
-*                                                                       *
-************************************************************************/
-void CAttackRound::CreateZanshinAttacks()
-{
-	// Zanshin effects from gear, food or buffs do not require the job trait to be enabled.
-	if (m_attacker->objtype == TYPE_PC &&
-		!m_zanshinOccured && 
-		!m_doubleAttackOccured && 
-		!m_tripleAttackOccured &&
-		!m_quadAttackOccured &&
-		m_attackSwings.at(0)->GetAttackType() != ZANSHIN_ATTACK)
-	{
-		uint16 zanshinChance = m_attacker->getMod(MOD_ZANSHIN) + ((CCharEntity*)m_attacker)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)m_attacker);
-		zanshinChance = dsp_cap(zanshinChance, 0, 100);
-
-		if (rand()%100 < zanshinChance)
-		{
-			// Flag this attack to repeat
-			m_zanshinOccured = true;
-		}
-		else
-		{
-			m_zanshinOccured = false;
 		}
 	}
 }
