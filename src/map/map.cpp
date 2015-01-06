@@ -225,8 +225,6 @@ int32 do_init(int32 argc, int8** argv)
 
     CVanaTime::getInstance()->setCustomOffset(map_config.vanadiel_time_offset);
 
-    CTransportHandler::getInstance()->InitializeTransport();
-
 	CTaskMgr::getInstance()->AddTask("time_server", gettick(), NULL, CTaskMgr::TASK_INTERVAL, time_server, 2400);
 	CTaskMgr::getInstance()->AddTask("map_cleanup", gettick(), NULL, CTaskMgr::TASK_INTERVAL, map_cleanup, 5000);
 	CTaskMgr::getInstance()->AddTask("garbage_collect", gettick(), NULL, CTaskMgr::TASK_INTERVAL, map_garbage_collect, 15 * 60 * 1000);

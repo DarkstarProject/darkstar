@@ -9701,6 +9701,62 @@ inline int32 CLuaBaseEntity::setElevator(lua_State *L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::setTransport(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+
+    for (uint8 i = 0; i < 16; ++i)
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, i) || !lua_isnumber(L, i));
+
+    Transport_t* PTransport = new Transport_t;
+
+    PTransport->PTransportNPC = zoneutils::GetEntity(lua_tointeger(L, 1), TYPE_SHIP);
+    PTransport->PDoorNPC = zoneutils::GetEntity(lua_tointeger(L, 2), TYPE_NPC);
+
+    PTransport->Dock.zone = zoneutils::GetZone((lua_tointeger(L, 1) >> 12) & 0x0FFF);
+    PTransport->Dock.p.x = lua_tonumber(L, 3);
+    PTransport->Dock.p.y = lua_tonumber(L, 4);
+    PTransport->Dock.p.z = lua_tonumber(L, 5);
+    PTransport->Dock.p.rotation = lua_tointeger(L, 6);
+    PTransport->Dock.boundary = lua_tointeger(L, 7);
+    PTransport->Dock.prevzone = (uint8)lua_tointeger(L, 15);
+
+    PTransport->AnimationArrive = (uint8)lua_tointeger(L, 8);
+    PTransport->AnimationDepart = (uint8)lua_tointeger(L, 9);
+
+    PTransport->TimeOffset = (uint16)lua_tointeger(L, 10);
+    PTransport->TimeInterval = (uint16)lua_tointeger(L, 11);
+    PTransport->TimeWaiting = (uint16)lua_tointeger(L, 12);
+    PTransport->TimeAnimationArrive = (uint16)lua_tointeger(L, 13);
+    PTransport->TimeAnimationDepart = (uint16)lua_tointeger(L, 14);
+
+    if (PTransport->PTransportNPC == NULL || PTransport->PDoorNPC == NULL)
+    {
+        DSP_DEBUG_BREAK_IF(true);
+        ShowError("CLuaBaseEntity::setTransport: Transport <%s> Door <%u> TranspoortNPC or Door not found!", m_PBaseEntity->name);
+        delete PTransport;
+        return 0;
+    }
+    if (PTransport->TimeAnimationArrive < 10)
+    {
+        ShowError("CLuaBaseEntity::setTransport: Transport <%s> Door <%u> time_anim_arrive must be > 10\n", PTransport->PTransportNPC->name, lua_tointeger(L,2));
+        delete PTransport;
+        return 0;
+    }
+    if (PTransport->TimeInterval < PTransport->TimeAnimationArrive + PTransport->TimeWaiting + PTransport->TimeAnimationDepart)
+    {
+        ShowError("CLuaBaseEntity::setTransport: Transport <%s> Door <%u> time_interval must be > time_anim_arrive + time_waiting + time_anim_depart\n", PTransport->PTransportNPC->name, lua_tointeger(L,2));
+        delete PTransport;
+        return 0;
+    }
+
+    PTransport->PTransportNPC->name.resize(8);
+    CTransportHandler::getInstance()->insertTransport(PTransport);
+
+    return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -10143,5 +10199,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addBurden),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setElevator),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setTransport),
     {NULL,NULL}
 };
