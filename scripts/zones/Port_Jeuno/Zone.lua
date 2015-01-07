@@ -52,7 +52,7 @@ function onZoneIn(player,prevZone)
             end
             player:setVar("PlayerMainJob",0);
         end
-    elseif (ENABLE_ABYSEA == 1 and player:getMainLvl() >= 30
+    elseif (ENABLE_ABYSSEA == 1 and player:getMainLvl() >= 30
     and player:getQuestStatus(ABYSSEA, A_JOURNEY_BEGINS) == QUEST_AVAILABLE) then
         cs = 0x0144;
     end
