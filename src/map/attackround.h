@@ -65,9 +65,6 @@ private:
 	CBattleEntity*				m_taEntity;					// The trick attack entity.
 	std::vector<CAttack*>		m_attackSwings;				// The list of attacks for this round.
 	bool						m_sataOccured;				// Flag: Did SATA occur during the round?
-	bool						m_doubleAttackOccured;		// Flag: Did a double attack occur during the round?
-	bool						m_tripleAttackOccured;		// Flag: Did a triple attack occur during the round?
-	bool						m_quadAttackOccured;		// Flag: Did a quadruple attack occur during the round?
 	bool						m_kickAttackOccured;		// Flag: Did a kick attack occur during the round?
 	uint16						m_subWeaponType;			// The sub weapon type.
 
