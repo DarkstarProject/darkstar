@@ -2280,7 +2280,7 @@ parameters including if the effect should 100% be removed (e.g. in the case of A
 by setting forceRemove to true. Must also specify the ignore boolean, which is true
 to ignore the effects of Third Eye (but NOT try to remove).
 ******************************************************************************/
-bool IsAnticipated(CBattleEntity* PDefender, bool forceRemove, bool ignore)
+bool IsAnticipated(CBattleEntity* PDefender, bool forceRemove, bool ignore, bool* thirdEyeCounter)
 {
 	if(ignore){
 		return false;
@@ -2327,6 +2327,9 @@ bool IsAnticipated(CBattleEntity* PDefender, bool forceRemove, bool ignore)
 		if(WELL512::irand()%100 < (100-(pastAnticipations*15))){
 			//increment power and don't remove
 			effect->SetPower(effect->GetPower()+1);
+            //chance to counter - 25% base TODO: add "enhances third eye effect" gear
+            if (WELL512::irand() % 100 < 25)
+                *thirdEyeCounter = true;
 			return true;
 		}
 		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_THIRD_EYE);
