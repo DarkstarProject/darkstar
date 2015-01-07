@@ -130,7 +130,7 @@ namespace battleutils
 	bool			IsParalyzed(CBattleEntity* PAttacker);
     bool			IsAbsorbByShadow(CBattleEntity* PDefender);
 	bool			IsIntimidated(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-	bool			IsAnticipated(CBattleEntity* PDefender, bool forceRemove, bool ignore);
+	bool			IsAnticipated(CBattleEntity* PDefender, bool forceRemove, bool ignore, bool* thirdEyeCounter);
 
 	int32				GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID);
 	uint8				GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber, uint8 offsetAccuracy);
