@@ -362,7 +362,7 @@ void CAttack::ProcessDamage()
 	}
 
 	// Try Null damage chance (The target)
-	if (m_victim->objtype == TYPE_PC && rand()%100 < m_victim->getMod(MOD_NULL_PHYSICAL_DAMAGE))
+    if (m_victim->objtype == TYPE_PC && WELL512::irand() % 100 < m_victim->getMod(MOD_NULL_PHYSICAL_DAMAGE))
 	{
 		m_damage = 0;
 	}
