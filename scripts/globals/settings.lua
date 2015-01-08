@@ -18,14 +18,14 @@ require("scripts/globals/common");
 --See chocoprice.lua to adjust chocobo stables.
 --require("scripts/globals/chocoprice");
 -- Enable Extension (1= yes 0= no)
-ENABLE_COP    = 0;
-ENABLE_TOAU   = 0;
-ENABLE_WOTG   = 0;
-ENABLE_ACP    = 0;
-ENABLE_AMK    = 0;
-ENABLE_ASA    = 0;
-ENABLE_ABYSEA = 0;
-ENABLE_SOA    = 0;
+ENABLE_COP     = 0;
+ENABLE_TOAU    = 0;
+ENABLE_WOTG    = 0;
+ENABLE_ACP     = 0;
+ENABLE_AMK     = 0;
+ENABLE_ASA     = 0;
+ENABLE_ABYSSEA = 0;
+ENABLE_SOA     = 0;
 
 -- CHARACTER CONFIG
 INITIAL_LEVEL_CAP = 50; --The initial level cap for new players.  There seems to be a hardcap of 255.

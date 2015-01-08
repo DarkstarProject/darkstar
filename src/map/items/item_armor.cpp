@@ -249,8 +249,8 @@ void CItemArmor::ApplyAugment(uint8 slot)
 
 void CItemArmor::setAugment(uint8 slot, uint16 type, uint8 value)
 {
-    packBitsBE(m_extra, 2 + (slot * 2), type, 0, 11);
-    packBitsBE(m_extra, 2 + (slot * 2), value, 11, 5);
+    packBitsBE(m_extra, type, 2 + (slot * 2), 0, 11);
+    packBitsBE(m_extra, value, 2 + (slot * 2), 11, 5);
 
     SetAugmentMod(type, value);
 }

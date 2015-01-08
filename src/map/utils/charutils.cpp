@@ -46,6 +46,7 @@
 #include "../packets/char_stats.h"
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
+#include "../packets/delivery_box.h"
 #include "../packets/inventory_item.h"
 #include "../packets/inventory_assign.h"
 #include "../packets/inventory_finish.h"
@@ -57,7 +58,6 @@
 #include "../packets/message_debug.h"
 #include "../packets/message_special.h"
 #include "../packets/message_standard.h"
-#include "../packets/send_box.h"
 #include "../packets/quest_mission_log.h"
 #include "../packets/conquest_map.h"
 
@@ -718,10 +718,7 @@ void LoadChar(CCharEntity* PChar)
 	PChar->animation = (PChar->health.hp == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
 
     charutils::LoadInventory(PChar);
-    if (!zoning)
-    {
-        luautils::OnGameIn(PChar);
-    }
+    luautils::OnGameIn(PChar, zoning);
 }
 
 /************************************************************************
@@ -4198,53 +4195,8 @@ void OpenSendBox(CCharEntity* PChar)
             }
 		}
     }
-	PChar->pushPacket(new CSendBoxPacket(0x0D, 0, 0x01));
+	PChar->pushPacket(new CDeliveryBoxPacket(0x0D, 2, 0, 0x01));
     return;
-}
-
-/************************************************************************
-*																		*
-*  Recovers items that were inserted into send box but were not			*
-*  successfully delivered or retrieved                                  *
-*																		*
-************************************************************************/
-
-void RecoverFailedSendBox(CCharEntity* PChar)
-{
-	const int8* fmtQuery = "SELECT itemid, quantity \
-                            FROM delivery_box \
-							WHERE senderid = %u \
-                            AND box = 2 \
-                            AND slot < 8 \
-                            AND sent = 0 \
-							ORDER BY slot;";
-
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
-
-    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0)
-    {
-        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-            uint8 loc = PChar->getStorage(LOC_INVENTORY)->SearchItemWithSpace(Sql_GetIntData(SqlHandle,0), Sql_GetIntData(SqlHandle,1));
-            if(loc != ERROR_SLOTID)
-            {
-                UpdateItem(PChar, LOC_INVENTORY, loc, Sql_GetIntData(SqlHandle,1));
-            }
-            else
-            {
-                uint8 add = AddItem(PChar, LOC_INVENTORY, Sql_GetIntData(SqlHandle,0), Sql_GetIntData(SqlHandle,1), true);
-                DSP_DEBUG_BREAK_IF(add == ERROR_SLOTID);
-            }
-        }
-        fmtQuery = "DELETE FROM delivery_box \
-							WHERE senderid = %u \
-                            AND box = 2 \
-                            AND slot < 8 \
-                            AND sent = 0 \
-							ORDER BY slot;";
-        ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
-        DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
-    }
 }
 
 bool CheckAbilityAddtype(CCharEntity* PChar, CAbility* PAbility)

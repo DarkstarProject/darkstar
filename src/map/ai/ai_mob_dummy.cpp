@@ -1587,6 +1587,8 @@ void CAIMobDummy::ActionAttack()
 					bool isParried = false;
 					bool isGuarded = false;
 					bool isDodge = false;
+                    bool isCritical = false;
+                    bool thirdEyeCounter = false;
 
 					if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE))
 					{
@@ -1611,9 +1613,28 @@ void CAIMobDummy::ActionAttack()
 							Action.messageID = 0;
 							m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,1, MSGBASIC_SHADOW_ABSORB));
 						}
-						else if (battleutils::IsAnticipated(m_PBattleTarget,false,false))
+						else if (battleutils::IsAnticipated(m_PBattleTarget,false,false,&thirdEyeCounter))
 						{
-							Action.messageID = 30;
+                            if (thirdEyeCounter && isFaceing(m_PBattleTarget->loc.p, m_PMob->loc.p, 40)) //assuming that 3rd eye counter requires facing the mob, but not subjected to accuracy checks
+                            {
+                                isCountered = true;
+                                isCritical = (WELL512::irand() % 100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob, false));
+                                float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, isCritical, 0);
+                                damage = (uint32)((m_PBattleTarget->GetMainWeaponDmg() + battleutils::GetFSTR(m_PBattleTarget, m_PMob, SLOT_MAIN)) * DamageRatio);
+                                Action.messageID = 33;
+                                Action.reaction = REACTION_HIT;
+                                Action.speceffect = SPECEFFECT_NONE;
+                                Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true);
+                                Action.spikesParam = Action.param;
+                                Action.spikesEffect = SUBEFFECT_COUNTER;
+                                if (m_PBattleTarget->objtype == TYPE_PC)
+                                {
+                                    uint8 skilltype = (m_PBattleTarget->m_Weapons[SLOT_MAIN] == NULL ? SKILL_H2H : m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType());
+                                    charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, (SKILLTYPE)skilltype, m_PMob->GetMLevel());
+                                }
+                            }
+                            else
+                                Action.messageID = 30;
 						}
 						else
 						{
@@ -1631,43 +1652,29 @@ void CAIMobDummy::ActionAttack()
 
 
 							//counter check (rate AND your hit rate makes it land, else its just a regular hit)
-							if (WELL512::irand()%100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) &&
-								WELL512::irand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob) &&
-								(m_PBattleTarget->objtype != TYPE_PC || (charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER) ||
-								m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))))
+                            //having seigan active gives chance to counter at 25% of the zanshin proc rate
+                            uint16 seiganChance = 0;
+                            if (m_PBattleTarget->objtype == TYPE_PC && m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
+                            {
+                                seiganChance = m_PBattleTarget->getMod(MOD_ZANSHIN) + ((CCharEntity*)m_PBattleTarget)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)m_PBattleTarget);
+                                seiganChance = dsp_cap(seiganChance, 0, 100);
+                                seiganChance /= 4;
+                            }
+                            if ((WELL512::irand() % 100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) || WELL512::irand() % 100 < seiganChance) &&
+                                isFaceing(m_PBattleTarget->loc.p, m_PMob->loc.p, 40) && WELL512::irand() % 100 < battleutils::GetHitRate(m_PBattleTarget, m_PMob))
 							{
 								isCountered = true;
-								Action.messageID = 33; //counter msg  32
-								Action.reaction   = REACTION_HIT;
-								Action.speceffect = SPECEFFECT_NONE;
-
-								bool isCritical = (WELL512::irand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob,false));
-								bool isHTH = m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH;
-								if (!isHTH && m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK)
-								{
-									isHTH = true;
-								}
-								int16 naturalh2hDMG = 0;
-								if (isHTH)
-								{
-									naturalh2hDMG = (float)(m_PBattleTarget->GetSkill(SKILL_H2H) * 0.11f)+3;
-								}
-
-								float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob,isCritical, 0);
-								damage = (uint32)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob,SLOT_MAIN)) * DamageRatio);
-
-                                Action.spikesParam = damage;
-                                Action.spikesEffect = SUBEFFECT_COUNTER;
-
+								isCritical = (WELL512::irand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob,false));
 							}
 							else if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_COUNTER))
-							{ //Perfect Counter only counters hits that normal counter misses
+							{ //Perfect Counter only counters hits that normal counter misses, always critical, can counter 1-3 times before wearing
 								isCountered = true;
-
+                                isCritical = true;
+                                //m_PBattleTarget->StatusEffectContainer->DelStatusEffect(EFFECT_PERFECT_COUNTER);
 							}
 							else
 							{
-								bool isCritical = ( WELL512::irand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget,false) );
+								isCritical = ( WELL512::irand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget,false) );
 
 								if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES,0))
 								{
@@ -1749,9 +1756,20 @@ void CAIMobDummy::ActionAttack()
 
 								battleutils::HandleSpikesDamage(m_PMob, m_PBattleTarget, &Action, damage);
 							}
-							else
+							else //Countered
 							{
-								Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true);
+                                int16 naturalh2hDMG = 0;
+                                if (m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH || (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK))
+                                    naturalh2hDMG = (float)(m_PBattleTarget->GetSkill(SKILL_H2H) * 0.11f) + 3;
+
+                                float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, isCritical, 0);
+                                damage = (uint32)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob, SLOT_MAIN)) * DamageRatio);
+                                Action.messageID = 33;
+                                Action.reaction = REACTION_HIT;
+                                Action.speceffect = SPECEFFECT_NONE;
+                                Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true);
+                                Action.spikesParam = Action.param;
+                                Action.spikesEffect = SUBEFFECT_COUNTER;
 								if(m_PBattleTarget->objtype == TYPE_PC)
 								{
 									uint8 skilltype = (m_PBattleTarget->m_Weapons[SLOT_MAIN] == NULL ? SKILL_H2H : m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType());

@@ -43,8 +43,8 @@ class CDeliveryBoxPacket : public CBasicPacket
 {
 public:
 
-	CDeliveryBoxPacket(uint8 action, uint8 count);
-    CDeliveryBoxPacket(uint8 action, CItem* item, uint8 count, uint8 message = 1);
+    CDeliveryBoxPacket(uint8 action, uint8 boxid, uint8 count, uint8 param);
+    CDeliveryBoxPacket(uint8 action, uint8 boxid, CItem* PItem, uint8 slotid, uint8 count, uint8 message);
 };
 
 #endif

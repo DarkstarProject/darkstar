@@ -3046,7 +3046,7 @@ void CAICharNormal::DoAttack()
     /////////////////////////////////////////////////////////////////////////
     //	Start of the attack loop.
     /////////////////////////////////////////////////////////////////////////
-    for (uint8 i = 0; i < attackRound->GetAttackSwingCount(); ++i)
+    while (attackRound->GetAttackSwingCount() && !(m_PBattleTarget->isDead()))
     {
         apAction_t Action;
         Action.ActionTarget = m_PBattleTarget;
@@ -3054,15 +3054,6 @@ void CAICharNormal::DoAttack()
 
         // Reference to the current swing.
         CAttack* attack = (CAttack*)attackRound->GetCurrentAttack();
-
-        if (i != 0)
-        {
-            if (m_PBattleTarget->isDead())
-            {
-                break;
-            }
-            Action.ActionTarget = NULL;
-        }
 
         // Set the swing animation.
         Action.animation = attack->GetAnimationID();
@@ -3155,9 +3146,6 @@ void CAICharNormal::DoAttack()
 
             // Check & Handle Afflatus Misery Accuracy Bonus
             battleutils::HandleAfflatusMiseryAccuracyBonus(m_PChar);
-
-            // Try to zanshin (miss).
-            attackRound->CreateZanshinAttacks();
         }
 
         if (Action.reaction != REACTION_HIT && Action.reaction != REACTION_BLOCK && Action.reaction != REACTION_GUARD)
@@ -3168,7 +3156,7 @@ void CAICharNormal::DoAttack()
 
         if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
         {
-            battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, (CItemWeapon*)m_PChar->m_Weapons[attack->GetWeaponSlot()], attack->GetDamage());
+            battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, attack->IsFirstSwing(), (CItemWeapon*)m_PChar->m_Weapons[attack->GetWeaponSlot()], attack->GetDamage());
             battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, attack->GetDamage());
         }
 
@@ -3179,18 +3167,23 @@ void CAICharNormal::DoAttack()
 
         m_PChar->m_ActionList.push_back(Action);
 
-        // Repeat the attack if Zanshin is triggered, otherwise, remove this swing
-        if (!attackRound->GetZanshinOccured())
+        //try zanshin only on single swing attack rounds - it is last priority in the multi-hit order
+        //if zanshin procs, the attack is repeated
+        if (attack->IsFirstSwing() && attackRound->GetAttackSwingCount() == 1)
         {
-            attackRound->DeleteAttackSwing();
+            uint16 zanshinChance = m_PChar->getMod(MOD_ZANSHIN) + m_PChar->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, m_PChar);
+            zanshinChance = dsp_cap(zanshinChance, 0, 100);
+           //zanshin may only proc on a missed/guarded/countered swing or as SAM main with hasso up (at 25% of the base zanshin rate)
+            if (((Action.reaction == REACTION_EVADE || Action.reaction == REACTION_GUARD || Action.spikesEffect == SUBEFFECT_COUNTER) && WELL512::irand() % 100 < zanshinChance) || (m_PChar->GetMJob() == JOB_SAM && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) && WELL512::irand() % 100 < (zanshinChance / 4)))
+            {
+                attack->SetAttackType(ZANSHIN_ATTACK);
+                attack->SetAsFirstSwing(false);
+            }
+            else
+                attackRound->DeleteAttackSwing();
         }
         else
-        {
-            attack->SetAttackType(ZANSHIN_ATTACK);
-            attackRound->SetZanshinOccured(false);
-        }
-
-        i--;
+            attackRound->DeleteAttackSwing();
 
         if (m_PChar->m_ActionList.size() == 8)
         {

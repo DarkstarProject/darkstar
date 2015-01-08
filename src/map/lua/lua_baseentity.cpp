@@ -52,7 +52,6 @@
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
 #include "../packets/chat_message.h"
-#include "../packets/send_box.h"
 #include "../packets/entity_animation.h"
 #include "../packets/entity_update.h"
 #include "../packets/entity_visual.h"
@@ -2711,7 +2710,6 @@ inline int32 CLuaBaseEntity::openSendBox(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    charutils::RecoverFailedSendBox((CCharEntity*)m_PBaseEntity);
     charutils::OpenSendBox((CCharEntity*)m_PBaseEntity);
 
     return 0;
