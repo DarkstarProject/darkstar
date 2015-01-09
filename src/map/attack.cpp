@@ -170,9 +170,9 @@ bool CAttack::IsFirstSwing()
 *  Sets this swing as the first.										*
 *																		*
 ************************************************************************/
-void CAttack::SetAsFirstSwing()
+void CAttack::SetAsFirstSwing(bool isFirst)
 {
-	m_isFirstSwing = true;
+	m_isFirstSwing = isFirst;
 }
 
 /************************************************************************
@@ -346,12 +346,6 @@ void CAttack::ProcessDamage()
 		m_damage = battleutils::doSoulEaterEffect((CCharEntity*)m_attacker, m_damage);
 	}
 
-	// Try zanshin (hasso - non miss)
-	if (m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO))
-	{
-		m_attackRound->CreateZanshinAttacks();
-	}
-
 	// Set attack type to Samba if the attack type is normal.  Don't overwrite other types.  Used for Samba double damage.
 	if (m_attackType == ATTACK_NORMAL && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_SAMBA))
 	{
@@ -368,7 +362,7 @@ void CAttack::ProcessDamage()
 	}
 
 	// Try Null damage chance (The target)
-	if (m_victim->objtype == TYPE_PC && rand()%100 < m_victim->getMod(MOD_NULL_PHYSICAL_DAMAGE))
+    if (m_victim->objtype == TYPE_PC && WELL512::irand() % 100 < m_victim->getMod(MOD_NULL_PHYSICAL_DAMAGE))
 	{
 		m_damage = 0;
 	}
