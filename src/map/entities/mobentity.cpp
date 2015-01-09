@@ -149,7 +149,7 @@ uint32 CMobEntity::GetRandomGil()
             ShowWarning("CMobEntity::GetRandomGil Max value is set too low, defauting\n");
         }
 
-        return rand()%(max-min)+min;
+        return WELL512::irand() % (max - min) + min;
     }
 
     float gil = pow(GetMLevel(), 1.05f);
@@ -170,7 +170,7 @@ uint32 CMobEntity::GetRandomGil()
     }
 
     // randomize it
-	gil += rand()%highGil;
+    gil += WELL512::irand() % highGil;
 
     // NMs get more gil
     if((m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS){
