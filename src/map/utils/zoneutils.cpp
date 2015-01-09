@@ -146,7 +146,7 @@ CZone* GetZone(uint16 ZoneID)
 	{
 		return g_PZoneList.at(ZoneID);
 	}
-	catch (const std::out_of_range& oor)
+	catch (const std::out_of_range&)
 	{
 		return NULL;
 	}

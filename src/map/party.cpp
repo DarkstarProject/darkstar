@@ -666,7 +666,7 @@ void CParty::ReloadParty()
 					uint8 j = 0;
 					while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 					{
-						if (Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD) != alliance)
+						if ((Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD)) != alliance)
 						{
 							alliance = Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD);
 							j = 0;
@@ -764,7 +764,7 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
         uint8 j = 0;
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            if (Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD) != alliance)
+            if ((Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD)) != alliance)
             {
                 alliance = Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD);
                 j = 0;

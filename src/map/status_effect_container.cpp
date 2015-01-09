@@ -367,7 +367,6 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 			if( m_POwner->health.maxhp != 0) //make sure we're not in the middle of logging in
 			{
 				//check for latents
-				CLatentEffectContainer* PLatentEffectContainer;
 				PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
 				PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
 				PChar->UpdateHealth();
@@ -414,7 +413,6 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 			}
         }
 		//check for latents
-		CLatentEffectContainer* PLatentEffectContainer;
 		PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
 		PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
 		PChar->UpdateHealth();
@@ -594,7 +592,6 @@ EFFECT CStatusEffectContainer::EraseStatusEffect()
 
 EFFECT CStatusEffectContainer::HealingWaltz()
 {
-   EFFECT effect_id;
    std::vector<uint16> waltzableList;
    for( uint16 i = 0; i < m_StatusEffectList.size(); ++i )
    {

@@ -187,7 +187,7 @@ void CAlliance::delParty(CParty* party)
     {
         PChar = (CCharEntity*)party->members.at(0);
     }
-    catch (std::out_of_range& e)
+    catch (std::out_of_range&)
     {
         return;
     }

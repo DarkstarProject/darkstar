@@ -2154,8 +2154,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 return;
             }
 
-            const int8* fmtQuery = "INSERT INTO auction_house(itemid, stack, seller, seller_name, date, price) \
-                                                                                                                                                                                    VALUES(%u,%u,%u,'%s',%u,%u)";
+            const int8* fmtQuery = "INSERT INTO auction_house(itemid, stack, seller, seller_name, date, price) VALUES(%u,%u,%u,'%s',%u,%u)";
 
             if (Sql_Query(SqlHandle,
                 fmtQuery,

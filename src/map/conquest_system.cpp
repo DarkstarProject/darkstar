@@ -445,19 +445,19 @@ namespace conquest
         if (sandoria > (bastok + windurst) && sandoria > bastok && sandoria > windurst)
         {
             uint8 ranking = GetBalance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, windurst_prev);
-            if (ranking & 0x03 == 0x01)
+            if ((ranking & 0x03) == 0x01)
                 return 1;
         }
         else if (bastok > (sandoria + windurst) && bastok > sandoria && bastok > windurst)
         {
             uint8 ranking = GetBalance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, windurst_prev);
-            if (ranking & 0x0C == 0x04)
+            if ((ranking & 0x0C) == 0x04)
                 return 1;
         }
         else if (windurst > (sandoria + bastok) && windurst > bastok && windurst > sandoria)
         {
             uint8 ranking = GetBalance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, windurst_prev);
-            if (ranking & 0x30 == 0x10)
+            if ((ranking & 0x30) == 0x10)
                 return 1;
         }
         return 0;

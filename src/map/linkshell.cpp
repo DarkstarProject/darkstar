@@ -417,7 +417,7 @@ namespace linkshell
 		{
 			return LinkshellList.at(id);
 		}
-		catch (const std::out_of_range& oor)
+		catch (const std::out_of_range&)
 		{
 			return NULL;
 		}
