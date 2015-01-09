@@ -1,11 +1,10 @@
 ---------------------------------------------
---  Glacier Splitter
---
---  Description: Cleaves into targets in a fan-shaped area. Additional effect: Paralyze
+--  Wing Thrust
+--  Family: Aern
 --  Type: Physical
---  Utsusemi/Blink absorb: 1-3 shadows
---  Range: Unknown cone
---  Notes: Only used the Aern wielding a sword (RDM, DRK, and PLD).
+--  Can be dispelled: N/A
+--  Utsusemi/Blink absorb: 4 Shadows
+--  Range: Single Target 7.0'
 ---------------------------------------------
 
 require("/scripts/globals/settings");
@@ -14,20 +13,19 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    return 0;
+	return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
+	local typeEffect = EFFECT_SLOW;
 
-	local numhits = math.random(1,3);
+	local numhits = 4;
 	local accmod = 1;
 	local dmgmod = 1;
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
 
-	local typeEffect = EFFECT_PARALYSIS;
-
-	MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 15, 0, 120);
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 128, 0, 60);
 
 	target:delHP(dmg);
 	return dmg;
