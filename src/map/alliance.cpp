@@ -67,8 +67,9 @@ void CAlliance::dissolveAlliance(bool playerInitiated, Sql_t* sql)
     if (playerInitiated)
     {
         //Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE allianceid = %u;", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, m_AllianceID);
-        uint8 data[4];
+        uint8 data[8];
         WBUFL(data, 0) = m_AllianceID;
+        WBUFL(data, 4) = m_AllianceID;
         message::send(MSG_PT_DISBAND, data, sizeof data, NULL);
     }
     else
@@ -85,7 +86,7 @@ void CAlliance::dissolveAlliance(bool playerInitiated, Sql_t* sql)
             this->delParty(party);
             for (auto PChar : party->members)
             {
-                
+                Sql_Query(sql, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE charid = %u", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, PChar->id);
             }
             party->ReloadParty();
         }

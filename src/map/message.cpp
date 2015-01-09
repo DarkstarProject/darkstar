@@ -303,11 +303,12 @@ namespace message
             case MSG_PT_DISBAND:
             {
                 CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+                uint32 id = RBUFL(extra->data(), 4);
                 if (PChar)
                 {
                     if (PChar->PParty)
                     {
-                        if (PChar->PParty->m_PAlliance)
+                        if (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->m_AllianceID == id)
                         {
                             PChar->PParty->m_PAlliance->dissolveAlliance(false, ChatSqlHandle);
                         }

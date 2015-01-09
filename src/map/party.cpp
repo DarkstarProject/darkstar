@@ -137,8 +137,9 @@ void CParty::DisbandParty(bool playerInitiated, Sql_t* sql)
         // make sure chat server isn't notified of a disband if this came from the chat server already
         if (playerInitiated)
         {
-            uint8 data[4];
+            uint8 data[8];
             WBUFL(data, 0) = m_PartyID;
+            WBUFL(data, 4) = m_PartyID;
             message::send(MSG_PT_DISBAND, data, sizeof data, NULL);
         }
     }
@@ -372,6 +373,11 @@ void CParty::PopMember(CBattleEntity* PEntity)
         {
             members.erase(members.begin() + i);
         }
+    }
+    //free memory, party will re reinsatiated when they zone back in
+    if (members.empty() && !m_PAlliance)
+    {
+        delete this;
     }
 }
 
