@@ -1,13 +1,13 @@
 -----------------------------------
 -- Area: Abyssea - Grauberg
--- Name: Cavernous Maw
--- Teleports Players to North Gustaberg
+--  NPC: Cavernous Maw
 -- @pos -564.000, 30.300, -760.000 254
+-- Teleports Players to North Gustaberg
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/teleports");
+require("scripts/globals/settings");
 require("scripts/zones/Abyssea-Grauberg/TextIDs");
 
 -----------------------------------
@@ -41,7 +41,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if(csid == 0x00C8 and option == 1) then
+    if (csid == 0x00C8 and option == 1) then
         player:setPos(-71,0.001,601,126,106);
     end
 end;
