@@ -984,10 +984,10 @@ int32 GetTextIDVariable(uint16 ZoneID, const char* variable)
 *                                                                       *
 ************************************************************************/
 
-uint8 GetSettingsVariable(std::string variable)
+uint8 GetSettingsVariable(const char* variable)
 {
 	lua_pushnil(LuaHandle);
-	lua_setglobal(LuaHandle, variable.c_str());
+	lua_setglobal(LuaHandle, variable);
 
 	int8 File[255];
 	memset(File, 0, sizeof(File));
@@ -999,7 +999,7 @@ uint8 GetSettingsVariable(std::string variable)
 		return 0;
 	}
 
-	lua_getglobal(LuaHandle, variable.c_str());
+	lua_getglobal(LuaHandle, variable);
 
 	if (lua_isnil(LuaHandle, -1) || !lua_isnumber(LuaHandle, -1))
 	{
@@ -1021,22 +1021,21 @@ uint8 GetSettingsVariable(std::string variable)
 bool IsExpansionEnabled(const char* expansionCode)
 {
 	if (expansionCode != NULL){
-		std::string expansionVariable ("ENABLE_");
+		std::string expansionVariable("ENABLE_");
 		expansionVariable.append(expansionCode);
 		
-		bool expansionEnabled;
+        bool expansionEnabled;
 
-		std::unordered_map<std::string, bool>::iterator expansionMapIterator = expansionEnabledMap.find(expansionVariable);
-
-		// Cache Expansion Lookups in a Map so that we don't re-hit the Lua file every time
-		if (expansionMapIterator == expansionEnabledMap.end())
-		{
-			expansionEnabled = (GetSettingsVariable(expansionVariable) != 0);
-			expansionEnabledMap[expansionVariable] = expansionEnabled;
-		}
-		else {
-			expansionEnabled = expansionMapIterator->second;
-		}
+        try
+        {
+            expansionEnabled = expansionEnabledMap.at(expansionVariable);
+        }
+        catch (std::out_of_range)
+        {
+            // Cache Expansion Lookups in a Map so that we don't re-hit the Lua file every time
+            expansionEnabled = (GetSettingsVariable(expansionVariable.c_str()) != 0);
+            expansionEnabledMap[expansionVariable] = expansionEnabled;
+        }
 
 		if (expansionEnabled == false && expansionRestrictionEnabled == true){
 			return false;

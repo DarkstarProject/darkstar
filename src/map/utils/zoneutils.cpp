@@ -70,8 +70,7 @@ void UpdateTreasureSpawnPoint(uint32 npcid, uint32 respawnTime)
 	int32 ret = Sql_Query(SqlHandle, "SELECT treasure_spawn_points.pos, treasure_spawn_points.pos_rot, treasure_spawn_points.pos_x, treasure_spawn_points.pos_y, treasure_spawn_points.pos_z, npc_list.required_expansion FROM `treasure_spawn_points` INNER JOIN `npc_list` ON treasure_spawn_points.npcid = npc_list.npcid WHERE treasure_spawn_points.npcid=%u ORDER BY RAND() LIMIT 1", npcid);
 
 	if ( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-		int8* expansionCode;
-		Sql_GetData(SqlHandle, 5, &expansionCode, NULL);
+		const char* expansionCode = Sql_GetData(SqlHandle, 5);
 
 		if (luautils::IsExpansionEnabled(expansionCode) == false){
 			return;
@@ -275,8 +274,7 @@ void LoadNPCList()
 	{
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
-			int8* expansionCode;
-			Sql_GetData(SqlHandle, 16, &expansionCode, NULL);
+			const char* expansionCode = Sql_GetData(SqlHandle, 16);
 
 			if (luautils::IsExpansionEnabled(expansionCode) == false){
 				continue;
