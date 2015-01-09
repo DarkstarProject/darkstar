@@ -73,21 +73,60 @@ namespace conquest
         if (region == REGIONTYPE::REGION_UNKNOWN)
             return;
 
-        const int8* Query = "UPDATE conquest_system SET %s = %s + %d WHERE region_id = %d;";
+        std::string Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence FROM conquest_system WHERE region_id = %d;";
 
-        switch (PChar->profile.nation)
+        int ret = Sql_Query(SqlHandle, Query.c_str(), region);
+
+        if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-        case 0:
-            Sql_Query(SqlHandle, Query, "sandoria_influence", "sandoria_influence", points, region);
-            break;
-        case 1:
-            Sql_Query(SqlHandle, Query, "bastok_influence", "bastok_influence", points, region);
-            break;
-        case 2:
-            Sql_Query(SqlHandle, Query, "windurst_influence", "windurst_influence", points, region);
-            break;
-        default:
-            break;
+            int san_inf = Sql_GetIntData(SqlHandle, 0);
+            int bas_inf = Sql_GetIntData(SqlHandle, 1);
+            int win_inf = Sql_GetIntData(SqlHandle, 2);
+            int bst_inf = Sql_GetIntData(SqlHandle, 3);
+
+            switch (PChar->profile.nation)
+            {
+            case 0:
+            {
+                int total = bas_inf + win_inf + bst_inf;
+                double bas_rat = (float)bas_inf / total;
+                double win_rat = (float)win_inf / total;
+                double bst_rat = (float)bst_inf / total;
+                san_inf += points;
+                bas_inf = (total - points) * bas_rat;
+                win_inf = (total - points) * win_rat;
+                bst_inf = (total - points) * bst_rat;
+                break;
+            }
+            case 1:
+            {
+                int total = san_inf + win_inf + bst_inf;
+                double san_rat = (float)san_inf / total;
+                double win_rat = (float)win_inf / total;
+                double bst_rat = (float)bst_inf / total;
+                bas_inf += points;
+                san_inf = (total - points) * san_rat;
+                win_inf = (total - points) * win_rat;
+                bst_inf = (total - points) * bst_rat;
+                break;
+            }
+            case 2:
+            {
+                int total = san_inf + bas_inf + bst_inf;
+                double san_rat = (float)san_inf / total;
+                double bas_rat = (float)bas_inf / total;
+                double bst_rat = (float)bst_inf / total;
+                win_inf += points;
+                san_inf = (total - points) * san_rat;
+                bas_inf = (total - points) * bas_rat;
+                bst_inf = (total - points) * bst_rat;
+                break;
+            }
+            default:
+                break;
+            }
+            Sql_Query(SqlHandle, "UPDATE conquest_system SET sandoria_influence = %d, bastok_influence = %d, "
+                "windurst_influence = %d, beastmen_influence = %d WHERE region_id = %d;", san_inf, bas_inf, win_inf, bst_inf, region);
         }
     }
 
@@ -109,6 +148,7 @@ namespace conquest
 			case REGION_SARUTABARUTA:
 			{
 				point = 10;
+                break;
 			}
 			case REGION_ZULKHEIM:
 			case REGION_KOLSHUSHU:
@@ -117,6 +157,7 @@ namespace conquest
 			case REGION_ARAGONEU:
 			{
 				point = 75;
+                break;
 			}
 			case REGION_QUFIMISLAND:
 			case REGION_LITELOR:
@@ -124,6 +165,7 @@ namespace conquest
 			case REGION_ELSHIMOLOWLANDS:
 			{
 				point = 150;
+                break;
 			}
 			case REGION_VOLLBOW:
 			case REGION_VALDEAUNIA:
@@ -131,31 +173,43 @@ namespace conquest
 			case REGION_ELSHIMOUPLANDS:
 			{
 				point = 600;
+                break;
 			}
 			case REGION_TULIA:
 			case REGION_MOVALPOLOS:
 			case REGION_TAVNAZIA:
 			{
 				point = 1200;
+                break;
 			}
 		}
-
-        const int8* Query = "UPDATE conquest_system SET %s = IF(%s < %d, 0, %s - %d), beastmen_influence = beastmen_influence + %d \
-                             WHERE region_id = %d;";
+        std::string influence;
 
         switch (PChar->profile.nation)
         {
         case 0:
-            Sql_Query(SqlHandle, Query, "sandoria_influence", "sandoria_influence", point, "sandoria_influence", point, point, region);
+            influence = "sandoria_influence";
             break;
         case 1:
-            Sql_Query(SqlHandle, Query, "bastok_influence", "bastok_influence", point, "bastok_influence", point, point, region);
+            influence = "bastok_influence";
             break;
         case 2:
-            Sql_Query(SqlHandle, Query, "windurst_influence", "windurst_influence", point, "windurst_influence", point, point, region);
+            influence = "windurst_influence";
             break;
         default:
             break;
+        }
+
+        std::string Query = "SELECT " + influence + " FROM conquest_system WHERE region_id = %d;";
+
+        int ret = Sql_Query(SqlHandle, Query.c_str(), region);
+
+        if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            int value = dsp_min(Sql_GetIntData(SqlHandle, 0), point);
+            Query = "UPDATE conquest_system SET " + influence + " = " + influence + " - %d, beastmen_influence = beastmen_influence + %d WHERE region_id = %d;";
+
+            Sql_Query(SqlHandle, Query.c_str(), value, value);
         }
 	}
 
