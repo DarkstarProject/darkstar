@@ -1994,6 +1994,55 @@ int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
 }
 
 /************************************************************************
+*																		*
+*  Called when mob is targeted by a spell.                              *
+*  Note: does not differentiate between offensive and defensive spells  *
+*																		*
+************************************************************************/
+
+int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell)
+{
+    DSP_DEBUG_BREAK_IF(PSpell == NULL);
+
+    lua_prepscript("scripts/zones/%s/mobs/%s.lua", PCaster->loc.zone->GetName(), PCaster->GetName());
+
+    if (prepFile(File, "onMagicHit"))
+    {
+        return 0;
+    }
+
+    CLuaBaseEntity LuaCasterEntity(PCaster);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaCasterEntity);
+
+    CLuaBaseEntity LuaTargetEntity(PTarget);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+
+    CLuaSpell LuaSpell(PSpell);
+    Lunar<CLuaSpell>::push(LuaHandle, &LuaSpell);
+
+    if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::onMagicHit: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return 0;
+    }
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns < 1)
+    {
+        ShowError("luautils::onMagicHit (%s): 1 return expected, got %d\n", File, returns);
+        return 0;
+    }
+    uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
+    lua_pop(LuaHandle, 1);
+    if (returns > 1)
+    {
+        ShowError("luautils::onMagicHit (%s): 1 return expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns - 1);
+    }
+    return retVal;
+}
+
+/************************************************************************
 *  onMobInitialize                                                      *
 *  Used for passive trait                                               *
 *                                                                       *

@@ -545,17 +545,15 @@ void CMagicState::FinishSpell()
     DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
 	DSP_DEBUG_BREAK_IF(m_PEntity->PBattleAI->GetCurrentAction() != ACTION_MAGIC_FINISH);
 
-	CSpell* PSpellCopy = new CSpell(*m_PSpell);
+	luautils::OnSpellPrecast(m_PEntity, m_PSpell);
 
-	luautils::OnSpellPrecast(m_PEntity, PSpellCopy);
-
-	SpendCost(PSpellCopy);
+	SpendCost(m_PSpell);
 	SetRecast(m_PSpell);
 
 	// remove effects based on spell cast first
     int16 effectFlags = EFFECTFLAG_INVISIBLE | EFFECTFLAG_MAGIC_BEGIN;
 
-	if (PSpellCopy->canTargetEnemy())
+	if (m_PSpell->canTargetEnemy())
     {
     	effectFlags |= EFFECTFLAG_DETECTABLE;
     }
@@ -569,18 +567,18 @@ void CMagicState::FinishSpell()
     // can this spell target the dead?
 
     uint8 flags = FINDFLAGS_NONE;
-	if (PSpellCopy->getValidTarget() & TARGET_PLAYER_DEAD)
+	if (m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD)
     {
         flags |= FINDFLAGS_DEAD;
     }
-	if (PSpellCopy->getFlag() & SPELLFLAG_HIT_ALL)
+	if (m_PSpell->getFlag() & SPELLFLAG_HIT_ALL)
 	{
 		flags |= FINDFLAGS_HIT_ALL;
 	}
-	uint8 aoeType = battleutils::GetSpellAoEType(m_PEntity, PSpellCopy);
+	uint8 aoeType = battleutils::GetSpellAoEType(m_PEntity, m_PSpell);
 
 	if (aoeType == SPELLAOE_RADIAL) {
-		float distance = spell::GetSpellRadius(PSpellCopy, m_PEntity);
+		float distance = spell::GetSpellRadius(m_PSpell, m_PEntity);
 
         m_PTargetFind->findWithinArea(m_PTarget, AOERADIUS_TARGET, distance, flags);
 
@@ -588,7 +586,7 @@ void CMagicState::FinishSpell()
     else if (aoeType == SPELLAOE_CONAL)
     {
         //TODO: actual radius calculation
-		float radius = spell::GetSpellRadius(PSpellCopy, m_PEntity);
+		float radius = spell::GetSpellRadius(m_PSpell, m_PEntity);
 
         m_PTargetFind->findWithinCone(m_PTarget, radius, 45, flags);
 	}
@@ -600,13 +598,13 @@ void CMagicState::FinishSpell()
 
     uint16 totalTargets = m_PTargetFind->m_targets.size();
 
-	PSpellCopy->setTotalTargets(totalTargets);
+	m_PSpell->setTotalTargets(totalTargets);
 
 	apAction_t action;
 	action.ActionTarget = m_PTarget;
 	action.reaction   = REACTION_NONE;
 	action.speceffect = SPECEFFECT_NONE;
-	action.animation  = PSpellCopy->getAnimationID();
+	action.animation  = m_PSpell->getAnimationID();
 	action.param      = 0;
 	action.messageID  = 0;
 
@@ -621,18 +619,18 @@ void CMagicState::FinishSpell()
 
         action.ActionTarget = PTarget;
 
-		ce = PSpellCopy->getCE();
-		ve = PSpellCopy->getVE();
+		ce = m_PSpell->getCE();
+		ve = m_PSpell->getVE();
 
         // take all shadows
-		if (PSpellCopy->canTargetEnemy() && aoeType > 0)
+		if (m_PSpell->canTargetEnemy() && aoeType > 0)
         {
         	PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
         	PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
         }
 
         // TODO: this is really hacky and should eventually be moved into lua
-		if (PSpellCopy->canHitShadow() && aoeType == SPELLAOE_NONE && battleutils::IsAbsorbByShadow(PTarget))
+		if (m_PSpell->canHitShadow() && aoeType == SPELLAOE_NONE && battleutils::IsAbsorbByShadow(PTarget))
         {
         	// take shadow
         	msg = 31;
@@ -642,28 +640,32 @@ void CMagicState::FinishSpell()
         }
         else
         {
-			action.param = luautils::OnSpellCast(m_PEntity, PTarget, PSpellCopy);
+            if (PTarget->objtype == TYPE_MOB)
+            {
+                luautils::OnMagicHit(PTarget, m_PEntity, m_PSpell);
+            }
+			action.param = luautils::OnSpellCast(m_PEntity, PTarget, m_PSpell);
 
             // remove effects from damage
-			if (PSpellCopy->canTargetEnemy() && action.param > 0 && m_PSpell->dealsDamage())
+			if (m_PSpell->canTargetEnemy() && action.param > 0 && m_PSpell->dealsDamage())
             {
                 PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
             }
 
             if(msg == 0)
             {
-				msg = PSpellCopy->getMessage();
+				msg = m_PSpell->getMessage();
             }
             else
             {
-				msg = PSpellCopy->getAoEMessage();
+				msg = m_PSpell->getAoEMessage();
             }
 
         }
 
         action.messageID = msg;
 
-		if (PSpellCopy->getID() != 305) //I hate to do this, but there really is no other spell like Odin
+		if (m_PSpell->getID() != 305) //I hate to do this, but there really is no other spell like Odin
             CharOnTarget(&action, ce, ve);
 
         m_PEntity->m_ActionList.push_back(action);
@@ -675,8 +677,6 @@ void CMagicState::FinishSpell()
 
     DSP_DEBUG_BREAK_IF(m_PEntity->PBattleAI->GetCurrentAction() != ACTION_MAGIC_FINISH);
 	m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(m_PEntity));
-
-	delete PSpellCopy;
 
 	Clear();
 }
