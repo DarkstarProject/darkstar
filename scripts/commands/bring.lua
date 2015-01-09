@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: bring
+-- func: @bring <player>
 -- auth: <Unknown>
 -- desc: Brings the target to the player.
 ---------------------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ function onTrigger(player, target)
 
     local targ = GetPlayerByName( target );
     if (targ ~= nil) then
-        targ:setPos( player:getXPos(), player:getYPos(), player:getZPos(), 0, player:getZone():getID() );    
+        targ:setPos( player:getXPos(), player:getYPos(), player:getZPos(), 0, player:getZone():getID() );
     else
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
     end

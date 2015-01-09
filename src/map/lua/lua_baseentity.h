@@ -371,6 +371,7 @@ public:
     int32 hasTrait(lua_State*);
 
     int32 addExp(lua_State*);                // Add to Character Experience
+    int32 delExp(lua_State*);                // Subtracts from Character Experience
 
     int32 getPetElement(lua_State*);
     int32 getPetName(lua_State*);

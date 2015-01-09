@@ -1,7 +1,7 @@
 ---------------------------------------------------------------------------------------------------
--- func: @mp <amount> <player>
--- auth: <Unknown>, modified by TeoTwawki
--- desc: Sets the GM or target players mana.
+-- func: @takegil <amount> <player>
+-- auth: TeoTwawki
+-- desc: Removes the amount of gil from the given player.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
@@ -10,22 +10,24 @@ cmdprops =
     parameters = "is"
 };
 
-function onTrigger(player, mp, target)
-    if (mp == nil) then
+function onTrigger(player, amount, target)
+    if (amount == nil) then
         player:PrintToPlayer("You must enter a valid amount.");
-        player:PrintToPlayer( "@mp <amount> <player>" );
+        player:PrintToPlayer( "@takegil <amount> <player>" );
         return;
     end
 
     if (target == nil) then
-        player:setMP(mp);
+        player:delGil(amount);
+        player:PrintToPlayer( string.format( "Removed %i gil from self. ", amount ) );
     else
         local targ = GetPlayerByName(target);
         if (targ ~= nil) then
-            targ:setMP(mp);
+            targ:delGil(amount);
+            player:PrintToPlayer( string.format( "Removed %i gil from player '%s' ", amount, target ) )
         else
             player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-            player:PrintToPlayer( "@mp <amount> <player>" );
+            player:PrintToPlayer( "@takegil <amount> <player>" );
         end
     end
 end;

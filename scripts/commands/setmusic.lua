@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @setmusic <typeID> <songID>
--- auth: forgottenandlost
+-- auth: TeoTwawki
 -- desc: Temporarily changes music played by users client
 ---------------------------------------------------------------------------------------------------
 

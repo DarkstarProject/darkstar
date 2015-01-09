@@ -33,7 +33,7 @@ function onTrigger(player, skill)
         ["evasion"]     = 29,
         ["shield"]      = 30,
         ["parry"]       = 31,
-        
+
         -- Magic Skills
         ["divine"]      = 32,
         ["healing"]     = 33,
@@ -43,6 +43,8 @@ function onTrigger(player, skill)
         ["dark"]        = 37,
         ["summoning"]   = 38,
         ["ninjitsu"]    = 39,
+        -- Everyone spells it wrong. NinjUtsu is correct!
+        ["ninjutsu"]    = 39,
         ["singing"]     = 40,
         ["string"]      = 41,
         ["wind"]        = 42,
