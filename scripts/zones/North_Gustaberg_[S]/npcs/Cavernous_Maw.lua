@@ -1,7 +1,8 @@
 -----------------------------------
--- Cavernous Maw
--- Teleports Players to North Gustaberg
+-- Area: North Gustaberg [S]
+--  NPC: Cavernous Maw
 -- @pos 466 0 479 88
+-- Teleports Players to North Gustaberg
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -16,20 +17,18 @@ require("scripts/zones/North_Gustaberg_[S]/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(hasMawActivated(player,7) == false) then
-		player:startEvent(0x0064);
-	else
-		player:startEvent(0x0065);
-	end
-	
+    if (hasMawActivated(player,7) == false) then
+        player:startEvent(0x0064);
+    else
+        player:startEvent(0x0065);
+    end
 end;
 
 -----------------------------------
@@ -37,23 +36,20 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-   
+
 -----------------------------------
 -- onEventFinish Action
 -----------------------------------
 function onEventFinish(player,csid,option)
---print("CSID:",csid);
---print("RESULT:",option);
-	
-	if(option == 1) then
-		if(csid == 0x0064) then
-			player:addNationTeleport(MAW,128);
-		end
-		
-		toMaw(player,12);
-	end
-	
+    -- printf("CSID:",csid);
+    -- printf("RESULT:",option);
+    if (option == 1) then
+        if (csid == 0x0064) then
+            player:addNationTeleport(MAW,128);
+        end
+        toMaw(player,12);
+    end
 end;
