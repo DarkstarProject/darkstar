@@ -7,6 +7,7 @@
 --  Range: Unknown cone
 --  Notes: Only used the Aern wielding a sword (RDM, DRK, and PLD).
 ---------------------------------------------
+
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
@@ -26,7 +27,7 @@ function onMobWeaponSkill(target, mob, skill)
 
 	local typeEffect = EFFECT_PARALYSIS;
 
-    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 15, 0, 120);
+	MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 15, 0, 120);
 
 	target:delHP(dmg);
 	return dmg;
