@@ -95,7 +95,7 @@ public:
 	void startElevator(int32 elevatorID);
 	void TransportTimer();
     void insertElevator(Elevator_t elevator);
-    void InitializeTransport();
+    void insertTransport(Transport_t* transport);
 
 private:
 

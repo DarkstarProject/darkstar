@@ -59,97 +59,6 @@ CTransportHandler::CTransportHandler()
 
 }
 
-/************************************************************************
-*                                                                       *
-*  Инициализация транспорта (корабли и самолеты)                        *
-*                                                                       *
-************************************************************************/
-
-void CTransportHandler::InitializeTransport()
-{
-    DSP_DEBUG_BREAK_IF(TransportList.size() != 0);
-
-    const int8* fmtQuery = "SELECT id, transport, door, dock_x, dock_y, dock_z, dock_rot, \
-                            boundary, zone, anim_arrive, anim_depart, time_offset, time_interval, \
-                            time_waiting, time_anim_arrive, time_anim_depart FROM transport LEFT JOIN \
-                            zone_settings ON ((transport >> 12) & 0xFFF) = zoneid WHERE \
-                            IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
-
-    int32 ret = Sql_Query(SqlHandle, fmtQuery, map_ip, inet_ntoa(map_ip), map_port);
-
-	if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
-		{
-            Transport_t* PTransport = new Transport_t;
-
-            PTransport->Dock.zone = zoneutils::GetZone((Sql_GetUIntData(SqlHandle,1) >> 12) & 0x0FFF);
-            PTransport->Dock.p.x  = Sql_GetFloatData(SqlHandle,3);
-            PTransport->Dock.p.y  = Sql_GetFloatData(SqlHandle,4);
-            PTransport->Dock.p.z  = Sql_GetFloatData(SqlHandle,5);
-            PTransport->Dock.p.rotation = (uint8) Sql_GetIntData(SqlHandle,6);
-            PTransport->Dock.boundary   = (uint16)Sql_GetIntData(SqlHandle,7);
-            PTransport->Dock.prevzone   = (uint8) Sql_GetIntData(SqlHandle,8);
-
-            PTransport->PDoorNPC      = zoneutils::GetEntity(Sql_GetUIntData(SqlHandle,2), TYPE_NPC);
-            PTransport->PTransportNPC = zoneutils::GetEntity(Sql_GetUIntData(SqlHandle,1), TYPE_SHIP);
-
-            PTransport->AnimationArrive = (uint8)Sql_GetIntData(SqlHandle, 9);
-            PTransport->AnimationDepart = (uint8)Sql_GetIntData(SqlHandle,10);
-
-            PTransport->TimeOffset   = (uint16)Sql_GetIntData(SqlHandle,11);
-            PTransport->TimeInterval = (uint16)Sql_GetIntData(SqlHandle,12);
-            PTransport->TimeWaiting  = (uint16)Sql_GetIntData(SqlHandle,13);
-            PTransport->TimeAnimationArrive = (uint16)Sql_GetIntData(SqlHandle,14);
-            PTransport->TimeAnimationDepart = (uint16)Sql_GetIntData(SqlHandle,15);
-
-            if (PTransport->PDoorNPC == NULL ||
-                PTransport->PTransportNPC == NULL)
-            {
-                ShowError("Transport <%u>: transport or door not found\n", (uint8)Sql_GetIntData(SqlHandle,0));
-                delete PTransport;
-                continue;
-            }
-            if (PTransport->TimeAnimationArrive < 10)
-            {
-                ShowError("Transport <%u>: time_anim_arrive must be > 10\n", (uint8)Sql_GetIntData(SqlHandle,0));
-                delete PTransport;
-                continue;
-            }
-            if (PTransport->TimeInterval < PTransport->TimeAnimationArrive + PTransport->TimeWaiting + PTransport->TimeAnimationDepart)
-            {
-                ShowError("Transport <%u>: time_interval must be > time_anim_arrive + time_waiting + time_anim_depart\n", (uint8)Sql_GetIntData(SqlHandle,0));
-                delete PTransport;
-                continue;
-            }
-            PTransport->PTransportNPC->name.resize(8);
-            TransportList.push_back(PTransport);
-        }
-    }
-
-    fmtQuery = "SELECT zone, time_offset, time_interval, time_anim_arrive \
-                FROM transport LEFT JOIN \
-                zone_settings ON zone = zoneid WHERE \
-                IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE)";
-
-    ret = Sql_Query(SqlHandle, fmtQuery, map_ip, inet_ntoa(map_ip), map_port);
-
-    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-    {
-        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-
-            TransportZone_t TransportZone;
-
-            TransportZone.zone = (uint8)Sql_GetIntData(SqlHandle, 0);
-            TransportZone.TimeOffset = (uint16)Sql_GetIntData(SqlHandle, 1);
-            TransportZone.TimeInterval = (uint16)Sql_GetIntData(SqlHandle, 2);
-            TransportZone.TimeAnimationArrive = (uint16)Sql_GetIntData(SqlHandle, 3);
-
-            TransportZoneList.push_back(TransportZone);
-        }
-    }
-}
 
 /************************************************************************
 *                                                                       *
@@ -295,6 +204,26 @@ void CTransportHandler::TransportTimer()
 			}
 		}
 	}
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+void CTransportHandler::insertTransport(Transport_t* transport)
+{
+    TransportZone_t TransportZone;
+
+    TransportZone.zone = transport->Dock.zone->GetID();
+    TransportZone.TimeOffset = transport->TimeOffset;
+    TransportZone.TimeInterval = transport->TimeInterval;
+    TransportZone.TimeAnimationArrive = transport->TimeAnimationArrive;
+
+    TransportZoneList.push_back(TransportZone);
+    TransportList.push_back(transport);
+    return;
 }
 
 /************************************************************************

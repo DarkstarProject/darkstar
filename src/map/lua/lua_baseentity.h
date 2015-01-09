@@ -602,6 +602,7 @@ public:
     int32 addBurden(lua_State* L);
 
     int32 setElevator(lua_State* L);
+    int32 setTransport(lua_State* L);
 };
 
 #endif
