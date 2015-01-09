@@ -156,7 +156,7 @@ namespace conquest
 			case REGION_DERFLAND:
 			case REGION_ARAGONEU:
 			{
-				point = 75;
+				point = 50;
                 break;
 			}
 			case REGION_QUFIMISLAND:
@@ -164,7 +164,7 @@ namespace conquest
 			case REGION_KUZOTZ:
 			case REGION_ELSHIMOLOWLANDS:
 			{
-				point = 150;
+				point = 75;
                 break;
 			}
 			case REGION_VOLLBOW:
@@ -172,44 +172,38 @@ namespace conquest
 			case REGION_FAUREGANDI:
 			case REGION_ELSHIMOUPLANDS:
 			{
-				point = 600;
+				point = 300;
                 break;
 			}
 			case REGION_TULIA:
 			case REGION_MOVALPOLOS:
 			case REGION_TAVNAZIA:
 			{
-				point = 1200;
+				point = 600;
                 break;
 			}
 		}
-        std::string influence;
-
-        switch (PChar->profile.nation)
-        {
-        case 0:
-            influence = "sandoria_influence";
-            break;
-        case 1:
-            influence = "bastok_influence";
-            break;
-        case 2:
-            influence = "windurst_influence";
-            break;
-        default:
-            break;
-        }
-
-        std::string Query = "SELECT " + influence + " FROM conquest_system WHERE region_id = %d;";
+        std::string Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence FROM conquest_system WHERE region_id = %d;";
 
         int ret = Sql_Query(SqlHandle, Query.c_str(), region);
 
         if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            int value = dsp_min(Sql_GetIntData(SqlHandle, 0), point);
-            Query = "UPDATE conquest_system SET " + influence + " = " + influence + " - %d, beastmen_influence = beastmen_influence + %d WHERE region_id = %d;";
+            int san_inf = Sql_GetIntData(SqlHandle, 0);
+            int bas_inf = Sql_GetIntData(SqlHandle, 1);
+            int win_inf = Sql_GetIntData(SqlHandle, 2);
+            int bst_inf = Sql_GetIntData(SqlHandle, 3);
+            int total = san_inf + bas_inf + win_inf;
+            double san_rat = (float)san_inf / total;
+            double bas_rat = (float)bas_inf / total;
+            double win_rat = (float)win_inf / total;
+            bst_inf += point;
+            san_inf = (total - point) * san_rat;
+            bas_inf = (total - point) * bas_rat;
+            win_inf = (total - point) * win_rat;
 
-            Sql_Query(SqlHandle, Query.c_str(), value, value);
+            Sql_Query(SqlHandle, "UPDATE conquest_system SET sandoria_influence = %d, bastok_influence = %d, "
+                "windurst_influence = %d, beastmen_influence = %d WHERE region_id = %d;", san_inf, bas_inf, win_inf, bst_inf, region);
         }
 	}
 
