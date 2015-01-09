@@ -75,7 +75,7 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 	m_Tick = tick;
 
     ACTIONTYPE actionType = m_ActionType;
-    bool isMob = m_PPet->objtype == TYPE_MOB;
+    CBattleEntity* PSelf = m_PPet;
 
 	//uncharm any pets if time is up
 	if(tick > m_PPet->charmTime && m_PPet->isCharmed)
@@ -106,7 +106,8 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
 
-    if (!(actionType == ACTION_FALL && isMob))
+    //check if this AI was replaced (the new AI will update if this is the case)
+    if (PSelf->PBattleAI == this)
     {
         m_PPet->UpdateEntity();
     }
