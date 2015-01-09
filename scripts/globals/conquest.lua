@@ -1160,21 +1160,24 @@ function SetRegionalConquestOverseers(region)
     local nation  = GetRegionOwner(region);
 
     for i = 1, table.getn(npclist), 2 do
-        if(npclist[i+1] == nation) then
-            GetNPCByID(npclist[i]):setStatus(0);
-        else
-            GetNPCByID(npclist[i]):setStatus(2);
-        end
-
-        if(npclist[i+1] == OTHER) then
-            if(nation ~= BEASTMEN) then
-                GetNPCByID(npclist[i]):setStatus(0);
+    	local npc = GetNPCByID(npclist[i]);
+    	
+    	if(npc ~= nil) then
+            if(npclist[i+1] == nation) then
+                npc:setStatus(0);
             else
-                GetNPCByID(npclist[i]):setStatus(2);
+                npc:setStatus(2);
             end
-        end
+        
+            if(npclist[i+1] == OTHER) then
+                if(nation ~= BEASTMEN) then
+                    npc:setStatus(0);
+                else
+                    npc:setStatus(2);
+                end
+            end
 	end
-
+    end
 end;
 
 -----------------------------------
@@ -1311,25 +1314,3 @@ function conquestUpdate(zone, player, updateType, messageBase)
         end
     end
 end;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

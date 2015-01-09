@@ -101,7 +101,7 @@ namespace luautils
 	int32 clearVarFromAll(lua_State *);											// Deletes a specific player variable from all players
 
     int32 GetTextIDVariable(uint16 ZoneID, const char* variable);               // загружаем значение переменной TextID указанной зоны
-	uint8 GetSettingsVariable(const char* variable);                            // Gets a Variable Value from Settings.lua
+	uint8 GetSettingsVariable(std::string variable);                            // Gets a Variable Value from Settings.lua
 	bool IsExpansionEnabled(const char* expansionCode);                         // Check if an Expansion is Enabled In Settings.lua
 
 	int32 OnGameDay(CZone* PZone);								                // Automatic action of NPC every game day

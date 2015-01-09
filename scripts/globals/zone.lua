@@ -23,9 +23,7 @@ function SetFieldManual(manuals)
     if (FIELD_MANUALS == 1) then
         for i,id in ipairs(manuals) do
             local npc = GetNPCByID(id);
-            if(npc == nil) then
-                printf("'SetFieldManual' Error trying to load undefined npc (%d)", id);
-            else
+            if(npc ~= nil) then
                 npc:setStatus(0);
             end
         end
@@ -41,9 +39,7 @@ function SetGroundsTome(tome)
     if (GROUNDS_TOMES == 1) then
         for i,id in ipairs(tome) do
             local npc = GetNPCByID(id);
-            if(npc == nil) then
-                printf("'SetGroundsTome' Error trying to load undefined npc (%d)", id);
-            else
+            if(npc ~= nil) then
                 npc:setStatus(0);
             end
         end
