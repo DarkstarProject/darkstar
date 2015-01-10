@@ -1,7 +1,8 @@
 -----------------------------------
--- Cavernous Maw
--- Teleports Players to Batallia_Downs_S
+-- Area: Batallia Downs
+--  NPC: Cavernous Maw
 -- @pos -48 0.1 435 105
+-- Teleports Players to Batallia Downs [S]
 -----------------------------------
 package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
 -----------------------------------
@@ -18,22 +19,20 @@ require("scripts/zones/Batallia_Downs/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(ENABLE_WOTG == 1 and player:hasKeyItem(PURE_WHITE_FEATHER) == false) then
-		player:startEvent(0x01f4,0);
-	elseif(ENABLE_WOTG == 1 and hasMawActivated(player,0)) then
-		player:startEvent(0x038e);
-	else
-		player:messageSpecial(NOTHING_HAPPENS);
-	end
-	
+    if (ENABLE_WOTG == 1 and player:hasKeyItem(PURE_WHITE_FEATHER) == false) then
+        player:startEvent(0x01f4,0);
+    elseif (ENABLE_WOTG == 1 and hasMawActivated(player,0)) then
+        player:startEvent(0x038e);
+    else
+        player:messageSpecial(NOTHING_HAPPENS);
+    end
 end;
 
 -----------------------------------
@@ -41,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,27 +49,25 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-
-	if(csid == 0x01f4) then
-		local r = math.random(1,3);
-		player:addKeyItem(PURE_WHITE_FEATHER);
-		player:messageSpecial(KEYITEM_OBTAINED,PURE_WHITE_FEATHER);
-		player:completeMission(WOTG,CAVERNOUS_MAWS);
-		player:addMission(WOTG,BACK_TO_THE_BEGINNING);
-		if(r == 1) then
-			player:addNationTeleport(MAW,1);
-			toMaw(player,1); -- go to Batallia_Downs[S]
-		elseif(r == 2) then
-			player:addNationTeleport(MAW,2);
-			toMaw(player,3); -- go to Rolanberry_Fields_[S]
-		elseif(r == 3) then
-			player:addNationTeleport(MAW,4);
-			toMaw(player,5); -- go to Sauromugue_Champaign_[S]
-		end;
-	elseif(csid == 0x038e and option == 1) then
-		toMaw(player,1); -- go to Batallia_Downs[S]
-	end;
-	
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x01f4) then
+        local r = math.random(1,3);
+        player:addKeyItem(PURE_WHITE_FEATHER);
+        player:messageSpecial(KEYITEM_OBTAINED,PURE_WHITE_FEATHER);
+        player:completeMission(WOTG,CAVERNOUS_MAWS);
+        player:addMission(WOTG,BACK_TO_THE_BEGINNING);
+        if (r == 1) then
+            player:addNationTeleport(MAW,1);
+            toMaw(player,1); -- go to Batallia_Downs[S]
+        elseif (r == 2) then
+            player:addNationTeleport(MAW,2);
+            toMaw(player,3); -- go to Rolanberry_Fields_[S]
+        elseif (r == 3) then
+            player:addNationTeleport(MAW,4);
+            toMaw(player,5); -- go to Sauromugue_Champaign_[S]
+        end;
+    elseif (csid == 0x038e and option == 1) then
+        toMaw(player,1); -- go to Batallia_Downs[S]
+    end;
 end;

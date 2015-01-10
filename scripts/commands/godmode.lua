@@ -25,20 +25,20 @@ function onTrigger(player)
         player:addStatusEffect(EFFECT_PERFECT_DODGE,1,0,0);
         player:addStatusEffect(EFFECT_INVINCIBLE,1,0,0);
         player:addStatusEffect(EFFECT_MANAFONT,1,0,0);
-        player:addStatusEffect(EFFECT_REGAIN,100,1,0);
+        player:addStatusEffect(EFFECT_REGAIN,150,1,0);
         player:addStatusEffect(EFFECT_REFRESH,99,0,0);
         player:addStatusEffect(EFFECT_REGEN,99,0,0);
 
         -- Add bonus mods to the player..
-        player:addMod(MOD_RACC,5000);
-        player:addMod(MOD_RATT,5000);
-        player:addMod(MOD_ACC,5000);
-        player:addMod(MOD_ATT,5000);
-        player:addMod(MOD_MATT,5000);
-        player:addMod(MOD_MACC,5000);
-        player:addMod(MOD_RDEF,5000);
-        player:addMod(MOD_DEF,5000);
-        player:addMod(MOD_MDEF,5000);
+        player:addMod(MOD_RACC,2500);
+        player:addMod(MOD_RATT,2500);
+        player:addMod(MOD_ACC,2500);
+        player:addMod(MOD_ATT,2500);
+        player:addMod(MOD_MATT,2500);
+        player:addMod(MOD_MACC,2500);
+        player:addMod(MOD_RDEF,2500);
+        player:addMod(MOD_DEF,2500);
+        player:addMod(MOD_MDEF,2500);
 
         -- Heal the player from the new buffs..
         player:addHP( 50000 );
@@ -62,14 +62,14 @@ function onTrigger(player)
         player:delStatusEffect(EFFECT_REGEN);
 
         -- Remove bonus mods..
-        player:delMod(MOD_RACC,5000);
-        player:delMod(MOD_RATT,5000);
-        player:delMod(MOD_ACC,5000);
-        player:delMod(MOD_ATT,5000);
-        player:delMod(MOD_MATT,5000);
-        player:delMod(MOD_MACC,5000);
-        player:delMod(MOD_RDEF,5000);
-        player:delMod(MOD_DEF,5000);
-        player:delMod(MOD_MDEF,5000);
+        player:delMod(MOD_RACC,2500);
+        player:delMod(MOD_RATT,2500);
+        player:delMod(MOD_ACC,2500);
+        player:delMod(MOD_ATT,2500);
+        player:delMod(MOD_MATT,2500);
+        player:delMod(MOD_MACC,2500);
+        player:delMod(MOD_RDEF,2500);
+        player:delMod(MOD_DEF,2500);
+        player:delMod(MOD_MDEF,2500);
     end
 end

@@ -1499,9 +1499,18 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
     {
     case 0x01:
     {
-        const int8* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sent, extra, sender, charname FROM delivery_box WHERE charid = %u AND box = %u AND slot < 8 ORDER BY slot;";
+        int8* fmtQuery;
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, boxtype);
+        if (boxtype == 1)
+        {
+            fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sent, extra, sender, charname FROM delivery_box WHERE charid = %u AND box = 1 AND slot < 8 ORDER BY slot;";
+        }
+        else
+        {
+            fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sent, extra, sender, charname FROM delivery_box WHERE senderid = %u AND box = 2 AND slot < 8 ORDER BY slot;";
+        }
+
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
 
         if (ret != SQL_ERROR)
         {
