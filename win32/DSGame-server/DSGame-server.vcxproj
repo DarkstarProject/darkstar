@@ -69,7 +69,7 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
@@ -97,7 +97,7 @@
       <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libmariadb.lib;lua51.lib;libzmq.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libmariadb.lib;lua51.lib;libzmq-d.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -120,7 +120,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libmariadb64.lib;lua51_64.lib;libzmq_64.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libmariadb64.lib;lua51_64.lib;libzmq-d_64.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)_64$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -317,7 +317,8 @@
     <ClInclude Include="..\..\src\map\packets\change_music.h" />
     <ClInclude Include="..\..\src\map\packets\conquest_map.h" />
     <ClInclude Include="..\..\src\map\packets\cs_position.h" />
-    <ClInclude Include="..\..\src\map\packets\currency.h" />
+    <ClInclude Include="..\..\src\map\packets\currency1.h" />
+    <ClInclude Include="..\..\src\map\packets\currency2.h" />
     <ClInclude Include="..\..\src\map\packets\delivery_box.h" />
     <ClInclude Include="..\..\src\map\packets\downloading_data.h" />
     <ClInclude Include="..\..\src\map\packets\entity_update.h" />
@@ -549,7 +550,8 @@
     <ClCompile Include="..\..\src\map\packets\change_music.cpp" />
     <ClCompile Include="..\..\src\map\packets\conquest_map.cpp" />
     <ClCompile Include="..\..\src\map\packets\cs_position.cpp" />
-    <ClCompile Include="..\..\src\map\packets\currency.cpp" />
+    <ClCompile Include="..\..\src\map\packets\currency1.cpp" />
+    <ClCompile Include="..\..\src\map\packets\currency2.cpp" />
     <ClCompile Include="..\..\src\map\packets\delivery_box.cpp" />
     <ClCompile Include="..\..\src\map\packets\downloading_data.cpp" />
     <ClCompile Include="..\..\src\map\packets\entity_update.cpp" />

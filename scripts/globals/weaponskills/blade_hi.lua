@@ -22,7 +22,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");        
 -----------------------------------     
         
-function OnUseWeaponSkill(player, target, wsID) 
+function onUseWeaponSkill(player, target, wsID) 
         
 	local params = {};
 	params.numHits = 1;

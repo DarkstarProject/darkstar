@@ -8,11 +8,11 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnAbilityCheck(player, target, ability)
+function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function OnPetAbility(target, pet, skill, master)
+function onPetAbility(target, pet, skill, master)
    -- Healing Breath III formula:
    -- floor(0.1757*(Drachen Brais Bonus + "Wyvern Exp Bonus" + 1) * (Helm Bonus + Wyvern TP Bonus + Deep Breathing Bonus + 1)*(Wyvern HP + Wyvern HP+ Gear) + 42)
 

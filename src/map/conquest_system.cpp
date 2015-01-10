@@ -25,6 +25,7 @@
 #include "entities/charentity.h"
 #include "vana_time.h"
 #include "utils/zoneutils.h"
+#include "utils/charutils.h"
 
 #include "packets/conquest_map.h"
 
@@ -562,7 +563,7 @@ namespace conquest
 
             uint32 points = exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15);
 
-            PChar->m_currency.conquestpoints[PChar->profile.nation] += points;
+            charutils::AddPoints(PChar, charutils::GetConquestPointsName(PChar).c_str(), points);
             GainInfluencePoints(PChar, points/2);
         }
         return 0; // added conquest points (пока не вижу в этом определенного смысла)

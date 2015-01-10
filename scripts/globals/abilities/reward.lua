@@ -7,10 +7,10 @@ require("scripts/globals/status");
 require("scripts/globals/pets");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	if (player:getPet() == nil) then
 		return MSGBASIC_REQUIRES_A_PET,0;
 	else
@@ -24,7 +24,7 @@ function OnAbilityCheck(player,target,ability)
 	end
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 
 	-- 1st need to get the pet food is equipped in the range slot.
 	local rangeObj = player:getEquipID(SLOT_AMMO);

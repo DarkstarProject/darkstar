@@ -197,14 +197,14 @@ void CAlliance::delParty(CParty* party)
 
     for (uint8 i = 0; i < party->members.size(); ++i)
     {
-        CCharEntity* PChar = (CCharEntity*)party->members.at(i);
+        CCharEntity* PMember = (CCharEntity*)party->members.at(i);
         //party->ReloadPartyMembers((CCharEntity*)party->members.at(i));
 
-        if (PChar->PParty->GetLeader() != PChar)
+        if (PChar != PMember)
         {
-            PChar->PTreasurePool = ((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool;
-            ((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool->AddMember(PChar);
-            ((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool->UpdatePool(PChar);
+            PMember->PTreasurePool = PChar->PTreasurePool;
+            PChar->PTreasurePool->AddMember(PMember);
+            PChar->PTreasurePool->UpdatePool(PMember);
         }
     }
 }

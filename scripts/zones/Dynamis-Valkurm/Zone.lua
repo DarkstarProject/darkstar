@@ -33,6 +33,11 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
+    
+    if (not zoning and GetServerVariable("[DynaValkurm]UniqueID") == 0) then
+        cs = 0;
+        return cs;
+    end
 	local cs = -1;
 	
 	local realDay = os.time();

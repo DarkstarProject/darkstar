@@ -26,8 +26,13 @@ This file is part of DarkStar-server source code.
 
 #include <zmq.hpp>
 
-void message_server_init();
+struct chat_message_t
+{
+    uint64 dest;
+    MSGSERVTYPE type;
+    zmq::message_t* data;
+    zmq::message_t* packet;
+};
 
-void message_server_listen();
-void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet, zmq::message_t* from);
-void message_server_send(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet);
+void message_server_init();
+void queue_message(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet);

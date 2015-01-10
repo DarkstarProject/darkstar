@@ -166,6 +166,11 @@ namespace charutils
 
 	void	ClearTempItems(CCharEntity* PChar);
 	void	ReloadParty(CCharEntity* PChar);
+
+    void    AddPoints(CCharEntity* PChar, const char* type, int32 amount, int32 max = INT32_MAX);
+    void    SetPoints(CCharEntity* PChar, const char* type, int32 amount);
+    int32   GetPoints(CCharEntity* PChar, const char* type);
+    std::string GetConquestPointsName(CCharEntity* PChar);
 };
 
 #endif

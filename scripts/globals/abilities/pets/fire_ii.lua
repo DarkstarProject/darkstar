@@ -9,11 +9,11 @@ require("/scripts/globals/magic");
 
 ---------------------------------------------------
 
-function OnAbilityCheck(player, target, ability)
+function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function OnPetAbility(target, pet, skill)
+function onPetAbility(target, pet, skill)
 	local spell = getSpell(145);
 	--calculate raw damage
 	local dmg = calculateMagicDamage(133,1,pet,spell,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);

@@ -11,7 +11,7 @@ require("scripts/globals/bcnm");
 -- OnSpellCast
 -----------------------------------------
 
-function OnMagicCastingCheck(caster,target,spell)
+function onMagicCastingCheck(caster,target,spell)
 	local result = 0;
 	if(caster:getObjType() == TYPE_PC) then
 		result = avatarMiniFightCheck(caster);

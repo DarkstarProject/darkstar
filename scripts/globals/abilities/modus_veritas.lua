@@ -7,14 +7,14 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	return 0,0;
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 	local helix = target:getStatusEffect(EFFECT_HELIX);
 	if (helix ~= nil) then
         local mvPower = helix:getSubPower();  

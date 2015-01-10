@@ -32,7 +32,14 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-cs = -1;
+    
+    if (not zoning and GetServerVariable("[DynaBuburimu]UniqueID") == 0) then
+        cs = 0;
+        return cs;
+    end
+    
+    cs = -1;
+    
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(143,2 ,-147);
 	end	

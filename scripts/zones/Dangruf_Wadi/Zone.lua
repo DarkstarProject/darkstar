@@ -106,7 +106,7 @@ function onEventFinish(player,csid,option)
 	--printf("RESULT: %u",option);
 end;	
 
-function OnZoneWeatherChange(weather)
+function onZoneWeatherChange(weather)
 	local qm2 = GetNPCByID(17559905); -- Quest: An Empty Vessel
 	if(weather == WEATHER_NONE or weather == WEATHER_SUNSHINE) then
 		qm2:setStatus(STATUS_NORMAL);

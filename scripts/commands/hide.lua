@@ -12,7 +12,7 @@ cmdprops =
 
 function onTrigger(player, cmd)
     -- Obtain the players hide status..
-    local isHidden = player:getGMHidden();
+    local isHidden = player:getVar("GMHidden");
     if (cmd ~= nil) then
         if (cmd == "status") then
             player:PrintToPlayer(string.format('Current hide status: %s', tostring(isHidden)));
@@ -21,22 +21,20 @@ function onTrigger(player, cmd)
     end
 
     -- Toggle the hide status..
-    if (isHidden == false) then 
-        isHidden = true;
+    if (isHidden == 0) then 
+        isHidden = 1;
     else
-        isHidden = false;
+        isHidden = 0;
     end
     
     -- If hidden animate us beginning our hide..
-    if (isHidden == true) then        
-        player:injectActionPacket( 6, 229 );
-        player:injectActionPacket( 6, 10 );
-        player:injectActionPacket( 6, 16 );
-        player:injectActionPacket( 6, 300 );
-        player:setGMHidden( isHidden );
+    if (isHidden == 1) then
+        player:setVar( "GMHidden", 1 );
+        player:setGMHidden(true);
         player:PrintToPlayer( "You are now GM hidden from other players." );
     else
-        player:setGMHidden( isHidden );
+        player:setVar( "GMHidden", 0 );
+        player:setGMHidden(false);
         player:PrintToPlayer( "You are no longer GM hidden from other players." );
     end
 end

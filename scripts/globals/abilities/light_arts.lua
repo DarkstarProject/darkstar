@@ -6,17 +6,17 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	if player:hasStatusEffect(EFFECT_LIGHT_ARTS) or player:hasStatusEffect(EFFECT_ADDENDUM_WHITE) then
 		return MSGBASIC_EFFECT_ALREADY_ACTIVE, 0;
 	end
 	return 0,0;
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 	player:delStatusEffectSilent(EFFECT_DARK_ARTS);
 	player:delStatusEffect(EFFECT_ADDENDUM_BLACK);
 	player:delStatusEffect(EFFECT_PARSIMONY);

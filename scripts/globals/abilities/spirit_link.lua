@@ -5,10 +5,10 @@
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	if (player:getPet() == nil) then
 		return MSGBASIC_REQUIRES_A_PET,0;
 	else
@@ -20,7 +20,7 @@ function OnAbilityCheck(player,target,ability)
 	end
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 
 	local playerHP = player:getHP();
 	local drainamount = (math.random(25,35) / 100) * playerHP;

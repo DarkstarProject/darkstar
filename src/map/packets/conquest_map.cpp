@@ -28,6 +28,8 @@
 #include "../entities/charentity.h"
 #include "../conquest_system.h"
 
+#include "../utils/charutils.h"
+
 #include "conquest_map.h"
 
 
@@ -100,7 +102,7 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
     WBUFB(data,(0x05)-4) = conquest::GetAlliance(sandoria_regions, bastok_regions, windurst_regions, sandoria_prev, bastok_prev, windurst_prev);
 
 	WBUFB(data,(0x8C)-4) = conquest::GetNexTally();
-    WBUFL(data,(0x90)-4) = PChar->m_currency.conquestpoints[PChar->profile.nation];
+    WBUFL(data,(0x90)-4) = charutils::GetPoints(PChar, charutils::GetConquestPointsName(PChar).c_str());
 	WBUFB(data,(0x9C)-4) = 0x01;
 
 	//uint8 packet[] = 
@@ -128,5 +130,5 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
 	WBUFB(data,(0xAE)-4) = 0; // undead: miroir archaique (4=8)
 	WBUFB(data,(0xAF)-4) = 0;
 
-	WBUFL(data,(0xB0)-4) = PChar->m_currency.imperialstanding;
+	WBUFL(data,(0xB0)-4) = charutils::GetPoints(PChar, "imperial_standing");
 }

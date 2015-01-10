@@ -21,6 +21,9 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
+#include <mutex>
+#include <queue>
+
 #include "message.h"
 #include "utils/zoneutils.h"
 #include "utils/jailutils.h"
@@ -37,92 +40,29 @@ namespace message
 	zmq::context_t zContext;
 	zmq::socket_t* zSocket = NULL;
 	Sql_t* ChatSqlHandle = NULL;
+    std::mutex send_mutex;
+    std::queue<chat_message_t> message_queue;
 
-	void init(const char* chatIp, uint16 chatPort)
-	{
-		ChatSqlHandle = Sql_Malloc();
-
-		if (Sql_Connect(ChatSqlHandle, map_config.mysql_login,
-			map_config.mysql_password,
-			map_config.mysql_host,
-			map_config.mysql_port,
-			map_config.mysql_database) == SQL_ERROR)
-		{
-			exit(EXIT_FAILURE);
-		}
-		Sql_Keepalive(ChatSqlHandle);
-
-		zContext = zmq::context_t(1);
-		zSocket = new zmq::socket_t(zContext, ZMQ_DEALER);
-
-		uint64 ipp = map_ip.s_addr;
-		uint64 port = map_port;
-
-		//if no ip/port were supplied, set to 1 (0 is not valid for an identity)
-		if (map_ip.s_addr == 0 && map_port == 0)
-		{
-			int ret = Sql_Query(ChatSqlHandle, "SELECT zoneip, zoneport FROM zone_settings GROUP BY zoneip, zoneport ORDER BY COUNT(*) DESC;");
-			if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) > 0 && Sql_NextRow(ChatSqlHandle) == SQL_SUCCESS)
-			{
-				ipp = inet_addr(Sql_GetData(ChatSqlHandle, 0));
-				port = Sql_GetUIntData(ChatSqlHandle, 1);
-			}
-		}
-		ipp |= (port << 32);
-
-		zSocket->setsockopt(ZMQ_IDENTITY, &ipp, sizeof ipp);
-
-		string_t server = "tcp://";
-		server.append(chatIp);
-		server.append(":");
-		server.append(std::to_string(chatPort));
-
-		try
-		{
-			zSocket->connect(server.c_str());
-		}
-		catch (zmq::error_t err)
-		{
-			ShowFatalError("Message: Unable to connect chat socket: %s\n", err.what());
-		}
-
-		listen();
-	}
-
-	void listen()
-	{
-		while (true)
-		{
-			zmq::message_t type;
-            zmq::message_t extra;
-            zmq::message_t packet;
-
+    void send_queue()
+    {
+        std::lock_guard<std::mutex> lk(send_mutex);
+        while (!message_queue.empty())
+        {
+            chat_message_t msg = message_queue.front();
+            message_queue.pop();
             try
             {
-                zSocket->recv(&type);
-
-                int more;
-                size_t size = sizeof(more);
-                zSocket->getsockopt(ZMQ_RCVMORE, &more, &size);
-                if (more)
-                {
-                    zSocket->recv(&extra);
-                    zSocket->getsockopt(ZMQ_RCVMORE, &more, &size);
-                    if (more)
-                    {
-                        zSocket->recv(&packet);
-                    }
-                }
+                zSocket->send(*msg.type, ZMQ_SNDMORE);
+                zSocket->send(*msg.data, ZMQ_SNDMORE);
+                zSocket->send(*msg.packet);
             }
-            catch (zmq::error_t e)
+            catch (std::exception& e)
             {
                 ShowError("Message: %s", e.what());
-                continue;
             }
+        }
+    }
 
-            parse((MSGSERVTYPE)RBUFB(type.data(), 0), &extra, &packet);
-		}
-	}
     void parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 	{
         ShowDebug("Message: Received message %d from message server\n", type);
@@ -417,35 +357,119 @@ namespace message
 		}
 	}
 
+    void listen()
+    {
+        while (true)
+        {
+            zmq::message_t type;
+            zmq::message_t extra;
+            zmq::message_t packet;
+
+            try
+            {
+                if (!zSocket->recv(&type))
+                {
+                    if (!message_queue.empty())
+                        send_queue();
+                    continue;
+                }
+
+                int more;
+                size_t size = sizeof(more);
+                zSocket->getsockopt(ZMQ_RCVMORE, &more, &size);
+                if (more)
+                {
+                    zSocket->recv(&extra);
+                    zSocket->getsockopt(ZMQ_RCVMORE, &more, &size);
+                    if (more)
+                    {
+                        zSocket->recv(&packet);
+                    }
+                }
+            }
+            catch (zmq::error_t e)
+            {
+                ShowError("Message: %s", e.what());
+                continue;
+            }
+
+            parse((MSGSERVTYPE)RBUFB(type.data(), 0), &extra, &packet);
+        }
+    }
+
+	void init(const char* chatIp, uint16 chatPort)
+	{
+		ChatSqlHandle = Sql_Malloc();
+
+		if (Sql_Connect(ChatSqlHandle, map_config.mysql_login,
+			map_config.mysql_password,
+			map_config.mysql_host,
+			map_config.mysql_port,
+			map_config.mysql_database) == SQL_ERROR)
+		{
+			exit(EXIT_FAILURE);
+		}
+		Sql_Keepalive(ChatSqlHandle);
+
+		zContext = zmq::context_t(1);
+		zSocket = new zmq::socket_t(zContext, ZMQ_DEALER);
+
+		uint64 ipp = map_ip.s_addr;
+		uint64 port = map_port;
+
+		//if no ip/port were supplied, set to 1 (0 is not valid for an identity)
+		if (map_ip.s_addr == 0 && map_port == 0)
+		{
+			int ret = Sql_Query(ChatSqlHandle, "SELECT zoneip, zoneport FROM zone_settings GROUP BY zoneip, zoneport ORDER BY COUNT(*) DESC;");
+			if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) > 0 && Sql_NextRow(ChatSqlHandle) == SQL_SUCCESS)
+			{
+				ipp = inet_addr(Sql_GetData(ChatSqlHandle, 0));
+				port = Sql_GetUIntData(ChatSqlHandle, 1);
+			}
+		}
+		ipp |= (port << 32);
+
+		zSocket->setsockopt(ZMQ_IDENTITY, &ipp, sizeof ipp);
+
+        uint32 to = 500;
+        zSocket->setsockopt(ZMQ_RCVTIMEO, &to, sizeof to);
+
+		string_t server = "tcp://";
+		server.append(chatIp);
+		server.append(":");
+		server.append(std::to_string(chatPort));
+
+		try
+		{
+			zSocket->connect(server.c_str());
+		}
+		catch (zmq::error_t err)
+		{
+			ShowFatalError("Message: Unable to connect chat socket: %s\n", err.what());
+		}
+
+		listen();
+	}
+
 	void send(MSGSERVTYPE type, void* data, size_t datalen, CBasicPacket* packet)
 	{
-		zmq::message_t newType(sizeof(MSGSERVTYPE));
-		WBUFB(newType.data(),0) = type;
-		zSocket->send(newType, ZMQ_SNDMORE);
+        std::lock_guard<std::mutex> lk(send_mutex);
+        chat_message_t msg;
+		msg.type = new zmq::message_t(sizeof(MSGSERVTYPE));
+        WBUFB(msg.type->data(), 0) = type;
 
-		zmq::message_t newExtra(datalen);
+        msg.data = new zmq::message_t(datalen);
 		if (datalen > 0)
-			memcpy(newExtra.data(), data, datalen);
-		zSocket->send(newExtra, ZMQ_SNDMORE);
+            memcpy(msg.data->data(), data, datalen);
 
-        try
+        if (packet)
         {
-            if (packet)
-            {
-                zmq::message_t newPacket(packet, packet->getSize() * 2, [](void *data, void *hint){delete (CBasicPacket*)data; });
-                zSocket->send(newPacket);
-            }
-            else
-            {
-                zmq::message_t newPacket(0);
-                zSocket->send(newPacket);
-            }
+            msg.packet = new zmq::message_t(packet, packet->getSize() * 2, [](void *data, void *hint){delete (CBasicPacket*)data; });
         }
-        catch (zmq::error_t e)
+        else
         {
-            ShowError("Message: %s", e.what());
+            msg.packet = new zmq::message_t(0);
         }
-
-        ShowDebug("Message: Sent message %d to message server\n", type);
+        message_queue.push(msg);
 	}
 };

@@ -137,11 +137,12 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 						WBUFB(data,(0x27)-4) |= 0x08;
                     WBUFB(data,(0x28)-4) = (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR) ? 0x10 : 0x00);
 					WBUFB(data,(0x29)-4) = PEntity->allegiance;
-					WBUFB(data,(0x2B)-4) = PEntity->namevis;
+                    WBUFB(data, (0x2B) - 4) = 0;//PEntity->namevis;
 				}
 				if (updatemask & UPDATE_STATUS)
 				{
-					WBUFL(data,(0x2C)-4) = PMob->m_OwnerID.id;
+                    WBUFB(data, (0x25) - 4) = 0x0C;
+                    WBUFL(data, (0x2C) - 4) = PMob->m_OwnerID.id;
 				}
 			}
 			if (updatemask & UPDATE_NAME)

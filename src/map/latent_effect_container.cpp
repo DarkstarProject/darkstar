@@ -1534,23 +1534,22 @@ void CLatentEffectContainer::CheckLatentsZone()
                 continue;
             }
 
-            uint16 zone = m_LatentEffectList.at(i)->GetConditionsValue();
-            CZone* PZone = zoneutils::GetZone(zone);
+            CZone* PZone = m_POwner->loc.zone;
 
             bool ActivateLatent = false;
 
             //sandoria
-            if (m_POwner->profile.nation == 0 && PZone->GetRegionID() == REGION_SANDORIA)
+            if (m_POwner->profile.nation == 0 && PZone->GetRegionID() == REGION_SANDORIA && m_LatentEffectList.at(i)->GetConditionsValue() == REGION_SANDORIA)
             {
                 ActivateLatent = true;
             }
             //bastok
-            else if (m_POwner->profile.nation == 1 && PZone->GetRegionID() == REGION_BASTOK)
+            else if (m_POwner->profile.nation == 1 && PZone->GetRegionID() == REGION_BASTOK && m_LatentEffectList.at(i)->GetConditionsValue() == REGION_BASTOK)
             {
                 ActivateLatent = true;
             }
             //windurst
-            else if (m_POwner->profile.nation == 2 && PZone->GetRegionID() == REGION_WINDURST)
+            else if (m_POwner->profile.nation == 2 && PZone->GetRegionID() == REGION_WINDURST && m_LatentEffectList.at(i)->GetConditionsValue() == REGION_WINDURST)
             {
                 ActivateLatent = true;
             }

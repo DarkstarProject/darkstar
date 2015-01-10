@@ -2,7 +2,7 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
  
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	if(player:hasStatusEffect(EFFECT_FAN_DANCE)) then
         return MSGBASIC_UNABLE_TO_USE_JA2, 0;
     elseif (player:hasStatusEffect(EFFECT_TRANCE)) then
@@ -15,7 +15,7 @@ function OnAbilityCheck(player,target,ability)
 	end;
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
     local duration = 120 + player:getMod(MOD_SAMBA_DURATION);
     duration = duration * (100 + player:getMod(MOD_SAMBA_PDURATION))/100;
 	player:delStatusEffect(EFFECT_HASTE_SAMBA);

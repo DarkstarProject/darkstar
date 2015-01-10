@@ -33,7 +33,11 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-	
+    
+	if (not zoning and GetServerVariable("[DynaSandoria]UniqueID") == 0) then
+        cs = 0;
+        return cs;
+    end
 	cs = -1;
 	
 	local realDay = os.time();

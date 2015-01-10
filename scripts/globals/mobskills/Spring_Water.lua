@@ -9,11 +9,11 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
 	return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 	
 	base = mob:getMainLvl() + 2*mob:getMainLvl()*(skill:getTP()/100); --base is around 5~150 level depending
 	M = 5;

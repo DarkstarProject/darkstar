@@ -32,7 +32,11 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-cs = -1;
+    if (not zoning and GetServerVariable("[DynaTavnazia]UniqueID") == 0) then
+        cs = 0;
+        return cs;
+    end
+    cs = -1;
 	local realDay = os.time();
 	local dynaWaitxDay = player:getVar("dynaWaitxDay");
 	

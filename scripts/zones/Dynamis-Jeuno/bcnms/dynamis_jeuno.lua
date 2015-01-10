@@ -4,7 +4,7 @@
 -----------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function OnBcnmRegister(player,instance)
+function onBcnmRegister(player,instance)
 	
 	SetServerVariable("[DynaJeuno]UniqueID",player:getDynamisUniqueID(1283));
 	SetServerVariable("[DynaJeuno]Boss_Trigger",0);
@@ -13,18 +13,18 @@ function OnBcnmRegister(player,instance)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function OnBcnmEnter(player,instance)
-	
-	player:setVar("DynamisID",GetServerVariable("[DynaJeuno]UniqueID"));
-	player:setVar("dynaWaitxDay",os.time());
-	
+function onBcnmEnter(player,instance)
+	if(player:getVar("DynamisID") ~= GetServerVariable("[DynaJeuno]UniqueID"))then
+        player:setVar("DynamisID",GetServerVariable("[DynaJeuno]UniqueID"));
+        player:setVar("dynaWaitxDay",os.time());
+	end
 end;
 
 -- Leaving the Dynamis by every mean possible, given by the LeaveCode
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish he dynamis
 
-function OnBcnmLeave(player,instance,leavecode)
+function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 	
 	if(leavecode == 2 or leavecode == 3 or leavecode == 4) then
@@ -33,6 +33,6 @@ function OnBcnmLeave(player,instance,leavecode)
 	if(leavecode == 4) then
 		GetNPCByID(17547510):setStatus(2);
 		SetServerVariable("[DynaJeuno]UniqueID",0);
-	end
+        end
 	
 end;
