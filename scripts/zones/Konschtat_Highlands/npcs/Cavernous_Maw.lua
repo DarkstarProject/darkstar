@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Konschtat Highlands
 --  NPC: Cavernous Maw
--- Teleports Players to Abyssea - Konschtat
 -- @pos 96.344, -69.080, -580.008 108
+-- Teleports Players to Abyssea - Konschtat
 -----------------------------------
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         and player:getQuestStatus(ABYSSEA, TO_PASTE_A_PEISTE) == QUEST_AVAILABLE) then
             player:startEvent(0);
         else
-            player:startEvent(0x006B,0,1); -- No param = no entry.
+            player:startEvent(107,0,1); -- No param = no entry.
         end
     else
         player:messageSpecial(NOTHING_HAPPENS);
@@ -56,9 +56,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 0) then
         player:addQuest(ABYSSEA, TO_PASTE_A_PEISTE);
-    elseif (csid ==1) then
+    elseif (csid == 1) then
         -- Killed Kukulkan
-    elseif(csid == 0x006B and option == 1) then
+    elseif (csid == 107 and option == 1) then
         player:setPos(153,-72,-840,140,15);
     end
 end;
