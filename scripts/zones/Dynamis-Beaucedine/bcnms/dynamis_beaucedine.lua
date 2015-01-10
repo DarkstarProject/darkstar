@@ -13,9 +13,10 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
-	
-	player:setVar("DynamisID",GetServerVariable("[DynaBeaucedine]UniqueID"));
-	player:setVar("dynaWaitxDay",os.time());
+	if(player:getVar("DynamisID") ~= GetServerVariable("[DynaBeaucedine]UniqueID"))then
+        player:setVar("DynamisID",GetServerVariable("[DynaBeaucedine]UniqueID"));
+        player:setVar("dynaWaitxDay",os.time());
+    end
 	
 end;
 
@@ -33,4 +34,4 @@ function onBcnmLeave(player,instance,leavecode)
 		SetServerVariable("[DynaBeaucedine]UniqueID",0);
 	end
 	
-end;
+    end;

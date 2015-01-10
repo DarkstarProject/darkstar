@@ -14,10 +14,10 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
-	
-	player:setVar("DynamisID",GetServerVariable("[DynaJeuno]UniqueID"));
-	player:setVar("dynaWaitxDay",os.time());
-	
+	if(player:getVar("DynamisID") ~= GetServerVariable("[DynaJeuno]UniqueID"))then
+        player:setVar("DynamisID",GetServerVariable("[DynaJeuno]UniqueID"));
+        player:setVar("dynaWaitxDay",os.time());
+	end
 end;
 
 -- Leaving the Dynamis by every mean possible, given by the LeaveCode
@@ -33,6 +33,6 @@ function onBcnmLeave(player,instance,leavecode)
 	if(leavecode == 4) then
 		GetNPCByID(17547510):setStatus(2);
 		SetServerVariable("[DynaJeuno]UniqueID",0);
-	end
+        end
 	
 end;

@@ -17,10 +17,10 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
-	
-	player:setVar("DynamisID",GetServerVariable("[DynaQufim]UniqueID"));
-	player:setVar("dynaWaitxDay",os.time());
-	
+	if(player:getVar("DynamisID") ~= GetServerVariable("[DynaQufim]UniqueID"))then
+        player:setVar("DynamisID",GetServerVariable("[DynaQufim]UniqueID"));
+        player:setVar("dynaWaitxDay",os.time());
+	end
 end;
 
 -- Leaving the Dynamis by every mean possible, given by the LeaveCode

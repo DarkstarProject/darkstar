@@ -32,13 +32,18 @@ end;
 -- onZoneIn
 -----------------------------------
 
-function onZoneIn(player,prevZone)
-	
+function onZoneIn(player,prevZone,zoning)
+    
+	if (not zoning and GetServerVariable("[DynaBastok]UniqueID") == 0) then
+        cs = 0;
+        return cs;
+    end
+    
 	cs = -1;
 	
 	local realDay = os.time();
 	local dynaWaitxDay = player:getVar("dynaWaitxDay");
-	
+    
 	if((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or player:getVar("DynamisID") == GetServerVariable("[DynaBastok]UniqueID")) then
 		if(player:isBcnmsFull() == 1) then
 			if(player:hasStatusEffect(EFFECT_DYNAMIS, 0) == false) then
@@ -52,7 +57,7 @@ function onZoneIn(player,prevZone)
 			else
 				player:bcnmEnter(1280);
 			end
-		else
+        else
 			inst = player:bcnmRegister(1280);
 			
 			if(inst == 1)then
