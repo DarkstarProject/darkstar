@@ -1,9 +1,10 @@
 ---------------------------------------------
---  Mantle Pierce
+--  Dual Strike
 --
---  Description: Stabs a single target. Additional effect: Weight
+--  Family: Xzomit
 --  Type: Physical
---  Utsusemi/Blink absorb: 1-3 shadow(s)
+--  Can be dispelled: N/A
+--  Utsusemi/Blink absorb: 2 shadows
 --  Range: Melee
 --  Notes:
 ---------------------------------------------
@@ -20,16 +21,17 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-	local numhits = math.random(1,3);
-	local accmod = 2;
-	local dmgmod = 2;
+	local numhits = 2;
+	local accmod = 1;
+	local dmgmod = 1.5;
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded);
-
-	local typeEffect = EFFECT_WEIGHT;
-
-	MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 50, 0, 120);
-
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
 	target:delHP(dmg);
+
+	local typeEffect = EFFECT_STUN;
+
+	MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 4);
+
 	return dmg;
+
 end;

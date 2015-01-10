@@ -1772,11 +1772,11 @@ INSERT INTO `mob_skill` VALUES (1100,194,1007,'Voiceless_Storm',1,15.0,2000,1000
 INSERT INTO `mob_skill` VALUES (1102,194,1009,'Plasma_Charge',0,7.0,2000,1000,1,0,0,0);
 
 -- Xzomit
-INSERT INTO `mob_skill` VALUES (1091,269,998,'Dual_strike',0,7.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1091,269,998,'Dual_Strike',0,7.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1092,269,999,'Syphon_Discharge',1,15.0,2000,1000,4,0,0,1);
 INSERT INTO `mob_skill` VALUES (1093,269,1000,'Mantle_Pierce',0,7.0,2000,1000,4,0,0,3);
 INSERT INTO `mob_skill` VALUES (1094,269,1001,'Ink_Cloud',1,15.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1095,269,1002,'Molluscous_mutation',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1095,269,1002,'Molluscous_Mutation',0,7.0,2000,1000,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1096,269,1003,'Saline_Coat',4,10.0,2000,1000,4,0,0,0);
 
 -- Hpemde
