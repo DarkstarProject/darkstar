@@ -1,11 +1,11 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @reloadglobal
--- auth: Forgottenandlost
+-- auth: TeoTwawki
 -- desc: Attempt to reload specified global lua without a restart.
 --
 -- Use with caution, some files ( like player.lua )
 -- can cause you problems if you reload them using this.
--- This command expect the user to know wtf they are doing,
+-- This command expects the user to know wtf they are doing,
 -- but has a default permission lv of 4 so that helpers or
 -- less experienced GMs do not mistakenly misuse it.
 ---------------------------------------------------------------------------------------------------

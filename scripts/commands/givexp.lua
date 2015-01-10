@@ -1,7 +1,7 @@
 ---------------------------------------------------------------------------------------------------
--- func: @setmerits <amount> <player>
--- auth: Unknown (setmerits), Link (setplayermerits), merged by TeoTwawki
--- desc: Sets the target players merit count.
+-- func: @givexp <amount> <player>
+-- auth: atom0s (as "giveexperience"), modified by TeoTwawki
+-- desc: Gives the GM or target player experience points.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
@@ -11,21 +11,24 @@ cmdprops =
 };
 
 function onTrigger(player, amount, target)
-    if (amount == nil) then
+    if (amount == nil or amount <= 0) then
         player:PrintToPlayer("You must enter a valid amount.");
-        player:PrintToPlayer( "@setmerits <amount> <player>" );
+        player:PrintToPlayer( "@givexp <amount> <player>" );
         return;
     end
 
     if (target == nil) then
-        player:setMerits( amount );
+        player:addExp(amount);
+        -- print( 'Exp amount: ' .. tostring( amount ) );
     else
         local targ = GetPlayerByName(target);
         if (targ ~= nil) then
-            targ:setMerits( amount );
+            targ:addExp(amount);
+            -- print( 'Exp amount: ' .. tostring( amount ) );
+            player:PrintToPlayer( string.format( "Gave %i exp to player '%s' ", amount, target ) );
         else
             player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-            player:PrintToPlayer( "@setmerits <amount> <player>" );
+            player:PrintToPlayer( "@givexp <amount> <player>" );
         end
     end
 end;
