@@ -1314,12 +1314,26 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool 
 			acc = ((100 +  PChar->getMod(MOD_RACCP)) * acc)/100 +
 				dsp_min(((100 +  PChar->getMod(MOD_FOOD_RACCP)) * acc)/100,  PChar->getMod(MOD_FOOD_RACC_CAP));
 		}
+
+        //Check For Ambush Merit - Ranged
+        if ((charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_AMBUSH)) && ((abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23))) {
+            acc += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_AMBUSH, (CCharEntity*)PAttacker);
+        }
 	}
-	
-	//Check For Ambush Merit - Ranged
-	if (PAttacker->objtype == TYPE_PC && (charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_AMBUSH)) && ((abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23))) {
-		acc += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_AMBUSH, (CCharEntity*)PAttacker);
-	}
+    else if (PAttacker->objtype == TYPE_PET && ((CPetEntity*)PAttacker)->getPetType() == PETTYPE_AUTOMATON)
+    {
+        int skill = PAttacker->PMaster->GetSkill(SKILL_ARA);
+        acc = skill;
+        if (skill > 200)
+        {
+            acc = 200 + (skill - 200)*0.9;
+        }
+        acc += PAttacker->getMod(MOD_RACC) + ((CCharEntity*)PAttacker->PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PAttacker->PMaster);
+        acc += battleutils::GetRangedAccuracyBonuses(PAttacker);
+        acc += PAttacker->AGI() / 2;
+        acc = ((100 + PAttacker->getMod(MOD_RACCP)) * acc) / 100 +
+            dsp_min(((100 + PAttacker->getMod(MOD_FOOD_RACCP)) * acc) / 100, PAttacker->getMod(MOD_FOOD_RACC_CAP));
+    }
 
 	int eva = PDefender->EVA();
 	hitrate = hitrate + (acc - eva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
@@ -1357,7 +1371,11 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 			}
 		}
 	}
-	else
+    else if (PAttacker->objtype == TYPE_PET && ((CPetEntity*)PAttacker)->getPetType() == PETTYPE_AUTOMATON)
+    {
+        rAttack = PAttacker->RATT(SKILL_ARA);
+    }
+    else
 	{
 		//assume mobs capped
 		rAttack = battleutils::GetMaxSkill(SKILL_ARC,JOB_RNG,PAttacker->GetMLevel());

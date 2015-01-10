@@ -74,7 +74,6 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 {
 	m_Tick = tick;
 
-    ACTIONTYPE actionType = m_ActionType;
     CBattleEntity* PSelf = m_PPet;
 
 	//uncharm any pets if time is up

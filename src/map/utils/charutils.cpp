@@ -706,11 +706,11 @@ void LoadChar(CCharEntity* PChar)
 
     CalculateStats(PChar);
     blueutils::LoadSetSpells(PChar);
+    puppetutils::LoadAutomaton(PChar);
 	BuildingCharSkillsTable(PChar);
     PChar->PRecastContainer->ResetAbilities();
 	BuildingCharAbilityTable(PChar);
 	BuildingCharTraitsTable(PChar);
-    puppetutils::LoadAutomaton(PChar);
     PChar->UpdateHealth();
 
     PChar->m_event.EventID = luautils::OnZoneIn(PChar);
@@ -2131,6 +2131,13 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
             else
             {
                 skillBonus += PChar->getMod(MOD_DARK_ARTS_SKILL);
+            }
+        }
+        else if (i >= 22 && i <= 24)
+        {
+            if (PChar->PAutomaton)
+            {
+                MaxMSkill = puppetutils::getSkillCap(PChar, (SKILLTYPE)i);
             }
         }
 
