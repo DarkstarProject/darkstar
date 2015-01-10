@@ -5023,6 +5023,27 @@ inline int32 CLuaBaseEntity::addExp(lua_State *L)
 
 /************************************************************************
 *                                                                       *
+*  Remove character experience points                                   *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::delExp(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    PChar->jobs.exp[PChar->GetMJob()] -= (uint32)lua_tointeger(L,1);
+    charutils::SaveCharExp(PChar, PChar->GetMJob());
+    PChar->pushPacket(new CCharStatsPacket(PChar));
+    return 0;
+}
+
+/************************************************************************
+*                                                                       *
 *  Exposes the isJailed property to lua                                 *
 *                                                                       *
 ************************************************************************/
@@ -9840,6 +9861,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delGil),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setGil),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addExp),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delExp),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,createShop),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addShopItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFame),

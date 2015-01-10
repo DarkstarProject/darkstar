@@ -1,31 +1,31 @@
 ---------------------------------------------------------------------------------------------------
--- func: @addspell <spellID> <player>
--- auth: Wolke (addspell), Demolish (givespell), merged by TeoTwawki
--- desc: adds the ability to use a spell to the player
+-- func: @delspell <spellID> <player>
+-- auth: mvd1987, modified by TeoTwawki
+-- desc: Removes a spell from the players spell list.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
 {
-    permission = 1,
-    parameters = "is"
+	permission = 1,
+	parameters = "i"
 };
 
 function onTrigger(player, spellId, target)
     if (spellId == nil) then
-        player:PrintToPlayer( "You must enter a valid spell ID." );
-        player:PrintToPlayer( "@addSpell <spellID> <player>" );
+        player:PrintToPlayer( "You must enter a valid spellID." );
+        player:PrintToPlayer( "@delspell <spellID> <player>" );
         return;
     end
 
     if (target == nil) then
-        player:addSpell(spellId);
+        player:delSpell(spellId);
     else
         local targ = GetPlayerByName(target);
         if (targ ~= nil) then
-            targ:addSpell(spellId);
+            targ:delSpell(spellId);
         else
             player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-            player:PrintToPlayer( "@addSpell <spellID> <player>" );
+            player:PrintToPlayer( "@delspell <spellID> <player>" );
         end
     end
 end;
