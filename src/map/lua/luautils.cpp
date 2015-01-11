@@ -112,8 +112,8 @@ int32 init()
 	lua_register(LuaHandle,"VanadielMoonDirection", luautils::VanadielMoonDirection);
 	lua_register(LuaHandle,"VanadielRSERace",luautils::VanadielRSERace);
 	lua_register(LuaHandle,"VanadielRSELocation",luautils::VanadielRSELocation);
-    lua_register(LuaHandle,"SetVanadielTimeOffset",luautils::SetVanadielTimeOffset);   	
-	lua_register(LuaHandle,"IsMoonNew",luautils::IsMoonNew);    	
+    lua_register(LuaHandle,"SetVanadielTimeOffset",luautils::SetVanadielTimeOffset);
+	lua_register(LuaHandle,"IsMoonNew",luautils::IsMoonNew);
 	lua_register(LuaHandle,"IsMoonFull",luautils::IsMoonFull);
 	lua_register(LuaHandle,"RunElevator",luautils::StartElevator);
 	lua_register(LuaHandle,"GetServerVariable",luautils::GetServerVariable);
@@ -412,7 +412,7 @@ int32 GetRegionInfluence(lua_State* L)
 int32 getNationRank(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
-    
+
     uint8 balance = conquest::GetBalance();
     switch(lua_tointeger(L,1))
     {
@@ -667,7 +667,7 @@ int32 VanadielRSELocation(lua_State* L)
 *	is new moon?														*
 *																		*
 ************************************************************************/
-	
+
 int32 IsMoonNew(lua_State* L)
 {
 	// New moon occurs when:
@@ -1023,7 +1023,7 @@ bool IsExpansionEnabled(const char* expansionCode)
 	if (expansionCode != NULL){
 		std::string expansionVariable("ENABLE_");
 		expansionVariable.append(expansionCode);
-		
+
         bool expansionEnabled;
 
         try
@@ -1550,7 +1550,7 @@ int32 OnNpcSpawn(CBaseEntity* PNpc)
 
 int32 OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, apAction_t* Action, uint32 damage)
 {
-    lua_prepscript(PAttacker->objtype == TYPE_PC ? "scripts/globals/items/%s.lua" : "scripts/zones/%s/mobs/%s.lua", 
+    lua_prepscript(PAttacker->objtype == TYPE_PC ? "scripts/globals/items/%s.lua" : "scripts/zones/%s/mobs/%s.lua",
         PAttacker->objtype == TYPE_PC ? PItem->getName() : PAttacker->loc.zone->GetName(), PAttacker->GetName());
 
     if (prepFile(File, "onAdditionalEffect"))
@@ -3608,7 +3608,7 @@ int32 OnConquestUpdate(CZone* PZone, ConquestUpdate type)
 int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PBattlefield){
 
     CZone* PZone = PChar->loc.zone == NULL ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
-    
+
     lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->getBcnmName());
 
     if (prepFile(File, "onBcnmEnter"))
@@ -3650,7 +3650,7 @@ int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PBattlefield){
 int32 OnBcnmLeave(CCharEntity* PChar, CBattlefield* PBattlefield, uint8 LeaveCode){
 
     CZone* PZone = PChar->loc.zone == NULL ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
-    
+
     lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->getBcnmName());
 
     if (prepFile(File, "onBcnmLeave"))
@@ -3693,7 +3693,7 @@ int32 OnBcnmLeave(CCharEntity* PChar, CBattlefield* PBattlefield, uint8 LeaveCod
 	registration, and after CBattlefield:init() procedure.
 *********************************************************************/
 int32 OnBcnmRegister(CCharEntity* PChar, CBattlefield* PBattlefield){
-    
+
     CZone* PZone = PChar->loc.zone == NULL ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
 
     lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->getBcnmName());
@@ -3993,7 +3993,7 @@ inline int32 nearLocation(lua_State* L)
     center.z = lua_tonumber(L, -1);
     lua_getfield(L, 1, "rot");
     center.rotation = lua_tonumber(L, -1);
-    
+
     float radius = lua_tonumber(L, 2);
     float theta = lua_tonumber(L, 3);
 

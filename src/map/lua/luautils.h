@@ -93,7 +93,7 @@ namespace luautils
 	int32 VanadielRSERace(lua_State* L);									    // Gets the current Race for RSE gear quest
 	int32 VanadielRSELocation(lua_State* L);									// Gets the current Location for RSE gear quest
     int32 SetVanadielTimeOffset(lua_State* L);
-    int32 IsMoonNew(lua_State* L);												// Returns true if the moon is new  
+    int32 IsMoonNew(lua_State* L);												// Returns true if the moon is new
 	int32 IsMoonFull(lua_State* L);												// Returns true if the moon is full
 	int32 StartElevator(lua_State*);
 	int32 GetServerVariable(lua_State*);
