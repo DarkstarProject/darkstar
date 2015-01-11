@@ -32,7 +32,7 @@ end;
 -- onZoneIn
 -----------------------------------
 
-function onZoneIn(player,prevZone)
+function onZoneIn(player,prevZone,zoning)
 	
     if (not zoning and GetServerVariable("[DynaWindurst]UniqueID") == 0) then
         cs = 0;

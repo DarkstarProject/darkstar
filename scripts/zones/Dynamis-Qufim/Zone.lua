@@ -31,7 +31,7 @@ end;
 -- onZoneIn
 -----------------------------------
 
-function onZoneIn(player,prevZone)
+function onZoneIn(player,prevZone,zoning)
     if (not zoning and GetServerVariable("[DynaQufim]UniqueID") == 0) then
         cs = 0;
         return cs;

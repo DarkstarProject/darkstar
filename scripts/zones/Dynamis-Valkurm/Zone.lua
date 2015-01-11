@@ -32,7 +32,7 @@ end;
 -- onZoneIn
 -----------------------------------
 
-function onZoneIn(player,prevZone)
+function onZoneIn(player,prevZone,zoning)
     
     if (not zoning and GetServerVariable("[DynaValkurm]UniqueID") == 0) then
         cs = 0;
