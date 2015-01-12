@@ -139,19 +139,20 @@ namespace luautils
 	int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);            // triggered when monster wants to use a spell on target
     int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);       //triggered when spell cast on monster
 
-    int32 OnMobInitialize(CBaseEntity* PMob);									// Used for passive trait
-	int32 OnMobSpawn(CBaseEntity* PMob);										// triggers on mob spawn
-	int32 OnMobRoamAction(CBaseEntity* PMob);										// triggers when event mob is ready for a custom roam action
-	int32 OnMobRoam(CBaseEntity* PMob);
-	int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget);				// triggers on mob engaging a target
-	int32 OnMobDisengage(CBaseEntity* PMob);									// triggers on mob disengaging (no more targets)
-	int32 OnMobDrawIn(CBaseEntity* PMob, CBaseEntity* PTarget);
-	int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget);					// Сalled every 3 sec when a player fight monster
-	int32 OnCriticalHit(CBattleEntity* PTarget);
-	int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);					// triggers on mob death
-	int32 OnMobDespawn(CBaseEntity* PMob);										// triggers on mob despawn (death not assured)
+    int32 OnMobInitialize(CBaseEntity* PMob);                                     // Used for passive trait
+    int32 OnMobSpawn(CBaseEntity* PMob);                                          // triggers on mob spawn
+    int32 OnMobRoamAction(CBaseEntity* PMob);                                     // triggers when event mob is ready for a custom roam action
+    int32 OnMobRoam(CBaseEntity* PMob);
+    int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget);                  // triggers on mob engaging a target
+    int32 OnMobDisengage(CBaseEntity* PMob);                                      // triggers on mob disengaging (no more targets)
+    int32 OnMobDrawIn(CBaseEntity* PMob, CBaseEntity* PTarget);
+    int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget);                    // Сalled every 3 sec when a player fight monster
+    int32 OnCriticalHit(CBattleEntity* PTarget);
+    int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);                    // triggers on mob death
+    int32 OnMobDeathEx(CBaseEntity* PMob, CBaseEntity* PKiller, bool isKillShot); // triggers on ALL mobs death
+    int32 OnMobDespawn(CBaseEntity* PMob);                                        // triggers on mob despawn (death not assured)
 
-    int32 OnPath(CBaseEntity* PEntity);											// triggers when a patrol npc finishes its pathfind
+    int32 OnPath(CBaseEntity* PEntity);                                           // triggers when a patrol npc finishes its pathfind
 
 	int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PInstance);					//triggers when enter a bcnm
 	int32 OnBcnmLeave(CCharEntity* PChar, CBattlefield* PInstance, uint8 LeaveCode);	//triggers when leaving a bcnm
