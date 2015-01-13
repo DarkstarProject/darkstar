@@ -830,8 +830,7 @@ void LoadInventory(CCharEntity* PChar)
 
 	ret = Sql_Query(SqlHandle, Query, PChar->id);
 
-	if (ret != SQL_ERROR &&
-		Sql_NumRows(SqlHandle) != 0)
+	if (ret != SQL_ERROR)
 	{
 		CItemLinkshell* PLinkshell = NULL;
 		bool hasMainWeapon = false;
