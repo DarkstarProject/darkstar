@@ -840,10 +840,11 @@ void LoadInventory(CCharEntity* PChar)
 		{
 			if (Sql_GetUIntData(SqlHandle, 1) < 16)
 			{
-				if (Sql_GetUIntData(SqlHandle, 0) == 7)
+				if (Sql_GetUIntData(SqlHandle, 1) == SLOT_MAIN)
 				{
 					hasMainWeapon = true;
 				}
+
 				EquipItem(PChar, Sql_GetUIntData(SqlHandle, 0), Sql_GetUIntData(SqlHandle, 1), Sql_GetUIntData(SqlHandle, 2));
 			}
 			else
@@ -872,8 +873,8 @@ void LoadInventory(CCharEntity* PChar)
 			linkshell::AddOnlineMember(PChar, PLinkshell);
 		}
 	}
-    else
-    {
+	else
+	{
 		ShowError(CL_RED"Loading error from char_equip\n" CL_RESET);
 	}
 
