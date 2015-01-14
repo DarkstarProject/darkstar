@@ -2481,7 +2481,6 @@ int32 OnMobDeathEx(CBaseEntity* PMob, CBaseEntity* PKiller, bool isKillShot)
     int32 oldtop = lua_gettop(LuaHandle);
 
     CLuaBaseEntity LuaKillerEntity(PKiller);
-    bool loaded = true;
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "onMobDeathEx");
 
@@ -2490,35 +2489,31 @@ int32 OnMobDeathEx(CBaseEntity* PMob, CBaseEntity* PKiller, bool isKillShot)
     if ( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
     {
         lua_pop(LuaHandle, 1);
-        loaded = false;
+        return -1;
     }
 
     lua_getglobal(LuaHandle, "onMobDeathEx");
     if ( lua_isnil(LuaHandle,-1) )
     {
         lua_pop(LuaHandle, 1);
-        loaded = false;
+        return -1;
     }
 
-    if (loaded)
+    bool isWeaponSkillKill = PChar->getWeaponSkillKill();
+
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
+    lua_pushboolean(LuaHandle, isKillShot);
+    lua_pushboolean(LuaHandle, isWeaponSkillKill);
+    // lua_pushboolean(LuaHandle, isMagicKill);
+    // lua_pushboolean(LuaHandle, isPetKill);
+    // Rather than use even more bools for this, I'm thinking it's better to replace isWeaponSkillKill with a "killType" value
+    // Checking that sort of thing could also make Colibri mimic and Jailer of Fortitude reflect easier to do.
+
+    if (lua_pcall(LuaHandle, 4, 0, 0))
     {
-        bool isWeaponSkillKill = PChar->getWeaponSkillKill();
-
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
-        lua_pushboolean(LuaHandle, isKillShot);
-        lua_pushboolean(LuaHandle, isWeaponSkillKill);
-        // lua_pushboolean(LuaHandle, isMagicKill);
-        // lua_pushboolean(LuaHandle, isPetKill);
-        // Rather than use even more bools for this, I'm thinking it's better to replace isWeaponSkillKill with a "killType" value
-        // Checking that sort of thing could also make Colibri mimic and Jailer of Fortitude reflect easier to do.
-
-
-        if (lua_pcall(LuaHandle, 4, 0, 0))
-        {
-            ShowError("luautils::onMobDeathEx: %s\n", lua_tostring(LuaHandle, -1));
-            lua_pop(LuaHandle, 1);
-        }
+        ShowError("luautils::onMobDeathEx: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
     }
 
     int32 returns = lua_gettop(LuaHandle) - oldtop;
