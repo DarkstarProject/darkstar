@@ -71,9 +71,6 @@ function onEventFinish( player, csid, option)
 		player:addItem( 1236, 4); -- Reward for quest completion: Cactus Stems x 4 
 		player:messageSpecial( ITEM_OBTAINED, 1236);
 
-		-- Does quest completion grant a title?
-		-- player:addTitle( UNKNOWN);
-
 		player:addFame( BASTOK, BAS_FAME * 50);
 		player:completeQuest( BASTOK, WISH_UPON_A_STAR);
 		player:setVar( "WishUponAStar_Status", 0);
