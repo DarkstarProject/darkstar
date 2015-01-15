@@ -25,7 +25,7 @@ end;
 function onTrigger(player,npc)
 
 	-- Bastok Missions.
-	BastokMissions = 0xFFFFFFFE; 
+	local BastokMissions = 0xFFFFFFFE; 
 	if (player:hasCompletedMission (BASTOK,FETICHISM)) then
 		BastokMissions = BastokMissions - 2; -- Fetichism.
 	end
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
 	end
 
 	-- Bastok Quests.
-	BastokQuests = 0xFFFFFFFE; 
+	local BastokQuests = 0xFFFFFFFE; 
 	if (player:hasCompleteQuest(BASTOK,THE_RETURN_OF_THE_ADVENTURER)) then
 		BastokQuests = BastokQuests - 2;     -- The Return of the Adventurer
 	end
@@ -69,7 +69,7 @@ function onTrigger(player,npc)
 	end
 
 	-- Other Quests.
-	OtherQuests = 0xFFFFFFFE;
+	local OtherQuests = 0xFFFFFFFE;
 	if (player:hasCompleteQuest(JEUNO,BEAT_AROUND_THE_BUSHIN)) then
 		OtherQuests = OtherQuests - 2;      -- Beat Around the Bushin
 	end
@@ -125,14 +125,14 @@ function onTrigger(player,npc)
 -- 	end
 
 	-- Seekers of Adoulin
-	SeekersOfAdoulin = 0xFFFFFFFE;
+	local SeekersOfAdoulin = 0xFFFFFFFE;
 -- *Need the correct csid
 --	if (player:hasCompletedMission (SOA,RUMORS_FROM_THE_WEST)) then
 --		SeekersOfAdoulin = SeekersOfAdoulin - 2; -- Rumors from the West
 --	end
 
 	-- Determine if any cutscenes are available for the player.
-	gil = player:getGil();
+	local gil = player:getGil();
 	if (BastokMissions   == 0xFFFFFFFE and 
 	    BastokQuests     == 0xFFFFFFFE and
 	    OtherQuests      == 0xFFFFFFFE and
