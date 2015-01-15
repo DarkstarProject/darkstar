@@ -9207,6 +9207,7 @@ inline int32 CLuaBaseEntity::untargetable(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
 
     m_PBaseEntity->untargetable = lua_toboolean(L, 1);
+    m_PBaseEntity->updatemask |= UPDATE_HP;
     return 0;
 }
 
@@ -9216,6 +9217,7 @@ inline int32 CLuaBaseEntity::hideHP(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
 
     m_PBaseEntity->hpvis = lua_toboolean(L, 1);
+    m_PBaseEntity->updatemask |= UPDATE_HP;
     return 0;
 }
 
