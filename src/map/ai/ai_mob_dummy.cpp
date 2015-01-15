@@ -394,134 +394,131 @@ void CAIMobDummy::ActionFall()
 
 void CAIMobDummy::ActionDropItems()
 {
-    if (m_Tick >= m_LastActionTime + m_PMob->m_DropItemTime)
+	if (m_Tick >= m_LastActionTime + m_PMob->m_DropItemTime)
 	{
         CCharEntity* PChar = (CCharEntity*)m_PMob->GetEntity(m_PMob->m_OwnerID.targid, TYPE_PC);
-
-        if (PChar != NULL && PChar->id == m_PMob->m_OwnerID.id)
-		{
-
-			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PChar,m_PMob,0,0, MSGBASIC_DEFEATS_TARG));
-
-			if (m_PMob->m_CallForHelp == 0)
+        if (PChar && (PChar->objtype == TYPE_PC || (PChar->PMaster && PChar->PMaster->objtype == TYPE_PC)))
+        {
+            if (PChar->id == m_PMob->m_OwnerID.id)
 			{
-				blueutils::TryLearningSpells(PChar, m_PMob);
-				m_PMob->m_UsedSkillIds.clear();
+				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PChar,m_PMob,0,0, MSGBASIC_DEFEATS_TARG));
 
-				if(m_PMob->m_giveExp)
+				if (m_PMob->m_CallForHelp == 0)
 				{
-	                charutils::DistributeExperiencePoints(PChar, m_PMob);
-				}
+					blueutils::TryLearningSpells(PChar, m_PMob);
+					m_PMob->m_UsedSkillIds.clear();
 
-                DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
-                //ShowDebug(CL_CYAN"DropID: %u dropping with TH Level: %u\n" CL_RESET, m_PMob->m_DropID, m_PMob->m_THLvl);
+					if(m_PMob->m_giveExp)
+					{
+						charutils::DistributeExperiencePoints(PChar, m_PMob);
+					}
 
-			    if (DropList != NULL && DropList->size())
-			    {
-                    for(uint8 i = 0; i < DropList->size(); ++i)
-				    {
-						//THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
-						uint8 tries = 0;
-						uint8 maxTries = 1 + (m_PMob->m_THLvl > 2 ? 2 : m_PMob->m_THLvl);
-						uint8 bonus = (m_PMob->m_THLvl > 2 ? (m_PMob->m_THLvl - 2)*10 : 0);
-						while(tries < maxTries)
+					DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
+					//ShowDebug(CL_CYAN"DropID: %u dropping with TH Level: %u\n" CL_RESET, m_PMob->m_DropID, m_PMob->m_THLvl);
+
+					if (DropList != NULL && DropList->size())
+					{
+						for(uint8 i = 0; i < DropList->size(); ++i)
 						{
-							if(WELL512::irand()%1000 < DropList->at(i).DropRate * map_config.drop_rate_multiplier + bonus)
+							//THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
+							uint8 tries = 0;
+							uint8 maxTries = 1 + (m_PMob->m_THLvl > 2 ? 2 : m_PMob->m_THLvl);
+							uint8 bonus = (m_PMob->m_THLvl > 2 ? (m_PMob->m_THLvl - 2)*10 : 0);
+							while(tries < maxTries)
 							{
-								PChar->PTreasurePool->AddItem(DropList->at(i).ItemID, m_PMob);
-								break;
+								if(WELL512::irand()%1000 < DropList->at(i).DropRate * map_config.drop_rate_multiplier + bonus)
+								{
+									PChar->PTreasurePool->AddItem(DropList->at(i).ItemID, m_PMob);
+									break;
+								}
+								tries++;
 							}
-							tries++;
 						}
-				    }
-
-			    }
-
-				//check for gil (beastmen drop gil, some NMs drop gil)
-				if(m_PMob->CanDropGil() || map_config.all_mobs_gil_bonus > 0)
-                {
-					charutils::DistributeGil(PChar, m_PMob); // TODO: REALISATION MUST BE IN TREASUREPOOL
-				}
-				//check for seal drops
-				/* MobLvl >= 1 = Beastmen Seals ID=1126
-				          >= 50 = Kindred Seals ID=1127
-						  >= 75 = Kindred Crests ID=2955
-						  >= 90 = High Kindred Crests ID=2956
-				*/
-
-				uint16 Pzone = PChar->getZone();
-
-				bool validZone = ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255));
-
-                if(validZone && charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel()) > 0)
-                {
-
-					if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && m_PMob->m_Element > 0 &&
-                        conquest::GetInfluenceGraphics(PChar->loc.zone->GetRegionID()) < 64 &&
-                        WELL512::irand()%100 < 20) // Need to move to SIGNET_CHANCE constant
-					{
-						PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
-						
 					}
 
-					if (WELL512::irand() % 100 < 20 && PChar->PTreasurePool->CanAddSeal())
+					//check for gil (beastmen drop gil, some NMs drop gil)
+					if(m_PMob->CanDropGil() || map_config.all_mobs_gil_bonus > 0)
 					{
-						//RULES: Only 1 kind may drop per mob
-						if(m_PMob->GetMLevel() < 50){ //b.seal only
-							PChar->PTreasurePool->AddItem(1126, m_PMob);
-						}
-						else if(m_PMob->GetMLevel() < 70){ //b.seal & k.seal only
-							if(WELL512::irand()%2 == 0){
-								PChar->PTreasurePool->AddItem(1126, m_PMob);
-							}
-							else{
-								PChar->PTreasurePool->AddItem(1127, m_PMob);
-							}
-						}
-						else if(m_PMob->GetMLevel() < 75){ //b.seal & k.seal & k.crest
-							switch(WELL512::irand()%3){
-							case 0:
-								PChar->PTreasurePool->AddItem(1126, m_PMob);
-								break;
-							case 1:
-								PChar->PTreasurePool->AddItem(1127, m_PMob);
-								break;
-							case 2:
-								PChar->PTreasurePool->AddItem(2955, m_PMob);
-								break;
-							}
-						}
-						else if(m_PMob->GetMLevel() >= 75){ //all 4
-							switch(WELL512::irand()%4){
-							case 0:
-								PChar->PTreasurePool->AddItem(1126, m_PMob);
-								break;
-							case 1:
-								PChar->PTreasurePool->AddItem(1127, m_PMob);
-								break;
-							case 2:
-								PChar->PTreasurePool->AddItem(2955, m_PMob);
-								break;
-							case 3:
-								PChar->PTreasurePool->AddItem(2956, m_PMob);
-								break;
-							}
+						charutils::DistributeGil(PChar, m_PMob); // TODO: REALISATION MUST BE IN TREASUREPOOL
+					}
+					//check for seal drops
+					/* MobLvl >= 1 = Beastmen Seals ID=1126
+							  >= 50 = Kindred Seals ID=1127
+							  >= 75 = Kindred Crests ID=2955
+							  >= 90 = High Kindred Crests ID=2956
+					*/
+
+					uint16 Pzone = PChar->getZone();
+					bool validZone = ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255));
+
+					if(validZone && charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel()) > 0)
+					{
+						if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && m_PMob->m_Element > 0 &&
+							conquest::GetInfluenceGraphics(PChar->loc.zone->GetRegionID()) < 64 &&
+							WELL512::irand()%100 < 20) // Need to move to SIGNET_CHANCE constant
+						{
+							PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
+
 						}
 
+						if (WELL512::irand() % 100 < 20 && PChar->PTreasurePool->CanAddSeal())
+						{
+							//RULES: Only 1 kind may drop per mob
+							if(m_PMob->GetMLevel() < 50){ //b.seal only
+								PChar->PTreasurePool->AddItem(1126, m_PMob);
+							}
+							else if(m_PMob->GetMLevel() < 70){ //b.seal & k.seal only
+								if(WELL512::irand()%2 == 0){
+									PChar->PTreasurePool->AddItem(1126, m_PMob);
+								}
+								else{
+									PChar->PTreasurePool->AddItem(1127, m_PMob);
+								}
+							}
+							else if(m_PMob->GetMLevel() < 75){ //b.seal & k.seal & k.crest
+								switch(WELL512::irand()%3){
+								case 0:
+									PChar->PTreasurePool->AddItem(1126, m_PMob);
+									break;
+								case 1:
+									PChar->PTreasurePool->AddItem(1127, m_PMob);
+									break;
+								case 2:
+									PChar->PTreasurePool->AddItem(2955, m_PMob);
+									break;
+								}
+							}
+							else if(m_PMob->GetMLevel() >= 75){ //all 4
+								switch(WELL512::irand()%4){
+								case 0:
+									PChar->PTreasurePool->AddItem(1126, m_PMob);
+									break;
+								case 1:
+									PChar->PTreasurePool->AddItem(1127, m_PMob);
+									break;
+								case 2:
+									PChar->PTreasurePool->AddItem(2955, m_PMob);
+									break;
+								case 3:
+									PChar->PTreasurePool->AddItem(2956, m_PMob);
+									break;
+								}
+							}
+						}
 					}
 				}
+
+				PChar->setWeaponSkillKill(false);
+				m_PMob->StatusEffectContainer->KillAllStatusEffect();
+
+				// NOTE: this is called for all alliance / party members!
+				luautils::OnMobDeath(m_PMob, PChar);
+
 			}
-
-			PChar->setWeaponSkillKill(false);
-			m_PMob->StatusEffectContainer->KillAllStatusEffect();
-
-			// NOTE: this is called for all alliance / party members!
-			luautils::OnMobDeath(m_PMob, PChar);
-
-		}
-		else
-		{
-			luautils::OnMobDeath(m_PMob, NULL);
+			else
+			{
+				luautils::OnMobDeath(m_PMob, NULL);
+			}
 		}
         m_ActionType = ACTION_DEATH;
 	}
@@ -633,7 +630,7 @@ void CAIMobDummy::ActionSpawn()
 
 		mobutils::CalculateStats(m_PMob);
 		mobutils::GetAvailableSpells(m_PMob);
-		
+
 		if(m_PMob->getMobMod(MOBMOD_MUG_GIL) == 0)
 		{
 		    uint32 purse = m_PMob->GetRandomGil() / (4+(WELL512::irand()%3));
@@ -684,7 +681,7 @@ void CAIMobDummy::ActionSpawn()
 		{
 		    m_PMob->m_StatPoppedMobs = false;
 		}
-		
+
         luautils::OnMobSpawn( m_PMob );
 	}
 }
@@ -839,7 +836,7 @@ void CAIMobDummy::ActionAbilityStart()
 		TransitionBack(true);
 		return;
 	}
-    
+
     if (!(m_PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
         m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
     m_LastActionTime = m_Tick;
@@ -1162,7 +1159,7 @@ void CAIMobDummy::ActionStun()
 		if (!(m_PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
 		{
 			m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
-		}	
+		}
 	}
 }
 
@@ -1718,7 +1715,7 @@ void CAIMobDummy::ActionAttack()
 							{
 								bool isBlocked = attackutils::IsBlocked(m_PMob, m_PBattleTarget);
 								if(isBlocked){ Action.reaction = REACTION_BLOCK; }
-								
+
 
 								// Try Null damage chance (The target)
 								if (WELL512::irand()%100 < m_PBattleTarget->getMod(MOD_NULL_PHYSICAL_DAMAGE) && m_PBattleTarget->objtype == TYPE_PC)
@@ -1865,7 +1862,7 @@ bool CAIMobDummy::TryDeaggro()
 
     //Hide allows you to lose aggro on certain types of enemies.
     //Generally works on monsters that don't track by scent, regardless of detection method.
-    //Can work on monsters that track by scent if the proper conditions are met (double rain weather, crossing over water, etc.) 
+    //Can work on monsters that track by scent if the proper conditions are met (double rain weather, crossing over water, etc.)
     if(tryTimeDeaggro && m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))
         return true;
 
@@ -2241,7 +2238,7 @@ void CAIMobDummy::SetupEngage()
 	}
 
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
-	
+
 	if(m_PBattleTarget != NULL)
 	{
         // clear the ActionQueue
