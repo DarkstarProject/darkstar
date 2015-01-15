@@ -7,12 +7,9 @@
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+
 require("scripts/zones/Bastok_Markets/TextIDs");
-
------------------------------------
-
 require("scripts/globals/quests");
-require("scripts/globals/keyitems");
 
 -----------------------------------
 -- onTrade Action
@@ -144,12 +141,7 @@ function onTrigger( player, npc)
 		gil = 0; -- Setting gil to a value less than 10(cost) will trigger the appropriate response from this npc.
 	end
 
-BastokMissions = 0;
-BastokQuests = 0;
-OtherQuests = 0;
-SeekersOfAdoulin = 0;
-
-	player:startEvent(0x0146, BastokMissions, BastokQuests, OtherQuests, SeekersOfAdoulin, 0, 0, 10, gil); 
+	player:startEvent( 0x0146, BastokMissions, BastokQuests, OtherQuests, SeekersOfAdoulin, 0xFFFFFFFE, 0xFFFFFFFE, 10, gil); 
 end;
 
 -----------------------------------
