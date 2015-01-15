@@ -60,10 +60,11 @@ function onEventUpdate(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 	
-	playCutscene = true;
 	if (player:delGil(10) == false) then
-		playCutscene = false; -- Cancel the cutscene.
+		player:setLocalVar("Durogg_PlayCutscene", 2) ; -- Cancel the cutscene.
 		player:updateEvent(0);
+	else
+		player:setLocalVar("Durogg_PlayCutscene", 1) 
 	end
 end;
 
@@ -75,7 +76,7 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 
-	if (playCutscene) then
+	if (player:getLocalVar("Durogg_PlayCutscene") < 2) then
 		if (   option ==   1) then		-- Drenched! It Began with a Raindrop
 			player:startEvent(0x7549,0,0,0,0,0,0,231);
 --		elseif (option ==   2) then		-- Hasten! In a Jam in Jeuno?
@@ -84,4 +85,6 @@ function onEventFinish(player,csid,option)
 --			player:startEvent(CSID);
 		end
 	end
+
+	player:setLocalVar("Durogg_PlayCutscene", 0)
 end;
