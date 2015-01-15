@@ -78,9 +78,10 @@ function onTrigger(player,npc)
 		BastokQuests = BastokQuests - 524288;	 -- Ayame and Kaede(pt.4).
 		BastokQuests = BastokQuests - 1048576;	 -- Ayame and Kaede(pt.5).
 	end
-	if (player:hasCompleteQuest(BASTOK,TRIAL_BY_EARTH)) then
-		BastokQuests = BastokQuests - 2097152;   -- Trial by Earth.
-	end
+-- *Need to determine the correct csid/appropriate options for this cutscene
+	--if (player:hasCompleteQuest(BASTOK,TRIAL_BY_EARTH)) then
+	--	BastokQuests = BastokQuests - 2097152;   -- Trial by Earth.
+	--end
 	if (player:hasCompleteQuest(BASTOK,THE_WALLS_OF_YOUR_MIND)) then
 		BastokQuests = BastokQuests - 4194304;   -- The Walls of Your Mind(pt.1).
 		BastokQuests = BastokQuests - 8388608;	 -- The Walls of Your Mind(pt.2).
@@ -161,11 +162,12 @@ end;
 function onEventUpdate(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-	
-	playCutscene = true;
+
 	if (player:delGil(10) == false) then
-		playCutscene = false; -- Cancel the cutscene.
+		player:setLocalVar("Dalba_PlayCutscene", 2) ; -- Cancel the cutscene.
 		player:updateEvent(0);
+	else
+		player:setLocalVar("Dalba_PlayCutscene", 1) 
 	end
 end;
 
@@ -177,7 +179,7 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 
-	if (playCutscene) then
+	if (player:getLocalVar("Dalba_PlayCutscene") < 2) then
 		if (   option ==   1) then		-- Fetichism.
 			player:startEvent(0x03F0); 
 		elseif (option ==   2) then		-- To the Forsaken Mines.
@@ -222,8 +224,8 @@ function onEventFinish(player,csid,option)
 			player:startEvent(0x00F5);	      	
 		elseif (option ==  52) then		-- Ayame and Kaede(pt.5).
 			player:startEvent(0x00F6);	       	
-		elseif (option ==  53) then		-- Trial by Earth.
-			player:startEvent(0x00FA,0,TUNING_FORK_OF_EARTH,1);					
+		-- elseif (option ==  53) then		-- Trial by Earth.
+		-- 	player:startEvent(0x00FA,0,TUNING_FORK_OF_EARTH,1);					
 		elseif (option ==  54) then		-- The Walls of Your Mind(pt.1).
 			player:startEvent(0x011E);		
 		elseif (option ==  55) then		-- The Walls of Your Mind(pt.2).
@@ -262,4 +264,6 @@ function onEventFinish(player,csid,option)
 --			player:startEvent(CSID,0,0,0,0,0,0,236);
 		end
 	end
+
+	player:setLocalVar("Dalba_PlayCutscene", 0)
 end;
