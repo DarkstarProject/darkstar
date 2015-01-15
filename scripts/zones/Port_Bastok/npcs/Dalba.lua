@@ -26,7 +26,7 @@ end;
 function onTrigger(player,npc)
 
 	-- Bastok Missions.
-	BastokMissions = 0xFFFFFFFE; 
+	local BastokMissions = 0xFFFFFFFE; 
 	if (player:hasCompletedMission(BASTOK,FETICHISM)) then
 		BastokMissions = BastokMissions - 2; -- Fetichism.
 	end
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
 	end
 
 	-- Bastok Quests.
-	BastokQuests = 0xFFFFFFFE; 
+	local BastokQuests = 0xFFFFFFFE; 
 	if (player:hasCompleteQuest(BASTOK,BEAUTY_AND_THE_GALKA)) then
 		BastokQuests = BastokQuests - 2;         -- Beauty and the Galka.
 	end
@@ -97,7 +97,7 @@ function onTrigger(player,npc)
 	end
 
 	-- Other Quests.
-	OtherQuests = 0xFFFFFFFE;
+	local OtherQuests = 0xFFFFFFFE;
 	if (player:hasCompleteQuest(WINDURST,THE_PUPPET_MASTER)) then
 		OtherQuests = OtherQuests - 2; -- The Puppet Master(pt.1).
 		OtherQuests = OtherQuests - 4; -- The Puppet Master(pt.2).
@@ -122,7 +122,7 @@ function onTrigger(player,npc)
 	-- end
 
 	-- Promathia Missions.	
-	PromathiaMissions = 0xFFFFFFFE;
+	local PromathiaMissions = 0xFFFFFFFE;
 	if (player:hasCompletedMission(COP,THE_CALL_OF_THE_WYRMKING)) then
 		PromathiaMissions = PromathiaMissions - 2; -- The Call of the Wyrmking.
 	end
@@ -131,7 +131,7 @@ function onTrigger(player,npc)
 	end
 
 	-- Add-on Scenarios.
-	AddonScenarios = 0xFFFFFFFE;
+	local AddonScenarios = 0xFFFFFFFE;
 	if (player:hasCompletedMission(AMK,DRENCHED_IT_BEGAN_WITH_A_RAINDROP)) then
 		AddonScenarios = AddonScenarios - 2; -- Drenched! It Began with a Raindrop.
 	end
@@ -141,7 +141,7 @@ function onTrigger(player,npc)
 --	end
 
 	-- Determine if any cutscenes are available for the player.
-	gil = player:getGil();
+	local gil = player:getGil();
 	if (BastokMissions    == 0xFFFFFFFE and 
 	    BastokQuests      == 0xFFFFFFFE and
 	    OtherQuests       == 0xFFFFFFFE and
