@@ -2331,7 +2331,10 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 
     CLuaBaseEntity LuaMobEntity(PMob);
 
-    luautils::OnMobDeathEx(PMob, PKiller, true);
+    if (PKiller)
+    {
+        luautils::OnMobDeathEx(PMob, PKiller, true);
+    }
 
     int8 File[255];
     memset(File, 0, sizeof(File));
