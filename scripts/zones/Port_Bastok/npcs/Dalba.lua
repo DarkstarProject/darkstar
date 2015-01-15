@@ -7,10 +7,8 @@
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
+
 require("scripts/zones/Port_Bastok/TextIDs");
-
------------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 
@@ -134,12 +132,13 @@ function onTrigger( player, npc)
 
 	-- Add-on Scenarios.
 	AddonScenarios = 0xFFFFFFFE;
-	if( player:hasCompletedMission( AMK, THE_CALL_OF_THE_WYRMKING)) then
+	if( player:hasCompletedMission( AMK, DRENCHED_IT_BEGAN_WITH_A_RAINDROP)) then
 		AddonScenarios = AddonScenarios - 2; -- Drenched! It Began with a Raindrop.
 	end
-	if( player:hasCompletedMission( AMK, THE_ENDURING_TUMULT_OF_WAR)) then
-		AddonScenarios = AddonScenarios - 4; -- Hasten! In a Jam in Jeuno?
-	end
+-- *Need the correct csid
+--	if( player:hasCompletedMission( AMK, HASTEN_IN_A_JAM_IN_JEUNO)) then
+--		AddonScenarios = AddonScenarios - 4; -- Hasten! In a Jam in Jeuno?
+--	end
 
 	-- Determine if any cutscenes are available for the player.
 	gil = player:getGil();
@@ -152,7 +151,7 @@ function onTrigger( player, npc)
 		gil = 0; -- Setting gil to a value less than 10(cost) will trigger the appropriate response from this npc.
 	end
 
-	player:startEvent(0x0104, BastokMissions, BastokQuests, OtherQuests, PromathiaMissions, AddonScenarios, 0, 10, gil); 
+	player:startEvent( 0x0104, BastokMissions, BastokQuests, OtherQuests, PromathiaMissions, AddonScenarios, 0xFFFFFFFE, 10, gil); 
 end;
 
 -----------------------------------
@@ -258,10 +257,9 @@ function onEventFinish( player, csid, option)
 		elseif( option ==  98) then		-- The Enduring Tumult of War.
 			player:startEvent( 0x0132);		
 		elseif( option == 129) then		-- Drenched! It Began with a Raindrop.
-			player:startEvent( 0x7549);
--- *Hasten! In a Jam in Jeuno? event id needs to be verified...
-		elseif( option == 130) then		-- Hasten! In a Jam in Jeuno?
-			player:startEvent( 0x754A);	
+			player:startEvent( 0x7549, 0, 0, 0, 0, 0, 0, 236);
+--		elseif( option ==   2) then		-- Hasten! In a Jam in Jeuno?
+--			player:startEvent( CSID, 0, 0, 0, 0, 0, 0, 236);
 		end
 	end
 end;
