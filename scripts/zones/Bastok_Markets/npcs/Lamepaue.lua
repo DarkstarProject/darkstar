@@ -152,10 +152,11 @@ function onEventUpdate(player,csid,option)
 	-- printf ("CSID: %u",csid);
 	-- printf ("RESULT: %u",option);
 
-	playCutscene = true;
-	if (player:delGil (10) == false) then
-		playCutscene = false; -- Cancel the cutscene.
+	if (player:delGil(10) == false) then
+		player:setLocalVar("Lamepaue_PlayCutscene", 2) ; -- Cancel the cutscene.
 		player:updateEvent(0);
+	else
+		player:setLocalVar("Lamepaue_PlayCutscene", 1) 
 	end
 end;
 
@@ -167,7 +168,7 @@ function onEventFinish(player,csid,option)
 	-- printf ("CSID: %u",csid);
 	-- printf ("RESULT: %u",option);
 
-	if (playCutscene) then
+	if (player:getLocalVar("Lamepaue_PlayCutscene") < 2) then
 		if (option ==   1) then		-- Fetichism.
 			player:startEvent(0x03F0); 
 		elseif (option ==   2) then		-- To the Forsaken Mines.
@@ -244,4 +245,6 @@ function onEventFinish(player,csid,option)
 --			player:startEvent(CSID);	    	
 		end
 	end
+
+	player:setLocalVar("Lamepaue_PlayCutscene", 0)
 end;
