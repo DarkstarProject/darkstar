@@ -1402,10 +1402,10 @@ INSERT INTO `mob_skill` VALUES (314,69,869,'Circle_of_Flames', 1, 10.0, 2000, 15
 
 -- Uragnites
 INSERT INTO `mob_skill` VALUES (1315,251,861,'Gas_Shell', 1, 15.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (1317,251,863,'Palsynyxis', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (1314,251,865,'Suctorial_Tentacle', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (1313,251,864,'Painful_Whip', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (1316,251,862,'Venom_Shell', 1, 15.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1317,251,863,'Palsynyxis', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1318,251,864,'Painful_Whip', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1319,251,865,'Suctorial_Tentacle', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Snolls
 INSERT INTO `mob_skill` VALUES (1391,232,875,'Berserk', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
