@@ -411,7 +411,7 @@ int32 login_config_default()
 
 int32 version_info_default()
 {
-    version_info.Min_Client_Ver = "01010101_0"; // xxYYMMDD_m = xx:MajorRelease YY:year MM:month DD:day _m:MinorRelease
+    version_info.Min_Client_Ver = "99999999_9"; // xxYYMMDD_m = xx:MajorRelease YY:year MM:month DD:day _m:MinorRelease
     // version_info.DSP_VER = 0;
     return 0;
 }
