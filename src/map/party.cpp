@@ -159,7 +159,7 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 	switch(role)
 	{
 		case 0: SetLeader(MemberName);		    break;
-        case 4: SetQuarterMaster(MemberName);    break;
+        case 4: SetQuarterMaster(MemberName);   break;
 		case 5: SetQuarterMaster(NULL);	        break;
         case 6: SetSyncTarget(MemberName, 238);	break;
         case 7: SetSyncTarget(NULL, 553);       break;
@@ -885,11 +885,11 @@ void CParty::SetLeader(const char* MemberName)
         Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = %u WHERE allianceid = %u", newId, m_PartyID);
 
         m_PLeader = GetMemberByName(MemberName);
-        m_PartyID = newId;
-        if (this->m_PAlliance)
+        if (this->m_PAlliance && this->m_PAlliance->m_AllianceID == m_PartyID)
             m_PAlliance->m_AllianceID = newId;
 
-		Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag | IF(allianceid = partyid, %d, %d) WHERE charid = %u", ALLIANCE_LEADER | PARTY_LEADER, PARTY_LEADER, m_PartyID);
+        m_PartyID = newId;
+		Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag | IF(allianceid = partyid, %d, %d) WHERE charid = %u", ALLIANCE_LEADER | PARTY_LEADER, PARTY_LEADER, newId);
     }
     else
     {

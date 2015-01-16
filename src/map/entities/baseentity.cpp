@@ -99,6 +99,7 @@ void CBaseEntity::HideName(bool hide)
 	{
 		namevis &= ~0x08;
 	}
+    updatemask |= UPDATE_HP;
 }
 
 bool CBaseEntity::IsNameHidden()

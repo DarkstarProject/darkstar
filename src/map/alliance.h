@@ -53,6 +53,7 @@ public:
     void delParty(CParty* party);
     void dissolveAlliance(bool playerInitiated = true, Sql_t* sql = SqlHandle);
 	uint32 partyCount(void);
+    void assignAllianceLeader(const char* name);
 
 	std::vector<CParty*> partyList; //list of parties in alliance
 

@@ -830,15 +830,22 @@ void LoadInventory(CCharEntity* PChar)
 
 	ret = Sql_Query(SqlHandle, Query, PChar->id);
 
-	if (ret != SQL_ERROR &&
-		Sql_NumRows(SqlHandle) != 0)
+	if (ret != SQL_ERROR)
 	{
 		CItemLinkshell* PLinkshell = NULL;
+		bool hasMainWeapon = false;
 
 		while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
 			if (Sql_GetUIntData(SqlHandle, 1) < 16)
+			{
+				if (Sql_GetUIntData(SqlHandle, 1) == SLOT_MAIN)
+				{
+					hasMainWeapon = true;
+				}
+
 				EquipItem(PChar, Sql_GetUIntData(SqlHandle, 0), Sql_GetUIntData(SqlHandle, 1), Sql_GetUIntData(SqlHandle, 2));
+			}
 			else
 			{
 				uint8 SlotID = Sql_GetUIntData(SqlHandle, 0);
@@ -853,13 +860,20 @@ void LoadInventory(CCharEntity* PChar)
 				}
 			}
 		}
+
+		// If no weapon is equipped, equip the appropriate unarmed weapon item
+		if (!hasMainWeapon)
+		{
+			CheckUnarmedWeapon(PChar);
+		}
+
 		if (PLinkshell)
 		{
 			linkshell::AddOnlineMember(PChar, PLinkshell);
 		}
 	}
-    else
-    {
+	else
+	{
 		ShowError(CL_RED"Loading error from char_equip\n" CL_RESET);
 	}
 

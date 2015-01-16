@@ -927,7 +927,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("LITELOR");
 
-	local Credaurion = 17273362;
+	local Credaurion = 17273365;
 
 	npc  = {
 	--
@@ -989,7 +989,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("VOLLBOW");
 
-	local Salimardi = 17240466;
+	local Salimardi = 17240469;
 
 	npc  = {
 	--
@@ -1020,7 +1020,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("ELSHIMOLOWLANDS");
 
-	local Zorchorevi = 17281590;
+	local Zorchorevi = 17281599;
 
 	npc  = {
 	--

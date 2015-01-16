@@ -388,11 +388,11 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 {
                     if (PChar->PParty->members.size() == 1)
                     {
-                        if (PChar->PParty->m_PAlliance->partyList.size() == 2)
+                        if (PChar->PParty->m_PAlliance->partyList.size() == 1)
                         {
                             PChar->PParty->m_PAlliance->dissolveAlliance();
                         }
-                        else if (PChar->PParty->m_PAlliance->partyList.size() == 3)
+                        else
                         {
                             PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
                         }
@@ -2776,7 +2776,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
     case 5: // alliance - must be unallied party leader or alliance leader of a non-full alliance
         if (PChar->PParty && PChar->PParty->GetLeader() == PChar &&
             (PChar->PParty->m_PAlliance == NULL ||
-            (PChar->PParty->m_PAlliance->getMainParty()->GetLeader() == PChar && PChar->PParty->m_PAlliance->partyCount() < 3)))
+            (PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty && PChar->PParty->m_PAlliance->partyCount() < 3)))
         {
             CCharEntity* PInvitee = NULL;
             if (targid != 0)
@@ -2836,7 +2836,7 @@ void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* dat
         case 0: // party - anyone may remove themself from party regardless of leadership or alliance
             if (PChar->PParty->m_PAlliance && PChar->PParty->members.size() == 1) // single member alliance parties must be removed from alliance before disband
             {
-                if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
+                if (PChar->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
                     PChar->PParty->m_PAlliance->dissolveAlliance();
                 else
                     PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
@@ -2847,7 +2847,7 @@ void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* dat
         case 5: // alliance - any party leader in alliance may remove their party
             if (PChar->PParty->m_PAlliance && PChar->PParty->GetLeader() == PChar)
             {
-                if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
+                if (PChar->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
                     PChar->PParty->m_PAlliance->dissolveAlliance();
                 else
                     PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
@@ -2909,7 +2909,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 {
                     if (PChar->PParty->m_PAlliance && PChar->PParty->members.size() == 1) // single member alliance parties must be removed from alliance before disband
                     {
-                        if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
+                        if (PChar->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
                             PChar->PParty->m_PAlliance->dissolveAlliance();
                         else
                             PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
@@ -2943,7 +2943,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
         if (PChar->PParty && PChar->PParty->GetLeader() == PChar && PChar->PParty->m_PAlliance)
         {
             CCharEntity* PVictim = NULL;
-            for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyCount(); ++i)
+            for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
             {
                 PVictim = (CCharEntity*)(PChar->PParty->m_PAlliance->partyList[i]->GetMemberByName(data + 0x0C));
                 if (PVictim && PVictim->PParty && PVictim->PParty->m_PAlliance) // victim is in this party
@@ -2951,7 +2951,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     //if using kick on yourself, or alliance leader using kick on another party leader - remove the party
                     if (PVictim == PChar || (PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty && PVictim->PParty->GetLeader() == PVictim))
                     {
-                        if (PVictim->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
+                        if (PVictim->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
                             PVictim->PParty->m_PAlliance->dissolveAlliance();
                         else
                             PVictim->PParty->m_PAlliance->removeParty(PVictim->PParty);
@@ -2998,7 +2998,7 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
             if (PInviter->PParty->GetLeader() == PInviter && PChar->PParty->GetLeader() == PChar)
             {
                 //the inviter already has an alliance and wants to add another party - only add if they have room for another party
-                if (PInviter->PParty->m_PAlliance && PInviter->PParty->m_PAlliance->getMainParty()->GetLeader() == PInviter)
+                if (PInviter->PParty->m_PAlliance && PInviter->PParty->m_PAlliance->getMainParty() == PInviter->PParty)
                 {
                     //break if alliance is full
                     if (PInviter->PParty->m_PAlliance->partyCount() == 3)
@@ -3106,6 +3106,19 @@ void SmallPacket0x077(map_session_data_t* session, CCharEntity* PChar, int8* dat
             WBUFL(packetData, 24) = PChar->PLinkshell->getID();
             WBUFB(packetData, 28) = RBUFB(data, 0x15);
             message::send(MSG_LINKSHELL_RANK_CHANGE, packetData, sizeof packetData, NULL);
+        }
+    }
+    break;
+    case 5: //alliance
+    {
+        if (PChar->PParty && PChar->PParty->m_PAlliance &&
+            PChar->PParty->GetLeader() == PChar && 
+            PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
+        {
+            PChar->PParty->m_PAlliance->assignAllianceLeader(data + 0x04);
+            uint8 data[4];
+            WBUFL(data, 0) = PChar->PParty->m_PAlliance->m_AllianceID;
+            message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
         }
     }
     break;
@@ -3703,7 +3716,7 @@ void SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, int8* dat
 void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
     uint8 SlotID = RBUFB(data, (0x06));
-    uint8 action = RBUFB(data, (0x07));
+    uint8 action = RBUFB(data, (0x08));
 
     CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
@@ -5249,7 +5262,7 @@ void PacketParserInitialize()
     PacketSize[0x0B6] = 0x00; PacketParser[0x0B6] = &SmallPacket0x0B6;
     PacketSize[0x0BE] = 0x00; PacketParser[0x0BE] = &SmallPacket0x0BE;    //  merit packet
     PacketSize[0x0C3] = 0x00; PacketParser[0x0C3] = &SmallPacket0x0C3;
-    PacketSize[0x0C4] = 0x0C; PacketParser[0x0C4] = &SmallPacket0x0C4;
+    PacketSize[0x0C4] = 0x0E; PacketParser[0x0C4] = &SmallPacket0x0C4;
     PacketSize[0x0CB] = 0x04; PacketParser[0x0CB] = &SmallPacket0x0CB;
     PacketSize[0x0D2] = 0x00; PacketParser[0x0D2] = &SmallPacket0x0D2;
     PacketSize[0x0D3] = 0x00; PacketParser[0x0D3] = &SmallPacket0x0D3;

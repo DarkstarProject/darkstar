@@ -59,7 +59,7 @@ void CAIAutomatonDummy::CheckCurrentAction(uint32 tick)
     }
 
     //check if this AI was replaced (the new AI will update if this is the case)
-    if (PSelf->PBattleAI == this)
+    if (m_PPet && PSelf->PBattleAI == this)
     {
         m_PPet->UpdateEntity();
     }

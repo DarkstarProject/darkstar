@@ -430,7 +430,7 @@ int32 lobbyview_parse(int32 fd)
                 unsigned char MainReservePacket[0x28];
 
                 string_t ver((char*)(buff + 0x74), 10);
-                if (ver < "30141216_0")
+                if (ver < "30150109_0")
                 {
                     sendsize = 0x24;
                     LOBBBY_ERROR_MESSAGE(ReservePacket);
