@@ -3763,6 +3763,13 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
         }
         else
         {
+            SLOTTYPE slot = SLOT_LINK1;
+            CLinkshell* OldLinkshell = PChar->PLinkshell1;
+            if (lsID == 2)
+            {
+                slot = SLOT_LINK2;
+                OldLinkshell = PChar->PLinkshell2;
+            }
             switch (action)
             {
             case 0: // unequip linkshell
@@ -3771,8 +3778,8 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                 PItemLinkshell->setSubType(ITEM_UNLOCKED);
 
-                PChar->equip[SLOT_LINK1] = 0;
-                PChar->equipLoc[SLOT_LINK1] = 0;
+                PChar->equip[slot] = 0;
+                PChar->equipLoc[slot] = 0;
                 PChar->nameflags.flags &= ~FLAG_LINKSHELL;
                 PChar->updatemask |= UPDATE_HP;
 
@@ -3786,9 +3793,9 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     PChar->pushPacket(new CMessageSystemPacket(0, 0, 110));
                     return;
                 }
-                if (PChar->PLinkshell1 != NULL) // switching linkshell group
+                if (OldLinkshell != NULL) // switching linkshell group
                 {
-                    CItemLinkshell* POldItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
+                    CItemLinkshell* POldItemLinkshell = (CItemLinkshell*)PChar->getEquip(slot);
 
                     if (POldItemLinkshell != NULL && POldItemLinkshell->isType(ITEM_LINKSHELL))
                     {
@@ -3802,10 +3809,13 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                 PItemLinkshell->setSubType(ITEM_LOCKED);
 
-                PChar->equip[SLOT_LINK1] = SlotID;
-                PChar->equipLoc[SLOT_LINK1] = LOC_INVENTORY;
-                PChar->nameflags.flags |= FLAG_LINKSHELL;
-                PChar->updatemask |= UPDATE_HP;
+                PChar->equip[slot] = SlotID;
+                PChar->equipLoc[slot] = LOC_INVENTORY;
+                if (lsID == 1)
+                {
+                    PChar->nameflags.flags |= FLAG_LINKSHELL;
+                    PChar->updatemask |= UPDATE_HP;
+                }
 
                 PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_LINKSHELL));
             }
@@ -3816,7 +3826,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
             if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
-            PChar->pushPacket(new CLinkshellEquipPacket(PChar, 1));
+            PChar->pushPacket(new CLinkshellEquipPacket(PChar, lsID));
             PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
         }
         PChar->pushPacket(new CInventoryFinishPacket());
