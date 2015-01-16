@@ -876,11 +876,11 @@ void LoadInventory(CCharEntity* PChar)
 
 		if (PLinkshell1)
 		{
-			linkshell::AddOnlineMember(PChar, PLinkshell1);
+			linkshell::AddOnlineMember(PChar, PLinkshell1, 1);
 		}
         if (PLinkshell2)
         {
-            linkshell::AddOnlineMember(PChar, PLinkshell2);
+            linkshell::AddOnlineMember(PChar, PLinkshell2, 2);
         }
 	}
 	else
