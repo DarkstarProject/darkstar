@@ -3716,7 +3716,7 @@ void SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, int8* dat
 void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
     uint8 SlotID = RBUFB(data, (0x06));
-    uint8 action = RBUFB(data, (0x07));
+    uint8 action = RBUFB(data, (0x08));
 
     CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
