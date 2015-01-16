@@ -5262,7 +5262,7 @@ void PacketParserInitialize()
     PacketSize[0x0B6] = 0x00; PacketParser[0x0B6] = &SmallPacket0x0B6;
     PacketSize[0x0BE] = 0x00; PacketParser[0x0BE] = &SmallPacket0x0BE;    //  merit packet
     PacketSize[0x0C3] = 0x00; PacketParser[0x0C3] = &SmallPacket0x0C3;
-    PacketSize[0x0C4] = 0x0C; PacketParser[0x0C4] = &SmallPacket0x0C4;
+    PacketSize[0x0C4] = 0x0E; PacketParser[0x0C4] = &SmallPacket0x0C4;
     PacketSize[0x0CB] = 0x04; PacketParser[0x0CB] = &SmallPacket0x0CB;
     PacketSize[0x0D2] = 0x00; PacketParser[0x0D2] = &SmallPacket0x0D2;
     PacketSize[0x0D3] = 0x00; PacketParser[0x0D3] = &SmallPacket0x0D3;
