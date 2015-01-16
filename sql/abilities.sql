@@ -36,7 +36,7 @@ CREATE TABLE `abilities` (
   `VE` smallint(5) NOT NULL DEFAULT '0',
   `meritModID` smallint(4) NOT NULL DEFAULT '0',
   `addType` smallint(2) NOT NULL DEFAULT '0',
-  `required_expansion` VARCHAR(6) NULL DEFAULT NULL,
+  `required_expansion` VARCHAR(7) NULL DEFAULT NULL,
   PRIMARY KEY (`abilityId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56;
 
@@ -165,14 +165,14 @@ INSERT INTO `abilities` VALUES ('121', 'repair', '18', '15', '1', '180', '206', 
 INSERT INTO `abilities` VALUES ('122', 'deploy', '18', '1', '4', '10', '207', '0', '0', '83', '18.0', '0', '0', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('123', 'deactivate', '18', '1', '1', '60', '208', '0', '0', '83', '18.0', '0', '0', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('124', 'retrieve', '18', '10', '1', '10', '209', '0', '0', '83', '18.0', '0', '0', '0', '0', '0','TOAU');
-INSERT INTO `abilities` VALUES ('125', 'fire_maneuver', '18', '1', '1', '10', '210', '0', '0', '83', '18.0', '0', '1', '0', '0', '0','TOAU');
-INSERT INTO `abilities` VALUES ('126', 'ice_maneuver', '18', '1', '1', '10', '210', '0', '0', '83', '18.0', '0', '1', '0', '0', '0','TOAU');
-INSERT INTO `abilities` VALUES ('127', 'wind_maneuver', '18', '1', '1', '10', '210', '0', '0', '83', '18.0', '0', '1', '0', '0', '0','TOAU');
-INSERT INTO `abilities` VALUES ('128', 'earth_maneuver', '18', '1', '1', '10', '210', '0', '0', '83', '18.0', '0', '1', '0', '0', '0','TOAU');
-INSERT INTO `abilities` VALUES ('129', 'thunder_maneuver', '18', '1', '1', '10', '210', '0', '0', '83', '18.0', '0', '1', '0', '0', '0','TOAU');
-INSERT INTO `abilities` VALUES ('130', 'water_maneuver', '18', '1', '1', '10', '210', '0', '0', '83', '18.0', '0', '1', '0', '0', '0','TOAU');
-INSERT INTO `abilities` VALUES ('131', 'light_maneuver', '18', '1', '1', '10', '210', '0', '0', '83', '18.0', '0', '1', '0', '0', '0','TOAU');
-INSERT INTO `abilities` VALUES ('132', 'dark_maneuver', '18', '1', '1', '10', '210', '0', '0', '83', '18.0', '0', '1', '0', '0', '0','TOAU');
+INSERT INTO `abilities` VALUES ('125', 'fire_maneuver', '18', '1', '1', '10', '210', '0', '0', '333', '18.0', '0', '1', '0', '0', '0','TOAU');
+INSERT INTO `abilities` VALUES ('126', 'ice_maneuver', '18', '1', '1', '10', '210', '0', '0', '333', '18.0', '0', '1', '0', '0', '0','TOAU');
+INSERT INTO `abilities` VALUES ('127', 'wind_maneuver', '18', '1', '1', '10', '210', '0', '0', '333', '18.0', '0', '1', '0', '0', '0','TOAU');
+INSERT INTO `abilities` VALUES ('128', 'earth_maneuver', '18', '1', '1', '10', '210', '0', '0', '333', '18.0', '0', '1', '0', '0', '0','TOAU');
+INSERT INTO `abilities` VALUES ('129', 'thunder_maneuver', '18', '1', '1', '10', '210', '0', '0', '333', '18.0', '0', '1', '0', '0', '0','TOAU');
+INSERT INTO `abilities` VALUES ('130', 'water_maneuver', '18', '1', '1', '10', '210', '0', '0', '333', '18.0', '0', '1', '0', '0', '0','TOAU');
+INSERT INTO `abilities` VALUES ('131', 'light_maneuver', '18', '1', '1', '10', '210', '0', '0', '333', '18.0', '0', '1', '0', '0', '0','TOAU');
+INSERT INTO `abilities` VALUES ('132', 'dark_maneuver', '18', '1', '1', '10', '210', '0', '0', '333', '18.0', '0', '1', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('133', 'warriors_charge', '1', '75', '1', '300', '6', '0', '0', '154', '20.0', '0', '1', '300', '2048', '1','TOAU');
 INSERT INTO `abilities` VALUES ('134', 'tomahawk', '1', '75', '4', '180', '7', '0', '0', '244', '20.0', '0', '1', '600', '2050', '1','TOAU');
 INSERT INTO `abilities` VALUES ('135', 'mantra', '2', '75', '1', '600', '19', '441', '0', '155', '20.0', '1', '1', '60', '2112', '1','TOAU');
@@ -272,14 +272,14 @@ INSERT INTO `abilities` VALUES ('230', 'afflatus_misery', '3', '40', '1', '60', 
 INSERT INTO `abilities` VALUES ('231', 'composure', '5', '50', '1', '300', '50', '0', '0', '215', '20.0', '0', '1', '80', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('232', 'yonin', '13', '40', '1', '180', '146', '0', '0', '218', '20.0', '0', '1', '600', '0', '4','WOTG');
 INSERT INTO `abilities` VALUES ('233', 'innin', '13', '40', '1', '180', '147', '0', '0', '219', '20.0', '0', '1', '60', '0', '4','WOTG');
-INSERT INTO `abilities` VALUES ('241', 'double_shot', '11', '79', '1', '180', '126', '0', '0', '225', '20.0', '0', '1', '300', '0', '0','ABYSEA');
-INSERT INTO `abilities` VALUES ('243', 'futae', '13', '77', '1', '180', '148', '0', '0', '227', '20.0', '0', '1', '0', '0', '0','ABYSEA');
-INSERT INTO `abilities` VALUES ('258', 'saboteur', '5', '83', '1', '300', '36', '0', '0', '258', '20.0', '0', '1', '80', '0', '0','ABYSEA');
-INSERT INTO `abilities` VALUES ('259', 'spontaneity', '5', '95', '3', '600', '37', '0', '0', '259', '20.0', '0', '1', '80', '0', '0','ABYSEA');
-INSERT INTO `abilities` VALUES ('267', 'tenuto', '10', '83', '1', '5', '47', '0', '0', '257', '20.0', '0', '0', '0', '0', '0','ABYSEA');
-INSERT INTO `abilities` VALUES ('268', 'marcato', '10', '95', '1', '600', '48', '0', '0', '251', '20.0', '0', '0', '0', '0', '0','ABYSEA');
-INSERT INTO `abilities` VALUES ('275', 'issekigan', '13', '95', '1', '300', '57', '0', '0', '246', '20.0', '0', '1', '0', '0', '0','ABYSEA');
-INSERT INTO `abilities` VALUES ('304', 'konzen-ittai', '12', '65', '4', '180', '132', '529', '0', '36', '4.4', '0', '1', '300', '0', '0','ABYSEA');
+INSERT INTO `abilities` VALUES ('241', 'double_shot', '11', '79', '1', '180', '126', '0', '0', '225', '20.0', '0', '1', '300', '0', '0','ABYSSEA');
+INSERT INTO `abilities` VALUES ('243', 'futae', '13', '77', '1', '180', '148', '0', '0', '227', '20.0', '0', '1', '0', '0', '0','ABYSSEA');
+INSERT INTO `abilities` VALUES ('258', 'saboteur', '5', '83', '1', '300', '36', '0', '0', '258', '20.0', '0', '1', '80', '0', '0','ABYSSEA');
+INSERT INTO `abilities` VALUES ('259', 'spontaneity', '5', '95', '3', '600', '37', '0', '0', '259', '20.0', '0', '1', '80', '0', '0','ABYSSEA');
+INSERT INTO `abilities` VALUES ('267', 'tenuto', '10', '83', '1', '5', '47', '0', '0', '257', '20.0', '0', '0', '0', '0', '0','ABYSSEA');
+INSERT INTO `abilities` VALUES ('268', 'marcato', '10', '95', '1', '600', '48', '0', '0', '251', '20.0', '0', '0', '0', '0', '0','ABYSSEA');
+INSERT INTO `abilities` VALUES ('275', 'issekigan', '13', '95', '1', '300', '57', '0', '0', '246', '20.0', '0', '1', '0', '0', '0','ABYSSEA');
+INSERT INTO `abilities` VALUES ('304', 'konzen-ittai', '12', '65', '4', '180', '132', '529', '0', '36', '4.4', '0', '1', '300', '0', '0','ABYSSEA');
 INSERT INTO `abilities` VALUES ('311', 'stymie', '5', '96', '1', '3600', '254', '0', '0', '275', '20.0', '0', '1', '0', '0', '0','SOA');
 INSERT INTO `abilities` VALUES ('319', 'mikage', '13', '96', '1', '3600', '254', '0', '0', '283', '20.0', '0', '1', '0', '0', '0','SOA');
 INSERT INTO `abilities` VALUES ('327', 'bolster', '21', '0', '1', '3600', '0', '0', '0', '33', '20.0', '0', '1', '300', '0', '0',null);

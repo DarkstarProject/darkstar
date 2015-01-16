@@ -602,9 +602,6 @@
     <ClInclude Include="..\..\src\map\packets\guild_menu_sell_update.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\packets\send_box.h">
-      <Filter>Header Files\packets</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\common\detour\DetourAlloc.h">
       <Filter>Header Files\common\detour</Filter>
     </ClInclude>
@@ -755,9 +752,6 @@
     <ClInclude Include="..\..\src\map\attackround.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\packets\currency.h">
-      <Filter>Header Files\packets</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\utils\blacklistutils.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
@@ -823,6 +817,15 @@
     </ClInclude>
     <ClInclude Include="..\..\src\map\lua\lua_item.h">
       <Filter>Header Files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\currency1.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\currency2.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\ai_automaton_dummy.h">
+      <Filter>Header Files\ai</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1306,9 +1309,6 @@
     <ClCompile Include="..\..\src\map\packets\guild_menu_sell_update.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\packets\send_box.cpp">
-      <Filter>Source Files\packets</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\common\detour\DetourAlloc.cpp">
       <Filter>Source Files\common\detour</Filter>
     </ClCompile>
@@ -1444,9 +1444,6 @@
     <ClCompile Include="..\..\src\map\attackround.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\packets\currency.cpp">
-      <Filter>Source Files\packets</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\utils\blacklistutils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
@@ -1512,6 +1509,15 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\lua\lua_item.cpp">
       <Filter>Source Files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\currency1.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\currency2.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\ai_automaton_dummy.cpp">
+      <Filter>Source Files\ai</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

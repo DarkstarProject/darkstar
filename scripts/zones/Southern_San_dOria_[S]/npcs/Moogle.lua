@@ -6,13 +6,14 @@
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
-
+require("scripts/globals/moghouse")
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
+    moogleTrade(player,npc,trade);
 end;
 
 -----------------------------------
@@ -20,7 +21,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x003D);
+    if (not moogleTrigger(player,npc)) then
+        player:startEvent(0x003D);
+    end
 end;
 
 -----------------------------------
@@ -39,4 +42,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	if (csid == 0x7530) then
+		player:setVar("MoghouseExplication",0);
+	end
 end;

@@ -39,6 +39,7 @@ When a status effect is gained twice on a player. It can do one or more of the f
 #include "lua/luautils.h"
 
 #include "packets/char_health.h"
+#include "packets/char_job_extra.h"
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
 #include "packets/message_basic.h"
@@ -366,7 +367,6 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 			if( m_POwner->health.maxhp != 0) //make sure we're not in the middle of logging in
 			{
 				//check for latents
-				CLatentEffectContainer* PLatentEffectContainer;
 				PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
 				PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
 				PChar->UpdateHealth();
@@ -375,6 +375,7 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 			}
             PChar->pushPacket(new CCharSyncPacket(PChar));
         }
+        m_POwner->updatemask |= UPDATE_HP;
 
         return true;
 	}
@@ -412,7 +413,6 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 			}
         }
 		//check for latents
-		CLatentEffectContainer* PLatentEffectContainer;
 		PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
 		PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
 		PChar->UpdateHealth();
@@ -507,12 +507,12 @@ void CStatusEffectContainer::KillAllStatusEffect()
 		luautils::OnEffectLose(m_POwner, PStatusEffect);
 
 		m_POwner->delModifiers(&PStatusEffect->modList);
-		m_POwner->UpdateHealth();
 
 		m_StatusEffectList.erase(m_StatusEffectList.begin() + i);
 
 		delete PStatusEffect;
 	}
+    m_POwner->UpdateHealth();
 }
 
 /************************************************************************
@@ -582,7 +582,7 @@ EFFECT CStatusEffectContainer::EraseStatusEffect()
     }
     if (!erasableList.empty())
     {
-        uint16 rndIdx = rand() % erasableList.size();
+        uint16 rndIdx = WELL512::irand() % erasableList.size();
         EFFECT result = m_StatusEffectList.at(erasableList.at(rndIdx))->GetStatusID();
         RemoveStatusEffect(erasableList.at(rndIdx));
         return result;
@@ -592,7 +592,6 @@ EFFECT CStatusEffectContainer::EraseStatusEffect()
 
 EFFECT CStatusEffectContainer::HealingWaltz()
 {
-   EFFECT effect_id;
    std::vector<uint16> waltzableList;
    for( uint16 i = 0; i < m_StatusEffectList.size(); ++i )
    {
@@ -605,7 +604,7 @@ EFFECT CStatusEffectContainer::HealingWaltz()
    }
    if( !waltzableList.empty() )
    {
-      uint16 rndIdx = rand() % waltzableList.size();
+       uint16 rndIdx = WELL512::irand() % waltzableList.size();
       EFFECT result = m_StatusEffectList.at(waltzableList.at(rndIdx))->GetStatusID();
       RemoveStatusEffect(waltzableList.at(rndIdx));
       return result;
@@ -652,7 +651,7 @@ EFFECT CStatusEffectContainer::DispelStatusEffect(EFFECTFLAG flag)
 	}
 	if (!dispelableList.empty())
 	{
-		uint16 rndIdx = rand() % dispelableList.size();
+        uint16 rndIdx = WELL512::irand() % dispelableList.size();
 		EFFECT result = m_StatusEffectList.at(dispelableList.at(rndIdx))->GetStatusID();
 		RemoveStatusEffect(dispelableList.at(rndIdx), true);
 		return result;
@@ -889,6 +888,55 @@ void CStatusEffectContainer::Fold(uint32 charid)
     }
 }
 
+uint8 CStatusEffectContainer::GetActiveManeuvers()
+{
+    uint8 count = 0;
+    for (auto PStatusEffect : m_StatusEffectList)
+    {
+        if (PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
+            PStatusEffect->GetStatusID() <= EFFECT_DARK_MANEUVER)
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+void CStatusEffectContainer::RemoveOldestManeuver()
+{
+    CStatusEffect* oldest = NULL;
+    int index = 0;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
+        if (PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
+            PStatusEffect->GetStatusID() <= EFFECT_DARK_MANEUVER)
+        {
+            if (!oldest || PStatusEffect->GetStartTime() < oldest->GetStartTime())
+            {
+                oldest = PStatusEffect;
+                index = i;
+            }
+        }
+    }
+    if (oldest)
+    {
+        RemoveStatusEffect(index, true);
+    }
+}
+
+void CStatusEffectContainer::RemoveAllManeuvers()
+{
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIRE_MANEUVER && 
+            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_DARK_MANEUVER)
+        {
+            RemoveStatusEffect(i--, true);
+        }
+    }
+}
+
 /************************************************************************
 *                                                                       *
 *  Проверяем наличие статус-эффекта	в контейнере с уникальным subid     *
@@ -959,7 +1007,7 @@ CStatusEffect* CStatusEffectContainer::StealStatusEffect()
 	}
     if (!dispelableList.empty())
     {
-        uint16 rndIdx = rand() % dispelableList.size();
+        uint16 rndIdx = WELL512::irand() % dispelableList.size();
 	uint16 effectIndex = dispelableList.at(rndIdx);
 
         CStatusEffect* oldEffect = m_StatusEffectList.at(effectIndex);
@@ -1011,6 +1059,8 @@ void CStatusEffectContainer::UpdateStatusIcons()
         }
 	}
     ((CCharEntity*)m_POwner)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_POwner));
+    ((CCharEntity*)m_POwner)->pushPacket(new CCharJobExtraPacket((CCharEntity*)m_POwner, true));
+    ((CCharEntity*)m_POwner)->pushPacket(new CCharJobExtraPacket((CCharEntity*)m_POwner, false));
 }
 
 /************************************************************************
@@ -1239,8 +1289,9 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
         int16 poison = m_POwner->getMod(MOD_REGEN_DOWN);
         int16 refresh = m_POwner->getMod(MOD_REFRESH) - m_POwner->getMod(MOD_REFRESH_DOWN);
         int16 regain = m_POwner->getMod(MOD_REGAIN) - m_POwner->getMod(MOD_REGAIN_DOWN);
-
-		m_POwner->addHP(regen);
+        bool update = false;
+        if (m_POwner->addHP(regen))
+            update = true;
 
         if(poison)
         {
@@ -1251,6 +1302,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
                 DelStatusEffectSilent(EFFECT_HEALING);
                 m_POwner->addHP(-damage);
                 WakeUp();
+                update = true;
             }
         }
 
@@ -1285,7 +1337,8 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 				}
 			}
 
-			m_POwner->addMP(refresh - perpetuation);
+            if (m_POwner->addMP(refresh - perpetuation))
+                update = true;
 
 			if( m_POwner->health.mp == 0 && m_POwner->PPet != NULL && m_POwner->PPet->objtype == TYPE_PET)
 			{
@@ -1297,24 +1350,19 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 		}
 		else
 		{
-			m_POwner->addMP(refresh);
+            if (m_POwner->addMP(refresh))
+                update = true;
 		}
 
-        if(PChar != NULL && IsAsleep())
-        {
-            CItem* neck = PChar->getEquip(SLOT_NECK);
+        if (m_POwner->addTP(regain))
+            update = true;
 
-            // opo-opo necklace
-            if(neck != NULL && neck->getID() == 13143)
-            {
-                // add tp
-                regain += 2.5f;
-            }
+        if (m_POwner->PPet && ((CPetEntity*)(m_POwner->PPet))->getPetType() == PETTYPE_AUTOMATON)
+        {
+            ((CAutomatonEntity*)(m_POwner->PPet))->burdenTick();
         }
 
-		m_POwner->addTP(regain);
-
-		if( m_POwner->status != STATUS_DISAPPEAR && (m_POwner->objtype == TYPE_PC))
+		if( m_POwner->status != STATUS_DISAPPEAR && (m_POwner->objtype == TYPE_PC) && update)
 		{
 			charutils::UpdateHealth((CCharEntity*)m_POwner);
 		}

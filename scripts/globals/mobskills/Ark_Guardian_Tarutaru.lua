@@ -9,11 +9,11 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
 	return 1;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
     mob:useMobAbility(mob:getMobMod(MOBMOD_TELEPORT_END));
     skill:setMsg(0);
     return 0;

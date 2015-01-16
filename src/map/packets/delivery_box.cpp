@@ -30,43 +30,74 @@
 #include "delivery_box.h"
 
 
-CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 count) 
+CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, uint8 count, uint8 param)
 {
-	this->type = 0x4B;
-	this->size = 0x0A;
+    this->type = 0x4B;
+    this->size = 0x0A;
 
-	memset(data, 0xFF, 12);
+    memset(data, 0xFF, 12);
 
-	WBUFB(data,(0x04)-4) = action;
+    WBUFB(data, (0x04) - 4) = action;
+    WBUFB(data, (0x05) - 4) = boxid;
 
-	if (action == 0x05)
-	{
-		WBUFB(data,(0x05)-4) = 0x01;		
-		WBUFB(data,(0x0E)-4) = count;
-	}
-	WBUFB(data,(0x0C)-4) = 0x01;
+    if (action == 0x05)
+    {
+        if (boxid == 0x01)
+            WBUFB(data, (0x0E) - 4) = count;
+        else
+            WBUFB(data, (0x0F) - 4) = count;
+    }
+    else if (action == 0x0C)
+    {
+        WBUFB(data, (0x0D) - 4) = count;
+    }
+    WBUFB(data, (0x0C) - 4) = param;
 }
 
-CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, CItem* PItem, uint8 count, uint8 message)
+CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, CItem* PItem, uint8 slotid, uint8 count, uint8 message)
 {
-	this->type = 0x4B;
-	this->size = 0x2C;
+    this->type = 0x4B;
+    this->size = 0x2C;
 
-	memset(data, 0xFF, 12);
+    memset(data, 0xFF, 12);
 
-    WBUFB(data,(0x04)-4) = action;                          // тип действия	
-    WBUFB(data,(0x05)-4) = 0x01;	                            // тип почтового ящика - 0x01 окно приема почты, 0x02 окно отправки почты 
-    WBUFB(data,(0x06)-4) = PItem->getSlotID();              // номер ячейки, в которой находится предмет
-    WBUFB(data,(0x0C)-4) = message;	                        // сообщение об ошибке, либо 0x01 в случае успеха
-    WBUFB(data,(0x0D)-4) = count;                           // общее количество предметов, которые мы передадим в delivery box
+    WBUFB(data, (0x04) - 4) = action;
+    WBUFB(data, (0x05) - 4) = boxid;
+    WBUFB(data, (0x06) - 4) = slotid;
+    WBUFB(data, (0x0C) - 4) = message;	    // success: 0x01, else error message
+    WBUFB(data, (0x0D) - 4) = count;
 
-    if ((action != 0x0A && action != 0x0B && action != 0x09) || message > 1)
+    if (PItem)
     {
-        WBUFB(data,(0x10)-4) = 0x0B;	                        // назначение неизвестно
-        memcpy(data + 0x14-4, PItem->getSender(), 15);      // имя отправителя или название аукциона. Если имя начинается на AH, то клиент отключает кнопку "вернуть"	
-    }
+        if ((action != 0x0A && action != 0x0B && action != 0x09) || message > 1)
+        {
+            WBUFB(data,(0x10)-4) = boxid == 0x01 ? 0x07 : PItem->isSent() ? 0x03 : 0x05;    // 0x05 in send: canceled. other values are unknown 
+            memcpy(data + 0x14 - 4, PItem->getSender(), strlen(PItem->getSender()));        // Sender's name.  Client disables "Return" if it starts with "AH"
+        }
+        if (action == 0x02)
+        {
+            WBUFB(data, (0x10) - 4) = 0x01;
+            WBUFB(data, (0x07) - 4) = PItem->getSlotID();
+        }
+        else if (action == 0x03)
+        {
+            WBUFB(data, (0x07) - 4) = PItem->getSlotID();
+        }
+        else if (action == 0x04)
+        {
+            if (message == 0x01)
+            {
+                WBUFB(data, (0x10) - 4) = 0x05;
+            }
+            else if (message == 0x02)
+            {
+                WBUFB(data, (0x10) - 4) = 0x04;
+            }
+        }
 
-    WBUFW(data,(0x2C)-4) = PItem->getSubID();               // предмет, за продажу которого прислали деньги с аукциона
-    WBUFW(data,(0x30)-4) = PItem->getID();                  // передаваемый предмет
-    WBUFL(data,(0x38)-4) = PItem->getQuantity();            // количество предметов или сумма денег
+        WBUFW(data, (0x2C) - 4) = PItem->getSubID();               // Only used to display which item was sold on the AH
+        WBUFW(data, (0x30) - 4) = PItem->getID();
+        WBUFL(data, (0x38) - 4) = PItem->getQuantity();
+        memcpy(data + 0x3C - 4, PItem->m_extra, sizeof(PItem->m_extra));
+    }
 }

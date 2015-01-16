@@ -619,7 +619,15 @@ namespace spell
                 {
                     if (PCaster->objtype == TYPE_PC)
                     {
-						if (!blueutils::IsSpellSet((CCharEntity*)PCaster, (CBlueSpell*)spell))
+                        if (requirements & SPELLREQ_UNBRIDLED_LEARNING)
+                        {
+                            if (!PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_UNBRIDLED_LEARNING) &&
+                                !PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_UNBRIDLED_WISDOM))
+                            {
+                                usable = false;
+                            }
+                        }
+                        else if (!blueutils::IsSpellSet((CCharEntity*)PCaster, (CBlueSpell*)spell))
 						{
 							usable = false;
 						}
@@ -655,7 +663,15 @@ namespace spell
 				{
 					if (PCaster->objtype == TYPE_PC)
 					{
-						if (!blueutils::IsSpellSet((CCharEntity*)PCaster, (CBlueSpell*)spell))
+                        if (requirements & SPELLREQ_UNBRIDLED_LEARNING)
+                        {
+                            if (!PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_UNBRIDLED_LEARNING) &&
+                                !PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_UNBRIDLED_WISDOM))
+                            {
+                                usable = false;
+                            }
+                        }
+						else if (!blueutils::IsSpellSet((CCharEntity*)PCaster, (CBlueSpell*)spell))
 						{
 							usable = false;
 						}

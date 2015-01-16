@@ -16,7 +16,7 @@ require("scripts/zones/South_Gustaberg/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)		
-    local manuals = {17216199,17216200};
+    local manuals = {17216200,17216201};
     
     SetFieldManual(manuals);
 end;

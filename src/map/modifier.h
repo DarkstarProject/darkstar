@@ -150,6 +150,9 @@ enum MODIFIER
 	MOD_GKATANA                   = 0x59, // Great Katana Skill (modId = 89)
 	MOD_CLUB                      = 0x5A, // Club Skill (modId = 90)
 	MOD_STAFF                     = 0x5B, // Staff Skill (modId = 91)
+    MOD_AUTO_MELEE_SKILL          = 0x65, // Automaton Melee Skill (modId = 101)
+    MOD_AUTO_RANGED_SKILL         = 0x66, // Automaton Range Skill (modId = 102)
+    MOD_AUTO_MAGIC_SKILL          = 0x67, // Automaton Magic Skill (modId = 103)
 	MOD_ARCHERY                   = 0x68, // Archery Skill (modId = 104)
 	MOD_MARKSMAN                  = 0x69, // Marksman Skill (modId = 105)
 	MOD_THROW                     = 0x6A, // Throw Skill (modId = 106)
@@ -414,10 +417,9 @@ enum MODIFIER
     MOD_QUICK_DRAW_DMG            = 0x19B, // (modId = 411)
 
 	// Puppetmaster
-    MOD_AUTO_MELEE_SKILL          = 0x19C, // (modId = 412)
-    MOD_AUTO_RANGED_SKILL         = 0x19D, // (modId = 413)
-    MOD_AUTO_MAGIC_SKILL          = 0x19E, // (modId = 414)
-	
+    MOD_MANEUVER_BONUS            = 0x1F8, // (modId = 504) Maneuver Stat Bonus
+    MOD_OVERLOAD_THRESH           = 0x1F9, // (modId = 505) Overload Threshold Bonus
+
 	// Dancer
 	MOD_FINISHING_MOVES           = 0x14D, // Tracks # of finishing moves (modId = 333)    
     MOD_SAMBA_DURATION            = 0x1EA, // Samba duration bonus(modId = 490)
@@ -549,9 +551,6 @@ enum MODIFIER
 
     MOD_GOV_CLEARS                = 0x1F0, // 4% bonus per Grounds of Valor Page clear (modId = 496)
 
-    //MOD_SPARE =0x1F8, // (modId = 504)
-    //MOD_SPARE =0x1F9, // (modId = 505)
-    //MOD_SPARE =0x1FA, // (modId = 506)
     //MOD_SPARE =0x1FB, // (modId = 507)
     //MOD_SPARE =0x1FC, // (modId = 508)
     //MOD_SPARE =0x1FD, // (modId = 509)
@@ -561,7 +560,7 @@ enum MODIFIER
 
 };
 
-#define MAX_MODIFIER 503
+#define MAX_MODIFIER 506
 
 
 

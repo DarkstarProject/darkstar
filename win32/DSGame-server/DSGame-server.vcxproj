@@ -69,7 +69,7 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
@@ -210,6 +210,7 @@
     <ClInclude Include="..\..\src\common\version.h" />
     <ClInclude Include="..\..\src\common\zlib.h" />
     <ClInclude Include="..\..\src\map\ability.h" />
+    <ClInclude Include="..\..\src\map\ai\ai_automaton_dummy.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_charm.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_gm.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_normal.h" />
@@ -317,7 +318,8 @@
     <ClInclude Include="..\..\src\map\packets\change_music.h" />
     <ClInclude Include="..\..\src\map\packets\conquest_map.h" />
     <ClInclude Include="..\..\src\map\packets\cs_position.h" />
-    <ClInclude Include="..\..\src\map\packets\currency.h" />
+    <ClInclude Include="..\..\src\map\packets\currency1.h" />
+    <ClInclude Include="..\..\src\map\packets\currency2.h" />
     <ClInclude Include="..\..\src\map\packets\delivery_box.h" />
     <ClInclude Include="..\..\src\map\packets\downloading_data.h" />
     <ClInclude Include="..\..\src\map\packets\entity_update.h" />
@@ -355,7 +357,6 @@
     <ClInclude Include="..\..\src\map\packets\message_text.h" />
     <ClInclude Include="..\..\src\map\packets\synth_result.h" />
     <ClInclude Include="..\..\src\map\packets\synth_suggestion.h" />
-    <ClInclude Include="..\..\src\map\packets\send_box.h" />
     <ClInclude Include="..\..\src\map\packets\trade_action.h" />
     <ClInclude Include="..\..\src\map\packets\trade_item.h" />
     <ClInclude Include="..\..\src\map\packets\trade_request.h" />
@@ -446,6 +447,7 @@
     <ClCompile Include="..\..\src\common\utils.cpp" />
     <ClCompile Include="..\..\src\common\zlib.cpp" />
     <ClCompile Include="..\..\src\map\ability.cpp" />
+    <ClCompile Include="..\..\src\map\ai\ai_automaton_dummy.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_char_charm.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_char_gm.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_char_normal.cpp" />
@@ -549,7 +551,8 @@
     <ClCompile Include="..\..\src\map\packets\change_music.cpp" />
     <ClCompile Include="..\..\src\map\packets\conquest_map.cpp" />
     <ClCompile Include="..\..\src\map\packets\cs_position.cpp" />
-    <ClCompile Include="..\..\src\map\packets\currency.cpp" />
+    <ClCompile Include="..\..\src\map\packets\currency1.cpp" />
+    <ClCompile Include="..\..\src\map\packets\currency2.cpp" />
     <ClCompile Include="..\..\src\map\packets\delivery_box.cpp" />
     <ClCompile Include="..\..\src\map\packets\downloading_data.cpp" />
     <ClCompile Include="..\..\src\map\packets\entity_update.cpp" />
@@ -585,7 +588,6 @@
     <ClCompile Include="..\..\src\map\packets\message_standard.cpp" />
     <ClCompile Include="..\..\src\map\packets\message_system.cpp" />
     <ClCompile Include="..\..\src\map\packets\message_text.cpp" />
-    <ClCompile Include="..\..\src\map\packets\send_box.cpp" />
     <ClCompile Include="..\..\src\map\packets\synth_result.cpp" />
     <ClCompile Include="..\..\src\map\packets\synth_suggestion.cpp" />
     <ClCompile Include="..\..\src\map\packets\trade_action.cpp" />

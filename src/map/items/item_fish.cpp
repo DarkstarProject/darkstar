@@ -22,6 +22,7 @@
 */
 
 #include "item_fish.h"
+#include "../map.h"
 
 /************************************************************************
 *                                                                       *
@@ -41,4 +42,37 @@ CItemFish::CItemFish(const CItem &PItem) : CItem(PItem)
 
 CItemFish::~CItemFish()
 {
+}
+
+uint16 CItemFish::GetLength()
+{
+    return RBUFW(m_extra, 0);
+}
+
+uint16 CItemFish::GetWeight()
+{
+    return RBUFW(m_extra, 2);
+}
+
+bool CItemFish::IsRanked()
+{
+    return (RBUFB(m_extra, 4) & 0x01) == 0x01;
+}
+
+void CItemFish::SetLength(uint16 length)
+{
+    WBUFW(m_extra, 0) = length;
+}
+
+void CItemFish::SetWeight(uint16 weight)
+{
+    WBUFW(m_extra, 2) = weight;
+}
+
+void CItemFish::SetRank(bool rank)
+{
+    if (rank)
+        WBUFB(m_extra, 4) |= 0x01;
+    else
+        WBUFB(m_extra, 4) &= ~0x01;
 }

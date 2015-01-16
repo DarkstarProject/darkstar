@@ -170,6 +170,7 @@ bool CPathFind::WarpTo(position_t point, float maxDistance)
 	m_PTarget->loc.p.moving = 0;
 
 	LookAt(point);
+    m_PTarget->updatemask |= UPDATE_POS;
 
 	return true;
 }
@@ -307,7 +308,7 @@ void CPathFind::StepTo(position_t* pos, bool run)
 	{
 		m_PTarget->loc.p.moving = 0;
 	}
-
+    m_PTarget->updatemask |= UPDATE_POS;
 }
 
 bool CPathFind::FindPath(position_t* start, position_t* end)
@@ -366,6 +367,7 @@ void CPathFind::LookAt(position_t point)
 	if (!AtPoint(&point)){
 		m_PTarget->loc.p.rotation = getangle(m_PTarget->loc.p, point);
 	}
+    m_PTarget->updatemask |= UPDATE_POS;
 }
 
 bool CPathFind::OnPoint()

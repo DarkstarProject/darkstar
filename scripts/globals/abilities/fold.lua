@@ -6,10 +6,10 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
     if (target:hasCorsairEffect()) then
         return 0,0;
     else
@@ -17,7 +17,7 @@ function OnAbilityCheck(player,target,ability)
     end
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 	target:fold();
 
     local merit = target:getMerit(MERIT_FOLD);

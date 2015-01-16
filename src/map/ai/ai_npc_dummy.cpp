@@ -80,11 +80,11 @@ void CAINpcDummy::ActionRoaming()
 
     if(m_PPathFind->OnPoint())
     {
-      luautils::OnNpcPath(m_PNpc);
+      luautils::OnPath(m_PNpc);
     }
 
-    m_PNpc->loc.zone->PushPacket(m_PNpc,CHAR_INRANGE, new CEntityUpdatePacket(m_PNpc,ENTITY_UPDATE, UPDATE_POS));
-
+    m_PNpc->updatemask |= UPDATE_COMBAT;
+    m_PNpc->UpdateEntity();
   }
 }
 

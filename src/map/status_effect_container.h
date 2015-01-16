@@ -85,6 +85,10 @@ public:
     bool HasCorsairEffect(uint32 charid);
     void Fold(uint32 charid);
 
+    uint8 GetActiveManeuvers();
+    void RemoveOldestManeuver();
+    void RemoveAllManeuvers();
+
     void WakeUp(); // remove sleep effects
     bool IsAsleep();
     bool HasPreventActionEffect(); // checks if owner has an effect that prevents actions, like stun, petrify, sleep etc

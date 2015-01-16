@@ -57,10 +57,9 @@ uint16 MessageOffset[MAX_ZONEID];
 
 void LoadFishingMessages()
 {
-    for (uint16 ZoneID = 0; ZoneID < ARRAYLENGTH(MessageOffset); ZoneID++)
-    {
-        //MessageOffset[ZoneID] = luautils::GetTextIDVariable(ZoneID, "FISHING_MESSAGE_OFFSET");
-    }
+    zoneutils::ForEachZone([](CZone* PZone){
+        MessageOffset[PZone->GetID()] = luautils::GetTextIDVariable(PZone->GetID(), "FISHING_MESSAGE_OFFSET");
+    });
 }
 
 /************************************************************************
@@ -69,7 +68,7 @@ void LoadFishingMessages()
 *																		*
 ************************************************************************/
 
-uint16 GetMessageOffset(uint8 ZoneID)
+uint16 GetMessageOffset(uint16 ZoneID)
 {
 	return MessageOffset[ZoneID];
 }
@@ -128,6 +127,7 @@ void StartFishing(CCharEntity* PChar)
 
 	PChar->status = STATUS_UPDATE;
 	PChar->animation = ANIMATION_FISHING_START;
+    PChar->updatemask |= UPDATE_HP;
 
 	PChar->pushPacket(new CCharUpdatePacket(PChar));
 	PChar->pushPacket(new CCharSyncPacket(PChar));
@@ -348,6 +348,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				// сообщение: "Something caught the hook!"
 			
 				PChar->animation = ANIMATION_FISHING_FISH;
+                PChar->updatemask |= UPDATE_HP;
 				PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x08));
 				PChar->pushPacket(new CFishingPacket());
 			}
@@ -356,6 +357,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				// сообщение: "You didn't catch anything."
 
 				PChar->animation = ANIMATION_FISHING_STOP;
+                PChar->updatemask |= UPDATE_HP;
 				PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x04));
 			}
 		}
@@ -370,6 +372,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == NULL);
 
 				PChar->animation = ANIMATION_FISHING_CAUGHT;
+                PChar->updatemask |= UPDATE_HP;
 
 				CItem* PFish = PChar->UContainer->GetItem(0);
 
@@ -389,6 +392,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				// сообщение: "Your line breaks!"
 	
 				PChar->animation = ANIMATION_FISHING_LINE_BREAK;
+                PChar->updatemask |= UPDATE_HP;
 				LureLoss(PChar, true);
 				PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x06));
 			}
@@ -397,6 +401,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				// сообщение: "You give up!"
 
 				PChar->animation = ANIMATION_FISHING_STOP;
+                PChar->updatemask |= UPDATE_HP;
 
 				if (PChar->UContainer->GetType() == UCONTAINER_FISHING &&
 					LureLoss(PChar, false))
@@ -411,6 +416,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				// сообщение: "You lost your catch!"
 
 				PChar->animation = ANIMATION_FISHING_STOP;
+                PChar->updatemask |= UPDATE_HP;
 				LureLoss(PChar, false);
 				PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x09));
 			}
@@ -430,6 +436,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 			// skillup
 
 			PChar->animation = ANIMATION_NONE;
+            PChar->updatemask |= UPDATE_HP;
 		}
 		break;
 	}

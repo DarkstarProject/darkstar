@@ -42,6 +42,7 @@
 
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
+#include "packets/char_abilities.h"
 #include "packets/menu_config.h"
 #include "packets/message_standard.h"
 #include "packets/party_define.h"
@@ -136,8 +137,9 @@ void CParty::DisbandParty(bool playerInitiated, Sql_t* sql)
         // make sure chat server isn't notified of a disband if this came from the chat server already
         if (playerInitiated)
         {
-            uint8 data[4];
+            uint8 data[8];
             WBUFL(data, 0) = m_PartyID;
+            WBUFL(data, 4) = m_PartyID;
             message::send(MSG_PT_DISBAND, data, sizeof data, NULL);
         }
     }
@@ -157,7 +159,7 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 	switch(role)
 	{
 		case 0: SetLeader(MemberName);		    break;
-        case 4: SetQuarterMaster(MemberName);    break;
+        case 4: SetQuarterMaster(MemberName);   break;
 		case 5: SetQuarterMaster(NULL);	        break;
         case 6: SetSyncTarget(MemberName, 238);	break;
         case 7: SetSyncTarget(NULL, 553);       break;
@@ -372,6 +374,11 @@ void CParty::PopMember(CBattleEntity* PEntity)
             members.erase(members.begin() + i);
         }
     }
+    //free memory, party will re reinsatiated when they zone back in
+    if (members.empty() && !m_PAlliance)
+    {
+        delete this;
+    }
 }
 
 /************************************************************************
@@ -437,6 +444,7 @@ void CParty::AddMember(CBattleEntity* PEntity, Sql_t* sql)
 	    if (PChar->nameflags.flags & FLAG_INVITE)
 	    {
             PChar->nameflags.flags ^= FLAG_INVITE;
+            PChar->updatemask |= UPDATE_HP;
 
             charutils::SaveCharStats(PChar);
 
@@ -483,6 +491,7 @@ void CParty::AddMember(uint32 id, Sql_t* Sql)
 		/*if (PChar->nameflags.flags & FLAG_INVITE)
 		{
 			PChar->nameflags.flags ^= FLAG_INVITE;
+            PChar->updatemask |= UPDATE_HP;
 
 			charutils::SaveCharStats(PChar);
 
@@ -654,7 +663,7 @@ void CParty::ReloadParty()
                 PChar->ReloadPartyDec();
 				uint16 alliance = 0;
 				PChar->pushPacket(new CPartyDefinePacket(m_PAlliance->partyList.at(a)));
-				int ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, partyid FROM accounts_parties \
+				int ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, pos_prevzone FROM accounts_parties \
 												LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
 												allianceid = %d ORDER BY partyflag & %u, timestamp;",
 												m_PAlliance->m_AllianceID, PARTY_SECOND | PARTY_THIRD);
@@ -663,7 +672,7 @@ void CParty::ReloadParty()
 					uint8 j = 0;
 					while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 					{
-						if (Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD) != alliance)
+						if ((Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD)) != alliance)
 						{
 							alliance = Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD);
 							j = 0;
@@ -675,9 +684,10 @@ void CParty::ReloadParty()
 						}
 						else
 						{
+                            uint16 zoneid = Sql_GetUIntData(SqlHandle, 3) == 0 ? Sql_GetUIntData(SqlHandle, 4) : Sql_GetUIntData(SqlHandle, 3);
 							PChar->pushPacket(new CPartyMemberUpdatePacket(
 								Sql_GetUIntData(SqlHandle, 0), Sql_GetData(SqlHandle, 1),
-								Sql_GetUIntData(SqlHandle, 2), Sql_GetUIntData(SqlHandle, 3)));
+								Sql_GetUIntData(SqlHandle, 2), zoneid));
 						}
 						j++;
 					}
@@ -697,7 +707,7 @@ void CParty::ReloadParty()
 		PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
         PChar->ReloadPartyDec();
 		PChar->pushPacket(new CPartyDefinePacket(this));
-		int ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, partyid FROM accounts_parties \
+		int ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, pos_prevzone FROM accounts_parties \
 									   	LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
 										partyid = %d ORDER BY timestamp;",
 										m_PartyID);
@@ -712,11 +722,12 @@ void CParty::ReloadParty()
 					PChar->pushPacket(new CPartyMemberUpdatePacket(PPartyMember, j, PChar->getZone()));
 				}
 				else
-				{
-					PChar->pushPacket(new CPartyMemberUpdatePacket(
-						Sql_GetUIntData(SqlHandle, 0), Sql_GetData(SqlHandle, 1),
-						Sql_GetUIntData(SqlHandle, 2), Sql_GetUIntData(SqlHandle, 3)));
-				}
+                {
+                    uint16 zoneid = Sql_GetUIntData(SqlHandle, 3) == 0 ? Sql_GetUIntData(SqlHandle, 4) : Sql_GetUIntData(SqlHandle, 3);
+                    PChar->pushPacket(new CPartyMemberUpdatePacket(
+                        Sql_GetUIntData(SqlHandle, 0), Sql_GetData(SqlHandle, 1),
+                        Sql_GetUIntData(SqlHandle, 2), zoneid));
+                }
 				j++;
 			}
 		}
@@ -741,14 +752,14 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
 
     if (m_PAlliance)
     {
-        ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, partyid FROM accounts_parties \
+        ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, pos_prevzone FROM accounts_parties \
                                     LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
                                     allianceid = %d ORDER BY partyflag & %u, timestamp;",
                                     m_PAlliance->m_AllianceID, PARTY_SECOND | PARTY_THIRD);
     }
     else
     {
-        ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, partyid FROM accounts_parties \
+        ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, pos_prevzone FROM accounts_parties \
                                     LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
                                     partyid = %d ORDER BY timestamp;",
                                     m_PartyID);
@@ -759,7 +770,7 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
         uint8 j = 0;
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            if (Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD) != alliance)
+            if ((Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD)) != alliance)
             {
                 alliance = Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD);
                 j = 0;
@@ -771,9 +782,10 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
             }
             else
             {
+                uint16 zoneid = Sql_GetUIntData(SqlHandle, 3) == 0 ? Sql_GetUIntData(SqlHandle, 4) : Sql_GetUIntData(SqlHandle, 3);
                 PChar->pushPacket(new CPartyMemberUpdatePacket(
                     Sql_GetUIntData(SqlHandle, 0), Sql_GetData(SqlHandle, 1),
-                    Sql_GetUIntData(SqlHandle, 2), Sql_GetUIntData(SqlHandle, 3)));
+                    Sql_GetUIntData(SqlHandle, 2), zoneid));
             }
             j++;
         }
@@ -873,11 +885,11 @@ void CParty::SetLeader(const char* MemberName)
         Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = %u WHERE allianceid = %u", newId, m_PartyID);
 
         m_PLeader = GetMemberByName(MemberName);
-        m_PartyID = newId;
-        if (this->m_PAlliance)
+        if (this->m_PAlliance && this->m_PAlliance->m_AllianceID == m_PartyID)
             m_PAlliance->m_AllianceID = newId;
 
-		Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag | IF(allianceid = partyid, %d, %d) WHERE charid = %u", ALLIANCE_LEADER | PARTY_LEADER, PARTY_LEADER, m_PartyID);
+        m_PartyID = newId;
+		Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag | IF(allianceid = partyid, %d, %d) WHERE charid = %u", ALLIANCE_LEADER | PARTY_LEADER, PARTY_LEADER, newId);
     }
     else
     {
@@ -1067,7 +1079,8 @@ void CParty::RefreshSync()
 			charutils::CalculateStats(member);
 			charutils::BuildingCharTraitsTable(member);
 			charutils::BuildingCharAbilityTable(member);
-			charutils::CheckValidEquipment(member); // Handles rebuilding weapon skills as well.
+			charutils::CheckValidEquipment(member);
+            member->pushPacket(new CCharAbilitiesPacket(member));
 		}
         member->pushPacket(new CMessageBasicPacket(member, member, 0, syncLevel, 540));
 	}

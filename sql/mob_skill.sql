@@ -85,16 +85,16 @@ INSERT INTO `mob_skill` VALUES (2,206,2,'Dust_Cloud', 4, 10.0, 2000, 1500, 4, 0,
 INSERT INTO `mob_skill` VALUES (3,206,3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Rabbits With Cure
-INSERT INTO `mob_skill` VALUES (1,701,1,'Foot_Kick', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (2,701,2,'Dust_Cloud', 4, 10.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (3,701,3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (67, 701, 37, 'Wild_Carrot', 0, 20.0, 2000, 1500, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1,494,1,'Foot_Kick', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (2,494,2,'Dust_Cloud', 4, 10.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (3,494,3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (67,494,37,'Wild_Carrot', 0, 20.0, 2000, 1500, 1, 0, 0, 0);
 
 -- Rabbits (Snowy)
-INSERT INTO `mob_skill` VALUES (1,702,1,'Foot_Kick', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (3,702, 3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (67, 702, 37, 'Wild_Carrot', 0, 20.0, 2000, 1500, 1, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (405, 702, 970, 'Snow_Cloud', 4, 10.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1,495,1,'Foot_Kick', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (3,495,3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (67,495,37,'Wild_Carrot', 0, 20.0, 2000, 1500, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (405,495,970,'Snow_Cloud', 4, 10.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Rabbits (nm or abyssea area?)
 -- INSERT INTO `mob_skill` VALUES (1311,?,?,'Foot_Kick', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
@@ -1402,10 +1402,10 @@ INSERT INTO `mob_skill` VALUES (314,69,869,'Circle_of_Flames', 1, 10.0, 2000, 15
 
 -- Uragnites
 INSERT INTO `mob_skill` VALUES (1315,251,861,'Gas_Shell', 1, 15.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (1317,251,863,'Palsynyxis', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (1314,251,865,'Suctorial_Tentacle', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (1313,251,864,'Painful_Whip', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (1316,251,862,'Venom_Shell', 1, 15.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1317,251,863,'Palsynyxis', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1318,251,864,'Painful_Whip', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1319,251,865,'Suctorial_Tentacle', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Snolls
 INSERT INTO `mob_skill` VALUES (1391,232,875,'Berserk', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
@@ -1693,7 +1693,7 @@ INSERT INTO `mob_skill` VALUES (1195,109,1073,'Morning_Glory',1,15.0,2000,1000,4
 INSERT INTO `mob_skill` VALUES (1197,109,1069,'Nutrient_Aborption',0,7.0,2000,1000,4,0,0,0);
 
 -- Zdei - T-Sight aggro @ 15  yalms. 
--- INSERT INTO `mob_skill` VALUES (1207,272,1074,'Reactor_Cool',0,7.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1207,272,1074,'Reactor_Cool',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1209,272,1076,'Optic_Induration',4,15.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1210,272,1077,'Static_Filament',4,10.0,2000,1000,4,0,0,0); -- bar form only
 INSERT INTO `mob_skill` VALUES (1211,272,1078,'Decayed_Filament',4,8.0,2000,1000,4,0,0,0); -- bar form only
@@ -1716,7 +1716,7 @@ INSERT INTO `mob_skill` VALUES (1123,3,1011,'Auroral_Wind',4,10.0,2000,1000,4,0,
 INSERT INTO `mob_skill` VALUES (1124,3,1012,'Impact_Stream',1,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1125,3,1013,'Depuration',0,7.0,2000,1000,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1126,3,1014,'Crystaline_Cocoon',0,7.0,2000,1000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (1131,3,1017,'Sideswipe',0,7.0,2000,2000,1,0,0,0); 
+INSERT INTO `mob_skill` VALUES (1131,3,1017,'Sideswipe',0,7.0,2000,2000,4,0,0,0); 
 
 -- Aern Axe type fam 443 rng war bst
 INSERT INTO `mob_skill` VALUES (1122,443,1010,'Wing_Thrust',0,7.0,2000,2000,4,0,0,0); 
@@ -1750,7 +1750,7 @@ INSERT INTO `mob_skill` VALUES (1123,440,1011,'Auroral_Wind',4,10.0,2000,1000,4,
 INSERT INTO `mob_skill` VALUES (1124,440,1012,'Impact_Stream',1,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1125,440,1013,'Depuration',0,7.0,2000,1000,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1126,440,1014,'Crystaline_Cocoon',0,7.0,2000,1000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (1130,440,1021,'Medusa_Javelin',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1130,440,1021,'Medusa_Javelin',0,7.0,2000,1000,4,0,0,0);
 
 
 -- Aern staff type smn whm
@@ -1764,19 +1764,19 @@ INSERT INTO `mob_skill` VALUES (1126,439,1014,'Crystaline_Cocoon',0,7.0,2000,100
 
 
 -- Phuabo
-INSERT INTO `mob_skill` VALUES (1097,194,1004,'Aerial_collision',4,10.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1097,194,1004,'Aerial_Collision',4,10.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1101,194,1008,'Tidal_Dive',1,15.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1098,194,1005,'Vapor_Spray',4,12.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1099,194,1006,'Spine_lash',4,12.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1100,194,1007,'Voiceless_storm',1,15.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1102,194,1009,'Plasma_charge',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1099,194,1006,'Spine_Lash',4,12.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1100,194,1007,'Voiceless_Storm',1,15.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1102,194,1009,'Plasma_Charge',0,7.0,2000,1000,1,0,0,0);
 
 -- Xzomit
-INSERT INTO `mob_skill` VALUES (1091,269,998,'Dual_strike',0,7.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1091,269,998,'Dual_Strike',0,7.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1092,269,999,'Syphon_Discharge',1,15.0,2000,1000,4,0,0,1);
 INSERT INTO `mob_skill` VALUES (1093,269,1000,'Mantle_Pierce',0,7.0,2000,1000,4,0,0,3);
 INSERT INTO `mob_skill` VALUES (1094,269,1001,'Ink_Cloud',1,15.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1095,269,1002,'Molluscous_mutation',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1095,269,1002,'Molluscous_Mutation',0,7.0,2000,1000,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1096,269,1003,'Saline_Coat',4,10.0,2000,1000,4,0,0,0);
 
 -- Hpemde

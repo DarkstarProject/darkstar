@@ -38,9 +38,6 @@ CItemArmor::CItemArmor(uint16 id) : CItemUsable(id)
 	m_reqLvl       = 255;
 	m_equipSlotID  = 255;
     m_absorption   = 0;
-    m_trialNumber  = 0;
-
-    memset(&m_augments, 0, sizeof(m_augments));
 }
 
 CItemArmor::~CItemArmor()
@@ -219,12 +216,17 @@ void CItemArmor::addLatent(CLatentEffect* latent)
 
 void CItemArmor::setTrialNumber(uint16 trial)
 {
-	m_trialNumber = trial;
+    if (trial)
+        WBUFB(m_extra, 0x01) |= 0x40;
+    else
+        WBUFB(m_extra, 0x01) &= ~0x40;
+
+    WBUFB(m_extra, 0x0A) = trial;
 }
 
 uint16 CItemArmor::getTrialNumber()
 {
-	return m_trialNumber;
+    return RBUFB(m_extra, 0x0A);
 }
 
 /************************************************************************
@@ -234,21 +236,21 @@ uint16 CItemArmor::getTrialNumber()
 ************************************************************************/
 void CItemArmor::LoadAugment(uint8 slot, uint16 augment)
 {
-    m_augments[slot] = augment;
+    WBUFW(m_extra, 2 + (slot * 2)) = augment;
 }
 
 void CItemArmor::ApplyAugment(uint8 slot)
 {
     SetAugmentMod(
-        unpackBitsBE((uint8*)(m_augments + slot), 0, 11),
-        unpackBitsBE((uint8*)(m_augments + slot), 11, 5)
+        unpackBitsBE(m_extra, 2 + (slot * 2), 0, 11),
+        unpackBitsBE(m_extra, 2 + (slot * 2), 11, 5)
         );
 }
 
 void CItemArmor::setAugment(uint8 slot, uint16 type, uint8 value)
 {
-    packBitsBE((uint8*)(m_augments+slot), type, 0, 11);
-    packBitsBE((uint8*)(m_augments+slot), value, 11, 5);
+    packBitsBE(m_extra, type, 2 + (slot * 2), 0, 11);
+    packBitsBE(m_extra, value, 2 + (slot * 2), 11, 5);
 
     SetAugmentMod(type, value);
 }
@@ -258,6 +260,8 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
     if (type != 0)
     {
         setSubType(ITEM_AUGMENTED);
+        WBUFB(m_extra, 0x00) |= 0x02;
+        WBUFB(m_extra, 0x01) |= 0x03;
     }
 
 
@@ -282,7 +286,5 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
 
 uint16 CItemArmor::getAugment(uint8 slot)
 {
-    DSP_DEBUG_BREAK_IF(slot >= ARRAYLENGTH(m_augments));
-
-	return m_augments[slot];
+    return RBUFW(m_extra, 2 + (slot * 2));
 }

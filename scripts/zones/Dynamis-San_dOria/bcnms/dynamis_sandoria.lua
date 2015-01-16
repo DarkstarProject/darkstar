@@ -4,7 +4,7 @@
 -----------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function OnBcnmRegister(player,instance)
+function onBcnmRegister(player,instance)
 	
 	SetServerVariable("[DynaSandoria]UniqueID",player:getDynamisUniqueID(1281));
 	SetServerVariable("[DynaSandoria]Boss_Trigger",0);
@@ -13,7 +13,7 @@ function OnBcnmRegister(player,instance)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function OnBcnmEnter(player,instance)
+function onBcnmEnter(player,instance)
 	
 	player:setVar("DynamisID",GetServerVariable("[DynaSandoria]UniqueID"));
 	player:setVar("dynaWaitxDay",os.time());
@@ -24,12 +24,9 @@ end;
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish he dynamis
 
-function OnBcnmLeave(player,instance,leavecode)
+function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 	
-	if(leavecode == 2 or leavecode == 3 or leavecode == 4) then
-		player:setPos(161.000,-2.000,161.000,94,0xE6);
-	end
 	if(leavecode == 4) then
 		GetNPCByID(17535224):setStatus(2);
 		SetServerVariable("[DynaSandoria]UniqueID",0);

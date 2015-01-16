@@ -6,10 +6,10 @@ require("scripts/globals/common");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	if (player:getPet() ~= nil) then
 		return MSGBASIC_ALREADY_HAS_A_PET,0;
 	elseif (not player:hasValidJugPetItem()) then
@@ -21,7 +21,7 @@ function OnAbilityCheck(player,target,ability)
 	end
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
     local id = player:getWeaponSubSkillType(SLOT_AMMO);
     if(id == 0) then
         printf("WARNING: jugpet id is ZERO\n");

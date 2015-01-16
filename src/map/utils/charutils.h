@@ -149,13 +149,7 @@ namespace charutils
 
 	uint16	AvatarPerpetuationReduction(CCharEntity* PChar);
 
-	void	SaveCharUnlockedWeapons(CCharEntity* PChar);
-	void	LoadCharUnlockedWeapons(CCharEntity* PChar);
-	void	loadCharWsPoints(CCharEntity* PChar);
-	void	saveCharWsPoints(CCharEntity* PChar, uint16 indexid, int32 points);
-
     void    OpenSendBox(CCharEntity* PChar);
-    void    RecoverFailedSendBox(CCharEntity* PChar);
 
     bool    CheckAbilityAddtype(CCharEntity* PChar, CAbility* PAbility);
 
@@ -166,6 +160,11 @@ namespace charutils
 
 	void	ClearTempItems(CCharEntity* PChar);
 	void	ReloadParty(CCharEntity* PChar);
+
+    void    AddPoints(CCharEntity* PChar, const char* type, int32 amount, int32 max = INT32_MAX);
+    void    SetPoints(CCharEntity* PChar, const char* type, int32 amount);
+    int32   GetPoints(CCharEntity* PChar, const char* type);
+    std::string GetConquestPointsName(CCharEntity* PChar);
 };
 
 #endif

@@ -48,6 +48,7 @@
 #include "../packets/char_abilities.h"
 #include "../packets/char_health.h"
 #include "../packets/char_skills.h"
+#include "../packets/char_stats.h"
 #include "../packets/char_update.h"
 #include "../packets/inventory_assign.h"
 #include "../packets/inventory_finish.h"
@@ -126,6 +127,7 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
+    m_PChar->UpdateEntity();
 }
 
 void CAICharNormal::CheckActionAfterReceive(uint32 tick)
@@ -317,6 +319,7 @@ void CAICharNormal::ActionEngage()
 					m_PChar->animation = ANIMATION_ATTACK;
 					m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
 					m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+                    m_PChar->updatemask |= UPDATE_HP;
 					return;
 				}
                 else
@@ -400,6 +403,7 @@ void CAICharNormal::ActionDisengage()
 	if (m_PChar->status != STATUS_DISAPPEAR)
 		m_PChar->status = STATUS_UPDATE;
 	m_PChar->animation = ANIMATION_NONE;
+    m_PChar->updatemask |= UPDATE_HP;
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 
     if (m_PChar->PPet != NULL && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
@@ -446,8 +450,6 @@ void CAICharNormal::ActionFall()
     m_PChar->m_DeathTimestamp = (uint32)time(NULL);
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
     m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT));
-
-	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
 
 	//influence for conquest system
 	conquest::LoseInfluencePoints(m_PChar);
@@ -620,16 +622,18 @@ void CAICharNormal::ActionItemUsing()
             m_PItemUsable->setLastUseTime(CVanaTime::getInstance()->getVanaTime());
 			m_PChar->pushPacket(new CInventoryItemPacket(m_PItemUsable, m_PItemUsable->getLocationID(), m_PItemUsable->getSlotID()));
 
+            int8 extra[sizeof(m_PItemUsable->m_extra) * 2 + 1];
+            Sql_EscapeStringLen(SqlHandle, extra, (const char*)m_PItemUsable->m_extra, sizeof(m_PItemUsable->m_extra));
+
 			const int8* Query =
                 "UPDATE char_inventory "
-                "SET currCharges = %u, lastUseTime = %u "
+                "SET extra = '%s' "
                 "WHERE charid = %u AND location = %u AND slot = %u;";
 
 			Sql_Query(
 				SqlHandle,
 				Query,
-				m_PItemUsable->getCurrentCharges(),
-				m_PItemUsable->getLastUseTime(),
+                extra,
 				m_PChar->id,
 				m_PItemUsable->getLocationID(),
 				m_PItemUsable->getSlotID());
@@ -2155,6 +2159,7 @@ void CAICharNormal::ActionJobAbilityFinish()
                     CMobEntity* mob = (CMobEntity*)m_PBattleSubTarget;
                     mob->m_OwnerID.id = m_PChar->id;
                     mob->m_OwnerID.targid = m_PChar->targid;
+                    mob->updatemask |= UPDATE_STATUS;
                     mob->PEnmityContainer->UpdateEnmity(m_PChar, m_PJobAbility->getCE(), m_PJobAbility->getVE());
                 }
             }
@@ -2214,20 +2219,6 @@ void CAICharNormal::ActionJobAbilityFinish()
     	}
 
     	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-
-    	// Message "player uses..."  for most abilities
-        // TODO: all abilities should display their own messages!
-    	if(m_PJobAbility->getID() < ABILITY_HEALING_RUBY &&
-    		m_PJobAbility->getID() != ABILITY_JUMP &&
-    		m_PJobAbility->getID() != ABILITY_HIGH_JUMP &&
-    		m_PJobAbility->getID() != ABILITY_SUPER_JUMP &&
-    		m_PJobAbility->getID() != ABILITY_REWARD &&
-    		m_PJobAbility->getID() != ABILITY_SNARL &&
-    		m_PJobAbility->getID() != ABILITY_GAUGE)
-    	{
-    		if (m_PJobAbility->getMessage() == 0)
-    			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, MSGBASIC_USES_JA));
-    	}
 
     } // end paralysis if
 
@@ -2416,6 +2407,12 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	//apply TP Bonus
 	float bonusTp = m_PChar->getMod(MOD_TP_BONUS);
 
+    uint8 damslot = SLOT_MAIN;
+    if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 221)
+    {
+        damslot = SLOT_RANGED;
+    }
+
 	//remove TP Bonus from offhand weapon
 	if (m_PChar->equip[SLOT_SUB] != 0)
 	{
@@ -2431,7 +2428,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	}
 
 	//if ranged WS, remove TP bonus from mainhand weapon
-	if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 221)
+	if (damslot == SLOT_RANGED)
 	{
 		if(m_PChar->equip[SLOT_MAIN] != 0)
 		{
@@ -2538,27 +2535,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 	if (!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
 	{
-		uint8 damslot = SLOT_MAIN;
-		if (m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218)
-		{
-			//ranged WS IDs
-			damslot = SLOT_RANGED;
-		}
-
-
-		// check for ws points
-		CItemWeapon* PWeapon = (CItemWeapon*)m_PChar->m_Weapons[damslot];
-
-		if (PWeapon->isUnlockable() && !m_PChar->unlockedWeapons[PWeapon->getUnlockId()-1].unlocked)
-		{
-			if (m_PChar->addWsPoints(1,PWeapon->getUnlockId()-1))
-			{
-				// weapon is now broken
-				m_PChar->PLatentEffectContainer->CheckLatentsWeaponBreak(damslot);
-			}
-		}
-
-
 		// add overwhelm damage bonus
 		damage = battleutils::getOverWhelmDamageBonus(m_PChar, m_PBattleSubTarget, damage);
 
@@ -2607,10 +2583,13 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		m_PChar->addMP(damage);
 	}
 
+    uint8 wspoints = 0;
+
 	// try to skill up if ws hit
 	if(Action.reaction == REACTION_HIT)
 	{
 		charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PWeaponSkill->getType(), m_PBattleSubTarget->GetMLevel());
+        wspoints = 1;
 	}
 
 	if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 218)
@@ -2665,7 +2644,31 @@ void CAICharNormal::ActionWeaponSkillFinish()
             Action.addEffectMessage = 287 + effect;
             Action.additionalEffect = effect;
 
+            if (effect >= 7)
+                wspoints += 1;
+            else if (effect >= 3)
+                wspoints += 2;
+            else
+                wspoints += 4;
         }
+    }
+
+    // check for ws points
+    CItemWeapon* PWeapon = (CItemWeapon*)m_PChar->m_Weapons[damslot];
+
+    if (PWeapon->isUnlockable() && !PWeapon->isUnlocked())
+    {
+        if (PWeapon->addWsPoints(wspoints))
+        {
+            // weapon is now broken
+            m_PChar->PLatentEffectContainer->CheckLatentsWeaponBreak(damslot);
+            m_PChar->pushPacket(new CCharStatsPacket(m_PChar));
+        }
+        int8 extra[sizeof(PWeapon->m_extra) * 2 + 1];
+        Sql_EscapeStringLen(SqlHandle, extra, (const char*)PWeapon->m_extra, sizeof(PWeapon->m_extra));
+
+        const int8* Query = "UPDATE char_inventory SET extra = '%s' WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
+        Sql_Query(SqlHandle, Query, extra, m_PChar->id, PWeapon->getLocationID(), PWeapon->getSlotID());
     }
 
 	m_PChar->m_ActionList.push_back(Action);
@@ -2981,6 +2984,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
         ratioReturned = ((m_PChar->GetMLevel() <= 50) ? 0.50f : 0.90f) * (1 - map_config.exp_retain);
     }
 	m_PChar->addHP(((hpReturned < 1) ? 1 : hpReturned));
+    m_PChar->updatemask |= UPDATE_HP;
     Action.reaction   = REACTION_NONE;
     Action.speceffect = SPECEFFECT_RAISE;
     Action.messageID  = 0;
@@ -3042,7 +3046,7 @@ void CAICharNormal::DoAttack()
     /////////////////////////////////////////////////////////////////////////
     //	Start of the attack loop.
     /////////////////////////////////////////////////////////////////////////
-    for (uint8 i = 0; i < attackRound->GetAttackSwingCount(); ++i)
+    while (attackRound->GetAttackSwingCount() && !(m_PBattleTarget->isDead()))
     {
         apAction_t Action;
         Action.ActionTarget = m_PBattleTarget;
@@ -3050,15 +3054,6 @@ void CAICharNormal::DoAttack()
 
         // Reference to the current swing.
         CAttack* attack = (CAttack*)attackRound->GetCurrentAttack();
-
-        if (i != 0)
-        {
-            if (m_PBattleTarget->isDead())
-            {
-                break;
-            }
-            Action.ActionTarget = NULL;
-        }
 
         // Set the swing animation.
         Action.animation = attack->GetAnimationID();
@@ -3151,9 +3146,6 @@ void CAICharNormal::DoAttack()
 
             // Check & Handle Afflatus Misery Accuracy Bonus
             battleutils::HandleAfflatusMiseryAccuracyBonus(m_PChar);
-
-            // Try to zanshin (miss).
-            attackRound->CreateZanshinAttacks();
         }
 
         if (Action.reaction != REACTION_HIT && Action.reaction != REACTION_BLOCK && Action.reaction != REACTION_GUARD)
@@ -3164,7 +3156,7 @@ void CAICharNormal::DoAttack()
 
         if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
         {
-            battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, (CItemWeapon*)m_PChar->m_Weapons[attack->GetWeaponSlot()], attack->GetDamage());
+            battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, attack->IsFirstSwing(), (CItemWeapon*)m_PChar->m_Weapons[attack->GetWeaponSlot()], attack->GetDamage());
             battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, attack->GetDamage());
         }
 
@@ -3175,18 +3167,23 @@ void CAICharNormal::DoAttack()
 
         m_PChar->m_ActionList.push_back(Action);
 
-        // Repeat the attack if Zanshin is triggered, otherwise, remove this swing
-        if (!attackRound->GetZanshinOccured())
+        //try zanshin only on single swing attack rounds - it is last priority in the multi-hit order
+        //if zanshin procs, the attack is repeated
+        if (attack->IsFirstSwing() && attackRound->GetAttackSwingCount() == 1)
         {
-            attackRound->DeleteAttackSwing();
+            uint16 zanshinChance = m_PChar->getMod(MOD_ZANSHIN) + m_PChar->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, m_PChar);
+            zanshinChance = dsp_cap(zanshinChance, 0, 100);
+           //zanshin may only proc on a missed/guarded/countered swing or as SAM main with hasso up (at 25% of the base zanshin rate)
+            if (((Action.reaction == REACTION_EVADE || Action.reaction == REACTION_GUARD || Action.spikesEffect == SUBEFFECT_COUNTER) && WELL512::irand() % 100 < zanshinChance) || (m_PChar->GetMJob() == JOB_SAM && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) && WELL512::irand() % 100 < (zanshinChance / 4)))
+            {
+                attack->SetAttackType(ZANSHIN_ATTACK);
+                attack->SetAsFirstSwing(false);
+            }
+            else
+                attackRound->DeleteAttackSwing();
         }
         else
-        {
-            attack->SetAttackType(ZANSHIN_ATTACK);
-            attackRound->SetZanshinOccured(false);
-        }
-
-        i--;
+            attackRound->DeleteAttackSwing();
 
         if (m_PChar->m_ActionList.size() == 8)
         {

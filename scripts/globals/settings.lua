@@ -18,14 +18,20 @@ require("scripts/globals/common");
 --See chocoprice.lua to adjust chocobo stables.
 --require("scripts/globals/chocoprice");
 -- Enable Extension (1= yes 0= no)
-ENABLE_COP    = 0;
-ENABLE_TOAU   = 0;
-ENABLE_WOTG   = 0;
-ENABLE_ACP    = 0;
-ENABLE_AMK    = 0;
-ENABLE_ASA    = 0;
-ENABLE_ABYSEA = 0;
-ENABLE_SOA    = 0;
+ENABLE_COP     = 0;
+ENABLE_TOAU    = 0;
+ENABLE_WOTG    = 0;
+ENABLE_ACP     = 0;
+ENABLE_AMK     = 0;
+ENABLE_ASA     = 0;
+ENABLE_ABYSSEA = 0;
+ENABLE_SOA     = 0;
+
+-- Setting to lock content more accurately to the expansions you have defined above
+-- This generally results in a more accurate presentation of your selected expansions
+-- as well as a less confusing player experience for things that are disabled (things that are disabled are not loaded)
+-- This feature correlates to the required_expansion column in the SQL files
+RESTRICT_BY_EXPANSION = 1;
 
 -- CHARACTER CONFIG
 INITIAL_LEVEL_CAP = 50; --The initial level cap for new players.  There seems to be a hardcap of 255.

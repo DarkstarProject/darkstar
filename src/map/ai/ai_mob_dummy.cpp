@@ -118,6 +118,7 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_MAGIC_INTERRUPT:	  ActionMagicInterrupt();	break;
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
+    m_PMob->UpdateEntity();
 }
 
 /************************************************************************
@@ -158,11 +159,8 @@ void CAIMobDummy::ActionRoaming()
 
 	// wait my time
 	if(m_Tick < m_LastWaitTime + m_WaitTime){
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_NONE));
 		return;
 	}
-
-    uint8 updates = 0;
 
 	if(m_PMob->m_roamFlags & ROAMFLAG_IGNORE)
 	{
@@ -176,8 +174,6 @@ void CAIMobDummy::ActionRoaming()
 	if(m_PPathFind->IsFollowingPath())
 	{
 		FollowPath();
-
-        updates |= UPDATE_POS;
 	}
     else if (m_Tick >= m_LastActionTime + m_PMob->getBigMobMod(MOBMOD_ROAM_COOL))
 	{
@@ -189,7 +185,7 @@ void CAIMobDummy::ActionRoaming()
                 if(m_PMob->Rest(0.1f))
                 {
                     // health updated
-                    updates |= UPDATE_HP;
+                    m_PMob->updatemask |= UPDATE_HP;
                 }
                 else
                 {
@@ -210,8 +206,6 @@ void CAIMobDummy::ActionRoaming()
 				m_PPathFind->LimitDistance(10.0f);
 
 				FollowPath();
-
-                updates |= UPDATE_POS;
 
 				// move back every 5 seconds
 				m_LastActionTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME;
@@ -244,7 +238,7 @@ void CAIMobDummy::ActionRoaming()
 				m_PMob->HideModel(true);
 				m_PMob->animationsub = 0;
 
-				updates |= UPDATE_POS;
+                m_PMob->updatemask |= UPDATE_HP;
 			}
             else if((m_PMob->m_roamFlags & ROAMFLAG_STEALTH))
             {
@@ -252,15 +246,13 @@ void CAIMobDummy::ActionRoaming()
                 m_PMob->HideName(true);
                 m_PMob->untargetable = true;
 
-                updates |= UPDATE_POS;
+                m_PMob->updatemask |= UPDATE_HP;
             }
 			else if(m_PMob->m_roamFlags & ROAMFLAG_EVENT)
 			{
 				// allow custom event action
 				luautils::OnMobRoamAction(m_PMob);
 				m_LastActionTime = m_Tick;
-
-                updates |= UPDATE_POS;
 			}
 			else if(m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
 			{
@@ -278,8 +270,6 @@ void CAIMobDummy::ActionRoaming()
 				{
 					FollowPath();
 				}
-
-				updates |= UPDATE_POS;
 			}
 			else
 			{
@@ -293,11 +283,6 @@ void CAIMobDummy::ActionRoaming()
 	if ((m_Tick - m_SpawnTime) % 3000 <= 400)
 	{
 		luautils::OnMobRoam(m_PMob);
-	}
-
-	if (updates != 0)
-	{
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, updates));
 	}
 }
 
@@ -334,14 +319,12 @@ void CAIMobDummy::ActionEngage()
 		{
 			ActionAttack();
 		}
-
+        m_PMob->updatemask |= UPDATE_HP;
 	}
 	else
 	{
 		m_ActionType = ACTION_DISENGAGE;
 	}
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 /************************************************************************
@@ -367,6 +350,7 @@ void CAIMobDummy::ActionDisengage()
 	m_PMob->SetMainSkin(m_PMob->id);
     m_PMob->delRageMode();
     m_PMob->m_OwnerID.clean();
+    m_PMob->updatemask |= (UPDATE_STATUS | UPDATE_HP);
 	m_PMob->m_CallForHelp = 0;
 	m_PMob->animation = ANIMATION_NONE;
 
@@ -375,8 +359,6 @@ void CAIMobDummy::ActionDisengage()
 	TransitionBack();
 
 	luautils::OnMobDisengage(m_PMob);
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 /************************************************************************
@@ -401,8 +383,6 @@ void CAIMobDummy::ActionFall()
 		m_PMob->PPet->health.hp = 0;
 		m_PMob->PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
 	}
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 /************************************************************************
@@ -589,8 +569,6 @@ void CAIMobDummy::ActionFadeOut()
         m_ActionType  = m_PMob->m_AllowRespawn ? ACTION_SPAWN : ACTION_NONE;
 
         luautils::OnMobDespawn(m_PMob);
-
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 }
 
@@ -708,8 +686,6 @@ void CAIMobDummy::ActionSpawn()
 		}
 		
         luautils::OnMobSpawn( m_PMob );
-
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_SPAWN, UPDATE_ALL));
 	}
 }
 
@@ -903,8 +879,6 @@ void CAIMobDummy::ActionAbilityStart()
         }
     }
 
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
-
 	if( m_PMobSkill->getActivationTime() == 0)
 	{
 		m_ActionType = ACTION_MOBABILITY_FINISH;
@@ -971,8 +945,6 @@ void CAIMobDummy::ActionAbilityUsing()
 		m_ActionType = ACTION_MOBABILITY_FINISH;
 		ActionAbilityFinish();
 	}
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT)); //need to keep HP updating
-
 }
 
 /************************************************************************
@@ -1170,8 +1142,6 @@ void CAIMobDummy::ActionSleep()
 	{
 		SetupEngage();
 	}
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 
@@ -1194,8 +1164,6 @@ void CAIMobDummy::ActionStun()
 			m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 		}	
 	}
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 void CAIMobDummy::ActionMagicStart()
@@ -1211,8 +1179,6 @@ void CAIMobDummy::ActionMagicStart()
 	if(status == STATESTATUS_START)
 	{
 		m_ActionType = ACTION_MAGIC_CASTING;
-
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 	else
 	{
@@ -1239,10 +1205,6 @@ void CAIMobDummy::ActionMagicCasting()
 		m_ActionType = ACTION_MAGIC_FINISH;
 		ActionMagicFinish();
 	}
-	else
-	{
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
-	}
 }
 
 void CAIMobDummy::ActionMagicFinish()
@@ -1264,8 +1226,6 @@ void CAIMobDummy::ActionMagicFinish()
 		m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + 10000;
 	}
 
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
-
 	// display animation, then continue fighting
 	Stun(m_PSpell->getAnimationTime());
 
@@ -1279,8 +1239,6 @@ void CAIMobDummy::ActionMagicInterrupt()
 	m_LastActionTime = m_Tick;
 
 	m_PMagicState->InterruptSpell();
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
@@ -1535,7 +1493,7 @@ void CAIMobDummy::ActionAttack()
 
     if (m_PMob->getMobMod(MOBMOD_SHARE_POS) > 0)
     {
-        CMobEntity* posShare = (CMobEntity*)m_PMob->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_POS), TYPE_MOB);
+        CMobEntity* posShare = (CMobEntity*)m_PMob->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_POS) + m_PMob->targid, TYPE_MOB);
         m_PMob->loc = posShare->loc;
     }
 
@@ -1629,6 +1587,8 @@ void CAIMobDummy::ActionAttack()
 					bool isParried = false;
 					bool isGuarded = false;
 					bool isDodge = false;
+                    bool isCritical = false;
+                    bool thirdEyeCounter = false;
 
 					if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE))
 					{
@@ -1653,9 +1613,28 @@ void CAIMobDummy::ActionAttack()
 							Action.messageID = 0;
 							m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,1, MSGBASIC_SHADOW_ABSORB));
 						}
-						else if (battleutils::IsAnticipated(m_PBattleTarget,false,false))
+						else if (battleutils::IsAnticipated(m_PBattleTarget,false,false,&thirdEyeCounter))
 						{
-							Action.messageID = 30;
+                            if (thirdEyeCounter && isFaceing(m_PBattleTarget->loc.p, m_PMob->loc.p, 40)) //assuming that 3rd eye counter requires facing the mob, but not subjected to accuracy checks
+                            {
+                                isCountered = true;
+                                isCritical = (WELL512::irand() % 100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob, false));
+                                float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, isCritical, 0);
+                                damage = (uint32)((m_PBattleTarget->GetMainWeaponDmg() + battleutils::GetFSTR(m_PBattleTarget, m_PMob, SLOT_MAIN)) * DamageRatio);
+                                Action.messageID = 33;
+                                Action.reaction = REACTION_HIT;
+                                Action.speceffect = SPECEFFECT_NONE;
+                                Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true);
+                                Action.spikesParam = Action.param;
+                                Action.spikesEffect = SUBEFFECT_COUNTER;
+                                if (m_PBattleTarget->objtype == TYPE_PC)
+                                {
+                                    uint8 skilltype = (m_PBattleTarget->m_Weapons[SLOT_MAIN] == NULL ? SKILL_H2H : m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType());
+                                    charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, (SKILLTYPE)skilltype, m_PMob->GetMLevel());
+                                }
+                            }
+                            else
+                                Action.messageID = 30;
 						}
 						else
 						{
@@ -1673,43 +1652,29 @@ void CAIMobDummy::ActionAttack()
 
 
 							//counter check (rate AND your hit rate makes it land, else its just a regular hit)
-							if (WELL512::irand()%100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) &&
-								WELL512::irand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob) &&
-								(m_PBattleTarget->objtype != TYPE_PC || (charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER) ||
-								m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))))
+                            //having seigan active gives chance to counter at 25% of the zanshin proc rate
+                            uint16 seiganChance = 0;
+                            if (m_PBattleTarget->objtype == TYPE_PC && m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
+                            {
+                                seiganChance = m_PBattleTarget->getMod(MOD_ZANSHIN) + ((CCharEntity*)m_PBattleTarget)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)m_PBattleTarget);
+                                seiganChance = dsp_cap(seiganChance, 0, 100);
+                                seiganChance /= 4;
+                            }
+                            if ((WELL512::irand() % 100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) || WELL512::irand() % 100 < seiganChance) &&
+                                isFaceing(m_PBattleTarget->loc.p, m_PMob->loc.p, 40) && WELL512::irand() % 100 < battleutils::GetHitRate(m_PBattleTarget, m_PMob))
 							{
 								isCountered = true;
-								Action.messageID = 33; //counter msg  32
-								Action.reaction   = REACTION_HIT;
-								Action.speceffect = SPECEFFECT_NONE;
-
-								bool isCritical = (WELL512::irand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob,false));
-								bool isHTH = m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH;
-								if (!isHTH && m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK)
-								{
-									isHTH = true;
-								}
-								int16 naturalh2hDMG = 0;
-								if (isHTH)
-								{
-									naturalh2hDMG = (float)(m_PBattleTarget->GetSkill(SKILL_H2H) * 0.11f)+3;
-								}
-
-								float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob,isCritical, 0);
-								damage = (uint32)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob,SLOT_MAIN)) * DamageRatio);
-
-                                Action.spikesParam = damage;
-                                Action.spikesEffect = SUBEFFECT_COUNTER;
-
+								isCritical = (WELL512::irand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob,false));
 							}
 							else if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_COUNTER))
-							{ //Perfect Counter only counters hits that normal counter misses
+							{ //Perfect Counter only counters hits that normal counter misses, always critical, can counter 1-3 times before wearing
 								isCountered = true;
-
+                                isCritical = true;
+                                //m_PBattleTarget->StatusEffectContainer->DelStatusEffect(EFFECT_PERFECT_COUNTER);
 							}
 							else
 							{
-								bool isCritical = ( WELL512::irand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget,false) );
+								isCritical = ( WELL512::irand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget,false) );
 
 								if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES,0))
 								{
@@ -1791,9 +1756,20 @@ void CAIMobDummy::ActionAttack()
 
 								battleutils::HandleSpikesDamage(m_PMob, m_PBattleTarget, &Action, damage);
 							}
-							else
+							else //Countered
 							{
-								Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true);
+                                int16 naturalh2hDMG = 0;
+                                if (m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH || (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK))
+                                    naturalh2hDMG = (float)(m_PBattleTarget->GetSkill(SKILL_H2H) * 0.11f) + 3;
+
+                                float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, isCritical, 0);
+                                damage = (uint32)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob, SLOT_MAIN)) * DamageRatio);
+                                Action.messageID = 33;
+                                Action.reaction = REACTION_HIT;
+                                Action.speceffect = SPECEFFECT_NONE;
+                                Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true);
+                                Action.spikesParam = Action.param;
+                                Action.spikesEffect = SUBEFFECT_COUNTER;
 								if(m_PBattleTarget->objtype == TYPE_PC)
 								{
 									uint8 skilltype = (m_PBattleTarget->m_Weapons[SLOT_MAIN] == NULL ? SKILL_H2H : m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType());
@@ -1848,8 +1824,6 @@ void CAIMobDummy::FinishAttack()
 		// come at me bro
 		m_PMob->addRageMode();
 	}
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 bool CAIMobDummy::TryDeaggro()
@@ -2204,8 +2178,6 @@ void CAIMobDummy::FollowPath()
 	        position_t targetPoint = nearPosition(m_PMob->loc.p, 2.1f, M_PI);
 
 	        PPet->PBattleAI->MoveTo(&targetPoint);
-
-			PPet->loc.zone->PushPacket(PPet, CHAR_INRANGE, new CEntityUpdatePacket(PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 		}
 
 		// if I just finished reset my last action time
@@ -2233,7 +2205,7 @@ void CAIMobDummy::FollowPath()
 
 
 		if(m_PPathFind->OnPoint()){
-			luautils::OnMobPath(m_PMob);
+			luautils::OnPath(m_PMob);
 		}
 	}
 }
@@ -2374,7 +2346,7 @@ void CAIMobDummy::Deaggro()
 	{
 	    m_PMob->m_OwnerID.clean();
 	}
-
+    m_PMob->updatemask |= UPDATE_STATUS;
 
 	m_PBattleTarget = NULL;
 }

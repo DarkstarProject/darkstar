@@ -49,8 +49,6 @@ enum SCRIPTTYPE : uint16
 	//...
 };
 
-#define AUGMENT_COUNT   4
-
 class CItemArmor : public CItemUsable
 {
 public:
@@ -92,7 +90,6 @@ public:
 	std::vector<CModifier*> modList;			// список модификаторов
 	std::vector<CLatentEffect*> latentList;     // contains latents
 
-    uint16  m_augments[AUGMENT_COUNT];          // augments
 private:
 
 	uint8	m_reqLvl;
@@ -103,7 +100,6 @@ private:
     uint8   m_absorption;
 	uint16	m_equipSlotID;
 	uint8	m_removeSlotID;
-    uint16  m_trialNumber;                      // trial number is 2 bytes, little endian
 
     void    SetAugmentMod(uint16 type, uint8 value);
 };

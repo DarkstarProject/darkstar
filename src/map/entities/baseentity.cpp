@@ -44,6 +44,7 @@ CBaseEntity::CBaseEntity()
 	animation    = ANIMATION_NONE;
 
 	status = STATUS_DISAPPEAR;
+    updatemask = 0;
 
 	memset(&loc,  0, sizeof(loc));
 	memset(&look, 0, sizeof(look));
@@ -98,6 +99,7 @@ void CBaseEntity::HideName(bool hide)
 	{
 		namevis &= ~0x08;
 	}
+    updatemask |= UPDATE_HP;
 }
 
 bool CBaseEntity::IsNameHidden()

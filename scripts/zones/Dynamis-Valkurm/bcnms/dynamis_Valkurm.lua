@@ -6,7 +6,7 @@
 
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function OnBcnmRegister(player,instance)
+function onBcnmRegister(player,instance)
 	
 	SetServerVariable("[DynaValkurm]UniqueID",player:getDynamisUniqueID(1286));
 	SetServerVariable("[DynaValkurm]Boss_Trigger",0);
@@ -35,7 +35,7 @@ function OnBcnmRegister(player,instance)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function OnBcnmEnter(player,instance)
+function onBcnmEnter(player,instance)
 	
 	player:setVar("DynamisID",GetServerVariable("[DynaValkurm]UniqueID"));
 	player:setVar("dynaWaitxDay",os.time());
@@ -46,12 +46,9 @@ end;
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish he dynamis
 
-function OnBcnmLeave(player,instance,leavecode)
+function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 	
-	if(leavecode == 2 or leavecode == 3 or leavecode == 4) then
-		player:setPos(119,-9,131,52,0x67);
-	end
 	if(leavecode == 4) then
 		SetServerVariable("[DynaValkurm]UniqueID",0);
 	end

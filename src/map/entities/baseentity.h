@@ -85,6 +85,19 @@ enum ALLEGIANCETYPE
 	ALLEGIANCE_WINDURST		= 4
 };
 
+enum UPDATETYPE
+{
+    UPDATE_NONE     = 0x00,
+    UPDATE_POS      = 0x01,
+    UPDATE_STATUS   = 0x02,
+    UPDATE_HP       = 0x04,
+    UPDATE_COMBAT   = 0x07,
+    UPDATE_NAME     = 0x08,
+    UPDATE_LOOK     = 0x10,
+    UPDATE_ALL_MOB  = 0x0F,
+    UPDATE_ALL_CHAR = 0x1F
+};
+
 // TODO: возможо стоит сделать эту структуру частью класса, взамен нынешних id и targid, но уже без метода clean
 
 struct EntityID_t
@@ -138,6 +151,8 @@ public:
 	bool			untargetable;
 	bool			hpvis;
 	uint8			allegiance;			// what types of targets the entity can fight
+    uint8           updatemask;         // what to update next server tick to players nearby
+
 
 	virtual const int8* GetName();      // имя сущности
 
@@ -159,9 +174,10 @@ public:
     uint32          GetLocalVar(const char* var);
     void            SetLocalVar(const char* var, uint32 val);
 
+    virtual void    UpdateEntity() = 0;
 
     CBaseEntity();						// конструктор
-    virtual ~CBaseEntity();						// деструктор
+    virtual ~CBaseEntity();				// деструктор
 private:
 protected:
     std::map<std::string, uint32> m_localVars;

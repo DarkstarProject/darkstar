@@ -25,10 +25,10 @@ validThfQuestMobs = {17379367,17379368,17379459,17379470,17379477,17379489,17379
 					17379554,17379558,17379562,17379567,17379571,17379575,17379579,17379583,17379587,17379599};
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 
 	if (player:getFreeSlotsCount() == 0) then
 		return MSGBASIC_FULL_INVENTORY,0;
@@ -37,7 +37,7 @@ function OnAbilityCheck(player,target,ability)
 	end
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 	local thfLevel;
 	local stolen = 0;
 

@@ -852,8 +852,11 @@ MOD_KATANA			= 0x58
 MOD_GKATANA			= 0x59
 MOD_CLUB			= 0x5A
 MOD_STAFF			= 0x5B
+MOD_AUTO_MELEE_SKILL  = 0x65
+MOD_AUTO_RANGED_SKILL = 0x66
+MOD_AUTO_MAGIC_SKILL  = 0x67
 MOD_ARCHERY			= 0x68
-MOD_MARKSMAN			= 0x69
+MOD_MARKSMAN	    = 0x69
 MOD_THROW			= 0x6A
 MOD_GUARD			= 0x6B
 MOD_EVASION			= 0x6C
@@ -862,11 +865,11 @@ MOD_PARRY			= 0x6E
 MOD_DIVINE			= 0x6F
 MOD_HEALING			= 0x70
 MOD_ENHANCE			= 0x71
-MOD_ENFEEBLE			= 0x72
+MOD_ENFEEBLE		= 0x72
 MOD_ELEM			= 0x73
 MOD_DARK			= 0x74
-MOD_SUMMONING			= 0x75
-MOD_NINJUTSU			= 0x76
+MOD_SUMMONING		= 0x75
+MOD_NINJUTSU		= 0x76
 MOD_SINGING			= 0x77
 MOD_STRING			= 0x78
 MOD_WIND			= 0x79
@@ -1170,8 +1173,10 @@ MOD_ITEM_SPIKES_DMG           =0x1F4 -- Damage of an items spikes (modId = 500)
 MOD_ITEM_SPIKES_CHANCE        =0x1F5 -- Chance of an items spike proc (modId = 501)
 
 MOD_FERAL_HOWL_DURATION       =0x1F7 -- +20% duration per merit when wearing augmented Monster Jackcoat +2 (modId = 503)
--- MOD_SPARE =0x1F8 -- (modId = 504)
--- MOD_SPARE =0x1F9 -- (modId = 505)
+
+MOD_MANEUVER_BONUS            =0x1F8 -- Maneuver Stat Bonus
+MOD_OVERLOAD_THRESH           =0x1F9 -- Overload Threshold Bonus
+
 -- MOD_SPARE =0x1FA -- (modId = 506)
 -- MOD_SPARE =0x1FB -- (modId = 507)
 -- MOD_SPARE =0x1FC -- (modId = 508)
@@ -1951,3 +1956,13 @@ BEHAVIOUR_STANDBACK			= 0x002; -- mob will standback forever
 BEHAVIOUR_RAISABLE			= 0x004; -- mob can be raised via Raise spells
 BEHAVIOUR_AGGRO_AMBUSH		= 0x200; -- mob aggroes by ambush
 BEHAVIOUR_NO_TURN           = 0x400; -- mob does not turn to face target
+
+------------------------------------
+--
+-- Elevator IDs
+--
+------------------------------------
+ELEVATOR_KUFTAL_TUNNEL_DSPPRNG_RCK		= 1;
+ELEVATOR_PORT_BASTOK_DRWBRDG			= 2;
+ELEVATOR_DAVOI_LIFT                     = 3;
+ELEVATOR_PALBOROUGH_MINES_LIFT          = 4;

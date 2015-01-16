@@ -51,7 +51,6 @@ public:
 	void						CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION direction);	// Creates up to many attacks for a particular hand.
 	void						DeleteAttackSwing();		// Deletes the first attack in the list.
 	void						CreateKickAttacks();		// Creates kick attacks for the round.
-	void						CreateZanshinAttacks();		// Creates zanshin attacks.
 
 	uint8						GetAttackSwingCount();		// Returns the attack list count.
 	bool						IsH2H();					// Flag: Is the attacker using H2H?
@@ -59,23 +58,14 @@ public:
 	CAttack*					GetCurrentAttack();			// Returns the current attack.
 	void						SetSATA(bool value);		// Sets the SATA flag.
 	bool						GetSATAOccured();			// Returns the SATA flag.
-	void						SetMissOccured(bool value);	// Sets the miss occured flag.
-	bool						GetMissOccured();			// Returns the miss occured flag.
-	void						SetZanshinOccured(bool value);// Sets the zanshin occured flag.
-	bool						GetZanshinOccured();		// Returns the zanshin occured flag.
 	CBattleEntity*				GetTAEntity();				// Returns the TA entity.
 
 private:
 	CBattleEntity*				m_attacker;					// The attacker.
 	CBattleEntity*				m_taEntity;					// The trick attack entity.
 	std::vector<CAttack*>		m_attackSwings;				// The list of attacks for this round.
-	bool						m_zanshinOccured;			// Flag: Did zanshin occur during the round?
 	bool						m_sataOccured;				// Flag: Did SATA occur during the round?
-	bool						m_doubleAttackOccured;		// Flag: Did a double attack occur during the round?
-	bool						m_tripleAttackOccured;		// Flag: Did a triple attack occur during the round?
-	bool						m_quadAttackOccured;		// Flag: Did a quadruple attack occur during the round?
 	bool						m_kickAttackOccured;		// Flag: Did a kick attack occur during the round?
-	bool						m_missOccured;				// Flag: Did a miss occur during the attack round?
 	uint16						m_subWeaponType;			// The sub weapon type.
 
 };

@@ -206,7 +206,6 @@ int32 do_init(int32 argc, int8** argv)
     effects::LoadEffectsParameters();
 	battleutils::LoadSkillTable();
 	meritNameSpace::LoadMeritsList();
-	nameSpaceUnlockableWeapons::LoadUnlockableWeaponList();
 	ability::LoadAbilitiesList();
 	battleutils::LoadWeaponSkillsList();
 	battleutils::LoadMobSkillsList();
@@ -225,6 +224,8 @@ int32 do_init(int32 argc, int8** argv)
 	ShowMessage("\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
     CVanaTime::getInstance()->setCustomOffset(map_config.vanadiel_time_offset);
+
+    CTransportHandler::getInstance()->InitializeTransport();
 
 	CTaskMgr::getInstance()->AddTask("time_server", gettick(), NULL, CTaskMgr::TASK_INTERVAL, time_server, 2400);
 	CTaskMgr::getInstance()->AddTask("map_cleanup", gettick(), NULL, CTaskMgr::TASK_INTERVAL, map_cleanup, 5000);
@@ -259,6 +260,7 @@ void do_final(void)
 	petutils::FreePetList();
 	zoneutils::FreeZoneList();
 	luautils::free();
+    message::close();
 
 	delete CTaskMgr::getInstance();
 	delete CVanaTime::getInstance();
@@ -490,8 +492,6 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 			PChar->PBattleAI = new CAICharNormal(PChar);
 
 			charutils::LoadChar(PChar);
-			charutils::LoadInventory(PChar);
-            luautils::OnGameIn(PChar);
 
             PChar->status = STATUS_DISAPPEAR;
 
@@ -756,6 +756,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
             {
 
                 PChar->nameflags.flags |= FLAG_DC;
+                PChar->updatemask |= UPDATE_HP;
                 if (PChar->status == STATUS_NORMAL)
                 {
                     PChar->status = STATUS_UPDATE;
@@ -773,10 +774,11 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                         //if char then disconnects we need to tell the server about the alliance change
                         if (PChar->PParty != NULL && PChar->PParty->m_PAlliance != NULL && PChar->PParty->GetLeader() == PChar){
                             if (PChar->PParty->members.size() == 1){
-                                if (PChar->PParty->m_PAlliance->partyList.size() == 2){
+                                if (PChar->PParty->m_PAlliance->partyList.size() == 1){
                                     PChar->PParty->m_PAlliance->dissolveAlliance();
                                 }
-                                else if (PChar->PParty->m_PAlliance->partyList.size() == 3){
+                                else
+                                {
                                     PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
                                 }
                             }
@@ -823,6 +825,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
         else if (PChar != NULL && (PChar->nameflags.flags & FLAG_DC))
         {
             PChar->nameflags.flags &= ~FLAG_DC;
+            PChar->updatemask |= UPDATE_HP;
             PChar->pushPacket(new CCharUpdatePacket(PChar));
 
             if (PChar->status == STATUS_NORMAL)

@@ -112,8 +112,8 @@ void CBattleEntity::UpdateHealth()
 {
     int32 dif = (getMod(MOD_CONVMPTOHP) - getMod(MOD_CONVHPTOMP));
 
-    health.modmp = ((health.maxmp + getMod(MOD_MP)) * (100 + getMod(MOD_MPP)) / 100) + dsp_min((health.maxmp * m_modStat[MOD_FOOD_MPP] / 100), m_modStat[MOD_FOOD_MP_CAP]);
-    health.modhp = ((health.maxhp + getMod(MOD_HP)) * (100 + getMod(MOD_HPP)) / 100) + dsp_min((health.maxhp * m_modStat[MOD_FOOD_HPP] / 100), m_modStat[MOD_FOOD_HP_CAP]);
+    health.modmp = ((health.maxmp) * (100 + getMod(MOD_MPP)) / 100) + dsp_min((health.maxmp * m_modStat[MOD_FOOD_MPP] / 100), m_modStat[MOD_FOOD_MP_CAP]) + getMod(MOD_MP);
+    health.modhp = ((health.maxhp) * (100 + getMod(MOD_HPP)) / 100) + dsp_min((health.maxhp * m_modStat[MOD_FOOD_HPP] / 100), m_modStat[MOD_FOOD_HP_CAP]) + getMod(MOD_HP);
 
     dif = (health.modmp - 0) <  dif ?  (health.modmp - 0) : dif;
     dif = (health.modhp - 1) < -dif ? -(health.modhp - 1) : dif;
@@ -123,6 +123,8 @@ void CBattleEntity::UpdateHealth()
 
     health.hp = dsp_cap(health.hp, 0, health.modhp);
     health.mp = dsp_cap(health.mp, 0, health.modmp);
+
+    updatemask |= UPDATE_HP;
 }
 
 /************************************************************************
@@ -433,8 +435,6 @@ int16 CBattleEntity::addTP(int16 tp)
 
 int32 CBattleEntity::addHP(int32 hp)
 {
-	if (status == STATUS_NORMAL) status = STATUS_UPDATE;
-
 	if (health.hp == 0 && hp < 0){
 		return 0; //if the entity is already dead, skip the rest to prevent killing it again
 	}
@@ -448,6 +448,8 @@ int32 CBattleEntity::addHP(int32 hp)
     if(hp > 0)
     {
         battleutils::MakeEntityStandUp(this);
+        if (status == STATUS_NORMAL) status = STATUS_UPDATE;
+        updatemask |= UPDATE_HP;
     }
 
 	if (health.hp == 0)
@@ -529,6 +531,12 @@ uint16 CBattleEntity::ATT()
 	if (this->objtype & TYPE_PC){
 		ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType());
 	}
+    else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
+    {
+        ATT += PMaster->GetSkill(SKILL_AME);
+        return ATT + (ATT * (m_modStat[MOD_ATTP] + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster)) / 100) +
+            dsp_min((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
+    }
     return ATT + (ATT * m_modStat[MOD_ATTP] / 100) +
         dsp_min((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
 }
@@ -536,6 +544,12 @@ uint16 CBattleEntity::ATT()
 uint16 CBattleEntity::RATT(uint8 skill)
 {
     int32 ATT = 8 + GetSkill(skill) + m_modStat[MOD_RATT] + battleutils::GetRangedAttackBonuses(this) + STR() / 2;
+
+    if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
+    {
+        return ATT + (ATT * (m_modStat[MOD_ATTP] + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster)) / 100) +
+            dsp_min((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
+    }
 
     return ATT + (ATT * m_modStat[MOD_RATTP] / 100) +
         dsp_min((ATT * m_modStat[MOD_FOOD_RATTP] / 100), m_modStat[MOD_FOOD_RATT_CAP]);
@@ -577,7 +591,18 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
 			dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]);
 		return dsp_max(0, ACC);
 	}
-	else{
+    else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
+    {
+        int16 ACC = PMaster->GetSkill(SKILL_AME);
+        ACC = (ACC > 200 ? (((ACC - 200)*0.9) + 200) : ACC);
+        ACC += DEX() * 0.5;
+        ACC += m_modStat[MOD_ACC] + offsetAccuracy + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PMaster);
+        ACC = ACC + (ACC * m_modStat[MOD_ACCP] / 100) +
+            dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]);
+        return dsp_max(0, ACC);
+    }
+	else
+    {
 		int16 ACC = m_modStat[MOD_ACC];
 		ACC = ACC + (ACC * m_modStat[MOD_ACCP] / 100) +
 			dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]) + DEX() / 2; //food mods here for Snatch Morsel

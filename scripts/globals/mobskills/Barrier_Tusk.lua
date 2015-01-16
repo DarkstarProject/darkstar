@@ -9,11 +9,11 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 
     MobBuffMove(mob, EFFECT_MAGIC_DEF_BOOST, 30, 0, 60);
     skill:setMsg(MobBuffMove(mob, EFFECT_DEFENSE_BOOST, 30, 0, 60));

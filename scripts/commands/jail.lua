@@ -32,7 +32,7 @@ function onTrigger(player, target, cellId, reason)
         player:PrintToPlayer( string.format( "Invalid player '%s' given.", target ) );
         return;
     end
-    
+
     -- Validate the cell id..
     if (cellId == nil or cellId == 0 or cellId > 32) then
         cellId = 1;
@@ -42,11 +42,11 @@ function onTrigger(player, target, cellId, reason)
     if (reason == nil) then
         reason = "Unspecified.";
     end
-    
+
     -- Print that we have jailed someone..
     local message = string.format( '%s jailed %s(%d) into cell %d. Reason: %s', player:getName(), target, targ:getID(), cellId, reason );
     printf( message );
-    
+
     -- Send the target to jail..
     local dest = jailCells[ cellId ];
     targ:setVar( "inJail", cellId );

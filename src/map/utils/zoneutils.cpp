@@ -67,24 +67,29 @@ void UpdateTreasureSpawnPoint(uint32 npcid, uint32 respawnTime)
 {
 	CBaseEntity* PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
 
-	if (PNpc != NULL) {
+	int32 ret = Sql_Query(SqlHandle, "SELECT treasure_spawn_points.pos, treasure_spawn_points.pos_rot, treasure_spawn_points.pos_x, treasure_spawn_points.pos_y, treasure_spawn_points.pos_z, npc_list.required_expansion FROM `treasure_spawn_points` INNER JOIN `npc_list` ON treasure_spawn_points.npcid = npc_list.npcid WHERE treasure_spawn_points.npcid=%u ORDER BY RAND() LIMIT 1", npcid);
 
-		int32 ret = Sql_Query(SqlHandle, "SELECT pos, pos_rot, pos_x, pos_y, pos_z FROM `treasure_spawn_points` WHERE npcid=%u ORDER BY RAND() LIMIT 1", npcid);
+	if ( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
+		const char* expansionCode = Sql_GetData(SqlHandle, 5);
 
-		if ( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-			PNpc->loc.p.rotation = Sql_GetIntData(SqlHandle,1);
-			PNpc->loc.p.x = Sql_GetFloatData(SqlHandle,2);
-			PNpc->loc.p.y = Sql_GetFloatData(SqlHandle,3);
-			PNpc->loc.p.z = Sql_GetFloatData(SqlHandle,4);
-			// ShowDebug(CL_YELLOW"zoneutils::UpdateTreasureSpawnPoint: After %i - %d (%f, %f, %f), %d\n" CL_RESET, Sql_GetIntData(SqlHandle,0), PNpc->id, PNpc->loc.p.x,PNpc->loc.p.y,PNpc->loc.p.z, PNpc->loc.zone->GetID());
-		} else {
-			ShowDebug(CL_RED"zonetuils::UpdateTreasureSpawnPoint: SQL error or treasure <%u> not found in treasurespawnpoints table.\n" CL_RESET, npcid);
+		if (luautils::IsExpansionEnabled(expansionCode) == false){
+			return;
 		}
 
-		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", gettick()+respawnTime, PNpc, CTaskMgr::TASK_ONCE, reappear_npc));
+		if (PNpc != NULL) {
+			PNpc->loc.p.rotation = Sql_GetIntData(SqlHandle, 1);
+			PNpc->loc.p.x = Sql_GetFloatData(SqlHandle, 2);
+			PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 3);
+			PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 4);
+			// ShowDebug(CL_YELLOW"zoneutils::UpdateTreasureSpawnPoint: After %i - %d (%f, %f, %f), %d\n" CL_RESET, Sql_GetIntData(SqlHandle,0), PNpc->id, PNpc->loc.p.x,PNpc->loc.p.y,PNpc->loc.p.z, PNpc->loc.zone->GetID());
+			CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", gettick() + respawnTime, PNpc, CTaskMgr::TASK_ONCE, reappear_npc));
+		}
+		else {
+			ShowDebug(CL_RED"zonetuils::UpdateTreasureSpawnPoint: treasure <%u> not found\n" CL_RESET, npcid);
+		}
 	} else {
-		ShowDebug(CL_RED"zonetuils::UpdateTreasureSpawnPoint: treasure <%u> not found\n" CL_RESET, npcid);
-	}
+		ShowDebug(CL_RED"zonetuils::UpdateTreasureSpawnPoint: SQL error or treasure <%u> not found in treasurespawnpoints table.\n" CL_RESET, npcid);
+	}		
 }
 
 /************************************************************************
@@ -146,7 +151,7 @@ CZone* GetZone(uint16 ZoneID)
 	{
 		return g_PZoneList.at(ZoneID);
 	}
-	catch (const std::out_of_range& oor)
+	catch (const std::out_of_range&)
 	{
 		return NULL;
 	}
@@ -257,7 +262,8 @@ void LoadNPCList()
           status,\
           unknown,\
           look,\
-          name_prefix \
+          name_prefix, \
+		  required_expansion \
         FROM npc_list INNER JOIN zone_settings \
         ON (npcid & 0xFFF000) >> 12 = zone_settings.zoneid \
         WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
@@ -268,6 +274,12 @@ void LoadNPCList()
 	{
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
+			const char* expansionCode = Sql_GetData(SqlHandle, 16);
+
+			if (luautils::IsExpansionEnabled(expansionCode) == false){
+				continue;
+			}
+
 			uint32 NpcID = Sql_GetUIntData(SqlHandle, 0);
 			uint16 ZoneID = (NpcID - 0x1000000) >> 12;
 

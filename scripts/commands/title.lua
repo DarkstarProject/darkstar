@@ -1,19 +1,29 @@
 ---------------------------------------------------------------------------------------------------
 -- func: title
--- auth: <Unknown>
+-- auth: <Unknown>, modified by TeoTwawki
 -- desc: Sets a players title.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
 {
     permission = 1,
-    parameters = "i"
+    parameters = "is"
 };
 
-function onTrigger(player, titleId)
+function onTrigger(player, titleId, target)
     if (titleId == nil) then
         player:PrintToPlayer("You must enter a valid title id.");
         return
     end
-    player:addTitle( titleId );
+
+    if (target == nil) then
+        target = player:getName();
+    end
+
+    local targ = GetPlayerByName(target);
+    if (targ ~= nil) then
+        targ:addTitle( titleId );
+    else
+        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
+    end
 end

@@ -77,9 +77,12 @@ public:
     uint8 getElementMax(uint8 element);
     uint8 getElementCapacity(uint8 element);
 
+    void burdenTick();
+    uint8 addBurden(uint8 element, uint8 burden);
+
 private:
 
-    uint16 m_Burden[8];
+    uint8 m_Burden[8];
 };
 
 #endif

@@ -7,11 +7,11 @@ require("scripts/globals/status");
 require("scripts/globals/weaponskills");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
 --Uncomment these when implemented
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	if (player:getAnimation() ~= 1) then
 		return MSGBASIC_REQUIRES_COMBAT,0;
 	else
@@ -26,7 +26,7 @@ function OnAbilityCheck(player,target,ability)
 	end
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 	
 	local hit = 2;
 	local effect = 1;

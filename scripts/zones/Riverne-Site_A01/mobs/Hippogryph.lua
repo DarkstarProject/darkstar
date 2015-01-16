@@ -5,7 +5,7 @@
 -----------------------------------
 
 
-function OnMobRoam(mob)
+function onMobRoam(mob)
 
 
 	local Heliodromos_Table = 

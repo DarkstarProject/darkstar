@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/globals/zone");
 require("scripts/zones/Garlaige_Citadel/TextIDs");
 
-banishing_gates_base = 17596756; -- _5k0 (First banishing gate)
+banishing_gates_base = 17596758; -- _5k0 (First banishing gate)
 
 -----------------------------------
 -- onInitialize

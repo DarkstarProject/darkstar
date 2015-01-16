@@ -213,6 +213,7 @@ INSERT INTO `mob_pool_mods` VALUES (242,47,22,1);
 INSERT INTO `mob_pool_mods` VALUES (3124,48,434,1);
 INSERT INTO `mob_pool_mods` VALUES (2105,48,434,1);
 INSERT INTO `mob_pool_mods` VALUES (70,48,434,1);
+INSERT INTO `mob_pool_mods` VALUES (1270,39,-1,1);
 
 /*!40000 ALTER TABLE `mob_pool_mods` ENABLE KEYS */;
 UNLOCK TABLES;

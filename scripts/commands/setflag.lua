@@ -11,7 +11,6 @@ cmdprops =
 };
 
 function onTrigger(player, flags, target)
-
     if (flags == nil) then
         player:PrintToPlayer("You must enter a number for the flags (hex values work)");
         player:PrintToPlayer( "@setflag <flags> <target>" );
@@ -29,5 +28,4 @@ function onTrigger(player, flags, target)
             player:PrintToPlayer( "@setflag <flags> <target>" );
         end
     end
-
 end;

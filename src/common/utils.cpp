@@ -119,12 +119,12 @@ Rotations of entities are saved in uint8s, which can only hold up to a value of 
 */
 float rotationToRadian(uint8 rotation)
 {
-	return (((float)rotation) / 255) * 2 * M_PI;
+	return (((float)rotation) / 256) * 2 * M_PI;
 }
 
 uint8 radianToRotation(float radian)
 {
-	return (radian / (2 * M_PI)) * 255;
+	return (radian / (2 * M_PI)) * 256;
 }
 
 

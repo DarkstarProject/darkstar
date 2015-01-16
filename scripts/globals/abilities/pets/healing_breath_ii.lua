@@ -8,11 +8,11 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnAbilityCheck(player, target, ability)
+function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function OnPetAbility(target, pet, skill, master)
+function onPetAbility(target, pet, skill, master)
 	-- TODO: Correct base value (45/256).  See Healing Breath III for details.
 
    ---------- Deep Breathing ----------

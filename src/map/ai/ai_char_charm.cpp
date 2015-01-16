@@ -94,8 +94,6 @@ void CAICharCharm::ActionRoaming()
             m_PPathFind->WarpTo(m_PChar->PMaster->loc.p, PET_ROAM_DISTANCE);
         }
     }
-
-    m_PChar->pushPacket(new CCharPacket(m_PChar, ENTITY_UPDATE));
 }
 
 void CAICharCharm::ActionEngage()
@@ -105,7 +103,7 @@ void CAICharCharm::ActionEngage()
 
     m_PChar->status = STATUS_UPDATE;
     m_PChar->animation = ANIMATION_ATTACK;
-    m_PChar->pushPacket(new CCharPacket(m_PChar, ENTITY_UPDATE));
+    m_PChar->updatemask |= UPDATE_HP;
     return;
 }
 
@@ -119,12 +117,12 @@ void CAICharCharm::ActionDisengage()
     if (m_PChar->status != STATUS_DISAPPEAR)
         m_PChar->status = STATUS_UPDATE;
     m_PChar->animation = ANIMATION_NONE;
-    m_PChar->pushPacket(new CCharPacket(m_PChar, ENTITY_UPDATE));
 
     if (m_PChar->PPet != NULL && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
     {
         m_PChar->PPet->PBattleAI->SetBattleTarget(NULL);
     }
+    m_PChar->updatemask |= UPDATE_HP;
 }
 
 void CAICharCharm::ActionAttack()
@@ -178,7 +176,6 @@ void CAICharCharm::ActionAttack()
             }
         }
     }
-    m_PChar->pushPacket(new CCharPacket(m_PChar, ENTITY_UPDATE));
 }
 
 void CAICharCharm::ActionFall()

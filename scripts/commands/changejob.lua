@@ -41,7 +41,7 @@ function onTrigger(player, job, level)
         player:PrintToPlayer("You must enter a job id or short-name.");
         return;
     end
-    
+
     local jobId = 0;
     if (tonumber(job) ~= nil and tonumber(job) ~= 0) then
         jobId = job;
@@ -52,16 +52,16 @@ function onTrigger(player, job, level)
             return;
         end
     end
-    
+
     -- Ensure player entered a valid id..
     if (jobId <= 0 or jobId > 22) then
         player:PrintToPlayer( "Invalid job id given; must be between 1 and 22. Or use a short name e.g. WAR" );
         return;
     end
-    
+
     -- Change the players job..
     player:changeJob( jobId );
-    
+
     -- Attempt to set the players level..
     if (level ~= nil and level > 0 and level <= 99) then
         player:setLevel( level );

@@ -46,11 +46,12 @@ CItem::CItem(uint16 id)
     m_CharPrice  = 0;
     m_ahCat      = 0;
     m_flag       = 0;
-	m_wornItem	 = 0;
     m_sent       = false;
 
     m_slotID     = -1;
     m_locationID = -1;
+
+    memset(m_extra, 0, sizeof m_extra);
 }
 
 CItem::~CItem()
@@ -292,13 +293,12 @@ void CItem::setReceiver(int8* receiver)
 
 const int8* CItem::getSignature()
 {
-	return m_sign.c_str();
+	return (int8*)m_extra+0x0C;
 }
 
 void CItem::setSignature(int8* signature)
 {
-	m_sign.clear();
-	m_sign.insert(0,signature);
+    memcpy(m_extra + 0x0C, signature, sizeof(m_extra) - 0x0C);
 }
 
 /************************************************************************
@@ -331,22 +331,6 @@ uint8 CItem::getSlotID()
 void CItem::setSlotID(uint8 slotID)
 {
 	m_slotID = slotID;
-}
-
-/************************************************************************
-*                                                                       *
-*  Function for BCNM item of Maat Testimony                             *
-*                                                                       *
-************************************************************************/
-	
-void CItem::setWornItem(uint8 mode)
-{
-	m_wornItem = mode;
-}
-
-uint8 CItem::getWornItem()
-{
-	return m_wornItem;
 }
 
 /************************************************************************

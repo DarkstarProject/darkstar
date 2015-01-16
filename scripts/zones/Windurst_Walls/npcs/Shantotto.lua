@@ -48,7 +48,7 @@ function onTrigger(player,npc)
 
 	local foiledAgain = player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_1);
 	local CFA2 = player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_2);
-	local CFAtimer = player:getVar("Curses,FoiledAgain!?");
+	local CFAtimer = player:getVar("CursesFoiledAgain");
 	local FoiledAGolem = player:getQuestStatus(WINDURST,CURSES_FOILED_A_GOLEM);
 	local golemdelivery = player:getVar("foiledagolemdeliverycomplete");
 	local WildcatWindurst = player:getVar("WildcatWindurst");
@@ -66,8 +66,8 @@ function onTrigger(player,npc)
 	elseif(foiledAgain == QUEST_COMPLETED and CFA2 == QUEST_AVAILABLE and CFAtimer == 0) then
 	    local cDay = VanadielDayOfTheYear();
 		local cYear = VanadielYear();
-		local dFinished = player:getVar("Curses,FoiledAgain!Day");
-		local yFinished = player:getVar("Curses,FoiledAgain!Year");
+		local dFinished = player:getVar("CursesFoiledAgainDay");
+		local yFinished = player:getVar("CursesFoiledAgainYear");
 		if(cDay == dFinished and cYear == yFinished) then
 		    player:startEvent(0xae);
 		elseif(cDay == dFinished + 1 and cYear == yFinished) then
@@ -128,8 +128,8 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17081); 
 		else
 			player:tradeComplete();
-			player:setVar("Curses,FoiledAgain!Day",VanadielDayOfTheYear());
-			player:setVar("Curses,FoiledAgain!Year",VanadielYear());
+			player:setVar("CursesFoiledAgainDay",VanadielDayOfTheYear());
+			player:setVar("CursesFoiledAgainYear",VanadielYear());
 			player:addFame(WINDURST,WIN_FAME*80);
 			player:addItem(17081);
 			player:messageSpecial(ITEM_OBTAINED,17081);
@@ -140,15 +140,15 @@ function onEventFinish(player,csid,option)
 		player:addQuest(WINDURST,CURSES_FOILED_AGAIN_1);
 
 	elseif(csid == 0xb3) then
-		player:setVar("Curses,FoiledAgain!DayFinished",0);
-	    player:setVar("Curses,FoiledAgain!YearFinished",0);
-		player:setVar("Curses,FoiledAgain!Day",0);
-		player:setVar("Curses,FoiledAgain!Year",0);
+		player:setVar("CursesFoiledAgainDayFinished",0);
+	    player:setVar("CursesFoiledAgainYearFinished",0);
+		player:setVar("CursesFoiledAgainDay",0);
+		player:setVar("CursesFoiledAgainYear",0);
 		player:needToZone(true);
-        player:setVar("Curses,FoiledAgain!?",1); -- Used to acknowledge that the two days have passed, Use this to initiate next quest 
+        player:setVar("CursesFoiledAgain",1); -- Used to acknowledge that the two days have passed, Use this to initiate next quest 
 	
 	elseif(csid == 0x00B4 and option == 3) then
-		player:setVar("Curses,FoiledAgain!?",0);
+		player:setVar("CursesFoiledAgain",0);
 		player:addQuest(WINDURST,CURSES_FOILED_AGAIN_2);
 		player:setTitle(TARUTARU_MURDER_SUSPECT);
 	

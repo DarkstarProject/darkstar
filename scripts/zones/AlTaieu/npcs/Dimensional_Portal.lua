@@ -20,7 +20,7 @@ end;
 
 function onTrigger(player,npc)
 
-	local Dimensional_Offset = 16912908;
+	local Dimensional_Offset = 16912910;
 	local npcID = npc:getID();
 	
 	if(npcID == Dimensional_Offset)then

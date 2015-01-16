@@ -10,7 +10,7 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     -- only used in bibiki bay and others
     local zone = target:getZone():getID();
     if(zone >= 1 and zone <= 4) then
@@ -19,7 +19,7 @@ function OnMobSkillCheck(target,mob,skill)
     return 1;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
     local numhits = 1;
     local accmod = 1;
     local dmgmod = 3+math.random();

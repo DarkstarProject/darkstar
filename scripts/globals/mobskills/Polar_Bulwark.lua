@@ -11,7 +11,7 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
    if (mob:AnimationSub() == 0) then
       return 0;
    else
@@ -19,7 +19,7 @@ function OnMobSkillCheck(target,mob,skill)
    end
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 
    -- addEx to pervent dispel
    mob:addStatusEffectEx(EFFECT_MAGIC_SHIELD,0,1,0,45)

@@ -52,7 +52,7 @@ function onMobDeath(mob,killer)
     mob:messageText(mob, PRISHE_TEXT + 2);
 end;
 
-function OnMobRoam(mob)
+function onMobRoam(mob)
     local wait = mob:getLocalVar("wait");
     local ready = mob:getLocalVar("ready");
     if (ready == 0 and wait > 240) then

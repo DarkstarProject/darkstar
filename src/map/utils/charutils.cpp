@@ -46,6 +46,7 @@
 #include "../packets/char_stats.h"
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
+#include "../packets/delivery_box.h"
 #include "../packets/inventory_item.h"
 #include "../packets/inventory_assign.h"
 #include "../packets/inventory_finish.h"
@@ -57,7 +58,6 @@
 #include "../packets/message_debug.h"
 #include "../packets/message_special.h"
 #include "../packets/message_standard.h"
-#include "../packets/send_box.h"
 #include "../packets/quest_mission_log.h"
 #include "../packets/conquest_map.h"
 
@@ -317,8 +317,6 @@ void LoadChar(CCharEntity* PChar)
 {
 	uint8 meritPoints = 0;
 	uint16 limitPoints = 0;
-
-	LoadCharUnlockedWeapons(PChar);
 
 	const int8* fmtQuery =
         "SELECT "
@@ -591,11 +589,12 @@ void LoadChar(CCharEntity* PChar)
 
 
 
-	fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, 2h \
+	fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, 2h, zoning \
 				FROM char_stats \
 				WHERE charid = %u;";
 
 	ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
+    bool zoning = false;
 
 	if (ret != SQL_ERROR &&
 		Sql_NumRows(SqlHandle) != 0 &&
@@ -635,6 +634,8 @@ void LoadChar(CCharEntity* PChar)
 				PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), RecastTime - gettick());
 			}
 		}
+
+        zoning = Sql_GetUIntData(SqlHandle, 9);
 	}
 
 	fmtQuery = "SELECT skillid, value, rank \
@@ -660,22 +661,9 @@ void LoadChar(CCharEntity* PChar)
 		}
 	}
 
-	fmtQuery = "SELECT sandoria_cp, bastok_cp, windurst_cp, sandoria_supply, bastok_supply, windurst_supply, \
-                            beastman_seal, kindred_seal, kindred_crest, high_kindred_crest, sacred_kindred_crest, \
-                            ancient_beastcoin, valor_point, scyld, guild_fishing, guild_woodworking, guild_smithing, \
-                            guild_goldsmithing, guild_weaving, guild_leathercraft, guild_bonecraft, guild_alchemy, \
-                            guild_cooking, cinder, fire_fewell, ice_fewell, wind_fewell, earth_fewell, \
-                            lightning_fewell, water_fewell, light_fewell, dark_fewell, ballista_point, fellow_point, \
-                            chocobuck_sandoria, chocobuck_bastok, chocobuck_windurst, research_mark, tunnel_worm, \
-                            morion_worm, phantom_worm, moblin_marble, infamy, prestige, legion_point, \
-                            spark_of_eminence, shining_star, imperial_standing, runic_portal, leujaoam_assault_point, \
-                            mamool_assault_point, lebros_assault_point, periqia_assault_point, ilrusi_assault_point, \
-							nyzul_isle_assault_point, zeni_point, jetton, therion_ichor, maw, past_sandoria_tp, \
-							past_bastok_tp, past_windurst_tp, allied_notes, bayld, kinetic_unit, obsidian_fragment, \
-                            lebondopt_wing, pulchridopt_wing, mweya_plasm, cruor, resistance_credit, dominion_note, \
-                            fifth_echelon_trophy, fourth_echelon_trophy, third_echelon_trophy, second_echelon_trophy, \
-                            first_echelon_trophy, cave_points, id_tags, op_credits, traverser_stones, voidstones, \
-                            kupofried_corundums, imprimaturs, pheromone_sacks \
+	fmtQuery = "SELECT sandoria_supply, bastok_supply, windurst_supply, \
+                            runic_portal, maw, past_sandoria_tp, \
+							past_bastok_tp, past_windurst_tp \
 				FROM char_points \
 				WHERE charid = %u;";
 
@@ -685,123 +673,52 @@ void LoadChar(CCharEntity* PChar)
 		Sql_NumRows(SqlHandle) != 0 &&
 		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
-        PChar->m_currency.sandoriacp          = Sql_GetUIntData(SqlHandle, 0);
-        PChar->m_currency.bastokcp            = Sql_GetUIntData(SqlHandle, 1);
-        PChar->m_currency.windurstcp          = Sql_GetUIntData(SqlHandle, 2);
-        PChar->nationtp.sandoria              = Sql_GetUIntData(SqlHandle, 3);
-        PChar->nationtp.bastok                = Sql_GetUIntData(SqlHandle, 4);
-        PChar->nationtp.windurst              = Sql_GetUIntData(SqlHandle, 5);
-        PChar->m_currency.beastmanseal        = Sql_GetUIntData(SqlHandle, 6);
-        PChar->m_currency.kindredseal         = Sql_GetUIntData(SqlHandle, 7);
-        PChar->m_currency.kindredcrest        = Sql_GetUIntData(SqlHandle, 8);
-        PChar->m_currency.hkindredcrest       = Sql_GetUIntData(SqlHandle, 9);
-        PChar->m_currency.skindredcrest       = Sql_GetUIntData(SqlHandle, 10);
-        PChar->m_currency.ancientbeastcoins   = Sql_GetUIntData(SqlHandle, 11);
-        PChar->m_currency.valorpoints         = Sql_GetUIntData(SqlHandle, 12);
-        PChar->m_currency.scylds              = Sql_GetUIntData(SqlHandle, 13);
-        PChar->m_currency.fishingpoints       = Sql_GetUIntData(SqlHandle, 14);
-        PChar->m_currency.woodworkingpoints   = Sql_GetUIntData(SqlHandle, 15);
-        PChar->m_currency.smithingpoints      = Sql_GetUIntData(SqlHandle, 16);
-        PChar->m_currency.goldsmithingpoints  = Sql_GetUIntData(SqlHandle, 17);
-        PChar->m_currency.weavingpoints       = Sql_GetUIntData(SqlHandle, 18);
-        PChar->m_currency.leatherpoints       = Sql_GetUIntData(SqlHandle, 19);
-        PChar->m_currency.bonepoints          = Sql_GetUIntData(SqlHandle, 20);
-        PChar->m_currency.alchemypoints       = Sql_GetUIntData(SqlHandle, 21);
-        PChar->m_currency.cookingpoints       = Sql_GetUIntData(SqlHandle, 22);
-        PChar->m_currency.cinders             = Sql_GetUIntData(SqlHandle, 23);
-        PChar->m_currency.firefewell          = Sql_GetUIntData(SqlHandle, 24);
-        PChar->m_currency.icefewell           = Sql_GetUIntData(SqlHandle, 25);
-        PChar->m_currency.windfewell          = Sql_GetUIntData(SqlHandle, 26);
-        PChar->m_currency.earthfewell         = Sql_GetUIntData(SqlHandle, 27);
-        PChar->m_currency.lightningfewell     = Sql_GetUIntData(SqlHandle, 28);
-        PChar->m_currency.waterfewell         = Sql_GetUIntData(SqlHandle, 29);
-        PChar->m_currency.lightfewell         = Sql_GetUIntData(SqlHandle, 30);
-        PChar->m_currency.darkfewell          = Sql_GetUIntData(SqlHandle, 31);
-        PChar->m_currency.ballistapoints      = Sql_GetUIntData(SqlHandle, 32);
-        PChar->m_currency.fellowpoints        = Sql_GetUIntData(SqlHandle, 33);
-        PChar->m_currency.chocobuckssandoria  = Sql_GetUIntData(SqlHandle, 34);
-        PChar->m_currency.chocobucksbastok    = Sql_GetUIntData(SqlHandle, 35);
-        PChar->m_currency.chocobuckswindurst  = Sql_GetUIntData(SqlHandle, 36);
-        PChar->m_currency.researchmarks       = Sql_GetUIntData(SqlHandle, 37);
-        PChar->m_currency.tunnelworms         = Sql_GetUIntData(SqlHandle, 38);
-        PChar->m_currency.morionworms         = Sql_GetUIntData(SqlHandle, 39);
-        PChar->m_currency.phantomworms        = Sql_GetUIntData(SqlHandle, 40);
-        PChar->m_currency.moblinmarbles       = Sql_GetUIntData(SqlHandle, 41);
-        PChar->m_currency.infamy              = Sql_GetUIntData(SqlHandle, 42);
-        PChar->m_currency.prestige            = Sql_GetUIntData(SqlHandle, 43);
-        PChar->m_currency.legionpoints        = Sql_GetUIntData(SqlHandle, 44);
-        PChar->m_currency.sparksofeminence    = Sql_GetUIntData(SqlHandle, 45);
-        PChar->m_currency.shiningstars        = Sql_GetUIntData(SqlHandle, 46);
-        PChar->m_currency.imperialstanding    = Sql_GetUIntData(SqlHandle, 47);
-        PChar->nationtp.ahturhgan             = Sql_GetUIntData(SqlHandle, 48);
-        PChar->m_currency.lsanctumassault     = Sql_GetUIntData(SqlHandle, 49);
-        PChar->m_currency.mjtgassault         = Sql_GetUIntData(SqlHandle, 50);
-        PChar->m_currency.lcavernassault      = Sql_GetUIntData(SqlHandle, 51);
-        PChar->m_currency.periqiaassault      = Sql_GetUIntData(SqlHandle, 52);
-        PChar->m_currency.ilrusiatollassault  = Sql_GetUIntData(SqlHandle, 53);
-        PChar->m_currency.nyzultokens         = Sql_GetUIntData(SqlHandle, 54);
-        PChar->m_currency.zeni                = Sql_GetUIntData(SqlHandle, 55);
-        PChar->m_currency.jettons             = Sql_GetUIntData(SqlHandle, 56);
-        PChar->m_currency.therionichor        = Sql_GetUIntData(SqlHandle, 57);
-        PChar->nationtp.maw                   = Sql_GetUIntData(SqlHandle, 58);
-        PChar->nationtp.pastsandoria          = Sql_GetUIntData(SqlHandle, 59);
-        PChar->nationtp.pastbastok            = Sql_GetUIntData(SqlHandle, 60);
-        PChar->nationtp.pastwindurst          = Sql_GetUIntData(SqlHandle, 61);
-        PChar->m_currency.alliednotes         = Sql_GetUIntData(SqlHandle, 62);
-        PChar->m_currency.bayld               = Sql_GetUIntData(SqlHandle, 63);
-        PChar->m_currency.kineticunits        = Sql_GetUIntData(SqlHandle, 64);
-        PChar->m_currency.obsidianfragments   = Sql_GetUIntData(SqlHandle, 65);
-        PChar->m_currency.lebondoptwings      = Sql_GetUIntData(SqlHandle, 66);
-		PChar->m_currency.pulchridoptwings    = Sql_GetUIntData(SqlHandle, 67);
-        PChar->m_currency.mweyaplasm          = Sql_GetUIntData(SqlHandle, 68);
-        PChar->m_currency.cruor               = Sql_GetUIntData(SqlHandle, 69);
-        PChar->m_currency.resistancecredits   = Sql_GetUIntData(SqlHandle, 70);
-        PChar->m_currency.dominionnotes       = Sql_GetUIntData(SqlHandle, 71);
-        PChar->m_currency.fifthechtrophies    = Sql_GetUIntData(SqlHandle, 72);
-        PChar->m_currency.fourthechtrophies   = Sql_GetUIntData(SqlHandle, 73);
-        PChar->m_currency.thirdechtrophies    = Sql_GetUIntData(SqlHandle, 74);
-        PChar->m_currency.secondechtrophies   = Sql_GetUIntData(SqlHandle, 75);
-        PChar->m_currency.firstechtrophies    = Sql_GetUIntData(SqlHandle, 76);
-        PChar->m_currency.cavepoints          = Sql_GetUIntData(SqlHandle, 77);
-        PChar->m_currency.idtags              = Sql_GetUIntData(SqlHandle, 78);
-        PChar->m_currency.opcredits           = Sql_GetUIntData(SqlHandle, 79);
-        PChar->m_currency.traverserstones     = Sql_GetUIntData(SqlHandle, 80);
-        PChar->m_currency.voidstones          = Sql_GetUIntData(SqlHandle, 81);
-        PChar->m_currency.kupofriedcorundums  = Sql_GetUIntData(SqlHandle, 82);
-        PChar->m_currency.imprimaturs         = Sql_GetUIntData(SqlHandle, 83);
-        PChar->m_currency.pheromonesacks      = Sql_GetUIntData(SqlHandle, 84);
+        PChar->nationtp.sandoria              = Sql_GetUIntData(SqlHandle, 0);
+        PChar->nationtp.bastok                = Sql_GetUIntData(SqlHandle, 1);
+        PChar->nationtp.windurst              = Sql_GetUIntData(SqlHandle, 2);
+        PChar->nationtp.ahturhgan             = Sql_GetUIntData(SqlHandle, 3);
+        PChar->nationtp.maw                   = Sql_GetUIntData(SqlHandle, 4);
+        PChar->nationtp.pastsandoria          = Sql_GetUIntData(SqlHandle, 5);
+        PChar->nationtp.pastbastok            = Sql_GetUIntData(SqlHandle, 6);
+        PChar->nationtp.pastwindurst          = Sql_GetUIntData(SqlHandle, 7);
 	}
 
 	PChar->PMeritPoints = new CMeritPoints(PChar);
 	PChar->PMeritPoints->SetMeritPoints(meritPoints);
 	PChar->PMeritPoints->SetLimitPoints(limitPoints);
 
-    blueutils::LoadSetSpells(PChar);
-	BuildingCharSkillsTable(PChar);
-    PChar->PRecastContainer->ResetAbilities();
-	BuildingCharAbilityTable(PChar);
-	BuildingCharTraitsTable(PChar);
-	CalculateStats(PChar);
-    puppetutils::LoadAutomaton(PChar);
-
-	PChar->animation = (PChar->health.hp == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
-
     fmtQuery =
         "SELECT "
-          "gmlevel,"    // 0
-          "mentor "     // 1
+        "gmlevel,"    // 0
+        "mentor "     // 1
         "FROM chars "
         "WHERE charid = %u;";
 
-    ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
+    ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
 
     if (ret != SQL_ERROR &&
         Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle,0);
-        PChar->m_mentor = (uint8)Sql_GetUIntData(SqlHandle,1);
+        PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle, 0);
+        PChar->m_mentor = (uint8)Sql_GetUIntData(SqlHandle, 1);
     }
+
+    CalculateStats(PChar);
+    blueutils::LoadSetSpells(PChar);
+    puppetutils::LoadAutomaton(PChar);
+	BuildingCharSkillsTable(PChar);
+    PChar->PRecastContainer->ResetAbilities();
+	BuildingCharAbilityTable(PChar);
+	BuildingCharTraitsTable(PChar);
+    PChar->UpdateHealth();
+
+    PChar->m_event.EventID = luautils::OnZoneIn(PChar);
+
+	PChar->animation = (PChar->health.hp == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
+
+    charutils::LoadInventory(PChar);
+    luautils::OnGameIn(PChar, zoning);
 }
 
 /************************************************************************
@@ -819,24 +736,9 @@ void LoadInventory(CCharEntity* PChar)
           "slot,"           // 2
           "quantity,"       // 3
           "bazaar,"         // 4
-          "signature,"      // 5
-          "currCharges,"    // 6
-          "lastUseTime,"    // 7
-          "linkshellid,"    // 8
-          "color,"          // 9
-          "locked,"         // 10
-          "col," 	        // 11
-          "row,"            // 12
-          "level,"          // 13
-          "rotation,"       // 14
-		  "worn,"			// 15
-		  "augment0,"       // 16
-		  "augment1,"       // 17
-		  "augment2,"       // 18
-		  "augment3,"       // 19
-		  "trialNumber "    // 20
+          "signature, "     // 5
+          "extra "          // 6
         "FROM char_inventory "
-        "LEFT JOIN linkshells ON signature = name "
         "WHERE charid = %u "
         "ORDER BY location ASC";
 
@@ -854,52 +756,34 @@ void LoadInventory(CCharEntity* PChar)
 				PItem->setSlotID(Sql_GetUIntData(SqlHandle,2));
 				PItem->setQuantity(Sql_GetUIntData(SqlHandle,3));
 				PItem->setCharPrice(Sql_GetUIntData(SqlHandle,4));
-				PItem->setWornItem(Sql_GetUIntData(SqlHandle,15));
+
+                size_t length = 0;
+                int8* extra = NULL;
+                Sql_GetData(SqlHandle, 6, &extra, &length);
+                memcpy(PItem->m_extra, extra, (length > sizeof(PItem->m_extra) ? sizeof(PItem->m_extra) : length));
 
 				if (PItem->getCharPrice() != 0)
 				{
 					PItem->setSubType(ITEM_LOCKED);
 				}
-				if (PItem->isType(ITEM_USABLE) && PItem->isSubType(ITEM_CHARGED))
-				{
-					((CItemUsable*)PItem)->setCurrentCharges(Sql_GetUIntData(SqlHandle,6));
-					((CItemUsable*)PItem)->setLastUseTime(Sql_GetUIntData(SqlHandle,7));
-				}
 
-                if (PItem->isType(ITEM_ARMOR))
-                {
-				    ((CItemArmor*)PItem)->LoadAugment(0, (uint16)Sql_GetUIntData(SqlHandle,16));
-				    ((CItemArmor*)PItem)->LoadAugment(1, (uint16)Sql_GetUIntData(SqlHandle,17));
-				    ((CItemArmor*)PItem)->LoadAugment(2, (uint16)Sql_GetUIntData(SqlHandle,18));
-				    ((CItemArmor*)PItem)->LoadAugment(3, (uint16)Sql_GetUIntData(SqlHandle,19));
-
-                    ((CItemArmor*)PItem)->setTrialNumber(Sql_GetUIntData(SqlHandle,20));
-                }
                 if (PItem->isType(ITEM_LINKSHELL))
                 {
-                    int8 EncodedString [16];
-                    EncodeStringLinkshell(Sql_GetData(SqlHandle,5), EncodedString);
+                    int8 EncodedString[16];
+                    EncodeStringLinkshell(Sql_GetData(SqlHandle, 5), EncodedString);
                     PItem->setSignature(EncodedString);
-                    ((CItemLinkshell*)PItem)->SetLSID(Sql_GetUIntData(SqlHandle,8));
-                    ((CItemLinkshell*)PItem)->SetLSColor(Sql_GetIntData(SqlHandle,9));
                 }
-                else if (PItem->getFlag() & ITEM_FLAG_INSCRIBABLE)
-				{
-                    int8 EncodedString [13];
-                    EncodeStringSignature(Sql_GetData(SqlHandle,5), EncodedString);
-					PItem->setSignature(EncodedString);
-				}
+                else if (PItem->getFlag() & (ITEM_FLAG_INSCRIBABLE))
+                {
+                    int8 EncodedString[13];
+                    EncodeStringSignature(Sql_GetData(SqlHandle, 5), EncodedString);
+                    PItem->setSignature(EncodedString);
+                }
+
                 if (PItem->isType(ITEM_FURNISHING) && PItem->getLocationID() == LOC_MOGSAFE)
                 {
-                    if (Sql_GetIntData(SqlHandle,10) != 0) // способ узнать, что предмет действительно установлен
+                    if (((CItemFurnishing*)PItem)->isInstalled()) // способ узнать, что предмет действительно установлен
                     {
-                        ((CItemFurnishing*)PItem)->setSubType(ITEM_LOCKED);
-
-                        ((CItemFurnishing*)PItem)->setCol(Sql_GetIntData(SqlHandle,11));
-		                ((CItemFurnishing*)PItem)->setRow(Sql_GetIntData(SqlHandle,12));
-		                ((CItemFurnishing*)PItem)->setLevel(Sql_GetIntData(SqlHandle,13));
-		                ((CItemFurnishing*)PItem)->setRotation(Sql_GetIntData(SqlHandle,14));
-
                         PChar->getStorage(LOC_STORAGE)->AddBuff(((CItemFurnishing*)PItem)->getStorage());
                     }
                 }
@@ -922,10 +806,10 @@ void LoadInventory(CCharEntity* PChar)
                 CItem* PItem = (CItem*)PItemContainer->GetItem(y);
 
                 // check if the item is valid and can have an augment applied to it
-                if (PItem != NULL && (PItem->isType(ITEM_ARMOR) || PItem->isType(ITEM_WEAPON)))
+                if (PItem != NULL && ((PItem->isType(ITEM_ARMOR) || PItem->isType(ITEM_WEAPON)) && !PItem->isSubType(ITEM_CHARGED)))
                 {
                     // check if there are any valid augments to be applied to the item
-                    for (uint8 j = 0; j < AUGMENT_COUNT; ++j)
+                    for (uint8 j = 0; j < 4; ++j)
                     {
                         // found a match, apply the augment
                         if (((CItemArmor*)PItem)->getAugment(j) != 0)
@@ -946,16 +830,23 @@ void LoadInventory(CCharEntity* PChar)
 
 	ret = Sql_Query(SqlHandle, Query, PChar->id);
 
-	if (ret != SQL_ERROR &&
-		Sql_NumRows(SqlHandle) != 0)
+	if (ret != SQL_ERROR)
 	{
 		CItemLinkshell* PLinkshell1 = NULL;
         CItemLinkshell* PLinkshell2 = NULL;
+		bool hasMainWeapon = false;
 
 		while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
 			if (Sql_GetUIntData(SqlHandle, 1) < 16)
+			{
+				if (Sql_GetUIntData(SqlHandle, 1) == SLOT_MAIN)
+				{
+					hasMainWeapon = true;
+				}
+
 				EquipItem(PChar, Sql_GetUIntData(SqlHandle, 0), Sql_GetUIntData(SqlHandle, 1), Sql_GetUIntData(SqlHandle, 2));
+			}
 			else
 			{
 				uint8 SlotID = Sql_GetUIntData(SqlHandle, 0);
@@ -967,10 +858,22 @@ void LoadInventory(CCharEntity* PChar)
 					PItem->setSubType(ITEM_LOCKED);
 					PChar->equip[equipSlot] = SlotID;
                     PChar->equipLoc[equipSlot] = LOC_INVENTORY;
-					PLinkshell = (CItemLinkshell*)PItem;
+                    if (equipSlot == SLOT_LINK1)
+					    PLinkshell1 = (CItemLinkshell*)PItem;
+                    else if (equipSlot == SLOT_LINK2)
+                    {
+                        PLinkshell2 = (CItemLinkshell*)PItem;
+                    }
 				}
 			}
 		}
+
+		// If no weapon is equipped, equip the appropriate unarmed weapon item
+		if (!hasMainWeapon)
+		{
+			CheckUnarmedWeapon(PChar);
+		}
+
 		if (PLinkshell1)
 		{
 			linkshell::AddOnlineMember(PChar, PLinkshell1);
@@ -980,8 +883,8 @@ void LoadInventory(CCharEntity* PChar)
             linkshell::AddOnlineMember(PChar, PLinkshell2);
         }
 	}
-    else
-    {
+	else
+	{
 		ShowError(CL_RED"Loading error from char_equip\n" CL_RESET);
 	}
 
@@ -1101,7 +1004,7 @@ void SendInventory(CCharEntity* PChar)
         PChar->pushPacket(new CLinkshellEquipPacket(PChar,1));
     }
 
-    CItem* PItem = PChar->getEquip(SLOT_LINK2);
+    PItem = PChar->getEquip(SLOT_LINK2);
     if (PItem != NULL)
     {
         PItem->setSubType(ITEM_LOCKED);
@@ -1179,13 +1082,8 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem, bool silence)
                 "itemId,"
                 "quantity,"
                 "signature,"
-                "currCharges,"
-                "augment0,"
-                "augment1,"
-                "augment2,"
-                "augment3,"
-                "trialNumber) "
-            "VALUES(%u,%u,%u,%u,%u,'%s',%u,%u,%u,%u,%u,%u)";
+                "extra) "
+            "VALUES(%u,%u,%u,%u,%u,'%s','%s')";
 
         int8 signature[21];
         if (PItem->isType(ITEM_LINKSHELL))
@@ -1197,6 +1095,9 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem, bool silence)
             DecodeStringSignature((int8*)PItem->getSignature(), signature);
         }
 
+        int8 extra[sizeof(PItem->m_extra) * 2 + 1];
+        Sql_EscapeStringLen(SqlHandle, extra, (const int8*)PItem->m_extra, sizeof(PItem->m_extra));
+
         if( Sql_Query(SqlHandle, Query,
             PChar->id,
             LocationID,
@@ -1204,12 +1105,7 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem, bool silence)
             PItem->getID(),
             PItem->getQuantity(),
             signature,
-            charges,
-            PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getAugment(0) : 0,
-            PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getAugment(1) : 0,
-            PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getAugment(2) : 0,
-            PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getAugment(3) : 0,
-            PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getTrialNumber() : 0 ) == SQL_ERROR )
+            extra ) == SQL_ERROR )
         {
             ShowError(CL_RED"charplugin::AddItem: Cannot insert item to database\n" CL_RESET);
             PChar->getStorage(LocationID)->InsertItem(NULL, SlotID);
@@ -1253,7 +1149,6 @@ void UpdateSubJob(CCharEntity* PChar)
     PChar->PRecastContainer->ResetAbilities();
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
-    charutils::BuildingCharWeaponSkills(PChar);
 
     PChar->UpdateHealth();
     PChar->health.hp = PChar->GetMaxHP();
@@ -1546,11 +1441,12 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 			}
 			break;
 		}
+
         charutils::BuildingCharSkillsTable(PChar);
-        charutils::CalculateStats(PChar);
 
         PChar->UpdateHealth();
 		PChar->m_EquipSwap = true;
+        PChar->updatemask |= UPDATE_LOOK;
 	}
 }
 
@@ -1845,7 +1741,6 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 contai
             RemoveSub(PChar);
 
 		PChar->status = STATUS_UPDATE;
-		PChar->m_EquipSwap = true;
 		PChar->pushPacket(new CEquipPacket(slotID, equipSlotID, containerID));
 	}
 	else
@@ -1908,13 +1803,14 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 contai
 		}
 
         BuildingCharWeaponSkills(PChar);
+        PChar->pushPacket(new CCharAbilitiesPacket(PChar));
     }
 
     charutils::BuildingCharSkillsTable(PChar);
-    charutils::CalculateStats(PChar);
 
     PChar->UpdateHealth();
 	PChar->m_EquipSwap = true;
+    PChar->updatemask |= UPDATE_LOOK;
 }
 
 /************************************************************************
@@ -1984,7 +1880,6 @@ void RemoveAllEquipment(CCharEntity* PChar)
     }
 	// Determines the UnarmedItem to use, since all slots are empty now.
 	CheckUnarmedWeapon(PChar);
-    PChar->pushPacket(new CCharAppearancePacket(PChar));
 
     BuildingCharWeaponSkills(PChar);
     SaveCharEquip(PChar);
@@ -2091,7 +1986,6 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 			}
 		}
 	}
-	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 }
 
 void BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 PetID){
@@ -2275,6 +2169,13 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
                 skillBonus += PChar->getMod(MOD_DARK_ARTS_SKILL);
             }
         }
+        else if (i >= 22 && i <= 24)
+        {
+            if (PChar->PAutomaton)
+            {
+                MaxMSkill = puppetutils::getSkillCap(PChar, (SKILLTYPE)i);
+            }
+        }
 
 		//ignore these indexes when calculating merits
 		if (i < 13 || i > 24)
@@ -2441,7 +2342,6 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 
     PChar->m_magicEvasion = battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PChar->GetMLevel());
 	PChar->addModifier(MOD_MEVA, PChar->m_magicEvasion);
-	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 }
 
 /************************************************************************
@@ -3507,7 +3407,7 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
         if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION) &&
             (region >= 28 && region <= 32))
         {
-            PChar->m_currency.imperialstanding += (exp * 0.1f);
+            charutils::AddPoints(PChar, "imperial_standing",(exp * 0.1f));
             PChar->pushPacket(new CConquestPacket(PChar));
         }
     }
@@ -3517,7 +3417,7 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
     if (zoneutils::GetCurrentRegion(Pzone) == REGION_ABYSSEA)
     {
         uint16 TextID = luautils::GetTextIDVariable(Pzone, "CRUOR_OBTAINED");
-        uint32 Total = PChar->m_currency.cruor;
+        uint32 Total = charutils::GetPoints(PChar, "cruor");
         uint32 Cruor = 0; // Need to work out how to do cruor chains, until then no cruor will drop unless this line is customized for non retail play.
 
         if (TextID == 0)
@@ -3527,8 +3427,8 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 
         if (Cruor >= 1)
         {
-            PChar->pushPacket(new CMessageSpecialPacket(PChar, TextID, Cruor, Total, 0, 0));
-            PChar->m_currency.cruor += Cruor;
+            PChar->pushPacket(new CMessageSpecialPacket(PChar, TextID, Cruor, Total+Cruor, 0, 0));
+            charutils::AddPoints(PChar, "cruor", Cruor);
         }
     }
 
@@ -3577,7 +3477,6 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
             SaveCharStats(PChar);
             SaveCharJob(PChar, PChar->GetMJob());
             SaveCharExp(PChar, PChar->GetMJob());
-			SaveCharPoints(PChar);
 
             PChar->pushPacket(new CCharJobsPacket(PChar));
             PChar->pushPacket(new CCharUpdatePacket(PChar));
@@ -3607,7 +3506,6 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 	SaveCharStats(PChar);
     SaveCharJob(PChar, PChar->GetMJob());
     SaveCharExp(PChar, PChar->GetMJob());
-	SaveCharPoints(PChar);
     PChar->pushPacket(new CCharStatsPacket(PChar));
 
 	if(onLimitMode)
@@ -3626,64 +3524,6 @@ void SetLevelRestriction(CCharEntity* PChar, uint8 lvl)
 {
 
 }
-
-
-/************************************************************************
-*																		*
-*  save char unlocked weapons											*
-*																		*
-************************************************************************/
-
-void SaveCharUnlockedWeapons(CCharEntity* PChar)
-{
-	const int8* Query =  "UPDATE chars SET unlocked_weapons = '%s' WHERE charid = %u";
-
-	int8 points[MAX_UNLOCKABLE_WEAPONS*2+1];
-    int8 UnlockedWeapons[MAX_UNLOCKABLE_WEAPONS];
-
-    for (uint16 i = 0; i < MAX_UNLOCKABLE_WEAPONS; ++i)
-    {
-		UnlockedWeapons[i] = PChar->unlockedWeapons[i].unlocked;
-    }
-
-	Sql_EscapeStringLen(SqlHandle, points, (const int8*)UnlockedWeapons, MAX_UNLOCKABLE_WEAPONS);
-	Sql_Query(SqlHandle, Query, points, PChar->id);
-
-}
-
-
-/************************************************************************
-*																		*
-*  load char unlocked weapons											*
-*																		*
-************************************************************************/
-
-void LoadCharUnlockedWeapons(CCharEntity* PChar)
-{
-	memcpy(PChar->unlockedWeapons, nameSpaceUnlockableWeapons::g_pWeaponUnlockable, sizeof(PChar->unlockedWeapons));
-
-    const int8* Query = "SELECT unlocked_weapons FROM chars WHERE charid = %u";
-
-	if (Sql_Query(SqlHandle, Query, PChar->id) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		size_t length = 0;
-        int8*  unlocked = 0;
-
-        Sql_GetData(SqlHandle, 0, &unlocked, &length);
-
-        if (length == MAX_UNLOCKABLE_WEAPONS)
-        {
-			for (uint16 i = 0; i < MAX_UNLOCKABLE_WEAPONS; ++i)
-		    {
-				PChar->unlockedWeapons[i].unlocked = unlocked[i];
-            }
-        }
-
-		loadCharWsPoints(PChar);
-	}
-
-}
-
 
 /************************************************************************
 *																		*
@@ -3706,7 +3546,7 @@ void SaveCharPosition(CCharEntity* PChar)
         "WHERE charid = %u;";
 
     Sql_Query(SqlHandle, Query,
-        PChar->getZone(),
+        PChar->m_moghouseID ? 0 : PChar->getZone(),
         PChar->loc.prevzone,
         PChar->loc.p.rotation,
         PChar->loc.p.x,
@@ -4088,6 +3928,7 @@ void SaveCharJob(CCharEntity* PChar, JOBTYPE job)
     if (PChar->m_isNewPlayer && PChar->jobs.job[job] >= 10)
     {
         PChar->m_isNewPlayer = false;
+        PChar->updatemask |= UPDATE_HP;
         Sql_Query(SqlHandle, "UPDATE chars SET isnewplayer = 0 WHERE charid = %u LIMIT 1", PChar->id);
     }
 }
@@ -4173,111 +4014,21 @@ void SaveCharSkills(CCharEntity* PChar, uint8 SkillID)
 void SaveCharPoints(CCharEntity* PChar)
 {
 	const int8* Query = "UPDATE char_points \
-				  		SET sandoria_cp = %u, bastok_cp = %u, windurst_cp = %u, sandoria_supply = %u, bastok_supply = %u, windurst_supply = %u, \
-                            beastman_seal = %u, kindred_seal = %u, kindred_crest = %u, high_kindred_crest = %u, sacred_kindred_crest = %u, \
-                            ancient_beastcoin = %u, valor_point = %u, scyld = %u, guild_fishing = %u, guild_woodworking = %u, guild_smithing = %u, \
-                            guild_goldsmithing = %u, guild_weaving = %u, guild_leathercraft = %u, guild_bonecraft = %u, guild_alchemy = %u, \
-                            guild_cooking = %u, cinder = %u, fire_fewell = %u, ice_fewell = %u, wind_fewell = %u, earth_fewell = %u, \
-                            lightning_fewell = %u, water_fewell = %u, light_fewell = %u, dark_fewell = %u, ballista_point = %u, fellow_point = %u, \
-                            chocobuck_sandoria = %u, chocobuck_bastok = %u, chocobuck_windurst = %u, research_mark = %u, tunnel_worm = %u, \
-                            morion_worm = %u, phantom_worm = %u, moblin_marble = %u, infamy = %u, prestige = %u, legion_point = %u, \
-                            spark_of_eminence = %u, shining_star = %u, imperial_standing = %u, runic_portal = %u, leujaoam_assault_point = %u, \
-                            mamool_assault_point = %u, lebros_assault_point = %u, periqia_assault_point = %u, ilrusi_assault_point = %u, \
-							nyzul_isle_assault_point = %u, zeni_point = %u, jetton = %u, therion_ichor = %u, maw = %u, past_sandoria_tp = %u, \
-							past_bastok_tp = %u, past_windurst_tp = %u, allied_notes = %u, bayld = %u, kinetic_unit = %u, obsidian_fragment = %u, \
-                            lebondopt_wing = %u, pulchridopt_wing = %u, mweya_plasm = %u, cruor = %u, resistance_credit = %u, dominion_note = %u, \
-                            fifth_echelon_trophy = %u, fourth_echelon_trophy = %u, third_echelon_trophy = %u, second_echelon_trophy = %u, \
-                            first_echelon_trophy = %u, cave_points = %u, id_tags = %u, op_credits = %u, traverser_stones = %u, voidstones = %u, \
-                            kupofried_corundums = %u, imprimaturs = %u, pheromone_sacks = %u \
+				  		SET sandoria_supply = %u, bastok_supply = %u, windurst_supply = %u, \
+                            runic_portal = %u, maw = %u, past_sandoria_tp = %u, \
+							past_bastok_tp = %u, past_windurst_tp = %u \
 						WHERE charid = %u;";
 
 	Sql_Query(SqlHandle,
         Query,
-        PChar->m_currency.sandoriacp,
-        PChar->m_currency.bastokcp,
-        PChar->m_currency.windurstcp,
         PChar->nationtp.sandoria,
 		PChar->nationtp.bastok,
 		PChar->nationtp.windurst,
-        PChar->m_currency.beastmanseal,
-        PChar->m_currency.kindredseal,
-        PChar->m_currency.kindredcrest,
-        PChar->m_currency.hkindredcrest,
-        PChar->m_currency.skindredcrest,
-        PChar->m_currency.ancientbeastcoins,
-        PChar->m_currency.valorpoints,
-        PChar->m_currency.scylds,
-        PChar->m_currency.fishingpoints,
-        PChar->m_currency.woodworkingpoints,
-        PChar->m_currency.smithingpoints,
-        PChar->m_currency.goldsmithingpoints,
-        PChar->m_currency.weavingpoints,
-        PChar->m_currency.leatherpoints,
-        PChar->m_currency.bonepoints,
-        PChar->m_currency.alchemypoints,
-        PChar->m_currency.cookingpoints,
-        PChar->m_currency.cinders,
-        PChar->m_currency.firefewell,
-        PChar->m_currency.icefewell,
-        PChar->m_currency.windfewell,
-        PChar->m_currency.earthfewell,
-        PChar->m_currency.lightningfewell,
-        PChar->m_currency.waterfewell,
-        PChar->m_currency.lightfewell,
-        PChar->m_currency.darkfewell,
-        PChar->m_currency.ballistapoints,
-        PChar->m_currency.fellowpoints,
-        PChar->m_currency.chocobuckssandoria,
-        PChar->m_currency.chocobucksbastok,
-        PChar->m_currency.chocobuckswindurst,
-        PChar->m_currency.researchmarks,
-        PChar->m_currency.tunnelworms,
-        PChar->m_currency.morionworms,
-        PChar->m_currency.phantomworms,
-        PChar->m_currency.moblinmarbles,
-        PChar->m_currency.infamy,
-        PChar->m_currency.prestige,
-        PChar->m_currency.legionpoints,
-        PChar->m_currency.sparksofeminence,
-        PChar->m_currency.shiningstars,
-		PChar->m_currency.imperialstanding,
 		PChar->nationtp.ahturhgan,
-        PChar->m_currency.lsanctumassault,
-        PChar->m_currency.mjtgassault,
-        PChar->m_currency.lcavernassault,
-        PChar->m_currency.periqiaassault,
-        PChar->m_currency.ilrusiatollassault,
-        PChar->m_currency.nyzultokens,
-        PChar->m_currency.zeni,
-        PChar->m_currency.jettons,
-        PChar->m_currency.therionichor,
 		PChar->nationtp.maw,
 		PChar->nationtp.pastsandoria,
 		PChar->nationtp.pastbastok,
 		PChar->nationtp.pastwindurst,
-        PChar->m_currency.alliednotes,
-        PChar->m_currency.bayld,
-        PChar->m_currency.kineticunits,
-        PChar->m_currency.obsidianfragments,
-        PChar->m_currency.lebondoptwings,
-		PChar->m_currency.pulchridoptwings,
-        PChar->m_currency.mweyaplasm,
-        PChar->m_currency.cruor,
-        PChar->m_currency.resistancecredits,
-        PChar->m_currency.dominionnotes,
-        PChar->m_currency.fifthechtrophies,
-        PChar->m_currency.fourthechtrophies,
-        PChar->m_currency.thirdechtrophies,
-        PChar->m_currency.secondechtrophies,
-        PChar->m_currency.firstechtrophies,
-        PChar->m_currency.cavepoints,
-        PChar->m_currency.idtags,
-        PChar->m_currency.opcredits,
-        PChar->m_currency.traverserstones,
-        PChar->m_currency.voidstones,
-        PChar->m_currency.kupofriedcorundums,
-        PChar->m_currency.imprimaturs,
-        PChar->m_currency.pheromonesacks,
 		PChar->id);
 }
 
@@ -4403,56 +4154,6 @@ uint16 AvatarPerpetuationReduction(CCharEntity* PChar)
 
 /************************************************************************
 *																		*
-*  get player weapon points	for 1 weapon								*
-*																		*
-************************************************************************/
-
-void loadCharWsPoints(CCharEntity* PChar)
-{
-	int8 fmtQuery[] = "SELECT itemindex, points "
-					 "FROM char_weapon_skill_points "
-					 "WHERE charid = %u "
-					 "ORDER BY itemindex ASC;";
-
-	int32 ret = Sql_Query(SqlHandle,fmtQuery, PChar->id);
-
-	uint8 index = 0;
-
-	while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		index  = (uint16)Sql_GetUIntData(SqlHandle,0)-1;
-
-        if(index < MAX_UNLOCKABLE_WEAPONS && index >= 0){
-    		PChar->unlockedWeapons[index].points = (uint16)Sql_GetUIntData(SqlHandle,1);
-        } else {
-            ShowWarning("charutils::loadCharWsPoints Warning bad index from database. Index = %d", index);
-        }
-	}
-
-}
-
-/************************************************************************
-*																		*
-*  set char weapon points, set to zero to delete						*
-*																		*
-************************************************************************/
-
-void saveCharWsPoints(CCharEntity* PChar, uint16 indexid, int32 points)
-{
-	DSP_DEBUG_BREAK_IF(indexid > MAX_UNLOCKABLE_WEAPONS);
-	if (points == 0)
-	{
-		Sql_Query(SqlHandle,"DELETE FROM char_weapon_skill_points WHERE itemindex = %u AND charid = '%u' LIMIT 1;", indexid+1, PChar->id);
-		return;
-	}
-
-	const int8* fmtQuery = "INSERT INTO char_weapon_skill_points SET itemindex = %u, charid = %u, points = %u ON DUPLICATE KEY UPDATE points = %u;";
-
-	Sql_Query(SqlHandle,fmtQuery, indexid+1, PChar->id, points, points);
-}
-
-/************************************************************************
-*																		*
 *  Record now as when the character has died and save it to the db.		*
 *																		*
 ************************************************************************/
@@ -4537,53 +4238,8 @@ void OpenSendBox(CCharEntity* PChar)
             }
 		}
     }
-	PChar->pushPacket(new CSendBoxPacket(0x0D, 0, 0x01));
+	PChar->pushPacket(new CDeliveryBoxPacket(0x0D, 2, 0, 0x01));
     return;
-}
-
-/************************************************************************
-*																		*
-*  Recovers items that were inserted into send box but were not			*
-*  successfully delivered or retrieved                                  *
-*																		*
-************************************************************************/
-
-void RecoverFailedSendBox(CCharEntity* PChar)
-{
-	const int8* fmtQuery = "SELECT itemid, quantity \
-                            FROM delivery_box \
-							WHERE senderid = %u \
-                            AND box = 2 \
-                            AND slot < 8 \
-                            AND sent = 0 \
-							ORDER BY slot;";
-
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
-
-    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0)
-    {
-        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-            uint8 loc = PChar->getStorage(LOC_INVENTORY)->SearchItemWithSpace(Sql_GetIntData(SqlHandle,0), Sql_GetIntData(SqlHandle,1));
-            if(loc != ERROR_SLOTID)
-            {
-                UpdateItem(PChar, LOC_INVENTORY, loc, Sql_GetIntData(SqlHandle,1));
-            }
-            else
-            {
-                uint8 add = AddItem(PChar, LOC_INVENTORY, Sql_GetIntData(SqlHandle,0), Sql_GetIntData(SqlHandle,1), true);
-                DSP_DEBUG_BREAK_IF(add == ERROR_SLOTID);
-            }
-        }
-        fmtQuery = "DELETE FROM delivery_box \
-							WHERE senderid = %u \
-                            AND box = 2 \
-                            AND slot < 8 \
-                            AND sent = 0 \
-							ORDER BY slot;";
-        ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
-        DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
-    }
 }
 
 bool CheckAbilityAddtype(CCharEntity* PChar, CAbility* PAbility)
@@ -4804,6 +4460,50 @@ void ReloadParty(CCharEntity* PChar)
 		}
         PChar->ReloadPartyDec();
 	}
+}
+
+//char_points manipulation
+void AddPoints(CCharEntity* PChar, const char* type, int32 amount, int32 max)
+{
+    const int8* Query = "UPDATE char_points SET %s = GREATEST(LEAST(%s+%d, %d), 0) WHERE charid = %u;";
+
+    Sql_Query(SqlHandle, Query, type, type, amount, max, PChar->id);
+}
+
+void SetPoints(CCharEntity* PChar, const char* type, int32 amount)
+{
+    const int8* Query = "UPDATE char_points SET %s = %d WHERE charid = %u;";
+
+    Sql_Query(SqlHandle, Query, type, amount, PChar->id);
+}
+
+int32 GetPoints(CCharEntity* PChar, const char* type)
+{
+    const int8* Query = "SELECT %s FROM char_points WHERE charid = %u;";
+
+    int ret = Sql_Query(SqlHandle, Query, type, PChar->id);
+
+    if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        return Sql_GetIntData(SqlHandle, 0);
+    }
+    return 0;
+}
+
+std::string GetConquestPointsName(CCharEntity* PChar)
+{
+    switch (PChar->profile.nation)
+    {
+    case 0:
+        return "sandoria_cp";
+    case 1:
+        return "bastok_cp";
+    case 2:
+        return "windurst_cp";
+    default:
+        DSP_DEBUG_BREAK_IF(true);
+        return NULL;
+    }
 }
 
 }; // namespace charutils

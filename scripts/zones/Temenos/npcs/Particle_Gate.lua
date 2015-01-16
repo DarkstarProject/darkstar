@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-  GateID =  (npc:getID())-16928770;  
+  GateID =  (npc:getID())-16929221;  
   -- print("GateID" ..GateID);
   
   

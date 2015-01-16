@@ -26,20 +26,19 @@
 #include "item_usable.h"
 
 #include "../vana_time.h"
+#include "../map.h"
 
 CItemUsable::CItemUsable(uint16 id) : CItem(id)
 {
 	setType(ITEM_USABLE);
 
 	m_UseDelay		 = 0;
-	m_CurrCharges	 = 0;
 	m_MaxCharges	 = 0;
 	m_Animation		 = 0;
 	m_AnimationTime	 = 0;
 	m_ActivationTime = 0;
 	m_ValidTarget	 = 0;
 	m_ReuseDelay	 = 0;
-	m_LastUseTime	 = 0;
     m_AssignTime     = 0;
     m_AoE            = 0;
 }
@@ -70,27 +69,27 @@ uint32 CItemUsable::getReuseDelay()
 
 void CItemUsable::setLastUseTime(uint32 LastUseTime)
 {
-	m_LastUseTime = LastUseTime;
+	WBUFL(m_extra, 0x04) = LastUseTime;
 }
 
 uint32 CItemUsable::getLastUseTime()
 {
-	return m_LastUseTime;
+	return RBUFL(m_extra, 0x04);
 }
 
 uint32 CItemUsable::getNextUseTime()
 {
-    return m_LastUseTime + m_ReuseDelay;
+    return getLastUseTime() + m_ReuseDelay;
 }
 
 void CItemUsable::setCurrentCharges(uint8 CurrCharges)
 {
-	m_CurrCharges = dsp_cap(CurrCharges, 0, m_MaxCharges);
+	WBUFB(m_extra, 0x01) = dsp_cap(CurrCharges, 0, m_MaxCharges);
 }
 
 uint8 CItemUsable::getCurrentCharges()
 {
-	return m_CurrCharges;
+    return RBUFB(m_extra, 0x01);
 }
 
 void CItemUsable::setMaxCharges(uint8 MaxCharges)
@@ -173,7 +172,7 @@ void CItemUsable::setAssignTime(uint32 VanaTime)
 uint32 CItemUsable::getReuseTime()
 {
     uint32 CurrentTime = CVanaTime::getInstance()->getVanaTime();
-    uint32 ReuseTime   = dsp_max(m_AssignTime + m_UseDelay, m_LastUseTime + m_ReuseDelay);
+    uint32 ReuseTime   = dsp_max(m_AssignTime + m_UseDelay, getLastUseTime() + m_ReuseDelay);
 
     return (ReuseTime > CurrentTime ? (ReuseTime - CurrentTime) * 1000 : 0);
 }

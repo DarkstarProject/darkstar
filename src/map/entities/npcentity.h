@@ -39,6 +39,7 @@ public:
 
 	uint32		unknown;
 	uint8		name_prefix;
+    void        UpdateEntity() override;
 
 	 CNpcEntity();				// конструктор
 	~CNpcEntity();				// деструктор

@@ -1,11 +1,11 @@
 -----------------------------------
 -- Area: Davoi
 -- NPC:  _451 (Elevator Lever)
--- Notes: Used to operate Elevator @450
+-- Notes: Used to operate Elevator @450 (actual npc script is _454)
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/zones/Davoi/TextIDs");
 
@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 	npc:openDoor(3); -- lever animation
-	RunElevator(23);
+    RunElevator(ELEVATOR_DAVOI_LIFT); -- elevator @450 (actual npc script is _454)
 end;
 
 -----------------------------------

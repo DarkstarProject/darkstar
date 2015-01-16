@@ -14,7 +14,7 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
 	local check = 1;
 	if(mob:getID() == 17043875 and mob:getHP() < mob:getMaxHP()/100 * 35) then
 		check = 0;
@@ -22,7 +22,7 @@ function OnMobSkillCheck(target,mob,skill)
 	return check;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 	local dmgmod = 1.2;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_EARTH,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,math.random(2,3)*info.hitslanded);

@@ -31,7 +31,7 @@
 enum INVITETYPE
 {
 	INVITE_PARTY    = 0,
-	INVITE_ALLIANCE = 2
+	INVITE_ALLIANCE = 5
 };
 
 /************************************************************************

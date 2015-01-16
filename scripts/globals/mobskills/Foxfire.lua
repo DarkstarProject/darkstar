@@ -10,7 +10,7 @@ require("/scripts/globals/settings");
 require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     local job = mob:getMainJob();
     if(job == JOB_RDM or job == JOB_THF or job == JOB_PLD or job == JOB_BST or job == JOB_RNG or job == JOB_BRD or job == JOB_NIN or job == JOB_COR) then
         return 0;
@@ -18,7 +18,7 @@ function OnMobSkillCheck(target,mob,skill)
     return 1;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 
     local numhits = 1;
     local accmod = 1;

@@ -8,11 +8,11 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnAbilityCheck(player, target, ability)
+function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function OnPetAbility(target, pet, skill, summoner)
+function onPetAbility(target, pet, skill, summoner)
     local duration = 60 + 2 * summoner:getMod(MOD_SUMMONING);
 
     local magicskill = getSkillLvl(1, target:getMainLvl());

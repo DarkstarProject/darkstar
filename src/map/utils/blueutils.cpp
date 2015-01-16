@@ -388,14 +388,6 @@ void ValidateBlueSpells(CCharEntity* PChar)
     }
 
     SaveSetSpells(PChar);
-    PChar->status = STATUS_UPDATE;
-    charutils::BuildingCharTraitsTable(PChar);
-	PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
-	PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
-	PChar->pushPacket(new CCharStatsPacket(PChar));
-	charutils::CalculateStats(PChar);
-	PChar->UpdateHealth();
-	PChar->pushPacket(new CCharHealthPacket(PChar));
 }
 
 void CalculateTraits(CCharEntity* PChar)

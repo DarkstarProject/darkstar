@@ -59,26 +59,6 @@ struct LootItem_t
 typedef std::vector<DropItem_t> DropList_t;
 typedef std::vector<LootItem_t> LootList_t;
 
-#define MAX_UNLOCKABLE_WEAPONS 24
-
-
-
-struct UnlockedWeapons_t
-{
-	union
-	{
-		struct
-		{
-			bool	unlocked;		// is the weapon unlocked? (eg destroyers)
-			uint16	points;			// number of points
-		};
-		uint32 data;
-	};
-	uint16	itemid;					// id of the actual weapon
-	uint16	required;				// points required to break
-};
-
-
 /************************************************************************
 *                                                                       *
 *  Пространстов имен дла работы с глобальными списками предметов        *
@@ -100,14 +80,6 @@ namespace itemutils
 	DropList_t* GetDropList(uint16 DropID);
 	LootList_t* GetLootList(uint16 LootDropID);
 
-};
-
-
-namespace nameSpaceUnlockableWeapons
-{
-	void LoadUnlockableWeaponList();
-
-	extern UnlockedWeapons_t g_pWeaponUnlockable[MAX_UNLOCKABLE_WEAPONS];
 };
 
 #endif

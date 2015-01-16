@@ -67,7 +67,7 @@
 *	lists used in battleutils											*
 ************************************************************************/
 
-uint16 g_SkillTable[100][13];									// All Skills by level/skilltype
+uint16 g_SkillTable[100][14];									// All Skills by level/skilltype
 uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// Holds skill ranks by skilltype and job
 uint16 g_SkillChainDamageModifiers[MAX_SKILLCHAIN_LEVEL + 1][MAX_SKILLCHAIN_COUNT + 1]; // Holds damage modifiers for skill chains [chain level][chain count]
 
@@ -793,7 +793,7 @@ void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action)
 *                                                                       *
 ************************************************************************/
 
-void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 hitNumber, CItemWeapon* weapon, uint32 finaldamage)
+void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, bool isFirstSwing, CItemWeapon* weapon, uint32 finaldamage)
 {
     CCharEntity* PChar = NULL;
 
@@ -865,7 +865,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
 
             PDefender->addHP(-Action->addEffectParam);
         }
-        else if ((enspell > 6 && enspell <= 8) || (enspell > 8 && enspell <= 14 && hitNumber == 0))
+        else if ((enspell > 6 && enspell <= 8) || (enspell > 8 && enspell <= 14 && isFirstSwing))
         {
             Action->additionalEffect = subeffects[enspell-7];
             Action->addEffectMessage = 163;
@@ -890,7 +890,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
                 charutils::UpdateHealth(PChar);
             }
         }
-		else if (enspell == ENSPELL_AUSPICE && hitNumber == 0){
+		else if (enspell == ENSPELL_AUSPICE && isFirstSwing){
 			Action->additionalEffect = SUBEFFECT_LIGHT_DAMAGE;
 			Action->addEffectMessage = 163;
 			Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 2, 7);
@@ -1314,12 +1314,26 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool 
 			acc = ((100 +  PChar->getMod(MOD_RACCP)) * acc)/100 +
 				dsp_min(((100 +  PChar->getMod(MOD_FOOD_RACCP)) * acc)/100,  PChar->getMod(MOD_FOOD_RACC_CAP));
 		}
+
+        //Check For Ambush Merit - Ranged
+        if ((charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_AMBUSH)) && ((abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23))) {
+            acc += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_AMBUSH, (CCharEntity*)PAttacker);
+        }
 	}
-	
-	//Check For Ambush Merit - Ranged
-	if (PAttacker->objtype == TYPE_PC && (charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_AMBUSH)) && ((abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23))) {
-		acc += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_AMBUSH, (CCharEntity*)PAttacker);
-	}
+    else if (PAttacker->objtype == TYPE_PET && ((CPetEntity*)PAttacker)->getPetType() == PETTYPE_AUTOMATON)
+    {
+        int skill = PAttacker->PMaster->GetSkill(SKILL_ARA);
+        acc = skill;
+        if (skill > 200)
+        {
+            acc = 200 + (skill - 200)*0.9;
+        }
+        acc += PAttacker->getMod(MOD_RACC) + ((CCharEntity*)PAttacker->PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PAttacker->PMaster);
+        acc += battleutils::GetRangedAccuracyBonuses(PAttacker);
+        acc += PAttacker->AGI() / 2;
+        acc = ((100 + PAttacker->getMod(MOD_RACCP)) * acc) / 100 +
+            dsp_min(((100 + PAttacker->getMod(MOD_FOOD_RACCP)) * acc) / 100, PAttacker->getMod(MOD_FOOD_RACC_CAP));
+    }
 
 	int eva = PDefender->EVA();
 	hitrate = hitrate + (acc - eva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
@@ -1357,7 +1371,11 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 			}
 		}
 	}
-	else
+    else if (PAttacker->objtype == TYPE_PET && ((CPetEntity*)PAttacker)->getPetType() == PETTYPE_AUTOMATON)
+    {
+        rAttack = PAttacker->RATT(SKILL_ARA);
+    }
+    else
 	{
 		//assume mobs capped
 		rAttack = battleutils::GetMaxSkill(SKILL_ARC,JOB_RNG,PAttacker->GetMLevel());
@@ -1720,6 +1738,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
     {
         PDefender->m_OwnerID.id = PAttacker->PMaster->id;
         PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+        PDefender->updatemask |= UPDATE_STATUS;
     }
     else
     {
@@ -1731,6 +1750,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		{
 			PDefender->m_OwnerID.id = PAttacker->id;
 			PDefender->m_OwnerID.targid = PAttacker->targid;
+            PDefender->updatemask |= UPDATE_STATUS;
 		}
     }
 
@@ -2278,7 +2298,7 @@ parameters including if the effect should 100% be removed (e.g. in the case of A
 by setting forceRemove to true. Must also specify the ignore boolean, which is true
 to ignore the effects of Third Eye (but NOT try to remove).
 ******************************************************************************/
-bool IsAnticipated(CBattleEntity* PDefender, bool forceRemove, bool ignore)
+bool IsAnticipated(CBattleEntity* PDefender, bool forceRemove, bool ignore, bool* thirdEyeCounter)
 {
 	if(ignore){
 		return false;
@@ -2325,6 +2345,9 @@ bool IsAnticipated(CBattleEntity* PDefender, bool forceRemove, bool ignore)
 		if(WELL512::irand()%100 < (100-(pastAnticipations*15))){
 			//increment power and don't remove
 			effect->SetPower(effect->GetPower()+1);
+            //chance to counter - 25% base TODO: add "enhances third eye effect" gear
+            if (WELL512::irand() % 100 < 25)
+                *thirdEyeCounter = true;
 			return true;
 		}
 		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_THIRD_EYE);
@@ -2876,6 +2899,7 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
         PDefender->m_OwnerID.id = PAttacker->id;
         PDefender->m_OwnerID.targid = PAttacker->targid;
     }
+    PDefender->updatemask |= UPDATE_STATUS;
 
     switch (PDefender->objtype)
     {
@@ -2886,6 +2910,7 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
             if(PDefender->animation == ANIMATION_SIT)
             {
                 PDefender->animation = ANIMATION_NONE;
+                PDefender->updatemask |= UPDATE_HP;
                 ((CCharEntity*)PDefender)->pushPacket(new CCharUpdatePacket((CCharEntity*)PDefender));
             }
 
@@ -2946,6 +2971,7 @@ void MakeEntityStandUp(CBattleEntity* PEntity)
         if (PPlayer->animation == ANIMATION_HEALING)
         {
             PPlayer->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+            PPlayer->updatemask |= UPDATE_HP;
         }
     }
 }
@@ -3671,6 +3697,7 @@ void applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 charmTim
 
         // this will make him transition back to roaming if sleeping
         PCharmer->PPet->animation = ANIMATION_NONE;
+        PCharmer->updatemask |= UPDATE_HP;
 
         // only move to roaming action if not asleep
         if (!PCharmer->PPet->StatusEffectContainer->HasPreventActionEffect())
@@ -3681,9 +3708,9 @@ void applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 charmTim
         charutils::BuildingCharPetAbilityTable((CCharEntity*)PCharmer, (CPetEntity*)PVictim, PVictim->id);
         ((CCharEntity*)PCharmer)->pushPacket(new CCharUpdatePacket((CCharEntity*)PCharmer));
         ((CCharEntity*)PCharmer)->pushPacket(new CPetSyncPacket((CCharEntity*)PCharmer));
-        PVictim->loc.zone->PushPacket(PVictim, CHAR_INRANGE, new CEntityUpdatePacket(PVictim, ENTITY_UPDATE, UPDATE_COMBAT));
         PVictim->allegiance = ALLEGIANCE_PLAYER;
         ((CMobEntity*)PVictim)->m_OwnerID.clean();
+        PVictim->updatemask |= UPDATE_STATUS;
     }
 
     else if (PVictim->objtype == TYPE_PC)
@@ -3698,9 +3725,8 @@ void applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 charmTim
             ((CMobEntity*)PCharmer)->PEnmityContainer->Clear(PVictim->id);
             PCharmer->PBattleAI->SetBattleTarget(((CMobEntity*)PCharmer)->PEnmityContainer->GetHighestEnmity());
         }
-
-        PVictim->loc.zone->PushPacket(PVictim, CHAR_INRANGE_SELF, new CCharPacket((CCharEntity*)PVictim, ENTITY_UPDATE));
     }
+    PVictim->updatemask |= UPDATE_HP;
 }
 
 void unCharm(CBattleEntity* PEntity)
@@ -3718,9 +3744,8 @@ void unCharm(CBattleEntity* PEntity)
         {
             PEntity->PBattleAI->SetCurrentAction(ACTION_FALL);
         }
-
-        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CCharPacket((CCharEntity*)PEntity, ENTITY_UPDATE));
     }
+    PEntity->updatemask |= UPDATE_HP;
 }
 
 /************************************************************************
@@ -3830,6 +3855,7 @@ void ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker)
         mob->PEnmityContainer->AddBaseEnmity(PAttacker);
         mob->m_OwnerID.id = PAttacker->id;
         mob->m_OwnerID.targid = PAttacker->targid;
+        mob->updatemask |= UPDATE_STATUS;
     }
 }
 

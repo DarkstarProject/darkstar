@@ -11,7 +11,7 @@ function onMobSpawn(mob)
 	
 end;
 
-function OnMobRoam(mob)
+function onMobRoam(mob)
 	
 	local Defoliate_Leshy = 16875763;
 	local Defoliate_Leshy_PH = 0;
