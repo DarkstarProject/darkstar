@@ -38,11 +38,18 @@ function onZoneIn( player, prevZone)
 		player:setPos( 60.989, -4.898, -151.001, 198);
 	end
 
-	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
-		cs = 0x0003;
-	end
-
 	return cs;
+end;
+
+-----------------------------------		
+-- afterZoneIn		
+-----------------------------------		
+
+function afterZoneIn(player)
+
+	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
+		player:startEvent(0x0003);
+	end
 end;
 
 -----------------------------------		

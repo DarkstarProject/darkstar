@@ -36,16 +36,23 @@ function onZoneIn( player, prevZone)
 		player:setPos( -374.008, -23.712, 63.289, 213);
 	end
 
-	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
-		cs = 0x0030;
-	elseif( player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 238 ) then
-		cs = 0x003e;
-	elseif( player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 240 ) then
-		cs = 0x003f;
-	end
-
 	return cs;
-end;			
+end;
+
+-----------------------------------		
+-- afterZoneIn		
+-----------------------------------		
+
+function afterZoneIn(player)
+
+	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
+		player:startEvent(0x0030);
+	elseif( player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 238 ) then
+		player:startEvent(0x003e);
+	elseif( player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 240 ) then
+		player:startEvent(0x003f);
+	end
+end;
 
 -----------------------------------		
 -- onConquestUpdate		
