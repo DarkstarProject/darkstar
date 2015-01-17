@@ -40,20 +40,26 @@ function onZoneIn( player, prevZone)
 		player:setPos( 547.841, 23.192, 696.323, 136);	
 	end
 	
-	if( prevZone == 147 and player:getCurrentMission( BASTOK) == THE_FOUR_MUSKETEERS) then		
+	return cs;
+end;
+
+-----------------------------------		
+-- afterZoneIn		
+-----------------------------------		
+
+function afterZoneIn(player)
+
+	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
+		player:startEvent(0x000d);
+	elseif( prevZone == 147 and player:getCurrentMission( BASTOK) == THE_FOUR_MUSKETEERS) then		
 		missionStatus = player:getVar("MissionStatus");	
 		if(missionStatus < 22) then	
-			cs = 0x000a;
+			player:startEvent(0x000a);
 		elseif(missionStatus == 22) then	
-			cs = 0x000b;
+			player:startEvent(0x000b);
 		end	
-	elseif( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
-		cs = 0x000d;
 	end
-	
-	return cs;
-end;		
-
+end;
 
 -----------------------------------		
 -- onConquestUpdate		
