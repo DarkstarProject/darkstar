@@ -34,17 +34,24 @@ function onZoneIn( player, prevZone)
 		player:setPos(305.377,-36.092,660.435,71);
 	end
 
+	return cs;
+end;
+
+-----------------------------------		
+-- afterZoneIn		
+-----------------------------------		
+
+function afterZoneIn(player)
+
 	-- Check if we are on Windurst Mission 1-2
 	if( player:getCurrentMission( WINDURST) == THE_HEART_OF_THE_MATTER and player:getVar( "MissionStatus") == 5 and prevZone == 194) then
-		cs = 0x0030;
+		player:startEvent(0x0030);
 	elseif( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
-		cs = 0x0032;
+		player:startEvent(0x0032);
 	elseif( player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 241 and 
 		player:hasStatusEffect(EFFECT_CHOCOBO) == false ) then
-		cs = 0x0047;
+		player:startEvent(0x0047);
 	end
-	
-	return cs;
 end;
 
 -----------------------------------		
