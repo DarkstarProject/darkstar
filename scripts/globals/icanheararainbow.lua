@@ -1,10 +1,10 @@
 -- Functions below used in quest: I Can Hear a Rainbow
 
-require( "scripts/globals/status");
-require( "scripts/globals/quests");
-require( "scripts/globals/weather");
+--require( "scripts/globals/status");
+--require( "scripts/globals/quests");
+--require( "scripts/globals/weather");
 
-colorsAvailable = { 102, 103, 104, 105, 106, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 123, 124, 125}; -- Zone IDs 
+local colorsAvailable = { 102, 103, 104, 105, 106, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 123, 124, 125}; -- Zone IDs 
 
 -- Data below from http://wiki.ffxiclopedia.org/wiki/I_Can_Hear_a_Rainbow - Feb. 02, 2013
 
@@ -31,7 +31,7 @@ colorsAvailable[123] = { true,  false, false, false, true,  false, false}; -- Yu
 colorsAvailable[124] = { true,  true,  false, false, true,  false, false}; -- Yhoator Jungle
 colorsAvailable[125] = { true,  false, true,  false, false, false, false}; -- Western Altepa Desert
 
--- The Event IDs to trigger the light cutscene for the following 3 zones is currently unknown.
+-- The Event IDs to trigger the light cutscene for the following 3 zones are currently unknown.
 -- They are included only because they are listed at http://wiki.ffxiclopedia.org/wiki/I_Can_Hear_a_Rainbow
 
 -- colorsAvailable[128] = { false, false, false, true,  false, false, false}; -- Valley of Sorrows
@@ -44,15 +44,15 @@ colorsAvailable[125] = { true,  false, true,  false, false, false, false}; -- We
 
 function triggerLightCutscene( player)
 
-	cutsceneTriggered = false;
+	local cutsceneTriggered = false;
 
-	RED    = 1;
-	ORANGE = 2;
-	YELLOW = 3;
-	GREEN  = 4;
-	BLUE   = 5;
-	INDIGO = 6;
-	VIOLET = 7;
+	local RED    = 1;
+	local ORANGE = 2;
+	local YELLOW = 3;
+	local GREEN  = 4;
+	local BLUE   = 5;
+	local INDIGO = 6;
+	local VIOLET = 7;
 	
 	if( player:hasItem( 1125, 0)) then   -- Player has Carbuncle's Ruby?
 
@@ -64,13 +64,13 @@ function triggerLightCutscene( player)
 				colors = 0;
 			end
 
-			hasRed    = ( tonumber( colors) %   2 >=  1);
-			hasOrange = ( tonumber( colors) %   4 >=  2);
-			hasYellow = ( tonumber( colors) %   8 >=  4);
-			hasGreen  = ( tonumber( colors) %  16 >=  8);
-			hasBlue   = ( tonumber( colors) %  32 >= 16);
-			hasIndigo = ( tonumber( colors) %  64 >= 32);
-			hasViolet = ( tonumber( colors) % 128 >= 64);
+			local hasRed    = ( tonumber( colors) %   2 >=  1);
+			local hasOrange = ( tonumber( colors) %   4 >=  2);
+			local hasYellow = ( tonumber( colors) %   8 >=  4);
+			local hasGreen  = ( tonumber( colors) %  16 >=  8);
+			local hasBlue   = ( tonumber( colors) %  32 >= 16);
+			local hasIndigo = ( tonumber( colors) %  64 >= 32);
+			local hasViolet = ( tonumber( colors) % 128 >= 64);
 
 			local zone    = player:getZone():getID();
 			local weather = player:getWeather();
