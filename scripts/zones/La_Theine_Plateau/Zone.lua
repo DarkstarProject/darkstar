@@ -36,12 +36,20 @@ function onZoneIn( player, prevZone)
 		player:setPos( -272.118, 21.715, 98.859, 243);
 	end
 
-	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
-		cs = 0x007b;
-	elseif( prevZone == 193 and player:getVar( "darkPuppetCS") == 5 and player:getFreeSlotsCount() >= 1) then
-		cs = 0x007a;
-	end
 	return cs;
+end;
+
+-----------------------------------		
+-- afterZoneIn		
+-----------------------------------		
+
+function afterZoneIn(player)
+
+	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
+		player:startEvent(0x007b);
+	elseif( prevZone == 193 and player:getVar( "darkPuppetCS") == 5 and player:getFreeSlotsCount() >= 1) then
+		player:startEvent(0x007a);
+	end
 end;
 
 -----------------------------------		
