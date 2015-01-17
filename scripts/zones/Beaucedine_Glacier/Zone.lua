@@ -39,13 +39,20 @@ function onZoneIn( player, prevZone)
 		player:setPos( -247.911, -82.165, 260.207, 248);
 	end
 
-	if( player:getCurrentMission( COP) == DESIRES_OF_EMPTINESS and player:getVar( "PromathiaStatus") == 9) then
-		cs = 0x00CE;
-	elseif( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
-		cs = 0x0072;
-	end
-
 	return cs;
+end;
+
+-----------------------------------		
+-- afterZoneIn		
+-----------------------------------		
+
+function afterZoneIn(player)
+
+	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
+		player:startEvent(0x0072);
+	elseif( player:getCurrentMission( COP) == DESIRES_OF_EMPTINESS and player:getVar( "PromathiaStatus") == 9) then
+		player:startEvent(0x00CE);
+	end
 end;
 
 -----------------------------------		
