@@ -42,18 +42,24 @@ function onZoneIn( player, prevZone)
 		player:setPos( -136.287, -23.268, 137.302, 91);
 	end
 	
-	if( player:hasKeyItem( VIAL_OF_SHROUDED_SAND) == false and player:getRank() >= 6 and player:getMainLvl() >= 65 and player:getVar( "Dynamis_Status") == 0) then
+	return cs;
+end;
+
+-----------------------------------		
+-- afterZoneIn		
+-----------------------------------		
+
+function afterZoneIn(player)
+
+	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
+		player:startEvent(0x0009);
+	elseif( player:hasKeyItem( VIAL_OF_SHROUDED_SAND) == false and player:getRank() >= 6 and player:getMainLvl() >= 65 and player:getVar( "Dynamis_Status") == 0) then
 		player:setVar( "Dynamis_Status", 1);
-		cs = 0x000D; 
-	elseif( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
-		cs = 0x0009;
+		player:startEvent(0x000D); 
 	elseif(UnbridledPassionCS == 3) then	
-		cs = 0x0004;
+		player:startEvent(0x0004);
 	end
-	
-	return cs;	
-	
-end;			
+end;
 
 -----------------------------------		
 -- onConquestUpdate		
@@ -102,4 +108,4 @@ function onEventFinish( player, csid, option)
 		player:setVar("unbridledPassion",4);
 	end
 	
-end;		
+end;
