@@ -481,10 +481,11 @@ void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest)
 	uint8* data = (uint8*)PTCPRequest->GetData();
 
     uint32 partyid = RBUFL(data,(0x10));
-    uint32 linkshellid = RBUFL(data,(0x18));
+    uint32 linkshellid1 = RBUFL(data,(0x18));
+    uint32 linkshellid2 = RBUFL(data, (0x1C));
 
 	ShowMessage("SEARCH::PartyID = %u\n", partyid);
-    ShowMessage("SEARCH::LinkshlellID = %u\n", linkshellid);
+    ShowMessage("SEARCH::LinkshellIDs = %u, %u\n", linkshellid1, linkshellid2);
 
     CDataLoader* PDataLoader = new CDataLoader();
 
@@ -504,8 +505,9 @@ void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest)
 
         delete PPartyPacket;
     }
-    else if (linkshellid != 0)
+    else if (linkshellid1 != 0 || linkshellid2 != 0)
     {	
+        uint32 linkshellid = linkshellid1 == 0 ? linkshellid2 : linkshellid1;
         std::list<SearchEntity*> LinkshellList = PDataLoader->GetLinkshellList(linkshellid);
 
 		CLinkshellListPacket* PLinkshellPacket = new CLinkshellListPacket(linkshellid,LinkshellList.size());
@@ -525,8 +527,6 @@ void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest)
 
 /************************************************************************
 *                                                                       *
-
-
 *                                                                       *
 *                                                                       *
 ************************************************************************/

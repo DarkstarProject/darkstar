@@ -183,7 +183,7 @@ int32 CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
     int32 iResult;
 
     WBUFW(data,(0x00)) = length;          // packet size
-    WBUFL(data,(0x04)) = 0x46465849;      // "XIFF"
+    WBUFL(data,(0x04)) = 0x46465849;      // "IXFF"
 
     md5((uint8*)(key), blowfish.hash, 24);
 
