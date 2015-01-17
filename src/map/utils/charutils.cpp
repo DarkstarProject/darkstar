@@ -3784,7 +3784,7 @@ void SaveZonesVisited(CCharEntity* PChar)
 
 void SaveCharEquip(CCharEntity* PChar)
 {
-	for (uint8 i = 0; i < 17; ++i)
+	for (uint8 i = 0; i < 18; ++i)
 	{
 		if (PChar->equip[i] == 0)
 		{
@@ -3792,10 +3792,8 @@ void SaveCharEquip(CCharEntity* PChar)
 		}
 		else
 		{
-
 			const int8* fmtQuery = "INSERT INTO char_equip SET charid = %u, equipslotid = %u , slotid  = %u, containerid = %u ON DUPLICATE KEY UPDATE slotid  = %u, containerid = %u;";
 			Sql_Query(SqlHandle, fmtQuery, PChar->id, i, PChar->equip[i], PChar->equipLoc[i], PChar->equip[i], PChar->equipLoc[i]);
-
 		}
 	}
 
