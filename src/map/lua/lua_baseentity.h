@@ -501,6 +501,7 @@ public:
     int32 isPet(lua_State*);
 
     int32 injectActionPacket(lua_State*);   // ONLY FOR DEBUGGING. Injects an action packet with the specified params.
+    int32 setUnknown(lua_State*);           // Used to manipulate the mob's "unknown" field for testing.
 
     int32 setDelay(lua_State*);             // sets a mobs weapon delay
     int32 setDamage(lua_State*);            // sets a mobs weapon damage

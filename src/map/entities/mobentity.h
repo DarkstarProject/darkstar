@@ -187,6 +187,7 @@ public:
   std::map<uint16, uint16>    m_UsedSkillIds;        // mob skill ids used (key) along with mob level (value)
 
   uint32    m_unknown;                               // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
+  void      setUnknown(uint32 unknown);              // Change the current value in m_unknown
   uint8     m_name_prefix;                           // The ding bats VS Ding bats
 
   CEnmityContainer* PEnmityContainer;                // система ненависти монстров

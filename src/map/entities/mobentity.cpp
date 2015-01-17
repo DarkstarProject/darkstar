@@ -107,6 +107,11 @@ CMobEntity::CMobEntity()
     m_StatPoppedMobs = false;
 }
 
+void CMobEntity::setUnknown(uint32 unknown)
+{
+    m_unknown = unknown;
+}
+
 CMobEntity::~CMobEntity()
 {
     delete PEnmityContainer;
