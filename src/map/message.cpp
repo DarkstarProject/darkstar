@@ -345,13 +345,13 @@ namespace message
             {
                 CCharEntity* PChar = zoneutils::GetCharByName((int8*)extra->data() + 4);
 
-                if (PChar && PChar->PLinkshell && PChar->PLinkshell->getID() == RBUFL(extra->data(),24))
+                if (PChar && PChar->PLinkshell1 && PChar->PLinkshell1->getID() == RBUFL(extra->data(),24))
                 {
                     uint8 kickerRank = RBUFB(extra->data(), 28);
-                    CItemLinkshell* targetLS = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
+                    CItemLinkshell* targetLS = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
                     if (kickerRank == LSTYPE_LINKSHELL || (kickerRank == LSTYPE_PEARLSACK && targetLS && targetLS->GetLSType() == LSTYPE_LINKPEARL))
                     {
-                        PChar->PLinkshell->RemoveMemberByName((int8*)extra->data() + 4);
+                        PChar->PLinkshell1->RemoveMemberByName((int8*)extra->data() + 4);
                     }
                 }
                 break;

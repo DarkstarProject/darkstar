@@ -188,8 +188,8 @@ public:
     uint16					m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
     uint16					m_EquipBlock;					// заблокированные ячейки экипировки
     bool					m_EquipSwap;					// true if equipment was recently changed
-    uint8					equip[17];						//      SlotID where equipment is
-    uint8					equipLoc[17];					// ContainerID where equipment is
+    uint8					equip[18];						//      SlotID where equipment is
+    uint8					equipLoc[18];					// ContainerID where equipment is
 
     uint8					m_ZonesList[36];				// список посещенных персонажем зон
     uint8					m_SpellList[128];				// список изученных заклинаний
@@ -235,7 +235,8 @@ public:
     bool			  isPacketListEmpty();          // проверка размера PacketList
     CBasicPacket*	  popPacket();                  // получение первого пакета из PacketList
 
-    CLinkshell*       PLinkshell;                   // linkshell, в которой общается персонаж
+    CLinkshell*       PLinkshell1;                  // linkshell, в которой общается персонаж
+    CLinkshell*       PLinkshell2;                  // linkshell 2
     CTreasurePool*	  PTreasurePool;                // сокровища, добытые с монстров
     CMeritPoints*     PMeritPoints;                 //
     bool			  MeritMode;					//If true then player is meriting

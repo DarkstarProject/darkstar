@@ -2930,7 +2930,7 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
 
 CItemArmor* GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot)
 {
-    DSP_DEBUG_BREAK_IF(Slot < SLOT_HEAD || Slot > SLOT_LINK);
+    DSP_DEBUG_BREAK_IF(Slot < SLOT_HEAD || Slot > SLOT_LINK2);
 
     if(PEntity->objtype == TYPE_PC)
     {

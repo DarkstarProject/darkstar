@@ -117,8 +117,8 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     case MSG_CHAT_LINKSHELL:
     {
         int8* query = "SELECT server_addr, server_port FROM accounts_sessions \
-                      						WHERE linkshellid = %d GROUP BY server_addr, server_port; ";
-        ret = Sql_Query(ChatSqlHandle, query, RBUFL(extra->data(), 0));
+                      						WHERE linkshellid1 = %d OR linkshellid2 = %d GROUP BY server_addr, server_port; ";
+        ret = Sql_Query(ChatSqlHandle, query, RBUFL(extra->data(), 0), RBUFL(extra->data(), 0));
         break;
     }
     case MSG_CHAT_YELL:

@@ -29,11 +29,14 @@
 #include "../linkshell.h"
 
 
-CLinkshellEquipPacket::CLinkshellEquipPacket(CCharEntity* PChar)
+CLinkshellEquipPacket::CLinkshellEquipPacket(CCharEntity* PChar, uint8 number)
 {
 	this->type = 0xE0;
-	this->size = 0x04; 
+	this->size = 0x04;
 
-    WBUFB(data,(0x04)-4) = 1; //linkshell number
-    WBUFB(data,(0x05)-4) = PChar->equip[SLOT_LINK];
+    WBUFB(data,(0x04)-4) = number;
+    if (number == 1)
+        WBUFB(data,(0x05)-4) = PChar->equip[SLOT_LINK1];
+    else
+        WBUFB(data,(0x05)-4) = PChar->equip[SLOT_LINK2];
 }

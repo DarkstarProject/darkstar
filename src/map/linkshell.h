@@ -59,7 +59,7 @@ public:
     const int8* getMessage();
 	void		setMessage(int8* message);
 
-    void        AddMember(CCharEntity* PChar,int8 type);
+    void        AddMember(CCharEntity* PChar,int8 type, uint8 lsNum);
     void        DelMember(CCharEntity* PChar);
 
     void        RemoveMemberByName(int8* MemberName);
@@ -90,7 +90,7 @@ namespace linkshell
 {
     void LoadLinkshellList();
 
-    bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);
+    bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, uint8 lsNum);
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);
 
     uint32 RegisterNewLinkshell(const int8* name, uint16 color);

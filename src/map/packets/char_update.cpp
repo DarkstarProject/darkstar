@@ -66,7 +66,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     WBUFW(data,(0x2E)-4) |= PChar->speedsub << 1;
 	WBUFB(data,(0x30)-4) = PChar->animation;
 
-	CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
+	CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
 
 	if ((linkshell != NULL) && linkshell->isType(ITEM_LINKSHELL))
 	{

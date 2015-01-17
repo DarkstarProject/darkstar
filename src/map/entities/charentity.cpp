@@ -133,7 +133,8 @@ CCharEntity::CCharEntity()
     TradePending.clean();
     InvitePending.clean();
 
-    PLinkshell = NULL;
+    PLinkshell1 = NULL;
+    PLinkshell2 = NULL;
 	PTreasurePool = NULL;
 	PWideScanTarget = NULL;
 

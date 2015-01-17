@@ -892,10 +892,14 @@ void CZone::CharZoneOut(CCharEntity* PChar)
         PChar->PParty->PopMember(PChar);
     }
 
-    if (PChar->PLinkshell != NULL)
+    if (PChar->PLinkshell1 != NULL)
     {
-        // удаляем персонажа из linkshell
-        PChar->PLinkshell->DelMember(PChar);
+        PChar->PLinkshell1->DelMember(PChar);
+    }
+
+    if (PChar->PLinkshell2 != NULL)
+    {
+        PChar->PLinkshell2->DelMember(PChar);
     }
 
 	if (PChar->PTreasurePool != NULL) // TODO: условие для устранения проблем с MobHouse, надо блин решить ее раз и навсегда
