@@ -1,8 +1,8 @@
 -- Functions below used in quest: I Can Hear a Rainbow
 
---require( "scripts/globals/status");
---require( "scripts/globals/quests");
---require( "scripts/globals/weather");
+require( "scripts/globals/status");
+require( "scripts/globals/quests");
+require( "scripts/globals/weather");
 
 local colorsAvailable = { 102, 103, 104, 105, 106, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 123, 124, 125}; -- Zone IDs 
 
