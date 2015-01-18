@@ -260,7 +260,7 @@ void LoadNPCList()
           animationsub,\
           namevis,\
           status,\
-          unknown,\
+          flags,\
           look,\
           name_prefix, \
 		  required_expansion \
@@ -306,7 +306,7 @@ void LoadNPCList()
 
 				PNpc->namevis = (uint8)Sql_GetIntData(SqlHandle, 11);
 				PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlHandle, 12);
-				PNpc->unknown = (uint32)Sql_GetUIntData(SqlHandle, 13);
+				PNpc->m_flags = (uint32)Sql_GetUIntData(SqlHandle, 13);
 
 				PNpc->name_prefix = (uint8)Sql_GetIntData(SqlHandle, 15);
 
@@ -338,7 +338,7 @@ void LoadMOBList()
 			STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
 			Slash, Pierce, H2H, Impact, \
 			Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
-			mob_pools.familyid, name_prefix, unknown, animationsub, \
+			mob_pools.familyid, name_prefix, flags, animationsub, \
 			(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
 			allegiance, namevis, aggro \
 			FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
@@ -446,7 +446,7 @@ void LoadMOBList()
 				PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle, 48);
 				PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle, 49);
 				PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle, 50);
-				PMob->m_unknown = (uint32)Sql_GetIntData(SqlHandle, 51);
+				PMob->m_flags = (uint32)Sql_GetIntData(SqlHandle, 51);
 
 				// Cap Level if Necessary (Don't Cap NMs)
 				if (normalLevelRangeMin > 0 && PMob->m_Type != MOBTYPE_NOTORIOUS && PMob->m_minLevel > normalLevelRangeMin){

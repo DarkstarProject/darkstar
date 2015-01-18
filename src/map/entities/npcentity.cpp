@@ -107,6 +107,40 @@ CNpcEntity::~CNpcEntity()
   
 }
 
+void CNpcEntity::HideHP(bool hide)
+{
+    if (hide)
+    {
+        m_flags |= 0x100;
+    }
+    else
+    {
+        m_flags &= ~0x100;
+    }
+}
+
+bool CNpcEntity::IsHPHidden()
+{
+    return (m_flags & 0x800) == 0x800;
+}
+
+void CNpcEntity::Untargetable(bool untargetable)
+{
+    if (untargetable)
+    {
+        m_flags |= 0x800;
+    }
+    else
+    {
+        m_flags &= ~0x800;
+    }
+}
+
+bool CNpcEntity::IsUntargetable()
+{
+    return (m_flags & 0x800) == 0x800;
+}
+
 void CNpcEntity::UpdateEntity()
 {
     if (loc.zone && updatemask)

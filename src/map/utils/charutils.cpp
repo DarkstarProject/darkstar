@@ -1003,13 +1003,16 @@ void SendInventory(CCharEntity* PChar)
 		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_LINKSHELL));
         PChar->pushPacket(new CLinkshellEquipPacket(PChar,1));
     }
+    else
+    {
+        PChar->nameflags.flags &= ~FLAG_LINKSHELL;
+    }
 
     PItem = PChar->getEquip(SLOT_LINK2);
     if (PItem != NULL)
     {
         PItem->setSubType(ITEM_LOCKED);
 
-        PChar->nameflags.flags |= FLAG_LINKSHELL;
         PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, PChar->equip[SLOT_LINK2]));
         PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_LINKSHELL));
         PChar->pushPacket(new CLinkshellEquipPacket(PChar, 2));

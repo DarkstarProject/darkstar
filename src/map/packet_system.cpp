@@ -678,7 +678,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             if (MOB->animation == ANIMATION_ATTACK &&
                 MOB->PBattleAI->GetBattleTarget() == PChar)
             {
-                MOB->m_CallForHelp = 0x20;
+                MOB->CallForHelp(true);
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PChar, 0, 0, 19));
 
                 return;

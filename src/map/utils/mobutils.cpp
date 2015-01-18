@@ -1104,7 +1104,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID)
 		STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
 		Slash, Pierce, H2H, Impact, \
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
-		mob_pools.familyid, name_prefix, unknown, animationsub, \
+		mob_pools.familyid, name_prefix, flags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
 		allegiance, namevis, aggro \
 		FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
@@ -1199,7 +1199,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID)
 			PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle, 43);
 			PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle, 44);
 			PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle, 45);
-			PMob->m_unknown = (uint32)Sql_GetIntData(SqlHandle, 46);
+			PMob->m_flags = (uint32)Sql_GetIntData(SqlHandle, 46);
 
 			//Special sub animation for Mob (yovra, jailer of love, phuabo)
 			// yovra 1: en hauteur, 2: en bas, 3: en haut

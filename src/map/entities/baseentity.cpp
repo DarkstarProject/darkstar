@@ -30,8 +30,6 @@ CBaseEntity::CBaseEntity()
 {
 	m_TargID = 0;
 	namevis = 1;
-	hpvis = true;
-	untargetable = false;
 
     PBattleAI = NULL;
 	PBCNM = NULL;

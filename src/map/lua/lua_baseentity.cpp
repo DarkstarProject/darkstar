@@ -9205,8 +9205,16 @@ inline int32 CLuaBaseEntity::untargetable(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_NPC);
 
-    m_PBaseEntity->untargetable = lua_toboolean(L, 1);
+    if (m_PBaseEntity->objtype == TYPE_MOB)
+    {
+        ((CMobEntity*)m_PBaseEntity)->Untargetable(lua_toboolean(L, 1));
+    }
+    else if (m_PBaseEntity->objtype == TYPE_NPC)
+    {
+        ((CNpcEntity*)m_PBaseEntity)->Untargetable(lua_toboolean(L, 1));
+    }
     m_PBaseEntity->updatemask |= UPDATE_HP;
     return 0;
 }
@@ -9215,8 +9223,16 @@ inline int32 CLuaBaseEntity::hideHP(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_NPC);
 
-    m_PBaseEntity->hpvis = lua_toboolean(L, 1);
+    if (m_PBaseEntity->objtype == TYPE_MOB)
+    {
+        ((CMobEntity*)m_PBaseEntity)->HideHP(lua_toboolean(L, 1));
+    }
+    else if (m_PBaseEntity->objtype == TYPE_NPC)
+    {
+        ((CNpcEntity*)m_PBaseEntity)->HideHP(lua_toboolean(L, 1));
+    }
     m_PBaseEntity->updatemask |= UPDATE_HP;
     return 0;
 }

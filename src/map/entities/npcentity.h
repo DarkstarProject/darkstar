@@ -37,8 +37,12 @@ int32 reappear_npc(uint32 tick,CTaskMgr::CTask *PTask); // used for hideNPC lua 
 class CNpcEntity : public CBaseEntity {
 public:
 
-	uint32		unknown;
+	uint32		m_flags;
 	uint8		name_prefix;
+    void        HideHP(bool hide);
+    bool        IsHPHidden();
+    void        Untargetable(bool untargetable);
+    bool        IsUntargetable();
     void        UpdateEntity() override;
 
 	 CNpcEntity();				// конструктор

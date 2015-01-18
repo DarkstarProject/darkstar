@@ -244,7 +244,7 @@ void CAIMobDummy::ActionRoaming()
             {
                 // hidden name
                 m_PMob->HideName(true);
-                m_PMob->untargetable = true;
+                m_PMob->Untargetable(true);
 
                 m_PMob->updatemask |= UPDATE_HP;
             }
@@ -313,7 +313,7 @@ void CAIMobDummy::ActionEngage()
         else if ((m_PMob->m_roamFlags & ROAMFLAG_STEALTH) && m_PMob->IsNameHidden())
         {
             m_PMob->HideName(false);
-            m_PMob->untargetable = false;
+            m_PMob->Untargetable(false);
         }
 		else
 		{
@@ -351,7 +351,7 @@ void CAIMobDummy::ActionDisengage()
     m_PMob->delRageMode();
     m_PMob->m_OwnerID.clean();
     m_PMob->updatemask |= (UPDATE_STATUS | UPDATE_HP);
-	m_PMob->m_CallForHelp = 0;
+    m_PMob->CallForHelp(false);
 	m_PMob->animation = ANIMATION_NONE;
 
 	//if (m_PMob->animationsub == 2) m_PMob->animationsub = 3;
@@ -403,7 +403,7 @@ void CAIMobDummy::ActionDropItems()
 
 			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PChar,m_PMob,0,0, MSGBASIC_DEFEATS_TARG));
 
-			if (m_PMob->m_CallForHelp == 0)
+			if (!m_PMob->CalledForHelp())
 			{
 				blueutils::TryLearningSpells(PChar, m_PMob);
 				m_PMob->m_UsedSkillIds.clear();
@@ -461,7 +461,6 @@ void CAIMobDummy::ActionDropItems()
                         WELL512::irand()%100 < 20) // Need to move to SIGNET_CHANCE constant
 					{
 						PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
-						
 					}
 
 					if (WELL512::irand() % 100 < 20 && PChar->PTreasurePool->CanAddSeal())
@@ -507,7 +506,6 @@ void CAIMobDummy::ActionDropItems()
 								break;
 							}
 						}
-
 					}
 				}
 			}
@@ -606,7 +604,6 @@ void CAIMobDummy::ActionSpawn()
 		m_PMobSkill = NULL;
 		m_PMob->m_giveExp = true;
         m_PMob->m_OwnerID.clean();
-		m_PMob->m_CallForHelp = 0;
 		m_PMob->m_HiPCLvl = 0;
 		m_PMob->m_THLvl = 0;
 		m_PMob->m_ItemStolen = false;
@@ -662,7 +659,7 @@ void CAIMobDummy::ActionSpawn()
         if (m_PMob->m_roamFlags & ROAMFLAG_STEALTH)
         {
             m_PMob->HideName(true);
-            m_PMob->untargetable = true;
+            m_PMob->Untargetable(true);
         }
 
 		// add people to my posse
