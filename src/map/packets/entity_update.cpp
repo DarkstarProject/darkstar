@@ -91,9 +91,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 				WBUFB(data,(0x1E)-4) = 0x64;
                 WBUFB(data,(0x1F)-4) = PEntity->animation;
                 WBUFB(data,(0x2A)-4) = PEntity->animationsub;
-				WBUFL(data,(0x21)-4) = ((CNpcEntity*)PEntity)->unknown;
-				WBUFB(data,(0x22)-4) |= (PEntity->untargetable ? 0x08 : 0x00);
-				WBUFB(data,(0x22)-4) |= (PEntity->hpvis ? 0x00 : 0x01);
+				WBUFL(data,(0x21)-4) = ((CNpcEntity*)PEntity)->m_flags;
 				WBUFB(data,(0x27)-4) = ((CNpcEntity*)PEntity)->name_prefix;     // gender and something else
 				WBUFB(data,(0x29)-4) = PEntity->allegiance;
 				WBUFB(data,(0x2B)-4) = PEntity->namevis;
@@ -122,16 +120,13 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 					WBUFB(data,(0x1E)-4) = PMob->GetHPP();
 					WBUFB(data,(0x1F)-4) = PEntity->animation;
                     WBUFB(data,(0x2A)-4) = PEntity->animationsub;
-					WBUFL(data,(0x21)-4) = PMob->m_unknown;
-					WBUFB(data,(0x21)-4) |= PMob->m_CallForHelp;
-					WBUFB(data,(0x22)-4) |= (PEntity->untargetable ? 0x08 : 0x00);
-					WBUFB(data,(0x22)-4) |= (PEntity->hpvis ? 0x00 : 0x01);
+					WBUFL(data,(0x21)-4) = PMob->m_flags;
 					WBUFB(data,(0x27)-4) = PMob->m_name_prefix;
 					if (PMob->PMaster != NULL && PMob->PMaster->objtype == TYPE_PC)
 						WBUFB(data,(0x27)-4) |= 0x08;
                     WBUFB(data,(0x28)-4) |= (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR) ? 0x10 : 0x00);
 					WBUFB(data,(0x29)-4) = PEntity->allegiance;
-                    WBUFB(data,(0x2B)-4) = 0;//PEntity->namevis;
+                    WBUFB(data,(0x2B)-4) = PEntity->namevis;
 				}
 				if (updatemask & UPDATE_STATUS)
 				{

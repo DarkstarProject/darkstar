@@ -110,7 +110,7 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 
 	WBUFB(data,(0x0A)-4) = 0x01;
 
-    CItemLinkshell* PLinkshell = (CItemLinkshell*)PTarget->getEquip(SLOT_LINK);
+    CItemLinkshell* PLinkshell = (CItemLinkshell*)PTarget->getEquip(SLOT_LINK1);
 
     if ((PLinkshell != NULL) && PLinkshell->isType(ITEM_LINKSHELL))
 	{

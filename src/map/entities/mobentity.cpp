@@ -39,7 +39,7 @@ CMobEntity::CMobEntity()
 
     HPscale = 1.0;
     MPscale = 1.0;
-    m_unknown = 0;
+    m_flags = 0;
 
 	allegiance = ALLEGIANCE_MOB;
 
@@ -52,7 +52,6 @@ CMobEntity::CMobEntity()
     memset(m_mobModStatSave,0, sizeof(m_mobModStatSave));
 
     m_AllowRespawn = 0;
-	m_CallForHelp  = 0;
     m_DespawnTimer = 0;
     m_DropItemTime = 0;
 	m_Family = 0;
@@ -559,17 +558,72 @@ void CMobEntity::HideModel(bool hide)
     {
         // I got this from ambush antlion
         // i'm not sure if this is right
-        m_unknown = 2181;
+        m_flags |= 0x80;
     }
     else
     {
-        m_unknown = 0;
+        m_flags &= ~0x80;
     }
 }
 
 bool CMobEntity::IsModelHidden()
 {
-    return m_unknown == 0;
+    return (m_flags & 0x80) == 0x80;
+}
+
+void CMobEntity::HideHP(bool hide)
+{
+    if (hide)
+    {
+        m_flags |= 0x100;
+    }
+    else
+    {
+        m_flags &= ~0x100;
+    }
+    updatemask |= UPDATE_HP;
+}
+
+bool CMobEntity::IsHPHidden()
+{
+    return (m_flags & 0x100) == 0x100;
+}
+
+
+void CMobEntity::CallForHelp(bool call)
+{
+    if (call)
+    {
+        m_flags |= 0x20;
+    }
+    else
+    {
+        m_flags &= ~0x20;
+    }
+    updatemask |= UPDATE_HP;
+}
+
+bool CMobEntity::CalledForHelp()
+{
+    return (m_flags & 0x20) == 0x20;
+}
+
+void CMobEntity::Untargetable(bool untargetable)
+{
+    if (untargetable)
+    {
+        m_flags |= 0x800;
+    }
+    else
+    {
+        m_flags &= ~0x800;
+    }
+    updatemask |= UPDATE_HP;
+}
+
+bool CMobEntity::IsUntargetable()
+{
+    return (m_flags & 0x800) == 0x800;
 }
 
 void CMobEntity::UpdateEntity()

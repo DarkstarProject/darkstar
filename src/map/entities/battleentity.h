@@ -226,7 +226,8 @@ enum SLOTTYPE
 	SLOT_RING1	= 0x0D,
 	SLOT_RING2	= 0x0E,
 	SLOT_BACK	= 0x0F,
-	SLOT_LINK	= 0x10
+	SLOT_LINK1	= 0x10,
+    SLOT_LINK2  = 0x11,
 };
 
 // CROSSBOW и GUN - это Piercing, разделение сделано из-за одинакового skilltype

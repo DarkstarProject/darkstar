@@ -40,7 +40,7 @@ class CLinkshellEquipPacket : public CBasicPacket
 {
 public:
 
-	CLinkshellEquipPacket(CCharEntity* PChar);
+	CLinkshellEquipPacket(CCharEntity* PChar, uint8 number);
 };
 
 #endif

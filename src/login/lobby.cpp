@@ -431,7 +431,7 @@ int32 lobbyview_parse(int32 fd)
 
                 string_t client_ver((char*)(buff + 0x74), 10);
 
-                if (version_info.Min_Client_Ver >= client_ver)
+                if (version_info.Min_Client_Ver > client_ver)
                 {
                     sendsize = 0x24;
                     LOBBBY_ERROR_MESSAGE(ReservePacket);

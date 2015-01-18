@@ -107,7 +107,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 		STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
 		Slash, Pierce, H2H, Impact, \
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
-		mob_pools.familyid, name_prefix, unknown, animationsub, \
+		mob_pools.familyid, name_prefix, flags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
 		allegiance, namevis, aggro \
 		FROM instance_entities INNER JOIN mob_spawn_points ON instance_entities.id = mob_spawn_points.mobid \
@@ -202,7 +202,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 			PMob->m_Element = (uint8)Sql_GetIntData(SqlInstanceHandle, 47);
 			PMob->m_Family = (uint16)Sql_GetIntData(SqlInstanceHandle, 48);
 			PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlInstanceHandle, 49);
-			PMob->m_unknown = (uint32)Sql_GetIntData(SqlInstanceHandle, 50);
+			PMob->m_flags = (uint32)Sql_GetIntData(SqlInstanceHandle, 50);
 
 			//Special sub animation for Mob (yovra, jailer of love, phuabo)
 			// yovra 1: en hauteur, 2: en bas, 3: en haut
@@ -241,7 +241,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 		Query =
 			"SELECT npcid, name, pos_rot, pos_x, pos_y, pos_z,\
 			flag, speed, speedsub, animation, animationsub, namevis,\
-			status, unknown, look, name_prefix \
+			status, flags, look, name_prefix \
 			FROM instance_entities INNER JOIN npc_list ON \
 			(instance_entities.id = npc_list.npcid) \
 			WHERE instanceid = %u AND npcid >= %u and npcid < %u;";
@@ -276,7 +276,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 
 				PNpc->namevis = (uint8)Sql_GetIntData(SqlHandle, 11);
 				PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlHandle, 12);
-				PNpc->unknown = (uint32)Sql_GetUIntData(SqlHandle, 13);
+				PNpc->m_flags = (uint32)Sql_GetUIntData(SqlHandle, 13);
 
 				PNpc->name_prefix = (uint8)Sql_GetIntData(SqlHandle, 15);
 
