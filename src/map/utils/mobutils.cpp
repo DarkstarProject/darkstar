@@ -495,46 +495,6 @@ void CalculateStats(CMobEntity * PMob)
 		}
 	}
 
-	// ambush antlions
-	if(PMob->m_Family == 357)
-	{
-		PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 22);
-		PMob->setMobMod(MOBMOD_SPECIAL_COOL, 1);
-		PMob->m_specialFlags |= SPECIALFLAG_HIDDEN;
-		PMob->m_roamFlags |= ROAMFLAG_AMBUSH;
-	}
-
-    // Phuabo
-    if(PMob->m_Family == 194)
-    {
-        PMob->m_roamFlags |= ROAMFLAG_STEALTH;
-    }
-
-    // Yovra
-    if(PMob->m_Family == 271)
-    {
-        PMob->m_roamFlags |= ROAMFLAG_STEALTH;
-    }
-
-    // Chigoe
-    if(PMob->m_Family == 64)
-    {
-        PMob->m_roamFlags |= ROAMFLAG_STEALTH;
-    }
-
-    // Amphiptere
-    if(PMob->m_Family == 6)
-    {
-       PMob->m_roamFlags |= ROAMFLAG_STEALTH;
-    }
-
-	if(PMob->m_Family == 362)
-	{
-		// rapido doesn't stop
-		PMob->m_roamFlags |= ROAMFLAG_IGNORE;
-	}
-
-
 	// handle standback
 	// mobs that stand back: blm, whm, rng, cor, nin
 	if(mJob == JOB_RNG)
@@ -594,14 +554,6 @@ void CalculateStats(CMobEntity * PMob)
     	PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(PMob->getMobMod(MOBMOD_SPELL_LIST));
     }
 
-	// TODO: this should be put into its own column
-	// has not been decided where yet
-	if(PMob->m_Family == 258 || PMob->m_Family == 276)
-	{
-		// makes worms roam by going into ground / back up
-		PMob->m_roamFlags |= ROAMFLAG_WORM;
-	}
-
 	if(PMob->m_Aggro != AGGRO_NONE && PMob->loc.zone->GetType() == ZONETYPE_OUTDOORS)
 	{
 		PMob->m_roamFlags |= ROAMFLAG_MEDIUM;
@@ -613,6 +565,9 @@ void CalculateStats(CMobEntity * PMob)
 
 	if(PMob->m_roamFlags & ROAMFLAG_AMBUSH)
 	{
+		PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 22);
+		PMob->setMobMod(MOBMOD_SPECIAL_COOL, 1);
+		PMob->m_specialFlags |= SPECIALFLAG_HIDDEN;
 		// always stay close to spawn
 		PMob->m_maxRoamDistance = 2.0f;
 	}
