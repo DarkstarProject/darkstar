@@ -138,7 +138,7 @@ FOV_EVENT_SORROWS         = 0x003d;
 
 function startFov(eventid,player)
 	local hasRegime = player:getVar("fov_regimeid");
-	local tabs = player:getValorPoint();
+	local tabs = player:getCurrency(valor_point);
 	player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
 end
 
@@ -186,7 +186,7 @@ function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
     local msg_accept = msg_offset;
     local msg_jobs = msg_offset+1;
     local msg_cancel = msg_offset+2;
-    local tabs = player:getValorPoint();
+    local tabs = player:getCurrency(valor_point);
     local HAS_FOOD = player:hasStatusEffect(EFFECT_FOOD);
     local HAS_SUPPORT_FOOD = player:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD);
     local fov_repeat = bit.band(option, 0x80000000);
@@ -201,7 +201,7 @@ function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
     if(option==FOV_MENU_REGEN) then --Chose Regen. Regen from FoV removes all forms of regen.
         --Decrease tabs
         if (tabs >= 20) then
-            player:delValorPoint(20);
+            player:delCurrency(valor_point, 20);
             --Removes regen if on player
             player:delStatusEffect(EFFECT_REGEN);
             --Adds regen
@@ -210,7 +210,7 @@ function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
     elseif(option==FOV_MENU_REFRESH) then --Chose Refresh, removes all other refresh.
         --Decrease tabs
         if (tabs >= 20) then
-            player:delValorPoint(20);
+            player:delCurrency(valor_point, 20);
             --Removes refresh if on player
             player:delStatusEffect(EFFECT_REFRESH);
             player:delStatusEffect(EFFECT_SUBLIMATION_COMPLETE);
@@ -221,7 +221,7 @@ function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
     elseif(option==FOV_MENU_PROTECT) then --Chose Protect, removes all other protect.
         --Decrease tabs
         if (tabs >= 15) then
-            player:delValorPoint(15);
+            player:delCurrency(valor_point, 15);
             --Removes protect if on player
             player:delStatusEffect(EFFECT_PROTECT);
             --Work out how much def to give (highest tier dependant on level)
@@ -241,7 +241,7 @@ function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
     elseif(option==FOV_MENU_SHELL) then --Chose Shell, removes all other shell.
         --Decrease tabs
         if (tabs >= 15) then
-            player:delValorPoint(15);
+            player:delCurrency(valor_point, 15);
             --Removes shell if on player
             player:delStatusEffect(EFFECT_SHELL);
             --Work out how much mdef to give (highest tier dependant on level)
@@ -262,7 +262,7 @@ function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
     elseif (option==FOV_MENU_RERAISE) then --Reraise chosen.
         --Decrease tabs
         if (tabs >= 10) then
-            player:delValorPoint(10);
+            player:delCurrency(valor_point, 10);
             --Remove any other RR
             player:delStatusEffect(EFFECT_RERAISE);
             --apply RR1, 2 hour duration.
@@ -271,7 +271,7 @@ function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
     elseif (option==FOV_MENU_HOME_NATION) then --Return to home nation.
         --Decrease tabs
         if (tabs >= 50) then
-            player:delValorPoint(50);
+            player:delCurrency(valor_point, 50);
             toHomeNation(player); -- Needs an entry in /scripts/globals/teleports.lua?
         end
     elseif (option == FOV_MENU_DRIED_MEAT) then -- Dried Meat: STR+4, Attack +22% (caps at 63)
@@ -279,7 +279,7 @@ function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
                 player:messageBasic(246);
             else
-                player:delValorPoint(50);
+                player:delCurrency(valor_point, 50);
                 player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 1, 0, 1800);
             end
         end
@@ -288,7 +288,7 @@ function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
                 player:messageBasic(246);
             else
-                player:delValorPoint(50);
+                player:delCurrency(valor_point, 50);
                 player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 2, 0, 1800);
             end
         end
@@ -297,7 +297,7 @@ function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
                 player:messageBasic(246);
             else
-                player:delValorPoint(50);
+                player:delCurrency(valor_point, 50);
                 player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 3, 0, 1800);
             end
         end
@@ -306,7 +306,7 @@ function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
                 player:messageBasic(246);
             else
-                player:delValorPoint(50);
+                player:delCurrency(valor_point, 50);
                 player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 4, 0, 1800);
             end
         end
@@ -354,7 +354,7 @@ function giveEliteRegime(player,keyitem,cost)
 		--print("has");
 		--player:messageBasic(98,keyitem);
 	else
-        player:delValorPoint(cost);
+        player:delCurrency(valor_point, cost);
 		player:addKeyItem(keyitem);
 	end
 end
@@ -431,8 +431,8 @@ function checkRegime(killer,mob,rid,index)
                         if (killer:getVar("fov_LastReward") < VanadielEpoch) then
                            killer:messageBasic(FOV_MSG_GET_GIL,reward);
                            killer:addGil(reward);
-                           killer:addValorPoint(tabs);
-                           killer:messageBasic(FOV_MSG_GET_TABS,tabs,killer:getValorPoint()); -- Careful about order.
+                           killer:addCurrency(valor_point, tabs);
+                           killer:messageBasic(FOV_MSG_GET_TABS,tabs,killer:getCurrency(valor_point)); -- Careful about order.
                            if (REGIME_WAIT == 1) then
                               killer:setVar("fov_LastReward",VanadielEpoch);
                            end
