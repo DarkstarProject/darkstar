@@ -7201,11 +7201,11 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
 
 /************************************************************************
 *                                                                       *
-* Used to manipulate the mob's "unknown" field for testing.             *
+* Used to manipulate the mob's flags for testing.                       *
 *                                                                       *
 ************************************************************************/
 
-inline int32 CLuaBaseEntity::setUnknown(lua_State* L)
+inline int32 CLuaBaseEntity::setMobFlags(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -7229,7 +7229,7 @@ inline int32 CLuaBaseEntity::setUnknown(lua_State* L)
         {
             if( !lua_isnil(L,1) && lua_isnumber(L,1) )
             {
-                ((CMobEntity*)PMob)->setUnknown((uint32)(lua_tointeger(L,1)));
+                ((CMobEntity*)PMob)->setMobFlags((uint32)(lua_tointeger(L,1)));
                 PMob->updatemask |= UPDATE_HP;
             }
         }
@@ -7241,17 +7241,17 @@ inline int32 CLuaBaseEntity::setUnknown(lua_State* L)
 
         if (PTarget == NULL)
         {
-            ShowError("Must target a monster to use for getUnknown or setUnknown \n");
+            ShowError("Must target a monster to use for setMobFlags \n");
             return 0;
         }
         else if(PTarget->objtype != TYPE_MOB)
         {
-            ShowError("Battle target must be a monster to use getUnknown or setUnknown \n");
+            ShowError("Battle target must be a monster to use setMobFlags \n");
             return 0;
         }
         if( !lua_isnil(L,1) && lua_isnumber(L,1) )
         {
-            ((CMobEntity*)PTarget)->setUnknown((uint32)(lua_tointeger(L,1)));
+            ((CMobEntity*)PTarget)->setMobFlags((uint32)(lua_tointeger(L,1)));
             PTarget->updatemask |= UPDATE_HP;
         }
     }
@@ -10153,7 +10153,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isMob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isPet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectActionPacket),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setUnknown),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMobFlags),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTrait),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isTrickAttackAvailable),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDelay),

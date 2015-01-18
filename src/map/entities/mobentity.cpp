@@ -106,9 +106,9 @@ CMobEntity::CMobEntity()
     m_StatPoppedMobs = false;
 }
 
-void CMobEntity::setUnknown(uint32 unknown)
+void CMobEntity::setMobFlags(uint32 MobFlags)
 {
-    m_unknown = unknown;
+    m_flags = MobFlags;
 }
 
 CMobEntity::~CMobEntity()
