@@ -106,6 +106,11 @@ CMobEntity::CMobEntity()
     m_StatPoppedMobs = false;
 }
 
+void CMobEntity::setMobFlags(uint32 MobFlags)
+{
+    m_flags = MobFlags;
+}
+
 CMobEntity::~CMobEntity()
 {
     delete PEnmityContainer;

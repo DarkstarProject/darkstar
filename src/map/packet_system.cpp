@@ -2921,6 +2921,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 PChar->PParty->RemoveMember(PVictim);
             }
         }
+        break;
     case 1: // linkshell
     {
         // Ensure the player has a linkshell equipped..
