@@ -7200,6 +7200,65 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
 }
 
 /************************************************************************
+*                                                                       *
+* Used to manipulate the mob's flags for testing.                       *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setMobFlags(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    if( !lua_isnil(L,2) && lua_isnumber(L,2) )
+    {
+        uint32 mobid = (uint32)lua_tointeger(L,2);
+        CMobEntity* PMob = NULL;
+
+        if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
+        {
+            CLuaInstance* PLuaInstance = Lunar<CLuaInstance>::check(L, 2);
+            PMob = (CMobEntity*)PLuaInstance->GetInstance()->GetEntity(mobid & 0xFFF, TYPE_MOB);
+        }
+        else
+        {
+            PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+        }
+
+        if (PMob != NULL)
+        {
+            if( !lua_isnil(L,1) && lua_isnumber(L,1) )
+            {
+                ((CMobEntity*)PMob)->setMobFlags((uint32)(lua_tointeger(L,1)));
+                PMob->updatemask |= UPDATE_HP;
+            }
+        }
+    }
+    else
+    {
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+        CBattleEntity* PTarget = (CBattleEntity*)PChar->loc.zone->GetEntity(PChar->m_TargID);
+
+        if (PTarget == NULL)
+        {
+            ShowError("Must target a monster to use for setMobFlags \n");
+            return 0;
+        }
+        else if(PTarget->objtype != TYPE_MOB)
+        {
+            ShowError("Battle target must be a monster to use setMobFlags \n");
+            return 0;
+        }
+        if( !lua_isnil(L,1) && lua_isnumber(L,1) )
+        {
+            ((CMobEntity*)PTarget)->setMobFlags((uint32)(lua_tointeger(L,1)));
+            PTarget->updatemask |= UPDATE_HP;
+        }
+    }
+    return 0;
+}
+
+/************************************************************************
 * Can be used by all npc to appear for a certain time then despawn      *
 * npc:showNPC() : appear for 15 secs                                    *
 * you can add time in second : showNPC(30) : appear for 30 secs         *
@@ -10094,6 +10153,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isMob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isPet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectActionPacket),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMobFlags),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTrait),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isTrickAttackAvailable),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDelay),
