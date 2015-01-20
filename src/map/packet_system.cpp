@@ -1767,7 +1767,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
-                    CItem* PItem = itemutils::GetItem(Sql_GetUIntData(SqlHandle, 0));
+                    PItem = itemutils::GetItem(Sql_GetUIntData(SqlHandle, 0));
 
                     if (PItem)
                     {
@@ -1969,26 +1969,24 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                 if (ret != SQL_ERROR &&  Sql_AffectedRows(SqlHandle) != 0)
                 {
-                    if (charutils::AddItem(PChar, LOC_INVENTORY, PItem, true) != ERROR_SLOTID)
+                    if (charutils::AddItem(PChar, LOC_INVENTORY, itemutils::GetItem(PItem), true) != ERROR_SLOTID)
                     {
                         commit = true;
-                        PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PItem, slotID, PChar->UContainer->GetItemsCount(), 1));
-                    }
-                    else
-                    {
-                        PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PItem, slotID, PChar->UContainer->GetItemsCount(), 0xBA));
                     }
                 }
 
                 if (!commit || !Sql_TransactionCommit(SqlHandle))
                 {
                     Sql_TransactionRollback(SqlHandle);
+                    PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PItem, slotID, PChar->UContainer->GetItemsCount(), 0xBA));
                     ShowError("Could not finalize receive transaction. PlayerID: %d Action: 0x0A", PChar->id);
                 }
                 else
                 {
+                    PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PItem, slotID, PChar->UContainer->GetItemsCount(), 1));
                     PChar->pushPacket(new CInventoryFinishPacket());
                     PChar->UContainer->SetItem(slotID, NULL);
+                    delete PItem;
                 }
             }
 
