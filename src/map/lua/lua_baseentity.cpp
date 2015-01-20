@@ -136,7 +136,7 @@ inline int32 CLuaBaseEntity::leavegame(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     ((CCharEntity*)m_PBaseEntity)->status = STATUS_SHUTDOWN;
-    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CServerIPPacket((CCharEntity*)m_PBaseEntity,1));
+    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CServerIPPacket((CCharEntity*)m_PBaseEntity,1,0));
 
     return 0;
 }
@@ -175,7 +175,7 @@ inline int32 CLuaBaseEntity::warp(lua_State *L)
     ((CCharEntity*)m_PBaseEntity)->animation = ANIMATION_NONE;
 
     ((CCharEntity*)m_PBaseEntity)->clearPacketList();
-    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CServerIPPacket((CCharEntity*)m_PBaseEntity,2));
+    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CServerIPPacket((CCharEntity*)m_PBaseEntity, 2, zoneutils::GetZoneIPP(m_PBaseEntity->loc.destination)));
 
     return 0;
 }
@@ -643,7 +643,7 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
             ((CCharEntity*)m_PBaseEntity)->status = STATUS_DISAPPEAR;
             ((CCharEntity*)m_PBaseEntity)->loc.boundary = 0;
             ((CCharEntity*)m_PBaseEntity)->clearPacketList();
-            ((CCharEntity*)m_PBaseEntity)->pushPacket(new CServerIPPacket((CCharEntity*)m_PBaseEntity,2));
+            ((CCharEntity*)m_PBaseEntity)->pushPacket(new CServerIPPacket((CCharEntity*)m_PBaseEntity, 2, zoneutils::GetZoneIPP(m_PBaseEntity->loc.destination)));
             //((CCharEntity*)m_PBaseEntity)->loc.zone->DecreaseZoneCounter(((CCharEntity*)m_PBaseEntity));
         }
         else if (((CCharEntity*)m_PBaseEntity)->status != STATUS_DISAPPEAR)

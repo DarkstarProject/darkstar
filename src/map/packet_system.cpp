@@ -725,7 +725,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->updatemask |= UPDATE_HP;
 
         PChar->clearPacketList();
-        PChar->pushPacket(new CServerIPPacket(PChar, 2));
+        PChar->pushPacket(new CServerIPPacket(PChar, 2, zoneutils::GetZoneIPP(PChar->loc.destination)));
     }
     break;
     case 0x0C: // assist
@@ -797,7 +797,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->status = STATUS_DISAPPEAR;
             PChar->loc.boundary = 0;
             PChar->clearPacketList();
-            PChar->pushPacket(new CServerIPPacket(PChar, 2));
+            PChar->pushPacket(new CServerIPPacket(PChar, 2, zoneutils::GetZoneIPP(PChar->loc.destination)));
         }
 
         PChar->m_hasTractor = 0;
@@ -1279,7 +1279,7 @@ void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             ShowWarning(CL_YELLOW"lightluggage detected: <%s> will be removed from server\n" CL_RESET, PChar->GetName());
 
             PChar->status = STATUS_SHUTDOWN;
-            PChar->pushPacket(new CServerIPPacket(PChar, 1));
+            PChar->pushPacket(new CServerIPPacket(PChar, 1, 0));
         }
         return;
     }
@@ -2614,7 +2614,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         ShowInfo(CL_WHITE"Zoning from zone %u to zone %u: %s\n" CL_RESET, PChar->getZone(), PChar->loc.destination, PChar->GetName());
     }
     PChar->clearPacketList();
-    PChar->pushPacket(new CServerIPPacket(PChar, 2));
+    PChar->pushPacket(new CServerIPPacket(PChar, 2, zoneutils::GetZoneIPP(PChar->loc.destination)));
     return;
 }
 
@@ -4281,7 +4281,7 @@ void SmallPacket0x0E7(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->m_GMlevel > 0)
     {
         PChar->status = STATUS_SHUTDOWN;
-        PChar->pushPacket(new CServerIPPacket(PChar, 1));
+        PChar->pushPacket(new CServerIPPacket(PChar, 1, 0));
     }
     else if (PChar->animation == ANIMATION_NONE)
     {

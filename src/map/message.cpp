@@ -79,7 +79,7 @@ namespace message
                 else
                 {
                     PChar->status = STATUS_SHUTDOWN;
-                    PChar->pushPacket(new CServerIPPacket(PChar, 1));
+                    PChar->pushPacket(new CServerIPPacket(PChar, 1,0));
                 }
                 break;
             }
