@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local IPpoint = player:getImperialStanding();
+    local IPpoint = player:getCurrency("imperial_standing");
 
 	if (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES) then
 		if(player:hasKeyItem(SUPPLIES_PACKAGE))then
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
 	-- printf("RESULT: %u",option);
 	
 	if(csid == 0x0095 and option == 1) then
-       player:delImperialStanding(50);
+       player:delCurrency("imperial_standing", 50);
 	   player:addKeyItem(ASSAULT_ARMBAND);
 	   player:messageSpecial(KEYITEM_OBTAINED,ASSAULT_ARMBAND);   
 	elseif(csid == 0x0005 and option == 1)then

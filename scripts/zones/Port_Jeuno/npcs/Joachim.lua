@@ -46,7 +46,7 @@ end;
 
 function onTrigger(player,npc)
 -- TODO: logic to increase traverser stone count...Based on time between 2 vars?
-    local StonesStock = player:getTstone();
+    local StonesStock = player:getCurrency("traverser_stones");
     local StonesKI = getTravStonesTotal(player);
     local MaxKI = getMaxTravStones(player);
     local isCap = 0;

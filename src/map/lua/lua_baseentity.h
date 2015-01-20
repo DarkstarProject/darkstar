@@ -445,43 +445,11 @@ public:
     int32 addSeals(lua_State*);             // Add Seals
     int32 delSeals(lua_State*);             // Delete Seals
 
-    int32 getValorPoint(lua_State*);        // Get valor point (tabs)
-    int32 addValorPoint(lua_State*);        // Add valor point (tabs)
-    int32 delValorPoint(lua_State*);        // Delete valor point (tabs)
-
-    int32 getScylds(lua_State*);            // Get Scylds
-    int32 addScylds(lua_State*);            // Add Scylds
-    int32 delScylds(lua_State*);            // Delete Scylds
-
-    int32 getImperialStanding(lua_State*);  // Get imperial standing
-    int32 addImperialStanding(lua_State*);  // Add imperial standing
-    int32 delImperialStanding(lua_State*);  // Delete imperial standing
-
-    int32 getAssaultPoint(lua_State*);      // Get imperial standing
-    int32 addAssaultPoint(lua_State*);      // Add imperial standing
-    int32 delAssaultPoint(lua_State*);      // Delete imperial standing
-
-    int32 getAlliedNotes(lua_State*);       // Get Allied Notes
-    int32 addAlliedNotes(lua_State*);       // Add Allied Notes
-    int32 delAlliedNotes(lua_State*);       // Delete Allied Notes
-
-    int32 getZeni(lua_State*);              // Get Zeni
-    int32 addZeni(lua_State*);              // Add Zeni
-    int32 delZeni(lua_State*);              // Delete Zeni
+    int32 getAssaultPoint(lua_State*);      // Get points for an assault area
+    int32 addAssaultPoint(lua_State*);      // Add points for an assault area
+    int32 delAssaultPoint(lua_State*);      // Delete points for an assault area
 
     int32 isJailed(lua_State *L);           // Is the player jailed
-
-    int32 getCruor(lua_State*);             // Get Cruor
-    int32 addCruor(lua_State*);             // Add Cruor
-    int32 delCruor(lua_State*);             // Delete Cruor
-
-    int32 getTags(lua_State*);              // Get Imperial ID tags (Assault)
-    int32 addTags(lua_State*);              // Add Imperial ID tags (Assault)
-    int32 delTags(lua_State*);              // Delete Imperial ID tags (Assault)
-
-    int32 getTstone(lua_State*);            // Get Traverser Stone Stock
-    int32 addTstone(lua_State*);            // Add Traverser Stone Stock
-    int32 delTstone(lua_State*);            // Delete Traverser Stone Stock
 
     int32 addNationTeleport(lua_State*);     // Add new teleport: addNationTeleport(nation,number)
     int32 getNationTeleport(lua_State*);     // Get teleport you can use by nation: getNationTeleport(nation)
