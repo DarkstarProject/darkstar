@@ -85,7 +85,7 @@ WYVERNTYPE CPetEntity::getWyvernType()
 
 void CPetEntity::UpdateEntity()
 {
-    if (loc.zone && updatemask)
+    if (loc.zone && updatemask && status != STATUS_DISAPPEAR)
     {
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
         updatemask = 0;
