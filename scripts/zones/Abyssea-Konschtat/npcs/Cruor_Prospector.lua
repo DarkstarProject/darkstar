@@ -25,7 +25,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    local Cruor = player:getCruor();
+    local Cruor = player:getCurrency("cruor");
     local Demilune = getDemiluneAbyssite(player);
     player:startEvent(2002, Cruor, Demilune);
 end;
@@ -122,52 +122,52 @@ function onEventFinish(player,csid,option)
     elseif (option == 65538) then -- Lucid Potion I
         if (player:addTempItem(5824,1)) then
             player:messageSpecial(ITEM_OBTAINED,5824);
-            player:delCruor(80);
+            player:delCurrency("cruor", 80);
         end
     elseif (option == 131074) then -- Lucid Ether I
         if (player:addTempItem(5827,1)) then
             player:messageSpecial(ITEM_OBTAINED,5827);
-            player:delCruor(80);
+            player:delCurrency("cruor", 80);
         end
     elseif (option == 196610) then -- Catholicon
         if (player:addTempItem(4206,1)) then
             player:messageSpecial(ITEM_OBTAINED,4206);
-            player:delCruor(80);
+            player:delCurrency("cruor", 80);
         end
     elseif (option == 262146) then -- Dusty Elixer
         if (player:addTempItem(5433,1)) then
             player:messageSpecial(ITEM_OBTAINED,5433);
-            player:delCruor(120);
+            player:delCurrency("cruor", 120);
         end
     elseif (option == 327682) then -- Clear Salve I
         if (player:addTempItem(5837,1)) then
             player:messageSpecial(ITEM_OBTAINED,5837);
-            player:delCruor(120);
+            player:delCurrency("cruor", 120);
         end
     elseif (option == 393218) then -- Stalworts Tonic
         if (player:addTempItem(5839,1)) then
             player:messageSpecial(ITEM_OBTAINED,5839);
-            player:delCruor(150);
+            player:delCurrency("cruor", 150);
         end
     elseif (option == 458754) then -- Ascetics Tonic
         if (player:addTempItem(5841,1)) then
             player:messageSpecial(ITEM_OBTAINED,5841);
-            player:delCruor(150);
+            player:delCurrency("cruor", 150);
         end
     elseif (option == 524290) then -- Champion's Tonic
         if (player:addTempItem(5843,1)) then
             player:messageSpecial(ITEM_OBTAINED,5843);
-            player:delCruor(150);
+            player:delCurrency("cruor", 150);
         end
     elseif (option == 589826) then -- Lucid Potion II
         if (player:addTempItem(5825,1)) then
             player:messageSpecial(ITEM_OBTAINED,5825);
-            player:delCruor(200);
+            player:delCurrency("cruor", 200);
         end
     elseif (option == 655362) then -- Lucid Potion II
         if (player:addTempItem(5828,1)) then
             player:messageSpecial(ITEM_OBTAINED,5828);
-            player:delCruor(200);
+            player:delCurrency("cruor", 200);
         end
 
     -- Keyitems
@@ -175,55 +175,55 @@ function onEventFinish(player,csid,option)
         if (player:hasKeyItem(MAP_OF_ABYSSEA_KONSCHTAT) == false) then
             player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_ABYSSEA_KONSCHTAT);
             player:addKeyItem(MAP_OF_ABYSSEA_KONSCHTAT);
-            player:delCruor(3500);
+            player:delCurrency("cruor", 3500);
         end
     elseif (option == 131075) then -- Ivory Abyssite of Sojourn
         if (player:hasKeyItem(IVORY_ABYSSITE_OF_SOJOURN) == false) then
             player:messageSpecial(KEYITEM_OBTAINED,IVORY_ABYSSITE_OF_SOJOURN);
             player:addKeyItem(IVORY_ABYSSITE_OF_SOJOURN);
-            player:delCruor(6000);
+            player:delCurrency("cruor", 6000);
         end
     elseif (option == 196611) then -- Ivory Abyssite of Confluence
         if (player:hasKeyItem(IVORY_ABYSSITE_OF_CONFLUENCE) == false) then
             player:messageSpecial(KEYITEM_OBTAINED,IVORY_ABYSSITE_OF_CONFLUENCE);
             player:addKeyItem(IVORY_ABYSSITE_OF_CONFLUENCE);
-            player:delCruor(4800);
+            player:delCurrency("cruor", 4800);
         end
     elseif (option == 262147) then -- Ivory Abyssite of Expertise
         if (player:hasKeyItem(IVORY_ABYSSITE_OF_EXPERTISE) == false) then
             player:messageSpecial(KEYITEM_OBTAINED,IVORY_ABYSSITE_OF_EXPERTISE);
             player:addKeyItem(IVORY_ABYSSITE_OF_EXPERTISE);
-            player:delCruor(4800);
+            player:delCurrency("cruor", 4800);
         end
     elseif (option == 458755) then -- Clear Demilune Abyssite
         if (player:hasKeyItem(CLEAR_DEMILUNE_ABYSSITE) == false) then
             player:messageSpecial(KEYITEM_OBTAINED,CLEAR_DEMILUNE_ABYSSITE);
             player:addKeyItem(CLEAR_DEMILUNE_ABYSSITE);
-            player:delCruor(300);
+            player:delCurrency("cruor", 300);
         end
 
     -- Enhancement Effects (only removed by zoning, infinite duration)
     elseif (option == 393220) then -- HP Boost
         player:addStatusEffectEx(EFFECT_ABYSSEA_HP,EFFECT_MAX_HP_BOOST,20+(getAbyssiteTotal(player,"MERIT") *10),0,0);
         player:addHP(20+(getAbyssiteTotal(player,"MERIT") *10) *10);
-        player:delCruor(50);
+        player:delCurrency("cruor", 50);
     elseif (option == 458756) then -- MP Boost
         player:addStatusEffectEx(EFFECT_ABYSSEA_MP,EFFECT_MAX_MP_BOOST,10+(getAbyssiteTotal(player,"MERIT") *5),0,0);
         player:addMP(10+(getAbyssiteTotal(player,"MERIT") *5) *10);
-        player:delCruor(120);
+        player:delCurrency("cruor", 120);
     elseif (option == 524292) then -- STR-DEX Boost
         player:addStatusEffectEx(EFFECT_ABYSSEA_STR,EFFECT_STR_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
         player:addStatusEffectEx(EFFECT_ABYSSEA_DEX,EFFECT_DEX_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
-        player:delCruor(120);
+        player:delCurrency("cruor", 120);
     elseif (option == 589828) then -- VIT-AGI Boost
         player:addStatusEffectEx(EFFECT_ABYSSEA_VIT,EFFECT_VIT_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
         player:addStatusEffectEx(EFFECT_ABYSSEA_AGI,EFFECT_AGI_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
-        player:delCruor(100);
+        player:delCurrency("cruor", 100);
     elseif (option == 655364) then -- INT-MND-CHR Boost
         player:addStatusEffectEx(EFFECT_ABYSSEA_INT,EFFECT_INT_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
         player:addStatusEffectEx(EFFECT_ABYSSEA_MND,EFFECT_MND_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
         player:addStatusEffectEx(EFFECT_ABYSSEA_CHR,EFFECT_CHR_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
-        player:delCruor(100);
+        player:delCurrency("cruor", 100);
     elseif (option == 720900) then -- All Enhancements
         player:addStatusEffectEx(EFFECT_ABYSSEA_HP,EFFECT_MAX_HP_BOOST,20+(getAbyssiteTotal(player,"MERIT") *10),0,0);
         player:addHP(20+(getAbyssiteTotal(player,"MERIT") *10) *10);
@@ -236,14 +236,14 @@ function onEventFinish(player,csid,option)
         player:addStatusEffectEx(EFFECT_ABYSSEA_INT,EFFECT_INT_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
         player:addStatusEffectEx(EFFECT_ABYSSEA_MND,EFFECT_MND_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
         player:addStatusEffectEx(EFFECT_ABYSSEA_CHR,EFFECT_CHR_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
-        player:delCruor(470);
+        player:delCurrency("cruor", 470);
     end
 
     if (ItemID ~= 0) then
         if (player:getFreeSlotsCount() >= 1) then
             player:messageSpecial(ITEM_OBTAINED,ItemID);
             player:addItem(ItemID,Quantity);
-            player:delCruor(Price);
+            player:delCurrency("cruor", Price);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,ItemID);
         end
