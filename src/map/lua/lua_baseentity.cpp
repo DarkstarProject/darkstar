@@ -1089,7 +1089,6 @@ inline int32 CLuaBaseEntity::getZone(lua_State *L)
 inline int32 CLuaBaseEntity::getZoneID(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->loc.zone == NULL);
 
     lua_pushinteger(L, m_PBaseEntity->getZone());
     return 1;
