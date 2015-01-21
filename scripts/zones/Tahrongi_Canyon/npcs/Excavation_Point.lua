@@ -13,7 +13,7 @@ require("scripts/zones/Tahrongi_Canyon/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startExcavation(player,player:getZone():getID(),npc,trade,0x0385);
+	startExcavation(player,player:getZoneID(),npc,trade,0x0385);
 end;
 
 -----------------------------------

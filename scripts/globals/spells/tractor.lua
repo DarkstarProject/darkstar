@@ -14,7 +14,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-printf("Caster Zone: %u",caster:getZone():getID());
+printf("Caster Zone: %u",caster:getZoneID());
     target:sendTractor(caster:getXPos(), caster:getYPos(), caster:getZPos(), target:getRotPos());
 
     spell:setMsg(309);

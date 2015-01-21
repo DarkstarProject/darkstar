@@ -18,7 +18,7 @@ require("scripts/zones/Sealions_Den/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(TradeBCNM(player,player:getZone():getID(),trade,npc))then
+	if(TradeBCNM(player,player:getZoneID(),trade,npc))then
 		return;
 	end
 

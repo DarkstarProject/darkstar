@@ -1069,13 +1069,29 @@ inline int32 CLuaBaseEntity::getZone(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
-    lua_getglobal(L, CLuaZone::className);
-    lua_pushstring(L, "new");
-    lua_gettable(L, -2);
-    lua_insert(L, -2);
-    lua_pushlightuserdata(L, (void*)m_PBaseEntity->loc.zone);
-    lua_pcall(L, 2, 1, 0);
+    if (m_PBaseEntity->loc.zone)
+    {
+        lua_getglobal(L, CLuaZone::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)m_PBaseEntity->loc.zone);
+        lua_pcall(L, 2, 1, 0);
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
 
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::getZoneID(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->loc.zone == NULL);
+
+    lua_pushinteger(L, m_PBaseEntity->getZone());
     return 1;
 }
 
@@ -9459,6 +9475,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRotPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZone),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZoneID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZoneName),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInMogHouse),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentRegion),

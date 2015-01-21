@@ -43,7 +43,7 @@ function onEffectLose(target,effect)
 	elseif(Teleport == TELEPORT_WARP) then
 		target:warp();
 	elseif(Teleport == TELEPORT_ESCAPE) then
-		Escape(target, target:getZone():getID());
+		Escape(target, target:getZoneID());
 	elseif(Teleport == RECALL_JUGNER) then
         recallJugner(target);
 	elseif(Teleport == RECALL_PASHH) then
