@@ -11,7 +11,7 @@ cmdprops =
 };
 
 function onTrigger(player, hp, target)
-    if (hp == nil or hp == 0) then
+    if (hp == nil) then
         player:PrintToPlayer("You must enter a valid amount.");
         player:PrintToPlayer( "@hp <amount> <player>" );
         return;
