@@ -155,7 +155,7 @@ function homepointMenu( player, csid, hpIndex)
 		local newHp = 0;
 		if( homepoints[hpIndex][1] == 1) then
 			if( bit.rshift( bit.lshift( HpTeleportMask1, 32 - homepoints[hpIndex][2]), 31) == 0) then
-				newHp = 65536; -- This value causes the "You have registered a new home point!" dialog to display
+				newHp = 0x10000; -- This value causes the "You have registered a new home point!" dialog to display
 				
 				-- Update the homepoint teleport mask with the new location
 				HpTeleportMask1 = bit.bor( HpTeleportMask1, bit.lshift( 1, homepoints[hpIndex][2] - 1)); 
@@ -166,7 +166,7 @@ function homepointMenu( player, csid, hpIndex)
 			end
 		elseif(  homepoints[hpIndex][1] == 2) then
 			if( bit.rshift( bit.lshift( HpTeleportMask2, 32 - homepoints[hpIndex][2]), 31) == 0) then
-				newHp = 65536;
+				newHp = 0x10000;
 				
 				HpTeleportMask2 = bit.bor( HpTeleportMask2, bit.lshift( 1, homepoints[hpIndex][2] - 1)); 
 
@@ -175,7 +175,7 @@ function homepointMenu( player, csid, hpIndex)
 			end
 		elseif(  homepoints[hpIndex][1] == 3) then
 			if( bit.rshift( bit.lshift( HpTeleportMask3, 32 - homepoints[hpIndex][2]), 31) == 0) then
-				newHp = 65536;
+				newHp = 0x10000;
 				
 				HpTeleportMask3 = bit.bor( HpTeleportMask3, bit.lshift( 1, homepoints[hpIndex][2] - 1)); 
 
@@ -184,7 +184,7 @@ function homepointMenu( player, csid, hpIndex)
 			end
 		elseif(  homepoints[hpIndex][1] == 4) then
 			if( bit.rshift( bit.lshift( HpTeleportMask4, 32 - homepoints[hpIndex][2]), 31) == 0) then
-				newHp = 65536;
+				newHp = 0x10000;
 				
 				HpTeleportMask4 = bit.bor( HpTeleportMask4, bit.lshift( 1, homepoints[hpIndex][2] - 1)); 
 
@@ -202,10 +202,10 @@ end;
 
 function hpTeleport( player, option)
 
-	if( option == 2 or option > 65536 and option < 8323075) then
-		local hpIndex = (option - 2) / 65536; -- Calculate hpIndex based on option selected
+	if( option == 2 or option > 0x10000 and option < 0x7F0003) then
+		local hpIndex = bit.rshift( option, 16); -- Calculate hpIndex based on option selected
 		
-		local teleportCost = homepoints[hpIndex][8]
+		local teleportCost = homepoints[hpIndex][8];
 		if( freeHpTeleport( player, hpIndex)) then
 			teleportCost = 0;
 		end
