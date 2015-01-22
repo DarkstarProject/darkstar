@@ -970,7 +970,7 @@ void CZoneEntities::ZoneServer(uint32 tick)
 
 		if (PChar->status != STATUS_SHUTDOWN)
 		{
-			PChar->PRecastContainer->Check(tick);
+			PChar->PRecastContainer->Check();
 			PChar->StatusEffectContainer->CheckEffects(tick);
 			PChar->PBattleAI->CheckCurrentAction(tick);
 			PChar->PTreasurePool->CheckItems(tick);
@@ -1003,7 +1003,7 @@ void CZoneEntities::ZoneServerRegion(uint32 tick)
 
 		if (PChar->status != STATUS_SHUTDOWN)
 		{
-			PChar->PRecastContainer->Check(tick);
+			PChar->PRecastContainer->Check();
 			PChar->StatusEffectContainer->CheckEffects(tick);
 			PChar->PBattleAI->CheckCurrentAction(tick);
 			PChar->PTreasurePool->CheckItems(tick);

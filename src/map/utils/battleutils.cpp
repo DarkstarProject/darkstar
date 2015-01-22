@@ -4464,16 +4464,11 @@ void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
 		TotalRecasts -= 1;
 	}
 
-	if (TotalRecasts == 0)
-	{
-		return;
-	}
-
 	// Restore some abilities (Randomly select some abilities?)
-	uint8 RecastsToDelete = WELL512::irand() % TotalRecasts;
+	uint8 RecastsToDelete = WELL512::irand() % (TotalRecasts == 0 ? 1 : TotalRecasts);
 
-	// Restore at least 1 ability.
-	RecastsToDelete = RecastsToDelete == 0 ? 1 : RecastsToDelete;
+	// Restore at least 1 ability (unless none are on recast)
+	RecastsToDelete = TotalRecasts == 0 ? 0 : RecastsToDelete == 0 ? 1 : RecastsToDelete;
 
 	switch (roll)
 	{
@@ -4521,8 +4516,8 @@ void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
 				}
 			}
 
-			// Retore 2hr except for Wildcard.
-			if (PTarget != PCaster)
+			// Restore 2hr except for Wildcard.
+            if (PTarget->GetMJob() != JOB_COR)
 			{
 				PTarget->PRecastContainer->Del(RECAST_ABILITY, 0);
 			}
@@ -4535,7 +4530,7 @@ void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
 
 		case 6: 
 			// Restores all Job Abilities and One Hour Abilities (Not Wild Card though), 100% MP Restore 
-			if (PCaster == PTarget)
+			if (PTarget->GetMJob() == JOB_COR)
 			{
 				PTarget->PRecastContainer->ResetAbilities();
 			}
@@ -4546,6 +4541,7 @@ void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
 			PTarget->addMP(PTarget->health.maxmp);
 			break;
  	}
+    charutils::SaveRecasts(PTarget);
 }
 
 /************************************************************************

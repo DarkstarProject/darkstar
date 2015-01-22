@@ -514,6 +514,7 @@ int playermaxHP = 0;
 
 		   PBattlefield->m_PlayerList.at(i)->PRecastContainer->Del(RECAST_MAGIC);
 		   PBattlefield->m_PlayerList.at(i)->PRecastContainer->Del(RECAST_ABILITY);
+           charutils::SaveRecasts(PBattlefield->m_PlayerList.at(i));
 
 	       playermaxMP = PBattlefield->m_PlayerList.at(i)->GetMaxMP();
 		   playermaxHP = PBattlefield->m_PlayerList.at(i)->GetMaxHP();

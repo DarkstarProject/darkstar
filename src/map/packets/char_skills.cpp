@@ -44,17 +44,17 @@ CCharSkillsPacket::CCharSkillsPacket(CCharEntity* PChar)
 	{
         Recast_t* recast = RecastList->at(i);
 
-		uint32 time = (recast->RecastTime == 0 ? 0 : ((recast->RecastTime - (gettick() - recast->TimeStamp)) / 1000));
+		uint32 recasttime = (recast->RecastTime == 0 ? 0 : ((recast->RecastTime - (time(NULL) - recast->TimeStamp))));
 
 		if(recast->ID != 0) 
 		{
-            WBUFL(data,(0x08 + count*4)-4) = time;
+            WBUFL(data, (0x08 + count * 4) - 4) = recasttime;
             WBUFB(data,(0x0B + count*4)-4) = recast->ID;
 			count++;
 		} 
 		else
 		{
-            WBUFL(data,(0x04)-4) = time;  // 2h ability (recast id is 0)
+            WBUFL(data, (0x04) - 4) = recasttime;  // 2h ability (recast id is 0)
 		}
     }
 	memcpy(data+(0x80)-4, &PChar->WorkingSkills, 128);

@@ -588,10 +588,7 @@ namespace charutils
             limitPoints = (uint16)Sql_GetIntData(SqlHandle, 24);
         }
 
-
-
-
-        fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, 2h, zoning FROM char_stats WHERE charid = %u;";
+        fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, zoning FROM char_stats WHERE charid = %u;";
 
         ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
         bool zoning = false;
@@ -620,22 +617,32 @@ namespace charutils
             else
                 PChar->bazaar.message = '\0';
 
-            // 2H recast time
+            zoning = Sql_GetUIntData(SqlHandle, 8);
+        }
 
-            CAbility* PAbility = ability::GetTwoHourAbility(PChar->GetMJob());
+        fmtQuery = "SELECT type, id, time, recast FROM char_recast WHERE charid = %u;";
 
-            // NULL Check In Case the Expansion for this Job Has Been Disabled
-            if (PAbility != NULL)
+        ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                uint32 RecastTime = (uint32)Sql_GetUIntData(SqlHandle, 8) + PAbility->getRecastTime() * 1000;
-
-                if (RecastTime > gettick())
+                uint32 cast_time = Sql_GetUIntData(SqlHandle, 2);
+                uint32 recast = Sql_GetUIntData(SqlHandle, 3);
+                time_t now = time(NULL);
+                uint32 chargeTime = 0;
+                uint8 maxCharges = 0;
+                Charge_t* charge = ability::GetCharge(PChar, Sql_GetUIntData(SqlHandle, 1));
+                if (charge != NULL)
                 {
-                    PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), RecastTime - gettick());
+                    chargeTime = charge->chargeTime;
+                    maxCharges = charge->maxCharges;
+                }
+                if (now < cast_time + recast)
+                {
+                    PChar->PRecastContainer->Add((RECASTTYPE)Sql_GetUIntData(SqlHandle, 0), Sql_GetUIntData(SqlHandle, 1), (cast_time + recast - now), chargeTime, maxCharges);
                 }
             }
-
-            zoning = Sql_GetUIntData(SqlHandle, 9);
         }
 
         fmtQuery = "SELECT skillid, value, rank "
@@ -708,7 +715,6 @@ namespace charutils
         blueutils::LoadSetSpells(PChar);
         puppetutils::LoadAutomaton(PChar);
         BuildingCharSkillsTable(PChar);
-        PChar->PRecastContainer->ResetAbilities();
         BuildingCharAbilityTable(PChar);
         BuildingCharTraitsTable(PChar);
         PChar->UpdateHealth();
@@ -1163,6 +1169,7 @@ namespace charutils
         charutils::SaveCharStats(PChar);
         charutils::SaveCharJob(PChar, PChar->GetMJob());
         charutils::SaveCharExp(PChar, PChar->GetMJob());
+        charutils::SaveRecasts(PChar);
         charutils::UpdateHealth(PChar);
 
         PChar->pushPacket(new CCharJobsPacket(PChar));
@@ -1767,7 +1774,7 @@ namespace charutils
                     if (PItem->isType(ITEM_USABLE) && ((CItemUsable*)PItem)->getCurrentCharges() != 0)
                     {
                         PItem->setAssignTime(CVanaTime::getInstance()->getVanaTime());
-                        PChar->PRecastContainer->Add(RECAST_ITEM, slotID, PItem->getReuseTime());
+                        PChar->PRecastContainer->Add(RECAST_ITEM, slotID, PItem->getReuseTime()/1000);
 
                         // не забываем обновить таймер при экипировке предмета
 
@@ -4079,11 +4086,6 @@ namespace charutils
         return exp;
     }
 
-    void ResetAllTwoHours()
-    {
-        Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = 0");
-    }
-
     bool hasMogLockerAccess(CCharEntity* PChar) {
         int8 fmtQuery[] = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' ";
         int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, "mog-locker-expiry-timestamp");
@@ -4194,6 +4196,29 @@ namespace charutils
 
     /************************************************************************
     *																		*
+    *  Saves characters recasts to the database.                     		*
+    *																		*
+    ************************************************************************/
+
+    void SaveRecasts(CCharEntity* PChar)
+    {
+        //skip RECAST_ITEM, it's already saved in 'extra' of char_inventory
+        for (int i = 1; i < MAX_RECASTTPE_SIZE; i++)
+        {
+            Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND type = %u;", PChar->id, i);
+
+            auto recastList = PChar->PRecastContainer->GetRecastList((RECASTTYPE)i);
+
+            for (auto recast : *recastList)
+            {
+                Sql_Query(SqlHandle, "INSERT INTO char_recast VALUES (%u, %u, %u, %u, %u);",
+                    PChar->id, i, recast->ID, recast->TimeStamp, recast->RecastTime);
+            }
+        }
+    }
+
+    /************************************************************************
+    *																		*
     *  Checks which UnarmedItem to grant when SLOT_MAIN is empty.			*
     *																		*
     ************************************************************************/
@@ -4227,37 +4252,6 @@ namespace charutils
         PChar->UContainer->Clean();
         PChar->UContainer->SetType(UCONTAINER_DELIVERYBOX);
 
-        const int8* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sender, charname "
-            "FROM delivery_box "
-            "WHERE senderid = %u "
-            "AND box = 2 "
-            "AND slot < 8 "
-            "AND sent = 1 "
-            "ORDER BY slot;";
-
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
-
-        if (ret != SQL_ERROR)
-        {
-            if (Sql_NumRows(SqlHandle) != 0)
-            {
-                while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-                {
-                    CItem* PItem = itemutils::GetItem(Sql_GetIntData(SqlHandle, 0));
-
-                    if (PItem != NULL) // Prevent an access violation in the event that an item doesn't exist for an ID
-                    {
-                        PItem->setSubID(Sql_GetIntData(SqlHandle, 1));
-                        PItem->setSlotID(Sql_GetIntData(SqlHandle, 2));
-                        PItem->setQuantity(Sql_GetUIntData(SqlHandle, 3));
-                        PItem->setSender(Sql_GetData(SqlHandle, 4));
-                        PItem->setReceiver(Sql_GetData(SqlHandle, 5));
-                        PItem->setSent(true);
-                        PChar->UContainer->SetItem(PItem->getSlotID(), PItem);
-                    }
-                }
-            }
-        }
         PChar->pushPacket(new CDeliveryBoxPacket(0x0D, 2, 0, 0x01));
         return;
     }

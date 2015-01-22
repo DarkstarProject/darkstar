@@ -432,7 +432,7 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
         }
     }
 
-    return recast;
+    return recast/1000;
 }
 
 bool CMagicState::CheckInterrupt()
@@ -904,7 +904,7 @@ void CMagicState::SetRecast(CSpell* PSpell)
 
     CCharEntity* PChar = (CCharEntity*)m_PEntity;
 
-    uint32 RecastTime = 3000;
+    uint32 RecastTime = 3;
 
     if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) &&
 		!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SPONTANEITY))
@@ -915,4 +915,5 @@ void CMagicState::SetRecast(CSpell* PSpell)
     //needed so the client knows of the reduced recast time!
     PSpell->setModifiedRecast(RecastTime);
     PChar->PRecastContainer->Add(RECAST_MAGIC, PSpell->getID(), RecastTime);
+    charutils::SaveRecasts(PChar);
 }

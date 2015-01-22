@@ -198,7 +198,6 @@ int32 do_init(int32 argc, int8** argv)
 	mobSpellList::LoadMobSpellList();
 	ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
-    charutils::ResetAllTwoHours();
 	guildutils::Initialize();
 	charutils::LoadExpTable();
     linkshell::LoadLinkshellList();
