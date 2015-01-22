@@ -273,30 +273,10 @@ namespace message
 				CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
 				if (PChar)
 				{
-					if (PChar->PParty)
-					{
-						if (PChar->PParty->m_PAlliance != NULL)
-						{
-							for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
-							{
-								for (uint8 j = 0; j < PChar->PParty->m_PAlliance->partyList.at(i)->members.size(); ++j)
-								{
-									((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(i)->members.at(j))->ReloadPartyInc();
-								}
-							}
-						}
-						else
-						{
-							for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
-							{
-                                ((CCharEntity*)PChar->PParty->members.at(i))->ReloadPartyInc();
-							}
-						}
-					}
-					else
-					{
-                        PChar->ReloadPartyInc();
-					}
+                    PChar->ForAlliance([](CBattleEntity* PMember)
+                    {
+                        ((CCharEntity*)PMember)->ReloadPartyInc();
+                    });
 				}
 				break;
 			}

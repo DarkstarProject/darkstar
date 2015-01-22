@@ -734,19 +734,9 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 	}
 
 	// check latents affected by pets
-	if (PMaster->PParty != NULL)
-	{
-		for (uint8 i = 0; i < PMaster->PParty->members.size(); ++i)
-		{
-			CCharEntity* PMember = (CCharEntity*)PMaster->PParty->members.at(i);
-			PMember->PLatentEffectContainer->CheckLatentsPartyAvatar();
-		}
-	}
-	else
-	{
-		CCharEntity* PChar = (CCharEntity*)PMaster;
-		PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
-	}
+    PMaster->ForParty([](CBattleEntity* PMember){
+        ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
+    });
 
 }
 
@@ -871,16 +861,9 @@ void DetachPet(CBattleEntity* PMaster)
         if( PPetEnt->getPetType() == PETTYPE_AVATAR )
             PMaster->setModifier(MOD_AVATAR_PERPETUATION, 0);
 
-        if (PMaster->PParty != NULL)
-        {
-            for (uint8 i = 0; i < PMaster->PParty->members.size(); ++i)
-            {
-                CCharEntity* PMember = (CCharEntity*)PMaster->PParty->members.at(i);
-                PMember->PLatentEffectContainer->CheckLatentsPartyAvatar();
-            }
-        }
-
-        PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
+        PMaster->ForParty([](CBattleEntity* PMember){
+            ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
+        });
 
         if (PPetEnt->getPetType() != PETTYPE_AUTOMATON){
             PPetEnt->PMaster = NULL;

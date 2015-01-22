@@ -256,33 +256,17 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 	{
 		return true;
 	}
-	if (m_PChar->PParty != NULL)
-	{
-		if (m_PChar->PParty->m_PAlliance != NULL)
-		{
-			for (uint8 a = 0; a < m_PChar->PParty->m_PAlliance->partyList.size(); ++a)
-			{
-				for (uint8 i = 0; i < m_PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
-				{
-					if (m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i]->id == PBattleTarget->m_OwnerID.id)
-					{
-						return true;
-					}
-				}
-			}
-		}
-        else //no alliance
+
+    bool found = false;
+
+    m_PChar->ForAlliance([&PBattleTarget, &found](CBattleEntity* PChar){
+        if (PChar->id == PBattleTarget->m_OwnerID.id)
         {
-			for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
-			{
-				if (m_PChar->PParty->members[i]->id == PBattleTarget->m_OwnerID.id)
-				{
-					return true;
-				}
-			}
-		}
-	}
-	return false;
+            found = true;
+        }
+    });
+
+	return found;
 }
 
 /************************************************************************
@@ -695,17 +679,18 @@ void CAICharNormal::ActionItemFinish()
             luautils::OnItemUse(m_PBattleSubTarget, m_PItemUsable);
 
             // party AoE effect
-            if (m_PItemUsable->getAoE() == 1 && m_PBattleSubTarget->PParty != NULL)
+            if (m_PItemUsable->getAoE() == 1)
             {
-                for (uint8 i = 0; i < m_PBattleSubTarget->PParty->members.size(); ++i)
-                {
-                    CBattleEntity* PTarget = m_PBattleSubTarget->PParty->members.at(i);
-
-                    if (m_PBattleSubTarget != PTarget && !PTarget->isDead() && distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= 10)
+                m_PBattleSubTarget->ForParty([this](CBattleEntity* PTarget){
+                    if (!PTarget->isDead() && distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= 10)
                     {
                         luautils::OnItemUse(PTarget, m_PItemUsable);
                     }
-                }
+                });
+            }
+            else
+            {
+                luautils::OnItemUse(m_PBattleSubTarget, m_PItemUsable);
             }
         }
 		delete m_PItemUsable;

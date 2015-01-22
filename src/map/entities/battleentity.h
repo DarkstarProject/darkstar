@@ -522,6 +522,9 @@ public:
 	void 		    saveModifiers(); // save current state of modifiers
 	void 		    restoreModifiers(); // restore to saved state
 
+    void            ForParty(std::function<void(CBattleEntity*)>);
+    void            ForAlliance(std::function<void(CBattleEntity*)>);
+
 	uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
 	ECOSYSTEM		m_EcoSystem;			    // эко-система сущности
 	CItemWeapon*	m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)

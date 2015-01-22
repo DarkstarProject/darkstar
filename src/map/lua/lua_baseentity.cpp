@@ -4435,18 +4435,12 @@ inline int32 CLuaBaseEntity::addPartyEffect(lua_State *L)
         (n >= 6 ? (uint16)lua_tointeger(L,6) : 0),
         (n >= 7 ? (uint16)lua_tointeger(L,7) : 0));
 
-    CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
+    CBattleEntity* PEntity = ((CBattleEntity*)m_PBaseEntity);
 
-    if (PChar->PParty != NULL)
+    PEntity->ForParty([PEffect](CBattleEntity* PMember)
     {
-        for (int i=0; i< PChar->PParty->members.size(); ++i)
-        {
-            if (PChar->PParty->members[i]->loc.zone == PChar->loc.zone)
-            {
-                PChar->PParty->members[i]->StatusEffectContainer->AddStatusEffect(PEffect);
-            }
-        }
-    }
+        PMember->StatusEffectContainer->AddStatusEffect(PEffect);
+    });
     return 0;
 }
 
@@ -5112,14 +5106,10 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
 
-    if(PChar->PParty != NULL) // check latents affected by party jobs
+    PChar->ForParty([](CBattleEntity* PMember)
     {
-        for(uint8 i = 0; i < PChar->PParty->members.size(); ++i)
-        {
-            CCharEntity* PMember = (CCharEntity*)PChar->PParty->members.at(i);
-            PMember->PLatentEffectContainer->CheckLatentsPartyJobs();
-        }
-    }
+        ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyJobs();
+    });
 
     PChar->UpdateHealth();
     PChar->health.hp = PChar->GetMaxHP();
