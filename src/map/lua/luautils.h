@@ -149,7 +149,6 @@ namespace luautils
     int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget);                    // Сalled every 3 sec when a player fight monster
     int32 OnCriticalHit(CBattleEntity* PTarget);
     int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);                    // triggers on mob death
-    int32 OnMobDeathEx(CBaseEntity* PMob, CBaseEntity* PKiller, bool isKillShot); // triggers on ALL mobs death
     int32 OnMobDespawn(CBaseEntity* PMob);                                        // triggers on mob despawn (death not assured)
 
     int32 OnPath(CBaseEntity* PEntity);                                           // triggers when a patrol npc finishes its pathfind
