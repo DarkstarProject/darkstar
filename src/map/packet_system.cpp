@@ -2615,7 +2615,10 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         ShowInfo(CL_WHITE"Zoning from zone %u to zone %u: %s\n" CL_RESET, PChar->getZone(), PChar->loc.destination, PChar->GetName());
     }
     PChar->clearPacketList();
-    PChar->pushPacket(new CServerIPPacket(PChar, 2, zoneutils::GetZoneIPP(PChar->loc.destination)));
+
+    uint64 ipp = zoneutils::GetZoneIPP(PChar->loc.destination == 0 ? PChar->loc.prevzone : PChar->loc.destination);
+
+    PChar->pushPacket(new CServerIPPacket(PChar, 2, ipp));
     return;
 }
 
