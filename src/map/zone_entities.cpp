@@ -810,7 +810,8 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
 					CCharEntity* PCurrentChar = (CCharEntity*)it->second;
 					if (PEntity != PCurrentChar)
 					{
-						if (distance(PEntity->loc.p, PCurrentChar->loc.p) < 50)
+						if (distance(PEntity->loc.p, PCurrentChar->loc.p) < 50 && 
+                            ((PEntity->objtype != TYPE_PC) || (((CCharEntity*)PEntity)->m_moghouseID == PCurrentChar->m_moghouseID)))
 						{
 							if (packet != NULL && packet->getType() == 0x0E &&
 								(RBUFB(packet->getData(), (0x0A) - 4) != 0x20 ||
@@ -875,7 +876,8 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
 					CCharEntity* PCurrentChar = (CCharEntity*)it->second;
 					if (PEntity != PCurrentChar)
 					{
-						if (distance(PEntity->loc.p, PCurrentChar->loc.p) < 180)
+						if (distance(PEntity->loc.p, PCurrentChar->loc.p) < 180 && 
+                            ((PEntity->objtype != TYPE_PC) || (((CCharEntity*)PEntity)->m_moghouseID == PCurrentChar->m_moghouseID)))
 						{
 							PCurrentChar->pushPacket(new CBasicPacket(*packet));
 						}
@@ -888,10 +890,14 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
 				for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
 				{
 					CCharEntity* PCurrentChar = (CCharEntity*)it->second;
-					if (PEntity != PCurrentChar)
-					{
-						PCurrentChar->pushPacket(new CBasicPacket(*packet));
-					}
+
+                    if ((PEntity->objtype != TYPE_PC) || (((CCharEntity*)PEntity)->m_moghouseID == PCurrentChar->m_moghouseID))
+                    {
+                        if (PEntity != PCurrentChar)
+                        {
+                            PCurrentChar->pushPacket(new CBasicPacket(*packet));
+                        }
+                    }
 				}
 			}
 			break;
