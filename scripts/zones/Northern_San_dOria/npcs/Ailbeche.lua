@@ -98,6 +98,10 @@ function onTrigger(player,npc)
 		player:startEvent(0x002f); -- During Quest "A Boy's Dream" (after trading odontotyrannus)
 	elseif(aBoysDreamCS >= 6) then
 		player:startEvent(0x0019); -- During Quest "A Boy's Dream" (after Zaldon CS)
+	elseif(player:hasKeyItem(KNIGHTS_CONFESSION) and player:getVar("UnderOathCS") == 6) then
+		player:startEvent(0x003B); -- During Quest "Under Oath" (he's going fishing in Jugner)
+	elseif (player:getVar("UnderOathCS") == 8) then
+		player:startEvent(0x000D); -- During Quest "Under Oath" (After jugner CS)
 	else
 		player:startEvent(0x0364); -- Standard dialog
 	end
@@ -168,5 +172,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("aBoysDreamCS",5);
 	elseif(csid == 0x0019 and player:getVar("aBoysDreamCS") == 6) then
 		player:setVar("aBoysDreamCS",7);
+	elseif (csid == 0x003B) then
+		player:setVar("UnderOathCS", 7);
 	end
 end;

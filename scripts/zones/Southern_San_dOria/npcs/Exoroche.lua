@@ -47,6 +47,14 @@ function onTrigger(player,npc)
 		player:startEvent(0x0032);
 	elseif(player:getVar("aBoysDreamCS") >= 7) then 
 		player:startEvent(0x0020);
+	elseif (player:getVar("UnderOathCS") == 4 and player:hasKeyItem(STRANGE_SHEET_OF_PAPER)) then
+		player:startEvent(0x004D);
+	elseif (player:getVar("UnderOathCS") == 5) then
+		player:startEvent(0x004F);
+	elseif(player:hasKeyItem(KNIGHTS_CONFESSION) and player:getVar("UnderOathCS") == 6) then
+		player:startEvent(0x0033);
+	elseif(player:getVar("UnderOathCS") == 8) then
+		player:startEvent(0x0013);
 	else
 		player:startEvent(0x004c);
 	end;
@@ -75,6 +83,8 @@ function onEventFinish(player,csid,option)
 		player:setVar("aBoysDreamCS",3);
 	elseif(csid == 0x0020 and player:getVar("aBoysDreamCS") == 7) then
 		player:setVar("aBoysDreamCS",8);
+	elseif (csid == 0x004D) then
+		player:setVar("UnderOathCS",5)
 	end
 end;
 ------- used in expansions
