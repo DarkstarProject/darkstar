@@ -20,7 +20,7 @@ require("scripts/zones/Chateau_dOraguille/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-player:setVar("UnderOathCS", 8);
+
 end;
 
 -----------------------------------
