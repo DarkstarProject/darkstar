@@ -64,14 +64,14 @@ CEventPacket::CEventPacket(
 
 		WBUFW(data,(0x28)-4) = PChar->m_TargID;
 
-        WBUFW(data,(0x2A)-4) = (PChar->getZone() != 0 ? PChar->getZone() : PChar->loc.prevzone);
+        WBUFW(data,(0x2A)-4) = PChar->getZone();
         if (textTable != -1)
         {
             WBUFW(data,(0x30)-4) = textTable;
         }
         else
         {
-            WBUFW(data,(0x30)-4) = (PChar->getZone() != 0 ? PChar->getZone() : PChar->loc.prevzone);
+            WBUFW(data,(0x30)-4) = PChar->getZone();
         }
 
 		WBUFW(data,(0x2C)-4) = EventID;
@@ -82,8 +82,8 @@ CEventPacket::CEventPacket(
 		WBUFW(data,(0x08)-4) = PChar->targid;
 		WBUFW(data,(0x0C)-4) = EventID;
 		
-        WBUFW(data,(0x0A)-4) = (PChar->getZone() != 0 ? PChar->getZone() : PChar->loc.prevzone);
-		WBUFW(data,(0x10)-4) = (PChar->getZone() != 0 ? PChar->getZone() : PChar->loc.prevzone);
+        WBUFW(data,(0x0A)-4) = PChar->getZone();
+		WBUFW(data,(0x10)-4) = PChar->getZone();
 	}
 	PChar->m_event.EventID = EventID;
 }

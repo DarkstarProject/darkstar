@@ -70,7 +70,7 @@ class CRecastContainer
 {
     public:
 
-    void Check(uint32 tick);
+    void Check();
 
     void Del(RECASTTYPE type);
     void Del(RECASTTYPE type, uint16 id);

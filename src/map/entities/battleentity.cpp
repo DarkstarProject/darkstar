@@ -25,6 +25,8 @@
 #include "../../common/utils.h"
 
 #include "battleentity.h"
+
+#include "../alliance.h"
 #include "../utils/battleutils.h"
 
 CBattleEntity::CBattleEntity()
@@ -531,6 +533,12 @@ uint16 CBattleEntity::ATT()
 	if (this->objtype & TYPE_PC){
 		ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType());
 	}
+    else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
+    {
+        ATT += PMaster->GetSkill(SKILL_AME);
+        return ATT + (ATT * (m_modStat[MOD_ATTP] + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster)) / 100) +
+            dsp_min((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
+    }
     return ATT + (ATT * m_modStat[MOD_ATTP] / 100) +
         dsp_min((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
 }
@@ -538,6 +546,12 @@ uint16 CBattleEntity::ATT()
 uint16 CBattleEntity::RATT(uint8 skill)
 {
     int32 ATT = 8 + GetSkill(skill) + m_modStat[MOD_RATT] + battleutils::GetRangedAttackBonuses(this) + STR() / 2;
+
+    if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
+    {
+        return ATT + (ATT * (m_modStat[MOD_ATTP] + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster)) / 100) +
+            dsp_min((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
+    }
 
     return ATT + (ATT * m_modStat[MOD_RATTP] / 100) +
         dsp_min((ATT * m_modStat[MOD_FOOD_RATTP] / 100), m_modStat[MOD_FOOD_RATT_CAP]);
@@ -579,7 +593,18 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
 			dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]);
 		return dsp_max(0, ACC);
 	}
-	else{
+    else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
+    {
+        int16 ACC = PMaster->GetSkill(SKILL_AME);
+        ACC = (ACC > 200 ? (((ACC - 200)*0.9) + 200) : ACC);
+        ACC += DEX() * 0.5;
+        ACC += m_modStat[MOD_ACC] + offsetAccuracy + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PMaster);
+        ACC = ACC + (ACC * m_modStat[MOD_ACCP] / 100) +
+            dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]);
+        return dsp_max(0, ACC);
+    }
+	else
+    {
 		int16 ACC = m_modStat[MOD_ACC];
 		ACC = ACC + (ACC * m_modStat[MOD_ACCP] / 100) +
 			dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]) + DEX() / 2; //food mods here for Snatch Morsel
@@ -928,4 +953,47 @@ uint16 CBattleEntity::GetSkill(uint16 SkillID)
 		return WorkingSkills.skill[SkillID] & 0x7FFF;
 	}
 	return 0;
+}
+
+void CBattleEntity::ForParty(std::function<void(CBattleEntity*)> func)
+{
+    if (PParty)
+    {
+        for (auto PMember : PParty->members)
+        {
+            func(PMember);
+        }
+    }
+    else
+    {
+        func(this);
+    }
+}
+
+void CBattleEntity::ForAlliance(std::function<void(CBattleEntity*)> func)
+{
+    if (PParty)
+    {
+        if (PParty->m_PAlliance)
+        {
+            for (auto PAllianceParty : PParty->m_PAlliance->partyList)
+            {
+                for (auto PMember : PAllianceParty->members)
+                {
+                    func(PMember);
+                }
+            }
+        }
+        else
+        {
+            for (auto PMember : PParty->members)
+            {
+                func(PMember);
+            }
+        }
+    }
+    else
+    {
+        func(this);
+    }
 }

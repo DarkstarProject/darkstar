@@ -65,7 +65,10 @@ struct SearchEntity
 	uint16 flags1;
 	uint32 flags2;
 	uint32 comment;
-	uint8  linkshell;
+	uint32 linkshellid1;
+    uint32 linkshellid2;
+    uint8  linkshellrank1;
+    uint8  linkshellrank2;
 	uint16 languages;
 };
 

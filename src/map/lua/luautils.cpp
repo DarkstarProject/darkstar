@@ -28,6 +28,7 @@
 #include "../../common/malloc.h"
 
 #include <string.h>
+#include <unordered_map>
 
 #include "luautils.h"
 #include "lua_ability.h"
@@ -68,6 +69,9 @@
 namespace luautils
 {
 lua_State*  LuaHandle = NULL;
+
+bool expansionRestrictionEnabled;
+std::unordered_map<std::string, bool> expansionEnabledMap;
 
 /************************************************************************
 *																		*
@@ -140,6 +144,8 @@ int32 init()
     Lunar<CLuaItem>::Register(LuaHandle);
 
     luaL_dostring(LuaHandle, "require('bit')");
+
+	expansionRestrictionEnabled = (GetSettingsVariable("RESTRICT_BY_EXPANSION") != 0);
 
 	ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 	return 0;
@@ -277,7 +283,6 @@ int32 GetNPCByID(lua_State* L)
         }
 
 		if(PNpc == NULL){
-			ShowWarning("luautils::GetNPCByID NPC doesn't exist (%d)\n", npcid);
 			lua_pushnil(L);
 		} else {
 			lua_getglobal(L,CLuaBaseEntity::className);
@@ -1016,12 +1021,23 @@ uint8 GetSettingsVariable(const char* variable)
 bool IsExpansionEnabled(const char* expansionCode)
 {
 	if (expansionCode != NULL){
-		char* expansionVariable = new char[14];
-		sprintf(expansionVariable, "ENABLE_%s", expansionCode);
+		std::string expansionVariable("ENABLE_");
+		expansionVariable.append(expansionCode);
 
-		uint8 expansionEnabled = GetSettingsVariable(expansionVariable);
+        bool expansionEnabled;
 
-		if (expansionEnabled == 0){
+        try
+        {
+            expansionEnabled = expansionEnabledMap.at(expansionVariable);
+        }
+        catch (std::out_of_range)
+        {
+            // Cache Expansion Lookups in a Map so that we don't re-hit the Lua file every time
+            expansionEnabled = (GetSettingsVariable(expansionVariable.c_str()) != 0);
+            expansionEnabledMap[expansionVariable] = expansionEnabled;
+        }
+
+		if (expansionEnabled == false && expansionRestrictionEnabled == true){
 			return false;
 		}
 	}
@@ -2175,6 +2191,55 @@ int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
 }
 
 /************************************************************************
+*																		*
+*  Called when mob is targeted by a spell.                              *
+*  Note: does not differentiate between offensive and defensive spells  *
+*																		*
+************************************************************************/
+
+int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell)
+{
+    DSP_DEBUG_BREAK_IF(PSpell == NULL);
+
+    lua_prepscript("scripts/zones/%s/mobs/%s.lua", PCaster->loc.zone->GetName(), PCaster->GetName());
+
+    if (prepFile(File, "onMagicHit"))
+    {
+        return 0;
+    }
+
+    CLuaBaseEntity LuaCasterEntity(PCaster);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaCasterEntity);
+
+    CLuaBaseEntity LuaTargetEntity(PTarget);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+
+    CLuaSpell LuaSpell(PSpell);
+    Lunar<CLuaSpell>::push(LuaHandle, &LuaSpell);
+
+    if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::onMagicHit: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return 0;
+    }
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns < 1)
+    {
+        ShowError("luautils::onMagicHit (%s): 1 return expected, got %d\n", File, returns);
+        return 0;
+    }
+    uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
+    lua_pop(LuaHandle, 1);
+    if (returns > 1)
+    {
+        ShowError("luautils::onMagicHit (%s): 1 return expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns - 1);
+    }
+    return retVal;
+}
+
+/************************************************************************
 *  onMobInitialize                                                      *
 *  Used for passive trait                                               *
 *                                                                       *
@@ -2447,50 +2512,12 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 
 	CLuaBaseEntity LuaMobEntity(PMob);
 
-    int8 File[255];
-    memset(File, 0, sizeof(File));
-
-    if (PKiller && ((CMobEntity*)PMob)->m_OwnerID.id == PKiller->id)
+    if (PKiller)
     {
-        CLuaBaseEntity LuaKillerEntity(PKiller);
-        bool loaded = true;
-        lua_getglobal(LuaHandle, "onMobDeathEx");
-        if (lua_isnil(LuaHandle, -1))
-        {
-            lua_pop(LuaHandle, 1);
-
-            snprintf(File, sizeof(File), "scripts/globals/mobs.lua");
-
-            if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
-            {
-                lua_pop(LuaHandle, 1);
-                loaded = false;
+        luautils::OnMobDeathEx(PMob, PKiller, true);
             }
 
-            lua_getglobal(LuaHandle, "onMobDeathEx");
-            if (lua_isnil(LuaHandle, -1))
-            {
-                lua_pop(LuaHandle, 1);
-                loaded = false;
-            }
-        }
-
-        if (loaded)
-        {
-            bool isWeaponSkillKill = PChar->getWeaponSkillKill();
-
-            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
-            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
-            lua_pushboolean(LuaHandle, isWeaponSkillKill);
-
-            if (lua_pcall(LuaHandle, 3, 0, 0))
-            {
-                ShowError("luautils::onMobDeath: %s\n", lua_tostring(LuaHandle, -1));
-                lua_pop(LuaHandle, 1);
-            }
-        }
-    }
-
+    int8 File[255];
     memset(File, 0, sizeof(File));
 
     int32 oldtop = lua_gettop(LuaHandle);
@@ -2507,14 +2534,14 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 		PChar->m_event.Script.insert(0, File);
 	}
 
-	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+    if ( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
 
     lua_getglobal(LuaHandle, "onMobDeath");
-	if( lua_isnil(LuaHandle,-1) )
+    if ( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::onMobDeath: undefined procedure onMobDeath\n");
         lua_pop(LuaHandle, 1);
@@ -2532,7 +2559,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 		lua_pushnil(LuaHandle);
 	}
 
-	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+    if ( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::onMobDeath: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
@@ -2555,6 +2582,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 					PMember->m_event.reset();
 					PMember->m_event.Target = PMob;
 					PMember->m_event.Script.insert(0,File);
+                    luautils::OnMobDeathEx(PMob, PMember, false);
 
 					lua_getglobal(LuaHandle, "onMobDeath");
 					if (lua_isnil(LuaHandle,-1))
@@ -2568,7 +2596,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 					Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 					Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
 
-					if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+                    if ( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 					{
 						ShowError("luautils::onMobDeath: %s\n",lua_tostring(LuaHandle,-1));
 						lua_pop(LuaHandle, 1);
@@ -2589,6 +2617,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 				PMember->m_event.reset();
 				PMember->m_event.Target = PMob;
 				PMember->m_event.Script.insert(0,File);
+                luautils::OnMobDeathEx(PMob, PMember, false);
 
 				lua_getglobal(LuaHandle, "onMobDeath");
 				if (lua_isnil(LuaHandle,-1))
@@ -2602,7 +2631,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 				Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 				Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
 
-				if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+                if ( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 				{
 					ShowError("luautils::onMobDeath: %s\n",lua_tostring(LuaHandle,-1));
 					lua_pop(LuaHandle, 1);
@@ -2611,12 +2640,73 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 			}
 		}
 	}
+
     int32 returns = lua_gettop(LuaHandle) - oldtop;
     if (returns > 0)
     {
         ShowError("luautils::onMobDeath (%s): 0 returns expected, got %d\n", File, returns);
         lua_pop(LuaHandle, returns);
     }
+
+    return 0;
+}
+
+int32 OnMobDeathEx(CBaseEntity* PMob, CBaseEntity* PKiller, bool isKillShot)
+{
+    DSP_DEBUG_BREAK_IF(PMob == NULL);
+
+    CCharEntity* PChar = (CCharEntity*)PKiller;
+
+    CLuaBaseEntity LuaMobEntity(PMob);
+
+    int8 File[255];
+    memset(File, 0, sizeof(File));
+
+    int32 oldtop = lua_gettop(LuaHandle);
+
+    CLuaBaseEntity LuaKillerEntity(PKiller);
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onMobDeathEx");
+
+    snprintf(File, sizeof(File), "scripts/globals/mobs.lua");
+
+    if ( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+    {
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    lua_getglobal(LuaHandle, "onMobDeathEx");
+    if ( lua_isnil(LuaHandle,-1) )
+    {
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    bool isWeaponSkillKill = PChar->getWeaponSkillKill();
+
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
+    lua_pushboolean(LuaHandle, isKillShot);
+    lua_pushboolean(LuaHandle, isWeaponSkillKill);
+    // lua_pushboolean(LuaHandle, isMagicKill);
+    // lua_pushboolean(LuaHandle, isPetKill);
+    // Rather than use even more bools for this, I'm thinking it's better to replace isWeaponSkillKill with a "killType" value
+    // Checking that sort of thing could also make Colibri mimic and Jailer of Fortitude reflect easier to do.
+
+    if (lua_pcall(LuaHandle, 4, 0, 0))
+    {
+        ShowError("luautils::onMobDeathEx: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+    }
+
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 0)
+    {
+        ShowError("luautils::onMobDeathEx (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+
 	return 0;
 }
 

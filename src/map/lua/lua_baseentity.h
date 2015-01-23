@@ -127,6 +127,7 @@ public:
     int32 getPos(lua_State*);               // Get Entity position (x,y,z)
     int32 getSpawnPos(lua_State*);          // Get Mob spawn position (x,y,z)
     int32 getZone(lua_State*);              // Get Entity zone
+    int32 getZoneID(lua_State*);            // Get Entity zone ID
     int32 getZoneName(lua_State*);          // Get Entity zone name
     int32 isInMogHouse(lua_State*);         // Check if entity inside a mog house
     int32 getCurrentRegion(lua_State*);     // Get Entity conquest region
@@ -372,6 +373,7 @@ public:
     int32 hasTrait(lua_State*);
 
     int32 addExp(lua_State*);                // Add to Character Experience
+    int32 delExp(lua_State*);                // Subtracts from Character Experience
 
     int32 getPetElement(lua_State*);
     int32 getPetName(lua_State*);
@@ -445,43 +447,11 @@ public:
     int32 addSeals(lua_State*);             // Add Seals
     int32 delSeals(lua_State*);             // Delete Seals
 
-    int32 getValorPoint(lua_State*);        // Get valor point (tabs)
-    int32 addValorPoint(lua_State*);        // Add valor point (tabs)
-    int32 delValorPoint(lua_State*);        // Delete valor point (tabs)
-
-    int32 getScylds(lua_State*);            // Get Scylds
-    int32 addScylds(lua_State*);            // Add Scylds
-    int32 delScylds(lua_State*);            // Delete Scylds
-
-    int32 getImperialStanding(lua_State*);  // Get imperial standing
-    int32 addImperialStanding(lua_State*);  // Add imperial standing
-    int32 delImperialStanding(lua_State*);  // Delete imperial standing
-
-    int32 getAssaultPoint(lua_State*);      // Get imperial standing
-    int32 addAssaultPoint(lua_State*);      // Add imperial standing
-    int32 delAssaultPoint(lua_State*);      // Delete imperial standing
-
-    int32 getAlliedNotes(lua_State*);       // Get Allied Notes
-    int32 addAlliedNotes(lua_State*);       // Add Allied Notes
-    int32 delAlliedNotes(lua_State*);       // Delete Allied Notes
-
-    int32 getZeni(lua_State*);              // Get Zeni
-    int32 addZeni(lua_State*);              // Add Zeni
-    int32 delZeni(lua_State*);              // Delete Zeni
+    int32 getAssaultPoint(lua_State*);      // Get points for an assault area
+    int32 addAssaultPoint(lua_State*);      // Add points for an assault area
+    int32 delAssaultPoint(lua_State*);      // Delete points for an assault area
 
     int32 isJailed(lua_State *L);           // Is the player jailed
-
-    int32 getCruor(lua_State*);             // Get Cruor
-    int32 addCruor(lua_State*);             // Add Cruor
-    int32 delCruor(lua_State*);             // Delete Cruor
-
-    int32 getTags(lua_State*);              // Get Imperial ID tags (Assault)
-    int32 addTags(lua_State*);              // Add Imperial ID tags (Assault)
-    int32 delTags(lua_State*);              // Delete Imperial ID tags (Assault)
-
-    int32 getTstone(lua_State*);            // Get Traverser Stone Stock
-    int32 addTstone(lua_State*);            // Add Traverser Stone Stock
-    int32 delTstone(lua_State*);            // Delete Traverser Stone Stock
 
     int32 addNationTeleport(lua_State*);     // Add new teleport: addNationTeleport(nation,number)
     int32 getNationTeleport(lua_State*);     // Get teleport you can use by nation: getNationTeleport(nation)
@@ -501,6 +471,7 @@ public:
     int32 isPet(lua_State*);
 
     int32 injectActionPacket(lua_State*);   // ONLY FOR DEBUGGING. Injects an action packet with the specified params.
+    int32 setMobFlags(lua_State*);          // Used to manipulate the mob's flags for testing.
 
     int32 setDelay(lua_State*);             // sets a mobs weapon delay
     int32 setDamage(lua_State*);            // sets a mobs weapon damage

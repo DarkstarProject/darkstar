@@ -256,33 +256,17 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 	{
 		return true;
 	}
-	if (m_PChar->PParty != NULL)
-	{
-		if (m_PChar->PParty->m_PAlliance != NULL)
-		{
-			for (uint8 a = 0; a < m_PChar->PParty->m_PAlliance->partyList.size(); ++a)
-			{
-				for (uint8 i = 0; i < m_PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
-				{
-					if (m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i]->id == PBattleTarget->m_OwnerID.id)
-					{
-						return true;
-					}
-				}
-			}
-		}
-        else //no alliance
+
+    bool found = false;
+
+    m_PChar->ForAlliance([&PBattleTarget, &found](CBattleEntity* PChar){
+        if (PChar->id == PBattleTarget->m_OwnerID.id)
         {
-			for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
-			{
-				if (m_PChar->PParty->members[i]->id == PBattleTarget->m_OwnerID.id)
-				{
-					return true;
-				}
-			}
-		}
-	}
-	return false;
+            found = true;
+        }
+    });
+
+	return found;
 }
 
 /************************************************************************
@@ -640,7 +624,7 @@ void CAICharNormal::ActionItemUsing()
 
             if (m_PItemUsable->getCurrentCharges() != 0)
             {
-                m_PChar->PRecastContainer->Add(RECAST_ITEM, m_PItemUsable->getSlotID(), m_PItemUsable->getReuseTime());
+                m_PChar->PRecastContainer->Add(RECAST_ITEM, m_PItemUsable->getSlotID(), m_PItemUsable->getReuseTime()/1000);
             }
 			m_PItemUsable = new CItemUsable(*m_PItemUsable);
 		}
@@ -695,17 +679,18 @@ void CAICharNormal::ActionItemFinish()
             luautils::OnItemUse(m_PBattleSubTarget, m_PItemUsable);
 
             // party AoE effect
-            if (m_PItemUsable->getAoE() == 1 && m_PBattleSubTarget->PParty != NULL)
+            if (m_PItemUsable->getAoE() == 1)
             {
-                for (uint8 i = 0; i < m_PBattleSubTarget->PParty->members.size(); ++i)
-                {
-                    CBattleEntity* PTarget = m_PBattleSubTarget->PParty->members.at(i);
-
-                    if (m_PBattleSubTarget != PTarget && !PTarget->isDead() && distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= 10)
+                m_PBattleSubTarget->ForParty([this](CBattleEntity* PTarget){
+                    if (!PTarget->isDead() && distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= 10)
                     {
                         luautils::OnItemUse(PTarget, m_PItemUsable);
                     }
-                }
+                });
+            }
+            else
+            {
+                luautils::OnItemUse(m_PBattleSubTarget, m_PItemUsable);
             }
         }
 		delete m_PItemUsable;
@@ -1517,12 +1502,6 @@ void CAICharNormal::ActionJobAbilityFinish()
         m_LastMeleeTime += 1000;
     }
 
-
-    if (m_PJobAbility->getLevel() == 0)
-    {
-        Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = %u WHERE charid = %u", m_Tick, m_PChar->id);
-    }
-
 	// get any available merit recast reduction
 	uint8 meritRecastReduction = 0;
 
@@ -1531,7 +1510,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 		meritRecastReduction = m_PChar->PMeritPoints->GetMeritValue((Merit_t*)m_PChar->PMeritPoints->GetMerit((MERIT_TYPE)m_PJobAbility->getMeritModID()), m_PChar);
 	}
 
-    uint32 RecastTime = (m_PJobAbility->getRecastTime() - meritRecastReduction) * 1000;
+    uint32 RecastTime = (m_PJobAbility->getRecastTime() - meritRecastReduction);
 
     if( m_PJobAbility->getID() == ABILITY_LIGHT_ARTS || m_PJobAbility->getID() == ABILITY_DARK_ARTS || m_PJobAbility->getRecastId() == 231) //stratagems
     {
@@ -1547,9 +1526,9 @@ void CAICharNormal::ActionJobAbilityFinish()
     else if( m_PJobAbility->getID() >= ABILITY_HEALING_RUBY)
     {
         if(m_PChar->getMod(MOD_BP_DELAY) > 15){
-            RecastTime -= 15000;
+            RecastTime -= 15;
         }else{
-            RecastTime -= m_PChar->getMod(MOD_BP_DELAY) * 1000;
+            RecastTime -= m_PChar->getMod(MOD_BP_DELAY);
         }
     }
 
@@ -1576,7 +1555,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     		if(PItem && (PItem->getID() == 15157 || PItem->getID() == 15158 || PItem->getID() == 16104 || PItem->getID() == 16105)){
     			//TODO: Transform this into an item MOD_REWARD_RECAST perhaps ?
     			//The Bison/Brave's Warbonnet & Khimaira/Stout Bonnet reduces recast time by 10 seconds.
-    			RecastTime -= (10 *1000);   // remove 10 seconds
+    			RecastTime -= 10;   // remove 10 seconds
     		}
     	}
 
@@ -1648,7 +1627,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     			m_PChar->m_ActionList.push_back(Action);
     		}
-    		m_PChar->PRecastContainer->Add(RECAST_ABILITY, 194, 8000); //double up
+    		m_PChar->PRecastContainer->Add(RECAST_ABILITY, 194, 8); //double up
     	}
 		else if (m_PJobAbility->getID() == ABILITY_WILD_CARD)
 		{
@@ -2231,6 +2210,7 @@ void CAICharNormal::ActionJobAbilityFinish()
         maxCharges = charge->maxCharges;
     }
     m_PChar->PRecastContainer->Add(RECAST_ABILITY, m_PJobAbility->getRecastId(), RecastTime, chargeTime, maxCharges);
+    charutils::SaveRecasts(m_PChar);
     m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
 
 	m_PJobAbility = NULL;

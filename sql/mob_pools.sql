@@ -39,7 +39,7 @@ CREATE TABLE `mob_pools` (
   `immunity` int(10) NOT NULL DEFAULT '0',
   `name_prefix` tinyint(4) unsigned NOT NULL DEFAULT '0',
   `flag` int(11) unsigned NOT NULL DEFAULT '0',
-  `unknown` int(11) unsigned NOT NULL DEFAULT '0',
+  `flags` int(11) unsigned NOT NULL DEFAULT '0',
   `animationsub` tinyint(1) NOT NULL DEFAULT '0',
   `hasSpellScript` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `spellList` smallint(4) NOT NULL DEFAULT '0',

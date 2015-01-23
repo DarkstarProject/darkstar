@@ -152,7 +152,7 @@ GOV_EVENT_QUICKSAND_CAVES        = 15;
 
 function startGov(eventid,player)
     local hasRegime = player:getVar("fov_regimeid");
-    local tabs = player:getValorPoint();
+    local tabs = player:getCurrency("valor_point");
     player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
 end
 
@@ -236,18 +236,18 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
     local msg_accept = msg_offset;
     local msg_jobs = msg_offset+1;
     local msg_cancel = msg_offset+2;
-    local tabs = player:getValorPoint();
+    local tabs = player:getCurrency("valor_point");
     local HAS_FOOD = player:hasStatusEffect(EFFECT_FOOD);
     local HAS_SUPPORT_FOOD = player:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD);
 -- ================= FIELD SUPPORT ============================================
     if (option == GOV_MENU_REPATRIATION) then -- Send to home nation
         if (tabs >= 50) then
-            player:delValorPoint(50);
+            player:delCurrency("valor_point", 50);
             toHomeNation(player);
         end
     elseif (option == GOV_MENU_CIRCUMSPECTION) then -- Sneak + Invis
         if (tabs >= 5) then
-            player:delValorPoint(5);
+            player:delCurrency("valor_point", 5);
             player:delStatusEffect(EFFECT_SNEAK);
             player:addStatusEffect(EFFECT_SNEAK,0,10,900);
             player:delStatusEffect(EFFECT_INVISIBLE);
@@ -255,30 +255,30 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
         end
     elseif (option == GOV_MENU_HOMING_INSTINCT) then -- Send to Homepoint
         if (tabs >= 50) then
-            player:delValorPoint(50);
+            player:delCurrency("valor_point", 50);
             player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_WARP,0,1);
         end
     elseif (option == GOV_MENU_RERAISE) then -- Reraise 1
         if (tabs >= 10) then
-            player:delValorPoint(10);
+            player:delCurrency("valor_point", 10);
             player:delStatusEffect(EFFECT_RERAISE);
             player:addStatusEffect(EFFECT_RERAISE,1,0,7200);
         end
     elseif (option == GOV_MENU_RERAISE_II) then -- Reraise 2
         if (tabs >= 20) then
-            player:delValorPoint(20);
+            player:delCurrency("valor_point", 20);
             player:delStatusEffect(EFFECT_RERAISE);
             player:addStatusEffect(EFFECT_RERAISE,2,0,7200);
         end
     elseif (option == GOV_MENU_RERAISE_III) then -- ReRaise 3
         if (tabs >= 30) then
-            player:delValorPoint(30);
+            player:delCurrency("valor_point", 30);
             player:delStatusEffect(EFFECT_RERAISE);
             player:addStatusEffect(EFFECT_RERAISE,3,0,7200);
         end
     elseif (option == GOV_MENU_REGEN) then -- Overwrites all other forms of regen.
         if (tabs >= 20) then
-            player:delValorPoint(20);
+            player:delCurrency("valor_point", 20);
             -- Removes regen if on player
             player:delStatusEffect(EFFECT_REGEN);
             -- Adds regen
@@ -286,7 +286,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
         end
     elseif (option == GOV_MENU_REFRESH) then -- Overwrites all other forms of refresh.
         if (tabs >= 20) then
-            player:delValorPoint(20);
+            player:delCurrency("valor_point", 20);
             -- Removes refresh if on player
             player:delStatusEffect(EFFECT_REFRESH);
             player:delStatusEffect(EFFECT_SUBLIMATION_COMPLETE);
@@ -296,7 +296,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
         end
     elseif (option == GOV_MENU_PROTECT) then -- Overwrites all other forms of protect.
         if (tabs >= 15) then
-            player:delValorPoint(15);
+            player:delCurrency("valor_point", 15);
             -- Removes protect if on player
             player:delStatusEffect(EFFECT_PROTECT);
             -- Work out how much def to give (highest tier dependent on level)
@@ -315,7 +315,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
         end
     elseif (option == GOV_MENU_SHELL) then -- Overwrites all other forms of shell.
         if (tabs >= 15) then
-            player:delValorPoint(15);
+            player:delCurrency("valor_point", 15);
             -- Removes shell if on player
             player:delStatusEffect(EFFECT_SHELL);
             -- Work out how much mdef to give (highest tier dependent on level)
@@ -335,7 +335,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
         end
     elseif (option == GOV_MENU_HASTE) then -- Wiki info on haste amount is iffy at best. People guessed at 15 and, I went with 10.
         if (tabs >= 20) then
-            player:delValorPoint(20);
+            player:delCurrency("valor_point", 20);
             player:delStatusEffect(EFFECT_HASTE);
             player:addStatusEffect(EFFECT_HASTE,10,0,600);
         end
@@ -345,7 +345,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
                 player:messageBasic(246);
                 return;
             else
-                player:delValorPoint(50);
+                player:delCurrency("valor_point", 50);
                 player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 1, 0, 1800);
             end
         end
@@ -354,7 +354,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
                 player:messageBasic(246);
             else
-                player:delValorPoint(50);
+                player:delCurrency("valor_point", 50);
                 player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 2, 0, 1800);
             end
         end
@@ -363,7 +363,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
                 player:messageBasic(246);
             else
-                player:delValorPoint(50);
+                player:delCurrency("valor_point", 50);
                 player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 3, 0, 1800);
             end
         end
@@ -372,7 +372,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
                 player:messageBasic(246);
             else
-                player:delValorPoint(50);
+                player:delCurrency("valor_point", 50);
                 player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 4, 0, 1800);
             end
         end
@@ -381,7 +381,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
                 player:messageBasic(246);
             else
-                player:delValorPoint(50);
+                player:delCurrency("valor_point", 50);
                 player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 5, 0, 1800);
             end
         end
@@ -390,7 +390,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
                 player:messageBasic(246);
             else
-                player:delValorPoint(50);
+                player:delCurrency("valor_point", 50);
                 player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 6, 0, 1800);
             end
         end
@@ -568,8 +568,8 @@ function checkGoVregime(killer,mob,rid,index)
                         if (killer:getVar("fov_LastReward") < VanadielEpoch) then
                             killer:messageBasic(GOV_MSG_GET_GIL,reward);
                             killer:addGil(reward);
-                            killer:addValorPoint(tabs);
-                            killer:messageBasic(GOV_MSG_GET_TABS,tabs,killer:getValorPoint()); -- Careful about order.
+                            killer:addCurrency("valor_point", tabs);
+                            killer:messageBasic(GOV_MSG_GET_TABS,tabs,killer:getCurrency("valor_point")); -- Careful about order.
                             if (REGIME_WAIT == 1) then
                                 killer:setVar("fov_LastReward",VanadielEpoch);
                             end

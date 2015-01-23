@@ -74,8 +74,7 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 {
 	m_Tick = tick;
 
-    ACTIONTYPE actionType = m_ActionType;
-    bool isMob = m_PPet->objtype == TYPE_MOB;
+    CBattleEntity* PSelf = m_PPet;
 
 	//uncharm any pets if time is up
 	if(tick > m_PPet->charmTime && m_PPet->isCharmed)
@@ -106,7 +105,8 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
 
-    if (!(actionType == ACTION_FALL && isMob))
+    //check if this AI was replaced (the new AI will update if this is the case)
+    if (m_PPet && PSelf->PBattleAI == this)
     {
         m_PPet->UpdateEntity();
     }
@@ -137,7 +137,7 @@ void CAIPetDummy::ActionAbilityStart()
 				int maxSearch = 10;
 				// keep looking for an ability until one is valid
 				do {
-					SetCurrentMobSkill(MobSkills.at(rand() % MobSkills.size()));
+                    SetCurrentMobSkill(MobSkills.at(WELL512::irand() % MobSkills.size()));
                 } while (luautils::OnMobSkillCheck(m_PBattleTarget, m_PPet, GetCurrentMobSkill()) != 0 && maxSearch--);
 
 				// could not find skill
@@ -159,7 +159,7 @@ void CAIPetDummy::ActionAbilityStart()
 		if(m_MasterCommand==MASTERCOMMAND_SIC && m_PPet->health.tp>=1000 && m_PBattleTarget!=NULL){ //choose random tp move
 			m_MasterCommand = MASTERCOMMAND_NONE;
 			if(m_PPet->PetSkills.size()>0){
-				SetCurrentMobSkill(m_PPet->PetSkills.at(rand() % m_PPet->PetSkills.size()));
+                SetCurrentMobSkill(m_PPet->PetSkills.at(WELL512::irand() % m_PPet->PetSkills.size()));
 				preparePetAbility(m_PBattleTarget);
 				return;
 			}
@@ -185,7 +185,7 @@ void CAIPetDummy::ActionAbilityStart()
 
 			//offensive or multipurpose wyvern
 			if(m_PBattleTarget != NULL){ //prepare elemental breaths
-				int skip = rand()%6;
+                int skip = WELL512::irand() % 6;
 				int hasSkipped = 0;
 
 				for(int i=0; i<m_PPet->PetSkills.size(); i++){
@@ -776,7 +776,7 @@ void CAIPetDummy::ActionAttack()
 					{
 						Action.messageID = 32;
 					}
-                    else if ((rand() % 100 < battleutils::GetHitRate(m_PPet, m_PBattleTarget)) &&
+                    else if ((WELL512::irand() % 100 < battleutils::GetHitRate(m_PPet, m_PBattleTarget)) &&
                         !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
 					{
 	                    if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
@@ -791,7 +791,7 @@ void CAIPetDummy::ActionAttack()
 							Action.speceffect = SPECEFFECT_HIT;
 							Action.messageID  = 1;
 
-							bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PPet, m_PBattleTarget, false) );
+                            bool isCritical = (WELL512::irand() % 100 < battleutils::GetCritHitRate(m_PPet, m_PBattleTarget, false));
 							float DamageRatio = battleutils::GetDamageRatio(m_PPet, m_PBattleTarget,isCritical, 0);
 
 							if(isCritical)
@@ -815,11 +815,11 @@ void CAIPetDummy::ActionAttack()
 						charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PPet->GetMLevel());
 					}
 
-					bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PPet,m_PBattleTarget));
+                    bool isBlocked = (WELL512::irand() % 100 < battleutils::GetBlockRate(m_PPet, m_PBattleTarget));
 					if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 
 					// Try Null damage chance (The target)
-					if (m_PBattleTarget->objtype == TYPE_PC && rand()%100 < m_PBattleTarget->getMod(MOD_NULL_PHYSICAL_DAMAGE))
+                    if (m_PBattleTarget->objtype == TYPE_PC && WELL512::irand() % 100 < m_PBattleTarget->getMod(MOD_NULL_PHYSICAL_DAMAGE))
 					{
 						damage = 0;
 					}

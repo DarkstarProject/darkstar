@@ -98,7 +98,7 @@ int32 lobbydata_parse(int32 fd)
         }
 	}
 
-	
+
 	if( session[fd]->flag.eof )
 	{
 		do_close_lobbydata(sd,fd);
@@ -163,22 +163,22 @@ int32 lobbydata_parse(int32 fd)
                 {
                     memcpy(CharList + 32 + 140 * j, ReservePacket + 32, 140);
                     memset(CharList + 32 + 140 * j, 0x00, 4);
-                    memset(uList + 16 * (j + 1), 0x00, 4);                    
+                    memset(uList + 16 * (j + 1), 0x00, 4);
                 }
 
 				uList[0] = 0x03;
-                
+
 				int i = 0;
 				//Считывание информации о конкректном персонаже
 				//Загрузка всей необходимой информации о персонаже из базы
-				while(Sql_NextRow(SqlHandle) != SQL_NO_DATA) 
+				while(Sql_NextRow(SqlHandle) != SQL_NO_DATA)
 				{
 					char* strCharName = NULL;
-					
+
 					Sql_GetData(SqlHandle,1,&strCharName,NULL);
 
 					uint32 CharID    = Sql_GetIntData(SqlHandle,0);
-					
+
 					uint8 zone		 = (uint8)Sql_GetIntData(SqlHandle,2);
 					uint8 prevzone	 = (uint8)Sql_GetIntData(SqlHandle,3);
 
@@ -197,7 +197,7 @@ int32 lobbydata_parse(int32 fd)
 					memcpy(CharList+12+32+i*140,strCharName, 15);
 
 					WBUFB(CharList,46+32+i*140) = MainJob;
-					WBUFB(CharList,73+32+i*140) = lvlMainJob; 
+					WBUFB(CharList,73+32+i*140) = lvlMainJob;
 
 					WBUFB(CharList,44+32+i*140) = (uint8) Sql_GetIntData(SqlHandle, 5); // race;
 					WBUFB(CharList,56+32+i*140) = (uint8) Sql_GetIntData(SqlHandle, 6); // face;
@@ -222,7 +222,7 @@ int32 lobbydata_parse(int32 fd)
 					RFIFOSKIP(fd,session[fd]->rdata_size);
 					RFIFOFLUSH(fd);
 					////////////////////////////////////////
-				
+
 					unsigned char hash[16];
 					md5((unsigned char*)(CharList), hash, 2272);
 
@@ -250,7 +250,7 @@ int32 lobbydata_parse(int32 fd)
 				memcpy(key3,buff+1,sizeof(key3));
 				key3[16] -= 2;
 				uint8 MainReservePacket[0x48];
-				
+
 				RFIFOSKIP(fd,session[fd]->rdata_size);
 				RFIFOFLUSH(fd);
 
@@ -272,7 +272,7 @@ int32 lobbydata_parse(int32 fd)
 					Sql_NumRows(SqlHandle) != 0 )
 				{
 					Sql_NextRow(SqlHandle);
-					
+
 					if (Sql_GetIntData(SqlHandle,3) == 0)  key3[16] += 6;
 
 					ZoneIP = inet_addr(Sql_GetData(SqlHandle,0));
@@ -284,7 +284,7 @@ int32 lobbydata_parse(int32 fd)
 				}else{
 					ShowWarning("lobbydata_parse: zoneip:(%s) for char:(%u) is standard\n",ip2str(sd->servip,NULL),charid);
 					WBUFL(ReservePacket,(0x38)) = sd->servip;	// map-server ip
-				  //WBUFW(ReservePacket,(0x3C)) = port;			// map-server port			
+				  //WBUFW(ReservePacket,(0x3C)) = port;			// map-server port
 				}
 
 				WBUFL(ReservePacket,(0x40)) = sd->servip;									// search-server ip
@@ -306,10 +306,10 @@ int32 lobbydata_parse(int32 fd)
 					LOBBBY_ERROR_MESSAGE(ReservePacket);
 					// устанавливаем код ошибки
 					// Unable to connect to world server. Specified operation failed
-					WBUFW(ReservePacket,32) = 305; 
+					WBUFW(ReservePacket,32) = 305;
 					memcpy(MainReservePacket,ReservePacket,RBUFB(ReservePacket,0));
 				}
-			
+
 				unsigned char Hash[16];
 				uint8 SendBuffSize = RBUFB(MainReservePacket,0);
 
@@ -322,7 +322,7 @@ int32 lobbydata_parse(int32 fd)
 
 				RFIFOSKIP(sd->login_lobbyview_fd,session[sd->login_lobbyview_fd]->rdata_size);
 				RFIFOFLUSH(sd->login_lobbyview_fd);
-				
+
 				if (SendBuffSize == 0x24){
 					// выходим в случае ошибки без разрыва соединения
 					return -1;
@@ -400,7 +400,7 @@ int32 lobbyview_parse(int32 fd)
 	login_session_data_t* sd = (login_session_data_t*)session[fd]->session_data;
 
 	if( sd == NULL )
-	{	
+	{
 		sd = find_loginsd_byip(session[fd]->client_addr);
 		if( sd == NULL )
 		{
@@ -429,8 +429,9 @@ int32 lobbyview_parse(int32 fd)
                 int32 sendsize = 0x28;
                 unsigned char MainReservePacket[0x28];
 
-                string_t ver((char*)(buff + 0x74), 10);
-                if (ver < "30141216_0")
+                string_t client_ver((char*)(buff + 0x74), 10);
+
+                if (version_info.Min_Client_Ver > client_ver)
                 {
                     sendsize = 0x24;
                     LOBBBY_ERROR_MESSAGE(ReservePacket);
@@ -534,7 +535,7 @@ int32 lobbyview_parse(int32 fd)
 					do_close_tcp(fd);
 					return -1;
 				}
-				
+
 				memset(session[sd->login_lobbydata_fd]->wdata,0,5);
 				WBUFB(session[sd->login_lobbydata_fd]->wdata,0) = 0x02;
 				WFIFOSET(sd->login_lobbydata_fd,5);
@@ -542,7 +543,7 @@ int32 lobbyview_parse(int32 fd)
 			break;
 		case 0x21:
 			{
-				
+
 				//creating new char
 				if( lobby_createchar(sd,(char*)session[fd]->rdata) == -1)
 				{
@@ -661,7 +662,7 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
 	createchar.m_mjob      = RBUFB(buf,50);
 	createchar.m_nation    = RBUFB(buf,54);
 
-	switch(createchar.m_nation) 
+	switch(createchar.m_nation)
 	{
 		case 0x02: // windy start
 			//do not allow windy walls as startzone.
@@ -688,12 +689,12 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
 	if( Sql_NumRows(SqlHandle) != 0 )
 	{
 		Sql_NextRow(SqlHandle);
-		
+
 		CharID = (uint32)Sql_GetUIntData(SqlHandle,0) + 1;
 	}
 
 	CharID = (CharID < 21828 ? 21828 : CharID);
-		
+
 	if( lobby_createchar_save(loginsd->accid, CharID, &createchar) == -1 )
 		return -1;
 
@@ -722,22 +723,22 @@ int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
 	if( Sql_Query(SqlHandle,Query,charid,createchar->m_look.face,createchar->m_look.race,createchar->m_look.size) == SQL_ERROR )
 	{
 		ShowDebug(CL_WHITE"lobby_cLook" CL_RESET": char<" CL_WHITE"%s" CL_RESET">, charid: %u\n",createchar->m_name, charid);
-		
+
 		return -1;
 	}
 
 	Query = "INSERT INTO char_stats(charid,mjob) VALUES(%u,%u);";
-	
+
 	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR )
 	{
 		ShowDebug(CL_WHITE"lobby_cStats" CL_RESET": charid: %u\n",charid);
-		
+
 		return -1;
 	}
 
 
 
-	
+
 	// people reported char creation errors, here is a fix.
 
 	Query = "INSERT INTO char_exp(charid) VALUES(%u) \
@@ -762,11 +763,11 @@ int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
 
 
 
-	//hot fix 
+	//hot fix
 	Query = "DELETE FROM char_inventory WHERE charid = %u";
 	if( Sql_Query(SqlHandle, Query, charid) == SQL_ERROR ) return -1;
 
-	Query = "INSERT INTO char_inventory(charid) VALUES(%u);"; 
+	Query = "INSERT INTO char_inventory(charid) VALUES(%u);";
 	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR ) return -1;
 
 

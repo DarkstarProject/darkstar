@@ -377,6 +377,7 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
     }
 
     PChar->PRecastContainer->Del(RECAST_MAGIC);
+    charutils::SaveRecasts(PChar);
 
     if (PChar->status == STATUS_SHUTDOWN)
     {
@@ -388,11 +389,11 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 {
                     if (PChar->PParty->members.size() == 1)
                     {
-                        if (PChar->PParty->m_PAlliance->partyList.size() == 2)
+                        if (PChar->PParty->m_PAlliance->partyList.size() == 1)
                         {
                             PChar->PParty->m_PAlliance->dissolveAlliance();
                         }
-                        else if (PChar->PParty->m_PAlliance->partyList.size() == 3)
+                        else
                         {
                             PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
                         }
@@ -678,7 +679,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             if (MOB->animation == ANIMATION_ATTACK &&
                 MOB->PBattleAI->GetBattleTarget() == PChar)
             {
-                MOB->m_CallForHelp = 0x20;
+                MOB->CallForHelp(true);
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PChar, 0, 0, 19));
 
                 return;
@@ -725,7 +726,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->updatemask |= UPDATE_HP;
 
         PChar->clearPacketList();
-        PChar->pushPacket(new CServerIPPacket(PChar, 2));
+        PChar->pushPacket(new CServerIPPacket(PChar, 2, zoneutils::GetZoneIPP(PChar->loc.destination)));
     }
     break;
     case 0x0C: // assist
@@ -797,7 +798,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->status = STATUS_DISAPPEAR;
             PChar->loc.boundary = 0;
             PChar->clearPacketList();
-            PChar->pushPacket(new CServerIPPacket(PChar, 2));
+            PChar->pushPacket(new CServerIPPacket(PChar, 2, zoneutils::GetZoneIPP(PChar->loc.destination)));
         }
 
         PChar->m_hasTractor = 0;
@@ -845,7 +846,7 @@ void SmallPacket0x01B(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
     // 0 - world pass, 2 - gold world pass; +1 - purchase
 
-    PChar->pushPacket(new CWorldPassPacket(RBUFB(data, (0x04)) & 1 ? rand() % 9999999999 : 0));
+    PChar->pushPacket(new CWorldPassPacket(RBUFB(data, (0x04)) & 1 ? WELL512::irand() % 9999999999 : 0));
     return;
 }
 
@@ -1279,7 +1280,7 @@ void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             ShowWarning(CL_YELLOW"lightluggage detected: <%s> will be removed from server\n" CL_RESET, PChar->GetName());
 
             PChar->status = STATUS_SHUTDOWN;
-            PChar->pushPacket(new CServerIPPacket(PChar, 1));
+            PChar->pushPacket(new CServerIPPacket(PChar, 1, 0));
         }
         return;
     }
@@ -1418,7 +1419,7 @@ void SmallPacket0x041(map_session_data_t* session, CCharEntity* PChar, int8* dat
     if (PChar->PTreasurePool != NULL)
     {
         uint8 SlotID = RBUFB(data, (0x04));
-        PChar->PTreasurePool->LotItem(PChar, SlotID, 1 + (rand() % 999)); //1 ~ 998+1
+        PChar->PTreasurePool->LotItem(PChar, SlotID, 1 + (WELL512::irand() % 999)); //1 ~ 998+1
     }
 }
 
@@ -1499,9 +1500,18 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
     {
     case 0x01:
     {
-        const int8* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sent, extra, sender, charname FROM delivery_box WHERE charid = %u AND box = %u AND slot < 8 ORDER BY slot;";
+        int8* fmtQuery;
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, boxtype);
+        if (boxtype == 1)
+        {
+            fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sent, extra, sender, charname FROM delivery_box WHERE charid = %u AND box = 1 AND slot < 8 ORDER BY slot;";
+        }
+        else
+        {
+            fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sent, extra, sender, charname FROM delivery_box WHERE senderid = %u AND box = 2 AND slot < 8 ORDER BY slot;";
+        }
+
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
 
         if (ret != SQL_ERROR)
         {
@@ -1758,7 +1768,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
-                    CItem* PItem = itemutils::GetItem(Sql_GetUIntData(SqlHandle, 0));
+                    PItem = itemutils::GetItem(Sql_GetUIntData(SqlHandle, 0));
 
                     if (PItem)
                     {
@@ -1960,26 +1970,24 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                 if (ret != SQL_ERROR &&  Sql_AffectedRows(SqlHandle) != 0)
                 {
-                    if (charutils::AddItem(PChar, LOC_INVENTORY, PItem, true) != ERROR_SLOTID)
+                    if (charutils::AddItem(PChar, LOC_INVENTORY, itemutils::GetItem(PItem), true) != ERROR_SLOTID)
                     {
                         commit = true;
-                        PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PItem, slotID, PChar->UContainer->GetItemsCount(), 1));
-                    }
-                    else
-                    {
-                        PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PItem, slotID, PChar->UContainer->GetItemsCount(), 0xBA));
                     }
                 }
 
                 if (!commit || !Sql_TransactionCommit(SqlHandle))
                 {
                     Sql_TransactionRollback(SqlHandle);
+                    PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PItem, slotID, PChar->UContainer->GetItemsCount(), 0xBA));
                     ShowError("Could not finalize receive transaction. PlayerID: %d Action: 0x0A", PChar->id);
                 }
                 else
                 {
+                    PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PItem, slotID, PChar->UContainer->GetItemsCount(), 1));
                     PChar->pushPacket(new CInventoryFinishPacket());
                     PChar->UContainer->SetItem(slotID, NULL);
+                    delete PItem;
                 }
             }
 
@@ -2154,8 +2162,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 return;
             }
 
-            const int8* fmtQuery = "INSERT INTO auction_house(itemid, stack, seller, seller_name, date, price) \
-                                                                                                                                                                                    VALUES(%u,%u,%u,'%s',%u,%u)";
+            const int8* fmtQuery = "INSERT INTO auction_house(itemid, stack, seller, seller_name, date, price) VALUES(%u,%u,%u,'%s',%u,%u)";
 
             if (Sql_Query(SqlHandle,
                 fmtQuery,
@@ -2608,7 +2615,10 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         ShowInfo(CL_WHITE"Zoning from zone %u to zone %u: %s\n" CL_RESET, PChar->getZone(), PChar->loc.destination, PChar->GetName());
     }
     PChar->clearPacketList();
-    PChar->pushPacket(new CServerIPPacket(PChar, 2));
+
+    uint64 ipp = zoneutils::GetZoneIPP(PChar->loc.destination == 0 ? PChar->loc.prevzone : PChar->loc.destination);
+
+    PChar->pushPacket(new CServerIPPacket(PChar, 2, ipp));
     return;
 }
 
@@ -2770,7 +2780,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
     case 5: // alliance - must be unallied party leader or alliance leader of a non-full alliance
         if (PChar->PParty && PChar->PParty->GetLeader() == PChar &&
             (PChar->PParty->m_PAlliance == NULL ||
-            (PChar->PParty->m_PAlliance->getMainParty()->GetLeader() == PChar && PChar->PParty->m_PAlliance->partyCount() < 3)))
+            (PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty && PChar->PParty->m_PAlliance->partyCount() < 3)))
         {
             CCharEntity* PInvitee = NULL;
             if (targid != 0)
@@ -2830,7 +2840,7 @@ void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* dat
         case 0: // party - anyone may remove themself from party regardless of leadership or alliance
             if (PChar->PParty->m_PAlliance && PChar->PParty->members.size() == 1) // single member alliance parties must be removed from alliance before disband
             {
-                if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
+                if (PChar->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
                     PChar->PParty->m_PAlliance->dissolveAlliance();
                 else
                     PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
@@ -2841,7 +2851,7 @@ void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* dat
         case 5: // alliance - any party leader in alliance may remove their party
             if (PChar->PParty->m_PAlliance && PChar->PParty->GetLeader() == PChar)
             {
-                if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
+                if (PChar->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
                     PChar->PParty->m_PAlliance->dissolveAlliance();
                 else
                     PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
@@ -2903,7 +2913,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 {
                     if (PChar->PParty->m_PAlliance && PChar->PParty->members.size() == 1) // single member alliance parties must be removed from alliance before disband
                     {
-                        if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
+                        if (PChar->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
                             PChar->PParty->m_PAlliance->dissolveAlliance();
                         else
                             PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
@@ -2916,28 +2926,42 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
         }
         break;
-
     case 1: // linkshell
     {
         // Ensure the player has a linkshell equipped..
-        CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
-        if (PChar->PLinkshell && PItemLinkshell)
+        CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
+        if (PChar->PLinkshell1 && PItemLinkshell)
         {
             int8 packetData[29];
             WBUFL(packetData, 0) = PChar->id;
             memcpy(packetData + 0x04, data + 0x0C, 20);
-            WBUFL(packetData, 24) = PChar->PLinkshell->getID();
+            WBUFL(packetData, 24) = PChar->PLinkshell1->getID();
+            WBUFB(packetData, 28) = PItemLinkshell->GetLSType();
+            message::send(MSG_LINKSHELL_REMOVE, packetData, sizeof packetData, NULL);
+        }
+    }
+        break;
+    case 2: // linkshell2
+    {
+        // Ensure the player has a linkshell equipped..
+        CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK2);
+        if (PChar->PLinkshell2 && PItemLinkshell)
+        {
+            int8 packetData[29];
+            WBUFL(packetData, 0) = PChar->id;
+            memcpy(packetData + 0x04, data + 0x0C, 20);
+            WBUFL(packetData, 24) = PChar->PLinkshell2->getID();
             WBUFB(packetData, 28) = PItemLinkshell->GetLSType();
             message::send(MSG_LINKSHELL_REMOVE, packetData, sizeof packetData, NULL);
         }
     }
     break;
 
-    case 2: // alliance - alliance leader may kick a party by using that party's leader as kick parameter
+    case 5: // alliance - alliance leader may kick a party by using that party's leader as kick parameter
         if (PChar->PParty && PChar->PParty->GetLeader() == PChar && PChar->PParty->m_PAlliance)
         {
             CCharEntity* PVictim = NULL;
-            for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyCount(); ++i)
+            for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
             {
                 PVictim = (CCharEntity*)(PChar->PParty->m_PAlliance->partyList[i]->GetMemberByName(data + 0x0C));
                 if (PVictim && PVictim->PParty && PVictim->PParty->m_PAlliance) // victim is in this party
@@ -2945,7 +2969,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     //if using kick on yourself, or alliance leader using kick on another party leader - remove the party
                     if (PVictim == PChar || (PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty && PVictim->PParty->GetLeader() == PVictim))
                     {
-                        if (PVictim->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
+                        if (PVictim->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
                             PVictim->PParty->m_PAlliance->dissolveAlliance();
                         else
                             PVictim->PParty->m_PAlliance->removeParty(PVictim->PParty);
@@ -2992,7 +3016,7 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
             if (PInviter->PParty->GetLeader() == PInviter && PChar->PParty->GetLeader() == PChar)
             {
                 //the inviter already has an alliance and wants to add another party - only add if they have room for another party
-                if (PInviter->PParty->m_PAlliance && PInviter->PParty->m_PAlliance->getMainParty()->GetLeader() == PInviter)
+                if (PInviter->PParty->m_PAlliance && PInviter->PParty->m_PAlliance->getMainParty() == PInviter->PParty)
                 {
                     //break if alliance is full
                     if (PInviter->PParty->m_PAlliance->partyCount() == 3)
@@ -3092,14 +3116,40 @@ void SmallPacket0x077(map_session_data_t* session, CCharEntity* PChar, int8* dat
     break;
     case 1: // linkshell
     {
-        if (PChar->PLinkshell != NULL)
+        if (PChar->PLinkshell1 != NULL)
         {
             int8 packetData[29];
             WBUFL(packetData, 0) = PChar->id;
             memcpy(packetData + 0x04, data + 0x04, 20);
-            WBUFL(packetData, 24) = PChar->PLinkshell->getID();
+            WBUFL(packetData, 24) = PChar->PLinkshell1->getID();
             WBUFB(packetData, 28) = RBUFB(data, 0x15);
             message::send(MSG_LINKSHELL_RANK_CHANGE, packetData, sizeof packetData, NULL);
+        }
+    }
+    break;
+    case 2: // linkshell2
+    {
+        if (PChar->PLinkshell2 != NULL)
+        {
+            int8 packetData[29];
+            WBUFL(packetData, 0) = PChar->id;
+            memcpy(packetData + 0x04, data + 0x04, 20);
+            WBUFL(packetData, 24) = PChar->PLinkshell2->getID();
+            WBUFB(packetData, 28) = RBUFB(data, 0x15);
+            message::send(MSG_LINKSHELL_RANK_CHANGE, packetData, sizeof packetData, NULL);
+        }
+    }
+    break;
+    case 5: //alliance
+    {
+        if (PChar->PParty && PChar->PParty->m_PAlliance &&
+            PChar->PParty->GetLeader() == PChar && 
+            PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
+        {
+            PChar->PParty->m_PAlliance->assignAllianceLeader(data + 0x04);
+            uint8 data[4];
+            WBUFL(data, 0) = PChar->PParty->m_PAlliance->m_AllianceID;
+            message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
         }
     }
     break;
@@ -3334,7 +3384,7 @@ void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0A2(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    uint16 diceroll = 1 + rand() % 1000;
+    uint16 diceroll = 1 + WELL512::irand() % 1000;
 
     PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageStandardPacket(PChar, diceroll, 88));
     return;
@@ -3478,10 +3528,32 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
             break;
             case MESSAGE_LINKSHELL:
             {
-                if (PChar->PLinkshell != NULL)
+                if (PChar->PLinkshell1 != NULL)
                 {
                     int8 packetData[8];
-                    WBUFL(packetData, 0) = PChar->PLinkshell->getID();
+                    WBUFL(packetData, 0) = PChar->PLinkshell1->getID();
+                    WBUFL(packetData, 4) = PChar->id;
+                    message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data + 6));
+
+                    if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
+                    {
+                        std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+                        qStr += PChar->GetName();
+                        qStr += "','LINKSHELL','";
+                        qStr += escape(data + 6);
+                        qStr += "',current_timestamp());";
+                        const char * cC = qStr.c_str();
+                        Sql_QueryStr(SqlHandle, cC);
+                    }
+                }
+            }
+            break;
+            case MESSAGE_LINKSHELL2:
+            {
+                if (PChar->PLinkshell2 != NULL)
+                {
+                    int8 packetData[8];
+                    WBUFL(packetData, 0) = PChar->PLinkshell2->getID();
                     WBUFL(packetData, 4) = PChar->id;
                     message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data + 6));
 
@@ -3664,13 +3736,18 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 /************************************************************************
 *                                                                       *
-*  Unequip Linkshell                                                    *
+*  Create Linkpearl                                                     *
 *                                                                       *
 ************************************************************************/
 
 void SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
+    uint8 lsNum = RBUFB(data, 0x05);
+    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
+    if (lsNum == 2)
+    {
+        PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK2);
+    }
 
     if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
     {
@@ -3697,7 +3774,8 @@ void SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, int8* dat
 void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
     uint8 SlotID = RBUFB(data, (0x06));
-    uint8 action = RBUFB(data, (0x07));
+    uint8 action = RBUFB(data, (0x08));
+    uint8 lsNum = RBUFB(data, (0x1B));
 
     CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
@@ -3708,11 +3786,11 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             uint32   LinkshellID = 0;
             uint16   LinkshellColor = RBUFW(data, (0x04));
-            string_t LinkshellName = data + 8;
+            string_t LinkshellName = data + 12;
             int8     DecodedName[21];
             int8     EncodedName[16];
 
-            DecodeStringLinkshell(data + 8, DecodedName);
+            DecodeStringLinkshell(data + 12, DecodedName);
             EncodeStringLinkshell(DecodedName, EncodedName);
             // TODO: Check if a linebreak is needed..
 
@@ -3745,6 +3823,13 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
         }
         else
         {
+            SLOTTYPE slot = SLOT_LINK1;
+            CLinkshell* OldLinkshell = PChar->PLinkshell1;
+            if (lsNum == 2)
+            {
+                slot = SLOT_LINK2;
+                OldLinkshell = PChar->PLinkshell2;
+            }
             switch (action)
             {
             case 0: // unequip linkshell
@@ -3753,10 +3838,13 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                 PItemLinkshell->setSubType(ITEM_UNLOCKED);
 
-                PChar->equip[SLOT_LINK] = 0;
-                PChar->equipLoc[SLOT_LINK] = 0;
-                PChar->nameflags.flags &= ~FLAG_LINKSHELL;
-                PChar->updatemask |= UPDATE_HP;
+                PChar->equip[slot] = 0;
+                PChar->equipLoc[slot] = 0;
+                if (lsNum == 1)
+                {
+                    PChar->nameflags.flags &= ~FLAG_LINKSHELL;
+                    PChar->updatemask |= UPDATE_HP;
+                }
 
                 PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_NORMAL));
             }
@@ -3768,9 +3856,9 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     PChar->pushPacket(new CMessageSystemPacket(0, 0, 110));
                     return;
                 }
-                if (PChar->PLinkshell != NULL) // switching linkshell group
+                if (OldLinkshell != NULL) // switching linkshell group
                 {
-                    CItemLinkshell* POldItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
+                    CItemLinkshell* POldItemLinkshell = (CItemLinkshell*)PChar->getEquip(slot);
 
                     if (POldItemLinkshell != NULL && POldItemLinkshell->isType(ITEM_LINKSHELL))
                     {
@@ -3780,14 +3868,17 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
                         PChar->pushPacket(new CInventoryAssignPacket(POldItemLinkshell, INV_NORMAL));
                     }
                 }
-                linkshell::AddOnlineMember(PChar, PItemLinkshell);
+                linkshell::AddOnlineMember(PChar, PItemLinkshell, lsNum);
 
                 PItemLinkshell->setSubType(ITEM_LOCKED);
 
-                PChar->equip[SLOT_LINK] = SlotID;
-                PChar->equipLoc[SLOT_LINK] = LOC_INVENTORY;
-                PChar->nameflags.flags |= FLAG_LINKSHELL;
-                PChar->updatemask |= UPDATE_HP;
+                PChar->equip[slot] = SlotID;
+                PChar->equipLoc[slot] = LOC_INVENTORY;
+                if (lsNum == 1)
+                {
+                    PChar->nameflags.flags |= FLAG_LINKSHELL;
+                    PChar->updatemask |= UPDATE_HP;
+                }
 
                 PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_LINKSHELL));
             }
@@ -3798,7 +3889,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
             if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
-            PChar->pushPacket(new CLinkshellEquipPacket(PChar));
+            PChar->pushPacket(new CLinkshellEquipPacket(PChar, lsNum));
             PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
         }
         PChar->pushPacket(new CInventoryFinishPacket());
@@ -3837,40 +3928,14 @@ void SmallPacket0x0CB(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0D2(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    //alliance
-    if (PChar->PParty != NULL)
+    PChar->ForAlliance([PChar](CBattleEntity* PPartyMember)
     {
-        if (PChar->PParty->m_PAlliance != NULL)
+        if (PPartyMember->getZone() == PChar->getZone() && ((CCharEntity*)PPartyMember)->m_moghouseID == PChar->m_moghouseID)
         {
-            for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
-            {
-                for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
-                {
-                    CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i);
-
-                    if (PPartyMember->getZone() == PChar->getZone() && PPartyMember->m_moghouseID == PChar->m_moghouseID)
-                    {
-                        PChar->pushPacket(new CPartyMapPacket(PPartyMember));
-                    }
-                }
-            }
-            return;
-
+            PChar->pushPacket(new CPartyMapPacket((CCharEntity*)PPartyMember));
         }
-        else{  //normal party - no alliance
-            for (int32 i = 0; i < PChar->PParty->members.size(); ++i)
-            {
-                CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->members.at(i);
+    });
 
-                if (PPartyMember->getZone() == PChar->getZone() && PPartyMember->m_moghouseID == PChar->m_moghouseID)
-                {
-                    PChar->pushPacket(new CPartyMapPacket(PPartyMember));
-                }
-            }
-            return;
-        }
-    }
-    PChar->pushPacket(new CPartyMapPacket(PChar));
     return;
 }
 
@@ -4121,9 +4186,9 @@ void SmallPacket0x0E0(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0E1(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    if (PChar->PLinkshell != NULL)
+    if (PChar->PLinkshell1 != NULL)
     {
-        PChar->pushPacket(new CLinkshellMessagePacket(PChar->PLinkshell));
+        PChar->pushPacket(new CLinkshellMessagePacket(PChar->PLinkshell1));
     }
     return;
 }
@@ -4136,9 +4201,9 @@ void SmallPacket0x0E1(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
+    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
 
-    if (PChar->PLinkshell != NULL && (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL)))
+    if (PChar->PLinkshell1 != NULL && (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL)))
     {
         switch (RBUFB(data, (0x04)) & 0xF0)
         {
@@ -4159,14 +4224,14 @@ void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                 const int8* Query = "UPDATE linkshells SET poster = '%s', message = '%s', messagetime = %u WHERE linkshellid = %u LIMIT 1";
 
-                if (Sql_Query(SqlHandle, Query, PChar->GetName(), sqlMessage, MessageTime, PChar->PLinkshell->getID()) != SQL_ERROR &&
+                if (Sql_Query(SqlHandle, Query, PChar->GetName(), sqlMessage, MessageTime, PChar->PLinkshell1->getID()) != SQL_ERROR &&
                     Sql_AffectedRows(SqlHandle) != 0)
                 {
-                    PChar->PLinkshell->setPoster((int8*)PChar->GetName());
-                    PChar->PLinkshell->setMessage((int8*)Message.c_str());
-                    PChar->PLinkshell->setMessageTime(MessageTime);
+                    PChar->PLinkshell1->setPoster((int8*)PChar->GetName());
+                    PChar->PLinkshell1->setMessage((int8*)Message.c_str());
+                    PChar->PLinkshell1->setMessageTime(MessageTime);
 
-                    PChar->PLinkshell->PushPacket(0, new CLinkshellMessagePacket(PChar->PLinkshell));
+                    PChar->PLinkshell1->PushPacket(0, new CLinkshellMessagePacket(PChar->PLinkshell1));
                     return;
                 }
             }
@@ -4196,7 +4261,7 @@ void SmallPacket0x0E7(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->m_GMlevel > 0)
     {
         PChar->status = STATUS_SHUTDOWN;
-        PChar->pushPacket(new CServerIPPacket(PChar, 1));
+        PChar->pushPacket(new CServerIPPacket(PChar, 1, 0));
     }
     else if (PChar->animation == ANIMATION_NONE)
     {
@@ -4721,14 +4786,10 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
         PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
 
-        if (PChar->PParty != NULL) // check latents affected by party jobs
+        PChar->ForParty([](CBattleEntity* PMember)
         {
-            for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
-            {
-                CCharEntity* PMember = (CCharEntity*)PChar->PParty->members.at(i);
-                PMember->PLatentEffectContainer->CheckLatentsPartyJobs();
-            }
-        }
+            ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyJobs();
+        });
 
 
         PChar->UpdateHealth();
@@ -4737,6 +4798,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->health.mp = PChar->GetMaxMP();
 
         charutils::SaveCharStats(PChar);
+        charutils::SaveRecasts(PChar);
 
         PChar->pushPacket(new CCharJobsPacket(PChar));
         PChar->pushPacket(new CCharUpdatePacket(PChar));
@@ -5263,7 +5325,7 @@ void PacketParserInitialize()
     PacketSize[0x0B6] = 0x00; PacketParser[0x0B6] = &SmallPacket0x0B6;
     PacketSize[0x0BE] = 0x00; PacketParser[0x0BE] = &SmallPacket0x0BE;    //  merit packet
     PacketSize[0x0C3] = 0x00; PacketParser[0x0C3] = &SmallPacket0x0C3;
-    PacketSize[0x0C4] = 0x0C; PacketParser[0x0C4] = &SmallPacket0x0C4;
+    PacketSize[0x0C4] = 0x0E; PacketParser[0x0C4] = &SmallPacket0x0C4;
     PacketSize[0x0CB] = 0x04; PacketParser[0x0CB] = &SmallPacket0x0CB;
     PacketSize[0x0D2] = 0x00; PacketParser[0x0D2] = &SmallPacket0x0D2;
     PacketSize[0x0D3] = 0x00; PacketParser[0x0D3] = &SmallPacket0x0D3;

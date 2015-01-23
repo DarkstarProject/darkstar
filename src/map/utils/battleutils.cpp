@@ -1314,12 +1314,26 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool 
 			acc = ((100 +  PChar->getMod(MOD_RACCP)) * acc)/100 +
 				dsp_min(((100 +  PChar->getMod(MOD_FOOD_RACCP)) * acc)/100,  PChar->getMod(MOD_FOOD_RACC_CAP));
 		}
+
+        //Check For Ambush Merit - Ranged
+        if ((charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_AMBUSH)) && ((abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23))) {
+            acc += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_AMBUSH, (CCharEntity*)PAttacker);
+        }
 	}
-	
-	//Check For Ambush Merit - Ranged
-	if (PAttacker->objtype == TYPE_PC && (charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_AMBUSH)) && ((abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23))) {
-		acc += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_AMBUSH, (CCharEntity*)PAttacker);
-	}
+    else if (PAttacker->objtype == TYPE_PET && ((CPetEntity*)PAttacker)->getPetType() == PETTYPE_AUTOMATON)
+    {
+        int skill = PAttacker->PMaster->GetSkill(SKILL_ARA);
+        acc = skill;
+        if (skill > 200)
+        {
+            acc = 200 + (skill - 200)*0.9;
+        }
+        acc += PAttacker->getMod(MOD_RACC) + ((CCharEntity*)PAttacker->PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PAttacker->PMaster);
+        acc += battleutils::GetRangedAccuracyBonuses(PAttacker);
+        acc += PAttacker->AGI() / 2;
+        acc = ((100 + PAttacker->getMod(MOD_RACCP)) * acc) / 100 +
+            dsp_min(((100 + PAttacker->getMod(MOD_FOOD_RACCP)) * acc) / 100, PAttacker->getMod(MOD_FOOD_RACC_CAP));
+    }
 
 	int eva = PDefender->EVA();
 	hitrate = hitrate + (acc - eva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
@@ -1357,7 +1371,11 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 			}
 		}
 	}
-	else
+    else if (PAttacker->objtype == TYPE_PET && ((CPetEntity*)PAttacker)->getPetType() == PETTYPE_AUTOMATON)
+    {
+        rAttack = PAttacker->RATT(SKILL_ARA);
+    }
+    else
 	{
 		//assume mobs capped
 		rAttack = battleutils::GetMaxSkill(SKILL_ARC,JOB_RNG,PAttacker->GetMLevel());
@@ -2912,7 +2930,7 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
 
 CItemArmor* GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot)
 {
-    DSP_DEBUG_BREAK_IF(Slot < SLOT_HEAD || Slot > SLOT_LINK);
+    DSP_DEBUG_BREAK_IF(Slot < SLOT_HEAD || Slot > SLOT_LINK2);
 
     if(PEntity->objtype == TYPE_PC)
     {
@@ -4303,130 +4321,50 @@ void DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset)
 
         float drawInDistance = (PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? PMob->getMobMod(MOBMOD_DRAW_IN) : PMob->m_ModelSize * 2);
 
-        // check if i should draw-in party/alliance
-        if (PMob->getMobMod(MOBMOD_DRAW_IN) > 1 && PEntity->PParty != NULL)
+        std::function <void(CBattleEntity*)> drawInFunc = [PMob, drawInDistance, nearEntity](CBattleEntity* PMember)
         {
-            // party draw-in
-            if (PEntity->PParty->m_PAlliance == NULL)
-            {
-                for (uint8 i = 0; i < PEntity->PParty->members.size(); ++i)
-                {
-                    CBattleEntity* PMember = (CBattleEntity*)PEntity->PParty->members[i];
+            float pDistance = distance(PMob->loc.p, PMember->loc.p);
 
-                    float pDistance = distance(PMob->loc.p, PMember->loc.p);
-
-                    if (PMob->loc.zone == PMember->loc.zone && pDistance > drawInDistance && PMember->status != STATUS_CUTSCENE_ONLY)
-                    {
-                        // don't draw in dead players for now!
-                        // see tractor
-                        if (PMember->isDead() || PMember->animation == ANIMATION_CHOCOBO)
-                        {
-                            // don't do anything
-                        }
-                        else
-                        {
-                            // draw in!
-                            PMember->loc.p.x = nearEntity.x;
-                            PMember->loc.p.y = nearEntity.y;
-                            PMember->loc.p.z = nearEntity.z;
-
-                            if (PMember->objtype == TYPE_PC)
-                            {
-                                CCharEntity* PChar = (CCharEntity*)PMember;
-                                PChar->pushPacket(new CPositionPacket(PChar));
-                            }
-                            else
-                            {
-                                PMember->loc.zone->PushPacket(PMember, CHAR_INRANGE, new CEntityUpdatePacket(PMember, ENTITY_UPDATE, UPDATE_POS));
-                            }
-
-                            luautils::OnMobDrawIn(PMob, PMember);
-                            PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CMessageBasicPacket(PMember, PMember, 0, 0, 232));
-                        }
-                    }
-                }
-            }
-            // alliance draw-in
-            else
-            {
-                // find all parties present in alliance
-                for (uint8 i = 0; i < PEntity->PParty->m_PAlliance->partyList.size(); ++i)
-                {
-                    CParty* PParty = PEntity->PParty->m_PAlliance->partyList[i];
-
-                    // find all members in that party
-                    for (uint8 m = 0; m < PParty->members.size(); ++m)
-                    {
-                        CBattleEntity* PMember = PParty->members[m];
-
-                        float pDistance = distance(PMob->loc.p, PMember->loc.p);
-
-                        // ensure target is in zone before drawing them in, cannot draw-in if target is watching a cutscene
-                        if (PMob->loc.zone == PMember->loc.zone && pDistance > drawInDistance && PMember->status != STATUS_CUTSCENE_ONLY)
-                        {
-                            // don't draw in dead players for now!
-                            // see tractor
-                            if (PMember->isDead() || PMember->animation == ANIMATION_CHOCOBO)
-                            {
-                                // don't do anything
-                            }
-                            else
-                            {
-                                // draw in!
-                                PMember->loc.p.x = nearEntity.x;
-                                PMember->loc.p.y = nearEntity.y;
-                                PMember->loc.p.z = nearEntity.z;
-
-                                if (PMember->objtype == TYPE_PC)
-                                {
-                                    CCharEntity* PChar = (CCharEntity*)PMember;
-                                    PChar->pushPacket(new CPositionPacket(PChar));
-                                }
-                                else
-                                {
-                                    PMember->loc.zone->PushPacket(PMember, CHAR_INRANGE, new CEntityUpdatePacket(PMember, ENTITY_UPDATE, UPDATE_POS));
-                                }
-
-                                luautils::OnMobDrawIn(PMob, PMember);
-                                PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CMessageBasicPacket(PMember, PMember, 0, 0, 232));
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        // no party present or draw-in is set to target only
-        else
-        {
-            if (PEntity->status != STATUS_CUTSCENE_ONLY)
+            if (PMob->loc.zone == PMember->loc.zone && pDistance > drawInDistance && PMember->status != STATUS_CUTSCENE_ONLY)
             {
                 // don't draw in dead players for now!
                 // see tractor
-                if (PEntity->isDead() || PEntity->animation == ANIMATION_CHOCOBO)
+                if (PMember->isDead() || PMember->animation == ANIMATION_CHOCOBO)
                 {
                     // don't do anything
                 }
                 else
                 {
                     // draw in!
-                    PEntity->loc.p.x = nearEntity.x;
-                    PEntity->loc.p.y = nearEntity.y;
-                    PEntity->loc.p.z = nearEntity.z;
+                    PMember->loc.p.x = nearEntity.x;
+                    PMember->loc.p.y = nearEntity.y;
+                    PMember->loc.p.z = nearEntity.z;
 
-                    if (PEntity->objtype == TYPE_PC)
+                    if (PMember->objtype == TYPE_PC)
                     {
-                        CCharEntity* PChar = (CCharEntity*)PEntity;
+                        CCharEntity* PChar = (CCharEntity*)PMember;
                         PChar->pushPacket(new CPositionPacket(PChar));
                     }
                     else
                     {
-                        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE, new CEntityUpdatePacket(PEntity, ENTITY_UPDATE, UPDATE_POS));
+                        PMember->loc.zone->PushPacket(PMember, CHAR_INRANGE, new CEntityUpdatePacket(PMember, ENTITY_UPDATE, UPDATE_POS));
                     }
 
-                    luautils::OnMobDrawIn(PMob, PEntity);
-                    PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CMessageBasicPacket(PEntity, PEntity, 0, 0, 232));
+                    luautils::OnMobDrawIn(PMob, PMember);
+                    PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CMessageBasicPacket(PMember, PMember, 0, 0, 232));
                 }
             }
+        };
+
+        // check if i should draw-in party/alliance
+        if (PMob->getMobMod(MOBMOD_DRAW_IN) > 1)
+        {
+            PEntity->ForAlliance(drawInFunc);
+        }
+        // no party present or draw-in is set to target only
+        else
+        {
+            drawInFunc(PEntity);
         }
     }
 }
@@ -4446,16 +4384,11 @@ void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
 		TotalRecasts -= 1;
 	}
 
-	if (TotalRecasts == 0)
-	{
-		return;
-	}
-
 	// Restore some abilities (Randomly select some abilities?)
-	uint8 RecastsToDelete = WELL512::irand() % TotalRecasts;
+	uint8 RecastsToDelete = WELL512::irand() % (TotalRecasts == 0 ? 1 : TotalRecasts);
 
-	// Restore at least 1 ability.
-	RecastsToDelete = RecastsToDelete == 0 ? 1 : RecastsToDelete;
+	// Restore at least 1 ability (unless none are on recast)
+	RecastsToDelete = TotalRecasts == 0 ? 0 : RecastsToDelete == 0 ? 1 : RecastsToDelete;
 
 	switch (roll)
 	{
@@ -4503,8 +4436,8 @@ void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
 				}
 			}
 
-			// Retore 2hr except for Wildcard.
-			if (PTarget != PCaster)
+			// Restore 2hr except for Wildcard.
+            if (PTarget->GetMJob() != JOB_COR)
 			{
 				PTarget->PRecastContainer->Del(RECAST_ABILITY, 0);
 			}
@@ -4517,7 +4450,7 @@ void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
 
 		case 6: 
 			// Restores all Job Abilities and One Hour Abilities (Not Wild Card though), 100% MP Restore 
-			if (PCaster == PTarget)
+			if (PTarget->GetMJob() == JOB_COR)
 			{
 				PTarget->PRecastContainer->ResetAbilities();
 			}
@@ -4528,6 +4461,7 @@ void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
 			PTarget->addMP(PTarget->health.maxmp);
 			break;
  	}
+    charutils::SaveRecasts(PTarget);
 }
 
 /************************************************************************

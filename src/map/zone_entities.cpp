@@ -810,7 +810,8 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
 					CCharEntity* PCurrentChar = (CCharEntity*)it->second;
 					if (PEntity != PCurrentChar)
 					{
-						if (distance(PEntity->loc.p, PCurrentChar->loc.p) < 50)
+						if (distance(PEntity->loc.p, PCurrentChar->loc.p) < 50 && 
+                            ((PEntity->objtype != TYPE_PC) || (((CCharEntity*)PEntity)->m_moghouseID == PCurrentChar->m_moghouseID)))
 						{
 							if (packet != NULL && packet->getType() == 0x0E &&
 								(RBUFB(packet->getData(), (0x0A) - 4) != 0x20 ||
@@ -875,7 +876,8 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
 					CCharEntity* PCurrentChar = (CCharEntity*)it->second;
 					if (PEntity != PCurrentChar)
 					{
-						if (distance(PEntity->loc.p, PCurrentChar->loc.p) < 180)
+						if (distance(PEntity->loc.p, PCurrentChar->loc.p) < 180 && 
+                            ((PEntity->objtype != TYPE_PC) || (((CCharEntity*)PEntity)->m_moghouseID == PCurrentChar->m_moghouseID)))
 						{
 							PCurrentChar->pushPacket(new CBasicPacket(*packet));
 						}
@@ -888,10 +890,14 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
 				for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
 				{
 					CCharEntity* PCurrentChar = (CCharEntity*)it->second;
-					if (PEntity != PCurrentChar)
-					{
-						PCurrentChar->pushPacket(new CBasicPacket(*packet));
-					}
+
+                    if ((PEntity->objtype != TYPE_PC) || (((CCharEntity*)PEntity)->m_moghouseID == PCurrentChar->m_moghouseID))
+                    {
+                        if (PEntity != PCurrentChar)
+                        {
+                            PCurrentChar->pushPacket(new CBasicPacket(*packet));
+                        }
+                    }
 				}
 			}
 			break;
@@ -906,7 +912,7 @@ void CZoneEntities::WideScan(CCharEntity* PChar, uint16 radius)
 	for (EntityList_t::const_iterator it = m_npcList.begin(); it != m_npcList.end(); ++it)
 	{
 		CNpcEntity* PNpc = (CNpcEntity*)it->second;
-		if (PNpc->status == STATUS_NORMAL && !PNpc->IsNameHidden() && !PNpc->untargetable && !(PNpc->unknown & 0x800))
+        if (PNpc->status == STATUS_NORMAL && !PNpc->IsNameHidden() && !PNpc->IsUntargetable())
 		{
 			if (distance(PChar->loc.p, PNpc->loc.p) < radius)
 			{
@@ -917,7 +923,7 @@ void CZoneEntities::WideScan(CCharEntity* PChar, uint16 radius)
 	for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
 	{
 		CMobEntity* PMob = (CMobEntity*)it->second;
-		if (PMob->status != STATUS_DISAPPEAR && !PMob->untargetable)
+		if (PMob->status != STATUS_DISAPPEAR && !PMob->IsUntargetable())
 		{
 			if (distance(PChar->loc.p, PMob->loc.p) < radius)
 			{
@@ -970,7 +976,7 @@ void CZoneEntities::ZoneServer(uint32 tick)
 
 		if (PChar->status != STATUS_SHUTDOWN)
 		{
-			PChar->PRecastContainer->Check(tick);
+			PChar->PRecastContainer->Check();
 			PChar->StatusEffectContainer->CheckEffects(tick);
 			PChar->PBattleAI->CheckCurrentAction(tick);
 			PChar->PTreasurePool->CheckItems(tick);
@@ -1003,7 +1009,7 @@ void CZoneEntities::ZoneServerRegion(uint32 tick)
 
 		if (PChar->status != STATUS_SHUTDOWN)
 		{
-			PChar->PRecastContainer->Check(tick);
+			PChar->PRecastContainer->Check();
 			PChar->StatusEffectContainer->CheckEffects(tick);
 			PChar->PBattleAI->CheckCurrentAction(tick);
 			PChar->PTreasurePool->CheckItems(tick);

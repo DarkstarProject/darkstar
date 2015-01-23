@@ -153,7 +153,10 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
         case 2955:  //kindred crest
         case 2956:  //high kindred crest
             for (uint32 i = 0; i < members.size(); ++i)
-                members[i]->PRecastContainer->Add(RECAST_LOOT, 1, 300000); //300000 = 5 min cooldown
+            {
+                members[i]->PRecastContainer->Add(RECAST_LOOT, 1, 300); //300 = 5 min cooldown
+                charutils::SaveRecasts(members[i]);
+            }
             break;
     }
 
@@ -391,7 +394,7 @@ void CTreasurePool::CheckTreasureItem(uint32 tick, uint8 SlotID)
 				}
 				else{
 					//select random member from this pool to give item to
-					CCharEntity* PChar = tempLots.at(rand() % tempLots.size()).member;
+                    CCharEntity* PChar = tempLots.at(WELL512::irand() % tempLots.size()).member;
 					if (charutils::AddItem(PChar, LOC_INVENTORY, m_PoolItems[SlotID].ID, 1, true) != ERROR_SLOTID)
 					{
 						TreasureWon(PChar, SlotID);
@@ -415,7 +418,7 @@ void CTreasurePool::CheckTreasureItem(uint32 tick, uint8 SlotID)
             }
             if (!m_PoolItems[SlotID].Lotters.empty())
             {
-                CCharEntity* PChar = m_PoolItems[SlotID].Lotters.at(rand() % m_PoolItems[SlotID].Lotters.size()).member;
+                CCharEntity* PChar = m_PoolItems[SlotID].Lotters.at(WELL512::irand() % m_PoolItems[SlotID].Lotters.size()).member;
 
                 if (charutils::AddItem(PChar, LOC_INVENTORY, m_PoolItems[SlotID].ID, 1, true) != ERROR_SLOTID)
 		        {

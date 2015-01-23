@@ -79,7 +79,7 @@ namespace message
                 else
                 {
                     PChar->status = STATUS_SHUTDOWN;
-                    PChar->pushPacket(new CServerIPPacket(PChar, 1));
+                    PChar->pushPacket(new CServerIPPacket(PChar, 1,0));
                 }
                 break;
             }
@@ -273,41 +273,22 @@ namespace message
 				CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
 				if (PChar)
 				{
-					if (PChar->PParty)
-					{
-						if (PChar->PParty->m_PAlliance != NULL)
-						{
-							for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
-							{
-								for (uint8 j = 0; j < PChar->PParty->m_PAlliance->partyList.at(i)->members.size(); ++j)
-								{
-									((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(i)->members.at(j))->ReloadPartyInc();
-								}
-							}
-						}
-						else
-						{
-							for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
-							{
-                                ((CCharEntity*)PChar->PParty->members.at(i))->ReloadPartyInc();
-							}
-						}
-					}
-					else
-					{
-                        PChar->ReloadPartyInc();
-					}
+                    PChar->ForAlliance([](CBattleEntity* PMember)
+                    {
+                        ((CCharEntity*)PMember)->ReloadPartyInc();
+                    });
 				}
 				break;
 			}
             case MSG_PT_DISBAND:
             {
                 CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+                uint32 id = RBUFL(extra->data(), 4);
                 if (PChar)
                 {
                     if (PChar->PParty)
                     {
-                        if (PChar->PParty->m_PAlliance)
+                        if (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->m_AllianceID == id)
                         {
                             PChar->PParty->m_PAlliance->dissolveAlliance(false, ChatSqlHandle);
                         }
@@ -344,13 +325,13 @@ namespace message
             {
                 CCharEntity* PChar = zoneutils::GetCharByName((int8*)extra->data() + 4);
 
-                if (PChar && PChar->PLinkshell && PChar->PLinkshell->getID() == RBUFL(extra->data(),24))
+                if (PChar && PChar->PLinkshell1 && PChar->PLinkshell1->getID() == RBUFL(extra->data(),24))
                 {
                     uint8 kickerRank = RBUFB(extra->data(), 28);
-                    CItemLinkshell* targetLS = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
+                    CItemLinkshell* targetLS = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
                     if (kickerRank == LSTYPE_LINKSHELL || (kickerRank == LSTYPE_PEARLSACK && targetLS && targetLS->GetLSType() == LSTYPE_LINKPEARL))
                     {
-                        PChar->PLinkshell->RemoveMemberByName((int8*)extra->data() + 4);
+                        PChar->PLinkshell1->RemoveMemberByName((int8*)extra->data() + 4);
                     }
                 }
                 break;

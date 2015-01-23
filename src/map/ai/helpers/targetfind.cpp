@@ -150,20 +150,7 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
         }
         else
         {
-            if (m_PMasterTarget->PParty != NULL)
-            {
-                if (m_PMasterTarget->PParty->m_PAlliance != NULL)
-                {
-                    addAllInAlliance(m_PMasterTarget, withPet);
-                }
-                else {
-                    // all party instead
-                    addAllInParty(m_PMasterTarget, withPet);
-                }
-            }
-            else {
-                addEntity(m_PMasterTarget, withPet);
-            }
+            addAllInAlliance(m_PMasterTarget, withPet);
 
             // Is the monster casting on a player..
 			if (m_findType == FIND_MONSTER_PLAYER)
@@ -248,28 +235,19 @@ void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
 {
     CParty* party = NULL;
 
-    for (uint16 i = 0; i < PTarget->PParty->m_PAlliance->partyList.size(); i++)
+    PTarget->ForAlliance([this, withPet](CBattleEntity* PMember)
     {
-        party = PTarget->PParty->m_PAlliance->partyList.at(i);
-
-        for (uint16 p = 0; p < party->members.size(); p++)
-        {
-            addEntity(party->members.at(p), withPet);
-        }
-    }
+        addEntity(PMember, withPet);
+    });
 }
 
 void CTargetFind::addAllInParty(CBattleEntity* PTarget, bool withPet)
 {
 
-    CParty* party = PTarget->PParty;
-
-    // don't cache the party size!
-    for (uint16 p = 0; p < party->members.size(); p++)
+    PTarget->ForParty([this, withPet](CBattleEntity* PMember)
     {
-
-        addEntity(party->members.at(p), withPet);
-    }
+        addEntity(PMember, withPet);
+    });
 
 }
 
@@ -323,35 +301,16 @@ bool CTargetFind::isMobOwner(CBattleEntity* PTarget)
         return true;
     }
 
-    CCharEntity* PChar = (CCharEntity*)m_PBattleEntity;
+    bool found = false;
 
-    if (PChar->PParty != NULL)
-    {
-        if (PChar->PParty->m_PAlliance != NULL)
+    m_PBattleEntity->ForAlliance([&found, &PTarget](CBattleEntity* PMember){
+        if (PMember->id == PTarget->m_OwnerID.id)
         {
-            for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
-            {
-                for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
-                {
-                    if (PChar->PParty->m_PAlliance->partyList.at(a)->members[i]->id == PTarget->m_OwnerID.id)
-                    {
-                        return true;
-                    }
-                }
-            }
+            found = true;
         }
-        else //no alliance
-        {
-            for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
-            {
-                if (PChar->PParty->members[i]->id == PTarget->m_OwnerID.id)
-                {
-                    return true;
-                }
-            }
-        }
-    }
-    return false;
+    });
+
+    return found;
 }
 
 /*

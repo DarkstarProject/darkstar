@@ -226,7 +226,8 @@ enum SLOTTYPE
 	SLOT_RING1	= 0x0D,
 	SLOT_RING2	= 0x0E,
 	SLOT_BACK	= 0x0F,
-	SLOT_LINK	= 0x10
+	SLOT_LINK1	= 0x10,
+    SLOT_LINK2  = 0x11,
 };
 
 // CROSSBOW и GUN - это Piercing, разделение сделано из-за одинакового skilltype
@@ -520,6 +521,9 @@ public:
     void            delEquipModifiers(std::vector<CModifier*> *modList, uint8 itemLevel, uint8 slotid);
 	void 		    saveModifiers(); // save current state of modifiers
 	void 		    restoreModifiers(); // restore to saved state
+
+    void            ForParty(std::function<void(CBattleEntity*)>);
+    void            ForAlliance(std::function<void(CBattleEntity*)>);
 
 	uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
 	ECOSYSTEM		m_EcoSystem;			    // эко-система сущности

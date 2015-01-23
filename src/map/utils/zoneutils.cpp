@@ -67,24 +67,29 @@ void UpdateTreasureSpawnPoint(uint32 npcid, uint32 respawnTime)
 {
 	CBaseEntity* PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
 
-	if (PNpc != NULL) {
+	int32 ret = Sql_Query(SqlHandle, "SELECT treasure_spawn_points.pos, treasure_spawn_points.pos_rot, treasure_spawn_points.pos_x, treasure_spawn_points.pos_y, treasure_spawn_points.pos_z, npc_list.required_expansion FROM `treasure_spawn_points` INNER JOIN `npc_list` ON treasure_spawn_points.npcid = npc_list.npcid WHERE treasure_spawn_points.npcid=%u ORDER BY RAND() LIMIT 1", npcid);
 
-		int32 ret = Sql_Query(SqlHandle, "SELECT pos, pos_rot, pos_x, pos_y, pos_z FROM `treasure_spawn_points` WHERE npcid=%u ORDER BY RAND() LIMIT 1", npcid);
+	if ( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
+		const char* expansionCode = Sql_GetData(SqlHandle, 5);
 
-		if ( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-			PNpc->loc.p.rotation = Sql_GetIntData(SqlHandle,1);
-			PNpc->loc.p.x = Sql_GetFloatData(SqlHandle,2);
-			PNpc->loc.p.y = Sql_GetFloatData(SqlHandle,3);
-			PNpc->loc.p.z = Sql_GetFloatData(SqlHandle,4);
-			// ShowDebug(CL_YELLOW"zoneutils::UpdateTreasureSpawnPoint: After %i - %d (%f, %f, %f), %d\n" CL_RESET, Sql_GetIntData(SqlHandle,0), PNpc->id, PNpc->loc.p.x,PNpc->loc.p.y,PNpc->loc.p.z, PNpc->loc.zone->GetID());
-		} else {
-			ShowDebug(CL_RED"zonetuils::UpdateTreasureSpawnPoint: SQL error or treasure <%u> not found in treasurespawnpoints table.\n" CL_RESET, npcid);
+		if (luautils::IsExpansionEnabled(expansionCode) == false){
+			return;
 		}
 
-		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", gettick()+respawnTime, PNpc, CTaskMgr::TASK_ONCE, reappear_npc));
+		if (PNpc != NULL) {
+			PNpc->loc.p.rotation = Sql_GetIntData(SqlHandle, 1);
+			PNpc->loc.p.x = Sql_GetFloatData(SqlHandle, 2);
+			PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 3);
+			PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 4);
+			// ShowDebug(CL_YELLOW"zoneutils::UpdateTreasureSpawnPoint: After %i - %d (%f, %f, %f), %d\n" CL_RESET, Sql_GetIntData(SqlHandle,0), PNpc->id, PNpc->loc.p.x,PNpc->loc.p.y,PNpc->loc.p.z, PNpc->loc.zone->GetID());
+			CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", gettick() + respawnTime, PNpc, CTaskMgr::TASK_ONCE, reappear_npc));
+		}
+		else {
+			ShowDebug(CL_RED"zonetuils::UpdateTreasureSpawnPoint: treasure <%u> not found\n" CL_RESET, npcid);
+		}
 	} else {
-		ShowDebug(CL_RED"zonetuils::UpdateTreasureSpawnPoint: treasure <%u> not found\n" CL_RESET, npcid);
-	}
+		ShowDebug(CL_RED"zonetuils::UpdateTreasureSpawnPoint: SQL error or treasure <%u> not found in treasurespawnpoints table.\n" CL_RESET, npcid);
+	}		
 }
 
 /************************************************************************
@@ -146,7 +151,7 @@ CZone* GetZone(uint16 ZoneID)
 	{
 		return g_PZoneList.at(ZoneID);
 	}
-	catch (const std::out_of_range& oor)
+	catch (const std::out_of_range&)
 	{
 		return NULL;
 	}
@@ -255,9 +260,10 @@ void LoadNPCList()
           animationsub,\
           namevis,\
           status,\
-          unknown,\
+          flags,\
           look,\
-          name_prefix \
+          name_prefix, \
+		  required_expansion \
         FROM npc_list INNER JOIN zone_settings \
         ON (npcid & 0xFFF000) >> 12 = zone_settings.zoneid \
         WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
@@ -268,6 +274,12 @@ void LoadNPCList()
 	{
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
+			const char* expansionCode = Sql_GetData(SqlHandle, 16);
+
+			if (luautils::IsExpansionEnabled(expansionCode) == false){
+				continue;
+			}
+
 			uint32 NpcID = Sql_GetUIntData(SqlHandle, 0);
 			uint16 ZoneID = (NpcID - 0x1000000) >> 12;
 
@@ -294,7 +306,7 @@ void LoadNPCList()
 
 				PNpc->namevis = (uint8)Sql_GetIntData(SqlHandle, 11);
 				PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlHandle, 12);
-				PNpc->unknown = (uint32)Sql_GetUIntData(SqlHandle, 13);
+				PNpc->m_flags = (uint32)Sql_GetUIntData(SqlHandle, 13);
 
 				PNpc->name_prefix = (uint8)Sql_GetIntData(SqlHandle, 15);
 
@@ -326,7 +338,7 @@ void LoadMOBList()
 			STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
 			Slash, Pierce, H2H, Impact, \
 			Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
-			mob_pools.familyid, name_prefix, unknown, animationsub, \
+			mob_pools.familyid, name_prefix, flags, animationsub, \
 			(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
 			allegiance, namevis, aggro \
 			FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
@@ -434,7 +446,7 @@ void LoadMOBList()
 				PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle, 48);
 				PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle, 49);
 				PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle, 50);
-				PMob->m_unknown = (uint32)Sql_GetIntData(SqlHandle, 51);
+				PMob->m_flags = (uint32)Sql_GetIntData(SqlHandle, 51);
 
 				// Cap Level if Necessary (Don't Cap NMs)
 				if (normalLevelRangeMin > 0 && PMob->m_Type != MOBTYPE_NOTORIOUS && PMob->m_minLevel > normalLevelRangeMin){

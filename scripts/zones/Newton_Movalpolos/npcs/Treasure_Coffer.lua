@@ -32,7 +32,7 @@ function onTrade(player,npc,trade)
 	if((trade:hasItemQty(1063,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
 		
 		-- IMPORTANT ITEM: AF Keyitems, AF Items, & Map -----------
-		local zone = player:getZone():getID();
+		local zone = player:getZoneID();
 		if(player:hasKeyItem(MAP_OF_NEWTON_MOVALPOLOS) == false) then
 			questItemNeeded = 3;
 		end

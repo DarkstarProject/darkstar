@@ -12,7 +12,7 @@ require("/scripts/globals/monstertpmoves");
 
 function onMobSkillCheck(target,mob,skill)
     -- only used in bibiki bay and others
-    local zone = target:getZone():getID();
+    local zone = target:getZoneID();
     if(zone >= 1 and zone <= 4) then
         return 0;
     end

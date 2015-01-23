@@ -544,24 +544,7 @@ void LoadAutomatonStats(CCharEntity* PMaster, CPetEntity* PPet, Pet_t* petStats)
 
     PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(petStats->cmbDelay/60.0f))); //every pet should use this eventually
     PPet->m_Weapons[SLOT_MAIN]->setDamage(1); //temp
-    PPet->setModifier(MOD_ATT, PMaster->GetSkill(SKILL_AME) > puppetutils::getSkillCap((CCharEntity*)PMaster, SKILL_AME) ? puppetutils::getSkillCap((CCharEntity*)PMaster, SKILL_AME) : PMaster->GetSkill(SKILL_AME) );
-    if (PMaster->GetSkill(SKILL_AME) > puppetutils::getSkillCap((CCharEntity*)PMaster, SKILL_AME))
-    {
-        PPet->setModifier(MOD_ACC, puppetutils::getSkillCap((CCharEntity*)PMaster, SKILL_AME) > 200 ? ((puppetutils::getSkillCap((CCharEntity*)PMaster, SKILL_AME) - 200) * 0.9) + 200 : puppetutils::getSkillCap((CCharEntity*)PMaster, SKILL_AME));
-    }
-    else
-    {
-        PPet->setModifier(MOD_ACC, PMaster->GetSkill(SKILL_AME) > 200 ? ((PMaster->GetSkill(SKILL_AME) - 200) * 0.9) + 200 : PMaster->GetSkill(SKILL_AME));
-    }
-    PPet->setModifier(MOD_RATT, PMaster->GetSkill(SKILL_ARA) > puppetutils::getSkillCap((CCharEntity*)PMaster, SKILL_ARA) ? puppetutils::getSkillCap((CCharEntity*)PMaster, SKILL_ARA) : PMaster->GetSkill(SKILL_ARA) );
-    if (PMaster->GetSkill(SKILL_ARA) > puppetutils::getSkillCap((CCharEntity*)PMaster, SKILL_ARA))
-    {
-        PPet->setModifier(MOD_RACC, puppetutils::getSkillCap((CCharEntity*)PMaster, SKILL_ARA) > 200 ? ((puppetutils::getSkillCap((CCharEntity*)PMaster, SKILL_ARA) - 200) * 0.9) + 200 : puppetutils::getSkillCap((CCharEntity*)PMaster, SKILL_ARA));
-    }
-    else
-    {
-        PPet->setModifier(MOD_RACC, PMaster->GetSkill(SKILL_ARA) > 200 ? ((PMaster->GetSkill(SKILL_ARA) - 200) * 0.9) + 200 : PMaster->GetSkill(SKILL_ARA));
-    }
+    
 	//temp eva/def (probably frame based)
 	PPet->setModifier(MOD_EVA, battleutils::GetMaxSkill(SKILL_H2H,JOB_WAR,PPet->GetMLevel()));
 	PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(SKILL_H2H,JOB_WAR,PPet->GetMLevel()));
@@ -751,19 +734,9 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 	}
 
 	// check latents affected by pets
-	if (PMaster->PParty != NULL)
-	{
-		for (uint8 i = 0; i < PMaster->PParty->members.size(); ++i)
-		{
-			CCharEntity* PMember = (CCharEntity*)PMaster->PParty->members.at(i);
-			PMember->PLatentEffectContainer->CheckLatentsPartyAvatar();
-		}
-	}
-	else
-	{
-		CCharEntity* PChar = (CCharEntity*)PMaster;
-		PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
-	}
+    PMaster->ForParty([](CBattleEntity* PMember){
+        ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
+    });
 
 }
 
@@ -888,16 +861,9 @@ void DetachPet(CBattleEntity* PMaster)
         if( PPetEnt->getPetType() == PETTYPE_AVATAR )
             PMaster->setModifier(MOD_AVATAR_PERPETUATION, 0);
 
-        if (PMaster->PParty != NULL)
-        {
-            for (uint8 i = 0; i < PMaster->PParty->members.size(); ++i)
-            {
-                CCharEntity* PMember = (CCharEntity*)PMaster->PParty->members.at(i);
-                PMember->PLatentEffectContainer->CheckLatentsPartyAvatar();
-            }
-        }
-
-        PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
+        PMaster->ForParty([](CBattleEntity* PMember){
+            ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
+        });
 
         if (PPetEnt->getPetType() != PETTYPE_AUTOMATON){
             PPetEnt->PMaster = NULL;

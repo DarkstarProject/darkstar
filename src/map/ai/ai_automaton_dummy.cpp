@@ -34,6 +34,8 @@ void CAIAutomatonDummy::CheckCurrentAction(uint32 tick)
 {
     m_Tick = tick;
 
+    CBattleEntity* PSelf = m_PPet;
+
     switch (m_ActionType)
     {
     case ACTION_NONE:							                    break;
@@ -55,10 +57,16 @@ void CAIAutomatonDummy::CheckCurrentAction(uint32 tick)
 
     default: DSP_DEBUG_BREAK_IF(true);
     }
+
+    //check if this AI was replaced (the new AI will update if this is the case)
+    if (m_PPet && PSelf->PBattleAI == this)
+    {
+        m_PPet->UpdateEntity();
+    }
 }
 
 void CAIAutomatonDummy::ActionFall()
 {
-    CAIPetDummy::ActionFall();
     m_PPet->PMaster->StatusEffectContainer->RemoveAllManeuvers();
+    CAIPetDummy::ActionFall();
 }

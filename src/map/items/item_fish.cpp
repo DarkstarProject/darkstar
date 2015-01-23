@@ -56,7 +56,7 @@ uint16 CItemFish::GetWeight()
 
 bool CItemFish::IsRanked()
 {
-    return RBUFB(m_extra, 4) & 0x01 == 0x01;
+    return (RBUFB(m_extra, 4) & 0x01) == 0x01;
 }
 
 void CItemFish::SetLength(uint16 length)

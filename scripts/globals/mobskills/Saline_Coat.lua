@@ -1,8 +1,12 @@
 ---------------------------------------------
 --  Saline Coat
 --
---  Description: Enhances magic defense.
---  Type: Magical (Light)
+--  Family: Xzomit
+--  Type: Enhancing
+--  Can be dispelled: Yes
+--  Utsusemi/Blink absorb: N/A
+--  Range: Self
+--  Notes: ~50% Magic DEF boost.
 ---------------------------------------------
 
 require("/scripts/globals/settings");
@@ -16,7 +20,9 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
+
 	local typeEffect = EFFECT_MAGIC_DEF_BOOST;
-    skill:setMsg(MobBuffMove(mob, typeEffect, 50, 0, 60));
+	skill:setMsg(MobBuffMove(mob, typeEffect, 50, 0, 60));
+
 	return typeEffect;
 end;

@@ -4,7 +4,7 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    local zone = mob:getZone():getID();
+    local zone = mob:getZoneID();
     if(mob:isInDynamis() or zone == 5) then
         return 0;
     end

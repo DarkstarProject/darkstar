@@ -40,7 +40,7 @@ function onMobRoam(mob)
 if (ready == 0 and wait > 40) then local baseID = 17621014 + (mob:getBattlefield():getBattlefieldNumber() - 1) * 2
 mob:setLocalVar("ready", bit.band(baseID, 0xFFF));
 mob:setLocalVar("wait", 0);
-elseif (ready > 0) then mob:addEnmity(GetMobByID(ready + bit.lshift(mob:getZone():getID(), 12) + 0x1000000),0,1);
+elseif (ready > 0) then mob:addEnmity(GetMobByID(ready + bit.lshift(mob:getZoneID(), 12) + 0x1000000),0,1);
 else
 mob:setLocalVar("wait", wait+3);
 end

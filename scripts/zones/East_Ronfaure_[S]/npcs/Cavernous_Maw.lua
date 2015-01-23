@@ -1,5 +1,6 @@
 -----------------------------------
--- Cavernous Maw
+-- Area: East Ronfaure [S]
+--  NPC: Cavernous Maw
 -- Teleports Players to East Ronfaure
 -- @pos 322 -59 503 81
 -----------------------------------
@@ -16,20 +17,18 @@ require("scripts/zones/East_Ronfaure_[S]/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(hasMawActivated(player,6) == false) then
-		player:startEvent(0x0064);
-	else
-		player:startEvent(0x0065);
-	end
-	
+    if (hasMawActivated(player,6) == false) then
+        player:startEvent(0x0064);
+    else
+        player:startEvent(0x0065);
+    end
 end;
 
 -----------------------------------
@@ -37,24 +36,21 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-   
+
 -----------------------------------
 -- onEventFinish Action
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---print("CSID:",csid);
---print("RESULT:",option);
-	
-	if(option == 1) then
-		if(csid == 0x0064) then
-			player:addNationTeleport(MAW,64);
-		end
-		
-		toMaw(player,10);
-	end
-	
+    -- printf("CSID:",csid);
+    -- printf("RESULT:",option);
+    if (option == 1) then
+        if (csid == 0x0064) then
+            player:addNationTeleport(MAW,64);
+        end
+        toMaw(player,10);
+    end
 end;

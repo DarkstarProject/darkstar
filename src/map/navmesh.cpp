@@ -178,7 +178,6 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
   dtPolyRef startRef;
   dtPolyRef endRef;
 
-  dtPolyRef nearestRef;
   float enearest[3];
   float snearest[3];
 
@@ -207,7 +206,6 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
   }
 
   dtPolyRef m_polys[MAX_NAV_POLYS];
-  int npolys;
   float straightPath[MAX_NAV_POLYS*3];
   unsigned char straightPathFlags[MAX_NAV_POLYS];
   dtPolyRef straightPathPolys[MAX_NAV_POLYS];

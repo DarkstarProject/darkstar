@@ -367,7 +367,6 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 			if( m_POwner->health.maxhp != 0) //make sure we're not in the middle of logging in
 			{
 				//check for latents
-				CLatentEffectContainer* PLatentEffectContainer;
 				PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
 				PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
 				PChar->UpdateHealth();
@@ -414,7 +413,6 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 			}
         }
 		//check for latents
-		CLatentEffectContainer* PLatentEffectContainer;
 		PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
 		PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
 		PChar->UpdateHealth();
@@ -584,7 +582,7 @@ EFFECT CStatusEffectContainer::EraseStatusEffect()
     }
     if (!erasableList.empty())
     {
-        uint16 rndIdx = rand() % erasableList.size();
+        uint16 rndIdx = WELL512::irand() % erasableList.size();
         EFFECT result = m_StatusEffectList.at(erasableList.at(rndIdx))->GetStatusID();
         RemoveStatusEffect(erasableList.at(rndIdx));
         return result;
@@ -594,7 +592,6 @@ EFFECT CStatusEffectContainer::EraseStatusEffect()
 
 EFFECT CStatusEffectContainer::HealingWaltz()
 {
-   EFFECT effect_id;
    std::vector<uint16> waltzableList;
    for( uint16 i = 0; i < m_StatusEffectList.size(); ++i )
    {
@@ -607,7 +604,7 @@ EFFECT CStatusEffectContainer::HealingWaltz()
    }
    if( !waltzableList.empty() )
    {
-      uint16 rndIdx = rand() % waltzableList.size();
+       uint16 rndIdx = WELL512::irand() % waltzableList.size();
       EFFECT result = m_StatusEffectList.at(waltzableList.at(rndIdx))->GetStatusID();
       RemoveStatusEffect(waltzableList.at(rndIdx));
       return result;
@@ -654,7 +651,7 @@ EFFECT CStatusEffectContainer::DispelStatusEffect(EFFECTFLAG flag)
 	}
 	if (!dispelableList.empty())
 	{
-		uint16 rndIdx = rand() % dispelableList.size();
+        uint16 rndIdx = WELL512::irand() % dispelableList.size();
 		EFFECT result = m_StatusEffectList.at(dispelableList.at(rndIdx))->GetStatusID();
 		RemoveStatusEffect(dispelableList.at(rndIdx), true);
 		return result;
@@ -1010,7 +1007,7 @@ CStatusEffect* CStatusEffectContainer::StealStatusEffect()
 	}
     if (!dispelableList.empty())
     {
-        uint16 rndIdx = rand() % dispelableList.size();
+        uint16 rndIdx = WELL512::irand() % dispelableList.size();
 	uint16 effectIndex = dispelableList.at(rndIdx);
 
         CStatusEffect* oldEffect = m_StatusEffectList.at(effectIndex);

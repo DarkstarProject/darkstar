@@ -198,7 +198,6 @@ int32 do_init(int32 argc, int8** argv)
 	mobSpellList::LoadMobSpellList();
 	ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
-    charutils::ResetAllTwoHours();
 	guildutils::Initialize();
 	charutils::LoadExpTable();
     linkshell::LoadLinkshellList();
@@ -774,10 +773,11 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                         //if char then disconnects we need to tell the server about the alliance change
                         if (PChar->PParty != NULL && PChar->PParty->m_PAlliance != NULL && PChar->PParty->GetLeader() == PChar){
                             if (PChar->PParty->members.size() == 1){
-                                if (PChar->PParty->m_PAlliance->partyList.size() == 2){
+                                if (PChar->PParty->m_PAlliance->partyList.size() == 1){
                                     PChar->PParty->m_PAlliance->dissolveAlliance();
                                 }
-                                else if (PChar->PParty->m_PAlliance->partyList.size() == 3){
+                                else
+                                {
                                     PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
                                 }
                             }

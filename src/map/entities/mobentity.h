@@ -167,8 +167,6 @@ public:
   uint16    m_Behaviour;                // mob behaviour
   SPAWNTYPE m_SpawnType;                // condition for mob to spawn
 
-  uint8     m_CallForHelp;              // call for help flag on mob
-
   int8      m_battlefieldID;            // battlefield belonging to
   uint16    m_bcnmID;                   // belongs to which battlefield
   bool      m_giveExp;                  // prevent exp gain
@@ -186,7 +184,8 @@ public:
   CMobSpellList*        m_SpellListContainer;        // The spells list container for this mob
   std::map<uint16, uint16>    m_UsedSkillIds;        // mob skill ids used (key) along with mob level (value)
 
-  uint32    m_unknown;                               // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
+  uint32    m_flags  ;                               // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
+  void      setMobFlags(uint32 MobFlags);            // Change the current value in m_flags
   uint8     m_name_prefix;                           // The ding bats VS Ding bats
 
   CEnmityContainer* PEnmityContainer;                // система ненависти монстров
@@ -233,6 +232,13 @@ public:
 
   void      HideModel(bool hide);                    // hide / show model
   bool      IsModelHidden();
+  void      CallForHelp(bool call);
+  bool      CalledForHelp();
+  void      HideHP(bool hide);
+  bool      IsHPHidden();
+  void      Untargetable(bool untargetable);
+  bool      IsUntargetable();
+
   void      UpdateEntity() override;
 
   CMobEntity();

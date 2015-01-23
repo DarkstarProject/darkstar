@@ -1,23 +1,33 @@
 ---------------------------------------------------------------------------------------------------
--- func: pos
--- auth: <Unknown> :: Modded by atom0s
+-- func: @pos <x> <y> <z> <optional zone> <optional target>
+-- auth: <Unknown> :: Modded by atom0s :: Modded again by TeoTwawki
 -- desc: Sets the players position. If none is given, prints out the position instead.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
 {
     permission = 1,
-    parameters = "iiii"
+    parameters = "iiiis"
 };
 
-function onTrigger(player, x, y, z, zone)
+function onTrigger(player, x, y, z, zone, target)
+    if (target == nil) then
+        target = player:getName();
+    end
+
+    local targ = GetPlayerByName( target );
+    if (targ == nil) then
+        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
+        return
+    end
+
     if (x == nil or y == nil or z == nil and zone == nil) then
-        player:showPosition();
-    else    
+        targ:showPosition();
+    else
         if (zone == nil) then
-            player:setPos(x, y, z, 0);
+            targ:setPos(x, y, z, 0);
         else
-            player:setPos(x, y, z, 0, zone);
+            targ:setPos(x, y, z, 0, zone);
         end
     end
-end
+end;

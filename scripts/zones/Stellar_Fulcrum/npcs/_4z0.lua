@@ -25,7 +25,7 @@ require("scripts/zones/Stellar_Fulcrum/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(TradeBCNM(player,player:getZone():getID(),trade,npc))then
+	if(TradeBCNM(player,player:getZoneID(),trade,npc))then
 		return;
 	end
 	

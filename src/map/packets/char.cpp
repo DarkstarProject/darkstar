@@ -81,9 +81,9 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
                     WBUFB(data, (0x23) - 4) = 0x20;
                 }
 
-                if (PChar->equip[SLOT_LINK] != 0)
+                if (PChar->equip[SLOT_LINK1] != 0)
                 {
-                    CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
+                    CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
 
                     if ((linkshell != NULL) && linkshell->isType(ITEM_LINKSHELL))
                     {

@@ -30,7 +30,6 @@
 #include "entities/charentity.h"
 #include "recast_container.h"
 
-
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -111,7 +110,7 @@ void CRecastContainer::Add(RECASTTYPE type, uint16 id, uint32 duration, uint32 c
     {
         Recast_t* newRecast = new Recast_t;
         newRecast->ID = id;
-        newRecast->TimeStamp = gettick();
+        newRecast->TimeStamp = time(NULL);
         newRecast->RecastTime = duration;
         newRecast->chargeTime = chargeTime;
         newRecast->maxCharges = maxCharges;
@@ -122,16 +121,16 @@ void CRecastContainer::Add(RECASTTYPE type, uint16 id, uint32 duration, uint32 c
     {
         if (chargeTime == 0)
         {
-            recast->TimeStamp = gettick();
+            recast->TimeStamp = time(NULL);
             recast->RecastTime = duration;
         }
         else
         {
             if (recast->RecastTime == 0)
             {
-                recast->TimeStamp = gettick();
+                recast->TimeStamp = time(NULL);
             }
-            recast->RecastTime += chargeTime * 1000;
+            recast->RecastTime += chargeTime;
             recast->chargeTime = chargeTime;
             recast->maxCharges = maxCharges;
         }
@@ -229,7 +228,7 @@ bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id)
             }
             else
             {
-                int charges = PRecastList->at(i)->maxCharges - ((PRecastList->at(i)->RecastTime - (gettick() - PRecastList->at(i)->TimeStamp)) / (PRecastList->at(i)->chargeTime * 1000)) - 1;
+                int charges = PRecastList->at(i)->maxCharges - ((PRecastList->at(i)->RecastTime - (time(NULL) -PRecastList->at(i)->TimeStamp)) / (PRecastList->at(i)->chargeTime)) - 1;
 
                 //TODO: multiple charges (BST Ready)
                 if (charges < 1)
@@ -248,10 +247,8 @@ bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id)
 *                                                                       *
 ************************************************************************/
 
-void CRecastContainer::Check(uint32 tick)
+void CRecastContainer::Check()
 {
-	DSP_DEBUG_BREAK_IF(tick == 0);
-
     for (uint8 type = 0; type < MAX_RECASTTPE_SIZE; ++type)
     {
         RecastList_t* PRecastList = GetRecastList((RECASTTYPE)type);
@@ -260,7 +257,7 @@ void CRecastContainer::Check(uint32 tick)
 	    {
 		    Recast_t* recast = PRecastList->at(i);
 
-		    if (tick >= (recast->TimeStamp + recast->RecastTime))
+		    if (time(NULL) >= (recast->TimeStamp + recast->RecastTime))
 		    {
                 if (type == RECAST_ITEM)
                 {

@@ -50,7 +50,7 @@ CEventStringPacket::CEventStringPacket(
 
 	WBUFL(data,(0x04)-4) = PChar->id;
 	WBUFW(data,(0x08)-4) = PChar->m_TargID;
-    WBUFW(data,(0x0A)-4) = (PChar->getZone() != 0 ? PChar->getZone() : PChar->loc.prevzone);
+    WBUFW(data,(0x0A)-4) = PChar->getZone();
 	WBUFW(data,(0x0C)-4) = EventID;
 	WBUFB(data,(0x0E)-4) = 8; // если патаметров меньше, чем 8, то после завершения события камера "прыгнет" за спину персонажу
 

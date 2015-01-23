@@ -410,7 +410,8 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 {
     std::list<SearchEntity*> LinkshellList;
 	const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
-                            war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run, linkshellid, linkshellrank \
+                            war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run, linkshellid1, linkshellid2, \
+                            linkshellrank1, linkshellrank2 \
                             FROM accounts_sessions \
                             LEFT JOIN accounts_parties USING (charid) \
                             LEFT JOIN chars USING (charid) \
@@ -418,11 +419,11 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
                             LEFT JOIN char_stats USING (charid) \
                             LEFT JOIN char_jobs USING(charid) \
 							LEFT JOIN char_profile USING(charid) \
-							WHERE linkshellid = %u \
+							WHERE linkshellid1 = %u OR linkshellid2 = %u \
                             ORDER BY charname ASC \
-                            LIMIT 20";
+                            LIMIT 19";
 
-    int32 ret = Sql_Query(SqlHandle, fmtQuery, LinkshellID);
+    int32 ret = Sql_Query(SqlHandle, fmtQuery, LinkshellID, LinkshellID);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
@@ -442,7 +443,10 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
             PPlayer->slvl   = (uint8) Sql_GetIntData(SqlHandle, 11 + PPlayer->sjob);
             PPlayer->race   = (uint8) Sql_GetIntData(SqlHandle,  8);
             PPlayer->rank   = (uint8) Sql_GetIntData(SqlHandle,  5 + PPlayer->nation);
-			PPlayer->linkshell = (uint8) Sql_GetIntData(SqlHandle,  35);
+            PPlayer->linkshellid1 = Sql_GetIntData(SqlHandle, 34);
+            PPlayer->linkshellid2 = Sql_GetIntData(SqlHandle, 35);
+            PPlayer->linkshellrank1 = Sql_GetIntData(SqlHandle, 36);
+            PPlayer->linkshellrank2 = Sql_GetIntData(SqlHandle, 37);
             PPlayer->slvl = (PPlayer->slvl > (PPlayer->mlvl >> 1) ? (PPlayer->mlvl == 1 ? 1 : (PPlayer->mlvl >> 1)) : PPlayer->slvl);
 
             uint32 partyid  = (uint32)Sql_GetUIntData(SqlHandle, 1);

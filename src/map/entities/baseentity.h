@@ -155,8 +155,6 @@ public:
 	uint8			speed;				// скорость передвижения
 	uint8			speedsub;			// подолнительный параметр скорости передвижения
 	uint8			namevis; 
-	bool			untargetable;
-	bool			hpvis;
 	uint8			allegiance;			// what types of targets the entity can fight
     uint8           updatemask;         // what to update next server tick to players nearby
 

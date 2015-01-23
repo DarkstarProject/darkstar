@@ -38,11 +38,12 @@
 #include "lobby.h"
 #include "message_server.h"
 
-const char *LOGIN_CONF_FILENAME = NULL;
+const char* LOGIN_CONF_FILENAME = NULL;
+const char* VERSION_INFO_FILENAME = NULL;
 
 //lan_config_t   lan_config;		// lan settings
 login_config_t login_config;	//main settings
-
+version_info_t version_info;
 
 
 Sql_t *SqlHandle = NULL;
@@ -53,6 +54,7 @@ int32 do_init(int32 argc,char** argv)
 {
 	int32 i;
 	LOGIN_CONF_FILENAME = "conf/login_darkstar.conf";
+	VERSION_INFO_FILENAME = "version.info";
 
 	const char *lan_cfgName = LAN_CONFIG_NAME;
 	//srand(gettick());
@@ -73,9 +75,11 @@ int32 do_init(int32 argc,char** argv)
 	//lan_config_default(&lan_config);
 	//lan_config_read(lan_cfgName,&lan_config);
 
-
 	login_config_default();
 	login_config_read(LOGIN_CONF_FILENAME);
+
+	version_info_default();
+	version_info_read(VERSION_INFO_FILENAME);
 
 
 	login_fd		   = makeListenBind_tcp(login_config.uiLoginAuthIp,login_config.usLoginAuthPort,connect_client_login);
@@ -344,6 +348,43 @@ int32 login_config_read(const char *cfgName)
 	fclose(fp);
 	return 0;
 }
+
+int32 version_info_read(const char *fileName)
+{
+    char line[1024], w1[1024], w2[1024];
+    FILE *fp;
+
+    fp = fopen(fileName,"r");
+    if( fp == NULL )
+    {
+        ShowError("version info file not found at: %s\n", fileName);
+        return 1;
+    }
+
+    while( fgets(line, sizeof(line), fp) )
+    {
+        char* ptr;
+
+        if( line[0] == '#')
+            continue;
+        if( sscanf(line, "%[^:]: %[^\t\r\n]", w1, w2) < 2 )
+            continue;
+
+        //Strip trailing spaces
+        ptr = w2 + strlen(w2);
+        while (--ptr >= w2 && *ptr == ' ');
+        ptr++;
+        *ptr = '\0';
+
+        if (strcmp(w1, "Min_Client_Ver") == 0)
+        {
+            version_info.Min_Client_Ver = aStrdup(w2);
+        }
+    }
+    fclose(fp);
+    return 0;
+}
+
 int32 login_config_default()
 {
 	login_config.uiLobbyDataIp   = INADDR_ANY;
@@ -366,6 +407,13 @@ int32 login_config_default()
 	login_config.msg_server_port = 54003;
     login_config.msg_server_ip = "127.0.0.1";
 	return 0;
+}
+
+int32 version_info_default()
+{
+    version_info.Min_Client_Ver = "99999999_9"; // xxYYMMDD_m = xx:MajorRelease YY:year MM:month DD:day _m:MinorRelease
+    // version_info.DSP_VER = 0;
+    return 0;
 }
 
 void login_versionscreen(int32 flag)
