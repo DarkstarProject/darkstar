@@ -32,7 +32,12 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc) 
-	player:startEvent(0x027);
+
+	if player:getVar("UnderOathCS") == 2 then  -- Quest: Under Oath - PLD AF3
+		player:startEvent(0x028);
+	else
+		player:startEvent(0x027);
+	end
 end; 
 
 -----------------------------------
@@ -51,6 +56,10 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+
+	if (csid == 0x028) then
+		player:setVar("UnderOathCS", 3) -- Quest: Under Oath - PLD AF3
+	end
 end;
 
 
