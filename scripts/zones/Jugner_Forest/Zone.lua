@@ -17,13 +17,15 @@ require("scripts/globals/conquest");
 
 function onInitialize(zone)		
     local manuals = {17203883,17203884};
+	
+	zone:registerRegion(1, -484, 10, 292, 0, 0, 0); -- Sets Mark for "Under Oath" Quest cutscene.
     
     SetFieldManual(manuals);
     
     -- Fraelissa
     SetRespawnTime(17203447, 900, 10800);
     
-    SetRegionalConquestOverseers(zone:getRegionID())
+    SetRegionalConquestOverseers(zone:getRegionID());
 end;
 
 -----------------------------------		
@@ -61,7 +63,12 @@ end;
 -- onRegionEnter			
 -----------------------------------			
 
-function onRegionEnter( player, region)			
+function onRegionEnter( player, region)
+	if(region:GetRegionID() == 1) then
+		if(player:getVar("UnderOathCS") == 7) then -- Quest: Under Oath - PLD AF3
+			player:startEvent(0x000E);
+		end
+	end		
 end;			
 
 -----------------------------------			
@@ -87,5 +94,7 @@ function onEventFinish( player, csid, option)
 
 	if( csid == 0x000f) then		
 		lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
+	elseif (csid == 0x000E) then
+		player:setVar("UnderOathCS",8); -- Quest: Under Oath - PLD AF3
 	end		
 end;

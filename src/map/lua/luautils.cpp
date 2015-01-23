@@ -112,8 +112,8 @@ int32 init()
 	lua_register(LuaHandle,"VanadielMoonDirection", luautils::VanadielMoonDirection);
 	lua_register(LuaHandle,"VanadielRSERace",luautils::VanadielRSERace);
 	lua_register(LuaHandle,"VanadielRSELocation",luautils::VanadielRSELocation);
-    lua_register(LuaHandle,"SetVanadielTimeOffset",luautils::SetVanadielTimeOffset);   	
-	lua_register(LuaHandle,"IsMoonNew",luautils::IsMoonNew);    	
+    lua_register(LuaHandle,"SetVanadielTimeOffset",luautils::SetVanadielTimeOffset);
+	lua_register(LuaHandle,"IsMoonNew",luautils::IsMoonNew);
 	lua_register(LuaHandle,"IsMoonFull",luautils::IsMoonFull);
 	lua_register(LuaHandle,"RunElevator",luautils::StartElevator);
 	lua_register(LuaHandle,"GetServerVariable",luautils::GetServerVariable);
@@ -412,7 +412,7 @@ int32 GetRegionInfluence(lua_State* L)
 int32 getNationRank(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
-    
+
     uint8 balance = conquest::GetBalance();
     switch(lua_tointeger(L,1))
     {
@@ -667,7 +667,7 @@ int32 VanadielRSELocation(lua_State* L)
 *	is new moon?														*
 *																		*
 ************************************************************************/
-	
+
 int32 IsMoonNew(lua_State* L)
 {
 	// New moon occurs when:
@@ -1550,7 +1550,7 @@ int32 OnNpcSpawn(CBaseEntity* PNpc)
 
 int32 OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, apAction_t* Action, uint32 damage)
 {
-    lua_prepscript(PAttacker->objtype == TYPE_PC ? "scripts/globals/items/%s.lua" : "scripts/zones/%s/mobs/%s.lua", 
+    lua_prepscript(PAttacker->objtype == TYPE_PC ? "scripts/globals/items/%s.lua" : "scripts/zones/%s/mobs/%s.lua",
         PAttacker->objtype == TYPE_PC ? PItem->getName() : PAttacker->loc.zone->GetName(), PAttacker->GetName());
 
     if (prepFile(File, "onAdditionalEffect"))
@@ -2506,140 +2506,94 @@ int32 OnCriticalHit(CBattleEntity* PMob)
 
 int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 {
-	DSP_DEBUG_BREAK_IF(PMob == NULL);
+    DSP_DEBUG_BREAK_IF(PMob == NULL);
 
     CCharEntity* PChar = (CCharEntity*)PKiller;
 
-	CLuaBaseEntity LuaMobEntity(PMob);
-
-    if (PKiller)
+    if (PChar)
     {
-        luautils::OnMobDeathEx(PMob, PKiller, true);
+        // onMobDeathEx
+        lua_prepscript("scripts/globals/mobs.lua");
+
+        PChar->ForAlliance([PMob, PKiller, PChar, &File](CBattleEntity* PMember)
+        {
+            if (prepFile(File, "onMobDeathEx"))
+            {
+                return;
             }
 
-    int8 File[255];
-    memset(File, 0, sizeof(File));
+    CLuaBaseEntity LuaMobEntity(PMob);
+            CLuaBaseEntity LuaKillerEntity(PMember);
 
-    int32 oldtop = lua_gettop(LuaHandle);
+            bool isKillShot = PMember->id == PKiller->id;
+            bool isWeaponSkillKill = PChar->getWeaponSkillKill();
+
+            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
+            lua_pushboolean(LuaHandle, isKillShot);
+            lua_pushboolean(LuaHandle, isWeaponSkillKill);
+            // lua_pushboolean(LuaHandle, isMagicKill);
+            // lua_pushboolean(LuaHandle, isPetKill);
+            // Rather than use even more bools for this, I'm thinking it's better to replace isWeaponSkillKill with a "killType" value
+            // Checking that sort of thing could also make Colibri mimic and Jailer of Fortitude reflect easier to do.
+
+            if (lua_pcall(LuaHandle, 4, 0, 0))
+    {
+                ShowError("luautils::onMobDeathEx: %s\n", lua_tostring(LuaHandle, -1));
+                lua_pop(LuaHandle, 1);
+    }
+        } );
+
+        // onMobDeath
+    memset(File, 0, sizeof(File));
 
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "onMobDeath");
 
-	snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+    snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
-	if (PChar)
-	{
-		PChar->m_event.reset();
-		PChar->m_event.Target = PMob;
-		PChar->m_event.Script.insert(0, File);
-	}
+        PChar->ForAlliance([PMob, &File, oldtop](CBattleEntity* PPartyMember)
+    {
+            CCharEntity* PMember = (CCharEntity*)PPartyMember;
+
+            CLuaBaseEntity LuaMobEntity(PMob);
+            CLuaBaseEntity LuaKillerEntity(PMember);
+
+            PMember->m_event.reset();
+            PMember->m_event.Target = PMob;
+            PMember->m_event.Script.insert(0, File);
 
     if ( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-	{
+    {
         lua_pop(LuaHandle, 1);
-		return -1;
-	}
+                return;
+    }
 
     lua_getglobal(LuaHandle, "onMobDeath");
     if ( lua_isnil(LuaHandle,-1) )
-	{
-		ShowError("luautils::onMobDeath: undefined procedure onMobDeath\n");
+    {
+        ShowError("luautils::onMobDeath: undefined procedure onMobDeath\n");
         lua_pop(LuaHandle, 1);
-		return -1;
-	}
+                return;
+    }
 
-	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-	if (PKiller)
-	{
-		CLuaBaseEntity LuaKillerEntity(PKiller);
-		Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
-	}
-	else
-	{
-		lua_pushnil(LuaHandle);
-	}
+    Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+            if (PMember)
+    {
+                CLuaBaseEntity LuaKillerEntity(PMember);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
+    }
+    else
+    {
+        lua_pushnil(LuaHandle);
+    }
 
     if ( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
-	{
-		ShowError("luautils::onMobDeath: %s\n",lua_tostring(LuaHandle,-1));
+    {
+        ShowError("luautils::onMobDeath: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
-		return -1;
-	}
-
-	if (PChar && PChar->PParty != NULL)
-	{
-        if (PChar->PParty->m_PAlliance != NULL)
-		{
-			for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
-			{
-				for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
-				{
-					if (PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i) == PChar || PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i)->getZone() != PChar->getZone())
-						continue;
-
-					CCharEntity* PMember = (CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i];
-
-					PMember->m_event.reset();
-					PMember->m_event.Target = PMob;
-					PMember->m_event.Script.insert(0,File);
-                    luautils::OnMobDeathEx(PMob, PMember, false);
-
-					lua_getglobal(LuaHandle, "onMobDeath");
-					if (lua_isnil(LuaHandle,-1))
-					{
-						ShowError("luautils::onMobDeath: undefined procedure onMobDeath\n");
-                        lua_pop(LuaHandle, 1);
-						return -1;
-					}
-					CLuaBaseEntity LuaKillerEntity(PChar->PParty->m_PAlliance->partyList.at(a)->members[i]);
-
-					Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-					Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
-
-                    if ( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
-					{
-						ShowError("luautils::onMobDeath: %s\n",lua_tostring(LuaHandle,-1));
-						lua_pop(LuaHandle, 1);
-						return -1;
-					}
-				}
-			}
-		}
-        else
-		{
-			for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
-			{
-				if (PChar->PParty->members[i] == PChar ||
-					PChar->PParty->members[i]->getZone() != PChar->getZone())
-					continue;
-
-				CCharEntity* PMember = (CCharEntity*)PChar->PParty->members[i];
-				PMember->m_event.reset();
-				PMember->m_event.Target = PMob;
-				PMember->m_event.Script.insert(0,File);
-                luautils::OnMobDeathEx(PMob, PMember, false);
-
-				lua_getglobal(LuaHandle, "onMobDeath");
-				if (lua_isnil(LuaHandle,-1))
-				{
-					ShowError("luautils::onMobDeath: undefined procedure onMobDeath\n");
-                    lua_pop(LuaHandle, 1);
-					return -1;
-				}
-				CLuaBaseEntity LuaKillerEntity(PChar->PParty->members[i]);
-
-				Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-				Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
-
-                if ( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
-				{
-					ShowError("luautils::onMobDeath: %s\n",lua_tostring(LuaHandle,-1));
-					lua_pop(LuaHandle, 1);
-					return -1;
-				}
-			}
-		}
-	}
+                return;
+                    }
 
     int32 returns = lua_gettop(LuaHandle) - oldtop;
     if (returns > 0)
@@ -2647,67 +2601,10 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
         ShowError("luautils::onMobDeath (%s): 0 returns expected, got %d\n", File, returns);
         lua_pop(LuaHandle, returns);
     }
+        } );
+    }
 
     return 0;
-}
-
-int32 OnMobDeathEx(CBaseEntity* PMob, CBaseEntity* PKiller, bool isKillShot)
-{
-    DSP_DEBUG_BREAK_IF(PMob == NULL);
-
-    CCharEntity* PChar = (CCharEntity*)PKiller;
-
-    CLuaBaseEntity LuaMobEntity(PMob);
-
-    int8 File[255];
-    memset(File, 0, sizeof(File));
-
-    int32 oldtop = lua_gettop(LuaHandle);
-
-    CLuaBaseEntity LuaKillerEntity(PKiller);
-    lua_pushnil(LuaHandle);
-    lua_setglobal(LuaHandle, "onMobDeathEx");
-
-    snprintf(File, sizeof(File), "scripts/globals/mobs.lua");
-
-    if ( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-    {
-        lua_pop(LuaHandle, 1);
-        return -1;
-    }
-
-    lua_getglobal(LuaHandle, "onMobDeathEx");
-    if ( lua_isnil(LuaHandle,-1) )
-    {
-        lua_pop(LuaHandle, 1);
-        return -1;
-    }
-
-    bool isWeaponSkillKill = PChar->getWeaponSkillKill();
-
-    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
-    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
-    lua_pushboolean(LuaHandle, isKillShot);
-    lua_pushboolean(LuaHandle, isWeaponSkillKill);
-    // lua_pushboolean(LuaHandle, isMagicKill);
-    // lua_pushboolean(LuaHandle, isPetKill);
-    // Rather than use even more bools for this, I'm thinking it's better to replace isWeaponSkillKill with a "killType" value
-    // Checking that sort of thing could also make Colibri mimic and Jailer of Fortitude reflect easier to do.
-
-    if (lua_pcall(LuaHandle, 4, 0, 0))
-    {
-        ShowError("luautils::onMobDeathEx: %s\n", lua_tostring(LuaHandle, -1));
-        lua_pop(LuaHandle, 1);
-    }
-
-    int32 returns = lua_gettop(LuaHandle) - oldtop;
-    if (returns > 0)
-    {
-        ShowError("luautils::onMobDeathEx (%s): 0 returns expected, got %d\n", File, returns);
-        lua_pop(LuaHandle, returns);
-    }
-
-	return 0;
 }
 
 /************************************************************************
@@ -3814,7 +3711,7 @@ int32 OnConquestUpdate(CZone* PZone, ConquestUpdate type)
 int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PBattlefield){
 
     CZone* PZone = PChar->loc.zone == NULL ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
-    
+
     lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->getBcnmName());
 
     if (prepFile(File, "onBcnmEnter"))
@@ -3856,7 +3753,7 @@ int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PBattlefield){
 int32 OnBcnmLeave(CCharEntity* PChar, CBattlefield* PBattlefield, uint8 LeaveCode){
 
     CZone* PZone = PChar->loc.zone == NULL ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
-    
+
     lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->getBcnmName());
 
     if (prepFile(File, "onBcnmLeave"))
@@ -3899,7 +3796,7 @@ int32 OnBcnmLeave(CCharEntity* PChar, CBattlefield* PBattlefield, uint8 LeaveCod
 	registration, and after CBattlefield:init() procedure.
 *********************************************************************/
 int32 OnBcnmRegister(CCharEntity* PChar, CBattlefield* PBattlefield){
-    
+
     CZone* PZone = PChar->loc.zone == NULL ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
 
     lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->getBcnmName());
@@ -4199,7 +4096,7 @@ inline int32 nearLocation(lua_State* L)
     center.z = lua_tonumber(L, -1);
     lua_getfield(L, 1, "rot");
     center.rotation = lua_tonumber(L, -1);
-    
+
     float radius = lua_tonumber(L, 2);
     float theta = lua_tonumber(L, 3);
 

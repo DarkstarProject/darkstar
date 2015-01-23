@@ -75,7 +75,10 @@ function onTrade(player,npc,trade)
 							player:messageSpecial(ITEM_OBTAINED,listAF[nb + 2]);
 							break
 						end
-					end
+					end 
+				elseif(player:getVar("UnderOathCS") == 3) then   -- Under Oath - PLD AF3
+					player:addKeyItem(MIQUES_PAINTBRUSH);
+					player:messageSpecial(KEYITEM_OBTAINED,MIQUES_PAINTBRUSH);
 				else
 					player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
 					

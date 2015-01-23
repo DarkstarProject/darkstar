@@ -676,8 +676,6 @@ void CAICharNormal::ActionItemFinish()
 
             m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_INVISIBLE);
 
-            luautils::OnItemUse(m_PBattleSubTarget, m_PItemUsable);
-
             // party AoE effect
             if (m_PItemUsable->getAoE() == 1)
             {

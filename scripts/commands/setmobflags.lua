@@ -18,8 +18,8 @@ function onTrigger(player, flags, target)
     end
 
     if (target == nil) then
-        player:setUnknown(flags);
+        player:setMobFlags(flags);
     else
-        player:setUnknown(flags, target);
+        player:setMobFlags(flags, target);
     end
 end;

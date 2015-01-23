@@ -235,7 +235,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		{
 			packBitsBE(data, PEntity->PBattleAI->GetCurrentSpell()->getID(), 54, 10);
 			//either this way or enumerate all recast timers and compare the spell id.
-			packBitsBE(data, PEntity->PBattleAI->GetCurrentSpell()->getModifiedRecast() / 1000, 86, 10);
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentSpell()->getModifiedRecast(), 86, 10);
 		}
 			break;
 		case ACTION_MAGIC_INTERRUPT:
