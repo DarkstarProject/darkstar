@@ -201,6 +201,7 @@ bool CCharEntity::isPacketListEmpty()
 
 void CCharEntity::clearPacketList()
 {
+    std::lock_guard<std::mutex> lk(m_PacketListMutex);
 	while(!PacketList.empty())
 	{
 	   delete popPacket();
@@ -218,11 +219,13 @@ void CCharEntity::resetPetZoningInfo()
 
 void CCharEntity::pushPacket(CBasicPacket* packet)
 {
+    std::lock_guard<std::mutex> lk(m_PacketListMutex);
 	PacketList.push_back(packet);
 }
 
 CBasicPacket* CCharEntity::popPacket()
 {
+    std::lock_guard<std::mutex> lk(m_PacketListMutex);
 	CBasicPacket* PPacket = PacketList.front();
 	PacketList.pop_front();
 	return PPacket;

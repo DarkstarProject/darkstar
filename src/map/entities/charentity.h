@@ -30,6 +30,7 @@ This file is part of DarkStar-server source code.
 #include <map>
 #include <list>
 #include <deque>
+#include <mutex>
 
 #include "battleentity.h"
 #include "../item_container.h"
@@ -343,6 +344,8 @@ private:
     bool			m_reloadParty;
 
     PacketList_t      PacketList;					// в этом списке хранятся все пакеты, предназначенные для отправки персонажу
+
+    std::mutex      m_PacketListMutex;
 };
 
 #endif
