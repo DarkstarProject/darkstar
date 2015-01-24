@@ -201,7 +201,6 @@ bool CCharEntity::isPacketListEmpty()
 
 void CCharEntity::clearPacketList()
 {
-    std::lock_guard<std::mutex> lk(m_PacketListMutex);
 	while(!PacketList.empty())
 	{
 	   delete popPacket();
