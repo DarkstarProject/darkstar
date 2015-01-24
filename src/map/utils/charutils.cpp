@@ -4203,7 +4203,8 @@ namespace charutils
     void SaveRecasts(CCharEntity* PChar)
     {
         //skip RECAST_ITEM, it's already saved in 'extra' of char_inventory
-        for (int i = 1; i < MAX_RECASTTPE_SIZE; i++)
+        //TODO: save only relevant recasts
+        /*for (int i = 1; i < MAX_RECASTTPE_SIZE; i++)
         {
             Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND type = %u;", PChar->id, i);
 
@@ -4214,7 +4215,7 @@ namespace charutils
                 Sql_Query(SqlHandle, "INSERT INTO char_recast VALUES (%u, %u, %u, %u, %u);",
                     PChar->id, i, recast->ID, recast->TimeStamp, recast->RecastTime);
             }
-        }
+        }*/
     }
 
     /************************************************************************

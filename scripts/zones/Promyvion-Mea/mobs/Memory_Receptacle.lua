@@ -5,6 +5,7 @@
 package.loaded["scripts/zones/Promyvion-Mea/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/status");
 require( "scripts/zones/Promyvion-Mea/TextIDs" );
 	
 -----------------------------------

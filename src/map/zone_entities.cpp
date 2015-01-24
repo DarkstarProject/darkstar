@@ -891,7 +891,7 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
 				{
 					CCharEntity* PCurrentChar = (CCharEntity*)it->second;
 
-                    if ((PEntity->objtype != TYPE_PC) || (((CCharEntity*)PEntity)->m_moghouseID == PCurrentChar->m_moghouseID))
+                    if (PCurrentChar->m_moghouseID == 0)
                     {
                         if (PEntity != PCurrentChar)
                         {
