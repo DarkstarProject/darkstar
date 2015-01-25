@@ -2,13 +2,11 @@
 --  Area: Port San d'Oria
 --   NPC: Nazar
 --  Type: Standard NPC
--- @zone: 232
---  @pos -31.922 -3 44.240
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
+
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
+
+require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -22,7 +20,22 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x02bf);
+
+	local vHour = VanadielHour();
+	local vMin  = VanadielMinute();
+
+	while vHour >= 3 do
+		vHour = vHour - 6;
+	end
+
+	if(     vHour == -3) then vHour = 3;
+	elseif( vHour == -2) then vHour = 4;
+	elseif( vHour == -1) then vHour = 5;
+	end
+
+	local seconds = math.floor(2.4 * ((vHour * 60) + vMin));
+
+	player:startEvent( 0x02BF, seconds, 0, 0, 0, 0, 0, 0, 0);
 end;
 
 -----------------------------------
@@ -42,4 +55,3 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 end;
-
