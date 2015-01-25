@@ -4,6 +4,7 @@
 ITEM_CANNOT_BE_OBTAINED = 6393; -- You cannot obtain the item <item>. Come back after sorting your inventory.
           ITEM_OBTAINED = 6396; -- Obtained: <item>.
            GIL_OBTAINED = 6397; -- Obtained <number> gil.
+         NOT_ENOUGH_GIL = 6401; -- You do not have enough gil.
        KEYITEM_OBTAINED = 6399; -- Obtained key item: <keyitem>.
  FISHING_MESSAGE_OFFSET = 7203; -- You can't fish here.
 
@@ -13,5 +14,9 @@ NOTHING_HAPPENS = 133; -- Nothing happens...
 -- Signs
 SIGN = 7367; -- North: Grand Duchy of Jeuno, Sauromugue Champaign South: Pashhow Marshlands
 
--- conquest Base
+-- Conquest Base
 CONQUEST_BASE = 7044; -- Tallying conquest results...
+
+-- Legion
+AWAIT_YOUR_CHALLENGE = 12131; -- We await your challenge
+  LACK_LEGION_POINTS = 12168; -- It would seem that you lack the necessary amount of Legion points.

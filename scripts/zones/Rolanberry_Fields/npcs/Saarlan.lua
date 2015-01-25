@@ -55,7 +55,7 @@ function onTrigger(player,npc)
     if (player:getVar("LegionStatus") == 0) then
         player:startEvent(8004);
     elseif (player:getMainLvl() < 75) then
-        player:showText(npc, 12131);
+        player:showText(npc, AWAIT_YOUR_CHALLENGE); -- Likely incorrect message.
     elseif (player:getVar("LegionStatus") == 1) then
         player:startEvent(8005, 0, TITLE, MAXIMUS, LP, MINIMUS);
     end

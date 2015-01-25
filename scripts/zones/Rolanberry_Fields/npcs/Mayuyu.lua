@@ -38,7 +38,7 @@ function onTrigger(player,npc)
     end
 
     if (player:getMainLvl() < 75) then
-        player:showText(npc, 12131);
+        player:showText(npc, AWAIT_YOUR_CHALLENGE); -- Likely incorrect message.
     else
         player:startEvent(8008, 0, LEGENDARY, CAPACITY);
     end
