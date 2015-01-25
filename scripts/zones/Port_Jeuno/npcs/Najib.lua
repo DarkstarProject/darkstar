@@ -5,6 +5,7 @@
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
+
 require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
@@ -19,7 +20,24 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x272a);
+
+	local vHour = VanadielHour();
+	local vMin  = VanadielMinute();
+
+	while vHour >= 1 do
+		vHour = vHour - 6;
+	end
+
+	if(     vHour == -5) then vHour = 1;
+	elseif( vHour == -4) then vHour = 2;
+	elseif( vHour == -3) then vHour = 3;
+	elseif( vHour == -2) then vHour = 4;
+	elseif( vHour == -1) then vHour = 5;
+	end
+
+	local seconds = math.floor(2.4 * ((vHour * 60) + vMin));
+
+	player:startEvent( 0x272A, seconds, 0, 0, 0, 0, 0, 0, 0);
 end; 
 
 -----------------------------------
@@ -27,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -36,9 +54,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 end;
-
-
-
