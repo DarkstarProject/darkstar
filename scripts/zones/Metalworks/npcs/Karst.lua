@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Karst
+--  NPC: Karst
 -- Type: President
 -- Involved in Bastok Missions 5-2
 -- @pos 106 -21 0 237
@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 
 	if(currentMission == XARCABARD_LAND_OF_TRUTHS and player:getVar("MissionStatus") == 0) then
 		player:startEvent(0x025a);
-	elseif(CurrentMission == XARCABARD_LAND_OF_TRUTHS and player:hasKeyItem(SHADOW_FRAGMENT)) then
+	elseif(currentMission == XARCABARD_LAND_OF_TRUTHS and player:hasKeyItem(SHADOW_FRAGMENT)) then
 		player:startEvent(0x025b);
 	elseif(currentMission == ON_MY_WAY) and (player:getVar("MissionStatus") == 0) then
 		player:startEvent(0x02fd);
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,9 +53,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-	
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 	if(csid == 0x025a) then
 		player:setVar("MissionStatus",2);
 	elseif(csid == 0x02fd) then
