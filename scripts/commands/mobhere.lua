@@ -24,8 +24,8 @@ function onTrigger(player, mobId, noDepop)
     end
 
     SpawnMob( mobId );
-    if (player:getZone() == mob:getZone()) then
-        mob:setPos( player:getXPos(), player:getYPos(), player:getZPos(), 0, player:getZone() );
+    if (player:getZoneID() == mob:getZoneID()) then
+        mob:setPos( player:getXPos(), player:getYPos(), player:getZPos(), player:getRotPos() player:getZoneID() );
     else
         if (noDepop == nil or noDepop == 0) then
             DespawnMob( mobId );
