@@ -421,7 +421,7 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 							LEFT JOIN char_profile USING(charid) \
 							WHERE linkshellid1 = %u OR linkshellid2 = %u \
                             ORDER BY charname ASC \
-                            LIMIT 19";
+                            LIMIT 18";
 
     int32 ret = Sql_Query(SqlHandle, fmtQuery, LinkshellID, LinkshellID);
 
