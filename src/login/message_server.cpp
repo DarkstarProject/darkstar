@@ -219,7 +219,11 @@ void message_server_listen()
         }
         catch (zmq::error_t e)
         {
-            ShowError("Message: %s", e.what());
+            if (!zSocket)
+            {
+                return;
+            }
+            ShowError("Message: %s\n", e.what());
             continue;
         }
         message_server_parse((MSGSERVTYPE)RBUFB(type.data(), 0), &extra, &packet, &from);
@@ -261,4 +265,15 @@ void message_server_init()
 	}
 
 	message_server_listen();
+}
+
+void message_server_close()
+{
+    zContext.close();
+    if (zSocket)
+    {
+        zSocket->close();
+        delete zSocket;
+        zSocket = NULL;
+    }
 }

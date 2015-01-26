@@ -379,7 +379,11 @@ namespace message
             }
             catch (zmq::error_t e)
             {
-                ShowError("Message: %s", e.what());
+                if (!zSocket)
+                {
+                    return;
+                }
+                ShowError("Message: %s\n", e.what());
                 continue;
             }
 
@@ -443,8 +447,12 @@ namespace message
 
     void close()
     {
-        zSocket->close();
-        zSocket = NULL;
+        if (zSocket)
+        {
+            zSocket->close();
+            delete zSocket;
+            zSocket = NULL;
+        }
         zContext.close();
     }
 

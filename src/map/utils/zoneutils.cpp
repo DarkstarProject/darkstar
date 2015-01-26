@@ -603,7 +603,7 @@ void LoadZoneList()
 	else
 	{
 		ShowFatalError("Unable to load any zones! Check IP and port params\n");
-		exit(EXIT_FAILURE);
+		do_final(EXIT_FAILURE);
 	}
 
 	for (auto zone : zones)

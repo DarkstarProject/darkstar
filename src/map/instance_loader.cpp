@@ -51,7 +51,7 @@ CInstanceLoader::CInstanceLoader(uint8 instanceid, uint16 zoneid, CCharEntity* P
 		map_config.mysql_port,
 		map_config.mysql_database) == SQL_ERROR)
 	{
-		exit(EXIT_FAILURE);
+		do_final(EXIT_FAILURE);
 	}
 	Sql_Keepalive(SqlInstanceHandle);
 

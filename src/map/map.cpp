@@ -85,6 +85,8 @@ map_config_t map_config;				// map server settings
 map_session_list_t map_session_list;
 CCommandHandler CmdHandler;
 
+std::thread messageThread;
+
 /************************************************************************
 *																		*
 *  mapsession_getbyipp													*
@@ -171,7 +173,7 @@ int32 do_init(int32 argc, int8** argv)
 							  map_config.mysql_port,
 							  map_config.mysql_database) == SQL_ERROR )
 	{
-		exit(EXIT_FAILURE);
+		do_final(EXIT_FAILURE);
 	}
     Sql_Keepalive(SqlHandle);
 
@@ -184,7 +186,7 @@ int32 do_init(int32 argc, int8** argv)
 	zlib_init();
 	ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
-    std::thread(message::init, map_config.msg_server_ip, map_config.msg_server_port).detach();
+    messageThread = std::thread(message::init, map_config.msg_server_ip, map_config.msg_server_port);
 
 	ShowStatus("do_init: loading items");
     itemutils::Initialize();
@@ -244,7 +246,7 @@ int32 do_init(int32 argc, int8** argv)
 *																		*
 ************************************************************************/
 
-void do_final(void)
+void do_final(int code)
 {
 	aFree(g_PBuff);
     aFree(PTempBuff);
@@ -260,11 +262,21 @@ void do_final(void)
 	zoneutils::FreeZoneList();
 	luautils::free();
     message::close();
+    if (messageThread.joinable())
+    {
+        messageThread.join();
+    }
 
 	delete CTaskMgr::getInstance();
 	delete CVanaTime::getInstance();
 
 	Sql_Free(SqlHandle);
+
+    timer_final();
+    socket_final();
+    malloc_final();
+
+    exit(code);
 }
 
 /************************************************************************
@@ -275,7 +287,7 @@ void do_final(void)
 
 void do_abort(void)
 {
-	do_final();
+	do_final(EXIT_FAILURE);
 }
 
 /************************************************************************
@@ -311,7 +323,7 @@ int32 do_sockets(fd_set* rfd,int32 next)
 		if( sErrno != S_EINTR )
 		{
 			ShowFatalError("do_sockets: select() failed, error code %d!\n", sErrno);
-			exit(EXIT_FAILURE);
+			do_final(EXIT_FAILURE);
 		}
 		return 0; // interrupted by a signal, just loop and try again
 	}

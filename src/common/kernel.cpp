@@ -97,7 +97,7 @@ static void sig_proc(int sn)
 		case SIGINT:
 		case SIGTERM:
 			if (++is_called > 3)
-				exit(EXIT_SUCCESS);
+				do_final(EXIT_SUCCESS);
 			runflag = 0;
 			break;
 		case SIGSEGV:
@@ -252,9 +252,6 @@ int main (int argc, char **argv)
 		}
 	}
 
-	do_final();
-	timer_final();
-	socket_final();
-	malloc_final();
+    do_final(EXIT_SUCCESS);
 	return 0;
 }

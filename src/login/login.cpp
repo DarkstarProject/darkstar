@@ -47,8 +47,7 @@ version_info_t version_info;
 
 
 Sql_t *SqlHandle = NULL;
-
-
+std::thread messageThread;
 
 int32 do_init(int32 argc,char** argv)
 {
@@ -111,26 +110,37 @@ int32 do_init(int32 argc,char** argv)
 		ShowError("do_init: Impossible to optimise tables\n");
 	}
 	
-	std::thread (message_server_init).detach();
+    messageThread = std::thread(message_server_init);
 
 	ShowStatus("The login-server is " CL_GREEN"ready" CL_RESET" to work...\n");
 	return 0;
 }
 
-void do_final(void)
+void do_final(int code)
 {
 	aFree((void*)login_config.mysql_host);
 	aFree((void*)login_config.mysql_login);
 	aFree((void*)login_config.mysql_password);
 	aFree((void*)login_config.mysql_database);
 
+    message_server_close();
+    if (messageThread.joinable())
+    {
+        messageThread.join();
+    }
 
 	Sql_Free(SqlHandle);
+
+    timer_final();
+    socket_final();
+    malloc_final();
+
+    exit(code);
 }
 
 void do_abort(void)
 {
-	do_final();
+	do_final(EXIT_FAILURE);
 }
 void set_server_type()
 {
