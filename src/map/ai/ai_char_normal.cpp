@@ -2208,7 +2208,6 @@ void CAICharNormal::ActionJobAbilityFinish()
         maxCharges = charge->maxCharges;
     }
     m_PChar->PRecastContainer->Add(RECAST_ABILITY, m_PJobAbility->getRecastId(), RecastTime, chargeTime, maxCharges);
-    charutils::SaveRecasts(m_PChar);
     m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
 
 	m_PJobAbility = NULL;

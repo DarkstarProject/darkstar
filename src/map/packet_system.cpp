@@ -376,9 +376,6 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->updatemask |= UPDATE_HP;
     }
 
-    PChar->PRecastContainer->Del(RECAST_MAGIC);
-    charutils::SaveRecasts(PChar);
-
     if (PChar->status == STATUS_SHUTDOWN)
     {
         if (PChar->PParty != NULL)
@@ -4796,7 +4793,6 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->health.mp = PChar->GetMaxMP();
 
         charutils::SaveCharStats(PChar);
-        charutils::SaveRecasts(PChar);
 
         PChar->pushPacket(new CCharJobsPacket(PChar));
         PChar->pushPacket(new CCharUpdatePacket(PChar));

@@ -5118,7 +5118,6 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     charutils::SaveCharStats(PChar);
     charutils::SaveCharJob(PChar, PChar->GetMJob());
     charutils::SaveCharExp(PChar, PChar->GetMJob());
-    charutils::SaveRecasts(PChar);
     charutils::UpdateHealth(PChar);
 
     PChar->pushPacket(new CCharJobsPacket(PChar));
@@ -6532,7 +6531,6 @@ inline int32 CLuaBaseEntity::resetRecasts(lua_State *L)
 
         PChar->PRecastContainer->Del(RECAST_MAGIC);
         PChar->PRecastContainer->Del(RECAST_ABILITY);
-        charutils::SaveRecasts(PChar);
         PChar->pushPacket(new CCharSkillsPacket(PChar));
         return 0;
     }
@@ -6559,7 +6557,6 @@ inline int32 CLuaBaseEntity::resetRecast(lua_State *L)
         {
             PChar->PRecastContainer->Del(recastContainer, recastID);
             PChar->PRecastContainer->Add(recastContainer, recastID, 0);
-            charutils::SaveRecasts(PChar);
         }
 
         PChar->pushPacket(new CCharSkillsPacket(PChar));

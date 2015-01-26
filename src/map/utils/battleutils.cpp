@@ -4461,7 +4461,6 @@ void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
 			PTarget->addMP(PTarget->health.maxmp);
 			break;
  	}
-    charutils::SaveRecasts(PTarget);
 }
 
 /************************************************************************

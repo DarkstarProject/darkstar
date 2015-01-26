@@ -915,5 +915,4 @@ void CMagicState::SetRecast(CSpell* PSpell)
     //needed so the client knows of the reduced recast time!
     PSpell->setModifiedRecast(RecastTime);
     PChar->PRecastContainer->Add(RECAST_MAGIC, PSpell->getID(), RecastTime);
-    charutils::SaveRecasts(PChar);
 }

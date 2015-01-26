@@ -141,7 +141,6 @@ namespace charutils
     void	SaveCharPoints(CCharEntity* PChar);							// Conquest point, Nation TP
     void	SaveDeathTime(CCharEntity* PChar);							// Saves when this character last died.
     void	SavePlayTime(CCharEntity* PChar);							// Saves this characters total play time.
-    void    SaveRecasts(CCharEntity* PChar);                            // Saves this characters recasts
     bool	hasMogLockerAccess(CCharEntity* PChar);						// true if have access, false otherwise.
 
     uint32  AddExpBonus(CCharEntity* PChar, uint32 exp);

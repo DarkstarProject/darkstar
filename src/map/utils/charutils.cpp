@@ -620,19 +620,19 @@ namespace charutils
             zoning = Sql_GetUIntData(SqlHandle, 8);
         }
 
-        fmtQuery = "SELECT type, id, time, recast FROM char_recast WHERE charid = %u;";
+        fmtQuery = "SELECT id, time, recast FROM char_recast WHERE charid = %u;";
 
         ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                uint32 cast_time = Sql_GetUIntData(SqlHandle, 2);
-                uint32 recast = Sql_GetUIntData(SqlHandle, 3);
+                uint32 cast_time = Sql_GetUIntData(SqlHandle, 1);
+                uint32 recast = Sql_GetUIntData(SqlHandle, 2);
                 time_t now = time(NULL);
                 uint32 chargeTime = 0;
                 uint8 maxCharges = 0;
-                Charge_t* charge = ability::GetCharge(PChar, Sql_GetUIntData(SqlHandle, 1));
+                Charge_t* charge = ability::GetCharge(PChar, Sql_GetUIntData(SqlHandle, 0));
                 if (charge != NULL)
                 {
                     chargeTime = charge->chargeTime;
@@ -640,7 +640,7 @@ namespace charutils
                 }
                 if (now < cast_time + recast)
                 {
-                    PChar->PRecastContainer->Add((RECASTTYPE)Sql_GetUIntData(SqlHandle, 0), Sql_GetUIntData(SqlHandle, 1), (cast_time + recast - now), chargeTime, maxCharges);
+                    PChar->PRecastContainer->Load(RECAST_ABILITY, Sql_GetUIntData(SqlHandle, 0), (cast_time + recast - now), chargeTime, maxCharges);
                 }
             }
         }
@@ -1169,7 +1169,6 @@ namespace charutils
         charutils::SaveCharStats(PChar);
         charutils::SaveCharJob(PChar, PChar->GetMJob());
         charutils::SaveCharExp(PChar, PChar->GetMJob());
-        charutils::SaveRecasts(PChar);
         charutils::UpdateHealth(PChar);
 
         PChar->pushPacket(new CCharJobsPacket(PChar));
@@ -4192,30 +4191,6 @@ namespace charutils
     void SavePlayTime(CCharEntity* PChar)
     {
         Sql_Query(SqlHandle, "UPDATE chars SET playtime = '%u' WHERE charid = '%u' LIMIT 1;", PChar->GetPlayTime(), PChar->id);
-    }
-
-    /************************************************************************
-    *																		*
-    *  Saves characters recasts to the database.                     		*
-    *																		*
-    ************************************************************************/
-
-    void SaveRecasts(CCharEntity* PChar)
-    {
-        //skip RECAST_ITEM, it's already saved in 'extra' of char_inventory
-        //TODO: save only relevant recasts
-        /*for (int i = 1; i < MAX_RECASTTPE_SIZE; i++)
-        {
-            Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND type = %u;", PChar->id, i);
-
-            auto recastList = PChar->PRecastContainer->GetRecastList((RECASTTYPE)i);
-
-            for (auto recast : *recastList)
-            {
-                Sql_Query(SqlHandle, "INSERT INTO char_recast VALUES (%u, %u, %u, %u, %u);",
-                    PChar->id, i, recast->ID, recast->TimeStamp, recast->RecastTime);
-            }
-        }*/
     }
 
     /************************************************************************

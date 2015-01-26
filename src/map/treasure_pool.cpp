@@ -155,7 +155,6 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
             for (uint32 i = 0; i < members.size(); ++i)
             {
                 members[i]->PRecastContainer->Add(RECAST_LOOT, 1, 300); //300 = 5 min cooldown
-                charutils::SaveRecasts(members[i]);
             }
             break;
     }
