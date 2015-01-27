@@ -77,8 +77,8 @@ function onEventFinish(player,csid,option)
             -- taken assault mission
             player:addAssault(bit.rshift(option,4));
             player:delKeyItem(IMPERIAL_ARMY_ID_TAG);
-            player:addKeyItem(NYZUL_ASSAULT_ORDERS);
-            player:messageSpecial(KEYITEM_OBTAINED,NYZUL_ASSAULT_ORDERS);
+            player:addKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
+            player:messageSpecial(KEYITEM_OBTAINED,NYZUL_ISLE_ASSAULT_ORDERS);
         end
     end
 end;
