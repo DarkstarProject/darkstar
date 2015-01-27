@@ -114,6 +114,7 @@ This file is part of DarkStar-server source code.
 #include "packets/message_debug.h"
 #include "packets/message_standard.h"
 #include "packets/message_system.h"
+#include "packets/party_define.h"
 #include "packets/party_invite.h"
 #include "packets/party_map.h"
 #include "packets/party_search.h"
@@ -3086,7 +3087,15 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x076(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    PChar->PParty->ReloadPartyMembers(PChar);
+    if (PChar->PParty)
+    {
+        PChar->PParty->ReloadPartyMembers(PChar);
+    }
+    else
+    {
+        //previous CPartyDefine was dropped or otherwise didn't work?
+        PChar->pushPacket(new CPartyDefinePacket(NULL));
+    }
     return;
 }
 
