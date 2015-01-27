@@ -17890,7 +17890,7 @@ INSERT INTO `item_mods` VALUES(11709, 2, 30); -- HP
 -- Head (Creed Armet +2)
 INSERT INTO `item_mods` VALUES(11070, 1, 44); -- def
 INSERT INTO `item_mods` VALUES(11070, 2, 40); -- HP
-INSERT INTO `item_mods` VALUES(11070, 4, 40); -- MP
+INSERT INTO `item_mods` VALUES(11070, 5, 40); -- MP
 INSERT INTO `item_mods` VALUES(11070, 109, 7); -- Shield skill
 INSERT INTO `item_mods` VALUES(11070, 426, 5); -- Absorbs a percentage of damage taken to MP
 INSERT INTO `item_mods` VALUES(11070, 170, 5); -- fastcast
@@ -17898,7 +17898,7 @@ INSERT INTO `item_mods` VALUES(11070, 170, 5); -- fastcast
 -- Body (Creed Cuirass +2)
 INSERT INTO `item_mods` VALUES(11090, 1, 77); -- def
 INSERT INTO `item_mods` VALUES(11090, 2, 65); -- HP
-INSERT INTO `item_mods` VALUES(11090, 4, 65); -- MP
+INSERT INTO `item_mods` VALUES(11090, 5, 65); -- MP
 INSERT INTO `item_mods` VALUES(11090, 25, 20); -- accuracy
 INSERT INTO `item_mods` VALUES(11090, 23, 20); -- attack
 INSERT INTO `item_mods` VALUES(11090, 27, 10); -- enmity
@@ -17932,14 +17932,14 @@ INSERT INTO `item_mods` VALUES(11150, 27, 7); -- enmity
 -- Head (Creed Armet +1)
 INSERT INTO `item_mods` VALUES(11170, 1, 42); -- def
 INSERT INTO `item_mods` VALUES(11170, 2, 30); -- HP
-INSERT INTO `item_mods` VALUES(11170, 4, 30); -- MP
+INSERT INTO `item_mods` VALUES(11170, 5, 30); -- MP
 INSERT INTO `item_mods` VALUES(11170, 109, 5); -- Shield skill
 INSERT INTO `item_mods` VALUES(11170, 426, 3); -- Absorbs a percentage of damage taken to MP
 
 -- Body (Creed Cuirass +1)
 INSERT INTO `item_mods` VALUES(11190, 1, 74); -- def
 INSERT INTO `item_mods` VALUES(11190, 2, 40); -- HP
-INSERT INTO `item_mods` VALUES(11190, 4, 40); -- MP
+INSERT INTO `item_mods` VALUES(11190, 5, 40); -- MP
 INSERT INTO `item_mods` VALUES(11190, 25, 14); -- accuracy
 INSERT INTO `item_mods` VALUES(11190, 23, 14); -- attack
 INSERT INTO `item_mods` VALUES(11190, 27, 7); -- enmity
@@ -17972,7 +17972,7 @@ INSERT INTO `item_mods` VALUES(11250, 27, 4); -- enmity
 -- Head (Creed Armet)
 INSERT INTO `item_mods` VALUES(12014, 1, 39); -- def
 INSERT INTO `item_mods` VALUES(12014, 2, 15); -- HP
-INSERT INTO `item_mods` VALUES(12014, 4, 15); -- MP
+INSERT INTO `item_mods` VALUES(12014, 5, 15); -- MP
 
 -- Body (Creed Cuirass)
 INSERT INTO `item_mods` VALUES(12034, 1, 71); -- def
