@@ -38,7 +38,7 @@ function onMobFight(mob, target)
     if (mob:getBattleTime()/15 > twohourTime) then
         mob:useMobAbility(454);
         mob:setLocalVar("twohourTime", (mob:getBattleTime()/15)+math.random(4,6));
-    elseif (mob:getBattleTime()/15 > spawnTime or true) then
+    elseif (mob:getBattleTime()/15 > spawnTime) then
         for i, offset in ipairs(offsets) do
             if (GetMobAction(mob:getID()+offset) == ACTION_SPAWN or GetMobAction(mob:getID()+offset) == ACTION_NONE) then
                 local pet = SpawnMob(mob:getID()+offset, 60);
