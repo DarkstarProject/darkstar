@@ -17,9 +17,11 @@ end;
 
 function onZoneIn(player,prevZone)
 	cs = -1;
-	if ((player:getXPos() ~= 0) or (player:getYPos() ~= 0) or (player:getZPos() ~= 0)) then	
-		player:setPos(0,0,0,223);
+
+	if ((player:getXPos() == 0) or (player:getYPos() == 0) or (player:getZPos() == 0)) then	
+		player:setPos(math.random(-4, 4),1,math.random(-23,-12));
 	end
+
 	return cs;
 end;
 
