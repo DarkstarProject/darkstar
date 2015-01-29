@@ -51,13 +51,23 @@ function onTrigger(player,npc)
 		vHour = 0;
 	end
 
-	local minutes = math.floor((2.4 * ((vHour * 60) + 40 - vMin)) / 60);
+	local vMinutes = (vHour * 60) + 40 - vMin;
+
+	vHour = math.floor( vMinutes / 60 + 0.5);
+
+	local message = ON_WAY_TO_SELBINA;
+
+	if (vMinutes <= 30) then
+		message = ARRIVING_SOON_SELBINA;
+	elseif (vMinutes < 60) then
+		vHour = 0;
+	end
 
 	if (vHour > 7) then -- Normal players can't be on the boat longer than 7 Vanadiel hours. This is for GMs.
 		vHour = 7;
 	end
 
-	player:messageSpecial( ON_WAY_TO_SELBINA, minutes, vHour);
+	player:messageSpecial( message, math.floor((2.4 * ((vHour * 60) + 40 - vMin)) / 60), vHour);
 end; 
 
 -----------------------------------
