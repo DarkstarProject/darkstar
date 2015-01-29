@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (csid == 0x000A) then
-		prevzone = player:getPreviousZone();
+		local prevzone = player:getPreviousZone();
 		if (prevzone == 250) then
 			player:setPos(0,0,0,0,246);
 		elseif (prevzone == 246) then
