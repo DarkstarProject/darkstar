@@ -1,24 +1,23 @@
------------------------------------	
--- Shijin Spiral	
--- Hand-to-Hand weapon skill	
--- Skill Level: N/A	
--- Delivers a fivefold attack that Plagues the target. Chance of inflicting Plague varies with TP.	
+-----------------------------------
+-- Shijin Spiral
+-- Hand-to-Hand weapon skill
+-- Skill Level: N/A
+-- Delivers a fivefold attack that Plagues the target. Chance of inflicting Plague varies with TP.
 -- In order to obtain Shijin Spiral, the quest Martial Mastery must be completed.
--- Aligned with the Flame Gorget, Light Gorget & Aqua Gorget.	
--- Aligned with the Flame Belt, Light Belt & Aqua Belt.	
--- Element: None	
--- Modifiers: DEX: 85% //actually 17~100%
--- 100%TP    200%TP    300%TP	
--- 1.0625    1.0625    1.0625	
------------------------------------	
-	
-require("scripts/globals/status");	
-require("scripts/globals/settings");	
-require("scripts/globals/weaponskills");	
------------------------------------	
-	
-function onUseWeaponSkill(player, target, wsID)	
-	
+-- Aligned with the Flame Gorget, Light Gorget & Aqua Gorget.
+-- Aligned with the Flame Belt, Light Belt & Aqua Belt.
+-- Element: None
+-- Modifiers: DEX: 73~85%
+-- 100%TP    200%TP    300%TP
+-- 1.0625    1.0625    1.0625
+-----------------------------------
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
+function onUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 5;
 	params.ftp100 = 1.0625; params.ftp200 = 1.0625; params.ftp300 = 1.0625;
@@ -26,7 +25,7 @@ function onUseWeaponSkill(player, target, wsID)
 	params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
-	params.atkmulti = 1;
+	params.atkmulti = 1.05;
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
 	if damage > 0 then
@@ -35,8 +34,8 @@ function onUseWeaponSkill(player, target, wsID)
 		if(target:hasStatusEffect(EFFECT_PLAGUE) == false) then
 			target:addStatusEffect(EFFECT_PLAGUE, 5, 0, duration);
 		end
-	end	
-	
+	end
+
 	return tpHits, extraHits, criticalHit, damage;
-	
-end	
+
+end
