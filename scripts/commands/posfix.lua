@@ -11,6 +11,10 @@ cmdprops =
 };
 
 function onTrigger(player, target)
-    player:resetPlayer( targ );
-    player:PrintToPlayer("Done.");
+    if (target == nil) then
+        player:PrintToPlayer("Derp? Need a name Buddy.");
+    else
+        player:resetPlayer( target );
+        player:PrintToPlayer("Done.");
+    end
 end;
