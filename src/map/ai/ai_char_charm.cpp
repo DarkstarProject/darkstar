@@ -70,6 +70,7 @@ void CAICharCharm::CheckCurrentAction(uint32 tick)
 
         default: DSP_DEBUG_BREAK_IF(true);
     }
+    m_PChar->UpdateEntity();
 }
 
 void CAICharCharm::ActionRoaming()
