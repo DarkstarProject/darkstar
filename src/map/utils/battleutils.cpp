@@ -60,6 +60,7 @@
 #include "../packets/lock_on.h"
 #include "../ai/ai_pet_dummy.h"
 #include "../ai/ai_char_charm.h"
+#include "../utils/petutils.h"
 #include "zoneutils.h"
 
 
@@ -3715,6 +3716,10 @@ void applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 charmTim
 
     else if (PVictim->objtype == TYPE_PC)
     {
+        if (PVictim->PPet)
+        {
+            petutils::DespawnPet(PVictim);
+        }
         delete PVictim->PBattleAI;
         PVictim->PBattleAI = new CAICharCharm((CCharEntity*)PVictim);
 
