@@ -24,7 +24,7 @@ function onTrigger(player,npc)
 	local vHour = VanadielHour();
 	local vMin  = VanadielMinute();
 
-	while vHour >= 3 do
+	while vHour >= 4 do
 		vHour = vHour - 6;
 	end
 
