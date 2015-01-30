@@ -68,6 +68,14 @@ void CAICharCharm::CheckCurrentAction(uint32 tick)
         case ACTION_FALL:					ActionFall();				break;
         case ACTION_SLEEP:                  ActionSleep();              break;
 
+        case ACTION_MAGIC_START:			TransitionBack(true);		break;
+        case ACTION_RANGED_START:			TransitionBack(true);		break;
+        case ACTION_ITEM_START:				TransitionBack(true);		break;
+        case ACTION_CHANGE_TARGET:	        TransitionBack(true);       break;
+        case ACTION_WEAPONSKILL_START:		TransitionBack(true);	    break;
+        case ACTION_JOBABILITY_START:		TransitionBack(true);	    break;
+        case ACTION_RAISE_MENU_SELECTION:	TransitionBack(true);       break;
+
         default: DSP_DEBUG_BREAK_IF(true);
     }
     m_PChar->UpdateEntity();
