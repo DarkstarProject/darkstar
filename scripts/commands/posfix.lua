@@ -12,7 +12,7 @@ cmdprops =
 
 function onTrigger(player, target)
     if (target == nil) then
-        player:PrintToPlayer("Derp? Need a name Buddy.");
+        player:PrintToPlayer("An offline player name must be specified.");
     else
         player:resetPlayer( target );
         player:PrintToPlayer("Done.");
