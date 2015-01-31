@@ -2422,6 +2422,49 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
             }
         } );
     }
+    else
+    {
+        lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+        memset(File, 0, sizeof(File));
+
+        lua_pushnil(LuaHandle);
+        lua_setglobal(LuaHandle, "onMobDeath");
+
+        snprintf(File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+
+        CLuaBaseEntity LuaMobEntity(PMob);
+
+        if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+        {
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        lua_getglobal(LuaHandle, "onMobDeath");
+        if (lua_isnil(LuaHandle, -1))
+        {
+            ShowError("luautils::onMobDeath: undefined procedure onMobDeath\n");
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        lua_pushnil(LuaHandle);
+
+        if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+        {
+            ShowError("luautils::onMobDeath: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        int32 returns = lua_gettop(LuaHandle) - oldtop;
+        if (returns > 0)
+        {
+            ShowError("luautils::onMobDeath (%s): 0 returns expected, got %d\n", File, returns);
+            lua_pop(LuaHandle, returns);
+        }
+    }
 
     return 0;
 }
