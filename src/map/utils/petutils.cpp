@@ -416,6 +416,10 @@ void LoadJugStats(CPetEntity* PMob, Pet_t* petStats){
 
 void LoadAutomatonStats(CCharEntity* PMaster, CPetEntity* PPet, Pet_t* petStats)
 {
+    PPet->WorkingSkills.automaton_melee = PMaster->GetSkill(SKILL_AME);
+    PPet->WorkingSkills.automaton_ranged = PMaster->GetSkill(SKILL_ARA);
+    PPet->WorkingSkills.automaton_magic = PMaster->GetSkill(SKILL_AMA);
+
 	// Объявление переменных, нужных для рассчета.
 	float raceStat  = 0;			// конечное число HP для уровня на основе расы.
 	float jobStat   = 0;			// конечное число HP для уровня на основе первичной профессии.
@@ -542,12 +546,33 @@ void LoadAutomatonStats(CCharEntity* PMaster, CPetEntity* PPet, Pet_t* petStats)
 	PPet->stats.MND = fMND + mMND + sMND;
 	PPet->stats.CHR = fCHR + mCHR + sCHR;
 
+    PPet->m_Weapons[SLOT_MAIN]->setSkillType(SKILL_AME);
     PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(petStats->cmbDelay/60.0f))); //every pet should use this eventually
-    PPet->m_Weapons[SLOT_MAIN]->setDamage(1); //temp
+    PPet->m_Weapons[SLOT_MAIN]->setDamage((PPet->GetSkill(SKILL_AME)/9)*2 + 3);
+
+    PPet->m_Weapons[SLOT_RANGED]->setSkillType(SKILL_ARA);
+    PPet->m_Weapons[SLOT_RANGED]->setDamage((PPet->GetSkill(SKILL_ARA) / 9) * 2 + 3);
     
-	//temp eva/def (probably frame based)
-	PPet->setModifier(MOD_EVA, battleutils::GetMaxSkill(SKILL_H2H,JOB_WAR,PPet->GetMLevel()));
-	PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(SKILL_H2H,JOB_WAR,PPet->GetMLevel()));
+    CAutomatonEntity* PAutomaton = (CAutomatonEntity*)PPet;
+    switch (PAutomaton->getFrame())
+    {
+    case FRAME_HARLEQUIN:
+        PPet->WorkingSkills.evasion = battleutils::GetMaxSkill(2, PPet->GetMLevel());
+        PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(10, PPet->GetMLevel()));
+        break;
+    case FRAME_VALOREDGE:
+        PPet->WorkingSkills.evasion = battleutils::GetMaxSkill(5, PPet->GetMLevel());
+        PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(5, PPet->GetMLevel()));
+        break;
+    case FRAME_SHARPSHOT:
+        PPet->WorkingSkills.evasion = battleutils::GetMaxSkill(1, PPet->GetMLevel());
+        PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(11, PPet->GetMLevel()));
+        break;
+    case FRAME_STORMWAKER:
+        PPet->WorkingSkills.evasion = battleutils::GetMaxSkill(10, PPet->GetMLevel());
+        PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(12, PPet->GetMLevel()));
+        break;
+    }
 }
 
 void LoadAvatarStats(CPetEntity* PChar)

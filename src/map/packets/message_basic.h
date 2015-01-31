@@ -92,6 +92,13 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_DIFFICULT_TO_CHARM		= 212, /* It would be difficult for the <player> to charm <target>. */
 	MSGBASIC_MIGHT_BE_ABLE_CHARM	= 213, /* The <player> might be able to charm <target>. */
 	MSGBASIC_SHOULD_BE_ABLE_CHARM	= 214, /* The <player> should be able to charm <target>. */
+    /* Checkparam */
+    MSGBASIC_CHECKPARAM_NAME        = 733,
+    MSGBASIC_CHECKPARAM_ILVL        = 731,
+    MSGBASIC_CHECKPARAM_PRIMARY     = 712,
+    MSGBASIC_CHECKPARAM_AUXILIARY   = 713,
+    MSGBASIC_CHECKPARAM_RANGE       = 714,
+    MSGBASIC_CHECKPARAM_DEFENSE     = 715,
 	/* BLU */
 	MSGBASIC_LEARNS_SPELL			= 419, /* <target> learns (NULL)! */
 	/* COR */

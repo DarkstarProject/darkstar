@@ -557,6 +557,26 @@ uint16 CBattleEntity::RATT(uint8 skill)
         dsp_min((ATT * m_modStat[MOD_FOOD_RATTP] / 100), m_modStat[MOD_FOOD_RATT_CAP]);
 }
 
+uint16 CBattleEntity::RACC(uint8 skill)
+{
+    int skill_level = GetSkill(skill);
+    uint16 acc = skill_level;
+    if (skill_level > 200)
+    {
+        acc = 200 + (skill_level - 200)*0.9;
+    }
+    acc += getMod(MOD_RACC);
+    acc += battleutils::GetRangedAccuracyBonuses(this);
+    acc += AGI() / 2;
+    if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
+    {
+        acc += ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PMaster);
+    }
+
+    return ((100 + getMod(MOD_RACCP)) * acc) / 100 +
+        dsp_min(((100 + getMod(MOD_FOOD_RACCP)) * acc) / 100, getMod(MOD_FOOD_RACC_CAP));
+}
+
 uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
 {
 	if (this->objtype & TYPE_PC){

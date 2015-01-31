@@ -1303,17 +1303,7 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool 
 
 		if(PItem!=NULL && PItem->isType(ITEM_WEAPON))
 		{
-			int skill = PChar->GetSkill(PItem->getSkillType());
-			acc = skill;
-			if (skill > 200)
-			{ 
-				acc = 200 + (skill-200)*0.9;
-			}
-			acc += PChar->getMod(MOD_RACC); 
-			acc += battleutils::GetRangedAccuracyBonuses(PAttacker);
-			acc += PChar->AGI() / 2;
-			acc = ((100 +  PChar->getMod(MOD_RACCP)) * acc)/100 +
-				dsp_min(((100 +  PChar->getMod(MOD_FOOD_RACCP)) * acc)/100,  PChar->getMod(MOD_FOOD_RACC_CAP));
+            acc = PChar->RACC(PItem->getSkillType());
 		}
 
         //Check For Ambush Merit - Ranged
@@ -1323,17 +1313,7 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool 
 	}
     else if (PAttacker->objtype == TYPE_PET && ((CPetEntity*)PAttacker)->getPetType() == PETTYPE_AUTOMATON)
     {
-        int skill = PAttacker->PMaster->GetSkill(SKILL_ARA);
-        acc = skill;
-        if (skill > 200)
-        {
-            acc = 200 + (skill - 200)*0.9;
-        }
-        acc += PAttacker->getMod(MOD_RACC) + ((CCharEntity*)PAttacker->PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PAttacker->PMaster);
-        acc += battleutils::GetRangedAccuracyBonuses(PAttacker);
-        acc += PAttacker->AGI() / 2;
-        acc = ((100 + PAttacker->getMod(MOD_RACCP)) * acc) / 100 +
-            dsp_min(((100 + PAttacker->getMod(MOD_FOOD_RACCP)) * acc) / 100, PAttacker->getMod(MOD_FOOD_RACC_CAP));
+        acc = PAttacker->RACC(SKILL_ARA);
     }
 
 	int eva = PDefender->EVA();

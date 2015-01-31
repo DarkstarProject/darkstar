@@ -462,6 +462,7 @@ public:
 	uint16			ACC(uint8 attackNumber, uint8 offsetAccuracy);
     uint16          EVA();
 	uint16          RATT(uint8 skill);
+    uint16          RACC(uint8 skill);
 
     uint8           GetSpeed();
 

@@ -4029,78 +4029,142 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
     uint32 id = RBUFL(data, (0x04));
     uint16 targid = RBUFW(data, (0x08));
+    uint8 type = RBUFB(data, (0x0C));
 
-    if (jailutils::InPrison(PChar))
+    if (type == 0x02)
     {
-        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
-        return;
-    }
-
-    CBaseEntity* PEntity = PChar->GetEntity(targid, TYPE_MOB | TYPE_PC);
-
-    if (PEntity == NULL || PEntity->id != id)
-        return;
-
-    switch (PEntity->objtype)
-    {
-    case TYPE_MOB:
-    {
-        CMobEntity* PTarget = (CMobEntity*)PEntity;
-
-        if (PTarget->m_Type & MOBTYPE_NOTORIOUS)
+        if (PChar->id == id)
         {
-            PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, 249));
-        }
-        else
-        {
-            uint32 baseExp = charutils::GetRealExp(PChar->GetMLevel(), PTarget->GetMLevel());
-            uint16 charAcc = PChar->ACC(SLOT_MAIN, (uint8)0);
-            uint16 charAtt = PChar->ATT();
-            uint16 mobEva = PTarget->EVA();
-            uint16 mobDef = PTarget->DEF();
-
-            uint8 MessageValue = 0;
-
-            // NOTE: message 0x41: Incredibly Easy Prey
-            if (baseExp >= 400) MessageValue = 0x47;
-            else if (baseExp >= 240) MessageValue = 0x46;
-            else if (baseExp >= 120) MessageValue = 0x45;
-            else if (baseExp == 100) MessageValue = 0x44;
-            else if (baseExp >= 75) MessageValue = 0x43;
-            else if (baseExp >= 15) MessageValue = 0x42;
-            else if (baseExp == 0) MessageValue = 0x40;
-            if (mobDef > charAtt && (mobEva - 30) > charAcc)
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 170));//high eva high def
-            else if ((mobDef * 1.25) > charAtt && mobDef <= charAtt && (mobEva - 30) > charAcc)
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 171));//high eva
-            else if ((mobDef * 1.25) <= charAtt && (mobEva - 30) > charAcc)
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 172));//high eva low def
-            else if (mobDef > charAtt && (mobEva - 30) <= charAcc && (mobEva + 10) > charAcc)
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 173));//high def
-            else if ((mobDef * 1.25) <= charAtt && (mobEva - 30) <= charAcc && (mobEva + 10) > charAcc)
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 175));//low def
-            else if (mobDef > charAtt && (mobEva + 10) <= charAcc)
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 176));//low eva high def
-            else if ((mobDef * 1.25) > charAtt && mobDef <= charAtt && (mobEva + 10) <= charAcc)
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 177));//low eva
-            else if ((mobDef * 1.25) <= charAtt && (mobEva + 10) <= charAcc)
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 178));//low eva low def
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CHECKPARAM_NAME));
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CHECKPARAM_ILVL));
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PChar->ACC(0, 0), PChar->ATT(), MSGBASIC_CHECKPARAM_PRIMARY));
+            if (PChar->getEquip(SLOT_SUB) && PChar->getEquip(SLOT_SUB)->isType(ITEM_WEAPON))
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PChar->ACC(1, 0), PChar->ATT(), MSGBASIC_CHECKPARAM_AUXILIARY));
+            }
             else
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 174));//broke even
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CHECKPARAM_AUXILIARY));
+            }
+            if (PChar->getEquip(SLOT_RANGED) && PChar->getEquip(SLOT_RANGED)->isType(ITEM_WEAPON))
+            {
+                int skill = ((CItemWeapon*)PChar->getEquip(SLOT_RANGED))->getSkillType();
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PChar->RACC(skill), PChar->RATT(skill), MSGBASIC_CHECKPARAM_RANGE));
+            }
+            else if (PChar->getEquip(SLOT_AMMO) && PChar->getEquip(SLOT_AMMO)->isType(ITEM_WEAPON))
+            {
+                int skill = ((CItemWeapon*)PChar->getEquip(SLOT_AMMO))->getSkillType();
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PChar->RACC(skill), PChar->RATT(skill), MSGBASIC_CHECKPARAM_RANGE));
+            }
+            else
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CHECKPARAM_RANGE));
+            }
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PChar->EVA(), PChar->DEF(), MSGBASIC_CHECKPARAM_DEFENSE));
+        }
+        else if (PChar->PPet && PChar->PPet->id == id)
+        {
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar->PPet, 0, 0, MSGBASIC_CHECKPARAM_NAME));
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar->PPet, PChar->PPet->ACC(0, 0), PChar->PPet->ATT(), MSGBASIC_CHECKPARAM_PRIMARY));
+            if (PChar->getEquip(SLOT_SUB) && PChar->getEquip(SLOT_SUB)->isType(ITEM_WEAPON))
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar->PPet, PChar->PPet->ACC(1, 0), PChar->PPet->ATT(), MSGBASIC_CHECKPARAM_AUXILIARY));
+            }
+            else
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar->PPet, 0, 0, MSGBASIC_CHECKPARAM_AUXILIARY));
+            }
+            if (PChar->getEquip(SLOT_RANGED) && PChar->getEquip(SLOT_RANGED)->isType(ITEM_WEAPON))
+            {
+                int skill = ((CItemWeapon*)PChar->getEquip(SLOT_RANGED))->getSkillType();
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar->PPet, PChar->PPet->RACC(skill), PChar->PPet->RATT(skill), MSGBASIC_CHECKPARAM_RANGE));
+            }
+            else if (PChar->getEquip(SLOT_AMMO) && PChar->getEquip(SLOT_AMMO)->isType(ITEM_WEAPON))
+            {
+                int skill = ((CItemWeapon*)PChar->getEquip(SLOT_AMMO))->getSkillType();
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar->PPet, PChar->PPet->RACC(skill), PChar->PPet->RATT(skill), MSGBASIC_CHECKPARAM_RANGE));
+            }
+            else
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar->PPet, 0, 0, MSGBASIC_CHECKPARAM_RANGE));
+            }
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar->PPet, PChar->PPet->EVA(), PChar->PPet->DEF(), MSGBASIC_CHECKPARAM_DEFENSE));
         }
     }
-    break;
-    case TYPE_PC:
+    else
     {
-        CCharEntity* PTarget = (CCharEntity*)PEntity;
+        if (jailutils::InPrison(PChar))
+        {
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
+            return;
+        }
 
-        if (PChar->m_isGMHidden == false || PChar->m_isGMHidden == true && PTarget->m_GMlevel >= PChar->m_GMlevel)
-            PTarget->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 89));
+        CBaseEntity* PEntity = PChar->GetEntity(targid, TYPE_MOB | TYPE_PC);
 
-        PChar->pushPacket(new CBazaarMessagePacket(PTarget));
-        PChar->pushPacket(new CCheckPacket(PChar, PTarget));
-    }
-    break;
+        if (PEntity == NULL || PEntity->id != id)
+            return;
+
+        switch (PEntity->objtype)
+        {
+        case TYPE_MOB:
+        {
+            CMobEntity* PTarget = (CMobEntity*)PEntity;
+
+            if (PTarget->m_Type & MOBTYPE_NOTORIOUS)
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, 249));
+            }
+            else
+            {
+                uint32 baseExp = charutils::GetRealExp(PChar->GetMLevel(), PTarget->GetMLevel());
+                uint16 charAcc = PChar->ACC(SLOT_MAIN, (uint8)0);
+                uint16 charAtt = PChar->ATT();
+                uint16 mobEva = PTarget->EVA();
+                uint16 mobDef = PTarget->DEF();
+
+                uint8 MessageValue = 0;
+
+                // NOTE: message 0x41: Incredibly Easy Prey
+                if (baseExp >= 400) MessageValue = 0x47;
+                else if (baseExp >= 240) MessageValue = 0x46;
+                else if (baseExp >= 120) MessageValue = 0x45;
+                else if (baseExp == 100) MessageValue = 0x44;
+                else if (baseExp >= 75) MessageValue = 0x43;
+                else if (baseExp >= 15) MessageValue = 0x42;
+                else if (baseExp == 0) MessageValue = 0x40;
+                if (mobDef > charAtt && (mobEva - 30) > charAcc)
+                    PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 170));//high eva high def
+                else if ((mobDef * 1.25) > charAtt && mobDef <= charAtt && (mobEva - 30) > charAcc)
+                    PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 171));//high eva
+                else if ((mobDef * 1.25) <= charAtt && (mobEva - 30) > charAcc)
+                    PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 172));//high eva low def
+                else if (mobDef > charAtt && (mobEva - 30) <= charAcc && (mobEva + 10) > charAcc)
+                    PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 173));//high def
+                else if ((mobDef * 1.25) <= charAtt && (mobEva - 30) <= charAcc && (mobEva + 10) > charAcc)
+                    PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 175));//low def
+                else if (mobDef > charAtt && (mobEva + 10) <= charAcc)
+                    PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 176));//low eva high def
+                else if ((mobDef * 1.25) > charAtt && mobDef <= charAtt && (mobEva + 10) <= charAcc)
+                    PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 177));//low eva
+                else if ((mobDef * 1.25) <= charAtt && (mobEva + 10) <= charAcc)
+                    PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 178));//low eva low def
+                else
+                    PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 174));//broke even
+            }
+        }
+        break;
+        case TYPE_PC:
+        {
+            CCharEntity* PTarget = (CCharEntity*)PEntity;
+
+            if (PChar->m_isGMHidden == false || PChar->m_isGMHidden == true && PTarget->m_GMlevel >= PChar->m_GMlevel)
+                PTarget->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 89));
+
+            PChar->pushPacket(new CBazaarMessagePacket(PTarget));
+            PChar->pushPacket(new CCheckPacket(PChar, PTarget));
+        }
+        break;
+        }
     }
     return;
 }
