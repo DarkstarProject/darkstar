@@ -12,4 +12,5 @@ LOKHONG_SHOP_DIALOG = 7304; -- There's nothing like fishing to pass the time!
  CHHAYA_SHOP_DIALOG = 7305; -- May I offer you items to help you on your journey?
 
  -- Other
-   ON_WAY_TO_MHAURA = 7299; -- We're on our way to Mhaura
+    ON_WAY_TO_MHAURA = 7299; -- We're on our way to Mhaura
+ARRIVING_SOON_MHAURA = 7306; -- We will be arriving soon

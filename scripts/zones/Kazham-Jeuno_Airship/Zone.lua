@@ -17,9 +17,11 @@ end;
 
 function onZoneIn(player,prevZone)
 	cs = -1;
-	if ((player:getXPos() ~= 0) or (player:getYPos() ~= 0) or (player:getZPos() ~= 0)) then	
-		player:setPos(0,0,0,226);
+
+	if ((player:getXPos() == 0) or (player:getYPos() == 0) or (player:getZPos() == 0)) then	
+		player:setPos(math.random(-4, 4),1,math.random(-23,-12));
 	end
+
 	return cs;
 end;
 
@@ -48,7 +50,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (csid == 0x000A) then
-		prevzone = player:getPreviousZone();
+		local prevzone = player:getPreviousZone();
 		if (prevzone == 250) then
 			player:setPos(0,0,0,0,246);
 		elseif (prevzone == 246) then
