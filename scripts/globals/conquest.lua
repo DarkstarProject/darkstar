@@ -1209,6 +1209,9 @@ end;
 -----------------------------------
 
 function conquestUpdate(zone, player, updateType, messageBase)
+
+    local ranking = getConquestBalance();
+
     if (updateType == CONQUEST_TALLY_START) then
         player:messageText(player, messageBase, 5);
     elseif (updateType == CONQUEST_TALLY_END) then
@@ -1221,9 +1224,7 @@ function conquestUpdate(zone, player, updateType, messageBase)
         else
             player:messageText(player, messageBase+6, 5);
         end
-        
-        local ranking = getConquestBalance();
-        
+                
         local offset = 0;
         if (bit.band(ranking, 0x03) == 0x01) then
             offset = offset + 7; -- 7
