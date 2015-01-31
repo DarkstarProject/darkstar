@@ -623,9 +623,14 @@ uint16 CBattleEntity::DEF()
         dsp_min((DEF * m_modStat[MOD_FOOD_DEFP] / 100), m_modStat[MOD_FOOD_DEF_CAP]);
 }
 
-uint16  CBattleEntity::EVA()
+uint16 CBattleEntity::EVA()
 {
-    return dsp_max(0, (m_modStat[MOD_EVA] * (100 + m_modStat[MOD_EVAP])) / 100 + AGI() / 2);
+    int16 evasion = GetSkill(SKILL_EVA);
+
+    if (evasion > 200){ //Evasion skill is 0.9 evasion post-200
+        evasion = 200 + (evasion - 200)*0.9;
+    }
+    return dsp_max(0, (m_modStat[MOD_EVA] + evasion + AGI()/2) * ((100 + m_modStat[MOD_EVAP]) / 100));
 }
 
 /************************************************************************

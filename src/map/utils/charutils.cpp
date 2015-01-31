@@ -244,17 +244,6 @@ namespace charutils
         MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_MP, PChar);
         PChar->health.maxmp = (int16)(map_config.player_mp_multiplier * (raceStat + jobStat + sJobStat) + MeritBonus); // результат расчета MP
 
-
-        //add in evasion from skill
-        int16 evaskill = (PChar->GetSkill(SKILL_EVA)); // << already has merit value added to it at this point
-
-        int16 eva = evaskill;
-        if (evaskill > 200){ //Evasion skill is 0.9 evasion post-200
-            eva = 200 + (evaskill - 200)*0.9;
-        }
-        PChar->setModifier(MOD_EVA, eva);
-
-
         //Начало расчета характеристик
 
         uint8 counter = 0;
