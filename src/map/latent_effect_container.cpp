@@ -1502,7 +1502,7 @@ void CLatentEffectContainer::CheckLatentsZone()
             {
                 if (region < 28)
                 {
-                    if (conquest::GetRegionOwner(region) == m_POwner->profile.nation && (hasSignet || hasSigil || hasSigil))
+                    if (conquest::GetRegionOwner(region) == m_POwner->profile.nation && (hasSignet || hasSanction || hasSigil))
                         ActivateLatent = true;
                 }
             }
