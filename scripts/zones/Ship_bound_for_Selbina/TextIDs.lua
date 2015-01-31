@@ -12,6 +12,5 @@ RAJMONDA_SHOP_DIALOG = 7304; -- There's nothing like fishing to pass the time!
    MAERA_SHOP_DIALOG = 7305; -- May I offer you items to help you on your journey?
 
 -- Other
-ON_WAY_TO_SELBINA = 7299; -- We're on our way to Selbina.
-
-
+    ON_WAY_TO_SELBINA = 7299; -- We're on our way to Selbina.
+ARRIVING_SOON_SELBINA = 7306; -- We will be arriving soon
