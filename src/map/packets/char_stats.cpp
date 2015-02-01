@@ -51,13 +51,13 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
 
 	memcpy(data+(0x14)-4, &PChar->stats, 14); // TODO: с merits это не прокатит
 
-	WBUFW(data,(0x22)-4) = PChar->getMod(MOD_STR);
-	WBUFW(data,(0x24)-4) = PChar->getMod(MOD_DEX);
-	WBUFW(data,(0x26)-4) = PChar->getMod(MOD_VIT);
-	WBUFW(data,(0x28)-4) = PChar->getMod(MOD_AGI);
-	WBUFW(data,(0x2A)-4) = PChar->getMod(MOD_INT);
-	WBUFW(data,(0x2C)-4) = PChar->getMod(MOD_MND);
-	WBUFW(data,(0x2E)-4) = PChar->getMod(MOD_CHR);
+	WBUFW(data,(0x22)-4) = dsp_cap(PChar->getMod(MOD_STR), -999 + PChar->stats.STR, 999 - PChar->stats.STR);
+	WBUFW(data,(0x24)-4) = dsp_cap(PChar->getMod(MOD_DEX), -999 + PChar->stats.DEX, 999 - PChar->stats.DEX);
+	WBUFW(data,(0x26)-4) = dsp_cap(PChar->getMod(MOD_VIT), -999 + PChar->stats.VIT, 999 - PChar->stats.VIT);
+	WBUFW(data,(0x28)-4) = dsp_cap(PChar->getMod(MOD_AGI), -999 + PChar->stats.AGI, 999 - PChar->stats.AGI);
+	WBUFW(data,(0x2A)-4) = dsp_cap(PChar->getMod(MOD_INT), -999 + PChar->stats.INT, 999 - PChar->stats.INT);
+	WBUFW(data,(0x2C)-4) = dsp_cap(PChar->getMod(MOD_MND), -999 + PChar->stats.MND, 999 - PChar->stats.MND);
+	WBUFW(data,(0x2E)-4) = dsp_cap(PChar->getMod(MOD_CHR), -999 + PChar->stats.CHR, 999 - PChar->stats.CHR);
 
     WBUFW(data,(0x30)-4) = PChar->ATT();
 	WBUFW(data,(0x32)-4) = PChar->DEF();

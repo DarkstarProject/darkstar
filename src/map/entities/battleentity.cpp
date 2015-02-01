@@ -120,8 +120,8 @@ void CBattleEntity::UpdateHealth()
     dif = (health.modmp - 0) <  dif ?  (health.modmp - 0) : dif;
     dif = (health.modhp - 1) < -dif ? -(health.modhp - 1) : dif;
 
-    health.modhp += dif;
-    health.modmp -= dif;
+    health.modhp = dsp_cap(health.modhp + dif, 0, 9999);
+    health.modmp = dsp_cap(health.modhp - dif, 0, 9999);
 
     health.hp = dsp_cap(health.hp, 0, health.modhp);
     health.mp = dsp_cap(health.mp, 0, health.modmp);
@@ -492,37 +492,37 @@ int32 CBattleEntity::addMP(int32 mp)
 
 uint16 CBattleEntity::STR()
 {
-    return dsp_max(0, stats.STR + m_modStat[MOD_STR]);
+    return dsp_cap(stats.STR + m_modStat[MOD_STR], 0, 999);
 }
 
 uint16 CBattleEntity::DEX()
 {
-    return dsp_max(0, stats.DEX + m_modStat[MOD_DEX]);
+    return dsp_cap(stats.DEX + m_modStat[MOD_DEX], 0, 999);
 }
 
 uint16 CBattleEntity::VIT()
 {
-    return dsp_max(0, stats.VIT + m_modStat[MOD_VIT]);
+    return dsp_cap(stats.VIT + m_modStat[MOD_VIT], 0, 999);
 }
 
 uint16 CBattleEntity::AGI()
 {
-    return dsp_max(0, stats.AGI + m_modStat[MOD_AGI]);
+    return dsp_cap(stats.AGI + m_modStat[MOD_AGI], 0, 999);
 }
 
 uint16 CBattleEntity::INT()
 {
-    return dsp_max(0, stats.INT + m_modStat[MOD_INT]);
+    return dsp_cap(stats.INT + m_modStat[MOD_INT], 0, 999);
 }
 
 uint16 CBattleEntity::MND()
 {
-    return dsp_max(0, stats.MND + m_modStat[MOD_MND]);
+    return dsp_cap(stats.MND + m_modStat[MOD_MND], 0, 999);
 }
 
 uint16 CBattleEntity::CHR()
 {
-    return dsp_max(0, stats.CHR + m_modStat[MOD_CHR]);
+    return dsp_cap(stats.CHR + m_modStat[MOD_CHR], 0, 999);
 }
 
 uint16 CBattleEntity::ATT()
