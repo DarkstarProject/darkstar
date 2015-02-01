@@ -23,6 +23,9 @@
 
 #include "automatonentity.h"
 #include "../utils/puppetutils.h"
+#include "../packets/entity_update.h"
+#include "../packets/pet_sync.h"
+#include "../packets/char_job_extra.h"
 
 CAutomatonEntity::CAutomatonEntity()
     : CPetEntity(PETTYPE_AUTOMATON)
@@ -131,4 +134,19 @@ uint8 CAutomatonEntity::addBurden(uint8 element, uint8 burden)
         }
     }
     return 0;
+}
+
+void CAutomatonEntity::UpdateEntity()
+{
+    if (loc.zone && updatemask && status != STATUS_DISAPPEAR)
+    {
+        ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
+        loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
+        updatemask = 0;
+        if (PMaster->objtype == TYPE_PC)
+        {
+            ((CCharEntity*)PMaster)->pushPacket(new CCharJobExtraPacket((CCharEntity*)PMaster, PMaster->GetMJob() == JOB_PUP));
+        }
+        updatemask = 0;
+    }
 }

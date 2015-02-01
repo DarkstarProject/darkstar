@@ -69,7 +69,7 @@ protected:
 	void ActionAbilityUsing();
 	void ActionAbilityInterrupt();
 	void ActionAbilityFinish();
-	bool WyvernIsHealing(); //true if wyvern is healing
+	bool PetIsHealing(); //true if wyvern is healing
 
 	void ActionMagicStart();
 	void ActionMagicCasting();

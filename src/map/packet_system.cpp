@@ -4390,6 +4390,11 @@ void SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, int8* dat
             case ACTION_ITEM_USING:        PChar->PBattleAI->SetCurrentAction(ACTION_ITEM_INTERRUPT);    break;
             case ACTION_MAGIC_CASTING:    PChar->PBattleAI->SetCurrentAction(ACTION_MAGIC_INTERRUPT);    break;
             }
+            if (PChar->PPet && PChar->PPet->objtype == TYPE_PET &&
+                ((CPetEntity*)PChar->PPet)->getPetType() == PETTYPE_AUTOMATON)
+            {
+                PChar->PPet->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+            }
             PChar->status = STATUS_UPDATE;
             PChar->PBattleAI->CheckCurrentAction(gettick());
             PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING, 0, 0, 10, 0));

@@ -450,6 +450,10 @@ int32 CBattleEntity::addHP(int32 hp)
     if(hp > 0)
     {
         battleutils::MakeEntityStandUp(this);
+    }
+
+    if (hp != 0)
+    {
         if (status == STATUS_NORMAL) status = STATUS_UPDATE;
         updatemask |= UPDATE_HP;
     }

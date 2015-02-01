@@ -80,6 +80,8 @@ public:
     void burdenTick();
     uint8 addBurden(uint8 element, uint8 burden);
 
+    void UpdateEntity() override;
+
 private:
 
     uint8 m_Burden[8];

@@ -27,6 +27,7 @@
 #include "../mob_spell_container.h"
 #include "../mob_spell_list.h"
 #include "../packets/entity_update.h"
+#include "../packets/pet_sync.h"
 
 
 CPetEntity::CPetEntity(PETTYPE petType)
@@ -87,6 +88,7 @@ void CPetEntity::UpdateEntity()
 {
     if (loc.zone && updatemask && status != STATUS_DISAPPEAR)
     {
+        ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
         updatemask = 0;
     }

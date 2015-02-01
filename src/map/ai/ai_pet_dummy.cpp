@@ -527,8 +527,7 @@ void CAIPetDummy::ActionAbilityInterrupt(){
     m_ActionType = ACTION_ATTACK;
 }
 
-bool CAIPetDummy::WyvernIsHealing(){
-	DSP_DEBUG_BREAK_IF(m_PPet->getPetType() != PETTYPE_WYVERN);
+bool CAIPetDummy::PetIsHealing(){
 
 	bool isMasterHealing = (m_PPet->PMaster->animation == ANIMATION_HEALING);
 	bool isPetHealing = (m_PPet->animation == ANIMATION_HEALING);
@@ -564,14 +563,9 @@ void CAIPetDummy::ActionRoaming()
 		return;
 	}
 
-	//wyvern behaviour
-	if(m_PPet->getPetType()==PETTYPE_WYVERN){
-		if(WyvernIsHealing()){
-			m_PPathFind->LookAt(m_PPet->PMaster->loc.p);
-
-			if(m_PPet->PMaster->objtype == TYPE_PC){
-				((CCharEntity*)m_PPet->PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)m_PPet->PMaster));
-			}
+	//automaton, wyvern
+	if(m_PPet->getPetType()==PETTYPE_WYVERN || m_PPet->getPetType() == PETTYPE_AUTOMATON){
+		if(PetIsHealing()){
 			return;
 		}
 	}

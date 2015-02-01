@@ -48,9 +48,8 @@ CPetSyncPacket::CPetSyncPacket(CCharEntity* PChar)
 
     WBUFW(data, (0x0C) - 4) = PChar->PPet->targid;
     WBUFB(data, (0x0E) - 4) = PChar->PPet->GetHPP();
-    int16 petTp = (PChar->PPet->health.tp) * 3.35 * 3;
     WBUFB(data, (0x0F) - 4) = PChar->PPet->GetMPP();
-    WBUFW(data, (0x10) - 4) = petTp;
+    WBUFW(data, (0x10) - 4) = PChar->PPet->health.tp;
 
     // 0x14 - начинается имя питомца, но мы его записывать не будем, "мы экономить будем" © Матроскин
 }
