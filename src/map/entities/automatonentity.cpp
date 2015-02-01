@@ -140,7 +140,10 @@ void CAutomatonEntity::UpdateEntity()
 {
     if (loc.zone && updatemask && status != STATUS_DISAPPEAR)
     {
-        ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
+        if (PMaster && PMaster->PPet == this)
+        {
+            ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
+        }
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
         updatemask = 0;
         if (PMaster->objtype == TYPE_PC)
