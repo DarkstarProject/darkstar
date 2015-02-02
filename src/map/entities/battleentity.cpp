@@ -120,8 +120,14 @@ void CBattleEntity::UpdateHealth()
     dif = (health.modmp - 0) <  dif ?  (health.modmp - 0) : dif;
     dif = (health.modhp - 1) < -dif ? -(health.modhp - 1) : dif;
 
-    health.modhp = dsp_cap(health.modhp + dif, 0, 9999);
-    health.modmp = dsp_cap(health.modmp - dif, 0, 9999);
+    health.modhp += dif;
+    health.modmp -= dif;
+
+    if (objtype == TYPE_PC)
+    {
+        health.modhp = dsp_cap(health.modhp, 0, 9999);
+        health.modmp = dsp_cap(health.modmp, 0, 9999);
+    }
 
     health.hp = dsp_cap(health.hp, 0, health.modhp);
     health.mp = dsp_cap(health.mp, 0, health.modmp);
