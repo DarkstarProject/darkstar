@@ -2697,10 +2697,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
         }
 	}
 
-	// to catch high damage bugs
-	if (damage > 8000)
-		ShowError(CL_RED"Warning: %s did 8000+ weaponskill damage, job = %u \n" CL_RESET, m_PChar->GetName(), m_PChar->GetMJob());
-
 	charutils::UpdateHealth(m_PChar);
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
