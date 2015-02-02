@@ -389,6 +389,7 @@ void CAICharNormal::ActionDisengage()
 	m_PChar->animation = ANIMATION_NONE;
     m_PChar->updatemask |= UPDATE_HP;
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+	m_PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(false);
 
     if (m_PChar->PPet != NULL && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
     {
