@@ -453,25 +453,6 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
         return NULL;
     }
 
-    if (validTargetFlags & TARGET_ENEMY)
-    {
-        if (!PTarget->isDead())
-        {
-			if (PTarget->allegiance == (m_PBattleEntity->allegiance % 2 == 0 ? m_PBattleEntity->allegiance + 1 : m_PBattleEntity->allegiance - 1))
-			{
-                return PTarget;
-            }
-        }
-    }
-
-	if (validTargetFlags & TARGET_NPC)
-	{
-		if (PTarget->allegiance == m_PBattleEntity->allegiance)
-		{
-			return PTarget;
-		}
-	}
-
     if (PTarget->objtype == TYPE_PC)
     {
         if ((validTargetFlags & TARGET_SELF) && PTarget->targid == m_PBattleEntity->targid)
@@ -505,6 +486,27 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
 		{
 			return PTarget;
 		}
+
+        if (validTargetFlags & TARGET_NPC)
+        {
+            if (PTarget->allegiance == m_PBattleEntity->allegiance && (PTarget == m_PBattleEntity ||
+                !(((CMobEntity*)PTarget)->m_Behaviour & BEHAVIOUR_NOHELP)))
+            {
+                return PTarget;
+            }
+        }
 	}
+
+    if (validTargetFlags & TARGET_ENEMY)
+    {
+        if (!PTarget->isDead())
+        {
+            if (PTarget->allegiance == (m_PBattleEntity->allegiance % 2 == 0 ? m_PBattleEntity->allegiance + 1 : m_PBattleEntity->allegiance - 1))
+            {
+                return PTarget;
+            }
+        }
+    }
+
     return NULL;
 }

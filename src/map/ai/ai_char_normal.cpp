@@ -188,24 +188,6 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 		*PBattleTarget = m_PChar; //this prevents a null crash when message is sent
 		return false;
 	}
-    if (ValidTarget & TARGET_ENEMY)
-	{
-        if (!PTarget->isDead())
-        {
-		    if (PTarget->allegiance == (m_PChar->allegiance % 2 == 0 ? m_PChar->allegiance + 1 : m_PChar->allegiance - 1))
-		    {
-			    return true;
-		    }
-        }
-	}
-
-	if (ValidTarget & TARGET_NPC)
-	{
-		if (PTarget->allegiance == m_PChar->allegiance)
-		{
-			return PTarget;
-		}
-	}
 
 	if (PTarget->objtype == TYPE_PC)
 	{
@@ -238,7 +220,27 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 		{
 			return true;
 		}
+
+        if (ValidTarget & TARGET_NPC)
+        {
+            if (PTarget->allegiance == m_PChar->allegiance && !(((CMobEntity*)PTarget)->m_Behaviour & BEHAVIOUR_NOHELP))
+            {
+                return true;
+            }
+        }
 	}
+
+    if (ValidTarget & TARGET_ENEMY)
+    {
+        if (!PTarget->isDead())
+        {
+            if (PTarget->allegiance == (m_PChar->allegiance % 2 == 0 ? m_PChar->allegiance + 1 : m_PChar->allegiance - 1))
+            {
+                return true;
+            }
+        }
+    }
+
 	return false;
 }
 
