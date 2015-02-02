@@ -62,7 +62,7 @@ bcnmid_param_map = {6,{640,0},
 					144,{65,1,73,9,64,0,67,3,68,4,70,6,71,7,72,8,81,17,76,12,82,18,79,15},
 					146,{99,3,96,0,101,5,102,6,103,7,107,11,105,9},
 					163,{128,0,129,1},
-					165,{160,0},
+					165,{160,0,161,1},
 					168,{192,0,194,2,195,3,196,4},
 					170,{224,0},
 					179,{256,0},
@@ -503,6 +503,11 @@ function checkNonTradeBCNM(player,npc)
 		if(player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 3) then -- Mission 5-2
 			mask = GetBattleBitmask(160,Zone,1);
 			player:setVar("trade_bcnmid",160);
+		elseif(player:getCurrentMission(BASTOK) == WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 1)then -- bastok 9-2 
+			mask = GetBattleBitmask(161,Zone,1);
+			player:setVar("trade_bcnmid",161);
+
+
 		end
 	elseif(Zone == 168) then -- Chamber of Oracles
 		if(player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES or player:getCurrentMission(ZILART) == THE_CHAMBER_OF_ORACLES) then -- Zilart Mission 6

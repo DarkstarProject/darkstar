@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 
 require("scripts/globals/missions");
 require("scripts/zones/Metalworks/TextIDs");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade Action
@@ -28,10 +29,18 @@ function onTrigger(player,npc)
 
 	if(currentMission == THE_FOUR_MUSKETEERS and missionStatus == 0) then -- Four Musketeers
 		player:startEvent(0x02cb);
-	elseif(currentMission == WHERE_TWO_PATH_CONVERGE and player:getVar("BASTOK92") == 0) then 
+	elseif(currentMission == WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 0) then 
 		player:startEvent(0x030c);
-	elseif(currentMission == WHERE_TWO_PATH_CONVERGE and player:getVar("BASTOK92") == 2) then 
+	elseif(currentMission == WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 2) then 
 		player:startEvent(0x030e);
+	elseif(player:getVar("Flagbastok") == 1)then
+		if(player:getFreeSlotsCount() == 0) then 
+		player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,182);
+		else
+		player:setVar("Flagbastok",0);
+		player:addItem(182);
+		player:messageSpecial(ITEM_OBTAINED,182);
+		end
 	elseif(currentMission == THE_FOUR_MUSKETEERS and missionStatus == 1) then
 		player:startEvent(0x02cc);
 	elseif(currentMission == THE_CHAINS_THAT_BIND_US and missionStatus == 0) then
@@ -70,15 +79,15 @@ function onEventFinish(player,csid,option)
 	    player:setVar("MissionStatus", 1);
 	elseif(csid == 0x0300) then
 		finishMissionTimeline(player, 1, csid, option);
-	elseif(csid == 0x030c) then
+	elseif(csid == 0x030e) then
 	if(player:getFreeSlotsCount() == 0) then 
-	player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,181);
+	player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,182);
 	player:setVar("Flagbastok",1);
-	else	player:addItem(181);
-	player:messageSpecial(ITEM_OBTAINED,181);
+	else	player:addItem(182);
+	player:messageSpecial(ITEM_OBTAINED,182);
 	end
 	player:setVar("BASTOK92",0);
-	player:completeMission(BASTOK,WHERE_TWO_PATH_CONVERGE);
+	player:completeMission(BASTOK,WHERE_TWO_PATHS_CONVERGE);
 	player:setRank(10);
 	player:addGil(100000);
 	player:messageSpecial(GIL_OBTAINED,100000);
