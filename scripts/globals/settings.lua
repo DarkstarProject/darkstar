@@ -74,6 +74,7 @@ DRAIN_POWER = 1.000; --Multiplies amount drained by Drain, Aspir, and relevant B
 ITEM_POWER  = 1.000; --Multiplies the effect of items such as Potions and Ethers.
 WEAPON_SKILL_POWER  = 1.000; -- Multiplies damage dealt by Weapon Skills.
 WEAPON_SKILL_POINTS = 1.000; --Multiplies points earned during weapon unlocking.
+USE_ADOULIN_WEAPON_SKILL_CHANGES = false; -- true/false. Change to toggle new Adoulin weapon skill damage calculations
 
 HARVESTING_BREAK_CHANCE = 0.33; --% chance for the sickle to break during harvesting.  Set between 0 and 1.
 EXCAVATION_BREAK_CHANCE = 0.33; --% chance for the pickaxe to break during excavation.  Set between 0 and 1.

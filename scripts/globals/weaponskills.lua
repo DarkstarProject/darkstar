@@ -59,10 +59,6 @@ function doPhysicalWeaponskill(attacker, target, params)
 		local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3);
 		weaponDamage = attacker:getWeaponDmg()-3;
 
-		if(params.kick == true and attacker:hasStatusEffect(EFFECT_FOOTWORK)) then
-			weaponDamage = attacker:getMod(MOD_KICK_DMG);
-		end
-
 		weaponDamage = weaponDamage + h2hSkill;
 	end
 

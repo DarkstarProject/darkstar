@@ -1,25 +1,24 @@
------------------------------------	
--- Shark Bite	
--- Dagger weapon skill	
--- Skill level: 225 	
--- Delivers a twofold attack. Damage varies with TP.	
--- Will stack with Sneak Attack.	
--- Will stack with Trick Attack.	
--- Aligned with the Breeze Gorget & Thunder Gorget.	
--- Aligned with the Breeze Belt & Thunder Belt.	
--- Element: None	
--- Modifiers: DEX:50%	
--- 100%TP    200%TP    300%TP	
--- 2.00      2.50      3.00	
------------------------------------	
-	
-require("scripts/globals/status");	
-require("scripts/globals/settings");	
-require("scripts/globals/weaponskills");	
------------------------------------	
-	
-function onUseWeaponSkill(player, target, wsID)	
-	
+-----------------------------------
+-- Shark Bite
+-- Dagger weapon skill
+-- Skill level: 225
+-- Delivers a twofold attack. Damage varies with TP.
+-- Will stack with Sneak Attack.
+-- Will stack with Trick Attack.
+-- Aligned with the Breeze Gorget & Thunder Gorget.
+-- Aligned with the Breeze Belt & Thunder Belt.
+-- Element: None
+-- Modifiers: DEX:40% AGI:40%
+-- 100%TP    200%TP    300%TP
+--  2.00       4        5.75
+-----------------------------------
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
+function onUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 2;
 	params.ftp100 = 2; params.ftp200 = 2.5; params.ftp300 = 3;
@@ -28,8 +27,14 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.ftp200 = 4; params.ftp300 = 5.75;
+		params.dex_wsc = 0.4; params.agi_wsc = 0.4;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	
+
 	return tpHits, extraHits, criticalHit, damage;
-	
-end	
+
+end

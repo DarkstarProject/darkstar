@@ -3,7 +3,7 @@
 -- Hand-to-Hand weapon skill
 -- Skill Level: 225
 -- Damage varies with TP.
--- Dragon Kick will only be affected by equipment that increases Kick Attacks damage such as Kung Fu Shoes under the effect of Footwork.
+-- Despite the name, Dragon Kick damage is not affected by Kick Attacks or equipment that enhances kick attacks such as Dune Boots. http://www.bluegartr.com/threads/121610-Rehauled-Weapon-Skills-tier-lists?p=6140907&viewfull=1#post6140907
 -- Will stack with Sneak Attack.
 -- Aligned with the Breeze Gorget & Thunder Gorget.
 -- Aligned with the Breeze Belt & Thunder Belt.
@@ -21,14 +21,18 @@ require("scripts/globals/weaponskills");
 function onUseWeaponSkill(player, target, wsID)
 
 	local params = {};
-	params.numHits = 2;
+	params.numHits = 1;
 	params.ftp100 = 2; params.ftp200 = 2.75; params.ftp300 = 3.5;
 	params.str_wsc = 0.5; params.dex_wsc = 0.0; params.vit_wsc = 0.5; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
 	params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
-	params.kick = true;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.ftp100 = 2; params.ftp200 = 3.6; params.ftp300 = 6.5;
+		params.str_wsc = 0.5; params.dex_wsc = 0.5; params.vit_wsc = 0.0;
+	end
 
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 

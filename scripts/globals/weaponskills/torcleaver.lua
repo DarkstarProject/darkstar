@@ -1,4 +1,4 @@
------------------------------------     
+-----------------------------------
 -- Torcleaver
 -- Skill Level: N/A
 -- Description: Deals triple damage. Damage varies with TP. Caladbolg: Aftermath.
@@ -11,15 +11,14 @@
 -- Damage Multipliers by TP:
 -- 100%TP	200%TP	300%TP
 -- 4.75	    5.75	6.5
+-----------------------------------
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
 
------------------------------------        
-require("scripts/globals/status");      
-require("scripts/globals/settings");    
-require("scripts/globals/weaponskills");        
------------------------------------     
+function onUseWeaponSkill(player, target, wsID)
 
-function onUseWeaponSkill(player, target, wsID) 
-	
 	local params = {};
 	params.numHits = 1;
 	params.ftp100 = 4.75; params.ftp200 = 5.75; params.ftp300 = 6.5;
@@ -28,7 +27,13 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
-	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);        
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.ftp100 = 4.75; params.ftp200 = 7.5; params.ftp300 = 9.6875;
+		params.vit_wsc = 0.8;
+	end
+
+	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	return tpHits, extraHits, criticalHit, damage;
-	
-end     
+
+end

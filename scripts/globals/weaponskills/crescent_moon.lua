@@ -1,14 +1,16 @@
 -----------------------------------
--- Crescent Moon    
+-- Crescent Moon
 -- Great Sword weapon skill
 -- Skill level: 175
 -- Delivers a single-hit attack. Damage varies with TP.
--- Modifiers: STR:35% 
+-- Modifiers: STR:35%
 -- 100%TP 	200%TP 	300%TP
 -- 1.0 		1.75	2.5
 -----------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/weaponskills");
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+------------------------------------
 function onUseWeaponSkill(player, target, wsID)
 
 	local params = {};
@@ -24,8 +26,13 @@ function onUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0; params.acc200=0; params.acc300=0;
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1;
-	
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.ftp100 = 1.5; params.ftp200 = 1.75; params.ftp300 = 2.75;
+		params.str_wsc = 0.8;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	
+
 	return tpHits, extraHits, criticalHit, damage;
 end

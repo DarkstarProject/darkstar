@@ -1,14 +1,17 @@
 -----------------------------------
--- Power Slash    
+-- Power Slash
 -- Great Sword weapon skill
 -- Skill level: 30
 -- Delivers a single-hit attack. params.crit varies with TP.
--- Modifiers: STR:20% ; VIT:20% 
+-- Modifiers: STR:60% ; VIT:60%
 -- 100%TP 	200%TP 	300%TP
 -- 1.0 		1.0		1.0
 -----------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/weaponskills");
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
 function onUseWeaponSkill(player, target, wsID)
 
 	local params = {};
@@ -24,8 +27,12 @@ function onUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0; params.acc200=0; params.acc300=0;
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1;
-	
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.str_wsc = 0.6; params.vit_wsc = 0.6;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	
+
 	return tpHits, extraHits, criticalHit, damage;
 end

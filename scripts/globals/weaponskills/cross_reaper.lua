@@ -1,14 +1,16 @@
 -----------------------------------
--- Cross Reaper   
+-- Cross Reaper
 -- Scythe weapon skill
 -- Skill level: 225
 -- Delivers a two-hit attack. Damage varies with TP.
--- Modifiers: STR:30% ; MND:30% 
+-- Modifiers: STR:30% ; MND:30%
 -- 100%TP 	200%TP 	300%TP
 -- 2.0 		2.25	2.5
 -----------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/weaponskills");
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+------------------------------------
 function onUseWeaponSkill(player, target, wsID)
 	local params = {};
 	params.numHits = 2;
@@ -23,8 +25,13 @@ function onUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0; params.acc200=0; params.acc300=0;
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1;
-	
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.ftp100 = 2.0; params.ftp200 = 4.0; params.ftp300 = 7.0;
+		params.str_wsc = 0.6; params.mnd_wsc = 0.6;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	
+
 	return tpHits, extraHits, criticalHit, damage;
 end

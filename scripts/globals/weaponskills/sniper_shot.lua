@@ -1,23 +1,22 @@
------------------------------------	
--- Sniper Shot	
--- Marksmanship weapon skill	
--- Skill Level: 80	
--- Lowers enemy's INT. Chance of params.critical varies with TP.	
--- Aligned with the Flame Gorget & Light Gorget.	
--- Aligned with the Flame Belt & Light Belt.	
--- Element: None	
--- Modifiers: AGI:30%	
--- 100%TP    200%TP    300%TP	
--- 1.00      1.00      1.00	
------------------------------------	
-	
-require("scripts/globals/status");	
-require("scripts/globals/settings");	
-require("scripts/globals/weaponskills");	
------------------------------------	
-	
-function onUseWeaponSkill(player, target, wsID)	
-	
+-----------------------------------
+-- Sniper Shot
+-- Marksmanship weapon skill
+-- Skill Level: 80
+-- Lowers enemy's INT. Chance of params.critical varies with TP.
+-- Aligned with the Flame Gorget & Light Gorget.
+-- Aligned with the Flame Belt & Light Belt.
+-- Element: None
+-- Modifiers: AGI:70%
+-- 100%TP    200%TP    300%TP
+-- 1.00      1.00      1.00
+-----------------------------------
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
+function onUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 1;
 	params.ftp100 = 1; params.ftp200 = 1; params.ftp300 = 1;
@@ -26,13 +25,17 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.agi_wsc = 0.7;
+	end
+
 	local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
-   local crticalHit = false;
 
 	if damage > 0 and (target:hasStatusEffect(EFFECT_INT_DOWN) == false) then
 		target:addStatusEffect(EFFECT_INT_DOWN, 10, 0, 140);
-	end	
-	
+	end
+
 	return tpHits, extraHits, criticalHit, damage;
-	
-end	
+
+end

@@ -1,23 +1,22 @@
------------------------------------	
+-----------------------------------
 -- Refulgent Arrow
--- Archery weapon skill	
--- Skill level: 290	
+-- Archery weapon skill
+-- Skill level: 290
 -- Delivers a twofold attack. Damage varies with TP.
 -- Aligned with the Aqua Gorget & Light Gorget.
 -- Aligned with the Aqua Belt & Light Belt.
 -- Element: None
--- Modifiers: STR: 60% (Studio Gobli) | STR: 16% AGI: 25% (FFXIClopedia)
--- 100%TP    200%TP    300%TP	
--- 3.00      4.25      5.00	
------------------------------------	
-	
-require("scripts/globals/status");	
-require("scripts/globals/settings");	
-require("scripts/globals/weaponskills");	
------------------------------------	
-	
-function onUseWeaponSkill(player, target, wsID)	
-	
+-- Modifiers: STR: 60% http://www.bg-wiki.com/bg/Refulgent_Arrow
+-- 100%TP    200%TP    300%TP
+-- 3.00      4.25      7.00
+-----------------------------------
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
+function onUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 2;
 	params.ftp100 = 3; params.ftp200 = 4.25; params.ftp300 = 5;
@@ -26,9 +25,14 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.ftp100 = 3; params.ftp200 = 4.25; params.ftp300 = 7;
+		params.str_wsc = 0.6;
+	end
+
 	local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
-   local crticalHit = false;
-	
+
 	return tpHits, extraHits, criticalHit, damage;
-	
-end	
+
+end

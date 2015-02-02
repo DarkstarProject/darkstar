@@ -1,25 +1,25 @@
------------------------------------	
--- Penta Thrust	
--- Polearm weapon skill	
--- Skill Level: 150	
--- Delivers a five-hit attack. params.accuracy varies with TP.	
--- 0.875 Attack penalty	
--- Will stack with Sneak Attack.	
--- Aligned with the Shadow Gorget.	
--- Aligned with the Shadow Belt.	
--- Element: None	
--- Modifiers: STR:20% ; DEX:20%	
--- 100%TP    200%TP    300%TP	
--- 1.00      1.00      1.00	
------------------------------------	
-	
-require("scripts/globals/status");	
-require("scripts/globals/settings");	
-require("scripts/globals/weaponskills");	
------------------------------------	
-	
-function onUseWeaponSkill(player, target, wsID)	
-	
+-----------------------------------
+-- Penta Thrust
+-- Polearm weapon skill
+-- Skill Level: 150
+-- Delivers a five-hit attack. params.accuracy varies with TP.
+-- 0.875 Attack penalty
+-- Will stack with Sneak Attack.
+-- Aligned with the Shadow Gorget.
+-- Aligned with the Shadow Belt.
+-- Element: None
+-- Modifiers: STR:20% ; DEX:20%
+-- 100%TP    200%TP    300%TP
+-- 1.00      1.00      1.00
+-----------------------------------
+
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
+function onUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 5;
 	params.ftp100 = 1; params.ftp200 = 1; params.ftp300 = 1;
@@ -29,7 +29,7 @@ function onUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0.8; params.acc200= 0.9; params.acc300= 1;
 	params.atkmulti = 0.875;
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	
+
 	return tpHits, extraHits, criticalHit, damage;
-	
-end	
+
+end
