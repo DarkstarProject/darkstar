@@ -10,6 +10,7 @@
 -- performance of the actual WS (rand numbers, etc)
 require("scripts/globals/status");
 require("scripts/globals/utils");
+require("scripts/globals/magic");
 
 local elementalGorget = { 15495, 15498, 15500, 15497, 15496, 15499, 15501, 15502 };
 local elementalBelt =   { 11755, 11758, 11760, 11757, 11756, 11759, 11761, 11762 };
@@ -233,6 +234,65 @@ function doPhysicalWeaponskill(attacker, target, params)
 	attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
 	return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
 end;
+
+-- params: ftp100, ftp200, ftp300, wsc_str, wsc_dex, wsc_vit, wsc_agi, wsc_int, wsc_mnd, wsc_chr,
+--         ele (ELE_FIRE), skill (SKILL_STF), includemab = true
+
+function doMagicWeaponskill(attacker, target, params)
+
+    local bonusacc = 0;
+    local bonusfTP = 0;
+
+    if (attacker:getObjType() == TYPE_PC) then
+        local neck = attacker:getEquipID(SLOT_NECK);
+        local belt = attacker:getEquipID(SLOT_WAIST);
+        local SCProp1, SCProp2, SCProp3 = attacker:getWSSkillchainProp();
+
+        for i,v in ipairs(elementalGorget) do
+            if (neck == v) then
+                if (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3)) then
+                    bonusacc = bonusacc + 10;
+                    bonusfTP = bonusfTP + 0.1;
+                end
+                break;
+            end
+        end
+
+        for i,v in ipairs(elementalBelt) do
+            if (belt == v) then
+                if (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3)) then
+                    bonusacc = bonusacc + 10;
+                    bonusfTP = bonusfTP + 0.1;
+                end
+                break;
+            end
+        end
+        --printf("bonusacc = %u bonusfTP = %f", bonusacc, bonusfTP);
+    end
+
+    local fint = utils.clamp(8 + (attacker:getStat(MOD_INT) - target:getStat(MOD_INT)), -32, 32);
+	local dmg = attacker:getMainLvl() + 2 + (attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc +
+		 attacker:getStat(MOD_VIT) * params.vit_wsc + attacker:getStat(MOD_AGI) * params.agi_wsc +
+		 attacker:getStat(MOD_INT) * params.int_wsc + attacker:getStat(MOD_MND) * params.mnd_wsc +
+		 attacker:getStat(MOD_CHR) * params.chr_wsc) + fint;
+    
+    --Applying fTP multiplier
+	local tp = attacker:getTP();
+	if attacker:hasStatusEffect(EFFECT_SEKKANOKI) then
+		tp = 100;
+	end
+	local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300) + bonusfTP;
+    
+    dmg = dmg * ftp;
+    
+	dmg = addBonusesAbility(attacker, params.ele, target, dmg, params);
+	dmg = dmg * applyResistanceAbility(attacker,target,params.ele,params.skill, 0);
+	dmg = adjustForTarget(target,dmg,params.ele);
+	
+	dmg = utils.stoneskin(target, dmg);
+    
+    return dmg, false, 1, 0;
+end
 
 function souleaterBonus(attacker, numhits)
 	if attacker:hasStatusEffect(EFFECT_SOULEATER) then
