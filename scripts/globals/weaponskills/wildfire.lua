@@ -30,6 +30,7 @@ function onUseWeaponSkill(player, target, wsID)
 	params.atkmulti = 1;
 
 	-- TODO: needs to give enmity down at varying tp percent's that is treated separately than the gear cap of -50% enmity http://www.bg-wiki.com/bg/Wildfire
+	-- TODO: also needs aftermath effects added
 
 	local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
 

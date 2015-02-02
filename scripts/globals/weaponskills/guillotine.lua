@@ -3,7 +3,7 @@
 -- Scythe weapon skill
 -- Skill level: 200
 -- Delivers a four-hit attack. Duration varies with TP.
--- Modifiers: STR:30% ; MND:50%
+-- Modifiers: STR:25% ; MND:25%
 -- 100%TP 	200%TP 	300%TP
 -- 0.875	0.875	0.875
 -----------------------------------
@@ -17,7 +17,7 @@ function onUseWeaponSkill(player, target, wsID)
 	--ftp damage mods (for Damage Varies with TP; lines are calculated in the function
 	params.ftp100 = 0.875; params.ftp200 = 0.875; params.ftp300 = 0.875;
 	--wscs are in % so 0.2=20%
-	params.str_wsc = 0.30; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.50; params.chr_wsc = 0.0;
+	params.str_wsc = 0.25; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.25; params.chr_wsc = 0.0;
 	--critical mods, again in % (ONLY USE FOR critICAL HIT VARIES WITH TP)
 	params.crit100 = 0.0; params.crit200=0.0; params.crit300=0.0;
 	params.canCrit = false;
@@ -25,6 +25,10 @@ function onUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0; params.acc200=0; params.acc300=0;
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.str_wsc = 0.30; params.mnd_wsc = 0.50;
+	end
 
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
@@ -35,5 +39,7 @@ function onUseWeaponSkill(player, target, wsID)
 			target:addStatusEffect(EFFECT_SILENCE, 1, 0, duration);
 		end
 	end
+
 	return tpHits, extraHits, criticalHit, damage;
+
 end

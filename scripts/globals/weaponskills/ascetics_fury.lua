@@ -11,6 +11,7 @@
 -- 100%TP    200%TP    300%TP
 -- 1.00      1.00      1.00
 -----------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
@@ -25,9 +26,12 @@ function onUseWeaponSkill(player, target, wsID)
 	params.crit100 = 0.1; params.crit200 = 0.3; params.crit300 = 0.5;
 	params.canCrit = true;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
-	params.atkmulti = 2.6;
+	params.atkmulti = 1;
 
-	-- source for params.atkmulti http://www.bluegartr.com/threads/121610-Rehauled-Weapon-Skills-tier-lists?p=6140907&viewfull=1#post6140907
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.atkmulti = 2.6;
+	end
+
 
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	if((player:getEquipID(SLOT_MAIN) == 18992) and (player:getMainJob() == JOB_MNK)) then

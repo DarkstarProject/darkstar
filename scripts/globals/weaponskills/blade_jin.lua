@@ -9,7 +9,7 @@
 -- Element: Wind
 -- Modifiers: STR:30% ; DEX:30%
 -- 100%TP    200%TP    300%TP
--- 1.375     1.375     1.375
+-- 1.00      1.00      1.00
 -----------------------------------
 
 require("scripts/globals/status");
@@ -27,6 +27,11 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = true;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.ftp100 = 1.375; params.ftp200 = 1.375; params.ftp300 = 1.375;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
 	return tpHits, extraHits, criticalHit, damage;

@@ -10,8 +10,9 @@
 -- Staff weapon skill Skill level: 10 Delivers a single-hit attack. Damage varies with TP. Element: Non
 -- Modifiers: STR:50%
 -- 100%TP    200%TP    300%TP
--- 1.00       3.00      5.00
+-- 1.00      1.25      1.50
 -----------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
@@ -27,6 +28,11 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.ftp200 = 3; params.ftp300 = 5;
+	end
+
 
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	if((player:getEquipID(SLOT_MAIN) == 18991) and (player:getMainJob() == JOB_WAR)) then

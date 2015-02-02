@@ -1,26 +1,26 @@
------------------------------------	
--- Randgrith	
--- Club weapon skill	
--- Skill level: N/A	
--- Lowers target's evasion. Gullintani/Mjollnir: Temporarily improves params.accuracy.	
--- Available only when equipped with the Relic Weapons Gullintani (Dynamis use only), Mjollnir, or a Charged Molva Maul.	
--- Aftermath: Adds +20 params.accuracy after the weapon skill is used, duration is determined by TP. Only available with Gullintani and Mjollnir.	
--- 100% = 20 seconds, 200% = 40 seconds, 300% = 60 seconds.	
--- This Relic Weapon is only available to White Mages; Scholars must use the Molva Maul to acquire this weapon skill.	
--- Shield Break effect : Evasion -32	
--- Aligned with the Breeze Gorget & Thunder Gorget.	
--- Aligned with the Breeze Belt & Thunder Belt.	
--- Element: None	
--- Modifiers: STR:40% ; MND:40%	
--- 100%TP    200%TP    300%TP	
--- 2.75      2.75      2.75	
------------------------------------	
-require("scripts/globals/status");	
-require("scripts/globals/settings");	
-require("scripts/globals/weaponskills");	
------------------------------------	
+-----------------------------------
+-- Randgrith
+-- Club weapon skill
+-- Skill level: N/A
+-- Lowers target's evasion. Gullintani/Mjollnir: Temporarily improves params.accuracy.
+-- Available only when equipped with the Relic Weapons Gullintani (Dynamis use only), Mjollnir, or a Charged Molva Maul.
+-- Aftermath: Adds +20 params.accuracy after the weapon skill is used, duration is determined by TP. Only available with Gullintani and Mjollnir.
+-- 100% = 20 seconds, 200% = 40 seconds, 300% = 60 seconds.
+-- This Relic Weapon is only available to White Mages; Scholars must use the Molva Maul to acquire this weapon skill.
+-- Shield Break effect : Evasion -32
+-- Aligned with the Breeze Gorget & Thunder Gorget.
+-- Aligned with the Breeze Belt & Thunder Belt.
+-- Element: None
+-- Modifiers: STR:40% ; MND:40%
+-- 100%TP    200%TP    300%TP
+-- 2.75      2.75      2.75
+-----------------------------------
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)	
+function onUseWeaponSkill(player, target, wsID)
 
 	local params = {};
 	params.numHits = 1;
@@ -36,7 +36,7 @@ function onUseWeaponSkill(player, target, wsID)
 		target:addStatusEffect(EFFECT_WEIGHT, 50, 0, 60);
 	end
 		if((player:getEquipID(SLOT_MAIN) == 18324) and (player:getMainJob() == JOB_WHM)) then
-		if(damage > 0) then	
+		if(damage > 0) then
 			if(player:getTP() >= 100 and player:getTP() < 200) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 20, 0, 20, 0, 9);
 			elseif(player:getTP() >= 200 and player:getTP() < 300) then
@@ -48,4 +48,4 @@ function onUseWeaponSkill(player, target, wsID)
 	end
 	return tpHits, extraHits, criticalHit, damage;
 
-end	
+end

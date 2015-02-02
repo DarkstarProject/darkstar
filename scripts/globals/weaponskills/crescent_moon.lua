@@ -3,21 +3,22 @@
 -- Great Sword weapon skill
 -- Skill level: 175
 -- Delivers a single-hit attack. Damage varies with TP.
--- Modifiers: STR:80%
+-- Modifiers: STR:35%
 -- 100%TP 	200%TP 	300%TP
--- 1.5 		1.75	2.75
+-- 1.0 		1.75	2.5
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 ------------------------------------
 function onUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 1;
 	--ftp damage mods (for Damage Varies with TP; lines are calculated in the function
-	params.ftp100 = 1.5; params.ftp200 = 1.75; params.ftp300 = 2.75;
+	params.ftp100 = 1; params.ftp200 = 1.75; params.ftp300 = 2.5;
 	--wscs are in % so 0.2=20%
-	params.str_wsc = 0.8; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
+	params.str_wsc = 0.35; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
 	--critical mods, again in % (ONLY USE FOR CRITICAL HIT VARIES WITH TP)
 	params.crit100 = 0.0; params.crit200=0.0; params.crit300=0.0;
 	params.canCrit = false;
@@ -25,6 +26,11 @@ function onUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0; params.acc200=0; params.acc300=0;
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.ftp100 = 1.5; params.ftp200 = 1.75; params.ftp300 = 2.75;
+		params.str_wsc = 0.8;
+	end
 
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 

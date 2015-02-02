@@ -41,7 +41,6 @@ function onUseWeaponSkill(player, target, wsID)
 			end
 		end
 	end
-	local crticalHit = false;
 	return tpHits, extraHits, criticalHit, damage;
 
 end;

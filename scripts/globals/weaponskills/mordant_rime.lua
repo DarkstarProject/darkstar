@@ -21,13 +21,18 @@ function onUseWeaponSkill(player, target, wsID)
 
 	local params = {};
 	params.numHits = 2;
-	params.ftp100 = 5; params.ftp200 = 5; params.ftp300 = 5;
-	params.str_wsc = 0.0; params.dex_wsc = 0.3; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.7;
+	params.ftp100 = 3; params.ftp200 = 3; params.ftp300 = 3;
+	params.str_wsc = 0.0; params.dex_wsc = 0.3; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.5;
 	params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.ftp100 = 5; params.ftp200 = 5; params.ftp300 = 5;
+		params.chr_wsc = 0.7;
+	end
 
 	local chance = player:getTP()-100 > math.random()*150;
 	if(damage > 0 and chance) and (target:hasStatusEffect(EFFECT_WEIGHT) == false) then
