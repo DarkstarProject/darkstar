@@ -31,10 +31,15 @@ function onUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0.0; params.acc200=0.0; params.acc300=0.0;
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.vit_wsc = 0.8;
+	end
+
 	--damage = damage * ftp(player:getTP(), ftp100, ftp200, ftp300);
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	if((player:getEquipID(SLOT_MAIN) == 18264) and (player:getMainJob() == JOB_MNK)) then
-		if(damage > 0) then	
+		if(damage > 0) then
 			if(player:getTP() >= 100 and player:getTP() < 200) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 45, 0, 20, 0, 1);
 			elseif(player:getTP() >= 200 and player:getTP() < 300) then
@@ -44,6 +49,6 @@ function onUseWeaponSkill(player, target, wsID)
 			end
 		end
 	end
-	
+
 	return tpHits, extraHits, criticalHit, damage;
 end

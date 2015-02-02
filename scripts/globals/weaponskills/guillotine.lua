@@ -1,14 +1,16 @@
 -----------------------------------
--- Guillotine    
+-- Guillotine
 -- Scythe weapon skill
 -- Skill level: 200
 -- Delivers a four-hit attack. Duration varies with TP.
--- Modifiers: STR:25% ; MND:25% 
+-- Modifiers: STR:25% ; MND:25%
 -- 100%TP 	200%TP 	300%TP
 -- 0.875	0.875	0.875
 -----------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/weaponskills");
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
 function onUseWeaponSkill(player, target, wsID)
 	local params = {};
 	params.numHits = 4;
@@ -23,15 +25,21 @@ function onUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0; params.acc200=0; params.acc300=0;
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1;
-	
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.str_wsc = 0.30; params.mnd_wsc = 0.50;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	
+
 	if damage > 0 then
 		local tp = player:getTP();
 		local duration = (tp/100 * 30) + 30;
 		if(target:hasStatusEffect(EFFECT_SILENCE) == false) then
 			target:addStatusEffect(EFFECT_SILENCE, 1, 0, duration);
 		end
-	end	
+	end
+
 	return tpHits, extraHits, criticalHit, damage;
+
 end

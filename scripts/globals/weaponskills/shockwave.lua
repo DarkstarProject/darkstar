@@ -1,24 +1,23 @@
------------------------------------	
--- Shockwave	
--- Great Sword weapon skill	
--- Skill level: 150	
--- Delivers an area of effect attack. Sleeps enemies. Duration of effect varies with TP.	
--- Will stack with Sneak Attack.	
--- Aligned with the Aqua Gorget.	
--- Aligned with the Aqua Belt.	
--- Element: None	
--- Modifiers: STR:30% ; MND:30%	
--- 100%TP    200%TP    300%TP	
--- 1.00      1.00      1.00	
------------------------------------	
-	
-require("scripts/globals/status");	
-require("scripts/globals/settings");	
-require("scripts/globals/weaponskills");	
------------------------------------	
-	
-function onUseWeaponSkill(player, target, wsID)	
-	
+-----------------------------------
+-- Shockwave
+-- Great Sword weapon skill
+-- Skill level: 150
+-- Delivers an area of effect attack. Sleeps enemies. Duration of effect varies with TP.
+-- Will stack with Sneak Attack.
+-- Aligned with the Aqua Gorget.
+-- Aligned with the Aqua Belt.
+-- Element: None
+-- Modifiers: STR:30% ; MND:30%
+-- 100%TP    200%TP    300%TP
+-- 1.00      1.00      1.00
+-----------------------------------
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
+function onUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 1;
 	params.ftp100 = 1; params.ftp200 = 1; params.ftp300 = 1;
@@ -29,15 +28,12 @@ function onUseWeaponSkill(player, target, wsID)
 	params.atkmulti = 1;
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
-	if damage > 0 then
+	if damage > 0 and target:hasStatusEffect(EFFECT_SLEEP_I) == false) then
 		local tp = player:getTP();
 		local duration = (tp/100 * 60);
-		duration = math.random(0.5, 1) * duration;
-		if not(hasSleepEffects(target)) then
-			target:addStatusEffect(EFFECT_SLEEP_I, 1, 0, duration);
-		end
-	end	
-	
+		target:addStatusEffect(EFFECT_SLEEP_I, 1, 0, duration);
+	end
+
 	return tpHits, extraHits, criticalHit, damage;
-	
-end	
+
+end

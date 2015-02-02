@@ -1,27 +1,27 @@
------------------------------------	
--- Tachi Kaiten	
--- Great Katana weapon skill	
--- Skill level: N/A	
--- Additional effect: temporarily increases amount of TP stored with each hit.	
--- Grants Store TP+7 for the duration of time that it is active. Length of time depends on TP.	
--- 100 TP = 20s	
--- 200 TP = 40s	
--- 300 TP = 60s	
--- This weapon skill is only available with the stage 5 relic Great Katana Amanomurakumo or within Dynamis with the stage 4 Totsukanotsurugi.	
--- Also available as a Latent effect on Ame-no-ohabari	
--- Aligned with the Breeze Gorget, Thunder Gorget & Light Gorget.	
--- Aligned with the Breeze Belt, Thunder Belt & Light Belt.	
--- Element: None	
--- Modifiers: STR:60%	
--- 100%TP    200%TP    300%TP	
--- 3.00      3.00      3.00	
------------------------------------		
-require("scripts/globals/status");	
-require("scripts/globals/settings");	
-require("scripts/globals/weaponskills");	
------------------------------------		
+-----------------------------------
+-- Tachi Kaiten
+-- Great Katana weapon skill
+-- Skill level: N/A
+-- Additional effect: temporarily increases amount of TP stored with each hit.
+-- Grants Store TP+7 for the duration of time that it is active. Length of time depends on TP.
+-- 100 TP = 20s
+-- 200 TP = 40s
+-- 300 TP = 60s
+-- This weapon skill is only available with the stage 5 relic Great Katana Amanomurakumo or within Dynamis with the stage 4 Totsukanotsurugi.
+-- Also available as a Latent effect on Ame-no-ohabari
+-- Aligned with the Breeze Gorget, Thunder Gorget & Light Gorget.
+-- Aligned with the Breeze Belt, Thunder Belt & Light Belt.
+-- Element: None
+-- Modifiers: STR:75%
+-- 100%TP    200%TP    300%TP
+-- 3.00      3.00      3.00
+-----------------------------------
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)	
+function onUseWeaponSkill(player, target, wsID)
 
 	local params = {};
 	params.numHits = 1;
@@ -31,9 +31,15 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.str_wsc = 0.75;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+
 		if((player:getEquipID(SLOT_MAIN) == 18318) and (player:getMainJob() == JOB_SAM)) then
-		if(damage > 0) then	
+		if(damage > 0) then
 			if(player:getTP() >= 100 and player:getTP() <200) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 7, 0, 20, 0, 8);
 			elseif(player:getTP() >= 200 and player:getTP() <300) then
@@ -43,6 +49,7 @@ function onUseWeaponSkill(player, target, wsID)
 			end
 		end
 	end
+
 	return tpHits, extraHits, criticalHit, damage;
-	
-end	
+
+end

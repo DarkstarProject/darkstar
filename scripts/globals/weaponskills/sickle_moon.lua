@@ -1,18 +1,20 @@
 -----------------------------------
--- Sickle Moon   
+-- Sickle Moon
 -- Great Sword weapon skill
 -- Skill level: 200
 -- Delivers a two-hit attack. Damage varies with TP.
--- Modifiers: STR:20% ; AGI:20% 
+-- Modifiers: STR:40% ; AGI:40%
 -- 100%TP 	200%TP 	300%TP
 -- 1.5 		2		2.75
 -----------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/weaponskills");
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
 function onUseWeaponSkill(player, target, wsID)
 
 	local params = {};
-	params.numHits = 1;
+	params.numHits = 2;
 	--ftp damage mods (for Damage Varies with TP; lines are calculated in the function
 	params.ftp100 = 1.5; params.ftp200 = 2; params.ftp300 = 2.75;
 	--wscs are in % so 0.2=20%
@@ -24,8 +26,12 @@ function onUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0; params.acc200=0; params.acc300=0;
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1;
-	
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.str_wsc = 0.4; params.agi_wsc = 0.4;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	
+
 	return tpHits, extraHits, criticalHit, damage;
 end

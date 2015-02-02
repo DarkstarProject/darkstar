@@ -1,4 +1,4 @@
------------------------------------     
+-----------------------------------
 -- Ukko's Fury
 -- Great Axe Weapon Skill
 -- Skill Level: N/A
@@ -8,22 +8,21 @@
 -- Aligned with the Light Belt, Breeze Belt & Thunder Belt.
 -- Element: None
 -- Skillchain Properties: Light/Fragmentation
--- Modifiers: STR:60%
+-- Modifiers: STR:80%
 -- Damage Multipliers by TP:
 -- 100%TP	200%TP	300%TP
 -- 2.0		2.0		2.0
 -- params.critical Chance added with TP:
 -- 100%TP	200%TP	300%TP
 -- 20%		35%		55%
---
------------------------------------        
-require("scripts/globals/status");      
-require("scripts/globals/settings");    
-require("scripts/globals/weaponskills");        
------------------------------------     
-        
-function onUseWeaponSkill(player, target, wsID) 
-	
+-----------------------------------
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
+function onUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 2;
 	params.ftp100 = 2; params.ftp200 = 2; params.ftp300 = 2;
@@ -32,11 +31,15 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = true;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
-	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);        
-		
+	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.str_wsc = 0.8;
+	end
+
 	if damage > 0 and (target:hasStatusEffect(EFFECT_SLOW) == false) then
 		target:addStatusEffect(EFFECT_SLOW, 150, 0, 60);
-	end			
-		
+	end
+
 	return tpHits, extraHits, criticalHit, damage;
-end     
+end

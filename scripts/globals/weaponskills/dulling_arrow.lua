@@ -1,23 +1,23 @@
------------------------------------	
--- Dulling Arrow	
--- Archery weapon skill	
--- Skill level: 80	
--- Lowers enemy's INT. Chance of params.critical varies with TP.	
--- Aligned with the Flame Gorget & Light Gorget.	
--- Aligned with the Flame Belt & Light Belt.	
--- Element: None	
--- Modifiers: STR:16% ; AGI:25%	
--- 100%TP    200%TP    300%TP	
--- 1.00      1.00      1.00	
------------------------------------	
-	
-require("scripts/globals/status");	
-require("scripts/globals/settings");	
-require("scripts/globals/weaponskills");	
------------------------------------	
-	
-function onUseWeaponSkill(player, target, wsID)	
-	
+-----------------------------------
+-- Dulling Arrow
+-- Archery weapon skill
+-- Skill level: 80
+-- Lowers enemy's INT. Chance of params.critical varies with TP.
+-- Aligned with the Flame Gorget & Light Gorget.
+-- Aligned with the Flame Belt & Light Belt.
+-- Element: None
+-- Modifiers: STR:16% ; AGI:25%
+-- 100%TP    200%TP    300%TP
+-- 1.00      1.00      1.00
+-----------------------------------
+
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
+function onUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 1;
 	params.ftp100 = 1; params.ftp200 = 1; params.ftp300 = 1;
@@ -26,9 +26,13 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = true;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.str_wsc = 0.2; params.agi_wsc = 0.5;
+	end
+
 	local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
-   local crticalHit = false;
-	
+
 	return tpHits, extraHits, criticalHit, damage;
-	
-end	
+
+end

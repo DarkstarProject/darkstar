@@ -1,29 +1,29 @@
------------------------------------     
--- Blade HI    
--- Katana weapon skill  
+-----------------------------------
+-- Blade HI
+-- Katana weapon skill
 -- Skill level: N/A
 -- Description: Deals quadruple damage. Chance of params.critical hit varies with TP. Kannagi: Aftermath.
 -- Available only when equipped with Kannagi (85)/(90)/(95)/(99) or Tobi +1/+2/+3.
 -- Aligned with the Shadow Gorget & Soil Gorget.
 -- Aligned with the Shadow Belt & Soil Belt.
--- Element: None        
--- Modifiers: AGI:60% 
+-- Element: None
+-- Modifiers: AGI:60%
 -- Skillchain Properties: Darkness/Gravitation
--- 100%TP    200%TP    300%TP   
--- 4.00      4.00      4.00   
+-- 100%TP    200%TP    300%TP
+-- 4.00      4.00      4.00
 --
 -- params.critical Hit Rate by TP:
 -- 100%TP    200%TP    300%TP
 -- 15%	     20%       25%
 --
------------------------------------        
-require("scripts/globals/status");      
-require("scripts/globals/settings");    
-require("scripts/globals/weaponskills");        
------------------------------------     
-        
-function onUseWeaponSkill(player, target, wsID) 
-        
+-----------------------------------
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
+function onUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 1;
 	params.ftp100 = 4; params.ftp200 = 4; params.ftp300 = 4;
@@ -32,8 +32,14 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = true;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
-	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);        
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.ftp100 = 5; params.ftp200 = 5; params.ftp300 = 5;
+		params.agi_wsc = 0.8;
+	end
+
+	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
 	return tpHits, extraHits, criticalHit, damage;
-        
-end     
+
+end

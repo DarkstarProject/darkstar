@@ -1,24 +1,24 @@
------------------------------------	
--- Iron Tempest	
--- Great Axe weapon skill	
--- Skill Level: 40	
--- Delivers a single-hit attack. Damage varies with TP.	
--- Will stack with Sneak Attack.	
--- Aligned with the Soil Gorget.	
--- Aligned with the Soil Belt.	
--- Element: None	
--- Modifiers: STR:30%	
--- 100%TP    200%TP    300%TP	
--- 1.00      1.00      1.00	
------------------------------------	
-	
-require("scripts/globals/status");	
-require("scripts/globals/settings");	
-require("scripts/globals/weaponskills");	
------------------------------------	
-	
-function onUseWeaponSkill(player, target, wsID)	
-	
+-----------------------------------
+-- Iron Tempest
+-- Great Axe weapon skill
+-- Skill Level: 40
+-- Delivers a single-hit attack. Damage varies with TP.
+-- Will stack with Sneak Attack.
+-- Aligned with the Soil Gorget.
+-- Aligned with the Soil Belt.
+-- Element: None
+-- Modifiers: STR:30%
+-- 100%TP    200%TP    300%TP
+-- 1.00      1.00      1.00
+-----------------------------------
+
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
+function onUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 1;
 	params.ftp100 = 1; params.ftp200 = 1; params.ftp300 = 1;
@@ -27,8 +27,15 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.str_wsc = 0.6;
+		params.atkmulti = 1.25;
+	end
+
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	
+
 	return tpHits, extraHits, criticalHit, damage;
-	
-end	
+
+end

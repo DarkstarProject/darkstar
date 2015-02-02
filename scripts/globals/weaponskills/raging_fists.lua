@@ -1,24 +1,23 @@
------------------------------------	
--- Raging Fists	
--- Hand-to-Hand weapon skill	
--- Skill Level: 125	
--- Delivers a fivefold attack. Damage varies with TP.	
--- Will stack with Sneak Attack.	
--- Aligned with the Thunder Gorget.	
--- Aligned with the Thunder Belt.	
--- Element: None	
--- Modifiers: STR:20% ; DEX:20%	
--- 100%TP    200%TP    300%TP	
--- 1.00      1.50      2.00	
------------------------------------	
-	
-require("scripts/globals/status");	
-require("scripts/globals/settings");	
-require("scripts/globals/weaponskills");	
------------------------------------	
-	
-function onUseWeaponSkill(player, target, wsID)	
-	
+-----------------------------------
+-- Raging Fists
+-- Hand-to-Hand weapon skill
+-- Skill Level: 125
+-- Delivers a fivefold attack. Damage varies with TP.
+-- Will stack with Sneak Attack.
+-- Aligned with the Thunder Gorget.
+-- Aligned with the Thunder Belt.
+-- Element: None
+-- Modifiers: STR:30% ; DEX:30%
+-- 100%TP    200%TP    300%TP
+-- 1.00       4.6        9
+-----------------------------------
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
+function onUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 5;
 	params.ftp100 = 1; params.ftp200 = 1.5; params.ftp300 = 2;
@@ -27,8 +26,14 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.ftp200 = 4.6; params.ftp300 = 9
+		params.str_wsc = 0.3; params.dex_wsc = 0.3;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	
+
 	return tpHits, extraHits, criticalHit, damage;
-	
-end	
+
+end

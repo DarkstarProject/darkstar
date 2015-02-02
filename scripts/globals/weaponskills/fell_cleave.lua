@@ -1,23 +1,23 @@
------------------------------------	
+-----------------------------------
 -- Fell Cleave
--- Great Axe weapon skill	
+-- Great Axe weapon skill
 -- Skill Level: 300
--- Delivers an area attack. Radius varies with TP. 	
+-- Delivers an area attack. Radius varies with TP.
 -- Aligned with the Breeze Gorget, Thunder Gorget & Soil Gorget.
--- Aligned with the Breeze Belt, Thunder Belt & Soil Belt. 
--- Element: None	
+-- Aligned with the Breeze Belt, Thunder Belt & Soil Belt.
+-- Element: None
 -- Modifiers: STR: 60%
--- 100%TP    200%TP    300%TP	
--- 2.00   	 2.00      2.00	
------------------------------------	
-	
-require("scripts/globals/status");	
-require("scripts/globals/settings");	
-require("scripts/globals/weaponskills");	
------------------------------------	
-	
-function onUseWeaponSkill(player, target, wsID)	
-	
+-- 100%TP    200%TP    300%TP
+-- 2.00   	 2.00      2.00
+-----------------------------------
+
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
+function onUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 1;
 	params.ftp100 = 2.0; params.ftp200 = 2.0; params.ftp300 = 2.0;
@@ -26,8 +26,13 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.ftp100 = 2.75; params.ftp200 = 2.75; params.ftp300 = 2.75;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	
+
 	return tpHits, extraHits, criticalHit, damage;
-	
-end	
+
+end

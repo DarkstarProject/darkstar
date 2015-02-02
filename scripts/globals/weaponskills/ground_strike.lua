@@ -1,14 +1,16 @@
 -----------------------------------
--- Ground Strike   
+-- Ground Strike
 -- Great Sword weapon skill
 -- Skill level: 250 QUESTED
 -- Delivers a single-hit attack. Damage varies with TP.
--- Modifiers: STR:50% INT:50% 
+-- Modifiers: STR:50% INT:50%
 -- 100%TP 	200%TP 	300%TP
 -- 1.5 		1.75	3.0
 -----------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/weaponskills");
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
 function onUseWeaponSkill(player, target, wsID)
 
 	local params = {};
@@ -24,8 +26,8 @@ function onUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0; params.acc200=0; params.acc300=0;
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1.75;
-	
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	
+
 	return tpHits, extraHits, criticalHit, damage;
 end

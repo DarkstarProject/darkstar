@@ -1,14 +1,17 @@
 -----------------------------------
--- Slice     
+-- Slice
 -- Scythe weapon skill
 -- Skill level: 5
 -- Delivers a single-hit attack. Damage varies with TP.
--- Modifiers: STR:30% 
+-- Modifiers: STR:100%
 -- 100%TP 	200%TP 	300%TP
 -- 1.50 	1.75	2.00
 -----------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/weaponskills");
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
 function onUseWeaponSkill(player, target, wsID)
 
 	local params = {};
@@ -24,8 +27,12 @@ function onUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0; params.acc200=0; params.acc300=0;
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1;
-	
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.str_wsc = 1.0;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	
+
 	return tpHits, extraHits, criticalHit, damage;
 end

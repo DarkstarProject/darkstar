@@ -1,11 +1,11 @@
------------------------------------     
+-----------------------------------
 -- Victory Smite
 -- Hand-to-Hand Weapon Skill
 -- Skill Level: N/A
 -- Description: Delivers a fourfold attack. Chance of params.critical hit varies with TP.
 -- Must have Verethragna (85)/(90)/(95)/(99)/(99-2) or Revenant Fists +1/+2/+3 equipped.
 -- Aligned with the Light Gorget, Breeze Gorget & Thunder Gorget.
--- Aligned with the Light Belt, Breeze Belt & Thunder Belt.    
+-- Aligned with the Light Belt, Breeze Belt & Thunder Belt.
 -- Element: None
 -- Skillchain Properties: Light, Fragmentation
 -- Modifiers: STR:60%
@@ -16,14 +16,14 @@
 -- 100%TP	200%TP	300%TP
 -- 10%		25%		45%
 --
------------------------------------     
-require("scripts/globals/status");      
-require("scripts/globals/settings");    
-require("scripts/globals/weaponskills");        
------------------------------------     
-        
-function onUseWeaponSkill(player, target, wsID) 
-        
+-----------------------------------
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
+function onUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 4;
 	params.ftp100 = 2.25; params.ftp200 = 2.25; params.ftp300 = 2.25;
@@ -32,6 +32,12 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = true;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.str_wsc = 0.8;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+
 	return tpHits, extraHits, criticalHit, damage;
-end     
+end

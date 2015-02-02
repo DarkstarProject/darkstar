@@ -7,11 +7,11 @@
 -- 100%TP 	200%TP 	300%TP
 -- 2.0x		2.75x	3.5x
 -- Delivers a twofold attack. Damage varies with TP.
--------------------------------
-
-require("scripts/globals/settings");
+-----------------------------------
 require("scripts/globals/status");
+require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
+-----------------------------------
 
 function onUseWeaponSkill(player, target, wsID)
 
@@ -37,7 +37,13 @@ function onUseWeaponSkill(player, target, wsID)
 
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1;
-	params.kick = true;
+	-- Tornado kick is not considered a kick attack and is not modified by Footwork http://www.bluegartr.com/threads/121610-Rehauled-Weapon-Skills-tier-lists?p=6140907&viewfull=1#post6140907
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.ftp100 = 2.25; params.ftp200 = 4.25; params.ftp300 = 7.5;
+		params.str_wsc = 0.4; params.dex_wsc = 0.4; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
+		params.atkmulti = 1.5;
+	end
 
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
