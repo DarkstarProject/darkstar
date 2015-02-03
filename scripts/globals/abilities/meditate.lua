@@ -17,11 +17,12 @@ function onUseAbility(player, target, ability)
 	if(player:getMainJob()==12) then
 		amount = 20;
 	end
-	--TODO: Meditate doesnt actually give an icon, it's not regain as such.
+
 	local tick = 15;
 	local extratick = 0;
 	local sHands = target:getEquipID(SLOT_HANDS);
 	local sHead = target:getEquipID(SLOT_HEAD);
+	-- Todo: change these item checks into a modifier.
 	if (sHands == 15113 or sHands == 14920) then
 		extratick = 1;
 	end
@@ -33,6 +34,7 @@ function onUseAbility(player, target, ability)
 	elseif (extratick == 2) then
 		extratick = math.random(2,3);
 	end
+
 	tick = tick + (extratick * 3);
-	player:addStatusEffectEx(EFFECT_REGAIN,0,amount,3,tick);
+	player:addStatusEffectEx(EFFECT_MEDITATE,0,amount,3,tick);
 end;
