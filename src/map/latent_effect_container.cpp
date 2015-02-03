@@ -591,9 +591,9 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 		case LATENT_WEAPON_DRAWN_HP_UNDER:
 		case LATENT_WEAPON_SHEATHED:
 		{
-			m_POwner->animation == ANIMATION_ATTACK
+			ACTIONTYPE action = m_POwner->PBattleAI->GetCurrentAction();
 
-			CheckLatentsWeaponDraw(action == ACTION_ATTACK);
+			CheckLatentsWeaponDraw(m_POwner->animation == ANIMATION_ATTACK);
 		}
 		    break; 
                 default:
