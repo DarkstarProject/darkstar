@@ -594,7 +594,8 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 			ACTIONTYPE action = m_POwner->PBattleAI->GetCurrentAction();
 
 			CheckLatentsWeaponDraw(action == ACTION_ATTACK);
-		}	
+		}
+		    break; 
                 default:
                     ShowWarning("Latent ID %d unhandled in CheckLatentsEquip\n", m_LatentEffectList.at(i)->GetConditionsID());
                     break;
