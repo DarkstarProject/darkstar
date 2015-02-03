@@ -551,7 +551,9 @@ enum MODIFIER
 
     MOD_GOV_CLEARS                = 0x1F0, // 4% bonus per Grounds of Valor Page clear (modId = 496)
 
-    //MOD_SPARE =0x1FB, // (modId = 507)
+    MOD_EXTRA_DMG_CHANCE          = 0x1FA, // Proc rate of MOD_OCC_DO_EXTRA_DMG. 111 would be 11.1% (modId = 506)
+    MOD_OCC_DO_EXTRA_DMG          = 0x1FB, // Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage. (modId = 507)
+
     //MOD_SPARE =0x1FC, // (modId = 508)
     //MOD_SPARE =0x1FD, // (modId = 509)
     //MOD_SPARE =0x1FE, // (modId = 510)
@@ -560,7 +562,7 @@ enum MODIFIER
 
 };
 
-#define MAX_MODIFIER 506
+#define MAX_MODIFIER 508
 
 
 

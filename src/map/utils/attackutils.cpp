@@ -152,47 +152,13 @@ uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32
 	}
 	uint32 originalDamage = damage;
 
-	switch (PWeapon->getID())
+	if (PWeapon->getModifier(MOD_OCC_DO_EXTRA_DMG) > 0 && PWeapon->getModifier(MOD_EXTRA_DMG_CHANCE) > 0)
 	{
-		//relic weapons have 16% (ffxiclopedia) chance to do x times damage, cannot proc with weapon skills
-
-		// Relic: 2.5 times damage
-		case 18264:		// Spharai, h2h
-		case 18276:		// Excalibur, sword
-		case 18282:		// Ragnarok, great sword
-		case 18288:		// Guttler, axe
-		case 18300:		// Gungnir, polearm
-		case 18318:		// Amanomurakumo, great katana
-		case 18330:		// Claustrum, staff
-			if (WELL512::irand()%100 <= 16) return (damage = (damage * (float)2.5));
-			break;
-
-		// Relic: 3 times damage
-		case 18270:		// Mandau, dagger
-		case 18312:		// Kikoku, katana
-		case 18324:		// Mjollnir, club
-		case 18336:		// Annihilator, marksmanship
-		case 18348:		// Yoichinoyumi, archery
-			if (WELL512::irand()%100 <= 16) return (damage = (damage * 3));
-			break;
-
-		// Relic: 2 times damage
-		case 18294:		// Bravura, great axe
-		case 18306:		// Apocalypse, scythe
-			if (WELL512::irand()%100 <= 16) return (damage = (damage * 2));
-			break;
-
-
-		//mythic weapons, same distribution as multi attacking weapons
-
-		// Mythic: 2 time damage
-		case 19001:		// Gastraphetes(lvl75), marksmanship
-		case 19007:		// Death Penalty(lvl75), marksmanship
-			if (WELL512::irand()%100 > 55) return (damage = (damage * 2));
-			break;
-
-		default:			
-			break;
+		// Relic weapons have 16% (ffxiclopedia) chance to do x times damage, cannot proc with weapon skills
+		if (WELL512::irand()%100 <= (PWeapon->getModifier(MOD_EXTRA_DMG_CHANCE)/100))
+		{
+			return (damage = (damage * (PWeapon->getModifier(MOD_OCC_DO_EXTRA_DMG)/100)));
+		}
 	}
 
 	switch (attackType)
