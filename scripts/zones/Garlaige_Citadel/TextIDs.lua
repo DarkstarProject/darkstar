@@ -34,3 +34,11 @@ NOTHING_OUT_OF_THE_ORDINARY = 6555; -- There is nothing out of the ordinary here
 -- conquest Base
 CONQUEST_BASE = 0;
 
+-- Strange Apparatus
+VOICE_HAS_GONE_SILENT = 7212; -- The voice in your head has gone silent.
+   DEVICE_NOT_WORKING = 7214; -- The device is not working.
+REGISTRATION_COMPLETE = 7218; -- “Registr...n complete. Your access...evel is doctor.”
+       PASSWORD_ERROR = 7219; -- Passw...error...
+        DATA_RECORDED = 7220; -- “Yo...dat...has be...recorde...”
+	 SYS_OVERLOAD = 7223; -- “Warning! Sys...verload!
+	 YOU_LOST_THE = 7228; -- You lost the <item>
