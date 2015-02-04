@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Blind
+-- Spell: Curse
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -22,10 +22,10 @@ function onSpellCast(caster,target,spell)
     power = 50;
 
     -- Duration, including resistance.  Unconfirmed.
-    duration = 300 * applyResistanceEffect(caster,spell,target,dINT,35,0,EFFECT_CURSE);
+    duration = 300 * applyResistanceEffect(caster,spell,target,dINT,35,0,EFFECT_CURSE_I);
 
     if(duration >= 150) then --Do it!
-        if(target:addStatusEffect(EFFECT_CURSE,power,0,duration)) then
+        if(target:addStatusEffect(EFFECT_CURSE_I,power,0,duration)) then
             spell:setMsg(236);
         else
             spell:setMsg(75);
@@ -34,5 +34,5 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(85);
     end
 
-    return EFFECT_CURSE;
+    return EFFECT_CURSE_I;
 end;
