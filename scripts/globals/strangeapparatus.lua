@@ -33,7 +33,7 @@ strAppData[194] = {'HR', 5, 406, PURPLE_CHIP, LIGHTNING_CLUSTER, 17572203, -576.
 strAppData[195] = {'EN', 4, 369, CLEAR_CHIP,  ICE_CLUSTER,       17576204,  102.815,  -0.761, -180.001, 0}; -- The Eldieme Necropolis
 strAppData[196] = {'GM', 1, 352, YELLOW_CHIP, EARTH_CLUSTER,     17580340,  220.001, -41.172,  257.302, 0}; -- Gusgen Mines
 strAppData[197] = {'CN', 2, 335, BLUE_CHIP,   WATER_CLUSTER,     17584424,  216.350,  -0.535, -340.001, 0}; -- Crawlers' Nest
-strAppData[198] = {'MS', 7, 511, BLACK_CHIP,  DARK_CLUSTER,      17588709,  377.464,  18.574, -259.998, 0}; -- Maze of Shakhrami
+strAppData[198] = {'MS', 7, 511, BLACK_CHIP,  DARK_CLUSTER,      17588565,  377.464,  18.574, -259.998, 0}; -- Maze of Shakhrami
 strAppData[200] = {'GC', 6, 383, WHITE_CHIP,  LIGHT_CLUSTER,     17596729,  257.299,  -0.682,   20.000, 0}; -- Garlaige Citadel
 
 local strAppDrop = {};
