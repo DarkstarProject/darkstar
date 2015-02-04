@@ -16510,7 +16510,7 @@ INSERT INTO `item_mods` VALUES(18300, 507, 250); -- Occ. 2.5x dmg
 INSERT INTO `item_mods` VALUES(18305, 356, 105);
 
 -- -------------------------------------------------------
---Apocalypse (75)
+-- Apocalypse (75)
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES(18306, 25, 20);
 INSERT INTO `item_mods` VALUES(18306, 355, 105);
