@@ -5,7 +5,6 @@
 -----------------------------------
 
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
-package.loaded["scripts/globals/strangeapparatus"] = nil;
 
 require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 require("scripts/globals/strangeapparatus");
@@ -64,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	 printf("CSID: %u",csid);
-	 printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 
 	player:setLocalVar( "strAppPass", 0); -- Player actually got to the password prompt, otherwise this would still be 1 in onEventFinish()
 	if (csid == passwordCSID(player:getZoneID())) then
