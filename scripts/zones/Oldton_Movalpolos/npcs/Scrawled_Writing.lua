@@ -2,7 +2,7 @@
 -- Area: Oldton Movalpolos
 -- NPC:  Scrawled Writings
 -- Allows players to spawn Goblin Wolfman with Goblin Drink.
--- @pos 257 -70 517 130
+--
 -----------------------------------
 package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------

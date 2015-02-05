@@ -23,7 +23,8 @@ CREATE TABLE IF NOT EXISTS `item_latents` (
 
 -- INSERT INTO `item_latents` VALUES(itemID, modId, modValue, latentId, latentParam);
 
-
+INSERT INTO `item_latents` VALUES(14726, 108, 6, 25, 0); -- Melody Earring+1, Evasion skill+5 under song/roll effect
+INSERT INTO `item_latents` VALUES(14725, 108, 5, 25, 0); -- Melody Earring, Evasion skill+6 under song/roll effect
 INSERT INTO `item_latents` VALUES(16031, 314, 1, 22, 18); -- Affinity Earring, Enhances Pet Att. if PUP is in party
 INSERT INTO `item_latents` VALUES(16017, 28, 1, 22, 4); -- Ardent Earring, MATT+1 if BLM is in party
 INSERT INTO `item_latents` VALUES(16018, 30, 1, 22, 5); -- Ataraxy Earring, MACC+1 if RDM is in party

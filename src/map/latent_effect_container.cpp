@@ -587,7 +587,18 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                 case LATENT_NATION_CONTROL:
                         CheckLatentsZone();
                     break;
-                default:
+				case LATENT_WEAPON_DRAWN:
+				case LATENT_WEAPON_DRAWN_HP_UNDER:
+				case LATENT_WEAPON_SHEATHED:
+				{
+					ACTIONTYPE action = m_POwner->PBattleAI->GetCurrentAction();
+
+					CheckLatentsWeaponDraw(m_POwner->animation == ANIMATION_ATTACK);
+				}
+				case LATENT_SONG_ROLL_ACTIVE:
+						CheckLatentsRollSong(m_POwner->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_ROLL | EFFECTFLAG_SONG));
+					break;
+				default:
                     ShowWarning("Latent ID %d unhandled in CheckLatentsEquip\n", m_LatentEffectList.at(i)->GetConditionsID());
                     break;
 			}
@@ -637,11 +648,13 @@ void CLatentEffectContainer::CheckLatentsWeaponDraw(bool drawn)
 					break;
 				case LATENT_WEAPON_SHEATHED:
 					m_LatentEffectList.at(i)->Activate();
+
 				default:
 					break;
 			}
 		}
 	}
+	m_POwner->UpdateHealth();
 }
 
 /************************************************************************
