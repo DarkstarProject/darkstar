@@ -1,0 +1,77 @@
+﻿Build started 1/31/2015 12:01:29 PM.
+     1>Project "D:\FFXI\darkstar\win32\DSConnect-server\DSConnect-server.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\VS2013\VC\bin\CL.exe /c /I"D:\FFXI\darkstar\win32\DSConnect-server\..\external" /I"D:\FFXI\darkstar\win32\DSConnect-server\..\external\mysql" /I"D:\FFXI\darkstar\win32\DSConnect-server\..\external\zmq" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _CRT_SECURE_NO_WARNINGS /D dsTCPSERV /D DEBUGLOGLOGIN /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\src\common\blowfish.cpp ..\..\src\common\kernel.cpp ..\..\src\common\malloc.cpp ..\..\src\common\md52.cpp ..\..\src\common\showmsg.cpp ..\..\src\common\socket.cpp ..\..\src\common\sql.cpp ..\..\src\common\strlib.cpp ..\..\src\common\taskmgr.cpp ..\..\src\common\timer.cpp ..\..\src\common\utils.cpp ..\..\src\common\zlib.cpp ..\..\src\login\account.cpp ..\..\src\login\message_server.cpp ..\..\src\login\lobby.cpp ..\..\src\login\login.cpp ..\..\src\login\login_auth.cpp ..\..\src\login\login_session.cpp
+         login_session.cpp
+         login_auth.cpp
+         login.cpp
+         lobby.cpp
+     1>d:\ffxi\darkstar\src\login\lobby.cpp(278): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1850) : see declaration of 'inet_addr'
+         message_server.cpp
+     1>d:\ffxi\darkstar\src\common\socket.h(12): warning C4005: 'FD_SETSIZE' : macro redefinition
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(133) : see previous definition of 'FD_SETSIZE'
+     1>d:\ffxi\darkstar\src\login\message_server.cpp(150): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1868) : see declaration of 'inet_ntoa'
+     1>d:\ffxi\darkstar\src\login\message_server.cpp(157): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1850) : see declaration of 'inet_addr'
+     1>d:\ffxi\darkstar\src\login\message_server.cpp(165): warning C4244: '=' : conversion from 'uint64' to 'ULONG', possible loss of data
+     1>d:\ffxi\darkstar\src\login\message_server.cpp(166): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1868) : see declaration of 'inet_ntoa'
+         account.cpp
+         zlib.cpp
+         utils.cpp
+     1>d:\ffxi\darkstar\src\common\utils.cpp(122): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>d:\ffxi\darkstar\src\common\utils.cpp(127): warning C4244: 'return' : conversion from 'double' to 'uint8', possible loss of data
+     1>d:\ffxi\darkstar\src\common\utils.cpp(169): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\ffxi\darkstar\src\common\utils.cpp(171): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\ffxi\darkstar\src\common\utils.cpp(462): warning C4244: '=' : conversion from 'uint64' to 'uint8', possible loss of data
+     1>d:\ffxi\darkstar\src\common\utils.cpp(520): warning C4244: '=' : conversion from 'uint64' to 'uint8', possible loss of data
+     1>d:\ffxi\darkstar\src\common\utils.cpp(535): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+         timer.cpp
+         taskmgr.cpp
+         strlib.cpp
+         sql.cpp
+         socket.cpp
+     1>d:\ffxi\darkstar\src\common\socket.cpp(252): warning C4996: 'gethostbyname': Use getaddrinfo() or GetAddrInfoW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(2238) : see declaration of 'gethostbyname'
+     1>d:\ffxi\darkstar\src\common\socket.cpp(380): warning C4996: 'gethostbyname': Use getaddrinfo() or GetAddrInfoW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(2238) : see declaration of 'gethostbyname'
+     1>d:\ffxi\darkstar\src\common\socket.cpp(388): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1868) : see declaration of 'inet_ntoa'
+     1>d:\ffxi\darkstar\src\common\socket.cpp(393): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1850) : see declaration of 'inet_addr'
+         showmsg.cpp
+         md52.cpp
+         malloc.cpp
+         kernel.cpp
+         blowfish.cpp
+         Generating Code...
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /nologo /fo"Debug\resource.res" resource.rc 
+       Link:
+         D:\VS2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\DSConnect-server.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\..\lib libmariadb.lib libzmq.lib WS2_32.Lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\..\DSConnect-server.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\DSConnect-server.lib" /MACHINE:X86 Debug\resource.res
+         Debug\blowfish.obj
+         Debug\kernel.obj
+         Debug\malloc.obj
+         Debug\md52.obj
+         Debug\showmsg.obj
+         Debug\socket.obj
+         Debug\sql.obj
+         Debug\strlib.obj
+         Debug\taskmgr.obj
+         Debug\timer.obj
+         Debug\utils.obj
+         Debug\zlib.obj
+         Debug\account.obj
+         Debug\message_server.obj
+         Debug\lobby.obj
+         Debug\login.obj
+         Debug\login_auth.obj
+         Debug\login_session.obj
+         DSConnect-server.vcxproj -> D:\FFXI\darkstar\win32\DSConnect-server\..\..\DSConnect-server.exe
+     1>Done Building Project "D:\FFXI\darkstar\win32\DSConnect-server\DSConnect-server.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:10.40

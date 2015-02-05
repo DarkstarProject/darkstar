@@ -1,0 +1,726 @@
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[31/Jan 12:11][1;37m[Info][0m Console Silent Setting: 0
+[31/Jan 12:11][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[31/Jan 12:11][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[31/Jan 12:11][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[31/Jan 12:11][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[31/Jan 12:14][1;33m[Warning][0m login_parse: unexisting user[1;37m<Server>[0m tried to connect
+[31/Jan 12:14][1;37m[Info][0m [1;37mlogin_parse[0m:[1;37m127.0.0.1[0mshutdown socket...
+[31/Jan 12:14][1;33m[Warning][0m login_parse: unexisting user[1;37m<Server>[0m tried to connect
+[31/Jan 12:14][1;37m[Info][0m [1;37mlogin_parse[0m:[1;37m127.0.0.1[0mshutdown socket...
+[31/Jan 12:14][1;32m[Status][0m [1;37mlogin_parse[0m: account<[1;37mServer[0m> was created
+[31/Jan 12:14][1;37m[Info][0m [1;37mlogin_parse[0m:[1;37m127.0.0.1[0mshutdown socket...
+[31/Jan 12:15][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[31/Jan 12:15][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[31/Jan 12:15][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 12:15][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 12:15][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[31/Jan 12:15][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<22>[0m from ip:<127.0.0.1>
+[31/Jan 12:15][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<21>[0m from ip:<127.0.0.1>
+[31/Jan 12:15][1;36m[Debug][0m [1;37mlobby_createchar[0m: char<[1;37mServer[0m> successfully saved
+[31/Jan 12:15][1;32m[Status][0m [1;37mlobbyview_parse[0m: char <[1;37mServer[0m> was successfully created
+[31/Jan 12:15][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 12:15][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 12:15][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[31/Jan 12:15][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[31/Jan 12:15][1;37m[Info][0m lobbydata_parse: zoneid:(238),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[31/Jan 12:15][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[31/Jan 12:16][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[31/Jan 12:16][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[31/Jan 12:17][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[31/Jan 12:18][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[31/Jan 12:18][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 12:18][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 12:18][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[31/Jan 12:19][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<22>[0m from ip:<127.0.0.1>
+[31/Jan 12:19][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<21>[0m from ip:<127.0.0.1>
+[31/Jan 12:19][1;35m[SQL][0m DB error - Duplicate entry '21828' for key 'PRIMARY'
+[31/Jan 12:19][1;36m[Debug][0m [1;37mlobby_cLook[0m: char<[1;37mServer[0m>, charid: 21828
+[31/Jan 12:19][1;37m[Info][0m [1;37mlobbyview_parse[0m: [1;37mServer[0m shutdown the socket
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[31/Jan 12:21][1;37m[Info][0m Console Silent Setting: 0
+[31/Jan 12:21][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[31/Jan 12:21][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[31/Jan 12:21][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[31/Jan 12:21][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[31/Jan 12:21][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[31/Jan 12:21][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[31/Jan 12:21][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 12:21][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 12:21][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[31/Jan 12:22][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[31/Jan 12:22][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[31/Jan 12:22][1;37m[Info][0m lobbydata_parse: zoneid:(230),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[31/Jan 12:22][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[31/Jan 12:22][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[31/Jan 12:22][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[31/Jan 12:22][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[31/Jan 12:22][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[31/Jan 12:22][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 12:22][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 12:22][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[31/Jan 12:22][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[31/Jan 12:22][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[31/Jan 12:22][1;37m[Info][0m lobbydata_parse: zoneid:(230),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[31/Jan 12:22][1;35m[SQL][0m DB error - Duplicate entry '21828' for key 'PRIMARY'
+[31/Jan 12:22][1;37m[Info][0m [1;37mlobbyview_parse[0m: [1;37mServer[0m shutdown the socket
+[31/Jan 12:22][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[31/Jan 12:22][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[31/Jan 12:23][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[31/Jan 12:23][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[31/Jan 12:23][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 12:23][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 12:23][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[31/Jan 12:23][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[31/Jan 12:23][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[31/Jan 12:23][1;37m[Info][0m lobbydata_parse: zoneid:(230),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[31/Jan 12:23][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[31/Jan 12:24][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[31/Jan 12:24][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[31/Jan 12:25][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[31/Jan 12:25][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[31/Jan 12:25][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 12:25][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 12:25][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[31/Jan 12:25][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[31/Jan 12:25][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[31/Jan 12:25][1;37m[Info][0m lobbydata_parse: zoneid:(230),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[31/Jan 12:25][1;35m[SQL][0m DB error - Duplicate entry '21828' for key 'PRIMARY'
+[31/Jan 12:25][1;37m[Info][0m [1;37mlobbyview_parse[0m: [1;37mServer[0m shutdown the socket
+[31/Jan 12:25][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[31/Jan 12:25][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[31/Jan 12:26][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[31/Jan 12:26][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[31/Jan 12:26][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 12:26][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 12:26][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[31/Jan 12:26][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[31/Jan 12:26][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[31/Jan 12:26][1;37m[Info][0m lobbydata_parse: zoneid:(230),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[31/Jan 12:26][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[31/Jan 14:23][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[31/Jan 14:23][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[31/Jan 15:30][1;37m[Info][0m Console Silent Setting: 0
+[31/Jan 15:30][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[31/Jan 15:30][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[31/Jan 15:30][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[31/Jan 15:30][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[31/Jan 15:30][1;33m[Warning][0m login_parse: unexisting user[1;37m<Server>[0m tried to connect
+[31/Jan 15:30][1;37m[Info][0m [1;37mlogin_parse[0m:[1;37m127.0.0.1[0mshutdown socket...
+[31/Jan 15:30][1;37m[Info][0m [1;37mlogin_parse[0m:[1;37m127.0.0.1[0mshutdown socket...
+[31/Jan 15:31][1;33m[Warning][0m login_parse: unexisting user[1;37m<Server>[0m tried to connect
+[31/Jan 15:31][1;37m[Info][0m [1;37mlogin_parse[0m:[1;37m127.0.0.1[0mshutdown socket...
+[31/Jan 15:31][1;33m[Warning][0m login_parse: unexisting user[1;37m<Server>[0m tried to connect
+[31/Jan 15:31][1;37m[Info][0m [1;37mlogin_parse[0m:[1;37m127.0.0.1[0mshutdown socket...
+[31/Jan 15:31][1;33m[Warning][0m login_parse: undefined code:[0], ip sender:<127.0.0.1>
+[31/Jan 15:31][1;37m[Info][0m [1;37mlogin_parse[0m:[1;37m127.0.0.1[0mshutdown socket...
+[31/Jan 15:31][1;33m[Warning][0m [1;37mlogin_parse[0m:[1;37m127.0.0.1[0m send unreadable data
+[31/Jan 15:31][1;37m[Info][0m [1;37mlogin_parse[0m:[1;37m127.0.0.1[0mshutdown socket...
+[31/Jan 15:31][1;33m[Warning][0m login_parse: unexisting user[1;37m<Server>[0m tried to connect
+[31/Jan 15:31][1;37m[Info][0m [1;37mlogin_parse[0m:[1;37m127.0.0.1[0mshutdown socket...
+[31/Jan 15:31][1;32m[Status][0m [1;37mlogin_parse[0m: account<[1;37mServer[0m> was created
+[31/Jan 15:31][1;37m[Info][0m [1;37mlogin_parse[0m:[1;37m127.0.0.1[0mshutdown socket...
+[31/Jan 15:31][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[31/Jan 15:31][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[31/Jan 15:31][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 15:31][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 15:31][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[31/Jan 15:32][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<22>[0m from ip:<127.0.0.1>
+[31/Jan 15:32][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<21>[0m from ip:<127.0.0.1>
+[31/Jan 15:32][1;36m[Debug][0m [1;37mlobby_createchar[0m: char<[1;37mServer[0m> successfully saved
+[31/Jan 15:32][1;32m[Status][0m [1;37mlobbyview_parse[0m: char <[1;37mServer[0m> was successfully created
+[31/Jan 15:32][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 15:32][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 15:32][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[31/Jan 15:32][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[31/Jan 15:32][1;37m[Info][0m lobbydata_parse: zoneid:(230),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[31/Jan 15:32][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[31/Jan 15:32][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[31/Jan 15:32][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[31/Jan 15:33][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[31/Jan 15:33][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[31/Jan 15:33][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 15:33][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 15:33][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[31/Jan 15:33][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[31/Jan 15:33][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[31/Jan 15:33][1;37m[Info][0m lobbydata_parse: zoneid:(230),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[31/Jan 15:33][1;35m[SQL][0m DB error - Duplicate entry '21828' for key 'PRIMARY'
+[31/Jan 15:33][1;37m[Info][0m [1;37mlobbyview_parse[0m: [1;37mServer[0m shutdown the socket
+[31/Jan 15:34][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[31/Jan 15:34][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[31/Jan 15:34][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[31/Jan 15:35][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[31/Jan 15:35][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 15:35][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 15:35][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[31/Jan 15:35][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[31/Jan 15:35][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[31/Jan 15:35][1;37m[Info][0m lobbydata_parse: zoneid:(230),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[31/Jan 15:35][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[31/Jan 15:35][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[31/Jan 15:35][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[31/Jan 15:36][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[31/Jan 15:36][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[31/Jan 15:36][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 15:36][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 15:36][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[31/Jan 15:36][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[31/Jan 15:36][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[31/Jan 15:36][1;37m[Info][0m lobbydata_parse: zoneid:(230),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[31/Jan 15:36][1;35m[SQL][0m DB error - Duplicate entry '21828' for key 'PRIMARY'
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[31/Jan 15:36][1;37m[Info][0m Console Silent Setting: 0
+[31/Jan 15:36][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[31/Jan 15:36][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[31/Jan 15:36][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[31/Jan 15:36][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[31/Jan 15:37][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[31/Jan 15:37][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[31/Jan 15:37][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 15:37][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 15:37][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[31/Jan 15:37][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[31/Jan 15:37][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[31/Jan 15:37][1;37m[Info][0m lobbydata_parse: zoneid:(230),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[31/Jan 15:37][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[31/Jan 16:04][1;37m[Info][0m Console Silent Setting: 0
+[31/Jan 16:04][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[31/Jan 16:04][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[31/Jan 16:04][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[31/Jan 16:04][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[31/Jan 16:05][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[31/Jan 16:06][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[31/Jan 16:06][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 16:06][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 16:06][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[31/Jan 16:06][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[31/Jan 16:06][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[31/Jan 16:06][1;37m[Info][0m lobbydata_parse: zoneid:(230),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[31/Jan 16:06][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[31/Jan 16:16][1;37m[Info][0m Console Silent Setting: 0
+[31/Jan 16:16][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[31/Jan 16:16][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[31/Jan 16:16][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[31/Jan 16:16][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[31/Jan 16:17][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[31/Jan 16:17][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[31/Jan 16:17][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[31/Jan 16:17][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[31/Jan 16:17][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[31/Jan 16:17][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[31/Jan 16:17][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[31/Jan 16:17][1;37m[Info][0m lobbydata_parse: zoneid:(230),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[31/Jan 16:17][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[31/Jan 18:23][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[31/Jan 18:23][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[01/Feb 21:15][1;37m[Info][0m Console Silent Setting: 0
+[01/Feb 21:15][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[01/Feb 21:15][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[01/Feb 21:15][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[01/Feb 21:15][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[01/Feb 21:15][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[01/Feb 21:15][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[01/Feb 21:15][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[01/Feb 21:15][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[01/Feb 21:15][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[01/Feb 21:16][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[01/Feb 21:16][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[01/Feb 21:16][1;37m[Info][0m lobbydata_parse: zoneid:(96),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[01/Feb 21:16][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[01/Feb 21:19][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[01/Feb 21:19][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[01/Feb 21:23][1;37m[Info][0m Console Silent Setting: 0
+[01/Feb 21:23][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[01/Feb 21:23][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[01/Feb 21:23][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[01/Feb 21:23][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[01/Feb 21:23][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[01/Feb 21:23][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[01/Feb 21:23][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[01/Feb 21:23][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[01/Feb 21:23][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[01/Feb 21:24][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[01/Feb 21:24][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[01/Feb 21:24][1;37m[Info][0m lobbydata_parse: zoneid:(132),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[01/Feb 21:24][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[01/Feb 22:05][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[01/Feb 22:05][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[02/Feb 05:22][1;37m[Info][0m Pinging SQL server to keep connection alive...
+[02/Feb 05:22][1;37m[Info][0m Pinging SQL server to keep connection alive...
+[02/Feb 11:23][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 11:24][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 11:24][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 11:24][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 11:24][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 11:24][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 11:24][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 11:24][1;37m[Info][0m lobbydata_parse: zoneid:(132),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 11:24][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[02/Feb 11:29][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[02/Feb 11:29][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[02/Feb 11:37][1;37m[Info][0m Console Silent Setting: 0
+[02/Feb 11:37][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[02/Feb 11:37][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[02/Feb 11:37][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[02/Feb 11:37][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[02/Feb 11:38][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 11:38][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 11:38][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 11:38][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 11:38][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 11:38][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 11:38][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 11:38][1;37m[Info][0m lobbydata_parse: zoneid:(132),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 11:38][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[02/Feb 11:48][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[02/Feb 11:48][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[02/Feb 11:49][1;37m[Info][0m Console Silent Setting: 0
+[02/Feb 11:49][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[02/Feb 11:49][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[02/Feb 11:49][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[02/Feb 11:49][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[02/Feb 11:50][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 11:50][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 11:50][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 11:50][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 11:50][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 11:50][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 11:50][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 11:50][1;37m[Info][0m lobbydata_parse: zoneid:(132),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 11:50][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[02/Feb 11:51][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[02/Feb 11:51][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[02/Feb 12:30][1;37m[Info][0m Console Silent Setting: 0
+[02/Feb 12:30][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[02/Feb 12:30][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[02/Feb 12:30][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[02/Feb 12:30][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[02/Feb 12:33][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 12:33][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 12:33][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 12:33][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 12:33][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 12:33][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 12:33][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 12:33][1;37m[Info][0m lobbydata_parse: zoneid:(132),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 12:33][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[02/Feb 12:51][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[02/Feb 12:51][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[02/Feb 14:10][1;37m[Info][0m Console Silent Setting: 0
+[02/Feb 14:10][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[02/Feb 14:10][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[02/Feb 14:10][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[02/Feb 14:10][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[02/Feb 14:11][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 14:11][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 14:11][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 14:11][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 14:11][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 14:11][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 14:11][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 14:11][1;37m[Info][0m lobbydata_parse: zoneid:(237),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 14:11][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[02/Feb 14:15][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[02/Feb 14:15][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[02/Feb 14:17][1;37m[Info][0m Console Silent Setting: 0
+[02/Feb 14:17][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[02/Feb 14:17][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[02/Feb 14:17][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[02/Feb 14:17][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[02/Feb 14:18][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 14:18][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 14:18][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 14:18][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 14:18][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 14:18][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 14:18][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 14:18][1;37m[Info][0m lobbydata_parse: zoneid:(237),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 14:18][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[02/Feb 14:21][1;37m[Info][0m Console Silent Setting: 0
+[02/Feb 14:21][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[02/Feb 14:21][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[02/Feb 14:21][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[02/Feb 14:21][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[02/Feb 14:21][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 14:21][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 14:21][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 14:21][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 14:21][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 14:21][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 14:21][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 14:21][1;37m[Info][0m lobbydata_parse: zoneid:(237),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 14:21][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[02/Feb 14:22][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[02/Feb 14:22][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[02/Feb 14:29][1;37m[Info][0m Console Silent Setting: 0
+[02/Feb 14:29][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[02/Feb 14:29][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[02/Feb 14:29][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[02/Feb 14:29][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[02/Feb 14:29][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 14:29][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 14:29][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 14:29][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 14:29][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 14:30][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 14:30][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 14:30][1;37m[Info][0m lobbydata_parse: zoneid:(237),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 14:30][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[02/Feb 14:32][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[02/Feb 14:32][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[02/Feb 14:42][1;37m[Info][0m Console Silent Setting: 0
+[02/Feb 14:42][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[02/Feb 14:42][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[02/Feb 14:42][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[02/Feb 14:42][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[02/Feb 14:42][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 14:43][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 14:43][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 14:43][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 14:43][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 14:43][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 14:43][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 14:43][1;37m[Info][0m lobbydata_parse: zoneid:(237),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 14:43][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[02/Feb 14:47][1;37m[Info][0m Console Silent Setting: 0
+[02/Feb 14:47][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[02/Feb 14:47][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[02/Feb 14:47][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[02/Feb 14:47][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[02/Feb 14:47][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 14:47][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 14:47][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 14:47][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 14:47][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 14:48][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 14:48][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 14:48][1;37m[Info][0m lobbydata_parse: zoneid:(237),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 14:48][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[02/Feb 15:52][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[02/Feb 15:52][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[02/Feb 17:50][1;37m[Info][0m Console Silent Setting: 0
+[02/Feb 17:50][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[02/Feb 17:50][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[02/Feb 17:50][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[02/Feb 17:50][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[02/Feb 17:51][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 17:51][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 17:51][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 17:51][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 17:51][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 17:52][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 17:52][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 17:52][1;37m[Info][0m lobbydata_parse: zoneid:(237),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 17:52][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[02/Feb 18:04][1;37m[Info][0m Console Silent Setting: 0
+[02/Feb 18:04][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[02/Feb 18:04][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[02/Feb 18:04][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[02/Feb 18:04][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[02/Feb 18:04][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 18:04][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 18:04][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 18:04][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 18:04][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 18:05][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 18:05][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 18:05][1;37m[Info][0m lobbydata_parse: zoneid:(237),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 18:05][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[02/Feb 18:05][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[02/Feb 18:05][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[02/Feb 18:07][1;37m[Info][0m Console Silent Setting: 0
+[02/Feb 18:07][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[02/Feb 18:07][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[02/Feb 18:07][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[02/Feb 18:07][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[02/Feb 18:08][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 18:08][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 18:08][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 18:08][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 18:08][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 18:09][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 18:09][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 18:09][1;37m[Info][0m lobbydata_parse: zoneid:(237),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 18:09][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[02/Feb 18:09][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[02/Feb 18:09][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[02/Feb 19:27][1;37m[Info][0m Console Silent Setting: 0
+[02/Feb 19:27][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[02/Feb 19:27][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[02/Feb 19:27][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[02/Feb 19:27][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[02/Feb 19:28][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 19:28][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 19:28][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 19:28][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 19:28][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 19:28][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 19:28][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 19:28][1;37m[Info][0m lobbydata_parse: zoneid:(237),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 19:28][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[02/Feb 19:29][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[02/Feb 19:29][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[02/Feb 19:56][1;37m[Info][0m Console Silent Setting: 0
+[02/Feb 19:56][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[02/Feb 19:56][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[02/Feb 19:56][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[02/Feb 19:56][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[02/Feb 19:57][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 19:57][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 19:57][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 19:57][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 19:57][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 19:57][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 19:57][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 19:57][1;37m[Info][0m lobbydata_parse: zoneid:(237),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 19:57][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[02/Feb 19:57][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[02/Feb 19:57][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[02/Feb 20:14][1;37m[Info][0m Console Silent Setting: 0
+[02/Feb 20:14][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[02/Feb 20:14][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[02/Feb 20:14][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[02/Feb 20:14][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[02/Feb 20:27][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[02/Feb 20:27][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[02/Feb 20:27][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[02/Feb 20:27][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[02/Feb 20:27][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[02/Feb 20:27][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[02/Feb 20:27][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[02/Feb 20:27][1;37m[Info][0m lobbydata_parse: zoneid:(237),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[02/Feb 20:27][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[02/Feb 20:27][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[02/Feb 20:27][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[03/Feb 11:49][1;37m[Info][0m Console Silent Setting: 0
+[03/Feb 11:49][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[03/Feb 11:49][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[03/Feb 11:49][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[03/Feb 11:49][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[03/Feb 11:50][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[03/Feb 11:50][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[03/Feb 11:50][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[03/Feb 11:50][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[03/Feb 11:50][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[03/Feb 11:50][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[03/Feb 11:50][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[03/Feb 11:50][1;37m[Info][0m lobbydata_parse: zoneid:(237),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[03/Feb 11:50][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[03/Feb 12:18][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[03/Feb 12:18][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[03/Feb 15:52][1;37m[Info][0m Console Silent Setting: 0
+[03/Feb 15:52][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[03/Feb 15:52][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[03/Feb 15:52][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[03/Feb 15:52][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[03/Feb 15:54][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[03/Feb 15:54][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[03/Feb 15:54][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[03/Feb 15:54][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[03/Feb 15:54][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[03/Feb 15:54][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[03/Feb 15:54][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[03/Feb 15:54][1;37m[Info][0m lobbydata_parse: zoneid:(237),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[03/Feb 15:54][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[03/Feb 15:55][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[03/Feb 15:55][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[03/Feb 16:37][1;37m[Info][0m Console Silent Setting: 0
+[03/Feb 16:37][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[03/Feb 16:37][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[03/Feb 16:37][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[03/Feb 16:37][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[05/Feb 02:50][1;37m[Info][0m Console Silent Setting: 0
+[05/Feb 02:50][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[05/Feb 02:50][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[05/Feb 02:50][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[05/Feb 02:50][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[05/Feb 02:51][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[05/Feb 02:51][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[05/Feb 02:51][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[05/Feb 02:51][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[05/Feb 02:51][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[05/Feb 02:51][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[05/Feb 02:51][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[05/Feb 02:51][1;37m[Info][0m lobbydata_parse: zoneid:(237),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[05/Feb 02:51][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[05/Feb 03:07][1;37m[Info][0m Console Silent Setting: 0
+[05/Feb 03:07][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[05/Feb 03:07][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[05/Feb 03:07][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[05/Feb 03:07][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[05/Feb 03:08][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[05/Feb 03:08][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[05/Feb 03:08][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[05/Feb 03:08][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[05/Feb 03:08][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[05/Feb 03:08][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[05/Feb 03:08][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[05/Feb 03:08][1;37m[Info][0m lobbydata_parse: zoneid:(11),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[05/Feb 03:08][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[05/Feb 03:43][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[05/Feb 03:43][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37mUnknown[0m.
+[05/Feb 03:43][1;37m[Info][0m Console Silent Setting: 0
+[05/Feb 03:43][1;32m[Status][0m The login-server-auth is [1;32mready[0m (Server is listening on the port 54231).
+
+[05/Feb 03:43][1;32m[Status][0m The login-server-lobbydata is [1;32mready[0m (Server is listening on the port 54230).
+
+[05/Feb 03:43][1;32m[Status][0m The login-server-lobbyview is [1;32mready[0m (Server is listening on the port 54001).
+
+[05/Feb 03:43][1;32m[Status][0m The login-server is [1;32mready[0m to work...
+[05/Feb 03:44][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[05/Feb 03:44][1;37m[Info][0m login_parse:[1;37m<Server>[0m has logged in 2 times! Removing older logins.
+[05/Feb 03:44][1;37m[Info][0m login_parse:[1;37m<Server>[0m was connected
+[05/Feb 03:44][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<26>[0m from ip:<127.0.0.1>
+[05/Feb 03:44][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<1f>[0m from ip:<127.0.0.1>
+[05/Feb 03:44][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a1>[0m from ip:<127.0.0.1>
+[05/Feb 03:44][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<24>[0m from ip:<127.0.0.1>
+[05/Feb 03:44][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[05/Feb 03:44][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
+[05/Feb 03:44][1;36m[Debug][0m lobbyview_parse:Incoming Packet:[1;37m<7>[0m from ip:<127.0.0.1>
+[05/Feb 03:44][1;36m[Debug][0m lobbydata_parse:Incoming Packet:[1;37m<a2>[0m from ip:<127.0.0.1>
+[05/Feb 03:44][1;37m[Info][0m lobbydata_parse: zoneid:(11),zoneip:(127.0.0.1),zoneport:(54230) for char:(21828)
+[05/Feb 03:44][1;32m[Status][0m lobbydata_parse: client 127.0.0.1 finished work with [1;32mlobbyview[0m
+[05/Feb 11:43][1;37m[Info][0m Pinging SQL server to keep connection alive...
+[05/Feb 11:43][1;37m[Info][0m Pinging SQL server to keep connection alive...
+[05/Feb 12:32][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m shutdown the socket
+[05/Feb 12:32][1;37m[Info][0m lobbydata_parse: [1;37mServer[0m's login_session_data is deleted
