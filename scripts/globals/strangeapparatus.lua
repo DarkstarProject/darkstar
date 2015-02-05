@@ -198,7 +198,7 @@ function getStrAppDrop(player,zone)
 	
 		rate = math.random();
 		
-		if (rate <= (1 - STRANGE_APPARATUS_RATE)) then -- Crystal Cluster
+		if (rate <= 0.5) then -- Crystal Cluster
 			item = strAppData[zone][5];
 			qty  = 2;
 		end
