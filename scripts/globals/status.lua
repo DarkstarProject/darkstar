@@ -1,8 +1,16 @@
------------------------------------
+------------------------------------
 --
--- 	STATUSES AND MODS
+-- STATUSES AND MODS
 --
------------------------------------
+-- Contains variable-ized definitions of things like core enums for use in lua scripts.
+------------------------------------
+
+
+
+------------------------------------
+-- Job IDs
+------------------------------------
+
 JOB_NON             = 0;
 JOB_WAR             = 1;
 JOB_MNK             = 2;
@@ -27,6 +35,10 @@ JOB_SCH             = 20;
 JOB_GEO             = 21;
 JOB_RUN             = 22;
 
+------------------------------------
+-- 
+------------------------------------
+
 STATUS_NORMAL			= 0;
 STATUS_UPDATE			= 1;
 STATUS_DISAPPEAR		= 2;
@@ -36,10 +48,10 @@ STATUS_CUTSCENE_ONLY	= 6;
 STATUS_18				= 18;
 STATUS_SHUTDOWN			= 20;
 
------------------------------------
+------------------------------------
 -- These codes represent the subeffects for
 -- additional effects animations from battleentity.h
------------------------------------
+------------------------------------
 
 -- ATTACKS
 	SUBEFFECT_FIRE_DAMAGE       = 1;   -- 110000        3
@@ -95,10 +107,10 @@ STATUS_SHUTDOWN			= 20;
     SUBEFFECT_NONE              = 0;
 
 
------------------------------------
+------------------------------------
 -- These codes represent the actual status effects.
 -- They are simply for convenience.
------------------------------------
+------------------------------------
 
 EFFECT_KO						= 0
 EFFECT_WEAKNESS					= 1
@@ -719,6 +731,10 @@ EFFECT_MEDITATE                 = 801 -- Dummy effect for SAM Meditate JA
 -- EFFECT_PLACEHOLDER             = 1023 -- The client dat file seems to have only this many "slots", results of exceeding that are untested.
 
 
+----------------------------------
+-- SC masks
+----------------------------------
+
 EFFECT_SKILLCHAIN0              = 0x200
 EFFECT_SKILLCHAIN1              = 0x400
 EFFECT_SKILLCHAIN2              = 0x800
@@ -726,6 +742,10 @@ EFFECT_SKILLCHAIN3              = 0x1000
 EFFECT_SKILLCHAIN4              = 0x2000
 EFFECT_SKILLCHAIN5              = 0x4000
 EFFECT_SKILLCHAINMASK           = 0x7C00
+
+------------------------------------
+-- Effect Flags
+------------------------------------
 
 EFFECTFLAG_NONE             = 0x0000
 EFFECTFLAG_DISPELABLE       = 0x0001
@@ -746,6 +766,8 @@ EFFECTFLAG_FOOD                 = 0x8000
 EFFECTFLAG_SONG             = 0x10000
 EFFECTFLAG_ROLL             = 0x20000
 
+------------------------------------
+
 function removeSleepEffects(target)
 	target:delStatusEffect(EFFECT_SLEEP_I);
 	target:delStatusEffect(EFFECT_SLEEP_II);
@@ -753,7 +775,7 @@ function removeSleepEffects(target)
 end;
 
 function hasSleepEffects(target)
-	if(target:hasStatusEffect(EFFECT_SLEEP_I) or
+	if (target:hasStatusEffect(EFFECT_SLEEP_I) or
 	target:hasStatusEffect(EFFECT_SLEEP_II) or
 	target:hasStatusEffect(EFFECT_LULLABY) ) then
 		return true;
@@ -761,7 +783,7 @@ function hasSleepEffects(target)
 	return false;
 end;
 
------------------------------------
+------------------------------------
 -- These codes are the gateway to directly interacting with the pXI core program with status effects.
 -- These are NOT the actual status effects such as weakness or silence,
 -- but rather arbitrary codes chosen to represent different modifiers to the effected characters and mobs.
@@ -770,7 +792,7 @@ end;
 --
 -- Example: target:getMod(MOD_STR) will get the sum of STR bonuses/penalties from gear, food, STR Etude, Absorb-STR, and any other STR-related buff/debuff.
 -- Note that the above will ignore base statistics, and that getStat() should be used for stats, Attack, and Defense, while getACC(), getRACC(), and getEVA() also exist.
------------------------------------
+------------------------------------
 
 MOD_NONE			= 0x00
 MOD_DEF				= 0x01
@@ -1106,7 +1128,7 @@ MOD_DOUBLE_SHOT_RATE		  =0x1A6 -- The rate that double shot can proc
 MOD_VELOCITY_SNAPSHOT_BONUS	  =0x1A7 -- Increases Snapshot whilst Velocity Shot is up.
 MOD_VELOCITY_RATT_BONUS		  =0x1A8 -- Increases Ranged Attack whilst Velocity Shot is up.
 MOD_SHADOW_BIND_EXT		  	  =0x1A9 -- Extends the time of shadowbind
-MOD_ABSORB_DMG_TO_MP		  =0x1AA --	Absorbs a percentage of damage taken to MP.
+MOD_ABSORB_DMG_TO_MP		  =0x1AA -- Absorbs a percentage of damage taken to MP.
 MOD_ENMITY_REDUCTION_PHYSICAL =0x1AB -- Reduces Enmity decrease when taking physical damage
 MOD_SHIELD_MASTERY_TP         =0x1E5 -- Shield mastery TP bonus when blocking with a shield (modId = 485)
 MOD_PERFECT_COUNTER_ATT		  =0x1AC -- Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
@@ -1192,9 +1214,9 @@ MOD_OCC_DO_EXTRA_DMG          =0x1FB -- Multiplier for "Occasionally do x times 
 -- MOD_SPARE =0x1FF -- (modId = 511)
 -- MOD_SPARE =0x200 -- (modId = 512)
 
------------------------------------
+------------------------------------
 -- Merit Definitions
------------------------------------
+------------------------------------
 
 MCATEGORY_HP_MP      = 0x0040
 MCATEGORY_ATTRIBUTES = 0x0080
@@ -1613,9 +1635,9 @@ MERIT_STORMSURGE                = MCATEGORY_SCH_2 + 0x0A
 
 
 
------------------------------------
+------------------------------------
 -- Slot Definitions
------------------------------------
+------------------------------------
 
 SLOT_MAIN 		= 0
 SLOT_SUB		= 1
@@ -1654,9 +1676,9 @@ ALLEGIANCE_SAN_DORIA	= 2
 ALLEGIANCE_BASTOK		= 3
 ALLEGIANCE_WINDURST		= 4
 
------------------------------------
+------------------------------------
 -- Inventory enum
------------------------------------
+------------------------------------
 
 LOC_INVENTORY   = 0
 LOC_MOGSAFE     = 1
@@ -1666,9 +1688,9 @@ LOC_MOGLOCKER   = 4
 LOC_MOGSATCHEL  = 5
 LOC_MOGSACK     = 6
 
------------------------------------
--- Message enum                  --
------------------------------------
+------------------------------------
+-- Message enum
+------------------------------------
 
 MSGBASIC_DEFEATS_TARG			= 6 -- The <player> defeats <target>.
 MSGBASIC_ALREADY_CLAIMED		= 12 -- Cannot attack. Your target is already claimed.
@@ -1744,6 +1766,10 @@ MSGBASIC_ROLL_ALREADY_ACTIVE	= 429 -- The same roll is already active on the <pl
 MSGBASIC_EFFECT_ALREADY_ACTIVE  = 523 -- The same effect is already active on <player>.
 MSGBASIC_NO_FINISHINGMOVES		= 524 -- You have not earned enough finishing moves to perform that action.
 
+------------------------------------
+-- Spell Groups
+------------------------------------
+
 SPELLGROUP_NONE		 = 0
 SPELLGROUP_SONG		 = 1
 SPELLGROUP_BLACK	 = 2
@@ -1751,6 +1777,10 @@ SPELLGROUP_BLUE		 = 3
 SPELLGROUP_NINJUTSU	 = 4
 SPELLGROUP_SUMMONING = 5
 SPELLGROUP_WHITE	 = 6
+
+------------------------------------
+-- MOBMODs
+------------------------------------
 
 MOBMOD_GIL_MIN = 1
 MOBMOD_GIL_MAX = 2
@@ -1799,8 +1829,11 @@ MOBMOD_DUAL_WIELD = 44
 MOBMOD_ADD_EFFECT = 45
 MOBMOD_AUTO_SPIKES = 46
 MOBMOD_SPAWN_LEASH = 47
+MOBMOD_SHARE_TARGET = 48
 
---skills
+------------------------------------
+-- Skills
+------------------------------------
 
     SKILL_NON           = 0
 	SKILL_H2H			= 1
@@ -1855,11 +1888,9 @@ MOBMOD_SPAWN_LEASH = 47
     RECAST_MAGIC    = 1
     RECAST_ABILITY  = 2
 
------------------------------------
---
---	ACTION IDs
---
------------------------------------
+------------------------------------
+-- ACTION IDs
+------------------------------------
 
 ACTION_NONE						= 0;
 ACTION_ATTACK					= 1;
@@ -1899,11 +1930,9 @@ ACTION_MOBABILITY_USING			= 34;
 ACTION_MOBABILITY_INTERRUPT		= 35;
 ACTION_LEAVE					= 36;
 
------------------------------------
---
---	ECOSYSTEM IDs
---
------------------------------------
+------------------------------------
+-- ECOSYSTEM IDs
+------------------------------------
 
 SYSTEM_ERROR			= 0;
 SYSTEM_AMORPH			= 1;
@@ -1928,11 +1957,9 @@ SYSTEM_UNDEAD			= 19;
 SYSTEM_VERMIN			= 20;
 SYSTEM_VORAGEAN			= 21;
 
------------------------------------
---
---	Spell AOE IDs
---
------------------------------------
+------------------------------------
+-- Spell AOE IDs
+------------------------------------
 
 SPELLAOE_NONE           = 0;
 SPELLAOE_RADIAL         = 1;
@@ -1942,20 +1969,16 @@ SPELLAOE_RADIAL_ACCE    = 4;  -- AOE when under SCH stratagem Accession
 SPELLAOE_PIANISSIMO     = 5;  -- Single target when under BRD JA Pianissimo
 SPELLAOE_DIFFUSION		= 6;   -- AOE when under Diffusion
 
------------------------------------
---
---	Spell flag bits
---
------------------------------------
+------------------------------------
+-- Spell flag bits
+------------------------------------
 
 SPELLFLAG_NONE		= 0;
 SPELLFLAG_HIT_ALL	= 1;		-- hit all targets in range regardless of party
 
------------------------------------
---
---	Behaviour bits
---
------------------------------------
+------------------------------------
+-- Behaviour bits
+------------------------------------
 
 BEHAVIOUR_NONE				= 0x000;
 BEHAVIOUR_NO_DESPAWN		= 0x001; -- mob does not despawn on death
@@ -1965,10 +1988,9 @@ BEHAVIOUR_AGGRO_AMBUSH		= 0x200; -- mob aggroes by ambush
 BEHAVIOUR_NO_TURN           = 0x400; -- mob does not turn to face target
 
 ------------------------------------
---
 -- Elevator IDs
---
 ------------------------------------
+
 ELEVATOR_KUFTAL_TUNNEL_DSPPRNG_RCK		= 1;
 ELEVATOR_PORT_BASTOK_DRWBRDG			= 2;
 ELEVATOR_DAVOI_LIFT                     = 3;
