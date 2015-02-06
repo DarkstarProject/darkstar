@@ -474,8 +474,8 @@ public:
 
     int32 setDelay(lua_State*);             // sets a mobs weapon delay
     int32 setDamage(lua_State*);            // sets a mobs weapon damage
-    int32 castSpell(lua_State*);            // forces a mob to cast a spell (parameter = spellid, otherwise picks a spell from its list)
-    int32 useMobAbility(lua_State*);        // forces a mob to use a mobability (parameter = mobid, otherwise picks a spell from its list)
+    int32 castSpell(lua_State*);            // forces a mob to cast a spell (parameter = spell ID, otherwise picks a spell from its list)
+    int32 useMobAbility(lua_State*);        // forces a mob to use a mobability (parameter = skill ID)
     int32 actionQueueEmpty(lua_State*);     // returns whether the action queue is empty or not
     int32 actionQueueAbility(lua_State*);   // returns whether the action is from the action queue or not
 

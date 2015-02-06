@@ -77,7 +77,20 @@ INSERT INTO `mob_skill` VALUES (479,0,20,'Eagle_Eye_Shot',0,25.0,2000,0,4,2,0,0)
 INSERT INTO `mob_skill` VALUES (474,0,432,'Meikyo_Shisui',0,7.0,2000,0,1,2,0,0);
 INSERT INTO `mob_skill` VALUES (475,0,18,'Mijin_Gakure',1,20.0,2000,0,4,2,0,0);
 INSERT INTO `mob_skill` VALUES (476,0,432,'Call_Wyvern',0,7.0,2000,0,1,2,0,0);
--- INSERT INTO `mob_skill` VALUES (478,0,724,'Astral_Flow',0,7.0,2000,0,1,2,0,0);
+-- INSERT INTO `mob_skill` VALUES (478,0,432,'Astral_Flow',0,7.0,2000,0,1,2,0,0); -- Most NM use this version and animation.
+-- INSERT INTO `mob_skill` VALUES (2000,0,724,'Astral_Flow',0,7.0,2000,0,1,2,0,0); -- Only looks alright with small or human-like Mob Models
+-- INSERT INTO `mob_skill` VALUES (1933,0,432,'Azure Lore',0,7.0,2000,0,1,2,0,0); -- Mammol Ja
+-- INSERT INTO `mob_skill` VALUES (2001,0,???,'Azure Lore',0,7.0,2000,0,1,2,0,0); -- Raubahn
+-- INSERT INTO `mob_skill` VALUES (1934,0,432,'Wild Card',0,7.0,2000,0,1,2,0,0); -- Lamia/Merrow
+-- INSERT INTO `mob_skill` VALUES (2002,0,???,'Wild Card',0,7.0,2000,0,1,2,0,0); -- Qultada
+-- INSERT INTO `mob_skill` VALUES (1935,0,432,'Overdrive',0,7.0,2000,0,1,2,0,0); -- Troll
+-- INSERT INTO `mob_skill` VALUES (2003,0,???,'Overdrive',0,7.0,2000,0,1,2,0,0); -- Zonpa-Zippa (S)
+-- INSERT INTO `mob_skill` VALUES (2454,0,432,'Trance',0,7.0,2000,0,1,2,0,0); -- Urd
+-- INSERT INTO `mob_skill` VALUES (2004,0,???,'Trance',0,7.0,2000,0,1,2,0,0); -- Laila, Lilisette
+-- INSERT INTO `mob_skill` VALUES (2005,0,???,'Tabula_Rasa',0,7.0,2000,0,1,2,0,0); -- Gunther, Adelheid
+-- INSERT INTO `mob_skill` VALUES (2102,0,432,'Tabula_Rasa',0,7.0,2000,0,1,2,0,0); -- ???
+-- INSERT INTO `mob_skill` VALUES (???,0,???,'Bolster',0,7.0,2000,0,1,2,0,0); -- Likely does not yet exist in dats for mob use in retail.
+-- INSERT INTO `mob_skill` VALUES (3009,0,432,'Elemental_Sforzo',0,7.0,2000,0,1,2,0,0); -- Nothing yet uses this to my knowledge.
 
 -- Rabbits
 INSERT INTO `mob_skill` VALUES (1,206,1,'Foot_Kick',0,7.0,2000,1500,4,0,0,0);
