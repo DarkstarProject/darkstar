@@ -62,8 +62,8 @@ end;
 	
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-  if(csid== 0x7d01)then
-    player:setPos(420,0,445,192);
-end
+    if(csid== 0x7d01)then
+        player:setPos(420,0,445,192);
+    end
  
 end;
