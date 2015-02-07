@@ -2178,6 +2178,12 @@ INSERT INTO `mob_skill` VALUES (712,483,676,'red_lotus_blade',0,7,2500,1500,4,0,
 INSERT INTO `mob_skill` VALUES (713,483,677,'Flat_blade',0,7,2500,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (714,483,678,'Savage_blade',0,7,2500,1500,4,0,0,0);
 
+-- Ajido Marujido
+INSERT INTO `mob_skill` VALUES (714,484,674,'Warp_in',0,7,900,0,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (715,484,675,'Warp_out',0,7,900,0,1,0,0,0);
+
+
+
 -- Kam'lanaut
 INSERT INTO `mob_skill` VALUES (567,351,495,'Fire_Blade',0,7,2000,0,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (568,351,496,'Frost_Blade',0,7,2000,0,1,0,0,0);

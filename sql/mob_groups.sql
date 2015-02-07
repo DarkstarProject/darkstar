@@ -11854,6 +11854,9 @@ INSERT INTO `mob_groups` VALUES (14181,5431,60,0,128,0,0,0,75,75,0); -- 6b07
 INSERT INTO `mob_groups` VALUES (14182,4249,165,0,128,0,0,0,75,75,1);
 -- trion sando 9-2
 INSERT INTO `mob_groups` VALUES (14183,4006,206,0,128,0,0,0,75,75,1);
+-- Ajido-Marujido windurst 9-2
+INSERT INTO `mob_groups` VALUES (14184,75,170,0,128,0,0,0,75,75,1);
+
 -- Ra kaznar inner court z 276
 
 INSERT INTO `mob_groups` VALUES (14190,5243,276,330,0,0,0,0,124,125,0);
