@@ -546,6 +546,7 @@ public:
 
     int32 entityVisualPacket(lua_State* L);
     int32 entityAnimationPacket(lua_State* L);
+    int32 getPartyLeader(lua_State* L);
     int32 getParty(lua_State* L);
     int32 messageText(lua_State* L);
     int32 instanceEntry(lua_State* L);
