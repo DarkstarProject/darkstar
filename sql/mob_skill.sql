@@ -2143,10 +2143,11 @@ INSERT INTO `mob_skill` VALUES (335,410,335,'Bomb_Toss',2,8,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2158,410,2414,'Saucepan',4,7.0,2000,1500,4,0,0,0);
 
 -- Seed Crystal
--- INSERT INTO `mob_skill` VALUES (2160,411,2416,'Seed of Deception',0,0.0,0000,0000,0,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2161,411,2417,'Seed of Deference',0,0.0,0000,0000,0,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2162,411,2418,'Seed of Nihility',0,0.0,0000,0000,0,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2163,411,2419,'Seed of Judgment',0,0.0,0000,0000,0,0,0,0);
+-- melee move 1494
+-- INSERT INTO `mob_skill` VALUES (2160,411,1495,'Seed of Deception',0,0.0,0000,0000,0,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2161,411,1496,'Seed of Deference',0,0.0,0000,0000,0,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2162,411,1497,'Seed of Nihility',0,0.0,0000,0000,0,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2163,411,1498,'Seed of Judgment',0,0.0,0000,0000,0,0,0,0);
 
 -- Seed Thrall
 -- Family ID: 412
