@@ -36,7 +36,7 @@ JOB_GEO             = 21;
 JOB_RUN             = 22;
 
 ------------------------------------
--- 
+--
 ------------------------------------
 
 STATUS_NORMAL			= 0;
@@ -74,7 +74,8 @@ STATUS_SHUTDOWN			= 20;
     SUBEFFECT_DEFENSE_DOWN      = 18;  -- 1-01001      37
     SUBEFFECT_SHIELD            = 20;
     SUBEFFECT_HP_DRAIN          = 21;  -- 1-10101      43
-    SUBEFFECT_TP_DRAIN          = 22;
+    SUBEFFECT_MP_DRAIN          = 22;  -- This is correct animation
+    SUBEFFECT_TP_DRAIN          = 22;  -- Not sure this is correct
 	SUBEFFECT_HASTE             = 23;
 
 -- SPIKES
@@ -1163,7 +1164,7 @@ MOD_QUICK_DRAW_DMG = 411
 
 MOD_QUAD_ATTACK				  =0x1AE -- Quadruple attack chance.
 
-MOD_ADDITIONAL_EFFECT         =0x1AF -- All additional effects
+MOD_ADDITIONAL_EFFECT         =0x1AF -- All additional effects (modId = 431)
 MOD_ENSPELL_DMG_BONUS         =0x1B0
 
 MOD_FIRE_ABSORB               =0x1CB -- (modId = 459)
