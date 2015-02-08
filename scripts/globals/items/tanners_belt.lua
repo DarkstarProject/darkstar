@@ -28,7 +28,7 @@ end;
 -----------------------------------------
  
 function onItemUse(target)
-        target:addStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY,53,0,120);
+        target:addStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY,2,0,120);
 end;
  
 -----------------------------------------
