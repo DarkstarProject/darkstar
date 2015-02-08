@@ -40,8 +40,7 @@ function onUseWeaponSkill(player, target, wsID)
 			end
 		end
 	end
-   local crticalHit = false;
-
+	damage = damage * WEAPON_SKILL_POWER
 	return tpHits, extraHits, criticalHit, damage;
 
 end;

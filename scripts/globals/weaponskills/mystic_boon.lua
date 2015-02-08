@@ -34,8 +34,6 @@ function onUseWeaponSkill(player, target, wsID)
 
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
-	player:addMP(damage);
-
 	if((player:getEquipID(SLOT_MAIN) == 18993) and (player:getMainJob() == JOB_WHM)) then
 		if(damage > 0) then
 
@@ -95,6 +93,8 @@ function onUseWeaponSkill(player, target, wsID)
 			end
 		end
 	end
+	damage = damage * WEAPON_SKILL_POWER
+	player:addMP(damage);
 	return tpHits, extraHits, criticalHit, damage;
 
 end

@@ -41,7 +41,7 @@ function onUseWeaponSkill(player, target, wsID)
 	end
 
 	local damage = target:breathDmgTaken(WSC);
-
+	damage = damage * WEAPON_SKILL_POWER
 	return 1, 0, false, damage;
 
 end
