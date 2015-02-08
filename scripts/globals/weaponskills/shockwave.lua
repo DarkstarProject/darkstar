@@ -33,7 +33,7 @@ function onUseWeaponSkill(player, target, wsID)
 		local duration = (tp/100 * 60);
 		target:addStatusEffect(EFFECT_SLEEP_I, 1, 0, duration);
 	end
-
+	damage = damage * WEAPON_SKILL_POWER
 	return tpHits, extraHits, criticalHit, damage;
 
 end

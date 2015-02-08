@@ -41,7 +41,7 @@ function onUseWeaponSkill(player, target, wsID)
 	if damage > 0 and (target:hasStatusEffect(EFFECT_MAGIC_DEF_DOWN) == false) then
 		target:addStatusEffect(EFFECT_MAGIC_DEF_DOWN, 10, 0, 120);
 	end
-
+	damage = damage * WEAPON_SKILL_POWER
 	return tpHits, extraHits, criticalHit, damage;
 
 end

@@ -40,7 +40,7 @@ function onUseWeaponSkill(player, target, wsID)
 			target:addStatusEffect(EFFECT_STUN, 1, 0, 4);
 		end
 	end
-
+	damage = damage * WEAPON_SKILL_POWER
 	return tpHits, extraHits, criticalHit, damage;
 
 end

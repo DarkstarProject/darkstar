@@ -38,7 +38,7 @@ function onUseWeaponSkill(player, target, wsID)
 	if damage > 0 and (target:hasStatusEffect(EFFECT_SILENCE) == false) then
 		target:addStatusEffect(EFFECT_SILENCE, 1, 0, 45);
 	end
-
+	damage = damage * WEAPON_SKILL_POWER
 	return tpHits, extraHits, criticalHit, damage;
 
 end
