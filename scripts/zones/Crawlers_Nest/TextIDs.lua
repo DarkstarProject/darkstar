@@ -28,3 +28,12 @@ EQUIPMENT_COMPLETELY_PURIFIED = 7241; -- Your equipment has not been completely 
 
 -- conquest Base
 CONQUEST_BASE = 0;
+
+-- Strange Apparatus
+VOICE_HAS_GONE_SILENT = 171; -- The voice in your head has gone silent.
+   DEVICE_NOT_WORKING = 173; -- The device is not working.
+REGISTRATION_COMPLETE = 177; -- “Registr...n complete. Your access...evel is doctor.”
+       PASSWORD_ERROR = 178; -- Passw...error...
+        DATA_RECORDED = 179; -- “Yo...dat...has be...recorde...”
+	 SYS_OVERLOAD = 182; -- “Warning! Sys...verload!
+	 YOU_LOST_THE = 187; -- You lost the <item>

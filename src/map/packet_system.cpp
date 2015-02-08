@@ -2627,14 +2627,22 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 *                                                                       *
 ************************************************************************/
 
-// zone 245 cs 0x00C7 Password
+// zone 245 cs 0x00C7 Password - Strange Apparatus Passwords
 
 void SmallPacket0x060(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    PrintPacket(data);
+    //PrintPacket(data);
 
-    //luautils::OnEventUpdate(PChar, 0, 0);
-    //PChar->pushPacket(new CReleasePacket(PChar,RELEASE_EVENT));
+	uint16 EventID = RBUFW(data, (0x08));
+
+	for (uint32 i = 0x0C; i <= 0x18; i += 4)
+	{
+		uint32 Result = RBUFL(data, (i));
+		luautils::OnEventUpdate(PChar, EventID, Result);
+	}
+
+	PChar->pushPacket(new CReleasePacket(PChar, RELEASE_SKIPPING));
+
     return;
 }
 
