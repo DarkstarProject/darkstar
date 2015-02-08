@@ -407,6 +407,6 @@ INSERT INTO `abilities` VALUES ('616', 'judgment_bolt', '15', '1', '4', '60', '1
 -- INSERT INTO `abilities` VALUES ('119', 'overdrive', '18', '0', '1', '7200', '0', '0', '0', '143', '20.0', '0', '0', '0', '0', '0','TOAU');
 -- INSERT INTO `abilities` VALUES ('165', 'trance', '19', '0', '1', '7200', '0', '0', '0', '184', '20.0', '0', '1', '300', '0', '0','WOTG');
 -- INSERT INTO `abilities` VALUES ('194', 'tabula_rasa', '20', '0', '1', '7200', '0', '0', '0', '190', '20.0', '0', '1', '300', '0', '0','WOTG');
--- INSERT INTO `abilities` VALUES ('327', 'bolster', '21', '0', '1', '7200', '0', '0', '0', '33', '20.0', '0', '1', '300', '0', '0',null);
+-- INSERT INTO `abilities` VALUES ('327', 'bolster', '21', '0', '1', '7200', '0', '0', '0', '33', '20.0', '0', '1', '300', '0', '0','SOA');
 -- INSERT INTO `abilities` VALUES ('340', 'elemental_sforzo', '22', '0', '1', '7200', '0', '0', '0', '302', '20.0', '0', '0', '0', '0', '0','SOA');
 
