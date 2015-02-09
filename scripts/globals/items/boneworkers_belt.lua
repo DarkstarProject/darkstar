@@ -28,7 +28,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_BONECRAFT_IMAGERY,54,0,120);
+	target:addStatusEffect(EFFECT_BONECRAFT_IMAGERY,2,0,120);
 end;
 
 -----------------------------------------
