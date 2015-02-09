@@ -17234,6 +17234,7 @@ INSERT INTO `item_mods` VALUES(19001, 355, 217);
 -- Kogarasumaru
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES(19002, 355, 154);
+INSERT INTO `item_mods` VALUES(19002, 508, 15);
 
 -- -------------------------------------------------------
 -- Nagi
