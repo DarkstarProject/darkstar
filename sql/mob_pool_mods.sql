@@ -215,6 +215,14 @@ INSERT INTO `mob_pool_mods` VALUES (2105,48,434,1);
 INSERT INTO `mob_pool_mods` VALUES (70,48,434,1);
 INSERT INTO `mob_pool_mods` VALUES (1270,39,-1,1);
 
+-- -------------------------
+--  Antlion MOBMOD_SPECIAL_SKILL Pit_Ambush 
+-- -------------------------
+INSERT INTO `mob_pool_mods` VALUES (586,30,22,1); -- Burrow Antlion
+INSERT INTO `mob_pool_mods` VALUES (3141,30,22,1); -- Pit Antlion
+INSERT INTO `mob_pool_mods` VALUES (3996,30,22,1); -- Trench Antlion
+INSERT INTO `mob_pool_mods` VALUES (662,30,22,1); -- Cave Antlion
+
 /*!40000 ALTER TABLE `mob_pool_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
