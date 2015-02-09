@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Ven 03 Février 2012    22:54
+-- GÃ©nÃ©rÃ© le : Ven 03 FÃ©vrier 2012    22:54
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Base de donnÃ©es: `dspdb`
 --
 
 -- --------------------------------------------------------
@@ -59,7 +59,7 @@ INSERT INTO `mob_skill` VALUES (808,0,351,'Jump',0,9.5,2000,0,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (514,0,442,'Jumping_Thrust',0,9.5,2000,0,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (761,0,505,'Call_Beast',0,7.0,2000,0,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1645,0,505,'Activate',0,7.0,2000,0,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (22,0,812,'Pit_Ambush',0,9.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (22,26,812,'Pit_Ambush',0,9.0,2000,0,4,0,0,0);
 
 -- Two Hours
 -- make a mob 2 hour by setting mobmod_main_2hour
