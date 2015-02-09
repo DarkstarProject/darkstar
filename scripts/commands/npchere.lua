@@ -25,10 +25,9 @@ function onTrigger(player, npcId)
         return;
     end
 
-    npc:setStatus(STATUS_NORMAL);
     if (player:getZoneID() == npc:getZoneID()) then
         npc:setPos( player:getXPos(), player:getYPos(), player:getZPos(), player:getRotPos(), player:getZoneID() );
-        npc:setStatus(STATUS_UPDATE);
+        npc:setStatus(STATUS_NORMAL);
     else
         if (noDepop == nil or noDepop == 0) then
             npc:setStatus(STATUS_DISAPPEAR);
