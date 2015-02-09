@@ -42,6 +42,17 @@ INSERT INTO `item_mods` VALUES(10650, 8, 8);
 INSERT INTO `item_mods` VALUES(10650, 9, 8);
 INSERT INTO `item_mods` VALUES(10650, 110, 9);
 INSERT INTO `item_mods` VALUES(10650, 483, 20);
+
+-- ------------------------------------------
+-- Saotome Haidate +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES(10721, 1, 52);
+INSERT INTO `item_mods` VALUES(10721, 8, 6);
+INSERT INTO `item_mods` VALUES(10721, 11, 6);
+INSERT INTO `item_mods` VALUES(10721, 23, 8);
+INSERT INTO `item_mods` VALUES(10721, 68, 8);
+INSERT INTO `item_mods` VALUES(10721, 508, 25);
+
 INSERT INTO `item_mods` VALUES(10914, 1, 6);
 INSERT INTO `item_mods` VALUES(10914, 27, 2);
 -- INSERT INTO `item_mods` VALUES(10914, ???, -2); TODO: Pet Emnity
@@ -10858,10 +10869,16 @@ INSERT INTO `item_mods` VALUES(15127, 2, 18);
 INSERT INTO `item_mods` VALUES(15127, 26, 7);
 INSERT INTO `item_mods` VALUES(15127, 27, -2);
 INSERT INTO `item_mods` VALUES(15127, 110, 10);
+
+-- ------------------------------------------
+-- Saotome Haidate
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(15128, 1, 40);
 INSERT INTO `item_mods` VALUES(15128, 2, 18);
 INSERT INTO `item_mods` VALUES(15128, 11, 3);
 INSERT INTO `item_mods` VALUES(15128, 27, 1);
+INSERT INTO `item_mods` VALUES(15128, 508, 15); -- Augment's Third Eye
+
 INSERT INTO `item_mods` VALUES(15129, 1, 31);
 INSERT INTO `item_mods` VALUES(15129, 2, 40);
 INSERT INTO `item_mods` VALUES(15129, 259, 5);
@@ -12291,10 +12308,16 @@ INSERT INTO `item_mods` VALUES(15590, 2, 18);
 INSERT INTO `item_mods` VALUES(15590, 26, 9);
 INSERT INTO `item_mods` VALUES(15590, 27, -3);
 INSERT INTO `item_mods` VALUES(15590, 110, 10);
+
+-- ------------------------------------------
+-- Saotome Haidate +1
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(15591, 1, 41);
 INSERT INTO `item_mods` VALUES(15591, 2, 33);
 INSERT INTO `item_mods` VALUES(15591, 11, 4);
 INSERT INTO `item_mods` VALUES(15591, 27, 1);
+INSERT INTO `item_mods` VALUES(15591, 508, 15); -- Aug. Third Eye
+
 INSERT INTO `item_mods` VALUES(15592, 1, 32);
 INSERT INTO `item_mods` VALUES(15592, 2, 40);
 INSERT INTO `item_mods` VALUES(15592, 259, 5);
@@ -19656,6 +19679,24 @@ INSERT INTO `item_mods` VALUES(14649, 58, 20); -- [Element: Thunder]+20
 INSERT INTO `item_mods` VALUES(13736, 1, 35); -- DEF:35
 INSERT INTO `item_mods` VALUES(13736, 10, 2); -- VIT+2
 INSERT INTO `item_mods` VALUES(13736, 160, -1); -- Damage taken -1%
+
+-- -------------------------------------------------------
+-- Sakonji Haidate
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(27174, 1, 89);
+INSERT INTO `item_mods` VALUES(27174, 2, 23);
+INSERT INTO `item_mods` VALUES(27174, 8, 21);
+INSERT INTO `item_mods` VALUES(27174, 10, 12);
+INSERT INTO `item_mods` VALUES(27174, 11, 9); 
+INSERT INTO `item_mods` VALUES(27174, 12, 17);
+INSERT INTO `item_mods` VALUES(27174, 13, 10);
+INSERT INTO `item_mods` VALUES(27174, 14, 8);
+INSERT INTO `item_mods` VALUES(27174, 23, 15);
+INSERT INTO `item_mods` VALUES(27174, 29, 1);
+INSERT INTO `item_mods` VALUES(27174, 31, 51);
+INSERT INTO `item_mods` VALUES(27174, 68, 25);
+INSERT INTO `item_mods` VALUES(27174, 384, 50);
+INSERT INTO `item_mods` VALUES(27174, 508, 35);
 
 -- -------------------------------------------------------
 -- Genta Kabuto
