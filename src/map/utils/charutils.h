@@ -40,7 +40,12 @@ namespace charutils
     void	LoadChar(CCharEntity* PChar);
     void	LoadInventory(CCharEntity* PChar);
     void    LoadEquip(CCharEntity* PChar);
-
+	
+	void	LoadSpells(CCharEntity* PChar);
+	void	LoadKIs(CCharEntity* PChar);
+	void	LoadMissions(CCharEntity* PChar);
+	void	LoadQuests(CCharEntity* PChar);
+	
     void	SendQuestMissionLog(CCharEntity* PChar);
     void	SendKeyItems(CCharEntity* PChar);
     void	SendInventory(CCharEntity* PChar);
@@ -165,6 +170,7 @@ namespace charutils
     void    SetPoints(CCharEntity* PChar, const char* type, int32 amount);
     int32   GetPoints(CCharEntity* PChar, const char* type);
     std::string GetConquestPointsName(CCharEntity* PChar);
+
 };
 
 #endif

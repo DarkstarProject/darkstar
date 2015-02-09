@@ -309,38 +309,45 @@ namespace charutils
         uint8 meritPoints = 0;
         uint16 limitPoints = 0;
 
-        const int8* fmtQuery =
-            "SELECT "
-            "charname,"				//  0
-            "pos_zone,"				//  1
-            "pos_prevzone,"			//  2
-            "pos_rot,"				//  3
-            "pos_x,"					//  4
-            "pos_y,"					//  5
-            "pos_z,"					//  6
-            "boundary,"				//  7
-            "home_zone,"				//  8
-            "home_rot,"				//  9
-            "home_x,"					// 10
-            "home_y,"					// 11
-            "home_z,"					// 12
-            "nation,"					// 13
-            "quests,"					// 14
-            "keyitems,"				// 15
-            "spells,"					// 16
-            "abilities,"				// 17
-            "titles,"					// 18
-            "zones,"					// 19
-            "missions,"				// 20
-            "assault,"                // 21
-            "campaign,"               // 22
-            "playtime,"				// 23
-            "isnewplayer "            // 24
-            "FROM chars "
-            "WHERE charid = %u";
+		const int8* fmtQuery =
+			"SELECT "
+			"charname,"				//  0
+			"pos_zone,"				//  1
+			"pos_prevzone,"			//  2
+			"pos_rot,"				//  3
+			"pos_x,"					//  4
+			"pos_y,"					//  5
+			"pos_z,"					//  6
+			"boundary,"				//  7
+			"home_zone,"				//  8
+			"home_rot,"				//  9
+			"home_x,"					// 10
+			"home_y,"					// 11
+			"home_z,"					// 12
+			"nation,"					// 13
+			"quests,"					// 14
+			"keyitems,"				// 15
+			"spells,"					// 16
+			"abilities,"				// 17
+			"titles,"					// 18
+			"zones,"					// 19
+			"missions,"				// 20
+			"assault,"                // 21
+			"campaign,"               // 22
+			"playtime,"				// 23
+			"isnewplayer "            // 24
+			"FROM chars "
+			"WHERE charid = %u;";
 
         int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+		int8* quests = NULL;
+		int8* keyitems = NULL;
+		int8* spells = NULL;
+		int8* abilities = NULL;
+		int8* missions = NULL;
 
+
+		DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
         if (ret != SQL_ERROR &&
             Sql_NumRows(SqlHandle) != 0 &&
             Sql_NextRow(SqlHandle) == SQL_SUCCESS)
@@ -415,6 +422,7 @@ namespace charutils
             PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 24) == 1 ? true : false;
         }
 
+		// DSP_DEBUG_BREAK_IF(spells == NULL || keyitems == NULL || missions == NULL);
 
         fmtQuery =
             "SELECT "
@@ -474,7 +482,6 @@ namespace charutils
             PChar->getStorage(LOC_MOGSACK)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 4));
             PChar->getStorage(LOC_MOGCASE)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 5));
 
-            PChar->getStorage(LOC_WARDROBE)->AddBuff(80); // Always 80..
         }
 
         fmtQuery = "SELECT face, race, size, head, body, hands, legs, feet, main, sub, ranged "
@@ -3704,7 +3711,7 @@ namespace charutils
 
         int8 keyitems[sizeof(PChar->keys) * 2 + 1];
         Sql_EscapeStringLen(SqlHandle, keyitems, (const int8*)PChar->keys.keysList, sizeof(PChar->keys));
-
+		DSP_DEBUG_BREAK_IF(keyitems == NULL);
         Sql_Query(SqlHandle, fmtQuery, keyitems, PChar->id);
     }
 
@@ -3723,10 +3730,8 @@ namespace charutils
 
         int8 spells[sizeof(PChar->m_SpellList) * 2 + 1];
         Sql_EscapeStringLen(SqlHandle, spells, (const int8*)PChar->m_SpellList, sizeof(PChar->m_SpellList));
-
-        Sql_Query(SqlHandle, Query,
-            spells,
-            PChar->id);
+		DSP_DEBUG_BREAK_IF(spells == NULL);
+        Sql_Query(SqlHandle, Query, spells, PChar->id);
     }
 
 
@@ -3745,10 +3750,8 @@ namespace charutils
 
         int8 abilities[sizeof(PChar->m_LearnedAbilities) * 2 + 1];
         Sql_EscapeStringLen(SqlHandle, abilities, (const int8*)PChar->m_LearnedAbilities, sizeof(PChar->m_LearnedAbilities));
-
-        Sql_Query(SqlHandle, Query,
-            abilities,
-            PChar->id);
+		DSP_DEBUG_BREAK_IF(abilities == NULL);
+        Sql_Query(SqlHandle, Query, abilities, PChar->id);
     }
 
     /************************************************************************
@@ -4486,3 +4489,124 @@ namespace charutils
     }
 
 }; // namespace charutils
+
+
+/************************************************************************
+*																		*
+*  Load Spells													*
+*																		*
+************************************************************************/
+
+void LoadSpells(CCharEntity* PChar)
+{
+	const int8* fmtQuery =
+		"SELECT "
+		"spells,"					// 1
+		"FROM chars "
+		"WHERE charid = %u;";
+
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+	DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
+	if (ret != SQL_ERROR &&
+		Sql_NumRows(SqlHandle) != 0 &&
+		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		size_t length = 0;
+		length = 0;
+		int8* spells = NULL;
+		Sql_GetData(SqlHandle, 1, &spells, &length);
+		memcpy(PChar->m_SpellList, spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
+		memcpy(PChar->m_EnabledSpellList, spells, (length > sizeof(PChar->m_EnabledSpellList) ? sizeof(PChar->m_EnabledSpellList) : length));
+		charutils::filterEnabledSpells(PChar);
+	}
+}
+
+/************************************************************************
+*																		*
+*  Load KI's													*
+*																		*
+************************************************************************/
+
+void LoadKIs(CCharEntity* PChar)
+{
+	const int8* fmtQuery =
+		"SELECT "
+		"keyitems,"					// 1
+		"FROM chars "
+		"WHERE charid = %u;";
+
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+	DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
+	if (ret != SQL_ERROR &&
+		Sql_NumRows(SqlHandle) != 0 &&
+		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		size_t length = 0;
+		length = 0;
+		int8* keyitems = NULL;
+		Sql_GetData(SqlHandle, 1, &keyitems, &length);
+		memcpy(PChar->keys.keysList, keyitems, (length > sizeof(PChar->keys) ? sizeof(PChar->keys) : length));
+
+	}
+}
+
+/************************************************************************
+*																		*
+*  Load Missions													*
+*																		*
+************************************************************************/
+
+void LoadMissions(CCharEntity* PChar)
+{
+	const int8* fmtQuery =
+		"SELECT "
+		"missions,"					// 1
+		"FROM chars "
+		"WHERE charid = %u;";
+
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+	DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
+	if (ret != SQL_ERROR &&
+		Sql_NumRows(SqlHandle) != 0 &&
+		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		size_t length = 0;
+		length = 0;
+		int8* missions = NULL;
+		Sql_GetData(SqlHandle, 1, &missions, &length);
+		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
+
+	}
+}
+
+/************************************************************************
+*																		*
+*  Load Quests													*
+*																		*
+************************************************************************/
+
+void LoadQuests(CCharEntity* PChar)
+{
+	const int8* fmtQuery =
+		"SELECT "
+		"quests,"					// 1
+		"FROM chars "
+		"WHERE charid = %u;";
+
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+	DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
+	if (ret != SQL_ERROR &&
+		Sql_NumRows(SqlHandle) != 0 &&
+		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		size_t length = 0;
+		int8* quests = NULL;
+		Sql_GetData(SqlHandle, 1, &quests, &length);
+		memcpy(PChar->m_questLog, quests, (length > sizeof(PChar->m_questLog) ? sizeof(PChar->m_questLog) : length));
+
+	}
+}

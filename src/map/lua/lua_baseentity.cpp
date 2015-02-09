@@ -1278,7 +1278,7 @@ inline int32 CLuaBaseEntity::setRankPoints(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+	charutils::LoadMissions(PChar);
     PChar->profile.rankpoints = (int32)lua_tointeger(L, 1);
     charutils::SaveMissionsList(PChar);
     return 0;
@@ -1294,7 +1294,7 @@ inline int32 CLuaBaseEntity::addRankPoints(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+	charutils::LoadMissions(PChar);
     PChar->profile.rankpoints += (int32)lua_tointeger(L, 1);;
     charutils::SaveMissionsList(PChar);
     return 0;
@@ -1323,7 +1323,7 @@ inline int32 CLuaBaseEntity::setRank(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+	charutils::LoadMissions(PChar);
     PChar->profile.rank[PChar->profile.nation] = (int32)lua_tointeger(L, 1);;
     charutils::SaveMissionsList(PChar);
     return 0;
@@ -1340,7 +1340,7 @@ inline int32 CLuaBaseEntity::addQuest(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+	charutils::LoadQuests(PChar);
     uint8 questID = (uint8)lua_tointeger(L,-1);
     uint8 logID   = (uint8)lua_tointeger(L,-2);
 
@@ -1373,7 +1373,7 @@ inline int32 CLuaBaseEntity::delQuest(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+	charutils::LoadQuests(PChar);
     uint8 questID = (uint8)lua_tointeger(L,-1);
     uint8 logID   = (uint8)lua_tointeger(L,-2);
 
@@ -1436,7 +1436,7 @@ inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+	charutils::LoadQuests(PChar);
     uint8 questID = (uint8)lua_tointeger(L,-1);
     uint8 logID   = (uint8)lua_tointeger(L,-2);
 
@@ -1509,7 +1509,7 @@ inline int32 CLuaBaseEntity::addMission(lua_State *L)
     if (LogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+		charutils::LoadMissions(PChar);
         if (PChar->m_missionLog[LogID].current != LogID > 2 ? 0 : -1)
         {
             ShowWarning(CL_YELLOW"Lua::addMission: player has a current mission\n" CL_RESET, LogID);
@@ -1546,7 +1546,7 @@ inline int32 CLuaBaseEntity::delMission(lua_State *L)
     if (LogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+		charutils::LoadMissions(PChar);
         uint8 current  = PChar->m_missionLog[LogID].current;
         uint8 complete = PChar->m_missionLog[LogID].complete[MissionID];
 
@@ -1648,7 +1648,7 @@ inline int32 CLuaBaseEntity::completeMission(lua_State *L)
     if (LogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+		charutils::LoadMissions(PChar);
         if (PChar->m_missionLog[LogID].current != MissionID)
         {
             ShowWarning(CL_YELLOW"Lua::completeMission: completion of not current mission\n" CL_RESET, LogID);
@@ -1677,7 +1677,7 @@ inline int32 CLuaBaseEntity::addAssault(lua_State *L)
     uint8 MissionID = (uint8)lua_tointeger(L, 1);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+	charutils::LoadMissions(PChar);
     if (PChar->m_assaultLog.current != 0)
     {
         ShowWarning(CL_YELLOW"Lua::addAssault: player has a current assault\n" CL_RESET);
@@ -1700,7 +1700,7 @@ inline int32 CLuaBaseEntity::delAssault(lua_State *L)
     uint8 MissionID = (uint8)lua_tointeger(L, 1);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+	charutils::LoadMissions(PChar);
     uint8 current = PChar->m_assaultLog.current;
     uint8 complete = PChar->m_assaultLog.complete[MissionID];
 
@@ -1750,7 +1750,7 @@ inline int32 CLuaBaseEntity::completeAssault(lua_State *L)
     uint8 MissionID = (uint8)lua_tointeger(L, 1);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+	charutils::LoadMissions(PChar);
     if (PChar->m_assaultLog.current != MissionID)
     {
         ShowWarning(CL_YELLOW"Lua::completeAssault: completion of not current assault\n" CL_RESET);
@@ -1775,7 +1775,7 @@ inline int32 CLuaBaseEntity::addKeyItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+	charutils::LoadKIs(PChar);
     uint16 KeyItemID = (uint16)lua_tointeger(L, 1);
 
     if( charutils::addKeyItem(PChar,KeyItemID) )
@@ -1797,7 +1797,7 @@ inline int32 CLuaBaseEntity::delKeyItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+	charutils::LoadKIs(PChar);
     uint16 KeyItemID = (uint16)lua_tointeger(L, 1);
 
     if( charutils::delKeyItem(PChar,KeyItemID) )
@@ -1858,7 +1858,7 @@ inline int32 CLuaBaseEntity::unseenKeyItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+	charutils::LoadKIs(PChar);
     uint16 KeyItemID = (uint16)lua_tointeger(L, 1);
 
     if( charutils::unseenKeyItem(PChar,KeyItemID) )
@@ -2030,8 +2030,10 @@ inline int32 CLuaBaseEntity::addSpell(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-
+	
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	charutils::LoadSpells(PChar);
     bool silent = false;
 
     uint32 n = lua_gettop(L);
@@ -2039,9 +2041,10 @@ inline int32 CLuaBaseEntity::addSpell(lua_State *L)
     uint16 SpellID = (uint16)lua_tointeger(L, 1);
     if (n > 1)
         silent = lua_toboolean(L, 2);
-
+	
     if (charutils::addSpell(PChar, SpellID))
     {
+		
         charutils::SaveSpells(PChar);
         PChar->pushPacket(new CCharSpellsPacket(PChar));
         if(!silent)
