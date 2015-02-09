@@ -12,6 +12,8 @@ cmdprops =
 };
 
 function onTrigger(player, npcId)
+    require("scripts/globals/status");
+
     if (npcId == nil) then
         player:PrintToPlayer("You must enter a valid npcId.");
         return;
