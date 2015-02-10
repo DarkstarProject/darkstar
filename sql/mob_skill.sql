@@ -77,7 +77,20 @@ INSERT INTO `mob_skill` VALUES (479,0,20,'Eagle_Eye_Shot',0,25.0,2000,0,4,2,0,0)
 INSERT INTO `mob_skill` VALUES (474,0,432,'Meikyo_Shisui',0,7.0,2000,0,1,2,0,0);
 INSERT INTO `mob_skill` VALUES (475,0,18,'Mijin_Gakure',1,20.0,2000,0,4,2,0,0);
 INSERT INTO `mob_skill` VALUES (476,0,432,'Call_Wyvern',0,7.0,2000,0,1,2,0,0);
--- INSERT INTO `mob_skill` VALUES (478,0,724,'Astral_Flow',0,7.0,2000,0,1,2,0,0);
+-- INSERT INTO `mob_skill` VALUES (478,0,432,'Astral_Flow',0,7.0,2000,0,1,2,0,0); -- Most NM use this version and animation.
+-- INSERT INTO `mob_skill` VALUES (2000,0,724,'Astral_Flow',0,7.0,2000,0,1,2,0,0); -- Only looks alright with small or human-like Mob Models
+-- INSERT INTO `mob_skill` VALUES (1933,0,432,'Azure Lore',0,7.0,2000,0,1,2,0,0); -- Mammol Ja
+-- INSERT INTO `mob_skill` VALUES (2001,0,???,'Azure Lore',0,7.0,2000,0,1,2,0,0); -- Raubahn
+-- INSERT INTO `mob_skill` VALUES (1934,0,432,'Wild Card',0,7.0,2000,0,1,2,0,0); -- Lamia/Merrow
+-- INSERT INTO `mob_skill` VALUES (2002,0,???,'Wild Card',0,7.0,2000,0,1,2,0,0); -- Qultada
+-- INSERT INTO `mob_skill` VALUES (1935,0,432,'Overdrive',0,7.0,2000,0,1,2,0,0); -- Troll
+-- INSERT INTO `mob_skill` VALUES (2003,0,???,'Overdrive',0,7.0,2000,0,1,2,0,0); -- Zonpa-Zippa (S)
+-- INSERT INTO `mob_skill` VALUES (2454,0,432,'Trance',0,7.0,2000,0,1,2,0,0); -- Urd
+-- INSERT INTO `mob_skill` VALUES (2004,0,???,'Trance',0,7.0,2000,0,1,2,0,0); -- Laila, Lilisette
+-- INSERT INTO `mob_skill` VALUES (2005,0,???,'Tabula_Rasa',0,7.0,2000,0,1,2,0,0); -- Gunther, Adelheid
+-- INSERT INTO `mob_skill` VALUES (2102,0,432,'Tabula_Rasa',0,7.0,2000,0,1,2,0,0); -- ???
+-- INSERT INTO `mob_skill` VALUES (???,0,???,'Bolster',0,7.0,2000,0,1,2,0,0); -- Likely does not yet exist in dats for mob use in retail.
+-- INSERT INTO `mob_skill` VALUES (3009,0,432,'Elemental_Sforzo',0,7.0,2000,0,1,2,0,0); -- Nothing yet uses this to my knowledge.
 
 -- Rabbits
 INSERT INTO `mob_skill` VALUES (1,206,1,'Foot_Kick',0,7.0,2000,1500,4,0,0,0);
@@ -2143,10 +2156,11 @@ INSERT INTO `mob_skill` VALUES (335,410,335,'Bomb_Toss',2,8,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2158,410,2414,'Saucepan',4,7.0,2000,1500,4,0,0,0);
 
 -- Seed Crystal
--- INSERT INTO `mob_skill` VALUES (2160,411,2416,'Seed of Deception',0,0.0,0000,0000,0,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2161,411,2417,'Seed of Deference',0,0.0,0000,0000,0,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2162,411,2418,'Seed of Nihility',0,0.0,0000,0000,0,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2163,411,2419,'Seed of Judgment',0,0.0,0000,0000,0,0,0,0);
+-- melee move 1494
+-- INSERT INTO `mob_skill` VALUES (2160,411,1495,'Seed of Deception',0,0.0,0000,0000,0,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2161,411,1496,'Seed of Deference',0,0.0,0000,0000,0,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2162,411,1497,'Seed of Nihility',0,0.0,0000,0000,0,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2163,411,1498,'Seed of Judgment',0,0.0,0000,0000,0,0,0,0);
 
 -- Seed Thrall
 -- Family ID: 412
@@ -2177,6 +2191,12 @@ INSERT INTO `mob_skill` VALUES (716,483,670,'Royal_savior-protect',1,15,2000,200
 INSERT INTO `mob_skill` VALUES (712,483,676,'red_lotus_blade',0,7,2500,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (713,483,677,'Flat_blade',0,7,2500,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (714,483,678,'Savage_blade',0,7,2500,1500,4,0,0,0);
+
+-- Ajido Marujido
+INSERT INTO `mob_skill` VALUES (714,484,674,'Warp_in',0,7,900,0,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (715,484,675,'Warp_out',0,7,900,0,1,0,0,0);
+
+
 
 -- Kam'lanaut
 INSERT INTO `mob_skill` VALUES (567,351,495,'Fire_Blade',0,7,2000,0,1,0,0,0);

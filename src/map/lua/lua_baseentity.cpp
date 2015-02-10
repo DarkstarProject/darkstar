@@ -8960,6 +8960,32 @@ inline int32 CLuaBaseEntity::entityAnimationPacket(lua_State* L)
 
 /************************************************************************
 *                                                                       *
+*  Returns name of the players party leader (if in a party)             *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getPartyLeader(lua_State* L) // Todo: also add ability for find Alliance Leader via lua?
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    CBattleEntity* PLeader = NULL;
+
+    if (PChar->PParty)
+    {
+        PLeader = PChar->PParty->GetLeader();
+        lua_pushstring(L, PLeader->GetName());
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
+    return 1;
+}
+
+/************************************************************************
+*                                                                       *
 *  Returns a characters party as a lua array of CLuaBaseEntities        *
 *                                                                       *
 ************************************************************************/
@@ -9819,6 +9845,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,rangedDmgTaken),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,entityVisualPacket),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,entityAnimationPacket),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyLeader),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getParty),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageText),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,instanceEntry),

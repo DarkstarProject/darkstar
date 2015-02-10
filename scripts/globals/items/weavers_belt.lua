@@ -6,7 +6,7 @@
 -----------------------------------------
 -- Enchantment: Synthesis image support
 -- Duration: 2Min
--- Clothcraft Skill +1
+-- Clothcraft Skill +3
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -28,7 +28,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_CLOTHCRAFT_IMAGERY,52,0,120);
+	target:addStatusEffect(EFFECT_CLOTHCRAFT_IMAGERY,3,0,120);
 end;
 
 -----------------------------------------

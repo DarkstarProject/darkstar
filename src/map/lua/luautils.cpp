@@ -1410,6 +1410,61 @@ int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
 	return 0;
 }
 
+int32 OnEventUpdate(CCharEntity* PChar, int8* string)
+{
+    int32 oldtop = lua_gettop(LuaHandle);
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onEventUpdate");
+
+    int8 File[255];
+    if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
+    {
+        lua_pop(LuaHandle, 1);
+        memset(File, 0, sizeof(File));
+        snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+
+        if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+        {
+            ShowError("luautils::onEventUpdate %s\n", lua_tostring(LuaHandle, -1));
+            ShowError("luautils::onEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+    }
+
+    lua_getglobal(LuaHandle, "onEventUpdate");
+    if (lua_isnil(LuaHandle, -1))
+    {
+        ShowError("luautils::onEventUpdate: undefined procedure onEventUpdate\n");
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    CLuaBaseEntity LuaBaseEntity(PChar);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+    lua_pushinteger(LuaHandle, PChar->m_event.EventID);
+    lua_pushstring(LuaHandle, string);
+
+    CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+
+    if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::onEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 0)
+    {
+        ShowError("luautils::onEventUpdate (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+    return 0;
+}
+
 /************************************************************************
 *																		*
 *  Событие завершилось, результат события хранится в result				*

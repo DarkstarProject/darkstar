@@ -39,7 +39,7 @@ function onUseWeaponSkill(player, target, wsID)
 	if damage > 0 and (target:hasStatusEffect(EFFECT_BLINDNESS) == false) then
 		target:addStatusEffect(EFFECT_BLINDNESS, 25, 0, 60);
 	end
-
+	damage = damage * WEAPON_SKILL_POWER
 	return tpHits, extraHits, criticalHit, damage;
 
 end

@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- 	EFFECT_TELEPORT
+-- EFFECT_TELEPORT
 --
 -----------------------------------
 
@@ -26,29 +26,28 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-
    local Teleport = effect:getPower();
-	if(Teleport == TELEPORT_DEM) then
-		toDem(target);
-	elseif(Teleport == TELEPORT_HOLLA) then
-		toHolla(target);
-	elseif(Teleport == TELEPORT_YHOAT) then
-		toYhoat(target);
-	elseif(Teleport == TELEPORT_VAHZL) then
-		toVahzl(target);
-	elseif(Teleport == TELEPORT_MEA) then
-		toMea(target);
-	elseif(Teleport == TELEPORT_ALTEP) then
-		toAltep(target);
-	elseif(Teleport == TELEPORT_WARP) then
-		target:warp();
-	elseif(Teleport == TELEPORT_ESCAPE) then
-		Escape(target, target:getZoneID());
-	elseif(Teleport == RECALL_JUGNER) then
+    if(Teleport == TELEPORT_DEM) then
+        toDem(target);
+    elseif(Teleport == TELEPORT_HOLLA) then
+        toHolla(target);
+    elseif(Teleport == TELEPORT_YHOAT) then
+        toYhoat(target);
+    elseif(Teleport == TELEPORT_VAHZL) then
+        toVahzl(target);
+    elseif(Teleport == TELEPORT_MEA) then
+        toMea(target);
+    elseif(Teleport == TELEPORT_ALTEP) then
+        toAltep(target);
+    elseif(Teleport == TELEPORT_WARP) then
+        target:warp();
+    elseif(Teleport == TELEPORT_ESCAPE) then
+        Escape(target, target:getZoneID());
+    elseif(Teleport == RECALL_JUGNER) then
         recallJugner(target);
-	elseif(Teleport == RECALL_PASHH) then
+    elseif(Teleport == RECALL_PASHH) then
         recallPashh(target);
-	elseif(Teleport == RECALL_MERIPH) then
+    elseif(Teleport == RECALL_MERIPH) then
         recallMeriph(target);
     elseif(Teleport == FIREFLIES_AZOUPH) then
         LeujaoamSanctumExit(target);
@@ -76,6 +75,7 @@ function onEffectLose(target,effect)
         toMaat(target);
     elseif(Teleport == TELEPORT_HOMING) then
         homingRing(target);
-	end	
-   
+    elseif(Teleport == TELEPORT_TO_LEADER) then
+        toLeader(target);
+    end
 end;
