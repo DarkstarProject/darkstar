@@ -1,6 +1,3 @@
-package.loaded["scripts/globals/settings"] = nil;
-require("scripts/globals/settings");
-
 -- Items
 
 INFINITY_CORE = 1474;
@@ -23,18 +20,19 @@ local WATER_CLUSTER     = 4109;
 local LIGHT_CLUSTER     = 4110;
 local DARK_CLUSTER      = 4111;
 
+
 local strAppData = {};
 
 -- for variable naming, value used to calculate password, unique identifier from the 0x60 packet, chip, cluster, mob id of elemental, mob x, mob y, mob z, mob rotation
 
-strAppData[191] = {'DW', 0, 360, RED_CHIP,    FIRE_CLUSTER,      17559870, -496.638,  -5.045, -100.004, 0}; -- Dangruf Wadi
-strAppData[193] = {'OC', 3, 430, GREEN_CHIP,  WIND_CLUSTER,      17568130, -297.236,  26.926, -100.298, 0}; -- Ordelle's Caves
-strAppData[194] = {'HR', 5, 406, PURPLE_CHIP, LIGHTNING_CLUSTER, 17572203, -576.613,  -1.014,  739.999, 0}; -- Outer Horutoto Ruins
-strAppData[195] = {'EN', 4, 369, CLEAR_CHIP,  ICE_CLUSTER,       17576204,  102.815,  -0.761, -180.001, 0}; -- The Eldieme Necropolis
-strAppData[196] = {'GM', 1, 352, YELLOW_CHIP, EARTH_CLUSTER,     17580340,  220.001, -41.172,  257.302, 0}; -- Gusgen Mines
-strAppData[197] = {'CN', 2, 335, BLUE_CHIP,   WATER_CLUSTER,     17584424,  216.350,  -0.535, -340.001, 0}; -- Crawlers' Nest
-strAppData[198] = {'MS', 7, 511, BLACK_CHIP,  DARK_CLUSTER,      17588565,  377.464,  18.574, -259.998, 0}; -- Maze of Shakhrami
-strAppData[200] = {'GC', 6, 383, WHITE_CHIP,  LIGHT_CLUSTER,     17596729,  257.299,  -0.682,   20.000, 0}; -- Garlaige Citadel
+strAppData[191] = {'DW', 0, RED_CHIP,    FIRE_CLUSTER,      17559870, -496.638,  -5.045, -100.004, 0}; -- Dangruf Wadi
+strAppData[193] = {'OC', 3, GREEN_CHIP,  WIND_CLUSTER,      17568130, -297.236,  26.926, -100.298, 0}; -- Ordelle's Caves
+strAppData[194] = {'HR', 5, PURPLE_CHIP, LIGHTNING_CLUSTER, 17572203, -576.613,  -1.014,  739.999, 0}; -- Outer Horutoto Ruins
+strAppData[195] = {'EN', 4, CLEAR_CHIP,  ICE_CLUSTER,       17576204,  102.815,  -0.761, -180.001, 0}; -- The Eldieme Necropolis
+strAppData[196] = {'GM', 1, YELLOW_CHIP, EARTH_CLUSTER,     17580340,  220.001, -41.172,  257.302, 0}; -- Gusgen Mines
+strAppData[197] = {'CN', 2, BLUE_CHIP,   WATER_CLUSTER,     17584424,  216.350,  -0.535, -340.001, 0}; -- Crawlers' Nest
+strAppData[198] = {'MS', 7, BLACK_CHIP,  DARK_CLUSTER,      17588565,  377.464,  18.574, -259.998, 0}; -- Maze of Shakhrami
+strAppData[200] = {'GC', 6, WHITE_CHIP,  LIGHT_CLUSTER,     17596729,  257.299,  -0.682,   20.000, 0}; -- Garlaige Citadel
 
 local strAppDrop = {};
 
@@ -68,35 +66,6 @@ function letterValue( letter)
 			return x - 1;
 		end
 	end
-end;
-
--- Used to retrieve entered password during onEventUpdate()
-
-function getStrAppPass( player, option)
-
-	local strAppPassUpdate = player:getLocalVar("strAppPassUpdate");
-
-	if (strAppPassUpdate == 0) then
-		player:setLocalVar("strAppPassUpdate", 1);
-		player:setLocalVar("strAppPassPart1", option);
-	elseif (strAppPassUpdate == 1) then
-		player:setLocalVar("strAppPassUpdate", 2);
-		player:setLocalVar("strAppPassPart2", option);
-	elseif (strAppPassUpdate == 2) then
-		player:setLocalVar("strAppPassUpdate", 3);
-	elseif (strAppPassUpdate == 3) then
-
-		local strAppPassPart1 = player:getLocalVar("strAppPassPart1");
-		local strAppPassPart2 = player:getLocalVar("strAppPassPart2");
-
-		player:setLocalVar("strAppPassUpdate", 0);
-		player:setLocalVar("strAppPassPart1", 0);
-		player:setLocalVar("strAppPassPart2", 0);
-
-		return string.char(bit.rshift(bit.lshift(strAppPassPart1, 24), 56), bit.rshift(bit.lshift(strAppPassPart1, 16), 56), bit.rshift(bit.lshift(strAppPassPart1, 8), 56), bit.rshift(strAppPassPart1, 56), bit.rshift(bit.lshift(strAppPassPart2, 24), 56), bit.rshift(bit.lshift(strAppPassPart2, 16), 56), bit.rshift(bit.lshift(strAppPassPart2, 8), 56), bit.rshift(strAppPassPart2, 56));
-	end
-
-	return nil;
 end;
 
 -- Grants doctor status to player for 48 hours
@@ -134,12 +103,6 @@ function hasStrAppDocStatus(player)
 	return false;
 end;
 
--- Returns a unique identifier for each strange apparatus
-
-function passwordCSID(zone)
-	return strAppData[zone][3];
-end;
-
 -- Handles onTrade(), returns nil if trade is not valid
 
 function tradeToStrApp(player, trade)
@@ -153,7 +116,7 @@ function tradeToStrApp(player, trade)
 
 			if (trade:hasItemQty( chip, 1)) then
 
-				if ( chip ~= strAppData[zone][4]) then
+				if ( chip ~= strAppData[zone][3]) then
 					player:tradeComplete();
 					player:addItem(INFINITY_CORE, 1); --player loses the chip, but not the core
 
@@ -199,7 +162,7 @@ function getStrAppDrop(player,zone)
 		rate = math.random();
 		
 		if (rate <= 0.5) then -- Crystal Cluster
-			item = strAppData[zone][5];
+			item = strAppData[zone][4];
 			qty  = 2;
 		end
 	end
@@ -215,8 +178,8 @@ end;
 function spawnElementalNM(player)
 
 	local zone = player:getZoneID();
-	local mob = GetMobByID(strAppData[zone][6]);
+	local mob = GetMobByID(strAppData[zone][5]);
 	
-	SpawnMob(strAppData[zone][6],300):updateEnmity(player);
-	mob:setPos(strAppData[zone][7], strAppData[zone][8], strAppData[zone][9], strAppData[zone][10]);
+	SpawnMob(strAppData[zone][5],300):updateEnmity(player);
+	mob:setPos(strAppData[zone][6], strAppData[zone][7], strAppData[zone][8], strAppData[zone][9]);
 end;

@@ -39,10 +39,6 @@ SPIRIT_INCENSE_EMITS_PUTRID_ODOR = 7384; -- emits a putrid odor and burns up. Yo
 CONQUEST_BASE = 0;
 
 -- Strange Apparatus
-VOICE_HAS_GONE_SILENT = 7289; -- The voice in your head has gone silent.
-   DEVICE_NOT_WORKING = 7291; -- The device is not working.
-REGISTRATION_COMPLETE = 7295; -- “Registr...n complete. Your access...evel is doctor.”
-       PASSWORD_ERROR = 7296; -- Passw...error...
-        DATA_RECORDED = 7297; -- “Yo...dat...has be...recorde...”
-	 SYS_OVERLOAD = 7300; -- “Warning! Sys...verload!
-	 YOU_LOST_THE = 7305; -- You lost the <item>
+DEVICE_NOT_WORKING = 7291; -- The device is not working.
+      SYS_OVERLOAD = 7300; -- “Warning! Sys...verload!
+      YOU_LOST_THE = 7305; -- You lost the <item>

@@ -64,19 +64,19 @@ end;
 
 function onEventUpdate(player,csid,option)
 	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+	-- printf("RESULT: %u", option);
 
-	player:setLocalVar( "strAppPass", 0); -- Player actually got to the password prompt, otherwise this would still be 1 in onEventFinish()
-	if (csid == passwordCSID(player:getZoneID())) then
-		local password = getStrAppPass(player,option);
+	if (csid == 0x0001) then
 
-		if ( password ~= nil) then
+		if (hasStrAppDocStatus(player) == false) then
 
-			if( password == strAppPass(player)) then -- Good password
-				player:setLocalVar( "strAppPass", 2);
-			else -- Bad password
-				player:setLocalVar( "strAppPass", 0);
+			local docStatus = 1; -- Assistant
+			if( option == strAppPass(player)) then -- Good password
+				docStatus = 0; -- Doctor
+				giveStrAppDocStatus(player);
 			end
+			
+			player:updateEvent(docStatus, 0, INFINITY_CORE, 0, 0, 0, 0, 0);
 		end
 	end
 end;
@@ -89,28 +89,7 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 
-	if (csid == 0x0001) then
-		if (hasStrAppDocStatus(player) == false) then
-
-			local strAppPass = player:getLocalVar("strAppPass");
-
-			if (strAppPass == 2) then -- Player completed event and entered a valid password
-				
-				giveStrAppDocStatus(player);
-
-				player:messageSpecial(REGISTRATION_COMPLETE);
-				player:messageSpecial(DATA_RECORDED);
-				player:messageSpecial(VOICE_HAS_GONE_SILENT);
-
-			elseif (strAppPass ~= 1) then -- Player completed event and entered an invalid password
-				
-				player:messageSpecial(PASSWORD_ERROR);
-				player:messageSpecial(VOICE_HAS_GONE_SILENT);
-			end
-
-			player:setLocalVar( "strAppPass", 0);
-		end
-	elseif (csid == 0x0003) then
+	if (csid == 0x0003) then
 
 		local drop    = player:getLocalVar("strAppDrop");
 		local dropQty = player:getLocalVar("strAppDropQty");

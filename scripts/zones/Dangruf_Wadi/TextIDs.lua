@@ -25,10 +25,6 @@ GEOMAGNETIC_FOUNT = 7163; -- A faint energy wafts up from the ground.
 CONQUEST_BASE = 0;
 
 -- Strange Apparatus
-VOICE_HAS_GONE_SILENT = 7296; -- The voice in your head has gone silent.
-   DEVICE_NOT_WORKING = 7298; -- The device is not working.
-REGISTRATION_COMPLETE = 7302; -- “Registr...n complete. Your access...evel is doctor.”
-       PASSWORD_ERROR = 7303; -- Passw...error...
-        DATA_RECORDED = 7304; -- “Yo...dat...has be...recorde...”
-	 SYS_OVERLOAD = 7307; -- “Warning! Sys...verload!
-	 YOU_LOST_THE = 7312; -- You lost the <item>
+DEVICE_NOT_WORKING = 7298; -- The device is not working.
+      SYS_OVERLOAD = 7307; -- “Warning! Sys...verload!
+      YOU_LOST_THE = 7312; -- You lost the <item>

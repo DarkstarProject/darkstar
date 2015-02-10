@@ -26,10 +26,6 @@ MINING_IS_POSSIBLE_HERE = 7340; -- Mining is possible here if you have
 CONQUEST_BASE = 7058; -- Tallying conquest results...
 
 -- Strange Apparatus
-VOICE_HAS_GONE_SILENT = 7229; -- The voice in your head has gone silent.
-   DEVICE_NOT_WORKING = 7231; -- The device is not working.
-REGISTRATION_COMPLETE = 7235; -- “Registr...n complete. Your access...evel is doctor.”
-       PASSWORD_ERROR = 7236; -- Passw...error...
-        DATA_RECORDED = 7237; -- “Yo...dat...has be...recorde...”
-	 SYS_OVERLOAD = 7240; -- “Warning! Sys...verload!
-	 YOU_LOST_THE = 7245; -- You lost the <item>
+DEVICE_NOT_WORKING = 7231; -- The device is not working.
+      SYS_OVERLOAD = 7240; -- “Warning! Sys...verload!
+      YOU_LOST_THE = 7245; -- You lost the <item>
