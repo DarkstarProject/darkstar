@@ -562,7 +562,7 @@ enum MODIFIER
 
 };
 
-#define MAX_MODIFIER 508
+#define MAX_MODIFIER 509
 
 
 
