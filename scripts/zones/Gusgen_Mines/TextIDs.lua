@@ -31,3 +31,8 @@ LOCK_OTHER_DEVICE = 7315; -- This entrance's lock is connected to some other dev
 
 -- conquest Base
 CONQUEST_BASE = 7030; -- Tallying conquest results...
+
+-- Strange Apparatus
+DEVICE_NOT_WORKING = 7298; -- The device is not working.
+      SYS_OVERLOAD = 7307; -- “Warning! Sys...verload!
+      YOU_LOST_THE = 7312; -- You lost the <item>
