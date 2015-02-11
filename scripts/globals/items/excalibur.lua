@@ -22,7 +22,8 @@ function onAdditionalEffect(player,target,damage)
         if (finalDMG >0) then
 			local physicalResist = target:getMod(MOD_SLASHRES)/1000;
 			finalDMG=finalDMG*physicalResist;
-			target:physicalDmgTaken(finalDMG);
+			finalDMG = target:physicalDmgTaken(finalDMG);
+			target:delHP(finalDMG);
 			return SUBEFFECT_STUN, 163, finalDMG;
 		end
 	end
