@@ -2634,8 +2634,11 @@ void SmallPacket0x060(map_session_data_t* session, CCharEntity* PChar, int8* dat
     uint32 charid = RBUFL(data, 0x04);
     int8* string = data + 12;
     luautils::OnEventUpdate(PChar, string);
-    PChar->pushPacket(new CReleasePacket(PChar,RELEASE_EVENT));
-    return;
+
+	PChar->pushPacket(new CReleasePacket(PChar, RELEASE_EVENT));
+	PChar->pushPacket(new CReleasePacket(PChar, RELEASE_UNKNOWN));
+
+	return;
 }
 
 /************************************************************************

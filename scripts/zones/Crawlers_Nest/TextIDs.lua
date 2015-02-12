@@ -28,3 +28,8 @@ EQUIPMENT_COMPLETELY_PURIFIED = 7241; -- Your equipment has not been completely 
 
 -- conquest Base
 CONQUEST_BASE = 0;
+
+-- Strange Apparatus
+DEVICE_NOT_WORKING = 173; -- The device is not working.
+      SYS_OVERLOAD = 182; -- “Warning! Sys...verload!
+      YOU_LOST_THE = 187; -- You lost the <item>

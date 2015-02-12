@@ -33,6 +33,7 @@ enum RELEASE_TYPE
 	RELEASE_STANDARD	= 0,
 	RELEASE_EVENT		= 1,
 	RELEASE_SKIPPING	= 2,
+	RELEASE_UNKNOWN     = 3, /* Used by Event Update (String Update) - Packet 0x060  */
 	RELEASE_FISHING		= 4
 };
 
