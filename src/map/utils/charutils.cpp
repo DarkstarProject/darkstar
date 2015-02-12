@@ -1326,7 +1326,7 @@ namespace charutils
     *																		*
     ************************************************************************/
 
-    void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
+    void UnequipItem(CCharEntity* PChar, uint8 equipSlotID, bool update)
     {
         CItem* PItem = PChar->getEquip((SLOTTYPE)equipSlotID);
 
@@ -1444,11 +1444,13 @@ namespace charutils
             break;
             }
 
-            charutils::BuildingCharSkillsTable(PChar);
-
-            PChar->UpdateHealth();
-            PChar->m_EquipSwap = true;
-            PChar->updatemask |= UPDATE_LOOK;
+            if (update)
+            {
+                charutils::BuildingCharSkillsTable(PChar);
+                PChar->UpdateHealth();
+                PChar->m_EquipSwap = true;
+                PChar->updatemask |= UPDATE_LOOK;
+            }
         }
     }
 
@@ -1498,7 +1500,7 @@ namespace charutils
             }
         }
 
-        UnequipItem(PChar, equipSlotID);
+        UnequipItem(PChar, equipSlotID, false);
 
         if (PItem->getEquipSlotId() & (1 << equipSlotID))
         {
@@ -1506,7 +1508,7 @@ namespace charutils
 
             if (removeSlotID > 0)
             {
-                UnequipItem(PChar, removeSlotID);
+                UnequipItem(PChar, removeSlotID, false);
             }
 
             switch (equipSlotID)
@@ -1533,12 +1535,12 @@ namespace charutils
                                 CItemWeapon* PWeapon = (CItemWeapon*)armor;
                                 if (PWeapon->getSkillType() != SKILL_NON || ((CItemWeapon*)PItem)->getSkillType() == SKILL_H2H)
                                 {
-                                    UnequipItem(PChar, SLOT_SUB);
+                                    UnequipItem(PChar, SLOT_SUB, false);
                                 }
                             }
                             else
                             {
-                                UnequipItem(PChar, SLOT_SUB);
+                                UnequipItem(PChar, SLOT_SUB, false);
                             }
                         }
                         if (((CItemWeapon*)PItem)->getSkillType() == SKILL_H2H)
@@ -1582,7 +1584,7 @@ namespace charutils
                     {
                         if (!PItem->isType(ITEM_WEAPON))
                         {
-                            UnequipItem(PChar, SLOT_MAIN);
+                            UnequipItem(PChar, SLOT_MAIN, false);
                         }
                     }
                     case SKILL_DAG:
@@ -1602,7 +1604,7 @@ namespace charutils
                     {
                         if (!PItem->isType(ITEM_WEAPON))
                         {
-                            UnequipItem(PChar, SLOT_MAIN);
+                            UnequipItem(PChar, SLOT_MAIN, false);
                         }
                         else if (!((CItemWeapon*)PItem)->getSkillType() == SKILL_NON)
                         {
@@ -1625,7 +1627,7 @@ namespace charutils
                         if (((CItemWeapon*)PItem)->getSkillType() != weapon->getSkillType() ||
                             ((CItemWeapon*)PItem)->getSubSkillType() != weapon->getSubSkillType())
                         {
-                            UnequipItem(PChar, SLOT_AMMO);
+                            UnequipItem(PChar, SLOT_AMMO, false);
                         }
                     }
                     PChar->m_Weapons[SLOT_RANGED] = (CItemWeapon*)PItem;
@@ -1643,7 +1645,7 @@ namespace charutils
                         if (((CItemWeapon*)PItem)->getSkillType() != weapon->getSkillType() ||
                             ((CItemWeapon*)PItem)->getSubSkillType() != weapon->getSubSkillType())
                         {
-                            UnequipItem(PChar, SLOT_RANGED);
+                            UnequipItem(PChar, SLOT_RANGED, false);
                         }
                     }
                     if (PChar->equip[SLOT_RANGED] == 0)
@@ -1661,7 +1663,7 @@ namespace charutils
                 {
                     uint8 removeSlotID = armor->getRemoveSlotId();
                     if (removeSlotID == SLOT_HEAD) {
-                        UnequipItem(PChar, SLOT_BODY);
+                        UnequipItem(PChar, SLOT_BODY, false);
                     }
                 }
                 PChar->look.head = PItem->getModelId();
@@ -1684,7 +1686,7 @@ namespace charutils
                     uint8 removeSlotID = armor->getRemoveSlotId();
                     if (removeSlotID == SLOT_HANDS)
                     {
-                        UnequipItem(PChar, SLOT_BODY);
+                        UnequipItem(PChar, SLOT_BODY, false);
                     }
                 }
                 PChar->look.hands = PItem->getModelId();
@@ -1707,7 +1709,7 @@ namespace charutils
                     uint8 removeSlotID = armor->getRemoveSlotId();
                     if (removeSlotID == SLOT_FEET)
                     {
-                        UnequipItem(PChar, SLOT_LEGS);
+                        UnequipItem(PChar, SLOT_LEGS, false);
                     }
                 }
                 PChar->look.feet = PItem->getModelId();
