@@ -26,11 +26,4 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-local CurrentMission = killer:getCurrentMission(WINDURST);
-local WindyKills = killer:getVar("Windurst_7-1Kills");
-	if(CurrentMission == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 1) then
-		if(WindyKills < 4) then
-			killer:setVar("Windurst_7-1Kills",WindyKills+1);
-		end
-	end
 end;

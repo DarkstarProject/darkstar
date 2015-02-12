@@ -64,7 +64,7 @@ bcnmid_param_map = {6,{640,0},
 					163,{128,0,129,1},
 					165,{160,0,161,1},
 					168,{192,0,194,2,195,3,196,4},
-					170,{224,0},
+					170,{224,0,225,1},
 					179,{256,0},
 					180,{293,5,288,0,289,1,290,2,291,3,292,4},
                     181,{320,0},
@@ -518,6 +518,9 @@ function checkNonTradeBCNM(player,npc)
 		if(player:hasKeyItem(MOON_BAUBLE)) then -- The Moonlit Path
 			mask = GetBattleBitmask(224,Zone,1);
 			player:setVar("trade_bcnmid",224);
+		elseif((player:getCurrentMission(WINDURST) == MOON_READING) and player:getVar("WINDURST92") == 2) then -- Moon reading
+			mask = GetBattleBitmask(225,Zone,1);
+			player:setVar("trade_bcnmid",225);	
 		end
 	elseif(Zone == 179) then -- Stellar Fulcrum
 		if(player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 3) then -- Zilart Mission 8
