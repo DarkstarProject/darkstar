@@ -707,7 +707,7 @@ void CMagicState::CharOnTarget(apAction_t* action, int16 ce, int16 ve)
             ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
         }
 
-        if (!(m_PSpell->isHeal()) || m_PSpell->tookEffect())  //can't claim mob with cure unless it does damage
+        if (!(m_PSpell->isHeal()) || PTarget->m_EcoSystem == SYSTEM_UNDEAD)  //can't claim mob with cure unless it does damage
         {
             ((CMobEntity*)PTarget)->m_OwnerID.id = m_PEntity->id;
             ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PEntity->targid;
