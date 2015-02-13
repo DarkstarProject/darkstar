@@ -25,14 +25,14 @@ local strAppData = {};
 
 -- for variable naming, value used to calculate password, unique identifier from the 0x60 packet, chip, cluster, mob id of elemental, mob x, mob y, mob z, mob rotation
 
-strAppData[191] = {'DW', 0, RED_CHIP,    FIRE_CLUSTER,      17559870, -496.638,  -5.045, -100.004, 0}; -- Dangruf Wadi
-strAppData[193] = {'OC', 3, GREEN_CHIP,  WIND_CLUSTER,      17568130, -297.236,  26.926, -100.298, 0}; -- Ordelle's Caves
-strAppData[194] = {'HR', 5, PURPLE_CHIP, LIGHTNING_CLUSTER, 17572203, -576.613,  -1.014,  739.999, 0}; -- Outer Horutoto Ruins
-strAppData[195] = {'EN', 4, CLEAR_CHIP,  ICE_CLUSTER,       17576204,  102.815,  -0.761, -180.001, 0}; -- The Eldieme Necropolis
-strAppData[196] = {'GM', 1, YELLOW_CHIP, EARTH_CLUSTER,     17580340,  220.001, -41.172,  257.302, 0}; -- Gusgen Mines
-strAppData[197] = {'CN', 2, BLUE_CHIP,   WATER_CLUSTER,     17584424,  216.350,  -0.535, -340.001, 0}; -- Crawlers' Nest
-strAppData[198] = {'MS', 7, BLACK_CHIP,  DARK_CLUSTER,      17588565,  377.464,  18.574, -259.998, 0}; -- Maze of Shakhrami
-strAppData[200] = {'GC', 6, WHITE_CHIP,  LIGHT_CLUSTER,     17596729,  257.299,  -0.682,   20.000, 0}; -- Garlaige Citadel
+strAppData[191] = {'DW', 0, RED_CHIP,    FIRE_CLUSTER,      17559870}; -- Dangruf Wadi
+strAppData[193] = {'OC', 3, GREEN_CHIP,  WIND_CLUSTER,      17568139}; -- Ordelle's Caves
+strAppData[194] = {'HR', 5, PURPLE_CHIP, LIGHTNING_CLUSTER, 17572203}; -- Outer Horutoto Ruins
+strAppData[195] = {'EN', 4, CLEAR_CHIP,  ICE_CLUSTER,       17576271}; -- The Eldieme Necropolis
+strAppData[196] = {'GM', 1, YELLOW_CHIP, EARTH_CLUSTER,     17580340}; -- Gusgen Mines
+strAppData[197] = {'CN', 2, BLUE_CHIP,   WATER_CLUSTER,     17584427}; -- Crawler's Nest
+strAppData[198] = {'MS', 7, BLACK_CHIP,  DARK_CLUSTER,      17588704}; -- Maze of Shakhrami
+strAppData[200] = {'GC', 6, WHITE_CHIP,  LIGHT_CLUSTER,     17596729}; -- Garlaige Citadel
 
 local strAppDrop = {};
 
@@ -181,5 +181,4 @@ function spawnElementalNM(player)
 	local mob = GetMobByID(strAppData[zone][5]);
 	
 	SpawnMob(strAppData[zone][5],300):updateEnmity(player);
-	mob:setPos(strAppData[zone][6], strAppData[zone][7], strAppData[zone][8], strAppData[zone][9]);
 end;
