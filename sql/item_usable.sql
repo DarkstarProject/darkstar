@@ -1646,9 +1646,9 @@ INSERT INTO `item_usable` VALUES (5877,'phial_of_terror_screen',1,4,0,0,0,0,0,0)
 INSERT INTO `item_usable` VALUES (5878,'phial_of_amnesia_screen',1,4,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5879,'phial_of_doom_screen',1,4,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5880,'phial_of_poison_screen',1,4,0,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (5881,'shisai_kaboku',1,1,0,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (5882,'marine_bliss',1,1,0,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (5883,'falling_star',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5881,'shisai_kaboku',1,1,110,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5882,'marine_bliss',1,1,108,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5883,'falling_star',1,1,109,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5885,'saltena',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5886,'elshena',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5889,'stuffed_pitaru',1,1,0,0,0,0,0,0);
