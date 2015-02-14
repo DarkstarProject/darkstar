@@ -27,9 +27,9 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 DROP TABLE IF EXISTS `item_mods`;
 CREATE TABLE IF NOT EXISTS `item_mods` (
-  `itemId` smallint(5) unsigned NOT NULL, 
-  `modId` smallint(5) unsigned NOT NULL, 
-  `value` smallint(5) NOT NULL DEFAULT '0', 
+  `itemId` smallint(5) unsigned NOT NULL,
+  `modId` smallint(5) unsigned NOT NULL,
+  `value` smallint(5) NOT NULL DEFAULT '0',
   PRIMARY KEY (`itemId`, `modId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=13 PACK_KEYS=1;
 
@@ -15577,7 +15577,12 @@ INSERT INTO `item_mods` VALUES (15838, 11, 1);
 INSERT INTO `item_mods` VALUES (15839, 118, 2);
 INSERT INTO `item_mods` VALUES (15839, 122, 2);
 INSERT INTO `item_mods` VALUES (15844, 161, -2);
+
+-- -------------------------------------------------------
+-- Krousis Ring
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (15849, 1, 15);
+
 INSERT INTO `item_mods` VALUES (15850, 54, 5);
 INSERT INTO `item_mods` VALUES (15850, 56, 5);
 INSERT INTO `item_mods` VALUES (15850, 58, 5);
@@ -15591,6 +15596,10 @@ INSERT INTO `item_mods` VALUES (15853, 163, -2);
 INSERT INTO `item_mods` VALUES (15854, 8, 4);
 INSERT INTO `item_mods` VALUES (15854, 25, 2);
 INSERT INTO `item_mods` VALUES (15854, 27, -1);
+
+-- -------------------------------------------------------
+-- Krousis Ring
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (15855, 1, 20);
 
 -- -------------------------------------------------------
@@ -16631,9 +16640,14 @@ INSERT INTO `item_mods` VALUES (16244, 30, 3);
 INSERT INTO `item_mods` VALUES (16245, 1, 6);
 INSERT INTO `item_mods` VALUES (16245, 9, 5);
 INSERT INTO `item_mods` VALUES (16245, 23, 15);
+
+-- -------------------------------------------------------
+-- Viator Cape
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (16246, 1, 9);
 INSERT INTO `item_mods` VALUES (16246, 2, 15);
 INSERT INTO `item_mods` VALUES (16246, 5, 15);
+
 INSERT INTO `item_mods` VALUES (16247, 1, 6);
 INSERT INTO `item_mods` VALUES (16247, 5, 10);
 INSERT INTO `item_mods` VALUES (16247, 28, 1);
@@ -17094,6 +17108,11 @@ INSERT INTO `item_mods` VALUES (16454, 431, 1); -- Additional Effect: Blind
 -- Poison Baselard
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (16458, 431, 1); -- Additional Effect: Poison
+
+-- -------------------------------------------------------
+-- Acid Baselard
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (16459, 431, 1); -- Additional Effect: Weakens defense
 
 INSERT INTO `item_mods` VALUES (16461, 5, 10);
 INSERT INTO `item_mods` VALUES (16461, 9, 2);
@@ -17595,6 +17614,11 @@ INSERT INTO `item_mods` VALUES (16906, 431, 1); -- Additional Effect: Silence
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (16907, 431, 1); -- Additional Effect: Poison
 
+-- -------------------------------------------------------
+-- Yoto
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (16908, 431, 1); -- Additional Effect: Weakens defense
+
 INSERT INTO `item_mods` VALUES (16911, 25, -1);
 INSERT INTO `item_mods` VALUES (16913, 9, 3);
 INSERT INTO `item_mods` VALUES (16924, 135, 3);
@@ -17631,7 +17655,12 @@ INSERT INTO `item_mods` VALUES (16935, 25, -5);
 INSERT INTO `item_mods` VALUES (16936, 61, 8);
 INSERT INTO `item_mods` VALUES (16936, 431, 1); -- Additional Effect: Darkness Damage
 
+-- -------------------------------------------------------
+-- Item:  Ice Brand
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (16937, 55, 8);
+INSERT INTO `item_mods` VALUES (16937, 431, 1); -- Additional Effect: Fire Damage
+
 INSERT INTO `item_mods` VALUES (16938, 60, 12);
 INSERT INTO `item_mods` VALUES (16941, 13, 3);
 INSERT INTO `item_mods` VALUES (16941, 23, 7);
@@ -18180,6 +18209,12 @@ INSERT INTO `item_mods` VALUES (17480, 25, 3);
 INSERT INTO `item_mods` VALUES (17481, 14, 3);
 INSERT INTO `item_mods` VALUES (17481, 25, 3);
 INSERT INTO `item_mods` VALUES (17485, 54, 6);
+
+-- -------------------------------------------------------
+-- Corrosive Claws
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (17487, 431, 1); -- Additional Effect: Weakens defense
+
 INSERT INTO `item_mods` VALUES (17491, 25, 2);
 INSERT INTO `item_mods` VALUES (17492, 12, 3);
 INSERT INTO `item_mods` VALUES (17492, 25, 8);
@@ -18483,6 +18518,11 @@ INSERT INTO `item_mods` VALUES (17605, 431, 1); -- Additional Effect: Weakens De
 INSERT INTO `item_mods` VALUES (17606, 431, 1); -- Additional Effect: Weakens Defense
 
 -- -------------------------------------------------------
+-- Corrosive Baselard
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (17607, 431, 1); -- Additional Effect: Weakens defense
+
+-- -------------------------------------------------------
 -- Corrosive Knife
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (17608, 431, 1); -- Additional Effect: Weakens Defense
@@ -18753,6 +18793,11 @@ INSERT INTO `item_mods` VALUES (17762, 366, 4); -- Main hand: DMG:38
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (17763, 366, 6); -- Main hand: DMG:39
 
+-- -------------------------------------------------------
+-- Yoto +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (17768, 431, 1); -- Additional Effect: Weakens defense
+
 INSERT INTO `item_mods` VALUES (17771, 8, -1);
 INSERT INTO `item_mods` VALUES (17771, 9, 2);
 INSERT INTO `item_mods` VALUES (17772, 8, 2);
@@ -19005,6 +19050,11 @@ INSERT INTO `item_mods` VALUES (18010, 431, 1); -- Additional Effect: Weakens De
 -- Melt Knife
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18011, 431, 1); -- Additional Effect: Weakens Defense
+
+-- -------------------------------------------------------
+-- Melt Baselard
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18012, 431, 1); -- Additional Effect: Water Damage
 
 -- -------------------------------------------------------
 -- Melt Kukri
@@ -19481,6 +19531,11 @@ INSERT INTO `item_mods` VALUES (18355, 431, 1);
 INSERT INTO `item_mods` VALUES (18356, 345, 1000);
 
 -- -------------------------------------------------------
+-- Melt Claws
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18357, 431, 1); -- Additional Effect: Water Damage
+
+-- -------------------------------------------------------
 -- Boreas Cesti
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18359, 431, 1); -- Additional Effect: Wind Damage (100% proc rate)
@@ -19546,6 +19601,12 @@ INSERT INTO `item_mods` VALUES (18406, 2, 31);
 INSERT INTO `item_mods` VALUES (18406, 5, -31);
 INSERT INTO `item_mods` VALUES (18406, 10, 6);
 INSERT INTO `item_mods` VALUES (18409, 5, -58);
+
+-- -------------------------------------------------------
+-- Melt Katana
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18410, 431, 1); -- Additional Effect: Water Damage
+
 INSERT INTO `item_mods` VALUES (18411, 8, 2);
 INSERT INTO `item_mods` VALUES (18411, 9, 2);
 INSERT INTO `item_mods` VALUES (18411, 11, 2);
@@ -19921,8 +19982,14 @@ INSERT INTO `item_mods` VALUES (18950, 12, 4);
 INSERT INTO `item_mods` VALUES (18950, 28, 8);
 INSERT INTO `item_mods` VALUES (18951, 230, 2);
 INSERT INTO `item_mods` VALUES (18952, 161, -5);
-INSERT INTO `item_mods` VALUES (18953, 2, 12);
-INSERT INTO `item_mods` VALUES (18953, 5, 12);
+
+-- -------------------------------------------------------
+-- Beluga
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18953, 2, 12); -- Max HP
+INSERT INTO `item_mods` VALUES (18953, 5, 12); -- Max MP
+INSERT INTO `item_mods` VALUES (18953, 431, 1); -- Additional Effect: Water Damage
+
 INSERT INTO `item_mods` VALUES (18993, 30, 10);
 INSERT INTO `item_mods` VALUES (18994, 25, 30);
 INSERT INTO `item_mods` VALUES (18994, 28, 20);
@@ -20112,8 +20179,13 @@ INSERT INTO `item_mods` VALUES (19216, 27, -5);
 INSERT INTO `item_mods` VALUES (19216, 289, 5);
 INSERT INTO `item_mods` VALUES (19217, 24, 8);
 INSERT INTO `item_mods` VALUES (19218, 26, 8);
+
+-- -------------------------------------------------------
+-- Iwatsubute
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (19219, 2, 10);
 INSERT INTO `item_mods` VALUES (19219, 10, 1);
+
 INSERT INTO `item_mods` VALUES (19220, 25, 2);
 INSERT INTO `item_mods` VALUES (19220, 68, 2);
 INSERT INTO `item_mods` VALUES (19221, 11, 1);
@@ -20490,6 +20562,11 @@ INSERT INTO `item_mods` VALUES (28340, 29, 3); -- "Magic Def. Bonus"+3
 INSERT INTO `item_mods` VALUES (28340, 384, 30); -- Haste+3%
 INSERT INTO `item_mods` VALUES (28340, 31, 76); -- Magic Evasion+76
 INSERT INTO `item_mods` VALUES (28340, 455, 6); -- Song casting time -6%
+
+-- -------------------------------------------------------
+-- Fiend Torque
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28390, 2, 5); -- HP+5
 
 -- -------------------------------------------------------
 -- Eddy Necklace
