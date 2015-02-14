@@ -709,7 +709,7 @@ public:
 	uint16	GetPower();
     uint16  GetSubPower();
     uint16  GetTier();
-	uint16	GetFlag();
+	uint32	GetFlag();
 	uint16	GetType();
 
 	uint32	GetTickTime();
@@ -718,8 +718,8 @@ public:
 	uint32	GetStartTime();
 	CBattleEntity* GetOwner();
 
-    void    SetFlag(uint16 Flag);
-    void    UnsetFlag(uint16 Flag);
+    void    SetFlag(uint32 Flag);
+    void    UnsetFlag(uint32 Flag);
     void    SetType(uint16 Type);
     void    SetIcon(uint16 Icon);
 	void	SetPower(uint16 Power);
@@ -763,7 +763,7 @@ private:
 	uint16		m_Power;				// сила эффекта
     uint16		m_SubPower;				// Secondary power of the effect
     uint16      m_Tier;                 // Tier of the effect
-	uint16		m_Flag;					// флаг эффекта (условия его исчезновения)
+	uint32		m_Flag;					// флаг эффекта (условия его исчезновения)
 	uint16		m_Type;                 // used to enforce only one
 
 	uint32		m_TickTime;				// время повторения эффекта (млс)

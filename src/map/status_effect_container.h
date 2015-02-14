@@ -50,7 +50,7 @@ public:
     bool DelStatusEffect(EFFECT StatusID);
     bool DelStatusEffectSilent(EFFECT StatusID);
     bool DelStatusEffect(EFFECT StatusID, uint16 SubID);
-    void DelStatusEffectsByFlag(uint16 flag, bool silent = false);                   // удаляем все эффекты с указанным типом
+    void DelStatusEffectsByFlag(uint32 flag, bool silent = false);                   // удаляем все эффекты с указанным типом
     void DelStatusEffectsByIcon(uint16 IconID);                 // удаляем все эффекты с указанной иконкой
     void DelStatusEffectsByType(uint16 Type);
     bool DelStatusEffectByTier(EFFECT StatusID, uint16 power);
@@ -58,7 +58,7 @@ public:
 
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие эффекта
     bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие эффекта с уникальным subid
-    bool HasStatusEffectByFlag(uint16 flag);
+    bool HasStatusEffectByFlag(uint32 flag);
 
     EFFECT EraseStatusEffect();                                 // удаляем первый отрицательный эффект
     EFFECT HealingWaltz();				// dancers healing waltz
