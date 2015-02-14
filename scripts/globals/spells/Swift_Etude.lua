@@ -48,7 +48,7 @@ function onSpellCast(caster,target,spell)
         duration = duration * 2;
     end
     
-	if not (target:addBardSong(caster,EFFECT_ETUDE,power,0,duration,caster:getID(), MOD_AGI, 1)) then
+	if not (target:addBardSong(caster,EFFECT_ETUDE,power,10,duration,caster:getID(), 4, 2)) then
         spell:setMsg(75);
     end
 	return EFFECT_ETUDE;
