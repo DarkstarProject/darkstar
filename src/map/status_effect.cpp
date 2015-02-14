@@ -100,7 +100,7 @@ uint16 CStatusEffect::GetTier()
     return m_Tier;
 }
 
-uint16 CStatusEffect::GetFlag()
+uint32 CStatusEffect::GetFlag()
 {
 	return m_Flag;
 }
@@ -125,12 +125,12 @@ uint32 CStatusEffect::GetLastTick()
 	return m_LastTick;
 }
 
-void CStatusEffect::SetFlag(uint16 Flag)
+void CStatusEffect::SetFlag(uint32 Flag)
 {
     m_Flag |= Flag;
 }
 
-void CStatusEffect::UnsetFlag(uint16 flag)
+void CStatusEffect::UnsetFlag(uint32 flag)
 {
     m_Flag &= ~flag;
 }

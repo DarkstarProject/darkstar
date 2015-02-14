@@ -594,6 +594,9 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                 CheckLatentsWeaponDraw(m_POwner->animation == ANIMATION_ATTACK);
             }
             break;
+            case LATENT_SONG_ROLL_ACTIVE:
+                    CheckLatentsRollSong(m_POwner->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_ROLL | EFFECTFLAG_SONG));
+                break;
             default:
                 ShowWarning("Latent ID %d unhandled in CheckLatentsEquip\n", m_LatentEffectList.at(i)->GetConditionsID());
                 break;
