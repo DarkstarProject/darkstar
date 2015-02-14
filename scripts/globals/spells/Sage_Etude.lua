@@ -52,12 +52,4 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(75);
     end
 	
-
-    function onEffectTick(target,effect)
-    end;
-
-    
-    function onEffectLose(target,effect)
-    target:delMod(effect:getSubPower(), effect:getPower());
-	
 end;
