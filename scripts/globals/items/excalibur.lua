@@ -21,8 +21,11 @@ function onAdditionalEffect(player,target,damage)
 		local finalDMG = math.floor(player.getHP(player)/4);
         if (finalDMG >0) then
 			local physicalResist = target:getMod(MOD_SLASHRES)/1000;
-			finalDMG=finalDMG*physicalResist;
+			finalDMG = finalDMG*physicalResist;
 			finalDMG = target:physicalDmgTaken(finalDMG);
+			finalDMG = finalDMG - target:getMod(MOD_PHALANX);
+			utils.clamp(finalDMG, 0, 99999);
+			finalDMG = utils.stoneskin(target, finalDMG);
 			target:delHP(finalDMG);
 			return SUBEFFECT_STUN, 163, finalDMG;
 		end
