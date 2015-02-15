@@ -20,6 +20,11 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
+	if(effect:getTier() == 2 and effect:getPower() > 0) then
+	effects:setpower(effect:setpower(), 1)
+	target:delMod(effect:getSubPower(), 1)
+	end
+
 end;
 
 -----------------------------------
@@ -27,5 +32,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(effect:getSubPower(), effect:getPower());
+	target:delMod(effect:getSubPower(), effect:getPower());
 end;
