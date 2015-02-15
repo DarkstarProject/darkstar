@@ -332,7 +332,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
     end
 
     if (skill == SINGING_SKILL and player:hasStatusEffect(EFFECT_TROUBADOUR)) then
-        if (math.random(0,99) < player:getMerit(MERIT_TROUBADOUR)-1)*25 then
+        if (math.random(0,99) < player:getMerit(MERIT_TROUBADOUR)-25) then
             return 1.0;
         end
     end
