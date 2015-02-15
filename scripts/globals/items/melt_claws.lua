@@ -1,7 +1,8 @@
 -----------------------------------------
--- ID: 16479
--- Item: Acid Kukri
+-- ID: 18357
+-- Item: Melt Claws
 -- Additional Effect: Weakens defense
+-- TODO: Enchantment: Weakens defense
 -----------------------------------------
 
 require("scripts/globals/status");

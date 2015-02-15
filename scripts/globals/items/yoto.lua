@@ -1,6 +1,6 @@
 -----------------------------------------
--- ID: 16479
--- Item: Acid Kukri
+-- ID: 16908
+-- Item: Yoto
 -- Additional Effect: Weakens defense
 -----------------------------------------
 
@@ -12,7 +12,7 @@ require("scripts/globals/magic");
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)
-    local chance = 10;
+    local chance = 5;
 
     if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WIND,0) <= 0.5) then
         return 0,0,0;

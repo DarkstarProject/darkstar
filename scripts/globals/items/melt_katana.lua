@@ -1,7 +1,8 @@
 -----------------------------------------
--- ID: 16479
--- Item: Acid Kukri
+-- ID: 18410
+-- Item: Melt Katana
 -- Additional Effect: Weakens defense
+-- TODO: Enchantment: Weakens defense
 -----------------------------------------
 
 require("scripts/globals/status");

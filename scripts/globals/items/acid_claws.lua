@@ -1,6 +1,6 @@
 -----------------------------------------
--- ID: 16479
--- Item: Acid Kukri
+-- ID: 16430
+-- Item: Acid Claws
 -- Additional Effect: Weakens defense
 -----------------------------------------
 

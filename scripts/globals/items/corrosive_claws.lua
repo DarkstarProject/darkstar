@@ -1,7 +1,7 @@
 -----------------------------------------
--- ID: 16742
--- Item: Poison Knife +1
--- Additional Effect: Poison
+-- ID: 17487
+-- Item: Corrosive Claws
+-- Additional Effect: Weakens defense
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -14,12 +14,11 @@ require("scripts/globals/magic");
 function onAdditionalEffect(player,target,damage)
     local chance = 15;
 
-    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WATER,0) <= 0.5) then
+    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WIND,0) <= 0.5) then
         return 0,0,0;
     else
-        if (not target:hasStatusEffect(EFFECT_POISON)) then
-            target:addStatusEffect(EFFECT_POISON, 4, 3, 30);
-        end
-        return SUBEFFECT_POISON, 160, EFFECT_POISON;
+        target:delStatusEffect(EFFECT_DEFENSE_BOOST);
+        target:addStatusEffect(EFFECT_DEFENSE_DOWN, 12, 0, 60);
+        return SUBEFFECT_DEFENSE_DOWN, 160, EFFECT_DEFENSE_DOWN;
     end
 end;
