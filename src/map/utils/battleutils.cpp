@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -436,7 +436,7 @@ int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,
     	}
         damage += PAttacker->getMod(MOD_ENSPELL_DMG_BONUS);
     }
-    
+
     //matching day 10% bonus, matching weather 10% or 25% for double weather
     float dBonus = 1.0;
     float resist = 1.0;
@@ -481,7 +481,7 @@ int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,
     }
     else
     {
-        // mobs random multiplier 
+        // mobs random multiplier
         dBonus += (WELL512::irand() % 101) / 1000.0f;
     }
     if (WeekDay == strongDay[element] && (obiBonus || WELL512::irand() % 100 < 33))
@@ -496,7 +496,7 @@ int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,
         dBonus -= 0.1;
     else if (weather == weakWeatherDouble[element] && (obiBonus || WELL512::irand() % 100 < 33))
         dBonus -= 0.25;
-    
+
     damage = (damage * (float)resist);
     damage = (damage * (float)dBonus);
     damage = MagicDmgTaken(PDefender, damage);
@@ -551,7 +551,50 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
     Action->spikesMessage = 44;
     Action->spikesParam = PDefender->getMod(MOD_SPIKES_DMG);
 
-    if (Action->spikesEffect > 0)
+    // Handle Retaliation
+    if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_RETALIATION)
+        && battleutils::GetHitRate(PDefender, PAttacker) > WELL512::irand()%100
+        && isFaceing(PAttacker->loc.p, PDefender->loc.p, 40))
+    {
+        // Retaliation rate is based on player acc vs mob evasion. Missed retaliations do not even display in log.
+        // Other theories exist were not proven or reliably tested (I have to assume to many things to even consider JP translations about weapon delay), this at least has data to back it up.
+        // https://web.archive.org/web/20141228105335/http://www.bluegartr.com/threads/120193-Retaliation-Testing?s=7a6221e10ffdfaa6a7f5e8f0387f787d&p=4620727&viewfull=1#post4620727
+        Action->reaction = REACTION_HIT;
+        Action->spikesEffect = SUBEFFECT_COUNTER;
+
+        if (battleutils::IsAbsorbByShadow(PAttacker)) // Struck a shadow
+        {
+            Action->spikesMessage = 535;
+        }
+        else // Struck the target
+        {
+            if (PDefender->objtype == TYPE_PC)
+            {
+                // Check for skillup
+                uint8 skilltype = PDefender->m_Weapons[SLOT_MAIN]->getSkillType();
+                charutils::TrySkillUP((CCharEntity*)PDefender, (SKILLTYPE)skilltype, PAttacker->GetMLevel());
+            }
+
+            // Check if crit
+            bool crit = battleutils::GetCritHitRate(PDefender, PAttacker, true) > WELL512::irand()%100;
+
+            // Dmg math.
+            float DamageRatio = GetDamageRatio(PDefender, PAttacker, crit, 0);
+            uint16 dmg = (uint32)((PDefender->GetMainWeaponDmg() + battleutils::GetFSTR(PDefender, PAttacker, SLOT_MAIN)) * DamageRatio);
+            dmg = attackutils::CheckForDamageMultiplier(((CCharEntity*)PDefender), PDefender->m_Weapons[SLOT_MAIN], dmg, ATTACK_NORMAL);
+            uint16 bonus = dmg * (PDefender->getMod(MOD_RETALIATION) /100);
+            dmg = dmg + bonus;
+
+            // FINISH HIM! dun dun dun
+            // TP and stoneskin are handled inside TakePhysicalDamage
+            Action->spikesMessage = 536;
+            Action->spikesParam = battleutils::TakePhysicalDamage(PDefender, PAttacker, dmg, false, SLOT_MAIN, 1, NULL, true);
+            PAttacker->addHP(-Action->spikesParam);
+        }
+    }
+
+    // Handle spikes from spells or auto-spikes (scripted) effects
+    else if (Action->spikesEffect > 0)
     {
         // check if spikes are handled in mobs script
         if (PDefender->objtype == TYPE_MOB && ((CMobEntity*)PDefender)->getMobMod(MOBMOD_AUTO_SPIKES) > 0)
@@ -606,7 +649,8 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
         }
         return true;
     }
-    // deal with spikesEffect effect gear
+
+    // Deal with spikesEffect effect gear
     else if (PDefender->getMod(MOD_ITEM_SPIKES_TYPE) > 0)
     {
         if (PDefender->objtype == TYPE_PC)
@@ -906,7 +950,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
 		}
     }
     //check weapon for additional effects
-    else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0 && 
+    else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0 &&
         luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
     {
         if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
@@ -1682,12 +1726,12 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 				if(PDefender->m_Weapons[SLOT_SUB]->IsShield())
 				{
 					absorb = 100 - PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption();
-                    if((dsp_max(damage - (PDefender->getMod(MOD_PHALANX) + PDefender->getMod(MOD_STONESKIN)), 0) >0) 
+                    if((dsp_max(damage - (PDefender->getMod(MOD_PHALANX) + PDefender->getMod(MOD_STONESKIN)), 0) >0)
                         && (charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY)))
                     {
                         // If the player blocked with a shield and has shield mastery, add shield mastery TP bonus
                         // unblocked damage (before block but as if affected by stoneskin/phalanx) must be greater than zero
-                        PDefender->addTP(PDefender->getMod(MOD_SHIELD_MASTERY_TP));			
+                        PDefender->addTP(PDefender->getMod(MOD_SHIELD_MASTERY_TP));
                     }
 				}
 			}
@@ -1755,7 +1799,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
                     ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE, UPDATE_COMBAT));
 
                 break;
-                
+
             case TYPE_PET:
                 ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE, UPDATE_COMBAT));
                 break;
@@ -2167,10 +2211,10 @@ uint8 getHitCount(uint8 hits)
 ************************************************************************/
 
 uint8 CheckMobMultiHits(CBattleEntity* PEntity)
-{		
+{
 
 	if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PET)
-	{ 
+	{
 		uint8 num = 1;
 
 		//Monk
@@ -2962,7 +3006,7 @@ bool IsEngauged(CBattleEntity* PEntity)
 
     return (PEntity->animation == ANIMATION_ATTACK &&
             PEntity->PBattleAI != NULL &&
-            PEntity->PBattleAI->GetBattleTarget() != NULL && 
+            PEntity->PBattleAI->GetBattleTarget() != NULL &&
 			PEntity->status != STATUS_DISAPPEAR);
 }
 
@@ -3046,7 +3090,7 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
 			charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -2);
 			PChar->pushPacket(new CInventoryFinishPacket());
 		}
-		else 
+		else
         {
 			uint16 meritBonus = 0;
 
@@ -3536,7 +3580,7 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 		uint16 enmityReduction = PAttacker->getMod(MOD_HIGH_JUMP_ENMITY_REDUCTION) + 50;
 
 		// cap it
-		if (enmityReduction > 100) 
+		if (enmityReduction > 100)
 		{
 			enmityReduction = 100;
 		}
@@ -3546,7 +3590,7 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 	// Under Spirit Surge, High Jump lowers the target's TP proportionately to the amount of damage dealt (TP is reduced by damage * 20)
 	if (tier == 2 && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SPIRIT_SURGE))
 		PVictim->addTP(-(totalDamage * 20));
- 
+
  	// try skill up (CharEntity only)
 	if (PAttacker->objtype == TYPE_PC)
 		charutils::TrySkillUP((CCharEntity*)PAttacker, (SKILLTYPE)PWeapon->getSkillType(), PVictim->GetMLevel());
@@ -3937,12 +3981,12 @@ void HandleIssekiganEnmityBonus(CBattleEntity* PDefender, CMobEntity* PAttacker)
 void HandleAfflatusMiseryAccuracyBonus(CBattleEntity* PAttacker){
 	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY) &&
 		PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_AUSPICE)){
-	
+
 		// We keep track of the running total of Accuracy Bonus as part of the Sub Power of the Effect
 		// This is used to re-adjust MOD_ACC when the effect wears off
 
 		uint16 accBonus = PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_AFFLATUS_MISERY)->GetSubPower();
-		
+
 		// Per BGWiki, this bonus is thought to cap at +30
 		if (accBonus < 30) {
 			accBonus = accBonus + 10;
@@ -4026,7 +4070,7 @@ int32 HandleFanDance(CBattleEntity* PDefender, int32 damage)
     // Handle Fan Dance
     if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_FAN_DANCE))
     {
-        
+
         int power = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_FAN_DANCE)->GetPower();
         float resist = 1.0f - (power / 100.0f);
         damage *= resist;
@@ -4062,7 +4106,7 @@ int32 HandleSevereDamageEffect(CBattleEntity* PDefender, EFFECT effect, int32 da
 				PDefender->StatusEffectContainer->DelStatusEffect(effect);
 			}
 
-			//ShowDebug(CL_CYAN"HandleSevereDamageEffect: Reduciing Severe Damage!\n" CL_RESET);			
+			//ShowDebug(CL_CYAN"HandleSevereDamageEffect: Reduciing Severe Damage!\n" CL_RESET);
 		}
 	}
 
@@ -4360,7 +4404,7 @@ void DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset)
 ************************************************************************/
 void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
 {
-	uint8 TotalRecasts = PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->size();	
+	uint8 TotalRecasts = PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->size();
 
 	// Don't count the 2hr.
 	if (PTarget->PRecastContainer->Has(RECAST_ABILITY, 0))
@@ -4376,8 +4420,8 @@ void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
 
 	switch (roll)
 	{
-		case 1: 
-			// Restores some Job Abilities (does not restore One Hour Abilities) 
+		case 1:
+			// Restores some Job Abilities (does not restore One Hour Abilities)
 			for (uint8 i = RecastsToDelete; i > 0; --i)
 			{
 				if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1)->ID != 0)
@@ -4387,13 +4431,13 @@ void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
 			}
 			break;
 
-		case 2: 
-			// Restores all Job Abilities (does not restore One Hour Abilities) 
+		case 2:
+			// Restores all Job Abilities (does not restore One Hour Abilities)
 			PTarget->PRecastContainer->ResetAbilities();
 			break;
 
-		case 3: 
-			// Restores some Job Abilities (does not restore One Hour Abilities), 100% TP Restore 
+		case 3:
+			// Restores some Job Abilities (does not restore One Hour Abilities), 100% TP Restore
 			for (uint8 i = RecastsToDelete; i > 0; --i)
 			{
 				if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1)->ID != 0)
@@ -4404,14 +4448,14 @@ void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
 			PTarget->health.tp = 1000;
 			break;
 
-		case 4: 
-			// Restores all Job Abilities (does not restore One Hour Abilities), 300% TP Restore 
+		case 4:
+			// Restores all Job Abilities (does not restore One Hour Abilities), 300% TP Restore
 			PTarget->PRecastContainer->ResetAbilities();
 			PTarget->health.tp = 3000;
 			break;
 
-		case 5: 
-			// Restores some Job Abilities and One Hour Abilities (Not Wild Card though), 50% MP Restore 
+		case 5:
+			// Restores some Job Abilities and One Hour Abilities (Not Wild Card though), 50% MP Restore
 			for (uint8 i = RecastsToDelete; i > 0; --i)
 			{
 				if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1)->ID != 0)
@@ -4432,8 +4476,8 @@ void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
 			}
 			break;
 
-		case 6: 
-			// Restores all Job Abilities and One Hour Abilities (Not Wild Card though), 100% MP Restore 
+		case 6:
+			// Restores all Job Abilities and One Hour Abilities (Not Wild Card though), 100% MP Restore
 			if (PTarget->GetMJob() == JOB_COR)
 			{
 				PTarget->PRecastContainer->ResetAbilities();
@@ -4459,17 +4503,17 @@ void GetSnapshotReduction(CCharEntity* m_PChar)
 
 	// Reduction from gear.
 	SnapShotReductionPercent += m_PChar->getMod(MOD_SNAP_SHOT);
-		
+
 	// Reduction from merits.
 	if (charutils::hasTrait(m_PChar, TRAIT_SNAPSHOT))
 	{
-		SnapShotReductionPercent += m_PChar->PMeritPoints->GetMeritValue(MERIT_SNAPSHOT, m_PChar); 
-	}									  
+		SnapShotReductionPercent += m_PChar->PMeritPoints->GetMeritValue(MERIT_SNAPSHOT, m_PChar);
+	}
 
 	// Reduction from velocity shot mod
 	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_VELOCITY_SHOT))
 	{
-		SnapShotReductionPercent += m_PChar->getMod(MOD_VELOCITY_SNAPSHOT_BONUS);		
+		SnapShotReductionPercent += m_PChar->getMod(MOD_VELOCITY_SNAPSHOT_BONUS);
 	}
 
 	// Only apply if we have snapshot bonus to offer.
@@ -4527,4 +4571,4 @@ int32 GetRangedAccuracyBonuses(CBattleEntity* battleEntity)
 }
 
 };
- 
+

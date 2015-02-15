@@ -330,7 +330,7 @@ enum MODIFIER
 	MOD_CHARM_TIME                = 0x168, // extends the charm time only, no effect of charm chance (modId = 360)
 	MOD_REWARD_HP_BONUS           = 0x16C, // Percent to add to reward HP healed. (364) (modId = 364)
 	MOD_CHARM_CHANCE              = 0x187, // extra chance to charm (light+apollo staff ect) (modId = 391)
-        MOD_FERAL_HOWL_DURATION       = 0x1F7, // +20% duration per merit when wearing augmented Monster Jackcoat +2 (modId = 503)
+    MOD_FERAL_HOWL_DURATION       = 0x1F7, // +20% duration per merit when wearing augmented Monster Jackcoat +2 (modId = 503)
 
 	// Bard
     MOD_MINNE_EFFECT              = 0x1B1, // (modId = 433)
@@ -362,11 +362,11 @@ enum MODIFIER
 	MOD_SNAP_SHOT                 = 0x16D, // Percent reduction to range attack delay (modId = 365)
 	MOD_RAPID_SHOT                = 0x167, // Percent chance to proc rapid shot (modId = 359)
 	MOD_WIDESCAN                  = 0x154, // (modId = 340)
-	MOD_BARRAGE_ACC			      = 0x1A4, // Barrage accuracy (modId = 420)
-	MOD_DOUBLE_SHOT_RATE		  = 0x1A6, // The rate that double shot can proc. Without this, the default is 40%. (modId = 422)
-	MOD_VELOCITY_SNAPSHOT_BONUS	  = 0x1A7, // Increases Snapshot whilst Velocity Shot is up. (modId = 423)
-	MOD_VELOCITY_RATT_BONUS		  = 0x1A8, // Increases Ranged Attack whilst Velocity Shot is up. (modId = 424)
-	MOD_SHADOW_BIND_EXT		  	  = 0x1A9, // Extends the time of shadowbind (modId = 425)
+	MOD_BARRAGE_ACC               = 0x1A4, // Barrage accuracy (modId = 420)
+	MOD_DOUBLE_SHOT_RATE          = 0x1A6, // The rate that double shot can proc. Without this, the default is 40%. (modId = 422)
+	MOD_VELOCITY_SNAPSHOT_BONUS   = 0x1A7, // Increases Snapshot whilst Velocity Shot is up. (modId = 423)
+	MOD_VELOCITY_RATT_BONUS       = 0x1A8, // Increases Ranged Attack whilst Velocity Shot is up. (modId = 424)
+	MOD_SHADOW_BIND_EXT           = 0x1A9, // Extends the time of shadowbind (modId = 425)
 
 	// Samurai
 	MOD_ZANSHIN					  = 0x132, // Zanshin percent chance (modId = 306)
@@ -378,7 +378,7 @@ enum MODIFIER
 	// Dragoon
 	MOD_JUMP_TP_BONUS             = 0x169, // bonus tp player receives when using jump (must be divided by 10) (modId = 361)
 	MOD_JUMP_ATT_BONUS            = 0x16A, // ATT% bonus for jump + high jump (modId = 362)
-	MOD_HIGH_JUMP_ENMITY_REDUCTION=0x16B, // for gear that reduces more enmity from high jump (modId = 363)
+	MOD_HIGH_JUMP_ENMITY_REDUCTION = 0x16B, // for gear that reduces more enmity from high jump (modId = 363)
 
 	// Summoner
 	MOD_AVATAR_PERPETUATION       = 0x173, //stores base cost of current avatar (modId = 371)
@@ -516,7 +516,7 @@ enum MODIFIER
 	MOD_GRIMOIRE_INSTANT_CAST	  = 0x1A3, // Spells that match your current Arts will occasionally cast instantly, without recast. (modId = 419) 
 	MOD_QUAD_ATTACK				  = 0x1AE, // Quadruple attack chance. (modId = 430)
 
-	// Reraise
+	// Reraise (Auto Reraise, used by gear)
 	MOD_RERAISE_I				  = 0x1C8, // Reraise. (modId = 456)
 	MOD_RERAISE_II				  = 0x1C9, // Reraise II. (modId = 457)
 	MOD_RERAISE_III				  = 0x1CA, // Reraise III. (modId = 458)
@@ -554,11 +554,20 @@ enum MODIFIER
     MOD_EXTRA_DMG_CHANCE          = 0x1FA, // Proc rate of MOD_OCC_DO_EXTRA_DMG. 111 would be 11.1% (modId = 506)
     MOD_OCC_DO_EXTRA_DMG          = 0x1FB, // Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage. (modId = 507)
 
-    MOD_AUGMENTS_THIRD_EYE 	= 0x1FC, // (modId = 508)
-    //MOD_SPARE =0x1FD, // (modId = 509)
-    //MOD_SPARE =0x1FE, // (modId = 510)
-    //MOD_SPARE =0x1FF, // (modId = 511)
-    //MOD_SPARE =0x200, // (modId = 512)
+    MOD_EAT_RAW_FISH              = 0x19C, // (modId = 412)
+    MOD_EAT_RAW_MEAT              = 0x19D, // (modId = 413)
+
+    MOD_RETALIATION               = 0x19E, // Increases damage of Retaliation hits (modId = 414)
+    MOD_AUGMENTS_THIRD_EYE        = 0x1FC, // Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15% (modId = 508)
+
+    // MOD_SPARE = 0x1FD, // (modId = 509)
+    // MOD_SPARE = 0x1FE, // (modId = 510)
+    // MOD_SPARE = 0x1FF, // (modId = 511)
+    // MOD_SPARE = 0x200, // (modId = 512)
+    // MOD_SPARE = 0x201, // (modId = 513)
+    // MOD_SPARE = 0x202, // (modId = 514)
+    // MOD_SPARE = 0x203, // (modId = 515)
+    // MOD_SPARE = 0x204, // (modId = 516)
 
 };
 
