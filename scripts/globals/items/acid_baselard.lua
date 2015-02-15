@@ -1,6 +1,6 @@
 -----------------------------------------
--- ID: 16479
--- Item: Acid Kukri
+-- ID: 16459
+-- Item: Acid Baselard
 -- Additional Effect: Weakens defense
 -----------------------------------------
 
