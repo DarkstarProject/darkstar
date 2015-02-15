@@ -1076,7 +1076,7 @@ void SetupMaat(CMobEntity* PMob, JOBTYPE job)
 	}
 }
 
-CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID)
+CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 {
 	const int8* Query =
 		"SELECT zoneid, name, \
@@ -1102,6 +1102,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID)
 		if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
 			PMob = new CMobEntity;
+            PMob->PInstance = instance;
 
 			PMob->name.insert(0, Sql_GetData(SqlHandle, 1));
 

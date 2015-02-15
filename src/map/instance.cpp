@@ -61,6 +61,10 @@ CInstance::~CInstance()
 	{
 		delete entity.second;
 	}
+    for (auto entity : m_petList)
+    {
+        delete entity.second;
+    }
 }
 
 uint8 CInstance::GetID()

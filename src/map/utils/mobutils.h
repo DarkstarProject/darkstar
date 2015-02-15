@@ -58,7 +58,7 @@ namespace mobutils
 	void  AddCustomMods(CMobEntity* PMob);
 	void  SetupMaat(CMobEntity* PMob, JOBTYPE job);
 	void  SetSpellList(CMobEntity*, uint16);
-	CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID);
+	CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* = NULL);
     void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level);
 };
 
