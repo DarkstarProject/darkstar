@@ -11778,7 +11778,6 @@ INSERT INTO `item_mods` VALUES (14645, 60, -30);
 -- Telluric Ring
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (14649, 58, 20); -- [Element: Thunder]+20
-;
 INSERT INTO `item_mods` VALUES (14650, 1, 2);
 INSERT INTO `item_mods` VALUES (14650, 26, 6);
 INSERT INTO `item_mods` VALUES (14651, 5, 15);
