@@ -10004,6 +10004,7 @@ INSERT INTO `item_armor` VALUES ('28342', 'orvail_souliers', '99', '3850780', '3
 INSERT INTO `item_armor` VALUES ('28343', 'chocaliztli_boots', '99', '10689', '347', '0', '0', '256', '0');
 INSERT INTO `item_armor` VALUES ('28344', 'thurandaut_boots', '99', '2593826', '343', '0', '0', '256', '0');
 INSERT INTO `item_armor` VALUES ('28345', 'karieyh_sollerets', '99', '10689', '342', '0', '0', '256', '0');
+INSERT INTO `item_armor` VALUES ('28390', 'fiend_torque', '50', '4194303', '0', '0', '0', '512', '0');
 INSERT INTO `item_armor` VALUES ('28401', 'eddy_necklace', '99', '7438776', '0', '0', '0', '512', '0');
 INSERT INTO `item_armor` VALUES ('28402', 'asperity_necklace', '99', '4194303', '0', '0', '0', '512', '0');
 INSERT INTO `item_armor` VALUES ('28403', 'inquisitor_bead_necklace', '99', '5139044', '0', '0', '0', '512', '0');

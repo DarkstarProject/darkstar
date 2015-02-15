@@ -34,3 +34,7 @@ NOTHING_OUT_OF_THE_ORDINARY = 6555; -- There is nothing out of the ordinary here
 -- conquest Base
 CONQUEST_BASE = 0;
 
+-- Strange Apparatus
+DEVICE_NOT_WORKING = 7214; -- The device is not working.
+      SYS_OVERLOAD = 7223; -- “Warning! Sys...verload!
+      YOU_LOST_THE = 7228; -- You lost the <item>

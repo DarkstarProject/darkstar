@@ -38,4 +38,7 @@ SPIRIT_INCENSE_EMITS_PUTRID_ODOR = 7384; -- emits a putrid odor and burns up. Yo
 -- conquest Base
 CONQUEST_BASE = 0;
 
-
+-- Strange Apparatus
+DEVICE_NOT_WORKING = 7291; -- The device is not working.
+      SYS_OVERLOAD = 7300; -- “Warning! Sys...verload!
+      YOU_LOST_THE = 7305; -- You lost the <item>

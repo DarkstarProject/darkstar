@@ -124,6 +124,5 @@ function onEventFinish(player,csid,option)
 		player:setVar("MissionStatus",1);
 	elseif(csid == 0x02d4) then
 		finishMissionTimeline(player,3,csid,option);
-		player:setVar("Windurst_7-1Kills",0);
 	end
 end;

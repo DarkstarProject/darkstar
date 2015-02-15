@@ -20,5 +20,11 @@ CHEST_ILLUSION = 7415; -- The chest was but an illusion...
 -- Other Text
 GEOMAGNETIC_FOUNT = 7163; -- A faint energy wafts up from the ground.
        SMALL_HOLE = 7463; -- There is a small hole here.
+
 -- conquest Base
 CONQUEST_BASE = 0;
+
+-- Strange Apparatus
+DEVICE_NOT_WORKING = 7298; -- The device is not working.
+      SYS_OVERLOAD = 7307; -- “Warning! Sys...verload!
+      YOU_LOST_THE = 7312; -- You lost the <item>

@@ -707,11 +707,14 @@ void CMagicState::CharOnTarget(apAction_t* action, int16 ce, int16 ve)
             ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
         }
 
-        ((CMobEntity*)PTarget)->m_OwnerID.id = m_PEntity->id;
-        ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PEntity->targid;
-        ((CMobEntity*)PTarget)->updatemask |= UPDATE_STATUS;
-        ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PEntity, ce, ve);
-        enmityApplied = true;
+        if (!(m_PSpell->isHeal()) || m_PSpell->tookEffect())  //can't claim mob with cure unless it does damage
+        {
+            ((CMobEntity*)PTarget)->m_OwnerID.id = m_PEntity->id;
+            ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PEntity->targid;
+            ((CMobEntity*)PTarget)->updatemask |= UPDATE_STATUS;
+            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PEntity, ce, ve);
+            enmityApplied = true;
+        }
     }
     else if (PTarget->allegiance == m_PEntity->allegiance)
     {

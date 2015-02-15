@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     if ( (Gob == ACTION_NONE or Gob == ACTION_SPAWN) and (player:hasKeyItem(BOWL_OF_BLAND_GOBLIN_SALAD) == true) and (player:hasKeyItem(SEEDSPALL_ROSEUM) == false) and (player:hasKeyItem(VIRIDIAN_KEY) == false) ) then
         SpawnMob(17207710,180):updateEnmity(player);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(NOTHING_HAPPENS);
     end
 end;
 

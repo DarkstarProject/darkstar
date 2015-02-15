@@ -24,3 +24,8 @@ MINING_IS_POSSIBLE_HERE = 7340; -- Mining is possible here if you have
 
 -- conquest Base
 CONQUEST_BASE = 7058; -- Tallying conquest results...
+
+-- Strange Apparatus
+DEVICE_NOT_WORKING = 7231; -- The device is not working.
+      SYS_OVERLOAD = 7240; -- “Warning! Sys...verload!
+      YOU_LOST_THE = 7245; -- You lost the <item>

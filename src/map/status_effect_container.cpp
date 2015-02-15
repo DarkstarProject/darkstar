@@ -71,7 +71,7 @@ namespace effects
     // Default effect of statuses are overwrite if equal or higher
     struct EffectParams_t
     {
-        uint16   Flag;
+        uint32   Flag;
         string_t Name;
         // type will erase all other effects that match
         // example: en- spells, spikes
@@ -369,6 +369,7 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 				//check for latents
 				PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
 				PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
+                PChar->PLatentEffectContainer->CheckLatentsRollSong(PStatusEffect->GetFlag() & (EFFECTFLAG_SONG | EFFECTFLAG_ROLL));
 				PChar->UpdateHealth();
 
 				PChar->pushPacket(new CCharHealthPacket(PChar));
@@ -415,6 +416,7 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 		//check for latents
 		PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
 		PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
+        PChar->PLatentEffectContainer->CheckLatentsRollSong(HasStatusEffectByFlag(EFFECTFLAG_SONG | EFFECTFLAG_ROLL));
 		PChar->UpdateHealth();
 
         if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
@@ -551,7 +553,7 @@ void CStatusEffectContainer::DelStatusEffectsByType(uint16 Type)
 *                                                                       *
 ************************************************************************/
 
-void CStatusEffectContainer::DelStatusEffectsByFlag(uint16 flag, bool silent)
+void CStatusEffectContainer::DelStatusEffectsByFlag(uint32 flag, bool silent)
 {
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
@@ -697,7 +699,7 @@ bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID)
     return false;
 }
 
-bool CStatusEffectContainer::HasStatusEffectByFlag(uint16 flag)
+bool CStatusEffectContainer::HasStatusEffectByFlag(uint32 flag)
 {
 
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)

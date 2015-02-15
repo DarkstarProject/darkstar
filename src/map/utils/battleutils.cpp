@@ -906,10 +906,9 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
 		}
     }
     //check weapon for additional effects
-	else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0)
+    else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0 && 
+        luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
     {
-		luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
-
         if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
         {
             Action->addEffectMessage = 384;
@@ -1019,7 +1018,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
 
                 if (Samba < 0) { Samba = 0; }
 
-                Action->additionalEffect = SUBEFFECT_HP_DRAIN;
+                Action->additionalEffect = SUBEFFECT_MP_DRAIN;
                 Action->addEffectMessage = 162;
 
                 int16 mpDrained = PDefender->addMP(-Samba);

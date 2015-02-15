@@ -33,3 +33,7 @@ RUILLONT_INITIAL_DIALOG = 7321; -- Confound it! If I only had my sword, I'd cut 
 -- conquest Base
 CONQUEST_BASE = 0;
 
+-- Strange Apparatus
+DEVICE_NOT_WORKING = 7298; -- The device is not working.
+      SYS_OVERLOAD = 7307; -- “Warning! Sys...verload!
+      YOU_LOST_THE = 7312; -- You lost the <item>
