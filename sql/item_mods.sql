@@ -20716,3 +20716,9 @@ INSERT INTO `item_mods` VALUES(17527, 60, 10);
 INSERT INTO `item_mods` VALUES(17654, 2, 20);
 INSERT INTO `item_mods` VALUES(17654, 54, 10);
 INSERT INTO `item_mods` VALUES(17654, 56, 10);
+
+-- ------------------------------------------
+-- Fiend Torque
+-- ------------------------------------------ 
+INSERT INTO `item_mods` VALUES(28390, 2, 5); -- hp +5
+
