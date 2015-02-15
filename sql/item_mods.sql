@@ -1331,6 +1331,17 @@ INSERT INTO `item_mods` VALUES (10685, 369, 2);
 INSERT INTO `item_mods` VALUES (10687, 73, 10);
 INSERT INTO `item_mods` VALUES (10695, 303, 2);
 INSERT INTO `item_mods` VALUES (10696, 385, 12);
+
+-- ------------------------------------------
+-- Saotome Haidate +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10721, 1, 52);
+INSERT INTO `item_mods` VALUES (10721, 8, 6);
+INSERT INTO `item_mods` VALUES (10721, 11, 6);
+INSERT INTO `item_mods` VALUES (10721, 23, 8);
+INSERT INTO `item_mods` VALUES (10721, 68, 8);
+INSERT INTO `item_mods` VALUES (10721, 508, 25);
+
 INSERT INTO `item_mods` VALUES (10738, 364, 30);
 INSERT INTO `item_mods` VALUES (10753, 370, 2);
 INSERT INTO `item_mods` VALUES (10764, 370, 1);
@@ -13294,10 +13305,16 @@ INSERT INTO `item_mods` VALUES (15127, 2, 18);
 INSERT INTO `item_mods` VALUES (15127, 26, 7);
 INSERT INTO `item_mods` VALUES (15127, 27, -2);
 INSERT INTO `item_mods` VALUES (15127, 110, 10);
+
+-- ------------------------------------------
+-- Saotome Haidate
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES (15128, 1, 40);
 INSERT INTO `item_mods` VALUES (15128, 2, 18);
 INSERT INTO `item_mods` VALUES (15128, 11, 3);
 INSERT INTO `item_mods` VALUES (15128, 27, 1);
+INSERT INTO `item_mods` VALUES (15128, 508, 15); -- Augment's Third Eye
+
 INSERT INTO `item_mods` VALUES (15129, 1, 31);
 INSERT INTO `item_mods` VALUES (15129, 2, 40);
 INSERT INTO `item_mods` VALUES (15129, 259, 5);
@@ -14751,10 +14768,16 @@ INSERT INTO `item_mods` VALUES (15590, 2, 18);
 INSERT INTO `item_mods` VALUES (15590, 26, 9);
 INSERT INTO `item_mods` VALUES (15590, 27, -3);
 INSERT INTO `item_mods` VALUES (15590, 110, 10);
+
+-- ------------------------------------------
+-- Saotome Haidate +1
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES (15591, 1, 41);
 INSERT INTO `item_mods` VALUES (15591, 2, 33);
 INSERT INTO `item_mods` VALUES (15591, 11, 4);
 INSERT INTO `item_mods` VALUES (15591, 27, 1);
+INSERT INTO `item_mods` VALUES (15591, 508, 15); -- Aug. Third Eye
+
 INSERT INTO `item_mods` VALUES (15592, 1, 32);
 INSERT INTO `item_mods` VALUES (15592, 2, 40);
 INSERT INTO `item_mods` VALUES (15592, 259, 5);
@@ -17704,6 +17727,11 @@ INSERT INTO `item_mods` VALUES (16972, 14, 2);
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (16973, 431, 1); -- Additional Effect: Fire Damage
 
+-- -------------------------------------------------------
+-- Dotanuki
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (16974, 431, 1); -- Additional Effect
+
 INSERT INTO `item_mods` VALUES (16980, 23, 7);
 INSERT INTO `item_mods` VALUES (16980, 288, 1);
 
@@ -18654,7 +18682,13 @@ INSERT INTO `item_mods` VALUES (17693, 27, 1);
 INSERT INTO `item_mods` VALUES (17694, 8, 1);
 INSERT INTO `item_mods` VALUES (17694, 13, 6);
 INSERT INTO `item_mods` VALUES (17695, 8, 3);
+
+-- -------------------------------------------------------
+-- Bayard's Sword
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (17695, 13, 3);
+INSERT INTO `item_mods` VALUES (17695, 431, 1); -- Additional Effect: Light Damage
+
 INSERT INTO `item_mods` VALUES (17696, 9, 1);
 INSERT INTO `item_mods` VALUES (17697, 9, 2);
 INSERT INTO `item_mods` VALUES (17698, 8, 4);
@@ -18810,7 +18844,12 @@ INSERT INTO `item_mods` VALUES (17773, 2, 20);
 INSERT INTO `item_mods` VALUES (17773, 54, 10);
 INSERT INTO `item_mods` VALUES (17773, 60, 10);
 
+-- -------------------------------------------------------
+-- Shiranui
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (17774, 68, 3);
+INSERT INTO `item_mods` VALUES (17774, 431, 1);
+
 INSERT INTO `item_mods` VALUES (17775, 8, 1);
 INSERT INTO `item_mods` VALUES (17775, 11, 1);
 INSERT INTO `item_mods` VALUES (17787, 8, 1);
@@ -19084,14 +19123,25 @@ INSERT INTO `item_mods` VALUES (18030, 2, 15);
 INSERT INTO `item_mods` VALUES (18030, 68, 4);
 INSERT INTO `item_mods` VALUES (18031, 2, 20);
 INSERT INTO `item_mods` VALUES (18031, 68, 5);
+
+-- -------------------------------------------------------
+-- Adder Jambiya
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18032, 2, 15);
 INSERT INTO `item_mods` VALUES (18032, 68, 4);
 INSERT INTO `item_mods` VALUES (18032, 241, 2);
 INSERT INTO `item_mods` VALUES (18032, 246, 2);
+INSERT INTO `item_mods` VALUES (18032, 431, 1); -- Additional Effect
+
+-- -------------------------------------------------------
+-- Adder Jambiya +1
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18033, 2, 20);
 INSERT INTO `item_mods` VALUES (18033, 68, 5);
 INSERT INTO `item_mods` VALUES (18033, 241, 3);
 INSERT INTO `item_mods` VALUES (18033, 246, 3);
+INSERT INTO `item_mods` VALUES (18033, 431, 1); -- Additional Effect
+
 INSERT INTO `item_mods` VALUES (18035, 23, 3);
 INSERT INTO `item_mods` VALUES (18035, 25, 3);
 INSERT INTO `item_mods` VALUES (18035, 60, -5);
@@ -19170,10 +19220,20 @@ INSERT INTO `item_mods` VALUES (18107, 25, 2);
 INSERT INTO `item_mods` VALUES (18107, 26, 2);
 INSERT INTO `item_mods` VALUES (18109, 13, 8);
 INSERT INTO `item_mods` VALUES (18109, 23, 8);
+
+-- -------------------------------------------------------
+-- Mezraq
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18110, 8, 2);
 INSERT INTO `item_mods` VALUES (18110, 10, 2);
+INSERT INTO `item_mods` VALUES (18110, 431, 1);
+
+-- -------------------------------------------------------
+-- Mezraq +1
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18111, 8, 3);
 INSERT INTO `item_mods` VALUES (18111, 10, 3);
+INSERT INTO `item_mods` VALUES (18111, 431, 1);
 
 -- -------------------------------------------------------
 -- Tournament Lance
@@ -19183,18 +19243,40 @@ INSERT INTO `item_mods` VALUES (18114, 73, 3); -- "Store TP"+3
 INSERT INTO `item_mods` VALUES (18115, 25, 2);
 INSERT INTO `item_mods` VALUES (18115, 73, 1);
 INSERT INTO `item_mods` VALUES (18116, 25, 3);
+
+-- -------------------------------------------------------
+-- Dark Mezraq
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18118, 431, 1);
+
+-- -------------------------------------------------------
+-- Dark Mezraq +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18119, 431, 1);
+
 INSERT INTO `item_mods` VALUES (18121, 288, 3);
 INSERT INTO `item_mods` VALUES (18122, 8, 2);
 INSERT INTO `item_mods` VALUES (18122, 12, -1);
 INSERT INTO `item_mods` VALUES (18122, 13, -1);
+
+-- -------------------------------------------------------
+-- Thalassocrat
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18123, 2, 10);
 INSERT INTO `item_mods` VALUES (18123, 9, 2);
 INSERT INTO `item_mods` VALUES (18123, 10, 2);
 INSERT INTO `item_mods` VALUES (18123, 245, 2);
+INSERT INTO `item_mods` VALUES (18123, 431, 1);
+
+-- -------------------------------------------------------
+-- Thalassocrat +1
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18124, 2, 12);
 INSERT INTO `item_mods` VALUES (18124, 9, 3);
 INSERT INTO `item_mods` VALUES (18124, 10, 3);
 INSERT INTO `item_mods` VALUES (18124, 245, 3);
+INSERT INTO `item_mods` VALUES (18124, 431, 1);
+
 INSERT INTO `item_mods` VALUES (18125, 2, 15);
 INSERT INTO `item_mods` VALUES (18125, 5, 15);
 INSERT INTO `item_mods` VALUES (18125, 10, 5);
@@ -19386,6 +19468,7 @@ INSERT INTO `item_mods` VALUES (18269, 356, 26);
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18270, 23, 20);
 INSERT INTO `item_mods` VALUES (18270, 355, 26);
+INSERT INTO `item_mods` VALUES (18270, 431, 1); -- Add. Effect
 INSERT INTO `item_mods` VALUES (18270, 506, 160); -- 16% chance of extra dmg.
 INSERT INTO `item_mods` VALUES (18270, 507, 300); -- Occ. 3x dmg
 
@@ -19396,6 +19479,7 @@ INSERT INTO `item_mods` VALUES (18275, 356, 43);
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18276, 23, 20);
 INSERT INTO `item_mods` VALUES (18276, 355, 43);
+INSERT INTO `item_mods` VALUES (18276, 431, 1); -- Add. Effect
 INSERT INTO `item_mods` VALUES (18276, 506, 160); -- 16% chance of extra dmg.
 INSERT INTO `item_mods` VALUES (18276, 507, 250); -- Occ. 2.5x dmg
 
@@ -19417,6 +19501,7 @@ INSERT INTO `item_mods` VALUES (18287, 356, 73);
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18288, 23, 20);
 INSERT INTO `item_mods` VALUES (18288, 355, 73);
+INSERT INTO `item_mods` VALUES (18288, 431, 1); -- Add. Effect
 INSERT INTO `item_mods` VALUES (18288, 506, 160); -- 16% chance of extra dmg.
 INSERT INTO `item_mods` VALUES (18288, 507, 250); -- Occ. 2.5x dmg
 
@@ -19427,6 +19512,7 @@ INSERT INTO `item_mods` VALUES (18293, 356, 89);
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18294, 25, 20);
 INSERT INTO `item_mods` VALUES (18294, 355, 89);
+INSERT INTO `item_mods` VALUES (18294, 431, 1); -- Add. Effect
 INSERT INTO `item_mods` VALUES (18294, 506, 160); -- 16% chance of extra dmg.
 INSERT INTO `item_mods` VALUES (18294, 507, 200); -- Occ. 2x dmg
 
@@ -19437,6 +19523,7 @@ INSERT INTO `item_mods` VALUES (18299, 356, 121);
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18300, 25, 20);
 INSERT INTO `item_mods` VALUES (18300, 355, 121);
+INSERT INTO `item_mods` VALUES (18300, 431, 1); -- Add. Effect
 INSERT INTO `item_mods` VALUES (18300, 506, 160); -- 16% chance of extra dmg.
 INSERT INTO `item_mods` VALUES (18300, 507, 250); -- Occ. 2.5x dmg
 
@@ -19447,6 +19534,7 @@ INSERT INTO `item_mods` VALUES (18305, 356, 105);
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18306, 25, 20);
 INSERT INTO `item_mods` VALUES (18306, 355, 105);
+INSERT INTO `item_mods` VALUES (18306, 431, 1); -- Add. Effect
 INSERT INTO `item_mods` VALUES (18306, 506, 160); -- 16% chance of extra dmg.
 INSERT INTO `item_mods` VALUES (18306, 507, 200); -- Occ. 2x dmg
 
@@ -19457,6 +19545,7 @@ INSERT INTO `item_mods` VALUES (18311, 356, 137);
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18312, 23, 20);
 INSERT INTO `item_mods` VALUES (18312, 355, 137);
+INSERT INTO `item_mods` VALUES (18312, 431, 1); -- Add. Effect
 INSERT INTO `item_mods` VALUES (18312, 507, 160); -- 16% chance of extra dmg.
 INSERT INTO `item_mods` VALUES (18312, 506, 300); -- Occ. 3x dmg
 
@@ -19467,6 +19556,7 @@ INSERT INTO `item_mods` VALUES (18317, 356, 153);
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18318, 25, 20);
 INSERT INTO `item_mods` VALUES (18318, 355, 153);
+INSERT INTO `item_mods` VALUES (18318, 431, 1); -- Add. Effect
 INSERT INTO `item_mods` VALUES (18318, 506, 160); -- 16% chance of extra dmg.
 INSERT INTO `item_mods` VALUES (18318, 507, 250); -- Occ. 2.5x dmg
 
@@ -19477,6 +19567,7 @@ INSERT INTO `item_mods` VALUES (18323, 356, 170);
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18324, 23, 20);
 INSERT INTO `item_mods` VALUES (18324, 355, 170);
+INSERT INTO `item_mods` VALUES (18324, 431, 1); -- Add. Effect
 INSERT INTO `item_mods` VALUES (18324, 506, 160); -- 16% chance of extra dmg.
 INSERT INTO `item_mods` VALUES (18324, 507, 300); -- Occ. 3x dmg
 
@@ -19487,6 +19578,7 @@ INSERT INTO `item_mods` VALUES (18329, 356, 185);
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18330, 25, 20);
 INSERT INTO `item_mods` VALUES (18330, 355, 185);
+INSERT INTO `item_mods` VALUES (18330, 431, 1); -- Add. Effect
 INSERT INTO `item_mods` VALUES (18330, 506, 160); -- 16% chance of extra dmg.
 INSERT INTO `item_mods` VALUES (18330, 507, 250); -- Occ. 2.5x dmg
 
@@ -19981,6 +20073,10 @@ INSERT INTO `item_mods` VALUES (18948, 68, -6);
 INSERT INTO `item_mods` VALUES (18950, 12, 4);
 INSERT INTO `item_mods` VALUES (18950, 28, 8);
 INSERT INTO `item_mods` VALUES (18951, 230, 2);
+
+-- -------------------------------------------------------
+-- Faucheuse
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18952, 161, -5);
 
 -- -------------------------------------------------------
@@ -19990,15 +20086,85 @@ INSERT INTO `item_mods` VALUES (18953, 2, 12); -- Max HP
 INSERT INTO `item_mods` VALUES (18953, 5, 12); -- Max MP
 INSERT INTO `item_mods` VALUES (18953, 431, 1); -- Additional Effect: Water Damage
 
+-- -------------------------------------------------------
+-- Terpsichore
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18989, 355, 29);
+
+-- -------------------------------------------------------
+-- Tupsimati
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18990, 355, 188);
+
+-- -------------------------------------------------------
+-- Conqueror
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18991, 355, 90);
+
+-- -------------------------------------------------------
+-- Glanzfaust
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18992, 355, 11);
+
+-- -------------------------------------------------------
+-- Yagrush
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18993, 30, 10);
+INSERT INTO `item_mods` VALUES (18993, 355, 171);
+
+-- -------------------------------------------------------
+-- Laevateinn
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18994, 25, 30);
 INSERT INTO `item_mods` VALUES (18994, 28, 20);
 INSERT INTO `item_mods` VALUES (18994, 30, 10);
+INSERT INTO `item_mods` VALUES (18994, 355, 186);
+
+-- -------------------------------------------------------
+-- Murgleis
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18995, 30, 10);
+INSERT INTO `item_mods` VALUES (18995, 355, 44);
+
+-- -------------------------------------------------------
+-- Vajra
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18996, 355, 27);
+
+-- -------------------------------------------------------
+-- Burtgang
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18997, 27, 10);
 INSERT INTO `item_mods` VALUES (18997, 161, -10);
+INSERT INTO `item_mods` VALUES (18997, 355, 45);
+
+-- -------------------------------------------------------
+-- Liberator
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18998, 30, 20);
+INSERT INTO `item_mods` VALUES (18998, 355, 106);
+
+-- -------------------------------------------------------
+-- Aymur
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18999, 355, 74);
+
+-- -------------------------------------------------------
+-- Carnwenhan
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (19000, 30, 10);
+INSERT INTO `item_mods` VALUES (19000, 355, 28);
+
+-- -------------------------------------------------------
+-- Gastraphetes
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (19001, 355, 217);
+
+-- -------------------------------------------------------
+-- Kogarasumaru
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (19002, 355, 154);
+INSERT INTO `item_mods` VALUES (19002, 508, 15);
 
 -- -------------------------------------------------------
 -- Gastraphetes (75)
@@ -20006,11 +20172,41 @@ INSERT INTO `item_mods` VALUES (19000, 30, 10);
 INSERT INTO `item_mods` VALUES (19001, 365, 5); -- Snap shot (Ranged delay decrease)
 INSERT INTO `item_mods` VALUES (19001, 450, 10); -- Barrage accuracy
 
+-- -------------------------------------------------------
+-- Nagi
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (19003, 27, 10);
 INSERT INTO `item_mods` VALUES (19003, 30, 10);
+INSERT INTO `item_mods` VALUES (19003, 355, 138);
+
+-- -------------------------------------------------------
+-- Ryunohige
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (19004, 355, 122);
+
+-- -------------------------------------------------------
+-- Nirvana
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (19005, 25, 30);
 INSERT INTO `item_mods` VALUES (19005, 346, 4);
+INSERT INTO `item_mods` VALUES (19005, 355, 187);
+
+-- -------------------------------------------------------
+-- Tizona
+-- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (19006, 30, 10);
+INSERT INTO `item_mods` VALUES (19006, 355, 46);
+
+-- -------------------------------------------------------
+-- Death Penalty
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (19007, 355, 218);
+
+-- -------------------------------------------------------
+-- Kenkonken
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (19008, 355, 12);
+
 INSERT INTO `item_mods` VALUES (19009, 9, 1);
 INSERT INTO `item_mods` VALUES (19010, 9, 2);
 INSERT INTO `item_mods` VALUES (19011, 2, 5);
@@ -20284,6 +20480,24 @@ INSERT INTO `item_mods` VALUES (20784, 29, 5); -- "Magic Def. Bonus"+5
 -- Matre Bell
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (21460, 5, 5); -- MP+5
+
+-- -------------------------------------------------------
+-- Sakonji Haidate
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27174, 1, 89);
+INSERT INTO `item_mods` VALUES (27174, 2, 23);
+INSERT INTO `item_mods` VALUES (27174, 8, 21);
+INSERT INTO `item_mods` VALUES (27174, 10, 12);
+INSERT INTO `item_mods` VALUES (27174, 11, 9);
+INSERT INTO `item_mods` VALUES (27174, 12, 17);
+INSERT INTO `item_mods` VALUES (27174, 13, 10);
+INSERT INTO `item_mods` VALUES (27174, 14, 8);
+INSERT INTO `item_mods` VALUES (27174, 23, 15);
+INSERT INTO `item_mods` VALUES (27174, 29, 1);
+INSERT INTO `item_mods` VALUES (27174, 31, 51);
+INSERT INTO `item_mods` VALUES (27174, 68, 25);
+INSERT INTO `item_mods` VALUES (27174, 384, 50);
+INSERT INTO `item_mods` VALUES (27174, 508, 35);
 
 INSERT INTO `item_mods` VALUES (27651, 374, 11);
 
