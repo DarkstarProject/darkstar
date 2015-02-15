@@ -711,12 +711,12 @@ namespace charutils
 
         PChar->animation = (HP == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
         charutils::LoadInventory(PChar);
-        PChar->m_event.EventID = luautils::OnZoneIn(PChar);
-
         charutils::LoadEquip(PChar);
         PChar->health.hp = HP;
         PChar->health.mp = MP;
         PChar->UpdateHealth();
+
+        PChar->m_event.EventID = luautils::OnZoneIn(PChar);
         luautils::OnGameIn(PChar, zoning);
     }
 
