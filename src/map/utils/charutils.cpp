@@ -308,6 +308,8 @@ namespace charutils
     {
         uint8 meritPoints = 0;
         uint16 limitPoints = 0;
+        int32 HP = 0;
+        int32 MP = 0;
 
         const int8* fmtQuery =
             "SELECT "
@@ -594,8 +596,8 @@ namespace charutils
             PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
             PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
-            PChar->health.hp = Sql_GetIntData(SqlHandle, 3);
-            PChar->health.mp = Sql_GetIntData(SqlHandle, 4);
+            HP = Sql_GetIntData(SqlHandle, 3);
+            MP = Sql_GetIntData(SqlHandle, 4);
 
             PChar->profile.mhflag = (uint8)Sql_GetIntData(SqlHandle, 5);
             PChar->profile.title = (uint16)Sql_GetIntData(SqlHandle, 6);
@@ -706,13 +708,15 @@ namespace charutils
         BuildingCharSkillsTable(PChar);
         BuildingCharAbilityTable(PChar);
         BuildingCharTraitsTable(PChar);
-        PChar->UpdateHealth();
 
-        PChar->animation = (PChar->health.hp == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
+        PChar->animation = (HP == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
         charutils::LoadInventory(PChar);
         PChar->m_event.EventID = luautils::OnZoneIn(PChar);
 
         charutils::LoadEquip(PChar);
+        PChar->health.hp = HP;
+        PChar->health.mp = MP;
+        PChar->UpdateHealth();
         luautils::OnGameIn(PChar, zoning);
     }
 
