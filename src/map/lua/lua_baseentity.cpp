@@ -4457,11 +4457,12 @@ inline int32 CLuaBaseEntity::getStatusEffect(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
-    uint8 n = lua_gettop(L);
+    CStatusEffect* PStatusEffect;
 
-    CStatusEffect* PStatusEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->GetStatusEffect(
-        (EFFECT)lua_tointeger(L,1),
-        (n >= 2) ? (uint16)lua_tointeger(L,2) : 0);
+    if (lua_gettop(L) >= 2)
+        PStatusEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->GetStatusEffect((EFFECT)lua_tointeger(L, 1), (uint16)lua_tointeger(L, 2));
+    else
+        PStatusEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->GetStatusEffect((EFFECT)lua_tointeger(L, 1));
 
     if (PStatusEffect == NULL)
     {
