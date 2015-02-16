@@ -73,7 +73,11 @@ enum SPIKES
     SPIKE_DREAD           = 3,
     SPIKE_CURSE           = 4,
     SPIKE_SHOCK           = 5,
-    SPIKE_REPRISAL        = 6
+    SPIKE_REPRISAL        = 6,
+    SPIKE_WIND            = 7,
+    SPIKE_STONE           = 8,
+    SPIKE_DELUGE          = 9,
+    RETALIATION           = 63
 };
 
 enum ELEMENT
