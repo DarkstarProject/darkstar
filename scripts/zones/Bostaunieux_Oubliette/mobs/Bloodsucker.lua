@@ -12,13 +12,15 @@ require("scripts/globals/groundsofvalor");
 
 function onMobDeath(mob,killer)
 
-   checkGoVregime(killer,mob,613,1);
+    checkGoVregime(killer,mob,613,1);
 
-   local mobID = mob:getID();
+    local mobID = mob:getID();
 
-   if(mobID == 17461478) then
-      UpdateNMSpawnPoint(mob);
-      mob:setRespawnTime(259200);
-   end
+    if(mobID == 17461478) then
+        UpdateNMSpawnPoint(mob);
+        mob:setRespawnTime(259200);
+	else
+		mob:setRespawnTime(280);
+    end
 end;
 

@@ -15,7 +15,7 @@ end;
 
 function onUseAbility(player, target, ability)
 
-   local baseDuration = math.random(30,90);
+   local baseDuration = 180;
    local finalDuration = baseDuration;
    local legs = target:getEquipID(SLOT_LEGS);
    local feet = target:getEquipID(SLOT_FEET);

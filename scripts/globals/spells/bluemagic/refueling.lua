@@ -4,9 +4,9 @@
 -- Cannot be overwriten by Intimidate or Horror Cloud
 -- Overwriten by, and cannot overwrite, Slow, Slowga, Haste, Hastega, and Spider Web
 -----------------------------------------
-
+require("scripts/globals/magic");
 require("scripts/globals/status");
-
+require("scripts/globals/bluemagic");
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------

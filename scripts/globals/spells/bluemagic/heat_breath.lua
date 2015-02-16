@@ -4,12 +4,24 @@
 require("scripts/globals/magic");
 require("scripts/globals/status");
 require("scripts/globals/bluemagic");
+require("scripts/globals/abyssea");
 ---------------------------------------------
 function onMagicCastingCheck(caster,target,spell)
 	return 0;
 end;
 
 function onSpellCast(caster,target,spell)
+	if (caster:isPC()) then
+		local YellowTrigger = caster:getVar("YellowTrigger");
+		if (YellowTrigger == 591) then
+			WeaknessTriggerYellow(caster,target,spell);
+		else
+			if (math.random(4) == 1) then
+				TriggerHintYELLOW(caster);
+			end
+		end
+	end
+
     local params = {};
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
 	local multi = 6.38;

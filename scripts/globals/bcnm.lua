@@ -37,8 +37,9 @@ itemid_bcnmid_map = { 6,{0,0},-- Bearclaw_Pinnacle
 					 206,{0,0}, -- Qu'Bia Arena
 					 207,{1544,545}, -- Cloister of Flames
 					 209,{1547,578,1169,577}, -- Cloister of Tremors
-					 211,{1549,609}}; -- Cloister of Tides
-
+					 211,{1549,609}, -- Cloister of Tides
+					 255,{3924,1308}}; -- Abyssea Empyreal Paradox (Shinryu)
+					 
 -- array to map (for each zone) the BCNM ID to the Event Parameter corresponding to this ID.
 -- DO NOT INCLUDE MAAT FIGHTS (only included one for testing!)
 -- bcnmid,paramid,bcnmid,paramid,etc
@@ -74,8 +75,9 @@ bcnmid_param_map = {6,{640,0},
 					206,{512,0,516,4,517,5,518,6,519,7,532,20},
 					207,{544,0,545,1,547,3},
 					209,{576,0,577,1,578,2,580,4},
-					211,{608,0,609,1,611,3}};
-
+					211,{608,0,609,1,611,3},
+					255,{1308,0,1308,3,1308,5}};
+					
 -- Call this onTrade for burning circles
 function TradeBCNM(player,zone,trade,npc)
 	-- return false;
@@ -246,8 +248,8 @@ function EventFinishBCNM(player,csid,option)
 	else
 		local id = player:getVar("trade_bcnmid");
 		local item = player:getVar("trade_itemid");
-
-		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 293) then
+		
+		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 293 or id == 1308) then
 			player:tradeComplete(); -- Removes the item
 		elseif((item >= 1426 and item <= 1440) or item == 1130 or item == 1131 or item == 1175 or item == 1177 or item == 1180 or item == 1178 or item == 1551 or item == 1552 or item == 1553) then -- Orb and Testimony (one time item)
 			player:createWornItem(item);
@@ -363,6 +365,8 @@ function ItemToBCNMID(player,zone,trade)
 					elseif(item == 1172 and player:getVar("CarbuncleDebacleProgress") == 3) then -- Carbuncle Debacle (Gremlims)
 						questTimelineOK = 1;
 					elseif(item == 1174 and player:getVar("CarbuncleDebacleProgress") == 6) then -- Carbuncle Debacle (Ogmios)
+						questTimelineOK = 1;
+					elseif(item == 3924) then -- The Wyrm God (Shinryu Fight)
 						questTimelineOK = 1;
 					end
 

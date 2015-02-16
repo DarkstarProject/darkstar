@@ -2,7 +2,7 @@
 -- ID: 17826
 -- Item: Messhikimaru
 -- Enchantment: Arcana Killer
--- Durration: 10 Mins
+-- Duration: 10 Mins
 -----------------------------------------
 
 require("scripts/globals/settings");
@@ -13,7 +13,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-	result = 0;
+	local result = 0;
 end;
 
 -----------------------------------------
@@ -21,9 +21,9 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if(target:hasStatusEffect(EFFECT_ENCHANTMENT) == false) then
+	if (target:hasStatusEffect(EFFECT_ENCHANTMENT) == false) then
 		target:addStatusEffect(EFFECT_ENCHANTMENT,0,0,600,17826);
-	end;	
+	end;
 end;
 
 -----------------------------------------

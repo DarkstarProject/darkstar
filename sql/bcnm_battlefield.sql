@@ -2685,6 +2685,9 @@ INSERT INTO `bcnm_battlefield` VALUES ('1301', '4','16929086','1');-- Temenos Ae
 INSERT INTO `bcnm_battlefield` VALUES ('1301', '4','16929087','1');-- Temenos Aern
 -- -----------------------------------------
 -- -----------------------------------------
+INSERT INTO `bcnm_battlefield` VALUES ('1308', '1', '17821697', '3'); -- Shinryu
+INSERT INTO `bcnm_battlefield` VALUES ('1308', '2', '17821698', '3'); -- Shinryu
+INSERT INTO `bcnm_battlefield` VALUES ('1308', '3', '17821699', '3'); -- Shinryu
 
 
 

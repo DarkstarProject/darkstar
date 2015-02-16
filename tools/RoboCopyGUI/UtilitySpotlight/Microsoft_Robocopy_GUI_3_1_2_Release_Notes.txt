@@ -1,0 +1,7 @@
+Microsoft Robocopy GUI 3.1.2 Release Notes
+
+Bug Fixes:  
+
+1. Corrected /XA:O to add it to the /XA: string instead of by itself.
+
+2. Fixed bug that omitted the /XO flag even if it was checked.  (Thanks to Taylor Bryant for finding and reporting this bug).

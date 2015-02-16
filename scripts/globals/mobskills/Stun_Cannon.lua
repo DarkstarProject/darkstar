@@ -18,6 +18,12 @@ function onMobSkillCheck(target,mob,skill)
  local mobhp = mob:getHPP();
    if (mobID == 16933124 and mobhp < 70 and mobhp > 30 )then -- proto-omega bipedform
 	  return 0;
+   elseif ((mobID == 17813910 or mobID == 17813914 or mobID == 17813918)and mobhp < 10 and mobhp > 0) then  -- Pantokrator       
+      return 0;  
+   elseif ((mobID == 17813910 or mobID == 17813914 or mobID == 17813918)and mobhp < 45 and mobhp > 25) then  -- Pantokrator       
+      return 0;
+   elseif ((mobID == 17813910 or mobID == 17813914 or mobID == 17813918) and mobhp < 70 and mobhp > 55)then -- Pantokrator first bipedform
+	  return 0; 
    end
    return 1;
 end;
@@ -25,7 +31,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
    local dmgmod = 1.5;
    local typeEffect = EFFECT_PARALYSIS;
-   
+
     MobStatusEffectMove(mob, target, typeEffect, 20, 0, 120);
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_DARK,dmgmod,TP_MAB_BONUS,1);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);

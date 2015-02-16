@@ -62,7 +62,7 @@ enum ECOSYSTEM
 	SYSTEM_VORAGEAN			= 21,
 };
 
-#define MAX_MOB_FAMILY	900
+#define MAX_MOB_FAMILY	9000
 
 enum JOBTYPE
 {
@@ -294,15 +294,16 @@ enum SUBEFFECT
     SUBEFFECT_HASTE             = 23,
 
     // SPIKES
-    SUBEFFECT_BLAZE_SPIKES      = 1,  // 01-1000    6
-    SUBEFFECT_ICE_SPIKES        = 2,  // 01-0100   10
-    SUBEFFECT_DREAD_SPIKES      = 3,  // 01-1100   14
-    SUBEFFECT_CURSE_SPIKES      = 4,  // 01-0010   18
-    SUBEFFECT_SHOCK_SPIKES      = 5,  // 01-1010   22
-    SUBEFFECT_REPRISAL          = 6,  // 01-0110   26
+    SUBEFFECT_BLAZE_SPIKES      = 1, // 01-1000	 6
+    SUBEFFECT_ICE_SPIKES        = 2, // 01-0100	10
+    SUBEFFECT_DREAD_SPIKES      = 3, // 01-1100	14
+    SUBEFFECT_CURSE_SPIKES      = 4, // 01-0010	18
+    SUBEFFECT_SHOCK_SPIKES      = 5, // 01-1010	22
+    SUBEFFECT_REPRISAL          = 6, // 01-0110	26
     SUBEFFECT_WIND_SPIKES       = 7,  // Present in client but currently unused.
     SUBEFFECT_STONE_SPIKES      = 8,  // Present in client but currently unused.
     SUBEFFECT_DELUGE_SPIKES     = 9,  // Present in client but currently unused.
+    SUBEFFECT_DARK_SPIKES       = 10,
     SUBEFFECT_COUNTER           = 63, // Also used by Retaliation
 
     // SKILLCHAINS

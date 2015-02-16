@@ -14,24 +14,25 @@ require("scripts/globals/shop");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 player:showText(npc,KULHAMARIYO_SHOP_DIALOG);
 
-stock = {0x1178,38,		-- Crayfish
+stock = {
+	 0x1178,38,		-- Crayfish
 	 0x1552,1200,		-- Yilanbaligi (not available when AC is missing)
 	 0x1553,1800,		-- Sazanbaligu (not available when AC is missing)
 	 0x1554,4650,		-- Kayabaligi (not available when AC is missing)
 	 0x1555,130}		-- Alabaligi (not available when AC is missing)
- 
+
 showShop(player, STATIC, stock);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

@@ -1,9 +1,9 @@
 -----------------------------------------
---	ID: 18067
---	Equip: Keen Zaghnal
---  Enchantment: Accuracy +3
---	Enchantment will wear off if weapon is unequipped.
---  Effect lasts for 30 minutes
+-- ID: 18067
+-- Equip: Keen Zaghnal
+-- Enchantment: Accuracy +3
+-- Enchantment will wear off if weapon is unequipped.
+-- Effect lasts for 30 minutes
 -----------------------------------------
 
 require("scripts/globals/status");

@@ -10,6 +10,7 @@
 -- 100%TP    200%TP    300%TP
 -- 1.00      2.31      3.63
 -----------------------------------
+require("scripts/globals/abyssea");
 require("scripts/globals/magic");
 require("scripts/globals/status");
 require("scripts/globals/settings");
@@ -17,6 +18,14 @@ require("scripts/globals/weaponskills");
 -----------------------------------
 
 function onUseWeaponSkill(player, target, wsID)
+	local RedTrigger = player:getVar("RedTrigger");
+	if (RedTrigger == 178) then
+		WeaknessTriggerRed(player, target, wsID);
+	else
+		if (math.random(4) == 1) then
+			TriggerHintRED(player, target, wsID);
+		end
+	end
 
 	local params = {};
 	params.ftp100 = 1; params.ftp200 = 2.3125; params.ftp300 = 3.625;

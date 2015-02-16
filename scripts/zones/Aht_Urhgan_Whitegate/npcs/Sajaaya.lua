@@ -8,35 +8,26 @@ package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
 
 -----------------------------------
+-- onTrigger Action
+-----------------------------------
+function onTrigger(player,npc)
+	birth = 1009810800;
+	timer = os.time();
+	counter = (timer - birth);
+	player:startEvent(0x01f6,0,0,0,0,0,0,0,counter);
+end;
+
+
+-----------------------------------
 -- onTrade Action
 -----------------------------------
-
 function onTrade(player,npc,trade)
 end;
 
 -----------------------------------
--- onTrigger Action
+-- onEventFinish Action
 -----------------------------------
-
-function onTrigger(player,npc)
-	player:startEvent(0x01f6);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+--print("CSID:",csid);
+--print("RESULT:",option);
 end;
-

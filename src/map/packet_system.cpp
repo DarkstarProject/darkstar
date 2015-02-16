@@ -4483,68 +4483,68 @@ void SmallPacket0x0F4(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             if (PChar->GetMLevel() >= 60)
             {
-                PChar->loc.zone->WideScan(PChar, 300);
+                PChar->loc.zone->WideScan(PChar,300+map_config.widescan_bonus);
             }
             else if (PChar->GetMLevel() >= 40)
             {
-                PChar->loc.zone->WideScan(PChar, 250);
+                PChar->loc.zone->WideScan(PChar,250+map_config.widescan_bonus);
             }
             else if (PChar->GetMLevel() >= 20)
             {
-                PChar->loc.zone->WideScan(PChar, 200);
+                PChar->loc.zone->WideScan(PChar,200+map_config.widescan_bonus);
             }
             else
             {
-                PChar->loc.zone->WideScan(PChar, 150);
+                PChar->loc.zone->WideScan(PChar,150+map_config.widescan_bonus);
             }
         }
         else if (PChar->GetMJob() == JOB_BST)
         {
             if (PChar->GetMLevel() >= 60)
             {
-                PChar->loc.zone->WideScan(PChar, 250);
+                PChar->loc.zone->WideScan(PChar,250+map_config.widescan_bonus);
             }
             else if (PChar->GetMLevel() >= 40)
             {
-                PChar->loc.zone->WideScan(PChar, 200);
+                PChar->loc.zone->WideScan(PChar,200+map_config.widescan_bonus);
             }
             else if (PChar->GetMLevel() >= 20)
             {
-                PChar->loc.zone->WideScan(PChar, 150);
+                PChar->loc.zone->WideScan(PChar,150+map_config.widescan_bonus);
             }
             else
             {
-                PChar->loc.zone->WideScan(PChar, 50);
+                PChar->loc.zone->WideScan(PChar,50+map_config.widescan_bonus);
             }
         }
         else if (PChar->GetSJob() == JOB_RNG)
         {
             if (PChar->GetSLevel() >= 40)
             {
-                PChar->loc.zone->WideScan(PChar, 250);
+                PChar->loc.zone->WideScan(PChar,250+map_config.widescan_bonus);
             }
             else if (PChar->GetSLevel() >= 20)
             {
-                PChar->loc.zone->WideScan(PChar, 200);
+                PChar->loc.zone->WideScan(PChar,200+map_config.widescan_bonus);
             }
             else
             {
-                PChar->loc.zone->WideScan(PChar, 150);
+                PChar->loc.zone->WideScan(PChar,150+map_config.widescan_bonus);
             }
         }
         else if (PChar->GetSJob() == JOB_BST)
         {
             if (PChar->GetSLevel() >= 40)
             {
-                PChar->loc.zone->WideScan(PChar, 200);
+                PChar->loc.zone->WideScan(PChar,200+map_config.widescan_bonus);
             }
             else if (PChar->GetSLevel() >= 20)
             {
-                PChar->loc.zone->WideScan(PChar, 150);
+                PChar->loc.zone->WideScan(PChar,150+map_config.widescan_bonus);
             }
             else
             {
-                PChar->loc.zone->WideScan(PChar, 50);
+                PChar->loc.zone->WideScan(PChar,50+map_config.widescan_bonus);
             }
         }
         else
@@ -4562,75 +4562,75 @@ void SmallPacket0x0F4(map_session_data_t* session, CCharEntity* PChar, int8* dat
             // Need verification
             // if (PChar->GetMLevel() >= 80)
             // {
-            //     PChar->loc.zone->WideScan(PChar,350);
+            //     PChar->loc.zone->WideScan(PChar,350+map_config.widescan_bonus);
             // }
             // else if (PChar->GetMLevel() >= 60)
             if (PChar->GetMLevel() >= 60)
             {
-                PChar->loc.zone->WideScan(PChar, 300);
+                PChar->loc.zone->WideScan(PChar,300+map_config.widescan_bonus);
             }
             else if (PChar->GetMLevel() >= 40)
             {
-                PChar->loc.zone->WideScan(PChar, 250);
+                PChar->loc.zone->WideScan(PChar,250+map_config.widescan_bonus);
             }
             else if (PChar->GetMLevel() >= 20)
             {
-                PChar->loc.zone->WideScan(PChar, 200);
+                PChar->loc.zone->WideScan(PChar,200+map_config.widescan_bonus);
             }
             else
             {
-                PChar->loc.zone->WideScan(PChar, 150);
+                PChar->loc.zone->WideScan(PChar,150+map_config.widescan_bonus);
             }
         }
         else if (PChar->GetMJob() == JOB_BST)
         {
             if (PChar->GetMLevel() >= 80)
             {
-                PChar->loc.zone->WideScan(PChar, 300);
+                PChar->loc.zone->WideScan(PChar,300+map_config.widescan_bonus);
             }
             else if (PChar->GetMLevel() >= 60)
             {
-                PChar->loc.zone->WideScan(PChar, 250);
+                PChar->loc.zone->WideScan(PChar,250+map_config.widescan_bonus);
             }
             else if (PChar->GetMLevel() >= 40)
             {
-                PChar->loc.zone->WideScan(PChar, 200);
+                PChar->loc.zone->WideScan(PChar,200+map_config.widescan_bonus);
             }
             else
             {
-                PChar->loc.zone->WideScan(PChar, 150);
+                PChar->loc.zone->WideScan(PChar,150+map_config.widescan_bonus);
             }
         }
         else if (PChar->GetSJob() == JOB_RNG)
         {
             if (PChar->GetSLevel() >= 40)
             {
-                PChar->loc.zone->WideScan(PChar, 250);
+                PChar->loc.zone->WideScan(PChar,250+map_config.widescan_bonus);
             }
             else if (PChar->GetSLevel() >= 20)
             {
-                PChar->loc.zone->WideScan(PChar, 200);
+                PChar->loc.zone->WideScan(PChar,200+map_config.widescan_bonus);
             }
             else
             {
-                PChar->loc.zone->WideScan(PChar, 150);
+                PChar->loc.zone->WideScan(PChar,150+map_config.widescan_bonus);
             }
         }
         else if (PChar->GetSJob() == JOB_BST)
         {
             if (PChar->GetSLevel() >= 40)
             {
-                PChar->loc.zone->WideScan(PChar, 200);
+                PChar->loc.zone->WideScan(PChar,200+map_config.widescan_bonus);
             }
             else
             {
-                PChar->loc.zone->WideScan(PChar, 150);
+                PChar->loc.zone->WideScan(PChar,150+map_config.widescan_bonus);
             }
         }
         else
         {
             // Not BST or RNG, get base scan radius only!
-            PChar->loc.zone->WideScan(PChar, 150);
+            PChar->loc.zone->WideScan(PChar,150+map_config.widescan_bonus);
         }
     }
     return;

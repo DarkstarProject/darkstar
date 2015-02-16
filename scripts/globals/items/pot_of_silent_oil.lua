@@ -18,7 +18,8 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
+	local duration = math.random(60, 180);
 	if (not target:hasStatusEffect(EFFECT_SNEAK)) then
-		target:addStatusEffect(EFFECT_SNEAK,1,10,math.random(60, 180));
+		target:addStatusEffect(EFFECT_SNEAK,1,10,(math.floor(duration) * SNEAK_INVIS_DURATION_MULTIPLIER));
 	end
 end;

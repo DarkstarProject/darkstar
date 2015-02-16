@@ -25,6 +25,7 @@
 #include "baseentity.h"
 #include "../map.h"
 #include "../zone.h"
+#include "../packets/chat_message.h"
 
 CBaseEntity::CBaseEntity()
 {
@@ -59,6 +60,18 @@ CBaseEntity::~CBaseEntity()
 const int8* CBaseEntity::GetName()
 {
 	return name.c_str();
+}
+
+const int8* CBaseEntity::GetObjectName()
+{
+	// Strip out the _ in names
+	ObjectName = name;
+	size_t start_pos = ObjectName.find("_");
+	if (start_pos < name.size())
+	{
+		ObjectName.replace(start_pos, 1, " ");
+	}
+	return ObjectName.c_str();
 }
 
 uint16 CBaseEntity::getZone()

@@ -24,10 +24,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	local hasAssault, keyitem = hasAssaultOrders(player);
+	local hasAssault = hasAssaultOrders(player);
 	
 	if(hasAssault > 0) then
-        player:messageSpecial(RUNIC_PORTAL + 9, keyitem);
 		player:startEvent(hasAssault);
 	else
 		if(player:hasKeyItem(RUNIC_PORTAL_USE_PERMIT)) then

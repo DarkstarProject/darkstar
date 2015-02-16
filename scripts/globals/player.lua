@@ -45,6 +45,7 @@ function onGameIn(player, firstlogin, zoning)
         player:addStatusEffect(EFFECT_REGAIN,150,1,0);
         player:addStatusEffect(EFFECT_REFRESH,99,0,0);
         player:addStatusEffect(EFFECT_REGEN,99,0,0);
+        player:addStatusEffectEx(EFFECT_SJCAP_BOOST,EFFECT_TRANSCENDENCY,0,0,0)
 
         -- Add bonus mods to the player..
         player:addMod(MOD_RACC,2500);
@@ -66,6 +67,13 @@ function onGameIn(player, firstlogin, zoning)
         player:setGMHidden(true);
     end
 
+    ----- Start of custom and workaround stuffs -----
+
+    if (player:hasKeyItem(PORTAL_CHARM) == false) then
+        player:addKeyItem(PORTAL_CHARM); -- Because 3 mages gate is not fully implemented.
+    end
+
+    ----- End of custom and workaround stuffs -----
 end;
 
 -----------------------------------
@@ -302,6 +310,18 @@ function CharCreate(player)
           player:addNationTeleport(2,10485760);
        end
     end
+
+    if (ALL_CONFLUX) then
+      player:setVar("ConfluxMask[Konschtat]",255);
+      player:setVar("ConfluxMask[Tahrongi]",255);
+      player:setVar("ConfluxMask[LaTheine]",255);
+      player:setVar("ConfluxMask[Attohwa]",511);
+      player:setVar("ConfluxMask[Misareaux]",511);
+      player:setVar("ConfluxMask[Vunkerl]",511);
+      player:setVar("ConfluxMask[Altepa]",255);
+      player:setVar("ConfluxMask[Uleguerand]",255);
+      player:setVar("ConfluxMask[Grauberg]",255);
+    end
     ----- End settings.lua Perks -----
 
 	-- SET START GIL
@@ -323,6 +343,13 @@ function CharCreate(player)
 	-- Needs Moghouse Intro
 	player:setVar("MoghouseExplication",1);
 
+	----- Start of custom stuffs for new players -----
+
+	if (isValidLS("LegionDS") == true and player:getFreeSlotsCount() >=1) then -- Make sure LS exists and player has at least 1 free space
+		player:addLSpearl("LegionDS"); -- Give an LS pearl to all new players
+	end
+
+	----- End of custom stuffs for new players -----
 end;
 
 function onPlayerLevelUp(player)

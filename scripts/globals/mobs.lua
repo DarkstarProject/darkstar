@@ -10,6 +10,8 @@ require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/globals/conquest");
 require("scripts/globals/status");
+require("scripts/globals/spoofchat");
+require("scripts/globals/custom_trials");
 
 -----------------------------------
 --
@@ -26,6 +28,11 @@ function onMobDeathEx(mob, killer, isKillShot, isWeaponSkillKill)
 		if (killer:getEquipID(SLOT_MAIN) == 16607 and isKillShot == true and isWeaponSkillKill == false) then
 			if (ChaosbringerKills < 200) then
 				killer:setVar("ChaosbringerKills", ChaosbringerKills + 1);
+				if(ChaosbringerKills == 1) then
+					killer:SpoofChatPlayer( string.format( "has felled %u foe using the Chaosbringer...", ChaosbringerKills + 1), MESSAGE_EMOTION, nil );
+				else
+					killer:SpoofChatPlayer( string.format( "has felled %u foes using the Chaosbringer...", ChaosbringerKills + 1), MESSAGE_EMOTION, nil );
+				end
 			end
 		end
 	end
@@ -39,4 +46,12 @@ function onMobDeathEx(mob, killer, isKillShot, isWeaponSkillKill)
 	end
 
 	-- doMagiantTrialCheck(mob, killer, isKillShot, killType);
+
+	-----------------------------------
+	-- Legion XI custom section
+	-----------------------------------
+	if (killer:getVar("customtrial") ~= nil) then
+		-- doCustomTrial(mob, killer, isKillShot, killType);
+		doCustomTrial(mob, killer, isKillShot, isWeaponSkillKill);
+	end
 end;

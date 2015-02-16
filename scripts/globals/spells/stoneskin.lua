@@ -44,6 +44,15 @@ function onSpellCast(caster,target,spell)
 	if (caster:getEquipID(SLOT_LEGS) == 11949) then -- haven hose
 		pEquipMods = pEquipMods + 20;
 	end
+	if (caster:getEquipID(SLOT_LEGS) == 10329) then -- Shedir Seraweels
+	    pEquipMods = pEquipMods + 35;
+	end
+    if (caster:getEquipID(SLOT_EAR1) == 11037) then -- Earthcry Earring
+		pEquipMods = pEquipMods + 10;
+	end
+	if (caster:getEquipID(SLOT_EAR2) == 11037) then -- Earthcry Earring
+		pEquipMods = pEquipMods + 10;
+	end
 
 	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 		duration = duration * 3;

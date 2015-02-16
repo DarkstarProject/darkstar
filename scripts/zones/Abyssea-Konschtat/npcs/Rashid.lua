@@ -1,0 +1,6 @@
+-----------------------------------
+-- Zone: Abyssea-Konschtat
+-- NPC: Rashid
+-- Type: Quest NPC
+-----------------------------------
+-- Event IDs: 0x0105 0x0106 0x0107 0x0108

@@ -1,7 +1,7 @@
 -----------------------------------------
 --  ID: 15320
---  Powder Boots
---  Enchantment: "Flee"
+--  Sneaking Boots
+--  Enchantment: "Sneak"
 -----------------------------------------
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 
 function onItemUse(target)
     target:delStatusEffect(EFFECT_SNEAK);
-    target:addStatusEffect(EFFECT_SNEAK,1,0,180);
+    target:addStatusEffect(EFFECT_SNEAK,1,0,180 * SNEAK_INVIS_DURATION_MULTIPLIER);
 end;

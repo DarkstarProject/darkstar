@@ -644,14 +644,14 @@ enum EFFECT
 
     // Purchased from Cruor Prospector
     EFFECT_ABYSSEA_STR              = 768,
-    EFFECT_ABYSSEA_DEX              = 769, 
-    EFFECT_ABYSSEA_VIT              = 770, 
-    EFFECT_ABYSSEA_AGI              = 771, 
-    EFFECT_ABYSSEA_INT              = 772, 
-    EFFECT_ABYSSEA_MND              = 773, 
-    EFFECT_ABYSSEA_CHR              = 774, 
-    EFFECT_ABYSSEA_HP               = 775, 
-    EFFECT_ABYSSEA_MP               = 776, 
+    EFFECT_ABYSSEA_DEX              = 769,
+    EFFECT_ABYSSEA_VIT              = 770,
+    EFFECT_ABYSSEA_AGI              = 771,
+    EFFECT_ABYSSEA_INT              = 772,
+    EFFECT_ABYSSEA_MND              = 773,
+    EFFECT_ABYSSEA_CHR              = 774,
+    EFFECT_ABYSSEA_HP               = 775,
+    EFFECT_ABYSSEA_MP               = 776,
 
     // *Prowess increases not currently retail accurate.
     // GoV Prowess bonus effects, real effect at ID 474
@@ -681,12 +681,26 @@ enum EFFECT
     EFFECT_SKILLCHAIN               = 799,
 	EFFECT_DYNAMIS					= 800,
     EFFECT_MEDITATE                 = 801, // Dummy effect for SAM Meditate JA
-    // EFFECT_PLACEHOLDER              = 802 // Description
-    // 802-1022
+    // EFFECT_PLACEHOLDER              = 802, // Description
+    // 802-1013
+//==========================================================//
+    // Start of LegionXI custom section
+    // EFFECT_PLACEHOLDER              = 1014, // Description
+    // EFFECT_PLACEHOLDER              = 1015, // Description
+    // EFFECT_PLACEHOLDER              = 1016, // Description
+    EFFECT_WIND_SPIKES              = 1017,
+    EFFECT_STONE_SPIKES             = 1018,
+    EFFECT_DARK_SPIKES              = 1019,
+    EFFECT_SJCAP_BOOST              = 1020,
+    EFFECT_RAGE                     = 1021, // NM CRUSH PUNY PLAYER WHO TAKE TOO LONG!
+    EFFECT_LEGION                   = 1022,
+    // End of LegionXI Custom Section
+//==========================================================//
     // EFFECT_PLACEHOLDER             = 1023 // The client dat file seems to have only this many "slots", results of exceeding that are untested.
+
 };
 
-#define MAX_EFFECTID    802  // 768 real + 32 custom
+#define MAX_EFFECTID    1024  // 768 real + 32 custom
 
 /************************************************************************
 *																		*

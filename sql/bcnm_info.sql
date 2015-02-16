@@ -131,7 +131,7 @@ INSERT INTO `bcnm_info` VALUES ('225', '170', 'moon_reading', null, null, '1800'
 INSERT INTO `bcnm_info` VALUES ('226', '170', 'waking_the_beast_fullmoon', null, null, '1800', '0', '18', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('227', '170', 'battaru_royale', null, null, '1800', '80', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('256', '179', 'return_to_delkfutts_tower', null, null, '1800', '75', '6', '0', '5');
-INSERT INTO `bcnm_info` VALUES ('257', '179', 'indomitable_triumvirate_vs3', null, null, '900', '60', '6', '0', '4');
+INSERT INTO `bcnm_info` VALUES ('257', '179', 'indomitable_triumvirate_vs3', null, null, '1800', '99', '18', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('258', '179', 'dauntless_duo_vs2', null, null, '900', '60', '6', '0', '4');
 INSERT INTO `bcnm_info` VALUES ('259', '179', 'solitary_demolisher_vs1', null, null, '900', '60', '6', '0', '4');
 INSERT INTO `bcnm_info` VALUES ('260', '179', 'heroines_combat', null, null, '900', '60', '6', '0', '4');
@@ -295,3 +295,9 @@ INSERT INTO `bcnm_info` VALUES ('1304', '37', 'Central_Temenos_2nd_Floor', null,
 INSERT INTO `bcnm_info` VALUES ('1305', '37', 'Central_Temenos_3rd_Floor', null, null,	 '2700', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1306', '37', 'Central_Temenos_4th_Floor', null, null, '3600', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1307', '37', 'Central_Temenos_4th_Floor_II', null, null, '3600', '0', '18', '0', '7');
+
+INSERT INTO `bcnm_info` VALUES ('1308', '255', 'The_Wyrm_God', null, null, '1800', '99', '6', '200', '15');
+
+
+
+

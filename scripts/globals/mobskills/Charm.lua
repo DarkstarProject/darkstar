@@ -29,3 +29,4 @@ function onMobWeaponSkill(target, mob, skill)
 
     return typeEffect;
 end;
+	

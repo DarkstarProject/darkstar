@@ -6,6 +6,14 @@
 require("scripts/globals/groundsofvalor");
 
 -----------------------------------
+-- onMobSpawn Action
+-----------------------------------
+
+function OnMobSpawn(mob)
+    mob:addMod(MOD_CURE_POTENCY_RCVD,-15);
+end;
+
+-----------------------------------
 -- onMobDeath
 -----------------------------------
 

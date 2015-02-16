@@ -3,12 +3,17 @@
 --
 --
 -----------------------------------
-
+require("scripts/globals/settings");
+require("scripts/globals/status");
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
+   -- local allegiance = target:getAllegiance();
+   local ALLEGIANCE_CAMPAIGN_PLAYER = 9;
+   target:setStatus(STATUS_UPDATE,ALLEGIANCE_CAMPAIGN_PLAYER);
+   
 end;
 
 -----------------------------------
@@ -23,4 +28,7 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+   -- local allegiance = target:getAllegiance();
+   -- local ALLEGIANCE_PLAYER = 1;
+   -- target:setFlag(ALLEGIANCE_PLAYER);
 end;

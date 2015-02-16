@@ -630,7 +630,7 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 break;
 
             case SPIKE_REPRISAL:
-                if (Action->reaction == REACTION_BLOCK)
+                if (Action->reaction == REACTION_BLOCK || PDefender->objtype == TYPE_MOB) // Mobs don't need a shield.
                 {
                     PAttacker->addHP(-Action->spikesParam);
                 }
@@ -4146,6 +4146,8 @@ CMobSkill* GetTwoHourMobSkill(JOBTYPE job)
         // case JOB_PUP: id = 1935; break; // alt 2003
         // case JOB_DNC: id = 2454; break; // alt 2004
         // case JOB_SCH: id = 2102 break;  // alt 2005
+        // case JOB_GEO: id = ??? break;
+        // case JOB_RUN: id = 3009 break;
         default: return NULL;
     }
     return GetMobSkill(id);

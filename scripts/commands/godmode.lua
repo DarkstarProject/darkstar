@@ -6,7 +6,7 @@
 
 cmdprops =
 {
-    permission = 1,
+    permission = 3,
     parameters = ""
 };
 
@@ -28,6 +28,7 @@ function onTrigger(player)
         player:addStatusEffect(EFFECT_REGAIN,150,1,0);
         player:addStatusEffect(EFFECT_REFRESH,99,0,0);
         player:addStatusEffect(EFFECT_REGEN,99,0,0);
+        player:addStatusEffectEx(EFFECT_SJCAP_BOOST,EFFECT_TRANSCENDENCY,0,0,0)
 
         -- Add bonus mods to the player..
         player:addMod(MOD_RACC,2500);
@@ -60,6 +61,7 @@ function onTrigger(player)
         player:delStatusEffect(EFFECT_REGAIN);
         player:delStatusEffect(EFFECT_REFRESH);
         player:delStatusEffect(EFFECT_REGEN);
+        player:delStatusEffect(EFFECT_SJCAP_BOOST);
 
         -- Remove bonus mods..
         player:delMod(MOD_RACC,2500);
