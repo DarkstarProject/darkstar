@@ -12,7 +12,6 @@ require("scripts/globals/magic");
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)
-
     local dmg = math.random(3,10);
     local params = {};
     params.bonusmab = 0;

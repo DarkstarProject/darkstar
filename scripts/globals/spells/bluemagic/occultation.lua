@@ -5,9 +5,9 @@
 -- VIT+3  CHR-2
 -- Lvl.: 88 MP Cost: 138 Blue Points: 3
 -----------------------------------------
-
+require("scripts/globals/magic");
 require("scripts/globals/status");
-
+require("scripts/globals/bluemagic");
 -----------------------------------------
 -- onMagicCastingCheck
 -----------------------------------------
@@ -29,7 +29,7 @@ function onSpellCast(caster,target,spell)
     -- Also assuming minimum of 2 shadows.
     -- I've never seen the spell cast with under 100 skill, so I could be wrong.
     if (skill > 100) then
-        shadows = (skill / 50);
+        shadows = (skill / 100); -- Temp set fewer shadows because proc rate is wrong.
     end
 
     if(caster:hasStatusEffect(EFFECT_DIFFUSION)) then

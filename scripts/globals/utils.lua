@@ -11,14 +11,14 @@ function utils.clamp(input, min_val, max_val)
 end;
 
 function utils.stoneskin(target, dmg)
-    --handling stoneskin
+    -- handling stoneskin
     if (dmg > 0) then
         skin = target:getMod(MOD_STONESKIN);
         if(skin > 0) then
-            if(skin > dmg) then --absorb all damage
+            if(skin > dmg) then -- absorb all damage
                 target:delMod(MOD_STONESKIN,dmg);
                 return 0;
-            else --absorbs some damage then wear
+            else -- absorbs some damage then wear
                 target:delStatusEffect(EFFECT_STONESKIN);
                 target:setMod(MOD_STONESKIN, 0);
                 return dmg - skin;
@@ -37,13 +37,13 @@ function utils.takeShadows(target, dmg, shadowbehav)
     local targShadows = target:getMod(MOD_UTSUSEMI);
     local shadowType = MOD_UTSUSEMI;
 
-    if(targShadows == 0) then --try blink, as utsusemi always overwrites blink this is okay
+    if(targShadows == 0) then -- try blink, as utsusemi always overwrites blink this is okay
         targShadows = target:getMod(MOD_BLINK);
         shadowType = MOD_BLINK;
     end
 
     if(targShadows > 0) then
-    --Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
+    -- Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
 
         if(targShadows >= shadowbehav) then --no damage, just suck the shadows
 
@@ -70,7 +70,7 @@ function utils.takeShadows(target, dmg, shadowbehav)
             end
 
             return 0;
-        else --less shadows than this move will take, remove all and factor damage down
+        else -- less shadows than this move will take, remove all and factor damage down
             target:delStatusEffect(EFFECT_COPY_IMAGE);
             target:delStatusEffect(EFFECT_BLINK);
             return dmg * ((shadowbehav-targShadows)/shadowbehav);
@@ -82,8 +82,8 @@ end;
 
 -- returns true if taken by third eye
 function utils.thirdeye(target)
-    --third eye doesnt care how many shadows, so attempt to anticipate, but reduce
-    --chance of anticipate based on previous successful anticipates.
+    -- third eye doesn't care how many shadows, so attempt to anticipate, but reduce
+    -- chance of anticipate based on previous successful anticipates.
     local teye = target:getStatusEffect(EFFECT_THIRD_EYE);
 
     if(teye == nil) then
@@ -99,4 +99,14 @@ function utils.thirdeye(target)
     end
 
     return false;
+end;
+
+-- Check if ID exists in a table
+function utils.inTable(table, element)
+    for aire, value in pairs(table) do -- "My life for Aire." /suchanerd
+        if (value == element) then
+            return true
+        end
+    end
+    return false
 end;

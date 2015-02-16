@@ -20,6 +20,12 @@ function onMobSkillCheck(target,mob,skill)
       return 0;
    elseif (mobID == 16933124 and mobhp > 30  and mobhp < 70)then -- omega  bipedform
 	  return 0;
+   elseif ((mobID == 17813910 or mobID == 17813914 or mobID == 17813918)and mobhp < 10 and mobhp > 0) then  -- Pantokrator       
+      return 0;  
+   elseif ((mobID == 17813910 or mobID == 17813914 or mobID == 17813918)and mobhp < 45 and mobhp > 25) then  -- Pantokrator       
+      return 0;
+   elseif ((mobID == 17813910 or mobID == 17813914 or mobID == 17813918) and mobhp < 70 and mobhp > 55)then -- Pantokrator first bipedform
+	  return 0;   
    end
    return 1;
 end;

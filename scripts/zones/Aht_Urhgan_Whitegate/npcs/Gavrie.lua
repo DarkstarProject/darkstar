@@ -14,14 +14,14 @@ require("scripts/globals/shop");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 player:showText(npc,GAVRIE_SHOP_DIALOG);
 
 stock = {0x1036,2595,	-- Eye Drops
@@ -35,9 +35,9 @@ stock = {0x1036,2595,	-- Eye Drops
 	 0x492C,250,		-- Automaton Oil +1
 	 0x492D,500,		-- Automaton Oil +2
 	 0x4AF1,1000}		-- Automaton Oil +3
- 
+
 showShop(player, STATIC, stock);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

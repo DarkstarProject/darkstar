@@ -35,6 +35,16 @@ function onTrigger(player)
         if (player:checkNameFlags(FLAG_LEAD)) then
             player:setFlag(FLAG_LEAD);
         end
+    elseif (player:checkNameFlags(0x00002000)) then
+        player:setFlag(0x00002000);
+        if (player:checkNameFlags(FLAG_LEAD)) then
+            player:setFlag(FLAG_LEAD);
+        end
+    elseif (player:checkNameFlags(FLAG_LEAD)) then
+        player:setFlag(FLAG_LEAD);
+        if (player:checkNameFlags(0x00002000)) then
+            player:setFlag(0x00002000);
+        end
     else
         local gmlvl = player:getGMLevel();
         if (gmlvl >= MINLVL_GM_PRODUCER) then

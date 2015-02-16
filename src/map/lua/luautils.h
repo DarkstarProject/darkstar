@@ -181,6 +181,7 @@ namespace luautils
     int32 GetMobRespawnTime(lua_State* L);                                      // get the respawn time of a mob
 	int32 DeterMob(lua_State* L);                                               // Allow or prevent a mob from spawning
 	int32 UpdateNMSpawnPoint(lua_State* L);                                     // Update the spawn point of an NM
+	int32 isValidLS(lua_State*);                                                // Checks is LS exists
 	int32 SetDropRate(lua_State*);												// Set drop rate of a mob setDropRate(dropid,itemid,newrate)
 	int32 UpdateTreasureSpawnPoint(lua_State* L);                               // Update the spawn point of an Treasure
 	int32 UpdateServerMessage(lua_State*);										// update server message, first modify in conf and update

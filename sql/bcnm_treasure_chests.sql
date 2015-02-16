@@ -89,6 +89,10 @@ INSERT INTO `bcnm_treasure_chests` VALUES ('129', '1', '17444884');
 INSERT INTO `bcnm_treasure_chests` VALUES ('129', '2', '17444891');
 INSERT INTO `bcnm_treasure_chests` VALUES ('129', '3', '17444898');
 
+-- Abyssea Empyreal Paradox
+INSERT INTO `bcnm_treasure_chests` VALUES ('1308', '1', '17821720');
+INSERT INTO `bcnm_treasure_chests` VALUES ('1308', '2', '17821722');
+INSERT INTO `bcnm_treasure_chests` VALUES ('1308', '3', '17821724');
 -- Throne Room
 
 -- Chamber of Oracles

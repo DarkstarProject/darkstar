@@ -710,8 +710,8 @@ namespace charutils
         BuildingCharTraitsTable(PChar);
 
         PChar->animation = (HP == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
-        charutils::LoadInventory(PChar);
         PChar->m_event.EventID = luautils::OnZoneIn(PChar);
+        charutils::LoadInventory(PChar);
 
         charutils::LoadEquip(PChar);
         PChar->health.hp = HP;
@@ -3432,6 +3432,14 @@ namespace charutils
                 charutils::AddPoints(PChar, "imperial_standing", (exp * 0.1f));
                 PChar->pushPacket(new CConquestPacket(PChar));
             }
+
+            // Custom Allied Notes Drops
+            if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGIL) &&
+                (region >= 33 && region <= 40))
+            {
+                charutils::AddPoints(PChar, "allied_notes", (exp * 0.1f));
+                PChar->pushPacket(new CConquestPacket(PChar));
+            }
         }
 
         // Cruor Drops in Abyssea zones.
@@ -3440,7 +3448,7 @@ namespace charutils
         {
             uint16 TextID = luautils::GetTextIDVariable(Pzone, "CRUOR_OBTAINED");
             uint32 Total = charutils::GetPoints(PChar, "cruor");
-            uint32 Cruor = 0; // Need to work out how to do cruor chains, until then no cruor will drop unless this line is customized for non retail play.
+            uint32 Cruor = exp * 0.2f; // Need to work out how to do cruor chains, until then no cruor will drop unless this line is customized for non retail play.
 
             if (TextID == 0)
             {

@@ -65,3 +65,7 @@ INSERT INTO `blue_traits` VALUES (26, 2, 70, 306, 15);
 INSERT INTO `blue_traits` VALUES (27, 2, 110, 407, 5);
 INSERT INTO `blue_traits` VALUES (28, 2, 20, 0, 0);
 INSERT INTO `blue_traits` VALUES (28, 3, 19, 303, 1);
+INSERT INTO `blue_traits` VALUES (29, 2, 52, 244, 40);
+INSERT INTO `blue_traits` VALUES (29, 4, 52, 244, 70);
+INSERT INTO `blue_traits` VALUES (29, 6, 52, 244, 81);
+

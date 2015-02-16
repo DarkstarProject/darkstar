@@ -252,11 +252,11 @@ function onTrigger(player,npc)
       player:startEvent(12, currentRelic, eventParams[5], eventParams[6], 0, 0, 0, 0, eventParams[8]);
 
    -- No relic, or waiting until next conquest tally.
-   elseif (itemid == nil or relicConquest > os.time()) then
+   elseif (itemid == nil) then -- or relicConquest > os.time()) then
       player:startEvent(10);
 
    -- Found a relic and conquest tally is not due (0, or passed), time to explain a stage
-   elseif (itemid ~= nil and relicConquest <= os.time()) then
+   elseif (itemid ~= nil) then -- and relicConquest <= os.time()) then
       eventParams = getRelicParameters(itemid);
 
       -- Determine stage based on eventParams[7]

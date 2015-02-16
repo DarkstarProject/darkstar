@@ -2,16 +2,16 @@
 -- Spell: Diamondhide
 -----------------------------------
 
-require("scripts/globals/settings");
+require("scripts/globals/magic");
 require("scripts/globals/status");
 require("scripts/globals/bluemagic");
 
------------------------------------
--- onSpellcast
------------------------------------
+-----------------------------------------
+-- OnSpellCast
+-----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
+	return 0;
 end;
 
 function onSpellCast(caster, target, spell)

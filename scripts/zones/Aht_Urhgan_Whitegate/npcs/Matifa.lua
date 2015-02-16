@@ -4,41 +4,38 @@
 --  Type: Standard NPC
 --  @pos -10.583 -1 -8.820 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-- Includes
 -----------------------------------
-
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
-
-function onTrade(player,npc,trade)
-end;
+require("scripts/globals/settings");
+require("scripts/globals/quests");
+package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
-
 function onTrigger(player,npc)
-	player:startEvent(0x021d);
+	   artsAndCrafts = player:getQuestStatus(AHT_URHGAN,ARTS_AND_CRAFTS);
+artsAndCrafts_Matifa = player:getVar("QUEST_ARTSANDCRAFTS_MATIFA");
+
+	if (artsAndCrafts == 1 and artsAndCrafts_Matifa ~= 1) then
+		player:startEvent(0x0204);
+	else
+		player:startEvent(0x021D);
+	end
 end;
 
 -----------------------------------
--- onEventUpdate
+-- onTrade Action
 -----------------------------------
-
-function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+function onTrade(player,npc,trade)
 end;
 
 -----------------------------------
--- onEventFinish
+-- onEventFinish Action
 -----------------------------------
-
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+	if (csid == 0x0204) then
+		player:setVar("QUEST_ARTSANDCRAFTS_MATIFA",1);
+	end
 end;
-

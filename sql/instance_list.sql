@@ -68,7 +68,7 @@ INSERT INTO `instance_list` VALUES (0,'TEST',0,0,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (24,'evade_and_escape',61,30,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (25,'siegemaster_assassination',61,30,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (26,'apkallu_breeding',61,15,0.000,0.000,0.000,0);
--- INSERT INTO `instance_list` VALUES (27,'wamoura_farm_raid',61,30,540.977,-39.976,220.919,128);
+INSERT INTO `instance_list` VALUES (27,'wamoura_farm_raid',61,30,540.977,-39.976,220.919,128);
 -- INSERT INTO `instance_list` VALUES (28,'egg_conservation',61,30,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (29,'operation:black_pearl',61,30,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (30,'better_than_one',61,30,0.000,0.000,0.000,0);

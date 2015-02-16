@@ -24,7 +24,8 @@ function onTrigger(player,npc)
 
 player:showText(npc,MAZWEEN_SHOP_DIALOG);
 
-stock = {0x1313,11200,		-- Scroll of Sleepga
+stock = {
+     0x1313,11200,		-- Scroll of Sleepga
 	 0x12A6,18720,		-- Scroll of Sleep II
 	 0x1292,25200,		-- Poison II
 	 0x12E7,14000,		-- Bio II

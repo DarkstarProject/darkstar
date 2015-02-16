@@ -1661,3 +1661,65 @@ INSERT INTO `bcnm_loot` VALUES ('155', '1930', '200', '6'); -- WAR
 INSERT INTO `bcnm_loot` VALUES ('155', '1958', '200', '6'); -- SMN
 INSERT INTO `bcnm_loot` VALUES ('155', '2658', '400', '6'); -- COR
 INSERT INTO `bcnm_loot` VALUES ('155', '1940', '200', '6'); -- THF
+
+-- 		Shinryu BCNM		   lootID, ItemID,  Roll, lootgroup
+INSERT INTO `bcnm_loot` VALUES ('200', '646', '200', '0');
+INSERT INTO `bcnm_loot` VALUES ('200', '6061', '40', '0');
+INSERT INTO `bcnm_loot` VALUES ('200', '4892', '80', '0');
+INSERT INTO `bcnm_loot` VALUES ('200', '679', '280', '0');
+INSERT INTO `bcnm_loot` VALUES ('200', '811', '40', '0');
+INSERT INTO `bcnm_loot` VALUES ('200', '1616', '240', '0');
+INSERT INTO `bcnm_loot` VALUES ('200', '5568', '160', '0');
+INSERT INTO `bcnm_loot` VALUES ('200', '731', '40', '0');
+INSERT INTO `bcnm_loot` VALUES ('200', '4761', '80', '0');
+INSERT INTO `bcnm_loot` VALUES ('200', '5097', '80', '0');
+INSERT INTO `bcnm_loot` VALUES ('200', '5100', '80', '0');
+INSERT INTO `bcnm_loot` VALUES ('200', '919', '40', '0');
+INSERT INTO `bcnm_loot` VALUES ('200', '1628', '40', '0');
+INSERT INTO `bcnm_loot` VALUES ('200', '1592', '120', '0');
+INSERT INTO `bcnm_loot` VALUES ('200', '2168', '200', '0');
+INSERT INTO `bcnm_loot` VALUES ('200', '1592', '40', '1');
+INSERT INTO `bcnm_loot` VALUES ('200', '654', '160', '1');
+INSERT INTO `bcnm_loot` VALUES ('200', '902', '80', '1');
+INSERT INTO `bcnm_loot` VALUES ('200', '2549', '200', '1');
+INSERT INTO `bcnm_loot` VALUES ('200', '4890', '80', '1');
+INSERT INTO `bcnm_loot` VALUES ('200', '4756', '80', '1');
+INSERT INTO `bcnm_loot` VALUES ('200', '5090', '160', '1');
+INSERT INTO `bcnm_loot` VALUES ('200', '748', '160', '1');
+INSERT INTO `bcnm_loot` VALUES ('200', '745', '120', '1');
+INSERT INTO `bcnm_loot` VALUES ('200', '823', '120', '1');
+INSERT INTO `bcnm_loot` VALUES ('200', '1465', '80', '1');
+INSERT INTO `bcnm_loot` VALUES ('200', '808', '80', '1');
+INSERT INTO `bcnm_loot` VALUES ('200', '1985', '160', '1');
+INSERT INTO `bcnm_loot` VALUES ('200', '2156', '40', '1');
+INSERT INTO `bcnm_loot` VALUES ('200', '2475', '200', '1');
+INSERT INTO `bcnm_loot` VALUES ('200', '5667', '360', '2');
+INSERT INTO `bcnm_loot` VALUES ('200', '796', '40', '2');
+INSERT INTO `bcnm_loot` VALUES ('200', '4125', '200', '2');
+INSERT INTO `bcnm_loot` VALUES ('200', '4969', '40', '2');
+INSERT INTO `bcnm_loot` VALUES ('200', '699', '40', '2');
+INSERT INTO `bcnm_loot` VALUES ('200', '799', '40', '2');
+INSERT INTO `bcnm_loot` VALUES ('200', '4149', '40', '2');
+INSERT INTO `bcnm_loot` VALUES ('200', '788', '40', '2');
+INSERT INTO `bcnm_loot` VALUES ('200', '792', '40', '2');
+INSERT INTO `bcnm_loot` VALUES ('200', '751', '160', '3');
+INSERT INTO `bcnm_loot` VALUES ('200', '746', '160', '3');
+INSERT INTO `bcnm_loot` VALUES ('200', '4140', '160', '3');
+INSERT INTO `bcnm_loot` VALUES ('200', '830', '40', '3');
+INSERT INTO `bcnm_loot` VALUES ('200', '821', '160', '3');
+INSERT INTO `bcnm_loot` VALUES ('200', '1132', '160', '3');
+INSERT INTO `bcnm_loot` VALUES ('200', '1828', '40', '3');
+INSERT INTO `bcnm_loot` VALUES ('200', '1829', '40', '3');
+INSERT INTO `bcnm_loot` VALUES ('200', '5085', '80', '4');
+INSERT INTO `bcnm_loot` VALUES ('200', '794', '40', '4');
+INSERT INTO `bcnm_loot` VALUES ('200', '17306', '120', '4');
+INSERT INTO `bcnm_loot` VALUES ('200', '4137', '200', '4');
+INSERT INTO `bcnm_loot` VALUES ('200', '3320', '40', '4');
+INSERT INTO `bcnm_loot` VALUES ('200', '5466', '160', '4');
+INSERT INTO `bcnm_loot` VALUES ('200', '798', '40', '4');
+INSERT INTO `bcnm_loot` VALUES ('200', '5006', '160', '4');
+INSERT INTO `bcnm_loot` VALUES ('200', '5056', '80', '4');
+INSERT INTO `bcnm_loot` VALUES ('200', '827', '40', '4');
+INSERT INTO `bcnm_loot` VALUES ('200', '1124', '40', '4');
+INSERT INTO `bcnm_loot` VALUES ('200', '4120', '120', '4');
+INSERT INTO `bcnm_loot` VALUES ('200', '805', '200', '4');

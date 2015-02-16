@@ -84,6 +84,8 @@ struct map_config_t
 	int8   exp_loss_level;			// Minimum main job level at which a character may lose experience points.
     bool   level_sync_enable;       // Enable/disable Level Sync
     bool   all_jobs_widescan;       // Enable/disable jobs other than BST and RNG having widescan.
+    uint8  widescan_bonus;          // Extra widescan radius (adds to, not multiplies, the total).
+    float  engage_delay_mod;        // Acts as a multiplier for delay for engaging a mob.
     int8   speed_mod;               // Modifier to add to player speed
     int8   mob_speed_mod;           // Modifier to add to monster speed
 	float  skillup_chance_multiplier;		// Constant used in the skillup formula that has a strong effect on skill-up rates

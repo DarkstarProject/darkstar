@@ -15,7 +15,9 @@ require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-	zone:registerRegion(1,-112,-3,-17,-96,3,-3);--event COP
+	zone:registerRegion(1,-112,-3,-17,-96,3,-3); -- event COP
+	zone:registerRegion(2, 60, 5, -169, 0,0,0); -- bridge workaround, South side
+	zone:registerRegion(3, 60, 5, -70, 0,0,0); -- bridge workaround, North Side
 end;
 
 -----------------------------------
@@ -35,7 +37,7 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-	cs = -1;
+	local cs = -1;
 	-- FIRST LOGIN (START CS)
 	if (player:getPlaytime(false) == 0) then
 		if (OPENING_CUTSCENE_ENABLE == 1) then
@@ -62,23 +64,30 @@ function onZoneIn(player,prevZone)
 	end
 	return cs;
 end;
+
 -----------------------------------
 -- onRegionEnter
 -----------------------------------
 
 function onRegionEnter(player,region)
-local regionID =region:GetRegionID();
---printf("regionID: %u",regionID);
-  if(regionID==1 and player:getCurrentMission(COP) ==THE_CALL_OF_THE_WYRMKING and player:getVar("PromathiaStatus")==0)then
-  player:startEvent(0x0131);
-  end
+	local regionID = region:GetRegionID();
+	-- printf("regionID: %u",regionID);
+	if (regionID ==1 and player:getCurrentMission(COP) == THE_CALL_OF_THE_WYRMKING and player:getVar("PromathiaStatus") == 0) then
+		player:startEvent(0x0131);
+	elseif (regionID == 2) then
+		player:setPos(60,6.2,-62,192);
+	elseif (regionID == 3) then
+		player:setPos(60,7.5,-177,64);
+	end
 end;
+
 -----------------------------------
 -- onRegionLeave
 -----------------------------------
 
 function onRegionLeave(player,region)
 end;
+
 -----------------------------------
 -- onTransportEvent
 -----------------------------------

@@ -1,7 +1,6 @@
 -----------------------------------------
 -- Feather Storm
 -----------------------------------------
-
 require("scripts/globals/magic");
 require("scripts/globals/status");
 require("scripts/globals/bluemagic");

@@ -14,22 +14,22 @@ require("scripts/globals/shop");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 player:showText(npc,MULNITH_SHOP_DIALOG);
 
 stock = {0x113A,344,		-- Roast Mushroom
 	 0x15DE,2000,		-- Sis Kebabi (available when AC is in Al Zahbi)
 	 0x15E0,3000}		-- Balik Sis (available when AC is in Al Zahbi)
- 
+
 showShop(player, STATIC, stock);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

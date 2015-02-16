@@ -23,7 +23,7 @@ function onUseAbility(player, target, ability)
 	local sHands = target:getEquipID(SLOT_HANDS);
 	local sHead = target:getEquipID(SLOT_HEAD);
 	-- Todo: change these item checks into a modifier.
-	if (sHands == 15113 or sHands == 14920) then
+	if (sHands == 15113 or sHands == 14920 or sHands == 10701) then
 		extratick = 1;
 	end
 	if (sHead == 13868 or sHead == 15236) then

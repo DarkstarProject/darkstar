@@ -21,22 +21,29 @@ function onMobSkillCheck(target,mob,skill)
       return 0;
    elseif (mobID == 16933124 and mobhp > 70 )then -- omega first bipedform
 	  return 0;
+   elseif ((mobID == 17813910 or mobID == 17813914 or mobID == 17813918)and mobhp < 25 and mobhp > 10) then  -- Pantokrator       
+      return 0;  
+   elseif ((mobID == 17813910 or mobID == 17813914 or mobID == 17813918)and mobhp < 55 and mobhp > 45) then  -- Pantokrator       
+      return 0;
+   elseif ((mobID == 17813910 or mobID == 17813914 or mobID == 17813918) and mobhp > 70)then -- Pantokrator first bipedform
+	  return 0;   
    end
    return 1;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
 
+
     local targetcurrentHP = target:getHP();
     local targetmaxHP = target:getMaxHP(); 
-    local hpset=targetmaxHP*0.05;
+    local hpset=targetmaxHP*0.50;
    	local typeEffect = EFFECT_BIND;
    	MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30);
 	
       if(targetcurrentHP > hpset)then     
-        dmg= targetcurrentHP - hpset;
+        dmg = targetcurrentHP - hpset;
       else
-        dmg=0;
+        dmg = 0;
 	  end
 	  
 	target:delHP(dmg);

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 14990
---	Blizzard Gloves
---  Enchantment: "Enblizzard"
+-- ID: 14990
+-- Item: Blizzard Gloves
+-- Enchantment: "Enblizzard"
 -----------------------------------------
 
 -----------------------------------------

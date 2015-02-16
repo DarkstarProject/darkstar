@@ -26,8 +26,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED);
+	player:PrintToPlayer("PUP unlock quest is temp disabled. -The Staff");
+--[[local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED);
 local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress");
 
 	if (player:getMainLvl() >= ADVANCED_JOB_LEVEL and NoStringsAttached == QUEST_AVAILABLE) then
@@ -36,7 +36,7 @@ local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress");
 		player:startEvent(0x01b3); -- reminder to go see Iruki-Waraki at Whitegate
 	else
 		player:startEvent(0x01b1);
-	end;
+	end;]]--
 end;
 
 -----------------------------------

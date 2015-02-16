@@ -24,6 +24,6 @@ end;
 
 function onItemUse(target)
     target:delStatusEffect(EFFECT_INVISIBLE);
-	target:addStatusEffect(EFFECT_INVISIBLE,0,10,180);
-	target:addStatusEffect(EFFECT_MEDICINE,0,0,180);
+	target:addStatusEffect(EFFECT_INVISIBLE,0,10,180 * SNEAK_INVIS_DURATION_MULTIPLIER);
+	target:addStatusEffect(EFFECT_MEDICINE,0,0,180 * SNEAK_INVIS_DURATION_MULTIPLIER);
 end;

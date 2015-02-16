@@ -13,7 +13,16 @@ require("scripts/globals/status");
 
 function onMobInitialize(mob)
 end;
+-----------------------------------
+-- onMobSpawn
+-----------------------------------
 
+function onMobSpawn(mob)
+    mob:addMod(MOD_MACC,400);
+    mob:addMod(MOD_ACC,400);
+    mob:addMod(MOD_REGAIN,33);
+    mob:addMod(MOD_DOUBLE_ATTACK,15);
+end;
 -----------------------------------
 -- onMobDeath
 -----------------------------------
@@ -22,7 +31,7 @@ function onMobDeath(mob, killer)
     killer:addTitle(TORTOISE_TORTURER);
 
     local Adamantoise  = mob:getID();
-    local Aspidochelone = 17301538; 
+    local Aspidochelone = 17301538;
     local ToD     = GetServerVariable("[POP]Aspidochelone");
     local kills   = GetServerVariable("[PH]Aspidochelone");
     DeterMob(Adamantoise, true);

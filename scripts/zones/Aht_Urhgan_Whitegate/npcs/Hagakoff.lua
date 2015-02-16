@@ -16,17 +16,18 @@ require("scripts/globals/shop");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 player:showText(npc,HAGAKOFF_SHOP_DIALOG);
 
-stock = {0x400f,15448,		-- Katars (Not available if beastmen have the AC.)
+stock = {
+	 0x400f,15448,		-- Katars (Not available if beastmen have the AC.)
 	 0x4010,67760,		-- Darksteel Katars
 	 0x4023,45760,		-- Patas (Not available if beastmen have the AC.)
 	 0x4040,156,		-- Bronze Dagger
@@ -43,9 +44,9 @@ stock = {0x400f,15448,		-- Katars (Not available if beastmen have the AC.)
 	 0x4280,72,			-- Ash Club
 	 0x4281,1740,		-- Chestnut Club (Not available if beastmen have the AC.)
 	 0x4753,238}		-- Angon
- 
+
 showShop(player, STATIC, stock);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

@@ -18,6 +18,10 @@ function onMobSkillCheck(target,mob,skill)
  local mobhp = mob:getHPP();
    if (mobID == 16933124 and mobhp < 30 )then -- omega second quadripedform
 	  return 0;
+   elseif ((mobID == 17813910 or mobID == 17813914 or mobID == 17813918) and mobhp < 55 and mobhp > 45 )then -- Pantokrator second quadripedform
+	  return 0;  
+	elseif ((mobID == 17813910 or mobID == 17813914 or mobID == 17813918) and mobhp < 25 and mobhp > 10 )then -- Pantokrator second quadripedform
+	  return 0;	
    end
    return 1;
 end;

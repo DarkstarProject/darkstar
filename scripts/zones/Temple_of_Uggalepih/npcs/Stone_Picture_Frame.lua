@@ -81,13 +81,13 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0032) then
 		-- Soon !
 	elseif(csid == 0x003C) then
-		time_elapsed = os.time() - player:getVar("started_painting");
-		if(time_elapsed >= 30) then
+		-- time_elapsed = os.time() - player:getVar("started_painting");
+		-- if(time_elapsed >= 30) then
 			player:messageSpecial(PAINTBRUSH_OFFSET + 22); -- You succeeded in projecting the image in your soul to the blank canvas. The door to the Rancor Den has opened!<Prompt>
 			GetNPCByID(DoorToRancor):openDoor(45); -- Open the door to Den of Rancor for 45 sec
-		else
-			player:messageSpecial(PAINTBRUSH_OFFSET + 21); -- You were unable to fill the canvas with an image from your soul.
-		end
+		-- else
+			-- player:messageSpecial(PAINTBRUSH_OFFSET + 21); -- You were unable to fill the canvas with an image from your soul.
+		-- end
 		player:setVar("started_painting",0);
 	end
 

@@ -596,7 +596,7 @@ INSERT INTO `status_effects` VALUES (569,'blaze_of_glory',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (570,'battuta',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (571,'rayke',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (572,'avoidance_down',32,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (573,'deluge_spikes',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (573,'deluge_spikes',33,34,0,0,0,0,6);
 INSERT INTO `status_effects` VALUES (574,'fast_cast',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (575,'gestation',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (576,'doubt',32,0,0,0,0,0,0);
@@ -641,6 +641,15 @@ INSERT INTO `status_effects` VALUES (798,'chainbound',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (799,'skillchain',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (800,'dynamis',0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (801,'meditate',32,0,0,0,0,0,7);
+
+-- LegionXI custom effects
+INSERT INTO `status_effects` VALUES (1017,'wind_spikes',33,34,0,0,0,0,6);
+INSERT INTO `status_effects` VALUES (1018,'stone_spikes',33,34,0,0,0,0,6);
+INSERT INTO `status_effects` VALUES (1019,'dark_spikes',33,34,0,0,0,0,6);
+INSERT INTO `status_effects` VALUES (1020,'sjcap_boost',768,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (1021,'rage',544,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (1022,'legion',768,0,0,0,0,0,0);
+
 /*!40000 ALTER TABLE `status_effects` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

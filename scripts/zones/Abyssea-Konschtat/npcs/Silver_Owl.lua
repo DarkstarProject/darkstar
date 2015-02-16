@@ -1,0 +1,7 @@
+-----------------------------------
+-- Zone: Abyssea-Konschtat
+-- NPC: Silver Owl
+-- Type: Quest NPC
+-----------------------------------
+-- Quest Events: Offer 0x0100 During 0x0101 Complete 0x0102
+-- Events 0x0104 0x0105
