@@ -523,7 +523,7 @@ INSERT INTO `item_mods` VALUES (10348, 12, 8); -- INT+8
 INSERT INTO `item_mods` VALUES (10348, 13, 8); -- MND+8
 INSERT INTO `item_mods` VALUES (10348, 14, 8); -- CHR+8
 INSERT INTO `item_mods` VALUES (10348, 27, -5); -- Enmity-5
-INSERT INTO `item_mods` VALUES (10348, 408, 1); -- Bonus damage added to magic burst
+INSERT INTO `item_mods` VALUES (10348, 487, 1); -- Bonus damage added to magic burst
 
 -- -------------------------------------------------------
 -- Chelona Trousers +1
@@ -538,7 +538,7 @@ INSERT INTO `item_mods` VALUES (10349, 12, 9); -- INT+9
 INSERT INTO `item_mods` VALUES (10349, 13, 9); -- MND+9
 INSERT INTO `item_mods` VALUES (10349, 14, 9); -- CHR+9
 INSERT INTO `item_mods` VALUES (10349, 27, -6); -- Enmity-6
-INSERT INTO `item_mods` VALUES (10349, 408, 2); -- Bonus damage added to magic burst
+INSERT INTO `item_mods` VALUES (10349, 487, 2); -- Bonus damage added to magic burst
 
 -- -------------------------------------------------------
 -- Wohpe's Sabots
@@ -15944,6 +15944,7 @@ INSERT INTO `item_mods` VALUES (15961, 120, 5);
 INSERT INTO `item_mods` VALUES (15961, 121, 5);
 INSERT INTO `item_mods` VALUES (15962, 13, 2);
 INSERT INTO `item_mods` VALUES (15962, 29, 2);
+INSERT INTO `item_mods` VALUES (15962, 487, 5);
 INSERT INTO `item_mods` VALUES (15963, 5, 20);
 INSERT INTO `item_mods` VALUES (15963, 71, 1);
 INSERT INTO `item_mods` VALUES (15963, 168, 8);
@@ -15954,6 +15955,7 @@ INSERT INTO `item_mods` VALUES (15964, 26, 3);
 INSERT INTO `item_mods` VALUES (15965, 2, 15);
 INSERT INTO `item_mods` VALUES (15965, 23, 5);
 INSERT INTO `item_mods` VALUES (15965, 68, 5);
+INSERT INTO `item_mods` VALUES (15965, 426, 3);
 INSERT INTO `item_mods` VALUES (15966, 24, 2);
 
 -- -------------------------------------------------------
