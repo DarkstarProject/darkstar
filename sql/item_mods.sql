@@ -1439,6 +1439,11 @@ INSERT INTO `item_mods` VALUES (10921, 1, 8); -- DEF:8
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (10922, 1, 9); -- DEF:9
 
+-- -------------------------------------------------------
+-- Chocobo Torque
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10924, 509, 4); -- Chocobo riding time +4 min
+
 INSERT INTO `item_mods` VALUES (10929, 1, 10);
 INSERT INTO `item_mods` VALUES (10929, 10, 9);
 INSERT INTO `item_mods` VALUES (10929, 246, 2); -- TODO: Confirm Amount
@@ -2198,7 +2203,13 @@ INSERT INTO `item_mods` VALUES (11316, 1, 1);
 INSERT INTO `item_mods` VALUES (11317, 1, 1);
 INSERT INTO `item_mods` VALUES (11318, 1, 2);
 INSERT INTO `item_mods` VALUES (11319, 1, 2);
-INSERT INTO `item_mods` VALUES (11321, 1, 2);
+
+-- -------------------------------------------------------
+-- Orange Racing Silks
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (11321, 1, 2); -- DEF+2
+INSERT INTO `item_mods` VALUES (11321, 509, 10); -- Chocobo riding time +10 min
+
 INSERT INTO `item_mods` VALUES (11322, 1, 2);
 INSERT INTO `item_mods` VALUES (11323, 1, 2);
 INSERT INTO `item_mods` VALUES (11324, 1, 2);
@@ -8750,8 +8761,19 @@ INSERT INTO `item_mods` VALUES (13808, 1, 2);
 INSERT INTO `item_mods` VALUES (13808, 127, 1);
 INSERT INTO `item_mods` VALUES (13809, 1, 12);
 INSERT INTO `item_mods` VALUES (13809, 127, 1);
-INSERT INTO `item_mods` VALUES (13810, 1, 2);
-INSERT INTO `item_mods` VALUES (13811, 1, 12);
+
+-- -------------------------------------------------------
+-- Chocobo Jack Coat
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (13810, 1, 2); -- DEF+2
+INSERT INTO `item_mods` VALUES (13810, 509, 5); -- Chocobo riding time +5 min
+
+-- -------------------------------------------------------
+-- Rider's Jack Coat 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (13811, 1, 12); -- DEF+12
+INSERT INTO `item_mods` VALUES (13811, 509, 5); -- Chocobo riding time +5 min
+
 INSERT INTO `item_mods` VALUES (13812, 1, 45);
 INSERT INTO `item_mods` VALUES (13813, 1, 50);
 INSERT INTO `item_mods` VALUES (13814, 1, 29);
@@ -9618,8 +9640,19 @@ INSERT INTO `item_mods` VALUES (14070, 1, 1);
 INSERT INTO `item_mods` VALUES (14070, 127, 1);
 INSERT INTO `item_mods` VALUES (14071, 1, 3);
 INSERT INTO `item_mods` VALUES (14071, 127, 1);
-INSERT INTO `item_mods` VALUES (14072, 1, 1);
-INSERT INTO `item_mods` VALUES (14073, 1, 3);
+
+-- -------------------------------------------------------
+-- Chocobo Boots
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (14072, 1, 1); -- DEF+1
+INSERT INTO `item_mods` VALUES (14072, 509, 3); -- Chocobo riding time +3 min
+
+-- -------------------------------------------------------
+-- Rider's Boots
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (14073, 1, 3); -- DEF+3
+INSERT INTO `item_mods` VALUES (14073, 509, 3); -- Chocobo riding time +3 min
+
 INSERT INTO `item_mods` VALUES (14074, 1, 8);
 INSERT INTO `item_mods` VALUES (14074, 14, -6);
 INSERT INTO `item_mods` VALUES (14074, 23, 12);
@@ -9954,8 +9987,19 @@ INSERT INTO `item_mods` VALUES (14171, 1, 1);
 INSERT INTO `item_mods` VALUES (14171, 127, 1);
 INSERT INTO `item_mods` VALUES (14172, 1, 3);
 INSERT INTO `item_mods` VALUES (14172, 127, 1);
-INSERT INTO `item_mods` VALUES (14173, 1, 1);
-INSERT INTO `item_mods` VALUES (14174, 1, 3);
+
+-- -------------------------------------------------------
+-- Chocobo Jack Coat
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (14173, 1, 1); -- DEF+1
+INSERT INTO `item_mods` VALUES (14173, 509, 5); -- Chocobo riding time +5 min
+
+-- -------------------------------------------------------
+-- Rider's Jack Coat 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (14174, 1, 3); -- DEF+3
+INSERT INTO `item_mods` VALUES (14174, 509, 5); -- Chocobo riding time +5 min
+
 INSERT INTO `item_mods` VALUES (14175, 1, 19);
 INSERT INTO `item_mods` VALUES (14175, 13, -11);
 INSERT INTO `item_mods` VALUES (14175, 23, 6);
@@ -10425,8 +10469,19 @@ INSERT INTO `item_mods` VALUES (14292, 1, 1);
 INSERT INTO `item_mods` VALUES (14292, 127, 1);
 INSERT INTO `item_mods` VALUES (14293, 1, 8);
 INSERT INTO `item_mods` VALUES (14293, 127, 1);
-INSERT INTO `item_mods` VALUES (14294, 1, 1);
-INSERT INTO `item_mods` VALUES (14295, 1, 8);
+
+-- -------------------------------------------------------
+-- Chocobo Hose
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (14294, 1, 1); -- DEF+1
+INSERT INTO `item_mods` VALUES (14294, 509, 4); -- Chocobo riding time +4 min
+
+-- -------------------------------------------------------
+-- Rider's Hose
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (14295, 1, 8); -- DEF+8
+INSERT INTO `item_mods` VALUES (14295, 509, 4); -- Chocobo riding time +4 min
+
 INSERT INTO `item_mods` VALUES (14296, 1, 38);
 INSERT INTO `item_mods` VALUES (14296, 5, -21);
 INSERT INTO `item_mods` VALUES (14296, 10, -11);
@@ -17820,6 +17875,12 @@ INSERT INTO `item_mods` VALUES (17072, 5, 10);
 INSERT INTO `item_mods` VALUES (17072, 12, 5);
 INSERT INTO `item_mods` VALUES (17073, 12, 10);
 INSERT INTO `item_mods` VALUES (17073, 13, 10);
+
+-- -------------------------------------------------------
+-- Chocobo Wand
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (17074, 509, 30); -- Chocobo riding time +30 min
+
 INSERT INTO `item_mods` VALUES (17075, 2, 27);
 
 -- -------------------------------------------------------
