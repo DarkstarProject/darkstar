@@ -2481,7 +2481,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
     float wsTP = m_PChar->health.tp;
     uint16 tpHitsLanded = 0;
     uint16 extraHitsLanded = 0;
-    uint16 damage = 0;
+    int32 damage = 0;
     m_PChar->PLatentEffectContainer->CheckLatentsTP(0);
 
     damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
@@ -2531,22 +2531,15 @@ void CAICharNormal::ActionWeaponSkillFinish()
     if (m_PChar->GetMJob() == JOB_THF && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
     {
         taChar = battleutils::getAvailableTrickAttackChar(m_PChar, m_PBattleTarget);
-        if (taChar != NULL) damage += m_PChar->AGI();
+        if (taChar != NULL && damage >= 0) damage += m_PChar->AGI();
     }
 
     //check if other jobs have trick attack active to change enmity lateron
     if (taChar == NULL && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
         taChar = battleutils::getAvailableTrickAttackChar(m_PChar, m_PBattleTarget);
 
-
     if (!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
-    {
-        // add overwhelm damage bonus
-        damage = battleutils::getOverWhelmDamageBonus(m_PChar, m_PBattleSubTarget, damage);
-
         damage = battleutils::TakeWeaponskillDamage(m_PChar, m_PBattleSubTarget, damage, damslot, tpHitsLanded, taChar);
-        m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
-    }
 
     m_PChar->addTP(extraHitsLanded * 10);
     float afterWsTP = m_PChar->health.tp;
@@ -2561,7 +2554,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
     Action.ActionTarget = m_PBattleSubTarget;
     Action.reaction = REACTION_HIT;
-    Action.speceffect = SPECEFFECT_RECOIL;
+    Action.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
     Action.animation = m_PWeaponSkill->getAnimationId();
     Action.param = damage;
     Action.knockback = 0;
@@ -2611,9 +2604,9 @@ void CAICharNormal::ActionWeaponSkillFinish()
             recycleChance = 100;
         }
         // ranged WS will apply ammo additional effects silently
-        if (Action.reaction == REACTION_HIT && PAmmo != NULL && PAmmo->getModifier(MOD_ADDITIONAL_EFFECT) > 0)
+        if (Action.reaction == REACTION_HIT && PAmmo != NULL && PAmmo->getModifier(MOD_ADDITIONAL_EFFECT) > 0 && damage >= 0)
         {
-            luautils::OnAdditionalEffect(m_PChar, m_PBattleSubTarget, PAmmo, &Action, damage);
+            luautils::OnAdditionalEffect(m_PChar, m_PBattleSubTarget, PAmmo, &Action, (uint32)damage);
             Action.additionalEffect = SUBEFFECT_NONE;
         }
         if (PAmmo != NULL && WELL512::irand() % 100 > recycleChance)
@@ -2636,14 +2629,14 @@ void CAICharNormal::ActionWeaponSkillFinish()
     // DO NOT REMOVE!  This is here for a reason...
     // Skill chains should not be affected by MISSED weapon skills or non-elemental
     // weapon skills such as: Spirits Within, Spirit Taker, Energy Steal, Energy Drain, Starlight, and Moonlight.
-    if (Action.reaction == REACTION_HIT && (m_PWeaponSkill->getPrimarySkillchain() != 0))
+    if (Action.reaction == REACTION_HIT && m_PWeaponSkill->getPrimarySkillchain() != 0 && damage >= 0)
     {
         // NOTE: GetSkillChainEffect is INSIDE this if statement because it
         //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
         SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, GetCurrentWeaponSkill());
         if (effect != SUBEFFECT_NONE)
         {
-            uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, damage);
+            uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, (uint16)damage);
 
 
             Action.addEffectParam = skillChainDamage;
@@ -2712,16 +2705,9 @@ void CAICharNormal::ActionWeaponSkillFinish()
                 msg = 282;
             }
 
-            Action.param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, 0, taChar, true);
+            Action.param = battleutils::TakeWeaponskillDamage(m_PChar, PTarget, damage, SLOT_MAIN, 0, taChar);
 
             Action.messageID = msg;
-
-            // create hate on mob
-            if (PTarget->objtype == TYPE_MOB){
-
-                CMobEntity* mob = (CMobEntity*)PTarget;
-                mob->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, Action.param);
-            }
 
             if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
                 Action.speceffect = SPECEFFECT_RECOIL;
