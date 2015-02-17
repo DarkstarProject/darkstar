@@ -2544,7 +2544,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
         // add overwhelm damage bonus
         damage = battleutils::getOverWhelmDamageBonus(m_PChar, m_PBattleSubTarget, damage);
 
-        damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, damslot, tpHitsLanded, taChar, true);
+        damage = battleutils::TakeWeaponskillDamage(m_PChar, m_PBattleSubTarget, damage, damslot, tpHitsLanded, taChar);
         m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
     }
 
