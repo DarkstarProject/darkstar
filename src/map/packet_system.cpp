@@ -3534,45 +3534,53 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
             break;
             case MESSAGE_LINKSHELL:
-            {
-                if (PChar->PLinkshell1 != NULL)
-                {
-                    int8 packetData[8];
-                    WBUFL(packetData, 0) = PChar->PLinkshell1->getID();
-                    WBUFL(packetData, 4) = PChar->id;
-                    message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data + 6));
+			{
+				if (PChar->PLinkshell1 != NULL)
+				{
+					int8 packetData[8];
+					WBUFL(packetData, 0) = PChar->PLinkshell1->getID();
+					WBUFL(packetData, 4) = PChar->id;
+					message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data + 6));
 
-                    if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
-                    {
-                        std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-                        qStr += PChar->GetName();
-                        qStr += "','LINKSHELL','";
-                        qStr += escape(data + 6);
-                        qStr += "',current_timestamp());";
-                        const char * cC = qStr.c_str();
-                        Sql_QueryStr(SqlHandle, cC);
-                    }
-                }
-            }
-            break;
-            case MESSAGE_LINKSHELL2:
-            {
-                if (PChar->PLinkshell2 != NULL)
-                {
-                    int8 packetData[8];
-                    WBUFL(packetData, 0) = PChar->PLinkshell2->getID();
-                    WBUFL(packetData, 4) = PChar->id;
-                    message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data + 6));
+					if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
+					{
+						int8 signature[21];
+						CItem* PLinkshell = (CItem*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK1]);
+						std::string qStr = ("INSERT into audit_chat (speaker,type,recipient,message,datetime) VALUES('");
+						qStr += PChar->GetName();
+						qStr += "','LINKSHELL','";
+						qStr += DecodeStringLinkshell((int8*)PLinkshell->getSignature(), signature);
+						qStr += "','";
+						qStr += escape(data + 6);
+						qStr += "',current_timestamp());";
+						const char * cC = qStr.c_str();
+						Sql_QueryStr(SqlHandle, cC);
+					}
+				}
+			}
+			break;
+			case MESSAGE_LINKSHELL2:
+			{
+				if (PChar->PLinkshell2 != NULL)
+				{
+					int8 packetData[8];
+					WBUFL(packetData, 0) = PChar->PLinkshell2->getID();
+					WBUFL(packetData, 4) = PChar->id;
+					message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data + 6));
 
-                    if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
-                    {
-                        std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-                        qStr += PChar->GetName();
-                        qStr += "','LINKSHELL','";
-                        qStr += escape(data + 6);
-                        qStr += "',current_timestamp());";
-                        const char * cC = qStr.c_str();
-                        Sql_QueryStr(SqlHandle, cC);
+					if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
+					{
+						int8 signature[21];
+						CItem* PLinkshell = (CItem*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK2]);
+						std::string qStr = ("INSERT into audit_chat (speaker,type,recipient,message,datetime) VALUES('");
+						qStr += PChar->GetName();
+						qStr += "','LINKSHELL','";
+						qStr += DecodeStringLinkshell((int8*)PLinkshell->getSignature(), signature);
+						qStr += "','";
+						qStr += escape(data + 6);
+						qStr += "',current_timestamp());";
+						const char * cC = qStr.c_str();
+						Sql_QueryStr(SqlHandle, cC);
                     }
                 }
             }
