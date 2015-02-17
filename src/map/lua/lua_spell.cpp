@@ -150,6 +150,13 @@ inline int32 CLuaSpell::isAoE(lua_State *L)
 	return 1;
 }
 
+inline int32 CLuaSpell::tookEffect(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaSpell == NULL);
+    lua_pushboolean(L, m_PLuaSpell->tookEffect());
+    return 1;
+}
+
 inline int32 CLuaSpell::getID(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PLuaSpell == NULL);
@@ -187,6 +194,7 @@ Lunar<CLuaSpell>::Register_t CLuaSpell::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaSpell,setAnimation),
 	LUNAR_DECLARE_METHOD(CLuaSpell,setMPCost),
     LUNAR_DECLARE_METHOD(CLuaSpell,isAoE),
+    LUNAR_DECLARE_METHOD(CLuaSpell,tookEffect),
     LUNAR_DECLARE_METHOD(CLuaSpell,getMagicBurstMessage),
     LUNAR_DECLARE_METHOD(CLuaSpell,getElement),
 	LUNAR_DECLARE_METHOD(CLuaSpell,getTotalTargets),

@@ -54,6 +54,7 @@ public:
 	int32 setMPCost(lua_State*);
     int32 canTargetEnemy(lua_State*);
     int32 isAoE(lua_State*);
+    int32 tookEffect(lua_State*);
     int32 getTotalTargets(lua_State*);
     int32 getMagicBurstMessage(lua_State*);
 	int32 getElement(lua_State*);
