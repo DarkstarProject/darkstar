@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	 printf("CSIDf: %u",csid);
-	 printf("RESULTf: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 
 	if(csid == 0x0023)then
 		if (option==1)then
