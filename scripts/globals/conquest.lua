@@ -466,7 +466,7 @@ function toHomeNation(player)
 	if(player:getNation() == BASTOK) then
 		player:setPos(89, 0 , -66, 0, 234);
 	elseif(player:getNation() == SANDORIA) then
-		player:setPos(114, 0 , -10, 167, 231);
+		player:setPos(49, -1 , 29, 164, 231);
 	else
 		player:setPos(193, -12 , 220, 64, 240);
 	end
