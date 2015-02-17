@@ -2492,8 +2492,8 @@ bool IsAnticipated(CBattleEntity* PDefender, bool forceRemove, bool ignore, bool
 		if(WELL512::irand()%100 < (100-(pastAnticipations*15))){
 			//increment power and don't remove
 			effect->SetPower(effect->GetPower()+1);
-            //chance to counter - 25% base TODO: add "enhances third eye effect" gear
-            if (WELL512::irand() % 100 < 25)
+            //chance to counter - 25% base
+            if (WELL512::irand() % 100 < 25 + PDefender->getMod(MOD_AUGMENTS_THIRD_EYE))
                 *thirdEyeCounter = true;
 			return true;
 		}
