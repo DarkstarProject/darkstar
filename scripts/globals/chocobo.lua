@@ -52,7 +52,7 @@ end;
 ---------------------------------------
 
 function getChocoboPrice(player)
-    local zone = player:getZone();
+    local zone = player:getZoneID();
     local price = 0;
 
     for u = 1, table.getn(chocobo), 2 do
