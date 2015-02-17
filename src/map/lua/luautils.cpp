@@ -2391,13 +2391,13 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 
         PChar->ForAlliance([PChar, PMob, PKiller, &File](CBattleEntity* PMember)
         {
-            if (prepFile(File, "onMobDeathEx"))
-            {
-                return;
-            }
-
             if (PMember->getZone() == PChar->getZone())
             {
+                if (prepFile(File, "onMobDeathEx"))
+                {
+                    return;
+                }
+
                 CLuaBaseEntity LuaMobEntity(PMob);
                 CLuaBaseEntity LuaKillerEntity(PMember);
 
