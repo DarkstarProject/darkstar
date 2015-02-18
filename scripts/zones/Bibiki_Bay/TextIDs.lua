@@ -21,6 +21,9 @@ NEWS_BILLET = 7469; -- added to your
 -- Conquest Base
 CONQUEST_BASE = 7030; -- Tallying conquest results...
 
+-- Shop Texts
+POHKA_SHOP_DIALOG = 7201; --Hey buddy, need a rod? I've got loads of state-of-the-art, top-of-the-line, high quality rods right here waitin' fer ya! Whaddya say?
+
 -- Clamming
             YOU_OBTAIN = 6388; -- You obtain <qty> <item>
       WHOA_HOLD_ON_NOW = 7219; -- Whoa, hold on now. Ain't look like you got 'nuff room in that spiffy bag o' yours to carrrry all these darn clams.
