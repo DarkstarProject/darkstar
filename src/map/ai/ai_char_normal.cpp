@@ -2528,7 +2528,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
     CBattleEntity* taChar = NULL;
 
     if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
-        taChar = battleutils::getAvailableTrickAttackChar(m_PChar, m_PBattleTarget);
+        taChar = battleutils::getAvailableTrickAttackChar(m_PChar, m_PBattleSubTarget);
 
     if (!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
         damage = battleutils::TakeWeaponskillDamage(m_PChar, m_PBattleSubTarget, damage, damslot, tpHitsLanded, taChar);
@@ -2621,7 +2621,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
     // DO NOT REMOVE!  This is here for a reason...
     // Skill chains should not be affected by MISSED weapon skills or non-elemental
     // weapon skills such as: Spirits Within, Spirit Taker, Energy Steal, Energy Drain, Starlight, and Moonlight.
-    if (Action.reaction == REACTION_HIT && m_PWeaponSkill->getPrimarySkillchain() != 0 && damage >= 0)
+    if (Action.reaction == REACTION_HIT && m_PWeaponSkill->getPrimarySkillchain() != 0 && !(m_PBattleSubTarget->isDead()))
     {
         // NOTE: GetSkillChainEffect is INSIDE this if statement because it
         //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.

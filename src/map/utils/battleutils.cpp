@@ -1934,7 +1934,7 @@ int32 TakeWeaponskillDamage(CCharEntity* PChar, CBattleEntity* PDefender, int32 
 
     if (damage > 0)
     {
-        damage = battleutils::getOverWhelmDamageBonus(PChar, PDefender, (uint16)damage);
+        damage = getOverWhelmDamageBonus(PChar, PDefender, (uint16)damage);
         attackutils::TryAbsorbMPfromPhysicalAttack(PDefender, damage);
         PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 
