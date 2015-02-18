@@ -2527,15 +2527,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
     //incase a TA party member is available
     CBattleEntity* taChar = NULL;
 
-    //trick attack agi bonus for thf main job
-    if (m_PChar->GetMJob() == JOB_THF && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
-    {
-        taChar = battleutils::getAvailableTrickAttackChar(m_PChar, m_PBattleTarget);
-        if (taChar != NULL && damage >= 0) damage += m_PChar->AGI();
-    }
-
-    //check if other jobs have trick attack active to change enmity lateron
-    if (taChar == NULL && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+    if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
         taChar = battleutils::getAvailableTrickAttackChar(m_PChar, m_PBattleTarget);
 
     if (!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
@@ -2636,10 +2628,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
         SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, GetCurrentWeaponSkill());
         if (effect != SUBEFFECT_NONE)
         {
-            uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, (uint16)damage);
-
-
-            Action.addEffectParam = skillChainDamage;
+            Action.addEffectParam = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, abs(damage));
             Action.addEffectMessage = 287 + effect;
             Action.additionalEffect = effect;
 

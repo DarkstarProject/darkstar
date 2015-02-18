@@ -2996,7 +2996,7 @@ uint16 GetSkillchainMinimumResistance(SKILLCHAIN_ELEMENT element, CBattleEntity*
     }
 }
 
-uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint16 lastSkillDamage)
+int32 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint32 lastSkillDamage)
 {
     DSP_DEBUG_BREAK_IF(PAttacker == NULL);
     DSP_DEBUG_BREAK_IF(PDefender == NULL);
@@ -3024,9 +3024,11 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
                           * (100 + PAttacker->getMod(MOD_SKILLCHAINDMG)) / 100);
 
     damage = damage * (1000 - resistance) / 1000;
+    damage = MagicDmgTaken(PDefender, damage);
 
-	// Handle Severe Damage Reduction Effects
-	damage = HandleSevereDamage(PDefender, damage);
+    damage = dsp_max((int32)damage - PDefender->getMod(MOD_PHALANX), 0);
+    damage = HandleStoneskin(PDefender, damage);
+    HandleAfflatusMiseryDamage(PDefender, damage);
 
     PDefender->addHP(-damage);
 
@@ -3042,12 +3044,12 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
     }
     PDefender->updatemask |= UPDATE_STATUS;
 
+    PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+
     switch (PDefender->objtype)
     {
         case TYPE_PC:
         {
-            PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
-
             if(PDefender->animation == ANIMATION_SIT)
             {
                 PDefender->animation = ANIMATION_NONE;
