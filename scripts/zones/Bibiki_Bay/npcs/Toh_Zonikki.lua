@@ -143,6 +143,7 @@ function onEventFinish(player,csid,option)
 		if (option == 1) then -- Give 50pz clamming kit
 			player:setVar("ClammingKitSize", 50);
 			player:addKeyItem(CLAMMING_KIT);
+			player:delGil(500);
 			player:messageSpecial(KEYITEM_OBTAINED,CLAMMING_KIT);
 		end
 	elseif (csid == 0x001D) then
