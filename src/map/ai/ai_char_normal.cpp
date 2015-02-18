@@ -2628,7 +2628,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
         SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, GetCurrentWeaponSkill());
         if (effect != SUBEFFECT_NONE)
         {
-            Action.addEffectParam = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, abs(damage));
+            Action.addEffectParam = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, damage);
             Action.addEffectMessage = 287 + effect;
             Action.additionalEffect = effect;
 

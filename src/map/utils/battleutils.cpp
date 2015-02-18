@@ -2996,7 +2996,7 @@ uint16 GetSkillchainMinimumResistance(SKILLCHAIN_ELEMENT element, CBattleEntity*
     }
 }
 
-int32 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint32 lastSkillDamage)
+int32 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 lastSkillDamage)
 {
     DSP_DEBUG_BREAK_IF(PAttacker == NULL);
     DSP_DEBUG_BREAK_IF(PDefender == NULL);
@@ -3018,7 +3018,7 @@ int32 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, u
     //            TODO:     × (1 + Day/Weather bonuses)
     //            TODO:     × (1 + Staff Affinity)
 
-    uint32 damage = floor((double)lastSkillDamage
+    int32 damage = floor((double)(abs(lastSkillDamage))
                           * g_SkillChainDamageModifiers[chainLevel][chainCount] / 1000
                           * (100 + PAttacker->getMod(MOD_SKILLCHAINBONUS)) / 100
                           * (100 + PAttacker->getMod(MOD_SKILLCHAINDMG)) / 100);
@@ -3026,7 +3026,7 @@ int32 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, u
     damage = damage * (1000 - resistance) / 1000;
     damage = MagicDmgTaken(PDefender, damage);
 
-    damage = dsp_max((int32)damage - PDefender->getMod(MOD_PHALANX), 0);
+    damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX), 0);
     damage = HandleStoneskin(PDefender, damage);
     HandleAfflatusMiseryDamage(PDefender, damage);
 
@@ -3063,7 +3063,7 @@ int32 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, u
 
         case TYPE_MOB:
         {
-            ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
+            ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, (uint16)damage);
         }
         break;
     }
