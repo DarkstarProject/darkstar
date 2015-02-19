@@ -24,7 +24,7 @@ end;
 function onTrigger(player,npc)
 	player:showText(npc,POHKA_SHOP_DIALOG);
 
-	stock = {
+	local stock = {
 		0x43EC,  1238, 3, -- Fastwater F. Rod
 		0x43E6, 11845, 3, -- S.H. Fishing Rod
 		0x1034,   290, 3  -- Antidote
