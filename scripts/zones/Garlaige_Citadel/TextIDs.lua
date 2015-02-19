@@ -36,5 +36,5 @@ CONQUEST_BASE = 0;
 
 -- Strange Apparatus
 DEVICE_NOT_WORKING = 7214; -- The device is not working.
-      SYS_OVERLOAD = 7223; -- “Warning! Sys...verload!
-      YOU_LOST_THE = 7228; -- You lost the <item>
+      SYS_OVERLOAD = 7223; -- arning! Sys...verload! Enterin...fety mode. ID eras...d 
+      YOU_LOST_THE = 7228; -- You lost the #. 

@@ -15,7 +15,7 @@ CONQUEST = 7379; -- You've earned conquest points!
 LOGGING_IS_POSSIBLE_HERE = 7363; -- Logging is possible here if you have
 
 -- Dialog Texts
-FIVEOFSPADES_DIALOG = 7216; -- GiMmeIvE! FiVe is cArdIanF WiN-DuRst! FIvES OnA-tRol!
+FIVEOFSPADES_DIALOG = 7216; -- GiMmefIvE! FiVe isA cArdIanOF WiN-DuRst! FIvEiS OnpA-tRol! 
 
       YOU_CANNOT_ENTER_DYNAMIS = 7862; -- You cannot enter Dynamis
           MYSTERIOUS_VOICE = 7863; -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the

@@ -13,7 +13,7 @@ FULL_INVENTORY_AFTER_TRADE =  6436; -- You cannot obtain the item <item>. Try tr
 
 -- Mission Dialogs
     YOU_ACCEPT_THE_MISSION  =     9; -- You have accepted the mission.
-   ORIGINAL_MISSION_OFFSET  =    14; -- You can consult the ?Mission? section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.<Prompt>
+   ORIGINAL_MISSION_OFFSET  =    14; -- You can consult the ission section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed. 
                   GOOD_LUCK =  7384; -- Good luck on your mission. Bastokers like to do things by the book, so stay out of trouble and follow their rules.
 MISSION_DIALOG_CID_TO_AYAME =  7511; -- Give it to one of his Mythril Musketeers instead. Ayame and Naji should be on guard near the President's Office. Either one will do.
                  ITS_LOCKED =  7922; -- It's locked.
