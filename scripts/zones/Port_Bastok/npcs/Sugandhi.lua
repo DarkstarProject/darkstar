@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,DENVIHR_SHOP_DIALOG);
+    player:showText(npc,SUGANDHI_SHOP_DIALOG);
 
     stock = {
         0x4059,  5589,1,     --Kukri
