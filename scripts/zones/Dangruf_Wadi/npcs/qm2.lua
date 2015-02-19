@@ -24,9 +24,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getQuestStatus(BASTOK,BREAKING_STONES) == QUEST_ACCEPTED or player:getQuestStatus(AHT_URHGAN, AN_EMPTY_VESSEL) == QUEST_ACCEPTED) then
-		player:startEvent(0x006E);
-	end
+	-- There is no pre-reqs for this event:   http://wiki.ffxiclopedia.org/wiki/Dangruf_Stone
+	--if (player:getQuestStatus(BASTOK,BREAKING_STONES) == QUEST_ACCEPTED or player:getQuestStatus(AHT_URHGAN, AN_EMPTY_VESSEL) == QUEST_ACCEPTED) then
+	player:startEvent(0x006E);
+	--end
 end;
 
 -----------------------------------
