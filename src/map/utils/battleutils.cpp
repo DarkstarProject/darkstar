@@ -1904,6 +1904,123 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
 /************************************************************************
 *																		*
+*  Handles Damage from Weaponskills (dmg type reductions calced in lua) *
+*																		*
+************************************************************************/
+
+int32 TakeWeaponskillDamage(CCharEntity* PChar, CBattleEntity* PDefender, int32 damage, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar)
+{
+    bool isRanged = (slot == SLOT_AMMO || slot == SLOT_RANGED);
+
+    if (damage > 0)
+    {
+        damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX), 0);
+
+        damage = HandleStoneskin(PDefender, damage);
+        HandleAfflatusMiseryDamage(PDefender, damage);
+    }
+    damage = dsp_cap(damage, -99999, 99999);
+
+    int32 corrected = PDefender->addHP(-damage);
+    if (damage < 0)
+        damage = -corrected;
+
+    if (PDefender->objtype == TYPE_MOB)
+    {
+        PDefender->m_OwnerID.id = PChar->id;
+        PDefender->m_OwnerID.targid = PChar->targid;
+        PDefender->updatemask |= UPDATE_STATUS;
+    }
+
+    if (damage > 0)
+    {
+        damage = getOverWhelmDamageBonus(PChar, PDefender, (uint16)damage);
+        attackutils::TryAbsorbMPfromPhysicalAttack(PDefender, damage);
+        PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+
+        //40% chance to break bind when dmg received
+        if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && WELL512::irand() % 100 < 40)
+            PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
+
+        switch (PDefender->objtype)
+        {
+        case TYPE_MOB:
+            if (taChar == NULL)
+                ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PChar, damage);
+            else
+                ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar, damage);
+
+            //if the mob is charmed by player
+            if (PDefender->PMaster != NULL && PDefender->PMaster->objtype == TYPE_PC)
+                ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE, UPDATE_COMBAT));
+
+            break;
+
+        case TYPE_PET:
+            ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE, UPDATE_COMBAT));
+            break;
+        }
+
+        // try to interrupt spell
+        if (PDefender->PBattleAI->m_PMagicState)
+            PDefender->PBattleAI->m_PMagicState->TryHitInterrupt(PChar);
+        else
+            ShowError("battleutils::TakeWeaponskillDamage Entity (%d) has no magic state\n", PDefender->id);
+
+        int16 baseTp = 0;
+
+        if (isRanged)
+        {
+            int16 delay = PChar->GetRangedWeaponDelay(true);
+            baseTp = CalculateBaseTP((delay * 110) / 1000);
+        }
+        else
+        {
+            int16 delay = PChar->GetWeaponDelay(true);
+
+            if (PChar->m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
+                PChar->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
+                PChar->m_Weapons[slot]->getDmgType() != DAMAGE_HTH)
+            {
+                delay /= 2;
+            }
+
+            float ratio = 1.0f;
+
+            if (PChar->m_Weapons[slot]->getDmgType() == DAMAGE_HTH)
+                ratio = 2.0f;
+
+            baseTp = CalculateBaseTP((delay * 60) / 1000) / ratio;
+        }
+
+
+        // add tp to attacker
+        PChar->addTP(tpMultiplier * (baseTp * (1.0f + 0.01f * (float)((PChar->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PChar))))));
+
+        //account for attacker's subtle blow which reduces the baseTP gain for the defender
+        float sBlowMult = ((100.0f - dsp_cap((float)PChar->getMod(MOD_SUBTLE_BLOW), 0.0f, 50.0f)) / 100.0f);
+
+        //mobs hit get basetp+30 whereas pcs hit get basetp/3
+        if (PDefender->objtype == TYPE_PC)
+            PDefender->addTP((baseTp / 3) * sBlowMult * (1.0f + 0.01f * (float)((PDefender->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PChar))))); //yup store tp counts on hits taken too!
+        else
+            PDefender->addTP((baseTp + 30) * sBlowMult * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP))); //subtle blow also reduces the "+30" on mob tp gain
+    }
+    else if (PDefender->objtype == TYPE_MOB)
+        ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PChar, 0);
+
+
+    if (PDefender->objtype == TYPE_PC)
+        charutils::UpdateHealth((CCharEntity*)PDefender);
+
+    if (!isRanged)
+        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
+
+    return damage;
+}
+
+/************************************************************************
+*																		*
 *  Calculate Probability attack will hit (20% min cap - 95% max cap)	*
 *  attackNumber: 0=main, 1=sub, 2=kick									*
 *																		*
@@ -2369,8 +2486,8 @@ bool IsAnticipated(CBattleEntity* PDefender, bool forceRemove, bool ignore, bool
 		if(WELL512::irand()%100 < (100-(pastAnticipations*15))){
 			//increment power and don't remove
 			effect->SetPower(effect->GetPower()+1);
-            //chance to counter - 25% base TODO: add "enhances third eye effect" gear
-            if (WELL512::irand() % 100 < 25)
+            //chance to counter - 25% base
+            if (WELL512::irand() % 100 < 25 + PDefender->getMod(MOD_AUGMENTS_THIRD_EYE))
                 *thirdEyeCounter = true;
 			return true;
 		}
@@ -2879,7 +2996,7 @@ uint16 GetSkillchainMinimumResistance(SKILLCHAIN_ELEMENT element, CBattleEntity*
     }
 }
 
-uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint16 lastSkillDamage)
+int32 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 lastSkillDamage)
 {
     DSP_DEBUG_BREAK_IF(PAttacker == NULL);
     DSP_DEBUG_BREAK_IF(PDefender == NULL);
@@ -2901,15 +3018,17 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
     //            TODO:     × (1 + Day/Weather bonuses)
     //            TODO:     × (1 + Staff Affinity)
 
-    uint32 damage = floor((double)lastSkillDamage
+    int32 damage = floor((double)(abs(lastSkillDamage))
                           * g_SkillChainDamageModifiers[chainLevel][chainCount] / 1000
                           * (100 + PAttacker->getMod(MOD_SKILLCHAINBONUS)) / 100
                           * (100 + PAttacker->getMod(MOD_SKILLCHAINDMG)) / 100);
 
     damage = damage * (1000 - resistance) / 1000;
+    damage = MagicDmgTaken(PDefender, damage);
 
-	// Handle Severe Damage Reduction Effects
-	damage = HandleSevereDamage(PDefender, damage);
+    damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX), 0);
+    damage = HandleStoneskin(PDefender, damage);
+    HandleAfflatusMiseryDamage(PDefender, damage);
 
     PDefender->addHP(-damage);
 
@@ -2925,12 +3044,12 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
     }
     PDefender->updatemask |= UPDATE_STATUS;
 
+    PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+
     switch (PDefender->objtype)
     {
         case TYPE_PC:
         {
-            PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
-
             if(PDefender->animation == ANIMATION_SIT)
             {
                 PDefender->animation = ANIMATION_NONE;
@@ -2944,7 +3063,7 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
 
         case TYPE_MOB:
         {
-            ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
+            ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, (uint16)damage);
         }
         break;
     }

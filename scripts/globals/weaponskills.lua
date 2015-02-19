@@ -54,8 +54,9 @@ function doPhysicalWeaponskill(attacker, target, params)
 
 	--apply WSC
 	local weaponDamage = attacker:getWeaponDmg();
+	local weaponType = attacker:getWeaponSkillType(0);
 
-	if (attacker:getWeaponSkillType(0) == 1) then
+	if (weaponType == SKILL_H2H) then
 		local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3);
 		weaponDamage = attacker:getWeaponDmg()-3;
 
@@ -170,7 +171,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 	end
 
 	tpHits = 1;
-	if((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(0)==1)) then
+	if((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or weaponType==SKILL_H2H)) then
 
 		local chance = math.random();
 		if ((chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100 or isSneakValid)
@@ -226,6 +227,17 @@ function doPhysicalWeaponskill(attacker, target, params)
 	-- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 
 	finaldmg = target:physicalDmgTaken(finaldmg);
+	
+    if (weaponType == SKILL_H2H) then
+        finaldmg = finaldmg * target:getMod(MOD_HTHRES) / 1000;
+    elseif (weaponType == SKILL_DAG or weaponType == SKILL_POL) then
+        finaldmg = finaldmg * target:getMod(MOD_PIERCERES) / 1000;
+    elseif (weaponType == SKILL_CLB or weaponType == SKILL_STF) then
+        finaldmg = finaldmg * target:getMod(MOD_IMPACTRES) / 1000;
+    else
+        finaldmg = finaldmg * target:getMod(MOD_SLASHRES) / 1000;
+    end
+        
 
 	attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
 	return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
@@ -284,8 +296,6 @@ function doMagicWeaponskill(attacker, target, params)
 	dmg = addBonusesAbility(attacker, params.ele, target, dmg, params);
 	dmg = dmg * applyResistanceAbility(attacker,target,params.ele,params.skill, 0);
 	dmg = adjustForTarget(target,dmg,params.ele);
-	
-	dmg = utils.stoneskin(target, dmg);
     
     return dmg, false, 1, 0;
 end
@@ -799,6 +809,7 @@ return alpha;
 	--print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 
 	finaldmg = target:rangedDmgTaken(finaldmg);
+    finaldmg = finaldmg * target:getMod(MOD_PIERCERES) / 1000;
 
 	return finaldmg, tpHitsLanded, extraHitsLanded;
 end;
