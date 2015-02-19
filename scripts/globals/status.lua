@@ -1112,108 +1112,121 @@ MOD_REFRESH_DOWN		 = 0x195			-- plague, reduce mp
 MOD_REGAIN_DOWN			 = 0x196			-- plague, reduce tp
 
 -- Gear set modifiers
-MOD_DA_DOUBLE_DAMAGE		  =0x198 -- Double attack's double damage chance %.
-MOD_TA_TRIPLE_DAMAGE		  =0x199 -- Triple attack's triple damage chance %.
-MOD_ZANSHIN_DOUBLE_DAMAGE	  =0x19A -- Zanshin's double damage chance %.
-MOD_RAPID_SHOT_DOUBLE_DAMAGE  =0x1DF -- Rapid shot's double damage chance %.
-MOD_ABSORB_DMG_CHANCE		  =0x1E0 -- Chance to absorb damage %
-MOD_EXTRA_DUAL_WIELD_ATTACK   =0x1E1 -- Chance to land an extra attack when dual wielding
-MOD_EXTRA_KICK_ATTACK		  =0x1E2 -- Occasionally allows a second Kick Attack during an attack round without the use of Footwork.
-MOD_SAMBA_DOUBLE_DAMAGE		  =0x19F -- Double damage chance when samba is up.
-MOD_NULL_PHYSICAL_DAMAGE	  =0x1A0 -- Chance to null physical damage.
-MOD_QUICK_DRAW_TRIPLE_DAMAGE  =0x1A1 -- Chance to do triple damage with quick draw.
-MOD_BAR_ELEMENT_NULL_CHANCE	  =0x1A2 -- Bar Elemental spells will occasionally nullify damage of the same element.
-MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3 -- Spells that match your current Arts will occasionally cast instantly, without recast.
+MOD_DA_DOUBLE_DAMAGE		  = 0x198 -- Double attack's double damage chance %.
+MOD_TA_TRIPLE_DAMAGE		  = 0x199 -- Triple attack's triple damage chance %.
+MOD_ZANSHIN_DOUBLE_DAMAGE	  = 0x19A -- Zanshin's double damage chance %.
+MOD_RAPID_SHOT_DOUBLE_DAMAGE  = 0x1DF -- Rapid shot's double damage chance %.
+MOD_ABSORB_DMG_CHANCE		  = 0x1E0 -- Chance to absorb damage %
+MOD_EXTRA_DUAL_WIELD_ATTACK   = 0x1E1 -- Chance to land an extra attack when dual wielding
+MOD_EXTRA_KICK_ATTACK		  = 0x1E2 -- Occasionally allows a second Kick Attack during an attack round without the use of Footwork.
+MOD_SAMBA_DOUBLE_DAMAGE		  = 0x19F -- Double damage chance when samba is up.
+MOD_NULL_PHYSICAL_DAMAGE	  = 0x1A0 -- Chance to null physical damage.
+MOD_QUICK_DRAW_TRIPLE_DAMAGE  = 0x1A1 -- Chance to do triple damage with quick draw.
+MOD_BAR_ELEMENT_NULL_CHANCE	  = 0x1A2 -- Bar Elemental spells will occasionally nullify damage of the same element.
+MOD_GRIMOIRE_INSTANT_CAST	  = 0x1A3 -- Spells that match your current Arts will occasionally cast instantly, without recast.
 
-MOD_DOUBLE_SHOT_RATE		  =0x1A6 -- The rate that double shot can proc
-MOD_VELOCITY_SNAPSHOT_BONUS	  =0x1A7 -- Increases Snapshot whilst Velocity Shot is up.
-MOD_VELOCITY_RATT_BONUS		  =0x1A8 -- Increases Ranged Attack whilst Velocity Shot is up.
-MOD_SHADOW_BIND_EXT		  	  =0x1A9 -- Extends the time of shadowbind
-MOD_ABSORB_DMG_TO_MP		  =0x1AA -- Absorbs a percentage of damage taken to MP.
-MOD_ENMITY_REDUCTION_PHYSICAL =0x1AB -- Reduces Enmity decrease when taking physical damage
-MOD_SHIELD_MASTERY_TP         =0x1E5 -- Shield mastery TP bonus when blocking with a shield (modId = 485)
-MOD_PERFECT_COUNTER_ATT		  =0x1AC -- Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
-MOD_FOOTWORK_ATT_BONUS		  =0x1AD -- Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
+MOD_DOUBLE_SHOT_RATE		  = 0x1A6 -- The rate that double shot can proc
+MOD_VELOCITY_SNAPSHOT_BONUS	  = 0x1A7 -- Increases Snapshot whilst Velocity Shot is up.
+MOD_VELOCITY_RATT_BONUS		  = 0x1A8 -- Increases Ranged Attack whilst Velocity Shot is up.
+MOD_SHADOW_BIND_EXT		  	  = 0x1A9 -- Extends the time of shadowbind
+MOD_ABSORB_DMG_TO_MP		  = 0x1AA -- Absorbs a percentage of damage taken to MP.
+MOD_ENMITY_REDUCTION_PHYSICAL = 0x1AB -- Reduces Enmity decrease when taking physical damage
+MOD_SHIELD_MASTERY_TP         = 0x1E5 -- Shield mastery TP bonus when blocking with a shield (modId = 485)
+MOD_PERFECT_COUNTER_ATT		  = 0x1AC -- Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
+MOD_FOOTWORK_ATT_BONUS		  = 0x1AD -- Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
 
-MOD_MINNE_EFFECT              =0x1B1-- (modId = 433)
-MOD_MINUET_EFFECT	          =0x1B2-- (modId = 434)
-MOD_PAEON_EFFECT	          =0x1B3-- (modId = 435)
-MOD_REQUIEM_EFFECT	          =0x1B4-- (modId = 436)
-MOD_THRENODY_EFFECT	          =0x1B5-- (modId = 437)
-MOD_MADRIGAL_EFFECT	          =0x1B6-- (modId = 438)
-MOD_MAMBO_EFFECT	          =0x1B7-- (modId = 439)
-MOD_LULLABY_EFFECT	          =0x1B8-- (modId = 440)
-MOD_ETUDE_EFFECT	          =0x1B9-- (modId = 441)
-MOD_BALLAD_EFFECT	          =0x1BA-- (modId = 442)
-MOD_MARCH_EFFECT	          =0x1BB-- (modId = 443)
-MOD_FINALE_EFFECT	          =0x1BC-- (modId = 444)
-MOD_CAROL_EFFECT	          =0x1BD-- (modId = 445)
-MOD_MAZURKA_EFFECT	          =0x1BE -- (modId = 446)
-MOD_ELEGY_EFFECT	          =0x1BF-- (modId = 447)
-MOD_PRELUDE_EFFECT	          =0x1C0-- (modId = 448)
-MOD_HYMNUS_EFFECT	          =0x1C1-- (modId = 449)
-MOD_VIRELAI_EFFECT	          =0x1C2-- (modId = 450)
-MOD_SCHERZO_EFFECT            =0x1C3-- (modId = 451)
-MOD_ALL_SONGS_EFFECT          =0x1C4-- (modId = 452)
-MOD_MAXIMUM_SONGS_BONUS       =0x1C5
-MOD_SONG_DURATION_BONUS       =0x1C6
+MOD_MINNE_EFFECT              = 0x1B1 -- (modId = 433)
+MOD_MINUET_EFFECT	          = 0x1B2 -- (modId = 434)
+MOD_PAEON_EFFECT	          = 0x1B3 -- (modId = 435)
+MOD_REQUIEM_EFFECT	          = 0x1B4 -- (modId = 436)
+MOD_THRENODY_EFFECT	          = 0x1B5 -- (modId = 437)
+MOD_MADRIGAL_EFFECT	          = 0x1B6 -- (modId = 438)
+MOD_MAMBO_EFFECT	          = 0x1B7 -- (modId = 439)
+MOD_LULLABY_EFFECT	          = 0x1B8 -- (modId = 440)
+MOD_ETUDE_EFFECT	          = 0x1B9 -- (modId = 441)
+MOD_BALLAD_EFFECT	          = 0x1BA -- (modId = 442)
+MOD_MARCH_EFFECT	          = 0x1BB -- (modId = 443)
+MOD_FINALE_EFFECT	          = 0x1BC -- (modId = 444)
+MOD_CAROL_EFFECT	          = 0x1BD -- (modId = 445)
+MOD_MAZURKA_EFFECT	          = 0x1BE -- (modId = 446)
+MOD_ELEGY_EFFECT	          = 0x1BF -- (modId = 447)
+MOD_PRELUDE_EFFECT	          = 0x1C0 -- (modId = 448)
+MOD_HYMNUS_EFFECT	          = 0x1C1 -- (modId = 449)
+MOD_VIRELAI_EFFECT	          = 0x1C2 -- (modId = 450)
+MOD_SCHERZO_EFFECT            = 0x1C3 -- (modId = 451)
+MOD_ALL_SONGS_EFFECT          = 0x1C4 -- (modId = 452)
+MOD_MAXIMUM_SONGS_BONUS       = 0x1C5 -- (modId = 453)
+MOD_SONG_DURATION_BONUS       = 0x1C6 -- (modId = 454)
 
-MOD_EAT_RAW_FISH			  = 409
-MOD_EAT_RAW_MEAT			  = 410
-MOD_QUICK_DRAW_DMG = 411
+MOD_QUICK_DRAW_DMG            = 0x19B -- (modId = 411)
 
-MOD_QUAD_ATTACK				  =0x1AE -- Quadruple attack chance.
+MOD_QUAD_ATTACK				  = 0x1AE -- Quadruple attack chance.
 
-MOD_ADDITIONAL_EFFECT         =0x1AF -- All additional effects (modId = 431)
-MOD_ENSPELL_DMG_BONUS         =0x1B0
+MOD_ADDITIONAL_EFFECT         = 0x1AF -- All additional effects (modId = 431)
+MOD_ENSPELL_DMG_BONUS         = 0x1B0
 
-MOD_FIRE_ABSORB               =0x1CB -- (modId = 459)
-MOD_EARTH_ABSORB              =0x1CC -- (modId = 460)
-MOD_WATER_ABSORB              =0x1CD -- (modId = 461)
-MOD_WIND_ABSORB               =0x1CE -- (modId = 462)
-MOD_ICE_ABSORB                =0x1CF-- (modId = 463)
-MOD_LTNG_ABSORB               =0x1D0 -- (modId = 464)
-MOD_LIGHT_ABSORB              =0x1D1 -- (modId = 465)
-MOD_DARK_ABSORB               =0x1D2 -- (modId = 466)
+MOD_FIRE_ABSORB               = 0x1CB -- (modId = 459)
+MOD_EARTH_ABSORB              = 0x1CC -- (modId = 460)
+MOD_WATER_ABSORB              = 0x1CD -- (modId = 461)
+MOD_WIND_ABSORB               = 0x1CE -- (modId = 462)
+MOD_ICE_ABSORB                = 0x1CF -- (modId = 463)
+MOD_LTNG_ABSORB               = 0x1D0 -- (modId = 464)
+MOD_LIGHT_ABSORB              = 0x1D1 -- (modId = 465)
+MOD_DARK_ABSORB               = 0x1D2 -- (modId = 466)
 
-MOD_FIRE_NULL                 =0x1D3 -- (modId = 467)
-MOD_EARTH_NULL                =0x1D4 -- (modId = 468)
-MOD_WATER_NULL                =0x1D5 -- (modId = 469)
-MOD_WIND_NULL                 =0x1D6 -- (modId = 470)
-MOD_ICE_NULL                  =0x1D7 -- (modId = 471)
-MOD_LTNG_NULL                 =0x1D8 -- (modId = 472)
-MOD_LIGHT_NULL                =0x1D9 -- (modId = 473)
-MOD_DARK_NULL                 =0x1DA -- (modId = 474)
+MOD_FIRE_NULL                 = 0x1D3 -- (modId = 467)
+MOD_EARTH_NULL                = 0x1D4 -- (modId = 468)
+MOD_WATER_NULL                = 0x1D5 -- (modId = 469)
+MOD_WIND_NULL                 = 0x1D6 -- (modId = 470)
+MOD_ICE_NULL                  = 0x1D7 -- (modId = 471)
+MOD_LTNG_NULL                 = 0x1D8 -- (modId = 472)
+MOD_LIGHT_NULL                = 0x1D9 -- (modId = 473)
+MOD_DARK_NULL                 = 0x1DA -- (modId = 474)
 
-MOD_MAGIC_ABSORB              =0x1DB -- (modId = 475)
-MOD_MAGIC_NULL                =0x1DC -- (modId = 476)
+MOD_MAGIC_ABSORB              = 0x1DB -- (modId = 475)
+MOD_MAGIC_NULL                = 0x1DC -- (modId = 476)
 
-MOD_WARCRY_DURATION           =0x1E3 -- Warcy duration bonus from gear
+MOD_WARCRY_DURATION           = 0x1E3 -- Warcy duration bonus from gear
 
-MOD_AUSPICE_EFFECT            =0x1E4 -- Auspice Subtle Blow Bonus (modId = 484)
-MOD_TACTICAL_PARRY            =0x1E6 -- Tactical Parry TP Bonus (modid = 486)
-MOD_MAG_BURST_BONUS           =0x1E7 -- Magic Burst Bonus (modid = 487)
-MOD_INHIBIT_TP                =0x1E8 -- Inhibits TP Gain (percent) (modId = 488)
+MOD_AUSPICE_EFFECT            = 0x1E4 -- Auspice Subtle Blow Bonus (modId = 484)
+MOD_TACTICAL_PARRY            = 0x1E6 -- Tactical Parry TP Bonus (modid = 486)
+MOD_MAG_BURST_BONUS           = 0x1E7 -- Magic Burst Bonus (modid = 487)
+MOD_INHIBIT_TP                = 0x1E8 -- Inhibits TP Gain (percent) (modId = 488)
 
-MOD_GOV_CLEARS                =0x1F0 -- Tracks GoV page completion (for 4% bonus on rewards).
+MOD_GOV_CLEARS                = 0x1F0 -- Tracks GoV page completion (for 4% bonus on rewards).
 
-MOD_ITEM_SPIKES_TYPE          =0x1F3 -- Type spikes an item has (modId = 499)
-MOD_ITEM_SPIKES_DMG           =0x1F4 -- Damage of an items spikes (modId = 500)
-MOD_ITEM_SPIKES_CHANCE        =0x1F5 -- Chance of an items spike proc (modId = 501)
+-- Reraise (Auto Reraise, will be used by ATMA)
+MOD_RERAISE_I                 = 0x1C8 -- Reraise. (modId = 456)
+MOD_RERAISE_II                = 0x1C9 -- Reraise II. (modId = 457)
+MOD_RERAISE_III               = 0x1CA -- Reraise III. (modId = 458)
 
-MOD_FERAL_HOWL_DURATION       =0x1F7 -- +20% duration per merit when wearing augmented Monster Jackcoat +2 (modId = 503)
+MOD_ITEM_SPIKES_TYPE          = 0x1F3 -- Type spikes an item has (modId = 499)
+MOD_ITEM_SPIKES_DMG           = 0x1F4 -- Damage of an items spikes (modId = 500)
+MOD_ITEM_SPIKES_CHANCE        = 0x1F5 -- Chance of an items spike proc (modId = 501)
 
-MOD_MANEUVER_BONUS            =0x1F8 -- Maneuver Stat Bonus
-MOD_OVERLOAD_THRESH           =0x1F9 -- Overload Threshold Bonus
+MOD_FERAL_HOWL_DURATION       = 0x1F7 -- +20% duration per merit when wearing augmented Monster Jackcoat +2 (modId = 503)
 
-MOD_EXTRA_DMG_CHANCE          =0x1FA -- Proc rate of MOD_OCC_DO_EXTRA_DMG. 111 would be 11.1% (modId = 506)
-MOD_OCC_DO_EXTRA_DMG          =0x1FB -- Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage. (modId = 507)
+MOD_MANEUVER_BONUS            = 0x1F8 -- Maneuver Stat Bonus
+MOD_OVERLOAD_THRESH           = 0x1F9 -- Overload Threshold Bonus
 
--- MOD_SPARE =0x1FC -- (modId = 508)
--- MOD_SPARE =0x1FD -- (modId = 509)
--- MOD_SPARE =0x1FE -- (modId = 510)
--- MOD_SPARE =0x1FF -- (modId = 511)
--- MOD_SPARE =0x200 -- (modId = 512)
+MOD_EXTRA_DMG_CHANCE          = 0x1FA -- Proc rate of MOD_OCC_DO_EXTRA_DMG. 111 would be 11.1% (modId = 506)
+MOD_OCC_DO_EXTRA_DMG          = 0x1FB -- Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage. (modId = 507)
+
+MOD_EAT_RAW_FISH              = 0x19C -- (modId = 412)
+MOD_EAT_RAW_MEAT              = 0x19D -- (modId = 413)
+
+MOD_RETALIATION               = 0x19E -- Increases damage of Retaliation hits (modId = 414)
+MOD_AUGMENTS_THIRD_EYE        = 0x1FC -- Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15% (modId = 508)
+
+MOD_CLAMMING_IMPROVED_RESULTS = 0x1FD -- (modId = 509)
+MOD_CLAMMING_REDUCED_INCIDENTS= 0x1FE -- (modId = 510)
+
+-- MOD_SPARE = 0x1FF -- (modId = 511)
+-- MOD_SPARE = 0x200 -- (modId = 512)
+-- MOD_SPARE = 0x201 -- (modId = 513)
+-- MOD_SPARE = 0x202 -- (modId = 514)
+-- MOD_SPARE = 0x203 -- (modId = 515)
+-- MOD_SPARE = 0x204 -- (modId = 516)
 
 ------------------------------------
 -- Merit Definitions

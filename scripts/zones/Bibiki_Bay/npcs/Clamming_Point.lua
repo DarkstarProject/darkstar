@@ -50,9 +50,8 @@ local clammingItems = { 1311,  6, 0.001, 0.003, -- Oxblood
 -----------------------------------
 
 local function giveImprovedResults(player)
-	local legs = player:getEquipID(SLOT_LEGS);
 
-	if (legs == 15415 or legs == 15416 or legs == 15417 or legs == 15418 or legs == 15419 or legs == 15420 or legs == 15421 or legs == 15424) then
+	if (player:getMod(MOD_CLAMMING_IMPROVED_RESULTS) > 0) then
 		return 1;
 	end
 
@@ -60,9 +59,8 @@ local function giveImprovedResults(player)
 end;
 
 local function giveReducedIncidents(player)
-	local body = player:getEquipID(SLOT_BODY);
 
-	if (body == 14457 or body == 14458 or body == 14459 or body == 14460 or body == 14461 or body == 14462 or body == 14463 or body == 14472) then
+	if (player:getMod(MOD_CLAMMING_REDUCED_INCIDENTS) > 0) then
 		return 0.05;
 	end
 
@@ -82,17 +80,24 @@ end;
 
 function onTrigger(player,npc)
 	if (player:hasKeyItem(CLAMMING_KIT)) then
-		if (player:getVar("ClammingKitBroken") > 0) then -- Broken bucket
-			player:messageSpecial(YOU_CANNOT_COLLECT);
+		player:setLocalVar("ClammingPointID", npc:getID());
+
+		if (GetServerVariable("ClammingPoint_" .. npc:getID() .. "_InUse") == 1) then
+			player:messageSpecial(IT_LOOKS_LIKE_SOMEONE);
 		else
-			local delay = player:getLocalVar("ClammingPoint_" .. npc:getID() .. "_Delay");
-			
-			if ( delay > 0 and delay > os.time()) then -- player has to wait a little longer
-				player:messageSpecial(IT_LOOKS_LIKE_SOMEONE);
+			if (player:getVar("ClammingKitBroken") > 0) then -- Broken bucket
+				player:messageSpecial(YOU_CANNOT_COLLECT);
 			else
-				player:setLocalVar("ClammingPoint_" .. npc:getID() .. "_Delay", 0);
-				player:setLocalVar("ClammingPointID", npc:getID());
-				player:startEvent(0x0014, 0, 0, 0, 0, 0, 0, 0, 0);
+				local delay = GetServerVariable("ClammingPoint_" .. npc:getID() .. "_Delay");
+				
+				if ( delay > 0 and delay > os.time()) then -- player has to wait a little longer
+					player:messageSpecial(IT_LOOKS_LIKE_SOMEONE);
+				else
+					SetServerVariable("ClammingPoint_" .. npc:getID() .. "_InUse", 1);
+					SetServerVariable("ClammingPoint_" .. npc:getID() .. "_Delay", 0);
+					
+					player:startEvent(0x0014, 0, 0, 0, 0, 0, 0, 0, 0);
+				end
 			end
 		end
 	else
@@ -166,11 +171,12 @@ function onEventFinish(player,csid,option)
 					player:messageSpecial(YOU_FIND_ITEM, clammedItem);
 				end
 
-				player:setLocalVar("ClammingPoint_" .. player:getLocalVar("ClammingPointID") .. "_Delay", os.time() + 10);
-
-				player:setLocalVar("ClammingPointID", 0);
+				SetServerVariable("ClammingPoint_" .. player:getLocalVar("ClammingPointID") .. "_Delay", os.time() + 10);
 				player:setLocalVar("ClammedItem", 0);
 			end
 		end
+
+		SetServerVariable("ClammingPoint_" .. player:getLocalVar("ClammingPointID") .. "_InUse", 0);
+		player:setLocalVar("ClammingPointID", 0);
 	end
 end;
