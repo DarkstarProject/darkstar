@@ -18,7 +18,6 @@ end;
 
 function onSpellCast(caster,target,spell)
     local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
-    --local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
 
     --Power.
     local power = 150 + dMND * 2;

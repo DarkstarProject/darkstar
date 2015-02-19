@@ -1049,16 +1049,12 @@ function adjustForTarget(target,dmg,ele)
     return dmg;
 end;
 
-function calculateMagicBurstAndBonus(caster, spell, target)
-    local equippedHands = caster:getEquipID(SLOT_HANDS);
-    local equippedEar1  = caster:getEquipID(SLOT_EAR1);
-    local equippedEar2  = caster:getEquipID(SLOT_EAR2);
+function calculateMagicBurst(caster, spell, target)
 
     local burst = 1.0;
-    local burstBonus = 1.0;
 
 	if (spell:getSpellGroup() == 3 and not caster:hasStatusEffect(EFFECT_BURST_AFFINITY)) then
-		return burst, burstBonus;
+		return burst;
 	end
 
     local skillchainTier, skillchainCount = FormMagicBurst(spell:getElement(), target);
@@ -1079,16 +1075,6 @@ function calculateMagicBurstAndBonus(caster, spell, target)
 			burst = 1.0;
 		end
 
-		-- Get burst bonus from gear/spell bonus
-
-        -- Sorcerer's Gloves
-        if(equippedHands == 15105 or equippedHands == 14912) then
-            burstBonus = burstBonus + 0.05;
-        end
-
-        if(equippedEar1 == 15962 or equippedEar2 == 15962) then
-            burstBonus = burstBonus + 0.05;
-        end
 
         -- TODO: This should be getting the spell ID, and checking
         --       if it is an Ancient Magic II spell.  Add 0.03
@@ -1110,10 +1096,10 @@ function calculateMagicBurstAndBonus(caster, spell, target)
         --end -- if AM2+
     end
 
-    -- Add in Magic Burst Bonus Modifier. The Trait Boosts this. Eventually the gear should use this too to be cleaner.
-    burstBonus = burstBonus + (caster:getMod(MOD_MAG_BURST_BONUS) / 100);
+    -- Add in Magic Burst Bonus Modifier
+    burst = burst + (caster:getMod(MOD_MAG_BURST_BONUS) / 100);
     
-    return burst, burstBonus;
+    return burst;
 end;
 
 function addBonuses(caster, spell, target, dmg, bonusmab)
@@ -1182,7 +1168,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 
 	dmg = math.floor(dmg * dayWeatherBonus);
 
-    local burst, burstBonus = calculateMagicBurstAndBonus(caster, spell, target);
+    local burst = calculateMagicBurst(caster, spell, target);
 
   if(burst > 1.0) then
 		spell:setMsg(spell:getMagicBurstMessage()); -- "Magic Burst!"

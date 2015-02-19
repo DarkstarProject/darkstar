@@ -20,9 +20,8 @@ function onSpellCast(caster,target,spell)
 	if(target:getStatusEffect(EFFECT_DROWN) ~= nil) then
 		spell:setMsg(75); -- no effect
 	else		
-		local bonus = AffinityBonus(caster, spell:getElement());
 		local dINT = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
-		local resist = applyResistance(caster,spell,target,dINT,36,bonus);
+		local resist = applyResistance(caster,spell,target,dINT,36,0);
 		if(resist <= 0.125) then
 			spell:setMsg(85);
 		else
