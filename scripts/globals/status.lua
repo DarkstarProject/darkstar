@@ -1218,8 +1218,9 @@ MOD_EAT_RAW_MEAT              = 0x19D -- (modId = 413)
 MOD_RETALIATION               = 0x19E -- Increases damage of Retaliation hits (modId = 414)
 MOD_AUGMENTS_THIRD_EYE        = 0x1FC -- Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15% (modId = 508)
 
--- MOD_SPARE = 0x1FD -- (modId = 509)
--- MOD_SPARE = 0x1FE -- (modId = 510)
+MOD_CLAMMING_IMPROVED_RESULTS = 0x1FD -- (modId = 509)
+MOD_CLAMMING_REDUCED_INCIDENTS= 0x1FE -- (modId = 510)
+
 -- MOD_SPARE = 0x1FF -- (modId = 511)
 -- MOD_SPARE = 0x200 -- (modId = 512)
 -- MOD_SPARE = 0x201 -- (modId = 513)
