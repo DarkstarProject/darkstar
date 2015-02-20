@@ -42,7 +42,7 @@ local chocobo = {230,{baseprice = 100,addedprice = 20,decayprice = 5,decaytime =
 
 function setChocoboPrices()
     for u = 1, table.getn(chocobo), 2 do
-        SetServerVariable("[CHOCOBO]["..chocobo[u].."]Price", chocobo[u + 1]["baseprice"]);
+        SetServerVariable("[CHOCOBO]["..chocobo[u].."]Price", chocobo[u + 1].baseprice);
         SetServerVariable("[CHOCOBO]["..chocobo[u].."]Time", os.time(t));
     end
 end;
@@ -60,7 +60,7 @@ function getChocoboPrice(player)
             local last_price = GetServerVariable("[CHOCOBO]["..zone.."]Price");
             local last_time = GetServerVariable("[CHOCOBO]["..zone.."]Time");
 
-            price = last_price - (math.floor((os.time(t) - last_time) / chocobo[u + 1]["decaytime"]) * chocobo[u + 1]["decayprice"]);
+            price = last_price - (math.floor((os.time(t) - last_time) / chocobo[u + 1].decaytime) * chocobo[u + 1].decayprice);
 
             if (price < chocobo[u + 1][1]) then
                 price = chocobo[u + 1][1];
@@ -80,7 +80,7 @@ function updateChocoboPrice(player, price)
 
     for u = 1, table.getn(chocobo), 2 do
         if(chocobo[u] == zone) then
-            SetServerVariable("[CHOCOBO]["..chocobo[u].."]Price", price + chocobo[u + 1]["addedprice"]);
+            SetServerVariable("[CHOCOBO]["..chocobo[u].."]Price", price + chocobo[u + 1].addedprice);
             SetServerVariable("[CHOCOBO]["..chocobo[u].."]Time", os.time(t));
         end
     end
