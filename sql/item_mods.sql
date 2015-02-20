@@ -1346,6 +1346,14 @@ INSERT INTO `item_mods` VALUES (10738, 364, 30);
 INSERT INTO `item_mods` VALUES (10753, 370, 2);
 INSERT INTO `item_mods` VALUES (10764, 370, 1);
 INSERT INTO `item_mods` VALUES (10787, 375, 3);
+
+-- -------------------------------------------------------
+-- Eihwaz Ring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10798, 2, 70); -- HP+70
+INSERT INTO `item_mods` VALUES (10798, 27, 5); -- Enmity+5
+INSERT INTO `item_mods` VALUES (10798, 255, 5); -- Enhances resistance against "Death"
+
 INSERT INTO `item_mods` VALUES (10806, 375, 15);
 
 -- -------------------------------------------------------
@@ -11773,6 +11781,12 @@ INSERT INTO `item_mods` VALUES (14644, 13, 1);
 INSERT INTO `item_mods` VALUES (14644, 14, 1);
 INSERT INTO `item_mods` VALUES (14645, 5, 30);
 INSERT INTO `item_mods` VALUES (14645, 60, -30);
+
+-- -------------------------------------------------------
+-- Shadow Ring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (14646, 255, 5); -- Enhances resistance against "Death"
+-- INSERT INTO `item_mods` VALUES (14646, ?, ?); -- Occasionally annulls magic damage taken (is presently not a mod)
 
 -- -------------------------------------------------------
 -- Telluric Ring
