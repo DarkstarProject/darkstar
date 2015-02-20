@@ -18,14 +18,14 @@ require("scripts/globals/common");
 --See chocoprice.lua to adjust chocobo stables.
 --require("scripts/globals/chocoprice");
 -- Enable Extension (1= yes 0= no)
-ENABLE_COP     = 1;
-ENABLE_TOAU    = 1;
-ENABLE_WOTG    = 1;
-ENABLE_ACP     = 1;
-ENABLE_AMK     = 1;
-ENABLE_ASA     = 1;
-ENABLE_ABYSSEA = 1;
-ENABLE_SOA     = 1;
+ENABLE_COP     = 0;
+ENABLE_TOAU    = 0;
+ENABLE_WOTG    = 0;
+ENABLE_ACP     = 0;
+ENABLE_AMK     = 0;
+ENABLE_ASA     = 0;
+ENABLE_ABYSSEA = 0;
+ENABLE_SOA     = 0;
 
 -- Setting to lock content more accurately to the expansions you have defined above
 -- This generally results in a more accurate presentation of your selected expansions
@@ -74,7 +74,7 @@ DRAIN_POWER = 1.000; --Multiplies amount drained by Drain, Aspir, and relevant B
 ITEM_POWER  = 1.000; --Multiplies the effect of items such as Potions and Ethers.
 WEAPON_SKILL_POWER  = 1.000; -- Multiplies damage dealt by Weapon Skills.
 WEAPON_SKILL_POINTS = 1.000; --Multiplies points earned during weapon unlocking.
-USE_ADOULIN_WEAPON_SKILL_CHANGES = true; -- true/false. Change to toggle new Adoulin weapon skill damage parameters
+USE_ADOULIN_WEAPON_SKILL_CHANGES = false; -- true/false. Change to toggle new Adoulin weapon skill damage calculations
 
 HARVESTING_BREAK_CHANCE = 0.33; --% chance for the sickle to break during harvesting.  Set between 0 and 1.
 EXCAVATION_BREAK_CHANCE = 0.33; --% chance for the pickaxe to break during excavation.  Set between 0 and 1.
