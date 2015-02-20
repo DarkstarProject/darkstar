@@ -46,6 +46,7 @@
 #include "../packets/char_job_extra.h"
 #include "../packets/char_equip.h"
 #include "../packets/char_health.h"
+#include "../packets/char_recast.h"
 #include "../packets/char_skills.h"
 #include "../packets/char_spells.h"
 #include "../packets/char_stats.h"
@@ -2445,6 +2446,7 @@ inline int32 CLuaBaseEntity::sjRestriction(lua_State* L)
     PChar->pushPacket(new CCharHealthPacket(PChar));
     PChar->pushPacket(new CCharStatsPacket(PChar));
     PChar->pushPacket(new CCharSkillsPacket(PChar));
+    PChar->pushPacket(new CCharRecastPacket(PChar));
     PChar->pushPacket(new CCharAbilitiesPacket(PChar));
     PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
     PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
@@ -5124,6 +5126,7 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     PChar->pushPacket(new CCharJobsPacket(PChar));
     PChar->pushPacket(new CCharStatsPacket(PChar));
     PChar->pushPacket(new CCharSkillsPacket(PChar));
+    PChar->pushPacket(new CCharRecastPacket(PChar));
     PChar->pushPacket(new CCharAbilitiesPacket(PChar));
     PChar->pushPacket(new CCharUpdatePacket(PChar));
     PChar->pushPacket(new CMenuMeritPacket(PChar));
@@ -5201,6 +5204,7 @@ inline int32 CLuaBaseEntity::setsLevel(lua_State *L)
     PChar->pushPacket(new CCharJobsPacket(PChar));
     PChar->pushPacket(new CCharStatsPacket(PChar));
     PChar->pushPacket(new CCharSkillsPacket(PChar));
+    PChar->pushPacket(new CCharRecastPacket(PChar));
     PChar->pushPacket(new CCharAbilitiesPacket(PChar));
     PChar->pushPacket(new CCharUpdatePacket(PChar));
     PChar->pushPacket(new CMenuMeritPacket(PChar));
@@ -5247,6 +5251,7 @@ inline int32 CLuaBaseEntity::setLevel(lua_State *L)
     PChar->pushPacket(new CCharJobsPacket(PChar));
     PChar->pushPacket(new CCharStatsPacket(PChar));
     PChar->pushPacket(new CCharSkillsPacket(PChar));
+    PChar->pushPacket(new CCharRecastPacket(PChar));
     PChar->pushPacket(new CCharAbilitiesPacket(PChar));
     PChar->pushPacket(new CCharUpdatePacket(PChar));
     PChar->pushPacket(new CMenuMeritPacket(PChar));
@@ -6532,7 +6537,7 @@ inline int32 CLuaBaseEntity::resetRecasts(lua_State *L)
 
         PChar->PRecastContainer->Del(RECAST_MAGIC);
         PChar->PRecastContainer->Del(RECAST_ABILITY);
-        PChar->pushPacket(new CCharSkillsPacket(PChar));
+        PChar->pushPacket(new CCharRecastPacket(PChar));
         return 0;
     }
 
@@ -6560,7 +6565,7 @@ inline int32 CLuaBaseEntity::resetRecast(lua_State *L)
             PChar->PRecastContainer->Add(recastContainer, recastID, 0);
         }
 
-        PChar->pushPacket(new CCharSkillsPacket(PChar));
+        PChar->pushPacket(new CCharRecastPacket(PChar));
         return 0;
     }
 
@@ -8350,6 +8355,7 @@ inline int32 CLuaBaseEntity::recalculateSkillsTable(lua_State* L)
     charutils::BuildingCharWeaponSkills(PChar);
 
     PChar->pushPacket(new CCharSkillsPacket(PChar));
+    PChar->pushPacket(new CCharRecastPacket(PChar));
     PChar->pushPacket(new CCharAbilitiesPacket(PChar));
     return 0;
 }

@@ -35,27 +35,5 @@ CCharSkillsPacket::CCharSkillsPacket(CCharEntity* PChar)
 {
 	this->type = 0x62;
 	this->size = 0x80;
-
-	uint8 count = 0; 
-
-    RecastList_t* RecastList = PChar->PRecastContainer->GetRecastList(RECAST_ABILITY);
-
-    for (uint16 i = 0; i < RecastList->size(); ++i) 
-	{
-        Recast_t* recast = RecastList->at(i);
-
-		uint32 recasttime = (recast->RecastTime == 0 ? 0 : ((recast->RecastTime - (time(NULL) - recast->TimeStamp))));
-
-		if(recast->ID != 0) 
-		{
-            WBUFL(data, (0x08 + count * 4) - 4) = recasttime;
-            WBUFB(data,(0x0B + count*4)-4) = recast->ID;
-			count++;
-		} 
-		else
-		{
-            WBUFL(data, (0x04) - 4) = recasttime;  // 2h ability (recast id is 0)
-		}
-    }
 	memcpy(data+(0x80)-4, &PChar->WorkingSkills, 128);
 }

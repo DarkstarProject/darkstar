@@ -79,6 +79,7 @@ This file is part of DarkStar-server source code.
 #include "packets/char_jobs.h"
 #include "packets/char_job_extra.h"
 #include "packets/char_health.h"
+#include "packets/char_recast.h"
 #include "packets/char_skills.h"
 #include "packets/char_spells.h"
 #include "packets/char_stats.h"
@@ -2653,6 +2654,7 @@ void SmallPacket0x061(map_session_data_t* session, CCharEntity* PChar, int8* dat
     PChar->pushPacket(new CCharHealthPacket(PChar));
     PChar->pushPacket(new CCharStatsPacket(PChar));
     PChar->pushPacket(new CCharSkillsPacket(PChar));
+    PChar->pushPacket(new CCharRecastPacket(PChar));
     PChar->pushPacket(new CMenuMeritPacket(PChar));
     PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
     PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
@@ -3729,6 +3731,7 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 PChar->pushPacket(new CCharHealthPacket(PChar));
                 PChar->pushPacket(new CCharStatsPacket(PChar));
                 PChar->pushPacket(new CCharSkillsPacket(PChar));
+                PChar->pushPacket(new CCharRecastPacket(PChar));
                 PChar->pushPacket(new CCharAbilitiesPacket(PChar));
                 PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
                 PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
@@ -4880,6 +4883,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->pushPacket(new CCharHealthPacket(PChar));
         PChar->pushPacket(new CCharStatsPacket(PChar));
         PChar->pushPacket(new CCharSkillsPacket(PChar));
+        PChar->pushPacket(new CCharRecastPacket(PChar));
         PChar->pushPacket(new CCharAbilitiesPacket(PChar));
         PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
         PChar->pushPacket(new CCharJobExtraPacket(PChar, false));

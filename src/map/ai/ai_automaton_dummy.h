@@ -47,6 +47,12 @@ protected:
 
 
 private:
+    uint32 m_magicRecast;
+    uint32 m_magicEnfeebleRecast;
+    uint32 m_magicElementalRecast;
+    uint32 m_magicHealRecast;
+    uint32 m_magicEnhanceRecast;
+    uint32 m_magicStatusRecast;
     void ActionFall();
 };
 

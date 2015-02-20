@@ -30,7 +30,7 @@
 #include "utils/zoneutils.h"
 #include "utils/charutils.h"
 #include "lua/luautils.h"
-#include "packets/char_skills.h"
+#include "packets/char_recast.h"
 
 
 CBattlefieldHandler::CBattlefieldHandler(uint16 zoneid)
@@ -521,7 +521,7 @@ int playermaxHP = 0;
 		   PBattlefield->m_PlayerList.at(i)->addHP(playermaxHP);
            PBattlefield->m_PlayerList.at(i)->addMP(playermaxMP);
 
-		   PBattlefield->m_PlayerList.at(i)->pushPacket(new CCharSkillsPacket(PBattlefield->m_PlayerList.at(i)));
+           PBattlefield->m_PlayerList.at(i)->pushPacket(new CCharRecastPacket(PBattlefield->m_PlayerList.at(i)));
 		   charutils::UpdateHealth(PBattlefield->m_PlayerList.at(i));
 
 

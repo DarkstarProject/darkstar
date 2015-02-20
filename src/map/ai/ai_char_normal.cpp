@@ -47,8 +47,10 @@ This file is part of DarkStar-server source code.
 #include "../packets/char.h"
 #include "../packets/char_abilities.h"
 #include "../packets/char_health.h"
+#include "../packets/char_recast.h"
 #include "../packets/char_skills.h"
 #include "../packets/char_stats.h"
+
 #include "../packets/char_update.h"
 #include "../packets/inventory_assign.h"
 #include "../packets/inventory_finish.h"
@@ -1663,7 +1665,7 @@ void CAICharNormal::ActionJobAbilityFinish()
                     {
                         Action.ActionTarget = PTarget;
                         battleutils::DoWildCardToEntity(m_PChar, PTarget, roll);
-                        PTarget->pushPacket(new CCharSkillsPacket(PTarget));
+                        PTarget->pushPacket(new CCharRecastPacket(PTarget));
                         PTarget->pushPacket(new CCharHealthPacket(PTarget));
                         Action.messageID = m_PJobAbility->getMessage();
                         m_PChar->m_ActionList.push_back(Action);
@@ -1674,7 +1676,7 @@ void CAICharNormal::ActionJobAbilityFinish()
             {
                 battleutils::DoWildCardToEntity(m_PChar, m_PChar, roll);
                 Action.ActionTarget = m_PBattleSubTarget;
-                m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
+                m_PChar->pushPacket(new CCharRecastPacket(m_PChar));
                 m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
                 Action.messageID = m_PJobAbility->getMessage();
                 m_PChar->m_ActionList.push_back(Action);
@@ -2236,7 +2238,7 @@ void CAICharNormal::ActionJobAbilityFinish()
         maxCharges = charge->maxCharges;
     }
     m_PChar->PRecastContainer->Add(RECAST_ABILITY, m_PJobAbility->getRecastId(), RecastTime, chargeTime, maxCharges);
-    m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
+    m_PChar->pushPacket(new CCharRecastPacket(m_PChar));
 
     m_PJobAbility = NULL;
     TransitionBack();

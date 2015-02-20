@@ -42,6 +42,7 @@ This file is part of DarkStar-server source code.
 #include "../packets/char_jobs.h"
 #include "../packets/char_job_extra.h"
 #include "../packets/char_health.h"
+#include "../packets/char_recast.h"
 #include "../packets/char_skills.h"
 #include "../packets/char_stats.h"
 #include "../packets/char_sync.h"
@@ -1167,6 +1168,7 @@ namespace charutils
         PChar->pushPacket(new CCharJobsPacket(PChar));
         PChar->pushPacket(new CCharStatsPacket(PChar));
         PChar->pushPacket(new CCharSkillsPacket(PChar));
+        PChar->pushPacket(new CCharRecastPacket(PChar));
         PChar->pushPacket(new CCharAbilitiesPacket(PChar));
         PChar->pushPacket(new CCharUpdatePacket(PChar));
         PChar->pushPacket(new CMenuMeritPacket(PChar));
@@ -3310,6 +3312,7 @@ namespace charutils
             PChar->pushPacket(new CCharJobsPacket(PChar));
             PChar->pushPacket(new CCharUpdatePacket(PChar));
             PChar->pushPacket(new CCharSkillsPacket(PChar));
+            PChar->pushPacket(new CCharRecastPacket(PChar));
             PChar->pushPacket(new CCharAbilitiesPacket(PChar));
             PChar->pushPacket(new CMenuMeritPacket(PChar));
             PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
@@ -3503,6 +3506,7 @@ namespace charutils
                 PChar->pushPacket(new CCharJobsPacket(PChar));
                 PChar->pushPacket(new CCharUpdatePacket(PChar));
                 PChar->pushPacket(new CCharSkillsPacket(PChar));
+                PChar->pushPacket(new CCharRecastPacket(PChar));
                 PChar->pushPacket(new CCharAbilitiesPacket(PChar));
                 PChar->pushPacket(new CMenuMeritPacket(PChar));
                 PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
