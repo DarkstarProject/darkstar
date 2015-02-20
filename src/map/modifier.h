@@ -281,9 +281,8 @@ enum MODIFIER
 	MOD_SLOWRES                   = 0xFA, // Enhances "Resist Slow" effect (modId = 250)
 	MOD_STUNRES                   = 0xFB, // Enhances "Resist Stun" effect (modId = 251)
 	MOD_CHARMRES                  = 0xFC, // Enhances "Resist Charm" effect (modId = 252)
-
-	MOD_UNKNOWN                   = 0xFF, // (modId = 255)
-
+	MOD_DEATHRES                  = 0xFF, // Used by gear and ATMA that give resistance to instance KO (modId = 255)
+ 
 	MOD_PARALYZE                  = 0x101, // Paralyze -- percent chance to proc (modId = 257)
 	MOD_MIJIN_GAKURE              = 0x102, // Tracks whether or not you used this ability to die. (modId = 258)
 	MOD_DUAL_WIELD                = 0x103, // Percent reduction in dual wield delay. (modId = 259)
