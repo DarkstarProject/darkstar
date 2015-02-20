@@ -19,7 +19,6 @@ function onSpellCast(caster,target,spell)
     caster:delStatusEffect(EFFECT_SABOTEUR);
 	
 	local typeEffect = EFFECT_SLEEP_II;
-	--local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
 	local pINT = caster:getStat(MOD_INT);
 	local mINT = target:getStat(MOD_INT);
 	local dINT = (pINT - mINT);

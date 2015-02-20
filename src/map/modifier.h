@@ -281,9 +281,8 @@ enum MODIFIER
 	MOD_SLOWRES                   = 0xFA, // Enhances "Resist Slow" effect (modId = 250)
 	MOD_STUNRES                   = 0xFB, // Enhances "Resist Stun" effect (modId = 251)
 	MOD_CHARMRES                  = 0xFC, // Enhances "Resist Charm" effect (modId = 252)
-
-	MOD_UNKNOWN                   = 0xFF, // (modId = 255)
-
+	MOD_DEATHRES                  = 0xFF, // Used by gear and ATMA that give resistance to instance KO (modId = 255)
+ 
 	MOD_PARALYZE                  = 0x101, // Paralyze -- percent chance to proc (modId = 257)
 	MOD_MIJIN_GAKURE              = 0x102, // Tracks whether or not you used this ability to die. (modId = 258)
 	MOD_DUAL_WIELD                = 0x103, // Percent reduction in dual wield delay. (modId = 259)
@@ -560,9 +559,10 @@ enum MODIFIER
     MOD_RETALIATION               = 0x19E, // Increases damage of Retaliation hits (modId = 414)
     MOD_AUGMENTS_THIRD_EYE        = 0x1FC, // Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15% (modId = 508)
 
-    // MOD_SPARE = 0x1FD, // (modId = 509)
-    // MOD_SPARE = 0x1FE, // (modId = 510)
-    // MOD_SPARE = 0x1FF, // (modId = 511)
+    MOD_CLAMMING_IMPROVED_RESULTS = 0x1FD, // (modId = 509)
+    MOD_CLAMMING_REDUCED_INCIDENTS= 0x1FE, // (modId = 510)
+	
+	// MOD_SPARE = 0x1FF, // (modId = 511)
     // MOD_SPARE = 0x200, // (modId = 512)
     // MOD_SPARE = 0x201, // (modId = 513)
     // MOD_SPARE = 0x202, // (modId = 514)
@@ -571,7 +571,7 @@ enum MODIFIER
 
 };
 
-#define MAX_MODIFIER 509
+#define MAX_MODIFIER 511
 
 
 

@@ -3,9 +3,9 @@
 -- Steals food effect
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
@@ -14,19 +14,23 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_FOOD;
-
+    if (target:hasStatusEffect(EFFECT_FOOD) then
+        -- 99% sure retail doesn't do this. Uncomment if you want it to happen.
+        -- local FOOD_ID = target:getStatusEffect(EFFECT_FOOD):getSubType();
+        -- local DURATION = target:getStatusEffect(EFFECT_FOOD):getDuration();
+        -- mob:addStatusEffect(EFFECT_FOOD,0,0,DURATION,FOOD_ID); -- Gives Colibri the players food.
+        target:delStatusEffect(EFFECT_FOOD);
+        skill:setMsg(MSG_ENFEEB_IS);
+    elseif (target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) then
+        -- 99% sure retail doesn't do this. Uncomment if you want it to happen.
+        -- local FOOD_ID = target:getStatusEffect(EFFECT_FIELD_SUPPORT_FOOD):getpower();
+        -- local DURATION = target:getStatusEffect(EFFECT_FIELD_SUPPORT_FOOD):getDuration();
+        -- mob:addStatusEffect(EFFECT_FIELD_SUPPORT_FOOD,FOOD_ID,0,DURATION); -- Gives Colibri the players FoV/GoV food.
+        target:delStatusEffect(EFFECT_FIELD_SUPPORT_FOOD);
+        skill:setMsg(MSG_ENFEEB_IS);
+    else
         skill:setMsg(MSG_MISS); -- no effect
+    end
 
-        local food = target:getStatusEffect(typeEffect);
-        if (food ~= nil) then
-            target:delStatusEffect(typeEffect);
-            skill:setMsg(MSG_ENFEEB_IS);
-
-            -- no way to add food to mobs yet
-            -- if(mob:addStatusEffect(typeEffect, food:getPower(), 0, food:getDuration()/1000)) then
-            -- end
-		end
-
-    return typeEffect;
+    return EFFECT_FOOD;
 end;

@@ -1346,6 +1346,14 @@ INSERT INTO `item_mods` VALUES (10738, 364, 30);
 INSERT INTO `item_mods` VALUES (10753, 370, 2);
 INSERT INTO `item_mods` VALUES (10764, 370, 1);
 INSERT INTO `item_mods` VALUES (10787, 375, 3);
+
+-- -------------------------------------------------------
+-- Eihwaz Ring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10798, 2, 70); -- HP+70
+INSERT INTO `item_mods` VALUES (10798, 27, 5); -- Enmity+5
+INSERT INTO `item_mods` VALUES (10798, 255, 5); -- Enhances resistance against "Death"
+
 INSERT INTO `item_mods` VALUES (10806, 375, 15);
 
 -- -------------------------------------------------------
@@ -11040,12 +11048,19 @@ INSERT INTO `item_mods` VALUES (14454, 1, 1);
 INSERT INTO `item_mods` VALUES (14455, 1, 1);
 INSERT INTO `item_mods` VALUES (14456, 1, 1);
 INSERT INTO `item_mods` VALUES (14457, 1, 2);
+INSERT INTO `item_mods` VALUES (14457, 510, 1);
 INSERT INTO `item_mods` VALUES (14458, 1, 2);
+INSERT INTO `item_mods` VALUES (14458, 510, 1);
 INSERT INTO `item_mods` VALUES (14459, 1, 2);
+INSERT INTO `item_mods` VALUES (14459, 510, 1);
 INSERT INTO `item_mods` VALUES (14460, 1, 2);
+INSERT INTO `item_mods` VALUES (14460, 510, 1);
 INSERT INTO `item_mods` VALUES (14461, 1, 2);
+INSERT INTO `item_mods` VALUES (14461, 510, 1);
 INSERT INTO `item_mods` VALUES (14462, 1, 2);
+INSERT INTO `item_mods` VALUES (14462, 510, 1);
 INSERT INTO `item_mods` VALUES (14463, 1, 2);
+INSERT INTO `item_mods` VALUES (14463, 510, 1);
 INSERT INTO `item_mods` VALUES (14464, 1, 14);
 INSERT INTO `item_mods` VALUES (14464, 11, 1);
 INSERT INTO `item_mods` VALUES (14464, 55, 5);
@@ -11081,6 +11096,7 @@ INSERT INTO `item_mods` VALUES (14470, 60, 15);
 INSERT INTO `item_mods` VALUES (14470, 61, 15);
 INSERT INTO `item_mods` VALUES (14471, 1, 1);
 INSERT INTO `item_mods` VALUES (14472, 1, 2);
+INSERT INTO `item_mods` VALUES (14472, 510, 1);
 INSERT INTO `item_mods` VALUES (14473, 1, 50);
 INSERT INTO `item_mods` VALUES (14473, 2, 20);
 INSERT INTO `item_mods` VALUES (14473, 10, 7);
@@ -11775,6 +11791,12 @@ INSERT INTO `item_mods` VALUES (14645, 5, 30);
 INSERT INTO `item_mods` VALUES (14645, 60, -30);
 
 -- -------------------------------------------------------
+-- Shadow Ring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (14646, 255, 5); -- Enhances resistance against "Death"
+-- INSERT INTO `item_mods` VALUES (14646, ?, ?); -- Occasionally annulls magic damage taken (is presently not a mod)
+
+-- -------------------------------------------------------
 -- Telluric Ring
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (14649, 58, 20); -- [Element: Thunder]+20
@@ -12460,6 +12482,7 @@ INSERT INTO `item_mods` VALUES (14912, 1, 16);
 INSERT INTO `item_mods` VALUES (14912, 5, 24);
 INSERT INTO `item_mods` VALUES (14912, 27, -3);
 INSERT INTO `item_mods` VALUES (14912, 116, 12);
+INSERT INTO `item_mods` VALUES (14912, 487, 5);
 INSERT INTO `item_mods` VALUES (14913, 1, 18);
 INSERT INTO `item_mods` VALUES (14913, 5, 23);
 INSERT INTO `item_mods` VALUES (14913, 12, 5);
@@ -13208,6 +13231,7 @@ INSERT INTO `item_mods` VALUES (15105, 1, 15);
 INSERT INTO `item_mods` VALUES (15105, 5, 24);
 INSERT INTO `item_mods` VALUES (15105, 27, -2);
 INSERT INTO `item_mods` VALUES (15105, 116, 10);
+INSERT INTO `item_mods` VALUES (15105, 487, 5);
 INSERT INTO `item_mods` VALUES (15106, 1, 17);
 INSERT INTO `item_mods` VALUES (15106, 5, 18);
 INSERT INTO `item_mods` VALUES (15106, 12, 4);
@@ -14325,17 +14349,25 @@ INSERT INTO `item_mods` VALUES (15412, 1, 1);
 INSERT INTO `item_mods` VALUES (15413, 1, 1);
 INSERT INTO `item_mods` VALUES (15414, 1, 1);
 INSERT INTO `item_mods` VALUES (15415, 1, 2);
+INSERT INTO `item_mods` VALUES (15415, 510, 1);
 INSERT INTO `item_mods` VALUES (15416, 1, 2);
+INSERT INTO `item_mods` VALUES (15416, 510, 1);
 INSERT INTO `item_mods` VALUES (15417, 1, 2);
+INSERT INTO `item_mods` VALUES (15417, 510, 1);
 INSERT INTO `item_mods` VALUES (15418, 1, 2);
+INSERT INTO `item_mods` VALUES (15418, 510, 1);
 INSERT INTO `item_mods` VALUES (15419, 1, 2);
+INSERT INTO `item_mods` VALUES (15419, 510, 1);
 INSERT INTO `item_mods` VALUES (15420, 1, 2);
+INSERT INTO `item_mods` VALUES (15420, 510, 1);
 INSERT INTO `item_mods` VALUES (15421, 1, 2);
+INSERT INTO `item_mods` VALUES (15421, 510, 1);
 INSERT INTO `item_mods` VALUES (15422, 1, 16);
 INSERT INTO `item_mods` VALUES (15422, 8, 1);
 INSERT INTO `item_mods` VALUES (15422, 27, 1);
 INSERT INTO `item_mods` VALUES (15423, 1, 1);
 INSERT INTO `item_mods` VALUES (15424, 1, 2);
+INSERT INTO `item_mods` VALUES (15424, 510, 1);
 INSERT INTO `item_mods` VALUES (15425, 1, 30);
 INSERT INTO `item_mods` VALUES (15425, 2, 20);
 INSERT INTO `item_mods` VALUES (15425, 8, 2);

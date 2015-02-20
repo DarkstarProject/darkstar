@@ -17,7 +17,6 @@ function onSpellCast(caster,target,spell)
 
     -- Pull base stats.
     dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-    --bonus = AffinityBonus(caster,spell:getElement());  Removed: affinity bonus is added in applyResistance
 
     power = 50;
 

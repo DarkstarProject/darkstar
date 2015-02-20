@@ -747,6 +747,7 @@ INSERT INTO `item_usable` VALUES (4847,'scroll_of_shock',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4848,'scroll_of_drown',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4849,'scroll_of_addle',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4850,'scroll_of_refresh_ii',1,1,11,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4851,'scroll_of_meteor',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4853,'scroll_of_drain',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4854,'scroll_of_drain_ii',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4855,'scroll_of_aspir',1,1,12,5,0,0,0,0);
