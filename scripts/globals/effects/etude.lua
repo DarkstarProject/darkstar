@@ -20,11 +20,13 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
+	-- the effect loses modifier of 1 every 10 ticks.
+	local song_effect_size = effect:getPower();
 	if(effect:getTier() == 2 and effect:getPower() > 0) then
-	effects:setpower(effect:setpower(), 1)
-	target:delMod(effect:getSubPower(), 1)
+		effect:setPower(song_effect_size -1)
+		target:delMod(effect:getSubPower(), 1);
+		
 	end
-
 end;
 
 -----------------------------------
@@ -32,5 +34,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(effect:getSubPower(), effect:getPower());
+	local song_effect_size = effect:getPower();
+	if(effect:getTier() == 2 and song_effect_size > 0) then 
+     target:delMod(effect:getSubPower(),song_effect_size);
+	end
 end;
