@@ -59,7 +59,7 @@ ORIGINAL_MISSION_OFFSET = 16; -- Bring me one of those axes, and your mission wi
 
      GILIPESE_DIALOG = 11472; -- Nothing to report!
 
-      BONCORT_DIALOG = 11997; -- Hmm... With magic, I could get hold of materials a mite easier. I'll have to check this artout.
+      BONCORT_DIALOG = 11997; -- Hmm... With magic, I could get hold of materials a mite easier. I'll have to check this art out. 
       CAPIRIA_DIALOG = 11998; -- A flyer? For me? Some reading material would be a welcome change of pace, indeed!
       VILLION_DIALOG = 11999; -- Opening a shop of magic, without consulting me first? I must pay this Regine a visit!
      COULLENE_DIALOG = 12000; -- Magic could be of use on my journey to Paradise. Thank you so much!

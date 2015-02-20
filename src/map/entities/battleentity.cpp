@@ -335,7 +335,7 @@ uint16 CBattleEntity::GetSubWeaponDmg()
 
 uint16 CBattleEntity::GetRangedWeaponDmg()
 {
-	uint8 dmg = 0;
+	uint16 dmg = 0;
 	if( m_Weapons[SLOT_RANGED] )
 	{
         if ((m_Weapons[SLOT_RANGED]->getReqLvl() > GetMLevel())  && objtype == TYPE_PC)
