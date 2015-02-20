@@ -44,7 +44,6 @@ function onSpellCast(caster,target,spell)
     caster:delStatusEffect(EFFECT_SABOTEUR);
         --printf("Duration : %u",duration);
         --printf("Potency : %u",potency);
-        --local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
         local resist = applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_PARALYSIS);
 
         if(resist >= 0.5) then --there are no quarter or less hits, if target resists more than .5 spell is resisted completely

@@ -498,7 +498,7 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
 
 	dmg = math.floor(dmg * dayWeatherBonus);
 
-    burst, burstBonus = calculateMobMagicBurstAndBonus(caster, ele, target);
+    burst = calculateMobMagicBurst(caster, ele, target);
 
 	-- not sure what to do for this yet
     -- if(burst > 1.0) then
@@ -525,7 +525,7 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
     return dmg;
 end
 
-function calculateMobMagicBurstAndBonus(caster, ele, target)
+function calculateMobMagicBurst(caster, ele, target)
 
     local burst = 1.0;
 
@@ -548,7 +548,7 @@ function calculateMobMagicBurstAndBonus(caster, ele, target)
 		end
     end
 
-    return burst, burstBonus;
+    return burst;
 end;
 
 -- Calculates breath damage

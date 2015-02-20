@@ -36,7 +36,6 @@ function onSpellCast(caster,target,spell)
     end
     caster:delStatusEffect(EFFECT_SABOTEUR);
 
-    --local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
     local resist = applyResistanceEffect(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,0,effect);
     if(resist == 1 or resist == 0.5) then -- effect taken
         duration = duration * resist;
