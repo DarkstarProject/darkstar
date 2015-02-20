@@ -12,6 +12,7 @@
 --  100%TP	200%TP	300%TP
 --  5.5      5.5     5.5
 -----------------------------------
+require("scripts/globals/magic");
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
