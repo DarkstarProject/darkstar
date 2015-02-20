@@ -47,7 +47,7 @@ function onTrigger(player,npc)
                 player:startEvent(0x2773);
         elseif(chocoboOnTheLoose == QUEST_ACCEPTED and (chocoboOnTheLooseStatus == 5 or chocoboOnTheLooseStatus == 6)) then
                 player:startEvent(0x2774);
-        elseif(player:getMainLvl() >= 20 and chocoboOnTheLoose == QUEST_ACCEPTED and chocoboOnTheLooseStatus == 7 and player:needToZone() == false and (player:getVar("ChocoboOnTheLooseDay") < VanadielDayOfTheYear() or player:getVar("ChocoboOnTheLooseYear") < VanadielYear())) then
+        elseif(chocoboOnTheLoose == QUEST_ACCEPTED and chocoboOnTheLooseStatus == 7 and player:needToZone() == false and (player:getVar("ChocoboOnTheLooseDay") < VanadielDayOfTheYear() or player:getVar("ChocoboOnTheLooseYear") < VanadielYear())) then
                 player:startEvent(0x277D);
         elseif(player:getMainLvl() >= 20 and ChocobosWounds ~= QUEST_COMPLETED) then
                 local chocoFeed = player:getVar("ChocobosWounds_Event");
