@@ -6537,6 +6537,7 @@ inline int32 CLuaBaseEntity::resetRecasts(lua_State *L)
 
         PChar->PRecastContainer->Del(RECAST_MAGIC);
         PChar->PRecastContainer->Del(RECAST_ABILITY);
+        PChar->pushPacket(new CCharSkillsPacket(PChar));
         PChar->pushPacket(new CCharRecastPacket(PChar));
         return 0;
     }
@@ -6565,6 +6566,7 @@ inline int32 CLuaBaseEntity::resetRecast(lua_State *L)
             PChar->PRecastContainer->Add(recastContainer, recastID, 0);
         }
 
+        PChar->pushPacket(new CCharSkillsPacket(PChar));
         PChar->pushPacket(new CCharRecastPacket(PChar));
         return 0;
     }
