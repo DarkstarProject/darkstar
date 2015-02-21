@@ -1221,7 +1221,8 @@ MOD_AUGMENTS_THIRD_EYE        = 0x1FC -- Adds counter to 3rd eye anticipates & i
 MOD_CLAMMING_IMPROVED_RESULTS = 0x1FD -- (modId = 509)
 MOD_CLAMMING_REDUCED_INCIDENTS= 0x1FE -- (modId = 510)
 
--- MOD_SPARE = 0x1FF -- (modId = 511)
+MOD_CHOCOBO_RIDING_TIME       = 0x1FF -- Increases chocobo riding time (modId = 511)
+
 -- MOD_SPARE = 0x200 -- (modId = 512)
 -- MOD_SPARE = 0x201 -- (modId = 513)
 -- MOD_SPARE = 0x202 -- (modId = 514)
