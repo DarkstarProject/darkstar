@@ -35,7 +35,13 @@ function onUseAbility(player, target, ability)
 		hit = 7;
 		local mjob = player:getMainJob();
 		local daze = 1;
-
+		
+		-- This will be set to 1 if they have Terpsichore equipped (id=18989). It adds one finishing move when you step.
+		local  MythicModifier = 0;
+		if (player:getMod(MOD_STEP_FINISH)>0) then
+			MythicModifier = 1;
+		end
+		
 		if (mjob == 19) then
 			if (target:hasStatusEffect(EFFECT_WEAKENED_DAZE_1)) then
 				local duration = target:getStatusEffect(EFFECT_WEAKENED_DAZE_1):getDuration();
@@ -143,11 +149,11 @@ function onUseAbility(player, target, ability)
 		
 		if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_1)) then
 			player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_1);
-			player:addStatusEffect(EFFECT_FINISHING_MOVE_1+daze,1,0,7200);
+			player:addStatusEffect(EFFECT_FINISHING_MOVE_1+daze + MythicModifier,1,0,7200);
 
 		elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_2)) then
 			player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_2);
-			player:addStatusEffect(EFFECT_FINISHING_MOVE_2+daze,1,0,7200);
+			player:addStatusEffect(EFFECT_FINISHING_MOVE_2+daze + MythicModifier,1,0,7200);
 
 		elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_3)) then
 			player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_3);
@@ -162,7 +168,7 @@ function onUseAbility(player, target, ability)
 		elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
 			
 		else
-			player:addStatusEffect(EFFECT_FINISHING_MOVE_1 - 1 + daze,1,0,7200);
+			player:addStatusEffect(EFFECT_FINISHING_MOVE_1 - 1 + daze + MythicModifier,1,0,7200);
 		end;
 
 	else
