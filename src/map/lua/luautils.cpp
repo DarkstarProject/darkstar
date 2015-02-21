@@ -2075,7 +2075,7 @@ int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell)
 {
     DSP_DEBUG_BREAK_IF(PSpell == NULL);
 
-    lua_prepscript("scripts/zones/%s/mobs/%s.lua", PCaster->loc.zone->GetName(), PCaster->GetName());
+    lua_prepscript("scripts/zones/%s/mobs/%s.lua", PTarget->loc.zone->GetName(), PTarget->GetName());
 
     if (prepFile(File, "onMagicHit"))
     {

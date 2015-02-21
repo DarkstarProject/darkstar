@@ -640,10 +640,6 @@ void CMagicState::FinishSpell()
         }
         else
         {
-            if (PTarget->objtype == TYPE_MOB)
-            {
-                luautils::OnMagicHit(PTarget, m_PEntity, m_PSpell);
-            }
 			action.param = luautils::OnSpellCast(m_PEntity, PTarget, m_PSpell);
 
             // remove effects from damage
@@ -664,6 +660,11 @@ void CMagicState::FinishSpell()
         }
 
         action.messageID = msg;
+
+        if (PTarget->objtype == TYPE_MOB && msg != 31) // If message isn't the shadow loss message, because I had to move this outside of the above check for it.
+        {
+            luautils::OnMagicHit(m_PEntity, PTarget, m_PSpell);
+        }
 
 		if (m_PSpell->getID() != 305) //I hate to do this, but there really is no other spell like Odin
             CharOnTarget(&action, ce, ve);
