@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area:  Garlaige Citadel
--- NPC:   qm2 (???)
+-- NPC:  qm17 (???)
 -- Notes: Used to obtain Pouch of Weighted Stones
--- @pos -365.119 -5.500 299.986 200
+-- @pos -354 0 262 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------
