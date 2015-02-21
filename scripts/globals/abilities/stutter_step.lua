@@ -160,7 +160,7 @@ function onUseAbility(player, target, ability)
 			if (daze > 2) then
 				daze = 2;
 			end;
-			player:addStatusEffect(EFFECT_FINISHING_MOVE_3+daze + MythicModifier,1,0,7200);
+			player:addStatusEffect(EFFECT_FINISHING_MOVE_3+daze,1,0,7200);
 
 		elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_4)) then
 			player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_4);
