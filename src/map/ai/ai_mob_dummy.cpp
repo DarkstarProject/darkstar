@@ -922,9 +922,20 @@ void CAIMobDummy::ActionAbilityUsing()
     if (!(m_PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
 	    m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 
-	//TODO: Any checks whilst the monster is preparing.
-	//NOTE: RANGE CHECKS ETC ONLY ARE DONE AFTER THE ABILITY HAS FINISHED PREPARING.
-	//      THE ONLY CHECK IN HERE SHOULD BE WITH STUN/SLEEP/TERROR/ETC
+    if (battleutils::IsParalyzed(m_PMob))
+    {
+        m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob, m_PBattleSubTarget, 0, 0, MSGBASIC_IS_PARALYZED));
+        m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+        ActionAbilityInterrupt();
+        return;
+    }
+    else if (battleutils::IsIntimidated(m_PMob, m_PBattleSubTarget))
+    {
+        m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob, m_PBattleSubTarget, 0, 0, MSGBASIC_IS_INTIMIDATED));
+        m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+        ActionAbilityInterrupt();
+        return;
+    }
 
 	if (m_Tick >= m_LastActionTime + m_PMobSkill->getActivationTime())
     {
@@ -1111,7 +1122,7 @@ void CAIMobDummy::ActionAbilityInterrupt()
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 
     m_PMobSkill = NULL;
-    m_ActionType = ACTION_ATTACK;
+    m_ActionType = (m_PMob->StatusEffectContainer->HasPreventActionEffect() ? ACTION_SLEEP : ACTION_ATTACK);
 }
 
 /************************************************************************
