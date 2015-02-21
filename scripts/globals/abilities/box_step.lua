@@ -38,7 +38,7 @@ function onUseAbility(player, target, ability)
 
 		-- These will be set to 1 if they have Terpsichore equipped (id=18989). It adds one finishing move when you step.
 		local  MythicModifier = 0;
-		if (player:getMod(MOD_STEP_FINISH>0)) then
+		if (player:getMod(MOD_STEP_FINISH)>0) then
 			MythicModifier = 1;
 		end
 			
