@@ -36,9 +36,9 @@ function onUseAbility(player, target, ability)
 		local mjob = player:getMainJob();
 		local daze = 1;
 		
-		-- These will be set to 1 if they have Terpsichore equipped (id=18989). It adds one finishing move when you step.
+		-- This will be set to 1 if they have Terpsichore equipped (id=18989). It adds one finishing move when you step.
 		local  MythicModifier = 0;
-		if (player:getEquipID(SLOT_MAIN)==18989 or player:getEquipID(SLOT_SUB)==18989) then
+		if (player:getMod(MOD_STEP_FINISH>0) then
 			MythicModifier = 1;
 		end
 		
