@@ -25,7 +25,6 @@ function onEffectTick(target,effect)
 	if(effect:getTier() == 2 and effect:getPower() > 0) then
 		effect:setPower(song_effect_size -1)
 		target:delMod(effect:getSubPower(), 1);
-		
 	end
 end;
 
@@ -34,8 +33,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	local song_effect_size = effect:getPower();
-	if(effect:getTier() == 2 and song_effect_size > 0) then 
-     target:delMod(effect:getSubPower(),song_effect_size);
-	end
+	target:delMod(effect:getSubPower(), effect:getPower());
 end;
