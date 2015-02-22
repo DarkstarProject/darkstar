@@ -37,10 +37,10 @@ function onUseAbility(player, target, ability)
 		local daze = 1;
 
 		-- These will be set to 1 if they have Terpsichore equipped (id=18989). It adds one finishing move when you step.
-		local  MythicModifier = 0;
-		if (player:getMod(MOD_STEP_FINISH)>0) then
-			MythicModifier = 1;
-		end
+		local MythicModifier = 0;
+		if (player:getMod(MOD_STEP_FINISH) > 0)
+			MythicModifier=1;
+		end;
 			
 		if (mjob == 19) then
 			if (target:hasStatusEffect(EFFECT_SLUGGISH_DAZE_1)) then
@@ -157,8 +157,10 @@ function onUseAbility(player, target, ability)
 
 		elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_3)) then
 			player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_3);
-			if (daze > 2) then
+			if (daze >= 2) then
 				daze = 2;
+			else
+				daze = daze + MythicModifier; -- if daze=1, then add the mod to it.
 			end;
 			player:addStatusEffect(EFFECT_FINISHING_MOVE_3+daze,1,0,7200);
 
