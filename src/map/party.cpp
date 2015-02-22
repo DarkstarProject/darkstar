@@ -94,6 +94,10 @@ CParty::CParty(uint32 id)
 
 void CParty::DisbandParty(bool playerInitiated, Sql_t* sql)
 {
+    if (m_PAlliance)
+    {
+        m_PAlliance->delParty(this);
+    }
 	DisableSync();
 	SetQuarterMaster(NULL);
 
@@ -391,6 +395,7 @@ void CParty::PopMember(CBattleEntity* PEntity)
         }
         delete this;
     }
+    PEntity->PParty = NULL;
 }
 
 /************************************************************************

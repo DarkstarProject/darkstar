@@ -887,11 +887,6 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 		PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
 	}
 
-    if (PChar->PParty)
-    {
-        PChar->PParty->PopMember(PChar);
-    }
-
     if (PChar->PLinkshell1 != NULL)
     {
         PChar->PLinkshell1->DelMember(PChar);
@@ -945,6 +940,11 @@ void CZone::CharZoneOut(CCharEntity* PChar)
         uint8 data[4];
         WBUFL(data, 0) = PChar->PParty->GetPartyID();
         message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
+    }
+
+    if (PChar->PParty)
+    {
+        PChar->PParty->PopMember(PChar);
     }
 }
 
