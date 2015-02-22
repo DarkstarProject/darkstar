@@ -19880,6 +19880,13 @@ INSERT INTO `item_mods` VALUES (18504, 229, 2);
 INSERT INTO `item_mods` VALUES (18506, 288, 1);
 INSERT INTO `item_mods` VALUES (18509, 288, 1);
 INSERT INTO `item_mods` VALUES (18531, 24, 4);
+
+-- -------------------------------------------------------
+-- Twilight Scythe
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18551, 8, 8); -- STR+8
+INSERT INTO `item_mods` VALUES (18551, 431, 1); -- Additional Effect: DEATH
+
 INSERT INTO `item_mods` VALUES (18571, 453, 2);
 INSERT INTO `item_mods` VALUES (18571, 454, 30);
 INSERT INTO `item_mods` VALUES (18572, 452, 4);
@@ -21032,6 +21039,19 @@ INSERT INTO `item_mods` VALUES (28587, 148, 1); -- Leathercraft Success Rate 1%
 INSERT INTO `item_mods` VALUES (28587, 149, 1); -- Bonecraft Success Rate 1%
 INSERT INTO `item_mods` VALUES (28587, 150, 1); -- Alchemy Success Rate 1%
 INSERT INTO `item_mods` VALUES (28587, 151, 1); -- Cooking Success Rate 1%
+
+-- -------------------------------------------------------
+-- Lightreaver
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (20858, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (20858, 10, 7); -- VIT+7 
+INSERT INTO `item_mods` VALUES (20858, 25, 20); -- Accuracy+20
+INSERT INTO `item_mods` VALUES (20858, 73, 5); -- "Store TP"+5
+INSERT INTO `item_mods` VALUES (20858, 431, 1); -- Additional Effect: DEATH
+-- Not implemented: INSERT INTO `item_mods` VALUES (20858, ?, ?); -- SoA "Great Axe skill +242"
+-- Not implemented: INSERT INTO `item_mods` VALUES (20858, ?, ?); -- SoA "Parrying skill +242"
+-- Not implemented: INSERT INTO `item_mods` VALUES (20858, ?, ?); -- SoA "Magic Accuracy skill +188"
+-- Not implemented: INSERT INTO `item_mods` VALUES (20858, ?, ?); -- item level 119
 
 -- -------------------------------------------------------
 --  Vespid Mantle
