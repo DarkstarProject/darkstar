@@ -463,52 +463,54 @@ void CAIMobDummy::ActionDropItems()
 						PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
 					}
 
-					if (WELL512::irand() % 100 < 20 && PChar->PTreasurePool->CanAddSeal())
-					{
-						//RULES: Only 1 kind may drop per mob
-						if(m_PMob->GetMLevel() < 50){ //b.seal only
-							PChar->PTreasurePool->AddItem(1126, m_PMob);
-						}
-						else if(m_PMob->GetMLevel() < 70){ //b.seal & k.seal only
-							if(WELL512::irand()%2 == 0){
-								PChar->PTreasurePool->AddItem(1126, m_PMob);
-							}
-							else{
-								PChar->PTreasurePool->AddItem(1127, m_PMob);
-							}
-						}
-						else if(m_PMob->GetMLevel() < 75){ //b.seal & k.seal & k.crest
-							switch(WELL512::irand()%3){
-							case 0:
-								PChar->PTreasurePool->AddItem(1126, m_PMob);
-								break;
-							case 1:
-								PChar->PTreasurePool->AddItem(1127, m_PMob);
-								break;
-							case 2:
-								PChar->PTreasurePool->AddItem(2955, m_PMob);
-								break;
-							}
-						}
-						else if(m_PMob->GetMLevel() >= 75){ //all 4
-							switch(WELL512::irand()%4){
-							case 0:
-								PChar->PTreasurePool->AddItem(1126, m_PMob);
-								break;
-							case 1:
-								PChar->PTreasurePool->AddItem(1127, m_PMob);
-								break;
-							case 2:
-								PChar->PTreasurePool->AddItem(2955, m_PMob);
-								break;
-							case 3:
-								PChar->PTreasurePool->AddItem(2956, m_PMob);
-								break;
-							}
-						}
-					}
-				}
-			}
+                    if (WELL512::irand() % 100 < 20 && PChar->PTreasurePool->CanAddSeal())
+                    {
+                    //RULES: Only 1 kind may drop per mob
+                        if (m_PMob->GetMLevel() >= 75 && luautils::IsExpansionEnabled("ABYSSEA")) //all 4 types
+                        {
+                            switch (WELL512::irand() % 4)
+                            {
+                            case 0:
+                                PChar->PTreasurePool->AddItem(1126, m_PMob);
+                                break;
+                            case 1:
+                                PChar->PTreasurePool->AddItem(1127, m_PMob);
+                                break;
+                            case 2:
+                                PChar->PTreasurePool->AddItem(2955, m_PMob);
+                                break;
+                            case 3:
+                                PChar->PTreasurePool->AddItem(2956, m_PMob);
+                                break;
+                            }
+                        }
+                        else if (m_PMob->GetMLevel() >= 70 && luautils::IsExpansionEnabled("ABYSSEA")) //b.seal & k.seal & k.crest
+                        {
+                            switch (WELL512::irand() % 3)
+                            {
+                            case 0:
+                                PChar->PTreasurePool->AddItem(1126, m_PMob);
+                                break;
+                            case 1:
+                                PChar->PTreasurePool->AddItem(1127, m_PMob);
+                                break;
+                            case 2:
+                                PChar->PTreasurePool->AddItem(2955, m_PMob);
+                                break;
+                            }
+                        }
+                        else if (m_PMob->GetMLevel() >= 50) //b.seal & k.seal only
+                        {
+                            if (WELL512::irand() % 2 == 0)
+                                PChar->PTreasurePool->AddItem(1126, m_PMob);
+                            else
+                                PChar->PTreasurePool->AddItem(1127, m_PMob);
+                        }
+                        else //b.seal only
+                            PChar->PTreasurePool->AddItem(1126, m_PMob);
+                    }
+                }
+            }
 
 			PChar->setWeaponSkillKill(false);
 			m_PMob->StatusEffectContainer->KillAllStatusEffect();
