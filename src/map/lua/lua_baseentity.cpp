@@ -4067,7 +4067,6 @@ inline int32 CLuaBaseEntity::costume(lua_State *L)
             PChar->status   != STATUS_DISAPPEAR)
         {
             PChar->m_Costum = costum;
-            PChar->status   = STATUS_UPDATE;
             PChar->updatemask |= UPDATE_HP;
             PChar->pushPacket(new CCharUpdatePacket(PChar));
         }
@@ -4099,7 +4098,6 @@ inline int32 CLuaBaseEntity::costume2(lua_State *L)
 			PChar->status != STATUS_DISAPPEAR)
 		{
 			PChar->m_Monstrosity = model;
-			PChar->status = STATUS_UPDATE;
             PChar->updatemask |= UPDATE_LOOK;
 			PChar->pushPacket(new CCharAppearancePacket(PChar));
 		}
@@ -5543,8 +5541,8 @@ inline int32 CLuaBaseEntity::lockEquipSlot(lua_State *L)
     PChar->pushPacket(new CCharAppearancePacket(PChar));
 	PChar->pushPacket(new CEquipPacket(0, SLOT, LOC_INVENTORY));
     PChar->pushPacket(new CCharJobsPacket(PChar));
+    PChar->updatemask |= UPDATE_LOOK;
 
-    if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
     return 0;
 }
 
@@ -5570,7 +5568,6 @@ inline int32 CLuaBaseEntity::unlockEquipSlot(lua_State *L)
     PChar->m_EquipBlock &= ~(1 << SLOT);
     PChar->pushPacket(new CCharJobsPacket(PChar));
 
-    if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
     return 0;
 }
 

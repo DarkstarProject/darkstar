@@ -179,7 +179,6 @@ void UnequipAllBlueSpells(CCharEntity* PChar)
             PChar->delModifiers(&PSpell->modList);
         }
     }
-    PChar->status = STATUS_UPDATE;
     charutils::BuildingCharTraitsTable(PChar);
 	PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
 	PChar->pushPacket(new CCharJobExtraPacket(PChar, false));

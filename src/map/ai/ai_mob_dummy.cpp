@@ -610,7 +610,7 @@ void CAIMobDummy::ActionSpawn()
 		m_PMob->m_THLvl = 0;
 		m_PMob->m_ItemStolen = false;
         m_PMob->m_DropItemTime = 1000;
-		m_PMob->status = m_PMob->allegiance == ALLEGIANCE_MOB ? STATUS_UPDATE : STATUS_NORMAL;
+		m_PMob->status = m_PMob->allegiance == ALLEGIANCE_MOB ? STATUS_MOB : STATUS_NORMAL;
 		m_PMob->animation = ANIMATION_NONE;
 		m_PMob->HideName(false);
         m_PMob->ResetLocalVars();

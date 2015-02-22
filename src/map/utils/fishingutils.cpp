@@ -125,7 +125,6 @@ void StartFishing(CCharEntity* PChar)
 		return;
 	}
 
-	PChar->status = STATUS_UPDATE;
 	PChar->animation = ANIMATION_FISHING_START;
     PChar->updatemask |= UPDATE_HP;
 
@@ -440,8 +439,6 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 		}
 		break;
 	}
-
-	PChar->status = STATUS_UPDATE;
 			
 	PChar->pushPacket(new CCharUpdatePacket(PChar));
 	PChar->pushPacket(new CCharSyncPacket(PChar));

@@ -456,7 +456,6 @@ void CParty::AddMember(CBattleEntity* PEntity, Sql_t* sql)
 
             charutils::SaveCharStats(PChar);
 
-		    PChar->status = STATUS_UPDATE;
 		    PChar->pushPacket(new CMenuConfigPacket(PChar));
 		    PChar->pushPacket(new CCharUpdatePacket(PChar));
 		    PChar->pushPacket(new CCharSyncPacket(PChar));

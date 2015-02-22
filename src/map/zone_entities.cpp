@@ -386,7 +386,7 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
 
 		float CurrentDistance = distance(PChar->loc.p, PCurrentMob->loc.p);
 
-		if (PCurrentMob->status == STATUS_UPDATE &&
+		if (PCurrentMob->status == STATUS_MOB &&
 			CurrentDistance < 50)
 		{
 			if (MOB == PChar->SpawnMOBList.end() ||
@@ -431,7 +431,7 @@ void CZoneEntities::SpawnPETs(CCharEntity* PChar)
 		CPetEntity* PCurrentPet = (CPetEntity*)it->second;
 		SpawnIDList_t::iterator PET = PChar->SpawnPETList.lower_bound(PCurrentPet->id);
 
-		if ((PCurrentPet->status == STATUS_NORMAL || PCurrentPet->status == STATUS_UPDATE) &&
+		if ((PCurrentPet->status == STATUS_NORMAL || PCurrentPet->status == STATUS_MOB) &&
 			distance(PChar->loc.p, PCurrentPet->loc.p) < 50)
 		{
 			if (PET == PChar->SpawnPETList.end() ||
@@ -461,7 +461,7 @@ void CZoneEntities::SpawnNPCs(CCharEntity* PChar)
             CNpcEntity* PCurrentNpc = (CNpcEntity*)it->second;
             SpawnIDList_t::iterator NPC = PChar->SpawnNPCList.lower_bound(PCurrentNpc->id);
 
-            if (PCurrentNpc->status == STATUS_NORMAL || PCurrentNpc->status == STATUS_UPDATE)
+            if (PCurrentNpc->status == STATUS_NORMAL || PCurrentNpc->status == STATUS_MOB)
             {
                 if (distance(PChar->loc.p, PCurrentNpc->loc.p) < 50)
                 {

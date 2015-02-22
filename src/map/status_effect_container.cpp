@@ -362,7 +362,6 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
             {
                 UpdateStatusIcons();
             }
-            if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
 			if( m_POwner->health.maxhp != 0) //make sure we're not in the middle of logging in
 			{
@@ -418,8 +417,6 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 		PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
         PChar->PLatentEffectContainer->CheckLatentsRollSong(HasStatusEffectByFlag(EFFECTFLAG_SONG | EFFECTFLAG_ROLL));
 		PChar->UpdateHealth();
-
-        if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
         PChar->pushPacket(new CCharHealthPacket(PChar));
         PChar->pushPacket(new CCharSyncPacket(PChar));

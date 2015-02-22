@@ -374,7 +374,7 @@ void CBattlefield::cleanup(){
 	for(int i=0; i<m_NpcList.size(); i++){
 		m_NpcList.at(i)->loc.zone->PushPacket(m_NpcList.at(i), CHAR_INRANGE, new CEntityAnimationPacket(m_NpcList.at(i), CEntityAnimationPacket::FADE_OUT));
 		m_NpcList.at(i)->animation = ANIMATION_DEATH;
-		m_NpcList.at(i)->status = STATUS_UPDATE;
+		m_NpcList.at(i)->status = STATUS_MOB;
 		m_NpcList.at(i)->loc.zone->PushPacket(m_NpcList.at(i), CHAR_INRANGE, new CEntityUpdatePacket(m_NpcList.at(i), ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 	//wipe npc list

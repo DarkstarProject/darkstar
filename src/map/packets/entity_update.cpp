@@ -77,7 +77,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 		WBUFB(data,(0x1D)-4) = PEntity->speedsub;
 	}
 
-    if (PEntity->allegiance == ALLEGIANCE_PLAYER && PEntity->status == STATUS_UPDATE)
+    if (PEntity->allegiance == ALLEGIANCE_PLAYER && PEntity->status == STATUS_MOB)
         WBUFB(data, (0x20) - 4) = STATUS_NORMAL;
     else
         WBUFB(data, (0x20) - 4) = PEntity->status;

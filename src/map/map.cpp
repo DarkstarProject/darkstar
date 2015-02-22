@@ -770,7 +770,6 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                 PChar->updatemask |= UPDATE_HP;
                 if (PChar->status == STATUS_NORMAL)
                 {
-                    PChar->status = STATUS_UPDATE;
                     PChar->loc.zone->SpawnPCs(PChar);
                 }
             }
@@ -841,7 +840,6 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 
             if (PChar->status == STATUS_NORMAL)
             {
-                PChar->status = STATUS_UPDATE;
                 PChar->loc.zone->SpawnPCs(PChar);
             }
             charutils::SaveCharStats(PChar);

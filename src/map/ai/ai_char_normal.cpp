@@ -303,7 +303,6 @@ void CAICharNormal::ActionEngage()
                     m_ActionType = ACTION_ATTACK;
                     m_LastMeleeTime = m_Tick - m_PChar->m_Weapons[SLOT_MAIN]->getDelay() + 1500;
 
-                    m_PChar->status = STATUS_UPDATE;
                     m_PChar->animation = ANIMATION_ATTACK;
                     m_PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(true);
                     m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
@@ -389,8 +388,6 @@ void CAICharNormal::ActionDisengage()
     m_PBattleTarget = NULL;
     m_PBattleSubTarget = NULL;
 
-    if (m_PChar->status != STATUS_DISAPPEAR)
-        m_PChar->status = STATUS_UPDATE;
     m_PChar->animation = ANIMATION_NONE;
     m_PChar->updatemask |= UPDATE_HP;
     m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));

@@ -110,7 +110,6 @@ void CAICharCharm::ActionEngage()
     m_ActionType = ACTION_ATTACK;
     m_LastMeleeTime = m_Tick - m_PChar->m_Weapons[SLOT_MAIN]->getDelay() + 1500;
 
-    m_PChar->status = STATUS_UPDATE;
     m_PChar->animation = ANIMATION_ATTACK;
     m_PChar->updatemask |= UPDATE_HP;
     return;
@@ -123,8 +122,6 @@ void CAICharCharm::ActionDisengage()
     m_PBattleTarget = NULL;
     m_PBattleSubTarget = NULL;
 
-    if (m_PChar->status != STATUS_DISAPPEAR)
-        m_PChar->status = STATUS_UPDATE;
     m_PChar->animation = ANIMATION_NONE;
 
     if (m_PChar->PPet != NULL && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)

@@ -42,7 +42,8 @@ enum ENTITYTYPE
 enum STATUSTYPE
 {
 	STATUS_NORMAL			= 0,
-	STATUS_UPDATE			= 1,
+    STATUS_MOB              = 1,
+	//STATUS_UPDATE			= 1,
 	STATUS_DISAPPEAR		= 2,
 	STATUS_3				= 3,
 	STATUS_4				= 4,

@@ -504,7 +504,7 @@ void SmallPacket0x015(map_session_data_t* session, CCharEntity* PChar, int8* dat
             (PChar->loc.p.z != RBUFF(data, (0x0C))) ||
             (PChar->m_TargID != RBUFW(data, (0x16))));
 
-        bool isUpdate = moved || PChar->status == STATUS_UPDATE;
+        bool isUpdate = moved || PChar->updatemask & UPDATE_POS;
 
         if (!PChar->isCharmed)
         {
@@ -525,7 +525,6 @@ void SmallPacket0x015(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
         if (isUpdate)
         {
-            PChar->status = STATUS_NORMAL;
             PChar->loc.zone->SpawnPCs(PChar);
             PChar->loc.zone->SpawnNPCs(PChar);
         }
@@ -778,7 +777,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
     break;
     case 0x12: // dismount
     {
-        PChar->status = STATUS_UPDATE;
         PChar->animation = ANIMATION_NONE;
         PChar->updatemask |= UPDATE_HP;
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
@@ -2312,8 +2310,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    if (PChar->status != STATUS_NORMAL &&
-        PChar->status != STATUS_UPDATE)
+    if (PChar->status != STATUS_NORMAL)
         return;
 
     uint8 slotID = RBUFB(data, (0x04));        // inventory slot
@@ -2339,8 +2336,7 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x051(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    if (PChar->status != STATUS_NORMAL &&
-        PChar->status != STATUS_UPDATE)
+    if (PChar->status != STATUS_NORMAL)
         return;
 
     for (uint8 i = 0; i < RBUFB(data, (0x04)); i++)
@@ -2539,7 +2535,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
     uint8  town = RBUFB(data, (0x16));
     uint8  zone = RBUFB(data, (0x17));
 
-    if (PChar->status == STATUS_NORMAL || PChar->status == STATUS_UPDATE)
+    if (PChar->status == STATUS_NORMAL)
     {
         PChar->status = STATUS_DISAPPEAR;
         PChar->loc.boundary = 0;
@@ -2585,7 +2581,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 PChar->pushPacket(new CMessageSystemPacket(0, 0, 2));
                 PChar->pushPacket(new CCSPositionPacket(PChar));
 
-                PChar->status = STATUS_UPDATE;
+                PChar->status = STATUS_NORMAL;
                 return;
             }
             else
@@ -2601,7 +2597,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     PChar->pushPacket(new CMessageSystemPacket(0, 0, 2));
                     PChar->pushPacket(new CCSPositionPacket(PChar));
 
-                    PChar->status = STATUS_UPDATE;
+                    PChar->status = STATUS_NORMAL;
                     return;
                 }
                 else
@@ -3897,8 +3893,6 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
             charutils::SaveCharStats(PChar);
             charutils::SaveCharEquip(PChar);
 
-            if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
-
             PChar->pushPacket(new CLinkshellEquipPacket(PChar, lsNum));
             PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
         }
@@ -3997,7 +3991,6 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, int8* dat
     charutils::SaveCharStats(PChar);
 
     PChar->updatemask |= UPDATE_HP;
-    PChar->status = STATUS_UPDATE;
     PChar->pushPacket(new CMenuConfigPacket(PChar));
     PChar->pushPacket(new CCharUpdatePacket(PChar));
     return;
@@ -4347,14 +4340,12 @@ void SmallPacket0x0E7(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING, 0, 0, 10, 0));
         }
-        PChar->status = STATUS_UPDATE;
         PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEAVEGAME, 0, ExitType, 5, 0));
     }
     else if (PChar->animation == ANIMATION_HEALING)
     {
         if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEAVEGAME))
         {
-            PChar->status = STATUS_UPDATE;
             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
         }
         else {
@@ -4401,7 +4392,6 @@ void SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, int8* dat
             {
                 PChar->PPet->PBattleAI->SetCurrentAction(ACTION_ROAMING);
             }
-            PChar->status = STATUS_UPDATE;
             PChar->PBattleAI->CheckCurrentAction(gettick());
             PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING, 0, 0, 10, 0));
             return;
@@ -4411,7 +4401,6 @@ void SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, int8* dat
     break;
     case ANIMATION_HEALING:
     {
-        PChar->status = STATUS_UPDATE;
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
     }
     break;
@@ -4430,7 +4419,6 @@ void SmallPacket0x0EA(map_session_data_t* session, CCharEntity* PChar, int8* dat
     if (PChar->status != STATUS_NORMAL)
         return;
 
-    PChar->status = STATUS_UPDATE;
     PChar->animation = (PChar->animation == ANIMATION_SIT ? ANIMATION_NONE : ANIMATION_SIT);
     PChar->updatemask |= UPDATE_HP;
     PChar->pushPacket(new CCharUpdatePacket(PChar));
@@ -4925,7 +4913,6 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 }
             }
             charutils::BuildingCharTraitsTable(PChar);
-            PChar->status = STATUS_UPDATE;
             PChar->pushPacket(new CCharAbilitiesPacket(PChar));
             PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
             PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
@@ -4949,7 +4936,6 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 if (spell != NULL) {
                     blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
                     charutils::BuildingCharTraitsTable(PChar);
-                    PChar->status = STATUS_UPDATE;
                     PChar->pushPacket(new CCharAbilitiesPacket(PChar));
                     PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
                     PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
@@ -5181,7 +5167,6 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* dat
         }
         if (BazaarIsEmpty)
         {
-            PTarget->status = STATUS_UPDATE;
             PTarget->updatemask |= UPDATE_HP;
             PTarget->nameflags.flags &= ~FLAG_BAZAAR;
             PTarget->pushPacket(new CCharUpdatePacket(PTarget));
@@ -5208,7 +5193,6 @@ void SmallPacket0x109(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
         if ((PItem != NULL) && (PItem->getCharPrice() != 0))
         {
-            PChar->status = STATUS_UPDATE;
             PChar->nameflags.flags |= FLAG_BAZAAR;
             PChar->updatemask |= UPDATE_HP;
             PChar->pushPacket(new CCharUpdatePacket(PChar));
@@ -5263,7 +5247,6 @@ void SmallPacket0x10B(map_session_data_t* session, CCharEntity* PChar, int8* dat
     }
     PChar->BazaarCustomers.clear();
 
-    PChar->status = STATUS_UPDATE;
     PChar->nameflags.flags &= ~FLAG_BAZAAR;
     PChar->updatemask |= UPDATE_HP;
     PChar->pushPacket(new CCharUpdatePacket(PChar));

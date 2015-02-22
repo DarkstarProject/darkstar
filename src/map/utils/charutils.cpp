@@ -1750,7 +1750,6 @@ namespace charutils
             if (equipSlotID == 0 && PSubItem && !PSubItem->IsShield())
                 RemoveSub(PChar);
 
-            PChar->status = STATUS_UPDATE;
             PChar->pushPacket(new CEquipPacket(slotID, equipSlotID, containerID));
         }
         else
@@ -1791,7 +1790,6 @@ namespace charutils
                     PChar->PLatentEffectContainer->AddLatentEffects(&PItem->latentList, ((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
                     PChar->PLatentEffectContainer->CheckLatentsEquip(equipSlotID);
 
-                    PChar->status = STATUS_UPDATE;
                     PChar->pushPacket(new CEquipPacket(slotID, equipSlotID, containerID));
                     PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NODROP));
                 }
@@ -2701,7 +2699,7 @@ namespace charutils
     {
         DSP_DEBUG_BREAK_IF(PChar->objtype != TYPE_PC);
 
-        if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
+        PChar->updatemask |= UPDATE_HP;
 
         if (PChar->PParty != NULL)
         {
