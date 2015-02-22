@@ -379,6 +379,10 @@ void CParty::PopMember(CBattleEntity* PEntity)
     {
         if (m_PAlliance)
         {
+            if (m_PAlliance->getMainParty() == this)
+            {
+                m_PAlliance->setMainParty(NULL);
+            }
             for (uint8 i = 0; i < m_PAlliance->partyList.size(); ++i)
             {
                 if (this == m_PAlliance->partyList.at(i))
@@ -655,6 +659,22 @@ void CParty::ReloadParty()
                 if (!found)
                 {
                     m_PQuaterMaster = NULL;
+                }
+            }
+            if (memberflags & ALLIANCE_LEADER && m_PAlliance)
+            {
+                bool found = false;
+                for (auto member : members)
+                {
+                    if (member->id == charid)
+                    {
+                        m_PAlliance->setMainParty(this);
+                        found = true;
+                    }
+                }
+                if (!found)
+                {
+                    m_PAlliance->setMainParty(NULL);
                 }
             }
         }
