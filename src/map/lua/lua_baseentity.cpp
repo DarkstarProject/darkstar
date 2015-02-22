@@ -640,6 +640,9 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
     {
         if( !lua_isnil(L,5) && lua_isnumber(L,5) )
         {
+            if ((uint16)lua_tointeger(L, 5) >= MAX_ZONEID)
+                return 0;
+
             ((CCharEntity*)m_PBaseEntity)->loc.destination = (uint16)lua_tointeger(L,5);
             ((CCharEntity*)m_PBaseEntity)->status = STATUS_DISAPPEAR;
             ((CCharEntity*)m_PBaseEntity)->loc.boundary = 0;

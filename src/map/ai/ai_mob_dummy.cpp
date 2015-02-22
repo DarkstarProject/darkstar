@@ -463,52 +463,54 @@ void CAIMobDummy::ActionDropItems()
 						PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
 					}
 
-					if (WELL512::irand() % 100 < 20 && PChar->PTreasurePool->CanAddSeal())
-					{
-						//RULES: Only 1 kind may drop per mob
-						if(m_PMob->GetMLevel() < 50){ //b.seal only
-							PChar->PTreasurePool->AddItem(1126, m_PMob);
-						}
-						else if(m_PMob->GetMLevel() < 70){ //b.seal & k.seal only
-							if(WELL512::irand()%2 == 0){
-								PChar->PTreasurePool->AddItem(1126, m_PMob);
-							}
-							else{
-								PChar->PTreasurePool->AddItem(1127, m_PMob);
-							}
-						}
-						else if(m_PMob->GetMLevel() < 75){ //b.seal & k.seal & k.crest
-							switch(WELL512::irand()%3){
-							case 0:
-								PChar->PTreasurePool->AddItem(1126, m_PMob);
-								break;
-							case 1:
-								PChar->PTreasurePool->AddItem(1127, m_PMob);
-								break;
-							case 2:
-								PChar->PTreasurePool->AddItem(2955, m_PMob);
-								break;
-							}
-						}
-						else if(m_PMob->GetMLevel() >= 75){ //all 4
-							switch(WELL512::irand()%4){
-							case 0:
-								PChar->PTreasurePool->AddItem(1126, m_PMob);
-								break;
-							case 1:
-								PChar->PTreasurePool->AddItem(1127, m_PMob);
-								break;
-							case 2:
-								PChar->PTreasurePool->AddItem(2955, m_PMob);
-								break;
-							case 3:
-								PChar->PTreasurePool->AddItem(2956, m_PMob);
-								break;
-							}
-						}
-					}
-				}
-			}
+                    if (WELL512::irand() % 100 < 20 && PChar->PTreasurePool->CanAddSeal())
+                    {
+                    //RULES: Only 1 kind may drop per mob
+                        if (m_PMob->GetMLevel() >= 75 && luautils::IsExpansionEnabled("ABYSSEA")) //all 4 types
+                        {
+                            switch (WELL512::irand() % 4)
+                            {
+                            case 0:
+                                PChar->PTreasurePool->AddItem(1126, m_PMob);
+                                break;
+                            case 1:
+                                PChar->PTreasurePool->AddItem(1127, m_PMob);
+                                break;
+                            case 2:
+                                PChar->PTreasurePool->AddItem(2955, m_PMob);
+                                break;
+                            case 3:
+                                PChar->PTreasurePool->AddItem(2956, m_PMob);
+                                break;
+                            }
+                        }
+                        else if (m_PMob->GetMLevel() >= 70 && luautils::IsExpansionEnabled("ABYSSEA")) //b.seal & k.seal & k.crest
+                        {
+                            switch (WELL512::irand() % 3)
+                            {
+                            case 0:
+                                PChar->PTreasurePool->AddItem(1126, m_PMob);
+                                break;
+                            case 1:
+                                PChar->PTreasurePool->AddItem(1127, m_PMob);
+                                break;
+                            case 2:
+                                PChar->PTreasurePool->AddItem(2955, m_PMob);
+                                break;
+                            }
+                        }
+                        else if (m_PMob->GetMLevel() >= 50) //b.seal & k.seal only
+                        {
+                            if (WELL512::irand() % 2 == 0)
+                                PChar->PTreasurePool->AddItem(1126, m_PMob);
+                            else
+                                PChar->PTreasurePool->AddItem(1127, m_PMob);
+                        }
+                        else //b.seal only
+                            PChar->PTreasurePool->AddItem(1126, m_PMob);
+                    }
+                }
+            }
 
 			PChar->setWeaponSkillKill(false);
 			m_PMob->StatusEffectContainer->KillAllStatusEffect();
@@ -922,9 +924,20 @@ void CAIMobDummy::ActionAbilityUsing()
     if (!(m_PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
 	    m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 
-	//TODO: Any checks whilst the monster is preparing.
-	//NOTE: RANGE CHECKS ETC ONLY ARE DONE AFTER THE ABILITY HAS FINISHED PREPARING.
-	//      THE ONLY CHECK IN HERE SHOULD BE WITH STUN/SLEEP/TERROR/ETC
+    if (battleutils::IsParalyzed(m_PMob))
+    {
+        m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob, m_PBattleSubTarget, 0, 0, MSGBASIC_IS_PARALYZED));
+        m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+        ActionAbilityInterrupt();
+        return;
+    }
+    else if (battleutils::IsIntimidated(m_PMob, m_PBattleSubTarget))
+    {
+        m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob, m_PBattleSubTarget, 0, 0, MSGBASIC_IS_INTIMIDATED));
+        m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+        ActionAbilityInterrupt();
+        return;
+    }
 
 	if (m_Tick >= m_LastActionTime + m_PMobSkill->getActivationTime())
     {
@@ -1111,7 +1124,7 @@ void CAIMobDummy::ActionAbilityInterrupt()
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 
     m_PMobSkill = NULL;
-    m_ActionType = ACTION_ATTACK;
+    m_ActionType = (m_PMob->StatusEffectContainer->HasPreventActionEffect() ? ACTION_SLEEP : ACTION_ATTACK);
 }
 
 /************************************************************************

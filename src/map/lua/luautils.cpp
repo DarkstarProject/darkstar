@@ -761,7 +761,7 @@ int32 SpawnMob(lua_State* L)
 			CLuaInstance* PLuaInstance = Lunar<CLuaInstance>::check(L, 2);
 			PMob = (CMobEntity*)PLuaInstance->GetInstance()->GetEntity(mobid & 0xFFF, TYPE_MOB);
 		}
-		else
+        else if (((mobid >> 12) & 0x0FFF) < MAX_ZONEID)
 		{
 			PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 		}
