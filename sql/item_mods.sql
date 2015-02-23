@@ -188,7 +188,7 @@ INSERT INTO `item_mods` VALUES (10285, 1, 61); -- DEF:61
 INSERT INTO `item_mods` VALUES (10285, 25, 15); -- Accuracy+15
 INSERT INTO `item_mods` VALUES (10285, 289, 7); -- "Subtle Blow"+7
 INSERT INTO `item_mods` VALUES (10285, 73, 5); -- "Store TP"+5
-INSERT INTO `item_mods` VALUES (10285, 384, 50); -- Haste+5%
+INSERT INTO `item_mods` VALUES (10285, 384, 51); -- Haste+5%
 
 -- -------------------------------------------------------
 -- Seidr Cotehardie
@@ -436,7 +436,7 @@ INSERT INTO `item_mods` VALUES (10326, 5, 40); -- MP+40
 INSERT INTO `item_mods` VALUES (10326, 23, 6); -- Attack+6
 INSERT INTO `item_mods` VALUES (10326, 25, 6); -- Accuracy+6
 INSERT INTO `item_mods` VALUES (10326, 170, 1); -- Enhances "Fast Cast" effect
-INSERT INTO `item_mods` VALUES (10326, 384, 50); -- Haste+5%
+INSERT INTO `item_mods` VALUES (10326, 384, 51); -- Haste+5%
 
 -- -------------------------------------------------------
 -- Adhara Seraweels
@@ -921,7 +921,7 @@ INSERT INTO `item_mods` VALUES (10438, 5, 35); -- MP+35
 INSERT INTO `item_mods` VALUES (10438, 25, 7); -- Accuracy+7
 INSERT INTO `item_mods` VALUES (10438, 23, 7); -- Attack+7
 INSERT INTO `item_mods` VALUES (10438, 30, 7); -- Magic Accuracy+7
-INSERT INTO `item_mods` VALUES (10438, 384, 50); -- Haste+5%
+INSERT INTO `item_mods` VALUES (10438, 384, 51); -- Haste+5%
 
 -- -------------------------------------------------------
 -- Adhara Turban
@@ -940,7 +940,7 @@ INSERT INTO `item_mods` VALUES (10440, 1, 46); -- DEF:46
 INSERT INTO `item_mods` VALUES (10440, 2, 42); -- HP+42
 INSERT INTO `item_mods` VALUES (10440, 5, 42); -- MP+42
 INSERT INTO `item_mods` VALUES (10440, 27, -6); -- Enmity-6
-INSERT INTO `item_mods` VALUES (10440, 384, 50); -- Haste+5%
+INSERT INTO `item_mods` VALUES (10440, 384, 51); -- Haste+5%
 -- [NOT CODED] Automaton: Haste+6%
 
 -- -------------------------------------------------------
@@ -949,7 +949,7 @@ INSERT INTO `item_mods` VALUES (10440, 384, 50); -- Haste+5%
 INSERT INTO `item_mods` VALUES (10441, 1, 38); -- DEF:38
 INSERT INTO `item_mods` VALUES (10441, 30, 4); -- Magic Accuracy+4
 INSERT INTO `item_mods` VALUES (10441, 119, 4); -- Singing skill +4
-INSERT INTO `item_mods` VALUES (10441, 384, 50); -- Haste+5%
+INSERT INTO `item_mods` VALUES (10441, 384, 51); -- Haste+5%
 INSERT INTO `item_mods` VALUES (10441, 455, -3); -- Song recast delay -3
 
 -- -------------------------------------------------------
@@ -968,7 +968,7 @@ INSERT INTO `item_mods` VALUES (10443, 2, -40); -- HP-40
 INSERT INTO `item_mods` VALUES (10443, 9, 10); -- DEX+10
 INSERT INTO `item_mods` VALUES (10443, 11, 10); -- AGI+10
 INSERT INTO `item_mods` VALUES (10443, 68, 8); -- Evasion+8
-INSERT INTO `item_mods` VALUES (10443, 384, 60); -- Haste+6%
+INSERT INTO `item_mods` VALUES (10443, 384, 61); -- Haste+6%
 
 -- -------------------------------------------------------
 -- Zouave's Beret
@@ -986,7 +986,7 @@ INSERT INTO `item_mods` VALUES (10445, 1, 33); -- DEF:33
 INSERT INTO `item_mods` VALUES (10445, 8, 13); -- STR+13
 INSERT INTO `item_mods` VALUES (10445, 25, 7); -- Accuracy+7
 INSERT INTO `item_mods` VALUES (10445, 23, 7); -- Attack+7
-INSERT INTO `item_mods` VALUES (10445, 384, 60); -- Haste+6%
+INSERT INTO `item_mods` VALUES (10445, 384, 61); -- Haste+6%
 
 -- -------------------------------------------------------
 -- Ahriman Cap
@@ -1200,7 +1200,7 @@ INSERT INTO `item_mods` VALUES (10486, 1, 68); -- DEF:68
 INSERT INTO `item_mods` VALUES (10486, 2, 45); -- HP+45
 INSERT INTO `item_mods` VALUES (10486, 23, 10); -- Attack+10
 INSERT INTO `item_mods` VALUES (10486, 302, 2); -- "Triple Attack"+2%
-INSERT INTO `item_mods` VALUES (10486, 384, 50); -- Haste+5%
+INSERT INTO `item_mods` VALUES (10486, 384, 51); -- Haste+5%
 
 -- -------------------------------------------------------
 -- Hedera Cotehardie
@@ -1210,7 +1210,7 @@ INSERT INTO `item_mods` VALUES (10487, 2, 60); -- HP+60
 INSERT INTO `item_mods` VALUES (10487, 5, 60); -- MP+60
 INSERT INTO `item_mods` VALUES (10487, 30, 10); -- Magic Accuracy+10
 INSERT INTO `item_mods` VALUES (10487, 296, 6); -- "Conserve MP"+6
-INSERT INTO `item_mods` VALUES (10487, 384, 50); -- Haste+5%
+INSERT INTO `item_mods` VALUES (10487, 384, 51); -- Haste+5%
 
 -- -------------------------------------------------------
 -- Kudzu Aketon
@@ -1601,7 +1601,7 @@ INSERT INTO `item_mods` VALUES (11043, 8, 1); -- STR+1
 INSERT INTO `item_mods` VALUES (11065, 1, 36); -- def
 INSERT INTO `item_mods` VALUES (11065, 8, 7); -- STR
 INSERT INTO `item_mods` VALUES (11065, 289, 10); -- subtle blow
-INSERT INTO `item_mods` VALUES (11065, 384, 7); -- Haste gear
+INSERT INTO `item_mods` VALUES (11065, 384, 71); -- Haste gear
 INSERT INTO `item_mods` VALUES (11065, 428, 20); -- TODO: Perfect counter: Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
 
 INSERT INTO `item_mods` VALUES (11066, 374, 10);
@@ -1635,7 +1635,7 @@ INSERT INTO `item_mods` VALUES (11075, 73, 8);
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (11076, 1, 37); -- def
 INSERT INTO `item_mods` VALUES (11076, 9, 10); -- dex
-INSERT INTO `item_mods` VALUES (11076, 384, 60); -- haste
+INSERT INTO `item_mods` VALUES (11076, 384, 61); -- haste
 INSERT INTO `item_mods` VALUES (11076, 259, 5); -- dual wield
 
 INSERT INTO `item_mods` VALUES (11078, 369, 2);
@@ -1700,7 +1700,7 @@ INSERT INTO `item_mods` VALUES (11103, 369, 1);
 INSERT INTO `item_mods` VALUES (11105, 1, 27); -- def
 INSERT INTO `item_mods` VALUES (11105, 25, 10); -- accuracy
 INSERT INTO `item_mods` VALUES (11105, 80, 7); -- H2H
-INSERT INTO `item_mods` VALUES (11105, 384, 3); -- Haste gear
+INSERT INTO `item_mods` VALUES (11105, 384, 30); -- Haste gear
 -- TODO enhances tactical guard effect
 
 -- -------------------------------------------------------
@@ -1710,7 +1710,7 @@ INSERT INTO `item_mods` VALUES (11110, 1, 35); -- def
 INSERT INTO `item_mods` VALUES (11110, 8, 11); -- STR
 INSERT INTO `item_mods` VALUES (11110, 10, 11); -- VIT
 INSERT INTO `item_mods` VALUES (11110, 82, 7); -- Sword skill
-INSERT INTO `item_mods` VALUES (11110, 384, 4); -- haste gear
+INSERT INTO `item_mods` VALUES (11110, 384, 40); -- haste gear
 -- TODO: Enhances "Shield Defense Bonus" effect
 
 INSERT INTO `item_mods` VALUES (11113, 443, 1);
@@ -1741,14 +1741,14 @@ INSERT INTO `item_mods` VALUES (11125, 25, 10); -- accuracy
 INSERT INTO `item_mods` VALUES (11125, 23, 10); -- attack
 INSERT INTO `item_mods` VALUES (11125, 73, 6); -- Store tp
 INSERT INTO `item_mods` VALUES (11125, 292, 7); -- kick attacks
-INSERT INTO `item_mods` VALUES (11125, 384, 6); -- Haste gear
+INSERT INTO `item_mods` VALUES (11125, 384, 61); -- Haste gear
 
 -- -------------------------------------------------------
 -- Creed Cuisses +2
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (11130, 1, 58); -- def
 INSERT INTO `item_mods` VALUES (11130, 2, 50); -- HP
-INSERT INTO `item_mods` VALUES (11130, 384, 4); -- haste gear
+INSERT INTO `item_mods` VALUES (11130, 384, 40); -- haste gear
 INSERT INTO `item_mods` VALUES (11130, 82, 7); -- Sword skill
 INSERT INTO `item_mods` VALUES (11130, 161, -5); -- Physical Damage % multiplier
 INSERT INTO `item_mods` VALUES (11130, 427, 1); -- TODO: Reduces Enmity decrease when taking physical damage
@@ -1772,7 +1772,7 @@ INSERT INTO `item_mods` VALUES (11135, 73, 7);
 INSERT INTO `item_mods` VALUES (11136, 1, 48); -- def
 INSERT INTO `item_mods` VALUES (11136, 25, 8); -- accuracy
 INSERT INTO `item_mods` VALUES (11136, 88, 5); -- katana skill
-INSERT INTO `item_mods` VALUES (11136, 384, 70); -- haste
+INSERT INTO `item_mods` VALUES (11136, 384, 71); -- haste
 
 -- -------------------------------------------------------
 -- Tantra Gaiters +2
@@ -1797,7 +1797,7 @@ INSERT INTO `item_mods` VALUES (11149, 303, 1);
 INSERT INTO `item_mods` VALUES (11150, 1, 30); -- def
 INSERT INTO `item_mods` VALUES (11150, 25, 14); -- accuracy
 INSERT INTO `item_mods` VALUES (11150, 27, 7); -- enmity
-INSERT INTO `item_mods` VALUES (11150, 384, 4); -- haste gear
+INSERT INTO `item_mods` VALUES (11150, 384, 40); -- haste gear
 
 INSERT INTO `item_mods` VALUES (11153, 370, 2);
 INSERT INTO `item_mods` VALUES (11153, 451, 1);
@@ -1824,7 +1824,7 @@ INSERT INTO `item_mods` VALUES (11156, 384, 40); -- haste
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (11165, 1, 34); -- def
 INSERT INTO `item_mods` VALUES (11165, 289, 8); -- subtle blow
-INSERT INTO `item_mods` VALUES (11165, 384, 6); -- Haste gear
+INSERT INTO `item_mods` VALUES (11165, 384, 61); -- Haste gear
 INSERT INTO `item_mods` VALUES (11165, 428, 10); -- TODO: Perfect counter: Raises weapon damage by 10 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
 
 INSERT INTO `item_mods` VALUES (11166, 374, 7);
@@ -1854,7 +1854,7 @@ INSERT INTO `item_mods` VALUES (11174, 422, 5); -- Double shot proc rate
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (11176, 1, 35); -- def
 INSERT INTO `item_mods` VALUES (11176, 9, 7); -- dex
-INSERT INTO `item_mods` VALUES (11176, 384, 50); -- haste
+INSERT INTO `item_mods` VALUES (11176, 384, 51); -- haste
 
 INSERT INTO `item_mods` VALUES (11178, 369, 1);
 
@@ -1910,7 +1910,7 @@ INSERT INTO `item_mods` VALUES (11196, 165, 3); -- crit rate
 INSERT INTO `item_mods` VALUES (11205, 1, 25); -- def
 INSERT INTO `item_mods` VALUES (11205, 25, 8); -- accuracy
 INSERT INTO `item_mods` VALUES (11205, 80, 5); -- H2H
-INSERT INTO `item_mods` VALUES (11205, 384, 2); -- Haste gear
+INSERT INTO `item_mods` VALUES (11205, 384, 20); -- Haste gear
 -- TODO enhances tactical guard effect
 
 -- -------------------------------------------------------
@@ -1920,7 +1920,7 @@ INSERT INTO `item_mods` VALUES (11210, 1, 33); -- def
 INSERT INTO `item_mods` VALUES (11210, 8, 7); -- STR
 INSERT INTO `item_mods` VALUES (11210, 10, 7); -- VIT
 INSERT INTO `item_mods` VALUES (11210, 82, 5); -- Sword skill
-INSERT INTO `item_mods` VALUES (11210, 384, 3); -- haste gear
+INSERT INTO `item_mods` VALUES (11210, 384, 30); -- haste gear
 -- TODO: Enhances "Shield Defense Bonus" effect
 
 -- -------------------------------------------------------
@@ -1947,7 +1947,7 @@ INSERT INTO `item_mods` VALUES (11216, 68, 6); -- evasion
 INSERT INTO `item_mods` VALUES (11225, 1, 47); -- def
 INSERT INTO `item_mods` VALUES (11225, 25, 7); -- accuracy
 INSERT INTO `item_mods` VALUES (11225, 23, 7); -- attack
-INSERT INTO `item_mods` VALUES (11225, 384, 5); -- Haste gear
+INSERT INTO `item_mods` VALUES (11225, 384, 51); -- Haste gear
 INSERT INTO `item_mods` VALUES (11225, 292, 5); -- kick attacks
 
 -- -------------------------------------------------------
@@ -1956,7 +1956,7 @@ INSERT INTO `item_mods` VALUES (11225, 292, 5); -- kick attacks
 INSERT INTO `item_mods` VALUES (11230, 1, 56); -- def
 INSERT INTO `item_mods` VALUES (11230, 2, 30); -- HP
 INSERT INTO `item_mods` VALUES (11230, 161, -3); -- Physical Damage %
-INSERT INTO `item_mods` VALUES (11230, 384, 3); -- haste gear multiplier
+INSERT INTO `item_mods` VALUES (11230, 384, 30); -- haste gear multiplier
 INSERT INTO `item_mods` VALUES (11230, 427, 1); -- TODO: Reduces Enmity decrease when taking physical damage
 
 -- -------------------------------------------------------
@@ -1974,7 +1974,7 @@ INSERT INTO `item_mods` VALUES (11234, 73, 6); -- Store tp
 INSERT INTO `item_mods` VALUES (11236, 1, 46); -- def
 INSERT INTO `item_mods` VALUES (11236, 25, 6); -- accuracy
 INSERT INTO `item_mods` VALUES (11236, 88, 3); -- katana skill
-INSERT INTO `item_mods` VALUES (11236, 384, 60); -- haste
+INSERT INTO `item_mods` VALUES (11236, 384, 61); -- haste
 
 -- -------------------------------------------------------
 -- Tantra Gaiters +1
@@ -1998,7 +1998,7 @@ INSERT INTO `item_mods` VALUES (11246, 484, 5);
 INSERT INTO `item_mods` VALUES (11250, 1, 28); -- def
 INSERT INTO `item_mods` VALUES (11250, 25, 10); -- accuracy
 INSERT INTO `item_mods` VALUES (11250, 27, 4); -- enmity
-INSERT INTO `item_mods` VALUES (11250, 384, 3); -- haste gear
+INSERT INTO `item_mods` VALUES (11250, 384, 30); -- haste gear
 
 INSERT INTO `item_mods` VALUES (11253, 370, 1);
 -- -------------------------------------------------------
@@ -2855,7 +2855,7 @@ INSERT INTO `item_mods` VALUES (11502, 1, 28); -- def 28
 INSERT INTO `item_mods` VALUES (11502, 25, -10); -- accuracy -10
 INSERT INTO `item_mods` VALUES (11502, 58, -15); -- thunder -15
 INSERT INTO `item_mods` VALUES (11502, 59, 15); -- water +15
-INSERT INTO `item_mods` VALUES (11502, 384, 60); -- haste 6%
+INSERT INTO `item_mods` VALUES (11502, 384, 61); -- haste 6%
 
 INSERT INTO `item_mods` VALUES (11503, 1, 37);
 INSERT INTO `item_mods` VALUES (11503, 8, 5);
@@ -3428,7 +3428,7 @@ INSERT INTO `item_mods` VALUES (11766, 27, -4);
 INSERT INTO `item_mods` VALUES (11766, 168, 10);
 INSERT INTO `item_mods` VALUES (11770, 2, -10);
 INSERT INTO `item_mods` VALUES (11770, 5, -10);
-INSERT INTO `item_mods` VALUES (11770, 384, 70);
+INSERT INTO `item_mods` VALUES (11770, 384, 71);
 INSERT INTO `item_mods` VALUES (11771, 1, 9);
 INSERT INTO `item_mods` VALUES (11771, 8, 6);
 INSERT INTO `item_mods` VALUES (11771, 9, 6);
@@ -3532,7 +3532,7 @@ INSERT INTO `item_mods` VALUES (11808, 23, 14);
 INSERT INTO `item_mods` VALUES (11808, 85, 5);
 INSERT INTO `item_mods` VALUES (11808, 86, 5);
 INSERT INTO `item_mods` VALUES (11808, 89, 5);
-INSERT INTO `item_mods` VALUES (11808, 384, 50);
+INSERT INTO `item_mods` VALUES (11808, 384, 51);
 INSERT INTO `item_mods` VALUES (11809, 1, 28);
 INSERT INTO `item_mods` VALUES (11809, 8, 6);
 INSERT INTO `item_mods` VALUES (11809, 9, 6);
@@ -3585,7 +3585,7 @@ INSERT INTO `item_mods` VALUES (11824, 23, 15);
 INSERT INTO `item_mods` VALUES (11824, 85, 6);
 INSERT INTO `item_mods` VALUES (11824, 86, 6);
 INSERT INTO `item_mods` VALUES (11824, 89, 6);
-INSERT INTO `item_mods` VALUES (11824, 384, 60);
+INSERT INTO `item_mods` VALUES (11824, 384, 61);
 INSERT INTO `item_mods` VALUES (11825, 1, 29);
 INSERT INTO `item_mods` VALUES (11825, 8, 7);
 INSERT INTO `item_mods` VALUES (11825, 9, 7);
@@ -6290,7 +6290,7 @@ INSERT INTO `item_mods` VALUES (12817, 1, 15);
 INSERT INTO `item_mods` VALUES (12818, 1, 42);
 INSERT INTO `item_mods` VALUES (12818, 9, 15);
 INSERT INTO `item_mods` VALUES (12818, 58, 50);
-INSERT INTO `item_mods` VALUES (12818, 384, 50);
+INSERT INTO `item_mods` VALUES (12818, 384, 51);
 INSERT INTO `item_mods` VALUES (12819, 1, 30);
 INSERT INTO `item_mods` VALUES (12819, 58, -5);
 INSERT INTO `item_mods` VALUES (12819, 59, 5);
@@ -12370,7 +12370,7 @@ INSERT INTO `item_mods` VALUES (14875, 1, 18);
 INSERT INTO `item_mods` VALUES (14875, 5, 15);
 INSERT INTO `item_mods` VALUES (14875, 13, 7);
 INSERT INTO `item_mods` VALUES (14875, 27, -3);
-INSERT INTO `item_mods` VALUES (14875, 384, 50);
+INSERT INTO `item_mods` VALUES (14875, 384, 51);
 INSERT INTO `item_mods` VALUES (14876, 1, 19);
 INSERT INTO `item_mods` VALUES (14876, 8, 4);
 INSERT INTO `item_mods` VALUES (14876, 73, 8);
@@ -13994,7 +13994,7 @@ INSERT INTO `item_mods` VALUES (15269, 5, 12);
 INSERT INTO `item_mods` VALUES (15269, 57, 8);
 INSERT INTO `item_mods` VALUES (15270, 2, 30);
 INSERT INTO `item_mods` VALUES (15270, 5, 30);
-INSERT INTO `item_mods` VALUES (15270, 384, 50);
+INSERT INTO `item_mods` VALUES (15270, 384, 51);
 INSERT INTO `item_mods` VALUES (15286, 1, 3);
 INSERT INTO `item_mods` VALUES (15286, 25, 5);
 INSERT INTO `item_mods` VALUES (15286, 68, -5);
@@ -18596,7 +18596,7 @@ INSERT INTO `item_mods` VALUES (17575, 13, 5);
 INSERT INTO `item_mods` VALUES (17575, 14, -1);
 INSERT INTO `item_mods` VALUES (17576, 8, 5);
 INSERT INTO `item_mods` VALUES (17576, 13, 6);
-INSERT INTO `item_mods` VALUES (17577, 384, 50);
+INSERT INTO `item_mods` VALUES (17577, 384, 51);
 INSERT INTO `item_mods` VALUES (17578, 5, 24);
 INSERT INTO `item_mods` VALUES (17578, 71, 2);
 INSERT INTO `item_mods` VALUES (17580, 12, 1);
@@ -20591,7 +20591,7 @@ INSERT INTO `item_mods` VALUES (27174, 23, 15);
 INSERT INTO `item_mods` VALUES (27174, 29, 1);
 INSERT INTO `item_mods` VALUES (27174, 31, 51);
 INSERT INTO `item_mods` VALUES (27174, 68, 25);
-INSERT INTO `item_mods` VALUES (27174, 384, 50);
+INSERT INTO `item_mods` VALUES (27174, 384, 51);
 INSERT INTO `item_mods` VALUES (27174, 508, 35);
 
 INSERT INTO `item_mods` VALUES (27651, 374, 11);
@@ -20747,7 +20747,7 @@ INSERT INTO `item_mods` VALUES (28068, 9, 10); -- dex 10
 INSERT INTO `item_mods` VALUES (28068, 23, 14); -- attack 14
 INSERT INTO `item_mods` VALUES (28068, 25, 7); -- Accuracy+7
 INSERT INTO `item_mods` VALUES (28068, 289, 5); -- subtle blow+5
-INSERT INTO `item_mods` VALUES (28068, 384, 50); -- haste 5%
+INSERT INTO `item_mods` VALUES (28068, 384, 51); -- haste 5%
 
 -- -------------------------------------------------------
 -- Ate's Flanchard
@@ -20918,7 +20918,7 @@ INSERT INTO `item_mods` VALUES (28405, 68, 16); -- Evasion+16
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (28462, 1, 13); -- DEF:13
 INSERT INTO `item_mods` VALUES (28462, 25, 15); -- Accuracy+15
-INSERT INTO `item_mods` VALUES (28462, 384, 70); -- Haste+7%
+INSERT INTO `item_mods` VALUES (28462, 384, 71); -- Haste+7%
 INSERT INTO `item_mods` VALUES (28462, 315, 10); -- Pet: Accuracy+10
 -- [NOT CODED] Pet: Haste+5%
 -- [NOT CODED] Pet: Ranged Accuracy+10
@@ -20929,19 +20929,19 @@ INSERT INTO `item_mods` VALUES (28462, 315, 10); -- Pet: Accuracy+10
 INSERT INTO `item_mods` VALUES (28463, 1, 10); -- DEF:10
 INSERT INTO `item_mods` VALUES (28463, 9, 7); -- DEX+7
 INSERT INTO `item_mods` VALUES (28463, 23, 14); -- Attack+14
-INSERT INTO `item_mods` VALUES (28463, 384, 70); -- Haste+7%
+INSERT INTO `item_mods` VALUES (28463, 384, 71); -- Haste+7%
 
 -- -------------------------------------------------------
 -- Pya'ekue Belt
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (28464, 1, 14); -- DEF:14
-INSERT INTO `item_mods` VALUES (28464, 384, 90); -- Haste+9%
+INSERT INTO `item_mods` VALUES (28464, 384, 92); -- Haste+9%
 
 -- -------------------------------------------------------
 -- Pya'ekue Belt +1
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (28465, 1, 15); -- DEF:15
-INSERT INTO `item_mods` VALUES (28465, 384, 100); -- Haste+10%
+INSERT INTO `item_mods` VALUES (28465, 384, 102); -- Haste+10%
 
 -- -------------------------------------------------------
 -- Slime Earring
