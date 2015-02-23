@@ -10005,8 +10005,21 @@ INSERT INTO `item_mods` VALUES (14175, 13, -11);
 INSERT INTO `item_mods` VALUES (14175, 23, 6);
 INSERT INTO `item_mods` VALUES (14175, 25, 4);
 INSERT INTO `item_mods` VALUES (14175, 68, -4);
-INSERT INTO `item_mods` VALUES (14176, 1, 1);
-INSERT INTO `item_mods` VALUES (14177, 1, 3);
+
+-- -------------------------------------------------------
+-- Field Boots
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (14176, 1, 1); -- DEF+1
+INSERT INTO `item_mods` VALUES (14176, 513, 73); -- Improves harvesting results, 73 = 0.073
+INSERT INTO `item_mods` VALUES (14176, 515, 73); -- Improves mining results, 73 = 0.073
+
+-- -------------------------------------------------------
+-- Worker Boots
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (14177, 1, 3); -- DEF+3
+INSERT INTO `item_mods` VALUES (14177, 513, 73); -- Improves harvesting results, 73 = 0.073
+INSERT INTO `item_mods` VALUES (14177, 515, 73); -- Improves mining results, 73 = 0.073
+
 INSERT INTO `item_mods` VALUES (14178, 1, 23);
 INSERT INTO `item_mods` VALUES (14178, 23, 5);
 INSERT INTO `item_mods` VALUES (14178, 68, 5);
@@ -10488,8 +10501,20 @@ INSERT INTO `item_mods` VALUES (14296, 10, -11);
 INSERT INTO `item_mods` VALUES (14296, 23, 7);
 INSERT INTO `item_mods` VALUES (14296, 25, 7);
 INSERT INTO `item_mods` VALUES (14296, 68, -7);
-INSERT INTO `item_mods` VALUES (14297, 1, 1);
-INSERT INTO `item_mods` VALUES (14298, 1, 8);
+
+-- ------------------------------------------
+-- Field Hose
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (14297, 1, 1); -- DEF+1
+INSERT INTO `item_mods` VALUES (14297, 513, 73); -- Improves harvesting results, 73 = 0.073
+INSERT INTO `item_mods` VALUES (14297, 514, 73); -- Improves logging results, 73 = 0.073
+
+-- ------------------------------------------
+-- Worker Hose
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (14298, 1, 8); -- DEF+8
+INSERT INTO `item_mods` VALUES (14298, 513, 73); -- Improves harvesting results, 73 = 0.073
+INSERT INTO `item_mods` VALUES (14298, 514, 73); -- Improves logging results, 73 = 0.073
 
 -- ------------------------------------------
 -- Rasetsu Hakama
@@ -10800,8 +10825,22 @@ INSERT INTO `item_mods` VALUES (14373, 1, 45);
 INSERT INTO `item_mods` VALUES (14373, 10, 4);
 INSERT INTO `item_mods` VALUES (14373, 25, 5);
 INSERT INTO `item_mods` VALUES (14373, 68, 5);
-INSERT INTO `item_mods` VALUES (14374, 1, 2);
-INSERT INTO `item_mods` VALUES (14375, 1, 12);
+
+-- ------------------------------------------
+-- Field Tunica
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (14374, 1, 2); -- DEF+2
+INSERT INTO `item_mods` VALUES (14374, 513, 73); -- Improves harvesting results, 73 = 0.073
+INSERT INTO `item_mods` VALUES (14374, 514, 73); -- Improves logging results, 73 = 0.073
+INSERT INTO `item_mods` VALUES (14374, 515, 73); -- Improves mining results, 73 = 0.073
+
+-- ------------------------------------------
+-- Worker Tunica
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (14375, 1, 12); -- DEF+12
+INSERT INTO `item_mods` VALUES (14375, 513, 73); -- Improves harvesting results, 73 = 0.073
+INSERT INTO `item_mods` VALUES (14375, 514, 73); -- Improves logging results, 73 = 0.073
+INSERT INTO `item_mods` VALUES (14375, 515, 73); -- Improves mining results, 73 = 0.073
 
 -- ------------------------------------------
 -- Rasetsu Samue
@@ -12141,8 +12180,21 @@ INSERT INTO `item_mods` VALUES (14816, 12, -11);
 INSERT INTO `item_mods` VALUES (14816, 23, 11);
 INSERT INTO `item_mods` VALUES (14816, 25, 5);
 INSERT INTO `item_mods` VALUES (14816, 68, -5);
-INSERT INTO `item_mods` VALUES (14817, 1, 1);
-INSERT INTO `item_mods` VALUES (14818, 1, 3);
+
+-- ------------------------------------------
+-- Field Gloves
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (14817, 1, 1); -- DEF+1
+INSERT INTO `item_mods` VALUES (14817, 514, 73); -- Improves logging results, 73 = 0.073
+INSERT INTO `item_mods` VALUES (14817, 515, 73); -- Improves mining results, 73 = 0.073
+
+-- ------------------------------------------
+-- Worker Gloves
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (14818, 1, 3); -- DEF+3
+INSERT INTO `item_mods` VALUES (14818, 514, 73); -- Improves logging results, 73 = 0.073
+INSERT INTO `item_mods` VALUES (14818, 515, 73); -- Improves mining results, 73 = 0.073
+
 INSERT INTO `item_mods` VALUES (14819, 1, 24);
 INSERT INTO `item_mods` VALUES (14819, 23, 2);
 INSERT INTO `item_mods` VALUES (14819, 68, 10);
