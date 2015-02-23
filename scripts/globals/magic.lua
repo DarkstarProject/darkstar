@@ -1097,7 +1097,9 @@ function calculateMagicBurst(caster, spell, target)
     end
 
     -- Add in Magic Burst Bonus Modifier
-    burst = burst + (caster:getMod(MOD_MAG_BURST_BONUS) / 100);
+    if (burst > 1) then
+        burst = burst + (caster:getMod(MOD_MAG_BURST_BONUS) / 100);
+    end
     
     return burst;
 end;
