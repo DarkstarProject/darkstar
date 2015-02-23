@@ -1601,7 +1601,7 @@ INSERT INTO `item_mods` VALUES (11043, 8, 1); -- STR+1
 INSERT INTO `item_mods` VALUES (11065, 1, 36); -- def
 INSERT INTO `item_mods` VALUES (11065, 8, 7); -- STR
 INSERT INTO `item_mods` VALUES (11065, 289, 10); -- subtle blow
-INSERT INTO `item_mods` VALUES (11065, 384, 7); -- Haste gear
+INSERT INTO `item_mods` VALUES (11065, 384, 70); -- Haste gear
 INSERT INTO `item_mods` VALUES (11065, 428, 20); -- TODO: Perfect counter: Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
 
 INSERT INTO `item_mods` VALUES (11066, 374, 10);
@@ -1700,7 +1700,7 @@ INSERT INTO `item_mods` VALUES (11103, 369, 1);
 INSERT INTO `item_mods` VALUES (11105, 1, 27); -- def
 INSERT INTO `item_mods` VALUES (11105, 25, 10); -- accuracy
 INSERT INTO `item_mods` VALUES (11105, 80, 7); -- H2H
-INSERT INTO `item_mods` VALUES (11105, 384, 3); -- Haste gear
+INSERT INTO `item_mods` VALUES (11105, 384, 30); -- Haste gear
 -- TODO enhances tactical guard effect
 
 -- -------------------------------------------------------
@@ -1710,7 +1710,7 @@ INSERT INTO `item_mods` VALUES (11110, 1, 35); -- def
 INSERT INTO `item_mods` VALUES (11110, 8, 11); -- STR
 INSERT INTO `item_mods` VALUES (11110, 10, 11); -- VIT
 INSERT INTO `item_mods` VALUES (11110, 82, 7); -- Sword skill
-INSERT INTO `item_mods` VALUES (11110, 384, 4); -- haste gear
+INSERT INTO `item_mods` VALUES (11110, 384, 40); -- haste gear
 -- TODO: Enhances "Shield Defense Bonus" effect
 
 INSERT INTO `item_mods` VALUES (11113, 443, 1);
@@ -1741,14 +1741,14 @@ INSERT INTO `item_mods` VALUES (11125, 25, 10); -- accuracy
 INSERT INTO `item_mods` VALUES (11125, 23, 10); -- attack
 INSERT INTO `item_mods` VALUES (11125, 73, 6); -- Store tp
 INSERT INTO `item_mods` VALUES (11125, 292, 7); -- kick attacks
-INSERT INTO `item_mods` VALUES (11125, 384, 6); -- Haste gear
+INSERT INTO `item_mods` VALUES (11125, 384, 60); -- Haste gear
 
 -- -------------------------------------------------------
 -- Creed Cuisses +2
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (11130, 1, 58); -- def
 INSERT INTO `item_mods` VALUES (11130, 2, 50); -- HP
-INSERT INTO `item_mods` VALUES (11130, 384, 4); -- haste gear
+INSERT INTO `item_mods` VALUES (11130, 384, 40); -- haste gear
 INSERT INTO `item_mods` VALUES (11130, 82, 7); -- Sword skill
 INSERT INTO `item_mods` VALUES (11130, 161, -5); -- Physical Damage % multiplier
 INSERT INTO `item_mods` VALUES (11130, 427, 1); -- TODO: Reduces Enmity decrease when taking physical damage
@@ -1797,7 +1797,7 @@ INSERT INTO `item_mods` VALUES (11149, 303, 1);
 INSERT INTO `item_mods` VALUES (11150, 1, 30); -- def
 INSERT INTO `item_mods` VALUES (11150, 25, 14); -- accuracy
 INSERT INTO `item_mods` VALUES (11150, 27, 7); -- enmity
-INSERT INTO `item_mods` VALUES (11150, 384, 4); -- haste gear
+INSERT INTO `item_mods` VALUES (11150, 384, 40); -- haste gear
 
 INSERT INTO `item_mods` VALUES (11153, 370, 2);
 INSERT INTO `item_mods` VALUES (11153, 451, 1);
@@ -1824,7 +1824,7 @@ INSERT INTO `item_mods` VALUES (11156, 384, 40); -- haste
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (11165, 1, 34); -- def
 INSERT INTO `item_mods` VALUES (11165, 289, 8); -- subtle blow
-INSERT INTO `item_mods` VALUES (11165, 384, 6); -- Haste gear
+INSERT INTO `item_mods` VALUES (11165, 384, 60); -- Haste gear
 INSERT INTO `item_mods` VALUES (11165, 428, 10); -- TODO: Perfect counter: Raises weapon damage by 10 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
 
 INSERT INTO `item_mods` VALUES (11166, 374, 7);
@@ -1910,7 +1910,7 @@ INSERT INTO `item_mods` VALUES (11196, 165, 3); -- crit rate
 INSERT INTO `item_mods` VALUES (11205, 1, 25); -- def
 INSERT INTO `item_mods` VALUES (11205, 25, 8); -- accuracy
 INSERT INTO `item_mods` VALUES (11205, 80, 5); -- H2H
-INSERT INTO `item_mods` VALUES (11205, 384, 2); -- Haste gear
+INSERT INTO `item_mods` VALUES (11205, 384, 20); -- Haste gear
 -- TODO enhances tactical guard effect
 
 -- -------------------------------------------------------
@@ -1920,7 +1920,7 @@ INSERT INTO `item_mods` VALUES (11210, 1, 33); -- def
 INSERT INTO `item_mods` VALUES (11210, 8, 7); -- STR
 INSERT INTO `item_mods` VALUES (11210, 10, 7); -- VIT
 INSERT INTO `item_mods` VALUES (11210, 82, 5); -- Sword skill
-INSERT INTO `item_mods` VALUES (11210, 384, 3); -- haste gear
+INSERT INTO `item_mods` VALUES (11210, 384, 30); -- haste gear
 -- TODO: Enhances "Shield Defense Bonus" effect
 
 -- -------------------------------------------------------
@@ -1947,7 +1947,7 @@ INSERT INTO `item_mods` VALUES (11216, 68, 6); -- evasion
 INSERT INTO `item_mods` VALUES (11225, 1, 47); -- def
 INSERT INTO `item_mods` VALUES (11225, 25, 7); -- accuracy
 INSERT INTO `item_mods` VALUES (11225, 23, 7); -- attack
-INSERT INTO `item_mods` VALUES (11225, 384, 5); -- Haste gear
+INSERT INTO `item_mods` VALUES (11225, 384, 50); -- Haste gear
 INSERT INTO `item_mods` VALUES (11225, 292, 5); -- kick attacks
 
 -- -------------------------------------------------------
@@ -1956,7 +1956,7 @@ INSERT INTO `item_mods` VALUES (11225, 292, 5); -- kick attacks
 INSERT INTO `item_mods` VALUES (11230, 1, 56); -- def
 INSERT INTO `item_mods` VALUES (11230, 2, 30); -- HP
 INSERT INTO `item_mods` VALUES (11230, 161, -3); -- Physical Damage %
-INSERT INTO `item_mods` VALUES (11230, 384, 3); -- haste gear multiplier
+INSERT INTO `item_mods` VALUES (11230, 384, 30); -- haste gear multiplier
 INSERT INTO `item_mods` VALUES (11230, 427, 1); -- TODO: Reduces Enmity decrease when taking physical damage
 
 -- -------------------------------------------------------
@@ -1998,7 +1998,7 @@ INSERT INTO `item_mods` VALUES (11246, 484, 5);
 INSERT INTO `item_mods` VALUES (11250, 1, 28); -- def
 INSERT INTO `item_mods` VALUES (11250, 25, 10); -- accuracy
 INSERT INTO `item_mods` VALUES (11250, 27, 4); -- enmity
-INSERT INTO `item_mods` VALUES (11250, 384, 3); -- haste gear
+INSERT INTO `item_mods` VALUES (11250, 384, 30); -- haste gear
 
 INSERT INTO `item_mods` VALUES (11253, 370, 1);
 -- -------------------------------------------------------
