@@ -542,6 +542,7 @@ enum MODIFIER
 
     MOD_MAGIC_ABSORB              = 0x1DB, // (modId = 475)
     MOD_MAGIC_NULL                = 0x1DC, // (modId = 476)
+    MOD_PHYS_ABSORB               = 0x200, // (modId = 512)
 
     MOD_ADDITIONAL_EFFECT         = 0x1AF, // (modId = 431)
     MOD_ITEM_SPIKES_TYPE          = 0x1F3, // Type spikes an item has (modId = 499)
@@ -564,15 +565,15 @@ enum MODIFIER
 
     MOD_CHOCOBO_RIDING_TIME       = 0x1FF, // Increases chocobo riding time (modId = 511)
 
-    // MOD_SPARE = 0x200, // (modId = 512)
     // MOD_SPARE = 0x201, // (modId = 513)
     // MOD_SPARE = 0x202, // (modId = 514)
     // MOD_SPARE = 0x203, // (modId = 515)
     // MOD_SPARE = 0x204, // (modId = 516)
+    // MOD_SPARE = 0x205, // (modId = 517)
 
 };
 
-#define MAX_MODIFIER 512
+#define MAX_MODIFIER 513
 
 
 

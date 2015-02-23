@@ -201,13 +201,9 @@ void TryAbsorbMPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage)
 ************************************************************************/
 bool TryAbsorbHPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage)
 {
-	if (battleEntity->objtype != TYPE_PC)
-	{
-		return false;
-	}
-
 	// Do chance to absorb damage
-	if (WELL512::irand()%100 < battleEntity->getMod(MOD_ABSORB_DMG_CHANCE))
+	if (WELL512::irand()%100 < battleEntity->getMod(MOD_ABSORB_DMG_CHANCE) || 
+        WELL512::irand() % 100 < battleEntity->getMod(MOD_PHYS_ABSORB))
 	{
 		return true;
 	}
