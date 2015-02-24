@@ -1225,11 +1225,12 @@ MOD_CLAMMING_REDUCED_INCIDENTS= 0x1FE -- (modId = 510)
 
 MOD_CHOCOBO_RIDING_TIME       = 0x1FF -- Increases chocobo riding time (modId = 511)
 
--- MOD_SPARE = 0x200 -- (modId = 512)
--- MOD_SPARE = 0x201 -- (modId = 513)
--- MOD_SPARE = 0x202 -- (modId = 514)
--- MOD_SPARE = 0x203 -- (modId = 515)
+MOD_HARVESTING_RESULT         = 0x201 -- Improves harvesting results (modId = 513)
+MOD_LOGGING_RESULT            = 0x202 -- Improves logging results (modId = 514)
+MOD_MINNING_RESULT            = 0x203 -- Improves mining results (modId = 515)
+
 -- MOD_SPARE = 0x204 -- (modId = 516)
+-- MOD_SPARE = 0x205 -- (modId = 517
 
 ------------------------------------
 -- Merit Definitions
