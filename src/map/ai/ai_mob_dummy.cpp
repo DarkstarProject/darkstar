@@ -924,21 +924,6 @@ void CAIMobDummy::ActionAbilityUsing()
     if (!(m_PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
 	    m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 
-    if (battleutils::IsParalyzed(m_PMob))
-    {
-        m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob, m_PBattleSubTarget, 0, 0, MSGBASIC_IS_PARALYZED));
-        m_ActionType = ACTION_MOBABILITY_INTERRUPT;
-        ActionAbilityInterrupt();
-        return;
-    }
-    else if (battleutils::IsIntimidated(m_PMob, m_PBattleSubTarget))
-    {
-        m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob, m_PBattleSubTarget, 0, 0, MSGBASIC_IS_INTIMIDATED));
-        m_ActionType = ACTION_MOBABILITY_INTERRUPT;
-        ActionAbilityInterrupt();
-        return;
-    }
-
 	if (m_Tick >= m_LastActionTime + m_PMobSkill->getActivationTime())
     {
 		//Range check
