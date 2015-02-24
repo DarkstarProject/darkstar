@@ -16,9 +16,10 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
+	local base = mob:getMainLvl() + 0.05*mob:getMaxHP()*(skill:getTP()/100); --base is around 5~150 level depending
 
-    MobBuffMove(mob, EFFECT_MAGIC_SHIELD, 1, 0, 30);
-    skill:setMsg(0);
+    skill:setMsg(MobBuffMove(mob, EFFECT_EVASION_BOOST, base, 0, 180));
+    skill:setMsg(MobBuffMove(mob, EFFECT_ACCURACY_BOOST, base, 0, 180));
 
-	return 0;
+	return EFFECT_ACCURACY_BOOST;
 end;
