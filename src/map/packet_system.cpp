@@ -430,7 +430,6 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
     }
 
     charutils::SaveCharStats(PChar);
-    charutils::SaveCharPosition(PChar);
     charutils::SaveCharExp(PChar, PChar->GetMJob());
     charutils::SaveCharPoints(PChar);
 
@@ -724,7 +723,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->updatemask |= UPDATE_HP;
 
         PChar->clearPacketList();
-        PChar->pushPacket(new CServerIPPacket(PChar, 2, zoneutils::GetZoneIPP(PChar->loc.destination)));
+        charutils::SendToZone(PChar, 2, zoneutils::GetZoneIPP(PChar->loc.destination));
     }
     break;
     case 0x0C: // assist
@@ -795,7 +794,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->status = STATUS_DISAPPEAR;
             PChar->loc.boundary = 0;
             PChar->clearPacketList();
-            PChar->pushPacket(new CServerIPPacket(PChar, 2, zoneutils::GetZoneIPP(PChar->loc.destination)));
+            charutils::SendToZone(PChar, 2, zoneutils::GetZoneIPP(PChar->loc.destination));
         }
 
         PChar->m_hasTractor = 0;
@@ -2613,7 +2612,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     uint64 ipp = zoneutils::GetZoneIPP(PChar->loc.destination == 0 ? PChar->getZone() : PChar->loc.destination);
 
-    PChar->pushPacket(new CServerIPPacket(PChar, 2, ipp));
+    charutils::SendToZone(PChar, 2, ipp);
     return;
 }
 

@@ -165,6 +165,7 @@ namespace charutils
     void    SetPoints(CCharEntity* PChar, const char* type, int32 amount);
     int32   GetPoints(CCharEntity* PChar, const char* type);
     std::string GetConquestPointsName(CCharEntity* PChar);
+    void    SendToZone(CCharEntity* PChar, uint8 type, uint64 ipp);
 };
 
 #endif
