@@ -237,7 +237,7 @@ function doPhysicalWeaponskill(attacker, target, params)
     else
         finaldmg = finaldmg * target:getMod(MOD_SLASHRES) / 1000;
     end
-        
+    
 
 	attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
 	return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
@@ -631,48 +631,50 @@ end;
 
 --obtains alpha, used for working out WSC
 function getAlpha(level)
-alpha = 1.00;
-if (level <= 5) then
-	alpha = 1.00;
-elseif (level <= 11) then
-	alpha = 0.99;
-elseif (level <= 17) then
-	alpha = 0.98;
-elseif (level <= 23) then
-	alpha = 0.97;
-elseif (level <= 29) then
-	alpha = 0.96;
-elseif (level <= 35) then
-	alpha = 0.95;
-elseif (level <= 41) then
-	alpha = 0.94;
-elseif (level <= 47) then
-	alpha = 0.93;
-elseif (level <= 53) then
-	alpha = 0.92;
-elseif (level <= 59) then
-	alpha = 0.91;
-elseif (level <= 61) then
-	alpha = 0.90;
-elseif (level <= 63) then
-	alpha = 0.89;
-elseif (level <= 65) then
-	alpha = 0.88;
-elseif (level <= 67) then
-	alpha = 0.87;
-elseif (level <= 69) then
-	alpha = 0.86;
-elseif (level <= 71) then
-	alpha = 0.85;
-elseif (level <= 73) then
-	alpha = 0.84;
-elseif (level <= 75) then
-	alpha = 0.83;
-elseif (level <= 99) then
-	alpha = 0.85;
-end
-return alpha;
- end;
+    alpha = 1.00;
+    if (level <= 5) then
+        alpha = 1.00;
+    elseif (level <= 11) then
+        alpha = 0.99;
+    elseif (level <= 17) then
+        alpha = 0.98;
+    elseif (level <= 23) then
+        alpha = 0.97;
+    elseif (level <= 29) then
+        alpha = 0.96;
+    elseif (level <= 35) then
+        alpha = 0.95;
+    elseif (level <= 41) then
+        alpha = 0.94;
+    elseif (level <= 47) then
+        alpha = 0.93;
+    elseif (level <= 53) then
+        alpha = 0.92;
+    elseif (level <= 59) then
+        alpha = 0.91;
+    elseif (level <= 61) then
+        alpha = 0.90;
+    elseif (level <= 63) then
+        alpha = 0.89;
+    elseif (level <= 65) then
+        alpha = 0.88;
+    elseif (level <= 67) then
+        alpha = 0.87;
+    elseif (level <= 69) then
+        alpha = 0.86;
+    elseif (level <= 71) then
+        alpha = 0.85;
+    elseif (level <= 73) then
+        alpha = 0.84;
+    elseif (level <= 75) then
+        alpha = 0.83;
+    elseif (level < 99) then
+        alpha = 0.85;
+    else
+        alpha = 1; -- Retail has no alpha anymore!
+    end
+    return alpha;
+end;
 
  --params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
  function doRangedWeaponskill(attacker, target, params)

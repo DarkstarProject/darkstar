@@ -4061,6 +4061,11 @@ int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
 
 	damage = damage * resist;
 
+    if (attackutils::TryAbsorbHPfromPhysicalAttack(PDefender, damage))
+    {
+        damage = -damage;
+    }
+
 	// Handle Severe Damage Reduction Effects
 	damage = HandleSevereDamage(PDefender, damage);
     // Handle Fan Dance reduction effects
