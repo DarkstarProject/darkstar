@@ -3969,7 +3969,7 @@ INSERT INTO `item_mods` VALUES (11957, 5, 9); -- MP+9
 INSERT INTO `item_mods` VALUES (11957, 61, 9); -- [Element: Dark]+9
 
 -- -------------------------------------------------------
---Calmecac Trousers
+-- Calmecac Trousers
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (11958, 1, 46); -- DEF:46
 INSERT INTO `item_mods` VALUES (11958, 25, -8); -- Accuracy-8
