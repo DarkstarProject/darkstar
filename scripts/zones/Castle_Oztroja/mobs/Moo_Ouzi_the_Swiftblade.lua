@@ -9,6 +9,14 @@
 
 function onMobDeath(mob,killer)	
 
+	if(math.random((1),(100)) <= 14) then -- Hardcoded "this or this item" drop rate until implemented.
+		SetDropRate(1936,16936,1000); -- Demonic Sword
+		SetDropRate(1936,16935,0);
+	else
+		SetDropRate(1936,16936,0);
+		SetDropRate(1936,16935,1000); -- Barbarians Sword
+	end
+
     -- Set Moo_Ouzi_the_Swiftblade's Window Open Time
     wait = math.random((3600),(10800));
     SetServerVariable("[POP]Moo_Ouzi_the_Swiftblade", os.time(t) + wait); -- 1-3 hours
