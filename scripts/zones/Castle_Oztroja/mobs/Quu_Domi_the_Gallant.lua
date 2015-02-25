@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)	
+function onMobDeath(mob,killer)
 
 	if(math.random((1),(100)) <= 7) then -- Hardcoded "this or this item" drop rate until implemented.
 		SetDropRate(1936,15737,1000); -- Sarutobi Kyahan
@@ -21,7 +21,7 @@ function onMobDeath(mob,killer)
     wait = math.random((3600),(10800));
     SetServerVariable("[POP]Quu_Domi_the_Gallant", os.time(t) + wait); -- 1-3 hours
     DeterMob(mob:getID(), true);
-    
+
     -- Set PH back to normal, then set to respawn spawn
     PH = GetServerVariable("[PH]Quu_Domi_the_Gallant");
     SetServerVariable("[PH]Quu_Domi_the_Gallant", 0);
