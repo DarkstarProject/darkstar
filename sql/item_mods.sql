@@ -16095,7 +16095,7 @@ INSERT INTO `item_mods` VALUES (15964, 432, 3);
 INSERT INTO `item_mods` VALUES (15965, 2, 15);
 INSERT INTO `item_mods` VALUES (15965, 23, 5);
 INSERT INTO `item_mods` VALUES (15965, 68, 5);
-INSERT INTO `item_mods` VALUES (15965, 426, 3);
+INSERT INTO `item_mods` VALUES (15965, 516, 3);
 INSERT INTO `item_mods` VALUES (15966, 24, 2);
 
 -- -------------------------------------------------------

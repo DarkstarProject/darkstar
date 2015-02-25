@@ -318,7 +318,7 @@ enum MODIFIER
     MOD_TREASURE_HUNTER           = 0x12F, // Percent chance (modId = 303)
 
     // Paladin
-    MOD_ABSORB_DMG_TO_MP          = 0x1AA, // Absorbs a percentage of damage taken to MP. (modId = 426)
+    MOD_ABSORB_PHYSDMG_TO_MP      = 0x1AA, // Absorbs a percentage of physical damage taken to MP. (modId = 426)
     MOD_ENMITY_REDUCTION_PHYSICAL = 0x1AB, // TODO: Reduces Enmity decrease when taking physical damage (modId = 427)
     MOD_SHIELD_MASTERY_TP         = 0x1E5, // Shield mastery TP bonus when blocking with a shield (modId = 485)
 
@@ -543,6 +543,7 @@ enum MODIFIER
     MOD_MAGIC_ABSORB              = 0x1DB, // (modId = 475)
     MOD_MAGIC_NULL                = 0x1DC, // (modId = 476)
     MOD_PHYS_ABSORB               = 0x200, // (modId = 512)
+    MOD_ABSORB_DMG_TO_MP          = 0x204, // (modId = 516)  Unlike PLD gear mod, works on all damage types (Ethereal Earring)
 
     MOD_ADDITIONAL_EFFECT         = 0x1AF, // (modId = 431)
     MOD_ITEM_SPIKES_TYPE          = 0x1F3, // Type spikes an item has (modId = 499)
@@ -569,12 +570,11 @@ enum MODIFIER
     MOD_LOGGING_RESULT            = 0x202, // Improves logging results (modId = 514)
     MOD_MINNING_RESULT            = 0x203, // Improves mining results (modId = 515)
 
-    // MOD_SPARE = 0x204, // (modId = 516)
     // MOD_SPARE = 0x205, // (modId = 517)
 
 };
 
-#define MAX_MODIFIER 516
+#define MAX_MODIFIER 517
 
 
 

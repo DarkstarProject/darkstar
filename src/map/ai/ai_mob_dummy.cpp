@@ -1044,10 +1044,17 @@ void CAIMobDummy::ActionAbilityFinish()
                     SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, PWeaponSkill);
                     if (effect != SUBEFFECT_NONE)
                     {
-                        uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PMob, PTarget, Action.param);
-
-                        Action.addEffectParam = skillChainDamage;
-                        Action.addEffectMessage = 287 + effect;
+                        int32 skillChainDamage = battleutils::TakeSkillchainDamage(m_PMob, PTarget, Action.param);
+                        if (skillChainDamage < 0)
+                        {
+                            Action.addEffectParam = -skillChainDamage;
+                            Action.addEffectMessage = 384 + effect;
+                        }
+                        else
+                        {
+                            Action.addEffectParam = skillChainDamage;
+                            Action.addEffectMessage = 287 + effect;
+                        }
                         Action.additionalEffect = effect;
                     }
                 }
@@ -1619,7 +1626,7 @@ void CAIMobDummy::ActionAttack()
                                 Action.messageID = 33;
                                 Action.reaction = REACTION_HIT;
                                 Action.speceffect = SPECEFFECT_NONE;
-                                Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true);
+                                Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true, true);
                                 Action.spikesParam = Action.param;
                                 Action.spikesEffect = SUBEFFECT_COUNTER;
                                 if (m_PBattleTarget->objtype == TYPE_PC)
@@ -1713,28 +1720,13 @@ void CAIMobDummy::ActionAttack()
 							{
 								bool isBlocked = attackutils::IsBlocked(m_PMob, m_PBattleTarget);
 								if(isBlocked){ Action.reaction = REACTION_BLOCK; }
-								
 
-								// Try Null damage chance (The target)
-								if (WELL512::irand()%100 < m_PBattleTarget->getMod(MOD_NULL_PHYSICAL_DAMAGE) && m_PBattleTarget->objtype == TYPE_PC)
-								{
-									damage = 0;
-								}
-
-								// Try absorb HP chance (The target)
-								if (attackutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, damage))
-								{
-                                    Action.messageID = 373;
-                                    Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, -damage, isBlocked, SLOT_MAIN, 1, NULL, true);
-                                }
-                                else
+                                Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true);
+                                if (Action.param < 0)
                                 {
-                                    // Try to absorb MP (The target)
-                                    attackutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, damage);
-
-                                    Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true);
+                                    Action.param = -(Action.param);
+                                    Action.messageID = 373;
                                 }
-								m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);
 
 								// Block skill up
 								if(m_PBattleTarget->objtype == TYPE_PC && isBlocked || ((map_config.newstyle_skillups & NEWSTYLE_BLOCK) > 0))
@@ -1762,7 +1754,7 @@ void CAIMobDummy::ActionAttack()
                                 Action.messageID = 33;
                                 Action.reaction = REACTION_HIT;
                                 Action.speceffect = SPECEFFECT_NONE;
-                                Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true);
+                                Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true, true);
                                 Action.spikesParam = Action.param;
                                 Action.spikesEffect = SUBEFFECT_COUNTER;
 								if(m_PBattleTarget->objtype == TYPE_PC)

@@ -39,8 +39,6 @@ namespace attackutils
 	bool				IsParried(CBattleEntity*, CBattleEntity*);		// Is the attack parried.
 	bool				IsGuarded(CBattleEntity*, CBattleEntity*);		// Is the attack guarded.
 	bool				IsBlocked(CBattleEntity*, CBattleEntity*);		// Is the attack blocked.
-	void				TryAbsorbMPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage);
-	bool				TryAbsorbHPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage);
 };
 
 #endif

@@ -1129,7 +1129,7 @@ MOD_DOUBLE_SHOT_RATE		  = 0x1A6 -- The rate that double shot can proc
 MOD_VELOCITY_SNAPSHOT_BONUS	  = 0x1A7 -- Increases Snapshot whilst Velocity Shot is up.
 MOD_VELOCITY_RATT_BONUS		  = 0x1A8 -- Increases Ranged Attack whilst Velocity Shot is up.
 MOD_SHADOW_BIND_EXT		  	  = 0x1A9 -- Extends the time of shadowbind
-MOD_ABSORB_DMG_TO_MP		  = 0x1AA -- Absorbs a percentage of damage taken to MP.
+MOD_ABSORB_PHYSDMG_TO_MP      = 0x1AA -- Absorbs a percentage of physical damage taken to MP.
 MOD_ENMITY_REDUCTION_PHYSICAL = 0x1AB -- Reduces Enmity decrease when taking physical damage
 MOD_SHIELD_MASTERY_TP         = 0x1E5 -- Shield mastery TP bonus when blocking with a shield (modId = 485)
 MOD_PERFECT_COUNTER_ATT		  = 0x1AC -- Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
@@ -1228,9 +1228,9 @@ MOD_CHOCOBO_RIDING_TIME       = 0x1FF -- Increases chocobo riding time (modId = 
 MOD_HARVESTING_RESULT         = 0x201 -- Improves harvesting results (modId = 513)
 MOD_LOGGING_RESULT            = 0x202 -- Improves logging results (modId = 514)
 MOD_MINNING_RESULT            = 0x203 -- Improves mining results (modId = 515)
+MOD_ABSORB_DMG_TO_MP          = 0x204 -- Unlike PLD gear mod, works on all damage types (Ethereal Earring) (modId = 516)
 
--- MOD_SPARE = 0x204 -- (modId = 516)
--- MOD_SPARE = 0x205 -- (modId = 517
+-- MOD_SPARE = 0x205 -- (modId = 517)
 
 ------------------------------------
 -- Merit Definitions

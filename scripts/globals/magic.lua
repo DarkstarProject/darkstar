@@ -318,10 +318,6 @@ end;
 -- The factor to multiply down damage (1/2 1/4 1/8 1/16) - In this format so this func can be used for enfeebs on duration.
 
 function applyResistance(player,spell,target,diff,skill,bonus)
-    -- resist everything if magic shield is active
-    if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
-        return 0;
-    end
 
     local resist = 1.0;
     local magicaccbonus = 0;
@@ -653,10 +649,6 @@ end;
 
 --Applies resistance for things that may not be spells - ie. Quick Draw
 function applyResistanceAbility(player,target,element,skill,bonus)
-    -- resist everything if magic shield is active
-    if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
-        return 0;
-    end
 
     local resist = 1.0;
     local magicaccbonus = 0;
@@ -1040,12 +1032,14 @@ function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
 end;
  
 function adjustForTarget(target,dmg,ele)
-    if (math.random(0,99) < target:getMod(absorbMod[ele]) or math.random(0,99) < target:getMod(MOD_MAGIC_ABSORB)) then
+    if (math.random(0,99) < target:getMod(absorbMod[ele])) then
         return -dmg;
     end
-    if (math.random(0,99) < target:getMod(nullMod[ele]) or math.random(0,99) < target:getMod(MOD_MAGIC_NULL)) then
+    if (math.random(0,99) < target:getMod(nullMod[ele])) then
         return 0;
     end
+    --Moved non element specific absorb and null mod checks to core
+    --TODO: update all lua calls to magicDmgTaken with appropriate element and remove this function
     return dmg;
 end;
 
