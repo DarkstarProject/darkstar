@@ -952,6 +952,7 @@ function handleAfflatusMisery(caster, spell, dmg)
 end;
  
  function finalMagicAdjustments(caster,target,spell,dmg)
+    --Handles target's HP adjustment and returns UNSIGNED dmg (absorb message is set in this function)
 
     -- handle multiple targets
     if(caster:isSpellAoE(spell:getID())) then
@@ -995,16 +996,17 @@ end;
     else
         target:delHP(dmg);
         target:updateEnmityFromDamage(caster,dmg);
-    end
-    -- Only add TP if the target is a mob
-    if (target:getObjType() ~= TYPE_PC and dmg > 0) then
-        target:addTP(10);
+        -- Only add TP if the target is a mob
+        if (target:getObjType() ~= TYPE_PC) then
+            target:addTP(10);
+        end
     end
 
     return dmg;
  end;
 
 function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
+    --Handles target's HP adjustment and returns SIGNED dmg (negative values on absorb)
 
     dmg = target:magicDmgTaken(dmg);
 
@@ -1019,7 +1021,7 @@ function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
     dmg = utils.clamp(dmg, -99999, 99999);
     
     if (dmg < 0) then
-        target:addHP(-dmg);
+        dmg = -(target:addHP(-dmg));
     else
         target:delHP(dmg);
     end
