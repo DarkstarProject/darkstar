@@ -9,7 +9,7 @@ require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -20,7 +20,7 @@ function onMobEngaged(mob,target)
    local mobid = mob:getID()
 
    for member = mobid-7, mobid do
-      if (GetMobAction(member) == 16) then 
+      if (GetMobAction(member) == 16) then
          GetMobByID(member):updateEnmity(target);
       end
    end

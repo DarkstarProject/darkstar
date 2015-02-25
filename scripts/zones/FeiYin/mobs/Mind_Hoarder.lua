@@ -9,7 +9,7 @@ require("scripts/globals/titles");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -17,7 +17,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	
+
 	-- Curses, Foiled A-Golem!?
 	if(killer:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
 		killer:delKeyItem(SHANTOTTOS_NEW_SPELL);

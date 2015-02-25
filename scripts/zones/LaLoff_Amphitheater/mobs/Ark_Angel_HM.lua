@@ -14,7 +14,7 @@ end;
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -25,11 +25,11 @@ function onMobEngaged(mob,target)
     local mobid = mob:getID();
 
     for member = mobid, mobid+7 do
-        if (GetMobAction(member) == 16) then 
+        if (GetMobAction(member) == 16) then
             GetMobByID(member):updateEnmity(target);
         end
     end
-   
+
     local hp = math.random(0,60)
     mob:setLocalVar("Mijin", hp);
 end;
@@ -42,7 +42,7 @@ function onMobFight(mob,target)
 	local battletime = mob:getBattleTime();
 	local mstime = mob:getLocalVar("Mighty");
     local mghp = mob:getLocalVar("Mijin");
-	
+
 	if (battletime > mstime + 150) then
 		mob:useMobAbility(432);
 		mob:setLocalVar("Mighty", battletime);
@@ -50,7 +50,7 @@ function onMobFight(mob,target)
 		mob:useMobAbility(475);
 		mob:setLocalVar("Mijin", 0);
 	end
-	
+
 end;
 
 -----------------------------------

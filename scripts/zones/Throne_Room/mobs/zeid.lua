@@ -15,7 +15,7 @@ require("scripts/zones/Throne_Room/TextIDs");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 
 end;
 
@@ -54,18 +54,18 @@ printf("RESULT: %u",option);
 if(csid == 0x7d04)then
  if(player:getVar("bcnm_instanceid") == 1)then
 	SpawnMob(17453064);
-	local volker = player:getBattlefield():insertAlly(14182) 
+	local volker = player:getBattlefield():insertAlly(14182)
 	volker:setSpawn(-450,-167,-239,125);
 	volker:spawn();
 	player:setPos(-443,-167,-239,127);
  elseif(player:getVar("bcnm_instanceid") == 2)then
 	SpawnMob(17453068);
-	local volker = player:getBattlefield():insertAlly(14182) 
+	local volker = player:getBattlefield():insertAlly(14182)
 	volker:setSpawn(-450,-167,-239,125);
 	volker:spawn();
  elseif(player:getVar("bcnm_instanceid") == 3)then
 	SpawnMob(17453072);
-	local volker = player:getBattlefield():insertAlly(14182) 
+	local volker = player:getBattlefield():insertAlly(14182)
 	volker:setSpawn(-450,-167,-239,125);
 	volker:spawn();
  end

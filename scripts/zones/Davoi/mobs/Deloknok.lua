@@ -11,7 +11,7 @@ require("scripts/globals/quests");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -19,12 +19,12 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	
+
 	local theFirstMeeting = killer:getQuestStatus(BASTOK,THE_FIRST_MEETING);
 	local martialArtsScroll = killer:hasKeyItem(SANDORIAN_MARTIAL_ARTS_SCROLL);
-	
+
 	if(theFirstMeeting == QUEST_ACCEPTED and martialArtsScroll == false) then
 		killer:setVar("theFirstMeetingKilledNM",killer:getVar("theFirstMeetingKilledNM") + 1);
 	end
-	
+
 end;

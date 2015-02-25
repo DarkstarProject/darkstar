@@ -14,7 +14,7 @@ end;
 -- onMobSpawn
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 
     local Defender = mob:getID();
     GetMobByID(Defender):setLocalVar("1",1);

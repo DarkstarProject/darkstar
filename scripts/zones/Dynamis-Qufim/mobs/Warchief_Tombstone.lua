@@ -10,7 +10,7 @@ require("scripts/globals/dynamis");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------

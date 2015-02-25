@@ -7,8 +7,8 @@
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
-	
+function onMobSpawn(mob)
+
 end;
 
 -----------------------------------
@@ -36,12 +36,12 @@ function onMobDeath(mob, killer, npc)
                         npc:setPos(-796,0.00,460); -- spawn point 5 "Mithra"
 						--printf("Qm1 is at pos 5");
 				end
-end;	
------------------------------------		
--- onGameHour		
------------------------------------		  
+end;
+-----------------------------------
+-- onGameHour
+-----------------------------------
 
 function onGameHour(npc, mob, player)
-	 
-	
+
+
 end;

@@ -9,14 +9,14 @@ require("scripts/zones/Monastic_Cavern/TextIDs");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
 -- onMobEngaged
 -----------------------------------
 
-function OnMobEngaged(mob,target)
+function onMobEngaged(mob,target)
 -- target:showText(mob,ORCISH_WARLORD_ENGAGE);
 end;
 

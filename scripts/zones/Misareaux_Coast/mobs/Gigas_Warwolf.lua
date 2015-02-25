@@ -1,13 +1,13 @@
 -----------------------------------
 -- mob :Gigas Warwolf
--- zone : Misareaux_Coast 
+-- zone : Misareaux_Coast
 -----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------

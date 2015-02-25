@@ -1,7 +1,7 @@
 
 -----------------------------------
 -- mob : Fomor Monk
--- zone : Sacrarium 
+-- zone : Sacrarium
 -----------------------------------
 
 
@@ -11,7 +11,7 @@
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------

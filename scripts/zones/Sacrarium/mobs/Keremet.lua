@@ -10,7 +10,7 @@ require("scripts/globals/missions");
 -- onMobSpawn
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -19,16 +19,16 @@ end;
 
 function onMobFight(mob,target)
 
-	local Keremet = mob:getID(); 	
+	local Keremet = mob:getID();
 
--- Send spawned skeleton "pets" to Keremet's target	 
+-- Send spawned skeleton "pets" to Keremet's target
 
-	for i = Keremet+1, Keremet+12 do 
+	for i = Keremet+1, Keremet+12 do
 		if (GetMobAction(i) == 16) then
 			GetMobByID(i):updateEnmity(target);
 		end
-	end   	
-	
+	end
+
 end;
 
 -----------------------------------

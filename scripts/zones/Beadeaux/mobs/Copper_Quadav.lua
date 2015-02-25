@@ -13,7 +13,7 @@ require("scripts/zones/Beadeaux/TextIDs");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -29,5 +29,5 @@ function onMobDeath(mob, killer)
 			killer:setVar("MissionStatus", missionStatus + 1)
 		end
 	end
-	
+
 end;

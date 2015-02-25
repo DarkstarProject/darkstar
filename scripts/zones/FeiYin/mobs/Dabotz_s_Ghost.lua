@@ -9,7 +9,7 @@ require("scripts/globals/keyitems");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -17,9 +17,9 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	
+
 	if(killer:hasKeyItem(AQUAFLORA3)) then
 		killer:setVar("DabotzKilled",1);
 	end
-	
+
 end;
