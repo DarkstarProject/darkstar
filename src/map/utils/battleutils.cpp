@@ -4067,8 +4067,7 @@ int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
     else
     {
         damage = HandleSevereDamage(PDefender, damage);
-        int16 absorbedMP = (float)(damage * PDefender->getMod(MOD_ABSORB_DMG_TO_MP) / 100);
-        absorbedMP += (float)(damage * PDefender->getMod(MOD_ABSORB_PHYSDMG_TO_MP) / 100);
+        int16 absorbedMP = (float)(damage * (PDefender->getMod(MOD_ABSORB_DMG_TO_MP) + PDefender->getMod(MOD_ABSORB_PHYSDMG_TO_MP)) / 100);
         if (absorbedMP > 0)
             PDefender->addMP(absorbedMP);
         damage = HandleFanDance(PDefender, damage);
@@ -4098,8 +4097,7 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     else
     {
         damage = HandleSevereDamage(PDefender, damage);
-        int16 absorbedMP = (float)(damage * PDefender->getMod(MOD_ABSORB_DMG_TO_MP) / 100);
-        absorbedMP += (float)(damage * PDefender->getMod(MOD_ABSORB_PHYSDMG_TO_MP) / 100);
+        int16 absorbedMP = (float)(damage * (PDefender->getMod(MOD_ABSORB_DMG_TO_MP) + PDefender->getMod(MOD_ABSORB_PHYSDMG_TO_MP)) / 100);
         if (absorbedMP > 0)
             PDefender->addMP(absorbedMP);
         damage = HandleFanDance(PDefender, damage);
