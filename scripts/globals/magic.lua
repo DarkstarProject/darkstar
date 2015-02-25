@@ -990,8 +990,7 @@ end;
     dmg = utils.clamp(dmg, -99999, 99999);
     
     if (dmg < 0) then
-        target:addHP(-dmg);
-        dmg = -dmg;
+        dmg = target:addHP(-dmg);
         spell:setMsg(7);
     else
         target:delHP(dmg);
@@ -1032,7 +1031,7 @@ function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
 end;
  
 function adjustForTarget(target,dmg,ele)
-    if (math.random(0,99) < target:getMod(absorbMod[ele])) then
+    if (dmg > 0 and math.random(0,99) < target:getMod(absorbMod[ele])) then
         return -dmg;
     end
     if (math.random(0,99) < target:getMod(nullMod[ele])) then

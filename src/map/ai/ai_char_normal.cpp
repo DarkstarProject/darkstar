@@ -2578,7 +2578,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
         Action.reaction = REACTION_EVADE;
         Action.messageID = 188; //but misses
     }
-    else
+    else if (Action.messageID != 238)
     {
         Action.messageID = 185; //damage ws
     }
