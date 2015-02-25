@@ -9120,7 +9120,7 @@ inline int32 CLuaBaseEntity::magicDmgTaken(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
-    if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+    if (!lua_isnil(L, 2) && lua_isnumber(L, 2) && lua_tointeger(L, 2) > 0 && lua_tointeger(L, 2) < 9)
         lua_pushinteger(L, battleutils::MagicDmgTaken((CBattleEntity*)m_PBaseEntity, lua_tointeger(L, 1), (ELEMENT)lua_tointeger(L, 2)));
     else
         lua_pushinteger(L, battleutils::MagicDmgTaken((CBattleEntity*)m_PBaseEntity, lua_tointeger(L, 1), ELEMENT_NONE));
