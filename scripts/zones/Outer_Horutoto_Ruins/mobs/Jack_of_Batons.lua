@@ -10,7 +10,7 @@ require("scripts/globals/missions");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -24,5 +24,5 @@ local MissionStatus = killer:getVar("MissionStatus");
 	if(CurrentMission == FULL_MOON_FOUNTAIN and MissionStatus == 1) then
 		killer:setVar("MissionStatus",2);
 	end
-	
+
 end;

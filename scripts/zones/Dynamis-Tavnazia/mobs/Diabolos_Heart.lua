@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: 
+-- Area:
 -- NPC:  Diabolos_Heart
 -----------------------------------
 -----------------------------------
@@ -10,7 +10,7 @@ require("scripts/globals/keyitems");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------

@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: 
+-- Area:
 -- NPC:  Diabolos_Club
 -----------------------------------
 -----------------------------------
@@ -10,7 +10,7 @@ require("scripts/globals/keyitems");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -25,10 +25,10 @@ function onMobDeath(mob, killer)
 		-- despawn diabolos 's pet
 		if(GetMobAction(16949253)~=0)then
 		   DespawnMob(16949253);
-        end		
+        end
 		if(GetMobAction(16949254)~=0)then
 		   DespawnMob(16949254);
-        end			
-	
+        end
+
 	killer:addTitle(NIGHTMARE_AWAKENER);
 end;

@@ -12,7 +12,7 @@ require("/scripts/globals/monstertpmoves");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 
 end;
 
@@ -28,7 +28,7 @@ function onMobFight(mob, target)
 local zeid = mob:getID();
 local shadow1 = zeid+1;
 local shadow2 = zeid+2;
-		
+
 	if(mob:getHPP() <= 77) then
 		if (mob:getTP() >= 100)then
 			if ((GetMobAction(shadow1) and GetMobAction(shadow2)) == 0)then

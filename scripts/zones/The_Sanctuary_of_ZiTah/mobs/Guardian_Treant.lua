@@ -9,10 +9,10 @@ require("scripts/globals/settings");
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
-function onMobDeath(mob, killer)	
+function onMobDeath(mob, killer)
 	killer:setVar("ForgeYourDestiny_killed",1);
 end;
 

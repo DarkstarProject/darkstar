@@ -16,7 +16,7 @@ end;
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -30,42 +30,42 @@ function onMobDeath(mob, killer)
 
 		switch (mob:getID()) : caseof {
 		-- South Tower
-		[16912829] = function (x) 
+		[16912829] = function (x)
 		killer:setVar("Ru_aern_1-1KILL",1);
 		end,
-		[16912830] = function (x) 
+		[16912830] = function (x)
 		killer:setVar("Ru_aern_1-2KILL",1);
 
 		end,
-		[16912831] = function (x) 
+		[16912831] = function (x)
         killer:setVar("Ru_aern_1-3KILL",1);
 		end,
-		
+
 		-- West Tower
-		[16912832] = function (x) 
+		[16912832] = function (x)
         killer:setVar("Ru_aern_2-1KILL",1);
 		end,
-		[16912833] = function (x) 
+		[16912833] = function (x)
         killer:setVar("Ru_aern_2-2KILL",1);
 		end,
-		[16912834] = function (x) 
-	    killer:setVar("Ru_aern_2-3KILL",1);	       
+		[16912834] = function (x)
+	    killer:setVar("Ru_aern_2-3KILL",1);
 		end,
-		
-		
+
+
 		-- East Tower
-		[16912835] = function (x) 
+		[16912835] = function (x)
          killer:setVar("Ru_aern_3-1KILL",1);
 		end,
-		[16912836] = function (x) 
+		[16912836] = function (x)
          killer:setVar("Ru_aern_3-2KILL",1);
 		end,
-		[16912837] = function (x) 
+		[16912837] = function (x)
         killer:setVar("Ru_aern_3-3KILL",1);
-		end,			
+		end,
 	}
 
-	
+
 		if(killer:getVar("Ru_aern_1-1KILL")==1 and killer:getVar("Ru_aern_1-2KILL")==1 and killer:getVar("Ru_aern_1-3KILL")==1)then
             if(killer:getVar("PromathiaStatus")==2) then
                 killer:setVar("PromathiaStatus",3);
@@ -90,6 +90,6 @@ function onMobDeath(mob, killer)
             elseif(killer:getVar("PromathiaStatus")==6) then
                 killer:setVar("PromathiaStatus",7);
             end
-		end	 
-	end	
+		end
+	end
 end;

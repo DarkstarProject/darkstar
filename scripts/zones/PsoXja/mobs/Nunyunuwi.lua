@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pso'xja
--- NPC:  Nunyunuwi 
+-- NPC:  Nunyunuwi
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -9,7 +9,7 @@ require("scripts/globals/missions");
 -- onMobSpawn
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------

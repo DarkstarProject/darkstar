@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: Maze Of Shakhrami
---  NPC:  ??? 
+--  NPC:  ???
 --  Involved in Eco Warrior (Windurst)
 -----------------------------------
 
@@ -10,7 +10,7 @@ require("scripts/globals/quests");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
