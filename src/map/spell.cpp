@@ -424,7 +424,7 @@ namespace spell
 
                 uint16 id = Sql_GetUIntData(SqlHandle,0);
 
-                if (id > 0x200)
+                if ((SPELLGROUP)Sql_GetIntData(SqlHandle, 3) == SPELLGROUP_BLUE)
                 {
                     PSpell = new CBlueSpell(id);
                 }
@@ -514,7 +514,7 @@ namespace spell
 			    uint16 modID  = (uint16)Sql_GetUIntData(SqlHandle,1);
 			    int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
-			    if (!(spellId > MAX_SPELL_ID) && (PSpellList[spellId] != NULL) && spellId > 0x200)
+			    if (!(spellId > MAX_SPELL_ID) && (PSpellList[spellId] != NULL))
 			    {
                     ((CBlueSpell*)PSpellList[spellId])->addModifier(new CModifier(modID,value));
 			    }
@@ -615,7 +615,7 @@ namespace spell
                         usable = false;
                     }
                 }
-                else if (SpellID > 0x200)
+                else if (spell->getSpellGroup() == SPELLGROUP_BLUE)
                 {
                     if (PCaster->objtype == TYPE_PC)
                     {
@@ -659,7 +659,7 @@ namespace spell
 						usable = false;
 					}
 				}
-				else if (SpellID > 0x200)
+                else if (spell->getSpellGroup() == SPELLGROUP_BLUE)
 				{
 					if (PCaster->objtype == TYPE_PC)
 					{
