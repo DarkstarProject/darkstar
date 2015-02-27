@@ -1109,7 +1109,6 @@ void CAICharNormal::ActionRangedFinish()
                 }
                 m_PChar->pushPacket(new CInventoryFinishPacket());
             }
-            damage = battleutils::RangedDmgTaken(m_PBattleSubTarget, damage);
             totalDamage += damage;
         }
 
@@ -1127,8 +1126,14 @@ void CAICharNormal::ActionRangedFinish()
             Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, totalDamage, false, slot, realHits, NULL, true);
 
             // lower damage based on shadows taken
-            if (shadowsTaken){
+            if (shadowsTaken)
                 Action.param = Action.param * (1 - ((float)shadowsTaken / realHits));
+
+            // absorb message
+            if (Action.param < 0)
+            {
+                Action.param = -(Action.param);
+                Action.messageID = 382;
             }
 
             //add additional effects
@@ -1924,7 +1929,6 @@ void CAICharNormal::ActionJobAbilityFinish()
 
                     damage = (damage + m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar, m_PBattleSubTarget, SLOT_RANGED)) * pdif * 5;
                     damage = attackutils::CheckForDamageMultiplier(m_PChar, PItem, damage, ATTACK_NORMAL);
-                    damage = battleutils::RangedDmgTaken(m_PBattleSubTarget, damage);
                 }
             }
             else //miss
@@ -1972,6 +1976,11 @@ void CAICharNormal::ActionJobAbilityFinish()
             if (hitOccured == true)
             {
                 Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED, 0, NULL, true);
+                if (Action.param < 0)
+                {
+                    Action.param = -(Action.param);
+                    Action.messageID = 318;
+                }
             }
             m_PChar->m_ActionList.push_back(Action);
         }
@@ -2549,7 +2558,13 @@ void CAICharNormal::ActionWeaponSkillFinish()
     Action.reaction = REACTION_HIT;
     Action.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
     Action.animation = m_PWeaponSkill->getAnimationId();
-    Action.param = damage;
+    if (damage < 0)
+    {
+        Action.param = -damage;
+        Action.messageID = 238;
+    }
+    else
+        Action.param = damage;
     Action.knockback = 0;
 
     m_PTargetFind->reset();
@@ -2558,12 +2573,12 @@ void CAICharNormal::ActionWeaponSkillFinish()
     // TODO: need better way to handle misses
     // weapon skills cannot properly respond with a miss or dmg was just zero
     // assume 0 means a miss
-    if (damage == 0 && !m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_STONESKIN))
+    if (damage == 0 && Action.messageID != 238 && !m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_STONESKIN))
     {
         Action.reaction = REACTION_EVADE;
         Action.messageID = 188; //but misses
     }
-    else
+    else if (Action.messageID != 238)
     {
         Action.messageID = 185; //damage ws
     }
@@ -2630,7 +2645,13 @@ void CAICharNormal::ActionWeaponSkillFinish()
         if (effect != SUBEFFECT_NONE)
         {
             Action.addEffectParam = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, damage);
-            Action.addEffectMessage = 287 + effect;
+            if (Action.addEffectParam < 0)
+            {
+                Action.addEffectParam = -Action.addEffectParam;
+                Action.addEffectMessage = 384 + effect;
+            }
+            else
+                Action.addEffectMessage = 287 + effect;
             Action.additionalEffect = effect;
 
             if (effect >= 7)
@@ -2696,6 +2717,12 @@ void CAICharNormal::ActionWeaponSkillFinish()
             }
 
             Action.param = battleutils::TakeWeaponskillDamage(m_PChar, PTarget, damage, SLOT_MAIN, 0, taChar);
+
+            if (Action.param < 0)
+            {
+                Action.param = -Action.param;
+                msg = 263;
+            }
 
             Action.messageID = msg;
 
@@ -3095,23 +3122,13 @@ void CAICharNormal::DoAttack()
                     Action.reaction = REACTION_BLOCK;
                 }
 
-                // Damage was absorbed.
-                if (attack->GetDamage() < 0)
+                Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, attack->GetDamage(), attack->IsBlocked(), attack->GetWeaponSlot(), 1, attackRound->GetTAEntity(), true);
+                if (Action.param < 0)
                 {
-                    Action.messageID = 263;
+                    Action.param = -(Action.param);
+                    Action.messageID = 373;
                 }
 
-                // Try absorb HP chance (The target)
-                if (attackutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, attack->GetDamage()))
-                {
-                    Action.messageID = 373;
-                    Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, -attack->GetDamage(), attack->IsBlocked(), attack->GetWeaponSlot(), 1, attackRound->GetTAEntity(), true);
-                }
-                else
-                {
-                    attackutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, attack->GetDamage());
-                    Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, attack->GetDamage(), attack->IsBlocked(), attack->GetWeaponSlot(), 1, attackRound->GetTAEntity(), true);
-                }
             }
         }
         else

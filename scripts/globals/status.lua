@@ -758,12 +758,12 @@ EFFECTFLAG_MAGIC_BEGIN      = 0x0040
 EFFECTFLAG_MAGIC_END        = 0x0080
 EFFECTFLAG_ON_ZONE          = 0x0100
 EFFECTFLAG_NO_LOSS_MESSAGE  = 0x0200
-EFFECTFLAG_INVISIBLE	= 0x0400
-EFFECTFLAG_DETECTABLE	= 0x0800
-EFFECTFLAG_NO_REST 		= 0x1000
+EFFECTFLAG_INVISIBLE        = 0x0400
+EFFECTFLAG_DETECTABLE       = 0x0800
+EFFECTFLAG_NO_REST          = 0x1000
 EFFECTFLAG_PREVENT_ACTION   = 0x2000
 EFFECTFLAG_WALTZABLE        = 0x4000
-EFFECTFLAG_FOOD                 = 0x8000
+EFFECTFLAG_FOOD             = 0x8000
 EFFECTFLAG_SONG             = 0x10000
 EFFECTFLAG_ROLL             = 0x20000
 
@@ -1031,25 +1031,25 @@ MOD_ROLL_CORSAIRS		= 0x148
 MOD_ROLL_PUPPET			= 0x149
 MOD_ROLL_DANCERS		= 0x14A
 MOD_ROLL_SCHOLARS		= 0x14B
-MOD_BUST			= 0x14C
-MOD_FINISHING_MOVES		= 0x14D
+MOD_BUST                    = 0x14C
+MOD_FINISHING_MOVES         = 0x14D
 MOD_SAMBA_DURATION          = 0x1EA -- Samba duration bonus(modId = 490)
 MOD_WALTZ_POTENTCY	        = 0x1EB -- Waltz Potentcy Bonus(modId = 491)
 MOD_CHOCO_JIG_DURATION      = 0x1EC -- Chocobo Jig duration bonus (modId = 492)
 MOD_VFLOURISH_MACC          = 0x1ED -- Violent Flourish accuracy bonus (modId = 493)
 MOD_STEP_FINISH             = 0x1EE -- Bonus finishing moves from steps (modId = 494)
 MOD_STEP_ACCURACY           = 0x193 -- Accuracy bonus for steps (modID = 403)
-MOD_SPECTRAL_JIG            = 0x1EF --Spectral Jig duration modifier (percent increase) (modId = 495)
+MOD_SPECTRAL_JIG            = 0x1EF -- Spectral Jig duration modifier (percent increase) (modId = 495)
 MOD_WALTZ_RECAST            = 0x1F1 -- (modID = 497) Waltz recast modifier (percent)
 MOD_SAMBA_PDURATION         = 0x1F2 -- (modID = 498) Samba percent duration bonus
-MOD_WIDESCAN            	= 0x154
-MOD_BARRAGE_ACC			    =0x1A4
-MOD_ENSPELL             	= 0x155
-MOD_SPIKES              	= 0x156
-MOD_ENSPELL_DMG         	= 0x157
-MOD_SPIKES_DMG          	= 0x158
+MOD_WIDESCAN                = 0x154
+MOD_BARRAGE_ACC             = 0x1A4 -- (modID = 420)
+MOD_ENSPELL                 = 0x155
+MOD_SPIKES                  = 0x156
+MOD_ENSPELL_DMG             = 0x157
+MOD_SPIKES_DMG              = 0x158
 MOD_TP_BONUS                = 0x159
-MOD_PERPETUATION_REDUCTION 	= 0x15A
+MOD_PERPETUATION_REDUCTION  = 0x15A
 MOD_FIRE_AFFINITY		= 0x15B
 MOD_EARTH_AFFINITY		= 0x15C
 MOD_WATER_AFFINITY		= 0x15D
@@ -1129,7 +1129,7 @@ MOD_DOUBLE_SHOT_RATE		  = 0x1A6 -- The rate that double shot can proc
 MOD_VELOCITY_SNAPSHOT_BONUS	  = 0x1A7 -- Increases Snapshot whilst Velocity Shot is up.
 MOD_VELOCITY_RATT_BONUS		  = 0x1A8 -- Increases Ranged Attack whilst Velocity Shot is up.
 MOD_SHADOW_BIND_EXT		  	  = 0x1A9 -- Extends the time of shadowbind
-MOD_ABSORB_DMG_TO_MP		  = 0x1AA -- Absorbs a percentage of damage taken to MP.
+MOD_ABSORB_PHYSDMG_TO_MP      = 0x1AA -- Absorbs a percentage of physical damage taken to MP.
 MOD_ENMITY_REDUCTION_PHYSICAL = 0x1AB -- Reduces Enmity decrease when taking physical damage
 MOD_SHIELD_MASTERY_TP         = 0x1E5 -- Shield mastery TP bonus when blocking with a shield (modId = 485)
 MOD_PERFECT_COUNTER_ATT		  = 0x1AC -- Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
@@ -1228,9 +1228,9 @@ MOD_CHOCOBO_RIDING_TIME       = 0x1FF -- Increases chocobo riding time (modId = 
 MOD_HARVESTING_RESULT         = 0x201 -- Improves harvesting results (modId = 513)
 MOD_LOGGING_RESULT            = 0x202 -- Improves logging results (modId = 514)
 MOD_MINNING_RESULT            = 0x203 -- Improves mining results (modId = 515)
+MOD_ABSORB_DMG_TO_MP          = 0x204 -- Unlike PLD gear mod, works on all damage types (Ethereal Earring) (modId = 516)
 
--- MOD_SPARE = 0x204 -- (modId = 516)
--- MOD_SPARE = 0x205 -- (modId = 517
+-- MOD_SPARE = 0x205 -- (modId = 517)
 
 ------------------------------------
 -- Merit Definitions
@@ -1735,7 +1735,7 @@ MSGBASIC_USES_BUT_MISSES		= 324 -- The <player> uses .. but misses <target>.
 MSGBASIC_CANT_BE_USED_IN_AREA	= 316 -- That action cannot be used in this area.
 MSGBASIC_REQUIRES_SHIELD		= 199 -- That action requires a shield.
 MSGBASIC_REQUIRES_COMBAT		= 525 -- .. can only be performed during battle.
-MSGBASIC_STATUS_PREVENTS      = 569 -- Your current status prevents you from using that ability.
+MSGBASIC_STATUS_PREVENTS        = 569 -- Your current status prevents you from using that ability.
 -- Distance
 MSGBASIC_TARG_OUT_OF_RANGE		= 4 -- <target> is out of range.
 MSGBASIC_UNABLE_TO_SEE_TARG		= 5 -- Unable to see <target>.
@@ -1985,7 +1985,7 @@ SPELLAOE_CONAL          = 2;
 SPELLAOE_RADIAL_MANI    = 3;  -- AOE when under SCH stratagem Manifestation
 SPELLAOE_RADIAL_ACCE    = 4;  -- AOE when under SCH stratagem Accession
 SPELLAOE_PIANISSIMO     = 5;  -- Single target when under BRD JA Pianissimo
-SPELLAOE_DIFFUSION		= 6;   -- AOE when under Diffusion
+SPELLAOE_DIFFUSION		= 6;  -- AOE when under Diffusion
 
 ------------------------------------
 -- Spell flag bits

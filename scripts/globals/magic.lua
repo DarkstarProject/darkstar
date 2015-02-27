@@ -318,10 +318,6 @@ end;
 -- The factor to multiply down damage (1/2 1/4 1/8 1/16) - In this format so this func can be used for enfeebs on duration.
 
 function applyResistance(player,spell,target,diff,skill,bonus)
-    -- resist everything if magic shield is active
-    if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
-        return 0;
-    end
 
     local resist = 1.0;
     local magicaccbonus = 0;
@@ -653,10 +649,6 @@ end;
 
 --Applies resistance for things that may not be spells - ie. Quick Draw
 function applyResistanceAbility(player,target,element,skill,bonus)
-    -- resist everything if magic shield is active
-    if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
-        return 0;
-    end
 
     local resist = 1.0;
     local magicaccbonus = 0;
@@ -960,6 +952,7 @@ function handleAfflatusMisery(caster, spell, dmg)
 end;
  
  function finalMagicAdjustments(caster,target,spell,dmg)
+    --Handles target's HP adjustment and returns UNSIGNED dmg (absorb message is set in this function)
 
     -- handle multiple targets
     if(caster:isSpellAoE(spell:getID())) then
@@ -998,22 +991,22 @@ end;
     dmg = utils.clamp(dmg, -99999, 99999);
     
     if (dmg < 0) then
-        target:addHP(-dmg);
-        dmg = -dmg;
+        dmg = target:addHP(-dmg);
         spell:setMsg(7);
     else
         target:delHP(dmg);
         target:updateEnmityFromDamage(caster,dmg);
-    end
-    -- Only add TP if the target is a mob
-    if (target:getObjType() ~= TYPE_PC and dmg > 0) then
-        target:addTP(10);
+        -- Only add TP if the target is a mob
+        if (target:getObjType() ~= TYPE_PC) then
+            target:addTP(10);
+        end
     end
 
     return dmg;
  end;
 
 function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
+    --Handles target's HP adjustment and returns SIGNED dmg (negative values on absorb)
 
     dmg = target:magicDmgTaken(dmg);
 
@@ -1028,7 +1021,7 @@ function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
     dmg = utils.clamp(dmg, -99999, 99999);
     
     if (dmg < 0) then
-        target:addHP(-dmg);
+        dmg = -(target:addHP(-dmg));
     else
         target:delHP(dmg);
     end
@@ -1040,12 +1033,14 @@ function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
 end;
  
 function adjustForTarget(target,dmg,ele)
-    if (math.random(0,99) < target:getMod(absorbMod[ele]) or math.random(0,99) < target:getMod(MOD_MAGIC_ABSORB)) then
+    if (dmg > 0 and math.random(0,99) < target:getMod(absorbMod[ele])) then
         return -dmg;
     end
-    if (math.random(0,99) < target:getMod(nullMod[ele]) or math.random(0,99) < target:getMod(MOD_MAGIC_NULL)) then
+    if (math.random(0,99) < target:getMod(nullMod[ele])) then
         return 0;
     end
+    --Moved non element specific absorb and null mod checks to core
+    --TODO: update all lua calls to magicDmgTaken with appropriate element and remove this function
     return dmg;
 end;
 

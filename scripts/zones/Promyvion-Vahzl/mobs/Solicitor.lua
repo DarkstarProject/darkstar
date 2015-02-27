@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Promyvion vahzl
--- NPC:  Solicitor 
+-- NPC:  Solicitor
 -----------------------------------
 
 
@@ -10,7 +10,7 @@ require("scripts/globals/missions");
 -- onMobSpawn
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -19,6 +19,6 @@ end;
 
 function onMobDeath(mob, killer)
  if (killer:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and killer:getVar("PromathiaStatus")==3)then
-	killer:setVar("PromathiaStatus",4);	
+	killer:setVar("PromathiaStatus",4);
   end
 end;

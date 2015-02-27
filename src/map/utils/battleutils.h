@@ -147,7 +147,7 @@ namespace battleutils
     uint8				GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	float				GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 bonusAttPercent);
 
-	uint32				TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim);
+	int32				TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool isCounter = false);
     int32				TakeWeaponskillDamage(CCharEntity* PChar, CBattleEntity* PDefender, int32 damage, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar);
     int32				TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 lastSkillDamage);
 	uint32				MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
@@ -198,7 +198,7 @@ namespace battleutils
     void                ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker);
 
     int32               BreathDmgTaken(CBattleEntity* PDefender, int32 damage);
-    int32               MagicDmgTaken(CBattleEntity* PDefender, int32 damage);
+    int32               MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element);
     int32               PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               RangedDmgTaken(CBattleEntity* PDefender, int32 damage);
 

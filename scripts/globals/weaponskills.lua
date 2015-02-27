@@ -295,6 +295,7 @@ function doMagicWeaponskill(attacker, target, params)
     
 	dmg = addBonusesAbility(attacker, params.ele, target, dmg, params);
 	dmg = dmg * applyResistanceAbility(attacker,target,params.ele,params.skill, 0);
+	dmg = target:magicDmgTaken(dmg);
 	dmg = adjustForTarget(target,dmg,params.ele);
     
     return dmg, false, 1, 0;

@@ -361,12 +361,6 @@ void CAttack::ProcessDamage()
 		m_damage += (m_damage * (float)m_attacker->getMod(MOD_CRIT_DMG_INCREASE) / 100);
 	}
 
-	// Try Null damage chance (The target)
-    if (m_victim->objtype == TYPE_PC && WELL512::irand() % 100 < m_victim->getMod(MOD_NULL_PHYSICAL_DAMAGE))
-	{
-		m_damage = 0;
-	}
-
 	// Try skill up.
 	if (m_damage > 0)
 	{

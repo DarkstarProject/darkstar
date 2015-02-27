@@ -10,7 +10,7 @@ require("scripts/globals/missions");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -18,10 +18,10 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
+
 	if(killer:getCurrentMission(ZILART) == THE_MITHRA_AND_THE_CRYSTAL and killer:getVar("ZilartStatus") == 1) then
 		killer:needToZone(true);
 		killer:setVar("AncientVesselKilled",1);
 	end
-	
+
 end;
