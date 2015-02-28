@@ -2548,8 +2548,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
         Action.messageID = 224; //restores mp msg
         Action.reaction = REACTION_HIT;
         dsp_max(damage, 0);
-        Action.param = damage;
-        m_PChar->addMP(damage);
+        Action.param = m_PChar->addMP(damage);
     }
     
     float afterWsTP = m_PChar->health.tp;
