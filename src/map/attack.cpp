@@ -242,7 +242,7 @@ uint8 CAttack::GetHitRate()
 		}
 
         // Deciding this here because SA/TA wears on attack, before the 2nd+ hits go off.
-        if (m_hitRate = 100)
+        if (m_hitRate == 100)
         {
             m_attackRound->SetSATA(true);
         }
