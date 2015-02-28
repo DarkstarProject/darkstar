@@ -31,6 +31,9 @@
 #include "../common/showmsg.h"
 #include "../common/socket.h"
 #include "../common/utils.h"
+#include "../common/taskmgr.h"
+#include "../common/sql.h"
+#include "../common/timer.h"
 
 #ifdef WIN32
 	#include <winsock2.h>
@@ -74,6 +77,14 @@ struct SearchCommInfo
 	uint32 ip;
 	uint16 port;
 };
+
+#ifdef WIN32
+ppuint32 __stdcall TaskManagerThread(void* lpParam);
+#else
+void * TaskManagerThread(void* lpParam);
+#endif
+int32 ah_cleanup(uint32 tick, CTaskMgr::CTask* PTask);
+
 
 const int8* SEARCH_CONF_FILENAME = "./conf/search_server.conf";
 const int8* LOGIN_CONF_FILENAME = "./conf/login_darkstar.conf";
@@ -236,6 +247,33 @@ int32 main (int32 argc, int8 **argv)
     ShowMessage(CL_WHITE"========================================================\n\n" CL_RESET);
     ShowMessage(CL_WHITE"DSSearch-server\n\n");
     ShowMessage(CL_WHITE"========================================================\n\n" CL_RESET);
+	if (search_config.expire_auctions == 1) {
+		ShowMessage(CL_GREEN"AH task to return items older than %u days is running\n" CL_RESET, search_config.expire_days);
+		CTaskMgr::getInstance()->AddTask("ah_cleanup", gettick(), NULL, CTaskMgr::TASK_INTERVAL, ah_cleanup, search_config.expire_interval*1000);
+	}
+//	ShowMessage(CL_CYAN"[TASKMGR] Starting task manager thread..\n" CL_RESET);
+#ifdef WIN32
+	CreateThread(0, 0, TaskManagerThread, NULL, 0, 0);
+#else
+	pthread_t thread2;
+	pthread_attr_t threadAttr2;
+
+	ptherr = 0;
+	ptherr = pthread_attr_init(&threadAttr2);
+	if (ptherr != 0)
+	{
+		errno = ptherr;
+		perror("pthread_attr_init");
+	}
+
+	ptherr = 0;
+	ptherr = pthread_create(&thread2, &threadAttr2, &TaskManagerThread, NULL);
+	if (ptherr != 0)
+	{
+		errno = ptherr;
+		perror("pthread_attr_init");
+	}
+#endif
 
 	while (true)
 	{
@@ -292,11 +330,14 @@ int32 main (int32 argc, int8 **argv)
 
 void search_config_default()
 {
-	search_config.mysql_host     = "127.0.0.1";
-	search_config.mysql_login    = "root";
-	search_config.mysql_password = "root";
-	search_config.mysql_database = "dspdb";
-	search_config.mysql_port     = 3306;
+	search_config.mysql_host      = "127.0.0.1";
+	search_config.mysql_login     = "root";
+	search_config.mysql_password  = "root";
+	search_config.mysql_database  = "dspdb";
+	search_config.mysql_port      = 3306;
+	search_config.expire_auctions = 1;
+	search_config.expire_days	  = 3;
+	search_config.expire_interval = 3600;
 }
 
 /************************************************************************
@@ -351,6 +392,18 @@ void search_config_read(const int8* file)
 		else if (strcmp(w1,"mysql_database") == 0)
 		{
 			search_config.mysql_database = aStrdup(w2);
+		}
+		else if (strcmp(w1, "expire_auctions") == 0)
+		{
+			search_config.expire_auctions = atoi(w2);
+		}
+		else if (strcmp(w1, "expire_days") == 0)
+		{
+			search_config.expire_days = atoi(w2);
+		}
+		else if (strcmp(w1, "expire_interval") == 0)
+		{
+			search_config.expire_interval = atoi(w2);
 		}
 		else
 		{
@@ -942,4 +995,47 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 
 	return sr;
 	// не обрабатываем последние биты, что мешает в одну кучу например "/blacklist delete Name" и "/sea all Name"
+}
+/************************************************************************
+*                                                                       *
+*  Task Manager Thread                                                  *
+*                                                                       *
+************************************************************************/
+
+#ifdef WIN32
+ppuint32 __stdcall TaskManagerThread(void* lpParam)
+#else
+void* TaskManagerThread(void* lpParam)
+#endif
+{
+	int next;
+	while (true)
+	{
+		next = CTaskMgr::getInstance()->DoTimer(gettick_nocache());
+		Sleep(next / 1000);
+	}
+
+
+#ifdef WIN32
+	return 1;
+#else
+	return NULL;
+#endif
+}
+
+/************************************************************************
+*                                                                       *
+*  Task Manager Callbacks                                               *
+*                                                                       *
+************************************************************************/
+
+int32 ah_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
+{
+	//ShowMessage(CL_YELLOW"[TASK] ah_cleanup tick..\n" CL_RESET);
+
+	CDataLoader* data = new CDataLoader();
+	data->ExpireAHItems();
+	delete data;
+
+	return 0;
 }
