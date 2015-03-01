@@ -1563,8 +1563,11 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             {
                 uint32 charid = Sql_GetUIntData(SqlHandle, 0);
 
-                if (PItem->getFlag() & ITEM_FLAG_EX)
+                if (PItem->getFlag() & ITEM_FLAG_NODELIVERY)
                 {
+                    if (!(PItem->getFlag() & ITEM_FLAG_DELIVERYINNER))
+                        return;
+                    
                     uint32 accid = Sql_GetUIntData(SqlHandle, 1);
                     int32 ret = Sql_Query(SqlHandle, "SELECT COUNT(*) FROM chars WHERE charid = '%u' AND accid = '%u' LIMIT 1;", PChar->id, accid);
                     if (ret == SQL_ERROR || Sql_NextRow(SqlHandle) != SQL_SUCCESS || Sql_GetUIntData(SqlHandle, 0) == 0)
@@ -2028,13 +2031,14 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             ret = Sql_Query(SqlHandle, "SELECT COUNT(*) FROM chars WHERE charid = '%u' AND accid = '%u' LIMIT 1;", PChar->id, accid);
             if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS && Sql_GetUIntData(SqlHandle, 0))
             {
-                //send packets with params for same account
+                PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, 0xFF, 0x02));
+                PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, 0x01, 0x01));
             }
-//            else
-//            {
+            else
+            {
                 PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, 0xFF, 0x02));
                 PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, 0x00, 0x01));
-//            }
+            }
         }
         else
         {
