@@ -25,15 +25,19 @@ This file is part of DarkStar-server source code.
 #include <queue>
 
 #include "message.h"
-#include "utils/zoneutils.h"
-#include "utils/jailutils.h"
-#include "entities/charentity.h"
+
 #include "party.h"
 #include "alliance.h"
+
+#include "entities/charentity.h"
 
 #include "packets/message_standard.h"
 #include "packets/party_invite.h"
 #include "packets/server_ip.h"
+
+#include "utils/charutils.h"
+#include "utils/zoneutils.h"
+#include "utils/jailutils.h"
 
 namespace message
 {
@@ -79,7 +83,7 @@ namespace message
                 else
                 {
                     PChar->status = STATUS_SHUTDOWN;
-                    PChar->pushPacket(new CServerIPPacket(PChar, 1,0));
+                    charutils::SendToZone(PChar, 1, 0);
                 }
                 break;
             }

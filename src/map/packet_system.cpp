@@ -1276,7 +1276,7 @@ void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             ShowWarning(CL_YELLOW"lightluggage detected: <%s> will be removed from server\n" CL_RESET, PChar->GetName());
 
             PChar->status = STATUS_SHUTDOWN;
-            PChar->pushPacket(new CServerIPPacket(PChar, 1, 0));
+            charutils::SendToZone(PChar, 1, 0);
         }
         return;
     }
@@ -4327,7 +4327,7 @@ void SmallPacket0x0E7(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->m_GMlevel > 0)
     {
         PChar->status = STATUS_SHUTDOWN;
-        PChar->pushPacket(new CServerIPPacket(PChar, 1, 0));
+        charutils::SendToZone(PChar, 1, 0);
     }
     else if (PChar->animation == ANIMATION_NONE)
     {

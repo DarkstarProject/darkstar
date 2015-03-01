@@ -137,7 +137,7 @@ inline int32 CLuaBaseEntity::leavegame(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     ((CCharEntity*)m_PBaseEntity)->status = STATUS_SHUTDOWN;
-    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CServerIPPacket((CCharEntity*)m_PBaseEntity,1,0));
+    charutils::SendToZone((CCharEntity*)m_PBaseEntity, 1, 0);
 
     return 0;
 }

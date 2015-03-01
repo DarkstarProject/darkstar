@@ -3128,7 +3128,6 @@ void CAICharNormal::DoAttack()
                     Action.param = -(Action.param);
                     Action.messageID = 373;
                 }
-
             }
         }
         else

@@ -4496,30 +4496,37 @@ namespace charutils
 
     void SendToZone(CCharEntity* PChar, uint8 type, uint64 ipp)
     {
-        Sql_Query(SqlHandle, "UPDATE accounts_sessions SET server_addr = %u, server_port = %u WHERE charid = %u;",
-            (uint32)ipp, (uint32)(ipp >> 32), PChar->id);
+        if (type == 2)
+        {
+            Sql_Query(SqlHandle, "UPDATE accounts_sessions SET server_addr = %u, server_port = %u WHERE charid = %u;",
+                (uint32)ipp, (uint32)(ipp >> 32), PChar->id);
 
-        const int8* Query =
-            "UPDATE chars "
-            "SET "
-            "pos_zone = %u,"
-            "pos_prevzone = %u,"
-            "pos_rot = %u,"
-            "pos_x = %.3f,"
-            "pos_y = %.3f,"
-            "pos_z = %.3f,"
-            "boundary = %u "
-            "WHERE charid = %u;";
+            const int8* Query =
+                "UPDATE chars "
+                "SET "
+                "pos_zone = %u,"
+                "pos_prevzone = %u,"
+                "pos_rot = %u,"
+                "pos_x = %.3f,"
+                "pos_y = %.3f,"
+                "pos_z = %.3f,"
+                "boundary = %u "
+                "WHERE charid = %u;";
 
-        Sql_Query(SqlHandle, Query,
-            PChar->loc.destination,
-            PChar->m_moghouseID ? 0 : PChar->getZone(),
-            PChar->loc.p.rotation,
-            PChar->loc.p.x,
-            PChar->loc.p.y,
-            PChar->loc.p.z,
-            PChar->loc.boundary,
-            PChar->id);
+            Sql_Query(SqlHandle, Query,
+                PChar->loc.destination,
+                PChar->m_moghouseID ? 0 : PChar->getZone(),
+                PChar->loc.p.rotation,
+                PChar->loc.p.x,
+                PChar->loc.p.y,
+                PChar->loc.p.z,
+                PChar->loc.boundary,
+                PChar->id);
+        }
+        else
+        {
+            SaveCharPosition(PChar);
+        }
 
         PChar->pushPacket(new CServerIPPacket(PChar, type, ipp));
     }
