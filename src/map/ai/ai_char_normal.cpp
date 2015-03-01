@@ -2676,25 +2676,37 @@ void CAICharNormal::ActionWeaponSkillFinish()
             m_PChar->health.tp = wsTP;
 
             damage = luautils::OnUseWeaponSkill(m_PChar, PTarget, &tpHitsLanded, &extraHitsLanded);
-            damage = battleutils::TakeWeaponskillDamage(m_PChar, PTarget, damage, SLOT_MAIN, tpHitsLanded, taChar);
 
-            Action.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
-            Action.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
+            if (!(battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())))
+            {
+                damage = battleutils::TakeWeaponskillDamage(m_PChar, PTarget, damage, SLOT_MAIN, tpHitsLanded, taChar);
 
-            if (Action.reaction == REACTION_EVADE)
-            {
-                Action.messageID = 282;
-                Action.param = 0;
-            }
-            else if (damage < 0)
-            {
-                Action.param = -damage;
-                Action.messageID = 263;
+                Action.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
+                Action.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
+
+                if (Action.reaction == REACTION_EVADE)
+                {
+                    Action.messageID = 282;
+                    Action.param = 0;
+                }
+                else if (damage < 0)
+                {
+                    Action.param = -damage;
+                    Action.messageID = 263;
+                }
+                else
+                {
+                    Action.messageID = 264; // "xxx takes ### damage." only
+                    Action.param = damage;
+                }
             }
             else
             {
-                Action.messageID = 264; // "xxx takes ### damage." only
-                Action.param = damage;
+                Action.messageID = 276; //xxx recovers mp
+                dsp_max(damage, 0);
+                Action.param = PTarget->addMP(damage);
+                if (PTarget->objtype == TYPE_PC)
+                    charutils::UpdateHealth((CCharEntity*)PTarget);
             }
 
             m_PChar->health.tp = afterWsTP;
