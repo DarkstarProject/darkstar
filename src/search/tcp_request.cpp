@@ -38,7 +38,6 @@
 	#include <netdb.h>
 	#include <netinet/in.h>
 	#include <errno.h>
-        #include <pthread.h>
 	typedef u_int SOCKET;
 	#define INVALID_SOCKET  (SOCKET)(~0)
 	#define SOCKET_ERROR            (-1)

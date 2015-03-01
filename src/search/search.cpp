@@ -78,11 +78,8 @@ struct SearchCommInfo
 	uint16 port;
 };
 
-#ifdef WIN32
-ppuint32 __stdcall TaskManagerThread(void* lpParam);
-#else
-void * TaskManagerThread(void* lpParam);
-#endif
+void TaskManagerThread();
+
 int32 ah_cleanup(uint32 tick, CTaskMgr::CTask* PTask);
 
 
@@ -252,28 +249,8 @@ int32 main (int32 argc, int8 **argv)
 		CTaskMgr::getInstance()->AddTask("ah_cleanup", gettick(), NULL, CTaskMgr::TASK_INTERVAL, ah_cleanup, search_config.expire_interval*1000);
 	}
 //	ShowMessage(CL_CYAN"[TASKMGR] Starting task manager thread..\n" CL_RESET);
-#ifdef WIN32
-	CreateThread(0, 0, TaskManagerThread, NULL, 0, 0);
-#else
-	pthread_t thread2;
-	pthread_attr_t threadAttr2;
 
-	ptherr = 0;
-	ptherr = pthread_attr_init(&threadAttr2);
-	if (ptherr != 0)
-	{
-		errno = ptherr;
-		perror("pthread_attr_init");
-	}
-
-	ptherr = 0;
-	ptherr = pthread_create(&thread2, &threadAttr2, &TaskManagerThread, NULL);
-	if (ptherr != 0)
-	{
-		errno = ptherr;
-		perror("pthread_attr_init");
-	}
-#endif
+    std::thread(TaskManagerThread).detach();
 
 	while (true)
 	{
@@ -1002,25 +979,14 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 *                                                                       *
 ************************************************************************/
 
-#ifdef WIN32
-ppuint32 __stdcall TaskManagerThread(void* lpParam)
-#else
-void* TaskManagerThread(void* lpParam)
-#endif
+void TaskManagerThread()
 {
 	int next;
 	while (true)
 	{
 		next = CTaskMgr::getInstance()->DoTimer(gettick_nocache());
-		Sleep(next / 1000);
+		std::this_thread::sleep_for(std::chrono::milliseconds(next / 1000));
 	}
-
-
-#ifdef WIN32
-	return 1;
-#else
-	return NULL;
-#endif
 }
 
 /************************************************************************
