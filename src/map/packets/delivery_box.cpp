@@ -71,8 +71,16 @@ CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, CItem* PItem, 
     {
         if ((action != 0x0A && action != 0x0B && action != 0x09) || message > 1)
         {
-            WBUFB(data,(0x10)-4) = boxid == 0x01 ? 0x07 : PItem->isSent() ? 0x03 : 0x05;    // 0x05 in send: canceled. other values are unknown 
-            memcpy(data + 0x14 - 4, PItem->getSender(), strlen(PItem->getSender()));        // Sender's name.  Client disables "Return" if it starts with "AH"
+            if (boxid == 1)
+            {
+                WBUFB(data, (0x10) - 4) = 0x07;
+                memcpy(data + 0x14 - 4, PItem->getSender(), strlen(PItem->getSender()));        // Sender's name.  Client disables "Return" if it starts with "AH"
+            }
+            else
+            {
+                WBUFB(data, (0x10) - 4) = PItem->isSent() ? 0x03 : 0x05;    // 0x05 in send: canceled. other values are unknown 
+                memcpy(data + 0x14 - 4, PItem->getReceiver(), strlen(PItem->getReceiver()));    // Receiver's name.  Client disables "Return" if it starts with "AH"
+            }
         }
         if (action == 0x02)
         {
