@@ -1278,7 +1278,7 @@ function addBonusesAbility(caster, ele, target, dmg, params)
 	dmg = math.floor(dmg * dayWeatherBonus);
 
 	local mab = 1;
-	if (params ~= nil and params.bonusmab ~= nil) then
+	if (params ~= nil and params.bonusmab ~= nil and params.includemab == true) then
 		mab = (100 + caster:getMod(MOD_MATT) + params.bonusmab) / (100 + target:getMod(MOD_MDEF));
 	elseif (params == nil or (params ~= nil and params.includemab == true)) then
 		mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF));
