@@ -1752,7 +1752,7 @@ void CAIMobDummy::ActionAttack()
 
 
 								// additional effects
-                                battleutils::HandleEnspell(m_PMob, m_PBattleTarget, &Action, i, m_PMob->m_Weapons[SLOT_MAIN], damage);
+                                battleutils::HandleEnspell(m_PMob, m_PBattleTarget, &Action, !i, m_PMob->m_Weapons[SLOT_MAIN], damage);
 
 								battleutils::HandleSpikesDamage(m_PMob, m_PBattleTarget, &Action, damage);
 							}
@@ -1808,10 +1808,18 @@ void CAIMobDummy::ActionAttack()
                     if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
                         Action.speceffect = SPECEFFECT_RECOIL;
 
-					m_PMob->m_ActionList.push_back(Action);
+                    if (m_ActionType == ACTION_FALL)
+                        m_ActionType = ACTION_ATTACK;
+
+                    m_PMob->m_ActionList.push_back(Action);
 				}
 
 				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+                if (m_PMob->isDead()) //e.g. death by spikes/counter. Needed here AFTER sending the action packets.
+                {
+                    m_ActionType = ACTION_FALL;
+                    ActionFall();
+                }
 			}
             m_LastActionTime = m_Tick;
             m_DeaggroTime = m_Tick;

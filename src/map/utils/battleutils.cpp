@@ -764,6 +764,11 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
             }
         }
     }
+    else if (Action->spikesEffect == 0)
+    {
+        Action->spikesParam = 0;
+        Action->spikesMessage = 0;
+    }
     return false;
 }
 
@@ -842,6 +847,10 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
     {
         PChar = (CCharEntity*)PAttacker;
     }
+
+    Action->additionalEffect = SUBEFFECT_NONE;
+    Action->addEffectMessage = 0;
+    Action->addEffectParam = 0;
 
     EFFECT daze = EFFECT_NONE;
     uint16 power = 0;
@@ -4037,13 +4046,11 @@ void ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker)
 int32 BreathDmgTaken(CBattleEntity* PDefender, int32 damage)
 {
     float resist = 1.0f + (PDefender->getMod(MOD_UDMGBREATH) / 100.0f);
+    resist = dsp_max(resist, 0);
     damage *= resist;
 
     resist = 1.0f + (PDefender->getMod(MOD_DMGBREATH) / 100.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
-
-    if(resist < 0.5f)
-        resist = 0.5f;
-
+    resist = dsp_max(resist, 0.5f);
 	damage = damage * resist;
 
     if (WELL512::irand() % 100 < PDefender->getMod(MOD_ABSORB_DMG_CHANCE))
@@ -4065,14 +4072,11 @@ int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element)
     MODIFIER nullarray[8] = { MOD_FIRE_NULL, MOD_EARTH_NULL, MOD_WATER_NULL, MOD_WIND_NULL, MOD_ICE_NULL, MOD_LTNG_NULL, MOD_LIGHT_NULL, MOD_DARK_NULL };
 
     float resist = (256 + PDefender->getMod(MOD_UDMGMAGIC)) / 256.0f;
-
+    resist = dsp_max(resist, 0);
     damage *= resist;
 
     resist = ((256 + PDefender->getMod(MOD_DMGMAGIC)) / 256.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
-
-    if(resist < 0.5f)
-        resist = 0.5f;
-
+    resist = dsp_max(resist, 0.5f);
 	damage = damage * resist;
 
     if (WELL512::irand() % 100 < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
@@ -4097,14 +4101,11 @@ int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element)
 int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
 {
     float resist = 1.0f + (PDefender->getMod(MOD_UDMGPHYS) / 100.0f);
-
+    resist = dsp_max(resist, 0);
     damage *= resist;
 
     resist = 1.0f + (PDefender->getMod(MOD_DMGPHYS) / 100.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
-
-    if(resist < 0.5f)
-        resist = 0.5f;
-
+    resist = dsp_max(resist, 0.5f);
 	damage = damage * resist;
 
     if (WELL512::irand() % 100 < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
@@ -4127,14 +4128,11 @@ int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
 int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
 {
     float resist = 1.0f + (PDefender->getMod(MOD_UDMGRANGE) / 100.0f);
-
+    resist = dsp_max(resist, 0);
     damage *= resist;
 
     resist = 1.0f + (PDefender->getMod(MOD_DMGRANGE) / 100.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
-
-    if(resist < 0.5f)
-        resist = 0.5f;
-
+    resist = dsp_max(resist, 0.5f);
 	damage = damage * resist;
 
     if (WELL512::irand() % 100 < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
