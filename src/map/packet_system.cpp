@@ -1563,8 +1563,11 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             {
                 uint32 charid = Sql_GetUIntData(SqlHandle, 0);
 
-                if (PItem->getFlag() & ITEM_FLAG_EX)
+                if (PItem->getFlag() & ITEM_FLAG_NODELIVERY)
                 {
+                    if (!(PItem->getFlag() & ITEM_FLAG_DELIVERYINNER))
+                        return;
+                    
                     uint32 accid = Sql_GetUIntData(SqlHandle, 1);
                     int32 ret = Sql_Query(SqlHandle, "SELECT COUNT(*) FROM chars WHERE charid = '%u' AND accid = '%u' LIMIT 1;", PChar->id, accid);
                     if (ret == SQL_ERROR || Sql_NextRow(SqlHandle) != SQL_SUCCESS || Sql_GetUIntData(SqlHandle, 0) == 0)
