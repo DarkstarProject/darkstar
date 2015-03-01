@@ -92,10 +92,13 @@ public:
     std::list<SearchEntity*> GetLinkshellList(uint32 LinkshellID);
     std::list<SearchEntity*> GetPlayersList(search_req sr, int* count);
 	std::vector<ahItem*>     GetAHItemsToCategory(uint8 AHCategoryID, int8* OrderByString);
+	void					 ExpireAHItems();
 
 private:
 
 	Sql_t* SqlHandle;
+	Sql_t* sqlH;
+	Sql_t* sqlH2;
 };
 
 #endif

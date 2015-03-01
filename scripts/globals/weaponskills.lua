@@ -140,7 +140,6 @@ function doPhysicalWeaponskill(attacker, target, params)
 	end
 
 	local tpHitsLanded = 0;
-	local tpHits = 0;
 	if ((firsthit <= hitrate or isSneakValid or isAssassinValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
             not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then
         dmg = base * ftp;
@@ -170,7 +169,6 @@ function doPhysicalWeaponskill(attacker, target, params)
 		tpHitsLanded = 1;
 	end
 
-	tpHits = 1;
 	if((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or weaponType==SKILL_H2H)) then
 
 		local chance = math.random();
@@ -191,7 +189,6 @@ function doPhysicalWeaponskill(attacker, target, params)
 			end
 			tpHitsLanded = tpHitsLanded + 1;
 		end
-		tpHits = tpHits + 1;
 	end
 
 	local numHits = getMultiAttacks(attacker, params.numHits);

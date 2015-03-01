@@ -1123,7 +1123,7 @@ void CAICharNormal::ActionRangedFinish()
                 Action.speceffect = SPECEFFECT_CRITICAL_HIT;
             }
 
-            Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, totalDamage, false, slot, realHits, NULL, true);
+            Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, totalDamage, false, slot, realHits, NULL, true, true);
 
             // lower damage based on shadows taken
             if (shadowsTaken)
@@ -1975,7 +1975,7 @@ void CAICharNormal::ActionJobAbilityFinish()
             // if a hit did occur (even without barrage)
             if (hitOccured == true)
             {
-                Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED, 0, NULL, true);
+                Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED, 1, NULL, true, false);
                 if (Action.param < 0)
                 {
                     Action.param = -(Action.param);
@@ -2390,7 +2390,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
     float Distance = distance(m_PChar->loc.p, m_PBattleSubTarget->loc.p);
 
-    // check if mob is too far away, loose tp
+    // check if mob is too far away, lose tp
     if ((Distance - m_PBattleSubTarget->m_ModelSize) > m_PWeaponSkill->getRange())
     {
         m_PWeaponSkill = NULL;
@@ -2496,28 +2496,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
     damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
 
-    // handle shadows
-    uint8 shadowsTaken = 0;
-    uint8 landedHits = tpHitsLanded + extraHitsLanded;
-    uint8 totalHits = landedHits;
-
-    //count number of shadows taken
-    while (totalHits && landedHits && battleutils::IsAbsorbByShadow(m_PBattleSubTarget)){
-        landedHits--;
-        shadowsTaken++;
-    }
-
-    if (shadowsTaken){
-        // if no hits landed, deal no damage
-        if (landedHits == 0){
-            damage = 0;
-        }
-        else {
-            //divide damage by amount of shadows taken
-            damage *= 1 - ((float)shadowsTaken / totalHits);
-        }
-    }
-
     if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
     {
         m_PChar->addTP(-1000 - bonusTp);
@@ -2540,10 +2518,39 @@ void CAICharNormal::ActionWeaponSkillFinish()
     if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
         taChar = battleutils::getAvailableTrickAttackChar(m_PChar, m_PBattleSubTarget);
 
-    if (!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
-        damage = battleutils::TakeWeaponskillDamage(m_PChar, m_PBattleSubTarget, damage, damslot, tpHitsLanded, taChar);
+    apAction_t Action;
+    Action.ActionTarget = m_PBattleSubTarget;
+    Action.animation = m_PWeaponSkill->getAnimationId();
 
-    m_PChar->addTP(extraHitsLanded * 10);
+
+    if (!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
+    {
+        damage = battleutils::TakeWeaponskillDamage(m_PChar, m_PBattleSubTarget, damage, damslot, tpHitsLanded, taChar);
+        Action.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
+        Action.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
+        m_PChar->addTP(extraHitsLanded * 10);
+
+        if (Action.reaction == REACTION_EVADE)
+            Action.messageID = 188; //but misses
+        else if (damage < 0)
+        {
+            Action.param = -damage;
+            Action.messageID = 238; //absorbed ws
+        }
+        else
+        {
+            Action.param = damage;
+            Action.messageID = 185; //damage ws
+        }
+    }
+    else
+    {
+        Action.messageID = 224; //restores mp msg
+        Action.reaction = REACTION_HIT;
+        dsp_max(damage, 0);
+        Action.param = m_PChar->addMP(damage);
+    }
+    
     float afterWsTP = m_PChar->health.tp;
 
     if (m_PChar->PPet != NULL && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
@@ -2552,43 +2559,8 @@ void CAICharNormal::ActionWeaponSkillFinish()
         m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
     }
 
-    apAction_t Action;
-
-    Action.ActionTarget = m_PBattleSubTarget;
-    Action.reaction = REACTION_HIT;
-    Action.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
-    Action.animation = m_PWeaponSkill->getAnimationId();
-    if (damage < 0)
-    {
-        Action.param = -damage;
-        Action.messageID = 238;
-    }
-    else
-        Action.param = damage;
-    Action.knockback = 0;
-
     m_PTargetFind->reset();
     m_PChar->m_ActionList.clear();
-
-    // TODO: need better way to handle misses
-    // weapon skills cannot properly respond with a miss or dmg was just zero
-    // assume 0 means a miss
-    if (damage == 0 && Action.messageID != 238 && !m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_STONESKIN))
-    {
-        Action.reaction = REACTION_EVADE;
-        Action.messageID = 188; //but misses
-    }
-    else if (Action.messageID != 238)
-    {
-        Action.messageID = 185; //damage ws
-    }
-
-    if (damage > 0 && battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
-    {
-        Action.speceffect = SPECEFFECT_NONE;
-        Action.messageID = 224; //restores mp msg
-        m_PChar->addMP(damage);
-    }
 
     uint8 wspoints = 0;
 
@@ -2692,7 +2664,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
         uint16 actionsLength = m_PTargetFind->m_targets.size();
 
-        uint16 msg = 0;
         for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin(); it != m_PTargetFind->m_targets.end(); ++it)
         {
             CBattleEntity* PTarget = *it;
@@ -2706,29 +2677,39 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
             damage = luautils::OnUseWeaponSkill(m_PChar, PTarget, &tpHitsLanded, &extraHitsLanded);
 
+            if (!(battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())))
+            {
+                damage = battleutils::TakeWeaponskillDamage(m_PChar, PTarget, damage, SLOT_MAIN, tpHitsLanded, taChar);
+
+                Action.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
+                Action.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
+
+                if (Action.reaction == REACTION_EVADE)
+                {
+                    Action.messageID = 282;
+                    Action.param = 0;
+                }
+                else if (damage < 0)
+                {
+                    Action.param = -damage;
+                    Action.messageID = 263;
+                }
+                else
+                {
+                    Action.messageID = 264; // "xxx takes ### damage." only
+                    Action.param = damage;
+                }
+            }
+            else
+            {
+                Action.messageID = 276; //xxx recovers mp
+                dsp_max(damage, 0);
+                Action.param = PTarget->addMP(damage);
+                if (PTarget->objtype == TYPE_PC)
+                    charutils::UpdateHealth((CCharEntity*)PTarget);
+            }
+
             m_PChar->health.tp = afterWsTP;
-
-            msg = 264; // "xxx takes ### damage." only
-
-            if (damage == 0 && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_STONESKIN))
-            {
-                Action.reaction = REACTION_EVADE;
-                msg = 282;
-            }
-
-            Action.param = battleutils::TakeWeaponskillDamage(m_PChar, PTarget, damage, SLOT_MAIN, 0, taChar);
-
-            if (Action.param < 0)
-            {
-                Action.param = -Action.param;
-                msg = 263;
-            }
-
-            Action.messageID = msg;
-
-            if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
-                Action.speceffect = SPECEFFECT_RECOIL;
-
             m_PChar->m_ActionList.push_back(Action);
         }
     }
@@ -3074,8 +3055,8 @@ void CAICharNormal::DoAttack()
         else if ((WELL512::irand() % 100 < attack->GetHitRate() || attackRound->GetSATAOccured()) &&
             !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
         {
-            // attack hit, try to be absorbed by shadow
-            if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
+            // attack hit, try to be absorbed by shadow unless it is a SATA attack round
+            if (!(attackRound->GetSATAOccured()) && battleutils::IsAbsorbByShadow(m_PBattleTarget))
             {
                 Action.messageID = 0;
                 Action.reaction = REACTION_EVADE;
@@ -3122,7 +3103,7 @@ void CAICharNormal::DoAttack()
                     Action.reaction = REACTION_BLOCK;
                 }
 
-                Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, attack->GetDamage(), attack->IsBlocked(), attack->GetWeaponSlot(), 1, attackRound->GetTAEntity(), true);
+                Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, attack->GetDamage(), attack->IsBlocked(), attack->GetWeaponSlot(), 1, attackRound->GetTAEntity(), true, true);
                 if (Action.param < 0)
                 {
                     Action.param = -(Action.param);

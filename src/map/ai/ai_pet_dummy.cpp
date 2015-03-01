@@ -764,7 +764,7 @@ void CAIPetDummy::ActionAttack()
 					Action.messageID  = 15;
                     Action.knockback  = 0;
 					//ShowDebug("pet hp %i and atk %i def %i eva is %i \n",m_PPet->health.hp,m_PPet->ATT(),m_PPet->DEF(),m_PPet->getMod(MOD_EVA));
-					uint16 damage = 0;
+					int32 damage = 0;
 
 					if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE))
 					{
@@ -795,7 +795,7 @@ void CAIPetDummy::ActionAttack()
 								Action.messageID  = 67;
 							}
 
-							damage = (uint16)((m_PPet->GetMainWeaponDmg() + battleutils::GetFSTR(m_PPet, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
+							damage = (int32)((m_PPet->GetMainWeaponDmg() + battleutils::GetFSTR(m_PPet, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
 						}
 					} else {
                         // create enmity even on misses
@@ -813,7 +813,7 @@ void CAIPetDummy::ActionAttack()
 					if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 
 
-					Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true);
+					Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true, true);
                     if (Action.param < 0)
                     {
                         Action.param = -(Action.param);

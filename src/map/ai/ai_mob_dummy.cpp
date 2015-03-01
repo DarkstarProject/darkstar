@@ -1584,7 +1584,7 @@ void CAIMobDummy::ActionAttack()
 						break;
 					}
 
-					uint32 damage = 0;
+					int32 damage = 0;
 					bool isCountered = false;
 					bool isParried = false;
 					bool isGuarded = false;
@@ -1620,19 +1620,32 @@ void CAIMobDummy::ActionAttack()
                             if (thirdEyeCounter && isFaceing(m_PBattleTarget->loc.p, m_PMob->loc.p, 40)) //assuming that 3rd eye counter requires facing the mob, but not subjected to accuracy checks
                             {
                                 isCountered = true;
-                                isCritical = (WELL512::irand() % 100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob, false));
-                                float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, isCritical, 0);
-                                damage = (uint32)((m_PBattleTarget->GetMainWeaponDmg() + battleutils::GetFSTR(m_PBattleTarget, m_PMob, SLOT_MAIN)) * DamageRatio);
-                                Action.messageID = 33;
-                                Action.reaction = REACTION_HIT;
+                                Action.reaction = REACTION_EVADE;
                                 Action.speceffect = SPECEFFECT_NONE;
-                                Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true, true);
-                                Action.spikesParam = Action.param;
+                                Action.param = 0;
+                                Action.messageID = 0;
                                 Action.spikesEffect = SUBEFFECT_COUNTER;
-                                if (m_PBattleTarget->objtype == TYPE_PC)
+                                if (battleutils::IsAbsorbByShadow(m_PMob))
                                 {
-                                    uint8 skilltype = (m_PBattleTarget->m_Weapons[SLOT_MAIN] == NULL ? SKILL_H2H : m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType());
-                                    charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, (SKILLTYPE)skilltype, m_PMob->GetMLevel());
+                                    Action.spikesParam = 0;
+                                    Action.spikesMessage = 14;
+                                }
+                                else
+                                {
+                                    int16 naturalh2hDMG = 0;
+                                    if (m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH || (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK))
+                                        naturalh2hDMG = (float)(m_PBattleTarget->GetSkill(SKILL_H2H) * 0.11f) + 3;
+                                    
+                                    isCritical = (WELL512::irand() % 100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob, false));
+                                    float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, isCritical, 0);
+                                    damage = (int32)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob, SLOT_MAIN)) * DamageRatio);
+                                    Action.spikesParam = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true, false, true);
+                                    Action.spikesMessage = 33;
+                                    if (m_PBattleTarget->objtype == TYPE_PC)
+                                    {
+                                        uint8 skilltype = (m_PBattleTarget->m_Weapons[SLOT_MAIN] == NULL ? SKILL_H2H : m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType());
+                                        charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, (SKILLTYPE)skilltype, m_PMob->GetMLevel());
+                                    }
                                 }
                             }
                             else
@@ -1704,7 +1717,7 @@ void CAIMobDummy::ActionAttack()
                                         DamageRatio = 0;
 								}
 
-								damage = (uint32)((m_PMob->GetMainWeaponDmg() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
+								damage = (int32)((m_PMob->GetMainWeaponDmg() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
 
 								//  Guard skill up
                                 if (m_PBattleTarget->objtype == TYPE_PC && (isGuarded || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0)))
@@ -1721,7 +1734,7 @@ void CAIMobDummy::ActionAttack()
 								bool isBlocked = attackutils::IsBlocked(m_PMob, m_PBattleTarget);
 								if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 
-                                Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true);
+                                Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true, true);
                                 if (Action.param < 0)
                                 {
                                     Action.param = -(Action.param);
@@ -1745,23 +1758,34 @@ void CAIMobDummy::ActionAttack()
 							}
 							else //Countered
 							{
-                                int16 naturalh2hDMG = 0;
-                                if (m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH || (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK))
-                                    naturalh2hDMG = (float)(m_PBattleTarget->GetSkill(SKILL_H2H) * 0.11f) + 3;
-
-                                float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, isCritical, 0);
-                                damage = (uint32)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob, SLOT_MAIN)) * DamageRatio);
-                                Action.messageID = 33;
-                                Action.reaction = REACTION_HIT;
+                                Action.reaction = REACTION_EVADE;
                                 Action.speceffect = SPECEFFECT_NONE;
-                                Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true, true);
-                                Action.spikesParam = Action.param;
+                                Action.param = 0;
+                                Action.messageID = 0;
                                 Action.spikesEffect = SUBEFFECT_COUNTER;
-								if(m_PBattleTarget->objtype == TYPE_PC)
-								{
-									uint8 skilltype = (m_PBattleTarget->m_Weapons[SLOT_MAIN] == NULL ? SKILL_H2H : m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType());
-									charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, (SKILLTYPE)skilltype, m_PMob->GetMLevel());
-								}
+                                if (battleutils::IsAbsorbByShadow(m_PMob))
+                                {
+                                    Action.spikesParam = 0;
+                                    Action.spikesMessage = 14;
+                                }
+                                else
+                                {
+                                    int16 naturalh2hDMG = 0;
+                                    if (m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH || (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK))
+                                        naturalh2hDMG = (float)(m_PBattleTarget->GetSkill(SKILL_H2H) * 0.11f) + 3;
+                                    
+                                    isCritical = (WELL512::irand() % 100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob, false));
+                                    float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, isCritical, 0);
+                                    damage = (int32)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob, SLOT_MAIN)) * DamageRatio);
+                                    Action.spikesParam = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true, false, true);
+                                    Action.spikesMessage = 33;
+                                    
+                                    if (m_PBattleTarget->objtype == TYPE_PC)
+                                    {
+                                        uint8 skilltype = (m_PBattleTarget->m_Weapons[SLOT_MAIN] == NULL ? SKILL_H2H : m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType());
+                                        charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, (SKILLTYPE)skilltype, m_PMob->GetMLevel());
+                                    }
+                                }
 							}
 
 						}

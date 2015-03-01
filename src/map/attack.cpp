@@ -240,6 +240,12 @@ uint8 CAttack::GetHitRate()
 		{
 			m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 0);
 		}
+
+        // Deciding this here because SA/TA wears on attack, before the 2nd+ hits go off.
+        if (m_hitRate == 100)
+        {
+            m_attackRound->SetSATA(true);
+        }
 	}
 	// Left hand hitrate
 	else if (m_attackDirection == LEFTATTACK && m_attackType != KICK_ATTACK)
@@ -251,12 +257,6 @@ uint8 CAttack::GetHitRate()
 		else
 		{
 			m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 1);
-		}
-
-		// Deciding this here because SA/TA wears on attack, before the 2nd+ hits go off.
-		if (m_hitRate = 100)
-		{
-			m_attackRound->SetSATA(true);
 		}
 	}
 	// Kick hit rate
