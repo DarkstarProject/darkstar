@@ -17,79 +17,75 @@ require("scripts/globals/conquest");
 
 function onInitialize(zone)
     local manuals = {17265291,17265292,17265293};
-    
+
     SetFieldManual(manuals);
-    
+
     -- Waraxe Beak
     SetRespawnTime(17264828, 900, 10800);
-    
+
     -- Coo Keja the Unseen
     SetRespawnTime(17264946, 900, 10800);
-    
+
     SetRegionalConquestOverseers(zone:getRegionID())
-    
 end;
 
------------------------------------		
--- onZoneIn		
------------------------------------		
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
-function onZoneIn( player, prevZone)		
+function onZoneIn( player, prevZone)
+    local cs = -1;
 
-	local cs = -1;
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
+        player:setPos( 752.632, -33.761, -40.035, 129);
+    end
 
-	if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then	
-		player:setPos( 752.632, -33.761, -40.035, 129);
-	end
+    if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
+        cs = 0x001f;
+    end
 
-	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
-		cs = 0x001f;
-	end
-	
-	return cs;		
-end;			
+    return cs;
+end;
 
 
------------------------------------		
--- onConquestUpdate		
------------------------------------		
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
------------------------------------			
--- onRegionEnter			
------------------------------------			
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
 
-function onRegionEnter( player, region)			
-end;			
+function onRegionEnter( player, region)
+end;
 
------------------------------------			
--- onEventUpdate			
------------------------------------			
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
-function onEventUpdate( player, csid, option)			
---printf("CSID: %u",csid);		
---printf("RESULT: %u",option);
+function onEventUpdate( player, csid, option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x001f) then
+        lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
+    end
+end;
 
-	if (csid == 0x001f) then		
-		lightCutsceneUpdate( player);  -- Quest: I Can Hear A Rainbow
-	end		
-end;			
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
------------------------------------			
--- onEventFinish			
------------------------------------			
-
-function onEventFinish( player, csid, option)			
---printf("CSID: %u",csid);		
---printf("RESULT: %u",option);
-
-	if( csid == 0x001f) then		
-		lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
-	end		
+function onEventFinish( player, csid, option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x001f) then
+        lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
+    end
 end;
