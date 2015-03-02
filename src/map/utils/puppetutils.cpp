@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -24,6 +24,7 @@
 #include "puppetutils.h"
 #include "petutils.h"
 #include "battleutils.h"
+#include "charutils.h"
 #include "../packets/char_job_extra.h"
 
 namespace puppetutils
@@ -366,7 +367,7 @@ void setHead(CCharEntity* PChar, uint8 head)
 
 }
 
-uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill)
+uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level)
 {
     int8 rank = 0;
     if (skill < SKILL_AME || skill > SKILL_AMA)
@@ -419,8 +420,12 @@ uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill)
     if (rank < 0)
         rank = 13 + rank;
 
-    return battleutils::GetMaxSkill(rank, PChar->PAutomaton->GetMLevel());
+    return battleutils::GetMaxSkill(rank, level);
+}
 
+uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill)
+{
+    return getSkillCap(PChar, skill, PChar->PAutomaton->GetMLevel());
 }
 
 void LoadAutomatonStats(CCharEntity* PChar)
@@ -441,6 +446,84 @@ void LoadAutomatonStats(CCharEntity* PChar)
             break;
     }
     PChar->PPet = NULL; //already saved as PAutomaton, don't need it twice unless it's summoned
+}
+
+void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
+{
+    DSP_DEBUG_BREAK_IF(!PAutomaton->PMaster || PAutomaton->PMaster->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)PAutomaton->PMaster;
+    if (getSkillCap(PChar, SkillID) != 0 && !(PChar->WorkingSkills.skill[SkillID] & 0x8000))
+    {
+        uint16 CurSkill = PChar->RealSkills.skill[SkillID];
+        uint16 MaxSkill = getSkillCap(PChar, SkillID);
+
+        int16  Diff = MaxSkill - CurSkill / 10;
+        double SkillUpChance = Diff / 5.0 + map_config.skillup_chance_multiplier * (2.0 - log10(1.0 + CurSkill / 100));
+
+        double random = WELL512::drand();
+
+        if (SkillUpChance > 0.5)
+        {
+            SkillUpChance = 0.5;
+        }
+
+        if (Diff > 0 && random < SkillUpChance)
+        {
+            double chance = 0;
+            uint8  SkillAmount = 1;
+            uint8  tier = dsp_min(1 + (Diff / 5), 5);
+
+            for (uint8 i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
+            {
+                random = WELL512::drand();
+
+                switch (tier)
+                {
+                case 5:  chance = 0.900; break;
+                case 4:  chance = 0.700; break;
+                case 3:  chance = 0.500; break;
+                case 2:  chance = 0.300; break;
+                case 1:  chance = 0.200; break;
+                default: chance = 0.000; break;
+                }
+
+                if (chance < random || SkillAmount == 5) break;
+
+                tier -= 1;
+                SkillAmount += 1;
+            }
+            MaxSkill = MaxSkill * 10;
+
+            // Do skill amount multiplier (Will only be applied if default setting is changed)
+            if (map_config.skillup_amount_multiplier > 1)
+            {
+                SkillAmount += SkillAmount * map_config.skillup_amount_multiplier;
+                if (SkillAmount > 9)
+                {
+                    SkillAmount = 9;
+                }
+            }
+
+            if (SkillAmount + CurSkill >= MaxSkill)
+            {
+                SkillAmount = MaxSkill - CurSkill;
+                PChar->WorkingSkills.skill[SkillID] |= 0x8000;
+            }
+
+            PChar->RealSkills.skill[SkillID] += SkillAmount;
+            PChar->pushPacket(new CMessageBasicPacket(PAutomaton, PAutomaton, SkillID, SkillAmount, 38));
+
+            if ((CurSkill / 10) < (CurSkill + SkillAmount) / 10) //if gone up a level
+            {
+                //TODO: regenerate automatons weaponskills
+                PChar->WorkingSkills.skill[SkillID] += 1;
+                PChar->pushPacket(new CCharJobExtraPacket(PChar, PChar->GetMJob() == JOB_PUP));
+                PChar->pushPacket(new CMessageBasicPacket(PAutomaton, PAutomaton, SkillID, (CurSkill + SkillAmount) / 10, 53));
+            }
+            charutils::SaveCharSkills(PChar, SkillID);
+        }
+    }
 }
 
 }

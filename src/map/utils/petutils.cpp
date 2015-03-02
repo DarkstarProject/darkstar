@@ -252,7 +252,7 @@ void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget){
 	{
 		PPet->PBattleAI->SetBattleTarget(PTarget);
         if (!(PPet->objtype == TYPE_PET && ((CPetEntity*)PPet)->m_PetID == PETID_ODIN))
-		    PPet->PBattleAI->SetCurrentAction(ACTION_ATTACK);
+		    PPet->PBattleAI->SetCurrentAction(ACTION_ENGAGE);
 	}
 }
 

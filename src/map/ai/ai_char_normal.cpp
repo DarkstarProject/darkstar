@@ -2165,10 +2165,8 @@ void CAICharNormal::ActionJobAbilityFinish()
                 m_PBattleSubTarget->allegiance != m_PChar->allegiance)
             {
                 // во время pvp целью могут быт персонажи, монстры и их питомцы
-                if (m_PBattleSubTarget->objtype == TYPE_MOB &&
-                    m_PJobAbility->getID() != ABILITY_ASSAULT &&
-                    m_PJobAbility->getID() != ABILITY_FIGHT &&
-                    m_PJobAbility->getID() != ABILITY_GAUGE)
+                if (m_PBattleSubTarget->objtype == TYPE_MOB && 
+                    !(m_PJobAbility->getCE() == 0 && m_PJobAbility->getVE() == 0))
                     //assault(72)/fight(53) doesnt generate hate directly
                 {
                     CMobEntity* mob = (CMobEntity*)m_PBattleSubTarget;
