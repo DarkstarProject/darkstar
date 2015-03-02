@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC:  Panoquieur, T.K.
+--  NPC: Panoquieur, T.K.
 -- @pos -60 0 -31 241
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band
@@ -16,10 +16,10 @@ require("scripts/globals/conquest");
 require("scripts/globals/common");
 require("scripts/zones/Windurst_Woods/TextIDs");
 
-guardnation = SANDORIA; -- SANDORIA, BASTOK, WINDURST, JEUNO
-guardtype   = 2;        -- 1: city, 2: foreign, 3: outpost, 4: border
-size        = table.getn(SandInv);
-inventory   = SandInv;
+local guardnation = SANDORIA; -- SANDORIA, BASTOK, WINDURST, JEUNO
+local guardtype   = 2;        -- 1: city, 2: foreign, 3: outpost, 4: border
+local size        = table.getn(SandInv);
+local inventory   = SandInv;
 
 -----------------------------------
 -- onTrade Action
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
 
 	if (player:getNation() == guardnation and player:getVar("supplyQuest_started") > 0 and supplyRunFresh(player) == 0) then
 		player:showText(npc,CONQUEST + 40); -- "We will dispose of those unusable supplies."
-		region = player:getVar("supplyQuest_region");
+		local region = player:getVar("supplyQuest_region");
 		player:delKeyItem(getSupplyKey(region));
 		player:messageSpecial(KEYITEM_OBTAINED + 1,getSupplyKey(region));
 		player:setVar("supplyQuest_started",0);
@@ -92,12 +92,14 @@ function onEventFinish(player,csid,option)
 
 	if (option == 1) then
 		duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;
+		player:delStatusEffect(EFFECT_SIGIL);
+		player:delStatusEffect(EFFECT_SANCTION);
 		player:delStatusEffect(EFFECT_SIGNET);
 		player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
 	elseif (option >= 32768 and option <= 32944) then
 		for Item = 1,size,3 do
 			if (option == inventory[Item]) then
-				if(player:getFreeSlotsCount() >= 1) then
+				if (player:getFreeSlotsCount() >= 1) then
 					-- Logic to impose limits on exp bands
 					if (option >= 32933 and option <= 32935) then
 						if (checkConquestRing(player) > 0) then
@@ -132,7 +134,7 @@ function onEventFinish(player,csid,option)
 			end
 		end
 	elseif (option >= 65541 and option <= 65565) then -- player chose supply quest.
-		region = option - 65541;
+		local region = option - 65541;
 		player:addKeyItem(getSupplyKey(region));
 		player:messageSpecial(KEYITEM_OBTAINED,getSupplyKey(region));
 		player:setVar("supplyQuest_started",vanaDay());
