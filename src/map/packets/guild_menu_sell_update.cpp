@@ -37,7 +37,7 @@ CGuildMenuSellUpdatePacket::CGuildMenuSellUpdatePacket(CCharEntity* PChar, uint8
     this->type = 0x84;
     this->size = 0x04;
 
-    DSP_DEBUG_BREAK_IF(PChar == NULL);
+    DSP_DEBUG_BREAK_IF(PChar == nullptr);
 
     WBUFW(data, (0x04)-4) = itemID;
     WBUFB(data, (0x06)-4) = stock;

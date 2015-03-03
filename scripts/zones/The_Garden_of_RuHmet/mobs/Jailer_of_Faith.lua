@@ -7,8 +7,8 @@
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
-	
+function onMobSpawn(mob)
+
 end;
 
 -----------------------------------
@@ -16,7 +16,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer, npc)
-	
+
 	-- local qm3 = GetNPCByID(16921029);
     -- qm3:hideNPC(900);
 	-- local qm3p = math.random(1,5); -- random for next @pos.
@@ -37,12 +37,12 @@ function onMobDeath(mob, killer, npc)
                         --qm3:setPos(-682,0.00,-340); -- spawn point 5 "Mithra"
 						--printf("Qm3 is at pos 5, jailer death");
 				--end
-end;	
------------------------------------		
--- onGameHour		
------------------------------------		  
+end;
+-----------------------------------
+-- onGameHour
+-----------------------------------
 
 function onGameHour(npc, mob, player)
-	 
-	
+
+
 end;

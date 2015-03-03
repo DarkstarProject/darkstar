@@ -14,7 +14,7 @@ end;
 -- onMobSpawn
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 
     local Detector = mob:getID();
     GetMobByID(Detector):setLocalVar("1",1);

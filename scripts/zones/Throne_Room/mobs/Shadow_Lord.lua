@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -31,7 +31,7 @@ function onMobFight(mob,target)
 	if(mob:getID() < 17453060) then -- first phase AI
 		--once he's under 50% HP, start changing immunities and attack patterns
 		if(mob:getHP() / mob:getMaxHP() <= 0.5) then
-			
+
 			--have to keep track of both the last time he changed immunity and the HP he changed at
             local changeTime = mob:getLocalVar("changeTime");
             local changeHP = mob:getLocalVar("changeHP");
@@ -133,7 +133,7 @@ function onEventFinish(player,csid,option)
 		DespawnMob(mobid);
 		player:setVar("mobid",0);
 
-		--first phase dies, spawn second phase ID, make him engage, and disable 
+		--first phase dies, spawn second phase ID, make him engage, and disable
 		--  magic, auto attack, and abilities (all he does is case Implode by script)
 		mob = SpawnMob(mobid+3);
 		mob:updateEnmity(player);

@@ -36,4 +36,8 @@ CCharSkillsPacket::CCharSkillsPacket(CCharEntity* PChar)
 	this->type = 0x62;
 	this->size = 0x80;
 	memcpy(data+(0x80)-4, &PChar->WorkingSkills, 128);
+    //remove automaton skills from this menu (they are in another packet)
+    WBUFW(data, (0xAC) - 4) = 0x8000;
+    WBUFW(data, (0xAE) - 4) = 0x8000;
+    WBUFW(data, (0xB0) - 4) = 0x8000;
 }

@@ -35,7 +35,7 @@ CPathFind::CPathFind(CBaseEntity* PTarget)
 
 CPathFind::~CPathFind()
 {
-	m_PTarget = NULL;
+	m_PTarget = nullptr;
 	Clear();
 }
 
@@ -177,7 +177,7 @@ bool CPathFind::WarpTo(position_t point, float maxDistance)
 
 bool CPathFind::isNavMeshEnabled()
 {
-	return m_PTarget->loc.zone && m_PTarget->loc.zone->m_navMesh != NULL;
+	return m_PTarget->loc.zone && m_PTarget->loc.zone->m_navMesh != nullptr;
 }
 
 void CPathFind::LimitDistance(float maxLength)
@@ -191,7 +191,7 @@ void CPathFind::StopWithin(float within)
 	// TODO: cut up path
 
 	position_t* lastPoint = &m_points[m_pathLength - 1];
-	position_t* secondLastPoint = NULL;
+	position_t* secondLastPoint = nullptr;
 
 	if (m_pathLength == 1)
 	{

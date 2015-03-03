@@ -146,7 +146,7 @@ bool IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 ************************************************************************/
 uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, PHYSICAL_ATTACK_TYPE attackType)
 {
-	if (PWeapon==NULL)
+	if (PWeapon==nullptr)
 	{
 		return damage;
 	}
@@ -171,47 +171,6 @@ uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32
 		default: break;
 	}	
 	return originalDamage;
-}
-
-/************************************************************************
-*																		*
-*  Try's to absorb MP from a physical attack.							*
-*																		*
-************************************************************************/
-void TryAbsorbMPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage)
-{
-	if (battleEntity->objtype != TYPE_PC)
-	{
-		return;
-	}
-
-	// Absorbs a percentage of damage to MP (100% rate)
-	if (battleEntity->getMod(MOD_ABSORB_DMG_TO_MP) != 0)
-	{
-		uint16 absorbedMP = (float)(damage * battleEntity->getMod(MOD_ABSORB_DMG_TO_MP) / 100);
-		battleEntity->addMP(absorbedMP);
-		return;
-	}
-}
-
-/************************************************************************
-*																		*
-*  Try's to absorb HP from a physical attack.							*
-*																		*
-************************************************************************/
-bool TryAbsorbHPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage)
-{
-	if (battleEntity->objtype != TYPE_PC)
-	{
-		return false;
-	}
-
-	// Do chance to absorb damage
-	if (WELL512::irand()%100 < battleEntity->getMod(MOD_ABSORB_DMG_CHANCE))
-	{
-		return true;
-	}
-	return false;
 }
 
 }

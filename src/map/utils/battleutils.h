@@ -129,7 +129,7 @@ namespace battleutils
     SKILLCHAIN_ELEMENT  FormSkillchain(std::list<SKILLCHAIN_ELEMENT> resonance, std::list<SKILLCHAIN_ELEMENT> skill);
     uint8				GetSkillchainTier(SKILLCHAIN_ELEMENT skillchain);
     uint8				GetSkillchainSubeffect(SKILLCHAIN_ELEMENT skillchain);
-    uint16				GetSkillchainMinimumResistance(SKILLCHAIN_ELEMENT element, CBattleEntity* PDefender);
+    int16				GetSkillchainMinimumResistance(SKILLCHAIN_ELEMENT element, CBattleEntity* PDefender, ELEMENT* appliedEle);
 
 	bool			IsParalyzed(CBattleEntity* PAttacker);
     bool			IsAbsorbByShadow(CBattleEntity* PDefender);
@@ -147,7 +147,7 @@ namespace battleutils
     uint8				GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	float				GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 bonusAttPercent);
 
-	uint32				TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim);
+	int32				TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool giveTPtoAttacker, bool isCounter = false);
     int32				TakeWeaponskillDamage(CCharEntity* PChar, CBattleEntity* PDefender, int32 damage, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar);
     int32				TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 lastSkillDamage);
 	uint32				MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
@@ -156,10 +156,10 @@ namespace battleutils
 	float				GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	void				HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action);
     uint16              CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint16 damageTaken);
-    bool                HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint32 damage);
+    bool                HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, int32 damage);
     bool                HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 damage, SUBEFFECT spikesType, uint8 chance);
     void                HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action);
-	void				HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, bool isFirstSwing, CItemWeapon* weapon, uint32 damage);
+	void				HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, bool isFirstSwing, CItemWeapon* weapon, int32 damage);
 	uint8				GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage);
 	int32				CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element);
 
@@ -198,7 +198,7 @@ namespace battleutils
     void                ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker);
 
     int32               BreathDmgTaken(CBattleEntity* PDefender, int32 damage);
-    int32               MagicDmgTaken(CBattleEntity* PDefender, int32 damage);
+    int32               MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element);
     int32               PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               RangedDmgTaken(CBattleEntity* PDefender, int32 damage);
 

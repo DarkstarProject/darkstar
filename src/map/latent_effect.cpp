@@ -134,7 +134,7 @@ void CLatentEffect::Deactivate()
 
             int16 modPower = GetModPower();
 
-            if (weapon != NULL && (weapon->isType(ITEM_ARMOR) || weapon->isType(ITEM_WEAPON)))
+            if (weapon != nullptr && (weapon->isType(ITEM_ARMOR) || weapon->isType(ITEM_WEAPON)))
             {
                 if (GetModValue() == MOD_ADDITIONAL_EFFECT)
                 {

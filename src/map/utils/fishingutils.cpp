@@ -97,11 +97,11 @@ void StartFishing(CCharEntity* PChar)
 		return;
 	}
 	
-	CItemWeapon* WeaponItem = NULL;
+	CItemWeapon* WeaponItem = nullptr;
 
 	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);	
 			
-	if ((WeaponItem == NULL) ||
+	if ((WeaponItem == nullptr) ||
 	   !(WeaponItem->isType(ITEM_WEAPON)) ||
 		(WeaponItem->getSkillType() != SKILL_FSH)) 
 	{													
@@ -114,7 +114,7 @@ void StartFishing(CCharEntity* PChar)
 
 	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);	
 							
-	if ((WeaponItem == NULL) ||
+	if ((WeaponItem == nullptr) ||
 	   !(WeaponItem->isType(ITEM_WEAPON)) ||
 		(WeaponItem->getSkillType() != SKILL_FSH))
 	{
@@ -125,7 +125,6 @@ void StartFishing(CCharEntity* PChar)
 		return;
 	}
 
-	PChar->status = STATUS_UPDATE;
 	PChar->animation = ANIMATION_FISHING_START;
     PChar->updatemask |= UPDATE_HP;
 
@@ -147,12 +146,12 @@ bool CheckFisherLuck(CCharEntity* PChar)
 		return false;
 	}
 
-	CItemFish* PFish = NULL;
-	CItemWeapon* WeaponItem = NULL;
+	CItemFish* PFish = nullptr;
+	CItemWeapon* WeaponItem = nullptr;
 
 	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);	
 
-	DSP_DEBUG_BREAK_IF(WeaponItem == NULL);
+	DSP_DEBUG_BREAK_IF(WeaponItem == nullptr);
 	DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
 	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FSH);
 
@@ -160,7 +159,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);	
 							
-	DSP_DEBUG_BREAK_IF(WeaponItem == NULL);
+	DSP_DEBUG_BREAK_IF(WeaponItem == nullptr);
 	DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
 	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FSH);
 
@@ -257,7 +256,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 		}
 	}
 
-	return (PFish != NULL);
+	return (PFish != nullptr);
 }
 
 /************************************************************************
@@ -270,7 +269,7 @@ bool LureLoss(CCharEntity* PChar, bool RemoveFly)
 {	
 	CItemWeapon* PLure = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
 
-	DSP_DEBUG_BREAK_IF(PLure == NULL);
+	DSP_DEBUG_BREAK_IF(PLure == nullptr);
 	DSP_DEBUG_BREAK_IF(PLure->isType(ITEM_WEAPON) == false);
 	DSP_DEBUG_BREAK_IF(PLure->getSkillType() != SKILL_FSH);
 
@@ -300,7 +299,7 @@ void RodBreaks(CCharEntity* PChar)
 	uint8  SlotID = PChar->equip[SLOT_RANGED];
 	CItem* PRod   = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
-	DSP_DEBUG_BREAK_IF(PRod == NULL);
+	DSP_DEBUG_BREAK_IF(PRod == nullptr);
 
 	uint16 BrokenRodID = 0;
 
@@ -369,7 +368,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				// сообщение: "You caught fish!"
 
 				DSP_DEBUG_BREAK_IF(PChar->UContainer->GetType() != UCONTAINER_FISHING);
-				DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == NULL);
+				DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == nullptr);
 
 				PChar->animation = ANIMATION_FISHING_CAUGHT;
                 PChar->updatemask |= UPDATE_HP;
@@ -440,8 +439,6 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 		}
 		break;
 	}
-
-	PChar->status = STATUS_UPDATE;
 			
 	PChar->pushPacket(new CCharUpdatePacket(PChar));
 	PChar->pushPacket(new CCharSyncPacket(PChar));

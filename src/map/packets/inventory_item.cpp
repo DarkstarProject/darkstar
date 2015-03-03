@@ -40,7 +40,7 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 	WBUFB(data,(0x0E)-4) = LocationID;
 	WBUFB(data,(0x0F)-4) = SlotID;	
 
-	if (PItem != NULL)
+	if (PItem != nullptr)
 	{
 		WBUFL(data,(0x04)-4) = PItem->getQuantity();
 		WBUFL(data,(0x08)-4) = PItem->getCharPrice();

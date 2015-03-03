@@ -85,7 +85,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
                 {
                     CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
 
-                    if ((linkshell != NULL) && linkshell->isType(ITEM_LINKSHELL))
+                    if ((linkshell != nullptr) && linkshell->isType(ITEM_LINKSHELL))
                     {
                         lscolor_t LSColor = linkshell->GetLSColor();
 
@@ -110,7 +110,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
 
                 WBUFL(data, (0x34) - 4) = 0x010CA248; // black chocobo
             }
-			if (PChar->PPet != NULL)
+			if (PChar->PPet != nullptr)
 			{
 				WBUFW(data,(0x3C)-4) = PChar->PPet->targid << 3;
 			}

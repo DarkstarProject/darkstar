@@ -31,6 +31,9 @@
 #include "../common/showmsg.h"
 #include "../common/socket.h"
 #include "../common/utils.h"
+#include "../common/taskmgr.h"
+#include "../common/sql.h"
+#include "../common/timer.h"
 
 #ifdef WIN32
 	#include <winsock2.h>
@@ -75,6 +78,11 @@ struct SearchCommInfo
 	uint16 port;
 };
 
+void TaskManagerThread();
+
+int32 ah_cleanup(uint32 tick, CTaskMgr::CTask* PTask);
+
+
 const int8* SEARCH_CONF_FILENAME = "./conf/search_server.conf";
 const int8* LOGIN_CONF_FILENAME = "./conf/login_darkstar.conf";
 
@@ -85,7 +93,7 @@ extern void HandleSearchComment(CTCPRequestPacket* PTCPRequest);
 extern void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest);
 extern void HandleAuctionHouseHistory(CTCPRequestPacket* PTCPRequest);
 extern void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest);
-extern search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket);
+extern search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest);
 extern std::string toStr(int number);
 
 search_config_t search_config;
@@ -148,7 +156,7 @@ int32 main (int32 argc, int8 **argv)
     SOCKET ListenSocket = INVALID_SOCKET;
     SOCKET ClientSocket = INVALID_SOCKET;
 
-    struct addrinfo *result = NULL;
+    struct addrinfo *result = nullptr;
     struct addrinfo  hints;
 
     search_config_default();
@@ -175,7 +183,7 @@ int32 main (int32 argc, int8 **argv)
     hints.ai_flags = AI_PASSIVE;
 
     // Resolve the server address and port
-    iResult = getaddrinfo(NULL, login_config.search_server_port, &hints, &result);
+    iResult = getaddrinfo(nullptr, login_config.search_server_port, &hints, &result);
     if (iResult != 0)
 	{
         ShowError("getaddrinfo failed with error: %d\n", iResult);
@@ -236,11 +244,18 @@ int32 main (int32 argc, int8 **argv)
     ShowMessage(CL_WHITE"========================================================\n\n" CL_RESET);
     ShowMessage(CL_WHITE"DSSearch-server\n\n");
     ShowMessage(CL_WHITE"========================================================\n\n" CL_RESET);
+	if (search_config.expire_auctions == 1) {
+		ShowMessage(CL_GREEN"AH task to return items older than %u days is running\n" CL_RESET, search_config.expire_days);
+		CTaskMgr::getInstance()->AddTask("ah_cleanup", gettick(), nullptr, CTaskMgr::TASK_INTERVAL, ah_cleanup, search_config.expire_interval*1000);
+	}
+//	ShowMessage(CL_CYAN"[TASKMGR] Starting task manager thread..\n" CL_RESET);
+
+    std::thread(TaskManagerThread).detach();
 
 	while (true)
 	{
 		// Accept a client socket
-		ClientSocket = accept(ListenSocket, NULL, NULL);
+		ClientSocket = accept(ListenSocket, nullptr, nullptr);
 		if (ClientSocket == INVALID_SOCKET) 
 		{
 #ifdef WIN32
@@ -292,11 +307,14 @@ int32 main (int32 argc, int8 **argv)
 
 void search_config_default()
 {
-	search_config.mysql_host     = "127.0.0.1";
-	search_config.mysql_login    = "root";
-	search_config.mysql_password = "root";
-	search_config.mysql_database = "dspdb";
-	search_config.mysql_port     = 3306;
+	search_config.mysql_host      = "127.0.0.1";
+	search_config.mysql_login     = "root";
+	search_config.mysql_password  = "root";
+	search_config.mysql_database  = "dspdb";
+	search_config.mysql_port      = 3306;
+	search_config.expire_auctions = 1;
+	search_config.expire_days	  = 3;
+	search_config.expire_interval = 3600;
 }
 
 /************************************************************************
@@ -311,7 +329,7 @@ void search_config_read(const int8* file)
 	FILE* fp;
 
 	fp = fopen(file,"r");
-	if( fp == NULL )
+	if( fp == nullptr )
 	{
 		ShowError("configuration file not found at: %s\n", file);
 		return;
@@ -352,6 +370,18 @@ void search_config_read(const int8* file)
 		{
 			search_config.mysql_database = aStrdup(w2);
 		}
+		else if (strcmp(w1, "expire_auctions") == 0)
+		{
+			search_config.expire_auctions = atoi(w2);
+		}
+		else if (strcmp(w1, "expire_days") == 0)
+		{
+			search_config.expire_days = atoi(w2);
+		}
+		else if (strcmp(w1, "expire_interval") == 0)
+		{
+			search_config.expire_interval = atoi(w2);
+		}
 		else
 		{
 			ShowWarning(CL_YELLOW"Unknown setting '%s' in file %s\n" CL_RESET, w1, file);
@@ -384,7 +414,7 @@ void login_config_read(const int8* file)
 	FILE* fp;
 
 	fp = fopen(file, "r");
-	if (fp == NULL)
+	if (fp == nullptr)
 	{
 		ShowError("configuration file not found at: %s\n", file);
 		return;
@@ -560,7 +590,7 @@ void HandleSearchComment(CTCPRequestPacket* PTCPRequest)
 
 void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 {   
-	search_req sr = _HandleSearchRequest(PTCPRequest,NULL);
+	search_req sr = _HandleSearchRequest(PTCPRequest);
 	int totalCount = 0;
 
     CDataLoader* PDataLoader = new CDataLoader();
@@ -678,7 +708,7 @@ void HandleAuctionHouseHistory(CTCPRequestPacket* PTCPRequest)
 *                                                                       *
 ************************************************************************/
 
-search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
+search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 {
 	// суть в том, чтобы заполнить некоторую структуру, на основании которой будет создан запрос к базе
 	// результат поиска в базе отправляется клиенту
@@ -942,4 +972,36 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 
 	return sr;
 	// не обрабатываем последние биты, что мешает в одну кучу например "/blacklist delete Name" и "/sea all Name"
+}
+/************************************************************************
+*                                                                       *
+*  Task Manager Thread                                                  *
+*                                                                       *
+************************************************************************/
+
+void TaskManagerThread()
+{
+	int next;
+	while (true)
+	{
+		next = CTaskMgr::getInstance()->DoTimer(gettick_nocache());
+		std::this_thread::sleep_for(std::chrono::milliseconds(next / 1000));
+	}
+}
+
+/************************************************************************
+*                                                                       *
+*  Task Manager Callbacks                                               *
+*                                                                       *
+************************************************************************/
+
+int32 ah_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
+{
+	//ShowMessage(CL_YELLOW"[TASK] ah_cleanup tick..\n" CL_RESET);
+
+	CDataLoader* data = new CDataLoader();
+	data->ExpireAHItems();
+	delete data;
+
+	return 0;
 }

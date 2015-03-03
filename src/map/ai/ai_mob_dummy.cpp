@@ -67,7 +67,7 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
     m_PMagicState = new CMagicState(PMob, m_PTargetFind);
 
     m_checkDespawn = false;
-	m_PSpecialSkill = NULL;
+	m_PSpecialSkill = nullptr;
 	m_firstSpell = true;
 	m_LastSpecialTime = 0;
 	m_skillTP = 0;
@@ -131,7 +131,7 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 void CAIMobDummy::ActionRoaming()
 {
 	// If there's someone on our enmity list, go from roaming -> engaging
-	if (m_PMob->PEnmityContainer->GetHighestEnmity() != NULL && !(m_PMob->m_roamFlags & ROAMFLAG_IGNORE))
+	if (m_PMob->PEnmityContainer->GetHighestEnmity() != nullptr && !(m_PMob->m_roamFlags & ROAMFLAG_IGNORE))
 	{
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
@@ -222,7 +222,7 @@ void CAIMobDummy::ActionRoaming()
 			// do not check for despawning because i'm at home
 			m_checkDespawn = false;
 
-			if(m_PSpecialSkill != NULL && TrySpecialSkill())
+			if(m_PSpecialSkill != nullptr && TrySpecialSkill())
 			{
 				// I spawned a pet
 			}
@@ -299,7 +299,7 @@ void CAIMobDummy::ActionEngage()
 	m_ActionType = ACTION_ATTACK;
 	//if (m_PMob->animationsub == 1 || m_PMob->animationsub == 3) m_PMob->animationsub = 2;  //need a better way to do this: it only applies to some mobs!
 
-	if (m_PBattleTarget != NULL)
+	if (m_PBattleTarget != nullptr)
 	{
 		if((m_PMob->m_roamFlags & ROAMFLAG_AMBUSH) && m_PMob->IsNameHidden())
 		{
@@ -345,7 +345,7 @@ void CAIMobDummy::ActionDisengage()
 	m_checkDespawn = true;
 	m_NeutralTime = m_Tick;
 
-	m_PBattleTarget  = NULL;
+	m_PBattleTarget  = nullptr;
 
 	m_PMob->SetMainSkin(m_PMob->id);
     m_PMob->delRageMode();
@@ -378,7 +378,7 @@ void CAIMobDummy::ActionFall()
 	m_PMob->animation = ANIMATION_DEATH;
 
 	// my pet should fall as well
-	if(m_PMob->PPet != NULL && !m_PMob->PPet->isDead() && m_PMob->GetMJob() == JOB_SMN)
+	if(m_PMob->PPet != nullptr && !m_PMob->PPet->isDead() && m_PMob->GetMJob() == JOB_SMN)
 	{
 		m_PMob->PPet->health.hp = 0;
 		m_PMob->PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
@@ -398,7 +398,7 @@ void CAIMobDummy::ActionDropItems()
 	{
         CCharEntity* PChar = (CCharEntity*)m_PMob->GetEntity(m_PMob->m_OwnerID.targid, TYPE_PC);
 
-        if (PChar != NULL && PChar->id == m_PMob->m_OwnerID.id)
+        if (PChar != nullptr && PChar->id == m_PMob->m_OwnerID.id)
 		{
 
 			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PChar,m_PMob,0,0, MSGBASIC_DEFEATS_TARG));
@@ -416,7 +416,7 @@ void CAIMobDummy::ActionDropItems()
                 DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
                 //ShowDebug(CL_CYAN"DropID: %u dropping with TH Level: %u\n" CL_RESET, m_PMob->m_DropID, m_PMob->m_THLvl);
 
-			    if (DropList != NULL && DropList->size())
+			    if (DropList != nullptr && DropList->size())
 			    {
                     for(uint8 i = 0; i < DropList->size(); ++i)
 				    {
@@ -463,52 +463,54 @@ void CAIMobDummy::ActionDropItems()
 						PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
 					}
 
-					if (WELL512::irand() % 100 < 20 && PChar->PTreasurePool->CanAddSeal())
-					{
-						//RULES: Only 1 kind may drop per mob
-						if(m_PMob->GetMLevel() < 50){ //b.seal only
-							PChar->PTreasurePool->AddItem(1126, m_PMob);
-						}
-						else if(m_PMob->GetMLevel() < 70){ //b.seal & k.seal only
-							if(WELL512::irand()%2 == 0){
-								PChar->PTreasurePool->AddItem(1126, m_PMob);
-							}
-							else{
-								PChar->PTreasurePool->AddItem(1127, m_PMob);
-							}
-						}
-						else if(m_PMob->GetMLevel() < 75){ //b.seal & k.seal & k.crest
-							switch(WELL512::irand()%3){
-							case 0:
-								PChar->PTreasurePool->AddItem(1126, m_PMob);
-								break;
-							case 1:
-								PChar->PTreasurePool->AddItem(1127, m_PMob);
-								break;
-							case 2:
-								PChar->PTreasurePool->AddItem(2955, m_PMob);
-								break;
-							}
-						}
-						else if(m_PMob->GetMLevel() >= 75){ //all 4
-							switch(WELL512::irand()%4){
-							case 0:
-								PChar->PTreasurePool->AddItem(1126, m_PMob);
-								break;
-							case 1:
-								PChar->PTreasurePool->AddItem(1127, m_PMob);
-								break;
-							case 2:
-								PChar->PTreasurePool->AddItem(2955, m_PMob);
-								break;
-							case 3:
-								PChar->PTreasurePool->AddItem(2956, m_PMob);
-								break;
-							}
-						}
-					}
-				}
-			}
+                    if (WELL512::irand() % 100 < 20 && PChar->PTreasurePool->CanAddSeal())
+                    {
+                    //RULES: Only 1 kind may drop per mob
+                        if (m_PMob->GetMLevel() >= 75 && luautils::IsExpansionEnabled("ABYSSEA")) //all 4 types
+                        {
+                            switch (WELL512::irand() % 4)
+                            {
+                            case 0:
+                                PChar->PTreasurePool->AddItem(1126, m_PMob);
+                                break;
+                            case 1:
+                                PChar->PTreasurePool->AddItem(1127, m_PMob);
+                                break;
+                            case 2:
+                                PChar->PTreasurePool->AddItem(2955, m_PMob);
+                                break;
+                            case 3:
+                                PChar->PTreasurePool->AddItem(2956, m_PMob);
+                                break;
+                            }
+                        }
+                        else if (m_PMob->GetMLevel() >= 70 && luautils::IsExpansionEnabled("ABYSSEA")) //b.seal & k.seal & k.crest
+                        {
+                            switch (WELL512::irand() % 3)
+                            {
+                            case 0:
+                                PChar->PTreasurePool->AddItem(1126, m_PMob);
+                                break;
+                            case 1:
+                                PChar->PTreasurePool->AddItem(1127, m_PMob);
+                                break;
+                            case 2:
+                                PChar->PTreasurePool->AddItem(2955, m_PMob);
+                                break;
+                            }
+                        }
+                        else if (m_PMob->GetMLevel() >= 50) //b.seal & k.seal only
+                        {
+                            if (WELL512::irand() % 2 == 0)
+                                PChar->PTreasurePool->AddItem(1126, m_PMob);
+                            else
+                                PChar->PTreasurePool->AddItem(1127, m_PMob);
+                        }
+                        else //b.seal only
+                            PChar->PTreasurePool->AddItem(1126, m_PMob);
+                    }
+                }
+            }
 
 			PChar->setWeaponSkillKill(false);
 			m_PMob->StatusEffectContainer->KillAllStatusEffect();
@@ -519,7 +521,7 @@ void CAIMobDummy::ActionDropItems()
 		}
 		else
 		{
-			luautils::OnMobDeath(m_PMob, NULL);
+			luautils::OnMobDeath(m_PMob, nullptr);
 		}
         m_ActionType = ACTION_DEATH;
 	}
@@ -554,7 +556,7 @@ void CAIMobDummy::ActionFadeOut()
 	if (m_Tick > m_LastActionTime + 15000 )
 	{
 		// reset pet cast time to now
-		if(m_PMob->PMaster != NULL && m_PMob->PMaster->objtype == TYPE_MOB)
+		if(m_PMob->PMaster != nullptr && m_PMob->PMaster->objtype == TYPE_MOB)
 		{
 			CAIMobDummy* PBattleAI = (CAIMobDummy*)m_PMob->PMaster->PBattleAI;
 			PBattleAI->m_LastSpecialTime = m_Tick - WELL512::irand()%10000;
@@ -598,17 +600,17 @@ void CAIMobDummy::ActionSpawn()
 		m_SpawnTime = m_Tick;
 		m_firstSpell = true;
 		m_ActionType = ACTION_ROAMING;
-		m_PBattleTarget = NULL;
-		m_PBattleSubTarget = NULL;
-		m_PSpecialSkill = NULL;
-		m_PMobSkill = NULL;
+		m_PBattleTarget = nullptr;
+		m_PBattleSubTarget = nullptr;
+		m_PSpecialSkill = nullptr;
+		m_PMobSkill = nullptr;
 		m_PMob->m_giveExp = true;
         m_PMob->m_OwnerID.clean();
 		m_PMob->m_HiPCLvl = 0;
 		m_PMob->m_THLvl = 0;
 		m_PMob->m_ItemStolen = false;
         m_PMob->m_DropItemTime = 1000;
-		m_PMob->status = m_PMob->allegiance == ALLEGIANCE_MOB ? STATUS_UPDATE : STATUS_NORMAL;
+		m_PMob->status = m_PMob->allegiance == ALLEGIANCE_MOB ? STATUS_MOB : STATUS_NORMAL;
 		m_PMob->animation = ANIMATION_NONE;
 		m_PMob->HideName(false);
         m_PMob->ResetLocalVars();
@@ -669,7 +671,7 @@ void CAIMobDummy::ActionSpawn()
 			{
 				CMobEntity* PMob = (CMobEntity*)m_PMob->GetEntity(m_PMob->targid + i, TYPE_MOB);
 
-				if(PMob != NULL)
+				if(PMob != nullptr)
 				{
 					PMob->setMobMod(MOBMOD_SUPERLINK, m_PMob->targid);
 				}
@@ -694,7 +696,7 @@ void CAIMobDummy::ActionSpawn()
 
 void CAIMobDummy::ActionAbilityStart()
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleTarget == nullptr);
 
     std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->getMobMod(MOBMOD_SKILLS));
 
@@ -726,7 +728,7 @@ void CAIMobDummy::ActionAbilityStart()
 		// get my job two hour
         SetCurrentMobSkill(battleutils::GetTwoHourMobSkill(m_PMob->GetMJob()));
 
-        if (m_PMobSkill != NULL)
+        if (m_PMobSkill != nullptr)
         {
             if (m_PMobSkill->getValidTargets() == TARGET_SELF)
             {
@@ -741,7 +743,7 @@ void CAIMobDummy::ActionAbilityStart()
             m_PMobSkill->setParam(m_PMob->getMobMod(MOBMOD_MAIN_2HOUR));
         }
 
-        valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, GetCurrentMobSkill()) == 0);
+        valid = (m_PMobSkill != nullptr && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, GetCurrentMobSkill()) == 0);
 
 		if(valid)
 		{
@@ -767,7 +769,7 @@ void CAIMobDummy::ActionAbilityStart()
         // get my job two hour
         SetCurrentMobSkill(battleutils::GetTwoHourMobSkill(m_PMob->GetSJob()));
 
-        if (m_PMobSkill != NULL)
+        if (m_PMobSkill != nullptr)
         {
             if (m_PMobSkill->getValidTargets() == TARGET_SELF)
             {
@@ -782,7 +784,7 @@ void CAIMobDummy::ActionAbilityStart()
             m_PMobSkill->setParam(m_PMob->getMobMod(MOBMOD_SUB_2HOUR));
         }
 
-        valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, GetCurrentMobSkill()) == 0);
+        valid = (m_PMobSkill != nullptr && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, GetCurrentMobSkill()) == 0);
 
         if (valid)
         {
@@ -907,7 +909,7 @@ void CAIMobDummy::ActionAbilityStart()
 ************************************************************************/
 void CAIMobDummy::ActionAbilityUsing()
 {
-	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
+	DSP_DEBUG_BREAK_IF(m_PMobSkill == nullptr);
 
 	// If our target dies or zones whilst readying, then interrupt the TP move.
     if ((m_PMobSkill->getValidTargets() == TARGET_ENEMY && !m_PBattleSubTarget) ||
@@ -921,21 +923,6 @@ void CAIMobDummy::ActionAbilityUsing()
 
     if (!(m_PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
 	    m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
-
-    if (battleutils::IsParalyzed(m_PMob))
-    {
-        m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob, m_PBattleSubTarget, 0, 0, MSGBASIC_IS_PARALYZED));
-        m_ActionType = ACTION_MOBABILITY_INTERRUPT;
-        ActionAbilityInterrupt();
-        return;
-    }
-    else if (battleutils::IsIntimidated(m_PMob, m_PBattleSubTarget))
-    {
-        m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob, m_PBattleSubTarget, 0, 0, MSGBASIC_IS_INTIMIDATED));
-        m_ActionType = ACTION_MOBABILITY_INTERRUPT;
-        ActionAbilityInterrupt();
-        return;
-    }
 
 	if (m_Tick >= m_LastActionTime + m_PMobSkill->getActivationTime())
     {
@@ -965,10 +952,10 @@ void CAIMobDummy::ActionAbilityUsing()
 
 void CAIMobDummy::ActionAbilityFinish()
 {
-    DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PMobSkill == nullptr);
 
-	// crash fix, a null target made it into CActionPacket
-	if (m_PBattleSubTarget == NULL)
+	// crash fix, a nullptr target made it into CActionPacket
+	if (m_PBattleSubTarget == nullptr)
 	{
 		m_ActionType = ACTION_ATTACK;
 		return;
@@ -1057,10 +1044,17 @@ void CAIMobDummy::ActionAbilityFinish()
                     SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, PWeaponSkill);
                     if (effect != SUBEFFECT_NONE)
                     {
-                        uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PMob, PTarget, Action.param);
-
-                        Action.addEffectParam = skillChainDamage;
-                        Action.addEffectMessage = 287 + effect;
+                        int32 skillChainDamage = battleutils::TakeSkillchainDamage(m_PMob, PTarget, Action.param);
+                        if (skillChainDamage < 0)
+                        {
+                            Action.addEffectParam = -skillChainDamage;
+                            Action.addEffectMessage = 384 + effect;
+                        }
+                        else
+                        {
+                            Action.addEffectParam = skillChainDamage;
+                            Action.addEffectMessage = 287 + effect;
+                        }
                         Action.additionalEffect = effect;
                     }
                 }
@@ -1094,7 +1088,7 @@ void CAIMobDummy::ActionAbilityFinish()
             m_LastActionTime = m_Tick - m_PMob->m_Weapons[SLOT_MAIN]->getDelay();
         }
 	}
-    m_PMobSkill = NULL;
+    m_PMobSkill = nullptr;
 }
 
 /************************************************************************
@@ -1121,7 +1115,7 @@ void CAIMobDummy::ActionAbilityInterrupt()
 	m_PMob->m_ActionList.push_back(Action);
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 
-    m_PMobSkill = NULL;
+    m_PMobSkill = nullptr;
     m_ActionType = (m_PMob->StatusEffectContainer->HasPreventActionEffect() ? ACTION_SLEEP : ACTION_ATTACK);
 }
 
@@ -1160,11 +1154,11 @@ void CAIMobDummy::ActionStun()
 
 	// lets just chill here for a bit
     if (m_Tick >= m_LastStunTime + m_StunTime){
-		m_PBattleSubTarget = NULL;
+		m_PBattleSubTarget = nullptr;
 		TransitionBack();
 	}
 
-	if(m_PBattleSubTarget != NULL)
+	if(m_PBattleSubTarget != nullptr)
 	{
 	    // face the target
 		if (!(m_PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
@@ -1176,8 +1170,8 @@ void CAIMobDummy::ActionStun()
 
 void CAIMobDummy::ActionMagicStart()
 {
-	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	DSP_DEBUG_BREAK_IF(m_PSpell == nullptr);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == nullptr);
 
 	// this must be at the top to RESET magic cast timer
 	m_LastMagicTime = m_Tick;
@@ -1238,8 +1232,8 @@ void CAIMobDummy::ActionMagicFinish()
 	Stun(m_PSpell->getAnimationTime());
 
 	// this shouldn't have to exist all the way through
-	m_PSpell = NULL;
-	m_PBattleSubTarget = NULL;
+	m_PSpell = nullptr;
+	m_PBattleSubTarget = nullptr;
 }
 
 void CAIMobDummy::ActionMagicInterrupt()
@@ -1248,8 +1242,8 @@ void CAIMobDummy::ActionMagicInterrupt()
 
 	m_PMagicState->InterruptSpell();
 
-	m_PSpell = NULL;
-	m_PBattleSubTarget = NULL;
+	m_PSpell = nullptr;
+	m_PBattleSubTarget = nullptr;
 
 	TransitionBack();
 }
@@ -1312,12 +1306,12 @@ void CAIMobDummy::ActionAttack()
             {
 	            if (action.param != 0)
 	            {
-		            if (m_PMob->PBattleAI->GetBattleTarget() != NULL)
+		            if (m_PMob->PBattleAI->GetBattleTarget() != nullptr)
 		            {
                         m_PMob->PBattleAI->SetCurrentMobSkill(battleutils::GetMobSkill(action.param));
                         CMobSkill* mobskill = m_PMob->PBattleAI->GetCurrentMobSkill();
 
-			            if(mobskill != NULL)
+			            if(mobskill != nullptr)
 			            {
                             m_LastActionTime = m_Tick;
 				            if( mobskill->getActivationTime() != 0)
@@ -1325,7 +1319,7 @@ void CAIMobDummy::ActionAttack()
 					            apAction_t apAction;
 					            m_PMob->m_ActionList.clear();
 					            if(mobskill->getValidTargets() == TARGET_ENEMY){ //enemy
-						            apAction.ActionTarget = (action.target != NULL ? action.target : m_PMob->PBattleAI->GetBattleTarget());
+						            apAction.ActionTarget = (action.target != nullptr ? action.target : m_PMob->PBattleAI->GetBattleTarget());
 					            }
 					            else if(mobskill->getValidTargets() == TARGET_SELF){ //self
 						            apAction.ActionTarget = m_PMob;
@@ -1351,7 +1345,7 @@ void CAIMobDummy::ActionAttack()
                         }
 			            else
 			            {
-				            ShowWarning("lua_baseentity::useMobAbility NULL mobskill used %d", action.param);
+				            ShowWarning("lua_baseentity::useMobAbility nullptr mobskill used %d", action.param);
 			            }
 		            }
 	            } else {
@@ -1364,7 +1358,7 @@ void CAIMobDummy::ActionAttack()
     }
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-    if (m_PSpecialSkill != NULL && !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) && (m_Tick >= m_LastSpecialTime + m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)) && TrySpecialSkill())
+    if (m_PSpecialSkill != nullptr && !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) && (m_Tick >= m_LastSpecialTime + m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)) && TrySpecialSkill())
 	{
 		FinishAttack();
 		return;
@@ -1416,7 +1410,7 @@ void CAIMobDummy::ActionAttack()
 			// you're so far away i'm going to standback when I get closer
 			m_CanStandback = true;
 		}
-		else if(m_PSpecialSkill == NULL && !CanCastSpells() || m_PMob->GetHPP() <= 65)
+		else if(m_PSpecialSkill == nullptr && !CanCastSpells() || m_PMob->GetHPP() <= 65)
 		{
 			// can't standback anymore cause I don't have any ranged moves
 			m_CanStandback = false;
@@ -1494,7 +1488,7 @@ void CAIMobDummy::ActionAttack()
             else
             {
                 move = true;
-                m_PMobSkill = NULL;
+                m_PMobSkill = nullptr;
             }
         }
     }
@@ -1590,7 +1584,7 @@ void CAIMobDummy::ActionAttack()
 						break;
 					}
 
-					uint32 damage = 0;
+					int32 damage = 0;
 					bool isCountered = false;
 					bool isParried = false;
 					bool isGuarded = false;
@@ -1626,19 +1620,32 @@ void CAIMobDummy::ActionAttack()
                             if (thirdEyeCounter && isFaceing(m_PBattleTarget->loc.p, m_PMob->loc.p, 40)) //assuming that 3rd eye counter requires facing the mob, but not subjected to accuracy checks
                             {
                                 isCountered = true;
-                                isCritical = (WELL512::irand() % 100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob, false));
-                                float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, isCritical, 0);
-                                damage = (uint32)((m_PBattleTarget->GetMainWeaponDmg() + battleutils::GetFSTR(m_PBattleTarget, m_PMob, SLOT_MAIN)) * DamageRatio);
-                                Action.messageID = 33;
-                                Action.reaction = REACTION_HIT;
+                                Action.reaction = REACTION_EVADE;
                                 Action.speceffect = SPECEFFECT_NONE;
-                                Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true);
-                                Action.spikesParam = Action.param;
+                                Action.param = 0;
+                                Action.messageID = 0;
                                 Action.spikesEffect = SUBEFFECT_COUNTER;
-                                if (m_PBattleTarget->objtype == TYPE_PC)
+                                if (battleutils::IsAbsorbByShadow(m_PMob))
                                 {
-                                    uint8 skilltype = (m_PBattleTarget->m_Weapons[SLOT_MAIN] == NULL ? SKILL_H2H : m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType());
-                                    charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, (SKILLTYPE)skilltype, m_PMob->GetMLevel());
+                                    Action.spikesParam = 0;
+                                    Action.spikesMessage = 14;
+                                }
+                                else
+                                {
+                                    int16 naturalh2hDMG = 0;
+                                    if (m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH || (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK))
+                                        naturalh2hDMG = (float)(m_PBattleTarget->GetSkill(SKILL_H2H) * 0.11f) + 3;
+                                    
+                                    isCritical = (WELL512::irand() % 100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob, false));
+                                    float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, isCritical, 0);
+                                    damage = (int32)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob, SLOT_MAIN)) * DamageRatio);
+                                    Action.spikesParam = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, nullptr, true, false, true);
+                                    Action.spikesMessage = 33;
+                                    if (m_PBattleTarget->objtype == TYPE_PC)
+                                    {
+                                        uint8 skilltype = (m_PBattleTarget->m_Weapons[SLOT_MAIN] == nullptr ? SKILL_H2H : m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType());
+                                        charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, (SKILLTYPE)skilltype, m_PMob->GetMLevel());
+                                    }
                                 }
                             }
                             else
@@ -1710,7 +1717,7 @@ void CAIMobDummy::ActionAttack()
                                         DamageRatio = 0;
 								}
 
-								damage = (uint32)((m_PMob->GetMainWeaponDmg() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
+								damage = (int32)((m_PMob->GetMainWeaponDmg() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
 
 								//  Guard skill up
                                 if (m_PBattleTarget->objtype == TYPE_PC && (isGuarded || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0)))
@@ -1726,28 +1733,13 @@ void CAIMobDummy::ActionAttack()
 							{
 								bool isBlocked = attackutils::IsBlocked(m_PMob, m_PBattleTarget);
 								if(isBlocked){ Action.reaction = REACTION_BLOCK; }
-								
 
-								// Try Null damage chance (The target)
-								if (WELL512::irand()%100 < m_PBattleTarget->getMod(MOD_NULL_PHYSICAL_DAMAGE) && m_PBattleTarget->objtype == TYPE_PC)
-								{
-									damage = 0;
-								}
-
-								// Try absorb HP chance (The target)
-								if (attackutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, damage))
-								{
-                                    Action.messageID = 373;
-                                    Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, -damage, isBlocked, SLOT_MAIN, 1, NULL, true);
-                                }
-                                else
+                                Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, nullptr, true, true);
+                                if (Action.param < 0)
                                 {
-                                    // Try to absorb MP (The target)
-                                    attackutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, damage);
-
-                                    Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true);
+                                    Action.param = -(Action.param);
+                                    Action.messageID = 373;
                                 }
-								m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);
 
 								// Block skill up
 								if(m_PBattleTarget->objtype == TYPE_PC && isBlocked || ((map_config.newstyle_skillups & NEWSTYLE_BLOCK) > 0))
@@ -1760,29 +1752,40 @@ void CAIMobDummy::ActionAttack()
 
 
 								// additional effects
-                                battleutils::HandleEnspell(m_PMob, m_PBattleTarget, &Action, i, m_PMob->m_Weapons[SLOT_MAIN], damage);
+                                battleutils::HandleEnspell(m_PMob, m_PBattleTarget, &Action, !i, m_PMob->m_Weapons[SLOT_MAIN], damage);
 
 								battleutils::HandleSpikesDamage(m_PMob, m_PBattleTarget, &Action, damage);
 							}
 							else //Countered
 							{
-                                int16 naturalh2hDMG = 0;
-                                if (m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH || (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK))
-                                    naturalh2hDMG = (float)(m_PBattleTarget->GetSkill(SKILL_H2H) * 0.11f) + 3;
-
-                                float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, isCritical, 0);
-                                damage = (uint32)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob, SLOT_MAIN)) * DamageRatio);
-                                Action.messageID = 33;
-                                Action.reaction = REACTION_HIT;
+                                Action.reaction = REACTION_EVADE;
                                 Action.speceffect = SPECEFFECT_NONE;
-                                Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true);
-                                Action.spikesParam = Action.param;
+                                Action.param = 0;
+                                Action.messageID = 0;
                                 Action.spikesEffect = SUBEFFECT_COUNTER;
-								if(m_PBattleTarget->objtype == TYPE_PC)
-								{
-									uint8 skilltype = (m_PBattleTarget->m_Weapons[SLOT_MAIN] == NULL ? SKILL_H2H : m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType());
-									charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, (SKILLTYPE)skilltype, m_PMob->GetMLevel());
-								}
+                                if (battleutils::IsAbsorbByShadow(m_PMob))
+                                {
+                                    Action.spikesParam = 0;
+                                    Action.spikesMessage = 14;
+                                }
+                                else
+                                {
+                                    int16 naturalh2hDMG = 0;
+                                    if (m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH || (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK))
+                                        naturalh2hDMG = (float)(m_PBattleTarget->GetSkill(SKILL_H2H) * 0.11f) + 3;
+                                    
+                                    isCritical = (WELL512::irand() % 100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob, false));
+                                    float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, isCritical, 0);
+                                    damage = (int32)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob, SLOT_MAIN)) * DamageRatio);
+                                    Action.spikesParam = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, nullptr, true, false, true);
+                                    Action.spikesMessage = 33;
+                                    
+                                    if (m_PBattleTarget->objtype == TYPE_PC)
+                                    {
+                                        uint8 skilltype = (m_PBattleTarget->m_Weapons[SLOT_MAIN] == nullptr ? SKILL_H2H : m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType());
+                                        charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, (SKILLTYPE)skilltype, m_PMob->GetMLevel());
+                                    }
+                                }
 							}
 
 						}
@@ -1805,10 +1808,18 @@ void CAIMobDummy::ActionAttack()
                     if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
                         Action.speceffect = SPECEFFECT_RECOIL;
 
-					m_PMob->m_ActionList.push_back(Action);
+                    if (m_ActionType == ACTION_FALL)
+                        m_ActionType = ACTION_ATTACK;
+
+                    m_PMob->m_ActionList.push_back(Action);
 				}
 
 				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+                if (m_PMob->isDead()) //e.g. death by spikes/counter. Needed here AFTER sending the action packets.
+                {
+                    m_ActionType = ACTION_FALL;
+                    ActionFall();
+                }
 			}
             m_LastActionTime = m_Tick;
             m_DeaggroTime = m_Tick;
@@ -1836,7 +1847,7 @@ void CAIMobDummy::FinishAttack()
 
 bool CAIMobDummy::TryDeaggro()
 {
-	if(m_PBattleTarget == NULL && (m_PMob->PEnmityContainer != NULL && m_PMob->PEnmityContainer->GetHighestEnmity() == NULL))
+	if(m_PBattleTarget == nullptr && (m_PMob->PEnmityContainer != nullptr && m_PMob->PEnmityContainer->GetHighestEnmity() == nullptr))
     {
 		return true;
 	}
@@ -1888,27 +1899,27 @@ bool CAIMobDummy::TryDeaggro()
 
 void CAIMobDummy::TryLink()
 {
-	if(m_PBattleTarget == NULL)
+	if(m_PBattleTarget == nullptr)
 	{
 		return;
 	}
 
 	//handle pet behaviour on the targets behalf (faster than in ai_pet_dummy)
 	// Avatars defend masters by attacking mobs if the avatar isn't attacking anything currently (bodyguard behaviour)
-	if(m_PBattleTarget->PPet != NULL && m_PBattleTarget->PPet->PBattleAI->GetBattleTarget()==NULL) {
+	if(m_PBattleTarget->PPet != nullptr && m_PBattleTarget->PPet->PBattleAI->GetBattleTarget()==nullptr) {
 		if(((CPetEntity*)m_PBattleTarget->PPet)->getPetType()==PETTYPE_AVATAR) {
 			m_PBattleTarget->PPet->PBattleAI->SetBattleTarget(m_PMob);
 		}
 	}
 
     // my pet should help as well
-	if(m_PMob->PPet != NULL && m_PMob->PPet->PBattleAI->GetCurrentAction() == ACTION_ROAMING)
+	if(m_PMob->PPet != nullptr && m_PMob->PPet->PBattleAI->GetCurrentAction() == ACTION_ROAMING)
 	{
 		((CMobEntity*)m_PMob->PPet)->PEnmityContainer->AddLinkEnmity(m_PBattleTarget);
 	}
 
 	// Handle monster linking if they are close enough
-    if (m_PMob->PParty != NULL)
+    if (m_PMob->PParty != nullptr)
     {
         for (uint16 i = 0; i < m_PMob->PParty->members.size(); ++i)
         {
@@ -1927,7 +1938,7 @@ void CAIMobDummy::TryLink()
     }
 
     // ask my master for help
-    if(m_PMob->PMaster != NULL && m_PMob->PMaster->PBattleAI->GetCurrentAction() == ACTION_ROAMING)
+    if(m_PMob->PMaster != nullptr && m_PMob->PMaster->PBattleAI->GetCurrentAction() == ACTION_ROAMING)
     {
     	CMobEntity* PMaster = (CMobEntity*)m_PMob->PMaster;
 
@@ -1950,7 +1961,7 @@ bool CAIMobDummy::CanCastSpells()
 	}
 
 	// smn can only cast spells if it has an existing pet
-	if(m_PMob->GetMJob() == JOB_SMN && m_PMob->PPet == NULL){
+	if(m_PMob->GetMJob() == JOB_SMN && m_PMob->PPet == nullptr){
 		return false;
 	}
 
@@ -1967,7 +1978,7 @@ bool CAIMobDummy::TryCastSpell()
 	int chosenSpellId = -1;
 
 	// only cast first spell if target is out of range
-	if(m_firstSpell && m_PBattleTarget != NULL && distance(m_PMob->loc.p, m_PBattleTarget->loc.p) <= m_PMob->m_ModelSize){
+	if(m_firstSpell && m_PBattleTarget != nullptr && distance(m_PMob->loc.p, m_PBattleTarget->loc.p) <= m_PMob->m_ModelSize){
 
 		m_firstSpell = false;
 		m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + WELL512::irand()%5000 + 3000;
@@ -2008,8 +2019,8 @@ bool CAIMobDummy::TryCastSpell()
 void CAIMobDummy::ActionSpecialSkill()
 {
 
-	if(m_PSpecialSkill == NULL){
-		m_PBattleSubTarget = NULL;
+	if(m_PSpecialSkill == nullptr){
+		m_PBattleSubTarget = nullptr;
 		TransitionBack();
 		return;
 	}
@@ -2021,7 +2032,7 @@ void CAIMobDummy::ActionSpecialSkill()
 	// this makes sure the proper packet is sent
 	m_ActionType = ACTION_MOBABILITY_FINISH;
 
-    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == nullptr);
 
     m_LastActionTime = m_Tick;
     m_DeaggroTime = m_Tick;
@@ -2063,18 +2074,18 @@ void CAIMobDummy::ActionSpecialSkill()
 	// this stops the mob from chasing
 	Stun(m_PMobSkill->getAnimationTime());
 
-	m_PMobSkill = NULL;
+	m_PMobSkill = nullptr;
 }
 
 void CAIMobDummy::CastSpell(uint16 spellId, CBattleEntity* PTarget)
 {
 	SetCurrentSpell(spellId);
 
-	if(m_PSpell == NULL){
+	if(m_PSpell == nullptr){
 		ShowWarning(CL_YELLOW"ai_mob_dummy::CastSpell: SpellId <%i> is not found\n" CL_RESET, spellId);
 	} else {
 
-		if(PTarget == NULL)
+		if(PTarget == nullptr)
 		{
 			// find my own target
 			// check valid targets
@@ -2085,7 +2096,7 @@ void CAIMobDummy::CastSpell(uint16 spellId, CBattleEntity* PTarget)
 				if((m_PSpell->getValidTarget() & TARGET_PLAYER_PARTY))
 				{
 					// chance to target my master
-					if(m_PMob->PMaster != NULL && WELL512::irand()%2 == 0)
+					if(m_PMob->PMaster != nullptr && WELL512::irand()%2 == 0)
 					{
 						// target my master
 						m_PBattleSubTarget = m_PMob->PMaster;
@@ -2131,7 +2142,7 @@ void CAIMobDummy::CastSpell(uint16 spellId, CBattleEntity* PTarget)
 
 bool CAIMobDummy::TrySpecialSkill()
 {
-	if(m_PSpecialSkill == NULL) return false;
+	if(m_PSpecialSkill == nullptr) return false;
 	if(!m_MobAbilityEnabled) return false;
 
 	if((m_PMob->m_specialFlags & SPECIALFLAG_HIDDEN) && !m_PMob->IsNameHidden())
@@ -2143,7 +2154,7 @@ bool CAIMobDummy::TrySpecialSkill()
 	{
 		m_PBattleSubTarget = m_PMob;
 	}
-	else if(m_PBattleTarget != NULL)
+	else if(m_PBattleTarget != nullptr)
 	{
 		// distance check for special skill
 	    float currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
@@ -2179,7 +2190,7 @@ void CAIMobDummy::FollowPath()
 	{
 
 		CBattleEntity* PPet = m_PMob->PPet;
-		if(PPet != NULL && PPet->PBattleAI->GetCurrentAction() == ACTION_ROAMING)
+		if(PPet != nullptr && PPet->PBattleAI->GetCurrentAction() == ACTION_ROAMING)
 		{
 
 			// pet should follow me if roaming
@@ -2250,7 +2261,7 @@ void CAIMobDummy::SetupEngage()
 
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
 	
-	if(m_PBattleTarget != NULL)
+	if(m_PBattleTarget != nullptr)
 	{
         // clear the ActionQueue
         ActionQueue_t empty;
@@ -2268,7 +2279,7 @@ void CAIMobDummy::WeatherChange(WEATHER weather, uint8 element)
 		m_PMob->m_disableScent = (weather == WEATHER_RAIN || weather == WEATHER_SQUALL || weather == WEATHER_BLIZZARDS);
 	}
 
-	if (m_PMob->m_EcoSystem == SYSTEM_ELEMENTAL && m_PMob->PMaster == NULL && m_PMob->getZone()!=37  && m_PMob->getZone()!=38 )
+	if (m_PMob->m_EcoSystem == SYSTEM_ELEMENTAL && m_PMob->PMaster == nullptr && m_PMob->getZone()!=37  && m_PMob->getZone()!=38 )
 	{
 		if (m_PMob->m_Element == element)
 		{
@@ -2331,7 +2342,7 @@ bool CAIMobDummy::CanAggroTarget(CBattleEntity* PTarget)
 
 	if(PTarget->isDead() || PTarget->animation == ANIMATION_CHOCOBO) return false;
 
-	if(m_PMob->PMaster == NULL && m_ActionType == ACTION_ROAMING && m_PMob->CanDetectTarget(PTarget))
+	if(m_PMob->PMaster == nullptr && m_ActionType == ACTION_ROAMING && m_PMob->CanDetectTarget(PTarget))
 	{
 		return true;
 	}
@@ -2341,7 +2352,7 @@ bool CAIMobDummy::CanAggroTarget(CBattleEntity* PTarget)
 
 void CAIMobDummy::Deaggro()
 {
-	if(m_PBattleTarget != NULL)
+	if(m_PBattleTarget != nullptr)
 	{
 		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
 
@@ -2356,7 +2367,7 @@ void CAIMobDummy::Deaggro()
 	}
     m_PMob->updatemask |= UPDATE_STATUS;
 
-	m_PBattleTarget = NULL;
+	m_PBattleTarget = nullptr;
 }
 
 void CAIMobDummy::TransitionBack(bool skipWait)

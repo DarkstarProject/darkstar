@@ -143,7 +143,7 @@ namespace effects
 CStatusEffectContainer::CStatusEffectContainer(CBattleEntity* PEntity)
 {
     m_POwner = PEntity;
-    DSP_DEBUG_BREAK_IF(m_POwner == NULL);
+    DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
 
        m_RegenCheckTime = 0;
 	m_Flags = 0;
@@ -223,7 +223,7 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
     }
 
     // make sure pets can't be charmed
-    if((statusEffect == EFFECT_CHARM || statusEffect == EFFECT_CHARM_II) && m_POwner->PMaster != NULL)
+    if((statusEffect == EFFECT_CHARM || statusEffect == EFFECT_CHARM_II) && m_POwner->PMaster != nullptr)
     {
         return false;
     }
@@ -241,7 +241,7 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
     if(negativeId != 0){
         PStatusEffect = GetStatusEffect(negativeId);
 
-        if(PStatusEffect != NULL){
+        if(PStatusEffect != nullptr){
 
             if(statusEffect == EFFECT_HASTE && PStatusEffect->GetStatusID() == EFFECT_SLOW && PStatusEffect->GetSubPower() == 1)
             {
@@ -257,7 +257,7 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
     PStatusEffect = GetStatusEffect(statusEffect);
 
     // check overwrite
-    if(PStatusEffect != NULL){
+    if(PStatusEffect != nullptr){
         uint16 currentPower = PStatusEffect->GetPower();
         EFFECTOVERWRITE overwrite = effects::EffectsParams[statusEffect].Overwrite;
 
@@ -317,8 +317,8 @@ void CStatusEffectContainer::OverwriteStatusEffect(CStatusEffect* StatusEffect)
 
 bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool silent)
 {
-    if(PStatusEffect == NULL){
-        ShowWarning("status_effect_container::AddStatusEffect Status effect given was NULL!\n");
+    if(PStatusEffect == nullptr){
+        ShowWarning("status_effect_container::AddStatusEffect Status effect given was nullptr!\n");
         return false;
     }
 
@@ -362,7 +362,6 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
             {
                 UpdateStatusIcons();
             }
-            if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
 			if( m_POwner->health.maxhp != 0) //make sure we're not in the middle of logging in
 			{
@@ -418,8 +417,6 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 		PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
         PChar->PLatentEffectContainer->CheckLatentsRollSong(HasStatusEffectByFlag(EFFECTFLAG_SONG | EFFECTFLAG_ROLL));
 		PChar->UpdateHealth();
-
-        if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
         PChar->pushPacket(new CCharHealthPacket(PChar));
         PChar->pushPacket(new CCharSyncPacket(PChar));
@@ -726,7 +723,7 @@ bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, uint8
 	//if targ has 2 of your songs, remove oldest one and apply this one.
 
 	uint8 numOfEffects = 0;
-	CStatusEffect* oldestSong = NULL;
+	CStatusEffect* oldestSong = nullptr;
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
 		if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_REQUIEM &&
@@ -779,7 +776,7 @@ bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, ui
 	//if targ has 2 of your rolls, remove oldest one and apply this one.
 
 	uint8 numOfEffects = 0;
-	CStatusEffect* oldestRoll = NULL;
+	CStatusEffect* oldestRoll = nullptr;
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
 		if ((m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
@@ -812,7 +809,7 @@ bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, ui
 			if(m_StatusEffectList.at(i)->GetSubID() == PStatusEffect->GetSubID() ||
 				m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST){//YOUR cor effect
 				numOfEffects++;
-				if(oldestRoll==NULL){
+				if(oldestRoll==nullptr){
 					oldestRoll = m_StatusEffectList.at(i);
 				}
 				else if(m_StatusEffectList.at(i)->GetDuration() + m_StatusEffectList.at(i)->GetStartTime() <
@@ -857,7 +854,7 @@ bool CStatusEffectContainer::HasCorsairEffect(uint32 charid)
 
 void CStatusEffectContainer::Fold(uint32 charid)
 {
-    CStatusEffect* oldestRoll = NULL;
+    CStatusEffect* oldestRoll = nullptr;
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if ((m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
@@ -867,7 +864,7 @@ void CStatusEffectContainer::Fold(uint32 charid)
             if (m_StatusEffectList.at(i)->GetSubID() == charid ||
                 m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST)
             {
-                if (oldestRoll == NULL)
+                if (oldestRoll == nullptr)
                 {
                     oldestRoll = m_StatusEffectList.at(i);
                 }
@@ -883,7 +880,7 @@ void CStatusEffectContainer::Fold(uint32 charid)
             }
         }
     }
-    if (oldestRoll != NULL)
+    if (oldestRoll != nullptr)
     {
         DelStatusEffectSilent(oldestRoll->GetStatusID());
         DelStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
@@ -906,7 +903,7 @@ uint8 CStatusEffectContainer::GetActiveManeuvers()
 
 void CStatusEffectContainer::RemoveOldestManeuver()
 {
-    CStatusEffect* oldest = NULL;
+    CStatusEffect* oldest = nullptr;
     int index = 0;
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
@@ -1088,7 +1085,7 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
         name.insert(name.size(), effects::EffectsParams[effect].Name);
 	} else {
 		CItem* Ptem = itemutils::GetItemPointer(StatusEffect->GetSubID());
-		if (Ptem != NULL)
+		if (Ptem != nullptr)
 		{
             name.insert(0, "globals/items/");
 			name.insert(name.size(), Ptem->getName());
@@ -1103,7 +1100,7 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
     if(!m_POwner->isDead())
     {
         // this should actually go into a char charm AI
-        if(m_POwner->PPet != NULL && m_POwner->objtype == TYPE_PC)
+        if(m_POwner->PPet != nullptr && m_POwner->objtype == TYPE_PC)
         {
             if(effect == EFFECT_CHARM || effect == EFFECT_CHARM_II)
             {
@@ -1231,7 +1228,7 @@ void CStatusEffectContainer::SaveStatusEffects()
 
 void CStatusEffectContainer::CheckEffects(uint32 tick)
 {
-	DSP_DEBUG_BREAK_IF(m_POwner == NULL);
+	DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
 
 	if (!m_POwner->isDead())
 	{
@@ -1270,7 +1267,7 @@ void CStatusEffectContainer::CheckEffects(uint32 tick)
 
 void CStatusEffectContainer::CheckRegen(uint32 tick)
 {
-	DSP_DEBUG_BREAK_IF(m_POwner == NULL);
+	DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
 
 	if (!m_POwner->isDead())
 	{
@@ -1279,7 +1276,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 			return;
 		}
 
-        CCharEntity* PChar = NULL;
+        CCharEntity* PChar = nullptr;
         if(m_POwner->objtype == TYPE_PC)
         {
             PChar = (CCharEntity*)m_POwner;
@@ -1316,7 +1313,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 				perpetuation = 0;
 			else
 			{
-				if (m_POwner->PPet != NULL && PChar != NULL)
+				if (m_POwner->PPet != nullptr && PChar != nullptr)
 				{
 
                     if(m_POwner->PPet->objtype == TYPE_PET)
@@ -1342,7 +1339,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
             if (m_POwner->addMP(refresh - perpetuation))
                 update = true;
 
-			if( m_POwner->health.mp == 0 && m_POwner->PPet != NULL && m_POwner->PPet->objtype == TYPE_PET)
+			if( m_POwner->health.mp == 0 && m_POwner->PPet != nullptr && m_POwner->PPet->objtype == TYPE_PET)
 			{
 				CPetEntity* PPet = (CPetEntity*)m_POwner->PPet;
 				if (PPet->getPetType() == PETTYPE_AVATAR) {

@@ -62,9 +62,11 @@ function getChocoboPrice(player)
 
             price = last_price - (math.floor((os.time(t) - last_time) / chocobo[u + 1].decaytime) * chocobo[u + 1].decayprice);
 
-            if (price < chocobo[u + 1][1]) then
-                price = chocobo[u + 1][1];
+            if (price < chocobo[u + 1].baseprice) then
+                price = chocobo[u + 1].baseprice;
             end
+
+            break;
         end
     end
 
@@ -82,6 +84,8 @@ function updateChocoboPrice(player, price)
         if(chocobo[u] == zone) then
             SetServerVariable("[CHOCOBO]["..chocobo[u].."]Price", price + chocobo[u + 1].addedprice);
             SetServerVariable("[CHOCOBO]["..chocobo[u].."]Time", os.time(t));
+
+            break;
         end
     end
 end;

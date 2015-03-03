@@ -133,12 +133,12 @@ CCharEntity::CCharEntity()
     TradePending.clean();
     InvitePending.clean();
 
-    PLinkshell1 = NULL;
-    PLinkshell2 = NULL;
-	PTreasurePool = NULL;
-	PWideScanTarget = NULL;
+    PLinkshell1 = nullptr;
+    PLinkshell2 = nullptr;
+	PTreasurePool = nullptr;
+	PWideScanTarget = nullptr;
 
-    PAutomaton = NULL;
+    PAutomaton = nullptr;
 
     PRecastContainer = new CRecastContainer(this);
 	PLatentEffectContainer = new CLatentEffectContainer(this);
@@ -161,7 +161,7 @@ CCharEntity::~CCharEntity()
 {
 	clearPacketList();
 
-    if(PTreasurePool != NULL)
+    if(PTreasurePool != nullptr)
     {
         // remove myself
         PTreasurePool->DelMember(this);
@@ -263,7 +263,7 @@ int8 CCharEntity::getShieldSize()
 {
 	CItemArmor* PItem = (CItemArmor*)(getEquip(SLOT_SUB));
 
-    if(PItem == NULL){
+    if(PItem == nullptr){
         return 0;
     }
 
@@ -363,7 +363,7 @@ CItemArmor* CCharEntity::getEquip(SLOTTYPE slot)
 {
 	uint8 loc = equip[slot];
 	uint8 est = equipLoc[slot];
-	CItemArmor* item = NULL;
+	CItemArmor* item = nullptr;
 
 	if (loc != 0)
 	{

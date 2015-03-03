@@ -299,7 +299,7 @@ namespace ability
 		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 				int8* expansionCode;
-				Sql_GetData(SqlHandle, 16, &expansionCode, NULL);
+				Sql_GetData(SqlHandle, 16, &expansionCode, nullptr);
 
 				if (luautils::IsExpansionEnabled(expansionCode) == false){
 					continue;
@@ -361,7 +361,7 @@ namespace ability
 		    return PAbilityList[AbilityID];
 	    }
 	    ShowFatalError(CL_RED"AbilityID <%u> is out of range\n" CL_RESET, AbilityID);
-	    return NULL;
+	    return nullptr;
     }
 
     /************************************************************************
@@ -399,12 +399,12 @@ namespace ability
             case JOB_GEO: return PAbilityList[ABILITY_BOLSTER]; break;
             case JOB_RUN: return PAbilityList[ABILITY_ELEMENTAL_SFORZO]; break;
         }
-        return NULL;
+        return nullptr;
     }
 
 	bool CanLearnAbility(CBattleEntity* PUser, uint16 AbilityID)
 	{
-	    if (GetAbility(AbilityID) != NULL)
+	    if (GetAbility(AbilityID) != nullptr)
 	    {
 		    uint8 Job = PAbilityList[AbilityID]->getJob();
 		    uint8 JobLvl = PAbilityList[AbilityID]->getLevel();
@@ -428,7 +428,7 @@ namespace ability
 
     Charge_t* GetCharge(CBattleEntity* PUser, uint16 chargeID)
     {
-        Charge_t* charge = NULL;
+        Charge_t* charge = nullptr;
         for (std::vector<Charge_t*>::iterator it = PChargesList.begin() ; it != PChargesList.end(); ++it)
         {
             Charge_t* PCharge = *it;

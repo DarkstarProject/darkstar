@@ -59,7 +59,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     if (PChar->m_mentor >= 2)
         WBUFB(data,(0x38)-4) |= 0x10; // Mentor flag.
     if (PChar->m_isNewPlayer)
-        WBUFB(data,(0x38)-4) |= 0x0C; // New player ?
+        WBUFB(data,(0x38)-4) |= 0x08; // New player ?
 
     WBUFB(data,(0x29)-4) = PChar->GetGender() + (PChar->look.size > 0 ? PChar->look.size * 8 : 2); // +  управляем ростом: 0x02 - 0; 0x08 - 1; 0x10 - 2;
     WBUFB(data,(0x2C)-4) = PChar->GetSpeed();
@@ -68,7 +68,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 
 	CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
 
-	if ((linkshell != NULL) && linkshell->isType(ITEM_LINKSHELL))
+	if ((linkshell != nullptr) && linkshell->isType(ITEM_LINKSHELL))
 	{
 		lscolor_t LSColor = linkshell->GetLSColor();
 
@@ -76,7 +76,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 		WBUFB(data,(0x32)-4) = (LSColor.G << 4) + 15;
 		WBUFB(data,(0x33)-4) = (LSColor.B << 4) + 15;
 	}
-	if (PChar->PPet != NULL)
+	if (PChar->PPet != nullptr)
 	{
 		WBUFW(data,(0x34)-4) = PChar->PPet->targid << 3;
 	}

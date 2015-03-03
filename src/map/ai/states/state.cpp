@@ -9,8 +9,8 @@
 
 CState::CState(CBattleEntity* PEntity, CTargetFind* PTargetFind)
 {
-	DSP_DEBUG_BREAK_IF(PEntity == NULL);
-	DSP_DEBUG_BREAK_IF(PTargetFind == NULL);
+	DSP_DEBUG_BREAK_IF(PEntity == nullptr);
+	DSP_DEBUG_BREAK_IF(PTargetFind == nullptr);
 	m_PEntity = PEntity;
 	m_PTargetFind = PTargetFind;
 	m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE);
@@ -31,7 +31,7 @@ void CState::PushMessage(MSGBASIC_ID msgID, int32 param, int32 value)
 
 	CBattleEntity* PTarget = m_PTarget;
 	// always need an entity sent
-	if(PTarget == NULL)
+	if(PTarget == nullptr)
 	{
 		PTarget = m_PEntity;
 	}
@@ -48,7 +48,7 @@ void CState::PushError(MSGBASIC_ID msgID, int32 param, int32 value)
 		CBattleEntity* PTarget = m_PTarget;
 
 		// always need an entity sent
-		if(PTarget == NULL)
+		if(PTarget == nullptr)
 		{
 			PTarget = m_PEntity;
 		}
@@ -69,7 +69,7 @@ STATESTATUS CState::Update(uint32 tick)
 
 bool CState::CheckValidTarget(CBattleEntity* PTarget)
 {
-	if(PTarget == NULL)
+	if(PTarget == nullptr)
 	{
 		return false;
 	}
@@ -85,7 +85,7 @@ bool CState::CheckValidTarget(CBattleEntity* PTarget)
     if(m_PEntity->objtype == TYPE_PC)
     {
         // assert you cannot target pets for anything
-        if(PTarget->PMaster != NULL && PTarget->PMaster->objtype == TYPE_PC)
+        if(PTarget->PMaster != nullptr && PTarget->PMaster->objtype == TYPE_PC)
         {
             // this is someones pet. cannot target
             PushError(MSGBASIC_THAT_SOMEONES_PET);
@@ -101,13 +101,13 @@ bool CState::CheckValidTarget(CBattleEntity* PTarget)
     }
 
 
-	return !(m_PEntity->loc.zone == NULL || PTarget->getZone() != m_PEntity->getZone() || PTarget->IsNameHidden());
+	return !(m_PEntity->loc.zone == nullptr || PTarget->getZone() != m_PEntity->getZone() || PTarget->IsNameHidden());
 }
 
 void CState::Clear()
 {
 	m_flags = 0;
-	m_PTarget = NULL;
+	m_PTarget = nullptr;
 }
 
 CBattleEntity* CState::GetTarget()
@@ -156,5 +156,5 @@ void CState::SetHiPCLvl(CBattleEntity* PTarget, uint8 lvl)
 
 void CState::ClearTarget()
 {
-    m_PTarget = NULL;
+    m_PTarget = nullptr;
 }

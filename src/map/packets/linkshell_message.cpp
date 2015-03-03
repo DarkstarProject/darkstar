@@ -35,7 +35,7 @@ CLinkshellMessagePacket::CLinkshellMessagePacket(CLinkshell* PLinkshell)
     WBUFB(data,(0x04)-4) = 0x03;
 	WBUFB(data,(0x05)-4) = 0x90;
 
-    if (PLinkshell != NULL)
+    if (PLinkshell != nullptr)
     {
         WBUFB(data,(0x04)-4) = 0x70;
 	    WBUFB(data,(0x05)-4) = 0x86; // +0x80 - show,  +0x40 - set

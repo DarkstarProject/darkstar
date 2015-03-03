@@ -43,8 +43,8 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_UNABLE_TO_USE_JA2		= 88, /* Unable to use job ability. */
 	MSGBASIC_IS_PARALYZED			= 29, /* The <player> is paralyzed. */
 	MSGBASIC_SHADOW_ABSORB			= 31, /* .. of <target>'s shadows absorb the damage and disappear. */
-	MSGBASIC_NOT_ENOUGH_MP			= 34, /* The <player> does not have enough MP to cast (NULL). */
-	MSGBASIC_NO_NINJA_TOOLS			= 35, /* The <player> lacks the ninja tools to cast (NULL). */
+	MSGBASIC_NOT_ENOUGH_MP			= 34, /* The <player> does not have enough MP to cast (nullptr). */
+	MSGBASIC_NO_NINJA_TOOLS			= 35, /* The <player> lacks the ninja tools to cast (nullptr). */
     MSGBASIC_CANNOT_CAST_SPELL      = 47, /* >player> cannot cast <spell>. */
     MSGBASIC_CANNOT_USE_IN_AREA      = 40, /* cannot use in this area */
 	MSGBASIC_UNABLE_TO_CAST_SPELLS  = 49, /* The <player> is unable to cast spells. */
@@ -100,7 +100,7 @@ enum MSGBASIC_ID : uint16
     MSGBASIC_CHECKPARAM_RANGE       = 714,
     MSGBASIC_CHECKPARAM_DEFENSE     = 715,
 	/* BLU */
-	MSGBASIC_LEARNS_SPELL			= 419, /* <target> learns (NULL)! */
+	MSGBASIC_LEARNS_SPELL			= 419, /* <target> learns (nullptr)! */
 	/* COR */
 	MSGBASIC_ROLL_MAIN				= 420, /* The <player> uses .. The total comes to ..! <target> receives the effect of .. */
 	MSGBASIC_ROLL_SUB				= 421, /* <target> receives the effect of .. */

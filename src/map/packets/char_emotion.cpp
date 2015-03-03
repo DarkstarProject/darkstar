@@ -52,7 +52,7 @@ CCharEmotionPacket::CCharEmotionPacket(CCharEntity * PChar, int8* buff)
 		WBUFB(data,(0x10)-4) = emoteID;
 
 		CItem * weapon = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
-		if (weapon != NULL && weapon->getID() != 0xFFFF) {
+		if (weapon != nullptr && weapon->getID() != 0xFFFF) {
 			WBUFW(data,(0x12)-4) = weapon->getID();
 		}
 	}

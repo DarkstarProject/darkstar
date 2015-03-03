@@ -8,24 +8,7 @@ require("scripts/globals/missions");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
-	-- initialize timers if they don't already exist
-	-- a random seed of 30 to 100 seconds is added to mix up the changes
-	-- Changes should be ~60 seconds apart, although I've seen one ~50
-	if(AncientVowsFormTimer == nil) then
-		AncientVowsFormTimer = {};
-		-- Instance 1
-		AncientVowsFormTimer[16904193] = {};
-		AncientVowsFormTimer[16904194] = {};
-		AncientVowsFormTimer[16904195] = {};
-		-- Instance 2
-		AncientVowsFormTimer[16904196] = {};
-		AncientVowsFormTimer[16904197] = {};
-		AncientVowsFormTimer[16904198] = {};
-		-- Instance 3
-		AncientVowsFormTimer[16904199] = {};
-		AncientVowsFormTimer[16904200] = {};
-		AncientVowsFormTimer[16904201] = {};
-	end
+
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)

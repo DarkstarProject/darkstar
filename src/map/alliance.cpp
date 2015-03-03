@@ -43,13 +43,13 @@
 
 CAlliance::CAlliance(CBattleEntity* PEntity, Sql_t* Sql)
 {
-	DSP_DEBUG_BREAK_IF(PEntity->PParty == NULL);
+	DSP_DEBUG_BREAK_IF(PEntity->PParty == nullptr);
 
     m_AllianceID   = PEntity->PParty->GetPartyID();
 
 	//will need to deal with these
-	//m_PSyncTarget 	= NULL;
-//	m_PQuaterMaster = NULL;
+	//m_PSyncTarget 	= nullptr;
+//	m_PQuaterMaster = nullptr;
 
 
     addParty(PEntity->PParty, Sql);
@@ -70,7 +70,7 @@ void CAlliance::dissolveAlliance(bool playerInitiated, Sql_t* sql)
         uint8 data[8];
         WBUFL(data, 0) = m_AllianceID;
         WBUFL(data, 4) = m_AllianceID;
-        message::send(MSG_PT_DISBAND, data, sizeof data, NULL);
+        message::send(MSG_PT_DISBAND, data, sizeof data, nullptr);
     }
     else
     {
@@ -79,7 +79,7 @@ void CAlliance::dissolveAlliance(bool playerInitiated, Sql_t* sql)
                         WHERE allianceid = %u AND IF(%u = 0 AND %u = 0, true, server_addr = %u AND server_port = %u);", 
                         ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, m_AllianceID, map_ip, map_port, map_ip, map_port);
         //first kick out the third party if it exsists
-        CParty* party = NULL;
+        CParty* party = nullptr;
         if (this->partyList.size() == 3)
         {
             party = this->partyList.at(2);
@@ -98,7 +98,7 @@ void CAlliance::dissolveAlliance(bool playerInitiated, Sql_t* sql)
         party = this->partyList.at(0);
         this->partyList.clear();
 
-        party->m_PAlliance = NULL;
+        party->m_PAlliance = nullptr;
 
         party->ReloadParty();
 
@@ -125,11 +125,11 @@ void CAlliance::removeParty(CParty * party)
     Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE partyid = %u;", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, party->GetPartyID());
 	uint8 data[4];
 	WBUFL(data, 0) = m_AllianceID;
-    message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
+    message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 
     uint8 data2[4];
     WBUFL(data2, 0) = party->GetPartyID();
-    message::send(MSG_PT_RELOAD, data2, sizeof data2, NULL);
+    message::send(MSG_PT_RELOAD, data2, sizeof data2, nullptr);
 }
 
 void CAlliance::delParty(CParty* party)
@@ -160,7 +160,7 @@ void CAlliance::delParty(CParty* party)
             party->m_PAlliance->partyList.erase(partyList.begin() + i);
     }
 
-    party->m_PAlliance = NULL;
+    party->m_PAlliance = nullptr;
     party->SetPartyNumber(0);
 
     //remove party members from the alliance treasure pool
@@ -168,7 +168,7 @@ void CAlliance::delParty(CParty* party)
     {
         CCharEntity* PChar = (CCharEntity*)party->members.at(i);
 
-        if (PChar->PTreasurePool != NULL &&
+        if (PChar->PTreasurePool != nullptr &&
             PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
         {
             PChar->PTreasurePool->DelMember(PChar);
@@ -176,7 +176,7 @@ void CAlliance::delParty(CParty* party)
     }
 
     //create a a new treasure pool for whoever is in the server from this party (if anyone)
-    CCharEntity* PChar = NULL;
+    CCharEntity* PChar = nullptr;
     try
     {
         PChar = (CCharEntity*)party->members.at(0);
@@ -233,7 +233,7 @@ void CAlliance::addParty(CParty * party, Sql_t* Sql)
 
 	uint8 data[4];
 	WBUFL(data, 0) = m_AllianceID;
-    message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
+    message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 
 }
 
@@ -258,7 +258,7 @@ void CAlliance::addParty(uint32 partyid, Sql_t* Sql)
     Sql_Query(Sql, "UPDATE accounts_parties SET allianceid = %u, partyflag = partyflag | %d WHERE partyid = %u;", m_AllianceID, newparty, partyid);
     uint8 data[4];
 	WBUFL(data, 0) = m_AllianceID;
-    message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
+    message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 }
 
 void CAlliance::pushParty(CParty* PParty, uint8 number)
@@ -298,7 +298,7 @@ void CAlliance::assignAllianceLeader(const char* name)
         m_AllianceID = charid;
 
         //in case leader's on another server 
-        this->aLeader = NULL;
+        this->aLeader = nullptr;
 
         for (auto PParty : partyList)
         {

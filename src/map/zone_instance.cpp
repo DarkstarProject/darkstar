@@ -49,7 +49,7 @@ CZoneInstance::~CZoneInstance()
 
 CCharEntity* CZoneInstance::GetCharByName(int8* name)
 {
-	CCharEntity* PEntity = NULL;
+	CCharEntity* PEntity = nullptr;
 	for (auto instance : instanceList)
 	{
 		PEntity = instance->GetCharByName(name);
@@ -60,7 +60,7 @@ CCharEntity* CZoneInstance::GetCharByName(int8* name)
 
 CCharEntity* CZoneInstance::GetCharByID(uint32 id)
 {
-	CCharEntity* PEntity = NULL;
+	CCharEntity* PEntity = nullptr;
 	for (auto instance : instanceList)
 	{
 		PEntity = instance->GetCharByID(id);
@@ -71,7 +71,7 @@ CCharEntity* CZoneInstance::GetCharByID(uint32 id)
 
 CBaseEntity* CZoneInstance::GetEntity(uint16 targid, uint8 filter)
 {
-	CBaseEntity* PEntity = NULL;
+	CBaseEntity* PEntity = nullptr;
 	if (filter & TYPE_PC)
 	{
 		for (auto instance : instanceList)
@@ -141,7 +141,7 @@ void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
 		instance->DespawnPC(PChar);
 		CharZoneOut(PChar);
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
-		PChar->PInstance = NULL;
+		PChar->PInstance = nullptr;
 
 		if (instance->CharListEmpty())
 		{
@@ -160,9 +160,9 @@ void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
 
 void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->loc.zone != NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != NULL);
+	DSP_DEBUG_BREAK_IF(PChar == nullptr);
+	DSP_DEBUG_BREAK_IF(PChar->loc.zone != nullptr);
+	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != nullptr);
 
 	//return char to instance (d/c or logout)
 	if (!PChar->PInstance)
