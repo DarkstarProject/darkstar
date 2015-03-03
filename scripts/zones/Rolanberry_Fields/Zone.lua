@@ -32,17 +32,17 @@ end;
 -----------------------------------
 
 function onZoneIn( player, prevZone)
-	local cs = -1;
+    local cs = -1;
 
-	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-		player:setPos( -381.747, -31.068, -788.092, 211);
-	end
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
+        player:setPos( -381.747, -31.068, -788.092, 211);
+    end
 
-	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
-		cs = 0x0002;
-	end
+    if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
+        cs = 0x0002;
+    end
 
-	return cs;
+    return cs;
 end;
 
 -----------------------------------
@@ -69,11 +69,11 @@ end;
 -----------------------------------
 
 function onEventUpdate( player, csid, option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-	if ( csid == 0x0002) then
-		lightCutsceneUpdate( player);  -- Quest: I Can Hear A Rainbow
-	end
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x0002) then
+        lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
+    end
 end;
 
 -----------------------------------
@@ -81,9 +81,9 @@ end;
 -----------------------------------
 
 function onEventFinish( player, csid, option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-	if( csid == 0x0002) then
-		lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
-	end
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x0002) then
+        lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
+    end
 end;

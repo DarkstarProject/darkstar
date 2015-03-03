@@ -17,11 +17,11 @@ require("scripts/globals/weather");
 -- onInitialize
 -----------------------------------
 
-function onInitialize(zone)		
+function onInitialize(zone)
     local manuals = {17195677,17195678};
-    
+
     SetFieldManual(manuals);
-end;		
+end;
 
 
 -----------------------------------
@@ -29,28 +29,28 @@ end;
 -----------------------------------
 
 function onZoneIn( player, prevZone)
+    local cs = -1;
 
-	local cs = -1;
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
+        player:setPos( -272.118, 21.715, 98.859, 243);
+    end
 
-	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-		player:setPos( -272.118, 21.715, 98.859, 243);
-	end
+    if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
+        cs = 0x007b;
+    elseif ( prevZone == 193 and player:getVar( "darkPuppetCS") == 5 and player:getFreeSlotsCount() >= 1) then
+        cs = 0x007a;
+    end
 
-	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
-		cs = 0x007b;
-	elseif( prevZone == 193 and player:getVar( "darkPuppetCS") == 5 and player:getFreeSlotsCount() >= 1) then
-		cs = 0x007a;
-	end
-	return cs;
+    return cs;
 end;
 
------------------------------------		
--- onConquestUpdate		
------------------------------------		
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
@@ -68,12 +68,11 @@ end;
 -----------------------------------
 
 function onEventUpdate( player, csid, option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-
-	if( csid == 0x007b) then
-		lightCutsceneUpdate( player);  -- Quest: I Can Hear A Rainbow
-	end
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x007b) then
+        lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
+    end
 end;
 
 -----------------------------------
@@ -81,22 +80,24 @@ end;
 -----------------------------------
 
 function onEventFinish( player, csid, option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-
-	if( csid == 0x007b) then
-		lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
-	elseif( csid == 0x007a) then
-		player:addItem( 14096);
-		player:messageSpecial( ITEM_OBTAINED, 14096); -- Chaos Sollerets
-		player:setVar( "darkPuppetCS", 0);
-		player:addFame( BASTOK, AF2_FAME);
-		player:completeQuest( BASTOK,DARK_PUPPET);
-	end
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x007b) then
+        lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
+    elseif (csid == 0x007a) then
+        player:addItem( 14096);
+        player:messageSpecial( ITEM_OBTAINED, 14096); -- Chaos Sollerets
+        player:setVar( "darkPuppetCS", 0);
+        player:addFame( BASTOK, AF2_FAME);
+        player:completeQuest( BASTOK,DARK_PUPPET);
+    end
 end;
 
-function onZoneWeatherChange(weather)
+-----------------------------------
+-- onZoneWeatherChange
+-----------------------------------
 
+function onZoneWeatherChange(weather)
     local _2u0 = GetNPCByID(17195606);
     local VanadielTOTD = VanadielTOTD();
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
@@ -109,8 +110,11 @@ function onZoneWeatherChange(weather)
     end
 end;
 
-function onTOTDChange(TOTD)
+-----------------------------------
+-- onTOTDChange
+-----------------------------------
 
+function onTOTDChange(TOTD)
     local _2u0 = GetNPCByID(17195606);
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
