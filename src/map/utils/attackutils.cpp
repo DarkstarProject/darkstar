@@ -146,7 +146,7 @@ bool IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 ************************************************************************/
 uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, PHYSICAL_ATTACK_TYPE attackType)
 {
-	if (PWeapon==NULL)
+	if (PWeapon==nullptr)
 	{
 		return damage;
 	}

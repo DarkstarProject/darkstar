@@ -44,14 +44,14 @@ void LoadAutomaton(CCharEntity* PChar)
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
 		size_t length = 0;
-		int8* attachments = NULL;
+		int8* attachments = nullptr;
 		Sql_GetData(SqlHandle,0,&attachments,&length);
 		memcpy(&PChar->m_unlockedAttachments, attachments, (length > sizeof(PChar->m_unlockedAttachments) ? sizeof(PChar->m_unlockedAttachments) : length));
 
-        if (PChar->PAutomaton != NULL)
+        if (PChar->PAutomaton != nullptr)
         {
             delete PChar->PAutomaton;
-            PChar->PAutomaton = NULL;
+            PChar->PAutomaton = nullptr;
         }
 
         if (PChar->GetMJob() == JOB_PUP || PChar->GetSJob() == JOB_PUP)
@@ -59,7 +59,7 @@ void LoadAutomaton(CCharEntity* PChar)
             PChar->PAutomaton = new CAutomatonEntity();
             PChar->PAutomaton->name.insert(0,Sql_GetData(SqlHandle, 1));
             automaton_equip_t tempEquip;
-		    attachments = NULL;
+		    attachments = nullptr;
 		    Sql_GetData(SqlHandle,2,&attachments,&length);
 		    memcpy(&tempEquip, attachments, (length > sizeof(tempEquip) ? sizeof(tempEquip) : length));
 			setHead(PChar, tempEquip.Head < HEAD_HARLEQUIN || tempEquip.Head > HEAD_SPIRITREAVER ? HEAD_HARLEQUIN : tempEquip.Head);
@@ -261,7 +261,7 @@ void setFrame(CCharEntity* PChar, uint8 frame)
     if (PChar->PAutomaton->getFrame() != 0)
     {
         CItemPuppet* POldFrame = (CItemPuppet*)itemutils::GetItemPointer(0x2000 + PChar->PAutomaton->getFrame());
-        if (POldFrame == NULL || POldFrame->getEquipSlot() != ITEM_PUPPET_FRAME)
+        if (POldFrame == nullptr || POldFrame->getEquipSlot() != ITEM_PUPPET_FRAME)
             return;
         for (int i = 0; i < 8; i ++)
         {
@@ -269,7 +269,7 @@ void setFrame(CCharEntity* PChar, uint8 frame)
         }
     }
     CItemPuppet* PFrame = (CItemPuppet*)itemutils::GetItemPointer(0x2000 + frame);
-    if (PFrame == NULL || PFrame->getEquipSlot() != ITEM_PUPPET_FRAME)
+    if (PFrame == nullptr || PFrame->getEquipSlot() != ITEM_PUPPET_FRAME)
         return;
     for (int i = 0; i < 8; i ++)
     {
@@ -320,7 +320,7 @@ void setHead(CCharEntity* PChar, uint8 head)
     if (PChar->PAutomaton->getHead() != 0)
     {
         CItemPuppet* POldHead = (CItemPuppet*)itemutils::GetItemPointer(0x2000 + PChar->PAutomaton->getHead());
-        if (POldHead == NULL || POldHead->getEquipSlot() != ITEM_PUPPET_HEAD)
+        if (POldHead == nullptr || POldHead->getEquipSlot() != ITEM_PUPPET_HEAD)
             return;
         for (int i = 0; i < 8; i ++)
         {
@@ -328,7 +328,7 @@ void setHead(CCharEntity* PChar, uint8 head)
         }
     }
     CItemPuppet* PHead = (CItemPuppet*)itemutils::GetItemPointer(0x2000 + head);
-    if (PHead == NULL || PHead->getEquipSlot() != ITEM_PUPPET_HEAD)
+    if (PHead == nullptr || PHead->getEquipSlot() != ITEM_PUPPET_HEAD)
         return;
     for (int i = 0; i < 8; i ++)
     {
@@ -445,7 +445,7 @@ void LoadAutomatonStats(CCharEntity* PChar)
             petutils::LoadPet(PChar, PETID_STORMWAKERFRAME, false);
             break;
     }
-    PChar->PPet = NULL; //already saved as PAutomaton, don't need it twice unless it's summoned
+    PChar->PPet = nullptr; //already saved as PAutomaton, don't need it twice unless it's summoned
 }
 
 void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)

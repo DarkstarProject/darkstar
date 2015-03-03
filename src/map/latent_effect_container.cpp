@@ -474,7 +474,7 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
             case LATENT_PARTY_MEMBERS:
             case LATENT_PARTY_MEMBERS_IN_ZONE:
             {
-                if (m_POwner->PParty != NULL)
+                if (m_POwner->PParty != nullptr)
                     CheckLatentsPartyMembers(m_POwner->PParty->members.size());
             }
             break;
@@ -1207,7 +1207,7 @@ void CLatentEffectContainer::CheckLatentsPartyJobs()
     {
         if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_JOB_IN_PARTY)
         {
-            if (m_POwner->PParty == NULL)
+            if (m_POwner->PParty == nullptr)
             {
                 if (m_LatentEffectList.at(i)->IsActivated() == true)
                 {
@@ -1217,7 +1217,7 @@ void CLatentEffectContainer::CheckLatentsPartyJobs()
 
             bool ActivateLatent = false;
 
-            if (m_POwner->PParty != NULL)
+            if (m_POwner->PParty != nullptr)
             {
                 for (uint8 m = 0; m < m_POwner->PParty->members.size(); m++)
                 {
@@ -1259,12 +1259,12 @@ void CLatentEffectContainer::CheckLatentsPartyAvatar()
         if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_AVATAR_IN_PARTY)
         {
             bool ActivateLatent = false;
-            if (m_POwner->PParty != NULL)
+            if (m_POwner->PParty != nullptr)
             {
                 for (uint8 m = 0; m < m_POwner->PParty->members.size(); ++m)
                 {
                     CCharEntity* PMember = (CCharEntity*)m_POwner->PParty->members.at(m);
-                    if (PMember->PPet != NULL)
+                    if (PMember->PPet != nullptr)
                     {
                         CPetEntity* PPet = (CPetEntity*)PMember->PPet;
 
@@ -1277,7 +1277,7 @@ void CLatentEffectContainer::CheckLatentsPartyAvatar()
                     }
                 }
             }
-            if (m_POwner->PParty == NULL && m_POwner->PPet != NULL)
+            if (m_POwner->PParty == nullptr && m_POwner->PPet != nullptr)
             {
                 CPetEntity* PPet = (CPetEntity*)m_POwner->PPet;
 
@@ -1494,7 +1494,7 @@ void CLatentEffectContainer::CheckLatentsZone()
         case LATENT_NATION_CONTROL:
         {
             //player is logging in/zoning
-            if (m_POwner->loc.zone == NULL)
+            if (m_POwner->loc.zone == nullptr)
             {
                 continue;
             }
@@ -1539,7 +1539,7 @@ void CLatentEffectContainer::CheckLatentsZone()
         case LATENT_ZONE_HOME_NATION:
         {
             //player is logging in/zoning
-            if (m_POwner->loc.zone == NULL)
+            if (m_POwner->loc.zone == nullptr)
             {
                 continue;
             }

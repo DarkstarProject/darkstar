@@ -38,15 +38,15 @@
 #include "lobby.h"
 #include "message_server.h"
 
-const char* LOGIN_CONF_FILENAME = NULL;
-const char* VERSION_INFO_FILENAME = NULL;
+const char* LOGIN_CONF_FILENAME = nullptr;
+const char* VERSION_INFO_FILENAME = nullptr;
 
 //lan_config_t   lan_config;		// lan settings
 login_config_t login_config;	//main settings
 version_info_t version_info;
 
 
-Sql_t *SqlHandle = NULL;
+Sql_t *SqlHandle = nullptr;
 std::thread messageThread;
 
 int32 do_init(int32 argc,char** argv)
@@ -159,7 +159,7 @@ int do_sockets(fd_set* rfd,int next)
 
 
 	memcpy(rfd, &readfds, sizeof(*rfd));
-	ret = sSelect(fd_max, rfd, NULL, NULL, &timeout);
+	ret = sSelect(fd_max, rfd, nullptr, nullptr, &timeout);
 
 	if( ret == SOCKET_ERROR )
 	{
@@ -171,7 +171,7 @@ int do_sockets(fd_set* rfd,int next)
 		return 0; // interrupted by a signal, just loop and try again
 	}
 
-	last_tick = time(NULL);
+	last_tick = time(nullptr);
 
 #if defined(WIN32)
 	// on windows, enumerating all members of the fd_set is way faster if we access the internals
@@ -271,7 +271,7 @@ int32 login_config_read(const char *cfgName)
 	FILE *fp;
 
 	fp = fopen(cfgName,"r");
-	if( fp == NULL )
+	if( fp == nullptr )
 	{
 		ShowError("login configuration file not found at: %s\n", cfgName);
 		return 1;
@@ -365,7 +365,7 @@ int32 version_info_read(const char *fileName)
     FILE *fp;
 
     fp = fopen(fileName,"r");
-    if( fp == NULL )
+    if( fp == nullptr )
     {
         ShowError("version info file not found at: %s\n", fileName);
         return 1;

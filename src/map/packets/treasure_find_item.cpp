@@ -39,7 +39,7 @@ CTreasureFindItemPacket::CTreasureFindItemPacket(TreasurePoolItem* PItem , CBase
 	WBUFB(data,(0x14)-4) = PItem->SlotID;       // TreasurePool slotID
 	WBUFL(data,(0x18)-4) = PItem->TimeStamp;    // TimeStamp
 
-	if (PMob != NULL)
+	if (PMob != nullptr)
 	{
 		WBUFL(data,(0x08)-4) = PMob->id; 		// ID монстра	
 		WBUFW(data,(0x12)-4) = PMob->targid; 	// TargID монстра

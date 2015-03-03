@@ -178,7 +178,7 @@ uint8 CTradeContainer::getSize()
 
 void CTradeContainer::setSize(uint8 size)
 {
-    m_PItem.resize(size, NULL);
+    m_PItem.resize(size, nullptr);
     m_itemID.resize(size, 0);
     m_slotID.resize(size, 0xFF);
     m_quantity.resize(size, 0);
@@ -211,7 +211,7 @@ void CTradeContainer::Clean()
 	m_ItemsCount = 0;
 
     m_PItem.clear();
-    m_PItem.resize(CONTAINER_SIZE, NULL);
+    m_PItem.resize(CONTAINER_SIZE, nullptr);
     m_itemID.clear();
     m_itemID.resize(CONTAINER_SIZE, 0);
     m_slotID.clear();

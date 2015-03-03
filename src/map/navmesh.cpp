@@ -28,7 +28,7 @@
 
 CNavMesh::CNavMesh()
 {
-  m_navMesh = NULL;
+  m_navMesh = nullptr;
 }
 
 CNavMesh::~CNavMesh()
@@ -146,7 +146,7 @@ void CNavMesh::outputError(uint32 status)
 
 void CNavMesh::unload()
 {
-  if(m_navMesh != NULL){
+  if(m_navMesh != nullptr){
     delete m_navMesh;
   }
 }

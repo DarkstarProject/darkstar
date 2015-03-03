@@ -403,7 +403,7 @@ struct apAction_t
 
     apAction_t()
     {
-        ActionTarget = NULL;
+        ActionTarget = nullptr;
         reaction = REACTION_NONE;
         animation = 0;
         speceffect = SPECEFFECT_NONE;

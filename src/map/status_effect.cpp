@@ -39,7 +39,7 @@ CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, uint32 tick, 
 	m_Flag	   = EFFECTFLAG_NONE;
 	m_TickTime = tick * 1000;
 	m_Duration = duration * 1000;
-    m_POwner = NULL;
+    m_POwner = nullptr;
 }
 
 CStatusEffect::~CStatusEffect()
@@ -137,7 +137,7 @@ void CStatusEffect::UnsetFlag(uint32 flag)
 
 void CStatusEffect::SetIcon(uint16 Icon)
 {
-    DSP_DEBUG_BREAK_IF(m_POwner == NULL);
+    DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
 
 	m_Icon = Icon;
     m_POwner->StatusEffectContainer->UpdateStatusIcons();

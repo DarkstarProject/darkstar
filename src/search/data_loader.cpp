@@ -63,7 +63,7 @@ std::vector<ahHistory*> CDataLoader::GetAHItemHystory(uint16 ItemID, bool stack)
 
     const int8* fmtQuery = "SELECT sale, sell_date, seller_name, buyer_name \
                             FROM auction_house \
-                            WHERE itemid = %u AND stack = %u AND buyer_name IS NOT NULL \
+                            WHERE itemid = %u AND stack = %u AND buyer_name IS NOT nullptr \
                             ORDER BY sell_date DESC \
                             LIMIT 10";
 
@@ -102,7 +102,7 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(uint8 AHCategoryID, int8*
 
     const int8* fmtQuery = "SELECT item_basic.itemid, item_basic.stackSize, COUNT(*)-SUM(stack), SUM(stack) \
                             FROM item_basic \
-	                        LEFT JOIN auction_house ON item_basic.itemId = auction_house.itemid AND auction_house.buyer_name IS NULL \
+	                        LEFT JOIN auction_house ON item_basic.itemId = auction_house.itemid AND auction_house.buyer_name IS nullptr \
                             LEFT JOIN item_armor ON item_basic.itemid = item_armor.itemid \
                             LEFT JOIN item_weapon ON item_basic.itemid = item_weapon.itemid \
                             WHERE aH = %u \
@@ -206,7 +206,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
                         LEFT JOIN char_stats USING (charid) \
                         LEFT JOIN char_jobs USING(charid) \
 						LEFT JOIN char_profile USING(charid) \
-						WHERE charname IS NOT NULL ";
+						WHERE charname IS NOT nullptr ";
 	fmtQuery.append(filterQry);
 	fmtQuery.append(" ORDER BY charname ASC");
 
@@ -481,7 +481,7 @@ void CDataLoader::ExpireAHItems()
 		search_config.mysql_host,
 		search_config.mysql_port,
 		search_config.mysql_database);
-	std::string qStr = ("SELECT id,itemid,stack,seller FROM auction_house WHERE datediff(now(),from_unixtime(date)) >=%u AND buyer_name IS NULL;");
+	std::string qStr = ("SELECT id,itemid,stack,seller FROM auction_house WHERE datediff(now(),from_unixtime(date)) >=%u AND buyer_name IS nullptr;");
 	const char * cC = qStr.c_str();
 	int32 ret = Sql_Query(SqlHandle, cC, search_config.expire_days);
 	int32 expiredAuctions = Sql_NumRows(SqlHandle);

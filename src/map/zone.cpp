@@ -112,7 +112,7 @@ int32 zone_server_region(uint32 tick, CTaskMgr::CTask* PTask)
 
 CZone::CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)
 {
-  ZoneTimer = NULL;
+  ZoneTimer = nullptr;
 
   m_zoneID = ZoneID;
   m_zoneType = ZONETYPE_NONE;
@@ -120,12 +120,12 @@ CZone::CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)
   m_continentID = ContinentID;
   m_TreasurePool = 0;
   m_RegionCheckTime = 0;
-  m_BattlefieldHandler = NULL;
+  m_BattlefieldHandler = nullptr;
   m_Weather = WEATHER_NONE;
   m_WeatherChangeTime = 0;
   m_IsWeatherStatic = 0;
   m_useNavMesh = false;
-  m_navMesh = NULL;
+  m_navMesh = nullptr;
   m_zoneEntities = new CZoneEntities(this);
 
   // settings should load first
@@ -233,7 +233,7 @@ zoneLine_t* CZone::GetZoneLine(uint32 zoneLineID)
 			return (*i);
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 /************************************************************************
@@ -374,7 +374,7 @@ void CZone::LoadZoneSettings()
 
 		m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 9);
 
-        if (Sql_GetData(SqlHandle,10) != NULL) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
+        if (Sql_GetData(SqlHandle,10) != nullptr) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
         {
 			m_BattlefieldHandler = new CBattlefieldHandler(m_zoneID);
 		}
@@ -395,7 +395,7 @@ void CZone::LoadNavMesh()
   // disable / enable maps navmesh in zone_settings.sql
   if(!m_useNavMesh) return;
 
-  if(m_navMesh == NULL){
+  if(m_navMesh == nullptr){
     m_navMesh = new CNavMesh();
   }
 
@@ -464,7 +464,7 @@ void CZone::InsertPET(CBaseEntity* PPet)
 
 void CZone::InsertRegion(CRegion* Region)
 {
-	if (Region != NULL)
+	if (Region != nullptr)
 	{
 		m_regionList.push_back(Region);
 	}
@@ -511,7 +511,7 @@ void CZone::SetWeather(WEATHER weather)
     m_Weather = weather;
     m_WeatherChangeTime = CVanaTime::getInstance()->getVanaTime();
 
-	m_zoneEntities->PushPacket(NULL, CHAR_INZONE, new CWeatherPacket(m_WeatherChangeTime, m_Weather));
+	m_zoneEntities->PushPacket(nullptr, CHAR_INZONE, new CWeatherPacket(m_WeatherChangeTime, m_Weather));
 }
 
 /************************************************************************
@@ -528,7 +528,7 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 	if (ZoneTimer && m_zoneEntities->CharListEmpty())
 	{
 		ZoneTimer->m_type = CTaskMgr::TASK_REMOVE;
-		ZoneTimer = NULL;
+		ZoneTimer = nullptr;
 
 		m_zoneEntities->HealAllMobs();
 	}
@@ -550,9 +550,9 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 
 void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-    DSP_DEBUG_BREAK_IF(PChar->loc.zone != NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != NULL);
+	DSP_DEBUG_BREAK_IF(PChar == nullptr);
+    DSP_DEBUG_BREAK_IF(PChar->loc.zone != nullptr);
+	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != nullptr);
 
 	PChar->targid = m_zoneEntities->GetNewTargID();
 
@@ -723,7 +723,7 @@ void CZone::ZoneServer(uint32 tick)
 {
 	m_zoneEntities->ZoneServer(tick);
 
-	if (m_BattlefieldHandler != NULL)
+	if (m_BattlefieldHandler != nullptr)
 	{
 		m_BattlefieldHandler->handleBattlefields(tick);
 	}
@@ -804,9 +804,9 @@ void CZone::CharZoneIn(CCharEntity* PChar)
 
     PChar->ReloadPartyInc();
 
-	if (PChar->PParty != NULL)
+	if (PChar->PParty != nullptr)
 	{
-		if (m_TreasurePool != NULL)
+		if (m_TreasurePool != nullptr)
 		{
 			PChar->PTreasurePool = m_TreasurePool;
 			PChar->PTreasurePool->AddMember(PChar);
@@ -815,7 +815,7 @@ void CZone::CharZoneIn(CCharEntity* PChar)
 		{
 			PChar->PParty->ReloadTreasurePool(PChar);
 		}
-		if (PChar->PParty->GetSyncTarget() != NULL)
+		if (PChar->PParty->GetSyncTarget() != nullptr)
 		{
 			if (PChar->getZone() == PChar->PParty->GetSyncTarget()->getZone())
 			{
@@ -842,7 +842,7 @@ void CZone::CharZoneIn(CCharEntity* PChar)
 
 	if (m_zoneType != ZONETYPE_DUNGEON_INSTANCED)
 	{
-		PChar->PInstance = NULL;
+		PChar->PInstance = nullptr;
 	}
 
 	PChar->PLatentEffectContainer->CheckLatentsZone();
@@ -865,9 +865,9 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 		{
 			if (PChar->PParty->GetSyncTarget() == PChar || PChar->PParty->GetLeader() == PChar)
 			{
-				PChar->PParty->SetSyncTarget(NULL, 551);
+				PChar->PParty->SetSyncTarget(nullptr, 551);
 			}
-			if (PChar->PParty->GetSyncTarget() != NULL)
+			if (PChar->PParty->GetSyncTarget() != nullptr)
 			{
 				uint8 count = 0;
 				for (uint32 i = 0; i < PChar->PParty->members.size(); ++i)
@@ -879,7 +879,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 				}
 				if (count < 2) //3, because one is zoning out - thus at least 2 will be left
 				{
-					PChar->PParty->SetSyncTarget(NULL, 552);
+					PChar->PParty->SetSyncTarget(nullptr, 552);
 				}
 			}
 		}
@@ -887,17 +887,17 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 		PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
 	}
 
-    if (PChar->PLinkshell1 != NULL)
+    if (PChar->PLinkshell1 != nullptr)
     {
         PChar->PLinkshell1->DelMember(PChar);
     }
 
-    if (PChar->PLinkshell2 != NULL)
+    if (PChar->PLinkshell2 != nullptr)
     {
         PChar->PLinkshell2->DelMember(PChar);
     }
 
-	if (PChar->PTreasurePool != NULL) // TODO: условие для устранения проблем с MobHouse, надо блин решить ее раз и навсегда
+	if (PChar->PTreasurePool != nullptr) // TODO: условие для устранения проблем с MobHouse, надо блин решить ее раз и навсегда
 	{
 		PChar->PTreasurePool->DelMember(PChar);
 	}
@@ -905,7 +905,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     if (PChar->isDead())
         charutils::SaveDeathTime(PChar);
 
-    PChar->loc.zone = NULL;
+    PChar->loc.zone = nullptr;
 
     if (PChar->status == STATUS_SHUTDOWN)
     {
@@ -925,7 +925,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     {
         uint8 data[4];
         WBUFL(data, 0) = PChar->PParty->GetPartyID();
-        message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
+        message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
     }
 
     if (PChar->PParty)

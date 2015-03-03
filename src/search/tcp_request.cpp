@@ -58,7 +58,7 @@
 
 CTCPRequestPacket::CTCPRequestPacket(SOCKET* socket)
 {
-	m_data = NULL;
+	m_data = nullptr;
     m_socket = socket;
 
 	uint8 keys[24] = 
@@ -250,7 +250,7 @@ int32 CTCPRequestPacket::CheckPacketHash()
 
 uint8 CTCPRequestPacket::GetPacketType() 
 {
-	DSP_DEBUG_BREAK_IF(m_data == NULL)
+	DSP_DEBUG_BREAK_IF(m_data == nullptr)
 
 	return m_data[0x0B];
 }

@@ -84,17 +84,17 @@ void CAIAutomatonDummy::ActionFall()
 
 void CAIAutomatonDummy::ActionAttack()
 {
-    if (m_PPet->PMaster == NULL || m_PPet->PMaster->isDead() || m_PPet->isDead()){
+    if (m_PPet->PMaster == nullptr || m_PPet->PMaster->isDead() || m_PPet->isDead()){
         m_ActionType = ACTION_FALL;
         ActionFall();
         return;
     }
 
     //disengage a target that is dead or charmed
-    if ((m_PBattleTarget == NULL || m_PBattleTarget->isDead() ||
+    if ((m_PBattleTarget == nullptr || m_PBattleTarget->isDead() ||
         m_PBattleTarget->animation == ANIMATION_CHOCOBO) ||
-        (m_PBattleTarget != NULL && m_PBattleTarget->objtype == TYPE_MOB && 
-        m_PBattleTarget->PMaster != NULL && m_PBattleTarget->PMaster->objtype == TYPE_PC))
+        (m_PBattleTarget != nullptr && m_PBattleTarget->objtype == TYPE_MOB && 
+        m_PBattleTarget->PMaster != nullptr && m_PBattleTarget->PMaster->objtype == TYPE_PC))
     {
         m_ActionType = ACTION_DISENGAGE;
         ActionDisengage();
@@ -222,7 +222,7 @@ void CAIAutomatonDummy::ActionAttack()
                     if (isBlocked){ Action.reaction = REACTION_BLOCK; }
 
 
-                    Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true, true);
+                    Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, nullptr, true, true);
                     if (Action.param < 0)
                     {
                         Action.param = -(Action.param);
@@ -242,7 +242,7 @@ void CAIAutomatonDummy::ActionAttack()
 
                 m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
 
-                if (m_PPet->PMaster != NULL && m_PPet->PMaster->objtype == TYPE_PC && m_PPet->PMaster->PPet != NULL){
+                if (m_PPet->PMaster != nullptr && m_PPet->PMaster->objtype == TYPE_PC && m_PPet->PMaster->PPet != nullptr){
                     ((CCharEntity*)m_PPet->PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)m_PPet->PMaster));
                 }
             }

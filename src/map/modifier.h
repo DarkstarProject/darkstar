@@ -509,9 +509,9 @@ enum MODIFIER
     MOD_EXTRA_DUAL_WIELD_ATTACK   = 0x1E1, // Chance to land an extra attack when dual wielding (modId = 481)
     MOD_EXTRA_KICK_ATTACK         = 0x1E2, // Occasionally allows a second Kick Attack during an attack round without the use of Footwork.  (modId = 482)
     MOD_SAMBA_DOUBLE_DAMAGE       = 0x19F, // Double damage chance when samba is up. (modId = 415)
-    MOD_NULL_PHYSICAL_DAMAGE      = 0x1A0, // Chance to null physical damage. (modId = 416)
+    MOD_nullptr_PHYSICAL_DAMAGE      = 0x1A0, // Chance to nullptr physical damage. (modId = 416)
     MOD_QUICK_DRAW_TRIPLE_DAMAGE  = 0x1A1, // Chance to do triple damage with quick draw. (modId = 417)
-    MOD_BAR_ELEMENT_NULL_CHANCE   = 0x1A2, // Bar Elemental spells will occasionally nullify damage of the same element. (modId = 418)
+    MOD_BAR_ELEMENT_nullptr_CHANCE   = 0x1A2, // Bar Elemental spells will occasionally nullptrify damage of the same element. (modId = 418)
     MOD_GRIMOIRE_INSTANT_CAST     = 0x1A3, // Spells that match your current Arts will occasionally cast instantly, without recast. (modId = 419)
     MOD_QUAD_ATTACK               = 0x1AE, // Quadruple attack chance. (modId = 430)
 
@@ -530,18 +530,18 @@ enum MODIFIER
     MOD_LIGHT_ABSORB              = 0x1D1, // (modId = 465)
     MOD_DARK_ABSORB               = 0x1D2, // (modId = 466)
 
-    //Elemental Null Chance
-    MOD_FIRE_NULL                 = 0x1D3, // (modId = 467)
-    MOD_EARTH_NULL                = 0x1D4, // (modId = 468)
-    MOD_WATER_NULL                = 0x1D5, // (modId = 469)
-    MOD_WIND_NULL                 = 0x1D6, // (modId = 470)
-    MOD_ICE_NULL                  = 0x1D7, // (modId = 471)
-    MOD_LTNG_NULL                 = 0x1D8, // (modId = 472)
-    MOD_LIGHT_NULL                = 0x1D9, // (modId = 473)
-    MOD_DARK_NULL                 = 0x1DA, // (modId = 474)
+    //Elemental nullptr Chance
+    MOD_FIRE_nullptr                 = 0x1D3, // (modId = 467)
+    MOD_EARTH_nullptr                = 0x1D4, // (modId = 468)
+    MOD_WATER_nullptr                = 0x1D5, // (modId = 469)
+    MOD_WIND_nullptr                 = 0x1D6, // (modId = 470)
+    MOD_ICE_nullptr                  = 0x1D7, // (modId = 471)
+    MOD_LTNG_nullptr                 = 0x1D8, // (modId = 472)
+    MOD_LIGHT_nullptr                = 0x1D9, // (modId = 473)
+    MOD_DARK_nullptr                 = 0x1DA, // (modId = 474)
 
     MOD_MAGIC_ABSORB              = 0x1DB, // (modId = 475)
-    MOD_MAGIC_NULL                = 0x1DC, // (modId = 476)
+    MOD_MAGIC_nullptr                = 0x1DC, // (modId = 476)
     MOD_PHYS_ABSORB               = 0x200, // (modId = 512)
     MOD_ABSORB_DMG_TO_MP          = 0x204, // (modId = 516)  Unlike PLD gear mod, works on all damage types (Ethereal Earring)
 

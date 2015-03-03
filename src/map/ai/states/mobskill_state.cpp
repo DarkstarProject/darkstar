@@ -30,7 +30,7 @@ CMobSkillState::CMobSkillState(CBattleEntity* PEntity, CTargetFind* PTargetFind)
 {
   m_PMob = (CMobEntity*)PEntity;
 
-  m_PMobSkill = NULL;
+  m_PMobSkill = nullptr;
   m_startTime = 0;
   m_useTime = 0;
 }
@@ -38,7 +38,7 @@ CMobSkillState::CMobSkillState(CBattleEntity* PEntity, CTargetFind* PTargetFind)
 CMobSkill* CMobSkillState::PickSkill(PICKSKILL pickFlags = PICKSKILL_RANDOM)
 {
   // pick and return a random skill
-  return NULL;
+  return nullptr;
 }
 
 bool CMobSkillState::CanUseSkill(CMobSkill* PMobSkill, CBattleEntity* PTarget)
@@ -99,7 +99,7 @@ void CMobSkillState::Clear()
 {
   CState::Clear();
 
-  m_PMobSkill = NULL;
+  m_PMobSkill = nullptr;
 }
 
 CMobSkill* CMobSkillState::GetSkill()
@@ -109,7 +109,7 @@ CMobSkill* CMobSkillState::GetSkill()
 
 bool CMobSkillState::IsUsing()
 {
-  return m_PMobSkill != NULL;
+  return m_PMobSkill != nullptr;
 }
 
 bool CMobSkillState::ValidUse()

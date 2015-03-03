@@ -711,7 +711,7 @@ int32 doSynthFail(CCharEntity* PChar)
 		{
 			CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
-			if (PItem != NULL)
+			if (PItem != nullptr)
 			{
 				PItem->setSubType(ITEM_UNLOCKED);
 
@@ -831,7 +831,7 @@ int32 startSynth(CCharEntity* PChar)
 
 			CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
-			if (PItem != NULL)
+			if (PItem != nullptr)
 			{
 				PItem->setSubType(ITEM_LOCKED);
 				PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NOSELECT));
@@ -905,7 +905,7 @@ int32 doSynthResult(CCharEntity* PChar)
 
 		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
-		if (PItem != NULL)
+		if (PItem != nullptr)
 		{
 			if ((PItem->getFlag() & ITEM_FLAG_INSCRIBABLE) && (PChar->CraftContainer->getItemID(0) > 0x1080))
 			{

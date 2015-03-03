@@ -168,11 +168,11 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
 
         m_EnmityList.insert(PEnmity, EnmityList_t::value_type(PEntity->id, PEnmityObject));
 
-        if (withMaster && PEntity->PMaster != NULL)
+        if (withMaster && PEntity->PMaster != nullptr)
         {
             //add master to the enmity list
             //add master to the enmity list (charmed mob)
-            if (PEntity->objtype == TYPE_PET || PEntity->objtype == TYPE_MOB && PEntity->PMaster != NULL && PEntity->PMaster->objtype == TYPE_PC)
+            if (PEntity->objtype == TYPE_PET || PEntity->objtype == TYPE_MOB && PEntity->PMaster != nullptr && PEntity->PMaster->objtype == TYPE_PC)
             {
                 UpdateEnmity(PEntity->PMaster, 0, 0);
             }
@@ -309,8 +309,8 @@ void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percen
         PEnmity->second->VE -= (VEValue < 0 ? 0 : VEValue);
 
 
-        // transfer hate if HateReceiver not null
-        if (HateReceiver != NULL)
+        // transfer hate if HateReceiver not nullptr
+        if (HateReceiver != nullptr)
         {
             UpdateEnmity(HateReceiver, 0, 0);
             EnmityList_t::iterator PEnmityReceiver = m_EnmityList.lower_bound(HateReceiver->id);
@@ -350,7 +350,7 @@ void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Dam
 
     uint16 mod = battleutils::GetEnmityModDamage(PEntity->GetMLevel()); //default fallback
 
-    if (m_EnmityHolder != NULL) {//use the correct mod value
+    if (m_EnmityHolder != nullptr) {//use the correct mod value
         mod = battleutils::GetEnmityModDamage(m_EnmityHolder->GetMLevel());
     }
 
@@ -386,7 +386,7 @@ CBattleEntity* CEnmityContainer::GetHighestEnmity()
 {
     uint32 HighestEnmity = 0;
 
-    CBattleEntity* PEntity = NULL;
+    CBattleEntity* PEntity = nullptr;
 
     for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
     {
@@ -420,7 +420,7 @@ bool CEnmityContainer::IsWithinEnmityRange(CBattleEntity* PEntity)
 
 uint8 CEnmityContainer::GetHighestTH()
 {
-    CBattleEntity* PEntity = NULL;
+    CBattleEntity* PEntity = nullptr;
     uint8 THLvl = 0;
 
     for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
@@ -428,7 +428,7 @@ uint8 CEnmityContainer::GetHighestTH()
         EnmityObject_t* PEnmityObject = it->second;
         PEntity = PEnmityObject->PEnmityOwner;
 
-        if (PEntity != NULL && !PEntity->isDead() && IsWithinEnmityRange(PEntity) && PEnmityObject->maxTH > THLvl)
+        if (PEntity != nullptr && !PEntity->isDead() && IsWithinEnmityRange(PEntity) && PEnmityObject->maxTH > THLvl)
             THLvl = PEnmityObject->maxTH;
     }
 

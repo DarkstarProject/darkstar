@@ -69,11 +69,11 @@
 #include "message.h"
 
 
-const int8* MAP_CONF_FILENAME = NULL;
+const int8* MAP_CONF_FILENAME = nullptr;
 
-int8*  g_PBuff   = NULL;                // глобальный буфер обмена пакетами
-int8*  PTempBuff = NULL;                // временный  буфер обмена пакетами
-Sql_t* SqlHandle = NULL;				// SQL descriptor
+int8*  g_PBuff   = nullptr;                // глобальный буфер обмена пакетами
+int8*  PTempBuff = nullptr;                // временный  буфер обмена пакетами
+Sql_t* SqlHandle = nullptr;				// SQL descriptor
 
 int32  map_fd = 0;						// main socket
 uint32 map_amntplayers = 0;				// map amnt unique players
@@ -102,7 +102,7 @@ map_session_data_t* mapsession_getbyipp(uint64 ipp)
             return (*i).second;
         i++;
     }
-    return NULL;
+    return nullptr;
 }
 
 /************************************************************************
@@ -118,7 +118,7 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 
 	CREATE(map_session_data->server_packet_data, int8, map_config.buffer_size + 20);
 
-	map_session_data->last_update = time(NULL);
+	map_session_data->last_update = time(nullptr);
 	map_session_data->client_addr = ip;
 	map_session_data->client_port = port;
 
@@ -127,7 +127,7 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 	ipp |= port64<<32;
 	map_session_list[ipp] = map_session_data;
 
-	ShowInfo(CL_WHITE"mapsession" CL_RESET":" CL_WHITE"%s" CL_RESET":" CL_WHITE"%u" CL_RESET" is coming to world...\n",ip2str(map_session_data->client_addr,NULL),map_session_data->client_port);
+	ShowInfo(CL_WHITE"mapsession" CL_RESET":" CL_WHITE"%s" CL_RESET":" CL_WHITE"%u" CL_RESET" is coming to world...\n",ip2str(map_session_data->client_addr,nullptr),map_session_data->client_port);
 	return map_session_data;
 }
 
@@ -152,8 +152,8 @@ int32 do_init(int32 argc, int8** argv)
 
 	MAP_CONF_FILENAME = "./conf/map_darkstar.conf";
 
-	srand((uint32)time(NULL));
-	WELL512::seed((uint32)time(NULL));
+	srand((uint32)time(nullptr));
+	WELL512::seed((uint32)time(nullptr));
 
 	map_config_default();
 	map_config_read(MAP_CONF_FILENAME);
@@ -228,9 +228,9 @@ int32 do_init(int32 argc, int8** argv)
 
     CTransportHandler::getInstance()->InitializeTransport();
 
-	CTaskMgr::getInstance()->AddTask("time_server", gettick(), NULL, CTaskMgr::TASK_INTERVAL, time_server, 2400);
-	CTaskMgr::getInstance()->AddTask("map_cleanup", gettick(), NULL, CTaskMgr::TASK_INTERVAL, map_cleanup, 5000);
-	CTaskMgr::getInstance()->AddTask("garbage_collect", gettick(), NULL, CTaskMgr::TASK_INTERVAL, map_garbage_collect, 15 * 60 * 1000);
+	CTaskMgr::getInstance()->AddTask("time_server", gettick(), nullptr, CTaskMgr::TASK_INTERVAL, time_server, 2400);
+	CTaskMgr::getInstance()->AddTask("map_cleanup", gettick(), nullptr, CTaskMgr::TASK_INTERVAL, map_cleanup, 5000);
+	CTaskMgr::getInstance()->AddTask("garbage_collect", gettick(), nullptr, CTaskMgr::TASK_INTERVAL, map_garbage_collect, 15 * 60 * 1000);
 
 	CREATE(g_PBuff,   int8, map_config.buffer_size + 20);
     CREATE(PTempBuff, int8, map_config.buffer_size + 20);
@@ -316,7 +316,7 @@ int32 do_sockets(fd_set* rfd,int32 next)
 	timeout.tv_sec  = next/1000;
 	timeout.tv_usec = next%1000*1000;
 
-	ret = sSelect(fd_max, rfd, NULL, NULL, &timeout);
+	ret = sSelect(fd_max, rfd, nullptr, nullptr, &timeout);
 
 	if( ret == SOCKET_ERROR )
 	{
@@ -328,7 +328,7 @@ int32 do_sockets(fd_set* rfd,int32 next)
 		return 0; // interrupted by a signal, just loop and try again
 	}
 
-	last_tick = time(NULL);
+	last_tick = time(nullptr);
 
 	if( sFD_ISSET(map_fd,rfd) )
 	{
@@ -350,16 +350,16 @@ int32 do_sockets(fd_set* rfd,int32 next)
 			ipp |= port<<32;
 			map_session_data_t* map_session_data = mapsession_getbyipp(ipp);
 
-			if( map_session_data == NULL )
+			if( map_session_data == nullptr )
 			{
 				map_session_data = mapsession_createsession(ip,ntohs(from.sin_port));
-				if( map_session_data == NULL )
+				if( map_session_data == nullptr )
 				{
 					return -1;
 				}
 			}
 
-			map_session_data->last_update = time(NULL);
+			map_session_data->last_update = time(nullptr);
 			size_t size = ret;
 
 			if( recv_parse(g_PBuff,&size,&from,map_session_data) != -1 )
@@ -454,7 +454,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
     }
     catch (...)
     {
-        ShowError(CL_RED"Possible crash attempt from: %s\n" CL_RESET, ip2str(map_session_data->client_addr, NULL));
+        ShowError(CL_RED"Possible crash attempt from: %s\n" CL_RESET, ip2str(map_session_data->client_addr, nullptr));
         return -1;
     }
 #else
@@ -463,7 +463,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
 	if(checksumResult == 0)
 	{
-		if (map_session_data->PChar == NULL)
+		if (map_session_data->PChar == nullptr)
 		{
 			uint32 CharID = RBUFL(buff,FFXI_HEADER_SIZE+0x0C);
 
@@ -491,8 +491,8 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 			}
 			else
 			{
-				int8* strSessionKey = NULL;
-				Sql_GetData(SqlHandle,0,&strSessionKey,NULL);
+				int8* strSessionKey = nullptr;
+				Sql_GetData(SqlHandle,0,&strSessionKey,nullptr);
 
 				memcpy(map_session_data->blowfish.key,strSessionKey,20);
 			}
@@ -522,7 +522,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 		// reading data size
 		uint32 PacketDataSize = RBUFL(buff,*buffsize-sizeof(int32)-16);
 		// creating buffer for decompress data
-		int8* PacketDataBuff = NULL;
+		int8* PacketDataBuff = nullptr;
 		CREATE(PacketDataBuff,int8,map_config.buffer_size);
 		// it's decompressing data and getting new size
 		PacketDataSize = zlib_decompress(buff+FFXI_HEADER_SIZE,
@@ -582,7 +582,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 			{
 				ShowInfo("parse: %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, RBUFW(SmallPD_ptr,2), RBUFW(buff,2), SmallPD_Size, PChar->GetName());
 			}
-			if (PChar->loc.zone == NULL && SmallPD_Type != 0x0A)
+			if (PChar->loc.zone == nullptr && SmallPD_Type != 0x0A)
             {
 				ShowWarning("This packet is unexpected from %s - Received %03hX earlier without matching 0x0A\n", PChar->GetName(), SmallPD_Type);
 			}
@@ -605,7 +605,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 	if (RBUFW(buff,2) != map_session_data->server_packet_id)
 	{
 		WBUFW(map_session_data->server_packet_data,2) = SmallPD_Code;
-		WBUFW(map_session_data->server_packet_data,8) = (uint32)time(NULL);
+		WBUFW(map_session_data->server_packet_data,8) = (uint32)time(nullptr);
 
 		g_PBuff	 = map_session_data->server_packet_data;
 	   *buffsize = map_session_data->server_packet_size;
@@ -656,7 +656,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 	WBUFW(buff,2) = map_session_data->client_packet_id;
 
 	// сохранение текущего времени (32 BIT!)
-	WBUFL(buff,8) = (uint32)time(NULL);
+	WBUFL(buff,8) = (uint32)time(nullptr);
 
 	//Сжимаем данные без учета заголовка
 	//Возвращаемый размер в 8 раз больше реальных данных
@@ -714,9 +714,9 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
 int32 map_close_session(uint32 tick, map_session_data_t* map_session_data)
 {
-    if (map_session_data != NULL &&
-        map_session_data->server_packet_data != NULL &&	
-        map_session_data->PChar != NULL)
+    if (map_session_data != nullptr &&
+        map_session_data->server_packet_data != nullptr &&	
+        map_session_data->PChar != nullptr)
     {
         charutils::SavePlayTime(map_session_data->PChar);
 
@@ -735,7 +735,7 @@ int32 map_close_session(uint32 tick, map_session_data_t* map_session_data)
         aFree(map_session_data->server_packet_data);
         delete map_session_data->PChar;
         delete map_session_data;
-        map_session_data = NULL;
+        map_session_data = nullptr;
 
         map_session_list.erase(ipp);
         return 0;
@@ -761,9 +761,9 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 
         CCharEntity* PChar = map_session_data->PChar;
 
-        if ((time(NULL) - map_session_data->last_update) > 5)
+        if ((time(nullptr) - map_session_data->last_update) > 5)
         {
-            if (PChar != NULL && !(PChar->nameflags.flags & FLAG_DC))
+            if (PChar != nullptr && !(PChar->nameflags.flags & FLAG_DC))
             {
 
                 PChar->nameflags.flags |= FLAG_DC;
@@ -773,16 +773,16 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                     PChar->loc.zone->SpawnPCs(PChar);
                 }
             }
-		    if ((time(NULL) - map_session_data->last_update) > map_config.max_time_lastupdate)
+		    if ((time(nullptr) - map_session_data->last_update) > map_config.max_time_lastupdate)
 		    {
-			    if (PChar != NULL)
+			    if (PChar != nullptr)
 			    {
                     if (map_session_data->shuttingDown == 0)
                     {
                         //[Alliance] fix to stop server crashing:
                         //if a party within an alliance only has 1 char (that char will be party leader)
                         //if char then disconnects we need to tell the server about the alliance change
-                        if (PChar->PParty != NULL && PChar->PParty->m_PAlliance != NULL && PChar->PParty->GetLeader() == PChar){
+                        if (PChar->PParty != nullptr && PChar->PParty->m_PAlliance != nullptr && PChar->PParty->GetLeader() == PChar){
                             if (PChar->PParty->members.size() == 1){
                                 if (PChar->PParty->m_PAlliance->partyList.size() == 1){
                                     PChar->PParty->m_PAlliance->dissolveAlliance();
@@ -796,7 +796,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 
 
                         // uncharm pet if player d/c
-                        if (PChar->PPet != NULL && PChar->PPet->objtype == TYPE_MOB)
+                        if (PChar->PPet != nullptr && PChar->PPet->objtype == TYPE_MOB)
                             petutils::DespawnPet(PChar);
 
 
@@ -813,7 +813,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                         aFree(map_session_data->server_packet_data);
                         delete map_session_data->PChar;
                         delete map_session_data;
-                        map_session_data = NULL;
+                        map_session_data = nullptr;
 
                         map_session_list.erase(it++);
                         continue;
@@ -832,7 +832,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 			    }
 		    }
         }
-        else if (PChar != NULL && (PChar->nameflags.flags & FLAG_DC))
+        else if (PChar != nullptr && (PChar->nameflags.flags & FLAG_DC))
         {
             PChar->nameflags.flags &= ~FLAG_DC;
             PChar->updatemask |= UPDATE_HP;
@@ -961,7 +961,7 @@ int32 map_config_read(const int8* cfgName)
 	FILE* fp;
 
 	fp = fopen(cfgName,"r");
-	if( fp == NULL )
+	if( fp == nullptr )
 	{
 		ShowError("Map configuration file not found at: %s\n", cfgName);
 		return 1;
@@ -1237,7 +1237,7 @@ int32 map_config_read(const int8* cfgName)
 
     // Load the English server message..
     fp = fopen("./conf/server_message.conf", "rb");
-    if (fp == NULL)
+    if (fp == nullptr)
     {
         ShowError("Could not read English server message from: ./conf/server_message.conf\n");
         return 1;
@@ -1253,7 +1253,7 @@ int32 map_config_read(const int8* cfgName)
 
     // Load the French server message..
     fp = fopen("./conf/server_message_fr.conf", "rb");
-    if (fp == NULL)
+    if (fp == nullptr)
     {
         ShowError("Could not read English server message from: ./conf/server_message_fr.conf\n");
         return 1;
@@ -1267,7 +1267,7 @@ int32 map_config_read(const int8* cfgName)
 
     fclose(fp);
 
-    // Ensure both messages have null terminates..
+    // Ensure both messages have nullptr terminates..
     if (map_config.server_message.at(map_config.server_message.length() - 1) != 0x00)
         map_config.server_message += (char)0x00;
     if (map_config.server_message_fr.at(map_config.server_message_fr.length() - 1) != 0x00)

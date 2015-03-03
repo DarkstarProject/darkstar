@@ -138,11 +138,11 @@ uint8 CItemContainer::AddSize(int8 size)
 
 uint8 CItemContainer::InsertItem(CItem* PItem)
 {
-	DSP_DEBUG_BREAK_IF(PItem == NULL);
+	DSP_DEBUG_BREAK_IF(PItem == nullptr);
 
 	for (uint8 SlotID = 1; SlotID <= m_size; ++SlotID) 
 	{
-		if (m_ItemList[SlotID] == NULL) 
+		if (m_ItemList[SlotID] == nullptr) 
 		{
             m_count++;
 
@@ -161,7 +161,7 @@ uint8 CItemContainer::InsertItem(CItem* PItem)
 
 /************************************************************************
 *																		*
-*  Добавляем предмет в указанную ячейку. NULL удаляет предмет			*
+*  Добавляем предмет в указанную ячейку. nullptr удаляет предмет			*
 *																		*
 ************************************************************************/
 
@@ -169,14 +169,14 @@ uint8 CItemContainer::InsertItem(CItem* PItem, uint8 SlotID)
 {
 	if (SlotID <= m_size)
 	{
-		if (PItem != NULL)
+		if (PItem != nullptr)
 		{
 			PItem->setSlotID(SlotID);
 			PItem->setLocationID(m_id);
 
-            if (m_ItemList[SlotID] == NULL && SlotID != 0) m_count++;
+            if (m_ItemList[SlotID] == nullptr && SlotID != 0) m_count++;
 		}
-        else if(m_ItemList[SlotID] != NULL && SlotID != 0) m_count--;
+        else if(m_ItemList[SlotID] != nullptr && SlotID != 0) m_count--;
         
 		m_ItemList[SlotID] = PItem;
 		return SlotID;
@@ -199,7 +199,7 @@ CItem* CItemContainer::GetItem(uint8 SlotID)
 	{
 		return m_ItemList[SlotID];
 	}
-	return NULL;
+	return nullptr;
 }
 
 /************************************************************************
@@ -212,7 +212,7 @@ uint8 CItemContainer::SearchItem(uint16 ItemID)
 {
 	for (uint8 SlotID = 0; SlotID <= m_size; ++SlotID) 
 	{
-		if ((m_ItemList[SlotID] != NULL) && 
+		if ((m_ItemList[SlotID] != nullptr) && 
 			(m_ItemList[SlotID]->getID() == ItemID)) 
 		{
 			return SlotID;
@@ -231,7 +231,7 @@ uint8 CItemContainer::SearchItemWithSpace(uint16 ItemID, uint32 quantity)
 {
 	for (uint8 SlotID = 0; SlotID <= m_size; ++SlotID) 
 	{
-		if ((m_ItemList[SlotID] != NULL) && 
+		if ((m_ItemList[SlotID] != nullptr) && 
 			(m_ItemList[SlotID]->getID() == ItemID) &&
             (m_ItemList[SlotID]->getQuantity() <= m_ItemList[SlotID]->getStackSize()-quantity)) 
 		{
@@ -252,6 +252,6 @@ void CItemContainer::Clear()
 	for (uint8 SlotID = 0; SlotID <= m_size; ++SlotID)
 	{
 		delete m_ItemList[SlotID];
-		m_ItemList[SlotID] = NULL;
+		m_ItemList[SlotID] = nullptr;
 	}
 }

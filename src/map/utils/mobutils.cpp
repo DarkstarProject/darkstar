@@ -260,7 +260,7 @@ void CalculateStats(CMobEntity * PMob)
         }
 
         // pets have lower health
-        if(PMob->PMaster != NULL)
+        if(PMob->PMaster != nullptr)
         {
             growth = 0.95;
         }
@@ -565,7 +565,7 @@ void CalculateStats(CMobEntity * PMob)
     }
 
     // special case, give spell list to my pet
-    if(PMob->getMobMod(MOBMOD_PET_SPELL_LIST) && PMob->PPet != NULL)
+    if(PMob->getMobMod(MOBMOD_PET_SPELL_LIST) && PMob->PPet != nullptr)
     {
         // Stubborn_Dredvodd
         CMobEntity* PPet = (CMobEntity*)PMob->PPet;
@@ -698,7 +698,7 @@ void RecalculateSpellContainer(CMobEntity* PMob)
  */
 void GetAvailableSpells(CMobEntity* PMob) {
 	//make sure the mob actually has a spell list
-	if (PMob->m_SpellListContainer == NULL)
+	if (PMob->m_SpellListContainer == nullptr)
 	{
 		return;
 	}
@@ -768,7 +768,7 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	RecalculateSpellContainer(PMob);
 
 	// make sure mob has mp to cast spells
-	if(PMob->health.maxmp == 0 && PMob->SpellContainer != NULL && PMob->SpellContainer->HasMPSpells())
+	if(PMob->health.maxmp == 0 && PMob->SpellContainer != nullptr && PMob->SpellContainer->HasMPSpells())
 	{
 		ShowError("mobutils::CalculateStats Mob (%u) has no mp for casting spells!\n", PMob->id);
 	}
@@ -957,7 +957,7 @@ ModsList_t* GetMobFamilyMods(uint16 familyId, bool create)
 		return mods;
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 ModsList_t* GetMobPoolMods(uint32 poolId, bool create)
@@ -978,7 +978,7 @@ ModsList_t* GetMobPoolMods(uint32 poolId, bool create)
 		return mods;
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 ModsList_t* GetMobSpawnMods(uint32 mobId, bool create)
@@ -999,7 +999,7 @@ ModsList_t* GetMobSpawnMods(uint32 mobId, bool create)
 		return mods;
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 void AddCustomMods(CMobEntity* PMob)
@@ -1008,7 +1008,7 @@ void AddCustomMods(CMobEntity* PMob)
 	// find my families custom mods
 	ModsList_t* PFamilyMods = GetMobFamilyMods(PMob->m_Family);
 
-	if(PFamilyMods != NULL)
+	if(PFamilyMods != nullptr)
 	{
 		// add them
 		for(std::vector<CModifier*>::iterator it = PFamilyMods->mods.begin(); it != PFamilyMods->mods.end() ; ++it)
@@ -1025,7 +1025,7 @@ void AddCustomMods(CMobEntity* PMob)
 	// find my pools custom mods
 	ModsList_t* PPoolMods = GetMobPoolMods(PMob->m_Pool);
 
-	if(PPoolMods != NULL)
+	if(PPoolMods != nullptr)
 	{
 		// add them
 		for(std::vector<CModifier*>::iterator it = PPoolMods->mods.begin(); it != PPoolMods->mods.end() ; ++it)
@@ -1042,7 +1042,7 @@ void AddCustomMods(CMobEntity* PMob)
 	// find my pools custom mods
 	ModsList_t* PSpawnMods = GetMobSpawnMods(PMob->id);
 
-	if(PSpawnMods != NULL)
+	if(PSpawnMods != nullptr)
 	{
 		// add them
 		for(std::vector<CModifier*>::iterator it = PSpawnMods->mods.begin(); it != PSpawnMods->mods.end() ; ++it)
@@ -1095,7 +1095,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 
 	int32 ret = Sql_Query(SqlHandle, Query, groupid);
 
-	CMobEntity* PMob = NULL;
+	CMobEntity* PMob = nullptr;
 
 	if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{

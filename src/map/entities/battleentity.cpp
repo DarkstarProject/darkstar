@@ -54,9 +54,9 @@ CBattleEntity::CBattleEntity()
 
 	memset(& WorkingSkills, 0, sizeof(WorkingSkills));
 
-	PPet      = NULL;
-    PParty    = NULL;
-	PMaster   = NULL;
+	PPet      = nullptr;
+    PParty    = nullptr;
+	PMaster   = nullptr;
 
 	StatusEffectContainer = new CStatusEffectContainer(this);
 
@@ -83,7 +83,7 @@ bool CBattleEntity::isDead()
 
 bool CBattleEntity::isInDynamis()
 {
-	if(loc.zone != NULL){
+	if(loc.zone != nullptr){
 		return loc.zone->GetType() == ZONETYPE_DYNAMIS;
 	}
 	return false;
@@ -250,11 +250,11 @@ int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
 	// base delay
 	int delay = 240;
 
-	if(PRange != NULL && PRange->getDamage() != 0) {
+	if(PRange != nullptr && PRange->getDamage() != 0) {
 		delay += ((PRange->getDelay()*60)/1000);
 	}
 
-	if(PAmmo != NULL && PAmmo->isThrowing())
+	if(PAmmo != nullptr && PAmmo->isThrowing())
 	{
 		// this is a throwing weapon
 		delay += ((PAmmo->getDelay()*60)/1000);
@@ -268,7 +268,7 @@ int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
 		delay = delay * ((float)(100 + getMod(MOD_RANGED_DELAYP))/100);
 	} else {
 
-		if(PAmmo != NULL && PAmmo->getDamage() != 0 && !PAmmo->isThrowing()) {
+		if(PAmmo != nullptr && PAmmo->getDamage() != 0 && !PAmmo->isThrowing()) {
 			 delay += ((PAmmo->getDelay()*60)/1000);
 		}
 	}
@@ -280,7 +280,7 @@ int16 CBattleEntity::GetAmmoDelay(bool tp)
 	CItemWeapon* PAmmo = (CItemWeapon*)m_Weapons[SLOT_AMMO];
 
 	int delay = 240;
-	if(PAmmo != NULL && PAmmo->getDamage() != 0) {
+	if(PAmmo != nullptr && PAmmo->getDamage() != 0) {
 		delay += ((PAmmo->getDelay()*60)/1000);
 	}
 

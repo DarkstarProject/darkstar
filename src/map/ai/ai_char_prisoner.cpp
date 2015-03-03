@@ -35,7 +35,7 @@
 
 CAICharPrisoner::CAICharPrisoner(CCharEntity* PChar)
 {
-    DSP_DEBUG_BREAK_IF(PChar == NULL);
+    DSP_DEBUG_BREAK_IF(PChar == nullptr);
     DSP_DEBUG_BREAK_IF(PChar->objtype != TYPE_PC);
 
     m_PChar = PChar;

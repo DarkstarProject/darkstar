@@ -244,7 +244,7 @@ void FreePetList()
 }
 
 void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget){
-	DSP_DEBUG_BREAK_IF(PMaster->PPet==NULL);
+	DSP_DEBUG_BREAK_IF(PMaster->PPet==nullptr);
 
 	CBattleEntity* PPet = PMaster->PPet;
 
@@ -257,7 +257,7 @@ void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget){
 }
 
 void RetreatToMaster(CBattleEntity* PMaster){
-	DSP_DEBUG_BREAK_IF(PMaster->PPet==NULL);
+	DSP_DEBUG_BREAK_IF(PMaster->PPet==nullptr);
 
 	CBattleEntity* PPet = PMaster->PPet;
 
@@ -720,7 +720,7 @@ void LoadAvatarStats(CPetEntity* PChar)
 
 void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 {
-    DSP_DEBUG_BREAK_IF(PMaster->PPet != NULL);
+    DSP_DEBUG_BREAK_IF(PMaster->PPet != nullptr);
     LoadPet(PMaster, PetID, spawningFromZone);
 
     CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
@@ -818,7 +818,7 @@ void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)
 
 void DetachPet(CBattleEntity* PMaster)
 {
-	DSP_DEBUG_BREAK_IF(PMaster->PPet == NULL);
+	DSP_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
     DSP_DEBUG_BREAK_IF(PMaster->objtype != TYPE_PC);
 
     CBattleEntity* PPet = PMaster->PPet;
@@ -831,7 +831,7 @@ void DetachPet(CBattleEntity* PMaster)
 
         if(!PMob->isDead()){
             // mobs charm wears off whist fighting another mob. Both mobs now attack player since mobs are no longer enemies
-            if(PMob->PBattleAI != NULL && PMob->PBattleAI->GetBattleTarget() != NULL && PMob->PBattleAI->GetBattleTarget()->objtype == TYPE_MOB){
+            if(PMob->PBattleAI != nullptr && PMob->PBattleAI->GetBattleTarget() != nullptr && PMob->PBattleAI->GetBattleTarget()->objtype == TYPE_MOB){
                 ((CMobEntity*)PMob->PBattleAI->GetBattleTarget())->PEnmityContainer->Clear();
                 ((CMobEntity*)PMob->PBattleAI->GetBattleTarget())->PEnmityContainer->UpdateEnmity(PChar, 0, 0);
             }
@@ -869,7 +869,7 @@ void DetachPet(CBattleEntity* PMaster)
         PMob->isCharmed = false;
 		PMob->allegiance = ALLEGIANCE_MOB;
         PMob->charmTime = 0;
-        PMob->PMaster = NULL;
+        PMob->PMaster = nullptr;
 
         delete PMob->PBattleAI;
         PMob->PBattleAI = new CAIMobDummy(PMob);
@@ -891,13 +891,13 @@ void DetachPet(CBattleEntity* PMaster)
         });
 
         if (PPetEnt->getPetType() != PETTYPE_AUTOMATON){
-            PPetEnt->PMaster = NULL;
+            PPetEnt->PMaster = nullptr;
         }
 
         charutils::BuildingCharPetAbilityTable(PChar, PPetEnt, 0);// blank the pet commands
     }
 
-    PChar->PPet = NULL;
+    PChar->PPet = nullptr;
     PChar->pushPacket(new CCharUpdatePacket(PChar));
 }
 
@@ -909,7 +909,7 @@ void DetachPet(CBattleEntity* PMaster)
 
 void DespawnPet(CBattleEntity* PMaster)
 {
-	DSP_DEBUG_BREAK_IF(PMaster->PPet == NULL);
+	DSP_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
 
 	CBattleEntity* PPet = PMaster->PPet;
 
@@ -938,7 +938,7 @@ void MakePetStay(CBattleEntity* PMaster)
 
 	CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
 
-	if(PPet != NULL && !PPet->StatusEffectContainer->HasPreventActionEffect())
+	if(PPet != nullptr && !PPet->StatusEffectContainer->HasPreventActionEffect())
 	{
 		PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
 	}
@@ -1207,7 +1207,7 @@ void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     {
         petType = PETTYPE_AUTOMATON;
     }
-    CPetEntity* PPet = NULL;
+    CPetEntity* PPet = nullptr;
 	if (petType == PETTYPE_AUTOMATON && PMaster->objtype == TYPE_PC)
         PPet = ((CCharEntity*)PMaster)->PAutomaton;
     else

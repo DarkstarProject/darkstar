@@ -42,8 +42,8 @@ This file is part of DarkStar-server source code.
 namespace message
 {
 	zmq::context_t zContext;
-	zmq::socket_t* zSocket = NULL;
-	Sql_t* ChatSqlHandle = NULL;
+	zmq::socket_t* zSocket = nullptr;
+	Sql_t* ChatSqlHandle = nullptr;
     std::mutex send_mutex;
     std::queue<chat_message_t> message_queue;
 
@@ -116,7 +116,7 @@ namespace message
 				{
 					if (PChar->PParty)
 					{
-						if (PChar->PParty->m_PAlliance != NULL)
+						if (PChar->PParty->m_PAlliance != nullptr)
 						{
 							for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
 							{
@@ -254,7 +254,7 @@ namespace message
 						}
 						else
 						{
-							if (PInviter->PParty == NULL)
+							if (PInviter->PParty == nullptr)
 							{
 								CParty* PParty = new CParty(PInviter, ChatSqlHandle);
 							}
@@ -455,7 +455,7 @@ namespace message
         {
             zSocket->close();
             delete zSocket;
-            zSocket = NULL;
+            zSocket = nullptr;
         }
         zContext.close();
     }

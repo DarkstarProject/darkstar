@@ -28,7 +28,7 @@
 #include "vana_time.h"
 #include "utils/zoneutils.h"
 
-CVanaTime* CVanaTime::_instance = NULL;
+CVanaTime* CVanaTime::_instance = nullptr;
 
 CVanaTime::CVanaTime()
 {
@@ -42,7 +42,7 @@ CVanaTime::CVanaTime()
 
 CVanaTime* CVanaTime::getInstance()
 {
-	if(_instance == NULL) {
+	if(_instance == nullptr) {
 		_instance = new CVanaTime();
 	}
 	return _instance;
@@ -127,7 +127,7 @@ uint32 CVanaTime::getVanaTime()
 {
     //if custom offset is re-implemented here is the place to put it
     //all functions/variables for in game time should be derived from this
-    return (uint32)time(NULL) - VTIME_BASEDATE;
+    return (uint32)time(nullptr) - VTIME_BASEDATE;
 }
 
 int32 CVanaTime::getCustomOffset()

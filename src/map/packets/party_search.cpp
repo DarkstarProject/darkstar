@@ -33,7 +33,7 @@ CPartySearchPacket::CPartySearchPacket(CCharEntity* PChar)
 	this->type = 0xE1;
 	this->size = 0x04; 
 	
-	if (PChar->PParty != NULL)
+	if (PChar->PParty != nullptr)
 	{
 		WBUFL(data,(0x04)-4) = PChar->PParty->GetPartyID(); 
 	}
