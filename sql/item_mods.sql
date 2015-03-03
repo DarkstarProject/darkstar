@@ -21041,19 +21041,6 @@ INSERT INTO `item_mods` VALUES (28587, 150, 1); -- Alchemy Success Rate 1%
 INSERT INTO `item_mods` VALUES (28587, 151, 1); -- Cooking Success Rate 1%
 
 -- -------------------------------------------------------
--- Lightreaver
--- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES (20858, 8, 7); -- STR+7
-INSERT INTO `item_mods` VALUES (20858, 10, 7); -- VIT+7 
-INSERT INTO `item_mods` VALUES (20858, 25, 20); -- Accuracy+20
-INSERT INTO `item_mods` VALUES (20858, 73, 5); -- "Store TP"+5
-INSERT INTO `item_mods` VALUES (20858, 431, 1); -- Additional Effect: DEATH
--- Not implemented: INSERT INTO `item_mods` VALUES (20858, ?, ?); -- SoA "Great Axe skill +242"
--- Not implemented: INSERT INTO `item_mods` VALUES (20858, ?, ?); -- SoA "Parrying skill +242"
--- Not implemented: INSERT INTO `item_mods` VALUES (20858, ?, ?); -- SoA "Magic Accuracy skill +188"
--- Not implemented: INSERT INTO `item_mods` VALUES (20858, ?, ?); -- item level 119
-
--- -------------------------------------------------------
 --  Vespid Mantle
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (28641, 1, 20); -- DEF:20
