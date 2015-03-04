@@ -170,7 +170,7 @@ function onTrade(player,npc,trade)
       player:startEvent(87);
 
    -- Has turned in a relic and items, has not turned in currency (no wait), so they must be bringing currency, but not 10,000 piece
-   elseif (currentRelic ~= 0 and relicWait == 0 and gil == 0 and itemid!=1451 and itemid!=1454 and itemid!=1457) then
+   elseif (currentRelic ~= 0 and relicWait == 0 and gil == 0 and itemid~=1451 and itemid~=1454 and itemid~=1457) then
       eventParams = getRelicParameters(currentRelic);
 
       -- Has currencyamount of currencytype, and nothing additional.  See below for Aegis, since it's different.
