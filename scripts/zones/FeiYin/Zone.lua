@@ -18,16 +18,14 @@ require("scripts/zones/FeiYin/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
     local tomes = {17613247,17613248};
-    
+
     SetGroundsTome(tomes);
 
     -- Capricious Cassie
     SetRespawnTime(17613130, 900, 10800);
-    
+
     UpdateTreasureSpawnPoint(17613222);
-    
 end;
 
 -----------------------------------
@@ -48,8 +46,8 @@ function onZoneIn(player,prevZone)
         cs = 0x0010; -- MNK AF
     elseif(player:getVar("peaceForTheSpiritCS") == 1 and player:hasItem(1093) == false) then -- Antique Coin
         SpawnMob(17612849); -- RDM AF
-elseif(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("SANDO92") == 2)then
-cs = 0x0017;
+    elseif(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("SANDO92") == 2)then
+        cs = 0x0017;
     elseif(prevZone == 111 and player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 10) then
         cs = 0x0001; -- MISSION 5-1
     elseif(player:getCurrentMission(ACP) == THOSE_WHO_LURK_IN_SHADOWS_I) then
@@ -57,16 +55,15 @@ cs = 0x0017;
     end
 
     return cs;
-
 end;
 
------------------------------------		
--- onConquestUpdate		
------------------------------------		
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
@@ -95,7 +92,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if(csid == 0x0010) then	
+    if(csid == 0x0010) then
         player:addKeyItem(LETTER_FROM_DALZAKK);
         player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_DALZAKK);
     elseif(csid == 0x0001) then
