@@ -662,7 +662,7 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
 
 	// Validate that the job is a starting job.
 	uint8 mjob = RBUFB(buf, 50);
-	createchar.m_mjob = max(min(mjob, 6), 1);
+	createchar.m_mjob = dsp_cap(mjob, 1, 6);
 
 	// Log that the character attempting to create a non-starting job.
 	if (mjob != createchar.m_mjob) {
