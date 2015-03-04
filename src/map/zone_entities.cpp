@@ -139,7 +139,7 @@ void CZoneEntities::InsertPET(CBaseEntity* PPet)
 		}
 		return;
 	}
-	ShowError(CL_RED"CZone::InsertPET : entity is nullptr\n" CL_RESET);
+	ShowError(CL_RED"CZone::InsertPET : entity is null\n" CL_RESET);
 }
 
 void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)

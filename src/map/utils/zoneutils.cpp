@@ -525,11 +525,11 @@ void LoadMOBList()
 
             if(PMaster == nullptr)
             {
-                ShowError("zoneutils::loadMOBList PMaster is nullptr. masterid: %d. Make sure x,y,z are not zeros, and that all entities are entered in the database!\n", masterid);
+                ShowError("zoneutils::loadMOBList PMaster is NULL. masterid: %d. Make sure x,y,z are not zeros, and that all entities are entered in the database!\n", masterid);
             }
             else if(PPet == nullptr)
             {
-                ShowError("zoneutils::loadMOBList PPet is nullptr. petid: %d. Make sure x,y,z are not zeros!\n", petid);
+                ShowError("zoneutils::loadMOBList PPet is NULL. petid: %d. Make sure x,y,z are not zeros!\n", petid);
             }
             else if(masterid == petid)
             {

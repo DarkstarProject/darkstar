@@ -5673,7 +5673,7 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
                 }
                 else
                 {
-                    ShowError(CL_RED"CLuaBaseEntity::spawnPet : PetID is nullptr\n" CL_RESET);
+                    ShowError(CL_RED"CLuaBaseEntity::spawnPet : PetID is NULL\n" CL_RESET);
                     return 0;
                 }
             }
@@ -5681,7 +5681,7 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
         }
         else
         {
-            ShowError(CL_RED"CLuaBaseEntity::spawnPet : PetID is nullptr\n" CL_RESET);
+            ShowError(CL_RED"CLuaBaseEntity::spawnPet : PetID is NULL\n" CL_RESET);
         }
     }
     else if( m_PBaseEntity->objtype == TYPE_MOB)
@@ -6313,7 +6313,7 @@ inline int32 CLuaBaseEntity::getWeaponSubSkillType(lua_State *L)
 
         if(weapon == nullptr)
         {
-            ShowDebug(CL_CYAN"lua::getWeaponSubskillType weapon in specified slot is nullptr!\n" CL_RESET);
+            ShowDebug(CL_CYAN"lua::getWeaponSubskillType weapon in specified slot is NULL!\n" CL_RESET);
             return 0;
         }
 
@@ -6384,7 +6384,7 @@ inline int32 CLuaBaseEntity::getAmmoDmg(lua_State *L)
 
     if(weapon == nullptr)
     {
-        ShowDebug(CL_CYAN"lua::getAmmoDmg weapon in ammo slot is nullptr!\n" CL_RESET);
+        ShowDebug(CL_CYAN"lua::getAmmoDmg weapon in ammo slot is NULL!\n" CL_RESET);
         return 0;
     }
     lua_pushinteger( L, weapon->getDamage());
@@ -6402,7 +6402,7 @@ inline int32 CLuaBaseEntity::getRATT(lua_State *L)
 
     if(weapon == nullptr)
     {
-        ShowDebug(CL_CYAN"lua::getRATT weapon in ranged slot is nullptr!\n" CL_RESET);
+        ShowDebug(CL_CYAN"lua::getRATT weapon in ranged slot is NULL!\n" CL_RESET);
         return 0;
     }
 
@@ -6421,7 +6421,7 @@ inline int32 CLuaBaseEntity::getRACC(lua_State *L)
 
     if(weapon == nullptr)
     {
-        ShowDebug(CL_CYAN"lua::getRACC weapon in ranged slot is nullptr!\n" CL_RESET);
+        ShowDebug(CL_CYAN"lua::getRACC weapon in ranged slot is NULL!\n" CL_RESET);
         return 0;
     }
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
@@ -6485,7 +6485,7 @@ inline int32 CLuaBaseEntity::isWeaponTwoHanded(lua_State *L)
 
     if(weapon == nullptr)
     {
-        ShowDebug(CL_CYAN"lua::getWeaponDmg weapon in main slot is nullptr!\n" CL_RESET);
+        ShowDebug(CL_CYAN"lua::getWeaponDmg weapon in main slot is NULL!\n" CL_RESET);
         return 0;
     }
     lua_pushboolean( L, weapon->isTwoHanded() );

@@ -2233,7 +2233,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     gil->isType(ITEM_CURRENCY) &&
                     gil->getQuantity() >= price)
                 {
-                    const int8* fmtQuery = "UPDATE auction_house SET buyer_name = '%s', sale = %u, sell_date = %u WHERE itemid = %u AND buyer_name IS nullptr AND stack = %u AND price <= %u ORDER BY price LIMIT 1";
+                    const int8* fmtQuery = "UPDATE auction_house SET buyer_name = '%s', sale = %u, sell_date = %u WHERE itemid = %u AND buyer_name IS NULL AND stack = %u AND price <= %u ORDER BY price LIMIT 1";
 
                     if (Sql_Query(SqlHandle,
                         fmtQuery,

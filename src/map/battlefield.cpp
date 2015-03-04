@@ -392,7 +392,7 @@ void CBattlefield::cleanup(){
 	locked = false;
 	//delete battlefield
 	if(m_Handler==nullptr){
-		ShowError("Battlefield handler is nullptr from Battlefield BCNM %i Inst %i \n",m_BcnmID,m_BattlefieldNumber);
+		ShowError("Battlefield handler is null from Battlefield BCNM %i Inst %i \n",m_BcnmID,m_BattlefieldNumber);
 	}
 
 	m_Handler->wipeBattlefield(this);
@@ -520,7 +520,7 @@ void CBattlefield::cleanupDynamis(){
 
 	//delete battlefield
 	if(m_Handler==nullptr){
-		ShowError("Battlefield handler is nullptr from Dynamis Battlefield %i \n",m_BcnmID);
+		ShowError("Battlefield handler is null from Dynamis Battlefield %i \n",m_BcnmID);
 	}
 	m_Handler->wipeBattlefield(this);
 	delete this;

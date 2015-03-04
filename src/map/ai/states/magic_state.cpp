@@ -265,7 +265,7 @@ int16 CMagicState::CalculateMPCost(CSpell* PSpell)
 {
     if(PSpell == nullptr)
     {
-        ShowWarning("CMagicState::CalculateMPCost Spell is nullptr\n");
+        ShowWarning("CMagicState::CalculateMPCost Spell is NULL\n");
         return 0;
     }
 

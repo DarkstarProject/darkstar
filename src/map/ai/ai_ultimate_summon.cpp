@@ -146,7 +146,7 @@ void CAIUltimateSummon::preparePetAbility(CBattleEntity* PTarg){
 		m_ActionType = ACTION_MOBABILITY_USING;
 	}
 	else{
-		ShowWarning("ai_pet_dummy::ActionAbilityFinish Pet skill is nullptr \n");
+		ShowWarning("ai_pet_dummy::ActionAbilityFinish Pet skill is NULL \n");
 		TransitionBack(true);
 	}
 }
