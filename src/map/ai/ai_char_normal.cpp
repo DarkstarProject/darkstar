@@ -3025,22 +3025,22 @@ void CAICharNormal::TransitionBack(bool skipWait)
 void CAICharNormal::DoAttack()
 {
     // Create a new attack round.
-    CAttackRound* attackRound = new CAttackRound(m_PChar);
+    CAttackRound attackRound(m_PChar);
 
     /////////////////////////////////////////////////////////////////////////
     //	Start of the attack loop.
     /////////////////////////////////////////////////////////////////////////
-    while (attackRound->GetAttackSwingCount() && !(m_PBattleTarget->isDead()))
+    while (attackRound.GetAttackSwingCount() && !(m_PBattleTarget->isDead()))
     {
         apAction_t Action;
         Action.ActionTarget = m_PBattleTarget;
         Action.knockback = 0;
 
         // Reference to the current swing.
-        CAttack* attack = (CAttack*)attackRound->GetCurrentAttack();
+        CAttack attack = attackRound.GetCurrentAttack();
 
         // Set the swing animation.
-        Action.animation = attack->GetAnimationID();
+        Action.animation = attack.GetAnimationID();
 
         // сначала вычисляем вероятность попадания по монстру
         // затем нужно вычислить вероятность нанесения критического удара
@@ -3050,24 +3050,24 @@ void CAICharNormal::DoAttack()
             Action.reaction = REACTION_EVADE;
             Action.speceffect = SPECEFFECT_NONE;
         }
-        else if ((WELL512::irand() % 100 < attack->GetHitRate() || attackRound->GetSATAOccured()) &&
+        else if ((WELL512::irand() % 100 < attack.GetHitRate() || attackRound.GetSATAOccured()) &&
             !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
         {
             // attack hit, try to be absorbed by shadow unless it is a SATA attack round
-            if (!(attackRound->GetSATAOccured()) && battleutils::IsAbsorbByShadow(m_PBattleTarget))
+            if (!(attackRound.GetSATAOccured()) && battleutils::IsAbsorbByShadow(m_PBattleTarget))
             {
                 Action.messageID = 0;
                 Action.reaction = REACTION_EVADE;
-                attack->SetEvaded(true);
+                attack.SetEvaded(true);
                 m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 1, 31));
             }
             else
             {
                 // Set this attack's critical flag.
-                attack->SetCritical(WELL512::irand() % 100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, !attack->IsFirstSwing()));
+                attack.SetCritical(WELL512::irand() % 100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, !attack.IsFirstSwing()));
 
                 // Critical hit.
-                if (attack->IsCritical())
+                if (attack.IsCritical())
                 {
                     Action.reaction = REACTION_HIT;
                     Action.speceffect = SPECEFFECT_CRITICAL_HIT;
@@ -3087,21 +3087,21 @@ void CAICharNormal::DoAttack()
                 }
 
                 // Guarded. TODO: Stuff guards that shouldn't.
-                if (attack->IsGuarded())
+                if (attack.IsGuarded())
                 {
                     Action.reaction = REACTION_GUARD;
                 }
 
                 // Process damage.
-                attack->ProcessDamage();
+                attack.ProcessDamage();
 
                 // Try shield block
-                if (attack->IsBlocked())
+                if (attack.IsBlocked())
                 {
                     Action.reaction = REACTION_BLOCK;
                 }
 
-                Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, attack->GetDamage(), attack->IsBlocked(), attack->GetWeaponSlot(), 1, attackRound->GetTAEntity(), true, true);
+                Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, attack.GetDamage(), attack.IsBlocked(), attack.GetWeaponSlot(), 1, attackRound.GetTAEntity(), true, true);
                 if (Action.param < 0)
                 {
                     Action.param = -(Action.param);
@@ -3115,7 +3115,7 @@ void CAICharNormal::DoAttack()
             Action.reaction = REACTION_EVADE;
             Action.speceffect = SPECEFFECT_NONE;
             Action.messageID = 15;
-            attack->SetEvaded(true);
+            attack.SetEvaded(true);
 
             // Check & Handle Afflatus Misery Accuracy Bonus
             battleutils::HandleAfflatusMiseryAccuracyBonus(m_PChar);
@@ -3129,8 +3129,8 @@ void CAICharNormal::DoAttack()
 
         if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
         {
-            battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, attack->IsFirstSwing(), (CItemWeapon*)m_PChar->m_Weapons[attack->GetWeaponSlot()], attack->GetDamage());
-            battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, attack->GetDamage());
+            battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, attack.IsFirstSwing(), (CItemWeapon*)m_PChar->m_Weapons[attack.GetWeaponSlot()], attack.GetDamage());
+            battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, attack.GetDamage());
         }
 
         if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
@@ -3142,21 +3142,23 @@ void CAICharNormal::DoAttack()
 
         //try zanshin only on single swing attack rounds - it is last priority in the multi-hit order
         //if zanshin procs, the attack is repeated
-        if (attack->IsFirstSwing() && attackRound->GetAttackSwingCount() == 1)
+        if (attack.IsFirstSwing() && attackRound.GetAttackSwingCount() == 1)
         {
             uint16 zanshinChance = m_PChar->getMod(MOD_ZANSHIN) + m_PChar->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, m_PChar);
             zanshinChance = dsp_cap(zanshinChance, 0, 100);
             //zanshin may only proc on a missed/guarded/countered swing or as SAM main with hasso up (at 25% of the base zanshin rate)
-            if (((Action.reaction == REACTION_EVADE || Action.reaction == REACTION_GUARD || Action.spikesEffect == SUBEFFECT_COUNTER) && WELL512::irand() % 100 < zanshinChance) || (m_PChar->GetMJob() == JOB_SAM && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) && WELL512::irand() % 100 < (zanshinChance / 4)))
+            if (((Action.reaction == REACTION_EVADE || Action.reaction == REACTION_GUARD || 
+                Action.spikesEffect == SUBEFFECT_COUNTER) && WELL512::irand() % 100 < zanshinChance) || 
+                (m_PChar->GetMJob() == JOB_SAM && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) && WELL512::irand() % 100 < (zanshinChance / 4)))
             {
-                attack->SetAttackType(ZANSHIN_ATTACK);
-                attack->SetAsFirstSwing(false);
+                attack.SetAttackType(ZANSHIN_ATTACK);
+                attack.SetAsFirstSwing(false);
             }
             else
-                attackRound->DeleteAttackSwing();
+                attackRound.DeleteAttackSwing();
         }
         else
-            attackRound->DeleteAttackSwing();
+            attackRound.DeleteAttackSwing();
 
         if (m_PChar->m_ActionList.size() == 8)
         {
@@ -3166,9 +3168,6 @@ void CAICharNormal::DoAttack()
     /////////////////////////////////////////////////////////////////////////////////////////////
     // End of attack loop
     /////////////////////////////////////////////////////////////////////////////////////////////
-
-    // Clear this attack round.  We are done with it.
-    delete attackRound;
 
     m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK | EFFECTFLAG_DETECTABLE);
     m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
