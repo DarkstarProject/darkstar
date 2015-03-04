@@ -77,7 +77,7 @@ CWeaponSkill* g_PWeaponSkillList[MAX_WEAPONSKILL_ID];			// Holds all Weapon skil
 std::unordered_map<uint16, CMobSkill*> g_PMobSkillList;			// List of mob skills
 
 std::list<CWeaponSkill*> g_PWeaponSkillsList[MAX_SKILLTYPE];	// Holds Weapon skills by type
-std::vector<CMobSkill*>  g_PMobFamilySkills[MAX_MOB_FAMILY];	// Mob Skills By Family
+std::unordered_map<uint16, std::vector<CMobSkill*>>  g_PMobFamilySkills;	// Mob Skills By Family
 
 /************************************************************************
 *  battleutils															*
@@ -207,32 +207,24 @@ void LoadMobSkillsList()
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			CMobSkill* PMobSkill = new CMobSkill(Sql_GetIntData(SqlHandle,0));
-			PMobSkill->setfamilyID(Sql_GetIntData(SqlHandle,1));
-			PMobSkill->setAnimationID(Sql_GetIntData(SqlHandle,2));
-			PMobSkill->setName(Sql_GetData(SqlHandle,3));
-			PMobSkill->setAoe(Sql_GetIntData(SqlHandle,4));
-			PMobSkill->setDistance(Sql_GetFloatData(SqlHandle,5));
-			PMobSkill->setAnimationTime(Sql_GetIntData(SqlHandle,6));
-			PMobSkill->setActivationTime(Sql_GetIntData(SqlHandle,7));
-			PMobSkill->setValidTargets(Sql_GetIntData(SqlHandle,8));
-			PMobSkill->setFlag(Sql_GetIntData(SqlHandle,9));
-			PMobSkill->setParam(Sql_GetIntData(SqlHandle,10));
-            PMobSkill->setKnockback(Sql_GetUIntData(SqlHandle,11));
-			PMobSkill->setMsg(185); //standard damage message. Scripters will change this.
-			g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
-
-			if(PMobSkill->getfamilyID() >= MAX_MOB_FAMILY)
-			{
-				ShowError("battleutils::LoadMobSkillsList Defined skill (%d) is out of range of (%d)\n", PMobSkill->getfamilyID(), MAX_MOB_FAMILY);
-			}
-            else
-            {
-                g_PMobFamilySkills[PMobSkill->getfamilyID()].push_back(PMobSkill);
-            }
-		}
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            CMobSkill* PMobSkill = new CMobSkill(Sql_GetIntData(SqlHandle, 0));
+            PMobSkill->setfamilyID(Sql_GetIntData(SqlHandle, 1));
+            PMobSkill->setAnimationID(Sql_GetIntData(SqlHandle, 2));
+            PMobSkill->setName(Sql_GetData(SqlHandle, 3));
+            PMobSkill->setAoe(Sql_GetIntData(SqlHandle, 4));
+            PMobSkill->setDistance(Sql_GetFloatData(SqlHandle, 5));
+            PMobSkill->setAnimationTime(Sql_GetIntData(SqlHandle, 6));
+            PMobSkill->setActivationTime(Sql_GetIntData(SqlHandle, 7));
+            PMobSkill->setValidTargets(Sql_GetIntData(SqlHandle, 8));
+            PMobSkill->setFlag(Sql_GetIntData(SqlHandle, 9));
+            PMobSkill->setParam(Sql_GetIntData(SqlHandle, 10));
+            PMobSkill->setKnockback(Sql_GetUIntData(SqlHandle, 11));
+            PMobSkill->setMsg(185); //standard damage message. Scripters will change this.
+            g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
+            g_PMobFamilySkills[PMobSkill->getfamilyID()].push_back(PMobSkill);
+        }
 	}
 }
 
@@ -397,8 +389,6 @@ CMobSkill* GetMobSkill(uint16 SkillID)
 
 std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
 {
-    DSP_DEBUG_BREAK_IF(FamilyID >= sizeof(g_PMobFamilySkills));
-
 	return g_PMobFamilySkills[FamilyID];
 }
 
