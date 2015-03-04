@@ -23,9 +23,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 	local merc_rank = getMercenaryRank(player);
-	
+
 	if(merc_rank == 0) then
 		player:startEvent(0x0277,npc);
 	else
@@ -33,11 +33,11 @@ function onTrigger(player,npc)
 		if(getAstralCandescence() == 1) then
 			maps = maps + 0x80000000;
 		end;
-		
+
 		x,y,z,w = getImperialDefenseStats();
 		player:startEvent(0x0276,player:getCurrency("imperial_standing"),maps,merc_rank,0,x,y,z,w);
 	end;
-	
+
 end;
 
 -----------------------------------
@@ -47,12 +47,12 @@ end;
 function onEventUpdate(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-	
+
 	if(csid == 0x0276 and option >= 1 and option <= 2049) then
 		itemid = getISPItem(option);
 		player:updateEvent(0,0,0,canEquip(player,itemid));
 	end;
-	
+
 end;
 
 -----------------------------------
@@ -62,27 +62,26 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-	
+
 	if(csid == 0x276) then
 		if(option == 0 or option == 16 or option == 32 or option == 48) then -- player chose sanction.
 			if(option ~= 0) then
 				player:delCurrency("imperial_standing", 100);
 			end;
-			
+
 			player:delStatusEffect(EFFECT_SIGIL);
 			player:delStatusEffect(EFFECT_SANCTION);
 			player:delStatusEffect(EFFECT_SIGNET);
-			duration = getSanctionDuration(player);
-			
+			local duration = getSanctionDuration(player);
+
+			local tick = 0;
 			if(option == 16 or option == 32) then -- refresh and regen sanction
-				tick = 3; 
-			else
-				tick = 0;
+				tick = 3;
 			end;
-			
+
 			player:addStatusEffect(EFFECT_SANCTION,option / 16,tick,duration); -- effect size 1 = regen, 2 = refresh, 3 = food.
 			player:messageSpecial(SANCTION);
-			
+
 		elseif(option % 256 == 17) then -- player bought one of the maps
 			id = 1862 + (option - 17) / 256;
 			player:addKeyItem(id);
@@ -99,5 +98,5 @@ function onEventFinish(player,csid,option)
 			end;
 		end;
 	end;
-	
+
 end;
