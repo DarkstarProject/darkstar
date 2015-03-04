@@ -18,17 +18,32 @@ require("scripts/globals/gear_sets");
 -----------------------------------
 
 function onGameIn(player, firstlogin, zoning)
-    if (not zoning) then -- Things checked ONLY during logon go here.
+    if (not zoning) then -- Things done ONLY during logon go here.
         if (firstlogin) then
             CharCreate(player);
         end
     end
 
-    if (zoning) then -- Things checked ONLY during zone in go here.
-        -- Nothing here yet :P
+    if (zoning) then -- Things done ONLY during zone in go here.
+        -- Remove GoV buffs.
+        if (player:hasStatusEffect(EFFECT_PROWESS)) then
+            player:delStatusEffect(EFFECT_PROWESS_CASKET_RATE);
+            player:delStatusEffect(EFFECT_PROWESS_SKILL_RATE);
+            player:delStatusEffect(EFFECT_PROWESS_CRYSTAL_YEILD);
+            player:delStatusEffect(EFFECT_PROWESS_TH);
+            player:delStatusEffect(EFFECT_PROWESS_ATTACK_SPEED);
+            player:delStatusEffect(EFFECT_PROWESS_HP_MP);
+            player:delStatusEffect(EFFECT_PROWESS_ACC_RACC);
+            player:delStatusEffect(EFFECT_PROWESS_ATT_RATT);
+            player:delStatusEffect(EFFECT_PROWESS_MACC_MATK);
+            player:delStatusEffect(EFFECT_PROWESS_CURE_POTENCY);
+            player:delStatusEffect(EFFECT_PROWESS_WS_DMG);
+            player:delStatusEffect(EFFECT_PROWESS_KILLER);
+            player:delStatusEffect(EFFECT_PROWESS);
+        end
     end
 
-    -- Things checked BOTH during logon AND zone in below this line.
+    -- Things done BOTH during logon AND zone in below this line.
     checkForGearSet(player);
 
     if (player:getVar("GodMode") == 1) then
@@ -260,27 +275,27 @@ function CharCreate(player)
 		default = function (x) end,
 	}
 
-   ----- settings.lua Perks -----
+    ----- settings.lua Perks -----
     if (ADVANCED_JOB_LEVEL == 0) then
-       for i = 6,22 do
-          player:unlockJob(i);
-       end
+        for i = 6,22 do
+            player:unlockJob(i);
+        end
     end
 
     if (SUBJOB_QUEST_LEVEL == 0) then
-       player:unlockJob(0);
+        player:unlockJob(0);
     end
 
     if (ALL_MAPS == 1) then
-       for i=385,447 do
-          player:addKeyItem(i);
-       end
-       for i=1856,1917 do
-          player:addKeyItem(i);
-       end
-       for i=2302,2305 do
-          player:addKeyItem(i);
-       end
+        for i=385,447 do
+            player:addKeyItem(i);
+        end
+        for i=1856,1917 do
+            player:addKeyItem(i);
+        end
+        for i=2302,2305 do
+            player:addKeyItem(i);
+        end
     end
 
     if (INITIAL_LEVEL_CAP ~= 50) then
@@ -288,30 +303,30 @@ function CharCreate(player)
     end
 
     if (START_INVENTORY > 30) then
-       player:changeContainerSize(0,(START_INVENTORY - 30))
-       player:changeContainerSize(5,(START_INVENTORY - 30))
+        player:changeContainerSize(0,(START_INVENTORY - 30))
+        player:changeContainerSize(5,(START_INVENTORY - 30))
     end
 
     if (UNLOCK_OUTPOST_WARPS >= 1) then
-       player:addNationTeleport(0,2097120);
-       player:addNationTeleport(1,2097120);
-       player:addNationTeleport(2,2097120);
-       if (UNLOCK_OUTPOST_WARPS == 2) then -- Tu'Lia and Tavnazia
-          player:addNationTeleport(0,10485760);
-          player:addNationTeleport(1,10485760);
-          player:addNationTeleport(2,10485760);
-       end
+        player:addNationTeleport(0,2097120);
+        player:addNationTeleport(1,2097120);
+        player:addNationTeleport(2,2097120);
+        if (UNLOCK_OUTPOST_WARPS == 2) then -- Tu'Lia and Tavnazia
+            player:addNationTeleport(0,10485760);
+            player:addNationTeleport(1,10485760);
+            player:addNationTeleport(2,10485760);
+        end
     end
     ----- End settings.lua Perks -----
 
-	-- SET START GIL
+    -- SET START GIL
     --[[For some intermittent reason m_ZoneList ends up empty on characters, which is
     possibly also why they lose key items.  When that happens, CharCreate will be run and
     they end up losing their gil to the code below.  Added a conditional to hopefully
     prevent that until the bug is fixed.  Used the if instead of addGil to prevent abuse
     on servers with very high values of START_GIL, I guess.]]
     if (player:getGil() < START_GIL) then
-       player:setGil(START_GIL);
+        player:setGil(START_GIL);
     end
 
 	-- ADD ADVENTURER COUPON
