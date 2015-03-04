@@ -63,7 +63,7 @@ CAttackRound::CAttackRound(CBattleEntity* attacker)
 	}
 
 	// Set the first attack flag
-	m_attackSwings.at(0)->SetAsFirstSwing();
+	m_attackSwings[0].SetAsFirstSwing();
 
 	// Delete the haste samba effect.
     attacker->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_SAMBA_HASTE);
@@ -97,9 +97,9 @@ uint8 CAttackRound::GetAttackSwingCount()
 *  Returns an attack via index.											*
 *																		*
 ************************************************************************/
-CAttack* CAttackRound::GetAttack(uint8 index)
+CAttack CAttackRound::GetAttack(uint8 index)
 {
-	return m_attackSwings.at(index);
+	return m_attackSwings[index];
 }
 
 /************************************************************************
@@ -107,9 +107,9 @@ CAttack* CAttackRound::GetAttack(uint8 index)
 *  Returns the current attack.											*
 *																		*
 ************************************************************************/
-CAttack* CAttackRound::GetCurrentAttack()
+CAttack CAttackRound::GetCurrentAttack()
 {
-	return m_attackSwings.at(0);
+	return m_attackSwings[0];
 }
 
 /************************************************************************
@@ -163,7 +163,7 @@ void CAttackRound::AddAttackSwing(PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIR
 	{
 		for (uint8 i = 0; i < count; ++i)
 		{
-			CAttack* attack = new CAttack(m_attacker, type, direction, this);
+			CAttack attack(m_attacker, type, direction, this);
 			m_attackSwings.push_back(attack);
 
 			if (m_attackSwings.size() == MAX_ATTACKS)
@@ -181,9 +181,7 @@ void CAttackRound::AddAttackSwing(PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIR
 ************************************************************************/
 void CAttackRound::DeleteAttackSwing()
 {
-	CAttack* attack = m_attackSwings.at(0);
 	m_attackSwings.erase(m_attackSwings.begin());
-	delete attack;
 }
 
 /************************************************************************
