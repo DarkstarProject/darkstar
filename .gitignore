@@ -116,3 +116,30 @@ UpgradeLog*.XML
 *.exe
 *.out
 *.app
+
+# Generated executables
+/dsconnect
+/dsgame
+/dssearch
+
+# Generated files, mostly autotools-related
+.deps
+/Makefile
+/Makefile.in
+/aclocal.m4
+/autom4te.cache
+/compile
+/configure
+/config.*
+/depcomp
+/missing
+/install-sh
+
+src/common/config.h
+src/common/config.h.in
+src/common/stamp-h1
+
+/sources.am
+
+# Misc, such as vim swap files
+*.sw?
