@@ -659,7 +659,23 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
 	createchar.m_look.race = RBUFB(buf,48);
 	createchar.m_look.size = RBUFB(buf,57);
 	createchar.m_look.face = RBUFB(buf,60);
-	createchar.m_mjob      = RBUFB(buf,50);
+
+	// Validate that the job is a starting job.
+	uint8 mjob = RBUFB(buf, 50);
+	createchar.m_mjob = dsp_cap(mjob, 1, 6);
+
+	// Log that the character attempting to create a non-starting job.
+	if (mjob != createchar.m_mjob) {
+		ShowInfo(
+			CL_WHITE"lobby_createchar" CL_RESET": "
+				CL_WHITE"%s" CL_RESET" attempted to create invalid starting job "
+				CL_WHITE"%d" CL_RESET" substituting "
+				CL_WHITE"%d" CL_RESET"\n",
+			loginsd->charname,
+			mjob,
+			createchar.m_mjob);
+	}
+
 	createchar.m_nation    = RBUFB(buf,54);
 
 	switch(createchar.m_nation)
