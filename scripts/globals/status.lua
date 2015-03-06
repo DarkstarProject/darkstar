@@ -72,6 +72,7 @@ STATUS_SHUTDOWN			= 20;
     SUBEFFECT_STUN              = 16;
     SUBEFFECT_CURSE             = 17;
     SUBEFFECT_DEFENSE_DOWN      = 18;  -- 1-01001      37
+    SUBEFFECT_DEATH             = 19;
     SUBEFFECT_SHIELD            = 20;
     SUBEFFECT_HP_DRAIN          = 21;  -- 1-10101      43
     SUBEFFECT_MP_DRAIN          = 22;  -- This is correct animation

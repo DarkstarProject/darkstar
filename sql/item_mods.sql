@@ -19942,6 +19942,13 @@ INSERT INTO `item_mods` VALUES (18504, 229, 2);
 INSERT INTO `item_mods` VALUES (18506, 288, 1);
 INSERT INTO `item_mods` VALUES (18509, 288, 1);
 INSERT INTO `item_mods` VALUES (18531, 24, 4);
+
+-- -------------------------------------------------------
+-- Twilight Scythe
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18551, 8, 8); -- STR+8
+INSERT INTO `item_mods` VALUES (18551, 431, 1); -- Additional Effect: DEATH
+
 INSERT INTO `item_mods` VALUES (18571, 453, 2);
 INSERT INTO `item_mods` VALUES (18571, 454, 30);
 INSERT INTO `item_mods` VALUES (18572, 452, 4);
