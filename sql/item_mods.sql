@@ -20254,6 +20254,8 @@ INSERT INTO `item_mods` VALUES (18953, 431, 1); -- Additional Effect: Water Dama
 -- Terpsichore
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18989, 355, 29);
+INSERT INTO `item_mods` VALUES (18989, 494, 1);
+INSERT INTO `item_mods` VALUES (18989, 403, 10);
 
 -- -------------------------------------------------------
 -- Tupsimati
