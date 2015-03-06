@@ -48,6 +48,7 @@ class CItem;
 class CMobSkill;
 class CRegion;
 class CStatusEffect;
+class CItemPuppet;
 
 namespace luautils
 {
@@ -129,6 +130,9 @@ namespace luautils
 	int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when an effect is applied to pc/npc
 	int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when effect tick timer has been reached
 	int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when effect has been lost
+
+    int32 OnManeuverGain(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
+    int32 OnManeuverLose(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
 
 	int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem);						// triggers when item is used
 	int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param = 0);	// check to see if item can be used

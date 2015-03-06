@@ -21,6 +21,7 @@
 ===========================================================================
 */
 
+#include "../lua/luautils.h"
 #include "puppetutils.h"
 #include "petutils.h"
 #include "battleutils.h"
@@ -522,6 +523,31 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
                 PChar->pushPacket(new CMessageBasicPacket(PAutomaton, PAutomaton, SkillID, (CurSkill + SkillAmount) / 10, 53));
             }
             charutils::SaveCharSkills(PChar, SkillID);
+        }
+    }
+}
+
+void CheckAttachmentsForManeuver(CCharEntity* PChar, EFFECT maneuver, bool gain)
+{
+    CAutomatonEntity* PAutomaton = PChar->PAutomaton;
+
+    if (PAutomaton)
+    {
+        uint8 element = maneuver - EFFECT_FIRE_MANEUVER;
+        for (uint8 i = 0; i < 12; i++)
+        {
+            if (PAutomaton->getAttachment(i) != 0)
+            {
+                CItemPuppet* PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + PAutomaton->getAttachment(i));
+
+                if (PAttachment && PAttachment->getElementSlots() >> (element * 4))
+                {
+                    if (gain)
+                        luautils::OnManeuverGain(PChar, PAttachment, PChar->StatusEffectContainer->GetEffectsCount(maneuver));
+                    else
+                        luautils::OnManeuverLose(PChar, PAttachment, PChar->StatusEffectContainer->GetEffectsCount(maneuver));
+                }
+            }
         }
     }
 }

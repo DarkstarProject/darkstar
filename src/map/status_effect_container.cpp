@@ -52,6 +52,7 @@ When a status effect is gained twice on a player. It can do one or more of the f
 #include "status_effect_container.h"
 #include "utils/zoneutils.h"
 #include "utils/petutils.h"
+#include "utils/puppetutils.h"
 #include "utils/battleutils.h"
 
 /************************************************************************
@@ -163,17 +164,17 @@ CStatusEffectContainer::~CStatusEffectContainer()
 
 /************************************************************************
 *                                                                       *
-*  Получаем количество эффектов с указанным subid                       *
+*  Получаем количество эффектов с указанным id                          *
 *                                                                       *
 ************************************************************************/
 
-uint8 CStatusEffectContainer::GetEffectsCount(uint16 SubID)
+uint8 CStatusEffectContainer::GetEffectsCount(EFFECT ID)
 {
     uint8 count = 0;
 
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
-		if (m_StatusEffectList.at(i)->GetSubID() == SubID)
+		if (m_StatusEffectList.at(i)->GetStatusID() == ID)
         {
             count++;
         }
@@ -349,6 +350,13 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 
         m_POwner->addModifiers(&PStatusEffect->modList);
 
+        if (PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
+            PStatusEffect->GetStatusID() <= EFFECT_DARK_MANEUVER &&
+            m_POwner->objtype == TYPE_PC)
+        {
+            puppetutils::CheckAttachmentsForManeuver((CCharEntity*)m_POwner, PStatusEffect->GetStatusID(), true);
+        }
+
         if( m_POwner->health.maxhp != 0) //make sure we're not in the middle of logging in
         {
             m_POwner->UpdateHealth();
@@ -393,6 +401,13 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 {
     CStatusEffect* PStatusEffect = m_StatusEffectList.at(id);
+
+    if (PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
+        PStatusEffect->GetStatusID() <= EFFECT_DARK_MANEUVER &&
+        m_POwner->objtype == TYPE_PC)
+    {
+        puppetutils::CheckAttachmentsForManeuver((CCharEntity*)m_POwner, PStatusEffect->GetStatusID(), false);
+    }
 
     m_StatusEffectList.erase(m_StatusEffectList.begin() + id);
     luautils::OnEffectLose(m_POwner, PStatusEffect);

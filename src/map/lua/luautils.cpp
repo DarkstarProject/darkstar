@@ -65,6 +65,7 @@
 #include "../packets/menu_raisetractor.h"
 #include "../packets/message_basic.h"
 #include "../packets/entity_visual.h"
+#include "../items/item_puppet.h"
 
 namespace luautils
 {
@@ -1810,6 +1811,64 @@ int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
         lua_pop(LuaHandle, returns);
     }
 	return 0;
+}
+
+int32 OnManeuverGain(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers)
+{
+    lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
+
+    if (prepFile(File, "onManeuverGain"))
+    {
+        return -1;
+    }
+
+    CLuaBaseEntity LuaBaseEntity(PEntity);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+    lua_pushinteger(LuaHandle, maneuvers);
+
+    if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::onManeuverGain: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 0)
+    {
+        ShowError("luautils::onManeuverGain (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+    return 0;
+}
+
+int32 OnManeuverLose(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers)
+{
+    lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
+
+    if (prepFile(File, "onManeuverLose"))
+    {
+        return -1;
+    }
+
+    CLuaBaseEntity LuaBaseEntity(PEntity);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+    lua_pushinteger(LuaHandle, maneuvers);
+
+    if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::onManeuverLose: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 0)
+    {
+        ShowError("luautils::onManeuverLose (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+    return 0;
 }
 
 /************************************************************************

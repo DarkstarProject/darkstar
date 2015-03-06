@@ -88,38 +88,38 @@ namespace conquest
             {
             case 0:
             {
-                int total = bas_inf + win_inf + bst_inf;
+                int total = dsp_max(5000 - san_inf, 0);
                 double bas_rat = (float)bas_inf / total;
                 double win_rat = (float)win_inf / total;
                 double bst_rat = (float)bst_inf / total;
                 san_inf += points;
-                bas_inf = (total - points) * bas_rat;
-                win_inf = (total - points) * win_rat;
-                bst_inf = (total - points) * bst_rat;
+                bas_inf = dsp_max(total - points, 0) * bas_rat;
+                win_inf = dsp_max(total - points, 0) * win_rat;
+                bst_inf = dsp_max(total - points, 0) * bst_rat;
                 break;
             }
             case 1:
             {
-                int total = san_inf + win_inf + bst_inf;
+                int total = dsp_max(5000 - bas_inf, 0);
                 double san_rat = (float)san_inf / total;
                 double win_rat = (float)win_inf / total;
                 double bst_rat = (float)bst_inf / total;
                 bas_inf += points;
-                san_inf = (total - points) * san_rat;
-                win_inf = (total - points) * win_rat;
-                bst_inf = (total - points) * bst_rat;
+                san_inf = dsp_max(total - points, 0) * san_rat;
+                win_inf = dsp_max(total - points, 0) * win_rat;
+                bst_inf = dsp_max(total - points, 0) * bst_rat;
                 break;
             }
             case 2:
             {
-                int total = san_inf + bas_inf + bst_inf;
+                int total = dsp_max(5000 - win_inf,0);
                 double san_rat = (float)san_inf / total;
                 double bas_rat = (float)bas_inf / total;
                 double bst_rat = (float)bst_inf / total;
                 win_inf += points;
-                san_inf = (total - points) * san_rat;
-                bas_inf = (total - points) * bas_rat;
-                bst_inf = (total - points) * bst_rat;
+                san_inf = dsp_max(total - points, 0) * san_rat;
+                bas_inf = dsp_max(total - points, 0) * bas_rat;
+                bst_inf = dsp_max(total - points, 0) * bst_rat;
                 break;
             }
             default:
@@ -193,14 +193,14 @@ namespace conquest
             int bas_inf = Sql_GetIntData(SqlHandle, 1);
             int win_inf = Sql_GetIntData(SqlHandle, 2);
             int bst_inf = Sql_GetIntData(SqlHandle, 3);
-            int total = san_inf + bas_inf + win_inf;
+            int total = dsp_max(5000 - bst_inf, 0);
             double san_rat = (float)san_inf / total;
             double bas_rat = (float)bas_inf / total;
             double win_rat = (float)win_inf / total;
             bst_inf += point;
-            san_inf = (total - point) * san_rat;
-            bas_inf = (total - point) * bas_rat;
-            win_inf = (total - point) * win_rat;
+            san_inf = dsp_max(total - point, 0) * san_rat;
+            bas_inf = dsp_max(total - point, 0) * bas_rat;
+            win_inf = dsp_max(total - point, 0) * win_rat;
 
             Sql_Query(SqlHandle, "UPDATE conquest_system SET sandoria_influence = %d, bastok_influence = %d, "
                 "windurst_influence = %d, beastmen_influence = %d WHERE region_id = %d;", san_inf, bas_inf, win_inf, bst_inf, region);

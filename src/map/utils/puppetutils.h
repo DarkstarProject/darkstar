@@ -40,6 +40,7 @@ namespace puppetutils
     uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill);
     void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl);
     void LoadAutomatonStats(CCharEntity* PChar);
+    void CheckAttachmentsForManeuver(CCharEntity* PChar, EFFECT maneuver, bool gain);
 };
 
 #endif
