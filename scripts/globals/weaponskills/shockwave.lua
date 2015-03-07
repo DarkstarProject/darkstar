@@ -17,7 +17,6 @@ require("scripts/globals/weaponskills");
 -----------------------------------
 
 function onUseWeaponSkill(player, target, wsID)
-
 	local params = {};
 	params.numHits = 1;
 	params.ftp100 = 1; params.ftp200 = 1; params.ftp300 = 1;
@@ -28,12 +27,12 @@ function onUseWeaponSkill(player, target, wsID)
 	params.atkmulti = 1;
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
-	if damage > 0 and target:hasStatusEffect(EFFECT_SLEEP_I) == false) then
+	if (damage > 0 and target:hasStatusEffect(EFFECT_SLEEP_I) == false) then
 		local tp = player:getTP();
 		local duration = (tp/100 * 60);
 		target:addStatusEffect(EFFECT_SLEEP_I, 1, 0, duration);
 	end
+
 	damage = damage * WEAPON_SKILL_POWER
 	return tpHits, extraHits, criticalHit, damage;
-
 end
