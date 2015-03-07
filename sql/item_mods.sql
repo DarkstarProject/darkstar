@@ -21177,3 +21177,433 @@ INSERT INTO `item_mods` VALUES (28665, 161, -8); -- Physical damage taken -8%
 -- Leafkin Shield
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (28670, 1, 1); -- DEF:1
+
+
+----------------------------
+-- Fire Additional Effects
+-------------------------
+REPLACE INTO `item_mods` VALUES(16929, 431, 1);# Burning claymore
+REPLACE INTO `item_mods` VALUES(18379, 431, 1);# Vulcan-claymore
+REPLACE INTO `item_mods` VALUES(16543, 431, 1);# Fire-sword
+REPLACE INTO `item_mods` VALUES(16621, 431, 1);# Flame-sword
+REPLACE INTO `item_mods` VALUES(17704, 431, 1);# Vulcan-sword
+REPLACE INTO `item_mods` VALUES(17291, 431, 1);# Flame-boomerang
+REPLACE INTO `item_mods` VALUES(17313, 431, 1);# Grenade
+REPLACE INTO `item_mods` VALUES(16594, 431, 1);# Inferno-sword
+REPLACE INTO `item_mods` VALUES(16928, 431, 1);# Hellfire-sword
+REPLACE INTO `item_mods` VALUES(18381, 431, 1);# Prominence-sword
+REPLACE INTO `item_mods` VALUES(17314, 431, 1);# Quake-grenade
+REPLACE INTO `item_mods` VALUES(16973, 431, 1);# Homura
+REPLACE INTO `item_mods` VALUES(16986, 431, 1);# Homura +1
+REPLACE INTO `item_mods` VALUES(17316, 431, 1);# Bomb-arm
+REPLACE INTO `item_mods` VALUES(17305, 431, 1);# Cluster-arm
+REPLACE INTO `item_mods` VALUES(16709, 431, 1);# Inferno-axe
+REPLACE INTO `item_mods` VALUES(16713, 431, 1);# Hellfire-axe
+REPLACE INTO `item_mods` VALUES(18220, 431, 1);# Prominence-axe
+REPLACE INTO `item_mods` VALUES(16398, 431, 1);# Burning-cesti
+REPLACE INTO `item_mods` VALUES(16588, 431, 1);# Flame-claymore
+REPLACE INTO `item_mods` VALUES(18385, 431, 1);# Algol
+REPLACE INTO `item_mods` VALUES(19151, 431, 1);# Bahadur
+REPLACE INTO `item_mods` VALUES(19152, 431, 1);# Bahadur +1
+REPLACE INTO `item_mods` VALUES(17485, 431, 1);# Dragon-claws +1
+REPLACE INTO `item_mods` VALUES(16416, 431, 1);# Dragon-claws
+REPLACE INTO `item_mods` VALUES(17665, 431, 1);# Ifrits-blade
+REPLACE INTO `item_mods` VALUES(19202, 431, 1);# Smart-grenade
+REPLACE INTO `item_mods` VALUES(17546, 431, 1);# Vulcans-staff
+REPLACE INTO `item_mods` VALUES(17545, 431, 1);# Fire-staff
+REPLACE INTO `item_mods` VALUES(16522, 431, 1);# Flame-degen
+REPLACE INTO `item_mods` VALUES(16823, 431, 1);# Flame-degen +1
+REPLACE INTO `item_mods` VALUES(17828, 431, 1);# Koen
+REPLACE INTO `item_mods` VALUES(17705, 431, 1);# Vulcan-degen
+REPLACE INTO `item_mods` VALUES(18043, 431, 1);# Suzakus-scythe
+
+----------------------------
+ Water Additional Effects
+-------------------------
+REPLACE INTO `item_mods` VALUES(17750, 431, 1);# Anthos Xiphos 
+REPLACE INTO `item_mods` VALUES(17533, 431, 1);# Whale Staff
+REPLACE INTO `item_mods` VALUES(17534, 431, 1);# Whale Staff +1
+REPLACE INTO `item_mods` VALUES(17555, 431, 1);# Water Staff
+REPLACE INTO `item_mods` VALUES(17556, 431, 1);# Neptune's Staff
+REPLACE INTO `item_mods` VALUES(17439, 431, 1);# Leviathan's Rod
+REPLACE INTO `item_mods` VALUES(16620, 431, 1);# Merman's Sword
+REPLACE INTO `item_mods` VALUES(16961, 431, 1);# Murasame
+REPLACE INTO `item_mods` VALUES(17623, 431, 1);# Bartholomew's Knife
+REPLACE INTO `item_mods` VALUES(17659, 431, 1);# Seiryu's Sword
+REPLACE INTO `item_mods` VALUES(16548, 431, 1);# coral-sword
+REPLACE INTO `item_mods` VALUES(18953, 431, 1);# Beluga
+REPLACE INTO `item_mods` VALUES(16945, 431, 1);# Arondight
+REPLACE INTO `item_mods` VALUES(18729, 431, 1);# Dolphin-staff
+REPLACE INTO `item_mods` VALUES(17515, 431, 1);# Hydro Claws +1
+REPLACE INTO `item_mods` VALUES(18202, 431, 1);# Hydro Cutter 
+REPLACE INTO `item_mods` VALUES(18203, 431, 1);# Hydro Cutter +1
+REPLACE INTO `item_mods` VALUES(17516, 431, 1);# Hydro Patas
+REPLACE INTO `item_mods` VALUES(17517, 431, 1);# Hydro Patas +1
+REPLACE INTO `item_mods` VALUES(17514, 431, 1);# Hydro Claws
+REPLACE INTO `item_mods` VALUES(18205, 431, 1);# Hydro Chopper +1
+REPLACE INTO `item_mods` VALUES(18204, 431, 1);# Hydro Chopper
+REPLACE INTO `item_mods` VALUES(17513, 431, 1);# Hydro Baghnakhs +1
+REPLACE INTO `item_mods` VALUES(17512, 431, 1);# Hydro Baghnakhs
+REPLACE INTO `item_mods` VALUES(18201, 431, 1);# Hydro Axe +1
+REPLACE INTO `item_mods` VALUES(18200, 431, 1);# Hydro Axe
+
+----------------------------
+-- Lightning Additional Effects
+-----------------------------
+REPLACE INTO `item_mods` VALUES(16889, 431, 1);# Battle-fork +1
+REPLACE INTO `item_mods` VALUES(16888, 431, 1);# Battle-fork
+REPLACE INTO `item_mods` VALUES(18130, 431, 1);# Dabo +1
+REPLACE INTO `item_mods` VALUES(18129, 431, 1);# Dabo
+REPLACE INTO `item_mods` VALUES(18079, 431, 1);# Spark Lance +1 
+REPLACE INTO `item_mods` VALUES(18078, 431, 1);# Spark Lance
+REPLACE INTO `item_mods` VALUES(18077, 431, 1);# Spark Spear +1
+REPLACE INTO `item_mods` VALUES(18076, 431, 1);# Spark Spear
+REPLACE INTO `item_mods` VALUES(17691, 431, 1);# Spark Rapier +1
+REPLACE INTO `item_mods` VALUES(17690, 431, 1);# Spark Rapier
+REPLACE INTO `item_mods` VALUES(17989, 431, 1);# Spark Kris +1
+REPLACE INTO `item_mods` VALUES(17988, 431, 1);# Spark Kris 
+REPLACE INTO `item_mods` VALUES(18081, 431, 1);# Spark Fork +1
+REPLACE INTO `item_mods` VALUES(18080, 431, 1);# Spark Fork
+REPLACE INTO `item_mods` VALUES(17984, 431, 1);# Spark Dagger
+REPLACE INTO `item_mods` VALUES(17985, 431, 1);# Spark Dagger +1
+REPLACE INTO `item_mods` VALUES(17686, 431, 1);# Spark Bilbo
+REPLACE INTO `item_mods` VALUES(17687, 431, 1);# Spark Bilbo +1
+REPLACE INTO `item_mods` VALUES(17987, 431, 1);# Spark Baselard +1
+REPLACE INTO `item_mods` VALUES(17986, 431, 1);# Spark Baselard
+REPLACE INTO `item_mods` VALUES(17689, 431, 1);# Spark Degen +1
+REPLACE INTO `item_mods` VALUES(17688, 431, 1);# Spark Degen
+REPLACE INTO `item_mods` VALUES(17071, 431, 1);# Heat Rod 
+REPLACE INTO `item_mods` VALUES(17315, 431, 1);# Riot Grenade 
+REPLACE INTO `item_mods` VALUES(18210, 431, 1);# Raifu
+REPLACE INTO `item_mods` VALUES(16837, 431, 1);# Trident  
+REPLACE INTO `item_mods` VALUES(17553, 431, 1);# Thunder Staff
+REPLACE INTO `item_mods` VALUES(17554, 431, 1);# Jupiter's Staff
+REPLACE INTO `item_mods` VALUES(16869, 431, 1);# Thundercloud 
+REPLACE INTO `item_mods` VALUES(17531, 431, 1);# Ramuh's Staff 
+REPLACE INTO `item_mods` VALUES(17511, 431, 1);# Indra Katars  
+
+----------------------------
+ Earth Additional Effects 
+-------------------------
+REPLACE INTO `item_mods` VALUES(17551, 431, 1);# Earth-staff
+REPLACE INTO `item_mods` VALUES(17552, 431, 1);# Terra staff
+REPLACE INTO `item_mods` VALUES(19114, 431, 1);# Galkan dagger
+REPLACE INTO `item_mods` VALUES(17438, 431, 1);# Titan Cudgel
+REPLACE INTO `item_mods` VALUES(18501, 431, 1);# Seismic Axe
+REPLACE INTO `item_mods` VALUES(17807, 431, 1);# Gold Musketeer's Uchigatana
+
+----------------------------
+ Wind  Additional Effects
+-------------------------
+REPLACE INTO `item_mods` VALUES(18198, 431, 1);# Byakkos-axe
+REPLACE INTO `item_mods` VALUES(17550, 431, 1);# Austers-staff
+REPLACE INTO `item_mods` VALUES(16726, 431, 1);# Forsetis-axe
+REPLACE INTO `item_mods` VALUES(18359, 431, 1);# Boreas Cesti
+REPLACE INTO `item_mods` VALUES(18366, 431, 1);# Gust Claymore
+REPLACE INTO `item_mods` VALUES(18367, 431, 1);# Gust Claymore +1
+REPLACE INTO `item_mods` VALUES(17780, 431, 1);# Kyofu 
+REPLACE INTO `item_mods` VALUES(17781, 431, 1);# Kyofu +1
+REPLACE INTO `item_mods` VALUES(16434, 431, 1);# Sonic Knuckles
+REPLACE INTO `item_mods` VALUES(18451, 431, 1);# Mokusa
+REPLACE INTO `item_mods` VALUES(17782, 431, 1);# Reppu
+REPLACE INTO `item_mods` VALUES(17783, 431, 1);# Reppu +1
+REPLACE INTO `item_mods` VALUES(18368, 431, 1);# Gust Sword
+REPLACE INTO `item_mods` VALUES(18369, 431, 1);# Gust Sword +1
+REPLACE INTO `item_mods` VALUES(16675, 431, 1);# Storm Axe
+REPLACE INTO `item_mods` VALUES(16857, 431, 1);# Wind Spear
+REPLACE INTO `item_mods` VALUES(17549, 431, 1);# Wind Staff
+REPLACE INTO `item_mods` VALUES(17784, 431, 1);# Keppu
+REPLACE INTO `item_mods` VALUES(17785, 431, 1);# Keppu +1
+REPLACE INTO `item_mods` VALUES(17965, 431, 1);# Sirocco Axe
+REPLACE INTO `item_mods` VALUES(18370, 431, 1);# Gust Tongue
+REPLACE INTO `item_mods` VALUES(18371, 431, 1);# Gust Tongue +1
+REPLACE INTO `item_mods` VALUES(16542, 431, 1);# Wing Sword
+REPLACE INTO `item_mods` VALUES(17637, 431, 1);# Wing Sword +1
+REPLACE INTO `item_mods` VALUES(18018, 431, 1);# Sirocco Kukri
+REPLACE INTO `item_mods` VALUES(18027, 431, 1);# Palladium Dagger
+REPLACE INTO `item_mods` VALUES(18598, 431, 1);# Prester
+
+----------------------------
+--Ice Additional Effects 
+-----------------------
+REPLACE INTO `item_mods` VALUES(17548, 431, 1);# Aquilos-staff
+REPLACE INTO `item_mods` VALUES(16784, 431, 1);# Frostreaper
+REPLACE INTO `item_mods` VALUES(17306, 431, 1);# Snoll Arm
+REPLACE INTO `item_mods` VALUES(16702, 431, 1);# Cougar Baghnakhs
+REPLACE INTO `item_mods` VALUES(18503, 431, 1);# Mammut 
+REPLACE INTO `item_mods` VALUES(16853, 431, 1);# Lizard Piercer 
+REPLACE INTO `item_mods` VALUES(16937, 431, 1);# Ice Brand
+REPLACE INTO `item_mods` VALUES(17293, 431, 1);# Yagudo Freezer
+REPLACE INTO `item_mods` VALUES(17135, 431, 1);# Walrus Staff
+REPLACE INTO `item_mods` VALUES(17547, 431, 1);# Ice Staff
+REPLACE INTO `item_mods` VALUES(17711, 431, 1);# Shiva's Shotel
+----------------------------
+-- Light Additional Effects
+-------------------------
+REPLACE INTO `item_mods` VALUES(17557, 431, 1);# Light Staff
+REPLACE INTO `item_mods` VALUES(17558, 431, 1);# Apollos-staff
+REPLACE INTO `item_mods` VALUES(16938, 431, 1);# Glorious-sword
+REPLACE INTO `item_mods` VALUES(17414, 431, 1);# Pixie Mace
+REPLACE INTO `item_mods` VALUES(16581, 431, 1);# Holy Sword
+REPLACE INTO `item_mods` VALUES(16816, 431, 1);# Holy Sword +1
+REPLACE INTO `item_mods` VALUES(17682, 431, 1);# Sacred Sword
+REPLACE INTO `item_mods` VALUES(16613, 431, 1);# Spirit Sword
+REPLACE INTO `item_mods` VALUES(17080, 431, 1);# Holy Maul 
+REPLACE INTO `item_mods` VALUES(17114, 431, 1);# Holy Maul +1
+REPLACE INTO `item_mods` VALUES(18391, 431, 1);# Sacred Mace
+REPLACE INTO `item_mods` VALUES(16523, 431, 1);# Holy Degen
+REPLACE INTO `item_mods` VALUES(16817, 431, 1);# Holy Degen +1
+REPLACE INTO `item_mods` VALUES(17683, 431, 1);# Sacred Degen
+REPLACE INTO `item_mods` VALUES(16860, 431, 1);# Holy Lance
+REPLACE INTO `item_mods` VALUES(16880, 431, 1);# Holy Lance +1
+REPLACE INTO `item_mods` VALUES(16858, 431, 1);# Sacred Lance
+REPLACE INTO `item_mods` VALUES(17085, 431, 1);# Holy Wand
+REPLACE INTO `item_mods` VALUES(17434, 431, 1);# Holy Wand +1
+REPLACE INTO `item_mods` VALUES(18393, 431, 1);# Sacred Wand
+REPLACE INTO `item_mods` VALUES(17738, 431, 1);# Hauteclaire
+
+----------------------------
+-- Darkness Additional Effects
+----------------------------
+REPLACE INTO `item_mods` VALUES(16515, 431, 1); Colichemarde
+REPLACE INTO `item_mods` VALUES(16515, 431, 1); Colichemarde +1
+REPLACE INTO `item_mods` VALUES(16787, 431, 1); Demonslicer
+REPLACE INTO `item_mods` VALUES(16936, 431, 1); Demonic sword
+REPLACE INTO `item_mods` VALUES(17559, 431, 1); Dark staff
+REPLACE INTO `item_mods` VALUES(17560, 431, 1); Pluto's Staff 
+REPLACE INTO `item_mods` VALUES(18729, 431, 1); Djinn Arm
+
+----------------------------
+-- HP DRAIN Additional Effects
+----------------------------
+REPLACE INTO `item_mods` VALUES(16777, 431, 1);# Death-scythe
+REPLACE INTO `item_mods` VALUES(16791, 421, 1);# Death-scythe +1
+REPLACE INTO `item_mods` VALUES(17510, 431, 1);# Vampiric Claws 
+REPLACE INTO `item_mods` VALUES(17562, 431, 1);# Revenging Staff +1
+REPLACE INTO `item_mods` VALUES(17561, 431, 1);# Revenging Staff
+REPLACE INTO `item_mods` VALUES(17779, 431, 1);# Muketsu +1
+REPLACE INTO `item_mods` VALUES(17778, 431, 1);# Muketsu  
+REPLACE INTO `item_mods` VALUES(18859, 431, 1);# Kerykeion
+REPLACE INTO `item_mods` VALUES(17576, 431, 1);# Grim Staff 
+REPLACE INTO `item_mods` VALUES(18856, 431, 1);# Deae Gratia
+REPLACE INTO `item_mods` VALUES(17651, 431, 1);# Dainslaif
+REPLACE INTO `item_mods` VALUES(16824, 431, 1);# Carnage Rapier
+REPLACE INTO `item_mods` VALUES(16881, 431, 1);# Carnage Lance
+REPLACE INTO `item_mods` VALUES(16827, 431, 1);# Carnage Blade
+REPLACE INTO `item_mods` VALUES(16528, 431, 1);# Bloody Rapier
+REPLACE INTO `item_mods` VALUES(16846, 431, 1);# Bloody Lance
+REPLACE INTO `item_mods` VALUES(16556, 431, 1);# Bloody Blade
+REPLACE INTO `item_mods` VALUES(16580, 431, 1);# Bloodsword  
+
+#MP DRAIN Additional Effects
+#----------------------------
+
+
+#--------------------------------------------------------------------------
+#---------------------Status Effect Additional Effects---------------------
+#--------------------------------------------------------------------------
+
+# Poison Additional Effects
+#--------------------------
+REPLACE INTO `item_mods` VALUES(17634, 431, 1);# Wasp fleuret
+REPLACE INTO `item_mods` VALUES(16525, 431, 1);# Hornet Fleuret 
+REPLACE INTO `item_mods` VALUES(17959, 431, 1);# Viperine pick
+REPLACE INTO `item_mods` VALUES(17604, 431, 1);# Venom Kukri +1 
+REPLACE INTO `item_mods` VALUES(16505, 431, 1);# Venom Kukri
+REPLACE INTO `item_mods` VALUES(16761, 431, 1);# Venom Kris +1 
+REPLACE INTO `item_mods` VALUES(16499, 431, 1);# Venom Kris 
+REPLACE INTO `item_mods` VALUES(16762, 431, 1);# Venom Knife +1  
+REPLACE INTO `item_mods` VALUES(16502, 431, 1);# Venom Knife 
+REPLACE INTO `item_mods` VALUES(17483, 431, 1);# Venom Katars +1 
+REPLACE INTO `item_mods` VALUES(16404, 431, 1);# Venom-katars
+REPLACE INTO `item_mods` VALUES(16425, 431, 1);# Venom Claws +1 
+REPLACE INTO `item_mods` VALUES(16418, 431, 1);# Venom-claws
+REPLACE INTO `item_mods` VALUES(16510, 431, 1);# Venom Baselard +1
+REPLACE INTO `item_mods` VALUES(16507, 431, 1);# Venom Baselard
+REPLACE INTO `item_mods` VALUES(18709, 431, 1);# Snakeeye +1  
+REPLACE INTO `item_mods` VALUES(18708, 431, 1);# Snakeeye
+REPLACE INTO `item_mods` VALUES(16927, 431, 1);# Busuto +1 
+REPLACE INTO `item_mods` VALUES(16907, 431, 1);# Busuto
+REPLACE INTO `item_mods` VALUES(16496, 431, 1);# Poison Dagger
+REPLACE INTO `item_mods` VALUES(16741, 431, 1);# Poison Dagger +1
+REPLACE INTO `item_mods` VALUES(16458, 431, 1);# Poison Baselard 
+REPLACE INTO `item_mods` VALUES(16743, 431, 1);# Python Baselard 
+REPLACE INTO `item_mods` VALUES(16472, 431, 1);# Poison Knife
+REPLACE INTO `item_mods` VALUES(16742, 431, 1);# Poison Knife +1
+REPLACE INTO `item_mods` VALUES(16478, 431, 1);# Poison Kukri 
+REPLACE INTO `item_mods` VALUES(16489, 431, 1);# Poison Kukri +1
+REPLACE INTO `item_mods` VALUES(17650, 431, 1);# Nadrs
+REPLACE INTO `item_mods` VALUES(16387, 431, 1);# Poison Cesti
+REPLACE INTO `item_mods` VALUES(16700, 431, 1);# Poison Cesti +1
+REPLACE INTO `item_mods` VALUES(16410, 431, 1);# Poison Baghnakhs
+REPLACE INTO `item_mods` VALUES(16692, 431, 1);# Poison Baghnakhs +1
+REPLACE INTO `item_mods` VALUES(16417, 431, 1);# Poison Claws 
+REPLACE INTO `item_mods` VALUES(16439, 431, 1);# Poison Claws +1
+REPLACE INTO `item_mods` VALUES(16403, 431, 1);# Poison Katars 
+REPLACE INTO `item_mods` VALUES(16693, 431, 1);# Poison Katars +1
+REPLACE INTO `item_mods` VALUES(16909, 431, 1);# Kororito
+REPLACE INTO `item_mods` VALUES(17769, 431, 1);# Kororito +1
+REPLACE INTO `item_mods` VALUES(17937, 431, 1);# Leopard Axe
+REPLACE INTO `item_mods` VALUES(000, 431, 1);# 
+
+#Additonal Effect Blind
+#----------------------
+REPLACE INTO `item_mods` VALUES(16926, 431, 1);# Bokuto +1
+REPLACE INTO `item_mods` VALUES(16905, 431, 1);# Bokuto  
+REPLACE INTO `item_mods` VALUES(16490, 431, 1);# Blind Knife +1
+REPLACE INTO `item_mods` VALUES(16471, 431, 1);# Blind Knife 
+REPLACE INTO `item_mods` VALUES(16493, 431, 1);# Blind Dagger +1 
+REPLACE INTO `item_mods` VALUES(16454, 431, 1);# Blind Dagger
+
+#Additonal Effect Sleep
+#----------------------
+REPLACE INTO `item_mods` VALUES(16497, 431, 1);# Sleep Dagger  
+REPLACE INTO `item_mods` VALUES(17117, 431, 1);# Hypno Staff
+REPLACE INTO `item_mods` VALUES(17575, 431, 1);# Somnus Signa  
+
+# Slow Additional Effect
+#-----------------------
+REPLACE INTO `item_mods` VALUES(17083, 431, 1);# Time-hammer
+REPLACE INTO `item_mods` VALUES(17599, 431, 1);# Diabolos's Pole
+
+# Silence Additional Effects
+#---------------------------
+REPLACE INTO `item_mods` VALUES(17627, 431, 1);# Garudas dagger
+REPLACE INTO `item_mods` VALUES(18355, 431, 1);# Hushed Baghnakhs 
+REPLACE INTO `item_mods` VALUES(18008, 431, 1);# Hushed Dagger
+REPLACE INTO `item_mods` VALUES(16906, 431, 1);# Mokuto
+REPLACE INTO `item_mods` VALUES(16925, 431, 1);# Mokuto +1
+REPLACE INTO `item_mods` VALUES(16429, 431, 1);# Silence Baghnakhs
+REPLACE INTO `item_mods` VALUES(16438, 431, 1);# Silence Baghnakhs +1
+REPLACE INTO `item_mods` VALUES(16495, 431, 1);# Silence Dagger
+REPLACE INTO `item_mods` VALUES(16508, 431, 1);# Silence Dagger +1
+
+# Paralysis Additional Effect
+#----------------------------
+REPLACE INTO `item_mods` VALUES(16672, 431, 1);# Tigerhunter
+REPLACE INTO `item_mods` VALUES(18211, 431, 1);# Gawains-axe
+REPLACE INTO `item_mods` VALUES(17648, 431, 1);# Dragvandil  
+REPLACE INTO `item_mods` VALUES(18762, 431, 1);# Custodes  
+REPLACE INTO `item_mods` VALUES(17737, 431, 1);# Corsair's Scimitar
+REPLACE INTO `item_mods` VALUES(17492, 431, 1);# Shiva's Claws
+REPLACE INTO `item_mods` VALUES(18312, 431, 1);# Kikoku
+
+# Bind Additional Effects
+#------------------------
+REPLACE INTO `item_mods` VALUES(16897, 431, 1);# Kageboshi
+
+#Additional Effect Weight
+#------------------------
+REPLACE INTO `item_mods` VALUES(18096, 431, 1);# Heavy-lance
+REPLACE INTO `item_mods` VALUES(18026, 431, 1);# Magnet Knife 
+
+#Stun Additional Effect
+#----------------------
+REPLACE INTO `item_mods` VALUES(17614, 431, 1);# Stun Kukri +1
+REPLACE INTO `item_mods` VALUES(16506, 431, 1);# Stun Kukri  
+REPLACE INTO `item_mods` VALUES(17600, 431, 1);# Stun Knife +1
+REPLACE INTO `item_mods` VALUES(16503, 431, 1);# stun-knife
+REPLACE INTO `item_mods` VALUES(17484, 431, 1);# Stun Jamadhars +1
+REPLACE INTO `item_mods` VALUES(16432, 431, 1);# Stun Jamadhars
+REPLACE INTO `item_mods` VALUES(17486, 431, 1);# Stun Claws +1
+REPLACE INTO `item_mods` VALUES(16431, 431, 1);# Stun-claws
+REPLACE INTO `item_mods` VALUES(16431, 431, 1);# Mamushito
+REPLACE INTO `item_mods` VALUES(17770, 431, 1);# Mamushito +1
+REPLACE INTO `item_mods` VALUES(17464, 431, 1);# Purgatory Mace
+REPLACE INTO `item_mods` VALUES(19019, 431, 1);# Platinum Grip
+REPLACE INTO `item_mods` VALUES(19020, 431, 1);# Platinum Grip +1
+
+#Additional Effect Curse
+#-----------------------
+REPLACE INTO `item_mods` VALUES(16533, 431, 1);# Ancient Sword 
+REPLACE INTO `item_mods` VALUES(17116, 431, 1);# Misery Staff
+
+#Additional Effect Impairs Evasion
+#---------------------------------
+REPLACE INTO `item_mods` VALUES(16773, 431, 1);# Cruel Scythe 
+REPLACE INTO `item_mods` VALUES(16863, 431, 1);# Cruel Spear  
+REPLACE INTO `item_mods` VALUES(16974, 431, 1);# Dotanuki
+REPLACE INTO `item_mods` VALUES(18118, 431, 1);# Dark Mezraq 
+REPLACE INTO `item_mods` VALUES(18119, 431, 1);# Dark Mezraq  +1
+REPLACE INTO `item_mods` VALUES(18032, 431, 1);# Adder Jambiya 
+REPLACE INTO `item_mods` VALUES(18033, 431, 1);# Adder Jambiya +1
+REPLACE INTO `item_mods` VALUES(17695, 431, 1);# Bayard's Sword
+REPLACE INTO `item_mods` VALUES(18110, 431, 1);# Mezraq
+REPLACE INTO `item_mods` VALUES(18111, 431, 1);# Mezraq +1
+REPLACE INTO `item_mods` VALUES(18123, 431, 1);# Thalassocrat
+REPLACE INTO `item_mods` VALUES(18124, 431, 1);# Thalassocrat +1
+
+#Additional Effect Weakens Defence
+#---------------------------------
+REPLACE INTO `item_mods` VALUES(17605, 431, 1);# Acid Dagger
+REPLACE INTO `item_mods` VALUES(17606, 431, 1);# Corrosive Dagger +1
+REPLACE INTO `item_mods` VALUES(18010, 431, 1);# Melt Dagger
+REPLACE INTO `item_mods` VALUES(16501, 431, 1);# Acid Knife
+REPLACE INTO `item_mods` VALUES(17608, 431, 1);# Corrosive Knife
+REPLACE INTO `item_mods` VALUES(18011, 431, 1);# Melt Knife
+REPLACE INTO `item_mods` VALUES(16479, 431, 1);# Acid Kukri
+REPLACE INTO `item_mods` VALUES(16494, 431, 1);# Corrosive Kukri
+REPLACE INTO `item_mods` VALUES(18013, 431, 1);# Melt Kukri
+REPLACE INTO `item_mods` VALUES(16459, 431, 1);# Acid Baselard
+REPLACE INTO `item_mods` VALUES(17607, 431, 1);# Corrosive Baselard
+REPLACE INTO `item_mods` VALUES(18012, 431, 1);# Melt Baselard
+REPLACE INTO `item_mods` VALUES(16430, 431, 1);# Acid Claws 
+REPLACE INTO `item_mods` VALUES(17487, 431, 1);# Corrosive Claws
+REPLACE INTO `item_mods` VALUES(18357, 431, 1);# Melt Claws
+REPLACE INTO `item_mods` VALUES(18410, 431, 1);# Melt Katana
+REPLACE INTO `item_mods` VALUES(16908, 431, 1);# Yoto
+REPLACE INTO `item_mods` VALUES(17768, 431, 1);# Yoto +1
+REPLACE INTO `item_mods` VALUES(17694, 431, 1);# Guespiere
+
+#Additional Effect Weakens attacks
+#---------------------------------
+REPLACE INTO `item_mods` VALUES(18088, 431, 1);# Dreizack
+REPLACE INTO `item_mods` VALUES(18318, 431, 1);# Amanomurakumo
+ 
+
+#Relic Weapons 
+#-----------------
+REPLACE INTO `item_mods` VALUES(18276, 431, 1);# Excalibur -- chance to convert 25% of health to extra damage as an additiona effect
+REPLACE INTO `item_mods` VALUES(18306, 431, 1);# Apocalypse -- chance to give Blind
+REPLACE INTO `item_mods` VALUES(18270, 431, 1);# Mandau -- chance to poison target
+REPLACE INTO `item_mods` VALUES(18294, 431, 1);# Bravura -- chance to Impair Evasion
+REPLACE INTO `item_mods` VALUES(18300, 431, 1);# Gungnir -- weakens Defense
+
+
+# Arrows and bolts Additional Effect mods
+#----------------------------------------
+REPLACE INTO `item_mods` VALUES(18696, 431, 1);# Paralysis arrow
+REPLACE INTO `item_mods` VALUES(17324, 431, 1);# Lightning arrow
+REPLACE INTO `item_mods` VALUES(17323, 431, 1);# Ice arrow
+REPLACE INTO `item_mods` VALUES(17322, 431, 1);# Fire arrow
+REPLACE INTO `item_mods` VALUES(18159, 431, 1);# Demon arrow
+REPLACE INTO `item_mods` VALUES(18158, 431, 1);# Sleep arrow
+REPLACE INTO `item_mods` VALUES(18699, 431, 1);# Earth arrow
+REPLACE INTO `item_mods` VALUES(18700, 431, 1);# Wind arrow
+REPLACE INTO `item_mods` VALUES(18698, 431, 1);# Water arrow
+REPLACE INTO `item_mods` VALUES(17325, 431, 1);# Kabura arrow
+REPLACE INTO `item_mods` VALUES(18157, 431, 1);# Poison Arrow
+
+REPLACE INTO `item_mods` VALUES(18740, 431, 1);# Combat Casters Arrow
+REPLACE INTO `item_mods` VALUES(17329, 431, 1);# Patriarch Protector's Arrow
+REPLACE INTO `item_mods` VALUES(17327, 431, 1);# Grand Knight Arrow
+REPLACE INTO `item_mods` VALUES(18738, 431, 1);# Temple Knight's Arrow
+
+REPLACE INTO `item_mods` VALUES(18152, 431, 1);# Venom bolt
+REPLACE INTO `item_mods` VALUES(18149, 431, 1);# Sleep bolt
+REPLACE INTO `item_mods` VALUES(18151, 431, 1);# Bloody Bolt
+REPLACE INTO `item_mods` VALUES(18150, 431, 1);# Blind bolt
+REPLACE INTO `item_mods` VALUES(18160, 431, 1);# Spartan Bullet
+REPLACE INTO `item_mods` VALUES(18148, 431, 1);# Acid Bolt
+REPLACE INTO `item_mods` VALUES(18153, 431, 1);# Holy Bolt
+
+
+#-------------------------------------------
+#ADDITIONAL EFFECT  ARMOUR
+#-------------------------------------------
+
+REPLACE INTO `item_mods` VALUES(14166, 169, 1);# Desert Boots
+
+
+
+
