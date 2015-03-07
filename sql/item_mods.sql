@@ -21377,7 +21377,7 @@ REPLACE INTO `item_mods` VALUES(18729, 431, 1); Djinn Arm
 -- HP DRAIN Additional Effects
 ----------------------------
 REPLACE INTO `item_mods` VALUES(16777, 431, 1);# Death-scythe
-REPLACE INTO `item_mods` VALUES(16791, 421, 1);# Death-scythe +1
+REPLACE INTO `item_mods` VALUES(16791, 431, 1);# Death-scythe +1
 REPLACE INTO `item_mods` VALUES(17510, 431, 1);# Vampiric Claws 
 REPLACE INTO `item_mods` VALUES(17562, 431, 1);# Revenging Staff +1
 REPLACE INTO `item_mods` VALUES(17561, 431, 1);# Revenging Staff
@@ -21444,7 +21444,7 @@ REPLACE INTO `item_mods` VALUES(16693, 431, 1);# Poison Katars +1
 REPLACE INTO `item_mods` VALUES(16909, 431, 1);# Kororito
 REPLACE INTO `item_mods` VALUES(17769, 431, 1);# Kororito +1
 REPLACE INTO `item_mods` VALUES(17937, 431, 1);# Leopard Axe
-REPLACE INTO `item_mods` VALUES(000, 431, 1);# 
+
 
 #Additonal Effect Blind
 #----------------------
