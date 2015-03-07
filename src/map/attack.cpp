@@ -26,6 +26,8 @@
 #include "attackround.h"
 #include "attack.h"
 
+#include <math.h>
+
 /************************************************************************
 *																		*
 *  Constructor.															*
