@@ -618,23 +618,6 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 
 	map_session_data->server_packet_id += 1;
 
-	// собираем большой пакет, состоящий из нескольких маленьких
-
-	CBasicPacket* PSmallPacket;
-
-	*buffsize = FFXI_HEADER_SIZE;
-
-	while(!PChar->isPacketListEmpty() && *buffsize + PChar->firstPacketSize()*2 < map_config.buffer_size )
-	{
-		PSmallPacket = PChar->popPacket();
-
-		PSmallPacket->setCode(map_session_data->server_packet_id);
-		memcpy(buff+*buffsize, PSmallPacket, PSmallPacket->getSize()*2);
-
-		*buffsize += PSmallPacket->getSize()*2;
-
-		delete PSmallPacket;
-	}
 	return 0;
 }
 
@@ -658,15 +641,44 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 	// сохранение текущего времени (32 BIT!)
 	WBUFL(buff,8) = (uint32)time(nullptr);
 
-	//Сжимаем данные без учета заголовка
-	//Возвращаемый размер в 8 раз больше реальных данных
-	uint32 PacketSize = zlib_compress(buff+FFXI_HEADER_SIZE, *buffsize-FFXI_HEADER_SIZE, PTempBuff, *buffsize, zlib_compress_table);
+    // собираем большой пакет, состоящий из нескольких маленьких
+    CCharEntity *PChar = map_session_data->PChar;
+    CBasicPacket* PSmallPacket;
+    uint32 PacketSize = UINT32_MAX;
+    uint32 PacketCount = PChar->getPacketCount();
+    uint8 packets = 0;
+
+    while (PacketSize > 1400 - FFXI_HEADER_SIZE - 16) //max size for client to accept
+    {
+        *buffsize = FFXI_HEADER_SIZE;
+        PacketList_t packetList = PChar->getPacketList();
+        packets = 0;
+
+        while (!packetList.empty() && *buffsize + packetList.front()->getSize() * 2 < map_config.buffer_size && 
+            packets < PacketCount)
+        {
+            PSmallPacket = packetList.front();
+
+            PSmallPacket->setCode(map_session_data->server_packet_id);
+            memcpy(buff + *buffsize, PSmallPacket, PSmallPacket->getSize() * 2);
+
+            *buffsize += PSmallPacket->getSize() * 2;
+            packetList.pop_front();
+            packets++;
+        }
+
+        //Сжимаем данные без учета заголовка
+        //Возвращаемый размер в 8 раз больше реальных данных
+        PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, *buffsize - FFXI_HEADER_SIZE, PTempBuff, *buffsize, zlib_compress_table);
+        WBUFL(PTempBuff, (PacketSize + 7) / 8) = PacketSize;
+
+        PacketSize = (PacketSize + 7) / 8 + 4;
+
+        PacketCount /= 2;
+    }
+    PChar->erasePackets(packets);
 
 	//Запись размера данных без учета заголовка
-	WBUFL(PTempBuff,(PacketSize+7)/8) = PacketSize;
-
-	//Расчет hash'a также без учета заголовка, но с учетом записанного выше размера данных
-	PacketSize = (PacketSize+7)/8+4;
 	uint8 hash[16];
 	md5((uint8*)PTempBuff, hash, PacketSize);
 	memcpy(PTempBuff+PacketSize, hash, 16);
@@ -698,10 +710,6 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
 	*buffsize = PacketSize+FFXI_HEADER_SIZE;
 
-	if (*buffsize > 1350)
-	{
-		ShowWarning(CL_YELLOW"send_parse: packet is very big <%u>\n" CL_RESET,*buffsize);
-	}
 	return 0;
 }
 

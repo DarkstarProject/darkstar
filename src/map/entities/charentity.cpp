@@ -207,15 +207,6 @@ void CCharEntity::clearPacketList()
 	}
 }
 
-void CCharEntity::resetPetZoningInfo()
-{
-	// reset the petZoning info
-	petZoningInfo.petHP = 0;
-	petZoningInfo.petTP = 0;
-	petZoningInfo.respawnPet = false;
-	petZoningInfo.petType = PETTYPE_AVATAR;
-}
-
 void CCharEntity::pushPacket(CBasicPacket* packet)
 {
     std::lock_guard<std::mutex> lk(m_PacketListMutex);
@@ -230,6 +221,34 @@ CBasicPacket* CCharEntity::popPacket()
 	return PPacket;
 }
 
+PacketList_t CCharEntity::getPacketList()
+{
+    std::lock_guard<std::mutex> lk(m_PacketListMutex);
+    return PacketList;
+}
+
+size_t CCharEntity::getPacketCount()
+{
+    std::lock_guard<std::mutex> lk(m_PacketListMutex);
+    return PacketList.size();
+}
+
+void CCharEntity::erasePackets(uint8 num)
+{
+    for (auto i = 0; i < num; i++)
+    {
+        delete popPacket();
+    }
+}
+
+void CCharEntity::resetPetZoningInfo()
+{
+    // reset the petZoning info
+    petZoningInfo.petHP = 0;
+    petZoningInfo.petTP = 0;
+    petZoningInfo.respawnPet = false;
+    petZoningInfo.petType = PETTYPE_AVATAR;
+}
 /************************************************************************
 *																		*
 *  Возвращаем контейнер с указанным ID. Если ID выходит за рамки, то	*
