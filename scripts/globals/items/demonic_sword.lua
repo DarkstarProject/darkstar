@@ -1,9 +1,10 @@
 -----------------------------------------
 -- ID: 16936
--- Item: Demonic Sword
--- Additional Effect: Darkness Damage
+-- Item: Demonic_Sword
+-- Additional Effect: Dark Damage
 -----------------------------------------
 
+package.loaded["scripts/globals/magic"] = nil;
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
@@ -17,7 +18,7 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
-        local dmg = math.random(5,21);
+        local dmg = math.random(3,10);
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
@@ -31,6 +32,6 @@ function onAdditionalEffect(player,target,damage)
             message = 167;
         end
 
-        return SUBEFFECT_DARKNESS_DAMAGE,message,dmg;
+        return SUBEFFECT_DARK_DAMAGE,message,dmg;
     end
 end;

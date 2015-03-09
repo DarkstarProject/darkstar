@@ -4,15 +4,15 @@
 -- Additional Effect: Water Damage
 -----------------------------------------
 
+package.loaded["scripts/globals/magic"] = nil;
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
 -----------------------------------
 -- onAdditionalEffect Action
 -----------------------------------
-
 function onAdditionalEffect(player,target,damage)
-    local chance = 5;
+    local chance = 10;
 
     if (math.random(0,99) >= chance) then
         return 0,0,0;

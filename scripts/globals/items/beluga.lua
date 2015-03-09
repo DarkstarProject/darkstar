@@ -1,23 +1,23 @@
 -----------------------------------------
--- ID: Beluga
--- Beluga
--- Additional Effect: Ice Damage
+-- ID: 18953
+-- Item: Beluga
+-- Additional Effect: Water Damage
 -----------------------------------------
 
+package.loaded["scripts/globals/magic"] = nil;
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
 -----------------------------------
 -- onAdditionalEffect Action
 -----------------------------------
-
 function onAdditionalEffect(player,target,damage)
     local chance = 10;
 
     if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
-        local dmg = math.random(7,21);
+        local dmg = math.random(3,10);
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;

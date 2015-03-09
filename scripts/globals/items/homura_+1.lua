@@ -1,9 +1,10 @@
 -----------------------------------------
 -- ID: 16986
--- Item: Homura +1
+-- Item: Homura +!
 -- Additional Effect: Fire Damage
 -----------------------------------------
 
+package.loaded["scripts/globals/magic"] = nil;
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
@@ -17,7 +18,7 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
-        local dmg = math.random(6,23);
+        local dmg = math.random(3,10);
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
