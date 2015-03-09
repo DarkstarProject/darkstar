@@ -4,7 +4,7 @@
 -- Additional Effect: Wind Damage
 -----------------------------------------
 
-package.loaded["scripts/globals/magic"] = nil;
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 

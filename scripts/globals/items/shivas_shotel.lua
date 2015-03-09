@@ -3,7 +3,7 @@
 -- Item: Shiva's Shotel
 -----------------------------------------
 
-package.loaded["scripts/globals/magic"] = nil;
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 

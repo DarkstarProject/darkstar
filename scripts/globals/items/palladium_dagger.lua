@@ -4,7 +4,7 @@
 -- Additional Effect: Wind Damage
 -----------------------------------------
 
-package.loaded["scripts/globals/magic"] = nil;
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
@@ -31,6 +31,6 @@ function onAdditionalEffect(player,target,damage)
 		if (dmg < 0) then
 			message = 167;
 		end
-    end
     return SUBEFFECT_WIND_DAMAGE,message,dmg;
+	end
 end;

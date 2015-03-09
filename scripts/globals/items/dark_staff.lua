@@ -1,7 +1,7 @@
 -----------------------------------------
--- ID: 17316
--- Item: Bomb Arm
--- Additional Effect: Fire Damage
+-- ID: 17559
+-- Item: Dark Staff
+-- Additional Effect: Dark Damage
 -----------------------------------------
 
 
@@ -22,16 +22,16 @@ function onAdditionalEffect(player,target,damage)
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
-        dmg = addBonusesAbility(player, ELE_FIRE, target, dmg, params);
-        dmg = dmg * applyResistanceAddEffect(player,target,ELE_FIRE,0);
-        dmg = adjustForTarget(target,dmg,ELE_FIRE);
-        dmg = finalMagicNonSpellAdjustments(player,target,ELE_FIRE,dmg);
+        dmg = addBonusesAbility(player, ELE_DARK, target, dmg, params);
+        dmg = dmg * applyResistanceAddEffect(player,target,ELE_DARK,0);
+        dmg = adjustForTarget(target,dmg,ELE_DARK);
+        dmg = finalMagicNonSpellAdjustments(player,target,ELE_DARK,dmg);
 
         local message = 163;
         if (dmg < 0) then
             message = 167;
         end
 
-        return SUBEFFECT_FIRE_DAMAGE,message,dmg;
+        return SUBEFFECT_DARKNESS_DAMAGE,message,dmg;
     end
 end;

@@ -4,7 +4,7 @@
 -- Additional Effect: Dark Damage
 -----------------------------------------
 
-package.loaded["scripts/globals/magic"] = nil;
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
@@ -32,6 +32,6 @@ function onAdditionalEffect(player,target,damage)
             message = 167;
         end
 
-        return SUBEFFECT_DARK_DAMAGE,message,dmg;
+        return SUBEFFECT_DARKNESS_DAMAGE,message,dmg;
     end
 end;
