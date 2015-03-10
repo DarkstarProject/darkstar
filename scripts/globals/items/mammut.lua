@@ -1,8 +1,9 @@
 -----------------------------------------
 -- ID: 18503
--- Item: Mammut
+-- Item: Mammut 
 -- Additional Effect: Ice Damage
 -----------------------------------------
+
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
@@ -17,7 +18,7 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
-        local dmg = math.random(4,15);
+        local dmg = math.random(3,10);
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
