@@ -35,7 +35,7 @@ function onSpellCast(caster,target,spell)
         return EFFECT_SLOW;
     end
 
-    if(target:addStatusEffect(EFFECT_SLOW,200,0,getBlueEffectDuration(caster,resist,EFFECT_SLOW)) then
+    if (target:addStatusEffect(EFFECT_SLOW,200,0,getBlueEffectDuration(caster,resist,EFFECT_SLOW))) then
         spell:setMsg(236);
     else
         spell:setMsg(75);
