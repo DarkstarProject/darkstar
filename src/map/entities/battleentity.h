@@ -25,6 +25,7 @@
 #define _BATTLEENTITY_H
 
 #include <vector>
+#include <unordered_map>
 
 #include "../items/item_weapon.h"
 
