@@ -4985,6 +4985,48 @@ inline int32 CLuaBaseEntity::setMod(lua_State *L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::addPetMod(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    ((CBattleEntity*)m_PBaseEntity)->addPetModifier(
+        lua_tointeger(L, 1),
+        lua_tointeger(L, 2));
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::delPetMod(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    ((CBattleEntity*)m_PBaseEntity)->delPetModifier(
+        lua_tointeger(L, 1),
+        lua_tointeger(L, 2));
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::setPetMod(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    ((CBattleEntity*)m_PBaseEntity)->setPetModifier(
+        lua_tointeger(L, 1),
+        lua_tointeger(L, 2));
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::getMobMod(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -5431,6 +5473,24 @@ inline int32 CLuaBaseEntity::injectPacket(lua_State *L)
             ((CCharEntity*)m_PBaseEntity)->pushPacket(PPacket);
         }
         fclose(File);
+        FILE* File = fopen("testmerit2", "rb");
+
+        if (File)
+        {
+            CBasicPacket * PPacket = new CBasicPacket();
+
+            fseek(File, 1, SEEK_SET);
+            uint16 returnSize = fread(&size, 1, 1, File);
+
+            if (size <= 256)
+            {
+                fseek(File, 0, SEEK_SET);
+                uint16 read_elements = fread(PPacket, 1, size * 2, File);
+
+                ((CCharEntity*)m_PBaseEntity)->pushPacket(PPacket);
+            }
+            fclose(File);
+        }
     }else{
         ShowError(CL_RED"CLuaBaseEntity::injectPacket : Cannot open file\n" CL_RESET);
     }

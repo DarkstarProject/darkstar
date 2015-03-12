@@ -203,6 +203,11 @@ int16 CItemArmor::getModifier(uint16 mod)
 	return 0;
 }
 
+void CItemArmor::addPetModifier(CModifier* modifier)
+{
+    petModList.push_back(modifier);
+}
+
 void CItemArmor::addLatent(CLatentEffect* latent)
 {
 	latentList.push_back(latent);

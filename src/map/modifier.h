@@ -392,10 +392,6 @@ enum MODIFIER
     // Corsair
     MOD_EXP_BONUS                 = 0x17E, // (modId = 382)
 
-    MOD_PET_MABB                  = 0x138, // Tracks totals (modId = 312)
-    MOD_PET_MACC                  = 0x139, // Tracks totals (modId = 313)
-    MOD_PET_ATTP                  = 0x13A, // Tracks totals (modId = 314)
-    MOD_PET_ACC                   = 0x13B, // Tracks totals (modId = 315)
     MOD_DMG_REFLECT               = 0x13C, // Tracks totals (modId = 316)
     MOD_ROLL_ROGUES               = 0x13D, // Tracks totals (modId = 317)
     MOD_ROLL_GALLANTS             = 0x13E, // Tracks totals (modId = 318)
@@ -570,13 +566,13 @@ enum MODIFIER
     MOD_LOGGING_RESULT            = 0x202, // Improves logging results (modId = 514)
     MOD_MINNING_RESULT            = 0x203, // Improves mining results (modId = 515)
 
+    // MOD_SPARE = 0x138, // (modId = 312)
+    // MOD_SPARE = 0x139, // (modId = 313)
+    // MOD_SPARE = 0x13A, // (modId = 314)
+    // MOD_SPARE = 0x13B, // (modId = 315)
     // MOD_SPARE = 0x205, // (modId = 517)
 
 };
-
-#define MAX_MODIFIER 517
-
-
 
 /************************************************************************
 *  Modifier Class                                                       *

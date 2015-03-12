@@ -408,6 +408,23 @@ namespace itemutils
 		    }
 	    }
 
+        ret = Sql_Query(SqlHandle, "SELECT itemId, modId, value FROM item_mods_pet WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
+
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                uint16 ItemID = (uint16)Sql_GetUIntData(SqlHandle, 0);
+                uint16 modID = (uint16)Sql_GetUIntData(SqlHandle, 1);
+                int16  value = (int16)Sql_GetIntData(SqlHandle, 2);
+
+                if ((g_pItemList[ItemID]) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
+                {
+                    ((CItemArmor*)g_pItemList[ItemID])->addPetModifier(new CModifier(modID, value));
+                }
+            }
+        }
+
 	    ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value, latentId, latentParam FROM item_latents WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
 	    
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)

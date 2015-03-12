@@ -366,6 +366,10 @@ public:
     int32 delMod(lua_State*);                // Subtracts Modifier Value
     int32 setMod(lua_State*);                // Sets Modifier Value
 
+    int32 addPetMod(lua_State*);
+    int32 delPetMod(lua_State*);
+    int32 setPetMod(lua_State*);
+
     int32 getMobMod(lua_State*);
     int32 setMobMod(lua_State*);
 

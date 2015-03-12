@@ -434,7 +434,7 @@ struct health_t
 };
 
 typedef std::vector<apAction_t> ActionList_t;
-
+class CPetEntity;
 class CBattleEntity : public CBaseEntity
 {
 public:
@@ -520,6 +520,14 @@ public:
 	void 		    saveModifiers(); // save current state of modifiers
 	void 		    restoreModifiers(); // restore to saved state
 
+    void            addPetModifier(uint16 type, int16 amount);
+    void            setPetModifier(uint16 type, int16 amount);
+    void            delPetModifier(uint16 type, int16 amount);
+    void            addPetModifiers(std::vector<CModifier*> *modList);
+    void            delPetModifiers(std::vector<CModifier*> *modList);
+    void            applyPetModifiers(CPetEntity* PPet);
+    void            removePetModifiers(CPetEntity* PPet);
+
     void            ForParty(std::function<void(CBattleEntity*)>);
     void            ForAlliance(std::function<void(CBattleEntity*)>);
 
@@ -549,8 +557,9 @@ private:
 	uint8		m_mlvl;						// ТЕКУЩИЙ уровень главной профессии
 	uint8		m_slvl;						// ТЕКУЩИЙ уровень дополнительной профессии
 
-	int16		m_modStat[MAX_MODIFIER];	// массив модификаторов
-	int16		m_modStatSave[MAX_MODIFIER];	// saved state
+	std::unordered_map<uint16, int16>		m_modStat;	// массив модификаторов
+    std::unordered_map<uint16, int16>		m_modStatSave;	// saved state
+    std::unordered_map<uint16, int16>       m_petMod;
 };
 
 #endif
