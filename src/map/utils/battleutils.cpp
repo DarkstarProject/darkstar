@@ -4060,7 +4060,7 @@ int32 BreathDmgTaken(CBattleEntity* PDefender, int32 damage)
 int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element)
 {
     MODIFIER absorb[8] = { MOD_FIRE_ABSORB, MOD_EARTH_ABSORB, MOD_WATER_ABSORB, MOD_WIND_ABSORB, MOD_ICE_ABSORB, MOD_LTNG_ABSORB, MOD_LIGHT_ABSORB, MOD_DARK_ABSORB };
-    MODIFIER nullptrarray[8] = { MOD_FIRE_nullptr, MOD_EARTH_nullptr, MOD_WATER_nullptr, MOD_WIND_nullptr, MOD_ICE_nullptr, MOD_LTNG_nullptr, MOD_LIGHT_nullptr, MOD_DARK_nullptr };
+    MODIFIER nullptrarray[8] = { MOD_FIRE_NULL, MOD_EARTH_NULL, MOD_WATER_NULL, MOD_WIND_NULL, MOD_ICE_NULL, MOD_LTNG_NULL, MOD_LIGHT_NULL, MOD_DARK_NULL };
 
     float resist = (256 + PDefender->getMod(MOD_UDMGMAGIC)) / 256.0f;
     resist = dsp_max(resist, 0);
@@ -4075,7 +4075,7 @@ int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element)
         WELL512::irand() % 100 < PDefender->getMod(MOD_MAGIC_ABSORB))
         damage = -damage;
     else if ((element && WELL512::irand() % 100 < PDefender->getMod(nullptrarray[element-1])) ||
-        WELL512::irand() % 100 < PDefender->getMod(MOD_MAGIC_nullptr))
+        WELL512::irand() % 100 < PDefender->getMod(MOD_MAGIC_NULL))
         damage = 0;
     else
     {
@@ -4102,7 +4102,7 @@ int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
     if (WELL512::irand() % 100 < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
         WELL512::irand() % 100 < PDefender->getMod(MOD_PHYS_ABSORB))
         damage = -damage;
-    else if (WELL512::irand() % 100 < PDefender->getMod(MOD_nullptr_PHYSICAL_DAMAGE))
+    else if (WELL512::irand() % 100 < PDefender->getMod(MOD_NULL_PHYSICAL_DAMAGE))
         damage = 0;
     else
     {
@@ -4129,7 +4129,7 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     if (WELL512::irand() % 100 < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
         WELL512::irand() % 100 < PDefender->getMod(MOD_PHYS_ABSORB))
         damage = -damage;
-    else if (WELL512::irand() % 100 < PDefender->getMod(MOD_nullptr_PHYSICAL_DAMAGE))
+    else if (WELL512::irand() % 100 < PDefender->getMod(MOD_NULL_PHYSICAL_DAMAGE))
         damage = 0;
     else
     {
