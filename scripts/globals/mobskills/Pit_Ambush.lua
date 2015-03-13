@@ -13,6 +13,11 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
+	if (mob:getID()>=16806237 and mob:getID()<=16806249) then -- Feeler Anltion
+		if (mob:getLocalVar("AMBUSH")==1) then
+			return 1;
+		end
+	end;
     return 0;
 end;
 
@@ -23,6 +28,8 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
 
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,MOBPARAM_WIPE_SHADOWS);
+	mob:untargetable(false);
+	mob:setLocalVar("AMBUSH",1); -- Used it for the last time!
     target:delHP(dmg);
     return dmg;
 end;
