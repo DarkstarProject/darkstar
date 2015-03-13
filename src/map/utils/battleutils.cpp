@@ -4060,7 +4060,7 @@ int32 BreathDmgTaken(CBattleEntity* PDefender, int32 damage)
 int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element)
 {
     MODIFIER absorb[8] = { MOD_FIRE_ABSORB, MOD_EARTH_ABSORB, MOD_WATER_ABSORB, MOD_WIND_ABSORB, MOD_ICE_ABSORB, MOD_LTNG_ABSORB, MOD_LIGHT_ABSORB, MOD_DARK_ABSORB };
-    MODIFIER nullptrarray[8] = { MOD_FIRE_NULL, MOD_EARTH_NULL, MOD_WATER_NULL, MOD_WIND_NULL, MOD_ICE_NULL, MOD_LTNG_NULL, MOD_LIGHT_NULL, MOD_DARK_NULL };
+    MODIFIER nullarray[8] = { MOD_FIRE_NULL, MOD_EARTH_NULL, MOD_WATER_NULL, MOD_WIND_NULL, MOD_ICE_NULL, MOD_LTNG_NULL, MOD_LIGHT_NULL, MOD_DARK_NULL };
 
     float resist = (256 + PDefender->getMod(MOD_UDMGMAGIC)) / 256.0f;
     resist = dsp_max(resist, 0);
@@ -4074,7 +4074,7 @@ int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element)
         (element && WELL512::irand() % 100 < PDefender->getMod(absorb[element-1])) ||
         WELL512::irand() % 100 < PDefender->getMod(MOD_MAGIC_ABSORB))
         damage = -damage;
-    else if ((element && WELL512::irand() % 100 < PDefender->getMod(nullptrarray[element-1])) ||
+    else if ((element && WELL512::irand() % 100 < PDefender->getMod(nullarray[element-1])) ||
         WELL512::irand() % 100 < PDefender->getMod(MOD_MAGIC_NULL))
         damage = 0;
     else
