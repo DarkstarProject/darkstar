@@ -3612,7 +3612,7 @@ INSERT INTO `mob_skill` VALUES (3154,487,2420,'Bane_Of_Tartarus',1,18.0,2000,100
 INSERT INTO `mob_skill` VALUES (3000,349,2153,'animationfungus',1,18.0,2000,1000,4,0,0,0);
 
 -- Alastor Antlion
-INSERT INTO `mob_skill` (`mob_skill_id`, `family_id`, `mob_anim_id`, `mob_skill_name`, `mob_skill_aoe`, `mob_skill_distance`) VALUES ('21', '357', '811', 'Venom_Spray', '4', '10');
-INSERT INTO `mob_skill` (`mob_skill_id`, `family_id`, `mob_anim_id`, `mob_skill_name`, `mob_skill_distance`) VALUES ('20', '357', '810', 'Sand_Pit', '7');
-INSERT INTO `mob_skill` (`mob_skill_id`, `family_id`, `mob_anim_id`, `mob_skill_name`, `mob_skill_aoe`, `mob_skill_distance`) VALUES ('19', '357', '809', 'Sand_Blast', '1', '8');
-INSERT INTO `mob_skill` (`mob_skill_id`, `family_id`, `mob_anim_id`, `mob_skill_name`, `mob_skill_distance`, `mob_prepare_time`) VALUES ('23', '357', '813', 'Mandibular_Bite', '7', '1500');
+INSERT INTO `mob_skill` VALUES (21, 357, 811, 'Venom_Spray', 4, 10.0, 2000, 1000, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (20, 357, 810, 'Sand_Pit', 0, 7.0, 2000, 1000, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (19, 357, 809, 'Sand_Blast', 1, 8.0, 2000, 1000, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (23, 357, 813, 'Mandibular_Bite', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
