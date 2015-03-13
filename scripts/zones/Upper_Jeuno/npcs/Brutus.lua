@@ -27,7 +27,7 @@ end;
 function onTrigger(player,npc)
 
 	ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
-	saveMySon = player:getQuestStatus(JEUNO,SAVE_MY_SON);
+	SaveMySon = player:getQuestStatus(JEUNO,SAVE_MY_SON);
 	wingsOfGold = player:getQuestStatus(JEUNO,WINGS_OF_GOLD);
 	scatIntoShadow = player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW);
 
@@ -46,9 +46,9 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x0066);
         end
-    elseif(ChocobosWounds == QUEST_COMPLETED and saveMySon == QUEST_AVAILABLE) then
+    elseif(ChocobosWounds == QUEST_COMPLETED and SaveMySon == QUEST_AVAILABLE) then
 		player:startEvent(0x0016);
-    elseif(saveMySon == QUEST_COMPLETED and player:getQuestStatus(JEUNO,PATH_OF_THE_BEASTMASTER) == QUEST_AVAILABLE) then
+    elseif(SaveMySon == QUEST_COMPLETED and player:getQuestStatus(JEUNO,PATH_OF_THE_BEASTMASTER) == QUEST_AVAILABLE) then
     	player:startEvent(0x0046);
 	elseif(mLvl >= AF1_QUEST_LEVEL and mJob == 9 and wingsOfGold == QUEST_AVAILABLE) then
 		if(player:getVar("wingsOfGold_shortCS") == 1) then
