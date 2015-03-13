@@ -1012,10 +1012,6 @@ MOD_ZANSHIN			= 0x132
 MOD_UTSUSEMI			= 0x133
 MOD_NINJA_TOOL			= 0x134
 MOD_BLUE_POINTS			= 0x135
-MOD_PET_MABB			= 0x138
-MOD_PET_MACC			= 0x139
-MOD_PET_ATTP			= 0x13A
-MOD_PET_ACC			= 0x13B
 MOD_DMG_REFLECT			= 0x13C
 MOD_ROLL_ROGUES			= 0x13D
 MOD_ROLL_GALLANTS		= 0x13E
@@ -1231,6 +1227,10 @@ MOD_LOGGING_RESULT            = 0x202 -- Improves logging results (modId = 514)
 MOD_MINNING_RESULT            = 0x203 -- Improves mining results (modId = 515)
 MOD_ABSORB_DMG_TO_MP          = 0x204 -- Unlike PLD gear mod, works on all damage types (Ethereal Earring) (modId = 516)
 
+-- MOD_SPARE = 0x138 -- (modId = 312)
+-- MOD_SPARE = 0x139 -- (modId = 313)
+-- MOD_SPARE = 0x13A -- (modId = 314)
+-- MOD_SPARE = 0x13B -- (modId = 315)
 -- MOD_SPARE = 0x205 -- (modId = 517)
 
 ------------------------------------

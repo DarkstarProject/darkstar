@@ -99,13 +99,13 @@ INSERT INTO `augments` VALUES ('63', '0', '26', '33', '0'); -- Rng.Accuracy+33
 INSERT INTO `augments` VALUES ('64', '0', '30', '33', '0'); -- Mag. Acc.+33
 INSERT INTO `augments` VALUES ('65', '0', '23', '33', '0'); -- Attack+33
 INSERT INTO `augments` VALUES ('66', '0', '24', '33', '0'); -- Rng.Attack+33
-INSERT INTO `augments` VALUES ('67', '0', '0', '0', '0'); -- All songs+1
-INSERT INTO `augments` VALUES ('68', '0', '25', '1', '0'); -- Accuracy+33 Attack+33
-INSERT INTO `augments` VALUES ('68', '0', '23', '1', '0'); -- Cont.
-INSERT INTO `augments` VALUES ('69', '0', '0', '0', '0'); -- Rng.Acc.+33 Rng.Atk.+33
-INSERT INTO `augments` VALUES ('69', '0', '0', '0', '0'); -- Cont.
-INSERT INTO `augments` VALUES ('70', '0', '0', '0', '0'); -- Mag. Acc.+33 Mag.Atk.Bns+33
-INSERT INTO `augments` VALUES ('70', '0', '0', '0', '0'); -- Cont.
+INSERT INTO `augments` VALUES ('67', '0', '452', '1', '0'); -- All songs+1
+INSERT INTO `augments` VALUES ('68', '0', '25', '33', '0'); -- Accuracy+33 Attack+33
+INSERT INTO `augments` VALUES ('68', '0', '23', '33', '0'); -- Cont.
+INSERT INTO `augments` VALUES ('69', '0', '26', '33', '0'); -- Rng.Acc.+33 Rng.Atk.+33
+INSERT INTO `augments` VALUES ('69', '0', '25', '33', '0'); -- Cont.
+INSERT INTO `augments` VALUES ('70', '0', '30', '33', '0'); -- Mag. Acc.+33 Mag.Atk.Bns+33
+INSERT INTO `augments` VALUES ('70', '0', '28', '33', '0'); -- Cont.
 INSERT INTO `augments` VALUES ('71', '0', '160', '-1', '0'); -- Damage Taken -1%
 INSERT INTO `augments` VALUES ('72', '0', '0', '0', '0'); -- 72 currently unused. Leave at zero.
 INSERT INTO `augments` VALUES ('73', '0', '0', '0', '0'); -- 73 currently unused. Leave at zero.
@@ -135,39 +135,39 @@ INSERT INTO `augments` VALUES ('94', '0', '0', '0', '0');
 INSERT INTO `augments` VALUES ('95', '0', '0', '0', '0');
 -- End unused block
 
-INSERT INTO `augments` VALUES ('96', '0', '0', '0', '1'); -- Pet: Accuracy+1 Rng.Acc+1
-INSERT INTO `augments` VALUES ('96', '0', '0', '0', '1'); -- Cont.
-INSERT INTO `augments` VALUES ('97', '0', '0', '0', '1'); -- Pet: Attack+1 Rng.Atk.+1
-INSERT INTO `augments` VALUES ('97', '0', '0', '0', '1'); -- Cont.
-INSERT INTO `augments` VALUES ('98', '0', '0', '0', '1'); -- Pet: Evasion+1
-INSERT INTO `augments` VALUES ('99', '0', '0', '0', '1'); -- Pet: DEF+1
-INSERT INTO `augments` VALUES ('100', '0', '0', '0', '1'); -- Pet: Mag.Acc.+1
-INSERT INTO `augments` VALUES ('101', '0', '0', '0', '1'); -- Pet: Mag.Atk.Bns.+1
-INSERT INTO `augments` VALUES ('102', '0', '0', '0', '1'); -- Pet: Crit.hit rate+1
-INSERT INTO `augments` VALUES ('103', '0', '0', '0', '1'); -- Pet: Enemy crit. hit rate -1
-INSERT INTO `augments` VALUES ('104', '0', '0', '0', '1'); -- Pet: Enmity+1
-INSERT INTO `augments` VALUES ('105', '0', '0', '0', '1'); -- Pet: Enmity-1
-INSERT INTO `augments` VALUES ('106', '0', '0', '0', '1'); -- Pet: Accuracy+1 Rng.Acc.+1
-INSERT INTO `augments` VALUES ('106', '0', '0', '0', '1'); -- Cont.
-INSERT INTO `augments` VALUES ('107', '0', '0', '0', '1'); -- Pet: Attack+1 Rng.Atk.+1
-INSERT INTO `augments` VALUES ('107', '0', '0', '0', '1'); -- Cont.
-INSERT INTO `augments` VALUES ('108', '0', '0', '0', '1'); -- Pet: Mag.Acc.+1 Mag.Atk.Bns.+1
-INSERT INTO `augments` VALUES ('108', '0', '0', '0', '1'); -- Cont.
-INSERT INTO `augments` VALUES ('109', '0', '0', '0', '1'); -- Pet: Dbl.Atk.+1 Crit.hit rate+1
-INSERT INTO `augments` VALUES ('109', '0', '0', '0', '1'); -- Cont.
-INSERT INTO `augments` VALUES ('110', '0', '0', '0', '1'); -- Pet: Regen+1
-INSERT INTO `augments` VALUES ('111', '0', '0', '0', '1'); -- Pet: Haste+1
-INSERT INTO `augments` VALUES ('112', '0', '0', '0', '1'); -- Pet: Damage taken -1%
-INSERT INTO `augments` VALUES ('113', '0', '0', '0', '1'); -- Pet: Rng.Acc.+1
-INSERT INTO `augments` VALUES ('114', '0', '0', '0', '1'); -- Pet: Rng.Atk.+1
-INSERT INTO `augments` VALUES ('115', '0', '0', '0', '1'); -- Pet: Store TP+1
-INSERT INTO `augments` VALUES ('116', '0', '0', '0', '1'); -- Pet: Subtle Blow+1
-INSERT INTO `augments` VALUES ('117', '0', '0', '0', '1'); -- Pet: Mag. Evasion+1
-INSERT INTO `augments` VALUES ('118', '0', '0', '0', '1'); -- Pet: Phys. dmg. taken -1%
-INSERT INTO `augments` VALUES ('119', '0', '0', '0', '1'); -- Pet: Mag.Def.Bns.+1
+INSERT INTO `augments` VALUES ('96', '0', '25', '1', '1'); -- Pet: Accuracy+1 Rng.Acc+1
+INSERT INTO `augments` VALUES ('96', '0', '26', '1', '1'); -- Cont.
+INSERT INTO `augments` VALUES ('97', '0', '23', '1', '1'); -- Pet: Attack+1 Rng.Atk.+1
+INSERT INTO `augments` VALUES ('97', '0', '24', '1', '1'); -- Cont.
+INSERT INTO `augments` VALUES ('98', '0', '68', '1', '1'); -- Pet: Evasion+1
+INSERT INTO `augments` VALUES ('99', '0', '1', '1', '1'); -- Pet: DEF+1
+INSERT INTO `augments` VALUES ('100', '0', '30', '1', '1'); -- Pet: Mag.Acc.+1
+INSERT INTO `augments` VALUES ('101', '0', '28', '1', '1'); -- Pet: Mag.Atk.Bns.+1
+INSERT INTO `augments` VALUES ('102', '0', '165', '1', '1'); -- Pet: Crit.hit rate+1
+INSERT INTO `augments` VALUES ('103', '0', '166', '1', '1'); -- Pet: Enemy crit. hit rate -1
+INSERT INTO `augments` VALUES ('104', '0', '27', '1', '1'); -- Pet: Enmity+1
+INSERT INTO `augments` VALUES ('105', '0', '27', '-1', '1'); -- Pet: Enmity-1
+INSERT INTO `augments` VALUES ('106', '0', '25', '1', '1'); -- Pet: Accuracy+1 Rng.Acc.+1
+INSERT INTO `augments` VALUES ('106', '0', '26', '1', '1'); -- Cont.
+INSERT INTO `augments` VALUES ('107', '0', '23', '1', '1'); -- Pet: Attack+1 Rng.Atk.+1
+INSERT INTO `augments` VALUES ('107', '0', '24', '1', '1'); -- Cont.
+INSERT INTO `augments` VALUES ('108', '0', '30', '1', '1'); -- Pet: Mag.Acc.+1 Mag.Atk.Bns.+1
+INSERT INTO `augments` VALUES ('108', '0', '28', '1', '1'); -- Cont.
+INSERT INTO `augments` VALUES ('109', '0', '288', '1', '1'); -- Pet: Dbl.Atk.+1 Crit.hit rate+1
+INSERT INTO `augments` VALUES ('109', '0', '165', '1', '1'); -- Cont.
+INSERT INTO `augments` VALUES ('110', '0', '370', '1', '1'); -- Pet: Regen+1
+INSERT INTO `augments` VALUES ('111', '0', '384', '1', '1'); -- Pet: Haste+1
+INSERT INTO `augments` VALUES ('112', '0', '160', '-1', '1'); -- Pet: Damage taken -1%
+INSERT INTO `augments` VALUES ('113', '0', '26', '1', '1'); -- Pet: Rng.Acc.+1
+INSERT INTO `augments` VALUES ('114', '0', '24', '1', '1'); -- Pet: Rng.Atk.+1
+INSERT INTO `augments` VALUES ('115', '0', '73', '1', '1'); -- Pet: Store TP+1
+INSERT INTO `augments` VALUES ('116', '0', '289', '1', '1'); -- Pet: Subtle Blow+1
+INSERT INTO `augments` VALUES ('117', '0', '31', '1', '1'); -- Pet: Mag. Evasion+1
+INSERT INTO `augments` VALUES ('118', '0', '161', '-1', '1'); -- Pet: Phys. dmg. taken -1%
+INSERT INTO `augments` VALUES ('119', '0', '29', '1', '1'); -- Pet: Mag.Def.Bns.+1
 INSERT INTO `augments` VALUES ('120', '0', '0', '0', '1'); -- Avatar: Mag.Atk.Bns.+1
 INSERT INTO `augments` VALUES ('121', '0', '0', '0', '1'); -- Pet: Breath +1
-INSERT INTO `augments` VALUES ('122', '0', '0', '0', '1'); -- Pet: TP Bonus +20
+INSERT INTO `augments` VALUES ('122', '0', '345', '20', '1'); -- Pet: TP Bonus +20
 INSERT INTO `augments` VALUES ('123', '0', '0', '0', '0'); -- 123 to 127 currently unused. Leave at zero.
 INSERT INTO `augments` VALUES ('124', '0', '0', '0', '0');
 INSERT INTO `augments` VALUES ('125', '0', '0', '0', '0');
