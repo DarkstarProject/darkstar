@@ -10,6 +10,8 @@ require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Buburimu/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
+require("scripts/globals/status");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
@@ -27,12 +29,11 @@ function onMobEngaged(mob,target)
            for additionalmob = 16941489, 16941665, 1 do
 		       if(additionalmob ~= 16941666 or additionalmob ~= 16941576 or additionalmob ~= 16941552 or additionalmob ~= 16941520)then		
 		         SpawnMob(additionalmob);
+				 GetMobByID(additionalmob):setMobMod(MOBMOD_MAIN_2HOUR,1);
 		      end  		   
 		   end
      SetServerVariable("[DynaBuburimu]Boss_Trigger",1);
-   end
-
-		   
+   end		   
 end;
                			
 -----------------------------------

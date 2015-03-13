@@ -39,7 +39,4 @@ function onMobDeath(mob,killer)
 		--print("addtime 20min");
 		mob:addInBattlefieldList();
 	end
-	
-	
-	
 end;

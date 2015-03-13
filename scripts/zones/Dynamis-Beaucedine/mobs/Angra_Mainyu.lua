@@ -22,9 +22,16 @@ end;
 function onMobEngaged(mob,target)
 	
 	SpawnMob(17326082):updateEnmity(target); -- Fire_Pukis
+	GetMobByID(17326082):setMobMod(MOBMOD_MAIN_2HOUR,1);
+	
 	SpawnMob(17326083):updateEnmity(target); -- Poison_Pukis
+	GetMobByID(17326083):setMobMod(MOBMOD_MAIN_2HOUR,1);
+	
 	SpawnMob(17326084):updateEnmity(target); -- Wind_Pukis
+	GetMobByID(17326084):setMobMod(MOBMOD_MAIN_2HOUR,1);
+	
 	SpawnMob(17326085):updateEnmity(target); -- Petro_Pukis
+	GetMobByID(17326085):setMobMod(MOBMOD_MAIN_2HOUR,1);
 	
 end;
 

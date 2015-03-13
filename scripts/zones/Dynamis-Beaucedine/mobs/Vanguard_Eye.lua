@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Dynamis-Beaucedine/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/dynamis");
+require("scripts/globals/status");
 require("scripts/zones/Dynamis-Beaucedine/TextIDs");
 
 -----------------------------------
@@ -41,6 +42,7 @@ function onMobEngaged(mob,target)
 								SpawnMob(DynaMob):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 								GetMobByID(DynaMob):setPos(X,Y,Z);
 								GetMobByID(DynaMob):setSpawn(X,Y,Z);
+								GetMobByID(DynaMob):setMobMod(MOBMOD_MAIN_2HOUR,1);
 								-- Spawn Pet for BST, DRG, and SMN
 								if(mobNBR == 9 or mobNBR == 14 or mobNBR == 15) then
 									SpawnMob(DynaMob+1):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());

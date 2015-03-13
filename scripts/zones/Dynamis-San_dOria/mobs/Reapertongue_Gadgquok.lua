@@ -4,11 +4,14 @@
 -- Boss Trigger for Overlord's Tombstone
 -----------------------------------
 
+require("scripts/globals/status");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
+	mob:setMobMod(MOBMOD_MAIN_2HOUR,1);
 end;
 
 -----------------------------------
