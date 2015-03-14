@@ -541,11 +541,11 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
 
     // Handle Retaliation
     if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_RETALIATION)
-        && battleutils::GetHitRate(PDefender, PAttacker) > WELL512::irand()%100
+        && battleutils::GetHitRate(PDefender, PAttacker)/2 > WELL512::irand()%100
         && isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
     {
         // Retaliation rate is based on player acc vs mob evasion. Missed retaliations do not even display in log.
-        // Other theories exist were not proven or reliably tested (I have to assume to many things to even consider JP translations about weapon delay), this at least has data to back it up.
+        // Other theories exist but were not proven or reliably tested (I have to assume too many things to even consider JP translations about weapon delay), this at least has data to back it up.
         // https://web.archive.org/web/20141228105335/http://www.bluegartr.com/threads/120193-Retaliation-Testing?s=7a6221e10ffdfaa6a7f5e8f0387f787d&p=4620727&viewfull=1#post4620727
         Action->reaction = REACTION_HIT;
         Action->spikesEffect = SUBEFFECT_COUNTER;
