@@ -6,6 +6,7 @@ package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/dynamis");
+require("scripts/globals/status");
 require("scripts/zones/Dynamis-Valkurm/TextIDs");
 
 -----------------------------------
@@ -30,22 +31,21 @@ function onMobEngaged(mob,target)
 	if(mob:getStatPoppedMobs() == false) then
 		mob:setStatPoppedMobs(true);
 		for nb = 1, table.getn(spawnList), 2 do
-			if(mob:getID() == spawnList[nb]) then -- si l'id du mob engager correpond a un ID de la list
-			
+			if(mob:getID() == spawnList[nb]) then -- si l'id du mob engager correpond a un ID de la list - dafux?
 				for nbi = 1, table.getn(spawnList[nb + 1]), 1 do
 					if((nbi % 2) == 0) then X=X+2; Z=Z+2; else X=X-2; Z=Z-2; end			
 					local mobNBR = spawnList[nb + 1][nbi];				
 					--printf("Serjeant_Tombstone => mob %u \n",mobNBR);			
 					if(mobNBR ~= nil) then
 							-- Spawn Mob
-							SpawnMob(mobNBR):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
-							GetMobByID(mobNBR):setPos(X,Y,Z);
-							GetMobByID(mobNBR):setSpawn(X,Y,Z);
-							-- Spawn Pet for BST, DRG, and SMN
-	
+						SpawnMob(mobNBR):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+						GetMobByID(mobNBR):setPos(X,Y,Z);
+						GetMobByID(mobNBR):setSpawn(X,Y,Z);
+						GetMobByID(mobNBR):setMobMod(MOBMOD_MAIN_2HOUR,1);
+							-- Spawn Pet for BST, DRG, and SMN	
 						local MJob = GetMobByID(mobNBR):getMainJob();
-									--	printf("Serjeant_Tombstone => mob %u \n",mobNBR);	
-									--	printf("mobjob %u \n",MJob);
+							--	printf("Serjeant_Tombstone => mob %u \n",mobNBR);	
+							--	printf("mobjob %u \n",MJob);
 						if(MJob == 9 or MJob == 14 or MJob == 15) then
 							-- Spawn Pet for BST , DRG , and SMN  						
 							SpawnMob(mobNBR + 1):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());

@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Dynamis-Tavnazia/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/dynamis");
+require("scripts/globals/status");
 require("scripts/zones/Dynamis-Tavnazia/TextIDs");
 
 -----------------------------------
@@ -39,11 +40,10 @@ function onMobEngaged(mob,target)
 		
 					if(mobNBR ~= nil) then
 							-- Spawn Mob
-							SpawnMob(mobNBR):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
-							GetMobByID(mobNBR):setPos(X,Y,Z);
-							GetMobByID(mobNBR):setSpawn(X,Y,Z);
-	
-		
+						SpawnMob(mobNBR):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+						GetMobByID(mobNBR):setPos(X,Y,Z);
+						GetMobByID(mobNBR):setSpawn(X,Y,Z);
+						GetMobByID(mobNBR):setMobMod(MOBMOD_MAIN_2HOUR,1);
 					end
 				end
 			end
@@ -56,5 +56,4 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
 end;

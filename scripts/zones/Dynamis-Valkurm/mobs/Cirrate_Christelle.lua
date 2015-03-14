@@ -6,6 +6,7 @@ package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/dynamis");
+require("scripts/globals/status");
 require("scripts/zones/Dynamis-Valkurm/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
@@ -49,55 +50,66 @@ if(GetServerVariable("[DynaValkurm]Boss_Trigger")==0)then
            for Nightmare_Hippogryph = 16937377, 16937394, 1 do
 		   -- printf("addmob %u \n",Nightmare_Hippogryph);
 		   SpawnMob(Nightmare_Hippogryph);
+		   GetMobByID(Nightmare_Hippogryph):setMobMod(MOBMOD_MAIN_2HOUR,1);
 		   end
 		   -- print("Nightmare_Sheep:");
            for Nightmare_Sheep = 16937169, 16937189, 1 do
 		   -- printf("addmob %u \n",Nightmare_Sheep);
 		   SpawnMob(Nightmare_Sheep);
+		   GetMobByID(Nightmare_Sheep):setMobMod(MOBMOD_MAIN_2HOUR,1);
 		   end
 		   for Nightmare_Sheep2 = 16937433,16937436, 1 do
 		   -- printf("addmob %u \n",Nightmare_Sheep2);
 		   SpawnMob(Nightmare_Sheep2);
+		   GetMobByID(Nightmare_Sheep2):setMobMod(MOBMOD_MAIN_2HOUR,1);
 		   end		   
 		   -- print("Nightmare_Sabotender:");
            for Nightmare_Sabotender = 16937136, 16937139, 1 do
 		   -- printf("addmob %u \n",Nightmare_Sabotender);
 		   SpawnMob(Nightmare_Sabotender);
+		   GetMobByID(Nightmare_Sabotender):setMobMod(MOBMOD_MAIN_2HOUR,1);
 		   end
 		   -- SpawnMob(16937115);
            for Nightmare_Sabotender2 = 16937312, 16937333, 1 do
 		    -- printf("addmob %u \n",Nightmare_Sabotender2);
 		   SpawnMob(Nightmare_Sabotender2);
+		   GetMobByID(Nightmare_Sabotender2):setMobMod(MOBMOD_MAIN_2HOUR,1);
 		   end
 		   --  print("Nightmare_Manticore:");
 	       for Nightmare_Manticore = 16936987, 16937011, 1 do
 		   -- printf("addmob %u \n",Nightmare_Manticore);
 		   SpawnMob(Nightmare_Manticore);
+		   GetMobByID(Nightmare_Manticore):setMobMod(MOBMOD_MAIN_2HOUR,1);
 		   end	 
 		   -- print("Nightmare_Funguar:");
 	       for Nightmare_Funguar = 16937416, 16937431, 1 do
 		   -- printf("addmob %u \n",Nightmare_Funguar);
 		   SpawnMob(Nightmare_Funguar);
+		   GetMobByID(Nightmare_Funguar):setMobMod(MOBMOD_MAIN_2HOUR,1);
 		   end	
 		   -- print("Nightmare_Fly:");
 	       for Nightmare_Fly = 16937455, 16937475, 1 do
 		   -- printf("addmob %u \n",Nightmare_Fly);
 		   SpawnMob(Nightmare_Fly);
+		   GetMobByID(Nightmare_Fly):setMobMod(MOBMOD_MAIN_2HOUR,1);
 		   end	
 		   -- print("Nightmare_Treant:");
 	       for Nightmare_Treant = 16937395, 16937415, 1 do
 		   -- printf("addmob %u \n",Nightmare_Treant);
 		   SpawnMob(Nightmare_Treant);
+		   GetMobByID(Nightmare_Treant):setMobMod(MOBMOD_MAIN_2HOUR,1);
 		   end	
 		   -- print("Nightmare_Flytrap:");
 	       for Nightmare_Flytrap = 16937334, 16937354, 1 do
 		   -- printf("addmob %u \n",Nightmare_Flytrap);
 		   SpawnMob(Nightmare_Flytrap);
+		   GetMobByID(Nightmare_Flytrap):setMobMod(MOBMOD_MAIN_2HOUR,1);
 		   end	
 		   --	print("Nightmare_Goobbue:");
 	       for Nightmare_Goobbue = 16937291, 16937310, 1 do
 		   -- printf("addmob %u \n",Nightmare_Goobbue);
 		   SpawnMob(Nightmare_Goobbue);
+		   GetMobByID(Nightmare_Goobbue):setMobMod(MOBMOD_MAIN_2HOUR,1);
 		   end	
      SetServerVariable("[DynaValkurm]Boss_Trigger",1);
    end

@@ -4,7 +4,17 @@
 -----------------------------------
 
 require("scripts/globals/dynamis");
+require("scripts/globals/status");
 require("scripts/zones/Dynamis-Xarcabard/TextIDs");
+
+-----------------------------------
+-- onMobSpawn
+-----------------------------------
+
+function onMobSpawn(mob)
+	mob:setMobMod(MOBMOD_MAIN_2HOUR,1);
+end;
+
 
 -----------------------------------
 -- onMobEngaged

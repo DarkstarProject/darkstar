@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/titles");
+require("scripts/globals/status");
 require("scripts/globals/dynamis");
 
 -----------------------------------
@@ -11,6 +12,7 @@ require("scripts/globals/dynamis");
 -----------------------------------
 
 function onMobSpawn(mob)
+	mob:setMobMod(MOBMOD_MAIN_2HOUR,1);
 end;
 
 -----------------------------------
@@ -23,8 +25,12 @@ function onMobEngaged(mob,target)
 	SpawnMob(17543598):updateEnmity(target); -- 123
 	SpawnMob(17543599):updateEnmity(target); -- 124
 	SpawnMob(17543600):updateEnmity(target); -- 125
+	
 	SpawnMob(17543170):updateEnmity(target); -- Maa Febi the Steadfast
+	GetMobByID(17543170):setMobMod(MOBMOD_MAIN_2HOUR,1);
+	
 	SpawnMob(17543171):updateEnmity(target); -- Muu Febi the Steadfast
+	GetMobByID(17543171):setMobMod(MOBMOD_MAIN_2HOUR,1);
 
 end;
 
@@ -45,5 +51,4 @@ function onMobDeath(mob,killer)
 
 		killer:launchDynamisSecondPart(); -- Spawn dynamis second part
 	end
-
 end;

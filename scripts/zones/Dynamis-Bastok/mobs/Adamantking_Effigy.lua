@@ -51,6 +51,7 @@ function onMobEngaged(mob,target)
 							printf("super link? %d", GetMobByID(DynaMob):getMobMod(MOBMOD_SUPERLINK));
 							GetMobByID(DynaMob):setPos(X,Y,Z);
 							GetMobByID(DynaMob):setSpawn(X,Y,Z);
+							GetMobByID(DynaMob):setMobMod(MOBMOD_MAIN_2HOUR,1);
 							-- Spawn Pet for BST, DRG, and SMN
 							if(mobNBR == 9 or mobNBR == 15) then
 								SpawnMob(DynaMob + 1):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());

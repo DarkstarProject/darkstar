@@ -4,9 +4,6 @@
 -----------------------------------
 
 require("scripts/globals/status");
-
------------------------------------
-
 require("scripts/globals/titles");
 
 -----------------------------------
@@ -14,6 +11,14 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobInitialize(mob,target)
+end;
+
+-----------------------------------
+-- onMobSpawn
+-----------------------------------
+
+function onMobSpawn(mob)
+	mob:setMobMod(MOBMOD_MAIN_2HOUR,1);
 end;
 
 -----------------------------------

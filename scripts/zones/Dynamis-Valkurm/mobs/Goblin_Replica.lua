@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/dynamis");
+require("scripts/globals/status");
 require("scripts/zones/Dynamis-Valkurm/TextIDs");
 
 -----------------------------------
@@ -39,14 +40,14 @@ function onMobEngaged(mob,target)
 				--	printf("Serjeant_Tombstone => mob %u \n",mobNBR);			
 					if(mobNBR ~= nil) then
 							-- Spawn Mob
-							SpawnMob(mobNBR):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
-							GetMobByID(mobNBR):setPos(X,Y,Z);
-							GetMobByID(mobNBR):setSpawn(X,Y,Z);
+						SpawnMob(mobNBR):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+						GetMobByID(mobNBR):setPos(X,Y,Z);
+						GetMobByID(mobNBR):setSpawn(X,Y,Z);
+						GetMobByID(mobNBR):setMobMod(MOBMOD_MAIN_2HOUR,1);
 							-- Spawn Pet for BST, DRG, and SMN
-	
 						local MJob = GetMobByID(mobNBR):getMainJob();
-									--	printf("Serjeant_Tombstone => mob %u \n",mobNBR);	
-									--	printf("mobjob %u \n",MJob);
+							--	printf("Serjeant_Tombstone => mob %u \n",mobNBR);	
+							--	printf("mobjob %u \n",MJob);
 						if(MJob == 9 or MJob == 14 or MJob == 15) then
 							-- Spawn Pet for BST , DRG , and SMN  
 							SpawnMob(mobNBR + 1):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
@@ -64,8 +65,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	
+function onMobDeath(mob,killer)	
 	local mobID = mob:getID();
 	if(mobID ==16937283)then --hp		
 		killer:messageBasic(024,(killer:getMaxHP()-killer:getHP()));
