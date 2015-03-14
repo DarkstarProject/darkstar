@@ -541,11 +541,11 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
 
     // Handle Retaliation
     if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_RETALIATION)
-        && battleutils::GetHitRate(PDefender, PAttacker) > WELL512::irand()%100
-        && isFaceing(PAttacker->loc.p, PDefender->loc.p, 40))
+        && battleutils::GetHitRate(PDefender, PAttacker)/2 > WELL512::irand()%100
+        && isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
     {
         // Retaliation rate is based on player acc vs mob evasion. Missed retaliations do not even display in log.
-        // Other theories exist were not proven or reliably tested (I have to assume to many things to even consider JP translations about weapon delay), this at least has data to back it up.
+        // Other theories exist but were not proven or reliably tested (I have to assume too many things to even consider JP translations about weapon delay), this at least has data to back it up.
         // https://web.archive.org/web/20141228105335/http://www.bluegartr.com/threads/120193-Retaliation-Testing?s=7a6221e10ffdfaa6a7f5e8f0387f787d&p=4620727&viewfull=1#post4620727
         Action->reaction = REACTION_HIT;
         Action->spikesEffect = SUBEFFECT_COUNTER;
@@ -4060,7 +4060,7 @@ int32 BreathDmgTaken(CBattleEntity* PDefender, int32 damage)
 int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element)
 {
     MODIFIER absorb[8] = { MOD_FIRE_ABSORB, MOD_EARTH_ABSORB, MOD_WATER_ABSORB, MOD_WIND_ABSORB, MOD_ICE_ABSORB, MOD_LTNG_ABSORB, MOD_LIGHT_ABSORB, MOD_DARK_ABSORB };
-    MODIFIER nullptrarray[8] = { MOD_FIRE_nullptr, MOD_EARTH_nullptr, MOD_WATER_nullptr, MOD_WIND_nullptr, MOD_ICE_nullptr, MOD_LTNG_nullptr, MOD_LIGHT_nullptr, MOD_DARK_nullptr };
+    MODIFIER nullarray[8] = { MOD_FIRE_NULL, MOD_EARTH_NULL, MOD_WATER_NULL, MOD_WIND_NULL, MOD_ICE_NULL, MOD_LTNG_NULL, MOD_LIGHT_NULL, MOD_DARK_NULL };
 
     float resist = (256 + PDefender->getMod(MOD_UDMGMAGIC)) / 256.0f;
     resist = dsp_max(resist, 0);
@@ -4074,8 +4074,8 @@ int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element)
         (element && WELL512::irand() % 100 < PDefender->getMod(absorb[element-1])) ||
         WELL512::irand() % 100 < PDefender->getMod(MOD_MAGIC_ABSORB))
         damage = -damage;
-    else if ((element && WELL512::irand() % 100 < PDefender->getMod(nullptrarray[element-1])) ||
-        WELL512::irand() % 100 < PDefender->getMod(MOD_MAGIC_nullptr))
+    else if ((element && WELL512::irand() % 100 < PDefender->getMod(nullarray[element-1])) ||
+        WELL512::irand() % 100 < PDefender->getMod(MOD_MAGIC_NULL))
         damage = 0;
     else
     {
@@ -4102,7 +4102,7 @@ int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
     if (WELL512::irand() % 100 < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
         WELL512::irand() % 100 < PDefender->getMod(MOD_PHYS_ABSORB))
         damage = -damage;
-    else if (WELL512::irand() % 100 < PDefender->getMod(MOD_nullptr_PHYSICAL_DAMAGE))
+    else if (WELL512::irand() % 100 < PDefender->getMod(MOD_NULL_PHYSICAL_DAMAGE))
         damage = 0;
     else
     {
@@ -4129,7 +4129,7 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     if (WELL512::irand() % 100 < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
         WELL512::irand() % 100 < PDefender->getMod(MOD_PHYS_ABSORB))
         damage = -damage;
-    else if (WELL512::irand() % 100 < PDefender->getMod(MOD_nullptr_PHYSICAL_DAMAGE))
+    else if (WELL512::irand() % 100 < PDefender->getMod(MOD_NULL_PHYSICAL_DAMAGE))
         damage = 0;
     else
     {
