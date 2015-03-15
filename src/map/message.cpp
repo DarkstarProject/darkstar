@@ -43,7 +43,6 @@ namespace message
 {
 	zmq::context_t zContext;
 	zmq::socket_t* zSocket = nullptr;
-	Sql_t* ChatSqlHandle = nullptr;
     std::mutex send_mutex;
     std::queue<chat_message_t> message_queue;
 
@@ -78,7 +77,7 @@ namespace message
 
                 if (!PChar)
                 {
-                    Sql_Query(ChatSqlHandle, "DELETE FROM accounts_sessions WHERE charid = %d;", RBUFL(extra->data(), 0));
+                    Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %d;", RBUFL(extra->data(), 0));
                 }
                 else
                 {
@@ -227,19 +226,19 @@ namespace message
 					else
 					{
 						//both party leaders?
-						int ret = Sql_Query(ChatSqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
+                        int ret = Sql_Query(SqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
 													   	((charid = %u OR charid = %u) AND partyflag & %u);", inviterId,
 														inviteeId, PARTY_LEADER);
-						if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) == 2)
+                        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 2)
 						{
 							if (PInviter->PParty->m_PAlliance)
 							{
-								ret = Sql_Query(ChatSqlHandle, "SELECT * FROM accounts_parties WHERE allianceid <> 0 AND \
+                                ret = Sql_Query(SqlHandle, "SELECT * FROM accounts_parties WHERE allianceid <> 0 AND \
 														   	allianceid = (SELECT allianceid FROM accounts_parties where \
 															charid = %u) GROUP BY partyid;", inviterId);
-								if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) > 0 && Sql_NumRows(ChatSqlHandle) < 3)
+                                if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NumRows(SqlHandle) < 3)
 								{
-									PInviter->PParty->m_PAlliance->addParty(inviteeId, ChatSqlHandle);
+									PInviter->PParty->m_PAlliance->addParty(inviteeId);
 								}
 								else
 								{
@@ -249,23 +248,23 @@ namespace message
 							else
 							{
 								//make new alliance
-								CAlliance* PAlliance = new CAlliance(PInviter, ChatSqlHandle);
-                                PAlliance->addParty(inviteeId, ChatSqlHandle);
+								CAlliance* PAlliance = new CAlliance(PInviter);
+                                PAlliance->addParty(inviteeId);
 							}
 						}
 						else
 						{
 							if (PInviter->PParty == nullptr)
 							{
-								CParty* PParty = new CParty(PInviter, ChatSqlHandle);
+								CParty* PParty = new CParty(PInviter);
 							}
 							if (PInviter->PParty->GetLeader() == PInviter)
 							{
-								ret = Sql_Query(ChatSqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
+                                ret = Sql_Query(SqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
 															charid = %u;", inviteeId);
-								if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) == 0)
+                                if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 0)
 								{
-									PInviter->PParty->AddMember(inviteeId, ChatSqlHandle);
+									PInviter->PParty->AddMember(inviteeId);
 								}
 							}
 						}
@@ -295,11 +294,11 @@ namespace message
                     {
                         if (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->m_AllianceID == id)
                         {
-                            PChar->PParty->m_PAlliance->dissolveAlliance(false, ChatSqlHandle);
+                            PChar->PParty->m_PAlliance->dissolveAlliance(false);
                         }
                         else
                         {
-                            PChar->PParty->DisbandParty(false, ChatSqlHandle);
+                            PChar->PParty->DisbandParty(false);
                         }
                     }
                 }
@@ -398,9 +397,9 @@ namespace message
 
 	void init(const char* chatIp, uint16 chatPort)
 	{
-		ChatSqlHandle = Sql_Malloc();
+        SqlHandle = Sql_Malloc();
 
-		if (Sql_Connect(ChatSqlHandle, map_config.mysql_login,
+        if (Sql_Connect(SqlHandle, map_config.mysql_login,
 			map_config.mysql_password,
 			map_config.mysql_host,
 			map_config.mysql_port,
@@ -408,7 +407,7 @@ namespace message
 		{
 			exit(EXIT_FAILURE);
 		}
-		Sql_Keepalive(ChatSqlHandle);
+        Sql_Keepalive(SqlHandle);
 
 		zContext = zmq::context_t(1);
 		zSocket = new zmq::socket_t(zContext, ZMQ_DEALER);
@@ -419,11 +418,11 @@ namespace message
 		//if no ip/port were supplied, set to 1 (0 is not valid for an identity)
 		if (map_ip.s_addr == 0 && map_port == 0)
 		{
-			int ret = Sql_Query(ChatSqlHandle, "SELECT zoneip, zoneport FROM zone_settings GROUP BY zoneip, zoneport ORDER BY COUNT(*) DESC;");
-			if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) > 0 && Sql_NextRow(ChatSqlHandle) == SQL_SUCCESS)
+            int ret = Sql_Query(SqlHandle, "SELECT zoneip, zoneport FROM zone_settings GROUP BY zoneip, zoneport ORDER BY COUNT(*) DESC;");
+            if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
-				ipp = inet_addr(Sql_GetData(ChatSqlHandle, 0));
-				port = Sql_GetUIntData(ChatSqlHandle, 1);
+                ipp = inet_addr(Sql_GetData(SqlHandle, 0));
+                port = Sql_GetUIntData(SqlHandle, 1);
 			}
 		}
 		ipp |= (port << 32);

@@ -55,7 +55,7 @@
 *																		*
 ************************************************************************/
 
-CParty::CParty(CBattleEntity* PEntity, Sql_t* sql)
+CParty::CParty(CBattleEntity* PEntity)
 {
 	DSP_DEBUG_BREAK_IF(PEntity == nullptr);
 	DSP_DEBUG_BREAK_IF(PEntity->PParty != nullptr);
@@ -70,7 +70,7 @@ CParty::CParty(CBattleEntity* PEntity, Sql_t* sql)
 	m_PQuaterMaster = nullptr;
 
 
-	AddMember(PEntity, sql);
+	AddMember(PEntity);
 	SetLeader((int8*)PEntity->name.c_str());
 }
 
@@ -92,13 +92,13 @@ CParty::CParty(uint32 id)
 *																		*
 ************************************************************************/
 
-void CParty::DisbandParty(bool playerInitiated, Sql_t* sql)
+void CParty::DisbandParty(bool playerInitiated)
 {
     if (m_PAlliance)
     {
         m_PAlliance->delParty(this);
     }
-	DisableSync();
+	m_PSyncTarget = nullptr;
 	SetQuarterMaster(nullptr);
 
 	m_PLeader = nullptr;
@@ -135,7 +135,7 @@ void CParty::DisbandParty(bool playerInitiated, Sql_t* sql)
                 sync->SetStartTime(gettick());
                 sync->SetDuration(30000);
             }
-            Sql_Query(sql, "DELETE FROM accounts_parties WHERE charid = %u;", PChar->id);
+            Sql_Query(SqlHandle, "DELETE FROM accounts_parties WHERE charid = %u;", PChar->id);
 	    }
 
         // make sure chat server isn't notified of a disband if this came from the chat server already
@@ -432,7 +432,7 @@ void CParty::RemovePartyLeader(CBattleEntity* PEntity)
 *																		*
 ************************************************************************/
 
-void CParty::AddMember(CBattleEntity* PEntity, Sql_t* sql)
+void CParty::AddMember(CBattleEntity* PEntity)
 {
 	DSP_DEBUG_BREAK_IF(PEntity == nullptr);
 	DSP_DEBUG_BREAK_IF(PEntity->PParty != nullptr);
@@ -452,7 +452,7 @@ void CParty::AddMember(CBattleEntity* PEntity, Sql_t* sql)
             allianceid = m_PAlliance->m_AllianceID;
         }
 
-        Sql_Query(sql, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", PChar->id, m_PartyID, allianceid, GetMemberFlags(PChar));
+        Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", PChar->id, m_PartyID, allianceid, GetMemberFlags(PChar));
 		uint8 data[4];
 		WBUFL(data, 0) = m_PartyID;
         message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
@@ -490,7 +490,7 @@ void CParty::AddMember(CBattleEntity* PEntity, Sql_t* sql)
     }
 }
 
-void CParty::AddMember(uint32 id, Sql_t* Sql)
+void CParty::AddMember(uint32 id)
 {
 	if (m_PartyType == PARTY_PCS)
 	{

@@ -73,7 +73,11 @@ const int8* MAP_CONF_FILENAME = nullptr;
 
 int8*  g_PBuff   = nullptr;                // глобальный буфер обмена пакетами
 int8*  PTempBuff = nullptr;                // временный  буфер обмена пакетами
-Sql_t* SqlHandle = nullptr;				// SQL descriptor
+#ifdef WIN32
+__declspec(thread) Sql_t* SqlHandle = nullptr; // SQL descriptor
+#else
+thread_local Sql_t* SqlHandle = nullptr;
+#endif
 
 int32  map_fd = 0;						// main socket
 uint32 map_amntplayers = 0;				// map amnt unique players
