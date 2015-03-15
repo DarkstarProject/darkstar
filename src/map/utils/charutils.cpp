@@ -3308,8 +3308,6 @@ namespace charutils
             BuildingCharTraitsTable(PChar);
             BuildingCharWeaponSkills(PChar);
 
-            PChar->UpdateHealth();
-
             PChar->pushPacket(new CCharJobsPacket(PChar));
             PChar->pushPacket(new CCharUpdatePacket(PChar));
             PChar->pushPacket(new CCharSkillsPacket(PChar));
@@ -3320,6 +3318,8 @@ namespace charutils
             PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
             PChar->pushPacket(new CCharSyncPacket(PChar));
 
+            PChar->UpdateHealth();
+
             SaveCharStats(PChar);
             SaveCharJob(PChar, PChar->GetMJob());
 
@@ -3329,10 +3329,12 @@ namespace charutils
                 {
                     PChar->PParty->RefreshSync();
                 }
+                PChar->PParty->ReloadParty();
             }
 
             PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 11));
             luautils::OnPlayerLevelDown(PChar);
+            charutils::UpdateHealth(PChar);
         }
         else
         {
@@ -3495,7 +3497,6 @@ namespace charutils
                     }
                 }
                 PChar->PLatentEffectContainer->CheckLatentsJobLevel();
-                PChar->UpdateHealth();
 
                 PChar->health.hp = PChar->GetMaxHP();
                 PChar->health.mp = PChar->GetMaxMP();
@@ -3517,15 +3518,19 @@ namespace charutils
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PMob, PChar->jobs.job[PChar->GetMJob()], 0, 9));
                 PChar->pushPacket(new CCharStatsPacket(PChar));
 
+                PChar->UpdateHealth();
+
                 if (PChar->PParty != nullptr)
                 {
                     if (PChar->PParty->GetSyncTarget() == PChar)
                     {
                         PChar->PParty->RefreshSync();
                     }
+                    PChar->PParty->ReloadParty();
                 }
 
                 luautils::OnPlayerLevelUp(PChar);
+                charutils::UpdateHealth(PChar);
                 return;
             }
         }
