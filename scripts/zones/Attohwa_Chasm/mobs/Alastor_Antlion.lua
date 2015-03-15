@@ -16,7 +16,6 @@ require("scripts/globals/magic");
 
 function onMobInitialize(mob)
 	mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
-	mob:setTP(100);
 	mob:setMobMod(MOBMOD_GA_CHANCE,50);
 	mob:setMobMod(MOBMOD_MUG_GIL,10000);
 	mob:addMod(MOD_FASTCAST,10);
@@ -29,6 +28,7 @@ end;
 -----------------------------------
 
 function onMobSpawn(mob)
+	mob:setTP(100);
 end;
 
 -----------------------------------
