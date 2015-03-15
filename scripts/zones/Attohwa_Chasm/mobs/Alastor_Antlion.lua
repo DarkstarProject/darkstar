@@ -52,7 +52,8 @@ end;
 
 function onAdditionalEffect(mob, player)
     local chance = 25;	
-	if (math.random(0,99) >= chance or applyResistanceAddEffect(mob,player,ELE_EARTH,EFFECT_PETRIFICATION) <= 0.5) then
+	local resist = applyResistanceAddEffect(mob,player,ELE_EARTH,EFFECT_PETRIFICATION);
+	if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else
 		local duration = 30;
@@ -60,7 +61,7 @@ function onAdditionalEffect(mob, player)
             duration = duration + (mob:getMainLvl() - player:getMainLvl())
         end
         utils.clamp(duration,1,45);
-        duration = duration * applyResistanceAddEffect(mob,player,ELE_EARTH,EFFECT_PETRIFICATION);
+        duration = duration * resist;
         if (not player:hasStatusEffect(EFFECT_PETRIFICATION)) then
             player:addStatusEffect(EFFECT_PETRIFICATION, 1, 0, duration);
         end
