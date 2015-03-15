@@ -3538,8 +3538,6 @@ namespace charutils
         SaveCharExp(PChar, PChar->GetMJob());
         PChar->pushPacket(new CCharStatsPacket(PChar));
 
-        PChar->UpdateHealth();
-
         if (onLimitMode)
         {
             PChar->pushPacket(new CMenuMeritPacket(PChar));
