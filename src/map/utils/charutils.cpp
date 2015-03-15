@@ -3318,6 +3318,8 @@ namespace charutils
             PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
             PChar->pushPacket(new CCharSyncPacket(PChar));
 
+            PChar->UpdateHealth();
+
             SaveCharStats(PChar);
             SaveCharJob(PChar, PChar->GetMJob());
 
@@ -3332,6 +3334,7 @@ namespace charutils
 
             PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 11));
             luautils::OnPlayerLevelDown(PChar);
+            charutils::UpdateHealth(PChar);
         }
         else
         {
@@ -3340,8 +3343,6 @@ namespace charutils
 
         SaveCharExp(PChar, PChar->GetMJob());
         PChar->pushPacket(new CCharStatsPacket(PChar));
-        
-        PChar->UpdateHealth();
     }
 
     /************************************************************************
@@ -3529,6 +3530,7 @@ namespace charutils
                 }
 
                 luautils::OnPlayerLevelUp(PChar);
+                charutils::UpdateHealth(PChar);
                 return;
             }
         }
