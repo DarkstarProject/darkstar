@@ -3308,8 +3308,6 @@ namespace charutils
             BuildingCharTraitsTable(PChar);
             BuildingCharWeaponSkills(PChar);
 
-            PChar->UpdateHealth();
-
             PChar->pushPacket(new CCharJobsPacket(PChar));
             PChar->pushPacket(new CCharUpdatePacket(PChar));
             PChar->pushPacket(new CCharSkillsPacket(PChar));
@@ -3329,6 +3327,7 @@ namespace charutils
                 {
                     PChar->PParty->RefreshSync();
                 }
+                PChar->PParty->ReloadParty();
             }
 
             PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 11));
@@ -3341,6 +3340,8 @@ namespace charutils
 
         SaveCharExp(PChar, PChar->GetMJob());
         PChar->pushPacket(new CCharStatsPacket(PChar));
+        
+        PChar->UpdateHealth();
     }
 
     /************************************************************************
@@ -3495,7 +3496,6 @@ namespace charutils
                     }
                 }
                 PChar->PLatentEffectContainer->CheckLatentsJobLevel();
-                PChar->UpdateHealth();
 
                 PChar->health.hp = PChar->GetMaxHP();
                 PChar->health.mp = PChar->GetMaxMP();
@@ -3517,12 +3517,15 @@ namespace charutils
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PMob, PChar->jobs.job[PChar->GetMJob()], 0, 9));
                 PChar->pushPacket(new CCharStatsPacket(PChar));
 
+                PChar->UpdateHealth();
+
                 if (PChar->PParty != nullptr)
                 {
                     if (PChar->PParty->GetSyncTarget() == PChar)
                     {
                         PChar->PParty->RefreshSync();
                     }
+                    PChar->PParty->ReloadParty();
                 }
 
                 luautils::OnPlayerLevelUp(PChar);
@@ -3534,6 +3537,8 @@ namespace charutils
         SaveCharJob(PChar, PChar->GetMJob());
         SaveCharExp(PChar, PChar->GetMJob());
         PChar->pushPacket(new CCharStatsPacket(PChar));
+
+        PChar->UpdateHealth();
 
         if (onLimitMode)
         {
