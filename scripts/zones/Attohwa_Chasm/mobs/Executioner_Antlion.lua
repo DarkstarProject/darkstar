@@ -14,7 +14,6 @@ require("scripts/globals/magic");
 -----------------------------------
 
 function onMobInitialize(mob)
-	mob:setTP(100);
 end;
 
 
@@ -23,6 +22,7 @@ end;
 -----------------------------------
 
 function onMobSpawn(mob)
+	mob:setTP(100);
 end;
 
 -----------------------------------
