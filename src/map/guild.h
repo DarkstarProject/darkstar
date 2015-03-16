@@ -47,7 +47,7 @@ struct GPItem_t
 class CGuild
 {
 public:
-    CGuild(const char* pointsName);
+    CGuild(uint8 id, const char* pointsName);
     ~CGuild();
 
     std::vector<CItemContainer*> guildShops;

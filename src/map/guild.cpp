@@ -27,9 +27,9 @@ This file is part of DarkStar-server source code.
 
 #include "utils/charutils.h"
 
-CGuild::CGuild(const char* _pointsName)
+CGuild::CGuild(uint8 id, const char* _pointsName)
 {
-    m_id = 0;
+    m_id = id;
     std::fill_n(m_GPItemsRank, sizeof(m_GPItemsRank), 0);
 
     pointsName = _pointsName;
