@@ -33,4 +33,71 @@ CREATE TABLE IF NOT EXISTS `item_mods_pet` (
   PRIMARY KEY (`itemId`, `modId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=13 PACK_KEYS=1;
 
+-- Please keep mods that apply to same item ID together
+-- (easy way is to just keep item ID sequential)
 
+-- -------------------------------------------------------
+--   Aega's Doublet - LVL 32
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(11338, 25, 3); --  Pet: accuracy +3
+INSERT INTO `item_mods_pet` VALUES(11338, 289, 3); -- Pet: Subtle Blow +3
+
+-- -------------------------------------------------------
+--   Spurrer Beret - LVL 75
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(11497, 384, 51); -- Pet: Haste+5% (Gear)
+
+-- -------------------------------------------------------
+--  Fidelity Mantle - LVL 30
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(11531, 73, 3); -- Pet: Store TP +3
+
+-- -------------------------------------------------------
+--  Beast Bazubands - LVL 70
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(14958, 63, 5); -- Pet: Defense Bonus 5%
+
+-- -------------------------------------------------------
+--  Askar Dirs - LVL 75
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(15647, 1, 10); -- Pet: DEF +10
+
+-- -------------------------------------------------------
+--  Goliard Trews - 75
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(15649, 1, 10); -- Pet: DEF +10
+
+-- -------------------------------------------------------
+--  Selemnus Belt - LVL 70
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(15944, 163, -7); -- Pet: Magic Damage taken -3%
+
+-- -------------------------------------------------------
+--  Pallas's Shield - LVL 72
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(16173, 1, 10); -- Pet: DEF +10
+
+-- -------------------------------------------------------
+--  Shepherd's Chain - LVL 60
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(16297, 161, -2); -- Pet: Damage taken -2%
+
+-- -------------------------------------------------------
+--  Herder's Subligar - LVL 25
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(16368, 25, 10); -- Pet: accuracy +10
+
+-- -------------------------------------------------------
+--  Lion Tamer - LVL 74
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(17961, 1, 10); -- Pet: DEF +10
+
+-- -------------------------------------------------------
+--  Aymur *Mythic* - LVL 75 - ignored the Aftermath acc, atk occ.attacks twice
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(18999, 23, 40); -- Pet: Attack +40
+
+-- -------------------------------------------------------
+--  Idi's Ledelsens - LVL 45 
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(28119, 65, 2); -- Pet: Evasion +2
