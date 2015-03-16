@@ -5474,25 +5474,9 @@ inline int32 CLuaBaseEntity::injectPacket(lua_State *L)
             ((CCharEntity*)m_PBaseEntity)->pushPacket(PPacket);
         }
         fclose(File);
-        FILE* File = fopen("testmerit2", "rb");
-
-        if (File)
-        {
-            CBasicPacket * PPacket = new CBasicPacket();
-
-            fseek(File, 1, SEEK_SET);
-            uint16 returnSize = fread(&size, 1, 1, File);
-
-            if (size <= 256)
-            {
-                fseek(File, 0, SEEK_SET);
-                uint16 read_elements = fread(PPacket, 1, size * 2, File);
-
-                ((CCharEntity*)m_PBaseEntity)->pushPacket(PPacket);
-            }
-            fclose(File);
-        }
-    }else{
+    }
+    else
+    {
         ShowError(CL_RED"CLuaBaseEntity::injectPacket : Cannot open file\n" CL_RESET);
     }
     return 0;
