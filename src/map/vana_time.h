@@ -94,6 +94,7 @@ public:
 	uint32   lastVHourlyUpdate;
 	uint32   lastVDailyUpdate;
     uint32   lastConquestTally;
+    uint32   lastMidnight;
 
 private:
 

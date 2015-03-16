@@ -26,6 +26,8 @@
 #include "../items/item_shop.h"
 
 #include "guildutils.h"
+#include "itemutils.h"
+#include "../guild.h"
 #include "../item_container.h"
 #include "../map.h"
 
@@ -39,7 +41,8 @@
 *																		*
 ************************************************************************/
 
-std::vector<CItemContainer*> g_PGuildList;
+std::vector<CGuild*> g_PGuildList;
+std::vector<CItemContainer*> g_PGuildShopList;
 
 /************************************************************************
 *																		*
@@ -58,7 +61,7 @@ namespace guildutils
 
 void Initialize()
 {
-	DSP_DEBUG_BREAK_IF(g_PGuildList.size() != 0);
+	/*DSP_DEBUG_BREAK_IF(g_PGuildList.size() != 0);
 
 	const int8* fmtQuery = "SELECT DISTINCT guildid FROM guild_shops ORDER BY guildid ASC LIMIT 256";
 
@@ -102,7 +105,7 @@ void Initialize()
 				PGuild->InsertItem(PItem);
 			}
 		}
-	}
+	}*/
 }
 
 /************************************************************************
@@ -113,7 +116,7 @@ void Initialize()
 
 void UpdateGuildsStock()
 {
-    for (std::vector<CItemContainer*>::iterator iter = g_PGuildList.begin(); iter != g_PGuildList.end(); iter++)
+    /*for (std::vector<CItemContainer*>::iterator iter = g_PGuildList.begin(); iter != g_PGuildList.end(); iter++)
 	{
 		CItemContainer* PGuild = *iter;
         for(uint8 slotid = 1; slotid <= PGuild->GetSize(); ++slotid)
@@ -128,7 +131,19 @@ void UpdateGuildsStock()
             }
         }
 	}
-    ShowDebug(CL_CYAN"UpdateGuildsStock is finished\n" CL_RESET);
+    ShowDebug(CL_CYAN"UpdateGuildsStock is finished\n" CL_RESET);*/
+}
+
+void UpdateGuildPointsPattern()
+{
+    uint8 pattern = WELL512::irand() % 8;
+
+    for (auto PGuild : g_PGuildList)
+    {
+        PGuild->updateGuildPointsPattern(pattern);
+    }
+
+    ShowDebug(CL_CYAN"UpdateGuildPointsPattern is finished. New pattern: %d\n" CL_RESET, pattern);
 }
 
 /************************************************************************
@@ -139,14 +154,14 @@ void UpdateGuildsStock()
 
 CItemContainer* GetGuildShop(uint16 GuildID)
 {
-	for (uint16 i = 0; i < g_PGuildList.size(); ++i)
+	/*for (uint16 i = 0; i < g_PGuildList.size(); ++i)
 	{
 		if (g_PGuildList.at(i)->GetID() == GuildID)
 		{
 			return g_PGuildList.at(i);
 		}
 	}
-	ShowDebug(CL_CYAN"Guild with id <%u> is not found on server\n" CL_RESET);
+	ShowDebug(CL_CYAN"Guild with id <%u> is not found on server\n" CL_RESET);*/
     return nullptr;
 }
 

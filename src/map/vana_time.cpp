@@ -38,6 +38,7 @@ CVanaTime::CVanaTime()
 	lastVHourlyUpdate = 0;
 	lastVDailyUpdate = 0;
     lastConquestTally = 0;
+    lastMidnight = 0;
 }
 
 CVanaTime* CVanaTime::getInstance()

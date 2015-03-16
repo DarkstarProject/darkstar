@@ -38,8 +38,9 @@ namespace guildutils
 {
 	void Initialize();
     void UpdateGuildsStock();
+    void UpdateGuildPointsPattern();
 
-	CItemContainer* GetGuildShop(uint16 GuildID);
+	CItemContainer* GetGuildShop(uint16 GuildShopID);
 }
 
 #endif
