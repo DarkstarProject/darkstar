@@ -1006,47 +1006,47 @@ INSERT INTO `guild_shops` VALUES ('5272', '12833', '3840', '7360', '20', '0', '1
 
 -- Yabby Tanmikey / Celestina (Goldsmith Guild) Mhaura (S)
 INSERT INTO `guild_shops` VALUES ('528', '640', '9', '20', '255', '48', '100');
-INSERT INTO `guild_shops` VALUES ('528', '736', '315', '1831', '255', '48', '100');
-INSERT INTO `guild_shops` VALUES ('528', '769', '1288', '6440', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('528', '770', '1288', '6440', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('528', '771', '1288', '6440', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('528', '772', '1288', '6440', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('528', '773', '1288', '6440', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('528', '774', '1288', '6440', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('528', '775', '1288', '6440', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('528', '776', '1288', '6440', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('528', '736', '315', '945', '255', '48', '100'); --Silver Ore
+INSERT INTO `guild_shops` VALUES ('528', '769', '1288', '4000', '165', '33', '65'); --Colored Rocks
+INSERT INTO `guild_shops` VALUES ('528', '770', '1288', '4000', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('528', '771', '1288', '4000', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('528', '772', '1288', '4000', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('528', '773', '1288', '4000', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('528', '774', '1288', '4000', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('528', '775', '1288', '4000', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('528', '776', '1288', '4000', '165', '33', '65'); --last colored rock
 INSERT INTO `guild_shops` VALUES ('528', '2143', '75', '75', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('528', '2144', '75', '75', '255', '48', '100');
 
 -- Kueh Igunahmori (Leathercraft Guild) Southern San d'Oria (S)
 INSERT INTO `guild_shops` VALUES ('529', '505', '62', '349', '255', '48', '100');
-INSERT INTO `guild_shops` VALUES ('529', '506', '7490', '38301', '165', '0', '65');
+INSERT INTO `guild_shops` VALUES ('529', '506', '9600', '11333', '165', '0', '65'); --Coeurl Leather
 INSERT INTO `guild_shops` VALUES ('529', '695', '120', '184', '255', '48', '100');
-INSERT INTO `guild_shops` VALUES ('529', '832', '675', '4500', '80', '0', '32');
+INSERT INTO `guild_shops` VALUES ('529', '832', '1000', '2800', '80', '20', '40'); --Sheep Wool
 INSERT INTO `guild_shops` VALUES ('529', '848', '2912', '4636', '80', '0', '32');
 INSERT INTO `guild_shops` VALUES ('529', '850', '390', '390', '80', '0', '32');
 INSERT INTO `guild_shops` VALUES ('529', '851', '2718', '7139', '80', '0', '32');
 INSERT INTO `guild_shops` VALUES ('529', '852', '630', '640', '255', '0', '100');
-INSERT INTO `guild_shops` VALUES ('529', '853', '2155', '12875', '165', '0', '65');
+INSERT INTO `guild_shops` VALUES ('529', '853', '2400', '6000', '165', '36', '65'); --Raptor Skin
 INSERT INTO `guild_shops` VALUES ('529', '854', '2650', '3304', '165', '33', '65');
 INSERT INTO `guild_shops` VALUES ('529', '855', '9077', '10874', '30', '0', '12');
-INSERT INTO `guild_shops` VALUES ('529', '856', '45', '276', '255', '48', '100');
+INSERT INTO `guild_shops` VALUES ('529', '856', '45', '130', '255', '48', '100'); --Rabbit Hide
 INSERT INTO `guild_shops` VALUES ('529', '857', '1290', '1990', '255', '0', '100');
 INSERT INTO `guild_shops` VALUES ('529', '858', '483', '1161', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('529', '859', '937', '4750', '80', '33', '32');
-INSERT INTO `guild_shops` VALUES ('529', '861', '1312', '8050', '55', '11', '22');
-INSERT INTO `guild_shops` VALUES ('529', '863', '2700', '11088', '55', '11', '22');
+INSERT INTO `guild_shops` VALUES ('529', '859', '937', '2650', '80', '33', '32'); --Ram Skin
+INSERT INTO `guild_shops` VALUES ('529', '861', '1312', '3124', '55', '11', '22'); --Tiger Hide
+INSERT INTO `guild_shops` VALUES ('529', '863', '4000', '8000', '55', '11', '22'); --Coeurl Hide
 INSERT INTO `guild_shops` VALUES ('529', '917', '481', '963', '255', '0', '100');
-INSERT INTO `guild_shops` VALUES ('529', '1116', '15504', '27360', '30', '6', '12');
-INSERT INTO `guild_shops` VALUES ('529', '1117', '8385', '22024', '30', '0', '12');
+INSERT INTO `guild_shops` VALUES ('529', '1116', '5000', '8600', '30', '6', '12'); --Manticore Hide
+INSERT INTO `guild_shops` VALUES ('529', '1117', '8385', '15000', '30', '0', '12'); --Manticore Leather
 INSERT INTO `guild_shops` VALUES ('529', '2129', '75', '75', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('529', '4509', '9', '23', '375', '75', '150');
-INSERT INTO `guild_shops` VALUES ('529', '12294', '25920', '68083', '20', '0', '10');
-INSERT INTO `guild_shops` VALUES ('529', '12440', '330', '1091', '20', '0', '20');
+INSERT INTO `guild_shops` VALUES ('529', '12294', '13500', '14000', '10', '0', '10'); --Leather Shield
+INSERT INTO `guild_shops` VALUES ('529', '12440', '330', '880', '20', '0', '20'); --Leather Bandana
 INSERT INTO `guild_shops` VALUES ('529', '12441', '3318', '8407', '20', '0', '15');
-INSERT INTO `guild_shops` VALUES ('529', '12442', '20056', '28222', '20', '0', '10');
-INSERT INTO `guild_shops` VALUES ('529', '12443', '16380', '43024', '20', '0', '5');
-INSERT INTO `guild_shops` VALUES ('529', '12444', '88704', '97081', '20', '0', '5');
+INSERT INTO `guild_shops` VALUES ('529', '12442', '8000', '9000', '20', '0', '10'); --Studded Bandana
+INSERT INTO `guild_shops` VALUES ('529', '12443', '8500', '9300', '20', '0', '20'); --Cuir Bandana
+INSERT INTO `guild_shops` VALUES ('529', '12444', '9200', '10000', '20', '0', '5'); --Raptor Helm
 INSERT INTO `guild_shops` VALUES ('529', '12568', '987', '1323', '20', '0', '20');
 -- INSERT INTO `guild_shops` VALUES ('529', '12569', '5145', '16189', '20', '0', '15');
 -- INSERT INTO `guild_shops` VALUES ('529', '12570', '44232', '44916', '20', '0', '10');
