@@ -1730,7 +1730,7 @@ INSERT INTO `guild_shops` VALUES ('60425', '951', '90', '216', '255', '48', '100
 INSERT INTO `guild_shops` VALUES ('60425', '1108', '573', '826', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('60425', '2131', '75', '242', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('60425', '2175', '644', '644', '80', '0', '32');
-INSERT INTO `guild_shops` VALUES ('60425', '2229', '1080', '3000', '80', '16', '32'); -Chimera Blood
+INSERT INTO `guild_shops` VALUES ('60425', '2229', '1080', '3000', '80', '16', '32'); --Chimera Blood
 INSERT INTO `guild_shops` VALUES ('60425', '2309', '963', '963', '80', '16', '32');
 INSERT INTO `guild_shops` VALUES ('60425', '2316', '9', '9', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('60425', '4443', '76', '147', '255', '48', '100');
