@@ -825,32 +825,32 @@ INSERT INTO `guild_shops` VALUES ('5262', '18236', '21', '21', '2970', '594', '1
 -- Teerth (Goldsmith Guild) Bastok Markets (S)
 INSERT INTO `guild_shops` VALUES ('527', '640', '9', '36', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('527', '642', '595', '620', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('527', '644', '1500', '9200', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('527', '653', '19900', '36400', '55', '0', '22');
+INSERT INTO `guild_shops` VALUES ('527', '644', '1500', '4500', '165', '33', '65'); --Mythril Ore
+INSERT INTO `guild_shops` VALUES ('527', '653', '6000', '12000', '55', '0', '22'); --Mythril Ingot
 INSERT INTO `guild_shops` VALUES ('527', '661', '1171', '1171', '255', '0', '100');
-INSERT INTO `guild_shops` VALUES ('527', '663', '20240', '45600', '80', '16', '32');
-INSERT INTO `guild_shops` VALUES ('527', '673', '210', '1108', '255', '48', '100');
-INSERT INTO `guild_shops` VALUES ('527', '681', '10500', '30800', '30', '6', '12');
-INSERT INTO `guild_shops` VALUES ('527', '736', '315', '1260', '255', '48', '100');
-INSERT INTO `guild_shops` VALUES ('527', '738', '58032', '116245', '30', '0', '12');
-INSERT INTO `guild_shops` VALUES ('527', '744', '4095', '9996', '80', '0', '32');
-INSERT INTO `guild_shops` VALUES ('527', '760', '29172', '74880', '55', '0', '22');
-INSERT INTO `guild_shops` VALUES ('527', '769', '1288', '7000', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('527', '770', '1288', '7000', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('527', '771', '1288', '7000', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('527', '772', '1288', '7000', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('527', '773', '1288', '7000', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('527', '774', '1288', '7000', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('527', '775', '1288', '7000', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('527', '776', '1288', '7000', '165', '0', '65');
-INSERT INTO `guild_shops` VALUES ('527', '784', '23400', '124800', '15', '0', '3');
+INSERT INTO `guild_shops` VALUES ('527', '663', '6400', '12800', '80', '16', '32'); --Mythril Sheet
+INSERT INTO `guild_shops` VALUES ('527', '673', '210', '600', '255', '48', '100'); --Brass Scales
+INSERT INTO `guild_shops` VALUES ('527', '681', '10500', '16000', '30', '6', '12'); --Mythril Chain
+INSERT INTO `guild_shops` VALUES ('527', '736', '315', '945', '255', '48', '100'); --Silver Ore
+INSERT INTO `guild_shops` VALUES ('527', '738', '58032', '116245', '30', '0', '25'); --Platinum Ore
+INSERT INTO `guild_shops` VALUES ('527', '744', '2000', '5000', '80', '0', '32'); --Silver Ingot
+INSERT INTO `guild_shops` VALUES ('527', '760', '4000', '7000', '55', '0', '22'); --Silver Chain
+INSERT INTO `guild_shops` VALUES ('527', '769', '1288', '4000', '165', '33', '65'); --Colored Rocks
+INSERT INTO `guild_shops` VALUES ('527', '770', '1288', '4000', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('527', '771', '1288', '4000', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('527', '772', '1288', '4000', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('527', '773', '1288', '4000', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('527', '774', '1288', '4000', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('527', '775', '1288', '4000', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('527', '776', '1288', '4000', '165', '0', '65'); --last Colored Rock
+INSERT INTO `guild_shops` VALUES ('527', '784', '23400', '70200', '15', '0', '3'); --Jadeite
 INSERT INTO `guild_shops` VALUES ('527', '785', '106400', '116736', '15', '0', '3');
 INSERT INTO `guild_shops` VALUES ('527', '786', '45600', '116736', '15', '0', '3');
 INSERT INTO `guild_shops` VALUES ('527', '787', '106400', '116736', '15', '0', '3');
-INSERT INTO `guild_shops` VALUES ('527', '788', '12000', '56160', '15', '0', '6');
+INSERT INTO `guild_shops` VALUES ('527', '788', '12000', '36060', '15', '0', '6'); --Peridot
 INSERT INTO `guild_shops` VALUES ('527', '789', '106400', '116736', '15', '0', '3');
-INSERT INTO `guild_shops` VALUES ('527', '790', '9000', '3600', '15', '0', '6');
-INSERT INTO `guild_shops` VALUES ('527', '791', '23400', '136032', '15', '1', '3');
+INSERT INTO `guild_shops` VALUES ('527', '790', '3600', '9000', '15', '0', '6'); --Garnet
+INSERT INTO `guild_shops` VALUES ('527', '791', '23400', '70200', '15', '1', '3'); --Aquamarine
 INSERT INTO `guild_shops` VALUES ('527', '795', '1396', '2794', '80', '16', '32');
 INSERT INTO `guild_shops` VALUES ('527', '796', '1396', '2794', '80', '0', '32');
 -- INSERT INTO `guild_shops` VALUES ('527', '797', '44304', '49608', '15', '3', '6');
