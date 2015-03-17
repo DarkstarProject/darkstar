@@ -804,7 +804,7 @@ INSERT INTO `guild_shops` VALUES ('526', '4164', '1500', '2400', '65', '0', '0')
 -- INSERT INTO `guild_shops` VALUES ('5262', '4154', '5250', '13300', '55', '0', '22');
 -- INSERT INTO `guild_shops` VALUES ('5262', '4162', '5250', '13300', '80', '0', '32');
 -- INSERT INTO `guild_shops` VALUES ('5262', '4164', '1050', '6832', '165', '0', '65');
-INSERT INTO `guild_shops` VALUES ('5262', '4165', '900', '5712', '165', '0', '65');
+INSERT INTO `guild_shops` VALUES ('5262', '4165', '1400', '2300', '65', '0', '0'); --Silent Oil
 INSERT INTO `guild_shops` VALUES ('5262', '4166', '750', '2080', '165', '0', '65');
 INSERT INTO `guild_shops` VALUES ('5262', '4171', '750', '2080', '255', '0', '100');
 INSERT INTO `guild_shops` VALUES ('5262', '4443', '750', '2080', '255', '48', '100');
