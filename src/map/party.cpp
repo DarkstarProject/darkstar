@@ -961,7 +961,7 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
             }
             else
             {
-                for (uint32 i = 0; i < members.size(); ++i)
+                for (uint8 i = 0; i < members.size(); ++i)
                 {
                     if(members.at(i)->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION))
                     {
@@ -970,7 +970,7 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
                     }
                 }
                 m_PSyncTarget = PChar;
-	            for (uint32 i = 0; i < members.size(); ++i)
+	            for (uint8 i = 0; i < members.size(); ++i)
 	            {
 		            if(members.at(i)->objtype != TYPE_PC) continue;
 
@@ -997,7 +997,7 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
             if (m_PSyncTarget != nullptr)
             {
                 //disable level sync
-                for (uint32 i = 0; i < members.size(); ++i)
+                for (uint8 i = 0; i < members.size(); ++i)
 	            {
 		            if(members.at(i)->objtype != TYPE_PC) continue;
 

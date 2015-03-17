@@ -1,3 +1,5 @@
+-- This fork has different values to discourage guildselling.
+
 /*
 Navicat MySQL Data Transfer
 
@@ -212,17 +214,17 @@ INSERT INTO `guild_shops` VALUES ('5132', '17090', '3371', '7103', '20', '0', '1
 -- Shih Tayuun (Bonecraft Guild) Windurst Woods (S)
 INSERT INTO `guild_shops` VALUES ('514', '864', '72', '288', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('514', '880', '70', '349', '255', '48', '100');
-INSERT INTO `guild_shops` VALUES ('514', '881', '3469', '11306', '55', '0', '22');
+INSERT INTO `guild_shops` VALUES ('514', '881', '600', '1800', '55', '0', '0'); --Crab Shell
 INSERT INTO `guild_shops` VALUES ('514', '882', '150', '760', '255', '48', '100');
-INSERT INTO `guild_shops` VALUES ('514', '884', '3741', '12177', '165', '0', '65');
-INSERT INTO `guild_shops` VALUES ('514', '885', '21840', '74256', '30', '0', '12');
+INSERT INTO `guild_shops` VALUES ('514', '884', '800', '2400', '165', '0', '0'); --Black Tiger Fang
+INSERT INTO `guild_shops` VALUES ('514', '885', '2000', '5000', '30', '0', '0'); --Turtle Shell
 INSERT INTO `guild_shops` VALUES ('514', '888', '90', '90', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('514', '889', '380', '510', '80', '0', '32');
 INSERT INTO `guild_shops` VALUES ('514', '893', '1766', '4669', '80', '0', '32');
 INSERT INTO `guild_shops` VALUES ('514', '894', '968', '2952', '165', '0', '65');
-INSERT INTO `guild_shops` VALUES ('514', '895', '3060', '15560', '55', '0', '22');
-INSERT INTO `guild_shops` VALUES ('514', '896', '2044', '12166', '80', '0', '32');
-INSERT INTO `guild_shops` VALUES ('514', '897', '1588', '6683', '80', '0', '32');
+INSERT INTO `guild_shops` VALUES ('514', '895', '1000', '3000', '55', '0', '0'); --Ram Horn
+INSERT INTO `guild_shops` VALUES ('514', '896', '1000', '3000', '80', '0', '0'); --Scorpion Shell
+INSERT INTO `guild_shops` VALUES ('514', '897', '800', '1200', '80', '0', '0');--Scorpion Claw
 INSERT INTO `guild_shops` VALUES ('514', '898', '163', '163', '375', '0', '150');
 INSERT INTO `guild_shops` VALUES ('514', '2130', '75', '75', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('514', '12414', '11377', '37771', '20', '0', '5');
@@ -237,7 +239,7 @@ INSERT INTO `guild_shops` VALUES ('514', '12710', '2448', '14231', '20', '0', '2
 INSERT INTO `guild_shops` VALUES ('514', '12711', '4653', '25312', '20', '0', '15');
 INSERT INTO `guild_shops` VALUES ('514', '12834', '6588', '11106', '20', '0', '20');
 INSERT INTO `guild_shops` VALUES ('514', '12835', '16956', '54265', '20', '0', '15');
-INSERT INTO `guild_shops` VALUES ('514', '12837', '170016', '225456', '20', '0', '5');
+INSERT INTO `guild_shops` VALUES ('514', '12837', '3000', '9000', '20', '0', '0'); --Carapace Subligar
 INSERT INTO `guild_shops` VALUES ('514', '12966', '7722', '14493', '20', '0', '20');
 INSERT INTO `guild_shops` VALUES ('514', '12967', '18447', '27659', '20', '0', '15');
 -- INSERT INTO `guild_shops` VALUES ('514', '13076', '2938', '4464', '20', '0', '15');

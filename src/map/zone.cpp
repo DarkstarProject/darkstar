@@ -803,37 +803,20 @@ void CZone::CharZoneIn(CCharEntity* PChar)
 	}
 
     PChar->ReloadPartyInc();
-
-	if (PChar->PParty != nullptr)
-	{
-		if (m_TreasurePool != nullptr)
-		{
-			PChar->PTreasurePool = m_TreasurePool;
-			PChar->PTreasurePool->AddMember(PChar);
-		}
-		else
-		{
-			PChar->PParty->ReloadTreasurePool(PChar);
-		}
-		if (PChar->PParty->GetSyncTarget() != nullptr)
-		{
-			if (PChar->getZone() == PChar->PParty->GetSyncTarget()->getZone())
-			{
-				if (PChar->PParty->GetSyncTarget()->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) &&
-					PChar->PParty->GetSyncTarget()->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC)->GetDuration() == 0)
-				{
-					PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, PChar->PParty->GetSyncTarget()->GetMLevel(), 540));
-					PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
-						EFFECT_LEVEL_SYNC,
-						EFFECT_LEVEL_SYNC,
-						PChar->PParty->GetSyncTarget()->GetMLevel(),
-						0,
-						0), true);
-					PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
-				}
-			}
-		}
-	}
+    charutils::ReloadParty(PChar);
+    
+    if (PChar->PParty != nullptr)
+    {
+        if (m_TreasurePool != nullptr)
+        {
+            PChar->PTreasurePool = m_TreasurePool;
+            PChar->PTreasurePool->AddMember(PChar);
+        }
+        else
+        {
+            PChar->PParty->ReloadTreasurePool(PChar);
+        }
+    }
 	else
 	{
 		PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
