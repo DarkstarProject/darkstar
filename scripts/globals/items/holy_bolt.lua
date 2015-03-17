@@ -27,12 +27,8 @@ function onAdditionalEffect(player,target,damage)
         params.bonusmab = 0;
         params.includemab = true;
         dmg = addBonusesAbility(player, ELE_LIGHT, target, dmg, params);
-        dmg = dmg * applyResistanceAddEffect(player,target,ELE_LIGHT,0);
         dmg = adjustForTarget(target,dmg,ELE_LIGHT);
-        if (dmg < 0) then
-            dmg = 0
-        end
-		
+     		
 		-- Gear Adjustments
 		local main = player:getEquipID(SLOT_MAIN);
 		if (main == 18633 or main == 17558) then -- Apollo's staff / Chatoyant staff
