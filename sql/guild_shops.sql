@@ -352,13 +352,13 @@ INSERT INTO `guild_shops` VALUES ('515', '823', '13338', '109440', '165', '33', 
 INSERT INTO `guild_shops` VALUES ('515', '824', '240', '1344', '80', '16', '32');
 INSERT INTO `guild_shops` VALUES ('515', '825', '480', '2944', '80', '16', '32');
 INSERT INTO `guild_shops` VALUES ('515', '826', '12840', '12840', '80', '16', '32');
-INSERT INTO `guild_shops` VALUES ('515', '827', '9180', '48384', '55', '0', '22');
-INSERT INTO `guild_shops` VALUES ('515', '828', '21851', '31710', '32', '0', '12');
+INSERT INTO `guild_shops` VALUES ('515', '827', '2000', '5000', '55', '0', '0'); --Wool Cloth
+INSERT INTO `guild_shops` VALUES ('515', '828', '1500', '4000', '32', '0', '0'); --Velvet Cloth
 INSERT INTO `guild_shops` VALUES ('515', '832', '675', '4500', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('515', '833', '15', '18', '375', '75', '150');
 INSERT INTO `guild_shops` VALUES ('515', '834', '79', '200', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('515', '835', '187', '1000', '375', '75', '100');
-INSERT INTO `guild_shops` VALUES ('515', '838', '9438', '34557', '55', '0', '22');
+INSERT INTO `guild_shops` VALUES ('515', '838', '800', '1600', '55', '0', '0'); --Spider Web
 INSERT INTO `guild_shops` VALUES ('515', '839', '137', '870', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('515', '841', '26', '192', '375', '0', '150');
 INSERT INTO `guild_shops` VALUES ('515', '2128', '75', '86', '375', '75', '150');
@@ -393,7 +393,7 @@ INSERT INTO `guild_shops` VALUES ('515', '12736', '1290', '3196', '20', '0', '15
 -- INSERT INTO `guild_shops` VALUES ('5152', '824', '240', '1344', '80', '16', '32');
 -- INSERT INTO `guild_shops` VALUES ('5152', '825', '480', '2944', '80', '16', '32');
 -- INSERT INTO `guild_shops` VALUES ('5152', '826', '12840', '12840', '80', '16', '32');
--- INSERT INTO `guild_shops` VALUES ('5152', '827', '9180', '48384', '55', '0', '22');
+-- INSERT INTO `guild_shops` VALUES ('5152', '827', '2000', '5000', '55', '0', '0'); --Wool Cloth
 -- INSERT INTO `guild_shops` VALUES ('5152', '828', '21851', '31710', '32', '0', '12');
 -- INSERT INTO `guild_shops` VALUES ('5152', '832', '675', '4500', '255', '48', '100');
 -- INSERT INTO `guild_shops` VALUES ('5152', '833', '15', '18', '375', '75', '150');
@@ -433,11 +433,11 @@ INSERT INTO `guild_shops` VALUES ('516', '822', '585', '4760', '255', '48', '100
 INSERT INTO `guild_shops` VALUES ('516', '823', '13338', '109440', '165', '33', '65');
 INSERT INTO `guild_shops` VALUES ('516', '824', '240', '1344', '80', '16', '32');
 INSERT INTO `guild_shops` VALUES ('516', '825', '480', '2944', '80', '16', '32');
-INSERT INTO `guild_shops` VALUES ('516', '827', '9180', '48384', '55', '0', '22');
+INSERT INTO `guild_shops` VALUES ('516', '827', '2000', '5000', '55', '0', '0'); --Wool Cloth
 INSERT INTO `guild_shops` VALUES ('516', '832', '675', '4500', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('516', '833', '15', '18', '375', '75', '150');
 INSERT INTO `guild_shops` VALUES ('516', '835', '187', '1000', '375', '75', '100');
-INSERT INTO `guild_shops` VALUES ('516', '838', '9438', '34557', '55', '0', '22');
+INSERT INTO `guild_shops` VALUES ('516', '838', '800', '1600', '55', '0', '0'); --Spider Web
 INSERT INTO `guild_shops` VALUES ('516', '841', '26', '192', '375', '0', '150');
 
 -- Babubu (Port Windurst) Fishing Guild
@@ -728,33 +728,33 @@ INSERT INTO `guild_shops` VALUES ('525', '17407', '270', '270', '20', '6', '12')
 INSERT INTO `guild_shops` VALUES ('526', '621', '21', '40', '255', '0', '100');
 INSERT INTO `guild_shops` VALUES ('526', '622', '36', '155', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('526', '636', '97', '369', '255', '48', '100');
-INSERT INTO `guild_shops` VALUES ('526', '637', '1640', '4880', '165', '0', '65');
+INSERT INTO `guild_shops` VALUES ('526', '637', '1000', '3000', '165', '0', '65'); --Slime Oil
 INSERT INTO `guild_shops` VALUES ('526', '638', '138', '851', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('526', '912', '192', '360', '255', '0', '100');
-INSERT INTO `guild_shops` VALUES ('526', '914', '1125', '6300', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('526', '920', '1084', '5899', '165', '0', '65');
+INSERT INTO `guild_shops` VALUES ('526', '914', '1125', '3375', '165', '33', '65'); --Mercury
+INSERT INTO `guild_shops` VALUES ('526', '920', '1084', '3000', '165', '35', '65'); --Malboro Vine
 INSERT INTO `guild_shops` VALUES ('526', '922', '300', '300', '255', '0', '100');
-INSERT INTO `guild_shops` VALUES ('526', '925', '1312', '3952', '55', '0', '22');
-INSERT INTO `guild_shops` VALUES ('526', '928', '1014', '2307', '165', '0', '65');
-INSERT INTO `guild_shops` VALUES ('526', '929', '1875', '6900', '80', '0', '32');
+INSERT INTO `guild_shops` VALUES ('526', '925', '500', '1500', '55', '33', '22'); --Giant Stinger
+INSERT INTO `guild_shops` VALUES ('526', '928', '463', '1100', '165', '55', '65'); --Bomb Ash
+INSERT INTO `guild_shops` VALUES ('526', '929', '1875', '2400', '60', '0', '32'); --Black Ink
 INSERT INTO `guild_shops` VALUES ('526', '931', '19520', '19520', '15', '3', '6');
 INSERT INTO `guild_shops` VALUES ('526', '932', '1020', '1080', '165', '0', '65');
-INSERT INTO `guild_shops` VALUES ('526', '933', '664', '3168', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('526', '933', '664', '1992', '165', '33', '65'); --Glass Fiber
 INSERT INTO `guild_shops` VALUES ('526', '943', '534', '1177', '255', '0', '100');
-INSERT INTO `guild_shops` VALUES ('526', '947', '3360', '21862', '55', '0', '22');
+INSERT INTO `guild_shops` VALUES ('526', '947', '1000', '2000', '55', '0', '0'); --Firesand
 INSERT INTO `guild_shops` VALUES ('526', '951', '90', '350', '255', '48', '100');
-INSERT INTO `guild_shops` VALUES ('526', '1108', '573', '3213', '255', '48', '100');
-INSERT INTO `guild_shops` VALUES ('526', '1109', '930', '4563', '255', '0', '100');
+INSERT INTO `guild_shops` VALUES ('526', '1108', '573', '900', '255', '48', '100'); --Sulfur
+INSERT INTO `guild_shops` VALUES ('526', '1109', '1200', '3000', '255', '0', '100'); --Artificial Lens
 INSERT INTO `guild_shops` VALUES ('526', '2131', '75', '242', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('526', '4112', '682', '728', '80', '16', '32');
 INSERT INTO `guild_shops` VALUES ('526', '4116', '3375', '7560', '55', '0', '22');
-INSERT INTO `guild_shops` VALUES ('526', '4128', '3624', '17201', '30', '0', '12');
+INSERT INTO `guild_shops` VALUES ('526', '4128', '4000', '10000', '30', '0', '12'); --Ether
 INSERT INTO `guild_shops` VALUES ('526', '4148', '1200', '1377', '80', '0', '32');
-INSERT INTO `guild_shops` VALUES ('526', '4150', '1945', '9549', '80', '0', '32');
-INSERT INTO `guild_shops` VALUES ('526', '4151', '880', '2944', '80', '0', '32');
-INSERT INTO `guild_shops` VALUES ('526', '4154', '5250', '13300', '55', '0', '22');
-INSERT INTO `guild_shops` VALUES ('526', '4162', '5250', '13300', '80', '0', '32');
-INSERT INTO `guild_shops` VALUES ('526', '4164', '1050', '6832', '165', '0', '65');
+INSERT INTO `guild_shops` VALUES ('526', '4150', '1945', '4200', '80', '0', '32'); --Eye Drops
+INSERT INTO `guild_shops` VALUES ('526', '4151', '890', '900', '80', '0', '0'); --Echo Drops
+--deleted Holy Water
+INSERT INTO `guild_shops` VALUES ('526', '4162', '1250', '2500', '80', '0', '32'); --Silencing Potion
+INSERT INTO `guild_shops` VALUES ('526', '4164', '1500', '2400', '65', '0', '0'); --Prism Powder
 -- INSERT INTO `guild_shops` VALUES ('526', '4165', '900', '5712', '165', '0', '65');
 -- INSERT INTO `guild_shops` VALUES ('526', '4166', '750', '2080', '165', '0', '65');
 -- INSERT INTO `guild_shops` VALUES ('526', '4171', '750', '2080', '255', '0', '100');
