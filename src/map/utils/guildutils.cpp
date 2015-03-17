@@ -30,6 +30,7 @@
 #include "../guild.h"
 #include "../item_container.h"
 #include "../map.h"
+#include "../vana_time.h"
 
 // TODO: во время закрытия гильдии всем просматривающим список товаров отправляется пакет 0x86 с информацией о закрытии гильдии
 
@@ -61,7 +62,7 @@ namespace guildutils
 
 void Initialize()
 {
-    const int8* fmtQuery = "SELECT DISTINCT id, points_name FROM guilds ASC;";
+    const int8* fmtQuery = "SELECT DISTINCT id, points_name FROM guilds ORDER BY id ASC;";
     if (Sql_Query(SqlHandle, fmtQuery) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
         g_PGuildList.reserve(Sql_NumRows(SqlHandle));
@@ -114,6 +115,7 @@ void Initialize()
 			}
 		}
 	}
+    UpdateGuildPointsPattern();
 }
 
 /************************************************************************
@@ -143,8 +145,40 @@ void UpdateGuildsStock()
 
 void UpdateGuildPointsPattern()
 {
-    //TODO: probably shouldn't really be random, else multiple servers will have different GP items (bastok vs san d'oria smithing guild)
     uint8 pattern = WELL512::irand() % 8;
+    
+    bool isAutoCommitOn = Sql_GetAutoCommit(SqlHandle);
+    bool commit = false;
+
+    const char* query = "SELECT value FROM server_variables WHERE name = '[GUILD]pattern_update';";
+
+    int ret = Sql_Query(SqlHandle, query);
+    bool update = false;
+
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        if (Sql_GetUIntData(SqlHandle, 0) != CVanaTime::getInstance()->getSysYearDay())
+        {
+            update = true;
+        }
+    }
+    else
+    {
+        update = true;
+    }
+    if (update)
+    {
+        //write the new pattern and update time to prevent other servers from updating the pattern
+        Sql_Query(SqlHandle, "REPLACE INTO server_variables (name,value) VALUES('[GUILD]pattern_update', %u), ('[GUILD]pattern', %u);",
+            CVanaTime::getInstance()->getSysYearDay(), pattern);
+    }
+
+    // load the pattern in case it was set by another server (and this server did not set it)
+    query = "SELECT value FROM server_variables WHERE name = '[GUILD]pattern';";
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        pattern = Sql_GetUIntData(SqlHandle, 0);
+    }
 
     for (auto PGuild : g_PGuildList)
     {
