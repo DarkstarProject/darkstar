@@ -78,7 +78,7 @@ uint8 CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem)
 {
     uint8 rank = PChar->RealSkills.rank[m_id + 48];
 
-    if (rank >= 3)
+    if (rank >= 3 && PItem)
     {
         for (auto& GPItem : m_GPItems[rank - 3])
         {
