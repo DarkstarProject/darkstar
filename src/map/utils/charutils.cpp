@@ -3308,11 +3308,6 @@ namespace charutils
             BuildingCharTraitsTable(PChar);
             BuildingCharWeaponSkills(PChar);
 
-            PChar->UpdateHealth();
-
-            PChar->health.hp = PChar->GetMaxHP();
-            PChar->health.mp = PChar->GetMaxMP();
-
             PChar->pushPacket(new CCharJobsPacket(PChar));
             PChar->pushPacket(new CCharUpdatePacket(PChar));
             PChar->pushPacket(new CCharSkillsPacket(PChar));
@@ -3322,6 +3317,8 @@ namespace charutils
             PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
             PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
             PChar->pushPacket(new CCharSyncPacket(PChar));
+
+            PChar->UpdateHealth();
 
             SaveCharStats(PChar);
             SaveCharJob(PChar, PChar->GetMJob());
