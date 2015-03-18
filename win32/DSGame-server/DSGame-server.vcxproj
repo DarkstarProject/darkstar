@@ -404,6 +404,7 @@
     <ClInclude Include="..\..\src\map\utils\blacklistutils.h" />
     <ClInclude Include="..\..\src\map\utils\blueutils.h" />
     <ClInclude Include="..\..\src\map\utils\charutils.h" />
+    <ClInclude Include="..\..\src\map\utils\diggingutils.h" />
     <ClInclude Include="..\..\src\map\utils\fishingutils.h" />
     <ClInclude Include="..\..\src\map\utils\guildutils.h" />
     <ClInclude Include="..\..\src\map\utils\battlefieldutils.h" />
@@ -638,6 +639,7 @@
     <ClCompile Include="..\..\src\map\utils\blacklistutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\blueutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\charutils.cpp" />
+    <ClCompile Include="..\..\src\map\utils\diggingutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\fishingutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\guildutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\battlefieldutils.cpp" />

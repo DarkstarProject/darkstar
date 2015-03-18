@@ -1,0 +1,573 @@
+/*
+===========================================================================
+
+Copyright (c) 2014-2015 GamerzProjectXI Dev Teams
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see http://www.gnu.org/licenses/
+
+This file is part of GamerzProjectXI-server source code.
+
+===========================================================================
+*/
+
+#include "../../common/showmsg.h"
+
+#include <string.h> 
+#include <vector>
+
+#include "../lua/luautils.h"
+#include "../lua/lua_baseentity.h"
+#include "../entities/mobentity.h"
+#include "../../common/timer.h"
+
+#include "../packets/char_skills.h"
+#include "../packets/char_update.h"
+#include "../packets/char_sync.h"
+#include "../packets/chocobo_digging.h"
+#include "../packets/inventory_finish.h"
+#include "../packets/message_text.h"
+#include "../packets/message_special.h"
+#include "../packets/message_standard.h"
+#include "../packets/release.h"
+#include "../packets/message_system.h"
+
+#include "charutils.h"
+#include "diggingutils.h"
+#include "itemutils.h"
+#include "../map.h"
+#include "../time_server.h"
+#include "../vana_time.h"
+#include "zoneutils.h"
+
+/************************************************************************
+*																		*
+*	Chocobo Digging Utilities											*
+*																		*
+************************************************************************/
+
+namespace diggingutils
+{
+
+	// Get message offset for  current zone
+	uint16 MessageOffset[MAX_ZONEID];
+	uint16 MessageOffset2[MAX_ZONEID];
+	uint16 MessageOffset3[MAX_ZONEID];
+
+	/************************************************************************
+	*																		*
+	*	Load the Chocobo Digging messages									*
+	*																		*
+	************************************************************************/
+
+	void LoadDiggingMessages()
+	{
+		for (uint16 ZoneID = 0; ZoneID < ARRAYLENGTH(MessageOffset); ZoneID++)
+		{
+			MessageOffset[ZoneID] = luautils::GetTextIDVariable(ZoneID, "DIG_THROW_AWAY");
+			MessageOffset2[ZoneID] = luautils::GetTextIDVariable(ZoneID, "FIND_NOTHING");
+			MessageOffset3[ZoneID] = luautils::GetTextIDVariable(ZoneID, "ITEM_OBTAINED");
+		}
+	}
+
+	/************************************************************************
+	*																		*
+	*	Return the Chocobo Digging message offset							*
+	*																		*
+	************************************************************************/
+
+	uint16 GetMessageOffset(uint16 ZoneID)
+	{
+		return MessageOffset[ZoneID];
+	}
+
+	uint16 GetMessageOffset2(uint16 ZoneID)
+	{
+		return MessageOffset2[ZoneID];
+	}
+
+	uint16 GetMessageOffset3(uint16 ZoneID)
+	{
+		return MessageOffset3[ZoneID];
+	}
+
+	/************************************************************************
+	*																		*
+	*	Chocobo Digging Action												*
+	*																		*
+	************************************************************************/
+
+	void Dig(CCharEntity* PChar)
+	{
+		int8 PlayerCount = GetPlayerDigCount(PChar);
+		uint16 MessageOffset = GetMessageOffset(PChar->getZone());
+		uint16 MessageOffset2 = GetMessageOffset2(PChar->getZone());
+		uint16 MessageOffset3 = GetMessageOffset3(PChar->getZone());
+
+		int8 Chance = WELL512::irand() % 100;
+
+		if (Chance <= 15)	// Check if we lose chance
+		{
+			PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset2));
+			CalculateSkillUp(PChar);
+		}
+		else				// Calculate item received and display message
+		{
+			int32 ItemID = 0; // Temporary item for testing purposes, will give Gysahl Greens (to be removed before committing)
+			DigList_t* DigList = itemutils::GetDigList(PChar->getZone());
+			if (DigList != NULL && DigList->size())
+			{
+				uint16 random = WELL512::irand() % 1000;
+				uint8 randItem = WELL512::irand() % DigList->size();
+				if (random < (DigList->at(randItem).DigRate + map_config.dig_rate_bonus))
+				{
+					// Grab a randomly item from the list for the zone
+					// Check the requirements and then give the item if they are met
+					if (DigList->at(randItem).DigRequirements == 0)
+					{
+						ItemID = DigList->at(randItem).ItemID;
+					}
+					if (DigList->at(randItem).DigRequirements == 1 && CanPlayerBurrow(PChar) == true) // Burrow
+					{
+						ItemID = DigList->at(randItem).ItemID;
+					}
+					if (DigList->at(randItem).DigRequirements == 2 && CanPlayerBore(PChar) == true) // Bore
+					{
+						ItemID = DigList->at(randItem).ItemID;
+					}
+					if (DigList->at(randItem).DigRequirements == 3 && EggHelm(PChar) == true) // Egg Helm
+					{
+						ItemID = DigList->at(randItem).ItemID;
+					}
+					if (DigList->at(randItem).DigRequirements == 4 && NightDigging() == true) // Nighttime
+					{
+						ItemID = DigList->at(randItem).ItemID;
+					}
+					ShowDebug(CL_CYAN"Item ID Dug up %d \n", ItemID);
+				}
+				if (ItemID != 0)
+				{
+					if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0)
+					{
+						// Give the item to the player
+						charutils::AddItem(PChar, LOC_INVENTORY, ItemID);
+						PChar->pushPacket(new CMessageSpecialPacket(PChar, MessageOffset3, ItemID, 0, 0));
+						UpdateZoneItemsDug(PChar);
+					}
+					else
+					{
+						// Inventory is full, throw item away
+						PChar->pushPacket(new CMessageSpecialPacket(PChar, MessageOffset, ItemID, ItemID, 0));
+					}
+				}
+				else
+				{
+					// Beat the Dig chance but not the Item chance
+					PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset2));
+				}
+			}
+			CalculateSkillUp(PChar);
+		}
+		UpdatePlayerDigCount(PChar);
+		SetLastDig(PChar);
+	}
+
+	/************************************************************************
+	*																		*
+	*	Return the Chocobo Dig count for the character						*
+	*																		*
+	************************************************************************/
+
+	int8 GetPlayerDigCount(CCharEntity* PChar)
+	{
+		const int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = 'dig_count' LIMIT 1;";
+
+		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+		int32 value = 0;
+
+		if (ret != SQL_ERROR &&
+			Sql_NumRows(SqlHandle) != 0 &&
+			Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			value = (int32)Sql_GetIntData(SqlHandle, 0);
+		}
+		return value;
+	}
+
+	/************************************************************************
+	*																		*
+	*	Return the character Zone In time									*
+	*																		*
+	************************************************************************/
+
+	int32 GetZoneInTime(CCharEntity* PChar)
+	{
+		int32 value = 0;
+
+		const int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = 'zoneintime' LIMIT 1;";
+		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+		if (ret != SQL_ERROR &&
+			Sql_NumRows(SqlHandle) != 0 &&
+			Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			value = (int32)Sql_GetIntData(SqlHandle, 0);
+		}
+		return value;
+	}
+
+	/************************************************************************
+	*																		*
+	*	Return the Chocobo Dig Items dug up in the Zone						*
+	*																		*
+	************************************************************************/
+
+	int8 GetZoneItemsDug(CCharEntity* PChar)
+	{
+		int16 zone = PChar->getZone();
+
+		const int8* CharVarQuery =
+			"SELECT value \
+						FROM server_variables \
+									WHERE 'varname'='Zone%uDugItems';";
+
+		uint16 ret = Sql_Query(SqlHandle, CharVarQuery, zone);
+
+		uint8 itemsDug = 0;
+
+		if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+		{
+			while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+			{
+				itemsDug = (uint8)Sql_GetUIntData(SqlHandle, 0);
+			}
+		}
+		else
+		{
+			itemsDug = 0;
+		}
+		return itemsDug;
+	}
+
+	/************************************************************************
+	*																		*
+	*	Add to the character's Chocobo Dig count							*
+	*																		*
+	************************************************************************/
+
+	void UpdatePlayerDigCount(CCharEntity* PChar)
+	{
+		int8 PlayerCount;
+
+		PlayerCount = GetPlayerDigCount(PChar);
+
+		PlayerCount++;
+		const int8* fmtQuery = "REPLACE INTO `char_vars` (charid, varname, value) VALUES ('%u', 'dig_count', '%u');";
+		Sql_Query(SqlHandle, fmtQuery, PChar->id, PlayerCount);
+	}
+
+	/************************************************************************
+	*																		*
+	*	Add to the character's Chocobo Dig count							*
+	*																		*
+	************************************************************************/
+
+	void UpdateZoneItemsDug(CCharEntity* PChar)
+	{
+		int8 value = 1;
+		int8 ZoneDigCount;
+		ZoneDigCount = GetZoneItemsDug(PChar);
+		int16 zone = PChar->getZone();
+
+		const int8* Query = "INSERT INTO server_variables SET name = 'Zone%uDugItems', value = %i ON DUPLICATE KEY UPDATE value = value + %i;";
+		Sql_Query(SqlHandle, Query, zone, value);
+	}
+
+	/************************************************************************
+	*																		*
+	*	Delete the character's Chocobo Dig count							*
+	*																		*
+	************************************************************************/
+
+	void DeletePlayersDigCounts()
+	{
+		const int8* fmtQuery = "DELETE FROM `char_vars` WHERE 'varname'='dig_count';";
+		Sql_Query(SqlHandle, fmtQuery);
+	}
+
+	/************************************************************************
+	*																		*
+	*	Check if the character is able to Dig								*
+	*																		*
+	************************************************************************/
+
+	bool CanPlayerDig(CCharEntity* PChar)
+	{
+		uint32 CurrentTime = CVanaTime::getInstance()->getVanaTime();
+		if (GetPlayerDigCount(PChar) < 100)		// Check Player Counter
+		{
+			if (GetZoneItemsDug(PChar) < 20)	// Check Zone Counter
+			{
+				if (GetZoneInTime(PChar) <= (ReturnAreaDigDelay(PChar) + CurrentTime))	// Check Area Dig Delay
+				{
+					if (GetLastDig(PChar) + ReturnDigDelay(PChar) <= CurrentTime)		// Check Character Dig Delay
+					{
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	/************************************************************************
+	*																		*
+	*	Check if the character's Chocobo is able to Burrow					*
+	*																		*
+	************************************************************************/
+
+	bool CanPlayerBurrow(CCharEntity* PChar)
+	{
+		// Check for Chocobo Burrow ability here
+		return false;
+	}
+
+	/************************************************************************
+	*																		*
+	*	Check if the character's Chocobo is able to Bore					*
+	*																		*
+	************************************************************************/
+
+	bool CanPlayerBore(CCharEntity* PChar)
+	{
+		// Check for Chocobo Bore ability here
+		return false;
+	}
+
+	/************************************************************************
+	*																		*
+	*	Check if the character has the Egg Helm equipped					*
+	*																		*
+	************************************************************************/
+
+	bool EggHelm(CCharEntity* PChar)
+	{
+		CItemArmor* PHead = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_HEAD]);
+		if (PHead->getID() == 16109)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	/************************************************************************
+	*																		*
+	*	Check if the character is digging at Night Time						*
+	*																		*
+	************************************************************************/
+
+	bool NightDigging()
+	{
+		TIMETYPE VanadielTOTD = CVanaTime::getInstance()->SyncTime();
+		if (VanadielTOTD == TIME_NIGHT)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	/************************************************************************
+	*																		*
+	*	Get / Set the time of the last Chocobo Digging attempt				*
+	*																		*
+	************************************************************************/
+
+	int32 SetLastDig(CCharEntity* PChar)
+	{
+		uint32 CurrentTime = CVanaTime::getInstance()->getVanaTime();
+		Sql_Query(SqlHandle, "REPLACE INTO char_vars (charid, varname, value) VALUES ('%u', 'Last_Dig_Time', '%u');", PChar->id, CurrentTime);
+		return 1;
+	}
+
+	int32 GetLastDig(CCharEntity* PChar)
+	{
+		const int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = 'Last_Dig_Time' LIMIT 1;";
+		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+		int32 value = 0;
+
+		if (ret != SQL_ERROR &&
+			Sql_NumRows(SqlHandle) != 0 &&
+			Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			value = (int32)Sql_GetIntData(SqlHandle, 0);
+		}
+		return value;
+	}
+
+	/************************************************************************
+	*																		*
+	*	Update the Chocobo Digging delay									*
+	*																		*
+	************************************************************************/
+
+	void UpdateDigDelay(CCharEntity* PChar)
+	{
+	}
+
+	/************************************************************************
+	*																		*
+	*	Return the Chocobo Digging delay									*
+	*																		*
+	************************************************************************/
+
+	int8 ReturnDigDelay(CCharEntity* PChar)
+	{
+		uint8 delay = 16;								// Base Delay of 16
+		uint8 skillRank = PChar->RealSkills.rank[58];		// Grab Digging Rank
+		switch (skillRank)
+		{
+		case 9:
+		case 8:
+		case 7:
+		case 6:
+		case 5:
+		case 4:
+		case 3:
+		{
+			delay = 0;
+		}
+		case 2:
+		{
+			delay = 6;
+		}
+		case 1:
+		{
+			delay = 11;
+		}
+		}
+		return delay;
+	}
+
+	/************************************************************************
+	*																		*
+	*	Return the Area Chocobo Digging delay								*
+	*																		*
+	************************************************************************/
+
+	int8 ReturnAreaDigDelay(CCharEntity* PChar)
+	{
+		uint8 delay = 60;								// Base Delay of 60
+		uint8 skillRank = PChar->RealSkills.rank[58];		// Grab Digging Rank
+		switch (skillRank)
+		{
+		case 10:
+		{
+			delay = 10;
+		}
+		case 9:
+		{
+			delay = 15;
+		}
+		case 8:
+		{
+			delay = 20;
+		}
+		case 7:
+		{
+			delay = 25;
+		}
+		case 6:
+		{
+			delay = 30;
+		}
+		case 5:
+		{
+			delay = 35;
+		}
+		case 4:
+		{
+			delay = 40;
+		}
+		case 3:
+		{
+			delay = 45;
+		}
+		case 2:
+		{
+			delay = 50;
+		}
+		case 1:
+		{
+			delay = 55;
+		}
+		}
+		return delay;
+	}
+
+	/************************************************************************
+	*																		*
+	*	Calculate the Chocobo Digging skill									*
+	*																		*
+	************************************************************************/
+
+	int32 CalculateSkillUp(CCharEntity* PChar)
+	{
+		uint8  skillRank = PChar->RealSkills.rank[58];
+		uint16 maxSkill = (skillRank + 1) * 100;
+		int32  charSkill = PChar->RealSkills.skill[58];
+		int8 success = WELL512::irand() % 100 + 1;
+		int32  skillAmount = 1;
+
+		if (charSkill < maxSkill)
+		{
+			if (success <= 15)
+			{
+				// ShowDebug(CL_CYAN"Digging Skill Increase \n");
+				if ((skillAmount + charSkill) > maxSkill)
+				{
+					skillAmount = maxSkill - charSkill;
+				}
+				// Success, give a skill up
+				PChar->RealSkills.skill[58] += skillAmount;
+				if ((skillRank == 0 && charSkill >= 100) ||
+					(skillRank == 1 && charSkill >= 200) ||
+					(skillRank == 2 && charSkill >= 300) ||
+					(skillRank == 3 && charSkill >= 400) ||
+					(skillRank == 4 && charSkill >= 500) ||
+					(skillRank == 5 && charSkill >= 600) ||
+					(skillRank == 6 && charSkill >= 700) ||
+					(skillRank == 7 && charSkill >= 800) ||
+					(skillRank == 8 && charSkill >= 900) ||
+					(skillRank == 9 && charSkill >= 1000) ||
+					(skillRank == 10 && charSkill >= 1100))
+				{
+					PChar->RealSkills.rank[58] += 1;
+				}
+				if ((charSkill / 10) < (charSkill + skillAmount) / 10)
+				{
+					PChar->WorkingSkills.skill[58] += 0x20;
+
+					PChar->pushPacket(new CCharSkillsPacket(PChar));
+				}
+				charutils::SaveCharSkills(PChar, 58);
+			}
+		}
+		return 0;
+	}
+} // Namespace diggingutils
