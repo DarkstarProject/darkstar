@@ -339,7 +339,6 @@ namespace diggingutils
 
 	bool EggHelm(CCharEntity* PChar)
 	{
-		CItemArmor* PHead = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_HEAD]);
 		if (PChar->getMod(MOD_EGGHELM) > 0)
 		{
 			return true;
