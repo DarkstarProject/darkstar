@@ -60,7 +60,7 @@ enum MOBMODIFIER
     MOBMOD_EXP_BONUS      = 28, // bonus exp (bonus / 100)
     MOBMOD_ASSIST         = 29, // mobs will assist me
     MOBMOD_SPECIAL_SKILL  = 30, // give special skill
-    MOBMOD_RAND_JOB       = 31, // can spawn as a random job depending on its family
+    // ID 31 available for use.
     MOBMOD_2HOUR_MULTI    = 32, // can use two hour multiple times
     MOBMOD_SPECIAL_COOL   = 33, // cool down for special
     MOBMOD_MAGIC_COOL     = 34, // cool down for magic
