@@ -49,12 +49,12 @@ enum REQUIREMENTS
 *																		*
 ************************************************************************/
 
-enum QUALITY
+enum ABUNDANCE
 {
-	QUALITY_COMMON		= 0,
-	QUALITY_UNCOMMON	= 1,
-	QUALITY_RARE		= 2,
-	QUALITY_VERY_RARE	= 3
+	ABUNDANCE_COMMON		= 0,
+	ABUNDANCE_UNCOMMON	= 1,
+	ABUNDANCE_RARE		= 2,
+	ABUNDANCE_VERY_RARE	= 3
 };
 
 /************************************************************************
