@@ -841,6 +841,18 @@ INSERT INTO `bcnm_loot` VALUES ('35', '15274', '131', '7');
 INSERT INTO `bcnm_loot` VALUES ('35', '744', '79', '7');
 INSERT INTO `bcnm_loot` VALUES ('35', '806', '131', '7');
 INSERT INTO `bcnm_loot` VALUES ('35', '0', '600', '7');
+INSERT INTO `bcnm_loot` VALUES ('179','1763','30','4'); -- ENM Like the Wind
+INSERT INTO `bcnm_loot` VALUES ('179','1769','30','4'); -- ENM Like the Wind
+INSERT INTO `bcnm_loot` VALUES ('179','1764','30','4'); -- ENM Like the Wind
+INSERT INTO `bcnm_loot` VALUES ('179','1842','100','5'); -- ENM Like the Wind
+INSERT INTO `bcnm_loot` VALUES ('179','17946','100','6'); -- ENM Like the Wind
+INSERT INTO `bcnm_loot` VALUES ('179','18358','100','6'); -- ENM Like the Wind
+INSERT INTO `bcnm_loot` VALUES ('179','16976','100','6'); -- ENM Like the Wind
+INSERT INTO `bcnm_loot` VALUES ('179','4990','230','6'); -- ENM Like the Wind
+INSERT INTO `bcnm_loot` VALUES ('179','17946','100','7'); -- ENM Like the Wind
+INSERT INTO `bcnm_loot` VALUES ('179','18358','100','7'); -- ENM Like the Wind
+INSERT INTO `bcnm_loot` VALUES ('179','16976','100','7'); -- ENM Like the Wind
+INSERT INTO `bcnm_loot` VALUES ('179','4990','230','7'); -- ENM Like the Wind
 -- limbus                      lootID,ItemID,Roll,lootgroup
 -- SE Appollyon first floor
 INSERT INTO `bcnm_loot` VALUES ('110', '1875', '1000', '0'); -- ancient beastcoin*4
