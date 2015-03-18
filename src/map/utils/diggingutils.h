@@ -34,13 +34,13 @@
 *																		*
 ************************************************************************/
 
-enum REQUIREMENTS
+enum DIGREQ
 {
-	REQUIREMENTS_NONE = 0,
-	REQUIREMENTS_BURROW		= 1,
-	REQUIREMENTS_BORE		= 2,
-	REQUIREMENTS_EGG_HELM	= 3,
-	REQUIREMENTS_NIGHT		= 4
+	DIGREQ_NONE = 0,
+	DIGREQ_BURROW		= 1,
+	DIGREQ_BORE		= 2,
+	DIGREQ_EGG_HELM	= 3,
+	DIGREQ_NIGHT		= 4
 };
 
 /************************************************************************

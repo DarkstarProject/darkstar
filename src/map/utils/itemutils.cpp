@@ -237,7 +237,7 @@ namespace itemutils
 		     return g_pDropList[DropID];
 	    }
         ShowWarning(CL_CYAN"DropID %u too big\n" CL_RESET, DropID);
-	    return NULL;
+	    return nullptr;
     }
 
 	/************************************************************************

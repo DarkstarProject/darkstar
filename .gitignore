@@ -143,3 +143,6 @@ src/common/stamp-h1
 
 # Misc, such as vim swap files
 *.sw?
+conf/map_darkstar.conf.LOCAL
+conf/map_darkstar.conf.BASE
+conf/map_darkstar.conf.REMOTE

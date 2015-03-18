@@ -797,7 +797,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				PChar->pushPacket(new CInventoryFinishPacket());
 				PChar->pushPacket(new CChocoboDiggingPacket(PChar));
 				diggingutils::Dig(PChar);
-				Sleep(1000);
 			}
 			else {
 				PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));

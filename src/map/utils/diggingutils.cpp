@@ -100,7 +100,7 @@ namespace diggingutils
 		}
 		else				// Calculate item received and display message
 		{
-			int32 ItemID = 4545; // Temporary item for testing purposes, will give Gysahl Greens (to be removed before committing)
+			int32 ItemID = 0;
 			DigList_t* DigList = itemutils::GetDigList(PChar->getZone());
 			if (DigList != NULL && DigList->size())
 			{
