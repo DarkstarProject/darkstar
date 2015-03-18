@@ -15,11 +15,11 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 	if(trade:hasItemQty(1143,1) and trade:getItemCount() == 1 and player:getZPos() < 332) then -- Trade cursed key
 		if(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("WINDURST72") == 4) then
-			player:startEvent(0x0017);
 			player:tradeComplete();
+			player:startEvent(0x0017);
+			
 		else
 			player:tradeComplete();
 			player:messageSpecial(YOUR_KEY_BREAKS,0,1143);
@@ -34,7 +34,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
+print("hi");
 	if(player:getZPos() < 332) then
 		player:messageSpecial(DOOR_LOCKED);
 	else
