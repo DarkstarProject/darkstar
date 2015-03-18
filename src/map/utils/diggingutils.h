@@ -36,11 +36,11 @@
 
 enum REQUIREMENTS
 {
-	NONE		= 0,
-	BURROW		= 1,
-	BORE		= 2,
-	EGG_HELM	= 3,
-	NIGHT		= 4
+	REQUIREMENTS_NONE = 0,
+	REQUIREMENTS_BURROW		= 1,
+	REQUIREMENTS_BORE		= 2,
+	REQUIREMENTS_EGG_HELM	= 3,
+	REQUIREMENTS_NIGHT		= 4
 };
 
 /************************************************************************
@@ -51,10 +51,10 @@ enum REQUIREMENTS
 
 enum QUALITY
 {
-	COMMON		= 0,
-	UNCOMMON	= 1,
-	RARE		= 2,
-	VERY_RARE	= 3
+	QUALITY_COMMON		= 0,
+	QUALITY_UNCOMMON	= 1,
+	QUALITY_RARE		= 2,
+	QUALITY_VERY_RARE	= 3
 };
 
 /************************************************************************
