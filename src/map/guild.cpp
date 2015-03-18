@@ -109,4 +109,5 @@ std::pair<uint16, uint16> CGuild::getDailyGPItem(CCharEntity* PChar)
         uint16 curPoints = 0;
         return std::make_pair(GPItem[0].item->getID(), GPItem[0].maxpoints - curPoints);
     }
+    return std::make_pair(0, 0);
 }
