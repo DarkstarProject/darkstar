@@ -1357,6 +1357,16 @@ INSERT INTO `mob_spell_lists` VALUES ('Prishe', 129, 30, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Prishe', 129, 40, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Bedrock_Barry', 130, 238, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Tyrant', 131, 112, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Alastor_Antlion', 132, 54, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Alastor_Antlion', 132, 162, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Alastor_Antlion', 132, 191, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Alastor_Antlion', 132, 210, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Alastor_Antlion', 132, 365, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Race_Runner', 133, 53, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Race_Runner', 133, 158, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Race_Runner', 133, 186, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Race_Runner', 133, 216, 1, 255);
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
