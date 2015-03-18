@@ -416,28 +416,9 @@ namespace diggingutils
 	int8 ReturnDigDelay(CCharEntity* PChar)
 	{
 		uint8 delay		= 16;								// Base Delay of 16
-		uint8 skillRank = PChar->RealSkills.rank[58];		// Grab Digging Rank
-		switch(skillRank)
-		{
-			case 9:
-			case 8:
-			case 7:
-			case 6:
-			case 5:
-			case 4:
-			case 3:
-			{
-				delay = 0;
-			}
-			case 2:
-			{
-				delay = 6;
-			}
-			case 1:
-			{
-				delay = 11;
-			}
-		}
+		uint8 skillRank = PChar->RealSkills.rank[SKILL_DIG];		// Grab Digging Rank
+		delay = dsp_cap(delay - (skillRank * 5), 0, 16);
+
 		return delay;
 	}
 
@@ -450,50 +431,9 @@ namespace diggingutils
 	int8 ReturnAreaDigDelay(CCharEntity* PChar)
 	{
 		uint8 delay		= 60;								// Base Delay of 60
-		uint8 skillRank = PChar->RealSkills.rank[58];		// Grab Digging Rank
-		switch(skillRank)
-		{
-			case 10:
-			{
-				delay = 10;
-			}
-			case 9:
-			{
-				delay = 15;
-			}
-			case 8:
-			{
-				delay = 20;
-			}
-			case 7:
-			{
-				delay = 25;
-			}
-			case 6:
-			{
-				delay = 30;
-			}
-			case 5:
-			{
-				delay = 35;
-			}
-			case 4:
-			{
-				delay = 40;
-			}
-			case 3:
-			{
-				delay = 45;
-			}
-			case 2:
-			{
-				delay = 50;
-			}
-			case 1:
-			{
-				delay = 55;
-			}
-		}
+		uint8 skillRank = PChar->RealSkills.rank[SKILL_DIG];		// Grab Digging Rank
+		delay = 60 - (skillRank * 5);
+		
 		return delay;
 	}
 
