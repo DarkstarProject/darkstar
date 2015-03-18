@@ -416,10 +416,10 @@ void CAIMobDummy::ActionDropItems()
                 DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
                 //ShowDebug(CL_CYAN"DropID: %u dropping with TH Level: %u\n" CL_RESET, m_PMob->m_DropID, m_PMob->m_THLvl);
 
-			    if (DropList != nullptr && DropList->size())
-			    {
+                if (DropList != nullptr && !m_PMob->getMobMod(MOBMOD_NO_DROPS) && DropList->size())
+                {
                     for(uint8 i = 0; i < DropList->size(); ++i)
-				    {
+                    {
 						//THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
 						uint8 tries = 0;
 						uint8 maxTries = 1 + (m_PMob->m_THLvl > 2 ? 2 : m_PMob->m_THLvl);
@@ -463,7 +463,7 @@ void CAIMobDummy::ActionDropItems()
 						PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
 					}
 
-                    if (WELL512::irand() % 100 < 20 && PChar->PTreasurePool->CanAddSeal())
+                    if (WELL512::irand() % 100 < 20 && PChar->PTreasurePool->CanAddSeal() && !m_PMob->getMobMod(MOBMOD_NO_DROPS))
                     {
                     //RULES: Only 1 kind may drop per mob
                         if (m_PMob->GetMLevel() >= 75 && luautils::IsExpansionEnabled("ABYSSEA")) //all 4 types
