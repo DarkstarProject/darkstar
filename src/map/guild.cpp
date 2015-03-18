@@ -98,3 +98,15 @@ uint8 CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem)
     }
     return 0;
 }
+
+std::pair<uint16, uint16> CGuild::getDailyGPItem(CCharEntity* PChar)
+{
+    uint8 rank = PChar->RealSkills.rank[m_id + 48];
+
+    if (rank >= 3)
+    {
+        auto GPItem = m_GPItems[rank - 3];
+        uint16 curPoints = 0;
+        return std::make_pair(GPItem[0].item->getID(), GPItem[0].maxpoints - curPoints);
+    }
+}

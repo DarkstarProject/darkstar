@@ -2879,6 +2879,32 @@ inline int32 CLuaBaseEntity::sendGuild(lua_State* L)
 
 /************************************************************************
 *                                                                       *
+*  Returns item ID and daily remaining points for a guild's GP daily    *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addGuildPoints(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint16 GuildID = (uint16)lua_tonumber(L, 1);
+
+    CGuild* PGuild = guildutils::GetGuild(GuildID);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    auto GPItem = PGuild->getDailyGPItem(PChar);
+
+    lua_pushinteger(L, GPItem.first);
+    lua_pushinteger(L, GPItem.second);
+
+    return 2;
+}
+
+/************************************************************************
+*                                                                       *
 *  Checks if traded item is correct GP item, and adds the points        *
 *   earned.  Returns the number of consumed items in the stack          *
 *                                                                       *
