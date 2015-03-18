@@ -563,7 +563,7 @@ INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809996', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809995', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809999', '0');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809998', '0');
-INSERT INTO `bcnm_battlefield` VALUES ('673', '3', '16810018', '3');
+INSERT INTO `bcnm_battlefield` VALUES ('673', '3', '16810018', '3');	-- Race Runner
 INSERT INTO `bcnm_battlefield` VALUES ('736', '1', '16830466', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('736', '1', '16830465', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('736', '1', '16830468', '3');
