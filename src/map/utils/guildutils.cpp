@@ -194,16 +194,30 @@ void UpdateGuildPointsPattern()
 *																		*
 ************************************************************************/
 
-CItemContainer* GetGuildShop(uint16 GuildID)
+CItemContainer* GetGuildShop(uint16 GuildShopID)
 {
     for (auto PGuildShop : g_PGuildShopList)
 	{
-        if (PGuildShop->GetID() == GuildID)
+        if (PGuildShop->GetID() == GuildShopID)
 		{
             return PGuildShop;
 		}
 	}
-	ShowDebug(CL_CYAN"Guild with id <%u> is not found on server\n" CL_RESET);
+	ShowDebug(CL_CYAN"GuildShop with id <%u> is not found on server\n" CL_RESET);
+    return nullptr;
+}
+
+CGuild* GetGuild(uint8 GuildID)
+{
+    try
+    {
+        return g_PGuildList.at(GuildID);
+    }
+    catch (std::out_of_range)
+    {
+        return nullptr;
+    }
+    ShowDebug(CL_CYAN"Guild with id <%u> is not found on server\n" CL_RESET);
     return nullptr;
 }
 

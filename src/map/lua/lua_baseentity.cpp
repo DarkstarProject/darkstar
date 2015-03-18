@@ -90,6 +90,7 @@
 #include "../utils/charutils.h"
 #include "../utils/instanceutils.h"
 #include "../utils/itemutils.h"
+#include "../guild.h"
 #include "../utils/guildutils.h"
 #include "../utils/puppetutils.h"
 #include "../utils/jailutils.h"
@@ -2873,6 +2874,34 @@ inline int32 CLuaBaseEntity::sendGuild(lua_State* L)
     }
 
     lua_pushboolean( L, status == GUILD_OPEN );
+    return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*  Checks if traded item is correct GP item, and adds the points        *
+*   earned.  Returns the number of consumed items in the stack          *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addGuildPoints(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+
+    uint16 GuildID = (uint16)lua_tonumber(L, 1);
+    uint16 slotID = (uint16)lua_tonumber(L, 2);
+
+    CGuild* PGuild = guildutils::GetGuild(GuildID);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    PChar->TradeContainer->getItem(slotID);
+
+    lua_pushinteger(L, PGuild->addGuildPoints(PChar, PChar->TradeContainer->getItem(slotID)));
+
     return 1;
 }
 
@@ -9659,6 +9688,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearTargID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendMenu),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendGuild),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addGuildPoints),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setHomePoint),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,tradeComplete),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,confirmTrade),

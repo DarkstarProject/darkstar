@@ -25,6 +25,7 @@ This file is part of DarkStar-server source code.
 #define _GUILD_H
 
 #include "../common/cbasetypes.h"
+#include <array>
 #include <vector>
 
 #define GP_ITEM_RANKS 7
@@ -55,14 +56,14 @@ public:
     uint8 id();
 
     void updateGuildPointsPattern(uint8 pattern);
-    void addGuildPoints(CCharEntity* PChar, CItem* PItem);
+    uint8 addGuildPoints(CCharEntity* PChar, CItem* PItem);
 
 private:
     uint8 m_id;
     std::string pointsName;
 
-    uint8 m_GPItemsRank[GP_ITEM_RANKS];
-    std::vector<GPItem_t> m_GPItems[GP_ITEM_RANKS];
+    std::array<uint8, GP_ITEM_RANKS> m_GPItemsRank;
+    std::array<std::vector<GPItem_t>, GP_ITEM_RANKS> m_GPItems;
 };
 
 #endif

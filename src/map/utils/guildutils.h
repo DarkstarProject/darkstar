@@ -33,6 +33,7 @@
 ************************************************************************/
 
 class CItemContainer;
+class CGuild;
 
 namespace guildutils
 {
@@ -41,6 +42,7 @@ namespace guildutils
     void UpdateGuildPointsPattern();
 
 	CItemContainer* GetGuildShop(uint16 GuildShopID);
+    CGuild* GetGuild(uint8 GuildID);
 }
 
 #endif

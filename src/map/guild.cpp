@@ -30,7 +30,7 @@ This file is part of DarkStar-server source code.
 CGuild::CGuild(uint8 id, const char* _pointsName)
 {
     m_id = id;
-    std::fill_n(m_GPItemsRank, sizeof(m_GPItemsRank), 0);
+    m_GPItemsRank.fill(0);
 
     pointsName = _pointsName;
 }
@@ -52,7 +52,7 @@ void CGuild::updateGuildPointsPattern(uint8 pattern)
         GPItems.clear();
     }
 
-    for (auto i = 0; i < GP_ITEM_RANKS; ++i)
+    for (auto i = 0; i < m_GPItemsRank.size(); ++i)
     {
         m_GPItemsRank[i] = (m_GPItemsRank[i] + 1) % (i + 4);
 
@@ -74,7 +74,7 @@ void CGuild::updateGuildPointsPattern(uint8 pattern)
 }
 
 //TODO: get current daily guild points
-void CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem)
+uint8 CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem)
 {
     uint8 rank = PChar->RealSkills.rank[m_id + 48];
 
@@ -85,13 +85,16 @@ void CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem)
             if (GPItem.item->getID() == PItem->getID())
             {
                 uint16 curPoints = 0;
-                uint16 points = GPItem.points * PItem->getQuantity();
+                uint8 quantity = dsp_min(((GPItem.maxpoints - curPoints) / curPoints) + 1, PItem->getQuantity());
+                uint16 points = GPItem.points * quantity;
                 if (points > GPItem.maxpoints - curPoints)
                 {
                     points = GPItem.maxpoints - curPoints;
                 }
                 charutils::AddPoints(PChar, pointsName.c_str(), points);
+                return quantity;
             }
         }
     }
+    return 0;
 }
