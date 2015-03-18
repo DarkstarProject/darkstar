@@ -8,6 +8,7 @@ package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/missions");
+require("scripts/globals/keyitems");
 require("scripts/zones/Boneyard_Gully/TextIDs");
 
 -----------------------------------
@@ -18,6 +19,9 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
+	if (player:hasKeyItem(MIASMA_FILTER)) then
+		player:delKeyItem(MIASMA_FILTER);
+	end;
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -37,6 +41,10 @@ function onBcnmLeave(player,instance,leavecode)
 	end
 	
 end;
+
+function onBcnmDestroy(player,instance)
+end;
+
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
