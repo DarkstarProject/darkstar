@@ -202,7 +202,7 @@ INSERT INTO `mob_pool_mods` VALUES (662,30,22,1); -- Cave Antlion
 --  Race Runner
 -- -------------------------
 INSERT INTO `mob_pool_mods` VALUES (3301, 29, 100, 0); -- Magic Def
-INSERT INTO `mob_pool_mods` VALUES (3301, 302, 10, 0); -- Tripple Attack
+INSERT INTO `mob_pool_mods` VALUES (3301, 302, 10, 0); -- Triple Attack
 
 /*!40000 ALTER TABLE `mob_pool_mods` ENABLE KEYS */;
 UNLOCK TABLES;
