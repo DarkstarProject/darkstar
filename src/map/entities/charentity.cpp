@@ -133,12 +133,12 @@ CCharEntity::CCharEntity()
     TradePending.clean();
     InvitePending.clean();
 
-    PLinkshell1 = NULL;
-    PLinkshell2 = NULL;
-	PTreasurePool = NULL;
-	PWideScanTarget = NULL;
+    PLinkshell1 = nullptr;
+    PLinkshell2 = nullptr;
+	PTreasurePool = nullptr;
+	PWideScanTarget = nullptr;
 
-    PAutomaton = NULL;
+    PAutomaton = nullptr;
 
     PRecastContainer = new CRecastContainer(this);
 	PLatentEffectContainer = new CLatentEffectContainer(this);
@@ -161,7 +161,7 @@ CCharEntity::~CCharEntity()
 {
 	clearPacketList();
 
-    if(PTreasurePool != NULL)
+    if(PTreasurePool != nullptr)
     {
         // remove myself
         PTreasurePool->DelMember(this);
@@ -207,15 +207,6 @@ void CCharEntity::clearPacketList()
 	}
 }
 
-void CCharEntity::resetPetZoningInfo()
-{
-	// reset the petZoning info
-	petZoningInfo.petHP = 0;
-	petZoningInfo.petTP = 0;
-	petZoningInfo.respawnPet = false;
-	petZoningInfo.petType = PETTYPE_AVATAR;
-}
-
 void CCharEntity::pushPacket(CBasicPacket* packet)
 {
     std::lock_guard<std::mutex> lk(m_PacketListMutex);
@@ -230,6 +221,34 @@ CBasicPacket* CCharEntity::popPacket()
 	return PPacket;
 }
 
+PacketList_t CCharEntity::getPacketList()
+{
+    std::lock_guard<std::mutex> lk(m_PacketListMutex);
+    return PacketList;
+}
+
+size_t CCharEntity::getPacketCount()
+{
+    std::lock_guard<std::mutex> lk(m_PacketListMutex);
+    return PacketList.size();
+}
+
+void CCharEntity::erasePackets(uint8 num)
+{
+    for (auto i = 0; i < num; i++)
+    {
+        delete popPacket();
+    }
+}
+
+void CCharEntity::resetPetZoningInfo()
+{
+    // reset the petZoning info
+    petZoningInfo.petHP = 0;
+    petZoningInfo.petTP = 0;
+    petZoningInfo.respawnPet = false;
+    petZoningInfo.petType = PETTYPE_AVATAR;
+}
 /************************************************************************
 *																		*
 *  Возвращаем контейнер с указанным ID. Если ID выходит за рамки, то	*
@@ -263,7 +282,7 @@ int8 CCharEntity::getShieldSize()
 {
 	CItemArmor* PItem = (CItemArmor*)(getEquip(SLOT_SUB));
 
-    if(PItem == NULL){
+    if(PItem == nullptr){
         return 0;
     }
 
@@ -363,7 +382,7 @@ CItemArmor* CCharEntity::getEquip(SLOTTYPE slot)
 {
 	uint8 loc = equip[slot];
 	uint8 est = equipLoc[slot];
-	CItemArmor* item = NULL;
+	CItemArmor* item = nullptr;
 
 	if (loc != 0)
 	{

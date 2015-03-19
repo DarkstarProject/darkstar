@@ -28,6 +28,7 @@
 
 #include <string>
 #include <time.h>
+#include <stdlib.h>
 
 #define FIFOSIZE_SERVERLINK	256*1024
 

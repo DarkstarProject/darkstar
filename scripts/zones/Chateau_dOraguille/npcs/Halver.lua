@@ -62,7 +62,7 @@ elseif(player:getCurrentMission(SANDORIA)== THE_HEIR_TO_THE_LIGHT and player:get
 
 	elseif(player:getCurrentMission(SANDORIA)== THE_HEIR_TO_THE_LIGHT and player:getVar("SANDO92") == 7)then player:startEvent(0x0009);
 	elseif(pNation == SANDORIA) then
-		if(currentMission == JOURNEY_ABROAD and MissionStatus == 0) then
+		if(currentMission == JOURNEY_ABROAD and MissionStatus == 1) then
 			player:startEvent(0x01f9);
 		elseif(currentMission == JOURNEY_ABROAD and MissionStatus == 11) then
 			player:startEvent(0x01fb);

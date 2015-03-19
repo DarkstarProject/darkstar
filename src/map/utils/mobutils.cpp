@@ -138,64 +138,6 @@ void CalculateStats(CMobEntity * PMob)
     PMob->restoreModifiers();
     PMob->restoreMobModifiers();
 
-    // set a random job
-    if(PMob->getMobMod(MOBMOD_RAND_JOB))
-    {
-        bool firstOption = WELL512::irand()%2 == 0;
-        SKILLTYPE meleeSkill = SKILL_NON;
-        JOBTYPE job = JOB_NON;
-        uint16 spellList = 0;
-
-        // skeleton
-        if(PMob->m_Family == 227)
-        {
-            if(firstOption)
-            {
-                // blm
-                job = JOB_BLM;
-                // taken from mob_pools modelid
-                int8 look[23] = {0x00, 0x00, 0x34, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-                memcpy(&PMob->look, look, 23);
-                spellList = 28; // undead spell list
-                meleeSkill = SKILL_SYH;
-            }
-            else
-            {
-                // war
-                job = JOB_WAR;
-                int8 look[23] = {0x00, 0x00, 0x3C, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-                memcpy(&PMob->look, look, 23);
-                meleeSkill = SKILL_AXE;
-            }
-        }
-        // evil weapon
-        else if(PMob->m_Family == 110 || PMob->m_Family == 111)
-        {
-            if(firstOption)
-            {
-                // rdm
-                job = JOB_RDM;
-                meleeSkill = SKILL_SWD;
-                spellList = 42; // evil weapon spell list
-            }
-            else
-            {
-                // war
-                job = JOB_WAR;
-                meleeSkill = SKILL_AXE;
-            }
-        }
-        else
-        {
-            ShowError("mobutils::CalculateStats Undefined family is being set as a random job %d\n", PMob->m_Family);
-        }
-
-        PMob->SetMJob(job);
-        PMob->SetSJob(job);
-        PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
-        PMob->m_Weapons[SLOT_MAIN]->setSkillType(meleeSkill);
-    }
-
     bool isNM = PMob->m_Type & MOBTYPE_NOTORIOUS;
     JOBTYPE mJob = PMob->GetMJob();
     JOBTYPE sJob = PMob->GetSJob();
@@ -260,7 +202,7 @@ void CalculateStats(CMobEntity * PMob)
         }
 
         // pets have lower health
-        if(PMob->PMaster != NULL)
+        if(PMob->PMaster != nullptr)
         {
             growth = 0.95;
         }
@@ -565,7 +507,7 @@ void CalculateStats(CMobEntity * PMob)
     }
 
     // special case, give spell list to my pet
-    if(PMob->getMobMod(MOBMOD_PET_SPELL_LIST) && PMob->PPet != NULL)
+    if(PMob->getMobMod(MOBMOD_PET_SPELL_LIST) && PMob->PPet != nullptr)
     {
         // Stubborn_Dredvodd
         CMobEntity* PPet = (CMobEntity*)PMob->PPet;
@@ -698,7 +640,7 @@ void RecalculateSpellContainer(CMobEntity* PMob)
  */
 void GetAvailableSpells(CMobEntity* PMob) {
 	//make sure the mob actually has a spell list
-	if (PMob->m_SpellListContainer == NULL)
+	if (PMob->m_SpellListContainer == nullptr)
 	{
 		return;
 	}
@@ -768,7 +710,7 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	RecalculateSpellContainer(PMob);
 
 	// make sure mob has mp to cast spells
-	if(PMob->health.maxmp == 0 && PMob->SpellContainer != NULL && PMob->SpellContainer->HasMPSpells())
+	if(PMob->health.maxmp == 0 && PMob->SpellContainer != nullptr && PMob->SpellContainer->HasMPSpells())
 	{
 		ShowError("mobutils::CalculateStats Mob (%u) has no mp for casting spells!\n", PMob->id);
 	}
@@ -957,7 +899,7 @@ ModsList_t* GetMobFamilyMods(uint16 familyId, bool create)
 		return mods;
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 ModsList_t* GetMobPoolMods(uint32 poolId, bool create)
@@ -978,7 +920,7 @@ ModsList_t* GetMobPoolMods(uint32 poolId, bool create)
 		return mods;
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 ModsList_t* GetMobSpawnMods(uint32 mobId, bool create)
@@ -999,7 +941,7 @@ ModsList_t* GetMobSpawnMods(uint32 mobId, bool create)
 		return mods;
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 void AddCustomMods(CMobEntity* PMob)
@@ -1008,7 +950,7 @@ void AddCustomMods(CMobEntity* PMob)
 	// find my families custom mods
 	ModsList_t* PFamilyMods = GetMobFamilyMods(PMob->m_Family);
 
-	if(PFamilyMods != NULL)
+	if(PFamilyMods != nullptr)
 	{
 		// add them
 		for(std::vector<CModifier*>::iterator it = PFamilyMods->mods.begin(); it != PFamilyMods->mods.end() ; ++it)
@@ -1025,7 +967,7 @@ void AddCustomMods(CMobEntity* PMob)
 	// find my pools custom mods
 	ModsList_t* PPoolMods = GetMobPoolMods(PMob->m_Pool);
 
-	if(PPoolMods != NULL)
+	if(PPoolMods != nullptr)
 	{
 		// add them
 		for(std::vector<CModifier*>::iterator it = PPoolMods->mods.begin(); it != PPoolMods->mods.end() ; ++it)
@@ -1042,7 +984,7 @@ void AddCustomMods(CMobEntity* PMob)
 	// find my pools custom mods
 	ModsList_t* PSpawnMods = GetMobSpawnMods(PMob->id);
 
-	if(PSpawnMods != NULL)
+	if(PSpawnMods != nullptr)
 	{
 		// add them
 		for(std::vector<CModifier*>::iterator it = PSpawnMods->mods.begin(); it != PSpawnMods->mods.end() ; ++it)
@@ -1095,7 +1037,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 
 	int32 ret = Sql_Query(SqlHandle, Query, groupid);
 
-	CMobEntity* PMob = NULL;
+	CMobEntity* PMob = nullptr;
 
 	if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{

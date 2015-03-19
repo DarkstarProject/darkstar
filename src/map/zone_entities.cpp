@@ -44,7 +44,7 @@ This file is part of DarkStar-server source code.
 CZoneEntities::CZoneEntities(CZone* zone)
 {
 	m_zone = zone;
-	m_Transport = NULL;
+	m_Transport = nullptr;
 }
 
 CZoneEntities::~CZoneEntities()
@@ -71,7 +71,7 @@ void CZoneEntities::InsertPC(CCharEntity* PChar)
 
 void CZoneEntities::InsertMOB(CBaseEntity* PMob)
 {
-	if ((PMob != NULL) && (PMob->objtype == TYPE_MOB))
+	if ((PMob != nullptr) && (PMob->objtype == TYPE_MOB))
 	{
 		PMob->loc.zone = m_zone;
 
@@ -82,7 +82,7 @@ void CZoneEntities::InsertMOB(CBaseEntity* PMob)
 
 void CZoneEntities::InsertNPC(CBaseEntity* PNpc)
 {
-	if ((PNpc != NULL) && (PNpc->objtype == TYPE_NPC))
+	if ((PNpc != nullptr) && (PNpc->objtype == TYPE_NPC))
 	{
 		PNpc->loc.zone = m_zone;
 
@@ -97,7 +97,7 @@ void CZoneEntities::InsertNPC(CBaseEntity* PNpc)
 
 void CZoneEntities::DeletePET(CBaseEntity* PPet)
 {
-	if (PPet != NULL)
+	if (PPet != nullptr)
 	{
 		m_petList.erase(PPet->targid);
 	}
@@ -105,7 +105,7 @@ void CZoneEntities::DeletePET(CBaseEntity* PPet)
 
 void CZoneEntities::InsertPET(CBaseEntity* PPet)
 {
-	if (PPet != NULL)
+	if (PPet != nullptr)
 	{
 		uint16 targid = 0x700;
 
@@ -144,7 +144,7 @@ void CZoneEntities::InsertPET(CBaseEntity* PPet)
 
 void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
 {
-	DSP_DEBUG_BREAK_IF(PEntity == NULL);
+	DSP_DEBUG_BREAK_IF(PEntity == nullptr);
 	DSP_DEBUG_BREAK_IF(PEntity->objtype != TYPE_MOB);
 
 	CMobEntity* PMob = (CMobEntity*)PEntity;
@@ -153,7 +153,7 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
 	ZONETYPE zonetype = m_zone->GetType();
 	bool forceLink = zonetype == ZONETYPE_BATTLEFIELD || zonetype == ZONETYPE_DYNAMIS || PMob->getMobMod(MOBMOD_SUPERLINK);
 
-	if ((forceLink || PMob->m_Link) && PMob->PParty == NULL)
+	if ((forceLink || PMob->m_Link) && PMob->PParty == nullptr)
 	{
 		for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
 		{
@@ -169,7 +169,7 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
 				sublink && sublink == PCurrentMob->getMobMod(MOBMOD_SUBLINK)))
 			{
 
-				if (PCurrentMob->PMaster == NULL || PCurrentMob->PMaster->objtype == TYPE_MOB)
+				if (PCurrentMob->PMaster == nullptr || PCurrentMob->PMaster->objtype == TYPE_MOB)
 				{
 					PCurrentMob->PParty->AddMember(PMob);
 					return;
@@ -212,11 +212,11 @@ void CZoneEntities::WeatherChange(WEATHER weather)
 
 void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PChar == nullptr);
 	DSP_DEBUG_BREAK_IF(PChar->loc.zone != m_zone);
 
 	//remove pets
-	if (PChar->PPet != NULL)
+	if (PChar->PPet != nullptr)
 	{
 		charutils::BuildingCharPetAbilityTable(PChar, (CPetEntity*)PChar->PPet, 0);//blank the pet commands
 		if (PChar->PPet->isCharmed) {
@@ -227,8 +227,8 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 			if (((CPetEntity*)(PChar->PPet))->getPetType() == PETTYPE_AVATAR)
 				PChar->setModifier(MOD_AVATAR_PERPETUATION, 0);
 		}
-		// It may have been nulled by DespawnPet
-		if (PChar->PPet != NULL) {
+		// It may have been nullptred by DespawnPet
+		if (PChar->PPet != nullptr) {
 			PChar->PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
 			DeletePET(PChar->PPet);//remove the TID for this pet
 
@@ -244,12 +244,12 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 					PCurrentChar->pushPacket(new CEntityUpdatePacket(PChar->PPet, ENTITY_DESPAWN, UPDATE_NONE));
 				}
 			}
-			PChar->PPet = NULL;
+			PChar->PPet = nullptr;
 		}
 	}
 
 	//remove bcnm status
-	if (m_zone->m_BattlefieldHandler != NULL && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
+	if (m_zone->m_BattlefieldHandler != nullptr && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
 	{
 		if (m_zone->m_BattlefieldHandler->disconnectFromBcnm(PChar)){
 			ShowDebug("Removed %s from the BCNM they were in as they have left the zone.\n", PChar->GetName());
@@ -259,7 +259,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 			//move depending on zone
 			int pos[4] = { 0, 0, 0, 0 };
 			battlefieldutils::getStartPosition(m_zone->GetID(), pos);
-			if (pos != NULL){
+			if (pos != nullptr){
 				PChar->loc.p.x = pos[0];
 				PChar->loc.p.y = pos[1];
 				PChar->loc.p.z = pos[2];
@@ -272,7 +272,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 			}
 		}
 	}
-	else if (m_zone->m_BattlefieldHandler != NULL && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS, 0))
+	else if (m_zone->m_BattlefieldHandler != nullptr && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS, 0))
 	{
 		if (m_zone->m_BattlefieldHandler->disconnectFromDynamis(PChar)){
 			ShowDebug("Removed %s from the BCNM they were in as they have left the zone.\n", PChar->GetName());
@@ -320,7 +320,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
         }
         if (PCurrentMob->PBattleAI->GetBattleSubTarget() == PChar)
         {
-            PCurrentMob->PBattleAI->SetBattleSubTarget(NULL);
+            PCurrentMob->PBattleAI->SetBattleSubTarget(nullptr);
         }
 	}
     for (auto PPetIt : m_petList)
@@ -332,7 +332,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
         }
         if (PCurrentPet->PBattleAI->GetBattleSubTarget() == PChar)
         {
-            PCurrentPet->PBattleAI->SetBattleSubTarget(NULL);
+            PCurrentPet->PBattleAI->SetBattleSubTarget(nullptr);
         }
     }
 
@@ -396,7 +396,7 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
                 PChar->pushPacket(new CEntityUpdatePacket(PCurrentMob, ENTITY_SPAWN, UPDATE_ALL_MOB));
 			}
 
-			if (PChar->isDead() || PChar->nameflags.flags & FLAG_GM || PCurrentMob->PMaster != NULL)
+			if (PChar->isDead() || PChar->nameflags.flags & FLAG_GM || PCurrentMob->PMaster != nullptr)
 				continue;
 
 			// проверка ночного/дневного сна монстров уже учтена в проверке CurrentAction, т.к. во сне монстры не ходят ^^
@@ -560,7 +560,7 @@ void CZoneEntities::SpawnMoogle(CCharEntity* PChar)
 
 void CZoneEntities::SpawnTransport(CCharEntity* PChar)
 {
-	if (m_Transport != NULL)
+	if (m_Transport != nullptr)
 	{
         PChar->pushPacket(new CEntityUpdatePacket(m_Transport, ENTITY_SPAWN, UPDATE_ALL_MOB));
 		return;
@@ -589,7 +589,7 @@ CBaseEntity* CZoneEntities::GetEntity(uint16 targid, uint8 filter)
 		}
 		if (filter & TYPE_SHIP)
 		{
-			if (m_Transport != NULL && m_Transport->targid == targid)
+			if (m_Transport != nullptr && m_Transport->targid == targid)
 			{
                 return m_Transport;
 			}
@@ -617,7 +617,7 @@ CBaseEntity* CZoneEntities::GetEntity(uint16 targid, uint8 filter)
 			}
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 void CZoneEntities::TOTDChange(TIMETYPE TOTD)
@@ -764,7 +764,7 @@ CCharEntity* CZoneEntities::GetCharByName(int8* name)
 			}
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 CCharEntity* CZoneEntities::GetCharByID(uint32 id)
@@ -776,13 +776,13 @@ CCharEntity* CZoneEntities::GetCharByID(uint32 id)
 			return (CCharEntity*)PChar.second;
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, CBasicPacket* packet)
 {
 	// Do not send packets that are updates of a hidden GM..
-	if (packet != NULL && packet->getType() == 0x0D && PEntity != NULL && PEntity->objtype == TYPE_PC && ((CCharEntity*)PEntity)->m_isGMHidden)
+	if (packet != nullptr && packet->getType() == 0x0D && PEntity != nullptr && PEntity->objtype == TYPE_PC && ((CCharEntity*)PEntity)->m_isGMHidden)
 	{
 		// Ensure this packet is not despawning us..
 		if (packet->getData()[0x06] != 0x20)
@@ -813,7 +813,7 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
 						if (distance(PEntity->loc.p, PCurrentChar->loc.p) < 50 && 
                             ((PEntity->objtype != TYPE_PC) || (((CCharEntity*)PEntity)->m_moghouseID == PCurrentChar->m_moghouseID)))
 						{
-							if (packet != NULL && packet->getType() == 0x0E &&
+							if (packet != nullptr && packet->getType() == 0x0E &&
 								(RBUFB(packet->getData(), (0x0A) - 4) != 0x20 ||
 								RBUFB(packet->getData(), (0x0A) - 4) != 0x0F))
 							{
@@ -843,7 +843,7 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
 									}
 									else
 									{
-										entity = NULL;
+										entity = nullptr;
 									}
 								}
 								if (!entity)
@@ -949,7 +949,7 @@ void CZoneEntities::ZoneServer(uint32 tick)
 	{
 		CNpcEntity* PNpc = (CNpcEntity*)it->second;
 
-		if (PNpc->PBattleAI != NULL)
+		if (PNpc->PBattleAI != nullptr)
 		{
 			PNpc->PBattleAI->CheckCurrentAction(tick);
 		}

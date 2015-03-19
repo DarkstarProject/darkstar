@@ -37,7 +37,7 @@ CLockOnPacket::CLockOnPacket(CCharEntity* PChar, CBattleEntity* PTarget)
 	WBUFL(data,(0x04)-4) = PChar->id;
 	WBUFW(data,(0x0C)-4) = PChar->targid;
 
-	if (PTarget != NULL)
+	if (PTarget != nullptr)
 	{
 		WBUFL(data,(0x08)-4) = PTarget->id;
 		WBUFW(data,(0x0E)-4) = PTarget->targid;

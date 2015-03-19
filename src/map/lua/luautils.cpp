@@ -65,10 +65,11 @@
 #include "../packets/menu_raisetractor.h"
 #include "../packets/message_basic.h"
 #include "../packets/entity_visual.h"
+#include "../items/item_puppet.h"
 
 namespace luautils
 {
-lua_State*  LuaHandle = NULL;
+lua_State*  LuaHandle = nullptr;
 
 bool expansionRestrictionEnabled;
 std::unordered_map<std::string, bool> expansionEnabledMap;
@@ -241,7 +242,7 @@ int32 SendEntityVisualPacket(lua_State* L)
 
 		CBaseEntity* PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
 
-        if (PNpc != NULL)
+        if (PNpc != nullptr)
         {
             PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityVisualPacket(PNpc, command));
         }
@@ -263,7 +264,7 @@ int32 GetNPCByID(lua_State* L)
 	{
 		uint32 npcid = (uint32)lua_tointeger(L, 1);
 
-        CInstance* PInstance = NULL;
+        CInstance* PInstance = nullptr;
 
         if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
         {
@@ -271,7 +272,7 @@ int32 GetNPCByID(lua_State* L)
             PInstance = PLuaBaseEntity->GetBaseEntity()->PInstance;
         }
 
-        CBaseEntity* PNpc = NULL;
+        CBaseEntity* PNpc = nullptr;
 
         if (PInstance)
         {
@@ -282,7 +283,7 @@ int32 GetNPCByID(lua_State* L)
             PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
         }
 
-		if(PNpc == NULL){
+		if(PNpc == nullptr){
 			lua_pushnil(L);
 		} else {
 			lua_getglobal(L,CLuaBaseEntity::className);
@@ -313,7 +314,7 @@ int32 GetMobByID(lua_State* L)
 
 		CBaseEntity* PMob = zoneutils::GetEntity(mobid, TYPE_MOB | TYPE_PET);
 
-		if(PMob == NULL){
+		if(PMob == nullptr){
 			ShowWarning("luautils::GetMobByID Mob doesn't exist (%d)\n", mobid);
 			lua_pushnil(L);
 		} else {
@@ -349,7 +350,7 @@ int32 GetMobIDByJob(lua_State *L)
 	{
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
-		if(PMob != NULL &&
+		if(PMob != nullptr &&
 		   PMob->isDead() &&
 		   !(PMob->m_Type & MOBTYPE_NOTORIOUS) &&
 		   (PMob->m_Family < 92 || PMob->m_Family > 95) && PMob->m_Family != 4 &&
@@ -754,7 +755,7 @@ int32 SpawnMob(lua_State* L)
 	{
 		uint32 mobid = (uint32)lua_tointeger(L,1);
 
-		CMobEntity* PMob = NULL;
+		CMobEntity* PMob = nullptr;
 
 		if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
 		{
@@ -765,7 +766,7 @@ int32 SpawnMob(lua_State* L)
 		{
 			PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 		}
-        if (PMob != NULL)
+        if (PMob != nullptr)
         {
 
             if( !lua_isnil(L,2) && lua_isnumber(L,2))
@@ -822,7 +823,7 @@ int32 DespawnMob(lua_State* L)
 		uint32 mobid = (uint32)lua_tointeger(L, 1);
 
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-		if (PMob != NULL)
+		if (PMob != nullptr)
 		{
 			if(!lua_isnil(L,2) && lua_isnumber(L,2))
 			{
@@ -854,7 +855,7 @@ int32 setMobPos(lua_State *L)
 		uint32 mobid = (uint32)lua_tointeger(L, 1);
 
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-		if (PMob != NULL)
+		if (PMob != nullptr)
 		{
 			//if mob is in battle, do not warp it
 			if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
@@ -900,11 +901,11 @@ int32 GetPlayerByName(lua_State* L)
 {
 	if( !lua_isnil(L,-1) && lua_isstring(L,-1))
 	{
-		int8* name = (int8*)lua_tolstring(L,-1,NULL);
+		int8* name = (int8*)lua_tolstring(L,-1,nullptr);
 
 		CCharEntity* PTargetChar = zoneutils::GetCharByName(name);
 
-		if (PTargetChar != NULL)
+		if (PTargetChar != nullptr)
         {
             lua_getglobal(L, CLuaBaseEntity::className);
 			lua_pushstring(L,"new");
@@ -933,7 +934,7 @@ int32 GetMobAction(lua_State* L)
     uint32 mobid = (uint32)lua_tointeger(L,-1);
 
     CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB | TYPE_PET);
-    if (PMob != NULL)
+    if (PMob != nullptr)
     {
         int32 CurrentAction = (int32)PMob->PBattleAI->GetCurrentAction();
         lua_pushinteger(L, CurrentAction);
@@ -1020,7 +1021,7 @@ uint8 GetSettingsVariable(const char* variable)
 
 bool IsExpansionEnabled(const char* expansionCode)
 {
-	if (expansionCode != NULL){
+	if (expansionCode != nullptr){
 		std::string expansionVariable("ENABLE_");
 		expansionVariable.append(expansionCode);
 
@@ -1576,7 +1577,7 @@ int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc)
 
 int32 OnNpcSpawn(CBaseEntity* PNpc)
 {
-    DSP_DEBUG_BREAK_IF(PNpc == NULL);
+    DSP_DEBUG_BREAK_IF(PNpc == nullptr);
 
     lua_prepscript("scripts/zones/%s/npcs/%s.lua", PNpc->loc.zone->GetName(), PNpc->GetName());
 
@@ -1812,6 +1813,64 @@ int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 	return 0;
 }
 
+int32 OnManeuverGain(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers)
+{
+    lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
+
+    if (prepFile(File, "onManeuverGain"))
+    {
+        return -1;
+    }
+
+    CLuaBaseEntity LuaBaseEntity(PEntity);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+    lua_pushinteger(LuaHandle, maneuvers);
+
+    if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::onManeuverGain: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 0)
+    {
+        ShowError("luautils::onManeuverGain (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+    return 0;
+}
+
+int32 OnManeuverLose(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers)
+{
+    lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
+
+    if (prepFile(File, "onManeuverLose"))
+    {
+        return -1;
+    }
+
+    CLuaBaseEntity LuaBaseEntity(PEntity);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+    lua_pushinteger(LuaHandle, maneuvers);
+
+    if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::onManeuverLose: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 0)
+    {
+        ShowError("luautils::onManeuverLose (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+    return 0;
+}
+
 /************************************************************************
 *																		*
 *  Проверяем возможность использования предмета. Если все хорошо, то    *
@@ -1944,7 +2003,7 @@ int32 CheckForGearSet(CBaseEntity* PTarget)
 
 int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell)
 {
-    DSP_DEBUG_BREAK_IF(PSpell == NULL);
+    DSP_DEBUG_BREAK_IF(PSpell == nullptr);
 
     lua_prepscript(PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua",
         PSpell->getName());
@@ -2026,7 +2085,7 @@ int32 OnSpellPrecast(CBattleEntity* PCaster, CSpell* PSpell)
 
 int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
 {
-	DSP_DEBUG_BREAK_IF(PCaster == NULL || PTarget == NULL);
+	DSP_DEBUG_BREAK_IF(PCaster == nullptr || PTarget == nullptr);
 
     lua_prepscript("scripts/zones/%s/mobs/%s.lua", PCaster->loc.zone->GetName(), PCaster->GetName());
 
@@ -2073,7 +2132,7 @@ int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
 
 int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell)
 {
-    DSP_DEBUG_BREAK_IF(PSpell == NULL);
+    DSP_DEBUG_BREAK_IF(PSpell == nullptr);
 
     lua_prepscript("scripts/zones/%s/mobs/%s.lua", PTarget->loc.zone->GetName(), PTarget->GetName());
 
@@ -2121,7 +2180,7 @@ int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell)
 
 int32 OnMobInitialize(CBaseEntity* PMob)
 {
-    DSP_DEBUG_BREAK_IF(PMob == NULL);
+    DSP_DEBUG_BREAK_IF(PMob == nullptr);
 
     lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
@@ -2151,7 +2210,7 @@ int32 OnMobInitialize(CBaseEntity* PMob)
 
 int32 OnPath(CBaseEntity* PEntity)
 {
-    DSP_DEBUG_BREAK_IF(PEntity == NULL);
+    DSP_DEBUG_BREAK_IF(PEntity == nullptr);
     DSP_DEBUG_BREAK_IF(PEntity->objtype == TYPE_PC)
 
     lua_prepscript("scripts/zones/%s/%s/%s.lua", PEntity->loc.zone->GetName(), (PEntity->objtype == TYPE_MOB ? "mobs" : "npcs"), PEntity->GetName());
@@ -2188,7 +2247,7 @@ int32 OnPath(CBaseEntity* PEntity)
 
 int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget)
 {
-	DSP_DEBUG_BREAK_IF(PTarget == NULL || PMob == NULL);
+	DSP_DEBUG_BREAK_IF(PTarget == nullptr || PMob == nullptr);
 
 	CLuaBaseEntity LuaMobEntity(PMob);
 	CLuaBaseEntity LuaKillerEntity(PTarget);
@@ -2233,7 +2292,7 @@ int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget)
 
 int32 OnMobDisengage(CBaseEntity* PMob)
 {
-	DSP_DEBUG_BREAK_IF(PMob == NULL);
+	DSP_DEBUG_BREAK_IF(PMob == nullptr);
 
     uint8 weather = PMob->loc.zone->GetWeather();
 
@@ -2266,7 +2325,7 @@ int32 OnMobDisengage(CBaseEntity* PMob)
 
 int32 OnMobDrawIn(CBaseEntity* PMob, CBaseEntity* PTarget)
 {
-	DSP_DEBUG_BREAK_IF(PTarget == NULL || PMob == NULL);
+	DSP_DEBUG_BREAK_IF(PTarget == nullptr || PMob == nullptr);
 
 	CLuaBaseEntity LuaMobEntity(PMob);
 	CLuaBaseEntity LuaKillerEntity(PTarget);
@@ -2311,8 +2370,8 @@ int32 OnMobDrawIn(CBaseEntity* PMob, CBaseEntity* PTarget)
 
 int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget)
 {
-    DSP_DEBUG_BREAK_IF(PMob == NULL || PMob->objtype != TYPE_MOB)
-    DSP_DEBUG_BREAK_IF(PTarget == NULL || PTarget->objtype == TYPE_NPC);
+    DSP_DEBUG_BREAK_IF(PMob == nullptr || PMob->objtype != TYPE_MOB)
+    DSP_DEBUG_BREAK_IF(PTarget == nullptr || PTarget->objtype == TYPE_NPC);
 
 	CLuaBaseEntity LuaMobEntity(PMob);
 	CLuaBaseEntity LuaKillerEntity(PTarget);
@@ -2344,7 +2403,7 @@ int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget)
 
 int32 OnCriticalHit(CBattleEntity* PMob)
 {
-    DSP_DEBUG_BREAK_IF(PMob == NULL || PMob->objtype != TYPE_MOB)
+    DSP_DEBUG_BREAK_IF(PMob == nullptr || PMob->objtype != TYPE_MOB)
 
 	CLuaBaseEntity LuaMobEntity(PMob);
 
@@ -2380,7 +2439,7 @@ int32 OnCriticalHit(CBattleEntity* PMob)
 
 int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 {
-    DSP_DEBUG_BREAK_IF(PMob == NULL);
+    DSP_DEBUG_BREAK_IF(PMob == nullptr);
 
     CCharEntity* PChar = (CCharEntity*)PKiller;
 
@@ -2537,7 +2596,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 
 int32 OnMobSpawn(CBaseEntity* PMob)
 {
-    DSP_DEBUG_BREAK_IF(PMob == NULL);
+    DSP_DEBUG_BREAK_IF(PMob == nullptr);
 
     lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
@@ -2567,7 +2626,7 @@ int32 OnMobSpawn(CBaseEntity* PMob)
 
 int32 OnMobRoamAction(CBaseEntity* PMob)
 {
-    DSP_DEBUG_BREAK_IF(PMob == NULL || PMob->objtype != TYPE_MOB)
+    DSP_DEBUG_BREAK_IF(PMob == nullptr || PMob->objtype != TYPE_MOB)
 
 	CLuaBaseEntity LuaMobEntity(PMob);
 
@@ -2602,7 +2661,7 @@ int32 OnMobRoamAction(CBaseEntity* PMob)
 
 int32 OnMobRoam(CBaseEntity* PMob)
 {
-    DSP_DEBUG_BREAK_IF(PMob == NULL || PMob->objtype != TYPE_MOB)
+    DSP_DEBUG_BREAK_IF(PMob == nullptr || PMob->objtype != TYPE_MOB)
 
 	CLuaBaseEntity LuaMobEntity(PMob);
 
@@ -2639,7 +2698,7 @@ int32 OnMobRoam(CBaseEntity* PMob)
 
 int32 OnMobDespawn(CBaseEntity* PMob)
 {
-	DSP_DEBUG_BREAK_IF(PMob == NULL);
+	DSP_DEBUG_BREAK_IF(PMob == nullptr);
 
     lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
@@ -2977,7 +3036,7 @@ int32 OnMagicCastingCheck(CBaseEntity* PChar,CBaseEntity* PTarget,CSpell* PSpell
 
 int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbility, CBaseEntity** PMsgTarget)
 {
-    DSP_DEBUG_BREAK_IF(PAbility == NULL);
+    DSP_DEBUG_BREAK_IF(PAbility == nullptr);
 
     char filePath[40] = "scripts/globals/abilities/%s.lua";
 
@@ -3632,7 +3691,7 @@ int32 OnConquestUpdate(CZone* PZone, ConquestUpdate type)
 *********************************************************************/
 int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PBattlefield){
 
-    CZone* PZone = PChar->loc.zone == NULL ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
+    CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
 
     lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->getBcnmName());
 
@@ -3674,7 +3733,7 @@ int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PBattlefield){
 *********************************************************************/
 int32 OnBcnmLeave(CCharEntity* PChar, CBattlefield* PBattlefield, uint8 LeaveCode){
 
-    CZone* PZone = PChar->loc.zone == NULL ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
+    CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
 
     lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->getBcnmName());
 
@@ -3719,7 +3778,7 @@ int32 OnBcnmLeave(CCharEntity* PChar, CBattlefield* PBattlefield, uint8 LeaveCod
 *********************************************************************/
 int32 OnBcnmRegister(CCharEntity* PChar, CBattlefield* PBattlefield){
 
-    CZone* PZone = PChar->loc.zone == NULL ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
+    CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
 
     lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->getBcnmName());
 
@@ -3790,7 +3849,7 @@ int32 DeterMob(lua_State* L)
 		uint32 mobid = (uint32)lua_tointeger(L,1);
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
-		if (PMob != NULL) {
+		if (PMob != nullptr) {
 			if( !lua_isnil(L,2) && lua_isboolean(L,2) ) {
 				if ( lua_toboolean(L,2) == 0 ) {
 				  PMob->m_AllowRespawn = true; // Do not deter the mob, allow mob to respawn
@@ -3823,7 +3882,7 @@ int32 UpdateNMSpawnPoint(lua_State* L)
 		uint32 mobid = (uint32)lua_tointeger(L,1);
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
-		if (PMob != NULL) {
+		if (PMob != nullptr) {
 		  int32 r = WELL512::irand()%50;
 		  int32 ret = Sql_Query(SqlHandle, "SELECT pos_x, pos_y, pos_z FROM `nm_spawn_points` WHERE mobid=%u AND pos=%i", mobid, r);
 
@@ -3858,7 +3917,7 @@ int32 GetMobRespawnTime(lua_State* L)
     uint32 mobid = (uint32)lua_tointeger(L,-1);
     CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
-    if (PMob != NULL) {
+    if (PMob != nullptr) {
         uint32 RespawnTime = (uint32)PMob->m_RespawnTime / 1000;
         lua_pushinteger(L, RespawnTime);
         return 1;
@@ -3964,7 +4023,7 @@ int32 UpdateServerMessage(lua_State* L)
 
     // Load the English server message..
     fp = fopen("./conf/server_message.conf", "rb");
-    if (fp == NULL)
+    if (fp == nullptr)
     {
         ShowError("Could not read English server message from: ./conf/server_message.conf\n");
         return 1;
@@ -3980,7 +4039,7 @@ int32 UpdateServerMessage(lua_State* L)
 
     // Load the French server message..
     fp = fopen("./conf/server_message_fr.conf", "rb");
-    if (fp == NULL)
+    if (fp == nullptr)
     {
         ShowError("Could not read English server message from: ./conf/server_message_fr.conf\n");
         return 1;
@@ -3994,7 +4053,7 @@ int32 UpdateServerMessage(lua_State* L)
 
     fclose(fp);
 
-    // Ensure both messages have null terminates..
+    // Ensure both messages have nullptr terminates..
     if (map_config.server_message.at(map_config.server_message.length() - 1) != 0x00)
         map_config.server_message += (char)0x00;
     if (map_config.server_message_fr.at(map_config.server_message_fr.length() - 1) != 0x00)

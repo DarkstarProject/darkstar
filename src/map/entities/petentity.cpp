@@ -54,7 +54,7 @@ bool CPetEntity::isBstPet()
 
 WYVERNTYPE CPetEntity::getWyvernType()
 {
-  DSP_DEBUG_BREAK_IF(PMaster == NULL);
+  DSP_DEBUG_BREAK_IF(PMaster == nullptr);
 
   switch(PMaster->GetSJob())
   {

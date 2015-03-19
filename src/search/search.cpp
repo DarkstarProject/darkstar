@@ -78,11 +78,8 @@ struct SearchCommInfo
 	uint16 port;
 };
 
-#ifdef WIN32
-ppuint32 __stdcall TaskManagerThread(void* lpParam);
-#else
-void * TaskManagerThread(void* lpParam);
-#endif
+void TaskManagerThread();
+
 int32 ah_cleanup(uint32 tick, CTaskMgr::CTask* PTask);
 
 
@@ -96,7 +93,7 @@ extern void HandleSearchComment(CTCPRequestPacket* PTCPRequest);
 extern void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest);
 extern void HandleAuctionHouseHistory(CTCPRequestPacket* PTCPRequest);
 extern void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest);
-extern search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket);
+extern search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest);
 extern std::string toStr(int number);
 
 search_config_t search_config;
@@ -159,7 +156,7 @@ int32 main (int32 argc, int8 **argv)
     SOCKET ListenSocket = INVALID_SOCKET;
     SOCKET ClientSocket = INVALID_SOCKET;
 
-    struct addrinfo *result = NULL;
+    struct addrinfo *result = nullptr;
     struct addrinfo  hints;
 
     search_config_default();
@@ -186,7 +183,7 @@ int32 main (int32 argc, int8 **argv)
     hints.ai_flags = AI_PASSIVE;
 
     // Resolve the server address and port
-    iResult = getaddrinfo(NULL, login_config.search_server_port, &hints, &result);
+    iResult = getaddrinfo(nullptr, login_config.search_server_port, &hints, &result);
     if (iResult != 0)
 	{
         ShowError("getaddrinfo failed with error: %d\n", iResult);
@@ -249,36 +246,16 @@ int32 main (int32 argc, int8 **argv)
     ShowMessage(CL_WHITE"========================================================\n\n" CL_RESET);
 	if (search_config.expire_auctions == 1) {
 		ShowMessage(CL_GREEN"AH task to return items older than %u days is running\n" CL_RESET, search_config.expire_days);
-		CTaskMgr::getInstance()->AddTask("ah_cleanup", gettick(), NULL, CTaskMgr::TASK_INTERVAL, ah_cleanup, search_config.expire_interval*1000);
+		CTaskMgr::getInstance()->AddTask("ah_cleanup", gettick(), nullptr, CTaskMgr::TASK_INTERVAL, ah_cleanup, search_config.expire_interval*1000);
 	}
 //	ShowMessage(CL_CYAN"[TASKMGR] Starting task manager thread..\n" CL_RESET);
-#ifdef WIN32
-	CreateThread(0, 0, TaskManagerThread, NULL, 0, 0);
-#else
-	pthread_t thread2;
-	pthread_attr_t threadAttr2;
 
-	ptherr = 0;
-	ptherr = pthread_attr_init(&threadAttr2);
-	if (ptherr != 0)
-	{
-		errno = ptherr;
-		perror("pthread_attr_init");
-	}
-
-	ptherr = 0;
-	ptherr = pthread_create(&thread2, &threadAttr2, &TaskManagerThread, NULL);
-	if (ptherr != 0)
-	{
-		errno = ptherr;
-		perror("pthread_attr_init");
-	}
-#endif
+    std::thread(TaskManagerThread).detach();
 
 	while (true)
 	{
 		// Accept a client socket
-		ClientSocket = accept(ListenSocket, NULL, NULL);
+		ClientSocket = accept(ListenSocket, nullptr, nullptr);
 		if (ClientSocket == INVALID_SOCKET) 
 		{
 #ifdef WIN32
@@ -352,7 +329,7 @@ void search_config_read(const int8* file)
 	FILE* fp;
 
 	fp = fopen(file,"r");
-	if( fp == NULL )
+	if( fp == nullptr )
 	{
 		ShowError("configuration file not found at: %s\n", file);
 		return;
@@ -437,7 +414,7 @@ void login_config_read(const int8* file)
 	FILE* fp;
 
 	fp = fopen(file, "r");
-	if (fp == NULL)
+	if (fp == nullptr)
 	{
 		ShowError("configuration file not found at: %s\n", file);
 		return;
@@ -613,7 +590,7 @@ void HandleSearchComment(CTCPRequestPacket* PTCPRequest)
 
 void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 {   
-	search_req sr = _HandleSearchRequest(PTCPRequest,NULL);
+	search_req sr = _HandleSearchRequest(PTCPRequest);
 	int totalCount = 0;
 
     CDataLoader* PDataLoader = new CDataLoader();
@@ -731,7 +708,7 @@ void HandleAuctionHouseHistory(CTCPRequestPacket* PTCPRequest)
 *                                                                       *
 ************************************************************************/
 
-search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
+search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 {
 	// суть в том, чтобы заполнить некоторую структуру, на основании которой будет создан запрос к базе
 	// результат поиска в базе отправляется клиенту
@@ -1002,25 +979,14 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 *                                                                       *
 ************************************************************************/
 
-#ifdef WIN32
-ppuint32 __stdcall TaskManagerThread(void* lpParam)
-#else
-void* TaskManagerThread(void* lpParam)
-#endif
+void TaskManagerThread()
 {
 	int next;
 	while (true)
 	{
 		next = CTaskMgr::getInstance()->DoTimer(gettick_nocache());
-		Sleep(next / 1000);
+		std::this_thread::sleep_for(std::chrono::milliseconds(next / 1000));
 	}
-
-
-#ifdef WIN32
-	return 1;
-#else
-	return NULL;
-#endif
 }
 
 /************************************************************************

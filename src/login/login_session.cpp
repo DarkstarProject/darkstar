@@ -36,7 +36,7 @@ login_session_data_t *find_loginsd_byaccid(int32 accid)
 		if( (*i)->accid == accid)
 			return (*i);
 	}
-	return NULL;
+	return nullptr;
 }
 
 login_session_data_t *find_loginsd_byip(uint32 ip)
@@ -59,7 +59,7 @@ login_session_data_t *find_loginsd_byip(uint32 ip)
 	}
 
 	if(multiple_ip_count>1){
-		ShowInfo("Detected %i instances from %s. Returning best account match.\n",multiple_ip_count,ip2str(ip,NULL));
+		ShowInfo("Detected %i instances from %s. Returning best account match.\n",multiple_ip_count,ip2str(ip,nullptr));
 	}
 	////////////////
 	for(login_sd_list_t::iterator i = login_sd_list.begin(); 
@@ -71,7 +71,7 @@ login_session_data_t *find_loginsd_byip(uint32 ip)
 			return (*i);
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 void erase_loginsd_byaccid(uint32 accid)

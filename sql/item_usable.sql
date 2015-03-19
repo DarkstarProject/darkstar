@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.25a, for Win64 (x86)
+-- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.5.25a
+-- Server version	5.6.21-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -40,6 +40,8 @@ CREATE TABLE `item_usable` (
 --
 -- Dumping data for table `item_usable`
 --
+-- ORDER BY:  `itemid`
+
 INSERT INTO `item_usable` VALUES (4096,'fire_crystal',1,0,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4097,'ice_crystal',1,0,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4098,'wind_crystal',1,0,0,0,0,0,0,0);
@@ -1681,6 +1683,7 @@ INSERT INTO `item_usable` VALUES (6060,'animus_minuo_schema',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6061,'adloquium_schema',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6265,'toolbag_(ranka)',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6266,'toolbag_(furu)',1,1,55,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (10250,'moogle_suit',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10264,'marine_gilet_+1',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10265,'marine_top_+1',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10266,'woodsy_gilet_+1',1,8,0,0,1,30,86400,0);
@@ -1700,7 +1703,6 @@ INSERT INTO `item_usable` VALUES (11278,'wonder_top_+1',1,8,0,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (11279,'savage_top_+1',1,8,0,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (11280,'elder_gilet_+1',1,8,0,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (11290,'tidal_talisman',1,8,0,0,1,30,72000,1);
-INSERT INTO `item_usable` VALUES (10250,'moogle_suit',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (11320,'skeleton_robe',1,1,0,0,30,15,600,0);
 INSERT INTO `item_usable` VALUES (11403,'talaria',1,5,0,0,1,15,1800,0);
 INSERT INTO `item_usable` VALUES (11490,'snow_bunny_hat',1,1,0,0,10,30,3600,0);
@@ -1708,6 +1710,7 @@ INSERT INTO `item_usable` VALUES (11491,'snow_bunny_hat_+1',1,1,0,0,1,30,3600,0)
 INSERT INTO `item_usable` VALUES (11500,'chocobo_beret',1,1,0,0,1,30,3600,0);
 INSERT INTO `item_usable` VALUES (11538,'nexus_cape',1,8,79,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (11666,'novennial_ring',1,3,76,0,10,15,3600,0);
+INSERT INTO `item_usable` VALUES (11788,'jesters_hat',1,3,0,0,1,10,600000,0);
 INSERT INTO `item_usable` VALUES (11811,'destrier_beret',1,4,0,0,1,30,3600,0);
 INSERT INTO `item_usable` VALUES (11861,'hikogami_yukata',1,2,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (11862,'himegami_yukata',1,2,0,0,1,30,86400,0);
@@ -1897,6 +1900,9 @@ INSERT INTO `item_usable` VALUES (15926,'bronze_bandolier',1,2,0,0,50,30,86400,0
 INSERT INTO `item_usable` VALUES (15927,'pinwheel_belt',1,2,0,0,50,30,86400,0);
 INSERT INTO `item_usable` VALUES (15929,'goblin_belt',1,1,0,0,1,30,3600,0);
 INSERT INTO `item_usable` VALUES (15933,'stirge_belt',1,1,55,0,30,15,600,0);
+INSERT INTO `item_usable` VALUES (15956,'temple_knights_quiver',1,1,55,0,1,30,604800,0);
+INSERT INTO `item_usable` VALUES (15957,'iron_musketeers_quiver',1,1,55,0,1,30,604800,0);
+INSERT INTO `item_usable` VALUES (15958,'combat_casters_quiver',1,1,55,0,1,30,604800,0);
 INSERT INTO `item_usable` VALUES (15998,'koccos_earring',1,8,0,0,5,30,60,0);
 INSERT INTO `item_usable` VALUES (16003,'raising_earring',1,8,0,0,10,30,600,0);
 INSERT INTO `item_usable` VALUES (16007,'protect_earring',1,2,0,0,100,30,900,0);
@@ -2014,6 +2020,7 @@ INSERT INTO `item_usable` VALUES (18444,'tsurugitachi',1,3,0,0,100,30,600,0);
 INSERT INTO `item_usable` VALUES (18481,'lucent_axe',1,3,0,0,50,30,1800,0);
 INSERT INTO `item_usable` VALUES (18488,'assailants_axe',1,3,0,0,50,30,1800,0);
 INSERT INTO `item_usable` VALUES (18493,'regiment_kheten',1,3,0,0,100,30,600,0);
+INSERT INTO `item_usable` VALUES (18551,'twilight_scythe',1,1,0,0,1,10,600,0);
 INSERT INTO `item_usable` VALUES (18581,'carbuncles_pole',1,1,0,0,30,30,600,0);
 INSERT INTO `item_usable` VALUES (18586,'flexible_pole',1,3,0,0,50,30,1800,0);
 INSERT INTO `item_usable` VALUES (18591,'pastoral_staff',1,3,0,0,100,30,600,0);
@@ -2041,10 +2048,6 @@ INSERT INTO `item_usable` VALUES (18945,'jet_sickle',1,3,0,0,100,30,600,0);
 INSERT INTO `item_usable` VALUES (19181,'moogles_largesse',1,12,0,0,9,10,259200,0);
 INSERT INTO `item_usable` VALUES (19204,'fiendtrapper',20,0,0,0,12,10,30,0);
 INSERT INTO `item_usable` VALUES (19246,'moggiebag',1,3,0,0,8,10,259200,0);
-INSERT INTO `item_usable` VALUES (11788,'jesters_hat',1,3,0,0,1,10,600000,0);
-INSERT INTO `item_usable` VALUES (15956,'temple_knights_quiver',1,1,55,0,1,30,604800,0);
-INSERT INTO `item_usable` VALUES (15957,'iron_musketeers_quiver',1,1,55,0,1,30,604800,0);
-INSERT INTO `item_usable` VALUES (15958,'combat_casters_quiver',1,1,55,0,1,30,604800,0);
 /*!40000 ALTER TABLE `item_usable` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -2057,4 +2060,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-30 18:19:19
+-- Dump completed on 2015-02-22  0:31:22

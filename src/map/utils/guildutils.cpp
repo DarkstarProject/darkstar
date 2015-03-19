@@ -147,7 +147,7 @@ CItemContainer* GetGuildShop(uint16 GuildID)
 		}
 	}
 	ShowDebug(CL_CYAN"Guild with id <%u> is not found on server\n" CL_RESET);
-    return NULL;
+    return nullptr;
 }
 
 } // namespace guildutils

@@ -98,7 +98,7 @@ CMobEntity::CMobEntity()
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 
-    m_SpellListContainer = NULL;
+    m_SpellListContainer = nullptr;
     PEnmityContainer = new CEnmityContainer(this);
     SpellContainer = new CMobSpellContainer(this);
 
@@ -215,7 +215,7 @@ bool CMobEntity::CanRoamHome()
 
 bool CMobEntity::CanRoam()
 {
-    return !(m_roamFlags & ROAMFLAG_EVENT) && PMaster == NULL && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM));
+    return !(m_roamFlags & ROAMFLAG_EVENT) && PMaster == nullptr && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM));
 }
 
 bool CMobEntity::CanLink(position_t* pos, int16 superLink)

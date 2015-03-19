@@ -22,12 +22,15 @@ local count = trade:getItemCount();
 local CurrentAFupgrade = player:getVar("AFupgrade");
 local StoreAncientBeastcoins = player:getVar("Ancien_Beastcoin_store");
 local AvaibleCombinaisonDectect = 0 ;
+local cost = 0 ;
+local reliccost = 0 ;
 	  
     if(CurrentAFupgrade == 0 and count == 4)then -- RELIC Armor +1 ???
 		for nb = 2, table.getn(Relic_Armor_Plus_one), 2 do  --looking for the  relic armor
 		           --trade base relic armor                              --trade temenos Item                                       --trade appolyion item                                   --trade craft item                                have enought ancien beastcoin ctore ?
 		     if( trade:hasItemQty(Relic_Armor_Plus_one[nb][2],1) and  trade:hasItemQty(Relic_Armor_Plus_one[nb][3],1) and  trade:hasItemQty(Relic_Armor_Plus_one[nb][4],1)  and  trade:hasItemQty(Relic_Armor_Plus_one[nb][5],1) and Relic_Armor_Plus_one[nb][6]<= StoreAncientBeastcoins )then			 
 				   AvaibleCombinaisonDectect = Relic_Armor_Plus_one[nb-1];
+				   cost = Relic_Armor_Plus_one[nb][6];
 				   printf("detect trade  avaible relic combinaison: %u",Relic_Armor_Plus_one[nb][1]);				   
              end
         end 
@@ -54,6 +57,8 @@ local AvaibleCombinaisonDectect = 0 ;
    elseif(AvaibleCombinaisonDectect ~= 0)then
      player:setVar("AFupgrade",AvaibleCombinaisonDectect);
 	 player:setVar("AFupgradeDay", tonumber(os.date("%j")) );
+	 reliccost = StoreAncientBeastcoins-cost;
+	 player:setVar("Ancien_Beastcoin_store",reliccost);	 
 	 player:tradeComplete();
      player:startEvent(0x0138);
    end  
@@ -120,6 +125,19 @@ function onEventUpdate(player,csid,option)
         end 	
 	    player:updateEvent(option1,option2,option3 ,option4,option5,option6,option7,option8); 
 	   -- print("relic");
+    elseif(csid == 0x0136 and option > 200)then		
+	    for nb = 1, table.getn(Relic_Armor_Plus_one), 2 do  --looking for the  relic armor
+		     if(Relic_Armor_Plus_one[nb] == option )then	              			 
+                option1  =Relic_Armor_Plus_one[nb+1][1];  --relic +1
+                option2 = Relic_Armor_Plus_one[nb+1][2];  --relic base
+                option3 = Relic_Armor_Plus_one[nb+1][3];  --item 1
+                option4 = Relic_Armor_Plus_one[nb+1][4];  --item 2
+                option5 = Relic_Armor_Plus_one[nb+1][5];  --item 3
+                option8 = Relic_Armor_Plus_one[nb+1][6]; -- AB cost
+             end
+        end 	
+	    player:updateEvent(option1,option2,option3 ,option4,option5,option6,option7,option8); 
+	   -- print("relic");
     elseif(csid == 0x0136 and option > 100 and option <201)then	
 	   for nb = 1, table.getn(Artifact_Armor_Plus_one), 2 do  --looking for the  artifact armor
 	        if(Artifact_Armor_Plus_one[nb] == option )then	      
@@ -166,7 +184,7 @@ function onEventFinish(player,csid,option)
     elseif(csid == 0x0136 and  option == 100 )then  -- upgrade armor reward
 	  ugrade_armor_Type = player:getVar("AFupgrade");
 	    --printf("detect type: %u",ugrade_armor);	
-	      if(ugrade_armor_Type < 101)then	  	
+	      if(ugrade_armor_Type < 101 or ugrade_armor_Type >200)then	  	
 			   for nb = 1, table.getn(Relic_Armor_Plus_one), 2 do  --looking for the  relic armor 
 		            if(Relic_Armor_Plus_one[nb] == ugrade_armor_Type )then	              			 
                       ugrade_armor_ID	= Relic_Armor_Plus_one[nb+1][1];  				  

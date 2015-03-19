@@ -77,7 +77,7 @@ public:
     void LoadStatusEffects();                 // загружаем эффекты персонажа
     void SaveStatusEffects();                 // сохраняем эффекты персонажа
 
-    uint8 GetEffectsCount(uint16 SubID);                        // получаем количество эффектов с указанным subid
+    uint8 GetEffectsCount(EFFECT ID);                        // получаем количество эффектов с указанным id
 
     bool ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration);
     bool CheckForElevenRoll();

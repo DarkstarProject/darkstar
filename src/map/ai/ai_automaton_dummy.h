@@ -53,7 +53,13 @@ private:
     uint32 m_magicHealRecast;
     uint32 m_magicEnhanceRecast;
     uint32 m_magicStatusRecast;
+
     void ActionFall();
+    void ActionAttack();
+
+    bool CheckSpellcast();
+    bool CheckTPMove();
+    bool CheckRangedAttack();
 };
 
 #endif

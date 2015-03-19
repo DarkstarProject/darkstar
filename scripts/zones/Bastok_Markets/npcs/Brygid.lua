@@ -37,9 +37,16 @@ function onTrade(player,npc,trade)
 			player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
 		end
 	elseif(BrygidReturns == QUEST_ACCEPTED and wantsSubligar ~= 0) then
-		if(trade:getItemCount() == 1 and trade:hasItemQty(15374+wantsSubligar,1)) then 
+		if(wantsSubligar==13) then
+			if(trade:getItemCount() == 1 and trade:hasItemQty(15375+wantsSubligar,1)) then 
 			player:tradeComplete();
 			player:startEvent(383);
+			end
+		else
+			if(trade:getItemCount() == 1 and trade:hasItemQty(15374+wantsSubligar,1)) then 
+			player:tradeComplete();
+			player:startEvent(383);
+			end
 		end
 	end
 end; 
@@ -88,7 +95,11 @@ function onTrigger(player,npc)
 		player:startEvent(381,BrygidSet,getBody,getLegs,player:getMainJob());
 	elseif(BrygidReturns == QUEST_ACCEPTED and wantsSubligar ~= 0) then
 		-- Remind player what subligar they need to turn in and the reward
+		if(wantsSubligar==13) then
+		player:startEvent(385,0,14400+wantsSubligar,15375+wantsSubligar);
+		else
 		player:startEvent(385,0,14400+wantsSubligar,15374+wantsSubligar);
+		end
 	elseif(BrygidTheStylist ~= QUEST_COMPLETED) then
 		player:startEvent(0x0136);
 	else

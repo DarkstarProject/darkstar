@@ -35,7 +35,7 @@
 CMagicState::CMagicState(CBattleEntity* PEntity, CTargetFind* PTargetFind, float maxStartDistance, float maxFinishDistance)
 : CState(PEntity, PTargetFind)
 {
-	m_PSpell = NULL;
+	m_PSpell = nullptr;
 	m_enableCasting = true;
 	m_maxStartDistance = maxStartDistance;
 	m_maxFinishDistance = maxFinishDistance;
@@ -75,7 +75,7 @@ STATESTATUS CMagicState::CastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8
 
 bool CMagicState::CanCastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 flags)
 {
-	if(PSpell == NULL) return false;
+	if(PSpell == nullptr) return false;
 
 	if(!ValidCast(PSpell, PTarget))
 	{
@@ -160,14 +160,14 @@ void CMagicState::Clear()
 {
 	CState::Clear();
 
-	m_PSpell = NULL;
+	m_PSpell = nullptr;
 	m_interruptSpell = false;
     m_startTime = 0;
 }
 
 uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
 {
-    if(PSpell == NULL)
+    if(PSpell == nullptr)
     {
         return 0;
     }
@@ -263,7 +263,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
 
 int16 CMagicState::CalculateMPCost(CSpell* PSpell)
 {
-    if(PSpell == NULL)
+    if(PSpell == nullptr)
     {
         ShowWarning("CMagicState::CalculateMPCost Spell is NULL\n");
         return 0;
@@ -323,7 +323,7 @@ int16 CMagicState::CalculateMPCost(CSpell* PSpell)
 
 uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
 {
-    if(PSpell == NULL)
+    if(PSpell == nullptr)
     {
         return 0;
     }
@@ -522,7 +522,7 @@ bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
 
 void CMagicState::InterruptSpell()
 {
-    DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+    DSP_DEBUG_BREAK_IF(m_PSpell == nullptr);
     DSP_DEBUG_BREAK_IF(m_PEntity->PBattleAI->GetCurrentAction() != ACTION_MAGIC_INTERRUPT);
 
     apAction_t action;
@@ -542,7 +542,7 @@ void CMagicState::InterruptSpell()
 
 void CMagicState::FinishSpell()
 {
-    DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+    DSP_DEBUG_BREAK_IF(m_PSpell == nullptr);
 	DSP_DEBUG_BREAK_IF(m_PEntity->PBattleAI->GetCurrentAction() != ACTION_MAGIC_FINISH);
 
 	luautils::OnSpellPrecast(m_PEntity, m_PSpell);
@@ -797,7 +797,7 @@ void CMagicState::CharAfterFinish()
     PChar->pushPacket(new CCharUpdatePacket(PChar));
 
     // make wyvern use breath
-    if(PChar->PPet!=NULL && ((CPetEntity*)PChar->PPet)->getPetType() == PETTYPE_WYVERN)
+    if(PChar->PPet!=nullptr && ((CPetEntity*)PChar->PPet)->getPetType() == PETTYPE_WYVERN)
     {
         ((CAIPetDummy*)PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_HEALING_BREATH;
         PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
@@ -825,7 +825,7 @@ bool CMagicState::TryHitInterrupt(CBattleEntity* PAttacker)
 
 bool CMagicState::IsCasting()
 {
-	return m_PSpell != NULL;
+	return m_PSpell != nullptr;
 }
 
 bool CMagicState::ValidCharCast(CSpell* PSpell)
@@ -856,7 +856,7 @@ bool CMagicState::ValidCharCast(CSpell* PSpell)
     }
 
     // check summoning
-    if (PSpell->getSpellGroup() == SPELLGROUP_SUMMONING && PChar->PPet != NULL)
+    if (PSpell->getSpellGroup() == SPELLGROUP_SUMMONING && PChar->PPet != nullptr)
     {
         PushError(MSGBASIC_ALREADY_HAS_A_PET, spellID);
         return false;

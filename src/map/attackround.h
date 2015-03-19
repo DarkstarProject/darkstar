@@ -54,8 +54,8 @@ public:
 
 	uint8						GetAttackSwingCount();		// Returns the attack list count.
 	bool						IsH2H();					// Flag: Is the attacker using H2H?
-	CAttack*					GetAttack(uint8);			// Returns an attack object pointer.
-	CAttack*					GetCurrentAttack();			// Returns the current attack.
+	CAttack 					GetAttack(uint8);			// Returns an attack object.
+	CAttack 					GetCurrentAttack();			// Returns the current attack.
 	void						SetSATA(bool value);		// Sets the SATA flag.
 	bool						GetSATAOccured();			// Returns the SATA flag.
 	CBattleEntity*				GetTAEntity();				// Returns the TA entity.
@@ -63,7 +63,7 @@ public:
 private:
 	CBattleEntity*				m_attacker;					// The attacker.
 	CBattleEntity*				m_taEntity;					// The trick attack entity.
-	std::vector<CAttack*>		m_attackSwings;				// The list of attacks for this round.
+	std::vector<CAttack>		m_attackSwings;				// The list of attacks for this round.
 	bool						m_sataOccured;				// Flag: Did SATA occur during the round?
 	bool						m_kickAttackOccured;		// Flag: Did a kick attack occur during the round?
 	uint16						m_subWeaponType;			// The sub weapon type.

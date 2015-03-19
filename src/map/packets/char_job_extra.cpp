@@ -52,7 +52,7 @@ CCharJobExtraPacket::CCharJobExtraPacket(CCharEntity* PChar, bool mjob)
     {
 	    memcpy(data+(0x08)-4, &PChar->m_SetBlueSpells, 20);
     }
-    else if (job == JOB_PUP && PChar->PAutomaton != NULL)
+    else if (job == JOB_PUP && PChar->PAutomaton != nullptr)
     {
 	    WBUFB(data,(0x08)-4) = PChar->PAutomaton->getHead();
 	    WBUFB(data,(0x09)-4) = PChar->PAutomaton->getFrame();

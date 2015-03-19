@@ -83,7 +83,7 @@ void CAICharCharm::CheckCurrentAction(uint32 tick)
 
 void CAICharCharm::ActionRoaming()
 {
-    if (m_PChar->PMaster->PBattleAI->GetBattleTarget() != NULL){
+    if (m_PChar->PMaster->PBattleAI->GetBattleTarget() != nullptr){
         m_PBattleTarget = m_PChar->PMaster->PBattleAI->GetBattleTarget();
         m_ActionType = ACTION_ENGAGE;
         ActionEngage();
@@ -119,25 +119,25 @@ void CAICharCharm::ActionDisengage()
 {
     m_ActionType = ACTION_NONE;
     m_LastActionTime = m_Tick;
-    m_PBattleTarget = NULL;
-    m_PBattleSubTarget = NULL;
+    m_PBattleTarget = nullptr;
+    m_PBattleSubTarget = nullptr;
 
     m_PChar->animation = ANIMATION_NONE;
 
-    if (m_PChar->PPet != NULL && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
+    if (m_PChar->PPet != nullptr && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
     {
-        m_PChar->PPet->PBattleAI->SetBattleTarget(NULL);
+        m_PChar->PPet->PBattleAI->SetBattleTarget(nullptr);
     }
     m_PChar->updatemask |= UPDATE_HP;
 }
 
 void CAICharCharm::ActionAttack()
 {
-    DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBattleTarget == nullptr);
 
     SetBattleTarget(m_PChar->PMaster->PBattleAI->GetBattleTarget());
 
-    if (m_PBattleTarget == NULL)
+    if (m_PBattleTarget == nullptr)
     {
         m_ActionType = ACTION_DISENGAGE;
         ActionDisengage();

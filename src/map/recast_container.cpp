@@ -38,7 +38,7 @@
 
 CRecastContainer::CRecastContainer(CCharEntity* PChar) : m_PChar(PChar)
 {
-    DSP_DEBUG_BREAK_IF(m_PChar == NULL || m_PChar->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(m_PChar == nullptr || m_PChar->objtype != TYPE_PC);
 }
 
 CRecastContainer::~CRecastContainer()
@@ -71,7 +71,7 @@ std::vector<Recast_t*>* CRecastContainer::GetRecastList(RECASTTYPE type)
     }
     //Unhandled Scenario
 	DSP_DEBUG_BREAK_IF(true);
-    return NULL;
+    return nullptr;
     // not working on linux
 	// return &std::vector<Recast_t*>::vector();
 }
@@ -93,7 +93,7 @@ Recast_t* CRecastContainer::GetRecast(RECASTTYPE type, uint16 id)
             return recast;
         }
     }
-    return NULL;
+    return nullptr;
 }
 
 /************************************************************************
@@ -116,11 +116,11 @@ Recast_t* CRecastContainer::Load(RECASTTYPE type, uint16 id, uint32 duration, ui
 {
     Recast_t* recast = GetRecast(type, id);
 
-    if (recast == NULL)
+    if (recast == nullptr)
     {
         Recast_t* newRecast = new Recast_t;
         newRecast->ID = id;
-        newRecast->TimeStamp = time(NULL);
+        newRecast->TimeStamp = time(nullptr);
         newRecast->RecastTime = duration;
         newRecast->chargeTime = chargeTime;
         newRecast->maxCharges = maxCharges;
@@ -132,14 +132,14 @@ Recast_t* CRecastContainer::Load(RECASTTYPE type, uint16 id, uint32 duration, ui
     {
         if (chargeTime == 0)
         {
-            recast->TimeStamp = time(NULL);
+            recast->TimeStamp = time(nullptr);
             recast->RecastTime = duration;
         }
         else
         {
             if (recast->RecastTime == 0)
             {
-                recast->TimeStamp = time(NULL);
+                recast->TimeStamp = time(nullptr);
             }
             recast->RecastTime += chargeTime;
             recast->chargeTime = chargeTime;
@@ -246,7 +246,7 @@ bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id)
             }
             else
             {
-                int charges = PRecastList->at(i)->maxCharges - ((PRecastList->at(i)->RecastTime - (time(NULL) -PRecastList->at(i)->TimeStamp)) / (PRecastList->at(i)->chargeTime)) - 1;
+                int charges = PRecastList->at(i)->maxCharges - ((PRecastList->at(i)->RecastTime - (time(nullptr) -PRecastList->at(i)->TimeStamp)) / (PRecastList->at(i)->chargeTime)) - 1;
 
                 //TODO: multiple charges (BST Ready)
                 if (charges < 1)
@@ -275,7 +275,7 @@ void CRecastContainer::Check()
 	    {
 		    Recast_t* recast = PRecastList->at(i);
 
-		    if (time(NULL) >= (recast->TimeStamp + recast->RecastTime))
+		    if (time(nullptr) >= (recast->TimeStamp + recast->RecastTime))
 		    {
                 if (type == RECAST_ITEM)
                 {
@@ -312,13 +312,13 @@ void CRecastContainer::ResetAbilities()
     uint32 recastTime = 0;
 
     Recast_t* twoHour = GetRecast(RECAST_ABILITY, 0);
-    if (twoHour != NULL)
+    if (twoHour != nullptr)
     {
         timestamp = twoHour->TimeStamp;
         recastTime = twoHour->RecastTime;
     }
     PRecastList->clear();
-    if (twoHour != NULL)
+    if (twoHour != nullptr)
     {
         Recast_t* newTwoHour = new Recast_t;
         newTwoHour->ID = 0;

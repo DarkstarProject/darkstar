@@ -414,13 +414,13 @@ namespace spell
 		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 				int8* expansionCode;
-				Sql_GetData(SqlHandle, 21, &expansionCode, NULL);
+				Sql_GetData(SqlHandle, 21, &expansionCode, nullptr);
 
 				if (luautils::IsExpansionEnabled(expansionCode) == false){
 					continue;
 				}
 
-			    CSpell* PSpell = NULL;
+			    CSpell* PSpell = nullptr;
 
                 uint16 id = Sql_GetUIntData(SqlHandle,0);
 
@@ -476,7 +476,7 @@ namespace spell
 			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 				int8* expansionCode;
-				Sql_GetData(SqlHandle, 7, &expansionCode, NULL);
+				Sql_GetData(SqlHandle, 7, &expansionCode, nullptr);
 
 				if (luautils::IsExpansionEnabled(expansionCode) == false){
 					continue;
@@ -489,9 +489,9 @@ namespace spell
                     continue;
                 }
 
-                if(PSpellList[spellId] == NULL)
+                if(PSpellList[spellId] == nullptr)
                 {
-					ShowWarning("spell::LoadSpellList Tried to load NULL blue spell (%u)\n", spellId);
+					ShowWarning("spell::LoadSpellList Tried to load nullptr blue spell (%u)\n", spellId);
                     continue;
                 }
 
@@ -514,7 +514,7 @@ namespace spell
 			    uint16 modID  = (uint16)Sql_GetUIntData(SqlHandle,1);
 			    int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
-			    if (!(spellId > MAX_SPELL_ID) && (PSpellList[spellId] != NULL))
+			    if (!(spellId > MAX_SPELL_ID) && (PSpellList[spellId] != nullptr))
 			    {
                     ((CBlueSpell*)PSpellList[spellId])->addModifier(new CModifier(modID,value));
 			    }
@@ -528,7 +528,7 @@ namespace spell
 		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 				int8* expansionCode;
-				Sql_GetData(SqlHandle, 2, &expansionCode, NULL);
+				Sql_GetData(SqlHandle, 2, &expansionCode, nullptr);
 
 				if (luautils::IsExpansionEnabled(expansionCode) == false){
 					continue;
@@ -536,7 +536,7 @@ namespace spell
 
 			    uint16 spellId = (uint16)Sql_GetUIntData(SqlHandle,0);
 
-			    if (!(spellId >= MAX_SPELL_ID) && (PSpellList[spellId] != NULL))
+			    if (!(spellId >= MAX_SPELL_ID) && (PSpellList[spellId] != nullptr))
 			    {
                     PSpellList[spellId]->setMeritId(Sql_GetUIntData(SqlHandle,1));
 			    }
@@ -547,13 +547,13 @@ namespace spell
 	CSpell* GetSpellByMonsterSkillId(uint16 SkillID) {
 		std::map<uint16,uint16>::iterator it = PMobSkillToBlueSpell->find(SkillID);
 		if (it == PMobSkillToBlueSpell->end()) {
-			return NULL;
+			return nullptr;
 		}
 		else {
 			uint16 spellId = it->second;
 			if (spellId > MAX_SPELL_ID) {
 				ShowError("Resolved spell ID from mob skill %u is out of spell range (%u)\n",SkillID,spellId);
-				return NULL;
+				return nullptr;
 			}
 			return PSpellList[spellId];
 		}
@@ -572,7 +572,7 @@ namespace spell
 		    return PSpellList[SpellID];
 	    }
 	    ShowFatalError(CL_RED"SpellID <%u> out of range\n" CL_RESET, SpellID);
-	    return NULL;
+	    return nullptr;
     }
 
     /************************************************************************
@@ -585,7 +585,7 @@ namespace spell
     {
         bool usable = false;
         CSpell* spell = GetSpell(SpellID);
-	    if (spell != NULL)
+	    if (spell != nullptr)
 	    {
 		    uint8 JobMLVL = spell->getJob(PCaster->GetMJob());
 		    uint8 JobSLVL = spell->getJob(PCaster->GetSJob());
@@ -686,7 +686,7 @@ namespace spell
 	// but they are on an odd job (e.g. PLDs getting -ga3)
 	bool CanUseSpellWith(uint16 spellId, JOBTYPE job, uint8 level)
 	{
-		if (GetSpell(spellId) != NULL)
+		if (GetSpell(spellId) != nullptr)
 	    {
 		    uint8 jobMLevel = PSpellList[spellId]->getJob(job);
 

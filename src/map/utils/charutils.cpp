@@ -369,49 +369,49 @@ namespace charutils
             PChar->profile.nation = (uint8)Sql_GetIntData(SqlHandle, 13);
 
             size_t length = 0;
-            int8* quests = NULL;
+            int8* quests = nullptr;
             Sql_GetData(SqlHandle, 14, &quests, &length);
             memcpy(PChar->m_questLog, quests, (length > sizeof(PChar->m_questLog) ? sizeof(PChar->m_questLog) : length));
 
             length = 0;
-            int8* keyitems = NULL;
+            int8* keyitems = nullptr;
             Sql_GetData(SqlHandle, 15, &keyitems, &length);
             memcpy(PChar->keys.keysList, keyitems, (length > sizeof(PChar->keys) ? sizeof(PChar->keys) : length));
 
             length = 0;
-            int8* spells = NULL;
+            int8* spells = nullptr;
             Sql_GetData(SqlHandle, 16, &spells, &length);
             memcpy(PChar->m_SpellList, spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
             memcpy(PChar->m_EnabledSpellList, spells, (length > sizeof(PChar->m_EnabledSpellList) ? sizeof(PChar->m_EnabledSpellList) : length));
             filterEnabledSpells(PChar);
 
             length = 0;
-            int8* abilities = NULL;
+            int8* abilities = nullptr;
             Sql_GetData(SqlHandle, 17, &abilities, &length);
             memcpy(PChar->m_LearnedAbilities, abilities, (length > sizeof(PChar->m_LearnedAbilities) ? sizeof(PChar->m_LearnedAbilities) : length));
 
             length = 0;
-            int8* titles = NULL;
+            int8* titles = nullptr;
             Sql_GetData(SqlHandle, 18, &titles, &length);
             memcpy(PChar->m_TitleList, titles, (length > sizeof(PChar->m_TitleList) ? sizeof(PChar->m_TitleList) : length));
 
             length = 0;
-            int8* zones = NULL;
+            int8* zones = nullptr;
             Sql_GetData(SqlHandle, 19, &zones, &length);
             memcpy(PChar->m_ZonesList, zones, (length > sizeof(PChar->m_ZonesList) ? sizeof(PChar->m_ZonesList) : length));
 
             length = 0;
-            int8* missions = NULL;
+            int8* missions = nullptr;
             Sql_GetData(SqlHandle, 20, &missions, &length);
             memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
             length = 0;
-            int8* assault = NULL;
+            int8* assault = nullptr;
             Sql_GetData(SqlHandle, 21, &assault, &length);
             memcpy(&PChar->m_assaultLog, assault, (length > sizeof(PChar->m_assaultLog) ? sizeof(PChar->m_assaultLog) : length));
 
             length = 0;
-            int8* campaign = NULL;
+            int8* campaign = nullptr;
             Sql_GetData(SqlHandle, 22, &campaign, &length);
             memcpy(&PChar->m_campaignLog, campaign, (length > sizeof(PChar->m_campaignLog) ? sizeof(PChar->m_campaignLog) : length));
 
@@ -605,7 +605,7 @@ namespace charutils
             PChar->profile.title = (uint16)Sql_GetIntData(SqlHandle, 6);
 
             int8* bazaarMessage = Sql_GetData(SqlHandle, 7);
-            if (bazaarMessage != NULL)
+            if (bazaarMessage != nullptr)
                 PChar->bazaar.message.insert(0, Sql_GetData(SqlHandle, 7));
             else
                 PChar->bazaar.message = '\0';
@@ -622,11 +622,11 @@ namespace charutils
             {
                 uint32 cast_time = Sql_GetUIntData(SqlHandle, 1);
                 uint32 recast = Sql_GetUIntData(SqlHandle, 2);
-                time_t now = time(NULL);
+                time_t now = time(nullptr);
                 uint32 chargeTime = 0;
                 uint8 maxCharges = 0;
                 Charge_t* charge = ability::GetCharge(PChar, Sql_GetUIntData(SqlHandle, 0));
-                if (charge != NULL)
+                if (charge != nullptr)
                 {
                     chargeTime = charge->chargeTime;
                     maxCharges = charge->maxCharges;
@@ -751,7 +751,7 @@ namespace charutils
             {
                 CItem* PItem = itemutils::GetItem(Sql_GetIntData(SqlHandle, 0));
 
-                if (PItem != NULL)
+                if (PItem != nullptr)
                 {
                     PItem->setLocationID(Sql_GetUIntData(SqlHandle, 1));
                     PItem->setSlotID(Sql_GetUIntData(SqlHandle, 2));
@@ -759,7 +759,7 @@ namespace charutils
                     PItem->setCharPrice(Sql_GetUIntData(SqlHandle, 4));
 
                     size_t length = 0;
-                    int8* extra = NULL;
+                    int8* extra = nullptr;
                     Sql_GetData(SqlHandle, 6, &extra, &length);
                     memcpy(PItem->m_extra, extra, (length > sizeof(PItem->m_extra) ? sizeof(PItem->m_extra) : length));
 
@@ -799,7 +799,7 @@ namespace charutils
         {
             CItemContainer* PItemContainer = PChar->getStorage(i);
 
-            if (PItemContainer != NULL)
+            if (PItemContainer != nullptr)
             {
                 // now find each item in the container
                 for (uint8 y = 0; y < MAX_CONTAINER_SIZE; ++y)
@@ -807,7 +807,7 @@ namespace charutils
                     CItem* PItem = (CItem*)PItemContainer->GetItem(y);
 
                     // check if the item is valid and can have an augment applied to it
-                    if (PItem != NULL && ((PItem->isType(ITEM_ARMOR) || PItem->isType(ITEM_WEAPON)) && !PItem->isSubType(ITEM_CHARGED)))
+                    if (PItem != nullptr && ((PItem->isType(ITEM_ARMOR) || PItem->isType(ITEM_WEAPON)) && !PItem->isSubType(ITEM_CHARGED)))
                     {
                         // check if there are any valid augments to be applied to the item
                         for (uint8 j = 0; j < 4; ++j)
@@ -838,8 +838,8 @@ namespace charutils
 
         if (ret != SQL_ERROR)
         {
-            CItemLinkshell* PLinkshell1 = NULL;
-            CItemLinkshell* PLinkshell2 = NULL;
+            CItemLinkshell* PLinkshell1 = nullptr;
+            CItemLinkshell* PLinkshell2 = nullptr;
             bool hasMainWeapon = false;
 
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
@@ -859,7 +859,7 @@ namespace charutils
                     uint8 equipSlot = Sql_GetUIntData(SqlHandle, 1);
                     CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
-                    if ((PItem != NULL) && PItem->isType(ITEM_LINKSHELL))
+                    if ((PItem != nullptr) && PItem->isType(ITEM_LINKSHELL))
                     {
                         PItem->setSubType(ITEM_LOCKED);
                         PChar->equip[equipSlot] = SlotID;
@@ -973,14 +973,14 @@ namespace charutils
         for (uint8 LocationID = 0; LocationID < MAX_CONTAINER_ID; ++LocationID)
         {
             CItemContainer* container = PChar->getStorage(LocationID);
-            if (container == NULL)
+            if (container == nullptr)
                 continue;
 
             uint8 size = container->GetSize();
             for (uint8 slotID = 0; slotID <= size; ++slotID)
             {
                 CItem* PItem = PChar->getStorage(LocationID)->GetItem(slotID);
-                if (PItem != NULL)
+                if (PItem != nullptr)
                 {
                     PChar->pushPacket(new CInventoryItemPacket(PItem, LocationID, slotID));
                 }
@@ -990,7 +990,7 @@ namespace charutils
         for (int32 i = 0; i < 16; ++i)
         {
             CItem* PItem = PChar->getEquip((SLOTTYPE)i);
-            if (PItem != NULL)
+            if (PItem != nullptr)
             {
                 PItem->setSubType(ITEM_LOCKED);
                 PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NODROP));
@@ -998,7 +998,7 @@ namespace charutils
         }
 
         CItem* PItem = PChar->getEquip(SLOT_LINK1);
-        if (PItem != NULL)
+        if (PItem != nullptr)
         {
             PItem->setSubType(ITEM_LOCKED);
 
@@ -1013,7 +1013,7 @@ namespace charutils
         }
 
         PItem = PChar->getEquip(SLOT_LINK2);
-        if (PItem != NULL)
+        if (PItem != nullptr)
         {
             PItem->setSubType(ITEM_LOCKED);
 
@@ -1041,7 +1041,7 @@ namespace charutils
 
         CItem* PItem = itemutils::GetItem(ItemID);
 
-        if (PItem != NULL)
+        if (PItem != nullptr)
         {
             PItem->setQuantity(quantity);
             return AddItem(PChar, LocationID, PItem, silence);
@@ -1115,7 +1115,7 @@ namespace charutils
                 extra) == SQL_ERROR)
             {
                 ShowError(CL_RED"charplugin::AddItem: Cannot insert item to database\n" CL_RESET);
-                PChar->getStorage(LocationID)->InsertItem(NULL, SlotID);
+                PChar->getStorage(LocationID)->InsertItem(nullptr, SlotID);
                 delete PItem;
                 return ERROR_SLOTID;
             }
@@ -1194,7 +1194,7 @@ namespace charutils
             }
             else
             {
-                if (PItemContainer->GetItem(NewSlotID) != NULL) NewSlotID = ERROR_SLOTID;
+                if (PItemContainer->GetItem(NewSlotID) != nullptr) NewSlotID = ERROR_SLOTID;
             }
             if (NewSlotID != ERROR_SLOTID)
             {
@@ -1206,13 +1206,13 @@ namespace charutils
                 if (Sql_Query(SqlHandle, Query, NewSlotID, PChar->id, LocationID, SlotID) != SQL_ERROR &&
                     Sql_AffectedRows(SqlHandle) != 0)
                 {
-                    PItemContainer->InsertItem(NULL, SlotID);
+                    PItemContainer->InsertItem(nullptr, SlotID);
 
-                    PChar->pushPacket(new CInventoryItemPacket(NULL, LocationID, SlotID));
+                    PChar->pushPacket(new CInventoryItemPacket(nullptr, LocationID, SlotID));
                     PChar->pushPacket(new CInventoryItemPacket(PItemContainer->GetItem(NewSlotID), LocationID, NewSlotID));
                     return NewSlotID;
                 }
-                PItemContainer->InsertItem(NULL, NewSlotID); // отменяем все изменения контейнера
+                PItemContainer->InsertItem(nullptr, NewSlotID); // отменяем все изменения контейнера
             }
         }
         ShowError(CL_RED"charutils::MoveItem: item can't be moved\n" CL_RESET);
@@ -1229,10 +1229,10 @@ namespace charutils
     {
         CItem* PItem = PChar->getStorage(LocationID)->GetItem(slotID);
 
-        if (PItem == NULL)
+        if (PItem == nullptr)
         {
             ShowDebug("UpdateItem: No item in slot %u\n", slotID);
-            PChar->pushPacket(new CInventoryItemPacket(NULL, LocationID, slotID));
+            PChar->pushPacket(new CInventoryItemPacket(nullptr, LocationID, slotID));
             return 0;
         }
         if ((int32)PItem->getQuantity() + quantity < 0)
@@ -1265,8 +1265,8 @@ namespace charutils
 
             if (Sql_Query(SqlHandle, Query, PChar->id, LocationID, slotID) != SQL_ERROR)
             {
-                PChar->getStorage(LocationID)->InsertItem(NULL, slotID);
-                PChar->pushPacket(new CInventoryItemPacket(NULL, LocationID, slotID));
+                PChar->getStorage(LocationID)->InsertItem(nullptr, slotID);
+                PChar->pushPacket(new CInventoryItemPacket(nullptr, LocationID, slotID));
                 delete PItem;
             }
         }
@@ -1289,7 +1289,7 @@ namespace charutils
         {
             CItem* PItem = PChar->UContainer->GetItem(slotid);
 
-            if (PItem != NULL && PItem->getFlag() & ITEM_FLAG_RARE)
+            if (PItem != nullptr && PItem->getFlag() & ITEM_FLAG_RARE)
             {
                 if (HasItem(PTarget, PItem->getID()))
                 {
@@ -1312,7 +1312,7 @@ namespace charutils
         {
             CItem* PItem = PChar->UContainer->GetItem(slotid);
 
-            if (PItem != NULL)
+            if (PItem != nullptr)
             {
                 if (PItem->getStackSize() == 1)
                 {
@@ -1337,7 +1337,7 @@ namespace charutils
     {
         CItem* PItem = PChar->getEquip((SLOTTYPE)equipSlotID);
 
-        if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
+        if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
         {
             switch (((CItemArmor*)PItem)->getRemoveSlotId())
             {
@@ -1361,7 +1361,7 @@ namespace charutils
                 {
                     CItem* PItem = PChar->getEquip((SLOTTYPE)i);
 
-                    if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
+                    if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
                     {
                         PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
                     }
@@ -1382,6 +1382,7 @@ namespace charutils
             }
             PChar->delEquipModifiers(&((CItemArmor*)PItem)->modList, ((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
             PChar->PLatentEffectContainer->DelLatentEffects(((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
+            PChar->delPetModifiers(&((CItemArmor*)PItem)->petModList);
 
             PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL)); //???
             PChar->pushPacket(new CEquipPacket(0, equipSlotID, LOC_INVENTORY));
@@ -1465,7 +1466,7 @@ namespace charutils
     {
         CItemArmor* PItem = (CItemArmor*)PChar->getEquip(SLOT_SUB);
 
-        if (PItem != NULL && PItem->isType(ITEM_ARMOR))
+        if (PItem != nullptr && PItem->isType(ITEM_ARMOR))
         {
             UnequipItem(PChar, SLOT_SUB);
         }
@@ -1481,7 +1482,7 @@ namespace charutils
     {
         CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
 
-        if (PItem == NULL)
+        if (PItem == nullptr)
         {
             ShowDebug("No item in inventory slot %u\n", slotID);
             return false;
@@ -1502,7 +1503,7 @@ namespace charutils
             {
                 CItemArmor* PSubItem = PChar->getEquip(SLOT_SUB);
 
-                if (PSubItem != NULL && PSubItem->isType(ITEM_ARMOR) && (PSubItem->IsShield() != true))
+                if (PSubItem != nullptr && PSubItem->isType(ITEM_ARMOR) && (PSubItem->IsShield() != true))
                     RemoveSub(PChar);
             }
         }
@@ -1535,7 +1536,7 @@ namespace charutils
                     case SKILL_STF:
                     {
                         CItemArmor* armor = (CItemArmor*)PChar->getEquip(SLOT_SUB);
-                        if ((armor != NULL) && armor->isType(ITEM_ARMOR))
+                        if ((armor != nullptr) && armor->isType(ITEM_ARMOR))
                         {
                             if (armor->isType(ITEM_WEAPON))
                             {
@@ -1576,7 +1577,7 @@ namespace charutils
             case SLOT_SUB:
             {
                 CItemWeapon* weapon = (CItemWeapon*)PChar->getEquip(SLOT_MAIN);
-                if (weapon == NULL || !weapon->isType(ITEM_WEAPON))
+                if (weapon == nullptr || !weapon->isType(ITEM_WEAPON))
                 {
                     if (PItem->isType(ITEM_WEAPON))
                     {
@@ -1629,7 +1630,7 @@ namespace charutils
                 if (PItem->isType(ITEM_WEAPON))
                 {
                     CItemWeapon* weapon = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
-                    if ((weapon != NULL) && weapon->isType(ITEM_WEAPON))
+                    if ((weapon != nullptr) && weapon->isType(ITEM_WEAPON))
                     {
                         if (((CItemWeapon*)PItem)->getSkillType() != weapon->getSkillType() ||
                             ((CItemWeapon*)PItem)->getSubSkillType() != weapon->getSubSkillType())
@@ -1647,7 +1648,7 @@ namespace charutils
                 if (PItem->isType(ITEM_WEAPON))
                 {
                     CItemWeapon* weapon = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
-                    if ((weapon != NULL) && weapon->isType(ITEM_WEAPON))
+                    if ((weapon != nullptr) && weapon->isType(ITEM_WEAPON))
                     {
                         if (((CItemWeapon*)PItem)->getSkillType() != weapon->getSkillType() ||
                             ((CItemWeapon*)PItem)->getSubSkillType() != weapon->getSubSkillType())
@@ -1666,7 +1667,7 @@ namespace charutils
             case SLOT_HEAD:
             {
                 CItemArmor* armor = PChar->getEquip(SLOT_BODY);
-                if ((armor != NULL) && armor->isType(ITEM_ARMOR))
+                if ((armor != nullptr) && armor->isType(ITEM_ARMOR))
                 {
                     uint8 removeSlotID = armor->getRemoveSlotId();
                     if (removeSlotID == SLOT_HEAD) {
@@ -1688,7 +1689,7 @@ namespace charutils
             case SLOT_HANDS:
             {
                 CItemArmor* armor = PChar->getEquip(SLOT_BODY);
-                if ((armor != NULL) && armor->isType(ITEM_ARMOR))
+                if ((armor != nullptr) && armor->isType(ITEM_ARMOR))
                 {
                     uint8 removeSlotID = armor->getRemoveSlotId();
                     if (removeSlotID == SLOT_HANDS)
@@ -1711,7 +1712,7 @@ namespace charutils
             case SLOT_FEET:
             {
                 CItemArmor* armor = PChar->getEquip(SLOT_LEGS);
-                if ((armor != NULL) && armor->isType(ITEM_ARMOR))
+                if ((armor != nullptr) && armor->isType(ITEM_ARMOR))
                 {
                     uint8 removeSlotID = armor->getRemoveSlotId();
                     if (removeSlotID == SLOT_FEET)
@@ -1757,7 +1758,7 @@ namespace charutils
         {
             CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
 
-            if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
+            if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
             {
 
                 if (!PItem->isSubType(ITEM_LOCKED) && EquipArmor(PChar, slotID, equipSlotID, containerID))
@@ -1790,6 +1791,7 @@ namespace charutils
                     PChar->addEquipModifiers(&PItem->modList, ((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
                     PChar->PLatentEffectContainer->AddLatentEffects(&PItem->latentList, ((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
                     PChar->PLatentEffectContainer->CheckLatentsEquip(equipSlotID);
+                    PChar->addPetModifiers(&PItem->petModList);
 
                     PChar->pushPacket(new CEquipPacket(slotID, equipSlotID, containerID));
                     PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NODROP));
@@ -1830,13 +1832,13 @@ namespace charutils
 
     void CheckValidEquipment(CCharEntity* PChar)
     {
-        CItemArmor* PItem = NULL;
+        CItemArmor* PItem = nullptr;
 
         for (uint8 slotID = 0; slotID < 16; ++slotID)
         {
             PItem = PChar->getEquip((SLOTTYPE)slotID);
 
-            if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
+            if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
             {
                 if (slotID == SLOT_SUB && !charutils::hasTrait(PChar, TRAIT_DUAL_WIELD))
                 {
@@ -1876,13 +1878,13 @@ namespace charutils
 
     void RemoveAllEquipment(CCharEntity* PChar)
     {
-        CItemArmor* PItem = NULL;
+        CItemArmor* PItem = nullptr;
 
         for (uint8 slotID = 0; slotID < 16; ++slotID)
         {
             PItem = PChar->getEquip((SLOTTYPE)slotID);
 
-            if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
+            if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
             {
                 UnequipItem(PChar, slotID);
             }
@@ -1913,7 +1915,7 @@ namespace charutils
         {
             CItem* PItem = PChar->getEquip((SLOTTYPE)slotID);
 
-            if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
+            if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
             {
                 if (((CItemArmor*)PItem)->getScriptType() & ScriptType)
                 {
@@ -1980,7 +1982,7 @@ namespace charutils
 
         //add in ranged ws
         PItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
-        if (PItem != NULL && PItem->isType(ITEM_WEAPON) && PItem->getSkillType() != SKILL_THR)
+        if (PItem != nullptr && PItem->isType(ITEM_WEAPON) && PItem->getSkillType() != SKILL_THR)
         {
             skill = PChar->m_Weapons[SLOT_RANGED]->getSkillType();
             std::list<CWeaponSkill*>&& WeaponSkillList = battleutils::GetWeaponSkills(skill);
@@ -1998,11 +2000,11 @@ namespace charutils
     }
 
     void BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 PetID){
-        DSP_DEBUG_BREAK_IF(PPet == NULL || PChar == NULL);
+        DSP_DEBUG_BREAK_IF(PPet == nullptr || PChar == nullptr);
 
         memset(&PChar->m_PetCommands, 0, sizeof(PChar->m_PetCommands));
 
-        if (PetID == 0){//technically Fire Spirit but we're using this to null the abilities shown
+        if (PetID == 0){//technically Fire Spirit but we're using this to nullptr the abilities shown
             PChar->pushPacket(new CCharAbilitiesPacket(PChar));
             return;
         }
@@ -2046,7 +2048,7 @@ namespace charutils
         {
             CAbility* PAbility = AbilitiesList.at(i);
 
-            if (PAbility == NULL){
+            if (PAbility == nullptr){
                 continue;
             }
 
@@ -2079,7 +2081,7 @@ namespace charutils
 
             if (PChar->GetSLevel() >= PAbility->getLevel() && PAbility->getID() < 496)
             {
-                if (PAbility == NULL){
+                if (PAbility == nullptr){
                     continue;
                 }
 
@@ -2535,7 +2537,7 @@ namespace charutils
 
     void filterEnabledSpells(CCharEntity* PChar){
         for (int i = 0; i < MAX_SPELL_ID; i++){
-            if (spell::GetSpell(i) == NULL){
+            if (spell::GetSpell(i) == nullptr){
                 delBit(i, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
             }
         }
@@ -2702,13 +2704,13 @@ namespace charutils
 
         PChar->updatemask |= UPDATE_HP;
 
-        if (PChar->PParty != NULL)
+        if (PChar->PParty != nullptr)
         {
-            if (PChar->PParty->m_PAlliance == NULL)
+            if (PChar->PParty->m_PAlliance == nullptr)
             {
                 PChar->PParty->PushPacket(PChar->id, PChar->getZone(), new CCharHealthPacket(PChar));
             }
-            else if (PChar->PParty->m_PAlliance != NULL)
+            else if (PChar->PParty->m_PAlliance != nullptr)
             {
                 for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
                 {
@@ -2818,7 +2820,7 @@ namespace charutils
         }
 
         //distribute to said members (perhaps store pointers to each member in first loop?)
-        if (PChar->PParty != NULL)
+        if (PChar->PParty != nullptr)
         {
             // TODO: плохая реализация - два раза проверяем дистанцию, два раза проверяем один и тот же массив
 
@@ -2865,9 +2867,9 @@ namespace charutils
         uint32 baseexp = 0, exp = 0, dedication = 0;
         float permonstercap, monsterbonus = 1.0f;
         bool chainactive = false;
-        if (PChar->PParty != NULL)
+        if (PChar->PParty != nullptr)
         {
-            if (PChar->PParty->GetSyncTarget() != NULL)
+            if (PChar->PParty->GetSyncTarget() != nullptr)
             {
                 if (distance(PMob->loc.p, PChar->PParty->GetSyncTarget()->loc.p) >= 100 || PChar->PParty->GetSyncTarget()->health.hp == 0)
                 {
@@ -2887,7 +2889,7 @@ namespace charutils
                 CBattleEntity* PBattle = PChar->PParty->members[i];
                 if (PBattle->getZone() == PMob->getZone() && distance(PBattle->loc.p, PMob->loc.p) < 100)
                 {
-                    if (PBattle->PPet != NULL && PBattle->PPet->GetMLevel() > maxlevel) maxlevel = PBattle->PPet->GetMLevel();
+                    if (PBattle->PPet != nullptr && PBattle->PPet->GetMLevel() > maxlevel) maxlevel = PBattle->PPet->GetMLevel();
                     if (PBattle->GetMLevel() > maxlevel) maxlevel = PBattle->GetMLevel();
                     else if (PBattle->GetMLevel() < minlevel) minlevel = PBattle->GetMLevel();
                     pcinzone++;
@@ -2946,11 +2948,12 @@ namespace charutils
 
                         if (PMob->getMobMod(MOBMOD_EXP_BONUS))
                         {
-                            monsterbonus = (float)PMob->getMobMod(MOBMOD_EXP_BONUS) / 100.0f;
+                            monsterbonus = 1 + (float)PMob->getMobMod(MOBMOD_EXP_BONUS) / 100.0f;
+                            exp *= monsterbonus;
                         }
 
-                        if (monsterbonus > 1.00f) exp *= monsterbonus;
-                        permonstercap = ((PMember->PParty != NULL && pcinzone > 1) ? 1.35f : 1.15f);
+                        permonstercap = ((PMember->PParty != nullptr && pcinzone > 1) ? 1.35f : 1.15f);
+
                         if (PMember->GetMLevel() <= 50)
                         {
                             if (exp > (200 * permonstercap)) exp = 200 * permonstercap;
@@ -2963,6 +2966,7 @@ namespace charutils
                         {
                             exp = 300 * permonstercap;
                         }
+
                         if (PMember->expChain.chainTime > gettick() || PMember->expChain.chainTime == 0)
                         {
                             chainactive = true;
@@ -2989,6 +2993,7 @@ namespace charutils
                             chainactive = false;
                             PMember->expChain.chainNumber = 1;
                         }
+
                         if (chainactive && PMember->GetMLevel() <= 10)
                         {
                             switch (PMember->expChain.chainNumber)
@@ -3098,7 +3103,7 @@ namespace charutils
                                 PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
                             }
                         }
-                        if (PChar->PParty != NULL && PChar->PParty->m_PAlliance != NULL && PMob->m_Type == MOBTYPE_NORMAL)
+                        if (PChar->PParty != nullptr && PChar->PParty->m_PAlliance != nullptr && PMob->m_Type == MOBTYPE_NORMAL)
                         {
                             if ((Pzone > 38 && Pzone < 43) || (Pzone > 133 && Pzone < 136) || (Pzone > 184 && Pzone < 189)) AddExperiencePoints(false, PMember, PMob, exp, 1, false);
                             else AddExperiencePoints(false, PMember, PMob, 1, 1, false);
@@ -3110,15 +3115,17 @@ namespace charutils
         }
         else
         {
-            if (PChar->PPet != NULL && PChar->PPet->GetMLevel() > maxlevel) maxlevel = PChar->PPet->GetMLevel();
+            if (PChar->PPet != nullptr && PChar->PPet->GetMLevel() > maxlevel) maxlevel = PChar->PPet->GetMLevel();
             baseexp = GetRealExp(maxlevel, PMob->GetMLevel());
             exp = baseexp;
             permonstercap = 1.15f;
+
             if (PMob->getMobMod(MOBMOD_EXP_BONUS))
             {
-                monsterbonus = (float)PMob->getMobMod(MOBMOD_EXP_BONUS) / 100.0f;
+                monsterbonus = 1 + (float)PMob->getMobMod(MOBMOD_EXP_BONUS) / 100.0f;
+                exp *= monsterbonus;
             }
-            if (monsterbonus > 1.00f) exp *= monsterbonus;
+
             if (PChar->GetMLevel() <= 50)
             {
                 if (exp > (200 * permonstercap)) exp = 200 * permonstercap;
@@ -3131,6 +3138,7 @@ namespace charutils
             {
                 exp = 300 * permonstercap;
             }
+
             if (PChar->expChain.chainTime > gettick() || PChar->expChain.chainTime == 0)
             {
                 chainactive = true;
@@ -3157,6 +3165,7 @@ namespace charutils
                 chainactive = false;
                 PChar->expChain.chainNumber = 1;
             }
+
             if (chainactive && PChar->GetMLevel() <= 10)
             {
                 switch (PChar->expChain.chainNumber)
@@ -3306,8 +3315,6 @@ namespace charutils
             BuildingCharTraitsTable(PChar);
             BuildingCharWeaponSkills(PChar);
 
-            PChar->UpdateHealth();
-
             PChar->pushPacket(new CCharJobsPacket(PChar));
             PChar->pushPacket(new CCharUpdatePacket(PChar));
             PChar->pushPacket(new CCharSkillsPacket(PChar));
@@ -3318,19 +3325,23 @@ namespace charutils
             PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
             PChar->pushPacket(new CCharSyncPacket(PChar));
 
+            PChar->UpdateHealth();
+
             SaveCharStats(PChar);
             SaveCharJob(PChar, PChar->GetMJob());
 
-            if (PChar->PParty != NULL)
+            if (PChar->PParty != nullptr)
             {
                 if (PChar->PParty->GetSyncTarget() == PChar)
                 {
                     PChar->PParty->RefreshSync();
                 }
+                PChar->PParty->ReloadParty();
             }
 
             PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 11));
             luautils::OnPlayerLevelDown(PChar);
+            charutils::UpdateHealth(PChar);
         }
         else
         {
@@ -3367,8 +3378,8 @@ namespace charutils
         if (PChar->jobs.job[PChar->GetMJob()] > 74 && PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai && PChar->jobs.exp[PChar->GetMJob()] == GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1)
             onLimitMode = true;
 
-        // exp added from raise shouldn't display a message
-        if (!expFromRaise)
+        // exp added from raise shouldn't display a message. Don't need a message for zero exp either
+        if (!expFromRaise && exp != 0)
         {
             if (baseexp >= 100 && isexpchain)
             {
@@ -3464,7 +3475,7 @@ namespace charutils
                 PChar->jobs.exp[PChar->GetMJob()] = GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1;
                 if (PChar->PParty && PChar->PParty->GetSyncTarget() == PChar)
                 {
-                    PChar->PParty->SetSyncTarget(NULL, 556);
+                    PChar->PParty->SetSyncTarget(nullptr, 556);
                 }
             }
             else
@@ -3487,12 +3498,13 @@ namespace charutils
                     BuildingCharAbilityTable(PChar);
                     BuildingCharTraitsTable(PChar);
                     BuildingCharWeaponSkills(PChar);
-                    if (PChar->PAutomaton != NULL && PChar->PAutomaton != PChar->PPet)
+                    if (PChar->PAutomaton != nullptr && PChar->PAutomaton != PChar->PPet)
                     {
                         puppetutils::LoadAutomatonStats(PChar);
                     }
                 }
                 PChar->PLatentEffectContainer->CheckLatentsJobLevel();
+
                 PChar->UpdateHealth();
 
                 PChar->health.hp = PChar->GetMaxHP();
@@ -3515,15 +3527,17 @@ namespace charutils
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PMob, PChar->jobs.job[PChar->GetMJob()], 0, 9));
                 PChar->pushPacket(new CCharStatsPacket(PChar));
 
-                if (PChar->PParty != NULL)
+                if (PChar->PParty != nullptr)
                 {
                     if (PChar->PParty->GetSyncTarget() == PChar)
                     {
                         PChar->PParty->RefreshSync();
                     }
+                    PChar->PParty->ReloadParty();
                 }
 
                 luautils::OnPlayerLevelUp(PChar);
+                charutils::UpdateHealth(PChar);
                 return;
             }
         }
@@ -4178,7 +4192,7 @@ namespace charutils
 
     void SaveDeathTime(CCharEntity* PChar)
     {
-        uint32 currentTime = (uint32)time(NULL);
+        uint32 currentTime = (uint32)time(nullptr);
         PChar->m_DeathCounter += (currentTime - PChar->m_DeathTimestamp);
         PChar->m_DeathTimestamp = currentTime;
 
@@ -4368,7 +4382,7 @@ namespace charutils
             else
             {
                 //find if party exists on this server already
-                CParty* PParty = NULL;
+                CParty* PParty = nullptr;
                 zoneutils::ForEachZone([partyid, &PParty](CZone* PZone)
                 {
                     PZone->ForEachChar([partyid, &PParty](CCharEntity* PChar)
@@ -4401,7 +4415,7 @@ namespace charutils
                 else
                 {
                     //find if the alliance exists on this server already
-                    CAlliance* PAlliance = NULL;
+                    CAlliance* PAlliance = nullptr;
                     zoneutils::ForEachZone([allianceid, &PAlliance](CZone* PZone)
                     {
                         PZone->ForEachChar([allianceid, &PAlliance](CCharEntity* PChar)
@@ -4490,36 +4504,43 @@ namespace charutils
             return "windurst_cp";
         default:
             DSP_DEBUG_BREAK_IF(true);
-            return NULL;
+            return nullptr;
         }
     }
 
     void SendToZone(CCharEntity* PChar, uint8 type, uint64 ipp)
     {
-        Sql_Query(SqlHandle, "UPDATE accounts_sessions SET server_addr = %u, server_port = %u WHERE charid = %u;",
-            (uint32)ipp, (uint32)(ipp >> 32), PChar->id);
+        if (type == 2)
+        {
+            Sql_Query(SqlHandle, "UPDATE accounts_sessions SET server_addr = %u, server_port = %u WHERE charid = %u;",
+                (uint32)ipp, (uint32)(ipp >> 32), PChar->id);
 
-        const int8* Query =
-            "UPDATE chars "
-            "SET "
-            "pos_zone = %u,"
-            "pos_prevzone = %u,"
-            "pos_rot = %u,"
-            "pos_x = %.3f,"
-            "pos_y = %.3f,"
-            "pos_z = %.3f,"
-            "boundary = %u "
-            "WHERE charid = %u;";
+            const int8* Query =
+                "UPDATE chars "
+                "SET "
+                "pos_zone = %u,"
+                "pos_prevzone = %u,"
+                "pos_rot = %u,"
+                "pos_x = %.3f,"
+                "pos_y = %.3f,"
+                "pos_z = %.3f,"
+                "boundary = %u "
+                "WHERE charid = %u;";
 
-        Sql_Query(SqlHandle, Query,
-            PChar->loc.destination,
-            PChar->m_moghouseID ? 0 : PChar->getZone(),
-            PChar->loc.p.rotation,
-            PChar->loc.p.x,
-            PChar->loc.p.y,
-            PChar->loc.p.z,
-            PChar->loc.boundary,
-            PChar->id);
+            Sql_Query(SqlHandle, Query,
+                PChar->loc.destination,
+                PChar->m_moghouseID ? 0 : PChar->getZone(),
+                PChar->loc.p.rotation,
+                PChar->loc.p.x,
+                PChar->loc.p.y,
+                PChar->loc.p.z,
+                PChar->loc.boundary,
+                PChar->id);
+        }
+        else
+        {
+            SaveCharPosition(PChar);
+        }
 
         PChar->pushPacket(new CServerIPPacket(PChar, type, ipp));
     }

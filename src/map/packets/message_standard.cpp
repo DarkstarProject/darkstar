@@ -45,7 +45,7 @@ CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0
 
 	WBUFW(data,(0x0A)-4) = MessageID;
 
-	if (PChar != NULL)
+	if (PChar != nullptr)
 	{
 		WBUFL(data,(0x04)-4) = PChar->id;
 		WBUFW(data,(0x08)-4) = PChar->targid;

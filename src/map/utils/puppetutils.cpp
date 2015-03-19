@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -21,9 +21,11 @@
 ===========================================================================
 */
 
+#include "../lua/luautils.h"
 #include "puppetutils.h"
 #include "petutils.h"
 #include "battleutils.h"
+#include "charutils.h"
 #include "../packets/char_job_extra.h"
 
 namespace puppetutils
@@ -43,14 +45,14 @@ void LoadAutomaton(CCharEntity* PChar)
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
 		size_t length = 0;
-		int8* attachments = NULL;
+		int8* attachments = nullptr;
 		Sql_GetData(SqlHandle,0,&attachments,&length);
 		memcpy(&PChar->m_unlockedAttachments, attachments, (length > sizeof(PChar->m_unlockedAttachments) ? sizeof(PChar->m_unlockedAttachments) : length));
 
-        if (PChar->PAutomaton != NULL)
+        if (PChar->PAutomaton != nullptr)
         {
             delete PChar->PAutomaton;
-            PChar->PAutomaton = NULL;
+            PChar->PAutomaton = nullptr;
         }
 
         if (PChar->GetMJob() == JOB_PUP || PChar->GetSJob() == JOB_PUP)
@@ -58,7 +60,7 @@ void LoadAutomaton(CCharEntity* PChar)
             PChar->PAutomaton = new CAutomatonEntity();
             PChar->PAutomaton->name.insert(0,Sql_GetData(SqlHandle, 1));
             automaton_equip_t tempEquip;
-		    attachments = NULL;
+		    attachments = nullptr;
 		    Sql_GetData(SqlHandle,2,&attachments,&length);
 		    memcpy(&tempEquip, attachments, (length > sizeof(tempEquip) ? sizeof(tempEquip) : length));
 			setHead(PChar, tempEquip.Head < HEAD_HARLEQUIN || tempEquip.Head > HEAD_SPIRITREAVER ? HEAD_HARLEQUIN : tempEquip.Head);
@@ -260,7 +262,7 @@ void setFrame(CCharEntity* PChar, uint8 frame)
     if (PChar->PAutomaton->getFrame() != 0)
     {
         CItemPuppet* POldFrame = (CItemPuppet*)itemutils::GetItemPointer(0x2000 + PChar->PAutomaton->getFrame());
-        if (POldFrame == NULL || POldFrame->getEquipSlot() != ITEM_PUPPET_FRAME)
+        if (POldFrame == nullptr || POldFrame->getEquipSlot() != ITEM_PUPPET_FRAME)
             return;
         for (int i = 0; i < 8; i ++)
         {
@@ -268,7 +270,7 @@ void setFrame(CCharEntity* PChar, uint8 frame)
         }
     }
     CItemPuppet* PFrame = (CItemPuppet*)itemutils::GetItemPointer(0x2000 + frame);
-    if (PFrame == NULL || PFrame->getEquipSlot() != ITEM_PUPPET_FRAME)
+    if (PFrame == nullptr || PFrame->getEquipSlot() != ITEM_PUPPET_FRAME)
         return;
     for (int i = 0; i < 8; i ++)
     {
@@ -319,7 +321,7 @@ void setHead(CCharEntity* PChar, uint8 head)
     if (PChar->PAutomaton->getHead() != 0)
     {
         CItemPuppet* POldHead = (CItemPuppet*)itemutils::GetItemPointer(0x2000 + PChar->PAutomaton->getHead());
-        if (POldHead == NULL || POldHead->getEquipSlot() != ITEM_PUPPET_HEAD)
+        if (POldHead == nullptr || POldHead->getEquipSlot() != ITEM_PUPPET_HEAD)
             return;
         for (int i = 0; i < 8; i ++)
         {
@@ -327,7 +329,7 @@ void setHead(CCharEntity* PChar, uint8 head)
         }
     }
     CItemPuppet* PHead = (CItemPuppet*)itemutils::GetItemPointer(0x2000 + head);
-    if (PHead == NULL || PHead->getEquipSlot() != ITEM_PUPPET_HEAD)
+    if (PHead == nullptr || PHead->getEquipSlot() != ITEM_PUPPET_HEAD)
         return;
     for (int i = 0; i < 8; i ++)
     {
@@ -366,7 +368,7 @@ void setHead(CCharEntity* PChar, uint8 head)
 
 }
 
-uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill)
+uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level)
 {
     int8 rank = 0;
     if (skill < SKILL_AME || skill > SKILL_AMA)
@@ -419,8 +421,12 @@ uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill)
     if (rank < 0)
         rank = 13 + rank;
 
-    return battleutils::GetMaxSkill(rank, PChar->PAutomaton->GetMLevel());
+    return battleutils::GetMaxSkill(rank, level);
+}
 
+uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill)
+{
+    return getSkillCap(PChar, skill, PChar->PAutomaton->GetMLevel());
 }
 
 void LoadAutomatonStats(CCharEntity* PChar)
@@ -440,7 +446,110 @@ void LoadAutomatonStats(CCharEntity* PChar)
             petutils::LoadPet(PChar, PETID_STORMWAKERFRAME, false);
             break;
     }
-    PChar->PPet = NULL; //already saved as PAutomaton, don't need it twice unless it's summoned
+    PChar->PPet = nullptr; //already saved as PAutomaton, don't need it twice unless it's summoned
+}
+
+void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
+{
+    DSP_DEBUG_BREAK_IF(!PAutomaton->PMaster || PAutomaton->PMaster->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)PAutomaton->PMaster;
+    if (getSkillCap(PChar, SkillID) != 0 && !(PChar->WorkingSkills.skill[SkillID] & 0x8000))
+    {
+        uint16 CurSkill = PChar->RealSkills.skill[SkillID];
+        uint16 MaxSkill = getSkillCap(PChar, SkillID);
+
+        int16  Diff = MaxSkill - CurSkill / 10;
+        double SkillUpChance = Diff / 5.0 + map_config.skillup_chance_multiplier * (2.0 - log10(1.0 + CurSkill / 100));
+
+        double random = WELL512::drand();
+
+        if (SkillUpChance > 0.5)
+        {
+            SkillUpChance = 0.5;
+        }
+
+        if (Diff > 0 && random < SkillUpChance)
+        {
+            double chance = 0;
+            uint8  SkillAmount = 1;
+            uint8  tier = dsp_min(1 + (Diff / 5), 5);
+
+            for (uint8 i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
+            {
+                random = WELL512::drand();
+
+                switch (tier)
+                {
+                case 5:  chance = 0.900; break;
+                case 4:  chance = 0.700; break;
+                case 3:  chance = 0.500; break;
+                case 2:  chance = 0.300; break;
+                case 1:  chance = 0.200; break;
+                default: chance = 0.000; break;
+                }
+
+                if (chance < random || SkillAmount == 5) break;
+
+                tier -= 1;
+                SkillAmount += 1;
+            }
+            MaxSkill = MaxSkill * 10;
+
+            // Do skill amount multiplier (Will only be applied if default setting is changed)
+            if (map_config.skillup_amount_multiplier > 1)
+            {
+                SkillAmount += SkillAmount * map_config.skillup_amount_multiplier;
+                if (SkillAmount > 9)
+                {
+                    SkillAmount = 9;
+                }
+            }
+
+            if (SkillAmount + CurSkill >= MaxSkill)
+            {
+                SkillAmount = MaxSkill - CurSkill;
+                PChar->WorkingSkills.skill[SkillID] |= 0x8000;
+            }
+
+            PChar->RealSkills.skill[SkillID] += SkillAmount;
+            PChar->pushPacket(new CMessageBasicPacket(PAutomaton, PAutomaton, SkillID, SkillAmount, 38));
+
+            if ((CurSkill / 10) < (CurSkill + SkillAmount) / 10) //if gone up a level
+            {
+                //TODO: regenerate automatons weaponskills
+                PChar->WorkingSkills.skill[SkillID] += 1;
+                PChar->pushPacket(new CCharJobExtraPacket(PChar, PChar->GetMJob() == JOB_PUP));
+                PChar->pushPacket(new CMessageBasicPacket(PAutomaton, PAutomaton, SkillID, (CurSkill + SkillAmount) / 10, 53));
+            }
+            charutils::SaveCharSkills(PChar, SkillID);
+        }
+    }
+}
+
+void CheckAttachmentsForManeuver(CCharEntity* PChar, EFFECT maneuver, bool gain)
+{
+    CAutomatonEntity* PAutomaton = PChar->PAutomaton;
+
+    if (PAutomaton)
+    {
+        uint8 element = maneuver - EFFECT_FIRE_MANEUVER;
+        for (uint8 i = 0; i < 12; i++)
+        {
+            if (PAutomaton->getAttachment(i) != 0)
+            {
+                CItemPuppet* PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + PAutomaton->getAttachment(i));
+
+                if (PAttachment && PAttachment->getElementSlots() >> (element * 4))
+                {
+                    if (gain)
+                        luautils::OnManeuverGain(PChar, PAttachment, PChar->StatusEffectContainer->GetEffectsCount(maneuver));
+                    else
+                        luautils::OnManeuverLose(PChar, PAttachment, PChar->StatusEffectContainer->GetEffectsCount(maneuver));
+                }
+            }
+        }
+    }
 }
 
 }

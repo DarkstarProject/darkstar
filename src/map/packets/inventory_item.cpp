@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -40,7 +40,7 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 	WBUFB(data,(0x0E)-4) = LocationID;
 	WBUFB(data,(0x0F)-4) = SlotID;	
 
-	if (PItem != NULL)
+	if (PItem != nullptr)
 	{
 		WBUFL(data,(0x04)-4) = PItem->getQuantity();
 		WBUFL(data,(0x08)-4) = PItem->getCharPrice();
@@ -49,10 +49,6 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 
 		if (PItem->isSubType(ITEM_CHARGED))
 		{
-            if (PItem->isSubType(ITEM_LOCKED))
-            {
-                WBUFB(data,(0x10)-4) = 0x05;
-            }
 			WBUFB(data,(0x11)-4) = 0x01;    // флаг ITEM_CHARGED
 
             if (((CItemUsable*)PItem)->getCurrentCharges() > 0)
@@ -72,24 +68,35 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
                 }
             }
 		}
-        if (PItem->getCharPrice() != 0)
-		{
-			WBUFB(data,(0x10)-4) = 0x19;
-		}
+
         if (PItem->isType(ITEM_WEAPON) && ((CItemWeapon*)PItem)->isUnlockable())
         {
             WBUFW(data, (0x11) - 4) = 0;
         }
 
+        if (PItem->getCharPrice() != 0)
+        {
+            WBUFB(data, (0x10) - 4) = 0x19;
+        }
+        else if (PItem->isSubType(ITEM_LOCKED))
+        {
+            if (PItem->isType(ITEM_LINKSHELL))
+            {
+                WBUFB(data, (0x10) - 4) = 0x13;
+            }
+            else
+            {
+                WBUFB(data, (0x10) - 4) = 0x05;
+            }
+        }
+        else
+        {
+            WBUFB(data, (0x10) - 4) = 0x00;
+        }
+
         if (PItem->isType(ITEM_LINKSHELL))
         {
-            if (PItem->isSubType(ITEM_LOCKED))
-            {
-                WBUFB(data,(0x10)-4) = 0x13;
-            }
             WBUFB(data,(0x19)-4) = ((CItemLinkshell*)PItem)->GetLSType();
-
-            return;
         }
 	}
 }

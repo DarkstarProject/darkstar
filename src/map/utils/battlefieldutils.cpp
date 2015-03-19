@@ -56,7 +56,7 @@ namespace battlefieldutils{
 		{
 				CBattlefield* PBattlefield = new CBattlefield(hand,Sql_GetUIntData(SqlHandle,1), type);
 				int8* tmpName;
-				Sql_GetData(SqlHandle,0,&tmpName,NULL);
+				Sql_GetData(SqlHandle,0,&tmpName,nullptr);
 				PBattlefield->setBcnmName(tmpName);
 				PBattlefield->setTimeLimit(Sql_GetUIntData(SqlHandle,4));
 				PBattlefield->setLevelCap(Sql_GetUIntData(SqlHandle,5));
@@ -66,7 +66,7 @@ namespace battlefieldutils{
 				PBattlefield->m_RuleMask = (uint16)Sql_GetUIntData(SqlHandle,7);
 				return PBattlefield;
 		}
-		return NULL;
+		return nullptr;
 	}
 
 	/***************************************************************
@@ -76,7 +76,7 @@ namespace battlefieldutils{
 		battlefield.
 	****************************************************************/
 	bool spawnMonstersForBcnm(CBattlefield* battlefield){
-		DSP_DEBUG_BREAK_IF(battlefield==NULL);
+		DSP_DEBUG_BREAK_IF(battlefield==nullptr);
 
 		//get ids from DB
 		const int8* fmtQuery = "SELECT monsterId, conditions \
@@ -96,7 +96,7 @@ namespace battlefieldutils{
 				uint32 mobid = Sql_GetUIntData(SqlHandle,0);
 				uint8 condition = Sql_GetUIntData(SqlHandle,1);
 				CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-				if (PMob != NULL)
+				if (PMob != nullptr)
 				{
 
 					PMob->m_battlefieldID = battlefield->getBattlefieldNumber();
@@ -149,7 +149,7 @@ namespace battlefieldutils{
 		Spawns treasure chest/armory crate, what ever on winning bcnm
 	****************************************************************/
 	bool spawnTreasureForBcnm(CBattlefield* battlefield){
-		DSP_DEBUG_BREAK_IF(battlefield==NULL);
+		DSP_DEBUG_BREAK_IF(battlefield==nullptr);
 
 		//get ids from DB
 		const int8* fmtQuery = "SELECT npcId \
@@ -169,7 +169,7 @@ namespace battlefieldutils{
 			{
 				uint32 npcid = Sql_GetUIntData(SqlHandle,0);
 				CBaseEntity* PNpc = (CBaseEntity*)zoneutils::GetEntity(npcid, TYPE_NPC);
-					if (PNpc != NULL)
+					if (PNpc != nullptr)
 					{
 						PNpc->status = STATUS_NORMAL;
 						PNpc->animation = 0;
@@ -279,7 +279,7 @@ namespace battlefieldutils{
 	Returns the losing exit position for this BCNM.
 	****************************************************************/
 	void getLosePosition(CBattlefield* battlefield, int (&pPosition)[4]){
-		if(battlefield==NULL)
+		if(battlefield==nullptr)
 			return;
 
 		switch(battlefield->getZoneId()){
@@ -314,7 +314,7 @@ namespace battlefieldutils{
 	Returns the winning exit position for this BCNM.
 	****************************************************************/
 	void getWinPosition(CBattlefield* battlefield, int (&pPosition)[4]){
-		if(battlefield==NULL)
+		if(battlefield==nullptr)
 			return;
 
 		switch(battlefield->getZoneId()){
@@ -368,7 +368,7 @@ namespace battlefieldutils{
 	uint8 maxloot = 0;
 		LootList_t* LootList = itemutils::GetLootList(battlefield->getLootId());
 
-		if (LootList == NULL){
+		if (LootList == nullptr){
 			ShowError("BCNM Chest opened with no valid loot list!");
 			//no loot available for bcnm. End bcnm.
 			battlefield->winBcnm();
@@ -414,7 +414,7 @@ namespace battlefieldutils{
 	}
 
 	bool spawnSecondPartDynamis(CBattlefield* battlefield){
-		DSP_DEBUG_BREAK_IF(battlefield==NULL);
+		DSP_DEBUG_BREAK_IF(battlefield==nullptr);
 
 		//get ids from DB
 		const int8* fmtQuery = "SELECT monsterId \
@@ -433,7 +433,7 @@ namespace battlefieldutils{
 			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS){
 				uint32 mobid = Sql_GetUIntData(SqlHandle,0);
 				CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-				if (PMob != NULL)
+				if (PMob != nullptr)
 				{
 				    if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
 				        PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN)

@@ -39,7 +39,7 @@ CLuaMobSkill::CLuaMobSkill(lua_State *L)
 		m_PLuaMobSkill = (CMobSkill*)(lua_touserdata(L,-1));
 		lua_pop(L,1);
 	}else{
-		m_PLuaMobSkill = NULL;
+		m_PLuaMobSkill = nullptr;
 	}
 }
 
@@ -62,7 +62,7 @@ CLuaMobSkill::CLuaMobSkill(CMobSkill* PSkill)
 
 inline int32 CLuaMobSkill::setMsg(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
     m_PLuaMobSkill->setMsg(lua_tointeger(L,-1));
@@ -71,7 +71,7 @@ inline int32 CLuaMobSkill::setMsg(lua_State *L)
 
 inline int32 CLuaMobSkill::setSkillchain(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
     m_PLuaMobSkill->setSkillchain(lua_tointeger(L, -1));
@@ -80,7 +80,7 @@ inline int32 CLuaMobSkill::setSkillchain(lua_State *L)
 
 inline int32 CLuaMobSkill::hasMissMsg(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushboolean( L, m_PLuaMobSkill->hasMissMsg() );
     return 1;
@@ -88,7 +88,7 @@ inline int32 CLuaMobSkill::hasMissMsg(lua_State *L)
 
 inline int32 CLuaMobSkill::isSingle(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushboolean( L, m_PLuaMobSkill->isSingle() );
     return 1;
@@ -96,7 +96,7 @@ inline int32 CLuaMobSkill::isSingle(lua_State *L)
 
 inline int32 CLuaMobSkill::isAoE(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushboolean( L, m_PLuaMobSkill->isAoE() );
     return 1;
@@ -104,7 +104,7 @@ inline int32 CLuaMobSkill::isAoE(lua_State *L)
 
 inline int32 CLuaMobSkill::isConal(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushboolean( L, m_PLuaMobSkill->isConal() );
     return 1;
@@ -112,7 +112,7 @@ inline int32 CLuaMobSkill::isConal(lua_State *L)
 
 inline int32 CLuaMobSkill::getTotalTargets(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushinteger( L, m_PLuaMobSkill->getTotalTargets() );
     return 1;
@@ -120,7 +120,7 @@ inline int32 CLuaMobSkill::getTotalTargets(lua_State *L)
 
 inline int32 CLuaMobSkill::getMsg(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushinteger( L, m_PLuaMobSkill->getMsg() );
     return 1;
@@ -128,7 +128,7 @@ inline int32 CLuaMobSkill::getMsg(lua_State *L)
 
 inline int32 CLuaMobSkill::getID(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
 	lua_pushinteger( L, m_PLuaMobSkill->getID() );
 	return 1;
@@ -136,7 +136,7 @@ inline int32 CLuaMobSkill::getID(lua_State* L)
 
 inline int32 CLuaMobSkill::getParam(lua_State* L)
 {
-  DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+  DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
   lua_pushinteger( L, m_PLuaMobSkill->getParam() );
   return 1;
@@ -150,7 +150,7 @@ inline int32 CLuaMobSkill::getParam(lua_State* L)
 
 inline int32 CLuaMobSkill::getTP(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
 	lua_pushnumber( L, (float)m_PLuaMobSkill->getTP() / 10.0f );
 	return 1;
@@ -176,5 +176,5 @@ Lunar<CLuaMobSkill>::Register_t CLuaMobSkill::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaMobSkill,getTotalTargets),
 	LUNAR_DECLARE_METHOD(CLuaMobSkill,getTP),
 	LUNAR_DECLARE_METHOD(CLuaMobSkill,setSkillchain),
-	{NULL,NULL}
+	{nullptr,nullptr}
 };

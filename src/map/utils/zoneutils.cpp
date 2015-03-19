@@ -76,7 +76,7 @@ void UpdateTreasureSpawnPoint(uint32 npcid, uint32 respawnTime)
 			return;
 		}
 
-		if (PNpc != NULL) {
+		if (PNpc != nullptr) {
 			PNpc->loc.p.rotation = Sql_GetIntData(SqlHandle, 1);
 			PNpc->loc.p.x = Sql_GetFloatData(SqlHandle, 2);
 			PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 3);
@@ -153,7 +153,7 @@ CZone* GetZone(uint16 ZoneID)
 	}
 	catch (const std::out_of_range&)
 	{
-		return NULL;
+		return nullptr;
 	}
 }
 
@@ -182,7 +182,7 @@ CBaseEntity* GetEntity(uint32 ID, uint8 filter)
 	}
 	else
 	{
-		return NULL;
+		return nullptr;
 	}
 }
 
@@ -198,12 +198,12 @@ CCharEntity* GetCharByName(int8* name)
     {
         CCharEntity* PChar = PZone.second->GetCharByName(name);
 
-        if (PChar != NULL)
+        if (PChar != nullptr)
         {
 		    return PChar;
 		}
     }
-    return NULL;
+    return nullptr;
 }
 
 /************************************************************************
@@ -220,10 +220,10 @@ CCharEntity* GetCharFromWorld(uint32 charid, uint16 targid)
 		if (PZone.first == 0)
 			continue;
 		CBaseEntity* PEntity = PZone.second->GetEntity(targid, TYPE_PC);
-        if (PEntity != NULL && PEntity->id == charid)
+        if (PEntity != nullptr && PEntity->id == charid)
             return (CCharEntity*)PEntity;
     }
-    return NULL;
+    return nullptr;
 }
 
 CCharEntity* GetChar(uint32 charid)
@@ -234,7 +234,7 @@ CCharEntity* GetChar(uint32 charid)
 		if (PEntity)
 			return (CCharEntity*)PEntity;
 	}
-	return NULL;
+	return nullptr;
 }
 
 /************************************************************************
@@ -523,13 +523,13 @@ void LoadMOBList()
             CMobEntity* PMaster = (CMobEntity*)GetZone(ZoneID)->GetEntity(masterid & 0x0FFF, TYPE_MOB);
             CMobEntity* PPet = (CMobEntity*)GetZone(ZoneID)->GetEntity(petid & 0x0FFF, TYPE_MOB);
 
-            if(PMaster == NULL)
+            if(PMaster == nullptr)
             {
-                ShowError("zoneutils::loadMOBList PMaster is null. masterid: %d. Make sure x,y,z are not zeros, and that all entities are entered in the database!\n", masterid);
+                ShowError("zoneutils::loadMOBList PMaster is NULL. masterid: %d. Make sure x,y,z are not zeros, and that all entities are entered in the database!\n", masterid);
             }
-            else if(PPet == NULL)
+            else if(PPet == nullptr)
             {
-                ShowError("zoneutils::loadMOBList PPet is null. petid: %d. Make sure x,y,z are not zeros!\n", petid);
+                ShowError("zoneutils::loadMOBList PPet is NULL. petid: %d. Make sure x,y,z are not zeros!\n", petid);
             }
             else if(masterid == petid)
             {
@@ -578,7 +578,7 @@ CZone* CreateZone(uint16 ZoneID)
 	else
 	{
 		ShowFatalError(CL_RED"zoneutils::CreateZone: Cannot load zone settings (%u)\n" CL_RESET, ZoneID);
-		return NULL;
+		return nullptr;
 	}
 }
 

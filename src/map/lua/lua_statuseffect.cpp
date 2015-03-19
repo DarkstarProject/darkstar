@@ -36,7 +36,7 @@ CLuaStatusEffect::CLuaStatusEffect(lua_State* L)
 		m_PLuaStatusEffect = (CStatusEffect*)lua_touserdata(L,1);
 		lua_pop(L,1);
 	}else{
-		m_PLuaStatusEffect = NULL;
+		m_PLuaStatusEffect = nullptr;
 	}
 }
 
@@ -51,7 +51,7 @@ CLuaStatusEffect::CLuaStatusEffect(CStatusEffect* StatusEffect)
 
 inline int32 CLuaStatusEffect::getType(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 	
 	lua_pushinteger( L, m_PLuaStatusEffect->GetStatusID() );
 	return 1;
@@ -61,7 +61,7 @@ inline int32 CLuaStatusEffect::getType(lua_State* L)
 
 inline int32 CLuaStatusEffect::getSubType(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 	
 	lua_pushinteger( L, m_PLuaStatusEffect->GetSubID() );
 	return 1;
@@ -71,7 +71,7 @@ inline int32 CLuaStatusEffect::getSubType(lua_State* L)
 
 inline int32 CLuaStatusEffect::getPower(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 	
 	lua_pushinteger( L, m_PLuaStatusEffect->GetPower() );
 	return 1;
@@ -79,7 +79,7 @@ inline int32 CLuaStatusEffect::getPower(lua_State* L)
 
 inline int32 CLuaStatusEffect::getSubPower(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
     
     lua_pushinteger( L, m_PLuaStatusEffect->GetSubPower() );
     return 1;
@@ -87,7 +87,7 @@ inline int32 CLuaStatusEffect::getSubPower(lua_State* L)
 
 inline int32 CLuaStatusEffect::getTier(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
     lua_pushinteger( L, m_PLuaStatusEffect->GetTier() );
     return 1;
@@ -97,7 +97,7 @@ inline int32 CLuaStatusEffect::getTier(lua_State* L)
 
 inline int32 CLuaStatusEffect::getDuration(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 	
 	lua_pushinteger( L, m_PLuaStatusEffect->GetDuration() );
 	return 1;
@@ -107,7 +107,7 @@ inline int32 CLuaStatusEffect::getDuration(lua_State* L)
 
 inline int32 CLuaStatusEffect::getStartTime(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 	
 	lua_pushinteger( L, m_PLuaStatusEffect->GetStartTime() );
 	return 1;
@@ -123,7 +123,7 @@ inline int32 CLuaStatusEffect::getStartTime(lua_State* L)
 
 inline int32 CLuaStatusEffect::getLastTick(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
     uint32 count = 0;
 
@@ -144,7 +144,7 @@ inline int32 CLuaStatusEffect::getLastTick(lua_State* L)
 
 inline int32 CLuaStatusEffect::getTimeRemaining(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
     uint32 remaining = 0;
     if (m_PLuaStatusEffect->GetStartTime() > 0)
     {
@@ -163,7 +163,7 @@ inline int32 CLuaStatusEffect::getTimeRemaining(lua_State* L)
 
 inline int32 CLuaStatusEffect::getTickCount(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
     uint32 count = 0;
 
@@ -177,7 +177,7 @@ inline int32 CLuaStatusEffect::getTickCount(lua_State* L)
 
 inline int32 CLuaStatusEffect::getTick(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 	
 	lua_pushinteger( L, m_PLuaStatusEffect->GetTickTime() );
 	return 1;
@@ -187,7 +187,7 @@ inline int32 CLuaStatusEffect::getTick(lua_State* L)
 
 inline int32 CLuaStatusEffect::setIcon(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 	
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
@@ -199,7 +199,7 @@ inline int32 CLuaStatusEffect::setIcon(lua_State* L)
 
 inline int32 CLuaStatusEffect::setPower(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 	
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
@@ -209,7 +209,7 @@ inline int32 CLuaStatusEffect::setPower(lua_State* L)
 
 inline int32 CLuaStatusEffect::setSubPower(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
@@ -219,7 +219,7 @@ inline int32 CLuaStatusEffect::setSubPower(lua_State* L)
 
 inline int32 CLuaStatusEffect::setTier(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
@@ -231,7 +231,7 @@ inline int32 CLuaStatusEffect::setTier(lua_State* L)
 
 inline int32 CLuaStatusEffect::setDuration(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 	
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 	
@@ -241,7 +241,7 @@ inline int32 CLuaStatusEffect::setDuration(lua_State* L)
 
 inline int32 CLuaStatusEffect::setTick(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
@@ -257,7 +257,7 @@ inline int32 CLuaStatusEffect::setTick(lua_State* L)
 
 inline int32 CLuaStatusEffect::resetStartTime(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 	
 	m_PLuaStatusEffect->SetStartTime(gettick());
 	return 0;
@@ -265,7 +265,7 @@ inline int32 CLuaStatusEffect::resetStartTime(lua_State* L)
 
 inline int32 CLuaStatusEffect::setStartTime(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 	
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 	
@@ -277,7 +277,7 @@ inline int32 CLuaStatusEffect::setStartTime(lua_State* L)
 
 inline int32 CLuaStatusEffect::addMod(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 	
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
@@ -290,7 +290,7 @@ inline int32 CLuaStatusEffect::addMod(lua_State* L)
 
 inline int32 CLuaStatusEffect::setFlag(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
@@ -300,7 +300,7 @@ inline int32 CLuaStatusEffect::setFlag(lua_State* L)
 
 inline int32 CLuaStatusEffect::unsetFlag(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
@@ -336,5 +336,5 @@ Lunar<CLuaStatusEffect>::Register_t CLuaStatusEffect::methods[] =
     LUNAR_DECLARE_METHOD(CLuaStatusEffect,setStartTime),
     LUNAR_DECLARE_METHOD(CLuaStatusEffect,setFlag),
     LUNAR_DECLARE_METHOD(CLuaStatusEffect,unsetFlag),
-	{NULL,NULL}
+	{nullptr,nullptr}
 }; 

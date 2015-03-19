@@ -203,6 +203,11 @@ int16 CItemArmor::getModifier(uint16 mod)
 	return 0;
 }
 
+void CItemArmor::addPetModifier(CModifier* modifier)
+{
+    petModList.push_back(modifier);
+}
+
 void CItemArmor::addLatent(CLatentEffect* latent)
 {
 	latentList.push_back(latent);
@@ -266,7 +271,7 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
 
 
     // obtain augment info by querying the db
-    const int8* fmtQuery = "SELECT * FROM augments WHERE augmentId = %u";
+    const int8* fmtQuery = "SELECT augmentId, multiplier, modId, `value`, `type` FROM augments WHERE augmentId = %u";
 
     int32 ret = Sql_Query(SqlHandle, fmtQuery, type);
 
@@ -274,13 +279,19 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
         Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        uint32 multiplier = (uint32)Sql_GetUIntData(SqlHandle, 1);
+        uint8 multiplier = (uint8)Sql_GetUIntData(SqlHandle, 1);
         uint32 modId = (uint32)Sql_GetUIntData(SqlHandle, 2);
-        int32 modValue = (int32)Sql_GetIntData(SqlHandle, 3);
+        int16 modValue = (int16)Sql_GetIntData(SqlHandle, 3);
+        
+        // type is 0 unless mod is for pets
+        uint8 type = (uint8)Sql_GetUIntData(SqlHandle, 4);
 
         // apply modifier to item. increase modifier power by 'value' (default magnitude 1 for most augments) if multiplier isn't specified
         // otherwise increase modifier power using the multiplier
-        addModifier(new CModifier(modId, (multiplier > 0 ? modValue + (value * multiplier) : modValue + value)));
+        if (!type)
+            addModifier(new CModifier(modId, (multiplier > 1 ? modValue + (value * multiplier) : modValue + value)));
+        else
+            addPetModifier(new CModifier(modId, (multiplier > 1 ? modValue + (value * multiplier) : modValue + value)));
     }
 }
 

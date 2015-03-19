@@ -70,7 +70,7 @@ int32 lobbydata_parse(int32 fd)
 {
 	login_session_data_t* sd = (login_session_data_t*)session[fd]->session_data;
 
-	if( sd == NULL )
+	if( sd == nullptr )
 	{
 		if( RFIFOREST(fd) >= 5 &&
 			RBUFB(session[fd]->rdata,0) == 0xA1 )
@@ -80,7 +80,7 @@ int32 lobbydata_parse(int32 fd)
 			int32 accid = RBUFL(buff,1);
 
 			sd = find_loginsd_byaccid(accid);
-			if( sd == NULL )
+			if( sd == nullptr )
 			{
 				do_close_tcp(fd);
 				return -1;
@@ -91,7 +91,7 @@ int32 lobbydata_parse(int32 fd)
 			return 0;
 		}
 
-        if( sd == NULL )
+        if( sd == nullptr )
         {
             do_close_tcp(fd);
             return -1;
@@ -108,8 +108,8 @@ int32 lobbydata_parse(int32 fd)
 	if( RFIFOREST(fd) >= 1 )
 	{
 		unsigned char *buff = session[fd]->rdata;
-		if (RBUFB(buff,0) == 0x0d) ShowDebug(CL_RED"Posible Crash Attempt from IP: " CL_WHITE"<%s>\n" CL_RESET,ip2str(session[fd]->client_addr,NULL),NULL);
-		ShowDebug("lobbydata_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n",RBUFB(buff,0),ip2str(sd->client_addr,NULL));
+		if (RBUFB(buff,0) == 0x0d) ShowDebug(CL_RED"Posible Crash Attempt from IP: " CL_WHITE"<%s>\n" CL_RESET,ip2str(session[fd]->client_addr,nullptr),nullptr);
+		ShowDebug("lobbydata_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n",RBUFB(buff,0),ip2str(sd->client_addr,nullptr));
 
 		int32 code = RBUFB(buff,0);
 		switch(code)
@@ -118,7 +118,7 @@ int32 lobbydata_parse(int32 fd)
 			{
 				if( RFIFOREST(fd) < 9 )
 				{
-					ShowError("lobbydata_parse:" CL_WHITE"<%s>" CL_RESET" sent less then 9 bytes\n",ip2str(session[fd]->client_addr,NULL));
+					ShowError("lobbydata_parse:" CL_WHITE"<%s>" CL_RESET" sent less then 9 bytes\n",ip2str(session[fd]->client_addr,nullptr));
 					do_close_lobbydata(sd,fd);
 					return -1;
 				}
@@ -173,9 +173,9 @@ int32 lobbydata_parse(int32 fd)
 				//Загрузка всей необходимой информации о персонаже из базы
 				while(Sql_NextRow(SqlHandle) != SQL_NO_DATA)
 				{
-					char* strCharName = NULL;
+					char* strCharName = nullptr;
 
-					Sql_GetData(SqlHandle,1,&strCharName,NULL);
+					Sql_GetData(SqlHandle,1,&strCharName,nullptr);
 
 					uint32 CharID    = Sql_GetIntData(SqlHandle,0);
 
@@ -214,7 +214,7 @@ int32 lobbydata_parse(int32 fd)
 					++i;
 				}
 
-				if(session[sd->login_lobbyview_fd]!=NULL){
+				if(session[sd->login_lobbyview_fd]!=nullptr){
 					// write into lobbydata
 					uList[1] = 0x10;
 					memcpy(session[fd]->wdata,uList,0x148);
@@ -254,7 +254,7 @@ int32 lobbydata_parse(int32 fd)
 				RFIFOSKIP(fd,session[fd]->rdata_size);
 				RFIFOFLUSH(fd);
 
-				if(session[sd->login_lobbyview_fd]==NULL){
+				if(session[sd->login_lobbyview_fd]==nullptr){
 					ShowWarning("lobbydata_parse: char:(%i) login data corrupt (0xA2). Disconnecting client.\n",sd->accid);
 					do_close_lobbydata(sd,fd);
 					return -1;
@@ -280,9 +280,9 @@ int32 lobbydata_parse(int32 fd)
 					uint8  ZoneID = (uint8)Sql_GetUIntData(SqlHandle,2);
 					WBUFL(ReservePacket,(0x38)) = ZoneIP;
 					WBUFW(ReservePacket,(0x3C)) = ZonePort;
-					ShowInfo("lobbydata_parse: zoneid:(%u),zoneip:(%s),zoneport:(%u) for char:(%u)\n",ZoneID,ip2str(ntohl(ZoneIP),NULL),ZonePort,charid);
+					ShowInfo("lobbydata_parse: zoneid:(%u),zoneip:(%s),zoneport:(%u) for char:(%u)\n",ZoneID,ip2str(ntohl(ZoneIP),nullptr),ZonePort,charid);
 				}else{
-					ShowWarning("lobbydata_parse: zoneip:(%s) for char:(%u) is standard\n",ip2str(sd->servip,NULL),charid);
+					ShowWarning("lobbydata_parse: zoneip:(%s) for char:(%u) is standard\n",ip2str(sd->servip,nullptr),charid);
 					WBUFL(ReservePacket,(0x38)) = sd->servip;	// map-server ip
 				  //WBUFW(ReservePacket,(0x3C)) = port;			// map-server port
 				}
@@ -329,7 +329,7 @@ int32 lobbydata_parse(int32 fd)
 				}
 
 				do_close_tcp(sd->login_lobbyview_fd);
-				ShowStatus("lobbydata_parse: client %s finished work with " CL_GREEN"lobbyview" CL_RESET"\n",ip2str(sd->client_addr,NULL));
+				ShowStatus("lobbydata_parse: client %s finished work with " CL_GREEN"lobbyview" CL_RESET"\n",ip2str(sd->client_addr,nullptr));
 				break;
 			}
 		default:
@@ -348,7 +348,7 @@ int32 lobbydata_parse(int32 fd)
 
 int32 do_close_lobbydata(login_session_data_t *loginsd,int32 fd)
 {
-	if( loginsd != NULL )
+	if( loginsd != nullptr )
 	{
 		ShowInfo("lobbydata_parse: " CL_WHITE"%s" CL_RESET" shutdown the socket\n",loginsd->login);
 		if( session_isActive(loginsd->login_lobbyview_fd) )
@@ -363,7 +363,7 @@ int32 do_close_lobbydata(login_session_data_t *loginsd,int32 fd)
 		return 0;
 	}else
 	{
-		ShowInfo("lobbydata_parse: " CL_WHITE"%s" CL_RESET" shutdown the socket\n",ip2str(session[fd]->client_addr,NULL));
+		ShowInfo("lobbydata_parse: " CL_WHITE"%s" CL_RESET" shutdown the socket\n",ip2str(session[fd]->client_addr,nullptr));
 		do_close_tcp(fd);
 		return 0;
 	}
@@ -399,10 +399,10 @@ int32 lobbyview_parse(int32 fd)
 {
 	login_session_data_t* sd = (login_session_data_t*)session[fd]->session_data;
 
-	if( sd == NULL )
+	if( sd == nullptr )
 	{
 		sd = find_loginsd_byip(session[fd]->client_addr);
-		if( sd == NULL )
+		if( sd == nullptr )
 		{
 			do_close_tcp(fd);
 			return -1;
@@ -420,7 +420,7 @@ int32 lobbyview_parse(int32 fd)
 	if( RFIFOREST(fd) >= 9)
 	{
 		unsigned char *buff = session[fd]->rdata;
-		ShowDebug("lobbyview_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n",RBUFB(buff,8),ip2str(sd->client_addr,NULL));
+		ShowDebug("lobbyview_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n",RBUFB(buff,8),ip2str(sd->client_addr,nullptr));
 		uint8 code = RBUFB(buff,8);
 		switch(code)
 		{
@@ -463,7 +463,7 @@ int32 lobbyview_parse(int32 fd)
                 uint32 ContentID = RBUFL(session[fd]->rdata, 0x1C);
                 uint32 CharID = RBUFL(session[fd]->rdata, 0x20);
 
-                ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET":attempt to delete char:<" CL_WHITE"%d" CL_RESET"> from ip:<%s>\n", CharID, ip2str(sd->client_addr, NULL));
+                ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET":attempt to delete char:<" CL_WHITE"%d" CL_RESET"> from ip:<%s>\n", CharID, ip2str(sd->client_addr, nullptr));
 
                 uint8 sendsize = 0x20;
 
@@ -488,11 +488,11 @@ int32 lobbyview_parse(int32 fd)
 			}
 		case 0x1F:
 			{
-				if(session[sd->login_lobbydata_fd]==NULL){
-					ShowInfo("0x1F Null pointer: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
+				if(session[sd->login_lobbydata_fd]==nullptr){
+					ShowInfo("0x1F nullptr pointer: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
 						fd,sd->login_lobbydata_fd,sd->login_lobbyview_fd);
 					uint32 val = 1337;
-					if(sd->login_lobbydata_fd-1>=0 && session[sd->login_lobbydata_fd-1]!=NULL){
+					if(sd->login_lobbydata_fd-1>=0 && session[sd->login_lobbydata_fd-1]!=nullptr){
 						val = session[sd->login_lobbydata_fd-1]->client_addr;
 					}
 					ShowInfo("Details: %s ip %i and lobbydata-1 fd ip is %i\n",sd->login,sd->client_addr,val);
@@ -524,11 +524,11 @@ int32 lobbyview_parse(int32 fd)
 			break;
 		case 0x07:
 			{
-				if(session[sd->login_lobbydata_fd]==NULL){
-					ShowInfo("0x07 Null pointer: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
+				if(session[sd->login_lobbydata_fd]==nullptr){
+					ShowInfo("0x07 nullptr pointer: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
 						fd,sd->login_lobbydata_fd,sd->login_lobbyview_fd);
 					uint32 val = 1337;
-					if(sd->login_lobbydata_fd-1>=0 && session[sd->login_lobbydata_fd-1]!=NULL){
+					if(sd->login_lobbydata_fd-1>=0 && session[sd->login_lobbydata_fd-1]!=nullptr){
 						val = session[sd->login_lobbydata_fd-1]->client_addr;
 					}
 					ShowInfo("Details: %s ip %i and lobbydata-1 fd ip is %i\n",sd->login,sd->client_addr,val);
@@ -659,7 +659,23 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
 	createchar.m_look.race = RBUFB(buf,48);
 	createchar.m_look.size = RBUFB(buf,57);
 	createchar.m_look.face = RBUFB(buf,60);
-	createchar.m_mjob      = RBUFB(buf,50);
+
+	// Validate that the job is a starting job.
+	uint8 mjob = RBUFB(buf, 50);
+	createchar.m_mjob = dsp_cap(mjob, 1, 6);
+
+	// Log that the character attempting to create a non-starting job.
+	if (mjob != createchar.m_mjob) {
+		ShowInfo(
+			CL_WHITE"lobby_createchar" CL_RESET": "
+				CL_WHITE"%s" CL_RESET" attempted to create invalid starting job "
+				CL_WHITE"%d" CL_RESET" substituting "
+				CL_WHITE"%d" CL_RESET"\n",
+			loginsd->charname,
+			mjob,
+			createchar.m_mjob);
+	}
+
 	createchar.m_nation    = RBUFB(buf,54);
 
 	switch(createchar.m_nation)

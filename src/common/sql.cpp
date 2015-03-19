@@ -295,12 +295,14 @@ int32 Sql_QueryV(Sql_t* self, const char* query, va_list args)
 	if( mysql_real_query(&self->handle, StringBuf_Value(&self->buf), (uint32)StringBuf_Length(&self->buf)) )
 	{
 		ShowSQL("DB error - %s\n", mysql_error(&self->handle));
+        ShowSQL("Query: %s\n", StringBuf_Value(&self->buf));
 		return SQL_ERROR;
 	}
 	self->result = mysql_store_result(&self->handle);
 	if( mysql_errno(&self->handle) != 0 )
 	{
 		ShowSQL("DB error - %s\n", mysql_error(&self->handle));
+        ShowSQL("Query: %s\n", StringBuf_Value(&self->buf));
 		return SQL_ERROR;
 	}
 	return SQL_SUCCESS;

@@ -24,6 +24,8 @@
 #ifndef _MOBUTILS_H
 #define _MOBUTILS_H
 
+#include <unordered_map>
+
 #include "../../common/cbasetypes.h"
 #include "../../common/mmo.h"
 
@@ -39,7 +41,7 @@ typedef struct
 
 enum class WeaknessType {YELLOW, BLUE, RED, WHITE};
 
-typedef std::map<uint32,ModsList_t*> ModsMap_t;
+typedef std::unordered_map<uint32,ModsList_t*> ModsMap_t;
 
 namespace mobutils
 {
@@ -58,7 +60,7 @@ namespace mobutils
 	void  AddCustomMods(CMobEntity* PMob);
 	void  SetupMaat(CMobEntity* PMob, JOBTYPE job);
 	void  SetSpellList(CMobEntity*, uint16);
-	CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* = NULL);
+	CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* = nullptr);
     void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level);
 };
 

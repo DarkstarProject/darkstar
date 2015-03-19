@@ -36,11 +36,11 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 Mem
     this->type = 0xDD;
     this->size = 0x20;
 
-    DSP_DEBUG_BREAK_IF(PChar == NULL);
+    DSP_DEBUG_BREAK_IF(PChar == nullptr);
 
     WBUFL(data, (0x04) - 4) = PChar->id;
 
-    if (PChar->PParty != NULL)
+    if (PChar->PParty != nullptr)
     {
         WBUFW(data, (0x14) - 4) = PChar->PParty->GetMemberFlags(PChar);
     }

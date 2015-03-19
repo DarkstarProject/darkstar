@@ -77,7 +77,7 @@ namespace mobSpellList
 		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 				int8* expansionCode;
-				Sql_GetData(SqlHandle, 4, &expansionCode, NULL);
+				Sql_GetData(SqlHandle, 4, &expansionCode, nullptr);
 
 				if (luautils::IsExpansionEnabled(expansionCode) == false){
 					continue;
@@ -112,7 +112,7 @@ namespace mobSpellList
 			return PMobSpellList[MobSpellListID];
 	    }
 	    ShowFatalError(CL_RED"MobSpellListID <%u> out of range\n" CL_RESET, MobSpellListID);
-	    return NULL;
+	    return nullptr;
     }
 
 };
