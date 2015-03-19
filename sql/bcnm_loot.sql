@@ -841,7 +841,6 @@ INSERT INTO `bcnm_loot` VALUES ('35', '15274', '131', '7');
 INSERT INTO `bcnm_loot` VALUES ('35', '744', '79', '7');
 INSERT INTO `bcnm_loot` VALUES ('35', '806', '131', '7');
 INSERT INTO `bcnm_loot` VALUES ('35', '0', '600', '7');
-
 -- limbus                      lootID,ItemID,Roll,lootgroup
 -- SE Appollyon first floor
 INSERT INTO `bcnm_loot` VALUES ('110', '1875', '1000', '0'); -- ancient beastcoin*4
