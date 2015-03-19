@@ -495,21 +495,14 @@ void CDataLoader::ExpireAHItems()
 			uint32 itemID = (uint32)Sql_GetUIntData(SqlHandle, 1);
 			uint8  stack = (uint8)Sql_GetUIntData(SqlHandle, 2);
 			uint32 seller = (uint32)Sql_GetUIntData(SqlHandle, 3);
-			if (stack == 0)
-			{
-				qStr2 = ("INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES \
-						 							(%u, (select charname from chars where charid=%u), 1, %u, 0, 1, 0, 'AH-Jeuno');");
-			}
-			else
-			{
-				qStr2 = ("INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES \
-						 							(%u, (select charname from chars where charid=%u), 1, %u, 0, 12, 0, 'AH-Jeuno');");
-			}
+			qStr2 = ("INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES \
+					 					 			(%u, (select charname from chars where charid=%u), 1, %u, 0, %u, 0, 'AH-Jeuno');");
+
 
 			const char * cC2 = qStr2.c_str();
 
-			int32 ret2 = Sql_Query(sqlH, cC2, seller, seller, itemID);
-	//		ShowMessage(cC2, seller, seller, itemID);
+			int32 ret2 = Sql_Query(sqlH, cC2, seller, seller, itemID, stack);
+			//		ShowMessage(cC2, seller, seller, itemID);
 			if (ret2 != SQL_ERROR &&	Sql_NumRows(SqlHandle) != 0)
 			{
 				// delete the item from the auction house
