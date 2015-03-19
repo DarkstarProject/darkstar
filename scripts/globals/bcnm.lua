@@ -46,7 +46,7 @@ itemid_bcnmid_map = { 6,{0,0},-- Bearclaw_Pinnacle
 -- The paramid is a bitmask which you need to find out. Being a bitmask, it will be one of:
 -- 0,1,2,3,4,5,...
 bcnmid_param_map = {6,{640,0},
-                    8,{672,0},
+                    8,{672,0,673,1},
                     10,{704,0,706,2},
                     13,{736,0},
                     17,{768,0},
@@ -397,6 +397,10 @@ function checkNonTradeBCNM(player,npc)
 	   	if(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 5) then --head_wind
 	    	 mask = GetBattleBitmask(672,Zone,1);
 	         player:setVar("trade_bcnmid",672);
+		elseif (player:hasKeyItem(MIASMA_FILTER)==true) then
+			mask = GetBattleBitmask(673,Zone,1);
+			player:setVar("trade_bcnmid",673);
+		else
 		end
 	elseif(Zone == 10) then -- The_Shrouded_Maw
 	    if(player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2) then--DARKNESS_NAMED

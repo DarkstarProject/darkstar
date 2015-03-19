@@ -198,6 +198,12 @@ INSERT INTO `mob_pool_mods` VALUES (3141,30,22,1); -- Pit Antlion
 INSERT INTO `mob_pool_mods` VALUES (3996,30,22,1); -- Trench Antlion
 INSERT INTO `mob_pool_mods` VALUES (662,30,22,1); -- Cave Antlion
 
+-- -------------------------
+--  Race Runner
+-- -------------------------
+INSERT INTO `mob_pool_mods` VALUES (3301, 29, 100, 0); -- Magic Def
+INSERT INTO `mob_pool_mods` VALUES (3301, 302, 10, 0); -- Triple Attack
+
 /*!40000 ALTER TABLE `mob_pool_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
