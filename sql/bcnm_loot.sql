@@ -1671,7 +1671,7 @@ INSERT INTO `bcnm_loot` VALUES ('179','1842','100','0');
 INSERT INTO `bcnm_loot` VALUES ('179','17946','100','2');
 INSERT INTO `bcnm_loot` VALUES ('179','18358','100','2');
 INSERT INTO `bcnm_loot` VALUES ('179','16976','100','2');
-INSERT INTO `bcnm_loot` VALUES ('179','4990','230','2);
+INSERT INTO `bcnm_loot` VALUES ('179','4990','230','2');
 INSERT INTO `bcnm_loot` VALUES ('179','17946','100','3');
 INSERT INTO `bcnm_loot` VALUES ('179','18358','100','3');
 INSERT INTO `bcnm_loot` VALUES ('179','16976','100','3');
