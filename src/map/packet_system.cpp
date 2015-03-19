@@ -245,11 +245,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             PChar->m_moghouseID = PChar->id;
             destination = PChar->loc.prevzone;
-
-            PChar->UpdateHealth();
-
-            PChar->health.hp = PChar->GetMaxHP();
-            PChar->health.mp = PChar->GetMaxMP();
         }
         else
         {
@@ -373,7 +368,7 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     PChar->PParty->GetSyncTarget()->GetMLevel(),
                     0,
                     0), true);
-                PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
+                PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
             }
         }
     }

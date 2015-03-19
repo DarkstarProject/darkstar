@@ -2948,11 +2948,12 @@ namespace charutils
 
                         if (PMob->getMobMod(MOBMOD_EXP_BONUS))
                         {
-                            monsterbonus = (float)PMob->getMobMod(MOBMOD_EXP_BONUS) / 100.0f;
+                            monsterbonus = 1 + (float)PMob->getMobMod(MOBMOD_EXP_BONUS) / 100.0f;
+                            exp *= monsterbonus;
                         }
 
-                        if (monsterbonus > 1.00f) exp *= monsterbonus;
                         permonstercap = ((PMember->PParty != nullptr && pcinzone > 1) ? 1.35f : 1.15f);
+
                         if (PMember->GetMLevel() <= 50)
                         {
                             if (exp > (200 * permonstercap)) exp = 200 * permonstercap;
@@ -2965,6 +2966,7 @@ namespace charutils
                         {
                             exp = 300 * permonstercap;
                         }
+
                         if (PMember->expChain.chainTime > gettick() || PMember->expChain.chainTime == 0)
                         {
                             chainactive = true;
@@ -2991,6 +2993,7 @@ namespace charutils
                             chainactive = false;
                             PMember->expChain.chainNumber = 1;
                         }
+
                         if (chainactive && PMember->GetMLevel() <= 10)
                         {
                             switch (PMember->expChain.chainNumber)
@@ -3116,11 +3119,13 @@ namespace charutils
             baseexp = GetRealExp(maxlevel, PMob->GetMLevel());
             exp = baseexp;
             permonstercap = 1.15f;
+
             if (PMob->getMobMod(MOBMOD_EXP_BONUS))
             {
-                monsterbonus = (float)PMob->getMobMod(MOBMOD_EXP_BONUS) / 100.0f;
+                monsterbonus = 1 + (float)PMob->getMobMod(MOBMOD_EXP_BONUS) / 100.0f;
+                exp *= monsterbonus;
             }
-            if (monsterbonus > 1.00f) exp *= monsterbonus;
+
             if (PChar->GetMLevel() <= 50)
             {
                 if (exp > (200 * permonstercap)) exp = 200 * permonstercap;
@@ -3133,6 +3138,7 @@ namespace charutils
             {
                 exp = 300 * permonstercap;
             }
+
             if (PChar->expChain.chainTime > gettick() || PChar->expChain.chainTime == 0)
             {
                 chainactive = true;
@@ -3159,6 +3165,7 @@ namespace charutils
                 chainactive = false;
                 PChar->expChain.chainNumber = 1;
             }
+
             if (chainactive && PChar->GetMLevel() <= 10)
             {
                 switch (PChar->expChain.chainNumber)
@@ -3308,11 +3315,6 @@ namespace charutils
             BuildingCharTraitsTable(PChar);
             BuildingCharWeaponSkills(PChar);
 
-            PChar->UpdateHealth();
-
-            PChar->health.hp = PChar->GetMaxHP();
-            PChar->health.mp = PChar->GetMaxMP();
-
             PChar->pushPacket(new CCharJobsPacket(PChar));
             PChar->pushPacket(new CCharUpdatePacket(PChar));
             PChar->pushPacket(new CCharSkillsPacket(PChar));
@@ -3322,6 +3324,8 @@ namespace charutils
             PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
             PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
             PChar->pushPacket(new CCharSyncPacket(PChar));
+
+            PChar->UpdateHealth();
 
             SaveCharStats(PChar);
             SaveCharJob(PChar, PChar->GetMJob());
@@ -3374,8 +3378,8 @@ namespace charutils
         if (PChar->jobs.job[PChar->GetMJob()] > 74 && PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai && PChar->jobs.exp[PChar->GetMJob()] == GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1)
             onLimitMode = true;
 
-        // exp added from raise shouldn't display a message
-        if (!expFromRaise)
+        // exp added from raise shouldn't display a message. Don't need a message for zero exp either
+        if (!expFromRaise && exp != 0)
         {
             if (baseexp >= 100 && isexpchain)
             {

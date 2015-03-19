@@ -1362,11 +1362,14 @@ INSERT INTO `mob_spell_lists` VALUES ('Alastor_Antlion', 132, 162, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Alastor_Antlion', 132, 191, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Alastor_Antlion', 132, 210, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Alastor_Antlion', 132, 365, 1, 255);
+<<<<<<< HEAD
+=======
 INSERT INTO `mob_spell_lists` VALUES ('Race_Runner', 133, 53, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Race_Runner', 133, 158, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Race_Runner', 133, 186, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Race_Runner', 133, 216, 1, 255);
 
+>>>>>>> 583c76f440ab0173f5720cd6b2ce534da7e7782e
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
