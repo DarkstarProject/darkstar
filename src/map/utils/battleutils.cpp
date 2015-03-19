@@ -537,7 +537,7 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
 {
     Action->spikesEffect = (SUBEFFECT)PDefender->getMod(MOD_SPIKES);
     Action->spikesMessage = 44;
-    Action->spikesParam = PDefender->getMod(MOD_SPIKES_DMG);
+    Action->spikesParam = dsp_max(PDefender->getMod(MOD_SPIKES_DMG), 0);
 
     // Handle Retaliation
     if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_RETALIATION)
