@@ -115,6 +115,7 @@ void Initialize()
 			}
 		}
 	}
+    //TODO: initialize guild ranks
     UpdateGuildPointsPattern();
 }
 
@@ -171,6 +172,7 @@ void UpdateGuildPointsPattern()
         //write the new pattern and update time to prevent other servers from updating the pattern
         Sql_Query(SqlHandle, "REPLACE INTO server_variables (name,value) VALUES('[GUILD]pattern_update', %u), ('[GUILD]pattern', %u);",
             CVanaTime::getInstance()->getSysYearDay(), pattern);
+        Sql_Query(SqlHandle, "DELETE FROM char_vars WHERE varname = '[GUILD]daily_points';");
     }
 
     // load the pattern in case it was set by another server (and this server did not set it)

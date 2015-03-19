@@ -30,7 +30,11 @@ This file is part of DarkStar-server source code.
 CGuild::CGuild(uint8 id, const char* _pointsName)
 {
     m_id = id;
-    m_GPItemsRank.fill(0);
+    
+    for (auto i = 0; i < m_GPItemsRank.size(); ++i)
+    {
+        m_GPItemsRank[i] = (CVanaTime::getInstance()->getVanaTime() / (60 * 60 * 24)) % (i + 4);
+    }
 
     pointsName = _pointsName;
 }
@@ -66,8 +70,8 @@ void CGuild::updateGuildPointsPattern(uint8 pattern)
             {
                 m_GPItems[i].push_back(GPItem_t(
                     itemutils::GetItemPointer(Sql_GetUIntData(SqlHandle, 0)),
-                    Sql_GetUIntData(SqlHandle, 3),
-                    Sql_GetUIntData(SqlHandle, 2)));
+                    Sql_GetUIntData(SqlHandle, 2),
+                    Sql_GetUIntData(SqlHandle, 1)));
             }
         }
     }
@@ -85,6 +89,11 @@ uint8 CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem)
             if (GPItem.item->getID() == PItem->getID())
             {
                 uint16 curPoints = 0;
+                int ret = Sql_Query(SqlHandle, "SELECT value FROM char_vars WHERE varname = '[GUILD]daily_points' AND charid = %u;", PChar->id);
+                if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                {
+                    curPoints = Sql_GetUIntData(SqlHandle, 0);
+                }
                 uint8 quantity = dsp_min(((GPItem.maxpoints - curPoints) / curPoints) + 1, PItem->getQuantity());
                 uint16 points = GPItem.points * quantity;
                 if (points > GPItem.maxpoints - curPoints)
@@ -92,6 +101,7 @@ uint8 CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem)
                     points = GPItem.maxpoints - curPoints;
                 }
                 charutils::AddPoints(PChar, pointsName.c_str(), points);
+                Sql_Query(SqlHandle, "REPLACE INTO char_vars VALUES (%u, '[GUILD]daily_points', %u);", PChar->id, curPoints + points);
                 return quantity;
             }
         }
@@ -107,6 +117,11 @@ std::pair<uint16, uint16> CGuild::getDailyGPItem(CCharEntity* PChar)
     {
         auto GPItem = m_GPItems[rank - 3];
         uint16 curPoints = 0;
+        int ret = Sql_Query(SqlHandle, "SELECT value FROM char_vars WHERE varname = '[GUILD]daily_points' AND charid = %u;", PChar->id);
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            curPoints = Sql_GetUIntData(SqlHandle, 0);
+        }
         return std::make_pair(GPItem[0].item->getID(), GPItem[0].maxpoints - curPoints);
     }
     return std::make_pair(0, 0);
