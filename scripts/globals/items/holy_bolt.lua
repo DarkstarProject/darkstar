@@ -20,8 +20,8 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         local dmg = player:getStat(MOD_MND) - target:getStat(MOD_MND);
-		if (dmg < 30) then
-            dmg = dmg+(dmg-30)/2;
+		if (dmg > 40) then
+            dmg = dmg+(dmg-40)/2;
         end
         local params = {};
         params.bonusmab = 0;
