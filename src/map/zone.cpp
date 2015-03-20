@@ -31,7 +31,6 @@
 #include "../common/socket.h"
 
 #include <string.h>
-#include <fstream>
 
 #include "enmity_container.h"
 #include "map.h"
@@ -354,25 +353,34 @@ void CZone::LoadZoneLines()
 
 void CZone::LoadZoneWeather()
 {
-    int8 file[255];
-    memset(file,0,sizeof(file));
-    snprintf(file, sizeof(file), "scripts/zones/%s/Weather.dat", GetName());
+    static const int8* Query =
+        "SELECT "
+          "weather.common,"
+          "weather.normal,"
+          "weather.rare "
+        "FROM zone_weather as weather "
+        "WHERE zoneid = %u "
+        "ORDER BY weather_day";
 
-    std::ifstream ifs(file, std::ios::binary);
+    int32 ret = Sql_Query(SqlHandle, Query, m_zoneID);
 
-    if (!ifs)
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
-        //ShowFatalError(CL_RED"CZone::LoadZoneWeather Error loading weather (%s)\n" CL_RESET, file);
-        return;
-    }
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            zoneWeather_t weather;
 
-	zoneWeather_t weather;
-    while (ifs.read(reinterpret_cast<char *> (&weather), sizeof(weather)))
+            weather.m_common = (uint8)Sql_GetIntData(SqlHandle, 0);;
+            weather.m_normal = (uint8)Sql_GetIntData(SqlHandle, 1);;
+            weather.m_rare = (uint8)Sql_GetIntData(SqlHandle, 2);;
+
+            m_WeatherVector.push_back(weather);
+        }
+    }
+    else
     {
-        m_WeatherVector.push_back(weather);
+        ShowFatalError(CL_RED"CZone::LoadZoneWeather: Cannot load zone weather (%u)\n" CL_RESET, m_zoneID);
     }
-
-    ifs.close();
 }
 
 /************************************************************************
