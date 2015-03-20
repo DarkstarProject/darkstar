@@ -370,9 +370,9 @@ void CZone::LoadZoneWeather()
         {
             zoneWeather_t weather;
 
-            weather.m_common = (uint8)Sql_GetIntData(SqlHandle, 0);;
-            weather.m_normal = (uint8)Sql_GetIntData(SqlHandle, 1);;
-            weather.m_rare = (uint8)Sql_GetIntData(SqlHandle, 2);;
+            weather.m_common = (uint8)Sql_GetIntData(SqlHandle, 0);
+            weather.m_normal = (uint8)Sql_GetIntData(SqlHandle, 1);
+            weather.m_rare = (uint8)Sql_GetIntData(SqlHandle, 2);
 
             m_WeatherVector.push_back(weather);
         }
