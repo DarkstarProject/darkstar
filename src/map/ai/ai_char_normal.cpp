@@ -1097,10 +1097,10 @@ void CAICharNormal::ActionRangedFinish()
                 if ((PAmmo->getQuantity() - 1) < 1) // ammo will run out after this shot, make sure we remove it from equip
                 {
                     uint8 slot = m_PChar->equip[SLOT_AMMO];
-					uint8 loc = m_PChar->equipLoc[SLOT_AMMO];
+		    uint8 loc = m_PChar->equipLoc[SLOT_AMMO];
                     charutils::UnequipItem(m_PChar, SLOT_AMMO);
                     charutils::SaveCharEquip(m_PChar);
-					charutils::UpdateItem(m_PChar, loc, slot, -1);
+		    charutils::UpdateItem(m_PChar, loc, slot, -1);
                     i = hitCount; // end loop (if barrage), player is out of ammo
                     PAmmo = nullptr;
                 }
@@ -1961,10 +1961,10 @@ void CAICharNormal::ActionJobAbilityFinish()
                 if ((PAmmo->getQuantity() - 1) < 1) // ammo will run out after this shot, make sure we remove it from equip
                 {
                     uint8 slot = m_PChar->equip[SLOT_AMMO];
-					uint8 loc = m_PChar->equipLoc[SLOT_AMMO];
+		    uint8 loc = m_PChar->equipLoc[SLOT_AMMO];
                     charutils::UnequipItem(m_PChar, SLOT_AMMO);
                     charutils::SaveCharEquip(m_PChar);
-					charutils::UpdateItem(m_PChar, loc, slot, -1);
+		    charutils::UpdateItem(m_PChar, loc, slot, -1);
                 }
                 else
                 {
@@ -2190,12 +2190,12 @@ void CAICharNormal::ActionJobAbilityFinish()
         {
             CItemArmor* PAmmo = m_PChar->getEquip(SLOT_AMMO);
             uint8 slot = m_PChar->equip[SLOT_AMMO];
-			uint8 loc = m_PChar->equipLoc[SLOT_AMMO];
+	    uint8 loc = m_PChar->equipLoc[SLOT_AMMO];
             if (PAmmo->getQuantity() == 1)
             {
-				charutils::UnequipItem(m_PChar, SLOT_AMMO);
+		charutils::UnequipItem(m_PChar, SLOT_AMMO);
                 charutils::SaveCharEquip(m_PChar);
-				charutils::UpdateItem(m_PChar, loc, slot, -1);
+		charutils::UpdateItem(m_PChar, loc, slot, -1);
             }
             
             m_PChar->pushPacket(new CInventoryFinishPacket());
@@ -2596,10 +2596,10 @@ void CAICharNormal::ActionWeaponSkillFinish()
             if ((PAmmo->getQuantity() - 1) < 1) // ammo will run out after this shot, make sure we remove it from equip
             {
                 uint8 slot = m_PChar->equip[SLOT_AMMO];
-				uint8 loc = m_PChar->equipLoc[SLOT_AMMO];	
+		uint8 loc = m_PChar->equipLoc[SLOT_AMMO];	
                 charutils::UnequipItem(m_PChar, SLOT_AMMO);
                 charutils::SaveCharEquip(m_PChar);
-				charutils::UpdateItem(m_PChar, loc, slot, -1);
+		charutils::UpdateItem(m_PChar, loc, slot, -1);
             }
             else
             {
