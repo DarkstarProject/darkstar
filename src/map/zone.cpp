@@ -117,67 +117,7 @@ int32 zone_update_weather(uint32 tick, CTaskMgr::CTask* PTask)
 
     if (!PZone->IsWeatherStatic())
     {
-        uint32 CurrentVanaDate = CVanaTime::getInstance()->getDate(); // Current Vanadiel timestamp in minutes
-        uint32 StartFogVanaDate = (CurrentVanaDate - (CurrentVanaDate % VTIME_DAY)) + (VTIME_HOUR * 2); // Vanadiel timestamp of 2 AM in minutes
-        uint32 EndFogVanaDate = StartFogVanaDate + (VTIME_HOUR * 5); // Vanadiel timestamp of 7 AM in minutes
-        uint32 WeatherNextUpdate = 180; // 3 minutes
-        uint32 WeatherDay = 0;
-        uint8 WeatherOffset = 0;
-        uint8 WeatherChance = 0;
-
-        // Random time between 3 minutes and 30 minutes for the next weather change
-        WeatherNextUpdate += (WELL512::irand() % 1620);
-
-        // Find the timestamp since the start of vanadiel
-        WeatherDay = CVanaTime::getInstance()->getVanaTime();
-
-        // Calculate what day we are on since the start of vanadiel time
-        // 1 Vana'diel Day = 57 minutes 36 seconds or 3456 seconds
-        WeatherDay = WeatherDay / 3456;
-
-        // The weather starts over again every 2160 days
-        WeatherDay = WeatherDay % WEATHER_CYCLE;
-
-        // Get a random number to determine which weather effect we will use
-        WeatherChance = WELL512::irand() % 100;
-
-        // 15% chance for rare weather, 35% chance for common weather, 50% chance for normal weather
-        // * Percentages were generated from a 6 hour sample and rounded down to closest multiple of 5*
-        if (WeatherChance <= 15) //15% chance to have the weather_rare
-        {
-            WeatherOffset += 2;
-        }
-        else if (WeatherChance <= 50) // 35% chance to have weather_common
-        {
-            WeatherOffset++;
-        }
-
-        uint8 Weather = 0;
-
-        try
-        {
-            Weather = PZone->m_WeatherVector.at(WeatherDay).weather[WeatherOffset];
-        }
-        catch (std::out_of_range ex)
-        {
-            ShowFatalError(CL_RED"InitializeWeather Error getting weather on zone %s\n" CL_RESET, PZone->GetName());
-        }
-
-        // Fog in the morning between the hours of 2 and 7 if there is not a specific elemental weather to override it
-        if ((CurrentVanaDate >= StartFogVanaDate) && (CurrentVanaDate < EndFogVanaDate) && (Weather < WEATHER_HOT_SPELL) && (PZone->GetType() > ZONETYPE_CITY))
-        {
-            Weather = WEATHER_FOG;
-            //Force the weather to change by 7 am
-            //  2.4 vanadiel minutes = 1 earth second
-            WeatherNextUpdate = (uint32)((EndFogVanaDate - CurrentVanaDate) * 2.4);
-        }
-
-        PZone->SetWeather((WEATHER)Weather);
-        luautils::OnZoneWeatherChange(PZone->GetID(), Weather);
-
-        //ShowDebug(CL_YELLOW"Zone::zone_update_weather: Weather of %s updated to %u\n" CL_RESET, PZone->GetName(), Weather);
-
-        CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("zone_update_weather", gettick() + (WeatherNextUpdate * 1000), PZone, CTaskMgr::TASK_ONCE, zone_update_weather));
+        PZone->UpdateWeather();
     }
 
     return 0;
@@ -355,10 +295,11 @@ void CZone::LoadZoneWeather()
 {
     static const int8* Query =
         "SELECT "
-          "weather.common,"
-          "weather.normal,"
-          "weather.rare "
-        "FROM zone_weather as weather "
+          "weather_day,"
+          "common,"
+          "normal,"
+          "rare "
+        "FROM zone_weather "
         "WHERE zoneid = %u "
         "ORDER BY weather_day";
 
@@ -368,8 +309,8 @@ void CZone::LoadZoneWeather()
     {
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            m_WeatherVector.push_back(zoneWeather_t(Sql_GetIntData(SqlHandle, 0), 
-                Sql_GetIntData(SqlHandle, 1), Sql_GetIntData(SqlHandle, 2)));
+            m_WeatherVector.insert(std::make_pair((uint16)Sql_GetUIntData(SqlHandle, 0), zoneWeather_t(Sql_GetIntData(SqlHandle, 1),
+                Sql_GetIntData(SqlHandle, 2), Sql_GetIntData(SqlHandle, 3))));
         }
     }
     else
@@ -561,6 +502,77 @@ void CZone::SetWeather(WEATHER weather)
     m_WeatherChangeTime = CVanaTime::getInstance()->getVanaTime();
 
     m_zoneEntities->PushPacket(nullptr, CHAR_INZONE, new CWeatherPacket(m_WeatherChangeTime, m_Weather));
+}
+
+void CZone::UpdateWeather()
+{
+    uint32 CurrentVanaDate = CVanaTime::getInstance()->getDate(); // Current Vanadiel timestamp in minutes
+    uint32 StartFogVanaDate = (CurrentVanaDate - (CurrentVanaDate % VTIME_DAY)) + (VTIME_HOUR * 2); // Vanadiel timestamp of 2 AM in minutes
+    uint32 EndFogVanaDate = StartFogVanaDate + (VTIME_HOUR * 5); // Vanadiel timestamp of 7 AM in minutes
+    uint32 WeatherNextUpdate = 180; // 3 minutes
+    uint32 WeatherDay = 0;
+    uint8 WeatherOffset = 0;
+    uint8 WeatherChance = 0;
+
+    // Random time between 3 minutes and 30 minutes for the next weather change
+    WeatherNextUpdate += (WELL512::irand() % 1620);
+
+    // Find the timestamp since the start of vanadiel
+    WeatherDay = CVanaTime::getInstance()->getVanaTime();
+
+    // Calculate what day we are on since the start of vanadiel time
+    // 1 Vana'diel Day = 57 minutes 36 seconds or 3456 seconds
+    WeatherDay = WeatherDay / 3456;
+
+    // The weather starts over again every 2160 days
+    WeatherDay = WeatherDay % WEATHER_CYCLE;
+
+    // Get a random number to determine which weather effect we will use
+    WeatherChance = WELL512::irand() % 100;
+
+    zoneWeather_t& weatherType = zoneWeather_t(0, 0, 0);
+
+    for (auto& weather : m_WeatherVector)
+    {
+        if (weather.first > WeatherDay)
+        {
+            break;
+        }
+        weatherType = weather.second;
+    }
+
+    uint8 Weather = 0;
+
+    // 15% chance for rare weather, 35% chance for common weather, 50% chance for normal weather
+    // * Percentages were generated from a 6 hour sample and rounded down to closest multiple of 5*
+    if (WeatherChance <= 15) //15% chance to have the weather_rare
+    {
+        Weather = weatherType.m_rare;
+    }
+    else if (WeatherChance <= 50) // 35% chance to have weather_common
+    {
+        Weather = weatherType.m_common;
+    }
+    else
+    {
+        Weather = weatherType.m_normal;
+    }
+
+    // Fog in the morning between the hours of 2 and 7 if there is not a specific elemental weather to override it
+    if ((CurrentVanaDate >= StartFogVanaDate) && (CurrentVanaDate < EndFogVanaDate) && (Weather < WEATHER_HOT_SPELL) && (GetType() > ZONETYPE_CITY))
+    {
+        Weather = WEATHER_FOG;
+        //Force the weather to change by 7 am
+        //  2.4 vanadiel minutes = 1 earth second
+        WeatherNextUpdate = (uint32)((EndFogVanaDate - CurrentVanaDate) * 2.4);
+    }
+
+    SetWeather((WEATHER)Weather);
+    luautils::OnZoneWeatherChange(GetID(), Weather);
+
+    //ShowDebug(CL_YELLOW"Zone::zone_update_weather: Weather of %s updated to %u\n" CL_RESET, PZone->GetName(), Weather);
+
+    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("zone_update_weather", gettick() + (WeatherNextUpdate * 1000), this, CTaskMgr::TASK_ONCE, zone_update_weather));
 }
 
 /************************************************************************

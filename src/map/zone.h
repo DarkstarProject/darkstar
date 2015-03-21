@@ -29,7 +29,6 @@
 #include "../common/taskmgr.h"
 
 #include <list>
-#include <vector>
 #include <map>
 
 #include "region.h"
@@ -450,14 +449,14 @@ struct zoneMusic_t
 
 struct zoneWeather_t
 {
-    union {
-        struct {
+    //union {
+     //   struct {
             uint8 m_normal;     // Normal Weather
             uint8 m_common;     // Common Weather
             uint8 m_rare;       // Rare Weather
-        };
-        uint8 weather[3];
-    };
+     //   };
+     //   uint8 weather[3];
+    //};
     zoneWeather_t(uint8 _normal, uint8 _common, uint8 _rare) :
         m_normal(_normal), m_common(_common), m_rare(_rare) {};
 };
@@ -494,7 +493,7 @@ class CZoneEntities;
 typedef std::list<CRegion*> regionList_t;
 typedef std::list<zoneLine_t*> zoneLineList_t;
 
-typedef std::vector<zoneWeather_t> weatherVector_t;
+typedef std::map<uint16,zoneWeather_t> weatherVector_t;
 
 typedef std::map<uint16,CBaseEntity*> EntityList_t;
 
@@ -526,6 +525,7 @@ public:
     bool            IsWeatherStatic();                                              // погода в зоне не требует изменения (никогда не меняется)
     bool            CanUseMisc(uint16 misc);
     void            SetWeather(WEATHER weatherCondition);
+    void            UpdateWeather();
 
     virtual void    SpawnPCs(CCharEntity* PChar);                                   // отображаем персонажей в зоне
     virtual void    SpawnMOBs(CCharEntity* PChar);                                  // отображаем MOBs в зоне
