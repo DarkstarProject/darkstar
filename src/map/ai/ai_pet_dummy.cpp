@@ -217,28 +217,67 @@ void CAIPetDummy::ActionAbilityStart()
 
             uint16 masterHead = masterHeadItem ? masterHeadItem->getID() : 0;
 
-            if (((CCharEntity*)(m_PPet->PMaster))->objtype == TYPE_PC && (masterHead == 12519 || masterHead == 15238)) { //Check for player & AF head, or +1
-                if (m_PPet->PMaster->GetHPP() <= 50 && wyverntype == WYVERNTYPE_DEFENSIVE){//healer wyvern
-                    m_PBattleSubTarget = m_PPet->PMaster;
-                }
-                else if (m_PPet->PMaster->GetHPP() <= 33 && wyverntype == WYVERNTYPE_MULTIPURPOSE){//hybrid wyvern
-                    m_PBattleSubTarget = m_PPet->PMaster;
-                }
-            }
-            else {
-                if (m_PPet->PMaster->GetHPP() <= 33 && wyverntype == WYVERNTYPE_DEFENSIVE)
-                {//healer wyvern
-                    m_PBattleSubTarget = m_PPet->PMaster;
-                }
-                else if (m_PPet->PMaster->GetHPP() <= 25 && wyverntype == WYVERNTYPE_MULTIPURPOSE)
-                {//hybrid wyvern
-                    m_PBattleSubTarget = m_PPet->PMaster;
-                }
-            }
-            //	}
-            //	else{ //group play
-            //		//for( int i=0; i<
-            //	}
+			// Determine what the required HP percentage will need to be 
+			// at or under in order for healing breath to activate.
+			uint8 requiredHPP;
+			if (((CCharEntity*)(m_PPet->PMaster))->objtype == TYPE_PC && (masterHead == 12519 || masterHead == 15238)) { //Check for player & AF head, or +1
+				switch (wyverntype) {
+
+					//healer wyvern
+				case WYVERNTYPE_DEFENSIVE:
+					requiredHPP = 50;
+					break;
+
+					//hybrid wyvern
+				case WYVERNTYPE_MULTIPURPOSE:
+					requiredHPP = 33;
+					break;
+
+					//attack wyvern - No healing breath available
+				default:
+					requiredHPP = 0;
+					break;
+				}
+			}
+			else {
+				switch (wyverntype) {
+
+					//healer wyvern
+				case WYVERNTYPE_DEFENSIVE:
+					requiredHPP = 33;
+					break;
+
+					//hybrid wyvern
+				case WYVERNTYPE_MULTIPURPOSE:
+					requiredHPP = 25;
+					break;
+
+					//attack wyvern - No healing breath available
+				default:
+					requiredHPP = 0;
+					break;
+				}
+			}
+
+			// Only attempt to find a target if there is an HP percentage to calculate.
+			if (requiredHPP) {
+				CBattleEntity* master = m_PPet->PMaster;
+				// Check the master first.
+				if (master->GetHPP() <= requiredHPP) {
+					m_PBattleSubTarget = master;
+				}
+
+				// Otherwise if this is a healer wyvern, and the member is in a party 
+				// check all of the party members who qualify.
+				else if (wyverntype == WYVERNTYPE_DEFENSIVE && master->PParty != nullptr) {
+					master->ForParty([this, requiredHPP](CBattleEntity* PTarget){
+						if (PTarget->GetHPP() <= requiredHPP) {
+							m_PBattleSubTarget = PTarget;
+						}
+					});
+				}
+			}
+
             if (m_PBattleSubTarget != nullptr){ //target to heal
                 //get highest breath for wyverns level
                 m_PMobSkill = nullptr;
