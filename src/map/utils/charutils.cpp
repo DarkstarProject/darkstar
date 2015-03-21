@@ -595,9 +595,6 @@ namespace charutils
             PChar->SetMJob(Sql_GetUIntData(SqlHandle, 1));
             PChar->SetSJob(Sql_GetUIntData(SqlHandle, 2));
 
-            PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
-            PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
-
             HP = Sql_GetIntData(SqlHandle, 3);
             MP = Sql_GetIntData(SqlHandle, 4);
 
@@ -612,6 +609,9 @@ namespace charutils
 
             zoning = Sql_GetUIntData(SqlHandle, 8);
         }
+
+        PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
+        PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
         fmtQuery = "SELECT id, time, recast FROM char_recast WHERE charid = %u;";
 

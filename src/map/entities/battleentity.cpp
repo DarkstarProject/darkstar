@@ -709,11 +709,17 @@ void CBattleEntity::SetMLevel(uint8 mlvl)
 	m_modStat[MOD_DEF] -= m_mlvl + dsp_cap(m_mlvl-50,0,10);
 	m_mlvl = (mlvl == 0 ? 1 : mlvl);
 	m_modStat[MOD_DEF] += m_mlvl + dsp_cap(m_mlvl-50,0,10);
+
+    if (this->objtype & TYPE_PC)
+        Sql_Query(SqlHandle, "UPDATE char_stats SET mlvl = %u WHERE charid = %u LIMIT 1;", m_mlvl, this->id);
 }
 
 void CBattleEntity::SetSLevel(uint8 slvl)
 {
 	m_slvl = (slvl > (m_mlvl >> 1) ? (m_mlvl == 1 ? 1 : (m_mlvl >> 1)) : slvl);
+
+    if (this->objtype & TYPE_PC)
+        Sql_Query(SqlHandle, "UPDATE char_stats SET slvl = %u WHERE charid = %u LIMIT 1;", m_slvl, this->id);
 }
 
 /************************************************************************
