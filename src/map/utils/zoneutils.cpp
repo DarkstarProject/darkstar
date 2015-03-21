@@ -117,7 +117,7 @@ void InitializeWeather()
         {
             try
             {
-                PZone.second->SetWeather((WEATHER)PZone.second->m_WeatherVector.at(0).m_common);
+                PZone.second->SetWeather((WEATHER)PZone.second->m_WeatherVector.at(0).common);
 
                 //ShowDebug(CL_YELLOW"zonetuils::InitializeWeather: Static weather of %s updated to %u\n" CL_RESET, PZone.second->GetName(), PZone.second->m_WeatherVector.at(0).m_common);
             }

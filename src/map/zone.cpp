@@ -296,8 +296,8 @@ void CZone::LoadZoneWeather()
     static const int8* Query =
         "SELECT "
           "weather_day,"
-          "common,"
           "normal,"
+          "common,"
           "rare "
         "FROM zone_weather "
         "WHERE zoneid = %u "
@@ -547,15 +547,15 @@ void CZone::UpdateWeather()
     // * Percentages were generated from a 6 hour sample and rounded down to closest multiple of 5*
     if (WeatherChance <= 15) //15% chance to have the weather_rare
     {
-        Weather = weatherType.m_rare;
+        Weather = weatherType.rare;
     }
     else if (WeatherChance <= 50) // 35% chance to have weather_common
     {
-        Weather = weatherType.m_common;
+        Weather = weatherType.common;
     }
     else
     {
-        Weather = weatherType.m_normal;
+        Weather = weatherType.normal;
     }
 
     // Fog in the morning between the hours of 2 and 7 if there is not a specific elemental weather to override it

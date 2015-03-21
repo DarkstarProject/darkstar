@@ -449,16 +449,12 @@ struct zoneMusic_t
 
 struct zoneWeather_t
 {
-    //union {
-     //   struct {
-            uint8 m_normal;     // Normal Weather
-            uint8 m_common;     // Common Weather
-            uint8 m_rare;       // Rare Weather
-     //   };
-     //   uint8 weather[3];
-    //};
+    uint8 normal;     // Normal Weather
+    uint8 common;     // Common Weather
+    uint8 rare;       // Rare Weather
+
     zoneWeather_t(uint8 _normal, uint8 _common, uint8 _rare) :
-        m_normal(_normal), m_common(_common), m_rare(_rare) {};
+        normal(_normal), common(_common), rare(_rare) {};
 };
 
 /************************************************************************
