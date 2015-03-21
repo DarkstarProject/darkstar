@@ -1220,8 +1220,8 @@ namespace petutils
         CPetEntity* PPet = nullptr;
         if (petType == PETTYPE_AUTOMATON && PMaster->objtype == TYPE_PC)
             PPet = ((CCharEntity*)PMaster)->PAutomaton;
-        else
-            PPet = new CPetEntity(petType);
+		else 
+			PPet = new CPetEntity(petType);
 
         PPet->loc = PMaster->loc;
 
@@ -1323,22 +1323,7 @@ namespace petutils
             LoadJugStats(PPet, PPetData); //follow monster calcs (w/o SJ)
         }
         else if (PPet->getPetType() == PETTYPE_WYVERN){
-            //set the wyvern job based on master's SJ
-            if (PMaster->GetSJob() != JOB_NON){
-                PPet->SetSJob(PMaster->GetSJob());
-            }
-            PPet->SetMJob(JOB_DRG);
-            PPet->SetMLevel(PMaster->GetMLevel());
-
-            LoadAvatarStats(PPet); //follows PC calcs (w/o SJ)
-            PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f / 60.0f))); //320 delay
-            PPet->m_Weapons[SLOT_MAIN]->setDamage(1 + floor(PPet->GetMLevel()*0.9f));
-            //Set A+ weapon skill
-            PPet->setModifier(MOD_ATT, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
-            PPet->setModifier(MOD_ACC, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
-            //Set D evasion and def
-            PPet->setModifier(MOD_EVA, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
-            PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
+			LoadWyvernStatistics(PMaster, PPet, false);
         }
         else if (PPet->getPetType() == PETTYPE_AUTOMATON && PMaster->objtype == TYPE_PC)
         {
@@ -1367,18 +1352,46 @@ namespace petutils
             PPet->SetSLevel(PMaster->GetMLevel() / 2);
             LoadAutomatonStats((CCharEntity*)PMaster, PPet, g_PPetList.at(PetID)); //temp
         }
-        //set C magic evasion
-        PPet->setModifier(MOD_MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PPet->GetMLevel()));
-        PPet->health.tp = 0;
-        PPet->UpdateHealth();
-        PPet->PetSkills = battleutils::GetMobSkillsByFamily(PPet->m_Family);
-        PPet->status = STATUS_NORMAL;
-        PPet->m_ModelSize += g_PPetList.at(PetID)->size;
-        PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;
 
-        PMaster->applyPetModifiers(PPet);
+		FinalizePetStatistics(PMaster, PPet);
+		PPet->PetSkills = battleutils::GetMobSkillsByFamily(PPet->m_Family);
+		PPet->status = STATUS_NORMAL;
+		PPet->m_ModelSize += g_PPetList.at(PetID)->size;
+		PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;
 
         PMaster->PPet = PPet;
     }
+
+	void LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize) {
+		//set the wyvern job based on master's SJ
+		if (PMaster->GetSJob() != JOB_NON){
+			PPet->SetSJob(PMaster->GetSJob());
+		}
+		PPet->SetMJob(JOB_DRG);
+		PPet->SetMLevel(PMaster->GetMLevel());
+
+		LoadAvatarStats(PPet); //follows PC calcs (w/o SJ)
+		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f / 60.0f))); //320 delay
+		PPet->m_Weapons[SLOT_MAIN]->setDamage(1 + floor(PPet->GetMLevel()*0.9f));
+		//Set A+ weapon skill
+		PPet->setModifier(MOD_ATT, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
+		PPet->setModifier(MOD_ACC, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
+		//Set D evasion and def
+		PPet->setModifier(MOD_EVA, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
+		PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
+
+		if (finalize) {
+			FinalizePetStatistics(PMaster, PPet);
+		}
+	}
+
+	void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet) {
+		//set C magic evasion
+		PPet->setModifier(MOD_MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PPet->GetMLevel()));
+		PPet->health.tp = 0;
+		PPet->UpdateHealth();
+
+		PMaster->applyPetModifiers(PPet);
+	}
 
 }; // namespace petutils
