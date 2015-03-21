@@ -554,11 +554,12 @@ enum MODIFIER
     MOD_LOGGING_RESULT            = 0x202, // Improves logging results (modId = 514)
     MOD_MINNING_RESULT            = 0x203, // Improves mining results (modId = 515)
 
+    MOD_EGGHELM                   = 0x205,
+
     // MOD_SPARE = 0x138, // (modId = 312)
     // MOD_SPARE = 0x139, // (modId = 313)
     // MOD_SPARE = 0x13A, // (modId = 314)
     // MOD_SPARE = 0x13B, // (modId = 315)
-    // MOD_SPARE = 0x205, // (modId = 517)
 
 };
 

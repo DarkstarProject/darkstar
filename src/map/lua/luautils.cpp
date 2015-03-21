@@ -4164,5 +4164,36 @@ int32 OnPlayerLevelDown(CCharEntity* PChar)
     return 0;
 }
 
+int32 OnChocoboDig(CCharEntity* PChar, bool pre)
+{
+    lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+
+    if (prepFile(File, "onChocoboDig"))
+        return 0;
+
+    CLuaBaseEntity LuaBaseEntity(PChar);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+    lua_pushboolean(LuaHandle, pre);
+
+    if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::onChocoboDig: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return 0;
+    }
+
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 1)
+    {
+        ShowError("luautils::onChocoboDig (%s): 1 return expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+    
+    bool canDig = lua_toboolean(LuaHandle, -1);
+    
+    return canDig;
+}
+
 
 }; // namespace luautils

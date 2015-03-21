@@ -13,6 +13,27 @@ require("scripts/globals/status");
 require("scripts/globals/weather");
 require("scripts/globals/conquest");
 
+package.loaded["scripts/globals/chocobo_digging"] = nil;
+require("scripts/globals/chocobo_digging");
+
+-----------------------------------
+-- Chocobo Digging vars
+-----------------------------------
+local itemMap = {
+                    -- itemid, abundance, requirement
+                    { 770, 10, DIGREQ_NONE },       -- blue rock, 0.1%, no dig requirements
+                    { 880, 160, DIGREQ_NONE },      -- bone chip, 16%, no dig requirements
+                };
+
+local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+
+-----------------------------------
+-- onChocoboDig
+-----------------------------------
+function onChocoboDig(player, precheck)
+    return chocoboDig(player, itemMap, precheck, messageArray);
+end;
+
 -----------------------------------
 -- onInitialize
 -----------------------------------
