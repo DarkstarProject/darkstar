@@ -58,15 +58,6 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
         }
     }
 
-    if (CVanaTime::getInstance()->getHour() % 4 == 0 && CVanaTime::getInstance()->getMinute() == 30)
-    {
-        if (tick > (CVanaTime::getInstance()->lastWeatherUpdate + 4800))
-        {
-            zoneutils::UpdateWeather();
-            CVanaTime::getInstance()->lastWeatherUpdate = tick;
-        }
-    }
-
     if (CVanaTime::getInstance()->getMinute() == 0)
     {
         if (tick > (CVanaTime::getInstance()->lastVHourlyUpdate + 4800))
@@ -110,7 +101,7 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
     {
         zoneutils::TOTDChange(VanadielTOTD);
 
-        if((VanadielTOTD == TIME_DAY) || (VanadielTOTD == TIME_DUSK) || (VanadielTOTD == TIME_NIGHT))
+        if ((VanadielTOTD == TIME_DAY) || (VanadielTOTD == TIME_DUSK) || (VanadielTOTD == TIME_NIGHT))
         {
 			zoneutils::ForEachZone([](CZone* PZone)
 			{

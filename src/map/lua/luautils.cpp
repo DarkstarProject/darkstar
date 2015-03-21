@@ -101,6 +101,7 @@ int32 init()
 	lua_register(LuaHandle,"DespawnMob",luautils::DespawnMob);
 	lua_register(LuaHandle,"GetPlayerByName",luautils::GetPlayerByName);
 	lua_register(LuaHandle,"GetMobAction",luautils::GetMobAction);
+    lua_register(LuaHandle,"VanadielTime",luautils::VanadielTime);
 	lua_register(LuaHandle,"VanadielTOTD",luautils::VanadielTOTD);
 	lua_register(LuaHandle,"VanadielHour",luautils::VanadielHour);
 	lua_register(LuaHandle,"VanadielMinute",luautils::VanadielMinute);
@@ -495,6 +496,18 @@ int32 SetRegionalConquestOverseers(uint8 regionID)
         lua_pop(LuaHandle, returns);
     }
 	return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*    Return Vanadiel Time                                               *
+*                                                                       *
+************************************************************************/
+
+int32 VanadielTime(lua_State* L)
+{
+    lua_pushinteger(L, CVanaTime::getInstance()->getVanaTime());
+    return 1;
 }
 
 /************************************************************************
