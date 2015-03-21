@@ -631,21 +631,6 @@ void CZoneEntities::TOTDChange(TIMETYPE TOTD)
 
 		}
 		break;
-		case TIME_FOG:
-		{
-			for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
-			{
-				CMobEntity* PMob = (CMobEntity*)it->second;
-
-				if (PMob->m_SpawnType == SPAWNTYPE_FOG)
-				{
-					PMob->SetDespawnTimer(0);
-					PMob->m_AllowRespawn = true;
-					PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-				}
-			}
-		}
-		break;
 		case TIME_NEWDAY:
 		{
 			for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
@@ -679,17 +664,6 @@ void CZoneEntities::TOTDChange(TIMETYPE TOTD)
 		case TIME_DAY:
 		{
 			ScriptType = SCRIPT_TIME_DAY;
-
-			for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
-			{
-				CMobEntity* PMob = (CMobEntity*)it->second;
-
-				if (PMob->m_SpawnType == SPAWNTYPE_FOG)
-				{
-					PMob->SetDespawnTimer(1);
-					PMob->m_AllowRespawn = false;
-				}
-			}
 		}
 		break;
 		case TIME_DUSK:

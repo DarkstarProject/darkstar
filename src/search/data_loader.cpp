@@ -197,14 +197,12 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
         filterQry.append("))) ");
 	}
 
-	std::string fmtQuery = "SELECT charid, partyid, charname, pos_zone, pos_prevzone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
-                        war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
+	std::string fmtQuery = "SELECT charid, partyid, charname, pos_zone, pos_prevzone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, mlvl, slvl \
                         FROM accounts_sessions \
                         LEFT JOIN accounts_parties USING (charid) \
                         LEFT JOIN chars USING (charid) \
                         LEFT JOIN char_look USING (charid) \
                         LEFT JOIN char_stats USING (charid) \
-                        LEFT JOIN char_jobs USING(charid) \
 						LEFT JOIN char_profile USING(charid) \
 						WHERE charname IS NOT NULL ";
 	fmtQuery.append(filterQry);
@@ -229,13 +227,12 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
             PPlayer->nation		= (uint8) Sql_GetIntData(SqlHandle,  5);
             PPlayer->mjob		= (uint8) Sql_GetIntData(SqlHandle, 11);
             PPlayer->sjob		= (uint8) Sql_GetIntData(SqlHandle, 12);
-            PPlayer->mlvl		= (uint8) Sql_GetIntData(SqlHandle, 12 + PPlayer->mjob);
-            PPlayer->slvl		= (uint8) Sql_GetIntData(SqlHandle, 12 + PPlayer->sjob);
+            PPlayer->mlvl		= (uint8) Sql_GetIntData(SqlHandle, 13);
+            PPlayer->slvl		= (uint8) Sql_GetIntData(SqlHandle, 14);
             PPlayer->race		= (uint8) Sql_GetIntData(SqlHandle,  9);
             PPlayer->rank		= (uint8) Sql_GetIntData(SqlHandle,  6 + PPlayer->nation);
 
-            PPlayer->slvl = (PPlayer->slvl > (PPlayer->mlvl >> 1) ? (PPlayer->mlvl == 1 ? 1 : (PPlayer->mlvl >> 1)) : PPlayer->slvl);
-			PPlayer->zone = (PPlayer->zone == 0 ? PPlayer->prevzone : PPlayer->zone);
+            PPlayer->zone = (PPlayer->zone == 0 ? PPlayer->prevzone : PPlayer->zone);
 
             uint32 partyid  = (uint32)Sql_GetUIntData(SqlHandle, 1);
             uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 10);
@@ -347,14 +344,12 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID)
 {
     std::list<SearchEntity*> PartyList;
 
-    const int8* Query = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
-                         war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
+    const int8* Query = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, mlvl, slvl \
                          FROM accounts_sessions \
                          LEFT JOIN accounts_parties USING (charid) \
                          LEFT JOIN chars USING (charid) \
                          LEFT JOIN char_look USING (charid) \
                          LEFT JOIN char_stats USING (charid) \
-                         LEFT JOIN char_jobs USING(charid) \
 						 LEFT JOIN char_profile USING(charid) \
                          WHERE partyid = %u \
                          ORDER BY charname ASC \
@@ -376,12 +371,10 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID)
             PPlayer->nation = (uint8) Sql_GetIntData(SqlHandle,  4);
             PPlayer->mjob   = (uint8) Sql_GetIntData(SqlHandle, 10);
             PPlayer->sjob   = (uint8) Sql_GetIntData(SqlHandle, 11);
-            PPlayer->mlvl   = (uint8) Sql_GetIntData(SqlHandle, 11 + PPlayer->mjob);
-            PPlayer->slvl   = (uint8) Sql_GetIntData(SqlHandle, 11 + PPlayer->sjob);
+            PPlayer->mlvl   = (uint8) Sql_GetIntData(SqlHandle, 12);
+            PPlayer->slvl   = (uint8) Sql_GetIntData(SqlHandle, 13);
             PPlayer->race   = (uint8) Sql_GetIntData(SqlHandle,  8);
             PPlayer->rank   = (uint8) Sql_GetIntData(SqlHandle,  5 + PPlayer->nation);
-
-            PPlayer->slvl = (PPlayer->slvl > (PPlayer->mlvl >> 1) ? (PPlayer->mlvl == 1 ? 1 : (PPlayer->mlvl >> 1)) : PPlayer->slvl);
 
             uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 9);
 
@@ -410,14 +403,13 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 {
     std::list<SearchEntity*> LinkshellList;
 	const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
-                            war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run, linkshellid1, linkshellid2, \
+                            mlvl, slvl, linkshellid1, linkshellid2, \
                             linkshellrank1, linkshellrank2 \
                             FROM accounts_sessions \
                             LEFT JOIN accounts_parties USING (charid) \
                             LEFT JOIN chars USING (charid) \
                             LEFT JOIN char_look USING (charid) \
                             LEFT JOIN char_stats USING (charid) \
-                            LEFT JOIN char_jobs USING(charid) \
 							LEFT JOIN char_profile USING(charid) \
 							WHERE linkshellid1 = %u OR linkshellid2 = %u \
                             ORDER BY charname ASC \
@@ -439,15 +431,14 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
             PPlayer->nation = (uint8) Sql_GetIntData(SqlHandle,  4);
             PPlayer->mjob   = (uint8) Sql_GetIntData(SqlHandle, 10);
             PPlayer->sjob   = (uint8) Sql_GetIntData(SqlHandle, 11);
-            PPlayer->mlvl   = (uint8) Sql_GetIntData(SqlHandle, 11 + PPlayer->mjob);
-            PPlayer->slvl   = (uint8) Sql_GetIntData(SqlHandle, 11 + PPlayer->sjob);
+            PPlayer->mlvl   = (uint8) Sql_GetIntData(SqlHandle, 12);
+            PPlayer->slvl   = (uint8) Sql_GetIntData(SqlHandle, 13);
             PPlayer->race   = (uint8) Sql_GetIntData(SqlHandle,  8);
             PPlayer->rank   = (uint8) Sql_GetIntData(SqlHandle,  5 + PPlayer->nation);
-            PPlayer->linkshellid1 = Sql_GetIntData(SqlHandle, 34);
-            PPlayer->linkshellid2 = Sql_GetIntData(SqlHandle, 35);
-            PPlayer->linkshellrank1 = Sql_GetIntData(SqlHandle, 36);
-            PPlayer->linkshellrank2 = Sql_GetIntData(SqlHandle, 37);
-            PPlayer->slvl = (PPlayer->slvl > (PPlayer->mlvl >> 1) ? (PPlayer->mlvl == 1 ? 1 : (PPlayer->mlvl >> 1)) : PPlayer->slvl);
+            PPlayer->linkshellid1 = Sql_GetIntData(SqlHandle, 14);
+            PPlayer->linkshellid2 = Sql_GetIntData(SqlHandle, 15);
+            PPlayer->linkshellrank1 = Sql_GetIntData(SqlHandle, 16);
+            PPlayer->linkshellrank2 = Sql_GetIntData(SqlHandle, 17);
 
             uint32 partyid  = (uint32)Sql_GetUIntData(SqlHandle, 1);
             uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 9);
@@ -495,21 +486,14 @@ void CDataLoader::ExpireAHItems()
 			uint32 itemID = (uint32)Sql_GetUIntData(SqlHandle, 1);
 			uint8  stack = (uint8)Sql_GetUIntData(SqlHandle, 2);
 			uint32 seller = (uint32)Sql_GetUIntData(SqlHandle, 3);
-			if (stack == 0)
-			{
-				qStr2 = ("INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES \
-						 							(%u, (select charname from chars where charid=%u), 1, %u, 0, 1, 0, 'AH-Jeuno');");
-			}
-			else
-			{
-				qStr2 = ("INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES \
-						 							(%u, (select charname from chars where charid=%u), 1, %u, 0, 12, 0, 'AH-Jeuno');");
-			}
+			qStr2 = ("INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES \
+					 					 			(%u, (select charname from chars where charid=%u), 1, %u, 0, %u, 0, 'AH-Jeuno');");
+
 
 			const char * cC2 = qStr2.c_str();
 
-			int32 ret2 = Sql_Query(sqlH, cC2, seller, seller, itemID);
-	//		ShowMessage(cC2, seller, seller, itemID);
+			int32 ret2 = Sql_Query(sqlH, cC2, seller, seller, itemID, stack);
+			//		ShowMessage(cC2, seller, seller, itemID);
 			if (ret2 != SQL_ERROR &&	Sql_NumRows(SqlHandle) != 0)
 			{
 				// delete the item from the auction house

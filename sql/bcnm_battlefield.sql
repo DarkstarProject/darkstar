@@ -398,15 +398,30 @@ INSERT INTO `bcnm_battlefield` VALUES ('482', '3', '17608728', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('484', '1', '17608744', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('484', '2', '17608745', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('484', '3', '17608746', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620993', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620994', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620995', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621000', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621001', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621002', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621007', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621008', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621009', '3');
+
+-- Nation mission 5-1
+INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620993', '3'); -- Archlich Taber'quoan
+INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620994', '1'); -- Ancient Sorcerer
+INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620995', '1'); -- Ancient Sorcerer
+INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620996', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620997', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620998', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620999', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621000', '3'); -- Archlich Taber'quoan
+INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621001', '1'); -- Ancient Sorcerer
+INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621002', '1'); -- Ancient Sorcerer
+INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621003', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621004', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621005', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621006', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621007', '3'); -- Archlich Taber'quoan
+INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621008', '1'); -- Ancient Sorcerer
+INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621009', '1'); -- Ancient Sorcerer
+INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621010', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621011', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621012', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621013', '0'); -- Ancient Warrior
+
 INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621014', '2');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621015', '0');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621016', '0');
@@ -563,6 +578,7 @@ INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809996', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809995', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809999', '0');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809998', '0');
+INSERT INTO `bcnm_battlefield` VALUES ('673', '1', '16810018', '3');	-- Race Runner
 INSERT INTO `bcnm_battlefield` VALUES ('736', '1', '16830466', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('736', '1', '16830465', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('736', '1', '16830468', '3');

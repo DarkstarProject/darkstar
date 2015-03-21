@@ -127,7 +127,11 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
 			break;
 		}
 	}
-	if (m_TreasurePoolType != TREASUREPOOL_ZONE && members.empty())
+
+    if ((m_TreasurePoolType == TREASUREPOOL_PARTY || m_TreasurePoolType == TREASUREPOOL_ALLIANCE) && members.size() == 1)
+        m_TreasurePoolType = TREASUREPOOL_SOLO;
+
+    if (m_TreasurePoolType != TREASUREPOOL_ZONE && members.empty())
 	{
 		delete this;
 		return;

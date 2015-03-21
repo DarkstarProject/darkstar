@@ -1,11 +1,12 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: 
--- @zone 246
--- @pos 
+-- NPC: Leffquen
+-- Type: Weather Reporter
+-----------------------------------
+package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
+require("scripts/globals/settings");
 require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
@@ -20,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
+    player:startEvent(0x82726,0,0,0,0,0,0,0,VanadielTime());
 end; 
 
 -----------------------------------
@@ -28,8 +29,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -37,9 +38,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
-
-
-

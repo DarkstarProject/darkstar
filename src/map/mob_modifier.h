@@ -57,17 +57,17 @@ enum MOBMODIFIER
     MOBMOD_BUILD_RESIST   = 25, // builds resistance to given effects -- not impl
     MOBMOD_SUPERLINK      = 26, // super link group. Only use this in mob_spawn_mods / scripts!
     MOBMOD_SPELL_LIST     = 27, // set spell list
-    MOBMOD_EXP_BONUS      = 28, // bonus exp (bonus / 100)
+    MOBMOD_EXP_BONUS      = 28, // bonus exp (bonus / 100) negative values reduce exp.
     MOBMOD_ASSIST         = 29, // mobs will assist me
     MOBMOD_SPECIAL_SKILL  = 30, // give special skill
-    MOBMOD_RAND_JOB       = 31, // can spawn as a random job depending on its family
+    // ID 31 available for use.
     MOBMOD_2HOUR_MULTI    = 32, // can use two hour multiple times
     MOBMOD_SPECIAL_COOL   = 33, // cool down for special
     MOBMOD_MAGIC_COOL     = 34, // cool down for magic
     MOBMOD_STANDBACK_TIME = 35, // amount of time the mob stands back
     MOBMOD_ROAM_COOL      = 36, // cool down for roaming
     MOBMOD_ALWAYS_AGGRO   = 37, // aggro regardless of level. Spheroids
-    // ID 38 available for use.
+    MOBMOD_NO_DROPS       = 38, // If set monster cannot drop any items, not even seals.
     MOBMOD_SHARE_POS      = 39, // share a pos with another mob (eald'narche exoplates)
     MOBMOD_TELEPORT_CD    = 40, // cooldown for teleport abilities (tarutaru AA, angra mainyu, eald'narche)
     MOBMOD_TELEPORT_START = 41, // mobskill ID to begin teleport
