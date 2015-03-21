@@ -537,7 +537,11 @@ uint16 CBattleEntity::ATT()
 	} else {
 		ATT += (STR()) / 2;
 	}
-	if (this->objtype & TYPE_PC){
+	
+    if (this->StatusEffectContainer->HasStatusEffect(EFFECT_ENDARK))
+        ATT += this->getMod(MOD_ENSPELL_DMG);
+    
+    if (this->objtype & TYPE_PC){
 		ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType());
 	}
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)

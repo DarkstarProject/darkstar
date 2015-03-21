@@ -400,9 +400,8 @@ int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,
     {
         damage = PAttacker->getMod(MOD_ENSPELL_DMG) + PAttacker->getMod(MOD_ENSPELL_DMG_BONUS);
     }
-    else
+    else if (Tier == 2)
     {
-
     	//Tier 2 enspells calculate the damage on each hit and increment the potency in MOD_ENSPELL_DMG per hit
     	uint16 skill = PAttacker->GetSkill(SKILL_ENH);
     	uint16 cap = 3 + ((6*skill)/100);
@@ -425,6 +424,22 @@ int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,
     		PAttacker->addModifier(MOD_ENSPELL_DMG,1);
     		damage = PAttacker->getMod(MOD_ENSPELL_DMG)-1;
     	}
+        damage += PAttacker->getMod(MOD_ENSPELL_DMG_BONUS);
+    }
+    else if (Tier == 3) //enlight or endark
+    {
+        damage = PAttacker->getMod(MOD_ENSPELL_DMG);
+        
+        if (damage > 1)
+            PAttacker->delModifier(MOD_ENSPELL_DMG, 1);
+        else
+        {
+            if (element == 7)
+                PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_ENDARK);
+            else
+                PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_ENLIGHT);
+        }
+
         damage += PAttacker->getMod(MOD_ENSPELL_DMG_BONUS);
     }
 
@@ -906,11 +921,25 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
 
             PDefender->addHP(-Action->addEffectParam);
         }
-        else if ((enspell > 6 && enspell <= 8) || (enspell > 8 && enspell <= 14 && isFirstSwing))
+        else if (enspell > 8 && enspell <= 14 && isFirstSwing)
         {
             Action->additionalEffect = subeffects[enspell-7];
             Action->addEffectMessage = 163;
-            Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 2, enspell > 8 ? enspell-9 : enspell-1);
+            Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 2, enspell - 9);
+
+            if (Action->addEffectParam < 0)
+            {
+                Action->addEffectParam = -Action->addEffectParam;
+                Action->addEffectMessage = 384;
+            }
+
+            PDefender->addHP(-Action->addEffectParam);
+        }
+        else if (enspell > 6 && enspell <= 8)
+        {
+            Action->additionalEffect = subeffects[enspell - 7];
+            Action->addEffectMessage = 163;
+            Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 3, enspell - 1);
 
             if (Action->addEffectParam < 0)
             {
@@ -2025,6 +2054,9 @@ uint8 GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 att
 		}
 
 		hitrate = hitrate + (PAttacker->ACC(attackNumber, offsetAccuracy) - PDefender->EVA()) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel()) * 2;
+
+        if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_ENLIGHT))
+            hitrate += PAttacker->getMod(MOD_ENSPELL_DMG);
 
 		hitrate = dsp_cap(hitrate, 20, 95);
 	}
