@@ -1227,6 +1227,8 @@ MOD_LOGGING_RESULT            = 0x202 -- Improves logging results (modId = 514)
 MOD_MINNING_RESULT            = 0x203 -- Improves mining results (modId = 515)
 MOD_ABSORB_DMG_TO_MP          = 0x204 -- Unlike PLD gear mod, works on all damage types (Ethereal Earring) (modId = 516)
 
+MOD_EGGHELM                   = 0x205 -- Egghelm used for Chocobo Digging
+
 -- MOD_SPARE = 0x138 -- (modId = 312)
 -- MOD_SPARE = 0x139 -- (modId = 313)
 -- MOD_SPARE = 0x13A -- (modId = 314)

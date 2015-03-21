@@ -527,7 +527,6 @@ enum MODIFIER
     MOD_MAGIC_ABSORB              = 0x1DB, // (modId = 475)
     MOD_MAGIC_NULL                = 0x1DC, // (modId = 476)
     MOD_PHYS_ABSORB               = 0x200, // (modId = 512)
-    MOD_ABSORB_DMG_TO_MP          = 0x204, // (modId = 516)  Unlike PLD gear mod, works on all damage types (Ethereal Earring)
 
     MOD_ADDITIONAL_EFFECT         = 0x1AF, // (modId = 431)
     MOD_ITEM_SPIKES_TYPE          = 0x1F3, // Type spikes an item has (modId = 499)
@@ -553,6 +552,9 @@ enum MODIFIER
     MOD_HARVESTING_RESULT         = 0x201, // Improves harvesting results (modId = 513)
     MOD_LOGGING_RESULT            = 0x202, // Improves logging results (modId = 514)
     MOD_MINNING_RESULT            = 0x203, // Improves mining results (modId = 515)
+	MOD_ABSORB_DMG_TO_MP		  = 0x204, // (modId = 516)  Unlike PLD gear mod, works on all damage types (Ethereal Earring)
+
+	MOD_EGGHELM					  = 0x205, // EggHelm modifier used for Chocobo digging (mod 516)
 
     // MOD_SPARE = 0x138, // (modId = 312)
     // MOD_SPARE = 0x139, // (modId = 313)

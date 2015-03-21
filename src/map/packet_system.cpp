@@ -40,6 +40,7 @@ This file is part of DarkStar-server source code.
 #include "utils/battleutils.h"
 #include "utils/blacklistutils.h"
 #include "utils/charutils.h"
+#include "utils/diggingutils.h"
 #include "utils/petutils.h"
 #include "utils/puppetutils.h"
 #include "utils/fishingutils.h"
@@ -780,14 +781,24 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
         // bunch of gysahl greens
         uint8 slotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(4545);
 
-        if (slotID != ERROR_SLOTID)
-        {
-            charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -1);
+		if (slotID != ERROR_SLOTID)
+		{
+			bool canDig = diggingutils::CanPlayerDig(PChar);
 
-            PChar->pushPacket(new CInventoryFinishPacket());
-            PChar->pushPacket(new CChocoboDiggingPacket(PChar));
-        }
-        else{
+			if (canDig)
+			{
+				charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -1);
+
+				PChar->pushPacket(new CInventoryFinishPacket());
+				PChar->pushPacket(new CChocoboDiggingPacket(PChar));
+				diggingutils::Dig(PChar);
+			}
+			else {
+				PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
+			}
+		}
+        else 
+		{
             // You don't have any gysahl greens
             PChar->pushPacket(new CMessageSystemPacket(4545, 0, 39));
         }

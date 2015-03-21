@@ -108,6 +108,7 @@ struct map_config_t
 	float  drop_rate_multiplier;	// Multiplier for drops
     uint32 all_mobs_gil_bonus;      // Sets the amount of bonus gil (per level) all mobs will drop.
     uint32 max_gil_bonus;           // Maximum total bonus gil that can be dropped. Default 9999 gil.
+	uint32 dig_rate_bonus;			// Bonus dig rate multiplier
     uint8  newstyle_skillups;       // Allows failed parries and blocks to trigger skill up chance.
     int8   Battle_cap_tweak;        // Default is 0. Globally adjust the level of level capped fights.
     int8   CoP_Battle_cap;          // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.

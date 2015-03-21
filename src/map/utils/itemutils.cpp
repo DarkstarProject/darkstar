@@ -30,6 +30,7 @@
 CItem *		g_pItemList[MAX_ITEMID];    // глобальный массив указателей на игровые предметы
 DropList_t* g_pDropList[MAX_DROPID];    // глобальный массив списков выпадающих предметов
 LootList_t* g_pLootList[MAX_LOOTID];
+DigList_t* g_pDigList[MAX_ZONEID]; // Diglist
 
 CItemWeapon* PUnarmedItem;
 CItemWeapon* PUnarmedH2HItem;
@@ -238,6 +239,22 @@ namespace itemutils
         ShowWarning(CL_CYAN"DropID %u too big\n" CL_RESET, DropID);
 	    return nullptr;
     }
+
+	/************************************************************************
+	*																		*
+	*	Return the digging loot list										*
+	*																		*
+	************************************************************************/
+
+	DigList_t* GetDigList(uint16 ZoneID)
+	{
+		if (ZoneID < MAX_ZONEID)
+		{
+			return g_pDigList[ZoneID];
+		}
+		ShowWarning(CL_CYAN"ZoneID %u too big\n" CL_RESET, ZoneID);
+		return nullptr;
+	}
 
     /************************************************************************
     *                                                                       *

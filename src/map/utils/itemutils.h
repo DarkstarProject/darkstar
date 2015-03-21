@@ -55,9 +55,16 @@ struct LootItem_t
 	uint8  LootGroupId;
 };
 
+struct DigItem_t
+{
+	uint16 ItemID;
+	uint16 DigRate;
+	uint8  DigRequirements;
+};
 
 typedef std::vector<DropItem_t> DropList_t;
 typedef std::vector<LootItem_t> LootList_t;
+typedef std::vector<DigItem_t> DigList_t;
 
 /************************************************************************
 *                                                                       *
@@ -78,8 +85,15 @@ namespace itemutils
     CItemWeapon* GetUnarmedH2HItem();
 
 	DropList_t* GetDropList(uint16 DropID);
+	DigList_t* GetDigList(uint16 ZoneID);
 	LootList_t* GetLootList(uint16 LootDropID);
 
 };
+
+/************************************************************************
+*																		*
+*	Structure Dig Items													*
+*																		*
+************************************************************************/
 
 #endif

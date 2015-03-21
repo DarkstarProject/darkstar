@@ -21177,3 +21177,9 @@ INSERT INTO `item_mods` VALUES (28665, 161, -8); -- Physical damage taken -8%
 -- Leafkin Shield
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (28670, 1, 1); -- DEF:1
+
+-- -------------------------------------------------------
+-- Egg Helm (For Chocobo Digging)
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (16109, 205, 1); -- EGGHELM EQUIPPED
+
