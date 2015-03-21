@@ -458,6 +458,8 @@ struct zoneWeather_t
         };
         uint8 weather[3];
     };
+    zoneWeather_t(uint8 _normal, uint8 _common, uint8 _rare) :
+        m_normal(_normal), m_common(_common), m_rare(_rare) {};
 };
 
 /************************************************************************
