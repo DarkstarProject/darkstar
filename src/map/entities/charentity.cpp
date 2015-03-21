@@ -189,11 +189,6 @@ uint8 CCharEntity::GetGender()
     return (look.race)%2 ^ (look.race > 6);
 }
 
-int32 CCharEntity::firstPacketSize()
-{
-	return PacketList.front()->getSize();
-}
-
 bool CCharEntity::isPacketListEmpty()
 {
 	return PacketList.empty();
