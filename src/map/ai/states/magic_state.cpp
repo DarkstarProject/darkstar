@@ -659,6 +659,9 @@ void CMagicState::FinishSpell()
 
         }
 
+        if (action.animation == 122 && msg == 283) // teleport spells don't target unqualified members
+            continue;
+
         action.messageID = msg;
 
         if (PTarget->objtype == TYPE_MOB && msg != 31) // If message isn't the shadow loss message, because I had to move this outside of the above check for it.
