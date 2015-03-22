@@ -742,6 +742,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
+    bool silence = false;
     uint16 itemID = (uint16)lua_tointeger(L,1);
     uint32 quantity = 1;
     uint16 augment0 = 0; uint8 augment0val = 0;
@@ -750,6 +751,8 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
     uint16 augment3 = 0; uint8 augment3val = 0;
     uint16 trialNumber = 0;
 
+    if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
+        silence = (uint32)lua_toboolean(L, 2);
     if( !lua_isnil(L,2) && lua_isnumber(L,2) )
         quantity = (uint32)lua_tointeger(L,2);
 
@@ -793,7 +796,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
                 if (augment3 != 0) ((CItemArmor*)PItem)->setAugment(3, augment3, augment3val);
                 if (trialNumber != 0) ((CItemArmor*)PItem)->setTrialNumber(trialNumber);
             }
-            SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PItem);
+            SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PItem, silence);
         }
         else
         {

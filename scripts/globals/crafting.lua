@@ -31,6 +31,41 @@ local TI_Smithing = {16530,12299,16512,16650,16651,16559,12427,16577,12428,}; --
 local TI_Woodworking = {22,23,17354,17348,17053,17156,17054,56,17101,}; -- Vejovis wand signed
 local TI_Synergy = {};
 
+local HQCrystals = {
+    [1] = {
+        id = 4238,
+        cost = 200
+    },
+    [2] = {
+        id = 4239,
+        cost = 200
+    },
+    [3] = {
+        id = 4240,
+        cost = 200
+    },
+    [4] = {
+        id = 4241,
+        cost = 200
+    },
+    [5] = {
+        id = 4242,
+        cost = 200
+    },
+    [6] = {
+        id = 4243,
+        cost = 200
+    },
+    [7] = {
+        id = 4244,
+        cost = 500
+    },
+    [8] = {
+        id = 4245,
+        cost = 500
+    },
+}
+
 -----------------------------------
 -- isGuildMember Action
 -----------------------------------
@@ -163,10 +198,68 @@ function getAdvImageSupportCost(player,craftID)
     
 end
 
-function unionRepresentativeTrigger(player, guildID, csid, currency, cap, keyitems)
+function unionRepresentativeTrigger(player, guildID, csid, currency, keyitems)
     local gpItem, remainingPoints = player:getCurrentGPItem(guildID);
+    local rank = player:getSkillRank(guildID + 48);
+    local cap = (rank + 1) * 10;
+    local kibits = 0;
+    
+    for bit,ki in pairs(keyitems) do
+        if (rank >= ki.rank) then
+            if not player:hasKeyItem(ki.id) then
+                kibits = bit.bor(kibits, bit.lshift(1,bit));
+            end
+        end
+    end
     
     player:startEvent(csid, player:getCurrency(currency), player:getVar('[GUILD]currentGuild'), gpItem, remainingPoints, cap, 0, keyitems);
+end
+
+function unionRepresentativeTriggerFinish(player, option, target, guildID, currency, keyitems, items)
+    local rank = player:getSkillRank(guildID + 48);
+    if (option == -1) then
+        player:setVar('[GUILD]currentGuild',3);
+        player:setVar('[GUILD]daily_points',-1);
+    elseif (bit.band(option, 32) > 0) then -- keyitem
+        local ki = keyitems[bit.band(option, 31)];
+        if (rank >= ki.rank) then
+            if (player:getCurrency(currency) >= ki.cost) then
+                player:delCurrency(currency, ki.cost);
+                player:addKeyItem(ki.id);
+                player:messageSpecial(KEYITEM_OBTAINED, ki.id);
+            else
+               player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
+            end
+        end
+    elseif (bit.band(option, 16) > 0) then -- item
+        local i = items[bit.band(option, 15)];
+        if (rank >= i.rank) then
+            if (player:getCurrency(currency) >= i.cost) then
+                if (player:addItem(i.id, true)) then
+                    player:delCurrency(currency, i.cost);
+                    player:messageSpecial(ITEM_OBTAINED, i.id);
+                else
+                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, i.id);
+                end
+            else
+               player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
+            end
+        end
+    else -- HQ crystal (or nothing)
+        local i = HQCrystals[bit.band(option, option)];
+        if (i and rank >= 3) then
+            if (player:getCurrency(currency) >= i.cost) then
+                if (player:addItem(i.id, true)) then
+                    player:delCurrency(currency, i.cost);
+                    player:messageSpecial(ITEM_OBTAINED, i.id);
+                else
+                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, i.id);
+                end
+            else
+               player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
+            end
+        end
+    end
 end
 
 function unionRepresentativeTrade(player, npc, trade, csid, guildID)
