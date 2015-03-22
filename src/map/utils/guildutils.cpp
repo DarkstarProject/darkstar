@@ -115,7 +115,7 @@ void Initialize()
 			}
 		}
 	}
-    //TODO: initialize guild ranks
+
     UpdateGuildPointsPattern();
 }
 
@@ -176,7 +176,7 @@ void UpdateGuildPointsPattern()
     }
 
     // load the pattern in case it was set by another server (and this server did not set it)
-    query = "SELECT value FROM server_variables WHERE name = '[GUILD]pattern';";
+    Sql_Query(SqlHandle, "SELECT value FROM server_variables WHERE name = '[GUILD]pattern';");
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
         pattern = Sql_GetUIntData(SqlHandle, 0);
