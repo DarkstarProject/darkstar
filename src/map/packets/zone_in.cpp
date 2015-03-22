@@ -153,6 +153,7 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	WBUFB(data,(0x58)-4) = PChar->loc.zone->GetBackgroundMusic();
 	WBUFB(data,(0x5A)-4) = PChar->loc.zone->GetSoloBattleMusic();
 	WBUFB(data,(0x5C)-4) = PChar->loc.zone->GetPartyBattleMusic();
+    WBUFB(data,(0x5E)-4) = 0xD4; //default chocobo music for all zones
 
 	WBUFW(data,(0x60)-4) = PChar->loc.boundary;
     WBUFW(data,(0x68)-4) = PChar->loc.zone->GetWeather();

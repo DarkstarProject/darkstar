@@ -323,7 +323,6 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* dat
     PChar->pushPacket(new CInventorySizePacket(PChar));
     PChar->pushPacket(new CMenuConfigPacket(PChar));
     PChar->pushPacket(new CCharJobsPacket(PChar));
-    PChar->pushPacket(new CChangeMusicPacket(4, 212)); // The default Chocobo music is Block 4 Track 212 (0xD4)
 
     // TODO: While in mog house; treasure pool is not created.
     if (PChar->PTreasurePool != nullptr)
