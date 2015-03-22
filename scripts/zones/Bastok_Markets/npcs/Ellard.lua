@@ -16,7 +16,7 @@ require("scripts/zones/Bastok_Markets/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    unionRepresentativeTrade(player, trade, 0x155, 0, 3);
+    unionRepresentativeTrade(player, npc, trade, 0x155, 3);
 end;
 
 -----------------------------------

@@ -2930,7 +2930,7 @@ inline int32 CLuaBaseEntity::addGuildPoints(lua_State* L)
     lua_pushinteger(L, items);
     lua_pushinteger(L, points);
 
-    return 1;
+    return 2;
 }
 
 /************************************************************************

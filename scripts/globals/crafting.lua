@@ -169,10 +169,10 @@ function unionRepresentativeTrigger(player, guildID, csid, currency, cap, keyite
     player:startEvent(csid, player:getCurrency(currency), player:getVar('[GUILD]currentGuild'), gpItem, remainingPoints, cap, 0, keyitems);
 end
 
-function unionRepresentativeTrade(player, trade, csid1, csid2, guildID)
+function unionRepresentativeTrade(player, npc, trade, csid, guildID)
     local gpItem, remainingPoints = player:getCurrentGPItem(guildID);
     if remainingPoints == 0 then
-        --start "not eligible" cs
+        player:messageText(npc, NO_MORE_GP_ELIGIBLE);
     else
         local totalPoints = 0;
         for i=0,8,1 do
