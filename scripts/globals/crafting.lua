@@ -163,27 +163,28 @@ function getAdvImageSupportCost(player,craftID)
     
 end
 
-function unionRepresentativeTrigger(player, guildID, currency, items, keyitems)
+function unionRepresentativeTrigger(player, guildID, csid, currency, cap, keyitems)
     local gpItem, remainingPoints = player:getCurrentGPItem(guildID);
-    local rank = player:getSkillRank(guildID + 48);
-    local enable = 0;
-    if (rank > 2) then
-        enable = 3;
-    end
-    -- TODO: check the key items
-    player:startEvent(0x0154, player:getCurrency(currency), enable, gpItem, remainingPoints, items, 0, keyitems);
+    
+    player:startEvent(csid, player:getCurrency(currency), player:getVar('[GUILD]currentGuild'), gpItem, remainingPoints, cap, 0, keyitems);
 end
 
-function unionRepresentativeTrade(player, trade, guildID)
+function unionRepresentativeTrade(player, trade, csid1, csid2, guildID)
     local gpItem, remainingPoints = player:getCurrentGPItem(guildID);
     if remainingPoints == 0 then
         --start "not eligible" cs
     else
+        local totalPoints = 0;
         for i=0,8,1 do
-            local items = player:addGuildPoints(guildID,i)
-            if items ~= 0 then
+            local items, points = player:addGuildPoints(guildID,i)
+            if items ~= 0 and points ~= 0 then
+                totalPoints = totalPoints + points;
                 trade:confirmItem(i, items);
             end
+        end
+        if (totalPoints > 0) then
+            player:confirmTrade();
+            player:startEvent(csid1,totalPoints);
         end
     end
 end

@@ -2924,7 +2924,11 @@ inline int32 CLuaBaseEntity::addGuildPoints(lua_State* L)
     CGuild* PGuild = guildutils::GetGuild(GuildID);
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    lua_pushinteger(L, PGuild->addGuildPoints(PChar, PChar->TradeContainer->getItem(slotID)));
+    int16 points = 0;
+    uint8 items = PGuild->addGuildPoints(PChar, PChar->TradeContainer->getItem(slotID), points);
+
+    lua_pushinteger(L, items);
+    lua_pushinteger(L, points);
 
     return 1;
 }

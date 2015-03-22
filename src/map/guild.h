@@ -56,7 +56,7 @@ public:
     uint8 id();
 
     void updateGuildPointsPattern(uint8 pattern);
-    uint8 addGuildPoints(CCharEntity* PChar, CItem* PItem);
+    uint8 addGuildPoints(CCharEntity* PChar, CItem* PItem, int16& pointsAdded);
     std::pair<uint16,uint16> getDailyGPItem(CCharEntity* PChar);
 
 private:
