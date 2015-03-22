@@ -3657,8 +3657,12 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 	}
 
 	// target has perfect dodge - do not go any further
-	if (PVictim->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
+	if (PVictim->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE, 0)) {
+
+		// Claim the mob.
+		battleutils::ClaimMob(PVictim, PAttacker);
 		return 0;
+	}
 
 
 	// multihit's just multiply jump damage
@@ -3748,8 +3752,12 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 	}
 
 	// if damage is 0 then jump missed
-	if (totalDamage == 0)
+	if (totalDamage == 0) {
+
+		// Claim the mob.
+		battleutils::ClaimMob(PVictim, PAttacker);
 		return 0;
+	}
 
 
 	// high jump removes %50 emnity + more from any gear mods
