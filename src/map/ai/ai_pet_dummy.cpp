@@ -322,7 +322,11 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
         }
         else if (m_PMobSkill->getValidTargets() & TARGET_PLAYER_PARTY)
         {
-            m_PBattleSubTarget = m_PPet->PMaster;
+			// Only overwrite the sub target if it it not specified or
+			// the input target doesn't match the sub target.
+			if (m_PBattleSubTarget == nullptr || PTarg != m_PBattleSubTarget) {
+				m_PBattleSubTarget = m_PPet->PMaster;
+			}
         }
         else
         {
