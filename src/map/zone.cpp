@@ -530,7 +530,7 @@ void CZone::UpdateWeather()
     // Get a random number to determine which weather effect we will use
     WeatherChance = WELL512::irand() % 100;
 
-    zoneWeather_t& weatherType = zoneWeather_t(0, 0, 0);
+    zoneWeather_t&& weatherType = zoneWeather_t(0, 0, 0);
 
     for (auto& weather : m_WeatherVector)
     {
