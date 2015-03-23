@@ -19,7 +19,6 @@ function onAbilityCheck(player,target,ability)
 	elseif (player:getTP() < 20) then
 		return MSGBASIC_NOT_ENOUGH_TP,0;
 	else
-		player:delTP(20);
         -- apply waltz recast modifiers
         if(player:getMod(MOD_WALTZ_RECAST)~=0) then
             local recastMod = -150 * (player:getMod(MOD_WALTZ_RECAST)); -- 750 ms or 5% per merit
@@ -32,6 +31,10 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player, target, ability)
+	-- Only remove TP if the player doesn't have Trance.
+	if not player:hasStatusEffect(EFFECT_TRANCE) then
+		player:delTP(20);
+	end;
 
 	local effect = target:healingWaltz();
 

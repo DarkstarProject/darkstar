@@ -20,13 +20,16 @@ function onAbilityCheck(player,target,ability)
 		elseif (player:getTP() < 10) then
 			return MSGBASIC_NOT_ENOUGH_TP,0;
 		else
-			player:delTP(10);
 			return 0,0;
 		end
 	end
 end;
 
 function onUseAbility(player, target, ability)
+	-- Only remove TP if the player doesn't have Trance.
+	if not player:hasStatusEffect(EFFECT_TRANCE) then
+		player:delTP(10);
+	end;
 	
 	local hit = 3;
 	local effect = 1;
