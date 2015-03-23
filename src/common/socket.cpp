@@ -17,6 +17,7 @@
 #include <sys/types.h>
 
 #ifdef WIN32
+	#define FD_SETSIZE 1024
 	#include <winsock2.h>
 	#include <io.h>
 #else
@@ -235,28 +236,47 @@ int socket_getips(uint32* ips, int max)
 #ifdef WIN32
 	{
 		char fullhost[255];
-		u_long** a;
-		struct hostent* hent;
 
 		// XXX This should look up the local IP addresses in the registry
 		// instead of calling gethostbyname. However, the way IP addresses
 		// are stored in the registry is annoyingly complex, so I'll leave
 		// this as T.B.D. [Meruru]
-		if( gethostname(fullhost, sizeof(fullhost)) == SOCKET_ERROR )
+		if(gethostname(fullhost, sizeof(fullhost)) == SOCKET_ERROR)
 		{
 			ShowError("socket_getips: No hostname defined!\n");
 			return 0;
 		}
 		else
 		{
-			hent = gethostbyname(fullhost);
-			if( hent == NULL ){
+			struct addrinfo *result = NULL;
+			struct addrinfo *ptr = NULL;
+			struct addrinfo hints;
+
+			ZeroMemory(&hints, sizeof(hints));
+			hints.ai_family = AF_UNSPEC;
+			hints.ai_socktype = SOCK_STREAM;
+			hints.ai_protocol = IPPROTO_TCP;
+
+			DWORD dwRetval = getaddrinfo(fullhost, NULL, &hints, &result);
+
+			if (dwRetval != 0)
+			{
 				ShowError("socket_getips: Cannot resolve our own hostname to an IP address\n");
 				return 0;
 			}
-			a = (u_long**)hent->h_addr_list;
-			for( ; a[num] != NULL && num < max; ++num)
-				ips[num] = (uint32)ntohl(*a[num]);
+
+			struct sockaddr_in  *sockaddr_ipv4;
+
+			for (ptr = result; ptr != NULL && num < max; ptr = ptr->ai_next) 
+			{
+				sockaddr_ipv4 = (struct sockaddr_in *) ptr->ai_addr;
+
+				if (sockaddr_ipv4->sin_addr.s_addr > 0)
+				{
+					ips[num] = ntohl(sockaddr_ipv4->sin_addr.s_addr);
+					num++;
+				}
+			}	
 		}
 	}
 #else // not WIN32
@@ -305,8 +325,7 @@ int socket_getips(uint32* ips, int max)
 #endif // not W32
 
 	// Use loopback if no ips are found
-	if( num == 0 )
-		ips[num++] = (uint32)INADDR_LOOPBACK;
+	if(num == 0) ips[num++] = (uint32)INADDR_LOOPBACK;
 
 	return num;
 }
@@ -374,23 +393,27 @@ bool _vsocket_final(void){
 	return true;
 }
 
-// hostname/ip conversion functions
-uint32 host2ip(const char* hostname)
-{
-	struct hostent* h = gethostbyname(hostname);
-	return (h != NULL) ? ntohl(*(uint32*)h->h_addr) : 0;
-}
-
 const char* ip2str(uint32 ip, char ip_str[16])
 {
 	struct in_addr addr;
+	char* ip_buffer = new char[16];
+
 	addr.s_addr = htonl(ip);
-	return (ip_str == NULL) ? inet_ntoa(addr) : strncpy(ip_str, inet_ntoa(addr), 16);
+	inet_ntop(AF_INET, &addr, ip_buffer, 16);
+
+	if (ip_str == NULL)	return ip_buffer;
+
+	strncpy(ip_str, ip_buffer, 16);
+
+	delete[] ip_buffer;
+	return ip_str;
 }
 
 uint32 str2ip(const char* ip_str)
 {
-	return ntohl(inet_addr(ip_str));
+	UINT32 val;
+	inet_pton(AF_INET, ip_str, &val);
+	return ntohl(val);
 }
 
 // Reorders bytes from network to little endian (Windows).
