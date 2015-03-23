@@ -439,7 +439,7 @@ void CAIMobDummy::ActionDropItems()
                 }
 
                 // check for gil (beastmen drop gil, some NMs drop gil)
-                if (m_PMob->CanDropGil() || (map_config.all_mobs_gil_bonus > 0 && m_PMob->getMobMod(MOBMOD_GIL_MAX) >= 0))) // Negative value of MOBMOD_GIL_MAX is used to prevent gil drops in Dynamis/Limbus.
+                if (m_PMob->CanDropGil() || (map_config.all_mobs_gil_bonus > 0 && m_PMob->getMobMod(MOBMOD_GIL_MAX) >= 0)) // Negative value of MOBMOD_GIL_MAX is used to prevent gil drops in Dynamis/Limbus.
                 {
                     charutils::DistributeGil(PChar, m_PMob); // TODO: REALISATION MUST BE IN TREASUREPOOL
                 }
