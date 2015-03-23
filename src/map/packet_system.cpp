@@ -323,7 +323,6 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* dat
     PChar->pushPacket(new CInventorySizePacket(PChar));
     PChar->pushPacket(new CMenuConfigPacket(PChar));
     PChar->pushPacket(new CCharJobsPacket(PChar));
-    PChar->pushPacket(new CChangeMusicPacket(4, 212)); // The default Chocobo music is Block 4 Track 212 (0xD4)
 
     // TODO: While in mog house; treasure pool is not created.
     if (PChar->PTreasurePool != nullptr)
@@ -728,6 +727,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             return;
         // remove weakness on homepoint
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_WEAKNESS);
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
 
         PChar->health.hp = PChar->GetMaxHP();
         PChar->health.mp = PChar->GetMaxMP();
@@ -799,8 +799,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->updatemask |= UPDATE_HP;
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
         PChar->pushPacket(new CCharUpdatePacket(PChar));
-        PChar->pushPacket(new CChangeMusicPacket(0, PChar->loc.zone->GetBackgroundMusic()));
-        PChar->pushPacket(new CChangeMusicPacket(1, PChar->loc.zone->GetBackgroundMusic()));
     }
     break;
     case 0x13: // tractor menu

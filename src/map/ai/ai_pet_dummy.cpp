@@ -217,28 +217,45 @@ void CAIPetDummy::ActionAbilityStart()
 
             uint16 masterHead = masterHeadItem ? masterHeadItem->getID() : 0;
 
-            if (((CCharEntity*)(m_PPet->PMaster))->objtype == TYPE_PC && (masterHead == 12519 || masterHead == 15238)) { //Check for player & AF head, or +1
-                if (m_PPet->PMaster->GetHPP() <= 50 && wyverntype == WYVERNTYPE_DEFENSIVE){//healer wyvern
-                    m_PBattleSubTarget = m_PPet->PMaster;
-                }
-                else if (m_PPet->PMaster->GetHPP() <= 33 && wyverntype == WYVERNTYPE_MULTIPURPOSE){//hybrid wyvern
-                    m_PBattleSubTarget = m_PPet->PMaster;
-                }
-            }
-            else {
-                if (m_PPet->PMaster->GetHPP() <= 33 && wyverntype == WYVERNTYPE_DEFENSIVE)
-                {//healer wyvern
-                    m_PBattleSubTarget = m_PPet->PMaster;
-                }
-                else if (m_PPet->PMaster->GetHPP() <= 25 && wyverntype == WYVERNTYPE_MULTIPURPOSE)
-                {//hybrid wyvern
-                    m_PBattleSubTarget = m_PPet->PMaster;
-                }
-            }
-            //	}
-            //	else{ //group play
-            //		//for( int i=0; i<
-            //	}
+			// Determine what the required HP percentage will need to be 
+			// at or under in order for healing breath to activate.
+			uint8 requiredHPP = 0;
+			if (((CCharEntity*)(m_PPet->PMaster))->objtype == TYPE_PC && (masterHead == 12519 || masterHead == 15238)) { //Check for player & AF head, or +1
+				if (wyverntype == WYVERNTYPE_DEFENSIVE) { //healer wyvern
+					requiredHPP = 50;
+				}
+				else if (wyverntype == WYVERNTYPE_MULTIPURPOSE) { //hybrid wyvern
+					requiredHPP = 33;
+				}
+			}
+			else {
+				if (wyverntype == WYVERNTYPE_DEFENSIVE) { //healer wyvern
+					requiredHPP = 33;
+				}
+				else if (wyverntype == WYVERNTYPE_MULTIPURPOSE) { //hybrid wyvern
+					requiredHPP = 25;
+				}
+			}
+
+			// Only attempt to find a target if there is an HP percentage to calculate.
+			if (requiredHPP) {
+				CBattleEntity* master = m_PPet->PMaster;
+				// Check the master first.
+				if (master->GetHPP() <= requiredHPP) {
+					m_PBattleSubTarget = master;
+				}
+
+				// Otherwise if this is a healer wyvern, and the member is in a party 
+				// check all of the party members who qualify.
+				else if (wyverntype == WYVERNTYPE_DEFENSIVE && master->PParty != nullptr) {
+					master->ForParty([this, requiredHPP](CBattleEntity* PTarget){
+						if (PTarget->GetHPP() <= requiredHPP) {
+							m_PBattleSubTarget = PTarget;
+						}
+					});
+				}
+			}
+
             if (m_PBattleSubTarget != nullptr){ //target to heal
                 //get highest breath for wyverns level
                 m_PMobSkill = nullptr;
@@ -283,7 +300,11 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
         }
         else if (m_PMobSkill->getValidTargets() & TARGET_PLAYER_PARTY)
         {
-            m_PBattleSubTarget = m_PPet->PMaster;
+			// Only overwrite the sub target if it it not specified or
+			// the input target doesn't match the sub target.
+			if (m_PBattleSubTarget == nullptr || PTarg != m_PBattleSubTarget) {
+				m_PBattleSubTarget = m_PPet->PMaster;
+			}
         }
         else
         {
