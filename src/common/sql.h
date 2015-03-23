@@ -10,6 +10,7 @@
 	//#include <stdarg.h>// va_list
 
 #ifdef WIN32
+	#define FD_SETSIZE 1024
 	#include <winsock2.h>
 	#include <mysql/mysql.h>
 #else

@@ -36,6 +36,7 @@
 #include "../common/timer.h"
 
 #ifdef WIN32
+	#define FD_SETSIZE 1024
 	#include <winsock2.h>
 	#include <ws2tcpip.h>
 #else
@@ -372,7 +373,7 @@ void search_config_read(const int8* file)
 		}
 		else if (strcmp(w1, "expire_auctions") == 0)
 		{
-			search_config.expire_auctions = atoi(w2);
+			search_config.expire_auctions = atoi(w2) > 0 ? true : false;
 		}
 		else if (strcmp(w1, "expire_days") == 0)
 		{
