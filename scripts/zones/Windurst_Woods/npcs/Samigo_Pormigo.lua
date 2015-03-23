@@ -2,7 +2,7 @@
 --  Area: Windurst Woods
 --  NPC: Samigo-Pormigo
 --  Type: Guildworker's Union Representative
---  @zone: 235
+--  @zone: 241
 --  @pos -9.782 -5.249 -134.432
 -----------------------------------
 
