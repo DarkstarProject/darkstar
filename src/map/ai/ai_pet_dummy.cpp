@@ -219,43 +219,21 @@ void CAIPetDummy::ActionAbilityStart()
 
 			// Determine what the required HP percentage will need to be 
 			// at or under in order for healing breath to activate.
-			uint8 requiredHPP;
+			uint8 requiredHPP = 0;
 			if (((CCharEntity*)(m_PPet->PMaster))->objtype == TYPE_PC && (masterHead == 12519 || masterHead == 15238)) { //Check for player & AF head, or +1
-				switch (wyverntype) {
-
-					//healer wyvern
-				case WYVERNTYPE_DEFENSIVE:
+				if (wyverntype == WYVERNTYPE_DEFENSIVE) { //healer wyvern
 					requiredHPP = 50;
-					break;
-
-					//hybrid wyvern
-				case WYVERNTYPE_MULTIPURPOSE:
+				}
+				else if (wyverntype == WYVERNTYPE_MULTIPURPOSE) { //hybrid wyvern
 					requiredHPP = 33;
-					break;
-
-					//attack wyvern - No healing breath available
-				default:
-					requiredHPP = 0;
-					break;
 				}
 			}
 			else {
-				switch (wyverntype) {
-
-					//healer wyvern
-				case WYVERNTYPE_DEFENSIVE:
+				if (wyverntype == WYVERNTYPE_DEFENSIVE) { //healer wyvern
 					requiredHPP = 33;
-					break;
-
-					//hybrid wyvern
-				case WYVERNTYPE_MULTIPURPOSE:
+				}
+				else if (wyverntype == WYVERNTYPE_MULTIPURPOSE) { //hybrid wyvern
 					requiredHPP = 25;
-					break;
-
-					//attack wyvern - No healing breath available
-				default:
-					requiredHPP = 0;
-					break;
 				}
 			}
 
