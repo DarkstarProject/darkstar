@@ -222,7 +222,7 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
         player:setVar('[GUILD]daily_points',-1);
     elseif (bit.band(option, 32) > 0) then -- keyitem
         local ki = keyitems[bit.band(option, 31)];
-        if (rank >= ki.rank) then
+        if (ki and rank >= ki.rank) then
             if (player:getCurrency(currency) >= ki.cost) then
                 player:delCurrency(currency, ki.cost);
                 player:addKeyItem(ki.id);
@@ -233,7 +233,7 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
         end
     elseif (bit.band(option, 16) > 0) then -- item
         local i = items[bit.band(option, 15)];
-        if (rank >= i.rank) then
+        if (i and rank >= i.rank) then
             if (player:getCurrency(currency) >= i.cost) then
                 if (player:addItem(i.id, true)) then
                     player:delCurrency(currency, i.cost);
