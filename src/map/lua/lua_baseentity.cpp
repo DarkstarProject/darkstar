@@ -2395,8 +2395,7 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
                 CPetEntity* PPet = (CPetEntity*)PChar->PPet;
                 if (PPet->getPetType() == PETTYPE_WYVERN)
                 {
-                    //TODO: recalculate stats instead of despawn
-                    petutils::DespawnPet(PChar);
+					petutils::LoadWyvernStatistics(PChar, PPet, true);
                 }
                 else
                 {
