@@ -6,10 +6,10 @@
 --  @pos -38.173 -1.25 -113.679
 -----------------------------------
 
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Bastok_Markets/TextIDs");
+require("scripts/zones/Windurst_Woods/TextIDs");
 
 local keyitems = {
      [0] = {
@@ -112,8 +112,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,target)
-	 printf("CSID: %u",csid);
-	 printf("RESULT: %u",option);
+	 -- printf("CSID: %u",csid);
+	 -- printf("RESULT: %u",option);
      
     if (csid == 0x2726) then
         unionRepresentativeTriggerFinish(player, option, target, 4, "guild_weaving", keyitems, items);
