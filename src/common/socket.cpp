@@ -252,7 +252,7 @@ int socket_getips(uint32* ips, int max)
 			struct addrinfo *ptr = NULL;
 			struct addrinfo hints;
 
-			ZeroMemory(&hints, sizeof(hints));
+            memset(&hints, 0, sizeof(hints));
 			hints.ai_family = AF_UNSPEC;
 			hints.ai_socktype = SOCK_STREAM;
 			hints.ai_protocol = IPPROTO_TCP;
