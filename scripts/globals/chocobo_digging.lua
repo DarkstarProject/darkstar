@@ -16,6 +16,8 @@ DIGREQ_NIGHT    = 8;
 local DIGABILITY_BURROW = 1;
 local DIGABILITY_BORE   = 2;
 
+local 
+
 
 
 local function canDig(player)
@@ -33,6 +35,8 @@ local function canDig(player)
     local AreaDigDelay = 60 - (SkillRank * 5);
 
     -- neither player nor zone have reached their dig limit
+    -- TODO: Add in a setting in map_server.config to disable the fatigue limit, if the server admin wants to.
+    
     if (DigCount < 100 and ZoneItemsDug < 20) then
         -- pesky delays
         if ((ZoneInTime <= AreaDigDelay + CurrentTime) and (LastDigTime + DigDelay <= CurrentTime)) then
@@ -112,7 +116,7 @@ function updateZoneDigCount(zone, increment)
 end;
 
 
-function chocoboDig(player, itemMap, precheck, messageArray)
+function chocoboDig(player, itemMap, precheck, messageArray, zoneWeather)
     
     -- make sure the player can dig before going any further
     -- (and also cause i need a return before core can go any further with this)
@@ -138,6 +142,8 @@ function chocoboDig(player, itemMap, precheck, messageArray)
             
             -- item and DIG_ABUNDANCE_BONUS 3 digits, dont wanna get left out
             Chance = Chance * 100;
+            
+            -- We need to check for moon phase, too. 45-60% results in a much lower dig chance than the rest of the phases
 
             if (Chance < (RItemAbundance + DIG_ABUNDANCE_BONUS)) then
             
@@ -159,6 +165,15 @@ function chocoboDig(player, itemMap, precheck, messageArray)
                     ItemID = RItemID;
                 elseif (RItemReq == DIGREQ_NIGHT and VanadielTOTD() == TIME_NIGHT) then
                     ItemID = RItemID;
+                end
+                
+                -- If the item is a crystal, we need to check for a double weather effect (Which results in a crystal cluster, not a single crystal)
+                if (ItemID >= 4096 or ItemID <= 4103) then
+                  if (zoneWeather == "WEATHER_DOUBLE") then
+                    ItemID = ItemID + 8;
+                  else
+                    ItemID = ItemID;
+                  end
                 end
                 
             end
@@ -184,6 +199,7 @@ function chocoboDig(player, itemMap, precheck, messageArray)
             
         end
         calculateSkillUp(player);
+        -- If fatigue is set, increment the dig counter for the player, if not, don't set it
         updatePlayerDigCount(player, 1);
     end
     return true;
