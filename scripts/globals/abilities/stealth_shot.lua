@@ -16,5 +16,5 @@ end;
 function onUseAbility(player, target, ability)
 	local power = 10 + player:getMerit(MERIT_STEALTH_SHOT);
 
-	player:addStatusEffect(EFFECT_STEALTH_SHOT, power, 0, 60);
+	player:addStatusEffect(EFFECT_STEALTH_SHOT, -power, 0, 60);
 end;

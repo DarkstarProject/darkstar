@@ -1188,21 +1188,6 @@ void CAICharNormal::ActionRangedFinish()
         // only remove detectables
 		m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
 
-		// Handle stealth shot.
-		CStatusEffect* stealthShot = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_STEALTH_SHOT);
-		if (stealthShot != nullptr) {
-
-			// Make sure that the target is a mob.
-			if (m_PBattleTarget->objtype == TYPE_MOB) {
-				uint16 power = stealthShot->GetPower();
-
-				((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->LowerEnmityByPercent(m_PChar, power, nullptr);
-			}
-
-			// Delete the status effect.
-			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_STEALTH_SHOT);
-		}
-
         // Try to double shot
         // Will instantly trigger another ranged attack
         if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_SHOT, 0) && !m_PChar->secondDoubleShotTaken &&	!isBarrage && !isSange)
@@ -2622,22 +2607,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
             }
             m_PChar->pushPacket(new CInventoryFinishPacket());
         }
-
-		// Handle stealth shot.
-		CStatusEffect* stealthShot = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_STEALTH_SHOT);
-		if (stealthShot != nullptr) {
-
-			// Make sure that the target is a mob, and make sure that the weaponskill is not Trueflight.
-			if (m_PBattleTarget->objtype == TYPE_MOB && 
-				m_PWeaponSkill->getID() != 217) {
-				uint16 power = stealthShot->GetPower();
-
-				((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->LowerEnmityByPercent(m_PChar, power, nullptr);
-			}
-
-			// Delete the status effect.
-			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_STEALTH_SHOT);
-		}
     }
 
     // DO NOT REMOVE!  This is here for a reason...
