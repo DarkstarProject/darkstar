@@ -31,7 +31,6 @@ This file is part of DarkStar-server source code.
 #include "entities/mobentity.h"
 #include "alliance.h"
 #include "packets/entity_update.h"
-#include "weapon_skill.h";
 
 /************************************************************************
 *                                                                       *
@@ -103,27 +102,6 @@ float CEnmityContainer::CalculateEnmityBonus(CBattleEntity* PEntity){
     {
         enmityBonus = ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_INCREASE, (CCharEntity*)PEntity) -
             ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_DECREASE, (CCharEntity*)PEntity);
-
-		// Handle stealth shot.
-		ACTIONTYPE action = PEntity->PBattleAI->GetCurrentAction();
-		if (action == ACTION_RANGED_FINISH ||
-			action == ACTION_WEAPONSKILL_FINISH) {
-
-			CStatusEffect* stealthShot = PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_STEALTH_SHOT);
-			if (stealthShot != nullptr) {
-
-				// Ranged attacks, and all ranged weapon skills besides Trueflight should get a bonus applied.
-				if (action == ACTION_RANGED_FINISH ||
-					((PEntity->PBattleAI->GetCurrentWeaponSkill()->getType() == 25 ||
-					PEntity->PBattleAI->GetCurrentWeaponSkill()->getType() == 26) &&
-					PEntity->PBattleAI->GetCurrentWeaponSkill()->getID() != 217)) {
-					enmityBonus += stealthShot->GetPower();
-				}
-
-				// Delete the status effect.
-				PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_STEALTH_SHOT);
-			}
-		}
     }
 
     float bonus = (100.0f + dsp_cap(PEntity->getMod(MOD_ENMITY) + enmityBonus, -50, 100)) / 100.0f;
