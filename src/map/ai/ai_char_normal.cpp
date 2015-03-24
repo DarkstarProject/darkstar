@@ -1186,7 +1186,7 @@ void CAICharNormal::ActionRangedFinish()
         }
 
         // only remove detectables
-        m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+		m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
 
         // Try to double shot
         // Will instantly trigger another ranged attack
