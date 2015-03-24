@@ -65,7 +65,7 @@ class WELL512
 	*/
 	static inline int32 GetRandomInt32(int32 max)
 	{
-		return GetRandomInt32(-1, max);
+		return GetRandomInt32(0, max);
 	}
 
 	/*Generates a random int16 value between and inclusive the specified min and max values.
@@ -85,7 +85,7 @@ class WELL512
 	*/
 	static inline int16 GetRandomInt16(int16 max)
 	{
-		return GetRandomInt16(-1, max);
+		return GetRandomInt16(0, max);
 	}
 
 	/*Generates a random int8 value between and inclusive the specified min and max values.
@@ -105,7 +105,7 @@ class WELL512
 	*/
 	static inline int8 GetRandomInt8(int8 max)
 	{
-		return GetRandomInt8(-1, max);
+		return GetRandomInt8(0, max);
 	}
 
 	/*Generates a random float value between and inclusive the specified min and max values.
@@ -132,6 +132,6 @@ class WELL512
 	*/
 	static inline float GetRandomFloat(float max, bool allow_decimals = false)
 	{
-		return GetRandomFloat(-1.0f, max, allow_decimals);
+		return GetRandomFloat(0.0f, max, allow_decimals);
 	}
 };
