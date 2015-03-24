@@ -148,8 +148,12 @@ int32 do_init(int32 argc, int8** argv)
 
     for (int i = 1; i < argc; i++)
     {
-        if (strcmp(argv[i], "--ip") == 0)
-            map_ip.s_addr = inet_addr(argv[i+1]);
+		if (strcmp(argv[i], "--ip") == 0)
+		{
+			struct sockaddr_in sa;
+			inet_pton(AF_INET, argv[i + 1], &(sa.sin_addr));
+			map_ip.s_addr = sa.sin_addr.s_addr;
+		}
         else if (strcmp(argv[i], "--port") == 0)
             map_port = std::stoi(argv[i + 1]);
     }

@@ -421,7 +421,7 @@ namespace message
             int ret = Sql_Query(SqlHandle, "SELECT zoneip, zoneport FROM zone_settings GROUP BY zoneip, zoneport ORDER BY COUNT(*) DESC;");
             if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
-                ipp = inet_addr(Sql_GetData(SqlHandle, 0));
+				inet_pton(AF_INET, Sql_GetData(SqlHandle, 0), &ipp);
                 port = Sql_GetUIntData(SqlHandle, 1);
 			}
 		}

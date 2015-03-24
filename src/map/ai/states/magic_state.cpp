@@ -186,7 +186,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
             {
                 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
             }
-            cast -= base * ((100 - (50 + bonus)) / 100.0f);
+            cast -= (uint32)(base * ((100 - (50 + bonus)) / 100.0f));
             applyArts = false;
         }
         else if (applyArts)
@@ -194,11 +194,11 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
             if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_DARK_ARTS) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
             {
                 // Add any "Grimoire: Reduces spellcasting time" bonuses
-                cast = cast * (1.0f + (m_PEntity->getMod(MOD_BLACK_MAGIC_CAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f);
+				cast = (uint32)(cast * (1.0f + (m_PEntity->getMod(MOD_BLACK_MAGIC_CAST) + m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING)) / 100.0f));
             }
             else
             {
-                cast = cast * (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_CAST)/100.0f);
+				cast = (uint32)(cast * (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_CAST) / 100.0f));
             }
         }
     }
@@ -212,7 +212,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
             {
                 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
             }
-            cast -= base * ((100 - (50 + bonus)) / 100.0f);
+			cast -= (uint32)(base * ((100 - (50 + bonus)) / 100.0f));
             applyArts = false;
         }
         else if (applyArts)
@@ -220,11 +220,11 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
             if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
             {                
                 // Add any "Grimoire: Reduces spellcasting time" bonuses
-                cast = cast * (1.0f + (m_PEntity->getMod(MOD_WHITE_MAGIC_CAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f);
+				cast = (uint32)(cast * (1.0f + (m_PEntity->getMod(MOD_WHITE_MAGIC_CAST) + m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING)) / 100.0f));
             }
             else
             {
-                cast = cast * (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_CAST)/100.0f);
+				cast = (uint32)(cast * (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_CAST) / 100.0f));
             }
         }
     }
@@ -234,7 +234,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
         {
             if (PSpell->getAOE() == SPELLAOE_PIANISSIMO)
             {
-                cast = base / 2;
+				cast = (uint32)(base * 0.5f);
             }
         }
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_NIGHTINGALE))
@@ -244,21 +244,21 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
             {
                 return 0;
             }
-            cast = cast * 0.5f;
+			cast = (uint32)(cast * 0.5f);
         }
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TROUBADOUR))
         {
-            cast = cast * 1.5f;
+			cast = (uint32)(cast * 1.5f);
         }
         uint16 songcasting = m_PEntity->getMod(MOD_SONG_SPELLCASTING_TIME);
-        cast = cast * (1.0f - ((songcasting > 50 ? 50 : songcasting) / 100.0f));
+		cast = (uint32)(cast * (1.0f - ((songcasting > 50 ? 50 : songcasting) / 100.0f)));
     }
 
     int16 fastCast = dsp_cap(m_PEntity->getMod(MOD_FASTCAST),-100,50);
     int16 uncappedFastCast = dsp_cap(m_PEntity->getMod(MOD_UFASTCAST),-100,100);
     float sumFastCast = dsp_cap(fastCast + uncappedFastCast, -100, 100);
 
-    return cast * ((100.0f - sumFastCast)/100.0f);
+	return (uint32)(cast * ((100.0f - sumFastCast) / 100.0f));
 }
 
 int16 CMagicState::CalculateMPCost(CSpell* PSpell)

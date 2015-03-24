@@ -5161,7 +5161,7 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* dat
         uint32 Price1 = (PBazaarItem->getCharPrice() * Quantity);
         uint32 Price2 = (PChar->loc.zone->GetTax() * Price1) / 10000 + Price1;
 
-        charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -Price2);
+        charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)Price2);
         charutils::UpdateItem(PTarget, LOC_INVENTORY, 0, Price1);
 
         PChar->pushPacket(new CBazaarPurchasePacket(PTarget, true));

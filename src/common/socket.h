@@ -9,8 +9,9 @@
 
 
 #ifdef WIN32
-    #define FD_SETSIZE 1000
+	#define FD_SETSIZE 1024
 	#include <winsock2.h>
+	#include <ws2tcpip.h>
 	typedef long in_addr_t;
 #else
 	#include <sys/types.h>
@@ -163,10 +164,6 @@ bool socket_init(void);
 
 //завершение работы сокета
 bool socket_final(void);
-
-// hostname/ip conversion functions
-uint32 host2ip(const char* hostname);
-
 
 const char* ip2str(uint32 ip, char ip_str[16]);
 

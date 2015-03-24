@@ -119,12 +119,12 @@ Rotations of entities are saved in uint8s, which can only hold up to a value of 
 */
 float rotationToRadian(uint8 rotation)
 {
-	return (((float)rotation) / 256) * 2 * M_PI;
+	return (float)((((float)rotation) / 256) * 2 * M_PI);
 }
 
 uint8 radianToRotation(float radian)
 {
-	return (radian / (2 * M_PI)) * 256;
+	return (uint8)((radian / (2 * M_PI)) * 256);
 }
 
 
@@ -166,9 +166,9 @@ position_t nearPosition(position_t A, float offset, float radian)
 	float totalRadians = rotationToRadian(A.rotation) + radian;
 	position_t B;
 
-	B.x = A.x + cosf(2*M_PI - totalRadians) * offset;
+	B.x = A.x + cosf((float)(2 * M_PI - totalRadians)) * offset;
 	B.y = A.y;
-	B.z = A.z + sinf(2*M_PI - totalRadians) * offset;
+	B.z = A.z + sinf((float)(2 * M_PI - totalRadians)) * offset;
 
 	B.rotation = A.rotation;
 	B.moving = A.moving;
@@ -459,7 +459,7 @@ int8* DecodeStringLinkshell(int8* signature, int8* target)
     for(uint8 currChar = 0; currChar < (strlen((const char*)signature) * 8) / 6; ++currChar)
     {
         uint8 tempChar = '\0';
-        tempChar = unpackBitsLE((uint8*)signature, currChar*6, 6);
+		tempChar = (uint8)unpackBitsLE((uint8*)signature, currChar * 6, 6);
         if      (tempChar >= 1 && tempChar <= 26)
             tempChar = 'a' - 1 + tempChar;
         else if (tempChar >= 27 && tempChar <= 52)
@@ -517,7 +517,7 @@ int8* DecodeStringSignature(int8* signature, int8* target)
     for(uint8 currChar = 0; currChar < (strlen((const char*)signature) * 8) / 6; ++currChar)
     {
         uint8 tempChar = '\0';
-        tempChar = unpackBitsLE((uint8*)signature, currChar*6, 6);
+		tempChar = (uint8)unpackBitsLE((uint8*)signature, currChar * 6, 6);
         if      (tempChar >= 1 && tempChar <= 10)
             tempChar = '0' - 1 + tempChar;
         else if (tempChar >= 11 && tempChar <= 36)
@@ -532,7 +532,7 @@ int8* DecodeStringSignature(int8* signature, int8* target)
 
 float RandomNumber()
 {
-  return ((double) rand() / (RAND_MAX));
+  return (float)((double) rand() / (RAND_MAX));
 }
 
 std::string escape(std::string const &s)
