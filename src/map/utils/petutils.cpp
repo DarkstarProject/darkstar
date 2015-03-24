@@ -1311,10 +1311,14 @@ namespace petutils
             // get random lvl
             uint8 highestLvl = PMaster->GetMLevel();
 
-            if (highestLvl > PPetData->maxLevel)
+			if (highestLvl > PPetData->maxLevel)
             {
-                highestLvl = PPetData->maxLevel;
-            }
+				highestLvl = PPetData->maxLevel;
+			}
+
+			// Increase the pet's level by the bonus.
+			CCharEntity* PChar = (CCharEntity*)PMaster;
+			highestLvl += PChar->PMeritPoints->GetMeritValue(MERIT_BEAST_AFFINITY, PChar);
 
             // 0-2 lvls lower
             highestLvl -= WELL512::irand() % 3;
