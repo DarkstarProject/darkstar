@@ -244,7 +244,7 @@ void setAttachment(CCharEntity* PChar, uint8 slotId, uint8 attachment)
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    PChar->PAutomaton->addElementCapacity(i, -((PAttachment->getElementSlots() >> (i * 4)) & 0xF));
+                    PChar->PAutomaton->addElementCapacity(i, -(int8)((PAttachment->getElementSlots() >> (i * 4)) & 0xF));
                     PChar->PAutomaton->setAttachment(slotId, 0);
                 }
             }

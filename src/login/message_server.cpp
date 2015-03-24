@@ -147,23 +147,31 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
 
     if (ret != SQL_ERROR)
     {
-        ShowDebug("Message: Received message %d from %s:%hu\n", type, inet_ntoa(from_ip), from_port);
+		char ip_buffer[16];
+		inet_ntop(AF_INET, &from_ip, ip_buffer, sizeof(ip_buffer));
+
+		ShowDebug("Message: Received message %d from %s:%hu\n", type, ip_buffer, from_port);
         while (Sql_NextRow(ChatSqlHandle) == SQL_SUCCESS)
         {
             uint64 ip = 0;
             if (ipstring)
             {
                 int8* ip_string = Sql_GetData(ChatSqlHandle, 0);
-                ip = inet_addr(ip_string);
+				struct sockaddr_in sa;
+				inet_pton(AF_INET, ip_string, &(sa.sin_addr));
+				ip = ntohl(sa.sin_addr.s_addr);
             }
             else
             {
                 ip = Sql_GetUIntData(ChatSqlHandle, 0);
             }
             uint64 port = Sql_GetUIntData(ChatSqlHandle, 1);
+
             in_addr target;
-            target.s_addr = ip;
-            ShowDebug("Message:  -> rerouting to %s:%lu\n", inet_ntoa(target), port);
+            target.s_addr = (ULONG)ip;
+			inet_ntop(AF_INET, &target, ip_buffer, sizeof(ip_buffer));
+			ShowDebug("Message:  -> rerouting to %s:%lu\n", ip_buffer, port);
+
             ip |= (port << 32);
             if (type == MSG_CHAT_PARTY || type == MSG_PT_RELOAD || type == MSG_PT_DISBAND)
             {

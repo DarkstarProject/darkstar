@@ -458,6 +458,7 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 
     return LinkshellList;
 }
+
 void CDataLoader::ExpireAHItems()
 {
 	sqlH = Sql_Malloc();
@@ -475,8 +476,9 @@ void CDataLoader::ExpireAHItems()
 	std::string qStr = ("SELECT id,itemid,stack,seller FROM auction_house WHERE datediff(now(),from_unixtime(date)) >=%u AND buyer_name IS NULL;");
 	const char * cC = qStr.c_str();
 	int32 ret = Sql_Query(SqlHandle, cC, search_config.expire_days);
-	int32 expiredAuctions = Sql_NumRows(SqlHandle);
-	if (ret != SQL_ERROR &&	Sql_NumRows(SqlHandle) != 0)
+	uint64 expiredAuctions = Sql_NumRows(SqlHandle);
+
+	if (ret != SQL_ERROR &&	expiredAuctions > 0)
 	{
 		while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
@@ -510,6 +512,6 @@ void CDataLoader::ExpireAHItems()
 	{
 		//	ShowMessage(CL_RED"SQL ERROR: %s\n\n" CL_RESET, SQL_ERROR);
 	}
-	ShowMessage("Sent %u expired auction house items back to sellers\n", expiredAuctions);
 
+	ShowMessage("Sent %u expired auction house items back to sellers\n", expiredAuctions);
 }

@@ -212,9 +212,11 @@ void CalculateStats(CMobEntity * PMob)
 
         if(isNM)
         {
-            PMob->health.maxhp *= 2.0;
-            if(PMob->GetMLevel() > 75){
-                PMob->health.maxhp *= 2.5;
+            PMob->health.maxhp *= 2;
+
+            if(PMob->GetMLevel() > 75)
+			{
+				PMob->health.maxhp = (int32)(PMob->health.maxhp * 2.5f);
             }
         }
 
@@ -226,11 +228,11 @@ void CalculateStats(CMobEntity * PMob)
 
     if(isNM)
     {
-        PMob->health.maxhp *= map_config.nm_hp_multiplier;
+		PMob->health.maxhp = (int32)(PMob->health.maxhp * map_config.nm_hp_multiplier);
     }
     else
     {
-        PMob->health.maxhp *= map_config.mob_hp_multiplier;
+		PMob->health.maxhp = (int32)(PMob->health.maxhp * map_config.mob_hp_multiplier);
     }
 
     bool hasMp = false;
@@ -280,11 +282,20 @@ void CalculateStats(CMobEntity * PMob)
             PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * scale) + 10;
             if(isNM)
             {
-                PMob->health.maxmp *= 1.5;
-                if(PMob->GetMLevel()>75)
+				PMob->health.maxmp = (int32)(PMob->health.maxhp * 1.5f);
+
+                if(PMob->GetMLevel() > 75)
                 {
-                    PMob->health.maxmp *= 1.5;
+					PMob->health.maxmp = (int32)(PMob->health.maxhp * 1.5f);
                 }
+
+				PMob->health.maxhp *= 2;
+
+				if (PMob->GetMLevel() > 75)
+				{
+					PMob->health.maxhp = (int32)(PMob->health.maxhp * 2.5f);
+				}
+
             }
         }
         else
@@ -294,11 +305,11 @@ void CalculateStats(CMobEntity * PMob)
 
         if(isNM)
         {
-            PMob->health.maxhp *= map_config.nm_mp_multiplier;
+			PMob->health.maxhp = (int32)(PMob->health.maxhp * map_config.nm_mp_multiplier);
         }
         else
         {
-            PMob->health.maxhp *= map_config.mob_mp_multiplier;
+			PMob->health.maxhp = (int32)(PMob->health.maxhp * map_config.mob_mp_multiplier);
         }
     }
 
@@ -370,23 +381,23 @@ void CalculateStats(CMobEntity * PMob)
 
     if(isNM)
     {
-        PMob->stats.STR *= (1.5 * map_config.nm_stat_multiplier);
-        PMob->stats.DEX *= (1.5 * map_config.nm_stat_multiplier);
-        PMob->stats.VIT *= (1.5 * map_config.nm_stat_multiplier);
-        PMob->stats.AGI *= (1.5 * map_config.nm_stat_multiplier);
-        PMob->stats.INT *= (1.5 * map_config.nm_stat_multiplier);
-        PMob->stats.MND *= (1.5 * map_config.nm_stat_multiplier);
-        PMob->stats.CHR *= (1.5 * map_config.nm_stat_multiplier);
+		PMob->stats.STR = (uint16)(PMob->stats.STR * (1.5f * map_config.nm_stat_multiplier));
+		PMob->stats.DEX = (uint16)(PMob->stats.DEX * (1.5f * map_config.nm_stat_multiplier));
+		PMob->stats.VIT = (uint16)(PMob->stats.VIT * (1.5f * map_config.nm_stat_multiplier));
+		PMob->stats.AGI = (uint16)(PMob->stats.AGI * (1.5f * map_config.nm_stat_multiplier));
+		PMob->stats.INT = (uint16)(PMob->stats.INT * (1.5f * map_config.nm_stat_multiplier));
+		PMob->stats.MND = (uint16)(PMob->stats.MND * (1.5f * map_config.nm_stat_multiplier));
+		PMob->stats.CHR = (uint16)(PMob->stats.CHR * (1.5f * map_config.nm_stat_multiplier));
     }
     else
     {
-        PMob->stats.STR *= map_config.mob_stat_multiplier;
-        PMob->stats.DEX *= map_config.mob_stat_multiplier;
-        PMob->stats.VIT *= map_config.mob_stat_multiplier;
-        PMob->stats.AGI *= map_config.mob_stat_multiplier;
-        PMob->stats.INT *= map_config.mob_stat_multiplier;
-        PMob->stats.MND *= map_config.mob_stat_multiplier;
-        PMob->stats.CHR *= map_config.mob_stat_multiplier;
+		PMob->stats.STR = (uint16)(PMob->stats.STR * map_config.nm_stat_multiplier);
+		PMob->stats.DEX = (uint16)(PMob->stats.DEX * map_config.nm_stat_multiplier);
+		PMob->stats.VIT = (uint16)(PMob->stats.VIT * map_config.nm_stat_multiplier);
+		PMob->stats.AGI = (uint16)(PMob->stats.AGI * map_config.nm_stat_multiplier);
+		PMob->stats.INT = (uint16)(PMob->stats.INT * map_config.nm_stat_multiplier);
+		PMob->stats.MND = (uint16)(PMob->stats.MND * map_config.nm_stat_multiplier);
+		PMob->stats.CHR = (uint16)(PMob->stats.CHR * map_config.nm_stat_multiplier);
     }
 
     // aggro mobs move around a bit more often
