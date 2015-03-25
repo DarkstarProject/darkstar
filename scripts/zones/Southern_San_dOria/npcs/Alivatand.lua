@@ -1,27 +1,91 @@
 -----------------------------------
---  Area: Southern San d`Oria
---   NPC: Alivatand
---  Type: Guildworkers Union Leather carft
--- @zone: 230
---  @pos -179 0 15
------------------------------------
--- Guild shops not implemented
-
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+--  Area: South San d'Oria
+--  NPC: Alivatand
+--  Type: Guildworker's Union Representative
+--  @zone: 235
+--  @pos -179.458 -1 15.857
 -----------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/shop");
-require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+require("scripts/globals/keyitems");
+require("scripts/globals/crafting");
+require("scripts/zones/Bastok_Markets/TextIDs");
+
+local keyitems = {
+    [0] = {
+        id = LEATHER_PURIFICATION,
+        rank = 3,
+        cost = 40000 
+    },
+    [1] = {
+        id = LEATHER_ENSORCELLMENT,
+        rank = 3,
+        cost = 40000 
+    },
+    [2] = {
+        id = TANNING,
+        rank = 3,
+        cost = 10000 
+    },
+    [3] = {
+        id = WAY_OF_THE_TANNER,
+        rank = 9,
+        cost = 20000 
+    }
+};
+
+local items = {
+    [2] = {
+        id = 15448, -- Tanner's Belt
+        rank = 3,
+        cost = 10000 
+    },
+    [3] = {
+        id = 14832, -- Tanner's Gloves
+        rank = 5,
+        cost = 70000 
+    },
+    [4] = {
+        id = 14396, -- Tanner's Apron
+        rank = 7,
+        cost = 100000 
+    },
+    [5] = {
+        id = 202, -- Golden Fleece
+        rank = 9,
+        cost = 150000 
+    },
+    [6] = {
+        id = 339, -- Tanner's Signboard
+        rank = 9,
+        cost = 200000 
+    },
+    [7] = {
+        id = 15823, -- Tanner's Ring
+        rank = 6,
+        cost = 80000 
+    },
+    [8] = {
+        id = 3668, -- Hide Stretcher
+        rank = 7,
+        cost = 50000 
+    },
+    [9] = {
+        id = 3329, -- Tanners' Emblem
+        rank = 9,
+        cost = 15000 
+    },
+}
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
+    unionRepresentativeTrade(player, npc, trade, 0x02b3, 5);
+	
+	-- "Flyers for Regine" conditional script
+	local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 	if (FlyerForRegine == 1) then
 		count = trade:getItemCount();
 		MagicFlyer = trade:hasItemQty(532,1);
@@ -36,36 +100,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:showText(npc,6692) -- is a temp textid 
-
-	--[[stock = {4242,200,1,		--plasma crystal
-			 4238,200,1,		--inferno crystal
-			 4239,200,1,		--glacier
-			 4240,200,1,		--cyclone
-			 4241,200,1,		--terra 
-			 4243,200,1,		--torrent
-			 4245,200,1,		--twilight
-			 4244,200,1,		--aurora 
-
-			 15448,10000,2,		--tanners belt
-			 2129,10000,2,		--tanning
---			 2016,40000,2,		--leather purification is a key item
---			 2017,40000,2,		--leather ensorcelment is a key item
-			 			 
-			 14832,70000,3,		-- tanners gloves
-			 
-			 15823,80000,3,		--tanners ring
-			 
-			 14396,100000,3,	--tanners apron
-			 
-			 3668,50000,3,		--Hide stretcher
-			 
-			 202,150000,3,		--golden fleece
-			 3329,15000,3,		--tanners emblem
-			 339,200000,3}		--tanners signboard
-	 
-	showNationShop(player, SANDORIA, stock);]]
-
+	unionRepresentativeTrigger(player, 5, 0x02b2, "guild_leathercraft", keyitems)
 end;
 
 -----------------------------------
@@ -81,10 +116,14 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,target)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
+     
+    if (csid == 0x02b2) then
+        unionRepresentativeTriggerFinish(player, option, target, 5, "guild_leathercraft", keyitems, items);
+    elseif(csid == 0x02b3) then
+        player:messageSpecial(GP_OBTAINED, option);
+    end
 end;
-
-
 
