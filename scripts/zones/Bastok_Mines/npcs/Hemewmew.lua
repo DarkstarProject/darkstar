@@ -7,6 +7,8 @@
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+require("scripts/globals/keyitems");
+require("scripts/globals/crafting");
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 local keyitems = {
