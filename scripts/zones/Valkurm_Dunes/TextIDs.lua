@@ -31,4 +31,4 @@ CONQUEST_BASE = 7044; -- Tallying conquest results...
 
 -- chocobo digging
 DIG_THROW_AWAY = 7216 -- You dig up ≺Possible Special Code: 01≻≺Possible Special Code: 01≻≺Possible Special Code: 01≻ ≺Possible Special Code: 01≻≺Possible Special Code: 05≻$≺BAD CHAR: 8280≻≺BAD CHAR: 80≻≺BAD CHAR: 80≻, but your inventory is full.
-DIG_FIND_NOTHING = 7218; -- You dig and you dig, but find nothing.≺Prompt≻
+FIND_NOTHING = 7218; -- You dig and you dig, but find nothing.≺Prompt≻

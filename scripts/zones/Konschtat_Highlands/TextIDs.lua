@@ -22,3 +22,7 @@ TELEPOINT_HAS_BEEN_SHATTERED = 7457; -- The telepoint has been shattered into a 
 
 -- conquest Base
 CONQUEST_BASE = 7030; -- Tallying conquest results...
+
+--chocobo digging
+DIG_THROW_AWAY = 7206;
+FIND_NOTHING = 7208;

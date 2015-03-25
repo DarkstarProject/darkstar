@@ -36,3 +36,7 @@ THE_WEIGHT_IS_TOO_MUCH = 7231; -- You find <item> and toss it into your bucket. 
  IT_LOOKS_LIKE_SOMEONE = 7233; -- It looks like someone has been digging here.
 YOUR_CLAMMING_CAPACITY = 7241; -- Your clamming capacity has increased to <number> ponzes!
   SOMETHING_JUMPS_INTO = 7244; -- Something jumps into your bucket and breaks through the bottom! All your shellfish are washed back into the sea...
+  
+--chocobo digging
+DIG_THROW_AWAY = 7258;
+FIND_NOTHING = 7260;
