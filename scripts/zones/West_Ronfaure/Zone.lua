@@ -39,7 +39,7 @@ local itemMap = {
                     { 4409, 12, DIGREQ_MODIFIER },
                     { 1188, 10, DIGREQ_MODIFIER },
                     { 4532, 12, DIGREQ_MODIFIER },
-                    {573, 23, DIGREQ_NIGHT },
+                    { 573, 23, DIGREQ_NIGHT },
                 };
 
 local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
