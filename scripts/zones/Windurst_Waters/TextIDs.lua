@@ -8,6 +8,9 @@
              HOMEPOINT_SET = 6619; -- Home point set!
     FISHING_MESSAGE_OFFSET = 6999; -- You can't fish here.
            COOKING_SUPPORT = 7098; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
+			NO_MORE_GP_ELIGIBLE =  7127; --You are not eligible to receive guild points at this time.
+		   GP_OBTAINED =  7132; --Obtained <<<Numeric Parameter 0>>> guild points.
+        NOT_HAVE_ENOUGH_GP =  7133; --You do not have enough guild points.
 
 -- Other
 NOTHING_OUT_OF_ORDINARY =  6555; -- There is nothing out of the ordinary here.

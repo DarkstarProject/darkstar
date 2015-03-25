@@ -10,6 +10,9 @@ FULL_INVENTORY_AFTER_TRADE = 10964; -- Try trading again after sorting your inve
              HOMEPOINT_SET = 11043; -- Home point set!
     FISHING_MESSAGE_OFFSET = 11525; -- You can't fish here.
            FISHING_SUPPORT = 11624; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
+		NO_MORE_GP_ELIGIBLE =  11653; --You are not eligible to receive guild points at this time.
+               GP_OBTAINED =  11658; --Obtained <<<Numeric Parameter 0>>> guild points.
+        NOT_HAVE_ENOUGH_GP =  11659; --You do not have enough guild points.
 
 -- Conquest System
 CONQUEST = 11838; -- You've earned conquest points!
