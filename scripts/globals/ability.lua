@@ -1,9 +1,9 @@
-﻿-----------------------------------
+-----------------------------------
 --
 -- 	ABILITIES
 --
 -----------------------------------
-	ABILITY_MIGHTY_STRIKES     = 0;
+    ABILITY_MIGHTY_STRIKES     = 0;
     ABILITY_HUNDRED_FISTS      = 1;
     ABILITY_BENEDICTION        = 2;
     ABILITY_MANAFONT           = 3;

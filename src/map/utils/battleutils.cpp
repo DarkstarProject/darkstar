@@ -975,7 +975,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
 		}
     }
     //check weapon for additional effects
-    else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0 &&
+    else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0 && PAttacker->GetMLevel() >= weapon->getReqLvl() &&
         luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
     {
         if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
@@ -3657,8 +3657,12 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 	}
 
 	// target has perfect dodge - do not go any further
-	if (PVictim->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
+	if (PVictim->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE, 0)) {
+
+		// Claim the mob.
+		battleutils::ClaimMob(PVictim, PAttacker);
 		return 0;
+	}
 
 
 	// multihit's just multiply jump damage
@@ -3748,8 +3752,12 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 	}
 
 	// if damage is 0 then jump missed
-	if (totalDamage == 0)
+	if (totalDamage == 0) {
+
+		// Claim the mob.
+		battleutils::ClaimMob(PVictim, PAttacker);
 		return 0;
+	}
 
 
 	// high jump removes %50 emnity + more from any gear mods
