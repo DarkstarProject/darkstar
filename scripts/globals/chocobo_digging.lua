@@ -16,10 +16,6 @@ DIGREQ_NIGHT    = 8;
 local DIGABILITY_BURROW = 1;
 local DIGABILITY_BORE   = 2;
 
-local 
-
-
-
 local function canDig(player)
     
     local DigCount = player:getVar('[DIG]DigCount');
@@ -171,8 +167,10 @@ function chocoboDig(player, itemMap, precheck, messageArray, zoneWeather)
                 if (ItemID >= 4096 or ItemID <= 4103) then
                   if (zoneWeather == "WEATHER_DOUBLE") then
                     ItemID = ItemID + 8;
-                  else
+                  elseif (zoneWeather == "WEATHER_SINGLE") then
                     ItemID = ItemID;
+                  else
+                    ItemID = 0;
                   end
                 end
                 
