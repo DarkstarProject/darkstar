@@ -84,8 +84,8 @@ local items = {
         id = 3325,
         rank = 9,
         cost = 15000 
-    },
-}
+    }
+};
 
 -----------------------------------
 -- onTrade Action
@@ -100,7 +100,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 3, 0x154, "guild_goldsmithing", keyitems)
+	unionRepresentativeTrigger(player, 3, 0x154, "guild_goldsmithing", keyitems);
 end;
 
 -----------------------------------

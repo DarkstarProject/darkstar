@@ -75,23 +75,23 @@ local items = {
         rank = 9,
         cost = 15000 
     }
-}
+};
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
-function onTrade(player,npc,trade)
-    unionRepresentativeTrade(player, npc, trade, 0x02b3, 5);
-	
+function onTrade(player,npc,trade)	
 	-- "Flyers for Regine" conditional script
 	local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(532,1);
+		local count = trade:getItemCount();
+		local MagicFlyer = trade:hasItemQty(532,1);
 		if (MagicFlyer == true and count == 1) then
 			player:messageSpecial(FLYER_REFUSED);
 		end
+	else
+		unionRepresentativeTrade(player, npc, trade, 0x02b3, 5);
 	end
 end;
 
@@ -100,7 +100,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 5, 0x02b2, "guild_leathercraft", keyitems)
+	unionRepresentativeTrigger(player, 5, 0x02b2, "guild_leathercraft", keyitems);
 end;
 
 -----------------------------------
