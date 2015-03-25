@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: Northern San d'Oria
---  NPC: Macuille
+--  NPC: Macuillie
 --  Type: Guildworker's Union Representative
 --  @zone: 231
 --  @pos -191.738 11.001 138.656
@@ -80,7 +80,7 @@ local items = {
         rank = 9,
         cost = 15000 
     }
-}
+};
 
 -----------------------------------
 -- onTrade Action
@@ -95,7 +95,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 2, 0x02d9, "guild_smithing", keyitems)
+	unionRepresentativeTrigger(player, 2, 0x02d9, "guild_smithing", keyitems);
 end;
 
 -----------------------------------
