@@ -322,6 +322,8 @@ function CharCreate(player)
 
 	-- Needs Moghouse Intro
 	player:setVar("MoghouseExplication",1);
+    
+    player:setVar("[GUILD]currentGuild",-1);
 
 end;
 

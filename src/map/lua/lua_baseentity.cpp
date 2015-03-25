@@ -90,6 +90,7 @@
 #include "../utils/charutils.h"
 #include "../utils/instanceutils.h"
 #include "../utils/itemutils.h"
+#include "../guild.h"
 #include "../utils/guildutils.h"
 #include "../utils/puppetutils.h"
 #include "../utils/jailutils.h"
@@ -741,6 +742,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
+    bool silence = false;
     uint16 itemID = (uint16)lua_tointeger(L,1);
     uint32 quantity = 1;
     uint16 augment0 = 0; uint8 augment0val = 0;
@@ -749,6 +751,8 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
     uint16 augment3 = 0; uint8 augment3val = 0;
     uint16 trialNumber = 0;
 
+    if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
+        silence = (uint32)lua_toboolean(L, 2);
     if( !lua_isnil(L,2) && lua_isnumber(L,2) )
         quantity = (uint32)lua_tointeger(L,2);
 
@@ -792,7 +796,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
                 if (augment3 != 0) ((CItemArmor*)PItem)->setAugment(3, augment3, augment3val);
                 if (trialNumber != 0) ((CItemArmor*)PItem)->setTrialNumber(trialNumber);
             }
-            SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PItem);
+            SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PItem, silence);
         }
         else
         {
@@ -2877,6 +2881,62 @@ inline int32 CLuaBaseEntity::sendGuild(lua_State* L)
 
 /************************************************************************
 *                                                                       *
+*  Returns item ID and daily remaining points for a guild's GP daily    *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getCurrentGPItem(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint16 GuildID = (uint16)lua_tonumber(L, 1);
+
+    CGuild* PGuild = guildutils::GetGuild(GuildID);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    auto GPItem = PGuild->getDailyGPItem(PChar);
+
+    lua_pushinteger(L, GPItem.first);
+    lua_pushinteger(L, GPItem.second);
+
+    return 2;
+}
+
+/************************************************************************
+*                                                                       *
+*  Checks if traded item is correct GP item, and adds the points        *
+*   earned.  Returns the number of consumed items in the stack          *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addGuildPoints(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    uint16 GuildID = (uint16)lua_tonumber(L, 1);
+    uint16 slotID = (uint16)lua_tonumber(L, 2);
+
+    CGuild* PGuild = guildutils::GetGuild(GuildID);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    int16 points = 0;
+    uint8 items = PGuild->addGuildPoints(PChar, PChar->TradeContainer->getItem(slotID), points);
+
+    lua_pushinteger(L, items);
+    lua_pushinteger(L, points);
+
+    return 2;
+}
+
+/************************************************************************
+*                                                                       *
 *  Получаем временные переменные, необходимые для логики поисков        *
 *                                                                       *
 ************************************************************************/
@@ -3309,7 +3369,7 @@ inline int32 CLuaBaseEntity::confirmTrade(lua_State *L)
         if(PChar->TradeContainer->getInvSlotID(slotID) != 0xFF && PChar->TradeContainer->getConfirmedStatus(slotID))
         {
             uint8 invSlotID = PChar->TradeContainer->getInvSlotID(slotID);
-            int32 quantity  = PChar->TradeContainer->getQuantity(slotID);
+            int32 quantity = dsp_max(PChar->TradeContainer->getQuantity(slotID), PChar->TradeContainer->getConfirmedStatus(slotID));
 
             charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -quantity);
         }
@@ -9643,6 +9703,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearTargID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendMenu),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendGuild),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentGPItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addGuildPoints),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setHomePoint),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,tradeComplete),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,confirmTrade),

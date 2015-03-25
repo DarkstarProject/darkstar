@@ -68,7 +68,7 @@ uint32 CTradeContainer::getQuantity(uint8 slotID)
 	return 0;
 }
 
-bool CTradeContainer::getConfirmedStatus(uint8 slotID)
+uint8 CTradeContainer::getConfirmedStatus(uint8 slotID)
 {
     if (slotID < m_PItem.size())
 	{
@@ -149,11 +149,11 @@ void CTradeContainer::setQuantity(uint8 slotID, uint32 quantity)
 	return;
 }
 
-void CTradeContainer::setConfirmedStatus(uint8 slotID, bool confirmed)
+void CTradeContainer::setConfirmedStatus(uint8 slotID, uint8 amount)
 {
-    if (slotID < m_PItem.size())
+    if (slotID < m_PItem.size() && m_PItem[slotID])
 	{
-		m_confirmed[slotID] = true;
+		m_confirmed[slotID] = dsp_min(amount, m_PItem[slotID]->getQuantity());
 	}
 }
 
@@ -182,7 +182,7 @@ void CTradeContainer::setSize(uint8 size)
     m_itemID.resize(size, 0);
     m_slotID.resize(size, 0xFF);
     m_quantity.resize(size, 0);
-    m_confirmed.resize(size, false);
+    m_confirmed.resize(size, 0);
 }
 
 uint8 CTradeContainer::getItemsCount()
@@ -219,5 +219,5 @@ void CTradeContainer::Clean()
     m_quantity.clear();
     m_quantity.resize(CONTAINER_SIZE, 0);
     m_confirmed.clear();
-    m_confirmed.resize(CONTAINER_SIZE, false);
+    m_confirmed.resize(CONTAINER_SIZE, 0);
 }
