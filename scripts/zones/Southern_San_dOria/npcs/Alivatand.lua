@@ -6,10 +6,10 @@
 --  @pos -179.458 -1 15.857
 -----------------------------------
 
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Bastok_Markets/TextIDs");
+require("scripts/zones/Southern_San_dOria/TextIDs");
 
 local keyitems = {
     [0] = {
