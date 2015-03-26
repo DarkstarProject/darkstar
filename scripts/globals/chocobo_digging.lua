@@ -205,7 +205,7 @@ function chocoboDig(player, itemMap, precheck, messageArray, zoneWeather)
                 
                 -- If the item is an elemental ore, we need to check if the requirements are met
                 
-                if ((ItemID >= 1255 and ItemID <= 1262) and weather > 1 and (moon >= 10 and moon <= 40) and SkillRank >= 5) then
+                if ((ItemID >= 1255 and ItemID <= 1262) and weather > 1 and (moon >= 10 and moon <= 40) and SkillRank >= 7) then
                   if (ItemID == 1255 and day = 0) then
                     ItemID = ItemID;
                   elseif (ItemID == 1256 and day = 1) then
