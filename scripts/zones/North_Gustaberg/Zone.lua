@@ -4,12 +4,75 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
+package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 
 require("scripts/zones/North_Gustaberg/TextIDs");
 require("scripts/globals/zone");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/conquest");
+require("scripts/globals/chocobo_digging");
+
+-----------------------------------
+-- Chocobo Digging vars
+-----------------------------------
+local itemMap = {
+                    -- itemid, abundance, requirement
+                    { 880, 226, DIGREQ_NONE },
+                    { 17396, 264, DIGREQ_NONE },
+                    { 17296, 176, DIGREQ_NONE },
+                    { 847, 75, DIGREQ_NONE },
+                    { 864, 59, DIGREQ_NONE },
+                    { 846, 75, DIGREQ_NONE },
+                    { 869, 170, DIGREQ_NONE },
+                    { 868, 83, DIGREQ_NONE },
+                    { 749, 63, DIGREQ_NONE },
+                    { 644, 60, DIGREQ_NONE },
+                    { 645, 3, DIGREQ_NONE },
+                    { 4096, 100, DIGREQ_NONE },
+                    { 4097, 100, DIGREQ_NONE },
+                    { 4098, 100, DIGREQ_NONE },
+                    { 4099, 100, DIGREQ_NONE },
+                    { 4100, 100, DIGREQ_NONE },
+                    { 4101, 100, DIGREQ_NONE },
+                    { 4102, 100, DIGREQ_NONE },
+                    { 4103, 100, DIGREQ_NONE },
+                    { 4545, 150, DIGREQ_BURROW },
+                    { 636, 50, DIGREQ_BURROW },
+                    { 617, 100, DIGREQ_BORE },
+                    { 4570, 10, DIGREQ_MODIFIER },
+                    { 4487, 11, DIGREQ_MODIFIER },
+                    { 4409, 12, DIGREQ_MODIFIER },
+                    { 1188, 10, DIGREQ_MODIFIER },
+                    { 4532, 12, DIGREQ_MODIFIER },
+                    {1236, 3, DIGREQ_NIGHT },
+                };
+
+local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+
+-----------------------------------
+-- onChocoboDig
+-----------------------------------
+function onChocoboDig(player, precheck)
+
+    -- Let's get the weather of the zone
+
+    local weather = player:getWeather();
+
+    if (weather ~= nil) then
+      if (weather >= 0 and weather <= 4) then
+        zoneWeather = "WEATHER_NONE";
+      elseif (weather > 4 and weather % 2 ~= 0) then -- If the weather is 5, 7, 9, 11, 13, 15, 17 or 19, checking for odd values
+        zoneWeather = "WEATHER_DOUBLE";
+      else
+        zoneWeather = "WEATHER_SINGLE";
+      end
+    else
+      zoneWeather = "WEATHER_NONE";
+    end
+    
+    return chocoboDig(player, itemMap, precheck, messageArray, zoneWeather);
+end;
 
 -----------------------------------
 -- onInitialize
