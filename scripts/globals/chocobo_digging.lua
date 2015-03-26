@@ -163,6 +163,28 @@ function chocoboDig(player, itemMap, precheck, messageArray, zoneWeather)
                     ItemID = RItemID;
                 end
                 
+                -- Let's see if the item should be obtained in this zone with this weather
+                
+                if ((weather == 4 or weather == 5) and ItemID == 4096) then
+                  ItemID = ItemID;
+                elseif ((weather == 6 or weather == 7) and ItemID == 4097) then
+                  ItemID = ItemID;
+                elseif ((weather == 8 or weather == 9) and ItemID == 4098) then
+                  ItemID = ItemID;
+                elseif ((weather == 10 or weather == 11) and ItemID == 4099) then
+                  ItemID = ItemID;
+                elseif ((weather == 12 or weather == 13) and ItemID == 4100) then
+                  ItemID = ItemID;
+                elseif ((weather == 14 or weather == 15) and ItemID == 4101) then
+                  ItemID = ItemID;
+                elseif ((weather == 16 or weather == 17) and ItemID == 4102) then
+                  ItemID = ItemID;
+                elseif ((weather == 18 or weather == 19) and ItemID == 4103) then
+                  ItemID = ItemID;
+                else
+                  ItemID = 0;
+                endif
+                
                 -- If the item is a crystal, we need to check for a double weather effect (Which results in a crystal cluster, not a single crystal)
                 if (ItemID >= 4096 or ItemID <= 4103) then
                   if (zoneWeather == "WEATHER_DOUBLE") then
