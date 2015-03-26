@@ -204,15 +204,15 @@ function unionRepresentativeTrigger(player, guildID, csid, currency, keyitems)
     local cap = (rank + 1) * 10;
     local kibits = 0;
     
-    for bit,ki in pairs(keyitems) do
+    for kbit,ki in pairs(keyitems) do
         if (rank >= ki.rank) then
             if not player:hasKeyItem(ki.id) then
-                kibits = bit.bor(kibits, bit.lshift(1,bit));
+                kibits = bit.bor(kibits, bit.lshift(1,kbit));
             end
         end
     end
     
-    player:startEvent(csid, player:getCurrency(currency), player:getVar('[GUILD]currentGuild') - 1, gpItem, remainingPoints, cap, 0, keyitems);
+    player:startEvent(csid, player:getCurrency(currency), player:getVar('[GUILD]currentGuild') - 1, gpItem, remainingPoints, cap, 0, kibits);
 end
 
 function unionRepresentativeTriggerFinish(player, option, target, guildID, currency, keyitems, items)

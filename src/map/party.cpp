@@ -763,6 +763,18 @@ void CParty::ReloadParty()
 				j++;
 			}
 		}
+        
+        if (m_PSyncTarget && !(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC)) && PChar->getZone() == m_PSyncTarget->getZone() && m_PSyncTarget->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) && m_PSyncTarget->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC)->GetDuration() == 0)
+        {
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, PChar->PParty->GetSyncTarget()->GetMLevel(), 540));
+            PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
+                EFFECT_LEVEL_SYNC,
+                EFFECT_LEVEL_SYNC,
+                m_PSyncTarget->GetMLevel(),
+                0,
+                0), true);
+            PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
+        }
 	}
 }
 

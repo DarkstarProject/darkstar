@@ -1,8 +1,8 @@
 -----------------------------------
 --  Area: Metalworks
---   NPC: Lorena
+--  NPC: Lorena
 --  Type: Blacksmithing Guildworker's Union Representative
--- @zone: 237
+--  @zone: 237
 --  @pos -104.990 1 30.995
 -----------------------------------
 
@@ -80,8 +80,8 @@ local items = {
         id = 3324,
         rank = 9,
         cost = 15000 
-    },
-}
+    }
+};
 
 -----------------------------------
 -- onTrade Action
@@ -96,7 +96,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 2, 0x320, "guild_smithing", keyitems)
+	unionRepresentativeTrigger(player, 2, 0x320, "guild_smithing", keyitems);
 end;
 
 -----------------------------------

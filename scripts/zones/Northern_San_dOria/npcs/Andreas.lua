@@ -80,7 +80,7 @@ local items = {
         rank = 9,
         cost = 15000 
     }
-}
+};
 
 -----------------------------------
 -- onTrade Action
@@ -95,7 +95,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 1, 0x02db, "guild_woodworking", keyitems)
+	unionRepresentativeTrigger(player, 1, 0x02db, "guild_woodworking", keyitems);
 end;
 
 -----------------------------------
