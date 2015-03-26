@@ -24,7 +24,7 @@ local function canDig(player)
     local ZoneInTime = player:getLocalVar('[DIG]ZoneInTime');
     local CurrentTime = os.time(os.date('!*t'));
 
-    local SkillRank = player:getSkillRank(SKILL_RID);
+    local SkillRank = player:getSkillRank(59);
 
     -- base delay -5 for each rank
     local DigDelay = 16 - (SkillRank * 5);
@@ -45,10 +45,10 @@ end;
 
 local function calculateSkillUp(player)
 
-    -- SKILL_RID cause we're gonna use SKILL_DIG for burrow/bore
-    local SkillRank = player:getSkillRank(SKILL_RID);
+    -- 59 cause we're gonna use SKILL_DIG for burrow/bore
+    local SkillRank = player:getSkillRank(59);
     local MaxSkill = (SkillRank + 1) * 100;
-    local RealSkill = player:getSkillLevel(SKILL_RID);
+    local RealSkill = player:getSkillLevel(59);
 
     local SkillIncrement = 1;
 
@@ -64,18 +64,18 @@ local function calculateSkillUp(player)
             end
 
             -- skill up!
-            player:setSkillLevel(SKILL_RID, RealSkill + SkillIncrement);
+            player:setSkillLevel(59, RealSkill + SkillIncrement);
 
             -- gotta update the skill rank and push packet
             for i = 0, 10, 1 do
                 if (SkillRank == i and RealSkill >= ((SkillRank * 100) + 100)) then
-                    player:setSkillRank(SKILL_RID, SkillRank + 1);
+                    player:setSkillRank(59, SkillRank + 1);
                 end
             end
 
             if ((RealSkill / 10) < ((RealSkill + SkillIncrement) / 10)) then
                -- todo: get this working correctly (apparently the lua binding updates RealSkills and WorkingSkills)
-               player:setSkillLevel(SKILL_RID, SkillRank + 0x20);
+               player:setSkillLevel(59, SkillRank + 0x20);
             end
         end
     end
@@ -169,7 +169,7 @@ function chocoboDig(player, itemMap, precheck, messageArray)
 
                 local Mod = player:getMod(MOD_EGGHELM);
 
-                if ((RItemReq == DIGREQ_NONE) or (RItemReq == DIGREQ_BURROW and DigAbility == DIGABILITY_BURROW) or (RItemReq == DIGREQ_BORE and DigAbility == DIGABILITY_BORE) or (RItemReq == DIGREQ_MODIFIER and Mod) or (RItemReq == DIGREQ_NIGHT and VanadielTOTD() == TIME_NIGHT)) then
+                if ((RItemReq == DIGREQ_NONE) or (RItemReq == DIGREQ_BURROW and DigAbility == DIGABILITY_BURROW) or (RItemReq == DIGREQ_BORE and DigAbility == DIGABILITY_BORE) or (RItemReq == DIGREQ_MODIFIER and Mod == 1) or (RItemReq == DIGREQ_NIGHT and VanadielTOTD() == TIME_NIGHT)) then
                     ItemID = RItemID;
                 else
                     ItemID = 0;
