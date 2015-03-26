@@ -136,11 +136,17 @@ function chocoboDig(player, itemMap, precheck, messageArray, zoneWeather)
             
             local ItemID = 0;
             local weather = player:getWeather();
+            local moon = VanadielMoonPhase();
+            local day = VanadielDayElement();
             
             -- item and DIG_ABUNDANCE_BONUS 3 digits, dont wanna get left out
             Chance = Chance * 100;
             
             -- We need to check for moon phase, too. 45-60% results in a much lower dig chance than the rest of the phases
+            
+            if (moon >= 45 and moon <=60) then
+              Chance = Chance * .5;
+            end
 
             if (Chance < (RItemAbundance + DIG_ABUNDANCE_BONUS)) then
             
@@ -184,7 +190,7 @@ function chocoboDig(player, itemMap, precheck, messageArray, zoneWeather)
                   ItemID = ItemID;
                 else
                   ItemID = 0;
-                endif
+                end
                 
                 -- If the item is a crystal, we need to check for a double weather effect (Which results in a crystal cluster, not a single crystal)
                 if (ItemID >= 4096 or ItemID <= 4103) then
@@ -197,6 +203,28 @@ function chocoboDig(player, itemMap, precheck, messageArray, zoneWeather)
                   end
                 end
                 
+                -- If the item is an elemental ore, we need to check if the requirements are met
+                
+                if ((ItemID >= 1255 and ItemID <= 1262) and weather > 1 and (moon >= 10 and moon <= 40) and SkillRank >= 5) then
+                  if (ItemID == 1255 and day = 0) then
+                    ItemID = ItemID;
+                  elseif (ItemID == 1256 and day = 1) then
+                    ItemID = ItemID;
+                  elseif (ItemID == 1257 and day = 2) then
+                   ItemID = ItemID;
+                  elseif (ItemID == 1258 and day = 3) then
+                   ItemID = ItemID;
+                  elseif (ItemID == 1259 and day = 4) then
+                    ItemID = ItemID;
+                  elseif (ItemID == 1260 and day = 5) then
+                   ItemID = ItemID;
+                  elseif (ItemID == 1261 and day = 6) then
+                   ItemID = ItemID;
+                  elseif (ItemID == 1262 and day = 7) then
+                    ItemID = ItemID;
+                  else
+                    ItemID = 0;
+                end            
             end
             
             -- make sure we have a valid item
