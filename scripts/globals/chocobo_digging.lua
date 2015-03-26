@@ -221,10 +221,11 @@ function chocoboDig(player, itemMap, precheck, messageArray)
                 player:messageText(player, messageArray[2], false);
             end
 
-
+		end
         end
         calculateSkillUp(player);
         updatePlayerDigCount(player, 1);
-    end
+    
+	end
     return true;
 end;
