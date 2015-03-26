@@ -112,7 +112,7 @@ function updateZoneDigCount(zone, increment)
 end;
 
 
-function chocoboDig(player, itemMap, precheck, messageArray, zoneWeather)
+function chocoboDig(player, itemMap, precheck, messageArray)
     
     -- make sure the player can dig before going any further
     -- (and also cause i need a return before core can go any further with this)
@@ -139,6 +139,18 @@ function chocoboDig(player, itemMap, precheck, messageArray, zoneWeather)
             local moon = VanadielMoonPhase();
             local day = VanadielDayElement();
             
+			if (weather ~= nil) then
+				if (weather >= 0 and weather <= 4) then
+					zoneWeather = "WEATHER_NONE";
+				elseif (weather > 4 and weather % 2 ~= 0) then -- If the weather is 5, 7, 9, 11, 13, 15, 17 or 19, checking for odd values
+					zoneWeather = "WEATHER_DOUBLE";
+				else
+					zoneWeather = "WEATHER_SINGLE";
+				end
+			else
+				zoneWeather = "WEATHER_NONE";
+			end
+			
             -- item and DIG_ABUNDANCE_BONUS 3 digits, dont wanna get left out
             Chance = Chance * 100;
             

@@ -61,24 +61,7 @@ local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
 -- onChocoboDig
 -----------------------------------
 function onChocoboDig(player, precheck)
-
-    -- Let's get the weather of the zone
-
-    local weather = player:getWeather();
-
-    if (weather ~= nil) then
-      if (weather >= 0 and weather <= 4) then
-        zoneWeather = "WEATHER_NONE";
-      elseif (weather > 4 and weather % 2 ~= 0) then -- If the weather is 5, 7, 9, 11, 13, 15, 17 or 19, checking for odd values
-        zoneWeather = "WEATHER_DOUBLE";
-      else
-        zoneWeather = "WEATHER_SINGLE";
-      end
-    else
-      zoneWeather = "WEATHER_NONE";
-    end
-    
-    return chocoboDig(player, itemMap, precheck, messageArray, zoneWeather);
+    return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
 -----------------------------------
