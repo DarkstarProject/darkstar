@@ -138,17 +138,17 @@ function chocoboDig(player, itemMap, precheck, messageArray)
             local moon = VanadielMoonPhase();
             local day = VanadielDayElement();
 
-			if (weather ~= nil) then
-				if (weather >= 0 and weather <= 4) then
-					zoneWeather = "WEATHER_NONE";
-				elseif (weather > 4 and weather % 2 ~= 0) then -- If the weather is 5, 7, 9, 11, 13, 15, 17 or 19, checking for odd values
-					zoneWeather = "WEATHER_DOUBLE";
-				else
-					zoneWeather = "WEATHER_SINGLE";
-				end
-			else
-				zoneWeather = "WEATHER_NONE";
-			end
+            if (weather ~= nil) then
+                if (weather >= 0 and weather <= 4) then
+                    zoneWeather = "WEATHER_NONE";
+                elseif (weather > 4 and weather % 2 ~= 0) then -- If the weather is 5, 7, 9, 11, 13, 15, 17 or 19, checking for odd values
+                    zoneWeather = "WEATHER_DOUBLE";
+                else
+                    zoneWeather = "WEATHER_SINGLE";
+                end
+            else
+                zoneWeather = "WEATHER_NONE";
+            end
 
             -- item and DIG_ABUNDANCE_BONUS 3 digits, dont wanna get left out
             Chance = Chance * 100;
@@ -171,46 +171,46 @@ function chocoboDig(player, itemMap, precheck, messageArray)
 
                 if ((RItemReq == DIGREQ_NONE) or (RItemReq == DIGREQ_BURROW and DigAbility == DIGABILITY_BURROW) or (RItemReq == DIGREQ_BORE and DigAbility == DIGABILITY_BORE) or (RItemReq == DIGREQ_MODIFIER and Mod) or (RItemReq == DIGREQ_NIGHT and VanadielTOTD() == TIME_NIGHT)) then
                     ItemID = RItemID;
-				else 
-					ItemID = 0;
+                else 
+                    ItemID = 0;
                 end
 
                 -- Let's see if the item should be obtained in this zone with this weather
-	local crystalMap = {
-			0, -- fire crystal
-			8, -- fire cluster
-			5, -- water crystal
-			13, -- water cluster
-			3, -- earth crystal
-			11, -- earth cluster
-			2, -- wind crystal
-			10, -- wind cluster
-			1, -- ice crystal
-			9, -- ice cluster
-			4, -- lightning crystal
-			12, -- lightning cluster
-			6, -- light crystal
-			14, -- light cluster
-			7, -- dark crystal 
-			15, -- dark cluster
-	};
+    local crystalMap = {
+            0, -- fire crystal
+            8, -- fire cluster
+            5, -- water crystal
+            13, -- water cluster
+            3, -- earth crystal
+            11, -- earth cluster
+            2, -- wind crystal
+            10, -- wind cluster
+            1, -- ice crystal
+            9, -- ice cluster
+            4, -- lightning crystal
+            12, -- lightning cluster
+            6, -- light crystal
+            14, -- light cluster
+            7, -- dark crystal 
+            15, -- dark cluster
+    };
                 if (weather >= 4 and ItemID == 4096) then
                   ItemID = ItemID + crystalMap[weather-3];
-				end
-	local oreMap = {
-			0, -- fire ore
-			3, -- earth ore
-			5, -- water ore
-			2, -- wind ore
-			1, -- ice ore
-			4, -- lightning ore
-			6, -- light ore
-			7, -- dark ore
-	};
+                end
+    local oreMap = {
+            0, -- fire ore
+            3, -- earth ore
+            5, -- water ore
+            2, -- wind ore
+            1, -- ice ore
+            4, -- lightning ore
+            6, -- light ore
+            7, -- dark ore
+    };
                 -- If the item is an elemental ore, we need to check if the requirements are met
                 if (ItemID == 1255 and weather > 1 and (moon >= 10 and moon <= 40) and SkillRank >= 7) then
-				ItemID = ItemID + oreMap[day-1];
-				end
+                ItemID = ItemID + oreMap[day-1];
+                end
 
             -- make sure we have a valid item
             if (ItemID ~= 0) then
@@ -230,10 +230,10 @@ function chocoboDig(player, itemMap, precheck, messageArray)
                 player:messageText(player, messageArray[2], false);
             end
 
-		end
+        end
         calculateSkillUp(player);
         updatePlayerDigCount(player, 1);
     end
     return true;
-	end
+    end
 end;
