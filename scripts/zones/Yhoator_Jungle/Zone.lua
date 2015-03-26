@@ -27,7 +27,7 @@ local itemMap = {
                     { 4450, 47, DIGREQ_NONE },
                     { 703, 26, DIGREQ_NONE },
                     { 4449, 12, DIGREQ_NONE },
-                    { 4096, 100, DIGREQ_NONE },
+                    { 4096, 100, DIGREQ_NONE },  -- all crystals
                     { 4097, 100, DIGREQ_NONE },
                     { 4098, 100, DIGREQ_NONE },
                     { 4099, 100, DIGREQ_NONE },
