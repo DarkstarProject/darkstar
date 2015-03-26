@@ -171,7 +171,7 @@ function chocoboDig(player, itemMap, precheck, messageArray)
 
                 if ((RItemReq == DIGREQ_NONE) or (RItemReq == DIGREQ_BURROW and DigAbility == DIGABILITY_BURROW) or (RItemReq == DIGREQ_BORE and DigAbility == DIGABILITY_BORE) or (RItemReq == DIGREQ_MODIFIER and Mod) or (RItemReq == DIGREQ_NIGHT and VanadielTOTD() == TIME_NIGHT)) then
                     ItemID = RItemID;
-                else 
+                else
                     ItemID = 0;
                 end
 
@@ -191,7 +191,7 @@ function chocoboDig(player, itemMap, precheck, messageArray)
             12, -- lightning cluster
             6, -- light crystal
             14, -- light cluster
-            7, -- dark crystal 
+            7, -- dark crystal
             15, -- dark cluster
     };
                 if (weather >= 4 and ItemID == 4096) then
@@ -215,15 +215,10 @@ function chocoboDig(player, itemMap, precheck, messageArray)
             -- make sure we have a valid item
             if (ItemID ~= 0) then
                 -- make sure we have enough room for the item
-                if (player:getFreeSlotsCount() > 0) then
-                    -- add the item
-                    player:addItem(ItemID);
-                    player:messageSpecial(messageArray[3], ItemID);
-                    
-                    updateZoneDigCount(player:getZoneID(), 1);
+                if(player:addItem(ItemID))then
+                player:essageSpecisl(ITEM_OBTAINED, ItemID);
                 else
-                    -- inventory is full, throw item away
-                    player:messageSpecial(messageArray[1], ItemID);
+                player:messageSpecial(DIG_THROWAWAY);
                 end
             else
                 -- beat the dig chance, but not the item chance
