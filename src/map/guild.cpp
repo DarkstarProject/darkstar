@@ -81,15 +81,11 @@ uint8 CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem, int16& pointsAdde
 {
     uint8 rank = PChar->RealSkills.rank[m_id + 48];
 
-    if (rank >= 3 && PItem)
-    {
-        int16 curPoints = 0;
-        int ret = Sql_Query(SqlHandle, "SELECT value FROM char_vars WHERE varname = '[GUILD]daily_points' AND charid = %u;", PChar->id);
+    rank = dsp_cap(rank, 3, 9);
 
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-            curPoints = Sql_GetIntData(SqlHandle, 0);
-        }
+    if (PItem)
+    {
+        int32 curPoints = charutils::GetVar(PChar, "[GUILD]daily_points");
 
         if (curPoints >= 0)
         {
@@ -118,23 +114,16 @@ std::pair<uint16, uint16> CGuild::getDailyGPItem(CCharEntity* PChar)
 {
     uint8 rank = PChar->RealSkills.rank[m_id + 48];
 
-    if (rank >= 3)
+    rank = dsp_cap(rank, 3, 9);
+
+    auto GPItem = m_GPItems[rank - 3];
+    int32 curPoints = charutils::GetVar(PChar, "[GUILD]daily_points");
+    if (curPoints == -1)
     {
-        auto GPItem = m_GPItems[rank - 3];
-        int16 curPoints = 0;
-        int ret = Sql_Query(SqlHandle, "SELECT value FROM char_vars WHERE varname = '[GUILD]daily_points' AND charid = %u;", PChar->id);
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-            curPoints = Sql_GetIntData(SqlHandle, 0);
-        }
-        if (curPoints == -1)
-        {
-            return std::make_pair(GPItem[0].item->getID(), 0);
-        }
-        else
-        {
-            return std::make_pair(GPItem[0].item->getID(), GPItem[0].maxpoints - curPoints);
-        }
+        return std::make_pair(GPItem[0].item->getID(), 0);
     }
-    return std::make_pair(0, 0);
+    else
+    {
+        return std::make_pair(GPItem[0].item->getID(), GPItem[0].maxpoints - curPoints);
+    }
 }

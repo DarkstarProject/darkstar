@@ -2951,18 +2951,8 @@ inline int32 CLuaBaseEntity::getVar(lua_State *L)
     int32 value = 0;
 
     const int8* varname  = lua_tostring(L, 1);
-    const int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;";
 
-    int32 ret = Sql_Query(SqlHandle,fmtQuery,m_PBaseEntity->id, varname);
-
-    if (ret != SQL_ERROR &&
-        Sql_NumRows(SqlHandle) != 0 &&
-        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-    {
-        value = (int32)Sql_GetIntData(SqlHandle,0);
-    }
-
-    lua_pushinteger(L, value);
+    lua_pushinteger(L, charutils::GetVar((CCharEntity*)m_PBaseEntity, varname));
     return 1;
 }
 
