@@ -230,7 +230,7 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)557,-1,441,128,0x21
+function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
    if(csid == 0x0064 and option == 1)then
