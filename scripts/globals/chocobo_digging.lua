@@ -171,6 +171,8 @@ function chocoboDig(player, itemMap, precheck, messageArray)
 
                 if ((RItemReq == DIGREQ_NONE) or (RItemReq == DIGREQ_BURROW and DigAbility == DIGABILITY_BURROW) or (RItemReq == DIGREQ_BORE and DigAbility == DIGABILITY_BORE) or (RItemReq == DIGREQ_MODIFIER and Mod) or (RItemReq == DIGREQ_NIGHT and VanadielTOTD() == TIME_NIGHT)) then
                     ItemID = RItemID;
+				else 
+					ItemID = 0;
                 end
 
                 -- Let's see if the item should be obtained in this zone with this weather
@@ -194,8 +196,6 @@ function chocoboDig(player, itemMap, precheck, messageArray)
 	};
                 if (weather >= 4 and ItemID == 4096) then
                   ItemID = ItemID + crystalMap[weather-3];
-				else
-				  ItemID = 0;
 				end
 	local oreMap = {
 			0, -- fire ore
