@@ -209,7 +209,7 @@ function chocoboDig(player, itemMap, precheck, messageArray)
     };
                 -- If the item is an elemental ore, we need to check if the requirements are met
                 if (ItemID == 1255 and weather > 1 and (moon >= 10 and moon <= 40) and SkillRank >= 7) then
-                ItemID = ItemID + oreMap[day-1];
+                ItemID = ItemID + oreMap[day+1];
                 end
 
             -- make sure we have a valid item
