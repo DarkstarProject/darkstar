@@ -135,6 +135,7 @@ function chocoboDig(player, itemMap, precheck, messageArray, zoneWeather)
             local RItemAbundance = RandomItem[2];
             
             local ItemID = 0;
+            local weather = player:getWeather();
             
             -- item and DIG_ABUNDANCE_BONUS 3 digits, dont wanna get left out
             Chance = Chance * 100;
@@ -164,7 +165,7 @@ function chocoboDig(player, itemMap, precheck, messageArray, zoneWeather)
                 end
                 
                 -- Let's see if the item should be obtained in this zone with this weather
-                
+
                 if ((weather == 4 or weather == 5) and ItemID == 4096) then
                   ItemID = ItemID;
                 elseif ((weather == 6 or weather == 7) and ItemID == 4097) then
