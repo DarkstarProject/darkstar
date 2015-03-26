@@ -4403,6 +4403,19 @@ namespace charutils
                 PParty->PushMember(PChar);
             }
 
+            CBattleEntity* PSyncTarget = PChar->PParty->GetSyncTarget();
+            if (PSyncTarget && !(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC)) && PChar->getZone() == PSyncTarget->getZone() && PSyncTarget->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) && PSyncTarget->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC)->GetDuration() == 0)
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, PSyncTarget->GetMLevel(), 540));
+                PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
+                    EFFECT_LEVEL_SYNC,
+                    EFFECT_LEVEL_SYNC,
+                    PSyncTarget->GetMLevel(),
+                    0,
+                    0), true);
+                PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
+            }
+
             if (allianceid != 0)
             {
                 if (PChar->PParty->m_PAlliance)
