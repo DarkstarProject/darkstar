@@ -20,7 +20,7 @@ This file is part of DarkStar-server source code.
 
 ===========================================================================
 */
-
+#include "../common/strlib.h"
 #include "zone_entities.h"
 
 #include "ai/ai_mob_dummy.h"
@@ -260,9 +260,9 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 			int pos[4] = { 0, 0, 0, 0 };
 			battlefieldutils::getStartPosition(m_zone->GetID(), pos);
 			if (pos != nullptr){
-				PChar->loc.p.x = pos[0];
-				PChar->loc.p.y = pos[1];
-				PChar->loc.p.z = pos[2];
+				PChar->loc.p.x = (float)pos[0];
+				PChar->loc.p.y = (float)pos[1];
+				PChar->loc.p.z = (float)pos[2];
 				PChar->loc.p.rotation = pos[3];
                 PChar->updatemask |= UPDATE_POS;
 				charutils::SaveCharPosition(PChar);
@@ -283,9 +283,9 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 			int pos[4] = { 0, 0, 0, 0 };
 			battlefieldutils::getStartPosition(m_zone->GetID(), pos);
             if (!(pos[0] == 0 && pos[1] == 0 && pos[2] == 0 && pos[3] == 0)){
-				PChar->loc.p.x = pos[0];
-				PChar->loc.p.y = pos[1];
-				PChar->loc.p.z = pos[2];
+				PChar->loc.p.x = (float)pos[0];
+				PChar->loc.p.y = (float)pos[1];
+				PChar->loc.p.z = (float)pos[2];
 				PChar->loc.p.rotation = pos[3];
                 PChar->updatemask |= UPDATE_POS;
 				charutils::SaveCharPosition(PChar);
@@ -732,7 +732,7 @@ CCharEntity* CZoneEntities::GetCharByName(int8* name)
 		for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
 		{
 			CCharEntity* PCurrentChar = (CCharEntity*)it->second;
-			if (stricmp(PCurrentChar->GetName(), name) == 0)
+			if (_stricmp(PCurrentChar->GetName(), name) == 0)
 			{
 				return PCurrentChar;
 			}

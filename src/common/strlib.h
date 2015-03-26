@@ -3,6 +3,10 @@
 #ifndef _STRLIB_H_
 #define _STRLIB_H_
 
+#ifndef WIN32
+	#define _stricmp strcasecmp
+#endif
+
 #ifndef _CBASETYPES_H_
 	#include "../common/cbasetypes.h"
 #endif

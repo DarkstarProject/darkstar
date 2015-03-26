@@ -203,7 +203,10 @@ void LoadMobSkillsList()
         WHERE family_id IN(SELECT familyid FROM pet_list JOIN mob_pools USING(poolid))) \
         ORDER BY family_Id, mob_skill_id ASC;";
 
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, map_ip, inet_ntoa(map_ip), map_port);
+	char ip_buffer[16];
+	inet_ntop(AF_INET, &map_ip, ip_buffer, sizeof(ip_buffer));
+
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, map_ip, ip_buffer, map_port);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
@@ -489,17 +492,17 @@ int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,
         dBonus += (WELL512::irand() % 101) / 1000.0f;
     }
     if (WeekDay == strongDay[element] && (obiBonus || WELL512::irand() % 100 < 33))
-        dBonus += 0.1;
+        dBonus += 0.1f;
     else if (WeekDay == weakDay[element] && (obiBonus || WELL512::irand() % 100 < 33))
-        dBonus -= 0.1;
+        dBonus -= 0.1f;
     if (weather == strongWeatherSingle[element] && (obiBonus || WELL512::irand() % 100 < 33))
-        dBonus += 0.1;
+        dBonus += 0.1f;
     else if (weather == strongWeatherDouble[element] && (obiBonus || WELL512::irand() % 100 < 33))
-        dBonus += 0.25;
+        dBonus += 0.25f;
     else if (weather == weakWeatherSingle[element] && (obiBonus || WELL512::irand() % 100 < 33))
-        dBonus -= 0.1;
+        dBonus -= 0.1f;
     else if (weather == weakWeatherDouble[element] && (obiBonus || WELL512::irand() % 100 < 33))
-        dBonus -= 0.25;
+        dBonus -= 0.25f;
 
     damage = (damage * (float)resist);
     damage = (damage * (float)dBonus);
@@ -3508,12 +3511,12 @@ uint16 doSoulEaterEffect(CCharEntity* m_PChar, uint32 damage)
 	if(m_PChar->GetMJob()==JOB_DRK && m_PChar->health.hp>=10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER))
 	{
 		//lost 10% current hp, converted to damage (displayed as just a strong regular hit)
-		float drainPercent = 0.1;
+		float drainPercent = 0.1f;
 		CItem* PItemHead = ((CCharEntity*)m_PChar)->getEquip(SLOT_HEAD);
 		CItem* PItemBody = ((CCharEntity*)m_PChar)->getEquip(SLOT_BODY);
 		CItem* PItemLegs = ((CCharEntity*)m_PChar)->getEquip(SLOT_LEGS);
         if((PItemHead && (PItemHead->getID() == 12516 || PItemHead->getID() == 15232)) || (PItemBody && PItemBody->getID() == 14409) || (PItemLegs && PItemLegs->getID() == 15370))
-            drainPercent = 0.12;
+            drainPercent = 0.12f;
 
 		damage = damage + m_PChar->health.hp*drainPercent;
 		m_PChar->addHP(-drainPercent*m_PChar->health.hp);
@@ -4078,7 +4081,7 @@ int32 BreathDmgTaken(CBattleEntity* PDefender, int32 damage)
 {
     float resist = 1.0f + (PDefender->getMod(MOD_UDMGBREATH) / 100.0f);
     resist = dsp_max(resist, 0);
-    damage *= resist;
+    damage = (int32)(damage * resist);
 
     resist = 1.0f + (PDefender->getMod(MOD_DMGBREATH) / 100.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
     resist = dsp_max(resist, 0.5f);
@@ -4104,7 +4107,7 @@ int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element)
 
     float resist = (256 + PDefender->getMod(MOD_UDMGMAGIC)) / 256.0f;
     resist = dsp_max(resist, 0);
-    damage *= resist;
+	damage = (int32)(damage * resist);
 
     resist = ((256 + PDefender->getMod(MOD_DMGMAGIC)) / 256.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
     resist = dsp_max(resist, 0.5f);
@@ -4133,7 +4136,7 @@ int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
 {
     float resist = 1.0f + (PDefender->getMod(MOD_UDMGPHYS) / 100.0f);
     resist = dsp_max(resist, 0);
-    damage *= resist;
+	damage = (int32)(damage * resist);
 
     resist = 1.0f + (PDefender->getMod(MOD_DMGPHYS) / 100.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
     resist = dsp_max(resist, 0.5f);
@@ -4160,7 +4163,7 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
 {
     float resist = 1.0f + (PDefender->getMod(MOD_UDMGRANGE) / 100.0f);
     resist = dsp_max(resist, 0);
-    damage *= resist;
+	damage = (int32)(damage * resist);
 
     resist = 1.0f + (PDefender->getMod(MOD_DMGRANGE) / 100.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
     resist = dsp_max(resist, 0.5f);
@@ -4285,7 +4288,7 @@ int32 HandleFanDance(CBattleEntity* PDefender, int32 damage)
 
         int power = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_FAN_DANCE)->GetPower();
         float resist = 1.0f - (power / 100.0f);
-        damage *= resist;
+		damage = (int32)(damage * resist);
         if (power > 20)
         {
             // reduce fan dance effectiveness by 10% each hit, to a min of 20%
@@ -4557,7 +4560,7 @@ void DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset)
     if (PMob->getMobMod(MOBMOD_DRAW_IN) > 0)
     {
         position_t* pos = &PMob->loc.p;
-        position_t nearEntity = nearPosition(*pos, offset, M_PI);
+        position_t nearEntity = nearPosition(*pos, offset, (float)M_PI);
 
         float drawInDistance = (PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? PMob->getMobMod(MOBMOD_DRAW_IN) : PMob->m_ModelSize * 2);
 
@@ -4731,7 +4734,7 @@ void GetSnapshotReduction(CCharEntity* m_PChar)
 	// Only apply if we have snapshot bonus to offer.
 	if (SnapShotReductionPercent > 0)
 	{
-		m_PChar->m_rangedDelay -= (float)(m_PChar->m_rangedDelay * ((float)SnapShotReductionPercent / 100));
+		m_PChar->m_rangedDelay -= (uint32)(m_PChar->m_rangedDelay * ((float)SnapShotReductionPercent / 100));
 	}
 }
 

@@ -1321,7 +1321,7 @@ namespace charutils
                 else {
                     AddItem(PTarget, LOC_INVENTORY, PItem->getID(), PItem->getReserve());
                 }
-                UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), -PItem->getReserve());
+                UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), -(int32)PItem->getReserve());
             }
         }
     }
@@ -2923,33 +2923,33 @@ namespace charutils
                         {
                             switch (pcinzone)
                             {
-                            case 1: exp *= 1.00f; break;
-                            case 2:	exp *= 0.75f; break;
-                            case 3: exp *= 0.55f; break;
-                            case 4: exp *= 0.45f; break;
-                            case 5:	exp *= 0.39f; break;
-                            case 6: exp *= 0.35f; break;
-                            default: break;
+								case 1: exp = (uint32)(exp * 1.00f); break;
+								case 2:	exp = (uint32)(exp * 0.75f); break;
+								case 3: exp = (uint32)(exp * 0.55f); break;
+								case 4: exp = (uint32)(exp * 0.45f); break;
+								case 5:	exp = (uint32)(exp * 0.39f); break;
+								case 6: exp = (uint32)(exp * 0.35f); break;
+								default: break;
                             }
                         }
                         else
                         {
                             switch (pcinzone)
                             {
-                            case 1:	exp *= 1.00f; break;
-                            case 2: exp *= 0.60f; break;
-                            case 3: exp *= 0.45f; break;
-                            case 4: exp *= 0.40f; break;
-                            case 5: exp *= 0.37f; break;
-                            case 6: exp *= 0.35f; break;
-                            default: break;
+								case 1: exp = (uint32)(exp * 1.00f); break;
+								case 2:	exp = (uint32)(exp * 0.60f); break;
+								case 3: exp = (uint32)(exp * 0.45f); break;
+								case 4: exp = (uint32)(exp * 0.40f); break;
+								case 5:	exp = (uint32)(exp * 0.37f); break;
+								case 6: exp = (uint32)(exp * 0.35f); break;
+								default: break;
                             }
                         }
 
                         if (PMob->getMobMod(MOBMOD_EXP_BONUS))
                         {
                             monsterbonus = 1 + (float)PMob->getMobMod(MOBMOD_EXP_BONUS) / 100.0f;
-                            exp *= monsterbonus;
+                            exp = (uint32)(exp * monsterbonus);
                         }
 
                         permonstercap = ((PMember->PParty != nullptr && pcinzone > 1) ? 1.35f : 1.15f);
@@ -2972,13 +2972,13 @@ namespace charutils
                             chainactive = true;
                             switch (PMember->expChain.chainNumber)
                             {
-                            case 0: exp *= 1.0f; break;
-                            case 1: exp *= 1.2f; break;
-                            case 2: exp *= 1.25f; break;
-                            case 3: exp *= 1.3f; break;
-                            case 4: exp *= 1.4f; break;
-                            case 5: exp *= 1.5f; break;
-                            default: exp *= 1.55f; break;
+								case 0: exp = (uint32)(exp * 1.00f); break;
+								case 1:	exp = (uint32)(exp * 1.20f); break;
+								case 2: exp = (uint32)(exp * 1.25f); break;
+								case 3: exp = (uint32)(exp * 1.30f); break;
+								case 4:	exp = (uint32)(exp * 1.40f); break;
+								case 5: exp = (uint32)(exp * 1.50f); break;
+								default: exp = (uint32)(exp * 1.55f); break;
                             }
                         }
                         else
