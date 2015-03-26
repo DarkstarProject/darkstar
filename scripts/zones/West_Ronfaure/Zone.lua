@@ -4,6 +4,7 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
+package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 
 require("scripts/globals/zone");
@@ -12,8 +13,6 @@ require("scripts/globals/settings");
 require("scripts/globals/conquest");
 require("scripts/globals/icanheararainbow");
 require("scripts/zones/West_Ronfaure/TextIDs");
-
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 require("scripts/globals/chocobo_digging");
 
 -----------------------------------
@@ -31,6 +30,14 @@ local itemMap = {
                     { 639, 10, DIGREQ_NONE },
                     { 694, 63, DIGREQ_NONE },
                     { 918, 12, DIGREQ_NONE },
+                    { 4096, 100, DIGREQ_NONE },
+                    { 4097, 100, DIGREQ_NONE },
+                    { 4098, 100, DIGREQ_NONE },
+                    { 4099, 100, DIGREQ_NONE },
+                    { 4100, 100, DIGREQ_NONE },
+                    { 4101, 100, DIGREQ_NONE },
+                    { 4102, 100, DIGREQ_NONE },
+                    { 4103, 100, DIGREQ_NONE },
                     { 4545, 5, DIGREQ_BURROW },
                     { 636, 63, DIGREQ_BURROW },
                     { 617, 63, DIGREQ_BORE },
