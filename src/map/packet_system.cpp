@@ -353,25 +353,6 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* dat
         }
     }
 
-    if (PChar->PParty && PChar->PParty->GetSyncTarget())
-    {
-        if (PChar->getZone() == PChar->PParty->GetSyncTarget()->getZone())
-        {
-            if (PChar->PParty->GetSyncTarget()->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) &&
-                PChar->PParty->GetSyncTarget()->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC)->GetDuration() == 0)
-            {
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, PChar->PParty->GetSyncTarget()->GetMLevel(), 540));
-                PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
-                    EFFECT_LEVEL_SYNC,
-                    EFFECT_LEVEL_SYNC,
-                    PChar->PParty->GetSyncTarget()->GetMLevel(),
-                    0,
-                    0), true);
-                PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
-            }
-        }
-    }
-
     return;
 }
 

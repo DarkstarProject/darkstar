@@ -863,7 +863,7 @@ void CZone::CharZoneIn(CCharEntity* PChar)
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_COSTUME);
     }
 
-    charutils::ReloadParty(PChar);
+    PChar->ReloadPartyInc();
     
     if (PChar->PParty != nullptr)
     {

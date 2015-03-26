@@ -26,8 +26,11 @@
 #include "../items/item_shop.h"
 
 #include "guildutils.h"
+#include "itemutils.h"
+#include "../guild.h"
 #include "../item_container.h"
 #include "../map.h"
+#include "../vana_time.h"
 
 // TODO: во время закрытия гильдии всем просматривающим список товаров отправляется пакет 0x86 с информацией о закрытии гильдии
 
@@ -39,7 +42,8 @@
 *																		*
 ************************************************************************/
 
-std::vector<CItemContainer*> g_PGuildList;
+std::vector<CGuild*> g_PGuildList;
+std::vector<CItemContainer*> g_PGuildShopList;
 
 /************************************************************************
 *																		*
@@ -58,33 +62,41 @@ namespace guildutils
 
 void Initialize()
 {
-	DSP_DEBUG_BREAK_IF(g_PGuildList.size() != 0);
+    const int8* fmtQuery = "SELECT DISTINCT id, points_name FROM guilds ORDER BY id ASC;";
+    if (Sql_Query(SqlHandle, fmtQuery) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        g_PGuildList.reserve(Sql_NumRows(SqlHandle));
 
-	const int8* fmtQuery = "SELECT DISTINCT guildid FROM guild_shops ORDER BY guildid ASC LIMIT 256";
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            g_PGuildList.push_back(new CGuild(Sql_GetIntData(SqlHandle, 0), Sql_GetData(SqlHandle, 1)));
+        }
+    }
+    DSP_DEBUG_BREAK_IF(g_PGuildShopList.size() != 0);
+
+    fmtQuery = "SELECT DISTINCT guildid FROM guild_shops ORDER BY guildid ASC LIMIT 256;";
 
 	if (Sql_Query(SqlHandle,fmtQuery) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
-		g_PGuildList.reserve(Sql_NumRows(SqlHandle));
+        g_PGuildShopList.reserve(Sql_NumRows(SqlHandle));
 
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
-			g_PGuildList.push_back(new CItemContainer(Sql_GetIntData(SqlHandle,0)));
+            g_PGuildShopList.push_back(new CItemContainer(Sql_GetIntData(SqlHandle, 0)));
 		}
 	}
-	for (std::vector<CItemContainer*>::iterator iter = g_PGuildList.begin(); iter != g_PGuildList.end(); iter++)
+    for (auto PGuildShop : g_PGuildShopList)
     {
-		CItemContainer* PGuild = *iter;
-
 		fmtQuery = "SELECT itemid, min_price, max_price, max_quantity, daily_increase, initial_quantity \
 				    FROM guild_shops \
 					WHERE guildid = %u \
                     LIMIT %u";
 
-		int32 ret = Sql_Query(SqlHandle, fmtQuery, PGuild->GetID(), MAX_CONTAINER_SIZE);
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, PGuildShop->GetID(), MAX_CONTAINER_SIZE);
 
 		if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
-			PGuild->SetSize((uint8)Sql_NumRows(SqlHandle));
+            PGuildShop->SetSize((uint8)Sql_NumRows(SqlHandle));
 
 			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
@@ -99,10 +111,12 @@ void Initialize()
 				PItem->setQuantity(PItem->IsDailyIncrease() ? PItem->getInitialQuantity() : 0);
 				PItem->setBasePrice(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice()));
 
-				PGuild->InsertItem(PItem);
+                PGuildShop->InsertItem(PItem);
 			}
 		}
 	}
+
+    UpdateGuildPointsPattern();
 }
 
 /************************************************************************
@@ -113,22 +127,67 @@ void Initialize()
 
 void UpdateGuildsStock()
 {
-    for (std::vector<CItemContainer*>::iterator iter = g_PGuildList.begin(); iter != g_PGuildList.end(); iter++)
-	{
-		CItemContainer* PGuild = *iter;
-        for(uint8 slotid = 1; slotid <= PGuild->GetSize(); ++slotid)
+    for (auto PGuildShop : g_PGuildShopList)
+    {
+        for (uint8 slotid = 1; slotid <= PGuildShop->GetSize(); ++slotid)
         {
-            CItemShop* PItem = (CItemShop*)PGuild->GetItem(slotid);
+            CItemShop* PItem = (CItemShop*)PGuildShop->GetItem(slotid);
 
-			PItem->setBasePrice(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice()));
+            PItem->setBasePrice(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice()));
 
             if (PItem->IsDailyIncrease())
             {
                 PItem->setQuantity(PItem->getQuantity() + PItem->getDailyIncrease());
             }
         }
-	}
+    }
     ShowDebug(CL_CYAN"UpdateGuildsStock is finished\n" CL_RESET);
+}
+
+void UpdateGuildPointsPattern()
+{
+    uint8 pattern = WELL512::irand() % 8;
+    
+    bool isAutoCommitOn = Sql_GetAutoCommit(SqlHandle);
+    bool commit = false;
+
+    const char* query = "SELECT value FROM server_variables WHERE name = '[GUILD]pattern_update';";
+
+    int ret = Sql_Query(SqlHandle, query);
+    bool update = false;
+
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        if (Sql_GetUIntData(SqlHandle, 0) != CVanaTime::getInstance()->getSysYearDay())
+        {
+            update = true;
+        }
+    }
+    else
+    {
+        update = true;
+    }
+    if (update)
+    {
+        //write the new pattern and update time to prevent other servers from updating the pattern
+        Sql_Query(SqlHandle, "REPLACE INTO server_variables (name,value) VALUES('[GUILD]pattern_update', %u), ('[GUILD]pattern', %u);",
+            CVanaTime::getInstance()->getSysYearDay(), pattern);
+        Sql_Query(SqlHandle, "DELETE FROM char_vars WHERE varname = '[GUILD]daily_points';");
+    }
+
+    // load the pattern in case it was set by another server (and this server did not set it)
+    Sql_Query(SqlHandle, "SELECT value FROM server_variables WHERE name = '[GUILD]pattern';");
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        pattern = Sql_GetUIntData(SqlHandle, 0);
+    }
+
+    for (auto PGuild : g_PGuildList)
+    {
+        PGuild->updateGuildPointsPattern(pattern);
+    }
+
+    ShowDebug(CL_CYAN"UpdateGuildPointsPattern is finished. New pattern: %d\n" CL_RESET, pattern);
 }
 
 /************************************************************************
@@ -137,16 +196,30 @@ void UpdateGuildsStock()
 *																		*
 ************************************************************************/
 
-CItemContainer* GetGuildShop(uint16 GuildID)
+CItemContainer* GetGuildShop(uint16 GuildShopID)
 {
-	for (uint16 i = 0; i < g_PGuildList.size(); ++i)
+    for (auto PGuildShop : g_PGuildShopList)
 	{
-		if (g_PGuildList.at(i)->GetID() == GuildID)
+        if (PGuildShop->GetID() == GuildShopID)
 		{
-			return g_PGuildList.at(i);
+            return PGuildShop;
 		}
 	}
-	ShowDebug(CL_CYAN"Guild with id <%u> is not found on server\n" CL_RESET);
+	ShowDebug(CL_CYAN"GuildShop with id <%u> is not found on server\n" CL_RESET);
+    return nullptr;
+}
+
+CGuild* GetGuild(uint8 GuildID)
+{
+    try
+    {
+        return g_PGuildList.at(GuildID);
+    }
+    catch (std::out_of_range)
+    {
+        return nullptr;
+    }
+    ShowDebug(CL_CYAN"Guild with id <%u> is not found on server\n" CL_RESET);
     return nullptr;
 }
 

@@ -1,34 +1,39 @@
 -----------------------------------
---  Area: South San d'Oria
---  NPC: Alivatand
+--  Area: Northern San d'Oria
+--  NPC: Macuillie
 --  Type: Guildworker's Union Representative
---  @zone: 230
---  @pos -179.458 -1 15.857
+--  @zone: 231
+--  @pos -191.738 11.001 138.656
 -----------------------------------
 
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+require("scripts/zones/Northern_San_dOria/TextIDs");
 
 local keyitems = {
     [0] = {
-        id = LEATHER_PURIFICATION,
+        id = METAL_PURIFICATION,
         rank = 3,
         cost = 40000 
     },
     [1] = {
-        id = LEATHER_ENSORCELLMENT,
+        id = METAL_ENSORCELLMENT,
         rank = 3,
         cost = 40000 
     },
     [2] = {
-        id = TANNING,
+        id = CHAINWORK,
         rank = 3,
         cost = 10000 
     },
     [3] = {
-        id = WAY_OF_THE_TANNER,
+        id = SHEETING,
+        rank = 3,
+        cost = 10000 
+    },
+    [4] = {
+        id = WAY_OF_THE_BLACKSMITH,
         rank = 9,
         cost = 20000 
     }
@@ -36,42 +41,42 @@ local keyitems = {
 
 local items = {
     [2] = {
-        id = 15448, -- Tanner's Belt
+        id = 15445,
         rank = 3,
         cost = 10000 
     },
     [3] = {
-        id = 14832, -- Tanner's Gloves
+        id = 14831,
         rank = 5,
         cost = 70000 
     },
     [4] = {
-        id = 14396, -- Tanner's Apron
+        id = 14393,
         rank = 7,
         cost = 100000 
     },
     [5] = {
-        id = 202, -- Golden Fleece
+        id = 153,
         rank = 9,
         cost = 150000 
     },
     [6] = {
-        id = 339, -- Tanner's Signboard
+        id = 334,
         rank = 9,
         cost = 200000 
     },
     [7] = {
-        id = 15823, -- Tanner's Ring
+        id = 15820,
         rank = 6,
         cost = 80000 
     },
     [8] = {
-        id = 3668, -- Hide Stretcher
+        id = 3661,
         rank = 7,
         cost = 50000 
     },
     [9] = {
-        id = 3329, -- Tanners' Emblem
+        id = 3324,
         rank = 9,
         cost = 15000 
     }
@@ -81,18 +86,8 @@ local items = {
 -- onTrade Action
 -----------------------------------
 
-function onTrade(player,npc,trade)	
-	-- "Flyers for Regine" conditional script
-	local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-	if (FlyerForRegine == 1) then
-		local count = trade:getItemCount();
-		local MagicFlyer = trade:hasItemQty(532,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
-		end
-	else
-		unionRepresentativeTrade(player, npc, trade, 0x02b3, 5);
-	end
+function onTrade(player,npc,trade)
+    unionRepresentativeTrade(player, npc, trade, 0x02da, 2);
 end;
 
 -----------------------------------
@@ -100,7 +95,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 5, 0x02b2, "guild_leathercraft", keyitems);
+	unionRepresentativeTrigger(player, 2, 0x02d9, "guild_smithing", keyitems);
 end;
 
 -----------------------------------
@@ -116,13 +111,12 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option,target)
+function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-     
-    if (csid == 0x02b2) then
-        unionRepresentativeTriggerFinish(player, option, target, 5, "guild_leathercraft", keyitems, items);
-    elseif(csid == 0x02b3) then
+    if (csid == 0x02d9) then
+        unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
+    elseif(csid == 0x02da) then
         player:messageSpecial(GP_OBTAINED, option);
     end
 end;

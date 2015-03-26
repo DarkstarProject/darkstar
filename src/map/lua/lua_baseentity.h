@@ -233,6 +233,8 @@ public:
 
     int32 sendMenu(lua_State*);             // Displays a menu (AH,Raise,Tractor,MH etc)
     int32 sendGuild(lua_State*);            // Sends guild shop menu
+    int32 getCurrentGPItem(lua_State*);     // Gets current GP item id and max points
+    int32 addGuildPoints(lua_State*);       // add guild points
 
     int32 bcnmRegister(lua_State*);                  //Attempts to register a bcnm battlefield (used by Dynamis and BCNM)
     int32 bcnmEnter(lua_State*);                     //Enter a bcnm battlefield (used by Dynamis and BCNM)

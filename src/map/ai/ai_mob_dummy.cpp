@@ -456,17 +456,21 @@ void CAIMobDummy::ActionDropItems()
 
                 if (validZone && charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel()) > 0)
                 {
-
-                    if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && m_PMob->m_Element > 0 &&
-                        conquest::GetInfluenceGraphics(PChar->loc.zone->GetRegionID()) < 64 &&
-                        WELL512::irand()%100 < 20) // Need to move to SIGNET_CHANCE constant
+                    if (((PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && conquest::GetInfluenceGraphics(PChar->loc.zone->GetRegionID()) < 64) ||
+                       (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION) && PChar->loc.zone->GetRegionID() >= 28 && PChar->loc.zone->GetRegionID() <= 32) ||
+                       (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGIL) && PChar->loc.zone->GetRegionID() >= 33 && PChar->loc.zone->GetRegionID() <= 40)) &&
+                        m_PMob->m_Element > 0 && WELL512::irand()%100 < 20) // Need to move to CRYSTAL_CHANCE constant
                     {
                         PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
                     }
 
+                    // Todo: Avatarite and Geode drops during day/weather. Much higher chance during weather than day.
+                    // Item element matches day/weather element, not mob crystal. Lv80+ xp mobs can drop Avatarite.
+                    // Wiki's have conflicting info on mob lv required for Geodes. One says 50 the other 75. I think 50 is correct.
+
                     if (WELL512::irand() % 100 < 20 && PChar->PTreasurePool->CanAddSeal() && !m_PMob->getMobMod(MOBMOD_NO_DROPS))
                     {
-                    //RULES: Only 1 kind may drop per mob
+                        //RULES: Only 1 kind may drop per mob
                         if (m_PMob->GetMLevel() >= 75 && luautils::IsExpansionEnabled("ABYSSEA")) //all 4 types
                         {
                             switch (WELL512::irand() % 4)

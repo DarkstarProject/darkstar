@@ -821,6 +821,9 @@
     <ClInclude Include="..\..\src\map\packets\char_recast.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\guild.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1515,6 +1518,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\char_recast.cpp">
       <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\guild.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -77,6 +77,16 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 
     }
 
+    //Midnight
+    if (CVanaTime::getInstance()->getSysHour() == 0 && CVanaTime::getInstance()->getSysMinute() == 0)
+    {
+        if (tick > (CVanaTime::getInstance()->lastMidnight + 60000))
+        {
+            guildutils::UpdateGuildPointsPattern();
+            CVanaTime::getInstance()->lastMidnight = tick;
+        }
+    }
+
     if (CVanaTime::getInstance()->getHour() == 0 && CVanaTime::getInstance()->getMinute() == 0)
     {
         if (tick > (CVanaTime::getInstance()->lastVDailyUpdate + 4800))

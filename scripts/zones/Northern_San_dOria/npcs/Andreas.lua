@@ -1,83 +1,82 @@
 -----------------------------------
---  Area: Metalworks
---  NPC: Lorena
---  Type: Blacksmithing Guildworker's Union Representative
---  @zone: 237
---  @pos -104.990 1 30.995
+--  Area: Northern San d'Oria
+--  NPC: Andreas
+--  Type: Guildworker's Union Representative
+--  @zone: 231
+--  @pos -189.282 10.999 262.626
 -----------------------------------
 
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
-require("scripts/zones/Metalworks/TextIDs");
+package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
+require("scripts/zones/Northern_San_dOria/TextIDs");
 
 local keyitems = {
     [0] = {
-        id = METAL_PURIFICATION,
+        id = WOOD_PURIFICATION,
         rank = 3,
         cost = 40000 
     },
     [1] = {
-        id = METAL_ENSORCELLMENT,
+        id = WOOD_ENSORCELLMENT,
         rank = 3,
         cost = 40000 
     },
     [2] = {
-        id = CHAINWORK,
+        id = LUMBERJACK,
         rank = 3,
         cost = 10000 
     },
-    [3] = {
-        id = SHEETING,
+	 [3] = {
+        id = BOLTMAKER,
         rank = 3,
         cost = 10000 
     },
     [4] = {
-        id = WAY_OF_THE_BLACKSMITH,
+        id = WAY_OF_THE_CARPENTER,
         rank = 9,
         cost = 20000 
     }
-
 };
 
 local items = {
     [2] = {
-        id = 15445,
-        rank = 3,
+        id = 15444, -- Carpenter's Belt
+        rank = 1,
         cost = 10000 
     },
     [3] = {
-        id = 14831,
+        id = 14830, -- Carpenter's Gloves
         rank = 5,
         cost = 70000 
     },
     [4] = {
-        id = 14393,
+        id = 14392, -- Carpenter's Apron
         rank = 7,
         cost = 100000 
     },
     [5] = {
-        id = 153,
+        id = 28, -- Drawing Desk
         rank = 9,
         cost = 150000 
     },
     [6] = {
-        id = 334,
+        id = 341, -- Carpenter's Signboard
         rank = 9,
         cost = 200000 
     },
     [7] = {
-        id = 15820,
+        id = 15819, -- Carpenter's Ring
         rank = 6,
         cost = 80000 
     },
     [8] = {
-        id = 3661,
-        rank = 7,
+        id = 3672, -- Carpenter's Kit
+        rank = 8,
         cost = 50000 
     },
     [9] = {
-        id = 3324,
+        id = 3331, -- Carpenter's Emblem
         rank = 9,
         cost = 15000 
     }
@@ -88,7 +87,7 @@ local items = {
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    unionRepresentativeTrade(player, npc, trade, 0x321, 2);
+    unionRepresentativeTrade(player, npc, trade, 0x02dc, 1);
 end;
 
 -----------------------------------
@@ -96,7 +95,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 2, 0x320, "guild_smithing", keyitems);
+	unionRepresentativeTrigger(player, 1, 0x02db, "guild_woodworking", keyitems);
 end;
 
 -----------------------------------
@@ -112,13 +111,13 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,target)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-    if (csid == 0x320) then
-        unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
-    elseif(csid == 0x321) then
+     
+    if (csid == 0x02db) then
+        unionRepresentativeTriggerFinish(player, option, target, 1, "guild_woodworking", keyitems, items);
+    elseif(csid == 0x02dc) then
         player:messageSpecial(GP_OBTAINED, option);
     end
 end;
-

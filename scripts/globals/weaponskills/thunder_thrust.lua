@@ -26,7 +26,7 @@ function onUseWeaponSkill(player, target, wsID)
 	params.includemab = true;
 
 	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
-		params.str_wsc = 0.4; params.int_wsc = 0.4;0;
+		params.str_wsc = 0.4; params.int_wsc = 0.4;
 	end
 
 	local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, params);
