@@ -177,30 +177,39 @@ function chocoboDig(player, itemMap, precheck, messageArray)
 	local crystalMap = {
 			0, -- fire crystal
 			8, -- fire cluster
-			1,
-			9,
-			2,
-			10,
-			3,
-			11,
-			4,
-			12,
-			5,
-			13,
-			6,
-			14,
-			7,
-			15,
-	}
+			5, -- water crystal
+			13, -- water cluster
+			3, -- earth crystal
+			11, -- earth cluster
+			2, -- wind crystal
+			10, -- wind cluster
+			1, -- ice crystal
+			9, -- ice cluster
+			4, -- lightning crystal
+			12, -- lightning cluster
+			6, -- light crystal
+			14, -- light cluster
+			7, -- dark crystal 
+			15, -- dark cluster
+	};
                 if (weather >= 4 and ItemID == 4096) then
                   ItemID = ItemID + crystalMap[weather-3];
 				else
 				  ItemID = 0;
 				end
-
+	local oreMap = {
+			0, -- fire ore
+			3, -- earth ore
+			5, -- water ore
+			2, -- wind ore
+			1, -- ice ore
+			4, -- lightning ore
+			6, -- light ore
+			7, -- dark ore
+	};
                 -- If the item is an elemental ore, we need to check if the requirements are met
                 if (ItemID == 1255 and weather > 1 and (moon >= 10 and moon <= 40) and SkillRank >= 7) then
-				ItemID = ItemID + day;
+				ItemID = ItemID + oreMap[day-1];
 				end
 
             -- make sure we have a valid item
@@ -222,10 +231,9 @@ function chocoboDig(player, itemMap, precheck, messageArray)
             end
 
 		end
-        end
         calculateSkillUp(player);
         updatePlayerDigCount(player, 1);
-    
-	end
+    end
     return true;
+	end
 end;
