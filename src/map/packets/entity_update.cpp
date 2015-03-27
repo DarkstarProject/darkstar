@@ -102,7 +102,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 		{
 			CMobEntity* PMob = (CMobEntity*)PEntity;
 
-			if(PMob->PMaster != NULL && PMob->PMaster->objtype == TYPE_PC && 
+			if(PMob->PMaster != nullptr && PMob->PMaster->objtype == TYPE_PC && 
 				PMob->PBattleAI->GetCurrentAction() == ACTION_FALL)
 			{
                 WBUFB(data,(0x21)-4) = 0x99;
@@ -122,7 +122,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
                     WBUFB(data,(0x2A)-4) = PEntity->animationsub;
 					WBUFL(data,(0x21)-4) = PMob->m_flags;
 					WBUFB(data,(0x27)-4) = PMob->m_name_prefix;
-					if (PMob->PMaster != NULL && PMob->PMaster->objtype == TYPE_PC)
+					if (PMob->PMaster != nullptr && PMob->PMaster->objtype == TYPE_PC)
 						WBUFB(data,(0x27)-4) |= 0x08;
                     WBUFB(data,(0x28)-4) |= (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR) ? 0x10 : 0x00);
 					WBUFB(data,(0x29)-4) = PEntity->allegiance;

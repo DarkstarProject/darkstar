@@ -377,7 +377,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 	{
 		apAction_t Action = PEntity->m_ActionList.at(i);
 
-		if (Action.ActionTarget != NULL)
+		if (Action.ActionTarget != nullptr)
 		{
 			TargetNum++;
 

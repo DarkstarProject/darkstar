@@ -63,7 +63,7 @@ CBattlefieldHandler::CBattlefieldHandler(uint16 zoneid)
 
 void CBattlefieldHandler::handleBattlefields(uint32 tick){
 	for(int i=0; i<m_MaxBattlefields; i++){
-		if(m_Battlefields[i]!=NULL){ //handle it!
+		if(m_Battlefields[i]!=nullptr){ //handle it!
 			CBattlefield* PBattlefield = m_Battlefields[i];
 			int instzone = PBattlefield->getZoneId();
 
@@ -191,9 +191,9 @@ void CBattlefieldHandler::handleBattlefields(uint32 tick){
 
 void CBattlefieldHandler::wipeBattlefield(CBattlefield* inst){
 	if(inst->getBattlefieldNumber() <= m_MaxBattlefields && inst->getBattlefieldNumber()>0 &&
-		m_Battlefields[inst->getBattlefieldNumber()-1] != NULL){
+		m_Battlefields[inst->getBattlefieldNumber()-1] != nullptr){
 			ShowDebug("Wiping battlefield BCNMID: %i Battlefield %i \n",inst->getID(),inst->getBattlefieldNumber());
-			m_Battlefields[inst->getBattlefieldNumber()-1] = NULL;
+			m_Battlefields[inst->getBattlefieldNumber()-1] = nullptr;
 	}
 }
 
@@ -204,7 +204,7 @@ hence it doesn't check if you're "in" the BCNM, it just tries to remove you from
 */
 bool CBattlefieldHandler::disconnectFromBcnm(CCharEntity* PChar){ //includes warping
 	for(int i=0; i<m_MaxBattlefields; i++){
-		if(m_Battlefields[i]!=NULL){
+		if(m_Battlefields[i]!=nullptr){
 			if(m_Battlefields[i]->delPlayerFromBcnm(PChar)){
 				luautils::OnBcnmLeave(PChar,m_Battlefields[i],LEAVE_WARPDC);
 				if(!m_Battlefields[i]->isReserved()){//no more players in BCNM
@@ -221,7 +221,7 @@ bool CBattlefieldHandler::disconnectFromBcnm(CCharEntity* PChar){ //includes war
 
 bool CBattlefieldHandler::leaveBcnm(uint16 bcnmid, CCharEntity* PChar){
 	for(int i=0; i<m_MaxBattlefields; i++){
-		if(m_Battlefields[i]!=NULL && m_Battlefields[i]->getID() == bcnmid){
+		if(m_Battlefields[i]!=nullptr && m_Battlefields[i]->getID() == bcnmid){
 			if(m_Battlefields[i]->isPlayerInBcnm(PChar)){
 				if(m_Battlefields[i]->delPlayerFromBcnm(PChar)){
 					luautils::OnBcnmLeave(PChar,m_Battlefields[i],LEAVE_EXIT);
@@ -240,7 +240,7 @@ bool CBattlefieldHandler::leaveBcnm(uint16 bcnmid, CCharEntity* PChar){
 
 bool CBattlefieldHandler::winBcnm(uint16 bcnmid, CCharEntity* PChar){
 	for(int i=0; i<m_MaxBattlefields; i++){
-		if(m_Battlefields[i]!=NULL && m_Battlefields[i]->getID() == bcnmid){
+		if(m_Battlefields[i]!=nullptr && m_Battlefields[i]->getID() == bcnmid){
 			if(m_Battlefields[i]->isPlayerInBcnm(PChar)){
 				m_Battlefields[i]->winBcnm();
 				return true;
@@ -252,7 +252,7 @@ bool CBattlefieldHandler::winBcnm(uint16 bcnmid, CCharEntity* PChar){
 
 bool CBattlefieldHandler::enterBcnm(uint16 bcnmid, CCharEntity* PChar){
 	for(int i=0; i<m_MaxBattlefields; i++){
-		if(m_Battlefields[i]!=NULL && m_Battlefields[i]->getID() == bcnmid){
+		if(m_Battlefields[i]!=nullptr && m_Battlefields[i]->getID() == bcnmid){
 			if(m_Battlefields[i]->isValidPlayerForBcnm(PChar)){
 				if(m_Battlefields[i]->enterBcnm(PChar)){
 					return true;
@@ -268,7 +268,7 @@ int CBattlefieldHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 		return -1;
 	}
 	CBattlefield* PBattlefield = battlefieldutils::loadBattlefield(this,id, BATTLEFIELDTYPE_BCNM);
-	if(PBattlefield==NULL){
+	if(PBattlefield==nullptr){
 		return -1;
 	}
 	if(id > 1289 && id < 1308){
@@ -333,7 +333,7 @@ int CBattlefieldHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 	}
 	else{
 	  for(int i=0; i<m_MaxBattlefields; i++){
-		if(m_Battlefields[i]==NULL){
+		if(m_Battlefields[i]==nullptr){
 			PBattlefield->setBattlefieldNumber(i+1);
 			break;
 		}
@@ -347,7 +347,7 @@ int CBattlefieldHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 		}
 		break;
 	case 3:
-		if(PChar->PParty == NULL){//just add the initiator
+		if(PChar->PParty == nullptr){//just add the initiator
 			if(PBattlefield->addPlayerToBcnm(PChar)){
 				ShowDebug("BattlefieldHandler ::3 Added %s to the valid players list for BCNM %i Battlefield %i \n",
 					PChar->GetName(),id,PBattlefield->getBattlefieldNumber());
@@ -366,7 +366,7 @@ int CBattlefieldHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 			}
 			break;
 		case 6:
-			if(PChar->PParty == NULL){//just add the initiator
+			if(PChar->PParty == nullptr){//just add the initiator
 				if(PBattlefield->addPlayerToBcnm(PChar)){
 					ShowDebug("BattlefieldHandler ::6 Added %s to the valid players list for BCNM %i Battlefield %i \n",
 						PChar->GetName(),id,PBattlefield->getBattlefieldNumber());
@@ -384,13 +384,13 @@ int CBattlefieldHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 		case 12: ShowDebug("BCNMs for 12 people are not implemented yet.\n"); break;
 
 		case 18:
-			if(PChar->PParty == NULL){//1 player entering 18 man bcnm
+			if(PChar->PParty == nullptr){//1 player entering 18 man bcnm
 				if(PBattlefield->addPlayerToBcnm(PChar)){
 					ShowDebug("BattlefieldHandler ::18 Added %s to the valid players list for BCNM %i Battlefield %i \n",
 						PChar->GetName(),id,PBattlefield->getBattlefieldNumber());
 				}
 			}else{//alliance entering 18 man bcnm
-				if(PChar->PParty->m_PAlliance != NULL)
+				if(PChar->PParty->m_PAlliance != nullptr)
 				{
 					for(uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
 					{
@@ -432,58 +432,58 @@ bool CBattlefieldHandler::hasFreeSpecialBattlefield(uint16 id){ //reserved for s
  switch(id)
 	  {
 	  case 1290:
-		{ if( m_Battlefields[0] == NULL){return true;}}
+		{ if( m_Battlefields[0] == nullptr){return true;}}
        break;
 	  case 1291:
-        { if( m_Battlefields[1] == NULL){return true;}}
+        { if( m_Battlefields[1] == nullptr){return true;}}
        break;
 	   	  case 1292:
-	    { if( m_Battlefields[2] == NULL){return true;}}
+	    { if( m_Battlefields[2] == nullptr){return true;}}
        break;
 	   	  case 1293:
-		{ if( m_Battlefields[3] == NULL){return true;}}
+		{ if( m_Battlefields[3] == nullptr){return true;}}
        break;
 	   	  case 1294:
-		{ if( m_Battlefields[4] == NULL){return true;}}
+		{ if( m_Battlefields[4] == nullptr){return true;}}
        break;
 	   	  case 1295:
-		{ if( m_Battlefields[4] == NULL){return true;}}
+		{ if( m_Battlefields[4] == nullptr){return true;}}
        break;
 	   	  case 1296:
-		{ if( m_Battlefields[5] == NULL){return true;}}
+		{ if( m_Battlefields[5] == nullptr){return true;}}
        break;
 	   	  case 1297:
-		{ if( m_Battlefields[5] == NULL){return true;}}
+		{ if( m_Battlefields[5] == nullptr){return true;}}
        break;
 	   	 case 1298:
-		{ if( m_Battlefields[0] == NULL){return true;}}
+		{ if( m_Battlefields[0] == nullptr){return true;}}
        break;
 	   	 case 1299:
-		{if( m_Battlefields[1] == NULL){return true;}}
+		{if( m_Battlefields[1] == nullptr){return true;}}
        break;
 	    case 1300:
-		{if( m_Battlefields[2] == NULL){return true;}}
+		{if( m_Battlefields[2] == nullptr){return true;}}
        break;
 	    case 1301:
-		{if( m_Battlefields[3] == NULL){return true;}}
+		{if( m_Battlefields[3] == nullptr){return true;}}
        break;
 	    case 1302:
-		{if( m_Battlefields[3] == NULL){return true;}}
+		{if( m_Battlefields[3] == nullptr){return true;}}
        break;
 	   case 1303:
-		{if( m_Battlefields[4] == NULL){return true;}}
+		{if( m_Battlefields[4] == nullptr){return true;}}
        break;
 	   case 1304:
-		{if( m_Battlefields[5] == NULL){return true;}}
+		{if( m_Battlefields[5] == nullptr){return true;}}
        break;
 	  case 1305:
-		{if( m_Battlefields[6] == NULL){return true;}}
+		{if( m_Battlefields[6] == nullptr){return true;}}
       break;
 	  case 1306:
-		{if( m_Battlefields[7] == NULL){return true;}}
+		{if( m_Battlefields[7] == nullptr){return true;}}
       break;
 	  case 1307:
-		{if( m_Battlefields[7] == NULL){return true;}}
+		{if( m_Battlefields[7] == nullptr){return true;}}
       break;
 	  default:
         return false;
@@ -494,7 +494,7 @@ bool CBattlefieldHandler::hasFreeSpecialBattlefield(uint16 id){ //reserved for s
 
 bool CBattlefieldHandler::hasSpecialBattlefieldEmpty(uint16 id){ //reserved for special battlefield like limbus
   if(id <= m_MaxBattlefields &&  id!=0){
-	  if(m_Battlefields[id-1] != NULL){
+	  if(m_Battlefields[id-1] != nullptr){
 					 return false;
 	  }
    }
@@ -543,7 +543,7 @@ int CBattlefieldHandler::SpecialBattlefieldLeftTime(uint16 id,uint32 tick){ //re
 
   if(id <= m_MaxBattlefields &&  id>0){
 
-	 if(m_Battlefields[id-1] != NULL){
+	 if(m_Battlefields[id-1] != nullptr){
 	    int Tremaining = (tick -  m_Battlefields[id-1]->getStartTime())/1000;  //66
 	    int timelimit =  m_Battlefields[id-1]->getTimeLimit();		  	 ///3600
 					 return (timelimit-Tremaining)/60 ;
@@ -553,7 +553,7 @@ int CBattlefieldHandler::SpecialBattlefieldLeftTime(uint16 id,uint32 tick){ //re
 }
 int CBattlefieldHandler::GiveTimeToBattlefield(uint16 id, uint16 Time){
    if(id <= m_MaxBattlefields &&  id>0){
-	  if(m_Battlefields[id-1] != NULL){
+	  if(m_Battlefields[id-1] != nullptr){
 	          CBattlefield* PBattlefield = m_Battlefields[id-1];
 	          PBattlefield->addTimeLimit(Time*60);
 	  }
@@ -563,7 +563,7 @@ int CBattlefieldHandler::GiveTimeToBattlefield(uint16 id, uint16 Time){
 bool CBattlefieldHandler::hasFreeBattlefield(){
 
  for(int i=0; i<m_MaxBattlefields; i++){
- if(m_Battlefields[i] == NULL){
+ if(m_Battlefields[i] == nullptr){
 			     return true;
 	 }
   }
@@ -572,7 +572,7 @@ bool CBattlefieldHandler::hasFreeBattlefield(){
 
 uint8 CBattlefieldHandler::findBattlefieldIDFor(CCharEntity* PChar){
 	for(int i=0; i<m_MaxBattlefields; i++){
-		if(m_Battlefields[i] != NULL){
+		if(m_Battlefields[i] != nullptr){
 			if(m_Battlefields[i]->isValidPlayerForBcnm(PChar)){
 				return m_Battlefields[i]->getBattlefieldNumber();
 			}
@@ -584,10 +584,10 @@ uint8 CBattlefieldHandler::findBattlefieldIDFor(CCharEntity* PChar){
 CBattlefield* CBattlefieldHandler::getBattlefield(CCharEntity* PChar)
 {
     for (int i = 0; i < m_MaxBattlefields; i++)
-        if (m_Battlefields[i] != NULL)
+        if (m_Battlefields[i] != nullptr)
 			if (m_Battlefields[i]->isValidPlayerForBcnm(PChar))
                 return m_Battlefields[i];
-    return NULL;
+    return nullptr;
 }
 
 uint32 CBattlefieldHandler::pollTimeLeft(uint16 id){
@@ -596,7 +596,7 @@ uint32 CBattlefieldHandler::pollTimeLeft(uint16 id){
 
 void CBattlefieldHandler::openTreasureChest(CCharEntity* PChar){
 		for(int i=0; i<m_MaxBattlefields; i++){
-		if(m_Battlefields[i] != NULL){
+		if(m_Battlefields[i] != nullptr){
 			if(m_Battlefields[i]->isValidPlayerForBcnm(PChar)){
 				CBattlefield* PBattlefield = m_Battlefields[i];
 				PBattlefield->OpenChestinBcnm();
@@ -618,11 +618,11 @@ int CBattlefieldHandler::registerDynamis(uint16 id, CCharEntity* PChar){
 		return -1;
 	}
 	CBattlefield* PBattlefield = battlefieldutils::loadBattlefield(this,id,BATTLEFIELDTYPE_DYNAMIS);
-	if(PBattlefield==NULL){
+	if(PBattlefield==nullptr){
 		return -1;
 	}
 	for(int i=0; i<m_MaxBattlefields; i++){
-		if(m_Battlefields[i]==NULL){
+		if(m_Battlefields[i]==nullptr){
 			PBattlefield->setBattlefieldNumber(i+1);
 			break;
 		}
@@ -699,7 +699,7 @@ that this will be called if you warp BEFORE entering the dyna (but still have dy
 hence it doesn't check if you're "in" the BCNM, it just tries to remove you from the list.
 */
 bool CBattlefieldHandler::disconnectFromDynamis(CCharEntity* PChar){ //includes warping
-	if(m_Battlefields[0]!=NULL){
+	if(m_Battlefields[0]!=nullptr){
 		if(m_Battlefields[0]->delPlayerFromDynamis(PChar)){
 			luautils::OnBcnmLeave(PChar,m_Battlefields[0],LEAVE_WARPDC);
 			if(!m_Battlefields[0]->isReserved()){//no more players in BCNM

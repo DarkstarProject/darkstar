@@ -41,262 +41,262 @@
 
 enum ZONEID : uint16
 {
-	ZONE_RESIDENTIAL_AREA             = 0,
-	ZONE_PHANAUET_CHANNEL             = 1,
-	ZONE_CARPENTERS_LANDING           = 2,
-	ZONE_MANACLIPPER                  = 3,
-	ZONE_BIBIKI_BAY                   = 4,
-	ZONE_ULEGUERAND_RANGE             = 5,
-	ZONE_BEARCLAW_PINNACLE            = 6,
-	ZONE_ATTOHWA_CHASM                = 7,
-	ZONE_BONEYARD_GULLY               = 8,
-	ZONE_PSOXJA                       = 9,
-	ZONE_THE_SHROUDED_MAW             = 10,
-	ZONE_OLDTON_MOVALPOLOS            = 11,
-	ZONE_NEWTON_MOVALPOLOS            = 12,
-	ZONE_MINE_SHAFT_2716              = 13,
-	ZONE_HALL_OF_TRANSFERENCE         = 14,
-	ZONE_ABYSSEA_KONSCHTAT            = 15,
-	ZONE_PROMYVION_HOLLA              = 16,
-	ZONE_SPIRE_OF_HOLLA               = 17,
-	ZONE_PROMYVION_DEM                = 18,
-	ZONE_SPIRE_OF_DEM                 = 19,
-	ZONE_PROMYVION_MEA                = 20,
-	ZONE_SPIRE_OF_MEA                 = 21,
-	ZONE_PROMYVION_VAHZL              = 22,
-	ZONE_SPIRE_OF_VAHZL               = 23,
-	ZONE_LUFAISE_MEADOWS              = 24,
-	ZONE_MISAREAUX_COAST              = 25,
-	ZONE_TAVNAZIAN_SAFEHOLD           = 26,
-	ZONE_PHOMIUNA_AQUEDUCTS           = 27,
-	ZONE_SACRARIUM                    = 28,
-	ZONE_RIVERNE_SITE_B01             = 29,
-	ZONE_RIVERNE_SITE_A01             = 30,
-	ZONE_MONARCH_LINN                 = 31,
-	ZONE_SEALIONS_DEN                 = 32,
-	ZONE_ALTAIEU                      = 33,
-	ZONE_GRAND_PALACE_OF_HUXZOI       = 34,
-	ZONE_THE_GARDEN_OF_RUHMET         = 35,
-	ZONE_EMPYREAL_PARADOX             = 36,
-	ZONE_TEMENOS                      = 37,
-	ZONE_APOLLYON                     = 38,
-	ZONE_DYNAMIS_VALKURM              = 39,
-	ZONE_DYNAMIS_BUBURIMU             = 40,
-	ZONE_DYNAMIS_QUFIM                = 41,
-	ZONE_DYNAMIS_TAVNAZIA             = 42,
-	ZONE_DIORAMA_ABDHALJS_GHELSBA     = 43,
-	ZONE_ABDHALJS_ISLE_PURGONORGO     = 44,
-	ZONE_ABYSSEA_TAHRONGI             = 45,
-	ZONE_OPEN_SEA_ROUTE_TO_AL_ZAHBI   = 46,
-	ZONE_OPEN_SEA_ROUTE_TO_MHAURA     = 47,
-	ZONE_AL_ZAHBI                     = 48,
-	ZONE_49                           = 49, // GM Grid test zone
-	ZONE_AHT_URHGAN_WHITEGATE         = 50,
-	ZONE_WAJAOM_WOODLANDS             = 51,
-	ZONE_BHAFLAU_THICKETS             = 52,
-	ZONE_NASHMAU                      = 53,
-	ZONE_ARRAPAGO_REEF                = 54,
-	ZONE_ILRUSI_ATOLL                 = 55,
-	ZONE_PERIQIA                      = 56,
-	ZONE_TALACCA_COVE                 = 57,
-	ZONE_SILVER_SEA_ROUTE_TO_NASHMAU  = 58,
-	ZONE_SILVER_SEA_ROUTE_TO_AL_ZAHBI = 59,
-	ZONE_THE_ASHU_TALIF               = 60,
-	ZONE_MOUNT_ZHAYOLM                = 61,
-	ZONE_HALVUNG                      = 62,
-	ZONE_LEBROS_CAVERN                = 63,
-	ZONE_NAVUKGO_EXECUTION_CHAMBER    = 64,
-	ZONE_MAMOOK                       = 65,
-	ZONE_MAMOOL_JA_TRAINING_GROUNDS   = 66,
-	ZONE_JADE_SEPULCHER               = 67,
-	ZONE_AYDEEWA_SUBTERRANE           = 68,
-	ZONE_LEUJAOAM_SANCTUM             = 69,
-	ZONE_CHOCOBO_CIRCUIT              = 70,
-	ZONE_THE_COLOSSEUM                = 71,
-	ZONE_ALZADAAL_UNDERSEA_RUINS      = 72,
-	ZONE_ZHAYOLM_REMNANTS             = 73,
-	ZONE_ARRAPAGO_REMNANTS            = 74,
-	ZONE_BHAFLAU_REMNANTS             = 75,
-	ZONE_SILVER_SEA_REMNANTS          = 76,
-	ZONE_NYZUL_ISLE                   = 77,
-	ZONE_HAZHALM_TESTING_GROUNDS      = 78,
-	ZONE_CAEDARVA_MIRE                = 79,
-	ZONE_SOUTHERN_SAN_DORIA_S         = 80,
-	ZONE_EAST_RONFAURE_S              = 81,
-	ZONE_JUGNER_FOREST_S              = 82,
-	ZONE_VUNKERL_INLET_S              = 83,
-	ZONE_BATALLIA_DOWNS_S             = 84,
-	ZONE_LA_VAULE_S                   = 85,
-	ZONE_EVERBLOOM_HOLLOW             = 86,
-	ZONE_BASTOK_MARKETS_S             = 87,
-	ZONE_NORTH_GUSTABERG_S            = 88,
-	ZONE_GRAUBERG_S                   = 89,
-	ZONE_PASHHOW_MARSHLANDS_S         = 90,
-	ZONE_ROLANBERRY_FIELDS_S          = 91,
-	ZONE_BEADEAUX_S                   = 92,
-	ZONE_RUHOTZ_SILVERMINES           = 93,
-	ZONE_WINDURST_WATERS_S            = 94,
-	ZONE_WEST_SARUTABARUTA_S          = 95,
-	ZONE_FORT_KARUGO_NARUGO_S         = 96,
-	ZONE_MERIPHATAUD_MOUNTAINS_S      = 97,
-	ZONE_SAUROMUGUE_CHAMPAIGN_S       = 98,
-	ZONE_CASTLE_OZTROJA_S             = 99,
-	ZONE_WEST_RONFAURE                = 100,
-	ZONE_EAST_RONFAURE                = 101,
-	ZONE_LA_THEINE_PLATEAU            = 102,
-	ZONE_VALKURM_DUNES                = 103,
-	ZONE_JUGNER_FOREST                = 104,
-	ZONE_BATALLIA_DOWNS               = 105,
-	ZONE_NORTH_GUSTABERG              = 106,
-	ZONE_SOUTH_GUSTABERG              = 107,
-	ZONE_KONSCHTAT_HIGHLANDS          = 108,
-	ZONE_PASHHOW_MARSHLANDS           = 109,
-	ZONE_ROLANBERRY_FIELDS            = 110,
-	ZONE_BEAUCEDINE_GLACIER           = 111,
-	ZONE_XARCABARD                    = 112,
-	ZONE_CAPE_TERIGGAN                = 113,
-	ZONE_EASTERN_ALTEPA_DESERT        = 114,
-	ZONE_WEST_SARUTABARUTA            = 115,
-	ZONE_EAST_SARUTABARUTA            = 116,
-	ZONE_TAHRONGI_CANYON              = 117,
-	ZONE_BUBURIMU_PENINSULA           = 118,
-	ZONE_MERIPHATAUD_MOUNTAINS        = 119,
-	ZONE_SAUROMUGUE_CHAMPAIGN         = 120,
-	ZONE_THE_SANCTUARY_OF_ZITAH       = 121,
-	ZONE_ROMAEVE                      = 122,
-	ZONE_YUHTUNGA_JUNGLE              = 123,
-	ZONE_YHOATOR_JUNGLE               = 124,
-	ZONE_WESTERN_ALTEPA_DESERT        = 125,
-	ZONE_QUFIM_ISLAND                 = 126,
-	ZONE_BEHEMOTHS_DOMINION           = 127,
-	ZONE_VALLEY_OF_SORROWS            = 128,
-	ZONE_GHOYUS_REVERIE               = 129,
-	ZONE_RUAUN_GARDENS                = 130,
-	ZONE_MORDION_GAOL                 = 131,
-	ZONE_ABYSSEA_LA_THEINE            = 132,
-	ZONE_133                          = 133, // Seems to be the zone background of char select.
-	ZONE_DYNAMIS_BEAUCEDINE           = 134,
-	ZONE_DYNAMIS_XARCABARD            = 135,
-	ZONE_BEAUCEDINE_GLACIER_S         = 136,
-	ZONE_XARCABARD_S                  = 137,
-	ZONE_CASTLE_ZVAHL_BAILEYS_S       = 138,
-	ZONE_HORLAIS_PEAK                 = 139,
-	ZONE_GHELSBA_OUTPOST              = 140,
-	ZONE_FORT_GHELSBA                 = 141,
-	ZONE_YUGHOTT_GROTTO               = 142,
-	ZONE_PALBOROUGH_MINES             = 143,
-	ZONE_WAUGHROON_SHRINE             = 144,
-	ZONE_GIDDEUS                      = 145,
-	ZONE_BALGAS_DAIS                  = 146,
-	ZONE_BEADEAUX                     = 147,
-	ZONE_QULUN_DOME                   = 148,
-	ZONE_DAVOI                        = 149,
-	ZONE_MONASTIC_CAVERN              = 150,
-	ZONE_CASTLE_OZTROJA               = 151,
-	ZONE_ALTAR_ROOM                   = 152,
-	ZONE_THE_BOYAHDA_TREE             = 153,
-	ZONE_DRAGONS_AERY                 = 154,
-	ZONE_CASTLE_ZVAHL_KEEP_S          = 155,
-	ZONE_THRONE_ROOM_S                = 156,
-	ZONE_MIDDLE_DELKFUTTS_TOWER       = 157,
-	ZONE_UPPER_DELKFUTTS_TOWER        = 158,
-	ZONE_TEMPLE_OF_UGGALEPIH          = 159,
-	ZONE_DEN_OF_RANCOR                = 160,
-	ZONE_CASTLE_ZVAHL_BAILEYS         = 161,
-	ZONE_CASTLE_ZVAHL_KEEP            = 162,
-	ZONE_SACRIFICIAL_CHAMBER          = 163,
-	ZONE_GARLAIGE_CITADEL_S           = 164,
-	ZONE_THRONE_ROOM                  = 165,
-	ZONE_RANGUEMONT_PASS              = 166,
-	ZONE_BOSTAUNIEUX_OUBLIETTE        = 167,
-	ZONE_CHAMBER_OF_ORACLES           = 168,
-	ZONE_TORAIMARAI_CANAL             = 169,
-	ZONE_FULL_MOON_FOUNTAIN           = 170,
-	ZONE_CRAWLERS_NEST_S              = 171,
-	ZONE_ZERUHN_MINES                 = 172,
-	ZONE_KORROLOKA_TUNNEL             = 173,
-	ZONE_KUFTAL_TUNNEL                = 174,
-	ZONE_THE_ELDIEME_NECROPOLIS_S     = 175,
-	ZONE_SEA_SERPENT_GROTTO           = 176,
-	ZONE_VELUGANNON_PALACE            = 177,
-	ZONE_THE_SHRINE_OF_RUAVITAU       = 178,
-	ZONE_STELLAR_FULCRUM              = 179,
-	ZONE_LALOFF_AMPHITHEATER          = 180,
-	ZONE_THE_CELESTIAL_NEXUS          = 181,
-	ZONE_WALK_OF_ECHOES               = 182,
-	ZONE_MAQUETTE_ABDHALJS_LEGION     = 183,
-	ZONE_LOWER_DELKFUTTS_TOWER        = 184,
-	ZONE_DYNAMIS_SAN_DORIA            = 185,
-	ZONE_DYNAMIS_BASTOK               = 186,
-	ZONE_DYNAMIS_WINDURST             = 187,
-	ZONE_DYNAMIS_JEUNO                = 188,
-	ZONE_189                          = 189,
-	ZONE_KING_RANPERRES_TOMB          = 190,
-	ZONE_DANGRUF_WADI                 = 191,
-	ZONE_INNER_HORUTOTO_RUINS         = 192,
-	ZONE_ORDELLES_CAVES               = 193,
-	ZONE_OUTER_HORUTOTO_RUINS         = 194,
-	ZONE_THE_ELDIEME_NECROPOLIS       = 195,
-	ZONE_GUSGEN_MINES                 = 196,
-	ZONE_CRAWLERS_NEST                = 197,
-	ZONE_MAZE_OF_SHAKHRAMI            = 198,
-	ZONE_199                          = 199,
-	ZONE_GARLAIGE_CITADEL             = 200,
-	ZONE_CLOISTER_OF_GALES            = 201,
-	ZONE_CLOISTER_OF_STORMS           = 202,
-	ZONE_CLOISTER_OF_FROST            = 203,
-	ZONE_FEIYIN                       = 204,
-	ZONE_IFRITS_CAULDRON              = 205,
-	ZONE_QUBIA_ARENA                  = 206,
-	ZONE_CLOISTER_OF_FLAMES           = 207,
-	ZONE_QUICKSAND_CAVES              = 208,
-	ZONE_CLOISTER_OF_TREMORS          = 209,
-	ZONE_210                          = 210,
-	ZONE_CLOISTER_OF_TIDES            = 211,
-	ZONE_GUSTAV_TUNNEL                = 212,
-	ZONE_LABYRINTH_OF_ONZOZO          = 213,
-	ZONE_214                          = 214, // Alt. ID of Residential Zone?
-	ZONE_ABYSSEA_ATTOHWA              = 215,
-	ZONE_ABYSSEA_MISAREAUX            = 216,
-	ZONE_ABYSSEA_VUNKERL              = 217,
-	ZONE_ABYSSEA_ALTEPA               = 218,
-	ZONE_218                          = 218,
-	ZONE_SHIP_BOUND_FOR_SELBINA       = 220,
-	ZONE_SHIP_BOUND_FOR_MHAURA        = 221,
-	ZONE_PROVENANCE                   = 222,
-	ZONE_SAN_DORIA_JEUNO_AIRSHIP      = 223,
-	ZONE_BASTOK_JEUNO_AIRSHIP         = 224,
-	ZONE_WINDURST_JEUNO_AIRSHIP       = 225,
-	ZONE_KAZHAM_JEUNO_AIRSHIP         = 226,
-	ZONE_SHIP_BOUND_FOR_SELBINA_PIRAT = 227,
-	ZONE_SHIP_BOUND_FOR_MHAURA_PIRAT  = 228,
-	ZONE_229                          = 229,
-	ZONE_SOUTHERN_SANDORIA            = 230,
-	ZONE_NORTHERN_SANDORIA            = 231,
-	ZONE_PORT_SANDORIA                = 232,
-	ZONE_CHATEAU_DORAGUILLE           = 233,
-	ZONE_BASTOK_MINES                 = 234,
-	ZONE_BASTOK_MARKETS               = 235,
-	ZONE_PORT_BASTOK                  = 236,
-	ZONE_METALWORKS                   = 237,
-	ZONE_WINDURST_WATERS              = 238,
-	ZONE_WINDURST_WALLS               = 239,
-	ZONE_PORT_WINDURST                = 240,
-	ZONE_WINDURST_WOODS               = 241,
-	ZONE_HEAVENS_TOWER                = 242,
-	ZONE_RULUDE_GARDENS               = 243,
-	ZONE_UPPER_JEUNO                  = 244,
-	ZONE_LOWER_JEUNO                  = 245,
-	ZONE_PORT_JEUNO                   = 246,
-	ZONE_RABAO                        = 247,
-	ZONE_SELBINA                      = 248,
-	ZONE_MHAURA                       = 249,
-	ZONE_KAZHAM                       = 250,
-	ZONE_HALL_OF_THE_GODS             = 251,
-	ZONE_NORG                         = 252,
-	ZONE_ABYSSEA_ULEGUERAND           = 253,
-	ZONE_ABYSSEA_GRAUBERG             = 254,
-	ZONE_ABYSSEA_EMPYREAL_PARADOX     = 255,
+    ZONE_RESIDENTIAL_AREA             = 0,
+    ZONE_PHANAUET_CHANNEL             = 1,
+    ZONE_CARPENTERS_LANDING           = 2,
+    ZONE_MANACLIPPER                  = 3,
+    ZONE_BIBIKI_BAY                   = 4,
+    ZONE_ULEGUERAND_RANGE             = 5,
+    ZONE_BEARCLAW_PINNACLE            = 6,
+    ZONE_ATTOHWA_CHASM                = 7,
+    ZONE_BONEYARD_GULLY               = 8,
+    ZONE_PSOXJA                       = 9,
+    ZONE_THE_SHROUDED_MAW             = 10,
+    ZONE_OLDTON_MOVALPOLOS            = 11,
+    ZONE_NEWTON_MOVALPOLOS            = 12,
+    ZONE_MINE_SHAFT_2716              = 13,
+    ZONE_HALL_OF_TRANSFERENCE         = 14,
+    ZONE_ABYSSEA_KONSCHTAT            = 15,
+    ZONE_PROMYVION_HOLLA              = 16,
+    ZONE_SPIRE_OF_HOLLA               = 17,
+    ZONE_PROMYVION_DEM                = 18,
+    ZONE_SPIRE_OF_DEM                 = 19,
+    ZONE_PROMYVION_MEA                = 20,
+    ZONE_SPIRE_OF_MEA                 = 21,
+    ZONE_PROMYVION_VAHZL              = 22,
+    ZONE_SPIRE_OF_VAHZL               = 23,
+    ZONE_LUFAISE_MEADOWS              = 24,
+    ZONE_MISAREAUX_COAST              = 25,
+    ZONE_TAVNAZIAN_SAFEHOLD           = 26,
+    ZONE_PHOMIUNA_AQUEDUCTS           = 27,
+    ZONE_SACRARIUM                    = 28,
+    ZONE_RIVERNE_SITE_B01             = 29,
+    ZONE_RIVERNE_SITE_A01             = 30,
+    ZONE_MONARCH_LINN                 = 31,
+    ZONE_SEALIONS_DEN                 = 32,
+    ZONE_ALTAIEU                      = 33,
+    ZONE_GRAND_PALACE_OF_HUXZOI       = 34,
+    ZONE_THE_GARDEN_OF_RUHMET         = 35,
+    ZONE_EMPYREAL_PARADOX             = 36,
+    ZONE_TEMENOS                      = 37,
+    ZONE_APOLLYON                     = 38,
+    ZONE_DYNAMIS_VALKURM              = 39,
+    ZONE_DYNAMIS_BUBURIMU             = 40,
+    ZONE_DYNAMIS_QUFIM                = 41,
+    ZONE_DYNAMIS_TAVNAZIA             = 42,
+    ZONE_DIORAMA_ABDHALJS_GHELSBA     = 43,
+    ZONE_ABDHALJS_ISLE_PURGONORGO     = 44,
+    ZONE_ABYSSEA_TAHRONGI             = 45,
+    ZONE_OPEN_SEA_ROUTE_TO_AL_ZAHBI   = 46,
+    ZONE_OPEN_SEA_ROUTE_TO_MHAURA     = 47,
+    ZONE_AL_ZAHBI                     = 48,
+    ZONE_49                           = 49, // GM Grid test zone
+    ZONE_AHT_URHGAN_WHITEGATE         = 50,
+    ZONE_WAJAOM_WOODLANDS             = 51,
+    ZONE_BHAFLAU_THICKETS             = 52,
+    ZONE_NASHMAU                      = 53,
+    ZONE_ARRAPAGO_REEF                = 54,
+    ZONE_ILRUSI_ATOLL                 = 55,
+    ZONE_PERIQIA                      = 56,
+    ZONE_TALACCA_COVE                 = 57,
+    ZONE_SILVER_SEA_ROUTE_TO_NASHMAU  = 58,
+    ZONE_SILVER_SEA_ROUTE_TO_AL_ZAHBI = 59,
+    ZONE_THE_ASHU_TALIF               = 60,
+    ZONE_MOUNT_ZHAYOLM                = 61,
+    ZONE_HALVUNG                      = 62,
+    ZONE_LEBROS_CAVERN                = 63,
+    ZONE_NAVUKGO_EXECUTION_CHAMBER    = 64,
+    ZONE_MAMOOK                       = 65,
+    ZONE_MAMOOL_JA_TRAINING_GROUNDS   = 66,
+    ZONE_JADE_SEPULCHER               = 67,
+    ZONE_AYDEEWA_SUBTERRANE           = 68,
+    ZONE_LEUJAOAM_SANCTUM             = 69,
+    ZONE_CHOCOBO_CIRCUIT              = 70,
+    ZONE_THE_COLOSSEUM                = 71,
+    ZONE_ALZADAAL_UNDERSEA_RUINS      = 72,
+    ZONE_ZHAYOLM_REMNANTS             = 73,
+    ZONE_ARRAPAGO_REMNANTS            = 74,
+    ZONE_BHAFLAU_REMNANTS             = 75,
+    ZONE_SILVER_SEA_REMNANTS          = 76,
+    ZONE_NYZUL_ISLE                   = 77,
+    ZONE_HAZHALM_TESTING_GROUNDS      = 78,
+    ZONE_CAEDARVA_MIRE                = 79,
+    ZONE_SOUTHERN_SAN_DORIA_S         = 80,
+    ZONE_EAST_RONFAURE_S              = 81,
+    ZONE_JUGNER_FOREST_S              = 82,
+    ZONE_VUNKERL_INLET_S              = 83,
+    ZONE_BATALLIA_DOWNS_S             = 84,
+    ZONE_LA_VAULE_S                   = 85,
+    ZONE_EVERBLOOM_HOLLOW             = 86,
+    ZONE_BASTOK_MARKETS_S             = 87,
+    ZONE_NORTH_GUSTABERG_S            = 88,
+    ZONE_GRAUBERG_S                   = 89,
+    ZONE_PASHHOW_MARSHLANDS_S         = 90,
+    ZONE_ROLANBERRY_FIELDS_S          = 91,
+    ZONE_BEADEAUX_S                   = 92,
+    ZONE_RUHOTZ_SILVERMINES           = 93,
+    ZONE_WINDURST_WATERS_S            = 94,
+    ZONE_WEST_SARUTABARUTA_S          = 95,
+    ZONE_FORT_KARUGO_NARUGO_S         = 96,
+    ZONE_MERIPHATAUD_MOUNTAINS_S      = 97,
+    ZONE_SAUROMUGUE_CHAMPAIGN_S       = 98,
+    ZONE_CASTLE_OZTROJA_S             = 99,
+    ZONE_WEST_RONFAURE                = 100,
+    ZONE_EAST_RONFAURE                = 101,
+    ZONE_LA_THEINE_PLATEAU            = 102,
+    ZONE_VALKURM_DUNES                = 103,
+    ZONE_JUGNER_FOREST                = 104,
+    ZONE_BATALLIA_DOWNS               = 105,
+    ZONE_NORTH_GUSTABERG              = 106,
+    ZONE_SOUTH_GUSTABERG              = 107,
+    ZONE_KONSCHTAT_HIGHLANDS          = 108,
+    ZONE_PASHHOW_MARSHLANDS           = 109,
+    ZONE_ROLANBERRY_FIELDS            = 110,
+    ZONE_BEAUCEDINE_GLACIER           = 111,
+    ZONE_XARCABARD                    = 112,
+    ZONE_CAPE_TERIGGAN                = 113,
+    ZONE_EASTERN_ALTEPA_DESERT        = 114,
+    ZONE_WEST_SARUTABARUTA            = 115,
+    ZONE_EAST_SARUTABARUTA            = 116,
+    ZONE_TAHRONGI_CANYON              = 117,
+    ZONE_BUBURIMU_PENINSULA           = 118,
+    ZONE_MERIPHATAUD_MOUNTAINS        = 119,
+    ZONE_SAUROMUGUE_CHAMPAIGN         = 120,
+    ZONE_THE_SANCTUARY_OF_ZITAH       = 121,
+    ZONE_ROMAEVE                      = 122,
+    ZONE_YUHTUNGA_JUNGLE              = 123,
+    ZONE_YHOATOR_JUNGLE               = 124,
+    ZONE_WESTERN_ALTEPA_DESERT        = 125,
+    ZONE_QUFIM_ISLAND                 = 126,
+    ZONE_BEHEMOTHS_DOMINION           = 127,
+    ZONE_VALLEY_OF_SORROWS            = 128,
+    ZONE_GHOYUS_REVERIE               = 129,
+    ZONE_RUAUN_GARDENS                = 130,
+    ZONE_MORDION_GAOL                 = 131,
+    ZONE_ABYSSEA_LA_THEINE            = 132,
+    ZONE_133                          = 133, // Seems to be the zone background of char select.
+    ZONE_DYNAMIS_BEAUCEDINE           = 134,
+    ZONE_DYNAMIS_XARCABARD            = 135,
+    ZONE_BEAUCEDINE_GLACIER_S         = 136,
+    ZONE_XARCABARD_S                  = 137,
+    ZONE_CASTLE_ZVAHL_BAILEYS_S       = 138,
+    ZONE_HORLAIS_PEAK                 = 139,
+    ZONE_GHELSBA_OUTPOST              = 140,
+    ZONE_FORT_GHELSBA                 = 141,
+    ZONE_YUGHOTT_GROTTO               = 142,
+    ZONE_PALBOROUGH_MINES             = 143,
+    ZONE_WAUGHROON_SHRINE             = 144,
+    ZONE_GIDDEUS                      = 145,
+    ZONE_BALGAS_DAIS                  = 146,
+    ZONE_BEADEAUX                     = 147,
+    ZONE_QULUN_DOME                   = 148,
+    ZONE_DAVOI                        = 149,
+    ZONE_MONASTIC_CAVERN              = 150,
+    ZONE_CASTLE_OZTROJA               = 151,
+    ZONE_ALTAR_ROOM                   = 152,
+    ZONE_THE_BOYAHDA_TREE             = 153,
+    ZONE_DRAGONS_AERY                 = 154,
+    ZONE_CASTLE_ZVAHL_KEEP_S          = 155,
+    ZONE_THRONE_ROOM_S                = 156,
+    ZONE_MIDDLE_DELKFUTTS_TOWER       = 157,
+    ZONE_UPPER_DELKFUTTS_TOWER        = 158,
+    ZONE_TEMPLE_OF_UGGALEPIH          = 159,
+    ZONE_DEN_OF_RANCOR                = 160,
+    ZONE_CASTLE_ZVAHL_BAILEYS         = 161,
+    ZONE_CASTLE_ZVAHL_KEEP            = 162,
+    ZONE_SACRIFICIAL_CHAMBER          = 163,
+    ZONE_GARLAIGE_CITADEL_S           = 164,
+    ZONE_THRONE_ROOM                  = 165,
+    ZONE_RANGUEMONT_PASS              = 166,
+    ZONE_BOSTAUNIEUX_OUBLIETTE        = 167,
+    ZONE_CHAMBER_OF_ORACLES           = 168,
+    ZONE_TORAIMARAI_CANAL             = 169,
+    ZONE_FULL_MOON_FOUNTAIN           = 170,
+    ZONE_CRAWLERS_NEST_S              = 171,
+    ZONE_ZERUHN_MINES                 = 172,
+    ZONE_KORROLOKA_TUNNEL             = 173,
+    ZONE_KUFTAL_TUNNEL                = 174,
+    ZONE_THE_ELDIEME_NECROPOLIS_S     = 175,
+    ZONE_SEA_SERPENT_GROTTO           = 176,
+    ZONE_VELUGANNON_PALACE            = 177,
+    ZONE_THE_SHRINE_OF_RUAVITAU       = 178,
+    ZONE_STELLAR_FULCRUM              = 179,
+    ZONE_LALOFF_AMPHITHEATER          = 180,
+    ZONE_THE_CELESTIAL_NEXUS          = 181,
+    ZONE_WALK_OF_ECHOES               = 182,
+    ZONE_MAQUETTE_ABDHALJS_LEGION     = 183,
+    ZONE_LOWER_DELKFUTTS_TOWER        = 184,
+    ZONE_DYNAMIS_SAN_DORIA            = 185,
+    ZONE_DYNAMIS_BASTOK               = 186,
+    ZONE_DYNAMIS_WINDURST             = 187,
+    ZONE_DYNAMIS_JEUNO                = 188,
+    ZONE_189                          = 189,
+    ZONE_KING_RANPERRES_TOMB          = 190,
+    ZONE_DANGRUF_WADI                 = 191,
+    ZONE_INNER_HORUTOTO_RUINS         = 192,
+    ZONE_ORDELLES_CAVES               = 193,
+    ZONE_OUTER_HORUTOTO_RUINS         = 194,
+    ZONE_THE_ELDIEME_NECROPOLIS       = 195,
+    ZONE_GUSGEN_MINES                 = 196,
+    ZONE_CRAWLERS_NEST                = 197,
+    ZONE_MAZE_OF_SHAKHRAMI            = 198,
+    ZONE_199                          = 199,
+    ZONE_GARLAIGE_CITADEL             = 200,
+    ZONE_CLOISTER_OF_GALES            = 201,
+    ZONE_CLOISTER_OF_STORMS           = 202,
+    ZONE_CLOISTER_OF_FROST            = 203,
+    ZONE_FEIYIN                       = 204,
+    ZONE_IFRITS_CAULDRON              = 205,
+    ZONE_QUBIA_ARENA                  = 206,
+    ZONE_CLOISTER_OF_FLAMES           = 207,
+    ZONE_QUICKSAND_CAVES              = 208,
+    ZONE_CLOISTER_OF_TREMORS          = 209,
+    ZONE_210                          = 210,
+    ZONE_CLOISTER_OF_TIDES            = 211,
+    ZONE_GUSTAV_TUNNEL                = 212,
+    ZONE_LABYRINTH_OF_ONZOZO          = 213,
+    ZONE_214                          = 214, // Alt. ID of Residential Zone?
+    ZONE_ABYSSEA_ATTOHWA              = 215,
+    ZONE_ABYSSEA_MISAREAUX            = 216,
+    ZONE_ABYSSEA_VUNKERL              = 217,
+    ZONE_ABYSSEA_ALTEPA               = 218,
+    ZONE_218                          = 218,
+    ZONE_SHIP_BOUND_FOR_SELBINA       = 220,
+    ZONE_SHIP_BOUND_FOR_MHAURA        = 221,
+    ZONE_PROVENANCE                   = 222,
+    ZONE_SAN_DORIA_JEUNO_AIRSHIP      = 223,
+    ZONE_BASTOK_JEUNO_AIRSHIP         = 224,
+    ZONE_WINDURST_JEUNO_AIRSHIP       = 225,
+    ZONE_KAZHAM_JEUNO_AIRSHIP         = 226,
+    ZONE_SHIP_BOUND_FOR_SELBINA_PIRAT = 227,
+    ZONE_SHIP_BOUND_FOR_MHAURA_PIRAT  = 228,
+    ZONE_229                          = 229,
+    ZONE_SOUTHERN_SANDORIA            = 230,
+    ZONE_NORTHERN_SANDORIA            = 231,
+    ZONE_PORT_SANDORIA                = 232,
+    ZONE_CHATEAU_DORAGUILLE           = 233,
+    ZONE_BASTOK_MINES                 = 234,
+    ZONE_BASTOK_MARKETS               = 235,
+    ZONE_PORT_BASTOK                  = 236,
+    ZONE_METALWORKS                   = 237,
+    ZONE_WINDURST_WATERS              = 238,
+    ZONE_WINDURST_WALLS               = 239,
+    ZONE_PORT_WINDURST                = 240,
+    ZONE_WINDURST_WOODS               = 241,
+    ZONE_HEAVENS_TOWER                = 242,
+    ZONE_RULUDE_GARDENS               = 243,
+    ZONE_UPPER_JEUNO                  = 244,
+    ZONE_LOWER_JEUNO                  = 245,
+    ZONE_PORT_JEUNO                   = 246,
+    ZONE_RABAO                        = 247,
+    ZONE_SELBINA                      = 248,
+    ZONE_MHAURA                       = 249,
+    ZONE_KAZHAM                       = 250,
+    ZONE_HALL_OF_THE_GODS             = 251,
+    ZONE_NORG                         = 252,
+    ZONE_ABYSSEA_ULEGUERAND           = 253,
+    ZONE_ABYSSEA_GRAUBERG             = 254,
+    ZONE_ABYSSEA_EMPYREAL_PARADOX     = 255,
     ZONE_WESTERN_ADOULIN              = 256,
     ZONE_EASTERN_ADOULIN              = 257,
     ZONE_RALA_WATERWAYS               = 258,
@@ -333,25 +333,25 @@ enum ZONEID : uint16
 
 enum REGIONTYPE : uint8
 {
-	REGION_RONFAURE			= 0,
-	REGION_ZULKHEIM			= 1,
-	REGION_NORVALLEN		= 2,
-	REGION_GUSTABERG		= 3,
-	REGION_DERFLAND			= 4,
-	REGION_SARUTABARUTA		= 5,
-	REGION_KOLSHUSHU		= 6,
-	REGION_ARAGONEU			= 7,
-	REGION_FAUREGANDI		= 8,
-	REGION_VALDEAUNIA		= 9,
-	REGION_QUFIMISLAND		= 10,
-	REGION_LITELOR			= 11,
-	REGION_KUZOTZ			= 12,
-	REGION_VOLLBOW			= 13,
-	REGION_ELSHIMOLOWLANDS	= 14,
-	REGION_ELSHIMOUPLANDS	= 15,
-	REGION_TULIA			= 16,
-	REGION_MOVALPOLOS		= 17,
-	REGION_TAVNAZIA			= 18,
+    REGION_RONFAURE         = 0,
+    REGION_ZULKHEIM         = 1,
+    REGION_NORVALLEN        = 2,
+    REGION_GUSTABERG        = 3,
+    REGION_DERFLAND         = 4,
+    REGION_SARUTABARUTA     = 5,
+    REGION_KOLSHUSHU        = 6,
+    REGION_ARAGONEU         = 7,
+    REGION_FAUREGANDI       = 8,
+    REGION_VALDEAUNIA       = 9,
+    REGION_QUFIMISLAND      = 10,
+    REGION_LITELOR          = 11,
+    REGION_KUZOTZ           = 12,
+    REGION_VOLLBOW          = 13,
+    REGION_ELSHIMOLOWLANDS  = 14,
+    REGION_ELSHIMOUPLANDS   = 15,
+    REGION_TULIA            = 16,
+    REGION_MOVALPOLOS       = 17,
+    REGION_TAVNAZIA         = 18,
 
     REGION_SANDORIA         = 19,
     REGION_BASTOK           = 20,
@@ -382,7 +382,7 @@ enum REGIONTYPE : uint8
     REGION_ADOULIN_ISLANDS  = 44,
     REGION_EAST_ULBUKA      = 45,
 
-	REGION_UNKNOWN			= 255
+    REGION_UNKNOWN          = 255
 };
 
 enum CONTINENTTYPE : uint8
@@ -395,72 +395,88 @@ enum CONTINENTTYPE : uint8
 
 enum ZONETYPE
 {
-	ZONETYPE_NONE = 0,
-	ZONETYPE_CITY = 1,
-	ZONETYPE_OUTDOORS = 2,
-	ZONETYPE_DUNGEON = 3,
-	ZONETYPE_BATTLEFIELD = 4,
-	ZONETYPE_DYNAMIS = 5,
-	ZONETYPE_DUNGEON_INSTANCED = 6
+    ZONETYPE_NONE = 0,
+    ZONETYPE_CITY = 1,
+    ZONETYPE_OUTDOORS = 2,
+    ZONETYPE_DUNGEON = 3,
+    ZONETYPE_BATTLEFIELD = 4,
+    ZONETYPE_DYNAMIS = 5,
+    ZONETYPE_DUNGEON_INSTANCED = 6
 };
 
 enum GLOBAL_MESSAGE_TYPE
 {
-	CHAR_INRANGE,
-	CHAR_INRANGE_SELF,
-	CHAR_INSHOUT,
-	CHAR_INZONE
+    CHAR_INRANGE,
+    CHAR_INRANGE_SELF,
+    CHAR_INSHOUT,
+    CHAR_INZONE
 };
 
 enum ZONEMISC
 {
     MISC_NONE       = 0x0000,   // Able to be used in any area
-	MISC_ESCAPE		= 0x0001,	// Ability to use Escape Spell
-	MISC_FELLOW		= 0x0002,	// Ability to summon Fellow NPC
-	MISC_CHOCOBO	= 0x0004,	// Ability to use Chocobos
-	MISC_MAZURKA	= 0x0008,	// Ability to use Mazurka Spell
-	MISC_TRACTOR	= 0x0010,	// Ability to use Tractor Spell
-	MISC_MOGMENU	= 0x0020,	// Ability to communicate with Nomad Moogle (menu access mog house)
-	MISC_COSTUME	= 0x0040,	// Ability to use a Costumes
-	MISC_PET		= 0x0080,	// Ability to summon Pets
-	MISC_TREASURE	= 0x0100,	// Presence in the global zone TreasurePool
-	MISC_PVP 		= 0x0200,	// Ability to PvP
-	MISC_YELL		= 0x0400	// Send and receive /yell commands
+    MISC_ESCAPE     = 0x0001,   // Ability to use Escape Spell
+    MISC_FELLOW     = 0x0002,   // Ability to summon Fellow NPC
+    MISC_CHOCOBO    = 0x0004,   // Ability to use Chocobos
+    MISC_MAZURKA    = 0x0008,   // Ability to use Mazurka Spell
+    MISC_TRACTOR    = 0x0010,   // Ability to use Tractor Spell
+    MISC_MOGMENU    = 0x0020,   // Ability to communicate with Nomad Moogle (menu access mog house)
+    MISC_COSTUME    = 0x0040,   // Ability to use a Costumes
+    MISC_PET        = 0x0080,   // Ability to summon Pets
+    MISC_TREASURE   = 0x0100,   // Presence in the global zone TreasurePool
+    MISC_PVP        = 0x0200,   // Ability to PvP
+    MISC_YELL       = 0x0400    // Send and receive /yell commands
 };
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 struct zoneMusic_t
 {
-	uint8 m_song;		// фоновая музыка
-	uint8 m_bSongS;		// музыка в одиночном бою
-	uint8 m_bSongM;		// музыка в групповом бою
+    uint8 m_song;       // фоновая музыка
+    uint8 m_bSongS;     // музыка в одиночном бою
+    uint8 m_bSongM;     // музыка в групповом бою
 };
 
 /************************************************************************
-*																		*
-*  zoneLine - уникальный идентификатор пути из одной точки какой-либо	*
-*  зоны в другую точку какой-либо зоны.	Зоной отправления является зона,*
-*  хранящая данный zoneLineID. Зона прибытия и точное местоназначение	*
-*  определены в структуре.												*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+struct zoneWeather_t
+{
+    uint8 normal;     // Normal Weather
+    uint8 common;     // Common Weather
+    uint8 rare;       // Rare Weather
+
+    zoneWeather_t(uint8 _normal, uint8 _common, uint8 _rare) :
+        normal(_normal), common(_common), rare(_rare) {};
+};
+
+/************************************************************************
+*                                                                       *
+*  zoneLine - уникальный идентификатор пути из одной точки какой-либо   *
+*  зоны в другую точку какой-либо зоны. Зоной отправления является зона,*
+*  хранящая данный zoneLineID. Зона прибытия и точное местоназначение   *
+*  определены в структуре.                                              *
+*                                                                       *
 ************************************************************************/
 
 struct zoneLine_t
 {
-	uint32	   m_zoneLineID;
-	uint16	   m_toZone;
-	position_t m_toPos;
+    uint32     m_zoneLineID;
+    uint16     m_toZone;
+    position_t m_toPos;
 };
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CBasicPacket;
@@ -473,118 +489,121 @@ class CZoneEntities;
 typedef std::list<CRegion*> regionList_t;
 typedef std::list<zoneLine_t*> zoneLineList_t;
 
+typedef std::map<uint16,zoneWeather_t> weatherVector_t;
+
 typedef std::map<uint16,CBaseEntity*> EntityList_t;
 
+int32 zone_update_weather(uint32 tick, CTaskMgr::CTask *PTask);
 
 class CZone
 {
 public:
 
-	ZONEID          GetID();
-	ZONETYPE        GetType();
+    ZONEID          GetID();
+    ZONETYPE        GetType();
     REGIONTYPE      GetRegionID();
     CONTINENTTYPE   GetContinentID();
-	uint32			GetIP();
-	uint16			GetPort();
-	uint16			GetTax();
-	WEATHER			GetWeather();
+    uint32          GetIP();
+    uint16          GetPort();
+    uint16          GetTax();
+    WEATHER         GetWeather();
     uint32          GetWeatherChangeTime();
-	const int8*		GetName();
-	uint8			GetSoloBattleMusic();
-	uint8			GetPartyBattleMusic();
-	uint8			GetBackgroundMusic();
-	zoneLine_t*		GetZoneLine(uint32 zoneLineID);
+    const int8*     GetName();
+    uint8           GetSoloBattleMusic();
+    uint8           GetPartyBattleMusic();
+    uint8           GetBackgroundMusic();
+    zoneLine_t*     GetZoneLine(uint32 zoneLineID);
 
     virtual CCharEntity*    GetCharByName(int8* name);                              // finds the player if exists in zone
-    virtual CCharEntity*	GetCharByID(uint32 id);
-	virtual CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 			// получаем указатель на любую сущность в зоне
+    virtual CCharEntity*    GetCharByID(uint32 id);
+    virtual CBaseEntity*    GetEntity(uint16 targid, uint8 filter = -1);            // получаем указатель на любую сущность в зоне
 
     bool            IsWeatherStatic();                                              // погода в зоне не требует изменения (никогда не меняется)
-	bool			CanUseMisc(uint16 misc);
+    bool            CanUseMisc(uint16 misc);
     void            SetWeather(WEATHER weatherCondition);
+    void            UpdateWeather();
 
-	virtual void	SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
-	virtual void	SpawnMOBs(CCharEntity* PChar);									// отображаем MOBs в зоне
-	virtual void	SpawnPETs(CCharEntity* PChar);									// отображаем PETs в зоне
-	virtual void	SpawnNPCs(CCharEntity* PChar);									// отображаем NPCs в зоне
-	virtual void	SpawnMoogle(CCharEntity* PChar);								// отображаем Moogle в MogHouse
+    virtual void    SpawnPCs(CCharEntity* PChar);                                   // отображаем персонажей в зоне
+    virtual void    SpawnMOBs(CCharEntity* PChar);                                  // отображаем MOBs в зоне
+    virtual void    SpawnPETs(CCharEntity* PChar);                                  // отображаем PETs в зоне
+    virtual void    SpawnNPCs(CCharEntity* PChar);                                  // отображаем NPCs в зоне
+    virtual void    SpawnMoogle(CCharEntity* PChar);                                // отображаем Moogle в MogHouse
     virtual void    SpawnTransport(CCharEntity* PChar);                             // отображаем транспорт
-	void			SavePlayTime();
+    void            SavePlayTime();
 
-	virtual void	WideScan(CCharEntity* PChar, uint16 radius);					// сканирование местности с заданным радиусом
+    virtual void    WideScan(CCharEntity* PChar, uint16 radius);                    // сканирование местности с заданным радиусом
 
-	virtual void	DecreaseZoneCounter(CCharEntity* PChar);						// добавляем персонажа в зону
-	virtual void	IncreaseZoneCounter(CCharEntity* PChar);						// удаляем персонажа из зоны
+    virtual void    DecreaseZoneCounter(CCharEntity* PChar);                        // добавляем персонажа в зону
+    virtual void    IncreaseZoneCounter(CCharEntity* PChar);                        // удаляем персонажа из зоны
 
-	virtual void	InsertNPC(CBaseEntity* PNpc);									// добавляем в зону npc
-	virtual void	InsertMOB(CBaseEntity* PMob);									// добавляем в зону mob
-	virtual void	InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
-	virtual void	DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
+    virtual void    InsertNPC(CBaseEntity* PNpc);                                   // добавляем в зону npc
+    virtual void    InsertMOB(CBaseEntity* PMob);                                   // добавляем в зону mob
+    virtual void    InsertPET(CBaseEntity* PPet);                                   // добавляем в зону pet
+    virtual void    DeletePET(CBaseEntity* PPet);                                   // derefs the pet's ID from this zone
 
     virtual void    FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
     virtual void    TransportDepart(uint16 boundary, uint16 zone);                  // транспотр отправляется, необходимо собрать пассажиров
 
-	void			InsertRegion(CRegion* Region);									// добавляем в зону активную область
+    void            InsertRegion(CRegion* Region);                                  // добавляем в зону активную область
 
-	virtual void	TOTDChange(TIMETYPE TOTD);										// обработка реакции мира на смену времени суток
-	virtual void	PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*);	// отправляем глобальный пакет в пределах зоны
+    virtual void    TOTDChange(TIMETYPE TOTD);                                      // обработка реакции мира на смену времени суток
+    virtual void    PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*);   // отправляем глобальный пакет в пределах зоны
 
-	uint32			m_RegionCheckTime;												// время последней проверки регионов
-    uint8           m_WeatherFrequency[MAX_WEATHER_ID];                             // вероятность появления каждого типа погоды
+    uint32          m_RegionCheckTime;                                              // время последней проверки регионов
+    weatherVector_t m_WeatherVector;                                                // вероятность появления каждого типа погоды
 
-	virtual void	ZoneServer(uint32 tick);
-	virtual void	ZoneServerRegion(uint32 tick);
-	void			CheckRegions(CCharEntity* PChar);
+    virtual void    ZoneServer(uint32 tick);
+    virtual void    ZoneServerRegion(uint32 tick);
+    void            CheckRegions(CCharEntity* PChar);
 
-	virtual void	ForEachChar(std::function<void(CCharEntity*)> func);
-	virtual void	ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> func);
-	virtual void	ForEachMobInstance(CBaseEntity* PEntity, std::function<void(CMobEntity*)> func);
+    virtual void    ForEachChar(std::function<void(CCharEntity*)> func);
+    virtual void    ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> func);
+    virtual void    ForEachMobInstance(CBaseEntity* PEntity, std::function<void(CMobEntity*)> func);
 
-	CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID);
-	virtual ~CZone();
+    CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID);
+    virtual ~CZone();
 
-    CBattlefieldHandler* m_BattlefieldHandler;	// BCNM Instances in this zone
+    CBattlefieldHandler* m_BattlefieldHandler;  // BCNM Instances in this zone
 
-    CNavMesh*		m_navMesh;				// zones navmesh for finding paths
+    CNavMesh*       m_navMesh;              // zones navmesh for finding paths
 
 private:
 
-	ZONEID			m_zoneID;				// ID зоны
-	ZONETYPE        m_zoneType;
+    ZONEID          m_zoneID;               // ID зоны
+    ZONETYPE        m_zoneType;
     REGIONTYPE      m_regionID;             // ID области
     CONTINENTTYPE   m_continentID;          // ID континента
-	string_t		m_zoneName;				// имя зоны
-	uint16			m_zonePort;				// порт зоны
-	uint32			m_zoneIP;               // IP зоны
-    bool 			m_useNavMesh;			// Use navmesh for roaming, chasing
+    string_t        m_zoneName;             // имя зоны
+    uint16          m_zonePort;             // порт зоны
+    uint32          m_zoneIP;               // IP зоны
+    bool            m_useNavMesh;           // Use navmesh for roaming, chasing
 
-	WEATHER			m_Weather;              // текущая погода
+    WEATHER         m_Weather;              // текущая погода
     uint32          m_WeatherChangeTime;    // время начала текущей погоды
-    bool            m_IsWeatherStatic;      // погода в зоне никогда не меняется
-	CZoneEntities*  m_zoneEntities;
+    CZoneEntities*  m_zoneEntities;
 
-	uint16			m_tax;					// налог в bazaar
-	uint16			m_miscMask;				// битовое поле, описывающее возможности использования в зоне определенных умений
+    uint16          m_tax;                  // налог в bazaar
+    uint16          m_miscMask;             // битовое поле, описывающее возможности использования в зоне определенных умений
 
-	zoneMusic_t		m_zoneMusic;			// информация о мелодиях, используемых в зоне
+    zoneMusic_t     m_zoneMusic;            // информация о мелодиях, используемых в зоне
 
-	regionList_t	m_regionList;			// список активных областей зоны
-	zoneLineList_t	m_zoneLineList;			// список всех доступных zonelines для зоны
+    regionList_t    m_regionList;           // список активных областей зоны
+    zoneLineList_t  m_zoneLineList;         // список всех доступных zonelines для зоны
 
-	void	LoadZoneLines();				// список zonelines (можно было бы заменить этот метод методом InsertZoneLine)
-	void    LoadZoneWeather();              // погода
-	void	LoadZoneSettings();				// настройки зоны
-	void	LoadNavMesh();					// Load the zones navmesh. Must exist in scripts/zones/:zone/NavMesh.nav
+    void    LoadZoneLines();                // список zonelines (можно было бы заменить этот метод методом InsertZoneLine)
+    void    LoadZoneWeather();              // погода
+    void    LoadZoneSettings();             // настройки зоны
+    void    LoadNavMesh();                  // Load the zones navmesh. Must exist in scripts/zones/:zone/NavMesh.nav
 
-	CTaskMgr::CTask* ZoneTimer;				// указатель на созданный таймер - ZoneServer. необходим для возможности его остановки
+    CTaskMgr::CTask* ZoneTimer;             // указатель на созданный таймер - ZoneServer. необходим для возможности его остановки
 
-	CTreasurePool*	m_TreasurePool;			// глобальный TreasuerPool
+    CTreasurePool*  m_TreasurePool;         // глобальный TreasuerPool
 
 protected:
 
-	void createZoneTimer();
-	void CharZoneIn(CCharEntity* PChar);
-	void CharZoneOut(CCharEntity* PChar);
+    void createZoneTimer();
+    void CharZoneIn(CCharEntity* PChar);
+    void CharZoneOut(CCharEntity* PChar);
 };
 
 #endif

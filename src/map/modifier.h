@@ -51,7 +51,6 @@ enum MODIFIER
     MOD_CHR                       = 0x0E,  // Charisma (modId = 14)
 
     // Elemental Defenses
-
     MOD_FIREDEF                   = 0x0F,  // Fire Defense (modId = 15)
     MOD_ICEDEF                    = 0x10,  // Ice Defense (modId = 16)
     MOD_WINDDEF                   = 0x11,  // Wind Defense (modId = 17)
@@ -76,7 +75,6 @@ enum MODIFIER
     MOD_MEVA                      = 0x1F,  // Magic Evasion (modId = 31)
 
     // Magic Accuracy and Elemental Attacks
-
     MOD_FIREATT                   = 0x20,  // Fire Damage (modId = 32)
     MOD_ICEATT                    = 0x21,  // Ice Damage (modId = 33)
     MOD_WINDATT                   = 0x22,  // Wind Damage (modId = 34)
@@ -99,7 +97,6 @@ enum MODIFIER
     // Resistance to damage type
     // Value is stored as a percentage of damage reduction (to within 1000)
     // Example: 1000              = 100%, 875= 87.5%
-
     MOD_SLASHRES                  = 0x31,  // Slash Resistance (modId = 49)
     MOD_PIERCERES                 = 0x32,  // Piercing Resistance (modId = 50)
     MOD_IMPACTRES                 = 0x33,  // Impact Resistance (modId = 51)
@@ -109,7 +106,6 @@ enum MODIFIER
     // Damage Reduction to Elements
     // Value is stored as a percentage of damage reduction (to within 1000)
     // Example: 1000              = 100%, 875= 87.5%
-
     MOD_FIRERES                   = 0x36,  // % Fire Resistance (modId = 54)
     MOD_ICERES                    = 0x37,  // % Ice Resistance (modId = 55)
     MOD_WINDRES                   = 0x38,  // % Wind Resistance (modId = 56)
@@ -137,7 +133,6 @@ enum MODIFIER
     MOD_INHIBIT_TP                = 0x1E8, // Inhibits TP Gain (percent) (modId = 488)
 
     // Working Skills (weapon combat skills)
-
     MOD_HTH                       = 0x50,  // Hand To Hand Skill (modId = 80)
     MOD_DAGGER                    = 0x51,  // Dagger Skill (modId = 81)
     MOD_SWORD                     = 0x52,  // Sword Skill (modId = 82)
@@ -162,7 +157,6 @@ enum MODIFIER
     MOD_PARRY                     = 0x6E,  // Parry Skill (modId = 110)
 
     // Magic Skills
-
     MOD_DIVINE                    = 0x6F,  // Divine Magic Skill (modId = 111)
     MOD_HEALING                   = 0x70,  // Healing Magic Skill (modId = 112)
     MOD_ENHANCE                   = 0x71,  // Enhancing Magic Skill (modId = 113)
@@ -177,7 +171,6 @@ enum MODIFIER
     MOD_BLUE                      = 0x7A,  // Blue Magic Skill (modId = 122)
 
     // Synthesis Skills
-
     MOD_FISH                      = 0x7F,  // Fishing Skill (modId = 127)
     MOD_WOOD                      = 0x80,  // Woodworking Skill (modId = 128)
     MOD_SMITH                     = 0x81,  // Smithing Skill (modId = 129)
@@ -191,7 +184,6 @@ enum MODIFIER
     MOD_RIDING                    = 0x89,  // Riding Skill (modId = 137)
 
     // Chance you will not make an hq synth (Impossibility of HQ synth)
-
     MOD_ANTIHQ_WOOD               = 0x90,  // Woodworking Success Rate % (modId = 144)
     MOD_ANTIHQ_SMITH              = 0x91,  // Smithing Success Rate % (modId = 145)
     MOD_ANTIHQ_GOLDSMITH          = 0x92,  // Goldsmithing Success Rate % (modId = 146)
@@ -202,7 +194,6 @@ enum MODIFIER
     MOD_ANTIHQ_COOK               = 0x97,  // Cooking Success Rate % (modId = 151)
 
     // Damage / Crit Damage / Delay
-
     MOD_DMG                       = 0xA0,  // Damage Taken % (modId = 160)
     MOD_DMGPHYS                   = 0xA1,  // Physical Damage Taken % (modId = 161)
     MOD_DMGBREATH                 = 0xA2,  // Breath Damage Taken % (modId = 162)
@@ -232,7 +223,6 @@ enum MODIFIER
     MOD_SKILLCHAINDMG             = 0xAF,  // Damage bonus applied to skill chain damage.  Modifier from gear (multiplicative after effect/traits) (modId = 175)
 
     // FOOD!
-
     MOD_FOOD_HPP                  = 0xB0,  // (modId = 176)
     MOD_FOOD_HP_CAP               = 0xB1,  // (modId = 177)
     MOD_FOOD_MPP                  = 0xB2,  // (modId = 178)
@@ -249,7 +239,6 @@ enum MODIFIER
     MOD_FOOD_RACC_CAP             = 0xBD,  // (modId = 190)
 
     // Killer-Effects - (Most by Traits/JobAbility)
-
     MOD_VERMIN_KILLER             = 0xE0,  // Enhances "Vermin Killer" effect (modId = 224)
     MOD_BIRD_KILLER               = 0xE1,  // Enhances "Bird Killer" effect (modId = 225)
     MOD_AMORPH_KILLER             = 0xE2,  // Enhances "Amorph Killer" effect (modId = 226)
@@ -267,7 +256,6 @@ enum MODIFIER
     MOD_LUMINION_KILLER           = 0xEE,  // Enhances "Luminion Killer" effect (modId = 238)
 
     // Resistances to enfeebles - Traits/Job Ability
-
     MOD_SLEEPRES                  = 0xF0,  // Enhances "Resist Sleep" effect (modId = 240)
     MOD_POISONRES                 = 0xF1,  // Enhances "Resist Poison" effect (modId = 241)
     MOD_PARALYZERES               = 0xF2,  // Enhances "Resist Paralyze" effect (modId = 242)
@@ -323,6 +311,7 @@ enum MODIFIER
     MOD_SHIELD_MASTERY_TP         = 0x1E5, // Shield mastery TP bonus when blocking with a shield (modId = 485)
 
     // Dark Knight
+    // Nothing here yet..
 
     // Beastmaster
     MOD_TAME                      = 0x130, // Additional percent chance to charm (modId = 304)
@@ -392,10 +381,6 @@ enum MODIFIER
     // Corsair
     MOD_EXP_BONUS                 = 0x17E, // (modId = 382)
 
-    MOD_PET_MABB                  = 0x138, // Tracks totals (modId = 312)
-    MOD_PET_MACC                  = 0x139, // Tracks totals (modId = 313)
-    MOD_PET_ATTP                  = 0x13A, // Tracks totals (modId = 314)
-    MOD_PET_ACC                   = 0x13B, // Tracks totals (modId = 315)
     MOD_DMG_REFLECT               = 0x13C, // Tracks totals (modId = 316)
     MOD_ROLL_ROGUES               = 0x13D, // Tracks totals (modId = 317)
     MOD_ROLL_GALLANTS             = 0x13E, // Tracks totals (modId = 318)
@@ -470,7 +455,6 @@ enum MODIFIER
     MOD_DARK_AFFINITY             = 0x162, // Dark Affinity (modId = 354)
 
     // Special Modifier+
-
     MOD_ADDS_WEAPONSKILL          = 0x163, // (modId = 355)
     MOD_ADDS_WEAPONSKILL_DYN      = 0x164, // In Dynamis (modId = 356)
 
@@ -509,9 +493,9 @@ enum MODIFIER
     MOD_EXTRA_DUAL_WIELD_ATTACK   = 0x1E1, // Chance to land an extra attack when dual wielding (modId = 481)
     MOD_EXTRA_KICK_ATTACK         = 0x1E2, // Occasionally allows a second Kick Attack during an attack round without the use of Footwork.  (modId = 482)
     MOD_SAMBA_DOUBLE_DAMAGE       = 0x19F, // Double damage chance when samba is up. (modId = 415)
-    MOD_NULL_PHYSICAL_DAMAGE      = 0x1A0, // Chance to null physical damage. (modId = 416)
+    MOD_NULL_PHYSICAL_DAMAGE      = 0x1A0, // Chance to NULL physical damage. (modId = 416)
     MOD_QUICK_DRAW_TRIPLE_DAMAGE  = 0x1A1, // Chance to do triple damage with quick draw. (modId = 417)
-    MOD_BAR_ELEMENT_NULL_CHANCE   = 0x1A2, // Bar Elemental spells will occasionally nullify damage of the same element. (modId = 418)
+    MOD_BAR_ELEMENT_NULL_CHANCE   = 0x1A2, // Bar Elemental spells will occasionally NULLify damage of the same element. (modId = 418)
     MOD_GRIMOIRE_INSTANT_CAST     = 0x1A3, // Spells that match your current Arts will occasionally cast instantly, without recast. (modId = 419)
     MOD_QUAD_ATTACK               = 0x1AE, // Quadruple attack chance. (modId = 430)
 
@@ -570,13 +554,13 @@ enum MODIFIER
     MOD_LOGGING_RESULT            = 0x202, // Improves logging results (modId = 514)
     MOD_MINNING_RESULT            = 0x203, // Improves mining results (modId = 515)
 
+    // MOD_SPARE = 0x138, // (modId = 312)
+    // MOD_SPARE = 0x139, // (modId = 313)
+    // MOD_SPARE = 0x13A, // (modId = 314)
+    // MOD_SPARE = 0x13B, // (modId = 315)
     // MOD_SPARE = 0x205, // (modId = 517)
 
 };
-
-#define MAX_MODIFIER 517
-
-
 
 /************************************************************************
 *  Modifier Class                                                       *

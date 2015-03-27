@@ -322,7 +322,7 @@ function CharCreate(player)
 
 	-- Needs Moghouse Intro
 	player:setVar("MoghouseExplication",1);
-
+    
 end;
 
 function onPlayerLevelUp(player)

@@ -89,7 +89,7 @@ namespace itemutils
 		}
 
 
-	    return NULL;
+	    return nullptr;
     }
 
     /************************************************************************
@@ -104,7 +104,7 @@ namespace itemutils
 	    {
 		    return new CItemCurrency(ItemID);
 	    }
-	    if (ItemID < MAX_ITEMID && g_pItemList[ItemID] != NULL)
+	    if (ItemID < MAX_ITEMID && g_pItemList[ItemID] != nullptr)
 	    {
 		    if( (ItemID >= 0x0200) && (ItemID <= 0x0206) ) 
 		    {
@@ -143,7 +143,7 @@ namespace itemutils
 			    return new CItemGeneral(*((CItemGeneral*)g_pItemList[ItemID]));
 			}
 	    }
-	    return NULL;
+	    return nullptr;
     }
 
     /************************************************************************
@@ -154,7 +154,7 @@ namespace itemutils
 
     CItem* GetItem(CItem* PItem)
     {
-        DSP_DEBUG_BREAK_IF(PItem == NULL);
+        DSP_DEBUG_BREAK_IF(PItem == nullptr);
 
         if (PItem->isType(ITEM_WEAPON))
         {
@@ -188,7 +188,7 @@ namespace itemutils
         {
             return new CItemCurrency(*((CItemCurrency*)PItem));
         }
-        return NULL;
+        return nullptr;
     }
 
     /************************************************************************
@@ -204,7 +204,7 @@ namespace itemutils
 		    return g_pItemList[ItemID];
 	    }
         ShowWarning(CL_CYAN"ItemID %u too big\n" CL_RESET, ItemID);
-	    return NULL;
+	    return nullptr;
     }
 
     /************************************************************************
@@ -236,7 +236,7 @@ namespace itemutils
 		     return g_pDropList[DropID];
 	    }
         ShowWarning(CL_CYAN"DropID %u too big\n" CL_RESET, DropID);
-	    return NULL;
+	    return nullptr;
     }
 
     /************************************************************************
@@ -252,7 +252,7 @@ namespace itemutils
 		     return g_pLootList[LootID];
 	    }
         ShowWarning(CL_CYAN"LootID %u too big\n" CL_RESET, LootID);
-	    return NULL;
+	    return nullptr;
     }
 
     /************************************************************************
@@ -324,7 +324,7 @@ namespace itemutils
 		    {
 			    CItem* PItem = CreateItem(Sql_GetUIntData(SqlHandle,0));
 
-			    if(PItem != NULL)
+			    if(PItem != nullptr)
 			    {
 				    PItem->setName(Sql_GetData(SqlHandle,1));
 				    PItem->setStackSize(Sql_GetUIntData(SqlHandle,2));
@@ -401,12 +401,29 @@ namespace itemutils
 			    uint16 modID  = (uint16)Sql_GetUIntData(SqlHandle,1);
 			    int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
-			    if ((g_pItemList[ItemID] != NULL) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
+			    if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
 			    {
                     ((CItemArmor*)g_pItemList[ItemID])->addModifier(new CModifier(modID,value));
 			    }
 		    }
 	    }
+
+        ret = Sql_Query(SqlHandle, "SELECT itemId, modId, value FROM item_mods_pet WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
+
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                uint16 ItemID = (uint16)Sql_GetUIntData(SqlHandle, 0);
+                uint16 modID = (uint16)Sql_GetUIntData(SqlHandle, 1);
+                int16  value = (int16)Sql_GetIntData(SqlHandle, 2);
+
+                if ((g_pItemList[ItemID]) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
+                {
+                    ((CItemArmor*)g_pItemList[ItemID])->addPetModifier(new CModifier(modID, value));
+                }
+            }
+        }
 
 	    ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value, latentId, latentParam FROM item_latents WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
 	    
@@ -420,7 +437,7 @@ namespace itemutils
 				uint16 latentId = (uint16) Sql_GetIntData(SqlHandle,3);
 				uint16 latentParam = (uint16) Sql_GetIntData(SqlHandle,4);
 
-			    if ((g_pItemList[ItemID] != NULL) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
+			    if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
 			    {
                     ((CItemArmor*)g_pItemList[ItemID])->addLatent(new CLatentEffect((LATENT)latentId, latentParam, 0, modID, value));
 			    }
@@ -527,7 +544,7 @@ namespace itemutils
     {
 	    for(int32 ItemID = 0; ItemID < MAX_ITEMID; ++ItemID)
 	    {
-		    if ((g_pItemList[ItemID] != NULL) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
+		    if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
 		    {
 			    CItemArmor* PItem = (CItemArmor*)g_pItemList[ItemID];
 

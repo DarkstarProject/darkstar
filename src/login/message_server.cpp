@@ -29,8 +29,8 @@ This file is part of DarkStar-server source code.
 #include "login.h"
 
 zmq::context_t zContext;
-zmq::socket_t* zSocket = NULL;
-Sql_t* ChatSqlHandle = NULL;
+zmq::socket_t* zSocket = nullptr;
+Sql_t* ChatSqlHandle = nullptr;
 std::queue<chat_message_t> msg_queue;
 std::mutex queue_mutex;
 
@@ -274,6 +274,6 @@ void message_server_close()
     {
         zSocket->close();
         delete zSocket;
-        zSocket = NULL;
+        zSocket = nullptr;
     }
 }

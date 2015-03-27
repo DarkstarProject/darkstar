@@ -235,6 +235,9 @@ public:
     void              pushPacket(CBasicPacket*);    // добавление копии пакета в PacketList
     bool			  isPacketListEmpty();          // проверка размера PacketList
     CBasicPacket*	  popPacket();                  // получение первого пакета из PacketList
+    PacketList_t      getPacketList();              // returns a COPY of packet list
+    size_t            getPacketCount();
+    void              erasePackets(uint8 num);      // erase num elements from front of packet list
 
     CLinkshell*       PLinkshell1;                  // linkshell, в которой общается персонаж
     CLinkshell*       PLinkshell2;                  // linkshell 2

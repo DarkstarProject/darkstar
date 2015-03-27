@@ -10,6 +10,9 @@ FULL_INVENTORY_AFTER_TRADE = 6417; -- Try trading again after sorting your inven
              HOMEPOINT_SET =   24; -- Home point set!
        NOT_HAVE_ENOUGH_GIL = 6423; -- You do not have enough gil.
            LEATHER_SUPPORT = 6728; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ?Multiple Choice (Parameter 2)?[a little/ever so slightly/ever so slightly].?Prompt?
+		          NO_MORE_GP_ELIGIBLE =  6761; --You are not eligible to receive guild points at this time.
+               GP_OBTAINED =  6762; --Obtained <<<Numeric Parameter 0>>> guild points.
+        NOT_HAVE_ENOUGH_GP =  6763; --You do not have enough guild points.
    NOTHING_OUT_OF_ORDINARY = 6432; -- There is nothing out of the ordinary here.<Prompt>
 
 -- Tutorial NPC

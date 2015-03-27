@@ -26,7 +26,6 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
 	local ThePuppetMaster = player:getQuestStatus(WINDURST,THE_PUPPET_MASTER);
 	local ClassReunion = player:getQuestStatus(WINDURST,CLASS_REUNION);
 	local CarbuncleDebacle = player:getQuestStatus(WINDURST,CARBUNCLE_DEBACLE);
@@ -67,7 +66,6 @@ function onTrigger(player,npc)
 	end;
 
 	return 1;
-
 end;
 
 -----------------------------------
@@ -75,9 +73,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
-
+	-- printf("CSID2: %u",csid);
+	-- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -85,8 +82,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 
 	if(csid == 0x0120) then
 		player:setVar("KnowOnesOnions",2);

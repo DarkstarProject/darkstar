@@ -5,7 +5,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return true;
+	return 0;
 end;
 
 function onItemUse(target)

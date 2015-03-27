@@ -73,7 +73,7 @@ bool CInstanceLoader::Check()
 			if (!instance)
 			{
 				//Instance failed to load
-				luautils::OnInstanceCreated(requester, NULL);
+				luautils::OnInstanceCreated(requester, nullptr);
 			}
 			else
 			{
@@ -291,7 +291,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 	else
 	{
         instance->Cancel();
-		instance = NULL;
+		instance = nullptr;
 	}
 
 	//TODO: pets

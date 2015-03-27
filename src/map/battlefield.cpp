@@ -216,7 +216,7 @@ void CBattlefield::capPlayerToBCNM(){ //adjust player's level to the appropriate
 bool CBattlefield::isPlayerInBcnm(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(PChar->id == m_PlayerList.at(i)->id){
-			return PChar->PBCNM != NULL;
+			return PChar->PBCNM != nullptr;
 		}
 	}
 	return false;
@@ -252,7 +252,7 @@ bool CBattlefield::addPlayerToBcnm(CCharEntity* PChar){
 bool CBattlefield::delPlayerFromBcnm(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(m_PlayerList.at(i)->id == PChar->id){
-			PChar->PBCNM = NULL;
+			PChar->PBCNM = nullptr;
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_SJ_RESTRICTION);
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_BATTLEFIELD);
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
@@ -348,7 +348,7 @@ bool CBattlefield::allEnemiesDefeated(){
 
 bool CBattlefield::isPlayersFighting(){
 	for(int i=0; i<m_EnemyList.size(); i++){
-		if(m_EnemyList.at(i)->PEnmityContainer->GetHighestEnmity() != NULL){
+		if(m_EnemyList.at(i)->PEnmityContainer->GetHighestEnmity() != nullptr){
 			return true;
 		}
 	}
@@ -365,7 +365,7 @@ void CBattlefield::cleanup(){
 	//wipe enmity from all mobs in list if needed
 	for(int i=0; i<m_EnemyList.size(); i++){
 		m_EnemyList.at(i)->PBattleAI->SetCurrentAction(ACTION_DESPAWN);
-		m_EnemyList.at(i)->PBCNM = NULL;
+		m_EnemyList.at(i)->PBCNM = nullptr;
 	}
 	//wipe mob list
 	m_EnemyList.clear();
@@ -391,8 +391,8 @@ void CBattlefield::cleanup(){
 
 	locked = false;
 	//delete battlefield
-	if(m_Handler==NULL){
-		ShowError("Battlefield handler is NULL from Battlefield BCNM %i Inst %i \n",m_BcnmID,m_BattlefieldNumber);
+	if(m_Handler==nullptr){
+		ShowError("Battlefield handler is null from Battlefield BCNM %i Inst %i \n",m_BcnmID,m_BattlefieldNumber);
 	}
 
 	m_Handler->wipeBattlefield(this);
@@ -509,7 +509,7 @@ void CBattlefield::cleanupDynamis(){
 			uint32 mobid = Sql_GetUIntData(SqlHandle,0);
 			CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
-			if(PMob != NULL)
+			if(PMob != nullptr)
 				PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
 		}
 	}
@@ -519,8 +519,8 @@ void CBattlefield::cleanupDynamis(){
 	m_MobList.clear();
 
 	//delete battlefield
-	if(m_Handler==NULL){
-		ShowError("Battlefield handler is NULL from Dynamis Battlefield %i \n",m_BcnmID);
+	if(m_Handler==nullptr){
+		ShowError("Battlefield handler is null from Dynamis Battlefield %i \n",m_BcnmID);
 	}
 	m_Handler->wipeBattlefield(this);
 	delete this;
@@ -529,7 +529,7 @@ void CBattlefield::cleanupDynamis(){
 bool CBattlefield::delPlayerFromDynamis(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(m_PlayerList.at(i)->id == PChar->id){
-			PChar->PBCNM = NULL;
+			PChar->PBCNM = nullptr;
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_DYNAMIS);
 			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 			m_PlayerList.erase(m_PlayerList.begin()+i);

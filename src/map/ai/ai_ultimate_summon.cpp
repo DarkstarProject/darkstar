@@ -105,7 +105,7 @@ void CAIUltimateSummon::ActionAbilityStart()
 }
 
 void CAIUltimateSummon::preparePetAbility(CBattleEntity* PTarg){
-	if(m_PMobSkill!=NULL){
+	if(m_PMobSkill!=nullptr){
 
 		apAction_t Action;
 		m_PPet->m_ActionList.clear();
@@ -121,11 +121,11 @@ void CAIUltimateSummon::preparePetAbility(CBattleEntity* PTarg){
 		}
 		else
 		{
-			if(m_PBattleTarget != NULL)
+			if(m_PBattleTarget != nullptr)
 			{
 			    m_PBattleSubTarget = m_PBattleTarget;
 			}
-			DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+			DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == nullptr);
 		}
 
 		Action.ActionTarget = m_PBattleSubTarget;
@@ -146,15 +146,15 @@ void CAIUltimateSummon::preparePetAbility(CBattleEntity* PTarg){
 		m_ActionType = ACTION_MOBABILITY_USING;
 	}
 	else{
-		ShowWarning("ai_pet_dummy::ActionAbilityFinish Pet skill is null \n");
+		ShowWarning("ai_pet_dummy::ActionAbilityFinish Pet skill is NULL \n");
 		TransitionBack(true);
 	}
 }
 
 void CAIUltimateSummon::ActionAbilityUsing()
 {
-	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL && m_PMobSkill->getValidTargets()==TARGET_ENEMY && m_PPet->getPetType()!=PETTYPE_AVATAR);
+	DSP_DEBUG_BREAK_IF(m_PMobSkill == nullptr);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == nullptr && m_PMobSkill->getValidTargets()==TARGET_ENEMY && m_PPet->getPetType()!=PETTYPE_AVATAR);
 
 	if (m_PPet->objtype == TYPE_MOB)
 	{
@@ -232,8 +232,8 @@ void CAIUltimateSummon::ActionAbilityUsing()
 }
 
 void CAIUltimateSummon::ActionAbilityFinish(){
-	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	DSP_DEBUG_BREAK_IF(m_PMobSkill == nullptr);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == nullptr);
 
 	// reset AoE finder
     m_PTargetFind->reset();
@@ -266,7 +266,7 @@ void CAIUltimateSummon::ActionAbilityFinish(){
 	m_PMobSkill->setTP(m_skillTP);
 
 	apAction_t Action;
-	Action.ActionTarget = NULL;
+	Action.ActionTarget = nullptr;
 	Action.reaction   = REACTION_HIT;
 	Action.speceffect = SPECEFFECT_HIT;
 	Action.animation  = m_PMobSkill->getAnimationID();
@@ -302,7 +302,7 @@ void CAIUltimateSummon::ActionAbilityFinish(){
 
 	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
 
-	if(Action.ActionTarget!=NULL){ //todo: remove pet type avatar maybe
+	if(Action.ActionTarget!=nullptr){ //todo: remove pet type avatar maybe
 		Action.ActionTarget->loc.zone->PushPacket(Action.ActionTarget, CHAR_INRANGE, new CEntityUpdatePacket(Action.ActionTarget, ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 
@@ -312,7 +312,7 @@ void CAIUltimateSummon::ActionAbilityFinish(){
         m_PPet->PMaster->addMP(-m_PPet->PMaster->health.mp);
     }
 
-	m_PBattleSubTarget = NULL;
+	m_PBattleSubTarget = nullptr;
 	m_ActionType = ACTION_ATTACK;
 }
 
@@ -333,7 +333,7 @@ void CAIUltimateSummon::ActionAbilityInterrupt(){
 		m_PPet->m_ActionList.push_back(Action);
 		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
 
-    m_PMobSkill = NULL;
+    m_PMobSkill = nullptr;
     m_ActionType = ACTION_ATTACK;
 }
 
@@ -345,7 +345,7 @@ void CAIUltimateSummon::ActionAbilityInterrupt(){
 
 void CAIUltimateSummon::ActionRoaming()
 {
-    if (m_PPet->PMaster == NULL || m_PPet->PMaster->isDead() || m_Tick > m_Timer + 10000){
+    if (m_PPet->PMaster == nullptr || m_PPet->PMaster->isDead() || m_Tick > m_Timer + 10000){
 		m_ActionType = ACTION_FALL;
 		ActionFall();
 		return;
@@ -359,9 +359,9 @@ void CAIUltimateSummon::ActionRoaming()
 
 void CAIUltimateSummon::ActionEngage()
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleTarget == nullptr);
 
-	if( m_PPet->PMaster==NULL || m_PPet->PMaster->isDead())
+	if( m_PPet->PMaster==nullptr || m_PPet->PMaster->isDead())
 	{
 		m_ActionType = ACTION_FALL;
 		ActionFall();
@@ -377,10 +377,10 @@ void CAIUltimateSummon::ActionEngage()
 		hasClaim = true;
 
 
-	if(m_PPet->PMaster->PParty != NULL)
+	if(m_PPet->PMaster->PParty != nullptr)
 	{
 		// alliance
-		if (m_PPet->PMaster->PParty->m_PAlliance != NULL)
+		if (m_PPet->PMaster->PParty->m_PAlliance != nullptr)
 		{
 			for (uint8 a = 0; a < m_PPet->PMaster->PParty->m_PAlliance->partyList.size(); ++a)
 			{
@@ -425,14 +425,14 @@ void CAIUltimateSummon::ActionEngage()
 
 void CAIUltimateSummon::ActionAttack()
 {
-    if (m_PPet->PMaster == NULL || m_PPet->PMaster->isDead() || m_PPet->isDead() || m_Tick > m_Timer + 10000){
+    if (m_PPet->PMaster == nullptr || m_PPet->PMaster->isDead() || m_PPet->isDead() || m_Tick > m_Timer + 10000){
 		m_ActionType = ACTION_FALL;
 		ActionFall();
 		return;
 	}
 
 	//handle death of target
-    if (m_PBattleTarget == NULL || m_PBattleTarget->isDead() ||
+    if (m_PBattleTarget == nullptr || m_PBattleTarget->isDead() ||
         m_PBattleTarget->animation == ANIMATION_CHOCOBO)
 	{
         m_ActionType = ACTION_ROAMING;
@@ -458,7 +458,7 @@ void CAIUltimateSummon::ActionSleep()
 
 void CAIUltimateSummon::ActionDisengage()
 {
-	if( m_PPet->PMaster==NULL || m_PPet->PMaster->isDead()){
+	if( m_PPet->PMaster==nullptr || m_PPet->PMaster->isDead()){
 		m_ActionType = ACTION_FALL;
 		ActionFall();
 		return;
@@ -467,7 +467,7 @@ void CAIUltimateSummon::ActionDisengage()
 	m_queueSic = false;
 	m_PPet->animation = ANIMATION_NONE;
 	m_LastActionTime = m_Tick;
-	m_PBattleTarget  = NULL;
+	m_PBattleTarget  = nullptr;
 	TransitionBack();
     m_PPet->updatemask |= UPDATE_HP;
 }
@@ -496,15 +496,15 @@ void CAIUltimateSummon::ActionDeath()
 		m_PPet->status = STATUS_DISAPPEAR;
         m_PPet->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
 
-		if(m_PPet->PMaster!=NULL){
+		if(m_PPet->PMaster!=nullptr){
 			if(m_PPet->PMaster->objtype == TYPE_PC && distance(m_PPet->loc.p, m_PPet->PMaster->loc.p) >= 50){
 				//master won't get this despawn packet, so send it directly
 				((CCharEntity*)m_PPet->PMaster)->pushPacket(new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN, UPDATE_NONE));
 			}
-			m_PPet->PMaster->PPet = NULL;
+			m_PPet->PMaster->PPet = nullptr;
 		}
 		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN, UPDATE_NONE));
-		if (m_PPet->PMaster != NULL && m_PPet->PMaster->objtype == TYPE_PC)
+		if (m_PPet->PMaster != nullptr && m_PPet->PMaster->objtype == TYPE_PC)
 		{
 			((CCharEntity*)m_PPet->PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PPet->PMaster));
 		}
@@ -523,7 +523,7 @@ void CAIUltimateSummon::ActionDeath()
 
 void CAIUltimateSummon::ActionSpawn()
 {
-	if( m_PPet->PMaster==NULL || m_PPet->PMaster->isDead()){
+	if( m_PPet->PMaster==nullptr || m_PPet->PMaster->isDead()){
 		m_ActionType = ACTION_FALL;
 		ActionFall();
 		return;

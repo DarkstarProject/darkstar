@@ -49,7 +49,7 @@ void SetBlueSpell(CCharEntity* PChar, CBlueSpell* PSpell, uint8 slotIndex, bool 
 
 	//sanity check
 	if (slotIndex < 20) {
-		if (PSpell != NULL && PSpell->getID() > 0x200)
+		if (PSpell != nullptr && PSpell->getID() > 0x200)
         {
 			if (addingSpell) 
             {
@@ -85,7 +85,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 	std::vector<CSpell*> PLearnableSpells;
 	for (std::map<uint16, uint16>::iterator i=PMob->m_UsedSkillIds.begin(); i != PMob->m_UsedSkillIds.end(); ++i) {
 		CSpell* PSpell = spell::GetSpellByMonsterSkillId(i->first);
-		if (PSpell != NULL) {
+		if (PSpell != nullptr) {
 			PLearnableSpells.push_back(PSpell);
 		}
 	}
@@ -97,7 +97,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 	std::vector<CCharEntity*> PBlueMages;
 
 	// populate PBlueMages
-	if (PChar->PParty != NULL) {
+	if (PChar->PParty != nullptr) {
         for (uint8 i = 0; i < PChar->PParty->members.size(); i++) {
 			if (PChar->PParty->members[i]->GetMJob() == JOB_BLU && PChar->PParty->members[i]->objtype == TYPE_PC) {
 				PBlueMages.push_back((CCharEntity*)PChar->PParty->members[i]);
@@ -327,7 +327,7 @@ void LoadSetSpells(CCharEntity* PChar)
             Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
 		    size_t length = 0;
-		    int8* blue_spells = NULL;
+		    int8* blue_spells = nullptr;
 		    Sql_GetData(SqlHandle,0,&blue_spells,&length);
 		    memcpy(PChar->m_SetBlueSpells, blue_spells, (length > sizeof(PChar->m_SetBlueSpells) ? sizeof(PChar->m_SetBlueSpells) : length));
         }
@@ -337,7 +337,7 @@ void LoadSetSpells(CCharEntity* PChar)
             {
                 CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
 
-				if (PSpell == NULL)
+				if (PSpell == nullptr)
 				{
 					PChar->m_SetBlueSpells[slot] = 0;
 				}

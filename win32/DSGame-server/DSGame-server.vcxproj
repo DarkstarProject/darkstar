@@ -233,6 +233,7 @@
     <ClInclude Include="..\..\src\map\alliance.h" />
     <ClInclude Include="..\..\src\map\blue_spell.h" />
     <ClInclude Include="..\..\src\map\blue_trait.h" />
+    <ClInclude Include="..\..\src\map\guild.h" />
     <ClInclude Include="..\..\src\map\message.h" />
     <ClInclude Include="..\..\src\map\commandhandler.h" />
     <ClInclude Include="..\..\src\map\conquest_system.h" />
@@ -244,7 +245,6 @@
     <ClInclude Include="..\..\src\map\entities\mobentity.h" />
     <ClInclude Include="..\..\src\map\entities\npcentity.h" />
     <ClInclude Include="..\..\src\map\entities\petentity.h" />
-    <ClInclude Include="..\..\src\map\fishingutils.h" />
     <ClInclude Include="..\..\src\map\grades.h" />
     <ClInclude Include="..\..\src\map\battlefield.h" />
     <ClInclude Include="..\..\src\map\battlefield_handler.h" />
@@ -262,7 +262,6 @@
     <ClInclude Include="..\..\src\map\items\item_usable.h" />
     <ClInclude Include="..\..\src\map\items\item_weapon.h" />
     <ClInclude Include="..\..\src\map\item_container.h" />
-    <ClInclude Include="..\..\src\map\jailutils.h" />
     <ClInclude Include="..\..\src\map\latent_effect.h" />
     <ClInclude Include="..\..\src\map\latent_effect_container.h" />
     <ClInclude Include="..\..\src\map\linkshell.h" />
@@ -286,7 +285,6 @@
     <ClInclude Include="..\..\src\map\modifier.h" />
     <ClInclude Include="..\..\src\map\mob_modifier.h" />
     <ClInclude Include="..\..\src\map\navmesh.h" />
-    <ClInclude Include="..\..\src\map\npcentity.h" />
     <ClInclude Include="..\..\src\map\packets\action.h" />
     <ClInclude Include="..\..\src\map\packets\auction_house.h" />
     <ClInclude Include="..\..\src\map\packets\basic.h" />
@@ -471,6 +469,7 @@
     <ClCompile Include="..\..\src\map\alliance.cpp" />
     <ClCompile Include="..\..\src\map\blue_spell.cpp" />
     <ClCompile Include="..\..\src\map\blue_trait.cpp" />
+    <ClCompile Include="..\..\src\map\guild.cpp" />
     <ClCompile Include="..\..\src\map\message.cpp" />
     <ClCompile Include="..\..\src\map\commandhandler.cpp" />
     <ClCompile Include="..\..\src\map\conquest_system.cpp" />

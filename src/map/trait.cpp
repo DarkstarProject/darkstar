@@ -162,7 +162,7 @@ namespace traits
 		    while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 		    {				
 				int8* expansionCode;
-				Sql_GetData(SqlHandle, 6, &expansionCode, NULL);
+				Sql_GetData(SqlHandle, 6, &expansionCode, nullptr);
 
 				if (luautils::IsExpansionEnabled(expansionCode)==false){
 					continue;

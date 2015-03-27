@@ -40,7 +40,7 @@
 
 int32 close_door(uint32 tick, CTaskMgr::CTask* PTask)
 {
-	//DSP_DEBUG_BREAK_IF(PTask->m_data == NULL)
+	//DSP_DEBUG_BREAK_IF(PTask->m_data == nullptr)
     //DSP_DEBUG_BREAK_IF(((CBaseEntity*)PTask->m_data)->objtype != TYPE_NPC);
 
 	CNpcEntity* PNpc = (CNpcEntity*)PTask->m_data;

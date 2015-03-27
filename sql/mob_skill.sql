@@ -59,7 +59,9 @@ INSERT INTO `mob_skill` VALUES (808,0,351,'Jump',0,9.5,2000,0,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (514,0,442,'Jumping_Thrust',0,9.5,2000,0,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (761,0,505,'Call_Beast',0,7.0,2000,0,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1645,0,505,'Activate',0,7.0,2000,0,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (22,0,812,'Pit_Ambush',0,9.0,2000,0,4,0,0,0);
+
+-- Burrowed Antlions
+INSERT INTO `mob_skill` VALUES (22,357,812,'Pit_Ambush',0,9.0,2000,0,4,0,0,0);
 
 -- Two Hours
 -- make a mob 2 hour by setting mobmod_main_2hour
@@ -3102,19 +3104,18 @@ INSERT INTO `mob_skill` VALUES (2113,39,1652,'Scintillant_lance',4,10.0,2000,100
 -- INSERT INTO `mob_skill` VALUES (2114,?,1650,'Grace_of_Hera',0,7.0,2000,1000,1,0,0,0); -- Alicorn Subspecies only
 
 -- Slugs
-INSERT INTO `mob_skill` VALUES (1927,357,1572,'Fuscous_ooze',4,10.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1928,357,1573,'Purulent_ooze',4,10.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1930,357,1575,'Corrosive_ooze',1,15.0,2000,1000,4,0,0,0);
-
--- INSERT INTO `mob_skill` VALUES (1929,?,1574,'Mucilaginous_ooze',1,15.0,2000,1000,4,0,0,0); -- Certain NM only
+INSERT INTO `mob_skill` VALUES (1927,231,1572,'Fuscous_ooze',4,10.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1928,231,1573,'Purulent_ooze',4,10.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1929,0,1574,'Mucilaginous_ooze',1,15.0,2000,1000,4,0,0,0); -- Certain NM only
+INSERT INTO `mob_skill` VALUES (1930,231,1575,'Corrosive_ooze',1,15.0,2000,1000,4,0,0,0);
 
 -- Sandworms
 INSERT INTO `mob_skill` VALUES (1931,215,1537,'Dustvoid',1,18.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1932,215,1538,'Slaverous_gale',1,15.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1933,215,1539,'Aeolian_Void',4,15.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1934,357,1540,'Extreme_Purgation',1,20.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1935,357,1541,'Desiccation',0,10.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1936,357,1542,'Doomvoid',1,30.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1934,214,1540,'Extreme_Purgation',1,20.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1935,214,1541,'Desiccation',0,10.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1936,214,1542,'Doomvoid',1,30.0,2000,1000,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (2348,357,?,'Gorge',1,20.0,2000,1000,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (2349,357,?,'Disgorge',4,15.0,2000,1000,4,0,0,0);
 
@@ -3607,7 +3608,11 @@ INSERT INTO `mob_skill` VALUES (3152,487,2418,'Eternal_Misery',1,18.0,2000,1000,
 INSERT INTO `mob_skill` VALUES (3153,487,2419,'Crippling_Agony',1,18.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (3154,487,2420,'Bane_Of_Tartarus',1,18.0,2000,1000,4,0,0,0);
 
-
-
 -- Static mobs unique attack
 INSERT INTO `mob_skill` VALUES (3000,349,2153,'animationfungus',1,18.0,2000,1000,4,0,0,0);
+
+-- Alastor Antlion
+INSERT INTO `mob_skill` VALUES (21, 357, 811, 'Venom_Spray', 4, 10.0, 2000, 1000, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (20, 357, 810, 'Sand_Pit', 0, 7.0, 2000, 1000, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (19, 357, 809, 'Sand_Blast', 1, 8.0, 2000, 1000, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (23, 357, 813, 'Mandibular_Bite', 0, 7.0, 2000, 1500, 4, 0, 0, 0);

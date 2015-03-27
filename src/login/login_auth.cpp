@@ -59,7 +59,7 @@ int32 login_parse(int32 fd)
 	login_session_data_t* sd = (login_session_data_t*)session[fd]->session_data;
 
 	//check if sd will not defined
-	if( sd == NULL )
+	if( sd == nullptr )
 	{
 		CREATE(session[fd]->session_data,login_session_data_t,1);
 		sd = (login_session_data_t*)session[fd]->session_data;
@@ -97,7 +97,7 @@ int32 login_parse(int32 fd)
 		if( login_datacheck(login,3,sizeof(login)) == -1 ||
 			login_datacheck(password,6,sizeof(password)) == -1 )
 		{
-			ShowWarning(CL_WHITE"login_parse" CL_RESET":" CL_WHITE"%s" CL_RESET" send unreadable data\n",ip2str(sd->client_addr,NULL));
+			ShowWarning(CL_WHITE"login_parse" CL_RESET":" CL_WHITE"%s" CL_RESET" send unreadable data\n",ip2str(sd->client_addr,nullptr));
 			WBUFB(session[fd]->wdata,0) = LOGIN_ERROR;
 			WFIFOSET(fd,1);
 			do_close_login(sd,fd);
@@ -271,7 +271,7 @@ int32 login_parse(int32 fd)
 			}
 			break;
 		default:
-			ShowWarning("login_parse: undefined code:[%d], ip sender:<%s>\n",code,ip2str(session[fd]->client_addr,NULL));
+			ShowWarning("login_parse: undefined code:[%d], ip sender:<%s>\n",code,ip2str(session[fd]->client_addr,nullptr));
 			do_close_login(sd,fd);
 			break;
 		};
@@ -285,7 +285,7 @@ int32 login_parse(int32 fd)
 
 int32 do_close_login(login_session_data_t* loginsd,int32 fd)
 {
-	ShowInfo(CL_WHITE"login_parse" CL_RESET":" CL_WHITE"%s" CL_RESET"shutdown socket...\n",ip2str(loginsd->client_addr,NULL));
+	ShowInfo(CL_WHITE"login_parse" CL_RESET":" CL_WHITE"%s" CL_RESET"shutdown socket...\n",ip2str(loginsd->client_addr,nullptr));
 	erase_loginsd(fd);
 	if(session[fd]->session_data)
 		aFree(session[fd]->session_data);

@@ -68,7 +68,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 
 	CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
 
-	if ((linkshell != NULL) && linkshell->isType(ITEM_LINKSHELL))
+	if ((linkshell != nullptr) && linkshell->isType(ITEM_LINKSHELL))
 	{
 		lscolor_t LSColor = linkshell->GetLSColor();
 
@@ -76,7 +76,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 		WBUFB(data,(0x32)-4) = (LSColor.G << 4) + 15;
 		WBUFB(data,(0x33)-4) = (LSColor.B << 4) + 15;
 	}
-	if (PChar->PPet != NULL)
+	if (PChar->PPet != nullptr)
 	{
 		WBUFW(data,(0x34)-4) = PChar->PPet->targid << 3;
 	}

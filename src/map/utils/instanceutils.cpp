@@ -27,7 +27,7 @@ This file is part of DarkStar-server source code.
 
 #include "../lua/luautils.h"
 
-CInstanceLoader* Loader = NULL;
+CInstanceLoader* Loader = nullptr;
 
 namespace instanceutils
 {
@@ -38,7 +38,7 @@ namespace instanceutils
 			if (Loader->Check())
 			{
 				delete Loader;
-				Loader = NULL;
+				Loader = nullptr;
 			}
 		}
 	}
@@ -51,7 +51,7 @@ namespace instanceutils
 		}
 		else
 		{
-			luautils::OnInstanceCreated(PRequester, NULL);
+			luautils::OnInstanceCreated(PRequester, nullptr);
 		}
 	}
 };

@@ -25,8 +25,6 @@ function onAdditionalEffect(player,target,damage)
     end
 end;
 
-end;
-
 -----------------------------------------
 -- OnItemCheck
 -----------------------------------------

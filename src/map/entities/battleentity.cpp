@@ -49,14 +49,12 @@ CBattleEntity::CBattleEntity()
 
 	memset(& stats,  0, sizeof(stats));
 	memset(& health, 0, sizeof(health));
-	memset(m_modStat,0, sizeof(m_modStat));
-	memset(m_modStatSave,0, sizeof(m_modStatSave));
 
 	memset(& WorkingSkills, 0, sizeof(WorkingSkills));
 
-	PPet      = NULL;
-    PParty    = NULL;
-	PMaster   = NULL;
+	PPet      = nullptr;
+    PParty    = nullptr;
+	PMaster   = nullptr;
 
 	StatusEffectContainer = new CStatusEffectContainer(this);
 
@@ -83,7 +81,7 @@ bool CBattleEntity::isDead()
 
 bool CBattleEntity::isInDynamis()
 {
-	if(loc.zone != NULL){
+	if(loc.zone != nullptr){
 		return loc.zone->GetType() == ZONETYPE_DYNAMIS;
 	}
 	return false;
@@ -250,11 +248,11 @@ int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
 	// base delay
 	int delay = 240;
 
-	if(PRange != NULL && PRange->getDamage() != 0) {
+	if(PRange != nullptr && PRange->getDamage() != 0) {
 		delay += ((PRange->getDelay()*60)/1000);
 	}
 
-	if(PAmmo != NULL && PAmmo->isThrowing())
+	if(PAmmo != nullptr && PAmmo->isThrowing())
 	{
 		// this is a throwing weapon
 		delay += ((PAmmo->getDelay()*60)/1000);
@@ -268,7 +266,7 @@ int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
 		delay = delay * ((float)(100 + getMod(MOD_RANGED_DELAYP))/100);
 	} else {
 
-		if(PAmmo != NULL && PAmmo->getDamage() != 0 && !PAmmo->isThrowing()) {
+		if(PAmmo != nullptr && PAmmo->getDamage() != 0 && !PAmmo->isThrowing()) {
 			 delay += ((PAmmo->getDelay()*60)/1000);
 		}
 	}
@@ -280,7 +278,7 @@ int16 CBattleEntity::GetAmmoDelay(bool tp)
 	CItemWeapon* PAmmo = (CItemWeapon*)m_Weapons[SLOT_AMMO];
 
 	int delay = 240;
-	if(PAmmo != NULL && PAmmo->getDamage() != 0) {
+	if(PAmmo != nullptr && PAmmo->getDamage() != 0) {
 		delay += ((PAmmo->getDelay()*60)/1000);
 	}
 
@@ -539,7 +537,11 @@ uint16 CBattleEntity::ATT()
 	} else {
 		ATT += (STR()) / 2;
 	}
-	if (this->objtype & TYPE_PC){
+	
+    if (this->StatusEffectContainer->HasStatusEffect(EFFECT_ENDARK))
+        ATT += this->getMod(MOD_ENSPELL_DMG);
+    
+    if (this->objtype & TYPE_PC){
 		ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType());
 	}
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
@@ -707,11 +709,17 @@ void CBattleEntity::SetMLevel(uint8 mlvl)
 	m_modStat[MOD_DEF] -= m_mlvl + dsp_cap(m_mlvl-50,0,10);
 	m_mlvl = (mlvl == 0 ? 1 : mlvl);
 	m_modStat[MOD_DEF] += m_mlvl + dsp_cap(m_mlvl-50,0,10);
+
+    if (this->objtype & TYPE_PC)
+        Sql_Query(SqlHandle, "UPDATE char_stats SET mlvl = %u WHERE charid = %u LIMIT 1;", m_mlvl, this->id);
 }
 
 void CBattleEntity::SetSLevel(uint8 slvl)
 {
 	m_slvl = (slvl > (m_mlvl >> 1) ? (m_mlvl == 1 ? 1 : (m_mlvl >> 1)) : slvl);
+
+    if (this->objtype & TYPE_PC)
+        Sql_Query(SqlHandle, "UPDATE char_stats SET slvl = %u WHERE charid = %u LIMIT 1;", m_slvl, this->id);
 }
 
 /************************************************************************
@@ -722,7 +730,7 @@ void CBattleEntity::SetSLevel(uint8 slvl)
 
 void CBattleEntity::addModifier(uint16 type, int16 amount)
 {
-	m_modStat[(type < MAX_MODIFIER ? type : MOD_NONE)] += amount;
+	m_modStat[type] += amount;
 }
 
 /************************************************************************
@@ -733,9 +741,9 @@ void CBattleEntity::addModifier(uint16 type, int16 amount)
 
 void CBattleEntity::addModifiers(std::vector<CModifier*> *modList)
 {
-	for (uint16 i = 0; i < modList->size(); ++i)
+	for (auto modifier : *modList)
 	{
-		m_modStat[modList->at(i)->getModID()] += modList->at(i)->getModAmount();
+        m_modStat[modifier->getModID()] += modifier->getModAmount();
 	}
 }
 
@@ -827,7 +835,7 @@ void CBattleEntity::addEquipModifiers(std::vector<CModifier*> *modList, uint8 it
 
 void CBattleEntity::setModifier(uint16 type, int16 amount)
 {
-	m_modStat[(type < MAX_MODIFIER ? type : MOD_NONE)] = amount;
+	m_modStat[type] = amount;
 }
 
 /************************************************************************
@@ -852,17 +860,17 @@ void CBattleEntity::setModifiers(std::vector<CModifier*> *modList)
 
 void CBattleEntity::delModifier(uint16 type, int16 amount)
 {
-	m_modStat[(type < MAX_MODIFIER ? type : MOD_NONE)] -= amount;
+	m_modStat[type] -= amount;
 }
 
 void CBattleEntity::saveModifiers()
 {
-	memcpy(m_modStatSave,m_modStat, sizeof(m_modStat));
+    m_modStatSave = m_modStat;
 }
 
 void CBattleEntity::restoreModifiers()
 {
-	memcpy(m_modStat,m_modStatSave, sizeof(m_modStatSave));
+	m_modStat = m_modStatSave;
 }
 
 /************************************************************************
@@ -967,11 +975,70 @@ void CBattleEntity::delEquipModifiers(std::vector<CModifier*> *modList, uint8 it
 
 int16 CBattleEntity::getMod(uint16 modID)
 {
-	if (modID < MAX_MODIFIER)
-	{
-		return m_modStat[modID];
-	}
-	return 0;
+	return m_modStat[modID];
+}
+
+void CBattleEntity::addPetModifier(uint16 type, int16 amount)
+{
+    m_petMod[type] += amount;
+
+    if (PPet)
+    {
+        PPet->addModifier(type, amount);
+    }
+}
+
+void CBattleEntity::setPetModifier(uint16 type, int16 amount)
+{
+    m_petMod[type] = amount;
+
+    if (PPet)
+    {
+        PPet->setModifier(type, amount);
+    }
+}
+
+void CBattleEntity::delPetModifier(uint16 type, int16 amount)
+{
+    m_petMod[type] -= amount;
+
+    if (PPet)
+    {
+        PPet->delModifier(type, amount);
+    }
+}
+
+void CBattleEntity::addPetModifiers(std::vector<CModifier*> *modList)
+{
+    for (auto modifier : *modList)
+    {
+        addPetModifier(modifier->getModID(), modifier->getModAmount());
+    }
+}
+
+void CBattleEntity::delPetModifiers(std::vector<CModifier*> *modList)
+{
+    for (auto modifier : *modList)
+    {
+        delPetModifier(modifier->getModID(), modifier->getModAmount());
+    }
+}
+
+void CBattleEntity::applyPetModifiers(CPetEntity* PPet)
+{
+    for (auto mod : m_petMod)
+    {
+        PPet->addModifier(mod.first, mod.second);
+    }
+}
+
+
+void CBattleEntity::removePetModifiers(CPetEntity* PPet)
+{
+    for (auto mod : m_petMod)
+    {
+        PPet->delModifier(mod.first, mod.second);
+    }
 }
 
 /************************************************************************

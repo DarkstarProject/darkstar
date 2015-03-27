@@ -146,12 +146,12 @@ void CLinkshell::DelMember(CCharEntity* PChar)
             if (PChar->PLinkshell1 == this)
             {
                 Sql_Query(SqlHandle, "UPDATE accounts_sessions SET linkshellid1 = 0 , linkshellrank1 = 0 WHERE charid = %u", PChar->id);
-                PChar->PLinkshell1 = NULL;
+                PChar->PLinkshell1 = nullptr;
             }
             else if (PChar->PLinkshell2 == this)
             {
                 Sql_Query(SqlHandle, "UPDATE accounts_sessions SET linkshellid2 = 0 , linkshellrank2 = 0 WHERE charid = %u", PChar->id);
-                PChar->PLinkshell2 = NULL;
+                PChar->PLinkshell2 = nullptr;
             }
             members.erase(members.begin() + i);
             break;
@@ -189,7 +189,7 @@ void CLinkshell::ChangeMemberRank(int8* MemberName, uint8 toSack)
 
                 CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PMember->getEquip(slot);
 
-                if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
+                if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL))
                 {
 				    PItemLinkshell->setID(newId);
 
@@ -202,7 +202,7 @@ void CLinkshell::ChangeMemberRank(int8* MemberName, uint8 toSack)
                 {
                         CItemLinkshell* PItemLinkshell = (CItemLinkshell*)Inventory->GetItem(SlotID);
 
-					    if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL) && PItemLinkshell->GetLSID() == m_id)
+					    if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL) && PItemLinkshell->GetLSID() == m_id)
 		                {
                             const int8* Query = "UPDATE char_inventory SET itemid = %u WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
 						    Sql_Query(SqlHandle, Query, PItemLinkshell->getID(),PMember->id, LOC_INVENTORY, SlotID);
@@ -256,7 +256,7 @@ void CLinkshell::RemoveMemberByName(int8* MemberName)
                 lsNum = 2;
             }
 
-            if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
+            if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL))
             {
                 linkshell::DelOnlineMember(PMember, PItemLinkshell);
 
@@ -278,7 +278,7 @@ void CLinkshell::RemoveMemberByName(int8* MemberName)
             {
                     CItemLinkshell* PItemLinkshell = (CItemLinkshell*)Inventory->GetItem(SlotID);
 
-					if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL) && PItemLinkshell->GetLSID() == m_id)
+					if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL) && PItemLinkshell->GetLSID() == m_id)
 		            {
                         const int8* Query = "UPDATE char_inventory SET itemid = (itemid+2) WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
 
@@ -362,7 +362,7 @@ namespace linkshell
                 PLinkshell->setPoster(Sql_GetData(SqlHandle,3));
 
                 int8* linkshellMessage = Sql_GetData(SqlHandle, 4);
-                if (linkshellMessage != NULL)
+                if (linkshellMessage != nullptr)
                     PLinkshell->setMessage(linkshellMessage);
                 else
                     PLinkshell->setMessage("");
@@ -381,8 +381,8 @@ namespace linkshell
 
     bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, uint8 lsNum)
     {
-        DSP_DEBUG_BREAK_IF(PChar == NULL);
-        if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
+        DSP_DEBUG_BREAK_IF(PChar == nullptr);
+        if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL))
         {
             LinkshellList_t::const_iterator it = LinkshellList.find(PItemLinkshell->GetLSID()); 
 			if (it != LinkshellList.end())
@@ -402,8 +402,8 @@ namespace linkshell
 
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell)
     {
-        DSP_DEBUG_BREAK_IF(PChar == NULL);
-        if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
+        DSP_DEBUG_BREAK_IF(PChar == nullptr);
+        if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL))
         {
             LinkshellList_t::const_iterator it = LinkshellList.find(PItemLinkshell->GetLSID()); 
 			if (it != LinkshellList.end())
@@ -465,7 +465,7 @@ namespace linkshell
 		}
 		catch (const std::out_of_range&)
 		{
-			return NULL;
+			return nullptr;
 		}
 	}
 };

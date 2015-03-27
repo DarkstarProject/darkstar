@@ -38,7 +38,7 @@ CBazaarItemPacket::CBazaarItemPacket(CItem* PItem, uint8 SlotID, uint16 Tax)
 
     WBUFB(data,(0x10)-4) = SlotID;
 
-    if (PItem != NULL)
+    if (PItem != nullptr)
     {
 	    WBUFL(data,(0x04)-4) = PItem->getCharPrice();
 	    WBUFL(data,(0x08)-4) = PItem->getQuantity();

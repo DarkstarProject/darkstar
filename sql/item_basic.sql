@@ -4656,6 +4656,8 @@ INSERT INTO `item_basic` VALUES (5099,484,'scroll_of_boost-mnd','boost-mnd',1,34
 INSERT INTO `item_basic` VALUES (5100,485,'scroll_of_boost-chr','boost-chr',1,34432,28,0,3997);
 INSERT INTO `item_basic` VALUES (5101,494,'scroll_of_arise','arise',1,34432,28,0,0);
 INSERT INTO `item_basic` VALUES (5102,840,'scroll_of_foil','foil',1,34432,28,0,0);
+INSERT INTO `item_basic` VALUES (5104,0,'scroll_of_flurry','flurry',1,1664,28,0,43);
+INSERT INTO `item_basic` VALUES (5105,0,'scroll_of_flurry_ii','flurry_ii',1,1664,28,0,43);
 
 INSERT INTO `item_basic` VALUES (5111,0,'frayed_sack_of_mortality_+1','frayed_sack_(m1)',1,30288,0,1,0);
 INSERT INTO `item_basic` VALUES (5112,0,'frayed_sack_of_mortality_+2','frayed_sack_(m2)',1,30288,0,1,0);

@@ -14,5 +14,10 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player, target, ability)
+	-- Reset the Call Wyvern Ability.
+	local pet = player:getPet();
+	if pet:getHP() == pet:getMaxHP() then
+		player:resetRecast(RECAST_ABILITY, 163); -- call_wyvern
+	end;
 	target:despawnPet();
 end;

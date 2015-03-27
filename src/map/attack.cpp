@@ -26,6 +26,8 @@
 #include "attackround.h"
 #include "attack.h"
 
+#include <math.h>
+
 /************************************************************************
 *																		*
 *  Constructor.															*
@@ -307,7 +309,7 @@ void CAttack::ProcessDamage()
 	// Trick attack.
 	if (m_attacker->GetMJob() == JOB_THF && 
 		m_isFirstSwing && 
-		m_attackRound->GetTAEntity() != NULL)
+		m_attackRound->GetTAEntity() != nullptr)
 	{
 		m_trickAttackDamage += m_attacker->AGI();
 	}

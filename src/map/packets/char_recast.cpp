@@ -44,7 +44,7 @@ CCharRecastPacket::CCharRecastPacket(CCharEntity* PChar)
     {
         Recast_t* recast = RecastList->at(i);
 
-        uint32 recasttime = (recast->RecastTime == 0 ? 0 : ((recast->RecastTime - (time(NULL) - recast->TimeStamp))));
+        uint32 recasttime = (recast->RecastTime == 0 ? 0 : ((recast->RecastTime - (time(nullptr) - recast->TimeStamp))));
 
         if (recast->ID != 0)
         {

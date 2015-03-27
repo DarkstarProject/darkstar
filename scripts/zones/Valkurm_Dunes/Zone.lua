@@ -3,8 +3,8 @@
 -- Zone: Valkurm_Dunes (103)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/zones/Valkurm_Dunes/TextIDs");
 require("scripts/globals/zone");
@@ -19,11 +19,10 @@ require("scripts/globals/conquest");
 
 function onInitialize(zone)
     local manuals = {17199751,17199752,17199753};
-    
-    SetFieldManual(manuals);
-    
-    SetRegionalConquestOverseers(zone:getRegionID())
 
+    SetFieldManual(manuals);
+
+    SetRegionalConquestOverseers(zone:getRegionID())
 end;
 
 -----------------------------------
@@ -31,27 +30,26 @@ end;
 -----------------------------------
 
 function onZoneIn( player, prevZone)
+    local cs = -1;
 
-	local cs = -1;
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
+        player:setPos( 60.989, -4.898, -151.001, 198);
+    end
 
-	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-		player:setPos( 60.989, -4.898, -151.001, 198);
-	end
+    if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
+        cs = 0x0003;
+    end
 
-	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
-		cs = 0x0003;
-	end
-
-	return cs;
+    return cs;
 end;
 
------------------------------------		
--- onConquestUpdate		
------------------------------------		
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
@@ -69,12 +67,11 @@ end;
 -----------------------------------
 
 function onEventUpdate( player, csid, option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-
-	if( csid == 0x0003) then
-		lightCutsceneUpdate( player);  -- Quest: I Can Hear A Rainbow
-	end
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x0003) then
+        lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
+    end
 end;
 
 -----------------------------------
@@ -82,19 +79,22 @@ end;
 -----------------------------------
 
 function onEventFinish( player, csid, option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-
-	if( csid == 0x0003) then
-		lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
-	end
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x0003) then
+        lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
+    end
 end;
 
+-----------------------------------
+-- onZoneWeatherChange
+-----------------------------------
+
 function onZoneWeatherChange(weather)
-	local qm1 = GetNPCByID(17199699); -- Quest: An Empty Vessel
-	if(weather == WEATHER_DUST_STORM) then
-		qm1:setStatus(STATUS_NORMAL);
-	else
-		qm1:setStatus(STATUS_DISAPPEAR);
-	end
+    local qm1 = GetNPCByID(17199699); -- Quest: An Empty Vessel
+    if (weather == WEATHER_DUST_STORM) then
+        qm1:setStatus(STATUS_NORMAL);
+    else
+        qm1:setStatus(STATUS_DISAPPEAR);
+    end
 end;
