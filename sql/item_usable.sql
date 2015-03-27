@@ -930,6 +930,8 @@ INSERT INTO `item_usable` VALUES (5097,'scroll_of_boost-agi',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5098,'scroll_of_boost-int',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5099,'scroll_of_boost-mnd',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5100,'scroll_of_boost-chr',1,1,11,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5104,'scroll_of_flurry',1,1,11,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5105,'scroll_of_flurry_ii',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5120,'titanic_sawfish',1,1,25,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5121,'moorish_idol',1,1,25,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5122,'bibiki_slug',1,1,25,0,0,0,0,0);
