@@ -127,7 +127,7 @@ function chocoboDig(player, itemMap, precheck, messageArray)
             calculateSkillUp(player);
         else
             -- recalculate chance to compare with item abundance
-            local Chance = math.random(0, 100);
+            Chance = math.random(0, 100);
 
             -- select a random item
             local RandomItem = itemMap[math.random(1, #itemMap)];
@@ -137,6 +137,8 @@ function chocoboDig(player, itemMap, precheck, messageArray)
             local weather = player:getWeather();
             local moon = VanadielMoonPhase();
             local day = VanadielDayElement();
+            
+            local zoneWeather = 0;
 
             if (weather ~= nil) then
                 if (weather >= 0 and weather <= 4) then
