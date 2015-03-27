@@ -34,7 +34,7 @@ local itemMap = {
                     { 843, 23, DIGREQ_BORE },
                     { 1845, 22, DIGREQ_BORE },
                     { 838, 19, DIGREQ_BORE },
-					{ 4570, 10, DIGREQ_MODIFIER },
+                    { 4570, 10, DIGREQ_MODIFIER },
                     { 4487, 11, DIGREQ_MODIFIER },
                     { 4409, 12, DIGREQ_MODIFIER },
                     { 1188, 10, DIGREQ_MODIFIER },

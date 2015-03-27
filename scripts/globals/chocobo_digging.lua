@@ -127,7 +127,7 @@ function chocoboDig(player, itemMap, precheck, messageArray)
             calculateSkillUp(player);
         else
             -- recalculate chance to compare with item abundance
-            Chance = math.random(0, 100);
+            local Chance = math.random(0, 100);
 
             -- select a random item
             local RandomItem = itemMap[math.random(1, #itemMap)];
