@@ -25,6 +25,8 @@ function onTrigger(player,npc)
 
 	if (player:getQuestStatus(CRYSTAL_WAR,THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:getVar("THE_FIGHTING_FOURTH") == 1) then
 		player:startEvent(0x0068)
+	elseif (player:getQuestStatus(CRYSTAL_WAR,THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:getVar("THE_FIGHTING_FOURTH") == 3) then
+		player:startEvent(0x006D)
 	else
 		player:startEvent(0x006F)
 	end
