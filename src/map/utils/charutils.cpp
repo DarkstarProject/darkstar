@@ -2823,6 +2823,7 @@ namespace charutils
         if (PChar->PParty != nullptr)
         {
             // TODO: плохая реализация - два раза проверяем дистанцию, два раза проверяем один и тот же массив
+            // Translation attempt: poor implementation - double checks the distance, double checks the same array
 
             uint8 count = 0;
             //work out how many pt members should get the gil
