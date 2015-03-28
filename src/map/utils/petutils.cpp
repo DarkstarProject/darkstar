@@ -1078,7 +1078,7 @@ namespace petutils
         {
             // increase charm duration
             // 30 mins - 1-5 mins
-            PPet->charmTime += 1800000 - WELL512::irand() % 300000;
+            PPet->charmTime += 1800000 - WELL512::GetRandomNumber(300000u);
         }
 
         float rate = 0.10f;
@@ -1321,7 +1321,7 @@ namespace petutils
 			highestLvl += PChar->PMeritPoints->GetMeritValue(MERIT_BEAST_AFFINITY, PChar);
 
             // 0-2 lvls lower
-            highestLvl -= WELL512::irand() % 3;
+            highestLvl -= WELL512::GetRandomNumber(3);
 
             PPet->SetMLevel(highestLvl);
             LoadJugStats(PPet, PPetData); //follow monster calcs (w/o SJ)
