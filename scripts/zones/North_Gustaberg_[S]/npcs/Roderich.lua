@@ -9,7 +9,6 @@ package.loaded["scripts/globals/quests"] = nil;
 
 require("scripts/globals/quests");
 require("scripts/zones/North_Gustaberg_[S]/TextIDs");
-require("scripts/globals/keyitems");
 
 -----------------------------------
 -- onTrade Action
