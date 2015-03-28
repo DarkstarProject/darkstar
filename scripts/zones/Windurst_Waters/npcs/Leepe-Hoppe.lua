@@ -29,6 +29,18 @@ function onTrigger(player,npc)
 		elseif(MissionStatus >= 1 and MissionStatus < 3) then
 			player:startEvent(0x008e); -- Keep displaying the instructions
 		end
+	elseif(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 0) then
+		player:startEvent(0x02DE);
+	elseif(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 1) then
+		player:startEvent(0x02DF);
+	elseif(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
+		player:startEvent(0x02E3);
+	elseif(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 5 and player:hasKeyItem(BOOK_OF_THE_GODS)) then
+		player:startEvent(0x02E6);
+	else
+		player:startEvent(0x0159); -- Standard Dialogue?
+	end
+	---------------------------
 	elseif(player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT) == QUEST_ACCEPTED) then
 		player:startEvent(0x0137);
 	
@@ -75,19 +87,7 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x034f,0,1125); -- Yes, this will indefinitely replace his standard dialogue!
 		end
-	---------------------------
-	elseif(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 0) then
-		player:startEvent(0x02DE);
-	elseif(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 1) then
-		player:startEvent(0x02DF);
-	elseif(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
-		player:startEvent(0x02E3);
-	elseif(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 5 and player:hasKeyItem(BOOK_OF_THE_GODS)) then
-		player:startEvent(0x02E6);
-	else
-		player:startEvent(0x0159); -- Standard Dialogue?
-	end
-	
+		
 end;
 
 -----------------------------------
