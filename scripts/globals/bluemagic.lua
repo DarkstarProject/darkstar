@@ -108,6 +108,9 @@ function BluePhysicalSpell(caster, target, spell, params)
     if chainAffinity ~= nil then
         -- Calculate the total TP available for the fTP multiplier.
         local tp = caster:getTP() + caster:getMerit(MERIT_ENCHAINMENT);
+        if tp > 300 then
+            tp = 300;
+        end;
         
         multiplier = BluefTP(tp, multiplier, params.tp150, params.tp300);
     end;
