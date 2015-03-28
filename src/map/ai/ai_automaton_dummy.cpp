@@ -172,7 +172,7 @@ void CAIAutomatonDummy::ActionAttack()
                     {
                         Action.messageID = 32;
                     }
-                    else if ((WELL512::irand() % 100 < battleutils::GetHitRate(m_PPet, m_PBattleTarget)) &&
+                    else if ((WELL512::GetRandomNumber(100) < battleutils::GetHitRate(m_PPet, m_PBattleTarget)) &&
                         !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
                     {
                         if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
@@ -187,7 +187,7 @@ void CAIAutomatonDummy::ActionAttack()
                             Action.speceffect = SPECEFFECT_HIT;
                             Action.messageID = 1;
 
-                            bool isCritical = (WELL512::irand() % 100 < battleutils::GetCritHitRate(m_PPet, m_PBattleTarget, false));
+                            bool isCritical = (WELL512::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PPet, m_PBattleTarget, false));
                             float DamageRatio = battleutils::GetDamageRatio(m_PPet, m_PBattleTarget, isCritical, 0);
 
                             if (isCritical)
@@ -218,7 +218,7 @@ void CAIAutomatonDummy::ActionAttack()
                         puppetutils::TrySkillUP((CAutomatonEntity*)m_PPet, SKILL_AME, m_PBattleTarget->GetMLevel());
                     }
 
-                    bool isBlocked = (WELL512::irand() % 100 < battleutils::GetBlockRate(m_PPet, m_PBattleTarget));
+                    bool isBlocked = (WELL512::GetRandomNumber(100) < battleutils::GetBlockRate(m_PPet, m_PBattleTarget));
                     if (isBlocked){ Action.reaction = REACTION_BLOCK; }
 
 

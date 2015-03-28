@@ -240,7 +240,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_NIGHTINGALE))
         {
             if (m_PEntity->objtype == TYPE_PC &&
-                WELL512::irand() % 100 < ((CCharEntity*)m_PEntity)->PMeritPoints->GetMeritValue(MERIT_NIGHTINGALE, (CCharEntity*)m_PEntity) - 25)
+                WELL512::GetRandomNumber(100) < ((CCharEntity*)m_PEntity)->PMeritPoints->GetMeritValue(MERIT_NIGHTINGALE, (CCharEntity*)m_PEntity) - 25)
             {
                 return 0;
             }
@@ -885,7 +885,7 @@ void CMagicState::SpendCost(CSpell* PSpell)
         // conserve mp
         int16 rate = m_PEntity->getMod(MOD_CONSERVE_MP);
 
-        if (WELL512::irand() % 100 < rate)
+        if (WELL512::GetRandomNumber(100) < rate)
         {
             cost = ConserveMP(cost);
         }
@@ -897,7 +897,7 @@ void CMagicState::SpendCost(CSpell* PSpell)
 
 int16 CMagicState::ConserveMP(int16 cost)
 {
-    return cost * ((float)(WELL512::irand() % 8 + 8.0f) / 16.0f);
+    return cost * (WELL512::GetRandomNumber(8.f,16.f) / 16.0f);
 }
 
 void CMagicState::SetRecast(CSpell* PSpell)

@@ -840,7 +840,7 @@ void SmallPacket0x01B(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
     // 0 - world pass, 2 - gold world pass; +1 - purchase
 
-    PChar->pushPacket(new CWorldPassPacket(RBUFB(data, (0x04)) & 1 ? WELL512::irand() % 9999999999 : 0));
+    PChar->pushPacket(new CWorldPassPacket(RBUFB(data, (0x04)) & 1 ? WELL512::GetRandomNumber(9999999999) : 0));
     return;
 }
 
@@ -1413,7 +1413,7 @@ void SmallPacket0x041(map_session_data_t* session, CCharEntity* PChar, int8* dat
     if (PChar->PTreasurePool != nullptr)
     {
         uint8 SlotID = RBUFB(data, (0x04));
-        PChar->PTreasurePool->LotItem(PChar, SlotID, 1 + (WELL512::irand() % 999)); //1 ~ 998+1
+        PChar->PTreasurePool->LotItem(PChar, SlotID,WELL512::GetRandomNumber(1,1000)); //1 ~ 998+1
     }
 }
 
@@ -3408,7 +3408,7 @@ void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0A2(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    uint16 diceroll = 1 + WELL512::irand() % 1000;
+    uint16 diceroll = WELL512::GetRandomNumber(1000);
 
     PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageStandardPacket(PChar, diceroll, 88));
     return;

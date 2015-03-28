@@ -509,13 +509,13 @@ void CZone::UpdateWeather()
     uint32 CurrentVanaDate = CVanaTime::getInstance()->getDate(); // Current Vanadiel timestamp in minutes
     uint32 StartFogVanaDate = (CurrentVanaDate - (CurrentVanaDate % VTIME_DAY)) + (VTIME_HOUR * 2); // Vanadiel timestamp of 2 AM in minutes
     uint32 EndFogVanaDate = StartFogVanaDate + (VTIME_HOUR * 5); // Vanadiel timestamp of 7 AM in minutes
-    uint32 WeatherNextUpdate = 180; // 3 minutes
+    uint32 WeatherNextUpdate = 0;
     uint32 WeatherDay = 0;
     uint8 WeatherOffset = 0;
     uint8 WeatherChance = 0;
 
     // Random time between 3 minutes and 30 minutes for the next weather change
-    WeatherNextUpdate += (WELL512::irand() % 1620);
+    WeatherNextUpdate = (WELL512::GetRandomNumber(180,1620));
 
     // Find the timestamp since the start of vanadiel
     WeatherDay = CVanaTime::getInstance()->getVanaTime();
@@ -528,7 +528,7 @@ void CZone::UpdateWeather()
     WeatherDay = WeatherDay % WEATHER_CYCLE;
 
     // Get a random number to determine which weather effect we will use
-    WeatherChance = WELL512::irand() % 100;
+    WeatherChance = WELL512::GetRandomNumber(100);
 
     zoneWeather_t&& weatherType = zoneWeather_t(0, 0, 0);
 
