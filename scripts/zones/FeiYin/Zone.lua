@@ -18,14 +18,14 @@ require("scripts/zones/FeiYin/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local tomes = {17613247,17613248};
+    local tomes = {17613260,17613261};
 
     SetGroundsTome(tomes);
 
     -- Capricious Cassie
     SetRespawnTime(17613130, 900, 10800);
 
-    UpdateTreasureSpawnPoint(17613222);
+    UpdateTreasureSpawnPoint(17613235);
 end;
 
 -----------------------------------
