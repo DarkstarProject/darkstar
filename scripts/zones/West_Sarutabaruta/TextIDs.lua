@@ -42,6 +42,6 @@ SIGN_17 = 7361; -- Northwest: Northwest Tower, Horutoto RuinsEast: Outpost South
 CONQUEST_BASE = 7125; -- Tallying conquest results...
 
 -- chocobo digging
-DIG_THROW_AWAY = 7043; -- You dig up ≺Possible Special Code: 01≻≺Possible Special Code: 01≻≺Possible Special Code: 01≻ ≺Possible Special Code: 01≻≺Possible Special Code: 05≻$≺BAD CHAR: 8280≻≺BAD CHAR: 80≻≺BAD CHAR: 80≻, but your inventory is full.
+DIG_THROW_AWAY = 7043; -- You dig up ?Possible Special Code: 01??Possible Special Code: 01??Possible Special Code: 01? ?Possible Special Code: 01??Possible Special Code: 05?$?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?, but your inventory is full.
 FIND_NOTHING = 7045;
 
