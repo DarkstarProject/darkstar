@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
 				player:setVar("THE_FIGHTING_FOURTH",4);
 				player:setVar("Campaign_Nation",2);
 				player:setVar("WotgStatus",14);
-				player:delQuest(CRYSTAL_WAR, THE_FIGHTING_FOURTH);
+				player:completeQuest(CRYSTAL_WAR, THE_FIGHTING_FOURTH);
 			end
 		end
 end;
