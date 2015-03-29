@@ -45,9 +45,9 @@ function onTrigger(player,npc)
 		player:startEvent(0x02cc);
 	elseif(currentMission == THE_CHAINS_THAT_BIND_US and missionStatus == 0) then
 	    player:startEvent(0x02ff); -- First cutscene of mission
-	elseif (currentMission == THE_CHAINS_THAT_BIND_US) and (missionStatus == 2) then
+	elseif (currentMission == THE_CHAINS_THAT_BIND_US and missionStatus == 2) then
 		player:showText(npc, 8596); -- Dialogue after first cutscene
-	elseif (currentMission == THE_CHAINS_THAT_BIND_US) and (missionStatus == 3) then
+	elseif (currentMission == THE_CHAINS_THAT_BIND_US and missionStatus == 3) then
 		player:startEvent(0x0300); -- Cutscene on return from Quicksand Caves
 	else
 		player:startEvent(0x025c);
