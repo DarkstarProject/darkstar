@@ -39,7 +39,7 @@ private:
     */
     static inline double drand()
     {
-        return (double)(irand()) * (1.f / 4294967296.f); // divided by 2^32
+        return (double)(irand()) / 4294967296.; // divided by 2^32
     }
 
 public:
