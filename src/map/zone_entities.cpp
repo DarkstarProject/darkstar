@@ -927,6 +927,10 @@ void CZoneEntities::ZoneServer(uint32 tick)
 		{
 			PNpc->PBattleAI->CheckCurrentAction(tick);
 		}
+        else
+        {
+            PNpc->UpdateEntity();
+        }
 	}
 
 	EntityList_t::const_iterator pit = m_petList.begin();
