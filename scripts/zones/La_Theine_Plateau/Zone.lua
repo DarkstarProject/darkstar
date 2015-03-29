@@ -4,6 +4,7 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
+package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 
 require("scripts/zones/La_Theine_Plateau/TextIDs");
@@ -12,6 +13,46 @@ require("scripts/globals/icanheararainbow");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/weather");
+require("scripts/globals/chocobo_digging");
+
+-----------------------------------
+-- Chocobo Digging vars
+-----------------------------------
+local itemMap = {
+                    -- itemid, abundance, requirement
+                    { 688, 153, DIGREQ_NONE },
+                    { 17396, 155, DIGREQ_NONE },
+                    { 17296, 134, DIGREQ_NONE },
+                    { 641, 103, DIGREQ_NONE },
+                    { 840, 56, DIGREQ_NONE },
+                    { 642, 49, DIGREQ_NONE },
+                    { 696, 57, DIGREQ_NONE },
+                    { 694, 40, DIGREQ_NONE },
+                    { 622, 28, DIGREQ_NONE },
+                    { 700, 3, DIGREQ_NONE },
+                    { 4096, 100, DIGREQ_NONE },  -- all crystals
+                    { 4545, 34, DIGREQ_BURROW },
+                    { 636, 20, DIGREQ_BURROW },
+                    { 616, 8, DIGREQ_BURROW },
+                    { 5235, 2, DIGREQ_BURROW },
+                    { 2364, 139, DIGREQ_BORE },
+                    { 2235, 44, DIGREQ_BORE },
+                    { 617, 6, DIGREQ_BORE },
+                    { 4570, 10, DIGREQ_MODIFIER },
+                    { 4487, 11, DIGREQ_MODIFIER },
+                    { 4409, 12, DIGREQ_MODIFIER },
+                    { 1188, 10, DIGREQ_MODIFIER },
+                    { 1237, 12, DIGREQ_MODIFIER },
+                };
+
+local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+
+-----------------------------------
+-- onChocoboDig
+-----------------------------------
+function onChocoboDig(player, precheck)
+    return chocoboDig(player, itemMap, precheck, messageArray);
+end;
 
 -----------------------------------
 -- onInitialize

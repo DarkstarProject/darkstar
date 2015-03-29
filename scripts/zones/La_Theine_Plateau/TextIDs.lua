@@ -35,3 +35,7 @@ ALREADY_HAVE_ALL_FRAGS = 7566; -- You have obtained all of the fragments. You mu
 
 -- conquest Base
 CONQUEST_BASE = 7030; -- Tallying conquest results...
+
+--chocobo digging
+DIG_THROW_AWAY = 7206;
+FIND_NOTHING =  7208;

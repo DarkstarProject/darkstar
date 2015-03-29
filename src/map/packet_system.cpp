@@ -763,10 +763,21 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
         if (slotID != ERROR_SLOTID)
         {
-            charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -1);
+            // diglet, use dig!
+            if (luautils::OnChocoboDig(PChar, true))
+            {
+                charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -1);
 
-            PChar->pushPacket(new CInventoryFinishPacket());
-            PChar->pushPacket(new CChocoboDiggingPacket(PChar));
+                PChar->pushPacket(new CInventoryFinishPacket());
+                PChar->pushPacket(new CChocoboDiggingPacket(PChar));
+
+                // diglet uses dig, it's super effective!
+                luautils::OnChocoboDig(PChar, false);
+            }
+            else {
+                // diglet uses dig, it's not very effective...
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
+            }
         }
         else{
             // You don't have any gysahl greens
