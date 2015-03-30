@@ -237,7 +237,7 @@ bool CZone::CanUseMisc(uint16 misc)
 
 bool CZone::IsWeatherStatic()
 {
-    return m_WeatherVector.size() != WEATHER_CYCLE; // weather cycle is 2160 days in game;
+    return m_WeatherVector.empty() || m_WeatherVector.size() == 1;
 }
 
 zoneLine_t* CZone::GetZoneLine(uint32 zoneLineID)
