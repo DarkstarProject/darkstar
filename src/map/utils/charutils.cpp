@@ -3143,7 +3143,7 @@ namespace charutils
 								uint16 Pzone = PMember->getZone();
 								if (PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255)))
 								{
-									if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && WELL512::irand() % 100 < 25 &&
+									if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && WELL512::GetRandomNumber(100) < 20 &&
 										PMember->loc.zone == PMob->loc.zone && crystalCount < 2) // Need to move to SIGNET_CHANCE constant
 									{
 										crystalCount++;
@@ -3363,7 +3363,7 @@ namespace charutils
 							uint16 Pzone = PMember->getZone();
 							if (PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255)))
 							{
-								if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && WELL512::irand() % 100 < 25 &&
+								if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && WELL512::GetRandomNumber(100) < 20 &&
 									PMember->loc.zone == PMob->loc.zone && crystalCount < 2) // Need to move to SIGNET_CHANCE constant
 								{
 									crystalCount++;
