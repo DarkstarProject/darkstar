@@ -4,12 +4,59 @@
 --
 -----------------------------------
 package.loaded[ "scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
+package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/zone");
 require("scripts/globals/conquest");
+require("scripts/globals/chocobo_digging");
+
+-----------------------------------
+-- Chocobo Digging vars
+-----------------------------------
+local itemMap = {
+                    -- itemid, abundance, requirement
+                    { 847, 45, DIGREQ_NONE },
+                    { 887, 1, DIGREQ_NONE },
+                    { 893, 53, DIGREQ_NONE },
+                    { 17395, 98, DIGREQ_NONE },
+                    { 738, 3, DIGREQ_NONE },
+                    { 888, 195, DIGREQ_NONE },
+                    { 4484, 47, DIGREQ_NONE },
+                    { 17397, 66, DIGREQ_NONE },
+                    { 641, 134, DIGREQ_NONE },
+                    { 885, 12, DIGREQ_NONE },
+                    { 4096, 100, DIGREQ_NONE },  -- all crystals
+                    { 845, 125, DIGREQ_BURROW },
+                    { 843, 1, DIGREQ_BURROW },
+                    { 844, 64, DIGREQ_BURROW },
+                    { 1845, 34, DIGREQ_BURROW },
+                    { 838, 7, DIGREQ_BURROW },
+                    { 880, 34, DIGREQ_BORE },
+                    { 902, 5, DIGREQ_BORE },
+                    { 886, 3, DIGREQ_BORE },
+                    { 867, 3, DIGREQ_BORE },
+                    { 864, 21, DIGREQ_BORE },
+                    { 1587, 19, DIGREQ_BORE },
+                    { 1586, 9, DIGREQ_BORE },
+                    { 866, 2, DIGREQ_BORE },
+                    { 4570, 10, DIGREQ_MODIFIER },
+                    { 4487, 11, DIGREQ_MODIFIER },
+                    { 4409, 12, DIGREQ_MODIFIER },
+                    { 1188, 10, DIGREQ_MODIFIER },
+                    { 4532, 12, DIGREQ_MODIFIER },
+                };
+
+local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+
+-----------------------------------
+-- onChocoboDig
+-----------------------------------
+function onChocoboDig(player, precheck)
+    return chocoboDig(player, itemMap, precheck, messageArray);
+end;
 
 -----------------------------------
 -- onInitialize
