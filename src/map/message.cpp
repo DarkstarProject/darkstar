@@ -473,7 +473,7 @@ namespace message
 
         if (packet)
         {
-            msg.packet = new zmq::message_t(packet, packet->getSize() * 2, [](void *data, void *hint){delete (CBasicPacket*)data; });
+            msg.packet = new zmq::message_t(packet, packet->length(), [](void *data, void *hint) {delete (CBasicPacket*) data; });
         }
         else
         {

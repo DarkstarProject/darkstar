@@ -979,9 +979,6 @@
     <ClCompile Include="..\..\src\map\packets\action.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\packets\basic.cpp">
-      <Filter>Source Files\packets</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\packets\bazaar_check.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>

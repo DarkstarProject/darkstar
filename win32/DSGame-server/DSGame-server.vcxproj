@@ -522,7 +522,6 @@
     <ClCompile Include="..\..\src\map\navmesh.cpp" />
     <ClCompile Include="..\..\src\map\packets\action.cpp" />
     <ClCompile Include="..\..\src\map\packets\auction_house.cpp" />
-    <ClCompile Include="..\..\src\map\packets\basic.cpp" />
     <ClCompile Include="..\..\src\map\packets\bazaar_confirmation.cpp" />
     <ClCompile Include="..\..\src\map\packets\bazaar_purchase.cpp" />
     <ClCompile Include="..\..\src\map\packets\bazaar_check.cpp" />

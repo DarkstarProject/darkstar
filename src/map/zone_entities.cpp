@@ -756,10 +756,10 @@ CCharEntity* CZoneEntities::GetCharByID(uint32 id)
 void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, CBasicPacket* packet)
 {
 	// Do not send packets that are updates of a hidden GM..
-	if (packet != nullptr && packet->getType() == 0x0D && PEntity != nullptr && PEntity->objtype == TYPE_PC && ((CCharEntity*)PEntity)->m_isGMHidden)
+	if (packet != nullptr && packet->id() == 0x00D && PEntity != nullptr && PEntity->objtype == TYPE_PC && ((CCharEntity*)PEntity)->m_isGMHidden)
 	{
 		// Ensure this packet is not despawning us..
-		if (packet->getData()[0x06] != 0x20)
+		if (packet->ref<uint8>(0x02) != 0x20)
 		{
 			delete packet;
 			return;
@@ -787,12 +787,11 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
 						if (distance(PEntity->loc.p, PCurrentChar->loc.p) < 50 && 
                             ((PEntity->objtype != TYPE_PC) || (((CCharEntity*)PEntity)->m_moghouseID == PCurrentChar->m_moghouseID)))
 						{
-							if (packet != nullptr && packet->getType() == 0x0E &&
-								(RBUFB(packet->getData(), (0x0A) - 4) != 0x20 ||
-								RBUFB(packet->getData(), (0x0A) - 4) != 0x0F))
+							if (packet != nullptr && packet->id() == 0x00E &&
+                                (packet->ref<uint8>(0x0A) != 0x20 || packet->ref<uint8>(0x0A) != 0x0F))
 							{
-								uint32 id = RBUFL(packet->getData(), (0x04) - 4);
-								uint16 targid = RBUFW(packet->getData(), (0x08) - 4);
+								uint32 id = packet->ref<uint32>(0x04);
+                                uint16 targid = packet->ref<uint16>(0x08);
 
 								CBaseEntity* entity = GetEntity(targid);
 
