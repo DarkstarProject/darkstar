@@ -2,21 +2,19 @@
 -------------   GLOBAL SETTINGS   -------------
 -----------------------------------------------
 
---This is to allow server operators to further customize their servers.  As more features are added to pXI, the list will surely expand.
---Anything scripted can be customized with proper script editing.
+-- This is to allow server operators to further customize their servers.  As more features are added to pXI, the list will surely expand.
+-- Anything scripted can be customized with proper script editing.
 
---PLEASE REQUIRE THIS SCRIPT IN ANY SCRIPTS YOU DO: ADD THIS LINE TO THE TOP!!!!
---    require("scripts/globals/settings");
---With this script added to yours, you can pull variables from it!!
+-- PLEASE REQUIRE THIS SCRIPT IN ANY SCRIPTS YOU DO: ADD THIS LINE TO THE TOP!!!!
+-- require("scripts/globals/settings");
+-- With this script added to yours, you can pull variables from it!!
 
---Common functions
+-- Always include status.lua, which defines mods
+-- require("scripts/globals/status");
+
+-- Common functions
 require("scripts/globals/common");
 
---Always include status.lua, which defines mods
---require("scripts/globals/status");
-
---See chocoprice.lua to adjust chocobo stables.
---require("scripts/globals/chocoprice");
 -- Enable Extension (1= yes 0= no)
 ENABLE_COP     = 0;
 ENABLE_TOAU    = 0;
@@ -31,63 +29,62 @@ ENABLE_SOA     = 0;
 -- This generally results in a more accurate presentation of your selected expansions
 -- as well as a less confusing player experience for things that are disabled (things that are disabled are not loaded)
 -- This feature correlates to the required_expansion column in the SQL files
-RESTRICT_BY_EXPANSION = 1;
+RESTRICT_BY_EXPANSION = 0;
 
 -- CHARACTER CONFIG
-INITIAL_LEVEL_CAP = 50; --The initial level cap for new players.  There seems to be a hardcap of 255.
-MAX_LEVEL = 75; -- Level max of the server, works by disabling Maat quests.
+INITIAL_LEVEL_CAP = 50; -- The initial level cap for new players.  There seems to be a hardcap of 255.
+MAX_LEVEL = 75; -- Level max of the server, lowers the attainable cap by disabling Limit Break quests.
 NORMAL_MOB_MAX_LEVEL_RANGE_MIN = 81; -- Lower Bound of Max Level Range for Normal Mobs (0 = Uncapped)
 NORMAL_MOB_MAX_LEVEL_RANGE_MAX = 84; -- Upper Bound of Max Level Range for Normal Mobs (0 = Uncapped)
 START_GIL = 10; --Amount of gil given to newly created characters.
-START_INVENTORY = 30; --Starting inventory and satchel size.  Ignores values < 30.  Do not set above 80!
+START_INVENTORY = 30; -- Starting inventory and satchel size.  Ignores values < 30.  Do not set above 80!
 OPENING_CUTSCENE_ENABLE = 0; --Set to 1 to enable opening cutscenes, 0 to disable.
-SUBJOB_QUEST_LEVEL = 18; --Minimum level to accept either subjob quest.  Set to 0 to start the game with subjobs unlocked.
-ADVANCED_JOB_LEVEL = 30; --Minimum level to accept advanced job quests.  Set to 0 to start the game with advanced jobs.
+SUBJOB_QUEST_LEVEL = 18; -- Minimum level to accept either subjob quest.  Set to 0 to start the game with subjobs unlocked.
+ADVANCED_JOB_LEVEL = 30; -- Minimum level to accept advanced job quests.  Set to 0 to start the game with advanced jobs.
 ALL_MAPS = 0; -- Set to 1 to give starting characters all the maps.
 UNLOCK_OUTPOST_WARPS = 0; -- Set to 1 to give starting characters all outpost warps.  2 to add Tu'Lia and Tavnazia.
 
-SHOP_PRICE = 1.000; --Multiplies prices in NPC shops.
-GIL_RATE   = 1.000; --Multiplies gil earned from quests.  Won't always display in game.
-EXP_RATE   = 1.000; --Multiplies exp earned from fov.
-TABS_RATE  = 1.000; --Multiplies tabs earned from fov.
-SAN_FAME   = 1.000; --Multiplies fame earned from San d'Oria quests.
-BAS_FAME   = 1.000; --Multiplies fame earned from Bastok quests.
-WIN_FAME   = 1.000; --Multiplies fame earned from Windurst quests.
-NORG_FAME  = 1.000; --Multiplies fame earned from Norg and Tenshodo quests.
-JEUNO_FAME = 1.000; --Multiplies fame earned from Jeuno quests.
+SHOP_PRICE = 1.000; -- Multiplies prices in NPC shops.
+GIL_RATE   = 1.000; -- Multiplies gil earned from quests.  Won't always display in game.
+EXP_RATE   = 1.000; -- Multiplies exp earned from fov.
+TABS_RATE  = 1.000; -- Multiplies tabs earned from fov.
+SAN_FAME   = 1.000; -- Multiplies fame earned from San d'Oria quests.
+BAS_FAME   = 1.000; -- Multiplies fame earned from Bastok quests.
+WIN_FAME   = 1.000; -- Multiplies fame earned from Windurst quests.
+NORG_FAME  = 1.000; -- Multiplies fame earned from Norg and Tenshodo quests.
+JEUNO_FAME = 1.000; -- Multiplies fame earned from Jeuno quests.
 
-FISHING_GUILD_POINTS      = 1.000; --Multiplies guild points earned from fishermans' guild trades.
-WOODWORKING_GUILD_POINTS  = 1.000; --Multiplies guild points earned from carpenters' guild trades.
-SMITHING_GUILD_POINTS     = 1.000; --Multiplies guild points earned from blacksmiths' guild trades.
-GOLDSMITHING_GUILD_POINTS = 1.000; --Multiplies guild points earned from goldsmiths' guild trades.
-CLOTHCRAFT_GUILD_POINTS   = 1.000; --Multiplies guild points earned from weavers' guild trades.
-LEATHERCRAFT_GUILD_POINTS = 1.000; --Multiplies guild points earned from tanners' guild trades.
-BONECRAFT_GUILD_POINTS    = 1.000; --Multiplies guild points earned from boneworkers' guild trades.
-ALCHEMY_GUILD_POINTS      = 1.000; --Multiplies guild points earned from alchemists' guild trades.
-COOKING_GUILD_POINTS      = 1.000; --Multiplies guild points earned from culinarians' guild trades.
-DISABLE_GUILD_CONTRACTS   = 0; --Set to 1 to disable guild contracts, allowing players to accumulate guild points from all guilds at once.
+FISHING_GUILD_POINTS      = 1.000; -- Multiplies guild points earned from fishermans' guild trades.
+WOODWORKING_GUILD_POINTS  = 1.000; -- Multiplies guild points earned from carpenters' guild trades.
+SMITHING_GUILD_POINTS     = 1.000; -- Multiplies guild points earned from blacksmiths' guild trades.
+GOLDSMITHING_GUILD_POINTS = 1.000; -- Multiplies guild points earned from goldsmiths' guild trades.
+CLOTHCRAFT_GUILD_POINTS   = 1.000; -- Multiplies guild points earned from weavers' guild trades.
+LEATHERCRAFT_GUILD_POINTS = 1.000; -- Multiplies guild points earned from tanners' guild trades.
+BONECRAFT_GUILD_POINTS    = 1.000; -- Multiplies guild points earned from boneworkers' guild trades.
+ALCHEMY_GUILD_POINTS      = 1.000; -- Multiplies guild points earned from alchemists' guild trades.
+COOKING_GUILD_POINTS      = 1.000; -- Multiplies guild points earned from culinarians' guild trades.
+DISABLE_GUILD_CONTRACTS   = 0; -- Set to 1 to disable guild contracts, allowing players to accumulate guild points from all guilds at once.
 
-CURE_POWER  = 1.000; --Multiplies amount healed from Healing Magic, including the relevant Blue Magic.
-SPELL_POWER = 1.000; --Multiplies damage dealt by Elemental and Divine Magic.
-BLUE_POWER  = 1.000; --Multiplies damage dealt by most Blue Magic.
-DRAIN_POWER = 1.000; --Multiplies amount drained by Drain, Aspir, and relevant Blue Magic spells.
-ITEM_POWER  = 1.000; --Multiplies the effect of items such as Potions and Ethers.
+CURE_POWER  = 1.000; -- Multiplies amount healed from Healing Magic, including the relevant Blue Magic.
+SPELL_POWER = 1.000; -- Multiplies damage dealt by Elemental and Divine Magic.
+BLUE_POWER  = 1.000; -- Multiplies damage dealt by most Blue Magic.
+DRAIN_POWER = 1.000; -- Multiplies amount drained by Drain, Aspir, and relevant Blue Magic spells.
+ITEM_POWER  = 1.000; -- Multiplies the effect of items such as Potions and Ethers.
 WEAPON_SKILL_POWER  = 1.000; -- Multiplies damage dealt by Weapon Skills.
-WEAPON_SKILL_POINTS = 1.000; --Multiplies points earned during weapon unlocking.
+WEAPON_SKILL_POINTS = 1.000; -- Multiplies points earned during weapon unlocking.
 USE_ADOULIN_WEAPON_SKILL_CHANGES = false; -- true/false. Change to toggle new Adoulin weapon skill damage calculations
 
-HARVESTING_BREAK_CHANCE = 0.33; --% chance for the sickle to break during harvesting.  Set between 0 and 1.
-EXCAVATION_BREAK_CHANCE = 0.33; --% chance for the pickaxe to break during excavation.  Set between 0 and 1.
-LOGGING_BREAK_CHANCE    = 0.33; --% chance for the hatchet to break during logging.  Set between 0 and 1.
-MINING_BREAK_CHANCE     = 0.33; --% chance for the pickaxe to break during mining.  Set between 0 and 1.
-HARVESTING_RATE         = 0.50; --% chance to recieve an item from haresting.  Set between 0 and 1.
-EXCAVATION_RATE         = 0.50; --% chance to recieve an item from excavation.  Set between 0 and 1.
-LOGGING_RATE            = 0.50; --% chance to recieve an item from logging.  Set between 0 and 1.
-MINING_RATE             = 0.50; --% chance to recieve an item from mining.  Set between 0 and 1.
+HARVESTING_BREAK_CHANCE = 0.33; -- % chance for the sickle to break during harvesting.  Set between 0 and 1.
+EXCAVATION_BREAK_CHANCE = 0.33; -- % chance for the pickaxe to break during excavation.  Set between 0 and 1.
+LOGGING_BREAK_CHANCE    = 0.33; -- % chance for the hatchet to break during logging.  Set between 0 and 1.
+MINING_BREAK_CHANCE     = 0.33; -- % chance for the pickaxe to break during mining.  Set between 0 and 1.
+HARVESTING_RATE         = 0.50; -- % chance to recieve an item from haresting.  Set between 0 and 1.
+EXCAVATION_RATE         = 0.50; -- % chance to recieve an item from excavation.  Set between 0 and 1.
+LOGGING_RATE            = 0.50; -- % chance to recieve an item from logging.  Set between 0 and 1.
+MINING_RATE             = 0.50; -- % chance to recieve an item from mining.  Set between 0 and 1.
 
 -- SE implemented coffer/chest illusion time in order to prevent coffer farming. No-one in the same area can open a chest or coffer for loot (gil, gems & items)
 -- till a random time between MIN_ILLSION_TIME and MAX_ILLUSION_TIME. During this time players can loot keyitem and item related to quests (AF, maps... etc.)
-
 COFFER_MAX_ILLUSION_TIME = 3600;  -- 1 hour
 COFFER_MIN_ILLUSION_TIME = 1800;  -- 30 minutes
 CHEST_MAX_ILLUSION_TIME  = 3600;  -- 1 hour
@@ -106,6 +103,7 @@ LandKingSystem_HQ = 2;
 RELIC_2ND_UPGRADE_WAIT_TIME = 604800;      -- wait time for 2nd relic upgrade (stage 2 -> stage 3) in seconds. 604800s = 1 RL week.
 RELIC_3RD_UPGRADE_WAIT_TIME = 295200;      -- wait time for 3rd relic upgrade (stage 3 -> stage 4) in seconds. 295200s = 82 hours.
 FREE_COP_DYNAMIS = 1 ; -- Authorize player to entering inside COP Dynamis without completing COP mission ( 1 = enable 0= disable)
+
 -- QUEST/MISSION SPECIFIC SETTINGS
 WSNM_LEVEL = 70; -- Min Level to get WSNM Quests
 WSNM_SKILL_LEVEL = 240;
@@ -171,7 +169,7 @@ HALLOWEEN = 0; -- Set to 1 to give starting characters Halloween items (Does not
 HALLOWEEN_2005 = 0; -- Set to 1 to Enable the 2005 version of Harvest Festival, will start on Oct. 20 and end Nov. 1.
 HALLOWEEN_YEAR_ROUND = 0; -- Set to 1 to have Harvest Festival initialize outside of normal times.
 
---MISC
+-- MISC
 HOMEPOINT_HEAL = 0; --Set to 1 if you want Home Points to heal you like in single-player Final Fantasy games.
 RIVERNE_PORTERS = 120; -- Time in seconds that Unstable Displacements in Cape Riverne stay open after trading a scale.
 LANTERNS_STAY_LIT = 1200; -- time in seconds that lanterns in the Den of Rancor stay lit.
@@ -183,9 +181,10 @@ NUMBER_OF_DM_EARRINGS = 1; -- Number of earrings players can simultaneously own 
 HOMEPOINT_TELEPORT = 0; -- Enables the homepoint teleport system
 DIG_ABUNDANCE_BONUS = 0; -- Increase chance of digging up an item (450  = item digup chance +45)
 DIG_FATIGUE = 1; -- Set to 0 to disable Dig Fatigue
---LIMBUS
+
+-- LIMBUS
 BETWEEN_2COSMOCLEANSE_WAIT_TIME = 3; -- day between 2 limbus keyitem  (default 3 days)
 DIMENSIONAL_PORTAL_UNLOCK = false; -- Set true to bypass requirements for using dimensional portals to reach sea for Limbus
 
---ABYSSEA
+-- ABYSSEA
 VISITANT_BONUS = 1.00; -- Default: 1.00 - (retail) - Multiplies the base time value of each Traverser Stone.
