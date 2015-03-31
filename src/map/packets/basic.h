@@ -27,6 +27,7 @@ This file is part of DarkStar-server source code.
 #include "../../common/cbasetypes.h"
 
 #include <stdio.h>
+#include <string.h>
 
 enum ENTITYUPDATE
 {
