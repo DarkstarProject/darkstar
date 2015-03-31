@@ -317,9 +317,9 @@ void CLinkshell::PushPacket(uint32 senderID, CBasicPacket* packet)
             !jailutils::InPrison(members.at(i)))
 		{
             CBasicPacket* newPacket = new CBasicPacket(*packet);
-            if (newPacket->getType() == 0x17 && members.at(i)->PLinkshell2 == this)
+            if (newPacket->id() == 0x017 && members.at(i)->PLinkshell2 == this)
             {
-                WBUFB(newPacket->getData(), (0x04) - 4) = MESSAGE_LINKSHELL2;
+                newPacket->ref<uint8>(0x04) = MESSAGE_LINKSHELL2;
             }
             members.at(i)->pushPacket(newPacket);
 		}
