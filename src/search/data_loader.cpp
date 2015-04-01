@@ -511,5 +511,6 @@ void CDataLoader::ExpireAHItems()
 		//	ShowMessage(CL_RED"SQL ERROR: %s\n\n" CL_RESET, SQL_ERROR);
 	}
 	ShowMessage("Sent %u expired auction house items back to sellers\n", expiredAuctions);
-
+	Sql_Free(sqlH);
+	Sql_Free(sqlH2);
 }
