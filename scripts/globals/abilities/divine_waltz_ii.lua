@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability: Divine Waltz
+-- Ability: Divine Waltz II
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -16,7 +16,7 @@ function onAbilityCheck(player,target,ability)
         return MSGBASIC_UNABLE_TO_USE_JA2, 0;
     elseif (player:hasStatusEffect(EFFECT_TRANCE)) then
         return 0,0;
-    elseif (player:getTP() < 40) then
+    elseif (player:getTP() < 80) then
         return MSGBASIC_NOT_ENOUGH_TP,0;
     else
         -- Apply waltz recast modifiers
@@ -33,7 +33,7 @@ end;
 function onUseAbility(player, target, ability)
     -- Only remove TP if the player doesn't have Trance, and only deduct once instead of for each target.
     if (player:getID() == target:getID() and player:hasStatusEffect(EFFECT_TRANCE) == false) then
-        player:delTP(40);
+        player:delTP(80);
     end;
 
     -- Grabbing variables.
@@ -45,11 +45,11 @@ function onUseAbility(player, target, ability)
 
     -- Performing sj mj check.
     if (mjob == 19) then
-        cure = (vit+chr)*0.25+60;
+        cure = (vit+chr)*0.75+270;
     end
 
     if (sjob == 19) then
-        cure = (vit+chr)*0.125+60;
+        cure = (vit+chr)*0.175+270;
     end
 
     -- Apply waltz modifiers
