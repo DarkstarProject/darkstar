@@ -36,7 +36,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x006A and player:getVar("THE_FIGHTING_FOURTH") == 2) then
+	if(csid == 0x006A) then
 		player:setVar("THE_FIGHTING_FOURTH",3);
 	end		
 end;
