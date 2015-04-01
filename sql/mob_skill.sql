@@ -875,9 +875,13 @@ INSERT INTO `mob_skill` VALUES (351,189,351,'Slam_Dunk',0,7.0,2000,1500,4,0,0,0)
 INSERT INTO `mob_skill` VALUES (349,189,349,'Aerial_Wheel',0,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (350,189,350,'Shoulder_Attack',0,7.0,2000,1500,4,0,0,1);
 -- warlord Rojgnoj
-INSERT INTO `mob_skill` VALUES (438,189,438,'Invincible',0,7.0,2000,0,1,2,0,0);
+INSERT INTO `mob_skill` VALUES (438,334,438,'Invincible',0,7.0,2000,0,1,2,0,0);
+-- left hand
+INSERT INTO `mob_skill` VALUES (435,334,435,'Manafont',0,7.0,2000,0,1,2,0,0);
 -- Yukvok of clan death
-INSERT INTO `mob_skill` VALUES (479,189,21,'Eagle_Eye_Shot',0,25.0,2000,0,4,2,0,0);
+INSERT INTO `mob_skill` VALUES (479,334,21,'Eagle_Eye_Shot',0,25.0,2000,0,4,2,0,0);
+-- right hand
+INSERT INTO `mob_skill` VALUES (439,334,439,'Blood_Weapon',0,7.0,2000,0,1,2,0,0);
 
 -- INSERT INTO `mob_skill` VALUES (810,?,740,'Fanatic_Dance',1,10.0,2000,2000,4,0,0,0); -- Only NM's in Dynamis and Falsespinner Bhudbrodd
 -- INSERT INTO `mob_skill` VALUES (2155,?,?,'Phantasmal_Dance',1,15.0,2000,2000,4,0,0,0); -- certain NM only
