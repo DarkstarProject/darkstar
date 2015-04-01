@@ -4697,10 +4697,11 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, int8* dat
         return;
 
     uint8  slotID = RBUFB(data, (0x06));
-    uint8  col = RBUFB(data, (0x07));
-    uint8  level = RBUFB(data, (0x08));
-    uint8  row = RBUFB(data, (0x09));
-    uint8  rotation = RBUFB(data, (0x0A));
+    //uint8  containerID = RBUFB(data, (0x07)); //not used
+    uint8  col = RBUFB(data, (0x09));
+    uint8  level = RBUFB(data, (0x0A));
+    uint8  row = RBUFB(data, (0x0B));
+    uint8  rotation = RBUFB(data, (0x0C));
 
     CItemFurnishing* PItem = (CItemFurnishing*)PChar->getStorage(LOC_MOGSAFE)->GetItem(slotID);
 
