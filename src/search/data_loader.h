@@ -97,8 +97,6 @@ public:
 private:
 
 	Sql_t* SqlHandle;
-	Sql_t* sqlH;
-	Sql_t* sqlH2;
 };
 
 #endif

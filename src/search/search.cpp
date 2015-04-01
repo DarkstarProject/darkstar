@@ -88,12 +88,12 @@ const int8* LOGIN_CONF_FILENAME = "./conf/login_darkstar.conf";
 
 void TCPComm(SOCKET socket);
 
-extern void HandleSearchRequest(CTCPRequestPacket* PTCPRequest);
-extern void HandleSearchComment(CTCPRequestPacket* PTCPRequest);
-extern void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest);
-extern void HandleAuctionHouseHistory(CTCPRequestPacket* PTCPRequest);
-extern void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest);
-extern search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest);
+extern void HandleSearchRequest(CTCPRequestPacket& PTCPRequest);
+extern void HandleSearchComment(CTCPRequestPacket& PTCPRequest);
+extern void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest);
+extern void HandleAuctionHouseHistory(CTCPRequestPacket& PTCPRequest);
+extern void HandleAuctionHouseRequest(CTCPRequestPacket& PTCPRequest);
+extern search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest);
 extern std::string toStr(int number);
 
 search_config_t search_config;
@@ -453,17 +453,16 @@ void TCPComm(SOCKET socket)
 {
 	//ShowMessage("TCP connection from client with port: %u\n", htons(CommInfo.port));
 	
-	CTCPRequestPacket* PTCPRequest = new CTCPRequestPacket(&socket);
+	CTCPRequestPacket PTCPRequest(&socket);
 
-	if (PTCPRequest->ReceiveFromSocket() == 0)
+	if (PTCPRequest.ReceiveFromSocket() == 0)
 	{
-		delete PTCPRequest;
 		return;
 	}
 	//PrintPacket((int8*)PTCPRequest->GetData(), PTCPRequest->GetSize());
-	ShowMessage("= = = = = = = \nType: %u Size: %u \n",PTCPRequest->GetPacketType(),PTCPRequest->GetSize());
+	ShowMessage("= = = = = = = \nType: %u Size: %u \n",PTCPRequest.GetPacketType(),PTCPRequest.GetSize());
 	
-	switch(PTCPRequest->GetPacketType()) 
+	switch(PTCPRequest.GetPacketType()) 
 	{
 		case TCP_SEARCH:
 		case TCP_SEARCH_ALL:
@@ -497,7 +496,6 @@ void TCPComm(SOCKET socket)
 		}
 		break;
 	}
-	delete PTCPRequest;
 }
 
 /************************************************************************
@@ -506,9 +504,9 @@ void TCPComm(SOCKET socket)
 *                                                                       *
 ************************************************************************/
 
-void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest)
+void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
 {
-	uint8* data = (uint8*)PTCPRequest->GetData();
+	uint8* data = (uint8*)PTCPRequest.GetData();
 
     uint32 partyid = RBUFL(data,(0x10));
     uint32 linkshellid1 = RBUFL(data,(0x18));
@@ -517,42 +515,37 @@ void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest)
 	ShowMessage("SEARCH::PartyID = %u\n", partyid);
     ShowMessage("SEARCH::LinkshellIDs = %u, %u\n", linkshellid1, linkshellid2);
 
-    CDataLoader* PDataLoader = new CDataLoader();
+    CDataLoader PDataLoader;
 
     if (partyid != 0)
     {
-        std::list<SearchEntity*> PartyList = PDataLoader->GetPartyList(partyid);
+        std::list<SearchEntity*> PartyList = PDataLoader.GetPartyList(partyid);
 
-        CPartyListPacket* PPartyPacket = new CPartyListPacket(partyid,PartyList.size());
+        CPartyListPacket PPartyPacket(partyid,PartyList.size());
 
         for (std::list<SearchEntity*>::iterator it = PartyList.begin(); it != PartyList.end(); ++it)
         {
-			PPartyPacket->AddPlayer(*it);
+			PPartyPacket.AddPlayer(*it);
         }
 
-        PrintPacket((int8*)PPartyPacket->GetData(), PPartyPacket->GetSize());
-        PTCPRequest->SendToSocket(PPartyPacket->GetData(), PPartyPacket->GetSize());
-
-        delete PPartyPacket;
+        PrintPacket((int8*)PPartyPacket.GetData(), PPartyPacket.GetSize());
+        PTCPRequest.SendToSocket(PPartyPacket.GetData(), PPartyPacket.GetSize());
     }
     else if (linkshellid1 != 0 || linkshellid2 != 0)
     {	
         uint32 linkshellid = linkshellid1 == 0 ? linkshellid2 : linkshellid1;
-        std::list<SearchEntity*> LinkshellList = PDataLoader->GetLinkshellList(linkshellid);
+        std::list<SearchEntity*> LinkshellList = PDataLoader.GetLinkshellList(linkshellid);
 
-		CLinkshellListPacket* PLinkshellPacket = new CLinkshellListPacket(linkshellid,LinkshellList.size());
+		CLinkshellListPacket PLinkshellPacket(linkshellid,LinkshellList.size());
 
         for (std::list<SearchEntity*>::iterator it = LinkshellList.begin(); it != LinkshellList.end(); ++it)
         {
-            PLinkshellPacket->AddPlayer(*it);
+            PLinkshellPacket.AddPlayer(*it);
         }
 
-        PrintPacket((int8*)PLinkshellPacket->GetData(), PLinkshellPacket->GetSize());
-        PTCPRequest->SendToSocket(PLinkshellPacket->GetData(), PLinkshellPacket->GetSize());
-
-        delete PLinkshellPacket;
+        PrintPacket((int8*)PLinkshellPacket.GetData(), PLinkshellPacket.GetSize());
+        PTCPRequest.SendToSocket(PLinkshellPacket.GetData(), PLinkshellPacket.GetSize());
     }
-    delete PDataLoader;
 }
 
 /************************************************************************
@@ -561,7 +554,7 @@ void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest)
 *                                                                       *
 ************************************************************************/
 
-void HandleSearchComment(CTCPRequestPacket* PTCPRequest)
+void HandleSearchComment(CTCPRequestPacket& PTCPRequest)
 {
     uint8 packet[] = 
     {
@@ -579,7 +572,7 @@ void HandleSearchComment(CTCPRequestPacket* PTCPRequest)
         0x93, 0xD6, 0x90, 0xF1, 0x21, 0x7A, 0xA5, 0xAC, 0x38, 0x25, 0x69, 0x79, 0x00, 0xC6, 0x7E, 0xDC, 
         0x80, 0x3D, 0x99, 0x85, 0xF4, 0xDF, 0xCF, 0xFC, 0x1A, 0x72, 0xE2, 0x0D 
     };
-    PTCPRequest->SendRawToSocket(packet, sizeof(packet));
+    PTCPRequest.SendRawToSocket(packet, sizeof(packet));
 }
 
 /************************************************************************
@@ -588,26 +581,23 @@ void HandleSearchComment(CTCPRequestPacket* PTCPRequest)
 *                                                                       *
 ************************************************************************/
 
-void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
+void HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
 {   
 	search_req sr = _HandleSearchRequest(PTCPRequest);
 	int totalCount = 0;
 
-    CDataLoader* PDataLoader = new CDataLoader();
-    std::list<SearchEntity*> SearchList = PDataLoader->GetPlayersList(sr,&totalCount);
+    CDataLoader PDataLoader;
+    std::list<SearchEntity*> SearchList = PDataLoader.GetPlayersList(sr,&totalCount);
 	//PDataLoader->GetPlayersCount(sr)
-    CSearchListPacket* PSearchPacket = new CSearchListPacket(totalCount);
+    CSearchListPacket PSearchPacket(totalCount);
 
     for (std::list<SearchEntity*>::iterator it = SearchList.begin(); it != SearchList.end(); ++it)
     {
-        PSearchPacket->AddPlayer(*it);
+        PSearchPacket.AddPlayer(*it);
     }
 
     //PrintPacket((int8*)PSearchPacket->GetData(), PSearchPacket->GetSize());
-    PTCPRequest->SendToSocket(PSearchPacket->GetData(), PSearchPacket->GetSize());
-
-    delete PSearchPacket;
-    delete PDataLoader;
+    PTCPRequest.SendToSocket(PSearchPacket.GetData(), PSearchPacket.GetSize());
 }
 
 /************************************************************************
@@ -618,9 +608,9 @@ void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 *                                                                       *
 ************************************************************************/
 
-void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest)
+void HandleAuctionHouseRequest(CTCPRequestPacket& PTCPRequest)
 {
-    uint8* data    = (uint8*)PTCPRequest->GetData();                            
+    uint8* data    = (uint8*)PTCPRequest.GetData();                            
 	uint8  AHCatID = RBUFB(data,(0x16));
 
     //2 - уровень -- level
@@ -652,26 +642,24 @@ void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest)
 	OrderByString.append(" item_basic.itemid");
 	int8* OrderByArray = (int8*)OrderByString.data();
 
-	CDataLoader* PDataLoader = new CDataLoader();                        
-    std::vector<ahItem*> ItemList = PDataLoader->GetAHItemsToCategory(AHCatID,OrderByArray);
+	CDataLoader PDataLoader;                        
+    std::vector<ahItem*> ItemList = PDataLoader.GetAHItemsToCategory(AHCatID,OrderByArray);
 
     uint8 PacketsCount = (ItemList.size() / 20) + (ItemList.size() % 20 != 0) + (ItemList.size() == 0);
 
     for(uint8 i = 0; i < PacketsCount; ++i) 
     {
-        CAHItemsListPacket* PAHPacket = new CAHItemsListPacket(20*i);
+        CAHItemsListPacket PAHPacket(20*i);
 
-        PAHPacket->SetItemCount(ItemList.size());  
+        PAHPacket.SetItemCount(ItemList.size());  
 
         for (uint16 y = 20*i; (y != 20*(i+1)) && (y < ItemList.size()); ++y)
         {
-            PAHPacket->AddItem(ItemList.at(y));
+            PAHPacket.AddItem(ItemList.at(y));
         }
 
-        PTCPRequest->SendToSocket(PAHPacket->GetData(), PAHPacket->GetSize());
-        delete PAHPacket;
+        PTCPRequest.SendToSocket(PAHPacket.GetData(), PAHPacket.GetSize());
     }
-    delete PDataLoader;
 }
 
 /************************************************************************
@@ -680,26 +668,23 @@ void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest)
 *                                                                       *
 ************************************************************************/
 
-void HandleAuctionHouseHistory(CTCPRequestPacket* PTCPRequest)
+void HandleAuctionHouseHistory(CTCPRequestPacket& PTCPRequest)
 {
-    uint8* data   = (uint8*)PTCPRequest->GetData();                            
+    uint8* data   = (uint8*)PTCPRequest.GetData();                            
 	uint16 ItemID = RBUFW(data,(0x12));
     uint8  stack  = RBUFB(data,(0x15));
 
-	CAHHistoryPacket* PAHPacket = new CAHHistoryPacket(ItemID);
+	CAHHistoryPacket PAHPacket(ItemID);
 
-    CDataLoader* PDataLoader = new CDataLoader();
-    std::vector<ahHistory*> HistoryList = PDataLoader->GetAHItemHystory(ItemID, stack != 0);
+    CDataLoader PDataLoader;
+    std::vector<ahHistory*> HistoryList = PDataLoader.GetAHItemHystory(ItemID, stack != 0);
 
 	for (uint8 i = 0; i < HistoryList.size(); ++i)
 	{
-		PAHPacket->AddItem(HistoryList.at(i));
+		PAHPacket.AddItem(HistoryList.at(i));
 	}
 
-    PTCPRequest->SendToSocket(PAHPacket->GetData(), PAHPacket->GetSize());
-
-    delete PDataLoader;
-    delete PAHPacket;
+    PTCPRequest.SendToSocket(PAHPacket.GetData(), PAHPacket.GetSize());
 }
 
 /************************************************************************
@@ -708,7 +693,7 @@ void HandleAuctionHouseHistory(CTCPRequestPacket* PTCPRequest)
 *                                                                       *
 ************************************************************************/
 
-search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
+search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
 {
 	// суть в том, чтобы заполнить некоторую структуру, на основании которой будет создан запрос к базе
 	// результат поиска в базе отправляется клиенту
@@ -737,7 +722,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
     uint32 flags = 0;
 
 
-	uint8* data = (uint8*)PTCPRequest->GetData();
+	uint8* data = (uint8*)PTCPRequest.GetData();
 	uint8  size = RBUFB(data,(0x10));
 
 	uint16 workloadBits = size * 8;
@@ -999,9 +984,8 @@ int32 ah_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 {
 	//ShowMessage(CL_YELLOW"[TASK] ah_cleanup tick..\n" CL_RESET);
 
-	CDataLoader* data = new CDataLoader();
-	data->ExpireAHItems();
-	delete data;
+	CDataLoader data;
+	data.ExpireAHItems();
 
 	return 0;
 }
