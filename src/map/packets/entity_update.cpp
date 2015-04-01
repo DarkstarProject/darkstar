@@ -137,7 +137,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 			{
 				//depending on size of name, this can be 0x20, 0x22, or 0x24
 				this->size = 0x24;
-				memcpy(data + (0x34) - 4, PEntity->GetName(), (PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
+				memcpy(data + (0x34) , PEntity->GetName(), (PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
 			}
 		}
 		break;
@@ -166,7 +166,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 				if (updatemask & UPDATE_NAME)
 				{
 					this->size = 0x24;
-					memcpy(data + (0x34) - 4, PEntity->GetName(), (PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
+					memcpy(data + (0x34) , PEntity->GetName(), (PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
 				}
 			}
 		}
@@ -187,7 +187,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 		{
 			this->size = 0x24;
 
-			memcpy(data + (0x30) - 4, &(PEntity->look), 20);
+			memcpy(data + (0x30) , &(PEntity->look), 20);
 		}
 		break;
 		case MODEL_DOOR:

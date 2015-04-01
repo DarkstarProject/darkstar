@@ -138,7 +138,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
 
             if (updatemask & UPDATE_NAME)
             {
-                memcpy(data + (0x56) - 4, PChar->GetName(), PChar->name.size());
+                memcpy(data + (0x56) , PChar->GetName(), PChar->name.size());
             }
 		}
 		break;

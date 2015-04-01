@@ -74,12 +74,12 @@ CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, CItem* PItem, 
             if (boxid == 1)
             {
                 WBUFB(data, (0x10) ) = 0x07;
-                memcpy(data + 0x14 - 4, PItem->getSender(), strlen(PItem->getSender()));        // Sender's name.  Client disables "Return" if it starts with "AH"
+                memcpy(data + 0x14 , PItem->getSender(), strlen(PItem->getSender()));        // Sender's name.  Client disables "Return" if it starts with "AH"
             }
             else
             {
                 WBUFB(data, (0x10) ) = PItem->isSent() ? 0x03 : 0x05;    // 0x05 in send: canceled. other values are unknown 
-                memcpy(data + 0x14 - 4, PItem->getReceiver(), strlen(PItem->getReceiver()));    // Receiver's name.  Client disables "Return" if it starts with "AH"
+                memcpy(data + 0x14 , PItem->getReceiver(), strlen(PItem->getReceiver()));    // Receiver's name.  Client disables "Return" if it starts with "AH"
             }
         }
         if (action == 0x02)
@@ -106,6 +106,6 @@ CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, CItem* PItem, 
         WBUFW(data, (0x2C) ) = PItem->getSubID();               // Only used to display which item was sold on the AH
         WBUFW(data, (0x30) ) = PItem->getID();
         WBUFL(data, (0x38) ) = PItem->getQuantity();
-        memcpy(data + 0x3C - 4, PItem->m_extra, sizeof(PItem->m_extra));
+        memcpy(data + 0x3C , PItem->m_extra, sizeof(PItem->m_extra));
     }
 }

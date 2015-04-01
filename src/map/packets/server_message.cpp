@@ -50,7 +50,7 @@ CServerMessagePacket::CServerMessagePacket(const string_t message, int8 language
         WBUFL(data, (0x10) ) = message_offset;   // Message Offset..
         WBUFL(data, (0x14) ) = sndLength;        // Message Length..
 
-        memcpy((data + (0x18)) - 4, message.c_str() + message_offset, sndLength);
+        memcpy((data + (0x18)) , message.c_str() + message_offset, sndLength);
 
         int32 textSize = sndLength + sndLength % 2;
         this->size = ((((0x14 + textSize) + 4) >> 1) & 0xFE);

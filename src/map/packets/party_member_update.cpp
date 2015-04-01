@@ -68,7 +68,7 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 Mem
         }
     }
 
-    memcpy(data + (0x26) - 4, PChar->GetName(), PChar->name.size());
+    memcpy(data + (0x26) , PChar->GetName(), PChar->name.size());
 }
 CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(uint32 id, const int8* name, uint16 memberFlags, uint8 ZoneID)
 {
@@ -81,5 +81,5 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(uint32 id, const int8* name, 
 	WBUFW(data, (0x14) ) = memberFlags;
 	WBUFW(data, (0x20) ) = ZoneID;
 
-	memcpy(data + (0x26) - 4, name, strlen(name));
+	memcpy(data + (0x26) , name, strlen(name));
 }

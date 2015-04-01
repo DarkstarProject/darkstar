@@ -45,7 +45,7 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 		WBUFL(data,(0x04)) = PItem->getQuantity();
 		WBUFL(data,(0x08)) = PItem->getCharPrice();
 		WBUFW(data,(0x0C)) = PItem->getID();
-        memcpy(data + 0x11 - 4, PItem->m_extra, sizeof(PItem->m_extra));
+        memcpy(data + 0x11 , PItem->m_extra, sizeof(PItem->m_extra));
 
 		if (PItem->isSubType(ITEM_CHARGED))
 		{

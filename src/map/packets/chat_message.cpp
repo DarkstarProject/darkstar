@@ -40,6 +40,6 @@ CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE Mes
         WBUFB(data, (0x05) ) = 0x01;
      WBUFW(data, (0x06) ) = PChar->getZone();
 
-     memcpy(data + (0x08) - 4, PChar->GetName(), PChar->name.size());
-     memcpy(data + (0x18) - 4, buff, buffSize);
+     memcpy(data + (0x08) , PChar->GetName(), PChar->name.size());
+     memcpy(data + (0x18) , buff, buffSize);
 }

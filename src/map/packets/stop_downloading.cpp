@@ -35,7 +35,7 @@ CStopDownloadingPacket::CStopDownloadingPacket(CCharEntity* PChar, std::vector< 
 
 	for (int8 x = 0; x < blacklist.size(); x++)
 	{
-		uint32 offset = (0x04 + (20 * x)) - 4;
+		uint32 offset = (0x04 + (20 * x)) ;
 		WBUFL(data, offset) = blacklist[x].first;
 		memcpy(data + offset + 4, blacklist[x].second.c_str(), blacklist[x].second.size());
 	}
