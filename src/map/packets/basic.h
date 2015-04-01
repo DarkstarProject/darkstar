@@ -48,17 +48,19 @@ class CBasicPacket
 {
 protected:
 
-    uint8 data[0x100];
+    uint8 m_data[0x100];
     uint8& type;
     uint8& size;
     uint16& code;
+    uint8* data;
 
 public:
 
     CBasicPacket()
         : type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<uint16>(2))
     {
-        std::fill_n(data, sizeof data, 0);
+        std::fill_n(m_data, sizeof m_data, 0);
+        data = m_data + 4;
     }
 
     /* Getters for the header */
@@ -103,12 +105,12 @@ public:
     template<typename T>
     T& ref(std::size_t index)
     {
-        return *reinterpret_cast<T*>(data + index);
+        return *reinterpret_cast<T*>(m_data + index);
     }
 
     operator uint8*()
     {
-        return data;
+        return m_data;
     }
 };
 
