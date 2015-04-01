@@ -49,9 +49,9 @@ CShopItemsPacket::CShopItemsPacket(CCharEntity * PChar)
         }
 		this->size += 0x06;
 
-		WBUFL(data,((i*12)+0x08)-4) = PChar->Container->getQuantity(slotID);
-		WBUFW(data,((i*12)+0x0C)-4) = PChar->Container->getItemID(slotID);
-		WBUFB(data,((i*12)+0x0E)-4) = slotID;
+		WBUFL(data,((i*12)+0x08)) = PChar->Container->getQuantity(slotID);
+		WBUFW(data,((i*12)+0x0C)) = PChar->Container->getItemID(slotID);
+		WBUFB(data,((i*12)+0x0E)) = slotID;
         i++;
 	}
 }

@@ -31,19 +31,19 @@ CWorldPassPacket::CWorldPassPacket(uint32 WorldPass)
 	this->type = 0x59;
 	this->size = 0x12; 
 
-    WBUFL(data,(0x0C)-4) = 10000;       // price
+    WBUFL(data,(0x0C)) = 10000;       // price
 
-    WBUFB(data,(0x1C)-4) = 0xD0;
-    WBUFB(data,(0x1D)-4) = 0x19;
-    WBUFB(data,(0x20)-4) = 0x03;
-    WBUFB(data,(0x21)-4) = 0x01;
+    WBUFB(data,(0x1C)) = 0xD0;
+    WBUFB(data,(0x1D)) = 0x19;
+    WBUFB(data,(0x20)) = 0x03;
+    WBUFB(data,(0x21)) = 0x01;
 
     if (WorldPass != 0)
     {
-        WBUFB(data,(0x04)-4) =   1;     // number of uses left
-        WBUFB(data,(0x08)-4) = 167;     // pass becomes invalid in (hours)
+        WBUFB(data,(0x04)) =   1;     // number of uses left
+        WBUFB(data,(0x08)) = 167;     // pass becomes invalid in (hours)
 
-        WBUFB(data,(0x20)-4) = 0x06;
-        snprintf((int8*)data+(0x10)-4, 10, "%u", WorldPass);
+        WBUFB(data,(0x20)) = 0x06;
+        snprintf((int8*)data+(0x10), 10, "%u", WorldPass);
     }
 }

@@ -49,93 +49,93 @@ CCurrencyPacket1::CCurrencyPacket1(CCharEntity* PChar)
     int ret = Sql_Query(SqlHandle, query, PChar->id);
     if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        WBUFL(data, (0x04)-4) = Sql_GetIntData(SqlHandle, 0);
-        WBUFL(data, (0x08)-4) = Sql_GetIntData(SqlHandle, 1);
-        WBUFL(data, (0x0C)-4) = Sql_GetIntData(SqlHandle, 2);
+        WBUFL(data, (0x04)) = Sql_GetIntData(SqlHandle, 0);
+        WBUFL(data, (0x08)) = Sql_GetIntData(SqlHandle, 1);
+        WBUFL(data, (0x0C)) = Sql_GetIntData(SqlHandle, 2);
 
-        WBUFW(data, (0x10)-4) = Sql_GetUIntData(SqlHandle, 3);
-        WBUFW(data, (0x12)-4) = Sql_GetUIntData(SqlHandle, 4);
-        WBUFW(data, (0x14)-4) = Sql_GetUIntData(SqlHandle, 5);
-        WBUFW(data, (0x16)-4) = Sql_GetUIntData(SqlHandle, 6);
-        WBUFW(data, (0x18)-4) = Sql_GetUIntData(SqlHandle, 7);
-        WBUFW(data, (0x1A)-4) = Sql_GetUIntData(SqlHandle, 8);
-        WBUFW(data, (0x1C)-4) = Sql_GetUIntData(SqlHandle, 9);
-        WBUFW(data, (0x1E)-4) = Sql_GetUIntData(SqlHandle, 10);
+        WBUFW(data, (0x10)) = Sql_GetUIntData(SqlHandle, 3);
+        WBUFW(data, (0x12)) = Sql_GetUIntData(SqlHandle, 4);
+        WBUFW(data, (0x14)) = Sql_GetUIntData(SqlHandle, 5);
+        WBUFW(data, (0x16)) = Sql_GetUIntData(SqlHandle, 6);
+        WBUFW(data, (0x18)) = Sql_GetUIntData(SqlHandle, 7);
+        WBUFW(data, (0x1A)) = Sql_GetUIntData(SqlHandle, 8);
+        WBUFW(data, (0x1C)) = Sql_GetUIntData(SqlHandle, 9);
+        WBUFW(data, (0x1E)) = Sql_GetUIntData(SqlHandle, 10);
 
-        WBUFL(data, (0x20)-4) = Sql_GetIntData(SqlHandle, 11);
-        WBUFL(data, (0x24)-4) = Sql_GetIntData(SqlHandle, 12);
-        WBUFL(data, (0x28)-4) = Sql_GetIntData(SqlHandle, 13);
-        WBUFL(data, (0x2C)-4) = Sql_GetIntData(SqlHandle, 14);
-        WBUFL(data, (0x30)-4) = Sql_GetIntData(SqlHandle, 15);
-        WBUFL(data, (0x34)-4) = Sql_GetIntData(SqlHandle, 16);
-        WBUFL(data, (0x38)-4) = Sql_GetIntData(SqlHandle, 17);
-        WBUFL(data, (0x3C)-4) = Sql_GetIntData(SqlHandle, 18);
-        WBUFL(data, (0x40)-4) = Sql_GetIntData(SqlHandle, 19);
+        WBUFL(data, (0x20)) = Sql_GetIntData(SqlHandle, 11);
+        WBUFL(data, (0x24)) = Sql_GetIntData(SqlHandle, 12);
+        WBUFL(data, (0x28)) = Sql_GetIntData(SqlHandle, 13);
+        WBUFL(data, (0x2C)) = Sql_GetIntData(SqlHandle, 14);
+        WBUFL(data, (0x30)) = Sql_GetIntData(SqlHandle, 15);
+        WBUFL(data, (0x34)) = Sql_GetIntData(SqlHandle, 16);
+        WBUFL(data, (0x38)) = Sql_GetIntData(SqlHandle, 17);
+        WBUFL(data, (0x3C)) = Sql_GetIntData(SqlHandle, 18);
+        WBUFL(data, (0x40)) = Sql_GetIntData(SqlHandle, 19);
 
-        WBUFL(data, (0x44)-4) = Sql_GetIntData(SqlHandle, 20);
-        WBUFB(data, (0x48)-4) = Sql_GetUIntData(SqlHandle, 21);
-        WBUFB(data, (0x49)-4) = Sql_GetUIntData(SqlHandle, 22);
-        WBUFB(data, (0x4A)-4) = Sql_GetUIntData(SqlHandle, 23);
-        WBUFB(data, (0x4B)-4) = Sql_GetUIntData(SqlHandle, 24);
-        WBUFB(data, (0x4C)-4) = Sql_GetUIntData(SqlHandle, 25);
-        WBUFB(data, (0x4D)-4) = Sql_GetUIntData(SqlHandle, 26);
-        WBUFB(data, (0x4E)-4) = Sql_GetUIntData(SqlHandle, 27);
-        WBUFB(data, (0x4F)-4) = Sql_GetUIntData(SqlHandle, 28);
+        WBUFL(data, (0x44)) = Sql_GetIntData(SqlHandle, 20);
+        WBUFB(data, (0x48)) = Sql_GetUIntData(SqlHandle, 21);
+        WBUFB(data, (0x49)) = Sql_GetUIntData(SqlHandle, 22);
+        WBUFB(data, (0x4A)) = Sql_GetUIntData(SqlHandle, 23);
+        WBUFB(data, (0x4B)) = Sql_GetUIntData(SqlHandle, 24);
+        WBUFB(data, (0x4C)) = Sql_GetUIntData(SqlHandle, 25);
+        WBUFB(data, (0x4D)) = Sql_GetUIntData(SqlHandle, 26);
+        WBUFB(data, (0x4E)) = Sql_GetUIntData(SqlHandle, 27);
+        WBUFB(data, (0x4F)) = Sql_GetUIntData(SqlHandle, 28);
 
-        WBUFL(data, (0x50)-4) = Sql_GetIntData(SqlHandle, 29);
-        WBUFL(data, (0x54)-4) = Sql_GetIntData(SqlHandle, 30);
-        WBUFW(data, (0x58)-4) = Sql_GetUIntData(SqlHandle, 31);
-        WBUFW(data, (0x5A)-4) = Sql_GetUIntData(SqlHandle, 32);
-        WBUFW(data, (0x5C)-4) = Sql_GetUIntData(SqlHandle, 33);
+        WBUFL(data, (0x50)) = Sql_GetIntData(SqlHandle, 29);
+        WBUFL(data, (0x54)) = Sql_GetIntData(SqlHandle, 30);
+        WBUFW(data, (0x58)) = Sql_GetUIntData(SqlHandle, 31);
+        WBUFW(data, (0x5A)) = Sql_GetUIntData(SqlHandle, 32);
+        WBUFW(data, (0x5C)) = Sql_GetUIntData(SqlHandle, 33);
         // daily tally (2 byte)
-        WBUFL(data, (0x60)-4) = Sql_GetIntData(SqlHandle, 34);
-        WBUFB(data, (0x64)-4) = Sql_GetUIntData(SqlHandle, 35);
-        WBUFB(data, (0x65)-4) = Sql_GetUIntData(SqlHandle, 36);
-        WBUFB(data, (0x66)-4) = Sql_GetUIntData(SqlHandle, 37);
-        WBUFL(data, (0x68)-4) = Sql_GetIntData(SqlHandle, 38);
+        WBUFL(data, (0x60)) = Sql_GetIntData(SqlHandle, 34);
+        WBUFB(data, (0x64)) = Sql_GetUIntData(SqlHandle, 35);
+        WBUFB(data, (0x65)) = Sql_GetUIntData(SqlHandle, 36);
+        WBUFB(data, (0x66)) = Sql_GetUIntData(SqlHandle, 37);
+        WBUFL(data, (0x68)) = Sql_GetIntData(SqlHandle, 38);
 
-        WBUFW(data, (0x6C)-4) = Sql_GetUIntData(SqlHandle, 39);
-        WBUFW(data, (0x6E)-4) = Sql_GetUIntData(SqlHandle, 40);
+        WBUFW(data, (0x6C)) = Sql_GetUIntData(SqlHandle, 39);
+        WBUFW(data, (0x6E)) = Sql_GetUIntData(SqlHandle, 40);
 
-        WBUFL(data, (0x70)-4) = Sql_GetIntData(SqlHandle, 41);
-        WBUFL(data, (0x74)-4) = Sql_GetIntData(SqlHandle, 42);
-        WBUFL(data, (0x78)-4) = Sql_GetIntData(SqlHandle, 43);
+        WBUFL(data, (0x70)) = Sql_GetIntData(SqlHandle, 41);
+        WBUFL(data, (0x74)) = Sql_GetIntData(SqlHandle, 42);
+        WBUFL(data, (0x78)) = Sql_GetIntData(SqlHandle, 43);
 
-        WBUFL(data, (0x7C)-4) = Sql_GetIntData(SqlHandle, 44);
-        WBUFL(data, (0x80)-4) = Sql_GetIntData(SqlHandle, 45);
-        WBUFL(data, (0x84)-4) = Sql_GetIntData(SqlHandle, 46);
-        WBUFL(data, (0x88)-4) = Sql_GetIntData(SqlHandle, 47);
-        WBUFL(data, (0x8C)-4) = Sql_GetIntData(SqlHandle, 48);
-        WBUFL(data, (0x90)-4) = Sql_GetIntData(SqlHandle, 49);
-        WBUFL(data, (0x94)-4) = Sql_GetIntData(SqlHandle, 50);
-        WBUFL(data, (0x98)-4) = Sql_GetIntData(SqlHandle, 51);
-        WBUFL(data, (0x9C)-4) = Sql_GetIntData(SqlHandle, 52);
-        WBUFL(data, (0xA0)-4) = Sql_GetIntData(SqlHandle, 53);
+        WBUFL(data, (0x7C)) = Sql_GetIntData(SqlHandle, 44);
+        WBUFL(data, (0x80)) = Sql_GetIntData(SqlHandle, 45);
+        WBUFL(data, (0x84)) = Sql_GetIntData(SqlHandle, 46);
+        WBUFL(data, (0x88)) = Sql_GetIntData(SqlHandle, 47);
+        WBUFL(data, (0x8C)) = Sql_GetIntData(SqlHandle, 48);
+        WBUFL(data, (0x90)) = Sql_GetIntData(SqlHandle, 49);
+        WBUFL(data, (0x94)) = Sql_GetIntData(SqlHandle, 50);
+        WBUFL(data, (0x98)) = Sql_GetIntData(SqlHandle, 51);
+        WBUFL(data, (0x9C)) = Sql_GetIntData(SqlHandle, 52);
+        WBUFL(data, (0xA0)) = Sql_GetIntData(SqlHandle, 53);
 
-        WBUFL(data, (0xA4)-4) = Sql_GetIntData(SqlHandle, 54);
+        WBUFL(data, (0xA4)) = Sql_GetIntData(SqlHandle, 54);
 
         // AMAN vouchers
         // unity accolades
 
-        WBUFL(data, (0xAC)-4) = Sql_GetIntData(SqlHandle, 55);
-        WBUFL(data, (0xB0)-4) = Sql_GetIntData(SqlHandle, 56);
-        WBUFL(data, (0xB4)-4) = Sql_GetIntData(SqlHandle, 57);
-        WBUFB(data, (0xB8)-4) = Sql_GetUIntData(SqlHandle, 58);
-        WBUFB(data, (0xB9)-4) = Sql_GetUIntData(SqlHandle, 59);
-        WBUFB(data, (0xBA)-4) = Sql_GetUIntData(SqlHandle, 60);
-        WBUFB(data, (0xBB)-4) = Sql_GetUIntData(SqlHandle, 61);
-        WBUFB(data, (0xBC)-4) = Sql_GetUIntData(SqlHandle, 62);
+        WBUFL(data, (0xAC)) = Sql_GetIntData(SqlHandle, 55);
+        WBUFL(data, (0xB0)) = Sql_GetIntData(SqlHandle, 56);
+        WBUFL(data, (0xB4)) = Sql_GetIntData(SqlHandle, 57);
+        WBUFB(data, (0xB8)) = Sql_GetUIntData(SqlHandle, 58);
+        WBUFB(data, (0xB9)) = Sql_GetUIntData(SqlHandle, 59);
+        WBUFB(data, (0xBA)) = Sql_GetUIntData(SqlHandle, 60);
+        WBUFB(data, (0xBB)) = Sql_GetUIntData(SqlHandle, 61);
+        WBUFB(data, (0xBC)) = Sql_GetUIntData(SqlHandle, 62);
 
-        WBUFB(data, (0xBD)-4) = Sql_GetUIntData(SqlHandle, 63);
+        WBUFB(data, (0xBD)) = Sql_GetUIntData(SqlHandle, 63);
 
-        WBUFB(data, (0xBE)-4) = Sql_GetUIntData(SqlHandle, 64);
+        WBUFB(data, (0xBE)) = Sql_GetUIntData(SqlHandle, 64);
 
-        WBUFB(data, (0xBF)-4) = Sql_GetUIntData(SqlHandle, 65);
+        WBUFB(data, (0xBF)) = Sql_GetUIntData(SqlHandle, 65);
 
-        WBUFL(data, (0xC0)-4) = Sql_GetIntData(SqlHandle, 66);
-        WBUFL(data, (0xC4)-4) = Sql_GetIntData(SqlHandle, 67);
-        WBUFL(data, (0xC8)-4) = Sql_GetIntData(SqlHandle, 68);
+        WBUFL(data, (0xC0)) = Sql_GetIntData(SqlHandle, 66);
+        WBUFL(data, (0xC4)) = Sql_GetIntData(SqlHandle, 67);
+        WBUFL(data, (0xC8)) = Sql_GetIntData(SqlHandle, 68);
 
-        WBUFB(data, (0xCC)-4) = Sql_GetUIntData(SqlHandle, 69);
+        WBUFB(data, (0xCC)) = Sql_GetUIntData(SqlHandle, 69);
     }
 }

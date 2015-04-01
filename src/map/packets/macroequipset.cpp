@@ -43,17 +43,17 @@ CAddtoEquipSet::CAddtoEquipSet(int8* orig)
 	{
 		if (i == slotID)
 		{
-			WBUFB(data, (0x04) + (0x04 * i) -4) = RBUFB(orig, 0x08);
-			WBUFB(data, (0x05) + (0x04 * i) -4) = RBUFB(orig, 0x09);
-			WBUFB(data, (0x06) + (0x04 * i) -4) = RBUFB(orig, 0x0A);
-			WBUFB(data, (0x07) + (0x04 * i) -4) = RBUFB(orig, 0x0B);
+			WBUFB(data, (0x04) + (0x04 * i) ) = RBUFB(orig, 0x08);
+			WBUFB(data, (0x05) + (0x04 * i) ) = RBUFB(orig, 0x09);
+			WBUFB(data, (0x06) + (0x04 * i) ) = RBUFB(orig, 0x0A);
+			WBUFB(data, (0x07) + (0x04 * i) ) = RBUFB(orig, 0x0B);
 		}
 		else
 		{
-			WBUFB(data, (0x04) + (0x04 * i) -4) = RBUFB(orig, 0x0C + (0x04 * i));
-			WBUFB(data, (0x05) + (0x04 * i) -4) = RBUFB(orig, 0x0D + (0x04 * i));
-			WBUFB(data, (0x06) + (0x04 * i) -4) = RBUFB(orig, 0x0E + (0x04 * i));
-			WBUFB(data, (0x07) + (0x04 * i) -4) = RBUFB(orig, 0x0F + (0x04 * i));
+			WBUFB(data, (0x04) + (0x04 * i) ) = RBUFB(orig, 0x0C + (0x04 * i));
+			WBUFB(data, (0x05) + (0x04 * i) ) = RBUFB(orig, 0x0D + (0x04 * i));
+			WBUFB(data, (0x06) + (0x04 * i) ) = RBUFB(orig, 0x0E + (0x04 * i));
+			WBUFB(data, (0x07) + (0x04 * i) ) = RBUFB(orig, 0x0F + (0x04 * i));
 		}
 	}
 }

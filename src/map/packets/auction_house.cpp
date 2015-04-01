@@ -39,13 +39,13 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action)
 	this->type = 0x4C;
 	this->size = 0x1E;
 
-	WBUFB(data,(0x04)-4) = action;
-    WBUFB(data,(0x05)-4) = 0xFF;       
-    WBUFB(data,(0x06)-4) = IsAuctionOpen;
+	WBUFB(data,(0x04)) = action;
+    WBUFB(data,(0x05)) = 0xFF;       
+    WBUFB(data,(0x06)) = IsAuctionOpen;
 
     if (action == 2)
     {
-        WBUFB(data,(0x0A)-4) = AUCTION_ID;
+        WBUFB(data,(0x0A)) = AUCTION_ID;
     }
 }
 
@@ -54,17 +54,17 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, CItem* PItem, uint8 quant
     this->type = 0x4C;
     this->size = 0x1E;
 
-    WBUFB(data,(0x04)-4) = action;
-    WBUFB(data,(0x05)-4) = 0xFF;
-    WBUFB(data,(0x06)-4) = IsAuctionOpen;
-    WBUFB(data,(0x07)-4) = 0x02;
-    WBUFL(data,(0x08)-4) = 0x00; // AUCTION_FEE(PItem->getCharPrice());
+    WBUFB(data,(0x04)) = action;
+    WBUFB(data,(0x05)) = 0xFF;
+    WBUFB(data,(0x06)) = IsAuctionOpen;
+    WBUFB(data,(0x07)) = 0x02;
+    WBUFL(data,(0x08)) = 0x00; // AUCTION_FEE(PItem->getCharPrice());
 
-    WBUFL(data,(0x0E)-4) = PItem->getID();
-    WBUFB(data,(0x0C)-4) = PItem->getSlotID();
+    WBUFL(data,(0x0E)) = PItem->getID();
+    WBUFB(data,(0x0C)) = PItem->getSlotID();
 	
-    WBUFB(data,(0x10)-4) = quantity;
-	WBUFB(data,(0x30)-4) = AUCTION_ID;                                      
+    WBUFB(data,(0x10)) = quantity;
+	WBUFB(data,(0x30)) = AUCTION_ID;                                      
 }
 
 //e.g. client history, client probes a slot number which you give the correct itemid+price
@@ -73,22 +73,22 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 slot, CCharEntity* 
     this->type = 0x4C;
     this->size = 0x1E;
 
-    WBUFB(data,(0x04)-4) = action;       
-    WBUFB(data,(0x05)-4) = slot;                // порядковый номер предмета
-    WBUFB(data,(0x06)-4) = IsAuctionOpen;
+    WBUFB(data,(0x04)) = action;       
+    WBUFB(data,(0x05)) = slot;                // порядковый номер предмета
+    WBUFB(data,(0x06)) = IsAuctionOpen;
     
 
 	if (slot < 7 && slot < PChar->m_ah_history.size())
     {
-        WBUFB(data,(0x14)-4) = 0x03;
-        WBUFB(data,(0x16)-4) = 0x01;	            // значение меняется, назначение неизвестно UNKNOWN
+        WBUFB(data,(0x14)) = 0x03;
+        WBUFB(data,(0x16)) = 0x01;	            // значение меняется, назначение неизвестно UNKNOWN
 
-		WBUFW(data,(0x28)-4) = PChar->m_ah_history.at(slot).itemid;             // id продаваемого предмета  item id
-		WBUFB(data,(0x2A)-4) = 1 - PChar->m_ah_history.at(slot).stack;          // количество предметов stack size
-		WBUFB(data,(0x2B)-4) = 0x02;											// количество предметов stack size?            
-		WBUFL(data,(0x2C)-4) = PChar->m_ah_history.at(slot).price;				// цена продажи price
+		WBUFW(data,(0x28)) = PChar->m_ah_history.at(slot).itemid;             // id продаваемого предмета  item id
+		WBUFB(data,(0x2A)) = 1 - PChar->m_ah_history.at(slot).stack;          // количество предметов stack size
+		WBUFB(data,(0x2B)) = 0x02;											// количество предметов stack size?            
+		WBUFL(data,(0x2C)) = PChar->m_ah_history.at(slot).price;				// цена продажи price
 
-		WBUFB(data,(0x30)-4) = AUCTION_ID;
+		WBUFB(data,(0x30)) = AUCTION_ID;
     }
 }
 
@@ -97,10 +97,10 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 message, uint16 ite
     this->type = 0x4C;
     this->size = 0x1E;
 
-    WBUFB(data,(0x04)-4) = action;  
-    WBUFB(data,(0x06)-4) = message;
-    WBUFL(data,(0x08)-4) = price;
-    WBUFW(data,(0x0C)-4) = itemid;
+    WBUFB(data,(0x04)) = action;  
+    WBUFB(data,(0x06)) = message;
+    WBUFL(data,(0x08)) = price;
+    WBUFW(data,(0x0C)) = itemid;
 }
 
 CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 message, CCharEntity* PChar, uint8 slot, bool keepItem)
@@ -108,24 +108,24 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 message, CCharEntit
     this->type = 0x4C;
     this->size = 0x1E;
 
-    WBUFB(data,(0x04)-4) = action;  
-	WBUFB(data,(0x05)-4) = slot;
-    WBUFB(data,(0x06)-4) = message;
+    WBUFB(data,(0x04)) = action;  
+	WBUFB(data,(0x05)) = slot;
+    WBUFB(data,(0x06)) = message;
 
 	// we need all this guff so the item stays in the history.
 	if (keepItem && slot < 7 && slot < PChar->m_ah_history.size())
     {
-		WBUFB(data,(0x14)-4) = 0x03;
-        WBUFB(data,(0x16)-4) = 0x01;	            // значение меняется, назначение неизвестно UNKNOWN
+		WBUFB(data,(0x14)) = 0x03;
+        WBUFB(data,(0x16)) = 0x01;	            // значение меняется, назначение неизвестно UNKNOWN
 
-		memcpy(data+(0x18)-4, PChar->GetName(), dsp_cap(strlen(PChar->GetName()), 0, 16));
+		memcpy(data+(0x18), PChar->GetName(), dsp_cap(strlen(PChar->GetName()), 0, 16));
 
-		WBUFW(data,(0x28)-4) = PChar->m_ah_history.at(slot).itemid;             // id продаваемого предмета  item id
-		WBUFB(data,(0x2A)-4) = 1 - PChar->m_ah_history.at(slot).stack;          // количество предметов stack size
-		WBUFB(data,(0x2B)-4) = 0x02;											// количество предметов stack size?            
-		WBUFL(data,(0x2C)-4) = PChar->m_ah_history.at(slot).price;				// цена продажи price
+		WBUFW(data,(0x28)) = PChar->m_ah_history.at(slot).itemid;             // id продаваемого предмета  item id
+		WBUFB(data,(0x2A)) = 1 - PChar->m_ah_history.at(slot).stack;          // количество предметов stack size
+		WBUFB(data,(0x2B)) = 0x02;											// количество предметов stack size?            
+		WBUFL(data,(0x2C)) = PChar->m_ah_history.at(slot).price;				// цена продажи price
 
-		WBUFB(data,(0x30)-4) = AUCTION_ID;
+		WBUFB(data,(0x30)) = AUCTION_ID;
 	}
 
 }

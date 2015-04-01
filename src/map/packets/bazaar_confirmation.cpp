@@ -35,9 +35,9 @@ CBazaarConfirmationPacket::CBazaarConfirmationPacket(CCharEntity* PChar, uint8 S
 	this->type = 0x09;  // 0x109
 	this->size = 0x13;
 
-    WBUFL(data,(0x04)-4) = PChar->id;
-    WBUFB(data,(0x08)-4) = Quantity;
-	WBUFB(data,(0x20)-4) = SlotID;
+    WBUFL(data,(0x04)) = PChar->id;
+    WBUFB(data,(0x08)) = Quantity;
+	WBUFB(data,(0x20)) = SlotID;
 
-	memcpy(data+(0x10)-4, PChar->GetName(), PChar->name.size());	
+	memcpy(data+(0x10), PChar->GetName(), PChar->name.size());	
 }

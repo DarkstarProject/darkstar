@@ -32,6 +32,6 @@ CInstanceEntryPacket::CInstanceEntryPacket(CBaseEntity* PEntrance, uint32 respon
 	this->type = 0xBF;
 	this->size = 0x0E;
 
-	WBUFB(data, (0x06) - 4) = response;
-	WBUFW(data, (0x0C) - 4) = PEntrance->targid;
+	WBUFB(data, (0x06) ) = response;
+	WBUFW(data, (0x0C) ) = PEntrance->targid;
 }

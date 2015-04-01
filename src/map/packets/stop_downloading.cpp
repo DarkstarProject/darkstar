@@ -40,6 +40,6 @@ CStopDownloadingPacket::CStopDownloadingPacket(CCharEntity* PChar, std::vector< 
 		memcpy(data + offset + 4, blacklist[x].second.c_str(), blacklist[x].second.size());
 	}
 
-	WBUFB(data, 0xF4 - 4) = 3; // Unknown but important!
-	WBUFB(data, 0xF5 - 4) = (int8)blacklist.size();
+	WBUFB(data, 0xF4 ) = 3; // Unknown but important!
+	WBUFB(data, 0xF5 ) = (int8)blacklist.size();
 }

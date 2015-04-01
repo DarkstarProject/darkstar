@@ -36,27 +36,27 @@ CBazaarItemPacket::CBazaarItemPacket(CItem* PItem, uint8 SlotID, uint16 Tax)
 	this->type = 0x05;	// 0x105
 	this->size = 0x17;
 
-    WBUFB(data,(0x10)-4) = SlotID;
+    WBUFB(data,(0x10)) = SlotID;
 
     if (PItem != nullptr)
     {
-	    WBUFL(data,(0x04)-4) = PItem->getCharPrice();
-	    WBUFL(data,(0x08)-4) = PItem->getQuantity();
-	    WBUFW(data,(0x0C)-4) = Tax;
-	    WBUFW(data,(0x0E)-4) = PItem->getID();
+	    WBUFL(data,(0x04)) = PItem->getCharPrice();
+	    WBUFL(data,(0x08)) = PItem->getQuantity();
+	    WBUFW(data,(0x0C)) = Tax;
+	    WBUFW(data,(0x0E)) = PItem->getID();
 
         if (PItem->isSubType(ITEM_CHARGED) && PItem->isType(ITEM_USABLE))
 	    {
             uint32 currentTime = CVanaTime::getInstance()->getVanaTime();
 		    uint32 nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
 
-		    WBUFB(data,(0x11)-4) = 0x01;													    // флаг ITEM_CHARGED
-		    WBUFB(data,(0x12)-4) = ((CItemUsable*)PItem)->getCurrentCharges(); 
-		    WBUFB(data,(0x14)-4) = (nextUseTime > currentTime ? 0x90 : 0xD0); 
+		    WBUFB(data,(0x11)) = 0x01;													    // флаг ITEM_CHARGED
+		    WBUFB(data,(0x12)) = ((CItemUsable*)PItem)->getCurrentCharges(); 
+		    WBUFB(data,(0x14)) = (nextUseTime > currentTime ? 0x90 : 0xD0); 
 
-	        WBUFL(data,(0x15)-4) = nextUseTime;												// таймер следующего использования
-		    WBUFL(data,(0x19)-4) = ((CItemUsable*)PItem)->getUseDelay() + currentTime;		// таймер задержки использования
+	        WBUFL(data,(0x15)) = nextUseTime;												// таймер следующего использования
+		    WBUFL(data,(0x19)) = ((CItemUsable*)PItem)->getUseDelay() + currentTime;		// таймер задержки использования
 	    }
-	    memcpy(data+(0x1D)-4, PItem->getSignature(), dsp_min(strlen(PItem->getSignature()), 12));
+	    memcpy(data+(0x1D), PItem->getSignature(), dsp_min(strlen(PItem->getSignature()), 12));
     }
 }

@@ -223,7 +223,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 			}
 	}
 
-	WBUFW(data,(0x24)-4) = logType;
+	WBUFW(data,(0x24)) = logType;
 }
 
 void CQuestMissionLogPacket::generateQuestPacket(CCharEntity * PChar, uint8 logID, uint8 status)
@@ -247,14 +247,14 @@ void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
 	chains = PChar->m_missionLog[MISSION_COP-11].current+1;
 	chains = ((chains * 0x08) + 0x60);
 
-	WBUFB(data,(0x04)-4) = PChar->profile.nation;								// Nation
-	WBUFW(data,(0x08)-4) = PChar->m_missionLog[PChar->profile.nation].current;	// National Missions
-	WBUFW(data,(0x0C)-4) = PChar->m_missionLog[MISSION_ZILART-11].current;		// Rise of the Zilart
+	WBUFB(data,(0x04)) = PChar->profile.nation;								// Nation
+	WBUFW(data,(0x08)) = PChar->m_missionLog[PChar->profile.nation].current;	// National Missions
+	WBUFW(data,(0x0C)) = PChar->m_missionLog[MISSION_ZILART-11].current;		// Rise of the Zilart
 
-	WBUFL(data,(0x10)-4) = chains;												// Chains of Promathia Missions
-  //WBUFB(data,(0x16)-4) = 0x30;                                                // назначение неизвестно
-	WBUFW(data,(0x18)-4) = add_on_scenarios;                                    // A Crystalline Prophecy, A Moogle Kupo d'Etat, A Shantotto Ascension
-	WBUFW(data,(0x1C)-4) = PChar->m_missionLog[MISSION_ADOULIN-11].current;
+	WBUFL(data,(0x10)) = chains;												// Chains of Promathia Missions
+  //WBUFB(data,(0x16)) = 0x30;                                                // назначение неизвестно
+	WBUFW(data,(0x18)) = add_on_scenarios;                                    // A Crystalline Prophecy, A Moogle Kupo d'Etat, A Shantotto Ascension
+	WBUFW(data,(0x1C)) = PChar->m_missionLog[MISSION_ADOULIN-11].current;
 }
 
 void CQuestMissionLogPacket::generateCompleteMissionPacket(CCharEntity * PChar)
@@ -266,10 +266,10 @@ void CQuestMissionLogPacket::generateCompleteMissionPacket(CCharEntity * PChar)
 
 void CQuestMissionLogPacket::generateCurrentExpMissionPacket(CCharEntity * PChar)
 {
-	WBUFW(data,(0x14)-4) = PChar->m_assaultLog.current;							// Assault Missions
-	WBUFW(data,(0x18)-4) = PChar->m_missionLog[MISSION_TOAU-11].current;		// Treasures of Aht Urhgan
-	WBUFW(data,(0x1C)-4) = PChar->m_missionLog[MISSION_WOTG-11].current;		// Wings of the Goddess
-	WBUFW(data,(0x20)-4) = PChar->m_campaignLog.current;						// Campaign Operations
+	WBUFW(data,(0x14)) = PChar->m_assaultLog.current;							// Assault Missions
+	WBUFW(data,(0x18)) = PChar->m_missionLog[MISSION_TOAU-11].current;		// Treasures of Aht Urhgan
+	WBUFW(data,(0x1C)) = PChar->m_missionLog[MISSION_WOTG-11].current;		// Wings of the Goddess
+	WBUFW(data,(0x20)) = PChar->m_campaignLog.current;						// Campaign Operations
 }
 
 void CQuestMissionLogPacket::generateCompleteExpMissionPacket(CCharEntity * PChar)
