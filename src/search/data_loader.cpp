@@ -1,22 +1,22 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see http://www.gnu.org/licenses/
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
+This file is part of DarkStar-server source code.
 
 ===========================================================================
 */
@@ -35,15 +35,15 @@ CDataLoader::CDataLoader()
 {
     SqlHandle = Sql_Malloc();
 
-//	ShowStatus("sqlhandle is allocating\n");
-    if( Sql_Connect(SqlHandle,search_config.mysql_login,
-                              search_config.mysql_password,
-                              search_config.mysql_host,
-                              search_config.mysql_port,
-                              search_config.mysql_database) == SQL_ERROR )
-	{
-		ShowError("cant connect\n");
-	}
+    //	ShowStatus("sqlhandle is allocating\n");
+    if (Sql_Connect(SqlHandle, search_config.mysql_login,
+        search_config.mysql_password,
+        search_config.mysql_host,
+        search_config.mysql_port,
+        search_config.mysql_database) == SQL_ERROR)
+    {
+        ShowError("cant connect\n");
+    }
 }
 
 CDataLoader::~CDataLoader()
@@ -61,29 +61,29 @@ std::vector<ahHistory*> CDataLoader::GetAHItemHystory(uint16 ItemID, bool stack)
 {
     std::vector<ahHistory*> HistoryList;
 
-    const int8* fmtQuery = "SELECT sale, sell_date, seller_name, buyer_name \
-                            FROM auction_house \
-                            WHERE itemid = %u AND stack = %u AND buyer_name IS NOT NULL \
-                            ORDER BY sell_date DESC \
-                            LIMIT 10";
+    const int8* fmtQuery = "SELECT sale, sell_date, seller_name, buyer_name "
+        "FROM auction_house "
+        "WHERE itemid = %u AND stack = %u AND buyer_name IS NOT NULL "
+        "ORDER BY sell_date DESC "
+        "LIMIT 10";
 
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, ItemID, stack);
+    int32 ret = Sql_Query(SqlHandle, fmtQuery, ItemID, stack);
 
-	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
-		{
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
             ahHistory* PAHHistory = new ahHistory;
 
-            PAHHistory->Price = Sql_GetUIntData(SqlHandle,0);
-            PAHHistory->Data  = Sql_GetUIntData(SqlHandle,1);
+            PAHHistory->Price = Sql_GetUIntData(SqlHandle, 0);
+            PAHHistory->Data = Sql_GetUIntData(SqlHandle, 1);
 
-            snprintf((int8*)PAHHistory->Name1, 15, "%s", Sql_GetData(SqlHandle,2));
-            snprintf((int8*)PAHHistory->Name2, 15, "%s", Sql_GetData(SqlHandle,3));
+            snprintf((int8*)PAHHistory->Name1, 15, "%s", Sql_GetData(SqlHandle, 2));
+            snprintf((int8*)PAHHistory->Name2, 15, "%s", Sql_GetData(SqlHandle, 3));
 
             HistoryList.push_back(PAHHistory);
         }
-        std::reverse(HistoryList.begin(),HistoryList.end());
+        std::reverse(HistoryList.begin(), HistoryList.end());
     }
     return HistoryList;
 }
@@ -100,29 +100,29 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(uint8 AHCategoryID, int8*
 
     std::vector<ahItem*> ItemList;
 
-    const int8* fmtQuery = "SELECT item_basic.itemid, item_basic.stackSize, COUNT(*)-SUM(stack), SUM(stack) \
-                            FROM item_basic \
-	                        LEFT JOIN auction_house ON item_basic.itemId = auction_house.itemid AND auction_house.buyer_name IS NULL \
-                            LEFT JOIN item_armor ON item_basic.itemid = item_armor.itemid \
-                            LEFT JOIN item_weapon ON item_basic.itemid = item_weapon.itemid \
-                            WHERE aH = %u \
-                            GROUP BY item_basic.itemid \
-                            %s";
+    const int8* fmtQuery = "SELECT item_basic.itemid, item_basic.stackSize, COUNT(*)-SUM(stack), SUM(stack) "
+        "FROM item_basic "
+        "LEFT JOIN auction_house ON item_basic.itemId = auction_house.itemid AND auction_house.buyer_name IS NULL "
+        "LEFT JOIN item_armor ON item_basic.itemid = item_armor.itemid "
+        "LEFT JOIN item_weapon ON item_basic.itemid = item_weapon.itemid "
+        "WHERE aH = %u "
+        "GROUP BY item_basic.itemid "
+        "%s";
 
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, AHCategoryID, OrderByString);
+    int32 ret = Sql_Query(SqlHandle, fmtQuery, AHCategoryID, OrderByString);
 
-	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
-		{
-			ahItem* PAHItem   = new ahItem;
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            ahItem* PAHItem = new ahItem;
 
-            PAHItem->ItemID	= Sql_GetIntData(SqlHandle,0);
+            PAHItem->ItemID = Sql_GetIntData(SqlHandle, 0);
 
-            PAHItem->SinglAmount = Sql_GetIntData(SqlHandle,2);
-            PAHItem->StackAmount = Sql_GetIntData(SqlHandle,3);
+            PAHItem->SinglAmount = Sql_GetIntData(SqlHandle, 2);
+            PAHItem->StackAmount = Sql_GetIntData(SqlHandle, 3);
 
-            if (Sql_GetIntData(SqlHandle,1) == 1)
+            if (Sql_GetIntData(SqlHandle, 1) == 1)
             {
                 PAHItem->StackAmount = -1;
             }
@@ -130,7 +130,7 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(uint8 AHCategoryID, int8*
             ItemList.push_back(PAHItem);
         }
     }
-	return ItemList;
+    return ItemList;
 }
 
 /************************************************************************
@@ -141,26 +141,26 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(uint8 AHCategoryID, int8*
 
 uint32 CDataLoader::GetPlayersCount(search_req sr)
 {
-	uint8 jobid = sr.jobid;
-	if(jobid > 0 && jobid < 21){
-		if( Sql_Query(SqlHandle, "SELECT COUNT(*) FROM accounts_sessions LEFT JOIN char_stats USING (charid) WHERE mjob = %u",jobid) 
-			!= SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-		{
-			if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		    {
-		        return Sql_GetUIntData(SqlHandle, 0);
-		    }
-		}
-	}
-	else{
-		if( Sql_Query(SqlHandle, "SELECT COUNT(*) FROM accounts_sessions") != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-		{
-			if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		    {
-		        return Sql_GetUIntData(SqlHandle, 0);
-		    }
-		}
-	}
+    uint8 jobid = sr.jobid;
+    if (jobid > 0 && jobid < 21){
+        if (Sql_Query(SqlHandle, "SELECT COUNT(*) FROM accounts_sessions LEFT JOIN char_stats USING (charid) WHERE mjob = %u", jobid)
+            != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+            if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                return Sql_GetUIntData(SqlHandle, 0);
+            }
+        }
+    }
+    else{
+        if (Sql_Query(SqlHandle, "SELECT COUNT(*) FROM accounts_sessions") != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+            if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                return Sql_GetUIntData(SqlHandle, 0);
+            }
+        }
+    }
     return 0;
 }
 
@@ -170,16 +170,16 @@ uint32 CDataLoader::GetPlayersCount(search_req sr)
 *          Job ID is 0 for none specified.                              *
 ************************************************************************/
 
-std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
+std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
 {
     std::list<SearchEntity*> PlayersList;
-	std::string filterQry = "";
-	if(sr.jobid > 0 && sr.jobid < 21){ 
-        filterQry.append(" AND "); 
-		filterQry.append(" mjob = ");
+    std::string filterQry = "";
+    if (sr.jobid > 0 && sr.jobid < 21){
+        filterQry.append(" AND ");
+        filterQry.append(" mjob = ");
         filterQry.append(std::to_string(static_cast<unsigned long long>(sr.jobid)));
-	}
-	if(sr.zoneid[0] > 0) { 
+    }
+    if (sr.zoneid[0] > 0) {
         string_t zoneList;
         int i = 1;
         zoneList.append(std::to_string(static_cast<unsigned long long>(sr.zoneid[0])));
@@ -195,46 +195,46 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
         filterQry.append(") OR (pos_zone = 0 AND pos_prevzone IN (");
         filterQry.append(zoneList);
         filterQry.append("))) ");
-	}
+    }
 
-	std::string fmtQuery = "SELECT charid, partyid, charname, pos_zone, pos_prevzone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, mlvl, slvl \
-                        FROM accounts_sessions \
-                        LEFT JOIN accounts_parties USING (charid) \
-                        LEFT JOIN chars USING (charid) \
-                        LEFT JOIN char_look USING (charid) \
-                        LEFT JOIN char_stats USING (charid) \
-						LEFT JOIN char_profile USING(charid) \
-						WHERE charname IS NOT NULL ";
-	fmtQuery.append(filterQry);
-	fmtQuery.append(" ORDER BY charname ASC");
+    std::string fmtQuery = "SELECT charid, partyid, charname, pos_zone, pos_prevzone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, mlvl, slvl "
+        "FROM accounts_sessions "
+        "LEFT JOIN accounts_parties USING (charid) "
+        "LEFT JOIN chars USING (charid) "
+        "LEFT JOIN char_look USING (charid) "
+        "LEFT JOIN char_stats USING (charid) "
+        "LEFT JOIN char_profile USING(charid) "
+        "WHERE charname IS NOT NULL ";
+    fmtQuery.append(filterQry);
+    fmtQuery.append(" ORDER BY charname ASC");
 
-	int32 ret = Sql_Query(SqlHandle, fmtQuery.c_str());
+    int32 ret = Sql_Query(SqlHandle, fmtQuery.c_str());
 
-	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		int totalResults = 0; //gives ALL matching criteria (total)
-		int visibleResults = 0; //capped at first 20
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
-		{
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        int totalResults = 0; //gives ALL matching criteria (total)
+        int visibleResults = 0; //capped at first 20
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
             SearchEntity* PPlayer = new SearchEntity;
             memset(PPlayer, 0, sizeof(SearchEntity));
 
             memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
 
-            PPlayer->id			= (uint32)Sql_GetUIntData(SqlHandle, 0);
-            PPlayer->zone		= (uint16) Sql_GetIntData(SqlHandle, 3);
-			PPlayer->prevzone   = (uint16) Sql_GetIntData(SqlHandle, 4);
-            PPlayer->nation		= (uint8) Sql_GetIntData(SqlHandle,  5);
-            PPlayer->mjob		= (uint8) Sql_GetIntData(SqlHandle, 11);
-            PPlayer->sjob		= (uint8) Sql_GetIntData(SqlHandle, 12);
-            PPlayer->mlvl		= (uint8) Sql_GetIntData(SqlHandle, 13);
-            PPlayer->slvl		= (uint8) Sql_GetIntData(SqlHandle, 14);
-            PPlayer->race		= (uint8) Sql_GetIntData(SqlHandle,  9);
-            PPlayer->rank		= (uint8) Sql_GetIntData(SqlHandle,  6 + PPlayer->nation);
+            PPlayer->id = (uint32)Sql_GetUIntData(SqlHandle, 0);
+            PPlayer->zone = (uint16)Sql_GetIntData(SqlHandle, 3);
+            PPlayer->prevzone = (uint16)Sql_GetIntData(SqlHandle, 4);
+            PPlayer->nation = (uint8)Sql_GetIntData(SqlHandle, 5);
+            PPlayer->mjob = (uint8)Sql_GetIntData(SqlHandle, 11);
+            PPlayer->sjob = (uint8)Sql_GetIntData(SqlHandle, 12);
+            PPlayer->mlvl = (uint8)Sql_GetIntData(SqlHandle, 13);
+            PPlayer->slvl = (uint8)Sql_GetIntData(SqlHandle, 14);
+            PPlayer->race = (uint8)Sql_GetIntData(SqlHandle, 9);
+            PPlayer->rank = (uint8)Sql_GetIntData(SqlHandle, 6 + PPlayer->nation);
 
             PPlayer->zone = (PPlayer->zone == 0 ? PPlayer->prevzone : PPlayer->zone);
 
-            uint32 partyid  = (uint32)Sql_GetUIntData(SqlHandle, 1);
+            uint32 partyid = (uint32)Sql_GetUIntData(SqlHandle, 1);
             uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 10);
 
             if (partyid == PPlayer->id) PPlayer->flags1 |= 0x0008;
@@ -288,49 +288,49 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
                 continue;
 
             // filter by level
-			if(sr.minlvl >0 && sr.maxlvl >= sr.minlvl){
-				if(PPlayer->mlvl < sr.minlvl || PPlayer->mlvl > sr.maxlvl)
-					continue;
-			}
+            if (sr.minlvl > 0 && sr.maxlvl >= sr.minlvl){
+                if (PPlayer->mlvl < sr.minlvl || PPlayer->mlvl > sr.maxlvl)
+                    continue;
+            }
 
             // filter by name
-			if(sr.nameLen>0){
-				string_t dbname;
-				dbname.insert(0,(int8*)PPlayer->name);
+            if (sr.nameLen > 0){
+                string_t dbname;
+                dbname.insert(0, (int8*)PPlayer->name);
 
                 //can't be this name, too long
-				if(sr.nameLen > dbname.length()){
-					continue;
-				}
-				bool validName = true;
-				for(int i=0;i<sr.nameLen; i++){
-					//convert to lowercase for both
-					if(tolower(sr.name[i]) != tolower(PPlayer->name[i])){
-						validName = false;
-						break;
-					}
-				}
-				if(!validName){
-					continue;
-				}
-			}
+                if (sr.nameLen > dbname.length()){
+                    continue;
+                }
+                bool validName = true;
+                for (int i = 0; i < sr.nameLen; i++){
+                    //convert to lowercase for both
+                    if (tolower(sr.name[i]) != tolower(PPlayer->name[i])){
+                        validName = false;
+                        break;
+                    }
+                }
+                if (!validName){
+                    continue;
+                }
+            }
             // dont show hidden gm
             if (nameflag & FLAG_ANON && nameflag & FLAG_GM)
             {
-                continue;   
+                continue;
             }
-			if(visibleResults<20){
-				PlayersList.push_back(PPlayer);
-				visibleResults++;
-			}
-			totalResults++;
+            if (visibleResults < 20){
+                PlayersList.push_back(PPlayer);
+                visibleResults++;
+            }
+            totalResults++;
         }
-		if(totalResults>0){
-			*count = totalResults;
-		}
-		ShowMessage("Found %i results, displaying %i. \n",totalResults,visibleResults);
+        if (totalResults > 0){
+            *count = totalResults;
+        }
+        ShowMessage("Found %i results, displaying %i. \n", totalResults, visibleResults);
     }
-	
+
     return PlayersList;
 }
 
@@ -344,37 +344,37 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID)
 {
     std::list<SearchEntity*> PartyList;
 
-    const int8* Query = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, mlvl, slvl \
-                         FROM accounts_sessions \
-                         LEFT JOIN accounts_parties USING (charid) \
-                         LEFT JOIN chars USING (charid) \
-                         LEFT JOIN char_look USING (charid) \
-                         LEFT JOIN char_stats USING (charid) \
-						 LEFT JOIN char_profile USING(charid) \
-                         WHERE partyid = %u \
-                         ORDER BY charname ASC \
-                         LIMIT 18";
+    const int8* Query = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, mlvl, slvl "
+        "FROM accounts_sessions "
+        "LEFT JOIN accounts_parties USING(charid) "
+        "LEFT JOIN chars USING(charid) "
+        "LEFT JOIN char_look USING(charid) "
+        "LEFT JOIN char_stats USING(charid) "
+        "LEFT JOIN char_profile USING(charid) "
+        "WHERE partyid = %u "
+        "ORDER BY charname ASC "
+        "LIMIT 18";
 
     int32 ret = Sql_Query(SqlHandle, Query, PartyID);
 
-	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
-		{
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
             SearchEntity* PPlayer = new SearchEntity;
             memset(PPlayer, 0, sizeof(SearchEntity));
 
-			memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
+            memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
 
-            PPlayer->id     = (uint32)Sql_GetUIntData(SqlHandle, 0);
-            PPlayer->zone   = (uint16) Sql_GetIntData(SqlHandle,  3);
-            PPlayer->nation = (uint8) Sql_GetIntData(SqlHandle,  4);
-            PPlayer->mjob   = (uint8) Sql_GetIntData(SqlHandle, 10);
-            PPlayer->sjob   = (uint8) Sql_GetIntData(SqlHandle, 11);
-            PPlayer->mlvl   = (uint8) Sql_GetIntData(SqlHandle, 12);
-            PPlayer->slvl   = (uint8) Sql_GetIntData(SqlHandle, 13);
-            PPlayer->race   = (uint8) Sql_GetIntData(SqlHandle,  8);
-            PPlayer->rank   = (uint8) Sql_GetIntData(SqlHandle,  5 + PPlayer->nation);
+            PPlayer->id = (uint32)Sql_GetUIntData(SqlHandle, 0);
+            PPlayer->zone = (uint16)Sql_GetIntData(SqlHandle, 3);
+            PPlayer->nation = (uint8)Sql_GetIntData(SqlHandle, 4);
+            PPlayer->mjob = (uint8)Sql_GetIntData(SqlHandle, 10);
+            PPlayer->sjob = (uint8)Sql_GetIntData(SqlHandle, 11);
+            PPlayer->mlvl = (uint8)Sql_GetIntData(SqlHandle, 12);
+            PPlayer->slvl = (uint8)Sql_GetIntData(SqlHandle, 13);
+            PPlayer->race = (uint8)Sql_GetIntData(SqlHandle, 8);
+            PPlayer->rank = (uint8)Sql_GetIntData(SqlHandle, 5 + PPlayer->nation);
 
             uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 9);
 
@@ -402,45 +402,45 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID)
 std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 {
     std::list<SearchEntity*> LinkshellList;
-	const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
-                            mlvl, slvl, linkshellid1, linkshellid2, \
-                            linkshellrank1, linkshellrank2 \
-                            FROM accounts_sessions \
-                            LEFT JOIN accounts_parties USING (charid) \
-                            LEFT JOIN chars USING (charid) \
-                            LEFT JOIN char_look USING (charid) \
-                            LEFT JOIN char_stats USING (charid) \
-							LEFT JOIN char_profile USING(charid) \
-							WHERE linkshellid1 = %u OR linkshellid2 = %u \
-                            ORDER BY charname ASC \
-                            LIMIT 18";
+    const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, "
+        "mlvl, slvl, linkshellid1, linkshellid2, "
+        "linkshellrank1, linkshellrank2 "
+        "FROM accounts_sessions "
+        "LEFT JOIN accounts_parties USING (charid) "
+        "LEFT JOIN chars USING (charid) "
+        "LEFT JOIN char_look USING (charid) "
+        "LEFT JOIN char_stats USING (charid) "
+        "LEFT JOIN char_profile USING(charid) "
+        "WHERE linkshellid1 = %u OR linkshellid2 = %u "
+        "ORDER BY charname ASC "
+        "LIMIT 18";
 
     int32 ret = Sql_Query(SqlHandle, fmtQuery, LinkshellID, LinkshellID);
 
-	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
-		{
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
             SearchEntity* PPlayer = new SearchEntity;
             memset(PPlayer, 0, sizeof(SearchEntity));
 
             memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
 
-            PPlayer->id     = (uint32)Sql_GetUIntData(SqlHandle, 0);
-            PPlayer->zone   = (uint16) Sql_GetIntData(SqlHandle,  3);
-            PPlayer->nation = (uint8) Sql_GetIntData(SqlHandle,  4);
-            PPlayer->mjob   = (uint8) Sql_GetIntData(SqlHandle, 10);
-            PPlayer->sjob   = (uint8) Sql_GetIntData(SqlHandle, 11);
-            PPlayer->mlvl   = (uint8) Sql_GetIntData(SqlHandle, 12);
-            PPlayer->slvl   = (uint8) Sql_GetIntData(SqlHandle, 13);
-            PPlayer->race   = (uint8) Sql_GetIntData(SqlHandle,  8);
-            PPlayer->rank   = (uint8) Sql_GetIntData(SqlHandle,  5 + PPlayer->nation);
+            PPlayer->id = (uint32)Sql_GetUIntData(SqlHandle, 0);
+            PPlayer->zone = (uint16)Sql_GetIntData(SqlHandle, 3);
+            PPlayer->nation = (uint8)Sql_GetIntData(SqlHandle, 4);
+            PPlayer->mjob = (uint8)Sql_GetIntData(SqlHandle, 10);
+            PPlayer->sjob = (uint8)Sql_GetIntData(SqlHandle, 11);
+            PPlayer->mlvl = (uint8)Sql_GetIntData(SqlHandle, 12);
+            PPlayer->slvl = (uint8)Sql_GetIntData(SqlHandle, 13);
+            PPlayer->race = (uint8)Sql_GetIntData(SqlHandle, 8);
+            PPlayer->rank = (uint8)Sql_GetIntData(SqlHandle, 5 + PPlayer->nation);
             PPlayer->linkshellid1 = Sql_GetIntData(SqlHandle, 14);
             PPlayer->linkshellid2 = Sql_GetIntData(SqlHandle, 15);
             PPlayer->linkshellrank1 = Sql_GetIntData(SqlHandle, 16);
             PPlayer->linkshellrank2 = Sql_GetIntData(SqlHandle, 17);
 
-            uint32 partyid  = (uint32)Sql_GetUIntData(SqlHandle, 1);
+            uint32 partyid = (uint32)Sql_GetUIntData(SqlHandle, 1);
             uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 9);
 
             if (partyid == PPlayer->id) PPlayer->flags1 |= 0x0008;
@@ -460,41 +460,41 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 }
 void CDataLoader::ExpireAHItems()
 {
-	Sql_t* sqlH2 = Sql_Malloc();
-	Sql_Connect(sqlH2, search_config.mysql_login,
-		search_config.mysql_password,
-		search_config.mysql_host,
-		search_config.mysql_port,
-		search_config.mysql_database);
+    Sql_t* sqlH2 = Sql_Malloc();
+    Sql_Connect(sqlH2, search_config.mysql_login,
+        search_config.mysql_password,
+        search_config.mysql_host,
+        search_config.mysql_port,
+        search_config.mysql_database);
 
-	std::string qStr = "SELECT id,itemid,stack,seller FROM auction_house WHERE datediff(now(),from_unixtime(date)) >=%u AND buyer_name IS NULL;";
-	int32 ret = Sql_Query(SqlHandle, qStr.c_str(), search_config.expire_days);
-	int64 expiredAuctions = Sql_NumRows(SqlHandle);
-	if (ret != SQL_ERROR &&	Sql_NumRows(SqlHandle) != 0)
-	{
-		while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			std::string qStr2;
-			// iterate through the expired auctions and return them to the seller
-			uint32 saleID = (uint32)Sql_GetUIntData(SqlHandle, 0);
-			uint32 itemID = (uint32)Sql_GetUIntData(SqlHandle, 1);
-			uint8  stack = (uint8)Sql_GetUIntData(SqlHandle, 2);
-			uint32 seller = (uint32)Sql_GetUIntData(SqlHandle, 3);
+    std::string qStr = "SELECT id,itemid,stack,seller FROM auction_house WHERE datediff(now(),from_unixtime(date)) >=%u AND buyer_name IS NULL;";
+    int32 ret = Sql_Query(SqlHandle, qStr.c_str(), search_config.expire_days);
+    int64 expiredAuctions = Sql_NumRows(SqlHandle);
+    if (ret != SQL_ERROR &&	Sql_NumRows(SqlHandle) != 0)
+    {
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            std::string qStr2;
+            // iterate through the expired auctions and return them to the seller
+            uint32 saleID = (uint32)Sql_GetUIntData(SqlHandle, 0);
+            uint32 itemID = (uint32)Sql_GetUIntData(SqlHandle, 1);
+            uint8  stack = (uint8)Sql_GetUIntData(SqlHandle, 2);
+            uint32 seller = (uint32)Sql_GetUIntData(SqlHandle, 3);
 
-			ret = Sql_Query(sqlH2, "INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES "
-                                   "(%u, (select charname from chars where charid=%u), 1, %u, 0, %u, 0, 'AH-Jeuno');", seller, seller, itemID, stack);
-			//		ShowMessage(cC2, seller, seller, itemID);
-			if (ret != SQL_ERROR &&	Sql_NumRows(SqlHandle) != 0)
-			{
-				// delete the item from the auction house
+            ret = Sql_Query(sqlH2, "INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES "
+                "(%u, (select charname from chars where charid=%u), 1, %u, 0, %u, 0, 'AH-Jeuno');", seller, seller, itemID, stack);
+            //		ShowMessage(cC2, seller, seller, itemID);
+            if (ret != SQL_ERROR &&	Sql_NumRows(SqlHandle) != 0)
+            {
+                // delete the item from the auction house
                 int32 ret3 = Sql_Query(sqlH2, "DELETE FROM auction_house WHERE id= %u", saleID);
-			}
-		}
-	}
-	else if (ret == SQL_ERROR)
-	{
-		//	ShowMessage(CL_RED"SQL ERROR: %s\n\n" CL_RESET, SQL_ERROR);
-	}
-	ShowMessage("Sent %u expired auction house items back to sellers\n", expiredAuctions);
-	Sql_Free(sqlH2);
+            }
+        }
+    }
+    else if (ret == SQL_ERROR)
+    {
+        //	ShowMessage(CL_RED"SQL ERROR: %s\n\n" CL_RESET, SQL_ERROR);
+    }
+    ShowMessage("Sent %u expired auction house items back to sellers\n", expiredAuctions);
+    Sql_Free(sqlH2);
 }
