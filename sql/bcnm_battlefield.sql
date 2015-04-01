@@ -423,8 +423,8 @@ INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621012', '0'); -- Ancient 
 INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621013', '0'); -- Ancient Warrior
 
 INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621014', '2');
-INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621015', '0');
-INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621016', '0');
+INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621015', '2');
+INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621016', '2');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621017', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621018', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621019', '1');
@@ -437,8 +437,8 @@ INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621025', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621026', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621027', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621028', '2');
-INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621029', '0');
-INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621030', '0');
+INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621029', '2');
+INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621030', '2');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621031', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621032', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621033', '1');
@@ -451,8 +451,8 @@ INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621039', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621040', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621041', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621042', '2');
-INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621043', '0');
-INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621044', '0');
+INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621043', '2');
+INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621044', '2');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621045', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621046', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621047', '1');

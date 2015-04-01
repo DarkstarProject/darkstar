@@ -1367,6 +1367,20 @@ INSERT INTO `mob_spell_lists` VALUES ('Race_Runner', 133, 158, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Race_Runner', 133, 186, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Race_Runner', 133, 216, 1, 255);
 
+-- Ajido-Marujido windurst 9-2
+INSERT INTO `mob_spell_lists` VALUES ('Ajido_Marujido', 134, 166, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Ajido_Marujido', 134, 167, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Ajido_Marujido', 134, 171, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Ajido_Marujido', 134, 172, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Ajido_Marujido', 134, 212, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Ajido_Marujido', 134, 214, 1, 255);
+
+-- Yali
+INSERT INTO `mob_spell_lists` VALUES ('Yali', 135, 357, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Yali', 135, 360, 1, 255);
+
+
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
