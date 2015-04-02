@@ -2050,7 +2050,7 @@ INSERT INTO `item_usable` VALUES (18945,'jet_sickle',1,3,0,0,100,30,600,0);
 INSERT INTO `item_usable` VALUES (19181,'moogles_largesse',1,12,0,0,9,10,259200,0);
 INSERT INTO `item_usable` VALUES (19204,'fiendtrapper',20,0,0,0,12,10,30,0);
 INSERT INTO `item_usable` VALUES (19246,'moggiebag',1,3,0,0,8,10,259200,0);
-INSERT INTO `item_usable` VALUES (28540,'warp_ring',1,8,0,0,1,8,600,0);
+INSERT INTO `item_usable` VALUES (28540,'warp_ring',1,8,80,3,1,8,600,0);
 /*!40000 ALTER TABLE `item_usable` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
