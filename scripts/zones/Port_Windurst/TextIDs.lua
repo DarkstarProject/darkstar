@@ -1,18 +1,20 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED = 10962; -- Come back after sorting your inventory.
+		ITEM_CANNOT_BE_OBTAINED = 10962; -- Come back after sorting your inventory.
 FULL_INVENTORY_AFTER_TRADE = 10964; -- Try trading again after sorting your inventory.
-             ITEM_OBTAINED = 10965; -- Obtained:
-              GIL_OBTAINED = 10966; -- Obtained <<<Numeric Parameter 0>>> gil.
-          KEYITEM_OBTAINED = 10968; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
-       NOT_HAVE_ENOUGH_GIL = 10970; -- You do not have enough gil.
-             HOMEPOINT_SET = 11043; -- Home point set!
-    FISHING_MESSAGE_OFFSET = 11525; -- You can't fish here.
-           FISHING_SUPPORT = 11624; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
-		NO_MORE_GP_ELIGIBLE =  11653; --You are not eligible to receive guild points at this time.
-               GP_OBTAINED =  11658; --Obtained <<<Numeric Parameter 0>>> guild points.
-        NOT_HAVE_ENOUGH_GP =  11659; --You do not have enough guild points.
+								ITEM_OBTAINED = 10965; -- Obtained:
+									GIL_OBTAINED = 10966; -- Obtained <<<Numeric Parameter 0>>> gil.
+						  KEYITEM_OBTAINED = 10968; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
+				NOT_HAVE_ENOUGH_GIL = 10970; -- You do not have enough gil.
+								HOMEPOINT_SET = 11043; -- Home point set!
+		FISHING_MESSAGE_OFFSET = 11525; -- You can't fish here.
+							FISHING_SUPPORT = 11624; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
+	GUILD_TERMINATE_CONTRACT = 11638; -- You have terminated your trading contract with the ≺Multiple Choice (Parameter 1)≻[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the ≺Multiple Choice (Parameter 0)≻[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.≺Prompt≻
+				GUILD_NEW_CONTRACT = 11646; -- You have formed a new trading contract with the ≺Multiple Choice (Parameter 0)≻[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.≺Prompt≻
+				NO_MORE_GP_ELIGIBLE =  11653; --You are not eligible to receive guild points at this time.
+									GP_OBTAINED =  11658; --Obtained <<<Numeric Parameter 0>>> guild points.
+				NOT_HAVE_ENOUGH_GP =  11659; --You do not have enough guild points.
 
 -- Conquest System
 CONQUEST = 11838; -- You've earned conquest points!
