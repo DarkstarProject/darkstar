@@ -285,7 +285,7 @@ function unionRepresentativeTrade(player, npc, trade, csid, guildID)
             end
             if (totalPoints > 0) then
                 player:confirmTrade();
-                player:startEvent(csid1,totalPoints);
+                player:startEvent(csid,totalPoints);
             end
         end
     end
