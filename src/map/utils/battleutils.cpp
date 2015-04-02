@@ -228,14 +228,14 @@ void LoadMobSkillsList()
 	}
 
 
-        // Load special skills; ranged attacks, call beast, etc
+    // Load special skills; ranged attacks, call beast, etc
 	const int8* specialQuery = "SELECT mob_skill_id, family_id, mob_anim_id, mob_skill_name, \
         mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
         mob_valid_targets, mob_skill_flag, mob_skill_param, knockback \
         FROM mob_skill \
         WHERE family_id = 0;";
 
-	int32 ret = Sql_Query(SqlHandle, specialQuery);
+	ret = Sql_Query(SqlHandle, specialQuery);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
