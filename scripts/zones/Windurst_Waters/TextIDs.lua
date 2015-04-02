@@ -1,20 +1,23 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED = 6538; -- Come back after sorting your inventory.
-             ITEM_OBTAINED = 6541; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
-              GIL_OBTAINED = 6542; -- Obtained <<<Numeric Parameter 0>>> gil.
-          KEYITEM_OBTAINED = 6544; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
-             HOMEPOINT_SET = 6619; -- Home point set!
-    FISHING_MESSAGE_OFFSET = 6999; -- You can't fish here.
-           COOKING_SUPPORT = 7098; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
-			NO_MORE_GP_ELIGIBLE =  7127; --You are not eligible to receive guild points at this time.
-		   GP_OBTAINED =  7132; --Obtained <<<Numeric Parameter 0>>> guild points.
-        NOT_HAVE_ENOUGH_GP =  7133; --You do not have enough guild points.
+    ITEM_CANNOT_BE_OBTAINED = 6538; -- Come back after sorting your inventory.
+                               ITEM_OBTAINED = 6541; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
+                                  GIL_OBTAINED = 6542; -- Obtained <<<Numeric Parameter 0>>> gil.
+                       KEYITEM_OBTAINED = 6544; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
+                             HOMEPOINT_SET = 6619; -- Home point set!
+       FISHING_MESSAGE_OFFSET = 6999; -- You can't fish here.
+                       COOKING_SUPPORT = 7098; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
+  GUILD_TERMINATE_CONTRACT = 7112; -- You have terminated your trading contract with the ≺Multiple Choice (Parameter 1)≻[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the ≺Multiple Choice (Parameter 0)≻[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.≺Prompt≻
+               GUILD_NEW_CONTRACT = 7120; -- You have formed a new trading contract with the ≺Multiple Choice (Parameter 0)≻[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.≺Prompt≻
+               NO_MORE_GP_ELIGIBLE =  7127; --You are not eligible to receive guild points at this time.
+                                  GP_OBTAINED =  7132; --Obtained <<<Numeric Parameter 0>>> guild points.
+              NOT_HAVE_ENOUGH_GP =  7133; --You do not have enough guild points.
 
+		
 -- Other
 NOTHING_OUT_OF_ORDINARY =  6555; -- There is nothing out of the ordinary here.
-      DIABOLOS_UNLOCKED = 11833; -- You are now able to summon Diabolos!
+             DIABOLOS_UNLOCKED = 11833; -- You are now able to summon Diabolos!
 
 -- Conquest System
 CONQUEST = 9157; -- You've earned conquest points!
@@ -23,7 +26,7 @@ CONQUEST = 9157; -- You've earned conquest points!
 YOU_ACCEPT_THE_MISSION = 6704; -- You have accepted the mission.
 
 -- Shop Texts
-         KOPOPO_SHOP_DIALOG = 7786; -- Cooking is as much an art as music and painting are. Can your taste buds appreciate the full value of our works of art?
+                KOPOPO_SHOP_DIALOG = 7786; -- Cooking is as much an art as music and painting are. Can your taste buds appreciate the full value of our works of art?
    CHOMOJINJAHL_SHOP_DIALOG = 7791; -- The qualities needed to be a good cook are strong arms, a sense of taste, and devotion.
 
          ENSASA_SHOP_DIALOG = 8858; -- Welcome to my little catalyst shop, where you'll find a range of general and unusual goods!

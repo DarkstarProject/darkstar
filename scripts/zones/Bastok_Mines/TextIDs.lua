@@ -1,25 +1,27 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED =  6379; -- Come back after sorting your inventory.
-FULL_INVENTORY_AFTER_TRADE =  6381; -- Try trading again after sorting your inventory.
-             ITEM_OBTAINED =  6382; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
-              GIL_OBTAINED =  6383; -- Obtained <<<Numeric Parameter 0>>> gil.
-       NOT_HAVE_ENOUGH_GIL =  6387; -- You do not have enough gil.
-          KEYITEM_OBTAINED =  6385; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
-             HOMEPOINT_SET =  6460; -- Home point set!
-           ALCHEMY_SUPPORT =  7006; -- Your Multiple Choice (Parameter 1)[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up
-    FISHING_MESSAGE_OFFSET = 10751; -- You can't fish here.
-		NO_MORE_GP_ELIGIBLE =  7035; --You are not eligible to receive guild points at this time.
-	   GP_OBTAINED =  7040; --Obtained <<<Numeric Parameter 0>>> guild points.
-        NOT_HAVE_ENOUGH_GP =  7041; --You do not have enough guild points.
+           ITEM_CANNOT_BE_OBTAINED =  6379; -- Come back after sorting your inventory.
+    FULL_INVENTORY_AFTER_TRADE =  6381; -- Try trading again after sorting your inventory.
+                                     ITEM_OBTAINED =  6382; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
+                                        GIL_OBTAINED =  6383; -- Obtained <<<Numeric Parameter 0>>> gil.
+                    NOT_HAVE_ENOUGH_GIL =  6387; -- You do not have enough gil.
+                             KEYITEM_OBTAINED =  6385; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
+                                   HOMEPOINT_SET =  6460; -- Home point set!
+                            ALCHEMY_SUPPORT =  7006; -- Your Multiple Choice (Parameter 1)[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up
+        GUILD_TERMINATE_CONTRACT =  7020; -- You have terminated your trading contract with the ≺Multiple Choice (Parameter 1)≻[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the ≺Multiple Choice (Parameter 0)≻[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.≺Prompt≻
+                     GUILD_NEW_CONTRACT =  7028; -- You have formed a new trading contract with the ≺Multiple Choice (Parameter 0)≻[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.≺Prompt≻
+                     NO_MORE_GP_ELIGIBLE =  7035; --You are not eligible to receive guild points at this time.
+                                         GP_OBTAINED =  7040; --Obtained <<<Numeric Parameter 0>>> guild points.
+                    NOT_HAVE_ENOUGH_GP =  7041; --You do not have enough guild points.
+             FISHING_MESSAGE_OFFSET = 10751; -- You can't fish here.
 
 -- Conquest System
 CONQUEST = 11051; --You've earned conquest points!
 
 -- Mission Dialogs
-    YOU_ACCEPT_THE_MISSION =  6481; -- You have accepted the mission.
-   ORIGINAL_MISSION_OFFSET =  6486; -- You can consult the ission section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed. 
+      YOU_ACCEPT_THE_MISSION =  6481; -- You have accepted the mission.
+       ORIGINAL_MISSION_OFFSET =  6486; -- You can consult the ission section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed. 
    EXTENDED_MISSION_OFFSET = 11554; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
 
 -- Dynamis dialogs
