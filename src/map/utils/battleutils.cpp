@@ -192,7 +192,7 @@ void LoadMobSkillsList()
         INNER JOIN mob_pools ON mob_pools.familyid = mob_family_system.familyid \
         INNER JOIN mob_groups ON mob_groups.poolid = mob_pools.poolid \
         INNER JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
-        WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE) OR family_id = 0 \
+        WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE) \
         UNION \
         (SELECT  mob_skill_id, family_id, mob_anim_id, mob_skill_name, \
         mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
