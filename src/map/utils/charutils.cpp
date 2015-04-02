@@ -315,31 +315,32 @@ namespace charutils
 
         const int8* fmtQuery =
             "SELECT "
-            "charname,"				//  0
-            "pos_zone,"				//  1
-            "pos_prevzone,"			//  2
-            "pos_rot,"				//  3
-            "pos_x,"					//  4
-            "pos_y,"					//  5
-            "pos_z,"					//  6
-            "boundary,"				//  7
-            "home_zone,"				//  8
-            "home_rot,"				//  9
-            "home_x,"					// 10
-            "home_y,"					// 11
-            "home_z,"					// 12
-            "nation,"					// 13
-            "quests,"					// 14
-            "keyitems,"				// 15
-            "spells,"					// 16
-            "abilities,"				// 17
-            "titles,"					// 18
-            "zones,"					// 19
-            "missions,"				// 20
-            "assault,"                // 21
-            "campaign,"               // 22
-            "playtime,"				// 23
-            "isnewplayer "            // 24
+            "charname,"             //  0
+            "pos_zone,"             //  1
+            "pos_prevzone,"         //  2
+            "pos_rot,"              //  3
+            "pos_x,"                //  4
+            "pos_y,"                //  5
+            "pos_z,"                //  6
+            "boundary,"             //  7
+            "home_zone,"            //  8
+            "home_rot,"             //  9
+            "home_x,"               // 10
+            "home_y,"               // 11
+            "home_z,"               // 12
+            "nation,"               // 13
+            "quests,"               // 14
+            "keyitems,"             // 15
+            "spells,"               // 16
+            "abilities,"            // 17
+            "titles,"               // 18
+            "zones,"                // 19
+            "missions,"             // 20
+            "assault,"              // 21
+            "campaign,"             // 22
+            "playtime,"             // 23
+            "isnewplayer,"          // 24
+            "campaign_allegiance "  // 25
             "FROM chars "
             "WHERE charid = %u";
 
@@ -417,6 +418,7 @@ namespace charutils
 
             PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 23));
             PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 24) == 1 ? true : false;
+            PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 25);
         }
 
 
@@ -541,8 +543,6 @@ namespace charutils
             PChar->jobs.job[JOB_GEO] = (uint8)Sql_GetIntData(SqlHandle, 22);
             PChar->jobs.job[JOB_RUN] = (uint8)Sql_GetIntData(SqlHandle, 23);
         }
-
-
 
         fmtQuery = "SELECT mode, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run, merits, limits "
             "FROM char_exp "
@@ -3908,6 +3908,25 @@ namespace charutils
         Sql_Query(SqlHandle,
             Query,
             PChar->profile.nation,
+            PChar->id);
+    }
+
+    /************************************************************************
+    *                                                                       *
+    *  Saves characters current campaign allegiance                         *
+    *                                                                       *
+    ************************************************************************/
+
+    void SaveCampaignAllegiance(CCharEntity* PChar)
+    {
+        const int8* Query =
+            "UPDATE chars "
+            "SET campaign_allegiance = %u "
+            "WHERE charid = %u;";
+
+        Sql_Query(SqlHandle,
+            Query,
+            PChar->profile.campaign_allegiance,
             PChar->id);
     }
 

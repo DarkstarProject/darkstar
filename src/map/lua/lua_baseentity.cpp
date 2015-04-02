@@ -1267,6 +1267,33 @@ inline int32 CLuaBaseEntity::setNation(lua_State *L)
 
 //==========================================================//
 
+inline int32 CLuaBaseEntity::getCampaignAllegiance(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    lua_pushinteger( L, ((CCharEntity*)m_PBaseEntity)->profile.campaign_allegiance );
+    return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::setCampaignAllegiance(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    PChar->profile.campaign_allegiance = (uint8)lua_tointeger(L,1);
+    charutils::SaveCampaignAllegiance(PChar);
+    return 0;
+}
+
+//==========================================================//
+
 inline int32 CLuaBaseEntity::getRankPoints(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -9621,6 +9648,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRace),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNation),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setNation),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCampaignAllegiance),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setCampaignAllegiance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addQuest),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delQuest),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getQuestStatus),
