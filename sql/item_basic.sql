@@ -16091,6 +16091,7 @@ INSERT INTO `item_basic` VALUES (28528,0,'undecennial_ring','undecennial_ring',1
 INSERT INTO `item_basic` VALUES (28530,0,'dumakulems_ring','dumakulems_ring',1,34816,0,1,0);
 INSERT INTO `item_basic` VALUES (28531,0,'milvus_ring','milvus_ring',1,34816,0,1,0);
 INSERT INTO `item_basic` VALUES (28532,0,'candent_ring','candent_ring',1,63568,0,1,0);
+INSERT INTO `item_basic` VALUES (28540,0,'warp_ring','warp_ring',1,64576,0,1,0);
 INSERT INTO `item_basic` VALUES (28554,0,'acumen_ring','acumen_ring',1,60480,0,1,1918);
 INSERT INTO `item_basic` VALUES (28571,0,'waterfall_ring','waterfall_ring',1,34816,25,0,100);
 INSERT INTO `item_basic` VALUES (28572,0,'jwalamukhi_ring','jwalamukhi_ring',1,34816,25,0,100);
