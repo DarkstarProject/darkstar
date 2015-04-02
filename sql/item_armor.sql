@@ -10035,6 +10035,7 @@ INSERT INTO `item_armor` VALUES ('28528', 'undecennial_ring', '1', '4194303', '0
 INSERT INTO `item_armor` VALUES ('28530', 'dumakulems_ring', '99', '2594082', '0', '0', '0', '24576', '0');
 INSERT INTO `item_armor` VALUES ('28531', 'milvus_ring', '99', '4194303', '0', '0', '0', '24576', '0');
 INSERT INTO `item_armor` VALUES ('28532', 'candent_ring', '99', '4194303', '0', '0', '0', '24576', '0');
+INSERT INTO `item_armor` VALUES ('28540', 'warp_ring', '1', '4194303', '0', '0', '0', '24576', '0');
 INSERT INTO `item_armor` VALUES ('28554', 'acumen_ring', '99', '4194303', '0', '0', '0', '24576', '0');
 INSERT INTO `item_armor` VALUES ('28575', 'choj_band', '99', '4194303', '0', '0', '0', '24576', '0');
 INSERT INTO `item_armor` VALUES ('28576', 'paqichikaji_ring', '99', '4194303', '0', '0', '0', '24576', '0');
