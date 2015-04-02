@@ -67,12 +67,12 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			break;
 		case ACTION_WEAPONSKILL_START:
 		{
-			packBitsBE(data, PEntity->PBattleAI->GetCurrentWeaponSkill()->getID(), 54, 10);
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentWeaponSkill()->getID(), 86, 10);
 		}
 			break;
 		case ACTION_WEAPONSKILL_FINISH:
 		{
-			packBitsBE(data, PEntity->PBattleAI->GetCurrentWeaponSkill()->getID(), 54, 10);
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentWeaponSkill()->getID(), 86, 10);
 		}
 			break;
 		case ACTION_JOBABILITY_START:
@@ -84,11 +84,11 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		{
 			if (PEntity->PBattleAI->GetCurrentJobAbility()->getID() == ABILITY_DOUBLE_UP)
 			{
-				packBitsBE(data, PEntity->PBattleAI->GetLastCorsairRoll() + 16, 54, 10);
+				packBitsBE(data, PEntity->PBattleAI->GetLastCorsairRoll() + 16, 86, 10);
 			} else {
-				packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getID() + 16, 54, 10);
+				packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getID() + 16, 86, 10);
 			}
-			packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getRecastTime(), 86, 10);
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getRecastTime(), 118, 10);
 		}
 			break;
         case ACTION_MOBABILITY_START:
@@ -116,7 +116,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			uint16 id = PEntity->PBattleAI->GetCurrentMobSkill()->getMsgForAction();
 
 			//higher number of bits than anything else that we know of. CAP OF 4095 (2300ish is abyssea tp moves)!
-			packBitsBE(data, id, 54, 12);
+			packBitsBE(data, id, 86, 12);
             if (PEntity->objtype == TYPE_PET && (((CPetEntity*)PEntity)->getPetType() == PETTYPE_AVATAR ||
                 ((CPetEntity*)PEntity)->getPetType() == PETTYPE_WYVERN))
                 //TODO: rename/add new - Action 13 is always used by Avatars and Wyverns when performing an ability
@@ -233,9 +233,9 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			break;
 		case ACTION_MAGIC_FINISH:
 		{
-			packBitsBE(data, PEntity->PBattleAI->GetCurrentSpell()->getID(), 54, 10);
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentSpell()->getID(), 86, 10);
 			//either this way or enumerate all recast timers and compare the spell id.
-			packBitsBE(data, PEntity->PBattleAI->GetCurrentSpell()->getModifiedRecast(), 86, 10);
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentSpell()->getModifiedRecast(), 118, 10);
 		}
 			break;
 		case ACTION_MAGIC_INTERRUPT:
@@ -295,7 +295,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 
 	uint32 TargetNum = 0;
 	uint32 ActionNum = 0;
-	uint32 bitOffset = 50;
+	uint32 bitOffset = 82;
 	uint32 animOffset = 0;
 
 	uint8 ActionTypeNumber = ActionType;
@@ -423,7 +423,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
         if (TargetNum >= 15)
             break;
 	}
-    packBitsBE(data, ActionNum, 150, 4);
+    packBitsBE(data, ActionNum, 182, 4);
 
 	uint8 WorkSize = ((bitOffset >> 3) + (bitOffset%8 != 0));
 
@@ -448,37 +448,37 @@ CActionPacket::CActionPacket(uint32 id, uint32 targetid, uint8 ActionType,
     {
     case ACTION_WEAPONSKILL_START:
     {
-        packBitsBE(data, param, 54, 10);
+        packBitsBE(data, param, 86, 10);
     }
         break;
     case ACTION_WEAPONSKILL_FINISH:
     {
-        packBitsBE(data, param, 54, 10);
+        packBitsBE(data, param, 86, 10);
     }
         break;
 
     case ACTION_JOBABILITY_FINISH:
     {
-        packBitsBE(data, param + 16, 54, 10);
-        packBitsBE(data, 0, 86, 10);
+        packBitsBE(data, param + 16, 86, 10);
+        packBitsBE(data, 0, 118, 10);
     }
         break;
 
     case ACTION_MOBABILITY_FINISH:
     case ACTION_RAISE_MENU_SELECTION:
     {
-        packBitsBE(data, param, 54, 12);
+        packBitsBE(data, param, 86, 12);
     }
         break;
     case ACTION_MAGIC_FINISH:
     {
-        packBitsBE(data, param, 54, 10);
-        packBitsBE(data, 0, 86, 10);
+        packBitsBE(data, param, 86, 10);
+        packBitsBE(data, 0, 118, 10);
     }
         break;
     }
 
-    uint32 bitOffset = 50;
+    uint32 bitOffset = 82;
 
     bitOffset = packBitsBE(data, ActionType, bitOffset, 4);
     bitOffset += 64;
@@ -495,7 +495,7 @@ CActionPacket::CActionPacket(uint32 id, uint32 targetid, uint8 ActionType,
     bitOffset = packBitsBE(data, messageID, bitOffset, 10);
     bitOffset += 33;
 
-    packBitsBE(data, 1, 150, 4);
+    packBitsBE(data, 1, 182, 4);
 
     uint8 WorkSize = ((bitOffset >> 3) + (bitOffset % 8 != 0));
 

@@ -64,7 +64,7 @@ CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PChar, uint8 slotID,
 
 	WBUFL(data,(0x08)) = PChar->id;
 	WBUFW(data,(0x10)) = PChar->targid;	
-	packBitsBE(data, Lot, 112, 16);  //this fixes an offset problem with lot numbers
+	packBitsBE(data, Lot, 144, 16);  //this fixes an offset problem with lot numbers
 	//WBUFB(data,(0x12)) = Lot;
 	WBUFB(data,(0x14)) = slotID; 
 	
