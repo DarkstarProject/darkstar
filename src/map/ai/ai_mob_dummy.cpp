@@ -657,6 +657,9 @@ void CAIMobDummy::ActionSpawn()
         if (m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL))
         {
             m_PSpecialSkill = battleutils::GetMobSkill(m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL));
+            if(m_PSpecialSkill == nullptr){
+                ShowError("CAIMobDummy::ActionSpawn Special skill was set but not found! (%d)\n", m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL));
+            }
         }
 
         // spawn somewhere around my point
