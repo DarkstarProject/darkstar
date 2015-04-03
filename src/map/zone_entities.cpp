@@ -759,7 +759,7 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
 	if (packet != nullptr && packet->id() == 0x00D && PEntity != nullptr && PEntity->objtype == TYPE_PC && ((CCharEntity*)PEntity)->m_isGMHidden)
 	{
 		// Ensure this packet is not despawning us..
-		if (packet->ref<uint8>(0x02) != 0x20)
+		if (packet->ref<uint8>(0x0A) != 0x20)
 		{
 			delete packet;
 			return;
