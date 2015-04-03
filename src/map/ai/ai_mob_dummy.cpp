@@ -608,6 +608,7 @@ void CAIMobDummy::ActionSpawn()
     if (m_Tick >= m_LastActionTime + m_PMob->m_RespawnTime)
     {
         m_NeutralTime = m_Tick;
+        m_PMob->m_neutral = true;
         m_LastActionTime = m_Tick + WELL512::GetRandomNumber(2000,10000);
         m_SpawnTime = m_Tick;
         m_firstSpell = true;
@@ -2451,7 +2452,7 @@ void CAIMobDummy::WeatherChange(WEATHER weather, uint8 element)
 bool CAIMobDummy::CanAggroTarget(CBattleEntity* PTarget)
 {
     // don't aggro i'm neutral
-    if (m_PMob->m_neutral)
+    if (m_PMob->m_neutral || m_PMob->isDead())
     {
         return false;
     }
