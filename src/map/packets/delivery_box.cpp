@@ -35,7 +35,7 @@ CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, uint8 count, u
     this->type = 0x4B;
     this->size = 0x0A;
 
-    memset(data, 0xFF, 12);
+    memset(data + 4, 0xFF, 12);
 
     WBUFB(data, (0x04) ) = action;
     WBUFB(data, (0x05) ) = boxid;
@@ -59,7 +59,7 @@ CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, CItem* PItem, 
     this->type = 0x4B;
     this->size = 0x2C;
 
-    memset(data, 0xFF, 12);
+    memset(data + 4, 0xFF, 12);
 
     WBUFB(data, (0x04) ) = action;
     WBUFB(data, (0x05) ) = boxid;
