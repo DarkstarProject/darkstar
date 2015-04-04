@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Gravity
+-- Spell: Distract
 -----------------------------------------
 
 require("scripts/globals/status");
