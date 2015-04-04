@@ -30,7 +30,11 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
+	
+	local currentMission = player:getCurrentMission(SANDORIA);
+	local MissionStatus = player:getVar("MissionStatus");
 	local cs = -1;
+	
 	-- FIRST LOGIN (START CS)
 	if(player:getPlaytime(false) == 0) then
 		if(OPENING_CUTSCENE_ENABLE == 1) then
@@ -53,9 +57,9 @@ function onZoneIn(player,prevZone)
 	elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 1)then --EMERALD_WATERS-- COP 3-3A: San d'Oria Route
 		player:setVar("EMERALD_WATERS_Status",2);
 		cs = 0x000E;
-	elseif(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("SANDO92") == 0)then
+	elseif(currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 0)then
 		cs = 0x0001;
-	elseif(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("SANDO92") == 4)then
+	elseif(currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 4)then
 		cs = 0x0000;
 	elseif(player:hasCompletedMission(SANDORIA,COMING_OF_AGE) and tonumber(os.date("%j")) == player:getVar("Wait1DayM8-1_date")) then
 		cs = 0x0010;
@@ -117,12 +121,13 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
+	
 	if(csid == 0x0217) then
 		player:messageSpecial(ITEM_OBTAINED,0x218);
 	elseif(csid == 0x0001)then
-	player:setVar("SANDO92",1);
+		player:setVar("MissionStatus",1);
 	elseif(csid == 0x0000)then
-	player:setVar("SANDO92",5);
+		player:setVar("MissionStatus",5);
 	elseif(csid == 0x7534 and option == 0) then
 		player:setHomePoint();
 		player:messageSpecial(HOMEPOINT_SET);

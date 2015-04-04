@@ -40,10 +40,10 @@ function onTrigger(player,npc)
 	local MissionStatus = player:getVar("MissionStatus");
 	
 	-- Lure of the Wildcat San d'Oria
-	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,16) == false) then
+	if(player:getQuestStatus(0, 113) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,16) == false) then
 		player:startEvent(0x022e);
 	-- Blackmail quest
-	elseif(player:getQuestStatus(SANDORIA, BLACKMAIL) == QUEST_ACCEPTED and player:hasKeyItem(SUSPICIOUS_ENVELOPE)) then
+	elseif(player:getQuestStatus(0, 71) == QUEST_ACCEPTED and player:hasKeyItem(SUSPICIOUS_ENVELOPE)) then
 		player:startEvent(0x0225);
 		player:setVar("BlackMailQuest",1);
 		player:delKeyItem(SUSPICIOUS_ENVELOPE);	
@@ -56,65 +56,69 @@ function onTrigger(player,npc)
 			player:addItem(181);
 			player:messageSpecial(ITEM_OBTAINED,181);
 		end
-	elseif(pNation == SANDORIA) then
+	elseif(pNation == 0) then
 		-- Mission San D'Oria 9-2 The Heir to the Light
-		if(player:hasCompletedMission(SANDORIA,THE_HEIR_TO_THE_LIGHT)) then 
+		if(player:hasCompletedMission(0, 23)) then 
 			player:startEvent(0x001f);
-		elseif(currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 7)then 
+		elseif(currentMission == 23 and MissionStatus == 7)then 
 			player:startEvent(0x0009);	
-		elseif(currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 6)then 
+		elseif(currentMission == 23 and MissionStatus == 6)then 
 			player:startEvent(0x001e);
-		elseif(currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus >= 2 and MissionStatus <=5)then 
+		elseif(currentMission == 23 and MissionStatus >= 2 and MissionStatus <=5)then 
 			player:startEvent(0x001d);		
 		-- Mission San d'Oria 8-1 Coming of Age -- 
-		elseif(currentMission == COMING_OF_AGE and MissionStatus == 1) then
+		elseif(currentMission == 16 and MissionStatus == 1) then
 			player:startEvent(0x003A);
-		elseif(currentMission == COMING_OF_AGE and MissionStatus == 3 and player:hasKeyItem(DROPS_OF_AMNIO)) then
+		elseif(currentMission == 16 and MissionStatus == 3 and player:hasKeyItem(DROPS_OF_AMNIO)) then
 			player:startEvent(0x0066);
 		-- Mission San D'Oria 6-1 Leaute's last wishes
-		elseif(currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 3) then
+		elseif(currentMission == 12 and MissionStatus == 3) then
 			player:startEvent(0x0016);
-		elseif(currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 2) then
+		elseif(currentMission == 12 and MissionStatus == 2) then
 			player:startEvent(0x0018);
-		elseif(currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 1) then
+		elseif(currentMission == 12 and MissionStatus == 1) then
 			player:startEvent(0x0017);				
-		elseif(currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 0) then
+		elseif(currentMission == 12 and MissionStatus == 0) then
 			player:startEvent(0x0019);
 		-- Mission San D'Oria 5-2 The Shadow Lord
-		elseif(player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) and currentMission == 255) then
+		elseif(player:hasCompletedMission(0, 11) and currentMission == 255) then
 			player:showText(npc,HALVER_OFFSET+500);
-		elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 5) then
+		elseif(currentMission == 11 and MissionStatus == 5) then
 			player:showText(npc,HALVER_OFFSET+471);
-		elseif(currentMission == THE_SHADOW_LORD and player:hasKeyItem(SHADOW_FRAGMENT) and MissionStatus == 4) then
+		elseif(currentMission == 11 and player:hasKeyItem(SHADOW_FRAGMENT) and MissionStatus == 4) then
 			player:startEvent(0x0224);		
-		elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 0) then
+		elseif(currentMission == 11 and MissionStatus == 0) then
 			player:startEvent(0x0222);
 			-- Mission San D'Oria 5-1 The Ruins of Fei'Yin
-		elseif(currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 12 and player:hasKeyItem(BURNT_SEAL)) then
+		elseif(currentMission == 10 and MissionStatus == 12 and player:hasKeyItem(BURNT_SEAL)) then
 			player:startEvent(0x0216);		
-		elseif(currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 10) then
+		elseif(currentMission == 10 and MissionStatus == 10) then
 			player:showText(npc,HALVER_OFFSET+334);
-			elseif(currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 9) then
+		elseif(currentMission == 10 and MissionStatus == 9) then
 			player:startEvent(0x0215);		
 		-- Mission San D'Oria 3-3 Appointment to Jeuno
-		elseif(currentMission == APPOINTMENT_TO_JEUNO and MissionStatus == 0) then
+		elseif(currentMission == 8 and MissionStatus == 0) then
 			player:startEvent(0x01fc);
 		-- Mission San D'Oria 2-3 Journey Abroad 
-		elseif(currentMission == JOURNEY_ABROAD and MissionStatus == 11) then
+		elseif(currentMission == 5 and MissionStatus == 11) then
 			player:startEvent(0x01fb);
-		elseif(currentMission == JOURNEY_ABROAD and MissionStatus == 0) then
+		elseif(currentMission == 5 and MissionStatus == 0) then
 			player:startEvent(0x01f9);		
-		elseif(currentMission == JOURNEY_ABROAD) then
+		elseif(currentMission == 5) then
 			player:startEvent(0x0214);	
 		end
-	elseif(pNation == BASTOK) then
-		if(currentMission == THE_EMISSARY) then
+	-- Mission Bastok 2-3
+	elseif(pNation == 1) then
+		-- THE_EMISSARY
+		if(currentMission == 5) then
 			if(MissionStatus == 3) then
 				player:startEvent(0x01f5);
 			end
-		elseif(currentMission == THE_EMISSARY_SANDORIA) then
+		-- THE_EMISSARY_SANDORIA 
+		elseif(currentMission == 6) then
 			player:showText(npc,HALVER_OFFSET+279);
-		elseif(currentMission == THE_EMISSARY_SANDORIA2) then
+		-- THE_EMISSARY_SANDORIA2
+		elseif(currentMission == 8) then
 			MissionStatus = MissionStatus;
 			if(MissionStatus == 8) then
 				player:startEvent(0x01f7);
@@ -124,10 +128,13 @@ function onTrigger(player,npc)
 		else
 			player:showText(npc,HALVER_OFFSET+1092);
 		end
-	elseif(pNation == WINDURST) then
-		if(currentMission == THE_THREE_KINGDOMS and MissionStatus < 3) then
+	-- Windurst 2-3
+	elseif(pNation == 2) then
+		-- THE_THREE_KINGDOMS 
+		if(currentMission == 5 and MissionStatus < 3) then
 			player:startEvent(0x0214);
-		elseif(currentMission == THE_THREE_KINGDOMS_SANDORIA or currentMission == THE_THREE_KINGDOMS_SANDORIA2) then
+		-- THE_THREE_KINGDOMS_SANDORIA
+		elseif(currentMission == 6 or currentMission == 8) then
 			if(MissionStatus == 3) then
 				player:startEvent(0x01F6);
 			elseif(MissionStatus == 8) then
@@ -159,7 +166,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if(csid == 0x01f5) then
-		player:addMission(BASTOK,THE_EMISSARY_SANDORIA);
+		player:addMission(1, 6);
 		player:setVar("MissionStatus",4);
 	elseif(csid == 0x01f7) then
 		player:setVar("MissionStatus",9);
@@ -191,7 +198,7 @@ function onEventFinish(player,csid,option)
 				player:messageSpecial(ITEM_OBTAINED,181);
 			end
 		player:setVar("MissionStatus",0);
-		player:completeMission(SANDORIA,THE_HEIR_TO_THE_LIGHT);
+		player:completeMission(0, 23);
 		player:setRank(10);
 		player:addGil(100000);
 		player:messageSpecial(GIL_OBTAINED,100000);

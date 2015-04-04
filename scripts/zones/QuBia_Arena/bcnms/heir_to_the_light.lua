@@ -1,12 +1,13 @@
 -----------------------------------
 -- Name: Mission 9-2 SANDO
 -----------------------------------
-package.loaded["scripts/zones/Qubia_arena/TextIDs"] = nil;
+package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
 -------------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Qubia_arena/TextIDs");
+require("scripts/zones/QuBia_Arena/TextIDs");
 
 -----------------------------------
 
@@ -32,29 +33,35 @@ end;
 -- from the core when a player disconnects or the time limit is up, etc
 
 function onBcnmLeave(player,instance,leavecode)
-print("leave code "..leavecode);
+	local pNation = player:getNation();
+	local currentMission = player:getCurrentMission(pNation);
+	local MissionStatus = player:getVar("MissionStatus");
 	
-if(leavecode == 2) then 
-printf("win");
-	if(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT)	then
-	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,0);
-	else
-	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,1);
+	print("leave code "..leavecode);
+	
+	if(leavecode == 2) then 
+		--printf("win");
+		if(currentMission == THE_HEIR_TO_THE_LIGHT)	then
+			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,1);
+		else
+			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,0);
+		end
+	elseif(leavecode == 4) then
+		player:startEvent(0x7d02);
 	end
-elseif(leavecode == 4) then
-player:startEvent(0x7d02);
-end
+	return 1;
 end;
 
 function onEventUpdate(player,csid,option)
-print("bc update csid "..csid.." and option "..option);
+	print("bc update csid "..csid.." and option "..option);
 end;
 	
 function onEventFinish(player,csid,option)
-print("bc finish csid "..csid.." and option "..option);
-if(csid == 0x7d01) then 
-	if(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT)	then
-		player:setVar("SANDO92",4);
+	print("bc finish csid "..csid.." and option "..option);
+	if(csid == 0x7d01) then 
+		if(currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 3)	then
+			player:setVar("MissionStatus",4);
+			printf("variable set!!!!!");
+		end
 	end
-end
 end;
