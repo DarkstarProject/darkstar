@@ -4500,6 +4500,7 @@ INSERT INTO `item_basic` VALUES (4900,292,'thunder_spirit_pact','thunder_spirit'
 INSERT INTO `item_basic` VALUES (4901,293,'water_spirit_pact','water_spirit',1,34432,30,0,43);
 INSERT INTO `item_basic` VALUES (4902,294,'light_spirit_pact','light_spirit',1,34432,30,0,43);
 INSERT INTO `item_basic` VALUES (4903,295,'dark_spirit_pact','dark_spirit',1,34432,30,0,43);
+INSERT INTO `item_basic` VALUES (4912,841,'scroll_of_distract','distract',1,1664,29,0,0);
 INSERT INTO `item_basic` VALUES (4916,828,'scroll_of_fira','fira',1,34432,29,0,43);
 INSERT INTO `item_basic` VALUES (4917,829,'scroll_of_fira_ii','fira_ii',1,34432,29,0,43);
 INSERT INTO `item_basic` VALUES (4918,830,'scroll_of_blizzara','blizzara',1,34432,29,0,43);
