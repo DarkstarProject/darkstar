@@ -424,6 +424,7 @@
     <ClInclude Include="..\..\src\map\zone_entities.h" />
     <ClInclude Include="..\..\src\map\zone_instance.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="string.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\common\blowfish.cpp" />
