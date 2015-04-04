@@ -827,7 +827,7 @@
     <ClInclude Include="..\..\src\map\guild.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="string.hpp">
+    <ClInclude Include="..\..\src\map\marshal\string.hpp">
       <Filter>Header Files\marshal</Filter>
     </ClInclude>
   </ItemGroup>

@@ -55,11 +55,6 @@ namespace marshal
             std::copy_n(text.begin(), index, buffer);
 
             cleanup(index);
-
-            std::transform(cbegin(), cend(), begin(), [](char const& c)
-            {
-                return c ? c : '.';
-            });
         }
 
     public:
