@@ -391,7 +391,7 @@ void CZone::LoadNavMesh()
 
     int8 file[255];
     memset(file,0,sizeof(file));
-    snprintf(file, sizeof(file), "scripts/zones/%s/NavMesh.nav", GetName());
+    snprintf(file, sizeof(file), "navmeshes/%s.nav", GetName());
 
     if (m_navMesh->load(file))
     {
