@@ -157,6 +157,8 @@ public:
     int32 getRace(lua_State*);              // Gets Race of Entity
     int32 getNation(lua_State*);            // Gets Nation of Entity
     int32 setNation(lua_State*);            // Sets Nation of Entity
+    int32 getCampaignAllegiance(lua_State*); // Gets Campaign Allegiance of Entity
+    int32 setCampaignAllegiance(lua_State*); // Sets Campaign Allegiance of Entity
 
     int32 addQuest(lua_State*);             // Add Quest to Entity Quest Log
     int32 delQuest(lua_State*);             // Remove quest from quest log (should be used for debugging only)

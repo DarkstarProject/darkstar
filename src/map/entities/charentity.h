@@ -107,6 +107,7 @@ struct profile_t
     uint8 	   rank[3];			// рагн в трех государствах
     uint32	   rankpoints;	    // очки ранга в трех государствах
     location_t home_point;		// точка возрождения персонажа
+    uint8      campaign_allegiance;
 };
 
 
