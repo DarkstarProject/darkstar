@@ -1,13 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 -- func: gotonpc
 -- auth: Chronos77
--- desc: Goes to the target player.
+-- desc: Goes to the npc with ID.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
 {
     permission = 1,
-    parameters = "s"
+    parameters = "i"
 };
 
 function onTrigger(player, target)
@@ -20,6 +20,6 @@ function onTrigger(player, target)
     if (targ ~= nil) then
         player:setPos( targ:getXPos(), targ:getYPos(), targ:getZPos(), 0, targ:getZoneID() );    
     else
-        player:PrintToPlayer( string.format( "NPC named '%s' not found!", target ) );
+        player:PrintToPlayer( string.format( "NPC id '%i' not found!", target ) );
     end
 end
