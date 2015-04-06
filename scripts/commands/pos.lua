@@ -31,4 +31,3 @@ function onTrigger(player, x, y, z, zone, target)
         end
     end
 end;
-3B88
