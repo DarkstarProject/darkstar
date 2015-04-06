@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Southern Sandoria
 --   NPC: Estiliphire
---  Type: Traveling Merchant NPC
+--  Type: Event Sideshow NPC
 --  @zone: 230
 --  @pos -41.550 1.999 -2.845
 --
@@ -14,10 +14,12 @@ package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- All sandy NPCs not directly related to "Flyers for Regine" quest must have this conditional trade script.
--- it is just a conditional line to say the NPC refused to accept the flyer.
-	if trade:hasItemQty(532,1) == true and player:getQuestStatus(0,16) == 1 then
-		player:specialMessage(1488)
+	if (FlyerForRegine == 1) then
+		count = trade:getItemCount();
+		MagicFlyer = trade:hasItemQty(532,1);
+		if (MagicFlyer == true and count == 1) then
+			player:messageSpecial(FLYER_REFUSED);
+		end
 	end
 end;
 
