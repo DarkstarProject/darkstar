@@ -68,6 +68,6 @@ CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PChar, uint8 slotID,
 	//WBUFB(data,(0x12)) = Lot;
 	WBUFB(data,(0x14)) = slotID; 
 	
-	memcpy(data+0x26-0x04, PChar->GetName(), 16);
+	memcpy(data+0x26, PChar->GetName(), 16);
 	
 }

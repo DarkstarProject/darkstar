@@ -58,13 +58,17 @@ function onZoneIn(player,prevZone)
 	end
 	
 	if  (player:getVar("FirstPromyvionDem") == 1)then
-		cs = 0x0032;	
-	elseif(ENABLE_COP_ZONE_CAP == 1)then
-		player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
+		cs = 0x0032;
 	end
 	return cs;	
 end;		
 
+
+function afterZoneIn(player,zone)
+    if(ENABLE_COP_ZONE_CAP == 1)then
+		player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
+    end
+end;
 -----------------------------------	
 -- onRegionEnter	
 -----------------------------------	
