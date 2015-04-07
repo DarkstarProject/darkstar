@@ -35,7 +35,7 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x00cb);
 		end
-	-- Bastok 8-1	
+	-- Bastok 8-2	
 	elseif(currentMission == ENTER_THE_TALEKEEPER and MissionStatus == 0) then
 		player:startEvent(0x00ca);
 	elseif(currentMission == ENTER_THE_TALEKEEPER) then
