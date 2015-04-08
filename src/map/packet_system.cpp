@@ -4283,9 +4283,14 @@ void SmallPacket0x0E0(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0E1(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    if (PChar->PLinkshell1 != nullptr)
+    uint8 slot = RBUFB(data, 0x07);
+    if (slot == PChar->equip[SLOT_LINK1])
     {
         PChar->pushPacket(new CLinkshellMessagePacket(PChar->PLinkshell1));
+    }
+    else if (slot == PChar->equip[SLOT_LINK2])
+    {
+        PChar->pushPacket(new CLinkshellMessagePacket(PChar->PLinkshell2));
     }
     return;
 }
@@ -4314,7 +4319,7 @@ void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, int8* dat
             if (PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL ||
                 PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK)
             {
-                string_t Message = data + 12;
+                string_t Message = data + 16;
                 uint32   MessageTime = time(nullptr);
                 int8 sqlMessage[256];
                 Sql_EscapeString(SqlHandle, sqlMessage, Message.c_str());
