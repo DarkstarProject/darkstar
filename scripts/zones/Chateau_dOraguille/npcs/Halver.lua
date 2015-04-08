@@ -33,7 +33,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-  print(player:getVar("MissionStatus"));
+	--print(player:getVar("MissionStatus"));
     local pNation = player:getNation();
 	local currentMission = player:getCurrentMission(pNation);
 	local WildcatSandy = player:getVar("WildcatSandy");
