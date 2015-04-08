@@ -33,7 +33,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
+  print(player:getVar("MissionStatus"));
     local pNation = player:getNation();
 	local currentMission = player:getCurrentMission(pNation);
 	local WildcatSandy = player:getVar("WildcatSandy");
@@ -67,10 +67,10 @@ function onTrigger(player,npc)
 		elseif(currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus >= 2 and MissionStatus <=5)then 
 			player:startEvent(0x001d);		
 		-- Mission San d'Oria 8-1 Coming of Age -- 
-		elseif(currentMission == COMING_OF_AGE and MissionStatus == 1) then
-			player:startEvent(0x003A);
 		elseif(currentMission == COMING_OF_AGE and MissionStatus == 3 and player:hasKeyItem(DROPS_OF_AMNIO)) then
 			player:startEvent(0x0066);
+		elseif(currentMission == COMING_OF_AGE and MissionStatus == 1) then
+			player:startEvent(0x003A);		
 		-- Mission San D'Oria 6-1 Leaute's last wishes
 		elseif(currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 3) then
 			player:startEvent(0x0016);
@@ -85,7 +85,7 @@ function onTrigger(player,npc)
 			player:showText(npc,HALVER_OFFSET+500);
 		elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 5) then
 			player:showText(npc,HALVER_OFFSET+471);
-		elseif(currentMission == THE_SHADOW_LORD and player:hasKeyItem(SHADOW_FRAGMENT) and MissionStatus == 4) then
+		elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 4 and player:hasKeyItem(SHADOW_FRAGMENT)) then
 			player:startEvent(0x0224);		
 		elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 0) then
 			player:startEvent(0x0222);
@@ -94,7 +94,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x0216);		
 		elseif(currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 10) then
 			player:showText(npc,HALVER_OFFSET+334);
-			elseif(currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 9) then
+		elseif(currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 9) then
 			player:startEvent(0x0215);		
 		-- Mission San D'Oria 3-3 Appointment to Jeuno
 		elseif(currentMission == APPOINTMENT_TO_JEUNO and MissionStatus == 0) then
@@ -108,14 +108,16 @@ function onTrigger(player,npc)
 			player:startEvent(0x0214);	
 		end
 	elseif(pNation == BASTOK) then
+		--Bastok 2-3 San -> Win
 		if(currentMission == THE_EMISSARY) then
 			if(MissionStatus == 3) then
 				player:startEvent(0x01f5);
 			end
+		--Bastok 2-3 San -> Win, report to consulate
 		elseif(currentMission == THE_EMISSARY_SANDORIA) then
 			player:showText(npc,HALVER_OFFSET+279);
+		--Bastok 2-3 Win -> San
 		elseif(currentMission == THE_EMISSARY_SANDORIA2) then
-			MissionStatus = MissionStatus;
 			if(MissionStatus == 8) then
 				player:startEvent(0x01f7);
 			elseif(MissionStatus <= 10) then
@@ -125,6 +127,7 @@ function onTrigger(player,npc)
 			player:showText(npc,HALVER_OFFSET+1092);
 		end
 	elseif(pNation == WINDURST) then
+		--Windurst 2-3
 		if(currentMission == THE_THREE_KINGDOMS and MissionStatus < 3) then
 			player:startEvent(0x0214);
 		elseif(currentMission == THE_THREE_KINGDOMS_SANDORIA or currentMission == THE_THREE_KINGDOMS_SANDORIA2) then
