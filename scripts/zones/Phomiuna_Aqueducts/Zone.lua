@@ -39,16 +39,13 @@ function onZoneIn(player,prevZone)
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(260.02,-2.12,-290.461,192);
 	end	
+	-- ZONE LEVEL RESTRICTION
+	if(ENABLE_COP_ZONE_CAP == 1)then
+	player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,40,0,0);	
+	end
 	return cs;	
 	
 end;		
-
-function afterZoneIn(player,zone)
-	-- ZONE LEVEL RESTRICTION
-	if(ENABLE_COP_ZONE_CAP == 1)then
-        player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,40,0,0);	
-	end
-end;
 
 -----------------------------------	
 -- onRegionEnter	
