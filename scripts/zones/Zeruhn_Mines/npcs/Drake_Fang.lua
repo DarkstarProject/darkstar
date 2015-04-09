@@ -39,7 +39,7 @@ function onTrigger(player,npc)
 		elseif(player:getVar("MissionStatus") == 2 or player:getVar("MissionStatus") == 3) then
 			player:startEvent(0x00cb);
 		elseif(player:getVar("MissionStatus") == 4) then
-			player:startEvent(0x00cc)4;
+			player:startEvent(0x00cc);
 		end
 	else
 		player:startEvent(0x006c);
