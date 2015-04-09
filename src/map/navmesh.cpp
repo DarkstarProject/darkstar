@@ -413,7 +413,7 @@ bool CNavMesh::test(uint16 zoneId)
       end.y = 4;
       end.z = -120;
 
-      expectedLength = 4;
+      expectedLength = 3;
     break;
     default:
       ShowWarning("CNavMesh::test Skipping sanity test for zone (%d)\n", zoneId);

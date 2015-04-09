@@ -4112,7 +4112,7 @@ INSERT INTO `item_basic` VALUES (4463,0,'takitaro','takitaro',1,1536,51,0,714);
 INSERT INTO `item_basic` VALUES (4464,0,'pipira','pipira',12,1536,51,0,47);
 INSERT INTO `item_basic` VALUES (4465,0,'bowl_of_goblin_stew','goblin_stew',1,1536,55,0,532);
 INSERT INTO `item_basic` VALUES (4466,0,'spicy_cracker','spicy_cracker',99,1536,56,0,1);
-INSERT INTO `item_basic` VALUES (4467,0,'garlic_cracker','garlic_cracker',99,1536,56,0,407);
+INSERT INTO `item_basic` VALUES (4467,0,'garlic_cracker','garlic_cracker',99,1536,56,0,1);
 INSERT INTO `item_basic` VALUES (4468,0,'bunch_of_pamamas','pamamas',12,1536,59,0,20);
 INSERT INTO `item_basic` VALUES (4469,0,'giant_catfish','giant_catfish',1,1536,51,0,102);
 INSERT INTO `item_basic` VALUES (4470,0,'icefish','icefish',12,1536,51,0,156);
