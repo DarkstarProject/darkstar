@@ -4286,11 +4286,11 @@ void SmallPacket0x0E1(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8 slot = data.ref<uint8>(0x07);
     if (slot == PChar->equip[SLOT_LINK1])
     {
-        PChar->pushPacket(new CLinkshellMessagePacket(PChar->PLinkshell1));
+        PChar->pushPacket(new CLinkshellMessagePacket(PChar->PLinkshell1, 1));
     }
     else if (slot == PChar->equip[SLOT_LINK2])
     {
-        PChar->pushPacket(new CLinkshellMessagePacket(PChar->PLinkshell2));
+        PChar->pushPacket(new CLinkshellMessagePacket(PChar->PLinkshell2, 2));
     }
     return;
 }
@@ -4333,7 +4333,7 @@ void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     PChar->PLinkshell1->setMessage((int8*)Message.c_str());
                     PChar->PLinkshell1->setMessageTime(MessageTime);
 
-                    PChar->PLinkshell1->PushPacket(0, new CLinkshellMessagePacket(PChar->PLinkshell1));
+                    PChar->PLinkshell1->PushPacket(0, new CLinkshellMessagePacket(PChar->PLinkshell1, 1));
                     return;
                 }
             }
@@ -4341,7 +4341,7 @@ void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         break;
         }
     }
-    PChar->pushPacket(new CLinkshellMessagePacket(nullptr)); // you are not authorized to this action
+    PChar->pushPacket(new CLinkshellMessagePacket(nullptr, 1)); // you are not authorized to this action
     return;
 }
 

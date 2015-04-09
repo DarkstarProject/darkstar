@@ -27,7 +27,7 @@
 
 #include <string.h>
 
-CLinkshellMessagePacket::CLinkshellMessagePacket(CLinkshell* PLinkshell)
+CLinkshellMessagePacket::CLinkshellMessagePacket(CLinkshell* PLinkshell, uint8 lsNum)
 {
     this->type = 0xCC;
 	this->size = 0x58;
@@ -38,7 +38,12 @@ CLinkshellMessagePacket::CLinkshellMessagePacket(CLinkshell* PLinkshell)
     if (PLinkshell != nullptr)
     {
         ref<uint8>(0x04) = 0x70;
-        ref<uint8>(0x05) = 0x06; // +0x80 - show,  +0x40 - set
+        ref<uint8>(0x05) = 0x06;
+
+        if (lsNum == 2)
+        {
+            ref<uint8>(0x05) |= 0x40; //LS2
+        }
 
         memcpy(data+(0x08), PLinkshell->getMessage(), dsp_min(strlen(PLinkshell->getMessage()), 115));
         memcpy(data+(0x8C), PLinkshell->getPoster(), dsp_min(strlen(PLinkshell->getPoster()), 15));
