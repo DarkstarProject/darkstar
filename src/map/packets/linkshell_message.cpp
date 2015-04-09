@@ -32,19 +32,19 @@ CLinkshellMessagePacket::CLinkshellMessagePacket(CLinkshell* PLinkshell)
     this->type = 0xCC;
 	this->size = 0x58;
 
-    WBUFB(data,(0x04)) = 0x03;
-	WBUFB(data,(0x05)) = 0x90;
+    ref<uint8>(0x04) = 0x03;
+    ref<uint8>(0x05) = 0x90;
 
     if (PLinkshell != nullptr)
     {
-        WBUFB(data,(0x04)) = 0x70;
-	    WBUFB(data,(0x05)) = 0x86; // +0x80 - show,  +0x40 - set
+        ref<uint8>(0x04) = 0x70;
+        ref<uint8>(0x05) = 0x06; // +0x80 - show,  +0x40 - set
 
         memcpy(data+(0x08), PLinkshell->getMessage(), dsp_min(strlen(PLinkshell->getMessage()), 115));
         memcpy(data+(0x8C), PLinkshell->getPoster(), dsp_min(strlen(PLinkshell->getPoster()), 15));
         memcpy(data+(0xA0), PLinkshell->getName(), dsp_min(strlen(PLinkshell->getName()), 16));
 
-        WBUFL(data,(0x88)) = PLinkshell->getMessageTime();
+        ref<uint32>(0x88) = PLinkshell->getMessageTime();
     }
-    WBUFL(data,(0x9C)) = 0x01;
+    ref<uint32>(0x9C) = 0x02;
 }
