@@ -6,7 +6,9 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6383; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6385; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7189; -- You can't fish here
-
+  NOTHING_OUT_OF_ORDINARY = 6396;  -- There is nothing out of the ordinary here.
+  
+  
 -- Treasure Coffer/Chest Dialog
 CHEST_UNLOCKED = 7291; -- You unlock the chest!
     CHEST_FAIL = 7292; -- Fails to open the chest.
@@ -17,9 +19,11 @@ CHEST_UNLOCKED = 7291; -- You unlock the chest!
 CHEST_ILLUSION = 7297; -- The chest was but an illusion...
   CHEST_LOCKED = 7298; -- The chest appears to be locked.
 
+
 -- Other Dialog
 FELL = 7309; -- The piece of wood fell off the cliff!
 EVIL = 7310; -- You sense an evil presence...
+FISHBONES = 7324; -- Fish bones lie scattered about the area...
 
 -- conquest Base
 CONQUEST_BASE = 7030; -- Tallying conquest results...
