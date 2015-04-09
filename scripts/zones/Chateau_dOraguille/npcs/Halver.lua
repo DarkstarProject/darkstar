@@ -102,7 +102,7 @@ function onTrigger(player,npc)
 		-- Mission San D'Oria 2-3 Journey Abroad 
 		elseif(currentMission == JOURNEY_ABROAD and MissionStatus == 11) then
 			player:startEvent(0x01fb);
-		elseif(currentMission == JOURNEY_ABROAD and MissionStatus == 1) then
+		elseif(currentMission == JOURNEY_ABROAD and MissionStatus == 0) then
 			player:startEvent(0x01f9);		
 		elseif(currentMission == JOURNEY_ABROAD) then
 			player:startEvent(0x0214);	
