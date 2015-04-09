@@ -596,7 +596,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
             }
             else
             {
-                PacketParser[SmallPD_Type](map_session_data, PChar, SmallPD_ptr);
+                PacketParser[SmallPD_Type](map_session_data, PChar, CBasicPacket(reinterpret_cast<uint8*>(SmallPD_ptr)));
             }
         }
         else
@@ -668,7 +668,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
             PSmallPacket = packetList.front();
 
             PSmallPacket->sequence(map_session_data->server_packet_id);
-            memcpy(buff + *buffsize, PSmallPacket, PSmallPacket->length());
+            memcpy(buff + *buffsize, *PSmallPacket, PSmallPacket->length());
 
             *buffsize += PSmallPacket->length();
             packetList.pop_front();

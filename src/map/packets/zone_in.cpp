@@ -200,7 +200,7 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	memcpy(data+(0xCC), &PChar->stats, 14);
 
     WBUFL(data,(0xE8)) = PChar->GetMaxHP();
-    WBUFL(data,(0xEB)) = PChar->GetMaxMP();
+    WBUFL(data,(0xEC)) = PChar->GetMaxMP();
 
-	WBUFB(data,(0x100)) = 0x01;
+    WBUFB(data, (0x100)) = 0x01;
 }

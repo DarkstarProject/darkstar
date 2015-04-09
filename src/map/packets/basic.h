@@ -29,6 +29,8 @@ This file is part of DarkStar-server source code.
 #include <stdio.h>
 #include <string.h>
 
+#define PACKET_SIZE 0x104
+
 enum ENTITYUPDATE
 {
     ENTITY_SPAWN,
@@ -40,7 +42,7 @@ enum ENTITYUPDATE
 
 /** Base class for all packets
 *
-* Contains a 0x100 byte sized buffer
+* Contains a 0x104 byte sized buffer
 * Access the raw data with ref<T>(index)
 *
 */
@@ -48,18 +50,46 @@ class CBasicPacket
 {
 protected:
 
-    uint8 data[0x100];
+    uint8* data;
     uint8& type;
     uint8& size;
     uint16& code;
+    bool owner;
 
 public:
 
     CBasicPacket()
-        : type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<uint16>(2))
+        : data(new uint8[PACKET_SIZE]), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<uint16>(2)), owner(true)
     {
-        std::fill_n(data, sizeof data, 0);
+        std::fill(data, data + PACKET_SIZE, 0);
     }
+
+    CBasicPacket(uint8* _data)
+        : data(_data), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<uint16>(2)), owner(false)
+    {}
+
+    CBasicPacket(const CBasicPacket& other)
+        : data(new uint8[PACKET_SIZE]), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<uint16>(2)), owner(true)
+    {
+        memcpy(data, other.data, PACKET_SIZE);
+    }
+
+    CBasicPacket(CBasicPacket&& other)
+        : data(other.data), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<uint16>(2)), owner(other.owner)
+    {
+        other.data = nullptr;
+    }
+
+    virtual ~CBasicPacket()
+    {
+        if (owner && data)
+        {
+            delete[] data;
+        }
+    }
+
+    CBasicPacket& operator= (const CBasicPacket& other) = delete;
+    CBasicPacket& operator= (CBasicPacket&& other) = delete;
 
     /* Getters for the header */
 
@@ -109,6 +139,11 @@ public:
     operator uint8*()
     {
         return data;
+    }
+
+    int8* operator[] (const int index)
+    {
+        return reinterpret_cast<int8*>(data)+index;
     }
 };
 
