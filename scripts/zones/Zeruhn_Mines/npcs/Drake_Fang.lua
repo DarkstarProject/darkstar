@@ -25,18 +25,21 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") >= 1) then
-		if(player:getVar("MissionStatus") == 1) then
+
+	local currentMission = player:getCurrentMission(BASTOK);
+	local MissionStatus = player:getVar("MissionStatus");
+	-- Bastok 6-1
+	if(currentMission == RETURN_OF_THE_TALEKEEPER and MissionStatus >= 1) then
+		if(MissionStatus == 1) then
 			player:startEvent(0x00ca);
 		else
 			player:startEvent(0x00cb);
 		end
-		
-	elseif(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 1) then
+	-- Bastok 8-2	
+	elseif(currentMission == ENTER_THE_TALEKEEPER and MissionStatus == 0) then
 		player:startEvent(0x00ca);
-	elseif(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER) then
-		if(player:getVar("MissionStatus") == 4) then
+	elseif(currentMission == ENTER_THE_TALEKEEPER) then
+		if(MissionStatus == 4) then
 			player:startEvent(0x00cc);
 		end
 	else
