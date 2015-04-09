@@ -1,3 +1,4 @@
+
 /*
 MySQL Data Transfer
 Source Host: localhost
@@ -323,7 +324,7 @@ INSERT INTO `traits` VALUES ('63','resist amnesia','18','35','2','253','3','SOA'
 INSERT INTO `traits` VALUES ('63','resist amnesia','18','55','3','253','5','SOA');
 INSERT INTO `traits` VALUES ('63','resist amnesia','18','75','4','253','6','SOA');
 INSERT INTO `traits` VALUES ('64','treasure hunter ii','6','45','2','303','1',null);
-INSERT INTO `traits` VALUES ('65','treasure hunter iii','6','90','3','303','1',ABYSSEA);
+INSERT INTO `traits` VALUES ('65','treasure hunter iii','6','90','3','303','1','ABYSSEA');
 INSERT INTO `traits` VALUES ('66','kick attacks','2','51','1','292','10',null);
 INSERT INTO `traits` VALUES ('66','kick attacks','2','71','2','292','13',null);
 INSERT INTO `traits` VALUES ('66','kick attacks','2','96','3','292','15','ABYSSEA');
