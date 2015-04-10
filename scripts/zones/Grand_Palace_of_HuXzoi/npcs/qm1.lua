@@ -33,7 +33,7 @@ function onTrade(player,npc,trade)
     
     if (validTrade > 0) then -- Don't want to take their random shit
         player:tradeComplete(); -- Take the items
-        SetServerVariable("[SEA]IxAern_DropRate", chance); -- Used to adjust droprates for IxAern's onMobSpawn.
+        npc:setLocalVar("[SEA]IxAern_DropRate", chance); -- Used to adjust droprates for IxAern's onMobSpawn.
         GetMobByID(IxAern):setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos());
         SpawnMob(IxAern,300):updateEnmity(player);
         

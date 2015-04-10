@@ -18,15 +18,16 @@ end;
 -----------------------------------
 
 function onMobSpawn(mob)
-    local chance = GetServerVariable("[SEA]IxAern_DropRate"); -- Adjust drop rate for the items based on the organs traded.
-    if(math.random(0,1) > 0) then     
+    local QuestionMark = 16916819; -- The ??? that spawned this mob.
+    local chance = GetNPCByID(QuestionMark):getLocalVar("[SEA]IxAern_DropRate"); -- Adjust drop rate for the items based on the organs traded to the ???.
+    if (math.random(0,1) > 0) then     
         SetDropRate(4398,1851,chance*10); -- Deed Of Placidity
         SetDropRate(4398,1901,0);
     else
         SetDropRate(4398,1851,0);
         SetDropRate(4398,1901,chance*10); -- Vice of Antipathy
     end
-    SetServerVariable("[SEA]IxAern_DropRate", 0); -- Clears the var from the db.
+    GetNPCByID(QuestionMark):setLocalVar("[SEA]IxAern_DropRate", 0); -- Clears the var from the ???.
 end;
 
 -----------------------------------
