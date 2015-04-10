@@ -34,7 +34,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x00cc);
 	elseif(currentMission == ENTER_THE_TALEKEEPER and MissionStatus > 1 and MissionStatus < 4 ) then
 		player:startEvent(0x00cb);
-	elseif(currentMission == ENTER_THE_TALEKEEPER and MissionStatus == 1) then
+	elseif(currentMission == ENTER_THE_TALEKEEPER and MissionStatus == 0) then
 		player:startEvent(0x00ca);	
 	-- Return of the Talekeeper 6-1
 	elseif(currentMission == RETURN_OF_THE_TALEKEEPER and MissionStatus > 1) then
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x00c8) then
 		player:setVar("MissionStatus",2);
 	elseif(csid == 0x00ca) then
-		player:setVar("Missionstatus",2);
+		player:setVar("Missionstatus",1);
 	elseif(csid == 0x00cc) then
 		player:setVar("Missionstatus",5);
 		player:delKeyItem(OLD_PIECE_OF_WOOD);
