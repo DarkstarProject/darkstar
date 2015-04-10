@@ -99,7 +99,7 @@ namespace message
 					else
 					{
 						CBasicPacket* newPacket = new CBasicPacket();
-						memcpy(newPacket, packet->data(), dsp_min(packet->size(), sizeof(CBasicPacket)));
+                        memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
 						PChar->pushPacket(newPacket);
 					}
 				}
@@ -121,14 +121,14 @@ namespace message
 							for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
 							{
 								CBasicPacket* newPacket = new CBasicPacket();
-								memcpy(newPacket, packet->data(), dsp_min(packet->size(), sizeof(CBasicPacket)));
+                                memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
 								((CParty*)PChar->PParty->m_PAlliance->partyList.at(i))->PushPacket(RBUFL(extra->data(), 4), 0, newPacket);
 							}
 						}
 						else
 						{
 							CBasicPacket* newPacket = new CBasicPacket();
-							memcpy(newPacket, packet->data(), dsp_min(packet->size(), sizeof(CBasicPacket)));
+                            memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
 							PChar->PParty->PushPacket(RBUFL(extra->data(), 4), 0, newPacket);
 						}
 					}
@@ -142,7 +142,7 @@ namespace message
 				if (PLinkshell)
 				{
 					CBasicPacket* newPacket = new CBasicPacket();
-					memcpy(newPacket, packet->data(), dsp_min(packet->size(), sizeof(CBasicPacket)));
+                    memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
 					PLinkshell->PushPacket(RBUFL(extra->data(), 4), newPacket);
 				}
 				break;
@@ -156,7 +156,7 @@ namespace message
 						PZone->ForEachChar([&packet](CCharEntity* PChar)
 						{
 							CBasicPacket* newPacket = new CBasicPacket();
-							memcpy(newPacket, packet->data(), dsp_min(packet->size(), sizeof(CBasicPacket)));
+                            memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
 							PChar->pushPacket(newPacket);
 						});
 					}
@@ -170,7 +170,7 @@ namespace message
 					PZone->ForEachChar([&packet](CCharEntity* PChar)
 					{
 						CBasicPacket* newPacket = new CBasicPacket();
-						memcpy(newPacket, packet->data(), dsp_min(packet->size(), sizeof(CBasicPacket)));
+                        memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
 						PChar->pushPacket(newPacket);
 					});
 				});
@@ -203,7 +203,7 @@ namespace message
 					PInvitee->InvitePending.id = RBUFL(extra->data(), 6);
 					PInvitee->InvitePending.targid = RBUFW(extra->data(), 10);
 					CBasicPacket* newPacket = new CBasicPacket();
-					memcpy(newPacket, packet->data(), dsp_min(packet->size(), sizeof(CBasicPacket)));
+                    memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
 					PInvitee->pushPacket(newPacket);
 				}
 				break;
@@ -310,7 +310,7 @@ namespace message
 				if (PChar)
 				{
 					CBasicPacket* newPacket = new CBasicPacket();
-					memcpy(newPacket, packet->data(), dsp_min(packet->size(), sizeof(CBasicPacket)));
+                    memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
 					PChar->pushPacket(newPacket);
 				}
 				break;
@@ -473,7 +473,7 @@ namespace message
 
         if (packet)
         {
-            msg.packet = new zmq::message_t(packet, packet->length(), [](void *data, void *hint) {delete (CBasicPacket*) data; });
+            msg.packet = new zmq::message_t(*packet, packet->length(), [](void *data, void *hint) {delete[] (uint8*) data; });
         }
         else
         {
