@@ -181,6 +181,7 @@ NUMBER_OF_DM_EARRINGS = 1; -- Number of earrings players can simultaneously own 
 HOMEPOINT_TELEPORT = 0; -- Enables the homepoint teleport system
 DIG_ABUNDANCE_BONUS = 0; -- Increase chance of digging up an item (450  = item digup chance +45)
 DIG_FATIGUE = 1; -- Set to 0 to disable Dig Fatigue
+MIASMA_FILTER_COOLDOWN = 5;  -- Number of days a player can obtain a Miasma Filter KI for any of the Boneyard Gully ENMs (Minimum:1)
 
 -- LIMBUS
 BETWEEN_2COSMOCLEANSE_WAIT_TIME = 3; -- day between 2 limbus keyitem  (default 3 days)
