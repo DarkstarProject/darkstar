@@ -44,7 +44,6 @@ function onMobFight(mob,target)
     -- It forces the minions to 2hour as well. Wiki says 50% but all videos show 60%.
     if (mob:getLocalVar("BracerMode") == 0) then
         if (mob:getHPP() < math.random(50,60)) then
-            target:PrintToPlayer("We are in the window");
             -- Go into bracer mode
             mob:setLocalVar("BracerMode",1);
             mob:addMod(MOD_ATT, 200);
