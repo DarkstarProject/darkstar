@@ -3,7 +3,9 @@
 -- Item: Sirocco Kukri
 -- Additional Effect: Wind Damage
 -----------------------------------------
-require("scripts/globals/status");
+
+
+require("scripts/globals/status");
 require("scripts/globals/magic");
 
 -----------------------------------
@@ -11,19 +13,25 @@ require("scripts/globals/magic");
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)
-    local dmg = math.random(3,10);
-    local params = {};
-    params.bonusmab = 0;
-    params.includemab = false;
-    dmg = addBonusesAbility(player, ELE_WIND, target, dmg, params);
-    dmg = dmg * applyResistanceAddEffect(player,target,ELE_WIND,0);
-    dmg = adjustForTarget(target,dmg,ELE_WIND);
-    dmg = finalMagicNonSpellAdjustments(player,target,ELE_WIND,dmg);
+    local chance = 10;
 
-    local message = 163;
-    if (dmg < 0) then
-        message = 167;
+    if (math.random(0,99) >= chance) then
+        return 0,0,0;
+    else
+        local dmg = math.random(3,10);
+        local params = {};
+        params.bonusmab = 0;
+        params.includemab = false;
+        dmg = addBonusesAbility(player, ELE_EARTH, target, dmg, params);
+        dmg = dmg * applyResistanceAddEffect(player,target,ELE_EARTH,0);
+        dmg = adjustForTarget(target,dmg,ELE_EARTH);
+        dmg = finalMagicNonSpellAdjustments(player,target,ELE_EARTH,dmg);
+
+        local message = 163;
+        if (dmg < 0) then
+            message = 167;
+        end
+
+        return SUBEFFECT_EARTH_DAMAGE,message,dmg;
     end
-
-    return SUBEFFECT_WIND_DAMAGE,message,dmg;
 end;

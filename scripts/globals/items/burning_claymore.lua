@@ -1,8 +1,9 @@
 -----------------------------------------
 -- ID: 16929
--- Item: Burning Claymore
+-- Item: Burning  Claymore 
 -- Additional Effect: Fire Damage
 -----------------------------------------
+
 
 require("scripts/globals/status");
 require("scripts/globals/magic");

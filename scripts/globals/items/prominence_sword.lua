@@ -1,9 +1,9 @@
 -----------------------------------------
 -- ID: 18381
--- Item: Prominence Sword
+-- Item: Prominence Sword 
 -- Additional Effect: Fire Damage
--- Enchantment: Enfire
 -----------------------------------------
+
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
@@ -13,7 +13,7 @@ require("scripts/globals/magic");
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)
-    local chance = 5;
+    local chance = 10;
 
     if (math.random(0,99) >= chance) then
         return 0,0,0;
@@ -34,20 +34,4 @@ function onAdditionalEffect(player,target,damage)
 
         return SUBEFFECT_FIRE_DAMAGE,message,dmg;
     end
-end;
-
------------------------------------------
--- OnItemCheck
------------------------------------------
-
-function onItemCheck(target)
-    return 0;
-end;
------------------------------------------
--- OnItemUse
------------------------------------------
-
-function onItemUse(target)
-    local effect = EFFECT_ENFIRE;
-    doEnspell(target,target,nil,effect);
 end;

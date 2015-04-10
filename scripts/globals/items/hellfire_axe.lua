@@ -4,6 +4,7 @@
 -- Additional Effect: Fire Damage
 -----------------------------------------
 
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 

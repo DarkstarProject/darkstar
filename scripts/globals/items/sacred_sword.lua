@@ -1,9 +1,9 @@
 -----------------------------------------
 -- ID: 17682
--- Sacred Sword
--- Additional effect: Light damage
--- Enchantment: "Enlight"
+-- Item: sacred sword
+-- Additional Effect: Light Damage
 -----------------------------------------
+
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
@@ -13,12 +13,12 @@ require("scripts/globals/magic");
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)
-    local chance = 5;
+    local chance = 10;
 
     if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
-        local dmg = math.random(7,21);
+        local dmg = math.random(3,10);
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
@@ -34,20 +34,4 @@ function onAdditionalEffect(player,target,damage)
 
         return SUBEFFECT_LIGHT_DAMAGE,message,dmg;
     end
-end;
-
------------------------------------------
--- OnItemCheck
------------------------------------------
-
-function onItemCheck(target)
-    return 0;
-end;
------------------------------------------
--- OnItemUse
------------------------------------------
-
-function onItemUse(target)
-    local effect = EFFECT_ENLIGHT;
-    doEnspell(target,target,nil,effect);
 end;
