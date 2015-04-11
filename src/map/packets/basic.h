@@ -133,7 +133,6 @@ public:
     template<typename T>
     T& ref(std::size_t index)
     {
-        DSP_DEBUG_BREAK_IF(!(index < 2 * size));
         return *reinterpret_cast<T*>(data + index);
     }
 
