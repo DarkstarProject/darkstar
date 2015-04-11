@@ -584,7 +584,7 @@ function checkNonTradeBCNM(player,npc)
 		if(player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11) then -- Mission 5-1
 			mask = GetBattleBitmask(512,Zone,1); 
 			player:setVar("trade_bcnmid",512);
-		elseif(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("SANDO92") == 3)then -- bastok 9-2 
+		elseif(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") == 3)then -- sando 9-2 
 			mask = GetBattleBitmask(516,Zone,1);
 			player:setVar("trade_bcnmid",516);
 
@@ -756,7 +756,7 @@ function CutsceneSkip(player,npc)
 	elseif(Zone == 206) then -- Qu'Bia Arena
 		if((player:hasCompletedMission(player:getNation(),14)) or (player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") > 11)) then -- Mission 5-1
 			skip = 1;
-		elseif((player:hasCompletedMission(player:getNation(),23)) or (player:getCurrentMission(player:getNation()) == 23 and player:getVar("SANDO92") > 4)) then -- Mission 9-2
+		elseif((player:hasCompletedMission(player:getNation(),23)) or (player:getCurrentMission(player:getNation()) == 23 and player:getVar("MissionStatus") > 4)) then -- Mission 9-2
 			skip = 1;
 		end
 	elseif(Zone == 207) then -- Cloister of Flames

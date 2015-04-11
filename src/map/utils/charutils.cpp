@@ -315,31 +315,32 @@ namespace charutils
 
         const int8* fmtQuery =
             "SELECT "
-            "charname,"				//  0
-            "pos_zone,"				//  1
-            "pos_prevzone,"			//  2
-            "pos_rot,"				//  3
-            "pos_x,"					//  4
-            "pos_y,"					//  5
-            "pos_z,"					//  6
-            "boundary,"				//  7
-            "home_zone,"				//  8
-            "home_rot,"				//  9
-            "home_x,"					// 10
-            "home_y,"					// 11
-            "home_z,"					// 12
-            "nation,"					// 13
-            "quests,"					// 14
-            "keyitems,"				// 15
-            "spells,"					// 16
-            "abilities,"				// 17
-            "titles,"					// 18
-            "zones,"					// 19
-            "missions,"				// 20
-            "assault,"                // 21
-            "campaign,"               // 22
-            "playtime,"				// 23
-            "isnewplayer "            // 24
+            "charname,"             //  0
+            "pos_zone,"             //  1
+            "pos_prevzone,"         //  2
+            "pos_rot,"              //  3
+            "pos_x,"                //  4
+            "pos_y,"                //  5
+            "pos_z,"                //  6
+            "boundary,"             //  7
+            "home_zone,"            //  8
+            "home_rot,"             //  9
+            "home_x,"               // 10
+            "home_y,"               // 11
+            "home_z,"               // 12
+            "nation,"               // 13
+            "quests,"               // 14
+            "keyitems,"             // 15
+            "spells,"               // 16
+            "abilities,"            // 17
+            "titles,"               // 18
+            "zones,"                // 19
+            "missions,"             // 20
+            "assault,"              // 21
+            "campaign,"             // 22
+            "playtime,"             // 23
+            "isnewplayer,"          // 24
+            "campaign_allegiance "  // 25
             "FROM chars "
             "WHERE charid = %u";
 
@@ -417,6 +418,7 @@ namespace charutils
 
             PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 23));
             PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 24) == 1 ? true : false;
+            PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 25);
         }
 
 
@@ -541,8 +543,6 @@ namespace charutils
             PChar->jobs.job[JOB_GEO] = (uint8)Sql_GetIntData(SqlHandle, 22);
             PChar->jobs.job[JOB_RUN] = (uint8)Sql_GetIntData(SqlHandle, 23);
         }
-
-
 
         fmtQuery = "SELECT mode, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run, merits, limits "
             "FROM char_exp "
@@ -2052,9 +2052,9 @@ namespace charutils
                 continue;
             }
 
-            if (PChar->GetMLevel() >= PAbility->getLevel() && PAbility->getID() < 496)
+            if (PChar->GetMLevel() >= PAbility->getLevel())
             {
-                if (PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility))
+                if (PAbility->getID() < 496 && PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility))
                 {
                     addAbility(PChar, PAbility->getID());
                     if (!PChar->PRecastContainer->Has(RECAST_ABILITY, PAbility->getRecastId()))
@@ -2079,13 +2079,13 @@ namespace charutils
         {
             CAbility* PAbility = AbilitiesList.at(i);
 
-            if (PChar->GetSLevel() >= PAbility->getLevel() && PAbility->getID() < 496)
+            if (PChar->GetSLevel() >= PAbility->getLevel())
             {
                 if (PAbility == nullptr){
                     continue;
                 }
 
-                if (PAbility->getLevel() != 0)
+                if (PAbility->getLevel() != 0  && PAbility->getID() < 496)
                 {
                     if (PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility) && !(PAbility->getAddType() & ADDTYPE_MAIN_ONLY))
                     {
@@ -2377,7 +2377,7 @@ namespace charutils
             int16  Diff = MaxSkill - CurSkill / 10;
             double SkillUpChance = Diff / 5.0 + map_config.skillup_chance_multiplier * (2.0 - log10(1.0 + CurSkill / 100));
 
-            double random = WELL512::drand();
+            double random = WELL512::GetRandomNumber(1.);
 
             if (SkillUpChance > 0.5)
             {
@@ -2392,7 +2392,7 @@ namespace charutils
 
                 for (uint8 i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
                 {
-                    random = WELL512::drand();
+                    random = WELL512::GetRandomNumber(1.);
 
                     switch (tier)
                     {
@@ -2819,33 +2819,22 @@ namespace charutils
             gil += dsp_cap(gBonus, 1, map_config.max_gil_bonus);
         }
 
-        //distribute to said members (perhaps store pointers to each member in first loop?)
+        // Distribute gil to player/party/alliance
         if (PChar->PParty != nullptr)
         {
-            // TODO: плохая реализация - два раза проверяем дистанцию, два раза проверяем один и тот же массив
-
-            uint8 count = 0;
-            //work out how many pt members should get the gil
-            for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
+            PChar->ForAlliance([PMob, gil](CBattleEntity* PPartyMember)
             {
-                CBattleEntity* PMember = PChar->PParty->members[i];
-                if (PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
+                uint8 count = 0;
+                //work out how many pt members should get the gil
+                CCharEntity* PMember = (CCharEntity*)PPartyMember;
+                if (PPartyMember->getZone() == PMob->getZone() && distance(PPartyMember->loc.p, PMob->loc.p) < 100)
                 {
                     count++;
-                }
-            }
-
-            uint32 gilperperson = count == 0 ? gil : (gil / count);
-
-            for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
-            {
-                CCharEntity* PMember = (CCharEntity*)PChar->PParty->members[i];
-                if (PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
-                {
+                    uint32 gilperperson = count == 0 ? gil : (gil / count);
                     UpdateItem(PMember, LOC_INVENTORY, 0, gilperperson);
                     PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, gilperperson, 0, 565));
                 }
-            }
+            } );
         }
         else if (distance(PChar->loc.p, PMob->loc.p) < 100)
         {
@@ -3097,7 +3086,7 @@ namespace charutils
                         uint16 Pzone = PMember->getZone();
                         if (PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255)))
                         {
-                            if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && WELL512::irand() % 100 < 20 &&
+                            if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && WELL512::GetRandomNumber(100) < 20 &&
                                 PMember->loc.zone == PMob->loc.zone) // Need to move to SIGNET_CHANCE constant
                             {
                                 PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
@@ -3919,6 +3908,25 @@ namespace charutils
         Sql_Query(SqlHandle,
             Query,
             PChar->profile.nation,
+            PChar->id);
+    }
+
+    /************************************************************************
+    *                                                                       *
+    *  Saves characters current campaign allegiance                         *
+    *                                                                       *
+    ************************************************************************/
+
+    void SaveCampaignAllegiance(CCharEntity* PChar)
+    {
+        const int8* Query =
+            "UPDATE chars "
+            "SET campaign_allegiance = %u "
+            "WHERE charid = %u;";
+
+        Sql_Query(SqlHandle,
+            Query,
+            PChar->profile.campaign_allegiance,
             PChar->id);
     }
 

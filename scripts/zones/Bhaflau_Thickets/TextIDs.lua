@@ -15,4 +15,8 @@ MEMBER_TOO_FAR = 7569; -- One or more party members are too far away from the en
  
 -- Other Texts
 NOTHING_HAPPENS = 7546; -- Nothing happens...
-       RESPONSE = 7305; -- There is no response...
+RESPONSE = 7305; -- There is no response...
+
+--chocobo digging
+DIG_THROW_AWAY = 7043;
+FIND_NOTHING = 7045;

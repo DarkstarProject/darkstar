@@ -49,13 +49,13 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 	{
 
 		// all mobs will default to this distance
-		float maxRadius = 10.0f;
+		float maxRadius = 25.0f;
 
 		// sight aggro mobs will move a bit farther
 		// this is until this data is put in the database
 		if (m_roamFlags & ROAMFLAG_MEDIUM)
 		{
-			maxRadius = 20.0f;
+			maxRadius = 35.0f;
 		}
 
 		// TODO: finish roam flags. distance should have a distance limit

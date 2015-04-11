@@ -27,3 +27,6 @@ ALREADY_OBTAINED_FRAG = 7713; -- You have already obtained this monument's
 -- conquest Base
 CONQUEST_BASE = 7030; -- Tallying conquest results...
 
+-- chocobo digging
+DIG_THROW_AWAY = 7544; -- You dig up ?Possible Special Code: 01??Possible Special Code: 01??Possible Special Code: 01? ?Possible Special Code: 01??Possible Special Code: 05?$?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?, but your inventory is full.
+FIND_NOTHING = 7546;

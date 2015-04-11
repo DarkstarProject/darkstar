@@ -30,7 +30,7 @@ function onMobEngaged(mob,target)
         end
     end
 
-    local hp = math.random(0,60)
+    local hp = math.random(1,60);
     mob:setLocalVar("Mijin", hp);
 end;
 

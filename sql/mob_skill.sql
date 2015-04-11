@@ -66,13 +66,13 @@ INSERT INTO `mob_skill` VALUES (22,357,812,'Pit_Ambush',0,9.0,2000,0,4,0,0,0);
 -- Two Hours
 -- make a mob 2 hour by setting mobmod_main_2hour
 INSERT INTO `mob_skill` VALUES (432,0,432,'Mighty_Strikes',0,7.0,2000,0,1,2,0,0);
-INSERT INTO `mob_skill` VALUES (434,0,432,'Hundred_Fists',0,7.0,2000,0,1,2,0,0);
-INSERT INTO `mob_skill` VALUES (433,0,432,'Benediction',1,20.0,2000,0,1,2,0,0);
-INSERT INTO `mob_skill` VALUES (435,0,432,'Manafont',0,7.0,2000,0,1,2,0,0);
-INSERT INTO `mob_skill` VALUES (436,0,432,'Chainspell',0,7.0,2000,0,1,2,0,0);
-INSERT INTO `mob_skill` VALUES (437,0,432,'Perfect_Dodge',0,7.0,2000,0,1,2,0,0);
-INSERT INTO `mob_skill` VALUES (438,0,432,'Invincible',0,7.0,2000,0,1,2,0,0);
-INSERT INTO `mob_skill` VALUES (439,0,432,'Blood_Weapon',0,7.0,2000,0,1,2,0,0);
+INSERT INTO `mob_skill` VALUES (434,0,434,'Hundred_Fists',0,7.0,2000,0,1,2,0,0);
+INSERT INTO `mob_skill` VALUES (433,0,433,'Benediction',1,20.0,2000,0,1,2,0,0);
+INSERT INTO `mob_skill` VALUES (435,0,435,'Manafont',0,7.0,2000,0,1,2,0,0);
+INSERT INTO `mob_skill` VALUES (436,0,436,'Chainspell',0,7.0,2000,0,1,2,0,0);
+INSERT INTO `mob_skill` VALUES (437,0,437,'Perfect_Dodge',0,7.0,2000,0,1,2,0,0);
+INSERT INTO `mob_skill` VALUES (438,0,438,'Invincible',0,7.0,2000,0,1,2,0,0);
+INSERT INTO `mob_skill` VALUES (439,0,439,'Blood_Weapon',0,7.0,2000,0,1,2,0,0);
 INSERT INTO `mob_skill` VALUES (484,0,432,'Familiar',0,7.0,2000,0,1,2,0,0);
 INSERT INTO `mob_skill` VALUES (440,0,432,'Soul_Voice',0,7.0,2000,0,1,2,0,0);
 INSERT INTO `mob_skill` VALUES (479,0,20,'Eagle_Eye_Shot',0,25.0,2000,0,4,2,0,0);
@@ -874,6 +874,14 @@ INSERT INTO `mob_skill` VALUES (352,189,352,'Arm_Block',0,7.0,2000,1500,1,0,0,0)
 INSERT INTO `mob_skill` VALUES (351,189,351,'Slam_Dunk',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (349,189,349,'Aerial_Wheel',0,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (350,189,350,'Shoulder_Attack',0,7.0,2000,1500,4,0,0,1);
+-- warlord Rojgnoj
+INSERT INTO `mob_skill` VALUES (438,334,438,'Invincible',0,7.0,2000,0,1,2,0,0);
+-- left hand
+INSERT INTO `mob_skill` VALUES (435,334,435,'Manafont',0,7.0,2000,0,1,2,0,0);
+-- Yukvok of clan death
+INSERT INTO `mob_skill` VALUES (479,334,21,'Eagle_Eye_Shot',0,25.0,2000,0,4,2,0,0);
+-- right hand
+INSERT INTO `mob_skill` VALUES (439,334,439,'Blood_Weapon',0,7.0,2000,0,1,2,0,0);
 
 -- INSERT INTO `mob_skill` VALUES (810,?,740,'Fanatic_Dance',1,10.0,2000,2000,4,0,0,0); -- Only NM's in Dynamis and Falsespinner Bhudbrodd
 -- INSERT INTO `mob_skill` VALUES (2155,?,?,'Phantasmal_Dance',1,15.0,2000,2000,4,0,0,0); -- certain NM only
@@ -1127,6 +1135,12 @@ INSERT INTO `mob_skill` VALUES (427,61,427,'Bludgeon',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (428,61,428,'Deal_Out',4,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (77,61,77,'Double_Down',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (74,61,74,'Shuffle',4,10.0,2000,1500,4,0,0,0);
+
+INSERT INTO `mob_skill` VALUES (438,61,438,'Invincible',0,7.0,2000,0,1,2,0,0);
+INSERT INTO `mob_skill` VALUES (433,61,433,'Benediction',1,20.0,2000,0,1,2,0,0);
+INSERT INTO `mob_skill` VALUES (435,61,435,'Manafont',0,7.0,2000,0,1,2,0,0);
+INSERT INTO `mob_skill` VALUES (436,61,436,'Chainspell',0,7.0,2000,0,1,2,0,0);
+
 
 -- anim 432 = 2h cloud
 -- now they dont start matching up....
@@ -2178,6 +2192,8 @@ INSERT INTO `mob_skill` VALUES (724,480,683,'Freeze_Bite',0,10,2000,500,4,0,0,0)
 INSERT INTO `mob_skill` VALUES (725,480,684,'GroundStrike',0,10,2000,500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (726,480,671,'Abyssal_Drain',0,10,2000,500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (727,480,672,'Abyssal_strike',0,10,2000,500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (439,480,439,'Blood_Weapon',0,7.0,2000,0,1,2,0,0);
+
 -- zeid 2 phase 2 only
 INSERT INTO `mob_skill` VALUES (728,480,708,'Summonshadows',0,10,3000,0,4,0,0,0);
 
@@ -2195,8 +2211,8 @@ INSERT INTO `mob_skill` VALUES (713,483,677,'Flat_blade',0,7,2500,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (714,483,678,'Savage_blade',0,7,2500,1500,4,0,0,0);
 
 -- Ajido Marujido
-INSERT INTO `mob_skill` VALUES (714,484,674,'Warp_in',0,7,900,0,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (715,484,675,'Warp_out',0,7,900,0,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (714,481,674,'Warp_in',0,7,900,0,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (715,481,675,'Warp_out',0,7,900,0,1,0,0,0);
 
 
 
@@ -3616,3 +3632,8 @@ INSERT INTO `mob_skill` VALUES (21, 357, 811, 'Venom_Spray', 4, 10.0, 2000, 1000
 INSERT INTO `mob_skill` VALUES (20, 357, 810, 'Sand_Pit', 0, 7.0, 2000, 1000, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (19, 357, 809, 'Sand_Blast', 1, 8.0, 2000, 1000, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (23, 357, 813, 'Mandibular_Bite', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+
+-- Ix'Aern (MNK) and his minions
+INSERT INTO `mob_skill` VALUES (3155,3,434,'Ix_aern_mnk',0,7.0,2000,0,1,2,0,0);
+INSERT INTO `mob_skill` VALUES (3156,3,436,'Qn_aern_rdm',0,7.0,2000,0,1,2,0,0);
+INSERT INTO `mob_skill` VALUES (3157,3,433,'Qn_aern_whm',1,20.0,2000,0,1,2,0,0);

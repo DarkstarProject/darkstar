@@ -34,11 +34,11 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 	this->type = 0x63;
 	this->size = 0x08;
 	
-	WBUFB(data,(0x04)-4) = 0x02;
-	WBUFB(data,(0x06)-4) = 0x0C;
+	WBUFB(data,(0x04)) = 0x02;
+	WBUFB(data,(0x06)) = 0x0C;
 
-    WBUFW(data,(0x08)-4) = PChar->PMeritPoints->GetLimitPoints();
-    WBUFB(data,(0x0A)-4) = PChar->PMeritPoints->GetMeritPoints();
+    WBUFW(data,(0x08)) = PChar->PMeritPoints->GetLimitPoints();
+    WBUFB(data,(0x0A)) = PChar->PMeritPoints->GetMeritPoints();
 
 	uint8 flag = 0x00;
 
@@ -58,8 +58,8 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 		flag |= 0x40;
 	}
 
-	WBUFB(data,(0x0B)-4) = flag;
-	WBUFB(data,(0x0C)-4) = map_config.max_merit_points;
+	WBUFB(data,(0x0B)) = flag;
+	WBUFB(data,(0x0C)) = map_config.max_merit_points;
 
     PChar->pushPacket(new CBasicPacket(*this));
 
@@ -67,27 +67,27 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 
     this->size = 0x6E;
 
-	memset(data, 0, sizeof(data));
+	memset(data + 4, 0, sizeof(PACKET_SIZE -4));
 
     uint8 packet[] = 
     {
 		0x03, 0x00, 0xD8
     };
 
-	memcpy(data+(0x04)-4, &packet, sizeof(packet));
+	memcpy(data+(0x04), &packet, sizeof(packet));
 	PChar->pushPacket(new CBasicPacket(*this));
 
 	// ver 30130319_5 third packet
 
 	this->size = 0x44;
 
-	memset(data, 0, sizeof(data));
+	memset(data + 4, 0, sizeof(PACKET_SIZE -4));
 
 	uint8 packet2[] = 
 	{
 		0x04, 0x00, 0x84
 	};
-	memcpy(data+(0x04)-4, &packet2, sizeof(packet2));
+	memcpy(data+(0x04), &packet2, sizeof(packet2));
 }
 
 

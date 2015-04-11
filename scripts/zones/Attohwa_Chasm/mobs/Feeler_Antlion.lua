@@ -15,7 +15,6 @@ require("scripts/globals/magic");
 function onMobInitialize(mob)
 	mob:addMod(MOD_REGAIN, 40);	-- Don't know exact value
 	mob:addMod(MOD_REGEN, 30);
-	mob:setLocalVar("SAND_BLAST",1);
 end;
 
 -----------------------------------
@@ -23,6 +22,7 @@ end;
 -----------------------------------
 
 function onMobSpawn(mob)
+	mob:setLocalVar("SAND_BLAST",1);
 end;
 
 -----------------------------------

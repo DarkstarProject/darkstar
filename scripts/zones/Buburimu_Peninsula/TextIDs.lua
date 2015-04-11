@@ -30,3 +30,7 @@ SIGN_5 = 7362; -- West: Mhaura Northwest: Tahrongi Canyon
 
 -- conquest Base
 CONQUEST_BASE = 7057; -- Tallying conquest results...
+
+--chocobo digging
+DIG_THROW_AWAY = 7235;
+FIND_NOTHING = 7237;

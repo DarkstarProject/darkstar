@@ -32,11 +32,11 @@ CPositionPacket::CPositionPacket(CBaseEntity* PEntity)
 	this->type = 0x5B;
 	this->size = 0x0E;
 	
-	WBUFF(data,(0x04)-4) = PEntity->loc.p.x;
-	WBUFF(data,(0x08)-4) = PEntity->loc.p.y;  
-	WBUFF(data,(0x0C)-4) = PEntity->loc.p.z; 
-	WBUFB(data,(0x17)-4) = PEntity->loc.p.rotation;
+	WBUFF(data,(0x04)) = PEntity->loc.p.x;
+	WBUFF(data,(0x08)) = PEntity->loc.p.y;  
+	WBUFF(data,(0x0C)) = PEntity->loc.p.z; 
+	WBUFB(data,(0x17)) = PEntity->loc.p.rotation;
 
-	WBUFL(data,(0x10)-4) = PEntity->id;
-	WBUFW(data,(0x14)-4) = PEntity->targid;
+	WBUFL(data,(0x10)) = PEntity->id;
+	WBUFW(data,(0x14)) = PEntity->targid;
 }

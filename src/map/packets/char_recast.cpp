@@ -48,13 +48,13 @@ CCharRecastPacket::CCharRecastPacket(CCharEntity* PChar)
 
         if (recast->ID != 0)
         {
-            WBUFL(data, (0x0C + count * 8) - 4) = recasttime;
-            WBUFB(data, (0x0F + count * 8) - 4) = recast->ID;
+            WBUFL(data, (0x0C + count * 8) ) = recasttime;
+            WBUFB(data, (0x0F + count * 8) ) = recast->ID;
             count++;
         }
         else
         {
-            WBUFL(data, (0x04) - 4) = recasttime;  // 2h ability (recast id is 0)
+            WBUFL(data, (0x04) ) = recasttime;  // 2h ability (recast id is 0)
         }
     }
 }

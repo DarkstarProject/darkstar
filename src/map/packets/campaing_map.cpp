@@ -64,7 +64,7 @@ CCampaingPacket::CCampaingPacket(CCharEntity * PChar, uint8 number)
 
 	switch (number)
 	{
-		case 0: memcpy(data+(0x04)-4, &packet0, 200); break;
-		case 1: memcpy(data+(0x04)-4, &packet1, 200); break;
+		case 0: memcpy(data+(0x04), &packet0, 200); break;
+		case 1: memcpy(data+(0x04), &packet1, 200); break;
 	}
 }

@@ -26,6 +26,61 @@
 #include <string.h>
 #include "../common/utils.h"
 
+void CNavMesh::ToFFXIPos(position_t* pos, float* out){
+  float y = pos->y;
+  float z = pos->z;
+
+  out[0] = pos->x;
+  out[1] = y * -1;
+  out[2] = z * -1;
+
+}
+
+void CNavMesh::ToFFXIPos(float* out){
+  float y = out[1];
+  float z = out[2];
+
+  out[1] = y * -1;
+  out[2] = z * -1;
+
+}
+
+void CNavMesh::ToFFXIPos(position_t* out){
+  float y = out->y;
+  float z = out->z;
+
+  out->y = y * -1;
+  out->z = z * -1;
+}
+
+void CNavMesh::ToDetourPos(float* out){
+  float y = out[1];
+  float z = out[2];
+
+  out[1] = y * -1;
+  out[2] = z * -1;
+
+}
+
+void CNavMesh::ToDetourPos(position_t* out){
+  float y = out->y;
+  float z = out->z;
+
+  out->y = y * -1;
+  out->z = z * -1;
+
+}
+
+void CNavMesh::ToDetourPos(position_t* pos, float* out){
+  float y = pos->y;
+  float z = pos->z;
+
+  out[0] = pos->x;
+  out[1] = y * -1;
+  out[2] = z * -1;
+
+}
+
 CNavMesh::CNavMesh()
 {
   m_navMesh = nullptr;
@@ -157,14 +212,12 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
   dtStatus status;
 
   float spos[3];
-  spos[0] = start.x;
-  spos[1] = start.y * -1;
-  spos[2] = start.z * -1;
+  CNavMesh::ToDetourPos(&start, spos);
+  // ShowDebug("start pos %f %f %f\n", spos[0], spos[1], spos[2]);
 
   float epos[3];
-  epos[0] = end.x;
-  epos[1] = end.y * -1;
-  epos[2] = end.z * -1;
+  CNavMesh::ToDetourPos(&end, epos);
+  // ShowDebug("end pos %f %f %f\n", epos[0], epos[1], epos[2]);
 
   dtQueryFilter filter;
   filter.setIncludeFlags(0xffff);
@@ -242,9 +295,16 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
     // i starts at 3 so the start position is ignored
     for ( int i = 3; i < straightPathCount*3; )
     {
-      path[pos].x = straightPath[i++];
-      path[pos].y = straightPath[i++] * -1;
-      path[pos].z = straightPath[i++] * -1;
+      float pathPos[3];
+      pathPos[0] = straightPath[i++];
+      pathPos[1] = straightPath[i++];
+      pathPos[2] = straightPath[i++];
+
+      CNavMesh::ToFFXIPos(pathPos);
+
+      path[pos].x = pathPos[0];
+      path[pos].y = pathPos[1];
+      path[pos].z = pathPos[2];
       pos++;
 
       if(pos == pathSize)
@@ -266,9 +326,7 @@ int16 CNavMesh::findRandomPath(position_t start, float maxRadius, position_t* pa
   int16 length = 0;
 
   float spos[3];
-  spos[0] = start.x;
-  spos[1] = start.y * -1;
-  spos[2] = start.z * -1;
+  CNavMesh::ToDetourPos(&start, spos);
 
   float polyPickExt[3];
   polyPickExt[0] = 30;
@@ -294,6 +352,12 @@ int16 CNavMesh::findRandomPath(position_t start, float maxRadius, position_t* pa
     return ERROR_NEARESTPOLY;
   }
 
+  if (!m_navMesh->isValidPolyRef(startRef))
+  {
+    ShowError("CNavMesh::findRandomPath startRef is invalid (%f, %f, %f)\n", start.x, start.y, start.z);
+    return ERROR_NEARESTPOLY;
+  }
+
   status = m_navMeshQuery->findRandomPointAroundCircle(startRef, spos, maxRadius, &filter, &RandomNumber, &randomRef, randomPt);
 
   if(dtStatusFailed(status))
@@ -305,9 +369,10 @@ int16 CNavMesh::findRandomPath(position_t start, float maxRadius, position_t* pa
 
   position_t end;
 
+  CNavMesh::ToFFXIPos(randomPt);
   end.x = randomPt[0];
-  end.y = randomPt[1] * -1;
-  end.z = randomPt[2] * -1;
+  end.y = randomPt[1];
+  end.z = randomPt[2];
 
   return findPath(start, end, path, pathSize);
 }
@@ -324,43 +389,51 @@ bool CNavMesh::test(uint16 zoneId)
   int8 size = 30;
   position_t start;
   position_t end;
+  int8 expectedLength = 0;
 
-  if(zoneId == 100)
-  {
-    // west ronfaure
-    start.x = -224;
-    start.y = 60;
-    start.z = -316;
+  switch(zoneId){
+    case 100:
+      // west ronfaure
+      start.x = -224;
+      start.y = 60;
+      start.z = -316;
 
-    end.x = -224;
-    end.y = 60;
-    end.z = -324;
+      end.x = -224;
+      end.y = 60;
+      end.z = -324;
+      expectedLength = 2;
+    break;
+    case 127:
+      // behe dominion
+      start.x = 153;
+      start.y = 4;
+      start.z = -98;
+
+      end.x = 152;
+      end.y = 4;
+      end.z = -120;
+
+      expectedLength = 3;
+    break;
+    default:
+      ShowWarning("CNavMesh::test Skipping sanity test for zone (%d)\n", zoneId);
+      return true;
   }
-  else
-  {
-    ShowWarning("CNavMesh::test Skipping sanity test for zone (%d)\n", zoneId);
-    return true;
-  }
-
-  end.y *= -1.0f;
-  end.z *= -1.0f;
-
-  start.y *= -1.0f;
-  start.z *= -1.0f;
 
   int8 totalLength = findPath(start, end, path, size);
 
-  if(totalLength > 1)
+  if(totalLength == expectedLength)
   {
     if(end.x != path[totalLength-1].x || end.z != path[totalLength-1].z){
-      ShowError("CNavMesh::test Zone (%d) Failed end points do not match\n", zoneId);
+      ShowError("CNavMesh::test Zone (%d) Failed sanity test, end points do not match\n", zoneId);
       return false;
     }
   }
   else
   {
-    ShowError("CNavMesh::test Zone (%d) Failed path could not be created\n", zoneId);
+    ShowError("CNavMesh::test Zone (%d) Failed sanity test, totalLength: (%d) expected: (%d)\n", zoneId, totalLength, expectedLength);
     return false;
   }
+
   return true;
 }

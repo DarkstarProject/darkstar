@@ -1,19 +1,21 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED =  6579;  -- Come back after sorting your inventory.
-             ITEM_OBTAINED =  6582;  -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
-              GIL_OBTAINED =  6583;  -- Obtained <<<Numeric Parameter 0>>> gil.
-          KEYITEM_OBTAINED =  6585;  -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
-       NOT_HAVE_ENOUGH_GIL =  6587;  -- You do not have enough gil.
-             HOMEPOINT_SET =   188;  -- Home point set!
-             IMAGE_SUPPORT =  6906;  -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
-    FISHING_MESSAGE_OFFSET =  7368;  -- You can't fish here.
-       NO_MORE_GP_ELIGIBLE =  6939; --You are not eligible to receive guild points at this time.
-               GP_OBTAINED =  6940; --Obtained <<<Numeric Parameter 0>>> guild points.
-        NOT_HAVE_ENOUGH_GP =  6941; --You do not have enough guild points.
-             MOGHOUSE_EXIT = 12295;  -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
-
+    ITEM_CANNOT_BE_OBTAINED =  6579;  -- Come back after sorting your inventory.
+                              ITEM_OBTAINED =  6582;  -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
+                                 GIL_OBTAINED =  6583;  -- Obtained <<<Numeric Parameter 0>>> gil.
+                      KEYITEM_OBTAINED =  6585;  -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
+             NOT_HAVE_ENOUGH_GIL =  6587;  -- You do not have enough gil.
+                            HOMEPOINT_SET =   188;  -- Home point set!
+                            IMAGE_SUPPORT =  6906;  -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
+ GUILD_TERMINATE_CONTRACT =  6920; -- You have terminated your trading contract with the ≺Multiple Choice (Parameter 1)≻[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the ≺Multiple Choice (Parameter 0)≻[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.≺Prompt≻
+              GUILD_NEW_CONTRACT =  6928; -- You have formed a new trading contract with the ≺Multiple Choice (Parameter 0)≻[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.≺Prompt≻
+              NO_MORE_GP_ELIGIBLE =  6935;  -- You are not eligible to receive guild points at this time
+                                 GP_OBTAINED =  6940;  -- Obtained <<<Numeric Parameter 0>>> guild points.
+             NOT_HAVE_ENOUGH_GP =  6941;  -- You do not have enough guild points.
+                           MOGHOUSE_EXIT = 12295;  -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
+      FISHING_MESSAGE_OFFSET =  7368;  -- You can't fish here.
+      
 -- Conquest System
 CONQUEST = 11650; -- You've earned conquest points!
 

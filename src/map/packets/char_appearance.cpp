@@ -32,20 +32,20 @@ CCharAppearancePacket::CCharAppearancePacket(CCharEntity* PChar)
 	this->size = 0x0C;
 
     look_t *look = (PChar->getStyleLocked() ? &PChar->mainlook : &PChar->look);
-	WBUFB(data,(0x04)-4) = look->face;
-	WBUFB(data,(0x05)-4) = look->race;
-	WBUFW(data,(0x06)-4) = look->head   + 0x1000;
-	WBUFW(data,(0x08)-4) = look->body   + 0x2000;
-	WBUFW(data,(0x0A)-4) = look->hands  + 0x3000;
-	WBUFW(data,(0x0C)-4) = look->legs   + 0x4000;
-	WBUFW(data,(0x0E)-4) = look->feet   + 0x5000;
-	WBUFW(data,(0x10)-4) = look->main   + 0x6000;
-	WBUFW(data,(0x12)-4) = look->sub    + 0x7000;
-	WBUFW(data,(0x14)-4) = look->ranged + 0x8000;
+	WBUFB(data,(0x04)) = look->face;
+	WBUFB(data,(0x05)) = look->race;
+	WBUFW(data,(0x06)) = look->head   + 0x1000;
+	WBUFW(data,(0x08)) = look->body   + 0x2000;
+	WBUFW(data,(0x0A)) = look->hands  + 0x3000;
+	WBUFW(data,(0x0C)) = look->legs   + 0x4000;
+	WBUFW(data,(0x0E)) = look->feet   + 0x5000;
+	WBUFW(data,(0x10)) = look->main   + 0x6000;
+	WBUFW(data,(0x12)) = look->sub    + 0x7000;
+	WBUFW(data,(0x14)) = look->ranged + 0x8000;
 
 	if (PChar->m_Monstrosity != 0)
 	{
-		WBUFW(data,(0x04)-4) = PChar->m_Monstrosity;
-		WBUFW(data, (0x14)-4) = 0xFFFF;
+		WBUFW(data,(0x04)) = PChar->m_Monstrosity;
+		WBUFW(data, (0x14)) = 0xFFFF;
 	}
 }

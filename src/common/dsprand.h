@@ -13,7 +13,9 @@ private:
     static uint32 state[16];
     static uint32 index;
 
-public:
+    /*Generates a random unsigned integer.
+    @returns uint32 result
+    */
     static inline uint32 irand()
     {
         // WELL512 implementation by Chris Lomont
@@ -32,13 +34,38 @@ public:
         return state[index];
     }
 
-    // generates double floating point numbers in the half-open interval [0, 1)
+    /*Generates double floating point numbers in the half-open interval [0.0, 1.0)
+    @returns double result
+    */
     static inline double drand()
     {
-        return (double)(irand()) * (1. / 4294967296.); // divided by 2^32
+        return (double)(irand()) / 4294967296.; // divided by 2^32
     }
 
+public:
     static void seed(uint32 value);
 
     static void seed(uint32 values[16]);
+
+    /*Generates a random number in the half-open interval [min, max)
+    @param min
+    @param max
+    @returns result
+    */
+    template <typename Type>
+    static inline Type GetRandomNumber(Type min, Type max)
+    {
+        return static_cast<Type>((WELL512::drand() * (max - min)) + min);
+    }
+
+    /*Generates a random number in the half-open interval [0, max)
+    @param min
+    @param max
+    @returns result
+    */
+    template <typename Type>
+    static inline Type GetRandomNumber(Type max)
+    {
+        return GetRandomNumber<Type>(0, max);
+    }
 };

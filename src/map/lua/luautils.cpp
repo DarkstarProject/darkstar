@@ -3896,11 +3896,11 @@ int32 UpdateNMSpawnPoint(lua_State* L)
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
 		if (PMob != nullptr) {
-		  int32 r = WELL512::irand()%50;
+		  int32 r = WELL512::GetRandomNumber(50);
 		  int32 ret = Sql_Query(SqlHandle, "SELECT pos_x, pos_y, pos_z FROM `nm_spawn_points` WHERE mobid=%u AND pos=%i", mobid, r);
 
 		  if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-			PMob->m_SpawnPoint.rotation = WELL512::irand() % 256;
+			PMob->m_SpawnPoint.rotation = WELL512::GetRandomNumber(256);
 			PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle,0);
 			PMob->m_SpawnPoint.y = Sql_GetFloatData(SqlHandle,1);
 			PMob->m_SpawnPoint.z = Sql_GetFloatData(SqlHandle,2);
@@ -4162,6 +4162,37 @@ int32 OnPlayerLevelDown(CCharEntity* PChar)
     }
 
     return 0;
+}
+
+int32 OnChocoboDig(CCharEntity* PChar, bool pre)
+{
+    lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+
+    if (prepFile(File, "onChocoboDig"))
+        return 0;
+
+    CLuaBaseEntity LuaBaseEntity(PChar);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+    lua_pushboolean(LuaHandle, pre);
+
+    if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::onChocoboDig: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return 0;
+    }
+
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 1)
+    {
+        ShowError("luautils::onChocoboDig (%s): 1 return expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+    
+    bool canDig = lua_toboolean(LuaHandle, -1);
+    
+    return canDig;
 }
 
 

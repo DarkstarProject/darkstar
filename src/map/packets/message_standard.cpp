@@ -35,7 +35,7 @@ CMessageStandardPacket::CMessageStandardPacket(uint16 MessageID)
     this->type = 0x09;
 	this->size = 0x08;
 
-    WBUFW(data,(0x0A)-4) = MessageID;
+    WBUFW(data,(0x0A)) = MessageID;
 }
 
 CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0, uint32 param1, uint16 MessageID)
@@ -43,25 +43,25 @@ CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0
 	this->type = 0x09;
 	this->size = 0x12;
 
-	WBUFW(data,(0x0A)-4) = MessageID;
+	WBUFW(data,(0x0A)) = MessageID;
 
 	if (PChar != nullptr)
 	{
-		WBUFL(data,(0x04)-4) = PChar->id;
-		WBUFW(data,(0x08)-4) = PChar->targid;
+		WBUFL(data,(0x04)) = PChar->id;
+		WBUFW(data,(0x08)) = PChar->targid;
 		
 		if (MessageID == 0x59) 
 		{
 			this->size = 0x30;
 
-			WBUFB(data,(0x0C)-4) = 0x10;
+			WBUFB(data,(0x0C)) = 0x10;
 
-			snprintf((int8*)data+(0x0D)-4, 24, "string2 %s", PChar->GetName());
+			snprintf((int8*)data+(0x0D), 24, "string2 %s", PChar->GetName());
 		}
 	}
 	else
 	{
-		snprintf((int8*)data+(0x0D)-4, 20, "Para0 %d Para1 %d", param0, param1);
+		snprintf((int8*)data+(0x0D), 20, "Para0 %d Para1 %d", param0, param1);
 	}
 }
 
@@ -70,11 +70,11 @@ CMessageStandardPacket::CMessageStandardPacket(uint32 param0, uint32 param1, uin
 	this->type = 0x09;
 	this->size = 0x08;
 
-	WBUFW(data,(0x0A)-4) = MessageID;
+	WBUFW(data,(0x0A)) = MessageID;
 
-	snprintf((int8*)data+(0x0D)-4, 100, "Para0 %d Para1 %d Para2 %d Para3 %d", param0, param1, param2, param3);
+	snprintf((int8*)data+(0x0D), 100, "Para0 %d Para1 %d Para2 %d Para3 %d", param0, param1, param2, param3);
 
-	this->size += (strlen((int8*)data+(0x0D)-4) >> 1) & 0xFE;
+	this->size += (strlen((int8*)data+(0x0D)) >> 1) & 0xFE;
 }
 
 /************************************************************************
@@ -90,9 +90,9 @@ CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0
 
 	//DSP_DEBUG_BREAK_IF(MessageID != 0x58);
 
-	WBUFW(data,(0x0A)-4) = MessageID;
+	WBUFW(data,(0x0A)) = MessageID;
 
-	snprintf((int8*)data+(0x0D)-4, 40, "string2 %s string3 %u", PChar->GetName(), param0);
+	snprintf((int8*)data+(0x0D), 40, "string2 %s string3 %u", PChar->GetName(), param0);
 
-	//WBUFB(data,(0x2F)-4) = 0x02;
+	//WBUFB(data,(0x2F)) = 0x02;
 }

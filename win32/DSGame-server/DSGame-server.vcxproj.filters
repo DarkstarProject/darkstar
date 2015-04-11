@@ -78,6 +78,9 @@
     <Filter Include="Header Files\utils">
       <UniqueIdentifier>{4809b9f1-e6f6-4976-a83b-e246e6dc5671}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\common\marshal">
+      <UniqueIdentifier>{e12005cb-3c26-42a1-9752-8898f7492816}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\map\ability.h">
@@ -824,6 +827,9 @@
     <ClInclude Include="..\..\src\map\guild.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\common\marshal\string.h">
+      <Filter>Header Files\common\marshal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -977,9 +983,6 @@
       <Filter>Source Files\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\action.cpp">
-      <Filter>Source Files\packets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\packets\basic.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\bazaar_check.cpp">

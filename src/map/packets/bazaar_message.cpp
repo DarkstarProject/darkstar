@@ -35,11 +35,11 @@ CBazaarMessagePacket::CBazaarMessagePacket(CCharEntity* PChar)
 	this->type = 0xCA;
 	this->size = 0x4A;
 
-	memcpy(data+0x04-0x04, PChar->bazaar.message.c_str(), 
+	memcpy(data+0x04, PChar->bazaar.message.c_str(), 
 		(PChar->bazaar.message.size() > 120) ? 120 : PChar->bazaar.message.size());
 
-	WBUFB(data,(0x7F)-4) = 0x07; // 0x06
-	WBUFW(data,(0x90)-4) = PChar->profile.title;
+	WBUFB(data,(0x7F)) = 0x07; // 0x06
+	WBUFW(data,(0x90)) = PChar->profile.title;
 
-	memcpy(data+(0x80)-4, PChar->GetName(), PChar->name.size());	
+	memcpy(data+(0x80), PChar->GetName(), PChar->name.size());	
 }

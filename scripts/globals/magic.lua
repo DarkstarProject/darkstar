@@ -599,6 +599,8 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
 			effectres = MOD_STUNRES;
 		elseif(effect == EFFECT_CHARM) then
 			effectres = MOD_CHARMRES;
+		elseif(effect == EFFECT_AMNESIA) then
+			effectres = MOD_AMNESIARES;
 		end
 
 		if(effectres > 0) then

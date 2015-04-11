@@ -9,7 +9,7 @@
 
 function onMobDeath(mob,killer)	
 
-	local npc = GetNPCByID(17490251);
+	local npc = GetNPCByID(17490254);
 	
 	npc:hideNPC(900);
 	
