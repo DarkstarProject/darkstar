@@ -2052,9 +2052,9 @@ namespace charutils
                 continue;
             }
 
-            if (PChar->GetMLevel() >= PAbility->getLevel() && PAbility->getID() < 496)
+            if (PChar->GetMLevel() >= PAbility->getLevel())
             {
-                if (PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility))
+                if (PAbility->getID() < 496 && PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility))
                 {
                     addAbility(PChar, PAbility->getID());
                     if (!PChar->PRecastContainer->Has(RECAST_ABILITY, PAbility->getRecastId()))
@@ -2079,13 +2079,13 @@ namespace charutils
         {
             CAbility* PAbility = AbilitiesList.at(i);
 
-            if (PChar->GetSLevel() >= PAbility->getLevel() && PAbility->getID() < 496)
+            if (PChar->GetSLevel() >= PAbility->getLevel())
             {
                 if (PAbility == nullptr){
                     continue;
                 }
 
-                if (PAbility->getLevel() != 0)
+                if (PAbility->getLevel() != 0  && PAbility->getID() < 496)
                 {
                     if (PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility) && !(PAbility->getAddType() & ADDTYPE_MAIN_ONLY))
                     {
