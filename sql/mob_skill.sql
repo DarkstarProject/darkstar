@@ -3632,3 +3632,8 @@ INSERT INTO `mob_skill` VALUES (21, 357, 811, 'Venom_Spray', 4, 10.0, 2000, 1000
 INSERT INTO `mob_skill` VALUES (20, 357, 810, 'Sand_Pit', 0, 7.0, 2000, 1000, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (19, 357, 809, 'Sand_Blast', 1, 8.0, 2000, 1000, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (23, 357, 813, 'Mandibular_Bite', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+
+-- Ix'Aern (MNK) and his minions
+INSERT INTO `mob_skill` VALUES (3155,3,434,'Ix_aern_mnk',0,7.0,2000,0,1,2,0,0);
+INSERT INTO `mob_skill` VALUES (3156,3,436,'Qn_aern_rdm',0,7.0,2000,0,1,2,0,0);
+INSERT INTO `mob_skill` VALUES (3157,3,433,'Qn_aern_whm',1,20.0,2000,0,1,2,0,0);
