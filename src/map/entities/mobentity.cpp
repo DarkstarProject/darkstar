@@ -64,8 +64,6 @@ CMobEntity::CMobEntity()
 	m_THLvl = 0;
 	m_ItemStolen = false;
     m_RageMode = 0;
-	m_NewSkin = 0;
-	m_SkinID = 0;
 
     strRank = 3;
     defRank = 3;
@@ -427,50 +425,14 @@ uint8 CMobEntity::TPUseChance()
     return getMobMod(MOBMOD_TP_USE_CHANCE);
 }
 
-/************************************************************************
-*                                                                       *
-*  Change Skin of the Mob                                               *
-*                                                                       *
-************************************************************************/
-
-void CMobEntity::SetMainSkin(uint32 mobid)
+void CMobEntity::SetModelId(uint16 modelid)
 {
-	if(m_NewSkin)
-	{
-		const int8* Query = "SELECT modelid \
-							 FROM mob_spawn_points, mob_groups, mob_pools \
-							 WHERE mob_spawn_points.mobid = %u \
-							 AND mob_groups.groupid = mob_spawn_points.groupid \
-							 AND mob_groups.poolid = mob_pools.poolid";
-
-		int32 ret = Sql_Query(SqlHandle, Query, mobid);
-
-		if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			memcpy(&look,Sql_GetData(SqlHandle,0),23);
-			m_NewSkin = false;
-			m_SkinID = 0;
-		}
-	}
+    look.modelid = modelid;
 }
 
-void CMobEntity::SetNewSkin(uint8 skinid)
+uint16 CMobEntity::GetModelId()
 {
-	const int8* Query = "SELECT skin_model FROM mob_change_skin WHERE skinid = %u";
-
-	int32 ret = Sql_Query(SqlHandle, Query, skinid);
-
-	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		memcpy(&look,Sql_GetData(SqlHandle,0),23);
-		m_NewSkin = true;
-		m_SkinID = skinid;
-	}
-}
-
-uint32 CMobEntity::GetSkinID()
-{
-	return m_SkinID;
+    return look.modelid;
 }
 
 void CMobEntity::setMobMod(uint16 type, int16 value)

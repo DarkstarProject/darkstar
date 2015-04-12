@@ -349,7 +349,6 @@ void CAIMobDummy::ActionDisengage()
 
     m_PBattleTarget  = nullptr;
 
-    m_PMob->SetMainSkin(m_PMob->id);
     m_PMob->delRageMode();
     m_PMob->m_OwnerID.clean();
     m_PMob->updatemask |= (UPDATE_STATUS | UPDATE_HP);
