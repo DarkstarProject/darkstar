@@ -6074,7 +6074,6 @@ inline int32 CLuaBaseEntity::isMobType(lua_State *L)
 inline int32 CLuaBaseEntity::changeSkin(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
@@ -6096,7 +6095,6 @@ inline int32 CLuaBaseEntity::changeSkin(lua_State *L)
 inline int32 CLuaBaseEntity::getSkinID(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
     lua_pushinteger(L, ((CMobEntity*)m_PBaseEntity)->GetModelId());
     return 1;
