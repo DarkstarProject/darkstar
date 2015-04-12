@@ -5,23 +5,23 @@
 -----------------------------------
 
 -- Ix'Aern (DRG)'s minions - Wynavs
-local IxAernDRG = GetMobByID(16921022);
-local wynavA = GetMobByID(16921023);
-local wynavB = GetMobByID(16921024);
-local wynavC = GetMobByID(16921025);	
+IxAernDRG = GetMobByID(16921022);
+wynavA = GetMobByID(16921023);
+wynavB = GetMobByID(16921024);
+wynavC = GetMobByID(16921025);	
 
 -- The mob that spawns Ix'Aern (DRG)
-local realAwAern_PH = 16920769; -- The actual PH mob.
+realAwAern_PH = 16920769; -- The actual PH mob.
 
 -- First Aw'Aerns in each group. Used to randomize the mobID as the new placeholder.
-local AwAernGroups = {16920777,16920781,16920785,16920789};
+AwAernGroups = {16920777,16920781,16920785,16920789};
 
 -----------------------------------
 
 -- Ix'Aern (DRK) and his RNG minions (Qn'Aerns)
-local IxAernDRK = GetMobByID(16921018);
-local QnAernA = GetMobByID(16921019);
-local QnAernB = GetMobByID(16921020);
+IxAernDRK = GetMobByID(16921018);
+QnAernA = GetMobByID(16921019);
+QnAernB = GetMobByID(16921020);
 
 -----------------------------------
 
