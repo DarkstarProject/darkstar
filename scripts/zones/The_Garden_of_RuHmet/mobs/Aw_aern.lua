@@ -19,7 +19,6 @@ function onMobSpawn(mob)
 
     -- Pick the Ix'Aern (DRG) PH if the server doesn't have one, and the if the actual PH/NM isn't up. Then, set it.
     if (GetMobAction(realAwAern_PH) == 0 and GetMobAction(IxAernDRG:getID()) == 0 and GetServerVariable("[SEA]IxAernDRG_PH") == 0) then  -- This should be cleared when the mob is killed.
-        local AwAernGroups = {16920777,16920781,16920785,16920789}; -- First Aw'Aerns in each group.
         IxAernDRG_PH = math.random(AwAernGroups) + math.random(0, 2); -- The 4th mobid in each group is a pet. F that son
         SetServerVariable("[SEA]IxAernDRG_PH", IxAernDRG_PH);
     end;
