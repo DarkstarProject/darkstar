@@ -17,6 +17,7 @@ TPMOD_CRITICAL = 1;
 TPMOD_DAMAGE = 2;
 TPMOD_ACC = 3;
 TPMOD_ATTACK = 4;
+TPMOD_DURATION = 5;
 
 -- The damage type for the spell
 DMGTYPE_BLUNT = 0;
