@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/status");
+require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 
 -----------------------------------
 -- onMobInitialize Action
@@ -11,7 +12,7 @@ require("scripts/globals/status");
 
 function onMobInitialize(mob)
     -- Ix'Aern DRG pets are Wyverns that 2hour.
-    if (mob:getID() >= 16921023 and mob:getID() <= 16921025) then
+    if (mob:getID() >= wynavA:getID() and mob:getID() <= wynavC:getID()) then
         mob:setMobMod(MOBMOD_MAIN_2HOUR, 1);
     end
 end;
