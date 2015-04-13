@@ -1036,11 +1036,16 @@ void CAIMobDummy::ActionAbilityFinish()
     Action.knockback  = 0;
 
     uint16 msg = 0;
+    uint16 defaultMessage = Action.messageID;
+
     for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin() ; it != m_PTargetFind->m_targets.end(); ++it)
     {
         CBattleEntity* PTarget = *it;
 
         Action.ActionTarget = PTarget;
+
+        // reset the skill's message back to default
+        m_PMobSkill->setMsg(defaultMessage);
 
         Action.param = luautils::OnMobWeaponSkill(PTarget, m_PMob, GetCurrentMobSkill());
 
