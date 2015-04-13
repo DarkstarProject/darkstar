@@ -4902,7 +4902,7 @@ INSERT INTO `item_basic` VALUES (5349,0,'cage_of_cutter_fireflies','cutter_firef
 INSERT INTO `item_basic` VALUES (5350,0,'phial_of_volant_serum','volant_serum',12,1536,44,0,78);
 INSERT INTO `item_basic` VALUES (5351,0,'phial_of_osseous_serum','osseous_serum',12,1536,44,0,102);
 INSERT INTO `item_basic` VALUES (5352,0,'phial_of_spectral_serum','spectral_serum',12,1536,44,0,112);
-INSERT INTO `item_basic` VALUES (5353,0,'iron_bullet_pouch','iron_bull_pouch',12,1536,15,0,14780);
+INSERT INTO `item_basic` VALUES (5353,0,'iron_bullet_pouch','iron_bull_pouch',12,1536,15,0,922);
 INSERT INTO `item_basic` VALUES (5354,0,'flask_of_walahra_water','walahra_water',1,16710,0,1,0);
 INSERT INTO `item_basic` VALUES (5355,0,'elixir_vitae','elixir_vitae',1,1536,33,0,737);
 INSERT INTO `item_basic` VALUES (5356,0,'jar_of_remedy_ointment','rmdy_ointment',12,1536,33,0,60);
@@ -4965,7 +4965,7 @@ INSERT INTO `item_basic` VALUES (5412,0,'scapegoat','scapegoat',1,1536,42,0,1918
 INSERT INTO `item_basic` VALUES (5413,0,'smouldering_lamp','smouldering_lamp',1,32832,0,0,25);
 INSERT INTO `item_basic` VALUES (5414,0,'glowing_lamp','glowing_lamp',1,13376,0,1,0);
 INSERT INTO `item_basic` VALUES (5415,0,'page_from_balrahns_reflections','heros_reflections',1,63040,0,1,0);
-INSERT INTO `item_basic` VALUES (5416,0,'steel_bullet_pouch','stl_bull_pouch',12,1536,15,0,19510);
+INSERT INTO `item_basic` VALUES (5416,0,'steel_bullet_pouch','stl_bull_pouch',12,1536,15,0,922);
 INSERT INTO `item_basic` VALUES (5417,0,'toolbag_(sanjaku-tenugui)','toolbag_(sanja)',12,1536,49,0,1920);
 INSERT INTO `item_basic` VALUES (5418,0,'vial_of_tincture','tincture',12,1536,33,0,476);
 INSERT INTO `item_basic` VALUES (5419,0,'black_mine','black_mine',1,63040,0,1,0);
