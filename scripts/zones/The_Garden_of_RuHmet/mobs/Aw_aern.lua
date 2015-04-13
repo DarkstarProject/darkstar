@@ -18,7 +18,7 @@ function onMobSpawn(mob)
     local IxAernDRG_PH = GetServerVariable("[SEA]IxAernDRG_PH"); -- Should be be the ID of the mob that spawns the actual PH
 
     -- Pick the Ix'Aern (DRG) PH if the server doesn't have one, and the if the actual PH/NM isn't up. Then, set it.
-    if (GetMobAction(realAwAern_PH) == 0 and GetMobAction(IxAernDRG:getID()) == 0 and GetServerVariable("[SEA]IxAernDRG_PH") == 0) then  -- This should be cleared when the mob is killed.
+    if (GetMobAction(realAwAern_PH) == 0 and GetMobAction(IxAernDRG) == 0 and GetServerVariable("[SEA]IxAernDRG_PH") == 0) then  -- This should be cleared when the mob is killed.
         IxAernDRG_PH = AwAernGroups[math.random(1, #AwAernGroups)] + math.random(0, 2); -- The 4th mobid in each group is a pet. F that son
         SetServerVariable("[SEA]IxAernDRG_PH", IxAernDRG_PH);
     end;
@@ -56,15 +56,15 @@ function onMobDeath(mob, killer)
     -- Spawn the NM if the PH was killed at the PH's location.
     elseif (currentMobID == realAwAern_PH) then
         IxAernDRG:setSpawn(mob:getXPos(), mob:getYPos(), mob:getZPos());
-        SpawnMob(IxAernDRG:getID(), 300):updateEnmity(killer);
+        SpawnMob(IxAernDRG, 300):updateEnmity(killer);
         -- A
         wynavA:setSpawn(mob:getXPos()+4, mob:getYPos(), mob:getZPos());
-        SpawnMob(wynavA:getID(), 300):updateEnmity(killer);
+        SpawnMob(wynavA, 300):updateEnmity(killer);
         -- B
         wynavB:setSpawn(mob:getXPos()-4, mob:getYPos(), mob:getZPos());
-        SpawnMob(wynavB:getID(), 300):updateEnmity(killer);
+        SpawnMob(wynavB, 300):updateEnmity(killer);
         -- C
         wynavC:setSpawn(mob:getXPos(), mob:getYPos(), mob:getZPos()+4);
-        SpawnMob(wynavC:getID(), 300):updateEnmity(killer);
+        SpawnMob(wynavC, 300):updateEnmity(killer);
     end    
 end;

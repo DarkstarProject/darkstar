@@ -27,19 +27,19 @@ end;
 function onMobFight(mob,target)
     -- Spawn the pets if they are despawned
     -- TODO: summon animations?    
-    if (GetMobAction(wynavA:getID()) == 0) then
+    if (GetMobAction(wynavA) == 0) then
         wynavA:setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5));
-        SpawnMob(wynavA:getID(), 300):updateEnmity(target);
-    elseif (GetMobAction(wynavB:getID()) == 0) then
+        SpawnMob(wynavA, 300):updateEnmity(target);
+    elseif (GetMobAction(wynavB) == 0) then
         wynavB:setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5));
-        SpawnMob(wynavB:getID(), 300):updateEnmity(target);
-    elseif (GetMobAction(wynavC:getID()) == 0) then
+        SpawnMob(wynavB, 300):updateEnmity(target);
+    elseif (GetMobAction(wynavC) == 0) then
         wynavC:setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5));
-        SpawnMob(wynavC:getID(), 300):updateEnmity(target);
+        SpawnMob(wynavC, 300):updateEnmity(target);
     end
 
     -- Ensure all spawned pets are doing stuff..
-    for pets = wynavA:getID(), wynavC:getID() do
+    for pets = wynavA, wynavC do
         if (GetMobAction(pets) == 16) then
             -- Send pet after current target..
             GetMobByID(pets):updateEnmity(target);
@@ -60,7 +60,7 @@ function onMobDeath(mob, killer)
     local IxAernDRG_PH = GetServerVariable("[SEA]IxAernDRG_PH"); -- Should be be the ID of the mob that spawns the actual PH
 
     -- Pick the Ix'Aern (DRG) PH if the server doesn't have one, set it.
-    if (GetMobAction(realAwAern_PH) == 0 and GetMobAction(IxAernDRG:getID()) == 0 and GetServerVariable("[SEA]IxAernDRG_PH") == 0) then  -- This should be cleared when the mob is killed.
+    if (GetMobAction(realAwAern_PH) == 0 and GetMobAction(IxAernDRG) == 0 and GetServerVariable("[SEA]IxAernDRG_PH") == 0) then  -- This should be cleared when the mob is killed.
         IxAernDRG_PH = AwAernGroups[math.random(1, #AwAernGroups)] + math.random(0, 2); -- The 4th mobid in each group is a pet. F that son
         SetServerVariable("[SEA]IxAernDRG_PH", IxAernDRG_PH);
     end;
@@ -78,7 +78,7 @@ function onMobDespawn( mob )
     local IxAernDRG_PH = GetServerVariable("[SEA]IxAernDRG_PH"); -- Should be be the ID of the mob that spawns the actual PH
 
     -- Pick the Ix'Aern (DRG) PH if the server doesn't have one, set it.
-    if (GetMobAction(realAwAern_PH) == 0 and GetMobAction(IxAernDRG:getID()) == 0 and GetServerVariable("[SEA]IxAernDRG_PH") == 0) then  -- This should be cleared when the mob is killed.
+    if (GetMobAction(realAwAern_PH) == 0 and GetMobAction(IxAernDRG) == 0 and GetServerVariable("[SEA]IxAernDRG_PH") == 0) then  -- This should be cleared when the mob is killed.
         local AwAernGroups = {16920777,16920781,16920785,16920789}; -- First Aw'Aerns in each group.
         IxAernDRG_PH = AwAernGroups[math.random(1, #AwAernGroups)] + math.random(0, 2); -- The 4th mobid in each group is a pet. F that son
         SetServerVariable("[SEA]IxAernDRG_PH", IxAernDRG_PH);
