@@ -2,7 +2,9 @@
 -- Area: The Garden of Ru'Hmet
 -- NPC:  Aw_aern PH (Ix'Aern DRK and DRG)
 -----------------------------------
+
 package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
+
 -----------------------------------
 
 require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
@@ -13,7 +15,13 @@ require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
-	
+    local IxAernDRG_PH = GetServerVariable("[SEA]IxAernDRG_PH"); -- Should be be the ID of the mob that spawns the actual PH
+
+    -- Pick the Ix'Aern (DRG) PH if the server doesn't have one, and the if the actual PH/NM isn't up. Then, set it.
+    if (GetMobAction(realAwAern_PH) == 0 and GetMobAction(IxAernDRG) == 0 and GetServerVariable("[SEA]IxAernDRG_PH") == 0) then  -- This should be cleared when the mob is killed.
+        IxAernDRG_PH = AwAernGroups[math.random(1, #AwAernGroups)] + math.random(0, 2); -- The 4th mobid in each group is a pet. F that son
+        SetServerVariable("[SEA]IxAernDRG_PH", IxAernDRG_PH);
+    end;
 end;
 
 -----------------------------------
@@ -21,137 +29,42 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	--[[local VanadielHour = VanadielHour();
-	local posi_drk = GetServerVariable("[POSI]Ix_aern_drk");
-	local ixdrg = GetMobByID(16921022);
-	local drga = GetMobByID(16921023);
-	local drgb = GetMobByID(16921024);
-	local drgc = GetMobByID(16921025);
-	local posi_drg = GetServerVariable("[POSI]Ix_aern_drg");
-		print(posi_drg);
-	i = GetServerVariable("[PH]Ix_aern_drk");
-	g = GetServerVariable("[PH]Ix_aern_drg");
-		print(g);
-	-- Ix'Aern DRK PH check
-	-- Check if Aw_aern are in the room with the ???
-		mob = mob:getID();
-		if (posi_drk == 1) then 
-			if (Ix_aern_drk_PH_pos1[mob] ~= nil) then
-				
-				if (i == 3) then 
-					killer:messageSpecial(SHEER_ANIMOSITY);
-					if(VanadielHour % 4 == 0) then 
-						SetServerVariable("[PH]Ix_aern_drk", 0);
-					end
-				else
-					i = i + 1; -- adds 1 to the kill count.
-					SetServerVariable("[PH]Ix_aern_drk", i); -- set server variable to what i value is.
-				end
-			end
-		elseif (posi_drk == 2) then 
-			if (Ix_aern_drk_PH_pos2[mob] ~= nil) then
-				if (i == 3) then 
-					killer:messageSpecial(SHEER_ANIMOSITY);
-					if(VanadielHour % 4 == 0) then 
-						SetServerVariable("[PH]Ix_aern_drk", 0);
-					end
-				else
-					i = i + 1; -- adds 1 to the kill count.
-					SetServerVariable("[PH]Ix_aern_drk", i); -- set server variable to what i value is.
-				end
-			end
-		elseif (posi_drk == 3) then 
-			if (Ix_aern_drk_PH_pos3[mob] ~= nil) then
-				if (i == 3) then 
-					killer:messageSpecial(SHEER_ANIMOSITY);
-					if(VanadielHour % 4 == 0) then 
-						SetServerVariable("[PH]Ix_aern_drk", 0);
-					end
-				else
-					i = i + 1; -- adds 1 to the kill count.
-					SetServerVariable("[PH]Ix_aern_drk", i); -- set server variable to what i value is.
-				end
-			end
-		elseif (posi_drk == 4) then 
-			if (Ix_aern_drk_PH_pos4[mob] ~= nil) then
-				if (i == 3) then 
-					killer:messageSpecial(SHEER_ANIMOSITY);
-					if(VanadielHour % 4 == 0) then 
-						SetServerVariable("[PH]Ix_aern_drk", 0);
-					end
-				else
-					i = i + 1; -- adds 1 to the kill count.
-					SetServerVariable("[PH]Ix_aern_drk", i); -- set server variable to what i value is.
-				end
-			end
-		
-		end
-		--Ix'Aern DRG PH check			
-		if (Ix_aern_drg_PH_pos1[mob] ~= nil) then			
-				--print("DRG MOB ZONE 1");
-			if (posi_drg == 1 and g == 3) then 
-				ixdrg:setSpawn(-320,5.00,-360); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921022,180):updateEnmity(killer);
-				drga:setSpawn(-320,5.00,-360); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921023,180):updateEnmity(killer);
-				drgb:setSpawn(-320,5.00,-360); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921024,180):updateEnmity(killer);
-				drgc:setSpawn(-320,5.00,-360); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921025,180):updateEnmity(killer);
-			else
-				g = g + 1; -- adds 1 to the kill count.
-				SetServerVariable("[PH]Ix_aern_drg",g);
-				SetServerVariable("[POSI]Ix_aern_drg",1);
-			end
-		elseif (Ix_aern_drg_PH_pos2[mob] ~= nil) then
-				--print("DRG MOB ZONE 2");
-			if (posi_drg == 2 and g == 3) then 
-				ixdrg:setSpawn(-320,5.00,-520); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921022,180):updateEnmity(killer);
-				drga:setSpawn(-320,5.00,-520); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921023,180):updateEnmity(killer);
-				drgb:setSpawn(-320,5.00,-520); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921024,180):updateEnmity(killer);
-				drgc:setSpawn(-320,5.00,-520); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921025,180):updateEnmity(killer);
-			else
-				g = g + 1; -- adds 1 to the kill count.
-				SetServerVariable("[PH]Ix_aern_drg",g);
-				SetServerVariable("[POSI]Ix_aern_drg",2);
-			end
-		elseif (Ix_aern_drg_PH_pos3[mob] ~= nil) then
-				--print("DRG MOB ZONE 3");
-			if (posi_drg == 3 and g == 3) then 
-				ixdrg:setSpawn(-520,5.00,-520); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921022,180):updateEnmity(killer);
-				drga:setSpawn(-520,5.00,-520); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921023,180):updateEnmity(killer);
-				drgb:setSpawn(-520,5.00,-520); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921024,180):updateEnmity(killer);
-				drgc:setSpawn(-520,5.00,-520); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921025,180):updateEnmity(killer);
-				
-			else
-				g = g + 1; -- adds 1 to the kill count.
-				SetServerVariable("[PH]Ix_aern_drg",g);
-				SetServerVariable("[POSI]Ix_aern_drg",3);
-			end
-		elseif (Ix_aern_drg_PH_pos4[mob] ~= nil) then
-				--print("DRG MOB ZONE 4");
-			if (posi_drg == 4 and g == 3) then 
-				ixdrg:setSpawn(-520,5.00,-360); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921022,180):updateEnmity(killer);
-				drga:setSpawn(-520,5.00,-360); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921023,180):updateEnmity(killer);
-				drgb:setSpawn(-520,5.00,-360); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921024,180):updateEnmity(killer);
-				drgc:setSpawn(-520,5.00,-360); -- Change MobSpawn to Players @pos.
-				SpawnMob(16921025,180):updateEnmity(killer);
-			else
-				g = g + 1; -- adds 1 to the kill count.
-				SetServerVariable("[PH]Ix_aern_drg",g);
-				SetServerVariable("[POSI]Ix_aern_drg",4);
-			end
-		end]]--
-	
+    local currentMobID = mob:getID();
+    
+    -- Ix'Aern (DRG) Placeholder mobs
+    local IxAernDRG_PH = GetServerVariable("[SEA]IxAernDRG_PH"); -- Should be be the ID of the mob that spawns the actual PH.
+    
+    -- If the mob killed was the randomized PH spawner, then spawn the PH in it's actual location.
+    if (IxAernDRG_PH == currentMobID) then
+        -- Select spawn location based on ID
+        if (currentMobID >= 16920777 and currentMobID < 16920781) then
+            GetMobByID(realAwAern_PH):setSpawn(-520, 5, -520, 225); -- Bottom Left
+            
+        elseif (currentMobID >= 16920781 and currentMobID < 16920785) then
+            GetMobByID(realAwAern_PH):setSpawn(-520, 5, -359, 30); -- Top Left
+            
+        elseif (currentMobID >= 16920785 and currentMobID < 16920789) then
+            GetMobByID(realAwAern_PH):setSpawn(-319, 5, -359, 95); -- Top Right
+            
+        elseif (currentMobID >= 16920789 and currentMobID < 16920783) then
+            GetMobByID(realAwAern_PH):setSpawn(-319, 5, -520, 156); -- Bottom Right
+            
+        end;
+        SpawnMob(realAwAern_PH);
+        SetServerVariable("[SEA]IxAernDRG_PH", 0); -- Clear the variable because it is spawned!
+        
+    -- Spawn the NM if the PH was killed at the PH's location.
+    elseif (currentMobID == realAwAern_PH) then
+        GetMobByID(IxAernDRG):setSpawn(mob:getXPos(), mob:getYPos(), mob:getZPos());
+        SpawnMob(IxAernDRG, 300):updateEnmity(killer);
+        -- A
+       GetMobByID(wynavA):setSpawn(mob:getXPos()+4, mob:getYPos(), mob:getZPos());
+        SpawnMob(wynavA, 300):updateEnmity(killer);
+        -- B
+        GetMobByID(wynavB):setSpawn(mob:getXPos()-4, mob:getYPos(), mob:getZPos());
+        SpawnMob(wynavB, 300):updateEnmity(killer);
+        -- C
+        GetMobByID(wynavC):setSpawn(mob:getXPos(), mob:getYPos(), mob:getZPos()+4);
+        SpawnMob(wynavC, 300):updateEnmity(killer);
+    end    
 end;

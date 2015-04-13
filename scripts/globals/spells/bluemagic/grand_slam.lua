@@ -16,7 +16,7 @@ function onSpellCast(caster,target,spell)
     params.tpmod = TPMOD_ATTACK; params.dmgtype = DMGTYPE_BLUNT; params.scattr = SC_INDURATION;
         params.numhits = 1;
         params.multiplier = 1.0; params.tp150 = 1.0; params.tp300 = 1.0; params.azuretp = 1.0; params.duppercap = 133;
-        params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.03; params.agi_wsc = 0.0; params.int_wsc = 0.1; params.mnd_wsc = 0.1; params.chr_wsc = 0.1;
+        params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.3; params.agi_wsc = 0.0; params.int_wsc = 0.1; params.mnd_wsc = 0.1; params.chr_wsc = 0.1;
     damage = BluePhysicalSpell(caster, target, spell, params);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
    

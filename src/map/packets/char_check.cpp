@@ -89,7 +89,7 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 				PChar->pushPacket(new CBasicPacket(*this));
 
 				this->size = 0x06;
-				memset(data+(0x0B), 0, sizeof(data)-7);
+				memset(data+(0x0B), 0, PACKET_SIZE - 11);
 			}
 		}
 	}
@@ -106,7 +106,7 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 	}
 
 	this->size = 0x28;
-	memset(data+(0x0B), 0, sizeof(data)-7);
+	memset(data+(0x0B), 0, PACKET_SIZE - 11);
 
 	WBUFB(data,(0x0A)) = 0x01;
 

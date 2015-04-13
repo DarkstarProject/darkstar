@@ -59,7 +59,7 @@ CGuildMenuBuyPacket::CGuildMenuBuyPacket(CCharEntity* PChar, CItemContainer* PGu
                 ItemCount = 0;
                 PacketCount++;
 						
-                memset(data + 4, 0, sizeof(data) - 4);
+                memset(data + 4, 0, PACKET_SIZE - 8);
 			}
             WBUFW(data,(0x08*ItemCount+0x04)) = PItem->getID();
             WBUFB(data,(0x08*ItemCount+0x06)) = PItem->getQuantity();

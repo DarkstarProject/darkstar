@@ -153,7 +153,7 @@ void PrintPacket(CBasicPacket data)
 
     for (int y = 0; y < data.length(); y++)
     {
-        sprintf(message, "%s %02hx", message, *data[y]);
+        sprintf(message, "%s %02hx", message, *((uint8*)data[y]));
         if (((y + 1) % 16) == 0)
         {
             message[48] = '\n';

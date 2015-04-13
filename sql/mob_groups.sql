@@ -11999,8 +11999,11 @@ INSERT INTO `mob_groups` VALUES (14310,5533,198,0,128,0,0,0,75,75,0);
 INSERT INTO `mob_groups` VALUES (14311,5534,193,0,128,0,0,0,75,75,0);
 INSERT INTO `mob_groups` VALUES (14312,5535,195,0,128,0,0,0,75,75,0);
 
+-- Ix'Aern (DRG Placeholder: Aw'Aern)
+INSERT INTO `mob_groups` VALUES (14313,5353,35,0,128,881,0,0,84,81,0);
 
-
+-- Ix'Aern's Pets: Aern's Wynav
+INSERT INTO `mob_groups` VALUES (14314,5536,35,0,128,0,0,0,65,68,0);
 
 /*!40000 ALTER TABLE `mob_groups` ENABLE KEYS */;
 UNLOCK TABLES;

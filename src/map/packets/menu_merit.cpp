@@ -67,7 +67,7 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 
     this->size = 0x6E;
 
-	memset(data + 4, 0, sizeof(data) - 4);
+	memset(data + 4, 0, sizeof(PACKET_SIZE -4));
 
     uint8 packet[] = 
     {
@@ -81,7 +81,7 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 
 	this->size = 0x44;
 
-	memset(data + 4, 0, sizeof(data) - 4);
+	memset(data + 4, 0, sizeof(PACKET_SIZE -4));
 
 	uint8 packet2[] = 
 	{
