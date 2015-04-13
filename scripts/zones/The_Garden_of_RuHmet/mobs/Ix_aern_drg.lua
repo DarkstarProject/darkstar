@@ -28,13 +28,13 @@ function onMobFight(mob,target)
     -- Spawn the pets if they are despawned
     -- TODO: summon animations?    
     if (GetMobAction(wynavA) == 0) then
-        wynavA:setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5));
+        GetMobByID(wynavA):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5));
         SpawnMob(wynavA, 300):updateEnmity(target);
     elseif (GetMobAction(wynavB) == 0) then
-        wynavB:setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5));
+        GetMobByID(wynavB):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5));
         SpawnMob(wynavB, 300):updateEnmity(target);
     elseif (GetMobAction(wynavC) == 0) then
-        wynavC:setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5));
+        GetMobByID(wynavC):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5));
         SpawnMob(wynavC, 300):updateEnmity(target);
     end
 
