@@ -47,6 +47,9 @@ protected:
     void ActionDisengage();
     void ActionFall();
     void ActionAttack();
+
+    virtual void TransitionBack(bool skipWait = false) override;
+
 };
 
 #endif

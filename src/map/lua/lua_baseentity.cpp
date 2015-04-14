@@ -2433,7 +2433,6 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
                     petutils::DespawnPet(PChar);
                 }
             }
-
         }
     }
     lua_pushinteger( L, PChar->m_LevelRestriction );

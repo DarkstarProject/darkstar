@@ -151,16 +151,17 @@ void CAICharNormal::CheckActionAfterReceive(uint32 tick)
 
     switch (m_ActionType)
     {
-    case ACTION_NONE:			  									break;
-    case ACTION_MAGIC_START:			ActionMagicStart();			break;
-    case ACTION_ENGAGE:					ActionEngage();				break;
-    case ACTION_DISENGAGE:				ActionDisengage();	 		break;
-    case ACTION_RANGED_START:			ActionRangedStart();		break;
-    case ACTION_ITEM_START:				ActionItemStart();			break;
-    case ACTION_CHANGE_TARGET:	        ActionChangeBattleTarget(); break;
-    case ACTION_WEAPONSKILL_START:		ActionWeaponSkillStart();	break;
-    case ACTION_JOBABILITY_START:		ActionJobAbilityStart();	break;
-    case ACTION_RAISE_MENU_SELECTION:	ActionRaiseMenuSelection(); break;
+    case ACTION_MAGIC_START:
+    case ACTION_ENGAGE:
+    case ACTION_DISENGAGE:
+    case ACTION_RANGED_START:
+    case ACTION_ITEM_START:
+    case ACTION_CHANGE_TARGET:
+    case ACTION_WEAPONSKILL_START:
+    case ACTION_JOBABILITY_START:
+    case ACTION_RAISE_MENU_SELECTION:
+        //call the classes (or subclasses) action handlers
+        CheckCurrentAction(tick);
 
     default: break;
     }
