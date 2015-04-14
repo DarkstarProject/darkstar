@@ -1,7 +1,16 @@
 -----------------------------------------
 -- Spell: Wild Carrot
--- Restores target's HP.
--- Shamelessly stolen from http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
+-- Restores HP for the target party member
+-- Spell cost: 37 MP
+-- Monster Type: Beasts
+-- Spell Type: Magical (Light)
+-- Blue Magic Points: 3
+-- Stat Bonus: HP+5
+-- Level: 30
+-- Casting Time: 2.5 seconds
+-- Recast Time: 6 seconds
+-- 
+-- Combos: Resist Sleep
 -----------------------------------------
 
 require("scripts/globals/settings");
@@ -9,19 +18,24 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
 
 -----------------------------------------
--- OnSpellCast
+-- OnMagicCastingCheck
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
 	return 0;
 end;
 
-function onSpellCast(caster,target,spell)
-	local minCure = 120;
+-----------------------------------------
+-- OnSpellCast
+-----------------------------------------
 
+function onSpellCast(caster,target,spell)
+
+	local minCure = 120;
 	local divisor = 1;
 	local constant = 60;
 	local power = getCurePowerOld(caster);
+	
 	if(power > 299) then
 		divisor = 15.6666;
 		constant = 170.43;
@@ -43,10 +57,11 @@ function onSpellCast(caster,target,spell)
 	if(final > diff) then
 		final = diff;
 	end
+	
 	target:addHP(final);
-
 	target:wakeUp();
 	caster:updateEnmityFromCure(target,final);
 	spell:setMsg(7);
+	
 	return final;
 end;

@@ -1,7 +1,16 @@
 -----------------------------------------
-
 -- Spell: Exuviation
-
+-- Restores HP and removes one detrimental magic effect
+-- Spell cost: 40 MP
+-- Monster Type: Vermin
+-- Spell Type: Magical (Fire)
+-- Blue Magic Points: 4
+-- Stat Bonus: HP+5 MP+5 CHR+1
+-- Level: 75
+-- Casting Time: 3 seconds
+-- Recast Time: 60 seconds
+-- 
+-- Combos: Resist Sleep
 -----------------------------------------
 
 require("scripts/globals/settings");
@@ -9,14 +18,19 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
 
 -----------------------------------------
--- OnSpellCast
+-- OnMagicCastingCheck
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
 	return 0;
 end;
 
+-----------------------------------------
+-- OnSpellCast
+-----------------------------------------
+
 function onSpellCast(caster,target,spell)
+
 	local minCure = 60;
 	local effect = target:eraseStatusEffect();
 	local divisor = 0.6666;
@@ -44,10 +58,11 @@ function onSpellCast(caster,target,spell)
 	if(final > diff) then
 		final = diff;
 	end
+	
 	target:addHP(final);
-
 	target:wakeUp();
 	caster:updateEnmityFromCure(target,final);
 	spell:setMsg(7);
+	
 	return final;
 end;

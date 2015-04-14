@@ -1,20 +1,37 @@
 -----------------------------------------
 -- Spell: Venom Shell
+-- Poisons enemies within range and gradually reduces their HP
+-- Spell cost: 86 MP
+-- Monster Type: Aquans
+-- Spell Type: Magical (Water)
+-- Blue Magic Points: 3
+-- Stat Bonus: MND+2
+-- Level: 42
+-- Casting Time: 3 seconds
+-- Recast Time: 45 seconds
+-- Magic Bursts on: Reverberation, Distortion, and Darkness
+-- Combos: Clear Mind
 -----------------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/bluemagic");
+
 -----------------------------------------
--- OnSpellCast
+-- OnMagicCastingCheck
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
 	return 0;
 end;
 
-function onSpellCast(caster,target,spell)
-	local duration = 30;
+-----------------------------------------
+-- OnSpellCast
+-----------------------------------------
 
+function onSpellCast(caster,target,spell)
+
+	local duration = 30;
 	local dINT = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
 	local resist = applyResistance(caster,spell,target,dINT,37);
 	if(resist > (0.0652)) then

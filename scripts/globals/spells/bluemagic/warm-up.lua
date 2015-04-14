@@ -1,16 +1,34 @@
 -----------------------------------------
 -- Spell: Warm-Up
+-- Enhances accuracy and evasion
+-- Spell cost: 59 MP
+-- Monster Type: Beastmen
+-- Spell Type: Magical (Earth)
+-- Blue Magic Points: 4
+-- Stat Bonus: VIT+1
+-- Level: 68
+-- Casting Time: 7 seconds
+-- Recast Time: 120 seconds 
+-- Duration: 180 seconds
+-- 
+-- Combos: Clear Mind
 -----------------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/bluemagic");
+
 -----------------------------------------
--- OnSpellCast
+-- OnMagicCastingCheck
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
 	return 0;
 end;
+
+-----------------------------------------
+-- OnSpellCast
+-----------------------------------------
 
 function onSpellCast(caster,target,spell)
 

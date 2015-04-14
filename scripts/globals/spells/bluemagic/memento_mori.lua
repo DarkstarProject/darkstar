@@ -1,16 +1,33 @@
 -----------------------------------------
 -- Spell: Memento Mori
+-- Enhances magic attack
+-- Spell cost: 46 MP
+-- Monster Type: Undead
+-- Spell Type: Magical (Ice)
+-- Blue Magic Points: 4
+-- Stat Bonus: INT+1
+-- Level: 62
+-- Casting Time: 6 seconds
+-- Recast Time: 2 minutes
+-- 
+-- Combos: Magic Attack Bonus
 -----------------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/bluemagic");
+
 -----------------------------------------
--- OnSpellCast
+-- OnMagicCastingCheck
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
 	return 0;
 end;
+
+-----------------------------------------
+-- OnSpellCast
+-----------------------------------------
 
 function onSpellCast(caster,target,spell)
     

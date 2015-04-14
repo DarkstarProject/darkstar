@@ -1,22 +1,40 @@
 -----------------------------------------
 -- Spell: Sandspray
+-- Blinds enemies within a fan-shaped area originating from the caster
+-- Spell cost: 43 MP
+-- Monster Type: Beastmen
+-- Spell Type: Magical (Dark)
+-- Blue Magic Points: 2
+-- Stat Bonus: VIT+1
+-- Level: 66
+-- Casting Time: 3 seconds
+-- Recast Time: 90 seconds
+-- Magic Bursts on: Compression, Gravitation, and Darkness
+-- Combos: Clear Mind
 -----------------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/bluemagic");
+
 -----------------------------------------
--- OnSpellCast
+-- OnMagicCastingCheck
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
 	return 0;
 end;
 
-function onSpellCast(caster,target,spell)
-	local duration = 60;
+-----------------------------------------
+-- OnSpellCast
+-----------------------------------------
 
+function onSpellCast(caster,target,spell)
+
+	local duration = 60;
 	local dINT = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
 	local resist = applyResistance(caster,spell,target,dINT,37);
+	
 	if(resist > 0.0625) then
 		-- resisted!
 		spell:setMsg(85);

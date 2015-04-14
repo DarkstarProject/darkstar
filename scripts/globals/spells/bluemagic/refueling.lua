@@ -1,21 +1,35 @@
 -----------------------------------------
 -- Spell: Refueling
--- Overwrites Intimidate (Pugil), Sticky Thread (Crawler), and Horror Cloud (Skeleton)
--- Cannot be overwriten by Intimidate or Horror Cloud
--- Overwriten by, and cannot overwrite, Slow, Slowga, Haste, Hastega, and Spider Web
+-- Increases attack speed
+-- Spell cost: 29 MP
+-- Monster Type: Arcana
+-- Spell Type: Magical (Wind)
+-- Blue Magic Points: 4
+-- Stat Bonus: AGI+2
+-- Level: 48
+-- Casting Time: 1.5 seconds
+-- Recast Time: 30 seconds
+-- Duration: 5 minutes
+-- 
+-- Combos: None
 -----------------------------------------
 
 require("scripts/globals/status");
 
 -----------------------------------------
--- OnSpellCast
+-- OnMagicCastingCheck
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
 	return 0;
 end;
 
+-----------------------------------------
+-- OnSpellCast
+-----------------------------------------
+
 function onSpellCast(caster,target,spell)
+
     local duration = 300;
     
     if(caster:hasStatusEffect(EFFECT_DIFFUSION)) then

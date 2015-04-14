@@ -1,22 +1,40 @@
 -----------------------------------------
 -- Spell: Jettatura
+-- Enemies within a fan-shaped area originating from the caster are frozen with fear
+-- Spell cost: 37 MP
+-- Monster Type: Birds
+-- Spell Type: Magical (Dark)
+-- Blue Magic Points: 4
+-- Stat Bonus: MP+15
+-- Level: 48
+-- Casting Time: 0.5 seconds
+-- Recast Time: 2:00
+-- Magic Bursts on: Compression, Gravitation, Darkness
+-- Combos: None
 -----------------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/bluemagic");
+
 -----------------------------------------
--- OnSpellCast
+-- OnMagicCastingCheck
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
 	return 0;
 end;
 
-function onSpellCast(caster,target,spell)
-	local duration = 5;
+-----------------------------------------
+-- OnSpellCast
+-----------------------------------------
 
+function onSpellCast(caster,target,spell)
+
+	local duration = 5;
 	local dINT = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
 	local resist = applyResistance(caster,spell,target,dINT,37);
+	
 	if(resist > 0.0625) then
 		-- resisted!
 		spell:setMsg(85);

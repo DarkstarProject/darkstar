@@ -1,17 +1,35 @@
 -----------------------------------------
--- Spell: Chaoctic Eye
+-- Spell: Chaotic Eye
+-- Silences an enemy
+-- Spell cost: 13 MP
+-- Monster Type: Beasts
+-- Spell Type: Magical (Wind)
+-- Blue Magic Points: 2
+-- Stat Bonus: AGI+1
+-- Level: 32
+-- Casting Time: 3 seconds
+-- Recast Time: 10 seconds
+-- Magic Bursts on: Detonation, Fragmentation, and Light
+-- Combos: Conserve MP
 -----------------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
+
 -----------------------------------------
--- OnSpellCast
+-- OnMagicCastingCheck
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
 	return 0;
 end;
 
+-----------------------------------------
+-- OnSpellCast
+-----------------------------------------
+
 function onSpellCast(caster,target,spell)
+
     local effectType = EFFECT_SILENCE;
 
     if(target:hasStatusEffect(effectType)) then
@@ -41,5 +59,4 @@ function onSpellCast(caster,target,spell)
 
 
     return effectType;
-
 end;
