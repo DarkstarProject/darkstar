@@ -41,7 +41,6 @@ CREATE TABLE IF NOT EXISTS `char_stats` (
   `zoning` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `mlvl` tinyint(2) unsigned NOT NULL DEFAULT '1',
   `slvl` tinyint(2) unsigned NOT NULL DEFAULT '1',
-  `respawn_pet` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `pet_id` smallint(3) unsigned NOT NULL DEFAULT '0',
   `pet_type` smallint(3) unsigned NOT NULL DEFAULT '0',
   `pet_hp` smallint(4) unsigned NOT NULL DEFAULT '0',

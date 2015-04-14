@@ -582,7 +582,7 @@ namespace charutils
         }
 
         fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, zoning, "
-            "respawn_pet, pet_id, pet_type, pet_hp, pet_mp "
+            "pet_id, pet_type, pet_hp, pet_mp "
             "FROM char_stats WHERE charid = %u;";
 
         ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
@@ -612,12 +612,12 @@ namespace charutils
             zoning = Sql_GetUIntData(SqlHandle, 8);
 
             // Determine if the pet should be respawned.
-            bool respawnPet = Sql_GetUIntData(SqlHandle, 9);
-            if (respawnPet) {
-                PChar->petZoningInfo.petHP = Sql_GetIntData(SqlHandle, 12);
-                PChar->petZoningInfo.petID = Sql_GetUIntData(SqlHandle, 10);
-                PChar->petZoningInfo.petMP = Sql_GetIntData(SqlHandle, 13);
-                PChar->petZoningInfo.petType = (PETTYPE)Sql_GetUIntData(SqlHandle, 11);
+            int16 petHP = Sql_GetUIntData(SqlHandle, 11);
+            if (petHP) {
+                PChar->petZoningInfo.petHP = petHP;
+                PChar->petZoningInfo.petID = Sql_GetUIntData(SqlHandle, 9);
+                PChar->petZoningInfo.petMP = Sql_GetIntData(SqlHandle, 12);
+                PChar->petZoningInfo.petType = (PETTYPE)Sql_GetUIntData(SqlHandle, 10);
                 PChar->petZoningInfo.respawnPet = true;
             }
         }
@@ -3864,7 +3864,7 @@ namespace charutils
     {
         const int8* Query = "UPDATE char_stats "
             "SET hp = %u, mp = %u, nameflags = %u, mhflag = %u, mjob = %u, sjob = %u, "
-            "respawn_pet = %u, pet_id = %u, pet_type = %u, pet_hp = %u, pet_mp = %u "
+            "pet_id = %u, pet_type = %u, pet_hp = %u, pet_mp = %u "
             "WHERE charid = %u;";
 
         Sql_Query(SqlHandle,
@@ -3875,7 +3875,6 @@ namespace charutils
             PChar->profile.mhflag,
             PChar->GetMJob(),
             PChar->GetSJob(),
-            PChar->petZoningInfo.respawnPet,
             PChar->petZoningInfo.petID,
             PChar->petZoningInfo.petType,
             PChar->petZoningInfo.petHP,
