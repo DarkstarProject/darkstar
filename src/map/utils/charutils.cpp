@@ -581,7 +581,9 @@ namespace charutils
             limitPoints = (uint16)Sql_GetIntData(SqlHandle, 24);
         }
 
-        fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, zoning FROM char_stats WHERE charid = %u;";
+        fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, zoning, "
+            "pet_id, pet_type, pet_hp, pet_mp "
+            "FROM char_stats WHERE charid = %u;";
 
         ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
         bool zoning = false;
@@ -608,6 +610,16 @@ namespace charutils
                 PChar->bazaar.message = '\0';
 
             zoning = Sql_GetUIntData(SqlHandle, 8);
+
+            // Determine if the pet should be respawned.
+            int16 petHP = Sql_GetUIntData(SqlHandle, 11);
+            if (petHP) {
+                PChar->petZoningInfo.petHP = petHP;
+                PChar->petZoningInfo.petID = Sql_GetUIntData(SqlHandle, 9);
+                PChar->petZoningInfo.petMP = Sql_GetIntData(SqlHandle, 12);
+                PChar->petZoningInfo.petType = (PETTYPE)Sql_GetUIntData(SqlHandle, 10);
+                PChar->petZoningInfo.respawnPet = true;
+            }
         }
 
         PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
@@ -3851,7 +3863,8 @@ namespace charutils
     void SaveCharStats(CCharEntity* PChar)
     {
         const int8* Query = "UPDATE char_stats "
-            "SET hp = %u, mp = %u, nameflags = %u, mhflag = %u, mjob = %u, sjob = %u "
+            "SET hp = %u, mp = %u, nameflags = %u, mhflag = %u, mjob = %u, sjob = %u, "
+            "pet_id = %u, pet_type = %u, pet_hp = %u, pet_mp = %u "
             "WHERE charid = %u;";
 
         Sql_Query(SqlHandle,
@@ -3862,6 +3875,10 @@ namespace charutils
             PChar->profile.mhflag,
             PChar->GetMJob(),
             PChar->GetSJob(),
+            PChar->petZoningInfo.petID,
+            PChar->petZoningInfo.petType,
+            PChar->petZoningInfo.petHP,
+            PChar->petZoningInfo.petMP,
             PChar->id);
     }
 
