@@ -47,6 +47,7 @@ function onMobFight(mob,target)
         if (mob:getHPP() < math.random(50,60)) then
             -- Go into bracer mode
             mob:setLocalVar("BracerMode",1);
+            mob:AnimationSub(2); -- Puts on the bracers! He gonna fuck you up now.
             mob:addMod(MOD_ATT, 200);
             mob:addMod(MOD_HASTE_ABILITY, 150);
             mob:useMobAbility(3155); -- Hundred Fists
