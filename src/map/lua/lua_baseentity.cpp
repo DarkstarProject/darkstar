@@ -9159,27 +9159,30 @@ inline int32 CLuaBaseEntity::getParty(lua_State* L)
 
     CParty* party = ((CBattleEntity*)m_PBaseEntity)->PParty;
 
+    int size = 0;
     if (party)
     {
-        lua_createtable(L, party->MemberCount(m_PBaseEntity->getZone()), 0);
-        int8 newTable = lua_gettop(L);
-        int i = 1;
-        for (auto member : party->members)
-        {
-            lua_getglobal(L, CLuaBaseEntity::className);
-            lua_pushstring(L, "new");
-            lua_gettable(L, -2);
-            lua_insert(L, -2);
-            lua_pushlightuserdata(L, (void*)member);
-            lua_pcall(L, 2, 1, 0);
-
-            lua_rawseti(L, -2, i++);
-        }
+        size = party->MemberCount(m_PBaseEntity->getZone());
     }
     else
     {
-        lua_pushnil(L);
+        size = 1;
     }
+
+    lua_createtable(L, size, 0);
+    int i = 1;
+    ((CBattleEntity*)m_PBaseEntity)->ForParty([this, &L, &i](CBattleEntity* member)
+    {
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)member);
+        lua_pcall(L, 2, 1, 0);
+
+        lua_rawseti(L, -2, i++);
+    });
+
     return 1;
 }
 
@@ -9188,50 +9191,36 @@ inline int32 CLuaBaseEntity::getAlliance(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    if (PChar->PParty)
+
+    int size = 1;
+
+    if (PChar->PParty && PChar->PParty->m_PAlliance)
     {
-        if (PChar->PParty->m_PAlliance)
+        for (auto PParty : PChar->PParty->m_PAlliance->partyList)
         {
-            lua_createtable(L, PChar->PParty->MemberCount(m_PBaseEntity->getZone()), 0);
-            int8 newTable = lua_gettop(L);
-            int i = 1;
-            for (auto PAllianceParty : PChar->PParty->m_PAlliance->partyList)
-            {
-                for (auto PMember : PAllianceParty->members)
-                {
-                    lua_getglobal(L, CLuaBaseEntity::className);
-                    lua_pushstring(L, "new");
-                    lua_gettable(L, -2);
-                    lua_insert(L, -2);
-                    lua_pushlightuserdata(L, (void*)PMember);
-                    lua_pcall(L, 2, 1, 0);
-
-                    lua_rawseti(L, -2, i++);
-                }
-            }
-        }
-        else
-        {
-            lua_createtable(L, PChar->PParty->MemberCount(m_PBaseEntity->getZone()), 0);
-            int8 newTable = lua_gettop(L);
-            int i = 1;
-            for (auto PMember : PChar->PParty->members)
-            {
-                lua_getglobal(L, CLuaBaseEntity::className);
-                lua_pushstring(L, "new");
-                lua_gettable(L, -2);
-                lua_insert(L, -2);
-                lua_pushlightuserdata(L, (void*)PMember);
-                lua_pcall(L, 2, 1, 0);
-
-                lua_rawseti(L, -2, i++);
-            }
+            size += PParty->MemberCount(m_PBaseEntity->getZone());
         }
     }
-    else
+    else if (PChar->PParty)
     {
-        lua_pushnil(L);
+        size = PChar->PParty->MemberCount(m_PBaseEntity->getZone());
     }
+
+    lua_createtable(L, size, 0);
+    int i = 0;
+
+    PChar->ForAlliance([this, &L, &i](CBattleEntity* PMember)
+    {
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)PMember);
+        lua_pcall(L, 2, 1, 0);
+
+        lua_rawseti(L, -2, i++);
+    });
+
     return 1;
 }
 
