@@ -1,0 +1,20 @@
+-----------------------------------------
+-- ID: 16049
+-- Empire Earring
+-- Enchantment: "Teleport-Empire"
+-----------------------------------------
+require("scripts/globals/teleports");
+-----------------------------------------
+-- OnItemCheck
+-----------------------------------------
+function onItemCheck(target)
+return 0;
+
+end;
+-----------------------------------------
+-- OnItemUse
+-----------------------------------------
+function onItemUse(target)		
+target:setPos(-19,0,-18,222,50);
+
+end;
