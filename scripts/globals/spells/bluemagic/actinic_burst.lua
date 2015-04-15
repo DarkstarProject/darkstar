@@ -23,7 +23,7 @@ require("scripts/globals/bluemagic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -46,5 +46,5 @@ function onSpellCast(caster,target,spell)
     else
         spell:setMsg(85);
     end
-	return EFFECT_FLASH;
+    return EFFECT_FLASH;
 end;

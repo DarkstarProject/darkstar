@@ -21,7 +21,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -38,15 +38,15 @@ function onSpellCast(caster,target,spell)
     end
 
     if(1000 * math.random() >= target:getMod(MOD_SILENCERES)) then
-		--Pull base stats.
-		local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
+        --Pull base stats.
+        local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
 
-		--Duration, including resistance.  May need more research.
-		local duration = 180;
+        --Duration, including resistance.  May need more research.
+        local duration = 180;
 
-		--Resist
-		local resist = applyResistance(caster,spell,target,dINT,35,0);
-		
+        --Resist
+        local resist = applyResistance(caster,spell,target,dINT,35,0);
+        
         if(resist >= 0.5) then --Do it!
             target:addStatusEffect(effectType,1,0,duration * resist);
             spell:setMsg(236);

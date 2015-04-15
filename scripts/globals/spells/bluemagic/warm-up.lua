@@ -23,7 +23,7 @@ require("scripts/globals/bluemagic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -45,10 +45,10 @@ function onSpellCast(caster,target,spell)
     end
     
     if(caster:hasStatusEffect(EFFECT_ACCURACY_BOOST) and caster:hasStatusEffect(EFFECT_EVASION_BOOST) == true) then
-    	spell:setMsg(75);
-	else
-		caster:addStatusEffect(EFFECT_EVASION_BOOST,10,0,duration);
-		caster:addStatusEffect(EFFECT_ACCURACY_BOOST,10,0,duration);
+        spell:setMsg(75);
+    else
+        caster:addStatusEffect(EFFECT_EVASION_BOOST,10,0,duration);
+        caster:addStatusEffect(EFFECT_ACCURACY_BOOST,10,0,duration);
     end
 
     return EFFECT_EVASION_BOOST;

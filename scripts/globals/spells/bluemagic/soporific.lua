@@ -23,7 +23,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -32,27 +32,27 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-	local duration = 90;
-	local typeEffect = EFFECT_SLEEP_II;
-	local pINT = caster:getStat(MOD_INT);
-	local mINT = target:getStat(MOD_INT);
-	local dINT = (pINT - mINT);
-	local resm = applyResistance(caster,spell,target,dINT,BLUE_SKILL,0);
-	
-	if(resm < 0.5) then
-		spell:setMsg(85);--resist message
-		return typeEffect;
-	end
+    local duration = 90;
+    local typeEffect = EFFECT_SLEEP_II;
+    local pINT = caster:getStat(MOD_INT);
+    local mINT = target:getStat(MOD_INT);
+    local dINT = (pINT - mINT);
+    local resm = applyResistance(caster,spell,target,dINT,BLUE_SKILL,0);
+    
+    if(resm < 0.5) then
+        spell:setMsg(85);--resist message
+        return typeEffect;
+    end
 
-	duration = duration * resm;
+    duration = duration * resm;
 
 
-	if(target:hasStatusEffect(typeEffect) == true) then
-		spell:setMsg(75);
-	else
-		target:addStatusEffect(typeEffect,2,0,duration)
-		spell:setMsg(236);
-	end
+    if(target:hasStatusEffect(typeEffect) == true) then
+        spell:setMsg(75);
+    else
+        target:addStatusEffect(typeEffect,2,0,duration)
+        spell:setMsg(236);
+    end
 
-	return typeEffect;
+    return typeEffect;
 end;

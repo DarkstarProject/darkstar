@@ -23,7 +23,7 @@ require("scripts/globals/bluemagic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -44,13 +44,13 @@ function onSpellCast(caster,target,spell)
         caster:delStatusEffect(EFFECT_DIFFUSION);
     end
     
-	if (caster:hasStatusEffect(EFFECT_DEFENSE_BOOST) and caster:hasStatusEffect(EFFECT_ICE_SPIKES) == true) then
-		spell:setMsg(75);
-	else
-		caster:addStatusEffect(EFFECT_DEFENSE_BOOST,12,0,duration);
-		caster:addStatusEffect(EFFECT_ICE_SPIKES,5,0,duration);
-		spell:setMsg(230);
-	end
+    if (caster:hasStatusEffect(EFFECT_DEFENSE_BOOST) and caster:hasStatusEffect(EFFECT_ICE_SPIKES) == true) then
+        spell:setMsg(75);
+    else
+        caster:addStatusEffect(EFFECT_DEFENSE_BOOST,12,0,duration);
+        caster:addStatusEffect(EFFECT_ICE_SPIKES,5,0,duration);
+        spell:setMsg(230);
+    end
 
     return EFFECT_ICE_SPIKES;
 end;

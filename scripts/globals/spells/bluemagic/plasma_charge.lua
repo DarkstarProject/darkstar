@@ -23,7 +23,7 @@ require("scripts/globals/bluemagic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -44,8 +44,8 @@ function onSpellCast(caster,target,spell)
         caster:delStatusEffect(EFFECT_DIFFUSION);
     end
     
-		caster:addStatusEffect(EFFECT_SHOCK_SPIKES,5,0,duration);
-		spell:setMsg(230);
+        caster:addStatusEffect(EFFECT_SHOCK_SPIKES,5,0,duration);
+        spell:setMsg(230);
 
     return EFFECT_DEFENSE_BOOST;
 end;

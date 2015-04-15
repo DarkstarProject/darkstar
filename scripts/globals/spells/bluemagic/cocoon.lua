@@ -23,7 +23,7 @@ require("scripts/globals/bluemagic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -32,7 +32,7 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-	local power = 50; -- Percentage, not amount.    
+    local power = 50; -- Percentage, not amount.    
     local duration = 90;
 
     if(caster:hasStatusEffect(EFFECT_DIFFUSION)) then
@@ -45,11 +45,11 @@ function onSpellCast(caster,target,spell)
         caster:delStatusEffect(EFFECT_DIFFUSION);
     end
     
-	if(target:addStatusEffect(EFFECT_DEFENSE_BOOST,power,0,duration)) then
-		spell:setMsg(230);
-	else
-		spell:setMsg(75);
-	end
+    if(target:addStatusEffect(EFFECT_DEFENSE_BOOST,power,0,duration)) then
+        spell:setMsg(230);
+    else
+        spell:setMsg(75);
+    end
 
     return EFFECT_DEFENSE_BOOST;
 end;

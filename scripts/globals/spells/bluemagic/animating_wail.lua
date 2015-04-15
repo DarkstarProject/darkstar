@@ -21,7 +21,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 -----------------------------------------
 -- OnSpellCast

@@ -22,7 +22,7 @@ require("scripts/globals/bluemagic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -31,7 +31,7 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-	local power = 15	
+    local power = 15    
     local duration = 90;
     
     if(caster:hasStatusEffect(EFFECT_DIFFUSION)) then
@@ -44,13 +44,13 @@ function onSpellCast(caster,target,spell)
         caster:delStatusEffect(EFFECT_DIFFUSION);
     end
     
-	if(caster:hasStatusEffect(EFFECT_ATTACK_BOOST) == true) then
-		local effect = caster:getStatusEffect(EFFECT_ATTACK_BOOST);
-		effect:setPower(effect:getPower() + power);
-		caster:addMod(MOD_ATTP,power);
-	else
-		caster:addStatusEffect(EFFECT_ATTACK_BOOST,power,1,duration);
-	end
-	
-	return EFFECT_ATTACK_BOOST;
+    if(caster:hasStatusEffect(EFFECT_ATTACK_BOOST) == true) then
+        local effect = caster:getStatusEffect(EFFECT_ATTACK_BOOST);
+        effect:setPower(effect:getPower() + power);
+        caster:addMod(MOD_ATTP,power);
+    else
+        caster:addStatusEffect(EFFECT_ATTACK_BOOST,power,1,duration);
+    end
+    
+    return EFFECT_ATTACK_BOOST;
 end;
