@@ -1075,7 +1075,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
             if (daze == EFFECT_DRAIN_DAZE)
             {
                 uint16 multiplier = 3 + (5.5f * power - 1);
-                int8 Samba = WELL512::GetRandomNumber(1, (delay * multiplier));
+                int8 Samba = WELL512::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
 
                 // vary damage based on lvl diff
                 int8 lvlDiff = (PDefender->GetMLevel() - PAttacker->GetMLevel()) / 2;
@@ -1111,7 +1111,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
             else if (daze == EFFECT_ASPIR_DAZE)
             {
                 uint16 multiplier = 1 + (2 * power - 1);
-                int8 Samba = WELL512::GetRandomNumber(1, (delay * multiplier));
+                int8 Samba = WELL512::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
 
                 if (Samba >= finaldamage / 4) { Samba = finaldamage / 4; }
 
