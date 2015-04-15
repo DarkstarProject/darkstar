@@ -9183,6 +9183,58 @@ inline int32 CLuaBaseEntity::getParty(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::getAlliance(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    if (PChar->PParty)
+    {
+        if (PChar->PParty->m_PAlliance)
+        {
+            lua_createtable(L, PChar->PParty->MemberCount(m_PBaseEntity->getZone()), 0);
+            int8 newTable = lua_gettop(L);
+            int i = 1;
+            for (auto PAllianceParty : PChar->PParty->m_PAlliance->partyList)
+            {
+                for (auto PMember : PAllianceParty->members)
+                {
+                    lua_getglobal(L, CLuaBaseEntity::className);
+                    lua_pushstring(L, "new");
+                    lua_gettable(L, -2);
+                    lua_insert(L, -2);
+                    lua_pushlightuserdata(L, (void*)PMember);
+                    lua_pcall(L, 2, 1, 0);
+
+                    lua_rawseti(L, -2, i++);
+                }
+            }
+        }
+        else
+        {
+            lua_createtable(L, PChar->PParty->MemberCount(m_PBaseEntity->getZone()), 0);
+            int8 newTable = lua_gettop(L);
+            int i = 1;
+            for (auto PMember : PChar->PParty->members)
+            {
+                lua_getglobal(L, CLuaBaseEntity::className);
+                lua_pushstring(L, "new");
+                lua_gettable(L, -2);
+                lua_insert(L, -2);
+                lua_pushlightuserdata(L, (void*)PMember);
+                lua_pcall(L, 2, 1, 0);
+
+                lua_rawseti(L, -2, i++);
+            }
+        }
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
+    return 1;
+}
+
 inline int32 CLuaBaseEntity::messageText(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -10019,6 +10071,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,entityAnimationPacket),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyLeader),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getParty),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAlliance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageText),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,instanceEntry),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getInstance),
