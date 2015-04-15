@@ -1,0 +1,18 @@
+-----------------------------------------
+-- ID: 16042
+-- Duchy Earring
+-- Enchantment: "Teleport-Duchy"
+-----------------------------------------
+require("scripts/globals/teleports");
+-----------------------------------------
+-- OnItemCheck
+-----------------------------------------
+function onItemCheck(target)
+return 0;
+end;
+-----------------------------------------
+-- OnItemUse
+-----------------------------------------
+function onItemUse(target)		
+target:setPos(5,0,-6,0,0xF4);
+end;
