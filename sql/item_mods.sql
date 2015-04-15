@@ -19943,6 +19943,10 @@ INSERT INTO `item_mods` VALUES (18504, 229, 2);
 INSERT INTO `item_mods` VALUES (18506, 288, 1);
 INSERT INTO `item_mods` VALUES (18509, 288, 1);
 INSERT INTO `item_mods` VALUES (18531, 24, 4);
+INSERT INTO `item_mods` VALUES (18537, 9, 4);
+INSERT INTO `item_mods` VALUES (18537, 68, 4);
+INSERT INTO `item_mods` VALUES (18538, 9, 5);
+INSERT INTO `item_mods` VALUES (18538, 68, 5);
 
 -- -------------------------------------------------------
 -- Twilight Scythe
