@@ -1,0 +1,20 @@
+-----------------------------------------
+-- ID: 16048
+-- Safehold Earring
+-- Enchantment: "Teleport-Safehold"
+-----------------------------------------
+require("scripts/globals/teleports");
+-----------------------------------------
+-- OnItemCheck
+-----------------------------------------
+function onItemCheck(target)
+return 0;
+
+end;
+-----------------------------------------
+-- OnItemUse
+-----------------------------------------
+function onItemUse(target)		
+target:setPos(9,-9,11,0,26);
+
+end;
