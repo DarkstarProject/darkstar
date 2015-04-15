@@ -23,9 +23,13 @@ This file is part of DarkStar-server source code.
 
 #include "ai_automaton_dummy.h"
 
+#include "../mobskill.h"
+
 #include "../entities/automatonentity.h"
 #include "../entities/mobentity.h"
 #include "../entities/petentity.h"
+
+#include "../lua/luautils.h"
 
 #include "../packets/pet_sync.h"
 
@@ -39,6 +43,15 @@ CAIAutomatonDummy::CAIAutomatonDummy(CPetEntity* PPet)
     DSP_DEBUG_BREAK_IF(PPet->getPetType() != PETTYPE_AUTOMATON);
 
     CAutomatonEntity* PAutomaton = (CAutomatonEntity*)PPet;
+
+    uint32 m_magicRecast = 0;
+    uint32 m_magicEnfeebleRecast = 0;
+    uint32 m_magicElementalRecast = 0;
+    uint32 m_magicHealRecast = 0;
+    uint32 m_magicEnhanceRecast = 0;
+    uint32 m_magicStatusRecast = 0;
+
+    uint32 m_LastRangedTime = 0;
 }
 
 void CAIAutomatonDummy::CheckCurrentAction(uint32 tick)
@@ -119,8 +132,10 @@ void CAIAutomatonDummy::ActionAttack()
     }
     else if (CheckRangedAttack())
     {
+        //TODO: set ID to ranged attack
         m_ActionType = ACTION_MOBABILITY_FINISH;
         ActionAbilityFinish();
+        m_LastRangedTime = m_Tick;
         return;
     }
 
@@ -263,10 +278,81 @@ bool CAIAutomatonDummy::CheckSpellcast()
 
 bool CAIAutomatonDummy::CheckTPMove()
 {
+    //TODO: range checks
+    if (m_PPet->health.tp > 1000)
+    {
+        bool valid = false;
+
+        std::vector<CMobSkill*> FamilySkills = battleutils::GetMobSkillsByFamily(m_PPet->m_Family);
+
+        std::vector<CMobSkill*> validSkills;
+
+        //load the skills that the automaton has access to with it's skill
+        SKILLTYPE skilltype = SKILL_AME;
+
+        if (m_PPet->getFrame() == FRAME_SHARPSHOT)
+        {
+            skilltype = SKILL_ARA;
+        }
+
+        for (auto PSkill : FamilySkills)
+        {
+            if (m_PPet->PMaster && m_PPet->PMaster->GetSkill(skilltype) > PSkill->getParam())
+            {
+                validSkills.push_back(PSkill);
+            }
+        }
+
+        for (auto PSkill : validSkills)
+        {
+            if (luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PPet, PSkill) == 0)
+            {
+                SetCurrentMobSkill(PSkill);
+                valid = true;
+                break;
+            }
+        }
+
+        // No WS was chosen (waiting on master's TP to skillchain probably)
+        if (!valid)
+        {
+            return false;
+        }
+        m_LastActionTime = m_Tick;
+        m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
+        m_skillTP = m_PPet->health.tp;
+        m_PPet->health.tp = 0;
+
+        //TODO: check if automaton WS have activation times (don't think so)
+        m_ActionType = ACTION_MOBABILITY_FINISH;
+        ActionAbilityFinish();
+
+        return true;
+    }
     return false;
 }
 
 bool CAIAutomatonDummy::CheckRangedAttack()
 {
     return false;
+}
+
+void CAIAutomatonDummy::TransitionBack(bool skipWait /*= false*/)
+{
+    if (m_PPet->animation == ANIMATION_ATTACK)
+    {
+        m_ActionType = ACTION_ATTACK;
+        if (skipWait)
+        {
+            ActionAttack();
+        }
+    }
+    else
+    {
+        m_ActionType = ACTION_ROAMING;
+        if (skipWait)
+        {
+            ActionRoaming();
+        }
+    }
 }
