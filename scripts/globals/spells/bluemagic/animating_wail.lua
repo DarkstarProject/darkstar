@@ -1,25 +1,34 @@
 -----------------------------------------
--- Bluemagic: Animating Wail
--- Increases attack speed.
--- HP +20
--- Lv: 79 MP Cost: 53 Blue Points: 5
+-- Spell: Animating Wail
+-- Increases attack speed
+-- Spell cost: 53 MP
+-- Monster Type: Undead
+-- Spell Type: Magical (Wind)
+-- Blue Magic Points: 5
+-- Stat Bonus: HP+20
+-- Level: 79
+-- Casting Time: 2 Seconds
+-- Recast Time: 45 Seconds
+-- 5 minutes
+-- 
+-- Combos: Dual Wield
 -----------------------------------------
 
 require("scripts/globals/status");
 
 -----------------------------------------
--- onMagicCastingCheck
+-- OnMagicCastingCheck
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
-
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
+
     local duration = 300;
 
     if(caster:hasStatusEffect(EFFECT_DIFFUSION)) then
