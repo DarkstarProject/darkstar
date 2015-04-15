@@ -107,6 +107,7 @@ enum MSGTYPE
 
 extern void ClearScreen(void);
 
+extern void InitializeLog(const char* logFile);
 extern int32 ShowMessage(const int8 *, ...);
 extern int32 ShowStatus(const int8 *, ...);
 extern int32 ShowSQL(const int8 *, ...);

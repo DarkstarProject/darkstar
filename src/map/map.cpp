@@ -145,6 +145,15 @@ int32 do_init(int32 argc, int8** argv)
 {
     ShowStatus("do_init: begin server initialization...\n");
     map_ip.s_addr = 0;
+    char* logFile;
+
+#ifdef DEBUGLOGMAP
+#ifdef WIN32
+    logFile = "log\\map-server.log";
+#else
+    logFile = "log/map-server.log";
+#endif
+#endif
 
     for (int i = 1; i < argc; i++)
     {
@@ -152,7 +161,11 @@ int32 do_init(int32 argc, int8** argv)
             map_ip.s_addr = inet_addr(argv[i+1]);
         else if (strcmp(argv[i], "--port") == 0)
             map_port = std::stoi(argv[i + 1]);
+        else if (strcmp(argv[i], "--log") == 0)
+            logFile = argv[i + 1];
     }
+
+    InitializeLog(logFile);
 
     MAP_CONF_FILENAME = "./conf/map_darkstar.conf";
 
