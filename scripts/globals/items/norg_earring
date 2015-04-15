@@ -1,0 +1,20 @@
+-----------------------------------------
+-- ID: 16047
+-- Norg Earring
+-- Enchantment: "Teleport-Norg"
+-----------------------------------------
+require("scripts/globals/teleports");
+-----------------------------------------
+-- OnItemCheck
+-----------------------------------------
+function onItemCheck(target)
+return 0;
+
+end;
+-----------------------------------------
+-- OnItemUse
+-----------------------------------------
+function onItemUse(target)		
+target:setPos(-19,0,-53,0,252);
+
+end;
