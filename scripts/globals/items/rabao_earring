@@ -1,0 +1,20 @@
+-----------------------------------------
+-- ID: 16045
+-- Rabao Earring
+-- Enchantment: "Teleport-Rabao"
+-----------------------------------------
+require("scripts/globals/teleports");
+-----------------------------------------
+-- OnItemCheck
+-----------------------------------------
+function onItemCheck(target)
+return 0;
+
+end;
+-----------------------------------------
+-- OnItemUse
+-----------------------------------------
+function onItemUse(target)		
+target:setPos(9,-2,-91,0,247);
+
+end;
