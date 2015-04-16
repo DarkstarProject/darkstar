@@ -72,11 +72,11 @@ function onMobDeath(mob, killer)
         end
 		if (killer:getVar("Ru_aern_2-1KILL") == 1 and killer:getVar("Ru_aern_2-2KILL") == 1 and killer:getVar("Ru_aern_2-3KILL") == 1)then
             killer:setVar("[SEA][AlTieu]WestTower",1);
-            clearTowerVars(killer, 1);
+            clearTowerVars(killer, 2);
         end
 		if (killer:getVar("Ru_aern_3-1KILL") == 1 and killer:getVar("Ru_aern_3-2KILL") == 1 and killer:getVar("Ru_aern_3-3KILL") == 1)then
             killer:setVar("[SEA][AlTieu]EastTower",1);
-            clearTowerVars(killer, 1);
+            clearTowerVars(killer, 3);
         end
 	end
 end;
