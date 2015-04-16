@@ -33,7 +33,7 @@ int stdout_with_ansisequence = 0;
 
 int msg_silent = 0; //Specifies how silent the console is.
 
-const char* log_file = nullptr;
+std::string log_file;
 
 ///////////////////////////////////////////////////////////////////////////////
 /// static/dynamic buffer for the messages
@@ -712,10 +712,10 @@ int _vShowMessage(MSGTYPE flag,const char *string,va_list ap)
 		FFLUSH(STDOUT);
 	}
 
-	if(log_file != nullptr && strlen(log_file) > 0) {
-		fp=fopen(log_file,"a");
+	if(log_file.size() > 0) {
+		fp=fopen(log_file.c_str(),"a");
 		if (fp == NULL)	{
-			FPRINTF(STDERR, CL_RED"[ERROR]" CL_RESET": Could not open '" CL_WHITE"%s" CL_RESET"', access denied.\n", log_file);
+			FPRINTF(STDERR, CL_RED"[ERROR]" CL_RESET": Could not open '" CL_WHITE"%s" CL_RESET"', access denied.\n", log_file.c_str());
 			FFLUSH(STDERR);
 		} else {
 			fprintf(fp,"%s ", prefix);
@@ -724,9 +724,6 @@ int _vShowMessage(MSGTYPE flag,const char *string,va_list ap)
 			va_end(apcopy);
 			fclose(fp);
 		}
-	} else {
-		FPRINTF(STDERR, CL_YELLOW"[Warning]" CL_RESET": log_file not defined!\n");
-		FFLUSH(STDERR);
 	}
 
 	return 0;
@@ -738,7 +735,7 @@ void ClearScreen(void)
 #endif
 }
 
-void InitializeLog(const char* logFile)
+extern void InitializeLog(std::string logFile)
 {
     log_file = logFile;
 }

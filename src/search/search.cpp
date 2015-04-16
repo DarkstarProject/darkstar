@@ -151,7 +151,7 @@ int32 main(int32 argc, int8 **argv)
     WSADATA wsaData;
 #endif
 
-    char* logFile;
+    std::string logFile;
 
 #ifdef DEBUGLOGSEARCH
 #ifdef WIN32
