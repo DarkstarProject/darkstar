@@ -24,7 +24,6 @@ end;
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
-local KEYITEM_OBTAINED = 6382; -- Put this as a local until the TextIDs have all been fixed.
 
 function onTrigger(player,npc)
 	if(player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 1) then
