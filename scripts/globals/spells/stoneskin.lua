@@ -30,9 +30,7 @@ function onSpellCast(caster,target,spell)
 
 	-- hard cap of 350 from natural power
 	-- pAbs = utils.clamp(1, STONESKIN_CAP); This just always sets it to 350, let's use the actual value, shall we?
-	if (pAbs > 350) then
-		pAbs = 350;
-	end
+	pAbs = utils.clamp(pAbs, 1, STONESKIN_CAP);
 
 	-- equipment mods
 	if (caster:getEquipID(SLOT_NECK) == 13177) then -- stone gorget
