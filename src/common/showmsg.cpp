@@ -20,24 +20,8 @@ This file is part of DarkStar-server source code.
 #ifdef WIN32
 	#define WIN32_LEAN_AND_MEAN
 	#include <windows.h>
-
-	#ifdef DEBUGLOGMAP
-		#define DEBUGLOGPATH "log\\map-server.log"
-	#else
-		#ifdef DEBUGLOGLOGIN
-				#define DEBUGLOGPATH "log\\login-server.log"
-		#endif
-	#endif
 #else
 	#include <unistd.h>
-
-	#ifdef DEBUGLOGMAP
-		#define DEBUGLOGPATH "log/map-server.log"
-	#else
-		#ifdef DEBUGLOGLOGIN
-				#define DEBUGLOGPATH "log/login-server.log"
-		#endif
-	#endif
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -48,6 +32,8 @@ This file is part of DarkStar-server source code.
 int stdout_with_ansisequence = 0;
 
 int msg_silent = 0; //Specifies how silent the console is.
+
+const char* log_file = nullptr;
 
 ///////////////////////////////////////////////////////////////////////////////
 /// static/dynamic buffer for the messages
@@ -658,9 +644,7 @@ int _vShowMessage(MSGTYPE flag,const char *string,va_list ap)
 {
 	char prefix[100];
 	va_list apcopy;
-#if defined(DEBUGLOGMAP) || defined(DEBUGLOGLOGIN)
-	FILE *fp;
-#endif
+    FILE *fp;
 	if( !string || !*string )
     {
 		ShowError("Empty string passed to _vShowMessage().\n");
@@ -727,11 +711,11 @@ int _vShowMessage(MSGTYPE flag,const char *string,va_list ap)
 		va_end(apcopy);
 		FFLUSH(STDOUT);
 	}
-#if defined(DEBUGLOGMAP) ||  defined(DEBUGLOGLOGIN)
-	if(strlen(DEBUGLOGPATH) > 0) {
-		fp=fopen(DEBUGLOGPATH,"a");
+
+	if(log_file != nullptr && strlen(log_file) > 0) {
+		fp=fopen(log_file,"a");
 		if (fp == NULL)	{
-			FPRINTF(STDERR, CL_RED"[ERROR]" CL_RESET": Could not open '" CL_WHITE"%s" CL_RESET"', access denied.\n", DEBUGLOGPATH);
+			FPRINTF(STDERR, CL_RED"[ERROR]" CL_RESET": Could not open '" CL_WHITE"%s" CL_RESET"', access denied.\n", log_file);
 			FFLUSH(STDERR);
 		} else {
 			fprintf(fp,"%s ", prefix);
@@ -741,10 +725,10 @@ int _vShowMessage(MSGTYPE flag,const char *string,va_list ap)
 			fclose(fp);
 		}
 	} else {
-		FPRINTF(STDERR, CL_RED"[ERROR]" CL_RESET": DEBUGLOGPATH not defined!\n");
+		FPRINTF(STDERR, CL_YELLOW"[Warning]" CL_RESET": log_file not defined!\n");
 		FFLUSH(STDERR);
 	}
-#endif
+
 	return 0;
 }
 void ClearScreen(void)
@@ -753,6 +737,12 @@ void ClearScreen(void)
 	ShowMessage(CL_CLS);	// to prevent empty string passed messages
 #endif
 }
+
+void InitializeLog(const char* logFile)
+{
+    log_file = logFile;
+}
+
 int _ShowMessage(MSGTYPE flag, const char *string, ...)
 {
 	int ret;
