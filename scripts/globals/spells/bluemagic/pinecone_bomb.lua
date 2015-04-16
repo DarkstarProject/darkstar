@@ -52,16 +52,15 @@ function onSpellCast(caster,target,spell)
     damage = BluePhysicalSpell(caster, target, spell, params);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
 
-	if (damage > 0 and target:hasStatusEffect(EFFECT_SLEEP_I) == false) then
-		local typeEffect = EFFECT_SLEEP_I;
+	if (damage > 0) then
 		local tp = player:getTP();
 		local getBlueEffectDuration = (tp/100 * 5);
-        local pStrAgi = caster:getStat(MOD_STR+MOD_AGI);
-        local mStrAgi = target:getStat(MOD_STR+MOD_AGI);
+        local pStrAgi = caster:getStat(MOD_STR) + caster:getStat(MOD_AGI);
+        local mStrAgi = target:getStat(MOD_STR) + target:getStat(MOD_AGI);
         local dStrAgi = (pStrAgi - mStrAgi);
         local resist = applyResistance(caster,spell,target,dStrAgi,BLUE_SKILL,0);
-		target:delStatusEffect(typeEffect);
-		target:addStatusEffect(typeEffect,1,0,getBlueEffectDuration);
+		target:delStatusEffect(EFFECT_SLEEP_I);
+		target:addStatusEffect(EFFECT_SLEEP_I,1,0,getBlueEffectDuration);
 	end
     return EFFECT_SLEEP_I;
 end;
