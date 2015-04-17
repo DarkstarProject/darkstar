@@ -9138,12 +9138,14 @@ inline int32 CLuaBaseEntity::getPartyLeader(lua_State* L) // Todo: also add abil
     if (PChar->PParty)
     {
         PLeader = PChar->PParty->GetLeader();
-        lua_pushstring(L, PLeader->GetName());
+        if (PLeader != nullptr)
+        {
+            lua_pushstring(L, PLeader->GetName());
+            return 1;
+        }
     }
-    else
-    {
-        lua_pushnil(L);
-    }
+
+    lua_pushnil(L);
     return 1;
 }
 
