@@ -232,6 +232,7 @@ int main (int argc, char **argv)
 		arg_v = argv;
 	}
 
+    log_init(argc, argv);
 	malloc_init();
 	set_server_type();
 	display_title();
