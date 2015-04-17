@@ -29,7 +29,6 @@ end;
 -- OnSpellCast
 -----------------------------------------
 
-local resist = duration*applyResistance();
 function onSpellCast(caster,target,spell)
     local params = {};
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
