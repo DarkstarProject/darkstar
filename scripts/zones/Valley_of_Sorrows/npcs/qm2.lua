@@ -15,7 +15,6 @@ require("scripts/globals/missions");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
-
 function onTrade(player,npc,trade)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
@@ -24,7 +23,6 @@ end;
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
-
 function onTrigger(player,npc)
 	if(player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 1) then
 		player:addKeyItem(FIGURE_OF_TITAN);
@@ -38,7 +36,6 @@ end;
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
-
 function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
@@ -47,7 +44,6 @@ end;
 -----------------------------------
 -- onEventFinish
 -----------------------------------
-
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
