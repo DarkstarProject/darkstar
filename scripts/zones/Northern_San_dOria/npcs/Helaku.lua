@@ -55,9 +55,9 @@ function onTrigger(player,npc)
 	elseif(currentMission == THE_EMISSARY_SANDORIA2) then
 		missionStatus = player:getVar("MissionStatus");
 		if(missionStatus == 8) then
-			player:showText(npc,HELAKU_DIALOG);
+			player:startEvent(0x0219);
 		elseif(missionStatus == 9) then
-			player:startEvent(0x021e)
+			player:startEvent(0x021e);
 		elseif(player:hasKeyItem(KINDRED_CREST)) then
 			player:startEvent(0x0221);
 		end
@@ -95,9 +95,9 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0221) then
 		player:addMission(BASTOK,THE_EMISSARY);
 		player:setVar("MissionStatus",11);
-		player:addKeyItem(KINDRED_REPORT)
+		player:addKeyItem(KINDRED_REPORT);
 		player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
-		player:delKeyItem(KINDRED_CREST)
+		player:delKeyItem(KINDRED_CREST);
 	end
 	
 end;
