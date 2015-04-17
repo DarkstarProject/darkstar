@@ -735,7 +735,7 @@ void ClearScreen(void)
 #endif
 }
 
-extern void InitializeLog(std::string logFile)
+void InitializeLog(std::string logFile)
 {
     log_file = logFile;
 }
