@@ -61,7 +61,6 @@ int8* EncodeStringLinkshell(int8* signature, int8* target);
 int8* DecodeStringLinkshell(int8* signature, int8* target);
 int8* EncodeStringSignature(int8* signature, int8* target);
 int8* DecodeStringSignature(int8* signature, int8* target);
-float  RandomNumber();
 std::string escape(std::string const &s);
 
 #endif

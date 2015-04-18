@@ -530,11 +530,6 @@ int8* DecodeStringSignature(int8* signature, int8* target)
     return strncpy(target, (int8*)decodedSignature, sizeof decodedSignature);
 }
 
-float RandomNumber()
-{
-  return ((double) rand() / (RAND_MAX));
-}
-
 std::string escape(std::string const &s)
 {
 	std::size_t n = s.length();
