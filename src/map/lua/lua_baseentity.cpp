@@ -6068,41 +6068,6 @@ inline int32 CLuaBaseEntity::isMobType(lua_State *L)
 }
 
 /************************************************************************
-*   Change skin of a mob                                                *
-*   1st number: skinid in mob_change_skin.sql                           *
-*   mob:changeSkin(1)                                                   *
-************************************************************************/
-
-inline int32 CLuaBaseEntity::changeSkin(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
-
-    CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
-
-    PMob->SetModelId(lua_tointeger(L,1));
-
-    PMob->updatemask |= UPDATE_LOOK;
-
-    return 0;
-}
-
-/************************************************************************
-*  mob:getSkinID()                                                      *
-*  Get the last Skin of your mob (0 for base)                           *
-*                                                                       *
-************************************************************************/
-
-inline int32 CLuaBaseEntity::getSkinID(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-
-    lua_pushinteger(L, ((CMobEntity*)m_PBaseEntity)->GetModelId());
-    return 1;
-}
-
-/************************************************************************
             Calculates the enmity produced by the input cure and
             applies it to all on the base entity's enemies hate list
             FORMAT: phealer:(ptarget,amount)
@@ -9516,13 +9481,48 @@ inline int32 CLuaBaseEntity::reloadParty(lua_State* L)
 inline int32 CLuaBaseEntity::setModelId(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    uint16 look = lua_tointeger(L, -1);
-    WBUFW(&m_PBaseEntity->look, 2) = look;
+    if (m_PBaseEntity->objtype == TYPE_PC)
+    {
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE, UPDATE_COMBAT));
+        switch ((SLOTTYPE)lua_tointeger(L, 2))
+        {
+        case SLOT_MAIN:
+            m_PBaseEntity->look.main = lua_tointeger(L, 1);
+            break;
+        case SLOT_SUB:
+            m_PBaseEntity->look.sub = lua_tointeger(L, 1);
+            break;
+        case SLOT_RANGED:
+            m_PBaseEntity->look.ranged = lua_tointeger(L, 1);
+            break;
+        case SLOT_HEAD:
+            m_PBaseEntity->look.head = lua_tointeger(L, 1);
+            break;
+        case SLOT_BODY:
+            m_PBaseEntity->look.body = lua_tointeger(L, 1);
+            break;
+        case SLOT_HANDS:
+            m_PBaseEntity->look.hands = lua_tointeger(L, 1);
+            break;
+        case SLOT_LEGS:
+            m_PBaseEntity->look.legs = lua_tointeger(L, 1);
+            break;
+        case SLOT_FEET:
+            m_PBaseEntity->look.feet = lua_tointeger(L, 1);
+            break;
+        }
+        ((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharAppearancePacket((CCharEntity*)m_PBaseEntity));
+    }
+    else
+    {
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+        m_PBaseEntity->SetModelId(lua_tointeger(L, 1));
+    }
+    m_PBaseEntity->updatemask |= UPDATE_LOOK;
 
     return 0;
 }
@@ -9530,7 +9530,6 @@ inline int32 CLuaBaseEntity::setModelId(lua_State* L)
 inline int32 CLuaBaseEntity::getModelId(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
     lua_pushinteger(L, RBUFW(&m_PBaseEntity->look, 16));
 
@@ -9982,8 +9981,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isUndead),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isMobType),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattleTime),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeSkin),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkinID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSystem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFamily),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,createWornItem),

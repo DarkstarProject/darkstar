@@ -425,16 +425,6 @@ uint8 CMobEntity::TPUseChance()
     return getMobMod(MOBMOD_TP_USE_CHANCE);
 }
 
-void CMobEntity::SetModelId(uint16 modelid)
-{
-    look.modelid = modelid;
-}
-
-uint16 CMobEntity::GetModelId()
-{
-    return look.modelid;
-}
-
 void CMobEntity::setMobMod(uint16 type, int16 value)
 {
     if (type < MAX_MOBMODIFIER)
