@@ -988,16 +988,6 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
                             0), true);
                         member->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE | EFFECTFLAG_ON_ZONE);
                         member->loc.zone->PushPacket(member, CHAR_INRANGE, new CCharSyncPacket(member));
- 
-                        // If the current member is casting, then make sure that the 
-                        // member can still cast the spell after the level sync is applied.
-                        CMagicState* magicState = member->PBattleAI->m_PMagicState;
-                        if (magicState != nullptr && 
-                            magicState->IsCasting() &&
-                            !spell::CanUseSpell(member, magicState->GetSpell()->getID())) {
-
-                            magicState->ForceInterrupt();
-                        }
 		            }
 	            }
             }
