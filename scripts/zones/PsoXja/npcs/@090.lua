@@ -10,7 +10,7 @@
 -- onSpawn
 -----------------------------------
 function onSpawn(npc)
-    local lift = 090;
+
     local elevator = {
                         id = 0,                      -- id is usually 0
                         lowerDoor = npc:getID() + 2, -- lowerDoor's npcid
