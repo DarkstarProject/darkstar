@@ -25,6 +25,7 @@
 #include "../common/detour/DetourNavMeshQuery.h"
 #include <string.h>
 #include "../common/utils.h"
+#include "../common/dsprand.h"
 
 void CNavMesh::ToFFXIPos(position_t* pos, float* out){
   float y = pos->y;
@@ -358,7 +359,7 @@ int16 CNavMesh::findRandomPath(position_t start, float maxRadius, position_t* pa
     return ERROR_NEARESTPOLY;
   }
 
-  status = m_navMeshQuery->findRandomPointAroundCircle(startRef, spos, maxRadius, &filter, &RandomNumber, &randomRef, randomPt);
+  status = m_navMeshQuery->findRandomPointAroundCircle(startRef, spos, maxRadius, &filter, []() -> float { return WELL512::GetRandomNumber(1.f); }, &randomRef, randomPt);
 
   if(dtStatusFailed(status))
   {

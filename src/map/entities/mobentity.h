@@ -200,9 +200,6 @@ public:
 
   bool      CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false); // can I detect the target?
 
-  void      SetModelId(uint16 modelId);               // Set new modelid for the mob
-  uint16    GetModelId();                             // Get the modelid
-
   uint8     TPUseChance();                           // return % chance to use TP move
 
   void      ChangeMJob(uint16 job);                  // this will change jobs and update traits, stats, spells

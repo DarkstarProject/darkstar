@@ -66,6 +66,7 @@
 #include "../packets/message_basic.h"
 #include "../packets/entity_visual.h"
 #include "../items/item_puppet.h"
+#include "../entities/automatonentity.h"
 
 namespace luautils
 {
@@ -2991,6 +2992,46 @@ int32 OnMobSkillCheck(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSk
     {
         ShowError("luautils::onMobSkillCheck (%s): 1 return expected, got %d\n", File, returns);
         lua_pop(LuaHandle, returns-1);
+    }
+    return retVal;
+}
+
+int32 OnMobAutomatonSkillCheck(CBaseEntity* PTarget, CAutomatonEntity* PAutomaton, CMobSkill* PMobSkill)
+{
+    lua_prepscript("scripts/globals/abilities/pets/%s.lua", PMobSkill->getName());
+
+    if (prepFile(File, "onMobSkillCheck"))
+    {
+        return -1;
+    }
+
+    CLuaBaseEntity LuaBaseEntity(PTarget);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+    CLuaBaseEntity LuaMobEntity(PAutomaton);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+
+    CLuaMobSkill LuaMobSkill(PMobSkill);
+    Lunar<CLuaMobSkill>::push(LuaHandle, &LuaMobSkill);
+
+    if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::OnMobAutomatonSkillCheck (%s): %s\n", PMobSkill->getName(), lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns < 1)
+    {
+        ShowError("luautils::OnMobAutomatonSkillCheck (%s): 1 return expected, got %d\n", File, returns);
+        return -1;
+    }
+    uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : -5);
+    lua_pop(LuaHandle, 1);
+    if (returns > 1)
+    {
+        ShowError("luautils::OnMobAutomatonSkillCheck (%s): 1 return expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns - 1);
     }
     return retVal;
 }

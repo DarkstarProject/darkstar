@@ -44,6 +44,8 @@ CAIAutomatonDummy::CAIAutomatonDummy(CPetEntity* PPet)
 
     CAutomatonEntity* PAutomaton = (CAutomatonEntity*)PPet;
 
+    m_PPet = PAutomaton;
+
     uint32 m_magicRecast = 0;
     uint32 m_magicEnfeebleRecast = 0;
     uint32 m_magicElementalRecast = 0;
@@ -306,10 +308,11 @@ bool CAIAutomatonDummy::CheckTPMove()
         int8 currentManeuvers = -1;
         for (auto PSkill : validSkills)
         {
-            int8 maneuvers = luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PPet, PSkill.second);
+            int8 maneuvers = luautils::OnMobAutomatonSkillCheck(m_PBattleSubTarget, m_PPet, PSkill.second);
             if ( maneuvers > -1 && (maneuvers > currentManeuvers || (maneuvers == currentManeuvers && PSkill.first > currentSkill)))
             {
                 SetCurrentMobSkill(PSkill.second);
+                m_PBattleSubTarget = m_PBattleTarget;
                 currentManeuvers = maneuvers;
                 currentSkill = PSkill.first;
             }
