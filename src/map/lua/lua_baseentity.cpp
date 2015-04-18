@@ -9643,6 +9643,12 @@ inline int32 CLuaBaseEntity::setElevator(lua_State *L)
     elevator.UpperDoor = (CNpcEntity*)zoneutils::GetEntity(lua_tointeger(L, 3), TYPE_NPC);
     elevator.Elevator = (CNpcEntity*)zoneutils::GetEntity(lua_tointeger(L, 4), TYPE_NPC);
 
+    if (!elevator.Elevator)
+    {
+        ShowWarning("Elevator id %d initialization failed - elevator ID resolved to no entity.", lua_tointeger(L, 4));
+        return 0;
+    }
+
     elevator.isMoving = false;
     elevator.isStarted = (!lua_isnil(L, 5) && lua_isnumber(L, 5)) ? (lua_tointeger(L, 5) != 0) : 0;
     elevator.isPermanent = (!lua_isnil(L, 6) && lua_isnumber(L, 6)) ? (lua_tointeger(L, 6) != 0) : 0;
