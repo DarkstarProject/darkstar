@@ -12,7 +12,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-	mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+	mob:setMobMod(MOBMOD_ADD_EFFECT, mob:getShortID());
 end;
 
 -----------------------------------
@@ -27,32 +27,32 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:showText(mob,SKY_GOD_OFFSET + 12);
-	GetNPCByID(17310051):hideNPC(120);
+    killer:showText(mob, SKY_GOD_OFFSET + 12);
+    GetNPCByID(17310051):hideNPC(120);
 end;
 
-function onAdditionalEffect(mob, target, damage)
+-----------------------------------
+-- onAdditionalEffect
+-----------------------------------
 
-    local LV_diff = target:getMainLvl() - mob:getMainLvl();
-	local INT_diff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
-	
-	--local dmg = INT_diff+LV_diff+damage/2;
-	local ranDmgMod = math.random(0,15)
-	local dmg = INT_diff+LV_diff+ranDmgMod;
-	local params = {};
+function onAdditionalEffect(mob, target, damage)
+    local levelDiff = target:getMainLvl() - mob:getMainLvl();
+    local statDiff = mob:getStat(MOD_MND) - target:getStat(MOD_MND);
+    
+    local dmg = statDiff + levelDiff + math.random(0, 15); -- MND modifier + difference in level + variance
+    local params = {};
     params.bonusmab = 0;
     params.includemab = false;
-	
-	dmg = addBonusesAbility(mob, ELE_LIGHT, target, dmg, params);
-    dmg = dmg * applyResistanceAddEffect(mob,target,ELE_LIGHT,0);
-    dmg = adjustForTarget(target,dmg,ELE_LIGHT);
-
+    
+    dmg = addBonusesAbility(mob, ELE_LIGHT, target, dmg, params);
+    dmg = dmg * applyResistanceAddEffect(mob, target, ELE_LIGHT, 0);
+    dmg = adjustForTarget(target, dmg, ELE_LIGHT);
+    
     if (dmg < 0) then
         dmg = 0
     end
     
-    dmg = finalMagicNonSpellAdjustments(mob,target,ELE_LIGHT,dmg);
-
-	return SUBEFFECT_LIGHT_DAMAGE,163,dmg;
-
+    dmg = finalMagicNonSpellAdjustments(mob, target, ELE_LIGHT, dmg);
+    
+    return SUBEFFECT_LIGHT_DAMAGE, 163, dmg;
 end;

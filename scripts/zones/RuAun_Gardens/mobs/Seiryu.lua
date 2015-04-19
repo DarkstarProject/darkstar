@@ -12,7 +12,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-	mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+	mob:setMobMod(MOBMOD_ADD_EFFECT, mob:getShortID());
 end;
 
 -----------------------------------
@@ -26,7 +26,7 @@ end;
 -- onMobDeath
 -----------------------------------
 function onMobDeath(mob, killer)
-	killer:showText(mob,SKY_GOD_OFFSET + 10);
+	killer:showText(mob, SKY_GOD_OFFSET + 10);
 	GetNPCByID(17310052):hideNPC(900);
 end;
 
@@ -34,12 +34,11 @@ end;
 -- onMonsterMagicPrepare
 -----------------------------------
 
-function onMonsterMagicPrepare(mob,target)
-
+function onMonsterMagicPrepare(mob, target)
 	-- For some reason, this returns false even when Hundred Fists is active, so... yeah.
 	-- Core does this:
 	-- m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HUNDRED_FISTS,0,1,0,45));
-	if (mob:hasStatusEffect(EFFECT_HUNDRED_FISTS,0) == false) then
+	if (mob:hasStatusEffect(EFFECT_HUNDRED_FISTS, 0) == false) then
 		local rnd = math.random();
 		if (rnd < 0.5) then
 			return 186; -- aeroga 3
@@ -51,31 +50,30 @@ function onMonsterMagicPrepare(mob,target)
 			return 237; -- choke
 		end
 	end
-
 end;
 
-function onAdditionalEffect(mob, target, damage)
+-----------------------------------
+-- onAdditionalEffect
+-----------------------------------
 
-    local LV_diff = target:getMainLvl() - mob:getMainLvl();
-	local INT_diff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
-	
-	--local dmg = INT_diff+LV_diff+damage/2;
-	local ranDmgMod = math.random(0,15)
-	local dmg = INT_diff+LV_diff+ranDmgMod;
-	local params = {};
+function onAdditionalEffect(mob, target, damage)
+    local levelDiff = target:getMainLvl() - mob:getMainLvl();
+    local statDiff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
+    
+    local dmg = statDiff + levelDiff + math.random(0, 15); -- INT modifier + difference in level + variance
+    local params = {};
     params.bonusmab = 0;
     params.includemab = false;
-	
-	dmg = addBonusesAbility(mob, ELE_WIND, target, dmg, params);
-    dmg = dmg * applyResistanceAddEffect(mob,target,ELE_WIND,0);
-    dmg = adjustForTarget(target,dmg,ELE_WIND);
-
+    
+    dmg = addBonusesAbility(mob, ELE_WIND, target, dmg, params);
+    dmg = dmg * applyResistanceAddEffect(mob, target, ELE_WIND, 0);
+    dmg = adjustForTarget(target, dmg, ELE_WIND);
+    
     if (dmg < 0) then
         dmg = 0
     end
     
-    dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WIND,dmg);
-
-	return SUBEFFECT_WIND_DAMAGE,163,dmg;
-
+    dmg = finalMagicNonSpellAdjustments(mob, target, ELE_WIND, dmg);
+    
+    return SUBEFFECT_WIND_DAMAGE, 163, dmg;
 end;
