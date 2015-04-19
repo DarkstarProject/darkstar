@@ -263,12 +263,12 @@ INSERT INTO `item_latents` VALUES(15406, 68, 3, 1, 75); -- Evasion+3 when HP >75
 INSERT INTO `item_latents` VALUES(15407, 68, 4, 1, 75); -- Evasion+4 when HP >75%
 
 -- -------------------------------------------------------
---Unicorn Leggings
+-- Unicorn Leggings
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15345, 384, 31, 1, 75); -- Haste+3% when HP > 75%
 
 -- -------------------------------------------------------
---Unicorn Leggings +1
+-- Unicorn Leggings +1
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15346, 384, 41, 1, 75); -- Haste+4% when HP > 75%
 
