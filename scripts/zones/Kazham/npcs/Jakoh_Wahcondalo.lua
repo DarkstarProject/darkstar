@@ -56,6 +56,8 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,SACRIFICIAL_CHAMBER_KEY);
 		player:completeMission(ZILART,KAZAMS_CHIEFTAINESS);
 		player:addMission(ZILART,THE_TEMPLE_OF_UGGALEPIH);
+	elseif(csid == 0x0109) then
+		player:setVar("MissionStatus",3);
 	end
 	
 end;
