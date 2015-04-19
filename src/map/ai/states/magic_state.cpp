@@ -507,7 +507,7 @@ bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
         return false;
     }
 
-    if (!spell::CanUseSpell(m_PEntity, m_PSpell->getID()))
+    if (!spell::CanUseSpell(m_PEntity, PSpell->getID()))
     {
         PushError(MSGBASIC_CANNOT_CAST_SPELL, PSpell->getID());
         return false;
