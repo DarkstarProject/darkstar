@@ -13,8 +13,16 @@ require("scripts/globals/magic");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_DMGMAGIC, -50);
-    mob:addMod(MOD_DMGRANGE, -50);
+    mob:setMod(MOD_DOUBLE_ATTACK, 10);
+    mob:setMod(MOD_FASTCAST, 15);
+end;
+
+-----------------------------------
+-- onMobSpawn Action
+-----------------------------------
+
+function onMobSpawn(mob)
+    UpdateNMSpawnPoint(mob:getID());
 end;
 
 -----------------------------------
