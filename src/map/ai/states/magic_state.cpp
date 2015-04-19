@@ -143,9 +143,7 @@ STATESTATUS CMagicState::Update(uint32 tick)
 
 	if(tick - m_startTime >= m_castTime)
 	{
-        // Verify that the caster was not interrupted, and that level sync
-        // was not applied after casting began.
-		if(CheckInterrupt() || !spell::CanUseSpell(m_PEntity, m_PSpell->getID()))
+		if(CheckInterrupt())
 		{
 			return STATESTATUS_INTERRUPT;
 		}
@@ -506,6 +504,12 @@ bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
             ShowWarning("CMagicState::ValidCast Mob (%u) tried to cast magic with no mp!\n", m_PEntity->id);
         }
         PushError(MSGBASIC_NOT_ENOUGH_MP, PSpell->getID());
+        return false;
+    }
+
+    if (!spell::CanUseSpell(m_PEntity, m_PSpell->getID()))
+    {
+        PushError(MSGBASIC_CANNOT_CAST_SPELL, PSpell->getID());
         return false;
     }
 
