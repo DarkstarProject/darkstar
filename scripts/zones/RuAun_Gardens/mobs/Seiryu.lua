@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
 -- NPC:  Seiryu
--- ID:	17309981
+-- ID:  17309981
 -----------------------------------
 
 require("scripts/zones/RuAun_Gardens/TextIDs");
@@ -12,7 +12,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-	mob:setMobMod(MOBMOD_ADD_EFFECT, mob:getShortID());
+    mob:setMobMod(MOBMOD_ADD_EFFECT, mob:getShortID());
 end;
 
 -----------------------------------
@@ -26,8 +26,8 @@ end;
 -- onMobDeath
 -----------------------------------
 function onMobDeath(mob, killer)
-	killer:showText(mob, SKY_GOD_OFFSET + 10);
-	GetNPCByID(17310052):hideNPC(900);
+    killer:showText(mob, SKY_GOD_OFFSET + 10);
+    GetNPCByID(17310052):hideNPC(900);
 end;
 
 -----------------------------------
@@ -35,21 +35,21 @@ end;
 -----------------------------------
 
 function onMonsterMagicPrepare(mob, target)
-	-- For some reason, this returns false even when Hundred Fists is active, so... yeah.
-	-- Core does this:
-	-- m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HUNDRED_FISTS,0,1,0,45));
-	if (mob:hasStatusEffect(EFFECT_HUNDRED_FISTS, 0) == false) then
-		local rnd = math.random();
-		if (rnd < 0.5) then
-			return 186; -- aeroga 3
-		elseif (rnd < 0.7) then
-			 return 157; -- aero 4
-		elseif (rnd < 0.9) then
-			return 208; -- tornado
-		else
-			return 237; -- choke
-		end
-	end
+    -- For some reason, this returns false even when Hundred Fists is active, so... yeah.
+    -- Core does this:
+    -- m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HUNDRED_FISTS,0,1,0,45));
+    if (mob:hasStatusEffect(EFFECT_HUNDRED_FISTS, 0) == false) then
+        local rnd = math.random();
+        if (rnd < 0.5) then
+            return 186; -- aeroga 3
+        elseif (rnd < 0.7) then
+             return 157; -- aero 4
+        elseif (rnd < 0.9) then
+            return 208; -- tornado
+        else
+            return 237; -- choke
+        end
+    end
 end;
 
 -----------------------------------
@@ -59,21 +59,22 @@ end;
 function onAdditionalEffect(mob, target, damage)
     local levelDiff = target:getMainLvl() - mob:getMainLvl();
     local statDiff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
-    
+
     local dmg = statDiff + levelDiff + math.random(0, 15); -- INT modifier + difference in level + variance
     local params = {};
     params.bonusmab = 0;
     params.includemab = false;
-    
+
     dmg = addBonusesAbility(mob, ELE_WIND, target, dmg, params);
     dmg = dmg * applyResistanceAddEffect(mob, target, ELE_WIND, 0);
     dmg = adjustForTarget(target, dmg, ELE_WIND);
-    
+
+    local message = 163;
     if (dmg < 0) then
-        dmg = 0
+        message = 167;
     end
-    
+
     dmg = finalMagicNonSpellAdjustments(mob, target, ELE_WIND, dmg);
-    
-    return SUBEFFECT_WIND_DAMAGE, 163, dmg;
+
+    return SUBEFFECT_WIND_DAMAGE, message, dmg;
 end;

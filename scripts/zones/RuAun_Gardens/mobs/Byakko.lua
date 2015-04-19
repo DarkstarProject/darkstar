@@ -12,7 +12,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-	mob:setMobMod(MOBMOD_ADD_EFFECT, mob:getShortID());
+    mob:setMobMod(MOBMOD_ADD_EFFECT, mob:getShortID());
 end;
 
 -----------------------------------
@@ -38,21 +38,22 @@ end;
 function onAdditionalEffect(mob, target, damage)
     local levelDiff = target:getMainLvl() - mob:getMainLvl();
     local statDiff = mob:getStat(MOD_MND) - target:getStat(MOD_MND);
-    
+
     local dmg = statDiff + levelDiff + math.random(0, 15); -- MND modifier + difference in level + variance
     local params = {};
     params.bonusmab = 0;
     params.includemab = false;
-    
+
     dmg = addBonusesAbility(mob, ELE_LIGHT, target, dmg, params);
     dmg = dmg * applyResistanceAddEffect(mob, target, ELE_LIGHT, 0);
     dmg = adjustForTarget(target, dmg, ELE_LIGHT);
-    
+
+    local message = 163;
     if (dmg < 0) then
-        dmg = 0
+        message = 167;
     end
-    
+
     dmg = finalMagicNonSpellAdjustments(mob, target, ELE_LIGHT, dmg);
-    
-    return SUBEFFECT_LIGHT_DAMAGE, 163, dmg;
+
+    return SUBEFFECT_LIGHT_DAMAGE, message, dmg;
 end;

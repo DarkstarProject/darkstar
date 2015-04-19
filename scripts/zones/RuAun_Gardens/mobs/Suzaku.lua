@@ -13,7 +13,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-	mob:setMobMod(MOBMOD_ADD_EFFECT, mob:getShortID());
+    mob:setMobMod(MOBMOD_ADD_EFFECT, mob:getShortID());
 end;
 
 -----------------------------------
@@ -27,8 +27,8 @@ end;
 -- onMobDeath
 -----------------------------------
 function onMobDeath(mob, killer)
-	killer:showText(mob, SKY_GOD_OFFSET + 8);
-	GetNPCByID(17310050):hideNPC(120);
+    killer:showText(mob, SKY_GOD_OFFSET + 8);
+    GetNPCByID(17310050):hideNPC(120);
 end;
 
 -- Return the selected spell ID.
@@ -55,21 +55,23 @@ end;
 function onAdditionalEffect(mob, target, damage)
     local levelDiff = target:getMainLvl() - mob:getMainLvl();
     local statDiff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
-    
+
     local dmg = statDiff + levelDiff + math.random(0, 15); -- INT modifier + difference in level + variance
     local params = {};
     params.bonusmab = 0;
     params.includemab = false;
-    
+
     dmg = addBonusesAbility(mob, ELE_FIRE, target, dmg, params);
     dmg = dmg * applyResistanceAddEffect(mob, target, ELE_FIRE, 0);
     dmg = adjustForTarget(target, dmg, ELE_FIRE);
-    
+
+
+    local message = 163;
     if (dmg < 0) then
-        dmg = 0
+        message = 167;
     end
-    
+
     dmg = finalMagicNonSpellAdjustments(mob, target, ELE_FIRE, dmg);
-    
-    return SUBEFFECT_FIRE_DAMAGE, 163, dmg;
+
+    return SUBEFFECT_FIRE_DAMAGE, message, dmg;
 end;
