@@ -9098,15 +9098,17 @@ inline int32 CLuaBaseEntity::getPartyLeader(lua_State* L) // Todo: also add abil
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    CBattleEntity* PLeader = nullptr;
-
     if (PChar->PParty)
     {
-        PLeader = PChar->PParty->GetLeader();
+        CBattleEntity* PLeader = PChar->PParty->GetLeader();
         if (PLeader != nullptr)
         {
-            lua_pushstring(L, PLeader->GetName());
-            return 1;
+            const int8* PLeaderName = PLeader->GetName();
+            if (PLeaderName != nullptr)
+            {
+                lua_pushstring(L, PLeaderName);
+                return 1;
+            }
         }
     }
 
