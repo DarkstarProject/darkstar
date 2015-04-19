@@ -24,12 +24,8 @@ end;
 function onTrigger(player,npc)
 	local missionStatus = player:getVar("MissionStatus");
 
-	if(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 1) then
-		if(player:getVar("Mission8-2WoodFell") == 1) then
-			player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-		else
-			player:startEvent(0x00c);
-		end
+	if(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and missionStatus == 1)then
+		player:startEvent(0x00c);
 	else
 		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
@@ -56,8 +52,8 @@ function onEventFinish(player,csid,option)
 
 	if(option == 0) then
 		if(csid == 0x00c) then
-			player:setVar("Mission8-2WoodFell",1);
-			player:messageSpecial(7282);
+			player:setVar("MissionStatus",2);
+			player:messageSpecial(FELL);
 		end	
-	end;
+	end
 end;

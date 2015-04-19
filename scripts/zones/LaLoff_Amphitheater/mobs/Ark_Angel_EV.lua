@@ -14,7 +14,7 @@ end;
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -25,11 +25,11 @@ function onMobEngaged(mob,target)
     local mobid = mob:getID()
 
     for member = mobid-4, mobid+3 do
-        if (GetMobAction(member) == 16) then 
+        if (GetMobAction(member) == 16) then
             GetMobByID(member):updateEnmity(target);
         end
     end
-    
+
     local hp = math.random(40,60)
     mob:setLocalVar("Benediction", hp);
 end;
@@ -42,7 +42,7 @@ function onMobFight(mob,target)
 	local battletime = mob:getBattleTime();
 	local invtime = mob:getLocalVar("Invincible");
     local bhp = mob:getLocalVar("Benediction");
-	
+
 	if (battletime > invtime + 150) then
 		mob:useMobAbility(438);
 		mob:setLocalVar("Invincible", battletime);
@@ -50,7 +50,7 @@ function onMobFight(mob,target)
 		mob:useMobAbility(433);
 		mob:setLocalVar("Benediction", 0);
 	end
-        
+
 end;
 
 -----------------------------------

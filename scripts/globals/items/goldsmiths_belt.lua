@@ -6,7 +6,7 @@
 -----------------------------------------
 -- Enchantment: Synthesis image support
 -- Duration: 2Min
--- Goldsmithing Skill +1
+-- Goldsmithing Skill +3
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -28,7 +28,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_GOLDSMITHING_IMAGERY,51,0,120);
+	target:addStatusEffect(EFFECT_GOLDSMITHING_IMAGERY,3,0,120);
 end;
 
 -----------------------------------------

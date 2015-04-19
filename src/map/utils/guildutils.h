@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -33,13 +33,16 @@
 ************************************************************************/
 
 class CItemContainer;
+class CGuild;
 
 namespace guildutils
 {
 	void Initialize();
     void UpdateGuildsStock();
+    void UpdateGuildPointsPattern();
 
-	CItemContainer* GetGuildShop(uint16 GuildID);
+	CItemContainer* GetGuildShop(uint16 GuildShopID);
+    CGuild* GetGuild(uint8 GuildID);
 }
 
 #endif

@@ -21,7 +21,6 @@ function onSpellCast(caster,target,spell)
 
     -- Pull base stats.
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_MND)); --blind uses caster INT vs target MND
-    --local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
 
     -- Base power.  May need more research.
     local power = math.floor((dINT + 100) / 4);

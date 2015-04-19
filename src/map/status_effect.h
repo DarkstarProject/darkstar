@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -640,8 +640,18 @@ enum EFFECT
     EFFECT_HASTE_II                 = 580,
     EFFECT_FLURRY_II                = 581,
 
+    // Effect icons in packet can go from 0-767, so no custom effects should go in that range.
 
-    // EFFECT_PLACEHOLDER              = 640, // Polutils list ends at 639 so 640+ shouldn't collide with anything
+    // Purchased from Cruor Prospector
+    EFFECT_ABYSSEA_STR              = 768,
+    EFFECT_ABYSSEA_DEX              = 769, 
+    EFFECT_ABYSSEA_VIT              = 770, 
+    EFFECT_ABYSSEA_AGI              = 771, 
+    EFFECT_ABYSSEA_INT              = 772, 
+    EFFECT_ABYSSEA_MND              = 773, 
+    EFFECT_ABYSSEA_CHR              = 774, 
+    EFFECT_ABYSSEA_HP               = 775, 
+    EFFECT_ABYSSEA_MP               = 776, 
 
     // *Prowess increases not currently retail accurate.
     // GoV Prowess bonus effects, real effect at ID 474
@@ -669,10 +679,14 @@ enum EFFECT
 	EFFECT_TELEPORT					= 797,
     EFFECT_CHAINBOUND               = 798,
     EFFECT_SKILLCHAIN               = 799,
-	EFFECT_DYNAMIS					= 800
+	EFFECT_DYNAMIS					= 800,
+    EFFECT_MEDITATE                 = 801, // Dummy effect for SAM Meditate JA
+    // EFFECT_PLACEHOLDER              = 802 // Description
+    // 802-1022
+    // EFFECT_PLACEHOLDER             = 1023 // The client dat file seems to have only this many "slots", results of exceeding that are untested.
 };
 
-#define MAX_EFFECTID    801  // 768 real + 32 custom
+#define MAX_EFFECTID    802  // 768 real + 32 custom
 
 /************************************************************************
 *																		*
@@ -695,7 +709,7 @@ public:
 	uint16	GetPower();
     uint16  GetSubPower();
     uint16  GetTier();
-	uint16	GetFlag();
+	uint32	GetFlag();
 	uint16	GetType();
 
 	uint32	GetTickTime();
@@ -704,8 +718,8 @@ public:
 	uint32	GetStartTime();
 	CBattleEntity* GetOwner();
 
-    void    SetFlag(uint16 Flag);
-    void    UnsetFlag(uint16 Flag);
+    void    SetFlag(uint32 Flag);
+    void    UnsetFlag(uint32 Flag);
     void    SetType(uint16 Type);
     void    SetIcon(uint16 Icon);
 	void	SetPower(uint16 Power);
@@ -749,7 +763,7 @@ private:
 	uint16		m_Power;				// сила эффекта
     uint16		m_SubPower;				// Secondary power of the effect
     uint16      m_Tier;                 // Tier of the effect
-	uint16		m_Flag;					// флаг эффекта (условия его исчезновения)
+	uint32		m_Flag;					// флаг эффекта (условия его исчезновения)
 	uint16		m_Type;                 // used to enforce only one
 
 	uint32		m_TickTime;				// время повторения эффекта (млс)

@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -133,12 +133,12 @@ CCharEntity::CCharEntity()
     TradePending.clean();
     InvitePending.clean();
 
-    PLinkshell1 = NULL;
-    PLinkshell2 = NULL;
-	PTreasurePool = NULL;
-	PWideScanTarget = NULL;
+    PLinkshell1 = nullptr;
+    PLinkshell2 = nullptr;
+	PTreasurePool = nullptr;
+	PWideScanTarget = nullptr;
 
-    PAutomaton = NULL;
+    PAutomaton = nullptr;
 
     PRecastContainer = new CRecastContainer(this);
 	PLatentEffectContainer = new CLatentEffectContainer(this);
@@ -147,6 +147,7 @@ CCharEntity::CCharEntity()
 	petZoningInfo.petID = 0;
 	petZoningInfo.petType = PETTYPE_AVATAR;			// dummy data, the bool tells us to respawn if required
 	petZoningInfo.petHP = 0;
+    petZoningInfo.petMP = 0;
 	petZoningInfo.petTP = 0;
 
 	m_PlayTime = 0;
@@ -161,7 +162,7 @@ CCharEntity::~CCharEntity()
 {
 	clearPacketList();
 
-    if(PTreasurePool != NULL)
+    if(PTreasurePool != nullptr)
     {
         // remove myself
         PTreasurePool->DelMember(this);
@@ -189,11 +190,6 @@ uint8 CCharEntity::GetGender()
     return (look.race)%2 ^ (look.race > 6);
 }
 
-int32 CCharEntity::firstPacketSize()
-{
-	return PacketList.front()->getSize();
-}
-
 bool CCharEntity::isPacketListEmpty()
 {
 	return PacketList.empty();
@@ -205,15 +201,6 @@ void CCharEntity::clearPacketList()
 	{
 	   delete popPacket();
 	}
-}
-
-void CCharEntity::resetPetZoningInfo()
-{
-	// reset the petZoning info
-	petZoningInfo.petHP = 0;
-	petZoningInfo.petTP = 0;
-	petZoningInfo.respawnPet = false;
-	petZoningInfo.petType = PETTYPE_AVATAR;
 }
 
 void CCharEntity::pushPacket(CBasicPacket* packet)
@@ -230,6 +217,34 @@ CBasicPacket* CCharEntity::popPacket()
 	return PPacket;
 }
 
+PacketList_t CCharEntity::getPacketList()
+{
+    std::lock_guard<std::mutex> lk(m_PacketListMutex);
+    return PacketList;
+}
+
+size_t CCharEntity::getPacketCount()
+{
+    std::lock_guard<std::mutex> lk(m_PacketListMutex);
+    return PacketList.size();
+}
+
+void CCharEntity::erasePackets(uint8 num)
+{
+    for (auto i = 0; i < num; i++)
+    {
+        delete popPacket();
+    }
+}
+
+void CCharEntity::resetPetZoningInfo()
+{
+    // reset the petZoning info
+    petZoningInfo.petHP = 0;
+    petZoningInfo.petTP = 0;
+    petZoningInfo.respawnPet = false;
+    petZoningInfo.petType = PETTYPE_AVATAR;
+}
 /************************************************************************
 *																		*
 *  Возвращаем контейнер с указанным ID. Если ID выходит за рамки, то	*
@@ -263,7 +278,7 @@ int8 CCharEntity::getShieldSize()
 {
 	CItemArmor* PItem = (CItemArmor*)(getEquip(SLOT_SUB));
 
-    if(PItem == NULL){
+    if(PItem == nullptr){
         return 0;
     }
 
@@ -363,7 +378,7 @@ CItemArmor* CCharEntity::getEquip(SLOTTYPE slot)
 {
 	uint8 loc = equip[slot];
 	uint8 est = equipLoc[slot];
-	CItemArmor* item = NULL;
+	CItemArmor* item = nullptr;
 
 	if (loc != 0)
 	{

@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -61,7 +61,6 @@ int8* EncodeStringLinkshell(int8* signature, int8* target);
 int8* DecodeStringLinkshell(int8* signature, int8* target);
 int8* EncodeStringSignature(int8* signature, int8* target);
 int8* DecodeStringSignature(int8* signature, int8* target);
-float  RandomNumber();
 std::string escape(std::string const &s);
 
 #endif

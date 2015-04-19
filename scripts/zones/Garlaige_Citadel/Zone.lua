@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/globals/zone");
 require("scripts/zones/Garlaige_Citadel/TextIDs");
 
-banishing_gates_base = 17596758; -- _5k0 (First banishing gate)
+banishing_gates_base = 17596761; -- _5k0 (First banishing gate)
 
 -----------------------------------
 -- onInitialize
@@ -18,7 +18,7 @@ banishing_gates_base = 17596758; -- _5k0 (First banishing gate)
 
 function onInitialize(zone)
 
-    local tomes = {17596849,17596850,17596851};
+    local tomes = {17596852,17596853,17596854};
     
     SetGroundsTome(tomes);
 
@@ -47,9 +47,9 @@ function onInitialize(zone)
     -- Serket
     SetRespawnTime(17596720, 900, 10800);
     
-    UpdateTreasureSpawnPoint(17596805);
+    UpdateTreasureSpawnPoint(17596808);
     
-    UpdateTreasureSpawnPoint(17596806);
+    UpdateTreasureSpawnPoint(17596809);
 
     
 end;

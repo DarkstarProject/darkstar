@@ -9,7 +9,7 @@ require("scripts/globals/titles");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -43,6 +43,6 @@ end;
 -- onMobDespawn
 -----------------------------------
 
-function OnMobDespawn(mob)
+function onMobDespawn(mob)
 	SetServerVariable("[NM-Special]WeepWillowSapSpawn",0);
 end;

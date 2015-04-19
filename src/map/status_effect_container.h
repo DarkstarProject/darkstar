@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ public:
     bool DelStatusEffect(EFFECT StatusID);
     bool DelStatusEffectSilent(EFFECT StatusID);
     bool DelStatusEffect(EFFECT StatusID, uint16 SubID);
-    void DelStatusEffectsByFlag(uint16 flag, bool silent = false);                   // удаляем все эффекты с указанным типом
+    void DelStatusEffectsByFlag(uint32 flag, bool silent = false);                   // удаляем все эффекты с указанным типом
     void DelStatusEffectsByIcon(uint16 IconID);                 // удаляем все эффекты с указанной иконкой
     void DelStatusEffectsByType(uint16 Type);
     bool DelStatusEffectByTier(EFFECT StatusID, uint16 power);
@@ -58,7 +58,7 @@ public:
 
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие эффекта
     bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие эффекта с уникальным subid
-    bool HasStatusEffectByFlag(uint16 flag);
+    bool HasStatusEffectByFlag(uint32 flag);
 
     EFFECT EraseStatusEffect();                                 // удаляем первый отрицательный эффект
     EFFECT HealingWaltz();				// dancers healing waltz
@@ -77,7 +77,7 @@ public:
     void LoadStatusEffects();                 // загружаем эффекты персонажа
     void SaveStatusEffects();                 // сохраняем эффекты персонажа
 
-    uint8 GetEffectsCount(uint16 SubID);                        // получаем количество эффектов с указанным subid
+    uint8 GetEffectsCount(EFFECT ID);                        // получаем количество эффектов с указанным id
 
     bool ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration);
     bool CheckForElevenRoll();

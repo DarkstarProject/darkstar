@@ -24,8 +24,6 @@ function onZoneIn(player,prevZone)
 
 	player:setVar("PlayerMainJob",player:getMainJob());
 	player:eraseStatusEffect(true);
-	player:addHP(player:getMaxHP());
-	player:addMP(player:getMaxMP());
 	player:setPos(0,0,0,192);
 
     return cs;

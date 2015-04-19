@@ -21,7 +21,6 @@ function onSpellCast(caster,target,spell)
 
 	--Pull base stats.
 	local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
-	--local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
 
 	--Duration, including resistance.  May need more research.
 	local duration = 180;

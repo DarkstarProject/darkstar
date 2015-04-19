@@ -18,10 +18,8 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WIND,0) <= 0.5) then
         return 0,0,0;
     else
-        target:delStatusEffect(EFFECT_DEFENSE_BOOST)
-        if (not target:hasStatusEffect(EFFECT_DEFENSE_DOWN)) then
-            target:addStatusEffect(EFFECT_DEFENSE_DOWN, 1, 0, 60);
-        end
+        target:delStatusEffect(EFFECT_DEFENSE_BOOST);
+        target:addStatusEffect(EFFECT_DEFENSE_DOWN, 1, 0, 60);
         return SUBEFFECT_DEFENSE_DOWN, 160, EFFECT_DEFENSE_DOWN;
     end
 end;

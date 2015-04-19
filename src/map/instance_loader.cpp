@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -51,7 +51,7 @@ CInstanceLoader::CInstanceLoader(uint8 instanceid, uint16 zoneid, CCharEntity* P
 		map_config.mysql_port,
 		map_config.mysql_database) == SQL_ERROR)
 	{
-		exit(EXIT_FAILURE);
+		do_final(EXIT_FAILURE);
 	}
 	Sql_Keepalive(SqlInstanceHandle);
 
@@ -73,7 +73,7 @@ bool CInstanceLoader::Check()
 			if (!instance)
 			{
 				//Instance failed to load
-				luautils::OnInstanceCreated(requester, NULL);
+				luautils::OnInstanceCreated(requester, nullptr);
 			}
 			else
 			{
@@ -291,7 +291,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 	else
 	{
         instance->Cancel();
-		instance = NULL;
+		instance = nullptr;
 	}
 
 	//TODO: pets

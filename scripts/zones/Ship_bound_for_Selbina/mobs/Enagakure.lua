@@ -10,7 +10,7 @@ require("scripts/globals/keyitems");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -18,9 +18,9 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
+
 	if(killer:hasKeyItem(SEANCE_STAFF) and killer:getVar("Enagakure_Killed") == 0) then
 		killer:setVar("Enagakure_Killed",1);
 	end
-	
+
 end;

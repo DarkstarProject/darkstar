@@ -14,7 +14,7 @@ require("scripts/zones/Den_of_Rancor/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	local Lantern_ID = 17433044
+	local Lantern_ID = 17433047
 	local LSW = GetNPCByID(Lantern_ID):getAnimation();
 	local LNW = GetNPCByID(Lantern_ID+1):getAnimation();
 	local LNE = GetNPCByID(Lantern_ID+2):getAnimation();

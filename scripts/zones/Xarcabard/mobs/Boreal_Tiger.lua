@@ -12,7 +12,7 @@ require("scripts/globals/quests");
 -- onMobSpawn
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 	-- Failsafe to make sure NPC is down when NM is up
 	local npc = GetNPCByID(17236304);
 	if(OldSchoolG2 == true) then

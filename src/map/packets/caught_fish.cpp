@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -37,14 +37,14 @@ CCaughtFishPacket::CCaughtFishPacket(CCharEntity * PChar, uint16 param0, uint16 
 
 	//DSP_DEBUG_BREAK_IF(PChar->name.size() > 15);
 
-	WBUFL(data,(0x04)-4) = PChar->id;
-	WBUFL(data,(0x08)-4) = PChar->targid;
+	WBUFL(data,(0x04)) = PChar->id;
+	WBUFL(data,(0x08)) = PChar->targid;
 
-	WBUFW(data,(0x0A)-4) = messageID + 0x8000;
-	WBUFW(data,(0x10)-4) = param0;
+	WBUFW(data,(0x0A)) = messageID + 0x8000;
+	WBUFW(data,(0x10)) = param0;
 
-	WBUFL(data,(0x14)-4) = 0x01;
-	WBUFL(data,(0x1C)-4) = 0xF0;
+	WBUFL(data,(0x14)) = 0x01;
+	WBUFL(data,(0x1C)) = 0xF0;
 
-	memcpy(data+(0x20)-4, PChar->GetName(), PChar->name.size());
+	memcpy(data+(0x20), PChar->GetName(), PChar->name.size());
 }

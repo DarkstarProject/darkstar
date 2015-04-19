@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,8 +29,8 @@ This file is part of DarkStar-server source code.
 #include "login.h"
 
 zmq::context_t zContext;
-zmq::socket_t* zSocket = NULL;
-Sql_t* ChatSqlHandle = NULL;
+zmq::socket_t* zSocket = nullptr;
+Sql_t* ChatSqlHandle = nullptr;
 std::queue<chat_message_t> msg_queue;
 std::mutex queue_mutex;
 
@@ -219,7 +219,11 @@ void message_server_listen()
         }
         catch (zmq::error_t e)
         {
-            ShowError("Message: %s", e.what());
+            if (!zSocket)
+            {
+                return;
+            }
+            ShowError("Message: %s\n", e.what());
             continue;
         }
         message_server_parse((MSGSERVTYPE)RBUFB(type.data(), 0), &extra, &packet, &from);
@@ -261,4 +265,15 @@ void message_server_init()
 	}
 
 	message_server_listen();
+}
+
+void message_server_close()
+{
+    zContext.close();
+    if (zSocket)
+    {
+        zSocket->close();
+        delete zSocket;
+        zSocket = nullptr;
+    }
 }

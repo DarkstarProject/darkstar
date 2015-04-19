@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -62,7 +62,7 @@ void CUContainer::Clean()
     m_target = 0;
 
     m_PItem.clear();
-    m_PItem.resize(UCONTAINER_SIZE, NULL);
+    m_PItem.resize(UCONTAINER_SIZE, nullptr);
 }
 
 /************************************************************************
@@ -165,7 +165,7 @@ bool CUContainer::IsSlotEmpty(uint8 slotID)
 {
     if (slotID < m_PItem.size())
 	{
-        return m_PItem[slotID] == NULL;
+        return m_PItem[slotID] == nullptr;
     }
     return true;
 }
@@ -180,8 +180,8 @@ bool CUContainer::SetItem(uint8 slotID, CItem* PItem)
 {
 	if (slotID < m_PItem.size() && !m_lock)
 	{
-        if (PItem != NULL && m_PItem[slotID] == NULL) m_count++;
-        if (PItem == NULL && m_PItem[slotID] != NULL) m_count--;
+        if (PItem != nullptr && m_PItem[slotID] == nullptr) m_count++;
+        if (PItem == nullptr && m_PItem[slotID] != nullptr) m_count--;
 
 		m_PItem[slotID] = PItem;
         return true;
@@ -191,7 +191,7 @@ bool CUContainer::SetItem(uint8 slotID, CItem* PItem)
 
 void CUContainer::SetSize(uint8 size)
 {
-    m_PItem.resize(size, NULL);
+    m_PItem.resize(size, nullptr);
 }
 
 /************************************************************************
@@ -217,5 +217,5 @@ CItem* CUContainer::GetItem(uint8 slotID)
 	{
 		return m_PItem[slotID];
 	}
-	return NULL;
+	return nullptr;
 }

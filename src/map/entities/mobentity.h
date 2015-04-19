@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -108,6 +108,7 @@ enum BEHAVIOUR : uint16
 	BEHAVIOUR_NO_DESPAWN		= 0x001, // mob does not despawn on death
 	BEHAVIOUR_STANDBACK			= 0x002, // mob will standback forever
 	BEHAVIOUR_RAISABLE			= 0x004, // mob can be raised via Raise spells
+    BEHAVIOUR_NOHELP            = 0x008, // mob can not be targeted by helpful magic from players (cure, protect, etc)
 	BEHAVIOUR_AGGRO_AMBUSH		= 0x200, // mob aggroes by ambush
 	BEHAVIOUR_NO_TURN           = 0x400  // mob does not turn to face target
 };
@@ -199,10 +200,6 @@ public:
 
   bool      CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false); // can I detect the target?
 
-  void      SetMainSkin(uint32 mobid);               // Set base skin for the mob (if mob or player dieing)
-  void      SetNewSkin(uint8 skinid);                // Set new skin for the mob
-  uint32    GetSkinID();                             // Get the last skinid (0 for base skin)
-
   uint8     TPUseChance();                           // return % chance to use TP move
 
   void      ChangeMJob(uint16 job);                  // this will change jobs and update traits, stats, spells
@@ -247,8 +244,6 @@ public:
 private:
 
   bool      m_RageMode;                              // Mode rage
-  bool      m_NewSkin;                               // True if skin has changed
-  uint32    m_SkinID;                                // skinid
   uint32    m_DespawnTimer;                          // Despawn Timer to despawn mob after set duration
   int16     m_mobModStat[MAX_MOBMODIFIER];           // mob specific mods
   int16     m_mobModStatSave[MAX_MOBMODIFIER];       // saved state

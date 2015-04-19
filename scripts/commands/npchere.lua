@@ -12,6 +12,8 @@ cmdprops =
 };
 
 function onTrigger(player, npcId)
+    require("scripts/globals/status");
+
     if (npcId == nil) then
         player:PrintToPlayer("You must enter a valid npcId.");
         return;
@@ -19,16 +21,16 @@ function onTrigger(player, npcId)
 
     local npc = GetNPCByID(npcId);
     if (npc == nil) then
-        player:PrintToPlayer( string.format( "Mob with ID '%i' not found!", npcId ) );
+        player:PrintToPlayer( string.format( "NPC with ID '%i' not found!", npcId ) );
         return;
     end
 
-    SpawnMob( npcId ); -- Yes, that does work on NPC's as well.
-    if (player:getZone() == mob:getZone()) then
-        npc:setPos( player:getXPos(), player:getYPos(), player:getZPos(), 0, player:getZone() );
+    if (player:getZoneID() == npc:getZoneID()) then
+        npc:setPos( player:getXPos(), player:getYPos(), player:getZPos(), player:getRotPos(), player:getZoneID() );
+        npc:setStatus(STATUS_NORMAL);
     else
         if (noDepop == nil or noDepop == 0) then
-            DespawnMob( npcId );
+            npc:setStatus(STATUS_DISAPPEAR);
             player:PrintToPlayer("Despawned the NPC because of an error.");
         end
         player:PrintToPlayer("NPC could not be moved to current pos - you are probably in the wrong zone.");

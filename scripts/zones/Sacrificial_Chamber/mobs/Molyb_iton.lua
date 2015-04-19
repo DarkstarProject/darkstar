@@ -8,7 +8,7 @@
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -29,7 +29,7 @@ end;
 
 function onMobDeath(mob,killer)
 	local kills = killer:getVar("EVERYONES_GRUDGE_KILLS");
-	
+
 	if(kills < 480) then
 		killer:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
 	end

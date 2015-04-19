@@ -54,7 +54,10 @@ end
 function onTrigger(player,npc) 
 	local blood = player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD);
 	local bloodProg = player:getVar("SIGNED_IN_BLOOD_Prog");
-	if (blood == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
+        if(player:getVar("sharpeningTheSwordCS") >= 2) then
+		player:startEvent(0x0034);
+
+        elseif (blood == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
 		player:startEvent(0x02dc,0,1662); -- Start Quest
 	
 	elseif(blood == QUEST_ACCEPTED and bloodProg < 1) then
@@ -65,9 +68,6 @@ function onTrigger(player,npc)
 	
 	elseif (bloodProg >= 1 and blood == QUEST_ACCEPTED) then
 		player:startEvent(0x02df);
-
-	elseif(player:getVar("sharpeningTheSwordCS") >= 2) then
-		player:startEvent(0x0034);
 	end
 	
 end;

@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -24,6 +24,8 @@
 #ifndef _MOBUTILS_H
 #define _MOBUTILS_H
 
+#include <unordered_map>
+
 #include "../../common/cbasetypes.h"
 #include "../../common/mmo.h"
 
@@ -39,7 +41,7 @@ typedef struct
 
 enum class WeaknessType {YELLOW, BLUE, RED, WHITE};
 
-typedef std::map<uint32,ModsList_t*> ModsMap_t;
+typedef std::unordered_map<uint32,ModsList_t*> ModsMap_t;
 
 namespace mobutils
 {
@@ -58,7 +60,7 @@ namespace mobutils
 	void  AddCustomMods(CMobEntity* PMob);
 	void  SetupMaat(CMobEntity* PMob, JOBTYPE job);
 	void  SetSpellList(CMobEntity*, uint16);
-	CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID);
+	CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* = nullptr);
     void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level);
 };
 

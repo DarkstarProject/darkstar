@@ -27,6 +27,11 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.str_wsc = 1.0;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
 	if(damage > 0) then
@@ -36,6 +41,7 @@ function onUseWeaponSkill(player, target, wsID)
 			target:addStatusEffect(EFFECT_STUN, 1, 0, duration);
 		end
 	end
+	damage = damage * WEAPON_SKILL_POWER
 	return tpHits, extraHits, criticalHit, damage;
 
-end
+	end

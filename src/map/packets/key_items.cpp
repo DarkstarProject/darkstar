@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -36,8 +36,8 @@ CKeyItemsPacket::CKeyItemsPacket(CCharEntity * PChar, KEYS_TABLE KeyTable)
 
     DSP_DEBUG_BREAK_IF(KeyTable >= MAX_KEYS_TABLE);
 
-	memcpy(data+(0x04)-4, (PChar->keys.keysList+0x40*KeyTable), 0x40);
-	memcpy(data+(0x44)-4, (PChar->keys.seenList+0x40*KeyTable), 0x40);
+	memcpy(data+(0x04), (PChar->keys.keysList+0x40*KeyTable), 0x40);
+	memcpy(data+(0x44), (PChar->keys.seenList+0x40*KeyTable), 0x40);
 
-	WBUFB(data,(0x84)-4) = KeyTable;
+	WBUFB(data,(0x84)) = KeyTable;
 }

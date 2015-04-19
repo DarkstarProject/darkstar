@@ -10,16 +10,23 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/utils");
 require("scripts/globals/monstertpmoves");
+require("/scripts/zones/Throne_Room/TextIDs");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
+if(mob:getFamily() == 482)then
+	target:showText(mob,YOUR_ANSWER);
+    return 0;
+else
     return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
+if(mob:getFamily() == 482)then
+	target:showText(mob,RETURN_TO_THE_DARKNESS);
+else
 	mob:messageBasic(43, 0, 686+256);
-
+end
    local tp = skill:getTP();
    local hp = mob:getHP();
    local dmg = 0;
@@ -53,4 +60,5 @@ function onMobWeaponSkill(target, mob, skill)
 
    target:delHP(dmg);
 	return dmg;
+	end
 end;

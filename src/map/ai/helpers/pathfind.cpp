@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ CPathFind::CPathFind(CBaseEntity* PTarget)
 
 CPathFind::~CPathFind()
 {
-	m_PTarget = NULL;
+	m_PTarget = nullptr;
 	Clear();
 }
 
@@ -49,13 +49,13 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 	{
 
 		// all mobs will default to this distance
-		float maxRadius = 10.0f;
+		float maxRadius = 25.0f;
 
 		// sight aggro mobs will move a bit farther
 		// this is until this data is put in the database
 		if (m_roamFlags & ROAMFLAG_MEDIUM)
 		{
-			maxRadius = 20.0f;
+			maxRadius = 35.0f;
 		}
 
 		// TODO: finish roam flags. distance should have a distance limit
@@ -138,7 +138,7 @@ bool CPathFind::PathAround(position_t point, float distance, uint8 pathFlags)
 
 	position_t* lastPoint = &point;
 
-	float randomRadian = RandomNumber() * M_PI * 2.0f;
+	float randomRadian = WELL512::GetRandomNumber<float>(0,2*M_PI);
 
 	lastPoint->x += cosf(randomRadian) * distance;
 	lastPoint->z += sinf(randomRadian) * distance;
@@ -177,7 +177,7 @@ bool CPathFind::WarpTo(position_t point, float maxDistance)
 
 bool CPathFind::isNavMeshEnabled()
 {
-	return m_PTarget->loc.zone && m_PTarget->loc.zone->m_navMesh != NULL;
+	return m_PTarget->loc.zone && m_PTarget->loc.zone->m_navMesh != nullptr;
 }
 
 void CPathFind::LimitDistance(float maxLength)
@@ -191,7 +191,7 @@ void CPathFind::StopWithin(float within)
 	// TODO: cut up path
 
 	position_t* lastPoint = &m_points[m_pathLength - 1];
-	position_t* secondLastPoint = NULL;
+	position_t* secondLastPoint = nullptr;
 
 	if (m_pathLength == 1)
 	{

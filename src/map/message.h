@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ struct chat_message_t
 
 namespace message
 {
-	void init(const char* chatIp, uint16 chatPort);
+    void init(const char* chatIp, uint16 chatPort);
     void send(MSGSERVTYPE type, void* data, size_t datalen, CBasicPacket* packet);
     void close();
 };

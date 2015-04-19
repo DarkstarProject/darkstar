@@ -1,22 +1,22 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see http://www.gnu.org/licenses/
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
+  This file is part of DarkStar-server source code.
 
 ===========================================================================
 */
@@ -50,142 +50,142 @@ This file is part of DarkStar-server source code.
 namespace fishingutils
 {
 
-	/************************************************************************
-	*																		*
-	*  Массив смещений для сообщений рыбалки								*
-	*																		*
-	************************************************************************/
+/************************************************************************
+*																		*
+*  Массив смещений для сообщений рыбалки								*
+*																		*
+************************************************************************/
 
-	uint16 MessageOffset[MAX_ZONEID];
+uint16 MessageOffset[MAX_ZONEID];
 
-	void LoadFishingMessages()
-	{
-		zoneutils::ForEachZone([](CZone* PZone){
-			MessageOffset[PZone->GetID()] = luautils::GetTextIDVariable(PZone->GetID(), "FISHING_MESSAGE_OFFSET");
-		});
-	}
+void LoadFishingMessages()
+{
+    zoneutils::ForEachZone([](CZone* PZone){
+        MessageOffset[PZone->GetID()] = luautils::GetTextIDVariable(PZone->GetID(), "FISHING_MESSAGE_OFFSET");
+    });
+}
 
-	/************************************************************************
-	*																		*
-	*  Получение смещения для сообщений рыбалки								*
-	*																		*
-	************************************************************************/
+/************************************************************************
+*																		*
+*  Получение смещения для сообщений рыбалки								*
+*																		*
+************************************************************************/
 
-	uint16 GetMessageOffset(uint16 ZoneID)
-	{
-		return MessageOffset[ZoneID];
-	}
+uint16 GetMessageOffset(uint16 ZoneID)
+{
+	return MessageOffset[ZoneID];
+}
 
-	/************************************************************************
-	*																		*
-	*  Проверяем наличие удочки, наживки и возможности ловли				*
-	*																		*
-	************************************************************************/
+/************************************************************************
+*																		*
+*  Проверяем наличие удочки, наживки и возможности ловли				*
+*																		*
+************************************************************************/
 
-	void StartFishing(CCharEntity* PChar)
-	{
+void StartFishing(CCharEntity* PChar)
+{
 
 		PChar->m_spawnMonsterID = 0;
 		PChar->m_fishingUnknown = 0x0A; // unknown, it's generally 0x0A, but sometimes 0x0B
 
-		if (PChar->animation != ANIMATION_NONE)
-		{
+	if (PChar->animation != ANIMATION_NONE)
+	{
 			PChar->pushPacket(new CMessageSystemPacket(0, 0, 142));
 			PChar->pushPacket(new CReleasePacket(PChar, RELEASE_FISHING));
-			return;
-		}
+		return;
+	}
 
-		uint16 MessageOffset = GetMessageOffset(PChar->getZone());
+	uint16 MessageOffset = GetMessageOffset(PChar->getZone());
 
-		if (MessageOffset == 0)
-		{
-			ShowWarning(CL_YELLOW"Player wants to fish in %s\n" CL_RESET, PChar->loc.zone->GetName());
+	if (MessageOffset == 0)
+	{
+        ShowWarning(CL_YELLOW"Player wants to fish in %s\n" CL_RESET, PChar->loc.zone->GetName());
 			PChar->pushPacket(new CReleasePacket(PChar, RELEASE_FISHING));
-			return;
-		}
+		return;
+	}
+	
+	CItemWeapon* WeaponItem = nullptr;
 
-		CItemWeapon* WeaponItem = NULL;
+	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);	
+			
+	if ((WeaponItem == nullptr) ||
+	   !(WeaponItem->isType(ITEM_WEAPON)) ||
+		(WeaponItem->getSkillType() != SKILL_FSH)) 
+	{													
+		// сообщение: "You can't fish without a rod in your hands"
 
-		WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
-
-		if ((WeaponItem == NULL) ||
-			!(WeaponItem->isType(ITEM_WEAPON)) ||
-			(WeaponItem->getSkillType() != SKILL_FSH))
-		{
-			// сообщение: "You can't fish without a rod in your hands"
-
-			PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x01));
+		PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x01));
 			PChar->pushPacket(new CReleasePacket(PChar, RELEASE_FISHING));
-			return;
-		}
+		return;
+	}
 
-		WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
+	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);	
+							
+	if ((WeaponItem == nullptr) ||
+	   !(WeaponItem->isType(ITEM_WEAPON)) ||
+		(WeaponItem->getSkillType() != SKILL_FSH))
+	{
+		// сообщение: "You can't fish without bait on the hook"	
 
-		if ((WeaponItem == NULL) ||
-			!(WeaponItem->isType(ITEM_WEAPON)) ||
-			(WeaponItem->getSkillType() != SKILL_FSH))
-		{
-			// сообщение: "You can't fish without bait on the hook"	
-
-			PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x02));
+		PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x02));
 			PChar->pushPacket(new CReleasePacket(PChar, RELEASE_FISHING));
-			return;
-		}
+		return;
+	}
 
 		PChar->status = STATUS_UPDATE;
 		PChar->animation = ANIMATION_NEW_FISHING_START;
-		PChar->updatemask |= UPDATE_HP;
+    PChar->updatemask |= UPDATE_HP;
 
-		PChar->pushPacket(new CCharUpdatePacket(PChar));
-		PChar->pushPacket(new CCharSyncPacket(PChar));
-	}
+	PChar->pushPacket(new CCharUpdatePacket(PChar));
+	PChar->pushPacket(new CCharSyncPacket(PChar));
+}
 
-	/************************************************************************
-	*																		*
-	*  Персонаж теряет наживку (теряет блесну лишь при условии RemoveFly)	*
-	*																		*
-	************************************************************************/
+/************************************************************************
+*																		*
+*  Персонаж теряет наживку (теряет блесну лишь при условии RemoveFly)	*
+*																		*
+************************************************************************/
 
-	bool LureLoss(CCharEntity* PChar, bool RemoveFly)
-	{
-		CItemWeapon* PLure = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
+bool LureLoss(CCharEntity* PChar, bool RemoveFly)
+{	
+	CItemWeapon* PLure = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
 
-		DSP_DEBUG_BREAK_IF(PLure == NULL);
-		DSP_DEBUG_BREAK_IF(PLure->isType(ITEM_WEAPON) == false);
-		DSP_DEBUG_BREAK_IF(PLure->getSkillType() != SKILL_FSH);
+	DSP_DEBUG_BREAK_IF(PLure == nullptr);
+	DSP_DEBUG_BREAK_IF(PLure->isType(ITEM_WEAPON) == false);
+	DSP_DEBUG_BREAK_IF(PLure->getSkillType() != SKILL_FSH);
 
-		if (!RemoveFly &&
+	if (!RemoveFly &&
 			(PLure->getStackSize() == 1))
-		{
-			return false;
-		}
-		if (PLure->getQuantity() == 1)
-		{
-			charutils::EquipItem(PChar, 0, PChar->equip[SLOT_AMMO], LOC_INVENTORY);
-		}
-
-		charutils::UpdateItem(PChar, PLure->getLocationID(), PLure->getSlotID(), -1);
-		PChar->pushPacket(new CInventoryFinishPacket());
-		return true;
+	{
+		return false;
+	}
+	if (PLure->getQuantity() == 1)
+	{
+		charutils::EquipItem(PChar, 0, PChar->equip[SLOT_AMMO], LOC_INVENTORY);
 	}
 
-	/************************************************************************
-	*																		*
-	*  Персонаж ломает удочку												*
-	*																		*
-	************************************************************************/
+	charutils::UpdateItem(PChar, PLure->getLocationID(), PLure->getSlotID(), -1);
+	PChar->pushPacket(new CInventoryFinishPacket());
+	return true;
+}
 
-	void RodBreaks(CCharEntity* PChar)
-	{
-		uint8  SlotID = PChar->equip[SLOT_RANGED];
+/************************************************************************
+*																		*
+*  Персонаж ломает удочку												*
+*																		*
+************************************************************************/
+
+void RodBreaks(CCharEntity* PChar)
+{
+	uint8  SlotID = PChar->equip[SLOT_RANGED];
 		CItem* PRod = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
-		DSP_DEBUG_BREAK_IF(PRod == NULL);
+	DSP_DEBUG_BREAK_IF(PRod == nullptr);
 
-		uint16 BrokenRodID = 0;
+	uint16 BrokenRodID = 0;
 
-		switch (PRod->getID())
-		{
+	switch (PRod->getID())
+	{
 		case 0x4276:  BrokenRodID = 0x0728; break;
 		case 0x4277:  BrokenRodID = 0x0729; break;
 		case 0x43E4:  BrokenRodID = 0x01E3; break;
@@ -200,24 +200,24 @@ namespace fishingutils
 		case 0x43ED:  BrokenRodID = 0x01E7; break;
 		case 0x43EE:  BrokenRodID = 0x01E6; break;
 		case 0x43EF:  BrokenRodID = 0x01E5; break;
-		}
-
-		DSP_DEBUG_BREAK_IF(BrokenRodID == 0);
-
-		charutils::EquipItem(PChar, 0, SLOT_RANGED, LOC_INVENTORY);
-		charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
-		charutils::AddItem(PChar, LOC_INVENTORY, BrokenRodID, 1);
 	}
 
-	/************************************************************************
-	*																		*
-	*																		*
-	*																		*
-	************************************************************************/
+	DSP_DEBUG_BREAK_IF(BrokenRodID == 0);
+
+	charutils::EquipItem(PChar, 0, SLOT_RANGED, LOC_INVENTORY);
+	charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1); 
+	charutils::AddItem(PChar, LOC_INVENTORY, BrokenRodID, 1);
+}
+
+/************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
 
 	void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, uint8 unknown)
-	{
-		uint16 MessageOffset = GetMessageOffset(PChar->getZone());
+{
+	uint16 MessageOffset = GetMessageOffset(PChar->getZone());
 		int32  charSkill = PChar->RealSkills.skill[SKILL_FSH];
 		ZONETYPE zonetype = PChar->loc.zone->GetType();
 		CItemFish* PFish = NULL;
@@ -226,8 +226,8 @@ namespace fishingutils
 		uint16 Zone = PChar->getZone();
 		uint8 isMonster = 0;
 
-		switch (action)
-		{
+	switch (action) 
+	{
 		case FISHACTION_CHECK:
 		{
 			//call our lua script to determine what we caught
@@ -317,17 +317,17 @@ namespace fishingutils
 				if (PChar->m_spawnMonsterID == 0) {
 
 					PChar->pushPacket(new CMessageSpecialPacket(PChar, MessageOffset + 53, retVal->d, 3, 3, 3));
-
+			
 				}
 				PChar->animation = ANIMATION_NEW_FISHING_FISH;
-				PChar->updatemask |= UPDATE_HP;
+                PChar->updatemask |= UPDATE_HP;
 				PChar->pushPacket(new CFishingPacket(2500, 128, 8, 800, 50, 200, 40, isMonster, 30));
 
 			}
 			else { //if we didn't catch something
 
 				PChar->animation = ANIMATION_NEW_FISHING_STOP;
-				PChar->updatemask |= UPDATE_HP;
+                PChar->updatemask |= UPDATE_HP;
 				PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x04));
 
 			}
@@ -356,33 +356,33 @@ namespace fishingutils
 				}
 				else {
 
-					// сообщение: "You caught fish!"
+				// сообщение: "You caught fish!"
 
-					DSP_DEBUG_BREAK_IF(PChar->UContainer->GetType() != UCONTAINER_FISHING);
-					DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == NULL);
+				DSP_DEBUG_BREAK_IF(PChar->UContainer->GetType() != UCONTAINER_FISHING);
+				DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == nullptr);
 
 					PChar->animation = ANIMATION_NEW_FISHING_CAUGHT;
-					PChar->updatemask |= UPDATE_HP;
-					CItem* PFish = PChar->UContainer->GetItem(0);
+                PChar->updatemask |= UPDATE_HP;
+				CItem* PFish = PChar->UContainer->GetItem(0);
 
-					// TODO: анализируем RodFlag
+                // TODO: анализируем RodFlag
 
-					charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 1);
-					PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
+				charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 1);
+                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
 
-					if (PFish->isType(ITEM_USABLE))
-					{
-						LureLoss(PChar, false);
-					}
-					delete PFish;
+				if (PFish->isType(ITEM_USABLE))
+				{
+					LureLoss(PChar, false);
 				}
+                delete PFish;
+			}
 			}
 			else if (stamina <= 0x64)
 			{
 				// сообщение: "Your line breaks!"
-
+	
 				PChar->animation = ANIMATION_NEW_FISHING_LINE_BREAK;
-				PChar->updatemask |= UPDATE_HP;
+                PChar->updatemask |= UPDATE_HP;
 				LureLoss(PChar, true);
 				PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x06));
 			}
@@ -391,7 +391,7 @@ namespace fishingutils
 				// сообщение: "You give up!"
 
 				PChar->animation = ANIMATION_NEW_FISHING_STOP;
-				PChar->updatemask |= UPDATE_HP;
+                PChar->updatemask |= UPDATE_HP;
 				if (PChar->UContainer->GetType() == UCONTAINER_FISHING &&
 					LureLoss(PChar, false))
 				{
@@ -406,7 +406,7 @@ namespace fishingutils
 				// сообщение: "You lost your catch!"
 
 				PChar->animation = ANIMATION_NEW_FISHING_STOP;
-				PChar->updatemask |= UPDATE_HP;
+                PChar->updatemask |= UPDATE_HP;
 				LureLoss(PChar, false);
 				PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x09));
 				// + 60 = You lost your catch. Whatever caught the hook was too large to catch with this rod.
@@ -443,16 +443,14 @@ namespace fishingutils
 			//charutils::SaveCharSkills(PChar, SKILL_FSH);
 
 			PChar->animation = ANIMATION_NONE;
-			PChar->updatemask |= UPDATE_HP;
+            PChar->updatemask |= UPDATE_HP;
 		}
 		break;
-		}
-
-		PChar->status = STATUS_UPDATE;
-
-		PChar->pushPacket(new CCharUpdatePacket(PChar));
-		PChar->pushPacket(new CCharSyncPacket(PChar));
 	}
+
+	PChar->pushPacket(new CCharUpdatePacket(PChar));
+	PChar->pushPacket(new CCharSyncPacket(PChar));
+}
 
 } // namespace fishingutils
 

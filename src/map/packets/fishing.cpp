@@ -1,22 +1,22 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see http://www.gnu.org/licenses/
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
+  This file is part of DarkStar-server source code.
 
 ===========================================================================
 */
@@ -28,19 +28,19 @@ This file is part of DarkStar-server source code.
 #include "fishing.h"
 
 
-unsigned char packet[] =
-{
+unsigned char packet[] = 
+{	
 	0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
 /************************************************************************
-*                                                                       *
+*                                                                       *  
 *  Статический dump оригинального пакета                                *
 *                                                                       *
 ************************************************************************/
 
-CFishingPacket::CFishingPacket()
+CFishingPacket::CFishingPacket() 
 {
 	this->type = 0x15;
 	this->size = 0x0D;
@@ -49,7 +49,7 @@ CFishingPacket::CFishingPacket()
 }
 
 /************************************************************************
-*                                                                       *
+*                                                                       *  
 *  Версия от EDGECOM                                                    *
 *                                                                       *
 ************************************************************************/
@@ -59,7 +59,7 @@ CFishingPacket::CFishingPacket(uint16 stamina, uint16 regen, uint16 id1, uint16 
 	this->type = 0x15;
 	this->size = 0x0D;
 
-
+    
 	/*
 
 	stamina     - fish HP, generally in thousands

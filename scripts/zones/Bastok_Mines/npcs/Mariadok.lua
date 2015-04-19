@@ -1,14 +1,12 @@
 -----------------------------------
---  Area: Bastok Mines
---   NPC: Mariadok
---  Type: Weather Checker
--- @zone: 234
---  @pos 34.460 -1 -82.839
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Bastok Mines
+-- NPC: Mariadok
+-- Type: Weather Reporter
+-----------------------------------
+package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+require("scripts/globals/settings");
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------
@@ -23,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc, MARIADOK_DIALOG);
+    player:startEvent(0x0002,0,0,0,0,0,0,0,VanadielTime());
 end;
 
 -----------------------------------
@@ -31,8 +29,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -40,7 +38,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
-

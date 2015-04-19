@@ -16,7 +16,7 @@ end;
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -24,11 +24,11 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(OMEGA_OSTRACIZER);	
+	killer:addTitle(OMEGA_OSTRACIZER);
 	killer:startEvent(0x000b);
 end;
 
-function onEventFinish(player,csid,option)	
+function onEventFinish(player,csid,option)
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
 	if(csid == 0x000b) then
@@ -38,7 +38,7 @@ function onEventFinish(player,csid,option)
 		player:setHP(player:getMaxHP());
 		player:setMP(player:getMaxMP());
 		player:setTP(0);
-		
+
 		if(instance == 1) then
 			player:setPos(-779, -103, -80);
 	         	SpawnMob(16908295); --ultima1
@@ -50,4 +50,4 @@ function onEventFinish(player,csid,option)
 		 	SpawnMob(16908309); --ultima3
 		end
 	end
-end;	
+end;

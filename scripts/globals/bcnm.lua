@@ -46,7 +46,7 @@ itemid_bcnmid_map = { 6,{0,0},-- Bearclaw_Pinnacle
 -- The paramid is a bitmask which you need to find out. Being a bitmask, it will be one of:
 -- 0,1,2,3,4,5,...
 bcnmid_param_map = {6,{640,0},
-                    8,{672,0},
+                    8,{672,0,673,1},
                     10,{704,0,706,2},
                     13,{736,0},
                     17,{768,0},
@@ -62,9 +62,9 @@ bcnmid_param_map = {6,{640,0},
 					144,{65,1,73,9,64,0,67,3,68,4,70,6,71,7,72,8,81,17,76,12,82,18,79,15},
 					146,{99,3,96,0,101,5,102,6,103,7,107,11,105,9},
 					163,{128,0,129,1},
-					165,{160,0},
+					165,{160,0,161,1},
 					168,{192,0,194,2,195,3,196,4},
-					170,{224,0},
+					170,{224,0,225,1},
 					179,{256,0},
 					180,{293,5,288,0,289,1,290,2,291,3,292,4},
                     181,{320,0},
@@ -397,6 +397,10 @@ function checkNonTradeBCNM(player,npc)
 	   	if(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 5) then --head_wind
 	    	 mask = GetBattleBitmask(672,Zone,1);
 	         player:setVar("trade_bcnmid",672);
+		elseif (player:hasKeyItem(MIASMA_FILTER)==true) then
+			mask = GetBattleBitmask(673,Zone,1);
+			player:setVar("trade_bcnmid",673);
+		else
 		end
 	elseif(Zone == 10) then -- The_Shrouded_Maw
 	    if(player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2) then--DARKNESS_NAMED
@@ -503,6 +507,11 @@ function checkNonTradeBCNM(player,npc)
 		if(player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 3) then -- Mission 5-2
 			mask = GetBattleBitmask(160,Zone,1);
 			player:setVar("trade_bcnmid",160);
+		elseif(player:getCurrentMission(BASTOK) == WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 1)then -- bastok 9-2 
+			mask = GetBattleBitmask(161,Zone,1);
+			player:setVar("trade_bcnmid",161);
+
+
 		end
 	elseif(Zone == 168) then -- Chamber of Oracles
 		if(player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES or player:getCurrentMission(ZILART) == THE_CHAMBER_OF_ORACLES) then -- Zilart Mission 6
@@ -513,6 +522,9 @@ function checkNonTradeBCNM(player,npc)
 		if(player:hasKeyItem(MOON_BAUBLE)) then -- The Moonlit Path
 			mask = GetBattleBitmask(224,Zone,1);
 			player:setVar("trade_bcnmid",224);
+		elseif((player:getCurrentMission(WINDURST) == MOON_READING) and player:getVar("WINDURST92") == 2) then -- Moon reading
+			mask = GetBattleBitmask(225,Zone,1);
+			player:setVar("trade_bcnmid",225);	
 		end
 	elseif(Zone == 179) then -- Stellar Fulcrum
 		if(player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 3) then -- Zilart Mission 8
@@ -520,25 +532,25 @@ function checkNonTradeBCNM(player,npc)
 			player:setVar("trade_bcnmid",256);
 		end
 	elseif(Zone == 180) then -- La'Loff Amphitheater
-		--if(player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1) then
+		if(player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1) then
 			local qmid = npc:getID();
-			--[[if (qmid == 17514789 and player:hasKeyItem(SHARD_OF_APATHY) == false) then -- Hume, Ark Angels 1
+			if (qmid == 17514791 and player:hasKeyItem(SHARD_OF_APATHY) == false) then -- Hume, Ark Angels 1
 				mask = GetBattleBitmask(288,Zone,1);
 				player:setVar("trade_bcnmid",288);
-			elseif (qmid == 17514790 and player:hasKeyItem(SHARD_OF_COWARDICE) == false) then -- Tarutaru, Ark Angels 2
+			elseif (qmid == 17514792 and player:hasKeyItem(SHARD_OF_COWARDICE) == false) then -- Tarutaru, Ark Angels 2
 				mask = GetBattleBitmask(289,Zone,1);
 				player:setVar("trade_bcnmid",289);
-			elseif (qmid == 17514791 and player:hasKeyItem(SHARD_OF_ENVY) == false) then -- Mithra, Ark Angels 3]]
+			elseif (qmid == 17514793 and player:hasKeyItem(SHARD_OF_ENVY) == false) then -- Mithra, Ark Angels 3
 				mask = GetBattleBitmask(290,Zone,1);
 				player:setVar("trade_bcnmid",290);
-			--[[elseif (qmid == 17514792 and player:hasKeyItem(SHARD_OF_ARROGANCE) == false) then -- Elvaan, Ark Angels 4
+			elseif (qmid == 17514794 and player:hasKeyItem(SHARD_OF_ARROGANCE) == false) then -- Elvaan, Ark Angels 4
 				mask = GetBattleBitmask(291,Zone,1);
 				player:setVar("trade_bcnmid",291);
-			elseif (qmid == 17514793 and player:hasKeyItem(SHARD_OF_RAGE) == false) then -- Galka, Ark Angels 5
+			elseif (qmid == 17514795 and player:hasKeyItem(SHARD_OF_RAGE) == false) then -- Galka, Ark Angels 5
 				mask = GetBattleBitmask(292,Zone,1);
 				player:setVar("trade_bcnmid",292);
-			end]]
-		--end
+			end
+		end
     elseif(Zone == 181) then -- The Celestial Nexus
 		if(player:getCurrentMission(ZILART) == THE_CELESTIAL_NEXUS) then -- Zilart Mission 16
 			mask = GetBattleBitmask(320,Zone,1);
@@ -572,7 +584,7 @@ function checkNonTradeBCNM(player,npc)
 		if(player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11) then -- Mission 5-1
 			mask = GetBattleBitmask(512,Zone,1); 
 			player:setVar("trade_bcnmid",512);
-		elseif(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("SANDO92") == 3)then -- bastok 9-2 
+		elseif(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") == 3)then -- sando 9-2 
 			mask = GetBattleBitmask(516,Zone,1);
 			player:setVar("trade_bcnmid",516);
 
@@ -744,7 +756,7 @@ function CutsceneSkip(player,npc)
 	elseif(Zone == 206) then -- Qu'Bia Arena
 		if((player:hasCompletedMission(player:getNation(),14)) or (player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") > 11)) then -- Mission 5-1
 			skip = 1;
-		elseif((player:hasCompletedMission(player:getNation(),23)) or (player:getCurrentMission(player:getNation()) == 23 and player:getVar("SANDO92") > 4)) then -- Mission 9-2
+		elseif((player:hasCompletedMission(player:getNation(),23)) or (player:getCurrentMission(player:getNation()) == 23 and player:getVar("MissionStatus") > 4)) then -- Mission 9-2
 			skip = 1;
 		end
 	elseif(Zone == 207) then -- Cloister of Flames

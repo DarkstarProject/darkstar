@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -380,7 +380,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
                 canHQ = false; //assuming here that if a crafting ring is used matching a recipe's subsynth, overall HQ will still be blocked
             }
 
-			double random = WELL512::drand();
+			double random = WELL512::GetRandomNumber(1.);
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 			ShowDebug(CL_CYAN"Success: %g  Random: %g\n" CL_RESET, success, random);
 			#endif
@@ -392,7 +392,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 					if(mainID != skillID)
 					    break;
 					
-					random = WELL512::drand();
+                    random = WELL512::GetRandomNumber(1.);
 					
 					switch(hqtier)
 					{
@@ -543,7 +543,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 			double skillUpChance = (synthDiff*(map_config.craft_chance_multiplier - (log(1.2 + charSkill/100))))/10;
 			skillUpChance = skillUpChance/(1 + (PChar->CraftContainer->getQuantity(0) == SYNTHESIS_FAIL));		// результат синтеза хранится в quantity нулевой ячейки
 
-			double random = WELL512::drand();
+            double random = WELL512::GetRandomNumber(1.);
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 			ShowDebug(CL_CYAN"Skill up chance: %g  Random: %g\n" CL_RESET, skillUpChance, random);
 			#endif
@@ -569,7 +569,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 
 				for(uint8 i = 0; i < 4; i ++)
 				{
-					random = WELL512::drand();
+                    random = WELL512::GetRandomNumber(1.);
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 					ShowDebug(CL_CYAN"SkillAmount Tier: %i  Random: %g\n" CL_RESET, satier, random);
 					#endif
@@ -697,7 +697,7 @@ int32 doSynthFail(CCharEntity* PChar)
 		if (slotID != 8)
 			nextSlotID = PChar->CraftContainer->getInvSlotID(slotID+1);
 
-		random = WELL512::drand();
+        random = WELL512::GetRandomNumber(1.);
 		#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 		ShowDebug(CL_CYAN"Lost Item: %g  Random: %g\n" CL_RESET, lostItem, random);
 		#endif
@@ -711,7 +711,7 @@ int32 doSynthFail(CCharEntity* PChar)
 		{
 			CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
-			if (PItem != NULL)
+			if (PItem != nullptr)
 			{
 				PItem->setSubType(ITEM_UNLOCKED);
 
@@ -831,7 +831,7 @@ int32 startSynth(CCharEntity* PChar)
 
 			CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
-			if (PItem != NULL)
+			if (PItem != nullptr)
 			{
 				PItem->setSubType(ITEM_LOCKED);
 				PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NOSELECT));
@@ -905,7 +905,7 @@ int32 doSynthResult(CCharEntity* PChar)
 
 		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
-		if (PItem != NULL)
+		if (PItem != nullptr)
 		{
 			if ((PItem->getFlag() & ITEM_FLAG_INSCRIBABLE) && (PChar->CraftContainer->getItemID(0) > 0x1080))
 			{

@@ -9,7 +9,7 @@ require("scripts/globals/status");
 -- onMobInitialize
 -----------------------------------
 
-function onMobInitialize(mob)	
+function onMobInitialize(mob)
 	mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
 end;
 
@@ -17,7 +17,7 @@ end;
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -33,7 +33,7 @@ end;
 function onAdditionalEffect(mob,target,damage)
 
 	local rand = math.random(1,10);
-	
+
 	if ((rand >= 4) or (target:hasStatusEffect(EFFECT_TERROR) == true)) then -- 30% chance to terror
 		return 0,0,0;
 	else
@@ -41,5 +41,5 @@ function onAdditionalEffect(mob,target,damage)
 		target:addStatusEffect(EFFECT_TERROR,1,0,duration);
 		return SUBEFFECT_NONE,0,EFFECT_TERROR;
 	end
-    
+
 end;

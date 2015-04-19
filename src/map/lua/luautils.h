@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -43,12 +43,14 @@ class CAbility;
 class CSpell;
 class CBaseEntity;
 class CBattleEntity;
+class CAutomatonEntity;
 class CCharEntity;
 class CBattlefield;
 class CItem;
 class CMobSkill;
 class CRegion;
 class CStatusEffect;
+class CItemPuppet;
 
 namespace luautils
 {
@@ -81,6 +83,7 @@ namespace luautils
 	int32 DespawnMob(lua_State*);												// Despawn (Fade Out) Mob By Id
 	int32 GetPlayerByName(lua_State*);											// Gets Player ref from a name supplied
 	int32 GetMobAction(lua_State*);												// Get Mobs current action
+    int32 VanadielTime(lua_State*);                                             // Gets the current Vanadiel Time in timestamp format (SE epoch in earth seconds)
 	int32 VanadielTOTD(lua_State*);												// текущее игровое время суток
 	int32 VanadielHour(lua_State*);												// текущие Vanadiel часы
 	int32 VanadielMinute(lua_State*);											// текущие Vanadiel минуты
@@ -121,6 +124,7 @@ namespace luautils
 
 	int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);						// triggered when user targets npc and clicks action button
 	int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result);		// triggered when game triggers event update during cutscene
+    int32 OnEventUpdate(CCharEntity* PChar, int8* string);		                // triggered when game triggers event update during cutscene
 	int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result);		// triggered when cutscene/event is completed
 	int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc);						// triggers when a trade completes with an npc
 
@@ -129,6 +133,9 @@ namespace luautils
 	int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when an effect is applied to pc/npc
 	int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when effect tick timer has been reached
 	int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when effect has been lost
+
+    int32 OnManeuverGain(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
+    int32 OnManeuverLose(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
 
 	int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem);						// triggers when item is used
 	int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param = 0);	// check to see if item can be used
@@ -162,6 +169,8 @@ namespace luautils
 
 	int32 OnMobWeaponSkill(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);							// triggers when mob weapon skill is used
 	int32 OnMobSkillCheck(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);								// triggers before mob weapon skill is used, returns 0 if the move is valid
+    int32 OnMobAutomatonSkillCheck(CBaseEntity* PChar, CAutomatonEntity* PAutomaton, CMobSkill* PMobSkill);
+
 	int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbility, CBaseEntity** PMsgTarget);	// triggers when a player attempts to use a job ability or roll
 	int32 OnPetAbility(CBaseEntity* PPet, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PPetMaster);		// triggers when pet uses an ability
 	int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLanded, uint16* extraHitsLanded);	// triggers when weapon skill is used
@@ -196,6 +205,8 @@ namespace luautils
 
     int32 OnPlayerLevelUp(CCharEntity* PChar);
     int32 OnPlayerLevelDown(CCharEntity* PChar);
+
+    int32 OnChocoboDig(CCharEntity* PChar, bool pre);                           // chocobo digging, pre = check
 };
 
 #endif //- _LUAUTILS_H -

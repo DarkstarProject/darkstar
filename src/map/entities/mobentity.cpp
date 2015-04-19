@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -64,8 +64,6 @@ CMobEntity::CMobEntity()
 	m_THLvl = 0;
 	m_ItemStolen = false;
     m_RageMode = 0;
-	m_NewSkin = 0;
-	m_SkinID = 0;
 
     strRank = 3;
     defRank = 3;
@@ -98,7 +96,7 @@ CMobEntity::CMobEntity()
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 
-    m_SpellListContainer = NULL;
+    m_SpellListContainer = nullptr;
     PEnmityContainer = new CEnmityContainer(this);
     SpellContainer = new CMobSpellContainer(this);
 
@@ -153,7 +151,7 @@ uint32 CMobEntity::GetRandomGil()
             ShowWarning("CMobEntity::GetRandomGil Max value is set too low, defauting\n");
         }
 
-        return WELL512::irand() % (max - min) + min;
+        return WELL512::GetRandomNumber(min,max);
     }
 
     float gil = pow(GetMLevel(), 1.05f);
@@ -174,7 +172,7 @@ uint32 CMobEntity::GetRandomGil()
     }
 
     // randomize it
-    gil += WELL512::irand() % highGil;
+    gil += WELL512::GetRandomNumber(highGil);
 
     // NMs get more gil
     if((m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS){
@@ -215,7 +213,7 @@ bool CMobEntity::CanRoamHome()
 
 bool CMobEntity::CanRoam()
 {
-    return !(m_roamFlags & ROAMFLAG_EVENT) && PMaster == NULL && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM));
+    return !(m_roamFlags & ROAMFLAG_EVENT) && PMaster == nullptr && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM));
 }
 
 bool CMobEntity::CanLink(position_t* pos, int16 superLink)
@@ -425,52 +423,6 @@ uint8 CMobEntity::TPUseChance()
     }
 
     return getMobMod(MOBMOD_TP_USE_CHANCE);
-}
-
-/************************************************************************
-*                                                                       *
-*  Change Skin of the Mob                                               *
-*                                                                       *
-************************************************************************/
-
-void CMobEntity::SetMainSkin(uint32 mobid)
-{
-	if(m_NewSkin)
-	{
-		const int8* Query = "SELECT modelid \
-							 FROM mob_spawn_points, mob_groups, mob_pools \
-							 WHERE mob_spawn_points.mobid = %u \
-							 AND mob_groups.groupid = mob_spawn_points.groupid \
-							 AND mob_groups.poolid = mob_pools.poolid";
-
-		int32 ret = Sql_Query(SqlHandle, Query, mobid);
-
-		if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			memcpy(&look,Sql_GetData(SqlHandle,0),23);
-			m_NewSkin = false;
-			m_SkinID = 0;
-		}
-	}
-}
-
-void CMobEntity::SetNewSkin(uint8 skinid)
-{
-	const int8* Query = "SELECT skin_model FROM mob_change_skin WHERE skinid = %u";
-
-	int32 ret = Sql_Query(SqlHandle, Query, skinid);
-
-	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		memcpy(&look,Sql_GetData(SqlHandle,0),23);
-		m_NewSkin = true;
-		m_SkinID = skinid;
-	}
-}
-
-uint32 CMobEntity::GetSkinID()
-{
-	return m_SkinID;
 }
 
 void CMobEntity::setMobMod(uint16 type, int16 value)

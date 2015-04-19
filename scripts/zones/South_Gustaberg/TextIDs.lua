@@ -22,3 +22,7 @@ NOTHING_OUT_OF_ORDINARY = 6410; -- There is nothing out of the ordinary here.
 MONSTER_TRACKS_FRESH = 7368; -- You see fresh monster tracks on the ground.
 -- conquest Base
 CONQUEST_BASE = 7044; -- Tallying conquest results...
+
+--chocobo digging
+DIG_THROW_AWAY = 7216;
+FIND_NOTHING = 7218;

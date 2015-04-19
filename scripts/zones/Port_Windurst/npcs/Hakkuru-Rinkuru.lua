@@ -56,7 +56,9 @@ function onTrigger(player,npc)
 	
 		-- ~[ Windurst Mission 6-1 Full Moon Fountain ]~ --
 	if(player:getCurrentMission(WINDURST) == FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 0) then
-			player:startEvent(0x01C8,0,248)
+		player:startEvent(0x01C8,0,248);
+	elseif(player:getCurrentMission(WINDURST) == FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 3) then
+		player:startEvent(0x01C9);
 	-- Check if we are on Windurst Mission 1-1
 	elseif(player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT) then
 		MissionStatus = player:getVar("MissionStatus");
@@ -65,7 +67,7 @@ function onTrigger(player,npc)
 		elseif(MissionStatus == 1) then
 			player:startEvent(0x005b);
 		elseif(MissionStatus == 3) then
-			player:startEvent(0x005e,0,CRACKED_MANA_ORBS) -- Finish Mission 1-1
+			player:startEvent(0x005e,0,CRACKED_MANA_ORBS); -- Finish Mission 1-1
 		end
 	elseif(player:getCurrentMission(WINDURST) == TO_EACH_HIS_OWN_RIGHT and player:getVar("MissionStatus") == 2) then
 		player:startEvent(0x0093);

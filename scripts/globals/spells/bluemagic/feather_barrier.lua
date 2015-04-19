@@ -1,16 +1,34 @@
 -----------------------------------------
 -- Spell: Feather Barrier
+-- Enhances evasion
+-- Spell cost: 29 MP
+-- Monster Type: Birds
+-- Spell Type: Magical (Wind)
+-- Blue Magic Points: 2
+-- Stat Bonus: None
+-- Level: 56
+-- Casting Time: 2 seconds
+-- Recast Time: 120 seconds
+-- Duration: 30 Seconds
+-- 
+-- Combos: Resist Gravity
 -----------------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/bluemagic");
+
 -----------------------------------------
--- OnSpellCast
+-- OnMagicCastingCheck
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
+
+-----------------------------------------
+-- OnSpellCast
+-----------------------------------------
 
 function onSpellCast(caster,target,spell)
     
@@ -27,9 +45,9 @@ function onSpellCast(caster,target,spell)
     end
     
     if(caster:hasStatusEffect(EFFECT_EVASION_BOOST) == true) then
-    	spell:setMsg(75);
-	else
-		caster:addStatusEffect(EFFECT_EVASION_BOOST,10,0,duration);
+        spell:setMsg(75);
+    else
+        caster:addStatusEffect(EFFECT_EVASION_BOOST,10,0,duration);
     end
 
     return EFFECT_EVASION_BOOST;

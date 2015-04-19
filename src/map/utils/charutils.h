@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -77,7 +77,7 @@ namespace charutils
     void	CheckValidEquipment(CCharEntity* PChar);
     void	CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, uint32 param);
     void	EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID);
-    void	UnequipItem(CCharEntity* PChar, uint8 equipSlotID);
+    void	UnequipItem(CCharEntity* PChar, uint8 equipSlotID, bool update = true); //call with update == false to prevent calls to UpdateHealth() - used for correct handling of stats on armor swaps
     void    RemoveSub(CCharEntity* PChar);
     bool    EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID);
     void	CheckUnarmedWeapon(CCharEntity* PChar);
@@ -136,12 +136,12 @@ namespace charutils
     void	SaveCharStats(CCharEntity* PChar);					        // сохраняем флаги, текущие значения жихней, маны и профессий
     void    SaveCharGMLevel(CCharEntity* PChar);                        // saves the char's gm level and nameflags
     void    mentorMode(CCharEntity* PChar);                             // Changes char's mentor status
-    void	SaveCharNation(CCharEntity* PChar);							// Sace the character's nation of allegiance.
+    void	SaveCharNation(CCharEntity* PChar);							// Save the character's nation of allegiance.
+    void    SaveCampaignAllegiance(CCharEntity* PChar);                 // Save the character's campaign allegiance.
     void	SaveCharSkills(CCharEntity* PChar, uint8 skillID);	        // сохраняем указанный skill персонажа
     void	SaveCharPoints(CCharEntity* PChar);							// Conquest point, Nation TP
     void	SaveDeathTime(CCharEntity* PChar);							// Saves when this character last died.
     void	SavePlayTime(CCharEntity* PChar);							// Saves this characters total play time.
-    void    SaveRecasts(CCharEntity* PChar);                            // Saves this characters recasts
     bool	hasMogLockerAccess(CCharEntity* PChar);						// true if have access, false otherwise.
 
     uint32  AddExpBonus(CCharEntity* PChar, uint32 exp);
@@ -166,6 +166,9 @@ namespace charutils
     void    SetPoints(CCharEntity* PChar, const char* type, int32 amount);
     int32   GetPoints(CCharEntity* PChar, const char* type);
     std::string GetConquestPointsName(CCharEntity* PChar);
+    void    SendToZone(CCharEntity* PChar, uint8 type, uint64 ipp);
+
+    int32   GetVar(CCharEntity* PChar, const char* var);
 };
 
 #endif

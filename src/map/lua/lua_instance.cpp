@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,6 +28,8 @@ This file is part of DarkStar-server source code.
 #include "lua_baseentity.h"
 #include "luautils.h"
 
+#include "../utils/mobutils.h"
+
 
 /************************************************************************
 *																		*
@@ -43,7 +45,7 @@ CLuaInstance::CLuaInstance(lua_State *L)
 		lua_pop(L, 1);
 	}
 	else{
-		m_PLuaInstance = NULL;
+		m_PLuaInstance = nullptr;
 	}
 }
 
@@ -60,7 +62,7 @@ CLuaInstance::CLuaInstance(CInstance* PInstance)
 
 inline int32 CLuaInstance::getID(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
     lua_pushinteger(L, m_PLuaInstance->GetID());
 
@@ -69,7 +71,7 @@ inline int32 CLuaInstance::getID(lua_State* L)
 
 inline int32 CLuaInstance::getChars(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
 	lua_createtable(L, m_PLuaInstance->m_charList.size(), 0);
 	int8 newTable = lua_gettop(L);
@@ -89,9 +91,75 @@ inline int32 CLuaInstance::getChars(lua_State* L)
 	return 1;
 }
 
+inline int32 CLuaInstance::getMobs(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
+
+    lua_createtable(L, m_PLuaInstance->m_mobList.size(), 0);
+    int8 newTable = lua_gettop(L);
+    int i = 1;
+    for (auto member : m_PLuaInstance->m_mobList)
+    {
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)member.second);
+        lua_pcall(L, 2, 1, 0);
+
+        lua_rawseti(L, -2, i++);
+    }
+
+    return 1;
+}
+
+inline int32 CLuaInstance::getNpcs(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
+
+    lua_createtable(L, m_PLuaInstance->m_npcList.size(), 0);
+    int8 newTable = lua_gettop(L);
+    int i = 1;
+    for (auto member : m_PLuaInstance->m_npcList)
+    {
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)member.second);
+        lua_pcall(L, 2, 1, 0);
+
+        lua_rawseti(L, -2, i++);
+    }
+
+    return 1;
+}
+
+inline int32 CLuaInstance::getPets(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
+
+    lua_createtable(L, m_PLuaInstance->m_petList.size(), 0);
+    int8 newTable = lua_gettop(L);
+    int i = 1;
+    for (auto member : m_PLuaInstance->m_petList)
+    {
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)member.second);
+        lua_pcall(L, 2, 1, 0);
+
+        lua_rawseti(L, -2, i++);
+    }
+
+    return 1;
+}
+
 inline int32 CLuaInstance::getTimeLimit(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
 	lua_pushinteger(L, m_PLuaInstance->GetTimeLimit());
 
@@ -122,7 +190,7 @@ inline int32 CLuaInstance::getEntryPos(lua_State* L)
 
 inline int32 CLuaInstance::getLastTimeUpdate(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
 	lua_pushinteger(L, m_PLuaInstance->GetLastTimeUpdate());
 
@@ -131,7 +199,7 @@ inline int32 CLuaInstance::getLastTimeUpdate(lua_State* L)
 
 inline int32 CLuaInstance::getProgress(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
 	lua_pushinteger(L, m_PLuaInstance->GetProgress());
 
@@ -140,7 +208,7 @@ inline int32 CLuaInstance::getProgress(lua_State* L)
 
 inline int32 CLuaInstance::getWipeTime(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
 	lua_pushinteger(L, m_PLuaInstance->GetWipeTime());
 
@@ -149,7 +217,7 @@ inline int32 CLuaInstance::getWipeTime(lua_State* L)
 
 inline int32 CLuaInstance::getEntity(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
 	uint16 targid = lua_tointeger(L, 1);
@@ -180,7 +248,7 @@ inline int32 CLuaInstance::getEntity(lua_State* L)
 
 inline int32 CLuaInstance::getStage(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
 	lua_pushinteger(L, m_PLuaInstance->GetStage());
 
@@ -189,7 +257,7 @@ inline int32 CLuaInstance::getStage(lua_State* L)
 
 inline int32 CLuaInstance::setLevelCap(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
 	m_PLuaInstance->SetLevelCap(lua_tonumber(L, 1));
@@ -199,7 +267,7 @@ inline int32 CLuaInstance::setLevelCap(lua_State* L)
 
 inline int32 CLuaInstance::setLastTimeUpdate(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
 	m_PLuaInstance->SetLastTimeUpdate(lua_tointeger(L, 1));
@@ -209,7 +277,7 @@ inline int32 CLuaInstance::setLastTimeUpdate(lua_State* L)
 
 inline int32 CLuaInstance::setProgress(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
 	m_PLuaInstance->SetProgress(lua_tointeger(L, 1));
@@ -219,7 +287,7 @@ inline int32 CLuaInstance::setProgress(lua_State* L)
 
 inline int32 CLuaInstance::setWipeTime(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
 	m_PLuaInstance->SetWipeTime(lua_tointeger(L, 1));
@@ -229,7 +297,7 @@ inline int32 CLuaInstance::setWipeTime(lua_State* L)
 
 inline int32 CLuaInstance::setStage(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
 	m_PLuaInstance->SetStage(lua_tointeger(L, 1));
@@ -239,7 +307,7 @@ inline int32 CLuaInstance::setStage(lua_State* L)
 
 inline int32 CLuaInstance::fail(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
 	m_PLuaInstance->Fail();
 
@@ -248,7 +316,7 @@ inline int32 CLuaInstance::fail(lua_State* L)
 
 inline int32 CLuaInstance::failed(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
 	lua_pushboolean(L,m_PLuaInstance->Failed());
 
@@ -257,7 +325,7 @@ inline int32 CLuaInstance::failed(lua_State* L)
 
 inline int32 CLuaInstance::complete(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
 	m_PLuaInstance->Complete();
 
@@ -266,11 +334,36 @@ inline int32 CLuaInstance::complete(lua_State* L)
 
 inline int32 CLuaInstance::completed(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
 	lua_pushboolean(L, m_PLuaInstance->Completed());
 
 	return 1;
+}
+
+inline int32 CLuaInstance::insertAlly(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
+    DSP_DEBUG_BREAK_IF(!lua_isnumber(L, 1) || lua_isnil(L, 1));
+
+    uint32 groupid = lua_tointeger(L, 1);
+
+    CMobEntity* PAlly = mobutils::InstantiateAlly(groupid, m_PLuaInstance->GetID(), m_PLuaInstance);
+    if (PAlly)
+    {
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)PAlly);
+        lua_pcall(L, 2, 1, 0);
+    }
+    else
+    {
+        lua_pushnil(L);
+        ShowError(CL_RED "CLuaBattlefield::insertAlly - group ID %u not found!" CL_RESET, groupid);
+    }
+    return 1;
 }
 
 /************************************************************************
@@ -285,6 +378,9 @@ Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
     LUNAR_DECLARE_METHOD(CLuaInstance, getID),
 	LUNAR_DECLARE_METHOD(CLuaInstance, setLevelCap),
 	LUNAR_DECLARE_METHOD(CLuaInstance, getChars),
+    LUNAR_DECLARE_METHOD(CLuaInstance, getMobs),
+    LUNAR_DECLARE_METHOD(CLuaInstance, getNpcs),
+    LUNAR_DECLARE_METHOD(CLuaInstance, getPets),
 	LUNAR_DECLARE_METHOD(CLuaInstance, getTimeLimit),
 	LUNAR_DECLARE_METHOD(CLuaInstance, getEntryPos),
 	LUNAR_DECLARE_METHOD(CLuaInstance, getLastTimeUpdate),
@@ -300,5 +396,6 @@ Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaInstance, failed),
 	LUNAR_DECLARE_METHOD(CLuaInstance, complete),
 	LUNAR_DECLARE_METHOD(CLuaInstance, completed),
-	{ NULL, NULL }
+    LUNAR_DECLARE_METHOD(CLuaInstance, insertAlly),
+	{ nullptr, nullptr }
 };

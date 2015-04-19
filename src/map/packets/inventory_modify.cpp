@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ CInventoryModifyPacket::CInventoryModifyPacket(uint8 LocationID, uint8 slotID, u
 	this->type = 0x1E;
 	this->size = 0x08;
 
-	WBUFL(data,(0x04)-4) = quantity;
-	WBUFB(data,(0x08)-4) = LocationID;
-	WBUFB(data,(0x09)-4) = slotID;
+	WBUFL(data,(0x04)) = quantity;
+	WBUFB(data,(0x08)) = LocationID;
+	WBUFB(data,(0x09)) = slotID;
 }

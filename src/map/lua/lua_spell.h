@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -54,6 +54,7 @@ public:
 	int32 setMPCost(lua_State*);
     int32 canTargetEnemy(lua_State*);
     int32 isAoE(lua_State*);
+    int32 tookEffect(lua_State*);
     int32 getTotalTargets(lua_State*);
     int32 getMagicBurstMessage(lua_State*);
 	int32 getElement(lua_State*);

@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -40,18 +40,18 @@ class CAlliance
 {
 public:
 
-    CAlliance(CBattleEntity* PEntity, Sql_t* Sql = SqlHandle);
+    CAlliance(CBattleEntity* PEntity);
 	CAlliance(uint32 id);
 
 	uint32  m_AllianceID;
 	CParty* getMainParty();
 	void setMainParty(CParty * aLeader);
-    void addParty(CParty * party, Sql_t* Sql = SqlHandle);
-	void addParty(uint32 partyid, Sql_t* Sql = SqlHandle);
+    void addParty(CParty * party);
+	void addParty(uint32 partyid);
     void pushParty(CParty* PParty, uint8 number);
 	void removeParty(CParty * party);
     void delParty(CParty* party);
-    void dissolveAlliance(bool playerInitiated = true, Sql_t* sql = SqlHandle);
+    void dissolveAlliance(bool playerInitiated = true);
 	uint32 partyCount(void);
     void assignAllianceLeader(const char* name);
 

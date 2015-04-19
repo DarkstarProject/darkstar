@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -107,6 +107,7 @@ struct profile_t
     uint8 	   rank[3];			// рагн в трех государствах
     uint32	   rankpoints;	    // очки ранга в трех государствах
     location_t home_point;		// точка возрождения персонажа
+    uint8      campaign_allegiance;
 };
 
 
@@ -233,11 +234,13 @@ public:
 
     uint8             GetGender();                  // узнаем пол персонажа
 
-    int32			  firstPacketSize();            // размер первого пакета в PacketList
     void              clearPacketList();            // отчистка PacketList
     void              pushPacket(CBasicPacket*);    // добавление копии пакета в PacketList
     bool			  isPacketListEmpty();          // проверка размера PacketList
     CBasicPacket*	  popPacket();                  // получение первого пакета из PacketList
+    PacketList_t      getPacketList();              // returns a COPY of packet list
+    size_t            getPacketCount();
+    void              erasePackets(uint8 num);      // erase num elements from front of packet list
 
     CLinkshell*       PLinkshell1;                  // linkshell, в которой общается персонаж
     CLinkshell*       PLinkshell2;                  // linkshell 2

@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@
 
 CAICharPrisoner::CAICharPrisoner(CCharEntity* PChar)
 {
-    DSP_DEBUG_BREAK_IF(PChar == NULL);
+    DSP_DEBUG_BREAK_IF(PChar == nullptr);
     DSP_DEBUG_BREAK_IF(PChar->objtype != TYPE_PC);
 
     m_PChar = PChar;

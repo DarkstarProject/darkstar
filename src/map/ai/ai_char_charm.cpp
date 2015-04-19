@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -68,13 +68,22 @@ void CAICharCharm::CheckCurrentAction(uint32 tick)
         case ACTION_FALL:					ActionFall();				break;
         case ACTION_SLEEP:                  ActionSleep();              break;
 
+        case ACTION_MAGIC_START:			TransitionBack(true);		break;
+        case ACTION_RANGED_START:			TransitionBack(true);		break;
+        case ACTION_ITEM_START:				TransitionBack(true);		break;
+        case ACTION_CHANGE_TARGET:	        TransitionBack(true);       break;
+        case ACTION_WEAPONSKILL_START:		TransitionBack(true);	    break;
+        case ACTION_JOBABILITY_START:		TransitionBack(true);	    break;
+        case ACTION_RAISE_MENU_SELECTION:	TransitionBack(true);       break;
+
         default: DSP_DEBUG_BREAK_IF(true);
     }
+    m_PChar->UpdateEntity();
 }
 
 void CAICharCharm::ActionRoaming()
 {
-    if (m_PChar->PMaster->PBattleAI->GetBattleTarget() != NULL){
+    if (m_PChar->PMaster->PBattleAI->GetBattleTarget() != nullptr){
         m_PBattleTarget = m_PChar->PMaster->PBattleAI->GetBattleTarget();
         m_ActionType = ACTION_ENGAGE;
         ActionEngage();
@@ -101,7 +110,6 @@ void CAICharCharm::ActionEngage()
     m_ActionType = ACTION_ATTACK;
     m_LastMeleeTime = m_Tick - m_PChar->m_Weapons[SLOT_MAIN]->getDelay() + 1500;
 
-    m_PChar->status = STATUS_UPDATE;
     m_PChar->animation = ANIMATION_ATTACK;
     m_PChar->updatemask |= UPDATE_HP;
     return;
@@ -111,27 +119,23 @@ void CAICharCharm::ActionDisengage()
 {
     m_ActionType = ACTION_NONE;
     m_LastActionTime = m_Tick;
-    m_PBattleTarget = NULL;
-    m_PBattleSubTarget = NULL;
+    m_PBattleTarget = nullptr;
+    m_PBattleSubTarget = nullptr;
 
-    if (m_PChar->status != STATUS_DISAPPEAR)
-        m_PChar->status = STATUS_UPDATE;
     m_PChar->animation = ANIMATION_NONE;
 
-    if (m_PChar->PPet != NULL && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
+    if (m_PChar->PPet != nullptr && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
     {
-        m_PChar->PPet->PBattleAI->SetBattleTarget(NULL);
+        m_PChar->PPet->PBattleAI->SetBattleTarget(nullptr);
     }
     m_PChar->updatemask |= UPDATE_HP;
 }
 
 void CAICharCharm::ActionAttack()
 {
-    DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
-
     SetBattleTarget(m_PChar->PMaster->PBattleAI->GetBattleTarget());
 
-    if (m_PBattleTarget == NULL)
+    if (m_PBattleTarget == nullptr)
     {
         m_ActionType = ACTION_DISENGAGE;
         ActionDisengage();
@@ -175,6 +179,23 @@ void CAICharCharm::ActionAttack()
                 DoAttack();
             }
         }
+    }
+}
+
+void CAICharCharm::TransitionBack(bool skipWait /*= false*/)
+{
+    m_PBattleSubTarget = nullptr;
+    if (m_PChar->animation == ANIMATION_ATTACK)
+    {
+        m_ActionType = ACTION_ATTACK;
+        if (skipWait)
+        {
+            ActionAttack();
+        }
+    }
+    else
+    {
+        m_ActionType = ACTION_NONE;
     }
 }
 

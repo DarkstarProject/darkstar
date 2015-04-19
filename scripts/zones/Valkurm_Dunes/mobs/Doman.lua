@@ -10,7 +10,7 @@ require("scripts/globals/keyitems");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -18,9 +18,9 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
+
 	if(killer:hasKeyItem(YOMOTSU_HIRASAKA)) then
 		killer:setVar("OkuriNMKilled",killer:getVar("OkuriNMKilled") + 1);
 	end
-	
+
 end;

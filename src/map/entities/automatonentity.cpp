@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -23,6 +23,9 @@
 
 #include "automatonentity.h"
 #include "../utils/puppetutils.h"
+#include "../packets/entity_update.h"
+#include "../packets/pet_sync.h"
+#include "../packets/char_job_extra.h"
 
 CAutomatonEntity::CAutomatonEntity()
     : CPetEntity(PETTYPE_AUTOMATON)
@@ -123,7 +126,7 @@ uint8 CAutomatonEntity::addBurden(uint8 element, uint8 burden)
         //check for overload
         if (m_Burden[element] > thresh)
         {
-            if (WELL512::irand() % 100 < (m_Burden[element] - thresh + 5))
+            if (WELL512::GetRandomNumber(100) < (m_Burden[element] - thresh + 5))
             {
                 //return overload duration
                 return m_Burden[element] - thresh;
@@ -131,4 +134,22 @@ uint8 CAutomatonEntity::addBurden(uint8 element, uint8 burden)
         }
     }
     return 0;
+}
+
+void CAutomatonEntity::UpdateEntity()
+{
+    if (loc.zone && updatemask && status != STATUS_DISAPPEAR)
+    {
+        if (PMaster && PMaster->PPet == this)
+        {
+            ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
+        }
+        loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
+        updatemask = 0;
+        if (PMaster->objtype == TYPE_PC)
+        {
+            ((CCharEntity*)PMaster)->pushPacket(new CCharJobExtraPacket((CCharEntity*)PMaster, PMaster->GetMJob() == JOB_PUP));
+        }
+        updatemask = 0;
+    }
 }

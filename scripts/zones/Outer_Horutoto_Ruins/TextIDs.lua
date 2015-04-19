@@ -35,3 +35,7 @@ FOURTH_DARK_ORB_IN_PLACE = 9; -- Forth Mana Orb Receptacle is ready for use.
 -- conquest Base
 CONQUEST_BASE = 15;
 
+-- Strange Apparatus
+DEVICE_NOT_WORKING = 188; -- The device is not working.
+      SYS_OVERLOAD = 197; -- arning! Sys...verload! Enterin...fety mode. ID eras...d 
+      YOU_LOST_THE = 202; -- You lost the #. 

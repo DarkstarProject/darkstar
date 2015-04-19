@@ -26,26 +26,23 @@ end;
 
 function onTrigger(player,npc)
 local CurrentMission = player:getCurrentMission(WINDURST);
-local MissionStatus = player:getVar("MissionStatus");
-local WindyKills = player:getVar("Windurst_7-1Kills");
+
 
 -- NOTE: MobAction is 25(ACTION_SPAWN) when they're dead/despawned and 16(ACTION_ROAMING) when spawned.
 --		 Not really sure why but this seems to work.
 --		 print("HingeOil 1 Action: "..GetMobAction(17469666));
-
-	if(CurrentMission == THE_SIXTH_MINISTRY and WindyKills == 4) then
-		if((GetMobAction(17469666) == 25) and
-			(GetMobAction(17469667) == 25) and
-			(GetMobAction(17469668) == 25) and
-			(GetMobAction(17469669) == 25)) then
-
-			GetNPCByID(17469796):openDoor(2.5);
-		else
-			player:messageSpecial(3); -- It's sealed shut with incredibly strong magic
-		end
-			else
-				player:messageSpecial(SEALED_SHUT);
+if(CurrentMission == THE_SIXTH_MINISTRY or player:hasCompletedMission(WINDURST,THE_SIXTH_MINISTRY)) then
+	if((GetMobAction(17469666) == 25) and
+	   (GetMobAction(17469667) == 25) and
+	   (GetMobAction(17469668) == 25) and
+	   (GetMobAction(17469669) == 25)) then
+		player:startEvent(0x0046,0,0,0,2);
+	else
+		player:startEvent(0x0046,0,0,0,1); 
 	end
+else
+	player:startEvent(0x0046);
+end
 end;
 
 -----------------------------------

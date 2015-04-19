@@ -341,6 +341,24 @@ INSERT INTO `bcnm_battlefield` VALUES ('196', '3', '17465365', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('224', '1', '17473537', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('224', '2', '17473538', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('224', '3', '17473539', '3');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '1', '17473540', '1');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '1', '17473541', '1');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '1', '17473542', '1');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '1', '17473543', '1');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '1', '17473544', '2');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '1', '17473545', '2');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '2', '17473546', '1');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '2', '17473547', '1');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '2', '17473548', '1');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '2', '17473549', '1');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '2', '17473550', '2');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '2', '17473551', '2');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '3', '17473552', '1');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '3', '17473553', '1');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '3', '17473554', '1');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '3', '17473555', '1');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '3', '17473556', '2');
+INSERT INTO `bcnm_battlefield` VALUES ('225', '3', '17473557', '2');
 INSERT INTO `bcnm_battlefield` VALUES ('256', '1', '17510401', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('256', '2', '17510402', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('256', '3', '17510403', '3');
@@ -380,19 +398,34 @@ INSERT INTO `bcnm_battlefield` VALUES ('482', '3', '17608728', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('484', '1', '17608744', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('484', '2', '17608745', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('484', '3', '17608746', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17621007', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17621008', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17621009', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621000', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621001', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621002', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621007', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621008', '3');
-INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621009', '3');
+
+-- Nation mission 5-1
+INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620993', '3'); -- Archlich Taber'quoan
+INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620994', '1'); -- Ancient Sorcerer
+INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620995', '1'); -- Ancient Sorcerer
+INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620996', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620997', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620998', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '1', '17620999', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621000', '3'); -- Archlich Taber'quoan
+INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621001', '1'); -- Ancient Sorcerer
+INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621002', '1'); -- Ancient Sorcerer
+INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621003', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621004', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621005', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '2', '17621006', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621007', '3'); -- Archlich Taber'quoan
+INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621008', '1'); -- Ancient Sorcerer
+INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621009', '1'); -- Ancient Sorcerer
+INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621010', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621011', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621012', '0'); -- Ancient Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('512', '3', '17621013', '0'); -- Ancient Warrior
+
 INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621014', '2');
-INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621015', '0');
-INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621016', '0');
-INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621017', '0');
+INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621015', '2');
+INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621016', '2');
+INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621017', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621018', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621019', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621020', '1');
@@ -404,9 +437,9 @@ INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621025', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621026', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '1', '17621027', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621028', '2');
-INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621029', '0');
-INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621030', '0');
-INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621031', '0');
+INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621029', '2');
+INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621030', '2');
+INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621031', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621032', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621033', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621034', '1');
@@ -418,9 +451,9 @@ INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621039', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621040', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '2', '17621041', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621042', '2');
-INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621043', '0');
-INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621044', '0');
-INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621045', '0');
+INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621043', '2');
+INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621044', '2');
+INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621045', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621046', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621047', '1');
 INSERT INTO `bcnm_battlefield` VALUES ('516', '3', '17621048', '1');
@@ -545,6 +578,7 @@ INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809996', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809995', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809999', '0');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809998', '0');
+INSERT INTO `bcnm_battlefield` VALUES ('673', '1', '16810018', '3');	-- Race Runner
 INSERT INTO `bcnm_battlefield` VALUES ('736', '1', '16830466', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('736', '1', '16830465', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('736', '1', '16830468', '3');

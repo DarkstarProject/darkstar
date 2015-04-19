@@ -34,14 +34,5 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	if(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") >= 2) then
-		if(player:getVar("MissionStatus") == 2) then
-			SpawnMob(17489926, 180); -- Gordov's Ghost
-			SpawnMob(17489927, 180); -- Dervo's Ghost
-			SpawnMob(17489928, 180); -- Gizerl's Ghost
-		else
-			player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-		end
-	end
+player:messageSpecial(FISHBONES);
 end;

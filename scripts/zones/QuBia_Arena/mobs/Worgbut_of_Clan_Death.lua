@@ -12,7 +12,7 @@ require("scripts/zones/QuBia_Arena/TextIDs");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -33,7 +33,7 @@ local mobs= {{17621017,17621018,17621019,17621020,17621021,17621022,17621023,176
 
 local inst=killer:getBattlefield():getBattlefieldNumber();
 
-local victory =  true	
+local victory =  true
 for i,v in ipairs(mobs[inst]) do
 local action = GetMobAction(v);
 printf("action %u",action);
@@ -65,21 +65,21 @@ if(csid == 0x7d04)then
 	SpawnMob(17621014);
 	SpawnMob(17621015);
 	SpawnMob(17621016);
-	local trion = player:getBattlefield():insertAlly(14183) 
+	local trion = player:getBattlefield():insertAlly(14183)
 	trion:setSpawn(-403,-201,413,58);
 	trion:spawn();
 	player:setPos(-400,-201,419,61);
 elseif(player:getBattlefield():getBattlefieldNumber() == 2)then	SpawnMob(17621028);
 	SpawnMob(17621029);
 	SpawnMob(17621030);
-	local trion = player:getBattlefield():insertAlly(14183) 
+	local trion = player:getBattlefield():insertAlly(14183)
 	trion:setSpawn(-3,-1,4,61);
 	trion:spawn();
 	player:setPos(0,-1,10,61);
 elseif(player:getBattlefield():getBattlefieldNumber() == 3)then	SpawnMob(17621042);
 	SpawnMob(17621043);
 	SpawnMob(17621044);
-	local trion = player:getBattlefield():insertAlly(14183) 
+	local trion = player:getBattlefield():insertAlly(14183)
 	trion:setSpawn(397,198,-395,64);
 	trion:spawn();
 	player:setPos(399,198,-381,57);

@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -133,7 +133,7 @@ protected:
 	bool CanCastSpells();
 	bool TryCastSpell(); // logic for spell casting, returns true if found one to cast
 	bool TrySpecialSkill();
-	void CastSpell(uint16 spellId, CBattleEntity* PTarget = NULL); // makes the mob cast a spell
+	void CastSpell(uint16 spellId, CBattleEntity* PTarget = nullptr); // makes the mob cast a spell
 	void SetupEngage(); // setup timers and trigger callbacks
 
 	void FollowPath(); // continues moving

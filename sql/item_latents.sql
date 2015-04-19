@@ -23,6 +23,16 @@ CREATE TABLE IF NOT EXISTS `item_latents` (
 
 -- INSERT INTO `item_latents` VALUES(itemID, modId, modValue, latentId, latentParam);
 
+INSERT INTO `item_latents` VALUES(13178, 8, 4, 25, 0); -- Auditory Torque, STR+4 song/roll active
+INSERT INTO `item_latents` VALUES(13178, 10, 4, 25, 0); -- Auditory Torque, VIT+4 song/roll active
+INSERT INTO `item_latents` VALUES(17365, 8, 4, 25, 0); -- Frenzy Fife, STR+4 song/roll active
+INSERT INTO `item_latents` VALUES(16899, 110, 5, 25, 0); -- Hototogisu, parry skill +5 song/roll active
+INSERT INTO `item_latents` VALUES(14725, 68, 5, 25, 0); -- Melody Earring, EVA+5 song/roll active
+INSERT INTO `item_latents` VALUES(14726, 68, 6, 25, 0); -- Melody Earring +1, EVA+6 song/roll active
+INSERT INTO `item_latents` VALUES(18256, 25, 1, 25, 0); -- Orphic Egg, ACC+1 song/roll active
+INSERT INTO `item_latents` VALUES(18256, 23, 1, 25, 0); -- Orphic Egg, ATT+1 song/roll active
+INSERT INTO `item_latents` VALUES(18256, 68, 1, 25, 0); -- Orphic Egg, EVA+1 song/roll active
+INSERT INTO `item_latents` VALUES(18486, 171, -30, 25, 0); -- Wardancer, Delay: 474 (504 - 30) song/roll active
 
 INSERT INTO `item_latents` VALUES(16031, 314, 1, 22, 18); -- Affinity Earring, Enhances Pet Att. if PUP is in party
 INSERT INTO `item_latents` VALUES(16017, 28, 1, 22, 4); -- Ardent Earring, MATT+1 if BLM is in party
@@ -82,12 +92,6 @@ INSERT INTO `item_latents` VALUES(14008, 1, 16, 0, 75); -- DEF:16 whem HP <= 75%
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14009, 23, 9, 0, 75); -- Attack+9 when HP <=75%
 INSERT INTO `item_latents` VALUES(14009, 1, 17, 0, 75); -- DEF:17 whem HP <= 75%
-
-INSERT INTO `item_latents` VALUES(14055, 23, 7, 46, 75);
-INSERT INTO `item_latents` VALUES(14448, 10, 6, 46, 71);
-INSERT INTO `item_latents` VALUES(15209, 8, 3, 46, 75);
-INSERT INTO `item_latents` VALUES(15345, 384, 3, 46, 75);
-INSERT INTO `item_latents` VALUES(15406, 31, 4, 46, 75);
 
 -- -------------------------------------------------------
 -- Berserker's Torque
@@ -259,14 +263,14 @@ INSERT INTO `item_latents` VALUES(15406, 68, 3, 1, 75); -- Evasion+3 when HP >75
 INSERT INTO `item_latents` VALUES(15407, 68, 4, 1, 75); -- Evasion+4 when HP >75%
 
 -- -------------------------------------------------------
--- Unicorn Leggings    
+--Unicorn Leggings
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15345, 167, 3, 1, 75); -- Haste+3% when HP >75%
+INSERT INTO `item_latents` VALUES(15345, 384, 31, 1, 75); -- Haste+3% when HP > 75%
 
 -- -------------------------------------------------------
--- Unicorn Leggings +1
+--Unicorn Leggings +1
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15346, 167, 4, 1, 75); -- Haste+4% when HP >75%
+INSERT INTO `item_latents` VALUES(15346, 384, 41, 1, 75); -- Haste+4% when HP > 75%
 
 -- -------------------------------------------------------
 -- Zareehkl Jambiya
@@ -1526,7 +1530,7 @@ INSERT INTO `item_latents` VALUES(18718, 24, 18, 6, 1000); -- Ranged Attack+18 w
 
 -- Koga Tekko
 INSERT INTO `item_latents` VALUES(15114, 8, 12, 26, 1); -- STR +12 during nighttime
-INSERT INTO `item_latents` VALUES(15114, 384, 4, 26, 1); -- Haste +%4 during nighttime
+INSERT INTO `item_latents` VALUES(15114, 384, 41, 26, 1); -- Haste +%4 during nighttime
 -- Koga Kyahan
 INSERT INTO `item_latents` VALUES(15144, 9, 7, 26, 1); -- DEX +7 during nighttime
 -- Ninja Kyahan
@@ -2251,7 +2255,7 @@ INSERT INTO `item_latents` VALUES(15677, 9, 7, 26, 2); -- Dusk - Dawn: DEX +7
 -- Koga Tekko +1
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14921, 8, 13, 26, 2); -- Dusk - Dawn: STR +13
-INSERT INTO `item_latents` VALUES(14921, 384, 4, 26, 2); -- Dusk - Dawn: Haste +4%
+INSERT INTO `item_latents` VALUES(14921, 384, 41, 26, 2); -- Dusk - Dawn: Haste +4%
 
 -- -------------------------------------------------------
 -- Ninja Kyahan +1

@@ -37,7 +37,6 @@ CREATE TRIGGER session_delete
 	BEFORE DELETE ON accounts_sessions
 	FOR EACH ROW
 BEGIN
-	DELETE FROM `accounts_parties` WHERE `charid` = OLD.charid;
     UPDATE `char_stats` SET zoning = 0 WHERE `charid` = OLD.charid;
 END $$
 

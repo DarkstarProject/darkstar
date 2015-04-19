@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -60,7 +60,7 @@ class CParty
 {
 public:
 
-    CParty(CBattleEntity* PEntity, Sql_t* sql = SqlHandle);
+    CParty(CBattleEntity* PEntity);
 	CParty(uint32 id);
 	
     uint32 GetPartyID();                                // узнаем уникальный ID группы
@@ -72,13 +72,13 @@ public:
     CBattleEntity* GetQuaterMaster();                   // узнаем владельца сокровищ
     CBattleEntity* GetMemberByName(const int8* MemberName);   // Returns entity pointer for member name string
 
-	void DisbandParty(bool playerInitiated = true, Sql_t* sql = SqlHandle);		// распускаем группу
+	void DisbandParty(bool playerInitiated = true);		// распускаем группу
 	void ReloadParty();                                 // перезагружаем карту группы для всех участников группы
 	void ReloadPartyMembers(CCharEntity* PChar);        // oбновляем статусы участников группы для выбранного персонажа
 	void ReloadTreasurePool(CCharEntity* PChar);
 
-    void AddMember(CBattleEntity* PEntity, Sql_t* Sql = SqlHandle); // добавляем персонажа в группу
-	void AddMember(uint32 id, Sql_t* Sql = SqlHandle);	// Add party member from outside this server's scope
+    void AddMember(CBattleEntity* PEntity); // добавляем персонажа в группу
+	void AddMember(uint32 id);	// Add party member from outside this server's scope
     void RemoveMember(CBattleEntity* PEntity);          // удаление персонажа из группы
 	void DelMember(CBattleEntity* PEntity);				// remove a member without invoking chat/db
     void PopMember(CBattleEntity* PEntity);             // remove a member from memberlist (zoned to different server)

@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -42,7 +42,8 @@ enum ENTITYTYPE
 enum STATUSTYPE
 {
 	STATUS_NORMAL			= 0,
-	STATUS_UPDATE			= 1,
+    STATUS_MOB              = 1,
+	//STATUS_UPDATE			= 1,
 	STATUS_DISAPPEAR		= 2,
 	STATUS_3				= 3,
 	STATUS_4				= 4,
@@ -180,6 +181,9 @@ public:
     void            SetLocalVar(const char* var, uint32 val);
 
     virtual void    UpdateEntity() = 0;
+
+    void            SetModelId(uint16 modelId);     // Set new modelid
+    uint16          GetModelId();                   // Get the modelid
 
     CBaseEntity();						// конструктор
     virtual ~CBaseEntity();				// деструктор

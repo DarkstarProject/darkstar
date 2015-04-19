@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -31,6 +31,6 @@ CShopAppraisePacket::CShopAppraisePacket(uint8 slotID, uint32 sellPrice)
 	this->type = 0x3D;
 	this->size = 0x08;
 
-	WBUFL(data,(0x04)-4) = sellPrice;
-	WBUFB(data,(0x08)-4) = slotID;
+	WBUFL(data,(0x04)) = sellPrice;
+	WBUFB(data,(0x08)) = slotID;
 }

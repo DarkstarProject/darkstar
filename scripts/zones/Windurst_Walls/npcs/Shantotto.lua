@@ -68,11 +68,15 @@ function onTrigger(player,npc)
 		local cYear = VanadielYear();
 		local dFinished = player:getVar("CursesFoiledAgainDay");
 		local yFinished = player:getVar("CursesFoiledAgainYear");
+		
+		-- player:PrintToPlayer("Vana Day and year:  "..cDay..", "..cYear);
+		-- player:PrintToPlayer("Database Day and year:  "..dFinished..", "..yFinished);
+		
 		if(cDay == dFinished and cYear == yFinished) then
 		    player:startEvent(0xae);
 		elseif(cDay == dFinished + 1 and cYear == yFinished) then
             player:startEvent(0xb2);
-		elseif(cDay >= dFinished + 2 and cYear == yFinished) then
+		elseif((cDay >= dFinished + 2 and cYear == yFinished) or (cYear > yFinished)) then
 			player:startEvent(0xb3);
 		end	
 	
@@ -144,8 +148,8 @@ function onEventFinish(player,csid,option)
 	    player:setVar("CursesFoiledAgainYearFinished",0);
 		player:setVar("CursesFoiledAgainDay",0);
 		player:setVar("CursesFoiledAgainYear",0);
-		player:needToZone(true);
-        player:setVar("CursesFoiledAgain",1); -- Used to acknowledge that the two days have passed, Use this to initiate next quest 
+		player:setVar("CursesFoiledAgain",1); -- Used to acknowledge that the two days have passed, Use this to initiate next quest 
+		player:needToZone(true);       
 	
 	elseif(csid == 0x00B4 and option == 3) then
 		player:setVar("CursesFoiledAgain",0);

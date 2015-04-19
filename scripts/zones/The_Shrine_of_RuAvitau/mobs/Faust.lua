@@ -3,13 +3,13 @@
 -- NPC:  Faust
 -----------------------------------
 
--- TODO: Faust should WS ~3 times in a row each time. 
+-- TODO: Faust should WS ~3 times in a row each time.
 
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------

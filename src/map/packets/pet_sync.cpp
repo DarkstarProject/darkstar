@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -38,19 +38,18 @@ CPetSyncPacket::CPetSyncPacket(CCharEntity* PChar)
     this->type = 0x67;
     this->size = 0x12;
 
-    DSP_DEBUG_BREAK_IF(PChar->PPet == NULL);
+    DSP_DEBUG_BREAK_IF(PChar->PPet == nullptr);
 
-    WBUFB(data, (0x04) - 4) = 0x44; 	// назначение неизвестно
-    WBUFB(data, (0x05) - 4) = 0x08; 	// назначение неизвестно
+    WBUFB(data, (0x04) ) = 0x44; 	// назначение неизвестно
+    WBUFB(data, (0x05) ) = 0x08; 	// назначение неизвестно
 
-    WBUFW(data, (0x06) - 4) = PChar->targid;
-    WBUFL(data, (0x08) - 4) = PChar->id;
+    WBUFW(data, (0x06) ) = PChar->targid;
+    WBUFL(data, (0x08) ) = PChar->id;
 
-    WBUFW(data, (0x0C) - 4) = PChar->PPet->targid;
-    WBUFB(data, (0x0E) - 4) = PChar->PPet->GetHPP();
-    int16 petTp = (PChar->PPet->health.tp) * 3.35 * 3;
-    WBUFB(data, (0x0F) - 4) = PChar->PPet->GetMPP();
-    WBUFW(data, (0x10) - 4) = petTp;
+    WBUFW(data, (0x0C) ) = PChar->PPet->targid;
+    WBUFB(data, (0x0E) ) = PChar->PPet->GetHPP();
+    WBUFB(data, (0x0F) ) = PChar->PPet->GetMPP();
+    WBUFW(data, (0x10) ) = PChar->PPet->health.tp;
 
     // 0x14 - начинается имя питомца, но мы его записывать не будем, "мы экономить будем" © Матроскин
 }

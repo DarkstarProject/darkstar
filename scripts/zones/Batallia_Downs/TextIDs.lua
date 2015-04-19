@@ -12,3 +12,7 @@ NOTHING_HAPPENS = 7298; -- Nothing happens...
 
 -- conquest Base
 CONQUEST_BASE = 7044; -- Tallying conquest results...
+
+--chocobo digging
+DIG_THROW_AWAY = 7216;
+FIND_NOTHING = 7218;

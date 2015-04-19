@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -38,6 +38,6 @@ CChangeMusicPacket::CChangeMusicPacket(uint8 BlockID, uint8 MusicTrackID)
     this->type = 0x5F;
     this->size = 0x04;
 
-    WBUFB(data,(0x04)-4) = BlockID;        // block
-    WBUFB(data,(0x06)-4) = MusicTrackID;   // music
+    WBUFB(data,(0x04)) = BlockID;        // block
+    WBUFB(data,(0x06)) = MusicTrackID;   // music
 }

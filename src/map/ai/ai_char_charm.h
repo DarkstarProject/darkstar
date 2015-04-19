@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -47,6 +47,9 @@ protected:
     void ActionDisengage();
     void ActionFall();
     void ActionAttack();
+
+    virtual void TransitionBack(bool skipWait = false) override;
+
 };
 
 #endif

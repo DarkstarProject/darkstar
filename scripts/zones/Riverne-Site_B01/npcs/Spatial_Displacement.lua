@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
 
-	local base = 16896182; -- First Spacial Displacement in NPC_LIST
+	local base = 16896183; -- First Spacial Displacement in NPC_LIST
 	local id = npc:getID();
 
 	if(id == base) then --  L-9 porter
@@ -24,7 +24,7 @@ function onTrigger(player,npc)
 	elseif(id == base+1) then --  L-8 porter
 		player:startEvent(0x3);
 	elseif(id == base+2) then --  K-8 porter
-		player:startEvent(0x4);	
+		player:startEvent(0x4);
 	elseif(id == base+3) then --  J-7 porter (SE corner)
 		player:startEvent(0x5);
 	elseif(id == base+4) then -- I-8 porter
@@ -74,11 +74,11 @@ function onTrigger(player,npc)
 	elseif(id == base+28) then -- F-6 porter (west)
 		player:startEvent(0x1E);
 	elseif(id == base+29) then -- E-7 porter (east) 
-		player:startEvent(0x1f); 
+		player:startEvent(0x1f);
 	elseif(id == base+30) then -- E-8 porter (north)
-		player:startEvent(0x20);		
+		player:startEvent(0x20);
 	elseif(id == base+31) then -- E-8 porter (middle, to Monarch Linn) --_STOP
-		player:startEvent(0x21);		
+		player:startEvent(0x21);
 	elseif(id == base+34) then -- E-7 porter (west)
 		player:startEvent(0x23);
 	 elseif(id == base+35) then -- D-6 porter (exit from Bahamut Island)
@@ -88,13 +88,12 @@ function onTrigger(player,npc)
 	elseif(id == base+37) then -- D-8 porter (north)
 		player:startEvent(0x25);
 	elseif(id == base+39) then -- C-9 porter (NE)
-		player:startEvent(0x27);	
+		player:startEvent(0x27);
 	elseif(id == base+40) then -- C-9 porter (SE)
-		player:startEvent(0x28);	
+		player:startEvent(0x28);
 	elseif(id == base+41) then -- D-10 porter (Monument)
-		player:startEvent(0x29);		
+		player:startEvent(0x29);
 	end;
-	
 end;
 
 -----------------------------------
@@ -124,5 +123,4 @@ function onEventFinish(player,csid,option)
 --		loc:spawnMob("BookBrowserBok",224, 88, 837,33,nil);
 --		loc:spawnMob("SpellSpitterSp",274, 89, 830,250,nil);
 	end;
-	
 end;

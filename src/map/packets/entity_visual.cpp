@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -35,11 +35,11 @@ CEntityVisualPacket::CEntityVisualPacket(CBaseEntity * PEntity, const char type[
 
 	if (PEntity)
 	{
-		WBUFL(data, (0x04) - 4) = PEntity->id;
-		WBUFL(data, (0x08) - 4) = PEntity->id;
+		WBUFL(data, (0x04) ) = PEntity->id;
+		WBUFL(data, (0x08) ) = PEntity->id;
 
-		WBUFW(data, (0x10) - 4) = PEntity->targid;
-		WBUFW(data, (0x12) - 4) = PEntity->targid;
+		WBUFW(data, (0x10) ) = PEntity->targid;
+		WBUFW(data, (0x12) ) = PEntity->targid;
 	}
-	memcpy(data + ((0x0C) - 4), type, 4);
+	memcpy(data + ((0x0C) ), type, 4);
 }
