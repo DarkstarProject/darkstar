@@ -69,11 +69,11 @@ function onEventFinish(player,csid,option)
 		player:setVar("[ENM]MiasmaFilter",os.time(t)+86400*MIASMA_FILTER_COOLDOWN); -- Current time + 1dayInSeconds*MIASMA_FILTER_COOLDOWN
 	elseif(csid == 13) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial( ITEM_CANNOT_BE_OBTAINED, 1777); -- Flaxen Pouch
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1777); -- Flaxen Pouch
             return;
         else
             player:addItem(1777);
-            player:messageSpecial( ITEM_OBTAINED, 1777); -- Flaxen Pouch
+            player:messageSpecial(ITEM_OBTAINED, 1777); -- Flaxen Pouch
         end
     end
 end;
