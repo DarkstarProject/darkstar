@@ -716,6 +716,9 @@ namespace charutils
             PChar->m_mentor = (uint8)Sql_GetUIntData(SqlHandle, 1);
         }
 
+        charutils::LoadInventory(PChar);
+        PChar->m_event.EventID = luautils::OnZoneIn(PChar);
+
         CalculateStats(PChar);
         blueutils::LoadSetSpells(PChar);
         puppetutils::LoadAutomaton(PChar);
@@ -724,8 +727,6 @@ namespace charutils
         BuildingCharTraitsTable(PChar);
 
         PChar->animation = (HP == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
-        charutils::LoadInventory(PChar);
-        PChar->m_event.EventID = luautils::OnZoneIn(PChar);
 
         charutils::LoadEquip(PChar);
         PChar->health.hp = PChar->loc.destination == ZONE_RESIDENTIAL_AREA ? PChar->GetMaxHP() : HP;
