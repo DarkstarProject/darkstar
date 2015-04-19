@@ -143,7 +143,9 @@ STATESTATUS CMagicState::Update(uint32 tick)
 
 	if(tick - m_startTime >= m_castTime)
 	{
-		if(CheckInterrupt())
+        // Verify that the caster was not interrupted, and that level sync
+        // was not applied after casting began.
+		if(CheckInterrupt() || !spell::CanUseSpell(m_PEntity, m_PSpell->getID()))
 		{
 			return STATESTATUS_INTERRUPT;
 		}
