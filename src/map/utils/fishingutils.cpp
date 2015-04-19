@@ -132,7 +132,7 @@ void StartFishing(CCharEntity* PChar)
 		return;
 	}
 
-		PChar->status = STATUS_UPDATE;
+		PChar->status = STATUS_NORMAL;
 		PChar->animation = ANIMATION_NEW_FISHING_START;
     PChar->updatemask |= UPDATE_HP;
 

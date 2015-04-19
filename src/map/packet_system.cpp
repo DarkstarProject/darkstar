@@ -5310,7 +5310,7 @@ void SmallPacket0x10F(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 *																		*
 ************************************************************************/
 
-void SmallPacket0x110(map_session_data_t* session, CCharEntity* PChar, int8* data)
+void SmallPacket0x110(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
 	PrintPacket(data);
 
