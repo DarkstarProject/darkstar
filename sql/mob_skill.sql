@@ -720,7 +720,6 @@ INSERT INTO `mob_skill` VALUES (397,71,397,'Chaotic_Eye',4,10.0,2000,1500,4,0,0,
 -- INSERT INTO `mob_skill` VALUES (227,0,291,'Charged_Whisker',1,12.5,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (1953,?,?,'Blink_of_Peril',4,10.0,2000,1500,4,0,0,0); -- Only used by certain Lynx-type NM
 -- INSERT INTO `mob_skill` VALUES (?,?,?,'Mortal_Gaze',4,10.0,2000,1500,4,0,0,0); -- Only used by certain NMS
--- 
 
 -- Doomed
 INSERT INTO `mob_skill` VALUES (233,86,233,'Stinking_Gas',1,15.0,2000,1500,4,0,0,0);
@@ -3637,3 +3636,8 @@ INSERT INTO `mob_skill` VALUES (23, 357, 813, 'Mandibular_Bite', 0, 7.0, 2000, 1
 INSERT INTO `mob_skill` VALUES (3155,3,434,'Ix_aern_mnk',0,7.0,2000,0,1,2,0,0);
 INSERT INTO `mob_skill` VALUES (3156,3,436,'Qn_aern_rdm',0,7.0,2000,0,1,2,0,0);
 INSERT INTO `mob_skill` VALUES (3157,3,433,'Qn_aern_whm',1,20.0,2000,0,1,2,0,0);
+
+-- Sekhmet
+INSERT INTO `mob_skill` VALUES (3158,494,396,'Blaster',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3159,494,397,'Chaotic_Eye',4,10.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3160,494,291,'Charged_Whisker',1,12.5,2000,1500,4,0,0,0);
