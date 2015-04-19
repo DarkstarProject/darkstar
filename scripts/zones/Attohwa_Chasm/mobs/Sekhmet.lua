@@ -13,6 +13,7 @@ require("scripts/globals/magic");
 -----------------------------------
 
 function onMobInitialize(mob)
+    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
     mob:setMod(MOD_DOUBLE_ATTACK, 10);
     mob:setMod(MOD_FASTCAST, 15);
 end;
@@ -53,7 +54,7 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob, player)
-    local chance = 10;	
+    local chance = 100;	
 	local resist = applyResistanceAddEffect(mob,player,ELE_DARK,EFFECT_ENASPIR);
 	if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
@@ -62,8 +63,12 @@ function onAdditionalEffect(mob, player)
         if (player:getMP() < mp) then
             mp = player:getMP();
         end
-        player:delMP(mp);
-        mob:addMP(mp);
-        return SUBEFFECT_MP_DRAIN, 162, EFFECT_ENASPIR;
+        if (mp == 0) then
+            return 0,0,0;
+        else
+            player:delMP(mp);
+            mob:addMP(mp);
+            return SUBEFFECT_MP_DRAIN, 162, mp;
+        end
     end
 end;

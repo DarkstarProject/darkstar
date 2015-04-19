@@ -3939,7 +3939,7 @@ int32 UpdateNMSpawnPoint(lua_State* L)
 		if (PMob != nullptr) {
           int32 r = 0;
           int32 ret = Sql_Query(SqlHandle, "SELECT count(mobid) FROM `nm_spawn_points` where mobid=%u", mobid);
-          if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
+		  if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS && Sql_GetUIntData(SqlHandle, 0) > 0) {
             r = WELL512::GetRandomNumber(Sql_GetUIntData(SqlHandle,0));
 		  } else {
 			ShowDebug(CL_RED"UpdateNMSpawnPoint: SQL error: No entries for mobid <%u> found.\n" CL_RESET, mobid);
