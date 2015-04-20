@@ -1583,7 +1583,6 @@ void CAIMobDummy::ActionAttack()
             {
 
                 m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
-                // m_PPathFind->CurvePath(0.5f);
                 m_PPathFind->FollowPath();
 
                 // recalculate
@@ -1595,7 +1594,6 @@ void CAIMobDummy::ActionAttack()
     // attack enemy if close enough
     if (currentDistance <= m_PMob->m_ModelSize && !m_mobskillattack)
     {
-        //m_CanStandback = true;
         int16 WeaponDelay = m_PMob->GetWeaponDelay(false);
 
         if (m_AutoAttackEnabled && m_Tick > m_LastActionTime + WeaponDelay)

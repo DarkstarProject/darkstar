@@ -415,6 +415,17 @@ bool CNavMesh::test(uint16 zoneId)
 
       expectedLength = 3;
     break;
+    case 103:
+      // valkurm dunes
+      start.x = 656;
+      start.y = 1;
+      start.z = -116;
+
+      end.x = 646;
+      end.y = 0;
+      end.z = -148;
+      expectedLength = 6;
+    break;
     default:
       ShowWarning("CNavMesh::test Skipping sanity test for zone (%d)\n", zoneId);
       return true;

@@ -304,9 +304,13 @@ bool CMobEntity::CanBeNeutral()
     return !(m_Type & MOBTYPE_NOTORIOUS);
 }
 
+/**
+ * Checks if the mob can detect the target using it's detection (sight, sound, etc)
+ * This is used to aggro and deaggro (Mobs start to deaggro after failing to detect target).
+ **/
 bool CMobEntity::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
 {
-	if (PTarget->isDead() || m_Aggro == AGGRO_NONE || PTarget->animation == ANIMATION_CHOCOBO) return false;
+	if (PTarget->isDead() || PTarget->animation == ANIMATION_CHOCOBO) return false;
 
     float verticalDistance = abs(loc.p.y - PTarget->loc.p.y);
 

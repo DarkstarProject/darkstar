@@ -380,7 +380,6 @@ void CZone::LoadZoneSettings()
 
 void CZone::LoadNavMesh()
 {
-
     // disable / enable maps navmesh in zone_settings.sql
     if (!m_useNavMesh) return;
 
@@ -395,12 +394,8 @@ void CZone::LoadNavMesh()
 
     if (m_navMesh->load(file))
     {
-        // lets verify it can find proper paths
-        if(!m_navMesh->test((int16)GetID()))
-        {
-            // test failed, don't use it
-            m_useNavMesh = false;
-        }
+        // verify it can find proper paths
+        m_navMesh->test((int16)GetID());
     }
     else
     {
