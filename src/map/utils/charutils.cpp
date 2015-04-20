@@ -728,6 +728,8 @@ namespace charutils
 
         PChar->animation = (HP == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
 
+        PChar->StatusEffectContainer->LoadStatusEffects();
+
         charutils::LoadEquip(PChar);
         PChar->health.hp = PChar->loc.destination == ZONE_RESIDENTIAL_AREA ? PChar->GetMaxHP() : HP;
         PChar->health.mp = PChar->loc.destination == ZONE_RESIDENTIAL_AREA ? PChar->GetMaxMP() : MP;
@@ -833,8 +835,6 @@ namespace charutils
                 }
             }
         }
-
-        PChar->StatusEffectContainer->LoadStatusEffects();
     }
 
     void LoadEquip(CCharEntity* PChar)
