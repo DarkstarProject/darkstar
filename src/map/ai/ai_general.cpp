@@ -469,10 +469,10 @@ bool CAIGeneral::MoveTo(position_t* pos)
     return false;
 }
 
-bool CAIGeneral::CanSee(position_t* pos)
+bool CAIGeneral::CanSeePoint(position_t pos)
 {
     if(m_PPathFind != nullptr){
-        // TODO: implement this
+      return m_PPathFind->CanSeePoint(pos);
     }
 
     return true;
