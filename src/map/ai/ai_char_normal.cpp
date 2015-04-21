@@ -198,6 +198,11 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
         return false;
     }
 
+    if (m_PChar->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect())
+    {
+        return false;
+    }
+
     if (PTarget->objtype == TYPE_PC)
     {
         if ((ValidTarget & TARGET_SELF) &&

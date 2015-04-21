@@ -1302,6 +1302,11 @@ void CAIMobDummy::ActionAttack()
     if (m_PMob->getMobMod(MOBMOD_SHARE_TARGET) > 0 && m_PMob->loc.zone->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB))
     {
         m_PBattleTarget = m_PMob->loc.zone->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB)->PBattleAI->GetBattleTarget();
+
+        if (!m_PBattleTarget)
+        {
+            m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+        }
     }
     else
     {
@@ -1911,7 +1916,7 @@ void CAIMobDummy::ActionAttack()
 
 void CAIMobDummy::FinishAttack()
 {
-    if (m_PMob->getMobMod(MOBMOD_RAGE) && !m_PMob->hasRageMode() && m_Tick >= m_StartBattle + m_PMob->getBigMobMod(MOBMOD_RAGE))
+    if  (m_PMob->getMobMod(MOBMOD_RAGE) && !m_PMob->hasRageMode() && m_Tick >= m_StartBattle + m_PMob->getBigMobMod(MOBMOD_RAGE))
     {
         // come at me bro
         m_PMob->addRageMode();
@@ -1920,22 +1925,16 @@ void CAIMobDummy::FinishAttack()
 
 bool CAIMobDummy::TryDeaggro()
 {
-    if (m_PBattleTarget == nullptr)
+    if(m_PBattleTarget == nullptr && (m_PMob->PEnmityContainer != nullptr && m_PMob->PEnmityContainer->GetHighestEnmity() == nullptr))
     {
-        if (m_PMob->PEnmityContainer->GetHighestEnmity() == nullptr)
-        {
-            return true;
-        }
-        else
-        {
-            m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
-        }
+        return true;
     }
 
-    // target is dead, on a choco or zoned, so wipe them from our enmity list
+    // target is no longer valid, so wipe them from our enmity list
     if (m_PBattleTarget->isDead() ||
         m_PBattleTarget->animation == ANIMATION_CHOCOBO ||
-        m_PBattleTarget->loc.zone->GetID() != m_PMob->loc.zone->GetID())
+        m_PBattleTarget->loc.zone->GetID() != m_PMob->loc.zone->GetID() || 
+        m_PMob->StatusEffectContainer->GetConfrontationEffect() != m_PBattleTarget->StatusEffectContainer->GetConfrontationEffect())
     {
         m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
         m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
