@@ -1,14 +1,16 @@
 -----------------------------------
 --
---
+--  Flurry
 --
 -----------------------------------
+require("scripts/globals/status")
 
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
+    target:addMod(MOD_SNAP_SHOT, effect:getPower());
 end;
 
 -----------------------------------
@@ -23,4 +25,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+    target:delMod(MOD_SNAP_SHOT, effect:getPower());
 end;

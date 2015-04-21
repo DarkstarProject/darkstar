@@ -6,7 +6,7 @@
 -- Anything scripted can be customized with proper script editing.
 
 -- PLEASE REQUIRE THIS SCRIPT IN ANY SCRIPTS YOU DO: ADD THIS LINE TO THE TOP!!!!
---     require("scripts/globals/settings");
+-- require("scripts/globals/settings");
 -- With this script added to yours, you can pull variables from it!!
 
 -- Always include status.lua, which defines mods
@@ -179,6 +179,9 @@ ALLOW_MULTIPLE_EXP_RINGS = 0; -- Set to 1 to remove ownership restrictions on th
 BYPASS_EXP_RING_ONE_PER_WEEK = 0; -- -- Set to 1 to bypass the limit of one ring per Conquest Tally Week.
 NUMBER_OF_DM_EARRINGS = 1; -- Number of earrings players can simultaneously own from Divine Might before scripts start blocking them (Default: 1)
 HOMEPOINT_TELEPORT = 0; -- Enables the homepoint teleport system
+DIG_ABUNDANCE_BONUS = 0; -- Increase chance of digging up an item (450  = item digup chance +45)
+DIG_FATIGUE = 1; -- Set to 0 to disable Dig Fatigue
+MIASMA_FILTER_COOLDOWN = 5;  -- Number of days a player can obtain a Miasma Filter KI for any of the Boneyard Gully ENMs (Minimum:1)
 
 -- LIMBUS
 BETWEEN_2COSMOCLEANSE_WAIT_TIME = 3; -- day between 2 limbus keyitem  (default 3 days)

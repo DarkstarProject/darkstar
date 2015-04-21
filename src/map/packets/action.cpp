@@ -50,7 +50,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 	this->type = 0x28;
 	this->size = 0x12;
 
-	WBUFL(data,(0x05)-4) = PEntity->id;
+	WBUFL(data,(0x05)) = PEntity->id;
 
 	ACTIONTYPE ActionType = PEntity->PBattleAI->GetCurrentAction();
 
@@ -58,21 +58,21 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 	{
 		case ACTION_ATTACK:
 		{
-			WBUFB(data,(0x0A)-4) = 0x44;
-			WBUFB(data,(0x0B)-4) = 0x18;
-			WBUFB(data,(0x0C)-4) = 0xDD;
-			WBUFB(data,(0x0D)-4) = 0x1A;
-			WBUFB(data,(0x0E)-4) = 0x0C;
+			WBUFB(data,(0x0A)) = 0x44;
+			WBUFB(data,(0x0B)) = 0x18;
+			WBUFB(data,(0x0C)) = 0xDD;
+			WBUFB(data,(0x0D)) = 0x1A;
+			WBUFB(data,(0x0E)) = 0x0C;
 		}
 			break;
 		case ACTION_WEAPONSKILL_START:
 		{
-			packBitsBE(data, PEntity->PBattleAI->GetCurrentWeaponSkill()->getID(), 54, 10);
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentWeaponSkill()->getID(), 86, 10);
 		}
 			break;
 		case ACTION_WEAPONSKILL_FINISH:
 		{
-			packBitsBE(data, PEntity->PBattleAI->GetCurrentWeaponSkill()->getID(), 54, 10);
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentWeaponSkill()->getID(), 86, 10);
 		}
 			break;
 		case ACTION_JOBABILITY_START:
@@ -84,31 +84,31 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		{
 			if (PEntity->PBattleAI->GetCurrentJobAbility()->getID() == ABILITY_DOUBLE_UP)
 			{
-				packBitsBE(data, PEntity->PBattleAI->GetLastCorsairRoll() + 16, 54, 10);
+				packBitsBE(data, PEntity->PBattleAI->GetLastCorsairRoll() + 16, 86, 10);
 			} else {
-				packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getID() + 16, 54, 10);
+				packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getID() + 16, 86, 10);
 			}
-			packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getRecastTime(), 86, 10);
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getRecastTime(), 118, 10);
 		}
 			break;
         case ACTION_MOBABILITY_START:
         {
-            WBUFB(data,(0x0A)-4) = 0xDC;
-			WBUFB(data,(0x0B)-4) = 0x58;
-			WBUFB(data,(0x0C)-4) = 0x18;
-			WBUFB(data,(0x0D)-4) = 0x5D;
-			WBUFB(data,(0x0E)-4) = 0x19;
+            WBUFB(data,(0x0A)) = 0xDC;
+			WBUFB(data,(0x0B)) = 0x58;
+			WBUFB(data,(0x0C)) = 0x18;
+			WBUFB(data,(0x0D)) = 0x5D;
+			WBUFB(data,(0x0E)) = 0x19;
 
             ActionType = ACTION_WEAPONSKILL_START;
         }
             break;
 		case ACTION_MOBABILITY_INTERRUPT:
 		{
-			WBUFB(data,(0x0A)-4) = 0xDC;
-			WBUFB(data,(0x0B)-4) = 0x1C;
-			WBUFB(data,(0x0C)-4) = 0x1C;
-			WBUFB(data,(0x0D)-4) = 0x5D;
-			WBUFB(data,(0x0E)-4) = 0x19;
+			WBUFB(data,(0x0A)) = 0xDC;
+			WBUFB(data,(0x0B)) = 0x1C;
+			WBUFB(data,(0x0C)) = 0x1C;
+			WBUFB(data,(0x0D)) = 0x5D;
+			WBUFB(data,(0x0E)) = 0x19;
 		}
 			break;
 		case ACTION_MOBABILITY_FINISH:
@@ -116,7 +116,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			uint16 id = PEntity->PBattleAI->GetCurrentMobSkill()->getMsgForAction();
 
 			//higher number of bits than anything else that we know of. CAP OF 4095 (2300ish is abyssea tp moves)!
-			packBitsBE(data, id, 54, 12);
+			packBitsBE(data, id, 86, 12);
             if (PEntity->objtype == TYPE_PET && (((CPetEntity*)PEntity)->getPetType() == PETTYPE_AVATAR ||
                 ((CPetEntity*)PEntity)->getPetType() == PETTYPE_WYVERN))
                 //TODO: rename/add new - Action 13 is always used by Avatars and Wyverns when performing an ability
@@ -125,107 +125,107 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			break;
 		case ACTION_ITEM_START:
 		{
-			WBUFB(data,(0x0A)-4) = 0xE4;
-			WBUFB(data,(0x0B)-4) = 0x58;
-			WBUFB(data,(0x0C)-4) = 0x58;
-			WBUFB(data,(0x0D)-4) = 0x1A;
-			WBUFB(data,(0x0E)-4) = 0x1D;
+			WBUFB(data,(0x0A)) = 0xE4;
+			WBUFB(data,(0x0B)) = 0x58;
+			WBUFB(data,(0x0C)) = 0x58;
+			WBUFB(data,(0x0D)) = 0x1A;
+			WBUFB(data,(0x0E)) = 0x1D;
 		}
 			break;
 		case ACTION_ITEM_INTERRUPT:
 		{
-			WBUFB(data,(0x0A)-4) = 0xE4;
-			WBUFB(data,(0x0B)-4) = 0x1C;
-			WBUFB(data,(0x0C)-4) = 0x5C;
-			WBUFB(data,(0x0D)-4) = 0x1A;
-			WBUFB(data,(0x0E)-4) = 0x1D;
+			WBUFB(data,(0x0A)) = 0xE4;
+			WBUFB(data,(0x0B)) = 0x1C;
+			WBUFB(data,(0x0C)) = 0x5C;
+			WBUFB(data,(0x0D)) = 0x1A;
+			WBUFB(data,(0x0E)) = 0x1D;
 
 			ActionType = ACTION_ITEM_START;
 		}
 			break;
 		case ACTION_RANGED_START:
 		{
-			WBUFB(data,(0x0A)-4) = 0xF0;
-			WBUFB(data,(0x0B)-4) = 0x58;
-			WBUFB(data,(0x0C)-4) = 0x18;
-			WBUFB(data,(0x0D)-4) = 0xDB;
-			WBUFB(data,(0x0E)-4) = 0x19;
+			WBUFB(data,(0x0A)) = 0xF0;
+			WBUFB(data,(0x0B)) = 0x58;
+			WBUFB(data,(0x0C)) = 0x18;
+			WBUFB(data,(0x0D)) = 0xDB;
+			WBUFB(data,(0x0E)) = 0x19;
 		}
 			break;
 		case ACTION_RANGED_FINISH:
 		{
-			WBUFB(data,(0x0A)-4) = 0xC8;
-			WBUFB(data,(0x0B)-4) = 0x1C;
-			WBUFB(data,(0x0C)-4) = 0x1A;
-			WBUFB(data,(0x0D)-4) = 0xDB;
-			WBUFB(data,(0x0E)-4) = 0x19;
+			WBUFB(data,(0x0A)) = 0xC8;
+			WBUFB(data,(0x0B)) = 0x1C;
+			WBUFB(data,(0x0C)) = 0x1A;
+			WBUFB(data,(0x0D)) = 0xDB;
+			WBUFB(data,(0x0E)) = 0x19;
 		}
 			break;
 		case ACTION_RANGED_INTERRUPT:
 		{
-			WBUFB(data,(0x0A)-4) = 0xF0;
-			WBUFB(data,(0x0B)-4) = 0x1C;
-			WBUFB(data,(0x0C)-4) = 0x1C;
-			WBUFB(data,(0x0D)-4) = 0xDB;
-			WBUFB(data,(0x0E)-4) = 0x19;
+			WBUFB(data,(0x0A)) = 0xF0;
+			WBUFB(data,(0x0B)) = 0x1C;
+			WBUFB(data,(0x0C)) = 0x1C;
+			WBUFB(data,(0x0D)) = 0xDB;
+			WBUFB(data,(0x0E)) = 0x19;
 
 			ActionType = ACTION_RANGED_START;
 		}
 			break;
 		case ACTION_RAISE_MENU_SELECTION:
 		{
-			WBUFB(data,(0x0A)-4) = 0x10;
+			WBUFB(data,(0x0A)) = 0x10;
 
 			ActionType = ACTION_MAGIC_FINISH;
 		}
 			break;
 		case ACTION_MAGIC_START:
 		{
-			WBUFB(data,(0x0A)-4) = 0xE0;
-			WBUFB(data,(0x0B)-4) = 0x58;
+			WBUFB(data,(0x0A)) = 0xE0;
+			WBUFB(data,(0x0B)) = 0x58;
 
 			switch (PEntity->PBattleAI->GetCurrentSpell()->getSpellGroup())
 			{
 				case SPELLGROUP_WHITE:
 				{
-					WBUFB(data,(0x0C)-4) = 0xD8;
-					WBUFB(data,(0x0D)-4) = 0x1D;
-					WBUFB(data,(0x0E)-4) = 0x1A;
+					WBUFB(data,(0x0C)) = 0xD8;
+					WBUFB(data,(0x0D)) = 0x1D;
+					WBUFB(data,(0x0E)) = 0x1A;
 				}
 					break;
 				case SPELLGROUP_BLACK:
 				{
-					WBUFB(data,(0x0C)-4) = 0x98;
-					WBUFB(data,(0x0D)-4) = 0xD8;
-					WBUFB(data,(0x0E)-4) = 0x1A;
+					WBUFB(data,(0x0C)) = 0x98;
+					WBUFB(data,(0x0D)) = 0xD8;
+					WBUFB(data,(0x0E)) = 0x1A;
 				}
 					break;
 				case SPELLGROUP_BLUE:
 				{
-					WBUFB(data,(0x0C)-4) = 0x98;
-					WBUFB(data,(0x0D)-4) = 0x18;
-					WBUFB(data,(0x0E)-4) = 0x1B;
+					WBUFB(data,(0x0C)) = 0x98;
+					WBUFB(data,(0x0D)) = 0x18;
+					WBUFB(data,(0x0E)) = 0x1B;
 				}
 					break;
 				case SPELLGROUP_SONG:
 				{
-					WBUFB(data,(0x0C)-4) = 0xD8;
-					WBUFB(data,(0x0D)-4) = 0xDC;
-					WBUFB(data,(0x0E)-4) = 0x1B;
+					WBUFB(data,(0x0C)) = 0xD8;
+					WBUFB(data,(0x0D)) = 0xDC;
+					WBUFB(data,(0x0E)) = 0x1B;
 				}
 					break;
 				case SPELLGROUP_NINJUTSU:
 				{
-					WBUFB(data,(0x0C)-4) = 0x98;
-					WBUFB(data,(0x0D)-4) = 0x9B;
-					WBUFB(data,(0x0E)-4) = 0x1A;
+					WBUFB(data,(0x0C)) = 0x98;
+					WBUFB(data,(0x0D)) = 0x9B;
+					WBUFB(data,(0x0E)) = 0x1A;
 				}
 					break;
 				case SPELLGROUP_SUMMONING:
 				{
-					WBUFB(data,(0x0C)-4) = 0xD8;
-					WBUFB(data,(0x0D)-4) = 0x5C;
-					WBUFB(data,(0x0E)-4) = 0x1B;
+					WBUFB(data,(0x0C)) = 0xD8;
+					WBUFB(data,(0x0D)) = 0x5C;
+					WBUFB(data,(0x0E)) = 0x1B;
 				}
 				break;
 			}
@@ -233,58 +233,58 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			break;
 		case ACTION_MAGIC_FINISH:
 		{
-			packBitsBE(data, PEntity->PBattleAI->GetCurrentSpell()->getID(), 54, 10);
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentSpell()->getID(), 86, 10);
 			//either this way or enumerate all recast timers and compare the spell id.
-			packBitsBE(data, PEntity->PBattleAI->GetCurrentSpell()->getModifiedRecast(), 86, 10);
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentSpell()->getModifiedRecast(), 118, 10);
 		}
 			break;
 		case ACTION_MAGIC_INTERRUPT:
 		{
-			WBUFB(data,(0x0A)-4) = 0xE0;
-			WBUFB(data,(0x0B)-4) = 0x1C;
+			WBUFB(data,(0x0A)) = 0xE0;
+			WBUFB(data,(0x0B)) = 0x1C;
 
 			switch (PEntity->PBattleAI->GetCurrentSpell()->getSpellGroup())
 			{
 				case SPELLGROUP_WHITE:
 				{
-					WBUFB(data,(0x0C)-4) = 0xDC;
-					WBUFB(data,(0x0D)-4) = 0x1D;
-					WBUFB(data,(0x0E)-4) = 0x1A;
+					WBUFB(data,(0x0C)) = 0xDC;
+					WBUFB(data,(0x0D)) = 0x1D;
+					WBUFB(data,(0x0E)) = 0x1A;
 				}
 					break;
 				case SPELLGROUP_BLACK:
 				{
-					WBUFB(data,(0x0C)-4) = 0x9C;
-					WBUFB(data,(0x0D)-4) = 0xD8;
-					WBUFB(data,(0x0E)-4) = 0x1A;
+					WBUFB(data,(0x0C)) = 0x9C;
+					WBUFB(data,(0x0D)) = 0xD8;
+					WBUFB(data,(0x0E)) = 0x1A;
 				}
 					break;
 				case SPELLGROUP_BLUE:
 				{
-					WBUFB(data,(0x0C)-4) = 0x9C;
-					WBUFB(data,(0x0D)-4) = 0x18;
-					WBUFB(data,(0x0E)-4) = 0x1B;
+					WBUFB(data,(0x0C)) = 0x9C;
+					WBUFB(data,(0x0D)) = 0x18;
+					WBUFB(data,(0x0E)) = 0x1B;
 				}
 					break;
 				case SPELLGROUP_SONG:
 				{
-					WBUFB(data,(0x0C)-4) = 0xDC;
-					WBUFB(data,(0x0D)-4) = 0xDC;
-					WBUFB(data,(0x0E)-4) = 0x1B;
+					WBUFB(data,(0x0C)) = 0xDC;
+					WBUFB(data,(0x0D)) = 0xDC;
+					WBUFB(data,(0x0E)) = 0x1B;
 				}
 					break;
 				case SPELLGROUP_NINJUTSU:
 				{
-					WBUFB(data,(0x0C)-4) = 0x9C;
-					WBUFB(data,(0x0D)-4) = 0x9B;
-					WBUFB(data,(0x0E)-4) = 0x1A;
+					WBUFB(data,(0x0C)) = 0x9C;
+					WBUFB(data,(0x0D)) = 0x9B;
+					WBUFB(data,(0x0E)) = 0x1A;
 				}
 					break;
 				case SPELLGROUP_SUMMONING:
 				{
-					WBUFB(data,(0x0C)-4) = 0xDC;
-					WBUFB(data,(0x0D)-4) = 0x5C;
-					WBUFB(data,(0x0E)-4) = 0x1B;
+					WBUFB(data,(0x0C)) = 0xDC;
+					WBUFB(data,(0x0D)) = 0x5C;
+					WBUFB(data,(0x0E)) = 0x1B;
 				}
 				break;
 			}
@@ -295,7 +295,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 
 	uint32 TargetNum = 0;
 	uint32 ActionNum = 0;
-	uint32 bitOffset = 50;
+	uint32 bitOffset = 82;
 	uint32 animOffset = 0;
 
 	uint8 ActionTypeNumber = ActionType;
@@ -423,14 +423,14 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
         if (TargetNum >= 15)
             break;
 	}
-    packBitsBE(data, ActionNum, 150, 4);
+    packBitsBE(data, ActionNum, 182, 4);
 
 	uint8 WorkSize = ((bitOffset >> 3) + (bitOffset%8 != 0));
 
 	this->size = ((((WorkSize + 7) >> 1) + 1) & -2);
 
-	WBUFB(data,(0x04)-4) = WorkSize; 												// Workload Size - 0x23 с дополнительным эффектом - 0x29 два удара монаха
-	WBUFB(data,(0x09)-4) = TargetNum;												// количество атакуемых целей
+	WBUFB(data,(0x04)) = WorkSize; 												// Workload Size - 0x23 с дополнительным эффектом - 0x29 два удара монаха
+	WBUFB(data,(0x09)) = TargetNum;												// количество атакуемых целей
     
     PEntity->m_ActionList.clear();
 }
@@ -442,43 +442,43 @@ CActionPacket::CActionPacket(uint32 id, uint32 targetid, uint8 ActionType,
     this->type = 0x28;
     this->size = 0x12;
 
-    WBUFL(data, (0x05) - 4) = id;
+    WBUFL(data, (0x05) ) = id;
 
     switch (ActionType)
     {
     case ACTION_WEAPONSKILL_START:
     {
-        packBitsBE(data, param, 54, 10);
+        packBitsBE(data, param, 86, 10);
     }
         break;
     case ACTION_WEAPONSKILL_FINISH:
     {
-        packBitsBE(data, param, 54, 10);
+        packBitsBE(data, param, 86, 10);
     }
         break;
 
     case ACTION_JOBABILITY_FINISH:
     {
-        packBitsBE(data, param + 16, 54, 10);
-        packBitsBE(data, 0, 86, 10);
+        packBitsBE(data, param + 16, 86, 10);
+        packBitsBE(data, 0, 118, 10);
     }
         break;
 
     case ACTION_MOBABILITY_FINISH:
     case ACTION_RAISE_MENU_SELECTION:
     {
-        packBitsBE(data, param, 54, 12);
+        packBitsBE(data, param, 86, 12);
     }
         break;
     case ACTION_MAGIC_FINISH:
     {
-        packBitsBE(data, param, 54, 10);
-        packBitsBE(data, 0, 86, 10);
+        packBitsBE(data, param, 86, 10);
+        packBitsBE(data, 0, 118, 10);
     }
         break;
     }
 
-    uint32 bitOffset = 50;
+    uint32 bitOffset = 82;
 
     bitOffset = packBitsBE(data, ActionType, bitOffset, 4);
     bitOffset += 64;
@@ -495,14 +495,14 @@ CActionPacket::CActionPacket(uint32 id, uint32 targetid, uint8 ActionType,
     bitOffset = packBitsBE(data, messageID, bitOffset, 10);
     bitOffset += 33;
 
-    packBitsBE(data, 1, 150, 4);
+    packBitsBE(data, 1, 182, 4);
 
     uint8 WorkSize = ((bitOffset >> 3) + (bitOffset % 8 != 0));
 
     this->size = ((((WorkSize + 7) >> 1) + 1) & -2);
 
-    WBUFB(data, (0x04) - 4) = WorkSize;
-    WBUFB(data, (0x09) - 4) = 1;
+    WBUFB(data, (0x04) ) = WorkSize;
+    WBUFB(data, (0x09) ) = 1;
 }
 
 // 0xE0 0x58 0xD8 0x1D 0x1A - White Magic Start

@@ -136,7 +136,8 @@ namespace charutils
     void	SaveCharStats(CCharEntity* PChar);					        // сохраняем флаги, текущие значения жихней, маны и профессий
     void    SaveCharGMLevel(CCharEntity* PChar);                        // saves the char's gm level and nameflags
     void    mentorMode(CCharEntity* PChar);                             // Changes char's mentor status
-    void	SaveCharNation(CCharEntity* PChar);							// Sace the character's nation of allegiance.
+    void	SaveCharNation(CCharEntity* PChar);							// Save the character's nation of allegiance.
+    void    SaveCampaignAllegiance(CCharEntity* PChar);                 // Save the character's campaign allegiance.
     void	SaveCharSkills(CCharEntity* PChar, uint8 skillID);	        // сохраняем указанный skill персонажа
     void	SaveCharPoints(CCharEntity* PChar);							// Conquest point, Nation TP
     void	SaveDeathTime(CCharEntity* PChar);							// Saves when this character last died.
@@ -166,6 +167,8 @@ namespace charutils
     int32   GetPoints(CCharEntity* PChar, const char* type);
     std::string GetConquestPointsName(CCharEntity* PChar);
     void    SendToZone(CCharEntity* PChar, uint8 type, uint64 ipp);
+
+    int32   GetVar(CCharEntity* PChar, const char* var);
 };
 
 #endif

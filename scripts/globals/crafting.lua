@@ -212,14 +212,21 @@ function unionRepresentativeTrigger(player, guildID, csid, currency, keyitems)
         end
     end
     
-    player:startEvent(csid, player:getCurrency(currency), player:getVar('[GUILD]currentGuild'), gpItem, remainingPoints, cap, 0, kibits);
+    player:startEvent(csid, player:getCurrency(currency), player:getVar('[GUILD]currentGuild') - 1, gpItem, remainingPoints, cap, 0, kibits);
 end
 
 function unionRepresentativeTriggerFinish(player, option, target, guildID, currency, keyitems, items)
     local rank = player:getSkillRank(guildID + 48);
-    if (option == -1) then
-        player:setVar('[GUILD]currentGuild',3);
-        player:setVar('[GUILD]daily_points',-1);
+    if (bit.tobit(option) == -1 and rank >= 3) then
+        local oldGuild = player:getVar('[GUILD]currentGuild') - 1;
+        player:setVar('[GUILD]currentGuild',guildID + 1);
+        
+        if (oldGuild == -1) then
+            player:messageSpecial(GUILD_NEW_CONTRACT, guildID);
+        else
+            player:messageSpecial(GUILD_TERMINATE_CONTRACT, guildID, oldGuild);
+            player:setVar('[GUILD]daily_points',-1);
+        end
     elseif (bit.band(option, 32) > 0) then -- keyitem
         local ki = keyitems[bit.band(option, 31)];
         if (ki and rank >= ki.rank) then
@@ -264,20 +271,22 @@ end
 
 function unionRepresentativeTrade(player, npc, trade, csid, guildID)
     local gpItem, remainingPoints = player:getCurrentGPItem(guildID);
-    if remainingPoints == 0 then
-        player:messageText(npc, NO_MORE_GP_ELIGIBLE);
-    else
-        local totalPoints = 0;
-        for i=0,8,1 do
-            local items, points = player:addGuildPoints(guildID,i)
-            if items ~= 0 and points ~= 0 then
-                totalPoints = totalPoints + points;
-                trade:confirmItem(i, items);
+    if (player:getVar('[GUILD]currentGuild') - 1 == guildID) then
+        if remainingPoints == 0 then
+            player:messageText(npc, NO_MORE_GP_ELIGIBLE);
+        else
+            local totalPoints = 0;
+            for i=0,8,1 do
+                local items, points = player:addGuildPoints(guildID,i)
+                if items ~= 0 and points ~= 0 then
+                    totalPoints = totalPoints + points;
+                    trade:confirmItem(i, items);
+                end
             end
-        end
-        if (totalPoints > 0) then
-            player:confirmTrade();
-            player:startEvent(csid1,totalPoints);
+            if (totalPoints > 0) then
+                player:confirmTrade();
+                player:startEvent(csid,totalPoints);
+            end
         end
     end
 end

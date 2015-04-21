@@ -35,9 +35,9 @@ CBazaarCheckPacket::CBazaarCheckPacket(CCharEntity * PChar, BAZAARCHECK type)
 	this->type = 0x08;	// 0x108
 	this->size = 0x11;
 
-	WBUFL(data,(0x04)-4) = PChar->id;
-	WBUFB(data,(0x08)-4) = type;
-	WBUFW(data,(0x0E)-4) = PChar->targid;
+	WBUFL(data,(0x04)) = PChar->id;
+	WBUFB(data,(0x08)) = type;
+	WBUFW(data,(0x0E)) = PChar->targid;
 
-	memcpy(data+(0x10)-4, PChar->GetName(), PChar->name.size());
+	memcpy(data+(0x10), PChar->GetName(), PChar->name.size());
 }

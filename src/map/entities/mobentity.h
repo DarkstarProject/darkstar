@@ -200,10 +200,6 @@ public:
 
   bool      CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false); // can I detect the target?
 
-  void      SetMainSkin(uint32 mobid);               // Set base skin for the mob (if mob or player dieing)
-  void      SetNewSkin(uint8 skinid);                // Set new skin for the mob
-  uint32    GetSkinID();                             // Get the last skinid (0 for base skin)
-
   uint8     TPUseChance();                           // return % chance to use TP move
 
   void      ChangeMJob(uint16 job);                  // this will change jobs and update traits, stats, spells
@@ -248,8 +244,6 @@ public:
 private:
 
   bool      m_RageMode;                              // Mode rage
-  bool      m_NewSkin;                               // True if skin has changed
-  uint32    m_SkinID;                                // skinid
   uint32    m_DespawnTimer;                          // Despawn Timer to despawn mob after set duration
   int16     m_mobModStat[MAX_MOBMODIFIER];           // mob specific mods
   int16     m_mobModStatSave[MAX_MOBMODIFIER];       // saved state

@@ -1,22 +1,22 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see http://www.gnu.org/licenses/
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
+This file is part of DarkStar-server source code.
 
 ===========================================================================
 */
@@ -39,12 +39,12 @@
 
 CAHItemsListPacket::CAHItemsListPacket(uint16 offset)
 {
-    m_count  = 0;
+    m_count = 0;
     m_offset = offset;
 
     memset(m_PData, 0, sizeof(m_PData));
 
-	WBUFB(m_PData,(0x0B)) = 0x95;                       // packet type
+    WBUFB(m_PData, (0x0B)) = 0x95;                       // packet type
 }
 
 /************************************************************************
@@ -53,11 +53,11 @@ CAHItemsListPacket::CAHItemsListPacket(uint16 offset)
 *                                                                       *
 ************************************************************************/
 
-void CAHItemsListPacket::AddItem(ahItem* item) 
+void CAHItemsListPacket::AddItem(ahItem* item)
 {
-    WBUFW(m_PData,(0x18 + 0x0A*m_count) + 0) = item->ItemID;
-    WBUFL(m_PData,(0x18 + 0x0A*m_count) + 2) = item->SinglAmount;
-    WBUFL(m_PData,(0x18 + 0x0A*m_count) + 6) = item->StackAmount;
+    WBUFW(m_PData, (0x18 + 0x0A * m_count) + 0) = item->ItemID;
+    WBUFL(m_PData, (0x18 + 0x0A * m_count) + 2) = item->SinglAmount;
+    WBUFL(m_PData, (0x18 + 0x0A * m_count) + 6) = item->StackAmount;
 
     m_count++;
     delete item;
@@ -71,16 +71,16 @@ void CAHItemsListPacket::AddItem(ahItem* item)
 
 void CAHItemsListPacket::SetItemCount(uint16 count)
 {
-	WBUFW(m_PData,(0x0E)) = count;
+    WBUFW(m_PData, (0x0E)) = count;
 
     if ((count - m_offset) <= 20)
     {
-        WBUFB(m_PData,(0x0A)) = 0x80;
-        WBUFW(m_PData,(0x08)) = 0x18 + 0x0A*(count - m_offset);
-    } 
-    else 
+        WBUFB(m_PData, (0x0A)) = 0x80;
+        WBUFW(m_PData, (0x08)) = 0x18 + 0x0A * (count - m_offset);
+    }
+    else
     {
-        WBUFW(m_PData,(0x08)) = 0x18 + 0x0A*20;
+        WBUFW(m_PData, (0x08)) = 0x18 + 0x0A * 20;
     }
 }
 
@@ -103,5 +103,5 @@ uint8* CAHItemsListPacket::GetData()
 
 uint16 CAHItemsListPacket::GetSize()
 {
-    return 0x18 + 0x0A*m_count + 28;
+    return 0x18 + 0x0A * m_count + 28;
 }

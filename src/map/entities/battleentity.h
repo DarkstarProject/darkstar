@@ -143,7 +143,8 @@ enum SKILLTYPE
 	SKILL_ALC			= 55,
 	SKILL_COK			= 56,
 	SKILL_SYN			= 57,
-	SKILL_RID			= 58
+	SKILL_RID			= 58,
+    SKILL_DIG           = 59
 };
 
 #define MAX_SKILLTYPE	64

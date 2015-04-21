@@ -518,13 +518,17 @@ void CStatusEffectContainer::KillAllStatusEffect()
 	{
 		CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
 
-		luautils::OnEffectLose(m_POwner, PStatusEffect);
+        if (PStatusEffect->GetDuration() != 0)
+        {
 
-		m_POwner->delModifiers(&PStatusEffect->modList);
+            luautils::OnEffectLose(m_POwner, PStatusEffect);
 
-		m_StatusEffectList.erase(m_StatusEffectList.begin() + i);
+            m_POwner->delModifiers(&PStatusEffect->modList);
 
-		delete PStatusEffect;
+            m_StatusEffectList.erase(m_StatusEffectList.begin() + i);
+
+            delete PStatusEffect;
+        }
 	}
     m_POwner->UpdateHealth();
 }
@@ -596,7 +600,7 @@ EFFECT CStatusEffectContainer::EraseStatusEffect()
     }
     if (!erasableList.empty())
     {
-        uint16 rndIdx = WELL512::irand() % erasableList.size();
+        uint16 rndIdx = WELL512::GetRandomNumber(erasableList.size());
         EFFECT result = m_StatusEffectList.at(erasableList.at(rndIdx))->GetStatusID();
         RemoveStatusEffect(erasableList.at(rndIdx));
         return result;
@@ -618,7 +622,7 @@ EFFECT CStatusEffectContainer::HealingWaltz()
    }
    if( !waltzableList.empty() )
    {
-       uint16 rndIdx = WELL512::irand() % waltzableList.size();
+       uint16 rndIdx = WELL512::GetRandomNumber(waltzableList.size());
       EFFECT result = m_StatusEffectList.at(waltzableList.at(rndIdx))->GetStatusID();
       RemoveStatusEffect(waltzableList.at(rndIdx));
       return result;
@@ -665,7 +669,7 @@ EFFECT CStatusEffectContainer::DispelStatusEffect(EFFECTFLAG flag)
 	}
 	if (!dispelableList.empty())
 	{
-        uint16 rndIdx = WELL512::irand() % dispelableList.size();
+        uint16 rndIdx = WELL512::GetRandomNumber(dispelableList.size());
 		EFFECT result = m_StatusEffectList.at(dispelableList.at(rndIdx))->GetStatusID();
 		RemoveStatusEffect(dispelableList.at(rndIdx), true);
 		return result;
@@ -1021,8 +1025,8 @@ CStatusEffect* CStatusEffectContainer::StealStatusEffect()
 	}
     if (!dispelableList.empty())
     {
-        uint16 rndIdx = WELL512::irand() % dispelableList.size();
-	uint16 effectIndex = dispelableList.at(rndIdx);
+        uint16 rndIdx = WELL512::GetRandomNumber(dispelableList.size());
+        uint16 effectIndex = dispelableList.at(rndIdx);
 
         CStatusEffect* oldEffect = m_StatusEffectList.at(effectIndex);
 
@@ -1394,6 +1398,18 @@ bool CStatusEffectContainer::HasPreventActionEffect()
         HasStatusEffect(EFFECT_PENALTY) ||
         HasStatusEffect(EFFECT_STUN) ||
 		HasStatusEffect(EFFECT_TERROR);
+}
+
+uint16 CStatusEffectContainer::GetConfrontationEffect()
+{
+    for (auto PEffect : m_StatusEffectList)
+    {
+        if (PEffect->GetFlag() & EFFECTFLAG_CONFRONTATION)
+        {
+            return PEffect->GetPower();
+        }
+    }
+    return 0;
 }
 
 bool CStatusEffectContainer::CheckForElevenRoll()

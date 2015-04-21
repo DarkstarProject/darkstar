@@ -16,7 +16,6 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_BIND;
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30));
-	mob:untargetable(false);
 	
 	if (mob:getID()== 16806242) then -- if the mobID == Feeler Antlion ID
 		local npcX	= mob:getXPos();

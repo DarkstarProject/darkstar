@@ -988,6 +988,8 @@ MOD_GRAVITYRES			= 0xF9
 MOD_SLOWRES			= 0xFA
 MOD_STUNRES			= 0xFB
 MOD_CHARMRES			= 0xFC
+MOD_AMNESIARES          = 0xFD
+-- PLACEHOLDER             = 0xFE
 MOD_DEATHRES			= 0xFF
 MOD_PARALYZE			= 0x101
 MOD_MIJIN_GAKURE		= 0x102
@@ -1227,11 +1229,12 @@ MOD_LOGGING_RESULT            = 0x202 -- Improves logging results (modId = 514)
 MOD_MINNING_RESULT            = 0x203 -- Improves mining results (modId = 515)
 MOD_ABSORB_DMG_TO_MP          = 0x204 -- Unlike PLD gear mod, works on all damage types (Ethereal Earring) (modId = 516)
 
+MOD_EGGHELM                   = 0x205 -- Egg Helm (Chocobo Digging)
+
 -- MOD_SPARE = 0x138 -- (modId = 312)
 -- MOD_SPARE = 0x139 -- (modId = 313)
 -- MOD_SPARE = 0x13A -- (modId = 314)
 -- MOD_SPARE = 0x13B -- (modId = 315)
--- MOD_SPARE = 0x205 -- (modId = 517)
 
 ------------------------------------
 -- Merit Definitions
@@ -1900,6 +1903,7 @@ MOBMOD_SHARE_TARGET   = 48
 	SKILL_COK			= 56
 	SKILL_SYN			= 57
 	SKILL_RID			= 58
+    SKILL_DIG           = 59
 
 	MAX_JOB_TYPE = 23
 

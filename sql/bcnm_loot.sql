@@ -885,7 +885,7 @@ INSERT INTO `bcnm_loot` VALUES ('112', '1949', '39', '4');  --  BRD
 INSERT INTO `bcnm_loot` VALUES ('112', '1681', '39', '4'); --   Light Steel 
 INSERT INTO `bcnm_loot` VALUES ('112', '645', '39', '4');  --  Darksteel Ore
 INSERT INTO `bcnm_loot` VALUES ('112', '1933', '627', '4'); --  MNK,
-INSERT INTO `bcnm_loot` VALUES ('112', '1954', '159', '5');  --  DRK,
+INSERT INTO `bcnm_loot` VALUES ('112', '1945', '159', '5');  --  DRK,
 INSERT INTO `bcnm_loot` VALUES ('112', '1951', '139', '5');  --  RNG,
 INSERT INTO `bcnm_loot` VALUES ('112', '2659', '39', '5');  --  COR,
 INSERT INTO `bcnm_loot` VALUES ('112', '664', '20', '5');  --  Darksteel Sheet
@@ -976,7 +976,7 @@ INSERT INTO `bcnm_loot` VALUES ('117', '1875', '1000', '4');
 INSERT INTO `bcnm_loot` VALUES ('117', '1875', '1000', '5');
 
 INSERT INTO `bcnm_loot` VALUES ('117', '1949', '326', '6'); -- BRD
-INSERT INTO `bcnm_loot` VALUES ('117', '1954', '256', '6'); -- DRK
+INSERT INTO `bcnm_loot` VALUES ('117', '1945', '256', '6'); -- DRK
 INSERT INTO `bcnm_loot` VALUES ('117', '1951', '395', '6'); -- RNG
 
 INSERT INTO `bcnm_loot` VALUES ('117', '1959', '279', '7'); -- SMN
@@ -1002,7 +1002,7 @@ INSERT INTO `bcnm_loot` VALUES ('119', '1875', '1000', '2');
 INSERT INTO `bcnm_loot` VALUES ('119', '1875', '1000', '3');
 
 INSERT INTO `bcnm_loot` VALUES ('119', '1949', '464', '4');-- BRD
-INSERT INTO `bcnm_loot` VALUES ('119', '1954', '250', '4');-- DRK 
+INSERT INTO `bcnm_loot` VALUES ('119', '1945', '250', '4');-- DRK 
 INSERT INTO `bcnm_loot` VALUES ('119', '1953', '110', '4');-- SAM 
 INSERT INTO `bcnm_loot` VALUES ('119', '1937', '71', '4');-- BLM 
 
@@ -1088,7 +1088,7 @@ INSERT INTO `bcnm_loot` VALUES ('124', '1875', '1000', '0');
 INSERT INTO `bcnm_loot` VALUES ('124', '1875', '1000', '1');
 INSERT INTO `bcnm_loot` VALUES ('124', '1943', '235', '2');--  BRD,
 INSERT INTO `bcnm_loot` VALUES ('124', '2659', '59', '2');--  COR,
-INSERT INTO `bcnm_loot` VALUES ('124', '1954', '235', '2');--  DRK,
+INSERT INTO `bcnm_loot` VALUES ('124', '1945', '235', '2');--  DRK,
 INSERT INTO `bcnm_loot` VALUES ('124', '1955', '147', '2');--  NIN,
 INSERT INTO `bcnm_loot` VALUES ('124', '1951', '118', '2');--  RNG,
 INSERT INTO `bcnm_loot` VALUES ('124', '1959', '176', '2');--  SMN,
@@ -1128,7 +1128,7 @@ INSERT INTO `bcnm_loot` VALUES ('126', '1949', '48', '8');--  BRD
 INSERT INTO `bcnm_loot` VALUES ('126', '1947', '30', '8');--  BST,
 INSERT INTO `bcnm_loot` VALUES ('126', '2659', '25', '8');--  COR,
 INSERT INTO `bcnm_loot` VALUES ('126', '1957', '19', '8');--  DRG,
-INSERT INTO `bcnm_loot` VALUES ('126', '1954', '48', '8');--  DRK,
+INSERT INTO `bcnm_loot` VALUES ('126', '1945', '48', '8');--  DRK,
 INSERT INTO `bcnm_loot` VALUES ('126', '1933', '90', '8');--  MNK,
 INSERT INTO `bcnm_loot` VALUES ('126', '1955', '00', '8');--  NIN,
 INSERT INTO `bcnm_loot` VALUES ('126', '2661', '48', '8');--  PUP,
@@ -1151,7 +1151,7 @@ INSERT INTO `bcnm_loot` VALUES ('127', '1947', '109', '5');--  BST,
 INSERT INTO `bcnm_loot` VALUES ('127', '2659', '65', '5');--  COR,
 INSERT INTO `bcnm_loot` VALUES ('127', '2715', '130', '5');--  DNC,
 INSERT INTO `bcnm_loot` VALUES ('127', '1957', '65', '6');--  DRG,
-INSERT INTO `bcnm_loot` VALUES ('127', '1954', '174', '6');--  DRK,
+INSERT INTO `bcnm_loot` VALUES ('127', '1945', '174', '6');--  DRK,
 INSERT INTO `bcnm_loot` VALUES ('127', '1933', '130', '6');--  MNK,
 INSERT INTO `bcnm_loot` VALUES ('127', '1955', '196', '6');--  NIN,
 INSERT INTO `bcnm_loot` VALUES ('127', '1943', '174', '6');--  PLD,
@@ -1192,7 +1192,7 @@ INSERT INTO `bcnm_loot` VALUES ('129', '1933', '9', '0'); -- Ancient Brass (MNK)
 INSERT INTO `bcnm_loot` VALUES ('129', '1931', '53', '0'); -- Argyro Rivet (WAR)(5.3%)
 INSERT INTO `bcnm_loot` VALUES ('129', '1959', '6', '0'); -- Astral Leather (SMN)(0.6%)
 INSERT INTO `bcnm_loot` VALUES ('129', '1935', '12', '0'); -- Benedict Yarn (WHM)(1.2%)
-INSERT INTO `bcnm_loot` VALUES ('129', '1954', '29', '0'); -- Black Rivet (DRK)(2.9%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1945', '29', '0'); -- Black Rivet (DRK)(2.9%)
 INSERT INTO `bcnm_loot` VALUES ('129', '1957', '12', '0'); -- Blue Rivet (DRG)(1.2%)
 INSERT INTO `bcnm_loot` VALUES ('129', '1949', '35', '0'); -- Brown Doeskin (BRD)(3.5%)
 INSERT INTO `bcnm_loot` VALUES ('129', '2659', '35', '0'); -- Canvas Toile (COR)(3.5%)

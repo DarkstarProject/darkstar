@@ -431,7 +431,7 @@ int8* EncodeStringLinkshell(int8* signature, int8* target)
     memset(encodedSignature, 0, sizeof encodedSignature);
     uint8 chars = 0;
     uint8 leftover = 0;
-	for(uint8 currChar = 0; currChar < strlen((const char*)signature); ++currChar)
+	for(uint8 currChar = 0; currChar < dsp_min(20,strlen((const char*)signature)); ++currChar)
 	{
 		uint8 tempChar = 0;
 		if		((signature[currChar] >= '0') && (signature[currChar] <= '9'))
@@ -456,7 +456,7 @@ int8* DecodeStringLinkshell(int8* signature, int8* target)
     uint8 decodedSignature[21];
     memset(decodedSignature, 0, sizeof decodedSignature);
 
-    for(uint8 currChar = 0; currChar < (strlen((const char*)signature) * 8) / 6; ++currChar)
+    for(uint8 currChar = 0; currChar < dsp_min(20,(strlen((const char*)signature) * 8) / 6); ++currChar)
     {
         uint8 tempChar = '\0';
         tempChar = unpackBitsLE((uint8*)signature, currChar*6, 6);
@@ -489,7 +489,7 @@ int8* EncodeStringSignature(int8* signature, int8* target)
     memset(encodedSignature, 0, sizeof encodedSignature);
     uint8 chars = 0;
     uint8 leftover = 0;
-	for(uint8 currChar = 0; currChar < strlen((const char*)signature); ++currChar)
+	for(uint8 currChar = 0; currChar < dsp_min(15,strlen((const char*)signature)); ++currChar)
 	{
 		uint8 tempChar = 0;
 		if		((signature[currChar] >= '0') && (signature[currChar] <= '9'))
@@ -514,7 +514,7 @@ int8* DecodeStringSignature(int8* signature, int8* target)
     uint8 decodedSignature[16];
     memset(decodedSignature, 0, sizeof decodedSignature);
 
-    for(uint8 currChar = 0; currChar < (strlen((const char*)signature) * 8) / 6; ++currChar)
+    for(uint8 currChar = 0; currChar < dsp_min(15,(strlen((const char*)signature) * 8) / 6); ++currChar)
     {
         uint8 tempChar = '\0';
         tempChar = unpackBitsLE((uint8*)signature, currChar*6, 6);
@@ -528,11 +528,6 @@ int8* DecodeStringSignature(int8* signature, int8* target)
         decodedSignature[currChar] = tempChar;
     }
     return strncpy(target, (int8*)decodedSignature, sizeof decodedSignature);
-}
-
-float RandomNumber()
-{
-  return ((double) rand() / (RAND_MAX));
 }
 
 std::string escape(std::string const &s)

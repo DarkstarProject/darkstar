@@ -90,7 +90,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 6, 0x2726, "guild_bonecrafting", keyitems);
+	unionRepresentativeTrigger(player, 6, 0x2726, "guild_bonecraft", keyitems);
 end;
 
 -----------------------------------
@@ -111,7 +111,7 @@ function onEventFinish(player,csid,option,target)
 	 -- printf("RESULT: %u",option);
      
     if (csid == 0x2726) then
-        unionRepresentativeTriggerFinish(player, option, target, 6, "guild_bonecrafting", keyitems, items);
+        unionRepresentativeTriggerFinish(player, option, target, 6, "guild_bonecraft", keyitems, items);
     elseif(csid == 0x2727) then
         player:messageSpecial(GP_OBTAINED, option);
     end

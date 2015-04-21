@@ -40,16 +40,16 @@ CPetSyncPacket::CPetSyncPacket(CCharEntity* PChar)
 
     DSP_DEBUG_BREAK_IF(PChar->PPet == nullptr);
 
-    WBUFB(data, (0x04) - 4) = 0x44; 	// назначение неизвестно
-    WBUFB(data, (0x05) - 4) = 0x08; 	// назначение неизвестно
+    WBUFB(data, (0x04) ) = 0x44; 	// назначение неизвестно
+    WBUFB(data, (0x05) ) = 0x08; 	// назначение неизвестно
 
-    WBUFW(data, (0x06) - 4) = PChar->targid;
-    WBUFL(data, (0x08) - 4) = PChar->id;
+    WBUFW(data, (0x06) ) = PChar->targid;
+    WBUFL(data, (0x08) ) = PChar->id;
 
-    WBUFW(data, (0x0C) - 4) = PChar->PPet->targid;
-    WBUFB(data, (0x0E) - 4) = PChar->PPet->GetHPP();
-    WBUFB(data, (0x0F) - 4) = PChar->PPet->GetMPP();
-    WBUFW(data, (0x10) - 4) = PChar->PPet->health.tp;
+    WBUFW(data, (0x0C) ) = PChar->PPet->targid;
+    WBUFB(data, (0x0E) ) = PChar->PPet->GetHPP();
+    WBUFB(data, (0x0F) ) = PChar->PPet->GetMPP();
+    WBUFW(data, (0x10) ) = PChar->PPet->health.tp;
 
     // 0x14 - начинается имя питомца, но мы его записывать не будем, "мы экономить будем" © Матроскин
 }

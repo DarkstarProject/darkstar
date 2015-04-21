@@ -33,9 +33,9 @@ CInventoryAssignPacket::CInventoryAssignPacket(CItem* PItem, uint8 Flag)
 	this->type = 0x1F;
 	this->size = 0x08;
 
-    WBUFL(data,(0x04)-4) = PItem->getQuantity();
-	WBUFW(data,(0x08)-4) = PItem->getID();
-    WBUFB(data,(0x0A)-4) = PItem->getLocationID();
-    WBUFB(data,(0x0B)-4) = PItem->getSlotID();
-	WBUFB(data,(0x0C)-4) = Flag;
+    WBUFL(data,(0x04)) = PItem->getQuantity();
+	WBUFW(data,(0x08)) = PItem->getID();
+    WBUFB(data,(0x0A)) = PItem->getLocationID();
+    WBUFB(data,(0x0B)) = PItem->getSlotID();
+	WBUFB(data,(0x0C)) = Flag;
 }

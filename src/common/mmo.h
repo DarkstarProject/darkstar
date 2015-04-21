@@ -98,7 +98,12 @@ typedef std::string string_t;
 struct look_t 
 {
 	uint16 size;
-	uint8  face, race;
+    union {
+        struct {
+            uint8  face, race;
+        };
+        uint16 modelid;
+    };
 	uint16 head, body, hands, legs, feet, main, sub, ranged;
 };
 

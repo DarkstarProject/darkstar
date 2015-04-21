@@ -58,6 +58,8 @@ void CAICharCharm::CheckCurrentAction(uint32 tick)
 {
     m_Tick = tick;
 
+    CBattleEntity* PSelf = m_PChar;
+
     switch (m_ActionType)
     {
         case ACTION_NONE:			  		ActionRoaming();			break;
@@ -78,7 +80,11 @@ void CAICharCharm::CheckCurrentAction(uint32 tick)
 
         default: DSP_DEBUG_BREAK_IF(true);
     }
-    m_PChar->UpdateEntity();
+
+    if (m_PChar && PSelf->PBattleAI == this)
+    {
+        m_PChar->UpdateEntity();
+    }
 }
 
 void CAICharCharm::ActionRoaming()
@@ -133,8 +139,6 @@ void CAICharCharm::ActionDisengage()
 
 void CAICharCharm::ActionAttack()
 {
-    DSP_DEBUG_BREAK_IF(m_PBattleTarget == nullptr);
-
     SetBattleTarget(m_PChar->PMaster->PBattleAI->GetBattleTarget());
 
     if (m_PBattleTarget == nullptr)
@@ -181,6 +185,23 @@ void CAICharCharm::ActionAttack()
                 DoAttack();
             }
         }
+    }
+}
+
+void CAICharCharm::TransitionBack(bool skipWait /*= false*/)
+{
+    m_PBattleSubTarget = nullptr;
+    if (m_PChar->animation == ANIMATION_ATTACK)
+    {
+        m_ActionType = ACTION_ATTACK;
+        if (skipWait)
+        {
+            ActionAttack();
+        }
+    }
+    else
+    {
+        m_ActionType = ACTION_NONE;
     }
 }
 
