@@ -91,7 +91,7 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 {
     m_Tick = tick;
 
-    CBattleEntity* PSelf = m_PPet;
+    CBattleEntity* PSelf = m_PChar;
 
     if ((m_ActionType != ACTION_NONE) && jailutils::InPrison(m_PChar))
     {
