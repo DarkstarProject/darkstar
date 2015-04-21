@@ -91,6 +91,8 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 {
     m_Tick = tick;
 
+    CBattleEntity* PSelf = m_PPet;
+
     if ((m_ActionType != ACTION_NONE) && jailutils::InPrison(m_PChar))
     {
         Reset();
@@ -129,7 +131,11 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 
     default: DSP_DEBUG_BREAK_IF(true);
     }
-    m_PChar->UpdateEntity();
+
+    if (m_PChar && PSelf->PBattleAI == this)
+    {
+        m_PChar->UpdateEntity();
+    }
 }
 
 void CAICharNormal::CheckActionAfterReceive(uint32 tick)
