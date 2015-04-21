@@ -22,40 +22,40 @@ function onTrade(player,npc,trade)
     local count = trade:getItemCount();
     local CurrentAFupgrade = player:getVar("AFupgrade");
     local StoreAncientBeastcoins = player:getVar("Ancien_Beastcoin_store");
-    local AvaibleCombinaisonDectect = 0;
+    local AvailableCombinationDetected = 0;
     local cost = 0;
     local reliccost = 0;
     local time = os.date("*t");
 
     if (CurrentAFupgrade == 0 and count == 4) then -- RELIC Armor +1 ???
         for nb = 2, table.getn(Relic_Armor_Plus_one), 2 do  --looking for the relic armor
-            --trade base relic armor                                                                                    --trade temenos Item                                       --trade appolyion item                                                          --trade craft item                                                                                     have enought ancien beastcoin ctore ?
+            --trade base relic armor                                                                                    --trade temenos Item                                       --trade Apollyon item                                                          --trade craft item                                                                                     have enought ancien beastcoin ctore ?
             if (trade:hasItemQty(Relic_Armor_Plus_one[nb][2],1) and  trade:hasItemQty(Relic_Armor_Plus_one[nb][3],1) and  trade:hasItemQty(Relic_Armor_Plus_one[nb][4],1)  and  trade:hasItemQty(Relic_Armor_Plus_one[nb][5],1) and Relic_Armor_Plus_one[nb][6] <= StoreAncientBeastcoins) then 
-                AvaibleCombinaisonDectect = Relic_Armor_Plus_one[nb-1];
+                AvailableCombinationDetected = Relic_Armor_Plus_one[nb-1];
                 cost = Relic_Armor_Plus_one[nb][6];
-                printf("detect trade  avaible relic combinaison: %u", Relic_Armor_Plus_one[nb][1]);   
+                printf("detect trade - available relic combination: %u", Relic_Armor_Plus_one[nb][1]);   
             end
         end
-    elseif (CurrentAFupgrade == 0 and AvaibleCombinaisonDectect == 0) then -- Artfact Armor +1 ???
+    elseif (CurrentAFupgrade == 0 and AvailableCombinationDetected == 0) then -- Artfact Armor +1 ???
         for nb = 2, table.getn(Artifact_Armor_Plus_one), 2 do  --looking for the Artifact armor
             --trade base Artfact armor                                                                  --- trade Artfact armor -1                                                                       trade craft item
             if (trade:hasItemQty(Artifact_Armor_Plus_one[nb][2],1) and  trade:hasItemQty(Artifact_Armor_Plus_one[nb][3],1) and  trade:hasItemQty(Artifact_Armor_Plus_one[nb][4],1) and trade:hasItemQty(Artifact_Armor_Plus_one[nb][5],Artifact_Armor_Plus_one[nb][6])) then 
                 if (count == 3 + Artifact_Armor_Plus_one[nb][6]) then  --check the total number of item trade (base af + af-1 + craft item + number of curency)
-                    AvaibleCombinaisonDectect = Artifact_Armor_Plus_one[nb-1];
-                    printf("detect trade  avaible Artifact combinaison: %u", Artifact_Armor_Plus_one[nb][1]);
+                    AvailableCombinationDetected = Artifact_Armor_Plus_one[nb-1];
+                    printf("detect trade - available Artifact combination: %u", Artifact_Armor_Plus_one[nb][1]);
                 end
             end
         end
     end
-    if (trade:hasItemQty(1875, count) and AvaibleCombinaisonDectect == 0) then  --- AB storage
+    if (trade:hasItemQty(1875, count) and AvailableCombinationDetected == 0) then  --- AB storage
         local total = StoreAncientBeastcoins + count;
         player:startEvent(0x0137, count, 0, 0, 0, 0, 0, 0, total);
         if (total < 9999) then  -- store max 9999 Ancien beastcoin
             player:setVar("Ancien_Beastcoin_store", total);
             player:tradeComplete();
         end
-    elseif (AvaibleCombinaisonDectect ~= 0) then
-        player:setVar("AFupgrade", AvaibleCombinaisonDectect);
+    elseif (AvailableCombinationDetected ~= 0) then
+        player:setVar("AFupgrade", AvailableCombinationDetected);
         player:setVar("AFupgradeDay", os.time(t) + (3600 - time.min*60)); -- Current time + Remaining minutes in the hour in seconds (Day Change)
         reliccost = StoreAncientBeastcoins-cost;
         player:setVar("Ancien_Beastcoin_store", reliccost); 
@@ -73,26 +73,31 @@ function onTrigger(player,npc)
     local CurrentAFupgrade = 0;
     local StoreAB = player:getVar("Ancien_Beastcoin_store");
     local playergils = player:getGil();
-    local lastcosmotime = 0;
-    local COSMOCLEANSEdayRemaining = 0;
-    local havecosmos = 0;
-
+    local CosmoWaitTime = BETWEEN_2COSMOCLEANSE_WAIT_TIME * 20 * 60 * 60;
+    local lastCosmoTime = player:getVar("Cosmo_Cleanse_TIME");
+    if (lastCosmoTime ~= 0) then lastCosmoTime = lastCosmoTime + CosmoWaitTime; end;
+    local CosmoTime = 0;
+    local hasCosmoCleanse = 0;
+    
     if (player:hasKeyItem(COSMOCLEANSE)) then
-        havecosmos = 1;
+        hasCosmoCleanse = 1;
     else
-        lastcosmotime = player:getVar("Cosmo_Cleanse_TIME");
-        COSMOCLEANSEdayRemaining = lastcosmotime - 1009843200 + (BETWEEN_2COSMOCLEANSE_WAIT_TIME * 24 * 60 * 60); 
-        if (lastcosmotime + (BETWEEN_2COSMOCLEANSE_WAIT_TIME * 24 * 60 * 60)  < os.time()) then
-            COSMOCLEANSEdayRemaining = 2147483649;
+        if (lastCosmoTime <= os.time(t)) then
+            CosmoTime = 2147483649; -- BITMASK for the purchase
+            -- printf("CASE: LESSTHAN | BUY COSMOCLEANSE");
+        elseif (lastCosmoTime > os.time(t)) then
+            CosmoTime = (lastCosmoTime - 1009843200) - 39600; -- (os.time number - BITMASK for the event) - 11 hours in seconds. Only works in this format (strangely).
+            -- printf("CASE: GREATERTHAN |  lastCosmoTime:  "..lastCosmoTime.."  |  CosmoTime:  "..CosmoTime);
         end
     end
     if (player:getVar("AFupgradeDay") <= os.time(t)) then
         CurrentAFupgrade = player:getVar("AFupgrade");
     end
+    
     if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno, 19) == false) then
         player:startEvent(313);
     else
-        player:startEvent(0x0136, 3, CurrentAFupgrade, 0, playergils, COSMOCLEANSEdayRemaining, 1, havecosmos,StoreAB); -- Standard dialog
+        player:startEvent(0x0136, 3, CurrentAFupgrade, 0, playergils, CosmoTime, 1, hasCosmoCleanse, StoreAB); -- Standard dialog
     end
 end;
 
@@ -167,14 +172,14 @@ function onEventFinish(player,csid,option)
     
     if (csid == 313) then
         player:setMaskBit(player:getVar("WildcatJeuno"), "WildcatJeuno", 19, true);
-    elseif (csid == 0x0136 and option == 3) then--add keyitem for limbus
-        player:setVar("Cosmo_Cleanse_TIME", os.time());
+    elseif (csid == 0x0136 and option == 3) then --add keyitem for limbus
+        player:setVar("Cosmo_Cleanse_TIME", os.time(t));
         player:addKeyItem(COSMOCLEANSE);
         player:messageSpecial(KEYITEM_OBTAINED, COSMOCLEANSE);
         player:delGil(15000);   
-    elseif (csid == 0x0136 and  option >10 and option < 21) then  -- ancien beastcoin reward
+    elseif (csid == 0x0136 and  option >10 and option < 21) then  -- ancient beastcoin reward
         if (player:getFreeSlotsCount() == 0 or player:hasItem(ABreward[option-10])) then  
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, ABreward[option-10]); 
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, ABreward[option-10]);
         else
             player:setVar("Ancien_Beastcoin_store", remainingAB - ABremove[option-10]);
             player:addItem(ABreward[option-10]);
@@ -184,13 +189,13 @@ function onEventFinish(player,csid,option)
         ugrade_armor_Type = player:getVar("AFupgrade");
         --printf("detect type: %u",ugrade_armor);
         if (ugrade_armor_Type < 101 or ugrade_armor_Type >200) then  
-            for nb = 1, table.getn(Relic_Armor_Plus_one), 2 do  --looking for the  relic armor 
+            for nb = 1, table.getn(Relic_Armor_Plus_one), 2 do  -- looking for the  relic armor 
                 if (Relic_Armor_Plus_one[nb] == ugrade_armor_Type) then               
                     ugrade_armor_ID= Relic_Armor_Plus_one[nb+1][1];    
                 end
             end
         else
-            for nb = 1, table.getn(Artifact_Armor_Plus_one), 2 do  --looking for the  Artifact armor
+            for nb = 1, table.getn(Artifact_Armor_Plus_one), 2 do  -- looking for the  Artifact armor
                 if (Artifact_Armor_Plus_one[nb] == ugrade_armor_Type) then               
                     ugrade_armor_ID= Artifact_Armor_Plus_one[nb+1][1];   
                 end
@@ -206,5 +211,3 @@ function onEventFinish(player,csid,option)
         end
     end
 end;
-
-
