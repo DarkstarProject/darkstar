@@ -246,8 +246,6 @@ public:
 private:
 
   bool      m_RageMode;                              // Mode rage
-  bool      m_NewSkin;                               // True if skin has changed
-  uint32    m_SkinID;                                // skinid
   uint32    m_DespawnTimer;                          // Despawn Timer to despawn mob after set duration
   int16     m_mobModStat[MAX_MOBMODIFIER];           // mob specific mods
   int16     m_mobModStatSave[MAX_MOBMODIFIER];       // saved state

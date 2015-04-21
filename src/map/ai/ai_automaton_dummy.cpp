@@ -23,9 +23,13 @@ This file is part of DarkStar-server source code.
 
 #include "ai_automaton_dummy.h"
 
+#include "../mobskill.h"
+
 #include "../entities/automatonentity.h"
 #include "../entities/mobentity.h"
 #include "../entities/petentity.h"
+
+#include "../lua/luautils.h"
 
 #include "../packets/pet_sync.h"
 
@@ -39,6 +43,17 @@ CAIAutomatonDummy::CAIAutomatonDummy(CPetEntity* PPet)
     DSP_DEBUG_BREAK_IF(PPet->getPetType() != PETTYPE_AUTOMATON);
 
     CAutomatonEntity* PAutomaton = (CAutomatonEntity*)PPet;
+
+    m_PPet = PAutomaton;
+
+    uint32 m_magicRecast = 0;
+    uint32 m_magicEnfeebleRecast = 0;
+    uint32 m_magicElementalRecast = 0;
+    uint32 m_magicHealRecast = 0;
+    uint32 m_magicEnhanceRecast = 0;
+    uint32 m_magicStatusRecast = 0;
+
+    uint32 m_LastRangedTime = 0;
 }
 
 void CAIAutomatonDummy::CheckCurrentAction(uint32 tick)
@@ -113,14 +128,17 @@ void CAIAutomatonDummy::ActionAttack()
     }
     else if (CheckTPMove())
     {
-        m_ActionType = ACTION_MOBABILITY_START;
-        ActionAbilityStart();
+        //TODO: check if automaton WS have activation times (don't think so)
+        m_ActionType = ACTION_MOBABILITY_FINISH;
+        ActionAbilityFinish();
         return;
     }
     else if (CheckRangedAttack())
     {
+        //TODO: set ID to ranged attack
         m_ActionType = ACTION_MOBABILITY_FINISH;
         ActionAbilityFinish();
+        m_LastRangedTime = m_Tick;
         return;
     }
 
@@ -263,10 +281,79 @@ bool CAIAutomatonDummy::CheckSpellcast()
 
 bool CAIAutomatonDummy::CheckTPMove()
 {
+    //TODO: range checks
+    if (m_PPet->health.tp > 1000)
+    {
+        std::vector<CMobSkill*> FamilySkills = battleutils::GetMobSkillsByFamily(m_PPet->m_Family);
+
+        std::map<uint16, CMobSkill*> validSkills;
+
+        //load the skills that the automaton has access to with it's skill
+        SKILLTYPE skilltype = SKILL_AME;
+
+        if (m_PPet->getFrame() == FRAME_SHARPSHOT)
+        {
+            skilltype = SKILL_ARA;
+        }
+
+        for (auto PSkill : FamilySkills)
+        {
+            if (m_PPet->PMaster && m_PPet->PMaster->GetSkill(skilltype) > PSkill->getParam() && PSkill->getParam() != -1)
+            {
+                validSkills.insert(std::make_pair(m_PPet->PMaster->GetSkill(skilltype), PSkill));
+            }
+        }
+
+        uint16 currentSkill = 0;
+        int8 currentManeuvers = -1;
+        for (auto PSkill : validSkills)
+        {
+            int8 maneuvers = luautils::OnMobAutomatonSkillCheck(m_PBattleSubTarget, m_PPet, PSkill.second);
+            if ( maneuvers > -1 && (maneuvers > currentManeuvers || (maneuvers == currentManeuvers && PSkill.first > currentSkill)))
+            {
+                SetCurrentMobSkill(PSkill.second);
+                m_PBattleSubTarget = m_PBattleTarget;
+                currentManeuvers = maneuvers;
+                currentSkill = PSkill.first;
+            }
+        }
+
+        // No WS was chosen (waiting on master's TP to skillchain probably)
+        if (currentManeuvers == -1)
+        {
+            return false;
+        }
+        m_LastActionTime = m_Tick;
+        m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
+        m_skillTP = m_PPet->health.tp;
+        m_PPet->health.tp = 0;
+
+        return true;
+    }
     return false;
 }
 
 bool CAIAutomatonDummy::CheckRangedAttack()
 {
     return false;
+}
+
+void CAIAutomatonDummy::TransitionBack(bool skipWait /*= false*/)
+{
+    if (m_PPet->animation == ANIMATION_ATTACK)
+    {
+        m_ActionType = ACTION_ATTACK;
+        if (skipWait)
+        {
+            ActionAttack();
+        }
+    }
+    else
+    {
+        m_ActionType = ACTION_ROAMING;
+        if (skipWait)
+        {
+            ActionRoaming();
+        }
+    }
 }

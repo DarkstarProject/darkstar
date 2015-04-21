@@ -1379,6 +1379,32 @@ INSERT INTO `mob_spell_lists` VALUES ('Ajido_Marujido', 134, 214, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Yali', 135, 357, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Yali', 135, 360, 1, 255);
 
+-- Aern's Wynav (Ix'DRG BRD pets)
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 382, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 376, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 372, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 392, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 397, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 400, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 422, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 462, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 466, 1, 255); -- Virelai (charm)
+
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 34, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 260, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 221, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 258, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 259, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 254, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 253, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 216, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 58, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 59, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 56, 1, 255);
+
+
+
+
 
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;

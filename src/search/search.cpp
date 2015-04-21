@@ -151,6 +151,24 @@ int32 main(int32 argc, int8 **argv)
     WSADATA wsaData;
 #endif
 
+    std::string logFile;
+
+#ifdef DEBUGLOGSEARCH
+#ifdef WIN32
+    logFile = "log\\search-server.log";
+#else
+    logFile = "log/search-server.log";
+#endif
+#endif
+
+    for (int i = 0; i < argc; i++)
+    {
+        if (strcmp(argv[i], "--log") == 0)
+            logFile = argv[i + 1];
+    }
+
+    InitializeLog(logFile);
+
     int iResult;
 
     SOCKET ListenSocket = INVALID_SOCKET;

@@ -581,7 +581,9 @@ namespace charutils
             limitPoints = (uint16)Sql_GetIntData(SqlHandle, 24);
         }
 
-        fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, zoning FROM char_stats WHERE charid = %u;";
+        fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, zoning, "
+            "pet_id, pet_type, pet_hp, pet_mp "
+            "FROM char_stats WHERE charid = %u;";
 
         ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
         bool zoning = false;
@@ -608,6 +610,16 @@ namespace charutils
                 PChar->bazaar.message = '\0';
 
             zoning = Sql_GetUIntData(SqlHandle, 8);
+
+            // Determine if the pet should be respawned.
+            int16 petHP = Sql_GetUIntData(SqlHandle, 11);
+            if (petHP) {
+                PChar->petZoningInfo.petHP = petHP;
+                PChar->petZoningInfo.petID = Sql_GetUIntData(SqlHandle, 9);
+                PChar->petZoningInfo.petMP = Sql_GetIntData(SqlHandle, 12);
+                PChar->petZoningInfo.petType = (PETTYPE)Sql_GetUIntData(SqlHandle, 10);
+                PChar->petZoningInfo.respawnPet = true;
+            }
         }
 
         PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
@@ -704,6 +716,9 @@ namespace charutils
             PChar->m_mentor = (uint8)Sql_GetUIntData(SqlHandle, 1);
         }
 
+        charutils::LoadInventory(PChar);
+        PChar->m_event.EventID = luautils::OnZoneIn(PChar);
+
         CalculateStats(PChar);
         blueutils::LoadSetSpells(PChar);
         puppetutils::LoadAutomaton(PChar);
@@ -712,8 +727,8 @@ namespace charutils
         BuildingCharTraitsTable(PChar);
 
         PChar->animation = (HP == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
-        charutils::LoadInventory(PChar);
-        PChar->m_event.EventID = luautils::OnZoneIn(PChar);
+
+        PChar->StatusEffectContainer->LoadStatusEffects();
 
         charutils::LoadEquip(PChar);
         PChar->health.hp = PChar->loc.destination == ZONE_RESIDENTIAL_AREA ? PChar->GetMaxHP() : HP;
@@ -820,8 +835,6 @@ namespace charutils
                 }
             }
         }
-
-        PChar->StatusEffectContainer->LoadStatusEffects();
     }
 
     void LoadEquip(CCharEntity* PChar)
@@ -2052,9 +2065,9 @@ namespace charutils
                 continue;
             }
 
-            if (PChar->GetMLevel() >= PAbility->getLevel() && PAbility->getID() < 496)
+            if (PChar->GetMLevel() >= PAbility->getLevel())
             {
-                if (PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility))
+                if (PAbility->getID() < 496 && PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility))
                 {
                     addAbility(PChar, PAbility->getID());
                     if (!PChar->PRecastContainer->Has(RECAST_ABILITY, PAbility->getRecastId()))
@@ -2079,13 +2092,13 @@ namespace charutils
         {
             CAbility* PAbility = AbilitiesList.at(i);
 
-            if (PChar->GetSLevel() >= PAbility->getLevel() && PAbility->getID() < 496)
+            if (PChar->GetSLevel() >= PAbility->getLevel())
             {
                 if (PAbility == nullptr){
                     continue;
                 }
 
-                if (PAbility->getLevel() != 0)
+                if (PAbility->getLevel() != 0  && PAbility->getID() < 496)
                 {
                     if (PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility) && !(PAbility->getAddType() & ADDTYPE_MAIN_ONLY))
                     {
@@ -3851,7 +3864,8 @@ namespace charutils
     void SaveCharStats(CCharEntity* PChar)
     {
         const int8* Query = "UPDATE char_stats "
-            "SET hp = %u, mp = %u, nameflags = %u, mhflag = %u, mjob = %u, sjob = %u "
+            "SET hp = %u, mp = %u, nameflags = %u, mhflag = %u, mjob = %u, sjob = %u, "
+            "pet_id = %u, pet_type = %u, pet_hp = %u, pet_mp = %u "
             "WHERE charid = %u;";
 
         Sql_Query(SqlHandle,
@@ -3862,6 +3876,10 @@ namespace charutils
             PChar->profile.mhflag,
             PChar->GetMJob(),
             PChar->GetSJob(),
+            PChar->petZoningInfo.petID,
+            PChar->petZoningInfo.petType,
+            PChar->petZoningInfo.petHP,
+            PChar->petZoningInfo.petMP,
             PChar->id);
     }
 

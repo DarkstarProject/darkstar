@@ -53,7 +53,7 @@ int32 do_init(int32 argc,char** argv)
 {
 	int32 i;
 	LOGIN_CONF_FILENAME = "conf/login_darkstar.conf";
-	VERSION_INFO_FILENAME = "version.info";
+    VERSION_INFO_FILENAME = "version.info";
 
 	const char *lan_cfgName = LAN_CONFIG_NAME;
 	//srand(gettick());
@@ -68,8 +68,8 @@ int32 do_init(int32 argc,char** argv)
 		else if (strcmp(argv[i], "--lan_config") == 0 || strcmp(argv[i], "--lan-config") == 0 )
 			lan_cfgName = argv[i+1];
 		else if (strcmp(argv[i],"--run_once") == 0)	// close the map-server as soon as its done.. for testing [Celest]
-			runflag = 0;
-	}
+            runflag = 0;
+    }
 
 	//lan_config_default(&lan_config);
 	//lan_config_read(lan_cfgName,&lan_config);
@@ -447,6 +447,27 @@ void login_helpscreen(int32 flag)
 	ShowMessage("  --version, --v, -v, /v	Displays the server's version\n");
 	ShowMessage("\n");
 	if (flag) exit(EXIT_FAILURE);
+}
+
+void log_init(int argc, char** argv)
+{
+    std::string logFile;
+
+#ifdef DEBUGLOGLOGIN
+#ifdef WIN32
+    logFile = "log\\login-server.log";
+#else
+    logFile = "log/login-server.log";
+#endif
+#endif
+    for (int i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "--log") == 0)
+        {
+            logFile = argv[i + 1];
+        }
+    }
+    InitializeLog(logFile);
 }
 
 ///////////////////////////////////////////////////////

@@ -480,9 +480,8 @@ void CDataLoader::ExpireAHItems()
             uint32 itemID = (uint32)Sql_GetUIntData(SqlHandle, 1);
             uint8  stack = (uint8)Sql_GetUIntData(SqlHandle, 2);
             uint32 seller = (uint32)Sql_GetUIntData(SqlHandle, 3);
-
             ret = Sql_Query(sqlH2, "INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES "
-                "(%u, (select charname from chars where charid=%u), 1, %u, 0, %u, 0, 'AH-Jeuno');", seller, seller, itemID, stack);
+                "(%u, (select charname from chars where charid=%u), 1, %u, 0, %u, 0, 'AH-Jeuno');", seller, seller, itemID, stack ? 0 : 1);
             //		ShowMessage(cC2, seller, seller, itemID);
             if (ret != SQL_ERROR &&	Sql_NumRows(SqlHandle) != 0)
             {

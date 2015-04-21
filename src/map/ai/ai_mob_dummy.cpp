@@ -349,7 +349,6 @@ void CAIMobDummy::ActionDisengage()
 
     m_PBattleTarget  = nullptr;
 
-    m_PMob->SetMainSkin(m_PMob->id);
     m_PMob->delRageMode();
     m_PMob->m_OwnerID.clean();
     m_PMob->updatemask |= (UPDATE_STATUS | UPDATE_HP);
@@ -824,13 +823,13 @@ void CAIMobDummy::ActionAbilityStart()
     {
         std::random_shuffle(MobSkills.begin(), MobSkills.end()); //Start the selection process by randomizing the container
 
-        for(int i=0;i<MobSkills.size();i++){
-            SetCurrentMobSkill(MobSkills.at(i));
-            if (m_PMobSkill->getValidTargets() == TARGET_ENEMY) //enemy
+        for (auto PMobSkill : MobSkills)
+        {
+            if (PMobSkill->getValidTargets() == TARGET_ENEMY) //enemy
             {
                 m_PBattleSubTarget = m_PBattleTarget;
             }
-            else if (m_PMobSkill->getValidTargets() == TARGET_SELF) //self
+            else if (PMobSkill->getValidTargets() == TARGET_SELF) //self
             {
                 m_PBattleSubTarget = m_PMob;
             }
@@ -839,10 +838,11 @@ void CAIMobDummy::ActionAbilityStart()
                 continue;
             }
             float currentDistance = distance(m_PMob->loc.p, m_PBattleSubTarget->loc.p);
-            if (!m_PMobSkill->isTwoHour() && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, GetCurrentMobSkill()) == 0) //A script says that the move in question is valid
+            if (!PMobSkill->isTwoHour() && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, PMobSkill) == 0) //A script says that the move in question is valid
             {
-                if (currentDistance <= m_PMobSkill->getDistance())
-                    {
+                if (currentDistance <= PMobSkill->getDistance())
+                {
+                    SetCurrentMobSkill(PMobSkill);
                     valid = true;
                     break;
                 }
@@ -1037,11 +1037,16 @@ void CAIMobDummy::ActionAbilityFinish()
     Action.knockback  = 0;
 
     uint16 msg = 0;
+    uint16 defaultMessage = Action.messageID;
+
     for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin() ; it != m_PTargetFind->m_targets.end(); ++it)
     {
         CBattleEntity* PTarget = *it;
 
         Action.ActionTarget = PTarget;
+
+        // reset the skill's message back to default
+        m_PMobSkill->setMsg(defaultMessage);
 
         Action.param = luautils::OnMobWeaponSkill(PTarget, m_PMob, GetCurrentMobSkill());
 

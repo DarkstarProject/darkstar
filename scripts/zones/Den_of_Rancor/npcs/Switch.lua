@@ -16,5 +16,5 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	GetNPCByID(17433054):openDoor(); -- drop gate to Sacrificial Chamber   
+	GetNPCByID(17433051):openDoor(); -- drop gate to Sacrificial Chamber   
 end;

@@ -332,8 +332,6 @@ public:
     int32 rageMode(lua_State*);             // Add rage mode
     int32 isUndead(lua_State*);             // True if mob is undead
     int32 isMobType(lua_State*);            // True if mob is of type passed to function
-    int32 changeSkin(lua_State*);           // Change mob skin
-    int32 getSkinID(lua_State*);            // Get Skin ID (0 for base skin)
     int32 getSystem(lua_State*);
     int32 getFamily(lua_State*);
 
@@ -557,6 +555,7 @@ public:
     int32 entityAnimationPacket(lua_State* L);
     int32 getPartyLeader(lua_State* L);
     int32 getParty(lua_State* L);
+    int32 getAlliance(lua_State* L);
     int32 messageText(lua_State* L);
     int32 instanceEntry(lua_State* L);
     int32 getInstance(lua_State* L);

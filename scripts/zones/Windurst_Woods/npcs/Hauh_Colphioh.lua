@@ -87,7 +87,7 @@ local items = {
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    unionRepresentativeTrade(player, npc, trade, 0x2727, 4);
+    unionRepresentativeTrade(player, npc, trade, 0x2729, 4);
 end;
 
 -----------------------------------
@@ -95,7 +95,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 4, 0x2726, "guild_weaving", keyitems);
+	unionRepresentativeTrigger(player, 4, 0x2728, "guild_weaving", keyitems);
 end;
 
 -----------------------------------
@@ -115,9 +115,9 @@ function onEventFinish(player,csid,option,target)
 	 -- printf("CSID: %u",csid);
 	 -- printf("RESULT: %u",option);
      
-    if (csid == 0x2726) then
+    if (csid == 0x2728) then
         unionRepresentativeTriggerFinish(player, option, target, 4, "guild_weaving", keyitems, items);
-    elseif(csid == 0x2727) then
+    elseif(csid == 0x2729) then
         player:messageSpecial(GP_OBTAINED, option);
     end
 end;

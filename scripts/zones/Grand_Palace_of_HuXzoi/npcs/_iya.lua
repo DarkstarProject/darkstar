@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
    
-    if(player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus")==8)then
+    if(player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 3) then
 		player:startEvent(0x0001);
     else
 		player:startEvent(0x0034);
@@ -48,21 +48,12 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x0034 and option == 1) then
 		player:setPos(-419.995,0,248.483,191,35); -- To The Garden of RuHmet {R}
-	elseif(csid == 0x0001)then	
+	elseif(csid == 0x0001) then	
 		player:setVar("PromathiaStatus",0);
-        player:setVar("Ru_aern_1-1KILL",0);
-		player:setVar("Ru_aern_1-2KILL",0);
-		player:setVar("Ru_aern_1-3KILL",0);
-		player:setVar("Ru_aern_2-1KILL",0);
-		player:setVar("Ru_aern_2-2KILL",0);
-		player:setVar("Ru_aern_2-3KILL",0); 
-		player:setVar("Ru_aern_3-1KILL",0);
-		player:setVar("Ru_aern_3-2KILL",0);
-		player:setVar("Ru_aern_3-3KILL",0);
-		player:completeMission(COP,GARDEN_OF_ANTIQUITY);
-		player:addMission(COP,A_FATE_DECIDED);
+		player:completeMission(COP, GARDEN_OF_ANTIQUITY);
+		player:addMission(COP, A_FATE_DECIDED);
 		player:addItem(14672);
-		player:messageSpecial(ITEM_OBTAINED,14672); 
+		player:messageSpecial(ITEM_OBTAINED, 14672); 
 	end
 	
 end;

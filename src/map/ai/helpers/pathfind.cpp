@@ -138,7 +138,7 @@ bool CPathFind::PathAround(position_t point, float distance, uint8 pathFlags)
 
 	position_t* lastPoint = &point;
 
-	float randomRadian = RandomNumber() * M_PI * 2.0f;
+	float randomRadian = WELL512::GetRandomNumber<float>(0,2*M_PI);
 
 	lastPoint->x += cosf(randomRadian) * distance;
 	lastPoint->z += sinf(randomRadian) * distance;

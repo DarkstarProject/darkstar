@@ -284,7 +284,14 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
         CSpell* spell = spell::GetSpell(SpellID);
         if (spell)
         {
-            m_PSpell = std::unique_ptr<CSpell>(new CSpell(*spell));
+            if (spell->getSpellGroup() == SPELLGROUP_BLUE)
+            {
+                m_PSpell = std::unique_ptr<CSpell>(new CBlueSpell(*(CBlueSpell*)spell));
+            }
+            else
+            {
+                m_PSpell = std::unique_ptr<CSpell>(new CSpell(*spell));
+            }
         }
         else
         {

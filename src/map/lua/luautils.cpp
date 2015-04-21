@@ -66,6 +66,7 @@
 #include "../packets/message_basic.h"
 #include "../packets/entity_visual.h"
 #include "../items/item_puppet.h"
+#include "../entities/automatonentity.h"
 
 namespace luautils
 {
@@ -145,7 +146,7 @@ int32 init()
 	Lunar<CLuaZone>::Register(LuaHandle);
     Lunar<CLuaItem>::Register(LuaHandle);
 
-    luaL_dostring(LuaHandle, "require('bit')");
+    luaL_dostring(LuaHandle, "if not bit then bit = require('bit') end");
 
 	expansionRestrictionEnabled = (GetSettingsVariable("RESTRICT_BY_EXPANSION") != 0);
 
@@ -2995,6 +2996,46 @@ int32 OnMobSkillCheck(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSk
     return retVal;
 }
 
+int32 OnMobAutomatonSkillCheck(CBaseEntity* PTarget, CAutomatonEntity* PAutomaton, CMobSkill* PMobSkill)
+{
+    lua_prepscript("scripts/globals/abilities/pets/%s.lua", PMobSkill->getName());
+
+    if (prepFile(File, "onMobSkillCheck"))
+    {
+        return -1;
+    }
+
+    CLuaBaseEntity LuaBaseEntity(PTarget);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+    CLuaBaseEntity LuaMobEntity(PAutomaton);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+
+    CLuaMobSkill LuaMobSkill(PMobSkill);
+    Lunar<CLuaMobSkill>::push(LuaHandle, &LuaMobSkill);
+
+    if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::OnMobAutomatonSkillCheck (%s): %s\n", PMobSkill->getName(), lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns < 1)
+    {
+        ShowError("luautils::OnMobAutomatonSkillCheck (%s): 1 return expected, got %d\n", File, returns);
+        return -1;
+    }
+    uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : -5);
+    lua_pop(LuaHandle, 1);
+    if (returns > 1)
+    {
+        ShowError("luautils::OnMobAutomatonSkillCheck (%s): 1 return expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns - 1);
+    }
+    return retVal;
+}
+
 /***********************************************************************
 *																		*
 *																		*
@@ -3896,9 +3937,16 @@ int32 UpdateNMSpawnPoint(lua_State* L)
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
 		if (PMob != nullptr) {
-		  int32 r = WELL512::GetRandomNumber(50);
-		  int32 ret = Sql_Query(SqlHandle, "SELECT pos_x, pos_y, pos_z FROM `nm_spawn_points` WHERE mobid=%u AND pos=%i", mobid, r);
-
+          int32 r = 0;
+          int32 ret = Sql_Query(SqlHandle, "SELECT count(mobid) FROM `nm_spawn_points` where mobid=%u", mobid);
+		  if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS && Sql_GetUIntData(SqlHandle, 0) > 0) {
+            r = WELL512::GetRandomNumber(Sql_GetUIntData(SqlHandle,0));
+		  } else {
+			ShowDebug(CL_RED"UpdateNMSpawnPoint: SQL error: No entries for mobid <%u> found.\n" CL_RESET, mobid);
+            return 0;
+          }
+          
+		  ret = Sql_Query(SqlHandle, "SELECT pos_x, pos_y, pos_z FROM `nm_spawn_points` WHERE mobid=%u AND pos=%i", mobid, r);
 		  if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
 			PMob->m_SpawnPoint.rotation = WELL512::GetRandomNumber(256);
 			PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle,0);

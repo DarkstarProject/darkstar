@@ -17,15 +17,9 @@ end;
 -----------------------------------
 
 function onMobSpawn(mob)
-    if (math.random(0,1) == 0) then
-        mob:hideName(true);
-        mob:untargetable(true);
-        mob:AnimationSub(5);
-    else
-        mob:hideName(false);
-        mob:untargetable(false);
-        mob:AnimationSub(6);
-    end
+    mob:hideName(true);
+    mob:untargetable(true);
+    mob:AnimationSub(5);
 end;
 
 -----------------------------------

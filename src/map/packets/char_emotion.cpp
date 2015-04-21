@@ -29,7 +29,7 @@
 #include "../entities/charentity.h"
 
 
-CCharEmotionPacket::CCharEmotionPacket(CCharEntity * PChar, int8* buff) 
+CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint8* buff) 
 {
 	this->type = 0x5a;
 	this->size = 0x0c;

@@ -133,8 +133,6 @@ void CAICharCharm::ActionDisengage()
 
 void CAICharCharm::ActionAttack()
 {
-    DSP_DEBUG_BREAK_IF(m_PBattleTarget == nullptr);
-
     SetBattleTarget(m_PChar->PMaster->PBattleAI->GetBattleTarget());
 
     if (m_PBattleTarget == nullptr)
@@ -181,6 +179,23 @@ void CAICharCharm::ActionAttack()
                 DoAttack();
             }
         }
+    }
+}
+
+void CAICharCharm::TransitionBack(bool skipWait /*= false*/)
+{
+    m_PBattleSubTarget = nullptr;
+    if (m_PChar->animation == ANIMATION_ATTACK)
+    {
+        m_ActionType = ACTION_ATTACK;
+        if (skipWait)
+        {
+            ActionAttack();
+        }
+    }
+    else
+    {
+        m_ActionType = ACTION_NONE;
     }
 }
 

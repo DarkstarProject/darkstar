@@ -45,7 +45,7 @@ CShopItemsPacket::CShopItemsPacket(CCharEntity * PChar)
 
             i = 0;
             this->size = 0x04;
-            memset(data + 4, 0, sizeof(data) - 4);
+            memset(data + 4, 0, PACKET_SIZE - 8);
         }
 		this->size += 0x06;
 

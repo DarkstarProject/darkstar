@@ -507,6 +507,12 @@ bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
         return false;
     }
 
+    if (!spell::CanUseSpell(m_PEntity, PSpell->getID()))
+    {
+        PushError(MSGBASIC_CANNOT_CAST_SPELL, PSpell->getID());
+        return false;
+    }
+
     if(PTarget->isDead() && !(PSpell->getValidTarget() & TARGET_PLAYER_DEAD))
     {
         return false;
