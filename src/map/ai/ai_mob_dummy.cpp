@@ -1911,7 +1911,7 @@ void CAIMobDummy::ActionAttack()
 
 void CAIMobDummy::FinishAttack()
 {
-    if  (m_PMob->getMobMod(MOBMOD_RAGE) && !m_PMob->hasRageMode() && m_Tick >= m_StartBattle + m_PMob->getBigMobMod(MOBMOD_RAGE))
+    if (m_PMob->getMobMod(MOBMOD_RAGE) && !m_PMob->hasRageMode() && m_Tick >= m_StartBattle + m_PMob->getBigMobMod(MOBMOD_RAGE))
     {
         // come at me bro
         m_PMob->addRageMode();
@@ -1920,9 +1920,16 @@ void CAIMobDummy::FinishAttack()
 
 bool CAIMobDummy::TryDeaggro()
 {
-    if(m_PBattleTarget == nullptr && (m_PMob->PEnmityContainer != nullptr && m_PMob->PEnmityContainer->GetHighestEnmity() == nullptr))
+    if (m_PBattleTarget == nullptr)
     {
-        return true;
+        if (m_PMob->PEnmityContainer->GetHighestEnmity() == nullptr)
+        {
+            return true;
+        }
+        else
+        {
+            m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+        }
     }
 
     // target is dead, on a choco or zoned, so wipe them from our enmity list
