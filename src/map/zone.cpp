@@ -225,9 +225,14 @@ uint8 CZone::GetPartyBattleMusic()
     return m_zoneMusic.m_bSongM;
 }
 
-uint8 CZone::GetBackgroundMusic()
+uint8 CZone::GetBackgroundMusicDay()
 {
-    return m_zoneMusic.m_song;
+    return m_zoneMusic.m_songDay;
+}
+
+uint8 CZone::GetBackgroundMusicNight()
+{
+    return m_zoneMusic.m_songNight;
 }
 
 bool CZone::CanUseMisc(uint16 misc)
@@ -332,7 +337,8 @@ void CZone::LoadZoneSettings()
           "zone.name,"
           "zone.zoneip,"
           "zone.zoneport,"
-          "zone.music,"
+          "zone.music_day,"
+          "zone.music_night,"
           "zone.battlesolo,"
           "zone.battlemulti,"
           "zone.tax,"
@@ -354,16 +360,17 @@ void CZone::LoadZoneSettings()
 
         m_zoneIP   = inet_addr(Sql_GetData(SqlHandle,1));
         m_zonePort = (uint16)Sql_GetUIntData(SqlHandle,2);
-        m_zoneMusic.m_song   = (uint8)Sql_GetUIntData(SqlHandle,3);   // background music
-        m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle,4);   // solo battle music
-        m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle,5);   // party battle music
-        m_tax = (uint16)(Sql_GetFloatData(SqlHandle,6) * 100);      // tax for bazaar
-        m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,7);
-        m_useNavMesh = (bool)Sql_GetIntData(SqlHandle,8);
+        m_zoneMusic.m_songDay = (uint8)Sql_GetUIntData(SqlHandle, 3);   // background music (day)
+        m_zoneMusic.m_songNight = (uint8)Sql_GetUIntData(SqlHandle, 4);   // background music (night)
+        m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle,5);   // solo battle music
+        m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle,6);   // party battle music
+        m_tax = (uint16)(Sql_GetFloatData(SqlHandle,7) * 100);      // tax for bazaar
+        m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,8);
+        m_useNavMesh = (bool)Sql_GetIntData(SqlHandle,9);
 
-        m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 9);
+        m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 10);
 
-        if (Sql_GetData(SqlHandle,10) != nullptr) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
+        if (Sql_GetData(SqlHandle,11) != nullptr) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
         {
             m_BattlefieldHandler = new CBattlefieldHandler(m_zoneID);
         }

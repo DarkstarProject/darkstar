@@ -91,6 +91,8 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 {
     m_Tick = tick;
 
+    CBattleEntity* PSelf = m_PChar;
+
     if ((m_ActionType != ACTION_NONE) && jailutils::InPrison(m_PChar))
     {
         Reset();
@@ -129,7 +131,11 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 
     default: DSP_DEBUG_BREAK_IF(true);
     }
-    m_PChar->UpdateEntity();
+
+    if (m_PChar && PSelf->PBattleAI == this)
+    {
+        m_PChar->UpdateEntity();
+    }
 }
 
 void CAICharNormal::CheckActionAfterReceive(uint32 tick)
@@ -189,6 +195,11 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
     if (PTarget == nullptr)
     {
         *PBattleTarget = m_PChar; //this prevents a nullptr crash when message is sent
+        return false;
+    }
+
+    if (m_PChar->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect())
+    {
         return false;
     }
 

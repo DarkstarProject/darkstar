@@ -326,6 +326,11 @@ void CBattlefield::addEnemy(CMobEntity* PMob, uint8 condition){
 		MobVictoryCondition_t mobCondition = {PMob, false};
 		m_EnemyVictoryList.push_back(mobCondition);
 	}
+    // TODO: move dynamis/limbus shit to a subclass (this is just ridiculous)
+    if (!(m_ZoneID > 184 && m_ZoneID < 189) && !(m_ZoneID > 133 && m_ZoneID < 136) && !(m_ZoneID > 38 && m_ZoneID < 43))
+    {
+        PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_BATTLEFIELD, EFFECT_BATTLEFIELD, this->m_BcnmID, 0, 0), true);
+    }
 }
 
 void CBattlefield::addNpc(CBaseEntity* PNpc){

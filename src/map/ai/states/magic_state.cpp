@@ -478,7 +478,11 @@ bool CMagicState::CheckInterrupt()
 
 bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
 {
-    if(!CheckValidTarget(PTarget)) return false;
+    if (!CheckValidTarget(PTarget))
+    {
+        PushError(MSGBASIC_CANNOT_ON_THAT_TARG, 0);
+        return false;
+    }
 
 	if(!m_enableCasting ||
 		m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
