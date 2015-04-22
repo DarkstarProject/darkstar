@@ -35,7 +35,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#include <numeric>
+#include <algorithm>
 
 int32 login_fd;					//main fd(socket) of server
 
@@ -292,5 +292,5 @@ int32 do_close_login(login_session_data_t* loginsd,int32 fd)
 
 bool check_string(std::string const& str, std::size_t max_length)
 {
-    return str.size() > 0 && str.size() <= max_length && std::all_of(str.cbegin(), str.cend(), [](char const& c) { return c >= 0x20; });
+    return !str.empty() && str.size() <= max_length && std::all_of(str.cbegin(), str.cend(), [](char const& c) { return c >= 0x20; });
 }
