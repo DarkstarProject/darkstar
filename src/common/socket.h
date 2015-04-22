@@ -243,7 +243,7 @@ extern int32 naddr_;   // # of ip addresses
 
 		uint32 client_addr; // remote client address
 
-		unsigned char *rdata, *wdata;
+		char *rdata, *wdata;
 		size_t max_rdata, max_wdata;
 		size_t rdata_size, wdata_size;
 		size_t rdata_pos;
