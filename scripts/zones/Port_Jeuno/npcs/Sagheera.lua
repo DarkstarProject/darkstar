@@ -5,6 +5,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Port_Jeuno/TextIDs");
@@ -21,10 +22,9 @@ local ABremove = {150,75,75,75,150,75,75, 75, 75,75};
 function onTrade(player,npc,trade)
     local count = trade:getItemCount();
     local CurrentAFupgrade = player:getVar("AFupgrade");
-    local StoreAncientBeastcoins = player:getVar("Ancien_Beastcoin_store");
+    local StoreAncientBeastcoins = player:getCurrency("ancient_beastcoin");
     local AvailableCombinationDetected = 0;
     local cost = 0;
-    local reliccost = 0;
     local time = os.date("*t");
 
     if (CurrentAFupgrade == 0 and count == 4) then -- RELIC Armor +1 ???
@@ -47,18 +47,18 @@ function onTrade(player,npc,trade)
             end
         end
     end
+    
     if (trade:hasItemQty(1875, count) and AvailableCombinationDetected == 0) then  --- AB storage
         local total = StoreAncientBeastcoins + count;
         player:startEvent(0x0137, count, 0, 0, 0, 0, 0, 0, total);
         if (total < 9999) then  -- store max 9999 Ancien beastcoin
-            player:setVar("Ancien_Beastcoin_store", total);
+            player:addCurrency("ancient_beastcoin", total);
             player:tradeComplete();
         end
     elseif (AvailableCombinationDetected ~= 0) then
         player:setVar("AFupgrade", AvailableCombinationDetected);
         player:setVar("AFupgradeDay", os.time(t) + (3600 - time.min*60)); -- Current time + Remaining minutes in the hour in seconds (Day Change)
-        reliccost = StoreAncientBeastcoins-cost;
-        player:setVar("Ancien_Beastcoin_store", reliccost); 
+        player:delCurrency("ancient_beastcoin", cost); -- cost is defined if the relic/af was found above
         player:tradeComplete();
         player:startEvent(0x0138);
     end
@@ -71,7 +71,7 @@ end;
 function onTrigger(player,npc)
     local WildcatJeuno = player:getVar("WildcatJeuno");
     local CurrentAFupgrade = 0;
-    local StoreAB = player:getVar("Ancien_Beastcoin_store");
+    local StoreAB = player:getCurrency("ancient_beastcoin");
     local playergils = player:getGil();
     local CosmoWaitTime = BETWEEN_2COSMOCLEANSE_WAIT_TIME * 20 * 60 * 60;
     local lastCosmoTime = player:getVar("Cosmo_Cleanse_TIME");
@@ -163,7 +163,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    local remainingAB=player:getVar("Ancien_Beastcoin_store");
+    local remainingAB=player:getCurrency("ancient_beastcoin");
     local ugrade_armor_Type = 0 ;
     local ugrade_armor_ID = 0 ;
     --printf("CSID: %u",csid);
@@ -181,7 +181,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0 or player:hasItem(ABreward[option-10])) then  
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, ABreward[option-10]);
         else
-            player:setVar("Ancien_Beastcoin_store", remainingAB - ABremove[option-10]);
+            player:delCurrency("ancient_beastcoin", ABremove[option-10]);
             player:addItem(ABreward[option-10]);
             player:messageSpecial(ITEM_OBTAINED, ABreward[option-10]);
         end
