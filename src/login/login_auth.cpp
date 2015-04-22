@@ -40,7 +40,7 @@
 int32 login_fd;					//main fd(socket) of server
 
 /*
-*	
+*
 *		LOGIN SECTION
 *
 */
@@ -78,7 +78,7 @@ int32 login_parse(int32 fd)
 		return 0;
 	}
 
-	//all auth packets have one structure: 
+	//all auth packets have one structure:
 	// [login][passwords][code] => summary assign 33 bytes
 	if( session[fd]->rdata_size == 33 )
 	{
@@ -108,7 +108,7 @@ int32 login_parse(int32 fd)
 			const int8* fmtQuery = "SELECT accounts.id,accounts.status \
 									FROM accounts \
 									WHERE accounts.login = '%s' AND accounts.password = PASSWORD('%s')";
-			int32 ret = Sql_Query(SqlHandle, fmtQuery, name.c_str(), password.c_str());	
+			int32 ret = Sql_Query(SqlHandle, fmtQuery, name.c_str(), password.c_str());
 			if( ret != SQL_ERROR  && Sql_NumRows(SqlHandle) != 0)
 			{
 				ret = Sql_NextRow(SqlHandle);
@@ -190,7 +190,7 @@ int32 login_parse(int32 fd)
 								break;
 							}
 						}
-					} 
+					}
 				}
 				//////
 
@@ -213,10 +213,10 @@ int32 login_parse(int32 fd)
 				do_close_login(sd,fd);
 				return -1;
 			}
-						
+
 			if( Sql_NumRows(SqlHandle) == 0 )
 			{
-				//creating new account_id 
+				//creating new account_id
 				char *fmtQuery = "SELECT max(accounts.id) FROM accounts;";
 
 				uint32 accid = 0;
@@ -224,7 +224,7 @@ int32 login_parse(int32 fd)
 				if( Sql_Query(SqlHandle,fmtQuery) != SQL_ERROR  && Sql_NumRows(SqlHandle) != 0)
 				{
 					Sql_NextRow(SqlHandle);
-					
+
 					accid = Sql_GetUIntData(SqlHandle,0)+1;
 				}else{
 					WBUFB(session[fd]->wdata,0) = LOGIN_ERROR_CREATE;
@@ -234,7 +234,7 @@ int32 login_parse(int32 fd)
 				}
 
 				accid = (accid < 1000 ? 1000 : accid);
-			
+
 				//creating new account
 				time_t timecreate;
 				tm*	   timecreateinfo;
@@ -292,5 +292,5 @@ int32 do_close_login(login_session_data_t* loginsd,int32 fd)
 
 bool check_string(std::string const& str, std::size_t max_length)
 {
-    return str.size() <= max_length && std::all_of(str.cbegin(), str.cend(), [](char const& c) { return c >= 0x20; });
+    return str.size() > 0 && str.size() <= max_length && std::all_of(str.cbegin(), str.cend(), [](char const& c) { return c >= 0x20; });
 }
