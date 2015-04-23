@@ -68,13 +68,7 @@ function onAdditionalEffect(mob, target, damage)
     dmg = addBonusesAbility(mob, ELE_WIND, target, dmg, params);
     dmg = dmg * applyResistanceAddEffect(mob, target, ELE_WIND, 0);
     dmg = adjustForTarget(target, dmg, ELE_WIND);
-
-    local message = 163;
-    if (dmg < 0) then
-        message = 167;
-    end
-
     dmg = finalMagicNonSpellAdjustments(mob, target, ELE_WIND, dmg);
 
-    return SUBEFFECT_WIND_DAMAGE, message, dmg;
+    return SUBEFFECT_WIND_DAMAGE, 163, dmg;
 end;

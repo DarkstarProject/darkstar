@@ -64,14 +64,7 @@ function onAdditionalEffect(mob, target, damage)
     dmg = addBonusesAbility(mob, ELE_FIRE, target, dmg, params);
     dmg = dmg * applyResistanceAddEffect(mob, target, ELE_FIRE, 0);
     dmg = adjustForTarget(target, dmg, ELE_FIRE);
-
-
-    local message = 163;
-    if (dmg < 0) then
-        message = 167;
-    end
-
     dmg = finalMagicNonSpellAdjustments(mob, target, ELE_FIRE, dmg);
 
-    return SUBEFFECT_FIRE_DAMAGE, message, dmg;
+    return SUBEFFECT_FIRE_DAMAGE, 163, dmg;
 end;
