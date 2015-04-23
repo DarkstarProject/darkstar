@@ -9533,7 +9533,7 @@ inline int32 CLuaBaseEntity::getModelId(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
 
-    lua_pushinteger(L, RBUFW(&m_PBaseEntity->look, 16));
+    lua_pushinteger(L, m_PBaseEntity->GetModelId());
 
     return 1;
 }
