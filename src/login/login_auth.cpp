@@ -247,7 +247,7 @@ int32 login_parse(int32 fd)
 				fmtQuery = "INSERT INTO accounts(id,login,password,timecreate,timelastmodify,status,priv)\
 									   VALUES(%d,'%s',PASSWORD('%s'),'%s',NULL,%d,%d);";
 
-				if (Sql_Query(SqlHandle, fmtQuery, accid, name.c_str(), password,
+				if (Sql_Query(SqlHandle, fmtQuery, accid, name.c_str(), password.c_str(),
 							  strtimecreate,ACCST_NORMAL,ACCPRIV_USER) == SQL_ERROR )
 				{
 					WBUFB(session[fd]->wdata,0) = LOGIN_ERROR_CREATE;
