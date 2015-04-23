@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: Batallia Downs
---  NPC: qm2 (???)
+--  NPC: qm3 (???)
 --  Pop for the quest "Chasing Quotas"
 --	Involved in Mission 9-1 (San dOria)
 -----------------------------------
