@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @zoneplayer <player1> (<player2) or zone)
--- auth: <Unknown> :: Modded by atom0s :: Modded again by TeoTwawki :: Modded by Turttle
+-- auth:TeoTwawki (at Nasomi's request);(@zone portion <Unknown> :: Modded by atom0s) :: Modded by Turttle
 -- desc: Teleport a player to:
 -- A) The given zone
 -- B) another player
