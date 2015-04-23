@@ -6,7 +6,6 @@
 --  @pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
-package.loaded["scripts/globals/porter_moogle_util"] = nil;
 -----------------------------------
 
 require("scripts/zones/Rabao/TextIDs");
@@ -20,8 +19,6 @@ local e =
     ALREADY_STORED_ID   =   139,
     MAGIAN_TRIAL_ID     =   140
 };
-
-RETRIEVE_DIALOG_ID  =   10721;
 
 -----------------------------------
 -- onTrade Action
@@ -42,19 +39,12 @@ end
 -- onEventUpdate
 -----------------------------------
 function onEventUpdate(player,csid,option)
-    if (csid == e.RETRIEVE_EVENT_ID) then
-        retrieveItem(player, option, RETRIEVE_DIALOG_ID, ITEM_CANNOT_BE_OBTAINED);
-    end
+    eventUpdate(player, csid, option, e.RETRIEVE_EVENT_ID, RETRIEVE_DIALOG_ID, ITEM_CANNOT_BE_OBTAINED);
 end
 
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 function onEventFinish(player,csid,option)
-    -- Is there a default option value for cancelling selection windows?
-    if (csid == e.TALK_EVENT_ID and option < 1000) then
-        buyStorageSlip(player, option, ITEM_CANNOT_BE_OBTAINED, ITEM_OBTAINED, NOT_HAVE_ENOUGH_GIL);
-    else
-        player:setLocalVar('slipId', 0);
-    end
+    eventFinish(player, csid, option, e.TALK_EVENT_ID, ITEM_CANNOT_BE_OBTAINED, ITEM_OBTAINED, NOT_HAVE_ENOUGH_GIL);
 end

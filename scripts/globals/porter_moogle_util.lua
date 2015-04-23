@@ -3,6 +3,7 @@
 -- desc: Common functionality for Porter Moogles.
 -----------------------------------
 require("scripts/globals/common");
+local bit = require("bit");
 
 -- Item IDs for all of the slips.
 local slipIds = { 29312, 29313, 29314, 29315, 29316, 29317, 29318, 29319, 29320, 29321, 29322, 29323, 29324, 29325, 29326, 29327, 29328, 29329, 29330, 29331, 29332 };
@@ -76,42 +77,14 @@ function getItemsOnSlip(extra, slipId)
         if byte < 0 then
             byte = byte + 256;
         end
-        
-        if (hasBit(byte, bit((k - 1) % 8 + 1))) then
+                
+        if (bit.band(bit.rshift(byte, (k - 1) % 8), 1) ~= 0) then
             itemsOnSlip[x] = v;
             x = x + 1;
         end
     end
     
     return itemsOnSlip;
-end
-
-----------------------------------------------------------------------
--- desc : Get the bit at index p.
-----------------------------------------------------------------------
-function bit(p) 
-    return 2 ^ (p - 1);
- end
- 
-----------------------------------------------------------------------
--- desc : Checks if the bit p in byte x is set. 
-----------------------------------------------------------------------
-function hasBit(x, p) 
-    return x % (p + p) >= p;
-end
-
-----------------------------------------------------------------------
--- desc : Set the bit p in byte x. 
-----------------------------------------------------------------------
-function setBit(x, p) 
-    return hasBit(x, p) and x or x + p 
-end 
-
-----------------------------------------------------------------------
--- desc : Clear the bit p in byte x.
-----------------------------------------------------------------------
-function clearBit(x, p) 
-    return hasBit(x, p) and x - p or x 
 end
 
 ----------------------------------------------------------------------
@@ -220,9 +193,7 @@ function storeItems(player, storableItemIds, slipId, e)
                 if bitmask < 0 then
                     bitmask = bitmask + 256;
                 end
-                
-                bitmask = setBit(bitmask, bit((k - 1) % 8 + 1));
-                extra[math.floor((k - 1) / 8)] = bitmask;
+                extra[math.floor((k - 1) / 8)] = bit.bor(bitmask, bit.lshift(1, (k - 1) % 8));
             end
         end
         
@@ -284,9 +255,9 @@ end
 --        the slip's extra data, displays a message to the user, and
 --        updates the user's event data.
 ----------------------------------------------------------------------
-function retrieveItem(player, option, RETRIEVE_DIALOG_ID, ITEM_CANNOT_BE_OBTAINED)
+function eventUpdate(player, csid, option, RETRIEVE_EVENT_ID, RETRIEVE_DIALOG_ID, ITEM_CANNOT_BE_OBTAINED)
     local slipId = player:getLocalVar('slipId');
-    if (slipId ~= 0 and slipId ~= nil) then
+    if (csid == RETRIEVE_EVENT_ID and slipId ~= 0 and slipId ~= nil) then
         local extra = player:getRetrievableItemsForSlip(slipId);
         local itemsOnSlip = getItemsOnSlip(extra, slipId);
         local retrievedItemId = itemsOnSlip[option + 1];
@@ -300,8 +271,7 @@ function retrieveItem(player, option, RETRIEVE_DIALOG_ID, ITEM_CANNOT_BE_OBTAINE
             if bitmask < 0 then
                 bitmask = bitmask + 256;
             end
-
-            bitmask = clearBit(bitmask, bit((k - 1) % 8 + 1));
+            bitmask = bit.band(bitmask, bit.bnot(bit.lshift(1, (k - 1) % 8)));
             extra[extraId + 1] = bitmask;
 
             player:retrieveItemFromSlip(slipId, retrievedItemId, extraId, bitmask);
@@ -316,22 +286,26 @@ end
 ----------------------------------------------------------------------
 -- desc : Completes the event.
 ----------------------------------------------------------------------
-function buyStorageSlip(player, option, ITEM_CANNOT_BE_OBTAINED, ITEM_OBTAINED, NOT_HAVE_ENOUGH_GIL)
-    -- This is just because hilarious.
-    option = math.floor(option / 16) + (option % 16);
-    local hasItem = player:hasItem(slipIds[option]);
-    if (hasItem or player:getFreeSlotsCount() == 0) then
-        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, slipIds[option]);
-        return;
-    end
+function eventFinish(player, csid, option, TALK_EVENT_ID, ITEM_CANNOT_BE_OBTAINED, ITEM_OBTAINED, NOT_HAVE_ENOUGH_GIL)
+    if (csid == TALK_EVENT_ID and option < 1000) then
+        -- This is just because hilarious.
+        option = math.floor(option / 16) + (option % 16);
+        local hasItem = player:hasItem(slipIds[option]);
+        if (hasItem or player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, slipIds[option]);
+            return;
+        end
 
-    if (player:getGil() < 1000) then
-        player:messageSpecial(NOT_HAVE_ENOUGH_GIL, slipIds[option]);
-        return;
-    end
-    
-    if (player:delGil(1000)) then
-        player:addItem(slipIds[option]);
-        player:messageSpecial(ITEM_OBTAINED, slipIds[option]);
+        if (player:getGil() < 1000) then
+            player:messageSpecial(NOT_HAVE_ENOUGH_GIL, slipIds[option]);
+            return;
+        end
+        
+        if (player:delGil(1000)) then
+            player:addItem(slipIds[option]);
+            player:messageSpecial(ITEM_OBTAINED, slipIds[option]);
+        end
+    else
+        player:setLocalVar('slipId', 0);
     end
 end

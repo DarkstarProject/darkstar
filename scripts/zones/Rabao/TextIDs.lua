@@ -26,3 +26,6 @@ SHINY_TEETH_SHOP_DIALOG = 9999;  -- Well met, adventurer. If you're looking for 
 
 -- conquest Base
 CONQUEST_BASE = 6472; -- Tallying conquest results...
+
+-- Porter Moogle
+RETRIEVE_DIALOG_ID = 10721; -- You retrieve a <item> from the porter moogle's care.

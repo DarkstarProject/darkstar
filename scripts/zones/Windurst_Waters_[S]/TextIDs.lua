@@ -17,3 +17,6 @@ MIKHE_ARYOHCHA_DIALOG = 12409; -- Do you like the headpiece? I made it from my f
 -- Shop Texts
       PELFTRIX_SHOP_DIALOG = 7176; -- Boodlix's Emporium open for business! Boodlix's gots whats you wants, at the price yous likes! It's okay, we takes yours gils, too!
 EZURAROMAZURA_SHOP_DIALOG = 10830; -- A potent spelly-well or two can be the key to survival in this time of war. But can you mastaru my magic, or will it master you
+
+-- Porter Moogle
+RETRIEVE_DIALOG_ID = 14915; -- You retrieve a <item> from the porter moogle's care.

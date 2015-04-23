@@ -7,3 +7,4 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the <item>. Come back after
        KEYITEM_OBTAINED = 6385; -- Obtained key item: <keyitem>
            KEYITEM_LOST = 6386; -- Lost key item: <keyitem>
     NOT_HAVE_ENOUGH_GIL = 6387; -- You do not have enough gil.
+     RETRIEVE_DIALOG_ID = 7698; -- You retrieve a <item> from the porter moogle's care.

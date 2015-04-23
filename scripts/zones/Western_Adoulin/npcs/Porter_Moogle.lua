@@ -2,10 +2,11 @@
 --  Area:   Western Adoulin
 --  NPC:    Porter Moogle
 --  Type:   Storage Moogle
---  @zone 231
+--  @zone 256
 --  @pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
+package.loaded["scripts/globals/porter_moogle_util"] = nil;
 -----------------------------------
 
 require("scripts/zones/Western_Adoulin/TextIDs");
@@ -19,8 +20,6 @@ local e =
     ALREADY_STORED_ID   =   44,
     MAGIAN_TRIAL_ID     =   45
 };
-
-RETRIEVE_DIALOG_ID  =   7698;
 
 -----------------------------------
 -- onTrade Action
@@ -41,19 +40,12 @@ end
 -- onEventUpdate
 -----------------------------------
 function onEventUpdate(player,csid,option)
-    if (csid == e.RETRIEVE_EVENT_ID) then
-        retrieveItem(player, option, RETRIEVE_DIALOG_ID, ITEM_CANNOT_BE_OBTAINED);
-    end
+    eventUpdate(player, csid, option, e.RETRIEVE_EVENT_ID, RETRIEVE_DIALOG_ID, ITEM_CANNOT_BE_OBTAINED);
 end
 
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 function onEventFinish(player,csid,option)
-    -- Is there a default option value for cancelling selection windows?
-    if (csid == e.TALK_EVENT_ID and option < 1000) then
-        buyStorageSlip(player, option, ITEM_CANNOT_BE_OBTAINED, ITEM_OBTAINED, NOT_HAVE_ENOUGH_GIL);
-    else
-        player:setLocalVar('slipId', 0);
-    end
+    eventFinish(player, csid, option, e.TALK_EVENT_ID, ITEM_CANNOT_BE_OBTAINED, ITEM_OBTAINED, NOT_HAVE_ENOUGH_GIL);
 end
