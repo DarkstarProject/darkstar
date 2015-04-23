@@ -40,7 +40,7 @@ class CLinkshellMessagePacket : public CBasicPacket
 {
 public:
 
-    CLinkshellMessagePacket(CLinkshell* PLinkshell);
+    CLinkshellMessagePacket(CLinkshell* PLinkshell, uint8 lsNum);
 };
 
 #endif

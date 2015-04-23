@@ -225,9 +225,14 @@ uint8 CZone::GetPartyBattleMusic()
     return m_zoneMusic.m_bSongM;
 }
 
-uint8 CZone::GetBackgroundMusic()
+uint8 CZone::GetBackgroundMusicDay()
 {
-    return m_zoneMusic.m_song;
+    return m_zoneMusic.m_songDay;
+}
+
+uint8 CZone::GetBackgroundMusicNight()
+{
+    return m_zoneMusic.m_songNight;
 }
 
 bool CZone::CanUseMisc(uint16 misc)
@@ -237,7 +242,7 @@ bool CZone::CanUseMisc(uint16 misc)
 
 bool CZone::IsWeatherStatic()
 {
-    return m_WeatherVector.size() != WEATHER_CYCLE; // weather cycle is 2160 days in game;
+    return m_WeatherVector.empty() || m_WeatherVector.size() == 1;
 }
 
 zoneLine_t* CZone::GetZoneLine(uint32 zoneLineID)
@@ -332,7 +337,8 @@ void CZone::LoadZoneSettings()
           "zone.name,"
           "zone.zoneip,"
           "zone.zoneport,"
-          "zone.music,"
+          "zone.music_day,"
+          "zone.music_night,"
           "zone.battlesolo,"
           "zone.battlemulti,"
           "zone.tax,"
@@ -354,16 +360,17 @@ void CZone::LoadZoneSettings()
 
         m_zoneIP   = inet_addr(Sql_GetData(SqlHandle,1));
         m_zonePort = (uint16)Sql_GetUIntData(SqlHandle,2);
-        m_zoneMusic.m_song   = (uint8)Sql_GetUIntData(SqlHandle,3);   // background music
-        m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle,4);   // solo battle music
-        m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle,5);   // party battle music
-        m_tax = (uint16)(Sql_GetFloatData(SqlHandle,6) * 100);      // tax for bazaar
-        m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,7);
-        m_useNavMesh = (bool)Sql_GetIntData(SqlHandle,8);
+        m_zoneMusic.m_songDay = (uint8)Sql_GetUIntData(SqlHandle, 3);   // background music (day)
+        m_zoneMusic.m_songNight = (uint8)Sql_GetUIntData(SqlHandle, 4);   // background music (night)
+        m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle,5);   // solo battle music
+        m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle,6);   // party battle music
+        m_tax = (uint16)(Sql_GetFloatData(SqlHandle,7) * 100);      // tax for bazaar
+        m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,8);
+        m_useNavMesh = (bool)Sql_GetIntData(SqlHandle,9);
 
-        m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 9);
+        m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 10);
 
-        if (Sql_GetData(SqlHandle,10) != nullptr) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
+        if (Sql_GetData(SqlHandle,11) != nullptr) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
         {
             m_BattlefieldHandler = new CBattlefieldHandler(m_zoneID);
         }
@@ -380,7 +387,6 @@ void CZone::LoadZoneSettings()
 
 void CZone::LoadNavMesh()
 {
-
     // disable / enable maps navmesh in zone_settings.sql
     if (!m_useNavMesh) return;
 
@@ -391,16 +397,12 @@ void CZone::LoadNavMesh()
 
     int8 file[255];
     memset(file,0,sizeof(file));
-    snprintf(file, sizeof(file), "scripts/zones/%s/NavMesh.nav", GetName());
+    snprintf(file, sizeof(file), "navmeshes/%s.nav", GetName());
 
     if (m_navMesh->load(file))
     {
-        // lets verify it can find proper paths
-        if(!m_navMesh->test((int16)GetID()))
-        {
-            // test failed, don't use it
-            m_useNavMesh = false;
-        }
+        // verify it can find proper paths
+        m_navMesh->test((int16)GetID());
     }
     else
     {
@@ -509,13 +511,13 @@ void CZone::UpdateWeather()
     uint32 CurrentVanaDate = CVanaTime::getInstance()->getDate(); // Current Vanadiel timestamp in minutes
     uint32 StartFogVanaDate = (CurrentVanaDate - (CurrentVanaDate % VTIME_DAY)) + (VTIME_HOUR * 2); // Vanadiel timestamp of 2 AM in minutes
     uint32 EndFogVanaDate = StartFogVanaDate + (VTIME_HOUR * 5); // Vanadiel timestamp of 7 AM in minutes
-    uint32 WeatherNextUpdate = 180; // 3 minutes
+    uint32 WeatherNextUpdate = 0;
     uint32 WeatherDay = 0;
     uint8 WeatherOffset = 0;
     uint8 WeatherChance = 0;
 
     // Random time between 3 minutes and 30 minutes for the next weather change
-    WeatherNextUpdate += (WELL512::irand() % 1620);
+    WeatherNextUpdate = (WELL512::GetRandomNumber(180,1620));
 
     // Find the timestamp since the start of vanadiel
     WeatherDay = CVanaTime::getInstance()->getVanaTime();
@@ -528,7 +530,7 @@ void CZone::UpdateWeather()
     WeatherDay = WeatherDay % WEATHER_CYCLE;
 
     // Get a random number to determine which weather effect we will use
-    WeatherChance = WELL512::irand() % 100;
+    WeatherChance = WELL512::GetRandomNumber(100);
 
     zoneWeather_t&& weatherType = zoneWeather_t(0, 0, 0);
 

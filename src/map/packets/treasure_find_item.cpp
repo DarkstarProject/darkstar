@@ -34,14 +34,14 @@ CTreasureFindItemPacket::CTreasureFindItemPacket(TreasurePoolItem* PItem , CBase
 	this->type = 0xD2;
 	this->size = 0x1E;
 
-	WBUFL(data,(0x04)-4) = 1;                   // ItemQuantity, а вожможен размер, отличный от единицы, исключая gil ???
-	WBUFW(data,(0x10)-4) = PItem->ID;           // ItemID
-	WBUFB(data,(0x14)-4) = PItem->SlotID;       // TreasurePool slotID
-	WBUFL(data,(0x18)-4) = PItem->TimeStamp;    // TimeStamp
+	WBUFL(data,(0x04)) = 1;                   // ItemQuantity, а вожможен размер, отличный от единицы, исключая gil ???
+	WBUFW(data,(0x10)) = PItem->ID;           // ItemID
+	WBUFB(data,(0x14)) = PItem->SlotID;       // TreasurePool slotID
+	WBUFL(data,(0x18)) = PItem->TimeStamp;    // TimeStamp
 
 	if (PMob != nullptr)
 	{
-		WBUFL(data,(0x08)-4) = PMob->id; 		// ID монстра	
-		WBUFW(data,(0x12)-4) = PMob->targid; 	// TargID монстра
+		WBUFL(data,(0x08)) = PMob->id; 		// ID монстра	
+		WBUFW(data,(0x12)) = PMob->targid; 	// TargID монстра
 	}
 }

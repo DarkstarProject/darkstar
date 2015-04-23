@@ -40,7 +40,7 @@ class CCharEmotionPacket : public CBasicPacket
 {
 public:
 
-	CCharEmotionPacket(CCharEntity* PChar, int8* buff);
+	CCharEmotionPacket(CCharEntity* PChar, uint8* buff);
 };
 
 #endif

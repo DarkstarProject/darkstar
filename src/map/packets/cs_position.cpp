@@ -33,20 +33,20 @@ CCSPositionPacket::CCSPositionPacket(CCharEntity* PChar)
 	this->type = 0x65;
 	this->size = 0x10;
 	
-	WBUFF(data,(0x04)-4) = PChar->loc.p.x;
-	WBUFF(data,(0x08)-4) = PChar->loc.p.y;  
-	WBUFF(data,(0x0C)-4) = PChar->loc.p.z; 
-	WBUFB(data,(0x17)-4) = PChar->loc.p.rotation;
+	WBUFF(data,(0x04)) = PChar->loc.p.x;
+	WBUFF(data,(0x08)) = PChar->loc.p.y;  
+	WBUFF(data,(0x0C)) = PChar->loc.p.z; 
+	WBUFB(data,(0x17)) = PChar->loc.p.rotation;
 
-	WBUFL(data,(0x10)-4) = PChar->id;
-	WBUFW(data,(0x14)-4) = PChar->targid;
+	WBUFL(data,(0x10)) = PChar->id;
+	WBUFW(data,(0x14)) = PChar->targid;
 
     if (PChar->status == STATUS_DISAPPEAR)
     {
-        WBUFB(data,(0x16)-4) = 0x05;
-        WBUFB(data,(0x1C)-4) = 0x01;
+        WBUFB(data,(0x16)) = 0x05;
+        WBUFB(data,(0x1C)) = 0x01;
     } else {
-        WBUFB(data,(0x16)-4) = 0x01;
-        WBUFB(data,(0x18)-4) = 0x01;
+        WBUFB(data,(0x16)) = 0x01;
+        WBUFB(data,(0x18)) = 0x01;
     }
 }

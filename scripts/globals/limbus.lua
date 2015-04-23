@@ -553,7 +553,7 @@ function GetLimbusKeyFromInstance(instanceID)
 		end	,		
 		  
    }	
-   print("Server_;_instanceID "..instanceID.." Serverkey "..Instancekey);
+ --  print("Server_;_instanceID "..instanceID.." Serverkey "..Instancekey);
 
     return Instancekey ;
 end;
@@ -823,7 +823,7 @@ local inst=0;
      if(playerLimbusID == 0 )then
         playerLimbusID = instanceID;
 	 end
-     print("Player_:_instanceID_"..playerLimbusID.." Playerkey "..playerLimbusKeyID);
+  --   print("Player_:_instanceID_"..playerLimbusID.." Playerkey "..playerLimbusKeyID);
    		if(playerLimbusID~=0)then
 
             if(GetLimbusKeyFromInstance(playerLimbusID)==0 and playerLimbusKeyID==0)then  
@@ -840,7 +840,7 @@ local inst=0;
 	                  end
 					  player:messageSpecial(7006);
 					  ResetPlayerLimbusVariable(player);  
-					  print("BCNM_cant_be _create");
+					  print("BCNM_cant_be _created");
                 end				
             end	
 		end 	
@@ -851,7 +851,7 @@ function TryTobackOnCurrentLimbus(player)
 local currentlimbus=0;
 local playerLimbusID = player:getVar("LimbusID");
 local playerLimbusKeyID = player:getVar("characterLimbusKey");    
-	     print("Player_:_instanceID_"..playerLimbusID.." Playerkey "..playerLimbusKeyID);		
+	 --    print("Player_:_instanceID_"..playerLimbusID.." Playerkey "..playerLimbusKeyID);		
 			     if( GetLimbusKeyFromInstance(playerLimbusID) == playerLimbusKeyID and player:isSpecialBattlefieldEmpty(GetInstanceRegion(playerLimbusID))==1 )then  -- player deco and back
 				   currentlimbus=playerLimbusID;
 

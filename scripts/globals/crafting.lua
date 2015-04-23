@@ -217,14 +217,15 @@ end
 
 function unionRepresentativeTriggerFinish(player, option, target, guildID, currency, keyitems, items)
     local rank = player:getSkillRank(guildID + 48);
-    if (option == -1 and rank >= 3) then
+    if (bit.tobit(option) == -1 and rank >= 3) then
         local oldGuild = player:getVar('[GUILD]currentGuild') - 1;
         player:setVar('[GUILD]currentGuild',guildID + 1);
-        player:setVar('[GUILD]daily_points',-1);
+        
         if (oldGuild == -1) then
-            -- player:messageSpecial(GUILD_NEW_CONTRACT, guildID);
+            player:messageSpecial(GUILD_NEW_CONTRACT, guildID);
         else
-            -- player:messageSpecial(GUILD_TERMINATE_CONTRACT, guildID, oldGuild);
+            player:messageSpecial(GUILD_TERMINATE_CONTRACT, guildID, oldGuild);
+            player:setVar('[GUILD]daily_points',-1);
         end
     elseif (bit.band(option, 32) > 0) then -- keyitem
         local ki = keyitems[bit.band(option, 31)];
@@ -284,7 +285,7 @@ function unionRepresentativeTrade(player, npc, trade, csid, guildID)
             end
             if (totalPoints > 0) then
                 player:confirmTrade();
-                player:startEvent(csid1,totalPoints);
+                player:startEvent(csid,totalPoints);
             end
         end
     end

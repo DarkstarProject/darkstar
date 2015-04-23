@@ -38,37 +38,37 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 Mem
 
     DSP_DEBUG_BREAK_IF(PChar == nullptr);
 
-    WBUFL(data, (0x04) - 4) = PChar->id;
+    WBUFL(data, (0x04) ) = PChar->id;
 
     if (PChar->PParty != nullptr)
     {
-        WBUFW(data, (0x14) - 4) = PChar->PParty->GetMemberFlags(PChar);
+        WBUFW(data, (0x14) ) = PChar->PParty->GetMemberFlags(PChar);
     }
 
     if (PChar->getZone() != ZoneID)
     {
-        WBUFW(data, (0x20) - 4) = PChar->getZone();
+        WBUFW(data, (0x20) ) = PChar->getZone();
     }
     else
     {
-        WBUFL(data, (0x08) - 4) = PChar->health.hp;
-        WBUFL(data, (0x0C) - 4) = PChar->health.mp;
-        WBUFW(data, (0x10) - 4) = PChar->health.tp;
-        WBUFW(data, (0x18) - 4) = PChar->targid;
-        WBUFB(data, (0x1A) - 4) = MemberNumber;
-        WBUFB(data, (0x1D) - 4) = PChar->GetHPP();
-        WBUFB(data, (0x1E) - 4) = PChar->GetMPP();
+        WBUFL(data, (0x08) ) = PChar->health.hp;
+        WBUFL(data, (0x0C) ) = PChar->health.mp;
+        WBUFW(data, (0x10) ) = PChar->health.tp;
+        WBUFW(data, (0x18) ) = PChar->targid;
+        WBUFB(data, (0x1A) ) = MemberNumber;
+        WBUFB(data, (0x1D) ) = PChar->GetHPP();
+        WBUFB(data, (0x1E) ) = PChar->GetMPP();
 
         if (!(PChar->nameflags.flags & FLAG_ANON))
         {
-            WBUFB(data, (0x22) - 4) = PChar->GetMJob();
-            WBUFB(data, (0x23) - 4) = PChar->GetMLevel();
-            WBUFB(data, (0x24) - 4) = PChar->GetSJob();
-            WBUFB(data, (0x25) - 4) = PChar->GetSLevel();
+            WBUFB(data, (0x22) ) = PChar->GetMJob();
+            WBUFB(data, (0x23) ) = PChar->GetMLevel();
+            WBUFB(data, (0x24) ) = PChar->GetSJob();
+            WBUFB(data, (0x25) ) = PChar->GetSLevel();
         }
     }
 
-    memcpy(data + (0x26) - 4, PChar->GetName(), PChar->name.size());
+    memcpy(data + (0x26) , PChar->GetName(), PChar->name.size());
 }
 CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(uint32 id, const int8* name, uint16 memberFlags, uint8 ZoneID)
 {
@@ -76,10 +76,10 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(uint32 id, const int8* name, 
 	this->type = 0xDD;
 	this->size = 0x20;
 
-	WBUFL(data, (0x04) - 4) = id;
+	WBUFL(data, (0x04) ) = id;
 
-	WBUFW(data, (0x14) - 4) = memberFlags;
-	WBUFW(data, (0x20) - 4) = ZoneID;
+	WBUFW(data, (0x14) ) = memberFlags;
+	WBUFW(data, (0x20) ) = ZoneID;
 
-	memcpy(data + (0x26) - 4, name, strlen(name));
+	memcpy(data + (0x26) , name, strlen(name));
 }

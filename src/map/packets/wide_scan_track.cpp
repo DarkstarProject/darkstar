@@ -34,11 +34,11 @@ CWideScanTrackPacket::CWideScanTrackPacket(CBaseEntity * PEntity)
 	this->type = 0xF5;
 	this->size = 0x0C;
 
-	WBUFF(data,(0x04)-4) = PEntity->loc.p.x;
-	WBUFF(data,(0x08)-4) = PEntity->loc.p.y;
-	WBUFF(data,(0x0C)-4) = PEntity->loc.p.z;
+	WBUFF(data,(0x04)) = PEntity->loc.p.x;
+	WBUFF(data,(0x08)) = PEntity->loc.p.y;
+	WBUFF(data,(0x0C)) = PEntity->loc.p.z;
 
-	WBUFB(data,(0x10)-4) = 1;
-	WBUFW(data,(0x12)-4) = PEntity->targid;
-	WBUFB(data,(0x14)-4) = PEntity->status == STATUS_DISAPPEAR ? 2 : 1;
+	WBUFB(data,(0x10)) = 1;
+	WBUFW(data,(0x12)) = PEntity->targid;
+	WBUFB(data,(0x14)) = PEntity->status == STATUS_DISAPPEAR ? 2 : 1;
 }

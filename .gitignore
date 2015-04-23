@@ -143,3 +143,5 @@ src/common/stamp-h1
 
 # Misc, such as vim swap files
 *.sw?
+
+navmeshes/*.nav

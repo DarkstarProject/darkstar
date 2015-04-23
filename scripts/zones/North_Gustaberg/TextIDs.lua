@@ -23,3 +23,7 @@ NOTHING_OUT_OF_ORDINARY = 6569; -- There is nothing out of the ordinary here.
 
 -- conquest Base
 CONQUEST_BASE = 0;
+
+--chocobo digging
+DIG_THROW_AWAY = 7216;
+FIND_NOTHING = 7218;

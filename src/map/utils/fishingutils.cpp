@@ -165,7 +165,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 	uint16 LureID = WeaponItem->getID();
 
-	int32 FishingChance = WELL512::irand()%100;
+	int32 FishingChance = WELL512::GetRandomNumber(100);
 
 	if (FishingChance <= 20)
 	{
@@ -238,7 +238,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 		if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
 			int32 FisherLuck = 0;
-			int32 FishingChance = WELL512::irand()%1000;
+            int32 FishingChance = WELL512::GetRandomNumber(1000);
 
 			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 			{

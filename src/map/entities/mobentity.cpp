@@ -64,8 +64,6 @@ CMobEntity::CMobEntity()
 	m_THLvl = 0;
 	m_ItemStolen = false;
     m_RageMode = 0;
-	m_NewSkin = 0;
-	m_SkinID = 0;
 
     strRank = 3;
     defRank = 3;
@@ -153,7 +151,7 @@ uint32 CMobEntity::GetRandomGil()
             ShowWarning("CMobEntity::GetRandomGil Max value is set too low, defauting\n");
         }
 
-        return WELL512::irand() % (max - min) + min;
+        return WELL512::GetRandomNumber(min,max);
     }
 
     float gil = pow(GetMLevel(), 1.05f);
@@ -174,7 +172,7 @@ uint32 CMobEntity::GetRandomGil()
     }
 
     // randomize it
-    gil += WELL512::irand() % highGil;
+    gil += WELL512::GetRandomNumber(highGil);
 
     // NMs get more gil
     if((m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS){
@@ -304,75 +302,6 @@ bool CMobEntity::CanBeNeutral()
     return !(m_Type & MOBTYPE_NOTORIOUS);
 }
 
-bool CMobEntity::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
-{
-	if (PTarget->isDead() || m_Aggro == AGGRO_NONE || PTarget->animation == ANIMATION_CHOCOBO) return false;
-
-    float verticalDistance = abs(loc.p.y - PTarget->loc.p.y);
-
-    if(verticalDistance > 8)
-    {
-        return false;
-    }
-
-    float currentDistance = distance(PTarget->loc.p, loc.p) + PTarget->getMod(MOD_STEALTH);
-
-    bool detectSight = (m_Aggro & AGGRO_DETECT_SIGHT) || forceSight;
-
-    if (detectSight && !PTarget->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE) && currentDistance < getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(loc.p, PTarget->loc.p, 40))
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_TRUESIGHT) && currentDistance < getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(loc.p, PTarget->loc.p, 40))
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_TRUEHEARING) && currentDistance < getMobMod(MOBMOD_SOUND_RANGE))
-    {
-        return true;
-    }
-
-	if ((m_Behaviour & BEHAVIOUR_AGGRO_AMBUSH) && currentDistance < 3 && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_HEARING) && currentDistance < getMobMod(MOBMOD_SOUND_RANGE) && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
-    {
-        return true;
-    }
-
-    // everything below require distance to be below 20
-    if(currentDistance > 20)
-    {
-        return false;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_LOWHP) && PTarget->GetHPP() < 75)
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_MAGIC) && PTarget->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING && PTarget->PBattleAI->GetCurrentSpell()->hasMPCost())
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_WEAPONSKILL) && PTarget->PBattleAI->GetCurrentAction() == ACTION_WEAPONSKILL_FINISH)
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_JOBABILITY) && PTarget->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH)
-    {
-        return true;
-    }
-
-    return false;
-}
-
 void CMobEntity::ChangeMJob(uint16 job)
 {
     this->SetMJob(job);
@@ -425,52 +354,6 @@ uint8 CMobEntity::TPUseChance()
     }
 
     return getMobMod(MOBMOD_TP_USE_CHANCE);
-}
-
-/************************************************************************
-*                                                                       *
-*  Change Skin of the Mob                                               *
-*                                                                       *
-************************************************************************/
-
-void CMobEntity::SetMainSkin(uint32 mobid)
-{
-	if(m_NewSkin)
-	{
-		const int8* Query = "SELECT modelid \
-							 FROM mob_spawn_points, mob_groups, mob_pools \
-							 WHERE mob_spawn_points.mobid = %u \
-							 AND mob_groups.groupid = mob_spawn_points.groupid \
-							 AND mob_groups.poolid = mob_pools.poolid";
-
-		int32 ret = Sql_Query(SqlHandle, Query, mobid);
-
-		if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			memcpy(&look,Sql_GetData(SqlHandle,0),23);
-			m_NewSkin = false;
-			m_SkinID = 0;
-		}
-	}
-}
-
-void CMobEntity::SetNewSkin(uint8 skinid)
-{
-	const int8* Query = "SELECT skin_model FROM mob_change_skin WHERE skinid = %u";
-
-	int32 ret = Sql_Query(SqlHandle, Query, skinid);
-
-	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		memcpy(&look,Sql_GetData(SqlHandle,0),23);
-		m_NewSkin = true;
-		m_SkinID = skinid;
-	}
-}
-
-uint32 CMobEntity::GetSkinID()
-{
-	return m_SkinID;
 }
 
 void CMobEntity::setMobMod(uint16 type, int16 value)

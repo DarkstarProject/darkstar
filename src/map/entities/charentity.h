@@ -107,6 +107,7 @@ struct profile_t
     uint8 	   rank[3];			// рагн в трех государствах
     uint32	   rankpoints;	    // очки ранга в трех государствах
     location_t home_point;		// точка возрождения персонажа
+    uint8      campaign_allegiance;
 };
 
 
@@ -230,7 +231,6 @@ public:
 
     uint8             GetGender();                  // узнаем пол персонажа
 
-    int32			  firstPacketSize();            // размер первого пакета в PacketList
     void              clearPacketList();            // отчистка PacketList
     void              pushPacket(CBasicPacket*);    // добавление копии пакета в PacketList
     bool			  isPacketListEmpty();          // проверка размера PacketList

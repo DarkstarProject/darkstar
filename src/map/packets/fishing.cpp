@@ -60,15 +60,15 @@ CFishingPacket::CFishingPacket(uint16 stamina, uint8 regen, uint8 id1, uint8 id2
 
 	memcpy(data, &packet, 20);
     
-    WBUFW(data,(0x04)-4) = stamina;
-    WBUFB(data,(0x06)-4) = id3;
-    WBUFB(data,(0x07)-4) = regen;
-	WBUFB(data,(0x08)-4) = id1;
-	WBUFB(data,(0x09)-4) = id2;
-	WBUFB(data,(0x0A)-4) = id4;
-	WBUFB(data,(0x0B)-4) = time;
+    WBUFW(data,(0x04)) = stamina;
+    WBUFB(data,(0x06)) = id3;
+    WBUFB(data,(0x07)) = regen;
+	WBUFB(data,(0x08)) = id1;
+	WBUFB(data,(0x09)) = id2;
+	WBUFB(data,(0x0A)) = id4;
+	WBUFB(data,(0x0B)) = time;
 	// "Unknown, can be 0x00 or 0x01 but most likely has to do how fast the rod moves around"
-	WBUFB(data,(0x0C)-4) = unknown1;
+	WBUFB(data,(0x0C)) = unknown1;
 	// something to do with stamina
-	WBUFB(data,(0x10)-4) = unknown2;
+	WBUFB(data,(0x10)) = unknown2;
 }

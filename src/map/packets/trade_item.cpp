@@ -38,8 +38,8 @@ CTradeItemPacket::CTradeItemPacket(CItem* PItem, uint8 slot)
 	this->type = 0x25;
 	this->size = 0x06;
 	uint32 amount = PItem->getReserve();
-    WBUFL(data,(0x04)-4) = amount == 0  ? 0 : amount ;
-	WBUFW(data, (0x08) - 4) = amount == 0 ? 0 : PItem->getID();
-	WBUFB(data,(0x0A)-4) = slot;
-	WBUFB(data, (0x0B) - 4) = amount == 0 ? 0 : PItem->getSlotID();
+    WBUFL(data,(0x04)) = amount == 0  ? 0 : amount ;
+	WBUFW(data, (0x08) ) = amount == 0 ? 0 : PItem->getID();
+	WBUFB(data,(0x0A)) = slot;
+	WBUFB(data, (0x0B) ) = amount == 0 ? 0 : PItem->getSlotID();
 }

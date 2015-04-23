@@ -35,23 +35,23 @@ CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, uint8 count, u
     this->type = 0x4B;
     this->size = 0x0A;
 
-    memset(data, 0xFF, 12);
+    memset(data + 4, 0xFF, 12);
 
-    WBUFB(data, (0x04) - 4) = action;
-    WBUFB(data, (0x05) - 4) = boxid;
+    WBUFB(data, (0x04) ) = action;
+    WBUFB(data, (0x05) ) = boxid;
 
     if (action == 0x05)
     {
         if (boxid == 0x01)
-            WBUFB(data, (0x0E) - 4) = count;
+            WBUFB(data, (0x0E) ) = count;
         else
-            WBUFB(data, (0x0F) - 4) = count;
+            WBUFB(data, (0x0F) ) = count;
     }
     else if (action == 0x0C)
     {
-        WBUFB(data, (0x0D) - 4) = count;
+        WBUFB(data, (0x0D) ) = count;
     }
-    WBUFB(data, (0x0C) - 4) = param;
+    WBUFB(data, (0x0C) ) = param;
 }
 
 CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, CItem* PItem, uint8 slotid, uint8 count, uint8 message)
@@ -59,13 +59,13 @@ CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, CItem* PItem, 
     this->type = 0x4B;
     this->size = 0x2C;
 
-    memset(data, 0xFF, 12);
+    memset(data + 4, 0xFF, 12);
 
-    WBUFB(data, (0x04) - 4) = action;
-    WBUFB(data, (0x05) - 4) = boxid;
-    WBUFB(data, (0x06) - 4) = slotid;
-    WBUFB(data, (0x0C) - 4) = message;	    // success: 0x01, else error message
-    WBUFB(data, (0x0D) - 4) = count;
+    WBUFB(data, (0x04) ) = action;
+    WBUFB(data, (0x05) ) = boxid;
+    WBUFB(data, (0x06) ) = slotid;
+    WBUFB(data, (0x0C) ) = message;	    // success: 0x01, else error message
+    WBUFB(data, (0x0D) ) = count;
 
     if (PItem)
     {
@@ -73,39 +73,39 @@ CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, CItem* PItem, 
         {
             if (boxid == 1)
             {
-                WBUFB(data, (0x10) - 4) = 0x07;
-                memcpy(data + 0x14 - 4, PItem->getSender(), strlen(PItem->getSender()));        // Sender's name.  Client disables "Return" if it starts with "AH"
+                WBUFB(data, (0x10) ) = 0x07;
+                memcpy(data + 0x14 , PItem->getSender(), strlen(PItem->getSender()));        // Sender's name.  Client disables "Return" if it starts with "AH"
             }
             else
             {
-                WBUFB(data, (0x10) - 4) = PItem->isSent() ? 0x03 : 0x05;    // 0x05 in send: canceled. other values are unknown 
-                memcpy(data + 0x14 - 4, PItem->getReceiver(), strlen(PItem->getReceiver()));    // Receiver's name.  Client disables "Return" if it starts with "AH"
+                WBUFB(data, (0x10) ) = PItem->isSent() ? 0x03 : 0x05;    // 0x05 in send: canceled. other values are unknown 
+                memcpy(data + 0x14 , PItem->getReceiver(), strlen(PItem->getReceiver()));    // Receiver's name.  Client disables "Return" if it starts with "AH"
             }
         }
         if (action == 0x02)
         {
-            WBUFB(data, (0x10) - 4) = 0x01;
-            WBUFB(data, (0x07) - 4) = PItem->getSlotID();
+            WBUFB(data, (0x10) ) = 0x01;
+            WBUFB(data, (0x07) ) = PItem->getSlotID();
         }
         else if (action == 0x03)
         {
-            WBUFB(data, (0x07) - 4) = PItem->getSlotID();
+            WBUFB(data, (0x07) ) = PItem->getSlotID();
         }
         else if (action == 0x04)
         {
             if (message == 0x01)
             {
-                WBUFB(data, (0x10) - 4) = 0x05;
+                WBUFB(data, (0x10) ) = 0x05;
             }
             else if (message == 0x02)
             {
-                WBUFB(data, (0x10) - 4) = 0x04;
+                WBUFB(data, (0x10) ) = 0x04;
             }
         }
 
-        WBUFW(data, (0x2C) - 4) = PItem->getSubID();               // Only used to display which item was sold on the AH
-        WBUFW(data, (0x30) - 4) = PItem->getID();
-        WBUFL(data, (0x38) - 4) = PItem->getQuantity();
-        memcpy(data + 0x3C - 4, PItem->m_extra, sizeof(PItem->m_extra));
+        WBUFW(data, (0x2C) ) = PItem->getSubID();               // Only used to display which item was sold on the AH
+        WBUFW(data, (0x30) ) = PItem->getID();
+        WBUFL(data, (0x38) ) = PItem->getQuantity();
+        memcpy(data + 0x3C , PItem->m_extra, sizeof(PItem->m_extra));
     }
 }

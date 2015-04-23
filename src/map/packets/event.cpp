@@ -46,44 +46,44 @@ CEventPacket::CEventPacket(
 	this->type = 0x32;
 	this->size = 0x0A;
 
-	WBUFL(data,(0x04)-4) = PChar->id;
+	WBUFL(data,(0x04)) = PChar->id;
 
 	if(numOfParams > 0) 
 	{
 		this->type = 0x34;
 		this->size = 0x1A;
 
-		WBUFL(data,(0x08)-4) = param0;
-		WBUFL(data,(0x0C)-4) = param1;
-		WBUFL(data,(0x10)-4) = param2;
-		WBUFL(data,(0x14)-4) = param3;
-		WBUFL(data,(0x18)-4) = param4;
-		WBUFL(data,(0x1C)-4) = param5;
-		WBUFL(data,(0x20)-4) = param6;
-		WBUFL(data,(0x24)-4) = param7;
+		WBUFL(data,(0x08)) = param0;
+		WBUFL(data,(0x0C)) = param1;
+		WBUFL(data,(0x10)) = param2;
+		WBUFL(data,(0x14)) = param3;
+		WBUFL(data,(0x18)) = param4;
+		WBUFL(data,(0x1C)) = param5;
+		WBUFL(data,(0x20)) = param6;
+		WBUFL(data,(0x24)) = param7;
 
-		WBUFW(data,(0x28)-4) = PChar->m_TargID;
+		WBUFW(data,(0x28)) = PChar->m_TargID;
 
-        WBUFW(data,(0x2A)-4) = PChar->getZone();
+        WBUFW(data,(0x2A)) = PChar->getZone();
         if (textTable != -1)
         {
-            WBUFW(data,(0x30)-4) = textTable;
+            WBUFW(data,(0x30)) = textTable;
         }
         else
         {
-            WBUFW(data,(0x30)-4) = PChar->getZone();
+            WBUFW(data,(0x30)) = PChar->getZone();
         }
 
-		WBUFW(data,(0x2C)-4) = EventID;
-		WBUFB(data,(0x2E)-4) = 8; // если патаметров меньше, чем 8, то после завершения события камера "прыгнет" за спину персонажу
+		WBUFW(data,(0x2C)) = EventID;
+		WBUFB(data,(0x2E)) = 8; // если патаметров меньше, чем 8, то после завершения события камера "прыгнет" за спину персонажу
 	}
     else
     {
-		WBUFW(data,(0x08)-4) = PChar->targid;
-		WBUFW(data,(0x0C)-4) = EventID;
+		WBUFW(data,(0x08)) = PChar->targid;
+		WBUFW(data,(0x0C)) = EventID;
 		
-        WBUFW(data,(0x0A)-4) = PChar->getZone();
-		WBUFW(data,(0x10)-4) = PChar->getZone();
+        WBUFW(data,(0x0A)) = PChar->getZone();
+		WBUFW(data,(0x10)) = PChar->getZone();
 	}
 	PChar->m_event.EventID = EventID;
 }

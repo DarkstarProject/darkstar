@@ -17,3 +17,8 @@ HARVESTING_IS_POSSIBLE_HERE = 7382; -- Harvesting is possible here if you have
 -- Quest: NAVIGATING_THE_UNFRIENDLY_SEAS
 PLACE_HYDROGAUGE = 7318; -- You set the # in the glowing trench.
  ENIGMATIC_LIGHT = 7319; -- is giving off an enigmatic light.
+
+ -- chocobo digging
+DIG_THROW_AWAY = 7043; -- You dig up ?Possible Special Code: 01??Possible Special Code: 01??Possible Special Code: 01? ?Possible Special Code: 01??Possible Special Code: 05?$?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?, but your inventory is full.
+FIND_NOTHING = 7045;
+

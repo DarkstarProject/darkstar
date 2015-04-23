@@ -240,7 +240,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_NIGHTINGALE))
         {
             if (m_PEntity->objtype == TYPE_PC &&
-                WELL512::irand() % 100 < ((CCharEntity*)m_PEntity)->PMeritPoints->GetMeritValue(MERIT_NIGHTINGALE, (CCharEntity*)m_PEntity) - 25)
+                WELL512::GetRandomNumber(100) < ((CCharEntity*)m_PEntity)->PMeritPoints->GetMeritValue(MERIT_NIGHTINGALE, (CCharEntity*)m_PEntity) - 25)
             {
                 return 0;
             }
@@ -478,7 +478,11 @@ bool CMagicState::CheckInterrupt()
 
 bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
 {
-    if(!CheckValidTarget(PTarget)) return false;
+    if (!CheckValidTarget(PTarget))
+    {
+        PushError(MSGBASIC_CANNOT_ON_THAT_TARG, 0);
+        return false;
+    }
 
 	if(!m_enableCasting ||
 		m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
@@ -504,6 +508,12 @@ bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
             ShowWarning("CMagicState::ValidCast Mob (%u) tried to cast magic with no mp!\n", m_PEntity->id);
         }
         PushError(MSGBASIC_NOT_ENOUGH_MP, PSpell->getID());
+        return false;
+    }
+
+    if (!spell::CanUseSpell(m_PEntity, PSpell->getID()))
+    {
+        PushError(MSGBASIC_CANNOT_CAST_SPELL, PSpell->getID());
         return false;
     }
 
@@ -885,7 +895,7 @@ void CMagicState::SpendCost(CSpell* PSpell)
         // conserve mp
         int16 rate = m_PEntity->getMod(MOD_CONSERVE_MP);
 
-        if (WELL512::irand() % 100 < rate)
+        if (WELL512::GetRandomNumber(100) < rate)
         {
             cost = ConserveMP(cost);
         }
@@ -897,7 +907,7 @@ void CMagicState::SpendCost(CSpell* PSpell)
 
 int16 CMagicState::ConserveMP(int16 cost)
 {
-    return cost * ((float)(WELL512::irand() % 8 + 8.0f) / 16.0f);
+    return cost * (WELL512::GetRandomNumber(8.f,16.f) / 16.0f);
 }
 
 void CMagicState::SetRecast(CSpell* PSpell)

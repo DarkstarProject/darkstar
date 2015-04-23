@@ -35,6 +35,7 @@ This file is part of DarkStar-server source code.
 ************************************************************************/
 
 class CPetEntity;
+class CAutomatonEntity;
 
 class CAIAutomatonDummy : public CAIPetDummy
 {
@@ -47,6 +48,8 @@ protected:
 
 
 private:
+    CAutomatonEntity* m_PPet;
+
     uint32 m_magicRecast;
     uint32 m_magicEnfeebleRecast;
     uint32 m_magicElementalRecast;
@@ -54,12 +57,17 @@ private:
     uint32 m_magicEnhanceRecast;
     uint32 m_magicStatusRecast;
 
+    uint32 m_LastRangedTime;
+
     void ActionFall();
     void ActionAttack();
 
     bool CheckSpellcast();
     bool CheckTPMove();
     bool CheckRangedAttack();
+
+    virtual void TransitionBack(bool skipWait = false) override;
+
 };
 
 #endif

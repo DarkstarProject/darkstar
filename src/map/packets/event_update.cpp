@@ -40,12 +40,12 @@ CEventUpdatePacket::CEventUpdatePacket(
 	this->type = 0x5C;
 	this->size = 0x12;
 
-	WBUFL(data,(0x04)-4) = param0;
-	WBUFL(data,(0x08)-4) = param1;
-	WBUFL(data,(0x0C)-4) = param2;
-	WBUFL(data,(0x10)-4) = param3;
-	WBUFL(data,(0x14)-4) = param4;
-	WBUFL(data,(0x18)-4) = param5;
-	WBUFL(data,(0x1C)-4) = param6;
-	WBUFL(data,(0x20)-4) = param7;
+	WBUFL(data,(0x04)) = param0;
+	WBUFL(data,(0x08)) = param1;
+	WBUFL(data,(0x0C)) = param2;
+	WBUFL(data,(0x10)) = param3;
+	WBUFL(data,(0x14)) = param4;
+	WBUFL(data,(0x18)) = param5;
+	WBUFL(data,(0x1C)) = param6;
+	WBUFL(data,(0x20)) = param7;
 }

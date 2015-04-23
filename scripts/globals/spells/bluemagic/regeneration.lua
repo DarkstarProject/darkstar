@@ -1,8 +1,17 @@
 -----------------------------------------
--- Bluemagic: Regeneration
+-- Spell: Regeneration
 -- Gradually restores HP
--- MND +2
--- Lvl.: 78 MP Cost: 36 Blue Points: 2
+-- Spell cost: 36 MP
+-- Monster Type: Aquans
+-- Spell Type: Magical (Light)
+-- Blue Magic Points: 2
+-- Stat Bonus: MND+2
+-- Level: 78
+-- Casting Time: 2 Seconds
+-- Recast Time: 60 Seconds
+-- Spell Duration: 30 ticks, 90 Seconds
+-- 
+-- Combos: None
 -----------------------------------------
 
 require("scripts/globals/settings");
@@ -10,7 +19,7 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
 
 -----------------------------------------
--- onMagicCastingCheck
+-- OnMagicCastingCheck
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -20,6 +29,7 @@ end;
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------
+
 function onSpellCast(caster,target,spell)
 
     if(target:hasStatusEffect(EFFECT_REGEN) and target:getStatusEffect(EFFECT_REGEN):getTier() == 1) then
@@ -33,5 +43,4 @@ function onSpellCast(caster,target,spell)
     end
 
     return EFFECT_REGEN;
-
 end;

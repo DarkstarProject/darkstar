@@ -1,19 +1,21 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED = 6415; -- Come back after sorting your inventory.
-FULL_INVENTORY_AFTER_TRADE = 6417; -- Try trading again after sorting your inventory.
-             ITEM_OBTAINED = 6418; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
-              GIL_OBTAINED = 6419; -- Obtained <<<Numeric Parameter 0>>> gil.
-          KEYITEM_OBTAINED = 6421; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
-              KEYITEM_LOST = 6422; -- Lost key item:
-             HOMEPOINT_SET =   24; -- Home point set!
-       NOT_HAVE_ENOUGH_GIL = 6423; -- You do not have enough gil.
-           LEATHER_SUPPORT = 6728; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ?Multiple Choice (Parameter 2)?[a little/ever so slightly/ever so slightly].?Prompt?
-		          NO_MORE_GP_ELIGIBLE =  6761; --You are not eligible to receive guild points at this time.
-               GP_OBTAINED =  6762; --Obtained <<<Numeric Parameter 0>>> guild points.
-        NOT_HAVE_ENOUGH_GP =  6763; --You do not have enough guild points.
-   NOTHING_OUT_OF_ORDINARY = 6432; -- There is nothing out of the ordinary here.<Prompt>
+           ITEM_CANNOT_BE_OBTAINED = 6415; -- Come back after sorting your inventory.
+    FULL_INVENTORY_AFTER_TRADE = 6417; -- Try trading again after sorting your inventory.
+                                      ITEM_OBTAINED = 6418; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
+                                         GIL_OBTAINED = 6419; -- Obtained <<<Numeric Parameter 0>>> gil.
+                              KEYITEM_OBTAINED = 6421; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
+                                        KEYITEM_LOST = 6422; -- Lost key item:
+                                    HOMEPOINT_SET = 24; -- Home point set!
+                    NOT_HAVE_ENOUGH_GIL = 6423; -- You do not have enough gil.
+                             LEATHER_SUPPORT = 6728; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ?Multiple Choice (Parameter 2)?[a little/ever so slightly/ever so slightly].?Prompt?
+        GUILD_TERMINATE_CONTRACT = 6742; -- You have terminated your trading contract with the ≺Multiple Choice (Parameter 1)≻[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the ≺Multiple Choice (Parameter 0)≻[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.≺Prompt≻
+                     GUILD_NEW_CONTRACT = 6750; -- You have formed a new trading contract with the ≺Multiple Choice (Parameter 0)≻[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.≺Prompt≻
+                     NO_MORE_GP_ELIGIBLE = 6757; -- You are not eligible to receive guild points at this time
+                                        GP_OBTAINED = 6762; -- Obtained <<<Numeric Parameter 0>>> guild points.
+                   NOT_HAVE_ENOUGH_GP = 6763; -- You do not have enough guild points.
+          NOTHING_OUT_OF_ORDINARY = 6432; -- There is nothing out of the ordinary here.<Prompt>
 
 -- Tutorial NPC
 TUTORIAL_NPC = 13452; -- Greetings and well met! Guardian of the Kingdom, Alaune, at your most humble service.
@@ -23,7 +25,7 @@ CONQUEST =  8434; -- You've earned conquest points!
 
 -- Mission Dialogs
  YOU_ACCEPT_THE_MISSION = 7147; -- You accept the mission.
-ORIGINAL_MISSION_OFFSET = 7158; -- Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
+  ORIGINAL_MISSION_OFFSET = 7158; -- Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
 
 -- Dynamis dialogs
       YOU_CANNOT_ENTER_DYNAMIS = 7364; -- You cannot enter Dynamis
