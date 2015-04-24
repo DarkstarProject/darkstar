@@ -105,7 +105,7 @@ end;
 -----------------------------------	
 -- onMobDeath	
 -----------------------------------	
-	function onMobDeath(mob,killer)	
+function onMobDeath(mob,killer)	
 	SetServerVariable("[SEA]Jailer_of_Temperance_POP", os.time(t) + 900); -- 15 mins
 	DeterMob(mob:getID(), true);
 	
