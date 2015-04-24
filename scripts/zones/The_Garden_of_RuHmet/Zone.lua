@@ -73,28 +73,7 @@ function onGameHour(npc, mob, player)
 	local qm3 = GetNPCByID(16921029); -- Ix'aern drk
     local s = math.random(6,12) -- wait time till change to next spawn pos, random 15~30 mins.
 	-- Jailer of Faith spawn randomiser
-	--[[if(VanadielHour % s == 0 and GetMobAction(16921021) == 0) then -- Change ??? position every 6 hours Vana'diel time (~15 mins)
-        local qm3p = math.random(1,5); -- random for next @pos. -- start in spawn pos 1.
-			--print(qm3p) 
-			qm3:hideNPC(60);
-				if (qm3p == 1) then
-                        qm3:setPos(-420,0.00,-157); -- spawn point 1 "Hume"
-						--printf("Qm3 is at pos 1");
-                elseif (qm3p == 2) then
-                        qm3:setPos(-157,0.00,-340); -- spawn point 2 "Elvaan"
-						--printf("Qm3 is at pos 2");
-                elseif (qm3p == 3) then
-                        qm3:setPos(-260,0.00,-643); -- spawn point 3 "Galka"
-						--printf("Qm3 is at pos 3");
-                elseif (qm3p == 4) then
-                        qm3:setPos(-580,0.00,-644); -- spawn point 4 "Taru"
-						--printf("Qm3 is at pos 4");
-                elseif (qm3p == 5) then
-                        qm3:setPos(-683,0.00,-340); -- spawn point 5 "Mithra"
-						--printf("Qm3 is at pos 5");
-				end
-		end	
-		
+	--[[
 	-- Ix'DRK spawn randomiser
 	if(VanadielHour % 6 == 0) then -- Change ??? position every 6 hours Vana'diel time (~15 mins)
 		local qm2p = math.random(1,4); -- random for next @pos. -- start in spawn pos 1.
