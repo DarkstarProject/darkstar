@@ -8,7 +8,7 @@ package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
-require("/scripts/zones/Grand_Palace_of_HuXzoi/MobIDs");
+require("scripts/zones/Grand_Palace_of_HuXzoi/MobIDs");
 
 -----------------------------------
 -- onInitialize
