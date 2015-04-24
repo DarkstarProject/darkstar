@@ -56,6 +56,11 @@ function onInitialize(zone)
 	zone:registerRegion(32,  97,-4,372,  102,4,379);--mithra niv 2 176 vers niv 3
 	zone:registerRegion(33,  97,-4,-427, 102,4,-421);--mithra niv 3 182 vers niv 2	
 	
+	-- Give the Fortitude ??? a random spawn
+	local qm1 = GetNPCByID(Jailer_of_Fortitude_QM);
+	local qm1position = math.random(1,5);
+	qm1:setPos(Jailer_of_Fortitude_QM_POS[qm1position][1], Jailer_of_Fortitude_QM_POS[qm1position][2], Jailer_of_Fortitude_QM_POS[qm1position][3]);
+	
 	--Give the Faith ??? a random spawn 
 	local qm3 = GetNPCByID(Jailer_of_Faith_QM);
 	local qm3position = math.random(1,5);
@@ -72,6 +77,15 @@ function onGameHour(npc, mob, player)
 	local qm2 = GetNPCByID(16921028); -- Jailer of Faith
 	local qm3 = GetNPCByID(16921029); -- Ix'aern drk
     local s = math.random(6,12) -- wait time till change to next spawn pos, random 15~30 mins.
+	
+	-- Jailer of Fortitude spawn randomiser
+	if (VanadielHour % 6 == 0) then
+		local qm1 = GetNPCByID(Jailer_of_Fortitude_QM);
+		qm1:hide(60);
+		
+		local qm1position = math.random(1,5);
+		qm1:setPos(Jailer_of_Fortitude_QM_POS[qm1position][1], Jailer_of_Fortitude_QM_POS[qm1position][2], Jailer_of_Fortitude_QM_POS[qm1position][3]);
+	end
 	
 	-- Jailer of Faith spawn randomiser
 	if (VanadielHour % s == 0) then
