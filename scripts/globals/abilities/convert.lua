@@ -26,7 +26,7 @@ function onUseAbility(player,target,ability)
     if (MP > 0) then
         -- Murgleis sword augments Convert.
         if ((player:getEquipID(SLOT_MAIN) == 18995 or player:getEquipID(SLOT_SUB) == 18995) and (MP < (player:getMaxHP()/2))) then
-            MP = player:getMaxHP()/2;
+            MP = MP + player:getMaxHP()/2;
         end
         player:setHP(MP);
         player:setMP(HP);
