@@ -25,7 +25,12 @@ function onMobFight(mob)
 	local changeTime = mob:getLocalVar("changeTime");
 	
 	if (mob:getBattleTime() - changeTime > randomTime) then
-		mob:AnimationSub(math.random(2,3));
+		-- Change close to open.
+		if (mob:AnimationSub() == 1) then
+			mob:AnimationSub(2);
+		else -- Change from open to close
+			mob:AnimationSub(1);
+		end
 		mob:setLocalVar("changeTime", mob:getBattleTime());
 	end
 end;
