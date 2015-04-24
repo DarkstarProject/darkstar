@@ -8,11 +8,11 @@ require("/scripts/globals/summon");
 
 ---------------------------------------------------
 
-function OnAbilityCheck(player, target, ability)
+function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function OnPetAbility(target, pet, skill)
+function onPetAbility(target, pet, skill)
 	local numhits = 3;
 	local accmod = 1;
 	local dmgmod = 10;

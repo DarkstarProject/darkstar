@@ -10,7 +10,7 @@ require("scripts/globals/quests");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -18,9 +18,9 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
+
 	if(killer:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED) then
 		killer:setVar("trueWillKilledNM",killer:getVar("trueWillKilledNM") + 1);
 	end
-	
+
 end;

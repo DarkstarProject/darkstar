@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.25a, for Win64 (x86)
+-- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.5.25a
+-- Server version	5.6.21-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -40,6 +40,8 @@ CREATE TABLE `item_usable` (
 --
 -- Dumping data for table `item_usable`
 --
+-- ORDER BY:  `itemid`
+
 INSERT INTO `item_usable` VALUES (4096,'fire_crystal',1,0,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4097,'ice_crystal',1,0,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4098,'wind_crystal',1,0,0,0,0,0,0,0);
@@ -200,7 +202,7 @@ INSERT INTO `item_usable` VALUES (4253,'spirit_masque',1,1,63,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4254,'megalixir',1,3,34,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4255,'pinch_of_mana_powder',1,3,89,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4256,'ouka_ranman',1,1,56,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (4257,'papillion',1,1,57,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4257,'papillion',1,1,57,12,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4258,'red_drop',1,2,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4259,'clear_drop',1,2,26,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4260,'green_drop',1,2,24,0,0,0,0,0);
@@ -701,6 +703,7 @@ INSERT INTO `item_usable` VALUES (4772,'scroll_of_thunder',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4773,'scroll_of_thunder_ii',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4774,'scroll_of_thunder_iii',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4775,'scroll_of_thunder_iv',1,1,12,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4776,'scroll_of_thunder_v',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4777,'scroll_of_water',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4778,'scroll_of_water_ii',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4779,'scroll_of_water_iii',1,1,12,5,0,0,0,0);
@@ -731,6 +734,7 @@ INSERT INTO `item_usable` VALUES (4818,'scroll_of_quake',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4820,'scroll_of_burst',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4822,'scroll_of_flood',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4824,'scroll_of_gravity',1,1,12,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4827,'scroll_of_comet',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4828,'scroll_of_poison',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4829,'scroll_of_poison_ii',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4833,'scroll_of_poisonga',1,1,12,5,0,0,0,0);
@@ -745,6 +749,7 @@ INSERT INTO `item_usable` VALUES (4847,'scroll_of_shock',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4848,'scroll_of_drown',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4849,'scroll_of_addle',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4850,'scroll_of_refresh_ii',1,1,11,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4851,'scroll_of_meteor',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4853,'scroll_of_drain',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4854,'scroll_of_drain_ii',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4855,'scroll_of_aspir',1,1,12,5,0,0,0,0);
@@ -776,9 +781,12 @@ INSERT INTO `item_usable` VALUES (4882,'scroll_of_sleepga_ii',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4883,'scroll_of_absorb-tp',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4885,'scroll_of_dread_spikes',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4886,'scroll_of_absorb-acc',1,1,12,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4889,'scroll_of_breakga',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4890,'scroll_of_firaja',1,1,12,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4891,'scroll_of_blizzaja',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4892,'scroll_of_aeroja',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4893,'scroll_of_stoneja',1,1,12,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4894,'scroll_of_thundaja',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4895,'scroll_of_waterja',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4896,'fire_spirit_pact',1,1,13,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4897,'ice_spirit_pact',1,1,13,5,0,0,0,0);
@@ -788,6 +796,7 @@ INSERT INTO `item_usable` VALUES (4900,'thunder_spirit_pact',1,1,13,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4901,'water_spirit_pact',1,1,13,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4902,'light_spirit_pact',1,1,13,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4903,'dark_spirit_pact',1,1,13,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4912,'scroll_of_distract',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4928,'scroll_of_katon_ichi',1,1,14,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4929,'scroll_of_katon_ni',1,1,14,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4931,'scroll_of_hyoton_ichi',1,1,14,5,0,0,0,0);
@@ -816,6 +825,8 @@ INSERT INTO `item_usable` VALUES (4966,'scroll_of_myoshu_ichi',1,1,14,5,0,0,0,0)
 INSERT INTO `item_usable` VALUES (4967,'scroll_of_yurin_ichi',1,1,14,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4968,'scroll_of_kakka_ichi',1,1,14,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4969,'scroll_of_migawari_ichi',1,1,14,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4970,'scroll_of_gekka_ichi',1,1,14,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4971,'scroll_of_yain_ichi',1,1,14,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4976,'scroll_of_foe_requiem',1,1,15,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4977,'scroll_of_foe_requiem_ii',1,1,15,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4978,'scroll_of_foe_requiem_iii',1,1,15,5,0,0,0,0);
@@ -920,6 +931,8 @@ INSERT INTO `item_usable` VALUES (5097,'scroll_of_boost-agi',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5098,'scroll_of_boost-int',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5099,'scroll_of_boost-mnd',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5100,'scroll_of_boost-chr',1,1,11,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5104,'scroll_of_flurry',1,1,11,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5105,'scroll_of_flurry_ii',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5120,'titanic_sawfish',1,1,25,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5121,'moorish_idol',1,1,25,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5122,'bibiki_slug',1,1,25,0,0,0,0,0);
@@ -1639,9 +1652,9 @@ INSERT INTO `item_usable` VALUES (5877,'phial_of_terror_screen',1,4,0,0,0,0,0,0)
 INSERT INTO `item_usable` VALUES (5878,'phial_of_amnesia_screen',1,4,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5879,'phial_of_doom_screen',1,4,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5880,'phial_of_poison_screen',1,4,0,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (5881,'shisai_kaboku',1,1,0,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (5882,'marine_bliss',1,1,0,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (5883,'falling_star',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5881,'shisai_kaboku',1,1,110,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5882,'marine_bliss',1,1,108,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5883,'falling_star',1,1,109,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5885,'saltena',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5886,'elshena',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5889,'stuffed_pitaru',1,1,0,0,0,0,0,0);
@@ -1650,6 +1663,7 @@ INSERT INTO `item_usable` VALUES (5912,'gargouille_quiver',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5913,'adaman_bolt_quiver',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5914,'orichalcum_bullet_pouch',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5915,'adaman_bullet_pouch',1,1,55,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5934,'chocobiscuit',1,1,29,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6041,'pyrohelix_schema',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6042,'hydrohelix_schema',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6043,'ionohelix_schema',1,1,12,5,0,0,0,0);
@@ -1670,6 +1684,9 @@ INSERT INTO `item_usable` VALUES (6058,'klimaform_schema',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6059,'animus_augeo_schema',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6060,'animus_minuo_schema',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6061,'adloquium_schema',1,1,11,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6265,'toolbag_(ranka)',1,1,55,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6266,'toolbag_(furu)',1,1,55,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (10250,'moogle_suit',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10264,'marine_gilet_+1',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10265,'marine_top_+1',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10266,'woodsy_gilet_+1',1,8,0,0,1,30,86400,0);
@@ -1678,6 +1695,7 @@ INSERT INTO `item_usable` VALUES (10268,'creek_maillot_+1',1,8,0,0,1,30,86400,0)
 INSERT INTO `item_usable` VALUES (10269,'creek_top_+1',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10270,'river_top_+1',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10271,'dune_gilet_+1',1,8,0,0,1,30,86400,0);
+INSERT INTO `item_usable` VALUES (10383,'dream_mittens_+1',1,6,24,0,1,30,7200,0);
 INSERT INTO `item_usable` VALUES (10875,'snowman_cap',1,1,0,0,1,30,3600,0);
 INSERT INTO `item_usable` VALUES (11273,'custom_gilet_+1',1,8,0,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (11274,'custom_top_+1',1,8,0,0,1,30,72000,0);
@@ -1688,14 +1706,14 @@ INSERT INTO `item_usable` VALUES (11278,'wonder_top_+1',1,8,0,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (11279,'savage_top_+1',1,8,0,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (11280,'elder_gilet_+1',1,8,0,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (11290,'tidal_talisman',1,8,0,0,1,30,72000,1);
-INSERT INTO `item_usable` VALUES (10250,'moogle_suit',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (11320,'skeleton_robe',1,1,0,0,30,15,600,0);
 INSERT INTO `item_usable` VALUES (11403,'talaria',1,5,0,0,1,15,1800,0);
 INSERT INTO `item_usable` VALUES (11490,'snow_bunny_hat',1,1,0,0,10,30,3600,0);
 INSERT INTO `item_usable` VALUES (11491,'snow_bunny_hat_+1',1,1,0,0,1,30,3600,0);
 INSERT INTO `item_usable` VALUES (11500,'chocobo_beret',1,1,0,0,1,30,3600,0);
-INSERT INTO `item_usable` VALUES (11538,'nexus_cape',1,8,0,0,1,30,72000,0);
+INSERT INTO `item_usable` VALUES (11538,'nexus_cape',1,8,79,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (11666,'novennial_ring',1,3,76,0,10,15,3600,0);
+INSERT INTO `item_usable` VALUES (11788,'jesters_hat',1,3,0,0,1,10,600000,0);
 INSERT INTO `item_usable` VALUES (11811,'destrier_beret',1,4,0,0,1,30,3600,0);
 INSERT INTO `item_usable` VALUES (11861,'hikogami_yukata',1,2,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (11862,'himegami_yukata',1,2,0,0,1,30,86400,0);
@@ -1849,9 +1867,9 @@ INSERT INTO `item_usable` VALUES (15698,'sneaking_boots',1,6,24,0,15,30,3600,0);
 INSERT INTO `item_usable` VALUES (15708,'earth_greaves',1,7,29,0,20,30,60,0);
 INSERT INTO `item_usable` VALUES (15753,'dream_boots_+1',1,6,24,0,1,30,7200,0);
 INSERT INTO `item_usable` VALUES (15754,'sprinters_shoes',1,5,24,0,15,15,300,0);
-INSERT INTO `item_usable` VALUES (15761,'chariot_band',1,3,76,0,7,15,57600,0);
-INSERT INTO `item_usable` VALUES (15762,'empress_band',1,3,76,0,7,15,57600,0);
-INSERT INTO `item_usable` VALUES (15763,'emperor_band',1,3,76,0,3,15,57600,0);
+INSERT INTO `item_usable` VALUES (15761,'chariot_band',1,3,76,0,7,15,3600,0);
+INSERT INTO `item_usable` VALUES (15762,'empress_band',1,3,76,0,7,15,3600,0);
+INSERT INTO `item_usable` VALUES (15763,'emperor_band',1,3,76,0,3,15,3600,0);
 INSERT INTO `item_usable` VALUES (15769,'olduum_ring',1,3,0,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (15770,'random_ring',1,3,0,0,50,30,1800,0);
 INSERT INTO `item_usable` VALUES (15782,'manashell_ring',1,3,0,0,50,30,1800,0);
@@ -1885,6 +1903,9 @@ INSERT INTO `item_usable` VALUES (15926,'bronze_bandolier',1,2,0,0,50,30,86400,0
 INSERT INTO `item_usable` VALUES (15927,'pinwheel_belt',1,2,0,0,50,30,86400,0);
 INSERT INTO `item_usable` VALUES (15929,'goblin_belt',1,1,0,0,1,30,3600,0);
 INSERT INTO `item_usable` VALUES (15933,'stirge_belt',1,1,55,0,30,15,600,0);
+INSERT INTO `item_usable` VALUES (15956,'temple_knights_quiver',1,1,55,0,1,30,604800,0);
+INSERT INTO `item_usable` VALUES (15957,'iron_musketeers_quiver',1,1,55,0,1,30,604800,0);
+INSERT INTO `item_usable` VALUES (15958,'combat_casters_quiver',1,1,55,0,1,30,604800,0);
 INSERT INTO `item_usable` VALUES (15998,'koccos_earring',1,8,0,0,5,30,60,0);
 INSERT INTO `item_usable` VALUES (16003,'raising_earring',1,8,0,0,10,30,600,0);
 INSERT INTO `item_usable` VALUES (16007,'protect_earring',1,2,0,0,100,30,900,0);
@@ -2002,6 +2023,7 @@ INSERT INTO `item_usable` VALUES (18444,'tsurugitachi',1,3,0,0,100,30,600,0);
 INSERT INTO `item_usable` VALUES (18481,'lucent_axe',1,3,0,0,50,30,1800,0);
 INSERT INTO `item_usable` VALUES (18488,'assailants_axe',1,3,0,0,50,30,1800,0);
 INSERT INTO `item_usable` VALUES (18493,'regiment_kheten',1,3,0,0,100,30,600,0);
+INSERT INTO `item_usable` VALUES (18551,'twilight_scythe',1,1,0,0,1,10,600,0);
 INSERT INTO `item_usable` VALUES (18581,'carbuncles_pole',1,1,0,0,30,30,600,0);
 INSERT INTO `item_usable` VALUES (18586,'flexible_pole',1,3,0,0,50,30,1800,0);
 INSERT INTO `item_usable` VALUES (18591,'pastoral_staff',1,3,0,0,100,30,600,0);
@@ -2029,10 +2051,7 @@ INSERT INTO `item_usable` VALUES (18945,'jet_sickle',1,3,0,0,100,30,600,0);
 INSERT INTO `item_usable` VALUES (19181,'moogles_largesse',1,12,0,0,9,10,259200,0);
 INSERT INTO `item_usable` VALUES (19204,'fiendtrapper',20,0,0,0,12,10,30,0);
 INSERT INTO `item_usable` VALUES (19246,'moggiebag',1,3,0,0,8,10,259200,0);
-INSERT INTO `item_usable` VALUES (11788,'jesters_hat',1,3,0,0,1,10,600000,0);
-INSERT INTO `item_usable` VALUES (15956,'temple_knights_quiver',1,1,55,0,1,30,604800,0);
-INSERT INTO `item_usable` VALUES (15957,'iron_musketeers_quiver',1,1,55,0,1,30,604800,0);
-INSERT INTO `item_usable` VALUES (15958,'combat_casters_quiver',1,1,55,0,1,30,604800,0);
+INSERT INTO `item_usable` VALUES (28540,'warp_ring',1,8,80,3,1,8,600,0);
 /*!40000 ALTER TABLE `item_usable` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -2045,4 +2064,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-30 18:19:19
+-- Dump completed on 2015-02-22  0:31:22

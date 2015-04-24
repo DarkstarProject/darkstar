@@ -21,7 +21,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_DRAGON_KILLER, effect:getPower());
     target:addMod(MOD_DEMON_KILLER, effect:getPower());
     target:addMod(MOD_EMPTY_KILLER, effect:getPower());
-    target:addMod(MOD_HUMANOID_KILLER, effect:getPower());
+    -- target:addMod(MOD_HUMANOID_KILLER, effect:getPower());
     target:addMod(MOD_LUMORIAN_KILLER, effect:getPower());
     target:addMod(MOD_LUMINION_KILLER, effect:getPower());
 end;
@@ -50,7 +50,7 @@ function onEffectLose(target,effect)
     target:delMod(MOD_DRAGON_KILLER, effect:getPower());
     target:delMod(MOD_DEMON_KILLER, effect:getPower());
     target:delMod(MOD_EMPTY_KILLER, effect:getPower());
-    target:delMod(MOD_HUMANOID_KILLER, effect:getPower());
+    -- target:delMod(MOD_HUMANOID_KILLER, effect:getPower());
     target:delMod(MOD_LUMORIAN_KILLER, effect:getPower());
     target:delMod(MOD_LUMINION_KILLER, effect:getPower());
 end;

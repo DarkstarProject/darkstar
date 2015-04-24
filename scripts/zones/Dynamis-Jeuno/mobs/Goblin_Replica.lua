@@ -7,7 +7,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Jeuno/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Jeuno/TextIDs");
 
@@ -82,21 +82,21 @@ function onMobDeath(mob,killer)
 	mobID = mob:getID();
 	
 	-- Time Bonus (30min): 002
-	if(mobID == 17547531 and alreadyReceived(killer,1) == false) then
+	if(mobID == 17547531 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(30);
-		addDynamisList(killer,1);
+		mob:addInBattlefieldList();
 	-- Time Bonus (30min): 004
-	elseif(mobID == 17547533 and alreadyReceived(killer,2) == false) then
+	elseif(mobID == 17547533 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(30);
-		addDynamisList(killer,2);
+		mob:addInBattlefieldList();
 	-- Time Bonus (30min): 029
-	elseif(mobID == 17547558 and alreadyReceived(killer,3) == false) then
+	elseif(mobID == 17547558 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(30);
-		addDynamisList(killer,4);
+		mob:addInBattlefieldList();
 	-- Time Bonus (30min): 045
-	elseif(mobID == 17547574 and alreadyReceived(killer,4) == false) then
+	elseif(mobID == 17547574 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(30);
-		addDynamisList(killer,8);
+		mob:addInBattlefieldList();
 	end
 
 end;

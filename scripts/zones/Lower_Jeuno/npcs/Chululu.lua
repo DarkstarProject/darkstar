@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Lower Jeuno
 -- NPC:  Chululu
--- Starts and Finishes Quest: Collect Tarut Cards, Rubbish Day
+-- Starts and Finishes Quests: Collect Tarut Cards, Rubbish Day
 -- Optional Cutscene at end of Quest: Searching for the Right Words
 -- @pos -13 -6 -42 245
 -----------------------------------
@@ -36,7 +36,6 @@ function onTrigger(player,npc)
     local CollectTarutCards = player:getQuestStatus(JEUNO,COLLECT_TARUT_CARDS);
     local RubbishDay = player:getQuestStatus(JEUNO,RUBBISH_DAY);
     local SearchingForTheRightWords = player:getQuestStatus(JEUNO,SEARCHING_FOR_THE_RIGHT_WORDS);
-
 
     if(player:getFameLevel(JEUNO) >= 3 and CollectTarutCards == QUEST_AVAILABLE) then
         player:startEvent(0x001C); -- Start quest "Collect Tarut Cards" with option
@@ -87,15 +86,16 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
+
     if(csid == 0x001C and option == 0) then
         local rand = math.random(1,4);
         local card = 0;
 
         if(rand == 1) then
             card = 559; -- Tarut: Death
-        if(rand == 2) then
+        elseif(rand == 2) then
             card = 562; -- Tarut: Hermit
-        if(rand == 3) then
+        elseif(rand == 3) then
             card = 561; -- Tarut: King
         else
             card = 558; -- Tarut: Fool

@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -35,8 +35,8 @@ CCharAbilitiesPacket::CCharAbilitiesPacket(CCharEntity* PChar)
 	this->type = 0xAC;
 	this->size = 0x72;
 
-	memcpy(data+(0x04)-4, PChar->m_WeaponSkills, 32);
-	memcpy(data+(0x46)-4, PChar->m_Abilities,    46);
-	memcpy(data+(0x84)-4, PChar->m_PetCommands,  32);
-	memcpy(data+(0xC4)-4, PChar->m_TraitList,    16);
+	memcpy(data+(0x04), PChar->m_WeaponSkills, 32);
+	memcpy(data+(0x46), PChar->m_Abilities,    46);
+	memcpy(data+(0x84), PChar->m_PetCommands,  32);
+	memcpy(data+(0xC4), PChar->m_TraitList,    16);
 }

@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -45,23 +45,24 @@ enum EFFECTFLAG
     EFFECTFLAG_NONE             = 0x0000,
     EFFECTFLAG_DISPELABLE       = 0x0001,
     EFFECTFLAG_ERASABLE         = 0x0002,
-    EFFECTFLAG_ATTACK           = 0x0004,     // исчезает при нанесении урона
+    EFFECTFLAG_ATTACK           = 0x0004,   // исчезает при нанесении урона
 
-    EFFECTFLAG_DAMAGE           = 0x0010,     // исчезает при получении урона
-    EFFECTFLAG_DEATH            = 0x0020,     // исчезает при смерти
-    EFFECTFLAG_MAGIC_BEGIN      = 0x0040,     // исчезает перед началом чтения заклинания
-    EFFECTFLAG_MAGIC_END        = 0x0080,     // исчезает после прочтения заклинания
+    EFFECTFLAG_DAMAGE           = 0x0010,   // исчезает при получении урона
+    EFFECTFLAG_DEATH            = 0x0020,   // исчезает при смерти
+    EFFECTFLAG_MAGIC_BEGIN      = 0x0040,   // исчезает перед началом чтения заклинания
+    EFFECTFLAG_MAGIC_END        = 0x0080,   // исчезает после прочтения заклинания
     EFFECTFLAG_ON_ZONE          = 0x0100,
-    EFFECTFLAG_NO_LOSS_MESSAGE  = 0x0200,     // Suppress effect worn off message.
-    EFFECTFLAG_INVISIBLE	= 0x0400,     // invisible effect
-    EFFECTFLAG_DETECTABLE	= 0x0800,      // invisible, sneak, deo
-    EFFECTFLAG_NO_REST 		= 0x1000,  // prevents resting, curse II, plague, disease
-    EFFECTFLAG_PREVENT_ACTION   = 0x2000,    // sleep, lullaby, stun, petro. Not implemented
-    EFFECTFLAG_WALTZABLE        = 0x4000,   //for healing waltzable spells
+    EFFECTFLAG_NO_LOSS_MESSAGE  = 0x0200,   // Suppress effect worn off message.
+    EFFECTFLAG_INVISIBLE	    = 0x0400,   // invisible effect
+    EFFECTFLAG_DETECTABLE	    = 0x0800,   // invisible, sneak, deo
+    EFFECTFLAG_NO_REST 		    = 0x1000,   // prevents resting, curse II, plague, disease
+    EFFECTFLAG_PREVENT_ACTION   = 0x2000,   // sleep, lullaby, stun, petro. Not implemented
+    EFFECTFLAG_WALTZABLE        = 0x4000,   // for healing waltzable spells
     EFFECTFLAG_FOOD             = 0x8000,
-    EFFECTFLAG_SONG             = 0x10000,  //bard songs
-    EFFECTFLAG_ROLL             = 0x20000,   //corsair rolls
-    EFFECTFLAG_SYNTH_SUPPORT    = 0x40000    // Synthesis Image Support
+    EFFECTFLAG_SONG             = 0x10000,  // bard songs
+    EFFECTFLAG_ROLL             = 0x20000,  // corsair rolls
+    EFFECTFLAG_SYNTH_SUPPORT    = 0x40000,  // Synthesis Image Support
+    EFFECTFLAG_CONFRONTATION    = 0x80000
 };
 
 enum EFFECT
@@ -396,10 +397,10 @@ enum EFFECT
 	EFFECT_BLITZERS_ROLL			= 333,
 	EFFECT_TACTICIANS_ROLL			= 334,
 	EFFECT_ALLIES_ROLL				= 335,
-	EFFECT_NONE_1					= 336,
-	EFFECT_NONE_2					= 337,
-	EFFECT_NONE_3					= 338,
-	EFFECT_NONE_4					= 339,
+	EFFECT_MISERS_ROLL				= 336,
+	EFFECT_COMPANIONS_ROLL			= 337,
+	EFFECT_AVENGERS_ROLL			= 338,
+	// EFFECT_NONE						= 339,
 	EFFECT_WARRIORS_CHARGE			= 340,
 	EFFECT_FORMLESS_STRIKES			= 341,
 	EFFECT_ASSASSINS_CHARGE			= 342,
@@ -538,7 +539,7 @@ enum EFFECT
 	EFFECT_PALISADE					= 478, // PLD 95
 	EFFECT_SCARLET_DELIRIUM			= 479, // DRK 95
 	EFFECT_SCARLET_DELIRIUM_1		= 480, // DRK 95
-	NONE							= 481, // NONE
+	// EFFECT_NONE						= 481, // NONE
 	EFFECT_DECOY_SHOT				= 482, // RNG 95
 	EFFECT_HAGAKURE					= 483, // SAM 95
 	EFFECT_ISSEKIGAN                = 484, // NIN 95
@@ -547,12 +548,111 @@ enum EFFECT
 	EFFECT_ENDRAIN	                = 487, // FENRIR 96
 	EFFECT_ENASPIR	                = 488, // FENRIR 96
 	EFFECT_AFTERGLOW                = 489, // WS AFTEREFFECT
-	EFFECT_BRAZEN_STRENGTH          = 490, //
+	EFFECT_BRAZEN_RUSH              = 490, //
 	EFFECT_INNER_STRENGTH			= 491,
-
+    EFFECT_ASYLUM                   = 492,
+    EFFECT_SUBTLE_SORCERY           = 493,
+    EFFECT_STYMIE                   = 494,
+    // EFFECT_NONE                     = 495,
+    EFFECT_INTERVENE                = 496,
+    EFFECT_SOUL_ENSLAVEMENT         = 497,
+    EFFECT_UNLEASH                  = 498,
+    EFFECT_CLARION_CALL             = 499,
+    EFFECT_OVERKILL                 = 500,
+    EFFECT_YAEGASUMI                = 501,
 	EFFECT_MIKAGE                   = 502,
+    EFFECT_FLY_HIGH                 = 503,
+    EFFECT_ASTRAL_CONDUIT           = 504,
+    EFFECT_UNBRIDLED_WISDOM         = 505,
+    // EFFECT_NONE                     = 506,
+    EFFECT_GRAND_PAS                = 507,
+    EFFECT_WIDENED_COMPASS          = 508,
+    EFFECT_ODYLLIC_SUBTERFUGE       = 509,
+    EFFECT_ERGON_MIGHT              = 510,
+    EFFECT_REIVE_MARK               = 511,
+    EFFECT_IONIS                    = 512,
+    EFFECT_BOLSTER                  = 513,
+    // EFFECT_NONE                     = 514,
+    EFFECT_LASTING_EMANATION        = 515,
+    EFFECT_ECLIPTIC_ATTRITION       = 516,
+    EFFECT_COLLIMATED_FERVOR        = 517,
+    EFFECT_DEMATERIALIZE            = 518,
+    EFFECT_THEURGIC_FOCUS           = 519,
+    // EFFECT_NONE                     = 520,
+    // EFFECT_NONE                     = 521,
+    EFFECT_ELEMENTAL_SFORZO         = 522,
+    EFFECT_IGNIS                    = 523,
+    EFFECT_GELUS                    = 524,
+    EFFECT_FLABRA                   = 525,
+    EFFECT_TELLUS                   = 526,
+    EFFECT_SULPOR                   = 527,
+    EFFECT_UNDA                     = 528,
+    EFFECT_LUX                      = 529,
+    EFFECT_TENEBRAE                 = 530,
+    EFFECT_VALLATION                = 531,
+    EFFECT_SWORDPLAY                = 532,
+    EFFECT_PFLUG                    = 533,
+    EFFECT_EMBOLDEN                 = 534,
+    EFFECT_VALIANCE                 = 535,
+    EFFECT_GAMBIT                   = 536,
+    EFFECT_LIEMENT                  = 537,
+    EFFECT_ONE_FOR_ALL              = 538,
+    EFFECT_REGEN_II                 = 539,
+    EFFECT_POISON_II                = 540,
+    EFFECT_REFRESH_II               = 541,
+    EFFECT_STR_BOOST_III            = 542,
+    EFFECT_DEX_BOOST_III            = 543,
+    EFFECT_VIT_BOOST_III            = 544,
+    EFFECT_AGI_BOOST_III            = 545,
+    EFFECT_INT_BOOST_III            = 546,
+    EFFECT_MND_BOOST_III            = 547,
+    EFFECT_CHR_BOOST_III            = 548,
+    EFFECT_ATTACK_BOOST_II          = 549,
+    EFFECT_DEFENSE_BOOST_II         = 550,
+    EFFECT_MAGIC_ATK_BOOST_II       = 551,
+    EFFECT_MAGIC_DEF_BOOST_II       = 552,
+    EFFECT_ACCURACY_BOOST_II        = 553,
+    EFFECT_EVASION_BOOST_II         = 554,
+    EFFECT_MAGIC_ACC_BOOST_II       = 555,
+    EFFECT_MAGIC_EVASION_BOOST_II   = 556,
+    EFFECT_ATTACK_DOWN_II           = 557,
+    EFFECT_DEFENSE_DOWN_II          = 558,
+    EFFECT_MAGIC_ATK_DOWN_II        = 559,
+    EFFECT_MAGIC_DEF_DOWN_II        = 560,
+    EFFECT_ACCURACY_DOWN_II         = 561,
+    EFFECT_EVASION_DOWN_II          = 562,
+    EFFECT_MAGIC_ACC_DOWN_II        = 563,
+    EFFECT_MAGIC_EVASION_DOWN_II    = 564,
+    EFFECT_SLOW_II                  = 565,
+    EFFECT_PARALYSIS_II             = 566,
+    EFFECT_WEIGHT_II                = 567,
+    EFFECT_FOIL                     = 568,
+    EFFECT_BLAZE_OF_GLORY           = 569,
+    EFFECT_BATTUTA                  = 570,
+    EFFECT_RAYKE                    = 571,
+    EFFECT_AVOIDANCE_DOWN           = 572,
+    EFFECT_DELUGE_SPIKES            = 573, // Exists in client, unused on retail?
+    EFFECT_FAST_CAST                = 574,
+    EFFECT_GESTATION                = 575,
+    EFFECT_DOUBT                    = 576, // Bully: Intimidation Enfeeble status
+    EFFECT_CAIT_SITH_S_FAVOR        = 577,
+    EFFECT_FISHY_INTUITION          = 578,
+    EFFECT_COMMITMENT               = 579,
+    EFFECT_HASTE_II                 = 580,
+    EFFECT_FLURRY_II                = 581,
 
-    // EFFECT_PLACEHOLDER              = 640, // Polutils list ends at 639 so 640+ shouldn't collide with anything
+    // Effect icons in packet can go from 0-767, so no custom effects should go in that range.
+
+    // Purchased from Cruor Prospector
+    EFFECT_ABYSSEA_STR              = 768,
+    EFFECT_ABYSSEA_DEX              = 769, 
+    EFFECT_ABYSSEA_VIT              = 770, 
+    EFFECT_ABYSSEA_AGI              = 771, 
+    EFFECT_ABYSSEA_INT              = 772, 
+    EFFECT_ABYSSEA_MND              = 773, 
+    EFFECT_ABYSSEA_CHR              = 774, 
+    EFFECT_ABYSSEA_HP               = 775, 
+    EFFECT_ABYSSEA_MP               = 776, 
 
     // *Prowess increases not currently retail accurate.
     // GoV Prowess bonus effects, real effect at ID 474
@@ -580,10 +680,14 @@ enum EFFECT
 	EFFECT_TELEPORT					= 797,
     EFFECT_CHAINBOUND               = 798,
     EFFECT_SKILLCHAIN               = 799,
-	EFFECT_DYNAMIS					= 800
+	EFFECT_DYNAMIS					= 800,
+    EFFECT_MEDITATE                 = 801, // Dummy effect for SAM Meditate JA
+    // EFFECT_PLACEHOLDER              = 802 // Description
+    // 802-1022
+    // EFFECT_PLACEHOLDER             = 1023 // The client dat file seems to have only this many "slots", results of exceeding that are untested.
 };
 
-#define MAX_EFFECTID    801  // 768 real + 32 custom
+#define MAX_EFFECTID    802  // 768 real + 32 custom
 
 /************************************************************************
 *																		*
@@ -606,7 +710,7 @@ public:
 	uint16	GetPower();
     uint16  GetSubPower();
     uint16  GetTier();
-	uint16	GetFlag();
+	uint32	GetFlag();
 	uint16	GetType();
 
 	uint32	GetTickTime();
@@ -615,7 +719,8 @@ public:
 	uint32	GetStartTime();
 	CBattleEntity* GetOwner();
 
-    void    SetFlag(uint16 Flag);
+    void    SetFlag(uint32 Flag);
+    void    UnsetFlag(uint32 Flag);
     void    SetType(uint16 Type);
     void    SetIcon(uint16 Icon);
 	void	SetPower(uint16 Power);
@@ -659,8 +764,8 @@ private:
 	uint16		m_Power;				// сила эффекта
     uint16		m_SubPower;				// Secondary power of the effect
     uint16      m_Tier;                 // Tier of the effect
-	uint16		m_Flag;					// флаг эффекта (условия его исчезновения)
-	uint16		m_Type; // used to enforce only one
+	uint32		m_Flag;					// флаг эффекта (условия его исчезновения)
+	uint16		m_Type;                 // used to enforce only one
 
 	uint32		m_TickTime;				// время повторения эффекта (млс)
 	uint32		m_Duration;				// продолжительность эффекта (млс)

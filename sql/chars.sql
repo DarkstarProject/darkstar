@@ -31,6 +31,8 @@ CREATE TABLE `chars` (
   `home_z` float(7,3) NOT NULL DEFAULT '0.000',
   `merits` blob,
   `missions` blob,
+  `assault` blob,
+  `campaign` blob,
   `quests` blob,
   `keyitems` blob,
   `spells` blob,
@@ -42,6 +44,8 @@ CREATE TABLE `chars` (
   `unlocked_weapons` blob,
   `gmlevel` smallint(3) unsigned NOT NULL DEFAULT '0',
   `isnewplayer` smallint(3) NOT NULL DEFAULT '1',
+  `mentor` smallint(3) NOT NULL DEFAULT '0',
+  `campaign_allegiance` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`charid`),
   FULLTEXT KEY `charname` (`charname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

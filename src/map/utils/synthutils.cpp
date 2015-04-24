@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -195,18 +195,6 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 	uint8  strongElement[8] = {2,3,5,4,0,1,7,6};
 	uint16 ModID = 0;
 
-	switch (direction)
-	{
-		case 0: ElementDirection = ELEMENT_WIND;	  break;
-		case 1: ElementDirection = ELEMENT_EARTH;	  break;
-		case 2: ElementDirection = ELEMENT_LIGHTNING; break;
-		case 3: ElementDirection = ELEMENT_WATER;	  break;
-		case 4: ElementDirection = ELEMENT_FIRE;	  break;
-		case 5: ElementDirection = ELEMENT_DARK;	  break;
-		case 6: ElementDirection = ELEMENT_LIGHT;	  break;
-		case 7: ElementDirection = ELEMENT_ICE;		  break;
-	}
-
 	switch (skillID)
 	{
 		case SKILL_WDW: ModID = MOD_WOOD;		break;
@@ -223,25 +211,48 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 	double difficult = PChar->CraftContainer->getQuantity(skillID-40) - (double)(charSkill + PChar->getMod(ModID));
 	double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
 
-	difficult -= (MoonPhase - 50)/50;	// full moon reduces difficulty by 1, new moon increases difficulty by 1, 50% moon has 0 effect
-
-	if (crystalElement == ElementDirection){
-		difficult -= 0.5;
-	}else if (strongElement[crystalElement] == ElementDirection){
-		difficult += 0.5;
+	if (map_config.craft_day_matters == 1)
+	{
+		if (crystalElement == WeekDay)
+			difficult -= 1;
+		else if (strongElement[crystalElement] == WeekDay)
+			difficult += 1;
+		else if (strongElement[WeekDay] == crystalElement)
+			difficult -= 1;
+		else if (WeekDay == LIGHTSDAY)
+			difficult -= 1;
+		else if (WeekDay == DARKSDAY)
+			difficult += 1;
 	}
 
-	if (crystalElement == WeekDay)
-		difficult -= 1;
-	else if (strongElement[crystalElement] == WeekDay)
-		difficult += 1;
-	else if (strongElement[WeekDay] == crystalElement)
-		difficult -= 1;
-	else if (WeekDay == LIGHTSDAY)
-		difficult -= 1;
-	else if (WeekDay == DARKSDAY)
-		difficult += 1;
+	if (map_config.craft_moonphase_matters == 1)
+	{
+		difficult -= (MoonPhase - 50)/50;	// full moon reduces difficulty by 1, new moon increases difficulty by 1, 50% moon has 0 effect
+	}
 
+	if (map_config.craft_direction_matters == 1)
+	{
+		switch (direction)
+		{
+			case 0: ElementDirection = ELEMENT_WIND;	  break;
+			case 1: ElementDirection = ELEMENT_EARTH;	  break;
+			case 2: ElementDirection = ELEMENT_LIGHTNING; break;
+			case 3: ElementDirection = ELEMENT_WATER;	  break;
+			case 4: ElementDirection = ELEMENT_FIRE;	  break;
+			case 5: ElementDirection = ELEMENT_DARK;	  break;
+			case 6: ElementDirection = ELEMENT_LIGHT;	  break;
+			case 7: ElementDirection = ELEMENT_ICE;		  break;
+		}
+
+		if (crystalElement == ElementDirection)
+		{
+			difficult -= 0.5;
+		}
+		else if (strongElement[crystalElement] == ElementDirection)
+		{
+			difficult += 0.5;
+		}
+	}
 
 	#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 	ShowDebug(CL_CYAN"Direction = %i\n" CL_RESET, ElementDirection);
@@ -369,7 +380,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
                 canHQ = false; //assuming here that if a crafting ring is used matching a recipe's subsynth, overall HQ will still be blocked
             }
 
-			double random = WELL512::drand();
+			double random = WELL512::GetRandomNumber(1.);
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 			ShowDebug(CL_CYAN"Success: %g  Random: %g\n" CL_RESET, success, random);
 			#endif
@@ -381,7 +392,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 					if(mainID != skillID)
 					    break;
 					
-					random = WELL512::drand();
+                    random = WELL512::GetRandomNumber(1.);
 					
 					switch(hqtier)
 					{
@@ -532,7 +543,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 			double skillUpChance = (synthDiff*(map_config.craft_chance_multiplier - (log(1.2 + charSkill/100))))/10;
 			skillUpChance = skillUpChance/(1 + (PChar->CraftContainer->getQuantity(0) == SYNTHESIS_FAIL));		// результат синтеза хранится в quantity нулевой ячейки
 
-			double random = WELL512::drand();
+            double random = WELL512::GetRandomNumber(1.);
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 			ShowDebug(CL_CYAN"Skill up chance: %g  Random: %g\n" CL_RESET, skillUpChance, random);
 			#endif
@@ -558,7 +569,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 
 				for(uint8 i = 0; i < 4; i ++)
 				{
-					random = WELL512::drand();
+                    random = WELL512::GetRandomNumber(1.);
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 					ShowDebug(CL_CYAN"SkillAmount Tier: %i  Random: %g\n" CL_RESET, satier, random);
 					#endif
@@ -626,7 +637,7 @@ int32 doSynthFail(CCharEntity* PChar)
 	double synthDiff    = getSynthDifficulty(PChar, carrentCraft);
 	double moghouseAura = 0;
 
-	if (PChar->getZone() == 0) // неправильное условие, т.к. аура действует лишь в собственном доме
+	if (PChar->m_moghouseID) // неправильное условие, т.к. аура действует лишь в собственном доме
 	{
 		// Проверяем элемент синтеза
 		switch (PChar->CraftContainer->getType())
@@ -686,7 +697,7 @@ int32 doSynthFail(CCharEntity* PChar)
 		if (slotID != 8)
 			nextSlotID = PChar->CraftContainer->getInvSlotID(slotID+1);
 
-		random = WELL512::drand();
+        random = WELL512::GetRandomNumber(1.);
 		#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 		ShowDebug(CL_CYAN"Lost Item: %g  Random: %g\n" CL_RESET, lostItem, random);
 		#endif
@@ -700,7 +711,7 @@ int32 doSynthFail(CCharEntity* PChar)
 		{
 			CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
-			if (PItem != NULL)
+			if (PItem != nullptr)
 			{
 				PItem->setSubType(ITEM_UNLOCKED);
 
@@ -820,7 +831,7 @@ int32 startSynth(CCharEntity* PChar)
 
 			CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
-			if (PItem != NULL)
+			if (PItem != nullptr)
 			{
 				PItem->setSubType(ITEM_LOCKED);
 				PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NOSELECT));
@@ -829,6 +840,7 @@ int32 startSynth(CCharEntity* PChar)
 	}
 
 	PChar->animation = ANIMATION_SYNTH;
+    PChar->updatemask |= UPDATE_HP;
 	PChar->pushPacket(new CCharUpdatePacket(PChar));
 
     if(PChar->loc.zone->GetID() != 255 && PChar->loc.zone->GetID() != 0)
@@ -893,7 +905,7 @@ int32 doSynthResult(CCharEntity* PChar)
 
 		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
-		if (PItem != NULL)
+		if (PItem != nullptr)
 		{
 			if ((PItem->getFlag() & ITEM_FLAG_INSCRIBABLE) && (PChar->CraftContainer->getItemID(0) > 0x1080))
 			{
@@ -938,6 +950,7 @@ int32 sendSynthDone(CCharEntity* PChar)
 	doSynthResult(PChar);
 
 	PChar->animation = ANIMATION_NONE;
+    PChar->updatemask |= UPDATE_HP;
 	PChar->pushPacket(new CCharUpdatePacket(PChar));
 	return 0;
 }

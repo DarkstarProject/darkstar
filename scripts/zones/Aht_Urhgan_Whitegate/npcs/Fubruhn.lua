@@ -30,7 +30,7 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/status");
 require("scripts/globals/missions");
-require("scripts/globals/moglocker");
+require("scripts/globals/moghouse");
 
 function getNumberOfCoinsToUpgradeSize(size)
     if (size == 30) then

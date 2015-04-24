@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -23,6 +23,9 @@
 
 #include "automatonentity.h"
 #include "../utils/puppetutils.h"
+#include "../packets/entity_update.h"
+#include "../packets/pet_sync.h"
+#include "../packets/char_job_extra.h"
 
 CAutomatonEntity::CAutomatonEntity()
     : CPetEntity(PETTYPE_AUTOMATON)
@@ -30,7 +33,7 @@ CAutomatonEntity::CAutomatonEntity()
     memset(&m_Equip, 0, sizeof m_Equip);
     memset(&m_ElementMax, 0, sizeof m_ElementMax);
     memset(&m_ElementEquip, 0, sizeof m_ElementEquip);
-    memset(&m_Burden, 0, sizeof m_Burden);
+    memset(&m_Burden, 40, sizeof m_Burden);
 }
 
 CAutomatonEntity::~CAutomatonEntity()
@@ -99,4 +102,54 @@ uint8 CAutomatonEntity::getElementCapacity(uint8 element)
     if (element < 8)
         return m_ElementEquip[element];
     return 0;
+}
+
+void CAutomatonEntity::burdenTick()
+{
+    for (int i = 0; i < 8; i++)
+    {
+        if (m_Burden[i] > 0)
+        {
+            //TODO: heat sink attachment
+            m_Burden[i]--;
+        }
+    }
+}
+
+uint8 CAutomatonEntity::addBurden(uint8 element, uint8 burden)
+{
+    //TODO: tactical processor attachment
+    uint8 thresh = 30 + PMaster->getMod(MOD_OVERLOAD_THRESH);
+    if (element < 8)
+    {
+        m_Burden[element] += burden;
+        //check for overload
+        if (m_Burden[element] > thresh)
+        {
+            if (WELL512::GetRandomNumber(100) < (m_Burden[element] - thresh + 5))
+            {
+                //return overload duration
+                return m_Burden[element] - thresh;
+            }
+        }
+    }
+    return 0;
+}
+
+void CAutomatonEntity::UpdateEntity()
+{
+    if (loc.zone && updatemask && status != STATUS_DISAPPEAR)
+    {
+        if (PMaster && PMaster->PPet == this)
+        {
+            ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
+        }
+        loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
+        updatemask = 0;
+        if (PMaster->objtype == TYPE_PC)
+        {
+            ((CCharEntity*)PMaster)->pushPacket(new CCharJobExtraPacket((CCharEntity*)PMaster, PMaster->GetMJob() == JOB_PUP));
+        }
+        updatemask = 0;
+    }
 }

@@ -7,7 +7,7 @@
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -15,9 +15,9 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-	
+
 	local Shen = mob:getID();
-	
+
 	if(mob:getBattleTime() % 45 == 0) then
 		if(GetMobAction(Shen+1) == 0) then
 			SpawnMob(Shen+1,300):updateEnmity(target);
@@ -25,7 +25,7 @@ function onMobFight(mob,target)
 			SpawnMob(Shen+2,300):updateEnmity(target);
 		end
 	end
-	
+
 end;
 
 -----------------------------------
@@ -40,10 +40,10 @@ end;
 -----------------------------------
 
 function onMonsterMagicPrepare(mob,target)
-    
-	-- casts Water IV, Waterga III, Flood, Drown 
+
+	-- casts Water IV, Waterga III, Flood, Drown
     rnd = math.random();
-    
+
     if (rnd < 0.5) then
         return 201; -- waterga 3
     elseif (rnd < 0.7) then
@@ -53,5 +53,5 @@ function onMonsterMagicPrepare(mob,target)
     else
         return 240; -- drown
     end
-    
+
 end;

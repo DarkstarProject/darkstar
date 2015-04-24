@@ -6,7 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-San_dOria/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-San_dOria/TextIDs");
 
@@ -81,29 +81,29 @@ function onMobDeath(mob,killer)
 	
 	mobID = mob:getID();
 	-- Time Bonus (10min): 074
-	if(mobID == 17535319 and alreadyReceived(killer,1) == false) then
+	if(mobID == 17535319 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(10);
-		addDynamisList(killer,1);
+		mob:addInBattlefieldList();
 	-- Time Bonus (15min): 007
-	elseif(mobID == 17535256 and alreadyReceived(killer,2) == false) then
+	elseif(mobID == 17535256 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(15);
-		addDynamisList(killer,2);
+		mob:addInBattlefieldList();
 	-- Time Bonus (15min): 009
-	elseif(mobID == 17535258 and alreadyReceived(killer,3) == false) then
+	elseif(mobID == 17535258 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(15);
-		addDynamisList(killer,4);
+		mob:addInBattlefieldList();
 	-- Time Bonus (25min): 026
-	elseif(mobID == 17535273 and alreadyReceived(killer,4) == false) then
+	elseif(mobID == 17535273 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(25);
-		addDynamisList(killer,8);
+		mob:addInBattlefieldList();
 	-- Time Bonus (25min): 064
-	elseif(mobID == 17535309 and alreadyReceived(killer,5) == false) then
+	elseif(mobID == 17535309 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(25);
-		addDynamisList(killer,16);
+		mob:addInBattlefieldList();
 	-- Time Bonus (30min): 041
-	elseif(mobID == 17535287 and alreadyReceived(killer,6) == false) then
+	elseif(mobID == 17535287 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(30);
-		addDynamisList(killer,32);
+		mob:addInBattlefieldList();
 	-- HP Bonus: 012 015 034 044 052 059 072 073 078 081 083 091 097 103 104 107 | 
 	elseif(mobID == 17535261 or mobID == 17535264 or mobID == 17535281 or mobID == 17535290 or mobID == 17535298 or mobID == 17535305 or mobID == 17535317 or mobID == 17535318 or
 		   mobID == 17535323 or mobID == 17535326 or mobID == 17535328 or mobID == 17535336 or mobID == 17535340 or mobID == 17535344 or mobID == 17535345 or mobID == 17535348) then 

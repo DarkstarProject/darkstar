@@ -9,7 +9,7 @@
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	GetNPCByID(17584457):hideNPC(900); -- qm5
+	GetNPCByID(17584459):hideNPC(900); -- qm5
 end;

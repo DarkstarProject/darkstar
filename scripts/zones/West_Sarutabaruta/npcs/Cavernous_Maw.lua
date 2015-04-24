@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
--- NPC: Cavernous Maw
+--  NPC: Cavernous Maw
 -- Teleports Players to West Sarutabaruta [S]
 -- @pos -2.229 0.001 -162.715 115
 -----------------------------------
@@ -18,20 +18,18 @@ require("scripts/zones/West_Sarutabaruta/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(ENABLE_WOTG == 1 and player:hasKeyItem(PURE_WHITE_FEATHER) and hasMawActivated(player,8)) then
-		player:startEvent(0x0388);
-	else
-		player:messageSpecial(NOTHING_HAPPENS);
-	end
-	
+    if (ENABLE_WOTG == 1 and player:hasKeyItem(PURE_WHITE_FEATHER) and hasMawActivated(player,8)) then
+        player:startEvent(0x0388);
+    else
+        player:messageSpecial(NOTHING_HAPPENS);
+    end
 end;
 
 -----------------------------------
@@ -39,19 +37,17 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-   
+
 -----------------------------------
 -- onEventFinish Action
 -----------------------------------
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-	
-	if(csid == 0x0388 and option == 1) then
-		toMaw(player,7);
-	end
-	
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x0388 and option == 1) then
+        toMaw(player,7);
+    end
 end;

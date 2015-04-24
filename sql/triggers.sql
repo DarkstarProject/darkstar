@@ -7,7 +7,7 @@ CREATE TRIGGER auction_house_buy
 	BEFORE UPDATE ON auction_house
 	FOR EACH ROW
 BEGIN
-	IF OLD.seller != 0 AND NEW.sale != 0 THEN INSERT INTO delivery_box VALUES (NEW.seller, NEW.seller_name, 1, 0, x'FFFF', NEW.itemid, NEW.sale, 0, 'AH-Jeuno', 0, 0); END IF;
+	IF OLD.seller != 0 AND NEW.sale != 0 THEN INSERT INTO delivery_box VALUES (NEW.seller, NEW.seller_name, 1, 0, 0xFFFF, NEW.itemid, NEW.sale, NULL, 0, 'AH-Jeuno', 0, 0); END IF;
 END $$
 
 DROP TRIGGER IF EXISTS delivery_box_insert $$
@@ -18,7 +18,7 @@ BEGIN
 	SET @slot := 0;
 	SELECT MAX(slot) INTO @slot FROM delivery_box WHERE box = NEW.box AND charid = NEW.charid;
 	IF NEW.box = 1 THEN
-	IF @slot IS NULL OR @slot < 10 THEN SET NEW.slot := 10; ELSE SET NEW.slot := @slot + 1; END IF;
+	IF @slot IS NULL OR @slot < 8 THEN SET NEW.slot := 8; ELSE SET NEW.slot := @slot + 1; END IF;
 	END IF;
 END $$
 
@@ -30,6 +30,14 @@ CREATE TRIGGER account_delete
 BEGIN
 	DELETE FROM `accounts_banned` WHERE `accid` = OLD.id;
 	DELETE FROM `chars` WHERE `accid` = OLD.id;     
+END $$
+
+DROP TRIGGER IF EXISTS session_delete $$
+CREATE TRIGGER session_delete
+	BEFORE DELETE ON accounts_sessions
+	FOR EACH ROW
+BEGIN
+    UPDATE `char_stats` SET zoning = 0 WHERE `charid` = OLD.charid;
 END $$
 
 DROP TRIGGER IF EXISTS char_delete $$

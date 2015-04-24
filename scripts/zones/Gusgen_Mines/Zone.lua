@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 ----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Gusgen_Mines/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,13 @@ require("scripts/zones/Gusgen_Mines/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17580412,17580413,17580414};
+    
+    SetGroundsTome(tomes);
+
+    UpdateTreasureSpawnPoint(17580399);
+    
 end;
 
 -----------------------------------		
@@ -27,6 +35,18 @@ function onZoneIn(player,prevZone)
 	end	
 	return cs;	
 end;		
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
 
 -----------------------------------		
 -- onRegionEnter		

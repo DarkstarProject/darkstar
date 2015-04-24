@@ -63,7 +63,9 @@ function onEventUpdate(player,csid,option)
 	if (csid == 0x00e6 and option == 10) then
 		if (player:delGil(500000)) then
 			player:addKeyItem(AIRSHIP_PASS);
-			player:updateEvent(1,0);
+			player:updateEvent(0, 1);
+		else
+			player:updateEvent(0, 0);
 		end
 	end
 

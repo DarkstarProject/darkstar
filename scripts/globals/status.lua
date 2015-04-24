@@ -1,8 +1,16 @@
------------------------------------
+------------------------------------
 --
--- 	STATUSES AND MODS
+-- STATUSES AND MODS
 --
------------------------------------
+-- Contains variable-ized definitions of things like core enums for use in lua scripts.
+------------------------------------
+
+
+
+------------------------------------
+-- Job IDs
+------------------------------------
+
 JOB_NON             = 0;
 JOB_WAR             = 1;
 JOB_MNK             = 2;
@@ -27,6 +35,10 @@ JOB_SCH             = 20;
 JOB_GEO             = 21;
 JOB_RUN             = 22;
 
+------------------------------------
+--
+------------------------------------
+
 STATUS_NORMAL			= 0;
 STATUS_UPDATE			= 1;
 STATUS_DISAPPEAR		= 2;
@@ -36,11 +48,12 @@ STATUS_CUTSCENE_ONLY	= 6;
 STATUS_18				= 18;
 STATUS_SHUTDOWN			= 20;
 
------------------------------------
+------------------------------------
 -- These codes represent the subeffects for
 -- additional effects animations from battleentity.h
------------------------------------
---ATTACKS
+------------------------------------
+
+-- ATTACKS
 	SUBEFFECT_FIRE_DAMAGE       = 1;   -- 110000        3
     SUBEFFECT_ICE_DAMAGE        = 2;   -- 1-01000       5
     SUBEFFECT_WIND_DAMAGE       = 3;   -- 111000        7
@@ -59,11 +72,14 @@ STATUS_SHUTDOWN			= 20;
     SUBEFFECT_STUN              = 16;
     SUBEFFECT_CURSE             = 17;
     SUBEFFECT_DEFENSE_DOWN      = 18;  -- 1-01001      37
+    SUBEFFECT_DEATH             = 19;
     SUBEFFECT_SHIELD            = 20;
     SUBEFFECT_HP_DRAIN          = 21;  -- 1-10101      43
-    SUBEFFECT_TP_DRAIN          = 22;
+    SUBEFFECT_MP_DRAIN          = 22;  -- This is correct animation
+    SUBEFFECT_TP_DRAIN          = 22;  -- Not sure this is correct
 	SUBEFFECT_HASTE             = 23;
---SPIKES
+
+-- SPIKES
     SUBEFFECT_BLAZE_SPIKES      = 1;    -- 01-1000       6
     SUBEFFECT_ICE_SPIKES        = 2;    -- 01-0100      10
     SUBEFFECT_DREAD_SPIKES      = 3;    -- 01-1100      14
@@ -73,7 +89,8 @@ STATUS_SHUTDOWN			= 20;
 	SUBEFFECT_WIND_SPIKES       = 7;
 	SUBEFFECT_STONE_SPIKES      = 8;
 	SUBEFFECT_COUNTER           = 63;
---SKILLCHAINS
+
+-- SKILLCHAINS
     SUBEFFECT_LIGHT             = 1;
     SUBEFFECT_DARKNESS          = 2;
     SUBEFFECT_GRAVITATION       = 3;
@@ -89,13 +106,13 @@ STATUS_SHUTDOWN			= 20;
     SUBEFFECT_DETONATION        = 13;
     SUBEFFECT_IMPACTION         = 14;
 
-    SUBEFFECT_NONE                              = 0;
+    SUBEFFECT_NONE              = 0;
 
 
------------------------------------
+------------------------------------
 -- These codes represent the actual status effects.
 -- They are simply for convenience.
------------------------------------
+------------------------------------
 
 EFFECT_KO						= 0
 EFFECT_WEAKNESS					= 1
@@ -323,7 +340,6 @@ EFFECT_MANAWELL                 = 229
 EFFECT_SPONTANEITY              = 230
 EFFECT_MARCATO                  = 231
 EFFECT_NA						= 232
-EFFECT_NA						= 232
 EFFECT_AUTO_REGEN				= 233
 EFFECT_AUTO_REFRESH				= 234
 EFFECT_FISHING_IMAGERY			= 235
@@ -427,10 +443,10 @@ EFFECT_COURSERS_ROLL			= 332
 EFFECT_BLITZERS_ROLL			= 333
 EFFECT_TACTICIANS_ROLL			= 334
 EFFECT_ALLIES_ROLL				= 335
-EFFECT_NONE_I					= 336
-EFFECT_NONE_II					= 337
-EFFECT_NONE_III					= 338
-EFFECT_NONE_IV					= 339
+EFFECT_MISERS_ROLL				= 336
+EFFECT_COMPANIONS_ROLL			= 337
+EFFECT_AVENGERS_ROLL			= 338
+-- EFFECT_NONE						= 339
 EFFECT_WARRIOR_S_CHARGE			= 340
 EFFECT_FORMLESS_STRIKES			= 341
 EFFECT_ASSASSIN_S_CHARGE		= 342
@@ -569,7 +585,7 @@ EFFECT_SACROSANCTITY			= 477 -- WHM 95
 EFFECT_PALISADE					= 478 -- PLD 95
 EFFECT_SCARLET_DELIRIUM			= 479 -- DRK 95
 EFFECT_SCARLET_DELIRIUM_1		= 480 -- DRK 95
-NONE							= 481 -- NONE
+-- EFFECT_NONE						= 481 -- NONE
 EFFECT_DECOY_SHOT				= 482 -- RNG 95
 EFFECT_HAGAKURE					= 483 -- SAM 95
 EFFECT_ISSEKIGAN                = 484 -- NIN 95
@@ -580,10 +596,109 @@ EFFECT_ENASPIR	                = 488 -- FENRIR 96
 EFFECT_AFTERGLOW                = 489 -- WS AFTEREFFECT
 EFFECT_BRAZEN_STRENGTH          = 490 --
 EFFECT_INNER_STRENGTH           = 491
-EFFECT_ISSEKIGAN                = 484
-
+EFFECT_ASYLUM                   = 492
+EFFECT_SUBTLE_SORCERY           = 493
 EFFECT_STYMIE                   = 494
+-- EFFECT_NONE                       = 495
+EFFECT_INTERVENE                = 496
+EFFECT_SOUL_ENSLAVEMENT         = 497
+EFFECT_UNLEASH                  = 498
+EFFECT_CLARION_CALL             = 499
+EFFECT_OVERKILL                 = 500
+EFFECT_YAEGASUMI                = 501
 EFFECT_MIKAGE                   = 502
+EFFECT_FLY_HIGH                 = 503
+EFFECT_ASTRAL_CONDUIT           = 504
+EFFECT_UNBRIDLED_WISDOM         = 505
+-- EFFECT_NONE                      = 506
+EFFECT_GRAND_PAS                = 507
+EFFECT_WIDENED_COMPASS          = 508
+EFFECT_ODYLLIC_SUBTERFUGE       = 509
+EFFECT_ERGON_MIGHT              = 510
+EFFECT_REIVE_MARK               = 511
+EFFECT_IONIS                    = 512
+EFFECT_BOLSTER                  = 513
+-- EFFECT_NONE                      = 514
+EFFECT_LASTING_EMANATION        = 515
+EFFECT_ECLIPTIC_ATTRITION       = 516
+EFFECT_COLLIMATED_FERVOR        = 517
+EFFECT_DEMATERIALIZE            = 518
+EFFECT_THEURGIC_FOCUS           = 519
+-- EFFECT_NONE                      = 520
+-- EFFECT_NONE                      = 521
+EFFECT_ELEMENTAL_SFORZO         = 522
+EFFECT_IGNIS                    = 523
+EFFECT_GELUS                    = 524
+EFFECT_FLABRA                   = 525
+EFFECT_TELLUS                   = 526
+EFFECT_SULPOR                   = 527
+EFFECT_UNDA                     = 528
+EFFECT_LUX                      = 529
+EFFECT_TENEBRAE                 = 530
+EFFECT_VALLATION                = 531
+EFFECT_SWORDPLAY                = 532
+EFFECT_PFLUG                    = 533
+EFFECT_EMBOLDEN                 = 534
+EFFECT_VALIANCE                 = 535
+EFFECT_GAMBIT                   = 536
+EFFECT_LIEMENT                  = 537
+EFFECT_ONE_FOR_ALL              = 538
+EFFECT_REGEN_II                 = 539
+EFFECT_POISON_II                = 540
+EFFECT_REFRESH_II               = 541
+EFFECT_STR_BOOST_III            = 542
+EFFECT_DEX_BOOST_III            = 543
+EFFECT_VIT_BOOST_III            = 544
+EFFECT_AGI_BOOST_III            = 545
+EFFECT_INT_BOOST_III            = 546
+EFFECT_MND_BOOST_III            = 547
+EFFECT_CHR_BOOST_III            = 548
+EFFECT_ATTACK_BOOST_II          = 549
+EFFECT_DEFENSE_BOOST_II         = 550
+EFFECT_MAGIC_ATK_BOOST_II       = 551
+EFFECT_MAGIC_DEF_BOOST_II       = 552
+EFFECT_ACCURACY_BOOST_II        = 553
+EFFECT_EVASION_BOOST_II         = 554
+EFFECT_MAGIC_ACC_BOOST_II       = 555
+EFFECT_MAGIC_EVASION_BOOST_II   = 556
+EFFECT_ATTACK_DOWN_II           = 557
+EFFECT_DEFENSE_DOWN_II          = 558
+EFFECT_MAGIC_ATK_DOWN_II        = 559
+EFFECT_MAGIC_DEF_DOWN_II        = 560
+EFFECT_ACCURACY_DOWN_II         = 561
+EFFECT_EVASION_DOWN_II          = 562
+EFFECT_MAGIC_ACC_DOWN_II        = 563
+EFFECT_MAGIC_EVASION_DOWN_II    = 564
+EFFECT_SLOW_II                  = 565
+EFFECT_PARALYSIS_II             = 566
+EFFECT_WEIGHT_II                = 567
+EFFECT_FOIL                     = 568
+EFFECT_BLAZE_OF_GLORY           = 569
+EFFECT_BATTUTA                  = 570
+EFFECT_RAYKE                    = 571
+EFFECT_AVOIDANCE_DOWN           = 572
+EFFECT_DELUGE_SPIKES            = 573 -- Exists in client, unused on retail?
+EFFECT_FAST_CAST                = 574
+EFFECT_GESTATION                = 575
+EFFECT_DOUBT                    = 576 -- Bully: Intimidation Enfeeble status
+EFFECT_CAIT_SITH_S_FAVOR        = 577
+EFFECT_FISHY_INTUITION          = 578
+EFFECT_COMMITMENT               = 579
+EFFECT_HASTE_II                 = 580
+EFFECT_FLURRY_II                = 581
+
+-- Effect icons in packet can go from 0-767, so no custom effects should go in that range.
+
+-- Purchased from Cruor Prospector
+EFFECT_ABYSSEA_STR              = 768
+EFFECT_ABYSSEA_DEX              = 769
+EFFECT_ABYSSEA_VIT              = 770
+EFFECT_ABYSSEA_AGI              = 771
+EFFECT_ABYSSEA_INT              = 772
+EFFECT_ABYSSEA_MND              = 773
+EFFECT_ABYSSEA_CHR              = 774
+EFFECT_ABYSSEA_HP               = 775
+EFFECT_ABYSSEA_MP               = 776
 
 -- *Prowess increases not currently retail accurate.
 -- GoV Prowess bonus effects, real effect at ID 474
@@ -612,6 +727,15 @@ EFFECT_TELEPORT					= 797
 EFFECT_CHAINBOUND				= 798
 EFFECT_SKILLCHAIN               = 799
 EFFECT_DYNAMIS                  = 800
+EFFECT_MEDITATE                 = 801 -- Dummy effect for SAM Meditate JA
+-- EFFECT_PLACEHOLDER              = 802 -- Description
+-- 802-1022
+-- EFFECT_PLACEHOLDER             = 1023 -- The client dat file seems to have only this many "slots", results of exceeding that are untested.
+
+
+----------------------------------
+-- SC masks
+----------------------------------
 
 EFFECT_SKILLCHAIN0              = 0x200
 EFFECT_SKILLCHAIN1              = 0x400
@@ -620,6 +744,10 @@ EFFECT_SKILLCHAIN3              = 0x1000
 EFFECT_SKILLCHAIN4              = 0x2000
 EFFECT_SKILLCHAIN5              = 0x4000
 EFFECT_SKILLCHAINMASK           = 0x7C00
+
+------------------------------------
+-- Effect Flags
+------------------------------------
 
 EFFECTFLAG_NONE             = 0x0000
 EFFECTFLAG_DISPELABLE       = 0x0001
@@ -631,14 +759,16 @@ EFFECTFLAG_MAGIC_BEGIN      = 0x0040
 EFFECTFLAG_MAGIC_END        = 0x0080
 EFFECTFLAG_ON_ZONE          = 0x0100
 EFFECTFLAG_NO_LOSS_MESSAGE  = 0x0200
-EFFECTFLAG_INVISIBLE	= 0x0400
-EFFECTFLAG_DETECTABLE	= 0x0800
-EFFECTFLAG_NO_REST 		= 0x1000
+EFFECTFLAG_INVISIBLE        = 0x0400
+EFFECTFLAG_DETECTABLE       = 0x0800
+EFFECTFLAG_NO_REST          = 0x1000
 EFFECTFLAG_PREVENT_ACTION   = 0x2000
 EFFECTFLAG_WALTZABLE        = 0x4000
-EFFECTFLAG_FOOD                 = 0x8000
+EFFECTFLAG_FOOD             = 0x8000
 EFFECTFLAG_SONG             = 0x10000
 EFFECTFLAG_ROLL             = 0x20000
+
+------------------------------------
 
 function removeSleepEffects(target)
 	target:delStatusEffect(EFFECT_SLEEP_I);
@@ -647,7 +777,7 @@ function removeSleepEffects(target)
 end;
 
 function hasSleepEffects(target)
-	if(target:hasStatusEffect(EFFECT_SLEEP_I) or
+	if (target:hasStatusEffect(EFFECT_SLEEP_I) or
 	target:hasStatusEffect(EFFECT_SLEEP_II) or
 	target:hasStatusEffect(EFFECT_LULLABY) ) then
 		return true;
@@ -655,7 +785,7 @@ function hasSleepEffects(target)
 	return false;
 end;
 
------------------------------------
+------------------------------------
 -- These codes are the gateway to directly interacting with the pXI core program with status effects.
 -- These are NOT the actual status effects such as weakness or silence,
 -- but rather arbitrary codes chosen to represent different modifiers to the effected characters and mobs.
@@ -664,7 +794,7 @@ end;
 --
 -- Example: target:getMod(MOD_STR) will get the sum of STR bonuses/penalties from gear, food, STR Etude, Absorb-STR, and any other STR-related buff/debuff.
 -- Note that the above will ignore base statistics, and that getStat() should be used for stats, Attack, and Defense, while getACC(), getRACC(), and getEVA() also exist.
------------------------------------
+------------------------------------
 
 MOD_NONE			= 0x00
 MOD_DEF				= 0x01
@@ -694,6 +824,7 @@ MOD_RATT			= 0x18
 MOD_ACC				= 0x19
 MOD_RACC			= 0x1A
 MOD_ENMITY			= 0x1B
+MOD_ENMITY_LOSS_REDUCTION = 0x1F6
 MOD_MATT			= 0x1C
 MOD_MDEF			= 0x1D
 MOD_MACC			= 0x1E
@@ -751,8 +882,11 @@ MOD_KATANA			= 0x58
 MOD_GKATANA			= 0x59
 MOD_CLUB			= 0x5A
 MOD_STAFF			= 0x5B
+MOD_AUTO_MELEE_SKILL  = 0x65
+MOD_AUTO_RANGED_SKILL = 0x66
+MOD_AUTO_MAGIC_SKILL  = 0x67
 MOD_ARCHERY			= 0x68
-MOD_MARKSMAN			= 0x69
+MOD_MARKSMAN	    = 0x69
 MOD_THROW			= 0x6A
 MOD_GUARD			= 0x6B
 MOD_EVASION			= 0x6C
@@ -761,11 +895,11 @@ MOD_PARRY			= 0x6E
 MOD_DIVINE			= 0x6F
 MOD_HEALING			= 0x70
 MOD_ENHANCE			= 0x71
-MOD_ENFEEBLE			= 0x72
+MOD_ENFEEBLE		= 0x72
 MOD_ELEM			= 0x73
 MOD_DARK			= 0x74
-MOD_SUMMONING			= 0x75
-MOD_NINJUTSU			= 0x76
+MOD_SUMMONING		= 0x75
+MOD_NINJUTSU		= 0x76
 MOD_SINGING			= 0x77
 MOD_STRING			= 0x78
 MOD_WIND			= 0x79
@@ -854,7 +988,9 @@ MOD_GRAVITYRES			= 0xF9
 MOD_SLOWRES			= 0xFA
 MOD_STUNRES			= 0xFB
 MOD_CHARMRES			= 0xFC
-MOD_UNKNOWN			= 0xFF
+MOD_AMNESIARES          = 0xFD
+-- PLACEHOLDER             = 0xFE
+MOD_DEATHRES			= 0xFF
 MOD_PARALYZE			= 0x101
 MOD_MIJIN_GAKURE		= 0x102
 MOD_DUAL_WIELD			= 0x103
@@ -878,12 +1014,6 @@ MOD_ZANSHIN			= 0x132
 MOD_UTSUSEMI			= 0x133
 MOD_NINJA_TOOL			= 0x134
 MOD_BLUE_POINTS			= 0x135
-MOD_DEDICATION			= 0x136
-MOD_DEDICATION_CAP		= 0x137
-MOD_PET_MABB			= 0x138
-MOD_PET_MACC			= 0x139
-MOD_PET_ATTP			= 0x13A
-MOD_PET_ACC			= 0x13B
 MOD_DMG_REFLECT			= 0x13C
 MOD_ROLL_ROGUES			= 0x13D
 MOD_ROLL_GALLANTS		= 0x13E
@@ -900,25 +1030,25 @@ MOD_ROLL_CORSAIRS		= 0x148
 MOD_ROLL_PUPPET			= 0x149
 MOD_ROLL_DANCERS		= 0x14A
 MOD_ROLL_SCHOLARS		= 0x14B
-MOD_BUST			= 0x14C
-MOD_FINISHING_MOVES		= 0x14D
+MOD_BUST                    = 0x14C
+MOD_FINISHING_MOVES         = 0x14D
 MOD_SAMBA_DURATION          = 0x1EA -- Samba duration bonus(modId = 490)
 MOD_WALTZ_POTENTCY	        = 0x1EB -- Waltz Potentcy Bonus(modId = 491)
 MOD_CHOCO_JIG_DURATION      = 0x1EC -- Chocobo Jig duration bonus (modId = 492)
 MOD_VFLOURISH_MACC          = 0x1ED -- Violent Flourish accuracy bonus (modId = 493)
 MOD_STEP_FINISH             = 0x1EE -- Bonus finishing moves from steps (modId = 494)
 MOD_STEP_ACCURACY           = 0x193 -- Accuracy bonus for steps (modID = 403)
-MOD_SPECTRAL_JIG            = 0x1EF --Spectral Jig duration modifier (percent increase) (modId = 495)
+MOD_SPECTRAL_JIG            = 0x1EF -- Spectral Jig duration modifier (percent increase) (modId = 495)
 MOD_WALTZ_RECAST            = 0x1F1 -- (modID = 497) Waltz recast modifier (percent)
 MOD_SAMBA_PDURATION         = 0x1F2 -- (modID = 498) Samba percent duration bonus
-MOD_WIDESCAN            	= 0x154
-MOD_BARRAGE_ACC			    =0x1A4
-MOD_ENSPELL             	= 0x155
-MOD_SPIKES              	= 0x156
-MOD_ENSPELL_DMG         	= 0x157
-MOD_SPIKES_DMG          	= 0x158
+MOD_WIDESCAN                = 0x154
+MOD_BARRAGE_ACC             = 0x1A4 -- (modID = 420)
+MOD_ENSPELL                 = 0x155
+MOD_SPIKES                  = 0x156
+MOD_ENSPELL_DMG             = 0x157
+MOD_SPIKES_DMG              = 0x158
 MOD_TP_BONUS                = 0x159
-MOD_PERPETUATION_REDUCTION 	= 0x15A
+MOD_PERPETUATION_REDUCTION  = 0x15A
 MOD_FIRE_AFFINITY		= 0x15B
 MOD_EARTH_AFFINITY		= 0x15C
 MOD_WATER_AFFINITY		= 0x15D
@@ -981,95 +1111,134 @@ MOD_REFRESH_DOWN		 = 0x195			-- plague, reduce mp
 MOD_REGAIN_DOWN			 = 0x196			-- plague, reduce tp
 
 -- Gear set modifiers
-MOD_DA_DOUBLE_DAMAGE		  =0x198 -- Double attack's double damage chance %.
-MOD_TA_TRIPLE_DAMAGE		  =0x199 -- Triple attack's triple damage chance %.
-MOD_ZANSHIN_DOUBLE_DAMAGE	  =0x19A -- Zanshin's double damage chance %.
-MOD_RAPID_SHOT_DOUBLE_DAMAGE  =0x1DF -- Rapid shot's double damage chance %.
-MOD_ABSORB_DMG_CHANCE		  =0x1E0 -- Chance to absorb damage %
-MOD_EXTRA_DUAL_WIELD_ATTACK   =0x1E1 -- Chance to land an extra attack when dual wielding
-MOD_EXTRA_KICK_ATTACK		  =0x1E2 -- Occasionally allows a second Kick Attack during an attack round without the use of Footwork.
-MOD_SAMBA_DOUBLE_DAMAGE		  =0x19F -- Double damage chance when samba is up.
-MOD_NULL_PHYSICAL_DAMAGE	  =0x1A0 -- Chance to null physical damage.
-MOD_QUICK_DRAW_TRIPLE_DAMAGE  =0x1A1 -- Chance to do triple damage with quick draw.
-MOD_BAR_ELEMENT_NULL_CHANCE	  =0x1A2 -- Bar Elemental spells will occasionally nullify damage of the same element.
-MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3 -- Spells that match your current Arts will occasionally cast instantly, without recast.
+MOD_DA_DOUBLE_DAMAGE		  = 0x198 -- Double attack's double damage chance %.
+MOD_TA_TRIPLE_DAMAGE		  = 0x199 -- Triple attack's triple damage chance %.
+MOD_ZANSHIN_DOUBLE_DAMAGE	  = 0x19A -- Zanshin's double damage chance %.
+MOD_RAPID_SHOT_DOUBLE_DAMAGE  = 0x1DF -- Rapid shot's double damage chance %.
+MOD_ABSORB_DMG_CHANCE		  = 0x1E0 -- Chance to absorb damage %
+MOD_EXTRA_DUAL_WIELD_ATTACK   = 0x1E1 -- Chance to land an extra attack when dual wielding
+MOD_EXTRA_KICK_ATTACK		  = 0x1E2 -- Occasionally allows a second Kick Attack during an attack round without the use of Footwork.
+MOD_SAMBA_DOUBLE_DAMAGE		  = 0x19F -- Double damage chance when samba is up.
+MOD_NULL_PHYSICAL_DAMAGE	  = 0x1A0 -- Chance to null physical damage.
+MOD_QUICK_DRAW_TRIPLE_DAMAGE  = 0x1A1 -- Chance to do triple damage with quick draw.
+MOD_BAR_ELEMENT_NULL_CHANCE	  = 0x1A2 -- Bar Elemental spells will occasionally nullify damage of the same element.
+MOD_GRIMOIRE_INSTANT_CAST	  = 0x1A3 -- Spells that match your current Arts will occasionally cast instantly, without recast.
 
-MOD_DOUBLE_SHOT_RATE		  =0x1A6 -- The rate that double shot can proc
-MOD_VELOCITY_SNAPSHOT_BONUS	  =0x1A7 -- Increases Snapshot whilst Velocity Shot is up.
-MOD_VELOCITY_RATT_BONUS		  =0x1A8 -- Increases Ranged Attack whilst Velocity Shot is up.
-MOD_SHADOW_BIND_EXT		  	  =0x1A9 -- Extends the time of shadowbind
-MOD_ABSORB_DMG_TO_MP		  =0x1AA --	Absorbs a percentage of damage taken to MP.
-MOD_ENMITY_REDUCTION_PHYSICAL =0x1AB -- Reduces Enmity decrease when taking physical damage
-MOD_SHIELD_MASTERY_TP         =0x1E5 -- Shield mastery TP bonus when blocking with a shield (modId = 485)
-MOD_PERFECT_COUNTER_ATT		  =0x1AC -- Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
-MOD_FOOTWORK_ATT_BONUS		  =0x1AD -- Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
+MOD_DOUBLE_SHOT_RATE		  = 0x1A6 -- The rate that double shot can proc
+MOD_VELOCITY_SNAPSHOT_BONUS	  = 0x1A7 -- Increases Snapshot whilst Velocity Shot is up.
+MOD_VELOCITY_RATT_BONUS		  = 0x1A8 -- Increases Ranged Attack whilst Velocity Shot is up.
+MOD_SHADOW_BIND_EXT		  	  = 0x1A9 -- Extends the time of shadowbind
+MOD_ABSORB_PHYSDMG_TO_MP      = 0x1AA -- Absorbs a percentage of physical damage taken to MP.
+MOD_ENMITY_REDUCTION_PHYSICAL = 0x1AB -- Reduces Enmity decrease when taking physical damage
+MOD_SHIELD_MASTERY_TP         = 0x1E5 -- Shield mastery TP bonus when blocking with a shield (modId = 485)
+MOD_PERFECT_COUNTER_ATT		  = 0x1AC -- Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
+MOD_FOOTWORK_ATT_BONUS		  = 0x1AD -- Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
 
-MOD_MINNE_EFFECT              =0x1B1-- (modId = 433)
-MOD_MINUET_EFFECT	          =0x1B2-- (modId = 434)
-MOD_PAEON_EFFECT	          =0x1B3-- (modId = 435)
-MOD_REQUIEM_EFFECT	          =0x1B4-- (modId = 436)
-MOD_THRENODY_EFFECT	          =0x1B5-- (modId = 437)
-MOD_MADRIGAL_EFFECT	          =0x1B6-- (modId = 438)
-MOD_MAMBO_EFFECT	          =0x1B7-- (modId = 439)
-MOD_LULLABY_EFFECT	          =0x1B8-- (modId = 440)
-MOD_ETUDE_EFFECT	          =0x1B9-- (modId = 441)
-MOD_BALLAD_EFFECT	          =0x1BA-- (modId = 442)
-MOD_MARCH_EFFECT	          =0x1BB-- (modId = 443)
-MOD_FINALE_EFFECT	          =0x1BC-- (modId = 444)
-MOD_CAROL_EFFECT	          =0x1BD-- (modId = 445)
-MOD_MAZURKA_EFFECT	          =0x1BE -- (modId = 446)
-MOD_ELEGY_EFFECT	          =0x1BF-- (modId = 447)
-MOD_PRELUDE_EFFECT	          =0x1C0-- (modId = 448)
-MOD_HYMNUS_EFFECT	          =0x1C1-- (modId = 449)
-MOD_VIRELAI_EFFECT	          =0x1C2-- (modId = 450)
-MOD_SCHERZO_EFFECT            =0x1C3-- (modId = 451)
-MOD_ALL_SONGS_EFFECT          =0x1C4-- (modId = 452)
-MOD_MAXIMUM_SONGS_BONUS       =0x1C5
-MOD_SONG_DURATION_BONUS       =0x1C6
+MOD_MINNE_EFFECT              = 0x1B1 -- (modId = 433)
+MOD_MINUET_EFFECT	          = 0x1B2 -- (modId = 434)
+MOD_PAEON_EFFECT	          = 0x1B3 -- (modId = 435)
+MOD_REQUIEM_EFFECT	          = 0x1B4 -- (modId = 436)
+MOD_THRENODY_EFFECT	          = 0x1B5 -- (modId = 437)
+MOD_MADRIGAL_EFFECT	          = 0x1B6 -- (modId = 438)
+MOD_MAMBO_EFFECT	          = 0x1B7 -- (modId = 439)
+MOD_LULLABY_EFFECT	          = 0x1B8 -- (modId = 440)
+MOD_ETUDE_EFFECT	          = 0x1B9 -- (modId = 441)
+MOD_BALLAD_EFFECT	          = 0x1BA -- (modId = 442)
+MOD_MARCH_EFFECT	          = 0x1BB -- (modId = 443)
+MOD_FINALE_EFFECT	          = 0x1BC -- (modId = 444)
+MOD_CAROL_EFFECT	          = 0x1BD -- (modId = 445)
+MOD_MAZURKA_EFFECT	          = 0x1BE -- (modId = 446)
+MOD_ELEGY_EFFECT	          = 0x1BF -- (modId = 447)
+MOD_PRELUDE_EFFECT	          = 0x1C0 -- (modId = 448)
+MOD_HYMNUS_EFFECT	          = 0x1C1 -- (modId = 449)
+MOD_VIRELAI_EFFECT	          = 0x1C2 -- (modId = 450)
+MOD_SCHERZO_EFFECT            = 0x1C3 -- (modId = 451)
+MOD_ALL_SONGS_EFFECT          = 0x1C4 -- (modId = 452)
+MOD_MAXIMUM_SONGS_BONUS       = 0x1C5 -- (modId = 453)
+MOD_SONG_DURATION_BONUS       = 0x1C6 -- (modId = 454)
 
-MOD_EAT_RAW_FISH			  = 409
-MOD_EAT_RAW_MEAT			  = 410
-MOD_QUICK_DRAW_DMG = 411
+MOD_QUICK_DRAW_DMG            = 0x19B -- (modId = 411)
 
-MOD_QUAD_ATTACK				  =0x1AE -- Quadruple attack chance.
+MOD_QUAD_ATTACK				  = 0x1AE -- Quadruple attack chance.
 
-MOD_ADDITIONAL_EFFECT         =0x1AF -- All additional effects
-MOD_ENSPELL_DMG_BONUS         =0x1B0
+MOD_ADDITIONAL_EFFECT         = 0x1AF -- All additional effects (modId = 431)
+MOD_ENSPELL_DMG_BONUS         = 0x1B0
 
-MOD_FIRE_ABSORB               =0x1CB -- (modId = 459)
-MOD_EARTH_ABSORB              =0x1CC -- (modId = 460)
-MOD_WATER_ABSORB              =0x1CD -- (modId = 461)
-MOD_WIND_ABSORB               =0x1CE -- (modId = 462)
-MOD_ICE_ABSORB                =0x1CF-- (modId = 463)
-MOD_LTNG_ABSORB               =0x1D0 -- (modId = 464)
-MOD_LIGHT_ABSORB              =0x1D1 -- (modId = 465)
-MOD_DARK_ABSORB               =0x1D2 -- (modId = 466)
+MOD_FIRE_ABSORB               = 0x1CB -- (modId = 459)
+MOD_EARTH_ABSORB              = 0x1CC -- (modId = 460)
+MOD_WATER_ABSORB              = 0x1CD -- (modId = 461)
+MOD_WIND_ABSORB               = 0x1CE -- (modId = 462)
+MOD_ICE_ABSORB                = 0x1CF -- (modId = 463)
+MOD_LTNG_ABSORB               = 0x1D0 -- (modId = 464)
+MOD_LIGHT_ABSORB              = 0x1D1 -- (modId = 465)
+MOD_DARK_ABSORB               = 0x1D2 -- (modId = 466)
 
-MOD_FIRE_NULL                 =0x1D3 -- (modId = 467)
-MOD_EARTH_NULL                =0x1D4 -- (modId = 468)
-MOD_WATER_NULL                =0x1D5 -- (modId = 469)
-MOD_WIND_NULL                 =0x1D6 -- (modId = 470)
-MOD_ICE_NULL                  =0x1D7 -- (modId = 471)
-MOD_LTNG_NULL                 =0x1D8 -- (modId = 472)
-MOD_LIGHT_NULL                =0x1D9 -- (modId = 473)
-MOD_DARK_NULL                 =0x1DA -- (modId = 474)
+MOD_FIRE_NULL                 = 0x1D3 -- (modId = 467)
+MOD_EARTH_NULL                = 0x1D4 -- (modId = 468)
+MOD_WATER_NULL                = 0x1D5 -- (modId = 469)
+MOD_WIND_NULL                 = 0x1D6 -- (modId = 470)
+MOD_ICE_NULL                  = 0x1D7 -- (modId = 471)
+MOD_LTNG_NULL                 = 0x1D8 -- (modId = 472)
+MOD_LIGHT_NULL                = 0x1D9 -- (modId = 473)
+MOD_DARK_NULL                 = 0x1DA -- (modId = 474)
 
-MOD_MAGIC_ABSORB              =0x1DB -- (modId = 475)
-MOD_MAGIC_NULL                =0x1DC -- (modId = 476)
+MOD_MAGIC_ABSORB              = 0x1DB -- (modId = 475)
+MOD_MAGIC_NULL                = 0x1DC -- (modId = 476)
 
-MOD_WARCRY_DURATION           =0x1E3 -- Warcy duration bonus from gear
+MOD_PHYS_ABSORB               = 0x200 -- (modId = 512)
 
-MOD_AUSPICE_EFFECT            =0x1E4 -- Auspice Subtle Blow Bonus (modId = 484)
-MOD_TACTICAL_PARRY            =0x1E6 -- Tactical Parry TP Bonus (modid = 486)
-MOD_MAG_BURST_BONUS           =0x1E7 -- Magic Burst Bonus (modid = 487)
-MOD_INHIBIT_TP                =0x1E8 -- Inhibits TP Gain (percent) (modId = 488)
+MOD_WARCRY_DURATION           = 0x1E3 -- Warcy duration bonus from gear
 
-MOD_GOV_CLEARS                =0x1F0 -- Tracks GoV page completion (for 4% bonus on rewards).
+MOD_AUSPICE_EFFECT            = 0x1E4 -- Auspice Subtle Blow Bonus (modId = 484)
+MOD_TACTICAL_PARRY            = 0x1E6 -- Tactical Parry TP Bonus (modid = 486)
+MOD_MAG_BURST_BONUS           = 0x1E7 -- Magic Burst Bonus (modid = 487)
+MOD_INHIBIT_TP                = 0x1E8 -- Inhibits TP Gain (percent) (modId = 488)
 
+MOD_GOV_CLEARS                = 0x1F0 -- Tracks GoV page completion (for 4% bonus on rewards).
 
------------------------------------
+-- Reraise (Auto Reraise, will be used by ATMA)
+MOD_RERAISE_I                 = 0x1C8 -- Reraise. (modId = 456)
+MOD_RERAISE_II                = 0x1C9 -- Reraise II. (modId = 457)
+MOD_RERAISE_III               = 0x1CA -- Reraise III. (modId = 458)
+
+MOD_ITEM_SPIKES_TYPE          = 0x1F3 -- Type spikes an item has (modId = 499)
+MOD_ITEM_SPIKES_DMG           = 0x1F4 -- Damage of an items spikes (modId = 500)
+MOD_ITEM_SPIKES_CHANCE        = 0x1F5 -- Chance of an items spike proc (modId = 501)
+
+MOD_FERAL_HOWL_DURATION       = 0x1F7 -- +20% duration per merit when wearing augmented Monster Jackcoat +2 (modId = 503)
+
+MOD_MANEUVER_BONUS            = 0x1F8 -- Maneuver Stat Bonus
+MOD_OVERLOAD_THRESH           = 0x1F9 -- Overload Threshold Bonus
+
+MOD_EXTRA_DMG_CHANCE          = 0x1FA -- Proc rate of MOD_OCC_DO_EXTRA_DMG. 111 would be 11.1% (modId = 506)
+MOD_OCC_DO_EXTRA_DMG          = 0x1FB -- Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage. (modId = 507)
+
+MOD_EAT_RAW_FISH              = 0x19C -- (modId = 412)
+MOD_EAT_RAW_MEAT              = 0x19D -- (modId = 413)
+
+MOD_RETALIATION               = 0x19E -- Increases damage of Retaliation hits (modId = 414)
+MOD_AUGMENTS_THIRD_EYE        = 0x1FC -- Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15% (modId = 508)
+
+MOD_CLAMMING_IMPROVED_RESULTS = 0x1FD -- (modId = 509)
+MOD_CLAMMING_REDUCED_INCIDENTS= 0x1FE -- (modId = 510)
+
+MOD_CHOCOBO_RIDING_TIME       = 0x1FF -- Increases chocobo riding time (modId = 511)
+
+MOD_HARVESTING_RESULT         = 0x201 -- Improves harvesting results (modId = 513)
+MOD_LOGGING_RESULT            = 0x202 -- Improves logging results (modId = 514)
+MOD_MINNING_RESULT            = 0x203 -- Improves mining results (modId = 515)
+MOD_ABSORB_DMG_TO_MP          = 0x204 -- Unlike PLD gear mod, works on all damage types (Ethereal Earring) (modId = 516)
+
+MOD_EGGHELM                   = 0x205 -- Egg Helm (Chocobo Digging)
+
+-- MOD_SPARE = 0x138 -- (modId = 312)
+-- MOD_SPARE = 0x139 -- (modId = 313)
+-- MOD_SPARE = 0x13A -- (modId = 314)
+-- MOD_SPARE = 0x13B -- (modId = 315)
+
+------------------------------------
 -- Merit Definitions
------------------------------------
+------------------------------------
 
 MCATEGORY_HP_MP      = 0x0040
 MCATEGORY_ATTRIBUTES = 0x0080
@@ -1237,7 +1406,7 @@ MERIT_TRIPLE_ATTACK_RATE        = MCATEGORY_THF_1 + 0x08
 MERIT_SHIELD_BASH_RECAST        = MCATEGORY_PLD_1 + 0x00
 MERIT_HOLY_CIRCLE_RECAST        = MCATEGORY_PLD_1 + 0x02
 MERIT_SENTINEL_RECAST           = MCATEGORY_PLD_1 + 0x04
-MERIT_COVER_EFFECT_LENTH        = MCATEGORY_PLD_1 + 0x06
+MERIT_COVER_EFFECT_LENGTH       = MCATEGORY_PLD_1 + 0x06
 MERIT_RAMPART_RECAST            = MCATEGORY_PLD_1 + 0x08
 
 --DRK 1
@@ -1488,9 +1657,9 @@ MERIT_STORMSURGE                = MCATEGORY_SCH_2 + 0x0A
 
 
 
------------------------------------
+------------------------------------
 -- Slot Definitions
------------------------------------
+------------------------------------
 
 SLOT_MAIN 		= 0
 SLOT_SUB		= 1
@@ -1529,9 +1698,9 @@ ALLEGIANCE_SAN_DORIA	= 2
 ALLEGIANCE_BASTOK		= 3
 ALLEGIANCE_WINDURST		= 4
 
------------------------------------
+------------------------------------
 -- Inventory enum
------------------------------------
+------------------------------------
 
 LOC_INVENTORY   = 0
 LOC_MOGSAFE     = 1
@@ -1541,9 +1710,9 @@ LOC_MOGLOCKER   = 4
 LOC_MOGSATCHEL  = 5
 LOC_MOGSACK     = 6
 
------------------------------------
--- Message enum                  --
------------------------------------
+------------------------------------
+-- Message enum
+------------------------------------
 
 MSGBASIC_DEFEATS_TARG			= 6 -- The <player> defeats <target>.
 MSGBASIC_ALREADY_CLAIMED		= 12 -- Cannot attack. Your target is already claimed.
@@ -1570,7 +1739,7 @@ MSGBASIC_USES_BUT_MISSES		= 324 -- The <player> uses .. but misses <target>.
 MSGBASIC_CANT_BE_USED_IN_AREA	= 316 -- That action cannot be used in this area.
 MSGBASIC_REQUIRES_SHIELD		= 199 -- That action requires a shield.
 MSGBASIC_REQUIRES_COMBAT		= 525 -- .. can only be performed during battle.
-MSGBASIC_STATUS_PREVENTS      = 569 -- Your current status prevents you from using that ability.
+MSGBASIC_STATUS_PREVENTS        = 569 -- Your current status prevents you from using that ability.
 -- Distance
 MSGBASIC_TARG_OUT_OF_RANGE		= 4 -- <target> is out of range.
 MSGBASIC_UNABLE_TO_SEE_TARG		= 5 -- Unable to see <target>.
@@ -1619,6 +1788,10 @@ MSGBASIC_ROLL_ALREADY_ACTIVE	= 429 -- The same roll is already active on the <pl
 MSGBASIC_EFFECT_ALREADY_ACTIVE  = 523 -- The same effect is already active on <player>.
 MSGBASIC_NO_FINISHINGMOVES		= 524 -- You have not earned enough finishing moves to perform that action.
 
+------------------------------------
+-- Spell Groups
+------------------------------------
+
 SPELLGROUP_NONE		 = 0
 SPELLGROUP_SONG		 = 1
 SPELLGROUP_BLACK	 = 2
@@ -1627,53 +1800,62 @@ SPELLGROUP_NINJUTSU	 = 4
 SPELLGROUP_SUMMONING = 5
 SPELLGROUP_WHITE	 = 6
 
-MOBMOD_GIL_MIN = 1
-MOBMOD_GIL_MAX = 2
-MOBMOD_MP_BASE = 3
-MOBMOD_SIGHT_RANGE = 4
-MOBMOD_SOUND_RANGE = 5
-MOBMOD_BUFF_CHANCE = 6
-MOBMOD_GA_CHANCE = 7
-MOBMOD_HEAL_CHANCE = 8
-MOBMOD_HP_HEAL_CHANCE = 9
-MOBMOD_SUBLINK = 10
-MOBMOD_LINK_RADIUS = 11
-MOBMOD_DRAW_IN = 12
-MOBMOD_RAGE = 13
-MOBMOD_SKILLS = 14
-MOBMOD_MUG_GIL = 15
-MOBMOD_MAIN_2HOUR = 16
-MOBMOD_NO_DESPAWN = 17
-MOBMOD_VAR = 18 -- used by funguar to track skill uses
-MOBMOD_SUB_2HOUR = 19
-MOBMOD_TP_USE_CHANCE = 20
-MOBMOD_PET_SPELL_LIST = 21
-MOBMOD_NA_CHANCE = 22
-MOBMOD_IMMUNITY = 23
-MOBMOD_GRADUAL_RAGE = 24
-MOBMOD_BUILD_RESIST = 25
-MOBMOD_SUPERLINK = 26
-MOBMOD_SPELL_LIST = 27
-MOBMOD_EXP_BONUS = 28
-MOBMOD_ASSIST = 29
-MOBMOD_SPECIAL_SKILL = 30
-MOBMOD_RAND_JOB = 31
-MOBMOD_2HOUR_MULTI = 32
-MOBMOD_SPECIAL_COOL = 33
-MOBMOD_MAGIC_COOL = 34
-MOBMOD_STANDBACK_TIME = 35
-MOBMOD_ROAM_COOL = 36
-MOBMOD_ALWAYS_AGGRO = 37
-MOBMOD_REFLECT = 38
-MOBMOD_SHARE_POS = 39
-MOBMOD_TELEPORT_CD = 40
-MOBMOD_TELEPORT_START = 41
-MOBMOD_TELEPORT_END = 42
-MOBMOD_TELEPORT_TYPE = 43
-MOBMOD_DUAL_WIELD = 44
-MOBMOD_ADD_EFFECT = 45
+------------------------------------
+-- MOBMODs
+------------------------------------
 
---skills
+MOBMOD_GIL_MIN        = 1
+MOBMOD_GIL_MAX        = 2
+MOBMOD_MP_BASE        = 3
+MOBMOD_SIGHT_RANGE    = 4
+MOBMOD_SOUND_RANGE    = 5
+MOBMOD_BUFF_CHANCE    = 6
+MOBMOD_GA_CHANCE      = 7
+MOBMOD_HEAL_CHANCE    = 8
+MOBMOD_HP_HEAL_CHANCE = 9
+MOBMOD_SUBLINK        = 10
+MOBMOD_LINK_RADIUS    = 11
+MOBMOD_DRAW_IN        = 12
+MOBMOD_RAGE           = 13
+MOBMOD_SKILLS         = 14
+MOBMOD_MUG_GIL        = 15
+MOBMOD_MAIN_2HOUR     = 16
+MOBMOD_NO_DESPAWN     = 17
+MOBMOD_VAR            = 18 -- Used by funguar to track skill uses.
+MOBMOD_SUB_2HOUR      = 19
+MOBMOD_TP_USE_CHANCE  = 20
+MOBMOD_PET_SPELL_LIST = 21
+MOBMOD_NA_CHANCE      = 22
+MOBMOD_IMMUNITY       = 23
+MOBMOD_GRADUAL_RAGE   = 24
+MOBMOD_BUILD_RESIST   = 25
+MOBMOD_SUPERLINK      = 26
+MOBMOD_SPELL_LIST     = 27
+MOBMOD_EXP_BONUS      = 28
+MOBMOD_ASSIST         = 29
+MOBMOD_SPECIAL_SKILL  = 30
+MOBMOD_RAND_JOB       = 31
+MOBMOD_2HOUR_MULTI    = 32
+MOBMOD_SPECIAL_COOL   = 33
+MOBMOD_MAGIC_COOL     = 34
+MOBMOD_STANDBACK_TIME = 35
+MOBMOD_ROAM_COOL      = 36
+MOBMOD_ALWAYS_AGGRO   = 37
+MOBMOD_NO_DROPS       = 38 -- If set monster cannot drop any items, not even seals.
+MOBMOD_SHARE_POS      = 39
+MOBMOD_TELEPORT_CD    = 40
+MOBMOD_TELEPORT_START = 41
+MOBMOD_TELEPORT_END   = 42
+MOBMOD_TELEPORT_TYPE  = 43
+MOBMOD_DUAL_WIELD     = 44
+MOBMOD_ADD_EFFECT     = 45
+MOBMOD_AUTO_SPIKES    = 46
+MOBMOD_SPAWN_LEASH    = 47
+MOBMOD_SHARE_TARGET   = 48
+
+------------------------------------
+-- Skills
+------------------------------------
 
     SKILL_NON           = 0
 	SKILL_H2H			= 1
@@ -1721,6 +1903,7 @@ MOBMOD_ADD_EFFECT = 45
 	SKILL_COK			= 56
 	SKILL_SYN			= 57
 	SKILL_RID			= 58
+    SKILL_DIG           = 59
 
 	MAX_JOB_TYPE = 23
 
@@ -1728,11 +1911,9 @@ MOBMOD_ADD_EFFECT = 45
     RECAST_MAGIC    = 1
     RECAST_ABILITY  = 2
 
------------------------------------
---
---	ACTION IDs
---
------------------------------------
+------------------------------------
+-- ACTION IDs
+------------------------------------
 
 ACTION_NONE						= 0;
 ACTION_ATTACK					= 1;
@@ -1772,11 +1953,9 @@ ACTION_MOBABILITY_USING			= 34;
 ACTION_MOBABILITY_INTERRUPT		= 35;
 ACTION_LEAVE					= 36;
 
------------------------------------
---
---	ECOSYSTEM IDs
---
------------------------------------
+------------------------------------
+-- ECOSYSTEM IDs
+------------------------------------
 
 SYSTEM_ERROR			= 0;
 SYSTEM_AMORPH			= 1;
@@ -1801,11 +1980,9 @@ SYSTEM_UNDEAD			= 19;
 SYSTEM_VERMIN			= 20;
 SYSTEM_VORAGEAN			= 21;
 
------------------------------------
---
---	Spell AOE IDs
---
------------------------------------
+------------------------------------
+-- Spell AOE IDs
+------------------------------------
 
 SPELLAOE_NONE           = 0;
 SPELLAOE_RADIAL         = 1;
@@ -1813,13 +1990,31 @@ SPELLAOE_CONAL          = 2;
 SPELLAOE_RADIAL_MANI    = 3;  -- AOE when under SCH stratagem Manifestation
 SPELLAOE_RADIAL_ACCE    = 4;  -- AOE when under SCH stratagem Accession
 SPELLAOE_PIANISSIMO     = 5;  -- Single target when under BRD JA Pianissimo
-SPELLAOE_DIFFUSION		= 6;   -- AOE when under Diffusion
+SPELLAOE_DIFFUSION		= 6;  -- AOE when under Diffusion
 
------------------------------------
---
---	Spell flag bits
---
------------------------------------
+------------------------------------
+-- Spell flag bits
+------------------------------------
 
 SPELLFLAG_NONE		= 0;
 SPELLFLAG_HIT_ALL	= 1;		-- hit all targets in range regardless of party
+
+------------------------------------
+-- Behaviour bits
+------------------------------------
+
+BEHAVIOUR_NONE				= 0x000;
+BEHAVIOUR_NO_DESPAWN		= 0x001; -- mob does not despawn on death
+BEHAVIOUR_STANDBACK			= 0x002; -- mob will standback forever
+BEHAVIOUR_RAISABLE			= 0x004; -- mob can be raised via Raise spells
+BEHAVIOUR_AGGRO_AMBUSH		= 0x200; -- mob aggroes by ambush
+BEHAVIOUR_NO_TURN           = 0x400; -- mob does not turn to face target
+
+------------------------------------
+-- Elevator IDs
+------------------------------------
+
+ELEVATOR_KUFTAL_TUNNEL_DSPPRNG_RCK		= 1;
+ELEVATOR_PORT_BASTOK_DRWBRDG			= 2;
+ELEVATOR_DAVOI_LIFT                     = 3;
+ELEVATOR_PALBOROUGH_MINES_LIFT          = 4;

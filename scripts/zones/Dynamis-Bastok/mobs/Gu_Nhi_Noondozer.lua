@@ -10,7 +10,7 @@ require("scripts/globals/dynamis");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -25,10 +25,10 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
+
 	if(alreadyReceived(killer,4) == false) then
 		killer:addTimeToDynamis(30);
 		addDynamisList(killer,8);
 	end
-	
+
 end;

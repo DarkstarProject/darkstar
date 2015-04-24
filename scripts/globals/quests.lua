@@ -24,7 +24,7 @@ CRYSTAL_WAR = 7;
 ABYSSEA     = 8;
 
 -----------------------------------
---  San d'Oria
+--  San d'Oria - 0
 -----------------------------------
 
 A_SENTRY_S_PERIL                = 0;  -- ± --
@@ -119,7 +119,7 @@ THICK_SHELLS                    = 117; -- ± --
 FOREST_FOR_THE_TREES            = 118;
 
 -----------------------------------
---  Bastok
+--  Bastok - 1
 -----------------------------------
 
 THE_SIREN_S_TEAR                = 0;  -- ± --
@@ -215,7 +215,7 @@ SYNERGUSTIC_PURSUITS            = 89;
 THE_WONDROUS_WHATCHAMACALLIT    = 90;
 
 -----------------------------------
---  Windurst
+--  Windurst - 2
 -----------------------------------
 
 HAT_IN_HAND                     = 0;  -- + --
@@ -311,7 +311,7 @@ LURE_OF_THE_WILDCAT_WINDURST    = 94;
 BABBAN_NY_MHEILLEA              = 95;
 
 -----------------------------------
---  Jeuno
+--  Jeuno - 3
 -----------------------------------
 
 CREST_OF_DAVOI                  = 0;  -- + --
@@ -463,7 +463,7 @@ VW_OP_118_BUBURIMU_SQUALL       = 169;
 PRELUDE_TO_PUISSANCE            = 170;
 
 -----------------------------------
---  Other Areas
+--  Other Areas - 4
 -----------------------------------
 
 RYCHARDE_THE_CHEF               = 0;  -- + --
@@ -523,7 +523,7 @@ BOMBS_AWAY                      = 96;
 MITHRAN_DELICACIES              = 97;
 
 -----------------------------------
---  Outlands --
+--  Outlands - 5
 -----------------------------------
 
 -- Kazham(1-15)
@@ -591,7 +591,7 @@ THE_SEARCH_FOR_GOLDMANE         = 200;            -- CoP Quest
 INDOMITABLE_SPIRIT              = 201; -- ± --
 
 -----------------------------------
---  Aht Urhgan
+--  Aht Urhgan - 6
 -----------------------------------
 
 KEEPING_NOTES                   = 0;
@@ -636,7 +636,7 @@ NOT_MEANT_TO_BE                 = 64; -- + --
 RAT_RACE                        = 66; -- + --
 
 -----------------------------------
---  Crystal War
+--  Crystal War - 7
 -----------------------------------
 
 LOST_IN_TRANSLOCATION            = 0;
@@ -648,7 +648,7 @@ THE_DAWN_OF_DELECTABILITY        = 5;
 A_LITTLE_KNOWLEDGE               = 6; -- + --
 THE_FIGHTING_FOURTH              = 7;
 SNAKE_ON_THE_PLAINS              = 8;
-STEAMED_RAMS                     = 9;
+STEAMED_RAMS                     = 9; -- + --
 SEEING_SPOTS                     = 10; -- + --
 THE_FLIPSIDE_OF_THINGS           = 11;
 BETTER_PART_OF_VALOR             = 12;
@@ -732,7 +732,200 @@ CRYSTAL_GUARDIAN                 = 96;
 ENDINGS_AND_BEGINNINGS           = 97;
 AD_INFINITUM                     = 98;
 
-
 -----------------------------------
---  Abyssea
+--  Abyssea - 8
 -----------------------------------
+-- For some reason these did not match dat file order,
+-- had to adjust IDs >120 after using @addquest
+CATERING_CAPERS                 = 0;
+GIFT_OF_LIGHT                   = 1;
+FEAR_OF_THE_DARK_III            = 2;
+AN_EYE_FOR_REVENGE              = 3;
+UNBREAK_HIS_HEART               = 4;
+EXPLOSIVE_ENDEAVORS             = 5;
+THE_ANGLING_ARMORER             = 6;
+WATER_OF_LIFE                   = 7;
+OUT_OF_TOUCH                    = 8;
+LOST_MEMORIES                   = 9;
+HOPE_BLOOMS_ON_THE_BATTLEFIELD  = 10;
+OF_MALNOURISHED_MARTELLOS       = 11;
+ROSE_ON_THE_HEATH               = 12;
+FULL_OF_HIMSELF_ALCHEMIST       = 13;
+THE_WALKING_WOUNDED             = 14;
+SHADY_BUSINESS_REDUX            = 15;
+ADDLED_MIND_UNDYING_DREAMS      = 16;
+THE_SOUL_OF_THE_MATTER          = 17;
+SECRET_AGENT_MAN                = 18;
+PLAYING_PAPARAZZI               = 19;
+HIS_BOX_HIS_BELOVED             = 20;
+WEAPONS_NOT_WORRIES             = 21;
+CLEANSING_THE_CANYON            = 22;
+SAVORY_SALVATION                = 23;
+BRINGING_DOWN_THE_MOUNTAIN      = 24;
+A_STERLING_SPECIMEN             = 25;
+FOR_LOVE_OF_A_DAUGHTER          = 26;
+SISTERS_IN_CRIME                = 27;
+WHEN_GOOD_CARDIANS_GO_BAD       = 28;
+TANGLING_WITH_TONGUE_TWISTERS   = 29;
+A_WARD_TO_END_ALL_WARDS         = 30;
+THE_BOXWATCHERS_BEHEST          = 31;
+HIS_BRIDGE_HIS_BELOVED          = 32;
+BAD_COMMUNICATION               = 33;
+FAMILY_TIES                     = 34;
+AQUA_PURA                       = 35;
+AQUA_PURAGA                     = 36;
+WHITHER_THE_WHISKER             = 37;
+SCATTERED_SHELLS_SCATTERED_MIND = 38;
+WAYWARD_WARES                   = 39;
+LOOKING_FOR_LOOKOUTS            = 40;
+FLOWN_THE_COOP                  = 41;
+THREADBARE_TRIBULATIONS         = 42;
+AN_OFFER_YOU_CANT_REFUSE        = 43;
+SOMETHING_IN_THE_AIR            = 44;
+AN_ACRIDIDAEN_ANODYNE           = 45;
+HAZY_PROSPECTS                  = 46;
+FOR_WANT_OF_A_POT               = 47;
+MISSING_IN_ACTION               = 48;
+I_DREAM_OF_FLOWERS              = 49;
+DESTINY_ODYSSEY                 = 50;
+UNIDENTIFIED_RESEARCH_OBJECT    = 51;
+COOKBOOK_OF_HOPE_RESTORING      = 52;
+SMOKE_OVER_THE_COAST            = 53;
+SOIL_AND_GREEN                  = 54;
+DROPPING_THE_BOMB               = 55;
+WANTED_MEDICAL_SUPPLIES         = 56;
+VOICES_FROM_BEYOND              = 57;
+BENEVOLENCE_LOST                = 58;
+BRUGAIRES_AMBITION              = 59;
+CHOCOBO_PANIC                   = 60;
+THE_EGG_ENTHUSIAST              = 61;
+GETTING_LUCKY                   = 62;
+HER_FATHERS_LEGACY              = 63;
+THE_MYSTERIOUS_HEAD_PATROL      = 64;
+MASTER_MISSING_MASTER_MISSED    = 65;
+THE_PERILS_OF_KORORO            = 66;
+LET_THERE_BE_LIGHT              = 67;
+LOOK_OUT_BELOW                  = 68;
+HOME_HOME_ON_THE_RANGE          = 69;
+IMPERIAL_ESPIONAGE              = 70;
+IMPERIAL_ESPIONAGE_II           = 71;
+BOREAL_BLOSSOMS                 = 72;
+BROTHERS_IN_ARMS                = 73;
+SCOUTS_ASTRAY                   = 74;
+FROZEN_FLAME_REDUX              = 75;
+SLIP_SLIDIN_AWAY                = 76;
+CLASSROOMS_WITHOUT_BORDERS      = 77;
+THE_SECRET_INGREDIENT           = 78;
+HELP_NOT_WANTED                 = 79;
+THE_TITUS_TOUCH                 = 80;
+SLACKING_SUBORDINATES           = 81;
+MOTHERLY_LOVE                   = 82;
+LOOK_TO_THE_SKY                 = 83;
+THE_UNMARKED_TOMB               = 84;
+PROOF_OF_THE_LION               = 85;
+BRYGID_THE_STYLIST_STRIKES_BACK = 86;
+DOMINION_OP_01_ALTEPA           = 87;
+DOMINION_OP_02_ALTEPA           = 88;
+DOMINION_OP_03_ALTEPA           = 89;
+DOMINION_OP_04_ALTEPA           = 90;
+DOMINION_OP_05_ALTEPA           = 91;
+DOMINION_OP_06_ALTEPA           = 92;
+DOMINION_OP_07_ALTEPA           = 93;
+DOMINION_OP_08_ALTEPA           = 94;
+DOMINION_OP_09_ALTEPA           = 95;
+DOMINION_OP_10_ALTEPA           = 96;
+DOMINION_OP_11_ALTEPA           = 97;
+DOMINION_OP_12_ALTEPA           = 98;
+DOMINION_OP_13_ALTEPA           = 99;
+DOMINION_OP_14_ALTEPA           = 100;
+DOMINION_OP_01_ULEGUERAND       = 101;
+DOMINION_OP_02_ULEGUERAND       = 102;
+DOMINION_OP_03_ULEGUERAND       = 103;
+DOMINION_OP_04_ULEGUERAND       = 104;
+DOMINION_OP_05_ULEGUERAND       = 105;
+DOMINION_OP_06_ULEGUERAND       = 106;
+DOMINION_OP_07_ULEGUERAND       = 107;
+DOMINION_OP_08_ULEGUERAND       = 108;
+DOMINION_OP_09_ULEGUERAND       = 109;
+DOMINION_OP_10_ULEGUERAND       = 110;
+DOMINION_OP_11_ULEGUERAND       = 111;
+DOMINION_OP_12_ULEGUERAND       = 112;
+DOMINION_OP_13_ULEGUERAND       = 113;
+DOMINION_OP_14_ULEGUERAND       = 114;
+DOMINION_OP_01_GRAUBERG         = 115;
+DOMINION_OP_02_GRAUBERG         = 116;
+DOMINION_OP_03_GRAUBERG         = 117;
+DOMINION_OP_04_GRAUBERG         = 118;
+DOMINION_OP_05_GRAUBERG         = 119;
+DOMINION_OP_06_GRAUBERG         = 120;
+DOMINION_OP_07_GRAUBERG         = 121;
+DOMINION_OP_08_GRAUBERG         = 122;
+DOMINION_OP_09_GRAUBERG         = 123;
+WARD_WARDEN_I_ATTOHWA           = 124;
+WARD_WARDEN_I_MISAREAUX         = 125;
+WARD_WARDEN_I_VUNKERL           = 126;
+WARD_WARDEN_II_ATTOHWA          = 127;
+WARD_WARDEN_II_MISAREAUX        = 128;
+WARD_WARDEN_II_VUNKERL          = 129;
+DESERT_RAIN_I_ATTOHWA           = 130;
+DESERT_RAIN_I_MISAREAUX         = 131;
+DESERT_RAIN_I_VUNKERL           = 132;
+DESERT_RAIN_II_ATTOHWA          = 133;
+DESERT_RAIN_II_MISAREAUX        = 134;
+DESERT_RAIN_II_VUNKERL          = 135;
+CRIMSON_CARPET_I_ATTOHWA        = 136;
+CRIMSON_CARPET_I_MISAREAUX      = 137;
+CRIMSON_CARPET_I_VUNKERL        = 138;
+CRIMSON_CARPET_II_ATTOHWA       = 139;
+CRIMSON_CARPET_II_MISAREAUX     = 140;
+CRIMSON_CARPET_II_VUNKERL       = 141;
+REFUEL_AND_REPLENISH_LA_THEINE  = 142;
+REFUEL_AND_REPLENISH_KONSCHTAT  = 143;
+REFUEL_AND_REPLENISH_TAHRONGI   = 144;
+REFUEL_AND_REPLENISH_ATTOHWA    = 145;
+REFUEL_AND_REPLENISH_MISAREAUX  = 146;
+REFUEL_AND_REPLENISH_VUNKERL    = 147;
+REFUEL_AND_REPLENISH_ALTEPA     = 148;
+REFUEL_AND_REPLENISH_ULEGUERAND = 149;
+REFUEL_AND_REPLENISH_GRAUBERG   = 150;
+A_MIGHTIER_MARTELLO_LA_THEINE   = 151;
+A_MIGHTIER_MARTELLO_KONSCHTAT   = 152;
+A_MIGHTIER_MARTELLO_TAHRONGI    = 153;
+A_MIGHTIER_MARTELLO_ATTOHWA     = 154;
+A_MIGHTIER_MARTELLO_MISAREAUX   = 155;
+A_MIGHTIER_MARTELLO_VUNKERL     = 156;
+A_MIGHTIER_MARTELLO_ALTEPA      = 157;
+A_MIGHTIER_MARTELLO_ULEGUERAND  = 158;
+A_MIGHTIER_MARTELLO_GRAUBERG    = 159;
+A_JOURNEY_BEGINS                = 160; -- + --
+THE_TRUTH_BECKONS               = 161; -- + --
+DAWN_OF_DEATH                   = 162;
+A_GOLDSTRUCK_GIGAS              = 163;
+TO_PASTE_A_PEISTE               = 164;
+MEGADRILE_MENACE                = 165;
+THE_FORBIDDEN_FRONTIER          = 166;
+FIRST_CONTACT                   = 167;
+AN_OFFICER_AND_A_PIRATE         = 168;
+HEART_OF_MADNESS                = 169;
+TENUOUS_EXISTENCE               = 170;
+CHAMPIONS_OF_ABYSSEA            = 171;
+THE_BEAST_OF_BASTORE            = 172;
+A_DELECTABLE_DEMON              = 173;
+A_FLUTTERY_FIEND                = 174;
+SCARS_OF_ABYSSEA                = 175;
+A_BEAKED_BLUSTERER              = 176;
+A_MAN_EATING_MITE               = 177;
+AN_ULCEROUS_URAGNITE            = 178;
+HEROES_OF_ABYSSEA               = 179;
+A_SEA_DOGS_SUMMONS              = 180;
+DEATH_AND_REBIRTH               = 181;
+EMISSARIES_OF_GOD               = 182;
+BENEATH_A_BLOOD_RED_SKY         = 183;
+THE_WYRM_GOD                    = 184;
+MEANWHILE_BACK_ON_ABYSSEA       = 185;
+A_MOONLIGHT_REQUITE             = 186;
+DOMINION_OP_10_GRAUBERG         = 187;
+DOMINION_OP_11_GRAUBERG         = 188;
+DOMINION_OP_12_GRAUBERG         = 189;
+DOMINION_OP_13_GRAUBERG         = 190;
+DOMINION_OP_14_GRAUBERG         = 191;

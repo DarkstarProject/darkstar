@@ -138,7 +138,7 @@ FOV_EVENT_SORROWS         = 0x003d;
 
 function startFov(eventid,player)
 	local hasRegime = player:getVar("fov_regimeid");
-	local tabs = player:getValorPoint();
+	local tabs = player:getCurrency("valor_point");
 	player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
 end
 
@@ -183,171 +183,169 @@ end
 ------------------------------------------
 
 function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
-local msg_accept = msg_offset;
-local msg_jobs = msg_offset+1;
-local msg_cancel = msg_offset+2;
-local tabs = player:getValorPoint();
-local HAS_FOOD = player:hasStatusEffect(EFFECT_FOOD);
-local HAS_SUPPORT_FOOD = player:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD);
--- ================= FIELD SUPPORT ===============================================
-if(option==FOV_MENU_REGEN) then --Chose Regen. Regen from FoV removes all forms of regen.
-	--Decrease tabs
-    if (tabs >= 20) then
-        player:delValorPoint(20);
-        --Removes regen if on player
-        player:delStatusEffect(EFFECT_REGEN);
-        --Adds regen
-        player:addStatusEffect(EFFECT_REGEN,1,3,3600);
-    end
-elseif(option==FOV_MENU_REFRESH) then --Chose Refresh, removes all other refresh.
-	--Decrease tabs
-    if (tabs >= 20) then
-        player:delValorPoint(20);
-        --Removes refresh if on player
-        player:delStatusEffect(EFFECT_REFRESH);
-		player:delStatusEffect(EFFECT_SUBLIMATION_COMPLETE);
-		player:delStatusEffect(EFFECT_SUBLIMATION_ACTIVATED);
-        --Add refresh
-        player:addStatusEffect(EFFECT_REFRESH,1,3,3600, 0, 3);
-    end
-elseif(option==FOV_MENU_PROTECT) then --Chose Protect, removes all other protect.
-	--Decrease tabs
-    if (tabs >= 15) then
-        player:delValorPoint(15);
-        --Removes protect if on player
-        player:delStatusEffect(EFFECT_PROTECT);
-        --Work out how much def to give (highest tier dependant on level)
-        local def = 0;
-        if (player:getMainLvl()<27) then --before protect 2, give protect 1
-            def=15;
-        elseif (player:getMainLvl()<47) then --after p2, before p3
-            def=40;
-        elseif (player:getMainLvl()<63) then --after p3, before p4
-            def=75;
-        else --after p4
-            def=120;
-        end
-        --Add protect
-        player:addStatusEffect(EFFECT_PROTECT,def,0,1800);
-    end
-elseif(option==FOV_MENU_SHELL) then --Chose Shell, removes all other shell.
-	--Decrease tabs
-    if (tabs >= 15) then
-        player:delValorPoint(15);
-        --Removes shell if on player
-        player:delStatusEffect(EFFECT_SHELL);
-        --Work out how much mdef to give (highest tier dependant on level)
-        --values taken from Shell scripts by Tenjou.
-        local def = 0;
-        if (player:getMainLvl()<37) then --before shell 2, give shell 1
-            def=24;
-        elseif (player:getMainLvl()<57) then --after s2, before s3
-            def=36;
-        elseif (player:getMainLvl()<68) then --after s3, before s4
-            def=48;
-        else --after s4
-            def=56;
-        end
-        --Add shell
-        player:addStatusEffect(EFFECT_SHELL,def,0,1800);
-    end
-elseif (option==FOV_MENU_RERAISE) then --Reraise chosen.
-	--Decrease tabs
-    if (tabs >= 10) then
-        player:delValorPoint(10);
-        --Remove any other RR
-        player:delStatusEffect(EFFECT_RERAISE);
-        --apply RR1, 2 hour duration.
-        player:addStatusEffect(EFFECT_RERAISE,1,0,7200);
-    end
-elseif (option==FOV_MENU_HOME_NATION) then --Return to home nation.
-	--Decrease tabs
-    if (tabs >= 50) then
-        player:delValorPoint(50);
-        toHomeNation(player); -- Needs an entry in /scripts/globals/teleports.lua?
-    end
-elseif (option == FOV_MENU_DRIED_MEAT) then -- Dried Meat: STR+4, Attack +22% (caps at 63)
-	if (tabs >= 50) then
-		if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-			player:messageBasic(246);
-		else
-			player:delValorPoint(50);
-			player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 1, 0, 1800);
-		end
-	end
-elseif (option == FOV_MENU_SALTED_FISH) then -- Salted Fish: VIT+2 DEF+30% (Caps at 86)
-	if (tabs >= 50) then
-		if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-			player:messageBasic(246);
-		else
-			player:delValorPoint(50);
-			player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 2, 0, 1800);
-		end
-	end
-elseif (option == FOV_MENU_HARD_COOKIE) then --- Hard Cookie: INT+4, MaxMP+30
-	if (tabs >= 50) then
-		if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-			player:messageBasic(246);
-		else
-			player:delValorPoint(50);
-			player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 3, 0, 1800);
-		end
-	end
-elseif (option == FOV_MENU_INSTANT_NOODLES) then -- Instant Noodles: VIT+1, Max HP+27% (caps at 75), StoreTP+5
-	if (tabs >= 50) then
-		if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-			player:messageBasic(246);
-		else
-			player:delValorPoint(50);
-			player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 4, 0, 1800);
-		end
-	end
-elseif(option==FOV_MENU_CANCEL_REGIME) then --Cancelled Regime.
-	player:setVar("fov_regimeid",0);
-	player:setVar("fov_numkilled1",0);
-	player:setVar("fov_numkilled2",0);
-	player:setVar("fov_numkilled3",0);
-	player:setVar("fov_numkilled4",0);
-	player:showText(player,msg_cancel);
-elseif(option==FOV_MENU_PAGE_1) then --Page 1
-	writeRegime(player,r1,msg_accept,msg_jobs,0);
-elseif(option==FOV_MENU_PAGE_2) then --Page 2
-	writeRegime(player,r2,msg_accept,msg_jobs,0);
-elseif(option==FOV_MENU_PAGE_3) then --Page 3
-	writeRegime(player,r3,msg_accept,msg_jobs,0);
-elseif(option==FOV_MENU_PAGE_4) then --Page 4
-	writeRegime(player,r4,msg_accept,msg_jobs,0);
-elseif(option==FOV_MENU_PAGE_5) then --Page 5
-	writeRegime(player,r5,msg_accept,msg_jobs,1);
-elseif(option==FOV_MENU_REPEAT_REGIME1) then --Page 1 Repeat
-	writeRegime(player,r1,msg_accept,msg_jobs,1);
-elseif(option==FOV_MENU_REPEAT_REGIME2) then --Page 2 Repeat
-	writeRegime(player,r2,msg_accept,msg_jobs,1);
-elseif(option==FOV_MENU_REPEAT_REGIME3) then --Page 3 Repeat
-	writeRegime(player,r3,msg_accept,msg_jobs,1);
-elseif(option==FOV_MENU_REPEAT_REGIME4) then --Page 4 Repeat
-	writeRegime(player,r4,msg_accept,msg_jobs,1);
-elseif(option==FOV_MENU_REPEAT_REGIME5) then --Page 5 Repeat
-	writeRegime(player,r5,msg_accept,msg_jobs,1);
-elseif(option==FOV_MENU_ELITE_INTRO) then --Want elite, 100tabs
-	--giveEliteRegime(player,ELITE_TRAINING_CHAPTER_7,100);
-elseif(option==FOV_MENU_ELITE_CHAP1) then --Want elite, 150tabs
-	--local tabs = player:getVar("tabs");
-	--local newtabs = tabs-150;
-	--player:setVar("tabs",newtabs);
-elseif(option==FOV_MENU_ELITE_CHAP2) then --Want elite, 200tabs
-	--local tabs = player:getVar("tabs");
-	--local newtabs = tabs-200;
-	--player:setVar("tabs",newtabs);
-elseif(option==FOV_MENU_ELITE_CHAP3) then --Want elite, 250tabs
-elseif(option==FOV_MENU_ELITE_CHAP4) then --Want elite, 300tabs
-elseif(option==FOV_MENU_ELITE_CHAP5) then --Want elite, 350tabs
-elseif(option==FOV_MENU_ELITE_CHAP6) then --Want elite, 400tabs
-elseif(option==FOV_MENU_ELITE_CHAP7) then --Want elite, 450tabs
+    local msg_accept = msg_offset;
+    local msg_jobs = msg_offset+1;
+    local msg_cancel = msg_offset+2;
+    local tabs = player:getCurrency("valor_point");
+    local HAS_FOOD = player:hasStatusEffect(EFFECT_FOOD);
+    local HAS_SUPPORT_FOOD = player:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD);
+    local fov_repeat = bit.band(option, 0x80000000);
 
-else
-	--print("opt is "..option);
-end
+    if (fov_repeat ~= 0) then
+        fov_repeat = 1
+    end
+
+    option = bit.band(option, 0x7FFFFFFF);
+    
+    -- ================= FIELD SUPPORT ===============================================
+    if(option==FOV_MENU_REGEN) then --Chose Regen. Regen from FoV removes all forms of regen.
+        --Decrease tabs
+        if (tabs >= 20) then
+            player:delCurrency("valor_point", 20);
+            --Removes regen if on player
+            player:delStatusEffect(EFFECT_REGEN);
+            --Adds regen
+            player:addStatusEffect(EFFECT_REGEN,1,3,3600);
+        end
+    elseif(option==FOV_MENU_REFRESH) then --Chose Refresh, removes all other refresh.
+        --Decrease tabs
+        if (tabs >= 20) then
+            player:delCurrency("valor_point", 20);
+            --Removes refresh if on player
+            player:delStatusEffect(EFFECT_REFRESH);
+            player:delStatusEffect(EFFECT_SUBLIMATION_COMPLETE);
+            player:delStatusEffect(EFFECT_SUBLIMATION_ACTIVATED);
+            --Add refresh
+            player:addStatusEffect(EFFECT_REFRESH,1,3,3600, 0, 3);
+        end
+    elseif(option==FOV_MENU_PROTECT) then --Chose Protect, removes all other protect.
+        --Decrease tabs
+        if (tabs >= 15) then
+            player:delCurrency("valor_point", 15);
+            --Removes protect if on player
+            player:delStatusEffect(EFFECT_PROTECT);
+            --Work out how much def to give (highest tier dependant on level)
+            local def = 0;
+            if (player:getMainLvl()<27) then --before protect 2, give protect 1
+                def=15;
+            elseif (player:getMainLvl()<47) then --after p2, before p3
+                def=40;
+            elseif (player:getMainLvl()<63) then --after p3, before p4
+                def=75;
+            else --after p4
+                def=120;
+            end
+            --Add protect
+            player:addStatusEffect(EFFECT_PROTECT,def,0,1800);
+        end
+    elseif(option==FOV_MENU_SHELL) then --Chose Shell, removes all other shell.
+        --Decrease tabs
+        if (tabs >= 15) then
+            player:delCurrency("valor_point", 15);
+            --Removes shell if on player
+            player:delStatusEffect(EFFECT_SHELL);
+            --Work out how much mdef to give (highest tier dependant on level)
+            --values taken from Shell scripts by Tenjou.
+            local def = 0;
+            if (player:getMainLvl()<37) then --before shell 2, give shell 1
+                def=24;
+            elseif (player:getMainLvl()<57) then --after s2, before s3
+                def=36;
+            elseif (player:getMainLvl()<68) then --after s3, before s4
+                def=48;
+            else --after s4
+                def=56;
+            end
+            --Add shell
+            player:addStatusEffect(EFFECT_SHELL,def,0,1800);
+        end
+    elseif (option==FOV_MENU_RERAISE) then --Reraise chosen.
+        --Decrease tabs
+        if (tabs >= 10) then
+            player:delCurrency("valor_point", 10);
+            --Remove any other RR
+            player:delStatusEffect(EFFECT_RERAISE);
+            --apply RR1, 2 hour duration.
+            player:addStatusEffect(EFFECT_RERAISE,1,0,7200);
+        end
+    elseif (option==FOV_MENU_HOME_NATION) then --Return to home nation.
+        --Decrease tabs
+        if (tabs >= 50) then
+            player:delCurrency("valor_point", 50);
+            toHomeNation(player); -- Needs an entry in /scripts/globals/teleports.lua?
+        end
+    elseif (option == FOV_MENU_DRIED_MEAT) then -- Dried Meat: STR+4, Attack +22% (caps at 63)
+        if (tabs >= 50) then
+            if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
+                player:messageBasic(246);
+            else
+                player:delCurrency("valor_point", 50);
+                player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 1, 0, 1800);
+            end
+        end
+    elseif (option == FOV_MENU_SALTED_FISH) then -- Salted Fish: VIT+2 DEF+30% (Caps at 86)
+        if (tabs >= 50) then
+            if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
+                player:messageBasic(246);
+            else
+                player:delCurrency("valor_point", 50);
+                player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 2, 0, 1800);
+            end
+        end
+    elseif (option == FOV_MENU_HARD_COOKIE) then --- Hard Cookie: INT+4, MaxMP+30
+        if (tabs >= 50) then
+            if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
+                player:messageBasic(246);
+            else
+                player:delCurrency("valor_point", 50);
+                player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 3, 0, 1800);
+            end
+        end
+    elseif (option == FOV_MENU_INSTANT_NOODLES) then -- Instant Noodles: VIT+1, Max HP+27% (caps at 75), StoreTP+5
+        if (tabs >= 50) then
+            if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
+                player:messageBasic(246);
+            else
+                player:delCurrency("valor_point", 50);
+                player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 4, 0, 1800);
+            end
+        end
+    elseif(option==FOV_MENU_CANCEL_REGIME) then --Cancelled Regime.
+        player:setVar("fov_regimeid",0);
+        player:setVar("fov_numkilled1",0);
+        player:setVar("fov_numkilled2",0);
+        player:setVar("fov_numkilled3",0);
+        player:setVar("fov_numkilled4",0);
+        player:showText(player,msg_cancel);
+    elseif(option==FOV_MENU_PAGE_1) then --Page 1
+        writeRegime(player,r1,msg_accept,msg_jobs,fov_repeat);
+    elseif(option==FOV_MENU_PAGE_2) then --Page 2
+        writeRegime(player,r2,msg_accept,msg_jobs,fov_repeat);
+    elseif(option==FOV_MENU_PAGE_3) then --Page 3
+        writeRegime(player,r3,msg_accept,msg_jobs,fov_repeat);
+    elseif(option==FOV_MENU_PAGE_4) then --Page 4
+        writeRegime(player,r4,msg_accept,msg_jobs,fov_repeat);
+    elseif(option==FOV_MENU_PAGE_5) then --Page 5
+        writeRegime(player,r5,msg_accept,msg_jobs,fov_repeat);
+    elseif(option==FOV_MENU_ELITE_INTRO) then --Want elite, 100tabs
+        --giveEliteRegime(player,ELITE_TRAINING_CHAPTER_7,100);
+    elseif(option==FOV_MENU_ELITE_CHAP1) then --Want elite, 150tabs
+        --local tabs = player:getVar("tabs");
+        --local newtabs = tabs-150;
+        --player:setVar("tabs",newtabs);
+    elseif(option==FOV_MENU_ELITE_CHAP2) then --Want elite, 200tabs
+        --local tabs = player:getVar("tabs");
+        --local newtabs = tabs-200;
+        --player:setVar("tabs",newtabs);
+    elseif(option==FOV_MENU_ELITE_CHAP3) then --Want elite, 250tabs
+    elseif(option==FOV_MENU_ELITE_CHAP4) then --Want elite, 300tabs
+    elseif(option==FOV_MENU_ELITE_CHAP5) then --Want elite, 350tabs
+    elseif(option==FOV_MENU_ELITE_CHAP6) then --Want elite, 400tabs
+    elseif(option==FOV_MENU_ELITE_CHAP7) then --Want elite, 450tabs
+
+    else
+        --print("opt is "..option);
+    end
 
 end
 
@@ -356,7 +354,7 @@ function giveEliteRegime(player,keyitem,cost)
 		--print("has");
 		--player:messageBasic(98,keyitem);
 	else
-        player:delValorPoint(cost);
+        player:delCurrency("valor_point", cost);
 		player:addKeyItem(keyitem);
 	end
 end
@@ -433,14 +431,14 @@ function checkRegime(killer,mob,rid,index)
                         if (killer:getVar("fov_LastReward") < VanadielEpoch) then
                            killer:messageBasic(FOV_MSG_GET_GIL,reward);
                            killer:addGil(reward);
-                           killer:addValorPoint(tabs);
-                           killer:messageBasic(FOV_MSG_GET_TABS,tabs,killer:getValorPoint()); -- Careful about order.
+                           killer:addCurrency("valor_point", tabs);
+                           killer:messageBasic(FOV_MSG_GET_TABS,tabs,killer:getCurrency("valor_point")); -- Careful about order.
                            if (REGIME_WAIT == 1) then
                               killer:setVar("fov_LastReward",VanadielEpoch);
                            end
                         end
 
-                        --TODO: display msgs (based on zone annoyingly, so will need killer:getZone() then a lookup)
+                        --TODO: display msgs (based on zone annoyingly, so will need killer:getZoneID() then a lookup)
                         killer:addExp(reward);
                         if (k1 ~= 0) then killer:setVar("fov_numkilled1",0); end
                         if (k2 ~= 0) then killer:setVar("fov_numkilled2",0); end

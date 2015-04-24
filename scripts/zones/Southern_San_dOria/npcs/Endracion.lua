@@ -31,7 +31,7 @@ function onTrade(player,npc,trade)
 			player:startEvent(0x03ea); -- Finish Mission "Smash the Orcish scouts" (Repeat)
 		elseif(CurrentMission == BAT_HUNT and trade:hasItemQty(1112,1) and Count == 1 and BatHuntCompleted == false and MissionStatus == 2) then -- Trade Orcish Mail Scales
 			player:startEvent(0x03ff); -- Finish Mission "Bat Hunt"
-		elseif(CurrentMission == BAT_HUNT and trade:hasItemQty(891,1) and Count == 1 and BatHuntCompleted and MissionStatus == 2) then -- Trade Bat Fang
+		elseif(CurrentMission == BAT_HUNT and trade:hasItemQty(891,1) and Count == 1 and BatHuntCompleted == true) then -- Trade Bat Fang
 			player:startEvent(0x03eb); -- Finish Mission "Bat Hunt" (repeat)
 		elseif(CurrentMission == THE_CRYSTAL_SPRING and trade:hasItemQty(4528,1) and Count == 1 and TheCSpringCompleted == false) then -- Trade Crystal Bass
 			player:startEvent(0x0406); -- Dialog During Mission "The Crystal Spring"

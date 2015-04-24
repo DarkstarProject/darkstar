@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -26,11 +26,12 @@
 #include "char_equip.h"
 
 
-CEquipPacket::CEquipPacket(uint8 EquipSlot, uint8 SlotID) 
+CEquipPacket::CEquipPacket(uint8 EquipSlot, uint8 SlotID, uint8 containerID)
 {
 	this->type = 0x50;
 	this->size = 0x04;
 
-	WBUFB(data,(0x04)-4) = EquipSlot;
-	WBUFB(data,(0x05)-4) = SlotID;
+	WBUFB(data,(0x04)) = EquipSlot;
+	WBUFB(data,(0x05)) = SlotID;
+	WBUFB(data,(0x06)) = containerID;
 }

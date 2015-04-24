@@ -1,21 +1,29 @@
 -----------------------------------
 -- Ability: Hide
+-- User becomes invisible.
+-- Obtained: Thief Level 45
+-- Recast Time: 5:00
+-- Duration: Random
 -----------------------------------
- 
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onAbilityCheck
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
-	return 0,0;
+function onAbilityCheck(player,target,ability)
+    return 0,0;
 end;
 
-function OnUseAbility(player, target, ability)
+-----------------------------------
+-- onUseAbility
+-----------------------------------
 
-	local duration = math.random(30, 300);
+function onUseAbility(player,target,ability)
 
-	player:addStatusEffect(EFFECT_HIDE,1,0,(duration * SNEAK_INVIS_DURATION_MULTIPLIER));
+    local duration = math.random(30, 300);
+
+    player:addStatusEffect(EFFECT_HIDE,1,0,(duration * SNEAK_INVIS_DURATION_MULTIPLIER));
 end;

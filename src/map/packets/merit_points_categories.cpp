@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -69,7 +69,7 @@ CMeritPointsCategoriesPacket::CMeritPointsCategoriesPacket(CCharEntity* PChar)
     this->type = 0x8C;
 	this->size = 0x80;
 
-    WBUFB(data,(0x04)-4) = MAX_MERITS_IN_PACKET;
+    WBUFB(data,(0x04)) = MAX_MERITS_IN_PACKET;
 
     for (uint8 i = 0; i < 5; ++i)
     {
@@ -91,8 +91,8 @@ CMeritPointsCategoriesPacket::CMeritPointsCategoriesPacket(CCharEntity* PChar, M
     this->type = 0x8C;
 	this->size = 0x08;
 
-    WBUFB(data,(0x04)-4) = 1;
-    WBUFL(data,(0x08)-4) = PChar->PMeritPoints->GetMerit(merit)->data;
+    WBUFB(data,(0x04)) = 1;
+    WBUFL(data,(0x08)) = PChar->PMeritPoints->GetMerit(merit)->data;
 }
 
 /************************************************************************
@@ -107,14 +107,14 @@ void CMeritPointsCategoriesPacket::MeritPointsCategoriesPacket(CCharEntity* PCha
 
     for (uint8 i = 0; i < MAX_MERITS_IN_PACKET; ++i)
     {
-		memcpy(data+(0x08)-4 + sizeof(uint32) * i, &PChar->PMeritPoints->GetMeritByIndex(offset + i)->data, sizeof(uint32));
+		memcpy(data+(0x08) + sizeof(uint32) * i, &PChar->PMeritPoints->GetMeritByIndex(offset + i)->data, sizeof(uint32));
     }
 
-    if (PChar->getZone() != 0)
+    if (!PChar->m_moghouseID)
     {
         for (uint8 i = 0; i < MAX_MERITS_IN_PACKET; ++i)
         {
-            (*(Merit_t*)(data+(0x08)-4 + sizeof(uint32) * i)).next = 0; // обнуляем значение next у всех merit
+            (*(Merit_t*)(data+(0x08) + sizeof(uint32) * i)).next = 0; // обнуляем значение next у всех merit
         }
     }
 }

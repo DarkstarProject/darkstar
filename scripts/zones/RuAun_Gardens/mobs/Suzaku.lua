@@ -10,7 +10,7 @@ require("scripts/zones/RuAun_Gardens/TextIDs");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 function onMobDeath(mob, killer)
 	killer:showText(mob,SKY_GOD_OFFSET + 8);
-	GetNPCByID(17310049):hideNPC(120);
+	GetNPCByID(17310050):hideNPC(120);
 end;
 
 -- Return the selected spell ID.

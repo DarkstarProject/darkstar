@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -38,9 +38,6 @@ CItemArmor::CItemArmor(uint16 id) : CItemUsable(id)
 	m_reqLvl       = 255;
 	m_equipSlotID  = 255;
     m_absorption   = 0;
-    m_trialNumber  = 0;
-
-    memset(&m_augments, 0, sizeof(m_augments));
 }
 
 CItemArmor::~CItemArmor()
@@ -206,6 +203,11 @@ int16 CItemArmor::getModifier(uint16 mod)
 	return 0;
 }
 
+void CItemArmor::addPetModifier(CModifier* modifier)
+{
+    petModList.push_back(modifier);
+}
+
 void CItemArmor::addLatent(CLatentEffect* latent)
 {
 	latentList.push_back(latent);
@@ -219,12 +221,17 @@ void CItemArmor::addLatent(CLatentEffect* latent)
 
 void CItemArmor::setTrialNumber(uint16 trial)
 {
-	m_trialNumber = trial;
+    if (trial)
+        WBUFB(m_extra, 0x01) |= 0x40;
+    else
+        WBUFB(m_extra, 0x01) &= ~0x40;
+
+    WBUFB(m_extra, 0x0A) = trial;
 }
 
 uint16 CItemArmor::getTrialNumber()
 {
-	return m_trialNumber;
+    return RBUFB(m_extra, 0x0A);
 }
 
 /************************************************************************
@@ -234,21 +241,21 @@ uint16 CItemArmor::getTrialNumber()
 ************************************************************************/
 void CItemArmor::LoadAugment(uint8 slot, uint16 augment)
 {
-    m_augments[slot] = augment;
+    WBUFW(m_extra, 2 + (slot * 2)) = augment;
 }
 
 void CItemArmor::ApplyAugment(uint8 slot)
 {
     SetAugmentMod(
-        unpackBitsBE((uint8*)(m_augments + slot), 0, 11),
-        unpackBitsBE((uint8*)(m_augments + slot), 11, 5)
+        unpackBitsBE(m_extra, 2 + (slot * 2), 0, 11),
+        unpackBitsBE(m_extra, 2 + (slot * 2), 11, 5)
         );
 }
 
 void CItemArmor::setAugment(uint8 slot, uint16 type, uint8 value)
 {
-    packBitsBE((uint8*)(m_augments+slot), type, 0, 11);
-    packBitsBE((uint8*)(m_augments+slot), value, 11, 5);
+    packBitsBE(m_extra, type, 2 + (slot * 2), 0, 11);
+    packBitsBE(m_extra, value, 2 + (slot * 2), 11, 5);
 
     SetAugmentMod(type, value);
 }
@@ -258,31 +265,37 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
     if (type != 0)
     {
         setSubType(ITEM_AUGMENTED);
+        WBUFB(m_extra, 0x00) |= 0x02;
+        WBUFB(m_extra, 0x01) |= 0x03;
     }
 
 
     // obtain augment info by querying the db
-    const int8* fmtQuery = "SELECT * FROM augments WHERE augmentId = %u";
+    const int8* fmtQuery = "SELECT augmentId, multiplier, modId, `value`, `type` FROM augments WHERE augmentId = %u";
 
     int32 ret = Sql_Query(SqlHandle, fmtQuery, type);
 
-    if (ret != SQL_ERROR &&
+    while (ret != SQL_ERROR &&
         Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        uint32 multiplier = (uint32)Sql_GetUIntData(SqlHandle, 1);
+        uint8 multiplier = (uint8)Sql_GetUIntData(SqlHandle, 1);
         uint32 modId = (uint32)Sql_GetUIntData(SqlHandle, 2);
-        int32 modValue = (int32)Sql_GetIntData(SqlHandle, 3);
+        int16 modValue = (int16)Sql_GetIntData(SqlHandle, 3);
+        
+        // type is 0 unless mod is for pets
+        uint8 type = (uint8)Sql_GetUIntData(SqlHandle, 4);
 
         // apply modifier to item. increase modifier power by 'value' (default magnitude 1 for most augments) if multiplier isn't specified
         // otherwise increase modifier power using the multiplier
-        addModifier(new CModifier(modId, (multiplier > 0 ? modValue + (value * multiplier) : modValue + value)));
+        if (!type)
+            addModifier(new CModifier(modId, (multiplier > 1 ? modValue + (value * multiplier) : modValue + value)));
+        else
+            addPetModifier(new CModifier(modId, (multiplier > 1 ? modValue + (value * multiplier) : modValue + value)));
     }
 }
 
 uint16 CItemArmor::getAugment(uint8 slot)
 {
-    DSP_DEBUG_BREAK_IF(slot >= ARRAYLENGTH(m_augments));
-
-	return m_augments[slot];
+    return RBUFW(m_extra, 2 + (slot * 2));
 }

@@ -1,7 +1,7 @@
-﻿/*
+﻿ /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ namespace battlefieldutils
 {
 	void getLosePosition(CBattlefield* battlefield, int (&pPosition)[4]);		// returns x y z rot in that order
 	void getWinPosition(CBattlefield* battlefield, int (&pPosition)[4]);		// returns x y z rot in that order
-	void getStartPosition(uint8 zoneid, int (&pPosition)[4]);			// returns lobby position
+	void getStartPosition(uint16 zoneid, int (&pPosition)[4]);			// returns lobby position
 	bool meetsWinningConditions(CBattlefield* battlefield, uint32 tick);
 	bool meetsLosingConditions(CBattlefield* battlefield, uint32 tick);
 	bool spawnMonstersForBcnm(CBattlefield* battlefield);

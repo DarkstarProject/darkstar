@@ -1,7 +1,7 @@
 ﻿ /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -22,6 +22,8 @@
 */
 
 #include <string.h>
+
+#include "lua/luautils.h"
 
 #include "map.h"
 #include "mob_spell_list.h"
@@ -60,11 +62,12 @@ namespace mobSpellList
 	    memset(PMobSpellList, 0, sizeof(PMobSpellList));
 		PMobSpellList[0] = new CMobSpellList();
 
-	    const int8* Query = "SELECT spell_list_id, \
-							spell_id, \
-							min_level, \
-							max_level \
-							FROM mob_spell_lists \
+	    const int8* Query = "SELECT mob_spell_lists.spell_list_id, \
+							mob_spell_lists.spell_id, \
+							mob_spell_lists.min_level, \
+							mob_spell_lists.max_level, \
+							spell_list.required_expansion \
+							FROM mob_spell_lists JOIN spell_list ON spell_list.spellid = mob_spell_lists.spell_id \
 							WHERE spell_list_id < %u;";
 
 	    int32 ret = Sql_Query(SqlHandle, Query, MAX_MOBSPELLLIST_ID);
@@ -73,9 +76,16 @@ namespace mobSpellList
 	    {
 		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
-          uint16 spellId = (uint16)Sql_GetIntData(SqlHandle,1);
-          uint16 minLvl = (uint16)Sql_GetIntData(SqlHandle,2);
-          uint16 maxLvl = (uint16)Sql_GetIntData(SqlHandle,3);
+				int8* expansionCode;
+				Sql_GetData(SqlHandle, 4, &expansionCode, nullptr);
+
+				if (luautils::IsExpansionEnabled(expansionCode) == false){
+					continue;
+				}
+
+				uint16 spellId = (uint16)Sql_GetIntData(SqlHandle,1);
+				uint16 minLvl = (uint16)Sql_GetIntData(SqlHandle,2);
+				uint16 maxLvl = (uint16)Sql_GetIntData(SqlHandle,3);
 
   				uint16 pos = Sql_GetIntData(SqlHandle,0);
   				if (!PMobSpellList[pos])
@@ -83,7 +93,7 @@ namespace mobSpellList
   					PMobSpellList[pos] = new CMobSpellList();
   				}
 
-          PMobSpellList[pos]->AddSpell(spellId, minLvl, maxLvl);
+				PMobSpellList[pos]->AddSpell(spellId, minLvl, maxLvl);
 		    }
 	    }
     }
@@ -102,7 +112,7 @@ namespace mobSpellList
 			return PMobSpellList[MobSpellListID];
 	    }
 	    ShowFatalError(CL_RED"MobSpellListID <%u> out of range\n" CL_RESET, MobSpellListID);
-	    return NULL;
+	    return nullptr;
     }
 
 };

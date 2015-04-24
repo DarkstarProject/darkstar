@@ -720,6 +720,11 @@ function getMissionMask(player)
 			elseif(player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getVar("Cutscenes_8-2") == 2) then
 				-- 9-2
 				first_mission = first_mission + 8388608;
+
+	elseif(player:hasCompletedMission(SANDORIA,THE_HEIR_TO_THE_LIGHT) == false and getMissionRankPoints(player,23) == 1) then
+				-- 9-2
+				first_mission = first_mission + 8388608;
+
 			end
 		end
 	elseif(nation == BASTOK) then

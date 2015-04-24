@@ -1,15 +1,15 @@
 -----------------------------------
--- Vorpal Scythe    
+-- Vorpal Scythe
 -- Scythe weapon skill
 -- Skill level: 150
 -- Delivers a single-hit attack. params.crit varies with TP.
--- Modifiers: STR:35% 
+-- Modifiers: STR:100%
 -- 100%TP 	200%TP 	300%TP
 -- 1.0 		1.0		1.0
 -----------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/weaponskills");
-function OnUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID)
 
 	local params = {};
 	params.numHits = 1;
@@ -24,8 +24,12 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0; params.acc200=0; params.acc300=0;
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1;
-	
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.str_wsc = 1.0;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	
+	damage = damage * WEAPON_SKILL_POWER
 	return tpHits, extraHits, criticalHit, damage;
 end

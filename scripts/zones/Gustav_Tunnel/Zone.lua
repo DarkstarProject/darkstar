@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Gustav_Tunnel/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Gustav_Tunnel/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,26 @@ require("scripts/zones/Gustav_Tunnel/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17645876,17645877,17645878,17645879};
+    
+    SetGroundsTome(tomes);
+
+    -- Bune
+    SetRespawnTime(17645578, 900, 10800);
+    
+end;
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 -----------------------------------		

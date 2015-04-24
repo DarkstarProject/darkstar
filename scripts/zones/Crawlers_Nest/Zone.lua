@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Crawlers_Nest/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,16 @@ require("scripts/zones/Crawlers_Nest/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17584492,17584493};
+    
+    SetGroundsTome(tomes);
+
+    UpdateTreasureSpawnPoint(17584471);
+    
+    UpdateTreasureSpawnPoint(17584472);
+
+    
 end;
 
 -----------------------------------		
@@ -27,6 +38,19 @@ function onZoneIn(player,prevZone)
 	end	
 	return cs;	
 end;		
+
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
 
 -----------------------------------		
 -- onRegionEnter		

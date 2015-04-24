@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -72,7 +72,7 @@ public:
 	bool						IsCritical();			// Returns the isCritical flag.
 	void						SetCritical(bool);		// Sets the isCritical flag;
 	bool						IsFirstSwing();			// Returns the isFirstSwing flag.
-	void						SetAsFirstSwing();		// Sets this attack as the first swing.
+	void						SetAsFirstSwing(bool isFirst = true);		// Sets this attack as the first swing.
 	float						GetDamageRatio();		// Gets the damage ratio.
 	void						SetGuarded(bool);		// Sets the isGuarded flag.
 	bool						IsGuarded();			// Sets the isGuarded flag. Also alters the damage ratio accordingly. 

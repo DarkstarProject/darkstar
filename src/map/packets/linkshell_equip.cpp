@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -29,10 +29,14 @@
 #include "../linkshell.h"
 
 
-CLinkshellEquipPacket::CLinkshellEquipPacket(CCharEntity* PChar)
+CLinkshellEquipPacket::CLinkshellEquipPacket(CCharEntity* PChar, uint8 number)
 {
 	this->type = 0xE0;
-	this->size = 0x04; 
+	this->size = 0x04;
 
-    WBUFB(data,(0x04)-4) = PChar->equip[SLOT_LINK];
+    WBUFB(data,(0x04)) = number;
+    if (number == 1)
+        WBUFB(data,(0x05)) = PChar->equip[SLOT_LINK1];
+    else
+        WBUFB(data,(0x05)) = PChar->equip[SLOT_LINK2];
 }

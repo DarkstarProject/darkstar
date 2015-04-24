@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -59,13 +59,13 @@ public:
     const int8* getMessage();
 	void		setMessage(int8* message);
 
-    void        AddMember(CCharEntity* PChar,int8 type);
+    void        AddMember(CCharEntity* PChar,int8 type, uint8 lsNum);
     void        DelMember(CCharEntity* PChar);
 
     void        RemoveMemberByName(int8* MemberName);
 	void		ChangeMemberRank(int8* MemberName, uint8 toSack);
 
-    void        PushPacket(CCharEntity* PChar, CBasicPacket* packet);
+    void        PushPacket(uint32 senderID, CBasicPacket* packet);
 
     std::vector<CCharEntity*> members; // список участников linkshell
 
@@ -90,10 +90,11 @@ namespace linkshell
 {
     void LoadLinkshellList();
 
-    bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);
+    bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, uint8 lsNum);
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);
 
     uint32 RegisterNewLinkshell(const int8* name, uint16 color);
+	CLinkshell* GetLinkshell(uint32 id);
 };
 
 #endif

@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 		-- player:messageSpecial(???); -- Needs retail info
 		
 		local npcid = npc:getID();
-		local Door_Offset = 16826580; -- _0c0 in NPC_List
+		local Door_Offset = 16826582; -- _0c0 in NPC_List
 		
 		if(npcid == Door_Offset+29 or npcid == Door_Offset+28 or npcid == Door_Offset+27)then
 			if(GetNPCByID(Door_Offset+10):getAnimation() == 8)then

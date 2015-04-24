@@ -92,7 +92,7 @@ end;
 -- PHYSICAL MOVE FUNCTION
 -- Call this on every physical move!
 -- accmod is a linear multiplier for accuracy (1 default)
--- dmgmod is a linear mulitplier for damage (1 default)
+-- dmgmod is a linear multiplier for damage (1 default)
 -- tpeffect is an enum which can be one of:
 -- 0 TP_ACC_VARIES
 -- 1 TP_ATK_VARIES
@@ -255,7 +255,7 @@ end
 
 -- MAGICAL MOVE
 -- Call this on every magical move!
--- mob/target/skill should be passed from OnMobWeaponSkill.
+-- mob/target/skill should be passed from onMobWeaponSkill.
 -- dmg is the base damage (V value), accmod is a multiplier for accuracy (1 default, more than 1 = higher macc for mob),
 -- ditto for dmg mod but more damage >1 (equivalent of M value)
 -- tpeffect is an enum from one of:
@@ -408,6 +408,8 @@ function applyPlayerResistance(mob,effect,target,diff,bonus,element)
 			effectres = MOD_STUNRES;
 		elseif(effect == EFFECT_CHARM) then
 			effectres = MOD_CHARMRES;
+		elseif(effect == EFFECT_AMNESIA) then
+			effectres = MOD_AMNESIARES;
 		end
 
 		if(effectres > 0) then
@@ -498,7 +500,7 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
 
 	dmg = math.floor(dmg * dayWeatherBonus);
 
-    burst, burstBonus = calculateMobMagicBurstAndBonus(caster, ele, target);
+    burst = calculateMobMagicBurst(caster, ele, target);
 
 	-- not sure what to do for this yet
     -- if(burst > 1.0) then
@@ -525,7 +527,7 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
     return dmg;
 end
 
-function calculateMobMagicBurstAndBonus(caster, ele, target)
+function calculateMobMagicBurst(caster, ele, target)
 
     local burst = 1.0;
 
@@ -548,7 +550,7 @@ function calculateMobMagicBurstAndBonus(caster, ele, target)
 		end
     end
 
-    return burst, burstBonus;
+    return burst;
 end;
 
 -- Calculates breath damage
@@ -556,7 +558,7 @@ end;
 -- percent is the percentage to take from HP
 -- base is calculated from main level to create a minimum
 -- Equation: (HP * percent) + (LVL / base)
--- cap is optional, defines a maxiumum damage
+-- cap is optional, defines a maximum damage
 function MobBreathMove(mob, target, percent, base, element, cap)
 	local damage = (mob:getHP() * percent) + (mob:getMainLvl() / base);
 

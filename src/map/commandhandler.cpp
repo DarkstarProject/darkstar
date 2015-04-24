@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
 
 void CCommandHandler::init(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(L == NULL);
+    DSP_DEBUG_BREAK_IF(L == nullptr);
     m_LState = L;
 }
 
@@ -38,6 +38,11 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
     std::string cmdname;
     clstream >> cmdname;
 
+    if (!PChar)
+    {
+        ShowError("cmdhandler::call: nullptr character attempted to use command\n");
+        return -1;
+    }
     if (cmdname.empty())
     {
         ShowError("cmdhandler::call: function name was empty\n");
@@ -98,7 +103,7 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
     }
 
     const int8* parameters = luaL_checkstring(m_LState, -1);
-    if (parameters == NULL)
+    if (parameters == nullptr)
     {
         lua_pop(m_LState, -1);
         ShowError("cmdhandler::call: (%s): Invalid or no parameter field set in cmdprops\n", cmdname.c_str());
@@ -142,11 +147,9 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
     // Push the calling character (if exists)..
     CLuaBaseEntity LuaCmdCaller(PChar);
     int32 cntparam = 0;
-    if (PChar != NULL)
-    {
-        Lunar<CLuaBaseEntity>::push(m_LState, &LuaCmdCaller);
-        cntparam += 1;
-    }
+
+    Lunar<CLuaBaseEntity>::push(m_LState, &LuaCmdCaller);
+    cntparam += 1;
 
     // Prepare parameters..
     std::string param;

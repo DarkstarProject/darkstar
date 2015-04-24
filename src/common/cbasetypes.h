@@ -1,6 +1,8 @@
 #ifndef _CBASETYPES_H_
 #define _CBASETYPES_H_
 
+#include <stdint.h>
+
 /*              +--------+-----------+--------+---------+
  *              | ILP32  |   LP64    |  ILP64 | (LL)P64 |
  * +------------+--------+-----------+--------+---------+
@@ -37,6 +39,10 @@
 #define CYGWIN
 #endif
 
+#if !defined(__64BIT__) && (defined(__x86_64__) || defined(_WIN64))
+#define __64BIT__
+#endif
+
 // debug mode
 #if defined(_DEBUG) && !defined(DEBUG)
 #define DEBUG
@@ -57,7 +63,7 @@
 #if !defined(__GNUC__) && !defined(MINGW)
 #  define  __attribute__(x)
 #endif
- 
+
 // define a break macro for debugging.
 #if defined(DEBUG)
 #if defined(_MSC_VER)
@@ -110,15 +116,6 @@ typedef unsigned int		uint32;
 #define UINT16_MIN	((uint16)0)
 #define UINT32_MIN	((uint32)0)
 //***************
-
-#undef UINT8_MAX
-#undef UINT16_MAX
-#undef UINT32_MAX
-//---
-#define UINT8_MAX	((uint8) 0xFF)
-#define UINT16_MAX	((uint16)0xFFFF)
-#define UINT32_MAX	((uint32)0xFFFFFFFF)
-//****************
 
 #undef SINT8_MIN
 #undef SINT16_MIN
@@ -187,16 +184,6 @@ typedef unsigned long long	uint64;
 #define LLCONST(a)			(a##ll)
 #endif
 
-#ifndef INT64_MIN
-#define INT64_MIN  (LLCONST(-9223372036854775807)-1)
-#endif
-#ifndef INT64_MAX
-#define INT64_MAX  (LLCONST(9223372036854775807))
-#endif
-#ifndef UINT64_MAX
-#define UINT64_MAX (LLCONST(18446744073709551615u))
-#endif
-
 //////////////////////////////////////////////////////////////////////////
 // pointer sized integers
 //////////////////////////////////////////////////////////////////////////
@@ -216,8 +203,6 @@ typedef uint32 uintptr;
 typedef int32 intptr;
 #define UINTPTR_MIN UINT32_MIN
 #define UINTPTR_MAX UINT32_MAX
-#define INTPTR_MIN INT32_MIN;
-#define INTPTR_MAX INT32_MAX;
 #endif
 
 //////////////////////////////////////////////////////////////////////////

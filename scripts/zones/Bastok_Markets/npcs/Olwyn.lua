@@ -6,7 +6,7 @@
 -- Updated Aug-09-2013 by Zerahn, based on bgwiki and gamerescape
 -----------------------------------
 
-require("scripts/globals/harvest_festivals");
+require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 require("scripts/zones/Bastok_Markets/TextIDs");

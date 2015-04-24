@@ -19,6 +19,19 @@ function onInitialize(zone)
 	zone:registerRegion(2, 104, -42, -88, 113, -38, -77);
 end;
 
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
+
+
 -----------------------------------
 -- onZoneIn
 -----------------------------------

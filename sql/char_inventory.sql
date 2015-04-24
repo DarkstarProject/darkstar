@@ -24,21 +24,9 @@ CREATE TABLE `char_inventory` (
   `slot` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `itemId` smallint(5) unsigned NOT NULL DEFAULT '65535',
   `quantity` int(10) unsigned NOT NULL DEFAULT '0',
-  `locked` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `col` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `row` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `level` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `rotation` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `bazaar` int(8) unsigned NOT NULL DEFAULT '0',
   `signature` varchar(20) NOT NULL DEFAULT '',
-  `currCharges` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `lastUseTime` int(10) unsigned NOT NULL DEFAULT '0',
-  `worn` tinyint(1) NOT NULL DEFAULT '0',
-  `augment0` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `augment1` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `augment2` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `augment3` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `trialNumber` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `extra` blob(24) DEFAULT NULL,
   PRIMARY KEY (`charid`,`location`,`slot`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=28;
 

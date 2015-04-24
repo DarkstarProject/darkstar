@@ -7,7 +7,7 @@
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -15,5 +15,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	GetNPCByID(17428956):openDoor(300); -- 5min
+	GetNPCByID(17428957):openDoor(300); -- 5min
 end;

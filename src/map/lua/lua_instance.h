@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -46,7 +46,11 @@ public:
 		return m_PLuaInstance;
 	}
 	
+    int32 getID(lua_State*);
 	int32 getChars(lua_State*);
+    int32 getMobs(lua_State*);
+    int32 getNpcs(lua_State*);
+    int32 getPets(lua_State*);
 	int32 getTimeLimit(lua_State*);
 	int32 getEntryPos(lua_State*);
 	int32 getLastTimeUpdate(lua_State*);
@@ -65,6 +69,8 @@ public:
 	int32 failed(lua_State*);
 	int32 complete(lua_State*);
 	int32 completed(lua_State*);
+
+    int32 insertAlly(lua_State*);
 };
 
 #endif

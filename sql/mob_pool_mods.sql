@@ -40,6 +40,7 @@ LOCK TABLES `mob_pool_mods` WRITE;
 INSERT INTO `mob_pool_mods` VALUES (519,160,-50,0);
 INSERT INTO `mob_pool_mods` VALUES (532,160,-50,0);
 INSERT INTO `mob_pool_mods` VALUES (676,160,-50,0);
+INSERT INTO `mob_pool_mods` VALUES (697,16,1,1);
 INSERT INTO `mob_pool_mods` VALUES (2643,160,-50,0);
 INSERT INTO `mob_pool_mods` VALUES (2647,160,-50,0);
 INSERT INTO `mob_pool_mods` VALUES (733,302,5,0);
@@ -93,38 +94,18 @@ INSERT INTO `mob_pool_mods` VALUES (44,368,150,0);
 INSERT INTO `mob_pool_mods` VALUES (268,370,50,0);
 INSERT INTO `mob_pool_mods` VALUES (268,368,150,0);
 INSERT INTO `mob_pool_mods` VALUES (979,14,700,1);
-INSERT INTO `mob_pool_mods` VALUES (370,28,105,1);
-INSERT INTO `mob_pool_mods` VALUES (768,28,105,1);
-INSERT INTO `mob_pool_mods` VALUES (958,28,105,1);
-INSERT INTO `mob_pool_mods` VALUES (978,28,123,1);
-INSERT INTO `mob_pool_mods` VALUES (2745,28,123,1);
-INSERT INTO `mob_pool_mods` VALUES (1806,28,110,1);
-INSERT INTO `mob_pool_mods` VALUES (1429,28,110,1);
-INSERT INTO `mob_pool_mods` VALUES (2314,28,123,1);
-INSERT INTO `mob_pool_mods` VALUES (3168,28,110,1);
-INSERT INTO `mob_pool_mods` VALUES (1841,28,110,1);
-INSERT INTO `mob_pool_mods` VALUES (3853,28,123,1);
+INSERT INTO `mob_pool_mods` VALUES (370,28,5,1);
+INSERT INTO `mob_pool_mods` VALUES (768,28,5,1);
+INSERT INTO `mob_pool_mods` VALUES (958,28,5,1);
+INSERT INTO `mob_pool_mods` VALUES (978,28,23,1);
+INSERT INTO `mob_pool_mods` VALUES (2745,28,23,1);
+INSERT INTO `mob_pool_mods` VALUES (1806,28,10,1);
+INSERT INTO `mob_pool_mods` VALUES (1429,28,10,1);
+INSERT INTO `mob_pool_mods` VALUES (2314,28,23,1);
+INSERT INTO `mob_pool_mods` VALUES (3168,28,10,1);
+INSERT INTO `mob_pool_mods` VALUES (1841,28,10,1);
+INSERT INTO `mob_pool_mods` VALUES (3853,28,23,1);
 INSERT INTO `mob_pool_mods` VALUES (2675,4,25,1);
-INSERT INTO `mob_pool_mods` VALUES (1517,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1518,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1511,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (844,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1214,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1283,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1290,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1291,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1433,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1835,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (2442,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (4320,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (4337,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (4516,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1267,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (3170,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (483,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (900,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (868,31,1,1);
-INSERT INTO `mob_pool_mods` VALUES (980,31,1,1);
 INSERT INTO `mob_pool_mods` VALUES (1456,368,20,0);
 INSERT INTO `mob_pool_mods` VALUES (1154,16,1,1);
 INSERT INTO `mob_pool_mods` VALUES (1798,16,1,1);
@@ -142,11 +123,6 @@ INSERT INTO `mob_pool_mods` VALUES (592,302,45,0);
 INSERT INTO `mob_pool_mods` VALUES (592,68,15,0);
 INSERT INTO `mob_pool_mods` VALUES (2460,16,1,1);
 INSERT INTO `mob_pool_mods` VALUES (1773,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1731,14,701,1);
-INSERT INTO `mob_pool_mods` VALUES (2107,14,701,1);
-INSERT INTO `mob_pool_mods` VALUES (4040,14,701,1);
-INSERT INTO `mob_pool_mods` VALUES (4204,14,702,1);
-INSERT INTO `mob_pool_mods` VALUES (3168,14,702,1);
 INSERT INTO `mob_pool_mods` VALUES (595,14,703,1);
 INSERT INTO `mob_pool_mods` VALUES (595,169,250,0);
 INSERT INTO `mob_pool_mods` VALUES (595,171,40,0);
@@ -204,6 +180,29 @@ INSERT INTO `mob_pool_mods` VALUES (707,16,1,1);
 INSERT INTO `mob_pool_mods` VALUES (4005,16,1,1);
 INSERT INTO `mob_pool_mods` VALUES (559,16,1,1);
 INSERT INTO `mob_pool_mods` VALUES (2916,16,1,1);
+INSERT INTO `mob_pool_mods` VALUES (242,40,30,1);
+INSERT INTO `mob_pool_mods` VALUES (242,41,680,1);
+INSERT INTO `mob_pool_mods` VALUES (242,42,706,1);
+INSERT INTO `mob_pool_mods` VALUES (242,43,1,1);
+INSERT INTO `mob_pool_mods` VALUES (242,47,22,1);
+INSERT INTO `mob_pool_mods` VALUES (3124,48,434,1);
+INSERT INTO `mob_pool_mods` VALUES (2105,48,434,1);
+INSERT INTO `mob_pool_mods` VALUES (70,48,434,1);
+INSERT INTO `mob_pool_mods` VALUES (1270,39,-1,1);
+
+-- -------------------------
+--  Antlion MOBMOD_SPECIAL_SKILL Pit_Ambush 
+-- -------------------------
+INSERT INTO `mob_pool_mods` VALUES (586,30,22,1); -- Burrow Antlion
+INSERT INTO `mob_pool_mods` VALUES (3141,30,22,1); -- Pit Antlion
+INSERT INTO `mob_pool_mods` VALUES (3996,30,22,1); -- Trench Antlion
+INSERT INTO `mob_pool_mods` VALUES (662,30,22,1); -- Cave Antlion
+
+-- -------------------------
+--  Race Runner
+-- -------------------------
+INSERT INTO `mob_pool_mods` VALUES (3301, 29, 100, 0); -- Magic Def
+INSERT INTO `mob_pool_mods` VALUES (3301, 302, 10, 0); -- Triple Attack
 
 /*!40000 ALTER TABLE `mob_pool_mods` ENABLE KEYS */;
 UNLOCK TABLES;

@@ -13,6 +13,7 @@ require("scripts/globals/status");
 function onEffectGain(target,effect)
 	target:addMod(MOD_UDMGPHYS,-effect:getPower());
 	target:addMod(MOD_ENMITY, 100);
+    target:addMod(MOD_ENMITY_LOSS_REDUCTION, effect:getSubPower());
 end;
 
 -----------------------------------
@@ -43,4 +44,5 @@ end;
 function onEffectLose(target,effect)
 	target:delMod(MOD_UDMGPHYS,-effect:getPower());
 	target:delMod(MOD_ENMITY, 100);
+    target:delMod(MOD_ENMITY_LOSS_REDUCTION, effect:getSubPower());
 end;

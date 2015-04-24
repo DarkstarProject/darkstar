@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 #define _CTRADECONTAINER_H
 
 #include "../common/cbasetypes.h"
+#include <vector>
 
 #define CONTAINER_SIZE			17	
 #define TRADE_CONTAINER_SIZE	 8
@@ -51,8 +52,9 @@ public:
 	uint16	getItemID(uint8 slotID);						
 	uint8	getInvSlotID(uint8 slotID);
 	uint32	getQuantity(uint8 slotID);						// количество предметов в ячейке
-	bool	getConfirmedStatus(uint8 slotID);
+	uint8	getConfirmedStatus(uint8 slotID);
 	uint32	getItemQuantity(uint16 itemID);					// количество предметов одного типа
+    uint8   getSize();
 
 	void	setType(uint8 type);
 	void	setItemsCount(uint8 count);
@@ -60,8 +62,9 @@ public:
 	void	setItemID(uint8 slotID, uint16 itemID);
 	void	setInvSlotID(uint8 slotID, uint8 invSlotID);
 	void	setQuantity(uint8 slotID, uint32 quantity);
-	void	setConfirmedStatus(uint8 slotID, bool confirmed);
-	void	setItem(uint8 slotID, uint16 itemID, uint8 invSlotID, uint32 quantity, CItem* item = NULL);
+	void	setConfirmedStatus(uint8 slotID, uint8 amount);
+	void	setItem(uint8 slotID, uint16 itemID, uint8 invSlotID, uint32 quantity, CItem* item = nullptr);
+    void    setSize(uint8 size);
 
 	void	Clean();										// отчищаем контейнер
 
@@ -70,11 +73,11 @@ private:
 	uint8	m_type;											// тип контейнера (тип кристалла, нация магазина и т.д.)
 	uint8	m_ItemsCount;									// количество предметов в контейнере (устанавливаем самостоятельно)
 
-	CItem*  m_PItem[CONTAINER_SIZE];
-	uint8	m_slotID[CONTAINER_SIZE];
-	uint16	m_itemID[CONTAINER_SIZE];
-	uint32	m_quantity[CONTAINER_SIZE];
-	bool	m_confirmed[CONTAINER_SIZE];
+	std::vector<CItem*>     m_PItem;
+    std::vector<uint8>	    m_slotID;
+    std::vector<uint16>	    m_itemID;
+    std::vector<uint32>	    m_quantity;
+    std::vector<uint8>	    m_confirmed;
 };
 
 #endif

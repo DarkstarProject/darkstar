@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ CPathFind::CPathFind(CBaseEntity* PTarget)
 
 CPathFind::~CPathFind()
 {
-	m_PTarget = NULL;
+	m_PTarget = nullptr;
 	Clear();
 }
 
@@ -49,13 +49,13 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 	{
 
 		// all mobs will default to this distance
-		float maxRadius = 10.0f;
+		float maxRadius = 25.0f;
 
 		// sight aggro mobs will move a bit farther
 		// this is until this data is put in the database
 		if (m_roamFlags & ROAMFLAG_MEDIUM)
 		{
-			maxRadius = 20.0f;
+			maxRadius = 35.0f;
 		}
 
 		// TODO: finish roam flags. distance should have a distance limit
@@ -138,7 +138,7 @@ bool CPathFind::PathAround(position_t point, float distance, uint8 pathFlags)
 
 	position_t* lastPoint = &point;
 
-	float randomRadian = RandomNumber() * M_PI * 2.0f;
+	float randomRadian = WELL512::GetRandomNumber<float>(0,2*M_PI);
 
 	lastPoint->x += cosf(randomRadian) * distance;
 	lastPoint->z += sinf(randomRadian) * distance;
@@ -170,13 +170,14 @@ bool CPathFind::WarpTo(position_t point, float maxDistance)
 	m_PTarget->loc.p.moving = 0;
 
 	LookAt(point);
+    m_PTarget->updatemask |= UPDATE_POS;
 
 	return true;
 }
 
 bool CPathFind::isNavMeshEnabled()
 {
-	return m_PTarget->loc.zone && m_PTarget->loc.zone->m_navMesh != NULL;
+	return m_PTarget->loc.zone && m_PTarget->loc.zone->m_navMesh != nullptr;
 }
 
 void CPathFind::LimitDistance(float maxLength)
@@ -190,7 +191,7 @@ void CPathFind::StopWithin(float within)
 	// TODO: cut up path
 
 	position_t* lastPoint = &m_points[m_pathLength - 1];
-	position_t* secondLastPoint = NULL;
+	position_t* secondLastPoint = nullptr;
 
 	if (m_pathLength == 1)
 	{
@@ -307,7 +308,7 @@ void CPathFind::StepTo(position_t* pos, bool run)
 	{
 		m_PTarget->loc.p.moving = 0;
 	}
-
+    m_PTarget->updatemask |= UPDATE_POS;
 }
 
 bool CPathFind::FindPath(position_t* start, position_t* end)
@@ -344,11 +345,24 @@ bool CPathFind::FindClosestPath(position_t* start, position_t* end)
 
 	m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(*start, *end, m_points, MAX_PATH_POINTS);
 
-	// TODO: instead of skipping the path based on too many points
-	// it would make more sense to base it off of height difference is too large
-	if (m_pathLength <= 0 || m_pathLength >= 7)
+        bool skipPath = m_pathLength <= 0;
+
+        // skip path if vertical difference is too great
+        if(!skipPath)
+        {
+          position_t* lastPoint = &m_points[m_pathLength-1];
+          position_t* startPoint = &m_points[0];
+          float verticalDelta = fabs(startPoint->y - lastPoint->y);
+
+          // ShowDebug("delta is %f (%f, %f)\n", verticalDelta, startPoint->y, lastPoint->y);
+          if(verticalDelta >= VERTICAL_PATH_LIMIT)
+          {
+            skipPath = true;
+          }
+        }
+
+	if (skipPath)
 	{
-		// f you, too long
 		// this is a trick to make mobs go up / down impassible terrain
 		m_pathLength = 1;
 
@@ -366,6 +380,7 @@ void CPathFind::LookAt(position_t point)
 	if (!AtPoint(&point)){
 		m_PTarget->loc.p.rotation = getangle(m_PTarget->loc.p, point);
 	}
+    m_PTarget->updatemask |= UPDATE_POS;
 }
 
 bool CPathFind::OnPoint()
@@ -389,7 +404,7 @@ float CPathFind::GetRealSpeed()
 
 	if (m_PTarget->animation == ANIMATION_ATTACK)
 	{
-		baseSpeed = baseSpeed + map_config.MOB_speed_mod;
+		baseSpeed = baseSpeed + map_config.mob_speed_mod;
 	}
 
 	return baseSpeed;
@@ -418,6 +433,16 @@ bool CPathFind::InWater()
 	}
 
 	return false;
+}
+
+bool CPathFind::CanSeePoint(position_t point)
+{
+	if (isNavMeshEnabled())
+	{
+		return m_PTarget->loc.zone->m_navMesh->raycast(m_PTarget->loc.p, point);
+	}
+
+	return true;
 }
 
 void CPathFind::Clear()

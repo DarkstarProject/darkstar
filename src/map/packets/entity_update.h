@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -38,17 +38,6 @@ enum MODELTYPE
 	MODEL_UNK_5		= 5,
 	MODEL_AUTOMATON	= 6,    // все куклы входят в эту категорию. но помимо них есть еще и некоторые монстры
     MODEL_CHOCOBO   = 7     
-};
-
-enum UPDATETYPE
-{
-	UPDATE_NONE		= 0x00,
-	UPDATE_POS		= 0x01,
-	UPDATE_STATUS	= 0x02,
-	UPDATE_HP		= 0x04,
-	UPDATE_COMBAT	= 0x07,
-	UPDATE_NAME		= 0x08,
-	UPDATE_ALL		= 0x0F
 };
 
 /************************************************************************

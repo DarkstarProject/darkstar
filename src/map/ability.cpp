@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 ===========================================================================
 */
 
+#include "lua/luautils.h"
 #include "ability.h"
 
 
@@ -43,11 +44,6 @@ bool CAbility::isConal()
 {
   // no abilities are conal?
   return false;
-}
-
-void CAbility::resetMsg()
-{
-  m_message = m_DefaultMessage;
 }
 
 void CAbility::setID(uint16 id)
@@ -249,16 +245,6 @@ uint16 CAbility::getAoEMsg()
     }
 }
 
-uint16 CAbility::getDefaultMessage()
-{
-    return m_DefaultMessage;
-}
-
-void CAbility::setDefaultMessage(uint16 message)
-{
-    m_DefaultMessage = message;
-}
-
 /************************************************************************
 *                                                                       *
 *  Реализация namespase для работы со способностями                     *
@@ -300,7 +286,8 @@ namespace ability
               "CE,"
               "VE, "
               "meritModID, "
-			  "addType "
+			  "addType, "
+			  "required_expansion "
             "FROM abilities  "
             "WHERE job > 0 AND job < %u AND abilityId < %u "
             "ORDER BY job, level ASC";
@@ -311,6 +298,13 @@ namespace ability
 	    {
 		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
+				int8* expansionCode;
+				Sql_GetData(SqlHandle, 16, &expansionCode, nullptr);
+
+				if (luautils::IsExpansionEnabled(expansionCode) == false){
+					continue;
+				}
+
 			    CAbility* PAbility = new CAbility(Sql_GetIntData(SqlHandle,0));
 
 			    PAbility->setName(Sql_GetData(SqlHandle,1));
@@ -319,7 +313,6 @@ namespace ability
 			    PAbility->setValidTarget(Sql_GetIntData(SqlHandle,4));
 			    PAbility->setRecastTime(Sql_GetIntData(SqlHandle,5));
                 PAbility->setMessage(Sql_GetIntData(SqlHandle,6));
-				PAbility->setDefaultMessage(Sql_GetIntData(SqlHandle,6));
               //PAbility->setMessage(Sql_GetIntData(SqlHandle,7));
 			    PAbility->setAnimationID(Sql_GetIntData(SqlHandle,8));
 			    PAbility->setRange(Sql_GetFloatData(SqlHandle,9));
@@ -368,7 +361,7 @@ namespace ability
 		    return PAbilityList[AbilityID];
 	    }
 	    ShowFatalError(CL_RED"AbilityID <%u> is out of range\n" CL_RESET, AbilityID);
-	    return NULL;
+	    return nullptr;
     }
 
     /************************************************************************
@@ -406,12 +399,12 @@ namespace ability
             case JOB_GEO: return PAbilityList[ABILITY_BOLSTER]; break;
             case JOB_RUN: return PAbilityList[ABILITY_ELEMENTAL_SFORZO]; break;
         }
-        return NULL;
+        return nullptr;
     }
 
 	bool CanLearnAbility(CBattleEntity* PUser, uint16 AbilityID)
 	{
-	    if (GetAbility(AbilityID) != NULL)
+	    if (GetAbility(AbilityID) != nullptr)
 	    {
 		    uint8 Job = PAbilityList[AbilityID]->getJob();
 		    uint8 JobLvl = PAbilityList[AbilityID]->getLevel();
@@ -435,7 +428,7 @@ namespace ability
 
     Charge_t* GetCharge(CBattleEntity* PUser, uint16 chargeID)
     {
-        Charge_t* charge = NULL;
+        Charge_t* charge = nullptr;
         for (std::vector<Charge_t*>::iterator it = PChargesList.begin() ; it != PChargesList.end(); ++it)
         {
             Charge_t* PCharge = *it;

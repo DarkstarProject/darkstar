@@ -9,7 +9,7 @@ require("scripts/globals/titles");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -32,7 +32,9 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	SpawnMob(17207308,600):updateEnmity(killer);
+	local JACK = 17207308;
+	SpawnMob(JACK,600):updateEnmity(killer);
+	GetMobByID(JACK):setPos( mob:getXPos(), mob:getYPos(), mob:getZPos(), 0);
 	SetServerVariable("NM-SpecialWeepWillowSapSpawn",0);
 end;
 
@@ -41,6 +43,6 @@ end;
 -- onMobDespawn
 -----------------------------------
 
-function OnMobDespawn(mob)
+function onMobDespawn(mob)
 	SetServerVariable("[NM-Special]WeepWillowSapSpawn",0);
 end;

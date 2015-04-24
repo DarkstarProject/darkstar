@@ -10,6 +10,7 @@
 -- performance of the actual WS (rand numbers, etc)
 require("scripts/globals/status");
 require("scripts/globals/utils");
+require("scripts/globals/magic");
 
 local elementalGorget = { 15495, 15498, 15500, 15497, 15496, 15499, 15501, 15502 };
 local elementalBelt =   { 11755, 11758, 11760, 11757, 11756, 11759, 11761, 11762 };
@@ -53,14 +54,11 @@ function doPhysicalWeaponskill(attacker, target, params)
 
 	--apply WSC
 	local weaponDamage = attacker:getWeaponDmg();
+	local weaponType = attacker:getWeaponSkillType(0);
 
-	if (attacker:getWeaponSkillType(0) == 1) then
+	if (weaponType == SKILL_H2H) then
 		local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3);
 		weaponDamage = attacker:getWeaponDmg()-3;
-
-		if(params.kick == true and attacker:hasStatusEffect(EFFECT_FOOTWORK)) then
-			weaponDamage = attacker:getMod(MOD_KICK_DMG);
-		end
 
 		weaponDamage = weaponDamage + h2hSkill;
 	end
@@ -142,7 +140,6 @@ function doPhysicalWeaponskill(attacker, target, params)
 	end
 
 	local tpHitsLanded = 0;
-	local tpHits = 0;
 	if ((firsthit <= hitrate or isSneakValid or isAssassinValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
             not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then
         dmg = base * ftp;
@@ -172,8 +169,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 		tpHitsLanded = 1;
 	end
 
-	tpHits = 1;
-	if((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(0)==1)) then
+	if((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or weaponType==SKILL_H2H)) then
 
 		local chance = math.random();
 		if ((chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100 or isSneakValid)
@@ -193,7 +189,6 @@ function doPhysicalWeaponskill(attacker, target, params)
 			end
 			tpHitsLanded = tpHitsLanded + 1;
 		end
-		tpHits = tpHits + 1;
 	end
 
 	local numHits = getMultiAttacks(attacker, params.numHits);
@@ -229,10 +224,79 @@ function doPhysicalWeaponskill(attacker, target, params)
 	-- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 
 	finaldmg = target:physicalDmgTaken(finaldmg);
+	
+    if (weaponType == SKILL_H2H) then
+        finaldmg = finaldmg * target:getMod(MOD_HTHRES) / 1000;
+    elseif (weaponType == SKILL_DAG or weaponType == SKILL_POL) then
+        finaldmg = finaldmg * target:getMod(MOD_PIERCERES) / 1000;
+    elseif (weaponType == SKILL_CLB or weaponType == SKILL_STF) then
+        finaldmg = finaldmg * target:getMod(MOD_IMPACTRES) / 1000;
+    else
+        finaldmg = finaldmg * target:getMod(MOD_SLASHRES) / 1000;
+    end
+    
 
 	attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
 	return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
 end;
+
+-- params: ftp100, ftp200, ftp300, wsc_str, wsc_dex, wsc_vit, wsc_agi, wsc_int, wsc_mnd, wsc_chr,
+--         ele (ELE_FIRE), skill (SKILL_STF), includemab = true
+
+function doMagicWeaponskill(attacker, target, params)
+
+    local bonusacc = 0;
+    local bonusfTP = 0;
+
+    if (attacker:getObjType() == TYPE_PC) then
+        local neck = attacker:getEquipID(SLOT_NECK);
+        local belt = attacker:getEquipID(SLOT_WAIST);
+        local SCProp1, SCProp2, SCProp3 = attacker:getWSSkillchainProp();
+
+        for i,v in ipairs(elementalGorget) do
+            if (neck == v) then
+                if (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3)) then
+                    bonusacc = bonusacc + 10;
+                    bonusfTP = bonusfTP + 0.1;
+                end
+                break;
+            end
+        end
+
+        for i,v in ipairs(elementalBelt) do
+            if (belt == v) then
+                if (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3)) then
+                    bonusacc = bonusacc + 10;
+                    bonusfTP = bonusfTP + 0.1;
+                end
+                break;
+            end
+        end
+        --printf("bonusacc = %u bonusfTP = %f", bonusacc, bonusfTP);
+    end
+
+    local fint = utils.clamp(8 + (attacker:getStat(MOD_INT) - target:getStat(MOD_INT)), -32, 32);
+	local dmg = attacker:getMainLvl() + 2 + (attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc +
+		 attacker:getStat(MOD_VIT) * params.vit_wsc + attacker:getStat(MOD_AGI) * params.agi_wsc +
+		 attacker:getStat(MOD_INT) * params.int_wsc + attacker:getStat(MOD_MND) * params.mnd_wsc +
+		 attacker:getStat(MOD_CHR) * params.chr_wsc) + fint;
+    
+    --Applying fTP multiplier
+	local tp = attacker:getTP();
+	if attacker:hasStatusEffect(EFFECT_SEKKANOKI) then
+		tp = 100;
+	end
+	local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300) + bonusfTP;
+    
+    dmg = dmg * ftp;
+    
+	dmg = addBonusesAbility(attacker, params.ele, target, dmg, params);
+	dmg = dmg * applyResistanceAbility(attacker,target,params.ele,params.skill, 0);
+	dmg = target:magicDmgTaken(dmg);
+	dmg = adjustForTarget(target,dmg,params.ele);
+    
+    return dmg, false, 1, 0;
+end
 
 function souleaterBonus(attacker, numhits)
 	if attacker:hasStatusEffect(EFFECT_SOULEATER) then
@@ -565,48 +629,50 @@ end;
 
 --obtains alpha, used for working out WSC
 function getAlpha(level)
-alpha = 1.00;
-if (level <= 5) then
-	alpha = 1.00;
-elseif (level <= 11) then
-	alpha = 0.99;
-elseif (level <= 17) then
-	alpha = 0.98;
-elseif (level <= 23) then
-	alpha = 0.97;
-elseif (level <= 29) then
-	alpha = 0.96;
-elseif (level <= 35) then
-	alpha = 0.95;
-elseif (level <= 41) then
-	alpha = 0.94;
-elseif (level <= 47) then
-	alpha = 0.93;
-elseif (level <= 53) then
-	alpha = 0.92;
-elseif (level <= 59) then
-	alpha = 0.91;
-elseif (level <= 61) then
-	alpha = 0.90;
-elseif (level <= 63) then
-	alpha = 0.89;
-elseif (level <= 65) then
-	alpha = 0.88;
-elseif (level <= 67) then
-	alpha = 0.87;
-elseif (level <= 69) then
-	alpha = 0.86;
-elseif (level <= 71) then
-	alpha = 0.85;
-elseif (level <= 73) then
-	alpha = 0.84;
-elseif (level <= 75) then
-	alpha = 0.83;
-elseif (level <= 99) then
-	alpha = 0.85;
-end
-return alpha;
- end;
+    alpha = 1.00;
+    if (level <= 5) then
+        alpha = 1.00;
+    elseif (level <= 11) then
+        alpha = 0.99;
+    elseif (level <= 17) then
+        alpha = 0.98;
+    elseif (level <= 23) then
+        alpha = 0.97;
+    elseif (level <= 29) then
+        alpha = 0.96;
+    elseif (level <= 35) then
+        alpha = 0.95;
+    elseif (level <= 41) then
+        alpha = 0.94;
+    elseif (level <= 47) then
+        alpha = 0.93;
+    elseif (level <= 53) then
+        alpha = 0.92;
+    elseif (level <= 59) then
+        alpha = 0.91;
+    elseif (level <= 61) then
+        alpha = 0.90;
+    elseif (level <= 63) then
+        alpha = 0.89;
+    elseif (level <= 65) then
+        alpha = 0.88;
+    elseif (level <= 67) then
+        alpha = 0.87;
+    elseif (level <= 69) then
+        alpha = 0.86;
+    elseif (level <= 71) then
+        alpha = 0.85;
+    elseif (level <= 73) then
+        alpha = 0.84;
+    elseif (level <= 75) then
+        alpha = 0.83;
+    elseif (level < 99) then
+        alpha = 0.85;
+    else
+        alpha = 1; -- Retail has no alpha anymore!
+    end
+    return alpha;
+end;
 
  --params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
  function doRangedWeaponskill(attacker, target, params)
@@ -686,7 +752,7 @@ return alpha;
 	--First hit has 95% acc always. Second hit + affected by hit rate.
 	local firsthit = math.random();
 	local finaldmg = 0;
-	local hitrate = getHitRate(attacker,target,true,bonusacc);
+	local hitrate = getRangedHitRate(attacker,target,true,bonusacc);
 	if(params.acc100~=0) then
 		--ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
 		--print("Accuracy varies with TP.");
@@ -743,6 +809,7 @@ return alpha;
 	--print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 
 	finaldmg = target:rangedDmgTaken(finaldmg);
+    finaldmg = finaldmg * target:getMod(MOD_PIERCERES) / 1000;
 
 	return finaldmg, tpHitsLanded, extraHitsLanded;
 end;

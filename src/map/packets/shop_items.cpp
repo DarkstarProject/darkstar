@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -36,14 +36,22 @@ CShopItemsPacket::CShopItemsPacket(CCharEntity * PChar)
 
 	uint8 ItemsCount = PChar->Container->getItemsCount();
 
-	if (ItemsCount > 16) ItemsCount = 16;
-
+    uint8 i = 0;
 	for (uint8 slotID = 0; slotID < ItemsCount; ++slotID)
 	{
+        if (i == 20)
+        {
+            PChar->pushPacket(new CBasicPacket(*this));
+
+            i = 0;
+            this->size = 0x04;
+            memset(data + 4, 0, PACKET_SIZE - 8);
+        }
 		this->size += 0x06;
 
-		WBUFL(data,((slotID*12)+0x08)-4) = PChar->Container->getQuantity(slotID);
-		WBUFW(data,((slotID*12)+0x0C)-4) = PChar->Container->getItemID(slotID);
-		WBUFB(data,((slotID*12)+0x0E)-4) = slotID;	
+		WBUFL(data,((i*12)+0x08)) = PChar->Container->getQuantity(slotID);
+		WBUFW(data,((i*12)+0x0C)) = PChar->Container->getItemID(slotID);
+		WBUFB(data,((i*12)+0x0E)) = slotID;
+        i++;
 	}
 }

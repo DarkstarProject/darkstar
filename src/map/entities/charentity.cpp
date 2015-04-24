@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
 #include <string.h>
 
 #include "../packets/basic.h"
+#include "../packets/char.h"
 
 #include "charentity.h"
 #include "../spell.h"
@@ -45,7 +46,7 @@ CCharEntity::CCharEntity()
 	m_GMlevel = 0;
     m_isGMHidden = false;
 
-    m_isMentor = false;
+    m_mentor = 0;
     m_isNewPlayer = true;
 
 	allegiance = ALLEGIANCE_PLAYER;
@@ -68,13 +69,14 @@ CCharEntity::CCharEntity()
 	memset(& jobs,  0, sizeof(jobs));
 	memset(& keys,  0, sizeof(keys));
     memset(& equip, 0, sizeof(equip));
+	memset(& equipLoc, 0, sizeof(equipLoc));
 	memset(& RealSkills,   0, sizeof(RealSkills));
-    memset(& m_currency, 0, sizeof(m_currency));
     memset(& nationtp,  0, sizeof(nationtp));
     memset(& expChain,  0, sizeof(expChain));
     memset(& nameflags, 0, sizeof(nameflags));
 
 	memset(& m_SpellList, 0, sizeof(m_SpellList));
+	memset(&m_EnabledSpellList, 0, sizeof(m_EnabledSpellList));
 	memset(& m_LearnedAbilities, 0, sizeof(m_LearnedAbilities));
     memset(& m_TitleList, 0, sizeof(m_TitleList));
 	memset(& m_ZonesList, 0, sizeof(m_ZonesList));
@@ -105,7 +107,7 @@ CCharEntity::CCharEntity()
 	m_asaCurrent = 0;
 
     m_Costum     = 0;
-    m_PVPFlag    = 0;
+	m_Monstrosity = 0;
 	m_hasTractor = 0;
 	m_hasRaise	 = 0;
     m_hasAutoTarget    = 1;
@@ -125,16 +127,18 @@ CCharEntity::CCharEntity()
 
 	m_isWeaponSkillKill = false;
 	m_isMijinGakure = false;
+	m_isStyleLocked = false;
 
     BazaarID.clean();
     TradePending.clean();
     InvitePending.clean();
 
-    PLinkshell = NULL;
-	PTreasurePool = NULL;
-	PWideScanTarget = NULL;
+    PLinkshell1 = nullptr;
+    PLinkshell2 = nullptr;
+	PTreasurePool = nullptr;
+	PWideScanTarget = nullptr;
 
-    PAutomaton = NULL;
+    PAutomaton = nullptr;
 
     PRecastContainer = new CRecastContainer(this);
 	PLatentEffectContainer = new CLatentEffectContainer(this);
@@ -143,17 +147,22 @@ CCharEntity::CCharEntity()
 	petZoningInfo.petID = 0;
 	petZoningInfo.petType = PETTYPE_AVATAR;			// dummy data, the bool tells us to respawn if required
 	petZoningInfo.petHP = 0;
+    petZoningInfo.petMP = 0;
 	petZoningInfo.petTP = 0;
 
 	m_PlayTime = 0;
 	m_SaveTime = 0;
+	m_reloadParty = 0;
+
+    m_LastYell = 0;
+    m_moghouseID = 0;
 }
 
 CCharEntity::~CCharEntity()
 {
 	clearPacketList();
 
-    if(PTreasurePool != NULL)
+    if(PTreasurePool != nullptr)
     {
         // remove myself
         PTreasurePool->DelMember(this);
@@ -181,11 +190,6 @@ uint8 CCharEntity::GetGender()
     return (look.race)%2 ^ (look.race > 6);
 }
 
-int32 CCharEntity::firstPacketSize()
-{
-	return PacketList.front()->getSize();
-}
-
 bool CCharEntity::isPacketListEmpty()
 {
 	return PacketList.empty();
@@ -199,66 +203,48 @@ void CCharEntity::clearPacketList()
 	}
 }
 
-void CCharEntity::resetPetZoningInfo()
-{
-	// reset the petZoning info
-	petZoningInfo.petHP = 0;
-	petZoningInfo.petTP = 0;
-	petZoningInfo.respawnPet = false;
-	petZoningInfo.petType = PETTYPE_AVATAR;
-}
-
 void CCharEntity::pushPacket(CBasicPacket* packet)
 {
+    std::lock_guard<std::mutex> lk(m_PacketListMutex);
 	PacketList.push_back(packet);
 }
 
 CBasicPacket* CCharEntity::popPacket()
 {
+    std::lock_guard<std::mutex> lk(m_PacketListMutex);
 	CBasicPacket* PPacket = PacketList.front();
 	PacketList.pop_front();
 	return PPacket;
 }
 
-
-/************************************************************************
-*																		*
-*	has char unlocked this weapon										*
-*																		*
-************************************************************************/
-bool CCharEntity::isWeaponUnlocked(uint16 indexid)
+PacketList_t CCharEntity::getPacketList()
 {
-	return unlockedWeapons[indexid-1].unlocked;
+    std::lock_guard<std::mutex> lk(m_PacketListMutex);
+    return PacketList;
 }
 
-
-/************************************************************************
-*																		*
-*	add WS points to a weapon											*
-*																		*
-************************************************************************/
-bool CCharEntity::addWsPoints(uint8 points, uint16 WeaponIndex)
+size_t CCharEntity::getPacketCount()
 {
-	this->unlockedWeapons[WeaponIndex].points += points;
-
-	if (unlockedWeapons[WeaponIndex].points >= unlockedWeapons[WeaponIndex].required)
-	{
-		// char has unlocked weapon
-		unlockedWeapons[WeaponIndex].unlocked = true;					// unlock the weapon
-
-		charutils::saveCharWsPoints(this, WeaponIndex, 0);				// remove the temp points count, we are done with it
-		charutils::SaveCharUnlockedWeapons(this);						// save chars unlocked status's
-		this->unlockedWeapons[WeaponIndex].points = 0;
-		return true;
-	}
-	else
-	{
-		// char has not unlocked weapon, add points
-		charutils::saveCharWsPoints(this, WeaponIndex, unlockedWeapons[WeaponIndex].points);			// update temp points count variable
-		return false;
-	}
+    std::lock_guard<std::mutex> lk(m_PacketListMutex);
+    return PacketList.size();
 }
 
+void CCharEntity::erasePackets(uint8 num)
+{
+    for (auto i = 0; i < num; i++)
+    {
+        delete popPacket();
+    }
+}
+
+void CCharEntity::resetPetZoningInfo()
+{
+    // reset the petZoning info
+    petZoningInfo.petHP = 0;
+    petZoningInfo.petTP = 0;
+    petZoningInfo.respawnPet = false;
+    petZoningInfo.petType = PETTYPE_AVATAR;
+}
 /************************************************************************
 *																		*
 *  Возвращаем контейнер с указанным ID. Если ID выходит за рамки, то	*
@@ -292,7 +278,7 @@ int8 CCharEntity::getShieldSize()
 {
 	CItemArmor* PItem = (CItemArmor*)(getEquip(SLOT_SUB));
 
-    if(PItem == NULL){
+    if(PItem == nullptr){
         return 0;
     }
 
@@ -355,6 +341,20 @@ void CCharEntity::setMijinGakure(bool isMijinGakure)
 	m_isMijinGakure = isMijinGakure;
 }
 
+bool CCharEntity::getStyleLocked()
+{
+  return m_isStyleLocked;
+}
+
+void CCharEntity::setStyleLocked(bool isStyleLocked)
+{
+  if (isStyleLocked) {
+	memcpy(&mainlook, &look, sizeof(look));
+  }
+
+  m_isStyleLocked = isStyleLocked;
+}
+
 void CCharEntity::SetPlayTime(uint32 playTime)
 {
 	m_PlayTime = playTime;
@@ -377,12 +377,36 @@ uint32 CCharEntity::GetPlayTime(bool needUpdate)
 CItemArmor* CCharEntity::getEquip(SLOTTYPE slot)
 {
 	uint8 loc = equip[slot];
-
-	CItemArmor* item = NULL;
+	uint8 est = equipLoc[slot];
+	CItemArmor* item = nullptr;
 
 	if (loc != 0)
 	{
-		item = (CItemArmor*)getStorage(LOC_INVENTORY)->GetItem(loc);
+		item = (CItemArmor*)getStorage(est)->GetItem(loc);
 	}
 	return item;
+}
+
+void CCharEntity::ReloadPartyInc()
+{
+	m_reloadParty = true;
+}
+
+void CCharEntity::ReloadPartyDec()
+{
+    m_reloadParty = false;
+}
+
+bool CCharEntity::ReloadParty()
+{
+    return m_reloadParty;
+}
+
+void CCharEntity::UpdateEntity()
+{
+    if (loc.zone && updatemask && !m_isGMHidden)
+    {
+        loc.zone->PushPacket(this, CHAR_INRANGE, new CCharPacket(this, ENTITY_UPDATE, updatemask));
+        updatemask = 0;
+    }
 }

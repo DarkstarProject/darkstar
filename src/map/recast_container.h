@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ class CRecastContainer
 {
     public:
 
-    void Check(uint32 tick);
+    void Check();
 
     void Del(RECASTTYPE type);
     void Del(RECASTTYPE type, uint16 id);
@@ -78,6 +78,7 @@ class CRecastContainer
     bool Has(RECASTTYPE type, uint16 id);
     bool HasRecast(RECASTTYPE type, uint16 id);
     void Add(RECASTTYPE type, uint16 id, uint32 duration, uint32 chargeTime = 0, uint8 maxCharges = 0);
+    Recast_t* Load(RECASTTYPE type, uint16 id, uint32 duration, uint32 chargeTime = 0, uint8 maxCharges = 0);
     void ResetAbilities();
 
     RecastList_t* GetRecastList(RECASTTYPE type);

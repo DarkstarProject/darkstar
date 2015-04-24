@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
 */
 
 #include "../../common/timer.h"
+#include "../packets/entity_update.h"
 
 #include <string.h>
 
@@ -38,7 +39,7 @@ CMobEntity::CMobEntity()
 
     HPscale = 1.0;
     MPscale = 1.0;
-    m_unknown = 0;
+    m_flags = 0;
 
 	allegiance = ALLEGIANCE_MOB;
 
@@ -51,7 +52,6 @@ CMobEntity::CMobEntity()
     memset(m_mobModStatSave,0, sizeof(m_mobModStatSave));
 
     m_AllowRespawn = 0;
-	m_CallForHelp  = 0;
     m_DespawnTimer = 0;
     m_DropItemTime = 0;
 	m_Family = 0;
@@ -64,9 +64,6 @@ CMobEntity::CMobEntity()
 	m_THLvl = 0;
 	m_ItemStolen = false;
     m_RageMode = 0;
-	m_NewSkin = 0;
-	m_SkinID = 0;
-	m_extraVar = 0;
 
     strRank = 3;
     defRank = 3;
@@ -99,12 +96,17 @@ CMobEntity::CMobEntity()
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 
-    m_SpellListContainer = NULL;
+    m_SpellListContainer = nullptr;
     PEnmityContainer = new CEnmityContainer(this);
     SpellContainer = new CMobSpellContainer(this);
 
     // For Dyna Stats
     m_StatPoppedMobs = false;
+}
+
+void CMobEntity::setMobFlags(uint32 MobFlags)
+{
+    m_flags = MobFlags;
 }
 
 CMobEntity::~CMobEntity()
@@ -140,16 +142,16 @@ uint32 CMobEntity::GetRandomGil()
         // make sure divide won't crash server
         if(max <= min)
         {
-            max = min+1;
+            max = min+2;
         }
 
-        if(max-min <= 2)
+        if(max-min < 2)
         {
             max = min+2;
             ShowWarning("CMobEntity::GetRandomGil Max value is set too low, defauting\n");
         }
 
-        return rand()%(max-min)+min;
+        return WELL512::GetRandomNumber(min,max);
     }
 
     float gil = pow(GetMLevel(), 1.05f);
@@ -170,7 +172,7 @@ uint32 CMobEntity::GetRandomGil()
     }
 
     // randomize it
-	gil += rand()%highGil;
+    gil += WELL512::GetRandomNumber(highGil);
 
     // NMs get more gil
     if((m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS){
@@ -211,7 +213,7 @@ bool CMobEntity::CanRoamHome()
 
 bool CMobEntity::CanRoam()
 {
-    return !(m_roamFlags & ROAMFLAG_EVENT) && PMaster == NULL && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM));
+    return !(m_roamFlags & ROAMFLAG_EVENT) && PMaster == nullptr && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM));
 }
 
 bool CMobEntity::CanLink(position_t* pos, int16 superLink)
@@ -300,75 +302,6 @@ bool CMobEntity::CanBeNeutral()
     return !(m_Type & MOBTYPE_NOTORIOUS);
 }
 
-bool CMobEntity::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
-{
-	if (PTarget->isDead() || m_Aggro == AGGRO_NONE || PTarget->animation == ANIMATION_CHOCOBO) return false;
-
-    float verticalDistance = abs(loc.p.y - PTarget->loc.p.y);
-
-    if(verticalDistance > 8)
-    {
-        return false;
-    }
-
-    float currentDistance = distance(PTarget->loc.p, loc.p) + PTarget->getMod(MOD_STEALTH);
-
-    bool detectSight = (m_Aggro & AGGRO_DETECT_SIGHT) || forceSight;
-
-    if (detectSight && !PTarget->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE) && currentDistance < getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(loc.p, PTarget->loc.p, 40))
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_TRUESIGHT) && currentDistance < getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(loc.p, PTarget->loc.p, 40))
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_TRUEHEARING) && currentDistance < getMobMod(MOBMOD_SOUND_RANGE))
-    {
-        return true;
-    }
-
-	if ((m_Behaviour & BEHAVIOUR_AGGRO_AMBUSH) && currentDistance < 3 && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_HEARING) && currentDistance < getMobMod(MOBMOD_SOUND_RANGE) && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
-    {
-        return true;
-    }
-
-    // everything below require distance to be below 20
-    if(currentDistance > 20)
-    {
-        return false;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_LOWHP) && PTarget->GetHPP() < 75)
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_MAGIC) && PTarget->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING && PTarget->PBattleAI->GetCurrentSpell()->hasMPCost())
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_WEAPONSKILL) && PTarget->PBattleAI->GetCurrentAction() == ACTION_WEAPONSKILL_FINISH)
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_JOBABILITY) && PTarget->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH)
-    {
-        return true;
-    }
-
-    return false;
-}
-
 void CMobEntity::ChangeMJob(uint16 job)
 {
     this->SetMJob(job);
@@ -421,52 +354,6 @@ uint8 CMobEntity::TPUseChance()
     }
 
     return getMobMod(MOBMOD_TP_USE_CHANCE);
-}
-
-/************************************************************************
-*                                                                       *
-*  Change Skin of the Mob                                               *
-*                                                                       *
-************************************************************************/
-
-void CMobEntity::SetMainSkin(uint32 mobid)
-{
-	if(m_NewSkin)
-	{
-		const int8* Query = "SELECT modelid \
-							 FROM mob_spawn_points, mob_groups, mob_pools \
-							 WHERE mob_spawn_points.mobid = %u \
-							 AND mob_groups.groupid = mob_spawn_points.groupid \
-							 AND mob_groups.poolid = mob_pools.poolid";
-
-		int32 ret = Sql_Query(SqlHandle, Query, mobid);
-
-		if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			memcpy(&look,Sql_GetData(SqlHandle,0),23);
-			m_NewSkin = false;
-			m_SkinID = 0;
-		}
-	}
-}
-
-void CMobEntity::SetNewSkin(uint8 skinid)
-{
-	const int8* Query = "SELECT skin_model FROM mob_change_skin WHERE skinid = %u";
-
-	int32 ret = Sql_Query(SqlHandle, Query, skinid);
-
-	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		memcpy(&look,Sql_GetData(SqlHandle,0),23);
-		m_NewSkin = true;
-		m_SkinID = skinid;
-	}
-}
-
-uint32 CMobEntity::GetSkinID()
-{
-	return m_SkinID;
 }
 
 void CMobEntity::setMobMod(uint16 type, int16 value)
@@ -554,15 +441,79 @@ void CMobEntity::HideModel(bool hide)
     {
         // I got this from ambush antlion
         // i'm not sure if this is right
-        m_unknown = 2181;
+        m_flags |= 0x80;
     }
     else
     {
-        m_unknown = 0;
+        m_flags &= ~0x80;
     }
 }
 
 bool CMobEntity::IsModelHidden()
 {
-    return m_unknown == 0;
+    return (m_flags & 0x80) == 0x80;
+}
+
+void CMobEntity::HideHP(bool hide)
+{
+    if (hide)
+    {
+        m_flags |= 0x100;
+    }
+    else
+    {
+        m_flags &= ~0x100;
+    }
+    updatemask |= UPDATE_HP;
+}
+
+bool CMobEntity::IsHPHidden()
+{
+    return (m_flags & 0x100) == 0x100;
+}
+
+
+void CMobEntity::CallForHelp(bool call)
+{
+    if (call)
+    {
+        m_flags |= 0x20;
+    }
+    else
+    {
+        m_flags &= ~0x20;
+    }
+    updatemask |= UPDATE_HP;
+}
+
+bool CMobEntity::CalledForHelp()
+{
+    return (m_flags & 0x20) == 0x20;
+}
+
+void CMobEntity::Untargetable(bool untargetable)
+{
+    if (untargetable)
+    {
+        m_flags |= 0x800;
+    }
+    else
+    {
+        m_flags &= ~0x800;
+    }
+    updatemask |= UPDATE_HP;
+}
+
+bool CMobEntity::IsUntargetable()
+{
+    return (m_flags & 0x800) == 0x800;
+}
+
+void CMobEntity::UpdateEntity()
+{
+    if (loc.zone && updatemask)
+    {
+        loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
+        updatemask = 0;
+    }
 }

@@ -3,7 +3,7 @@
 -- NPC:  Gu'Dha Effigy
 -- Mega Boss
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/dynamis");
 
@@ -11,7 +11,7 @@ require("scripts/globals/dynamis");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -26,19 +26,19 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
-	if(alreadyReceived(killer,8) == false) then
-		addDynamisList(killer,128);
-		
+
+	if(mob:isInBattlefieldList() == false) then
+		mob:addInBattlefieldList();
+
 		killer:addTimeToDynamis(30); -- Add + 30min
-		
+
 		killer:addTitle(DYNAMISBASTOK_INTERLOPER); -- Add title
-		
-		local npc = GetNPCByID(17539319); -- Spawn ???
+
+		local npc = GetNPCByID(17539323); -- Spawn ???
 		npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
 		npc:setStatus(0);
-		
+
 		killer:launchDynamisSecondPart(); -- Spawn dynamis second part
 	end
-	
+
 end;

@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -28,15 +28,19 @@
 #include "account.h"
 #include "login.h"
 #include "login_auth.h"
+#include "message_server.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+
+#include <algorithm>
+
 int32 login_fd;					//main fd(socket) of server
 
 /*
-*	
+*
 *		LOGIN SECTION
 *
 */
@@ -58,7 +62,7 @@ int32 login_parse(int32 fd)
 	login_session_data_t* sd = (login_session_data_t*)session[fd]->session_data;
 
 	//check if sd will not defined
-	if( sd == NULL )
+	if( sd == nullptr )
 	{
 		CREATE(session[fd]->session_data,login_session_data_t,1);
 		sd = (login_session_data_t*)session[fd]->session_data;
@@ -74,29 +78,23 @@ int32 login_parse(int32 fd)
 		return 0;
 	}
 
-	//all auth packets have one structure: 
+	//all auth packets have one structure:
 	// [login][passwords][code] => summary assign 33 bytes
 	if( session[fd]->rdata_size == 33 )
 	{
-		unsigned char* buff = session[fd]->rdata;
+		char* buff = session[fd]->rdata;
 		int8 code = RBUFB(buff,32);
 
-		char login[17];
-		char password[17];
+        std::string name(buff, buff + 16);
+        std::string password(buff + 16, buff + 32);
 
-		memset(login,0,sizeof(login));
-		memset(sd->login,0,sizeof(sd->login));
-		memset(password,0,sizeof(password));
-
-		memcpy(login,buff,16);
-		memcpy(sd->login,login,16);
-		memcpy(password,buff+16,16);
+        std::fill_n(sd->login, sizeof sd->login, '\0');
+        std::copy(name.cbegin(), name.cend(), sd->login);
 
 		//data check
-		if( login_datacheck(login,3,sizeof(login)) == -1 ||
-			login_datacheck(password,6,sizeof(password)) == -1 )
+        if (check_string(name, 16) && check_string(password, 16))
 		{
-			ShowWarning(CL_WHITE"login_parse" CL_RESET":" CL_WHITE"%s" CL_RESET" send unreadable data\n",ip2str(sd->client_addr,NULL));
+			ShowWarning(CL_WHITE"login_parse" CL_RESET":" CL_WHITE"%s" CL_RESET" send unreadable data\n",ip2str(sd->client_addr,nullptr));
 			WBUFB(session[fd]->wdata,0) = LOGIN_ERROR;
 			WFIFOSET(fd,1);
 			do_close_login(sd,fd);
@@ -110,7 +108,7 @@ int32 login_parse(int32 fd)
 			const int8* fmtQuery = "SELECT accounts.id,accounts.status \
 									FROM accounts \
 									WHERE accounts.login = '%s' AND accounts.password = PASSWORD('%s')";
-			int32 ret = Sql_Query(SqlHandle,fmtQuery,login,password);	
+			int32 ret = Sql_Query(SqlHandle, fmtQuery, name.c_str(), password.c_str());
 			if( ret != SQL_ERROR  && Sql_NumRows(SqlHandle) != 0)
 			{
 				ret = Sql_NextRow(SqlHandle);
@@ -133,6 +131,28 @@ int32 login_parse(int32 fd)
 					//}
 					fmtQuery = "UPDATE accounts SET accounts.timelastmodify = NULL WHERE accounts.id = %d";
 					Sql_Query(SqlHandle,fmtQuery,sd->accid);
+                    fmtQuery = "SELECT charid, server_addr, server_port \
+                                FROM accounts_sessions JOIN accounts \
+                                ON accounts_sessions.accid = accounts.id \
+                                WHERE accounts.id = %d;";
+                    ret = Sql_Query(SqlHandle, fmtQuery, sd->accid);
+                    if (ret != SQL_ERROR  && Sql_NumRows(SqlHandle) == 1)
+                    {
+                        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                        {
+                            uint32 charid = Sql_GetUIntData(SqlHandle, 0);
+                            uint64 ip = Sql_GetUIntData(SqlHandle, 1);
+                            uint64 port = Sql_GetUIntData(SqlHandle, 2);
+
+                            ip |= (port << 32);
+
+                            zmq::message_t chardata(sizeof(charid));
+                            WBUFL(chardata.data(), 0) = charid;
+                            zmq::message_t empty(0);
+
+                            queue_message(ip, MSG_LOGIN, &chardata, &empty);
+                        }
+                    }
 					memset(session[fd]->wdata,0,33);
 					WBUFB(session[fd]->wdata,0) = LOGIN_SUCCESS;
 					WBUFL(session[fd]->wdata,1) = sd->accid;
@@ -161,7 +181,7 @@ int32 login_parse(int32 fd)
 				}
 
 				if(numCons>1){
-					ShowInfo("login_parse:" CL_WHITE"<%s>" CL_RESET" has logged in %i times! Removing older logins.\n",login,numCons);
+					ShowInfo("login_parse:" CL_WHITE"<%s>" CL_RESET" has logged in %i times! Removing older logins.\n", name.c_str(), numCons);
 					for(int j=0; j<(numCons-1); j++){
 						for(login_sd_list_t::iterator i = login_sd_list.begin(); i != login_sd_list.end(); ++i ){
 							if( (*i)->accid == sd->accid ){
@@ -170,33 +190,33 @@ int32 login_parse(int32 fd)
 								break;
 							}
 						}
-					} 
+					}
 				}
 				//////
 
-				ShowInfo("login_parse:" CL_WHITE"<%s>" CL_RESET" was connected\n",login,status);
+				ShowInfo("login_parse:" CL_WHITE"<%s>" CL_RESET" was connected\n", name.c_str(), status);
 				return 0;
 			}else{
 				WBUFB(session[fd]->wdata,0) = LOGIN_ERROR;
 				WFIFOSET(fd,1);
-				ShowWarning("login_parse: unexisting user" CL_WHITE"<%s>" CL_RESET" tried to connect\n",login);
+				ShowWarning("login_parse: unexisting user" CL_WHITE"<%s>" CL_RESET" tried to connect\n", name.c_str());
 				do_close_login(sd,fd);
 			}
 			}
 			break;
 		case LOGIN_CREATE:
 			//looking for same login
-			if( Sql_Query(SqlHandle,"SELECT accounts.id FROM accounts WHERE accounts.login = '%s'",login) == SQL_ERROR )
+			if( Sql_Query(SqlHandle,"SELECT accounts.id FROM accounts WHERE accounts.login = '%s'", name.c_str()) == SQL_ERROR )
 			{
 				WBUFB(session[fd]->wdata,0) = LOGIN_ERROR_CREATE;
 				WFIFOSET(fd,1);
 				do_close_login(sd,fd);
 				return -1;
 			}
-						
+
 			if( Sql_NumRows(SqlHandle) == 0 )
 			{
-				//creating new account_id 
+				//creating new account_id
 				char *fmtQuery = "SELECT max(accounts.id) FROM accounts;";
 
 				uint32 accid = 0;
@@ -204,7 +224,7 @@ int32 login_parse(int32 fd)
 				if( Sql_Query(SqlHandle,fmtQuery) != SQL_ERROR  && Sql_NumRows(SqlHandle) != 0)
 				{
 					Sql_NextRow(SqlHandle);
-					
+
 					accid = Sql_GetUIntData(SqlHandle,0)+1;
 				}else{
 					WBUFB(session[fd]->wdata,0) = LOGIN_ERROR_CREATE;
@@ -214,7 +234,7 @@ int32 login_parse(int32 fd)
 				}
 
 				accid = (accid < 1000 ? 1000 : accid);
-			
+
 				//creating new account
 				time_t timecreate;
 				tm*	   timecreateinfo;
@@ -227,7 +247,7 @@ int32 login_parse(int32 fd)
 				fmtQuery = "INSERT INTO accounts(id,login,password,timecreate,timelastmodify,status,priv)\
 									   VALUES(%d,'%s',PASSWORD('%s'),'%s',NULL,%d,%d);";
 
-				if( Sql_Query(SqlHandle,fmtQuery,accid,login,password,
+				if (Sql_Query(SqlHandle, fmtQuery, accid, name.c_str(), password.c_str(),
 							  strtimecreate,ACCST_NORMAL,ACCPRIV_USER) == SQL_ERROR )
 				{
 					WBUFB(session[fd]->wdata,0) = LOGIN_ERROR_CREATE;
@@ -236,19 +256,19 @@ int32 login_parse(int32 fd)
 					return -1;
 				}
 
-				ShowStatus(CL_WHITE"login_parse" CL_RESET": account<" CL_WHITE"%s" CL_RESET"> was created\n",login);
+				ShowStatus(CL_WHITE"login_parse" CL_RESET": account<" CL_WHITE"%s" CL_RESET"> was created\n", name.c_str());
 				WBUFB(session[fd]->wdata,0) = LOGIN_SUCCESS_CREATE;
 				WFIFOSET(fd,1);
 				do_close_login(sd,fd);
 			}else{
-				ShowWarning(CL_WHITE"login_parse" CL_RESET": account<" CL_WHITE"%s" CL_RESET"> already exists\n",login);
+				ShowWarning(CL_WHITE"login_parse" CL_RESET": account<" CL_WHITE"%s" CL_RESET"> already exists\n", name.c_str());
 				WBUFB(session[fd]->wdata,0) = LOGIN_ERROR_CREATE;
 				WFIFOSET(fd,1);
 				do_close_login(sd,fd);
 			}
 			break;
 		default:
-			ShowWarning("login_parse: undefined code:[%d], ip sender:<%s>\n",code,ip2str(session[fd]->client_addr,NULL));
+			ShowWarning("login_parse: undefined code:[%d], ip sender:<%s>\n",code,ip2str(session[fd]->client_addr,nullptr));
 			do_close_login(sd,fd);
 			break;
 		};
@@ -262,7 +282,7 @@ int32 login_parse(int32 fd)
 
 int32 do_close_login(login_session_data_t* loginsd,int32 fd)
 {
-	ShowInfo(CL_WHITE"login_parse" CL_RESET":" CL_WHITE"%s" CL_RESET"shutdown socket...\n",ip2str(loginsd->client_addr,NULL));
+	ShowInfo(CL_WHITE"login_parse" CL_RESET":" CL_WHITE"%s" CL_RESET"shutdown socket...\n",ip2str(loginsd->client_addr,nullptr));
 	erase_loginsd(fd);
 	if(session[fd]->session_data)
 		aFree(session[fd]->session_data);
@@ -270,18 +290,7 @@ int32 do_close_login(login_session_data_t* loginsd,int32 fd)
 	return 0;
 }
 
-int8 login_datacheck(const char *buf,size_t MinSize, size_t MaxSize)
+bool check_string(std::string const& str, std::size_t max_length)
 {
-	size_t str_size = strnlen(buf,MaxSize);
-	if( str_size < MinSize )
-	{
-		return -1;
-	}
-
-	for( size_t i = 0; i < str_size; ++i )
-	{
-		if( !isalpha(buf[i]) && !isdigit(buf[i]) )
-			return -1;
-	}
-	return 0;
+    return !str.empty() && str.size() <= max_length && std::all_of(str.cbegin(), str.cend(), [](char const& c) { return c >= 0x20; });
 }

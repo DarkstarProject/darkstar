@@ -10,16 +10,16 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
 
-	if(mob:getZone() == 135 or mob:getZone() == 111) then
+	if(mob:getZoneID() == 135 or mob:getZoneID() == 111) then
         return 0;
     end
 
     return 1;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 
 	local dmgmod = 1;
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 4,ELE_ICE,dmgmod,TP_NO_EFFECT);

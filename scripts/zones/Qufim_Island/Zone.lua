@@ -9,14 +9,33 @@ package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
+require("scripts/globals/zone");
+require("scripts/globals/conquest");
 require("scripts/zones/Qufim_Island/TextIDs");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize(zone)		
-end;		
+function onInitialize(zone)
+    local manuals = {17293775,17293776};
+    
+    SetFieldManual(manuals);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
+end;
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
 
 -----------------------------------		
 -- onZoneIn		

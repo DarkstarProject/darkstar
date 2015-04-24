@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@
 CMagicState::CMagicState(CBattleEntity* PEntity, CTargetFind* PTargetFind, float maxStartDistance, float maxFinishDistance)
 : CState(PEntity, PTargetFind)
 {
-	m_PSpell = NULL;
+	m_PSpell = nullptr;
 	m_enableCasting = true;
 	m_maxStartDistance = maxStartDistance;
 	m_maxFinishDistance = maxFinishDistance;
@@ -75,7 +75,7 @@ STATESTATUS CMagicState::CastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8
 
 bool CMagicState::CanCastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 flags)
 {
-	if(PSpell == NULL) return false;
+	if(PSpell == nullptr) return false;
 
 	if(!ValidCast(PSpell, PTarget))
 	{
@@ -160,14 +160,14 @@ void CMagicState::Clear()
 {
 	CState::Clear();
 
-	m_PSpell = NULL;
+	m_PSpell = nullptr;
 	m_interruptSpell = false;
     m_startTime = 0;
 }
 
 uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
 {
-    if(PSpell == NULL)
+    if(PSpell == nullptr)
     {
         return 0;
     }
@@ -240,7 +240,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_NIGHTINGALE))
         {
             if (m_PEntity->objtype == TYPE_PC &&
-                rand() % 100 < ((CCharEntity*)m_PEntity)->PMeritPoints->GetMeritValue(MERIT_TROUBADOUR, (CCharEntity*)m_PEntity) - 25)
+                WELL512::GetRandomNumber(100) < ((CCharEntity*)m_PEntity)->PMeritPoints->GetMeritValue(MERIT_NIGHTINGALE, (CCharEntity*)m_PEntity) - 25)
             {
                 return 0;
             }
@@ -254,8 +254,8 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
         cast = cast * (1.0f - ((songcasting > 50 ? 50 : songcasting) / 100.0f));
     }
 
-    int8 fastCast = dsp_cap(m_PEntity->getMod(MOD_FASTCAST),-100,50);
-    int8 uncappedFastCast = dsp_cap(m_PEntity->getMod(MOD_UFASTCAST),-100,100);
+    int16 fastCast = dsp_cap(m_PEntity->getMod(MOD_FASTCAST),-100,50);
+    int16 uncappedFastCast = dsp_cap(m_PEntity->getMod(MOD_UFASTCAST),-100,100);
     float sumFastCast = dsp_cap(fastCast + uncappedFastCast, -100, 100);
 
     return cast * ((100.0f - sumFastCast)/100.0f);
@@ -263,7 +263,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
 
 int16 CMagicState::CalculateMPCost(CSpell* PSpell)
 {
-    if(PSpell == NULL)
+    if(PSpell == nullptr)
     {
         ShowWarning("CMagicState::CalculateMPCost Spell is NULL\n");
         return 0;
@@ -323,7 +323,7 @@ int16 CMagicState::CalculateMPCost(CSpell* PSpell)
 
 uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
 {
-    if(PSpell == NULL)
+    if(PSpell == nullptr)
     {
         return 0;
     }
@@ -432,7 +432,7 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
         }
     }
 
-    return recast;
+    return recast/1000;
 }
 
 bool CMagicState::CheckInterrupt()
@@ -478,7 +478,11 @@ bool CMagicState::CheckInterrupt()
 
 bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
 {
-    if(!CheckValidTarget(PTarget)) return false;
+    if (!CheckValidTarget(PTarget))
+    {
+        PushError(MSGBASIC_CANNOT_ON_THAT_TARG, 0);
+        return false;
+    }
 
 	if(!m_enableCasting ||
 		m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
@@ -507,6 +511,12 @@ bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
         return false;
     }
 
+    if (!spell::CanUseSpell(m_PEntity, PSpell->getID()))
+    {
+        PushError(MSGBASIC_CANNOT_CAST_SPELL, PSpell->getID());
+        return false;
+    }
+
     if(PTarget->isDead() && !(PSpell->getValidTarget() & TARGET_PLAYER_DEAD))
     {
         return false;
@@ -522,7 +532,7 @@ bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
 
 void CMagicState::InterruptSpell()
 {
-    DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+    DSP_DEBUG_BREAK_IF(m_PSpell == nullptr);
     DSP_DEBUG_BREAK_IF(m_PEntity->PBattleAI->GetCurrentAction() != ACTION_MAGIC_INTERRUPT);
 
     apAction_t action;
@@ -542,20 +552,18 @@ void CMagicState::InterruptSpell()
 
 void CMagicState::FinishSpell()
 {
-    DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+    DSP_DEBUG_BREAK_IF(m_PSpell == nullptr);
 	DSP_DEBUG_BREAK_IF(m_PEntity->PBattleAI->GetCurrentAction() != ACTION_MAGIC_FINISH);
 
-	CSpell* PSpellCopy = new CSpell(*m_PSpell);
+	luautils::OnSpellPrecast(m_PEntity, m_PSpell);
 
-	luautils::OnSpellPrecast(m_PEntity, PSpellCopy);
-
-	SpendCost(PSpellCopy);
+	SpendCost(m_PSpell);
 	SetRecast(m_PSpell);
 
 	// remove effects based on spell cast first
     int16 effectFlags = EFFECTFLAG_INVISIBLE | EFFECTFLAG_MAGIC_BEGIN;
 
-	if (PSpellCopy->canTargetEnemy())
+	if (m_PSpell->canTargetEnemy())
     {
     	effectFlags |= EFFECTFLAG_DETECTABLE;
     }
@@ -569,18 +577,18 @@ void CMagicState::FinishSpell()
     // can this spell target the dead?
 
     uint8 flags = FINDFLAGS_NONE;
-	if (PSpellCopy->getValidTarget() & TARGET_PLAYER_DEAD)
+	if (m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD)
     {
         flags |= FINDFLAGS_DEAD;
     }
-	if (PSpellCopy->getFlag() & SPELLFLAG_HIT_ALL)
+	if (m_PSpell->getFlag() & SPELLFLAG_HIT_ALL)
 	{
 		flags |= FINDFLAGS_HIT_ALL;
 	}
-	uint8 aoeType = battleutils::GetSpellAoEType(m_PEntity, PSpellCopy);
+	uint8 aoeType = battleutils::GetSpellAoEType(m_PEntity, m_PSpell);
 
 	if (aoeType == SPELLAOE_RADIAL) {
-		float distance = spell::GetSpellRadius(PSpellCopy, m_PEntity);
+		float distance = spell::GetSpellRadius(m_PSpell, m_PEntity);
 
         m_PTargetFind->findWithinArea(m_PTarget, AOERADIUS_TARGET, distance, flags);
 
@@ -588,7 +596,7 @@ void CMagicState::FinishSpell()
     else if (aoeType == SPELLAOE_CONAL)
     {
         //TODO: actual radius calculation
-		float radius = spell::GetSpellRadius(PSpellCopy, m_PEntity);
+		float radius = spell::GetSpellRadius(m_PSpell, m_PEntity);
 
         m_PTargetFind->findWithinCone(m_PTarget, radius, 45, flags);
 	}
@@ -600,13 +608,13 @@ void CMagicState::FinishSpell()
 
     uint16 totalTargets = m_PTargetFind->m_targets.size();
 
-	PSpellCopy->setTotalTargets(totalTargets);
+	m_PSpell->setTotalTargets(totalTargets);
 
 	apAction_t action;
 	action.ActionTarget = m_PTarget;
 	action.reaction   = REACTION_NONE;
 	action.speceffect = SPECEFFECT_NONE;
-	action.animation  = PSpellCopy->getAnimationID();
+	action.animation  = m_PSpell->getAnimationID();
 	action.param      = 0;
 	action.messageID  = 0;
 
@@ -621,18 +629,18 @@ void CMagicState::FinishSpell()
 
         action.ActionTarget = PTarget;
 
-		ce = PSpellCopy->getCE();
-		ve = PSpellCopy->getVE();
+		ce = m_PSpell->getCE();
+		ve = m_PSpell->getVE();
 
         // take all shadows
-		if (PSpellCopy->canTargetEnemy() && aoeType > 0)
+		if (m_PSpell->canTargetEnemy() && aoeType > 0)
         {
         	PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
         	PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
         }
 
         // TODO: this is really hacky and should eventually be moved into lua
-		if (PSpellCopy->canHitShadow() && aoeType == SPELLAOE_NONE && battleutils::IsAbsorbByShadow(PTarget))
+		if (m_PSpell->canHitShadow() && aoeType == SPELLAOE_NONE && battleutils::IsAbsorbByShadow(PTarget))
         {
         	// take shadow
         	msg = 31;
@@ -642,28 +650,36 @@ void CMagicState::FinishSpell()
         }
         else
         {
-			action.param = luautils::OnSpellCast(m_PEntity, PTarget, PSpellCopy);
+			action.param = luautils::OnSpellCast(m_PEntity, PTarget, m_PSpell);
 
             // remove effects from damage
-			if (PSpellCopy->canTargetEnemy() && action.param > 0 && m_PSpell->dealsDamage())
+			if (m_PSpell->canTargetEnemy() && action.param > 0 && m_PSpell->dealsDamage())
             {
                 PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
             }
 
             if(msg == 0)
             {
-				msg = PSpellCopy->getMessage();
+				msg = m_PSpell->getMessage();
             }
             else
             {
-				msg = PSpellCopy->getAoEMessage();
+				msg = m_PSpell->getAoEMessage();
             }
 
         }
 
+        if (action.animation == 122 && msg == 283) // teleport spells don't target unqualified members
+            continue;
+
         action.messageID = msg;
 
-		if (PSpellCopy->getID() != 305) //I hate to do this, but there really is no other spell like Odin
+        if (PTarget->objtype == TYPE_MOB && msg != 31) // If message isn't the shadow loss message, because I had to move this outside of the above check for it.
+        {
+            luautils::OnMagicHit(m_PEntity, PTarget, m_PSpell);
+        }
+
+		if (m_PSpell->getID() != 305) //I hate to do this, but there really is no other spell like Odin
             CharOnTarget(&action, ce, ve);
 
         m_PEntity->m_ActionList.push_back(action);
@@ -676,8 +692,6 @@ void CMagicState::FinishSpell()
     DSP_DEBUG_BREAK_IF(m_PEntity->PBattleAI->GetCurrentAction() != ACTION_MAGIC_FINISH);
 	m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(m_PEntity));
 
-	delete PSpellCopy;
-
 	Clear();
 }
 
@@ -689,6 +703,16 @@ void CMagicState::CharOnTarget(apAction_t* action, int16 ce, int16 ve)
     }
 
     CBattleEntity* PTarget = action->ActionTarget;
+    bool enmityApplied = false;
+
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    {
+        m_PEntity->addModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
+    }
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    {
+        m_PEntity->addModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
+    }
 
     if (PTarget->objtype == TYPE_MOB && PTarget->allegiance != m_PEntity->allegiance)
     {
@@ -697,28 +721,32 @@ void CMagicState::CharOnTarget(apAction_t* action, int16 ce, int16 ve)
             ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
         }
 
-        ((CMobEntity*)PTarget)->m_OwnerID.id = m_PEntity->id;
-        ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PEntity->targid;
+        if (!(m_PSpell->isHeal()) || m_PSpell->tookEffect())  //can't claim mob with cure unless it does damage
+        {
+            ((CMobEntity*)PTarget)->m_OwnerID.id = m_PEntity->id;
+            ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PEntity->targid;
+            ((CMobEntity*)PTarget)->updatemask |= UPDATE_STATUS;
+            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PEntity, ce, ve);
+            enmityApplied = true;
+        }
+    }
+    else if (PTarget->allegiance == m_PEntity->allegiance)
+    {
+        battleutils::GenerateInRangeEnmity(m_PEntity, ce, ve);
+        enmityApplied = true;
+    }
 
-        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
-        {
-            m_PEntity->addModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
-        }
-        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
-        {
-            m_PEntity->addModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
-        }
-        ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PEntity, ce, ve);
-        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
-        {
-            m_PEntity->delModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    {
+        m_PEntity->delModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
+        if (enmityApplied)
             m_PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_TRANQUILITY);
-        }
-        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
-        {
-            m_PEntity->delModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
+    }
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    {
+        m_PEntity->delModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
+        if (enmityApplied)
             m_PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_EQUANIMITY);
-        }
     }
 
     if(action->param > 0 && m_PSpell->dealsDamage() && m_PSpell->getSpellGroup() == SPELLGROUP_BLUE &&
@@ -770,7 +798,11 @@ void CMagicState::CharAfterFinish()
             CItemWeapon* PItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
             if (PItem && PItem->isType(ITEM_ARMOR))
             {
-                charutils::TrySkillUP(PChar, (SKILLTYPE)PItem->getSkillType(), m_PTarget->GetMLevel());
+				SKILLTYPE Skilltype = (SKILLTYPE)PItem->getSkillType();
+				if (Skilltype == SKILL_STR || Skilltype == SKILL_WND || Skilltype == SKILL_SNG)
+				{
+					charutils::TrySkillUP(PChar, Skilltype, m_PTarget->GetMLevel());
+				}
             }
         }
     }
@@ -778,7 +810,7 @@ void CMagicState::CharAfterFinish()
     PChar->pushPacket(new CCharUpdatePacket(PChar));
 
     // make wyvern use breath
-    if(PChar->PPet!=NULL && ((CPetEntity*)PChar->PPet)->getPetType() == PETTYPE_WYVERN)
+    if(PChar->PPet!=nullptr && ((CPetEntity*)PChar->PPet)->getPetType() == PETTYPE_WYVERN)
     {
         ((CAIPetDummy*)PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_HEALING_BREATH;
         PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
@@ -806,7 +838,7 @@ bool CMagicState::TryHitInterrupt(CBattleEntity* PAttacker)
 
 bool CMagicState::IsCasting()
 {
-	return m_PSpell != NULL;
+	return m_PSpell != nullptr;
 }
 
 bool CMagicState::ValidCharCast(CSpell* PSpell)
@@ -837,7 +869,7 @@ bool CMagicState::ValidCharCast(CSpell* PSpell)
     }
 
     // check summoning
-    if (PSpell->getSpellGroup() == SPELLGROUP_SUMMONING && PChar->PPet != NULL)
+    if (PSpell->getSpellGroup() == SPELLGROUP_SUMMONING && PChar->PPet != nullptr)
     {
         PushError(MSGBASIC_ALREADY_HAS_A_PET, spellID);
         return false;
@@ -863,7 +895,7 @@ void CMagicState::SpendCost(CSpell* PSpell)
         // conserve mp
         int16 rate = m_PEntity->getMod(MOD_CONSERVE_MP);
 
-        if(rand()%100 < rate)
+        if (WELL512::GetRandomNumber(100) < rate)
         {
             cost = ConserveMP(cost);
         }
@@ -875,7 +907,7 @@ void CMagicState::SpendCost(CSpell* PSpell)
 
 int16 CMagicState::ConserveMP(int16 cost)
 {
-    return cost * ( (float)(rand()%8 + 8.0f) / 16.0f );
+    return cost * (WELL512::GetRandomNumber(8.f,16.f) / 16.0f);
 }
 
 void CMagicState::SetRecast(CSpell* PSpell)
@@ -889,7 +921,7 @@ void CMagicState::SetRecast(CSpell* PSpell)
 
     CCharEntity* PChar = (CCharEntity*)m_PEntity;
 
-    uint32 RecastTime = 3000;
+    uint32 RecastTime = 3;
 
     if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) &&
 		!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SPONTANEITY))

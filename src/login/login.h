@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -59,9 +59,18 @@ struct login_config_t
 	const char* mysql_database;		// mysql database -> default dspdb
 
 	uint32 search_server_port;		// search_server_port	-> 54002
+
+    uint16 msg_server_port;			// chat server port
+    const char* msg_server_ip;		// chat server IP
+};
+
+struct version_info_t
+{
+    std::string Min_Client_Ver; // Minimum Client version allowed to login to server.
 };
 
 extern login_config_t login_config;
+extern version_info_t version_info;
 
 extern Sql_t *SqlHandle;
 //////////////////////////////////////////////////////////
@@ -77,8 +86,11 @@ void login_versionscreen(int32 flag);
 /*==========================================
  * Login-Server Config [venom]
  *------------------------------------------*/
-int32 login_config_read(const char *cfgName);
 
+int32 login_config_read(const char *cfgName);
 int32 login_config_default();
+
+int32 version_info_read(const char *cfgName);
+int32 version_info_default();
 
 #endif

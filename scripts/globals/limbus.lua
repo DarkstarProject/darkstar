@@ -340,40 +340,40 @@ function HideArmouryCrates(Region,Zone)
   end   
 end;
 function HideTemenosDoor(Region)
-       if(Region==Temenos_Northern_Tower)then
-	   GetNPCByID((450)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((451)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((452)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((453)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((454)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((455)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((456)+16928768):setStatus(STATUS_DISAPPEAR);
+           if(Region==Temenos_Northern_Tower)then
+	   GetNPCByID((450)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((451)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((452)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((453)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((454)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((455)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((456)+16928770):setStatus(STATUS_DISAPPEAR);
 	   elseif(Region==Temenos_Eastern_Tower)then
-	   GetNPCByID((457)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((458)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((459)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((460)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((461)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((462)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((463)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((457)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((458)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((459)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((460)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((461)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((462)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((463)+16928770):setStatus(STATUS_DISAPPEAR);
 	   elseif(Region==Temenos_Western_Tower)then
-	   GetNPCByID((464)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((465)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((466)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((467)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((468)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((469)+16928768):setStatus(STATUS_DISAPPEAR);
-	   GetNPCByID((470)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((464)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((465)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((466)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((467)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((468)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((469)+16928770):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((470)+16928770):setStatus(STATUS_DISAPPEAR);
 	   elseif(Region==Central_Temenos_1st_Floor)then
-	   GetNPCByID((471)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((471)+16928770):setStatus(STATUS_DISAPPEAR);
 	   elseif(Region==Central_Temenos_2nd_Floor)then
-	   GetNPCByID((472)+16928768):setStatus(STATUS_DISAPPEAR);	   
+	   GetNPCByID((472)+16928770):setStatus(STATUS_DISAPPEAR);	   
 	   elseif(Region==Central_Temenos_3rd_Floor)then
-	   GetNPCByID((473)+16928768):setStatus(STATUS_DISAPPEAR);	   
+	   GetNPCByID((473)+16928770):setStatus(STATUS_DISAPPEAR);	   
 	   elseif(Region==Central_Temenos_4th_Floor)then
-	   GetNPCByID((474)+16928768):setStatus(STATUS_DISAPPEAR);   
+	   GetNPCByID((474)+16928770):setStatus(STATUS_DISAPPEAR);   
 	   elseif(Region==Central_Temenos_Basement)then
-	   GetNPCByID((475)+16928768):setStatus(STATUS_DISAPPEAR);   
+	   GetNPCByID((475)+16928770):setStatus(STATUS_DISAPPEAR);  
        end
 end;
 
@@ -426,7 +426,7 @@ function alreadyReceived(player,number,region)
 
 	local LimbusVar = 0;
 	local bit = {};
-	local pZone = player:getZone();
+	local pZone = player:getZoneID();
 
 
     if(pZone == 37) then
@@ -454,7 +454,7 @@ end;
 
 function addLimbusList(player,number,Region)
 
-	local pZone = player:getZone();
+	local pZone = player:getZoneID();
 
 	if(pZone == 37) then
 	elseif(pZone == 38) then
@@ -553,7 +553,7 @@ function GetLimbusKeyFromInstance(instanceID)
 		end	,		
 		  
    }	
-   print("Server_;_instanceID "..instanceID.." Serverkey "..Instancekey);
+ --  print("Server_;_instanceID "..instanceID.." Serverkey "..Instancekey);
 
     return Instancekey ;
 end;
@@ -823,7 +823,7 @@ local inst=0;
      if(playerLimbusID == 0 )then
         playerLimbusID = instanceID;
 	 end
-     print("Player_:_instanceID_"..playerLimbusID.." Playerkey "..playerLimbusKeyID);
+  --   print("Player_:_instanceID_"..playerLimbusID.." Playerkey "..playerLimbusKeyID);
    		if(playerLimbusID~=0)then
 
             if(GetLimbusKeyFromInstance(playerLimbusID)==0 and playerLimbusKeyID==0)then  
@@ -840,7 +840,7 @@ local inst=0;
 	                  end
 					  player:messageSpecial(7006);
 					  ResetPlayerLimbusVariable(player);  
-					  print("BCNM_cant_be _create");
+					  print("BCNM_cant_be _created");
                 end				
             end	
 		end 	
@@ -851,7 +851,7 @@ function TryTobackOnCurrentLimbus(player)
 local currentlimbus=0;
 local playerLimbusID = player:getVar("LimbusID");
 local playerLimbusKeyID = player:getVar("characterLimbusKey");    
-	     print("Player_:_instanceID_"..playerLimbusID.." Playerkey "..playerLimbusKeyID);		
+	 --    print("Player_:_instanceID_"..playerLimbusID.." Playerkey "..playerLimbusKeyID);		
 			     if( GetLimbusKeyFromInstance(playerLimbusID) == playerLimbusKeyID and player:isSpecialBattlefieldEmpty(GetInstanceRegion(playerLimbusID))==1 )then  -- player deco and back
 				   currentlimbus=playerLimbusID;
 

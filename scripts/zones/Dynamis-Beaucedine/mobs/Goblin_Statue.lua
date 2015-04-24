@@ -77,12 +77,12 @@ function onMobDeath(mob,killer)
 	
 	local mobID = mob:getID();
 	-- Time Bonus: 031 046
-	if(mobID == 17326860 and alreadyReceived(killer,3) == false) then
+	if(mobID == 17326860 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(15);
-		addDynamisList(killer,4);
-	elseif(mobID == 17326875 and alreadyReceived(killer,4) == false) then
+		mob:addInBattlefieldList();
+	elseif(mobID == 17326875 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(15);
-		addDynamisList(killer,8);
+		mob:addInBattlefieldList();
 	-- HP Bonus: 037 041 044 051 053 
 	elseif(mobID == 17326866 or mobID == 17326870 or mobID == 17326873 or mobID == 17326880 or mobID == 17326882) then 
 		killer:restoreHP(2000);

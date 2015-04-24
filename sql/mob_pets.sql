@@ -248,7 +248,7 @@ INSERT INTO `mob_pets` VALUES (17293526, 1, 9);
 INSERT INTO `mob_pets` VALUES (17293552, 1, 9);
 INSERT INTO `mob_pets` VALUES (17293557, 1, 9);
 INSERT INTO `mob_pets` VALUES (17293576, 1, 9);
-INSERT INTO `mob_pets` VALUES (17367248, 2, 9);
+-- INSERT INTO `mob_pets` VALUES (17367248, 2, 9);
 INSERT INTO `mob_pets` VALUES (17420304, 1, 9);
 INSERT INTO `mob_pets` VALUES (17420309, 1, 9);
 INSERT INTO `mob_pets` VALUES (17420316, 1, 9);
@@ -598,7 +598,7 @@ INSERT INTO `mob_pets` VALUES (17396022, 1, 15);
 INSERT INTO `mob_pets` VALUES (17396026, 1, 15);
 INSERT INTO `mob_pets` VALUES (17396134, 1, 15);
 INSERT INTO `mob_pets` VALUES (17396137, 1, 15);
-INSERT INTO `mob_pets` VALUES (17428491, 1, 15);
+-- INSERT INTO `mob_pets` VALUES (17428491, 1, 15);
 INSERT INTO `mob_pets` VALUES (17428543, 1, 15);
 INSERT INTO `mob_pets` VALUES (17428552, 1, 15);
 INSERT INTO `mob_pets` VALUES (17428559, 1, 15);
@@ -643,7 +643,7 @@ INSERT INTO `mob_pets` VALUES (17432861, 1, 15);
 INSERT INTO `mob_pets` VALUES (17432868, 1, 15);
 INSERT INTO `mob_pets` VALUES (17432919, 1, 15);
 INSERT INTO `mob_pets` VALUES (17432928, 1, 15);
-INSERT INTO `mob_pets` VALUES (17432940, 1, 15);
+INSERT INTO `mob_pets` VALUES (17432936, 1, 15);
 INSERT INTO `mob_pets` VALUES (17432961, 1, 15);
 INSERT INTO `mob_pets` VALUES (17432965, 1, 15);
 INSERT INTO `mob_pets` VALUES (17432969, 1, 15);
@@ -685,9 +685,9 @@ INSERT INTO `mob_pets` VALUES (17461409, 1, 15);
 INSERT INTO `mob_pets` VALUES (17461417, 1, 15);
 INSERT INTO `mob_pets` VALUES (17461421, 1, 15);
 INSERT INTO `mob_pets` VALUES (17506670, 1, 15);
-INSERT INTO `mob_pets` VALUES (17125974, 1, 15);
-INSERT INTO `mob_pets` VALUES (17125975, 1, 15);
-INSERT INTO `mob_pets` VALUES (17125976, 1, 15);
+-- INSERT INTO `mob_pets` VALUES (17125974, 1, 15);
+-- INSERT INTO `mob_pets` VALUES (17125975, 1, 15);
+-- INSERT INTO `mob_pets` VALUES (17125976, 1, 15);
 INSERT INTO `mob_pets` VALUES (17375263, 1, 15);
 INSERT INTO `mob_pets` VALUES (17375265, 1, 15);
 INSERT INTO `mob_pets` VALUES (17375267, 1, 15);
@@ -1001,6 +1001,34 @@ INSERT INTO `mob_pets` VALUES (16916598, 1, 14);
 INSERT INTO `mob_pets` VALUES (16916639, 1, 14);
 INSERT INTO `mob_pets` VALUES (16916745, 1, 14);
 INSERT INTO `mob_pets` VALUES (16916805, 1, 14);
+-- Ruhmet
+INSERT INTO `mob_pets` VALUES (16920596 , 1, 14);
+INSERT INTO `mob_pets` VALUES (16920606 , 1, 9);
+INSERT INTO `mob_pets` VALUES (16920609 , 1, 15);
+INSERT INTO `mob_pets` VALUES (16920648 , 1, 15);
+INSERT INTO `mob_pets` VALUES (16920657 , 1, 9);
+INSERT INTO `mob_pets` VALUES (16920662 , 1, 14);
+INSERT INTO `mob_pets` VALUES (16920779 , 1, 9);
+INSERT INTO `mob_pets` VALUES (16920783 , 1, 14);
+INSERT INTO `mob_pets` VALUES (16920787 , 1, 15);
+
+
+-- periqia requiem assault draugars wyverns
+-- INSERT INTO `mob_pets` VALUES (17006617, 1, 14);
+-- INSERT INTO `mob_pets` VALUES (17006621, 1, 14);
+-- INSERT INTO `mob_pets` VALUES (17006623, 1, 14);
+-- INSERT INTO `mob_pets` VALUES (17006628, 1, 14);
+-- INSERT INTO `mob_pets` VALUES (17006631, 1, 14);
+-- mamool ja training grounds assault imperia agent rescue bst
+-- INSERT INTO `mob_pets` VALUES (17047554, 1, 14);
+-- INSERT INTO `mob_pets` VALUES (17047557, 1, 14);
+-- INSERT INTO `mob_pets` VALUES (17047561, 1, 14);
+-- Mamool ja trainin ggrounds assault sagelord elimination
+-- INSERT INTO `mob_pets` VALUES (17047592, 1, 9);
+-- INSERT INTO `mob_pets` VALUES (17047594, 2, 9);
+-- INSERT INTO `mob_pets` VALUES (17047602, 2, 9);
+-- INSERT INTO `mob_pets` VALUES (17047606, 1, 9);
+-- INSERT INTO `mob_pets` VALUES (17047608, 1, 9);
 
 /*!40000 ALTER TABLE `mob_pets` ENABLE KEYS */;
 UNLOCK TABLES;

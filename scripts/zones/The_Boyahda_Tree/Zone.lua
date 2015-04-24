@@ -7,6 +7,7 @@ package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/The_Boyahda_Tree/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,25 @@ require("scripts/zones/The_Boyahda_Tree/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17404403,17404404,17404405,17404406};
+    
+    SetGroundsTome(tomes);
+    
+    UpdateTreasureSpawnPoint(17404389);
+
+end;
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 -----------------------------------		

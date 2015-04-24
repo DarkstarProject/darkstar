@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -84,6 +84,8 @@ protected:
 
 	bool IsMobOwner(CBattleEntity* PBattleTarget);
 	bool GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTarget);
+
+    void DoAttack();
 };
 
 #endif

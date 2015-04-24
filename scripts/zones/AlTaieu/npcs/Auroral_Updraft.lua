@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
 
-	local Auroral_Offset = 16912900;
+	local Auroral_Offset = 16912902;
 	local npcID = npc:getID();
 
 	if(npcID == Auroral_Offset) then

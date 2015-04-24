@@ -1,22 +1,31 @@
 -----------------------------------
 -- Ability: Mantra
+-- Increases the max. HP of party members within area of effect.
+-- Obtainable: Monk Level 75
+-- Recast Time: 0:10:00
+-- Duration: 0:03:00
 -----------------------------------
+
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onAbilityCheck
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
-	return 0,0;
+function onAbilityCheck(player,target,ability)
+    return 0,0;
 end;
 
-function OnUseAbility(player, target, ability)
-	player:delStatusEffect(EFFECT_MAX_HP_BOOST);
+-----------------------------------
+-- onUseAbility
+-----------------------------------
 
-	local merits = player:getMerit(MERIT_MANTRA);
+function onUseAbility(player,target,ability)
+    player:delStatusEffect(EFFECT_MAX_HP_BOOST);
 
-	target:addStatusEffect(EFFECT_MAX_HP_BOOST,merits,0,180);
-	
-	return EFFECT_MANTRA;
+    local merits = player:getMerit(MERIT_MANTRA);
+
+    target:addStatusEffect(EFFECT_MAX_HP_BOOST,merits,0,180);
+
+    return EFFECT_MANTRA;
 end;

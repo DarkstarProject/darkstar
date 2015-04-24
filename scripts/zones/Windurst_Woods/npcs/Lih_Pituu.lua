@@ -29,7 +29,7 @@ function onTrigger(player,npc)
     
     if (guildMember == 1) then
         if (player:hasStatusEffect(EFFECT_BONECRAFT_IMAGERY) == false) then
-			player:startEvent(0x2722,Cost,SkillLevel,0,511,player:getGil(),0,0,0);
+			player:startEvent(0x2722,Cost,SkillLevel,0,511,player:getGil(),0,7028,0);
 	    else
             player:startEvent(0x2722,Cost,SkillLevel,0,511,player:getGil(),28753,3967,0);
 	    end
@@ -62,7 +62,3 @@ function onEventFinish(player,csid,option)
 		player:addStatusEffect(EFFECT_BONECRAFT_IMAGERY,3,0,480);
     end
 end;
-
-
-
-

@@ -28,22 +28,8 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 DROP TABLE IF EXISTS `char_equip`;
 CREATE TABLE IF NOT EXISTS `char_equip` (
   `charid` int(10) unsigned NOT NULL,
-  `main` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `sub` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `ranged` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `ammo` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `head` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `body` tinyint(2) unsigned NOT NULL DEFAULT '1',
-  `hands` tinyint(2) unsigned NOT NULL DEFAULT '2',
-  `legs` tinyint(2) unsigned NOT NULL DEFAULT '3',
-  `feet` tinyint(2) unsigned NOT NULL DEFAULT '4',
-  `neck` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `waist` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `ear1` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `ear2` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `ring1` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `ring2` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `back` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `link` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`charid`)
+  `slotid` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `equipslotid` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `containerid` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`charid`,`equipslotid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=41;

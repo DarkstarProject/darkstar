@@ -37,6 +37,15 @@ CREATE TABLE `mob_spawn_mods` (
 
 LOCK TABLES `mob_spawn_mods` WRITE;
 /*!40000 ALTER TABLE `mob_spawn_mods` DISABLE KEYS */;
+INSERT INTO `mob_spawn_mods` VALUES (16806117,288,40,0); -- Sargas DA guestimate
+INSERT INTO `mob_spawn_mods` VALUES (17240232,23,50,0); -- Tegmine attack bonus guestimate, he hits hard for a crab on retail
+INSERT INTO `mob_spawn_mods` VALUES (17240232,288,40,0); -- Tegmine DA guestimate
+INSERT INTO `mob_spawn_mods` VALUES (17186927,368,33,0);
+INSERT INTO `mob_spawn_mods` VALUES (17195221,368,33,0);
+INSERT INTO `mob_spawn_mods` VALUES (17363080,368,33,0);
+INSERT INTO `mob_spawn_mods` VALUES (17424488,302,25,0); -- Autarch TA guestimate
+INSERT INTO `mob_spawn_mods` VALUES (17424488,288,25,0); -- Autarch DA guestimate
+INSERT INTO `mob_spawn_mods` VALUES (17424488,23,60,0); -- Autarch attack bonus guestimate
 INSERT INTO `mob_spawn_mods` VALUES (17371142,16,-1,1);
 INSERT INTO `mob_spawn_mods` VALUES (17371142,1,20,1);
 INSERT INTO `mob_spawn_mods` VALUES (17371142,2,33,1);
@@ -187,9 +196,6 @@ INSERT INTO `mob_spawn_mods` VALUES (17396133,16,1,1);
 INSERT INTO `mob_spawn_mods` VALUES (17396132,16,1,1);
 INSERT INTO `mob_spawn_mods` VALUES (17396134,16,1,1);
 INSERT INTO `mob_spawn_mods` VALUES (17396137,16,1,1);
-INSERT INTO `mob_spawn_mods` VALUES (17518595,39,2,1);
-INSERT INTO `mob_spawn_mods` VALUES (17518600,39,7,1);
-INSERT INTO `mob_spawn_mods` VALUES (17518605,39,12,1);
 INSERT INTO `mob_spawn_mods` VALUES (16814432,1,18000,1);
 INSERT INTO `mob_spawn_mods` VALUES (16814432,2,19800,1);
 INSERT INTO `mob_spawn_mods` VALUES (16814432,9,80,1);

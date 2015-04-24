@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
 #ifndef _CPARTY_H
 #define _CPARTY_H
 
+#include "map.h"
 #include "../common/cbasetypes.h"
 
 #include <vector>
@@ -60,29 +61,36 @@ class CParty
 public:
 
     CParty(CBattleEntity* PEntity);
+	CParty(uint32 id);
 	
     uint32 GetPartyID();                                // узнаем уникальный ID группы
     uint16 GetMemberFlags(CBattleEntity* PEntity);      // получаем список флагов персонажа
-    uint8  MemberCount(uint8 ZoneID);                   // узнаем количество участников группы в указанной зоне
+    uint8  MemberCount(uint16 ZoneID);                   // узнаем количество участников группы в указанной зоне
 
     CBattleEntity* GetLeader();                         // узнаем лидера группы
     CBattleEntity* GetSyncTarget();                     // узнаем цель синхронизации
     CBattleEntity* GetQuaterMaster();                   // узнаем владельца сокровищ
-    CBattleEntity* GetMemberByName(int8* MemberName);   // Returns entity pointer for member name string
+    CBattleEntity* GetMemberByName(const int8* MemberName);   // Returns entity pointer for member name string
 
-	void DisbandParty();								// распускаем группу
+	void DisbandParty(bool playerInitiated = true);		// распускаем группу
 	void ReloadParty();                                 // перезагружаем карту группы для всех участников группы
 	void ReloadPartyMembers(CCharEntity* PChar);        // oбновляем статусы участников группы для выбранного персонажа
 	void ReloadTreasurePool(CCharEntity* PChar);
 
-    void AddMember(CBattleEntity* PEntity);             // добавляем персонажа в группу
+    void AddMember(CBattleEntity* PEntity); // добавляем персонажа в группу
+	void AddMember(uint32 id);	// Add party member from outside this server's scope
     void RemoveMember(CBattleEntity* PEntity);          // удаление персонажа из группы
+	void DelMember(CBattleEntity* PEntity);				// remove a member without invoking chat/db
+    void PopMember(CBattleEntity* PEntity);             // remove a member from memberlist (zoned to different server)
+    void PushMember(CBattleEntity* PEntity);            // add a member without invoking chat/db
+    void SetPartyID(uint32 id);                         // set new party ID
     void AssignPartyRole(int8* MemberName, uint8 role);	// назначаем роли участникам группы
     void DisableSync();
-	void SetSyncTarget(CBattleEntity* PEntity, uint16 message);         // устанавливаем цель синхронизации уровней3
+    void SetSyncTarget(int8* MemberName, uint16 message);         // устанавливаем цель синхронизации уровней3
     void RefreshSync();
+    void SetPartyNumber(uint8 number);
 
-    void PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
+    void PushPacket(uint32 senderID, uint16 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
 	
 	CAlliance* m_PAlliance;
 
@@ -95,14 +103,15 @@ private:
 	
     uint32    m_PartyID;                                // уникальный ID группы
     PARTYTYPE m_PartyType;                              // тип существ, составляющих группу
+    uint8     m_PartyNumber;                            // party number in alliance
 	
 	CBattleEntity* m_PLeader;                           // лидер группы
 	CBattleEntity* m_PSyncTarget;                       // цель синхронизации уровней
 	CBattleEntity* m_PQuaterMaster;                     // владелец сокровищ
 
 
-	void SetLeader(CBattleEntity* PEntity);             // устанавливаем лидера группы
-	void SetQuaterMaster(CBattleEntity* PEntity);       // устанавливаем владельца сокровищ
+	void SetLeader(const char* MemberName);                   // устанавливаем лидера группы
+    void SetQuarterMaster(const char* MemberName);            // устанавливаем владельца сокровищ
 
 	void RemovePartyLeader(CBattleEntity* PEntity);     // лидер покидает группу
 };

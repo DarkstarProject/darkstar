@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 #define _BATTLEENTITY_H
 
 #include <vector>
+#include <unordered_map>
 
 #include "../items/item_weapon.h"
 
@@ -61,8 +62,6 @@ enum ECOSYSTEM
 	SYSTEM_VERMIN			= 20,
 	SYSTEM_VORAGEAN			= 21,
 };
-
-#define MAX_MOB_FAMILY	900
 
 enum JOBTYPE
 {
@@ -144,7 +143,8 @@ enum SKILLTYPE
 	SKILL_ALC			= 55,
 	SKILL_COK			= 56,
 	SKILL_SYN			= 57,
-	SKILL_RID			= 58
+	SKILL_RID			= 58,
+    SKILL_DIG           = 59
 };
 
 #define MAX_SKILLTYPE	64
@@ -154,6 +154,8 @@ enum SUBSKILLTYPE
     SUBSKILL_XBO        = 0,
 	SUBSKILL_GUN		= 1,
 	SUBSKILL_CNN		= 2,
+
+    SUBSKILL_ANI        = 10,
 
 	SUBSKILL_SHEEP		= 21,
 	SUBSKILL_HARE		= 22,
@@ -224,7 +226,8 @@ enum SLOTTYPE
 	SLOT_RING1	= 0x0D,
 	SLOT_RING2	= 0x0E,
 	SLOT_BACK	= 0x0F,
-	SLOT_LINK	= 0x10
+	SLOT_LINK1	= 0x10,
+    SLOT_LINK2  = 0x11,
 };
 
 // CROSSBOW и GUN - это Piercing, разделение сделано из-за одинакового skilltype
@@ -265,44 +268,45 @@ enum SPECEFFECT
 
 enum SUBEFFECT
 {
-    //ATTACK
-    SUBEFFECT_FIRE_DAMAGE		 = 1,	// 110000	 3
-	SUBEFFECT_ICE_DAMAGE		 = 2,	// 1-01000	 5
-	SUBEFFECT_WIND_DAMAGE		 = 3,	// 111000	 7
-	SUBEFFECT_EARTH_DAMAGE		 = 4,	// 1-00100	 9
-	SUBEFFECT_LIGHTNING_DAMAGE	 = 5,	// 110100	11
-	SUBEFFECT_WATER_DAMAGE		 = 6,	// 1-01100	13
-	SUBEFFECT_LIGHT_DAMAGE		 = 7,	// 111100	15
-	SUBEFFECT_DARKNESS_DAMAGE	 = 8,	// 1-00010	17
-	SUBEFFECT_SLEEP			  	 = 9,	// 110010	19
-	SUBEFFECT_POISON			 = 10,	// 1-01010	21
-	SUBEFFECT_PARALYSIS			 = 11,
-	SUBEFFECT_BLIND				 = 12,	// 1-00110	25
-	SUBEFFECT_SILENCE            = 13,
-	SUBEFFECT_PETRIFY			 = 14,
-	SUBEFFECT_PLAGUE    		 = 15,
-	SUBEFFECT_STUN               = 16,
-	SUBEFFECT_CURSE              = 17,
-	SUBEFFECT_DEFENSE_DOWN		 = 18,	// 1-01001	37
-	SUBEFFECT_SHIELD			 = 20,
-	SUBEFFECT_HP_DRAIN			 = 21,	// 1-10101	43
-	SUBEFFECT_TP_DRAIN			 = 22,
-    SUBEFFECT_HASTE              = 23,
+    // ATTACK
+    SUBEFFECT_FIRE_DAMAGE       = 1,  // 110000     3
+    SUBEFFECT_ICE_DAMAGE        = 2,  // 1-01000    5
+    SUBEFFECT_WIND_DAMAGE       = 3,  // 111000     7
+    SUBEFFECT_EARTH_DAMAGE      = 4,  // 1-00100    9
+    SUBEFFECT_LIGHTNING_DAMAGE  = 5,  // 110100    11
+    SUBEFFECT_WATER_DAMAGE      = 6,  // 1-01100   13
+    SUBEFFECT_LIGHT_DAMAGE      = 7,  // 111100    15
+    SUBEFFECT_DARKNESS_DAMAGE   = 8,  // 1-00010   17
+    SUBEFFECT_SLEEP             = 9,  // 110010    19
+    SUBEFFECT_POISON            = 10, // 1-01010   21
+    SUBEFFECT_PARALYSIS         = 11,
+    SUBEFFECT_BLIND             = 12, // 1-00110   25
+    SUBEFFECT_SILENCE           = 13,
+    SUBEFFECT_PETRIFY           = 14,
+    SUBEFFECT_PLAGUE            = 15,
+    SUBEFFECT_STUN              = 16,
+    SUBEFFECT_CURSE             = 17,
+    SUBEFFECT_DEFENSE_DOWN      = 18, // 1-01001   37
+    SUBEFFECT_DEATH             = 19,
+    SUBEFFECT_SHIELD            = 20,
+    SUBEFFECT_HP_DRAIN          = 21, // 1-10101   43  This is retail correct animation
+    SUBEFFECT_MP_DRAIN          = 22, // This is retail correct animation
+    SUBEFFECT_TP_DRAIN          = 22, // Pretty sure this is correct, but might use same animation as HP drain.
+    SUBEFFECT_HASTE             = 23,
 
-    //SPIKES
+    // SPIKES
+    SUBEFFECT_BLAZE_SPIKES      = 1,  // 01-1000    6
+    SUBEFFECT_ICE_SPIKES        = 2,  // 01-0100   10
+    SUBEFFECT_DREAD_SPIKES      = 3,  // 01-1100   14
+    SUBEFFECT_CURSE_SPIKES      = 4,  // 01-0010   18
+    SUBEFFECT_SHOCK_SPIKES      = 5,  // 01-1010   22
+    SUBEFFECT_REPRISAL          = 6,  // 01-0110   26
+    SUBEFFECT_WIND_SPIKES       = 7,  // Present in client but currently unused.
+    SUBEFFECT_STONE_SPIKES      = 8,  // Present in client but currently unused.
+    SUBEFFECT_DELUGE_SPIKES     = 9,  // Present in client but currently unused.
+    SUBEFFECT_COUNTER           = 63, // Also used by Retaliation
 
-	SUBEFFECT_BLAZE_SPIKES		= 1,	// 01-1000	 6
-	SUBEFFECT_ICE_SPIKES		= 2,	// 01-0100	10
-	SUBEFFECT_DREAD_SPIKES		= 3,	// 01-1100	14
-	SUBEFFECT_CURSE_SPIKES		= 4,	// 01-0010	18
-	SUBEFFECT_SHOCK_SPIKES		= 5, 	// 01-1010	22
-	SUBEFFECT_REPRISAL		 	= 6,	// 01-0110	26
-    SUBEFFECT_WIND_SPIKES       = 7,
-    SUBEFFECT_STONE_SPIKES      = 8,
-    SUBEFFECT_COUNTER           = 63,
-
-	//SKILLCHAINS
-
+    // SKILLCHAINS
 	SUBEFFECT_LIGHT				= 1,
 	SUBEFFECT_DARKNESS          = 2,
 	SUBEFFECT_GRAVITATION		= 3,
@@ -320,13 +324,11 @@ enum SUBEFFECT
 
     SUBEFFECT_NONE				= 0,
 
-    //UNKNOWN
-
+    // UNKNOWN
     SUBEFFECT_IMPAIRS_EVASION,
-	SUBEFFECT_MP_DRAIN,
-	SUBEFFECT_BIND,
-	SUBEFFECT_WEIGHT,
-	SUBEFFECT_AUSPICE
+    SUBEFFECT_BIND,
+    SUBEFFECT_WEIGHT,
+    SUBEFFECT_AUSPICE
 };
 
 enum TARGETTYPE
@@ -340,6 +342,7 @@ enum TARGETTYPE
 	TARGET_NPC				       = 0x40,		// скорее всего подразумевается mob, выглядящий как npc и воюющий на стороне персонажа
     TARGET_PLAYER_PARTY_PIANISSIMO = 0x80
 };
+
 enum SKILLCHAIN_ELEMENT
 {
     SC_NONE          =  0, // Lv0 None
@@ -364,6 +367,9 @@ enum SKILLCHAIN_ELEMENT
     SC_DARKNESS_II   = 16, // Lv4 Darkness
 };
 
+#define MAX_SKILLCHAIN_LEVEL (4)
+#define MAX_SKILLCHAIN_COUNT (5)
+
 enum IMMUNITY : uint16
 {
 	IMMUNITY_NONE		= 0x00,
@@ -371,16 +377,14 @@ enum IMMUNITY : uint16
 	IMMUNITY_GRAVITY	= 0x02,
 	IMMUNITY_BIND		= 0x04,
 	IMMUNITY_STUN		= 0x08,
-	IMMUNITY_SILENCE	= 0x10, // 16
-	IMMUNITY_PARALYZE	= 0x20, // 32
-	IMMUNITY_BLIND		= 0x40, // 64
-	IMMUNITY_SLOW		= 0x80, // 128
+	IMMUNITY_SILENCE	= 0x10,  // 16
+	IMMUNITY_PARALYZE	= 0x20,  // 32
+	IMMUNITY_BLIND		= 0x40,  // 64
+	IMMUNITY_SLOW		= 0x80,  // 128
 	IMMUNITY_POISON		= 0x100, // 256
 	IMMUNITY_ELEGY		= 0x200, // 512
+	IMMUNITY_REQUIEM	= 0x400, // 1024
 };
-
-#define MAX_SKILLCHAIN_LEVEL (4)
-#define MAX_SKILLCHAIN_COUNT (5)
 
 struct apAction_t
 {
@@ -400,7 +404,7 @@ struct apAction_t
 
     apAction_t()
     {
-        ActionTarget = NULL;
+        ActionTarget = nullptr;
         reaction = REACTION_NONE;
         animation = 0;
         speceffect = SPECEFFECT_NONE;
@@ -432,7 +436,7 @@ struct health_t
 };
 
 typedef std::vector<apAction_t> ActionList_t;
-
+class CPetEntity;
 class CBattleEntity : public CBaseEntity
 {
 public:
@@ -457,6 +461,7 @@ public:
 	uint16			ACC(uint8 attackNumber, uint8 offsetAccuracy);
     uint16          EVA();
 	uint16          RATT(uint8 skill);
+    uint16          RACC(uint8 skill);
 
     uint8           GetSpeed();
 
@@ -517,6 +522,17 @@ public:
 	void 		    saveModifiers(); // save current state of modifiers
 	void 		    restoreModifiers(); // restore to saved state
 
+    void            addPetModifier(uint16 type, int16 amount);
+    void            setPetModifier(uint16 type, int16 amount);
+    void            delPetModifier(uint16 type, int16 amount);
+    void            addPetModifiers(std::vector<CModifier*> *modList);
+    void            delPetModifiers(std::vector<CModifier*> *modList);
+    void            applyPetModifiers(CPetEntity* PPet);
+    void            removePetModifiers(CPetEntity* PPet);
+
+    void            ForParty(std::function<void(CBattleEntity*)>);
+    void            ForAlliance(std::function<void(CBattleEntity*)>);
+
 	uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
 	ECOSYSTEM		m_EcoSystem;			    // эко-система сущности
 	CItemWeapon*	m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
@@ -543,8 +559,9 @@ private:
 	uint8		m_mlvl;						// ТЕКУЩИЙ уровень главной профессии
 	uint8		m_slvl;						// ТЕКУЩИЙ уровень дополнительной профессии
 
-	int16		m_modStat[MAX_MODIFIER];	// массив модификаторов
-	int16		m_modStatSave[MAX_MODIFIER];	// saved state
+	std::unordered_map<uint16, int16>		m_modStat;	// массив модификаторов
+    std::unordered_map<uint16, int16>		m_modStatSave;	// saved state
+    std::unordered_map<uint16, int16>       m_petMod;
 };
 
 #endif

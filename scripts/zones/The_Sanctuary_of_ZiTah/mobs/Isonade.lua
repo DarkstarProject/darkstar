@@ -10,17 +10,17 @@ require("scripts/globals/quests");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob, killer)	
-	
+function onMobDeath(mob, killer)
+
 	if(killer:getQuestStatus(OUTLANDS,THE_SACRED_KATANA) == QUEST_ACCEPTED) then
 		killer:setVar("IsonadeKilled",1);
 	end
-	
+
 end;

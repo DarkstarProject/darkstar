@@ -6,7 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Windurst/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Windurst/TextIDs");
 
@@ -80,33 +80,33 @@ function onMobDeath(mob,killer)
 	
 	mobID = mob:getID();
 	-- Time Bonus (20min): 008
-	if(mobID == 17543494 and alreadyReceived(killer,1) == false) then
+	if(mobID == 17543494 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(20);
-		addDynamisList(killer,1);
+		mob:addInBattlefieldList();
 	-- Time Bonus (20min): 018
-	elseif(mobID == 17543504 and alreadyReceived(killer,2) == false) then
+	elseif(mobID == 17543504 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(20);
-		addDynamisList(killer,2);
+		mob:addInBattlefieldList();
 	-- Time Bonus (10min): 031
-	elseif(mobID == 17543514 and alreadyReceived(killer,3) == false) then
+	elseif(mobID == 17543514 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(10);
-		addDynamisList(killer,4);
+		mob:addInBattlefieldList();
 	-- Time Bonus (20min): 041
-	elseif(mobID == 17543518 and alreadyReceived(killer,4) == false) then
+	elseif(mobID == 17543518 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(20);
-		addDynamisList(killer,8);
+		mob:addInBattlefieldList();
 	-- Time Bonus (10min): 058
-	elseif(mobID == 17543534 and alreadyReceived(killer,5) == false) then
+	elseif(mobID == 17543534 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(10);
-		addDynamisList(killer,16);
+		mob:addInBattlefieldList();
 	-- Time Bonus (20min): 066
-	elseif(mobID == 17543542 and alreadyReceived(killer,6) == false) then
+	elseif(mobID == 17543542 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(20);
-		addDynamisList(killer,32);
+		mob:addInBattlefieldList();
 	-- Time Bonus (20min): 101
-	elseif(mobID == 17543577 and alreadyReceived(killer,7) == false) then
+	elseif(mobID == 17543577 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(20);
-		addDynamisList(killer,64);
+		mob:addInBattlefieldList();
 	-- HP Bonus: 006 012 019 024 029 035 042 051 056 074 083 088 094 095 100 110 117 | 126 133 136 138
 	elseif(mobID == 17543492 or mobID == 17543498 or mobID == 17543505 or mobID == 17543508 or mobID == 17543512 or mobID == 17543517 or mobID == 17543393 or mobID == 17543527 or
 		   mobID == 17543532 or mobID == 17543550 or mobID == 17543559 or mobID == 17543564 or mobID == 17543570 or mobID == 17543571 or mobID == 17543576 or mobID == 17543586 or 

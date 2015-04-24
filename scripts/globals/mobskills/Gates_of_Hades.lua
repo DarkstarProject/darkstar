@@ -14,11 +14,11 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
 	return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_BURN;
 	local power = ((resist * 10) - 5) * math.random(1,2) + 19; -- makes dot damage between 20 - 28, based off resistance and random variable.
 

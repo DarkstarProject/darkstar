@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -39,8 +39,6 @@ namespace attackutils
 	bool				IsParried(CBattleEntity*, CBattleEntity*);		// Is the attack parried.
 	bool				IsGuarded(CBattleEntity*, CBattleEntity*);		// Is the attack guarded.
 	bool				IsBlocked(CBattleEntity*, CBattleEntity*);		// Is the attack blocked.
-	void				TryAbsorbMPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage);
-	bool				TryAbsorbHPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage);
 };
 
 #endif

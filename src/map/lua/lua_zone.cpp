@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
 #include "../region.h"
 
 #include "lua_zone.h"
+#include "lua_baseentity.h"
 
 
 /************************************************************************
@@ -41,7 +42,7 @@ CLuaZone::CLuaZone(lua_State *L)
 		m_pLuaZone = (CZone*)(lua_touserdata(L,-1));
 		lua_pop(L,1);
 	}else{
-		m_pLuaZone = NULL;
+		m_pLuaZone = nullptr;
 	}
 }
 
@@ -65,7 +66,7 @@ CLuaZone::CLuaZone(CZone* PZone)
 
 inline int32 CLuaZone::registerRegion(lua_State *L)
 {
-	if( m_pLuaZone != NULL) 
+	if( m_pLuaZone != nullptr) 
 	{
 		if( !lua_isnil(L,1) && lua_isnumber(L,1) &&
 			!lua_isnil(L,2) && lua_isnumber(L,2) &&
@@ -102,12 +103,50 @@ inline int32 CLuaZone::registerRegion(lua_State *L)
 
 inline int32 CLuaZone::levelRestriction(lua_State *L)
 {
-	if( m_pLuaZone != NULL) 
+	if( m_pLuaZone != nullptr) 
 	{
 		
 	}
 	lua_pushnil(L);
 	return 1;
+}
+
+inline int32 CLuaZone::getPlayers(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
+
+    lua_newtable(L);
+    int newTable = lua_gettop(L);
+
+    m_pLuaZone->ForEachChar([&L, &newTable](CCharEntity* PChar){
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)PChar);
+        lua_pcall(L, 2, 1, 0);
+        lua_setfield(L, newTable, PChar->GetName());
+    });
+
+    return 1;
+}
+
+inline int32 CLuaZone::getID(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
+
+    lua_pushinteger(L, m_pLuaZone->GetID());
+
+    return 1;
+}
+
+inline int32 CLuaZone::getRegionID(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
+
+    lua_pushinteger(L, m_pLuaZone->GetRegionID());
+
+    return 1;
 }
 
 /************************************************************************
@@ -121,5 +160,8 @@ Lunar<CLuaZone>::Register_t CLuaZone::methods[] =
 {
 	LUNAR_DECLARE_METHOD(CLuaZone,levelRestriction),
 	LUNAR_DECLARE_METHOD(CLuaZone,registerRegion),
-	{NULL,NULL}
+    LUNAR_DECLARE_METHOD(CLuaZone,getPlayers),
+    LUNAR_DECLARE_METHOD(CLuaZone,getID),
+    LUNAR_DECLARE_METHOD(CLuaZone,getRegionID),
+	{nullptr,nullptr}
 }; 

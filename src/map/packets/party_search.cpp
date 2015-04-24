@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -33,8 +33,8 @@ CPartySearchPacket::CPartySearchPacket(CCharEntity* PChar)
 	this->type = 0xE1;
 	this->size = 0x04; 
 	
-	if (PChar->PParty != NULL)
+	if (PChar->PParty != nullptr)
 	{
-		WBUFL(data,(0x04)-4) = PChar->PParty->GetPartyID(); 
+		WBUFL(data,(0x04)) = PChar->PParty->GetPartyID(); 
 	}
 }

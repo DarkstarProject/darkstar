@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -44,12 +44,11 @@ public:
 	bool Check();
 private:
 	CZone* zone;
-	CInstance* instance;
 	CCharEntity* requester;
 	Sql_t* SqlInstanceHandle;
 	std::future<CInstance*> task;
 
-	CInstance* LoadInstance();
+	CInstance* LoadInstance(CInstance* instance);
 
 };
 

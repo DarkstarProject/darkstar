@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@ CInstanceLoader::CInstanceLoader(uint8 instanceid, uint16 zoneid, CCharEntity* P
 	DSP_DEBUG_BREAK_IF(zone->GetType() != ZONETYPE_DUNGEON_INSTANCED);
 
 	requester = PRequester;
-	instance = ((CZoneInstance*)zone)->CreateInstance(instanceid);
+	CInstance* instance = ((CZoneInstance*)zone)->CreateInstance(instanceid);
 
 	SqlInstanceHandle = Sql_Malloc();
 
@@ -51,11 +51,11 @@ CInstanceLoader::CInstanceLoader(uint8 instanceid, uint16 zoneid, CCharEntity* P
 		map_config.mysql_port,
 		map_config.mysql_database) == SQL_ERROR)
 	{
-		exit(EXIT_FAILURE);
+		do_final(EXIT_FAILURE);
 	}
 	Sql_Keepalive(SqlInstanceHandle);
 
-	task = std::async(std::launch::async, &CInstanceLoader::LoadInstance, this);
+	task = std::async(std::launch::async, &CInstanceLoader::LoadInstance, this, instance);
 }
 
 CInstanceLoader::~CInstanceLoader()
@@ -69,14 +69,25 @@ bool CInstanceLoader::Check()
 	{
 		if (task.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready)
 		{
-			instance = task.get();
+			CInstance* instance = task.get();
 			if (!instance)
 			{
 				//Instance failed to load
-				luautils::OnInstanceCreated(requester, NULL);
+				luautils::OnInstanceCreated(requester, nullptr);
 			}
 			else
 			{
+                // finish loading by launching remaining setup scripts
+                for (auto PMob : instance->m_mobList)
+                {
+                    luautils::OnMobInitialize(PMob.second);
+                    ((CMobEntity*)PMob.second)->saveModifiers();
+                    ((CMobEntity*)PMob.second)->saveMobModifiers();
+                }
+                for (auto PNpc : instance->m_npcList)
+                {
+                    luautils::OnNpcSpawn(PNpc.second);
+                }
 				luautils::OnInstanceCreated(requester, instance);
 				luautils::OnInstanceCreated(instance);
 			}
@@ -86,7 +97,7 @@ bool CInstanceLoader::Check()
 	return false;
 }
 
-CInstance* CInstanceLoader::LoadInstance()
+CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 {
 	int8* Query =
 		"SELECT mobname, mobid, pos_rot, pos_x, pos_y, pos_z, \
@@ -96,18 +107,18 @@ CInstance* CInstanceLoader::LoadInstance()
 		STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
 		Slash, Pierce, H2H, Impact, \
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
-		mob_pools.familyid, name_prefix, unknown, animationsub, \
+		mob_pools.familyid, name_prefix, flags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
 		allegiance, namevis, aggro \
 		FROM instance_entities INNER JOIN mob_spawn_points ON instance_entities.id = mob_spawn_points.mobid \
-		LEFT JOIN mob_groups ON mob_groups.groupid = mob_spawn_points.groupid \
-		LEFT JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
-		LEFT JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
+		INNER JOIN mob_groups ON mob_groups.groupid = mob_spawn_points.groupid \
+		INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
+		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE instanceid = %u AND NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0);";
 
 	int32 ret = Sql_Query(SqlInstanceHandle, Query, instance->GetID());
 
-	if (ret != SQL_ERROR && Sql_NumRows(SqlInstanceHandle) != 0)
+	if (!instance->Failed() && ret != SQL_ERROR && Sql_NumRows(SqlInstanceHandle) != 0)
 	{
 		while (Sql_NextRow(SqlInstanceHandle) == SQL_SUCCESS)
 		{
@@ -191,7 +202,7 @@ CInstance* CInstanceLoader::LoadInstance()
 			PMob->m_Element = (uint8)Sql_GetIntData(SqlInstanceHandle, 47);
 			PMob->m_Family = (uint16)Sql_GetIntData(SqlInstanceHandle, 48);
 			PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlInstanceHandle, 49);
-			PMob->m_unknown = (uint32)Sql_GetIntData(SqlInstanceHandle, 50);
+			PMob->m_flags = (uint32)Sql_GetIntData(SqlInstanceHandle, 50);
 
 			//Special sub animation for Mob (yovra, jailer of love, phuabo)
 			// yovra 1: en hauteur, 2: en bas, 3: en haut
@@ -216,40 +227,38 @@ CInstance* CInstanceLoader::LoadInstance()
 
 			PMob->m_Pool = Sql_GetUIntData(SqlInstanceHandle, 58);
 
-			PMob->allegiance = Sql_GetUIntData(SqlHandle, 59);
-			PMob->namevis = Sql_GetUIntData(SqlHandle, 60);
-			PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 61);
+            PMob->allegiance = Sql_GetUIntData(SqlInstanceHandle, 59);
+            PMob->namevis = Sql_GetUIntData(SqlInstanceHandle, 60);
+            PMob->m_Aggro = Sql_GetUIntData(SqlInstanceHandle, 61);
 
 			// must be here first to define mobmods
 			mobutils::InitializeMob(PMob, zone);
 			PMob->PInstance = instance;
 
 			instance->InsertMOB(PMob);
-
-			//luautils::OnMobInitialize(PMob);
-
-			PMob->saveModifiers();
-			PMob->saveMobModifiers();
 		}
 
 		Query =
 			"SELECT npcid, name, pos_rot, pos_x, pos_y, pos_z,\
 			flag, speed, speedsub, animation, animationsub, namevis,\
-			status, unknown, look, name_prefix \
+			status, flags, look, name_prefix \
 			FROM instance_entities INNER JOIN npc_list ON \
-			(instance_entities.id & 0xFFF = npc_list.npcid AND npc_list.zoneid = %u) \
-			WHERE instanceid = %u AND npcid < 1024;";
+			(instance_entities.id = npc_list.npcid) \
+			WHERE instanceid = %u AND npcid >= %u and npcid < %u;";
 
-		ret = Sql_Query(SqlHandle, Query, zone->GetID(), instance->GetID());
+		uint32 zoneMin = (zone->GetID() << 12) + 0x1000000;
+		uint32 zoneMax = zoneMin + 1024;
+
+		ret = Sql_Query(SqlHandle, Query, instance->GetID(), zoneMin, zoneMax);
 
 		if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
 			while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
 				CNpcEntity* PNpc = new CNpcEntity;
-				PNpc->targid = (uint16)Sql_GetUIntData(SqlHandle, 0);
-				PNpc->id = (uint32)PNpc->targid + (zone->GetID() << 12) + 0x1000000;
-
+				PNpc->id = (uint16)Sql_GetUIntData(SqlHandle, 0);
+				PNpc->targid = PNpc->id & 0xFFF;
+				
 				PNpc->name.insert(0, Sql_GetData(SqlHandle, 1));
 
 				PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 2);
@@ -267,7 +276,7 @@ CInstance* CInstanceLoader::LoadInstance()
 
 				PNpc->namevis = (uint8)Sql_GetIntData(SqlHandle, 11);
 				PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlHandle, 12);
-				PNpc->unknown = (uint32)Sql_GetUIntData(SqlHandle, 13);
+				PNpc->m_flags = (uint32)Sql_GetUIntData(SqlHandle, 13);
 
 				PNpc->name_prefix = (uint8)Sql_GetIntData(SqlHandle, 15);
 
@@ -276,14 +285,13 @@ CInstance* CInstanceLoader::LoadInstance()
 				PNpc->PInstance = instance;
 
 				instance->InsertNPC(PNpc);
-				//luautils::OnNpcSpawn(PNpc);
 			}
 		}
 	}
 	else
 	{
-		instance->Cancel();
-		instance = NULL;
+        instance->Cancel();
+		instance = nullptr;
 	}
 
 	//TODO: pets

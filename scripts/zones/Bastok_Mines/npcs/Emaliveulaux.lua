@@ -5,7 +5,7 @@
 --      Only available to those with CoP Ch. 4.1 or higher
 -----------------------------------
 
-require("scripts/globals/harvest_festivals");
+require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;

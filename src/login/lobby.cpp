@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -70,17 +70,17 @@ int32 lobbydata_parse(int32 fd)
 {
 	login_session_data_t* sd = (login_session_data_t*)session[fd]->session_data;
 
-	if( sd == NULL )
+	if( sd == nullptr )
 	{
 		if( RFIFOREST(fd) >= 5 &&
 			RBUFB(session[fd]->rdata,0) == 0xA1 )
 		{
-			unsigned char *buff = session[fd]->rdata;
+			char* buff = session[fd]->rdata;
 
 			int32 accid = RBUFL(buff,1);
 
 			sd = find_loginsd_byaccid(accid);
-			if( sd == NULL )
+			if( sd == nullptr )
 			{
 				do_close_tcp(fd);
 				return -1;
@@ -91,14 +91,14 @@ int32 lobbydata_parse(int32 fd)
 			return 0;
 		}
 
-        if( sd == NULL )
+        if( sd == nullptr )
         {
             do_close_tcp(fd);
             return -1;
         }
 	}
 
-	
+
 	if( session[fd]->flag.eof )
 	{
 		do_close_lobbydata(sd,fd);
@@ -107,9 +107,9 @@ int32 lobbydata_parse(int32 fd)
 
 	if( RFIFOREST(fd) >= 1 )
 	{
-		unsigned char *buff = session[fd]->rdata;
-		if (RBUFB(buff,0) == 0x0d) ShowDebug(CL_RED"Posible Crash Attempt from IP: " CL_WHITE"<%s>\n" CL_RESET,ip2str(session[fd]->client_addr,NULL),NULL);
-		ShowDebug("lobbydata_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n",RBUFB(buff,0),ip2str(sd->client_addr,NULL));
+		char* buff = session[fd]->rdata;
+		if (RBUFB(buff,0) == 0x0d) ShowDebug(CL_RED"Posible Crash Attempt from IP: " CL_WHITE"<%s>\n" CL_RESET,ip2str(session[fd]->client_addr,nullptr),nullptr);
+		ShowDebug("lobbydata_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n",RBUFB(buff,0),ip2str(sd->client_addr,nullptr));
 
 		int32 code = RBUFB(buff,0);
 		switch(code)
@@ -118,7 +118,7 @@ int32 lobbydata_parse(int32 fd)
 			{
 				if( RFIFOREST(fd) < 9 )
 				{
-					ShowError("lobbydata_parse:" CL_WHITE"<%s>" CL_RESET" sent less then 9 bytes\n",ip2str(session[fd]->client_addr,NULL));
+					ShowError("lobbydata_parse:" CL_WHITE"<%s>" CL_RESET" sent less then 9 bytes\n",ip2str(session[fd]->client_addr,nullptr));
 					do_close_lobbydata(sd,fd);
 					return -1;
 				}
@@ -163,22 +163,22 @@ int32 lobbydata_parse(int32 fd)
                 {
                     memcpy(CharList + 32 + 140 * j, ReservePacket + 32, 140);
                     memset(CharList + 32 + 140 * j, 0x00, 4);
-                    memset(uList + 16 * (j + 1), 0x00, 4);                    
+                    memset(uList + 16 * (j + 1), 0x00, 4);
                 }
 
 				uList[0] = 0x03;
-                
+
 				int i = 0;
 				//Считывание информации о конкректном персонаже
 				//Загрузка всей необходимой информации о персонаже из базы
-				while(Sql_NextRow(SqlHandle) != SQL_NO_DATA) 
+				while(Sql_NextRow(SqlHandle) != SQL_NO_DATA)
 				{
-					char* strCharName = NULL;
-					
-					Sql_GetData(SqlHandle,1,&strCharName,NULL);
+					char* strCharName = nullptr;
+
+					Sql_GetData(SqlHandle,1,&strCharName,nullptr);
 
 					uint32 CharID    = Sql_GetIntData(SqlHandle,0);
-					
+
 					uint8 zone		 = (uint8)Sql_GetIntData(SqlHandle,2);
 					uint8 prevzone	 = (uint8)Sql_GetIntData(SqlHandle,3);
 
@@ -197,7 +197,7 @@ int32 lobbydata_parse(int32 fd)
 					memcpy(CharList+12+32+i*140,strCharName, 15);
 
 					WBUFB(CharList,46+32+i*140) = MainJob;
-					WBUFB(CharList,73+32+i*140) = lvlMainJob; 
+					WBUFB(CharList,73+32+i*140) = lvlMainJob;
 
 					WBUFB(CharList,44+32+i*140) = (uint8) Sql_GetIntData(SqlHandle, 5); // race;
 					WBUFB(CharList,56+32+i*140) = (uint8) Sql_GetIntData(SqlHandle, 6); // face;
@@ -214,7 +214,7 @@ int32 lobbydata_parse(int32 fd)
 					++i;
 				}
 
-				if(session[sd->login_lobbyview_fd]!=NULL){
+				if(session[sd->login_lobbyview_fd]!=nullptr){
 					// write into lobbydata
 					uList[1] = 0x10;
 					memcpy(session[fd]->wdata,uList,0x148);
@@ -222,7 +222,7 @@ int32 lobbydata_parse(int32 fd)
 					RFIFOSKIP(fd,session[fd]->rdata_size);
 					RFIFOFLUSH(fd);
 					////////////////////////////////////////
-				
+
 					unsigned char hash[16];
 					md5((unsigned char*)(CharList), hash, 2272);
 
@@ -250,11 +250,11 @@ int32 lobbydata_parse(int32 fd)
 				memcpy(key3,buff+1,sizeof(key3));
 				key3[16] -= 2;
 				uint8 MainReservePacket[0x48];
-				
+
 				RFIFOSKIP(fd,session[fd]->rdata_size);
 				RFIFOFLUSH(fd);
 
-				if(session[sd->login_lobbyview_fd]==NULL){
+				if(session[sd->login_lobbyview_fd]==nullptr){
 					ShowWarning("lobbydata_parse: char:(%i) login data corrupt (0xA2). Disconnecting client.\n",sd->accid);
 					do_close_lobbydata(sd,fd);
 					return -1;
@@ -264,7 +264,7 @@ int32 lobbydata_parse(int32 fd)
 
 				const char *fmtQuery = "SELECT zoneip, zoneport, zoneid, pos_prevzone \
 									    FROM zone_settings, chars \
-										WHERE zoneid = pos_zone AND charid = %u;";
+										WHERE IF(pos_zone = 0, zoneid = pos_prevzone, zoneid = pos_zone) AND charid = %u;";
 				uint32 ZoneIP	= sd->servip;
                 uint16 ZonePort = 54230;
 
@@ -272,19 +272,19 @@ int32 lobbydata_parse(int32 fd)
 					Sql_NumRows(SqlHandle) != 0 )
 				{
 					Sql_NextRow(SqlHandle);
-					
+
 					if (Sql_GetIntData(SqlHandle,3) == 0)  key3[16] += 6;
 
-					ZoneIP = Sql_GetUIntData(SqlHandle,0);
+					ZoneIP = inet_addr(Sql_GetData(SqlHandle,0));
 					ZonePort = (uint16)Sql_GetUIntData(SqlHandle,1);
 					uint8  ZoneID = (uint8)Sql_GetUIntData(SqlHandle,2);
 					WBUFL(ReservePacket,(0x38)) = ZoneIP;
 					WBUFW(ReservePacket,(0x3C)) = ZonePort;
-					ShowInfo("lobbydata_parse: zoneid:(%u),zoneip:(%s),zoneport:(%u) for char:(%u)\n",ZoneID,ip2str(ntohl(ZoneIP),NULL),ZonePort,charid);
+					ShowInfo("lobbydata_parse: zoneid:(%u),zoneip:(%s),zoneport:(%u) for char:(%u)\n",ZoneID,ip2str(ntohl(ZoneIP),nullptr),ZonePort,charid);
 				}else{
-					ShowWarning("lobbydata_parse: zoneip:(%s) for char:(%u) is standard\n",ip2str(sd->servip,NULL),charid);
+					ShowWarning("lobbydata_parse: zoneip:(%s) for char:(%u) is standard\n",ip2str(sd->servip,nullptr),charid);
 					WBUFL(ReservePacket,(0x38)) = sd->servip;	// map-server ip
-				  //WBUFW(ReservePacket,(0x3C)) = port;			// map-server port			
+				  //WBUFW(ReservePacket,(0x3C)) = port;			// map-server port
 				}
 
 				WBUFL(ReservePacket,(0x40)) = sd->servip;									// search-server ip
@@ -306,10 +306,10 @@ int32 lobbydata_parse(int32 fd)
 					LOBBBY_ERROR_MESSAGE(ReservePacket);
 					// устанавливаем код ошибки
 					// Unable to connect to world server. Specified operation failed
-					WBUFW(ReservePacket,32) = 305; 
+					WBUFW(ReservePacket,32) = 305;
 					memcpy(MainReservePacket,ReservePacket,RBUFB(ReservePacket,0));
 				}
-			
+
 				unsigned char Hash[16];
 				uint8 SendBuffSize = RBUFB(MainReservePacket,0);
 
@@ -322,14 +322,14 @@ int32 lobbydata_parse(int32 fd)
 
 				RFIFOSKIP(sd->login_lobbyview_fd,session[sd->login_lobbyview_fd]->rdata_size);
 				RFIFOFLUSH(sd->login_lobbyview_fd);
-				
+
 				if (SendBuffSize == 0x24){
 					// выходим в случае ошибки без разрыва соединения
 					return -1;
 				}
 
 				do_close_tcp(sd->login_lobbyview_fd);
-				ShowStatus("lobbydata_parse: client %s finished work with " CL_GREEN"lobbyview" CL_RESET"\n",ip2str(sd->client_addr,NULL));
+				ShowStatus("lobbydata_parse: client %s finished work with " CL_GREEN"lobbyview" CL_RESET"\n",ip2str(sd->client_addr,nullptr));
 				break;
 			}
 		default:
@@ -348,7 +348,7 @@ int32 lobbydata_parse(int32 fd)
 
 int32 do_close_lobbydata(login_session_data_t *loginsd,int32 fd)
 {
-	if( loginsd != NULL )
+	if( loginsd != nullptr )
 	{
 		ShowInfo("lobbydata_parse: " CL_WHITE"%s" CL_RESET" shutdown the socket\n",loginsd->login);
 		if( session_isActive(loginsd->login_lobbyview_fd) )
@@ -363,7 +363,7 @@ int32 do_close_lobbydata(login_session_data_t *loginsd,int32 fd)
 		return 0;
 	}else
 	{
-		ShowInfo("lobbydata_parse: " CL_WHITE"%s" CL_RESET" shutdown the socket\n",ip2str(session[fd]->client_addr,NULL));
+		ShowInfo("lobbydata_parse: " CL_WHITE"%s" CL_RESET" shutdown the socket\n",ip2str(session[fd]->client_addr,nullptr));
 		do_close_tcp(fd);
 		return 0;
 	}
@@ -399,10 +399,10 @@ int32 lobbyview_parse(int32 fd)
 {
 	login_session_data_t* sd = (login_session_data_t*)session[fd]->session_data;
 
-	if( sd == NULL )
-	{	
+	if( sd == nullptr )
+	{
 		sd = find_loginsd_byip(session[fd]->client_addr);
-		if( sd == NULL )
+		if( sd == nullptr )
 		{
 			do_close_tcp(fd);
 			return -1;
@@ -419,29 +419,42 @@ int32 lobbyview_parse(int32 fd)
 
 	if( RFIFOREST(fd) >= 9)
 	{
-		unsigned char *buff = session[fd]->rdata;
-		ShowDebug("lobbyview_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n",RBUFB(buff,8),ip2str(sd->client_addr,NULL));
+		char* buff = session[fd]->rdata;
+		ShowDebug("lobbyview_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n",RBUFB(buff,8),ip2str(sd->client_addr,nullptr));
 		uint8 code = RBUFB(buff,8);
 		switch(code)
 		{
 		case 0x26:
 			{
-				uint8 SendBuffSize = 0x28;
+                int32 sendsize = 0x28;
+                unsigned char MainReservePacket[0x28];
 
-				LOBBY_026_RESERVEPACKET(ReservPacket);
-				WBUFW(ReservPacket,32) = login_config.expansions;	// BitMask for expansions;
-			
+                string_t client_ver((char*)(buff + 0x74), 10);
+
+                if (version_info.Min_Client_Ver > client_ver)
+                {
+                    sendsize = 0x24;
+                    LOBBBY_ERROR_MESSAGE(ReservePacket);
+
+                    WBUFW(ReservePacket, 32) = 331;
+                    memcpy(MainReservePacket, ReservePacket, sendsize);
+                }
+                else
+                {
+                    LOBBY_026_RESERVEPACKET(ReservePacket);
+                    WBUFW(ReservePacket, 32) = login_config.expansions;	// BitMask for expansions;
+                    memcpy(MainReservePacket, ReservePacket, sendsize);
+                }
 				//Хеширование пакета, и запись значения Хеш функции в пакет
 				unsigned char Hash[16];
-				md5(ReservPacket, Hash, SendBuffSize);
-				memcpy(ReservPacket+12,Hash,16);
+                md5(MainReservePacket, Hash, sendsize);
+                memcpy(MainReservePacket + 12, Hash, 16);
 				//Запись итогового пакета
-				memcpy(session[fd]->wdata,ReservPacket,SendBuffSize);
+                memcpy(session[fd]->wdata, MainReservePacket, sendsize);
 
 				RFIFOSKIP(fd,session[fd]->rdata_size);
 				RFIFOFLUSH(fd);
-				WFIFOSET(fd,SendBuffSize);
-				
+                WFIFOSET(fd, sendsize);
 			}
 			break;
 		case 0x14:
@@ -450,7 +463,7 @@ int32 lobbyview_parse(int32 fd)
                 uint32 ContentID = RBUFL(session[fd]->rdata, 0x1C);
                 uint32 CharID = RBUFL(session[fd]->rdata, 0x20);
 
-                ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET":attempt to delete char:<" CL_WHITE"%d" CL_RESET"> from ip:<%s>\n", CharID, ip2str(sd->client_addr, NULL));
+                ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET":attempt to delete char:<" CL_WHITE"%d" CL_RESET"> from ip:<%s>\n", CharID, ip2str(sd->client_addr, nullptr));
 
                 uint8 sendsize = 0x20;
 
@@ -475,11 +488,11 @@ int32 lobbyview_parse(int32 fd)
 			}
 		case 0x1F:
 			{
-				if(session[sd->login_lobbydata_fd]==NULL){
-					ShowInfo("0x1F Null pointer: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
+				if(session[sd->login_lobbydata_fd]==nullptr){
+					ShowInfo("0x1F nullptr pointer: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
 						fd,sd->login_lobbydata_fd,sd->login_lobbyview_fd);
 					uint32 val = 1337;
-					if(sd->login_lobbydata_fd-1>=0 && session[sd->login_lobbydata_fd-1]!=NULL){
+					if(sd->login_lobbydata_fd-1>=0 && session[sd->login_lobbydata_fd-1]!=nullptr){
 						val = session[sd->login_lobbydata_fd-1]->client_addr;
 					}
 					ShowInfo("Details: %s ip %i and lobbydata-1 fd ip is %i\n",sd->login,sd->client_addr,val);
@@ -511,18 +524,18 @@ int32 lobbyview_parse(int32 fd)
 			break;
 		case 0x07:
 			{
-				if(session[sd->login_lobbydata_fd]==NULL){
-					ShowInfo("0x07 Null pointer: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
+				if(session[sd->login_lobbydata_fd]==nullptr){
+					ShowInfo("0x07 nullptr pointer: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
 						fd,sd->login_lobbydata_fd,sd->login_lobbyview_fd);
 					uint32 val = 1337;
-					if(sd->login_lobbydata_fd-1>=0 && session[sd->login_lobbydata_fd-1]!=NULL){
+					if(sd->login_lobbydata_fd-1>=0 && session[sd->login_lobbydata_fd-1]!=nullptr){
 						val = session[sd->login_lobbydata_fd-1]->client_addr;
 					}
 					ShowInfo("Details: %s ip %i and lobbydata-1 fd ip is %i\n",sd->login,sd->client_addr,val);
 					do_close_tcp(fd);
 					return -1;
 				}
-				
+
 				memset(session[sd->login_lobbydata_fd]->wdata,0,5);
 				WBUFB(session[sd->login_lobbydata_fd]->wdata,0) = 0x02;
 				WFIFOSET(sd->login_lobbydata_fd,5);
@@ -530,7 +543,7 @@ int32 lobbyview_parse(int32 fd)
 			break;
 		case 0x21:
 			{
-				
+
 				//creating new char
 				if( lobby_createchar(sd,(char*)session[fd]->rdata) == -1)
 				{
@@ -646,10 +659,26 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
 	createchar.m_look.race = RBUFB(buf,48);
 	createchar.m_look.size = RBUFB(buf,57);
 	createchar.m_look.face = RBUFB(buf,60);
-	createchar.m_mjob      = RBUFB(buf,50);
+
+	// Validate that the job is a starting job.
+	uint8 mjob = RBUFB(buf, 50);
+	createchar.m_mjob = dsp_cap(mjob, 1, 6);
+
+	// Log that the character attempting to create a non-starting job.
+	if (mjob != createchar.m_mjob) {
+		ShowInfo(
+			CL_WHITE"lobby_createchar" CL_RESET": "
+				CL_WHITE"%s" CL_RESET" attempted to create invalid starting job "
+				CL_WHITE"%d" CL_RESET" substituting "
+				CL_WHITE"%d" CL_RESET"\n",
+			loginsd->charname,
+			mjob,
+			createchar.m_mjob);
+	}
+
 	createchar.m_nation    = RBUFB(buf,54);
 
-	switch(createchar.m_nation) 
+	switch(createchar.m_nation)
 	{
 		case 0x02: // windy start
 			//do not allow windy walls as startzone.
@@ -676,12 +705,12 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
 	if( Sql_NumRows(SqlHandle) != 0 )
 	{
 		Sql_NextRow(SqlHandle);
-		
+
 		CharID = (uint32)Sql_GetUIntData(SqlHandle,0) + 1;
 	}
 
 	CharID = (CharID < 21828 ? 21828 : CharID);
-		
+
 	if( lobby_createchar_save(loginsd->accid, CharID, &createchar) == -1 )
 		return -1;
 
@@ -710,27 +739,23 @@ int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
 	if( Sql_Query(SqlHandle,Query,charid,createchar->m_look.face,createchar->m_look.race,createchar->m_look.size) == SQL_ERROR )
 	{
 		ShowDebug(CL_WHITE"lobby_cLook" CL_RESET": char<" CL_WHITE"%s" CL_RESET">, charid: %u\n",createchar->m_name, charid);
-		
+
 		return -1;
 	}
 
 	Query = "INSERT INTO char_stats(charid,mjob) VALUES(%u,%u);";
-	
+
 	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR )
 	{
 		ShowDebug(CL_WHITE"lobby_cStats" CL_RESET": charid: %u\n",charid);
-		
+
 		return -1;
 	}
 
 
 
-	
-	// people reported char creation errors, here is a fix.
 
-	Query = "INSERT INTO char_equip(charid) VALUES(%u) \
-			ON DUPLICATE KEY UPDATE charid = charid;";
-	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR ) return -1;
+	// people reported char creation errors, here is a fix.
 
 	Query = "INSERT INTO char_exp(charid) VALUES(%u) \
 			ON DUPLICATE KEY UPDATE charid = charid;";
@@ -754,11 +779,11 @@ int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
 
 
 
-	//hot fix 
+	//hot fix
 	Query = "DELETE FROM char_inventory WHERE charid = %u";
 	if( Sql_Query(SqlHandle, Query, charid) == SQL_ERROR ) return -1;
 
-	Query = "INSERT INTO char_inventory(charid) VALUES(%u);"; 
+	Query = "INSERT INTO char_inventory(charid) VALUES(%u);";
 	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR ) return -1;
 
 

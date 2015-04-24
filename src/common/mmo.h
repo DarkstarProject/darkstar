@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
 
 #include <string>
 #include <time.h>
+#include <stdlib.h>
 
 #define FIFOSIZE_SERVERLINK	256*1024
 
@@ -72,6 +73,23 @@ enum ELEMENTS
 	DARK		= 0x80,
 };
 
+enum MSGSERVTYPE : uint8
+{
+    MSG_LOGIN,
+    MSG_CHAT_TELL,
+    MSG_CHAT_PARTY,
+    MSG_CHAT_LINKSHELL,
+    MSG_CHAT_YELL,
+    MSG_CHAT_SERVMES,
+    MSG_PT_INVITE,
+    MSG_PT_INV_RES,
+    MSG_PT_RELOAD,
+    MSG_PT_DISBAND,
+    MSG_DIRECT,
+    MSG_LINKSHELL_RANK_CHANGE,
+    MSG_LINKSHELL_REMOVE
+};
+
 typedef std::string string_t;
 
 // для персонажей в size хранится рост, 
@@ -80,7 +98,12 @@ typedef std::string string_t;
 struct look_t 
 {
 	uint16 size;
-	uint8  face, race;
+    union {
+        struct {
+            uint8  face, race;
+        };
+        uint16 modelid;
+    };
 	uint16 head, body, hands, legs, feet, main, sub, ranged;
 };
 

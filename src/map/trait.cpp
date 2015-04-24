@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -22,6 +22,8 @@
 */
 
 #include <string.h>
+
+#include "lua/luautils.h"
 
 #include "entities/battleentity.h"
 #include "map.h"
@@ -148,7 +150,7 @@ namespace traits
 
     void LoadTraitsList()
     {
-	    const int8* Query = "SELECT traitid, job, level, rank, modifier, value \
+	    const int8* Query = "SELECT traitid, job, level, rank, modifier, value, required_expansion \
 							 FROM traits \
                              WHERE traitid < %u \
 							 ORDER BY job, traitid ASC, rank DESC";
@@ -158,7 +160,14 @@ namespace traits
 	    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
 		    while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
-		    {
+		    {				
+				int8* expansionCode;
+				Sql_GetData(SqlHandle, 6, &expansionCode, nullptr);
+
+				if (luautils::IsExpansionEnabled(expansionCode)==false){
+					continue;
+				}
+
 			    CTrait* PTrait = new CTrait(Sql_GetIntData(SqlHandle,0));
 
 			    PTrait->setJob(Sql_GetIntData(SqlHandle,1));

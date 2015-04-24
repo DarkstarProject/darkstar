@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
 #include "entities/charentity.h"
 
 #define CANNOT_USE_SPELL	0
-#define MAX_SPELL_ID		800
+#define MAX_SPELL_ID		847
 
 enum SPELLGROUP
 {

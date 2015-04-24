@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ struct map_config_t
 	const int8 *mysql_host;			// mysql addr     -> localhost:3306
 	uint16 mysql_port;				// mysql port     -> 3306
 	const int8 *mysql_login;		// mysql login    -> default root
-	const int8 *mysql_password;		// mysql pass     -> default NULL
+	const int8 *mysql_password;		// mysql pass     -> default nullptr
 	const int8 *mysql_database;		// mysql database -> default dspdb
 
     string_t server_message;
@@ -84,18 +84,35 @@ struct map_config_t
 	int8   exp_loss_level;			// Minimum main job level at which a character may lose experience points.
     bool   level_sync_enable;       // Enable/disable Level Sync
     bool   all_jobs_widescan;       // Enable/disable jobs other than BST and RNG having widescan.
-	int8   speed_mod;				// Modifier to add to player speed
-	int8   MOB_speed_mod;			// Modifier to add to monster speed
+    int8   speed_mod;               // Modifier to add to player speed
+    int8   mob_speed_mod;           // Modifier to add to monster speed
 	float  skillup_chance_multiplier;		// Constant used in the skillup formula that has a strong effect on skill-up rates
 	float  craft_chance_multiplier;			// Constant used in the crafting skill-up formula that has a strong effect on skill-up rates
 	float  skillup_amount_multiplier;		// Used to increase the amount of skill gained during skill up
 	float  craft_amount_multiplier;			// Used to increase the amount of skill gained during skill up
+    bool   craft_day_matters;       // Enable/disable Element day factor in synthesis
+    bool   craft_moonphase_matters; // Enable/disable Moon phase factor in synthesis
+    bool   craft_direction_matters; // Enable/disable Compass direction factor in synthesis
 	float  mob_tp_multiplier;		// Multiplies the amount of TP mobs gain on any effect that would grant TP
 	float  player_tp_multiplier;	// Multiplies the amount of TP players gain on any effect that would grant TP
+    float  nm_hp_multiplier;        // Multiplier for max HP of NM.
+	float  mob_hp_multiplier;		// Multiplier for max HP pool of mob
+	float  player_hp_multiplier;	// Multiplier for max HP pool of player
+    float  nm_mp_multiplier;        // Multiplier for max MP of NM.
+	float  mob_mp_multiplier;		// Multiplier for max MP pool of mob
+	float  player_mp_multiplier;	// Multiplier for max MP pool of player
+    float  sj_mp_divisor;           // Divisor to use on subjob max MP
+    float  nm_stat_multiplier;      // Multiplier for str/vit/etc of NMs
+    float  mob_stat_multiplier;     // Multiplier for str/vit/etc of mobs
+    float  player_stat_multiplier;  // Multiplier for str/vit/etc. of NMs of player
+	float  drop_rate_multiplier;	// Multiplier for drops
+    uint32 all_mobs_gil_bonus;      // Sets the amount of bonus gil (per level) all mobs will drop.
+    uint32 max_gil_bonus;           // Maximum total bonus gil that can be dropped. Default 9999 gil.
     uint8  newstyle_skillups;       // Allows failed parries and blocks to trigger skill up chance.
     int8   Battle_cap_tweak;        // Default is 0. Globally adjust the level of level capped fights.
     int8   CoP_Battle_cap;          // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.
 	uint8  max_merit_points;		// global variable, amount of merit points players are allowed
+    uint16 yell_cooldown;           // Minimum time between uses of yell command (in seconds).
 	bool   audit_chat;
 	bool   audit_say;
 	bool   audit_shout;
@@ -103,6 +120,8 @@ struct map_config_t
 	bool   audit_yell;
 	bool   audit_linkshell;
 	bool   audit_party;
+	uint16 msg_server_port;			// central message server port
+	const char* msg_server_ip;		// central message server IP
 };
 
 /************************************************************************
@@ -113,31 +132,40 @@ struct map_config_t
 
 struct map_session_data_t
 {
-	uint32		client_addr;
-	uint16		client_port;
-	uint16		client_packet_id;			// id последнего пакета, пришедшего от клиента
-	uint16		server_packet_id;			// id последнего пакета, отправленного сервером
-	int8*		server_packet_data; 		// указатель на собранный пакет, который был ранее отправлен клиенту
-	size_t		server_packet_size;			// размер пакета, который был ранее отправлен клиенту
-	time_t		last_update;				// time of last packet recv
-	blowfish_t  blowfish;					// unique decypher keys
-	CCharEntity *PChar;						// game char
-    bool        shuttingDown;               // prevents double session closing
+	uint32		 client_addr;
+	uint16		 client_port;
+	uint16		 client_packet_id;			// id последнего пакета, пришедшего от клиента
+	uint16		 server_packet_id;			// id последнего пакета, отправленного сервером
+	int8*		 server_packet_data; 		// указатель на собранный пакет, который был ранее отправлен клиенту
+	size_t		 server_packet_size;	    // размер пакета, который был ранее отправлен клиенту
+	time_t		 last_update;				// time of last packet recv
+	blowfish_t   blowfish;					// unique decypher keys
+	CCharEntity* PChar;						// game char
+    uint8        shuttingDown;              // prevents double session closing
 
     map_session_data_t()
     {
-        shuttingDown = false;
+        shuttingDown = 0;
     }
 };
 
 extern map_config_t map_config;
 extern uint32 map_amntplayers;
 extern int32 map_fd;
-extern Sql_t* SqlHandle;
+
+//temporary until VC13 (where thread_local is defined)
+#ifdef WIN32
+extern __declspec(thread) Sql_t* SqlHandle; // SQL descriptor
+#else
+extern thread_local Sql_t* SqlHandle;
+#endif
 extern CCommandHandler CmdHandler;
 
 typedef std::map<uint64,map_session_data_t*> map_session_list_t;
 extern map_session_list_t map_session_list;
+
+extern in_addr map_ip;
+extern uint16 map_port;
 
 extern inline map_session_data_t* mapsession_getbyipp(uint64 ipp);
 extern inline map_session_data_t* mapsession_createsession(uint32 ip,uint16 port);
@@ -155,11 +183,8 @@ int32 map_config_read(const int8 *cfgName);												// Map-Server Config [ven
 int32 map_config_default();
 
 int32 map_cleanup(uint32 tick,CTaskMgr::CTask *PTask);									// Clean up timed out players
-int32 map_close_session(uint32 tick,CTaskMgr::CTask *PTask);							// завершение сессии
+int32 map_close_session(uint32 tick, map_session_data_t* map_session_data);
 
 int32 map_garbage_collect(uint32 tick, CTaskMgr::CTask* PTask);
 
 #endif //_MAP_H
-
-
-

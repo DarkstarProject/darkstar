@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ class CEquipPacket : public CBasicPacket
 {
 public:
 
-	CEquipPacket(uint8 EquipSlot, uint8 SlotID);
+	CEquipPacket(uint8 EquipSlot, uint8 SlotID, uint8 containerID);
 };
 
 #endif

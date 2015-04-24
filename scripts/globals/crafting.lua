@@ -31,6 +31,41 @@ local TI_Smithing = {16530,12299,16512,16650,16651,16559,12427,16577,12428,}; --
 local TI_Woodworking = {22,23,17354,17348,17053,17156,17054,56,17101,}; -- Vejovis wand signed
 local TI_Synergy = {};
 
+local HQCrystals = {
+    [1] = {
+        id = 4238,
+        cost = 200
+    },
+    [2] = {
+        id = 4239,
+        cost = 200
+    },
+    [3] = {
+        id = 4240,
+        cost = 200
+    },
+    [4] = {
+        id = 4241,
+        cost = 200
+    },
+    [5] = {
+        id = 4242,
+        cost = 200
+    },
+    [6] = {
+        id = 4243,
+        cost = 200
+    },
+    [7] = {
+        id = 4244,
+        cost = 500
+    },
+    [8] = {
+        id = 4245,
+        cost = 500
+    },
+}
+
 -----------------------------------
 -- isGuildMember Action
 -----------------------------------
@@ -161,4 +196,97 @@ function getAdvImageSupportCost(player,craftID)
     local Rank = player:getSkillRank(craftID)
     return (Rank+1)*30
     
+end
+
+function unionRepresentativeTrigger(player, guildID, csid, currency, keyitems)
+    local gpItem, remainingPoints = player:getCurrentGPItem(guildID);
+    local rank = player:getSkillRank(guildID + 48);
+    local cap = (rank + 1) * 10;
+    local kibits = 0;
+    
+    for kbit,ki in pairs(keyitems) do
+        if (rank >= ki.rank) then
+            if not player:hasKeyItem(ki.id) then
+                kibits = bit.bor(kibits, bit.lshift(1,kbit));
+            end
+        end
+    end
+    
+    player:startEvent(csid, player:getCurrency(currency), player:getVar('[GUILD]currentGuild') - 1, gpItem, remainingPoints, cap, 0, kibits);
+end
+
+function unionRepresentativeTriggerFinish(player, option, target, guildID, currency, keyitems, items)
+    local rank = player:getSkillRank(guildID + 48);
+    if (bit.tobit(option) == -1 and rank >= 3) then
+        local oldGuild = player:getVar('[GUILD]currentGuild') - 1;
+        player:setVar('[GUILD]currentGuild',guildID + 1);
+        
+        if (oldGuild == -1) then
+            player:messageSpecial(GUILD_NEW_CONTRACT, guildID);
+        else
+            player:messageSpecial(GUILD_TERMINATE_CONTRACT, guildID, oldGuild);
+            player:setVar('[GUILD]daily_points',-1);
+        end
+    elseif (bit.band(option, 32) > 0) then -- keyitem
+        local ki = keyitems[bit.band(option, 31)];
+        if (ki and rank >= ki.rank) then
+            if (player:getCurrency(currency) >= ki.cost) then
+                player:delCurrency(currency, ki.cost);
+                player:addKeyItem(ki.id);
+                player:messageSpecial(KEYITEM_OBTAINED, ki.id);
+            else
+               player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
+            end
+        end
+    elseif (bit.band(option, 16) > 0) then -- item
+        local i = items[bit.band(option, 15)];
+        if (i and rank >= i.rank) then
+            if (player:getCurrency(currency) >= i.cost) then
+                if (player:addItem(i.id, true)) then
+                    player:delCurrency(currency, i.cost);
+                    player:messageSpecial(ITEM_OBTAINED, i.id);
+                else
+                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, i.id);
+                end
+            else
+               player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
+            end
+        end
+    else -- HQ crystal (or nothing)
+        local i = HQCrystals[bit.band(option, option)];
+        if (i and rank >= 3) then
+            if (player:getCurrency(currency) >= i.cost) then
+                if (player:addItem(i.id, true)) then
+                    player:delCurrency(currency, i.cost);
+                    player:messageSpecial(ITEM_OBTAINED, i.id);
+                else
+                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, i.id);
+                end
+            else
+               player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
+            end
+        end
+    end
+end
+
+function unionRepresentativeTrade(player, npc, trade, csid, guildID)
+    local gpItem, remainingPoints = player:getCurrentGPItem(guildID);
+    if (player:getVar('[GUILD]currentGuild') - 1 == guildID) then
+        if remainingPoints == 0 then
+            player:messageText(npc, NO_MORE_GP_ELIGIBLE);
+        else
+            local totalPoints = 0;
+            for i=0,8,1 do
+                local items, points = player:addGuildPoints(guildID,i)
+                if items ~= 0 and points ~= 0 then
+                    totalPoints = totalPoints + points;
+                    trade:confirmItem(i, items);
+                end
+            end
+            if (totalPoints > 0) then
+                player:confirmTrade();
+                player:startEvent(csid,totalPoints);
+            end
+        end
+    end
 end

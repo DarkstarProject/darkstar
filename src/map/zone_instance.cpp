@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -47,9 +47,31 @@ CZoneInstance::~CZoneInstance()
 	}
 }
 
+CCharEntity* CZoneInstance::GetCharByName(int8* name)
+{
+	CCharEntity* PEntity = nullptr;
+	for (auto instance : instanceList)
+	{
+		PEntity = instance->GetCharByName(name);
+		if (PEntity) break;
+	}
+	return PEntity;
+}
+
+CCharEntity* CZoneInstance::GetCharByID(uint32 id)
+{
+	CCharEntity* PEntity = nullptr;
+	for (auto instance : instanceList)
+	{
+		PEntity = instance->GetCharByID(id);
+		if (PEntity) break;
+	}
+	return PEntity;
+}
+
 CBaseEntity* CZoneInstance::GetEntity(uint16 targid, uint8 filter)
 {
-	CBaseEntity* PEntity = NULL;
+	CBaseEntity* PEntity = nullptr;
 	if (filter & TYPE_PC)
 	{
 		for (auto instance : instanceList)
@@ -101,11 +123,11 @@ void CZoneInstance::FindPartyForMob(CBaseEntity* PEntity)
 	}
 }
 
-void CZoneInstance::TransportDepart(CBaseEntity* PTransportNPC)
+void CZoneInstance::TransportDepart(uint16 boundary, uint16 zone)
 {
-	if (PTransportNPC->PInstance)
-	{
-		PTransportNPC->PInstance->TransportDepart(PTransportNPC);
+    for (auto instance : instanceList)
+    {
+		instance->TransportDepart(boundary, zone);
 	}
 }
 
@@ -118,7 +140,8 @@ void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
 		instance->DecreaseZoneCounter(PChar);
 		instance->DespawnPC(PChar);
 		CharZoneOut(PChar);
-		PChar->PInstance = NULL;
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
+		PChar->PInstance = nullptr;
 
 		if (instance->CharListEmpty())
 		{
@@ -137,9 +160,9 @@ void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
 
 void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->loc.zone != NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != NULL);
+	DSP_DEBUG_BREAK_IF(PChar == nullptr);
+	DSP_DEBUG_BREAK_IF(PChar->loc.zone != nullptr);
+	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != nullptr);
 
 	//return char to instance (d/c or logout)
 	if (!PChar->PInstance)
@@ -150,6 +173,10 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 			{
 				PChar->PInstance = instance;
 			}
+		}
+		if (PChar->m_GMlevel > 0)
+		{
+			PChar->PInstance = new CInstance(this, 0);
 		}
 	}
 
@@ -165,6 +192,17 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 
 		PChar->PInstance->InsertPC(PChar);
 		CharZoneIn(PChar);
+
+        if (PChar->PInstance->GetLevelCap() > 0)
+        {
+            PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE | EFFECTFLAG_ON_ZONE);
+            PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
+                EFFECT_LEVEL_RESTRICTION, 
+                EFFECT_LEVEL_RESTRICTION, 
+                PChar->PInstance->GetLevelCap(), 
+                0, 0)
+            );
+        }
 
 		if (!PChar->PInstance->CharRegistered(PChar))
 		{

@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -32,12 +32,12 @@ CSynthMessagePacket::CSynthMessagePacket(CCharEntity * PChar, SYNTH_MESSAGE mess
 	this->type = 0x6F;
 	this->size = 0x12;
 
-	WBUFB(data,(0x04)-4) = messageID;
+	WBUFB(data,(0x04)) = messageID;
 
 	if (itemID != 0)
 	{
-		WBUFB(data,(0x06)-4) = quantity;
-		WBUFW(data,(0x08)-4) = itemID;
+		WBUFB(data,(0x06)) = quantity;
+		WBUFW(data,(0x08)) = itemID;
 	} 
 		
 	if( messageID == SYNTH_FAIL) 
@@ -49,7 +49,7 @@ CSynthMessagePacket::CSynthMessagePacket(CCharEntity * PChar, SYNTH_MESSAGE mess
 			if (quantity == 0) 
 			{
                 uint16 itemID = PChar->CraftContainer->getItemID(slotID);
-				WBUFW(data,(0x0A+(count*2))-4) = itemID;
+				WBUFW(data,(0x0A+(count*2))) = itemID;
 				count++;
 			}
 		}

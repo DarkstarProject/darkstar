@@ -9,9 +9,9 @@ require("scripts/globals/conquest");
 cmdprops =
 {
     permission = 1,
-    parameters = ""
+    parameters = "i"
 };
 
-function onTrigger(player)
-    WeekUpdateConquest();
+function onTrigger(player, updatetype)
+    WeekUpdateConquest(updatetype);
 end

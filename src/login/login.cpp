@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@
 
 ===========================================================================
 */
-
 #include "../common/mmo.h"
 #include "../common/malloc.h"
 #include "../common/showmsg.h"
@@ -32,27 +31,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <thread>
 
 #include "login.h"
 #include "login_auth.h"
 #include "lobby.h"
+#include "message_server.h"
 
-
-const char *LOGIN_CONF_FILENAME = NULL;
+const char* LOGIN_CONF_FILENAME = nullptr;
+const char* VERSION_INFO_FILENAME = nullptr;
 
 //lan_config_t   lan_config;		// lan settings
 login_config_t login_config;	//main settings
+version_info_t version_info;
 
 
-
-Sql_t *SqlHandle = NULL;
-
-
+Sql_t *SqlHandle = nullptr;
+std::thread messageThread;
 
 int32 do_init(int32 argc,char** argv)
 {
 	int32 i;
 	LOGIN_CONF_FILENAME = "conf/login_darkstar.conf";
+    VERSION_INFO_FILENAME = "version.info";
 
 	const char *lan_cfgName = LAN_CONFIG_NAME;
 	//srand(gettick());
@@ -67,15 +68,17 @@ int32 do_init(int32 argc,char** argv)
 		else if (strcmp(argv[i], "--lan_config") == 0 || strcmp(argv[i], "--lan-config") == 0 )
 			lan_cfgName = argv[i+1];
 		else if (strcmp(argv[i],"--run_once") == 0)	// close the map-server as soon as its done.. for testing [Celest]
-			runflag = 0;
-	}
+            runflag = 0;
+    }
 
 	//lan_config_default(&lan_config);
 	//lan_config_read(lan_cfgName,&lan_config);
 
-
 	login_config_default();
 	login_config_read(LOGIN_CONF_FILENAME);
+
+	version_info_default();
+	version_info_read(VERSION_INFO_FILENAME);
 
 
 	login_fd		   = makeListenBind_tcp(login_config.uiLoginAuthIp,login_config.usLoginAuthPort,connect_client_login);
@@ -107,24 +110,37 @@ int32 do_init(int32 argc,char** argv)
 		ShowError("do_init: Impossible to optimise tables\n");
 	}
 	
+    messageThread = std::thread(message_server_init);
+
 	ShowStatus("The login-server is " CL_GREEN"ready" CL_RESET" to work...\n");
 	return 0;
 }
 
-void do_final(void)
+void do_final(int code)
 {
 	aFree((void*)login_config.mysql_host);
 	aFree((void*)login_config.mysql_login);
 	aFree((void*)login_config.mysql_password);
 	aFree((void*)login_config.mysql_database);
 
+    message_server_close();
+    if (messageThread.joinable())
+    {
+        messageThread.join();
+    }
 
 	Sql_Free(SqlHandle);
+
+    timer_final();
+    socket_final();
+    malloc_final();
+
+    exit(code);
 }
 
 void do_abort(void)
 {
-	do_final();
+	do_final(EXIT_FAILURE);
 }
 void set_server_type()
 {
@@ -143,7 +159,7 @@ int do_sockets(fd_set* rfd,int next)
 
 
 	memcpy(rfd, &readfds, sizeof(*rfd));
-	ret = sSelect(fd_max, rfd, NULL, NULL, &timeout);
+	ret = sSelect(fd_max, rfd, nullptr, nullptr, &timeout);
 
 	if( ret == SOCKET_ERROR )
 	{
@@ -155,7 +171,7 @@ int do_sockets(fd_set* rfd,int next)
 		return 0; // interrupted by a signal, just loop and try again
 	}
 
-	last_tick = time(NULL);
+	last_tick = time(nullptr);
 
 #if defined(WIN32)
 	// on windows, enumerating all members of the fd_set is way faster if we access the internals
@@ -255,7 +271,7 @@ int32 login_config_read(const char *cfgName)
 	FILE *fp;
 
 	fp = fopen(cfgName,"r");
-	if( fp == NULL )
+	if( fp == nullptr )
 	{
 		ShowError("login configuration file not found at: %s\n", cfgName);
 		return 1;
@@ -278,7 +294,7 @@ int32 login_config_read(const char *cfgName)
 			
 		if(strcmpi(w1,"timestamp_format") == 0)
         {
-			strncpy(timestamp_format, w2, 20);
+			strncpy(timestamp_format, w2, 19);
         }
 		else if(strcmpi(w1,"stdout_with_ansisequence") == 0 )
         {
@@ -325,6 +341,14 @@ int32 login_config_read(const char *cfgName)
         {
 			login_config_read(w2);
         }
+		else if (strcmp(w1, "msg_server_port") == 0)
+		{
+            login_config.msg_server_port = atoi(w2);
+		}
+		else if (strcmp(w1, "msg_server_ip") == 0)
+		{
+            login_config.msg_server_ip = aStrdup(w2);
+		}
 		else
         {
 			ShowWarning("Unknown setting '%s' in file %s\n", w1, cfgName);
@@ -334,6 +358,43 @@ int32 login_config_read(const char *cfgName)
 	fclose(fp);
 	return 0;
 }
+
+int32 version_info_read(const char *fileName)
+{
+    char line[1024], w1[1024], w2[1024];
+    FILE *fp;
+
+    fp = fopen(fileName,"r");
+    if( fp == nullptr )
+    {
+        ShowError("version info file not found at: %s\n", fileName);
+        return 1;
+    }
+
+    while( fgets(line, sizeof(line), fp) )
+    {
+        char* ptr;
+
+        if( line[0] == '#')
+            continue;
+        if( sscanf(line, "%[^:]: %[^\t\r\n]", w1, w2) < 2 )
+            continue;
+
+        //Strip trailing spaces
+        ptr = w2 + strlen(w2);
+        while (--ptr >= w2 && *ptr == ' ');
+        ptr++;
+        *ptr = '\0';
+
+        if (strcmp(w1, "Min_Client_Ver") == 0)
+        {
+            version_info.Min_Client_Ver = aStrdup(w2);
+        }
+    }
+    fclose(fp);
+    return 0;
+}
+
 int32 login_config_default()
 {
 	login_config.uiLobbyDataIp   = INADDR_ANY;
@@ -353,7 +414,16 @@ int32 login_config_default()
 	login_config.mysql_port     =  3306;
 
 	login_config.search_server_port = 54002;
+	login_config.msg_server_port = 54003;
+    login_config.msg_server_ip = "127.0.0.1";
 	return 0;
+}
+
+int32 version_info_default()
+{
+    version_info.Min_Client_Ver = "99999999_9"; // xxYYMMDD_m = xx:MajorRelease YY:year MM:month DD:day _m:MinorRelease
+    // version_info.DSP_VER = 0;
+    return 0;
 }
 
 void login_versionscreen(int32 flag)
@@ -377,6 +447,27 @@ void login_helpscreen(int32 flag)
 	ShowMessage("  --version, --v, -v, /v	Displays the server's version\n");
 	ShowMessage("\n");
 	if (flag) exit(EXIT_FAILURE);
+}
+
+void log_init(int argc, char** argv)
+{
+    std::string logFile;
+
+#ifdef DEBUGLOGLOGIN
+#ifdef WIN32
+    logFile = "log\\login-server.log";
+#else
+    logFile = "log/login-server.log";
+#endif
+#endif
+    for (int i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "--log") == 0)
+        {
+            logFile = argv[i + 1];
+        }
+    }
+    InitializeLog(logFile);
 }
 
 ///////////////////////////////////////////////////////

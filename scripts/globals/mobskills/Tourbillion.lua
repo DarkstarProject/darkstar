@@ -11,14 +11,14 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
    --[[TODO: Khimaira should only use this when its wings are up, which is animationsub() == 0.
    There's no system to put them "down" yet, so it's not really fair to leave it active.
    Tyger's fair game, though. :)]]
     return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 
 	local numhits = 3;
 	local accmod = 1;

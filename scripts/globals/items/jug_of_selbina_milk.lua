@@ -1,7 +1,7 @@
 -----------------------------------------
--- ID: 5575
--- Item: Yogurt
--- Item Effect: Restores 60 HP over 180 seconds
+-- ID: 4378
+-- Item: Jug of Selbina Milk
+-- Item Effect: regen: 1 HP/tick x 120sec, x 150sec w/ dream robe +1 
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -19,9 +19,8 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	local body = caster:getEquipID(SLOT_BODY);
-	if(target:hasStatusEffect(EFFECT_REGEN) == false) then
-		if (body == 14520) then -- Dream Robe +1
+	if (target:hasStatusEffect(EFFECT_REGEN) == false) then
+		if (target:getEquipID(SLOT_BODY) == 14520) then -- Dream Robe +1
 			target:addStatusEffect(EFFECT_REGEN,1,3,150);
 		else
 			target:addStatusEffect(EFFECT_REGEN,1,3,120);

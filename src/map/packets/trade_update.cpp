@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -42,29 +42,31 @@ CTradeUpdatePacket::CTradeUpdatePacket(CItem* PItem, uint8 SlotID)
 	this->type = 0x23;
 	this->size = 0x14;
 
-    WBUFL(data,(0x04)-4) = PItem->getReserve();
-	WBUFW(data,(0x0A)-4) = PItem->getID();
-	WBUFB(data,(0x0D)-4) = SlotID;
+	uint32 amount = PItem->getReserve();
+
+    WBUFL(data,(0x04)) = amount;
+	WBUFW(data,(0x0A)) = amount == 0 ? 0 : PItem->getID();
+	WBUFB(data,(0x0D)) = SlotID;
 
     if (PItem->isSubType(ITEM_CHARGED))
     {
-		WBUFB(data,(0x0E)-4) = 0x01;
+		WBUFB(data,(0x0E)) = 0x01;
 
         if (((CItemUsable*)PItem)->getCurrentCharges() > 0)
         {
-            WBUFB(data,(0x0F)-4) = ((CItemUsable*)PItem)->getCurrentCharges(); 
+            WBUFB(data,(0x0F)) = ((CItemUsable*)PItem)->getCurrentCharges(); 
         }
 	}
     if (PItem->isType(ITEM_LINKSHELL))
 	{	
-        WBUFL(data,(0x0E)-4) = ((CItemLinkshell*)PItem)->GetLSID();
-        WBUFW(data,(0x14)-4) = ((CItemLinkshell*)PItem)->GetLSRawColor();
-        WBUFB(data,(0x16)-4) = ((CItemLinkshell*)PItem)->GetLSType();
+        WBUFL(data,(0x0E)) = ((CItemLinkshell*)PItem)->GetLSID();
+        WBUFW(data,(0x14)) = ((CItemLinkshell*)PItem)->GetLSRawColor();
+        WBUFB(data,(0x16)) = ((CItemLinkshell*)PItem)->GetLSType();
 
-        memcpy(data+(0x17)-4, PItem->getSignature(), dsp_min(strlen(PItem->getSignature()),15));
+        memcpy(data+(0x17), PItem->getSignature(), dsp_min(strlen(PItem->getSignature()),15));
     }
     else
     {
-        memcpy(data+(0x15)-4, PItem->getSignature(), dsp_min(strlen(PItem->getSignature()),12));
+        memcpy(data+(0x15), PItem->getSignature(), dsp_min(strlen(PItem->getSignature()),12));
     }
 }

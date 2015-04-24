@@ -1,19 +1,26 @@
 -----------------------------------
 -- Ability: Soul Voice
--- Duration: 180 seconds
+-- Enhances the effects of your songs.
+-- Obtained: Bard Level 1
+-- Recast Time: 1:00:00
+-- Duration: 0:03:00
 -----------------------------------
  
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onAbilityCheck
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
-	return 0,0;
+function onAbilityCheck(player,target,ability)
+    return 0,0;
 end;
 
-function OnUseAbility(player, target, ability)
-	player:addStatusEffect(EFFECT_SOUL_VOICE,1,0,180);
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(player, target, ability)
+    player:addStatusEffect(EFFECT_SOUL_VOICE,1,0,180);
 end;

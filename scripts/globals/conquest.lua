@@ -37,6 +37,10 @@ ELSHIMOLOWLANDS = 14;
      MOVALPOLOS = 17;
   TAVNAZIANARCH = 18;
 
+  CONQUEST_TALLY_START = 0;
+  CONQUEST_TALLY_END = 1;
+  CONQUEST_UPDATE = 2;
+  
 nationAlly = 3;
 
 -----------------------------------
@@ -582,8 +586,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("RONFAURE");
 
-	local Doladepaiton = 17187507;
-	
+	local Doladepaiton = 17187539;
+
 	npc  = {
 	--
 		Doladepaiton,SANDORIA,		-- Doladepaiton, R.K.
@@ -613,8 +617,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("ZULKHEIM");
 
-	local Quanteilleron = 17199700;
-	
+	local Quanteilleron = 17199705;
+
 	npc  = {
 	--
 		Quanteilleron,SANDORIA,		-- Quanteilleron, R.K.
@@ -644,8 +648,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("NORVALLEN");
 
-	local Chaplion = 17203839;
-	
+	local Chaplion = 17203844;
+
 	npc  = {
 	--
 		Chaplion,SANDORIA,		-- Chaplion, R.K.
@@ -675,8 +679,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("GUSTABERG");
 
-	local Ennigreaud = 17212024;
-	
+	local Ennigreaud = 17212056;
+
 	npc  = {
 	--
 		Ennigreaud,SANDORIA,	-- Ennigreaud, R.K.
@@ -706,8 +710,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("DERFLAND");
 
-	local Mesachedeau = 17224317;
-	
+	local Mesachedeau = 17224322;
+
 	npc  = {
 	--
 		Mesachedeau,SANDORIA,		-- Mesachedeau, R.K.
@@ -737,8 +741,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("SARUTABARUTA");
 
-	local Naguipeillont = 17248807; 
-	
+	local Naguipeillont = 17248839;
+
 	npc  = {
 	--
 		Naguipeillont,SANDORIA,		-- Naguipeillont, R.K.
@@ -768,8 +772,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("KOLSHUSHU");
 
-	local Bonbavour = 17261141; 
-	
+	local Bonbavour = 17261143;
+
 	npc  = {
 	--
 		Bonbavour,SANDORIA,	-- Bonbavour, R.K.
@@ -799,8 +803,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("ARAGONEU");
 
-	local Chegourt = 17265262;
-	
+	local Chegourt = 17265267;
+
 	npc  = {
 	--
 		Chegourt,SANDORIA,	-- Chegourt, R.K.
@@ -830,8 +834,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("FAUREGANDI");
 
-	local Parledaire = 17232200;	
-	
+	local Parledaire = 17232205;
+
 	npc  = {
 	--
 		Parledaire,SANDORIA,		-- Parledaire, R.K.
@@ -861,8 +865,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("VALDEAUNIA");
 
-	local Jeantelas = 17236281;	
-	
+	local Jeantelas = 17236286;
+
 	npc  = {
 	--
 		Jeantelas,SANDORIA,			-- Jeantelas, R.K.
@@ -892,8 +896,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("QUFIMISLAND");
 
-	local Pitoire = 17293705; 
-	
+	local Pitoire = 17293710;
+
 	npc  = {
 	--
 		Pitoire,SANDORIA,	-- Pitoire, R.K.
@@ -923,8 +927,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("LITELOR");
 
-	local Credaurion = 17273360;	
-	
+	local Credaurion = 17273365;
+
 	npc  = {
 	--
 		Credaurion,SANDORIA,		-- Credaurion, R.K.
@@ -954,8 +958,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("KUZOTZ");
 
-	local Eaulevisat = 17244622;
-	
+	local Eaulevisat = 17244627;
+
 	npc  = {
 	--
 		Eaulevisat,SANDORIA,	-- Eaulevisat, R.K.
@@ -985,8 +989,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("VOLLBOW");
 
-	local Salimardi = 17240465;
-	
+	local Salimardi = 17240469;
+
 	npc  = {
 	--
 		Salimardi,SANDORIA,	-- Salimardi, R.K.
@@ -1016,8 +1020,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("ELSHIMOLOWLANDS");
 
-	local Zorchorevi = 17281588; 
-	
+	local Zorchorevi = 17281599;
+
 	npc  = {
 	--
 		Zorchorevi,SANDORIA,	-- Zorchorevi, R.K.
@@ -1047,8 +1051,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("ELSHIMOUPLANDS");
 
-	local Ilieumort = 17285645;
-	
+	local Ilieumort = 17285650;
+
 	npc  ={
 	--
 		Ilieumort,SANDORIA,		-- Ilieumort, R.K.
@@ -1078,7 +1082,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("TULIA");
 	
-	local RuAun_Banner = 17310075;
+	local RuAun_Banner = 17310076;
 
 	npc  = {
 	--
@@ -1097,9 +1101,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("MOVALPOLOS");
 
-	local Oldton_Banner_Offset = 16822508; 
-	
-	
+	local Oldton_Banner_Offset = 16822509;
+
 	npc  = {
 	--
 		Oldton_Banner_Offset,SANDORIA,		-- flag
@@ -1117,8 +1120,8 @@ switch (region): caseof {
   ---------------------------------
 	--print("TAVNAZIA");
 
-	local Jemmoquel = 16875827;
-	
+	local Jemmoquel = 16875831;
+
 	npc  = {
 	--
 		Jemmoquel,SANDORIA,		-- Jemmoquel, R.K.
@@ -1151,29 +1154,30 @@ end;
 --
 -----------------------------------
 
-function SetRegionalConquestOverseers()
+function SetRegionalConquestOverseers(region)
 
-	for region = 0, 18 do
-		local npclist = getRegionalConquestOverseers(region);
-		local nation  = GetRegionOwner(region);
+    local npclist = getRegionalConquestOverseers(region);
+    local nation  = GetRegionOwner(region);
 
-		for i = 1, table.getn(npclist), 2 do
-			if(npclist[i+1] == nation) then
-				GetNPCByID(npclist[i]):setStatus(0);
-			else
-				GetNPCByID(npclist[i]):setStatus(2);
-			end
-
-			if(npclist[i+1] == OTHER) then
-				if(nation ~= BEASTMEN) then
-					GetNPCByID(npclist[i]):setStatus(0);
-				else
-					GetNPCByID(npclist[i]):setStatus(2);
-				end
-			end
-		end;
-	end;
-
+    for i = 1, table.getn(npclist), 2 do
+    	local npc = GetNPCByID(npclist[i]);
+    	
+    	if(npc ~= nil) then
+            if(npclist[i+1] == nation) then
+                npc:setStatus(0);
+            else
+                npc:setStatus(2);
+            end
+        
+            if(npclist[i+1] == OTHER) then
+                if(nation ~= BEASTMEN) then
+                    npc:setStatus(0);
+                else
+                    npc:setStatus(2);
+                end
+            end
+	end
+    end
 end;
 
 -----------------------------------
@@ -1198,4 +1202,116 @@ function checkConquestRing(player)
    end
 
    return count;
+end;
+
+-----------------------------------
+-- conquestUpdate
+-----------------------------------
+
+function conquestUpdate(zone, player, updateType, messageBase)
+
+    local ranking = getConquestBalance();
+
+    if (updateType == CONQUEST_TALLY_START) then
+        player:messageText(player, messageBase, 5);
+    elseif (updateType == CONQUEST_TALLY_END) then
+        --Tallying conquest results...
+        player:messageText(player, messageBase+1, 5);
+        -- This region is currently under x control.
+        local owner = GetRegionOwner(zone:getRegionID());
+        if (owner <= 3) then
+            player:messageText(player, messageBase+2+owner, 5);
+        else
+            player:messageText(player, messageBase+6, 5);
+        end
+                
+        local offset = 0;
+        if (bit.band(ranking, 0x03) == 0x01) then
+            offset = offset + 7; -- 7
+            if (bit.band(ranking, 0x30) == 0x10) then
+                offset = offset + 1; -- 8
+                if (bit.band(ranking, 0x0C) == 0x0C) then
+                    offset = offset + 1; -- 9
+                end
+            elseif (bit.band(ranking, 0x0C) == 0x08) then
+                offset = offset + 3; -- 10
+                if (bit.band(ranking, 0x30) == 0x30) then
+                    offset = offset + 1; -- 11
+                end
+            elseif (bit.band(ranking, 0x0C) == 0x04) then
+                offset = offset + 6; -- 13
+            end
+        elseif (bit.band(ranking, 0x0C) == 0x04) then
+            offset = offset + 15; -- 15
+            if (bit.band(ranking, 0x30) == 0x02) then
+                offset = offset + 3; -- 18
+                if (bit.band(ranking, 0x03) == 0x03) then
+                    offset = offset + 1; -- 19
+                end
+            elseif (bit.band(ranking, 0x30) == 0x10) then
+                offset = offset + 6; -- 21
+            end
+        elseif (bit.band(ranking, 0x30) == 0x10) then
+            offset = offset + 23; -- 23
+            if (bit.band(ranking, 0x0C) == 0x08) then
+                offset = offset + 3; -- 26
+                if (bit.band(ranking, 0x30) == 0x30) then
+                    offset = offset + 1; -- 27
+                end
+            end
+        end
+        -- Global balance of power:
+        player:messageText(player, messageBase+offset, 5);
+        
+        if (isConquestAlliance()) then
+            -- have formed an alliance.
+            if (bit.band(ranking, 0x03) == 0x01) then
+                player:messageText(player, messageBase+50, 5);
+            elseif (bit.band(ranking, 0x0C) == 0x04) then
+                player:messageText(player, messageBase+51, 5);
+            elseif (bit.band(ranking, 0x30) == 0x10) then
+                player:messageText(player, messageBase+52, 5);
+            end
+        end
+    elseif (updateType == CONQUEST_UPDATE) then
+        -- Conquest update: This region is currently under x control.
+        local owner = GetRegionOwner(zone:getRegionID());
+        if (owner <= 3) then
+            player:messageText(player, messageBase+32+owner, 5);
+        else
+            player:messageText(player, messageBase+31, 5);
+        end
+        
+        local influence = GetRegionInfluence(zone:getRegionID());
+        
+        if (influence >= 64) then
+            -- The beastmen are on the rise.
+            player:messageText(player, messageBase+37, 5);
+        elseif (influence == 0) then
+            -- All three nations are at a deadlock.
+            player:messageText(player, messageBase+36, 5);
+        else
+            local sandoria = bit.band(influence, 0x03);
+            local bastok = bit.rshift(bit.band(influence, 0x0C),2);
+            local windurst = bit.rshift(bit.band(influence, 0x30),4);
+            
+            -- Regional influence: San d'Oria
+            player:messageText(player, messageBase+41 - sandoria, 5);
+            -- Bastok
+            player:messageText(player, messageBase+45 - bastok, 5);
+            -- Windurst
+            player:messageText(player, messageBase+49 - windurst, 5);
+        end
+        
+        if (isConquestAlliance()) then
+            --are currently allied.
+            if (bit.band(ranking, 0x03) == 0x01) then
+                player:messageText(player, messageBase+53, 5);
+            elseif (bit.band(ranking, 0x0C) == 0x04) then
+                player:messageText(player, messageBase+54, 5);
+            elseif (bit.band(ranking, 0x30) == 0x10) then
+                player:messageText(player, messageBase+55, 5);
+            end
+        end
+    end
 end;

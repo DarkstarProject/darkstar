@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/quests");
+require("scripts/globals/zone");
 require("scripts/zones/Zeruhn_Mines/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,9 @@ require("scripts/zones/Zeruhn_Mines/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+    local tomes = {17481844};
+    
+    SetGroundsTome(tomes);
 end;
 
 -----------------------------------				
@@ -40,6 +44,18 @@ function onZoneIn(player,prevZone)
 	end			
 	return cs;			
 end;				
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
 
 -----------------------------------				
 -- onRegionEnter				

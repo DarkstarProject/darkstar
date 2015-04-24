@@ -13,11 +13,12 @@ LIBS_ALL                = $(DARKSTAR_LIBS)
 LDFLAGS_ALL             = $(DARKSTAR_LDFLAGS)
 CXX                     = g++ -std=gnu++0x
 
-CFLAGS_ALL              += $(CFLAGS_LUA)
-CFLAGS_ALL              +=$(CFLAGS_MYSQL)
+CFLAGS_ALL              += $(LUA_CFLAGS)
+CFLAGS_ALL              += $(MYSQL_CFLAGS)
 
-LIBS_ALL                += $(LIBS_LUA) -llua5.1
-LIBS_ALL                += $(LIBS_MYSQL) -lmysqlclient
+LIBS_ALL                += $(LUA_LIBS)
+LIBS_ALL                += $(MYSQL_LDFLAGS)
+LIBS_ALL                += -lzmq
 
 ## Add Architecture-specific stuff
 if DARKSTAR_ARCH_LINUX

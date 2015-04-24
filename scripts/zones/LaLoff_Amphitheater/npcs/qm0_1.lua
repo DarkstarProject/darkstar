@@ -20,8 +20,6 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    print(npc:getID());
-
 	player:startEvent(0x0C);
 end;
 

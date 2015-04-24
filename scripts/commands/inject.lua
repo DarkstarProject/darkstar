@@ -15,6 +15,6 @@ function onTrigger(player, packet)
         player:PrintToPlayer("You must enter a packet file name.");
         return;
     end
-    
+
     player:injectPacket( packet );
 end

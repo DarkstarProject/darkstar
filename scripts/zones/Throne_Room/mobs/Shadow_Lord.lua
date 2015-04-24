@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -31,9 +31,10 @@ function onMobFight(mob,target)
 	if(mob:getID() < 17453060) then -- first phase AI
 		--once he's under 50% HP, start changing immunities and attack patterns
 		if(mob:getHP() / mob:getMaxHP() <= 0.5) then
-			
+
 			--have to keep track of both the last time he changed immunity and the HP he changed at
-			local changeTime, changeHP = mob:getExtraVar(2);
+            local changeTime = mob:getLocalVar("changeTime");
+            local changeHP = mob:getLocalVar("changeHP");
 
 			--subanimation 0 is first phase subanim, so just go straight to magic mode
 			if(mob:AnimationSub() == 0) then
@@ -44,7 +45,8 @@ function onMobFight(mob,target)
 				mob:SetMagicCastingEnabled(true);
 				mob:setMobMod(MOBMOD_MAGIC_COOL, 2);
 				--and record the time and HP this immunity was started
-				mob:setExtraVar(mob:getBattleTime(), mob:getHP());
+				mob:setLocalVar("changeTime", mob:getBattleTime());
+                mob:setLocalVar("changeHP", mob:getHP());
 			-- subanimation 2 is physical mode, so check if he should change into magic mode
 			elseif(mob:AnimationSub() == 2 and (mob:getHP() <= changeHP - 1000 or
 					mob:getBattleTime() - changeTime > 300)) then
@@ -54,7 +56,8 @@ function onMobFight(mob,target)
 				mob:SetAutoAttackEnabled(false);
 				mob:SetMagicCastingEnabled(true);
 				mob:setMobMod(MOBMOD_MAGIC_COOL, 2);
-				mob:setExtraVar(mob:getBattleTime(), mob:getHP());
+				mob:setLocalVar("changeTime", mob:getBattleTime());
+                mob:setLocalVar("changeHP", mob:getHP());
 			-- subanimation 1 is magic mode, so check if he should change into physical mode
 			elseif(mob:AnimationSub() == 1 and (mob:getHP() <= changeHP - 1000 or
 					mob:getBattleTime() - changeTime > 300)) then
@@ -66,7 +69,8 @@ function onMobFight(mob,target)
 				mob:SetAutoAttackEnabled(true);
 				mob:SetMagicCastingEnabled(false);
 				mob:setMobMod(MOBMOD_MAGIC_COOL, 10);
-				mob:setExtraVar(mob:getBattleTime(), mob:getHP());
+				mob:setLocalVar("changeTime", mob:getBattleTime());
+                mob:setLocalVar("changeHP", mob:getHP());
 			end
 		end
 	else --second phase AI
@@ -95,7 +99,6 @@ function onMobDeath(mob,killer)
 	mob:SetMagicCastingEnabled(true);
 	mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
 	mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
-	mob:setExtraVar(0);
 
 end;
 
@@ -106,7 +109,6 @@ function onMobDespawn(mob)
 	mob:SetMagicCastingEnabled(true);
 	mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
 	mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
-	mob:setExtraVar(0);
 end;
 
 -----------------------------------
@@ -131,7 +133,7 @@ function onEventFinish(player,csid,option)
 		DespawnMob(mobid);
 		player:setVar("mobid",0);
 
-		--first phase dies, spawn second phase ID, make him engage, and disable 
+		--first phase dies, spawn second phase ID, make him engage, and disable
 		--  magic, auto attack, and abilities (all he does is case Implode by script)
 		mob = SpawnMob(mobid+3);
 		mob:updateEnmity(player);

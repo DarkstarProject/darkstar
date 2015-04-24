@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -37,8 +37,13 @@ int32 reappear_npc(uint32 tick,CTaskMgr::CTask *PTask); // used for hideNPC lua 
 class CNpcEntity : public CBaseEntity {
 public:
 
-	uint32		unknown;
+	uint32		m_flags;
 	uint8		name_prefix;
+    void        HideHP(bool hide);
+    bool        IsHPHidden();
+    void        Untargetable(bool untargetable);
+    bool        IsUntargetable();
+    void        UpdateEntity() override;
 
 	 CNpcEntity();				// конструктор
 	~CNpcEntity();				// деструктор

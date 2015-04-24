@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -32,14 +32,14 @@
 CAttackRound::CAttackRound(CBattleEntity* attacker)
 {
 	m_attacker = attacker;
-	m_doubleAttackOccured = false;
-	m_tripleAttackOccured = false;
-	m_quadAttackOccured = false;
 	m_kickAttackOccured = false;
-	m_zanshinOccured = false;
 	m_sataOccured = false;
-	m_missOccured = false;
-	m_subWeaponType = attacker->m_Weapons[SLOT_SUB]->getDmgType();
+    m_subWeaponType = 0;
+
+    if (attacker->m_Weapons[SLOT_SUB]->isType(ITEM_WEAPON))
+    {
+        m_subWeaponType = attacker->m_Weapons[SLOT_SUB]->getDmgType();
+    }
 
 	// Grab a trick attack assistant.
 	m_taEntity = battleutils::getAvailableTrickAttackChar(attacker, attacker->PBattleAI->GetBattleTarget());
@@ -63,7 +63,7 @@ CAttackRound::CAttackRound(CBattleEntity* attacker)
 	}
 
 	// Set the first attack flag
-	m_attackSwings.at(0)->SetAsFirstSwing();
+	m_attackSwings[0].SetAsFirstSwing();
 
 	// Delete the haste samba effect.
     attacker->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_SAMBA_HASTE);
@@ -97,9 +97,9 @@ uint8 CAttackRound::GetAttackSwingCount()
 *  Returns an attack via index.											*
 *																		*
 ************************************************************************/
-CAttack* CAttackRound::GetAttack(uint8 index)
+CAttack CAttackRound::GetAttack(uint8 index)
 {
-	return m_attackSwings.at(index);
+	return m_attackSwings[index];
 }
 
 /************************************************************************
@@ -107,9 +107,9 @@ CAttack* CAttackRound::GetAttack(uint8 index)
 *  Returns the current attack.											*
 *																		*
 ************************************************************************/
-CAttack* CAttackRound::GetCurrentAttack()
+CAttack CAttackRound::GetCurrentAttack()
 {
-	return m_attackSwings.at(0);
+	return m_attackSwings[0];
 }
 
 /************************************************************************
@@ -134,57 +134,12 @@ bool CAttackRound::GetSATAOccured()
 
 /************************************************************************
 *																		*
-*  Sets the SATA flag.													*
-*																		*
-************************************************************************/
-void CAttackRound::SetZanshinOccured(bool value)
-{
-	m_zanshinOccured = value; 
-}
-
-/************************************************************************
-*																		*
-*  Returns the SATA flag.												*
-*																		*
-************************************************************************/
-bool CAttackRound::GetZanshinOccured()
-{
-	return m_zanshinOccured; 
-}
-
-/************************************************************************
-*																		*
 *  Returns the TA entity.												*
 *																		*
 ************************************************************************/
 CBattleEntity*	CAttackRound::GetTAEntity()
 {
 	return m_taEntity;
-}
-
-/************************************************************************
-*																		*
-*  Sets the miss occured flag.											*
-*																		*
-************************************************************************/
-void CAttackRound::SetMissOccured(bool value)
-{
-	m_missOccured = value;
-
-	if (value == true)
-	{
-		CreateZanshinAttacks();
-	}
-}
-
-/************************************************************************
-*																		*
-*  Returns the miss occured flag.										*
-*																		*
-************************************************************************/
-bool CAttackRound::GetMissOccured()
-{
-	return m_sataOccured; 
 }
 
 /************************************************************************
@@ -208,7 +163,7 @@ void CAttackRound::AddAttackSwing(PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIR
 	{
 		for (uint8 i = 0; i < count; ++i)
 		{
-			CAttack* attack = new CAttack(m_attacker, type, direction, this);
+			CAttack attack(m_attacker, type, direction, this);
 			m_attackSwings.push_back(attack);
 
 			if (m_attackSwings.size() == MAX_ATTACKS)
@@ -226,9 +181,7 @@ void CAttackRound::AddAttackSwing(PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIR
 ************************************************************************/
 void CAttackRound::DeleteAttackSwing()
 {
-	CAttack* attack = m_attackSwings.at(0);
 	m_attackSwings.erase(m_attackSwings.begin());
-	delete attack;
 }
 
 /************************************************************************
@@ -249,9 +202,9 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 	AddAttackSwing(ATTACK_NORMAL, direction, num);
 
 	// Checking the players triple, double and quadruple attack
-	int8 tripleAttack = m_attacker->getMod(MOD_TRIPLE_ATTACK);
-	int8 doubleAttack = m_attacker->getMod(MOD_DOUBLE_ATTACK);
-	int8 quadAttack = m_attacker->getMod(MOD_QUAD_ATTACK);
+	int16 tripleAttack = m_attacker->getMod(MOD_TRIPLE_ATTACK);
+	int16 doubleAttack = m_attacker->getMod(MOD_DOUBLE_ATTACK);
+	int16 quadAttack = m_attacker->getMod(MOD_QUAD_ATTACK);
 
 	//check for merit upgrades
 	if (m_attacker->objtype == TYPE_PC)
@@ -274,29 +227,21 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 		//ShowDebug(CL_CYAN"Create Attacks: Mikage Active, Rolling Attack Chance for %d Shadowss...\n" CL_RESET, shadows);
 		AddAttackSwing(ATTACK_NORMAL, direction, shadows);
 	}
-	else if (num == 1 && rand()%100 < quadAttack)
-	{
+	else if (num == 1 && WELL512::GetRandomNumber(100) < quadAttack)
 		AddAttackSwing(QUAD_ATTACK, direction, 3);
-		m_quadAttackOccured = true;
-	}
-	else if (num == 1 && rand()%100 < tripleAttack)
-	{
+	
+    else if (num == 1 && WELL512::GetRandomNumber(100) < tripleAttack)
 		AddAttackSwing(TRIPLE_ATTACK, direction, 2);
-		m_tripleAttackOccured = true;
-	}
-	else if (num == 1 && rand()%100 < doubleAttack && num == 1)
-	{
+	
+    else if (num == 1 && WELL512::GetRandomNumber(100) < doubleAttack)
 		AddAttackSwing(DOUBLE_ATTACK, direction, 1);
-		m_doubleAttackOccured = true;
-	}
 
 	// TODO: Possible Lua function for the nitty gritty stuff below.
 
 	// Iga mod: Extra attack chance whilst dual wield is on.
-	if (direction == LEFTATTACK && rand()%100 < m_attacker->getMod(MOD_EXTRA_DUAL_WIELD_ATTACK))
-	{
+    if (direction == LEFTATTACK && WELL512::GetRandomNumber(100) < m_attacker->getMod(MOD_EXTRA_DUAL_WIELD_ATTACK))
 		AddAttackSwing(ATTACK_NORMAL, RIGHTATTACK, 1);
-	}
+
 }
 
 /************************************************************************
@@ -309,7 +254,7 @@ void CAttackRound::CreateKickAttacks()
 	if (m_attacker->objtype == TYPE_PC)
 	{
 		// kick attack mod (All jobs)
-		uint8 kickAttack = m_attacker->getMod(MOD_KICK_ATTACK); 
+		uint16 kickAttack = m_attacker->getMod(MOD_KICK_ATTACK); 
 
 		if (m_attacker->GetMJob() == JOB_MNK) // MNK (Main job)
 		{
@@ -318,7 +263,7 @@ void CAttackRound::CreateKickAttacks()
 
 		kickAttack = dsp_cap(kickAttack, 0, 100);
 
-		if (rand()%100 < kickAttack)
+        if (WELL512::GetRandomNumber(100) < kickAttack)
 		{
 			AddAttackSwing(KICK_ATTACK, RIGHTATTACK, 1);
 			m_kickAttackOccured = true;
@@ -327,39 +272,9 @@ void CAttackRound::CreateKickAttacks()
 		// TODO: Possible Lua function for the nitty gritty stuff below.
 
 		// Mantra set mod: Try an extra left kick attack.
-		if (m_kickAttackOccured && rand()%100 < m_attacker->getMod(MOD_EXTRA_KICK_ATTACK))
+        if (m_kickAttackOccured && WELL512::GetRandomNumber(100) < m_attacker->getMod(MOD_EXTRA_KICK_ATTACK))
 		{
 			AddAttackSwing(KICK_ATTACK, LEFTATTACK, 1);
-		}
-	}
-}
-
-/************************************************************************
-*                                                                       *
-*  Creates zanshin attacks.										        *
-*                                                                       *
-************************************************************************/
-void CAttackRound::CreateZanshinAttacks()
-{
-	// Zanshin effects from gear, food or buffs do not require the job trait to be enabled.
-	if (m_attacker->objtype == TYPE_PC &&
-		!m_zanshinOccured && 
-		!m_doubleAttackOccured && 
-		!m_tripleAttackOccured &&
-		!m_quadAttackOccured &&
-		m_attackSwings.at(0)->GetAttackType() != ZANSHIN_ATTACK)
-	{
-		uint8 zanshinChance = m_attacker->getMod(MOD_ZANSHIN) + ((CCharEntity*)m_attacker)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)m_attacker);
-		zanshinChance = dsp_cap(zanshinChance, 0, 100);
-
-		if (rand()%100 < zanshinChance)
-		{
-			// Flag this attack to repeat
-			m_zanshinOccured = true;
-		}
-		else
-		{
-			m_zanshinOccured = false;
 		}
 	}
 }

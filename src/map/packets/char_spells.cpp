@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -35,5 +35,5 @@ CCharSpellsPacket::CCharSpellsPacket(CCharEntity* PChar)
 	this->type = 0xAA;
 	this->size = 0x42;
 
-	memcpy(data+(0x04)-4, &PChar->m_SpellList, 128);
+	memcpy(data+(0x04), &PChar->m_EnabledSpellList, 128);
 }

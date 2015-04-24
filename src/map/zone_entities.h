@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@ public:
 	void			HealAllMobs();
 
 	CCharEntity*    GetCharByName(int8* name);                                      // finds the player if exists in zone
+	CCharEntity*	GetCharByID(uint32 id);
 	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
 
 	void			SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
@@ -55,7 +56,7 @@ public:
 	void			DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
 
 	void			FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
-	void			TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
+	void			TransportDepart(uint16 boundary, uint16 zone);                  // транспотр отправляется, необходимо собрать пассажиров
 
 	void			TOTDChange(TIMETYPE TOTD);										// обработка реакции мира на смену времени суток
 	void			WeatherChange(WEATHER weather);

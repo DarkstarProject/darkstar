@@ -12,11 +12,11 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
 	return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 	local numhits = 4;
 	local accmod = 1;
 	local dmgmod = 0.5;
@@ -25,11 +25,11 @@ function OnMobWeaponSkill(target, mob, skill)
 	target:delHP(dmg);
 
 	if (mob:getName() == "Faust") then
-		if (mob:getExtraVar(1) == 0) then
+		if (mob:getLocalVar("Typhoon") == 0) then
 			mob:useMobAbility(283);
-			mob:setExtraVar(1); 
+			mob:setLocalVar("Typhoon", 1); 
 		else
-			mob:setExtraVar(0);
+			mob:setLocalVar("Typhoon", 0); 
 		end	
 	end	
 

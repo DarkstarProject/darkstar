@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/conquest");
 require("scripts/zones/Oldton_Movalpolos/TextIDs");
 require("scripts/globals/missions");
 
@@ -15,7 +16,23 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onInitialize(zone)
+    UpdateTreasureSpawnPoint(16822527);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
 end;
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
+
 
 -----------------------------------		
 -- onZoneIn		

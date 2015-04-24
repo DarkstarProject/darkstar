@@ -1,19 +1,26 @@
 -----------------------------------
 -- Ability: Mug
+-- Steal gil from enemy.
+-- Obtained: Thief Level 35
+-- Recast Time: 5:00
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onAbilityCheck
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
-	return 0,0;
+function onAbilityCheck(player,target,ability)
+    return 0,0;
 end;
 
-function OnUseAbility(player, target, ability)
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(player,target,ability)
     local thfLevel;
     local gil = 0;
 
