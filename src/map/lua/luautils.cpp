@@ -146,7 +146,7 @@ int32 init()
 	Lunar<CLuaZone>::Register(LuaHandle);
     Lunar<CLuaItem>::Register(LuaHandle);
 
-    luaL_dostring(LuaHandle, "require('bit')");
+    luaL_dostring(LuaHandle, "if not bit then bit = require('bit') end");
 
 	expansionRestrictionEnabled = (GetSettingsVariable("RESTRICT_BY_EXPANSION") != 0);
 

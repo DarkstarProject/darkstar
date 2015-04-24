@@ -1078,7 +1078,7 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "nm_hp_multiplier") == 0)
         {
-            map_config.nm_hp_multiplier = atoi(w2);
+            map_config.nm_hp_multiplier = atof(w2);
         }
         else if (strcmp(w1, "mob_hp_multiplier") == 0)
         {
@@ -1090,7 +1090,7 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "nm_mp_multiplier") == 0)
         {
-            map_config.nm_mp_multiplier = atoi(w2);
+            map_config.nm_mp_multiplier = atof(w2);
         }
         else if (strcmp(w1, "mob_mp_multiplier") == 0)
         {

@@ -58,6 +58,8 @@ void CAICharCharm::CheckCurrentAction(uint32 tick)
 {
     m_Tick = tick;
 
+    CBattleEntity* PSelf = m_PChar;
+
     switch (m_ActionType)
     {
         case ACTION_NONE:			  		ActionRoaming();			break;
@@ -78,7 +80,11 @@ void CAICharCharm::CheckCurrentAction(uint32 tick)
 
         default: DSP_DEBUG_BREAK_IF(true);
     }
-    m_PChar->UpdateEntity();
+
+    if (m_PChar && PSelf->PBattleAI == this)
+    {
+        m_PChar->UpdateEntity();
+    }
 }
 
 void CAICharCharm::ActionRoaming()

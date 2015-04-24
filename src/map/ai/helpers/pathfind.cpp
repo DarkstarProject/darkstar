@@ -345,11 +345,24 @@ bool CPathFind::FindClosestPath(position_t* start, position_t* end)
 
 	m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(*start, *end, m_points, MAX_PATH_POINTS);
 
-	// TODO: instead of skipping the path based on too many points
-	// it would make more sense to base it off of height difference is too large
-	if (m_pathLength <= 0 || m_pathLength >= 7)
+        bool skipPath = m_pathLength <= 0;
+
+        // skip path if vertical difference is too great
+        if(!skipPath)
+        {
+          position_t* lastPoint = &m_points[m_pathLength-1];
+          position_t* startPoint = &m_points[0];
+          float verticalDelta = fabs(startPoint->y - lastPoint->y);
+
+          // ShowDebug("delta is %f (%f, %f)\n", verticalDelta, startPoint->y, lastPoint->y);
+          if(verticalDelta >= VERTICAL_PATH_LIMIT)
+          {
+            skipPath = true;
+          }
+        }
+
+	if (skipPath)
 	{
-		// f you, too long
 		// this is a trick to make mobs go up / down impassible terrain
 		m_pathLength = 1;
 
@@ -420,6 +433,16 @@ bool CPathFind::InWater()
 	}
 
 	return false;
+}
+
+bool CPathFind::CanSeePoint(position_t point)
+{
+	if (isNavMeshEnabled())
+	{
+		return m_PTarget->loc.zone->m_navMesh->raycast(m_PTarget->loc.p, point);
+	}
+
+	return true;
 }
 
 void CPathFind::Clear()

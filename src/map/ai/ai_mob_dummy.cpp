@@ -1302,6 +1302,11 @@ void CAIMobDummy::ActionAttack()
     if (m_PMob->getMobMod(MOBMOD_SHARE_TARGET) > 0 && m_PMob->loc.zone->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB))
     {
         m_PBattleTarget = m_PMob->loc.zone->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB)->PBattleAI->GetBattleTarget();
+
+        if (!m_PBattleTarget)
+        {
+            m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+        }
     }
     else
     {
@@ -1588,7 +1593,6 @@ void CAIMobDummy::ActionAttack()
             {
 
                 m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
-                // m_PPathFind->CurvePath(0.5f);
                 m_PPathFind->FollowPath();
 
                 // recalculate
@@ -1600,7 +1604,6 @@ void CAIMobDummy::ActionAttack()
     // attack enemy if close enough
     if (currentDistance <= m_PMob->m_ModelSize && !m_mobskillattack)
     {
-        //m_CanStandback = true;
         int16 WeaponDelay = m_PMob->GetWeaponDelay(false);
 
         if (m_AutoAttackEnabled && m_Tick > m_LastActionTime + WeaponDelay)
@@ -1925,10 +1928,11 @@ bool CAIMobDummy::TryDeaggro()
         return true;
     }
 
-    // target is dead, on a choco or zoned, so wipe them from our enmity list
+    // target is no longer valid, so wipe them from our enmity list
     if (m_PBattleTarget->isDead() ||
         m_PBattleTarget->animation == ANIMATION_CHOCOBO ||
-        m_PBattleTarget->loc.zone->GetID() != m_PMob->loc.zone->GetID())
+        m_PBattleTarget->loc.zone->GetID() != m_PMob->loc.zone->GetID() || 
+        m_PMob->StatusEffectContainer->GetConfrontationEffect() != m_PBattleTarget->StatusEffectContainer->GetConfrontationEffect())
     {
         m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
         m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
@@ -1940,7 +1944,7 @@ bool CAIMobDummy::TryDeaggro()
 
     if (m_PMob->m_Aggro & AGGRO_SCENT)
     {
-        // if mob is in water it will instant aggro if target cannot be detected
+        // if mob is in water it will instant deaggro if target cannot be detected
         if (m_PPathFind->InWater() || m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
         {
             tryDetectDeaggro = true;
@@ -1964,7 +1968,7 @@ bool CAIMobDummy::TryDeaggro()
     }
 
     // I will now deaggro if I cannot detect my target
-    if (tryDetectDeaggro && !m_PMob->CanDetectTarget(m_PBattleTarget))
+    if (tryDetectDeaggro && !CanDetectTarget(m_PBattleTarget))
     {
         return true;
     }
@@ -2050,6 +2054,80 @@ bool CAIMobDummy::CanCastSpells()
     }
 
     return true;
+}
+
+/**
+ * Checks if the mob can detect the target using it's detection (sight, sound, etc)
+ * This is used to aggro and deaggro (Mobs start to deaggro after failing to detect target).
+ **/
+bool CAIMobDummy::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
+{
+  if (PTarget->isDead() || PTarget->animation == ANIMATION_CHOCOBO) return false;
+
+    float verticalDistance = abs(m_PMob->loc.p.y - PTarget->loc.p.y);
+
+    if(verticalDistance > 8)
+    {
+        return false;
+    }
+
+    uint16 aggro = m_PMob->m_Aggro;
+    float currentDistance = distance(PTarget->loc.p, m_PMob->loc.p) + PTarget->getMod(MOD_STEALTH);
+
+    bool detectSight = (aggro & AGGRO_DETECT_SIGHT) || forceSight;
+
+    if (detectSight && !PTarget->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE) && currentDistance < m_PMob->getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(m_PMob->loc.p, PTarget->loc.p, 40))
+    {
+      return CanSeePoint(PTarget->loc.p);
+    }
+
+	if ((aggro & AGGRO_DETECT_TRUESIGHT) && currentDistance < m_PMob->getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(m_PMob->loc.p, PTarget->loc.p, 40))
+    {
+      return CanSeePoint(PTarget->loc.p);
+    }
+
+	if ((aggro & AGGRO_DETECT_TRUEHEARING) && currentDistance < m_PMob->getMobMod(MOBMOD_SOUND_RANGE))
+    {
+      return CanSeePoint(PTarget->loc.p);
+    }
+
+	if ((m_PMob->m_Behaviour & BEHAVIOUR_AGGRO_AMBUSH) && currentDistance < 3 && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
+    {
+      return true;
+    }
+
+	if ((aggro & AGGRO_DETECT_HEARING) && currentDistance < m_PMob->getMobMod(MOBMOD_SOUND_RANGE) && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
+    {
+      return CanSeePoint(PTarget->loc.p);
+    }
+
+    // everything below require distance to be below 20
+    if(currentDistance > 20)
+    {
+        return false;
+    }
+
+	if ((aggro & AGGRO_DETECT_LOWHP) && PTarget->GetHPP() < 75)
+    {
+        return true;
+    }
+
+	if ((aggro & AGGRO_DETECT_MAGIC) && PTarget->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING && PTarget->PBattleAI->GetCurrentSpell()->hasMPCost())
+    {
+        return true;
+    }
+
+	if ((aggro & AGGRO_DETECT_WEAPONSKILL) && PTarget->PBattleAI->GetCurrentAction() == ACTION_WEAPONSKILL_FINISH)
+    {
+        return true;
+    }
+
+	if ((aggro & AGGRO_DETECT_JOBABILITY) && PTarget->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH)
+    {
+        return true;
+    }
+
+    return false;
 }
 
 bool CAIMobDummy::TryCastSpell()
@@ -2467,7 +2545,7 @@ bool CAIMobDummy::CanAggroTarget(CBattleEntity* PTarget)
         return false;
     }
 
-    if (m_PMob->PMaster == nullptr && m_ActionType == ACTION_ROAMING && m_PMob->CanDetectTarget(PTarget))
+    if (m_PMob->PMaster == nullptr && m_ActionType == ACTION_ROAMING && CanDetectTarget(PTarget))
     {
         return true;
     }

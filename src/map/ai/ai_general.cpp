@@ -476,6 +476,15 @@ bool CAIGeneral::MoveTo(position_t* pos)
     return false;
 }
 
+bool CAIGeneral::CanSeePoint(position_t pos)
+{
+    if(m_PPathFind != nullptr){
+      return m_PPathFind->CanSeePoint(pos);
+    }
+
+    return true;
+}
+
 void CAIGeneral::Wait(int32 waitTime)
 {
 	if(waitTime == -1)

@@ -327,6 +327,11 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
         return false;
     }
 
+    if (m_PBattleEntity->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect())
+    {
+        return false;
+    }
+
     if (m_PTarget == PTarget || PTarget->getZone() != m_zone || PTarget->IsNameHidden())
     {
         return false;
@@ -449,6 +454,11 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
     CBattleEntity* PTarget = (CBattleEntity*)m_PBattleEntity->GetEntity(actionTargetID, TYPE_MOB | TYPE_PC | TYPE_PET);
 
     if (PTarget == nullptr)
+    {
+        return nullptr;
+    }
+
+    if (m_PBattleEntity->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect())
     {
         return nullptr;
     }

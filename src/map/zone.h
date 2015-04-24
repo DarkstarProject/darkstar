@@ -436,9 +436,10 @@ enum ZONEMISC
 
 struct zoneMusic_t
 {
-    uint8 m_song;       // фоновая музыка
-    uint8 m_bSongS;     // музыка в одиночном бою
-    uint8 m_bSongM;     // музыка в групповом бою
+    uint8 m_songDay;   // music (daytime)
+    uint8 m_songNight; // music (nighttime)
+    uint8 m_bSongS;     // battle music (solo)
+    uint8 m_bSongM;     // battle music (party)
 };
 
 /************************************************************************
@@ -511,7 +512,8 @@ public:
     const int8*     GetName();
     uint8           GetSoloBattleMusic();
     uint8           GetPartyBattleMusic();
-    uint8           GetBackgroundMusic();
+    uint8           GetBackgroundMusicDay();
+    uint8 GetBackgroundMusicNight();
     zoneLine_t*     GetZoneLine(uint32 zoneLineID);
 
     virtual CCharEntity*    GetCharByName(int8* name);                              // finds the player if exists in zone

@@ -93,6 +93,8 @@ public:
     bool IsAsleep();
     bool HasPreventActionEffect(); // checks if owner has an effect that prevents actions, like stun, petrify, sleep etc
 
+    uint16 GetConfrontationEffect(); // gets confrontation number (bcnm, confrontation, campaign, reive mark)
+
 	CStatusEffectContainer(CBattleEntity* PEntity);
 	~CStatusEffectContainer();
 
