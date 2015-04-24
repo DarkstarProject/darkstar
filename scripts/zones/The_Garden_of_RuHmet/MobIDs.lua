@@ -26,5 +26,16 @@ QnAernB = 16921020;
 -----------------------------------
 
 -- Jailer of Fortitude 
-Jailer_of_Fortitude=16921015;
+Jailer_of_Fortitude = 16921015;
 
+-- Jailer of Faith
+Jailer_of_Faith = 16921021;
+Jailer_of_Faith_QM = 16921029;
+Jailer_of_Faith_QM_POS = 
+{
+	{-420.00,0.00,-157.00}, -- North / Hume tower.
+	{-157.00,0.00,-340.00}, -- NE / Elvaan tower.
+	{-260.00,0.00,-643.00}, -- SE / Galka tower.
+	{-580.00,0.00,-644.00}, -- SW / Tarutaru tower.
+	{-683.00,0.00,-340.00}  -- NW / Mithra tower.
+};

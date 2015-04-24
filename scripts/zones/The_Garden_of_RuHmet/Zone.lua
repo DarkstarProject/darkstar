@@ -8,6 +8,7 @@ package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
+require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 
@@ -55,8 +56,10 @@ function onInitialize(zone)
 	zone:registerRegion(32,  97,-4,372,  102,4,379);--mithra niv 2 176 vers niv 3
 	zone:registerRegion(33,  97,-4,-427, 102,4,-421);--mithra niv 3 182 vers niv 2	
 	
-	
-	
+	--Give the Faith ??? a random spawn 
+	local qm3 = GetNPCByID(Jailer_of_Faith_QM);
+	local qm3position = math.random(1,5);
+	qm3:setPos(Jailer_of_Faith_QM_POS[qm3position][1], Jailer_of_Faith_QM_POS[qm3position][2], Jailer_of_Faith_QM_POS[qm3position][3]);
 end;
 
 -----------------------------------		
