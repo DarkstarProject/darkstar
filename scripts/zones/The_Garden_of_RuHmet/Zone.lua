@@ -81,7 +81,7 @@ function onGameHour()
 	-- Jailer of Fortitude spawn randomiser
 	if (VanadielHour % 6 == 0) then
 		local qm1 = GetNPCByID(Jailer_of_Fortitude_QM);
-		qm1:hide(60);
+		qm1:hideNPC(60);
 		
 		local qm1position = math.random(1,5);
 		qm1:setPos(Jailer_of_Fortitude_QM_POS[qm1position][1], Jailer_of_Fortitude_QM_POS[qm1position][2], Jailer_of_Fortitude_QM_POS[qm1position][3]);
