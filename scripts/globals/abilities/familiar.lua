@@ -1,12 +1,16 @@
 -----------------------------------
--- Ability: Assault
+-- Ability: Familiar
+-- Enhances your pet's powers and increases the duration of Charm.
+-- Obtained: Beastmaster Level 1
+-- Recast Time: 1:00:00
+-- Duration: 0:30:00
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -17,7 +21,11 @@ function onAbilityCheck(player,target,ability)
    return 0,0;
 end;
 
-function onUseAbility(player, target, ability)
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(player,target,ability)
     player:familiar();
 
     -- pets powers increase!
