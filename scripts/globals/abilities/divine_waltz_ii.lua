@@ -1,12 +1,16 @@
 -----------------------------------
 -- Ability: Divine Waltz II
+-- Restores the HP of all party members within a small radius.
+-- Obtained: Dancer Level 78
+-- TP Required: 80%
+-- Recast Time: 00:20
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -30,7 +34,11 @@ function onAbilityCheck(player,target,ability)
     end
 end;
 
-function onUseAbility(player, target, ability)
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(player,target,ability)
     -- Only remove TP if the player doesn't have Trance, and only deduct once instead of for each target.
     if (player:getID() == target:getID() and player:hasStatusEffect(EFFECT_TRANCE) == false) then
         player:delTP(80);
