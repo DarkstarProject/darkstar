@@ -1675,3 +1675,24 @@ INSERT INTO `bcnm_loot` VALUES ('179','17946','100','3');
 INSERT INTO `bcnm_loot` VALUES ('179','18358','100','3');
 INSERT INTO `bcnm_loot` VALUES ('179','16976','100','3');
 INSERT INTO `bcnm_loot` VALUES ('179','4990','230','3');
+
+-- ENM Sheep in Antlion's Clothing
+INSERT INTO `bcnm_loot` VALUES ('180','1763','34','1');
+INSERT INTO `bcnm_loot` VALUES ('180','1769','27','1');
+INSERT INTO `bcnm_loot` VALUES ('180','1764','27','1');
+INSERT INTO `bcnm_loot` VALUES ('180','1842','6','0');
+INSERT INTO `bcnm_loot` VALUES ('180','17829','8','2');
+INSERT INTO `bcnm_loot` VALUES ('180','17945','9','2');
+INSERT INTO `bcnm_loot` VALUES ('180','17467','6','2');
+INSERT INTO `bcnm_loot` VALUES ('180','13690','10','3');
+INSERT INTO `bcnm_loot` VALUES ('180','13109','12','3');
+
+-- ENM Shall We Dance?
+INSERT INTO `bcnm_loot` VALUES ('181','1762','320','0');
+INSERT INTO `bcnm_loot` VALUES ('181','1767','320','0');
+INSERT INTO `bcnm_loot` VALUES ('181','1771','320','0');
+INSERT INTO `bcnm_loot` VALUES ('181','18015','250','1');
+INSERT INTO `bcnm_loot` VALUES ('181','4990','330','1');
+INSERT INTO `bcnm_loot` VALUES ('181','17365','180','1');
+INSERT INTO `bcnm_loot` VALUES ('181','18099','150','1');
+INSERT INTO `bcnm_loot` VALUES ('181','1842','240','2');
