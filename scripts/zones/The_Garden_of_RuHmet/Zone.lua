@@ -71,7 +71,7 @@ end;
 -- onGameHour		
 -----------------------------------		  
 
-function onGameHour(npc, mob, player)
+function onGameHour()
 	
 	local VanadielHour = VanadielHour();
 	local qm2 = GetNPCByID(16921028); -- Jailer of Faith

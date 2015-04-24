@@ -15,18 +15,18 @@ require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	 --Trade 1 High-Quality Euvhi Organ
-	if(GetMobAction(Jailer_of_Faith) == 0 and trade:hasItemQty(1899,1) and trade:getItemCount() == 1) then
-		player:tradeComplete();
-		-- Hide the ???
-		GetNPCByID(Jailer_of_Faith_QM):hideNPC(900);
-		-- Change MobSpawn to Players @pos.
-		GetMobByID(Jailer_of_Faith):setSpawn(player:getXPos(),player:getYPos(),player:getZPos());
-		-- Spawn Jailer of Faith and his pets.
-		SpawnMob(Jailer_of_Faith,900):updateEnmity(player); 
-		SpawnMob(Kf_Ghrah_WHM,900):updateEnmity(player); 
-		SpawnMob(Kf_Ghrah_BLM,900):updateEnmity(player); 
-	end
+     --Trade 1 High-Quality Euvhi Organ
+    if(GetMobAction(Jailer_of_Faith) == 0 and trade:hasItemQty(1899,1) and trade:getItemCount() == 1) then
+        player:tradeComplete();
+        -- Hide the ???
+        GetNPCByID(Jailer_of_Faith_QM):hideNPC(900);
+        -- Change MobSpawn to Players @pos.
+        GetMobByID(Jailer_of_Faith):setSpawn(player:getXPos(),player:getYPos(),player:getZPos());
+        -- Spawn Jailer of Faith and his pets.
+        SpawnMob(Jailer_of_Faith,900):updateEnmity(player); 
+        SpawnMob(Kf_Ghrah_WHM,900):updateEnmity(player); 
+        SpawnMob(Kf_Ghrah_BLM,900):updateEnmity(player); 
+    end
 end; 
 
 -----------------------------------
