@@ -2816,7 +2816,7 @@ SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSki
         // Chainbound active on target
         if(PCBEffect)
         {
-            if (PCBEffect->GetStartTime() + 2000 < gettick())
+            if (PCBEffect->GetStartTime() + 3000 < gettick())
             {
                 //Konzen-Ittai
                 if (PCBEffect->GetPower() > 1)
@@ -2848,7 +2848,7 @@ SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSki
             // Previous effect is an opening effect, meaning the power is
             // actually the ID of the opening weaponskill.  We need all 3
             // of the possible skillchain properties on the initial link.
-            if (PSCEffect->GetStartTime() + 2000 < gettick())
+            if (PSCEffect->GetStartTime() + 3000 < gettick())
             {
                 if (PSCEffect->GetPower())
                 {
@@ -2918,7 +2918,7 @@ SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CBlueSpell* PSpell)
         // Chainbound active on target
         if(PCBEffect)
         {
-            if (PCBEffect->GetStartTime() + 2000 < gettick())
+            if (PCBEffect->GetStartTime() + 3000 < gettick())
             {
                 //Konzen-Ittai
                 if (PCBEffect->GetPower() > 1)
@@ -2949,7 +2949,7 @@ SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CBlueSpell* PSpell)
             // Previous effect is an opening effect, meaning the power is
             // actually the ID of the opening weaponskill.  We need all 3
             // of the possible skillchain properties on the initial link.
-            if (PSCEffect->GetStartTime() + 2000 < gettick())
+            if (PSCEffect->GetStartTime() + 3000 < gettick())
             {
                 if (PSCEffect->GetPower())
                 {
