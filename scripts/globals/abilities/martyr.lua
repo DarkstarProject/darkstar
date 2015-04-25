@@ -1,11 +1,15 @@
 -----------------------------------
 -- Ability: Martyr
+-- Sacrifices HP to heal a party member double the amount.
+-- Obtained: White Mage Level 75
+-- Recast Time: 0:10:00
+-- Duration: Instant
 -----------------------------------
 
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -17,27 +21,31 @@ function onAbilityCheck(player,target,ability)
         end
 end;
 
-function onUseAbility(player, target, ability)
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(player,target,ability)
     --Plus 5 percent hp recovers per extra martyr merit
     local meritBonus = player:getMerit(MERIT_MARTYR) - 5;
     --printf("Martyr Merit Bonus: %d", meritBonus);
-    
+
     local hpPercent = (200 + meritBonus) / 100;
     --printf("Martyr HP Bonus Percent: %f", hpPercent);
-    
-    local damageHP = math.floor(player:getHP() * 0.25);    
+
+    local damageHP = math.floor(player:getHP() * 0.25);
     --printf("Martyr HP Damage: %d", damageHP);
 
     --We need to capture this here because the base damage is the basis for the heal
     local healHP = damageHP * hpPercent;
 
     --If stoneskin is present, it should absorb damage...
-    damageHP = utils.stoneskin(player, damageHP);    
-    --printf("Martyr Final HP Damage (After Stoneskin): %d", damageHP);    
-    
+    damageHP = utils.stoneskin(player, damageHP);
+    --printf("Martyr Final HP Damage (After Stoneskin): %d", damageHP);
+
     --Log HP Headed for Debug
     --printf("Martyr Healed HP: %d", healHP);
-    
+
     player:delHP(damageHP);
     target:addHP(healHP);
 end;
