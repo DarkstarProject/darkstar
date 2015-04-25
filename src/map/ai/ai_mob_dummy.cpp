@@ -1487,8 +1487,11 @@ void CAIMobDummy::ActionAttack()
             if (m_Tick >= m_LastStandbackTime + m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME))
             {
                 // speed up my ranged attacks cause i'm waiting here
-                m_LastSpecialTime -= 1000;
-                m_LastMagicTime -= 500;
+                if (m_LastSpecialTime > 1000 && m_LastMagicTime > 500)
+                {
+                    m_LastSpecialTime -= 1000;
+                    m_LastMagicTime -= 500;
+                }
                 FinishAttack();
                 return;
             }
