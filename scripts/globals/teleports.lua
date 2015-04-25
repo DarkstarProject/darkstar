@@ -896,15 +896,15 @@ function tavnzanianRing(player)
 end;
 
 function toexitprommea(player)
-	player:setPos(580,0,500,192,72);
+	player:setPos(179 ,35 ,256 ,63 ,117);
 end;
 
 function toexitpromholla(player)
-	player:setPos(580,0,500,192,72);
+	player:setPos(337 ,19 ,-60 ,125 ,102);
 end;
 
 function toexitpromdem(player)
-	player:setPos(580,0,500,192,72);
+	player:setPos(136 ,19 ,220 ,130 ,108);
 end;
 
 function tolufaise(player)
