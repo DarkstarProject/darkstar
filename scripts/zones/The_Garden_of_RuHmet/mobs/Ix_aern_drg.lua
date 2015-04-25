@@ -52,10 +52,10 @@ end
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	-- Despawn pets..
-	DespawnMob(wynavA);
-	DespawnMob(wynavB);
-	DespawnMob(wynavC);
+    -- Despawn pets..
+    DespawnMob(wynavA);
+    DespawnMob(wynavB);
+    DespawnMob(wynavC);
     
     local IxAernDRG_PH = GetServerVariable("[SEA]IxAernDRG_PH"); -- Should be be the ID of the mob that spawns the actual PH
 
@@ -71,9 +71,9 @@ end;
 -----------------------------------
 function onMobDespawn( mob )
     -- Despawn pets.
-	DespawnMob(wynavA);
-	DespawnMob(wynavB);
-	DespawnMob(wynavC);
+    DespawnMob(wynavA);
+    DespawnMob(wynavB);
+    DespawnMob(wynavC);
 
     local IxAernDRG_PH = GetServerVariable("[SEA]IxAernDRG_PH"); -- Should be be the ID of the mob that spawns the actual PH
 

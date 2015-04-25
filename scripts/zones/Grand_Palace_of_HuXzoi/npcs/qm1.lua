@@ -14,11 +14,11 @@ require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local IxAern = 16916815; -- Ix'Aern (MNK). This is the ID base for Ix and his minions. 
+    local IxAern = 16916815; -- Ix'Aern (MNK). This is the ID base for Ix and his minions.
     local chance = 0; -- Rate in percent in which an item will drop.
     local validTrade = 0;
     -- Trade Organs
-	if(GetMobAction(IxAern) == 0) then
+    if(GetMobAction(IxAern) == 0) then
         if (trade:hasItemQty(1900,1) and trade:getItemCount() == 1) then -- 1 HQ Aern Organ (33%)
             chance=33;
             validTrade=1;
