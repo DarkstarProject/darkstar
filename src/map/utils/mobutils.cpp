@@ -521,7 +521,7 @@ void CalculateStats(CMobEntity * PMob)
         PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(PMob->getMobMod(MOBMOD_SPELL_LIST));
     }
 
-    if(PMob->m_Aggro != AGGRO_NONE && PMob->loc.zone->GetType() == ZONETYPE_OUTDOORS)
+    if(PMob->loc.zone->GetType() == ZONETYPE_OUTDOORS)
     {
         PMob->m_roamFlags |= ROAMFLAG_MEDIUM;
     }
