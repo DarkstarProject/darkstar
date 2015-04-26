@@ -3,7 +3,6 @@
 -- desc: Common functionality for Porter Moogles.
 -----------------------------------
 require("scripts/globals/common");
-local bit = require("bit");
 
 -- Item IDs for all of the slips.
 local slipIds = { 29312, 29313, 29314, 29315, 29316, 29317, 29318, 29319, 29320, 29321, 29322, 29323, 29324, 29325, 29326, 29327, 29328, 29329, 29330, 29331, 29332 };
@@ -36,16 +35,14 @@ local slipItems = {
 ----------------------------------------------------------------------
 -- desc : Checks if the supplied item is a Moogle Storage Slip.
 ----------------------------------------------------------------------
-function isSlip(itemId)
-    if (itemId == nil) then
-        return false;
-    end
-
-    for i = 1, #slipIds, 1 do
-        if (itemId == slipIds[i]) then
-            return true;
-        end
-    end
+local function isSlip(itemId)
+	if (slipItems[itemId] ~= nil) then
+		for i = 1, #slipIds, 1 do
+			if (itemId == slipIds[i]) then
+				return true;
+			end
+		end
+	end
     
     return false;
 end
@@ -53,7 +50,7 @@ end
 ----------------------------------------------------------------------
 -- desc : Checks if the supplied slip can store the supplied item. 
 ----------------------------------------------------------------------
-function isStorableOn(slipId, itemId)
+local function isStorableOn(slipId, itemId)
     for _, id in ipairs(slipItems[slipId]) do
         if (id == itemId) then
             return true;
@@ -67,7 +64,7 @@ end
 ----------------------------------------------------------------------
 -- desc : Gets IDs of retrievable items from the extra data on a slip.
 ----------------------------------------------------------------------
-function getItemsOnSlip(extra, slipId)
+local function getItemsOnSlip(extra, slipId)
     local slip = slipItems[slipId];
     
     local itemsOnSlip = {};
@@ -90,7 +87,7 @@ end
 ----------------------------------------------------------------------
 -- desc : Finds the key in table t where the value equals i.
 ----------------------------------------------------------------------
-function find(t, i)
+local function find(t, i)
   for k, v in ipairs(t) do
     if v == i then
       return k
@@ -102,7 +99,7 @@ end
 ----------------------------------------------------------------------
 -- desc : Converts the 8 bit extra data into 32 bit params for events.
 ----------------------------------------------------------------------
-function int8ToInt32(extra)
+local function int8ToInt32(extra)
     local params = {};
     local int32 = '';
     
@@ -126,7 +123,7 @@ end
 --        if there are two or more Storage Slips in the trade and no
 --        storable items.
 ----------------------------------------------------------------------
-function getSlipId(trade)
+local function getSlipId(trade)
     local slipId = 0;
     local slips = 0;
     
@@ -150,7 +147,7 @@ end
 -- desc : Gets all items in the trade window that are storable on the
 --        slip in the trade window.
 ----------------------------------------------------------------------
-function getStorableItems(player, trade, slipId)
+local function getStorableItems(player, trade, slipId)
     local storableItemIds = { };
     
     for i = 0, 7 do
@@ -169,7 +166,7 @@ end
 -- desc : Stores the items on the Storage Slip extra data and starts
 --        the event indicating that the storage was successful.
 ----------------------------------------------------------------------
-function storeItems(player, storableItemIds, slipId, e)
+local function storeItems(player, storableItemIds, slipId, e)
     if (#storableItemIds > 0) then
         local param0 = 0x0;
         local param1 = 0x0;
@@ -213,7 +210,7 @@ end
 -- desc : Returns a zero-based identifier for the slip (Storage Slip 1
 --        is index 0, Storage Slip 2 is index 1, etc).
 ----------------------------------------------------------------------
-function getSlipIndex(slipId)
+local function getSlipIndex(slipId)
     return find(slipIds, slipId) - 1;
 end
 
@@ -221,7 +218,7 @@ end
 -- desc : Gets the extra data from the traded slip and starts the 
 --        retrieval event.
 ----------------------------------------------------------------------
-function startRetrieveProcess(player, eventId, slipId)
+local function startRetrieveProcess(player, eventId, slipId)
     local extra = player:getRetrievableItemsForSlip(slipId);
     local params = int8ToInt32(extra);
     local slipIndex = getSlipIndex(slipId);
@@ -234,15 +231,12 @@ end
 -- desc : Begins the storage or retrieval process based on the items
 --        supplied in the trade.
 ----------------------------------------------------------------------
-function doTrade(player, trade, e)
+function porterDoTrade(player, trade, e)
     local slipId, slipCount = getSlipId(trade);
-    if (slipId == 0) then return; end;
-    
+    if (slipId == 0 or slipdCount > 1) then return; end;
+	
     local storableItemIds = getStorableItems(player, trade, slipId);
-    if (slipCount > 1 and #storableItemIds == 0) then
-        return;
-    end
-        
+	
     if (#storableItemIds > 0) then
         storeItems(player, storableItemIds, slipId, e);
     else
@@ -255,7 +249,7 @@ end
 --        the slip's extra data, displays a message to the user, and
 --        updates the user's event data.
 ----------------------------------------------------------------------
-function eventUpdate(player, csid, option, RETRIEVE_EVENT_ID, RETRIEVE_DIALOG_ID, ITEM_CANNOT_BE_OBTAINED)
+function porterEventUpdate(player, csid, option, RETRIEVE_EVENT_ID, RETRIEVE_DIALOG_ID, ITEM_CANNOT_BE_OBTAINED)
     local slipId = player:getLocalVar('slipId');
     if (csid == RETRIEVE_EVENT_ID and slipId ~= 0 and slipId ~= nil) then
         local extra = player:getRetrievableItemsForSlip(slipId);
@@ -286,7 +280,7 @@ end
 ----------------------------------------------------------------------
 -- desc : Completes the event.
 ----------------------------------------------------------------------
-function eventFinish(player, csid, option, TALK_EVENT_ID, ITEM_CANNOT_BE_OBTAINED, ITEM_OBTAINED, NOT_HAVE_ENOUGH_GIL)
+function porterEventFinish(player, csid, option, TALK_EVENT_ID, ITEM_CANNOT_BE_OBTAINED, ITEM_OBTAINED, NOT_HAVE_ENOUGH_GIL)
     if (csid == TALK_EVENT_ID and option < 1000) then
         -- This is just because hilarious.
         option = math.floor(option / 16) + (option % 16);

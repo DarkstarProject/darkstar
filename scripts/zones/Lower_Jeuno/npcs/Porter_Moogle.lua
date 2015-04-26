@@ -24,7 +24,7 @@ local e =
 -- onTrade Action
 -----------------------------------
 function onTrade(player,npc,trade)
-    doTrade(player, trade, e);
+    porterDoTrade(player, trade, e);
 end
 
 -----------------------------------
@@ -39,12 +39,12 @@ end
 -- onEventUpdate
 -----------------------------------
 function onEventUpdate(player,csid,option)
-    eventUpdate(player, csid, option, e.RETRIEVE_EVENT_ID, RETRIEVE_DIALOG_ID, ITEM_CANNOT_BE_OBTAINED);
+    porterEventUpdate(player, csid, option, e.RETRIEVE_EVENT_ID, RETRIEVE_DIALOG_ID, ITEM_CANNOT_BE_OBTAINED);
 end
 
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 function onEventFinish(player,csid,option)
-    eventFinish(player, csid, option, e.TALK_EVENT_ID, ITEM_CANNOT_BE_OBTAINED, ITEM_OBTAINED, NOT_HAVE_ENOUGH_GIL);
+    porterEventFinish(player, csid, option, e.TALK_EVENT_ID, ITEM_CANNOT_BE_OBTAINED, ITEM_OBTAINED, NOT_HAVE_ENOUGH_GIL);
 end
