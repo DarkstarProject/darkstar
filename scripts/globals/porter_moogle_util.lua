@@ -285,7 +285,7 @@ function porterEventFinish(player, csid, option, TALK_EVENT_ID, ITEM_CANNOT_BE_O
         if (player:delGil(1000)) then
             player:addItem(slipIds[option]);
             player:messageSpecial(ITEM_OBTAINED, slipIds[option]);
-		else
+        else
             player:messageSpecial(NOT_HAVE_ENOUGH_GIL, slipIds[option]);
             return;
         end
