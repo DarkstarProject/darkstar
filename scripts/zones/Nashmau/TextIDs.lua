@@ -26,3 +26,6 @@ WATAKHAMAZOM_SHOP_DIALOG = 10463; -- Looking for some bows and bolts to strrrike
   CHICHIROON_SHOP_DIALOG = 10465; -- Howdy-hooo! I gots soooper rare dice for yooo.
     PIPIROON_SHOP_DIALOG = 0; -- [UNKNOWN]
     YOYOROON_SHOP_DIALOG = 0; -- [UNKNOWN]
+
+-- Porter Moogle
+RETRIEVE_DIALOG_ID = 11846; -- You retrieve a <item> from the porter moogle's care.

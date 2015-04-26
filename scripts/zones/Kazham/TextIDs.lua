@@ -26,3 +26,6 @@ GHEMISENTERILO_SHOP_DIALOG = 10012; -- Can you really get everything that you wa
 
 -- conquest Base
 CONQUEST_BASE = 6472; -- Tallying conquest results...
+
+-- Porter Moogle
+RETRIEVE_DIALOG_ID = 10961; -- You retrieve a <item> from the porter moogle's care.

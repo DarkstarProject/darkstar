@@ -57,3 +57,6 @@ UGRIHD_PURCHASE_DIALOGUE = 4593; -- Salaheem's Sentinels values your contributio
 -- Assault
     RYTAAL_MISSION_COMPLETE = 5600; -- Congratulations. You have been awarded Assault Points for the successful completion of your mission.
     RYTAAL_MISSION_FAILED = 5601; -- Your mission was not successful; however, the Empire recognizes your contribution and has awarded you Assault Points.
+
+-- Porter Moogle
+RETRIEVE_DIALOG_ID = 13462; -- You retrieve a <item> from the porter moogle's care.

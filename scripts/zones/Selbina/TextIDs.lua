@@ -30,3 +30,6 @@ WENZEL_DELIVERY_DIALOG = 7552; -- My independent survey confirms the town entran
 
 -- conquest Base
 CONQUEST_BASE = 7069; -- Tallying conquest results...
+
+-- Porter Moogle
+RETRIEVE_DIALOG_ID = 7713; -- You retrieve a <item> from the porter moogle's care.

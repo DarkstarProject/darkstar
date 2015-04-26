@@ -52,10 +52,10 @@ function onTrigger(player,npc)
 		player:startEvent(0x022c);
 	elseif(herMajestysGarden == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 4) then
 		player:startEvent(0x0054);
-	elseif(herMajestysGarden == QUEST_ACCEPTED) then
-		player:startEvent(0x0052);
 	elseif(currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 4 and player:hasKeyItem(DREAMROSE)) then
 	    player:startEvent(0x006f);
+	elseif(herMajestysGarden == QUEST_ACCEPTED) then
+		player:startEvent(0x0052);
 	elseif(circleOfTime == QUEST_ACCEPTED) then
 		if (player:getVar("circleTime") == 5) then
 			player:startEvent(0x0063);

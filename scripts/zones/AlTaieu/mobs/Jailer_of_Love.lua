@@ -15,5 +15,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	SpawnMob(16912876,180):updateEnmity(killer);
+    SpawnMob(16912876,180):updateEnmity(killer);
 end;
