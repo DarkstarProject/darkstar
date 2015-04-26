@@ -116,3 +116,7 @@ MILLECHUCA_CLOSED_DIALOG = 12556; -- I've been trying to import goods from Vollb
 
 -- conquest Base
 CONQUEST_BASE = 7209; -- Tallying conquest results...
+
+
+-- Porter Moogle
+RETRIEVE_DIALOG_ID = 18022; -- You retrieve a <item> from the porter moogle's care.

@@ -14,3 +14,6 @@ KARLOTTE_DELIVERY_DIALOG = 10809; -- I am here to help with all your parcel deli
 -- Shop Texts
 BLINGBRIX_SHOP_DIALOG = 7175; -- Blingbrix good Gobbie from Boodlix's! Boodlix's Emporium help fighting fighters and maging mages. Gil okay, okay
    SILKE_SHOP_DIALOG = 12746; -- You wouldn't happen to be a fellow scholar, by any chance? The contents of these pages are beyond me, but perhaps you might glean something from them. They could be yours...for a nominal fee.
+
+-- Porter Moogle
+RETRIEVE_DIALOG_ID = 14655; -- You retrieve a <item> from the porter moogle's care.
