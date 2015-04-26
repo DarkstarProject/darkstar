@@ -407,6 +407,8 @@ void CZone::LoadNavMesh()
     else
     {
         m_useNavMesh = false;
+        delete m_navMesh;
+        m_navMesh = nullptr;
     }
 }
 
