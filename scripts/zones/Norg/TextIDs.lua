@@ -35,3 +35,5 @@ SOLBYMAHOLBY_SHOP_DIALOG = 10543; -- Hiya! My name's Solby-Maholby! I'm new here
 -- conquest Base
 CONQUEST_BASE = 6472; -- Tallying conquest results...
 
+-- Porter Moogle
+RETRIEVE_DIALOG_ID = 11243; -- You retrieve a <item> from the porter moogle's care.
