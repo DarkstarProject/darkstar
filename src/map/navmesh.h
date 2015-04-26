@@ -85,6 +85,8 @@ class CNavMesh
   private:
     void outputError(uint32 status);
 
+    dtRaycastHit m_hit;
+    dtPolyRef m_hitPath[20];
     dtNavMesh* m_navMesh;
     dtNavMeshQuery* m_navMeshQuery;
     char* path;
