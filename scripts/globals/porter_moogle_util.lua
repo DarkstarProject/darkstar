@@ -36,15 +36,7 @@ local slipItems = {
 -- desc : Checks if the supplied item is a Moogle Storage Slip.
 ----------------------------------------------------------------------
 local function isSlip(itemId)
-	if (slipItems[itemId] ~= nil) then
-		for i = 1, #slipIds, 1 do
-			if (itemId == slipIds[i]) then
-				return true;
-			end
-		end
-	end
-    
-    return false;
+	return (slipItems[itemId] ~= nil);
 end
 
 ----------------------------------------------------------------------
