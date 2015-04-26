@@ -579,6 +579,13 @@ INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809995', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809999', '0');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809998', '0');
 INSERT INTO `bcnm_battlefield` VALUES ('673', '1', '16810018', '3');	-- Race Runner
+
+-- ENM: Sheep in Antlion's Clothing
+INSERT INTO `bcnm_battlefield` VALUES ('674', '1', '16810001', '3');
+INSERT INTO `bcnm_battlefield` VALUES ('674', '1', '16810002', '1');
+INSERT INTO `bcnm_battlefield` VALUES ('674', '1', '16810003', '1');
+INSERT INTO `bcnm_battlefield` VALUES ('674', '1', '16810004', '1');
+
 INSERT INTO `bcnm_battlefield` VALUES ('736', '1', '16830466', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('736', '1', '16830465', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('736', '1', '16830468', '3');
