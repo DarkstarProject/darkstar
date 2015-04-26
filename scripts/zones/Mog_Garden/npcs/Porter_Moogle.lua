@@ -24,7 +24,7 @@ local e =
 -- onTrade Action
 -----------------------------------
 function onTrade(player,npc,trade)
-    porterDoTrade(player, trade, e);
+    porterMoogleTrade(player, trade, e);
 end
 
 -----------------------------------
