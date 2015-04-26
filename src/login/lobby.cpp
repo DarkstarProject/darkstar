@@ -75,7 +75,7 @@ int32 lobbydata_parse(int32 fd)
 		if( RFIFOREST(fd) >= 5 &&
 			RBUFB(session[fd]->rdata,0) == 0xA1 )
 		{
-			unsigned char *buff = session[fd]->rdata;
+			char* buff = session[fd]->rdata;
 
 			int32 accid = RBUFL(buff,1);
 
@@ -107,7 +107,7 @@ int32 lobbydata_parse(int32 fd)
 
 	if( RFIFOREST(fd) >= 1 )
 	{
-		unsigned char *buff = session[fd]->rdata;
+		char* buff = session[fd]->rdata;
 		if (RBUFB(buff,0) == 0x0d) ShowDebug(CL_RED"Posible Crash Attempt from IP: " CL_WHITE"<%s>\n" CL_RESET,ip2str(session[fd]->client_addr,nullptr),nullptr);
 		ShowDebug("lobbydata_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n",RBUFB(buff,0),ip2str(sd->client_addr,nullptr));
 
@@ -419,7 +419,7 @@ int32 lobbyview_parse(int32 fd)
 
 	if( RFIFOREST(fd) >= 9)
 	{
-		unsigned char *buff = session[fd]->rdata;
+		char* buff = session[fd]->rdata;
 		ShowDebug("lobbyview_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n",RBUFB(buff,8),ip2str(sd->client_addr,nullptr));
 		uint8 code = RBUFB(buff,8);
 		switch(code)

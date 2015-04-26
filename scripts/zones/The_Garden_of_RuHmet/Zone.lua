@@ -8,6 +8,7 @@ package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
+require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 
@@ -55,8 +56,15 @@ function onInitialize(zone)
 	zone:registerRegion(32,  97,-4,372,  102,4,379);--mithra niv 2 176 vers niv 3
 	zone:registerRegion(33,  97,-4,-427, 102,4,-421);--mithra niv 3 182 vers niv 2	
 	
+	-- Give the Fortitude ??? a random spawn
+	local qm1 = GetNPCByID(Jailer_of_Fortitude_QM);
+	local qm1position = math.random(1,5);
+	qm1:setPos(Jailer_of_Fortitude_QM_POS[qm1position][1], Jailer_of_Fortitude_QM_POS[qm1position][2], Jailer_of_Fortitude_QM_POS[qm1position][3]);
 	
-	
+	--Give the Faith ??? a random spawn 
+	local qm3 = GetNPCByID(Jailer_of_Faith_QM);
+	local qm3position = math.random(1,5);
+	qm3:setPos(Jailer_of_Faith_QM_POS[qm3position][1], Jailer_of_Faith_QM_POS[qm3position][2], Jailer_of_Faith_QM_POS[qm3position][3]);
 end;
 
 -----------------------------------		
@@ -69,29 +77,30 @@ function onGameHour(npc, mob, player)
 	local qm2 = GetNPCByID(16921028); -- Jailer of Faith
 	local qm3 = GetNPCByID(16921029); -- Ix'aern drk
     local s = math.random(6,12) -- wait time till change to next spawn pos, random 15~30 mins.
-	-- Jailer of Faith spawn randomiser
-	--[[if(VanadielHour % s == 0 and GetMobAction(16921021) == 0) then -- Change ??? position every 6 hours Vana'diel time (~15 mins)
-        local qm3p = math.random(1,5); -- random for next @pos. -- start in spawn pos 1.
-			--print(qm3p) 
-			qm3:hideNPC(60);
-				if (qm3p == 1) then
-                        qm3:setPos(-420,0.00,-157); -- spawn point 1 "Hume"
-						--printf("Qm3 is at pos 1");
-                elseif (qm3p == 2) then
-                        qm3:setPos(-157,0.00,-340); -- spawn point 2 "Elvaan"
-						--printf("Qm3 is at pos 2");
-                elseif (qm3p == 3) then
-                        qm3:setPos(-260,0.00,-643); -- spawn point 3 "Galka"
-						--printf("Qm3 is at pos 3");
-                elseif (qm3p == 4) then
-                        qm3:setPos(-580,0.00,-644); -- spawn point 4 "Taru"
-						--printf("Qm3 is at pos 4");
-                elseif (qm3p == 5) then
-                        qm3:setPos(-683,0.00,-340); -- spawn point 5 "Mithra"
-						--printf("Qm3 is at pos 5");
-				end
-		end	
+	
+	-- Jailer of Fortitude spawn randomiser
+	if (VanadielHour % 6 == 0) then
+		local qm1 = GetNPCByID(Jailer_of_Fortitude_QM);
+		qm1:hideNPC(60);
 		
+		local qm1position = math.random(1,5);
+		qm1:setPos(Jailer_of_Fortitude_QM_POS[qm1position][1], Jailer_of_Fortitude_QM_POS[qm1position][2], Jailer_of_Fortitude_QM_POS[qm1position][3]);
+	end
+	
+	-- Jailer of Faith spawn randomiser
+	if (VanadielHour % s == 0) then
+		-- Get the ??? NPC 
+		local qm3 = GetNPCByID(Jailer_of_Faith_QM);
+		-- Hide it for 60 seconds
+		qm3:hideNPC(60);
+		
+		-- Get a new random position from the possible places
+		local qm3position = math.random(1,5);
+		-- Set the new ??? place
+		qm3:setPos(Jailer_of_Faith_QM_POS[qm3position][1], Jailer_of_Faith_QM_POS[qm3position][2], Jailer_of_Faith_QM_POS[qm3position][3]);
+	end
+	
+	--[[
 	-- Ix'DRK spawn randomiser
 	if(VanadielHour % 6 == 0) then -- Change ??? position every 6 hours Vana'diel time (~15 mins)
 		local qm2p = math.random(1,4); -- random for next @pos. -- start in spawn pos 1.

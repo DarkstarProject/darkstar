@@ -85,8 +85,10 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0181) then
 		player:needToZone(true);
 		player:delKeyItem(NOTES_FROM_IPUPU);
-		player:addKeyItem(MAP_OF_THE_HORUTOTO_RUINS);
-		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_HORUTOTO_RUINS);
+		if(player:hasKeyItem(MAP_OF_THE_HORUTOTO_RUINS) == false) then
+			player:addKeyItem(MAP_OF_THE_HORUTOTO_RUINS);
+			player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_HORUTOTO_RUINS);
+		end
 		player:addFame(WINDURST,WIN_FAME*120);
 		player:completeQuest(WINDURST,GLYPH_HANGER);
 	elseif(csid == 0x019d and option == 0) then
@@ -95,8 +97,10 @@ function onEventFinish(player,csid,option)
 		player:needToZone(true);
 		player:addGil(GIL_RATE*3000);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
-		player:addKeyItem(MAP_OF_FEIYIN);
-		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_FEIYIN);
+		if(player:hasKeyItem(MAP_OF_FEIYIN) == false) then
+			player:addKeyItem(MAP_OF_FEIYIN);
+			player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_FEIYIN);
+		end
 		player:addFame(WINDURST,WIN_FAME*120);
 		player:completeQuest(WINDURST,A_SMUDGE_ON_ONE_S_RECORD);	
 	end
