@@ -231,9 +231,9 @@ end
 -- desc : Begins the storage or retrieval process based on the items
 --        supplied in the trade.
 ----------------------------------------------------------------------
-function porterDoTrade(player, trade, e)
+function porterMoogleTrade(player, trade, e)
     local slipId, slipCount = getSlipId(trade);
-    if (slipId == 0 or slipdCount > 1) then return; end;
+    if (slipId == 0 or slipCount > 1) then return; end;
 	
     local storableItemIds = getStorableItems(player, trade, slipId);
 	
