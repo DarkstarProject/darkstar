@@ -29,7 +29,7 @@
 #include "../entities/battleentity.h"
 #include "../conquest_system.h"
 
-#define lua_prepscript(n,...) int8 File[255]; memset(File, 0, sizeof(File)); int32 oldtop = lua_gettop(LuaHandle); \
+#define lua_prepscript(n,...) int8 File[255]; int32 oldtop = lua_gettop(LuaHandle); \
                               snprintf( File, sizeof(File), n, ##__VA_ARGS__);
 
 /************************************************************************
