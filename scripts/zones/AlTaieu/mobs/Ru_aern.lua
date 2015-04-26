@@ -25,10 +25,10 @@ end;
 
 function onMobDeath(mob, killer)
 
-	if(killer:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and killer:getVar("PromathiaStatus") == 2)then
+    if(killer:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and killer:getVar("PromathiaStatus") == 2)then
 
 
-		switch (mob:getID()) : caseof {
+        switch (mob:getID()) : caseof {
             -- South Tower
             [16912829] = function (x)
             killer:setVar("Ru_aern_1-1KILL",1);
@@ -66,19 +66,19 @@ function onMobDeath(mob, killer)
         }
 
 
-		if (killer:getVar("Ru_aern_1-1KILL") == 1 and killer:getVar("Ru_aern_1-2KILL") == 1 and killer:getVar("Ru_aern_1-3KILL") == 1)then
+        if (killer:getVar("Ru_aern_1-1KILL") == 1 and killer:getVar("Ru_aern_1-2KILL") == 1 and killer:getVar("Ru_aern_1-3KILL") == 1)then
             killer:setVar("[SEA][AlTieu]SouthTower",1);
             clearTowerVars(killer, 1);
         end
-		if (killer:getVar("Ru_aern_2-1KILL") == 1 and killer:getVar("Ru_aern_2-2KILL") == 1 and killer:getVar("Ru_aern_2-3KILL") == 1)then
+        if (killer:getVar("Ru_aern_2-1KILL") == 1 and killer:getVar("Ru_aern_2-2KILL") == 1 and killer:getVar("Ru_aern_2-3KILL") == 1)then
             killer:setVar("[SEA][AlTieu]WestTower",1);
             clearTowerVars(killer, 2);
         end
-		if (killer:getVar("Ru_aern_3-1KILL") == 1 and killer:getVar("Ru_aern_3-2KILL") == 1 and killer:getVar("Ru_aern_3-3KILL") == 1)then
+        if (killer:getVar("Ru_aern_3-1KILL") == 1 and killer:getVar("Ru_aern_3-2KILL") == 1 and killer:getVar("Ru_aern_3-3KILL") == 1)then
             killer:setVar("[SEA][AlTieu]EastTower",1);
             clearTowerVars(killer, 3);
         end
-	end
+    end
 end;
 
 function clearTowerVars (player, towerNum)

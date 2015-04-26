@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if(csid == 0x00A2) then
         player:setVar("[SEA][AlTieu]WestTowerCS", 1);
         player:setVar("[SEA][AlTieu]WestTower", 0);

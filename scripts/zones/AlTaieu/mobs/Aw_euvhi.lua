@@ -19,9 +19,9 @@ end;
 -- onMobEngaged
 -----------------------------------
 
-function onMobEngaged(mob,target)	
+function onMobEngaged(mob,target)    
 end;
-               			
+                           
 -----------------------------------
 -- onMobDeath
 -----------------------------------
