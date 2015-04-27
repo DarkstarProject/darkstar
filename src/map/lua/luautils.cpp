@@ -2914,38 +2914,32 @@ int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobS
 {
     lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
-    if (prepFile(File, "onMobWeaponSkill"))
+    if (!prepFile(File, "onMobWeaponSkill"))
     {
-        return 0;
-    }
+        CLuaBaseEntity LuaBaseEntity(PTarget);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
 
-    CLuaBaseEntity LuaBaseEntity(PTarget);
-    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        CLuaBaseEntity LuaMobEntity(PMob);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
 
-    CLuaBaseEntity LuaMobEntity(PMob);
-    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        CLuaMobSkill LuaMobSkill(PMobSkill);
+        Lunar<CLuaMobSkill>::push(LuaHandle, &LuaMobSkill);
 
-    CLuaMobSkill LuaMobSkill(PMobSkill);
-    Lunar<CLuaMobSkill>::push(LuaHandle, &LuaMobSkill);
+        if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
+        {
+            ShowError("luautils::onMobWeaponSkill: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+        }
+        else
+        {
+            int32 returns = lua_gettop(LuaHandle) - oldtop;
 
-    if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
-    {
-        ShowError("luautils::onMobWeaponSkill: %s\n", lua_tostring(LuaHandle, -1));
-        lua_pop(LuaHandle, 1);
-        return 0;
-    }
-    int32 returns = lua_gettop(LuaHandle) - oldtop;
-    if (returns < 1)
-    {
-        ShowError("luautils::onMobWeaponSkill (%s): 1 return expected, got %d\n", File, returns);
-        return 0;
-    }
-    uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
-    lua_pop(LuaHandle, 1);
-    if (returns > 1)
-    {
-        ShowError("luautils::onMobWeaponSkill (%s): 1 return expected, got %d\n", File, returns);
-        lua_pop(LuaHandle, returns - 1);
+            if (returns > 0)
+            {
+                ShowError("luautils::onMobWeaponSkill (%s): 0 return expected, got %d\n", File, returns);
+                lua_pop(LuaHandle, returns - 1);
+            }
+        }
     }
 
     oldtop = lua_gettop(LuaHandle);
@@ -2956,9 +2950,11 @@ int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobS
     {
         return 0;
     }
-
+    CLuaBaseEntity LuaBaseEntity(PTarget);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+    CLuaBaseEntity LuaMobEntity(PMob);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+    CLuaMobSkill LuaMobSkill(PMobSkill);
 	Lunar<CLuaMobSkill>::push(LuaHandle,&LuaMobSkill);
 
 	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
@@ -2967,13 +2963,13 @@ int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobS
         lua_pop(LuaHandle, 1);
 		return 0;
 	}
-    returns = lua_gettop(LuaHandle) - oldtop;
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
     if (returns < 1)
     {
         ShowError("luautils::onMobWeaponSkill (%s): 1 return expected, got %d\n", File, returns);
         return 0;
     }
-	retVal = (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+	int32 retVal = (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
     lua_pop(LuaHandle, 1);
     if (returns > 1)
     {
