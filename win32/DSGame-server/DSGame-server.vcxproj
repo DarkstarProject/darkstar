@@ -196,6 +196,7 @@
     <ClInclude Include="..\..\src\common\lua\lunar.h" />
     <ClInclude Include="..\..\src\common\malloc.h" />
     <ClInclude Include="..\..\src\common\marshal\string.h" />
+    <ClInclude Include="..\..\src\common\marshal\bitfield.h" />
     <ClInclude Include="..\..\src\common\md52.h" />
     <ClInclude Include="..\..\src\common\mmo.h" />
     <ClInclude Include="..\..\src\common\recast\Recast.h" />

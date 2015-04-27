@@ -830,6 +830,9 @@
     <ClInclude Include="..\..\src\common\marshal\string.h">
       <Filter>Header Files\common\marshal</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\common\marshal\bitfield.h">
+      <Filter>Header Files\common\marshal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
