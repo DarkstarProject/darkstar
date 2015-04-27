@@ -53,7 +53,7 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 
 		if (m_roamFlags & ROAMFLAG_MEDIUM)
 		{
-			maxRadius = 15.0f;
+			maxRadius = 12.0f;
 		}
 
 		// TODO: finish roam flags. distance should have a distance limit
