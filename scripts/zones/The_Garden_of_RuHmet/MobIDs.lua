@@ -25,6 +25,30 @@ QnAernB = 16921020;
 
 -----------------------------------
 
--- Jailer of Fortitude 
-Jailer_of_Fortitude=16921015;
 
+-- Jailer of Fortitude 
+Jailer_of_Fortitude = 16921015;
+Jailer_of_Fortitude_QM = 16921027;
+Jailer_of_Fortitude_QM_POS = 
+{
+    {-420.00,0.00,755.00}, -- North / Hume tower.
+    {-43.00,0.00,460.00}, -- NE / Elvaan tower.
+    {-260.00,0.00,44.821}, -- SE / Galka tower.
+    {-580.00,0.00,43.00}, -- SW / Tarutaru tower.
+    {-796.00,0.00,460.00} -- NW / Mithra tower.
+};
+-- Jailer of Fortitude Pets
+Kf_Ghrah_WHM = 16921016;
+Kf_Ghrah_BLM = 16921017;
+
+-- Jailer of Faith
+Jailer_of_Faith = 16921021;
+Jailer_of_Faith_QM = 16921029;
+Jailer_of_Faith_QM_POS = 
+{
+    {-420.00,0.00,-157.00}, -- North / Hume tower.
+    {-157.00,0.00,-340.00}, -- NE / Elvaan tower.
+    {-260.00,0.00,-643.00}, -- SE / Galka tower.
+    {-580.00,0.00,-644.00}, -- SW / Tarutaru tower.
+    {-683.00,0.00,-340.00}  -- NW / Mithra tower.
+};
