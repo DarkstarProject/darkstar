@@ -74,8 +74,6 @@ end;
 function onGameHour(npc, mob, player)
 	
 	local VanadielHour = VanadielHour();
-	local qm2 = GetNPCByID(16921028); -- Jailer of Faith
-	local qm3 = GetNPCByID(16921029); -- Ix'aern drk
     local s = math.random(6,12) -- wait time till change to next spawn pos, random 15~30 mins.
 	
 	-- Jailer of Fortitude spawn randomiser
