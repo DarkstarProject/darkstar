@@ -451,17 +451,6 @@ bool CNavMesh::test(uint16 zoneId)
   int8 expectedLength = 0;
 
   switch(zoneId){
-    case 100:
-      // west ronfaure
-      start.x = -224;
-      start.y = 60;
-      start.z = -316;
-
-      end.x = -224;
-      end.y = 60;
-      end.z = -324;
-      expectedLength = 2;
-    break;
     case 127:
       // behe dominion
       // navmesh transformation x, -y, -z
