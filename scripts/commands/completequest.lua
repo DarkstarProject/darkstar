@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @completequest <logID> <questID> <player>
--- auth: <Unknown>, modified by TeoTwawki
 -- desc: Completes the given quest for the GM or target player.
 ---------------------------------------------------------------------------------------------------
 

@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @checkmission <Log ID> <Player>
--- auth: TeoTwawki
 -- desc: Prints current MissionID for the given LogID and target Player to the in game chatlog
 ---------------------------------------------------------------------------------------------------
 
