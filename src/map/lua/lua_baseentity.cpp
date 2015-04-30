@@ -8854,7 +8854,10 @@ inline int32 CLuaBaseEntity::disableLevelSync(lua_State* L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     if (PChar->PParty && PChar->PParty->GetSyncTarget() == PChar)
+    {
+        PChar->PParty->SetSyncTarget( nullptr, 551 );
         PChar->PParty->DisableSync();
+    }
     PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharSyncPacket(PChar));
     return 0;
 }
