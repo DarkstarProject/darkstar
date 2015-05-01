@@ -56,6 +56,9 @@ function onSpellCast(caster,target,spell)
         dmg = BlueMagicalSpell(caster, target, spell, params, MND_BASED);
         dmg = BlueFinalAdjustments(caster, target, spell, dmg, params);
         if (target:getMP() > 0) then
+            if (target:getMP < dmg) then
+                dmg = target:getMP();
+            end
             caster:addMP(dmg);
         else
             return 0;
