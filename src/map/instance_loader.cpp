@@ -32,16 +32,13 @@ This file is part of DarkStar-server source code.
 #include "entities/mobentity.h"
 #include "entities/npcentity.h"
 #include "lua/luautils.h"
-#include "utils/zoneutils.h"
 
-CInstanceLoader::CInstanceLoader(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester)
+CInstanceLoader::CInstanceLoader(uint8 instanceid, CZone* PZone, CCharEntity* PRequester)
 {
-	zone = zoneutils::GetZone(zoneid);
-
-	DSP_DEBUG_BREAK_IF(zone->GetType() != ZONETYPE_DUNGEON_INSTANCED);
+    DSP_DEBUG_BREAK_IF(PZone->GetType() != ZONETYPE_DUNGEON_INSTANCED);
 
 	requester = PRequester;
-	CInstance* instance = ((CZoneInstance*)zone)->CreateInstance(instanceid);
+    CInstance* instance = ((CZoneInstance*)PZone)->CreateInstance(instanceid);
 
 	SqlInstanceHandle = Sql_Malloc();
 
