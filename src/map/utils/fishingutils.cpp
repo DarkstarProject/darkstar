@@ -128,12 +128,12 @@ void StartFishing(CCharEntity* PChar)
 		// сообщение: "You can't fish without bait on the hook"	
 
 		PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x02));
-			PChar->pushPacket(new CReleasePacket(PChar, RELEASE_FISHING));
+		PChar->pushPacket(new CReleasePacket(PChar, RELEASE_FISHING));
 		return;
 	}
 
-		PChar->status = STATUS_NORMAL;
-		PChar->animation = ANIMATION_NEW_FISHING_START;
+	PChar->status = STATUS_NORMAL;
+	PChar->animation = ANIMATION_NEW_FISHING_START;
     PChar->updatemask |= UPDATE_HP;
 
 	PChar->pushPacket(new CCharUpdatePacket(PChar));
