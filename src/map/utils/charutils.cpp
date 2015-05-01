@@ -622,6 +622,11 @@ namespace charutils
             }
         }
 
+        if (zoning)
+        {
+            Sql_Query(SqlHandle, "UPDATE char_stats SET zoning = 0 WHERE charid = %u", PChar->id);
+        }
+
         PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
         PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
