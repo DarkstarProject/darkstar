@@ -322,7 +322,11 @@ function onTrigger(player, p1, zoneId)
 			if (zoneId ~= nil) then
 				local p2 = zoneId;
 				local targ2 = GetPlayerByName(p2);
-					-- Teleports Player 1 to Player 2 coordinates and zone.
+				if (targ1:getZoneID() == targ2:getZoneID())then
+					-- Moves Player 1 to Player 2 coordinates, no zone.
+					targ1:setPos( targ2:getXPos(), targ2:getYPos(), targ2:getZPos(), 0);
+				else
+				-- Teleports Player 1 to Player 2 coordinates and zone.
 					targ1:setPos( targ2:getXPos(), targ2:getYPos(), targ2:getZPos(), 0, targ2:getZoneID() );
 			end
 		end
