@@ -34,7 +34,6 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 	--print("leave code "..leavecode);
 	local currentMission = player:getCurrentMission(SANDORIA);
-	local MissionStatus = player:getVar("MissionStatus");
 	if(leavecode == 2) then 
 		--printf("win");
 		if(currentMission == THE_HEIR_TO_THE_LIGHT)	then
@@ -53,6 +52,8 @@ end;
 	
 function onEventFinish(player,csid,option)
 	--print("bc finish csid "..csid.." and option "..option);
+	local MissionStatus = player:getVar("MissionStatus");
+
 	if(csid == 0x7d01) then 
 		if(currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 3)	then
 			player:setVar("MissionStatus",4);

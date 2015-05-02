@@ -61,3 +61,6 @@ AMALASANDA_SHOP_DIALOG = 7628; -- Welcome to the Tenshodo. You want something, w
 
 -- conquest Base
 CONQUEST_BASE = 6515; -- Tallying conquest results...
+
+-- Porter Moogle
+RETRIEVE_DIALOG_ID = 10131; -- You retrieve a <item> from the porter moogle's care.

@@ -1,12 +1,19 @@
 -----------------------------------
--- Ability: Choral Roll
+-- Ability: Scholar's Roll
+-- Enhances Conserve MP effect for party members within area of effect
+-- Optimal Job: Scholar
+-- Lucky Number: 2
+-- Unlucky Number: 6
+-- Level: 64
+--
+-- Data unknown
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -18,7 +25,11 @@ function onAbilityCheck(player,target,ability)
 	end
 end;
 
-function onUseAbilityRoll(caster, target, ability, total)
+-----------------------------------
+-- onUseAbilityRoll
+-----------------------------------
+
+function onUseAbilityRoll(caster,target,ability,total)
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
 	local effectpowers = {2, 9, 3, 4, 5, 2, 6, 6, 7, 9, 14, 4}; --mostly random guesses
 	local effectpower = effectpowers[total]

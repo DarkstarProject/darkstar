@@ -1,21 +1,27 @@
 -----------------------------------
 -- Ability: Scavenge
+-- Searches the ground around user for items.
+-- Obtained: Ranger Level 10
+-- Recast Time: 3:00
+-- Duration: Instant
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
-
-
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
 	return 0,0;
 end;
 
-function onUseAbility(user, target, ability)
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(user,target,ability)
 	
 	-- RNG AF2 quest check
 	local FireAndBrimstoneCS = user:getVar("fireAndBrimstone");		
@@ -40,5 +46,3 @@ function onUseAbility(user, target, ability)
 	end
 	
 end;
-
-

@@ -127,6 +127,7 @@ public:
     bool            MoveTo(position_t* pos); // move entity to position. Doesn't pathfind
     void			Wait(int32 waitTime);
 
+    bool            CanSeePoint(position_t point);
     uint32          GetBattleTime();
 
 	void			SetBattleTarget(CBattleEntity* PEntity); //used for pets mainly

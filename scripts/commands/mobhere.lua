@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @mobhere <mobId>
--- auth: TeoTwawki
 -- desc: Spawns a MOB and then moves it to the current position, if in same zone.
 --       Errors will despawn the mobID unless "noDepop" was specified (any value works).
 ---------------------------------------------------------------------------------------------------

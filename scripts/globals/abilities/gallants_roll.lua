@@ -1,12 +1,32 @@
 -----------------------------------
--- Ability: Choral Roll
+-- Ability: Gallant's Roll
+-- Reduces physical damage taken by party members within area of effect
+-- Optimal Job: Paladin
+-- Lucky Number: 3
+-- Unlucky Number: 7
+-- Level: 55
+--
+-- Die Roll    |No PLD  |With PLD
+-- --------    -------  -----------
+-- 1           |4%      |14%
+-- 2           |5%      |15%
+-- 3           |15%     |25%
+-- 4           |6%      |16%
+-- 5           |7%      |17%
+-- 6           |8%      |18%
+-- 7           |3%      |13%
+-- 8           |9%      |19%
+-- 9           |10%     |20%
+-- 10          |12%     |22%
+-- 11          |20%     |30%
+-- Bust        |-10%    |-10%
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -18,7 +38,11 @@ function onAbilityCheck(player,target,ability)
 	end
 end;
 
-function onUseAbilityRoll(caster, target, ability, total)
+-----------------------------------
+-- onUseAbilityRoll
+-----------------------------------
+
+function onUseAbilityRoll(caster,target,ability,total)
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
 	local effectpowers = {4, 5, 15, 6, 7, 8, 3, 9, 10, 12, 20, 10}
 	local effectpower = effectpowers[total]

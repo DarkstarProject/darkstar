@@ -1,19 +1,25 @@
 -----------------------------------
 -- Ability: Shadowbind
+-- Roots enemy in place.
+-- Obtained: Ranger Level 40
+-- Recast Time: 5:00
+-- Duration: 00:30
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-	return 0,0;
+    return 0,0;
 end;
 
-function onUseAbility(player, target, ability)
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(player,target,ability)
 end;
-
-

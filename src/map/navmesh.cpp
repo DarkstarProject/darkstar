@@ -23,6 +23,7 @@
 
 #include "navmesh.h"
 #include "../common/detour/DetourNavMeshQuery.h"
+#include <float.h>
 #include <string.h>
 #include "../common/utils.h"
 #include "../common/dsprand.h"
@@ -85,6 +86,8 @@ void CNavMesh::ToDetourPos(position_t* pos, float* out){
 CNavMesh::CNavMesh()
 {
   m_navMesh = nullptr;
+  m_hit.path = m_hitPath;
+  m_hit.maxPath = 20;
 }
 
 CNavMesh::~CNavMesh()
@@ -384,6 +387,61 @@ bool CNavMesh::inWater(position_t point)
   return false;
 }
 
+bool CNavMesh::raycast(position_t start, position_t end)
+{
+  dtStatus status;
+
+  float spos[3];
+  CNavMesh::ToDetourPos(&start, spos);
+
+  float epos[3];
+  CNavMesh::ToDetourPos(&end, epos);
+
+  float polyPickExt[3];
+  polyPickExt[0] = 30;
+  polyPickExt[1] = 60;
+  polyPickExt[2] = 30;
+
+  float snearest[3];
+
+  dtQueryFilter filter;
+  filter.setIncludeFlags(0xffff);
+  filter.setExcludeFlags(0);
+
+  dtPolyRef startRef;
+
+  status = m_navMeshQuery->findNearestPoly(spos, polyPickExt, &filter, &startRef, snearest);
+
+  if(dtStatusFailed(status))
+  {
+    ShowError("CNavMesh::raycastPoint start point invalid (%f, %f, %f)\n", spos[0], spos[1], spos[2]);
+    outputError(status);
+    return true;
+  }
+
+  if (!m_navMesh->isValidPolyRef(startRef))
+  {
+    ShowError("CNavMesh::raycastPoint startRef is invalid (%f, %f, %f)\n", start.x, start.y, start.z);
+    return true;
+  }
+
+  status = m_navMeshQuery->raycast(startRef, spos, epos, &filter, 0, &m_hit);
+
+  if(dtStatusFailed(status))
+  {
+    ShowError("CNavMesh::raycastPoint raycast failed (%f, %f, %f)->(%f, %f, %f)\n", spos[0], spos[1], spos[2], epos[0], epos[1], epos[2]);
+    outputError(status);
+    return true;
+  }
+
+  // no wall was hit
+  if(m_hit.t == FLT_MAX){
+    return true;
+  }
+
+  return false;
+}
+
 bool CNavMesh::test(uint16 zoneId)
 {
   position_t path[30];
@@ -393,19 +451,9 @@ bool CNavMesh::test(uint16 zoneId)
   int8 expectedLength = 0;
 
   switch(zoneId){
-    case 100:
-      // west ronfaure
-      start.x = -224;
-      start.y = 60;
-      start.z = -316;
-
-      end.x = -224;
-      end.y = 60;
-      end.z = -324;
-      expectedLength = 2;
-    break;
     case 127:
       // behe dominion
+      // navmesh transformation x, -y, -z
       start.x = 153;
       start.y = 4;
       start.z = -98;
@@ -416,8 +464,18 @@ bool CNavMesh::test(uint16 zoneId)
 
       expectedLength = 3;
     break;
+    case 103:
+      // valkurm dunes
+      start.x = 656;
+      start.y = 1;
+      start.z = -116;
+
+      end.x = 646;
+      end.y = 0;
+      end.z = -148;
+      expectedLength = 4;
+    break;
     default:
-      ShowWarning("CNavMesh::test Skipping sanity test for zone (%d)\n", zoneId);
       return true;
   }
 

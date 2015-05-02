@@ -1,11 +1,15 @@
 -----------------------------------
 -- Ability: Spirit Surge
+-- Adds your wyvern's strength to your own.
+-- Obtained: Dragoon Level 1
+-- Recast Time: 1:00:00
+-- Duration: 1:00
 -----------------------------------
 
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -17,7 +21,11 @@ function onAbilityCheck(player,target,ability)
     end
 end;
 
-function onUseAbility(player, target, ability)
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(player,target,ability)
     -- Spirit Surge increases dragoon's MAX HP increases by 25% of wyvern MaxHP
     -- bg wiki says 25% ffxiclopedia says 15%, going with 25 for now
     local mhp_boost = target:getPet():getMaxHP()*0.25;

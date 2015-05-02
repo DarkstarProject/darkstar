@@ -1,18 +1,26 @@
 -----------------------------------
 -- Ability: Meditate
+-- Gradually charges TP.
+-- Obtained: Samurai Level 30
+-- Recast Time: 3:00 (Can be reduced to 2:30 using Merit Points)
+-- Duration: 15 seconds
 -----------------------------------
  
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
 	return 0,0;
 end;
 
-function onUseAbility(player, target, ability)
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(player,target,ability)
 	local amount = 12;
 	if(player:getMainJob()==12) then
 		amount = 20;

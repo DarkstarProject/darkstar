@@ -521,13 +521,18 @@ void CalculateStats(CMobEntity * PMob)
         PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(PMob->getMobMod(MOBMOD_SPELL_LIST));
     }
 
-    if(PMob->m_Aggro != AGGRO_NONE && PMob->loc.zone->GetType() == ZONETYPE_OUTDOORS)
+    if(PMob->m_Type & MOBTYPE_NOTORIOUS)
     {
-        PMob->m_roamFlags |= ROAMFLAG_MEDIUM;
+        // Notorious monsters don't roam very far
+        PMob->m_roamFlags |= ROAMFLAG_SMALL;
+    } 
+    else if(PMob->loc.zone->GetType() == ZONETYPE_OUTDOORS)
+    {
+        PMob->m_roamFlags |= ROAMFLAG_LARGE;
     }
     else
     {
-        PMob->m_roamFlags |= ROAMFLAG_SMALL;
+        PMob->m_roamFlags |= ROAMFLAG_MEDIUM;
     }
 
     if(PMob->m_roamFlags & ROAMFLAG_AMBUSH)

@@ -1,12 +1,32 @@
 -----------------------------------
 -- Ability: Hunter's Roll
+-- Enhances accuracy and ranged accuracy for party members within area of effect
+-- Optimal Job: Ranger
+-- Lucky Number: 4
+-- Unlucky Number: 8
+-- Level: 11
+--
+-- Die Roll    |Without RNG |With RNG
+-- --------    ------------ -------
+-- 1           |+10         |+25
+-- 2           |+13         |+28
+-- 3           |+15         |+30
+-- 4           |+40         |+55
+-- 5           |+18         |+33
+-- 6           |+20         |+35
+-- 7           |+25         |+40
+-- 8           |+5          |+20
+-- 9           |+27         |+42
+-- 10          |+30         |+45
+-- 11          |+50         |+65
+-- Bust        |-5          |-5
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -18,7 +38,11 @@ function onAbilityCheck(player,target,ability)
 	end
 end;
 
-function onUseAbilityRoll(caster, target, ability, total)
+-----------------------------------
+-- onUseAbilityRoll
+-----------------------------------
+
+function onUseAbilityRoll(caster,target,ability,total)
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
 	local effectpowers = {10, 13, 15, 40, 18, 20, 25, 5, 27, 30, 50, 5}
 	local effectpower = effectpowers[total]

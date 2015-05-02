@@ -1,12 +1,33 @@
 -----------------------------------
 -- Ability: Ninja Roll
+-- Enhances evasion for party members within area of effect
+-- Optimal Job: Ninja
+-- Lucky Number: 4
+-- Unlucky Number: 8
+-- Jobs:
+-- Corsair Level 8
+--
+-- Die Roll    |With NIN
+-- --------    ----------
+-- 1           |+4
+-- 2           |+6
+-- 3           |+8
+-- 4           |+25
+-- 5           |+10
+-- 6           |+12
+-- 7           |+14
+-- 8           |+2
+-- 9           |+17
+-- 10          |+20
+-- 11          |+30
+-- Bust        |-10
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -18,7 +39,11 @@ function onAbilityCheck(player,target,ability)
 	end
 end;
 
-function onUseAbilityRoll(caster, target, ability, total)
+-----------------------------------
+-- onUseAbilityRoll
+-----------------------------------
+
+function onUseAbilityRoll(caster,target,ability,total)
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
 	local effectpowers = {4, 5, 5, 14, 6, 7, 9, 2, 10, 11, 18, 6}
 	local effectpower = effectpowers[total]

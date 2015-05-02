@@ -198,7 +198,9 @@ public:
   bool      IsFarFromHome();                         // check if mob is too far from spawn
   bool      CanBeNeutral();                          // check if mob can have killing pause
 
-  bool      CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false); // can I detect the target?
+  void      SetMainSkin(uint32 mobid);               // Set base skin for the mob (if mob or player dieing)
+  void      SetNewSkin(uint8 skinid);                // Set new skin for the mob
+  uint32    GetSkinID();                             // Get the last skinid (0 for base skin)
 
   uint8     TPUseChance();                           // return % chance to use TP move
 

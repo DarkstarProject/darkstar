@@ -1,12 +1,34 @@
 -----------------------------------
--- Ability: Choral Roll
+-- Ability: Evoker's Roll
+-- Gradually restores MP for party members within area of effect
+-- Optimal Job: Summoner
+-- Lucky Number: 5
+-- Unlucky Number: 9
+-- Level: 40
+--
+-- Die Roll    |No SMN  |With SMN
+-- --------    -------  -----------
+-- 1           |+1      |+2
+-- 2           |+1      |+2
+-- 3           |+1      |+2
+-- 4           |+1      |+2
+-- 5           |+3      |+4
+-- 6           |+2      |+3
+-- 7           |+2      |+3
+-- 8           |+2      |+3
+-- 9           |+1      |+2
+-- 10          |+3      |+4
+-- 11          |+4      |+5
+-- Bust        |-1      |-1
+--
+-- Busting on Evoker's Roll will give you -1MP/tick less on your own total MP refreshed; i.e. you do not actually lose MP
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -18,7 +40,11 @@ function onAbilityCheck(player,target,ability)
 	end
 end;
 
-function onUseAbilityRoll(caster, target, ability, total)
+-----------------------------------
+-- onUseAbilityRoll
+-----------------------------------
+
+function onUseAbilityRoll(caster,target,ability,total)
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
 	local effectpowers = {1, 1, 1, 1, 3, 2, 2, 2, 1, 3, 4, 1}
 	local effectpower = effectpowers[total]

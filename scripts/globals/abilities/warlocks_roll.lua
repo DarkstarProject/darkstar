@@ -1,12 +1,32 @@
 -----------------------------------
--- Ability: Choral Roll
+-- Ability: Warlock's Roll
+-- Enhances magic accuracy for party members within area of effect
+-- Optimal Job: Red Mage
+-- Lucky Number: 4
+-- Unlucky Number: 8
+-- Level: 46
+--
+-- Die Roll    |No RDM  |With RDM
+-- --------    -------- -----------
+-- 1           |+2      |+7
+-- 2           |+3      |+8
+-- 3           |+4      |+9
+-- 4           |+12     |+17
+-- 5           |+5      |+10
+-- 6           |+6      |+11
+-- 7           |+7      |+12
+-- 8           |+1      |+6
+-- 9           |+8      |+13
+-- 10          |+9      |+14
+-- 11          |+15     |+20
+-- Bust        |-5      |-5
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -18,7 +38,11 @@ function onAbilityCheck(player,target,ability)
 	end
 end;
 
-function onUseAbilityRoll(caster, target, ability, total)
+-----------------------------------
+-- onUseAbilityRoll
+-----------------------------------
+
+function onUseAbilityRoll(caster,target,ability,total)
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
 	local effectpowers = {2, 3, 4, 12, 5, 6, 7, 1, 8, 9, 15, 5}
 	local effectpower = effectpowers[total]

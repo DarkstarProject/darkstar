@@ -1467,6 +1467,8 @@ void SmallPacket0x04B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     else
         PChar->pushPacket(new CServerMessagePacket(map_config.server_message_fr, msg_language, msg_timestamp, msg_offset));
 
+    PChar->pushPacket(new CCharSyncPacket(PChar));
+
     return;
 }
 

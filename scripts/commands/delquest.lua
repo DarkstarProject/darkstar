@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @delquest <logID> <questID> <player>
--- auth: <Unknown>, modified by TeoTwawki
 -- desc: Deletes the given quest from the GM or target player.
 ---------------------------------------------------------------------------------------------------
 

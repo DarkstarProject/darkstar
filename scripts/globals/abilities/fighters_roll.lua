@@ -1,12 +1,32 @@
 -----------------------------------
--- Ability: Choral Roll
+-- Ability: Fighter's Roll
+-- Improves "Double Attack" rate for party members within area of effect
+-- Optimal Job: Warrior
+-- Lucky Number: 5
+-- Unlucky Number: 9
+-- Level: 49
+--
+-- Die Roll    |No WAR  |With WAR
+-- --------    -------- -----------
+-- 1           |2%      |8%
+-- 2           |2%      |8%
+-- 3           |3%      |9%
+-- 4           |4%      |10%
+-- 5           |12%     |18%
+-- 6           |5%      |11%
+-- 7           |6%      |12%
+-- 8           |7%      |13%
+-- 9           |1%      |7%
+-- 10          |9%      |15%
+-- 11          |18%     |24%
+-- 12+         |-6%     |-6%
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -18,7 +38,11 @@ function onAbilityCheck(player,target,ability)
 	end
 end;
 
-function onUseAbilityRoll(caster, target, ability, total)
+-----------------------------------
+-- onUseAbilityRoll
+-----------------------------------
+
+function onUseAbilityRoll(caster,target,ability,total)
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
 	local effectpowers = {2, 2, 3, 4, 12, 5, 6, 7, 1, 9, 18, 6}
 	local effectpower = effectpowers[total]

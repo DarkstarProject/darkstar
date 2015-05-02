@@ -1,12 +1,33 @@
 -----------------------------------
--- Ability: Choral Roll
+-- Ability: Dancer's Roll
+-- Grants Regen status to party members within area of effect
+-- Optimal Job: Dancer
+-- Lucky Number: 3
+-- Unlucky Number: 7
+-- Level: 61
+--
+-- Die Roll    |No DNC              |With DNC
+-- --------    ----------           ----------
+-- 1           |3HP/Tick            |7HP/Tick
+-- 2           |4HP/Tick            |8HP/Tick
+-- 3           |12HP/Tick           |16HP/Tick
+-- 4           |5HP/Tick            |9HP/Tick
+-- 5           |6HP/Tick            |10HP/Tick
+-- 6           |7HP/Tick            |11HP/Tick
+-- 7           |1HP/Tick            |5HP/Tick
+-- 8           |8HP/Tick            |12HP/Tick
+-- 9           |9HP/Tick            |13HP/Tick
+-- 10          |10HP/Tick           |14HP/Tick
+-- 11          |16HP/Tick           |20HP/Tick
+-- 12+         |-4hp(regen)/Tick	|-4hp(regen)/Tick
+-- A bust will cause a regen effect on you to be reduced by 4, it will not drain HP from you if no regen effect is active.
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -18,7 +39,11 @@ function onAbilityCheck(player,target,ability)
 	end
 end;
 
-function onUseAbilityRoll(caster, target, ability, total)
+-----------------------------------
+-- onUseAbilityRoll
+-----------------------------------
+
+function onUseAbilityRoll(caster,target,ability,total)
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
 	local effectpowers = {3, 4, 12, 5, 6, 7, 1, 8, 9, 10, 16, 4};
 	local effectpower = effectpowers[total]

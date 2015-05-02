@@ -585,6 +585,10 @@ public:
     int32 addBurden(lua_State* L);
 
     int32 setElevator(lua_State* L);
+
+    int32 storeWithPorterMoogle(lua_State* L);
+    int32 getRetrievableItemsForSlip(lua_State *L);
+    int32 retrieveItemFromSlip(lua_State *L);
 };
 
 #endif

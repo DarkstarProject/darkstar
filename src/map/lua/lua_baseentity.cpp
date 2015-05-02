@@ -352,7 +352,7 @@ inline int32 CLuaBaseEntity::isJugPet(lua_State* L)
             return 1;
         }
     }
-    return 0;   
+    return 0;
 }
 
 //======================================================//
@@ -1044,7 +1044,7 @@ inline int32 CLuaBaseEntity::getStorageItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    
+
     uint8 container = lua_tointeger(L, 1); // LOC_INVENTORY etc
     uint8 slotID = lua_tointeger(L, 2);   // slot in container
     uint8 equipID = (!lua_isnil(L,3) ? lua_tointeger(L, 3) : 255); // SLOT_MAIN etc
@@ -1690,13 +1690,13 @@ inline int32 CLuaBaseEntity::completeMission(lua_State *L)
         }
         else
         {
-        PChar->m_missionLog[LogID].current = LogID > 2 ? 0 : -1;
-        PChar->m_missionLog[LogID].complete[MissionID] = true;
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+11, 1));
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+11, 2));
+            PChar->m_missionLog[LogID].current = LogID > 2 ? 0 : -1;
+            PChar->m_missionLog[LogID].complete[MissionID] = true;
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+11, 1));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+11, 2));
 
-        charutils::SaveMissionsList(PChar);
-    }
+            charutils::SaveMissionsList(PChar);
+        }
     }
     else
     {
@@ -6790,7 +6790,7 @@ inline int32 CLuaBaseEntity::bcnmEnter(lua_State *L){
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
-    
+
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
     int ZoneID = PZone->GetID();
@@ -6917,14 +6917,14 @@ inline int32 CLuaBaseEntity::isBcnmsFull(lua_State *L){
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
-    
+
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
     uint8 full = 1;
 
     if(PZone != nullptr && PZone->m_BattlefieldHandler != nullptr &&
         PZone->m_BattlefieldHandler->hasFreeBattlefield()){
-        
+
         full = 0;
     }
     lua_pushinteger( L,full);
@@ -7068,7 +7068,7 @@ inline int32 CLuaBaseEntity::addPlayerToSpecialBattlefield(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
-    
+
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
     int bcnm = PZone->m_BattlefieldHandler->SpecialBattlefieldAddPlayer(lua_tointeger(L, 1), PChar);
@@ -9123,16 +9123,18 @@ inline int32 CLuaBaseEntity::getPartyLeader(lua_State* L) // Todo: also add abil
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    CBattleEntity* PLeader = nullptr;
-
     if (PChar->PParty)
     {
-        PLeader = PChar->PParty->GetLeader();
+        CBattleEntity* PLeader = PChar->PParty->GetLeader();
         if (PLeader != nullptr)
         {
-            lua_pushstring(L, PLeader->GetName());
+            const int8* PLeaderName = PLeader->GetName();
+            if (PLeaderName != nullptr)
+            {
+                lua_pushstring(L, PLeaderName);
             return 1;
         }
+    }
     }
 
     lua_pushnil(L);
@@ -9162,17 +9164,17 @@ inline int32 CLuaBaseEntity::getParty(lua_State* L)
     }
 
     lua_createtable(L, size, 0);
-        int i = 1;
+    int i = 1;
     ((CBattleEntity*)m_PBaseEntity)->ForParty([this, &L, &i](CBattleEntity* member)
-        {
-            lua_getglobal(L, CLuaBaseEntity::className);
-            lua_pushstring(L, "new");
-            lua_gettable(L, -2);
-            lua_insert(L, -2);
-            lua_pushlightuserdata(L, (void*)member);
-            lua_pcall(L, 2, 1, 0);
+    {
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)member);
+        lua_pcall(L, 2, 1, 0);
 
-            lua_rawseti(L, -2, i++);
+        lua_rawseti(L, -2, i++);
     });
 
     return 1;
@@ -9509,7 +9511,7 @@ inline int32 CLuaBaseEntity::setModelId(lua_State* L)
 
     if (m_PBaseEntity->objtype == TYPE_PC)
     {
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
         DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
         switch ((SLOTTYPE)lua_tointeger(L, 2))
@@ -9555,8 +9557,8 @@ inline int32 CLuaBaseEntity::setModelId(lua_State* L)
 inline int32 CLuaBaseEntity::getModelId(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    
-    lua_pushinteger(L, RBUFW(&m_PBaseEntity->look, 16));
+
+    lua_pushinteger(L, m_PBaseEntity->GetModelId());
 
     return 1;
 }
@@ -9689,13 +9691,146 @@ inline int32 CLuaBaseEntity::setElevator(lua_State *L)
     return 0;
 }
 
-
-/* FISHING ZONE METHODS */
-
-inline int32 CLuaBaseEntity::addFishingZone(lua_State* L)
+inline int32 CLuaBaseEntity::storeWithPorterMoogle(lua_State *L)
 {
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    lua_settop(L, 3);
 
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_istable(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_istable(L, 3));
 
+    auto slipId = (uint16)lua_tointeger(L, 1);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    auto slipSlotId = PChar->getStorage(LOC_INVENTORY)->SearchItem(slipId);
+    if (slipSlotId == 255) { return 0; }
+    auto slip = PChar->getStorage(LOC_INVENTORY)->GetItem(slipSlotId);
+
+    auto extraSize = lua_objlen(L, 2);
+    uint8 extraData[24];
+    lua_pushnil(L);
+    for (int i = 0; i < extraSize && lua_next(L, 2) != 0; i++)
+    {
+        auto extra = (uint8)lua_tonumber(L, -1);
+        if ((slip->m_extra[i] & extra) != 0) {
+            lua_pushinteger(L, 1);
+            return 1;
+        }
+        slip->m_extra[i] |= extra;
+        lua_pop(L, 1);
+    }
+
+    auto storableSize = lua_objlen(L, 3);
+    uint16 storedItemIds[7];
+
+    lua_pushnil(L);
+    for (int i = 0; i < storableSize && lua_next(L, 3) != 0; i++)
+    {
+        auto itemId = (uint16)lua_tonumber(L, -1);
+        if (itemId != 0) {
+            storedItemIds[i] = itemId;
+        }
+        else {
+            storedItemIds[i] = 0;
+        }
+        lua_pop(L, 1);
+    }
+
+    for (auto itemId : storedItemIds)
+    {
+        if (itemId != 0) {
+            auto slotId = PChar->getStorage(LOC_INVENTORY)->SearchItem(itemId);
+            if (slotId != 255) {
+                // TODO: Items need to be checked for an in-progress magian trial before storing.
+                //auto item = PChar->getStorage(LOC_INVENTORY)->GetItem(slotId);
+                //if (item->isType(ITEM_ARMOR) && ((CItemArmor*)item)->getTrialNumber() != 0)
+                charutils::UpdateItem(PChar, LOC_INVENTORY, slotId, -1);
+                //else 
+                //{
+                //lua_pushinteger(L, 2);
+                //return 1;
+                //}
+            }
+        }
+    }
+
+    int8 extra[sizeof(slip->m_extra) * 2 + 1];
+    Sql_EscapeStringLen(SqlHandle, extra, (const int8*)slip->m_extra, sizeof(slip->m_extra));
+
+    const int8* Query =
+        "UPDATE char_inventory "
+        "SET extra = '%s' "
+        "WHERE charid = %u AND location = %u AND slot = %u;";
+
+    Sql_Query(SqlHandle, Query, extra, PChar->id, slip->getLocationID(), slip->getSlotID());
+
+    lua_pushinteger(L, 0);
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::getRetrievableItemsForSlip(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    lua_settop(L, 1);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    auto slipId = (uint16)lua_tointeger(L, 1);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    auto slipSlotId = PChar->getStorage(LOC_INVENTORY)->SearchItem(slipId);
+    if (slipSlotId == 255) { return 0; }
+    auto slip = PChar->getStorage(LOC_INVENTORY)->GetItem(slipSlotId);
+
+    lua_newtable(L);
+    // TODO Is extra sized defined anywhere?
+    for (int i = 0; i < 24; i++) {
+        lua_pushnumber(L, slip->m_extra[i]);
+        lua_rawseti(L, -2, i + 1);
+    }
+
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::retrieveItemFromSlip(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    lua_settop(L, 4);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
+
+    auto slipId = (uint16)lua_tointeger(L, 1);
+    auto itemId = (uint16)lua_tointeger(L, 2);
+    auto extraId = (uint16)lua_tointeger(L, 3);
+    auto extraData = (uint8)lua_tointeger(L, 4);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    auto slipSlotId = PChar->getStorage(LOC_INVENTORY)->SearchItem(slipId);
+    if (slipSlotId == 255) { return 0; }
+    auto slip = PChar->getStorage(LOC_INVENTORY)->GetItem(slipSlotId);
+
+    slip->m_extra[extraId] &= extraData;
+
+    int8 extra[sizeof(slip->m_extra) * 2 + 1];
+    Sql_EscapeStringLen(SqlHandle, extra, (const int8*)slip->m_extra, sizeof(slip->m_extra));
+
+    const int8* Query =
+        "UPDATE char_inventory "
+        "SET extra = '%s' "
+        "WHERE charid = %u AND location = %u AND slot = %u;";
+
+    Sql_Query(SqlHandle, Query, extra, PChar->id, slip->getLocationID(), slip->getSlotID());
+
+    auto item = itemutils::GetItem(itemId);
+    item->setQuantity(1);
+    auto slotId = charutils::AddItem(PChar, LOC_INVENTORY, item);
+
+    return 0;
 }
 
 //==========================================================//
@@ -10125,5 +10260,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addBurden),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setElevator),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,storeWithPorterMoogle),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRetrievableItemsForSlip),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,retrieveItemFromSlip),
     {nullptr,nullptr}
 };

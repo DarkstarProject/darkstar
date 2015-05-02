@@ -3,12 +3,67 @@
 -- NPC:  Jailer_of_Fortitude
 -----------------------------------
 
+require("scripts/globals/status");
+require("scripts/globals/magic");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
+	-- Give it two hour
+	mob:setMod(MOBMOD_MAIN_2HOUR, 1);
+	-- Change animation to humonoid
+	mob:AnimationSub(1);
+	-- Set the damage resists
+	-- According to https://www.bg-wiki.com/bg/Jailer_of_Fortitude
+	-- Has very high resistance to melee damage (approximately 95%).
+	-- Set damage resistance to match that.
+	mob:setMod(MOD_HTHRES,50);
+	mob:setMod(MOD_SLASHRES,50);
+	mob:setMod(MOD_PIERCERES,50);
+    mob:setMod(MOD_IMPACTRES,50);
+end;
 
+-----------------------------------
+-- onMobFight Action
+-----------------------------------
+
+function onMobFight(mob)
+	local delay = mob:getLocalVar("delay");
+    local LastCast = mob:getLocalVar("LAST_CAST");
+    local spell = mob:getLocalVar("COPY_SPELL");
+	
+	if (mob:getBattleTime() - LastCast > 30) then
+		mob:setLocalVar("COPY_SPELL", 0);
+		mob:setLocalVar("delay", 0);
+	end
+
+	if (spell > 0 and mob:hasStatusEffect(EFFECT_SILENCE) == false) then
+		if (delay >= 3) then
+			mob:castSpell(spell);
+			mob:setLocalVar("COPY_SPELL", 0);
+			mob:setLocalVar("delay", 0);
+		else
+			mob:setLocalVar("delay", delay+1);
+		end
+	end
+end;
+
+-----------------------------------
+-- onMagicHit Action
+-----------------------------------
+
+function onMagicHit(caster,target,spell)
+	if (spell:tookEffect() and (caster:isPC() or caster:isPet()) and spell:getSpellGroup() ~= SPELLGROUP_BLUE ) then
+		-- Handle mimicked spells
+		target:setLocalVar("COPY_SPELL", spell:getID());
+		target:setLocalVar("LAST_CAST", target:getBattleTime());
+		target:setLocalVar("reflectTime", target:getBattleTime());
+		target:AnimationSub(1);
+	end
+	
+	return 1;
 end;
 
 -----------------------------------
@@ -16,32 +71,14 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer, npc)
-
-	local npc = GetNPCByID(16921027);
-    local qm1p = math.random(1,5); -- random for next @pos.
-         -- print(qm1p)
-	            if (qm1p == 1) then
-                        npc:setPos(-420,0.00,755); -- spawn point 1 "Hume"
-						--printf("Qm1 is at pos 1");
-                elseif (qm1p == 2) then
-                        npc:setPos(-43,0.00,460); -- spawn point 2 "Elvaan"
-						--printf("Qm1 is at pos 2");
-                elseif (qm1p == 3) then
-                        npc:setPos(-260,0.00,44.821); -- spawn point 3 "Galka"
-						--printf("Qm1 is at pos 3");
-                elseif (qm1p == 4) then
-                        npc:setPos(-580,0.00,43); -- spawn point 4 "Taru"
-						--printf("Qm1 is at pos 4");
-                elseif (qm1p == 5) then
-                        npc:setPos(-796,0.00,460); -- spawn point 5 "Mithra"
-						--printf("Qm1 is at pos 5");
-				end
-end;
------------------------------------
--- onGameHour
------------------------------------
-
-function onGameHour(npc, mob, player)
-
-
+	-- Despawn the pets if alive
+	DespawnMob(Kf_Ghrah_WHM);
+	DespawnMob(Kf_Ghrah_BLM);
+	-- Set 15 mins respawn
+	local qm1 = GetNPCByID(Jailer_of_Fortitude_QM);
+	qm1:hideNPC(900);
+	
+	-- Move it to a random location
+	local qm1position = math.random(1,5);
+	qm1:setPos(Jailer_of_Fortitude_QM_POS[qm1position][1], Jailer_of_Fortitude_QM_POS[qm1position][2], Jailer_of_Fortitude_QM_POS[qm1position][3]);
 end;

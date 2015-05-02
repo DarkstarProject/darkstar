@@ -1,28 +1,35 @@
 -----------------------------------
 -- Ability: Shikikoyo
--- @editor Katrinka (SinisterSkies)
--- @version 131221
+-- Share TP above 100 with a party member.
+-- Obtained: Samurai Level 75
+-- Recast Time: 5:00
+-- Duration: Instant
 -----------------------------------
- 
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
+
 function onAbilityCheck(player,target,ability)
-	if (player:getTP() < 100) then
-		return MSGBASIC_NOT_ENOUGH_TP, 0;
-	end
-	return 0,0;
+    if (player:getTP() < 100) then
+        return MSGBASIC_NOT_ENOUGH_TP, 0;
+    end
+    return 0,0;
 end;
 
-function onUseAbility(player, target, ability)
-	local pTP = player:getTP() - 100;
+-----------------------------------
+-- onUseAbility
+-----------------------------------
 
-	if (pTP > 0) then
-		player:setTP(100);
-		target:setTP(target:getTP() + pTP + (player:getMerit(MERIT_SHIKIKOYO) - 12));
-	end
-	
+function onUseAbility(player,target,ability)
+    local pTP = player:getTP() - 100;
+
+    if (pTP > 0) then
+        player:setTP(100);
+        target:setTP(target:getTP() + pTP + (player:getMerit(MERIT_SHIKIKOYO) - 12));
+    end
+
 end;

@@ -518,13 +518,17 @@ void CStatusEffectContainer::KillAllStatusEffect()
 	{
 		CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
 
-		luautils::OnEffectLose(m_POwner, PStatusEffect);
+        if (PStatusEffect->GetDuration() != 0)
+        {
 
-		m_POwner->delModifiers(&PStatusEffect->modList);
+            luautils::OnEffectLose(m_POwner, PStatusEffect);
 
-		m_StatusEffectList.erase(m_StatusEffectList.begin() + i);
+            m_POwner->delModifiers(&PStatusEffect->modList);
 
-		delete PStatusEffect;
+            m_StatusEffectList.erase(m_StatusEffectList.begin() + i);
+
+            delete PStatusEffect;
+        }
 	}
     m_POwner->UpdateHealth();
 }
@@ -1394,6 +1398,18 @@ bool CStatusEffectContainer::HasPreventActionEffect()
         HasStatusEffect(EFFECT_PENALTY) ||
         HasStatusEffect(EFFECT_STUN) ||
 		HasStatusEffect(EFFECT_TERROR);
+}
+
+uint16 CStatusEffectContainer::GetConfrontationEffect()
+{
+    for (auto PEffect : m_StatusEffectList)
+    {
+        if (PEffect->GetFlag() & EFFECTFLAG_CONFRONTATION)
+        {
+            return PEffect->GetPower();
+        }
+    }
+    return 0;
 }
 
 bool CStatusEffectContainer::CheckForElevenRoll()

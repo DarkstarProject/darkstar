@@ -29,9 +29,9 @@ function onTrigger(player,npc)
     
     if (guildMember == 1) then
         if (player:hasStatusEffect(EFFECT_ALCHEMY_IMAGERY) == false) then
-			player:startEvent(0x007A,Cost,SkillLevel,0,511,player:getGil(),0,0,0); -- Event doesn't work
+			player:startEvent(0x007A,Cost,SkillLevel,0,0xB0001AF,player:getGil(),0,0,0); -- Event doesn't work
 	    else
-            player:startEvent(0x007A,Cost,SkillLevel,0,511,player:getGil(),22504,0,0);
+            player:startEvent(0x007A,Cost,SkillLevel,0,0xB0001AF,player:getGil(),0x6FE2,0,0);
 	    end
 	else
 		player:startEvent(0x007A);
@@ -63,6 +63,3 @@ function onEventFinish(player,csid,option)
         player:addStatusEffect(EFFECT_ALCHEMY_IMAGERY,3,0,480);
     end
 end;
-
-
-

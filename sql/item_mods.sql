@@ -14666,7 +14666,7 @@ INSERT INTO `item_mods` VALUES (15512, 13, 5);
 INSERT INTO `item_mods` VALUES (15512, 80, 7);
 INSERT INTO `item_mods` VALUES (15512, 105, 7);
 INSERT INTO `item_mods` VALUES (15513, 14, 5);
-INSERT INTO `item_mods` VALUES (15513, 85, 7);
+INSERT INTO `item_mods` VALUES (15513, 84, 7);
 INSERT INTO `item_mods` VALUES (15513, 91, 7);
 INSERT INTO `item_mods` VALUES (15514, 9, 5);
 INSERT INTO `item_mods` VALUES (15514, 81, 7);
@@ -19518,6 +19518,15 @@ INSERT INTO `item_mods` VALUES (18159, 431, 1); -- Additonal effect: Attack Down
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18160, 431, 1); -- Additional effect: Stun
 
+-- -------------------------------------------------------
+-- Winds
+-- Hidden effect: removes Sky gods additional effect damage.
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18161, 431, 1);
+INSERT INTO `item_mods` VALUES (18162, 431, 1);
+INSERT INTO `item_mods` VALUES (18163, 431, 1);
+INSERT INTO `item_mods` VALUES (18164, 431, 1);
+
 INSERT INTO `item_mods` VALUES (18166, 3, 1);
 INSERT INTO `item_mods` VALUES (18166, 10, 1);
 INSERT INTO `item_mods` VALUES (18167, 6, 1);
@@ -21178,3 +21187,9 @@ INSERT INTO `item_mods` VALUES (28665, 161, -8); -- Physical damage taken -8%
 -- Leafkin Shield
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (28670, 1, 1); -- DEF:1
+
+-- -------------------------------------------------------
+-- Roundel Earring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (16002, 374, 5);
+INSERT INTO `item_mods` VALUES (16002, 491, 5);

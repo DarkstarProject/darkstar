@@ -1,12 +1,36 @@
 -----------------------------------
 -- Ability: Corsair's Roll
+-- Increases the amount of experience points earned by party members within area of effect
+-- Optimal Job: Corsair
+-- Lucky Number: 5
+-- Unlucky Number: 9
+-- Level: 5
+--
+-- Die Roll    |Exp Bonus%
+-- --------    -----------
+-- 1           |10%
+-- 2           |11%
+-- 3           |11%
+-- 4           |12%
+-- 5           |20%
+-- 6           |13%
+-- 7           |15%
+-- 8           |16%
+-- 9           |8%
+-- 10          |17%
+-- 11          |24%
+-- 12+         |-6%
+--
+-- Bust for Corsair set as subjob is also -6%.
+-- Corsair set as subjob is 7% on Lucky roll (5) and 1% on Unlucky roll (9).
+-- The EXP bonus afforded by Corsair's Roll does not apply within Abyssea.
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -18,7 +42,11 @@ function onAbilityCheck(player,target,ability)
 	end
 end;
 
-function onUseAbilityRoll(caster, target, ability, total)
+-----------------------------------
+-- onUseAbilityRoll
+-----------------------------------
+
+function onUseAbilityRoll(caster,target,ability,total)
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
 	local effectpowers = {10, 11, 11, 12, 20, 13, 15, 16, 8, 17, 24, 6};
 	local effectpower = effectpowers[total];

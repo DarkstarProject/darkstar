@@ -1,12 +1,32 @@
 -----------------------------------
--- Ability: Choral Roll
+-- Ability: Puppet Roll
+-- Enhances pet magic attack and magic accuracy for party members within area of effect
+-- Optimal Job: Puppetmaster
+-- Lucky Number: 3
+-- Unlucky Number: 7
+-- Level: 52
+--
+-- Die Roll    |No PUP  |With PUP
+-- --------    -------  ----------
+-- 1           |+4      |+12
+-- 2           |+5      |+13
+-- 3           |+18     |+26
+-- 4           |+7      |+15
+-- 5           |+9      |+17
+-- 6           |+10     |+18
+-- 7           |+2      |+10
+-- 8           |+11     |+19
+-- 9           |+13     |+21
+-- 10          |+15     |+23
+-- 11          |+22     |+30
+-- Bust        |-8      |-8
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -18,11 +38,15 @@ function onAbilityCheck(player,target,ability)
 	end
 end;
 
-function onUseAbilityRoll(caster, target, ability, total)
+-----------------------------------
+-- onUseAbilityRoll
+-----------------------------------
+
+function onUseAbilityRoll(caster,target,ability,total)
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
 	local effectpowers = {4, 5, 18, 7, 9, 10, 2, 11, 13, 15, 22, 8}
 	local effectpower = effectpowers[total]
-	if (total < 12 and caster:hasPartyJob(JOB_PUP) ) then --lolpup
+    if (total < 12 and caster:hasPartyJob(JOB_PUP) ) then
 		effectpower = effectpower + 8;
 	end
 

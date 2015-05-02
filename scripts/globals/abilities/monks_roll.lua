@@ -1,12 +1,32 @@
 -----------------------------------
--- Ability: Choral Roll
+-- Ability: Monk's Roll
+-- Enhances "Subtle Blow" effect for party members within area of effect
+-- Optimal Job: Monk
+-- Lucky Number: 3
+-- Unlucky Number: 7
+-- Level: 31
+--
+-- Die Roll    |No MNK  |With MNK
+-- --------    -------- -----------
+-- 1           |+8      |+18
+-- 2           |+10     |+20
+-- 3           |+32     |+42
+-- 4           |+12     |+22
+-- 5           |+14     |+24
+-- 6           |+16     |+26
+-- 7           |+4      |+14
+-- 8           |+20     |+30
+-- 9           |+22     |+32
+-- 10          |+24     |+34
+-- 11          |+40     |+50
+-- Bust        |-11     |-11
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -18,7 +38,11 @@ function onAbilityCheck(player,target,ability)
 	end
 end;
 
-function onUseAbilityRoll(caster, target, ability, total)
+-----------------------------------
+-- onUseAbilityRoll
+-----------------------------------
+
+function onUseAbilityRoll(caster,target,ability,total)
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
 	local effectpowers = {8, 10, 32, 12, 14, 16, 4, 20, 22, 24, 40, 11}
 	local effectpower = effectpowers[total]

@@ -1,12 +1,32 @@
 -----------------------------------
 -- Ability: Chaos Roll
+-- Enhances attack for party members within area of effect
+-- Optimal Job: Dark Knight
+-- Lucky Number: 4
+-- Unlucky Number: 8
+-- Level: 14
+--
+-- Die Roll    |No DRK	|With DRK
+-- --------    -------- -----------
+-- 1           |6%      |16%
+-- 2           |8%      |18%
+-- 3           |9%      |19%
+-- 4           |25%     |35%
+-- 5           |11%     |21%
+-- 6           |13%     |23%
+-- 7           |16%     |26%
+-- 8           |3%      |13%
+-- 9           |17%     |27%
+-- 10          |19%     |29%
+-- 11          |31%     |41%
+-- Bust        |-10%    |-10%
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -18,7 +38,11 @@ function onAbilityCheck(player,target,ability)
 	end
 end;
 
-function onUseAbilityRoll(caster, target, ability, total)
+-----------------------------------
+-- onUseAbilityRoll
+-----------------------------------
+
+function onUseAbilityRoll(caster,target,ability,total)
 
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
 	local effectpowers = {6, 8, 9, 25, 11, 13, 16, 3, 17, 19, 31, 10}
