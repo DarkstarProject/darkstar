@@ -179,8 +179,8 @@ int32 lobbydata_parse(int32 fd)
 
 					uint32 CharID    = Sql_GetIntData(SqlHandle,0);
 
-					uint16 zone		 = (uint8)Sql_GetIntData(SqlHandle,2);
-					uint16 prevzone	 = (uint8)Sql_GetIntData(SqlHandle,3);
+					uint16 zone		 = (uint16)Sql_GetIntData(SqlHandle,2);
+					uint16 prevzone	 = (uint16)Sql_GetIntData(SqlHandle,3);
 
 					uint8 MainJob	 = (uint8)Sql_GetIntData(SqlHandle,4);
 					uint8 lvlMainJob = (uint8)Sql_GetIntData(SqlHandle,13+MainJob);
