@@ -30,7 +30,7 @@ end;
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-    local damage = 0;
+    local dmg = 0;
     local multi = 1.5;
 
     if (caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
@@ -56,7 +56,7 @@ function onSpellCast(caster,target,spell)
         dmg = BlueMagicalSpell(caster, target, spell, params, MND_BASED);
         dmg = BlueFinalAdjustments(caster, target, spell, dmg, params);
         if (target:getMP() > 0) then
-            if (target:getMP < dmg) then
+            if (target:getMP() < dmg) then
                 dmg = target:getMP();
             end
             caster:addMP(dmg);
