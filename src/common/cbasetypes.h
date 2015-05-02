@@ -208,7 +208,7 @@ typedef int32 intptr;
 //////////////////////////////////////////////////////////////////////////
 // some redefine of function redefines for some Compilers
 //////////////////////////////////////////////////////////////////////////
-#if (defined(_MSC_VER) && _MSC_VER < 1900) || defined(__BORLANDC__)
+#if (defined(_MSC_VER) && _MSC_VER < 1800) || defined(__BORLANDC__)
 #define strcasecmp			stricmp
 #define strncasecmp			strnicmp
 #define strncmpi			strnicmp
@@ -226,12 +226,6 @@ typedef int32 intptr;
 #define strtoull			_strtoui64
 #endif
 
-// keyword replacement in windows for MSVC versions lower than 14 (2015)
-#ifdef _WIN32
-#if defined(_MSC_VER) && _MSC_VER < 1900
-#define thread_local __declspec(thread)
-#endif
-#endif
 
 // keyword replacement in windows for MSVC versions lower than 11 (2012)
 #ifdef _WIN32
