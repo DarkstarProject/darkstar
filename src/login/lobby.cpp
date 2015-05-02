@@ -179,8 +179,8 @@ int32 lobbydata_parse(int32 fd)
 
 					uint32 CharID    = Sql_GetIntData(SqlHandle,0);
 
-					uint8 zone		 = (uint8)Sql_GetIntData(SqlHandle,2);
-					uint8 prevzone	 = (uint8)Sql_GetIntData(SqlHandle,3);
+					uint16 zone		 = (uint8)Sql_GetIntData(SqlHandle,2);
+					uint16 prevzone	 = (uint8)Sql_GetIntData(SqlHandle,3);
 
 					uint8 MainJob	 = (uint8)Sql_GetIntData(SqlHandle,4);
 					uint8 lvlMainJob = (uint8)Sql_GetIntData(SqlHandle,13+MainJob);
@@ -209,7 +209,7 @@ int32 lobbydata_parse(int32 fd)
 					WBUFW(CharList,68+32+i*140) = (uint16)Sql_GetIntData(SqlHandle,12); // main;
 					WBUFW(CharList,70+32+i*140) = (uint16)Sql_GetIntData(SqlHandle,13); // sub;
 
-					WBUFB(CharList,72+32+i*140) = (zone == 0 ? prevzone : zone);		// если персонаж в MogHouse
+					WBUFW(CharList,72+32+i*140) = (zone == 0 ? prevzone : zone);		// если персонаж в MogHouse
 					///////////////////////////////////////////////////
 					++i;
 				}
