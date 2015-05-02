@@ -3960,7 +3960,7 @@ INSERT INTO `nm_spawn_points` VALUES (17199564,19,-780.327,-7.531,23.170);
 INSERT INTO `nm_spawn_points` VALUES (17199564,20,-785.197,-8.400,22.135);
 INSERT INTO `nm_spawn_points` VALUES (17199564,21,-798.992,-8.000,20.315);
 INSERT INTO `nm_spawn_points` VALUES (17199564,22,-805.583,-8.005,21.835);
--- spawn for whitebone cave
+-- Spawn for whitebone cave
 -- INSERT INTO `nm_spawn_points` VALUES (17199564,23,-298.879,0.000,-162.870);
 INSERT INTO `nm_spawn_points` VALUES (17231971,0,-342.830,-100.584,168.662);
 INSERT INTO `nm_spawn_points` VALUES (17231971,1,-322.000,-100.000,116.000);
