@@ -294,10 +294,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             ShowWarning(CL_YELLOW"Client cannot receive packet or key is invalid: %s\n" CL_RESET, PChar->GetName());
         }
     }
-    if (PChar->loc.prevzone == 0 && PChar->GetPlayTime(false) > 0)
-    {
-        PChar->loc.prevzone = PChar->getZone();
-    }
 
     charutils::SaveCharPosition(PChar);
     charutils::SaveZonesVisited(PChar);

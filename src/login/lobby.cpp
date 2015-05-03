@@ -267,17 +267,22 @@ int32 lobbydata_parse(int32 fd)
 										WHERE IF(pos_zone = 0, zoneid = pos_prevzone, zoneid = pos_zone) AND charid = %u;";
 				uint32 ZoneIP	= sd->servip;
                 uint16 ZonePort = 54230;
+                uint16 ZoneID = 0;
+                uint16 PrevZone = 0;
 
 				if( Sql_Query(SqlHandle,fmtQuery,charid) != SQL_ERROR &&
 					Sql_NumRows(SqlHandle) != 0 )
 				{
 					Sql_NextRow(SqlHandle);
 
-					if (Sql_GetIntData(SqlHandle,3) == 0)  key3[16] += 6;
+                    ZoneID = (uint16)Sql_GetUIntData(SqlHandle, 2);
+                    PrevZone = (uint16)Sql_GetUIntData(SqlHandle, 3);
+
+                    //new char only (first login from char create)
+					if (PrevZone == 0)  key3[16] += 6;
 
 					ZoneIP = inet_addr(Sql_GetData(SqlHandle,0));
 					ZonePort = (uint16)Sql_GetUIntData(SqlHandle,1);
-					uint8  ZoneID = (uint8)Sql_GetUIntData(SqlHandle,2);
 					WBUFL(ReservePacket,(0x38)) = ZoneIP;
 					WBUFW(ReservePacket,(0x3C)) = ZonePort;
 					ShowInfo("lobbydata_parse: zoneid:(%u),zoneip:(%s),zoneport:(%u) for char:(%u)\n",ZoneID,ip2str(ntohl(ZoneIP),nullptr),ZonePort,charid);
@@ -286,6 +291,9 @@ int32 lobbydata_parse(int32 fd)
 					WBUFL(ReservePacket,(0x38)) = sd->servip;	// map-server ip
 				  //WBUFW(ReservePacket,(0x3C)) = port;			// map-server port
 				}
+
+                if (PrevZone == 0)
+                    Sql_Query(SqlHandle, "UPDATE chars SET prev_zone = %d WHERE charid = %u;", ZoneID, charid);
 
 				WBUFL(ReservePacket,(0x40)) = sd->servip;									// search-server ip
 				WBUFW(ReservePacket,(0x44)) = login_config.search_server_port;				// search-server port
