@@ -591,6 +591,17 @@ namespace spell
 		    uint8 JobSLVL = spell->getJob(PCaster->GetSJob());
             uint8 requirements = spell->getRequirements();
 
+            if(PCaster->objtype == TYPE_MOB){
+                // Mobs can cast any non-given char spell
+                if(JobMLVL == 255){
+                    JobMLVL = 0;
+                }
+
+                if(JobSLVL == 255){
+                    JobSLVL = 0;
+                }
+            }
+
 		    if(PCaster->GetMLevel() >= JobMLVL)
             {
 				usable = true;

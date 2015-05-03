@@ -2422,6 +2422,7 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
                 charutils::BuildingCharAbilityTable(PChar);
                 charutils::CheckValidEquipment(PChar);
                 PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+                charutils::UpdateHealth(PChar);
             }
 
             if (PChar->PPet)
