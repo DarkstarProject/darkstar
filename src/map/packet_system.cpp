@@ -2402,6 +2402,70 @@ void SmallPacket0x052(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PChar->pushPacket(new CAddtoEquipSet(data));
     return;
 }
+
+/************************************************************************
+*                                                                        *
+*  LockStyleSet                                                          *
+*                                                                        *
+************************************************************************/
+void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    PrintPacket(data);
+
+    uint8 count = RBUFB(data, (0x04));
+    uint8 type = RBUFB(data, (0x05));
+
+    if (type == 0) {
+        charutils::SetStyleLock(PChar, false);
+        charutils::SaveCharEquip(PChar);
+    }
+    else if (type == 3) {
+        charutils::SetStyleLock(PChar, true);
+
+        for (int i = 0x08; i < 0x08 + (0x08 * count); i += 0x08) {
+            uint8 slotId = RBUFB(data, i);
+            uint8 equipSlotId = RBUFB(data, i + 0x01);
+            uint8 locationId = RBUFB(data, i + 0x02);
+            uint16 itemId = RBUFW(data, i + 0x04);
+
+            if (itemId > 0) {
+                CItemArmor* PItem = (CItemArmor*)PChar->getStorage(locationId)->GetItem(slotId);
+                if (PItem != nullptr && !(PItem->getEquipSlotId() & (1 << equipSlotId))) {
+                    return;
+                }
+            }
+
+            PChar->styleItems[equipSlotId] = itemId;
+
+            switch (equipSlotId)
+            {
+            case SLOT_MAIN:
+            case SLOT_SUB:
+            case SLOT_RANGED:
+            case SLOT_AMMO:
+                charutils::UpdateWeaponStyle(PChar, equipSlotId, (CItemWeapon*)PChar->getEquip((SLOTTYPE)equipSlotId));
+            case SLOT_HEAD:
+            case SLOT_BODY:
+            case SLOT_HANDS:
+            case SLOT_LEGS:
+            case SLOT_FEET:
+                charutils::UpdateArmorStyle(PChar, equipSlotId);
+                break;
+            }
+        }
+        charutils::SaveCharEquip(PChar);
+    }
+    else if (type == 4) {
+        charutils::SetStyleLock(PChar, true);
+        charutils::SaveCharEquip(PChar);
+    }
+
+    PChar->pushPacket(new CCharAppearancePacket(PChar));
+    PChar->pushPacket(new CCharSyncPacket(PChar));
+
+    return;
+}
+
 /************************************************************************
 *                                                                        *
 *  Request synthesis suggestion                                            *
@@ -4876,6 +4940,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
 
         }
+        charutils::SetStyleLock(PChar, false);
         luautils::CheckForGearSet(PChar); // check for gear set on gear change
 
         charutils::BuildingCharSkillsTable(PChar);
@@ -5307,7 +5372,7 @@ void SmallPacket0x10F(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x111(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    PChar->setStyleLocked(RBUFB(data, (0x04)));
+    charutils::SetStyleLock(PChar, RBUFB(data, (0x04)));
     PChar->pushPacket(new CCharAppearancePacket(PChar));
     return;
 }
@@ -5366,6 +5431,7 @@ void PacketParserInitialize()
     PacketSize[0x050] = 0x04; PacketParser[0x050] = &SmallPacket0x050;
     PacketSize[0x051] = 0x24; PacketParser[0x051] = &SmallPacket0x051;
     PacketSize[0x052] = 0x26; PacketParser[0x052] = &SmallPacket0x052;
+    PacketSize[0x053] = 0x44; PacketParser[0x053] = &SmallPacket0x053;
     PacketSize[0x058] = 0x0A; PacketParser[0x058] = &SmallPacket0x058;
     PacketSize[0x059] = 0x00; PacketParser[0x059] = &SmallPacket0x059;
     PacketSize[0x05A] = 0x02; PacketParser[0x05A] = &SmallPacket0x05A;

@@ -340,7 +340,8 @@ namespace charutils
             "campaign,"             // 22
             "playtime,"             // 23
             "isnewplayer,"          // 24
-            "campaign_allegiance "  // 25
+            "campaign_allegiance,"  // 25
+            "isstylelocked "        // 26
             "FROM chars "
             "WHERE charid = %u";
 
@@ -419,6 +420,7 @@ namespace charutils
             PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 23));
             PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 24) == 1 ? true : false;
             PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 25);
+            PChar->setStyleLocked(Sql_GetIntData(SqlHandle, 26) == 1 ? true : false);
         }
 
 
@@ -505,6 +507,23 @@ namespace charutils
             PChar->look.main = (uint16)Sql_GetIntData(SqlHandle, 8);
             PChar->look.sub = (uint16)Sql_GetIntData(SqlHandle, 9);
             PChar->look.ranged = (uint16)Sql_GetIntData(SqlHandle, 10);
+            memcpy(&PChar->mainlook, &PChar->look, sizeof(PChar->look));
+        }
+
+        fmtQuery = "SELECT head, body, hands, legs, feet, main, sub, ranged FROM char_style WHERE charid = %u;";
+        ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+        if (ret != SQL_ERROR
+            && Sql_NumRows(SqlHandle) != 0 
+            && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
+            PChar->styleItems[SLOT_HEAD] = (uint16)Sql_GetIntData(SqlHandle, 0);
+            PChar->styleItems[SLOT_BODY] = (uint16)Sql_GetIntData(SqlHandle, 1);
+            PChar->styleItems[SLOT_HANDS] = (uint16)Sql_GetIntData(SqlHandle, 2);
+            PChar->styleItems[SLOT_LEGS] = (uint16)Sql_GetIntData(SqlHandle, 3);
+            PChar->styleItems[SLOT_FEET] = (uint16)Sql_GetIntData(SqlHandle, 4);
+            PChar->styleItems[SLOT_MAIN] = (uint16)Sql_GetIntData(SqlHandle, 5);
+            PChar->styleItems[SLOT_SUB] = (uint16)Sql_GetIntData(SqlHandle, 6);
+            PChar->styleItems[SLOT_RANGED] = (uint16)Sql_GetIntData(SqlHandle, 7);
         }
 
         fmtQuery = "SELECT unlocked, genkai, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run "
@@ -1285,6 +1304,34 @@ namespace charutils
             {
                 PChar->getStorage(LocationID)->InsertItem(nullptr, slotID);
                 PChar->pushPacket(new CInventoryItemPacket(nullptr, LocationID, slotID));
+
+                if (PChar->getStyleLocked() && !HasItem(PChar, ItemID))
+                {
+                    if (PItem->isType(ITEM_WEAPON)) {
+                        if (PChar->styleItems[SLOT_MAIN] == ItemID) {
+                            charutils::UpdateWeaponStyle(PChar, SLOT_MAIN, (CItemWeapon*)PChar->getEquip(SLOT_MAIN));
+                        }
+                        else if (PChar->styleItems[SLOT_SUB] == ItemID) {
+                            charutils::UpdateWeaponStyle(PChar, SLOT_SUB, (CItemWeapon*)PChar->getEquip(SLOT_SUB));
+                        }
+                    }
+                    else if (PItem->isType(ITEM_ARMOR)) {
+                        auto equipSlotID = ((CItemArmor*)PItem)->getSlotType();
+                        if (PChar->styleItems[equipSlotID] == ItemID) {
+                            switch (equipSlotID)
+                            {
+                            case SLOT_HEAD:
+                            case SLOT_BODY:
+                            case SLOT_HANDS:
+                            case SLOT_LEGS:
+                            case SLOT_FEET:
+                                charutils::UpdateArmorStyle(PChar, equipSlotID);
+                                break;
+                            }
+                        }
+                    }
+                }
+
                 delete PItem;
             }
         }
@@ -1417,8 +1464,8 @@ namespace charutils
                 PChar->look.sub = 0;
                 PChar->m_Weapons[SLOT_SUB] = itemutils::GetUnarmedItem();			// << equips "nothing" in the sub slot to prevent multi attack exploit
                 PChar->health.tp = 0;
-                PChar->setStyleLocked(false);
                 BuildingCharWeaponSkills(PChar);
+                UpdateWeaponStyle(PChar, equipSlotID, nullptr);
             }
             break;
             case SLOT_AMMO:
@@ -1428,6 +1475,7 @@ namespace charutils
                     PChar->look.ranged = 0;
                 }
                 PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_INTERRUPT);
+                UpdateWeaponStyle(PChar, equipSlotID, nullptr);
             }
             break;
             case SLOT_RANGED:
@@ -1438,8 +1486,8 @@ namespace charutils
                 }
                 PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_INTERRUPT);
                 PChar->health.tp = 0;
-                PChar->setStyleLocked(false);
                 BuildingCharWeaponSkills(PChar);
+                UpdateWeaponStyle(PChar, equipSlotID, nullptr);
             }
             break;
             case SLOT_MAIN:
@@ -1464,8 +1512,8 @@ namespace charutils
                 }
 
                 PChar->health.tp = 0;
-                PChar->setStyleLocked(false);
                 BuildingCharWeaponSkills(PChar);
+                UpdateWeaponStyle(PChar, equipSlotID, nullptr);
             }
             break;
             }
@@ -1590,6 +1638,7 @@ namespace charutils
 
                 }
                 PChar->look.main = PItem->getModelId();
+                UpdateWeaponStyle(PChar, equipSlotID, (CItemWeapon*)PItem);
             }
             break;
             case SLOT_SUB:
@@ -1641,6 +1690,7 @@ namespace charutils
                     }
                 }
                 PChar->look.sub = PItem->getModelId();
+                UpdateWeaponStyle(PChar, equipSlotID, (CItemWeapon*)PItem);
             }
             break;
             case SLOT_RANGED:
@@ -1659,6 +1709,7 @@ namespace charutils
                     PChar->m_Weapons[SLOT_RANGED] = (CItemWeapon*)PItem;
                 }
                 PChar->look.ranged = PItem->getModelId();
+                UpdateWeaponStyle(PChar, equipSlotID, (CItemWeapon*)PItem);
             }
             break;
             case SLOT_AMMO:
@@ -1679,6 +1730,7 @@ namespace charutils
                         PChar->look.ranged = PItem->getModelId();
                     }
                     PChar->m_Weapons[SLOT_AMMO] = (CItemWeapon*)PItem;
+                    UpdateWeaponStyle(PChar, equipSlotID, (CItemWeapon*)PItem);
                 }
             }
             break;
@@ -1753,6 +1805,126 @@ namespace charutils
         return true;
     }
 
+    bool canEquipItemOnAnyJob(CCharEntity* PChar, CItemArmor* PItem) {
+        if (PItem == nullptr)
+            return true;
+
+        for (uint8 i = 1; i < MAX_JOBTYPE; i++) {
+            if (PItem->getJobs() & (1 << (i - 1))
+                && PItem->getReqLvl() <= PChar->jobs.job[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool hasValidStyle(CCharEntity* PChar, CItemArmor* PItem, CItemArmor* AItem) {
+        return (PItem != nullptr && AItem != nullptr 
+            && (((CItemWeapon*)AItem)->getSkillType() == ((CItemWeapon*)PItem)->getSkillType())
+            && HasItem(PChar, AItem->getID())
+            && canEquipItemOnAnyJob(PChar, AItem));
+    }
+    
+    void SetStyleLock(CCharEntity* PChar, bool isStyleLocked) {
+        if (isStyleLocked) {
+            for (uint8 i = 0; i < SLOT_LINK1; i++) {
+                auto PItem = PChar->getEquip((SLOTTYPE)i);
+                PChar->styleItems[i] = (PItem == nullptr) ? 0 : PItem->getID();
+            }
+            memcpy(&PChar->mainlook, &PChar->look, sizeof(PChar->look));
+        }
+        else {
+            for (uint8 i = 0; i < SLOT_LINK1; i++) {
+                PChar->styleItems[i] = 0;
+            }
+        }
+        PChar->setStyleLocked(isStyleLocked);
+        PChar->pushPacket(new CMessageStandardPacket(PChar->getStyleLocked() ? 0x10B : 0x10C));
+    }
+
+    void UpdateWeaponStyle(CCharEntity* PChar, uint8 equipSlotID, CItemWeapon* PItem) {
+        if (!PChar->getStyleLocked())
+            return;
+
+        auto appearance = (CItemArmor*)itemutils::GetItem(PChar->styleItems[equipSlotID]);
+        auto appearanceModel = (appearance == nullptr) ? 0 : appearance->getModelId();
+
+        switch (equipSlotID)
+        {
+        case SLOT_MAIN:
+            if (hasValidStyle(PChar, PItem, appearance)) {
+                PChar->mainlook.main = appearanceModel;
+            }
+            else {
+                PChar->mainlook.main = PChar->look.main;
+            }
+
+            if (PItem == nullptr) {
+                PChar->mainlook.sub = PChar->look.sub;
+            }
+            else {
+                switch (((CItemWeapon*)PItem)->getSkillType())
+                {
+                case SKILL_H2H:
+                    PChar->mainlook.sub = appearanceModel + 0x1000;
+                    break;
+                case SKILL_GSD:
+                case SKILL_GAX:
+                case SKILL_SYH:
+                case SKILL_POL:
+                case SKILL_GKT:
+                case SKILL_STF:
+                    PChar->mainlook.sub = PChar->look.sub;
+                    break;
+                }
+            }
+            break;
+        case SLOT_SUB:
+            if (hasValidStyle(PChar, PItem, appearance)) {
+                PChar->mainlook.sub = appearanceModel;
+            }
+            else {
+                PChar->mainlook.sub = PChar->look.sub;
+            }
+            break;
+        case SLOT_RANGED:
+        case SLOT_AMMO:
+            // Appears as though these aren't implemented by SE.
+            break;
+        }
+    }
+
+    void UpdateArmorStyle(CCharEntity* PChar, uint8 equipSlotID) {
+        if (!PChar->getStyleLocked())
+            return;
+
+        auto itemID = PChar->styleItems[equipSlotID];
+        auto appearance = (CItemArmor*)itemutils::GetItem(itemID);
+        auto appearanceModel = (appearance == nullptr || !HasItem(PChar, itemID)) ? 0 : appearance->getModelId();
+
+        if (!canEquipItemOnAnyJob(PChar, appearance))
+            return;
+
+        switch (equipSlotID) 
+        {
+        case SLOT_HEAD:
+            PChar->mainlook.head = appearanceModel;
+            break;
+        case SLOT_BODY:
+            PChar->mainlook.body = appearanceModel;
+            break;
+        case SLOT_HANDS:
+            PChar->mainlook.hands = appearanceModel;
+            break;
+        case SLOT_LEGS:
+            PChar->mainlook.legs = appearanceModel;
+            break;
+        case SLOT_FEET:
+            PChar->mainlook.feet = appearanceModel;
+            break;
+        }
+    }
+    
     /************************************************************************
     *																		*
     *																		*
@@ -3847,17 +4019,41 @@ namespace charutils
             "SET head = %u, body = %u, hands = %u, legs = %u, feet = %u, main = %u, sub = %u, ranged = %u "
             "WHERE charid = %u;";
 
+        look_t* look = (PChar->getStyleLocked() ? &PChar->mainlook : &PChar->look);
         Sql_Query(SqlHandle,
             Query,
-            PChar->look.head,
-            PChar->look.body,
-            PChar->look.hands,
-            PChar->look.legs,
-            PChar->look.feet,
-            PChar->look.main,
-            PChar->look.sub,
-            PChar->look.ranged,
+            look->head,
+            look->body,
+            look->hands,
+            look->legs,
+            look->feet,
+            look->main,
+            look->sub,
+            look->ranged,
             PChar->id);
+        
+        Sql_Query(SqlHandle,
+            "UPDATE chars SET isstylelocked = %u WHERE charid = %u;",
+            PChar->getStyleLocked() ? 1 : 0,
+            PChar->id);
+
+        Query = "INSERT INTO char_style (charid, head, body, hands, legs, feet, main, sub, ranged) "
+            "VALUES (%u, %u, %u, %u, %u, %u, %u, %u, %u) ON DUPLICATE KEY UPDATE "
+            "charid = VALUES(charid), head = VALUES(head), body = VALUES(body), "
+            "hands = VALUES(hands), legs = VALUES(legs), feet = VALUES(feet), "
+            "main = VALUES(main), sub = VALUES(sub), ranged = VALUES(ranged);";
+
+        Sql_Query(SqlHandle,
+            Query,
+            PChar->id,
+            PChar->styleItems[SLOT_HEAD],
+            PChar->styleItems[SLOT_BODY],
+            PChar->styleItems[SLOT_HANDS],
+            PChar->styleItems[SLOT_LEGS],
+            PChar->styleItems[SLOT_FEET],
+            PChar->styleItems[SLOT_MAIN],
+            PChar->styleItems[SLOT_SUB],
+            PChar->styleItems[SLOT_RANGED]);
     }
 
     /************************************************************************
