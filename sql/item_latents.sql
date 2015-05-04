@@ -2104,8 +2104,8 @@ INSERT INTO `item_latents` VALUES(12374, 7, 15, 53, 0); -- HPconvMP +15 in areas
 -- -------------------------------------------------------
 -- Bastokan Circlet/Republic Circlet
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(13899, 3, 15, 53, 0); -- MATT +3 in areas inside own nation's control
-INSERT INTO `item_latents` VALUES(13900, 5, 15, 53, 0); -- MATT +5 in areas inside own nation's control
+INSERT INTO `item_latents` VALUES(13899, 28, 3, 53, 0); -- MATT +3 in areas inside own nation's control
+INSERT INTO `item_latents` VALUES(13900, 28, 5, 53, 0); -- MATT +5 in areas inside own nation's control
 
 -- -------------------------------------------------------
 -- Arco de Velocidad
