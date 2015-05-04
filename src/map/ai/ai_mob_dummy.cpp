@@ -1493,7 +1493,6 @@ void CAIMobDummy::ActionAttack()
                     m_LastMagicTime -= 500;
                 }
                 FinishAttack();
-                return;
             }
 
         }
