@@ -1084,7 +1084,7 @@ void CParty::RefreshSync()
     {
         SetSyncTarget(nullptr, 554);
     }
-    for (uint32 i = 0; i < members.size(); ++i)
+    for (uint8 i = 0; i < members.size(); ++i)
 	{
 		if(members.at(i)->objtype != TYPE_PC) continue;
 
