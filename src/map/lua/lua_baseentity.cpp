@@ -5223,7 +5223,7 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
         blueutils::UnequipAllBlueSpells(PChar);
     }
     puppetutils::LoadAutomaton(PChar);
-    charutils::SetStyleLock(PChar, false);
+    charutils::SetStyleLock(PChar, false, false);
     luautils::CheckForGearSet(PChar); // check for gear set on gear change
     charutils::BuildingCharSkillsTable(PChar);
     charutils::CalculateStats(PChar);
@@ -5309,7 +5309,7 @@ inline int32 CLuaBaseEntity::setsLevel(lua_State *L)
     PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
     PChar->jobs.exp[PChar->GetSJob()] = charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetSJob()]) - 1;
 
-    charutils::SetStyleLock(PChar, false);
+    charutils::SetStyleLock(PChar, false, false);
     charutils::BuildingCharSkillsTable(PChar);
     charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);
@@ -5357,7 +5357,7 @@ inline int32 CLuaBaseEntity::setLevel(lua_State *L)
     PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
     PChar->jobs.exp[PChar->GetMJob()] = charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1;
 
-    charutils::SetStyleLock(PChar, false);
+    charutils::SetStyleLock(PChar, false, false);
     blueutils::ValidateBlueSpells(PChar);
     charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);

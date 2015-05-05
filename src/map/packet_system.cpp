@@ -2415,12 +2415,23 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8 count = RBUFB(data, (0x04));
     uint8 type = RBUFB(data, (0x05));
 
-    if (type == 0) {
-        charutils::SetStyleLock(PChar, false);
+    if (type == 0 && PChar->getStyleLocked()) 
+    {
+        charutils::SetStyleLock(PChar, false, false);
         charutils::SaveCharEquip(PChar);
     }
-    else if (type == 3) {
-        charutils::SetStyleLock(PChar, true);
+    else if (type == 1) 
+    {
+        // The client sends this when logging in and zoning. 
+        PChar->setStyleLocked(true);
+    }
+    else if (type == 2) 
+    {
+        PChar->pushPacket(new CMessageStandardPacket(PChar->getStyleLocked() ? 0x10D : 0x10E));
+    }
+    else if (type == 3) 
+    {
+        charutils::SetStyleLock(PChar, true, false);
 
         for (int i = 0x08; i < 0x08 + (0x08 * count); i += 0x08) {
             uint8 slotId = RBUFB(data, i);
@@ -2455,13 +2466,17 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         }
         charutils::SaveCharEquip(PChar);
     }
-    else if (type == 4) {
-        charutils::SetStyleLock(PChar, true);
+    else if (type == 4) 
+    {
+        charutils::SetStyleLock(PChar, true, false);
         charutils::SaveCharEquip(PChar);
     }
 
-    PChar->pushPacket(new CCharAppearancePacket(PChar));
-    PChar->pushPacket(new CCharSyncPacket(PChar));
+    if (type != 1 && type != 2) 
+    {
+        PChar->pushPacket(new CCharAppearancePacket(PChar));
+        PChar->pushPacket(new CCharSyncPacket(PChar));
+    }
 
     return;
 }
@@ -4940,7 +4955,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
 
         }
-        charutils::SetStyleLock(PChar, false);
+        charutils::SetStyleLock(PChar, false, false);
         luautils::CheckForGearSet(PChar); // check for gear set on gear change
 
         charutils::BuildingCharSkillsTable(PChar);
@@ -5372,7 +5387,7 @@ void SmallPacket0x10F(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x111(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    charutils::SetStyleLock(PChar, RBUFB(data, (0x04)));
+    charutils::SetStyleLock(PChar, RBUFB(data, (0x04)), false);
     PChar->pushPacket(new CCharAppearancePacket(PChar));
     return;
 }
