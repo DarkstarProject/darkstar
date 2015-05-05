@@ -1831,7 +1831,7 @@ namespace charutils
                 auto PItem = PChar->getEquip((SLOTTYPE)i);
                 PChar->styleItems[i] = (PItem == nullptr) ? 0 : PItem->getID();
             }
-            memcpy(&PChar->mainlook, &PChar->look, sizeof(PChar->look));
+            PChar->mainlook = PChar->look;
         }
         else {
             for (uint8 i = 0; i < SLOT_LINK1; i++) {
