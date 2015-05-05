@@ -143,7 +143,7 @@ public:
     int32 setAnimation(lua_State*);         // Set Entity Animation
     int32 AnimationSub(lua_State*);         // get or set animationsub
     int32 costume(lua_State*);              // get or set user costume
-	int32 costume2(lua_State*);				// set monstrosity costume
+    int32 costume2(lua_State*);				// set monstrosity costume
     int32 canUseCostume(lua_State*);        // check to see if character can use costume, 0 if so
     int32 canUseChocobo(lua_State *L);      // check to see if character can use chocobo, 0 if so
     int32 canUsePet(lua_State *L);          // check to see if character can call pet, 0 if so
@@ -313,7 +313,7 @@ public:
     int32 getFameLevel(lua_State*);         // Gets Fame Level for specified nation
 
     int32 setStatus(lua_State*);            // Sets Character's Status
-	int32 getStatus(lua_State*);
+    int32 getStatus(lua_State*);
 
     int32 sendRaise(lua_State*);            // send raise request to char
     int32 sendReraise(lua_State*);          // send raise request to char
@@ -321,7 +321,7 @@ public:
     int32 SendRevision(lua_State*);         // send Git revision to char
 
     int32 updateEnmity(lua_State*);           // Adds Enmity to player for specified mob
-	int32 updateClaim(lua_State*);           // Adds Enmity to player for specified mob and claims
+    int32 updateClaim(lua_State*);           // Adds Enmity to player for specified mob and claims
     int32 updateEnmityFromDamage(lua_State*); // Adds Enmity to player for specified mob for the damage specified
     int32 updateEnmityFromCure(lua_State*);
     int32 addEnmity(lua_State*);            // Add specified amount of enmity (target, CE, VE)
@@ -566,7 +566,7 @@ public:
     int32 spawn(lua_State* L);
     int32 getCurrentAction(lua_State* L);
     int32 getAllegiance(lua_State* L);
-	int32 stun(lua_State* L);
+    int32 stun(lua_State* L);
     int32 weaknessTrigger(lua_State* L);
     int32 setBehaviour(lua_State* L);
     int32 getBehaviour(lua_State* L);
@@ -575,8 +575,6 @@ public:
     int32 setModelId(lua_State* L);
     int32 setAggroFlag(lua_State* L);
     int32 unsetAggroFlag(lua_State* L);
-	int32 addFishingZone(lua_State* L);
-	//int32 addFishingZonePoint()
     int32 instantiateMob(lua_State* L);
 
     int32 getActiveManeuvers(lua_State*);
