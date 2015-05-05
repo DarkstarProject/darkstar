@@ -199,7 +199,7 @@ void CAIMobDummy::ActionRoaming()
         // if I just disengaged check if I should despawn
         if (m_checkDespawn && m_PMob->IsFarFromHome())
         {
-            if (m_PMob->CanRoamHome() && m_PPathFind->PathTo(m_PMob->m_SpawnPoint, PATHFLAG_WALLHACK))
+            if (m_PMob->CanRoamHome() && m_PPathFind->PathTo(m_PMob->m_SpawnPoint))
             {
                 // walk back to spawn if too far away
 
