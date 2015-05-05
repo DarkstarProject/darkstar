@@ -392,7 +392,7 @@ void CZone::LoadNavMesh()
 
     if (m_navMesh == nullptr)
     {
-        m_navMesh = new CNavMesh();
+        m_navMesh = new CNavMesh((uint16)GetID());
     }
 
     int8 file[255];
@@ -402,7 +402,7 @@ void CZone::LoadNavMesh()
     if (m_navMesh->load(file))
     {
         // verify it can find proper paths
-        m_navMesh->test((int16)GetID());
+        m_navMesh->test((uint16)GetID());
     }
     else
     {
