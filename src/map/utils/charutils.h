@@ -81,6 +81,9 @@ namespace charutils
     void    RemoveSub(CCharEntity* PChar);
     bool    EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID);
     void	CheckUnarmedWeapon(CCharEntity* PChar);
+    void    SetStyleLock(CCharEntity* PChar, bool isStyleLocked);
+    void    UpdateWeaponStyle(CCharEntity* PChar, uint8 equipSlotID, CItemWeapon* PItem);
+    void    UpdateArmorStyle(CCharEntity* PChar, uint8 equipSlotID);
 
     void    UpdateHealth(CCharEntity* PChar);
 
