@@ -1824,7 +1824,7 @@ namespace charutils
             && canEquipItemOnAnyJob(PChar, AItem));
     }
 
-    void SetStyleLock(CCharEntity* PChar, bool isStyleLocked, bool isSilent)
+    void SetStyleLock(CCharEntity* PChar, bool isStyleLocked)
     {
         if (isStyleLocked)
         {
@@ -1840,8 +1840,7 @@ namespace charutils
                 PChar->styleItems[i] = 0;
         PChar->setStyleLocked(isStyleLocked);
 
-        if (!isSilent)
-            PChar->pushPacket(new CMessageStandardPacket(PChar->getStyleLocked() ? 0x10B : 0x10C));
+        PChar->pushPacket(new CMessageStandardPacket(PChar->getStyleLocked() ? 0x10B : 0x10C));
     }
 
     void UpdateWeaponStyle(CCharEntity* PChar, uint8 equipSlotID, CItemWeapon* PItem) 
