@@ -321,6 +321,7 @@ public:
     int32 SendRevision(lua_State*);         // send Git revision to char
 
     int32 updateEnmity(lua_State*);           // Adds Enmity to player for specified mob
+	int32 updateClaim(lua_State*);           // Adds Enmity to player for specified mob and claims
     int32 updateEnmityFromDamage(lua_State*); // Adds Enmity to player for specified mob for the damage specified
     int32 updateEnmityFromCure(lua_State*);
     int32 addEnmity(lua_State*);            // Add specified amount of enmity (target, CE, VE)
@@ -574,6 +575,8 @@ public:
     int32 setModelId(lua_State* L);
     int32 setAggroFlag(lua_State* L);
     int32 unsetAggroFlag(lua_State* L);
+	int32 addFishingZone(lua_State* L);
+	//int32 addFishingZonePoint()
     int32 instantiateMob(lua_State* L);
 
     int32 getActiveManeuvers(lua_State*);
