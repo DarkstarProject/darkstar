@@ -215,7 +215,10 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 	{
 		//instance no longer exists: put them outside (at exit)
 		PChar->loc.prevzone = GetID();
-		zoneutils::GetZone(luautils::OnInstanceLoadFailed(this))->IncreaseZoneCounter(PChar);
+        
+        uint16 zoneid = luautils::OnInstanceLoadFailed(this);
+
+		zoneutils::GetZone(zoneid > MAX_ZONEID ? PChar->loc.prevzone : zoneid)->IncreaseZoneCounter(PChar);
 	}
 }
 

@@ -348,10 +348,6 @@ bool CCharEntity::getStyleLocked()
 
 void CCharEntity::setStyleLocked(bool isStyleLocked)
 {
-  if (isStyleLocked) {
-	memcpy(&mainlook, &look, sizeof(look));
-  }
-
   m_isStyleLocked = isStyleLocked;
 }
 

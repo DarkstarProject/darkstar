@@ -55,10 +55,6 @@ function onUseAbility(player,target,ability)
 
     local stealMod = player:getMod(MOD_STEAL);
 
-    if((player:getEquipID(SLOT_RING1) == 13291 or player:getEquipID(SLOT_RING2) == 13291) and player:GetHPP() < 75 and player:getTP() < 100) then
-        stealMod = stealMod + 3;
-    end; --Rogue's Ring
-
     local stealChance = 50 + stealMod * 2 + thfLevel - target:getMainLvl();
 
     stolen = target:getStealItem();
@@ -83,11 +79,11 @@ function checkThfAfQuest(player, target)
     local targid = target:getID();
 
     if(player:getVar("theTenshodoShowdownCS") == 3) then
-            for key, value in pairs(validThfQuestMobs) do
-                if value == targid then
+        for key, value in pairs(validThfQuestMobs) do
+            if value == targid then
                 return true
-                end
-    end
+            end
+        end
     return false
     end
 end;

@@ -145,3 +145,4 @@ src/common/stamp-h1
 *.sw?
 
 navmeshes/*.nav
+tags

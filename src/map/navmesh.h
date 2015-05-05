@@ -64,7 +64,7 @@ class CNavMesh
     static void ToDetourPos(position_t* out);
 
   public:
-    CNavMesh();
+    CNavMesh(uint16 zoneID);
     ~CNavMesh();
 
     bool load(char* path);
@@ -85,6 +85,7 @@ class CNavMesh
   private:
     void outputError(uint32 status);
 
+    uint16 m_zoneID;
     dtRaycastHit m_hit;
     dtPolyRef m_hitPath[20];
     dtNavMesh* m_navMesh;
