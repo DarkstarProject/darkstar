@@ -2789,8 +2789,10 @@ void SmallPacket0x066(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 stamina = RBUFW(data, (0x08));
     uint8  action = RBUFB(data, (0x0E));
 
-    fishingutils::FishingAction(PChar, (FISHACTION)action, stamina);
+    fishingutils::FishingAction(PChar, (FISHACTION)action, stamina, 0);
     return;
+	//fishingutils::FishingAction(PChar, (FISHACTION)action, stamina);
+	return;
 }
 
 /************************************************************************
@@ -5364,8 +5366,28 @@ void SmallPacket0x10F(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     return;
 }
 
+
 /************************************************************************
 *                                                                        *
+*  Fishing Status                                                       *
+*																		*
+************************************************************************/
+
+void SmallPacket0x110(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+	PrintPacket(data);
+
+	uint16 stamina = RBUFW(data, (0x08));
+	uint8  action = RBUFB(data, (0x0E));
+	uint8  unknown = RBUFB(data, (0x10));
+
+	fishingutils::FishingAction(PChar, (FISHACTION)action, stamina, unknown);
+
+	return;
+}
+
+/************************************************************************
+*																		*
 *  Lock Style Request                                                   *
 *                                                                        *
 ************************************************************************/
@@ -5498,6 +5520,7 @@ void PacketParserInitialize()
     PacketSize[0x10A] = 0x06; PacketParser[0x10A] = &SmallPacket0x10A;
     PacketSize[0x10B] = 0x00; PacketParser[0x10B] = &SmallPacket0x10B;
     PacketSize[0x10F] = 0x02; PacketParser[0x10F] = &SmallPacket0x10F;
+	PacketSize[0x110] = 0x0A; PacketParser[0x110] = &SmallPacket0x110; // New fishing Action
     PacketSize[0x111] = 0x00; PacketParser[0x111] = &SmallPacket0x111; // Lock Style Request
     PacketSize[0x112] = 0x00; PacketParser[0x112] = &SmallPacket0xFFF;
     PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0xFFF;

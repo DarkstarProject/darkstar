@@ -1827,6 +1827,187 @@ int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 	return 0;
 }
 
+/***********************************************************************
+
+FISHING
+
+************************************************************************/
+
+fishResult* OnFishingCheck(CCharEntity* PChar, uint16 Zone)
+{
+	int8 File[255];
+	memset(File, 0, sizeof(File));
+	int32 oldtop = lua_gettop(LuaHandle);
+	fishResult *retVal = new fishResult();
+
+	lua_pushnil(LuaHandle);
+	lua_setglobal(LuaHandle, "onFishingCheck");
+
+	snprintf(File, sizeof(File), "scripts/globals/fishing/fishing.lua");
+
+	if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+	{
+		ShowError("luautils::OnFishingCheck ERROR: %s\n", lua_tostring(LuaHandle, -1));
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	lua_getglobal(LuaHandle, "onFishingCheck");
+	if (lua_isnil(LuaHandle, -1))
+	{
+		ShowError("luautils::OnFishingCheck: undefined procedure OnFishingCheck\n");
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+	lua_pushinteger(LuaHandle, Zone);
+	lua_pushinteger(LuaHandle, PChar->loc.zone->GetType());
+
+
+	if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
+	{
+		ShowError("luautils::OnFishingCheck: %s\n", lua_tostring(LuaHandle, -1));
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	int32 returns = lua_gettop(LuaHandle) - oldtop;
+	if (returns == 6)
+	{
+		retVal->f = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
+		retVal->e = (!lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2) ? (int32)lua_tonumber(LuaHandle, -2) : 0);
+		retVal->d = (!lua_isnil(LuaHandle, -3) && lua_isnumber(LuaHandle, -3) ? (int32)lua_tonumber(LuaHandle, -3) : 0);
+		retVal->c = (!lua_isnil(LuaHandle, -4) && lua_isnumber(LuaHandle, -4) ? (int32)lua_tonumber(LuaHandle, -4) : 0);
+		retVal->b = (!lua_isnil(LuaHandle, -5) && lua_isnumber(LuaHandle, -5) ? (int32)lua_tonumber(LuaHandle, -5) : 0);
+		retVal->a = (!lua_isnil(LuaHandle, -6) && lua_isnumber(LuaHandle, -6) ? (int32)lua_tonumber(LuaHandle, -6) : 0);
+		lua_pop(LuaHandle, returns);
+		return retVal;
+	}
+	else
+	{
+		ShowError("luatils::OnFishingCheck (%s): 6 returns expected, got %u\n", File, returns);
+		lua_pop(LuaHandle, returns);
+	}
+
+	return 0;
+}
+
+fishResult* OnFishingComplete(CCharEntity* PChar, ZONETYPE zonetype, FISHACTION action, uint16 stamina, uint32 monsterid)
+{
+	int8 File[255];
+	memset(File, 0, sizeof(File));
+	int32 oldtop = lua_gettop(LuaHandle);
+	fishResult *retVal = new fishResult();
+
+	lua_pushnil(LuaHandle);
+	lua_setglobal(LuaHandle, "onFishingComplete");
+
+	snprintf(File, sizeof(File), "scripts/globals/fishing/fishing.lua");
+
+	if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+	{
+		ShowError("luautils::OnFishingComplete ERROR: %s\n", lua_tostring(LuaHandle, -1));
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	lua_getglobal(LuaHandle, "onFishingComplete");
+	if (lua_isnil(LuaHandle, -1))
+	{
+		ShowError("luautils::OnFishingComplete: undefined procedure OnFishingComplete\n");
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+	lua_pushinteger(LuaHandle, zonetype);
+	lua_pushinteger(LuaHandle, action);
+	lua_pushinteger(LuaHandle, stamina);
+	lua_pushinteger(LuaHandle, monsterid);
+
+	if (lua_pcall(LuaHandle, 5, LUA_MULTRET, 0))
+	{
+		ShowError("luautils::OnFishingComplete: %s\n", lua_tostring(LuaHandle, -1));
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	int32 returns = lua_gettop(LuaHandle) - oldtop;
+	if (returns == 2)
+	{
+		retVal->b = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
+		retVal->a = (!lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2) ? (int32)lua_tonumber(LuaHandle, -2) : 0);
+		lua_pop(LuaHandle, 2);
+		return retVal;
+	}
+	else
+	{
+		ShowError("luatils::OnFishingComplete (%s): 2 returns expected, got %d\n", File, returns);
+		lua_pop(LuaHandle, returns);
+	}
+
+	return 0;
+}
+
+fishResult* OnFishingEnd(CCharEntity* PChar)
+{
+	int8 File[255];
+	memset(File, 0, sizeof(File));
+	int32 oldtop = lua_gettop(LuaHandle);
+	fishResult *retVal = new fishResult();
+
+	lua_pushnil(LuaHandle);
+	lua_setglobal(LuaHandle, "onFishingEnd");
+
+	snprintf(File, sizeof(File), "scripts/globals/fishing/fishing.lua");
+
+	if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+	{
+		ShowError("luautils::OnFishingEnd ERROR: %s\n", lua_tostring(LuaHandle, -1));
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	lua_getglobal(LuaHandle, "onFishingEnd");
+	if (lua_isnil(LuaHandle, -1))
+	{
+		ShowError("luautils::OnFishingEnd: undefined procedure OnFishingEnd\n");
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+	if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
+	{
+		ShowError("luautils::OnFishingEnd: %s\n", lua_tostring(LuaHandle, -1));
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	int32 returns = lua_gettop(LuaHandle) - oldtop;
+	if (returns == 2)
+	{
+		retVal->b = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
+		retVal->a = (!lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2) ? (int32)lua_tonumber(LuaHandle, -2) : 0);
+		lua_pop(LuaHandle, 2);
+		return retVal;
+	}
+	else
+	{
+		ShowError("luatils::OnFishingEnd (%s): 2 returns expected, got %d\n", File, returns);
+		lua_pop(LuaHandle, returns);
+	}
+
+	return 0;
+}
+
+
 int32 OnManeuverGain(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers)
 {
     lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
@@ -2950,11 +3131,11 @@ int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobS
     {
         return 0;
     }
-    CLuaBaseEntity LuaBaseEntity(PTarget);
+	CLuaBaseEntity LuaBaseEntity(PTarget);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-    CLuaBaseEntity LuaMobEntity(PMob);
+	CLuaBaseEntity LuaMobEntity(PMob);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-    CLuaMobSkill LuaMobSkill(PMobSkill);
+	CLuaMobSkill LuaMobSkill(PMobSkill);
 	Lunar<CLuaMobSkill>::push(LuaHandle,&LuaMobSkill);
 
 	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
@@ -3974,7 +4155,7 @@ int32 UpdateNMSpawnPoint(lua_State* L)
 			ShowDebug(CL_RED"UpdateNMSpawnPoint: SQL error: No entries for mobid <%u> found.\n" CL_RESET, mobid);
             return 0;
           }
-          
+
 		  ret = Sql_Query(SqlHandle, "SELECT pos_x, pos_y, pos_z FROM `nm_spawn_points` WHERE mobid=%u AND pos=%i", mobid, r);
 		  if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
 			PMob->m_SpawnPoint.rotation = WELL512::GetRandomNumber(256);

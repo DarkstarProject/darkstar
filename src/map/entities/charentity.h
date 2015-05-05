@@ -213,6 +213,9 @@ public:
     void					resetPetZoningInfo();			// reset pet zoning info (when changing job ect)
     uint8					m_SetBlueSpells[20];			// The 0x200 offsetted blue magic spell IDs which the user has set. (1 byte per spell)
 
+	uint32					m_spawnMonsterID;				// Temporary space for spawning a monster (used in fishingutils.cpp)
+	uint8                   m_fishingUnknown;               // Temporary space for sending back unknown value that appears in finish fishing packet
+
     UnlockedAttachments_t	m_unlockedAttachments;			// Unlocked Automaton Attachments (1 bit per attachment)
     CAutomatonEntity*       PAutomaton;                     // Automaton statistics
 

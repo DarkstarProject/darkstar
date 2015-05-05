@@ -25,6 +25,7 @@
 #define _LUAUTILS_H
 
 #include "../../common/cbasetypes.h"
+#include "../utils/fishingutils.h"
 
 #include "../entities/battleentity.h"
 #include "../conquest_system.h"
@@ -195,6 +196,10 @@ namespace luautils
 
     int32 OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, apAction_t* Action, uint32 damage); // for items with additional effects
     int32 OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, apAction_t* Action, uint32 damage);                         // for mobs with spikes
+
+	fishResult* OnFishingCheck(CCharEntity* PChar, uint16 Zone);
+	fishResult* OnFishingComplete(CCharEntity* PChar, ZONETYPE zonetype, FISHACTION action, uint16 stamina, uint32 monsterid);
+	fishResult* OnFishingEnd(CCharEntity* PChar);
 
     int32 nearLocation(lua_State*);
 

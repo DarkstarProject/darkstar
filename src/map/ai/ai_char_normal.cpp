@@ -134,8 +134,8 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 
     if (m_PChar && PSelf->PBattleAI == this)
     {
-        m_PChar->UpdateEntity();
-    }
+    m_PChar->UpdateEntity();
+}
 }
 
 void CAICharNormal::CheckActionAfterReceive(uint32 tick)

@@ -818,6 +818,9 @@
     <ClInclude Include="..\..\src\map\packets\currency2.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\caught_monster.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\map\ai\ai_automaton_dummy.h">
       <Filter>Header Files\ai</Filter>
     </ClInclude>

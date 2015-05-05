@@ -22,5 +22,5 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT_VELOCITY_SHOT,1,0,7200);
+	player:addStatusEffect(EFFECT_VELOCITY_SHOT,1,0,7200);
 end;

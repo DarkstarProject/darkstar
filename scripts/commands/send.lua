@@ -291,13 +291,13 @@ function onTrigger(player, p1, zoneId)
 	-- Not enough info.. 
 	if(p1 == nil and zone == nil) then
 		player:PrintToPlayer( string.format("Must specify 2 players or zone: @zoneplayer <player to be sent> (<player to arrive at> or zone) ") );
-		return;
-	end
-	
+        return;
+    end
+
 	-- Ensure we have a correct combination of values.. 
 	if (p1 ~= nil) then
-		if (targ1 == nil) then
-			player:PrintToPlayer( string.format( "Player named '%s' not found!", p1 ) );
+        if (targ1 == nil) then
+            player:PrintToPlayer( string.format( "Player named '%s' not found!", p1 ) );
 			return;
 		end
 		if (zone == nil) then 
@@ -316,9 +316,9 @@ function onTrigger(player, p1, zoneId)
 					-- Teleports player 1 to given zone.
 					targ1:setPos(0, 0, 0, 0, v[3], targ1);
 					return;
-				end
-			end
-		else
+        end
+        end
+        else
 			if (zoneId ~= nil) then
 				local p2 = zoneId;
 				local targ2 = GetPlayerByName(p2);
@@ -326,6 +326,6 @@ function onTrigger(player, p1, zoneId)
 					targ1:setPos( targ2:getXPos(), targ2:getYPos(), targ2:getZPos(), 0, targ2:getZoneID() );
 			end
 		end
-	end	
-end
+        end
+    end
 	

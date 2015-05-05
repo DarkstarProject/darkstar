@@ -34,6 +34,17 @@ enum FISHACTION
 	FISHACTION_WARNING	= 5
 };
 
+enum WATERTYPE : uint8
+{
+	WATERTYPE_FRESH = 1,
+	WATERTYPE_SALT = 2
+};
+
+struct fishResult
+{
+	uint32 a, b, c, d, e, f, g;
+};
+
 /************************************************************************
 *																		*
 *  Все методы, необходимые для реализации рыбалки						*
@@ -47,7 +58,7 @@ namespace fishingutils
     void LoadFishingMessages();
 
 	void StartFishing(CCharEntity* PChar);
-	void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina);
+	void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, uint8 unknown);
 };
 
 #endif

@@ -39,17 +39,17 @@ function onSpellCast(caster,target,spell)
 
     local params = {};
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
-    params.multiplier = multi;
-    params.tMultiplier = 1.0;
-    params.duppercap = 35;
-    params.str_wsc = 0.0;
-    params.dex_wsc = 0.0;
-    params.vit_wsc = 0.0;
-    params.agi_wsc = 0.0;
-    params.int_wsc = 0.0;
-    params.mnd_wsc = 0.39;
-    params.chr_wsc = 0.0;
-
+        params.multiplier = multi;
+        params.tMultiplier = 1.0;
+        params.duppercap = 35;
+        params.str_wsc = 0.0;
+        params.dex_wsc = 0.0;
+        params.vit_wsc = 0.0;
+        params.agi_wsc = 0.0;
+        params.int_wsc = 0.0;
+        params.mnd_wsc = 0.39;
+        params.chr_wsc = 0.0;
+    
     if (target:isUndead()) then
         spell:setMsg(75); -- No effect
     else
@@ -58,12 +58,12 @@ function onSpellCast(caster,target,spell)
         if (target:getMP() > 0) then
             if (target:getMP() < dmg) then
                 dmg = target:getMP();
-            end
-            caster:addMP(dmg);
+    end
+        caster:addMP(dmg);
         else
             return 0;
         end
     end
-
+    
     return dmg;
 end;
