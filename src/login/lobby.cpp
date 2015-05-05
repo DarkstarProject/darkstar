@@ -295,7 +295,7 @@ int32 lobbydata_parse(int32 fd)
             }
 
             if (PrevZone == 0)
-                Sql_Query(SqlHandle, "UPDATE chars SET prev_zone = %d WHERE charid = %u;", ZoneID, charid);
+                Sql_Query(SqlHandle, "UPDATE chars SET pos_prevzone = %d WHERE charid = %u;", ZoneID, charid);
 
             WBUFL(ReservePacket, (0x40)) = sd->servip;									// search-server ip
             WBUFW(ReservePacket, (0x44)) = login_config.search_server_port;				// search-server port
