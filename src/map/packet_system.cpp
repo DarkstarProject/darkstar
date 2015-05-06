@@ -5125,7 +5125,7 @@ void SmallPacket0x104(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (PTarget != nullptr && PTarget->id == PChar->BazaarID.id)
     {
-        for (uint32 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
+        for (uint16 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
         {
             if (PTarget->BazaarCustomers[i].id == PChar->targid)
             {
@@ -5152,6 +5152,9 @@ void SmallPacket0x105(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint32 charid = RBUFL(data, (0x04));
 
     CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(PChar->m_TargID, TYPE_PC);
+
+    if (!PTarget)
+        PTarget = (CCharEntity*)PChar->loc.zone->GetCharByID(charid);
 
     if (PTarget != nullptr && PTarget->id == charid && (PTarget->nameflags.flags & FLAG_BAZAAR))
     {
@@ -5263,7 +5266,7 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 break;
             }
         }
-        for (uint32 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
+        for (uint16 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
         {
             CCharEntity* PCustomer = (CCharEntity*)PTarget->GetEntity(PTarget->BazaarCustomers[i].targid, TYPE_PC);
 
@@ -5352,7 +5355,7 @@ void SmallPacket0x10A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x10B(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    for (uint32 i = 0; i < PChar->BazaarCustomers.size(); ++i)
+    for (uint16 i = 0; i < PChar->BazaarCustomers.size(); ++i)
     {
         CCharEntity* PCustomer = (CCharEntity*)PChar->GetEntity(PChar->BazaarCustomers[i].targid, TYPE_PC);
 
