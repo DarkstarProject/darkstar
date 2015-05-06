@@ -232,7 +232,7 @@ INSERT INTO `status_effects` VALUES (190,'magic_atk_boost',33,0,0,0,0,0,5);
 INSERT INTO `status_effects` VALUES (191,'magic_def_boost',33,0,0,0,0,0,3);
 INSERT INTO `status_effects` VALUES (192,'requiem',65568,0,0,1,0,0,7);
 INSERT INTO `status_effects` VALUES (193,'lullaby',65584,2,19,2,2,0,7);
-INSERT INTO `status_effects` VALUES (194,'elegy',65568,0,0,1,0,0,2);
+INSERT INTO `status_effects` VALUES (194,'elegy',65570,0,0,1,0,0,2);
 INSERT INTO `status_effects` VALUES (195,'paeon',65825,0,0,4,0,0,7);
 INSERT INTO `status_effects` VALUES (196,'ballad',65825,0,0,4,0,0,7);
 INSERT INTO `status_effects` VALUES (197,'minne',65825,0,0,4,0,0,2);
