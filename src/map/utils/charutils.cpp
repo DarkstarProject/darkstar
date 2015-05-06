@@ -1805,44 +1805,46 @@ namespace charutils
         return true;
     }
 
-    bool canEquipItemOnAnyJob(CCharEntity* PChar, CItemArmor* PItem) {
+    bool canEquipItemOnAnyJob(CCharEntity* PChar, CItemArmor* PItem)
+    {
         if (PItem == nullptr)
             return true;
 
-        for (uint8 i = 1; i < MAX_JOBTYPE; i++) {
-            if (PItem->getJobs() & (1 << (i - 1))
-                && PItem->getReqLvl() <= PChar->jobs.job[i]) {
+        for (uint8 i = 1; i < MAX_JOBTYPE; i++)
+            if (PItem->getJobs() & (1 << (i - 1)) && PItem->getReqLvl() <= PChar->jobs.job[i])
                 return true;
-            }
-        }
         return false;
     }
 
-    bool hasValidStyle(CCharEntity* PChar, CItemArmor* PItem, CItemArmor* AItem) {
-        return (PItem != nullptr && AItem != nullptr 
+    bool hasValidStyle(CCharEntity* PChar, CItemArmor* PItem, CItemArmor* AItem)
+    {
+        return (PItem != nullptr && AItem != nullptr
             && (((CItemWeapon*)AItem)->getSkillType() == ((CItemWeapon*)PItem)->getSkillType())
             && HasItem(PChar, AItem->getID())
             && canEquipItemOnAnyJob(PChar, AItem));
     }
-    
-    void SetStyleLock(CCharEntity* PChar, bool isStyleLocked) {
-        if (isStyleLocked) {
-            for (uint8 i = 0; i < SLOT_LINK1; i++) {
+
+    void SetStyleLock(CCharEntity* PChar, bool isStyleLocked)
+    {
+        if (isStyleLocked)
+        {
+            for (uint8 i = 0; i < SLOT_LINK1; i++)
+            {
                 auto PItem = PChar->getEquip((SLOTTYPE)i);
                 PChar->styleItems[i] = (PItem == nullptr) ? 0 : PItem->getID();
             }
-            PChar->mainlook = PChar->look;
+            memcpy(&PChar->mainlook, &PChar->look, sizeof(PChar->look));
         }
-        else {
-            for (uint8 i = 0; i < SLOT_LINK1; i++) {
+        else
+            for (uint8 i = 0; i < SLOT_LINK1; i++)
                 PChar->styleItems[i] = 0;
-            }
-        }
         PChar->setStyleLocked(isStyleLocked);
+
         PChar->pushPacket(new CMessageStandardPacket(PChar->getStyleLocked() ? 0x10B : 0x10C));
     }
 
-    void UpdateWeaponStyle(CCharEntity* PChar, uint8 equipSlotID, CItemWeapon* PItem) {
+    void UpdateWeaponStyle(CCharEntity* PChar, uint8 equipSlotID, CItemWeapon* PItem) 
+    {
         if (!PChar->getStyleLocked())
             return;
 
@@ -1852,17 +1854,14 @@ namespace charutils
         switch (equipSlotID)
         {
         case SLOT_MAIN:
-            if (hasValidStyle(PChar, PItem, appearance)) {
+            if (hasValidStyle(PChar, PItem, appearance)) 
                 PChar->mainlook.main = appearanceModel;
-            }
-            else {
+            else 
                 PChar->mainlook.main = PChar->look.main;
-            }
 
-            if (PItem == nullptr) {
+            if (PItem == nullptr)
                 PChar->mainlook.sub = PChar->look.sub;
-            }
-            else {
+            else
                 switch (((CItemWeapon*)PItem)->getSkillType())
                 {
                 case SKILL_H2H:
@@ -1877,15 +1876,12 @@ namespace charutils
                     PChar->mainlook.sub = PChar->look.sub;
                     break;
                 }
-            }
             break;
         case SLOT_SUB:
-            if (hasValidStyle(PChar, PItem, appearance)) {
+            if (hasValidStyle(PChar, PItem, appearance))
                 PChar->mainlook.sub = appearanceModel;
-            }
-            else {
+            else
                 PChar->mainlook.sub = PChar->look.sub;
-            }
             break;
         case SLOT_RANGED:
         case SLOT_AMMO:
@@ -1894,7 +1890,8 @@ namespace charutils
         }
     }
 
-    void UpdateArmorStyle(CCharEntity* PChar, uint8 equipSlotID) {
+    void UpdateArmorStyle(CCharEntity* PChar, uint8 equipSlotID) 
+    {
         if (!PChar->getStyleLocked())
             return;
 
