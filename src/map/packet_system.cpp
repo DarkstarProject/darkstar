@@ -937,7 +937,7 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         return;
     }
-    if (PItem->getQuantity() < quantity)
+    if (PItem->getQuantity() - PItem->getReserve() < quantity)
     {
         ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move too much quantity from location %u slot %u\n" CL_RESET, FromLocationID, FromSlotID);
         return;
