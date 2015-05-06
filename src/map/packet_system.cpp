@@ -2410,8 +2410,6 @@ void SmallPacket0x052(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 ************************************************************************/
 void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    PrintPacket(data);
-
     uint8 count = RBUFB(data, (0x04));
     uint8 type = RBUFB(data, (0x05));
 
