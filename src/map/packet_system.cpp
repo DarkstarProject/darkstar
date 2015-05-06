@@ -5151,10 +5151,7 @@ void SmallPacket0x105(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     uint32 charid = RBUFL(data, (0x04));
 
-    CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(PChar->m_TargID, TYPE_PC);
-
-    if (!PTarget)
-        PTarget = (CCharEntity*)PChar->loc.zone->GetCharByID(charid);
+    CCharEntity* PTarget = charid != 0 ? (CCharEntity*)PChar->loc.zone->GetCharByID(charid) : (CCharEntity*)PChar->GetEntity(PChar->m_TargID, TYPE_PC);
 
     if (PTarget != nullptr && PTarget->id == charid && (PTarget->nameflags.flags & FLAG_BAZAAR))
     {
