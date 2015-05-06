@@ -483,6 +483,7 @@ struct zoneLine_t
 class CBasicPacket;
 class CBaseEntity;
 class CCharEntity;
+class CNpcEntity;
 class CBattleEntity;
 class CTreasurePool;
 class CZoneEntities;
@@ -560,7 +561,9 @@ public:
 
     virtual void    ForEachChar(std::function<void(CCharEntity*)> func);
     virtual void    ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> func);
+    virtual void    ForEachMob(std::function<void(CMobEntity*)> func);
     virtual void    ForEachMobInstance(CBaseEntity* PEntity, std::function<void(CMobEntity*)> func);
+    virtual void    ForEachNpc(std::function<void(CNpcEntity*)> func);
 
     CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID);
     virtual ~CZone();

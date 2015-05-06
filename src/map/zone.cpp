@@ -824,11 +824,27 @@ void CZone::ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEn
     }
 }
 
+void CZone::ForEachMob(std::function<void(CMobEntity*)> func)
+{
+    for (auto PMob : m_zoneEntities->m_mobList)
+    {
+        func((CMobEntity*)PMob.second);
+    }
+}
+
 void CZone::ForEachMobInstance(CBaseEntity* PEntity, std::function<void(CMobEntity*)> func)
 {
     for (auto PMob : m_zoneEntities->m_mobList)
     {
         func((CMobEntity*)PMob.second);
+    }
+}
+
+void CZone::ForEachNpc(std::function<void(CNpcEntity*)> func)
+{
+    for (auto PNpc : m_zoneEntities->m_npcList)
+    {
+        func((CNpcEntity*)PNpc.second);
     }
 }
 

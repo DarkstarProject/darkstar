@@ -323,10 +323,19 @@ void LoadNPCList()
                 memcpy(&PNpc->look, Sql_GetData(SqlHandle, 14), 20);
 
                 GetZone(ZoneID)->InsertNPC(PNpc);
-                luautils::OnNpcSpawn(PNpc);
             }
         }
     }
+
+    // handle npc spawn functions after they're all done loading
+    ForEachZone([](CZone* PZone)
+    {
+        PZone->ForEachNpc([](CNpcEntity* PNpc)
+        {
+            luautils::OnNpcSpawn(PNpc);
+        });
+    });
+
 }
 
 /************************************************************************
@@ -502,14 +511,20 @@ void LoadMOBList()
                 mobutils::InitializeMob(PMob, GetZone(ZoneID));
 
                 GetZone(ZoneID)->InsertMOB(PMob);
-
-                luautils::OnMobInitialize(PMob);
-
-                PMob->saveModifiers();
-                PMob->saveMobModifiers();
             }
         }
     }
+
+    // handle mob initialise functions after they're all loaded
+    ForEachZone([](CZone* PZone)
+    {
+        PZone->ForEachMob([](CMobEntity* PMob)
+        {
+            luautils::OnMobInitialize(PMob);
+            PMob->saveModifiers();
+            PMob->saveMobModifiers();
+        });
+    });
 
     // attach pets to mobs
     const int8* PetQuery =

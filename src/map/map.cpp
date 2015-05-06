@@ -218,7 +218,7 @@ int32 do_init(int32 argc, int8** argv)
     petutils::LoadPetList();
     mobutils::LoadCustomMods();
 
-    ShowStatus("do_init: loading zones");
+    ShowStatus("do_init: loading zones\n");
     zoneutils::LoadZoneList();
     ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
