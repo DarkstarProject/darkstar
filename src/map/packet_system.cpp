@@ -2502,7 +2502,10 @@ void SmallPacket0x058(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x059(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    synthutils::sendSynthDone(PChar);
+    if (PChar->animation == ANIMATION_SYNTH)
+    {
+        synthutils::sendSynthDone(PChar);
+    }
     return;
 }
 
