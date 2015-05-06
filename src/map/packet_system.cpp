@@ -1194,7 +1194,7 @@ void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     CBaseEntity* PNpc = PChar->GetEntity(targid, TYPE_NPC);
 
-    if ((PNpc != nullptr) && (PNpc->id == npcid))
+    if ((PNpc != nullptr) && (PNpc->id == npcid) && distance(PNpc->loc.p, PChar->loc.p) <= 10)
     {
         uint8 numItems = RBUFB(data, (0x3C));
 
