@@ -2535,6 +2535,7 @@ void SmallPacket0x05B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 EventID = RBUFW(data, (0x12));
     uint32 Result = RBUFL(data, (0x08));
 
+    if (PChar->m_event.EventID != EventID) return;
     if (PChar->m_event.Option != 0) Result = PChar->m_event.Option;
 
     if (RBUFB(data, (0x0E)) != 0){
