@@ -33,8 +33,8 @@ function onMobEngaged(mob,target)
       mob:setMod(MOD_IMPACTRES,300);
       mob:setMod(MOD_HTHRES,300);
   end 
-  GetMobByID(16929005):updateEnmity(target);
-  GetMobByID(16929006):updateEnmity(target);
+  GetMobByID(16929005):updateClaim(target);
+  GetMobByID(16929006):updateClaim(target);
 end;
 
 -----------------------------------

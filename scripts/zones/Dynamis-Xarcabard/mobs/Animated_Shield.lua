@@ -20,12 +20,12 @@ function onMobEngaged(mob,target)
 	
 	target:showText(mob,ANIMATED_SHIELD_DIALOG);
 	
-	SpawnMob(17330290,120):updateEnmity(target);
-	SpawnMob(17330291,120):updateEnmity(target);
-	SpawnMob(17330292,120):updateEnmity(target);
-	SpawnMob(17330299,120):updateEnmity(target);
-	SpawnMob(17330300,120):updateEnmity(target);
-	SpawnMob(17330301,120):updateEnmity(target);
+	SpawnMob(17330290,120):updateClaim(target);
+	SpawnMob(17330291,120):updateClaim(target);
+	SpawnMob(17330292,120):updateClaim(target);
+	SpawnMob(17330299,120):updateClaim(target);
+	SpawnMob(17330300,120):updateClaim(target);
+	SpawnMob(17330301,120):updateClaim(target);
 	
 end;
 

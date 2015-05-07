@@ -29,20 +29,20 @@ function onMobFight(mob,target)
     -- TODO: summon animations?    
     if (GetMobAction(wynavA) == 0) then
         GetMobByID(wynavA):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5));
-        SpawnMob(wynavA, 300):updateEnmity(target);
+        SpawnMob(wynavA, 300):updateClaim(target);
     elseif (GetMobAction(wynavB) == 0) then
         GetMobByID(wynavB):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5));
-        SpawnMob(wynavB, 300):updateEnmity(target);
+        SpawnMob(wynavB, 300):updateClaim(target);
     elseif (GetMobAction(wynavC) == 0) then
         GetMobByID(wynavC):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5));
-        SpawnMob(wynavC, 300):updateEnmity(target);
+        SpawnMob(wynavC, 300):updateClaim(target);
     end
 
     -- Ensure all spawned pets are doing stuff..
     for pets = wynavA, wynavC do
         if (GetMobAction(pets) == 16) then
             -- Send pet after current target..
-            GetMobByID(pets):updateEnmity(target);
+            GetMobByID(pets):updateClaim(target);
         end
     end
 end

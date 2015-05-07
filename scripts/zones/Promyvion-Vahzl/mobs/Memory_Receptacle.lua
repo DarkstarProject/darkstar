@@ -33,20 +33,20 @@ function onMobFight(mob, target)
 	 if(Mem_Recep == 16867382 or Mem_Recep == 16867387) then -- Floor 1
   	 for i = Mem_Recep+1, Mem_Recep+3 do -- Keep pets linked
       	if (GetMobAction(i) == 16) then
-      	   GetMobByID(i):updateEnmity(target);
+      	   GetMobByID(i):updateClaim(target);
      	  end
    	 end
 	 elseif(Mem_Recep == 16867429 or Mem_Recep == 16867436 or Mem_Recep == 16867494 or Mem_Recep == 16867501 or Mem_Recep == 16867508 or -- Floor 2/3
 	  Mem_Recep == 16867515) then 
   	 for i = Mem_Recep+1, Mem_Recep+5 do 
       	if (GetMobAction(i) == 16) then
-      	   GetMobByID(i):updateEnmity(target);
+      	   GetMobByID(i):updateClaim(target);
      	  end
    	 end   	 
 	 elseif(Mem_Recep == 16867586 or Mem_Recep == 16867595 or Mem_Recep == 16867604) then -- Floor 4
   	 for i = Mem_Recep+1, Mem_Recep+7 do 
       	if (GetMobAction(i) == 16) then
-      	   GetMobByID(i):updateEnmity(target);
+      	   GetMobByID(i):updateClaim(target);
      	  end
    	 end  
    end	 
@@ -57,7 +57,7 @@ function onMobFight(mob, target)
       for i = Mem_Recep+1, Mem_Recep+3 do
          if (GetMobAction(i) == 0) then -- My Stray is deeaaaaaad!
          		mob:AnimationSub(1);
-            SpawnMob(i):updateEnmity(target);
+            SpawnMob(i):updateClaim(target);
             GetMobByID(i):setPos(mob:getXPos()+1, mob:getYPos(), mob:getZPos()+1); -- Set stray x and z position +1 from Recepticle
             return;
          end
@@ -67,7 +67,7 @@ function onMobFight(mob, target)
       for i = Mem_Recep+1, Mem_Recep+5 do
          if (GetMobAction(i) == 0) then 
          		mob:AnimationSub(1);
-            SpawnMob(i):updateEnmity(target);
+            SpawnMob(i):updateClaim(target);
             GetMobByID(i):setPos(mob:getXPos()+1, mob:getYPos(), mob:getZPos()+1); -- Set stray x and z position +1 from Recepticle
             return;
          end
@@ -77,7 +77,7 @@ function onMobFight(mob, target)
       for i = Mem_Recep+1, Mem_Recep+7 do
          if (GetMobAction(i) == 0) then 
          		mob:AnimationSub(1);
-            SpawnMob(i):updateEnmity(target);
+            SpawnMob(i):updateClaim(target);
             GetMobByID(i):setPos(mob:getXPos()+1, mob:getYPos(), mob:getZPos()+1);
             return;
          end

@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-GetMobByID(16928800):updateEnmity(target);
+GetMobByID(16928800):updateClaim(target);
 end;
 
 -----------------------------------

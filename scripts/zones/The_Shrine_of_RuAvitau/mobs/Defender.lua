@@ -36,13 +36,13 @@ function onMobFight(mob,target)
    -- Defenders can also still spawn the AuraGears while sleeping, etc.
 
     if (GetMobAction(AuraGear) == 16) then
-        GetMobByID(AuraGear):updateEnmity(target);
+        GetMobByID(AuraGear):updateClaim(target);
     end
 
     if (ExtraVar <= 6) then  -- Maximum number of pets Defender can spawn is 5
         if (mob:getBattleTime() % 15 < 3 and mob:getBattleTime() > 3) then
             if (GetMobAction(AuraGear) == 0) then
-                SpawnMob(AuraGear):updateEnmity(target);
+                SpawnMob(AuraGear):updateClaim(target);
                 GetMobByID(AuraGear):setPos(GetMobByID(Defender):getXPos()+1, GetMobByID(Defender):getYPos(), GetMobByID(Defender):getZPos()+1); -- Set AuraGear x and z position +1 from Defender
                 GetMobByID(Defender):setLocalVar("1",ExtraVar+1);
                 return;

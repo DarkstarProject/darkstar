@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2582,1) and trade:getItemCount() == 1) then -- Trade Rodent Cheese
 		player:tradeComplete();
-		SpawnMob(17072172,180):updateEnmity(player);
+		SpawnMob(17072172,180):updateClaim(player);
 	end
 	
 end;

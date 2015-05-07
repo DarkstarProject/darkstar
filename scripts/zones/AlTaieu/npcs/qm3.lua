@@ -18,8 +18,8 @@ function onTrade(player,npc,trade)
     --[[if(GetMobAction(16912846) == 0 and GetMobAction(16912847) == 0 and trade:hasItemQty(1856,1) and trade:hasItemQty(1870,1) and 
     trade:hasItemQty(1871,1) and trade:getItemCount() == 3) then
         player:tradeComplete();
-        SpawnMob(16912846,900):updateEnmity(player);-- Spawn Jailer of Prudence 1
-        SpawnMob(16912847,900):updateEnmity(player);-- Spawn Jailer of Prudence 2
+        SpawnMob(16912846,900):updateClaim(player);-- Spawn Jailer of Prudence 1
+        SpawnMob(16912847,900):updateClaim(player);-- Spawn Jailer of Prudence 2
     end]]
 end; 
 

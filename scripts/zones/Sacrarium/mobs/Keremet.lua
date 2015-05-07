@@ -25,7 +25,7 @@ function onMobFight(mob,target)
 
 	for i = Keremet+1, Keremet+12 do
 		if (GetMobAction(i) == 16) then
-			GetMobByID(i):updateEnmity(target);
+			GetMobByID(i):updateClaim(target);
 		end
 	end
 

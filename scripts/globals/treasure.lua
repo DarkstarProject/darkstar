@@ -48,7 +48,7 @@ function spawnMimic(zone,npc,player)
 	
 	for nb = 1, table.getn(mimic), 2 do
 		if(zone == mimic[nb]) then
-			SpawnMob(mimic[nb + 1],120):updateEnmity(player);
+			SpawnMob(mimic[nb + 1],120):updateClaim(player);
 			setMobPos(mimic[nb + 1],npc:getXPos(),npc:getYPos(),npc:getZPos(),npc:getRotPos());
 			break;
 		else

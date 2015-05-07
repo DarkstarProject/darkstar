@@ -44,7 +44,7 @@ function onMobFight(mob, target)
                 local pet = SpawnMob(mob:getID()+offset, 60);
                 local pos = mob:getPos();
                 pet:setPos(pos.x, pos.y, pos.z);
-                pet:updateEnmity(target)
+                pet:updateClaim(target)
                 break;
             end
         end

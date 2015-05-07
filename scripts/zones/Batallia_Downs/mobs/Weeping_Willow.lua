@@ -18,11 +18,11 @@ end;
 
 function onMobFight(mob,target)
 	if(mob:getHP() <= mob:getMaxHP()/2 and GetServerVariable("NM-SpecialWeepWillowSapSpawn") < 1) then
-		SpawnMob(17207303,600):updateEnmity(target);
-		SpawnMob(17207304,600):updateEnmity(target);
-		SpawnMob(17207305,600):updateEnmity(target);
-		SpawnMob(17207306,600):updateEnmity(target);
-		SpawnMob(17207307,600):updateEnmity(target);
+		SpawnMob(17207303,600):updateClaim(target);
+		SpawnMob(17207304,600):updateClaim(target);
+		SpawnMob(17207305,600):updateClaim(target);
+		SpawnMob(17207306,600):updateClaim(target);
+		SpawnMob(17207307,600):updateClaim(target);
 		SetServerVariable("NM-SpecialWeepWillowSapSpawn",1);
 	end
 end;
@@ -33,7 +33,7 @@ end;
 
 function onMobDeath(mob, killer)
 	local JACK = 17207308;
-	SpawnMob(JACK,600):updateEnmity(killer);
+	SpawnMob(JACK,600):updateClaim(killer);
 	GetMobByID(JACK):setPos( mob:getXPos(), mob:getYPos(), mob:getZPos(), 0);
 	SetServerVariable("NM-SpecialWeepWillowSapSpawn",0);
 end;

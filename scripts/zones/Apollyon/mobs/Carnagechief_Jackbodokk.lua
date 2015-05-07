@@ -54,9 +54,9 @@ local instancetime = target:getSpecialBattlefieldLeftTime(5);
 	if(instancetime < 13)then
 
 	   if(IsMobDead(16933144)==false)then  --link  dee wapa
-	       GetMobByID(16933144):updateEnmity(target);
+	       GetMobByID(16933144):updateClaim(target);
 	   elseif(IsMobDead(16933137)==false)then  --link na qba
-	       GetMobByID(16933137):updateEnmity(target);
+	       GetMobByID(16933137):updateClaim(target);
 	   end
 	
 	end

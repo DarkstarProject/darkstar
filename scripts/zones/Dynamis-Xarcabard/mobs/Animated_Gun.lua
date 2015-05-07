@@ -20,12 +20,12 @@ function onMobEngaged(mob,target)
 	
 	target:showText(mob,ANIMATED_GUN_DIALOG);
 	
-	SpawnMob(17330513,120):updateEnmity(target);
-	SpawnMob(17330514,120):updateEnmity(target);
-	SpawnMob(17330515,120):updateEnmity(target);
-	SpawnMob(17330516,120):updateEnmity(target);
-	SpawnMob(17330517,120):updateEnmity(target);
-	SpawnMob(17330518,120):updateEnmity(target);
+	SpawnMob(17330513,120):updateClaim(target);
+	SpawnMob(17330514,120):updateClaim(target);
+	SpawnMob(17330515,120):updateClaim(target);
+	SpawnMob(17330516,120):updateClaim(target);
+	SpawnMob(17330517,120):updateClaim(target);
+	SpawnMob(17330518,120):updateClaim(target);
 
 end;
 

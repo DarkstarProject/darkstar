@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
     --[[if(GetMobAction(16912839) == 0 and trade:hasItemQty(1853,1) and trade:hasItemQty(1854,1) and trade:hasItemQty(1785,1) and
     trade:getItemCount() == 3) then
         player:tradeComplete();
-        SpawnMob(16912839,900):updateEnmity(player); -- Spawn Jailer of Justice
+        SpawnMob(16912839,900):updateClaim(player); -- Spawn Jailer of Justice
     end]]
 end; 
 

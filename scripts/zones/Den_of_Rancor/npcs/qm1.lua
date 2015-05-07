@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 	-- Trade Hakutaku Eye Cluster 
 	if(GetMobAction(17433005) == 0 and trade:hasItemQty(1298,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
-		SpawnMob(17433005,120):updateEnmity(player); -- Hakutaku
+		SpawnMob(17433005,120):updateClaim(player); -- Hakutaku
 	end
 
 

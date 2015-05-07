@@ -19,8 +19,8 @@ function onTrade(player,npc,trade)
 	if(player:getCurrentMission(BASTOK) == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 2) then
 		if(GetMobAction(17616897) == 0 and GetMobAction(17616898) == 0 and trade:hasItemQty(646,1) and trade:getItemCount() == 1) then
 			player:tradeComplete();
-			SpawnMob(17616897):updateEnmity(player);
-			SpawnMob(17616898):updateEnmity(player);
+			SpawnMob(17616897):updateClaim(player);
+			SpawnMob(17616898):updateClaim(player);
 		end
 	end	
 	

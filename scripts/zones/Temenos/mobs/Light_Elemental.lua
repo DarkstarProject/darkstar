@@ -22,11 +22,11 @@ end;
 function onMobEngaged(mob,target)
    local mobID = mob:getID();
   if(mobID==16929031)then
-  	    GetMobByID(16929032):updateEnmity(target);
-		GetMobByID(16929030):updateEnmity(target);
+  	    GetMobByID(16929032):updateClaim(target);
+		GetMobByID(16929030):updateClaim(target);
   elseif(mobID==16929032)then
-  	    GetMobByID(16929031):updateEnmity(target);
-		GetMobByID(16929030):updateEnmity(target);
+  	    GetMobByID(16929031):updateClaim(target);
+		GetMobByID(16929030):updateClaim(target);
   end
 end;
 

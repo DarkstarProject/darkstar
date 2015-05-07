@@ -27,9 +27,9 @@ function onTrade(player,npc,trade)
 		GetMobByID(Kf_Ghrah_WHM):setSpawn(player:getXPos(),player:getYPos(),player:getZPos());
 		GetMobByID(Kf_Ghrah_BLM):setSpawn(player:getXPos(),player:getYPos(),player:getZPos());
 		-- Spawn Jailer of Fortitude
-		SpawnMob(Jailer_of_Fortitude,180):updateEnmity(player); 
-		SpawnMob(Kf_Ghrah_WHM,180):updateEnmity(player); 
-		SpawnMob(Kf_Ghrah_BLM,180):updateEnmity(player); 
+		SpawnMob(Jailer_of_Fortitude,180):updateClaim(player); 
+		SpawnMob(Kf_Ghrah_WHM,180):updateClaim(player); 
+		SpawnMob(Kf_Ghrah_BLM,180):updateClaim(player); 
     end
 end;               
 -----------------------------------

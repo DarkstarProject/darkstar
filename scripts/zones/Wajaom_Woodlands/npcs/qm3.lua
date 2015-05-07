@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2575,1) and trade:getItemCount() == 1) then -- Trade Sheep Botfly
 		player:tradeComplete();
-		SpawnMob(16986430,180):updateEnmity(player);
+		SpawnMob(16986430,180):updateClaim(player);
 	end
 	
 end;

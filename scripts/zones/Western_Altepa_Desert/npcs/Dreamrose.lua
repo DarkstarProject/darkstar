@@ -34,7 +34,7 @@ local currentMission = player:getCurrentMission(SANDORIA);
 				player:setVar("Mission6-1MobKilled",0);
 				player:setVar("MissionStatus",3);
 			else
-				SpawnMob(17289653):updateEnmity(player);
+				SpawnMob(17289653):updateClaim(player);
 			end
 		end
 	else

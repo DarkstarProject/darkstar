@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2597,1) and trade:getItemCount() == 1) then -- Trade Opalus Gem
 		player:tradeComplete();
-		SpawnMob(17072179,180):updateEnmity(player);
+		SpawnMob(17072179,180):updateClaim(player);
 	end
 	
 end;

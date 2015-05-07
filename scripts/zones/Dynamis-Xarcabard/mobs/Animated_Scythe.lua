@@ -20,12 +20,12 @@ function onMobEngaged(mob,target)
 	
 	target:showText(mob,ANIMATED_SCYTHE_DIALOG);
 	
-	SpawnMob(17330420,120):updateEnmity(target);
-	SpawnMob(17330421,120):updateEnmity(target);
-	SpawnMob(17330422,120):updateEnmity(target);
-	SpawnMob(17330432,120):updateEnmity(target);
-	SpawnMob(17330433,120):updateEnmity(target);
-	SpawnMob(17330434,120):updateEnmity(target);
+	SpawnMob(17330420,120):updateClaim(target);
+	SpawnMob(17330421,120):updateClaim(target);
+	SpawnMob(17330422,120):updateClaim(target);
+	SpawnMob(17330432,120):updateClaim(target);
+	SpawnMob(17330433,120):updateClaim(target);
+	SpawnMob(17330434,120):updateClaim(target);
 
 end;
 

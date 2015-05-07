@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2596,1) and trade:getItemCount() == 1) then -- Trade Rose Scampi
 		player:tradeComplete();
-		SpawnMob(16998874,180):updateEnmity(player);
+		SpawnMob(16998874,180):updateClaim(player);
 	end
 	
 end;

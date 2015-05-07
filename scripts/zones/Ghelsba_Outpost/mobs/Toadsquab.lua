@@ -18,9 +18,9 @@ end;
 
 function onMobEngaged(mob,target)
 
-	GetMobByID(17350936):updateEnmity(target);
-	GetMobByID(17350938):updateEnmity(target);
-	GetMobByID(17350939):updateEnmity(target);
+	GetMobByID(17350936):updateClaim(target);
+	GetMobByID(17350938):updateClaim(target);
+	GetMobByID(17350939):updateClaim(target);
 end;
 
 

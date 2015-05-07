@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2584,1) and trade:getItemCount() == 1) then -- Trade Pure Blood
 		player:tradeComplete();
-		SpawnMob(17056158,180):updateEnmity(player);
+		SpawnMob(17056158,180):updateClaim(player);
 	end
 	
 end;

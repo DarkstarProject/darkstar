@@ -21,10 +21,10 @@ end;
 
 function onMobEngaged(mob,target)
 	
-	SpawnMob(17326082):updateEnmity(target); -- Fire_Pukis
-	SpawnMob(17326083):updateEnmity(target); -- Poison_Pukis
-	SpawnMob(17326084):updateEnmity(target); -- Wind_Pukis
-	SpawnMob(17326085):updateEnmity(target); -- Petro_Pukis
+	SpawnMob(17326082):updateClaim(target); -- Fire_Pukis
+	SpawnMob(17326083):updateClaim(target); -- Poison_Pukis
+	SpawnMob(17326084):updateClaim(target); -- Wind_Pukis
+	SpawnMob(17326085):updateClaim(target); -- Petro_Pukis
 	
 end;
 
@@ -35,16 +35,16 @@ end;
 function onMobFight(mob,target)
 	
 	if(GetMobAction(17326082) == 0 and GetMobAction(17326279) ~= 0) then
-		SpawnMob(17326082):updateEnmity(target);
+		SpawnMob(17326082):updateClaim(target);
 	end
 	if(GetMobAction(17326083) == 0 and GetMobAction(17326468) ~= 0) then
-		SpawnMob(17326083):updateEnmity(target);
+		SpawnMob(17326083):updateClaim(target);
 	end
 	if(GetMobAction(17326084) == 0 and GetMobAction(17326353) ~= 0) then
-		SpawnMob(17326084):updateEnmity(target);
+		SpawnMob(17326084):updateClaim(target);
 	end
 	if(GetMobAction(17326085) == 0 and GetMobAction(17326207) ~= 0) then
-		SpawnMob(17326085):updateEnmity(target);
+		SpawnMob(17326085):updateClaim(target);
 	end
 	
 end;

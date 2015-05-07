@@ -56,15 +56,15 @@ function onMobDeath(mob, killer)
     -- Spawn the NM if the PH was killed at the PH's location.
     elseif (currentMobID == realAwAern_PH) then
         GetMobByID(IxAernDRG):setSpawn(mob:getXPos(), mob:getYPos(), mob:getZPos());
-        SpawnMob(IxAernDRG, 300):updateEnmity(killer);
+        SpawnMob(IxAernDRG, 300):updateClaim(killer);
         -- A
        GetMobByID(wynavA):setSpawn(mob:getXPos()+4, mob:getYPos(), mob:getZPos());
-        SpawnMob(wynavA, 300):updateEnmity(killer);
+        SpawnMob(wynavA, 300):updateClaim(killer);
         -- B
         GetMobByID(wynavB):setSpawn(mob:getXPos()-4, mob:getYPos(), mob:getZPos());
-        SpawnMob(wynavB, 300):updateEnmity(killer);
+        SpawnMob(wynavB, 300):updateClaim(killer);
         -- C
         GetMobByID(wynavC):setSpawn(mob:getXPos(), mob:getYPos(), mob:getZPos()+4);
-        SpawnMob(wynavC, 300):updateEnmity(killer);
+        SpawnMob(wynavC, 300):updateClaim(killer);
     end    
 end;

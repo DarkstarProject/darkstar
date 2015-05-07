@@ -79,7 +79,7 @@ function onMobDeath(mob,killer)
 		GetMobByID(Jailer_of_Temperance):setSpawn(mobSpawnPoint.x, mobSpawnPoint.y, mobSpawnPoint.z);
 		
 		-- The jailer spawns instantly, so don't need to set respawn time
-		SpawnMob(Jailer_of_Temperance,300):updateEnmity(killer);
+		SpawnMob(Jailer_of_Temperance,300):updateClaim(killer);
 		DeterMob(mob, true);
 	end
 end;

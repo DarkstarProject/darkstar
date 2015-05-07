@@ -30,7 +30,7 @@ function onTrigger(player,npc)
 	end
 	
 	if(guardian ~= nil and guardian:getHP() > 0 and guardian:getTarget() == nil) then
-		guardian:updateEnmity(player);
+		guardian:updateClaim(player);
 	end
 	
 	return 1;

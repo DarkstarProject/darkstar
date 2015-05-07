@@ -20,12 +20,12 @@ function onMobEngaged(mob,target)
 	
 	target:showText(mob,ANIMATED_KNUCKLES_DIALOG);
 	
-	SpawnMob(17330309,120):updateEnmity(target);
-	SpawnMob(17330310,120):updateEnmity(target);
-	SpawnMob(17330311,120):updateEnmity(target);
-	SpawnMob(17330319,120):updateEnmity(target);
-	SpawnMob(17330320,120):updateEnmity(target);
-	SpawnMob(17330321,120):updateEnmity(target);
+	SpawnMob(17330309,120):updateClaim(target);
+	SpawnMob(17330310,120):updateClaim(target);
+	SpawnMob(17330311,120):updateClaim(target);
+	SpawnMob(17330319,120):updateClaim(target);
+	SpawnMob(17330320,120):updateClaim(target);
+	SpawnMob(17330321,120):updateClaim(target);
 
 end;
 

@@ -68,6 +68,6 @@ local AernList = {16929053,16929054,16929055,16929057,16929058,16929060,16929061
    if(leftAern == 0)then
      GetMobByID(16929088):setSpawn(mobX,mobY,mobZ);
      GetMobByID(16929088):setPos(mobX,mobY,mobZ); 
-     SpawnMob(16929088):updateEnmity(killer);
+     SpawnMob(16929088):updateClaim(killer);
    end
 end;

@@ -22,8 +22,8 @@ end;
 function onMobEngaged(mob,target)
    local mobID = mob:getID();
   if(mobID==16929030)then
-  	    GetMobByID(16929032):updateEnmity(target);
-  	    GetMobByID(16929031):updateEnmity(target);
+  	    GetMobByID(16929032):updateClaim(target);
+  	    GetMobByID(16929031):updateClaim(target);
 
 	if(IsMobDead(16929033)==true and IsMobDead(16929039)==true)then
 	mob:setMod(MOD_FIREDEF,-50);	

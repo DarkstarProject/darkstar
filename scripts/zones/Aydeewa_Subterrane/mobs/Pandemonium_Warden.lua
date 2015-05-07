@@ -18,7 +18,7 @@ function onMobEngaged(mob,target)
  	PWardenAstralFlows = 0;
 
 	for i = 17056170, 17056177, 1 do 
-		SpawnMob(i,180):updateEnmity(target);
+		SpawnMob(i,180):updateClaim(target);
 	end
 ]]--
 end;
@@ -59,7 +59,7 @@ function onMobFight(mob,target)
 		for i = 1, 8 do
 			GetMobByID(petIDs[i]):changeSkin(22);
 			if petStatus[i] == 0 then -- Dead pet, get it up.
-				SpawnMob(petIDs[i]):updateEnmity(target);
+				SpawnMob(petIDs[i]):updateClaim(target);
 			end
 		end
 
@@ -69,7 +69,7 @@ function onMobFight(mob,target)
 		for i = 1, 8 do
 			GetMobByID(petIDs[i]):changeSkin(21);
 			if petStatus[i] == 0 then
-				SpawnMob(petIDs[i]):updateEnmity(target);
+				SpawnMob(petIDs[i]):updateClaim(target);
 			end
 		end
 
@@ -79,7 +79,7 @@ function onMobFight(mob,target)
 		for i = 1, 8 do
 			GetMobByID(petIDs[i]):changeSkin(20);
 			if petStatus[i] == 0 then
-				SpawnMob(petIDs[i]):updateEnmity(target);
+				SpawnMob(petIDs[i]):updateClaim(target);
 			end
 		end
 
@@ -89,7 +89,7 @@ function onMobFight(mob,target)
 		for i = 1, 8 do
 			GetMobByID(petIDs[i]):changeSkin(19);
 			if petStatus[i] == 0 then
-				SpawnMob(petIDs[i]):updateEnmity(target);
+				SpawnMob(petIDs[i]):updateClaim(target);
 			end
 		end
 
@@ -100,7 +100,7 @@ function onMobFight(mob,target)
 		for i = 1, 8 do
 			GetMobByID(petIDs[i]):changeSkin(18);
 			if petStatus[i] == 0 then
-				SpawnMob(petIDs[i]):updateEnmity(target);
+				SpawnMob(petIDs[i]):updateClaim(target);
 			end
 		end
 
@@ -110,7 +110,7 @@ function onMobFight(mob,target)
 		for i = 1, 8 do
 			GetMobByID(petIDs[i]):changeSkin(17);
 			if petStatus[i] == 0 then
-				SpawnMob(petIDs[i]):updateEnmity(target);
+				SpawnMob(petIDs[i]):updateClaim(target);
 			end
 		end
 
@@ -120,7 +120,7 @@ function onMobFight(mob,target)
 		for i = 1, 8 do
 			GetMobByID(petIDs[i]):changeSkin(16);
 			if petStatus[i] == 0 then
-				SpawnMob(petIDs[i]):updateEnmity(target);
+				SpawnMob(petIDs[i]):updateClaim(target);
 			end
 		end
 
@@ -130,7 +130,7 @@ function onMobFight(mob,target)
 		for i = 1, 8 do
 			GetMobByID(petIDs[i]):changeSkin(16);
 			if petStatus[i] == 0 then
-				SpawnMob(petIDs[i]):updateEnmity(target);
+				SpawnMob(petIDs[i]):updateClaim(target);
 			end
 		end
 
@@ -140,7 +140,7 @@ function onMobFight(mob,target)
 		for i = 1, 8 do
 			GetMobByID(petIDs[i]):changeSkin(16);
 			if petStatus[i] == 0 then
-				SpawnMob(petIDs[i]):updateEnmity(target);
+				SpawnMob(petIDs[i]):updateClaim(target);
 			end
 		end
 
@@ -151,7 +151,7 @@ function onMobFight(mob,target)
 			
 			GetMobByID(petIDs[i]):changeSkin(16);
 			if petStatus[i] == 0 then
-				SpawnMob(petIDs[i]):updateEnmity(target);
+				SpawnMob(petIDs[i]):updateClaim(target);
 			end
 		end
 
@@ -166,7 +166,7 @@ function onMobFight(mob,target)
 
 	for i = 1, 8 do
 		if (petStatus[i] == 16 or petStatus[i] == 18) then -- idle or disengaging pet
-			GetMobByID(petIDs[i]):updateEnmity(target);
+			GetMobByID(petIDs[i]):updateClaim(target);
 		end
 	end
 
@@ -194,7 +194,7 @@ function onMobFight(mob,target)
 			local rannum = math.random(0,7);
 			local avatar = GetMobByID(i);
 			avatar:changeSkin(23 + rannum); -- Random avatar skin
-			SpawnMob(i):updateEnmity(target);
+			SpawnMob(i):updateClaim(target);
 			avatar:useMobAbility(656);
 			DespawnMob(i);
 		end
@@ -215,7 +215,7 @@ function onMobFight(mob,target)
 			local rannum = math.random(0,7);
 			local avatar = GetMobByID(i);
 			avatar:changeSkin(23 + rannum); -- Random avatar skin
-			SpawnMob(i):updateEnmity(target);
+			SpawnMob(i):updateClaim(target);
 			avatar:useMobAbility(656);
 			DespawnMob(i);
 		end
@@ -225,7 +225,7 @@ function onMobFight(mob,target)
 			local rannum = math.random(0,7);
 			local avatar = GetMobByID(i);
 			avatar:changeSkin(23 + rannum); -- Random avatar skin
-			SpawnMob(i):updateEnmity(target);
+			SpawnMob(i):updateClaim(target);
 			avatar:useMobAbility(656);
 			DespawnMob(i);
 		end
