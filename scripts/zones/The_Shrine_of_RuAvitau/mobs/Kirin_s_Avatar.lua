@@ -55,10 +55,9 @@ function onMobFight( mob, target )
     
     if (action == 26) then -- ACTION_STUN
         mob:setUnkillable(false);
-        kirin:setLocalVar("astralFlow", 1);
         mob:setHP(0);
     end
-    if (action == 1 and kirin:getLocalVar("astralFlow") == 0 and distance <= 9) then -- ACTION_ATTACK
+    if (action == 1 and distance <= 10) then -- ACTION_ATTACK
         if (abilityId ~= nil) then
             mob:useMobAbility(abilityId);
         end

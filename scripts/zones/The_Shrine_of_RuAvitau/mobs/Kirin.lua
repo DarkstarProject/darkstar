@@ -7,6 +7,7 @@ package.loaded[ "scripts/zones/The_Shrine_of_RuAvitau/TextIDs" ] = nil;
 
 require( "scripts/zones/The_Shrine_of_RuAvitau/TextIDs" );
 require( "scripts/globals/titles" );
+require( "scripts/globals/ability" );
 require( "scripts/globals/pets" );
 require( "scripts/globals/status" );
 
@@ -27,10 +28,9 @@ end
 -- onMobFight Action
 -----------------------------------
 function onMobFight( mob, target )
-
     if (mob:getHPP() < math.random(50,60) and mob:getLocalVar("astralFlow") == 0) then
-        -- Spawn Avatar
-        mob:spawnPet();
+        mob:useMobAbility(478);
+        mob:setLocalVar("astralFlow", 1);
     end
     if (mob:getBattleTime() ~= 0 and mob:getBattleTime() % 180 == 0) then
         -- Ensure we have not spawned all pets yet..
