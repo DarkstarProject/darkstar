@@ -746,7 +746,7 @@ int32 map_close_session(uint32 tick, map_session_data_t* map_session_data)
         uint64 ipp = map_session_data->client_addr;
         ipp |= port64 << 32;
 
-        map_session_data->PChar->StatusEffectContainer->SaveStatusEffects();
+        map_session_data->PChar->StatusEffectContainer->SaveStatusEffects(map_session_data->shuttingDown == 1);
 
         aFree(map_session_data->server_packet_data);
         delete map_session_data->PChar;
@@ -820,7 +820,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                             petutils::DespawnPet(PChar);
                         }
 
-
+                        PChar->StatusEffectContainer->SaveStatusEffects(true);
                         ShowDebug(CL_CYAN"map_cleanup: %s timed out, closing session\n" CL_RESET, PChar->GetName());
 
                         PChar->status = STATUS_SHUTDOWN;
@@ -828,7 +828,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                     }
                     else
                     {
-                        map_session_data->PChar->StatusEffectContainer->SaveStatusEffects();
+                        map_session_data->PChar->StatusEffectContainer->SaveStatusEffects(true);
                         Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %u;", map_session_data->PChar->id);
 
                         aFree(map_session_data->server_packet_data);
