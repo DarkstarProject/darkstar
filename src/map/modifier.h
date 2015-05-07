@@ -222,7 +222,7 @@ enum MODIFIER
     MOD_SKILLCHAINBONUS           = 0xAE,  // Damage bonus applied to skill chain damage.  Modifier from effects/traits (modId = 174)
     MOD_SKILLCHAINDMG             = 0xAF,  // Damage bonus applied to skill chain damage.  Modifier from gear (multiplicative after effect/traits) (modId = 175)
 
-	MOD_MAGIC_DAMAGE             = 0x137, // Magic damage added directly to the spell's base damage (modId = 311)
+    MOD_MAGIC_DAMAGE             = 0x137, // Magic damage added directly to the spell's base damage (modId = 311)
 	
     // FOOD!
     MOD_FOOD_HPP                  = 0xB0,  // (modId = 176)
