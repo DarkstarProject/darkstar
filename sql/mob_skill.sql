@@ -1218,6 +1218,17 @@ INSERT INTO `mob_skill` VALUES (544,281,472,'Heat_Breath',4,15.0,2000,1500,4,0,0
 INSERT INTO `mob_skill` VALUES (545,281,473,'Riddle',1,15.0,2000,1500,4,0,0,0); -- might not use this move,according to wiki list
 INSERT INTO `mob_skill` VALUES (546,281,474,'Great_Sandstorm',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (547,281,475,'Great_Whirlwind',4,12.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (478,281,432,'Astral_Flow',0,7.0,2000,0,1,2,0,0);
+
+-- Kirin's Avatar
+INSERT INTO `mob_skill` VALUES (656,495,611,'searing_light',1,30.0,0,0,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (583,495,521,'Howling_Moon',1,30.0,0,0,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (592,495,534,'Inferno',1,30.0,0,0,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (628,495,586,'Diamond_Dust',1,30.0,0,0,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (610,495,560,'Tidal_Wave',1,30.0,0,0,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (637,495,599,'judgment_bolt',1,30.0,0,0,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (619,495,573,'aerial_blast',1,30.0,0,0,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (601,495,547,'earthen_fury',1,30.0,0,0,4,0,0,0);
 
 -- Pet Suzaku
 INSERT INTO `mob_skill` VALUES (143,333,143,'Scratch',0,7.0,2000,1500,4,0,0,0);
