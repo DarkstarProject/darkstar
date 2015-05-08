@@ -1218,6 +1218,7 @@ INSERT INTO `mob_skill` VALUES (544,281,472,'Heat_Breath',4,15.0,2000,1500,4,0,0
 INSERT INTO `mob_skill` VALUES (545,281,473,'Riddle',1,15.0,2000,1500,4,0,0,0); -- might not use this move,according to wiki list
 INSERT INTO `mob_skill` VALUES (546,281,474,'Great_Sandstorm',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (547,281,475,'Great_Whirlwind',4,12.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (478,281,432,'Astral_Flow_Kirin',0,7.0,2000,0,1,2,0,0);
 
 -- Pet Suzaku
 INSERT INTO `mob_skill` VALUES (143,333,143,'Scratch',0,7.0,2000,1500,4,0,0,0);
