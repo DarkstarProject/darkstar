@@ -1208,37 +1208,40 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
 
 	Sql_Query(SqlHandle,"DELETE FROM char_effects WHERE charid = %u", m_POwner->id);
 
-	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i)
-	{
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
         CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
-        if (PStatusEffect->GetDuration() != 0)
-        {
-            if (logout && PStatusEffect->GetFlag() & EFFECTFLAG_LOGOUT)
-                continue;
 
-            const int8* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid, subpower, tier) VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u);";
+        if (logout && PStatusEffect->GetFlag() & EFFECTFLAG_LOGOUT)
+            continue;
 
-            // save power of utsusemi and blink
-            if(PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE){
-                PStatusEffect->SetPower(m_POwner->getMod(MOD_UTSUSEMI));
-            } else if(PStatusEffect->GetStatusID() == EFFECT_BLINK){
-                PStatusEffect->SetPower(m_POwner->getMod(MOD_BLINK));
-            } else if(PStatusEffect->GetStatusID() == EFFECT_STONESKIN){
-                PStatusEffect->SetPower(m_POwner->getMod(MOD_STONESKIN));
-            }
+        const int8* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid, subpower, tier) VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u);";
 
-			Sql_Query(SqlHandle, Query,
-				m_POwner->id,
-				PStatusEffect->GetStatusID(),
-                PStatusEffect->GetIcon(),
-				PStatusEffect->GetPower(),
-				PStatusEffect->GetTickTime() / 1000,
-			   (PStatusEffect->GetDuration() + PStatusEffect->GetStartTime() - gettick()) / 1000,
-				PStatusEffect->GetSubID(),
-                PStatusEffect->GetSubPower(),
-                PStatusEffect->GetTier());
-		}
-	}
+        // save power of utsusemi and blink
+        if (PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE){
+            PStatusEffect->SetPower(m_POwner->getMod(MOD_UTSUSEMI));
+        }
+        else if (PStatusEffect->GetStatusID() == EFFECT_BLINK){
+            PStatusEffect->SetPower(m_POwner->getMod(MOD_BLINK));
+        }
+        else if (PStatusEffect->GetStatusID() == EFFECT_STONESKIN){
+            PStatusEffect->SetPower(m_POwner->getMod(MOD_STONESKIN));
+        }
+
+        uint32 duration = PStatusEffect->GetDuration() == 0 ? 0 : (PStatusEffect->GetDuration() + PStatusEffect->GetStartTime() - gettick()) / 1000;
+        uint32 tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 100;
+
+        Sql_Query(SqlHandle, Query,
+            m_POwner->id,
+            PStatusEffect->GetStatusID(),
+            PStatusEffect->GetIcon(),
+            PStatusEffect->GetPower(),
+            tick,
+            duration,
+            PStatusEffect->GetSubID(),
+            PStatusEffect->GetSubPower(),
+            PStatusEffect->GetTier());
+    }
 }
 
 /************************************************************************
