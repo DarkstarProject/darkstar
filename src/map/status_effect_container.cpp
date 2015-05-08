@@ -1202,7 +1202,7 @@ void CStatusEffectContainer::LoadStatusEffects()
 *																		*
 ************************************************************************/
 
-void CStatusEffectContainer::SaveStatusEffects()
+void CStatusEffectContainer::SaveStatusEffects(bool logout)
 {
     DSP_DEBUG_BREAK_IF(m_POwner->objtype != TYPE_PC);
 
@@ -1213,6 +1213,9 @@ void CStatusEffectContainer::SaveStatusEffects()
         CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
         if (PStatusEffect->GetDuration() != 0)
         {
+            if (logout && PStatusEffect->GetFlag() & EFFECTFLAG_LOGOUT)
+                continue;
+
             const int8* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid, subpower, tier) VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u);";
 
             // save power of utsusemi and blink

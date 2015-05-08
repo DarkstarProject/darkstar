@@ -274,13 +274,24 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             session->client_port,
             PChar->id);
 
-        const int8* deathTsQuery = "SELECT death FROM char_stats where charid = %u;";
-        int32 ret = Sql_Query(SqlHandle, deathTsQuery, PChar->id);
+        fmtQuery = "SELECT death FROM char_stats WHERE charid = %u;";
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
         if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
             PChar->m_DeathCounter = (uint32)Sql_GetUIntData(SqlHandle, 0);
             PChar->m_DeathTimestamp = (uint32)time(nullptr);
         }
+
+        fmtQuery = "SELECT pos_prevzone FROM chars WHERE charid = %u";
+        ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+        if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            if (PChar->getZone() == Sql_GetUIntData(SqlHandle, 0))
+                PChar->loc.zoning = true;
+        }
+        
+        if (!PChar->loc.zoning)
+            PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
 
         if (firstLogin)
             PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);
@@ -416,7 +427,6 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         session->shuttingDown = 2;
         Sql_Query(SqlHandle, "UPDATE char_stats SET zoning = 1 WHERE charid = %u", PChar->id);
         charutils::CheckEquipLogic(PChar, SCRIPT_CHANGEZONE, PChar->getZone());
-        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
     }
 
     if (PChar->loc.zone != nullptr)

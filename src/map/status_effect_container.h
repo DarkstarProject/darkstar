@@ -74,8 +74,8 @@ public:
     void CheckEffects(uint32 tick);
     void CheckRegen(uint32 tick);
 
-    void LoadStatusEffects();                 // загружаем эффекты персонажа
-    void SaveStatusEffects();                 // сохраняем эффекты персонажа
+    void LoadStatusEffects();                                   // загружаем эффекты персонажа
+    void SaveStatusEffects(bool logout = false);                // сохраняем эффекты персонажа
 
     uint8 GetEffectsCount(EFFECT ID);                        // получаем количество эффектов с указанным id
 
