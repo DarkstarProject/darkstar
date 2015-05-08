@@ -166,7 +166,7 @@ function tradeTestItem(player,npc,trade,craftID)
         trade:getItemCount() == 1) then
         newRank = player:getSkillRank(craftID) + 1;
         player:tradeComplete();
-        player:setVar('[GUILD]daily_points',0);
+        player:setVar('[GUILD]daily_points',-1);
     end
 
 	return newRank;
