@@ -1109,6 +1109,7 @@ MOD_WYVERN_BREATH       = 0x192
 MOD_REGEN_DOWN      	 = 0x194			-- poison
 MOD_REFRESH_DOWN		 = 0x195			-- plague, reduce mp
 MOD_REGAIN_DOWN			 = 0x196			-- plague, reduce tp
+MOD_MAGIC_DAMAGE       = 0x137 --  Magic damage added directly to the spell's base damage (modId = 311)
 
 -- Gear set modifiers
 MOD_DA_DOUBLE_DAMAGE		  = 0x198 -- Double attack's double damage chance %.
@@ -1232,7 +1233,6 @@ MOD_ABSORB_DMG_TO_MP          = 0x204 -- Unlike PLD gear mod, works on all damag
 
 MOD_EGGHELM                   = 0x205 -- Egg Helm (Chocobo Digging)
 
--- MOD_SPARE = 0x137 -- (modId = 311)
 -- MOD_SPARE = 0x138 -- (modId = 312)
 -- MOD_SPARE = 0x139 -- (modId = 313)
 -- MOD_SPARE = 0x13A -- (modId = 314)
