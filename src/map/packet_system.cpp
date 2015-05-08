@@ -1164,7 +1164,7 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
         // We used to disable Rare/Ex items being added to the container, but that is handled properly else where now
-        if (PItem != nullptr && PItem->getID() == itemID)
+        if (PItem != nullptr && PItem->getID() == itemID && quantity + PItem->getReserve() < PItem->getQuantity())
         {
             // If item count is zero.. remove from container..
             PItem->setReserve(quantity);
@@ -3439,9 +3439,12 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         slotQty[invSlotID]++;
 
-        if ((PChar->getStorage(0)->GetItem(invSlotID)) && (PChar->getStorage(0)->GetItem(invSlotID)->getID() == ItemID) &&
-            (slotQty[invSlotID] <= PChar->getStorage(0)->GetItem(invSlotID)->getQuantity()))
+        if ((PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)) && (PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getID() == ItemID) &&
+            (slotQty[invSlotID] <= PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getQuantity()))
+        {
             PChar->CraftContainer->setItem(SlotID + 1, ItemID, invSlotID, 1);
+            PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->setReserve(PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getReserve() + 1);
+        }
     }
 
     synthutils::startSynth(PChar);
