@@ -7,6 +7,8 @@ package.loaded[ "scripts/zones/The_Shrine_of_RuAvitau/TextIDs" ] = nil;
 
 require( "scripts/zones/The_Shrine_of_RuAvitau/TextIDs" );
 require( "scripts/globals/titles" );
+require( "scripts/globals/ability" );
+require( "scripts/globals/pets" );
 require( "scripts/globals/status" );
 
 -----------------------------------
@@ -16,9 +18,22 @@ function onMobInitialize( mob )
 end
 
 -----------------------------------
+-- onMobSpawn Action
+-----------------------------------
+function onMobSpawn(mob)
+    mob:setMod(MOD_WINDRES, -64);
+end
+
+-----------------------------------
 -- onMobFight Action
 -----------------------------------
 function onMobFight( mob, target )
+    if (mob:getHPP() < math.random(50,60) and mob:getLocalVar("astralFlow") == 0) then
+        mob:useMobAbility(478);
+        -- Spawn Avatar
+        mob:spawnPet();
+        mob:setLocalVar("astralFlow", 1);
+    end
     if (mob:getBattleTime() ~= 0 and mob:getBattleTime() % 180 == 0) then
         -- Ensure we have not spawned all pets yet..
         local genbu = mob:getLocalVar("genbu");
@@ -75,13 +90,10 @@ function onMobDeath( mob, killer )
     GetNPCByID( 17506693 ):hideNPC( 900 );
     
     -- Despawn pets..
-	DespawnMob( 17506671 );
-	DespawnMob( 17506672 );
-	DespawnMob( 17506673 );
-	DespawnMob( 17506674 );
-    
-    -- Reset popped pet var..
-    mob:resetLocalVars();
+    DespawnMob( 17506671 );
+    DespawnMob( 17506672 );
+    DespawnMob( 17506673 );
+    DespawnMob( 17506674 );
 end
 
 -----------------------------------
@@ -89,11 +101,8 @@ end
 -----------------------------------
 function onMobDespawn( mob )
     -- Despawn pets..
-	DespawnMob( 17506671 );
-	DespawnMob( 17506672 );
-	DespawnMob( 17506673 );
-	DespawnMob( 17506674 );
-    
-    -- Reset popped pet var..
-    mob:resetLocalVars();
+    DespawnMob( 17506671 );
+    DespawnMob( 17506672 );
+    DespawnMob( 17506673 );
+    DespawnMob( 17506674 );
 end
