@@ -1176,9 +1176,6 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         // We used to disable Rare/Ex items being added to the container, but that is handled properly else where now
         if (PItem != nullptr && PItem->getID() == itemID)
         {
-            if (PItem->getReserve() > 0 && !(quantity + PItem->getReserve() < PItem->getQuantity()))
-                return;
-
             // If item count is zero.. remove from container..
             PItem->setReserve(quantity);
             PChar->UContainer->SetItem(tradeSlotID, quantity > 0 ? PItem : nullptr);
