@@ -289,9 +289,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (PChar->getZone() == Sql_GetUIntData(SqlHandle, 0))
                 PChar->loc.zoning = true;
         }
-        
-        if (!PChar->loc.zoning)
-            PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
 
         if (firstLogin)
             PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);
@@ -313,8 +310,11 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PChar->pushPacket(new CDownloadingDataPacket());
     PChar->pushPacket(new CZoneInPacket(PChar, PChar->m_event.EventID));
     PChar->pushPacket(new CZoneVisitedPacket(PChar));
-    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
 
+    if (!PChar->loc.zoning)
+        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
+
+    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
     return;
 }
 
@@ -3449,9 +3449,12 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         slotQty[invSlotID]++;
 
-        if ((PChar->getStorage(0)->GetItem(invSlotID)) && (PChar->getStorage(0)->GetItem(invSlotID)->getID() == ItemID) &&
-            (slotQty[invSlotID] <= PChar->getStorage(0)->GetItem(invSlotID)->getQuantity()))
+        if ((PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)) && (PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getID() == ItemID) &&
+            (slotQty[invSlotID] <= PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getQuantity()))
+        {
             PChar->CraftContainer->setItem(SlotID + 1, ItemID, invSlotID, 1);
+            PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->setReserve(PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getReserve() + 1);
+        }
     }
 
     synthutils::startSynth(PChar);
