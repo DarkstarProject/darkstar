@@ -289,9 +289,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (PChar->getZone() == Sql_GetUIntData(SqlHandle, 0))
                 PChar->loc.zoning = true;
         }
-        
-        if (!PChar->loc.zoning)
-            PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
 
         if (firstLogin)
             PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);
@@ -313,8 +310,11 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PChar->pushPacket(new CDownloadingDataPacket());
     PChar->pushPacket(new CZoneInPacket(PChar, PChar->m_event.EventID));
     PChar->pushPacket(new CZoneVisitedPacket(PChar));
-    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
 
+    if (!PChar->loc.zoning)
+        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
+
+    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
     return;
 }
 
@@ -1174,7 +1174,7 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
         // We used to disable Rare/Ex items being added to the container, but that is handled properly else where now
-        if (PItem != nullptr && PItem->getID() == itemID && quantity + PItem->getReserve() < PItem->getQuantity())
+        if (PItem != nullptr && PItem->getID() == itemID)
         {
             // If item count is zero.. remove from container..
             PItem->setReserve(quantity);
