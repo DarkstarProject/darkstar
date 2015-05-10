@@ -193,6 +193,7 @@ public:
     int32 delKeyItem(lua_State*);           // Removes key item from Entity key item collection
 
     int32 getSkillLevel(lua_State*);        // Get Current Skill Level
+    int32 setSkillLevel(lua_State*);        // Set Current Skill Level
     int32 getMaxSkillLevel(lua_State*);     // Get Skill Cap for skill and rank
     int32 getSkillRank(lua_State*);         // Get your current skill craft Rank
     int32 setSkillRank(lua_State*);         // Set new skill craft rank
