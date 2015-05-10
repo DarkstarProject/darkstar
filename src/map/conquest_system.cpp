@@ -79,54 +79,25 @@ namespace conquest
 
         if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            int san_inf = Sql_GetIntData(SqlHandle, 0);
-            int bas_inf = Sql_GetIntData(SqlHandle, 1);
-            int win_inf = Sql_GetIntData(SqlHandle, 2);
-            int bst_inf = Sql_GetIntData(SqlHandle, 3);
+            int influences[4] =
+            {
+                Sql_GetIntData(SqlHandle, 0),
+                Sql_GetIntData(SqlHandle, 1),
+                Sql_GetIntData(SqlHandle, 2),
+                Sql_GetIntData(SqlHandle, 3),
+            };
 
-            switch (PChar->profile.nation)
+            auto value = std::max<int>(5000 - influences[PChar->profile.nation], 0) / 3 + 1;
+            auto gain = 3 * value;
+            auto loss = -value;
+
+            for (auto i = 0; i < 4; ++i)
             {
-            case 0:
-            {
-                int total = dsp_max(5000 - san_inf, 0);
-                double bas_rat = (float)bas_inf / total;
-                double win_rat = (float)win_inf / total;
-                double bst_rat = (float)bst_inf / total;
-                san_inf += points;
-                bas_inf = dsp_max(total - points, 0) * bas_rat;
-                win_inf = dsp_max(total - points, 0) * win_rat;
-                bst_inf = dsp_max(total - points, 0) * bst_rat;
-                break;
+                influences[i] += i == PChar->profile.nation ? gain : loss;
             }
-            case 1:
-            {
-                int total = dsp_max(5000 - bas_inf, 0);
-                double san_rat = (float)san_inf / total;
-                double win_rat = (float)win_inf / total;
-                double bst_rat = (float)bst_inf / total;
-                bas_inf += points;
-                san_inf = dsp_max(total - points, 0) * san_rat;
-                win_inf = dsp_max(total - points, 0) * win_rat;
-                bst_inf = dsp_max(total - points, 0) * bst_rat;
-                break;
-            }
-            case 2:
-            {
-                int total = dsp_max(5000 - win_inf,0);
-                double san_rat = (float)san_inf / total;
-                double bas_rat = (float)bas_inf / total;
-                double bst_rat = (float)bst_inf / total;
-                win_inf += points;
-                san_inf = dsp_max(total - points, 0) * san_rat;
-                bas_inf = dsp_max(total - points, 0) * bas_rat;
-                bst_inf = dsp_max(total - points, 0) * bst_rat;
-                break;
-            }
-            default:
-                break;
-            }
+
             Sql_Query(SqlHandle, "UPDATE conquest_system SET sandoria_influence = %d, bastok_influence = %d, "
-                "windurst_influence = %d, beastmen_influence = %d WHERE region_id = %d;", san_inf, bas_inf, win_inf, bst_inf, region);
+                "windurst_influence = %d, beastmen_influence = %d WHERE region_id = %d;", influences[0], influences[1], influences[2], influences[3], region);
         }
     }
 
