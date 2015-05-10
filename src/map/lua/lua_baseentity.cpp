@@ -1929,7 +1929,7 @@ inline int32 CLuaBaseEntity::getSkillLevel(lua_State *L)
 inline int32 CLuaBaseEntity::setSkillLevel(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype & TYPE_NPC);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
@@ -1938,19 +1938,16 @@ inline int32 CLuaBaseEntity::setSkillLevel(lua_State *L)
     uint8 SkillID = lua_tointeger(L, 1);
     uint16 SkillAmount = lua_tointeger(L, 2);
 
-    ((CBattleEntity*)m_PBaseEntity)->WorkingSkills.skill[SkillID] = SkillAmount;
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    if (m_PBaseEntity->objtype == TYPE_PC)
-    {
-        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    PChar->RealSkills.skill[SkillID] = SkillAmount * 10;
+    PChar->WorkingSkills.skill[SkillID] = SkillAmount;
 
-        PChar->pushPacket(new CCharSkillsPacket(PChar));
-        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SkillID, (PChar->RealSkills.skill[SkillID] + SkillAmount) / 10, 53));
+    charutils::BuildingCharSkillsTable(PChar);
+    charutils::CheckWeaponSkill(PChar, SkillID);
+    charutils::SaveCharSkills(PChar, SkillID);
 
-        charutils::CheckWeaponSkill(PChar, SkillID);
-        charutils::SaveCharSkills(PChar, SkillID);
-    }
-
+    PChar->pushPacket(new CCharSkillsPacket(PChar));
     return 0;
 }
 
@@ -2002,6 +1999,7 @@ inline int32 CLuaBaseEntity::getSkillRank(lua_State *L)
 inline int32 CLuaBaseEntity::setSkillRank(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
 
@@ -2017,7 +2015,6 @@ inline int32 CLuaBaseEntity::setSkillRank(lua_State *L)
     charutils::BuildingCharSkillsTable(PChar);
     charutils::SaveCharSkills(PChar, skillID);
     PChar->pushPacket(new CCharSkillsPacket(PChar));
-    PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, skillID, newrank, 38));
 
     return 0;
 }
