@@ -4,7 +4,7 @@ DSproject
 Список известных зон
 List of known zones
 
-    0 -  00 - Residential Area (Dummy)
+    0 -  00 - Tech Demo Area (Formerly used as Residential Area in DSP)
     1 -  01 - Phanauet Channel
     2 -  02 - Carpenters' Landing
     3 -  03 - Manaclipper
@@ -137,7 +137,7 @@ List of known zones
   130 -  82 - Ru'Aun Gardens
   131 -  83 - Mordion Gaol
   132 -  84 - Abyssea - La Theine
-  133 -  85 - Not a real zone: Character screen background
+  133 -  85 - Not a real zone: Character select screen background
   134 -  86 - Dynamis - Beaucedine
   135 -  87 - Dynamis - Xarcabard
   136 -  88 - Beaucedine Glacier [S]
@@ -214,7 +214,7 @@ List of known zones
   207 -  CF - Cloister of Flames
   208 -  D0 - Quicksand Caves
   209 -  D1 - Cloister of Tremors
-  210 -  D2 - 
+  210 -  D2 - GM Home (name comes from leaked official documentation)
   211 -  D3 - Cloister of Tides
   212 -  D4 - Gustav Tunnel
   213 -  D5 - Labyrinth of Onzozo

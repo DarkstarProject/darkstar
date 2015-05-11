@@ -256,7 +256,7 @@ INSERT INTO `zone_settings` VALUES (206,4,'127.0.0.1',54230,'QuBia_Arena',0,0,12
 INSERT INTO `zone_settings` VALUES (207,4,'127.0.0.1',54230,'Cloister_of_Flames',0,0,0,0,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (208,3,'127.0.0.1',54230,'Quicksand_Caves',0,0,115,192,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (209,4,'127.0.0.1',54230,'Cloister_of_Tremors',0,0,0,0,0,0.00,145,0);
-INSERT INTO `zone_settings` VALUES (210,0,'127.0.0.1',0,'noname',0,0,0,0,0,0.00,0,0);
+INSERT INTO `zone_settings` VALUES (210,0,'127.0.0.1',54230,'GM_Home',0,0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (211,4,'127.0.0.1',54230,'Cloister_of_Tides',0,0,0,0,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (212,3,'127.0.0.1',54230,'Gustav_Tunnel',0,0,115,192,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (213,3,'127.0.0.1',54230,'Labyrinth_of_Onzozo',0,0,115,192,0,0.00,145,0);
