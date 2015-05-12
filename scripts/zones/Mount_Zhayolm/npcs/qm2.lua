@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2591,1) and trade:getItemCount() == 1) then -- Trade Pectin
 		player:tradeComplete();
-		SpawnMob(17027472,180):updateEnmity(player);
+		SpawnMob(17027472,180):updateClaim(player);
 	end
 	
 end;

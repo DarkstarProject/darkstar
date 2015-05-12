@@ -38,9 +38,9 @@ function onTrigger(player,npc)
 				local z = npc:getZPos();
 				
 				SpawnMob(17276929):setPos(x+1,y,z+1);
-				GetMobByID(17276929):updateEnmity(player);
+				GetMobByID(17276929):updateClaim(player);
 				SpawnMob(17276930):setPos(x-1,y,z-1);
-				GetMobByID(17276930):updateEnmity(player);
+				GetMobByID(17276930):updateClaim(player);
 			end
 		end
 	else

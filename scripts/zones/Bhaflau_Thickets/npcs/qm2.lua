@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2576,1) and trade:getItemCount() == 1) then -- Trade Olzhiryan Cactus
 		player:tradeComplete();
-		SpawnMob(16990474,180):updateEnmity(player);
+		SpawnMob(16990474,180):updateClaim(player);
 	end
 	
 end;

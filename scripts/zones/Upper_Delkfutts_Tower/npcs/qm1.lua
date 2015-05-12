@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 	-- Trade moldy buckler
 	if(GetMobAction(17424480) == 0 and trade:hasItemQty(2385,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
-		SpawnMob(17424480,120):updateEnmity(player); -- Alkyoneus
+		SpawnMob(17424480,120):updateClaim(player); -- Alkyoneus
 	end
 
 

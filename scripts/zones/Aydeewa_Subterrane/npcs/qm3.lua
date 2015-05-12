@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2602,1) and trade:getItemCount() == 1) then -- Trade Spoilt Blood
 		player:tradeComplete();
-		SpawnMob(17056187,180):updateEnmity(player);
+		SpawnMob(17056187,180):updateClaim(player);
 	end
 	
 end;

@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2590,1) and trade:getItemCount() == 1) then -- Trade Shadeleaves
 		player:tradeComplete();
-		SpawnMob(17027471,180):updateEnmity(player);
+		SpawnMob(17027471,180):updateClaim(player);
 	end
 	
 end;

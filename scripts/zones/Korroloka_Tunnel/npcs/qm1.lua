@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
 	-- Trade Darksteel ore
 	if(GetMobAction(17486190) == 0 and trade:hasItemQty(643,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
-		SpawnMob(17486190,1800):updateEnmity(player); -- Morion Worm
+		SpawnMob(17486190,1800):updateClaim(player); -- Morion Worm
 		mob:setPos(x+1,y,z);
 	end
 
