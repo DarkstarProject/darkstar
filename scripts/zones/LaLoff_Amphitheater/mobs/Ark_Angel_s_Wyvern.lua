@@ -21,7 +21,7 @@ function onMobEngaged(mob,target)
 
    for member = mobid-7, mobid do
       if (GetMobAction(member) == 16) then
-         GetMobByID(member):updateEnmity(target);
+         GetMobByID(member):updateClaim(target);
       end
    end
 end;

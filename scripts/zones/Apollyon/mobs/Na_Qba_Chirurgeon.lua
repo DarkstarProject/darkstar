@@ -51,9 +51,9 @@ local instancetime = target:getSpecialBattlefieldLeftTime(5);
 	if(instancetime < 13)then
 
 	   if(IsMobDead(16933129)==false)then  
-	       GetMobByID(16933129):updateEnmity(target);
+	       GetMobByID(16933129):updateClaim(target);
 	   elseif(IsMobDead(16933144)==false)then  
-	       GetMobByID(16933144):updateEnmity(target);
+	       GetMobByID(16933144):updateClaim(target);
 	   end
 	
 	end

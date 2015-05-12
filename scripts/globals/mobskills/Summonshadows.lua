@@ -22,8 +22,8 @@ local Z = GetMobByID(zeid):getZPos();
 if (GetMobAction(shadow1) and GetMobAction(shadow2) == 0)then
 SpawnMob(shadow1):setPos(X,Y,Z);
 SpawnMob(shadow2):setPos(X,Y,Z);
-GetMobByID(shadow1):updateEnmity(target);
-GetMobByID(shadow2):updateEnmity(target);
+GetMobByID(shadow1):updateClaim(target);
+GetMobByID(shadow2):updateClaim(target);
 end
 skill:setMsg(0);
 return 0;

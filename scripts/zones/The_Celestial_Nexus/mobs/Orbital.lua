@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option,target)
             DespawnMob(target:getID()-3);
             DespawnMob(target:getID()-4);
             mob = SpawnMob(target:getID()-2);
-            mob:updateEnmity(player);
+            mob:updateClaim(player);
             --the "30 seconds of rest" you get before he attacks you, and making sure he teleports first in range
             mob:addStatusEffectEx(EFFECT_BIND, 0, 1, 0, 30);
             mob:addStatusEffectEx(EFFECT_SILENCE, 0, 1, 0, 40);
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option,target)
             DespawnMob(target:getID()-2);
             DespawnMob(target:getID()-3);
             mob = SpawnMob(target:getID()-1);
-            mob:updateEnmity(player);
+            mob:updateClaim(player);
             --the "30 seconds of rest" you get before he attacks you, and making sure he teleports first in range
             mob:addStatusEffectEx(EFFECT_BIND, 0, 1, 0, 30);
             mob:addStatusEffectEx(EFFECT_SILENCE, 0, 1, 0, 40);

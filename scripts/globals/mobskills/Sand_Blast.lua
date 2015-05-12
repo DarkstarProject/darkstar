@@ -29,7 +29,7 @@ function onMobWeaponSkill(target, mob, skill)
 		if (GetMobAction(16806248) == 0) then -- Alastor Antlion
 			local alastorAntlion = GetMobByID(16806248);
 			alastorAntlion:setSpawn(mob:getXPos()+1,mob:getYPos()+1,mob:getZPos()+1); -- Set its spawn location.
-			SpawnMob(16806248, 120):updateEnmity(target);
+			SpawnMob(16806248, 120):updateClaim(target);
 		end
 	end
     return typeEffect;

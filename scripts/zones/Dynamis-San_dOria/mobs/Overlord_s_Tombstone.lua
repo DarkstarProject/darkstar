@@ -19,12 +19,12 @@ end;
 
 function onMobEngaged(mob,target)
 
-	SpawnMob(17535350):updateEnmity(target); -- 110
-	SpawnMob(17535351):updateEnmity(target); -- 111
-	SpawnMob(17535352):updateEnmity(target); -- 112
-	SpawnMob(17535354):updateEnmity(target); -- 114
-	SpawnMob(17534978):updateEnmity(target); -- Battlechoir Gitchfotch
-	SpawnMob(17534979):updateEnmity(target); -- Soulsender Fugbrag
+	SpawnMob(17535350):updateClaim(target); -- 110
+	SpawnMob(17535351):updateClaim(target); -- 111
+	SpawnMob(17535352):updateClaim(target); -- 112
+	SpawnMob(17535354):updateClaim(target); -- 114
+	SpawnMob(17534978):updateClaim(target); -- Battlechoir Gitchfotch
+	SpawnMob(17534979):updateClaim(target); -- Soulsender Fugbrag
 
 end;
 

@@ -40,7 +40,7 @@ function onMobFight(mob, target)
    
 	for i = MotherGlobe+1, MotherGlobe+6 do
 		if (GetMobAction(i) == 16) then
-			GetMobByID(i):updateEnmity(target);
+			GetMobByID(i):updateClaim(target);
 		end
 	end
 
@@ -49,7 +49,7 @@ function onMobFight(mob, target)
 	if (mob:getBattleTime() % 30 == 0 and mob:getBattleTime() > 3) then
 		for i = MotherGlobe+1, MotherGlobe+6 do
 			if (GetMobAction(i) == 0) then -- My Orb is deeaaaaaad!
-				SpawnMob(i):updateEnmity(target);
+				SpawnMob(i):updateClaim(target);
 				GetMobByID(i):setPos(mob:getXPos()+1, mob:getYPos(), mob:getZPos()+1);
 				return;
 			end

@@ -20,7 +20,7 @@ function onMobFight(mob,target)
 	
 	-- Spawn ying after 21sec if lord is not spawned, else he's respawned by dyna lord
 	if(mob:getBattleTime() % 21 == 0 and GetMobAction(17330184) == 0) then
-		SpawnMob(17330184):updateEnmity(target);
+		SpawnMob(17330184):updateClaim(target);
 	end
 	
 end;

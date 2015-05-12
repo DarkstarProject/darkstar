@@ -28,7 +28,7 @@ function onMobFight(mob,target)
 	if (mob:getBattleTime() % 30 < 3 and mob:getBattleTime() > 3) then
 		for i = OP_Mariselle+1, OP_Mariselle+2 do
 			if (GetMobAction(i) == 0) then
-				SpawnMob(i):updateEnmity(target);
+				SpawnMob(i):updateClaim(target);
 				GetMobByID(i):setPos(GetMobByID(OP_Mariselle):getXPos()+1, GetMobByID(OP_Mariselle):getYPos(), GetMobByID(OP_Mariselle):getZPos()+1); -- Set pupil x and z position +1 from Mariselle
 				return;
 			end

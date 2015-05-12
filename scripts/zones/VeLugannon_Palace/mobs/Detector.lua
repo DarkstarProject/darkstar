@@ -37,13 +37,13 @@ function onMobFight(mob,target)
    -- Detectors can also still spawn the Caretakers while sleeping, moving, etc.
 
     if (GetMobAction(Caretaker) == 16) then
-        GetMobByID(Caretaker):updateEnmity(target);
+        GetMobByID(Caretaker):updateClaim(target);
     end
 
     if (ExtraVar <= 6) then  -- Maximum number of pets Detector can spawn is 5
         if (mob:getBattleTime() % 15 < 3 and mob:getBattleTime() > 3) then
             if (GetMobAction(Caretaker) == 0) then
-                SpawnMob(Caretaker):updateEnmity(target);
+                SpawnMob(Caretaker):updateClaim(target);
                 GetMobByID(Caretaker):setPos(GetMobByID(Detector):getXPos()+1, GetMobByID(Detector):getYPos(), GetMobByID(Detector):getZPos()+1); -- Set Caretaker x and z position +1 from Detector
                 GetMobByID(Detector):setLocalVar("1",ExtraVar+1);
                 return;

@@ -20,12 +20,12 @@ function onMobEngaged(mob,target)
 	
 	target:showText(mob,ANIMATED_STAFF_DIALOG);
 	
-	SpawnMob(17330337,120):updateEnmity(target);
-	SpawnMob(17330338,120):updateEnmity(target);
-	SpawnMob(17330339,120):updateEnmity(target);
-	SpawnMob(17330347,120):updateEnmity(target);
-	SpawnMob(17330348,120):updateEnmity(target);
-	SpawnMob(17330349,120):updateEnmity(target);
+	SpawnMob(17330337,120):updateClaim(target);
+	SpawnMob(17330338,120):updateClaim(target);
+	SpawnMob(17330339,120):updateClaim(target);
+	SpawnMob(17330347,120):updateClaim(target);
+	SpawnMob(17330348,120):updateClaim(target);
+	SpawnMob(17330349,120):updateClaim(target);
 
 end;
 

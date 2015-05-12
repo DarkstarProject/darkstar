@@ -20,12 +20,12 @@ function onMobEngaged(mob,target)
 	
 	target:showText(mob,ANIMATED_CLAYMORE_DIALOG);
 	
-	SpawnMob(17330365,120):updateEnmity(target);
-	SpawnMob(17330366,120):updateEnmity(target);
-	SpawnMob(17330367,120):updateEnmity(target);
-	SpawnMob(17330372,120):updateEnmity(target);
-	SpawnMob(17330373,120):updateEnmity(target);
-	SpawnMob(17330374,120):updateEnmity(target);
+	SpawnMob(17330365,120):updateClaim(target);
+	SpawnMob(17330366,120):updateClaim(target);
+	SpawnMob(17330367,120):updateClaim(target);
+	SpawnMob(17330372,120):updateClaim(target);
+	SpawnMob(17330373,120):updateClaim(target);
+	SpawnMob(17330374,120):updateClaim(target);
 
 end;
 

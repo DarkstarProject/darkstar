@@ -19,7 +19,7 @@ function onMobEngaged(mob,target)
 	local mobid = mob:getID();
 
 	for i=mobid-3,mobid-1 do
-		GetMobByID(i):updateEnmity(target);
+		GetMobByID(i):updateClaim(target);
 	end
 end;
 

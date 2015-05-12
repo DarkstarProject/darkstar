@@ -20,12 +20,12 @@ function onMobEngaged(mob,target)
 	
 	target:showText(mob,ANIMATED_TACHI_DIALOG);
 	
-	SpawnMob(17330445,120):updateEnmity(target);
-	SpawnMob(17330446,120):updateEnmity(target);
-	SpawnMob(17330447,120):updateEnmity(target);
-	SpawnMob(17330457,120):updateEnmity(target);
-	SpawnMob(17330458,120):updateEnmity(target);
-	SpawnMob(17330459,120):updateEnmity(target);
+	SpawnMob(17330445,120):updateClaim(target);
+	SpawnMob(17330446,120):updateClaim(target);
+	SpawnMob(17330447,120):updateClaim(target);
+	SpawnMob(17330457,120):updateClaim(target);
+	SpawnMob(17330458,120):updateClaim(target);
+	SpawnMob(17330459,120):updateClaim(target);
 
 end;
 

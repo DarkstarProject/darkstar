@@ -18,10 +18,10 @@ end;
 
 function onMobEngaged(mob,target)
 
-	SpawnMob(16998863,180):updateEnmity(target);
-	SpawnMob(16998864,180):updateEnmity(target);
-	SpawnMob(16998865,180):updateEnmity(target);
-	SpawnMob(16998866,180):updateEnmity(target);
+	SpawnMob(16998863,180):updateClaim(target);
+	SpawnMob(16998864,180):updateClaim(target);
+	SpawnMob(16998865,180):updateClaim(target);
+	SpawnMob(16998866,180):updateClaim(target);
 
 end;
 

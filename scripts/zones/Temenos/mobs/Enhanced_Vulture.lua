@@ -20,12 +20,12 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-	    GetMobByID(16928959):updateEnmity(target);
-		GetMobByID(16928960):updateEnmity(target);
-	    GetMobByID(16928961):updateEnmity(target);
-		GetMobByID(16928962):updateEnmity(target);
-		GetMobByID(16928963):updateEnmity(target);
-		GetMobByID(16928964):updateEnmity(target);
+	    GetMobByID(16928959):updateClaim(target);
+		GetMobByID(16928960):updateClaim(target);
+	    GetMobByID(16928961):updateClaim(target);
+		GetMobByID(16928962):updateClaim(target);
+		GetMobByID(16928963):updateClaim(target);
+		GetMobByID(16928964):updateClaim(target);
 end;
 
 -----------------------------------

@@ -64,7 +64,7 @@ function onMobFight( mob, target )
         
         -- Spawn the pet..
         local pet = SpawnMob( ChosenPet );
-        pet:updateEnmity( target );
+        pet:updateClaim( target );
         pet:setPos( mob:getXPos(), mob:getYPos(), mob:getZPos() );
 
         -- Update Kirins extra vars..
@@ -75,7 +75,7 @@ function onMobFight( mob, target )
     for pets = 17506671, 17506674 do
         if (GetMobAction( pets ) == 16) then 
             -- Send pet after current target..
-            GetMobByID( pets ):updateEnmity( target );
+            GetMobByID( pets ):updateClaim( target );
         end
     end
 end

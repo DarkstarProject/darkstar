@@ -32,19 +32,19 @@ function onMobEngaged(mob,target)
  
 
  if(mobID ==16932882)then
-						SpawnMob(16932889):updateEnmity(target);
+						SpawnMob(16932889):updateClaim(target);
  elseif(mobID ==16932883)then	
-						SpawnMob(16932890):updateEnmity(target);
+						SpawnMob(16932890):updateClaim(target);
  elseif(mobID ==16932884)then
-						SpawnMob(16932891):updateEnmity(target);
+						SpawnMob(16932891):updateClaim(target);
  elseif(mobID ==16932885)then
-						SpawnMob(16932892):updateEnmity(target);
+						SpawnMob(16932892):updateClaim(target);
  elseif(mobID ==16932886)then	
-						SpawnMob(16932893):updateEnmity(target);
+						SpawnMob(16932893):updateClaim(target);
  elseif(mobID ==16932887)then
-						SpawnMob(16932894):updateEnmity(target);
+						SpawnMob(16932894):updateClaim(target);
  elseif(mobID ==16932888)then
-						SpawnMob(16932895):updateEnmity(target);						
+						SpawnMob(16932895):updateClaim(target);						
  end
 end;
 

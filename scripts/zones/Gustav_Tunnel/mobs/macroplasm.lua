@@ -21,12 +21,12 @@ function onMobDeath(mob,killer)
 if(mob:getID() == 17645795) then
     SpawnMob(17645797):setPos(X,Y,Z);
     SpawnMob(17645798):setPos(X,Y,Z);
-    GetMobByID(17645797):updateEnmity(killer);
-    GetMobByID(17645798):updateEnmity(killer);
+    GetMobByID(17645797):updateClaim(killer);
+    GetMobByID(17645798):updateClaim(killer);
 elseif(mob:getID() == 17645796)then
   SpawnMob(17645799):setPos(A,B,C);
   SpawnMob(17645800):setPos(A,B,C);
-  GetMobByID(17645799):updateEnmity(killer);
-  GetMobByID(17645800):updateEnmity(killer);
+  GetMobByID(17645799):updateClaim(killer);
+  GetMobByID(17645800):updateClaim(killer);
 end
 end;	

@@ -36,8 +36,8 @@ end;
 
 function onMobEngaged(mob,target)
 	
-	SpawnMob(17330183):updateEnmity(target); -- Spawn Ying
-	SpawnMob(17330184):updateEnmity(target); -- Spawn Yang
+	SpawnMob(17330183):updateClaim(target); -- Spawn Ying
+	SpawnMob(17330184):updateClaim(target); -- Spawn Yang
 	
 end;
 
@@ -55,10 +55,10 @@ function onMobFight(mob,target)
 	
 	if(mob:getBattleTime() % 90 == 0) then
 		if(GetMobAction(17330183) == 0) then
-			SpawnMob(17330183):updateEnmity(target); -- Respawn Ying after 90sec
+			SpawnMob(17330183):updateClaim(target); -- Respawn Ying after 90sec
 		end
 		if(GetMobAction(17330184) == 0) then
-			SpawnMob(17330184):updateEnmity(target); -- Respawn Yang after 90sec
+			SpawnMob(17330184):updateClaim(target); -- Respawn Yang after 90sec
 		end
 	end
 	

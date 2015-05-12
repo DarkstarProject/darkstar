@@ -136,7 +136,7 @@ function onEventFinish(player,csid,option)
 		--first phase dies, spawn second phase ID, make him engage, and disable
 		--  magic, auto attack, and abilities (all he does is case Implode by script)
 		mob = SpawnMob(mobid+3);
-		mob:updateEnmity(player);
+		mob:updateClaim(player);
 		mob:SetMagicCastingEnabled(false);
 		mob:SetAutoAttackEnabled(false);
 		mob:SetMobAbilityEnabled(false);

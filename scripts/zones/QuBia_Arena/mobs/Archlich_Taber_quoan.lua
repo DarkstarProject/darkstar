@@ -28,47 +28,47 @@ function onMobFight(mob, target)
     if (BattleTime - mob:getLocalVar("RepopWarriors") > 30) then
         if ((GetMobAction(War_1) == ACTION_NONE or GetMobAction(War_1) == ACTION_SPAWN)
         and (GetMobAction(War_2) == ACTION_NONE or GetMobAction(War_2) == ACTION_SPAWN)) then
-            SpawnMob(War_1):updateEnmity(target);
-            SpawnMob(War_2):updateEnmity(target);
+            SpawnMob(War_1):updateClaim(target);
+            SpawnMob(War_2):updateClaim(target);
             mob:setLocalVar("RepopWarriors", BattleTime);
         elseif ((GetMobAction(War_1) == ACTION_NONE or GetMobAction(War_1) == ACTION_SPAWN)
         and (GetMobAction(War_3) == ACTION_NONE or GetMobAction(War_3) == ACTION_SPAWN)) then
-            SpawnMob(War_1):updateEnmity(target);
-            SpawnMob(War_3):updateEnmity(target);
+            SpawnMob(War_1):updateClaim(target);
+            SpawnMob(War_3):updateClaim(target);
             mob:setLocalVar("RepopWarriors", BattleTime);
         elseif ((GetMobAction(War_1) == ACTION_NONE or GetMobAction(War_1) == ACTION_SPAWN)
         and (GetMobAction(War_4) == ACTION_NONE or GetMobAction(War_4) == ACTION_SPAWN)) then
-            SpawnMob(War_1):updateEnmity(target);
-            SpawnMob(War_4):updateEnmity(target);
+            SpawnMob(War_1):updateClaim(target);
+            SpawnMob(War_4):updateClaim(target);
             mob:setLocalVar("RepopWarriors", BattleTime);
         elseif ((GetMobAction(War_2) == ACTION_NONE or GetMobAction(War_2) == ACTION_SPAWN)
         and (GetMobAction(War_3) == ACTION_NONE or GetMobAction(War_3) == ACTION_SPAWN)) then
-            SpawnMob(War_2):updateEnmity(target);
-            SpawnMob(War_3):updateEnmity(target);
+            SpawnMob(War_2):updateClaim(target);
+            SpawnMob(War_3):updateClaim(target);
             mob:setLocalVar("RepopWarriors", BattleTime);
         elseif ((GetMobAction(War_2) == ACTION_NONE or GetMobAction(War_2) == ACTION_SPAWN)
         and (GetMobAction(War_4) == ACTION_NONE or GetMobAction(War_4) == ACTION_SPAWN)) then
-            SpawnMob(War_2):updateEnmity(target);
-            SpawnMob(War_4):updateEnmity(target);
+            SpawnMob(War_2):updateClaim(target);
+            SpawnMob(War_4):updateClaim(target);
             mob:setLocalVar("RepopWarriors", BattleTime);
         elseif ((GetMobAction(War_3) == ACTION_NONE or GetMobAction(War_3) == ACTION_SPAWN)
         and (GetMobAction(War_4) == ACTION_NONE or GetMobAction(War_4) == ACTION_SPAWN)) then
-            SpawnMob(War_3):updateEnmity(target);
-            SpawnMob(War_4):updateEnmity(target);
+            SpawnMob(War_3):updateClaim(target);
+            SpawnMob(War_4):updateClaim(target);
             mob:setLocalVar("RepopWarriors", BattleTime);
 
         -- Can't find a pair to pop at once, so popping single (dunno if this part is retail...)
         elseif (GetMobAction(War_1) == ACTION_NONE or GetMobAction(War_1) == ACTION_SPAWN) then
-            SpawnMob(War_1):updateEnmity(target);
+            SpawnMob(War_1):updateClaim(target);
             mob:setLocalVar("RepopWarriors", BattleTime);
         elseif (GetMobAction(War_2) == ACTION_NONE or GetMobAction(War_2) == ACTION_SPAWN) then
-            SpawnMob(War_2):updateEnmity(target);
+            SpawnMob(War_2):updateClaim(target);
             mob:setLocalVar("RepopWarriors", BattleTime);
         elseif (GetMobAction(War_3) == ACTION_NONE or GetMobAction(War_3) == ACTION_SPAWN) then
-            SpawnMob(War_3):updateEnmity(target);
+            SpawnMob(War_3):updateClaim(target);
             mob:setLocalVar("RepopWarriors", BattleTime);
         elseif (GetMobAction(War_4) == ACTION_NONE or GetMobAction(War_4) == ACTION_SPAWN) then
-            SpawnMob(War_4):updateEnmity(target);
+            SpawnMob(War_4):updateClaim(target);
             mob:setLocalVar("RepopWarriors", BattleTime);
         end
     end

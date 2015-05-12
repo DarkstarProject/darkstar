@@ -28,7 +28,7 @@ end;
 
 function onMobEngaged(mob, target)
     mob:addStatusEffectEx(EFFECT_SILENCE, 0, 1, 0, 5);
-    GetMobByID(mob:getID() + 1):updateEnmity(target);
+    GetMobByID(mob:getID() + 1):updateClaim(target);
 end;
 
 function onMobFight(mob, target)
@@ -38,10 +38,10 @@ function onMobFight(mob, target)
         
         if (GetMobAction(orbital1) == ACTION_NONE) then
             GetMobByID(orbital1):setPos(mob:getPos());
-            SpawnMob(orbital1):updateEnmity(target);
+            SpawnMob(orbital1):updateClaim(target);
         elseif (GetMobAction(orbital2) == ACTION_NONE) then
             GetMobByID(orbital2):setPos(mob:getPos());
-            SpawnMob(orbital2):updateEnmity(target);
+            SpawnMob(orbital2):updateClaim(target);
         end
     end
 end;
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option,target)
 	if(csid == 0x7d04) then
         DespawnMob(target:getID());
 		mob = SpawnMob(target:getID()+2);
-		mob:updateEnmity(player);
+		mob:updateClaim(player);
         --the "30 seconds of rest" you get before he attacks you, and making sure he teleports first in range
         mob:addStatusEffectEx(EFFECT_BIND, 0, 1, 0, 30);
         mob:addStatusEffectEx(EFFECT_SILENCE, 0, 1, 0, 40);

@@ -20,12 +20,12 @@ function onMobEngaged(mob,target)
 	
 	target:showText(mob,ANIMATED_GREATAXE_DIALOG);
 	
-	SpawnMob(17330383,120):updateEnmity(target);
-	SpawnMob(17330384,120):updateEnmity(target);
-	SpawnMob(17330385,120):updateEnmity(target);
-	SpawnMob(17330395,120):updateEnmity(target);
-	SpawnMob(17330396,120):updateEnmity(target);
-	SpawnMob(17330397,120):updateEnmity(target);
+	SpawnMob(17330383,120):updateClaim(target);
+	SpawnMob(17330384,120):updateClaim(target);
+	SpawnMob(17330385,120):updateClaim(target);
+	SpawnMob(17330395,120):updateClaim(target);
+	SpawnMob(17330396,120):updateClaim(target);
+	SpawnMob(17330397,120):updateClaim(target);
 
 end;
 
