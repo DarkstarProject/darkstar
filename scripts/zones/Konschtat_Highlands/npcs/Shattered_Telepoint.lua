@@ -25,7 +25,7 @@ function onTrigger(player,npc)
 	if (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
 		player:startEvent(0x0391,0,0,1); -- first time in promy -> have you made your preparations cs
 	elseif (player:getCurrentMission(COP) == BELOW_THE_ARKS and (player:hasKeyItem(LIGHT_OF_HOLLA) or player:hasKeyItem(LIGHT_OF_MEA))) then
-		player:startEvent(0x0391);  -- cs you get nearing second promyvion
+		player:startEvent(0x0390);  -- cs you get nearing second promyvion
 	elseif (player:getCurrentMission(COP) > BELOW_THE_ARKS or player:hasCompletedMission(COP,THE_LAST_VERSE) or (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") > 1)) then
 		player:startEvent(0x0391); -- normal cs (third promyvion and each entrance after having that promyvion visited or mission completed)
 	else
