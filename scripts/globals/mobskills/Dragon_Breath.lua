@@ -31,7 +31,7 @@ function onMobWeaponSkill(target, mob, skill)
         
     angle = mob:getRotPos() - angle;
             
-    dmgmod = dmgmod * ((128-math.abs(angle))/128);
+    dmgmod = dmgmod * ((128-math.abs(angle)*3)/128);
         
     utils.clamp(dmgmod, 50, 1600);
     
