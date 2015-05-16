@@ -62,7 +62,7 @@ function onUseAbility(player,target,ability)
         
         local bonus = 50 - target:getMod(MOD_STUNRES);
         local spell = getSpell(216);
-        local resist = applyResistance(player,spell,target,0,player:getSkillLevel(player:getWeaponSkillType(SLOT_MAIN)),bonus)
+        local resist = applyResistance(player,spell,target,0,player:getWeaponSkillType(SLOT_MAIN),bonus)
         
         if resist > 0.25 then
             target:delStatusEffectSilent(EFFECT_WEIGHT);

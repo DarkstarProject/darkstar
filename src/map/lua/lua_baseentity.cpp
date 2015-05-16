@@ -1920,7 +1920,7 @@ inline int32 CLuaBaseEntity::getSkillLevel(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype & TYPE_NPC);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
-    DSP_DEBUG_BREAK_IF((uint8)lua_tointeger(L, 1) >= MAX_SKILLTYPE);
+    DSP_DEBUG_BREAK_IF(lua_tointeger(L, 1) >= MAX_SKILLTYPE);
 
     lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->GetSkill(lua_tointeger(L,1)));
     return 1;
@@ -1933,7 +1933,7 @@ inline int32 CLuaBaseEntity::setSkillLevel(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
-    DSP_DEBUG_BREAK_IF((uint8)lua_tointeger(L, 1) >= MAX_SKILLTYPE);
+    DSP_DEBUG_BREAK_IF(lua_tointeger(L, 1) >= MAX_SKILLTYPE);
 
     uint8 SkillID = lua_tointeger(L, 1);
     uint16 SkillAmount = lua_tointeger(L, 2);
