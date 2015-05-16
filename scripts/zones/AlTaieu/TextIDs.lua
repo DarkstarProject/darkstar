@@ -7,12 +7,12 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6385; -- Obtained key item: <keyitem>
 
 -- Quasilumin Texts
-QUASILUMIN_01 = 7341; -- This is Al'Taieu. The celestial capital overflowing with the blessings of Altana.
+QUASILUMIN_01 = 7347; -- This is Al'Taieu. The celestial capital overflowing with the blessings of Altana.
 
 -- Other
-    NOTHING_OF_INTEREST = 7451; -- There is nothing of interest here.
-         OMINOUS_SHADOW = 7452; -- An ominous shadow falls over you...
-NOTHING_OUT_OF_ORDINARY = 7454; --There is nothing out of the ordinary here.
+    NOTHING_OF_INTEREST = 7457; -- There is nothing of interest here.
+         OMINOUS_SHADOW = 7458; -- An ominous shadow falls over you...
+NOTHING_OUT_OF_ORDINARY = 7460; --There is nothing out of the ordinary here.
 
 -- conquest Base
-CONQUEST_BASE = 7125; -- Tallying conquest results...
+CONQUEST_BASE = 7131; -- Tallying conquest results...
