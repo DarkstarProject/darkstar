@@ -273,10 +273,10 @@ List of known zones
   266 - 10A - Arjami Ravine
   267 - 10B - Kamihr Drifts
   268 - 10C - Sih Gates
-  259 - 10D - Moh Gates
+  269 - 10D - Moh Gates
   270 - 10E - Cirdas Caverns
   271 - 10F - Cirdas Caverns [U]
-  252 - 110 - Dho Gates
+  272 - 110 - Dho Gates
   273 - 111 - Woh Gates
   274 - 112 - Outer Ra'Kaznar
   275 - 113 - Outer Ra'Kaznar [U]
@@ -290,3 +290,11 @@ List of known zones
   283 - 11B - Silver Knife
   284 - 11C - Celennia Memorial Library (formerly Wexworth Library)
   285 - 11D - Feretory
+  286 - 11E - 
+  287 - 11F - 
+  288 - 120 - Escha - Zi'Tah
+  289 - 121 - 
+  290 - 122 - 
+  291 - 123 - 
+  292 - 124 - 
+  293 - 125 - 
