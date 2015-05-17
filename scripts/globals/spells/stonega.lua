@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Stonaga
--- Deals earth damage to an enemy.
+-- Deals earth damage to enemies within area of effect.
 -----------------------------------------
 
 require("scripts/globals/magic");
@@ -15,7 +15,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(56,1,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = true;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 60;
+    spellParams.V50 = 210;
+    spellParams.V100 = 310;
+    spellParams.V200 = 310;
+    spellParams.M0 = 3;
+    spellParams.M50 = 2;
+    spellParams.M100 = 1;
+    spellParams.M200 = 1;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

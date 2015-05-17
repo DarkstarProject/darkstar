@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Water
+-- Spell: Water V
 -- Deals water damage to an enemy.
 -----------------------------------------
 
@@ -15,7 +15,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(680,2.3,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = false;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 700;
+    spellParams.V50 = 980;
+    spellParams.V100 = 1217;
+    spellParams.V200 = 1217;
+    spellParams.M0 = 5.6;
+    spellParams.M50 = 4.74;
+    spellParams.M100 = 3.95;
+    spellParams.M200 = 3.95;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

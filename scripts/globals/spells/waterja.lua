@@ -1,6 +1,7 @@
 -----------------------------------------
--- Spell: Water
--- Deals water damage to an enemy.
+-- Spell: Waterja
+-- Deals water damage to enemies within area of effect.
+-- Successive use enhances spell potency.
 -----------------------------------------
 
 require("scripts/globals/magic");
@@ -15,7 +16,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(782,2.3,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = true;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 800;
+    spellParams.V50 = 1080;
+    spellParams.V100 = 1317;
+    spellParams.V200 = 1317;
+    spellParams.M0 = 5.6;
+    spellParams.M50 = 4.75;
+    spellParams.M100 = 3.95;
+    spellParams.M200 = 3.95;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

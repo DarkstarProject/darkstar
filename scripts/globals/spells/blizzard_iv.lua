@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Blizzard
+-- Spell: Blizzard IV
 -- Deals ice damage to an enemy.
 -----------------------------------------
 
@@ -15,7 +15,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(506,2,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = false;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 560;
+    spellParams.V50 = 755;
+    spellParams.V100 = 935;
+    spellParams.V200 = 935;
+    spellParams.M0 = 3.9;
+    spellParams.M50 = 3.6;
+    spellParams.M100 = 2.8;
+    spellParams.M200 = 2.8;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

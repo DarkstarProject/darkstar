@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Fire
+-- Spell: Fire IV
 -- Deals fire damage to an enemy.
 -----------------------------------------
 
@@ -15,7 +15,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(472,2,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = false;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 520;
+    spellParams.V50 = 730;
+    spellParams.V100 = 915;
+    spellParams.V200 = 915;
+    spellParams.M0 = 4.2;
+    spellParams.M50 = 3.7;
+    spellParams.M100 = 2.85;
+    spellParams.M200 = 2.85;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

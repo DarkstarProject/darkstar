@@ -1,6 +1,6 @@
 -----------------------------------------
--- Spell: Thundaga 2
--- Deals thunder damage to an enemy.
+-- Spell: Thundaga II
+-- Deals lightning damage to enemies within area of effect.
 -----------------------------------------
 
 require("scripts/globals/magic");
@@ -15,7 +15,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(392,1.5,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = true;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 400;
+    spellParams.V50 = 525;
+    spellParams.V100 = 650;
+    spellParams.V200 = 650;
+    spellParams.M0 = 2.5;
+    spellParams.M50 = 2.5;
+    spellParams.M100 = 1.75;
+    spellParams.M200 = 1.75;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

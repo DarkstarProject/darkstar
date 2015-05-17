@@ -15,7 +15,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(35,1,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = false;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 55;
+    spellParams.V50 = 125;
+    spellParams.V100 = 175;
+    spellParams.V200 = 175;
+    spellParams.M0 = 1.4;
+    spellParams.M50 = 1;
+    spellParams.M100 = 0;
+    spellParams.M200 = 0;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

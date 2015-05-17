@@ -1,6 +1,6 @@
 -----------------------------------------
--- Spell: Stonega 3
--- Deals earth damage to an enemy.
+-- Spell: Stonega III
+-- Deals earth damage to enemies within area of effect.
 -----------------------------------------
 
 require("scripts/globals/magic");
@@ -15,7 +15,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(434,1.5,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = true;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 500;
+    spellParams.V50 = 750;
+    spellParams.V100 = 950;
+    spellParams.V200 = 950;
+    spellParams.M0 = 5;
+    spellParams.M50 = 4;
+    spellParams.M100 = 3;
+    spellParams.M200 = 3;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Aero
+-- Spell: Aero IV
 -- Deals wind damage to an enemy.
 -----------------------------------------
 
@@ -15,7 +15,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(440,2,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = false;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 480;
+    spellParams.V50 = 700;
+    spellParams.V100 = 890;
+    spellParams.V200 = 890;
+    spellParams.M0 = 4.4;
+    spellParams.M50 = 3.8;
+    spellParams.M100 = 2.9;
+    spellParams.M200 = 2.9;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

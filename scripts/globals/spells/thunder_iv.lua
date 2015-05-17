@@ -1,6 +1,6 @@
 -----------------------------------------
--- Spell: Fire
--- Deals fire damage to an enemy.
+-- Spell: Thunder IV
+-- Deals lightning damage to an enemy.
 -----------------------------------------
 
 require("scripts/globals/magic");
@@ -15,7 +15,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(541,2,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = false;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 600;
+    spellParams.V50 = 780;
+    spellParams.V100 = 955;
+    spellParams.V200 = 955;
+    spellParams.M0 = 3.6;
+    spellParams.M50 = 3.5;
+    spellParams.M100 = 2.75;
+    spellParams.M200 = 2.75;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

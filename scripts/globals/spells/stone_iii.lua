@@ -1,6 +1,6 @@
 -----------------------------------------
--- Spell: Fire
--- Deals fire damage to an enemy.
+-- Spell: Stone III
+-- Deals earth damage to an enemy.
 -----------------------------------------
 
 require("scripts/globals/magic");
@@ -15,7 +15,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(210,1.5,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = false;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 200;
+    spellParams.V50 = 400;
+    spellParams.V100 = 550;
+    spellParams.V200 = 550;
+    spellParams.M0 = 4;
+    spellParams.M50 = 3;
+    spellParams.M100 = 2;
+    spellParams.M200 = 2;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

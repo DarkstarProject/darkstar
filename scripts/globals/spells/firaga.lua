@@ -1,6 +1,6 @@
 -----------------------------------------
--- Spell: Firaga 1
--- Deals wind damage to an enemy.
+-- Spell: Firaga
+-- Deals fire damage to enemies within area of effect.
 -----------------------------------------
 
 require("scripts/globals/magic");
@@ -15,7 +15,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(120,1,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = true;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 120;
+    spellParams.V50 = 240;
+    spellParams.V100 = 325;
+    spellParams.V200 = 325;
+    spellParams.M0 = 2.4;
+    spellParams.M50 = 1.7;
+    spellParams.M100 = 1;
+    spellParams.M200 = 1;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

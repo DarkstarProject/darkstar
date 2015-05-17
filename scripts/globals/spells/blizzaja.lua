@@ -1,6 +1,7 @@
 -----------------------------------------
 -- Spell: Blizzaja
--- Deals ice damage to an enemy.
+-- Deals ice damage to enemies within area of effect.
+-- Successive use enhances spell potency.
 -----------------------------------------
 
 require("scripts/globals/magic");
@@ -15,7 +16,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(953,2.3,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = true;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 950;
+    spellParams.V50 = 1170;
+    spellParams.V100 = 1370;
+    spellParams.V200 = 1370;
+    spellParams.M0 = 4.4;
+    spellParams.M50 = 4;
+    spellParams.M100 = 3.8;
+    spellParams.M200 = 3.8;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

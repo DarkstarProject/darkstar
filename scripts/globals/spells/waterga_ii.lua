@@ -1,6 +1,6 @@
 -----------------------------------------
--- Spell: Water
--- Deals water damage to an enemy.
+-- Spell: Waterga II
+-- Deals water damage to enemies within area of effect.
 -----------------------------------------
 
 require("scripts/globals/magic");
@@ -15,7 +15,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(232,1,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = true;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 280;
+    spellParams.V50 = 465;
+    spellParams.V100 = 610;
+    spellParams.V200 = 610;
+    spellParams.M0 = 3.7;
+    spellParams.M50 = 2.9;
+    spellParams.M100 = 1.95;
+    spellParams.M200 = 1.95;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

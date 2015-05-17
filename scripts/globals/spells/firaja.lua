@@ -1,6 +1,7 @@
 -----------------------------------------
 -- Spell: Firaja
--- Deals fire damage to an enemy.
+-- Deals fire damage to enemies within area of effect.
+-- Successive use enhances spell potency.
 -----------------------------------------
 
 require("scripts/globals/magic");
@@ -15,7 +16,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(902,2.3,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = true;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 900;
+    spellParams.V50 = 1140;
+    spellParams.V100 = 1352;
+    spellParams.V200 = 1352;
+    spellParams.M0 = 4.8;
+    spellParams.M50 = 4.25;
+    spellParams.M100 = 3.85;
+    spellParams.M200 = 3.85;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

@@ -1,6 +1,6 @@
 -----------------------------------------
--- Spell: Aeroga 3
--- Deals wind damage to an enemy.
+-- Spell: Aeroga III
+-- Deals wind damage to enemies within area of effect.
 -----------------------------------------
 
 require("scripts/globals/magic");
@@ -15,7 +15,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(527,1.5,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = true;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 580;
+    spellParams.V50 = 800;
+    spellParams.V100 = 990;
+    spellParams.V200 = 990;
+    spellParams.M0 = 4.4;
+    spellParams.M50 = 3.8;
+    spellParams.M100 = 2.9;
+    spellParams.M200 = 2.9;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

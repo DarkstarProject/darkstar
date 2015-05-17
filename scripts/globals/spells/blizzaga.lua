@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Blizzaga
--- Deals ice damage to an enemy.
+-- Deals ice damage to enemies within area of effect.
 -----------------------------------------
 
 require("scripts/globals/magic");
@@ -15,7 +15,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(145,1,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = true;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 160;
+    spellParams.V50 = 270;
+    spellParams.V100 = 350;
+    spellParams.V200 = 350;
+    spellParams.M0 = 2.2;
+    spellParams.M50 = 1.6;
+    spellParams.M100 = 1;
+    spellParams.M200 = 1;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Fire
+-- Spell: Fire III
 -- Deals fire damage to an enemy.
 -----------------------------------------
 
@@ -15,7 +15,17 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(295,1.5,caster,spell,target,false,1.0);
-	return dmg;
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = false;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 290;
+    spellParams.V50 = 445;
+    spellParams.V100 = 580;
+    spellParams.V200 = 580;
+    spellParams.M0 = 3.1;
+    spellParams.M50 = 2.7;
+    spellParams.M100 = 1.85;
+    spellParams.M200 = 1.85;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;
