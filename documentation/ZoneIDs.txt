@@ -290,3 +290,11 @@ List of known zones
   283 - 11B - Silver Knife
   284 - 11C - Celennia Memorial Library (formerly Wexworth Library)
   285 - 11D - Feretory
+  286 - 11E - 
+  287 - 11F - 
+  288 - 120 - Escha - Zi'Tah
+  289 - 121 - 
+  290 - 122 - 
+  291 - 123 - 
+  292 - 124 - 
+  293 - 125 - 
