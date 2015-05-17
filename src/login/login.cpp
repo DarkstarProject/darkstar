@@ -430,8 +430,7 @@ void login_versionscreen(int32 flag)
 {
     ShowInfo(CL_WHITE "Darkstar version %d.%02d.%02d" CL_RESET"\n",
         DARKSTAR_MAJOR_VERSION, DARKSTAR_MINOR_VERSION, DARKSTAR_REVISION);
-    ShowInfo(CL_GREEN "Website/Forum:" CL_RESET "\thttp://darkstarproject.ru/\n");
-    ShowInfo("\nOpen " CL_WHITE "readme.html" CL_RESET " for more information.");
+    ShowInfo(CL_GREEN "Forum:" CL_RESET "\thttp://forums.dspt.info/\n");
     if (flag) exit(EXIT_FAILURE);
 }
 
