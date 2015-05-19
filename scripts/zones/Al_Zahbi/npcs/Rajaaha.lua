@@ -37,7 +37,7 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,6);
-    local SkillLevel = player:getSkillLevel(64);
+    local SkillLevel = player:getSkillLevel(SKILL_GLD);
     
 	if (guildMember == 1) then
         if (player:hasStatusEffect(EFFECT_GOLDSMITHING_IMAGERY) == false) then
