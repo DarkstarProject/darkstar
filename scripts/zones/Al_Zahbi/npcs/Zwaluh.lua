@@ -37,7 +37,7 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,7);
-    local SkillLevel = player:getSkillLevel(128);
+    local SkillLevel = player:getSkillLevel(SKILL_LTH);
     
 	if (guildMember == 1) then
         if (player:hasStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY) == false) then
