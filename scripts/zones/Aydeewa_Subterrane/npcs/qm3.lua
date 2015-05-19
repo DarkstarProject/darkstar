@@ -13,12 +13,12 @@ require("scripts/zones/Aydeewa_Subterrane/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	if(trade:hasItemQty(2602,1) and trade:getItemCount() == 1) then -- Trade Spoilt Blood
-		player:tradeComplete();
-		SpawnMob(17056187,180):updateClaim(player);
-	end
-	
+
+    if(trade:hasItemQty(2602,1) and trade:getItemCount() == 1) then -- Trade Spoilt Blood
+        player:tradeComplete();
+        SpawnMob(17056186,180):updateClaim(player);
+    end
+
 end;
 
 -----------------------------------
@@ -26,7 +26,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(NOTHING_HAPPENS);
+    player:messageSpecial(NOTHING_HAPPENS);
 end;
 
 -----------------------------------
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,6 +43,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
