@@ -35,7 +35,7 @@ function onZoneIn(player,prevZone)
 
     if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         player:setPos(274,-82,-62 ,180);
-    elseif player:getCurrentMission(COP,THEM_OTHERCRYSTALS) then
+    elseif player:getCurrentMission(COP,THE_MOTHERCRYSTALS) then
         if (player:hasKeyItem(LIGHT_OF_DEM) and player:hasKeyItem(LIGHT_OF_MEA) and not(player:hasKeyItem(LIGHT_OF_HOLLA))) then
             cs = 0x009B;
         elseif (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_MEA) and not(player:hasKeyItem(LIGHT_OF_DEM))) then
