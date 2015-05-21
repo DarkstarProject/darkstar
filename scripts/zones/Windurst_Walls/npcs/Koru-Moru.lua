@@ -98,10 +98,8 @@ function onTrigger(player,npc)
 		end
 	elseif (qStarStruck == QUEST_ACCEPTED) then
 		player:startEvent(0x00c6);
-	elseif (player:hasItem(584) and player:getQuestStatus(WINDURST,STAR_STRUCK) == QUEST_AVAILABLE and player:getQuestStatus(WINDURST,CLASS_REUNION) ~= QUEST_ACCEPTED) then
+	elseif ((qStarStruck == QUEST_AVAILABLE) and (ClassReunion ~= QUEST_ACCEPTED) and player:hasItem(584)) then
 		player:startEvent(0x00c5);
-	elseif (qStarStruck == QUEST_COMPLETED) then
-		player:startEvent(0x00d5);
 	----------------------------------------------------------
 	-- Carbuncle Debacle
 	elseif (CarbuncleDebacle == QUEST_ACCEPTED and CarbuncleDebacleProgress == 1 or CarbuncleDebacleProgress == 2) then
@@ -136,7 +134,11 @@ function onTrigger(player,npc)
 	elseif (rootProblem == QUEST_ACCEPTED and player:getVar("rootProblem") == 1) then
 		player:startEvent(0x015C,0,829);
 	else
-		player:startEvent(0x00c1);
+		if (qStarStruck == QUEST_COMPLETED) then
+			player:startEvent(0x00d5);
+		else
+			player:startEvent(0x00c1);
+		end
 	end
 end;
 
