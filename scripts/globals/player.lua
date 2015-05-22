@@ -73,162 +73,77 @@ end;
 -----------------------------------
 
 function CharCreate(player)
-	local race = player:getRace();
-	local body = nil;
-	local leg = nil;
-	local hand = nil;
-	local feet = nil;
 
-	-- ADD RACE SPECIFIC STARTGEAR
-	switch(race) : caseof
-	{
-		-- HUME MALE
-		[1] = function (x)
-			body = 0x3157;
-			hand = 0x31D2;
-			leg = 0x3253;
-			feet = 0x32CD;
-		end,
 
-		-- HUME FEMALE
-		[2] = function (x)
-			body = 0x3158;
-			hand = 0x31D8;
-			leg = 0x3254;
-			feet = 0x32D2;
-		end,
-
-		-- ELVAAN MALE
-		[3] = function (x)
-			body = 0x3159;
-			hand = 0x31D3;
-			leg = 0x3255;
-			feet = 0x32CE;
-		end,
-
-		-- ELVAAN FEMALE
-		[4] = function (x)
-			body = 0x315A;
-			hand = 0x31D7;
-			leg = 0x3259;
-			feet = 0x32D3;
-		end,
-
-		-- TARU MALE
-		[5] = function (x)
-			body = 0x315B;
-			hand = 0x31D4;
-			leg = 0x3256;
-			feet = 0x32CF;
-		end,
-
-		-- TARU FEMALE
-		[6] = function (x)
-			body = 0x315B;
-			hand = 0x31D4;
-			leg = 0x3256;
-			feet = 0x32CF;
-		end,
-
-		-- MITHRA
-		[7] = function (x)
-			body = 0x315C;
-			hand = 0x31D5;
-			leg = 0x3257;
-			feet = 0x32D0;
-		end,
-
-		-- GALKA
-		[8] = function (x)
-			body = 0x315D;
-			hand = 0x31D6;
-			leg = 0x3258;
-			feet = 0x32D1;
-		end,
-
-		default = function (x) end,
-	}
-
-	-- Add starting gear
-	if not(player:hasItem(body)) then
-		player:addItem(body);
-		player:equipItem(body);
-	end
-
-	if not(player:hasItem(hand)) then
-		player:addItem(hand);
-		player:equipItem(hand);
-	end
-
-	if not(player:hasItem(leg)) then
-		player:addItem(leg);
-		player:equipItem(leg);
-	end
-
-	if not(player:hasItem(feet)) then
-		player:addItem(feet);
-		player:equipItem(feet);
-	end
-
-	-- ADD JOB SPECIFIC STARTGEAR
-	switch(player:getMainJob()) : caseof
-	{
-		-- WARRIOR JOB
-		[0x01]= function (x)
-			if not(player:hasItem(0x4096)) then
-				player:addItem(0x4096);
-			end
-		end,
-
-		-- MONK JOB
-		[0x02]= function (x)
-			if not(player:hasItem(0x3380)) then
-				player:addItem(0x3380);
-			end
-		end,
-
-		-- WHITE MAGE
-		[0x03]= function(x)
-			if not(player:hasItem(0x42AC)) then
-				player:addItem(0x42AC);
-			end
-
-			if not(player:hasItem(0x1200)) then
-			player:addItem(0x1200);
-			end
-		end,
-
-		-- BLACK MAGE
-		[0x04] = function(x)
-
-			if not(player:hasItem(0x42D0)) then
-				player:addItem(0x42D0);
-			end
-
-			if not(player:hasItem(0x11FF)) then
-				player:addItem(0x11FF);
-			end
-		end,
-
-		-- RED MAGE
-		[0x05]= function (x)
-			if not(player:hasItem(0x4062)) then
-				player:addItem(0x4062);
-			end
-			if not(player:hasItem(0x11FE)) then
-				player:addItem(0x11FE);
-			end
-		end,
-
-		-- THIEF
-		[0x06]= function (x)
-			if not(player:hasItem(0x4063)) then
-				player:addItem(0x4063);
-			end
-		end,
-
-		default = function (x) end,
-	}
+--Adding Job Specific Equipment
+switch(player:getMainJob()) : caseof
+{
+    --WAR
+  [0x01]= function (x)
+    player:addItem(0x313f); --Body
+    player:addItem(0x3197); --Hand
+    player:addItem(0x3217); --Leg
+    player:addItem(0x3297); --Feet
+    player:addItem(0x30af); --Head
+    player:addItem(0x40e2); --Weapon
+   end,
+   
+       --MNK
+  [0x02]= function (x)
+    player:addItem(0x313f); --Body
+    player:addItem(0x3197); --Hand
+    player:addItem(0x3217); --Leg
+    player:addItem(0x3297); --Feet
+    player:addItem(0x30af); --Head
+    player:addItem(0x3380); --Weapon
+    player:addItem(0x4132); --Belt
+   end,
+   
+       --WHM
+  [0x03]= function (x)
+    player:addItem(0x3147); --Body
+    player:addItem(0x31c8); --Hand
+    player:addItem(0x3261); --Leg
+    player:addItem(0x32b7); --Feet
+    player:addItem(0x30ee); --Head
+    player:addItem(0x42e3); --Weapon
+    player:addItem(0x1200); --Spell
+   end,
+   
+       --BLM
+  [0x04]= function (x)
+    player:addItem(0x3147); --Body
+    player:addItem(0x31c8); --Hand
+    player:addItem(0x3261); --Leg
+    player:addItem(0x32b7); --Feet
+    player:addItem(0x30ee); --Head
+    player:addItem(0x42e3); --Weapon
+    player:addItem(0x11FF); --Spell
+   end,
+   
+       --RDM
+  [0x05]= function (x)
+    player:addItem(0x313f); --Body
+    player:addItem(0x3197); --Hand
+    player:addItem(0x3217); --Leg
+    player:addItem(0x3297); --Feet
+    player:addItem(0x30af); --Head
+    player:addItem(0x40e2); --Weapon
+    player:addItem(0x11FE); --Spell
+   end,
+   
+       --THF
+  [0x06]= function (x)
+    player:addItem(0x313f); --Body
+    player:addItem(0x3197); --Hand
+    player:addItem(0x3217); --Leg
+    player:addItem(0x3297); --Feet
+    player:addItem(0x30af); --Head
+    player:addItem(0x406c); --Weapon
+   end,   
+  
+  default = function (x) end,
+}
 
 	-- ADD NATION SPECIFIC STARTGEAR
 	switch (player:getNation()) : caseof
