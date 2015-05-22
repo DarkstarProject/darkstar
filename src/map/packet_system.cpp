@@ -4973,6 +4973,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         }
         
+        charutils::SetStyleLock(PChar, false);
         luautils::CheckForGearSet(PChar); // check for gear set on gear change
 
         charutils::BuildingCharSkillsTable(PChar);
