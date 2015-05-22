@@ -2362,6 +2362,7 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     charutils::EquipItem(PChar, slotID, equipSlotID, containerID); //current
     charutils::SaveCharEquip(PChar);
+    charutils::SaveCharLook(PChar);
     luautils::CheckForGearSet(PChar); // check for gear set on gear change
     PChar->UpdateHealth();
     return;
@@ -2389,6 +2390,7 @@ void SmallPacket0x051(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     }
     charutils::SaveCharEquip(PChar);
+    charutils::SaveCharLook(PChar);
     luautils::CheckForGearSet(PChar); // check for gear set on gear change
     PChar->UpdateHealth();
     return;
@@ -2426,7 +2428,7 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (type == 0 && PChar->getStyleLocked()) 
     {
         charutils::SetStyleLock(PChar, false);
-        charutils::SaveCharEquip(PChar);
+        charutils::SaveCharLook(PChar);
     }
     else if (type == 1) 
     {
@@ -2472,12 +2474,12 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 break;
             }
         }
-        charutils::SaveCharEquip(PChar);
+        charutils::SaveCharLook(PChar);
     }
     else if (type == 4) 
     {
         charutils::SetStyleLock(PChar, true);
-        charutils::SaveCharEquip(PChar);
+        charutils::SaveCharLook(PChar);
     }
 
     if (type != 1 && type != 2) 
@@ -4970,6 +4972,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
 
         }
+        
         charutils::SetStyleLock(PChar, false);
         luautils::CheckForGearSet(PChar); // check for gear set on gear change
 
