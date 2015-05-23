@@ -564,6 +564,23 @@ void CStatusEffectContainer::DelStatusEffectsByType(uint16 Type)
 }
 
 /************************************************************************
+*																		*
+*  Removes Status Effects by Duration   						*
+*																		*
+************************************************************************/
+
+void CStatusEffectContainer::DelStatusEffectsByDuration(uint32 Duration)
+{
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+	{
+       if  (m_StatusEffectList.at(i)->GetDuration() <= Duration)
+		{
+			RemoveStatusEffect(i--, true);
+		}
+	}
+}
+
+/************************************************************************
 *                                                                       *
 *  Удаляем все эффекты с указанными флагами                             *
 *                                                                       *
