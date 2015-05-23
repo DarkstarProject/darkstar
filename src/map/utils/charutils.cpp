@@ -1838,9 +1838,10 @@ namespace charutils
         else
             for (uint8 i = 0; i < SLOT_LINK1; i++)
                 PChar->styleItems[i] = 0;
+        
+        if (PChar->getStyleLocked() != isStyleLocked)
+            PChar->pushPacket(new CMessageStandardPacket(isStyleLocked ? 0x10B : 0x10C));
         PChar->setStyleLocked(isStyleLocked);
-
-        PChar->pushPacket(new CMessageStandardPacket(PChar->getStyleLocked() ? 0x10B : 0x10C));
     }
 
     void UpdateWeaponStyle(CCharEntity* PChar, uint8 equipSlotID, CItemWeapon* PItem) 
@@ -2061,6 +2062,7 @@ namespace charutils
 
         BuildingCharWeaponSkills(PChar);
         SaveCharEquip(PChar);
+        SaveCharLook(PChar);
     }
 
     void RemoveAllEquipment(CCharEntity* PChar)
@@ -2081,6 +2083,7 @@ namespace charutils
 
         BuildingCharWeaponSkills(PChar);
         SaveCharEquip(PChar);
+        SaveCharLook(PChar);
     }
 
     /************************************************************************
@@ -4011,7 +4014,10 @@ namespace charutils
                 Sql_Query(SqlHandle, fmtQuery, PChar->id, i, PChar->equip[i], PChar->equipLoc[i], PChar->equip[i], PChar->equipLoc[i]);
             }
         }
+    }
 
+    void SaveCharLook(CCharEntity* PChar)
+    {
         const int8* Query = "UPDATE char_look "
             "SET head = %u, body = %u, hands = %u, legs = %u, feet = %u, main = %u, sub = %u, ranged = %u "
             "WHERE charid = %u;";
