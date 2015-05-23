@@ -95,6 +95,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0076) then
 		player:delKeyItem(STAR_SEEKER);
 		player:addKeyItem(MAGIC_DRAINED_STAR_SEEKER);
+		player:setVar("MissionStatus",3);
 	elseif(csid == 0x0078) then
 		player:tradeComplete();
 		player:setVar("MissionStatus",4);
