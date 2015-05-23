@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
 	local MissionStatus = player:getVar("MissionStatus");
 
 	if(trade:hasItemQty(17437,1)) then
-		if(CurrentMission == VAIN and MissionStatus == 3 and player:hasKeyItem(MAGICDRAINED_STAR_SEEKER) == true) then
+		if(CurrentMission == VAIN and MissionStatus == 3 and player:hasKeyItem(MAGIC_DRAINED_STAR_SEEKER) == true) then
 			player:startEvent(0x0078);
 		end
 	end
@@ -39,7 +39,7 @@ function onTrigger(player,npc)
 	if(CurrentMission == VAIN and MissionStatus >= 2) then -- wiki says it doesnt matter whether you get cs or kill first
 		if(player:hasKeyItem(STAR_SEEKER) == true) then
 			player:startEvent(0x0076,0,17437,STAR_SEEKER);
-		elseif(player:hasKeyItem(MAGICDRAINED_STAR_SEEKER) and MissionStatus == 4) then
+		elseif(player:hasKeyItem(MAGIC_DRAINED_STAR_SEEKER) and MissionStatus == 4) then
 			player:startEvent(0x0079);
 		else
 			player:startEvent(0x0077,0,17437);
@@ -94,7 +94,8 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED, CRIMSON_ORB);
 	elseif(csid == 0x0076) then
 		player:delKeyItem(STAR_SEEKER);
-		player:addKeyItem(MAGICDRAINED_STAR_SEEKER);
+		player:addKeyItem(MAGIC_DRAINED_STAR_SEEKER);
+		player:setVar("MissionStatus",3);
 	elseif(csid == 0x0078) then
 		player:tradeComplete();
 		player:setVar("MissionStatus",4);
