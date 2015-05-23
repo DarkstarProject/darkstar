@@ -347,6 +347,7 @@ public:
     int32 delStatusEffect(lua_State*);        // Removes Status Effect
     int32 delStatusEffectsByFlag(lua_State*); // Removes Status Effects by Flag
     int32 delStatusEffectSilent(lua_State*);  // Removes Status Effect, suppresses message
+    int32 delStatusEffectsByDuration(lua_State*); //Removes Status Effects by Duration
     int32 eraseStatusEffect(lua_State*);      // Used with "Erase" spell
     int32 healingWaltz(lua_State*);           // Used with "Healing Waltz" ability
     int32 dispelStatusEffect(lua_State*);     // Used with "Dispel" spell
