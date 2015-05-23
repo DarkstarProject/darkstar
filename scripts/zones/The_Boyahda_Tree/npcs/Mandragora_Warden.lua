@@ -59,6 +59,7 @@ function onEventFinish(player,csid,option)
 	-- printf("RESULT: %u",option);
 	if(csid == 0x000D) then
 		player:setVar("MissionStatus",6);
+		player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_ZONPAZIPPA);
 		player:addKeyItem(LETTER_FROM_ZONPAZIPPA);
 	end
 end;
