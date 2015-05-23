@@ -564,10 +564,8 @@ void CStatusEffectContainer::DelStatusEffectsByType(uint16 Type)
 }
 
 /************************************************************************
-*																		*
-*  Removes Status Effects by Duration   						*
-*																		*
-************************************************************************/
+		Removes Status Effects By Duration
+*************************************************************************/
 
 void CStatusEffectContainer::DelStatusEffectsByDuration(uint32 Duration)
 {
