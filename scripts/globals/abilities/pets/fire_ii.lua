@@ -14,7 +14,8 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onPetAbility(target, pet, skill)
-	local spell = getSpell(145);
+	
+    local spell = getSpell(145);
 	--calculate raw damage
 	local dmg = calculateMagicDamage(133,1,pet,spell,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);
 	--get resist multiplier (1x if no resist)
@@ -24,11 +25,12 @@ function onPetAbility(target, pet, skill)
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
 	dmg = mobAddBonuses(pet,spell,target,dmg, 1);
 	--add on TP bonuses
-	local tp = pet:getTP();
-	if tp < 100 then
-		tp = 100;
-	end
-	dmg = dmg * tp / 100;
+	local tp = skill:getTP();
+	--if tp < 100 then
+	--	tp = 100;
+	--end
+    print(tostring(tp));
+	dmg = dmg + tp * 10;
 	--add in final adjustments
 	dmg = finalMagicAdjustments(pet,target,spell,dmg);
 	return dmg;
