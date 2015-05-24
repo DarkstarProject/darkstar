@@ -26,11 +26,10 @@ function onPetAbility(target, pet, skill)
 	dmg = mobAddBonuses(pet,spell,target,dmg, 1);
 	--add on TP bonuses
 	local tp = skill:getTP();
-	--if tp < 100 then
-	--	tp = 100;
-	--end
-    print(tostring(tp));
-	dmg = dmg + tp * 10;
+	if tp < 100 then
+		tp = 100;
+	end
+	dmg = dmg * tp / 100;
 	--add in final adjustments
 	dmg = finalMagicAdjustments(pet,target,spell,dmg);
 	return dmg;
