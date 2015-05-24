@@ -12,12 +12,12 @@ function onEffectGain(target,effect)
     local power = effect:getPower(); -- Tracks which bonus effects are in use.
     local subPower = effect:getSubPower(); -- subPower sets % required to trigger regen/refresh.
 
-    if (power == 1 or power == 3 or power == 5 or power == 7 or power == 9 or power == 11 or power == 13 or power == 15)) then
+    if (power == 1 or power == 3 or power == 5 or power == 7 or power == 9 or power == 11 or power == 13 or power == 15) then
         -- target:addLatent(LATENT_SIGIL_REGEN, subPower+10, MOD_REGEN, 1);
         -- Not yet implemented
     end
 
-    if (power == 2 or power == 3 or power == 6 or power == 7 or power == 10 or power == 11 or power >= 14)) then
+    if (power == 2 or power == 3 or power == 6 or power == 7 or power == 10 or power == 11 or power >= 14) then
         -- target:addLatent(LATENT_SIGIL_REFRESH, subPower, MOD_REFRESH, 1);
         -- Not yet implemented
     end
@@ -52,12 +52,12 @@ function onEffectLose(target,effect)
     local power = effect:getPower(); -- Tracks which bonus effects are in use.
     local subPower = effect:getSubPower(); -- subPower sets % required to trigger regen/refresh.
 
-    if (power == 1 or power == 3 or power == 5 or power == 7 or power == 9 or power == 11 or power == 13 or power == 15)) then
+    if (power == 1 or power == 3 or power == 5 or power == 7 or power == 9 or power == 11 or power == 13 or power == 15) then
         -- target:delLatent(LATENT_SIGIL_REGEN, subPower+10, MOD_REGEN, 1);
         -- Not yet implemented
     end
 
-    if (power == 2 or power == 3 or power == 6 or power == 7 or power == 10 or power == 11 or power >= 14)) then
+    if (power == 2 or power == 3 or power == 6 or power == 7 or power == 10 or power == 11 or power >= 14) then
         -- target:delLatent(LATENT_SIGIL_REFRESH, subPower, MOD_REFRESH, 1);
         -- Not yet implemented
     end
