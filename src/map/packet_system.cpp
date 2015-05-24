@@ -2449,12 +2449,11 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             uint8 locationId = RBUFB(data, i + 0x02);
             uint16 itemId = RBUFW(data, i + 0x04);
 
-            if (itemId > 0) {
-                CItemArmor* PItem = (CItemArmor*)PChar->getStorage(locationId)->GetItem(slotId);
-                if (PItem != nullptr && !(PItem->getEquipSlotId() & (1 << equipSlotId))) {
-                    return;
-                }
-            }
+            auto PItem = itemutils::GetItem(itemId);
+            if (PItem == nullptr || !(PItem->isType(ITEM_WEAPON) || PItem->isType(ITEM_ARMOR)))
+                itemId = 0;
+            else if (!((CItemArmor*)PItem)->getEquipSlotId() & (1 << equipSlotId))
+                itemId = 0;
 
             PChar->styleItems[equipSlotId] = itemId;
 
