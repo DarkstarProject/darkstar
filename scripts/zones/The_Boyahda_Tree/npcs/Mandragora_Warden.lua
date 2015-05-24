@@ -29,19 +29,20 @@ end;
 function onTrigger(player,npc)
 local MissionStatus = player:getVar	("MissionStatus");
 local dialog = player:getVar ("mandialog");
-	if (MissionStatus == 4) then
-		player:startEvent(0x000a);
-		player:setVar("mandialog",1);
-		player:PrintToPlayer("Seems like he wants something");
---	elseif (dialog == 1) then
---		player:startEvent(0x000b);
---		player:setVar("mandialog",2);
---	elseif (dialog == 2) then
---		player:startEvent(0x000c);
---		player:setVar("mandialog",3);
---		player:PrintToPlayer("Seems like he wants some Gobbu Hummus");
+	if (MissionStatus == 4 or MissionStatus == 5) then
+		if (dialog == 0) then
+			player:startEvent(0x000a);
+			player:setVar("mandialog",1);
+		elseif (dialog == 1) then
+			player:startEvent(0x000b);
+			player:setVar("mandialog",2);
+		elseif (dialog == 2) then
+			player:startEvent(0x000c);
+			player:setVar("mandialog",3);
+			player:PrintToPlayer("Seems like he wants somethings");
+		end
 	end	
-		
+	
 end;
 
 -----------------------------------
