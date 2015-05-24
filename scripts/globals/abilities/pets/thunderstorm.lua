@@ -16,7 +16,7 @@ end;
 function onPetAbility(target, pet, skill)
 
 	local dINT = math.floor(pet:getStat(MOD_INT) - target:getStat(MOD_INT));
-	local tp = pet:getTP();
+	local tp = skill:getTP();
 	local master = pet:getMaster();
 	local merits = 0;
 	if (master ~= nil and master:isPC()) then
