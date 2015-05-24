@@ -1,0 +1,24 @@
+-----------------------------------------
+-- ID: 17583
+-- Item: Kingdom Signet Staff
+-- Effect: Signet
+-----------------------------------------
+
+require("scripts/globals/status");
+
+-----------------------------------------
+-- OnItemCheck
+-----------------------------------------
+
+function onItemCheck(target)
+    return 0;
+end;
+
+-----------------------------------------
+-- OnItemUse
+-----------------------------------------
+
+function onItemUse(target)
+    target:delStatusEffect(EFFECT_SIGNET);
+    target:addStatusEffect(EFFECT_SIGNET,0,0,3600);
+end;

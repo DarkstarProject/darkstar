@@ -1,6 +1,6 @@
 -----------------------------------------
--- ID: 17584
--- Item: Kingdom Signet Staff
+-- ID: 17583
+-- Item: Republic Signet Staff
 -- Effect: Signet
 -----------------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -19,6 +19,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-		player:delStatusEffect(EFFECT_SIGNET);
-		player:addStatusEffect(EFFECT_SIGNET,0,0,3600);
+    target:delStatusEffect(EFFECT_SIGNET);
+    target:addStatusEffect(EFFECT_SIGNET,0,0,3600);
 end;
