@@ -2547,15 +2547,23 @@ void SmallPacket0x05B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 EventID = RBUFW(data, (0x12));
     uint32 Result = RBUFL(data, (0x08));
 
-    if (PChar->m_event.EventID != EventID) return;
-    if (PChar->m_event.Option != 0) Result = PChar->m_event.Option;
+    if (PChar->m_event.EventID == EventID)
+    {
+        if (PChar->m_event.Option != 0) Result = PChar->m_event.Option;
 
-    if (RBUFB(data, (0x0E)) != 0){
-        luautils::OnEventUpdate(PChar, EventID, Result);
-    }
-    else{
-        luautils::OnEventFinish(PChar, EventID, Result);
-        PChar->m_event.reset();
+        if (RBUFB(data, (0x0E)) != 0) {
+            luautils::OnEventUpdate(PChar, EventID, Result);
+        }
+        else
+        {
+            luautils::OnEventFinish(PChar, EventID, Result);
+            //reset if this event did not initiate another event
+            if (PChar->m_event.EventID == EventID)
+            {
+                PChar->m_event.reset();
+            }
+
+        }
     }
 
     PChar->pushPacket(new CReleasePacket(PChar, RELEASE_EVENT));
