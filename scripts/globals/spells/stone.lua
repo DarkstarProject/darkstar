@@ -10,11 +10,11 @@ require("scripts/globals/status");
 -- OnSpellCast
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
-	return 0;
+function onMagicCastingCheck(caster, target, spell)
+    return 0;
 end;
 
-function onSpellCast(caster,target,spell)
+function onSpellCast(caster, target, spell)
     local spellParams = {};
     spellParams.hasMultipleTargetReduction = false;
     spellParams.resistBonus = 1.0;
