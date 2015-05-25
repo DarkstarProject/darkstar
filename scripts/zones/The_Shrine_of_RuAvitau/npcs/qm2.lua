@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
             -- Spawn Kirin..
             local mob = SpawnMob( 17506670, 180 );
             player:showText( npc, KIRIN_OFFSET );
-            mob:updateEnmity( player );
+            mob:updateClaim( player );
         end    
     end
 end;

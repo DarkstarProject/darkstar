@@ -20607,6 +20607,10 @@ INSERT INTO `item_mods` VALUES (19278, 27, -5);
 INSERT INTO `item_mods` VALUES (19280, 68, 5);
 INSERT INTO `item_mods` VALUES (19280, 163, -12);
 INSERT INTO `item_mods` VALUES (19281, 68, 2);
+INSERT INTO `item_mods` VALUES (19285, 8,3);
+INSERT INTO `item_mods` VALUES (19285, 11,3);
+INSERT INTO `item_mods` VALUES (19286, 8,4);
+INSERT INTO `item_mods` VALUES (19286, 11,4);
 
 -- -------------------------------------------------------
 -- Gastraphetes (90)

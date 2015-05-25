@@ -289,9 +289,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (PChar->getZone() == Sql_GetUIntData(SqlHandle, 0))
                 PChar->loc.zoning = true;
         }
-        
-        if (!PChar->loc.zoning)
-            PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
 
         if (firstLogin)
             PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);
@@ -313,8 +310,11 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PChar->pushPacket(new CDownloadingDataPacket());
     PChar->pushPacket(new CZoneInPacket(PChar, PChar->m_event.EventID));
     PChar->pushPacket(new CZoneVisitedPacket(PChar));
-    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
 
+    if (!PChar->loc.zoning)
+        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
+
+    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
     return;
 }
 
@@ -1174,7 +1174,7 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
         // We used to disable Rare/Ex items being added to the container, but that is handled properly else where now
-        if (PItem != nullptr && PItem->getID() == itemID && quantity + PItem->getReserve() < PItem->getQuantity())
+        if (PItem != nullptr && PItem->getID() == itemID)
         {
             // If item count is zero.. remove from container..
             PItem->setReserve(quantity);
@@ -2362,6 +2362,7 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     charutils::EquipItem(PChar, slotID, equipSlotID, containerID); //current
     charutils::SaveCharEquip(PChar);
+    charutils::SaveCharLook(PChar);
     luautils::CheckForGearSet(PChar); // check for gear set on gear change
     PChar->UpdateHealth();
     return;
@@ -2389,6 +2390,7 @@ void SmallPacket0x051(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     }
     charutils::SaveCharEquip(PChar);
+    charutils::SaveCharLook(PChar);
     luautils::CheckForGearSet(PChar); // check for gear set on gear change
     PChar->UpdateHealth();
     return;
@@ -2426,7 +2428,7 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (type == 0 && PChar->getStyleLocked()) 
     {
         charutils::SetStyleLock(PChar, false);
-        charutils::SaveCharEquip(PChar);
+        charutils::SaveCharLook(PChar);
     }
     else if (type == 1) 
     {
@@ -2447,12 +2449,11 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             uint8 locationId = RBUFB(data, i + 0x02);
             uint16 itemId = RBUFW(data, i + 0x04);
 
-            if (itemId > 0) {
-                CItemArmor* PItem = (CItemArmor*)PChar->getStorage(locationId)->GetItem(slotId);
-                if (PItem != nullptr && !(PItem->getEquipSlotId() & (1 << equipSlotId))) {
-                    return;
-                }
-            }
+            auto PItem = itemutils::GetItem(itemId);
+            if (PItem == nullptr || !(PItem->isType(ITEM_WEAPON) || PItem->isType(ITEM_ARMOR)))
+                itemId = 0;
+            else if (!((CItemArmor*)PItem)->getEquipSlotId() & (1 << equipSlotId))
+                itemId = 0;
 
             PChar->styleItems[equipSlotId] = itemId;
 
@@ -2472,12 +2473,12 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 break;
             }
         }
-        charutils::SaveCharEquip(PChar);
+        charutils::SaveCharLook(PChar);
     }
     else if (type == 4) 
     {
         charutils::SetStyleLock(PChar, true);
-        charutils::SaveCharEquip(PChar);
+        charutils::SaveCharLook(PChar);
     }
 
     if (type != 1 && type != 2) 
@@ -4970,6 +4971,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
 
         }
+        
         charutils::SetStyleLock(PChar, false);
         luautils::CheckForGearSet(PChar); // check for gear set on gear change
 

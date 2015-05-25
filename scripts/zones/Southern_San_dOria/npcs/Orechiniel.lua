@@ -23,8 +23,8 @@ end;
 
 function onTrigger(player,npc)
 	local guildMember = isGuildMember(player,7);
-    local SkillLevel = player:getSkillLevel(128);
-    local Cost = getAdvImageSupportCost(player,128);
+    local SkillLevel = player:getSkillLevel(SKILL_LTH);
+    local Cost = getAdvImageSupportCost(player, SKILL_LTH);
     
     if (guildMember == 1) then
         if (player:hasStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY) == false) then
@@ -53,7 +53,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-    local Cost = getAdvImageSupportCost(player,128);
+    local Cost = getAdvImageSupportCost(player, SKILL_LTH);
     
     if (csid == 0x028A and option == 1) then
         player:delGil(Cost);

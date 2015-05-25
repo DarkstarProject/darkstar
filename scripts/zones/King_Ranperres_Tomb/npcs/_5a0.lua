@@ -30,9 +30,9 @@ function onTrigger(player,npc)
 				player:setVar("Mission6-2MobKilled",0);
 				player:setVar("MissionStatus",2);
 			else
-				SpawnMob(17555898):updateEnmity(player);
-				SpawnMob(17555899):updateEnmity(player);
-				SpawnMob(17555900):updateEnmity(player);
+				SpawnMob(17555898):updateClaim(player);
+				SpawnMob(17555899):updateClaim(player);
+				SpawnMob(17555900):updateClaim(player);
 			end
 		end
 	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 2) then

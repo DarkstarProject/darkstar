@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
 	-- Trade 3 pinches of Bomb Queen Ash and a Bomb Queen Core and a verification if the nm is already spawned
 	if(GetMobAction(17617158) == 0 and trade:hasItemQty(1187,3) and trade:hasItemQty(1186,1) and trade:getItemCount() == 4) then
 		player:tradeComplete();
-		SpawnMob(17617158,900):updateEnmity(player); -- Spawn Bomb Queen
+		SpawnMob(17617158,900):updateClaim(player); -- Spawn Bomb Queen
 	end
 	
 end; 

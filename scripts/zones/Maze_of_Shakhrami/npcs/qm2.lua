@@ -37,9 +37,9 @@ function onTrigger(player,npc)
 			player:addKeyItem(INDIGESTED_MEAT);
 			player:messageSpecial(KEYITEM_OBTAINED,INDIGESTED_MEAT);
 		elseif(GetMobAction(wyrm1) + GetMobAction(wyrm1) + GetMobAction(wyrm1) == 0) then
-			SpawnMob(wyrm1,180):updateEnmity(player);
-			SpawnMob(wyrm2,180):updateEnmity(player);
-			SpawnMob(wyrm3,180):updateEnmity(player);
+			SpawnMob(wyrm1,180):updateClaim(player);
+			SpawnMob(wyrm2,180):updateClaim(player);
+			SpawnMob(wyrm3,180):updateClaim(player);
 		end
 	end
 

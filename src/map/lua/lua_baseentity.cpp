@@ -1920,9 +1920,35 @@ inline int32 CLuaBaseEntity::getSkillLevel(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype & TYPE_NPC);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(lua_tointeger(L, 1) >= MAX_SKILLTYPE);
 
     lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->GetSkill(lua_tointeger(L,1)));
     return 1;
+}
+
+inline int32 CLuaBaseEntity::setSkillLevel(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_tointeger(L, 1) >= MAX_SKILLTYPE);
+
+    uint8 SkillID = lua_tointeger(L, 1);
+    uint16 SkillAmount = lua_tointeger(L, 2);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    PChar->RealSkills.skill[SkillID] = SkillAmount * 10;
+    PChar->WorkingSkills.skill[SkillID] = SkillAmount;
+
+    charutils::BuildingCharSkillsTable(PChar);
+    charutils::CheckWeaponSkill(PChar, SkillID);
+    charutils::SaveCharSkills(PChar, SkillID);
+
+    PChar->pushPacket(new CCharSkillsPacket(PChar));
+    return 0;
 }
 
 /************************************************************************
@@ -1973,6 +1999,7 @@ inline int32 CLuaBaseEntity::getSkillRank(lua_State *L)
 inline int32 CLuaBaseEntity::setSkillRank(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
 
@@ -1981,7 +2008,7 @@ inline int32 CLuaBaseEntity::setSkillRank(lua_State *L)
     uint16 newrank = (uint16)lua_tointeger(L,2);
 
     PChar->WorkingSkills.rank[skillID] = newrank;
-    PChar->WorkingSkills.skill[skillID] += 1;
+    //PChar->WorkingSkills.skill[skillID] += 1;
     PChar->RealSkills.rank[skillID] = newrank;
     //PChar->RealSkills.skill[skillID] += 1;
 
@@ -5639,6 +5666,7 @@ inline int32 CLuaBaseEntity::equipItem(lua_State *L)
         PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(SLOT);
         charutils::EquipItem(PChar, SLOT, PItem->getSlotType(), containerID);
         charutils::SaveCharEquip(PChar);
+        charutils::SaveCharLook(PChar);
     }
     return 0;
 }
@@ -9920,6 +9948,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unseenKeyItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delKeyItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkillLevel),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSkillLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxSkillLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkillRank),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSkillRank),

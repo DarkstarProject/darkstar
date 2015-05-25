@@ -24,7 +24,7 @@ function onPetAbility(target, pet, skill)
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
 	dmg = mobAddBonuses(pet,spell,target,dmg, 3);
 	--add on TP bonuses
-	local tp = pet:getTP();
+	local tp = skill:getTP();
 	if tp < 100 then
 		tp = 100;
 	end

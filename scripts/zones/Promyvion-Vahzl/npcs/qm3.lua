@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
 	if(trade:hasItemQty(1758,1) and trade:getItemCount() == 1) then -- Satiator Remnant
 		player:tradeComplete();
 		player:messageSpecial(ON_NM_SPAWN);
-		SpawnMob(16867642,180):updateEnmity(player); -- Spawn Provoker
+		SpawnMob(16867642,180):updateClaim(player); -- Spawn Provoker
 	end
 
 end;

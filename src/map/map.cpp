@@ -30,6 +30,7 @@ This file is part of DarkStar-server source code.
 #include "../common/utils.h"
 #include "../common/version.h"
 #include "../common/zlib.h"
+#include "../common/sql.h"
 
 #include <math.h>
 #include <stdio.h>
@@ -131,6 +132,16 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
     ipp |= port64 << 32;
     map_session_list[ipp] = map_session_data;
 
+	const int8* fmtQuery = "SELECT charid FROM accounts_sessions WHERE inet_ntoa(client_addr) = '%s' LIMIT 1;";
+
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, ip2str(map_session_data->client_addr, nullptr));
+
+	if (ret == SQL_ERROR ||
+		Sql_NumRows(SqlHandle) == 0)
+	{
+		ShowError(CL_RED"recv_parse: Invalid login attempt from %s\n" CL_RESET, ip2str(map_session_data->client_addr, nullptr));
+		return nullptr;
+	}
     ShowInfo(CL_WHITE"mapsession" CL_RESET":" CL_WHITE"%s" CL_RESET":" CL_WHITE"%u" CL_RESET" is coming to world...\n", ip2str(map_session_data->client_addr, nullptr), map_session_data->client_port);
     return map_session_data;
 }
@@ -361,6 +372,7 @@ int32 do_sockets(fd_set* rfd, int32 next)
                 map_session_data = mapsession_createsession(ip, ntohs(from.sin_port));
                 if (map_session_data == nullptr)
                 {
+					map_session_list.erase(ipp);
                     return -1;
                 }
             }
