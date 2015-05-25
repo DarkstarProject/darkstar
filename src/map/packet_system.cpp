@@ -4803,13 +4803,13 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         return;
 
     uint8  slotID = RBUFB(data, (0x06));
-    //uint8  containerID = RBUFB(data, (0x07)); //not used
+    uint8  containerID = RBUFB(data, (0x07));
     uint8  col = RBUFB(data, (0x09));
     uint8  level = RBUFB(data, (0x0A));
     uint8  row = RBUFB(data, (0x0B));
     uint8  rotation = RBUFB(data, (0x0C));
 
-    CItemFurnishing* PItem = (CItemFurnishing*)PChar->getStorage(LOC_MOGSAFE)->GetItem(slotID);
+    CItemFurnishing* PItem = (CItemFurnishing*)PChar->getStorage(containerID)->GetItem(slotID);
 
     if (PItem != nullptr &&
         PItem->getID() == ItemID &&
@@ -4843,7 +4843,7 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
             PChar->pushPacket(new CInventorySizePacket(PChar));
         }
-        PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_MOGSAFE, slotID));
+        PChar->pushPacket(new CInventoryItemPacket(PItem, containerID, slotID));
         PChar->pushPacket(new CInventoryFinishPacket());
     }
     return;
@@ -4865,8 +4865,9 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     }
 
     uint8  slotID = RBUFB(data, (0x06));
+    uint8 containerID = RBUFB(data, (0x07));
 
-    CItemContainer* PItemContainer = PChar->getStorage(LOC_MOGSAFE);
+    CItemContainer* PItemContainer = PChar->getStorage(containerID);
 
     CItemFurnishing* PItem = (CItemFurnishing*)PItemContainer->GetItem(slotID);
 
@@ -4911,7 +4912,7 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                 PChar->pushPacket(new CInventorySizePacket(PChar));
             }
-            PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_MOGSAFE, PItem->getSlotID()));
+            PChar->pushPacket(new CInventoryItemPacket(PItem, containerID, PItem->getSlotID()));
             PChar->pushPacket(new CInventoryFinishPacket());
         }
         else

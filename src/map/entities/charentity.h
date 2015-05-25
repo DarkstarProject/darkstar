@@ -341,6 +341,7 @@ private:
     CItemContainer*	  m_Mogsack;
     CItemContainer*   m_Mogcase;
     CItemContainer*   m_Wardrobe;
+    CItemContainer*   m_Mogsafe2;
 
     bool			m_isWeaponSkillKill;
     bool			m_isMijinGakure;
