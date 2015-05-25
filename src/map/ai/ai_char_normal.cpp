@@ -2555,6 +2555,12 @@ void CAICharNormal::ActionWeaponSkillFinish()
         {
             Action.param = damage;
             Action.messageID = 185; //damage ws
+
+            if (m_PBattleSubTarget->objtype == TYPE_MOB)
+            {
+                uint16 PWeaponskill = m_PWeaponSkill->getID();
+                luautils::OnWeaponskillHit(m_PBattleSubTarget, m_PChar, PWeaponskill);
+            }
         }
     }
     else

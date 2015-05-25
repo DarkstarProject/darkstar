@@ -513,6 +513,12 @@ void CAIPetDummy::ActionAbilityFinish(){
             ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PPet, Action.param);
         }
 
+        if (m_PBattleSubTarget->objtype == TYPE_MOB)
+        {
+            uint16 PWeaponskill = m_PMobSkill->getID();
+            luautils::OnWeaponskillHit(m_PBattleSubTarget, m_PPet, PWeaponskill);
+        }
+
         // If we dealt damage.. we should wake up our target..
         if (m_PMobSkill->isDamageMsg() && Action.param > 0 && PTarget->StatusEffectContainer != nullptr)
             PTarget->StatusEffectContainer->WakeUp();
