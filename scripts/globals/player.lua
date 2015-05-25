@@ -25,7 +25,7 @@ function onGameIn(player, firstlogin, zoning)
     end
 
     if (zoning) then -- Things checked ONLY during zone in go here.
-        -- Nothing here yet :P
+        player:delStatusEffectsByDuration(5); --wipes statuses about to wear off, prevents permanent buffs/debuffs
     end
 
     -- Things checked BOTH during logon AND zone in below this line.
