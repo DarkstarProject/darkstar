@@ -1216,28 +1216,35 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
             if (logout && PStatusEffect->GetFlag() & EFFECTFLAG_LOGOUT)
                 continue;
 
-            const int8* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid, subpower, tier) VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u);";
+            uint32 duration = (PStatusEffect->GetDuration() + PStatusEffect->GetStartTime() - gettick()) / 1000;
 
-            // save power of utsusemi and blink
-            if(PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE){
-                PStatusEffect->SetPower(m_POwner->getMod(MOD_UTSUSEMI));
-            } else if(PStatusEffect->GetStatusID() == EFFECT_BLINK){
-                PStatusEffect->SetPower(m_POwner->getMod(MOD_BLINK));
-            } else if(PStatusEffect->GetStatusID() == EFFECT_STONESKIN){
-                PStatusEffect->SetPower(m_POwner->getMod(MOD_STONESKIN));
+            if (duration > 0)
+            {
+                const int8* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid, subpower, tier) VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u);";
+
+                // save power of utsusemi and blink
+                if (PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE) {
+                    PStatusEffect->SetPower(m_POwner->getMod(MOD_UTSUSEMI));
+                }
+                else if (PStatusEffect->GetStatusID() == EFFECT_BLINK) {
+                    PStatusEffect->SetPower(m_POwner->getMod(MOD_BLINK));
+                }
+                else if (PStatusEffect->GetStatusID() == EFFECT_STONESKIN) {
+                    PStatusEffect->SetPower(m_POwner->getMod(MOD_STONESKIN));
+                }
+
+                Sql_Query(SqlHandle, Query,
+                    m_POwner->id,
+                    PStatusEffect->GetStatusID(),
+                    PStatusEffect->GetIcon(),
+                    PStatusEffect->GetPower(),
+                    PStatusEffect->GetTickTime() / 1000,
+                    duration,
+                    PStatusEffect->GetSubID(),
+                    PStatusEffect->GetSubPower(),
+                    PStatusEffect->GetTier());
             }
-
-			Sql_Query(SqlHandle, Query,
-				m_POwner->id,
-				PStatusEffect->GetStatusID(),
-                PStatusEffect->GetIcon(),
-				PStatusEffect->GetPower(),
-				PStatusEffect->GetTickTime() / 1000,
-			   (PStatusEffect->GetDuration() + PStatusEffect->GetStartTime() - gettick()) / 1000,
-				PStatusEffect->GetSubID(),
-                PStatusEffect->GetSubPower(),
-                PStatusEffect->GetTier());
-		}
+        }
 	}
 }
 
