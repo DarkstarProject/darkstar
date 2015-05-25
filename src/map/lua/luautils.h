@@ -144,7 +144,8 @@ namespace luautils
 	int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);		// triggered when casting a spell
 	int32 OnSpellPrecast(CBattleEntity* PCaster, CSpell* PSpell);				            // triggered just before casting a spell
 	int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);            // triggered when monster wants to use a spell on target
-    int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);       //triggered when spell cast on monster
+    int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);       // triggered when spell cast on monster
+    int32 OnWeaponskillHit(CBattleEntity* PMob, CBaseEntity* PAttacker, uint16 PWeaponskill); // Triggered when Weaponskill strikes monster
 
     int32 OnMobInitialize(CBaseEntity* PMob);                                     // Used for passive trait
     int32 OnMobSpawn(CBaseEntity* PMob);                                          // triggers on mob spawn
