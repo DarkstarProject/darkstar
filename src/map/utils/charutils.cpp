@@ -4386,7 +4386,7 @@ namespace charutils
 
         DSP_DEBUG_BREAK_IF(element > 7);
 
-        int16 affinity = PChar->getMod(strong[element]);
+        int16 affinity = PChar->getMod(strong[element]) - PChar->getMod(weak[element]);
 
         // TODO: don't use ItemIDs in CORE. it must be MOD
 
