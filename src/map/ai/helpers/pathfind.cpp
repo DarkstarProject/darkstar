@@ -39,7 +39,7 @@ CPathFind::~CPathFind()
 	Clear();
 }
 
-bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
+bool CPathFind::RoamAround(position_t point, float maxRadius, uint8 roamFlags)
 {
 	Clear();
 
@@ -47,20 +47,6 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 
 	if (isNavMeshEnabled())
 	{
-
-		// all mobs will default to this distance
-		float maxRadius = 8.0f;
-
-		if (m_roamFlags & ROAMFLAG_MEDIUM)
-		{
-			maxRadius = 10.0f;
-		}
-                else if(m_roamFlags & ROAMFLAG_SMALL)
-                {
-                      maxRadius = 5.0f;
-                }
-
-		// TODO: finish roam flags. distance should have a distance limit
 
 		if (FindRandomPath(&point, maxRadius))
 		{
