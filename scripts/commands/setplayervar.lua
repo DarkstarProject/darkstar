@@ -23,6 +23,7 @@ function onTrigger(player, target, variable, value)
     local targ = GetPlayerByName( target );
     if (targ ~= nil) then
         targ:setVar(variable, value);
+        player:PrintToPlayer( string.format( "Set %s to %u for %s", variable, value, target ) );
     else
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
     end
