@@ -88,7 +88,7 @@ function onZoneIn( player, prevZone)
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 0x001f;
-    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("WINDURST81") ==1)then
+    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1)then
         cs = 0x0022; -- no update for castle oztroja (north)
     end
 
