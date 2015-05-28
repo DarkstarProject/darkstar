@@ -23,6 +23,7 @@ function onTrigger(player, logId, missionId, target)
     local targ = GetPlayerByName(target);
     if (targ ~= nil) then
         targ:delMission( logId, missionId );
+        player:PrintToPlayer( string.format( "Deleted Mission for log %u with ID %u from %s", logId, missionId, target ) );
     else
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
         player:PrintToPlayer( "@delmission <logID> <missionID> <player>" );
