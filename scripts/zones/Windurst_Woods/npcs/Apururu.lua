@@ -200,6 +200,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0250) then
 		player:setVar("MissionStatus",9);
 	elseif(csid == 0x0261) then
+		player:setVar("ShantottoCS",1)
 		finishMissionTimeline(player,3,csid,option);
 	
 	--Windurst 9-1
@@ -209,6 +210,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("MissionStatus",4);
 	elseif(csid == 0x026D) then
 		player:setVar("MissionStatus",7);
+		player:messageSpecial(KEYITEM_REMOVED,LETTER_FROM_ZONPAZIPPA);
 		player:delKeyItem(LETTER_FROM_ZONPAZIPPA);
 	end
 end;

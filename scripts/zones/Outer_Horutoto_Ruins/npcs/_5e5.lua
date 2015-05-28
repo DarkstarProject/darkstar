@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 4 and GetMobAction(17572201) == 0 and GetMobAction(17572202)== 0) then
+	if(player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 4 and GetMobAction(17572201) == 0 and GetMobAction(17572202) == 0) then
 		SpawnMob(17572201):updateEnmity(player);
 		SpawnMob(17572202):updateEnmity(player);
 	elseif(player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 5) then

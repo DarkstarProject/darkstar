@@ -33,9 +33,7 @@ function onZoneIn(player,prevZone)
 	elseif(player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and player:getVar("MissionStatus") == 1) then
 		cs = 0x014f;
 	end
-	
 	return cs;
-
 end;
 
 -----------------------------------		

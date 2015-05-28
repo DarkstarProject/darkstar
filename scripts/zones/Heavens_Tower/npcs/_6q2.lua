@@ -97,7 +97,6 @@ function onEventFinish(player,csid,option)
 		finishMissionTimeline(player,1,csid,option);
 	elseif(csid == 0x016A) then
 		player:setVar("MissionStatus",3);
-		
 	end
 	
 end;

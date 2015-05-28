@@ -12,7 +12,7 @@ package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	local MissionStatus = player:getVar("MissionStatus");
+local MissionStatus = player:getVar("MissionStatus");
 
 	if (player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and (MissionStatus == 4 or MissionStatus == 5)) then
 		if(trade:hasItemQty(1181,1) == true) and (trade:getItemCount() == 1) then 
@@ -27,23 +27,24 @@ end;
 
 
 function onTrigger(player,npc)
-	local MissionStatus = player:getVar("MissionStatus");
-	local dialog = player:getVar("mandialog");
-	
-	if (MissionStatus == 4 or MissionStatus == 5) then
+
+local MissionStatus = player:getVar	("MissionStatus");
+local dialog = player:getVar ("mandialog");
+	if (MissionStatus == 4) then
 		if (dialog == 0) then
 			player:startEvent(0x000a);
 			player:setVar("mandialog",1);
+			player:PrintToPlayer("Seems like he wants something");
 		elseif (dialog == 1) then
 			player:startEvent(0x000b);
 			player:setVar("mandialog",2);
 		elseif (dialog == 2) then
 			player:startEvent(0x000c);
 			player:setVar("mandialog",3);
-			player:PrintToPlayer("Seems like he wants somethings");
+			player:PrintToPlayer("Seems like he wants some Gobbu Hummus");
 		end
-	end	
-	
+	end
+		
 end;
 
 -----------------------------------
@@ -68,3 +69,4 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(LETTER_FROM_ZONPAZIPPA);
 	end
 end;
+

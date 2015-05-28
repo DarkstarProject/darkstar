@@ -29,7 +29,7 @@ function onZoneIn(player,prevZone)
 	end	
 	if(player:getCurrentMission(WINDURST) == FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 3) then
 		cs = 0x0032;
-	elseif(player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and player:getVar("MissionStatus") == 6) then
+	elseif(player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and player:getVar("MissionStatus") == 7) then
 			cs = 0x003D;
 	end
 	return cs;

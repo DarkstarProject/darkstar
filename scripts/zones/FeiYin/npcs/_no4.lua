@@ -1,9 +1,9 @@
 -----------------------------------
 --  Area: Fei'Yin
---  NPC: Rukususu (talk to Cermet Door _no5 to trigger)
+--  NPC:  Cermet Door (triggers Rukususu dialog)
 --  Type: Quest NPC
---  @pos -194.133 -0.986 191.077 204
--- 	Involved in quests: Curses, Foiled A-Golem!?,SMN AF2: Class Reunion, SMN AF3: Carbuncle Debacle
+--  @pos -183 0 190 204
+-- 	Involved in Quests: Curses, Foiled A-Golem!?,SMN AF2: Class Reunion, SMN AF3: Carbuncle Debacle
 --	Involved in Missions: Windurst 5-1/7-2/8-2
 -----------------------------------
 package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
@@ -13,8 +13,6 @@ require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/FeiYin/TextIDs");
 require("scripts/globals/keyitems");
-
------------------------------------
 
 -----------------------------------
 -- onTrade Action
@@ -28,11 +26,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+
 	-- Windurst 8-2
 	if(player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 1) then
 		player:startEvent(0x0016);
+		
 	-- Curses, Foiled A_Golem!?
-	elseif(player:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
+	if(player:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
 		player:startEvent(0x000E); -- deliver spell
 	elseif(player:hasKeyItem(SHANTOTTOS_EXSPELL)) then
 		player:startEvent(0x000D); -- spell erased, try again!
@@ -41,6 +41,8 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x000f); 
 	end
+	end
+	return 1;
 end;
 
 -----------------------------------
@@ -72,4 +74,3 @@ function onEventFinish(player,csid,option)
 		end
 	end
 end;
-
