@@ -47,17 +47,14 @@ function onBcnmLeave(player,instance,leavecode)
 	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
 		if (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then	
 			if (player:hasKeyItem(LIGHT_OF_MEA) and player:hasKeyItem(LIGHT_OF_HOLLA)) then 
-				player:setVar("PromyvionAccess",2);
-				player:setVar("PromathiaStatus",1);
 				player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,0,3);
 			elseif (player:hasKeyItem(LIGHT_OF_MEA) or player:hasKeyItem(LIGHT_OF_HOLLA)) then 
 				player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,0,2); 
-			elseif (not((player:hasKeyItem(LIGHT_OF_MEA) and player:hasKeyItem(LIGHT_OF_HOLLA)))) then
-				-- print("this")
-				player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,0,1); 
-			else
-				player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,1); -- can't tell which cs is playing when you're doing it again to help 
 			end
+		elseif(player:getCurrentMission(COP) == BELOW_THE_ARKS)then
+			    player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,0,1); 
+		else
+			player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,1); -- can't tell which cs is playing when you're doing it again to help 
 		end
 	elseif (leavecode == 4) then
 		player:startEvent(0x7d02);
@@ -73,17 +70,33 @@ function onEventFinish(player,csid,option)
 	-- print("bc finish csid "..csid.." and option "..option);
 
 	if (csid == 0x7D01) then
-		if (player:hasCompletedMission(COP,THE_MOTHERCRYSTALS)) then
+		if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS)then 
+			if (player:hasKeyItem(LIGHT_OF_MEA) and player:hasKeyItem(LIGHT_OF_HOLLA)) then
+				player:addExp(1500);
+			    player:addKeyItem(LIGHT_OF_DEM);
+			    player:messageSpecial(CANT_REMEMBER,LIGHT_OF_DEM);
+			    player:completeMission(COP,THE_MOTHERCRYSTALS);
+				player:setVar("PromathiaStatus",0)
+			    player:addMission(COP,AN_INVITATION_WEST);
+			    player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_LUFAISE,0,1);
+			elseif(not(player:hasKeyItem(LIGHT_OF_DEM)))then
+				player:setVar("cspromy3",1)
+			    player:addKeyItem(LIGHT_OF_DEM);
+				player:addExp(1500);
+			    player:messageSpecial(CANT_REMEMBER,LIGHT_OF_DEM);
+			    player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_EXITPROMDEM,0,1);
+			end
+		elseif(player:getCurrentMission(COP) == BELOW_THE_ARKS)then
 			player:addExp(1500);
-		elseif (player:hasKeyItem(LIGHT_OF_MEA) and player:hasKeyItem(LIGHT_OF_HOLLA)) then
+			player:completeMission(COP,BELOW_THE_ARKS);
+			player:addMission(COP,THE_MOTHERCRYSTALS)
+			player:setVar("cspromy2",1)
+			player:setVar("PromathiaStatus",0)
 			player:addKeyItem(LIGHT_OF_DEM);
 			player:messageSpecial(CANT_REMEMBER,LIGHT_OF_DEM);
-			player:completeMission(COP,THE_MOTHERCRYSTALS);
-			player:addMission(COP,AN_INVITATION_WEST);
-			player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_LUFAISE,0,1);
+			player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_EXITPROMDEM,0,1);
 		else
-			player:addKeyItem(LIGHT_OF_DEM);
-			player:messageSpecial(CANT_REMEMBER,LIGHT_OF_DEM);
+			player:addExp(1500);
 			player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_EXITPROMDEM,0,1);
 		end
 	end
