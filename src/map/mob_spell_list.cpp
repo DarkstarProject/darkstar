@@ -41,18 +41,12 @@ void CMobSpellList::AddSpell(uint16 spellId, uint16 minLvl, uint16 maxLvl)
   m_spellList.push_back(Mob_Spell);
 }
 
-/************************************************************************
-*    Implement namespase to work with spells
-*    Реализация namespase для работы с заклинаниями
-************************************************************************/
+//Implement namespace to work with spells
 namespace mobSpellList
 {
     CMobSpellList* PMobSpellList[MAX_MOBSPELLLIST_ID];
 
-    /************************************************************************
-    *    Load list of spells
-    *    Загружаем список заклинаний
-    ************************************************************************/
+    //Load list of spells
     void LoadMobSpellList()
     {
         memset(PMobSpellList, 0, sizeof(PMobSpellList));
@@ -87,11 +81,7 @@ namespace mobSpellList
         }
     }
 
-    /************************************************************************
-    *                                                         
-    *  Get Spell By ID                                              
-    *                                                        
-    ************************************************************************/
+    //Get Spell By ID                                              
     CMobSpellList* GetMobSpellList(uint16 MobSpellListID)
     {
         if (MobSpellListID < MAX_MOBSPELLLIST_ID)

@@ -391,23 +391,14 @@ void CSpell::setExpansionCode(int8* expansionCode)
     m_expansionCode = expansionCode;
 }
 
-/************************************************************************
-*                                                                       *
-*  Реализация namespase для работы с заклинаниями                       *
-*                                                                       *
-************************************************************************/
-
+//Implement namespace to work with spells       
 namespace spell
 {
-    CSpell* PSpellList[MAX_SPELL_ID]; // список заклинаний
+    CSpell* PSpellList[MAX_SPELL_ID]; // spell list
     std::map<uint16, uint16> PMobSkillToBlueSpell[256]; // maps the skill id (key) to spell id (value).
 
-    /************************************************************************
-    *                                                                       *
-    *  Загружаем список заклинаний                                          *
-    *                                                                       *
-    ************************************************************************/
 
+    //Load a list of spells
     void LoadSpellList()
     {
         memset(PSpellList, 0, sizeof(PSpellList));
@@ -565,12 +556,7 @@ namespace spell
         }
     }
 
-    /************************************************************************
-    *
-    *  Get Spell By ID
-    *
-    ************************************************************************/
-
+    //Get Spell By ID
     CSpell* GetSpell(uint16 SpellID)
     {
         if (SpellID < MAX_SPELL_ID)
@@ -581,12 +567,7 @@ namespace spell
         return nullptr;
     }
 
-    /************************************************************************
-    *
-    *  Check If user can cast spell
-    *
-    ************************************************************************/
-
+    //Check If user can cast spell
     bool CanUseSpell(CBattleEntity* PCaster, uint16 SpellID)
     {
         bool usable = false;
@@ -735,5 +716,4 @@ namespace spell
 
         return total;
     }
-
 };

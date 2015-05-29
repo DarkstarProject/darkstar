@@ -178,10 +178,7 @@ private:
     int8*       m_expansionCode;
 };
 
-/************************************************************************
-*    namespase to work with spells
-*    namespase для работы с заклинаниями
-************************************************************************/
+//Namestpace to work with spells
 namespace spell
 {
     void    LoadSpellList();
