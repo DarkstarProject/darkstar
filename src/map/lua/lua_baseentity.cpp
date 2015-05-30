@@ -6571,7 +6571,7 @@ inline int32 CLuaBaseEntity::getRATT(lua_State *L)
         return 0;
     }
 
-    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->RATT(weapon->getSkillType()));
+    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->RATT(weapon->getSkillType(), weapon->getILvlSkill()));
     return 1;
 }
 
@@ -9864,6 +9864,15 @@ inline int32 CLuaBaseEntity::retrieveItemFromSlip(lua_State *L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::getILvlMacc(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    lua_pushinteger(L,((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN]->getILvlMacc());
+
+    return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -10295,5 +10304,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,storeWithPorterMoogle),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRetrievableItemsForSlip),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,retrieveItemFromSlip),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getILvlMacc),
     {nullptr,nullptr}
 };

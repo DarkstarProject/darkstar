@@ -40,6 +40,9 @@ CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
 
 	m_skillType		= SKILL_NON;
 	m_subSkillType	= SUBSKILL_XBO;
+    m_iLvlSkill     = 0;
+    m_iLvlParry     = 0;
+    m_iLvlMacc      = 0;
 	m_damage		= 0;
     m_effect		= 0;
 	m_dmgType		= DAMAGE_NONE;
@@ -162,9 +165,39 @@ void CItemWeapon::setSubSkillType(uint8 subSkillType)
 	m_subSkillType = subSkillType;
 }
 
+void CItemWeapon::setILvlSkill(uint16 skill)
+{
+    m_iLvlSkill = skill;
+}
+
+void CItemWeapon::setILvlParry(uint16 parry)
+{
+    m_iLvlParry = parry;
+}
+
+void CItemWeapon::setILvlMacc(uint16 macc)
+{
+    m_iLvlMacc = macc;
+}
+
 uint8 CItemWeapon::getSubSkillType()
 {
 	return m_subSkillType;
+}
+
+uint16 CItemWeapon::getILvlSkill()
+{
+    return m_iLvlSkill;
+}
+
+uint16 CItemWeapon::getILvlParry()
+{
+    return m_iLvlParry;
+}
+
+uint16 CItemWeapon::getILvlMacc()
+{
+    return m_iLvlMacc;
 }
 
 /************************************************************************

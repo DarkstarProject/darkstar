@@ -588,6 +588,8 @@ public:
     int32 storeWithPorterMoogle(lua_State* L);
     int32 getRetrievableItemsForSlip(lua_State *L);
     int32 retrieveItemFromSlip(lua_State *L);
+
+    int32 getILvlMacc(lua_State *L);
 };
 
 #endif

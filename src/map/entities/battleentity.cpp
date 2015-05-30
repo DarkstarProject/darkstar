@@ -530,6 +530,7 @@ uint16 CBattleEntity::CHR()
 
 uint16 CBattleEntity::ATT()
 {
+    //TODO: consider which weapon!
     int32 ATT = 8 + m_modStat[MOD_ATT];
 	if (m_Weapons[SLOT_MAIN]->isTwoHanded())
 	{
@@ -542,7 +543,7 @@ uint16 CBattleEntity::ATT()
         ATT += this->getMod(MOD_ENSPELL_DMG);
     
     if (this->objtype & TYPE_PC){
-		ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType());
+        ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType()) + m_Weapons[SLOT_MAIN]->getILvlSkill();
 	}
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
     {
@@ -554,9 +555,9 @@ uint16 CBattleEntity::ATT()
         dsp_min((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
 }
 
-uint16 CBattleEntity::RATT(uint8 skill)
+uint16 CBattleEntity::RATT(uint8 skill, uint16 bonusSkill)
 {
-    int32 ATT = 8 + GetSkill(skill) + m_modStat[MOD_RATT] + battleutils::GetRangedAttackBonuses(this) + STR() / 2;
+    int32 ATT = 8 + GetSkill(skill) + bonusSkill + m_modStat[MOD_RATT] + battleutils::GetRangedAttackBonuses(this) + STR() / 2;
 
     if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
     {
@@ -568,9 +569,9 @@ uint16 CBattleEntity::RATT(uint8 skill)
         dsp_min((ATT * m_modStat[MOD_FOOD_RATTP] / 100), m_modStat[MOD_FOOD_RATT_CAP]);
 }
 
-uint16 CBattleEntity::RACC(uint8 skill)
+uint16 CBattleEntity::RACC(uint8 skill, uint16 bonusSkill)
 {
-    int skill_level = GetSkill(skill);
+    int skill_level = GetSkill(skill) + bonusSkill;
     uint16 acc = skill_level;
     if (skill_level > 200)
     {
@@ -592,24 +593,28 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
 {
 	if (this->objtype & TYPE_PC){
 		uint8 skill = 0;
+        uint16 iLvlSkill = 0;
 		if (attackNumber == 0)
 		{
 			skill = m_Weapons[SLOT_MAIN]->getSkillType();
+            iLvlSkill = m_Weapons[SLOT_MAIN]->getILvlSkill();
 			if(skill == SKILL_NON && GetSkill(SKILL_H2H) > 0)
 				skill = SKILL_H2H;
 		}
 		else if (attackNumber == 1)
 		{
 			skill = m_Weapons[SLOT_SUB]->getSkillType();
+            iLvlSkill = m_Weapons[SLOT_SUB]->getILvlSkill();
 			if(skill == SKILL_NON && GetSkill(SKILL_H2H) > 0 &&
 				(m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_NON || m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H))
 				skill = SKILL_H2H;
 		}
 		else if (attackNumber == 2)
 		{
+            iLvlSkill = m_Weapons[SLOT_MAIN]->getILvlSkill();
 			skill = SKILL_H2H;
 		}
-		int16 ACC = GetSkill(skill);
+        int16 ACC = GetSkill(skill) + iLvlSkill;
 		ACC = (ACC > 200 ? (((ACC - 200)*0.9)+200) : ACC);
 		if(m_Weapons[SLOT_MAIN]->isTwoHanded() == true)
 		{

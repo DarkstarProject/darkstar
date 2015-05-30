@@ -334,7 +334,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
     end
     
 	--get the base acc (just skill plus magic acc mod)
-	local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
+	local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC) + player:getILvlMacc();
 
 	if player:hasStatusEffect(EFFECT_ALTRUISM) and spell:getSpellGroup() == SPELLGROUP_WHITE then
 		magicacc = magicacc + player:getStatusEffect(EFFECT_ALTRUISM):getPower();
