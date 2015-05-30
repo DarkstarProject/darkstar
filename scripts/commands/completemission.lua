@@ -23,6 +23,7 @@ function onTrigger(player, logId, missionId, target)
     local targ = GetPlayerByName( target );
     if (targ ~= nil) then
         targ:completeMission( logId, missionId );
+        player:PrintToPlayer( string.format( "Completed Mission for log %u with ID %u for %s", logId, missionId, target ) );
     else
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
         player:PrintToPlayer( "@completemission <logID> <missionID> <player>" );
