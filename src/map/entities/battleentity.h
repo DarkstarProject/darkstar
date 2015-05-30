@@ -107,7 +107,7 @@ enum SKILLTYPE
 	SKILL_GKT			= 10,
 	SKILL_CLB			= 11,
 	SKILL_STF			= 12,
-
+    // 13~21 unused
     SKILL_AME           = 22,
     SKILL_ARA           = 23,
     SKILL_AMA           = 24,
@@ -132,18 +132,18 @@ enum SKILLTYPE
 	SKILL_BLU			= 43,
     SKILL_GEO           = 44,
     SKILL_HND           = 45,
-
-	SKILL_FSH			= 48,
-	SKILL_WDW			= 49,
-	SKILL_SMT			= 50,
-	SKILL_GLD			= 51,
-	SKILL_CLT			= 52,
-	SKILL_LTH			= 53,
-	SKILL_BON			= 54,
-	SKILL_ALC			= 55,
-	SKILL_COK			= 56,
-	SKILL_SYN			= 57,
-	SKILL_RID			= 58,
+    // 46~47 unused
+    SKILL_FISHING       = 48,
+    SKILL_WOODWORKING   = 49,
+    SKILL_SMITHING      = 50,
+    SKILL_GOLDSMITHING  = 51,
+    SKILL_CLOTHCRAFT    = 52,
+    SKILL_LEATHERCRAFT  = 53,
+    SKILL_BONECRAFT     = 54,
+    SKILL_ALCHEMY       = 55,
+    SKILL_COOKING       = 56,
+    SKILL_SYNERGY       = 57,
+    SKILL_RID           = 58,
     SKILL_DIG           = 59
 };
 

@@ -197,14 +197,14 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 
 	switch (skillID)
 	{
-		case SKILL_WDW: ModID = MOD_WOOD;		break;
-		case SKILL_SMT: ModID = MOD_SMITH;		break;
-		case SKILL_GLD: ModID = MOD_GOLDSMITH;	break;
-		case SKILL_CLT: ModID = MOD_CLOTH;		break;
-		case SKILL_LTH: ModID = MOD_LEATHER;	break;
-		case SKILL_BON: ModID = MOD_BONE;		break;
-		case SKILL_ALC: ModID = MOD_ALCHEMY;	break;
-		case SKILL_COK: ModID = MOD_COOK;		break;
+		case SKILL_WOODWORKING:  ModID = MOD_WOOD;		break;
+		case SKILL_SMITHING:     ModID = MOD_SMITH;		break;
+		case SKILL_GOLDSMITHING: ModID = MOD_GOLDSMITH;	break;
+		case SKILL_CLOTHCRAFT:   ModID = MOD_CLOTH;		break;
+		case SKILL_LEATHERCRAFT: ModID = MOD_LEATHER;	break;
+		case SKILL_BONECRAFT:    ModID = MOD_BONE;		break;
+		case SKILL_ALCHEMY:      ModID = MOD_ALCHEMY;	break;
+		case SKILL_COOKING:      ModID = MOD_COOK;		break;
 	}
 
 	uint8 charSkill = PChar->RealSkills.skill[skillID]/10;  //player skill level is truncated before synth difficulty is calced
@@ -277,14 +277,14 @@ bool canSynthesizeHQ(CCharEntity* PChar, uint8 skillID)
 
 	switch (skillID)
 	{
-		case SKILL_WDW: ModID = MOD_ANTIHQ_WOOD;	  break;
-		case SKILL_SMT: ModID = MOD_ANTIHQ_SMITH;	  break;
-		case SKILL_GLD: ModID = MOD_ANTIHQ_GOLDSMITH; break;
-		case SKILL_CLT: ModID = MOD_ANTIHQ_CLOTH;	  break;
-		case SKILL_LTH: ModID = MOD_ANTIHQ_LEATHER;	  break;
-		case SKILL_BON: ModID = MOD_ANTIHQ_BONE;	  break;
-		case SKILL_ALC: ModID = MOD_ANTIHQ_ALCHEMY;	  break;
-		case SKILL_COK: ModID = MOD_ANTIHQ_COOK;	  break;
+		case SKILL_WOODWORKING:  ModID = MOD_ANTIHQ_WOOD;	  break;
+		case SKILL_SMITHING:     ModID = MOD_ANTIHQ_SMITH;	  break;
+		case SKILL_GOLDSMITHING: ModID = MOD_ANTIHQ_GOLDSMITH; break;
+		case SKILL_CLOTHCRAFT:   ModID = MOD_ANTIHQ_CLOTH;	  break;
+		case SKILL_LEATHERCRAFT: ModID = MOD_ANTIHQ_LEATHER;	  break;
+		case SKILL_BONECRAFT:    ModID = MOD_ANTIHQ_BONE;	  break;
+		case SKILL_ALCHEMY:      ModID = MOD_ANTIHQ_ALCHEMY;	  break;
+		case SKILL_COOKING:      ModID = MOD_ANTIHQ_COOK;	  break;
 	}
 
 	return (PChar->getMod(ModID) != 0 ? false : true);
@@ -516,14 +516,14 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 		uint16 ModID = 0;
 		switch (skillID)
 		{
-			case SKILL_WDW: ModID = MOD_WOOD;		break;
-			case SKILL_SMT: ModID = MOD_SMITH;		break;
-			case SKILL_GLD: ModID = MOD_GOLDSMITH;	break;
-			case SKILL_CLT: ModID = MOD_CLOTH;		break;
-			case SKILL_LTH: ModID = MOD_LEATHER;	break;
-			case SKILL_BON: ModID = MOD_BONE;		break;
-			case SKILL_ALC: ModID = MOD_ALCHEMY;	break;
-			case SKILL_COK: ModID = MOD_COOK;		break;
+			case SKILL_WOODWORKING:  ModID = MOD_WOOD;		break;
+			case SKILL_SMITHING:     ModID = MOD_SMITH;		break;
+			case SKILL_GOLDSMITHING: ModID = MOD_GOLDSMITH;	break;
+			case SKILL_CLOTHCRAFT:   ModID = MOD_CLOTH;		break;
+			case SKILL_LEATHERCRAFT: ModID = MOD_LEATHER;	break;
+			case SKILL_BONECRAFT:    ModID = MOD_BONE;		break;
+			case SKILL_ALCHEMY:      ModID = MOD_ALCHEMY;	break;
+			case SKILL_COOKING:      ModID = MOD_COOK;		break;
 		}
 
 		uint8  skillRank = PChar->RealSkills.rank[skillID];
@@ -656,14 +656,14 @@ int32 doSynthFail(CCharEntity* PChar)
 		{
 			switch (carrentCraft)
 			{
-				case SKILL_WDW:	 moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_WOODWORKING);	 break;
-				case SKILL_SMT:	 moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_SMITHING);	 break;
-				case SKILL_GLD:	 moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_GOLDSMITHING); break;
-				case SKILL_CLT:	 moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_CLOTHCRAFT);	 break;
-				case SKILL_LTH:	 moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_LEATHERCRAFT); break;
-				case SKILL_BON:	 moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_BONECRAFT);	 break;
-				case SKILL_ALC:	 moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_ALCHEMY);		 break;
-				case SKILL_COK:	 moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_COOKING);		 break;
+				case SKILL_WOODWORKING:  moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_WOODWORKING);	 break;
+				case SKILL_SMITHING:     moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_SMITHING);	 break;
+				case SKILL_GOLDSMITHING: moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_GOLDSMITHING); break;
+				case SKILL_CLOTHCRAFT:   moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_CLOTHCRAFT);	 break;
+				case SKILL_LEATHERCRAFT: moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_LEATHERCRAFT); break;
+				case SKILL_BONECRAFT:    moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_BONECRAFT);	 break;
+				case SKILL_ALCHEMY:      moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_ALCHEMY);		 break;
+				case SKILL_COOKING:      moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_COOKING);		 break;
 			}
 		}
 
@@ -671,14 +671,14 @@ int32 doSynthFail(CCharEntity* PChar)
 		{
 			switch (carrentCraft)
 			{
-				case SKILL_WDW:	 moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_WOODWORKING);  break;
-				case SKILL_SMT:	 moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_SMITHING);		break;
-				case SKILL_GLD:	 moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_GOLDSMITHING);	break;
-				case SKILL_CLT:	 moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_CLOTHCRAFT);	break;
-				case SKILL_LTH:	 moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_LEATHERCRAFT);	break;
-				case SKILL_BON:	 moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_BONECRAFT);	break;
-				case SKILL_ALC:	 moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_ALCHEMY);		break;
-				case SKILL_COK:	 moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_COOKING);		break;
+				case SKILL_WOODWORKING:  moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_WOODWORKING);  break;
+				case SKILL_SMITHING:     moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_SMITHING);		break;
+				case SKILL_GOLDSMITHING: moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_GOLDSMITHING);	break;
+				case SKILL_CLOTHCRAFT:   moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_CLOTHCRAFT);	break;
+				case SKILL_LEATHERCRAFT: moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_LEATHERCRAFT);	break;
+				case SKILL_BONECRAFT:    moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_BONECRAFT);	break;
+				case SKILL_ALCHEMY:      moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_ALCHEMY);		break;
+				case SKILL_COOKING:      moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_COOKING);		break;
 			}
 		}
 	}
