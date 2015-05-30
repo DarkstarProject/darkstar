@@ -256,7 +256,7 @@ void CAIMobDummy::ActionRoaming()
                 luautils::OnMobRoamAction(m_PMob);
                 m_LastActionTime = m_Tick;
             }
-            else if (m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
+            else if (m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamDistance, m_PMob->m_roamFlags))
             {
 
                 if (m_PMob->m_roamFlags & ROAMFLAG_WORM)

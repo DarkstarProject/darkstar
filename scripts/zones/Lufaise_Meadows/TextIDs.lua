@@ -19,6 +19,7 @@ LOGGING_IS_POSSIBLE_HERE = 7710; -- Logging is possible here if you have
       MURDEROUS_PRESENCE = 7718; -- Wait, you sense a murderous presence...!
    YOU_CAN_SEE_FOR_MALMS = 7719; -- You can see for malms in every direction.
  SPINE_CHILLING_PRESENCE = 7721; -- You sense a spine-chilling presence!
+ KI_STOLEN = 7662; -- The ≺Possible Special Code: 01≻≺Possible Special Code: 05≻3ａ≺BAD CHAR: 80≻≺BAD CHAR: 80≻ has been stolen!
 
 -- conquest Base
 CONQUEST_BASE = 7036; -- Tallying conquest results...

@@ -23,6 +23,7 @@ function onTrigger(player, logId, missionId, target)
     local targ = GetPlayerByName( target );
     if (targ ~= nil) then
         targ:addMission( logId, missionId );
+        player:PrintToPlayer( string.format( "Added Mission for log %u with ID %u to %s", logId, missionId, target ) );
     else
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
         player:PrintToPlayer( "@addmission <logID> <missionID> <player>" );

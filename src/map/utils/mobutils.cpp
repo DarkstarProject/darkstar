@@ -521,18 +521,29 @@ void CalculateStats(CMobEntity * PMob)
         PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(PMob->getMobMod(MOBMOD_SPELL_LIST));
     }
 
-    if(PMob->m_Type & MOBTYPE_NOTORIOUS)
+    // apply custom roaming distance
+    if(PMob->getMobMod(MOBMOD_ROAM_DISTANCE) != 0)
     {
-        // Notorious monsters don't roam very far
-        PMob->m_roamFlags |= ROAMFLAG_SMALL;
-    } 
-    else if(PMob->loc.zone->GetType() == ZONETYPE_OUTDOORS)
-    {
-        PMob->m_roamFlags |= ROAMFLAG_LARGE;
+      PMob->m_roamDistance = (float)PMob->getMobMod(MOBMOD_ROAM_DISTANCE);
     }
-    else
+
+    // Default roam distance if not set from database
+    if(PMob->m_roamDistance == 0)
     {
-        PMob->m_roamFlags |= ROAMFLAG_MEDIUM;
+      if(PMob->m_Type & MOBTYPE_NOTORIOUS)
+      {
+        // Notorious monsters don't roam very far
+        PMob->m_roamDistance = 3.0f;
+      } 
+      else if(PMob->loc.zone->GetType() == ZONETYPE_OUTDOORS)
+      {
+        PMob->m_roamDistance = 7.0f;
+      }
+      else
+      {
+        PMob->m_roamDistance = 5.0f;
+      }
+
     }
 
     if(PMob->m_roamFlags & ROAMFLAG_AMBUSH)
@@ -542,6 +553,7 @@ void CalculateStats(CMobEntity * PMob)
         PMob->m_specialFlags |= SPECIALFLAG_HIDDEN;
         // always stay close to spawn
         PMob->m_maxRoamDistance = 2.0f;
+        PMob->m_roamDistance = 1.0f;
     }
 
     // cap all stats for lvl / job
@@ -1035,7 +1047,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 		mob_pools.familyid, name_prefix, flags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-		allegiance, namevis, aggro \
+		allegiance, namevis, aggro, mob_groups.roam_distance \
 		FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE mob_groups.groupid = %u";
@@ -1152,6 +1164,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 			PMob->allegiance = Sql_GetUIntData(SqlHandle, 55);
 			PMob->namevis = Sql_GetUIntData(SqlHandle, 56);
 			PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 57);
+			PMob->m_roamDistance = Sql_GetFloatData(SqlHandle, 58);
 
 			// must be here first to define mobmods
 			mobutils::InitializeMob(PMob, zoneutils::GetZone(zoneID));

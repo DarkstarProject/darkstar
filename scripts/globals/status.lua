@@ -11,29 +11,30 @@
 -- Job IDs
 ------------------------------------
 
-JOB_NON             = 0;
-JOB_WAR             = 1;
-JOB_MNK             = 2;
-JOB_WHM             = 3;
-JOB_BLM             = 4;
-JOB_RDM             = 5;
-JOB_THF             = 6;
-JOB_PLD             = 7;
-JOB_DRK             = 8;
-JOB_BST             = 9;
-JOB_BRD             = 10;
-JOB_RNG             = 11;
-JOB_SAM             = 12;
-JOB_NIN             = 13;
-JOB_DRG             = 14;
-JOB_SMN             = 15;
-JOB_BLU             = 16;
-JOB_COR             = 17;
-JOB_PUP             = 18;
-JOB_DNC             = 19;
-JOB_SCH             = 20;
-JOB_GEO             = 21;
-JOB_RUN             = 22;
+JOB_NON      = 0
+JOB_WAR      = 1
+JOB_MNK      = 2
+JOB_WHM      = 3
+JOB_BLM      = 4
+JOB_RDM      = 5
+JOB_THF      = 6
+JOB_PLD      = 7
+JOB_DRK      = 8
+JOB_BST      = 9
+JOB_BRD      = 10
+JOB_RNG      = 11
+JOB_SAM      = 12
+JOB_NIN      = 13
+JOB_DRG      = 14
+JOB_SMN      = 15
+JOB_BLU      = 16
+JOB_COR      = 17
+JOB_PUP      = 18
+JOB_DNC      = 19
+JOB_SCH      = 20
+JOB_GEO      = 21
+JOB_RUN      = 22
+MAX_JOB_TYPE = 23
 
 ------------------------------------
 --
@@ -779,7 +780,7 @@ end;
 function hasSleepEffects(target)
 	if (target:hasStatusEffect(EFFECT_SLEEP_I) or
 	target:hasStatusEffect(EFFECT_SLEEP_II) or
-	target:hasStatusEffect(EFFECT_LULLABY) ) then
+	target:hasStatusEffect(EFFECT_LULLABY)) then
 		return true;
 	end
 	return false;
@@ -1837,7 +1838,7 @@ MOBMOD_SPELL_LIST     = 27
 MOBMOD_EXP_BONUS      = 28
 MOBMOD_ASSIST         = 29
 MOBMOD_SPECIAL_SKILL  = 30
-MOBMOD_RAND_JOB       = 31
+MOBMOD_ROAM_DISTANCE  = 31
 MOBMOD_2HOUR_MULTI    = 32
 MOBMOD_SPECIAL_COOL   = 33
 MOBMOD_MAGIC_COOL     = 34
@@ -1860,55 +1861,65 @@ MOBMOD_SHARE_TARGET   = 48
 -- Skills
 ------------------------------------
 
-    SKILL_NON           = 0
-	SKILL_H2H			= 1
-	SKILL_DAG			= 2
-	SKILL_SWD			= 3
-	SKILL_GSD			= 4
-	SKILL_AXE			= 5
-	SKILL_GAX			= 6
-	SKILL_SYH			= 7
-	SKILL_POL			= 8
-	SKILL_KAT			= 9
-	SKILL_GKT			= 10
-	SKILL_CLB			= 11
-	SKILL_STF			= 12
+    -- Combat Skills
+    SKILL_NON = 0
+    SKILL_H2H = 1
+    SKILL_DAG = 2
+    SKILL_SWD = 3
+    SKILL_GSD = 4
+    SKILL_AXE = 5
+    SKILL_GAX = 6
+    SKILL_SYH = 7
+    SKILL_POL = 8
+    SKILL_KAT = 9
+    SKILL_GKT = 10
+    SKILL_CLB = 11
+    SKILL_STF = 12
+    -- 13~24 unused
+    SKILL_ARC = 25
+    SKILL_MRK = 26
+    SKILL_THR = 27
 
-	SKILL_ARC			= 25
-	SKILL_MRK			= 26
-	SKILL_THR			= 27
-	SKILL_GRD			= 28
-	SKILL_EVA			= 29
-	SKILL_SHL			= 30
-	SKILL_PAR			= 31
-	SKILL_DIV			= 32
-	SKILL_HEA			= 33
-	SKILL_ENH			= 34
-	SKILL_ENF			= 35
-	SKILL_ELE			= 36
-	SKILL_DRK			= 37
-	SKILL_SUM			= 38
-	SKILL_NIN			= 39
-	SKILL_SNG			= 40
-	SKILL_STR			= 41
-	SKILL_WND			= 42
-	SKILL_BLU			= 43
-	SKILL_GEO			= 44
+    -- Defensive Skills
+    SKILL_GRD = 28
+    SKILL_EVA = 29
+    SKILL_SHL = 30
+    SKILL_PAR = 31
 
-	SKILL_FSH			= 48
-	SKILL_WDW			= 49
-	SKILL_SMT			= 50
-	SKILL_GLD			= 51
-	SKILL_CLT			= 52
-	SKILL_LTH			= 53
-	SKILL_BON			= 54
-	SKILL_ALC			= 55
-	SKILL_COK			= 56
-	SKILL_SYN			= 57
-	SKILL_RID			= 58
-    SKILL_DIG           = 59
+    -- Magic Skills
+    SKILL_DIV = 32
+    SKILL_HEA = 33
+    SKILL_ENH = 34
+    SKILL_ENF = 35
+    SKILL_ELE = 36
+    SKILL_DRK = 37
+    SKILL_SUM = 38
+    SKILL_NIN = 39
+    SKILL_SNG = 40
+    SKILL_STR = 41
+    SKILL_WND = 42
+    SKILL_BLU = 43
+    SKILL_GEO = 44
 
-	MAX_JOB_TYPE = 23
+    -- 45~47 unused
+
+    -- Crafting Skills
+    SKILL_FISHING      = 48
+    SKILL_WOODWORKING  = 49
+    SKILL_SMITHING     = 50
+    SKILL_GOLDSMITHING = 51
+    SKILL_CLOTHCRAFT   = 52
+    SKILL_LEATHERCRAFT = 53
+    SKILL_BONECRAFT    = 54
+    SKILL_ALCHEMY      = 55
+    SKILL_COOKING      = 56
+    SKILL_SYNERGY      = 57
+
+    -- Other Skills
+    SKILL_RID          = 58
+    SKILL_DIG          = 59
+    -- 60~63 unused
+    -- MAX_SKILLTYPE = 64
 
     RECAST_ITEM     = 0
     RECAST_MAGIC    = 1
