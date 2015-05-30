@@ -1423,6 +1423,17 @@ uint16 CStatusEffectContainer::GetConfrontationEffect()
     return 0;
 }
 
+void CStatusEffectContainer::CopyConfrontationEffect(CBattleEntity* PEntity)
+{
+    for (auto PEffect : m_StatusEffectList)
+    {
+        if (PEffect->GetFlag() & EFFECTFLAG_CONFRONTATION)
+        {
+            PEntity->StatusEffectContainer->AddStatusEffect(new CStatusEffect(*PEffect));
+        }
+    }
+}
+
 bool CStatusEffectContainer::CheckForElevenRoll()
 {
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
