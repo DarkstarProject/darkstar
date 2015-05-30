@@ -2208,11 +2208,35 @@ namespace charutils
             {
                 CAbility* PAbility = AbilitiesList.at(i);
 
-                if (PPet->GetMLevel() >= PAbility->getLevel() && PetID >= 8 && PetID <= 15 && CheckAbilityAddtype(PChar, PAbility)) //carby/fen/ele avatars NOT diabolos
+                if (PPet->GetMLevel() >= PAbility->getLevel() && PetID >= 8 && PetID <= 20 && CheckAbilityAddtype(PChar, PAbility))
                 {
-                    //16 IDs per avatar starting from 496
-                    if (PAbility->getID() >= (496 + ((PetID - 8) * 16)) && PAbility->getID() < (496 + ((PetID - 7) * 16))){ //pet ability
-                        addPetAbility(PChar, PAbility->getID() - 496);
+                    if (PetID == 8)
+                    {
+                        if (PAbility->getID() >= 496 && PAbility->getID() < 505)
+                        {
+                            addPetAbility(PChar, PAbility->getID() - 496);
+                        }
+                    }
+                    else if (PetID >= 9 && PetID <= 15)
+                    {
+                        if (PAbility->getID() >= (496 + ((PetID - 8) * 16)) && PAbility->getID() < (496 + ((PetID - 7) * 16)))
+                        {
+                            addPetAbility(PChar, PAbility->getID() - 496);
+                        }
+                    }
+                    else if (PetID == 16)
+                    {
+                        if (PAbility->getID() >= 640 && PAbility->getID() <= 656)
+                        {
+                            addPetAbility(PChar, PAbility->getID() - 496);
+                        }
+                    }
+                    else if (PetID == 20)
+                    {
+                        if (PAbility->getID() >= 505 && PAbility->getID() <= 512)
+                        {
+                            addPetAbility(PChar, PAbility->getID() - 496);
+                        }
                     }
                 }
             }
