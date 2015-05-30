@@ -1875,7 +1875,8 @@ MOBMOD_SHARE_TARGET   = 48
     SKILL_GKT = 10
     SKILL_CLB = 11
     SKILL_STF = 12
-    -- 13~24 unused
+    -- 13~21 unused
+    -- 22~24 pup's Automaton skills
     SKILL_ARC = 25
     SKILL_MRK = 26
     SKILL_THR = 27

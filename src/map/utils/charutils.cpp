@@ -690,7 +690,7 @@ namespace charutils
                 if (SkillID < MAX_SKILLTYPE)
                 {
                     PChar->RealSkills.skill[SkillID] = (uint16)Sql_GetUIntData(SqlHandle, 1);
-                    if (SkillID >= SKILL_FSH)
+                    if (SkillID >= SKILL_FISHING)
                     {
                         PChar->RealSkills.rank[SkillID] = (uint8)Sql_GetUIntData(SqlHandle, 2);
                     }
