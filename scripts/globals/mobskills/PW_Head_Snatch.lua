@@ -1,23 +1,21 @@
 ---------------------------------------------
---  Head Snatch
+-- Head Snatch
 --
---  Description: Grabs a single target's head.
---  Type: Physical
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: Melee
---  Notes: Only used by Gurfurlur the Menacing. Reduces HP to 10%.
+-- Description: Grabs a single target's head.
+-- Type: Physical
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: Melee
+-- Notes: Only used by Gurfurlur the Menacing. Reduces HP to 10%.
 ---------------------------------------------
-
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
-
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     local mobSkin = mob:getModelId();
 
-    if(mobSkin == 1867) then
+    if (mobSkin == 1867) then
         return 0;
     else
         return 1;
@@ -30,6 +28,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 2;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_IGNORE_SHADOWS);
+
     target:delHP(dmg);
     return dmg;
 end;

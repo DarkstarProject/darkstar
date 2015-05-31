@@ -1,21 +1,19 @@
 ---------------------------------------------
---  Petro Eyes
---  Description: Petrifies opponents with a gaze attack.
---  Type: Gaze
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: Single gaze
+-- Petro Eyes
+-- Description: Petrifies opponents with a gaze attack.
+-- Type: Gaze
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: Single gaze
 ---------------------------------------------
-
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
-
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     local mobSkin = mob:getModelId();
 
-    if(mobSkin == 421) then
+    if (mobSkin == 421) then
         return 0;
     else
         return 1;

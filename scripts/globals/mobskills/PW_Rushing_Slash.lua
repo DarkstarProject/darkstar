@@ -1,23 +1,21 @@
 ---------------------------------------------
---  Rushing Slash
+-- Rushing Slash
 --
---  Description: Delivers a fourfold attack on a single target.
---  Type: Physical
---  Utsusemi/Blink absorb: 4 shadows
---  Range: Melee
---  Notes: Only used by Mamool Ja with slashing weapons.
+-- Description: Delivers a fourfold attack on a single target.
+-- Type: Physical
+-- Utsusemi/Blink absorb: 4 shadows
+-- Range: Melee
+-- Notes: Only used by Mamool Ja with slashing weapons.
 ---------------------------------------------
-
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
-
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     local mobSkin = mob:getModelId();
 
-    if(mobSkin == 1863) then
+    if (mobSkin == 1863) then
         return 0;
     else
         return 1;

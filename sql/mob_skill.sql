@@ -2007,7 +2007,6 @@ INSERT INTO `mob_skill` VALUES (1862,316,1458,'Bilgestorm',1,15.0,2000,1000,4,0,
 INSERT INTO `mob_skill` VALUES (1863,316,1459,'Thundris_shriek',1,15.0,2000,1000,4,0,0,0);
 
 -- Pandemonium Lamps (91)
-
 INSERT INTO `mob_skill` VALUES (1789,91,1373,'PL_Rail_Cannon',1,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1785,91,1376,'PL_Restoral',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1666,91,1266,'PL_Somersault_Kick',0,7.0,2000,1000,4,0,0,4);

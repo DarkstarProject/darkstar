@@ -1,16 +1,16 @@
 ---------------------------------------------------
---  Restoral
---  Description: Restores HP.
+-- Restoral
+-- Description: Restores HP.
 ---------------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     local mobSkin = mob:getModelId();
 
-    if(mobSkin == 1820) then
+    if (mobSkin == 1820) then
         return 0;
     else
         return 1;
@@ -18,7 +18,6 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
     local potency = skill:getParam();
     local mobhp = mob:getHPP();
 
@@ -26,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
         return 0;
     else
 
-    if(potency == 0) then
+    if (potency == 0) then
         potency = 10;
     end
 

@@ -1,20 +1,20 @@
 ---------------------------------------------
---  Serpentine Tail
+-- Serpentine Tail
 --
---  Description: Deals heavy damage to a target behind the user.
---  Type: Physical
---  2-3 Shadows
---  Range: Back
+-- Description: Deals heavy damage to a target behind the user.
+-- Type: Physical
+-- 2-3 Shadows
+-- Range: Back
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
+---------------------------------------------
 
----------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     local mobSkin = mob:getModelId();
 
-    if(mobSkin == 1796) then
+    if (mobSkin == 1796) then
         return 0;
     else
         return 1;

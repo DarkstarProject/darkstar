@@ -1,20 +1,18 @@
 ---------------------------------------------
---  Body Slam
+-- Body Slam
 --
---  Description: Delivers an area attack. Damage varies with TP.
---  Type: Physical (Blunt)
---
---
+-- Description: Delivers an area attack. Damage varies with TP.
+-- Type: Physical (Blunt)
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
+---------------------------------------------
 
----------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     local mobSkin = mob:getModelId();
 
-    if(mobSkin == 421) then
+    if (mobSkin == 421) then
         return 0;
     else
         return 1;
@@ -27,6 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
+
     target:delHP(dmg);
     return dmg;
 end;

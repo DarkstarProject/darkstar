@@ -1,23 +1,21 @@
 ---------------------------------------------
---  Rock Smash
+-- Rock Smash
 --
---  Description: Damages a single target. Additional effect: Petrification
---  Type: Physical
---  Utsusemi/Blink absorb: 1 shadow
---  Range: Melee
---  Notes:
+-- Description: Damages a single target. Additional effect: Petrification
+-- Type: Physical
+-- Utsusemi/Blink absorb: 1 shadow
+-- Range: Melee
+-- Notes:
 ---------------------------------------------
-
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
-
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     local mobSkin = mob:getModelId();
 
-    if(mobSkin == 1680) then
+    if (mobSkin == 1680) then
         return 0;
     else
         return 1;
@@ -25,7 +23,6 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
     local numhits = 1;
     local accmod = 2;
     local dmgmod = 3;

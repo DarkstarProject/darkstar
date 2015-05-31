@@ -1,22 +1,21 @@
 ---------------------------------------------
---  Gorgon Dance
+-- Gorgon Dance
 --
---  Description: Petrifies all targets in an area of effect.
---  Type: Enfeebling
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: 10' radial?
---  Notes: Used only by Medusa. Starts using it at 25%.
+-- Description: Petrifies all targets in an area of effect.
+-- Type: Enfeebling
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: 10' radial?
+-- Notes: Used only by Medusa. Starts using it at 25%.
+---------------------------------------------
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
-
----------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     local mobSkin = mob:getModelId();
 
-    if(mobSkin == 1865) then
+    if (mobSkin == 1865) then
         return 0;
     else
         return 1;

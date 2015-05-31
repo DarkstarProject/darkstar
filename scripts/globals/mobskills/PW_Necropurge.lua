@@ -1,15 +1,16 @@
 ---------------------------------------------
---  Necropurge
+-- Necropurge
+--
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
+---------------------------------------------
 
----------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     local mobSkin = mob:getModelId();
 
-    if(mobSkin == 1839) then
+    if (mobSkin == 1839) then
         return 0;
     else
         return 1;
@@ -22,7 +23,9 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 2;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
-    target:delHP(dmg);
+
     MobStatusEffectMove(mob, target, EFFECT_CURSE_I, 1, 0, 60);
+    target:delHP(dmg);
+
     return dmg;
 end;

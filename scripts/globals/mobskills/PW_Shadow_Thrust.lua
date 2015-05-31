@@ -1,22 +1,21 @@
 ---------------------------------------------
---  Shadow Thrust
+-- Shadow Thrust
 --
---  Description: Deals damage to a single target.
---  Type: Physical
---  Utsusemi/Blink absorb: 1 shadow
---  Range: Melee
---  Notes: Used only by Medusa.
+-- Description: Deals damage to a single target.
+-- Type: Physical
+-- Utsusemi/Blink absorb: 1 shadow
+-- Range: Melee
+-- Notes: Used only by Medusa.
+---------------------------------------------
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
-
----------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     local mobSkin = mob:getModelId();
 
-    if(mobSkin == 1865) then
+    if (mobSkin == 1865) then
         return 0;
     else
         return 1;

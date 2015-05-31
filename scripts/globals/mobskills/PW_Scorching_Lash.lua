@@ -1,23 +1,21 @@
 ---------------------------------------------
---  Scorching Lash
+-- Scorching Lash
 --
---  Description: Deals heavy damage to targets behind user.
---  Type: Physical
---  Utsusemi/Blink absorb: 2-3 shadows
---  Range: Back
---  Notes: Used only if a target with hate is behind them. Conal behind Cerberus.
+-- Description: Deals heavy damage to targets behind user.
+-- Type: Physical
+-- Utsusemi/Blink absorb: 2-3 shadows
+-- Range: Back
+-- Notes: Used only if a target with hate is behind them. Conal behind Cerberus.
 ---------------------------------------------
-
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
-
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     local mobSkin = mob:getModelId();
 
-    if(mobSkin == 1793) then
+    if (mobSkin == 1793) then
         return 0;
     else
         return 1;

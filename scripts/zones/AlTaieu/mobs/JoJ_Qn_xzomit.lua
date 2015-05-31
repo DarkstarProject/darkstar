@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Al'Taieu
---  NM:  Jailer of Prudence
+--  MOB: Qn'xzomit
+-- Jailor of Justice Pet version
 -----------------------------------
 
 require("scripts/globals/status");
@@ -11,9 +12,7 @@ require("scripts/globals/status");
 
 function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_MAIN_2HOUR, 1);
-    mob:setMobMod(MOBMOD_2HOUR_MULTI, 1);
 end;
-
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
@@ -22,25 +21,13 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
--- onMobDisEngage Action
+-- onMobEngaged Action
 -----------------------------------
 
-function onMobDisEngage(mob, target)
+function onMobEngaged(mob, target)
+    mob:useMobAbility(475); -- Mijin_Gakure
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
-
-function onMobFight(mob, target)
-end;
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
 
 -----------------------------------
 -- onMobDeath
