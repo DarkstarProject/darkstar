@@ -1720,7 +1720,10 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     if(validWeapon && battleutils::IsEngauged(PDefender))
     {
     	// assuming this is like parry
-        float skill = PDefender->GetSkill(SKILL_GRD) + PDefender->getMod(MOD_GUARD) + PWeapon->getILvlParry(); //no weapon will ever have ilvl guard and parry
+        float skill = PDefender->GetSkill(SKILL_GRD) + PDefender->getMod(MOD_GUARD);
+
+        if (PWeapon)
+            skill += PWeapon->getILvlParry(); //no weapon will ever have ilvl guard and parry
 
     	float diff = 1.0f + (((float)PDefender->GetMLevel() - PAttacker->GetMLevel()) / 15.0f);
 
