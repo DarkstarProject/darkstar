@@ -31,20 +31,9 @@
 
 #include "lua/luautils.h"
 
-/************************************************************************
-*                                                                       *
-*	Реализация namespace conquest                                       *
-*                                                                       *
-************************************************************************/
 
 namespace conquest
 {
-	/************************************************************************
-    *                                                                       *
-    *	UpdateConquestSystem		                                        *
-    *                                                                       *
-    ************************************************************************/
-
 	void UpdateConquestSystem()
 	{
 		zoneutils::ForEachZone([](CZone* PZone)
@@ -61,158 +50,166 @@ namespace conquest
 		});
 	}
 
-	/************************************************************************
-    *    GainInfluencePoints                                                *
-    *    +1 point for nation							                    *
-    *						                                                *
-    ************************************************************************/
 
-    void GainInfluencePoints(CCharEntity* PChar, uint32 points)
-    {
-        REGIONTYPE region = PChar->loc.zone->GetRegionID();
-        if (region == REGIONTYPE::REGION_UNKNOWN)
-            return;
-
-        std::string Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence FROM conquest_system WHERE region_id = %d;";
-
-        int ret = Sql_Query(SqlHandle, Query.c_str(), region);
-
-        if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-            int san_inf = Sql_GetIntData(SqlHandle, 0);
-            int bas_inf = Sql_GetIntData(SqlHandle, 1);
-            int win_inf = Sql_GetIntData(SqlHandle, 2);
-            int bst_inf = Sql_GetIntData(SqlHandle, 3);
-
-            switch (PChar->profile.nation)
-            {
-            case 0:
-            {
-                int total = dsp_max(5000 - san_inf, 0);
-                double bas_rat = (float)bas_inf / total;
-                double win_rat = (float)win_inf / total;
-                double bst_rat = (float)bst_inf / total;
-                san_inf += points;
-                bas_inf = dsp_max(total - points, 0) * bas_rat;
-                win_inf = dsp_max(total - points, 0) * win_rat;
-                bst_inf = dsp_max(total - points, 0) * bst_rat;
-                break;
-            }
-            case 1:
-            {
-                int total = dsp_max(5000 - bas_inf, 0);
-                double san_rat = (float)san_inf / total;
-                double win_rat = (float)win_inf / total;
-                double bst_rat = (float)bst_inf / total;
-                bas_inf += points;
-                san_inf = dsp_max(total - points, 0) * san_rat;
-                win_inf = dsp_max(total - points, 0) * win_rat;
-                bst_inf = dsp_max(total - points, 0) * bst_rat;
-                break;
-            }
-            case 2:
-            {
-                int total = dsp_max(5000 - win_inf,0);
-                double san_rat = (float)san_inf / total;
-                double bas_rat = (float)bas_inf / total;
-                double bst_rat = (float)bst_inf / total;
-                win_inf += points;
-                san_inf = dsp_max(total - points, 0) * san_rat;
-                bas_inf = dsp_max(total - points, 0) * bas_rat;
-                bst_inf = dsp_max(total - points, 0) * bst_rat;
-                break;
-            }
-            default:
-                break;
-            }
-            Sql_Query(SqlHandle, "UPDATE conquest_system SET sandoria_influence = %d, bastok_influence = %d, "
-                "windurst_influence = %d, beastmen_influence = %d WHERE region_id = %d;", san_inf, bas_inf, win_inf, bst_inf, region);
-        }
+  /* influence():
+   * 
+   * increases the influence points for a particular nation within the region
+   * the designated player is located in.  the calculated rate is conquest
+   * points / 2.  also called upon death from loseinfluencepoints() which is
+   * pushed from actionfall() to add influence to the beastmen.
+   */
+  void influence(CCharEntity *ch, int gain, bool died) {
+    REGIONTYPE region = ch->loc.zone->GetRegionID();
+    double dorkia_percent, bastok_percent, windurst_percent, beastmen_percent;
+    double dorkia_mod, bastok_mod, windurst_mod, beastmen_mod;
+    int dorkia, bastok, windurst, beastmen, total;
+    
+    const char *get_q = "SELECT"
+                        " sandoria_influence,"
+                        " bastok_influence,"
+                        " windurst_influence,"
+                        " beastmen_influence "
+                        "FROM conquest_system "
+                        "WHERE region_id = \'%d\';";
+    
+    const char *set_q = "UPDATE conquest_system "
+                        "SET"
+                        " sandoria_influence = \'%d\',"
+                        " bastok_influence = \'%d\',"
+                        " windurst_influence = \'%d\',"
+                        " beastmen_influence = \'%d\' "
+                        "WHERE region_id = \'%d\';";
+    
+    if (gain <= 0)
+      return;
+    
+    if ((Sql_Query(SqlHandle, get_q, region) == SQL_ERROR) || (Sql_NextRow(SqlHandle) != SQL_SUCCESS)) {
+      ShowError("%s: Unable to retrieve influence levels from database.\r\n", __func__);
+      return;
     }
+    
+    dorkia = Sql_GetIntData(SqlHandle, 0);
+    bastok = Sql_GetIntData(SqlHandle, 1);
+    windurst = Sql_GetIntData(SqlHandle, 2);
+    beastmen = Sql_GetIntData(SqlHandle, 3);
+    
+    total = dorkia + bastok + windurst + beastmen;
 
-	/************************************************************************
-    *    LoseInfluencePoints                                                *
-    *    -x point for nation							                    *
-    *    +x point for beastmen                                              *
-    ************************************************************************/
+    /* percentage of total influence points each nation occupies */    
+    dorkia_percent = (double) ((double) dorkia / (double) total);
+    bastok_percent = (double) ((double) bastok / (double) total);
+    windurst_percent = (double) ((double) windurst / (double) total);
+    beastmen_percent = (double) ((double) beastmen / (double) total);
+    
+    dorkia_mod = bastok_mod = windurst_mod = beastmen_mod = 0;
+    
+    switch (ch->profile.nation) {
+      case (SANDORIA):
+        dorkia_mod = gain;
+        
+        bastok_mod = (double) (((double) gain * bastok_percent) * -1);
+        windurst_mod = (double) (((double) gain * windurst_percent) * -1);
+        beastmen_mod = (double) (((double) gain * beastmen_percent) * -1);
+        
+        break;
+      case (BASTOK):
+        bastok_mod = gain;
+        
+        dorkia_mod = (double) (((double) gain * dorkia_percent) * -1);
+        windurst_mod = (double) (((double) gain * windurst_percent) * -1);
+        beastmen_mod = (double) (((double) gain * beastmen_percent) * -1);
+        
+        break;
+      case (WINDURST):
+        windurst_mod = gain;
+        
+        dorkia_mod = (double) (((double) gain * dorkia_percent) * -1);
+        bastok_mod = (double) (((double) gain * bastok_percent) * -1);
+        beastmen_mod = (double) (((double) gain * beastmen_percent) * -1);
+        
+        break;
+      default:
+        dorkia_mod = bastok_mod = windurst_mod = beastmen_mod = 0;
+        break;
+    }
+    
+    if (died) {
+      beastmen_mod = gain;
 
-	void LoseInfluencePoints(CCharEntity* PChar)
-	{
-		REGIONTYPE region = PChar->loc.zone->GetRegionID();
-		uint16 point = 0;
+      dorkia_mod = (double) (((double) gain * dorkia_percent) * -1);
+      bastok_mod = (double) (((double) gain * bastok_percent) * -1);
+      windurst_mod = (double) (((double) gain * windurst_percent) * -1);      
+    }
+    
+    dorkia += (int) dorkia_mod;
+    bastok += (int) bastok_mod;
+    windurst += (int) windurst_mod;
+    beastmen += (int) beastmen_mod;
+    
+    /* clamp values between 0 and MAX
+     * 
+     * note:
+     *   they are NOT clamped to 5000 here.  5000 is just an arbitrary number
+     *   for the client.  for the server side, we simply store absolute values
+     *   for influence, and then inside the packet we send you use the
+     *   scale_influence_levels() function which scales everything correctly to
+     *   0-5000. right here we're just making sure it doesn't drop below 0, or
+     *   exceed some arbitrary max number that theoretically shouldn't be
+     *   reached before a conquest update.  right now its set to 2 billion.
+     */
+    dorkia = BETWEEN(dorkia, 0, MAX_INFLUENCE_POINTS);
+    bastok = BETWEEN(bastok, 0, MAX_INFLUENCE_POINTS);
+    windurst = BETWEEN(windurst, 0, MAX_INFLUENCE_POINTS);
+    beastmen = BETWEEN(beastmen, 0, MAX_INFLUENCE_POINTS);
+    
+    if (Sql_Query(SqlHandle, set_q, dorkia, bastok, windurst, beastmen, region) == SQL_ERROR) {
+      ShowError("%s: Unable to update database with new influence levels.\r\n", __func__);
+      return;
+    }
+  }
 
-		switch (region)
-		{
-			case REGION_RONFAURE:
-			case REGION_GUSTABERG:
-			case REGION_SARUTABARUTA:
-			{
-				point = 10;
-                break;
-			}
-			case REGION_ZULKHEIM:
-			case REGION_KOLSHUSHU:
-			case REGION_NORVALLEN:
-			case REGION_DERFLAND:
-			case REGION_ARAGONEU:
-			{
-				point = 50;
-                break;
-			}
-			case REGION_QUFIMISLAND:
-			case REGION_LITELOR:
-			case REGION_KUZOTZ:
-			case REGION_ELSHIMOLOWLANDS:
-			{
-				point = 75;
-                break;
-			}
-			case REGION_VOLLBOW:
-			case REGION_VALDEAUNIA:
-			case REGION_FAUREGANDI:
-			case REGION_ELSHIMOUPLANDS:
-			{
-				point = 300;
-                break;
-			}
-			case REGION_TULIA:
-			case REGION_MOVALPOLOS:
-			case REGION_TAVNAZIA:
-			{
-				point = 600;
-                break;
-			}
-		}
-        std::string Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence FROM conquest_system WHERE region_id = %d;";
+  void LoseInfluencePoints(CCharEntity* PChar) {
+    REGIONTYPE region = PChar->loc.zone->GetRegionID();
+    uint16 lose = 0;
 
-        int ret = Sql_Query(SqlHandle, Query.c_str(), region);
-
-        if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-            int san_inf = Sql_GetIntData(SqlHandle, 0);
-            int bas_inf = Sql_GetIntData(SqlHandle, 1);
-            int win_inf = Sql_GetIntData(SqlHandle, 2);
-            int bst_inf = Sql_GetIntData(SqlHandle, 3);
-            int total = dsp_max(5000 - bst_inf, 0);
-            double san_rat = (float)san_inf / total;
-            double bas_rat = (float)bas_inf / total;
-            double win_rat = (float)win_inf / total;
-            bst_inf += point;
-            san_inf = dsp_max(total - point, 0) * san_rat;
-            bas_inf = dsp_max(total - point, 0) * bas_rat;
-            win_inf = dsp_max(total - point, 0) * win_rat;
-
-            Sql_Query(SqlHandle, "UPDATE conquest_system SET sandoria_influence = %d, bastok_influence = %d, "
-                "windurst_influence = %d, beastmen_influence = %d WHERE region_id = %d;", san_inf, bas_inf, win_inf, bst_inf, region);
-        }
-	}
-
-	/************************************************************************
-    *                                                                       *
-    *	GetInfluenceGraphics		                                        *
-    *												                        *
-    ************************************************************************/
-
+    switch (region) {
+      case REGION_RONFAURE:
+      case REGION_GUSTABERG:
+      case REGION_SARUTABARUTA:
+        lose = 10;
+        break;
+      case REGION_ZULKHEIM:
+      case REGION_KOLSHUSHU:
+      case REGION_NORVALLEN:
+      case REGION_DERFLAND:
+      case REGION_ARAGONEU:
+        lose = 50;
+        break;
+      case REGION_QUFIMISLAND:
+      case REGION_LITELOR:
+      case REGION_KUZOTZ:
+      case REGION_ELSHIMOLOWLANDS:
+        lose = 75;
+        break;
+      case REGION_VOLLBOW:
+      case REGION_VALDEAUNIA:
+      case REGION_FAUREGANDI:
+      case REGION_ELSHIMOUPLANDS:
+        lose = 300;
+        break;
+      case REGION_TULIA:
+      case REGION_MOVALPOLOS:
+      case REGION_TAVNAZIA:
+        lose = 600;
+        break;
+      default:
+        lose = 100;
+    }
+    
+    influence(PChar, lose, true);
+  }
+  
+  
     uint8 GetInfluenceGraphics(int32 san_inf, int32 bas_inf, int32 win_inf, int32 bst_inf)
 	{
         //if all nations and beastmen == 0
@@ -612,7 +609,7 @@ namespace conquest
             uint32 points = exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15);
 
             charutils::AddPoints(PChar, charutils::GetConquestPointsName(PChar).c_str(), points);
-            GainInfluencePoints(PChar, points/2);
+            influence(PChar, (points / 2), false);
         }
         return 0; // added conquest points (пока не вижу в этом определенного смысла)
     }

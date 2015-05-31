@@ -41,6 +41,7 @@ class CConquestPacket : public CBasicPacket
 public:
 
 	CConquestPacket(CCharEntity* PChar);
+        void scale_influence_levels(int *dorkia, int *bastok, int *windurst, int *beastmen);
 };
 
 #endif

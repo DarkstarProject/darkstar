@@ -77,6 +77,9 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
             int32 bas_inf = Sql_GetIntData(SqlHandle, 4);
             int32 win_inf = Sql_GetIntData(SqlHandle, 5);
             int32 bst_inf = Sql_GetIntData(SqlHandle, 6);
+            
+            scale_influence_levels(&san_inf, &bas_inf, &win_inf, &bst_inf);
+            
             WBUFB(data,0x1A+(regionid*4)) = conquest::GetInfluenceRanking(san_inf, bas_inf, win_inf, bst_inf);
             WBUFB(data,0x1B+(regionid*4)) = conquest::GetInfluenceRanking(san_inf, bas_inf, win_inf);
             WBUFB(data,0x1C+(regionid*4)) = conquest::GetInfluenceGraphics(san_inf, bas_inf, win_inf, bst_inf);
@@ -131,4 +134,18 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
 	WBUFB(data,(0xAF)) = 0;
 
 	WBUFL(data,(0xB0)) = charutils::GetPoints(PChar, "imperial_standing");
+}
+
+
+void CConquestPacket::scale_influence_levels(int *dorkia, int *bastok, int *windurst, int *beastmen) {
+  long double total = (long double) (((long double) *dorkia) + ((long double) *bastok) + ((long double) *windurst) + ((long double) *beastmen));
+  long double dorkia_scaled = (long double) ((long double) *dorkia * 5000) / total;
+  long double bastok_scaled = (long double) ((long double) *bastok * 5000) / total;
+  long double windurst_scaled = (long double) ((long double) *windurst * 5000) / total;
+  long double beastmen_scaled = (long double) ((long double) *beastmen * 5000) / total;
+
+  *dorkia = (int) dorkia_scaled;
+  *bastok = (int) bastok_scaled;
+  *windurst = (int) windurst_scaled;
+  *beastmen = (int) beastmen_scaled;
 }
