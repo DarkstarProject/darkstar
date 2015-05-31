@@ -4379,24 +4379,34 @@ inline int32 CLuaBaseEntity::addStatusEffect(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,3) || !lua_isnumber(L,3));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,4) || !lua_isnumber(L,4));
+    if (lua_isuserdata(L, 1))
+    {
+        CLuaStatusEffect* PStatusEffect = Lunar<CLuaStatusEffect>::check(L, 1);
 
-    int32 n = lua_gettop(L);
+        lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(
+            new CStatusEffect(*PStatusEffect->GetStatusEffect())));
+    }
+    else
+    {
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
 
-    CStatusEffect * PEffect = new CStatusEffect(
-        (EFFECT)lua_tointeger(L,1),
-        (uint16)lua_tointeger(L,1),
-        (uint16)lua_tointeger(L,2),
-        (uint16)lua_tointeger(L,3),
-        (uint16)lua_tointeger(L,4),
-        (n >= 5 ? (uint16)lua_tointeger(L,5) : 0),
-        (n >= 6 ? (uint16)lua_tointeger(L,6) : 0),
-        (n >= 7 ? (uint16)lua_tointeger(L,7) : 0));
+        int32 n = lua_gettop(L);
 
-    lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect));
+        CStatusEffect * PEffect = new CStatusEffect(
+            (EFFECT)lua_tointeger(L, 1),
+            (uint16)lua_tointeger(L, 1),
+            (uint16)lua_tointeger(L, 2),
+            (uint16)lua_tointeger(L, 3),
+            (uint16)lua_tointeger(L, 4),
+            (n >= 5 ? (uint16)lua_tointeger(L, 5) : 0),
+            (n >= 6 ? (uint16)lua_tointeger(L, 6) : 0),
+            (n >= 7 ? (uint16)lua_tointeger(L, 7) : 0));
+
+        lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect));
+    }
 
     return 1;
 }
