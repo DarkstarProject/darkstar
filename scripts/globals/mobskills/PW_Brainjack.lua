@@ -1,6 +1,5 @@
 ---------------------------------------------------
--- Brain Crush
--- Deals damage to single target. Additional effect: Silence
+-- BrainJack
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -28,7 +27,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
     target:delHP(dmg);
 
-    local typeEffect = EFFECT_SILENCE;
+    local typeEffect = EFFECT_CHARM;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 60);
 

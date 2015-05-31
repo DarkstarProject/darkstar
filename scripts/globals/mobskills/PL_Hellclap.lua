@@ -1,6 +1,5 @@
 ---------------------------------------------------
--- Whirl of Rage
--- Delivers an area attack that stuns enemies. Damage varies with TP.
+-- Hellclap
 ---------------------------------------------------
 
 require("/scripts/globals/settings");

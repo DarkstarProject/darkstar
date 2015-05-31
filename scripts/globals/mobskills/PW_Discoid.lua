@@ -1,10 +1,5 @@
 ---------------------------------------------
---  1000 Needles
---
---  Description: Shoots multiple needles at enemies within range.
---  Type: Magical (Light)
---
---
+--  Discoid
 ---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");

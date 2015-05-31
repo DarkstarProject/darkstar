@@ -1,6 +1,5 @@
 ---------------------------------------------------
--- Whirl of Rage
--- Delivers an area attack that stuns enemies. Damage varies with TP.
+-- Hellsnap
 ---------------------------------------------------
 
 require("/scripts/globals/settings");

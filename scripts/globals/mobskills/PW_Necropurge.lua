@@ -1,11 +1,5 @@
 ---------------------------------------------
---  Stifling Tantra
---
---  Description: Spins around dealing damage to targets in an area of effect.
---  Type: Physical
---  Utsusemi/Blink absorb: 2-4 shadows
---  Range: 10' radial
---  Notes:
+--  Necropurge
 ---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");

@@ -1,8 +1,5 @@
 ---------------------------------------------
---  Firespit
---
---  Description: Deals fire damage to an enemy.
---  Type: Magical (Fire)
+--  Hellstorm
 ---------------------------------------------
 
 require("/scripts/globals/settings");

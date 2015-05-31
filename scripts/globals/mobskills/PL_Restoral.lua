@@ -1,8 +1,6 @@
 ---------------------------------------------------
---  Catharsis
---
+--  Restoral
 --  Description: Restores HP.
---
 ---------------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
