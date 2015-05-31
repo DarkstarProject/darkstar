@@ -90,6 +90,9 @@ namespace effects
         EFFECT   RemoveId;
         // status effect element, used in resistances
         uint8    Element;
+
+        // minimum duration. IE: stun cannot last less than 1 second
+        uint32    MinDuration;
     };
 
     EffectParams_t EffectsParams[MAX_EFFECTID];
@@ -107,7 +110,7 @@ namespace effects
             EffectsParams[i].Flag = 0;
         }
 
-        int32 ret = Sql_Query(SqlHandle, "SELECT id, name, flags, type, negative_id, overwrite, block_id, remove_id, element FROM status_effects WHERE id < %u", MAX_EFFECTID);
+        int32 ret = Sql_Query(SqlHandle, "SELECT id, name, flags, type, negative_id, overwrite, block_id, remove_id, element, min_duration FROM status_effects WHERE id < %u", MAX_EFFECTID);
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
@@ -124,6 +127,8 @@ namespace effects
                 EffectsParams[EffectID].RemoveId = (EFFECT)Sql_GetIntData(SqlHandle,7);
 
                 EffectsParams[EffectID].Element = Sql_GetIntData(SqlHandle,8);
+                // convert from second to millisecond
+                EffectsParams[EffectID].MinDuration = Sql_GetIntData(SqlHandle,9) * 1000;
             }
         }
     }
@@ -332,6 +337,12 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 
 	if(CanGainStatusEffect((EFFECT)statusId, PStatusEffect->GetPower()))
 	{
+
+            // check for minimum duration
+            if(PStatusEffect->GetDuration() < effects::EffectsParams[statusId].MinDuration){
+                PStatusEffect->SetDuration(effects::EffectsParams[statusId].MinDuration);
+            }
+
         // remove clean up other effects
         OverwriteStatusEffect(PStatusEffect);
 
