@@ -6,8 +6,6 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/utils");
-require("scripts/globals/spoofchat");
-
 -----------------------------------
 -- onMobInitialize Action
 -----------------------------------
@@ -185,12 +183,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-    local CHANCE = 20;
-    if (math.random(0,99) < CHANCE and killer:getMainJob() == JOB_BLU and killer:hasSpell(742) == false) then
-        killer:addSpell(SPELL_ID);
-    end
-
-    -- mob:SpoofChatParty("This is the end..of nothing..Defeating me proves only that you too, harbor", MESSAGE_SAY)
-    -- mob:SpoofChatParty("seeds of evil within your trembling flesh..Someday..they shall come..into fruition..", MESSAGE_SAY)
-    -- killer:addTitle(PANDEMONIUM_QUELLER); -- Not adding until after testing is done
+    killer:addTitle(PANDEMONIUM_QUELLER);
 end;
