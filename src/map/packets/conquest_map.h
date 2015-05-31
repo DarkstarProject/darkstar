@@ -19,7 +19,7 @@
   This file is part of DarkStar-server source code.
 
 ===========================================================================
-*/
+ */
 
 #ifndef _CCONQUESTPACKET_H
 #define _CCONQUESTPACKET_H
@@ -28,19 +28,13 @@
 
 #include "basic.h"
 
-/************************************************************************
-*																		*
-*  																		*
-*																		*
-************************************************************************/
 
 class CCharEntity;
 
-class CConquestPacket : public CBasicPacket
-{
+class CConquestPacket : public CBasicPacket {
 public:
-
-	CConquestPacket(CCharEntity* PChar);
+  CConquestPacket(CCharEntity* PChar);
+  void scale_influence_levels(int *dorkia, int *bastok, int *windurst, int *beastmen);
 };
 
 #endif
