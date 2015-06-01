@@ -3,7 +3,7 @@
 -- MOB:  Sabotender Enamorado
 -----------------------------------	
 	
-require("/scripts/globals/missions");	
+require("scripts/globals/missions");	
 	
 -----------------------------------	
 -- onMobDeath	

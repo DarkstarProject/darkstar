@@ -3,7 +3,7 @@
 -- MOB:  Hoar-knuckled Rimberry	
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");	
 	
 -----------------------------------	
 -- onMobDeath	

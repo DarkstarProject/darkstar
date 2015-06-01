@@ -3,7 +3,7 @@
 -- MOB:  Goblin Digger	
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");	
 require("scripts/globals/pathfind");
 	
 -----------------------------------	

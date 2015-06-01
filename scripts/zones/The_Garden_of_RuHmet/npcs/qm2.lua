@@ -8,7 +8,7 @@ package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
-require("/scripts/zones/The_Garden_of_RuHmet/MobIDs");
+require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 
 -----------------------------------
 -- onTrade Action

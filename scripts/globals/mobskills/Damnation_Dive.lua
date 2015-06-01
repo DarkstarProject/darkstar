@@ -8,9 +8,9 @@
 --  Notes: Used instead of Gliding Spike by certain notorious monsters.
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 ---------------------------------------------------

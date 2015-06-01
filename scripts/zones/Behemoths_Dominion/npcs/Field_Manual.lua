@@ -3,8 +3,8 @@
 -- Area: Behemoth's Dominion
 -----------------------------------	
 	
-require("/scripts/globals/settings");	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/globals/settings");	
+require("scripts/globals/fieldsofvalor");	
 	
 -----------------------------------	
 -- onTrigger Action	

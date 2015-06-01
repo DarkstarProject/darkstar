@@ -4,8 +4,8 @@
 -- Note: PH for Nunyenunc
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
-require("/scripts/zones/West_Sarutabaruta/MobIDs");
+require("scripts/globals/fieldsofvalor");	
+require("scripts/zones/West_Sarutabaruta/MobIDs");
 
 -----------------------------------	
 -- onMobDeath	
