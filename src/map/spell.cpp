@@ -583,16 +583,6 @@ namespace spell
                 return true;
             }
 
-            if (PCaster->objtype == TYPE_PC)
-            {
-                int8* expansionCode = spell->getExpansionCode();
-            
-                if (luautils::IsExpansionEnabled(expansionCode) == false)
-                {
-                    return usable;
-                }
-            }
-
             if(PCaster->GetMLevel() >= JobMLVL)
             {
                 usable = true;
