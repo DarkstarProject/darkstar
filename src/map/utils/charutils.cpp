@@ -2738,7 +2738,7 @@ namespace charutils
             {
                 if (luautils::IsExpansionEnabled(spell::GetSpell(i)->getExpansionCode()) == false)
                 {
-					delBit(i, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
+                    delBit(i, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
                 }
             }
         }      
