@@ -2,7 +2,7 @@ language: cpp
 
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -qq luajit-5.1-dev
+  - sudo apt-get install -qq luajit-5.1-dev libzmq3-dev libmysqlclient-dev
 
 before_script:
   - sh autogen.sh
