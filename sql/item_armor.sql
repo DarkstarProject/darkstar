@@ -10012,7 +10012,7 @@ INSERT INTO `item_armor` VALUES (26936,'arbatel_gown',99,0,524288,306,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26943,'agony_jerkin_+1',99,0,2473969,94,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26944,'tartarus_platemail',99,119,10689,384,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26945,'counts_garb',99,119,3840780,345,0,0,32,0);
-INSERT INTO `item_armor` VALUES (26970,'befouled_crown',99,0,119,1589404,322,0,0,16,0);
+INSERT INTO `item_armor` VALUES (26970,'befouled_crown',99,119,1589404,322,0,0,16,0);
 INSERT INTO `item_armor` VALUES (26976,'agoge_mufflers',99,109,1,65,0,0,64,0);
 INSERT INTO `item_armor` VALUES (26978,'hesychasts_gloves',99,109,2,67,0,0,64,0);
 INSERT INTO `item_armor` VALUES (26980,'piety_mitts',99,109,4,69,0,0,64,0);

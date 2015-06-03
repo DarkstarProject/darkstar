@@ -3654,7 +3654,7 @@ INSERT INTO `item_weapon` VALUES (20824,'faizzeer_+1',5,0,162,162,126,2,1,288,11
 INSERT INTO `item_weapon` VALUES (20825,'forefront_axe',5,0,67,67,52,2,1,288,83,0);
 INSERT INTO `item_weapon` VALUES (20826,'hunahpu',5,0,188,188,146,2,1,288,140,0);
 INSERT INTO `item_weapon` VALUES (20827,'kerehcatl',5,0,242,242,188,2,1,288,156,0);
-INSERT INTO `item_weapon` VALUES (20793,'brethren_axe',5,0,162,162,126,0,1,288,132,0);
+INSERT INTO `item_weapon` VALUES (20828,'brethren_axe',5,0,162,162,126,0,1,288,132,0);
 INSERT INTO `item_weapon` VALUES (20829,'icoyoca',5,0,67,67,52,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (20830,'coalition_axe',5,0,0,0,0,1,1,276,73,0);
 INSERT INTO `item_weapon` VALUES (20831,'aalak_axe',0,0,0,0,0,0,1,0,0,0);
@@ -3782,7 +3782,7 @@ INSERT INTO `item_weapon` VALUES (21169,'keraunos',12,0,242,242,228,3,1,435,228,
 INSERT INTO `item_weapon` VALUES (21173,'kaladanda',12,0,242,242,228,1,1,366,204,0);
 INSERT INTO `item_weapon` VALUES (21176,'ngqoqwanb',12,0,242,242,228,3,1,402,217,0);
 INSERT INTO `item_weapon` VALUES (21181,'venabulum',12,0,242,242,228,3,1,366,198,0);
-INSERT INTO `item_weapon` VALUES (21191,'voay_staff_-1',12,0,,0,0,0,1,412,143,0);
+INSERT INTO `item_weapon` VALUES (21191,'voay_staff_-1',12,0,0,0,0,0,1,412,143,0);
 INSERT INTO `item_weapon` VALUES (21192,'voay_staff',12,0,0,0,0,0,1,412,154,0);
 INSERT INTO `item_weapon` VALUES (21193,'voay_staff_+1',12,0,0,0,0,0,1,402,160,0);
 INSERT INTO `item_weapon` VALUES (21194,'lehbrailg_+1',12,0,162,162,153,3,1,366,166,0);
