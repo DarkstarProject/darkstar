@@ -10,6 +10,7 @@ require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
+require("scripts/globals/teleports");
 require("scripts/zones/Spire_of_Mea/TextIDs");
 
 -----------------------------------
