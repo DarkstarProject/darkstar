@@ -2734,7 +2734,7 @@ namespace charutils
             {
                 delBit(i, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
             }
-        }      
+        }
     }
 
     /************************************************************************
