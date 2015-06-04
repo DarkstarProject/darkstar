@@ -3,6 +3,7 @@ language: cpp
 before_install:
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo rm /etc/apt/sources.list.d/travis_ci_zeromq3-source.list
+  - sudo sh -c 'sed s/precise/trusty/g /etc/apt/sources.list > /etc/apt/sources.list.d/trusty.list'
   - sudo apt-get update -qq
 
 install:
