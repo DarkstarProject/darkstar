@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
       player:tradeComplete();
       player:addKeyItem(MOONLIGHT_ORE);
       player:messageSpecial(KEYITEM_OBTAINED,MOONLIGHT_ORE);
-	elseif (csid == 4 and player:getCurrentMission(WINDURST) == VAIN) then
+	elseif (csid == 2 and player:getCurrentMission(WINDURST) == VAIN) then
 	  player:setVar("MissionStatus",2);
     end
 end;
