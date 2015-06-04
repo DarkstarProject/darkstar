@@ -7,3 +7,9 @@ before_install:
 
 before_script:
   - sh autogen.sh
+  - mysql -e 'create database myapp_test;'
+
+script:
+  - ./configure
+  - make
+  - sh travis_sql.sh
