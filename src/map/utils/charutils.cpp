@@ -2751,9 +2751,12 @@ namespace charutils
         return delBit(SpellID, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
     }
 
-    void filterEnabledSpells(CCharEntity* PChar){
-        for (int i = 0; i < MAX_SPELL_ID; i++){
-            if (spell::GetSpell(i) == nullptr){
+    void filterEnabledSpells(CCharEntity* PChar)
+    {
+        for (int i = 0; i < MAX_SPELL_ID; i++)
+        {
+            if (spell::GetSpell(i) == nullptr || luautils::IsExpansionEnabled(spell::GetSpell(i)->getExpansionCode()) == false)
+            {
                 delBit(i, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
             }
         }
