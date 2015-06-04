@@ -2730,16 +2730,9 @@ namespace charutils
     {
         for (int i = 0; i < MAX_SPELL_ID; i++)
         {
-            if (spell::GetSpell(i) == nullptr)
+            if (spell::GetSpell(i) == nullptr || luautils::IsExpansionEnabled(spell::GetSpell(i)->getExpansionCode()) == false)
             {
                 delBit(i, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
-            }
-            else
-            {
-                if (luautils::IsExpansionEnabled(spell::GetSpell(i)->getExpansionCode()) == false)
-                {
-                    delBit(i, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
-                }
             }
         }      
     }
