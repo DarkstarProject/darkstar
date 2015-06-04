@@ -19713,8 +19713,8 @@ INSERT INTO `item_mods` VALUES (18311, 356, 137);
 INSERT INTO `item_mods` VALUES (18312, 23, 20);
 INSERT INTO `item_mods` VALUES (18312, 355, 137);
 INSERT INTO `item_mods` VALUES (18312, 431, 1); -- Add. Effect
-INSERT INTO `item_mods` VALUES (18312, 507, 160); -- 16% chance of extra dmg.
-INSERT INTO `item_mods` VALUES (18312, 506, 300); -- Occ. 3x dmg
+INSERT INTO `item_mods` VALUES (18312, 506, 160); -- 16% chance of extra dmg.
+INSERT INTO `item_mods` VALUES (18312, 507, 300); -- Occ. 3x dmg
 
 INSERT INTO `item_mods` VALUES (18317, 356, 153);
 
