@@ -3,12 +3,13 @@
 -- Used only by Orcs in Wings of the Goddess Areas.
 -- Certain NMs may have a higher power version of the effect.
 ---------------------------------------------
+require("scripts/globals/zone");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:getContinentID() == 3) then -- THE_SHADOWREIGN_ERA = 3
+    if (mob:getContinentID() == THE_SHADOWREIGN_ERA) then
         return 0;
     else
         return 1;
