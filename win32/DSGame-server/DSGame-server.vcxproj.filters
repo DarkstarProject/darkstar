@@ -830,6 +830,9 @@
     <ClInclude Include="..\..\src\common\marshal\string.h">
       <Filter>Header Files\common\marshal</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\lua\lua_latent_effect.h">
+      <Filter>Header Files\lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1524,6 +1527,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\guild.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\lua\lua_latent_effect.cpp">
+      <Filter>Source Files\lua</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -46,6 +46,7 @@ class CAutomatonEntity;
 class CCharEntity;
 class CBattlefield;
 class CItem;
+class CLatentEffect;
 class CMobSkill;
 class CRegion;
 class CStatusEffect;
@@ -203,6 +204,9 @@ namespace luautils
     int32 OnPlayerLevelDown(CCharEntity* PChar);
 
     int32 OnChocoboDig(CCharEntity* PChar, bool pre);                           // chocobo digging, pre = check
+
+    int32 ActivateLatent(CCharEntity* PChar, CLatentEffect* PLatentEffect);
+    int32 DeactivateLatent(CCharEntity* PChar, CLatentEffect* PLatentEffect);
 };
 
 #endif //- _LUAUTILS_H -

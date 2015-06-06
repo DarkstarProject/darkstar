@@ -24,6 +24,7 @@
 #include "entities/battleentity.h"
 
 #include "latent_effect.h"
+#include "lua/luautils.h"
 #include "entities/charentity.h"
 
 CLatentEffect::CLatentEffect(LATENT conditionsId, uint16 conditionsValue, uint8 slot, uint16 modValue, int16 modPower)
@@ -104,19 +105,7 @@ void CLatentEffect::Activate()
 {
     if( !IsActivated() )
     {
-        //additional effect/dmg latents add mod to weapon, not player
-        if (GetModValue() == MOD_ADDITIONAL_EFFECT || GetModValue() == MOD_DMG)
-        {
-            CCharEntity* PChar = (CCharEntity*)m_POwner;
-            CItemWeapon* weapon = (CItemWeapon*)PChar->getEquip((SLOTTYPE)GetSlot());
-
-            weapon->addModifier(new CModifier(GetModValue(), GetModPower()));
-        }
-        else
-        {
-            m_POwner->addModifier(m_ModValue, m_ModPower);
-        }
-
+        luautils::ActivateLatent((CCharEntity*)m_POwner, this);
         m_Activated = true;
         //printf("LATENT ACTIVATED: %d, Current value: %d\n", m_ModValue, m_POwner->getMod(m_ModValue));
     }
@@ -126,39 +115,7 @@ void CLatentEffect::Deactivate()
 {
     if( IsActivated() )
     {
-        //remove the modifier from weapon, not player
-        if (GetModValue() == MOD_ADDITIONAL_EFFECT || GetModValue() == MOD_DMG)
-        {
-            CCharEntity* PChar = (CCharEntity*)m_POwner;
-			CItemWeapon* weapon = (CItemWeapon*)PChar->getEquip((SLOTTYPE)GetSlot());
-
-            int16 modPower = GetModPower();
-
-            if (weapon != nullptr && (weapon->isType(ITEM_ARMOR) || weapon->isType(ITEM_WEAPON)))
-            {
-                if (GetModValue() == MOD_ADDITIONAL_EFFECT)
-                {
-                    for (uint8 i = 0; i < weapon->modList.size(); ++i)
-                    {
-                        //ensure the additional effect is fully removed from the weapon
-                        if (weapon->modList.at(i)->getModID() == MOD_ADDITIONAL_EFFECT)
-                        {
-                            weapon->modList.at(i)->setModAmount(0);
-                        }
-                    }
-                }
-                else
-                {
-                    weapon->addModifier(new CModifier(GetModValue(), -modPower));
-                }
-            }
-
-        }
-        else
-        {
-            m_POwner->delModifier(m_ModValue, m_ModPower);
-        }
-
+        luautils::DeactivateLatent((CCharEntity*)m_POwner, this);
         m_Activated = false;
         //printf("LATENT DEACTIVATED: %d\n", m_ModValue);
     }
