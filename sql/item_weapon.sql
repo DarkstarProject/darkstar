@@ -2783,9 +2783,9 @@ INSERT INTO `item_weapon` VALUES (19189,'virtus_crossbow',26,0,0,0,0,1,1,436,60,
 INSERT INTO `item_weapon` VALUES (19190,'fluid_crossbow',26,0,0,0,0,1,1,188,20,0);
 INSERT INTO `item_weapon` VALUES (19191,'exequy_gun',26,1,0,0,0,1,1,582,52,0);
 INSERT INTO `item_weapon` VALUES (19192,'awildas_gun',26,1,0,0,0,1,1,210,5,0);
-INSERT INTO `item_weapon` VALUES (19193,'aeolus_arrow',19,0,0,0,0,1,1,90,46,0);
+INSERT INTO `item_weapon` VALUES (19193,'aeolus_arrow',25,0,0,0,0,1,1,90,46,0);
 INSERT INTO `item_weapon` VALUES (19194,'vertex_bolt',26,0,0,0,0,5,1,144,68,0);
-INSERT INTO `item_weapon` VALUES (19195,'antlion_arrow',19,0,0,0,0,0,1,90,41,0);
+INSERT INTO `item_weapon` VALUES (19195,'antlion_arrow',25,0,0,0,0,0,1,90,41,0);
 INSERT INTO `item_weapon` VALUES (19196,'darkling_bolt',26,0,0,0,0,4,1,192,47,0);
 INSERT INTO `item_weapon` VALUES (19197,'fusion_bolt',26,0,0,0,0,4,1,192,57,0);
 INSERT INTO `item_weapon` VALUES (19198,'dweomer_bullet',26,1,0,0,0,4,1,240,90,0);
