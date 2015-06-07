@@ -30,10 +30,10 @@ function onZoneIn(player,prevZone)
 		cs = 0x002a;
 	elseif(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST and player:getVar("MissionStatus") == 2) then
 		cs = 0x002a;
+	elseif(player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and player:getVar("MissionStatus") == 1) then
+		cs = 0x014f;
 	end
-	
 	return cs;
-
 end;
 
 -----------------------------------		
@@ -94,6 +94,8 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	if(csid == 0x29) then
 		player:setPos(0,-17,135,60,239);
+	elseif(csid == 0x014f) then
+	player:setVar("MissionStatus",2);
 	elseif(csid == 0x002a) then
 		if(player:getNation() == SANDORIA) then
 			player:setVar("MissionStatus",4);

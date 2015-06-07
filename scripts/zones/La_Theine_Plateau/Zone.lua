@@ -80,6 +80,8 @@ function onZoneIn( player, prevZone)
         cs = 0x007b;
     elseif ( prevZone == 193 and player:getVar( "darkPuppetCS") == 5 and player:getFreeSlotsCount() >= 1) then
         cs = 0x007a;
+    elseif(player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1)then	
+        cs = 0x007d;
     end
 
     return cs;
@@ -113,6 +115,8 @@ function onEventUpdate( player, csid, option)
     -- printf("RESULT: %u",option);
     if (csid == 0x007b) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
+    elseif (csid == 0x007d) then
+        player:updateEvent(0,0,0,0,0,2);
     end
 end;
 
