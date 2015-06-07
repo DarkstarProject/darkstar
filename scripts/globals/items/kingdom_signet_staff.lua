@@ -20,5 +20,5 @@ end;
 
 function onItemUse(target)
     target:delStatusEffect(EFFECT_SIGNET);
-    target:addStatusEffect(EFFECT_SIGNET,0,0,3600);
+    target:addStatusEffect(EFFECT_SIGNET,0,0,18000);
 end;
