@@ -28,11 +28,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	-- Windurst 8-2
-	if(player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 1) then
-		player:startEvent(0x0016);
 	-- Curses, Foiled A_Golem!?
-	elseif(player:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
+	if(player:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
 		player:startEvent(0x000E); -- deliver spell
 	elseif(player:hasKeyItem(SHANTOTTOS_EXSPELL)) then
 		player:startEvent(0x000D); -- spell erased, try again!
@@ -64,12 +61,6 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x000E) then
 		player:setVar("foiledagolemdeliverycomplete",1);
 		player:delKeyItem(SHANTOTTOS_NEW_SPELL); -- remove key item
-	elseif(csid == 0x0016) then
-		player:addKeyItem(RHINOSTERY_RING);
-		player:messageSpecial(KEYITEM_OBTAINED,RHINOSTERY_RING);
-		if(player:hasKeyItem(AURASTERY_RING) and player:hasKeyItem(OPTISTERY_RING)) then
-			player:setVar("MissionStatus",2)
-		end
 	end
 end;
 
