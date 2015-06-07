@@ -35,6 +35,10 @@ function onSpellCast(caster,target,spell)
 	local duration = 60;
 
 	duration = duration + caster:getMod(MOD_REGEN_DURATION);
+	
+	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+		duration = duration * 3;
+	end
 
 	duration = calculateDurationForLvl(duration, 44, target:getMainLvl());
 
