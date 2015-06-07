@@ -692,7 +692,6 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
         WBUFL(PTempBuff, (PacketSize + 7) / 8) = PacketSize;
 
         PacketSize = (PacketSize + 7) / 8 + 4;
-        ShowDebug("Packet Size: %u\n", PacketSize);
 
         PacketCount /= 2;
     }
