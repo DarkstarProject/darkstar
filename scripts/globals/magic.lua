@@ -579,7 +579,7 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
 			effectres = MOD_POISONRES;
 		elseif(effect == EFFECT_PARALYZE) then
 			effectres = MOD_PARALYZERES;
-		elseif(effect == EFFECT_BLIND) then
+		elseif(effect == EFFECT_BLINDNESS) then
 			effectres = MOD_BLINDRES
 		elseif(effect == EFFECT_SILENCE) then
 			effectres = MOD_SILENCERES;
