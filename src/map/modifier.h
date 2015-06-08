@@ -561,11 +561,13 @@ enum MODIFIER
 
     MOD_EGGHELM                   = 0x205,
 
+    MOD_SHIELDBLOCKRATE           = 0x206, // Affects shield block rate, percent based (modID = 518)
+
     // MOD_SPARE = 0x138, // (modId = 312)
     // MOD_SPARE = 0x139, // (modId = 313)
     // MOD_SPARE = 0x13A, // (modId = 314)
     // MOD_SPARE = 0x13B, // (modId = 315)
-    // MOD_SPARE = 0x206, // (modId = 518)
+    // MOD_SPARE = 0x207, // (modId = 519)
 
 };
 
