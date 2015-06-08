@@ -4480,6 +4480,17 @@ uint8 GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell)
 		    return SPELLAOE_RADIAL;
 	    else
 		    return SPELLAOE_NONE;
+    if (PSpell->isNa())
+    {
+        if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_DIVINE_SEAL)
+            && (PCaster->objtype == TYPE_PC)
+            && charutils::hasTrait((CCharEntity*)PCaster, TRAIT_DIVINE_VEIL))
+        {
+            return SPELLAOE_RADIAL;
+        }
+        else
+            return SPELLAOE_NONE;
+    }
     return PSpell->getAOE();
 }
 
