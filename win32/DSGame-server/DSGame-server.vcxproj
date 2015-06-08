@@ -235,6 +235,7 @@
     <ClInclude Include="..\..\src\map\blue_spell.h" />
     <ClInclude Include="..\..\src\map\blue_trait.h" />
     <ClInclude Include="..\..\src\map\guild.h" />
+    <ClInclude Include="..\..\src\map\lua\lua_latent_effect.h" />
     <ClInclude Include="..\..\src\map\message.h" />
     <ClInclude Include="..\..\src\map\commandhandler.h" />
     <ClInclude Include="..\..\src\map\conquest_system.h" />
@@ -471,6 +472,7 @@
     <ClCompile Include="..\..\src\map\blue_spell.cpp" />
     <ClCompile Include="..\..\src\map\blue_trait.cpp" />
     <ClCompile Include="..\..\src\map\guild.cpp" />
+    <ClCompile Include="..\..\src\map\lua\lua_latent_effect.cpp" />
     <ClCompile Include="..\..\src\map\message.cpp" />
     <ClCompile Include="..\..\src\map\commandhandler.cpp" />
     <ClCompile Include="..\..\src\map\conquest_system.cpp" />

@@ -42,6 +42,7 @@
 #include "lua_trade_container.h"
 #include "lua_zone.h"
 #include "lua_item.h"
+#include "lua_latent_effect.h"
 
 #include "../alliance.h"
 #include "../ability.h"
@@ -145,6 +146,7 @@ int32 init()
 	Lunar<CLuaTradeContainer>::Register(LuaHandle);
 	Lunar<CLuaZone>::Register(LuaHandle);
     Lunar<CLuaItem>::Register(LuaHandle);
+    Lunar<CLuaLatentEffect>::Register(LuaHandle);
 
     luaL_dostring(LuaHandle, "if not bit then bit = require('bit') end");
 
@@ -4324,5 +4326,50 @@ int32 OnChocoboDig(CCharEntity* PChar, bool pre)
     return canDig;
 }
 
+int32 ActivateLatent(CCharEntity* PChar, CLatentEffect* PLatentEffect)
+{
+    lua_prepscript("scripts/globals/items/%s.lua", PChar->getEquip((SLOTTYPE)PLatentEffect->GetSlot())->getName());
+
+    if (prepFile(File, "ActivateLatent"))
+        return 0;
+
+    CLuaBaseEntity LuaBaseEntity(PChar);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+    
+    CLuaLatentEffect LuaLatentEffect(PLatentEffect);
+    Lunar<CLuaLatentEffect>::push(LuaHandle, &LuaLatentEffect);
+
+    if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::ActivateLatent: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    return 0;
+}
+
+int32 DeactivateLatent(CCharEntity* PChar, CLatentEffect* PLatentEffect)
+{
+    lua_prepscript("scripts/globals/items/%s.lua", PChar->getEquip((SLOTTYPE)PLatentEffect->GetSlot())->getName());
+
+    if (prepFile(File, "DeactivateLatent"))
+        return 0;
+
+    CLuaBaseEntity LuaBaseEntity(PChar);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+    CLuaLatentEffect LuaLatentEffect(PLatentEffect);
+    Lunar<CLuaLatentEffect>::push(LuaHandle, &LuaLatentEffect);
+
+    if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::DeactivateLatent: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    return 0;
+}
 
 }; // namespace luautils
