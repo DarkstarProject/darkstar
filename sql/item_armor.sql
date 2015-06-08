@@ -4186,7 +4186,7 @@ INSERT INTO `item_armor` VALUES (14439,'hachiman_domaru_+1',70,0,2048,141,0,0,32
 INSERT INTO `item_armor` VALUES (14440,'chasuble',72,0,16,143,0,0,32,0);
 INSERT INTO `item_armor` VALUES (14441,'chasuble_+1',72,0,16,143,0,0,32,0);
 INSERT INTO `item_armor` VALUES (14442,'yasha_samue_+1',71,0,4096,98,0,0,32,0);
-INSERT INTO `item_armor` VALUES (14443,'vampire_cloak',70,0,128,46,0,0,32,0);
+INSERT INTO `item_armor` VALUES (14443,'vampire_cloak',70,0,128,46,0,0,32,4);
 INSERT INTO `item_armor` VALUES (14444,'alumine_haubert',45,0,6593,150,0,0,32,0);
 INSERT INTO `item_armor` VALUES (14445,'luisant_haubert',45,0,6593,150,0,0,32,0);
 INSERT INTO `item_armor` VALUES (14446,'traders_saio',20,0,4179646,149,0,0,32,0);
