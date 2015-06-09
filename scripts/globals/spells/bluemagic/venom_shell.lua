@@ -33,7 +33,7 @@ function onSpellCast(caster,target,spell)
 
     local duration = 30;
     local dINT = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
-    local resist = applyResistance(caster,spell,target,dINT,37);
+    local resist = applyResistanceEffect(caster,spell,target,dINT,BLUE_SKILL,0,EFFECT_POISON);
     if(resist > (0.0652)) then
         -- resisted!
         spell:setMsg(85);
