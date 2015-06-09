@@ -22,29 +22,28 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 ----------------------------------- 
 
 function onTrade(player,npc,trade)
-	local count = trade:getItemCount();
-	-- FLYERS FOR REGINE QUEST --
-	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(532,1) and count == 1) then -- Trade Magicmart Flyer
-			player:messageSpecial(FLYER_REFUSED);
-		end
+    local count = trade:getItemCount();
+    -- FLYERS FOR REGINE QUEST --
+    if (trade:hasItemQty(532,1) and count == 1) then -- Trade Magicmart Flyer
+        if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+            player:messageSpecial(FLYER_REFUSED);
+        end
 
-	-- SIGNED IN BLOOD QUEST --
-	elseif (player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getVar("SIGNED_IN_BLOOD_Prog") < 1) then
-		if(trade:hasItemQty(1662,1) and count ==1) then
-			player:startEvent(0x02DE,0,1662);
-			
-		end
-		
--- RIDING ON THE CLOUDS QUEST --
-	elseif(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 2) then
-		if(trade:hasItemQty(1127,1) and count == 1) then -- Trade Kindred seal
-			player:setVar("ridingOnTheClouds_1",0);
-			player:tradeComplete();
-			player:addKeyItem(SCOWLING_STONE);
-			player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
-		end
-	end
+    -- SIGNED IN BLOOD QUEST --
+    elseif (trade:hasItemQty(1662,1) and count == 1) then
+        if (player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getVar("SIGNED_IN_BLOOD_Prog") < 1) then
+            player:startEvent(0x02DE,0,1662);
+        end
+
+    -- RIDING ON THE CLOUDS QUEST --
+    elseif (trade:hasItemQty(1127,1) and count == 1) then -- Trade Kindred seal
+        if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 2) then
+            player:setVar("ridingOnTheClouds_1",0);
+            player:tradeComplete();
+            player:addKeyItem(SCOWLING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
+        end
+    end
 end
 
 ----------------------------------- 
