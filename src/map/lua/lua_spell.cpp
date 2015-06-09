@@ -115,6 +115,18 @@ inline int32 CLuaSpell::setMPCost(lua_State* L)
 	return 0;
 }
 
+inline int32 CLuaSpell::castTime(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
+    
+    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+        m_PLuaSpell->setCastTime(lua_tointeger(L, 1));
+    else
+        lua_pushinteger(L, m_PLuaSpell->getCastTime());
+
+    return 1;
+}
+
 inline int32 CLuaSpell::canTargetEnemy(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
@@ -201,5 +213,6 @@ Lunar<CLuaSpell>::Register_t CLuaSpell::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaSpell,getID),
 	LUNAR_DECLARE_METHOD(CLuaSpell,getSpellGroup),
 	LUNAR_DECLARE_METHOD(CLuaSpell,getFlag),
+    LUNAR_DECLARE_METHOD(CLuaSpell,castTime),
 	{nullptr,nullptr}
 };

@@ -334,7 +334,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
     end
     
 	--get the base acc (just skill plus magic acc mod)
-	local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
+	local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC) + player:getILvlMacc();
 
 	if player:hasStatusEffect(EFFECT_ALTRUISM) and spell:getSpellGroup() == SPELLGROUP_WHITE then
 		magicacc = magicacc + player:getStatusEffect(EFFECT_ALTRUISM):getPower();
@@ -579,7 +579,7 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
 			effectres = MOD_POISONRES;
 		elseif(effect == EFFECT_PARALYZE) then
 			effectres = MOD_PARALYZERES;
-		elseif(effect == EFFECT_BLIND) then
+		elseif(effect == EFFECT_BLINDNESS) then
 			effectres = MOD_BLINDRES
 		elseif(effect == EFFECT_SILENCE) then
 			effectres = MOD_SILENCERES;
@@ -599,6 +599,8 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
 			effectres = MOD_STUNRES;
 		elseif(effect == EFFECT_CHARM) then
 			effectres = MOD_CHARMRES;
+		elseif(effect == EFFECT_AMNESIA) then
+			effectres = MOD_AMNESIARES;
 		end
 
 		if(effectres > 0) then
@@ -1426,8 +1428,65 @@ function canOverwrite(target, effect, power, mod)
     return true;
 end
 
-function doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	return doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,ELEMENTAL_MAGIC_SKILL,MOD_INT);
+function doElementalNuke(caster, spell, target, spellParams)
+    local DMG = 0;
+    local V = 0;
+    local M = 0;
+    local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
+    local hasMultipleTargetReduction = spellParams.hasMultipleTargetReduction; --still unused!!!
+    local resistBonus = spellParams.resistBonus;
+    local mDMG = caster:getMod(MOD_MAGIC_DAMAGE);
+
+    --[[
+            Calculate base damage:       
+            D = mDMG + V + (dINT × M)
+            D is then floored
+            For dINT reduce by amount factored into the V value (example: at 134 INT, when using V100 in the calculation, use dINT = 134-100 = 34)             
+      ]]
+
+    if (dINT <= 49) then
+        V = spellParams.V0;
+        M = spellParams.M0;
+        DMG = math.floor(DMG + mDMG + V + (dINT * M));
+		
+        if(DMG <= 0) then 
+            return 0;
+        end
+
+    elseif (dINT >= 50 and dINT <= 99) then
+        V = spellParams.V50;
+        M = spellParams.M50;
+        DMG = math.floor(DMG + mDMG + V + ((dINT - 50) * M));
+
+    elseif (dINT >= 100 and dINT <= 199) then
+        V = spellParams.V100;
+        M = spellParams.M100;
+        DMG = math.floor(DMG + mDMG + V + ((dINT - 100) * M));
+
+    elseif (dINT > 199) then
+        V = spellParams.V200;
+        M = spellParams.M200;
+        DMG = math.floor(DMG + mDMG + V + ((dINT - 200) * M)); 
+    end
+
+    --get resist multiplier (1x if no resist)
+    local diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
+    local resist = applyResistance(caster, spell, target, diff, ELEMENTAL_MAGIC_SKILL, resistBonus);
+
+    --get the resisted damage
+    DMG = DMG * resist;
+
+    --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
+    DMG = addBonuses(caster, spell, target, DMG);
+
+    --add in target adjustment
+    local ele = spell:getElement();
+    DMG = adjustForTarget(target, DMG, ele);
+
+    --add in final adjustments
+    DMG = finalMagicAdjustments(caster, target, spell, DMG);
+	
+    return DMG;
 end
 
 function doDivineNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)

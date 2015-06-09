@@ -11,29 +11,30 @@
 -- Job IDs
 ------------------------------------
 
-JOB_NON             = 0;
-JOB_WAR             = 1;
-JOB_MNK             = 2;
-JOB_WHM             = 3;
-JOB_BLM             = 4;
-JOB_RDM             = 5;
-JOB_THF             = 6;
-JOB_PLD             = 7;
-JOB_DRK             = 8;
-JOB_BST             = 9;
-JOB_BRD             = 10;
-JOB_RNG             = 11;
-JOB_SAM             = 12;
-JOB_NIN             = 13;
-JOB_DRG             = 14;
-JOB_SMN             = 15;
-JOB_BLU             = 16;
-JOB_COR             = 17;
-JOB_PUP             = 18;
-JOB_DNC             = 19;
-JOB_SCH             = 20;
-JOB_GEO             = 21;
-JOB_RUN             = 22;
+JOB_NON      = 0
+JOB_WAR      = 1
+JOB_MNK      = 2
+JOB_WHM      = 3
+JOB_BLM      = 4
+JOB_RDM      = 5
+JOB_THF      = 6
+JOB_PLD      = 7
+JOB_DRK      = 8
+JOB_BST      = 9
+JOB_BRD      = 10
+JOB_RNG      = 11
+JOB_SAM      = 12
+JOB_NIN      = 13
+JOB_DRG      = 14
+JOB_SMN      = 15
+JOB_BLU      = 16
+JOB_COR      = 17
+JOB_PUP      = 18
+JOB_DNC      = 19
+JOB_SCH      = 20
+JOB_GEO      = 21
+JOB_RUN      = 22
+MAX_JOB_TYPE = 23
 
 ------------------------------------
 --
@@ -72,11 +73,13 @@ STATUS_SHUTDOWN			= 20;
     SUBEFFECT_STUN              = 16;
     SUBEFFECT_CURSE             = 17;
     SUBEFFECT_DEFENSE_DOWN      = 18;  -- 1-01001      37
+    SUBEFFECT_EVASION_DOWN      = 18;  -- ID needs verification
+    SUBEFFECT_ATTACK_DOWN       = 18;  -- ID needs verification
     SUBEFFECT_DEATH             = 19;
     SUBEFFECT_SHIELD            = 20;
     SUBEFFECT_HP_DRAIN          = 21;  -- 1-10101      43
     SUBEFFECT_MP_DRAIN          = 22;  -- This is correct animation
-    SUBEFFECT_TP_DRAIN          = 22;  -- Not sure this is correct
+    SUBEFFECT_TP_DRAIN          = 22;  -- Not sure this is correct, might be 21
 	SUBEFFECT_HASTE             = 23;
 
 -- SPIKES
@@ -779,7 +782,7 @@ end;
 function hasSleepEffects(target)
 	if (target:hasStatusEffect(EFFECT_SLEEP_I) or
 	target:hasStatusEffect(EFFECT_SLEEP_II) or
-	target:hasStatusEffect(EFFECT_LULLABY) ) then
+	target:hasStatusEffect(EFFECT_LULLABY)) then
 		return true;
 	end
 	return false;
@@ -988,6 +991,8 @@ MOD_GRAVITYRES			= 0xF9
 MOD_SLOWRES			= 0xFA
 MOD_STUNRES			= 0xFB
 MOD_CHARMRES			= 0xFC
+MOD_AMNESIARES          = 0xFD
+-- PLACEHOLDER             = 0xFE
 MOD_DEATHRES			= 0xFF
 MOD_PARALYZE			= 0x101
 MOD_MIJIN_GAKURE		= 0x102
@@ -1107,6 +1112,7 @@ MOD_WYVERN_BREATH       = 0x192
 MOD_REGEN_DOWN      	 = 0x194			-- poison
 MOD_REFRESH_DOWN		 = 0x195			-- plague, reduce mp
 MOD_REGAIN_DOWN			 = 0x196			-- plague, reduce tp
+MOD_MAGIC_DAMAGE       = 0x137 --  Magic damage added directly to the spell's base damage (modId = 311)
 
 -- Gear set modifiers
 MOD_DA_DOUBLE_DAMAGE		  = 0x198 -- Double attack's double damage chance %.
@@ -1214,6 +1220,7 @@ MOD_OCC_DO_EXTRA_DMG          = 0x1FB -- Multiplier for "Occasionally do x times
 MOD_EAT_RAW_FISH              = 0x19C -- (modId = 412)
 MOD_EAT_RAW_MEAT              = 0x19D -- (modId = 413)
 
+MOD_ENHANCES_CURSNA           = 0x136 -- Raises success rate of Cursna when removing effect (like Doom) that are not 100% chance to remove (modId = 310)
 MOD_RETALIATION               = 0x19E -- Increases damage of Retaliation hits (modId = 414)
 MOD_AUGMENTS_THIRD_EYE        = 0x1FC -- Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15% (modId = 508)
 
@@ -1227,11 +1234,13 @@ MOD_LOGGING_RESULT            = 0x202 -- Improves logging results (modId = 514)
 MOD_MINNING_RESULT            = 0x203 -- Improves mining results (modId = 515)
 MOD_ABSORB_DMG_TO_MP          = 0x204 -- Unlike PLD gear mod, works on all damage types (Ethereal Earring) (modId = 516)
 
+MOD_EGGHELM                   = 0x205 -- Egg Helm (Chocobo Digging)
+
 -- MOD_SPARE = 0x138 -- (modId = 312)
 -- MOD_SPARE = 0x139 -- (modId = 313)
 -- MOD_SPARE = 0x13A -- (modId = 314)
 -- MOD_SPARE = 0x13B -- (modId = 315)
--- MOD_SPARE = 0x205 -- (modId = 517)
+-- MOD_SPARE = 0x206 -- (modId = 518)
 
 ------------------------------------
 -- Merit Definitions
@@ -1831,7 +1840,7 @@ MOBMOD_SPELL_LIST     = 27
 MOBMOD_EXP_BONUS      = 28
 MOBMOD_ASSIST         = 29
 MOBMOD_SPECIAL_SKILL  = 30
-MOBMOD_RAND_JOB       = 31
+MOBMOD_ROAM_DISTANCE  = 31
 MOBMOD_2HOUR_MULTI    = 32
 MOBMOD_SPECIAL_COOL   = 33
 MOBMOD_MAGIC_COOL     = 34
@@ -1854,54 +1863,66 @@ MOBMOD_SHARE_TARGET   = 48
 -- Skills
 ------------------------------------
 
-    SKILL_NON           = 0
-	SKILL_H2H			= 1
-	SKILL_DAG			= 2
-	SKILL_SWD			= 3
-	SKILL_GSD			= 4
-	SKILL_AXE			= 5
-	SKILL_GAX			= 6
-	SKILL_SYH			= 7
-	SKILL_POL			= 8
-	SKILL_KAT			= 9
-	SKILL_GKT			= 10
-	SKILL_CLB			= 11
-	SKILL_STF			= 12
+    -- Combat Skills
+    SKILL_NON = 0
+    SKILL_H2H = 1
+    SKILL_DAG = 2
+    SKILL_SWD = 3
+    SKILL_GSD = 4
+    SKILL_AXE = 5
+    SKILL_GAX = 6
+    SKILL_SYH = 7
+    SKILL_POL = 8
+    SKILL_KAT = 9
+    SKILL_GKT = 10
+    SKILL_CLB = 11
+    SKILL_STF = 12
+    -- 13~21 unused
+    -- 22~24 pup's Automaton skills
+    SKILL_ARC = 25
+    SKILL_MRK = 26
+    SKILL_THR = 27
 
-	SKILL_ARC			= 25
-	SKILL_MRK			= 26
-	SKILL_THR			= 27
-	SKILL_GRD			= 28
-	SKILL_EVA			= 29
-	SKILL_SHL			= 30
-	SKILL_PAR			= 31
-	SKILL_DIV			= 32
-	SKILL_HEA			= 33
-	SKILL_ENH			= 34
-	SKILL_ENF			= 35
-	SKILL_ELE			= 36
-	SKILL_DRK			= 37
-	SKILL_SUM			= 38
-	SKILL_NIN			= 39
-	SKILL_SNG			= 40
-	SKILL_STR			= 41
-	SKILL_WND			= 42
-	SKILL_BLU			= 43
-	SKILL_GEO			= 44
+    -- Defensive Skills
+    SKILL_GRD = 28
+    SKILL_EVA = 29
+    SKILL_SHL = 30
+    SKILL_PAR = 31
 
-	SKILL_FSH			= 48
-	SKILL_WDW			= 49
-	SKILL_SMT			= 50
-	SKILL_GLD			= 51
-	SKILL_CLT			= 52
-	SKILL_LTH			= 53
-	SKILL_BON			= 54
-	SKILL_ALC			= 55
-	SKILL_COK			= 56
-	SKILL_SYN			= 57
-	SKILL_RID			= 58
+    -- Magic Skills
+    SKILL_DIV = 32
+    SKILL_HEA = 33
+    SKILL_ENH = 34
+    SKILL_ENF = 35
+    SKILL_ELE = 36
+    SKILL_DRK = 37
+    SKILL_SUM = 38
+    SKILL_NIN = 39
+    SKILL_SNG = 40
+    SKILL_STR = 41
+    SKILL_WND = 42
+    SKILL_BLU = 43
+    SKILL_GEO = 44
 
-	MAX_JOB_TYPE = 23
+    -- 45~47 unused
+
+    -- Crafting Skills
+    SKILL_FISHING      = 48
+    SKILL_WOODWORKING  = 49
+    SKILL_SMITHING     = 50
+    SKILL_GOLDSMITHING = 51
+    SKILL_CLOTHCRAFT   = 52
+    SKILL_LEATHERCRAFT = 53
+    SKILL_BONECRAFT    = 54
+    SKILL_ALCHEMY      = 55
+    SKILL_COOKING      = 56
+    SKILL_SYNERGY      = 57
+
+    -- Other Skills
+    SKILL_RID          = 58
+    SKILL_DIG          = 59
+    -- 60~63 unused
+    -- MAX_SKILLTYPE = 64
 
     RECAST_ITEM     = 0
     RECAST_MAGIC    = 1

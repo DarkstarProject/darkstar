@@ -32,5 +32,5 @@ CShopMenuPacket::CShopMenuPacket(CCharEntity * PChar)
 	this->type = 0x3E;
 	this->size = 0x04;
 
-	WBUFB(data,(0x04)-4) = PChar->Container->getItemsCount();
+	WBUFB(data,(0x04)) = PChar->Container->getItemsCount();
 }

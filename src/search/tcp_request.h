@@ -1,22 +1,22 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see http://www.gnu.org/licenses/
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
+This file is part of DarkStar-server source code.
 
 ===========================================================================
 */
@@ -28,20 +28,20 @@
 #include "../common/mmo.h"
 
 #ifdef WIN32
-	#include <winsock2.h>
+#include <winsock2.h>
 #else
-	#include <sys/types.h>
-	#include <sys/socket.h>
-	#include <netinet/in.h>
-	#include <errno.h>
-        typedef u_int SOCKET;
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <errno.h>
+typedef u_int SOCKET;
 #endif
 
 enum TCPREQUESTTYPE
 {
     TCP_SEARCH_ALL       = 0x00,
     TCP_GROUP_LIST       = 0x02,
-    TCP_SEARCH		     = 0x03,
+    TCP_SEARCH           = 0x03,
     TCP_AH_HISTORY_SINGL = 0x05,
     TCP_AH_HISTORY_STACK = 0x06,
     TCP_SEARCH_COMMENT   = 0x08,
@@ -59,14 +59,14 @@ class CTCPRequestPacket
 {
 public:
 
-	CTCPRequestPacket(SOCKET* socket);
-   ~CTCPRequestPacket();
+    CTCPRequestPacket(SOCKET* socket);
+    ~CTCPRequestPacket();
 
-	uint8* GetData();
-	int32 GetSize();
-	uint8 GetPacketType();
-	
-	int32 ReceiveFromSocket();
+    uint8* GetData();
+    int32 GetSize();
+    uint8 GetPacketType();
+
+    int32 ReceiveFromSocket();
     int32 SendToSocket(uint8* data, uint32 length);
     int32 SendRawToSocket(uint8* data, uint32 length);
 
@@ -76,12 +76,12 @@ private:
     int32   m_size;
     SOCKET* m_socket;
 
-	blowfish_t blowfish;
+    blowfish_t blowfish;
 
-	int8 key[24];
+    int8 key[24];
 
-	int32 decipher();
-	int32 CheckPacketHash();
+    int32 decipher();
+    int32 CheckPacketHash();
 };
 
 #endif

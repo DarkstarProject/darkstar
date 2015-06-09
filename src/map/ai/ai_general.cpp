@@ -284,7 +284,14 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
         CSpell* spell = spell::GetSpell(SpellID);
         if (spell)
         {
-            m_PSpell = std::unique_ptr<CSpell>(new CSpell(*spell));
+            if (spell->getSpellGroup() == SPELLGROUP_BLUE)
+            {
+                m_PSpell = std::unique_ptr<CSpell>(new CBlueSpell(*(CBlueSpell*)spell));
+            }
+            else
+            {
+                m_PSpell = std::unique_ptr<CSpell>(new CSpell(*spell));
+            }
         }
         else
         {
@@ -467,6 +474,15 @@ bool CAIGeneral::MoveTo(position_t* pos)
         return true;
     }
     return false;
+}
+
+bool CAIGeneral::CanSeePoint(position_t pos)
+{
+    if(m_PPathFind != nullptr){
+      return m_PPathFind->CanSeePoint(pos);
+    }
+
+    return true;
 }
 
 void CAIGeneral::Wait(int32 waitTime)

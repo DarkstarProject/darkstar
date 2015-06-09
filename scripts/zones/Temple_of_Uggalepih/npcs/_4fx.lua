@@ -16,7 +16,7 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 
 function onTrade(player,npc,trade)
 	if(trade:hasItemQty(1143,1) and trade:getItemCount() == 1 and player:getZPos() < 332) then -- Trade cursed key
-		if(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("WINDURST72") == 4) then
+		if(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 4) then
 			player:tradeComplete();
 			player:startEvent(0x0017);
 			
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(BLANK_BOOK_OF_THE_GODS);
 		player:addKeyItem(BOOK_OF_THE_GODS);
 		player:messageSpecial(KEYITEM_OBTAINED,BOOK_OF_THE_GODS);
-		player:setVar("WINDURST72",5);
+		player:setVar("MissionStatus",5);
 	end
 	
 end;

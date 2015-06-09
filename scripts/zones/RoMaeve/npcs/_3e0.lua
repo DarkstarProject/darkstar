@@ -3,8 +3,8 @@
 -- NPC:  _3e0 (Moongate)
 -----------------------------------	
 
-require("/scripts/globals/settings");
-require("/scripts/globals/keyitems");
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 
 -----------------------------------	
 -- onTrigger Action	

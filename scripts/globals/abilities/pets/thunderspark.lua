@@ -2,11 +2,11 @@
 -- Thunderspark M=whatever
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/summon");
-require("/scripts/globals/magic");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/summon");
+require("scripts/globals/magic");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
@@ -28,7 +28,7 @@ function onPetAbility(target, pet, skill)
 	damage.dmg = damage.dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
 	damage.dmg = mobAddBonuses(pet,spell,target,damage.dmg,1);
-	local tp = pet:getTP();
+	local tp = skill:getTP();
 	if tp < 100 then
 		tp = 100;
 	end

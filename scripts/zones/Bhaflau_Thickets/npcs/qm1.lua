@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2578,1) and trade:getItemCount() == 1) then -- Trade Oily Blood
 		player:tradeComplete();
-		SpawnMob(16990473,180):updateEnmity(player);
+		SpawnMob(16990473,180):updateClaim(player);
 	end
 	
 end;

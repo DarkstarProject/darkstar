@@ -43,7 +43,7 @@ function onEventUpdate(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	loca = option - 1073741829;
-	player:updateEvent(player:getGil(),OP_TeleFee(player,loca),player:getCP(),OP_TeleFee(player,loca));
+	player:updateEvent(player:getGil(),OP_TeleFee(player,loca),player:getCP(),OP_TeleFee(player,loca),player:getCP());
 	
 end;
 
@@ -57,8 +57,15 @@ function onEventFinish(player,csid,option)
 	
 	if(option >= 5 and option <= 23) then
 		if (player:delGil(OP_TeleFee(player,option-5))) then
-            toOutpost(player,option);
-        end
+			toOutpost(player,option);
+        	end
+        elseif(option >= 1029 and option <= 1047) then
+        	local cpCost = OP_TeleFee(player,option-1029);
+        	--printf("CP Cost: %u",cpCost);
+		if (player:getCP()>=cpCost) then
+			player:delCP(cpCost);
+			toOutpost(player,option-1024);
+        	end        
 	end
 	
 end;

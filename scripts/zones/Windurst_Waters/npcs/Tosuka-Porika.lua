@@ -43,7 +43,10 @@ function onTrigger(player,npc)
 
 	local Fame = player:getFameLevel(WINDURST);
 
-	if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==10)then
+	if(player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 1) then
+		player:startEvent(0x0321);
+	
+	elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==10)then
 		player:startEvent(0x036B); -- COP event
 
 	-- Start Past Reflections in First -----------
@@ -124,5 +127,11 @@ function onEventFinish(player,csid,option)
 		player:setVar("MissionStatus",1);
 	elseif(csid == 0x02d4) then
 		finishMissionTimeline(player,3,csid,option);
+	elseif(csid == 0x0321) then
+		player:addKeyItem(OPTISTERY_RING);
+		player:messageSpecial(KEYITEM_OBTAINED,OPTISTERY_RING);
+		if(player:hasKeyItem(AURASTERY_RING) and player:hasKeyItem(RHINOSTERY_RING)) then
+			player:setVar("MissionStatus",2)
+		end
 	end
 end;

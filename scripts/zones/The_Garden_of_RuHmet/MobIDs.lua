@@ -4,63 +4,51 @@
 --(Taken from 'mob_spawn_points' table)
 -----------------------------------
 
--- Ix'aern (drk) 
-Ix_aern_drk=16921018;
---Ix'Aern drk PH in pos 1 Hume-Elvaan
-Ix_aern_drk_PH_pos1={ 
-  [16920660] = '1', -- -232.885,4.399,439.697
-  [16920661] = '1', -- -238.990,4.409,447.597
-  [16920662] = '1', -- -235.860,4.402,437.321
-}; 
---Ix'Aern drk PH in pos 2 Elvaan-Galka
-Ix_aern_drk_PH_pos2={ 
-  [16920665] = '1', -- -271.243,4.445,231.240
-  [16920666] = '1', -- -286.324,3.4,223.187
-  [16920667] = '1', -- -271.153,4.445,231.735
-};
---Ix'Aern drk PH in pos 3 Taru-Mithra
-Ix_aern_drk_PH_pos3={ 
-  [16920646] = '1', -- -565.475,3.429,225.344
-  [16920647] = '1', -- -572.602,3.4,250.923
-  [16920648] = '1', -- -560.618,4.4,238.588
-};
---Ix'Aern drk PH in pos 4 Mithra-Hume
-Ix_aern_drk_PH_pos4={ 
-  [16920651] = '1', -- -592.210,3.4,456.318
-  [16920652] = '1', -- -584.828,3.4,439.509
-  [16920653] = '1', -- -608.558,3.414,424.864
-};
+-- Ix'Aern (DRG)'s minions - Wynavs
+IxAernDRG = 16921022;
+wynavA = 16921023;
+wynavB = 16921024;
+wynavC = 16921025;
 
+-- The mob that spawns Ix'Aern (DRG)
+realAwAern_PH = 16920769; -- The actual PH mob.
 
+-- First Aw'Aerns in each group. Used to randomize the mobID as the new placeholder.
+AwAernGroups = {16920777,16920781,16920785,16920789};
 
+-----------------------------------
 
---Ix'Aern (drg)
-Ix_aern_drg=16921022;
---Ix'Aern drg PH in pos 1 Hume-Elvaan
-Ix_aern_drg_PH_pos1={ 
-  [16920785] = '1', -- -302.937,3.411,-374.330
-  [16920786] = '1', -- -296.189,-0.03,-381.328
-  [16920787] = '1', -- -325.021,4.399,-363.585
-}; 
---Ix'Aern drg PH in pos 2 Elvaan-Galka
-Ix_aern_drg_PH_pos2={ 
-  [16920789] = '1', -- -307.159,3.379,-501.486
-  [16920790] = '1', -- -321.046,4.5,-514.021
-  [16920791] = '1', -- -296.017,3.5,-508.078
-};
---Ix'Aern drg PH in pos 3 Taru-Mithra
-Ix_aern_drg_PH_pos3={ 
-  [16920777] = '1', -- -532.995,3.5,-506.245
-  [16920778] = '1', -- -532.986,3.680,-505.017
-  [16920779] = '1', -- -543.676,0.036,-498.230
-};
---Ix'Aern drg PH in pos 4 Mithra-Hume
-Ix_aern_drg_PH_pos4={ 
-  [16920781] = '1', -- -514.866,4.5,-362.770
-  [16920782] = '1', -- -499.933,1.352,-380.886
-  [16920783] = '1', -- -524.369,4.399,-362.952
-};
+-- Ix'Aern (DRK) and his RNG minions (Qn'Aerns)
+IxAernDRK = 16921018;
+QnAernA = 16921019;
+QnAernB = 16921020;
+
+-----------------------------------
+
 
 -- Jailer of Fortitude 
-Jailer_of_Fortitude=16921015;
+Jailer_of_Fortitude = 16921015;
+Jailer_of_Fortitude_QM = 16921027;
+Jailer_of_Fortitude_QM_POS = 
+{
+    {-420.00,0.00,755.00}, -- North / Hume tower.
+    {-43.00,0.00,460.00}, -- NE / Elvaan tower.
+    {-260.00,0.00,44.821}, -- SE / Galka tower.
+    {-580.00,0.00,43.00}, -- SW / Tarutaru tower.
+    {-796.00,0.00,460.00} -- NW / Mithra tower.
+};
+-- Jailer of Fortitude Pets
+Kf_Ghrah_WHM = 16921016;
+Kf_Ghrah_BLM = 16921017;
 
+-- Jailer of Faith
+Jailer_of_Faith = 16921021;
+Jailer_of_Faith_QM = 16921029;
+Jailer_of_Faith_QM_POS = 
+{
+    {-420.00,0.00,-157.00}, -- North / Hume tower.
+    {-157.00,0.00,-340.00}, -- NE / Elvaan tower.
+    {-260.00,0.00,-643.00}, -- SE / Galka tower.
+    {-580.00,0.00,-644.00}, -- SW / Tarutaru tower.
+    {-683.00,0.00,-340.00}  -- NW / Mithra tower.
+};

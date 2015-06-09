@@ -23,13 +23,13 @@ end;
 function onMobDeath(mob, killer)
 
     killer:addTitle(BEHEMOTH_DETHRONER);
-	
-	if(math.random((1),(100)) <= 5) then -- Hardcoded "this or this item" drop rate until implemented.
-		SetDropRate(1936,13566,1000); -- Defending Ring
-		SetDropRate(1936,13415,0);
+
+    if (math.random((1),(100)) <= 5) then -- Hardcoded "this or this item" drop rate until implemented.
+        SetDropRate(1936,13566,1000); -- Defending Ring
+        SetDropRate(1936,13415,0);
     else
-		SetDropRate(1936,13566,0);
-		SetDropRate(1936,13415,1000); -- Pixie Earring
+        SetDropRate(1936,13566,0);
+        SetDropRate(1936,13415,1000); -- Pixie Earring
     end
     -- Set King_Behemoth's Window Open Time
     if (LandKingSystem_HQ == 0 or LandKingSystem_HQ == 2) then

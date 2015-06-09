@@ -3,7 +3,7 @@
 -- MOB:  Shoal Pugil	
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");	
 require("scripts/zones/Buburimu_Peninsula/MobIDs");
 
 -----------------------------------	

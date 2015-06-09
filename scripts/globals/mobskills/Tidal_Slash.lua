@@ -8,9 +8,9 @@
 --  Notes: Used only by Merrows equipped with a spear. If they lost their spear, they'll use Hysteric Barrage instead.
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 

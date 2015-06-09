@@ -4,8 +4,8 @@
 -- Note: Place holder for Fungus Beetle
 -----------------------------------	
 
-require("/scripts/globals/fieldsofvalor");	
-require("/scripts/zones/West_Ronfaure/MobIDs");
+require("scripts/globals/fieldsofvalor");	
+require("scripts/zones/West_Ronfaure/MobIDs");
 
 -----------------------------------	
 -- onMobDeath	

@@ -30,9 +30,9 @@ function onTrigger(player,npc)
 				player:setVar("Mission6-2MobKilled",0);
 				player:setVar("MissionStatus",2);
 			else
-				SpawnMob(17555898):updateEnmity(player);
-				SpawnMob(17555899):updateEnmity(player);
-				SpawnMob(17555900):updateEnmity(player);
+				SpawnMob(17555898):updateClaim(player);
+				SpawnMob(17555899):updateClaim(player);
+				SpawnMob(17555900):updateClaim(player);
 			end
 		end
 	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 2) then
@@ -41,7 +41,7 @@ function onTrigger(player,npc)
 	     player:startEvent(0x0007);
 	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 8) then
 	     player:startEvent(0x0005);
-	elseif(currentMission == THE_HEIR_TO_THE_LIGHT and player:getVar("SANDO92") == 6)then
+	elseif(currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 6)then
 	     player:startEvent(0x000e);
 
 	else
@@ -65,8 +65,10 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-if(csid == 0x0005) then player:setVar("MissionStatus",9);
-elseif(csid == 0x000e) then player:setVar("SANDO92",7);
--- at this point 3 optional cs are available and open until watched (add 3 var to char?)
-end
+	if(csid == 0x0005) then 
+		player:setVar("MissionStatus",9);
+	elseif(csid == 0x000e) then 
+		player:setVar("MissionStatus",7);
+	-- at this point 3 optional cs are available and open until watched (add 3 var to char?)
+	end
 end;

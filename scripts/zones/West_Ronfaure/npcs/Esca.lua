@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
 	-- "The Pickpocket" recieving Gilt Glasses
 	if (csid == 0x0079) then
 		player:addItem(579);
-		player:messageSpecial(6381, 579);
+		player:messageSpecial(ITEM_OBTAINED, 579);
 	elseif (csid == 137) then
 		player:setVar("ChasingQuotas_Progress",5);
 		player:delKeyItem(SHINY_EARRING);

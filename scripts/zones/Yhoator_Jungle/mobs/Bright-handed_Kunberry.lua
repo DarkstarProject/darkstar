@@ -3,7 +3,7 @@
 -- MOB:  Bright-handed Kunberry	
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");	
 	
 -----------------------------------	
 -- onMobDeath	

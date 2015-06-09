@@ -1,5 +1,9 @@
 -----------------------------------
 -- Ability: Modus Veritas
+-- Increases damage done by helix spells while lowering spell duration by 50%.
+-- Obtained: Scholar Level 65
+-- Recast Time: 3:00
+-- Duration: Instant
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -7,17 +11,21 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-	return 0,0;
+    return 0,0;
 end;
 
-function onUseAbility(player, target, ability)
-	local helix = target:getStatusEffect(EFFECT_HELIX);
-	if (helix ~= nil) then
-        local mvPower = helix:getSubPower();  
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(player,target,ability)
+    local helix = target:getStatusEffect(EFFECT_HELIX);
+    if (helix ~= nil) then
+        local mvPower = helix:getSubPower();
         local resist = applyResistanceAbility(player,target,ELE_NONE,SKILL_ELE,0); -- seems reasonable...
         -- Doesn't work against NMs apparently
         if(mvPower > 0) or (resist < 0.25) or (target:isNM()) then -- Don't let Modus Veritas stack to prevent abuse

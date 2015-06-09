@@ -33,7 +33,7 @@ function onBcnmLeave(player,instance,leavecode)
 		if(player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
 			player:startEvent(0x7d01,1,1,1,0,1,0,0);
 		else
-			player:startEvent(0x7d01,1,1,1,0,1,0,1);
+			player:startEvent(0x7d01,1,1,1,0,1,1,0);
 		end
 	elseif(leavecode == 4) then
 		player:startEvent(0x7d02);

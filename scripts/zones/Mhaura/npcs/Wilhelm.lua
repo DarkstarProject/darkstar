@@ -6,7 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
-require("/scripts/globals/armor_upgrade");
+require("scripts/globals/armor_upgrade");
 -----------------------------------
 -- onTrade Action
 -----------------------------------

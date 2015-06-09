@@ -56,10 +56,10 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 				uint16 targid = 0;
 				CCharEntity* PChar = zoneutils::GetChar(Sql_GetUIntData(SqlHandle, 0));
 				if (PChar) targid = PChar->targid;
-				WBUFL(data, 12 * i + (0x08) - 4) = Sql_GetUIntData(SqlHandle, 0);
-				WBUFW(data, 12 * i + (0x0C) - 4) = targid;
-				WBUFW(data, 12 * i + (0x0E) - 4) = Sql_GetUIntData(SqlHandle, 1);
-                WBUFW(data, 12 * i + (0x10) - 4) = Sql_GetUIntData(SqlHandle, 2) ? Sql_GetUIntData(SqlHandle, 2) : Sql_GetUIntData(SqlHandle, 3);
+				WBUFL(data, 12 * i + (0x08) ) = Sql_GetUIntData(SqlHandle, 0);
+				WBUFW(data, 12 * i + (0x0C) ) = targid;
+				WBUFW(data, 12 * i + (0x0E) ) = Sql_GetUIntData(SqlHandle, 1);
+                WBUFW(data, 12 * i + (0x10) ) = Sql_GetUIntData(SqlHandle, 2) ? Sql_GetUIntData(SqlHandle, 2) : Sql_GetUIntData(SqlHandle, 3);
 				i++;
 			}
 		}

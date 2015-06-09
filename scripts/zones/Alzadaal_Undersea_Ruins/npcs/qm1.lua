@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2592,1) and trade:getItemCount() == 1) then -- Trade Coq Lubricant
 		player:tradeComplete();
-		SpawnMob(17072171,180):updateEnmity(player);
+		SpawnMob(17072171,180):updateClaim(player);
 	end
 	
 end;

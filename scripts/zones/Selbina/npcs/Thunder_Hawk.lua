@@ -62,8 +62,10 @@ function onEventFinish(player,csid,option)
 		player:completeQuest(OTHER_AREAS,THE_RESCUE);
 		player:addTitle(HONORARY_CITIZEN_OF_SELBINA);
 		player:delKeyItem(TRADERS_SACK);
-		player:addKeyItem(MAP_OF_THE_RANGUEMONT_PASS);
-		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_RANGUEMONT_PASS);
+		if(player:hasKeyItem(MAP_OF_THE_RANGUEMONT_PASS) == false) then
+			player:addKeyItem(MAP_OF_THE_RANGUEMONT_PASS);
+			player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_RANGUEMONT_PASS);
+		end
 		player:addGil(3000);
 		player:messageSpecial(GIL_OBTAINED,3000);
 		player:addFame(OTHER_AREAS,30);

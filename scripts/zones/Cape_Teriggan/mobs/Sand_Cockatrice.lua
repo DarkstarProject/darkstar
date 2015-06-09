@@ -3,7 +3,7 @@
 -- MOB:  Sand Cockatrice	
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");	
 	
 -----------------------------------	
 -- onMobDeath	

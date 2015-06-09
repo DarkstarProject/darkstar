@@ -36,6 +36,7 @@ CItemArmor::CItemArmor(uint16 id) : CItemUsable(id)
 	m_shieldSize   = 0;
 	m_scriptType   = 0;
 	m_reqLvl       = 255;
+    m_iLvl         = 0;
 	m_equipSlotID  = 255;
     m_absorption   = 0;
 }
@@ -70,6 +71,11 @@ uint8 CItemArmor::getReqLvl()
 	return m_reqLvl;
 }
 
+uint8 CItemArmor::getILvl()
+{
+    return m_iLvl;
+}
+
 uint32 CItemArmor::getJobs()
 {
 	return m_jobs;
@@ -78,6 +84,11 @@ uint32 CItemArmor::getJobs()
 void CItemArmor::setReqLvl(uint8 lvl)
 {
 	m_reqLvl = lvl;
+}
+
+void CItemArmor::setILvl(uint8 lvl)
+{
+    m_iLvl = lvl;
 }
 
 void CItemArmor::setJobs(uint32 jobs)

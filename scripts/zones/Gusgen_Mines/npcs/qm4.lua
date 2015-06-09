@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 	if(player:getQuestStatus(BASTOK,GHOSTS_OF_THE_PAST) == QUEST_ACCEPTED and player:hasItem(13122) == false) then
 		if(trade:hasItemQty(605,1) and trade:getItemCount() == 1) then -- Trade Pickaxe
 			player:tradeComplete();
-			SpawnMob(17580337,300):updateEnmity(player);
+			SpawnMob(17580337,300):updateClaim(player);
 		end
 	end
 	

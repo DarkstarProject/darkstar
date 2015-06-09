@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if(csid == 0x0008) then
-		SpawnMob(17236205,240):updateEnmity(player);
+		SpawnMob(17236205,240):updateClaim(player);
 	end
 
 end;

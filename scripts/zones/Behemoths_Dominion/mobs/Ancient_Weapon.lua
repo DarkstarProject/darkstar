@@ -3,9 +3,9 @@
 -- MOB:  Ancient Weapon	
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");
-require("/scripts/globals/keyitems");
-require("/scripts/globals/missions");
+require("scripts/globals/fieldsofvalor");
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
 	
 -----------------------------------	
 -- onMobDeath	

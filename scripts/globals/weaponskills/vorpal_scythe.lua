@@ -7,8 +7,8 @@
 -- 100%TP 	200%TP 	300%TP
 -- 1.0 		1.0		1.0
 -----------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/weaponskills");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
 function onUseWeaponSkill(player, target, wsID)
 
 	local params = {};

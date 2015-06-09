@@ -17,14 +17,14 @@ require("scripts/globals/weather");
 
 function onInitialize(zone)
 
-    local tomes = {17490318,17490319,17490320,17490321};
+    local tomes = {17490321,17490322,17490323,17490324};
     
     SetGroundsTome(tomes);
 
     -- Guivre
     SetRespawnTime(17490234, 900, 10800);
     
-    UpdateTreasureSpawnPoint(17490297);
+    UpdateTreasureSpawnPoint(17490300);
     
 end;
 
@@ -84,9 +84,9 @@ end;
 function onZoneWeatherChange(weather)
 
 	if(weather == WEATHER_WIND or weather == WEATHER_GALES) then
-		GetNPCByID(17490277):setAnimation(9); -- Rock Up
+		GetNPCByID(17490280):setAnimation(9); -- Rock Up
 	else
-		GetNPCByID(17490277):setAnimation(8); -- Rock Down
+		GetNPCByID(17490280):setAnimation(8); -- Rock Down
 	end
 	
 end;

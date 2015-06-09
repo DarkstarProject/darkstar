@@ -4,6 +4,7 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
+package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 
 require("scripts/zones/La_Theine_Plateau/TextIDs");
@@ -12,13 +13,53 @@ require("scripts/globals/icanheararainbow");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/weather");
+require("scripts/globals/chocobo_digging");
+
+-----------------------------------
+-- Chocobo Digging vars
+-----------------------------------
+local itemMap = {
+                    -- itemid, abundance, requirement
+                    { 688, 153, DIGREQ_NONE },
+                    { 17396, 155, DIGREQ_NONE },
+                    { 17296, 134, DIGREQ_NONE },
+                    { 641, 103, DIGREQ_NONE },
+                    { 840, 56, DIGREQ_NONE },
+                    { 642, 49, DIGREQ_NONE },
+                    { 696, 57, DIGREQ_NONE },
+                    { 694, 40, DIGREQ_NONE },
+                    { 622, 28, DIGREQ_NONE },
+                    { 700, 3, DIGREQ_NONE },
+                    { 4096, 100, DIGREQ_NONE },  -- all crystals
+                    { 4545, 34, DIGREQ_BURROW },
+                    { 636, 20, DIGREQ_BURROW },
+                    { 616, 8, DIGREQ_BURROW },
+                    { 5235, 2, DIGREQ_BURROW },
+                    { 2364, 139, DIGREQ_BORE },
+                    { 2235, 44, DIGREQ_BORE },
+                    { 617, 6, DIGREQ_BORE },
+                    { 4570, 10, DIGREQ_MODIFIER },
+                    { 4487, 11, DIGREQ_MODIFIER },
+                    { 4409, 12, DIGREQ_MODIFIER },
+                    { 1188, 10, DIGREQ_MODIFIER },
+                    { 1237, 12, DIGREQ_MODIFIER },
+                };
+
+local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+
+-----------------------------------
+-- onChocoboDig
+-----------------------------------
+function onChocoboDig(player, precheck)
+    return chocoboDig(player, itemMap, precheck, messageArray);
+end;
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17195677,17195678};
+    local manuals = {17195678,17195679};
 
     SetFieldManual(manuals);
 end;
@@ -39,6 +80,8 @@ function onZoneIn( player, prevZone)
         cs = 0x007b;
     elseif ( prevZone == 193 and player:getVar( "darkPuppetCS") == 5 and player:getFreeSlotsCount() >= 1) then
         cs = 0x007a;
+    elseif(player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1)then	
+        cs = 0x007d;
     end
 
     return cs;
@@ -72,6 +115,8 @@ function onEventUpdate( player, csid, option)
     -- printf("RESULT: %u",option);
     if (csid == 0x007b) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
+    elseif (csid == 0x007d) then
+        player:updateEvent(0,0,0,0,0,2);
     end
 end;
 
@@ -98,7 +143,7 @@ end;
 -----------------------------------
 
 function onZoneWeatherChange(weather)
-    local _2u0 = GetNPCByID(17195606);
+    local _2u0 = GetNPCByID(17195607);
     local VanadielTOTD = VanadielTOTD();
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
@@ -115,7 +160,7 @@ end;
 -----------------------------------
 
 function onTOTDChange(TOTD)
-    local _2u0 = GetNPCByID(17195606);
+    local _2u0 = GetNPCByID(17195607);
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
     if (I_Can_Hear_a_Rainbow == 1 and TOTD >= TIME_DAWN and TOTD <= TIME_EVENING and _2u0:getAnimation() == 9) then

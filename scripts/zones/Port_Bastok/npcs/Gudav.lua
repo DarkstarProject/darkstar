@@ -60,8 +60,10 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x006e) then
 		player:addQuest(BASTOK,A_FOREMAN_S_BEST_FRIEND);
 	elseif(csid == 0x0070) then
-		player:addKeyItem(MAP_OF_THE_GUSGEN_MINES);
-		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_GUSGEN_MINES);
+		if(player:hasKeyItem(MAP_OF_THE_GUSGEN_MINES) == false) then
+			player:addKeyItem(MAP_OF_THE_GUSGEN_MINES);
+			player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_GUSGEN_MINES);
+		end
 		player:addFame(BASTOK,BAS_FAME*60);
 		player:completeQuest(BASTOK,A_FOREMAN_S_BEST_FRIEND);
 	end

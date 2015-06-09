@@ -131,6 +131,7 @@ protected:
 	bool TryDeaggro();
 	void TryLink();
 	bool CanCastSpells();
+        bool CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false);
 	bool TryCastSpell(); // logic for spell casting, returns true if found one to cast
 	bool TrySpecialSkill();
 	void CastSpell(uint16 spellId, CBattleEntity* PTarget = nullptr); // makes the mob cast a spell

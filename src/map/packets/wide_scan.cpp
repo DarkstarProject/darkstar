@@ -34,7 +34,7 @@ CWideScanPacket::CWideScanPacket(WIDESCAN_STATUS status)
 	this->type = 0xF6;
 	this->size = 0x04;
 
-	WBUFB(data,(0x04)-4) = status;
+	WBUFB(data,(0x04)) = status;
 }
 
 CWideScanPacket::CWideScanPacket(CCharEntity * PChar, CBaseEntity * PEntity) 
@@ -42,16 +42,16 @@ CWideScanPacket::CWideScanPacket(CCharEntity * PChar, CBaseEntity * PEntity)
 	this->type = 0xF4;
 	this->size = 0x0E;
 
-	WBUFW(data,(0x04)-4) = PEntity->targid;
-  //WBUFB(data,(0x06)-4) = PEntity->GetMLevel();
+	WBUFW(data,(0x04)) = PEntity->targid;
+  //WBUFB(data,(0x06)) = PEntity->GetMLevel();
 
 	// 0 - черная точка (? Char ?) 
 	// 1 - зеленая точка (NPC)
 	// 2 - красная точка (Mob)
-	WBUFB(data,(0x07)-4) = PEntity->objtype/2; 
+	WBUFB(data,(0x07)) = PEntity->objtype/2; 
 
-	WBUFW(data,(0x08)-4) = (int16)(PEntity->loc.p.x - PChar->loc.p.x); // x - разница координат персонажа и объекта
-	WBUFW(data,(0x0A)-4) = (int16)(PEntity->loc.p.z - PChar->loc.p.z); // z - разница координат персонажа и объекта
+	WBUFW(data,(0x08)) = (int16)(PEntity->loc.p.x - PChar->loc.p.x); // x - разница координат персонажа и объекта
+	WBUFW(data,(0x0A)) = (int16)(PEntity->loc.p.z - PChar->loc.p.z); // z - разница координат персонажа и объекта
 
-  //memcpy(data+(0x0C)-4, PEntity->GetName(), (PEntity->name.size() > 14 ? 14 : PEntity->name.size()));  
+  //memcpy(data+(0x0C), PEntity->GetName(), (PEntity->name.size() > 14 ? 14 : PEntity->name.size()));  
 }

@@ -16,14 +16,25 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
--- onMobEngaged
+-- onMobRoam
 -----------------------------------
-
+function onMobRoam(mob)
+mob:setLocalVar("2HGO",math.random(50,99));
+end;
 -----------------------------------
 -- onMobFight
 -----------------------------------
 function onMobFight(mob,target)
+if(mob:getLocalVar("2HOUR") == 0)then
+	if(mob:getHPP() < mob:getLocalVar("2HGO"))then
+		mob:setLocalVar("2HOUR",1);
+		mob:useMobAbility(479);
+	end
+end
 end;
+
+
+
 
 -----------------------------------
 -- onMobDeath
@@ -32,7 +43,8 @@ function onMobDeath(mob, killer)
 local mobs= {{17621017,17621018,17621019,17621020,17621021,17621022,17621023,17621024,17621025,17621026,17621027},{17621031,17621032,17621033,17621034,17621035,17621036,17621037,17621038,17621039,17621040,17621041},{17621031,17621046,17621047,17621048,17621049,17621050,17621051,17621052,17621053,17621054,17621055}};
 
 local inst=killer:getBattlefield():getBattlefieldNumber();
-
+mob:setLocalVar("2HOUR",0);
+mob:setLocalVar("2HGO",0);
 local victory =  true
 for i,v in ipairs(mobs[inst]) do
 local action = GetMobAction(v);

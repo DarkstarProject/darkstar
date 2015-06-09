@@ -30,7 +30,7 @@ CMessageSystemPacket::CMessageSystemPacket(uint32 param0, uint32 param1, uint16 
 	this->type = 0x53;
 	this->size = 0x08;
 
-	WBUFL(data,(0x04)-4) = param0;
-	WBUFL(data,(0x08)-4) = param1;
-	WBUFW(data,(0x0C)-4) = messageID;
+	WBUFL(data,(0x04)) = param0;
+	WBUFL(data,(0x08)) = param1;
+	WBUFW(data,(0x0C)) = messageID;
 }

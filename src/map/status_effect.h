@@ -61,7 +61,9 @@ enum EFFECTFLAG
     EFFECTFLAG_FOOD             = 0x8000,
     EFFECTFLAG_SONG             = 0x10000,  // bard songs
     EFFECTFLAG_ROLL             = 0x20000,  // corsair rolls
-    EFFECTFLAG_SYNTH_SUPPORT    = 0x40000   // Synthesis Image Support
+    EFFECTFLAG_SYNTH_SUPPORT    = 0x40000,  // Synthesis Image Support
+    EFFECTFLAG_CONFRONTATION    = 0x80000,
+    EFFECTFLAG_LOGOUT           = 0x100000
 };
 
 enum EFFECT

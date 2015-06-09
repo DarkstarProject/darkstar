@@ -93,12 +93,6 @@ INSERT INTO `item_latents` VALUES(14008, 1, 16, 0, 75); -- DEF:16 whem HP <= 75%
 INSERT INTO `item_latents` VALUES(14009, 23, 9, 0, 75); -- Attack+9 when HP <=75%
 INSERT INTO `item_latents` VALUES(14009, 1, 17, 0, 75); -- DEF:17 whem HP <= 75%
 
-INSERT INTO `item_latents` VALUES(14055, 23, 7, 46, 75);
-INSERT INTO `item_latents` VALUES(14448, 10, 6, 46, 71);
-INSERT INTO `item_latents` VALUES(15209, 8, 3, 46, 75);
-INSERT INTO `item_latents` VALUES(15345, 384, 3, 46, 75);
-INSERT INTO `item_latents` VALUES(15406, 31, 4, 46, 75);
-
 -- -------------------------------------------------------
 -- Berserker's Torque
 -- -------------------------------------------------------
@@ -269,14 +263,14 @@ INSERT INTO `item_latents` VALUES(15406, 68, 3, 1, 75); -- Evasion+3 when HP >75
 INSERT INTO `item_latents` VALUES(15407, 68, 4, 1, 75); -- Evasion+4 when HP >75%
 
 -- -------------------------------------------------------
--- Unicorn Leggings    
+-- Unicorn Leggings
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15345, 167, 3, 1, 75); -- Haste+3% when HP >75%
+INSERT INTO `item_latents` VALUES(15345, 384, 31, 1, 75); -- Haste+3% when HP > 75%
 
 -- -------------------------------------------------------
 -- Unicorn Leggings +1
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15346, 167, 4, 1, 75); -- Haste+4% when HP >75%
+INSERT INTO `item_latents` VALUES(15346, 384, 41, 1, 75); -- Haste+4% when HP > 75%
 
 -- -------------------------------------------------------
 -- Zareehkl Jambiya
@@ -1536,7 +1530,7 @@ INSERT INTO `item_latents` VALUES(18718, 24, 18, 6, 1000); -- Ranged Attack+18 w
 
 -- Koga Tekko
 INSERT INTO `item_latents` VALUES(15114, 8, 12, 26, 1); -- STR +12 during nighttime
-INSERT INTO `item_latents` VALUES(15114, 384, 4, 26, 1); -- Haste +%4 during nighttime
+INSERT INTO `item_latents` VALUES(15114, 384, 41, 26, 1); -- Haste +%4 during nighttime
 -- Koga Kyahan
 INSERT INTO `item_latents` VALUES(15144, 9, 7, 26, 1); -- DEX +7 during nighttime
 -- Ninja Kyahan
@@ -2261,7 +2255,7 @@ INSERT INTO `item_latents` VALUES(15677, 9, 7, 26, 2); -- Dusk - Dawn: DEX +7
 -- Koga Tekko +1
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14921, 8, 13, 26, 2); -- Dusk - Dawn: STR +13
-INSERT INTO `item_latents` VALUES(14921, 384, 4, 26, 2); -- Dusk - Dawn: Haste +4%
+INSERT INTO `item_latents` VALUES(14921, 384, 41, 26, 2); -- Dusk - Dawn: Haste +4%
 
 -- -------------------------------------------------------
 -- Ninja Kyahan +1
@@ -2293,3 +2287,71 @@ INSERT INTO `item_latents` VALUES(14429, 169, 12, 54, 20);
 -- Federation Aketon
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14430, 169, 12, 54, 21);
+
+-- -------------------------------------------------------
+-- Ice Belt
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13242, 12, 3, 34, 0); -- +3 INT on Iceday
+
+-- -------------------------------------------------------
+-- Ice Ring
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13561, 6, -15, 34, 0); -- -15% MP on Iceday
+INSERT INTO `item_latents` VALUES(13561, 115, 15, 34, 0); -- +15 Elemental Magic Skill on Iceday
+
+-- -------------------------------------------------------
+-- Earth Belt
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13244, 10, 3, 29, 0); -- +3 VIT on Earthsday
+
+-- -------------------------------------------------------
+-- Earth Ring
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13563, 3, -15, 29, 0); -- -15% HP on Earthsday
+INSERT INTO `item_latents` VALUES(13563, 1, 15, 29, 0); -- +15 DEF on Earthsday
+
+-- -------------------------------------------------------
+-- Fire Belt
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13241, 8, 3, 28, 0); -- +3 STR on Firesday
+
+-- -------------------------------------------------------
+-- Fire Ring
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13560, 3, -15, 28, 0); -- -15% HP on Firesday
+INSERT INTO `item_latents` VALUES(13560, 23, 15, 28, 0); -- +15 Attack on Firesday
+INSERT INTO `item_latents` VALUES(13560, 24, 15, 28, 0); -- +15 Ranged Attack on Firesday
+
+-- -------------------------------------------------------
+-- Water Belt
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13246, 13, 3, 30, 0); -- +3 MND on Watersday
+
+-- -------------------------------------------------------
+-- Water Ring
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13565, 6, -15, 30, 0); -- -15% MP on Watersday
+INSERT INTO `item_latents` VALUES(13565, 296, 15, 30, 0); -- +15 "Conserve MP" on Watersday
+
+-- -------------------------------------------------------
+-- Lightning Belt
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13245, 9, 3, 35, 0); -- +3 DEX on Lightningsday
+
+-- -------------------------------------------------------
+-- Lightning Ring
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13564, 3, -15, 35, 0); -- -15% HP on Lightningsday
+INSERT INTO `item_latents` VALUES(13564, 25, 15, 35, 0); -- +15 Accuracy on Lightningsday
+INSERT INTO `item_latents` VALUES(13564, 26, 15, 35, 0); -- +15 Ranged Accuracy on Lightningsday
+
+-- -------------------------------------------------------
+-- Wind Belt
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13243, 11, 3, 31, 0); -- +3 AGI on Windsday
+
+-- -------------------------------------------------------
+-- Wind Ring
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13562, 3, -15, 31, 0); -- -15% HP on Windsday
+INSERT INTO `item_latents` VALUES(13562, 68, 15, 31, 0); -- +15 Evasion on Windsday

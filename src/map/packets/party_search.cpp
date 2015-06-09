@@ -35,6 +35,6 @@ CPartySearchPacket::CPartySearchPacket(CCharEntity* PChar)
 	
 	if (PChar->PParty != nullptr)
 	{
-		WBUFL(data,(0x04)-4) = PChar->PParty->GetPartyID(); 
+		WBUFL(data,(0x04)) = PChar->PParty->GetPartyID(); 
 	}
 }

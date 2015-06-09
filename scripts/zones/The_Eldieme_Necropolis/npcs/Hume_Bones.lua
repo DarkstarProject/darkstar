@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
 			if(player:getVar("Lich_C_Magnus_Died") == 0) then
 				if(GetMobAction(17575937) == 0) then
 					player:tradeComplete();
-					SpawnMob(17575937):updateEnmity(player); -- Lich C Magnus NM
+					SpawnMob(17575937):updateClaim(player); -- Lich C Magnus NM
 					player:messageSpecial(RETURN_RIBBON_TO_HER);
 				end
 			end

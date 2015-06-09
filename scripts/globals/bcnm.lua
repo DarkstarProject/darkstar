@@ -416,17 +416,26 @@ function checkNonTradeBCNM(player,npc)
 	         player:setVar("trade_bcnmid",736);
 		end
 	elseif(Zone == 17) then -- Spire of Holla
-	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_HOLLA) == false) then -- light of holla
+		if(player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") ==1 )then
+			mask = GetBattleBitmask(768,Zone,1);
+	        player:setVar("trade_bcnmid",768);
+		elseif(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_HOLLA) == false) then -- light of holla
 	        mask = GetBattleBitmask(768,Zone,1);
 	        player:setVar("trade_bcnmid",768);
 	    end
 	elseif(Zone == 19) then -- Spire of Dem
-	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_DEM) == false) then -- light of dem
+		if(player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") ==1 )then
+			mask = GetBattleBitmask(800,Zone,1);
+	        player:setVar("trade_bcnmid",800);
+		elseif(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_DEM) == false) then -- light of dem
 	        mask = GetBattleBitmask(800,Zone,1);
 	        player:setVar("trade_bcnmid",800);
 	    end
 	elseif(Zone == 21) then -- Spire of Mea
-	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_MEA) == false) then -- light of mea
+		if(player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") ==1 )then
+			mask = GetBattleBitmask(832,Zone,1);
+	        player:setVar("trade_bcnmid",832);
+	    elseif(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_MEA) == false) then -- light of mea
 	        mask = GetBattleBitmask(832,Zone,1);
 	        player:setVar("trade_bcnmid",832);
 	    end
@@ -584,7 +593,7 @@ function checkNonTradeBCNM(player,npc)
 		if(player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11) then -- Mission 5-1
 			mask = GetBattleBitmask(512,Zone,1); 
 			player:setVar("trade_bcnmid",512);
-		elseif(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("SANDO92") == 3)then -- bastok 9-2 
+		elseif(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") == 3)then -- sando 9-2 
 			mask = GetBattleBitmask(516,Zone,1);
 			player:setVar("trade_bcnmid",516);
 
@@ -756,7 +765,7 @@ function CutsceneSkip(player,npc)
 	elseif(Zone == 206) then -- Qu'Bia Arena
 		if((player:hasCompletedMission(player:getNation(),14)) or (player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") > 11)) then -- Mission 5-1
 			skip = 1;
-		elseif((player:hasCompletedMission(player:getNation(),23)) or (player:getCurrentMission(player:getNation()) == 23 and player:getVar("SANDO92") > 4)) then -- Mission 9-2
+		elseif((player:hasCompletedMission(player:getNation(),23)) or (player:getCurrentMission(player:getNation()) == 23 and player:getVar("MissionStatus") > 4)) then -- Mission 9-2
 			skip = 1;
 		end
 	elseif(Zone == 207) then -- Cloister of Flames

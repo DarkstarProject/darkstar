@@ -7,6 +7,7 @@ package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/AlTaieu/TextIDs");
+require("scripts/zones/AlTaieu/mobIDs");
 require("scripts/globals/missions");
 
 -----------------------------------
@@ -19,29 +20,18 @@ end;
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
-
+ 
 function onTrigger(player,npc)
-
-    if(player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and (player:getVar("PromathiaStatus")==2 or player:getVar("PromathiaStatus")==4 or player:getVar("PromathiaStatus")==6)
-     and player:getVar("Ru_aern_2-1KILL")==0 or player:getVar("Ru_aern_2-2KILL")==0 or player:getVar("Ru_aern_2-3KILL")==0)then
+    if(player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2 and player:getVar("[SEA][AlTieu]WestTower") == 0 and player:getVar("[SEA][AlTieu]WestTowerCS") == 0) then
         player:messageSpecial(OMINOUS_SHADOW);
-        SpawnMob(16912832,180):updateEnmity(player);   
-        SpawnMob(16912833,180):updateEnmity(player);
-        SpawnMob(16912834,180):updateEnmity(player);   
-    elseif(player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("Ru_aern_2-1KILL")==1 and player:getVar("Ru_aern_2-2KILL")==1 and player:getVar("Ru_aern_2-3KILL")==1) then
-        if(player:getVar("PromathiaStatus")==3) then
-            player:startEvent(0x00A1);
-        elseif(player:getVar("PromathiaStatus")==5) then
-            player:startEvent(0x00A2);
-        elseif(player:getVar("PromathiaStatus")==7)then
-            player:startEvent(0x00A3);
-        else
-            player:messageSpecial(NOTHING_OF_INTEREST); 
-        end
+        SpawnMob(WestTowerAern,180):updateClaim(player);
+        SpawnMob(WestTowerAern+1,180):updateClaim(player);
+        SpawnMob(WestTowerAern+2,180):updateClaim(player);
+    elseif(player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2 and player:getVar("[SEA][AlTieu]WestTower") == 1 and player:getVar("[SEA][AlTieu]WestTowerCS") == 0) then
+        player:startEvent(0x00A2);
     else
-        player:messageSpecial(NOTHING_OF_INTEREST); 
+        player:messageSpecial(NOTHING_OF_INTEREST);
     end
-
 end;
 
 -----------------------------------
@@ -58,15 +48,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-    
-    if(csid == 0x00A1)then	
-        player:setVar("PromathiaStatus",4); 
-    elseif(csid == 0x00A2)then	
-        player:setVar("PromathiaStatus",6);
-    elseif(csid == 0x00A3)then	
-        player:setVar("PromathiaStatus",8); 
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if(csid == 0x00A2) then
+        player:setVar("[SEA][AlTieu]WestTowerCS", 1);
+        player:setVar("[SEA][AlTieu]WestTower", 0);
     end
-    
 end;

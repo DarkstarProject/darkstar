@@ -34,6 +34,7 @@ class CBaseEntity;
 
 // no path can be longer than this
 #define MAX_PATH_POINTS 50
+#define VERTICAL_PATH_LIMIT 3.5
 
 enum PATHFLAG {
   PATHFLAG_NONE			= 0x00,
@@ -50,7 +51,7 @@ class CPathFind
     ~CPathFind();
 
     // move to a random point around given point
-    bool RoamAround(position_t point, uint8 roamFlags = 0);
+    bool RoamAround(position_t point, float maxRadius, uint8 roamFlags = 0);
 
     // find and walk to the given point
     bool PathTo(position_t point, uint8 pathFlags = 0);
@@ -102,6 +103,10 @@ class CPathFind
 
     // returns true if i'm in water
     bool InWater();
+
+    // checks if raycast was broken between current point and given
+    // returns true if raycast didn't hit any walls
+    bool CanSeePoint(position_t point);
 
   private:
 

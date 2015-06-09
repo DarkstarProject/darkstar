@@ -39,7 +39,7 @@ CPathFind::~CPathFind()
 	Clear();
 }
 
-bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
+bool CPathFind::RoamAround(position_t point, float maxRadius, uint8 roamFlags)
 {
 	Clear();
 
@@ -47,18 +47,6 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 
 	if (isNavMeshEnabled())
 	{
-
-		// all mobs will default to this distance
-		float maxRadius = 10.0f;
-
-		// sight aggro mobs will move a bit farther
-		// this is until this data is put in the database
-		if (m_roamFlags & ROAMFLAG_MEDIUM)
-		{
-			maxRadius = 20.0f;
-		}
-
-		// TODO: finish roam flags. distance should have a distance limit
 
 		if (FindRandomPath(&point, maxRadius))
 		{
@@ -138,7 +126,7 @@ bool CPathFind::PathAround(position_t point, float distance, uint8 pathFlags)
 
 	position_t* lastPoint = &point;
 
-	float randomRadian = RandomNumber() * M_PI * 2.0f;
+	float randomRadian = WELL512::GetRandomNumber<float>(0,2*M_PI);
 
 	lastPoint->x += cosf(randomRadian) * distance;
 	lastPoint->z += sinf(randomRadian) * distance;
@@ -345,11 +333,8 @@ bool CPathFind::FindClosestPath(position_t* start, position_t* end)
 
 	m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(*start, *end, m_points, MAX_PATH_POINTS);
 
-	// TODO: instead of skipping the path based on too many points
-	// it would make more sense to base it off of height difference is too large
-	if (m_pathLength <= 0 || m_pathLength >= 7)
+	if (m_pathLength <= 0)
 	{
-		// f you, too long
 		// this is a trick to make mobs go up / down impassible terrain
 		m_pathLength = 1;
 
@@ -420,6 +405,16 @@ bool CPathFind::InWater()
 	}
 
 	return false;
+}
+
+bool CPathFind::CanSeePoint(position_t point)
+{
+	if (isNavMeshEnabled())
+	{
+		return m_PTarget->loc.zone->m_navMesh->raycast(m_PTarget->loc.p, point);
+	}
+
+	return true;
 }
 
 void CPathFind::Clear()

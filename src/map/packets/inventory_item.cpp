@@ -37,66 +37,66 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 	this->type = 0x20;
 	this->size = 0x16;
 
-	WBUFB(data,(0x0E)-4) = LocationID;
-	WBUFB(data,(0x0F)-4) = SlotID;	
+	WBUFB(data,(0x0E)) = LocationID;
+	WBUFB(data,(0x0F)) = SlotID;	
 
 	if (PItem != nullptr)
 	{
-		WBUFL(data,(0x04)-4) = PItem->getQuantity();
-		WBUFL(data,(0x08)-4) = PItem->getCharPrice();
-		WBUFW(data,(0x0C)-4) = PItem->getID();
-        memcpy(data + 0x11 - 4, PItem->m_extra, sizeof(PItem->m_extra));
+		WBUFL(data,(0x04)) = PItem->getQuantity();
+		WBUFL(data,(0x08)) = PItem->getCharPrice();
+		WBUFW(data,(0x0C)) = PItem->getID();
+        memcpy(data + 0x11 , PItem->m_extra, sizeof(PItem->m_extra));
 
 		if (PItem->isSubType(ITEM_CHARGED))
 		{
-			WBUFB(data,(0x11)-4) = 0x01;    // флаг ITEM_CHARGED
+			WBUFB(data,(0x11)) = 0x01;    // флаг ITEM_CHARGED
 
             if (((CItemUsable*)PItem)->getCurrentCharges() > 0)
             {
                 if (((CItemUsable*)PItem)->getReuseTime() == 0)
                 {
-                    WBUFB(data,(0x14)-4) = 0xD0;
+                    WBUFB(data,(0x14)) = 0xD0;
                 }
                 else
                 {
-                    WBUFB(data,(0x14)-4) = 0x90;
+                    WBUFB(data,(0x14)) = 0x90;
 
                     uint32 CurrentTime = CVanaTime::getInstance()->getVanaTime();
 
-                    WBUFL(data,(0x15)-4) = ((CItemUsable*)PItem)->getNextUseTime();             // таймер следующего использования
-                    WBUFL(data,(0x19)-4) = ((CItemUsable*)PItem)->getUseDelay() + CurrentTime;  // таймер задержки использования
+                    WBUFL(data,(0x15)) = ((CItemUsable*)PItem)->getNextUseTime();             // таймер следующего использования
+                    WBUFL(data,(0x19)) = ((CItemUsable*)PItem)->getUseDelay() + CurrentTime;  // таймер задержки использования
                 }
             }
 		}
 
         if (PItem->isType(ITEM_WEAPON) && ((CItemWeapon*)PItem)->isUnlockable())
         {
-            WBUFW(data, (0x11) - 4) = 0;
+            WBUFW(data, (0x11) ) = 0;
         }
 
         if (PItem->getCharPrice() != 0)
         {
-            WBUFB(data, (0x10) - 4) = 0x19;
+            WBUFB(data, (0x10) ) = 0x19;
         }
         else if (PItem->isSubType(ITEM_LOCKED))
         {
             if (PItem->isType(ITEM_LINKSHELL))
             {
-                WBUFB(data, (0x10) - 4) = 0x13;
+                WBUFB(data, (0x10) ) = 0x13;
             }
             else
             {
-                WBUFB(data, (0x10) - 4) = 0x05;
+                WBUFB(data, (0x10) ) = 0x05;
             }
         }
         else
         {
-            WBUFB(data, (0x10) - 4) = 0x00;
+            WBUFB(data, (0x10) ) = 0x00;
         }
 
         if (PItem->isType(ITEM_LINKSHELL))
         {
-            WBUFB(data,(0x19)-4) = ((CItemLinkshell*)PItem)->GetLSType();
+            WBUFB(data,(0x19)) = ((CItemLinkshell*)PItem)->GetLSType();
         }
 	}
 }

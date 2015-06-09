@@ -38,6 +38,6 @@ CTradeRequestPacket::CTradeRequestPacket(CCharEntity* PChar)
 	this->type = 0x21;
 	this->size = 0x06;
 	
-	WBUFL(data,(0x04)-4) = PChar->id;
-	WBUFW(data,(0x08)-4) = PChar->targid;
+	WBUFL(data,(0x04)) = PChar->id;
+	WBUFW(data,(0x08)) = PChar->targid;
 }

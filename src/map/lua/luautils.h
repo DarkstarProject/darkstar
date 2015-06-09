@@ -29,7 +29,7 @@
 #include "../entities/battleentity.h"
 #include "../conquest_system.h"
 
-#define lua_prepscript(n,...) int8 File[255]; memset(File, 0, sizeof(File)); int32 oldtop = lua_gettop(LuaHandle); \
+#define lua_prepscript(n,...) int8 File[255]; int32 oldtop = lua_gettop(LuaHandle); \
                               snprintf( File, sizeof(File), n, ##__VA_ARGS__);
 
 /************************************************************************
@@ -42,6 +42,7 @@ class CAbility;
 class CSpell;
 class CBaseEntity;
 class CBattleEntity;
+class CAutomatonEntity;
 class CCharEntity;
 class CBattlefield;
 class CItem;
@@ -143,7 +144,8 @@ namespace luautils
 	int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);		// triggered when casting a spell
 	int32 OnSpellPrecast(CBattleEntity* PCaster, CSpell* PSpell);				            // triggered just before casting a spell
 	int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);            // triggered when monster wants to use a spell on target
-    int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);       //triggered when spell cast on monster
+    int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);       // triggered when spell cast on monster
+    int32 OnWeaponskillHit(CBattleEntity* PMob, CBaseEntity* PAttacker, uint16 PWeaponskill); // Triggered when Weaponskill strikes monster
 
     int32 OnMobInitialize(CBaseEntity* PMob);                                     // Used for passive trait
     int32 OnMobSpawn(CBaseEntity* PMob);                                          // triggers on mob spawn
@@ -167,7 +169,9 @@ namespace luautils
 
 	int32 OnMobWeaponSkill(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);							// triggers when mob weapon skill is used
 	int32 OnMobSkillCheck(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);								// triggers before mob weapon skill is used, returns 0 if the move is valid
-	int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbility, CBaseEntity** PMsgTarget);	// triggers when a player attempts to use a job ability or roll
+    int32 OnMobAutomatonSkillCheck(CBaseEntity* PChar, CAutomatonEntity* PAutomaton, CMobSkill* PMobSkill);
+
+    int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbility, CBaseEntity** PMsgTarget);	// triggers when a player attempts to use a job ability or roll
 	int32 OnPetAbility(CBaseEntity* PPet, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PPetMaster);		// triggers when pet uses an ability
 	int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLanded, uint16* extraHitsLanded);	// triggers when weapon skill is used
 	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, apAction_t* action);		    // triggers when job ability is used
@@ -197,6 +201,8 @@ namespace luautils
 
     int32 OnPlayerLevelUp(CCharEntity* PChar);
     int32 OnPlayerLevelDown(CCharEntity* PChar);
+
+    int32 OnChocoboDig(CCharEntity* PChar, bool pre);                           // chocobo digging, pre = check
 };
 
 #endif //- _LUAUTILS_H -

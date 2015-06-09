@@ -81,6 +81,9 @@ namespace charutils
     void    RemoveSub(CCharEntity* PChar);
     bool    EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID);
     void	CheckUnarmedWeapon(CCharEntity* PChar);
+    void    SetStyleLock(CCharEntity* PChar, bool isStyleLocked);
+    void    UpdateWeaponStyle(CCharEntity* PChar, uint8 equipSlotID, CItemWeapon* PItem);
+    void    UpdateArmorStyle(CCharEntity* PChar, uint8 equipSlotID);
 
     void    UpdateHealth(CCharEntity* PChar);
 
@@ -123,6 +126,7 @@ namespace charutils
     void	SaveCharJob(CCharEntity* PChar, JOBTYPE job);		        // сохраняем уровень для выбранной профессий персонажа
     void	SaveCharExp(CCharEntity* PChar, JOBTYPE job);		        // сохраняем опыт для выбранной профессии персонажа
     void	SaveCharEquip(CCharEntity* PChar);					        // сохраняем экипировку и внешний вид персонажа
+    void    SaveCharLook(CCharEntity* PChar);                           // Saves a character's appearance based on style locking.
     void	SaveCharPosition(CCharEntity* PChar);				        // сохраняем позицию персонажа
     void	SaveMissionsList(CCharEntity* PChar);                       // Save the missions list
     void	SaveQuestsList(CCharEntity* PChar);					        // сохраняем список ксевтов
@@ -136,7 +140,8 @@ namespace charutils
     void	SaveCharStats(CCharEntity* PChar);					        // сохраняем флаги, текущие значения жихней, маны и профессий
     void    SaveCharGMLevel(CCharEntity* PChar);                        // saves the char's gm level and nameflags
     void    mentorMode(CCharEntity* PChar);                             // Changes char's mentor status
-    void	SaveCharNation(CCharEntity* PChar);							// Sace the character's nation of allegiance.
+    void	SaveCharNation(CCharEntity* PChar);							// Save the character's nation of allegiance.
+    void    SaveCampaignAllegiance(CCharEntity* PChar);                 // Save the character's campaign allegiance.
     void	SaveCharSkills(CCharEntity* PChar, uint8 skillID);	        // сохраняем указанный skill персонажа
     void	SaveCharPoints(CCharEntity* PChar);							// Conquest point, Nation TP
     void	SaveDeathTime(CCharEntity* PChar);							// Saves when this character last died.
@@ -166,6 +171,8 @@ namespace charutils
     int32   GetPoints(CCharEntity* PChar, const char* type);
     std::string GetConquestPointsName(CCharEntity* PChar);
     void    SendToZone(CCharEntity* PChar, uint8 type, uint64 ipp);
+
+    int32   GetVar(CCharEntity* PChar, const char* var);
 };
 
 #endif

@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("saveMySisterLanternID",0);
 		
 		if(LanternOrder == 0) then
-			if(npcID == 17576340) then --(F-9)
+			if(npcID == 17576343) then --(F-9)
 				-- "The Ducal Guard's lantern lights dimly."
 				player:messageSpecial(THE_LIGHT_DIMLY,0,0,0,DUCAL_GUARDS_LANTERN_LIT);
 				player:setVar("saveMySisterFireLantern",1);
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
 				player:messageSpecial(REFUSE_TO_LIGHT,0,0,0,DUCAL_GUARDS_LANTERN_LIT);
 			end
 		elseif(LanternOrder == 1) then
-			if(npcID == 17576341) then --(H-7)
+			if(npcID == 17576344) then --(H-7)
 				-- "The light of Ducal Guard's lantern has intensified."
 				player:messageSpecial(THE_LIGHT_HAS_INTENSIFIED,0,0,0,DUCAL_GUARDS_LANTERN_LIT);
 				player:setVar("saveMySisterFireLantern",2);
@@ -77,7 +77,7 @@ function onEventFinish(player,csid,option)
 				player:setVar("saveMySisterFireLantern",0);
 			end
 		elseif(LanternOrder == 2) then
-			if(npcID == 17576342) then --(F-7)
+			if(npcID == 17576345) then --(F-7)
 				-- "The light of Ducal Guard's lantern has intensified."
 				player:messageSpecial(THE_LIGHT_HAS_INTENSIFIED,0,0,0,DUCAL_GUARDS_LANTERN_LIT);
 				player:setVar("saveMySisterFireLantern",3);
@@ -87,7 +87,7 @@ function onEventFinish(player,csid,option)
 				player:setVar("saveMySisterFireLantern",0);
 			end
 		elseif(LanternOrder == 3) then
-			if(npcID == 17576343) then --(H-9)
+			if(npcID == 17576346) then --(H-9)
 				-- "The Ducal Guard's lantern is fully lit!"
 				player:messageSpecial(THE_LIGHT_IS_FULLY_LIT,0,0,0,DUCAL_GUARDS_LANTERN_LIT);
 				player:setVar("saveMySisterFireLantern",4);

@@ -64,11 +64,13 @@ WYVERNTYPE CPetEntity::getWyvernType()
     case JOB_WHM:
     case JOB_RDM:
     case JOB_SCH:
+    case JOB_GEO:
       return WYVERNTYPE_DEFENSIVE;
     case JOB_DRK:
     case JOB_PLD:
     case JOB_NIN:
     case JOB_BRD:
+    case JOB_RUN:
       return WYVERNTYPE_MULTIPURPOSE;
     case JOB_WAR:
     case JOB_SAM:

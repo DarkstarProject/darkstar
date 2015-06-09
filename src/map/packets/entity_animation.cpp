@@ -34,11 +34,11 @@ CEntityAnimationPacket::CEntityAnimationPacket(CBaseEntity * PEntity, const char
 	this->type = 0x38;
 	this->size = 0x0A;
 
-	WBUFL(data,(0x04)-4) = PEntity->id;
-	WBUFL(data,(0x08)-4) = PEntity->id;
+	WBUFL(data,(0x04)) = PEntity->id;
+	WBUFL(data,(0x08)) = PEntity->id;
 	
-	memcpy(data + ((0x0C)-4), type, 4);
+	memcpy(data + ((0x0C)), type, 4);
 
-	WBUFW(data,(0x10)-4) = PEntity->targid;
-	WBUFW(data,(0x12)-4) = PEntity->targid;
+	WBUFW(data,(0x10)) = PEntity->targid;
+	WBUFW(data,(0x12)) = PEntity->targid;
 }
