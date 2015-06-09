@@ -1566,7 +1566,7 @@ function calculateBarspellPower(caster,enhanceSkill)
 		enhanceSkill = 0;
 	end
 
-	local power = 40 + 0.2 * enchanceSkill + meritBonus;
+	local power = 40 + 0.2 * enhanceSkill + meritBonus;
 	
 	local equippedLegs = caster:getEquipID(SLOT_LEGS);
 	if(equippedLegs == 15119) then
