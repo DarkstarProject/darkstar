@@ -33,6 +33,7 @@ function onPetAbility(target, pet, skill, master)
       -- Supposedly unused Wyvern HP+ gear added potency, that is 991 current + unused +50 HP > 991 + no HP+ gear.  I have not seen proof of this though.
    -- Source 1, HB IV multiplier: http://www.bluegartr.com/threads/108543-Wyvern-Breath-Testing?p=5017811&viewfull=1#post5017811
    -- Source 2, Lots of info: http://www.bluegartr.com/threads/108543-Wyvern-Breath-Testing?p=5357018&viewfull=1#post5357018
+   -- Source for max HP instead of current: http://www.bluegartr.com/threads/108543-Wyvern-Breath-Testing?p=4995110&viewfull=1#post4995110
 
    ---------- Deep Breathing ----------
    -- 0 for none
@@ -47,7 +48,7 @@ function onPetAbility(target, pet, skill, master)
 
    local gear = master:getMod(MOD_WYVERN_BREATH)/256; -- Master gear that enhances breath
 
-   local base = math.floor((45/256)*(gear+(pet:getTP()/1024)+deep+1)*(pet:getHP())+42);
+   local base = math.floor((45/256)*(gear+(pet:getTP()/1024)+deep+1)*(pet:getMaxHP())+42);
    if(target:getHP()+base > target:getMaxHP()) then
       base = target:getMaxHP() - target:getHP(); --cap it
    end
