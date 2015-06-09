@@ -565,14 +565,6 @@ uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
             // drain same as damage taken
             damage = damageTaken;
         break;
-        case SPIKE_REPRISAL:
-            damage += (float)damageTaken*0.3;
-            if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SENTINEL))
-            {
-                // bonus
-                damage *= WELL512::GetRandomNumber(1., 3.);
-            }
-        break;
         default:
         break;
     }
@@ -667,6 +659,14 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 if (Action->reaction == REACTION_BLOCK)
                 {
                     PAttacker->addHP(-Action->spikesParam);
+
+                    // Subpower is the remaining damage that can be reflected. When it reaches 0 the effect ends
+                    int remainingReflect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL)->GetSubPower();
+                    PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL)->SetSubPower(remainingReflect - Action->spikesParam);
+                    if (PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL)->GetSubPower() <= 0)
+                    {
+                        PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_REPRISAL);
+                    }
                 }
                 else
                 {
@@ -1606,6 +1606,7 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
 {
     int8 shieldSize = 3;
     int8 base = 0;
+    float blockRateMod = (100.0 + PDefender->getMod(MOD_SHIELDBLOCKRATE)) / 100.0;
     uint16 attackskill = PAttacker->GetSkill((SKILLTYPE)(PAttacker->m_Weapons[SLOT_MAIN]->getSkillType()));
     uint16 blockskill = PDefender->GetSkill(SKILL_SHL);
 
@@ -1651,8 +1652,7 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
     }
 
     float skillmodifier = (blockskill - attackskill) * 0.215f;
-
-    return dsp_cap(base + (int8)skillmodifier, 5, (shieldSize == 6 ? 100 : 65));
+    return dsp_cap((int8)((base + (int8)skillmodifier) * blockRateMod), 5, (shieldSize == 6 ? 100 : dsp_max((int8)(65 * blockRateMod), 100)));
 }
 
 uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
@@ -1748,7 +1748,7 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 int32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool giveTPtoAttacker, bool isCounter)
 {
     bool isRanged = (slot == SLOT_AMMO || slot == SLOT_RANGED);
-
+    int32 baseDamage = damage;
 	if(PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_FORMLESS_STRIKES) && !isCounter)
 	{
 		uint8 formlessMod = 70;
@@ -1789,25 +1789,46 @@ int32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int
         else
             damage = (damage * (PDefender->getMod(MOD_HTHRES))) / 1000;
 
-		if(isBlocked)
-		{
-			uint8 absorb = 100;
-			if(PDefender->objtype == TYPE_PC)
-			{
-				if(PDefender->m_Weapons[SLOT_SUB]->IsShield())
-				{
-					absorb = 100 - PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption();
-                    if((dsp_max(damage - (PDefender->getMod(MOD_PHALANX) + PDefender->getMod(MOD_STONESKIN)), 0) >0)
+        if(isBlocked)
+        {
+            uint8 absorb = 100;
+            if (PDefender->m_Weapons[SLOT_SUB]->IsShield())
+            {
+                if (PDefender->objtype == TYPE_PC)
+                {
+                    absorb = dsp_cap(100 - PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption(), 0, 100);
+
+                    //Shield Mastery
+                    if ((dsp_max(damage - (PDefender->getMod(MOD_PHALANX) + PDefender->getMod(MOD_STONESKIN)), 0) >0)
                         && (charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY)))
                     {
                         // If the player blocked with a shield and has shield mastery, add shield mastery TP bonus
                         // unblocked damage (before block but as if affected by stoneskin/phalanx) must be greater than zero
                         PDefender->addTP(PDefender->getMod(MOD_SHIELD_MASTERY_TP));
                     }
-				}
-			}
-			else
-			    absorb = 50;
+                }
+                else
+                {
+                    absorb = 50;
+                }
+
+                //Reprisal
+                if ((damage > 0) && PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_REPRISAL))
+                {
+                    // Reflect a portion of the blocked damage back. This is calculated before Stoneskin, Phalanx, Sentinel or Invincible
+                    // Subpower is the remaining damage that can be reflected. When it reaches 0 the effect ends
+                    CStatusEffect* reprisalEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL);
+                    int32 blockedDamage = (damage * (100 - absorb)) / 100;
+                    if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE) || PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SENTINEL))
+                    {
+                        blockedDamage = (baseDamage * (100 - absorb)) / 100;
+                    }
+                    // Subpower is the remaining damage that can be reflected. When it reaches 0 the effect ends
+                    // Set Reprisal spike damage
+                    PDefender->setModifier(MOD_SPIKES_DMG, dsp_cap((int32)(blockedDamage * (reprisalEffect->GetPower())) / 100,
+                        0, reprisalEffect->GetSubPower()));
+                }
+            }
 
             damage = (damage * absorb) / 100;
         }
