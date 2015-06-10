@@ -12,7 +12,7 @@ require("scripts/globals/utils")
 	ELEMENTAL_MAGIC_SKILL 	= 36;
     DARK_MAGIC_SKILL 		= 37;
     NINJUTSU_SKILL          = 39;
-    SUMMENING_SKILL 	    = 38;
+    SUMMONING_SKILL 	    = 38;
     SINGING_SKILL           = 40;
     STRING_SKILL            = 41;
     WIND_SKILL              = 42;
