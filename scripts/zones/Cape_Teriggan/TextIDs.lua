@@ -9,6 +9,7 @@ FULL_INVENTORY_AFTER_TRADE = 6381; -- You cannot obtain the #. Try trading again
             ITEMS_OBTAINED = 6391; -- You obtain
            BEASTMEN_BANNER = 7117; -- There is a beastmen's banner.
     FISHING_MESSAGE_OFFSET = 7537; -- You can't fish here.
+            HOMEPOINT_SET = 11226; -- Home point set!
 
 -- Other dialog
 NOTHING_OUT_OF_ORDINARY = 6396; -- There is nothing out of the ordinary here.

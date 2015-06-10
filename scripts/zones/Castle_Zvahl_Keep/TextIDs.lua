@@ -5,6 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6538; -- You cannot obtain the item <item>. Come back 
           ITEM_OBTAINED = 6541; -- Obtained: <item>.
            GIL_OBTAINED = 6542; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6544; -- Obtained key item: <keyitem>.
+            HOMEPOINT_SET = 7267; -- Home point set!
 
 -- Treasure Coffer/Chest Dialog
 CHEST_UNLOCKED = 7209; -- You unlock the chest!

@@ -7,6 +7,7 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6385; -- Obtained key item: <keyitem>.
            KEYITEM_LOST = 6386; -- Lost key item:
 NOTHING_OUT_OF_ORDINARY = 6396; -- There is nothing out of the ordinary here.
+            HOMEPOINT_SET = 8117; -- Home point set!
 
 -- Mining
 MINING_IS_POSSIBLE_HERE = 7195; -- Mining is possible here if you have
