@@ -2071,6 +2071,17 @@ INSERT INTO `mob_skill` VALUES (1861,316,1461,'PW_Necropurge',1,15.0,2000,1000,4
 INSERT INTO `mob_skill` VALUES (1862,316,1458,'PW_Bilgestorm',1,15.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1863,316,1459,'PW_Thundris_shriek',1,15.0,2000,1000,4,0,0,0);
 
+-- Pandemonium Warden Avatars
+INSERT INTO `mob_skill` VALUES (628,500,586,'pw_diamond_dust',1,50.0,600,500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (637,501,599,'pw_judgment_bolt',1,50.0,616,500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (601,502,547,'pw_earthen_fury',1,50.0,536,500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (592,503,534,'pw_inferno',1,50.0,536,500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (610,504,560,'pw_tidal_wave',1,50.0,568,500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (619,505,573,'pw_aerial_blast',1,50.0,584,500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (583,506,521,'pw_howling_moon',1,50.0,520,500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (656,507,611,'pw_searing_light',1,50.0,502,500,4,0,0,0);
+--INSERT INTO `mob_skill` VALUES (1655,508,1125,'pw_Ruinous_Omen',1,50.0,2000,0,4,0,0,0);
+
 -- Peistes
 INSERT INTO `mob_skill` VALUES (1896,192,1543,'Aqua_Fortis',1,15,2000,2000,4,0,0,3);
 INSERT INTO `mob_skill` VALUES (1897,192,1544,'Regurgitation',0,7.0,2000,1000,4,0,0,3);
