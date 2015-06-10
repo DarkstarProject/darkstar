@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(crystal);
             player:messageSpecial(ITEM_OBTAINED,crystal);
-            signupGuild(player, SKILL_GLD);
+            signupGuild(player, SKILL_GOLDSMITHING);
         end
     end
 end;
