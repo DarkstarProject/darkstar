@@ -24,9 +24,9 @@ function onMobSpawn(mob)
 
     -- Two hours to forced depop
     mob:setLocalVar("PWardenDespawnTime", os.time(t) + 7200);
-    for i = 17056170, 17056177, 1 do
+    --[[for i = 17056170, 17056177, 1 do
         SpawnMob(i,180):updateEnmity(target);
-    end
+    end]]
 end;
 
 -----------------------------------
@@ -42,7 +42,7 @@ end;
 
 function onMobFight(mob,target)
     local depopTime = mob:getLocalVar("PWardenDespawnTime");
-    local petsModelId = 0;
+   -- local petsModelId = 1841;
     local mobHPP = mob:getHPP();
     local change = mob:getLocalVar("change");
     local petIDs = {17056170,17056171,17056172,17056173,17056174,17056175,17056176,17056177};
@@ -72,6 +72,7 @@ function onMobFight(mob,target)
     elseif (mobHPP <= 28 and change == 11) then -- Normal Form
         mob:setModelId(1839);
         mob:setLocalVar("change", 12);
+        petsModelId = 1841
         if (TP <= 5) then
             mob:useMobAbility(1858);
             mob:setLocalVar("TP", 6)
@@ -83,6 +84,7 @@ function onMobFight(mob,target)
     elseif (mobHPP <= 40 and change == 9) then -- Normal Form
         mob:setModelId(1839);
         mob:setLocalVar("change", 10);
+        petsModelId = 1841
         if (TP <= 4) then
             mob:useMobAbility(1860);
             mob:setLocalVar("TP", 5)
@@ -94,6 +96,7 @@ function onMobFight(mob,target)
     elseif (mobHPP <= 52 and change == 7) then -- Normal Form
         mob:setModelId(1839);
         mob:setLocalVar("change", 8);
+        petsModelId = 1841
         if (TP <= 3) then
             mob:useMobAbility(1861);
             mob:setLocalVar("TP", 4)
@@ -105,6 +108,7 @@ function onMobFight(mob,target)
     elseif (mobHPP <= 64 and change == 5) then -- Normal Form
         mob:setModelId(1839);
         mob:setLocalVar("change", 6);
+        petsModelId = 1841
         if (TP <= 2) then
             mob:useMobAbility(1862);
             mob:setLocalVar("TP", 3)
@@ -116,6 +120,7 @@ function onMobFight(mob,target)
     elseif (mobHPP <= 76 and change == 3) then -- Normal Form
         mob:setModelId(1839);
         mob:setLocalVar("change", 4);
+        petsModelId = 1841
         if (TP <= 1) then
             mob:useMobAbility(1863);
             mob:setLocalVar("TP", 2)
@@ -127,6 +132,7 @@ function onMobFight(mob,target)
     elseif (mobHPP <= 88 and change == 1) then -- Normal Form
         mob:setModelId(1839);
         mob:setLocalVar("change", 2);
+        petsModelId = 1841
         if (TP <= 0) then
             mob:useMobAbility(1857);
             mob:setLocalVar("TP", 1)
@@ -135,6 +141,8 @@ function onMobFight(mob,target)
         mob:setModelId(1825);
         mob:setLocalVar("change", 1);
         petsModelId = 1820;
+    elseif (mobHPP > 98) then
+        petsModelId = 1841
     end
 
 
@@ -164,60 +172,49 @@ function onMobFight(mob,target)
         printf("Timer expired at %i. Despawning Pandemonium Warden.", depopTime);
     end
 
-	-- Very much early code.  Couldn't find a way to depop the mob after AF pacts had executed.  As such, doesn't work.
-	-- Obviously, you have to move the Avatars to their own family, and give them access to AFlows via a new set of moves.
-	-- Might be able to cheat by giving them a copy AFlow (change the name!) that despawns the mob once completed.
-	-- Rearranging the skins may be necessary to use this trick efficiently on more SMNs.
-	-- Either that, or probably somewhat complex core code.  Avatars may not always be mobid+1.
-	-- It wasn't clear if the avatars were a separate pop, or if all dead lamps should revive, go avatar, and AFlow.
+    -- Very much early code.  Couldn't find a way to depop the mob after AF pacts had executed.  As such, doesn't work.
+    -- Obviously, you have to move the Avatars to their own family, and give them access to AFlows via a new set of moves.
+    -- Might be able to cheat by giving them a copy AFlow (change the name!) that despawns the mob once completed.
+    -- Rearranging the skins may be necessary to use this trick efficiently on more SMNs.
+    -- Either that, or probably somewhat complex core code.  Avatars may not always be mobid+1.
+    -- It wasn't clear if the avatars were a separate pop, or if all dead lamps should revive, go avatar, and AFlow.
 
-	--[[
-	------------------------ Astral Flow Logic ------------------------
-	-- Missing the log message for players.  Needs to be handled in the core somehow.
-	-- Possibly supposed to use twice per trigger?  Did not check too far on this.  Sounds fun.
-	if (mobHP <= (mobMaxHP * 0.75) and target:getMaskBit(PWardenAstralFlows,3) == false) then
-		for i=17056178, 17056186 do
-			local rannum = math.random(0,7);
-			local avatar = GetMobByID(i);
-			avatar:changeSkin(23 + rannum); -- Random avatar skin
-			SpawnMob(i):updateEnmity(target);
-			avatar:useMobAbility(656);
-			DespawnMob(i);
-		end
-		PWardenAstralFlows = PWardenAstralFlows + 4;
-		-- 23 = Shiva, 628 Diamond Dust
-		-- 24 = Ramuh, 637 Judgement Bolt
-		-- 25 = Titan, 601 Earthen Fury
-		-- 26 = Ifrit, 592 Inferno
-		-- 27 = Leviathan, 610 Tidal Wave
-		-- 28 = Garuda, 619 Aerial Blast
-		-- 29 = Fenrir, 583 Howling Moon
-		-- 30 = Carbuncle, 656 Searing Light
-		-- 31 = Diabolos
-		-- 646 = wyvern breath.  Need to find diabolos.
+    
+    ------------------------ Astral Flow Logic ------------------------
+    -- Missing the log message for players.  Needs to be handled in the core somehow.
+    -- Possibly supposed to use twice per trigger?  Did not check too far on this.  Sounds fun.
+    local mobHP = mob:getHP();
+    local mobMaxHP = mob:getMaxHP();
+    local rannum = math.random(0,7);
+    if (mobHP <= (mobMaxHP * 0.75) and mob:getLocalVar("astralflow") == 0) then
+        for i=17056178, 17056185 do
+            SpawnMob(i):updateEnmity(target);
+        printf("spawnavatars");
+        end
+        mob:setLocalVar("astralflow",1)
+        -- 23 = Shiva, 628 Diamond Dust
+        -- 24 = Ramuh, 637 Judgement Bolt
+        -- 25 = Titan, 601 Earthen Fury
+        -- 26 = Ifrit, 592 Inferno
+        -- 27 = Leviathan, 610 Tidal Wave
+        -- 28 = Garuda, 619 Aerial Blast
+        -- 29 = Fenrir, 583 Howling Moon
+        -- 30 = Carbuncle, 656 Searing Light
+        -- 31 = Diabolos
+        -- 646 = wyvern breath.  Need to find diabolos.
 
-	elseif (mobHP <= (mobMaxHP * 0.5) and target:getMaskBit(PWardenAstralFlows,2) == false) then
-		for i=17056178, 17056186 do
-			local rannum = math.random(0,7);
-			local avatar = GetMobByID(i);
-			avatar:changeSkin(23 + rannum); -- Random avatar skin
-			SpawnMob(i):updateEnmity(target);
-			avatar:useMobAbility(656);
-			DespawnMob(i);
-		end
-		PWardenAstralFlows = PWardenAstralFlows + 2;
-	elseif (mobHP <= (mobMaxHP * 0.25) and target:getMaskBit(PWardenAstralFlows,1) == false) then
-		for i=17056178, 17056186 do
-			local rannum = math.random(0,7);
-			local avatar = GetMobByID(i);
-			avatar:changeSkin(23 + rannum); -- Random avatar skin
-			SpawnMob(i):updateEnmity(target);
-			avatar:useMobAbility(656);
-			DespawnMob(i);
-		end
-		PWardenAstralFlows = PWardenAstralFlows + 1;
-	end
-	]]--
+    elseif (mobHP <= (mobMaxHP * 0.5) and mob:getLocalVar("astralflow") == 1) then
+        for i=17056178, 17056185 do
+            SpawnMob(i):updateEnmity(target);
+            mob:setLocalVar("astralflow",2)
+        end
+    elseif (mobHP <= (mobMaxHP * 0.25) and mob:getLocalVar("astralflow") == 2) then
+        for i=17056178, 17056185 do
+            SpawnMob(i):updateEnmity(target);
+            mob:setLocalVar("astralflow",3)
+        end
+    end
+
 
 end;
 
@@ -226,6 +223,6 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	-- TODO: Death speech.
+    -- TODO: Death speech.
     killer:addTitle(PANDEMONIUM_QUELLER);
 end;

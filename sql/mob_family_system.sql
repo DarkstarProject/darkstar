@@ -533,6 +533,16 @@ INSERT INTO `mob_family_system` VALUES (492,'Balamor',9,'Demon',1,40,90,140,6,3,
 INSERT INTO `mob_family_system` VALUES (493,'Ashrakk',9,'Demon',1,40,90,140,6,3,3,3,1,5,4,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,0.875,0);
 INSERT INTO `mob_family_system` VALUES (494,'Sekhmet',6,'Beast',1,60,94,90,1,1,4,2,6,6,2,3,3,3,3,1,1,1,1,1,1,1,1.25,0.875,1,1,1,5);
 INSERT INTO `mob_family_system` VALUES (495,'Astral_Flow_Pet',5,'Avatar',0,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+-- 496-499 unused
+INSERT INTO `mob_family_system` VALUES (500,'PW_Shiva',9,'Demon',0,40,92,140,6,3,3,3,1,5,4,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (501,'PW_Ramuh',9,'Demon',0,40,92,140,6,3,3,3,1,5,4,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (502,'PW_Titan',9,'Demon',0,40,92,140,6,3,3,3,1,5,4,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (503,'PW_Ifrit',9,'Demon',0,40,92,140,6,3,3,3,1,5,4,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (504,'PW_Leviathan',9,'Demon',0,40,92,140,6,3,3,3,1,5,4,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (505,'PW_Garuda',9,'Demon',0,40,92,140,6,3,3,3,1,5,4,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (506,'PW_Fenrir',9,'Demon',0,40,92,140,6,3,3,3,1,5,4,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (507,'PW_Carbuncle',9,'Demon',0,40,92,140,6,3,3,3,1,5,4,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+--INSERT INTO `mob_family_system` VALUES (508,'PW_Diabolos',9,'Demon',0,40,92,140,6,3,3,3,1,5,4,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
