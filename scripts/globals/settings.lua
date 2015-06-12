@@ -115,7 +115,6 @@ LOW_LEVEL_REGIME = 0; --Allow people to kill regime targets even if they give no
 GROUNDS_TOMES = 1; -- Enables Grounds of Valor tomes
 
 -- JOB ABILITY/TRAIT SPECIFIC SETTINGS
-SCAVENGE_RATE = 0.1; --The chance of obtaining an item when you use the Ranger job ability Scavenge.  Do not set above 1!
 CIRCLE_KILLER_EFFECT = 20; -- Intimidation percentage granted by circle effects. (made up number)
 KILLER_EFFECT = 10; -- Intimidation percentage from killer job traits.
 
