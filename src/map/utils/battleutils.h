@@ -227,6 +227,7 @@ namespace battleutils
     bool                WeatherMatchesElement(WEATHER weather, uint8 element);
     void				DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset);
 	void				DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll);
+    void                AddTraits(CBattleEntity* PEntity, TraitList_t* TraitList, uint8 level);
 };
 
 #endif

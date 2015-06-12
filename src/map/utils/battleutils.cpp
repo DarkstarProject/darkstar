@@ -4875,5 +4875,44 @@ int32 GetRangedAccuracyBonuses(CBattleEntity* battleEntity)
 	return bonus;
 }
 
+void AddTraits(CBattleEntity* PEntity, TraitList_t* traitList, uint8 level)
+{
+    for (auto&& PTrait : *traitList)
+    {
+        if (level >= PTrait->getLevel() && PTrait->getLevel() > 0)
+        {
+            bool add = true;
+
+            for (uint8 j = 0; j < PEntity->TraitList.size(); ++j)
+            {
+                CTrait* PExistingTrait = PEntity->TraitList.at(j);
+
+                if (PExistingTrait->getID() == PTrait->getID())
+                {
+                    if (PExistingTrait->getRank() < PTrait->getRank())
+                    {
+                        PEntity->delTrait(PExistingTrait);
+                        break;
+                    }
+                    else if (PExistingTrait->getRank() > PTrait->getRank())
+                    {
+                        add = false;
+                        break;
+                    }
+                    else if (PExistingTrait->getMod() == PTrait->getMod())
+                    {
+                        add = false;
+                        break;
+                    }
+                }
+            }
+            if (add)
+            {
+                PEntity->addTrait(PTrait);
+            }
+        }
+    }
+}
+
 };
 

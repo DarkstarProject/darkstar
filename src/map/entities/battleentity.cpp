@@ -1103,3 +1103,15 @@ void CBattleEntity::ForAlliance(std::function<void(CBattleEntity*)> func)
         func(this);
     }
 }
+
+void CBattleEntity::addTrait(CTrait* PTrait)
+{
+    TraitList.push_back(PTrait);
+    addModifier(PTrait->getMod(), PTrait->getValue());
+}
+
+void CBattleEntity::delTrait(CTrait* PTrait)
+{
+    delModifier(PTrait->getMod(), PTrait->getValue());
+    std::remove(TraitList.begin(), TraitList.end(), PTrait);
+}

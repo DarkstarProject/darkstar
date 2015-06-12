@@ -617,21 +617,8 @@ void CalculateStats(CMobEntity * PMob)
     }
 
     // add traits for sub and main
-    AddTraits(PMob, mJob, mLvl);
-    AddTraits(PMob, PMob->GetSJob(), PMob->GetSLevel());
-}
-
-void AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl)
-{
-	TraitList_t* PTraitsList = traits::GetTraits(jobID);
-    for (uint8 i = 0; i <  PTraitsList->size(); ++i)
-	{
-		CTrait* PTrait = PTraitsList->at(i);
-		if (lvl >= PTrait->getLevel() && PTrait->getLevel() > 0)
-		{
-            PMob->addModifier(PTrait->getMod(), PTrait->getValue());
-		}
-	}
+    battleutils::AddTraits(PMob, traits::GetTraits(mJob), mLvl);
+    battleutils::AddTraits(PMob, traits::GetTraits(PMob->GetSJob()), PMob->GetSLevel());
 }
 
 void RecalculateSpellContainer(CMobEntity* PMob)

@@ -327,6 +327,9 @@ public:
 
     void        UpdateEntity() override;
 
+    virtual void addTrait(CTrait*) override;
+    virtual void delTrait(CTrait*) override;
+
     CCharEntity();									// конструктор
     ~CCharEntity();									// деструктор
 

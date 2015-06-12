@@ -409,3 +409,15 @@ void CCharEntity::UpdateEntity()
         updatemask = 0;
     }
 }
+
+void CCharEntity::addTrait(CTrait* PTrait)
+{
+    CBattleEntity::addTrait(PTrait);
+    charutils::addTrait(this, PTrait->getID());
+}
+
+void CCharEntity::delTrait(CTrait* PTrait)
+{
+    CBattleEntity::delTrait(PTrait);
+    charutils::delTrait(this, PTrait->getID());
+}
