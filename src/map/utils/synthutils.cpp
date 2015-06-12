@@ -735,14 +735,10 @@ int32 doSynthFail(CCharEntity* PChar)
 	}
 
     if(PChar->loc.zone->GetID() != 255 && PChar->loc.zone->GetID() != 0)
-    {
 		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CSynthResultMessagePacket(PChar, SYNTH_FAIL));
-		PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_FAIL));
-    }
-    else
-    {
-        PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_FAIL));
-    }
+	
+    PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_FAIL, 29695));
+
 
 	return 0;
 }
