@@ -7,6 +7,7 @@ FULL_INVENTORY_AFTER_TRADE = 6381; -- You cannot obtain the #. Try trading again
               GIL_OBTAINED = 6383; -- Obtained <number> gil.
           KEYITEM_OBTAINED = 6385; -- Obtained key item: <keyitem>.
             ITEMS_OBTAINED = 6391; -- You obtain
+            HOMEPOINT_SET = 11494; -- Home point set!
 
 -- Other dialog
 NOTHING_OUT_OF_ORDINARY = 6396; -- There is nothing out of the ordinary here.

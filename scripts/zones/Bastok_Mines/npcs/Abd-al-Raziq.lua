@@ -81,7 +81,7 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(crystal);
             player:messageSpecial(ITEM_OBTAINED,crystal);
-            signupGuild(player,2);
+            signupGuild(player,SKILL_ALCHEMY);
         end
     end
 end;

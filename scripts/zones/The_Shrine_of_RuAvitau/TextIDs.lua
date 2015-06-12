@@ -6,6 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6383; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6385; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7036; -- You can't fish here.
+            HOMEPOINT_SET = 11407; -- Home point set!
 
 -- Other dialog
 NOTHING_OUT_OF_ORDINARY = 6396; -- There is nothing out of the ordinary here.

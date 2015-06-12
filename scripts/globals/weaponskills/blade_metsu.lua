@@ -35,12 +35,8 @@ function onUseWeaponSkill(player, target, wsID)
 
 
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	if damage > 0 then
-		local tp = player:getTP();
-		local duration = (tp/100 * 20);
-		if(player:hasStatusEffect(EFFECT_SUBTLE_BLOW_PLUS) == false) then
-			player:addStatusEffect(EFFECT_SUBTLE_BLOW_PLUS, 10, 0, duration);
-		end
+	if damage > 0 and (target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
+		target:addStatusEffect(EFFECT_PARALYSIS, 10, 0, 60);
 	end
 		if((player:getEquipID(SLOT_MAIN) or (SLOT_SUB) == 18312) and (player:getMainJob() == JOB_NIN)) then
 		if(damage > 0) then

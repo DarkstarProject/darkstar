@@ -223,7 +223,7 @@ enum MODIFIER
     MOD_SKILLCHAINDMG             = 0xAF,  // Damage bonus applied to skill chain damage.  Modifier from gear (multiplicative after effect/traits) (modId = 175)
 
     MOD_MAGIC_DAMAGE             = 0x137, // Magic damage added directly to the spell's base damage (modId = 311)
-	
+    
     // FOOD!
     MOD_FOOD_HPP                  = 0xB0,  // (modId = 176)
     MOD_FOOD_HP_CAP               = 0xB1,  // (modId = 177)
@@ -359,6 +359,7 @@ enum MODIFIER
     MOD_VELOCITY_SNAPSHOT_BONUS   = 0x1A7, // Increases Snapshot whilst Velocity Shot is up. (modId = 423)
     MOD_VELOCITY_RATT_BONUS       = 0x1A8, // Increases Ranged Attack whilst Velocity Shot is up. (modId = 424)
     MOD_SHADOW_BIND_EXT           = 0x1A9, // Extends the time of shadowbind (modId = 425)
+    MOD_SCAVENGE_EFFECT = 0x138, // (modId = 312)
 
     // Samurai
     MOD_ZANSHIN                   = 0x132, // Zanshin percent chance (modId = 306)
@@ -561,11 +562,12 @@ enum MODIFIER
 
     MOD_EGGHELM                   = 0x205,
 
-    // MOD_SPARE = 0x138, // (modId = 312)
+    MOD_SHIELDBLOCKRATE           = 0x206, // Affects shield block rate, percent based (modID = 518)
+
     // MOD_SPARE = 0x139, // (modId = 313)
     // MOD_SPARE = 0x13A, // (modId = 314)
     // MOD_SPARE = 0x13B, // (modId = 315)
-    // MOD_SPARE = 0x206, // (modId = 518)
+    // MOD_SPARE = 0x207, // (modId = 519)
 
 };
 
