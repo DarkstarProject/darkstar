@@ -29,7 +29,6 @@ function onTrigger(player,npc)
 	local missionStatus = player:getVar("MissionStatus");
 
 	if (currentMission == THE_EMISSARY) then
-		missionStatus = player:getVar("MissionStatus");
 		-- Bastok Mission 2-3 Part I - San d'Oria > Windurst
 		if (missionStatus == 1) then
 			player:startEvent(0x02a4);
@@ -46,7 +45,7 @@ function onTrigger(player,npc)
 	-- Bastok Mission 2-3 Part I - San d'Oria > Windurst
 	elseif (currentMission == THE_EMISSARY_SANDORIA) then
 		if (missionStatus <= 4) then
-				player:startEvent(0x021e);
+			player:startEvent(0x021e);
 		else
 			player:startEvent(0x021f);
 		end
@@ -79,7 +78,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-   -- printf("CSID: %u",csid);
+    -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
 	if (csid == 0x0218) then
