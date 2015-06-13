@@ -13,7 +13,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	local enhanceSkilll = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
+	local enhanceSkill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
 
 	local power = calculateBarspellPower(caster,enhanceSkill);
 
