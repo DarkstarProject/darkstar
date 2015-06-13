@@ -1,21 +1,21 @@
 -- Variable TextID   Description text
 
 -- General Texts
-           ITEM_CANNOT_BE_OBTAINED = 6415; -- Come back after sorting your inventory.
-    FULL_INVENTORY_AFTER_TRADE = 6417; -- Try trading again after sorting your inventory.
-                                      ITEM_OBTAINED = 6418; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
-                                         GIL_OBTAINED = 6419; -- Obtained <<<Numeric Parameter 0>>> gil.
-                              KEYITEM_OBTAINED = 6421; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
-                                        KEYITEM_LOST = 6422; -- Lost key item:
-                                    HOMEPOINT_SET = 24; -- Home point set!
-                    NOT_HAVE_ENOUGH_GIL = 6423; -- You do not have enough gil.
-                             LEATHER_SUPPORT = 6751; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ?Multiple Choice (Parameter 2)?[a little/ever so slightly/ever so slightly].?Prompt?
-        GUILD_TERMINATE_CONTRACT = 6765; -- You have terminated your trading contract with the ?Multiple Choice (Parameter 1)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
-                     GUILD_NEW_CONTRACT = 6773; -- You have formed a new trading contract with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
-                     NO_MORE_GP_ELIGIBLE = 6780; -- You are not eligible to receive guild points at this time
-                                        GP_OBTAINED = 6769; -- Obtained <<<Numeric Parameter 0>>> guild points.
-                   NOT_HAVE_ENOUGH_GP = 6786; -- You do not have enough guild points.
-          NOTHING_OUT_OF_ORDINARY = 6432; -- There is nothing out of the ordinary here.<Prompt>
+   ITEM_CANNOT_BE_OBTAINED = 6415; -- Come back after sorting your inventory.
+FULL_INVENTORY_AFTER_TRADE = 6417; -- Try trading again after sorting your inventory.
+             ITEM_OBTAINED = 6418; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
+              GIL_OBTAINED = 6419; -- Obtained <<<Numeric Parameter 0>>> gil.
+          KEYITEM_OBTAINED = 6421; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
+              KEYITEM_LOST = 6422; -- Lost key item:
+             HOMEPOINT_SET = 24; -- Home point set!
+       NOT_HAVE_ENOUGH_GIL = 6423; -- You do not have enough gil.
+           LEATHER_SUPPORT = 6751; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ?Multiple Choice (Parameter 2)?[a little/ever so slightly/ever so slightly].?Prompt?
+  GUILD_TERMINATE_CONTRACT = 6765; -- You have terminated your trading contract with the ?Multiple Choice (Parameter 1)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
+        GUILD_NEW_CONTRACT = 6773; -- You have formed a new trading contract with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
+       NO_MORE_GP_ELIGIBLE = 6780; -- You are not eligible to receive guild points at this time
+               GP_OBTAINED = 6769; -- Obtained <<<Numeric Parameter 0>>> guild points.
+        NOT_HAVE_ENOUGH_GP = 6786; -- You do not have enough guild points.
+   NOTHING_OUT_OF_ORDINARY = 6432; -- There is nothing out of the ordinary here.<Prompt>
 
 -- Tutorial NPC
 TUTORIAL_NPC = 13475; -- Greetings and well met! Guardian of the Kingdom, Alaune, at your most humble service.
@@ -25,7 +25,7 @@ CONQUEST =  8457; -- You've earned conquest points!
 
 -- Mission Dialogs
  YOU_ACCEPT_THE_MISSION = 7170; -- You accept the mission.
-  ORIGINAL_MISSION_OFFSET = 7181; -- Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
+ORIGINAL_MISSION_OFFSET = 7181; -- Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
 
 -- Dynamis dialogs
       YOU_CANNOT_ENTER_DYNAMIS = 7387; -- You cannot enter Dynamis
@@ -33,17 +33,17 @@ PLAYERS_HAVE_NOT_REACHED_LEVEL = 7389; -- Players who have not reached level <<<
   UNUSUAL_ARRANGEMENT_BRANCHES = 7399; -- There is an unusual arrangement of branches here.
 
 -- Quest Dialogs
-      UNLOCK_PALADIN = 7982; -- You can now become a paladin!
-       FLYER_REFUSED = 8153; -- Your flyer is refused.
-      FLYER_ACCEPTED = 8802; -- The flyer is accepted.
-       FLYER_ALREADY = 8803; -- This person already has a flyer.
+UNLOCK_PALADIN = 7982; -- You can now become a paladin!
+ FLYER_REFUSED = 8153; -- Your flyer is refused.
+FLYER_ACCEPTED = 8802; -- The flyer is accepted.
+ FLYER_ALREADY = 8803; -- This person already has a flyer.
 
 -- Harvest Festival
-      TRICK_OR_TREAT = 7329; -- Trick or treat...
-     THANK_YOU_TREAT = 7330; -- And now for your treat...
-      HERE_TAKE_THIS = 7331; -- Here, take this...
-    IF_YOU_WEAR_THIS = 7332; -- If you put this on and walk around, something...unexpected might happen...
-           THANK_YOU = 7330; -- Thank you...<<<Prompt>>>
+  TRICK_OR_TREAT = 7329; -- Trick or treat...
+ THANK_YOU_TREAT = 7330; -- And now for your treat...
+  HERE_TAKE_THIS = 7331; -- Here, take this...
+IF_YOU_WEAR_THIS = 7332; -- If you put this on and walk around, something...unexpected might happen...
+       THANK_YOU = 7330; -- Thank you...<<<Prompt>>>
 
 -- Other dialog
 ITEM_DELIVERY_DIALOG = 8382; -- Parcels delivered to rooms anywhere in Vana'diel!
@@ -101,3 +101,4 @@ FERDOULEMIONT_SHOP_DIALOG = 7933; -- Hello!
 
 -- conquest Base
 CONQUEST_BASE = 7006; -- Tallying conquest results...
+

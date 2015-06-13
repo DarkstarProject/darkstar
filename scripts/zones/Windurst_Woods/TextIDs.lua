@@ -9,9 +9,9 @@
        NOT_HAVE_ENOUGH_GIL = 6546; -- You do not have enough gil.
              HOMEPOINT_SET = 6625; -- Home point set!
     FISHING_MESSAGE_OFFSET = 7072; -- You can't fish here.
-	       NO_MORE_GP_ELIGIBLE =  7200; --You are not eligible to receive guild points at this time.
-               GP_OBTAINED =  7189; --Obtained <<<Numeric Parameter 0>>> guild points.
-        NOT_HAVE_ENOUGH_GP =  7206; --You do not have enough guild points.
+       NO_MORE_GP_ELIGIBLE = 7200; -- You are not eligible to receive guild points at this time.
+               GP_OBTAINED = 7189; -- Obtained <<<Numeric Parameter 0>>> guild points.
+        NOT_HAVE_ENOUGH_GP = 7206; -- You do not have enough guild points.
              IMAGE_SUPPORT = 7171; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
 
 -- Conquest System
