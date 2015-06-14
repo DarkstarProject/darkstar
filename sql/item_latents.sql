@@ -1328,6 +1328,12 @@ INSERT INTO `item_latents` VALUES(15816, 5, 20, 26, 0); -- MP+20 during Daytime
 INSERT INTO `item_latents` VALUES(10807, 370, 1, 26, 0); -- Regen 1/tick during Daytime
 
 -- -------------------------------------------------------
+-- Mushroom Helm        
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13913, 370, 1, 30, 0); -- Regen 1/tick on Watersdays
+INSERT INTO `item_latents` VALUES(13913, 370, 1, 32, 0); -- Regen 1/tick on Darksdays
+
+-- -------------------------------------------------------
 -- Dinner Jacket       
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11355, 14, 1, 26, 1); -- CHR+1 during Nighttime
