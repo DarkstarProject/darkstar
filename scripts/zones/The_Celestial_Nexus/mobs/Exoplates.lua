@@ -23,16 +23,21 @@ function onMobSpawn(mob)
 end;
 
 function onMobFight(mob, target)
-    local shifts, shiftTime = mob:getExtraVar(2);
+    local shifts = mob:getLocalVar("shifts");
+    local shiftTime = mob:getLocalVar("shiftTime");
+    
     if (mob:AnimationSub() == 0 and shifts == 0 and mob:getHPP() <= 67) then
         mob:useMobAbility(737);
-        mob:setExtraVar(shifts+1, mob:getBattleTime()+5);
+        mob:setLocalVar("shifts", shifts+1);
+        mob:setLocalVar("shiftTime", mob:getBattleTime()+5);
     elseif (mob:AnimationSub() == 1 and shifts <= 1 and mob:getHPP() <= 33) then
         mob:useMobAbility(741);
-        mob:setExtraVar(shifts+1, mob:getBattleTime()+5);
+        mob:setLocalVar("shifts", shifts+1);
+        mob:setLocalVar("shiftTime", mob:getBattleTime()+5);
     elseif (mob:AnimationSub() == 2 and shifts <= 2 and mob:getHPP() <= 2) then
         mob:useMobAbility(745);
-        mob:setExtraVar(shifts+1, mob:getBattleTime()+5);
+        mob:setLocalVar("shifts", shifts+1);
+        mob:setLocalVar("shiftTime", mob:getBattleTime()+5);
     elseif (mob:getHPP() <= 67 and mob:AnimationSub() == 0 and mob:getBattleTime() >= shiftTime ) then
         mob:AnimationSub(1);
     elseif (mob:getHPP() <= 33 and mob:AnimationSub() == 1 and mob:getBattleTime() >= shiftTime) then

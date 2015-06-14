@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: setgil
--- auth: <Unknown>
 -- desc: Sets the players gil.
 ---------------------------------------------------------------------------------------------------
 
@@ -12,7 +11,7 @@ cmdprops =
 
 function onTrigger(player, amount)
     if (amount == nil) then
-        player:PrintToPlayer("You must enter a valid amount id.");
+        player:PrintToPlayer("You must enter a valid amount.");
         return;
     end
     player:setGil( amount );

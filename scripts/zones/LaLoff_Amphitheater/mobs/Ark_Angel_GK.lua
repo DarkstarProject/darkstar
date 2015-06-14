@@ -13,7 +13,7 @@ require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -27,7 +27,7 @@ function onMobEngaged(mob,target)
    local mobid = mob:getID()
 
    for member = mobid-6, mobid+1 do
-      if (GetMobAction(member) == 16) then 
+      if (GetMobAction(member) == 16) then
          GetMobByID(member):updateEnmity(target);
       end
    end
@@ -42,14 +42,6 @@ function onMobFight(mob,target)
 -- TODO: Allegedly uses Meikyo Shisui every 90 seconds.  Verify and implement if true.
 -- TODO: AA GK actively seeks to skillchain to Light off of his own WSs under MS, or other AA's WSs.
 
-   local mobid = mob:getID()
-
-   -- Party hate.  Keep everybody in the fight.
-   for member = mobid-6, mobid+1 do
-      if (GetMobAction(member) == 16) then
-         GetMobByID(member):updateEnmity(target);
-      end
-   end
 end;
 
 -----------------------------------

@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 #define _CAIGENERAL_H
 
 #include <queue>
+#include <memory>
 
 #include "../../common/cbasetypes.h"
 #include "../packets/weather.h"
@@ -40,7 +41,7 @@ enum MASTERCOMMAND //master as in pet's master
 	MASTERCOMMAND_SIC = 3
 };
 
-enum ACTIONTYPE
+enum ACTIONTYPE : uint8
 {
 	ACTION_NONE					= 0,
 	ACTION_ATTACK				= 1,
@@ -126,6 +127,7 @@ public:
     bool            MoveTo(position_t* pos); // move entity to position. Doesn't pathfind
     void			Wait(int32 waitTime);
 
+    bool            CanSeePoint(position_t point);
     uint32          GetBattleTime();
 
 	void			SetBattleTarget(CBattleEntity* PEntity); //used for pets mainly
@@ -146,7 +148,7 @@ public:
 	virtual void	WeatherChange(WEATHER weather, uint8 element) = 0;
 
     CAIGeneral();
-	~CAIGeneral();
+	virtual ~CAIGeneral();
 
     CPathFind*       m_PPathFind; // finds paths
     bool			 m_interruptSpell; // forces interrupt of current spell being cast
@@ -174,15 +176,15 @@ protected:
 	uint16			m_CorsairDoubleUp;		// Last used corsair roll eligible for DU
 	bool			m_AutoAttackEnabled;    // Flag to enable/disable auto attack
 	bool			m_MobAbilityEnabled;		// Flag to enable/disable mob skills
+    CTargetFind*    m_PTargetFind;          // finds targets for AoEs
 
-	CSpell*			m_PSpell;				// читаемое заклинание
-	CItemUsable*	m_PItemUsable;			// используемый предмет
-	CBattleEntity*	m_PBattleTarget;		// боевая цель - основная
-	CBattleEntity*	m_PBattleSubTarget;		// боевая цель - дополнительная
-	CWeaponSkill*   m_PWeaponSkill;
-	CAbility*		m_PJobAbility;
-	CMobSkill*		m_PMobSkill;
-    CTargetFind*  m_PTargetFind; // finds targets for AoEs
+	std::unique_ptr<CSpell>	        m_PSpell;				// читаемое заклинание
+    std::unique_ptr<CWeaponSkill>   m_PWeaponSkill;
+    std::unique_ptr<CAbility>		m_PJobAbility;
+    std::unique_ptr<CMobSkill>		m_PMobSkill;
+	CItemUsable*	                m_PItemUsable;			// используемый предмет
+	CBattleEntity*	                m_PBattleTarget;		// боевая цель - основная
+	CBattleEntity*	                m_PBattleSubTarget;		// боевая цель - дополнительная
 
 	uint32 m_WaitTime;
 	uint32 m_LastWaitTime;

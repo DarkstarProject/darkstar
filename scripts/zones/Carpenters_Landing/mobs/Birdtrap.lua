@@ -4,7 +4,7 @@
 -- Note: Placeholder Orctrap
 -----------------------------------
 
-require("/scripts/zones/Carpenters_Landing/MobIDs");
+require("scripts/zones/Carpenters_Landing/MobIDs");
 	
 -----------------------------------	
 -- onMobDeath	

@@ -1,11 +1,8 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Ajen-Myoojen
---  Type: Standard NPC
--- @zone: 94
---  @pos -44.542 -5.999 238.996
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Windurst Waters (S)
+--  NPC: Ajen-Myoojen
+-- Type: Standard NPC
+-- @pos -44.542 -5.999 238.996 94
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -22,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x00c8);
+    player:startEvent(0x00C8);
 end;
 
 -----------------------------------
@@ -30,8 +27,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,7 +36,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x00C8 and option == 1) then
+        player:setPos(320, -4, -46, 192, 95);
+    end
 end;
-

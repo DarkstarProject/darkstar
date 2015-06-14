@@ -3,10 +3,10 @@
 --	NPC: Parcarin
 --	Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Vunkeral/TextIDs"] = nil;
+package.loaded["scripts/zones/Abyssea-Vunkerl/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/zones/Abyssea-Vunkeral/TextIDs");
+require("scripts/zones/Abyssea-Vunkerl/TextIDs");
 
 -----------------------------------
 -- onTrade Action

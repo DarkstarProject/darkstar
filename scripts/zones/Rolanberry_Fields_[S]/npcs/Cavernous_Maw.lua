@@ -1,7 +1,8 @@
 -----------------------------------
--- Cavernous Maw
--- Teleports Players to Rolanberry Fields
+-- Area: Sauromugue Champaign
+--  NPC: Cavernous Maw
 -- @pos -198 8 360 91
+-- Teleports Players to Rolanberry Fields
 -----------------------------------
 package.loaded["scripts/zones/Rolanberry_Fields_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -15,20 +16,18 @@ require("scripts/zones/Rolanberry_Fields_[S]/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(hasMawActivated(player,1) == false) then
-		player:startEvent(0x0065);
-	else
-		player:startEvent(0x0066);
-	end
-	
+    if (hasMawActivated(player,1) == false) then
+        player:startEvent(0x0065);
+    else
+        player:startEvent(0x0066);
+    end
 end;
 
 -----------------------------------
@@ -36,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -45,15 +44,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---print("CSID:",csid);
---print("RESULT:",option);
-	
-	if(option == 1) then
-		if(csid == 0x0065) then
-			player:addNationTeleport(MAW,2);
-		end
-		
-		toMaw(player,4);
-	end
-	
+    -- printf("CSID:",csid);
+    -- printf("RESULT:",option);
+    if (option == 1) then
+        if (csid == 0x0065) then
+            player:addNationTeleport(MAW,2);
+        end
+        toMaw(player,4);
+    end
 end;

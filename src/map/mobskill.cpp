@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -71,11 +71,6 @@ bool CMobSkill::isTwoHour()
 void CMobSkill::setID(uint16 id)
 {
 	m_ID = id;
-}
-
-void CMobSkill::resetMsg()
-{
-  m_Message = 185;
 }
 
 void CMobSkill::setMsg(uint16 msg)

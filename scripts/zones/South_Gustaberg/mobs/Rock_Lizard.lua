@@ -4,8 +4,8 @@
 -- Note: Place holder Leaping Lizzy 
 -----------------------------------	
 
-require("/scripts/zones/South_Gustaberg/MobIDs");
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/zones/South_Gustaberg/MobIDs");
+require("scripts/globals/fieldsofvalor");	
 	
 -----------------------------------	
 -- onMobDeath	

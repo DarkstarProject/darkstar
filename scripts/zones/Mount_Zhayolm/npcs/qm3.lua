@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2587,1) and trade:getItemCount() == 1) then -- Trade Raw Buffalo
 		player:tradeComplete();
-		SpawnMob(17027473,180):updateEnmity(player);
+		SpawnMob(17027473,180):updateClaim(player);
 	end
 	
 end;

@@ -10,6 +10,7 @@ This file is part of DarkStar-server source code.
 #define _SHOWMSG_H_
 
 #include "../common/cbasetypes.h"
+#include <string>
 
 /************************************************************************
 *																		*
@@ -107,6 +108,7 @@ enum MSGTYPE
 
 extern void ClearScreen(void);
 
+extern void InitializeLog(std::string logFile);
 extern int32 ShowMessage(const int8 *, ...);
 extern int32 ShowStatus(const int8 *, ...);
 extern int32 ShowSQL(const int8 *, ...);

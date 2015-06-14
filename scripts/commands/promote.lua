@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: promote
--- auth: ZeDingo :: Modded by atom0s.
 -- desc: Promotes the player to a new GM level.
 ---------------------------------------------------------------------------------------------------
 
@@ -15,7 +14,7 @@ function onTrigger(player, target, level)
         level = target;
         target = player:getName();
     end
-    
+
     if (target == nil) then
         target = player:getName();
     end
@@ -26,12 +25,12 @@ function onTrigger(player, target, level)
         player:PrintToPlayer( string.format( "Invalid player '%s' given.", target ) );
         return;
     end
-    
+
     -- Validate the level..
     if (level < 0) then 
         level = 0;
     end
-    
+
     if (targ:getGMLevel() < player:getGMLevel()) then
         if (level < player:getGMLevel()) then
             targ:setGMLevel(level);
@@ -41,4 +40,4 @@ function onTrigger(player, target, level)
     else
         printf( "%s attempting to adjust higher GM: %s", player:getName(), targ:getName() );
     end
-end
+end;

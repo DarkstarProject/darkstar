@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -30,12 +30,10 @@ CBaseEntity::CBaseEntity()
 {
 	m_TargID = 0;
 	namevis = 1;
-	hpvis = true;
-	untargetable = false;
 
-    PBattleAI = NULL;
-	PBCNM = NULL;
-	PInstance = NULL;
+    PBattleAI = nullptr;
+	PBCNM = nullptr;
+	PInstance = nullptr;
 
 	speed    = 40 + map_config.speed_mod;
 	speedsub = 40 + map_config.speed_mod;
@@ -44,6 +42,7 @@ CBaseEntity::CBaseEntity()
 	animation    = ANIMATION_NONE;
 
 	status = STATUS_DISAPPEAR;
+    updatemask = 0;
 
 	memset(&loc,  0, sizeof(loc));
 	memset(&look, 0, sizeof(look));
@@ -51,7 +50,7 @@ CBaseEntity::CBaseEntity()
 
 CBaseEntity::~CBaseEntity()
 {
-	if(PBattleAI != NULL)
+	if(PBattleAI != nullptr)
 	{
 	    delete PBattleAI;
 	}
@@ -64,7 +63,7 @@ const int8* CBaseEntity::GetName()
 
 uint16 CBaseEntity::getZone()
 {
-    return loc.zone != NULL ? loc.zone->GetID() : loc.destination;
+    return loc.zone != nullptr ? loc.zone->GetID() : loc.destination;
 }
 
 float CBaseEntity::GetXPos()
@@ -98,6 +97,7 @@ void CBaseEntity::HideName(bool hide)
 	{
 		namevis &= ~0x08;
 	}
+    updatemask |= UPDATE_HP;
 }
 
 bool CBaseEntity::IsNameHidden()
@@ -111,4 +111,36 @@ CBaseEntity* CBaseEntity::GetEntity(uint16 targid, uint8 filter)
 		return PInstance->GetEntity(targid, filter);
 	else
 		return loc.zone->GetEntity(targid, filter);
+}
+
+void CBaseEntity::ResetLocalVars()
+{
+    m_localVars.clear();
+}
+
+uint32 CBaseEntity::GetLocalVar(const char* var)
+{
+    try
+    {
+        return m_localVars.at(var);
+    }
+    catch (std::out_of_range e)
+    {
+        return 0;
+    }
+}
+
+void CBaseEntity::SetLocalVar(const char* var, uint32 val)
+{
+    m_localVars[var] = val;
+}
+
+void CBaseEntity::SetModelId(uint16 modelid)
+{
+    look.modelid = modelid;
+}
+
+uint16 CBaseEntity::GetModelId()
+{
+    return look.modelid;
 }

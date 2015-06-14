@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("TOAUM2",0);
 		player:completeMission(TOAU,IMMORTAL_SENTRIES);
 		player:addMission(TOAU,PRESIDENT_SALAHEEM);
-		player:addImperialStanding(150);
+		player:addCurrency("imperial_standing", 150);
 		player:addTitle(PRIVATE_SECOND_CLASS);
 		player:addKeyItem(PSC_WILDCAT_BADGE);
 		player:messageSpecial(KEYITEM_OBTAINED,PSC_WILDCAT_BADGE);

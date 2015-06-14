@@ -37,7 +37,7 @@ correction = 1;
 		correction = (1 + (0.20 * (9 - player:getFameLevel(nation)) / 8))*SHOP_PRICE;
 	end
 
-player:createShop(nation);
+    player:createShop(#stock/2, nation);
 
 	for i = 1, #stock, 2 do
 		player:addShopItem(stock[i],stock[i+1]*correction);
@@ -64,7 +64,7 @@ correction = 1;
 		correction = (1 + (0.20 * (9 - player:getFameLevel(nation)) / 8))*SHOP_PRICE;
 	end
 
-player:createShop(nation);
+    player:createShop(#stock/3, nation);
 
 	for i = 1, #stock, 3 do
 		if (stock[i+2] == 1) then

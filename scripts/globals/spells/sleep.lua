@@ -7,7 +7,7 @@ require("scripts/globals/magic");
 -- OnSpellCast
 -----------------------------------------
 
-function OnMagicCastingCheck(caster,target,spell)
+function onMagicCastingCheck(caster,target,spell)
 	return 0;
 end;
 
@@ -18,7 +18,6 @@ function onSpellCast(caster,target,spell)
     end
     caster:delStatusEffect(EFFECT_SABOTEUR);
 	
-	--local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
 	local pINT = caster:getStat(MOD_INT);
 	local mINT = target:getStat(MOD_INT);
 	local dINT = (pINT - mINT);

@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -43,8 +43,8 @@ class CDeliveryBoxPacket : public CBasicPacket
 {
 public:
 
-	CDeliveryBoxPacket(uint8 action, uint8 count);
-    CDeliveryBoxPacket(uint8 action, CItem* item, uint8 count, uint8 message = 1);
+    CDeliveryBoxPacket(uint8 action, uint8 boxid, uint8 count, uint8 param);
+    CDeliveryBoxPacket(uint8 action, uint8 boxid, CItem* PItem, uint8 slotid, uint8 count, uint8 message);
 };
 
 #endif

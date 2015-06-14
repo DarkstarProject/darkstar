@@ -1,7 +1,7 @@
 
 -----------------------------------
 -- mob : Gigas Martialist
--- zone : Lufaise_Meadows 
+-- zone : Lufaise_Meadows
 -----------------------------------
 
 
@@ -11,7 +11,7 @@
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------

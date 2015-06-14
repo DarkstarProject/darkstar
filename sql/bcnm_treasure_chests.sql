@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `bcnm_treasure_chests`;
 CREATE TABLE `bcnm_treasure_chests` (
   `bcnmId` smallint(5) unsigned NOT NULL,
-  `instanceNumber` tinyint(3),
+  `battlefieldNumber` tinyint(3),
   `npcId` int(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56;
 
@@ -88,6 +88,9 @@ INSERT INTO `bcnm_treasure_chests` VALUES ('107', '3', '17375286');
 INSERT INTO `bcnm_treasure_chests` VALUES ('129', '1', '17444884');
 INSERT INTO `bcnm_treasure_chests` VALUES ('129', '2', '17444891');
 INSERT INTO `bcnm_treasure_chests` VALUES ('129', '3', '17444898');
+
+-- Boneyard Gully
+INSERT INTO `bcnm_treasure_chests` VALUES ('673', '1', '16810019');
 
 -- Throne Room
 

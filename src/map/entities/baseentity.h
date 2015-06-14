@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -42,7 +42,8 @@ enum ENTITYTYPE
 enum STATUSTYPE
 {
 	STATUS_NORMAL			= 0,
-	STATUS_UPDATE			= 1,
+    STATUS_MOB              = 1,
+	//STATUS_UPDATE			= 1,
 	STATUS_DISAPPEAR		= 2,
 	STATUS_3				= 3,
 	STATUS_4				= 4,
@@ -83,6 +84,19 @@ enum ALLEGIANCETYPE
 	ALLEGIANCE_SAN_DORIA	= 2,
 	ALLEGIANCE_BASTOK		= 3,
 	ALLEGIANCE_WINDURST		= 4
+};
+
+enum UPDATETYPE
+{
+    UPDATE_NONE     = 0x00,
+    UPDATE_POS      = 0x01,
+    UPDATE_STATUS   = 0x02,
+    UPDATE_HP       = 0x04,
+    UPDATE_COMBAT   = 0x07,
+    UPDATE_NAME     = 0x08,
+    UPDATE_LOOK     = 0x10,
+    UPDATE_ALL_MOB  = 0x0F,
+    UPDATE_ALL_CHAR = 0x1F
 };
 
 // TODO: возможо стоит сделать эту структуру частью класса, взамен нынешних id и targid, но уже без метода clean
@@ -128,16 +142,16 @@ public:
 	uint16			m_TargID;			// targid объекта, на который смотрит сущность
 	string_t		name;				// имя сущности
 	look_t			look;				// внешний вид всех сущностей
-	look_t			mainlook;			// only used if mob use changeSkin()
+	look_t			mainlook;			// only used if mob use changeSkin() or player /lockstyle
 	location_t		loc;				// местоположение сущности
 	uint8			animation;			// анимация
 	uint8			animationsub;		// дополнительный параметры анимации
 	uint8			speed;				// скорость передвижения
 	uint8			speedsub;			// подолнительный параметр скорости передвижения
 	uint8			namevis; 
-	bool			untargetable;
-	bool			hpvis;
 	uint8			allegiance;			// what types of targets the entity can fight
+    uint8           updatemask;         // what to update next server tick to players nearby
+
 
 	virtual const int8* GetName();      // имя сущности
 
@@ -155,9 +169,20 @@ public:
 
 	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);
 
+    void            ResetLocalVars();
+    uint32          GetLocalVar(const char* var);
+    void            SetLocalVar(const char* var, uint32 val);
+
+    virtual void    UpdateEntity() = 0;
+
+    void            SetModelId(uint16 modelId);     // Set new modelid
+    uint16          GetModelId();                   // Get the modelid
+
     CBaseEntity();						// конструктор
-    virtual ~CBaseEntity();						// деструктор
+    virtual ~CBaseEntity();				// деструктор
 private:
+protected:
+    std::map<std::string, uint32> m_localVars;
 };
 
 #endif

@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@ enum RELEASE_TYPE
 	RELEASE_STANDARD	= 0,
 	RELEASE_EVENT		= 1,
 	RELEASE_SKIPPING	= 2,
+	RELEASE_UNKNOWN     = 3, /* Used by Event Update (String Update) - Packet 0x060  */
 	RELEASE_FISHING		= 4
 };
 

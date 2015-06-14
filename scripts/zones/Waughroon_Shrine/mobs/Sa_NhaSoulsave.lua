@@ -1,17 +1,17 @@
 -----------------------------------
 -- Area: Waughroon Shrine
--- Mob:  Sa'Nha Soulsaver 
+-- Mob:  Sa'Nha Soulsaver
 -- BCNM mob in Bastok mission 7-2.
 -----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
 -- OnMobDeath Action
 -----------------------------------
-function OnMobDeath(mob, killer)
+function onMobDeath(mob, killer)
 end;

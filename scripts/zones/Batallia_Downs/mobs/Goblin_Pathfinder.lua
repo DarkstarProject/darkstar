@@ -5,7 +5,7 @@
 package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
 -----------------------------------
 
-require("/scripts/globals/fieldsofvalor");
+require("scripts/globals/fieldsofvalor");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/Batallia_Downs/TextIDs");

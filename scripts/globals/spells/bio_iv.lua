@@ -1,6 +1,6 @@
 -----------------------------------------
--- Spell: Bio III
--- Deals dark damage that weakens an enemy's attacks and gruadually reduces its HP.
+-- Spell: Bio IV
+-- Deals dark damage that weakens an enemy's attacks and gradually reduces its HP.
 -----------------------------------------
 
 require("scripts/globals/settings");
@@ -11,7 +11,7 @@ require("scripts/globals/magic");
 -- OnSpellCast
 -----------------------------------------
 
-function OnMagicCastingCheck(caster,target,spell)
+function onMagicCastingCheck(caster,target,spell)
 	return 0;
 end;
 

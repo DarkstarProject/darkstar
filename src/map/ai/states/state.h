@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -61,6 +61,7 @@ class CState
     void SetCoolDown(uint32 coolDown);
     void SetLastCoolTime(uint32 tick);
     void SetHiPCLvl(CBattleEntity* PTarget, uint8 lvl);
+    void ClearTarget();
 
     CBattleEntity* GetTarget();
 
@@ -73,7 +74,7 @@ class CState
 
     // push message for only target to see
     // outputs nothing for any other than char
-    void PushError(MSGBASIC_ID msgID, int32 param = 0, int32 value = 0);
+    void PushError(MSGBASIC_ID msgID, int32 param = 0, int32 value = 0, CBattleEntity* PTarget = nullptr);
 
     CBattleEntity* m_PEntity;
     CBattleEntity* m_PTarget;

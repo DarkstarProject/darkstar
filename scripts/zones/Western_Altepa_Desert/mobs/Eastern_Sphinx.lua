@@ -3,7 +3,7 @@
 -- MOB:  Eastern Sphinx
 -----------------------------------	
 	
-require("/scripts/globals/missions");	
+require("scripts/globals/missions");	
 	
 -----------------------------------	
 -- onMobDeath	

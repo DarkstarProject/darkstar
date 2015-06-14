@@ -4,21 +4,21 @@
 -- 100% TP: ??? / 200% TP: ??? / 300% TP: ???
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
-    local zone = target:getZone();
+function onMobSkillCheck(target,mob,skill)
+    local zone = target:getZoneID();
     if(zone >= 1 and zone <= 4) then
         return 1;
     end
 	return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 	local numhits = 1;
 	local accmod = 1;
 	local dmgmod = math.random(2,4)+math.random();

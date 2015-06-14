@@ -20,7 +20,7 @@ end;
 -- onMobRoam
 -----------------------------------
 
-function OnMobRoam(mob)
+function onMobRoam(mob)
 	--[[
 	if(mob:getExtraVar(1) <= os.time()) then
 		DespawnMob(17330177); -- Despawn after 30min
@@ -47,7 +47,7 @@ end;
 
 function onMobFight(mob,target)
 	
-	if(mob:getExtraVar(1) <= os.time()) then
+	if(mob:getLocalVar("timeLimit") <= os.time()) then
 		DespawnMob(17330177); -- Despawn after 30min
 		DespawnMob(17330183);
 		DespawnMob(17330184);
@@ -72,7 +72,7 @@ function onMobDeath(mob,killer)
 	
 	killer:addTitle(LIFTER_OF_SHADOWS);
 	
-	local npc = GetNPCByID(17330777); -- Spawn ???
+	local npc = GetNPCByID(17330778); -- Spawn ???
 	npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
 	npc:setStatus(0);
 	

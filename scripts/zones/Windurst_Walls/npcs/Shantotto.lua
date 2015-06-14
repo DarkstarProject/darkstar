@@ -48,12 +48,14 @@ function onTrigger(player,npc)
 
 	local foiledAgain = player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_1);
 	local CFA2 = player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_2);
-	local CFAtimer = player:getVar("Curses,FoiledAgain!?");
+	local CFAtimer = player:getVar("CursesFoiledAgain");
 	local FoiledAGolem = player:getQuestStatus(WINDURST,CURSES_FOILED_A_GOLEM);
 	local golemdelivery = player:getVar("foiledagolemdeliverycomplete");
 	local WildcatWindurst = player:getVar("WildcatWindurst");
 
-	if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,6) == false) then
+	if(player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 7) then
+		player:startEvent(0x18d,0,0,0,282);
+	elseif (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,6) == false) then
 		player:startEvent(0x01f2);
 	elseif (player:getQuestStatus(WINDURST,CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") == 3) then
 		player:startEvent(0x0199); -- she mentions that Sunny-Pabonny left for San d'Oria
@@ -66,13 +68,17 @@ function onTrigger(player,npc)
 	elseif(foiledAgain == QUEST_COMPLETED and CFA2 == QUEST_AVAILABLE and CFAtimer == 0) then
 	    local cDay = VanadielDayOfTheYear();
 		local cYear = VanadielYear();
-		local dFinished = player:getVar("Curses,FoiledAgain!Day");
-		local yFinished = player:getVar("Curses,FoiledAgain!Year");
+		local dFinished = player:getVar("CursesFoiledAgainDay");
+		local yFinished = player:getVar("CursesFoiledAgainYear");
+		
+		-- player:PrintToPlayer("Vana Day and year:  "..cDay..", "..cYear);
+		-- player:PrintToPlayer("Database Day and year:  "..dFinished..", "..yFinished);
+		
 		if(cDay == dFinished and cYear == yFinished) then
 		    player:startEvent(0xae);
 		elseif(cDay == dFinished + 1 and cYear == yFinished) then
             player:startEvent(0xb2);
-		elseif(cDay >= dFinished + 2 and cYear == yFinished) then
+		elseif((cDay >= dFinished + 2 and cYear == yFinished) or (cYear > yFinished)) then
 			player:startEvent(0xb3);
 		end	
 	
@@ -99,6 +105,8 @@ function onTrigger(player,npc)
 	
 	elseif (CFA2 == QUEST_COMPLETED) then
 		player:startEvent(0x00B8); 	-- New standard dialog after CFA2
+	elseif (player:hasCompletedMission(WINDURST,THE_JESTER_WHO_D_BE_KING) and player:getVar("ShantottoCS") == 1) then
+		player:startEvent(0x18f,0,0,282);
 	else
 		player:startEvent(0xa4);
 	end
@@ -128,8 +136,8 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17081); 
 		else
 			player:tradeComplete();
-			player:setVar("Curses,FoiledAgain!Day",VanadielDayOfTheYear());
-			player:setVar("Curses,FoiledAgain!Year",VanadielYear());
+			player:setVar("CursesFoiledAgainDay",VanadielDayOfTheYear());
+			player:setVar("CursesFoiledAgainYear",VanadielYear());
 			player:addFame(WINDURST,WIN_FAME*80);
 			player:addItem(17081);
 			player:messageSpecial(ITEM_OBTAINED,17081);
@@ -140,15 +148,15 @@ function onEventFinish(player,csid,option)
 		player:addQuest(WINDURST,CURSES_FOILED_AGAIN_1);
 
 	elseif(csid == 0xb3) then
-		player:setVar("Curses,FoiledAgain!DayFinished",0);
-	    player:setVar("Curses,FoiledAgain!YearFinished",0);
-		player:setVar("Curses,FoiledAgain!Day",0);
-		player:setVar("Curses,FoiledAgain!Year",0);
-		player:needToZone(true);
-        player:setVar("Curses,FoiledAgain!?",1); -- Used to acknowledge that the two days have passed, Use this to initiate next quest 
+		player:setVar("CursesFoiledAgainDayFinished",0);
+	    player:setVar("CursesFoiledAgainYearFinished",0);
+		player:setVar("CursesFoiledAgainDay",0);
+		player:setVar("CursesFoiledAgainYear",0);
+		player:setVar("CursesFoiledAgain",1); -- Used to acknowledge that the two days have passed, Use this to initiate next quest 
+		player:needToZone(true);       
 	
 	elseif(csid == 0x00B4 and option == 3) then
-		player:setVar("Curses,FoiledAgain!?",0);
+		player:setVar("CursesFoiledAgain",0);
 		player:addQuest(WINDURST,CURSES_FOILED_AGAIN_2);
 		player:setTitle(TARUTARU_MURDER_SUSPECT);
 	
@@ -187,5 +195,11 @@ function onEventFinish(player,csid,option)
 		player:setVar("ClassReunionProgress",4);
 	elseif (csid == 0x01f2) then
 		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",6,true);
+	elseif(csid == 0x018D) then
+		player:addKeyItem(GLOVE_OF_PERPETUAL_TWILIGHT)
+		player:messageSpecial(KEYITEM_OBTAINED,GLOVE_OF_PERPETUAL_TWILIGHT);
+		player:setVar("MissionStatus",8)
+	elseif(csid == 0x18f) then
+		player:setVar("ShantottoCS",0)
 	end
 end;

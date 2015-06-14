@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: logoff
--- auth: bluekirby0
 -- desc: Logs the target player off by force.
 ---------------------------------------------------------------------------------------------------
 
@@ -14,7 +13,7 @@ function onTrigger(player, target)
     if (target == nil) then
         target = player:getName();
     end
-    
+
     local targ = GetPlayerByName( target );
     if (targ ~= nil) then
         targ:leavegame();

@@ -5,11 +5,17 @@
 
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 
+function onMobInitialize(mob)
+    mob:addMod(MOD_UFASTCAST, 30);
+    mob:setMobMod(MOBMOD_MAIN_2HOUR, 1);
+    mob:setMobMod(MOBMOD_SUB_2HOUR, 1);
+end
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -19,11 +25,11 @@ end;
 function onMobEngaged(mob,target)
    local mobid = mob:getID()
 
-   for member = mobid-5, mobid+2 do
-      if (GetMobAction(member) == 16) then 
-         GetMobByID(member):updateEnmity(target);
-      end
-   end
+    for member = mobid-5, mobid+2 do
+        if (GetMobAction(member) == 16) then
+            GetMobByID(member):updateEnmity(target);
+        end
+    end
 end;
 
 -----------------------------------
@@ -31,17 +37,18 @@ end;
 -----------------------------------
 function onMobFight(mob,target)
 
--- TODO: Does not move under normal conditions.  Teleports around the center of the arena.
---       Chases while Blood Weapon is active.  Requires teleports to be implemented.
-
-   local mobid = mob:getID()
-
-   -- Party hate.  Keep everybody in the fight.
-   for member = mobid-5, mobid+2 do
-      if (GetMobAction(member) == 16) then
-         GetMobByID(member):updateEnmity(target);
-      end
-   end
+    if (mob:hasStatusEffect(EFFECT_BLOOD_WEAPON) and bit.band(mob:getBehaviour(),BEHAVIOUR_STANDBACK) > 0) then
+        mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_STANDBACK)))
+        mob:setMobMod(MOBMOD_TELEPORT_TYPE,0);
+        mob:setMobMod(MOBMOD_SPAWN_LEASH,0);
+        mob:setSpellList(0);
+    end
+    if (not mob:hasStatusEffect(EFFECT_BLOOD_WEAPON) and bit.band(mob:getBehaviour(),BEHAVIOUR_STANDBACK) == 0) then
+        mob:setBehaviour(bit.bor(mob:getBehaviour(), BEHAVIOUR_STANDBACK))
+        mob:setMobMod(MOBMOD_TELEPORT_TYPE,1);
+        mob:setMobMod(MOBMOD_SPAWN_LEASH,22);
+        mob:setSpellList(39);
+    end
 end;
 
 -----------------------------------

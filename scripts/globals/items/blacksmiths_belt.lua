@@ -6,7 +6,7 @@
 -----------------------------------------
 -- Enchantment: Synthesis image support
 -- Duration: 2Min
--- Smithing Skill +1
+-- Smithing Skill +3
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -28,7 +28,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_SMITHING_IMAGERY,50,0,120);
+	target:addStatusEffect(EFFECT_SMITHING_IMAGERY,3,0,120);
 end;
 
 -----------------------------------------

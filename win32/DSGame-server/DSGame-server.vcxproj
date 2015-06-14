@@ -69,21 +69,23 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\..\</OutDir>
+    <TargetName>$(ProjectName)_64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\</OutDir>
+    <TargetName>$(ProjectName)_64</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;dsUDPSERV;DEBUGLOGMAP;_CRT_SECURE_NO_WARNINGS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -95,7 +97,7 @@
       <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libmariadb.lib;lua51-d.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libmariadb.lib;lua51.lib;libzmq-d.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -108,7 +110,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;dsUDPSERV;DEBUGLOGMAP;_CRT_SECURE_NO_WARNINGS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -118,7 +120,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libmariadb64.lib;lua51-d_64.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libmariadb64.lib;lua51_64.lib;libzmq-d_64.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)_64$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -137,10 +139,10 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libmariadb.lib;lua51.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libmariadb.lib;lua51.lib;libzmq.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -161,10 +163,10 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libmariadb64.lib;lua51_64.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libmariadb64.lib;lua51_64.lib;libzmq_64.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)_64$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -193,6 +195,7 @@
     <ClInclude Include="..\..\src\common\lua\luaxlib.h" />
     <ClInclude Include="..\..\src\common\lua\lunar.h" />
     <ClInclude Include="..\..\src\common\malloc.h" />
+    <ClInclude Include="..\..\src\common\marshal\string.h" />
     <ClInclude Include="..\..\src\common\md52.h" />
     <ClInclude Include="..\..\src\common\mmo.h" />
     <ClInclude Include="..\..\src\common\recast\Recast.h" />
@@ -208,6 +211,8 @@
     <ClInclude Include="..\..\src\common\version.h" />
     <ClInclude Include="..\..\src\common\zlib.h" />
     <ClInclude Include="..\..\src\map\ability.h" />
+    <ClInclude Include="..\..\src\map\ai\ai_automaton_dummy.h" />
+    <ClInclude Include="..\..\src\map\ai\ai_char_charm.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_gm.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_normal.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_prisoner.h" />
@@ -229,6 +234,8 @@
     <ClInclude Include="..\..\src\map\alliance.h" />
     <ClInclude Include="..\..\src\map\blue_spell.h" />
     <ClInclude Include="..\..\src\map\blue_trait.h" />
+    <ClInclude Include="..\..\src\map\guild.h" />
+    <ClInclude Include="..\..\src\map\message.h" />
     <ClInclude Include="..\..\src\map\commandhandler.h" />
     <ClInclude Include="..\..\src\map\conquest_system.h" />
     <ClInclude Include="..\..\src\map\enmity_container.h" />
@@ -239,7 +246,6 @@
     <ClInclude Include="..\..\src\map\entities\mobentity.h" />
     <ClInclude Include="..\..\src\map\entities\npcentity.h" />
     <ClInclude Include="..\..\src\map\entities\petentity.h" />
-    <ClInclude Include="..\..\src\map\fishingutils.h" />
     <ClInclude Include="..\..\src\map\grades.h" />
     <ClInclude Include="..\..\src\map\battlefield.h" />
     <ClInclude Include="..\..\src\map\battlefield_handler.h" />
@@ -257,7 +263,6 @@
     <ClInclude Include="..\..\src\map\items\item_usable.h" />
     <ClInclude Include="..\..\src\map\items\item_weapon.h" />
     <ClInclude Include="..\..\src\map\item_container.h" />
-    <ClInclude Include="..\..\src\map\jailutils.h" />
     <ClInclude Include="..\..\src\map\latent_effect.h" />
     <ClInclude Include="..\..\src\map\latent_effect_container.h" />
     <ClInclude Include="..\..\src\map\linkshell.h" />
@@ -266,6 +271,7 @@
     <ClInclude Include="..\..\src\map\lua\lua_baseentity.h" />
     <ClInclude Include="..\..\src\map\lua\lua_battlefield.h" />
     <ClInclude Include="..\..\src\map\lua\lua_instance.h" />
+    <ClInclude Include="..\..\src\map\lua\lua_item.h" />
     <ClInclude Include="..\..\src\map\lua\lua_mobskill.h" />
     <ClInclude Include="..\..\src\map\lua\lua_region.h" />
     <ClInclude Include="..\..\src\map\lua\lua_spell.h" />
@@ -280,7 +286,6 @@
     <ClInclude Include="..\..\src\map\modifier.h" />
     <ClInclude Include="..\..\src\map\mob_modifier.h" />
     <ClInclude Include="..\..\src\map\navmesh.h" />
-    <ClInclude Include="..\..\src\map\npcentity.h" />
     <ClInclude Include="..\..\src\map\packets\action.h" />
     <ClInclude Include="..\..\src\map\packets\auction_house.h" />
     <ClInclude Include="..\..\src\map\packets\basic.h" />
@@ -302,6 +307,7 @@
     <ClInclude Include="..\..\src\map\packets\char_health.h" />
     <ClInclude Include="..\..\src\map\packets\char_job_extra.h" />
     <ClInclude Include="..\..\src\map\packets\char_jobs.h" />
+    <ClInclude Include="..\..\src\map\packets\char_recast.h" />
     <ClInclude Include="..\..\src\map\packets\char_skills.h" />
     <ClInclude Include="..\..\src\map\packets\char_spells.h" />
     <ClInclude Include="..\..\src\map\packets\char_stats.h" />
@@ -309,10 +315,11 @@
     <ClInclude Include="..\..\src\map\packets\char_update.h" />
     <ClInclude Include="..\..\src\map\packets\chat_message.h" />
     <ClInclude Include="..\..\src\map\packets\chocobo_digging.h" />
-    <ClInclude Include="..\..\src\map\packets\chocobo_music.h" />
+    <ClInclude Include="..\..\src\map\packets\change_music.h" />
     <ClInclude Include="..\..\src\map\packets\conquest_map.h" />
     <ClInclude Include="..\..\src\map\packets\cs_position.h" />
-    <ClInclude Include="..\..\src\map\packets\currency.h" />
+    <ClInclude Include="..\..\src\map\packets\currency1.h" />
+    <ClInclude Include="..\..\src\map\packets\currency2.h" />
     <ClInclude Include="..\..\src\map\packets\delivery_box.h" />
     <ClInclude Include="..\..\src\map\packets\downloading_data.h" />
     <ClInclude Include="..\..\src\map\packets\entity_update.h" />
@@ -336,6 +343,7 @@
     <ClInclude Include="..\..\src\map\packets\linkshell_message.h" />
     <ClInclude Include="..\..\src\map\packets\linkshell_equip.h" />
     <ClInclude Include="..\..\src\map\packets\lock_on.h" />
+    <ClInclude Include="..\..\src\map\packets\macroequipset.h" />
     <ClInclude Include="..\..\src\map\packets\menu_config.h" />
     <ClInclude Include="..\..\src\map\packets\menu_merit.h" />
     <ClInclude Include="..\..\src\map\packets\menu_mog.h" />
@@ -349,7 +357,6 @@
     <ClInclude Include="..\..\src\map\packets\message_text.h" />
     <ClInclude Include="..\..\src\map\packets\synth_result.h" />
     <ClInclude Include="..\..\src\map\packets\synth_suggestion.h" />
-    <ClInclude Include="..\..\src\map\packets\send_box.h" />
     <ClInclude Include="..\..\src\map\packets\trade_action.h" />
     <ClInclude Include="..\..\src\map\packets\trade_item.h" />
     <ClInclude Include="..\..\src\map\packets\trade_request.h" />
@@ -440,6 +447,8 @@
     <ClCompile Include="..\..\src\common\utils.cpp" />
     <ClCompile Include="..\..\src\common\zlib.cpp" />
     <ClCompile Include="..\..\src\map\ability.cpp" />
+    <ClCompile Include="..\..\src\map\ai\ai_automaton_dummy.cpp" />
+    <ClCompile Include="..\..\src\map\ai\ai_char_charm.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_char_gm.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_char_normal.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_char_prisoner.cpp" />
@@ -461,6 +470,8 @@
     <ClCompile Include="..\..\src\map\alliance.cpp" />
     <ClCompile Include="..\..\src\map\blue_spell.cpp" />
     <ClCompile Include="..\..\src\map\blue_trait.cpp" />
+    <ClCompile Include="..\..\src\map\guild.cpp" />
+    <ClCompile Include="..\..\src\map\message.cpp" />
     <ClCompile Include="..\..\src\map\commandhandler.cpp" />
     <ClCompile Include="..\..\src\map\conquest_system.cpp" />
     <ClCompile Include="..\..\src\map\enmity_container.cpp" />
@@ -496,6 +507,7 @@
     <ClCompile Include="..\..\src\map\lua\lua_baseentity.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_battlefield.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_instance.cpp" />
+    <ClCompile Include="..\..\src\map\lua\lua_item.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_mobskill.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_region.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_spell.cpp" />
@@ -511,7 +523,6 @@
     <ClCompile Include="..\..\src\map\navmesh.cpp" />
     <ClCompile Include="..\..\src\map\packets\action.cpp" />
     <ClCompile Include="..\..\src\map\packets\auction_house.cpp" />
-    <ClCompile Include="..\..\src\map\packets\basic.cpp" />
     <ClCompile Include="..\..\src\map\packets\bazaar_confirmation.cpp" />
     <ClCompile Include="..\..\src\map\packets\bazaar_purchase.cpp" />
     <ClCompile Include="..\..\src\map\packets\bazaar_check.cpp" />
@@ -530,6 +541,7 @@
     <ClCompile Include="..\..\src\map\packets\char_health.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_job_extra.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_jobs.cpp" />
+    <ClCompile Include="..\..\src\map\packets\char_recast.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_skills.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_spells.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_stats.cpp" />
@@ -537,10 +549,11 @@
     <ClCompile Include="..\..\src\map\packets\char_update.cpp" />
     <ClCompile Include="..\..\src\map\packets\chat_message.cpp" />
     <ClCompile Include="..\..\src\map\packets\chocobo_digging.cpp" />
-    <ClCompile Include="..\..\src\map\packets\chocobo_music.cpp" />
+    <ClCompile Include="..\..\src\map\packets\change_music.cpp" />
     <ClCompile Include="..\..\src\map\packets\conquest_map.cpp" />
     <ClCompile Include="..\..\src\map\packets\cs_position.cpp" />
-    <ClCompile Include="..\..\src\map\packets\currency.cpp" />
+    <ClCompile Include="..\..\src\map\packets\currency1.cpp" />
+    <ClCompile Include="..\..\src\map\packets\currency2.cpp" />
     <ClCompile Include="..\..\src\map\packets\delivery_box.cpp" />
     <ClCompile Include="..\..\src\map\packets\downloading_data.cpp" />
     <ClCompile Include="..\..\src\map\packets\entity_update.cpp" />
@@ -564,6 +577,7 @@
     <ClCompile Include="..\..\src\map\packets\linkshell_message.cpp" />
     <ClCompile Include="..\..\src\map\packets\linkshell_equip.cpp" />
     <ClCompile Include="..\..\src\map\packets\lock_on.cpp" />
+    <ClCompile Include="..\..\src\map\packets\macroequipset.cpp" />
     <ClCompile Include="..\..\src\map\packets\menu_config.cpp" />
     <ClCompile Include="..\..\src\map\packets\menu_merit.cpp" />
     <ClCompile Include="..\..\src\map\packets\menu_mog.cpp" />
@@ -575,7 +589,6 @@
     <ClCompile Include="..\..\src\map\packets\message_standard.cpp" />
     <ClCompile Include="..\..\src\map\packets\message_system.cpp" />
     <ClCompile Include="..\..\src\map\packets\message_text.cpp" />
-    <ClCompile Include="..\..\src\map\packets\send_box.cpp" />
     <ClCompile Include="..\..\src\map\packets\synth_result.cpp" />
     <ClCompile Include="..\..\src\map\packets\synth_suggestion.cpp" />
     <ClCompile Include="..\..\src\map\packets\trade_action.cpp" />

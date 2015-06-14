@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -30,17 +30,17 @@
 #include "../entities/charentity.h"
 
 
-CPartyInvitePacket::CPartyInvitePacket(CCharEntity* PChar, CCharEntity* PInviter, INVITETYPE InviteType)
+CPartyInvitePacket::CPartyInvitePacket(uint32 id, uint16 targid, CCharEntity* PInviter, INVITETYPE InviteType)
 {
 	this->type = 0xDC;
 	this->size = 0x10; 
 
 	//DSP_DEBUG_BREAK_IF(PInviter->name.size() > 15);
 	
-	WBUFL(data,(0x04)-4) = PChar->id;
-	WBUFW(data,(0x08)-4) = PChar->targid;
+	WBUFL(data,(0x04)) = id;
+	WBUFW(data,(0x08)) = targid;
 
-	WBUFB(data,(0x0B)-4) = InviteType;
+	WBUFB(data,(0x0B)) = InviteType;
 
-	memcpy(data+(0x0C)-4, PInviter->GetName(), PInviter->name.size()); 
+	memcpy(data+(0x0C), PInviter->GetName(), PInviter->name.size()); 
 }

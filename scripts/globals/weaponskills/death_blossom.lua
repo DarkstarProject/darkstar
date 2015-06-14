@@ -1,16 +1,22 @@
 -----------------------------------
--- Death Blossom     
--- Sword weapon skill
--- Skill level: ??? (RDM ONRY!)
--- Delivers a three-hit attack. MEva down chance varies with TP.
--- Modifiers: STR:30% ; MND:50% 
--- 100%TP 	200%TP 	300%TP
--- 1.50 	1.50	1.50
+-- Death Blossom
+-- Sword weapon skill (RDM main only)
+-- Description: Delivers a threefold attack that lowers target's magic evasion. Chance of lowering target's magic evasion varies with TP. Murgleis: Aftermath effect varies with TP.
+-- Lowers magic evasion by up to 10.
+-- Effect lasts up to 55 seconds.
+-- Available only after completing the Unlocking a Myth (Red Mage) quest.
+-- Aligned with the Breeze Gorget, Thunder Gorget, Aqua Gorget & Snow Gorget.
+-- Aligned with the Breeze Belt, Thunder Belt, Aqua Belt & Snow Belt.
+-- Modifiers: STR:30% ; MND:50%
+-- 100%TP     200%TP	  300%TP
+--  4 	     	4           4		new
+-- 1.125      1.125	  1.125		old
 -----------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/weaponskills");
+require("scripts/globals/status");
+require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
-function OnUseWeaponSkill(player, target, wsID)
+-----------------------------------
+function onUseWeaponSkill(player, target, wsID)
 	local params = {};
 	params.numHits = 3;
 	--ftp damage mods (for Damage Varies with TP; lines are calculated in the function
@@ -25,6 +31,10 @@ function OnUseWeaponSkill(player, target, wsID)
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1;
 	
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.ftp100 = 4.0; params.ftp200 = 4.0; params.ftp300 = 4.0;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	if damage > 0 then
 		local tp = player:getTP();
@@ -33,38 +43,38 @@ function OnUseWeaponSkill(player, target, wsID)
 			target:addStatusEffect(EFFECT_MAGIC_EVASION_DOWN, 10, 0, duration);
 		end
 	end
-			
-		
+
+
 	if((player:getEquipID(SLOT_MAIN) == 18995) and (player:getMainJob() == JOB_RDM)) then
-		if(damage > 0) then	
-		
---		AFTERMATH LV1		
-		
-		if ((player:getTP() >= 100) and (player:getTP() <= 110)) then 
-			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 10, 0, 180, 0, 2); 
-	elseif ((player:getTP() >= 111) and (player:getTP() <= 120)) then 
-			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 11, 0, 180, 0, 2); 
-	elseif ((player:getTP() >= 121) and (player:getTP() <= 130)) then 
-			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 12, 0, 180, 0, 2); 
-	elseif ((player:getTP() >= 131) and (player:getTP() <= 140)) then 
-			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 13, 0, 180, 0, 2); 
-	elseif ((player:getTP() >= 141) and (player:getTP() <= 150)) then 
-			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 14, 0, 180, 0, 2); 
-	elseif ((player:getTP() >= 151) and (player:getTP() <= 160)) then 
-			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 15, 0, 180, 0, 2); 
-	elseif ((player:getTP() >= 161) and (player:getTP() <= 170)) then 
-			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 16, 0, 180, 0, 2); 
-	elseif ((player:getTP() >= 171) and (player:getTP() <= 180)) then 
-			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 17, 0, 180, 0, 2); 
-	elseif ((player:getTP() >= 181) and (player:getTP() <= 190)) then 
-			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 18, 0, 180, 0, 2); 
-	elseif ((player:getTP() >= 191) and (player:getTP() <= 199)) then 
-			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 19, 0, 180, 0, 2); 
-			
-			
-			
+		if(damage > 0) then
+
+--		AFTERMATH LV1
+
+		if ((player:getTP() >= 100) and (player:getTP() <= 110)) then
+			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 10, 0, 180, 0, 2);
+	elseif ((player:getTP() >= 111) and (player:getTP() <= 120)) then
+			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 11, 0, 180, 0, 2);
+	elseif ((player:getTP() >= 121) and (player:getTP() <= 130)) then
+			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 12, 0, 180, 0, 2);
+	elseif ((player:getTP() >= 131) and (player:getTP() <= 140)) then
+			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 13, 0, 180, 0, 2);
+	elseif ((player:getTP() >= 141) and (player:getTP() <= 150)) then
+			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 14, 0, 180, 0, 2);
+	elseif ((player:getTP() >= 151) and (player:getTP() <= 160)) then
+			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 15, 0, 180, 0, 2);
+	elseif ((player:getTP() >= 161) and (player:getTP() <= 170)) then
+			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 16, 0, 180, 0, 2);
+	elseif ((player:getTP() >= 171) and (player:getTP() <= 180)) then
+			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 17, 0, 180, 0, 2);
+	elseif ((player:getTP() >= 181) and (player:getTP() <= 190)) then
+			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 18, 0, 180, 0, 2);
+	elseif ((player:getTP() >= 191) and (player:getTP() <= 199)) then
+			player:addStatusEffect(EFFECT_AFTERMATH_LV1, 19, 0, 180, 0, 2);
+
+
+
 --		AFTERMATH LV2
-		
+
 	elseif ((player:getTP() >= 200) and (player:getTP() <= 210)) then
 			player:addStatusEffect(EFFECT_AFTERMATH_LV2, 24, 0, 180, 0, 3);
 	elseif ((player:getTP() >= 211) and (player:getTP() <= 219)) then
@@ -85,15 +95,16 @@ function OnUseWeaponSkill(player, target, wsID)
 			player:addStatusEffect(EFFECT_AFTERMATH_LV2, 56, 0, 180, 0, 3);
 	elseif ((player:getTP() >= 291) and (player:getTP() <= 299)) then
 			player:addStatusEffect(EFFECT_AFTERMATH_LV2, 59, 0, 180, 0, 3);
-			
-			
+
+
 --		AFTERMATH LV3
-		
+
 		elseif ((player:getTP() == 300)) then
 			player:addStatusEffect(EFFECT_AFTERMATH_LV3, 45, 0, 120, 0, 1);
-			
+
 			end
 		end
 	end
+	damage = damage * WEAPON_SKILL_POWER
 	return tpHits, extraHits, criticalHit, damage;
 end

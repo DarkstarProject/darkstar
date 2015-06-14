@@ -19,6 +19,19 @@ function onInitialize(zone)
 	zone:registerRegion(2, 104, -42, -88, 113, -38, -77);
 end;
 
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
+
+
 -----------------------------------
 -- onZoneIn
 -----------------------------------
@@ -30,8 +43,10 @@ function onZoneIn(player,prevZone)
 		player:setPos(27.971,-14.068,43.735,66);
 	end	
 	
-	if(player:getCurrentMission(COP) == AN_INVITATION_WEST)then
-		cs = 0x0065;
+	if(player:getCurrentMission(COP) == AN_INVITATION_WEST) then
+		if (player:getVar("PromathiaStatus") == 1)then
+		    cs = 0x0065;
+		end
 	elseif(player:getCurrentMission(COP) == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 0)then
         cs = 0x006B;
 	elseif(player:getCurrentMission(COP) == CHAINS_AND_BONDS and player:getVar("PromathiaStatus") == 1) then

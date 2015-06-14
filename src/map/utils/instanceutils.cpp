@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,10 +24,11 @@ This file is part of DarkStar-server source code.
 #include "../instance_loader.h"
 
 #include "instanceutils.h"
+#include "zoneutils.h"
 
 #include "../lua/luautils.h"
 
-CInstanceLoader* Loader = NULL;
+CInstanceLoader* Loader = nullptr;
 
 namespace instanceutils
 {
@@ -38,20 +39,21 @@ namespace instanceutils
 			if (Loader->Check())
 			{
 				delete Loader;
-				Loader = NULL;
+				Loader = nullptr;
 			}
 		}
 	}
 
 	void LoadInstance(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester)
 	{
-		if (!Loader)
+        CZone* PZone = zoneutils::GetZone(zoneid);
+		if (!Loader && PZone)
 		{
-			Loader = new CInstanceLoader(instanceid, zoneid, PRequester);
+			Loader = new CInstanceLoader(instanceid, PZone, PRequester);
 		}
 		else
 		{
-			luautils::OnInstanceCreated(PRequester, NULL);
+			luautils::OnInstanceCreated(PRequester, nullptr);
 		}
 	}
 };

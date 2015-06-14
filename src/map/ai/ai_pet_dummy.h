@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -69,7 +69,7 @@ protected:
 	void ActionAbilityUsing();
 	void ActionAbilityInterrupt();
 	void ActionAbilityFinish();
-	bool WyvernIsHealing(); //true if wyvern is healing
+	bool PetIsHealing(); //true if wyvern is healing
 
 	void ActionMagicStart();
 	void ActionMagicCasting();

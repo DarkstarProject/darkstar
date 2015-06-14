@@ -6,7 +6,7 @@
 
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function OnBcnmRegister(player,instance)	
+function onBcnmRegister(player,instance)	
 	SetServerVariable("[C_Temenos_3rd]UniqueID",GenerateLimbusKey());
 	HideArmouryCrates(GetInstanceRegion(1305),TEMENOS);		
     HideTemenosDoor(GetInstanceRegion(1305));
@@ -14,7 +14,7 @@ function OnBcnmRegister(player,instance)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function OnBcnmEnter(player,instance)
+function onBcnmEnter(player,instance)
 	player:setVar("limbusbitmap",0);
 	player:setVar("characterLimbusKey",GetServerVariable("[C_Temenos_3rd]UniqueID"));
 	player:setVar("LimbusID",1305);	
@@ -26,7 +26,7 @@ end;
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish he dynamis
 
-function OnBcnmLeave(player,instance,leavecode)
+function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 	if(leavecode == 4) then
 	 	player:setPos(580,-1.5,4.452,192);

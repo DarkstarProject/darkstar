@@ -2,19 +2,19 @@
 -- Flaming Crush M=10, 2, 2? (STILL don't know)
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/summon");
-require("/scripts/globals/magic");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/summon");
+require("scripts/globals/magic");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnAbilityCheck(player, target, ability)
+function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function OnPetAbility(target, pet, skill)
+function onPetAbility(target, pet, skill)
 	local numhits = 3;
 	local accmod = 1;
 	local dmgmod = 10;

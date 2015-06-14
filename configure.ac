@@ -1,10 +1,9 @@
 ### Package information
 AC_PREREQ(2.61)
-AC_INIT(DarkStarProject, m4_esyscmd([svnversion -n]))
+AC_INIT(DarkStarProject,m4_esyscmd_s([git rev-parse HEAD]))
 AC_CONFIG_SRCDIR([src/common/cbasetypes.h])
 AC_CANONICAL_SYSTEM
-AM_INIT_AUTOMAKE(DarkStar,9xx-svn)
-AC_DEFINE(PACKAGE_LINE,"Alpha",Name of current line)
+AM_INIT_AUTOMAKE(DarkStar,git)
 
 ### Checks for compiler and core header files
 AC_PROG_CC
@@ -13,26 +12,25 @@ AC_PROG_CXXCPP
 AC_LANG([C++])
 AC_HEADER_STDC
 
-###Add flags without overriding user-defined flags
+### Add flags without overriding user-defined flags
 DARKSTAR_CXXFLAGS="$CXXFLAGS -pipe -ffast-math -Wno-sign-compare"
 DARKSTAR_CPPFLAGS="$CPPFLAGS -I../common"
 
 ### Big endian test
 AC_C_BIGENDIAN(
-        [AC_MSG_ERROR([[bigendian is not supported... stopping]])],
-        ,
-        [AC_MSG_WARN([[unable to determine endianess, only little endian is supported]])]
+     [AC_MSG_ERROR([[bigendian is not supported... stopping]])],
+     ,
+     [AC_MSG_WARN([[unable to determine endianess, only little endian is supported]])]
 )
 
-
-
 ### pkg-config checks
-LUA_REQUIRED_VERSION=0.25
-PKG_CHECK_MODULES(LUA, lua5.1 >= LUA_REQUIRED_VERSION)
+PKG_CHECK_MODULES(LUA, luajit, , [PKG_CHECK_MODULES(LUA, lua5.1 >= 0.25)])
+PKG_CHECK_MODULES(ZMQ, libzmq)
 AC_SUBST(LUA_CFLAGS)
 AC_SUBST(LUA_LIBS)
 
 ### MySQL check
+m4_include([m4/ax_lib_mysql.m4])
 AX_LIB_MYSQL()
 
 ### Checks for typedefs, structures, and compiler characteristics.
@@ -91,13 +89,13 @@ AC_ARG_ENABLE(
         ]
    ),
    [
-        enable_debug="$enableval"
-        case $enableval in
-                "no");;
-                "yes");;
-                "gdb");;
-                *) AC_MSG_ERROR([[invalid argument --enable-debug=$enableval... stopping]]);;
-        esac
+     enable_debug="$enableval"
+     case $enableval in
+             "no");;
+             "yes");;
+             "gdb");;
+             *) AC_MSG_ERROR([[invalid argument --enable-debug=$enableval... stopping]]);;
+     esac
    ],
    [enable_debug="no"]
 )
@@ -106,7 +104,7 @@ AC_ARG_ENABLE(
 AC_ARG_ENABLE(
    [rdtsc],
    AC_HELP_STRING(
-        [ --enable-rdtsc ],
+        [--enable-rdtsc],
         [
                 Uses rdtsc as timing source (disabled by default)
                 Enable it when you have timing issues.
@@ -120,55 +118,10 @@ AC_ARG_ENABLE(
         ]
   ),
   [
-        enable_rdtsc=1
+     enable_rdtsc=1
   ],
-  [ enable_rdtsc=0 ]
+  [enable_rdtsc=0]
 )
-
-### Compile for a 64-bit target
-AC_ARG_ENABLE(
-        [64bit],
-        AC_HELP_STRING(
-                [--enable-64bit],
-                [
-                        Don't force 32bit. (disable by default)
-                        64bit support is still being tested, not recommended for production servers.
-                ]
-        ),
-        [
-                enable_64bit="$enableval"
-                case $enableval in
-                        "no");;
-                        "yes");;
-                        *) AC_MSG_ERROR([[ invalid argumen --enable-64bit = $enableval ... stopping]]);;
-                esac
-        ],
-        [ enable_64bit="no" ]
-)
-
-### Make sure pointers will fit in int when using 64-bit target
-if test "$enable_64bit" = "no" ; then
-        AC_MSG_CHECKING([whether pointers can be stored in ints (old code)])
-        pointers_fit_in_ints="no"
-        AC_COMPILE_IFELSE(
-                [AC_LANG_PROGRAM([[static int test_array[((long int)sizeof(int)) == ((long int)sizeof(void*))? 1 : -1];]])],
-                [pointers_fit_in_ints="yes"],
-                []
-        )
-        if test "$pointers_fit_in_ints" = "no" ; then
-                DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS -m32"
-                DARKSTAR_LDFLAGS="$DARKSTAR_LDFLAGS -m32"
-                AC_COMPILE_IFELSE(
-                        [AC_LANG_PROGRAM([[static int test_array[((long int)sizeof(int)) == ((long int)sizeof(void*))? 1: -1];]])],
-                        [pointers_fit_in_ints="yes (with -m32)"],
-                        []
-                )
-        fi
-        AC_MSG_RESULT($pointers_fit_in_ints)
-        if test "$pointers_fit_in_ints" = "no" ; then
-                AC_MSG_ERROR([pointers cannot be stored in ints, required for old code... stopping])
-        fi
-fi
 
 AC_MSG_CHECKING([whether $CXX supports -Wno-unused-parameter])
 OLD_DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS"
@@ -177,8 +130,8 @@ AC_COMPILE_IFELSE(
         [int foo;],
         [AC_MSG_RESULT([yes])],
         [
-                AC_MSG_RESULT([no])
-                DARKSTAR_CXXFLAGS="$OLD_DARKSTAR_CXXFLAGS"
+             AC_MSG_RESULT([no])
+             DARKSTAR_CXXFLAGS="$OLD_DARKSTAR_CXXFLAGS"
         ]
 )
 
@@ -201,8 +154,8 @@ AC_COMPILE_IFELSE(
         [int foo;],
         [AC_MSG_RESULT([yes])],
         [
-                AC_MSG_RESULT([no])
-                DARKSTAR_CXXFLAGS="$OLD_DARKSTAR_CXXFLAGS"
+             AC_MSG_RESULT([no])
+             DARKSTAR_CXXFLAGS="$OLD_DARKSTAR_CXXFLAGS"
         ]
 )
 

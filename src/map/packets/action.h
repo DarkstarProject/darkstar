@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -43,6 +43,10 @@ class CActionPacket : public CBasicPacket
 public:
 
 	 CActionPacket(CBattleEntity* PEntity);
+     CActionPacket(uint32 id, uint32 targetid, uint8 ActionType, 
+                   uint16 param, uint8 reaction = 0, uint16 animation = 0, uint8 speceffect = 0, 
+                   uint8 knockback = 0, uint32 messageparam = 0, uint16 messageID = 0);
+
 };
 
 #endif

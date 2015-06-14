@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2579,1) and trade:getItemCount() == 1) then -- Trade Samariri Corpsehair
 		player:tradeComplete();
-		SpawnMob(17043888,180):updateEnmity(player);
+		SpawnMob(17043888,180):updateClaim(player);
 	end
 	
 end;

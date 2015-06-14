@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -97,7 +97,7 @@ static void sig_proc(int sn)
 		case SIGINT:
 		case SIGTERM:
 			if (++is_called > 3)
-				exit(EXIT_SUCCESS);
+				do_final(EXIT_SUCCESS);
 			runflag = 0;
 			break;
 		case SIGSEGV:
@@ -170,6 +170,7 @@ const char* get_git_revision(void)
         fgets(line, 1024, fp);
         sscanf(line, "%[a-zA-Z0-9] %[^\t\r\n]", w1, w2);
         snprintf(dsp_git_version, sizeof(dsp_git_version), "%s", w1);
+        fclose(fp);
     }
 
     // If no version was found, mark as unknown..
@@ -231,6 +232,7 @@ int main (int argc, char **argv)
 		arg_v = argv;
 	}
 
+    log_init(argc, argv);
 	malloc_init();
 	set_server_type();
 	display_title();
@@ -251,9 +253,6 @@ int main (int argc, char **argv)
 		}
 	}
 
-	do_final();
-	timer_final();
-	socket_final();
-	malloc_final();
+    do_final(EXIT_SUCCESS);
 	return 0;
 }

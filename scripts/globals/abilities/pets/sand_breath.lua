@@ -2,17 +2,17 @@
 -- Sand Breath
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnAbilityCheck(player, target, ability)
+function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function OnPetAbility(target, pet, skill, master)
+function onPetAbility(target, pet, skill, master)
    ---------- Deep Breathing ----------
    -- 0 for none
    -- 1 for first merit

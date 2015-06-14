@@ -32,19 +32,18 @@ end;
 function onTrigger(player,npc) 
 	local currentMission = player:getCurrentMission(SANDORIA);
 	local MissionStatus = player:getVar("MissionStatus");	
+	local BatHuntCompleted = player:hasCompletedMission(SANDORIA,BAT_HUNT); -- quest repeatable and clicking tombstone should not produce cutscene on repeat
 	local X = npc:getXPos();
 	local Z = npc:getZPos();
 	
 	if(X >= -1 and X <= 1 and Z >= -106 and Z <= -102) then
-		if(player:getCurrentMission(SANDORIA) == BAT_HUNT and MissionStatus <= 1) then -- Bug caused players to have MissionStatus 1 at start, so self-healing is necessary.
+		if(currentMission == BAT_HUNT and MissionStatus == 0) then 
 			player:startEvent(0x0004);
 		else
 			player:startEvent(0x0002);
 		end
-	elseif(npc:getID() == 17555928) then 
-	    if(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 2) then
-	        player:startEvent(0x0008);
-	    end
+	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 2) then
+		player:startEvent(0x0008);
 	end
 	
 end; 

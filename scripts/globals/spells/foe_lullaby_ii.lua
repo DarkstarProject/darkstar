@@ -7,17 +7,16 @@ require("scripts/globals/magic");
 -- OnSpellCast
 -----------------------------------------
 
-function OnMagicCastingCheck(caster,target,spell)
+function onMagicCastingCheck(caster,target,spell)
 	return 0;
 end;
 
 function onSpellCast(caster,target,spell)
     local duration = 60;
-    local bonus = AffinityBonus(caster, spell:getElement());
     local pCHR = caster:getStat(MOD_CHR);
     local mCHR = target:getStat(MOD_CHR);
     local dCHR = (pCHR - mCHR);
-    local resm = applyResistance(caster,spell,target,dCHR,40,bonus);
+    local resm = applyResistance(caster,spell,target,dCHR,40,0);
     if(resm < 0.5) then
         spell:setMsg(85);--resist message
         return EFFECT_LULLABY;

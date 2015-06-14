@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@
 
 CUContainer::CUContainer()
 {
+    m_ContainerType = UCONTAINER_EMPTY;
 	Clean();
 }
 
@@ -60,7 +61,8 @@ void CUContainer::Clean()
     m_count  = 0;
     m_target = 0;
 
-	memset(m_PItem, 0, sizeof(m_PItem));
+    m_PItem.clear();
+    m_PItem.resize(UCONTAINER_SIZE, nullptr);
 }
 
 /************************************************************************
@@ -122,6 +124,17 @@ void CUContainer::SetLock()
 
 /************************************************************************
 *                                                                       *
+*  Unlock container														*
+*                                                                       *
+************************************************************************/
+
+void CUContainer::UnLock()
+{
+	m_lock = false;
+}
+
+/************************************************************************
+*                                                                       *
 *  Проверяем, заблокирован ли контейнер                                 *
 *                                                                       *
 ************************************************************************/
@@ -150,9 +163,9 @@ bool CUContainer::IsContainerEmpty()
 
 bool CUContainer::IsSlotEmpty(uint8 slotID)
 {
-    if (slotID < UCONTAINER_SIZE)
+    if (slotID < m_PItem.size())
 	{
-        return m_PItem[slotID] == NULL;
+        return m_PItem[slotID] == nullptr;
     }
     return true;
 }
@@ -165,15 +178,20 @@ bool CUContainer::IsSlotEmpty(uint8 slotID)
 
 bool CUContainer::SetItem(uint8 slotID, CItem* PItem)
 {
-	if (slotID < UCONTAINER_SIZE && !m_lock)
+	if (slotID < m_PItem.size() && !m_lock)
 	{
-        if (PItem != NULL && m_PItem[slotID] == NULL) m_count++;
-        if (PItem == NULL && m_PItem[slotID] != NULL) m_count--;
+        if (PItem != nullptr && m_PItem[slotID] == nullptr) m_count++;
+        if (PItem == nullptr && m_PItem[slotID] != nullptr) m_count--;
 
 		m_PItem[slotID] = PItem;
         return true;
 	}
     return false;
+}
+
+void CUContainer::SetSize(uint8 size)
+{
+    m_PItem.resize(size, nullptr);
 }
 
 /************************************************************************
@@ -195,9 +213,9 @@ uint8 CUContainer::GetItemsCount()
 
 CItem* CUContainer::GetItem(uint8 slotID)
 {
-	if (slotID < UCONTAINER_SIZE)
+	if (slotID < m_PItem.size())
 	{
 		return m_PItem[slotID];
 	}
-	return NULL;
+	return nullptr;
 }

@@ -6,12 +6,12 @@
 --  Wipes Shadows
 --  Range: 30 yalms
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
    local family = mob:getFamily();
    local mobhp = mob:getHPP();
 
@@ -24,7 +24,7 @@ function OnMobSkillCheck(target,mob,skill)
    return 1;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 
 -- TODO: Hits all players near Khimaira, not just alliance.
 

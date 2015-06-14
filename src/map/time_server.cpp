@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -42,19 +42,19 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
     // weekly update for conquest (sunday at midnight)
     if (CVanaTime::getInstance()->getSysWeekDay() == 0  && CVanaTime::getInstance()->getSysHour() == 0 && CVanaTime::getInstance()->getSysMinute() == 0)
     {
-        if (tick > (CVanaTime::getInstance()->lastConquestUpdate + 60000))
+        if (tick > (CVanaTime::getInstance()->lastConquestTally + 60000))
         {
             conquest::UpdateWeekConquest();
-            CVanaTime::getInstance()->lastConquestUpdate = tick;
+            CVanaTime::getInstance()->lastConquestTally = tick;
         }
     }
-
-    if (CVanaTime::getInstance()->getHour() % 4 == 0 && CVanaTime::getInstance()->getMinute() == 30)
+    // hourly conquest update
+    else if (CVanaTime::getInstance()->getSysMinute() == 0)
     {
-        if (tick > (CVanaTime::getInstance()->lastWeatherUpdate + 4800))
+        if (tick > (CVanaTime::getInstance()->lastConquestUpdate + 60000))
         {
-            zoneutils::UpdateWeather();
-            CVanaTime::getInstance()->lastWeatherUpdate = tick;
+            conquest::UpdateConquestSystem();
+            CVanaTime::getInstance()->lastConquestUpdate = tick;
         }
     }
 
@@ -62,35 +62,45 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
     {
         if (tick > (CVanaTime::getInstance()->lastVHourlyUpdate + 4800))
         {
-            luautils::OnGameHourAutomatisation();
-
-            for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
+			zoneutils::ForEachZone([](CZone* PZone)
             {
-				zoneutils::GetZone(zone)->ForEachChar([](CCharEntity* PChar) {
+                luautils::OnGameHour(PZone);
+				PZone->ForEachChar([](CCharEntity* PChar)
+				{
 					PChar->PLatentEffectContainer->CheckLatentsHours();
 					PChar->PLatentEffectContainer->CheckLatentsMoonPhase();
 				});
-            }
+			});
 
             CVanaTime::getInstance()->lastVHourlyUpdate = tick;
         }
 
     }
 
+    //Midnight
+    if (CVanaTime::getInstance()->getSysHour() == 0 && CVanaTime::getInstance()->getSysMinute() == 0)
+    {
+        if (tick > (CVanaTime::getInstance()->lastMidnight + 60000))
+        {
+            guildutils::UpdateGuildPointsPattern();
+            CVanaTime::getInstance()->lastMidnight = tick;
+        }
+    }
+
     if (CVanaTime::getInstance()->getHour() == 0 && CVanaTime::getInstance()->getMinute() == 0)
     {
         if (tick > (CVanaTime::getInstance()->lastVDailyUpdate + 4800))
         {
-            for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
-            {
-				zoneutils::GetZone(zone)->ForEachChar([](CCharEntity* PChar) {
+			zoneutils::ForEachZone([](CZone* PZone)
+			{
+                luautils::OnGameDay(PZone);
+				PZone->ForEachChar([](CCharEntity* PChar)
+				{
 					PChar->PLatentEffectContainer->CheckLatentsWeekDay();
 				});
-            }
+			});
 
             guildutils::UpdateGuildsStock();
-            luautils::OnGameDayAutomatisation();
-            conquest::UpdateConquestSystem();
             zoneutils::SavePlayTime();
 
             CVanaTime::getInstance()->lastVDailyUpdate = tick;
@@ -101,15 +111,16 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
     {
         zoneutils::TOTDChange(VanadielTOTD);
 
-        if((VanadielTOTD == TIME_DAY) || (VanadielTOTD == TIME_DUSK) || (VanadielTOTD == TIME_NIGHT))
+        if ((VanadielTOTD == TIME_DAY) || (VanadielTOTD == TIME_DUSK) || (VanadielTOTD == TIME_NIGHT))
         {
-            for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
-            {
-				zoneutils::GetZone(zone)->ForEachChar([](CCharEntity* PChar) {
+			zoneutils::ForEachZone([](CZone* PZone)
+			{
+				PZone->ForEachChar([](CCharEntity* PChar)
+				{
 					PChar->PLatentEffectContainer->CheckLatentsDay();
 					PChar->PLatentEffectContainer->CheckLatentsJobLevel();
 				});
-            }
+			});
         }
     }
 

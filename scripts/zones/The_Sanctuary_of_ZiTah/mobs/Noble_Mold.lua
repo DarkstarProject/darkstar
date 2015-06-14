@@ -14,7 +14,7 @@ function onMobDeath(mob, killer)
 	local Noble_Mold = mob:getID();
 	local Noble_Mold_PH = GetServerVariable("Noble_Mold_PH");
 		
-	GetMobByID(Noble_Mold):setExtraVar(os.time() + math.random((43200), (57600)));
+	GetMobByID(Noble_Mold):setLocalVar("ToD",os.time() + math.random((43200), (57600)));
 	SetServerVariable("Noble_Mold_PH", 0);
 	DeterMob(Noble_Mold, true);
 	DeterMob(Noble_Mold_PH, false);

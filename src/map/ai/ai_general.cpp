@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -41,25 +41,25 @@
 
 CAIGeneral::CAIGeneral()
 {
-    m_PTargetFind = NULL;
-    m_PPathFind = NULL;
-    m_PMagicState = NULL;
+    m_PTargetFind = nullptr;
+    m_PPathFind = nullptr;
+    m_PMagicState = nullptr;
 	Reset();
 }
 
 CAIGeneral::~CAIGeneral()
 {
-	if(m_PTargetFind != NULL)
+	if(m_PTargetFind != nullptr)
 	{
 	    delete m_PTargetFind;
 	}
 
-	if(m_PPathFind != NULL)
+	if(m_PPathFind != nullptr)
 	{
 	    delete m_PPathFind;
 	}
 
-	if(m_PMagicState != NULL)
+	if(m_PMagicState != nullptr)
 	{
 		delete m_PMagicState;
 	}
@@ -84,13 +84,13 @@ void CAIGeneral::Reset()
     m_WaitTime = 0;
     m_LastWaitTime = 0;
     m_interruptSpell = false;
-	m_PSpell = NULL;
-	m_PWeaponSkill = NULL;
-	m_PItemUsable = NULL;
-	m_PBattleTarget = NULL;
-	m_PBattleSubTarget = NULL;
-	m_PJobAbility = NULL;
-	m_PMobSkill = NULL;
+	m_PSpell = nullptr;
+	m_PWeaponSkill = nullptr;
+	m_PItemUsable = nullptr;
+	m_PBattleTarget = nullptr;
+	m_PBattleSubTarget = nullptr;
+	m_PJobAbility = nullptr;
+	m_PMobSkill = nullptr;
 	m_AutoAttackEnabled = true;
 	m_MobAbilityEnabled = true;
 }
@@ -227,6 +227,7 @@ void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
                 case ACTION_ITEM_USING:    m_ActionType = ACTION_ITEM_INTERRUPT;  CheckCurrentAction(m_Tick); break;
                 case ACTION_MAGIC_CASTING: m_ActionType = ACTION_MAGIC_INTERRUPT; CheckCurrentAction(m_Tick); break;
 				case ACTION_MOBABILITY_START: m_ActionType = ACTION_MOBABILITY_INTERRUPT; CheckCurrentAction(m_Tick); break;
+                case ACTION_MOBABILITY_USING: m_ActionType = ACTION_MOBABILITY_INTERRUPT; CheckCurrentAction(m_Tick); break;
             }
             m_ActionType = Action;
 			m_ActionTargetID = TargetID;
@@ -280,7 +281,22 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
 		m_ActionType != ACTION_MAGIC_FINISH  &&
 		m_ActionType != ACTION_MAGIC_INTERRUPT)
 	{
-		m_PSpell = spell::GetSpell(SpellID);
+        CSpell* spell = spell::GetSpell(SpellID);
+        if (spell)
+        {
+            if (spell->getSpellGroup() == SPELLGROUP_BLUE)
+            {
+                m_PSpell = std::unique_ptr<CSpell>(new CBlueSpell(*(CBlueSpell*)spell));
+            }
+            else
+            {
+                m_PSpell = std::unique_ptr<CSpell>(new CSpell(*spell));
+            }
+        }
+        else
+        {
+            m_PSpell = nullptr;
+        }
 	}
 }
 
@@ -293,14 +309,14 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
 CSpell* CAIGeneral::GetCurrentSpell()
 {
     // TODO: refactor this to only need magic state
-	if (m_PMagicState != NULL && m_PMagicState->GetSpell() != NULL)
+	/*if (m_PMagicState != nullptr && m_PMagicState->GetSpell() != nullptr)
     {
         return m_PMagicState->GetSpell();
-    }
+    }*/
 
-	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+	DSP_DEBUG_BREAK_IF(m_PSpell == nullptr);
 
-	return m_PSpell;
+	return m_PSpell.get();
 }
 
 /************************************************************************
@@ -314,7 +330,7 @@ void CAIGeneral::SetCurrentWeaponSkill(uint16 WSkillID)
 	if (m_ActionType != ACTION_WEAPONSKILL_START   &&
 		m_ActionType != ACTION_WEAPONSKILL_FINISH)
 	{
-		m_PWeaponSkill = battleutils::GetWeaponSkill(WSkillID);
+		m_PWeaponSkill = std::unique_ptr<CWeaponSkill>(new CWeaponSkill(*battleutils::GetWeaponSkill(WSkillID)));
 	}
 }
 
@@ -326,9 +342,9 @@ void CAIGeneral::SetCurrentWeaponSkill(uint16 WSkillID)
 
 CWeaponSkill* CAIGeneral::GetCurrentWeaponSkill()
 {
-	DSP_DEBUG_BREAK_IF(m_PWeaponSkill == NULL);
+	DSP_DEBUG_BREAK_IF(m_PWeaponSkill == nullptr);
 
-	return m_PWeaponSkill;
+	return m_PWeaponSkill.get();
 }
 
 /************************************************************************
@@ -342,7 +358,7 @@ void CAIGeneral::SetCurrentJobAbility(uint16 JobAbilityID)
 	if (m_ActionType != ACTION_JOBABILITY_START   &&
 		m_ActionType != ACTION_JOBABILITY_FINISH)
 	{
-		m_PJobAbility = ability::GetAbility(JobAbilityID);
+		m_PJobAbility = std::unique_ptr<CAbility>(new CAbility(*ability::GetAbility(JobAbilityID)));
 	}
 }
 
@@ -354,9 +370,9 @@ void CAIGeneral::SetCurrentJobAbility(uint16 JobAbilityID)
 
 CAbility* CAIGeneral::GetCurrentJobAbility()
 {
-	DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
+	DSP_DEBUG_BREAK_IF(m_PJobAbility == nullptr);
 
-	return m_PJobAbility;
+	return m_PJobAbility.get();
 }
 
 /************************************************************************
@@ -367,7 +383,7 @@ CAbility* CAIGeneral::GetCurrentJobAbility()
 
 CBattleEntity* CAIGeneral::GetBattleTarget()
 {
-	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == nullptr);
 
 	return m_PBattleTarget;
 }
@@ -392,7 +408,7 @@ CBattleEntity* CAIGeneral::GetBattleSubTarget()
 
 CMobSkill* CAIGeneral::GetCurrentMobSkill()
 {
-	return m_PMobSkill;
+	return m_PMobSkill.get();
 }
 
 /************************************************************************
@@ -403,7 +419,14 @@ CMobSkill* CAIGeneral::GetCurrentMobSkill()
 
 void CAIGeneral::SetCurrentMobSkill(CMobSkill* skill)
 {
-	m_PMobSkill = skill;
+    if (skill == nullptr)
+    {
+        m_PMobSkill = nullptr;
+    }
+    else
+    {
+        m_PMobSkill = std::unique_ptr<CMobSkill>(new CMobSkill(*skill));
+    }
 }
 
 /************************************************************************
@@ -434,7 +457,7 @@ void CAIGeneral::SetAutoAttackEnabled(bool enabled)
 }
 void CAIGeneral::SetMagicCastingEnabled(bool enabled)
 {
-    if(m_PMagicState != NULL)
+    if(m_PMagicState != nullptr)
     {
         m_PMagicState->m_enableCasting = enabled;
     }
@@ -446,11 +469,20 @@ void CAIGeneral::SetMobAbilityEnabled(bool enabled)
 
 bool CAIGeneral::MoveTo(position_t* pos)
 {
-    if(m_PPathFind != NULL && m_ActionType == ACTION_ROAMING){
+    if(m_PPathFind != nullptr && m_ActionType == ACTION_ROAMING){
         m_PPathFind->StepTo(pos);
         return true;
     }
     return false;
+}
+
+bool CAIGeneral::CanSeePoint(position_t pos)
+{
+    if(m_PPathFind != nullptr){
+      return m_PPathFind->CanSeePoint(pos);
+    }
+
+    return true;
 }
 
 void CAIGeneral::Wait(int32 waitTime)

@@ -9,6 +9,9 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+    if (target:getPet()) then
+        target:getPet():addStatusEffect(effect);
+    end
 end;
 
 -----------------------------------
@@ -23,4 +26,7 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+    if (target:getPet()) then
+        target:getPet():delStatusEffect(EFFECT_ALLIED_TAGS);
+    end
 end;

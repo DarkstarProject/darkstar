@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2594,1) and trade:getItemCount() == 1) then -- Trade Exorcism Treatise
 		player:tradeComplete();
-		SpawnMob(17101204,180):updateEnmity(player);
+		SpawnMob(17101204,180):updateClaim(player);
 	end
 	
 end;

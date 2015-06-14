@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -27,6 +27,9 @@
 #include "../common/cbasetypes.h"
 #include <map>
 
+class CBattleEntity;
+class CCharEntity;
+
 struct EnmityObject_t
 {
 	CBattleEntity* PEnmityOwner;	// Enmity Target
@@ -36,9 +39,6 @@ struct EnmityObject_t
 };
 
 typedef std::map<uint32,EnmityObject_t*> EnmityList_t;
-
-class CBattleEntity;
-class CCharEntity;
 
 class CEnmityContainer
 {

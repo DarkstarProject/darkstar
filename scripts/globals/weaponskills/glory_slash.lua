@@ -3,7 +3,7 @@
 -- Sword weapon skill
 -- Skill Level: NA
 -- Only avaliable during Campaign Battle while weilding Lex Talionis.
--- Delivers and area attacj that deals triple damage. Damage varies with TP. Additional effect Stun.
+-- Delivers and area attack that deals triple damage. Damage varies with TP. Additional effect Stun.
 -- Will stack with Sneak Attack.
 -- Aligned with the Flame Gorget & Light Gorget.
 -- Aligned with the Flame Belt & Light Belt.
@@ -18,7 +18,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function OnUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID)
 
 	local params = {};
 	params.numHits = 1;
@@ -28,8 +28,17 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
-	local damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
+	if damage > 0 then
+		local tp = player:getTP();
+		local duration = (tp/50);
+		if(target:hasStatusEffect(EFFECT_STUN) == false) then
+			target:addStatusEffect(EFFECT_STUN, 1, 0, duration);
+		end
+	end
+
+	local damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+	damage = damage * WEAPON_SKILL_POWER
 	return tpHits, extraHits, damage;
 
 end

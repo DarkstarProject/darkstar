@@ -7,19 +7,24 @@
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
+function onMobDeath(mob, killer)
+end;
 -----------------------------------
 -- onMonsterMagicPrepare
 -----------------------------------
 
 -- Return the selected spell ID.
 function onMonsterMagicPrepare(mob, target)
-    -- Suzaku uses     Burn, Fire IV, Firaga III, Flare 
+    -- Suzaku uses     Burn, Fire IV, Firaga III, Flare
     -- Let's give -ga3 a higher distribution than the others.
     rnd = math.random();
-    
+
     if (rnd < 0.5) then
         return 176; -- firaga 3
     elseif (rnd < 0.7) then
@@ -29,5 +34,5 @@ function onMonsterMagicPrepare(mob, target)
     else
         return 235; -- burn
     end
-    
+
 end;

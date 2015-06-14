@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
 #ifndef _CALLIANCE_H
 #define _CALLIANCE_H
 
+#include "map.h"
 #include "../common/cbasetypes.h"
 
 #include <vector>
@@ -39,15 +40,20 @@ class CAlliance
 {
 public:
 
-	CAlliance(CBattleEntity* PEntity);
+    CAlliance(CBattleEntity* PEntity);
+	CAlliance(uint32 id);
 
 	uint32  m_AllianceID;
 	CParty* getMainParty();
 	void setMainParty(CParty * aLeader);
-	void addParty(CParty * party);
+    void addParty(CParty * party);
+	void addParty(uint32 partyid);
+    void pushParty(CParty* PParty, uint8 number);
 	void removeParty(CParty * party);
-	void dissolveAlliance(void);
+    void delParty(CParty* party);
+    void dissolveAlliance(bool playerInitiated = true);
 	uint32 partyCount(void);
+    void assignAllianceLeader(const char* name);
 
 	std::vector<CParty*> partyList; //list of parties in alliance
 

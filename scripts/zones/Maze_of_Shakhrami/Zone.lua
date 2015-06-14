@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,13 @@ require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17588784,17588785,17588786,17588787};
+    
+    SetGroundsTome(tomes);
+
+    UpdateTreasureSpawnPoint(17588769);
+    
 end;
 
 -----------------------------------		
@@ -27,6 +35,18 @@ function onZoneIn(player,prevZone)
 	end	
 	return cs;	
 end;		
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
 
 -----------------------------------		
 -- onRegionEnter		

@@ -14,7 +14,7 @@ end;
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -25,14 +25,13 @@ function onMobEngaged(mob,target)
     local mobid = mob:getID();
 
     for member = mobid, mobid+7 do
-        if (GetMobAction(member) == 16) then 
+        if (GetMobAction(member) == 16) then
             GetMobByID(member):updateEnmity(target);
         end
     end
-   
-    local hp = math.random(0,60)
-    mob:setExtraVar(0, hp);
-    print(hp);
+
+    local hp = math.random(1,60);
+    mob:setLocalVar("Mijin", hp);
 end;
 
 -----------------------------------
@@ -41,24 +40,17 @@ end;
 function onMobFight(mob,target)
 
 	local battletime = mob:getBattleTime();
-	local mstime, mghp = mob:getExtraVar(2);
-	
+	local mstime = mob:getLocalVar("Mighty");
+    local mghp = mob:getLocalVar("Mijin");
+
 	if (battletime > mstime + 150) then
 		mob:useMobAbility(432);
-		mob:setExtraVar(battletime, mghp);
+		mob:setLocalVar("Mighty", battletime);
 	elseif (mob:getHPP() < mghp) then
 		mob:useMobAbility(475);
-		mob:setExtraVar(mstime, 0);
+		mob:setLocalVar("Mijin", 0);
 	end
-	
-    local mobid = mob:getID()
 
-    -- Party hate.  Keep everybody in the fight.
-    for member = mobid, mobid+7 do
-        if (GetMobAction(member) == 16) then
-            GetMobByID(member):updateEnmity(target);
-        end
-    end
 end;
 
 -----------------------------------

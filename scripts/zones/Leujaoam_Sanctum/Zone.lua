@@ -1,12 +1,11 @@
 -----------------------------------
--- 
+--
 -- Zone: Leujaoam_Sanctum
--- 
+--
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Leujaoam_Sanctum/TextIDs"] = nil;
-require("scripts/zones/Leujaoam_Sanctum/TextIDs");
+require("scripts/zones/Leujaoam_Sanctum/IDs");
 
 -----------------------------------
 --  onInitialize
@@ -20,13 +19,20 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-cs = -1;
+    local cs = -1;
 
-return cs;
+    local pos = player:getPos();
+    if (pos.x == 0 and pos.y == 0 and pos.z == 0) then
+        player:setPos(player:getInstance():getEntryPos());
+    end
+
+    player:addTempItem(5343);
+
+    return cs;
 end;
 
 -----------------------------------
--- onRegionEnter          
+-- onRegionEnter
 -----------------------------------
 
 function onRegionEnter(player,region)
@@ -37,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -46,9 +52,17 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x66) then
+        player:setPos(0,0,0,0,79);
+    end
 end;
 
+-----------------------------------
+-- onInstanceFailure
+-----------------------------------
 
-
+function onInstanceLoadFailed()
+    return 79;
+end;

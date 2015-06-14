@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -56,7 +56,7 @@ namespace battlefieldutils{
 		{
 				CBattlefield* PBattlefield = new CBattlefield(hand,Sql_GetUIntData(SqlHandle,1), type);
 				int8* tmpName;
-				Sql_GetData(SqlHandle,0,&tmpName,NULL);
+				Sql_GetData(SqlHandle,0,&tmpName,nullptr);
 				PBattlefield->setBcnmName(tmpName);
 				PBattlefield->setTimeLimit(Sql_GetUIntData(SqlHandle,4));
 				PBattlefield->setLevelCap(Sql_GetUIntData(SqlHandle,5));
@@ -66,7 +66,7 @@ namespace battlefieldutils{
 				PBattlefield->m_RuleMask = (uint16)Sql_GetUIntData(SqlHandle,7);
 				return PBattlefield;
 		}
-		return NULL;
+		return nullptr;
 	}
 
 	/***************************************************************
@@ -76,7 +76,7 @@ namespace battlefieldutils{
 		battlefield.
 	****************************************************************/
 	bool spawnMonstersForBcnm(CBattlefield* battlefield){
-		DSP_DEBUG_BREAK_IF(battlefield==NULL);
+		DSP_DEBUG_BREAK_IF(battlefield==nullptr);
 
 		//get ids from DB
 		const int8* fmtQuery = "SELECT monsterId, conditions \
@@ -96,7 +96,7 @@ namespace battlefieldutils{
 				uint32 mobid = Sql_GetUIntData(SqlHandle,0);
 				uint8 condition = Sql_GetUIntData(SqlHandle,1);
 				CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-				if (PMob != NULL)
+				if (PMob != nullptr)
 				{
 
 					PMob->m_battlefieldID = battlefield->getBattlefieldNumber();
@@ -129,7 +129,7 @@ namespace battlefieldutils{
 							//ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,battlefield->getID(),battlefield->getBattlefieldNumber());
 							battlefield->addEnemy(PMob, condition);
 						} else {
-							ShowDebug(CL_CYAN"SpawnMobForBcnm: <%s> (%u) is alredy spawned\n" CL_RESET, PMob->GetName(), PMob->id);
+							ShowDebug(CL_CYAN"SpawnMobForBcnm: <%s> (%u) is already spawned\n" CL_RESET, PMob->GetName(), PMob->id);
 						}
 					} else {
 						battlefield->addEnemy(PMob, condition);
@@ -149,7 +149,7 @@ namespace battlefieldutils{
 		Spawns treasure chest/armory crate, what ever on winning bcnm
 	****************************************************************/
 	bool spawnTreasureForBcnm(CBattlefield* battlefield){
-		DSP_DEBUG_BREAK_IF(battlefield==NULL);
+		DSP_DEBUG_BREAK_IF(battlefield==nullptr);
 
 		//get ids from DB
 		const int8* fmtQuery = "SELECT npcId \
@@ -169,11 +169,11 @@ namespace battlefieldutils{
 			{
 				uint32 npcid = Sql_GetUIntData(SqlHandle,0);
 				CBaseEntity* PNpc = (CBaseEntity*)zoneutils::GetEntity(npcid, TYPE_NPC);
-					if (PNpc != NULL)
+					if (PNpc != nullptr)
 					{
 						PNpc->status = STATUS_NORMAL;
 						PNpc->animation = 0;
-						PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_SPAWN, UPDATE_ALL));
+						PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_SPAWN, UPDATE_ALL_MOB));
 						battlefield->addNpc(PNpc);
 						ShowDebug(CL_CYAN"Spawned %s id %i inst %i \n",PNpc->status,PNpc->id,battlefield->getBattlefieldNumber());
 				    }else
@@ -279,7 +279,7 @@ namespace battlefieldutils{
 	Returns the losing exit position for this BCNM.
 	****************************************************************/
 	void getLosePosition(CBattlefield* battlefield, int (&pPosition)[4]){
-		if(battlefield==NULL)
+		if(battlefield==nullptr)
 			return;
 
 		switch(battlefield->getZoneId()){
@@ -289,7 +289,7 @@ namespace battlefieldutils{
 		}
 	}
 
-	void getStartPosition(uint8 zoneid, int (&pPosition)[4]){
+	void getStartPosition(uint16 zoneid, int (&pPosition)[4]){
 
 		switch(zoneid){
 		case 139: //Horlais Peak
@@ -314,7 +314,7 @@ namespace battlefieldutils{
 	Returns the winning exit position for this BCNM.
 	****************************************************************/
 	void getWinPosition(CBattlefield* battlefield, int (&pPosition)[4]){
-		if(battlefield==NULL)
+		if(battlefield==nullptr)
 			return;
 
 		switch(battlefield->getZoneId()){
@@ -368,7 +368,7 @@ namespace battlefieldutils{
 	uint8 maxloot = 0;
 		LootList_t* LootList = itemutils::GetLootList(battlefield->getLootId());
 
-		if (LootList == NULL){
+		if (LootList == nullptr){
 			ShowError("BCNM Chest opened with no valid loot list!");
 			//no loot available for bcnm. End bcnm.
 			battlefield->winBcnm();
@@ -386,7 +386,7 @@ namespace battlefieldutils{
 	   if(maxloot!=0){
 		 for (uint8 group = 0; group <= maxloot; ++group){
 			uint16 maxRolls = getRollsPerGroup(battlefield,group);
-			uint16 groupRoll = (uint16)(WELL512::irand()%maxRolls);
+            uint16 groupRoll = WELL512::GetRandomNumber(maxRolls);
 			uint16 itemRolls = 0;
 
 			for (uint8 item = 0; item < LootList->size(); ++item)
@@ -414,7 +414,7 @@ namespace battlefieldutils{
 	}
 
 	bool spawnSecondPartDynamis(CBattlefield* battlefield){
-		DSP_DEBUG_BREAK_IF(battlefield==NULL);
+		DSP_DEBUG_BREAK_IF(battlefield==nullptr);
 
 		//get ids from DB
 		const int8* fmtQuery = "SELECT monsterId \
@@ -433,7 +433,7 @@ namespace battlefieldutils{
 			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS){
 				uint32 mobid = Sql_GetUIntData(SqlHandle,0);
 				CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-				if (PMob != NULL)
+				if (PMob != nullptr)
 				{
 				    if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
 				        PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN)
@@ -446,7 +446,7 @@ namespace battlefieldutils{
 						ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,battlefield->getID(),battlefield->getBattlefieldNumber());
 						battlefield->addEnemy(PMob, CONDITION_SPAWNED_AT_START & CONDITION_WIN_REQUIREMENT);
 				    } else {
-				        ShowDebug(CL_CYAN"spawnSecondPartDynamis: <%s> (%u) is alredy spawned\n" CL_RESET, PMob->GetName(), PMob->id);
+				        ShowDebug(CL_CYAN"spawnSecondPartDynamis: <%s> (%u) is already spawned\n" CL_RESET, PMob->GetName(), PMob->id);
 				    }
 				} else {
 				    ShowDebug("spawnSecondPartDynamis: mob %u not found\n", mobid);

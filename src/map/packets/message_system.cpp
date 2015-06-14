@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ CMessageSystemPacket::CMessageSystemPacket(uint32 param0, uint32 param1, uint16 
 	this->type = 0x53;
 	this->size = 0x08;
 
-	WBUFL(data,(0x04)-4) = param0;
-	WBUFL(data,(0x08)-4) = param1;
-	WBUFW(data,(0x0C)-4) = messageID;
+	WBUFL(data,(0x04)) = param0;
+	WBUFL(data,(0x08)) = param1;
+	WBUFW(data,(0x0C)) = messageID;
 }

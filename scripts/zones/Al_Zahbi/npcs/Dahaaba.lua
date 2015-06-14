@@ -1,14 +1,14 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Dahaaba
---  Type: Chocobo Renter
--- @zone: 48
---  @pos -65.309 -1 -39.585
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Al Zahbi
+--  NPC: Dahaaba
+-- Type: Chocobo Renter
+-- @pos -65.309 -1 -39.585
 -----------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
+
+require("scripts/globals/chocobo");
+require("scripts/globals/keyitems");
+require("scripts/globals/settings");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
@@ -22,16 +22,18 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	price = 100;
-	gil = player:getGil();
+    local level = player:getMainLvl();
+    local gil = player:getGil();
 
-	if(player:hasKeyItem(CHOCOBO_LICENSE) and player:getMainLvl() >= 20) then
-		player:startEvent(0x010e,price,gil);
-	else
-		player:startEvent(0x010ef,price,gil);
-	end
-	
+    if (player:hasKeyItem(CHOCOBO_LICENSE) and level >= 20) then
+        local price = getChocoboPrice(player);
+        player:setLocalVar("chocoboPriceOffer",price);
+
+        player:startEvent(0x010E,price,gil);
+    else
+        player:startEvent(0x010F);
+    end
+
 end;
 
 -----------------------------------
@@ -39,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,20 +50,20 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-	
-	price = 100;
-	level = player:getMainLvl();
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
-	if(csid == 0x010e and option == 0) then
-		if(level >= 20) then
-			player:addStatusEffectEx(EFFECT_CHOCOBO,EFFECT_CHOCOBO,1,0,1800,true);
-		else
-			player:addStatusEffectEx(EFFECT_CHOCOBO,EFFECT_CHOCOBO,1,0,900,true);
-		end
-		player:delGil(price);
-		player:setPos(610,-24,356,0x80,0x33);
-	end
-	
+    local price = player:getLocalVar("chocoboPriceOffer");
+
+    if (csid == 0x010E and option == 0) then
+        if (player:delGil(price)) then
+            updateChocoboPrice(player, price);
+
+            local duration = 1800 + (player:getMod(MOD_CHOCOBO_RIDING_TIME) * 60)
+
+            player:addStatusEffectEx(EFFECT_CHOCOBO,EFFECT_CHOCOBO,1,0,duration,true);
+
+            player:setPos(610,-24,356,0x80,0x33);
+        end
+    end
 end;

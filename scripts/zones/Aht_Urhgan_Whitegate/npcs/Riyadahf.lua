@@ -4,17 +4,16 @@
 -- Map Seller NPC
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+require("scripts/globals/magic_maps");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
+
 end;
 
 -----------------------------------
@@ -22,20 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    local mapVar = 0;
-	if (player:hasKeyItem(MAP_OF_AL_ZAHBI)) then
-		mapVar = mapVar + 4;
-	end
-	if (player:hasKeyItem(MAP_OF_NASHMAU)) then
-        mapVar = mapVar + 8;
-	end
-	if (player:hasKeyItem(MAP_OF_WAJAOM_WOODLANDS)) then
-        mapVar = mapVar + 16;
-	end
-	if (player:hasKeyItem(MAP_OF_BHAFLAU_THICKETS)) then
-        mapVar = mapVar + 32;
-	end
-    player:startEvent(0x0233, mapVar);
+	CheckMaps(player, npc, 0x0233);
 end;
 
 -----------------------------------
@@ -43,8 +29,9 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	if (csid == 0x0233) then
+		CheckMapsUpdate(player, option, NOT_HAVE_ENOUGH_GIL, KEYITEM_OBTAINED);
+	end
 end;
 
 -----------------------------------
@@ -52,28 +39,5 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    if (csid == 0x0233 and option ~= 1073741824) then
-        local gil = 0;
-        if option == MAP_OF_AL_ZAHBI then
-            gil = 600;
-        elseif option == MAP_OF_NASHMAU then
-            gil = 3000;
-        elseif option == MAP_OF_WAJAOM_WOODLANDS then
-            gil = 3000;
-        elseif option == MAP_OF_BHAFLAU_THICKETS then
-            gil = 3000;
-        end
-        if (gil > 0 and player:delGil(gil)) then
-            player:addKeyItem(option);
-            player:messageSpecial(KEYITEM_OBTAINED,option); 
-        else
-            player:messageSpecial(NOT_HAVE_ENOUGH_GIL);
-        end
-    end
+
 end;
-
-
-
-

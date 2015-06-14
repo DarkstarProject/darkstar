@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -26,8 +26,6 @@
 
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
-
-#define MAX_MOBSKILL_ID	4096
 
 // TODO: implement this
 enum SKILLFLAG
@@ -82,7 +80,6 @@ public:
 	void		setFlag(uint8 flag);
     void        setAnimationTime(uint16 AnimationTime);
     void        setActivationTime(uint16 ActivationTime);
-    void        resetMsg();
 	void		setMsg(uint16 msg);
 	void		setValidTargets(uint16 targ);
 	void		setTP(int16 tp);

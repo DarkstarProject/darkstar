@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -36,10 +36,11 @@ enum CONTAINER_ID
 	LOC_MOGSATCHEL		= 5,
 	LOC_MOGSACK			= 6,
 	LOC_MOGCASE			= 7,
-    LOC_WARDROBE        = 8
+    LOC_WARDROBE        = 8,
+    LOC_MOGSAFE2        = 9
 };
 
-#define MAX_CONTAINER_ID	  9
+#define MAX_CONTAINER_ID	 10
 #define MAX_CONTAINER_SIZE	120
 #define ERROR_SLOTID		255
 

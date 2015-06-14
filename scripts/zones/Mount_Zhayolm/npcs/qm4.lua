@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2585,1) and trade:getItemCount() == 1) then -- Trade Vinegar Pie
 		player:tradeComplete();
-		SpawnMob(17027474,180):updateEnmity(player);
+		SpawnMob(17027474,180):updateClaim(player);
 	end
 	
 end;

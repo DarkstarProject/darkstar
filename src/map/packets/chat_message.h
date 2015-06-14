@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -40,6 +40,7 @@ enum CHAT_MESSAGE_TYPE
     MESSAGE_SYSTEM_2    = 0x07,
     MESSAGE_EMOTION     = 0x08,
     MESSAGE_YELL        = 0x1A,
+    MESSAGE_LINKSHELL2  = 0x1B,
 };
 
 /************************************************************************

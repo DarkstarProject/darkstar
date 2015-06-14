@@ -4,13 +4,13 @@
 --  Only used by Fomors that wield a two-handed weapon (principally WAR, BLM, DRK, SAM, DRG, and SMN fomors).
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     local job = mob:getMainJob();
     if(job == JOB_WAR or job == JOB_BLM or job == JOB_DRK or job == JOB_SAM or job == JOB_DRG or job == JOB_SMN) then
         return 0;
@@ -18,7 +18,7 @@ function OnMobSkillCheck(target,mob,skill)
     return 1;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
     -- Needs Knockback added
     local numhits = 1;
     local accmod = 1;

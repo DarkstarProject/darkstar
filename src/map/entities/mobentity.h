@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -64,16 +64,17 @@ enum SPECIALFLAG
 enum ROAMFLAG : uint16
 {
   ROAMFLAG_NONE     = 0x00,
-  ROAMFLAG_SMALL    = 0x01,  // move around less than 5
-  ROAMFLAG_MEDIUM   = 0x02,  // move around 10-20
-  ROAMFLAG_LARGE    = 0x04,  // move around 15-25
+  ROAMFLAG_NONE0    = 0x01,  // move around less than 5
+  ROAMFLAG_NONE1    = 0x02,  // move around 10-20
+  ROAMFLAG_NONE2    = 0x04,  // move around 15-25
   ROAMFLAG_WANDER   = 0x08,  // roam to multiple points in a row
   ROAMFLAG_SCOUT    = 0x10,  // move around more often
   ROAMFLAG_GUARD    = 0x20,  // move less often
   ROAMFLAG_WORM     = 0x40,  // pop up and down when moving
   ROAMFLAG_AMBUSH   = 0x80,  // stays hidden until someone comes close (antlion)
   ROAMFLAG_EVENT    = 0x100, // calls lua method for roaming logic
-  ROAMFLAG_IGNORE   = 0x200  // ignore all hate, except linking hate
+  ROAMFLAG_IGNORE   = 0x200, // ignore all hate, except linking hate
+  ROAMFLAG_STEALTH  = 0x400  // stays name hidden and untargetable until someone comes close (chigoe)
 };
 
 enum MOBTYPE
@@ -107,6 +108,7 @@ enum BEHAVIOUR : uint16
 	BEHAVIOUR_NO_DESPAWN		= 0x001, // mob does not despawn on death
 	BEHAVIOUR_STANDBACK			= 0x002, // mob will standback forever
 	BEHAVIOUR_RAISABLE			= 0x004, // mob can be raised via Raise spells
+    BEHAVIOUR_NOHELP            = 0x008, // mob can not be targeted by helpful magic from players (cure, protect, etc)
 	BEHAVIOUR_AGGRO_AMBUSH		= 0x200, // mob aggroes by ambush
 	BEHAVIOUR_NO_TURN           = 0x400  // mob does not turn to face target
 };
@@ -158,16 +160,14 @@ public:
 
   // aggro ranges
   bool      m_disableScent;             // stop detecting by scent
-  float     m_maxRoamDistance;          // maximum distance mob can be from spawn
+  float     m_maxRoamDistance;          // maximum distance mob can be from spawn before despawning
+  float     m_roamDistance;          // distance allowed to roam from spawn
 
   uint8     m_Type;                     // mob type
   uint16	m_Aggro;					// mob aggro type
   uint8     m_Link;                     // link with mobs of it's family
   uint16    m_Behaviour;                // mob behaviour
   SPAWNTYPE m_SpawnType;                // condition for mob to spawn
-  uint32    m_extraVar;                 // extra variable to store combat related variables from scripts
-
-  uint8     m_CallForHelp;              // call for help flag on mob
 
   int8      m_battlefieldID;            // battlefield belonging to
   uint16    m_bcnmID;                   // belongs to which battlefield
@@ -186,7 +186,8 @@ public:
   CMobSpellList*        m_SpellListContainer;        // The spells list container for this mob
   std::map<uint16, uint16>    m_UsedSkillIds;        // mob skill ids used (key) along with mob level (value)
 
-  uint32    m_unknown;                               // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
+  uint32    m_flags  ;                               // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
+  void      setMobFlags(uint32 MobFlags);            // Change the current value in m_flags
   uint8     m_name_prefix;                           // The ding bats VS Ding bats
 
   CEnmityContainer* PEnmityContainer;                // система ненависти монстров
@@ -197,8 +198,6 @@ public:
 
   bool      IsFarFromHome();                         // check if mob is too far from spawn
   bool      CanBeNeutral();                          // check if mob can have killing pause
-
-  bool      CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false); // can I detect the target?
 
   void      SetMainSkin(uint32 mobid);               // Set base skin for the mob (if mob or player dieing)
   void      SetNewSkin(uint8 skinid);                // Set new skin for the mob
@@ -233,6 +232,14 @@ public:
 
   void      HideModel(bool hide);                    // hide / show model
   bool      IsModelHidden();
+  void      CallForHelp(bool call);
+  bool      CalledForHelp();
+  void      HideHP(bool hide);
+  bool      IsHPHidden();
+  void      Untargetable(bool untargetable);
+  bool      IsUntargetable();
+
+  void      UpdateEntity() override;
 
   CMobEntity();
   ~CMobEntity();
@@ -240,8 +247,6 @@ public:
 private:
 
   bool      m_RageMode;                              // Mode rage
-  bool      m_NewSkin;                               // True if skin has changed
-  uint32    m_SkinID;                                // skinid
   uint32    m_DespawnTimer;                          // Despawn Timer to despawn mob after set duration
   int16     m_mobModStat[MAX_MOBMODIFIER];           // mob specific mods
   int16     m_mobModStatSave[MAX_MOBMODIFIER];       // saved state

@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -28,6 +28,8 @@
 #include "../entities/charentity.h"
 #include "../conquest_system.h"
 
+#include "../utils/charutils.h"
+
 #include "conquest_map.h"
 
 
@@ -36,94 +38,97 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
 	this->type = 0x5E; 
 	this->size = 0x5A;
 
-	WBUFB(data,(0x04)-4) = conquest::GetBalance();
+    const int8* Query = "SELECT region_id, region_control, region_control_prev, \
+                         sandoria_influence, bastok_influence, windurst_influence, \
+                         beastmen_influence FROM conquest_system;";
 
-    WBUFW(data,(0x1A)-4) = 0x1515;
-	WBUFB(data,(0x1C)-4) = conquest::GetInfluenceGraphics(REGION_RONFAURE);
-	WBUFB(data,(0x1D)-4) = conquest::GetRegionOwner(REGION_RONFAURE) + 1;
-	WBUFW(data,(0x1E)-4) = 0x1515;
-	WBUFB(data,(0x20)-4) = conquest::GetInfluenceGraphics(REGION_ZULKHEIM);
-	WBUFB(data,(0x21)-4) = conquest::GetRegionOwner(REGION_ZULKHEIM) + 1;
-	WBUFW(data,(0x22)-4) = 0x1515;
-	WBUFB(data,(0x24)-4) = conquest::GetInfluenceGraphics(REGION_NORVALLEN);
-	WBUFB(data,(0x25)-4) = conquest::GetRegionOwner(REGION_NORVALLEN) + 1;
-	WBUFW(data,(0x26)-4) = 0x1515;
-	WBUFB(data,(0x28)-4) = conquest::GetInfluenceGraphics(REGION_GUSTABERG);
-	WBUFB(data,(0x29)-4) = conquest::GetRegionOwner(REGION_GUSTABERG) + 1;
-	WBUFW(data,(0x2A)-4) = 0x1515;
-	WBUFB(data,(0x2C)-4) = conquest::GetInfluenceGraphics(REGION_DERFLAND);
-	WBUFB(data,(0x2D)-4) = conquest::GetRegionOwner(REGION_DERFLAND) + 1;
-	WBUFW(data,(0x2E)-4) = 0x1515;
-	WBUFB(data,(0x30)-4) = conquest::GetInfluenceGraphics(REGION_SARUTABARUTA);
-	WBUFB(data,(0x31)-4) = conquest::GetRegionOwner(REGION_SARUTABARUTA) + 1;
-	WBUFW(data,(0x32)-4) = 0x1515;
-	WBUFB(data,(0x34)-4) = conquest::GetInfluenceGraphics(REGION_KOLSHUSHU);
-	WBUFB(data,(0x35)-4) = conquest::GetRegionOwner(REGION_KOLSHUSHU) + 1;
-	WBUFW(data,(0x36)-4) = 0x1515;
-	WBUFB(data,(0x38)-4) = conquest::GetInfluenceGraphics(REGION_ARAGONEU);
-	WBUFB(data,(0x39)-4) = conquest::GetRegionOwner(REGION_ARAGONEU) + 1;
-	WBUFW(data,(0x3A)-4) = 0x1515;
-	WBUFB(data,(0x3C)-4) = conquest::GetInfluenceGraphics(REGION_FAUREGANDI);
-	WBUFB(data,(0x3D)-4) = conquest::GetRegionOwner(REGION_FAUREGANDI) + 1;
-	WBUFW(data,(0x3E)-4) = 0x1515;
-	WBUFB(data,(0x40)-4) = conquest::GetInfluenceGraphics(REGION_VALDEAUNIA);
-	WBUFB(data,(0x41)-4) = conquest::GetRegionOwner(REGION_VALDEAUNIA) + 1;
-	WBUFW(data,(0x42)-4) = 0x1515;
-	WBUFB(data,(0x44)-4) = conquest::GetInfluenceGraphics(REGION_QUFIMISLAND);
-	WBUFB(data,(0x45)-4) = conquest::GetRegionOwner(REGION_QUFIMISLAND) + 1;
-	WBUFW(data,(0x46)-4) = 0x1515;
-	WBUFB(data,(0x48)-4) = conquest::GetInfluenceGraphics(REGION_LITELOR);
-	WBUFB(data,(0x49)-4) = conquest::GetRegionOwner(REGION_LITELOR) + 1;
-	WBUFW(data,(0x4A)-4) = 0x1515;
-	WBUFB(data,(0x4C)-4) = conquest::GetInfluenceGraphics(REGION_KUZOTZ);
-	WBUFB(data,(0x4D)-4) = conquest::GetRegionOwner(REGION_KUZOTZ) + 1;
-	WBUFW(data,(0x4E)-4) = 0x1515;
-	WBUFB(data,(0x50)-4) = conquest::GetInfluenceGraphics(REGION_VOLLBOW);
-	WBUFB(data,(0x51)-4) = conquest::GetRegionOwner(REGION_VOLLBOW) + 1;
-	WBUFW(data,(0x52)-4) = 0x1515;
-	WBUFB(data,(0x54)-4) = conquest::GetInfluenceGraphics(REGION_ELSHIMOLOWLANDS);
-	WBUFB(data,(0x55)-4) = conquest::GetRegionOwner(REGION_ELSHIMOLOWLANDS) + 1;
-	WBUFW(data,(0x56)-4) = 0x1515;
-	WBUFB(data,(0x58)-4) = conquest::GetInfluenceGraphics(REGION_ELSHIMOUPLANDS);
-	WBUFB(data,(0x59)-4) = conquest::GetRegionOwner(REGION_ELSHIMOUPLANDS) + 1;
-	WBUFW(data,(0x5A)-4) = 0x1515;
-	WBUFB(data,(0x5C)-4) = conquest::GetInfluenceGraphics(REGION_TULIA);
-	WBUFB(data,(0x5D)-4) = conquest::GetRegionOwner(REGION_TULIA) + 1;
-	WBUFW(data,(0x5E)-4) = 0x1515;
-	WBUFB(data,(0x60)-4) = conquest::GetInfluenceGraphics(REGION_MOVALPOLOS);
-	WBUFB(data,(0x61)-4) = conquest::GetRegionOwner(REGION_MOVALPOLOS) + 1;
-	WBUFW(data,(0x62)-4) = 0x1515;
-	WBUFB(data,(0x64)-4) = conquest::GetInfluenceGraphics(REGION_TAVNAZIA);
-	WBUFB(data,(0x65)-4) = conquest::GetRegionOwner(REGION_TAVNAZIA) + 1;
+    int32 ret = Sql_Query(SqlHandle, Query);
 
-	WBUFB(data,(0x8C)-4) = conquest::GetNexTally();
-    WBUFL(data,(0x90)-4) = PChar->m_currency.conquestpoints[PChar->profile.nation];
-	WBUFB(data,(0x9C)-4) = 0x01;
+    uint8 sandoria_regions = 0;
+    uint8 bastok_regions = 0;
+    uint8 windurst_regions = 0;
+    uint8 sandoria_prev = 0;
+    uint8 bastok_prev = 0;
+    uint8 windurst_prev = 0;
+
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            int regionid = Sql_GetIntData(SqlHandle, 0);
+            int region_control = Sql_GetIntData(SqlHandle, 1);
+            int region_control_prev = Sql_GetIntData(SqlHandle, 2);
+
+            if (region_control == 0)
+                sandoria_regions++;
+            else if (region_control == 1)
+                bastok_regions++;
+            else if (region_control == 2)
+                windurst_regions++;
+
+            if (region_control_prev == 0)
+                sandoria_prev++;
+            else if (region_control_prev == 1)
+                bastok_prev++;
+            else if (region_control_prev == 2)
+                windurst_prev++;
+
+            int32 san_inf = Sql_GetIntData(SqlHandle, 3);
+            int32 bas_inf = Sql_GetIntData(SqlHandle, 4);
+            int32 win_inf = Sql_GetIntData(SqlHandle, 5);
+            int32 bst_inf = Sql_GetIntData(SqlHandle, 6);
+            WBUFB(data,0x1A+(regionid*4)) = conquest::GetInfluenceRanking(san_inf, bas_inf, win_inf, bst_inf);
+            WBUFB(data,0x1B+(regionid*4)) = conquest::GetInfluenceRanking(san_inf, bas_inf, win_inf);
+            WBUFB(data,0x1C+(regionid*4)) = conquest::GetInfluenceGraphics(san_inf, bas_inf, win_inf, bst_inf);
+            WBUFB(data,0x1D+(regionid*4)) = region_control+1;
+
+            int64 total = san_inf + bas_inf + win_inf;
+            int64 totalBeastmen = total + bst_inf;
+
+            if (PChar->loc.zone->GetRegionID() == regionid)
+            {
+                WBUFB(data, (0x86)) = (san_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
+                WBUFB(data, (0x87)) = (bas_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
+                WBUFB(data, (0x88)) = (win_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
+                WBUFB(data, (0x89)) = (san_inf*100) / (total == 0 ? 1 : total);
+                WBUFB(data, (0x8A)) = (bas_inf*100) / (total == 0 ? 1 : total);
+                WBUFB(data, (0x8B)) = (win_inf*100) / (total == 0 ? 1 : total);
+                WBUFB(data, (0x94)) = (bst_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
+            }
+        }
+    }
+
+	WBUFB(data,(0x04)) = conquest::GetBalance(sandoria_regions, bastok_regions, windurst_regions, sandoria_prev, bastok_prev, windurst_prev);
+    WBUFB(data,(0x05)) = conquest::GetAlliance(sandoria_regions, bastok_regions, windurst_regions, sandoria_prev, bastok_prev, windurst_prev);
+
+	WBUFB(data,(0x8C)) = conquest::GetNexTally();
+    WBUFL(data,(0x90)) = charutils::GetPoints(PChar, charutils::GetConquestPointsName(PChar).c_str());
+	WBUFB(data,(0x9C)) = 0x01;
 
 	//uint8 packet[] = 
     //{
 	//    0x80, 0x78, 0x52, 0x03, 0x1a, 0x46, 0x04, 0x00, 0x42, 0x46, 0x04, 0x00, 0x65, 0x3d, 0x04, 0x00
     //};
-	//memcpy(data+(0xA0)-4, &packet, 16);
+	//memcpy(data+(0xA0), &packet, 16);
 
-	WBUFB(data,(0xA0)-4) = 16; // Situation: mamool ja niveau -> (1) 16 (2) 32 (3) 48 (4) 64 (5) 80 (6) 96 (7) 112 (8) 128
-	WBUFB(data,(0xA1)-4) = 17; // Situation: mercenaire trolls niveau -> 1~12 la suite avec un autre 
-	WBUFB(data,(0xA2)-4) = 0; // Situation: mamool ja status du siege -> (0) entrainement > (1) en marche > (2) attaque > (3) retraite | (4) defense (5) preparation
-	WBUFB(data,(0xA3)-4) = 4; // Situation: undead status du siege ? (3) defense (4) entrainement (5) defense
+	WBUFB(data,(0xA0)) = 16; // Situation: mamool ja niveau -> (1) 16 (2) 32 (3) 48 (4) 64 (5) 80 (6) 96 (7) 112 (8) 128
+	WBUFB(data,(0xA1)) = 17; // Situation: mercenaire trolls niveau -> 1~12 la suite avec un autre 
+	WBUFB(data,(0xA2)) = 0; // Situation: mamool ja status du siege -> (0) entrainement > (1) en marche > (2) attaque > (3) retraite | (4) defense (5) preparation
+	WBUFB(data,(0xA3)) = 4; // Situation: undead status du siege ? (3) defense (4) entrainement (5) defense
 
-	WBUFB(data,(0xA4)-4) = 0; // mamool ja: (13) preparation (26) attaque (32) entrainement
-	WBUFB(data,(0xA5)-4) = 0; // mamool ja: forces ennemies (1=32)
-	WBUFB(data,(0xA6)-4) = 0; // mamool ja: miroir archaique (1=2)
-	WBUFB(data,(0xA7)-4) = 0;
+	WBUFB(data,(0xA4)) = 0; // mamool ja: (13) preparation (26) attaque (32) entrainement
+	WBUFB(data,(0xA5)) = 0; // mamool ja: forces ennemies (1=32)
+	WBUFB(data,(0xA6)) = 0; // mamool ja: miroir archaique (1=2)
+	WBUFB(data,(0xA7)) = 0;
 
-	WBUFB(data,(0xA8)-4) = 0; // trolls: forces ennemies (66=8)
-	WBUFB(data,(0xA9)-4) = 0; // trolls: (70) attaque
-	WBUFB(data,(0xAA)-4) = 0; // trolls: miroir archaique (4=8)
-	WBUFB(data,(0xAB)-4) = 0;
-	WBUFB(data,(0xAC)-4) = 0; // undead: forces ennemies (101=12)
-	WBUFB(data,(0xAD)-4) = 0; // undead: (61) preparation
-	WBUFB(data,(0xAE)-4) = 0; // undead: miroir archaique (4=8)
-	WBUFB(data,(0xAF)-4) = 0;
+	WBUFB(data,(0xA8)) = 0; // trolls: forces ennemies (66=8)
+	WBUFB(data,(0xA9)) = 0; // trolls: (70) attaque
+	WBUFB(data,(0xAA)) = 0; // trolls: miroir archaique (4=8)
+	WBUFB(data,(0xAB)) = 0;
+	WBUFB(data,(0xAC)) = 0; // undead: forces ennemies (101=12)
+	WBUFB(data,(0xAD)) = 0; // undead: (61) preparation
+	WBUFB(data,(0xAE)) = 0; // undead: miroir archaique (4=8)
+	WBUFB(data,(0xAF)) = 0;
 
-	WBUFL(data,(0xB0)-4) = PChar->m_currency.imperialstanding;
+	WBUFL(data,(0xB0)) = charutils::GetPoints(PChar, "imperial_standing");
 }

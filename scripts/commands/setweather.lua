@@ -1,7 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 -- func: setweather
--- auth: <Unknown> :: Modded by atom0s.
--- desc: Sets the ccurrent weather for the current zone.
+-- desc: Sets the current weather for the current zone.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
@@ -34,7 +33,7 @@ function onTrigger(player, weather)
         ["gloom"]           = 18,
         ["darkness"]        = 19
     };
-    
+
     if (weather == nil) then
         player:PrintToPlayer("You must enter a valid weather name or id.");
         return;
@@ -50,6 +49,6 @@ function onTrigger(player, weather)
             return;
         end
     end
-    
+
     player:setWeather( weatherId );
 end

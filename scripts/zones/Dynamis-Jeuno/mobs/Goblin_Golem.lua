@@ -10,7 +10,7 @@ require("scripts/globals/dynamis");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -18,13 +18,13 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
+
 	killer:addTitle(DYNAMISJEUNO_INTERLOPER); -- Add title
-	
-	local npc = GetNPCByID(17547506); -- Spawn ???
+
+	local npc = GetNPCByID(17547510); -- Spawn ???
 	npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
 	npc:setStatus(0);
-	
+
 	killer:launchDynamisSecondPart(); -- Spawn dynamis second part
-	
+
 end;

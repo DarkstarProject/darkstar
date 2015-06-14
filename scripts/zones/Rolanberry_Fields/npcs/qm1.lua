@@ -25,9 +25,9 @@ end;
 function onTrigger(player,npc)
     local Gob = GetMobAction(17228249);
     if ( (Gob == ACTION_NONE or Gob == ACTION_SPAWN) and (player:hasKeyItem(JUG_OF_GREASY_GOBLIN_JUICE) == true) and (player:hasKeyItem(SEEDSPALL_CAERULUM) == false) and (player:hasKeyItem(VIRIDIAN_KEY) == false) ) then
-        SpawnMob(17228249,180):updateEnmity(player);
+        SpawnMob(17228249,180):updateClaim(player);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(NOTHING_HAPPENS);
     end
 end;
 

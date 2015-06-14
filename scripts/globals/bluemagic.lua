@@ -80,7 +80,7 @@ function BluePhysicalSpell(caster, target, spell, params)
     -- Calculate the final D value  -
     ---------------------------------
     -- worked out from http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
-    -- Final D value = floor(D+fSTR+WSC) * Multiplier
+    -- Final D value ??= floor(D+fSTR+WSC) * Multiplier
 
     local D =  math.floor((magicskill * 0.11)) * 2 + 3;
     -- cap D
@@ -101,9 +101,22 @@ function BluePhysicalSpell(caster, target, spell, params)
 
     --print("wsc val is ".. WSC);
 
-    -- TODO: If under CA, replace multiplier with fTP(multiplier, tp150, tp300)
+    local multiplier = params.multiplier;
+    
+    -- If under CA, replace multiplier with fTP(multiplier, tp150, tp300)
+    local chainAffinity = caster:getStatusEffect(EFFECT_CHAIN_AFFINITY);
+    if chainAffinity ~= nil then
+        -- Calculate the total TP available for the fTP multiplier.
+        local tp = caster:getTP() + caster:getMerit(MERIT_ENCHAINMENT);
+        if tp > 300 then
+            tp = 300;
+        end;
+        
+        multiplier = BluefTP(tp, multiplier, params.tp150, params.tp300);
+    end;
+    
     -- TODO: Modify multiplier to account for family bonus/penalty
-    local finalD = math.floor(D + fStr + WSC) * params.multiplier;
+    local finalD = math.floor(D + fStr + WSC) * multiplier;
 
     --print("Final D is ".. finalD);
 

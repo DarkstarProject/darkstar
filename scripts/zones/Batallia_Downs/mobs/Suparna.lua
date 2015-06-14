@@ -9,7 +9,7 @@ require("scripts/globals/missions");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -23,5 +23,5 @@ function onMobDeath(mob,killer)
 	if(killer:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and killer:getVar("MissionStatus") == 3 and kills < 2) then
 		killer:setVar("Mission9-1Kills",kills + 1);
 	end
-	
+
 end;

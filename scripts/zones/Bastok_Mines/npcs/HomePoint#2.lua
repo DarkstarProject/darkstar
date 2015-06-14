@@ -3,11 +3,14 @@
 -- NPC:  HomePoint#2
 -- @pos 118 1 -58 234
 -----------------------------------
+
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
+
+package.loaded["scripts/globals/homepoint"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/Bastok_Mines/TextIDs");
+require("scripts/globals/homepoint");
 
 -----------------------------------
 -- onTrade Action
@@ -21,11 +24,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-if (HOMEPOINT_HEAL == 1) then
-	player:addHP(player:getMaxHP());
-	player:addMP(player:getMaxMP());
-end
-player:startEvent(0x21fd);
+
+	homepointMenu( player, 0x21fd, 10);
 end; 
 
 -----------------------------------
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,15 +42,16 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
+
 	if(csid == 0x21fd) then
+
 		if (option == 1) then	
 			player:setHomePoint();
 			player:messageSpecial(HOMEPOINT_SET);
+		else
+			hpTeleport( player, option);
 		end
 	end
-end;	
-
-
-
+end;

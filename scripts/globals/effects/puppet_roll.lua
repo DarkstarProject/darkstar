@@ -11,8 +11,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_PET_MABB, effect:getPower());
-	target:addMod(MOD_PET_MACC, effect:getPower());
+	target:addPetMod(MOD_MAB, effect:getPower());
+	target:addPetMod(MOD_MACC, effect:getPower());
 end;
 
 -----------------------------------
@@ -27,6 +27,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_PET_MABB, effect:getPower());
-	target:delMod(MOD_PET_MACC, effect:getPower());
+	target:delPetMod(MOD_MAB, effect:getPower());
+	target:delPetMod(MOD_MACC, effect:getPower());
 end;

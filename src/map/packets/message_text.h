@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ class CMessageTextPacket : public CBasicPacket
 {
 public:
 
-	CMessageTextPacket(CBaseEntity* PEntity, uint16 messageID, bool showName = true);
+	CMessageTextPacket(CBaseEntity* PEntity, uint16 messageID, bool showName = true, uint8 mode = 0);
 };
 
 #endif

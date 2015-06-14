@@ -2,18 +2,18 @@
 -- Aero 2
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
-require("/scripts/globals/magic");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
+require("scripts/globals/magic");
 
 ---------------------------------------------------
 
-function OnAbilityCheck(player, target, ability)
+function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function OnPetAbility(target, pet, skill)
+function onPetAbility(target, pet, skill)
 	local spell = getSpell(147);
 	--calculate raw damage
 	local dmg = calculateMagicDamage(472,2,pet,spell,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);
@@ -24,7 +24,7 @@ function OnPetAbility(target, pet, skill)
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
 	dmg = mobAddBonuses(pet,spell,target,dmg, 1);
 	--add on TP bonuses
-	local tp = pet:getTP();
+	local tp = skill:getTP();
 	if tp < 100 then
 		tp = 100;
 	end

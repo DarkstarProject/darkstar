@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -35,27 +35,9 @@ CCharSkillsPacket::CCharSkillsPacket(CCharEntity* PChar)
 {
 	this->type = 0x62;
 	this->size = 0x80;
-
-	uint8 count = 0; 
-
-    RecastList_t* RecastList = PChar->PRecastContainer->GetRecastList(RECAST_ABILITY);
-
-    for (uint16 i = 0; i < RecastList->size(); ++i) 
-	{
-        Recast_t* recast = RecastList->at(i);
-
-		uint32 time = (recast->RecastTime == 0 ? 0 : ((recast->RecastTime - (gettick() - recast->TimeStamp)) / 1000));
-
-		if(recast->ID != 0) 
-		{
-            WBUFL(data,(0x08 + count*4)-4) = time;
-            WBUFB(data,(0x0B + count*4)-4) = recast->ID;
-			count++;
-		} 
-		else
-		{
-            WBUFL(data,(0x04)-4) = time;  // 2h ability (recast id is 0)
-		}
-    }
-	memcpy(data+(0x80)-4, &PChar->WorkingSkills, 128);
+	memcpy(data+(0x80), &PChar->WorkingSkills, 128);
+    //remove automaton skills from this menu (they are in another packet)
+    WBUFW(data, (0xAC) ) = 0x8000;
+    WBUFW(data, (0xAE) ) = 0x8000;
+    WBUFW(data, (0xB0) ) = 0x8000;
 }

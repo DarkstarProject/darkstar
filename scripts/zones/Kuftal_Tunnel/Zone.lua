@@ -7,13 +7,37 @@ package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Kuftal_Tunnel/TextIDs");
+require("scripts/globals/weather");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17490321,17490322,17490323,17490324};
+    
+    SetGroundsTome(tomes);
+
+    -- Guivre
+    SetRespawnTime(17490234, 900, 10800);
+    
+    UpdateTreasureSpawnPoint(17490300);
+    
+end;
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 -----------------------------------		
@@ -52,3 +76,17 @@ function onEventFinish(player,csid,option)
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
 end;	
+
+-----------------------------------	
+-- onZoneWeatherChange	
+-----------------------------------	
+
+function onZoneWeatherChange(weather)
+
+	if(weather == WEATHER_WIND or weather == WEATHER_GALES) then
+		GetNPCByID(17490280):setAnimation(9); -- Rock Up
+	else
+		GetNPCByID(17490280):setAnimation(8); -- Rock Down
+	end
+	
+end;

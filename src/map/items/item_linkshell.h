@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ struct lscolor_t
 	uint8 A:4;
 };
 
-enum LSTYPE
+enum LSTYPE : uint8
 {
     LSTYPE_NEW_LINKSHELL,
     LSTYPE_LINKSHELL,
@@ -59,11 +59,11 @@ public:
     uint16      GetLSRawColor();
     void        SetLSID(uint32 lsid);
 	void		SetLSColor(uint16 color);	
+    virtual const int8* getSignature();
+    virtual void setSignature(int8* signature);
 	
 private:
 
-	lscolor_t	m_LSColor;
-    uint32      m_LinkshellID;
 };
 
 #endif

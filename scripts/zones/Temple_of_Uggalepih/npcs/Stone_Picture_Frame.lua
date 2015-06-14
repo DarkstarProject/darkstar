@@ -15,17 +15,16 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
 	local X = player:getXPos();
 	local Z = player:getZPos();
-	local DoorToRancor = 17428967;
+	local DoorToRancor = 17428968;
 
 	if(X < -60) then
 		if(Z < -6) then -- SW frame
@@ -36,12 +35,12 @@ function onTrigger(player,npc)
 			end
 		elseif(Z < 5)  then
 			player:messageSpecial(PAINTBRUSH_OFFSET + 14); -- It is a picture of an old mage carrying a staff.
-		else 
+		else
 			player:messageSpecial(PAINTBRUSH_OFFSET + 13); -- It is a picture of a small group of three men and women.
 		end
 	else
 		if(Z <-5) then -- SE picture
-			player:messageSpecial(PAINTBRUSH_OFFSET + 12); -- It is a painting of a beautiful landscape. 
+			player:messageSpecial(PAINTBRUSH_OFFSET + 12); -- It is a painting of a beautiful landscape.
 		elseif(Z > -5 and Z < 5) then
 			if(GetNPCByID(DoorToRancor):getAnimation() == 8) then
 				player:messageSpecial(PAINTBRUSH_OFFSET + 23,PAINTBRUSH_OF_SOULS); -- The <KEY_ITEM> begins to twitch. The canvas is graced with the image from your soul.
@@ -54,20 +53,20 @@ function onTrigger(player,npc)
 			else
 				player:messageSpecial(PAINTBRUSH_OFFSET, PAINTBRUSH_OF_SOULS); -- When the paintbrush of souls projects the deepest, darkest corner of your soul...
 			end
-		else 
-			player:messageSpecial(PAINTBRUSH_OFFSET + 11); -- It is a painting of a sublime-looking woman. 
+		else
+			player:messageSpecial(PAINTBRUSH_OFFSET + 11); -- It is a painting of a sublime-looking woman.
 		end
 	end
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,11 +74,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
+	local DoorToRancor = 17428968;
 
-	local DoorToRancor = 17428967;
-	
 	if(csid == 0x0032) then
 		-- Soon !
 	elseif(csid == 0x003C) then
@@ -92,5 +90,5 @@ function onEventFinish(player,csid,option)
 		end
 		player:setVar("started_painting",0);
 	end
-	
+
 end;

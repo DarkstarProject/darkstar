@@ -15,7 +15,7 @@ function onTrigger(player, itemId, quantity)
         player:PrintToPlayer( "You must enter a valid item id." );
         return;
     end
-    
+
     -- Give the player the item..
     player:addTempItem( itemId,  quantity, aug0, aug0val, aug1, aug1val, aug2, aug2val, aug3, aug3val );
 end

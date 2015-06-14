@@ -3,12 +3,12 @@
 --  NPC: Maugie
 --  General Info NPC
 -------------------------------------
-package.loaded["/scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/quests");
-require("/scripts/zones/Southern_San_dOria/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/quests");
+require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 
 -- onTrade Action

@@ -35,6 +35,31 @@ CREATE TABLE `instance_entities` (
 
 LOCK TABLES `instance_entities` WRITE;
 /*!40000 ALTER TABLE `instance_entities` DISABLE KEYS */;
+-- Leujaoam Cleansing
+-- Mobs
+INSERT INTO `instance_entities` VALUES (1,17059841);
+INSERT INTO `instance_entities` VALUES (1,17059842);
+INSERT INTO `instance_entities` VALUES (1,17059843);
+INSERT INTO `instance_entities` VALUES (1,17059844);
+INSERT INTO `instance_entities` VALUES (1,17059845);
+INSERT INTO `instance_entities` VALUES (1,17059846);
+INSERT INTO `instance_entities` VALUES (1,17059847);
+INSERT INTO `instance_entities` VALUES (1,17059848);
+INSERT INTO `instance_entities` VALUES (1,17059849);
+INSERT INTO `instance_entities` VALUES (1,17059850);
+INSERT INTO `instance_entities` VALUES (1,17059851);
+INSERT INTO `instance_entities` VALUES (1,17059852);
+INSERT INTO `instance_entities` VALUES (1,17059853);
+INSERT INTO `instance_entities` VALUES (1,17059854);
+INSERT INTO `instance_entities` VALUES (1,17059855);
+-- Npcs
+INSERT INTO `instance_entities` VALUES (1,17060014);
+INSERT INTO `instance_entities` VALUES (1,17060015);
+INSERT INTO `instance_entities` VALUES (1,17060138);
+INSERT INTO `instance_entities` VALUES (1,17060146);
+INSERT INTO `instance_entities` VALUES (1,17060147);
+
+-- Wamoura Farm Raid
 INSERT INTO `instance_entities` VALUES (27,17035359);
 INSERT INTO `instance_entities` VALUES (27,17035360);
 INSERT INTO `instance_entities` VALUES (27,17035361);
@@ -61,6 +86,62 @@ INSERT INTO `instance_entities` VALUES (27,17035543);
 INSERT INTO `instance_entities` VALUES (27,17035544);
 INSERT INTO `instance_entities` VALUES (27,17035545);
 INSERT INTO `instance_entities` VALUES (27,17035546);
+
+-- Seagull Grounded
+-- Mobs
+INSERT INTO `instance_entities` VALUES (31,17006593);
+INSERT INTO `instance_entities` VALUES (31,17006594);
+INSERT INTO `instance_entities` VALUES (31,17006595);
+INSERT INTO `instance_entities` VALUES (31,17006596);
+INSERT INTO `instance_entities` VALUES (31,17006597);
+INSERT INTO `instance_entities` VALUES (31,17006598);
+INSERT INTO `instance_entities` VALUES (31,17006599);
+INSERT INTO `instance_entities` VALUES (31,17006600);
+INSERT INTO `instance_entities` VALUES (31,17006601);
+INSERT INTO `instance_entities` VALUES (31,17006602);
+INSERT INTO `instance_entities` VALUES (31,17006603);
+INSERT INTO `instance_entities` VALUES (31,17006604);
+INSERT INTO `instance_entities` VALUES (31,17006605);
+INSERT INTO `instance_entities` VALUES (31,17006606);
+INSERT INTO `instance_entities` VALUES (31,17006607);
+INSERT INTO `instance_entities` VALUES (31,17006608);
+INSERT INTO `instance_entities` VALUES (31,17006610);
+INSERT INTO `instance_entities` VALUES (31,17006611);
+-- Npcs
+INSERT INTO `instance_entities` VALUES (31,17006809);
+INSERT INTO `instance_entities` VALUES (31,17006810);
+INSERT INTO `instance_entities` VALUES (31,17006836);
+INSERT INTO `instance_entities` VALUES (31,17006841);
+INSERT INTO `instance_entities` VALUES (31,17006842);
+INSERT INTO `instance_entities` VALUES (31,17006843);
+INSERT INTO `instance_entities` VALUES (31,17006848);
+INSERT INTO `instance_entities` VALUES (31,17006852);
+INSERT INTO `instance_entities` VALUES (31,17006868);
+INSERT INTO `instance_entities` VALUES (31,17006870);
+INSERT INTO `instance_entities` VALUES (31,17006872);
+INSERT INTO `instance_entities` VALUES (31,17006874);
+
+INSERT INTO `instance_entities` VALUES (41,17002497);
+INSERT INTO `instance_entities` VALUES (41,17002498);
+INSERT INTO `instance_entities` VALUES (41,17002499);
+INSERT INTO `instance_entities` VALUES (41,17002500);
+INSERT INTO `instance_entities` VALUES (41,17002501);
+INSERT INTO `instance_entities` VALUES (41,17002502);
+INSERT INTO `instance_entities` VALUES (41,17002503);
+INSERT INTO `instance_entities` VALUES (41,17002504);
+INSERT INTO `instance_entities` VALUES (41,17002505);
+INSERT INTO `instance_entities` VALUES (41,17002506);
+INSERT INTO `instance_entities` VALUES (41,17002507);
+INSERT INTO `instance_entities` VALUES (41,17002508);
+INSERT INTO `instance_entities` VALUES (41,17002509);
+INSERT INTO `instance_entities` VALUES (41,17002510);
+INSERT INTO `instance_entities` VALUES (41,17002511);
+INSERT INTO `instance_entities` VALUES (41,17002512);
+INSERT INTO `instance_entities` VALUES (41,17002513);
+INSERT INTO `instance_entities` VALUES (41,17002514);
+INSERT INTO `instance_entities` VALUES (41,17002515);
+INSERT INTO `instance_entities` VALUES (41,17002516);
+
 /*!40000 ALTER TABLE `instance_entities` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

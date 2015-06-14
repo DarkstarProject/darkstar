@@ -11,7 +11,7 @@ require("scripts/globals/magic");
 -- OnSpellCast
 -----------------------------------------
 
-function OnMagicCastingCheck(caster,target,spell)
+function onMagicCastingCheck(caster,target,spell)
 	return 0;
 end;
 
@@ -32,4 +32,5 @@ function onSpellCast(caster,target,spell)
 		power = merit + caster:getMod(MOD_STORMSURGE_EFFECT) + 2;
 	end
 	target:addStatusEffect(EFFECT_SANDSTORM,power,0,180);
+	return EFFECT_SANDSTORM;
 end;

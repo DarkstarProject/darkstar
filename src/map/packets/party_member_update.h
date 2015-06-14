@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -42,7 +42,8 @@ class CPartyMemberUpdatePacket : public CBasicPacket
 {
 public:
 
-	CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint8 ZoneID);
+	CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint16 zoneid);
+	CPartyMemberUpdatePacket(uint32 id, const int8* name, uint16 memberFlags, uint8 ZoneID);
 };
 
 #endif

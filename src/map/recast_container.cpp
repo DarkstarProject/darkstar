@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -30,7 +30,6 @@
 #include "entities/charentity.h"
 #include "recast_container.h"
 
-
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -39,7 +38,7 @@
 
 CRecastContainer::CRecastContainer(CCharEntity* PChar) : m_PChar(PChar)
 {
-    DSP_DEBUG_BREAK_IF(m_PChar == NULL || m_PChar->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(m_PChar == nullptr || m_PChar->objtype != TYPE_PC);
 }
 
 CRecastContainer::~CRecastContainer()
@@ -72,7 +71,7 @@ std::vector<Recast_t*>* CRecastContainer::GetRecastList(RECASTTYPE type)
     }
     //Unhandled Scenario
 	DSP_DEBUG_BREAK_IF(true);
-    return NULL;
+    return nullptr;
     // not working on linux
 	// return &std::vector<Recast_t*>::vector();
 }
@@ -94,7 +93,7 @@ Recast_t* CRecastContainer::GetRecast(RECASTTYPE type, uint16 id)
             return recast;
         }
     }
-    return NULL;
+    return nullptr;
 }
 
 /************************************************************************
@@ -105,36 +104,48 @@ Recast_t* CRecastContainer::GetRecast(RECASTTYPE type, uint16 id)
 
 void CRecastContainer::Add(RECASTTYPE type, uint16 id, uint32 duration, uint32 chargeTime, uint8 maxCharges)
 {
+    Recast_t* recast = Load(type, id, duration, chargeTime, maxCharges);
+
+    if (type == RECAST_ABILITY)
+    {
+        Sql_Query(SqlHandle, "REPLACE INTO char_recast VALUES (%u, %u, %u, %u);", m_PChar->id, recast->ID, recast->TimeStamp, recast->RecastTime);
+    }
+}
+
+Recast_t* CRecastContainer::Load(RECASTTYPE type, uint16 id, uint32 duration, uint32 chargeTime, uint8 maxCharges)
+{
     Recast_t* recast = GetRecast(type, id);
 
-    if( recast == NULL)
+    if (recast == nullptr)
     {
         Recast_t* newRecast = new Recast_t;
         newRecast->ID = id;
-        newRecast->TimeStamp = gettick();
+        newRecast->TimeStamp = time(nullptr);
         newRecast->RecastTime = duration;
         newRecast->chargeTime = chargeTime;
         newRecast->maxCharges = maxCharges;
 
         GetRecastList(type)->push_back(newRecast);
+        return newRecast;
     }
     else
     {
         if (chargeTime == 0)
         {
-            recast->TimeStamp = gettick();
+            recast->TimeStamp = time(nullptr);
             recast->RecastTime = duration;
         }
         else
         {
             if (recast->RecastTime == 0)
             {
-                recast->TimeStamp = gettick();
+                recast->TimeStamp = time(nullptr);
             }
-            recast->RecastTime += chargeTime * 1000;
+            recast->RecastTime += chargeTime;
             recast->chargeTime = chargeTime;
             recast->maxCharges = maxCharges;
         }
+        return recast;
     }
 }
 
@@ -153,6 +164,8 @@ void CRecastContainer::Del(RECASTTYPE type)
         delete PRecastList->at(i);
 	}
     PRecastList->clear();
+    if (type == RECAST_ABILITY)
+        Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u;", m_PChar->id);
 }
 
 /************************************************************************
@@ -169,6 +182,8 @@ void CRecastContainer::Del(RECASTTYPE type, uint16 id)
 	{
         if (PRecastList->at(i)->ID == id)
         {
+            if (type == RECAST_ABILITY)
+                Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND id = %u;", m_PChar->id, PRecastList->at(i)->ID);
             delete PRecastList->at(i);
             PRecastList->erase(PRecastList->begin() + i);
             return;
@@ -185,6 +200,8 @@ void CRecastContainer::Del(RECASTTYPE type, uint16 id)
 void CRecastContainer::DeleteByIndex(RECASTTYPE type, uint8 index)
 {
 	RecastList_t* PRecastList = GetRecastList(type);
+    if (type == RECAST_ABILITY)
+        Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND id = %u;", m_PChar->id, PRecastList->at(index)->ID);
 	delete PRecastList->at(index);
 	PRecastList->erase(PRecastList->begin() + index);
 }
@@ -229,7 +246,7 @@ bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id)
             }
             else
             {
-                int charges = PRecastList->at(i)->maxCharges - ((PRecastList->at(i)->RecastTime - (gettick() - PRecastList->at(i)->TimeStamp)) / (PRecastList->at(i)->chargeTime * 1000)) - 1;
+                int charges = PRecastList->at(i)->maxCharges - ((PRecastList->at(i)->RecastTime - (time(nullptr) -PRecastList->at(i)->TimeStamp)) / (PRecastList->at(i)->chargeTime)) - 1;
 
                 //TODO: multiple charges (BST Ready)
                 if (charges < 1)
@@ -248,10 +265,8 @@ bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id)
 *                                                                       *
 ************************************************************************/
 
-void CRecastContainer::Check(uint32 tick)
+void CRecastContainer::Check()
 {
-	DSP_DEBUG_BREAK_IF(tick == 0);
-
     for (uint8 type = 0; type < MAX_RECASTTPE_SIZE; ++type)
     {
         RecastList_t* PRecastList = GetRecastList((RECASTTYPE)type);
@@ -260,7 +275,7 @@ void CRecastContainer::Check(uint32 tick)
 	    {
 		    Recast_t* recast = PRecastList->at(i);
 
-		    if (tick >= (recast->TimeStamp + recast->RecastTime))
+		    if (time(nullptr) >= (recast->TimeStamp + recast->RecastTime))
 		    {
                 if (type == RECAST_ITEM)
                 {
@@ -297,13 +312,13 @@ void CRecastContainer::ResetAbilities()
     uint32 recastTime = 0;
 
     Recast_t* twoHour = GetRecast(RECAST_ABILITY, 0);
-    if (twoHour != NULL)
+    if (twoHour != nullptr)
     {
         timestamp = twoHour->TimeStamp;
         recastTime = twoHour->RecastTime;
     }
     PRecastList->clear();
-    if (twoHour != NULL)
+    if (twoHour != nullptr)
     {
         Recast_t* newTwoHour = new Recast_t;
         newTwoHour->ID = 0;
@@ -311,4 +326,5 @@ void CRecastContainer::ResetAbilities()
         newTwoHour->RecastTime = recastTime;
         PRecastList->push_back(newTwoHour);
     }
+    Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND id != 0;", m_PChar->id);
 }

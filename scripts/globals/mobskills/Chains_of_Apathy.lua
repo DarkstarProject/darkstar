@@ -2,13 +2,13 @@
 --  Chains of Apathy
 --
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
-require("/scripts/globals/keyitems");
-require("/scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
+require("scripts/globals/keyitems");
+require("scripts/zones/Empyreal_Paradox/TextIDs");
 ---------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     local targets = mob:getEnmityList();
     for i,v in pairs(targets) do
         if (v:isPC()) then
@@ -22,7 +22,7 @@ function OnMobSkillCheck(target,mob,skill)
     return 1;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 
 	local typeEffect = EFFECT_TERROR;
 	local power = 30;

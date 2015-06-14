@@ -1,4 +1,4 @@
-// Copyright (c) 2010-2014 Darkstar Dev Teams
+// Copyright (c) 2010-2015 Darkstar Dev Teams
 
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
@@ -7,6 +7,7 @@
 #include "../common/showmsg.h"
 #include "../common/strlib.h"
 #include "../common/taskmgr.h"
+#include "../common/kernel.h"
 
 #include "socket.h"
 
@@ -807,7 +808,7 @@ int32 makeListenBind_tcp(uint32 ip, uint16 port,RecvFunc connect_client)
 	if( fd == -1 )
 	{
 		ShowError("make_listen_bind: socket creation failed (code %d)!\n", sErrno);
-		exit(EXIT_FAILURE);
+		do_final(EXIT_FAILURE);
 	}
 	if( fd == 0 )
 	{// reserved
@@ -832,12 +833,12 @@ int32 makeListenBind_tcp(uint32 ip, uint16 port,RecvFunc connect_client)
 	result = sBind(fd, (struct sockaddr*)&server_address, sizeof(server_address));
 	if( result == SOCKET_ERROR ) {
 		ShowError("make_listen_bind: bind failed (socket #%d, code %d)!\n", fd, sErrno);
-		exit(EXIT_FAILURE);
+        do_final(EXIT_FAILURE);
 	}
 	result = sListen(fd,5);
 	if( result == SOCKET_ERROR ) {
 		ShowError("make_listen_bind: listen failed (socket #%d, code %d)!\n", fd, sErrno);
-		exit(EXIT_FAILURE);
+        do_final(EXIT_FAILURE);
 	}
 
 	if(fd_max <= fd) fd_max = fd + 1;
@@ -855,12 +856,12 @@ int32 realloc_fifo(int32 fd, uint32 rfifo_size, uint32 wfifo_size)
 		return 0;
 
 	if( session[fd]->max_rdata != rfifo_size && session[fd]->rdata_size < rfifo_size) {
-		RECREATE(session[fd]->rdata, unsigned char, rfifo_size);
+		RECREATE(session[fd]->rdata, char, rfifo_size);
 		session[fd]->max_rdata  = rfifo_size;
 	}
 
 	if( session[fd]->max_wdata != wfifo_size && session[fd]->wdata_size < wfifo_size) {
-		RECREATE(session[fd]->wdata, unsigned char, wfifo_size);
+		RECREATE(session[fd]->wdata, char, wfifo_size);
 		session[fd]->max_wdata  = wfifo_size;
 	}
 	return 0;
@@ -886,7 +887,7 @@ int32 realloc_writefifo(int32 fd, size_t addition)
 	else // no change
 		return 0;
 
-	RECREATE(session[fd]->wdata, unsigned char, newsize);
+	RECREATE(session[fd]->wdata, char, newsize);
 	session[fd]->max_wdata  = newsize;
 
 	return 0;
@@ -906,7 +907,7 @@ int32 WFIFOSET(int32 fd, size_t len)
 		ShowFatalError("WFIFOSET: Write Buffer Overflow. Connection %d (%d.%d.%d.%d) has written %u bytes on a %u/%u bytes buffer.\n", fd, CONVIP(ip), (unsigned int)len, (unsigned int)s->wdata_size, (unsigned int)s->max_wdata);
 		ShowDebug("Likely command that caused it: 0x%x\n", (*(uint16*)(s->wdata + s->wdata_size)));
 		// no other chance, make a better fifo model
-		exit(EXIT_FAILURE);
+        do_final(EXIT_FAILURE);
 	}
 
 	if( len > 0xFFFF )
@@ -914,7 +915,7 @@ int32 WFIFOSET(int32 fd, size_t len)
 		// dynamic packets allow up to UINT16_MAX bytes (<packet_id>.W <packet_len>.W ...)
 		// all known fixed-size packets are within this limit, so use the same limit
 		ShowFatalError("WFIFOSET: Packet 0x%x is too big. (len=%u, max=%u)\n", (*(uint16*)(s->wdata + s->wdata_size)), (unsigned int)len, 0xFFFF);
-		exit(EXIT_FAILURE);
+        do_final(EXIT_FAILURE);
 	}
 
 	if( !s->flag.server && s->wdata_size+len > WFIFO_MAX )
@@ -1102,8 +1103,8 @@ void set_eof(int32 fd)
 int create_session(int fd, RecvFunc func_recv, SendFunc func_send, ParseFunc func_parse)
 {
 	CREATE(session[fd], struct socket_data, 1);
-	CREATE(session[fd]->rdata, unsigned char, RFIFO_SIZE);
-	CREATE(session[fd]->wdata, unsigned char, WFIFO_SIZE);
+	CREATE(session[fd]->rdata, char, RFIFO_SIZE);
+	CREATE(session[fd]->wdata, char, WFIFO_SIZE);
 
 	session[fd]->max_rdata  = RFIFO_SIZE;
 	session[fd]->max_wdata  = WFIFO_SIZE;
@@ -1158,7 +1159,7 @@ int32 makeBind_udp(uint32 ip, uint16 port)
 	if( fd == -1 )
 	{
 		ShowError("make_listen_bind: socket creation failed (code %d)!\n", sErrno);
-		exit(EXIT_FAILURE);
+        do_final(EXIT_FAILURE);
 	}
 	if( fd == 0 )
 	{// reserved
@@ -1181,7 +1182,7 @@ int32 makeBind_udp(uint32 ip, uint16 port)
 	if( result == SOCKET_ERROR ) 
     {
 		ShowError("make_listen_bind: bind failed (socket #%d, code %d)!\n", fd, sErrno);
-		exit(EXIT_FAILURE);
+        do_final(EXIT_FAILURE);
 	}
 
 	if(fd_max <= fd) fd_max = fd + 1;

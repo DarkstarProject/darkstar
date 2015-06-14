@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ void SetBlueSpell(CCharEntity* PChar, CBlueSpell* PSpell, uint8 slotIndex, bool 
 
 	//sanity check
 	if (slotIndex < 20) {
-		if (PSpell != NULL && PSpell->getID() > 0x200)
+		if (PSpell != nullptr && PSpell->getID() > 0x200)
         {
 			if (addingSpell) 
             {
@@ -85,7 +85,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 	std::vector<CSpell*> PLearnableSpells;
 	for (std::map<uint16, uint16>::iterator i=PMob->m_UsedSkillIds.begin(); i != PMob->m_UsedSkillIds.end(); ++i) {
 		CSpell* PSpell = spell::GetSpellByMonsterSkillId(i->first);
-		if (PSpell != NULL) {
+		if (PSpell != nullptr) {
 			PLearnableSpells.push_back(PSpell);
 		}
 	}
@@ -97,7 +97,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 	std::vector<CCharEntity*> PBlueMages;
 
 	// populate PBlueMages
-	if (PChar->PParty != NULL) {
+	if (PChar->PParty != nullptr) {
         for (uint8 i = 0; i < PChar->PParty->members.size(); i++) {
 			if (PChar->PParty->members[i]->GetMJob() == JOB_BLU && PChar->PParty->members[i]->objtype == TYPE_PC) {
 				PBlueMages.push_back((CCharEntity*)PChar->PParty->members[i]);
@@ -129,7 +129,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 
 			uint8 learnableLevel = PSpell->getJob(JOB_BLU);
 			if (learnableLevel > 0 && learnableLevel < PBlueMage->GetMLevel()+7) { // TODO: Use blue magic skill check rather than level
-				if (WELL512::irand()%100 < 33) {
+                if (WELL512::GetRandomNumber(100) < 33) {
 					if (charutils::addSpell(PBlueMage, PSpell->getID())) {
 						PBlueMage->pushPacket(new CMessageBasicPacket(PBlueMage, PBlueMage, PSpell->getID(), 0, MSGBASIC_LEARNS_SPELL));
 						charutils::SaveSpells(PBlueMage);
@@ -179,7 +179,6 @@ void UnequipAllBlueSpells(CCharEntity* PChar)
             PChar->delModifiers(&PSpell->modList);
         }
     }
-    PChar->status = STATUS_UPDATE;
     charutils::BuildingCharTraitsTable(PChar);
 	PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
 	PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
@@ -328,7 +327,7 @@ void LoadSetSpells(CCharEntity* PChar)
             Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
 		    size_t length = 0;
-		    int8* blue_spells = NULL;
+		    int8* blue_spells = nullptr;
 		    Sql_GetData(SqlHandle,0,&blue_spells,&length);
 		    memcpy(PChar->m_SetBlueSpells, blue_spells, (length > sizeof(PChar->m_SetBlueSpells) ? sizeof(PChar->m_SetBlueSpells) : length));
         }
@@ -337,7 +336,15 @@ void LoadSetSpells(CCharEntity* PChar)
             if (PChar->m_SetBlueSpells[slot] != 0)
             {
                 CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
-                PChar->addModifiers(&PSpell->modList);
+
+				if (PSpell == nullptr)
+				{
+					PChar->m_SetBlueSpells[slot] = 0;
+				}
+				else
+				{
+					PChar->addModifiers(&PSpell->modList);
+				}
             }
         }
         ValidateBlueSpells(PChar);
@@ -380,14 +387,6 @@ void ValidateBlueSpells(CCharEntity* PChar)
     }
 
     SaveSetSpells(PChar);
-    PChar->status = STATUS_UPDATE;
-    charutils::BuildingCharTraitsTable(PChar);
-	PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
-	PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
-	PChar->pushPacket(new CCharStatsPacket(PChar));
-	charutils::CalculateStats(PChar);
-	PChar->UpdateHealth();
-	PChar->pushPacket(new CCharHealthPacket(PChar));
 }
 
 void CalculateTraits(CCharEntity* PChar)

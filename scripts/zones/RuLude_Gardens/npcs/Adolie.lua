@@ -4,11 +4,11 @@
 -- @zone 243
 -- @pos -35 2 59
 -----------------------------------
-package.loaded["scripts/zones/Rulude_Gardens/TextIDs"] = nil;
+package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/quests");
-require("scripts/zones/Rulude_Gardens/TextIDs");
+require("scripts/zones/RuLude_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action

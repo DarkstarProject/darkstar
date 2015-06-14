@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -40,6 +40,9 @@ CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
 
 	m_skillType		= SKILL_NON;
 	m_subSkillType	= SUBSKILL_XBO;
+    m_iLvlSkill     = 0;
+    m_iLvlParry     = 0;
+    m_iLvlMacc      = 0;
 	m_damage		= 0;
     m_effect		= 0;
 	m_dmgType		= DAMAGE_NONE;
@@ -48,7 +51,7 @@ CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
     m_maxHit		= 0;
     m_ranged		= false;
     m_twoHanded		= false;
-	m_unlockId		= 0;
+	m_wsunlockpoints= 0;
 }
 
 CItemWeapon::~CItemWeapon() {}
@@ -96,9 +99,27 @@ bool CItemWeapon::isUnlockable()
 {
     if(m_skillType == SKILL_NON) return false;
 
-	return ( m_unlockId > 0 ? true : false );
+	return ( m_wsunlockpoints > 0 ? true : false );
 }
 
+bool CItemWeapon::isUnlocked()
+{
+    return isUnlockable() && getCurrentUnlockPoints() == m_wsunlockpoints;
+}
+
+bool CItemWeapon::addWsPoints(uint8 points)
+{
+    if (getCurrentUnlockPoints() + points >= m_wsunlockpoints)
+    {
+        setCurrentUnlockPoints(m_wsunlockpoints);
+        return true;
+    }
+    else
+    {
+        setCurrentUnlockPoints(getCurrentUnlockPoints() + points);
+        return false;
+    }
+}
 
 /************************************************************************
 *                                                                       *
@@ -144,9 +165,39 @@ void CItemWeapon::setSubSkillType(uint8 subSkillType)
 	m_subSkillType = subSkillType;
 }
 
+void CItemWeapon::setILvlSkill(uint16 skill)
+{
+    m_iLvlSkill = skill;
+}
+
+void CItemWeapon::setILvlParry(uint16 parry)
+{
+    m_iLvlParry = parry;
+}
+
+void CItemWeapon::setILvlMacc(uint16 macc)
+{
+    m_iLvlMacc = macc;
+}
+
 uint8 CItemWeapon::getSubSkillType()
 {
 	return m_subSkillType;
+}
+
+uint16 CItemWeapon::getILvlSkill()
+{
+    return m_iLvlSkill;
+}
+
+uint16 CItemWeapon::getILvlParry()
+{
+    return m_iLvlParry;
+}
+
+uint16 CItemWeapon::getILvlMacc()
+{
+    return m_iLvlMacc;
 }
 
 /************************************************************************
@@ -186,13 +237,18 @@ int16 CItemWeapon::getBaseDelay()
 }
 /************************************************************************
 *                                                                       *
-*  get unlock id		                                                *
+*  get unlock points	                                                *
 *                                                                       *
 ************************************************************************/
 
-uint16 CItemWeapon::getUnlockId()
+uint16 CItemWeapon::getUnlockPoints()
 {
-	return m_unlockId;
+	return m_wsunlockpoints;
+}
+
+uint16 CItemWeapon::getCurrentUnlockPoints()
+{
+    return RBUFW(m_extra, 0);
 }
 
 /************************************************************************
@@ -243,16 +299,20 @@ uint8 CItemWeapon::getAdditionalEffect()
     return m_effect;
 }
 
-
 /************************************************************************
 *                                                                       *
-*  set unlockable property of weapon			                        *
+*  set unlockable points of weapon	    		                        *
 *                                                                       *
 ************************************************************************/
 
-void CItemWeapon::setUnlockable(uint16 unlockId)
+void CItemWeapon::setUnlockablePoints(uint16 points)
 {
-    m_unlockId = unlockId;
+    m_wsunlockpoints = points;
+}
+
+void CItemWeapon::setCurrentUnlockPoints(uint16 points)
+{
+    WBUFW(m_extra, 0) = points;
 }
 
 /************************************************************************

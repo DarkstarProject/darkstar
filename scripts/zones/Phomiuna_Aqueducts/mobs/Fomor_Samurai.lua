@@ -1,13 +1,13 @@
 -----------------------------------
 -- mob : Fomor Samourai
--- zone : Phomiuna_Aqueducts  
+-- zone : Phomiuna_Aqueducts
 -----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------

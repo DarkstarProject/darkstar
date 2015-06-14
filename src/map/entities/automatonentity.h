@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -77,9 +77,14 @@ public:
     uint8 getElementMax(uint8 element);
     uint8 getElementCapacity(uint8 element);
 
+    void burdenTick();
+    uint8 addBurden(uint8 element, uint8 burden);
+
+    void UpdateEntity() override;
+
 private:
 
-    uint16 m_Burden[8];
+    uint8 m_Burden[8];
 };
 
 #endif

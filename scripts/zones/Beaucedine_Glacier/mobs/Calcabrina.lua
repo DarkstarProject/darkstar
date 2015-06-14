@@ -25,7 +25,7 @@ function onAdditionalEffect(mob,target,damage)
     local LV_diff = target:getMainLvl() - mob:getMainLvl();
 
     if (target:getMainLvl() > mob:getMainLvl()) then
-        chance = chance - 5 * LV_diff)
+        chance = chance - 5 * LV_diff
         chance = utils.clamp(chance, 5, 95);
     end
 

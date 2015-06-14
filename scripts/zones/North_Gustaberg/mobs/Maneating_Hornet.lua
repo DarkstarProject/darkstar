@@ -4,8 +4,8 @@
 -- Note: Place Holder For Stinging Sophie
 -----------------------------------	
 
-require("/scripts/zones/North_Gustaberg/MobIDs");	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/zones/North_Gustaberg/MobIDs");	
+require("scripts/globals/fieldsofvalor");	
 	
 -----------------------------------	
 -- onMobDeath	

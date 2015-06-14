@@ -7,7 +7,7 @@
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/harvest_festivals")
+require("scripts/globals/events/harvest_festivals")
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Windurst_Woods/TextIDs");

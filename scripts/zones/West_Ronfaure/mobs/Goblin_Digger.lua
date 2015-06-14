@@ -3,7 +3,7 @@
 -- MOB:  Goblin Digger	
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");	
 require("scripts/globals/pathfind");
 	
 -----------------------------------	
@@ -22,16 +22,16 @@ local path = {
 };
 
 function onMobSpawn(mob)
-	OnMobRoam(mob);
+	onMobRoam(mob);
 end;
 
-function OnMobRoamAction(mob)
+function onMobRoamAction(mob)
 
 	pathfind.patrol(mob, path, PATHFLAG_REVERSE);
 
 end;
 
-function OnMobRoam(mob)
+function onMobRoam(mob)
 	-- move to start position if not moving
 	if(mob:isFollowingPath() == false) then
 		mob:pathThrough(pathfind.first(path));

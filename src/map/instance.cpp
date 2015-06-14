@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -61,6 +61,10 @@ CInstance::~CInstance()
 	{
 		delete entity.second;
 	}
+    for (auto entity : m_petList)
+    {
+        delete entity.second;
+    }
 }
 
 uint8 CInstance::GetID()
@@ -120,6 +124,7 @@ void CInstance::LoadInstance()
 	else
 	{
 		ShowFatalError(CL_RED"CZone::LoadInstance: Cannot load instance %u\n" CL_RESET, m_instanceid);
+        Fail();
 	}
 }
 

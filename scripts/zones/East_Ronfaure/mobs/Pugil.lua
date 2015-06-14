@@ -3,7 +3,7 @@
 -- MOB:  Pugil	
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");	
 require("scripts/zones/East_Ronfaure/MobIDs");
 
 -----------------------------------	

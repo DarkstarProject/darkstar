@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 	
 	if(GetMobAction(17502568) == 0 and trade:hasItemQty(16575,1) and trade:getItemCount() == 1) then -- Trade Curtana
 		player:tradeComplete();
-		SpawnMob(17502568,180):updateEnmity(player);
+		SpawnMob(17502568,180):updateClaim(player);
 	end
 	
 end;

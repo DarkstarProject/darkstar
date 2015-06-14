@@ -255,7 +255,7 @@ end
 
 -- MAGICAL MOVE
 -- Call this on every magical move!
--- mob/target/skill should be passed from OnMobWeaponSkill.
+-- mob/target/skill should be passed from onMobWeaponSkill.
 -- dmg is the base damage (V value), accmod is a multiplier for accuracy (1 default, more than 1 = higher macc for mob),
 -- ditto for dmg mod but more damage >1 (equivalent of M value)
 -- tpeffect is an enum from one of:
@@ -408,6 +408,8 @@ function applyPlayerResistance(mob,effect,target,diff,bonus,element)
 			effectres = MOD_STUNRES;
 		elseif(effect == EFFECT_CHARM) then
 			effectres = MOD_CHARMRES;
+		elseif(effect == EFFECT_AMNESIA) then
+			effectres = MOD_AMNESIARES;
 		end
 
 		if(effectres > 0) then
@@ -498,7 +500,7 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
 
 	dmg = math.floor(dmg * dayWeatherBonus);
 
-    burst, burstBonus = calculateMobMagicBurstAndBonus(caster, ele, target);
+    burst = calculateMobMagicBurst(caster, ele, target);
 
 	-- not sure what to do for this yet
     -- if(burst > 1.0) then
@@ -525,7 +527,7 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
     return dmg;
 end
 
-function calculateMobMagicBurstAndBonus(caster, ele, target)
+function calculateMobMagicBurst(caster, ele, target)
 
     local burst = 1.0;
 
@@ -548,7 +550,7 @@ function calculateMobMagicBurstAndBonus(caster, ele, target)
 		end
     end
 
-    return burst, burstBonus;
+    return burst;
 end;
 
 -- Calculates breath damage

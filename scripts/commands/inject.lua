@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: inject
--- auth: <Unknown>
 -- desc: Injects the given packet data.
 ---------------------------------------------------------------------------------------------------
 
@@ -15,6 +14,6 @@ function onTrigger(player, packet)
         player:PrintToPlayer("You must enter a packet file name.");
         return;
     end
-    
+
     player:injectPacket( packet );
 end

@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ namespace attackutils
 ************************************************************************/
 uint8 getHitCount(uint8 hits)
 {
-    uint8 distribution = WELL512::irand()%100;
+    uint8 distribution = WELL512::GetRandomNumber(100);
     uint8 num = 1;
 
 	switch (hits)
@@ -106,7 +106,7 @@ bool IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
     if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
     {
-        return (WELL512::irand() % 100 < battleutils::GetParryRate(PAttacker, PDefender));
+        return (WELL512::GetRandomNumber(100) < battleutils::GetParryRate(PAttacker, PDefender));
     }
     return false;
 }
@@ -120,7 +120,7 @@ bool IsGuarded(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
     if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
     {
-        return(WELL512::irand() % 100 < battleutils::GetGuardRate(PAttacker, PDefender));
+        return(WELL512::GetRandomNumber(100) < battleutils::GetGuardRate(PAttacker, PDefender));
     }
     return false;
 }
@@ -134,7 +134,7 @@ bool IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
 	if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
     {
-        return(WELL512::irand() % 100 < battleutils::GetBlockRate(PAttacker, PDefender));
+        return(WELL512::GetRandomNumber(100) < battleutils::GetBlockRate(PAttacker, PDefender));
     }
     return false;
 }
@@ -146,106 +146,31 @@ bool IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 ************************************************************************/
 uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, PHYSICAL_ATTACK_TYPE attackType)
 {
-	if (PWeapon==NULL)
+	if (PWeapon==nullptr)
 	{
 		return damage;
 	}
 	uint32 originalDamage = damage;
 
-	switch (PWeapon->getID())
+	if (PWeapon->getModifier(MOD_OCC_DO_EXTRA_DMG) > 0 && PWeapon->getModifier(MOD_EXTRA_DMG_CHANCE) > 0)
 	{
-		//relic weapons have 16% (ffxiclopedia) chance to do x times damage, cannot proc with weapon skills
-
-		// Relic: 2.5 times damage
-		case 18264:		// Spharai, h2h
-		case 18276:		// Excalibur, sword
-		case 18282:		// Ragnarok, great sword
-		case 18288:		// Guttler, axe
-		case 18300:		// Gungnir, polearm
-		case 18318:		// Amanomurakumo, great katana
-		case 18330:		// Claustrum, staff
-			if (WELL512::irand()%100 <= 16) return (damage = (damage * (float)2.5));
-			break;
-
-		// Relic: 3 times damage
-		case 18270:		// Mandau, dagger
-		case 18312:		// Kikoku, katana
-		case 18324:		// Mjollnir, club
-		case 18336:		// Annihilator, marksmanship
-		case 18348:		// Yoichinoyumi, archery
-			if (WELL512::irand()%100 <= 16) return (damage = (damage * 3));
-			break;
-
-		// Relic: 2 times damage
-		case 18294:		// Bravura, great axe
-		case 18306:		// Apocalypse, scythe
-			if (WELL512::irand()%100 <= 16) return (damage = (damage * 2));
-			break;
-
-
-		//mythic weapons, same distribution as multi attacking weapons
-
-		// Mythic: 2 time damage
-		case 19001:		// Gastraphetes(lvl75), marksmanship
-		case 19007:		// Death Penalty(lvl75), marksmanship
-			if (WELL512::irand()%100 > 55) return (damage = (damage * 2));
-			break;
-
-		default:			
-			break;
+		// Relic weapons have 16% (ffxiclopedia) chance to do x times damage, cannot proc with weapon skills
+		if (WELL512::GetRandomNumber(100) <= (PWeapon->getModifier(MOD_EXTRA_DMG_CHANCE)/10))
+		{
+			return (damage = (damage * (PWeapon->getModifier(MOD_OCC_DO_EXTRA_DMG)/100)));
+		}
 	}
 
 	switch (attackType)
 	{
-		case ZANSHIN_ATTACK:	if (WELL512::irand()%100 < PChar->getMod(MOD_ZANSHIN_DOUBLE_DAMAGE))		return originalDamage * 2;
-		case TRIPLE_ATTACK:		if (WELL512::irand()%100 < PChar->getMod(MOD_TA_TRIPLE_DAMAGE))			return originalDamage * 3;
-		case DOUBLE_ATTACK:		if (WELL512::irand()%100 < PChar->getMod(MOD_DA_DOUBLE_DAMAGE))			return originalDamage * 2;
-		case RAPID_SHOT_ATTACK:	if (WELL512::irand()%100 < PChar->getMod(MOD_RAPID_SHOT_DOUBLE_DAMAGE))	return originalDamage * 2;
-		case SAMBA_ATTACK:		if (WELL512::irand()%100 < PChar->getMod(MOD_SAMBA_DOUBLE_DAMAGE))		return originalDamage * 2;
+		case ZANSHIN_ATTACK:	if (WELL512::GetRandomNumber(100) < PChar->getMod(MOD_ZANSHIN_DOUBLE_DAMAGE))		return originalDamage * 2;
+		case TRIPLE_ATTACK:		if (WELL512::GetRandomNumber(100) < PChar->getMod(MOD_TA_TRIPLE_DAMAGE))			return originalDamage * 3;
+		case DOUBLE_ATTACK:		if (WELL512::GetRandomNumber(100) < PChar->getMod(MOD_DA_DOUBLE_DAMAGE))			return originalDamage * 2;
+		case RAPID_SHOT_ATTACK:	if (WELL512::GetRandomNumber(100) < PChar->getMod(MOD_RAPID_SHOT_DOUBLE_DAMAGE))	return originalDamage * 2;
+		case SAMBA_ATTACK:		if (WELL512::GetRandomNumber(100) < PChar->getMod(MOD_SAMBA_DOUBLE_DAMAGE))		return originalDamage * 2;
 		default: break;
 	}	
 	return originalDamage;
-}
-
-/************************************************************************
-*																		*
-*  Try's to absorb MP from a physical attack.							*
-*																		*
-************************************************************************/
-void TryAbsorbMPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage)
-{
-	if (battleEntity->objtype != TYPE_PC)
-	{
-		return;
-	}
-
-	// Absorbs a percentage of damage to MP (100% rate)
-	if (battleEntity->getMod(MOD_ABSORB_DMG_TO_MP) != 0)
-	{
-		uint16 absorbedMP = (float)(damage * battleEntity->getMod(MOD_ABSORB_DMG_TO_MP) / 100);
-		battleEntity->addMP(absorbedMP);
-		return;
-	}
-}
-
-/************************************************************************
-*																		*
-*  Try's to absorb HP from a physical attack.							*
-*																		*
-************************************************************************/
-bool TryAbsorbHPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage)
-{
-	if (battleEntity->objtype != TYPE_PC)
-	{
-		return false;
-	}
-
-	// Do chance to absorb damage
-	if (WELL512::irand()%100 < battleEntity->getMod(MOD_ABSORB_DMG_CHANCE))
-	{
-		return true;
-	}
-	return false;
 }
 
 }

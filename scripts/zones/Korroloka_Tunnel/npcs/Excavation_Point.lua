@@ -13,7 +13,7 @@ require("scripts/zones/Korroloka_Tunnel/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startExcavation(player,player:getZone(),npc,trade,0x0000);
+	startExcavation(player,player:getZoneID(),npc,trade,0x0000);
 end;
 
 -----------------------------------

@@ -3,7 +3,7 @@
 -- MOB:  Bisque-heeled Sunberry	
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");	
 	
 -----------------------------------	
 -- onMobDeath	

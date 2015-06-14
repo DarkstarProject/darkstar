@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -25,6 +25,8 @@
 #include "entities/battleentity.h"
 #include "attackround.h"
 #include "attack.h"
+
+#include <math.h>
 
 /************************************************************************
 *																		*
@@ -170,9 +172,9 @@ bool CAttack::IsFirstSwing()
 *  Sets this swing as the first.										*
 *																		*
 ************************************************************************/
-void CAttack::SetAsFirstSwing()
+void CAttack::SetAsFirstSwing(bool isFirst)
 {
-	m_isFirstSwing = true;
+	m_isFirstSwing = isFirst;
 }
 
 /************************************************************************
@@ -240,6 +242,12 @@ uint8 CAttack::GetHitRate()
 		{
 			m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 0);
 		}
+
+        // Deciding this here because SA/TA wears on attack, before the 2nd+ hits go off.
+        if (m_hitRate == 100)
+        {
+            m_attackRound->SetSATA(true);
+        }
 	}
 	// Left hand hitrate
 	else if (m_attackDirection == LEFTATTACK && m_attackType != KICK_ATTACK)
@@ -251,12 +259,6 @@ uint8 CAttack::GetHitRate()
 		else
 		{
 			m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 1);
-		}
-
-		// Deciding this here because SA/TA wears on attack, before the 2nd+ hits go off.
-		if (m_hitRate = 100)
-		{
-			m_attackRound->SetSATA(true);
 		}
 	}
 	// Kick hit rate
@@ -307,7 +309,7 @@ void CAttack::ProcessDamage()
 	// Trick attack.
 	if (m_attacker->GetMJob() == JOB_THF && 
 		m_isFirstSwing && 
-		m_attackRound->GetTAEntity() != NULL)
+		m_attackRound->GetTAEntity() != nullptr)
 	{
 		m_trickAttackDamage += m_attacker->AGI();
 	}
@@ -346,12 +348,6 @@ void CAttack::ProcessDamage()
 		m_damage = battleutils::doSoulEaterEffect((CCharEntity*)m_attacker, m_damage);
 	}
 
-	// Try zanshin (hasso - non miss)
-	if (m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO))
-	{
-		m_attackRound->CreateZanshinAttacks();
-	}
-
 	// Set attack type to Samba if the attack type is normal.  Don't overwrite other types.  Used for Samba double damage.
 	if (m_attackType == ATTACK_NORMAL && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_SAMBA))
 	{
@@ -365,12 +361,6 @@ void CAttack::ProcessDamage()
 	if (m_isCritical)
 	{	
 		m_damage += (m_damage * (float)m_attacker->getMod(MOD_CRIT_DMG_INCREASE) / 100);
-	}
-
-	// Try Null damage chance (The target)
-	if (m_victim->objtype == TYPE_PC && rand()%100 < m_victim->getMod(MOD_NULL_PHYSICAL_DAMAGE))
-	{
-		m_damage = 0;
 	}
 
 	// Try skill up.

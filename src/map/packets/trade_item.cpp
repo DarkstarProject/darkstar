@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -37,9 +37,9 @@ CTradeItemPacket::CTradeItemPacket(CItem* PItem, uint8 slot)
 {
 	this->type = 0x25;
 	this->size = 0x06;
-	
-    WBUFL(data,(0x04)-4) = PItem->getReserve();
-	WBUFW(data,(0x08)-4) = PItem->getID();
-	WBUFB(data,(0x0A)-4) = slot;
-	WBUFB(data,(0x0B)-4) = PItem->getSlotID();
+	uint32 amount = PItem->getReserve();
+    WBUFL(data,(0x04)) = amount == 0  ? 0 : amount ;
+	WBUFW(data, (0x08) ) = amount == 0 ? 0 : PItem->getID();
+	WBUFB(data,(0x0A)) = slot;
+	WBUFB(data, (0x0B) ) = amount == 0 ? 0 : PItem->getSlotID();
 }

@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2588,1) and trade:getItemCount() == 1) then -- Trade Bone Charcoal
 		player:tradeComplete();
-		SpawnMob(17031599,180):updateEnmity(player);
+		SpawnMob(17031599,180):updateClaim(player);
 	end
 	
 end;

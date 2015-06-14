@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
 enum INVITETYPE
 {
 	INVITE_PARTY    = 0,
-	INVITE_ALLIANCE = 2
+	INVITE_ALLIANCE = 5
 };
 
 /************************************************************************
@@ -46,7 +46,7 @@ class CPartyInvitePacket : public CBasicPacket
 {
 public:
 
-	CPartyInvitePacket(CCharEntity* PChar, CCharEntity* PInviter, INVITETYPE InviteType);
+	CPartyInvitePacket(uint32 id, uint16 targid, CCharEntity* PInviter, INVITETYPE InviteType);
 };
 
 #endif
