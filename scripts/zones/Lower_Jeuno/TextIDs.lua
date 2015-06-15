@@ -5,14 +5,14 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item>. Come back 
           ITEM_OBTAINED = 6382; -- Obtained: <item>.
            GIL_OBTAINED = 6383; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6385; -- Obtained key item: <keyitem>.
-    NOT_HAVE_ENOUGH_GIL = 6387; -- You do not have enough gil.
+    NOT_HAVE_ENOUGH_GIL = 6389; -- You do not have enough gil.
           HOMEPOINT_SET = 6504; -- Home point set!
- FISHING_MESSAGE_OFFSET = 6880; -- You can't fish here.
-    INVENTORY_INCREASED = 7733; -- Your inventory capacity has increased.
-             ITS_LOCKED = 7538; -- It's locked.
+ FISHING_MESSAGE_OFFSET = 6897; -- You can't fish here.
+    INVENTORY_INCREASED = 7750; -- Your inventory capacity has increased.
+             ITS_LOCKED = 7555; -- It's locked.
 
 -- Other Texts
-ITEM_DELIVERY_DIALOG = 7734; -- Now offering quick and easy delivery of packages to residences everywhere!
+ITEM_DELIVERY_DIALOG = 7751; -- Now offering quick and easy delivery of packages to residences everywhere!
 
           GUIDE_STONE = 7091; -- Up: Upper Jeuno (Selection Dialogfacing San d'Oria) Down: Port Jeuno (Selection Dialogfacing Windurst)
    STREETLAMP_EXAMINE = 7205; -- You examine the lamp. It seems that it must be lit manually.
@@ -40,27 +40,27 @@ PARIKE_PORANKE_DIALOG = 8905; -- All these people running back and forth... Ther
         MERTAIRE_DIALOG = 7376; -- Who are you? Leave me alone!
 
 -- Conquest system
-CONQUEST = 8007; -- You've earned conquest points!
+CONQUEST = 8024; -- You've earned conquest points!
 
 -- Shop Texts
- CREEPSTIX_SHOP_DIALOG = 7082; -- Hey, how ya doin'? We got the best junk in town.
-  STINKNIX_SHOP_DIALOG = 7082; -- Hey, how ya doin'? We got the best junk in town.
-     HASIM_SHOP_DIALOG = 7083; -- Welcome to Waag-Deeg's Magic Shop.
-      TAZA_SHOP_DIALOG = 7083; -- Welcome to Waag-Deeg's Magic Shop.
-      SUSU_SHOP_DIALOG = 7083; -- Welcome to Waag-Deeg's Magic Shop.
-    CHETAK_SHOP_DIALOG = 7084; -- Welcome to Othon's Garments.
-  CHENOKIH_SHOP_DIALOG = 7084; -- Welcome to Othon's Garments.
-   YOSKOLO_SHOP_DIALOG = 7085; -- Welcome to the Merry Minstrel's Meadhouse. What'll it be?
- ADELFLETE_SHOP_DIALOG = 7086; -- Here at Gems by Kshama, we aim to please.
-   MOREFIE_SHOP_DIALOG = 7086; -- Here at Gems by Kshama, we aim to please.
-   MATOAKA_SHOP_DIALOG = 7086; -- Here at Gems by Kshama, we aim to please.
-  RHIMONNE_SHOP_DIALOG = 7089; -- Howdy! Thanks for visiting the Chocobo Shop!
-   PAWKRIX_SHOP_DIALOG = 7586; -- Hey, we're fixin' up some stew. Gobbie food's good food!
-AMALASANDA_SHOP_DIALOG = 7634; -- Welcome to the Tenshodo. You want something, we got it. We got all kinds of special merchandise you won't find anywhere else!
- AKAMAFULA_SHOP_DIALOG = 7635; -- We ain't cheap, but you get what you pay for! Take your time, have a look around, see if there's somethin' you like.
+ CREEPSTIX_SHOP_DIALOG = 7099; -- Hey, how ya doin'? We got the best junk in town.
+  STINKNIX_SHOP_DIALOG = 7099; -- Hey, how ya doin'? We got the best junk in town.
+     HASIM_SHOP_DIALOG = 7100; -- Welcome to Waag-Deeg's Magic Shop.
+      TAZA_SHOP_DIALOG = 7100; -- Welcome to Waag-Deeg's Magic Shop.
+      SUSU_SHOP_DIALOG = 7100; -- Welcome to Waag-Deeg's Magic Shop.
+    CHETAK_SHOP_DIALOG = 7101; -- Welcome to Othon's Garments.
+  CHENOKIH_SHOP_DIALOG = 7101; -- Welcome to Othon's Garments.
+   YOSKOLO_SHOP_DIALOG = 7102; -- Welcome to the Merry Minstrel's Meadhouse. What'll it be?
+ ADELFLETE_SHOP_DIALOG = 7103; -- Here at Gems by Kshama, we aim to please.
+   MOREFIE_SHOP_DIALOG = 7103; -- Here at Gems by Kshama, we aim to please.
+   MATOAKA_SHOP_DIALOG = 7103; -- Here at Gems by Kshama, we aim to please.
+  RHIMONNE_SHOP_DIALOG = 7106; -- Howdy! Thanks for visiting the Chocobo Shop!
+   PAWKRIX_SHOP_DIALOG = 7603; -- Hey, we're fixin' up some stew. Gobbie food's good food!
+AMALASANDA_SHOP_DIALOG = 7651; -- Welcome to the Tenshodo. You want something, we got it. We got all kinds of special merchandise you won't find anywhere else!
+ AKAMAFULA_SHOP_DIALOG = 7652; -- We ain't cheap, but you get what you pay for! Take your time, have a look around, see if there's somethin' you like.
 
 -- conquest Base
 CONQUEST_BASE = 6521; -- Tallying conquest results...
 
 -- Porter Moogle
-RETRIEVE_DIALOG_ID = 10137; -- You retrieve a <item> from the porter moogle's care.
+RETRIEVE_DIALOG_ID = 10154; -- You retrieve a <item> from the porter moogle's care.
