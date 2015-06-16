@@ -10300,7 +10300,6 @@ INSERT INTO `item_armor` VALUES (27827,'academics_gown',99,109,524288,214,0,0,32
 INSERT INTO `item_armor` VALUES (27840,'hachiya_chainmail_+1',99,119,4096,88,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27856,'mekosuchinae_harness',99,119,2462754,375,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27862,'savas_jawshan',99,119,2497,203,0,0,32,0);
-INSERT INTO `item_armor` VALUES (27895,'karieyh_haubert_+1',99,109,10689,342,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27868,'ischemia_chasuble',99,0,1622556,143,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27869,'xaddi_mail',99,119,10689,365,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27870,'qaaxo_harness',99,119,2593826,363,0,0,32,0);
@@ -10318,6 +10317,7 @@ INSERT INTO `item_armor` VALUES (27888,'kyujutsugi',99,119,3072,180,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27889,'aetosaur_jerkin',99,114,2097152,391,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27891,'shabti_cuirass',99,114,193,22,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27893,'haruspex_coat',99,114,4179646,375,0,0,32,0);
+INSERT INTO `item_armor` VALUES (27895,'karieyh_haubert_+1',99,109,10689,342,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27896,'thurandaut_tabard_+1',99,109,2593826,343,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27897,'orvail_robe_+1',99,109,3850780,344,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27907,'gorney_haubert',99,106,10689,354,0,0,32,0);
