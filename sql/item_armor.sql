@@ -10300,7 +10300,7 @@ INSERT INTO `item_armor` VALUES (27827,'academics_gown',99,109,524288,214,0,0,32
 INSERT INTO `item_armor` VALUES (27840,'hachiya_chainmail_+1',99,119,4096,88,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27856,'mekosuchinae_harness',99,119,2462754,375,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27862,'savas_jawshan',99,119,2497,203,0,0,32,0);
-INSERT INTO `item_armor` VALUES (27863,'karieyh_haubert_+1',99,109,10689,342,0,0,32,0);
+INSERT INTO `item_armor` VALUES (27895,'karieyh_haubert_+1',99,109,10689,342,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27868,'ischemia_chasuble',99,0,1622556,143,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27869,'xaddi_mail',99,119,10689,365,0,0,32,0);
 INSERT INTO `item_armor` VALUES (27870,'qaaxo_harness',99,119,2593826,363,0,0,32,0);
