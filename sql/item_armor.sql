@@ -9652,7 +9652,7 @@ INSERT INTO `item_armor` VALUES (20562,'carnwenhan',99,119,512,563,0,0,3,0);
 INSERT INTO `item_armor` VALUES (20563,'twashtar',99,119,262688,465,0,0,3,0);
 INSERT INTO `item_armor` VALUES (20564,'twashtar',99,119,262688,571,0,0,3,0);
 INSERT INTO `item_armor` VALUES (20604,'ternion_dagger+1',99,119,1605625,168,0,0,3,0);
-INSERT INTO `item_armor` VALUES (20605,'odium',99,119,353617,731,0,0,3,0);
+INSERT INTO `item_armor` VALUES (20605,'odium',99,119,333617,731,0,0,3,0);
 INSERT INTO `item_armor` VALUES (20610,'rhadamanthus',99,119,328224,724,0,0,3,0);
 INSERT INTO `item_armor` VALUES (20612,'sangarius+1',99,119,129,287,0,0,3,0);
 INSERT INTO `item_armor` VALUES (20614,'pukulatmuj+1',99,119,2143985,268,0,0,3,0);
@@ -10193,6 +10193,7 @@ INSERT INTO `item_armor` VALUES (27590,'shneddick_ring',99,0,4194303,0,0,0,24576
 INSERT INTO `item_armor` VALUES (27591,'orvail_ring',99,0,4194303,0,0,0,24576,0);
 INSERT INTO `item_armor` VALUES (27592,'vengeful_ring',99,0,4194303,0,0,0,24576,0);
 INSERT INTO `item_armor` VALUES (27595,'argocham_mantle',99,0,4194303,0,0,0,32768,0);
+INSERT INTO `item_armor` VALUES (27634,'thorfinn_shield_+1',99,119,2421,40,2,0,2,0);
 INSERT INTO `item_armor` VALUES (27648,'ares_mask_+1',99,0,8385,182,185,0,16,0);
 INSERT INTO `item_armor` VALUES (27649,'skadis_visor_+1',99,0,2426144,183,0,0,16,0);
 INSERT INTO `item_armor` VALUES (27650,'usukane_somen_+1',99,0,137218,184,0,0,16,0);
@@ -10521,7 +10522,7 @@ INSERT INTO `item_armor` VALUES (28331,'ukuxkaj_boots',99,115,1589788,330,0,0,25
 INSERT INTO `item_armor` VALUES (28337,'whirlpool_greaves',99,119,10689,328,0,0,256,0);
 INSERT INTO `item_armor` VALUES (28338,'mikinaak_greaves',99,110,10689,349,0,0,256,0);
 INSERT INTO `item_armor` VALUES (28339,'manibozho_boots',99,110,5187652,350,0,0,256,0);
-INSERT INTO `item_armor` VALUES (28340,'bokwus_boots',99,110,3179576,351,0,0,256,0);
+INSERT INTO `item_armor` VALUES (28340,'bokwus_boots',99,110,1589788,351,0,0,256,0);
 INSERT INTO `item_armor` VALUES (28341,'agrarian_boots',30,0,4194303,0,0,0,256,0);
 INSERT INTO `item_armor` VALUES (28342,'orvail_souliers',99,100,3850780,344,0,0,256,0);
 INSERT INTO `item_armor` VALUES (28343,'chocaliztli_boots',99,106,10689,328,0,0,256,0);
@@ -10531,6 +10532,7 @@ INSERT INTO `item_armor` VALUES (28354,'voltsurge_torge',99,0,4194303,0,0,0,512,
 INSERT INTO `item_armor` VALUES (28366,'gaudryi_necklace',99,0,4194303,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (28380,'iqabi_necklace',99,0,4194303,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (28381,'imbodla_necklace',99,0,1589788,0,0,0,512,0);
+INSERT INTO `item_armor` VALUES (28388,'tlamiztli_collar',99,0,4194303,0,0,0,6144,0);
 INSERT INTO `item_armor` VALUES (28389,'agitators_collar',99,0,6593,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (28390,'fiend_torque',50,0,4194303,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (28401,'eddy_necklace',99,0,7438776,0,0,0,512,0);
