@@ -204,7 +204,6 @@
     <ClInclude Include="..\..\src\common\showmsg.h" />
     <ClInclude Include="..\..\src\common\socket.h" />
     <ClInclude Include="..\..\src\common\sql.h" />
-    <ClInclude Include="..\..\src\common\sql_connection.h" />
     <ClInclude Include="..\..\src\common\strlib.h" />
     <ClInclude Include="..\..\src\common\taskmgr.h" />
     <ClInclude Include="..\..\src\common\timer.h" />
@@ -444,7 +443,6 @@
     <ClCompile Include="..\..\src\common\showmsg.cpp" />
     <ClCompile Include="..\..\src\common\socket.cpp" />
     <ClCompile Include="..\..\src\common\sql.cpp" />
-    <ClCompile Include="..\..\src\common\sql_connection.cpp" />
     <ClCompile Include="..\..\src\common\strlib.cpp" />
     <ClCompile Include="..\..\src\common\taskmgr.cpp" />
     <ClCompile Include="..\..\src\common\timer.cpp" />
