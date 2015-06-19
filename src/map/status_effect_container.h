@@ -94,6 +94,7 @@ public:
     bool HasPreventActionEffect(); // checks if owner has an effect that prevents actions, like stun, petrify, sleep etc
 
     uint16 GetConfrontationEffect(); // gets confrontation number (bcnm, confrontation, campaign, reive mark)
+    void CopyConfrontationEffect(CBattleEntity* PEntity); // copies confrontation status (pet summoning, etc)
 
 	CStatusEffectContainer(CBattleEntity* PEntity);
 	~CStatusEffectContainer();

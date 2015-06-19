@@ -28,8 +28,6 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	
 	-- Curses, Foiled A_Golem!?
 	if(player:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
 		player:startEvent(0x000E); -- deliver spell

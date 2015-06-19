@@ -53,7 +53,7 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17248873,17248874,17248875};
+    local manuals = {17248866,17248867,17248868};
 
     SetFieldManual(manuals);
 
@@ -77,6 +77,11 @@ function onZoneIn( player, prevZone)
         cs = 0x003e;
     elseif (player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 240 ) then
         cs = 0x003f;
+    elseif(player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1)then
+        cs = 0x0032;
+    -- removed only "cs =" works onzonein and can't take parameters atm
+    -- elseif(player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1)then
+        -- player:startEvent(0x0032,0,0,0,0,0,2); -- talking doll go east
     end
 
     return cs;
@@ -112,6 +117,12 @@ function onEventUpdate( player, csid, option)
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 0x003e or csid == 0x003f) then
         player:setVar("ASA_Status",option);
+    elseif (csid == 0x0032)then
+        if(player:getZPos() > 470) then
+            player:updateEvent(0,0,0,0,0,2);
+        else
+            player:updateEvent(0,0,0,0,0,1);
+        end
     end
 end;
 

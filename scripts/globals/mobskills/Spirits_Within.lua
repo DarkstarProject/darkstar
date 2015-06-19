@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/utils");
 require("scripts/globals/monstertpmoves");
-require("/scripts/zones/Throne_Room/TextIDs");
+require("scripts/zones/Throne_Room/TextIDs");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)

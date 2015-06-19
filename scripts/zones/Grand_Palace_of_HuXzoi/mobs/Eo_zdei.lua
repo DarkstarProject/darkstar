@@ -7,7 +7,7 @@
 -- Animation Sub 3 Ring Form
 -----------------------------------
 
-require("/scripts/zones/Grand_Palace_of_HuXzoi/MobIDs");
+require("scripts/zones/Grand_Palace_of_HuXzoi/MobIDs");
 require("scripts/globals/status");
 
 -----------------------------------

@@ -6,9 +6,9 @@
 -- RDM, THF, PLD, BST, BRD, RNG, NIN, and COR fomors).
 --
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     local job = mob:getMainJob();

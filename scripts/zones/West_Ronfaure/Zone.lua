@@ -56,7 +56,7 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17187570,17187571};
+    local manuals = {17187563,17187564};
 
     SetFieldManual(manuals);
 
@@ -76,6 +76,8 @@ function onZoneIn(player,prevZone)
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 0x0033;
+    elseif(player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1)then	
+        cs = 0x0035; 
     end
 
     return cs;
@@ -109,6 +111,8 @@ function onEventUpdate(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 0x0033) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
+    elseif (csid == 0x0035) then
+        player:updateEvent(0,0,0,0,0,5);
     end
 end;
 

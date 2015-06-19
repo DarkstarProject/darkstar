@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/DarkstarProject/darkstar.svg?branch=master)](https://travis-ci.org/DarkstarProject/darkstar)
 Darkstar Project
 ========
 

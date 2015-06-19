@@ -17,10 +17,7 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_DARK,0) <= 0.5) then
         return 0,0,0;
     else
-        target:delStatusEffect(EFFECT_BLINDNESS);
-        if (not target:hasStatusEffect(EFFECT_BLINDNESS)) then
-            target:addStatusEffect(EFFECT_BLINDNESS, 10, 0, 30);
-        end
+        target:addStatusEffect(EFFECT_BLINDNESS, 10, 0, 30);
         return SUBEFFECT_BLIND, 160, EFFECT_BLINDNESS;
     end
 end;

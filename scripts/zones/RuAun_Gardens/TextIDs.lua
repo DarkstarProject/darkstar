@@ -9,6 +9,7 @@ FULL_INVENTORY_AFTER_TRADE = 6381; -- You cannot obtain the <item>. Try trading 
             ITEMS_OBTAINED = 6391; -- You obtain
    NOTHING_OUT_OF_ORDINARY = 6396; -- There is nothing out of the ordinary here.
     FISHING_MESSAGE_OFFSET = 7036; -- You can't fish here.
+            HOMEPOINT_SET = 11628; -- Home point set!
 
 -- Treasure Coffer/Chest Dialog
 CHEST_UNLOCKED = 7324; -- You unlock the chest!

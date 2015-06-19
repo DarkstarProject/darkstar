@@ -1174,10 +1174,10 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
         // We used to disable Rare/Ex items being added to the container, but that is handled properly else where now
-        if (PItem != nullptr && PItem->getID() == itemID)
+        if (PItem != nullptr && PItem->getID() == itemID && quantity + PItem->getReserve() <= PItem->getQuantity())
         {
-            // If item count is zero.. remove from container..
             PItem->setReserve(quantity);
+            // If item count is zero.. remove from container..
             PChar->UContainer->SetItem(tradeSlotID, quantity > 0 ? PItem : nullptr);
 
             PChar->pushPacket(new CTradeItemPacket(PItem, tradeSlotID));
@@ -4161,6 +4161,7 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 targid = RBUFW(data, (0x08));
     uint8 type = RBUFB(data, (0x0C));
 
+    //checkparam
     if (type == 0x02)
     {
         if (PChar->id == id)
@@ -4179,12 +4180,14 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (PChar->getEquip(SLOT_RANGED) && PChar->getEquip(SLOT_RANGED)->isType(ITEM_WEAPON))
             {
                 int skill = ((CItemWeapon*)PChar->getEquip(SLOT_RANGED))->getSkillType();
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PChar->RACC(skill), PChar->RATT(skill), MSGBASIC_CHECKPARAM_RANGE));
+                int bonusSkill = ((CItemWeapon*)PChar->getEquip(SLOT_RANGED))->getILvlSkill();
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PChar->RACC(skill, bonusSkill), PChar->RATT(skill, bonusSkill), MSGBASIC_CHECKPARAM_RANGE));
             }
             else if (PChar->getEquip(SLOT_AMMO) && PChar->getEquip(SLOT_AMMO)->isType(ITEM_WEAPON))
             {
                 int skill = ((CItemWeapon*)PChar->getEquip(SLOT_AMMO))->getSkillType();
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PChar->RACC(skill), PChar->RATT(skill), MSGBASIC_CHECKPARAM_RANGE));
+                int bonusSkill = ((CItemWeapon*)PChar->getEquip(SLOT_AMMO))->getILvlSkill();
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PChar->RACC(skill, bonusSkill), PChar->RATT(skill, bonusSkill), MSGBASIC_CHECKPARAM_RANGE));
             }
             else
             {

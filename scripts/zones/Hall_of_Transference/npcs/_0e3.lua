@@ -6,7 +6,7 @@
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
 -----------------------------------
 
-require("/scripts/globals/missions");
+require("scripts/globals/missions");
 require("scripts/zones/Hall_of_Transference/TextIDs");
 
 -----------------------------------

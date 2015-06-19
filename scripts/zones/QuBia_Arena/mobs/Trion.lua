@@ -6,7 +6,7 @@
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
-require("/scripts/zones/QuBia_Arena/TextIDs");
+require("scripts/zones/QuBia_Arena/TextIDs");
 
 function onMobInitialize(mob)
     mob:addMod(MOD_REGAIN, 30);

@@ -3,9 +3,9 @@
 -- Deals earth damage to enemies within a fan-shaped area originating from the caster. Additional effect: Weight.
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 

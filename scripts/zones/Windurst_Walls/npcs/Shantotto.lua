@@ -53,7 +53,9 @@ function onTrigger(player,npc)
 	local golemdelivery = player:getVar("foiledagolemdeliverycomplete");
 	local WildcatWindurst = player:getVar("WildcatWindurst");
 
-	if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,6) == false) then
+	if(player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 7) then
+		player:startEvent(0x18d,0,0,0,282);
+	elseif (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,6) == false) then
 		player:startEvent(0x01f2);
 	elseif (player:getQuestStatus(WINDURST,CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") == 3) then
 		player:startEvent(0x0199); -- she mentions that Sunny-Pabonny left for San d'Oria
@@ -103,6 +105,8 @@ function onTrigger(player,npc)
 	
 	elseif (CFA2 == QUEST_COMPLETED) then
 		player:startEvent(0x00B8); 	-- New standard dialog after CFA2
+	elseif (player:hasCompletedMission(WINDURST,THE_JESTER_WHO_D_BE_KING) and player:getVar("ShantottoCS") == 1) then
+		player:startEvent(0x18f,0,0,282);
 	else
 		player:startEvent(0xa4);
 	end
@@ -191,5 +195,11 @@ function onEventFinish(player,csid,option)
 		player:setVar("ClassReunionProgress",4);
 	elseif (csid == 0x01f2) then
 		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",6,true);
+	elseif(csid == 0x018D) then
+		player:addKeyItem(GLOVE_OF_PERPETUAL_TWILIGHT)
+		player:messageSpecial(KEYITEM_OBTAINED,GLOVE_OF_PERPETUAL_TWILIGHT);
+		player:setVar("MissionStatus",8)
+	elseif(csid == 0x18f) then
+		player:setVar("ShantottoCS",0)
 	end
 end;

@@ -4,7 +4,7 @@
 -- Note: Place holder Charybdis
 -----------------------------------
 
-require("/scripts/zones/Sea_Serpent_Grotto/MobIDs");
+require("scripts/zones/Sea_Serpent_Grotto/MobIDs");
 
 -----------------------------------
 -- onMobDeath

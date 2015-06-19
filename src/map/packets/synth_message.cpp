@@ -29,29 +29,42 @@
 
 CSynthMessagePacket::CSynthMessagePacket(CCharEntity * PChar, SYNTH_MESSAGE messageID, uint16 itemID, uint8 quantity)
 {
-	this->type = 0x6F;
-	this->size = 0x12;
+    id(0x6F);
+    length(0x38);
 
-	WBUFB(data,(0x04)) = messageID;
+    ref<uint8>(0x04) = messageID;
 
-	if (itemID != 0)
-	{
-		WBUFB(data,(0x06)) = quantity;
-		WBUFW(data,(0x08)) = itemID;
-	} 
-		
-	if( messageID == SYNTH_FAIL) 
-	{
-		uint8 count = 0;
-		for(uint8 slotID = 1; slotID <= 8; ++slotID) 
-		{
-			uint32 quantity = PChar->CraftContainer->getQuantity(slotID);
-			if (quantity == 0) 
-			{
-                uint16 itemID = PChar->CraftContainer->getItemID(slotID);
-				WBUFW(data,(0x0A+(count*2))) = itemID;
-				count++;
-			}
-		}
-	}
+    if (itemID != 0)
+    {
+        ref<uint8>(0x06) = quantity;
+        ref<uint16>(0x08) = itemID;
+    } 
+
+    for (uint8 i = 0; i < 4; i++)
+    {
+        uint8 skillValue = 0;
+        for (uint8 skillID = 49; skillID < 57; skillID++)
+        {
+            if (skillID == ref<uint8>(0x1A) || skillID == ref<uint8>(0x1B) ||
+                skillID == ref<uint8>(0x1C) || skillID == ref<uint8>(0x1D))
+                continue;
+            if (PChar->CraftContainer->getQuantity(skillID - 40) > skillValue)
+            {
+                skillValue = PChar->CraftContainer->getQuantity(skillID - 40);
+                ref<uint8>(0x1A + i) = skillID;
+            }
+        }
+    }
+
+    ref<uint16>(0x22) = PChar->CraftContainer->getItemID(0); //crystal
+
+    for(uint8 slotID = 1; slotID <= 8; ++slotID) //recipe materials
+    {
+        uint16 itemID = PChar->CraftContainer->getItemID(slotID);
+        ref<uint16>(0x24 + ((slotID - 1) * 2)) = itemID;
+
+        if (PChar->CraftContainer->getQuantity(slotID) == 0)
+            ref<uint16>(0x0A + ((slotID - 1) * 2)) = itemID;
+    }
+
 }

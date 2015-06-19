@@ -27,6 +27,7 @@ function onTrade(player,npc,trade)
 
 local TKC = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
 local C3 = player:getQuestStatus(WINDURST,CAN_CARDIANS_CRY);
+
 	
 	-- The Kind Cardian
 	if(TKC == QUEST_ACCEPTED) then 
@@ -53,10 +54,36 @@ function onTrigger(player,npc)
 local ANC3K = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_3000); -- previous quest in line
 local C3 = player:getQuestStatus(WINDURST,CAN_CARDIANS_CRY);
 local TKC = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
-	
-	-- Check if we are on Windurst Mission 1-2
-	if(player:getCurrentMission(WINDURST) == THE_HEART_OF_THE_MATTER) then
-		MissionStatus = player:getVar("MissionStatus");
+local MissionStatus = player:getVar("MissionStatus");	
+
+	-- Windurst Mission 8-2
+	if(player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING) then
+		if(MissionStatus == 0) then
+			player:startEvent(0x024C);
+		elseif(MissionStatus == 2) then
+			player:startEvent(0x0259);
+		elseif(MissionStatus == 6) then
+			player:startEvent(0x024E);
+		elseif(MissionStatus == 7) then
+			player:startEvent(0x024D);
+		elseif(MissionStatus == 8) then
+			player:startEvent(0x0250);
+		elseif(MissionStatus == 10) then
+			player:startEvent(0x0261);
+		end
+		
+		--Windurst Mission 9-1-2
+	elseif(player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD) then
+		if(MissionStatus == 0) then
+			player:startEvent(0x026B);
+		elseif(MissionStatus == 3) then
+			player:startEvent(0x026C);
+		elseif(MissionStatus == 6) then --need to change satus
+			player:startEvent(0x026D);
+		end
+		
+	-- Windurst Mission 1-2
+	elseif(player:getCurrentMission(WINDURST) == THE_HEART_OF_THE_MATTER) then
 		if(MissionStatus == 0) then
 			player:startEvent(0x0089);
 		elseif(MissionStatus < 4) then
@@ -161,6 +188,29 @@ function onEventFinish(player,csid,option)
 		player:setVar("theKindCardianVar",2);
 		player:addFame(WINDURST,WIN_FAME*30);
 		player:tradeComplete();
-	end
+		
+	-- Windurst 8-2
+	elseif(csid == 0x024C) then
+		player:setVar("MissionStatus",1);
+		player:addKeyItem(MANUSTERY_RING);
+	elseif(csid == 0x0259) then
+		player:setVar("MissionStatus",3);
+	elseif(csid == 0x024E) then
+		player:setVar("MissionStatus",7);
+	elseif(csid == 0x0250) then
+		player:setVar("MissionStatus",9);
+	elseif(csid == 0x0261) then
+		player:setVar("ShantottoCS",1)
+		finishMissionTimeline(player,3,csid,option);
 	
+	--Windurst 9-1
+	elseif(csid == 0x026B) then
+		player:setVar("MissionStatus",1);
+	elseif(csid == 0x026C) then
+		player:setVar("MissionStatus",4);
+	elseif(csid == 0x026D) then
+		player:setVar("MissionStatus",7);
+		player:messageSpecial(KEYITEM_REMOVED,LETTER_FROM_ZONPAZIPPA);
+		player:delKeyItem(LETTER_FROM_ZONPAZIPPA);
+	end
 end;

@@ -3,7 +3,7 @@
 -- MOB:  Tabar Beak	
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");	
 require("scripts/zones/Sauromugue_Champaign/MobIDs");
 	
 -----------------------------------	

@@ -23,6 +23,7 @@ function onTrigger(player, logId, questId, target)
     local targ = GetPlayerByName(target);
     if (targ ~= nil) then
         targ:delQuest( logId, questId );
+        player:PrintToPlayer( string.format( "Deleted Quest for log %u with ID %u from %s", logId, questId, target ) );
     else
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
         player:PrintToPlayer( "@delquest <logID> <questID> <player>" );

@@ -18,58 +18,58 @@ require("scripts/zones/Sacrificial_Chamber/TextIDs");
 function onInitialize(zone)
 end;
 
------------------------------------		
--- onConquestUpdate		
------------------------------------		
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
 
------------------------------------		
--- onZoneIn		
------------------------------------		
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
-function onZoneIn(player,prevZone)		
-	local cs = -1;	
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+function onZoneIn(player,prevZone)
+	local cs = -1;
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
 		player:setPos(316.848,-2.182,340.03,125);
-	end	
-	return cs;	
-end;		
+	end
+	return cs;
+end;
 
------------------------------------		
--- onRegionEnter		
------------------------------------		
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
 
-function onRegionEnter(player,region)	
-end;	
+function onRegionEnter(player,region)
+end;
 
------------------------------------	
--- onEventUpdate	
------------------------------------	
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
-function onEventUpdate(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
-end;	
+function onEventUpdate(player,csid,option)
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
+end;
 
------------------------------------	
--- onEventFinish	
------------------------------------	
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
-function onEventFinish(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
-	
+function onEventFinish(player,csid,option)
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
+
 	if(csid == 0x0007) then
 		player:startEvent(0x0008);
 	elseif(csid == 0x0008) then
-		if(player:getCurrentMission(ZILART,THE_TEMPLE_OF_UGGALEPIH)) then
+		if(player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
 			player:delKeyItem(SACRIFICIAL_CHAMBER_KEY);
 			player:addKeyItem(DARK_FRAGMENT);
 			player:messageSpecial(KEYITEM_OBTAINED,DARK_FRAGMENT);
@@ -77,4 +77,4 @@ function onEventFinish(player,csid,option)
 			player:addMission(ZILART,HEADSTONE_PILGRIMAGE);
 		end
 	end
-end;	
+end;

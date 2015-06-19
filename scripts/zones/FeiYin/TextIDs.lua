@@ -6,6 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6558; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6562; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6564; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7215; -- You can't fish here
+            HOMEPOINT_SET = 10670; -- Home point set!
 
 -- Treasure Coffer/Chest Dialog
 CHEST_UNLOCKED = 7340; -- You unlock the chest!

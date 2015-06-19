@@ -2,9 +2,9 @@
 -- Healing Breath I
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
@@ -28,7 +28,7 @@ function onPetAbility(target, pet, skill, master)
 
    local gear = master:getMod(MOD_WYVERN_BREATH)/256; -- Master gear that enhances breath
 
-	local base = math.floor((45/256)*(1+(pet:getTP()/1024))*(pet:getHP())+42);
+	local base = math.floor((45/256)*(1+(pet:getTP()/1024))*(pet:getMaxHP())+42);
 	if(target:getHP()+base > target:getMaxHP()) then
 		base = target:getMaxHP() - target:getHP(); --cap it
 	end

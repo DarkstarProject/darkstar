@@ -7,9 +7,9 @@
 --  Range: 10' radial
 --  Notes: The knockback is rather severe. Vulpangue uses an enhanced version that inflicts Weight.
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)

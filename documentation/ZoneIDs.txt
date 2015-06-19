@@ -226,7 +226,7 @@ List of known zones
   219 -  DB - 
   220 -  DC - Ship bound for Selbina
   221 -  DD - Ship bound for Mhaura
-  222 -  DE - 
+  222 -  DE - Provenance
   223 -  DF - San d'Oria-Jeuno Airship
   224 -  E0 - Bastok-Jeuno Airship
   225 -  E1 - Windurst-Jeuno Airship

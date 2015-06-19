@@ -668,7 +668,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
     uint32 PacketCount = PChar->getPacketCount();
     uint8 packets = 0;
 
-    while (PacketSize > 1400 - FFXI_HEADER_SIZE - 16) //max size for client to accept
+    while (PacketSize > 1300 - FFXI_HEADER_SIZE - 16) //max size for client to accept
     {
         *buffsize = FFXI_HEADER_SIZE;
         PacketList_t packetList = PChar->getPacketList();
@@ -686,7 +686,6 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
             packetList.pop_front();
             packets++;
         }
-
         //Сжимаем данные без учета заголовка
         //Возвращаемый размер в 8 раз больше реальных данных
         PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, *buffsize - FFXI_HEADER_SIZE, PTempBuff, *buffsize, zlib_compress_table);

@@ -88,6 +88,8 @@ function onZoneIn( player, prevZone)
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 0x001f;
+    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1)then
+        cs = 0x0022; -- no update for castle oztroja (north)
     end
 
     return cs;
@@ -121,6 +123,12 @@ function onEventUpdate( player, csid, option)
     -- printf("RESULT: %u",option);
     if (csid == 0x001f) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
+    elseif (csid == 0x0022)then
+        if(player:getPreviousZone() == 120)then
+            player:updateEvent(0,0,0,0,0,2);
+        elseif(player:getPreviousZone() == 117)then
+            player:updateEvent(0,0,0,0,0,1);
+        end
     end
 end;
 

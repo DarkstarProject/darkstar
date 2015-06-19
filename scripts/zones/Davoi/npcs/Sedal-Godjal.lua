@@ -2,7 +2,7 @@
 -- Area: Davoi
 -- NPC:  Sedal-Godjal
 -- Mini Quest used in : Whence Blows the Wind
--- @pos 185 -2 -116 149
+-- @pos 185 -3 -116 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -36,7 +36,9 @@ function onTrigger(player,npc)
 	local CurrentMission = player:getCurrentMission(WINDURST);
 	local MissionStatus = player:getVar("MissionStatus");
 
-	if(CurrentMission == VAIN and MissionStatus >= 2) then -- wiki says it doesnt matter whether you get cs or kill first
+	if(player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 1) then
+		player:startEvent(0x007A,0,276);
+	elseif(CurrentMission == VAIN and MissionStatus >= 2) then -- wiki says it doesnt matter whether you get cs or kill first
 		if(player:hasKeyItem(STAR_SEEKER) == true) then
 			player:startEvent(0x0076,0,17437,STAR_SEEKER);
 		elseif(player:hasKeyItem(MAGIC_DRAINED_STAR_SEEKER) and MissionStatus == 4) then
@@ -99,6 +101,12 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0078) then
 		player:tradeComplete();
 		player:setVar("MissionStatus",4);
+	elseif(csid == 0x007A) then
+		player:addKeyItem(AURASTERY_RING);
+		player:messageSpecial(KEYITEM_OBTAINED,AURASTERY_RING);
+		if(player:hasKeyItem(OPTISTERY_RING) and player:hasKeyItem(RHINOSTERY_RING)) then
+			player:setVar("MissionStatus",2)
+		end
 	end
 
 end;
