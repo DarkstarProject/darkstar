@@ -13,7 +13,7 @@ require("scripts/globals/status");
 -- onAbilityCheck
 -----------------------------------
 
-function onAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability,action)
     return 0,0;
 end;
 
