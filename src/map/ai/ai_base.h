@@ -30,13 +30,32 @@ This file is part of DarkStar-server source code.
 #include "helpers/pathfind.h"
 #include "helpers/event_handler.h"
 
+enum class AIState
+{
+    None,
+    Dead,
+    Roaming,
+    Attacking,
+    RangedAttack,
+    Casting,
+    JobAbility,
+    Weaponskill,
+    Mobskill,
+    Item,
+    ChangeTarget
+};
+
 typedef std::chrono::steady_clock::time_point tick;
+
+class CBaseEntity;
 
 class CAIBase
 {
 public:
-    CAIBase();
-    virtual ~CAIBase();
+    CAIBase(CBaseEntity*);
+    //no copy construct/assign (only move)
+    CAIBase(const CAIBase&) = delete;
+    CAIBase& operator=(const CAIBase&) = delete;
 
     // stores all events and their associated lua callbacks
     CAIEventHandler EventHandler;
@@ -46,6 +65,24 @@ protected:
     std::unique_ptr<CPathFind> pathfind;
     // current synchronized server time (before AI loop execution)
     tick m_Tick;
+
+    //State handlers
+    virtual void ActionNone() {}
+    virtual void ActionDead() {}
+    virtual void ActionRoaming() {}
+    virtual void ActionAttacking() {}
+    virtual void ActionRangedAttack() {}
+    virtual void ActionCasting() {}
+    virtual void ActionJobAbility() {}
+    virtual void ActionWeaponskill() {}
+    virtual void ActionMobskill() {}
+    virtual void ActionItem() {}
+    virtual void ActionChangeTarget() {}
+
+private:
+    CBaseEntity* PEntity;
+    AIState m_state;
+    void Tick(tick _tick);
 };
 
 #endif

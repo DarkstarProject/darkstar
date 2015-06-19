@@ -22,15 +22,64 @@ This file is part of DarkStar-server source code.
 */
 
 #include "ai_base.h"
-#include "../lua/luautils.h"
-#include "../lua/lua_baseentity.h"
 
-CAIBase::CAIBase() :
+#include "../entities/baseentity.h"
+
+CAIBase::CAIBase(CBaseEntity* _PEntity) :
+    PEntity(_PEntity),
     pathfind(nullptr),
+    m_state(AIState::None),
     m_Tick(std::chrono::steady_clock::now())
 {
 }
 
-CAIBase::~CAIBase()
+void CAIBase::Tick(tick _tick)
 {
+    m_Tick = _tick;
+    CBaseEntity* PreEntity = PEntity;
+    //#TODO: check action queue here (maybe - maybe don't want to interrupt channeling actions) 
+
+    switch (m_state)
+    {
+        case AIState::None:
+            ActionNone();
+            break;
+        case AIState::Dead:
+            ActionDead();
+            break;
+        case AIState::Roaming:
+            ActionRoaming();
+            break;
+        case AIState::Attacking:
+            ActionAttacking();
+            break;
+        case AIState::RangedAttack:
+            ActionRangedAttack();
+            break;
+        case AIState::Casting:
+            ActionCasting();
+            break;
+        case AIState::JobAbility:
+            ActionJobAbility();
+            break;
+        case AIState::Weaponskill:
+            ActionWeaponskill();
+            break;
+        case AIState::Mobskill:
+            ActionMobskill();
+            break;
+        case AIState::Item:
+            ActionItem();
+            break;
+        case AIState::ChangeTarget:
+            ActionChangeTarget();
+            break;
+    }
+
+    //make sure this AI hasn't been replaced by another
+    //#TODO: reactivate this once PEntity has a member for new AI
+    if (PreEntity->updatemask /* && PreEntity->PAI == this */)
+    {
+        PreEntity->UpdateEntity();
+    }
 }

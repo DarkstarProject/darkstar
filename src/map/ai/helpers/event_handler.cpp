@@ -50,8 +50,9 @@ void CAIEventHandler::triggerListener(std::string& eventname, std::function<bool
     {
         if (checkFunction(event))
         {
+            int nargs = sizeof...(args);
             pushArg(std::forward<Types>(args)...);
-            //luautils::callFunc( /*no. of parameters pushed */);
+            luautils::callFunc(nargs);
         }
     }
 }

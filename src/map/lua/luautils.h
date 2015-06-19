@@ -84,6 +84,8 @@ namespace luautils
     template<>
     void pushArg<nullptr_t>(nullptr_t& arg);
 
+    void callFunc(int nargs);
+
     int32 SendEntityVisualPacket(lua_State*);                                    // временное решение для работы гейзеров в Dangruf_Wadi
 
 	int32 GetNPCByID(lua_State*);												// Returns NPC By Id

@@ -45,7 +45,6 @@ struct ai_event_t
     };
 
     ai_event_t() : lua_func(0), param(0) {}
-
 };
 
 class CAIEventHandler

@@ -21,7 +21,6 @@
 ===========================================================================
 */
 
-#include "../../common/lua/lunar.h"
 #include "../../common/showmsg.h"
 #include "../../common/timer.h"
 #include "../../common/utils.h"
@@ -270,6 +269,11 @@ void pushArg<nullptr_t>(nullptr_t& arg)
 *                                                                       *
 *                                                                       *
 ************************************************************************/
+
+void callFunc(int nargs)
+{
+    lua_pcall(LuaHandle, nargs, 0, 0);
+}
 
 int32 SendEntityVisualPacket(lua_State* L)
 {
