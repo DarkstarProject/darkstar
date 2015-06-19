@@ -25,7 +25,7 @@
 #define _LUAUTILS_H
 
 #include "../../common/cbasetypes.h"
-
+#include "../../common/lua/lunar.h"
 #include "../entities/battleentity.h"
 #include "../conquest_system.h"
 
@@ -50,8 +50,6 @@ class CMobSkill;
 class CRegion;
 class CStatusEffect;
 class CItemPuppet;
-
-class CLuaBaseEntity;
 
 namespace luautils
 {
