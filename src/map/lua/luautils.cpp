@@ -32,6 +32,7 @@
 
 #include "luautils.h"
 #include "lua_ability.h"
+#include "lua_action.h"
 #include "lua_baseentity.h"
 #include "lua_battlefield.h"
 #include "lua_region.h"
@@ -45,6 +46,7 @@
 
 #include "../alliance.h"
 #include "../ability.h"
+#include "../action.h"
 #include "../entities/baseentity.h"
 #include "../utils/battleutils.h"
 #include "../entities/charentity.h"
@@ -135,6 +137,7 @@ int32 init()
     lua_register(LuaHandle,"getSpell",luautils::getSpell);
 
     Lunar<CLuaAbility>::Register(LuaHandle);
+    Lunar<CLuaAction>::Register(LuaHandle);
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
     Lunar<CLuaBattlefield>::Register(LuaHandle);
 	Lunar<CLuaInstance>::Register(LuaHandle);
@@ -3294,9 +3297,12 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbilit
 
     CLuaAbility LuaAbility(PAbility);
 	Lunar<CLuaAbility>::push(LuaHandle,&LuaAbility);
+	
+    CLuaAction LuaAction(action);
+    Lunar<CLuaAction>::push(LuaHandle, &LuaAction);
 
-	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
-	{
+    if( lua_pcall(LuaHandle,4,LUA_MULTRET,0) )
+    {
 		ShowError("luautils::onUseAbility: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return 0;
