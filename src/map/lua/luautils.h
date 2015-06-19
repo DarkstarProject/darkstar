@@ -51,6 +51,8 @@ class CRegion;
 class CStatusEffect;
 class CItemPuppet;
 
+class CLuaBaseEntity;
+
 namespace luautils
 {
 	extern struct lua_State* LuaHandle;
@@ -58,8 +60,31 @@ namespace luautils
 	int32 init();
 	int32 free();
     int32 garbageCollect(); // performs a full garbage collecting cycle
+    int register_fp();
+    void unregister_fp(int);
 	int32 print(lua_State*);
     int32 prepFile(int8*, const char*);
+
+    template<class T>
+    void pushArg(T& arg)
+    {
+        if (arg.methods)
+        {
+            Lunar<T>::push(LuaHandle, &arg);
+        }
+    }
+
+    template<>
+    void pushArg<int>(int& arg);
+
+    template<>
+    void pushArg<float>(float& arg);
+
+    template<>
+    void pushArg<bool>(bool& arg);
+
+    template<>
+    void pushArg<nullptr_t>(nullptr_t& arg);
 
     int32 SendEntityVisualPacket(lua_State*);                                    // временное решение для работы гейзеров в Dangruf_Wadi
 
