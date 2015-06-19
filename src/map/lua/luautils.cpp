@@ -46,7 +46,6 @@
 
 #include "../alliance.h"
 #include "../ability.h"
-#include "../action.h"
 #include "../entities/baseentity.h"
 #include "../utils/battleutils.h"
 #include "../entities/charentity.h"

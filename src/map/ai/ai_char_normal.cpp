@@ -2037,6 +2037,17 @@ void CAICharNormal::ActionJobAbilityFinish()
             }
             m_PChar->m_ActionList.push_back(Action);
         }
+        else if (m_PJobAbility->getID() == ABILITY_SCAVENGE)
+        {
+            Action.ActionTarget = m_PBattleSubTarget;
+            Action.reaction = REACTION_NONE;
+            Action.speceffect = SPECEFFECT_RECOIL;
+            Action.animation = m_PJobAbility->getAnimationID();
+
+            int32 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget, GetCurrentJobAbility(), &Action);
+
+            m_PChar->m_ActionList.push_back(Action);
+        }
         else
         {
             Action.ActionTarget = m_PBattleSubTarget;
