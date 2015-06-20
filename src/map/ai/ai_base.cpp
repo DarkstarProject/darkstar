@@ -26,11 +26,18 @@ This file is part of DarkStar-server source code.
 #include "../entities/baseentity.h"
 
 CAIBase::CAIBase(CBaseEntity* _PEntity) :
-    PEntity(_PEntity),
     pathfind(nullptr),
-    m_state(AIState::None),
-    m_Tick(std::chrono::steady_clock::now())
+    m_Tick(std::chrono::steady_clock::now()),
+    PEntity(_PEntity),
+    PActionTarget(nullptr),
+    m_state(AIState::None)
 {
+}
+
+CAIBase::CAIBase(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _pathfind) :
+    CAIBase(_PEntity)
+{
+    pathfind = std::move(_pathfind);
 }
 
 void CAIBase::Tick(tick _tick)
@@ -38,6 +45,11 @@ void CAIBase::Tick(tick _tick)
     m_Tick = _tick;
     CBaseEntity* PreEntity = PEntity;
     //#TODO: check action queue here (maybe - maybe don't want to interrupt channeling actions) 
+
+    if (pathfind)
+    {
+        //#TODO: pathfinding 
+    }
 
     switch (m_state)
     {
@@ -73,6 +85,9 @@ void CAIBase::Tick(tick _tick)
             break;
         case AIState::ChangeTarget:
             ActionChangeTarget();
+            break;
+        case AIState::Trigger:
+            ActionTrigger();
             break;
     }
 

@@ -42,7 +42,8 @@ enum class AIState
     Weaponskill,
     Mobskill,
     Item,
-    ChangeTarget
+    ChangeTarget,
+    Trigger
 };
 
 typedef std::chrono::steady_clock::time_point tick;
@@ -53,6 +54,7 @@ class CAIBase
 {
 public:
     CAIBase(CBaseEntity*);
+    CAIBase(CBaseEntity*, std::unique_ptr<CPathFind>&&);
     //no copy construct/assign (only move)
     CAIBase(const CAIBase&) = delete;
     CAIBase& operator=(const CAIBase&) = delete;
@@ -65,6 +67,12 @@ protected:
     std::unique_ptr<CPathFind> pathfind;
     // current synchronized server time (before AI loop execution)
     tick m_Tick;
+    //entity who holds this AI
+    CBaseEntity* PEntity;
+    CBaseEntity* PActionTarget;
+    AIState m_state;
+    //whether AI is currently able to change state from external means
+    bool m_transitionable;
 
     //State handlers
     virtual void ActionNone() {}
@@ -78,10 +86,9 @@ protected:
     virtual void ActionMobskill() {}
     virtual void ActionItem() {}
     virtual void ActionChangeTarget() {}
+    virtual void ActionTrigger() {}
 
 private:
-    CBaseEntity* PEntity;
-    AIState m_state;
     void Tick(tick _tick);
 };
 
