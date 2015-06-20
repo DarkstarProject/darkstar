@@ -27,7 +27,7 @@ This file is part of DarkStar-server source code.
 #include "../entities/charentity.h"
 
 CAINpc::CAINpc(CBaseEntity* _PEntity) :
-    CAIBase(_PEntity,std::make_unique<CPathFind>(_PEntity))
+    CAIBase(_PEntity,std::unique_ptr<CPathFind>(new CPathFind(_PEntity)))
 {
 }
 
