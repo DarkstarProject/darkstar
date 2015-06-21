@@ -39,6 +39,8 @@ function onTrigger(player,npc)
 	local WildcatSandy = player:getVar("WildcatSandy");
 	local MissionStatus = player:getVar("MissionStatus");
 	
+	
+	
 	-- Lure of the Wildcat San d'Oria
 	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,16) == false) then
 		player:startEvent(0x022e);
@@ -56,6 +58,12 @@ function onTrigger(player,npc)
 			player:addItem(181);
 			player:messageSpecial(ITEM_OBTAINED,181);
 		end
+	elseif(player:getCurrentMission(TOAU) == CONFESSIONS_OF_ROYALTY) then
+	    if(player:hasKeyItem(RAILLEFALS_LETTER))then
+	        player:startEvent(0x0234);
+	    end
+        elseif(player:getCurrentMission(TOAU) == EASTERLY_WINDS and player:getVar("TOAUM6") == 0)then
+            player:startEvent(0x0235);
 	elseif(pNation == SANDORIA) then
 		-- Mission San D'Oria 9-2 The Heir to the Light
 		if(player:hasCompletedMission(SANDORIA,THE_HEIR_TO_THE_LIGHT)) then 
@@ -139,6 +147,7 @@ function onTrigger(player,npc)
 				player:showText(npc,HALVER_OFFSET+279);
 			end
 		end
+
 	else
 		player:showText(npc,HALVER_OFFSET+1092);
 	end	
@@ -205,5 +214,9 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0066) then
 		finishMissionTimeline(player,3,csid,option);
 		player:setVar("Wait1DayM8-1_date", os.date("%j"));
+        elseif(csid == 0x0234 and option == 1) then
+	    player:completeMission(TOAU,CONFESSIONS_OF_ROYALTY);
+            player:addMission(TOAU,EASTERLY_WINDS);
+            player:delKeyItem(RAILLEFALS_LETTER);
 	end	
 end;

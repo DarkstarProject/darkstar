@@ -33,11 +33,28 @@ function onTrigger(player,npc)
 	 		player:startEvent(0x0BBA,0,0,0,0,0,0,0,0,0);
 	 	end
 	elseif(player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("TOAUM3") == 1)then
-		player:startEvent(0x0049,0,0,0,0,0,0,0,0,0);
+            player:startEvent(0x0049,0,0,0,0,0,0,0,0,0);
 	elseif(player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("TOAUM3") == 2 and TOAUM3_DAY ~= realday and needToZone == true) then
-		player:startEvent(0x0BCC,0,0,0,0,0,0,0,0,0);	
+            player:startEvent(0x0BCC,0,0,0,0,0,0,0,0,0);
+        elseif(player:getCurrentMission(TOAU) == KNIGHT_OF_GOLD and player:getVar("TOAUM4") == 0)then
+            player:startEvent(0x0bcd,0,0,0,0,0,0,0,0,0);
+        elseif(player:getCurrentMission(TOAU) == WESTERLY_WINDS and player:getVar("TOAUM7") == 1)then
+            player:startEvent(0x0Bd4,0,0,0,0,0,0,0,0,0);
+        elseif(player:getCurrentMission(TOAU) == UNDERSEA_SCOUTING)then
+            player:startEvent(0x0beb,0,0,0,0,0,0,0,0,0);
+        elseif(player:getCurrentMission(TOAU) == ASTRAL_WAVES)then
+            player:startEvent(0x0bec,0,0,0,0,0,0,0,0,0);
+        elseif(player:getCurrentMission(TOAU) == IMPERIAL_SCHEMES)then
+            player:startEvent(0x0bfe,0,0,0,0,0,0,0,0,0);
+        elseif(player:getCurrentMission(TOAU) == ROYAL_PUPPETEER)then
+            player:startEvent(0x0bff,0,0,0,0,0,0,0,0,0);
+        elseif(player:getCurrentMission(TOAU) == THE_DOLPHIN_CREST)then
+            player:startEvent(0x0c00,0,0,0,0,0,0,0,0,0);
+        elseif(player:getCurrentMission(TOAU) == THE_BLACK_COFFIN)then
+            player:startEvent(0x0c01,0,0,0,0,0,0,0,0,0);
 	else
-		player:messageSpecial(0);--  need to find correct normal chat CS..
+		player:startEvent(0x0bbb,1,0,0,0,0,0,0,1,0) -- go back to work
+		-- player:messageSpecial(0);--  need to find correct normal chat CS..
 	end
 	
 end;
@@ -74,5 +91,25 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0049)then
 		player:setVar("TOAUM3",2);
 		player:setVar("TOAUM3_DAY", os.date("%j")); -- %M for next minute, %j for next day
+        elseif(csid == 0x0bd4)then
+            player:setVar("TOAUM7",0)
+            player:completeMission(TOAU,WESTERLY_WINDS)
+	    player:addMission(TOAU,A_MERCENARY_LIFE)
+	        if(player:getFreeSlotsCount() == 0) then 
+		    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
+                else
+		    player:addItem(2185,1)
+                    player:messageSpecial(ITEM_OBTAINED,2185)
+                    player:addItem(2185,1)
+                end
+        elseif(csid == 0x0bec)then
+            player:completeMission(TOAU,ASTRAL_WAVES);
+            player:addMission(TOAU,IMPERIAL_SCHEMES);
+        elseif(csid == 0x0bfe)then
+            player:completeMission(TOAU,IMPERIAL_SCHEMES);
+            player:addMission(TOAU,ROYAL_PUPPETEER);
+        elseif(csid == 0x0c00)then
+            player:completeMission(TOAU,THE_DOLPHIN_CREST);
+            player:addMission(TOAU,THE_BLACK_COFFIN);
 	end
 end;
