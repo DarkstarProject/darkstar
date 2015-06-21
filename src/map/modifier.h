@@ -352,7 +352,7 @@ enum MODIFIER
     // Ranger
     MOD_RECYCLE                   = 0x131, // Percent chance to recycle (modId = 305)
     MOD_SCAVENGE_EFFECT           = 0x138, // (modId = 312)
-	MOD_SHARPSHOT				  = 0x13A, // Ranged Accuracy added to Sharpshot's base (modId = 314)
+    MOD_SHARPSHOT                 = 0x13A, // Ranged Accuracy added to Sharpshot's base (modId = 314)
     MOD_SNAP_SHOT                 = 0x16D, // Percent reduction to range attack delay (modId = 365)
     MOD_RAPID_SHOT                = 0x167, // Percent chance to proc rapid shot (modId = 359)
     MOD_WIDESCAN                  = 0x154, // (modId = 340)
