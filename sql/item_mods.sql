@@ -9762,6 +9762,7 @@ INSERT INTO `item_mods` VALUES (14099, 1, 12);
 INSERT INTO `item_mods` VALUES (14099, 2, 10);
 INSERT INTO `item_mods` VALUES (14099, 11, 4);
 INSERT INTO `item_mods` VALUES (14099, 68, 5);
+INSERT INTO `item_mods` VALUES (14099, 312, 5);
 INSERT INTO `item_mods` VALUES (14100, 1, 13);
 INSERT INTO `item_mods` VALUES (14100, 2, 20);
 INSERT INTO `item_mods` VALUES (14100, 27, 5);
@@ -10263,6 +10264,7 @@ INSERT INTO `item_mods` VALUES (14223, 121, 3);
 INSERT INTO `item_mods` VALUES (14224, 1, 27);
 INSERT INTO `item_mods` VALUES (14224, 2, 15);
 INSERT INTO `item_mods` VALUES (14224, 13, 5);
+INSERT INTO `item_mods` VALUES (14224, 314, 10); -- Sharpshot gives 10 more Ranged Accuracy
 INSERT INTO `item_mods` VALUES (14225, 1, 30);
 INSERT INTO `item_mods` VALUES (14225, 2, 15);
 INSERT INTO `item_mods` VALUES (14225, 8, 3);
@@ -14322,6 +14324,7 @@ INSERT INTO `item_mods` VALUES (15362, 2, 10);
 INSERT INTO `item_mods` VALUES (15362, 9, 6);
 INSERT INTO `item_mods` VALUES (15362, 11, 6);
 INSERT INTO `item_mods` VALUES (15362, 68, 5);
+INSERT INTO `item_mods` VALUES (15362, 312, 5);
 INSERT INTO `item_mods` VALUES (15363, 1, 18);
 INSERT INTO `item_mods` VALUES (15363, 2, 20);
 INSERT INTO `item_mods` VALUES (15363, 23, 8);
@@ -14666,7 +14669,7 @@ INSERT INTO `item_mods` VALUES (15512, 13, 5);
 INSERT INTO `item_mods` VALUES (15512, 80, 7);
 INSERT INTO `item_mods` VALUES (15512, 105, 7);
 INSERT INTO `item_mods` VALUES (15513, 14, 5);
-INSERT INTO `item_mods` VALUES (15513, 85, 7);
+INSERT INTO `item_mods` VALUES (15513, 84, 7);
 INSERT INTO `item_mods` VALUES (15513, 91, 7);
 INSERT INTO `item_mods` VALUES (15514, 9, 5);
 INSERT INTO `item_mods` VALUES (15514, 81, 7);
@@ -14836,6 +14839,7 @@ INSERT INTO `item_mods` VALUES (15571, 2, 15);
 INSERT INTO `item_mods` VALUES (15571, 11, 5);
 INSERT INTO `item_mods` VALUES (15571, 13, 5);
 INSERT INTO `item_mods` VALUES (15571, 27, -3);
+INSERT INTO `item_mods` VALUES (15571, 314, 10);
 INSERT INTO `item_mods` VALUES (15572, 1, 40);
 INSERT INTO `item_mods` VALUES (15572, 2, 15);
 INSERT INTO `item_mods` VALUES (15572, 8, 5);
@@ -16408,6 +16412,7 @@ INSERT INTO `item_mods` VALUES (16108, 14, 5);
 INSERT INTO `item_mods` VALUES (16108, 27, -4);
 INSERT INTO `item_mods` VALUES (16108, 71, 2);
 INSERT INTO `item_mods` VALUES (16109, 1, 1);
+INSERT INTO `item_mods` VALUES (16109, 517, 1);
 INSERT INTO `item_mods` VALUES (16110, 1, 12);
 INSERT INTO `item_mods` VALUES (16111, 1, 19);
 INSERT INTO `item_mods` VALUES (16111, 2, 10);
@@ -18371,6 +18376,7 @@ INSERT INTO `item_mods` VALUES (17464, 8, 3);
 INSERT INTO `item_mods` VALUES (17464, 13, 3);
 INSERT INTO `item_mods` VALUES (17465, 12, 1);
 INSERT INTO `item_mods` VALUES (17465, 13, 1);
+INSERT INTO `item_mods` VALUES (17466, 313, 1);
 INSERT INTO `item_mods` VALUES (17466, 374, 1);
 INSERT INTO `item_mods` VALUES (17467, 345, 1000);
 INSERT INTO `item_mods` VALUES (17468, 13, 2);
@@ -19517,6 +19523,15 @@ INSERT INTO `item_mods` VALUES (18159, 431, 1); -- Additonal effect: Attack Down
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (18160, 431, 1); -- Additional effect: Stun
 
+-- -------------------------------------------------------
+-- Winds
+-- Hidden effect: removes Sky gods additional effect damage.
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (18161, 431, 1);
+INSERT INTO `item_mods` VALUES (18162, 431, 1);
+INSERT INTO `item_mods` VALUES (18163, 431, 1);
+INSERT INTO `item_mods` VALUES (18164, 431, 1);
+
 INSERT INTO `item_mods` VALUES (18166, 3, 1);
 INSERT INTO `item_mods` VALUES (18166, 10, 1);
 INSERT INTO `item_mods` VALUES (18167, 6, 1);
@@ -19703,8 +19718,8 @@ INSERT INTO `item_mods` VALUES (18311, 356, 137);
 INSERT INTO `item_mods` VALUES (18312, 23, 20);
 INSERT INTO `item_mods` VALUES (18312, 355, 137);
 INSERT INTO `item_mods` VALUES (18312, 431, 1); -- Add. Effect
-INSERT INTO `item_mods` VALUES (18312, 507, 160); -- 16% chance of extra dmg.
-INSERT INTO `item_mods` VALUES (18312, 506, 300); -- Occ. 3x dmg
+INSERT INTO `item_mods` VALUES (18312, 506, 160); -- 16% chance of extra dmg.
+INSERT INTO `item_mods` VALUES (18312, 507, 300); -- Occ. 3x dmg
 
 INSERT INTO `item_mods` VALUES (18317, 356, 153);
 
@@ -20597,6 +20612,10 @@ INSERT INTO `item_mods` VALUES (19278, 27, -5);
 INSERT INTO `item_mods` VALUES (19280, 68, 5);
 INSERT INTO `item_mods` VALUES (19280, 163, -12);
 INSERT INTO `item_mods` VALUES (19281, 68, 2);
+INSERT INTO `item_mods` VALUES (19285, 8,3);
+INSERT INTO `item_mods` VALUES (19285, 11,3);
+INSERT INTO `item_mods` VALUES (19286, 8,4);
+INSERT INTO `item_mods` VALUES (19286, 11,4);
 
 -- -------------------------------------------------------
 -- Gastraphetes (90)
@@ -21177,3 +21196,9 @@ INSERT INTO `item_mods` VALUES (28665, 161, -8); -- Physical damage taken -8%
 -- Leafkin Shield
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (28670, 1, 1); -- DEF:1
+
+-- -------------------------------------------------------
+-- Roundel Earring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (16002, 374, 5);
+INSERT INTO `item_mods` VALUES (16002, 491, 5);

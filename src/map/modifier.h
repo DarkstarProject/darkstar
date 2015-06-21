@@ -222,6 +222,8 @@ enum MODIFIER
     MOD_SKILLCHAINBONUS           = 0xAE,  // Damage bonus applied to skill chain damage.  Modifier from effects/traits (modId = 174)
     MOD_SKILLCHAINDMG             = 0xAF,  // Damage bonus applied to skill chain damage.  Modifier from gear (multiplicative after effect/traits) (modId = 175)
 
+    MOD_MAGIC_DAMAGE             = 0x137, // Magic damage added directly to the spell's base damage (modId = 311)
+
     // FOOD!
     MOD_FOOD_HPP                  = 0xB0,  // (modId = 176)
     MOD_FOOD_HP_CAP               = 0xB1,  // (modId = 177)
@@ -269,6 +271,8 @@ enum MODIFIER
     MOD_SLOWRES                   = 0xFA,  // Enhances "Resist Slow" effect (modId = 250)
     MOD_STUNRES                   = 0xFB,  // Enhances "Resist Stun" effect (modId = 251)
     MOD_CHARMRES                  = 0xFC,  // Enhances "Resist Charm" effect (modId = 252)
+    MOD_AMNESIARES                = 0xFD,  // Enhances "Resist Amnesia" effect (modId = 253)
+    // PLACEHOLDER                   = 0xFE,  // placeholder for future resist effect (modId = 254)
     MOD_DEATHRES                  = 0xFF,  // Used by gear and ATMA that give resistance to instance KO (modId = 255)
 
     MOD_PARALYZE                  = 0x101, // Paralyze -- percent chance to proc (modId = 257)
@@ -347,6 +351,8 @@ enum MODIFIER
 
     // Ranger
     MOD_RECYCLE                   = 0x131, // Percent chance to recycle (modId = 305)
+    MOD_SCAVENGE_EFFECT           = 0x138, // (modId = 312)
+    MOD_SHARPSHOT                 = 0x13A, // Ranged Accuracy added to Sharpshot's base (modId = 314)
     MOD_SNAP_SHOT                 = 0x16D, // Percent reduction to range attack delay (modId = 365)
     MOD_RAPID_SHOT                = 0x167, // Percent chance to proc rapid shot (modId = 359)
     MOD_WIDESCAN                  = 0x154, // (modId = 340)
@@ -542,6 +548,7 @@ enum MODIFIER
     MOD_EAT_RAW_FISH              = 0x19C, // (modId = 412)
     MOD_EAT_RAW_MEAT              = 0x19D, // (modId = 413)
 
+    MOD_ENHANCES_CURSNA           = 0x136, // Used by gear with the "Enhances Cursna" attribute (modId = 310)
     MOD_RETALIATION               = 0x19E, // Increases damage of Retaliation hits (modId = 414)
     MOD_AUGMENTS_THIRD_EYE        = 0x1FC, // Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15% (modId = 508)
 
@@ -554,11 +561,13 @@ enum MODIFIER
     MOD_LOGGING_RESULT            = 0x202, // Improves logging results (modId = 514)
     MOD_MINNING_RESULT            = 0x203, // Improves mining results (modId = 515)
 
-    // MOD_SPARE = 0x138, // (modId = 312)
-    // MOD_SPARE = 0x139, // (modId = 313)
-    // MOD_SPARE = 0x13A, // (modId = 314)
+    MOD_EGGHELM                   = 0x205,
+
+    MOD_SHIELDBLOCKRATE           = 0x206, // Affects shield block rate, percent based (modID = 518)
+    MOD_DIA_DOT                   = 0x139, //Increases the DoT damage of Dia (modId = 313)
+
     // MOD_SPARE = 0x13B, // (modId = 315)
-    // MOD_SPARE = 0x205, // (modId = 517)
+    // MOD_SPARE = 0x207, // (modId = 519)
 
 };
 
