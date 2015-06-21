@@ -351,6 +351,8 @@ enum MODIFIER
 
     // Ranger
     MOD_RECYCLE                   = 0x131, // Percent chance to recycle (modId = 305)
+    MOD_SCAVENGE_EFFECT           = 0x138, // (modId = 312)
+	MOD_SHARPSHOT				  = 0x13A, // Ranged Accuracy added to Sharpshot's base (modId = 314)
     MOD_SNAP_SHOT                 = 0x16D, // Percent reduction to range attack delay (modId = 365)
     MOD_RAPID_SHOT                = 0x167, // Percent chance to proc rapid shot (modId = 359)
     MOD_WIDESCAN                  = 0x154, // (modId = 340)
@@ -359,7 +361,6 @@ enum MODIFIER
     MOD_VELOCITY_SNAPSHOT_BONUS   = 0x1A7, // Increases Snapshot whilst Velocity Shot is up. (modId = 423)
     MOD_VELOCITY_RATT_BONUS       = 0x1A8, // Increases Ranged Attack whilst Velocity Shot is up. (modId = 424)
     MOD_SHADOW_BIND_EXT           = 0x1A9, // Extends the time of shadowbind (modId = 425)
-    MOD_SCAVENGE_EFFECT           = 0x138, // (modId = 312)
 
     // Samurai
     MOD_ZANSHIN                   = 0x132, // Zanshin percent chance (modId = 306)
@@ -565,7 +566,6 @@ enum MODIFIER
     MOD_SHIELDBLOCKRATE           = 0x206, // Affects shield block rate, percent based (modID = 518)
     MOD_DIA_DOT                   = 0x139, //Increases the DoT damage of Dia (modId = 313)
 
-    // MOD_SPARE = 0x13A, // (modId = 314)
     // MOD_SPARE = 0x13B, // (modId = 315)
     // MOD_SPARE = 0x207, // (modId = 519)
 
