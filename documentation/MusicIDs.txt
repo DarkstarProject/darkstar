@@ -68,19 +68,19 @@
   65    Hades                       CS
   66    Arciela                     CS
   67    Mog Resort                  Mog Garden
-  68    ?                           CS
+  68    Worlds Away                 CS
   69    ?                           CS
-  70    ?                           CS
-  71    ?                           CS
-  72    ?                           Kamihr Drifts
-  73    ?                           Outer Ra'Kaznar
-  74    ?                           Balamor's theme song
-  75    Unused ID                   Unused ID
-  76    Unused ID                   Unused ID
+  70    Monstrosity                 Monstrosity
+  71    The Pioneers (Piano)        CS
+  72    The Divine                  Kamihr Drifts
+  73    The Serpentine Labyrinth    Outer Ra'Kaznar
+  74    Clouds Over Ulbuka          Balamor's theme song
+  75    The Price                   Adoulin Final Battle
+  76    Forever Today               Adoulin Ending Song
   77    Unused ID                   Unused ID
-  78    Unused ID                   Unused ID
-  79    Unused ID                   Unused ID
-  80    Unused ID                   Unused ID
+  78    Forever Today (EP. Ver - Instrumental)
+  79    ?                           ? (probably Rhapsodies content from here on)
+  80    ?                           ?
   81    Unused ID                   Unused ID
   82    Unused ID                   Unused ID
   83    Unused ID                   Unused ID

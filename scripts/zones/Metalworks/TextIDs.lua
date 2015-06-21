@@ -15,7 +15,8 @@ FULL_INVENTORY_AFTER_TRADE =  6436; -- You cannot obtain the item <item>. Try tr
                GP_OBTAINED =  6875; -- Obtained <<<Numeric Parameter 0>>> guild points.
         NOT_HAVE_ENOUGH_GP =  6882; -- You do not have enough guild points.
     FISHING_MESSAGE_OFFSET =  7950; -- You can't fish here
-
+            HOMEPOINT_SET = 10942; -- Home point set!
+            
 -- Mission Dialogs
     YOU_ACCEPT_THE_MISSION  =     9; -- You have accepted the mission.
    ORIGINAL_MISSION_OFFSET  =    14; -- You can consult the ission section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed. 

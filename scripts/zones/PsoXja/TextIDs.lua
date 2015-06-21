@@ -13,6 +13,7 @@ NOTHING_OUT_OF_ORDINARY = 6396; -- There is nothing out of the ordinary here.
        CANNOT_OPEN_SIDE = 7225; -- The door cannot be opened from this side.
          TRAP_ACTIVATED = 7227; -- A trap connected to it has been activated!
              TRAP_FAILS = 7228; -- The trap connected to it fails to activate.
+            HOMEPOINT_SET = 7462; -- Home point set!
 
 -- Treasure Coffer/Chest Dialog
 CHEST_UNLOCKED = 7449; -- You unlock the chest!

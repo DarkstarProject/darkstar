@@ -1,23 +1,23 @@
 -- Variable TextID   Description text
 
 -- General Texts
-    ITEM_CANNOT_BE_OBTAINED = 6538; -- Come back after sorting your inventory.
-                               ITEM_OBTAINED = 6541; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
-                                  GIL_OBTAINED = 6542; -- Obtained <<<Numeric Parameter 0>>> gil.
-                       KEYITEM_OBTAINED = 6544; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
-                             HOMEPOINT_SET = 6625; -- Home point set!
-       FISHING_MESSAGE_OFFSET = 7022; -- You can't fish here.
-                       COOKING_SUPPORT = 7121; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
-  GUILD_TERMINATE_CONTRACT = 7135; -- You have terminated your trading contract with the ?Multiple Choice (Parameter 1)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
-               GUILD_NEW_CONTRACT = 7143; -- You have formed a new trading contract with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
-               NO_MORE_GP_ELIGIBLE =  7150; --You are not eligible to receive guild points at this time.
-                                  GP_OBTAINED =  7139; --Obtained <<<Numeric Parameter 0>>> guild points.
-              NOT_HAVE_ENOUGH_GP =  7156; --You do not have enough guild points.
+ ITEM_CANNOT_BE_OBTAINED = 6538; -- Come back after sorting your inventory.
+           ITEM_OBTAINED = 6541; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
+            GIL_OBTAINED = 6542; -- Obtained <<<Numeric Parameter 0>>> gil.
+        KEYITEM_OBTAINED = 6544; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
+           HOMEPOINT_SET = 6625; -- Home point set!
+  FISHING_MESSAGE_OFFSET = 7022; -- You can't fish here.
+         COOKING_SUPPORT = 7121; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
+GUILD_TERMINATE_CONTRACT = 7135; -- You have terminated your trading contract with the ?Multiple Choice (Parameter 1)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
+      GUILD_NEW_CONTRACT = 7143; -- You have formed a new trading contract with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
+     NO_MORE_GP_ELIGIBLE = 7150; -- You are not eligible to receive guild points at this time.
+             GP_OBTAINED = 7139; -- Obtained <<<Numeric Parameter 0>>> guild points.
+      NOT_HAVE_ENOUGH_GP = 7156; -- You do not have enough guild points.
 
-		
+
 -- Other
 NOTHING_OUT_OF_ORDINARY =  6555; -- There is nothing out of the ordinary here.
-             DIABOLOS_UNLOCKED = 11856; -- You are now able to summon Diabolos!
+      DIABOLOS_UNLOCKED = 11856; -- You are now able to summon Diabolos!
 
 -- Conquest System
 CONQUEST = 9180; -- You've earned conquest points!
@@ -26,15 +26,15 @@ CONQUEST = 9180; -- You've earned conquest points!
 YOU_ACCEPT_THE_MISSION = 6710; -- You have accepted the mission.
 
 -- Shop Texts
-                KOPOPO_SHOP_DIALOG = 7809; -- Cooking is as much an art as music and painting are. Can your taste buds appreciate the full value of our works of art?
-   CHOMOJINJAHL_SHOP_DIALOG = 7814; -- The qualities needed to be a good cook are strong arms, a sense of taste, and devotion.
+        KOPOPO_SHOP_DIALOG = 7809; -- Cooking is as much an art as music and painting are. Can your taste buds appreciate the full value of our works of art?
+  CHOMOJINJAHL_SHOP_DIALOG = 7814; -- The qualities needed to be a good cook are strong arms, a sense of taste, and devotion.
 
-         ENSASA_SHOP_DIALOG = 8881; -- Welcome to my little catalyst shop, where you'll find a range of general and unusual goods!
-    UPIHKHACHLA_SHOP_DIALOG = 8882; -- For adventurerrrs on the go, Ensasa's Catalyst Shop is the place for all you need in generrral goods!
-  SHOHRUNTUHRUN_SHOP_DIALOG = 8884; -- Oh, hidey-widey! This is the Federal Magic Reservey-wervey. What can I do for you today-oway?
-   HIKOMUMAKIMU_SHOP_DIALOG = 8885; -- Welcome to the Federal Magic Reserve, the only place in the Federation where high-level magic is allowed to be sold.
-      OREZEBREZ_SHOP_DIALOG = 8886; -- Welcome to Baren-Moren's, makers of the finest headwear. Our slogan is: he smarter the hat, the smarter the head.
-        TAAJIJI_SHOP_DIALOG = 8888; -- May I take your order, please...
+        ENSASA_SHOP_DIALOG = 8881; -- Welcome to my little catalyst shop, where you'll find a range of general and unusual goods!
+   UPIHKHACHLA_SHOP_DIALOG = 8882; -- For adventurerrrs on the go, Ensasa's Catalyst Shop is the place for all you need in generrral goods!
+ SHOHRUNTUHRUN_SHOP_DIALOG = 8884; -- Oh, hidey-widey! This is the Federal Magic Reservey-wervey. What can I do for you today-oway?
+  HIKOMUMAKIMU_SHOP_DIALOG = 8885; -- Welcome to the Federal Magic Reserve, the only place in the Federation where high-level magic is allowed to be sold.
+     OREZEBREZ_SHOP_DIALOG = 8886; -- Welcome to Baren-Moren's, makers of the finest headwear. Our slogan is: he smarter the hat, the smarter the head.
+       TAAJIJI_SHOP_DIALOG = 8888; -- May I take your order, please...
 NESSRUGETOMALL_SHOP_DIALOG = 11427; -- Welcome to the Rarab Tail Hostelry.
 
     MAQUMOLPIH_OPEN_DIALOG = 8889; -- Psst... Check out these things my suppliers in Aragoneu dug up.
@@ -54,15 +54,15 @@ NESSRUGETOMALL_SHOP_DIALOG = 11427; -- Welcome to the Rarab Tail Hostelry.
       JOURILLE_OPEN_DIALOG = 8899; -- Greetings.  Can I interest you in some of these goods from Ronfaure...?
     JOURILLE_CLOSED_DIALOG = 8900; -- Greetings! I am Jourille, your friendly neighborhood traveling merchant. I would most like to sell you something from Ronfaure right now, but I regret that I am waiting on my next shipment.
 
-  PRESTAPIQ_CLOSED_DIALOG = 10622; -- Goodebyongo! Wingdorsht tooo fhar awayz fhrum mai hormtowne! Dropt arll goodhys whylle ahn trripp!
-    PRESTAPIQ_OPEN_DIALOG = 10623; -- Helgohelgo! Me's bhrink goodhys arll ja wayz fhrum hormtowne ovf Morvalporlis!
+   PRESTAPIQ_CLOSED_DIALOG = 10622; -- Goodebyongo! Wingdorsht tooo fhar awayz fhrum mai hormtowne! Dropt arll goodhys whylle ahn trripp!
+     PRESTAPIQ_OPEN_DIALOG = 10623; -- Helgohelgo! Me's bhrink goodhys arll ja wayz fhrum hormtowne ovf Morvalporlis!
 
 -- Harvest Festival
-      TRICK_OR_TREAT = 10129; -- Trick or treat...
-     THANK_YOU_TREAT = 10130; -- And now for your treat...
-      HERE_TAKE_THIS = 10131; -- Here, take this...
-    IF_YOU_WEAR_THIS = 10132; -- If you put this on and walk around, something...unexpected might happen...
-           THANK_YOU = 10130; -- Thank you...
+  TRICK_OR_TREAT = 10129; -- Trick or treat...
+ THANK_YOU_TREAT = 10130; -- And now for your treat...
+  HERE_TAKE_THIS = 10131; -- Here, take this...
+IF_YOU_WEAR_THIS = 10132; -- If you put this on and walk around, something...unexpected might happen...
+       THANK_YOU = 10130; -- Thank you...
 
 -- conquest Base
 CONQUEST_BASE = 0;

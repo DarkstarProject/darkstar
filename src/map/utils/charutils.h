@@ -79,7 +79,7 @@ namespace charutils
     void	EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID);
     void	UnequipItem(CCharEntity* PChar, uint8 equipSlotID, bool update = true); //call with update == false to prevent calls to UpdateHealth() - used for correct handling of stats on armor swaps
     void    RemoveSub(CCharEntity* PChar);
-    bool    EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID);
+    bool    EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID);
     void	CheckUnarmedWeapon(CCharEntity* PChar);
     void    SetStyleLock(CCharEntity* PChar, bool isStyleLocked);
     void    UpdateWeaponStyle(CCharEntity* PChar, uint8 equipSlotID, CItemWeapon* PItem);

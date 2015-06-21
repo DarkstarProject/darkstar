@@ -569,6 +569,9 @@
     <ClInclude Include="..\..\src\map\lua\lua_ability.h">
       <Filter>Header Files\lua</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\lua\lua_action.h">
+      <Filter>Header Files\lua</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\map\recast_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1280,6 +1283,9 @@
       <Filter>Source Files\ai</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\lua\lua_ability.cpp">
+      <Filter>Source Files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\lua\lua_action.cpp">
       <Filter>Source Files\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\recast_container.cpp">
