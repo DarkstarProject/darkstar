@@ -574,6 +574,45 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
 	else
 		p = p + (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
 	end
+	
+    -- add effect resistence
+    if(effect ~= nil and effect > 0) then
+        local effectres = 0;
+        if(effect == EFFECT_SLEEP_I or effect == EFFECT_SLEEP_II or effect == EFFECT_LULLABY) then
+            effectres = MOD_SLEEPRES;
+        elseif(effect == EFFECT_POISON) then
+            effectres = MOD_POISONRES;
+        elseif(effect == EFFECT_PARALYZE) then
+            effectres = MOD_PARALYZERES;
+        elseif(effect == EFFECT_BLINDNESS) then
+            effectres = MOD_BLINDRES
+        elseif(effect == EFFECT_SILENCE) then
+            effectres = MOD_SILENCERES;
+        elseif(effect == EFFECT_PLAGUE or effect == EFFECT_DISEASE) then
+            effectres = MOD_VIRUSRES;
+        elseif(effect == EFFECT_PETRIFICATION) then
+            effectres = MOD_PETRIFYRES;
+        elseif(effect == EFFECT_BIND) then
+            effectres = MOD_BINDRES;
+        elseif(effect == EFFECT_CURSE_I or effect == EFFECT_CURSE_II or effect == EFFECT_BANE) then
+            effectres = MOD_CURSERES;
+        elseif(effect == EFFECT_WEIGHT) then
+            effectres = MOD_GRAVITYRES;
+        elseif(effect == EFFECT_SLOW) then
+            effectres = MOD_SLOWRES;
+        elseif(effect == EFFECT_STUN) then
+            effectres = MOD_STUNRES;
+        elseif(effect == EFFECT_CHARM) then
+            effectres = MOD_CHARMRES;
+        elseif(effect == EFFECT_AMNESIA) then
+            effectres = MOD_AMNESIARES;
+        end
+
+        if(effectres > 0) then
+            p = p - target:getMod(effectres);
+        end
+    end
+	
 	--cap accuracy
     if(p > 95) then
         p = 95;
@@ -585,54 +624,6 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
 
     -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
     half = (1 - p);
-
-	-- add effect resistence
-	if(effect ~= nil and effect > 0) then
-		local effectres = 0;
-		if(effect == EFFECT_SLEEP_I or effect == EFFECT_SLEEP_II or effect == EFFECT_LULLABY) then
-			effectres = MOD_SLEEPRES;
-		elseif(effect == EFFECT_POISON) then
-			effectres = MOD_POISONRES;
-		elseif(effect == EFFECT_PARALYZE) then
-			effectres = MOD_PARALYZERES;
-		elseif(effect == EFFECT_BLINDNESS) then
-			effectres = MOD_BLINDRES
-		elseif(effect == EFFECT_SILENCE) then
-			effectres = MOD_SILENCERES;
-		elseif(effect == EFFECT_PLAGUE or effect == EFFECT_DISEASE) then
-			effectres = MOD_VIRUSRES;
-		elseif(effect == EFFECT_PETRIFICATION) then
-			effectres = MOD_PETRIFYRES;
-		elseif(effect == EFFECT_BIND) then
-			effectres = MOD_BINDRES;
-		elseif(effect == EFFECT_CURSE_I or effect == EFFECT_CURSE_II or effect == EFFECT_BANE) then
-			effectres = MOD_CURSERES;
-		elseif(effect == EFFECT_WEIGHT) then
-			effectres = MOD_GRAVITYRES;
-		elseif(effect == EFFECT_SLOW) then
-			effectres = MOD_SLOWRES;
-		elseif(effect == EFFECT_STUN) then
-			effectres = MOD_STUNRES;
-		elseif(effect == EFFECT_CHARM) then
-			effectres = MOD_CHARMRES;
-		elseif(effect == EFFECT_AMNESIA) then
-			effectres = MOD_AMNESIARES;
-		end
-
-		if(effectres > 0) then
-			local resrate = 1+(target:getMod(effectres)/20);
-			if(resrate > 1.5) then
-				resrate = 1.5;
-			end
-
-			-- printf("Resist percentage: %f", resrate);
-			-- increase resistance based on effect
-			half = half * resrate;
-		end
-	end
-
-    -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
-    --half = (1 - p); defined and possibly modified above
     quart = half^2;
     eighth = half^3;
     sixteenth = half^4;
