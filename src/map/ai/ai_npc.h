@@ -21,8 +21,8 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _HEADER_H
-#define _HEADER_H
+#ifndef _AINPC_H
+#define _AINPC_H
 
 #include "ai_base.h"
 
@@ -31,9 +31,11 @@ class CAINpc : CAIBase
 public:
     CAINpc(CBaseEntity*);
 
+    void InitPathfinding();
     void Trigger(CBaseEntity*);
 
 protected:
+    virtual void ActionNone() override;
     virtual void ActionTrigger() override;
 };
 

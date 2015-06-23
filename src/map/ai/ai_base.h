@@ -21,8 +21,8 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _AI_BASE
-#define _AI_BASE
+#ifndef _AIBASE_H
+#define _AIBASE_H
 
 #include <memory>
 #include <chrono>
@@ -47,6 +47,7 @@ enum class AIState
 };
 
 typedef std::chrono::steady_clock::time_point tick;
+typedef std::chrono::steady_clock::duration timer;
 
 class CBaseEntity;
 

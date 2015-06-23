@@ -21,43 +21,30 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#include "ai_npc.h"
+#ifndef _AIBATTLE_H
+#define _AIBATTLE_H
 
-#include "../lua/luautils.h"
-#include "../entities/charentity.h"
+#include "ai_base.h"
+#include "helpers/targetfind.h"
+#include "states/magic_state.h"
 
-CAINpc::CAINpc(CBaseEntity* _PEntity) :
-    CAIBase(_PEntity)
+class CBattleEntity;
+class CSpell;
+
+class CAIBattle : CAIBase
 {
-}
+public:
+    CAIBattle(CBattleEntity*);
 
-void CAINpc::InitPathfinding()
-{
-    pathfind = std::unique_ptr<CPathFind>(new CPathFind(PEntity));
-}
+    virtual void Cast(CBattleEntity*, CSpell*);
 
-void CAINpc::Trigger(CBaseEntity* PTarget)
-{
-    if (m_transitionable)
-    {
-        if (pathfind)
-        {
-            pathfind->Clear(); //#TODO: pause/resume after?
-        }
-        PActionTarget = PTarget;
-        m_state = AIState::Trigger;
-    }
-}
+protected:
+    virtual void ActionAttacking() override;
+    virtual void ActionCasting() override;
 
-void CAINpc::ActionNone()
-{
-    if (pathfind)
-    {
-        pathfind->FollowPath();
-    }
-}
+    CTargetFind targetFind;
+    CMagicState magicState;
+    timer m_AttackTime;
+};
 
-void CAINpc::ActionTrigger()
-{
-    luautils::OnTrigger(dynamic_cast<CCharEntity*>(PActionTarget), PEntity);
-}
+#endif
