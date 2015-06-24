@@ -25,15 +25,10 @@
 #ifndef _CSTATE_H
 #define _CSTATE_H
 
-#include "../../../common/utils.h"
-#include "../../packets/message_basic.h"
-#include "../../packets/action.h"
+#include "../ai_base.h"
 
 class CBattleEntity;
 class CTargetFind;
-
-// delay for casting next spell
-#define COOL_DOWN_TIME 3000
 
 enum STATESTATUS {
   STATESTATUS_NONE,
@@ -46,52 +41,26 @@ enum STATESTATUS {
 
 class CState
 {
-
   public:
-    CState(CBattleEntity* PEntity, CTargetFind* PTargetFind);
-    ~CState();
+    CState(CBattleEntity* PEntity, CTargetFind* PTargetFind) :
+        m_PEntity(PEntity), 
+        m_PTarget(nullptr),
+        m_PTargetFind(PTargetFind) {}
 
-    virtual STATESTATUS Update(uint32 tick);
-    virtual void Clear();
+    //state logic done per tick
+    virtual STATESTATUS Update(time_point tick) = 0;
 
-    bool CheckValidTarget(CBattleEntity* PTarget);
+    //reset the state (probably not needed)
+    virtual void Clear() = 0;
 
-    bool IsOnCoolDown(uint32 tick);
-
-    void SetCoolDown(uint32 coolDown);
-    void SetLastCoolTime(uint32 tick);
-    void SetHiPCLvl(CBattleEntity* PTarget, uint8 lvl);
-    void ClearTarget();
-
-    CBattleEntity* GetTarget();
-
-    // has moved from start position
-    bool HasMoved();
+    //cancels the current action (if possible) - returns false if not possible
+    virtual bool Cancel() = 0;
 
   protected:
-    // push message for everyone to see
-    void PushMessage(MSGBASIC_ID msgID, int32 param = 0, int32 value = 0);
-
-    // push message for only target to see
-    // outputs nothing for any other than char
-    void PushError(MSGBASIC_ID msgID, int32 param = 0, int32 value = 0, CBattleEntity* PTarget = nullptr);
-
     CBattleEntity* m_PEntity;
     CBattleEntity* m_PTarget;
 
     CTargetFind* m_PTargetFind;
-    uint8 m_flags;
-
-    // last cool down time
-    uint32 m_lastCoolTime;
-
-    // amount of time to wait on cool down
-    uint32 m_coolTime;
-
-    position_t m_startPosition;
-
-  private:
-
 };
 
 #endif

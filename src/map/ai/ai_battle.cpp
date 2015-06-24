@@ -25,32 +25,31 @@ This file is part of DarkStar-server source code.
 
 #include "../entities/battleentity.h"
 #include "../spell.h"
+#include "states/magic_state.h"
 
 CAIBattle::CAIBattle(CBattleEntity* _PEntity) :
     CAIBase(_PEntity, std::unique_ptr<CPathFind>(new CPathFind(_PEntity))),
     targetFind(_PEntity),
-    magicState(_PEntity, &targetFind),
+    actionStateContainer(nullptr),
     m_AttackTime(0)
 {
 }
 
 void CAIBattle::Cast(CBattleEntity* PEntity, CSpell* PSpell)
 {
-    if (m_transitionable)
+    if (CanChangeState())
     {
-        if (magicState.IsOnCoolDown(m_Tick))
+        ChangeState(AIState::Casting);
+        actionStateContainer = std::unique_ptr<CState>(new CMagicState(PEntity, &targetFind));
+        /*if (magicState.IsOnCoolDown(m_Tick))
         {
             //MagicStartError();
             return;
-        }
+        }*/
 
-        STATESTATUS status = magicState.CastSpell(PSpell, targetFind.getValidTarget(PEntity, PSpell->getValidTarget()));
+        STATESTATUS status = dynamic_cast<CMagicState*>(actionStateContainer.get())->CastSpell(PSpell, targetFind.getValidTarget(PEntity, PSpell->getValidTarget()));
 
-        if (status == STATESTATUS_START)
-        {
-            m_state = AIState::Casting;
-        }
-        else
+        if (status != STATESTATUS_START)
         {
             //MagicStartError();
         }
@@ -63,7 +62,7 @@ void CAIBattle::ActionAttacking()
 
 void CAIBattle::ActionCasting()
 {
-    STATESTATUS status = magicState.Update(m_Tick);
+    STATESTATUS status = actionStateContainer->Update(m_Tick);
 
     if (status == STATESTATUS_INTERRUPT)
     {
@@ -77,4 +76,16 @@ void CAIBattle::ActionCasting()
     {
         //magicState will handle spell finishing
     }
+}
+
+bool CAIBattle::CanChangeState()
+{
+    return CAIBase::CanChangeState() && (!actionStateContainer 
+        || (actionStateContainer && actionStateContainer->Cancel()));
+}
+
+void CAIBattle::ChangeState(AIState state)
+{
+    actionStateContainer.reset();
+    CAIBase::ChangeState(state);
 }

@@ -40,7 +40,17 @@ CAIBase::CAIBase(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _pathfind) 
     pathfind = std::move(_pathfind);
 }
 
-void CAIBase::Tick(tick _tick)
+bool CAIBase::CanChangeState()
+{
+    return m_transitionable;
+}
+
+void CAIBase::ChangeState(AIState state)
+{
+    m_state = state;
+}
+
+void CAIBase::Tick(time_point _tick)
 {
     m_Tick = _tick;
     CBaseEntity* PreEntity = PEntity;

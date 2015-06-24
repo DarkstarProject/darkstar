@@ -46,8 +46,8 @@ enum class AIState
     Trigger
 };
 
-typedef std::chrono::steady_clock::time_point tick;
-typedef std::chrono::steady_clock::duration timer;
+typedef std::chrono::steady_clock::time_point time_point;
+typedef std::chrono::steady_clock::duration duration;
 
 class CBaseEntity;
 
@@ -56,6 +56,7 @@ class CAIBase
 public:
     CAIBase(CBaseEntity*);
     CAIBase(CBaseEntity*, std::unique_ptr<CPathFind>&&);
+
     //no copy construct/assign (only move)
     CAIBase(const CAIBase&) = delete;
     CAIBase& operator=(const CAIBase&) = delete;
@@ -67,12 +68,13 @@ protected:
     // pathfinder, not guaranteed to be implemented
     std::unique_ptr<CPathFind> pathfind;
     // current synchronized server time (before AI loop execution)
-    tick m_Tick;
+    time_point m_Tick;
     //entity who holds this AI
     CBaseEntity* PEntity;
     CBaseEntity* PActionTarget;
-    AIState m_state;
     //whether AI is currently able to change state from external means
+    virtual bool CanChangeState();
+    virtual void ChangeState(AIState);
     bool m_transitionable;
 
     //State handlers
@@ -90,7 +92,8 @@ protected:
     virtual void ActionTrigger() {}
 
 private:
-    void Tick(tick _tick);
+    void Tick(time_point _tick);
+    AIState m_state;
 };
 
 #endif

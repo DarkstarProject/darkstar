@@ -38,14 +38,14 @@ void CAINpc::InitPathfinding()
 
 void CAINpc::Trigger(CBaseEntity* PTarget)
 {
-    if (m_transitionable)
+    if (CanChangeState())
     {
+        ChangeState(AIState::Trigger);
         if (pathfind)
         {
             pathfind->Clear(); //#TODO: pause/resume after?
         }
         PActionTarget = PTarget;
-        m_state = AIState::Trigger;
     }
 }
 

@@ -26,7 +26,7 @@ This file is part of DarkStar-server source code.
 
 #include "ai_base.h"
 #include "helpers/targetfind.h"
-#include "states/magic_state.h"
+#include "states/state.h"
 
 class CBattleEntity;
 class CSpell;
@@ -42,9 +42,12 @@ protected:
     virtual void ActionAttacking() override;
     virtual void ActionCasting() override;
 
+    virtual bool CanChangeState() override;
+    virtual void ChangeState(AIState) override;
+
     CTargetFind targetFind;
-    CMagicState magicState;
-    timer m_AttackTime;
+    std::unique_ptr<CState> actionStateContainer;
+    duration m_AttackTime;
 };
 
 #endif
