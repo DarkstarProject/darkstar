@@ -22,5 +22,6 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT_SHARPSHOT,1,0,60);
+    local power = 40 + player:getMod(MOD_SHARPSHOT);
+    player:addStatusEffect(EFFECT_SHARPSHOT,power,0,60);
 end;
