@@ -25,29 +25,11 @@ This file is part of DarkStar-server source code.
 #define _AIBASE_H
 
 #include <memory>
-#include <chrono>
 
+#include "ai_common.h"
+#include "helpers/action_queue.h"
 #include "helpers/pathfind.h"
 #include "helpers/event_handler.h"
-
-enum class AIState
-{
-    None,
-    Dead,
-    Roaming,
-    Attacking,
-    RangedAttack,
-    Casting,
-    JobAbility,
-    Weaponskill,
-    Mobskill,
-    Item,
-    ChangeTarget,
-    Trigger
-};
-
-typedef std::chrono::steady_clock::time_point time_point;
-typedef std::chrono::steady_clock::duration duration;
 
 class CBaseEntity;
 
@@ -94,6 +76,7 @@ protected:
 private:
     void Tick(time_point _tick);
     AIState m_state;
+    CAIActionQueue ActionQueue;
 };
 
 #endif

@@ -80,8 +80,8 @@ void CAIBattle::ActionCasting()
 
 bool CAIBattle::CanChangeState()
 {
-    return CAIBase::CanChangeState() && (!actionStateContainer 
-        || (actionStateContainer && actionStateContainer->Cancel()));
+    return CAIBase::CanChangeState() && (!actionStateContainer ||
+        (actionStateContainer && actionStateContainer->Cancel()));
 }
 
 void CAIBattle::ChangeState(AIState state)

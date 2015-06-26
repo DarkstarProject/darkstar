@@ -217,12 +217,14 @@
     <ClInclude Include="..\..\src\map\ai\ai_char_gm.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_normal.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_prisoner.h" />
+    <ClInclude Include="..\..\src\map\ai\ai_common.h" />
     <ClInclude Include="..\..\src\map\ai\ai_general.h" />
     <ClInclude Include="..\..\src\map\ai\ai_mob_dummy.h" />
     <ClInclude Include="..\..\src\map\ai\ai_npc.h" />
     <ClInclude Include="..\..\src\map\ai\ai_npc_dummy.h" />
     <ClInclude Include="..\..\src\map\ai\ai_pet_dummy.h" />
     <ClInclude Include="..\..\src\map\ai\ai_ultimate_summon.h" />
+    <ClInclude Include="..\..\src\map\ai\helpers\action_queue.h" />
     <ClInclude Include="..\..\src\map\ai\helpers\event_handler.h" />
     <ClInclude Include="..\..\src\map\ai\helpers\pathfind.h" />
     <ClInclude Include="..\..\src\map\ai\helpers\targetfind.h" />
@@ -462,6 +464,7 @@
     <ClCompile Include="..\..\src\map\ai\ai_npc_dummy.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_pet_dummy.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_ultimate_summon.cpp" />
+    <ClCompile Include="..\..\src\map\ai\helpers\action_queue.cpp" />
     <ClCompile Include="..\..\src\map\ai\helpers\event_handler.cpp" />
     <ClCompile Include="..\..\src\map\ai\helpers\pathfind.cpp" />
     <ClCompile Include="..\..\src\map\ai\helpers\targetfind.cpp" />

@@ -22,10 +22,10 @@ This file is part of DarkStar-server source code.
 */
 
 #ifndef _EVENT_HANDLER
+#define _EVENT_HANDLER
 
 #include <map>
 #include <vector>
-#include <string>
 #include <functional>
 
 #include "../../../common/cbasetypes.h"

@@ -42,7 +42,7 @@ enum STATESTATUS {
 class CState
 {
   public:
-    CState(CBattleEntity* PEntity, CTargetFind* PTargetFind) :
+    CState(CBattleEntity& PEntity, CTargetFind* PTargetFind) :
         m_PEntity(PEntity), 
         m_PTarget(nullptr),
         m_PTargetFind(PTargetFind) {}
@@ -57,7 +57,7 @@ class CState
     virtual bool Cancel() = 0;
 
   protected:
-    CBattleEntity* m_PEntity;
+    CBattleEntity& m_PEntity;
     CBattleEntity* m_PTarget;
 
     CTargetFind* m_PTargetFind;

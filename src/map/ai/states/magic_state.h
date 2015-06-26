@@ -37,7 +37,7 @@ enum MAGICFLAGS {
 class CMagicState : public CState
 {
 public:
-    CMagicState(CBattleEntity* PEntity, CTargetFind* PTargetFind);
+    CMagicState(CBattleEntity& PEntity, CTargetFind* PTargetFind);
     virtual STATESTATUS Update(time_point tick) override;
     virtual void Clear() override;
     virtual bool Cancel() override;

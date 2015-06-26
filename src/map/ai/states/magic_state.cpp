@@ -25,7 +25,7 @@
 
 #include "../../spell.h"
 
-CMagicState::CMagicState(CBattleEntity* PEntity, CTargetFind* PTargetFind) :
+CMagicState::CMagicState(CBattleEntity& PEntity, CTargetFind* PTargetFind) :
     CState(PEntity, PTargetFind),
     m_PSpell(nullptr)
 {

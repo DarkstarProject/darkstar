@@ -30,7 +30,8 @@ CAIBase::CAIBase(CBaseEntity* _PEntity) :
     m_Tick(std::chrono::steady_clock::now()),
     PEntity(_PEntity),
     PActionTarget(nullptr),
-    m_state(AIState::None)
+    m_state(AIState::None),
+    ActionQueue(this)
 {
 }
 
