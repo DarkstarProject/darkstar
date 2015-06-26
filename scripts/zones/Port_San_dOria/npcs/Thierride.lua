@@ -78,12 +78,12 @@ function onEventFinish(player,csid,option)
 		end;
 	elseif (csid == 0x0210) then
 		player:tradeComplete();
+		player:setVar("aTasteForMeat", 1);
 		player:addFame(SANDORIA, SAN_FAME*30);
 		player:addGil(GIL_RATE*150);
 		player:messageSpecial(GIL_OBTAINED, GIL_RATE*150);
 		player:completeQuest(SANDORIA, A_TASTE_FOR_MEAT);
 		player:addTitle(RABBITER);
-		player:setVar("aTasteForMeat", 1);
 	end;
 	
 end;

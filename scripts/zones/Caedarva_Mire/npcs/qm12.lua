@@ -53,8 +53,8 @@ function onEventFinish(player,csid,option)
 	    player:setVar("notmeanttobeCS",2);
 	elseif(csid == 0x0011) then
 	    if(GetMobAction(17101149) == 0 and GetMobAction(17101148) == 0) then
-	        SpawnMob(17101149):updateEnmity(player);
-		    SpawnMob(17101148):updateEnmity(player);
+	        SpawnMob(17101149):updateClaim(player);
+		    SpawnMob(17101148):updateClaim(player);
 		end
 	elseif(csid == 0x0012) then
 		player:setVar("notmeanttobeMoshdahnKilled",0);

@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2586,1) and trade:getItemCount() == 1) then -- Trade Rock Juice
 		player:tradeComplete();
-		SpawnMob(17031600,180):updateEnmity(player);
+		SpawnMob(17031600,180):updateClaim(player);
 	end
 	
 end;

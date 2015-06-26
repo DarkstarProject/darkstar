@@ -8,18 +8,18 @@ FULL_INVENTORY_AFTER_TRADE = 6554; -- You cannot obtain the #. Try trading again
           KEYITEM_OBTAINED = 6558; -- Obtained key item: <keyitem>.
             ITEMS_OBTAINED = 6564; -- You obtain
            BEASTMEN_BANNER = 81; -- There is a beastmen's banner.
-    FISHING_MESSAGE_OFFSET = 7203; -- You can't fish here.
+    FISHING_MESSAGE_OFFSET = 7209; -- You can't fish here.
 
 -- Conquest
-CONQUEST = 7450; -- You've earned conquest points!
+CONQUEST = 7456; -- You've earned conquest points!
 
 -- Other dialog
 NOTHING_OUT_OF_ORDINARY = 6569; -- There is nothing out of the ordinary here.
 
 -- Dynamis dialogs
-       YOU_CANNOT_ENTER_DYNAMIS = 7837; -- You cannot enter Dynamis
- PLAYERS_HAVE_NOT_REACHED_LEVEL = 7839; -- Players who have not reached levelare prohibited from entering Dynamis.
-UNUSUAL_ARRANGEMENT_OF_BRANCHES = 7849; -- There is an unusual arrangement of branches here.
+       YOU_CANNOT_ENTER_DYNAMIS = 7843; -- You cannot enter Dynamis
+ PLAYERS_HAVE_NOT_REACHED_LEVEL = 7845; -- Players who have not reached levelare prohibited from entering Dynamis.
+UNUSUAL_ARRANGEMENT_OF_BRANCHES = 7855; -- There is an unusual arrangement of branches here.
 
 -- conquest Base
 CONQUEST_BASE = 0;

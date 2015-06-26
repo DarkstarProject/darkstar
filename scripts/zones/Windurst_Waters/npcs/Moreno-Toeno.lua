@@ -1,8 +1,8 @@
 -----------------------------------
 --	Area: Windurst Waters
---	NPC:  Morno-Toeno
+--	NPC:  Moreno-Toeno
 --	Starts and Finishes Quest: Teacher's Pet
---  @pos 169 -2 159 238
+--  @pos  
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -33,7 +33,15 @@ function onTrigger(player,npc)
 	
 	teacherstatus = player:getQuestStatus(WINDURST,TEACHER_S_PET);
 	
-	if(player:getCurrentMission(WINDURST) == A_TESTING_TIME) then
+	if(player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") == 0) then
+		player:startEvent(0x02F0,0,STAR_SEEKER);
+	elseif(player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") >= 1) then
+		if(player:getVar("MissionStatus") < 4) then
+			player:startEvent(0x02F1);
+		elseif(player:getVar("MissionStatus") == 4) then
+			player:startEvent(0x02F6);
+		end
+	elseif(player:getCurrentMission(WINDURST) == A_TESTING_TIME) then
 		MissionStatus = player:getVar("MissionStatus");
 		alreadyCompleted = player:hasCompletedMission(WINDURST,A_TESTING_TIME);
 		if(MissionStatus == 0) then
@@ -176,6 +184,13 @@ function onEventFinish(player,csid,option)
 		player:setVar("testingTime_start_day",0);
 		player:setVar("testingTime_start_hour",0);
 		player:setVar("testingTime_start_time",0);
+	elseif(csid == 0x02F0) then
+		player:setVar("MissionStatus",1);
+		player:addKeyItem(STAR_SEEKER);
+		player:messageSpecial(KEYITEM_OBTAINED,STAR_SEEKER);
+		player:addTitle(FUGITIVE_MINISTER_BOUNTY_HUNTER);
+		
+	elseif(csid == 0x02F6) then
+		finishMissionTimeline(player,3,csid,option);
 	end
-	
 end;

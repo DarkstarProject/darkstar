@@ -88,6 +88,7 @@ CMobEntity::CMobEntity()
     m_bcnmID = 0;
 
     m_maxRoamDistance = 10.0f;
+    m_roamDistance = 5.0f;
     m_disableScent = false;
 
     setMobMod(MOBMOD_SIGHT_RANGE, MOB_SIGHT_RANGE);

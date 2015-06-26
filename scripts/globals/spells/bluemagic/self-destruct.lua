@@ -13,7 +13,7 @@
 -- Combos: Auto Refresh
 -----------------------------------------
 
-require("/scripts/globals/settings");
+require("scripts/globals/settings");
 require("scripts/globals/magic");
 require("scripts/globals/status");
 require("scripts/globals/bluemagic");

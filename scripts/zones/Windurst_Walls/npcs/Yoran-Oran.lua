@@ -75,8 +75,12 @@ function onTrigger(player,npc)
 	local blastFromPast = player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST);
 	local EMORIES_OF_A_MAIDEN = player:getVar("MEMORIES_OF_A_MAIDEN_Status");
 	local LouverancePath = player:getVar("COP_Louverance_s_Path");
+	local MissionStatus = player:getVar("MissionStatus");	
 	
-	if(player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 3)then
+	--optional windy 9-1
+	if(player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and MissionStatus == 4)then       
+		player:startEvent(0x01B7);
+	elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 3)then
 		player:startEvent(0x01D5);
 	elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 6)then
 		player:startEvent(0x01D6,0,587,0,586);
@@ -143,5 +147,7 @@ function onEventFinish(player,csid,option)
 	    player:setVar("COP_Louverance_s_Path",4);
 	elseif(csid == 0x01D9)then	
 	    player:setVar("COP_Ulmia_s_Path",5);
+	elseif(csid == 0x01B7)then
+	    player:setVar("MissionStatus",5)
 	end
 end;

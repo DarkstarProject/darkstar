@@ -895,18 +895,18 @@ function tavnzanianRing(player)
 	player:setPos(0,-23.5,34,64,26); -- {R}
 end;
 
-function toexitprommea(player)
+function toExitPromMea(player)
 	player:setPos(179 ,35 ,256 ,63 ,117);
 end;
 
-function toexitpromholla(player)
+function toExitPromHolla(player)
 	player:setPos(337 ,19 ,-60 ,125 ,102);
 end;
 
-function toexitpromdem(player)
+function toExitPromDem(player)
 	player:setPos(136 ,19 ,220 ,130 ,108);
 end;
 
-function tolufaise(player)
+function toLufaise(player)
 	player:setPos(438 ,0 ,-18 ,11 ,24);
 end;

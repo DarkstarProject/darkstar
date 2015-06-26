@@ -323,10 +323,19 @@ void LoadNPCList()
                 memcpy(&PNpc->look, Sql_GetData(SqlHandle, 14), 20);
 
                 GetZone(ZoneID)->InsertNPC(PNpc);
-                luautils::OnNpcSpawn(PNpc);
             }
         }
     }
+
+    // handle npc spawn functions after they're all done loading
+    ForEachZone([](CZone* PZone)
+    {
+        PZone->ForEachNpc([](CNpcEntity* PNpc)
+        {
+            luautils::OnNpcSpawn(PNpc);
+        });
+    });
+
 }
 
 /************************************************************************
@@ -350,7 +359,7 @@ void LoadMOBList()
             Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
             mob_pools.familyid, name_prefix, flags, animationsub, \
             (mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-            allegiance, namevis, aggro, roamflag \
+            allegiance, namevis, aggro, roamflag, mob_groups.roam_distance \
             FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
             INNER JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
             INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
@@ -497,19 +506,26 @@ void LoadMOBList()
                 PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 62);
 
                 PMob->m_roamFlags = (uint16)Sql_GetUIntData(SqlHandle, 63);
+                PMob->m_roamDistance = Sql_GetFloatData(SqlHandle, 64);
 
                 // must be here first to define mobmods
                 mobutils::InitializeMob(PMob, GetZone(ZoneID));
 
                 GetZone(ZoneID)->InsertMOB(PMob);
-
-                luautils::OnMobInitialize(PMob);
-
-                PMob->saveModifiers();
-                PMob->saveMobModifiers();
             }
         }
     }
+
+    // handle mob initialise functions after they're all loaded
+    ForEachZone([](CZone* PZone)
+    {
+        PZone->ForEachMob([](CMobEntity* PMob)
+        {
+            luautils::OnMobInitialize(PMob);
+            PMob->saveModifiers();
+            PMob->saveMobModifiers();
+        });
+    });
 
     // attach pets to mobs
     const int8* PetQuery =

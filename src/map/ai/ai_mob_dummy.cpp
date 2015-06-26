@@ -199,7 +199,7 @@ void CAIMobDummy::ActionRoaming()
         // if I just disengaged check if I should despawn
         if (m_checkDespawn && m_PMob->IsFarFromHome())
         {
-            if (m_PMob->CanRoamHome() && m_PPathFind->PathTo(m_PMob->m_SpawnPoint, PATHFLAG_WALLHACK))
+            if (m_PMob->CanRoamHome() && m_PPathFind->PathTo(m_PMob->m_SpawnPoint))
             {
                 // walk back to spawn if too far away
 
@@ -256,7 +256,7 @@ void CAIMobDummy::ActionRoaming()
                 luautils::OnMobRoamAction(m_PMob);
                 m_LastActionTime = m_Tick;
             }
-            else if (m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
+            else if (m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamDistance, m_PMob->m_roamFlags))
             {
 
                 if (m_PMob->m_roamFlags & ROAMFLAG_WORM)
@@ -1487,10 +1487,12 @@ void CAIMobDummy::ActionAttack()
             if (m_Tick >= m_LastStandbackTime + m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME))
             {
                 // speed up my ranged attacks cause i'm waiting here
-                m_LastSpecialTime -= 1000;
-                m_LastMagicTime -= 500;
+                if (m_LastSpecialTime > 1000 && m_LastMagicTime > 500)
+                {
+                    m_LastSpecialTime -= 1000;
+                    m_LastMagicTime -= 500;
+                }
                 FinishAttack();
-                return;
             }
 
         }
@@ -2109,22 +2111,22 @@ bool CAIMobDummy::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
 
 	if ((aggro & AGGRO_DETECT_LOWHP) && PTarget->GetHPP() < 75)
     {
-        return true;
+        return CanSeePoint(PTarget->loc.p);
     }
 
 	if ((aggro & AGGRO_DETECT_MAGIC) && PTarget->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING && PTarget->PBattleAI->GetCurrentSpell()->hasMPCost())
     {
-        return true;
+        return CanSeePoint(PTarget->loc.p);
     }
 
 	if ((aggro & AGGRO_DETECT_WEAPONSKILL) && PTarget->PBattleAI->GetCurrentAction() == ACTION_WEAPONSKILL_FINISH)
     {
-        return true;
+        return CanSeePoint(PTarget->loc.p);
     }
 
 	if ((aggro & AGGRO_DETECT_JOBABILITY) && PTarget->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH)
     {
-        return true;
+        return CanSeePoint(PTarget->loc.p);
     }
 
     return false;

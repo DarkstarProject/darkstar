@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2593,1) and trade:getItemCount() == 1) then -- Trade Singed Buffalo
 		player:tradeComplete();
-		SpawnMob(17101203,180):updateEnmity(player);
+		SpawnMob(17101203,180):updateClaim(player);
 	end
 	
 end;

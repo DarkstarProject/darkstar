@@ -15,13 +15,13 @@ require("scripts/zones/AlTaieu/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	-- Trade the First Virtue, Deed of Placidity and HQ Phuabo Organ
-	--[[if(GetMobAction(16912838) == 0 and trade:hasItemQty(1850,1) and trade:hasItemQty(1851,1) and trade:hasItemQty(1852,1) and trade:getItemCount() == 3) then
-		player:tradeComplete();
-		SpawnMob(16912838,900):updateEnmity(player); -- Spawn Jailer of Hope
-	end]]
-	
+    
+    -- Trade the First Virtue, Deed of Placidity and HQ Phuabo Organ
+    --[[if(GetMobAction(16912838) == 0 and trade:hasItemQty(1850,1) and trade:hasItemQty(1851,1) and trade:hasItemQty(1852,1) and trade:getItemCount() == 3) then
+        player:tradeComplete();
+        SpawnMob(16912838,900):updateClaim(player); -- Spawn Jailer of Hope
+    end]]
+    
 end; 
 
 -----------------------------------
@@ -39,7 +39,7 @@ end;
 function onEventUpdate(player,csid,option)
 --printf("onUpdate CSID: %u",csid);
 --printf("onUpdate RESULT: %u",option);
-	end;
+    end;
 
 -----------------------------------
 -- onEventFinish Action 
@@ -48,4 +48,4 @@ function onEventUpdate(player,csid,option)
 function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
-	end;
+    end;

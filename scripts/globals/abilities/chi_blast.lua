@@ -33,6 +33,8 @@ function onUseAbility(player,target,ability)
     dmg = utils.stoneskin(target, dmg);
     
     target:delHP(dmg);
+    
+    target:updateClaim(player);
     target:updateEnmityFromDamage(player,dmg);
     player:delStatusEffect(EFFECT_BOOST);
     return dmg;

@@ -3,14 +3,16 @@
 -- Reactor core fails and self-destructs, damaging any nearby targets.
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
+        return 1;
+    elseif(mob:AnimationSub() ~=0) then
         return 1;
     end
     return 0;

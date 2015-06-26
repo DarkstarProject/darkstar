@@ -7,6 +7,7 @@
 -- Animation Sub 3 Ring Form
 -----------------------------------
 
+require("scripts/zones/Grand_Palace_of_HuXzoi/MobIDs");
 require("scripts/globals/status");
 
 -----------------------------------
@@ -58,4 +59,27 @@ function onMobFight(mob)
 		mob:setLocalVar("changeTime", mob:getBattleTime());
 	end
 
+end;
+
+
+-----------------------------------
+-- onMobDeath Action
+-- Jailer of Temperance pop
+-----------------------------------
+
+function onMobDeath(mob,killer)
+	mob = mob:getID();
+	PH = GetServerVariable("[SEA]Jailer_of_Temperance_PH");
+	
+	if (PH == mob) then
+		-- printf("%u is a PH",mob);
+		-- printf("JoT will pop");
+		-- We need to set Jailer of Temperance spawn point to where the PH spawns (The platform in the room).
+		mobSpawnPoint = GetMobByID(mob):getSpawnPos();
+		GetMobByID(Jailer_of_Temperance):setSpawn(mobSpawnPoint.x, mobSpawnPoint.y, mobSpawnPoint.z);
+		
+		-- The jailer spawns instantly, so don't need to set respawn time
+		SpawnMob(Jailer_of_Temperance,300):updateEnmity(killer);
+		DeterMob(mob, true);
+	end
 end;

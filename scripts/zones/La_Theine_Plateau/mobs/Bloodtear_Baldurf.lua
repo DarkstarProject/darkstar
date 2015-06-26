@@ -3,7 +3,7 @@
 -- NPC:  Bloodtear_Baldurf
 -----------------------------------
 
-require("/scripts/globals/fieldsofvalor");
+require("scripts/globals/fieldsofvalor");
 require("scripts/globals/titles");
 
 -----------------------------------

@@ -251,7 +251,7 @@ enum ZONEID : uint16
     ZONE_CLOISTER_OF_FLAMES           = 207,
     ZONE_QUICKSAND_CAVES              = 208,
     ZONE_CLOISTER_OF_TREMORS          = 209,
-    ZONE_210                          = 210,
+    ZONE_GM_HOME                      = 210, // Name comes from leaked official documentation
     ZONE_CLOISTER_OF_TIDES            = 211,
     ZONE_GUSTAV_TUNNEL                = 212,
     ZONE_LABYRINTH_OF_ONZOZO          = 213,
@@ -326,10 +326,18 @@ enum ZONEID : uint16
     ZONE_MOUNT_KAMIHR                 = 282,
     ZONE_SILVER_KNIFE                 = 283,
     ZONE_CELENNIA_MEMORIAL_LIBRARY    = 284,
-    ZONE_FERETORY                     = 285
+    ZONE_FERETORY                     = 285,
+    ZONE_286                          = 286,
+    ZONE_287                          = 287,
+    ZONE_ESCHA_ZITAH                  = 288,
+    ZONE_289                          = 289,
+    ZONE_290                          = 290,
+    ZONE_291                          = 291,
+    ZONE_292                          = 292,
+    ZONE_293                          = 293
 };
 
-#define MAX_ZONEID 286
+#define MAX_ZONEID 294
 
 enum REGIONTYPE : uint8
 {
@@ -352,12 +360,10 @@ enum REGIONTYPE : uint8
     REGION_TULIA            = 16,
     REGION_MOVALPOLOS       = 17,
     REGION_TAVNAZIA         = 18,
-
     REGION_SANDORIA         = 19,
     REGION_BASTOK           = 20,
     REGION_WINDURST         = 21,
     REGION_JEUNO            = 22,
-
     REGION_DYNAMIS          = 23,
     REGION_TAVNAZIAN_MARQ   = 24,
     REGION_PROMYVION        = 25,
@@ -483,6 +489,7 @@ struct zoneLine_t
 class CBasicPacket;
 class CBaseEntity;
 class CCharEntity;
+class CNpcEntity;
 class CBattleEntity;
 class CTreasurePool;
 class CZoneEntities;
@@ -560,7 +567,9 @@ public:
 
     virtual void    ForEachChar(std::function<void(CCharEntity*)> func);
     virtual void    ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> func);
+    virtual void    ForEachMob(std::function<void(CMobEntity*)> func);
     virtual void    ForEachMobInstance(CBaseEntity* PEntity, std::function<void(CMobEntity*)> func);
+    virtual void    ForEachNpc(std::function<void(CNpcEntity*)> func);
 
     CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID);
     virtual ~CZone();

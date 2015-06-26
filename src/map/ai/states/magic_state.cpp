@@ -88,12 +88,12 @@ bool CMagicState::CanCastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 fla
         // pc has special messages
         if(distanceValue > 25)
         {
-            PushError(MSGBASIC_TOO_FAR_AWAY, PSpell->getID());
+            PushError(MSGBASIC_TOO_FAR_AWAY, PSpell->getID(), 0, PTarget);
             return false;
         }
         else if(distanceValue > m_maxStartDistance)
         {
-            PushError(MSGBASIC_OUT_OF_RANGE_UNABLE_CAST, PSpell->getID());
+            PushError(MSGBASIC_OUT_OF_RANGE_UNABLE_CAST, PSpell->getID(), 0, PTarget);
             return false;
         }
     }
@@ -110,7 +110,7 @@ bool CMagicState::CanCastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 fla
 
     int32 msgID = luautils::OnMagicCastingCheck(m_PEntity, PTarget, PSpell);
 	if(msgID){
-        PushError((MSGBASIC_ID)msgID, PSpell->getID());
+        PushError((MSGBASIC_ID)msgID, PSpell->getID(), 0, PTarget);
 		return false;
 	}
 

@@ -32,7 +32,7 @@ end;
 function onSpellCast(caster,target,spell)
 
     local dINT = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
-    local resist = applyResistance(caster,spell,target,dINT,37);
+    local resist = applyResistanceEffect(caster,spell,target,dINT,BLUE_SKILL, 0, EFFECT_SLOW);
     
     if(resist > (0.0652)) then
         -- resisted!

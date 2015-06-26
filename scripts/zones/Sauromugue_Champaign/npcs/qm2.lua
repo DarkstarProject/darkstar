@@ -51,7 +51,7 @@ function onTrigger(player,npc)
 	if(thickAsThieves == QUEST_ACCEPTED) then
 		if(thickAsThievesGrapplingCS == 2) then
 			player:messageSpecial(THF_AF_MOB);	
-			SpawnMob(17269107,120):updateEnmity(player); -- Climbpix Highrise
+			SpawnMob(17269107,120):updateClaim(player); -- Climbpix Highrise
 			setMobPos(17269107,193,32,211,0);	
 		elseif(thickAsThievesGrapplingCS == 0 or thickAsThievesGrapplingCS == 1 or
 			thickAsThievesGrapplingCS == 3 or thickAsThievesGrapplingCS == 4 or

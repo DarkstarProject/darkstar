@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2589,1) and trade:getItemCount() == 1) then -- Trade Granulated Sugar
 		player:tradeComplete();
-		SpawnMob(17031598,180):updateEnmity(player);
+		SpawnMob(17031598,180):updateClaim(player);
 	end
 	
 end;

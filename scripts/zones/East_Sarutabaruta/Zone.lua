@@ -78,6 +78,8 @@ function onZoneIn( player, prevZone)
         cs = 0x0030;
     elseif (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 0x0032;
+    elseif(player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1)then
+        cs = 0x0034; -- go north no parameters (0 = north NE 1 E 2 SE 3 S 4 SW 5 W6 NW 7 @ as the 6th parameter)
     elseif (player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 241 and
         player:hasStatusEffect(EFFECT_CHOCOBO) == false ) then
         cs = 0x0047;
@@ -114,6 +116,18 @@ function onEventUpdate( player, csid, option)
     -- printf("RESULT: %u",option);
     if (csid == 0x0032) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
+    elseif (csid == 0x0034)then
+        if(player:getPreviousZone() == 241 or player:getPreviousZone() == 115) then
+            if(player:getZPos() < 570) then
+                player:updateEvent(0,0,0,0,0,1);
+            else
+                player:updateEvent(0,0,0,0,0,2);
+            end
+        elseif(player:getPreviousZone() == 194)then
+            if(player:getZPos() > 570) then
+                player:updateEvent(0,0,0,0,0,2);
+            end
+        end
     elseif (csid == 0x0047) then
         player:setVar("ASA_Status",option);
     end

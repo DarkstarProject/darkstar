@@ -3,7 +3,7 @@
 -- NPC:  Corrupted Ulbrig
 -----------------------------------
 
-require("/scripts/globals/missions");
+require("scripts/globals/missions");
 
 -----------------------------------
 -- onMobSpawn Action

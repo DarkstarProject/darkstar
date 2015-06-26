@@ -68,7 +68,7 @@ INSERT INTO `item_latents` VALUES(13870, 11, -3, 49, 4596); -- Opo-opo Crown, AG
 INSERT INTO `item_latents` VALUES(13870, 8, -3, 49, 4596); -- Opo-opo Crown, STR+1 to STR-2
 INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4596);
 INSERT INTO `item_latents` VALUES(13870, 2, 50, 49, 4596);
-INSERT INTO `item_latents` VALUES(17073, 406, 3, 7, 2); -- Mistilteinn drains 3TP if TP >= 3
+INSERT INTO `item_latents` VALUES(17073, 406, 30, 7, 2); -- Mistilteinn drains 30TP if TP >= 30
 INSERT INTO `item_latents` VALUES(17073, 369, 1, 7, 2); -- Mistilteinn adds Refresh 1MP per tick
 
 -- -------------------------------------------------------
@@ -1326,6 +1326,12 @@ INSERT INTO `item_latents` VALUES(15816, 5, 20, 26, 0); -- MP+20 during Daytime
 -- Mandraguard         
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(10807, 370, 1, 26, 0); -- Regen 1/tick during Daytime
+
+-- -------------------------------------------------------
+-- Mushroom Helm        
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13913, 370, 1, 30, 0); -- Regen 1/tick on Watersdays
+INSERT INTO `item_latents` VALUES(13913, 370, 1, 32, 0); -- Regen 1/tick on Darksdays
 
 -- -------------------------------------------------------
 -- Dinner Jacket       

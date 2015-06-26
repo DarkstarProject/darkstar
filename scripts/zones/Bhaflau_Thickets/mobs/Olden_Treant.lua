@@ -4,7 +4,7 @@
 -- Note: Place holder Emergent Elm
 -----------------------------------	
 
-require("/scripts/zones/Bhaflau_Thickets/MobIDs");
+require("scripts/zones/Bhaflau_Thickets/MobIDs");
 	
 -----------------------------------	
 -- onMobDeath	

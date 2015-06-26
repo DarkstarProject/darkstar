@@ -392,7 +392,7 @@ void CZone::LoadNavMesh()
 
     if (m_navMesh == nullptr)
     {
-        m_navMesh = new CNavMesh();
+        m_navMesh = new CNavMesh((uint16)GetID());
     }
 
     int8 file[255];
@@ -402,11 +402,13 @@ void CZone::LoadNavMesh()
     if (m_navMesh->load(file))
     {
         // verify it can find proper paths
-        m_navMesh->test((int16)GetID());
+        m_navMesh->test((uint16)GetID());
     }
     else
     {
         m_useNavMesh = false;
+        delete m_navMesh;
+        m_navMesh = nullptr;
     }
 }
 
@@ -822,11 +824,27 @@ void CZone::ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEn
     }
 }
 
+void CZone::ForEachMob(std::function<void(CMobEntity*)> func)
+{
+    for (auto PMob : m_zoneEntities->m_mobList)
+    {
+        func((CMobEntity*)PMob.second);
+    }
+}
+
 void CZone::ForEachMobInstance(CBaseEntity* PEntity, std::function<void(CMobEntity*)> func)
 {
     for (auto PMob : m_zoneEntities->m_mobList)
     {
         func((CMobEntity*)PMob.second);
+    }
+}
+
+void CZone::ForEachNpc(std::function<void(CNpcEntity*)> func)
+{
+    for (auto PNpc : m_zoneEntities->m_npcList)
+    {
+        func((CNpcEntity*)PNpc.second);
     }
 }
 

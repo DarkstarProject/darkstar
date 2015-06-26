@@ -274,12 +274,20 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             session->client_port,
             PChar->id);
 
-        const int8* deathTsQuery = "SELECT death FROM char_stats where charid = %u;";
-        int32 ret = Sql_Query(SqlHandle, deathTsQuery, PChar->id);
+        fmtQuery = "SELECT death FROM char_stats WHERE charid = %u;";
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
         if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
             PChar->m_DeathCounter = (uint32)Sql_GetUIntData(SqlHandle, 0);
             PChar->m_DeathTimestamp = (uint32)time(nullptr);
+        }
+
+        fmtQuery = "SELECT pos_prevzone FROM chars WHERE charid = %u";
+        ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+        if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            if (PChar->getZone() == Sql_GetUIntData(SqlHandle, 0))
+                PChar->loc.zoning = true;
         }
 
         if (firstLogin)
@@ -294,10 +302,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             ShowWarning(CL_YELLOW"Client cannot receive packet or key is invalid: %s\n" CL_RESET, PChar->GetName());
         }
     }
-    if (PChar->loc.prevzone == 0 && PChar->GetPlayTime(false) > 0)
-    {
-        PChar->loc.prevzone = PChar->getZone();
-    }
 
     charutils::SaveCharPosition(PChar);
     charutils::SaveZonesVisited(PChar);
@@ -306,8 +310,11 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PChar->pushPacket(new CDownloadingDataPacket());
     PChar->pushPacket(new CZoneInPacket(PChar, PChar->m_event.EventID));
     PChar->pushPacket(new CZoneVisitedPacket(PChar));
-    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
 
+    if (!PChar->loc.zoning)
+        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
+
+    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
     return;
 }
 
@@ -420,7 +427,6 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         session->shuttingDown = 2;
         Sql_Query(SqlHandle, "UPDATE char_stats SET zoning = 1 WHERE charid = %u", PChar->id);
         charutils::CheckEquipLogic(PChar, SCRIPT_CHANGEZONE, PChar->getZone());
-        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
     }
 
     if (PChar->loc.zone != nullptr)
@@ -941,7 +947,7 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         return;
     }
-    if (PItem->getQuantity() < quantity)
+    if (PItem->getQuantity() - PItem->getReserve() < quantity)
     {
         ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move too much quantity from location %u slot %u\n" CL_RESET, FromLocationID, FromSlotID);
         return;
@@ -1168,10 +1174,10 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
         // We used to disable Rare/Ex items being added to the container, but that is handled properly else where now
-        if (PItem != nullptr && PItem->getID() == itemID)
+        if (PItem != nullptr && PItem->getID() == itemID && quantity + PItem->getReserve() <= PItem->getQuantity())
         {
-            // If item count is zero.. remove from container..
             PItem->setReserve(quantity);
+            // If item count is zero.. remove from container..
             PChar->UContainer->SetItem(tradeSlotID, quantity > 0 ? PItem : nullptr);
 
             PChar->pushPacket(new CTradeItemPacket(PItem, tradeSlotID));
@@ -1198,7 +1204,7 @@ void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     CBaseEntity* PNpc = PChar->GetEntity(targid, TYPE_NPC);
 
-    if ((PNpc != nullptr) && (PNpc->id == npcid))
+    if ((PNpc != nullptr) && (PNpc->id == npcid) && distance(PNpc->loc.p, PChar->loc.p) <= 10)
     {
         uint8 numItems = RBUFB(data, (0x3C));
 
@@ -1466,6 +1472,8 @@ void SmallPacket0x04B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PChar->pushPacket(new CServerMessagePacket(map_config.server_message, msg_language, msg_timestamp, msg_offset));
     else
         PChar->pushPacket(new CServerMessagePacket(map_config.server_message_fr, msg_language, msg_timestamp, msg_offset));
+
+    PChar->pushPacket(new CCharSyncPacket(PChar));
 
     return;
 }
@@ -2354,6 +2362,7 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     charutils::EquipItem(PChar, slotID, equipSlotID, containerID); //current
     charutils::SaveCharEquip(PChar);
+    charutils::SaveCharLook(PChar);
     luautils::CheckForGearSet(PChar); // check for gear set on gear change
     PChar->UpdateHealth();
     return;
@@ -2381,6 +2390,7 @@ void SmallPacket0x051(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     }
     charutils::SaveCharEquip(PChar);
+    charutils::SaveCharLook(PChar);
     luautils::CheckForGearSet(PChar); // check for gear set on gear change
     PChar->UpdateHealth();
     return;
@@ -2404,6 +2414,82 @@ void SmallPacket0x052(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PChar->pushPacket(new CAddtoEquipSet(data));
     return;
 }
+
+/************************************************************************
+*                                                                        *
+*  LockStyleSet                                                          *
+*                                                                        *
+************************************************************************/
+void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    uint8 count = RBUFB(data, (0x04));
+    uint8 type = RBUFB(data, (0x05));
+
+    if (type == 0 && PChar->getStyleLocked()) 
+    {
+        charutils::SetStyleLock(PChar, false);
+        charutils::SaveCharLook(PChar);
+    }
+    else if (type == 1) 
+    {
+        // The client sends this when logging in and zoning. 
+        PChar->setStyleLocked(true);
+    }
+    else if (type == 2) 
+    {
+        PChar->pushPacket(new CMessageStandardPacket(PChar->getStyleLocked() ? 0x10D : 0x10E));
+    }
+    else if (type == 3) 
+    {
+        charutils::SetStyleLock(PChar, true);
+
+        for (int i = 0x08; i < 0x08 + (0x08 * count); i += 0x08) {
+            uint8 slotId = RBUFB(data, i);
+            uint8 equipSlotId = RBUFB(data, i + 0x01);
+            uint8 locationId = RBUFB(data, i + 0x02);
+            uint16 itemId = RBUFW(data, i + 0x04);
+
+            auto PItem = itemutils::GetItem(itemId);
+            if (PItem == nullptr || !(PItem->isType(ITEM_WEAPON) || PItem->isType(ITEM_ARMOR)))
+                itemId = 0;
+            else if (!((CItemArmor*)PItem)->getEquipSlotId() & (1 << equipSlotId))
+                itemId = 0;
+
+            PChar->styleItems[equipSlotId] = itemId;
+
+            switch (equipSlotId)
+            {
+            case SLOT_MAIN:
+            case SLOT_SUB:
+            case SLOT_RANGED:
+            case SLOT_AMMO:
+                charutils::UpdateWeaponStyle(PChar, equipSlotId, (CItemWeapon*)PChar->getEquip((SLOTTYPE)equipSlotId));
+            case SLOT_HEAD:
+            case SLOT_BODY:
+            case SLOT_HANDS:
+            case SLOT_LEGS:
+            case SLOT_FEET:
+                charutils::UpdateArmorStyle(PChar, equipSlotId);
+                break;
+            }
+        }
+        charutils::SaveCharLook(PChar);
+    }
+    else if (type == 4) 
+    {
+        charutils::SetStyleLock(PChar, true);
+        charutils::SaveCharLook(PChar);
+    }
+
+    if (type != 1 && type != 2) 
+    {
+        PChar->pushPacket(new CCharAppearancePacket(PChar));
+        PChar->pushPacket(new CCharSyncPacket(PChar));
+    }
+
+    return;
+}
+
 /************************************************************************
 *                                                                        *
 *  Request synthesis suggestion                                            *
@@ -2425,7 +2511,10 @@ void SmallPacket0x058(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x059(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    synthutils::sendSynthDone(PChar);
+    if (PChar->animation == ANIMATION_SYNTH)
+    {
+        synthutils::sendSynthDone(PChar);
+    }
     return;
 }
 
@@ -2458,14 +2547,23 @@ void SmallPacket0x05B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 EventID = RBUFW(data, (0x12));
     uint32 Result = RBUFL(data, (0x08));
 
-    if (PChar->m_event.Option != 0) Result = PChar->m_event.Option;
+    if (PChar->m_event.EventID == EventID)
+    {
+        if (PChar->m_event.Option != 0) Result = PChar->m_event.Option;
 
-    if (RBUFB(data, (0x0E)) != 0){
-        luautils::OnEventUpdate(PChar, EventID, Result);
-    }
-    else{
-        luautils::OnEventFinish(PChar, EventID, Result);
-        PChar->m_event.reset();
+        if (RBUFB(data, (0x0E)) != 0) {
+            luautils::OnEventUpdate(PChar, EventID, Result);
+        }
+        else
+        {
+            luautils::OnEventFinish(PChar, EventID, Result);
+            //reset if this event did not initiate another event
+            if (PChar->m_event.EventID == EventID)
+            {
+                PChar->m_event.reset();
+            }
+
+        }
     }
 
     PChar->pushPacket(new CReleasePacket(PChar, RELEASE_EVENT));
@@ -3360,9 +3458,12 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         slotQty[invSlotID]++;
 
-        if ((PChar->getStorage(0)->GetItem(invSlotID)) && (PChar->getStorage(0)->GetItem(invSlotID)->getID() == ItemID) &&
-            (slotQty[invSlotID] <= PChar->getStorage(0)->GetItem(invSlotID)->getQuantity()))
+        if ((PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)) && (PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getID() == ItemID) &&
+            (slotQty[invSlotID] <= PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getQuantity()))
+        {
             PChar->CraftContainer->setItem(SlotID + 1, ItemID, invSlotID, 1);
+            PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->setReserve(PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getReserve() + 1);
+        }
     }
 
     synthutils::startSynth(PChar);
@@ -4060,6 +4161,7 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 targid = RBUFW(data, (0x08));
     uint8 type = RBUFB(data, (0x0C));
 
+    //checkparam
     if (type == 0x02)
     {
         if (PChar->id == id)
@@ -4078,12 +4180,14 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (PChar->getEquip(SLOT_RANGED) && PChar->getEquip(SLOT_RANGED)->isType(ITEM_WEAPON))
             {
                 int skill = ((CItemWeapon*)PChar->getEquip(SLOT_RANGED))->getSkillType();
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PChar->RACC(skill), PChar->RATT(skill), MSGBASIC_CHECKPARAM_RANGE));
+                int bonusSkill = ((CItemWeapon*)PChar->getEquip(SLOT_RANGED))->getILvlSkill();
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PChar->RACC(skill, bonusSkill), PChar->RATT(skill, bonusSkill), MSGBASIC_CHECKPARAM_RANGE));
             }
             else if (PChar->getEquip(SLOT_AMMO) && PChar->getEquip(SLOT_AMMO)->isType(ITEM_WEAPON))
             {
                 int skill = ((CItemWeapon*)PChar->getEquip(SLOT_AMMO))->getSkillType();
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PChar->RACC(skill), PChar->RATT(skill), MSGBASIC_CHECKPARAM_RANGE));
+                int bonusSkill = ((CItemWeapon*)PChar->getEquip(SLOT_AMMO))->getILvlSkill();
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PChar->RACC(skill, bonusSkill), PChar->RATT(skill, bonusSkill), MSGBASIC_CHECKPARAM_RANGE));
             }
             else
             {
@@ -4702,13 +4806,13 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         return;
 
     uint8  slotID = RBUFB(data, (0x06));
-    //uint8  containerID = RBUFB(data, (0x07)); //not used
+    uint8  containerID = RBUFB(data, (0x07));
     uint8  col = RBUFB(data, (0x09));
     uint8  level = RBUFB(data, (0x0A));
     uint8  row = RBUFB(data, (0x0B));
     uint8  rotation = RBUFB(data, (0x0C));
 
-    CItemFurnishing* PItem = (CItemFurnishing*)PChar->getStorage(LOC_MOGSAFE)->GetItem(slotID);
+    CItemFurnishing* PItem = (CItemFurnishing*)PChar->getStorage(containerID)->GetItem(slotID);
 
     if (PItem != nullptr &&
         PItem->getID() == ItemID &&
@@ -4742,7 +4846,7 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
             PChar->pushPacket(new CInventorySizePacket(PChar));
         }
-        PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_MOGSAFE, slotID));
+        PChar->pushPacket(new CInventoryItemPacket(PItem, containerID, slotID));
         PChar->pushPacket(new CInventoryFinishPacket());
     }
     return;
@@ -4764,8 +4868,9 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     }
 
     uint8  slotID = RBUFB(data, (0x06));
+    uint8 containerID = RBUFB(data, (0x07));
 
-    CItemContainer* PItemContainer = PChar->getStorage(LOC_MOGSAFE);
+    CItemContainer* PItemContainer = PChar->getStorage(containerID);
 
     CItemFurnishing* PItem = (CItemFurnishing*)PItemContainer->GetItem(slotID);
 
@@ -4810,7 +4915,7 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                 PChar->pushPacket(new CInventorySizePacket(PChar));
             }
-            PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_MOGSAFE, PItem->getSlotID()));
+            PChar->pushPacket(new CInventoryItemPacket(PItem, containerID, PItem->getSlotID()));
             PChar->pushPacket(new CInventoryFinishPacket());
         }
         else
@@ -4878,6 +4983,8 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
 
         }
+        
+        charutils::SetStyleLock(PChar, false);
         luautils::CheckForGearSet(PChar); // check for gear set on gear change
 
         charutils::BuildingCharSkillsTable(PChar);
@@ -5045,7 +5152,7 @@ void SmallPacket0x104(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (PTarget != nullptr && PTarget->id == PChar->BazaarID.id)
     {
-        for (uint32 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
+        for (uint16 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
         {
             if (PTarget->BazaarCustomers[i].id == PChar->targid)
             {
@@ -5071,7 +5178,7 @@ void SmallPacket0x105(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     uint32 charid = RBUFL(data, (0x04));
 
-    CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(PChar->m_TargID, TYPE_PC);
+    CCharEntity* PTarget = charid != 0 ? (CCharEntity*)PChar->loc.zone->GetCharByID(charid) : (CCharEntity*)PChar->GetEntity(PChar->m_TargID, TYPE_PC);
 
     if (PTarget != nullptr && PTarget->id == charid && (PTarget->nameflags.flags & FLAG_BAZAAR))
     {
@@ -5183,7 +5290,7 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 break;
             }
         }
-        for (uint32 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
+        for (uint16 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
         {
             CCharEntity* PCustomer = (CCharEntity*)PTarget->GetEntity(PTarget->BazaarCustomers[i].targid, TYPE_PC);
 
@@ -5272,7 +5379,7 @@ void SmallPacket0x10A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x10B(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    for (uint32 i = 0; i < PChar->BazaarCustomers.size(); ++i)
+    for (uint16 i = 0; i < PChar->BazaarCustomers.size(); ++i)
     {
         CCharEntity* PCustomer = (CCharEntity*)PChar->GetEntity(PChar->BazaarCustomers[i].targid, TYPE_PC);
 
@@ -5309,7 +5416,7 @@ void SmallPacket0x10F(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x111(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    PChar->setStyleLocked(RBUFB(data, (0x04)));
+    charutils::SetStyleLock(PChar, RBUFB(data, (0x04)));
     PChar->pushPacket(new CCharAppearancePacket(PChar));
     return;
 }
@@ -5368,6 +5475,7 @@ void PacketParserInitialize()
     PacketSize[0x050] = 0x04; PacketParser[0x050] = &SmallPacket0x050;
     PacketSize[0x051] = 0x24; PacketParser[0x051] = &SmallPacket0x051;
     PacketSize[0x052] = 0x26; PacketParser[0x052] = &SmallPacket0x052;
+    PacketSize[0x053] = 0x44; PacketParser[0x053] = &SmallPacket0x053;
     PacketSize[0x058] = 0x0A; PacketParser[0x058] = &SmallPacket0x058;
     PacketSize[0x059] = 0x00; PacketParser[0x059] = &SmallPacket0x059;
     PacketSize[0x05A] = 0x02; PacketParser[0x05A] = &SmallPacket0x05A;

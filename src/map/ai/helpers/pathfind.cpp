@@ -39,7 +39,7 @@ CPathFind::~CPathFind()
 	Clear();
 }
 
-bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
+bool CPathFind::RoamAround(position_t point, float maxRadius, uint8 roamFlags)
 {
 	Clear();
 
@@ -47,18 +47,6 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 
 	if (isNavMeshEnabled())
 	{
-
-		// all mobs will default to this distance
-		float maxRadius = 25.0f;
-
-		// sight aggro mobs will move a bit farther
-		// this is until this data is put in the database
-		if (m_roamFlags & ROAMFLAG_MEDIUM)
-		{
-			maxRadius = 35.0f;
-		}
-
-		// TODO: finish roam flags. distance should have a distance limit
 
 		if (FindRandomPath(&point, maxRadius))
 		{
@@ -345,23 +333,7 @@ bool CPathFind::FindClosestPath(position_t* start, position_t* end)
 
 	m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(*start, *end, m_points, MAX_PATH_POINTS);
 
-        bool skipPath = m_pathLength <= 0;
-
-        // skip path if vertical difference is too great
-        if(!skipPath)
-        {
-          position_t* lastPoint = &m_points[m_pathLength-1];
-          position_t* startPoint = &m_points[0];
-          float verticalDelta = fabs(startPoint->y - lastPoint->y);
-
-          // ShowDebug("delta is %f (%f, %f)\n", verticalDelta, startPoint->y, lastPoint->y);
-          if(verticalDelta >= VERTICAL_PATH_LIMIT)
-          {
-            skipPath = true;
-          }
-        }
-
-	if (skipPath)
+	if (m_pathLength <= 0)
 	{
 		// this is a trick to make mobs go up / down impassible terrain
 		m_pathLength = 1;

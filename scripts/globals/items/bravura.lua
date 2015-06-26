@@ -17,10 +17,8 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_ICE,0) <= 0.5) then
         return 0,0,0;
     else
-        target:delStatusEffect(EFFECT_EVASION_DOWN)
-        if (not target:hasStatusEffect(EFFECT_EVASION_DOWN)) then
-            target:addStatusEffect(EFFECT_EVASION_DOWN, 15, 0, 60);
-        end
-        return SUBEFFECT_DEFENSE_DOWN, 160, EFFECT_EVASION_DOWN; -- I believe this is the correct subeffect animation.
+        target:delStatusEffect(EFFECT_EVASION_BOOST)
+        target:addStatusEffect(EFFECT_EVASION_DOWN, 15, 0, 60);
+        return SUBEFFECT_EVASION_DOWN, 160, EFFECT_EVASION_DOWN;
     end
 end;

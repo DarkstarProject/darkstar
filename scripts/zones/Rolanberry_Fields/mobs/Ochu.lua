@@ -4,7 +4,7 @@
 -- Note: PH for Drooling Daisy
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");	
 require("scripts/zones/Rolanberry_Fields/MobIDs");
 	
 -----------------------------------	

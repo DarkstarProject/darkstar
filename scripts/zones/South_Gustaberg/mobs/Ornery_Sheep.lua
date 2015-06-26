@@ -4,7 +4,7 @@
 -- Note: Place holder Carnero
 -----------------------------------	
 
-require("/scripts/zones/South_Gustaberg/MobIDs");
+require("scripts/zones/South_Gustaberg/MobIDs");
 	
 -----------------------------------	
 -- onMobDeath	

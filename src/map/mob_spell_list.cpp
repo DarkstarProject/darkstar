@@ -41,78 +41,54 @@ void CMobSpellList::AddSpell(uint16 spellId, uint16 minLvl, uint16 maxLvl)
   m_spellList.push_back(Mob_Spell);
 }
 
-/************************************************************************
-*                                                                       *
-*  Реализация namespase для работы с заклинаниями                       *
-*                                                                       *
-************************************************************************/
-
+//Implement namespace to work with spells
 namespace mobSpellList
 {
     CMobSpellList* PMobSpellList[MAX_MOBSPELLLIST_ID];
 
-    /************************************************************************
-    *                                                                       *
-    *  Загружаем список заклинаний                                          *
-    *                                                                       *
-    ************************************************************************/
-
+    //Load list of spells
     void LoadMobSpellList()
     {
-	    memset(PMobSpellList, 0, sizeof(PMobSpellList));
-		PMobSpellList[0] = new CMobSpellList();
+        memset(PMobSpellList, 0, sizeof(PMobSpellList));
+        PMobSpellList[0] = new CMobSpellList();
 
-	    const int8* Query = "SELECT mob_spell_lists.spell_list_id, \
-							mob_spell_lists.spell_id, \
-							mob_spell_lists.min_level, \
-							mob_spell_lists.max_level, \
-							spell_list.required_expansion \
-							FROM mob_spell_lists JOIN spell_list ON spell_list.spellid = mob_spell_lists.spell_id \
-							WHERE spell_list_id < %u;";
+        const int8* Query = "SELECT mob_spell_lists.spell_list_id, \
+                            mob_spell_lists.spell_id, \
+                            mob_spell_lists.min_level, \
+                            mob_spell_lists.max_level, \
+                            spell_list.required_expansion \
+                            FROM mob_spell_lists JOIN spell_list ON spell_list.spellid = mob_spell_lists.spell_id \
+                            WHERE spell_list_id < %u;";
 
-	    int32 ret = Sql_Query(SqlHandle, Query, MAX_MOBSPELLLIST_ID);
+        int32 ret = Sql_Query(SqlHandle, Query, MAX_MOBSPELLLIST_ID);
 
-	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	    {
-		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		    {
-				int8* expansionCode;
-				Sql_GetData(SqlHandle, 4, &expansionCode, nullptr);
+        if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+            while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                uint16 spellId = (uint16)Sql_GetIntData(SqlHandle,1);
+                uint16 minLvl = (uint16)Sql_GetIntData(SqlHandle,2);
+                uint16 maxLvl = (uint16)Sql_GetIntData(SqlHandle,3);
 
-				if (luautils::IsExpansionEnabled(expansionCode) == false){
-					continue;
-				}
+                uint16 pos = Sql_GetIntData(SqlHandle,0);
+                if (!PMobSpellList[pos])
+                {
+                    PMobSpellList[pos] = new CMobSpellList();
+                }
 
-				uint16 spellId = (uint16)Sql_GetIntData(SqlHandle,1);
-				uint16 minLvl = (uint16)Sql_GetIntData(SqlHandle,2);
-				uint16 maxLvl = (uint16)Sql_GetIntData(SqlHandle,3);
-
-  				uint16 pos = Sql_GetIntData(SqlHandle,0);
-  				if (!PMobSpellList[pos])
-  				{
-  					PMobSpellList[pos] = new CMobSpellList();
-  				}
-
-				PMobSpellList[pos]->AddSpell(spellId, minLvl, maxLvl);
-		    }
-	    }
+                PMobSpellList[pos]->AddSpell(spellId, minLvl, maxLvl);
+            }
+        }
     }
 
-
-    /************************************************************************
-    *                                                                       *
-    *  Get Spell By ID                                                      *
-    *                                                                       *
-    ************************************************************************/
-
+    //Get Spell By ID                                              
     CMobSpellList* GetMobSpellList(uint16 MobSpellListID)
     {
-	    if (MobSpellListID < MAX_MOBSPELLLIST_ID)
-	    {
-			return PMobSpellList[MobSpellListID];
-	    }
-	    ShowFatalError(CL_RED"MobSpellListID <%u> out of range\n" CL_RESET, MobSpellListID);
-	    return nullptr;
+        if (MobSpellListID < MAX_MOBSPELLLIST_ID)
+        {
+            return PMobSpellList[MobSpellListID];
+        }
+        ShowFatalError(CL_RED"MobSpellListID <%u> out of range\n" CL_RESET, MobSpellListID);
+        return nullptr;
     }
-
 };

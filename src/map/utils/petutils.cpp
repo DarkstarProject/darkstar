@@ -733,6 +733,8 @@ namespace petutils
 
         CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
 
+        PPet->allegiance = PMaster->allegiance;
+        PMaster->StatusEffectContainer->CopyConfrontationEffect(PPet);
 
         if (PetID == PETID_ALEXANDER || PetID == PETID_ODIN)
         {
@@ -794,6 +796,9 @@ namespace petutils
         PPet->HPscale = petData->HPscale;
         PPet->MPscale = petData->MPscale;
         PPet->m_HasSpellScript = petData->hasSpellScript;
+
+        PPet->allegiance = PMaster->allegiance;
+        PMaster->StatusEffectContainer->CopyConfrontationEffect(PPet);
 
         // assuming elemental spawn
         PPet->setModifier(MOD_DMGPHYS, -50); //-50% PDT

@@ -54,7 +54,7 @@ function onTrigger(player,npc)
         player:startEvent(0x009);
     elseif (SteamedRams == QUEST_AVAILABLE and RedLetter == true) then
         player:startEvent(0x007);
-    elseif (SteamedRams == QUEST_AVAILABLE and player:getVar("Used_RED_RECOMMENDATION_LETTER") == 1) then
+    elseif (SteamedRams == QUEST_AVAILABLE and player:getVar("RED_R_LETTER_USED") == 1) then
         player:startEvent(0x008);
     elseif (SteamedRams == QUEST_ACCEPTED and CharredPropeller == true and OxidizedPlate == true and ShatteredLumber == true) then
         player:startEvent(0x00C);
@@ -85,10 +85,10 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 0x007 and option == 0) then
         player:addQuest(CRYSTAL_WAR,STEAMED_RAMS);
-        player:setVar("Used_RED_RECOMMENDATION_LETTER",1);
+        player:setVar("RED_R_LETTER_USED",1);
         player:delKeyItem(RED_RECOMMENDATION_LETTER);
     elseif (csid == 0x007 and option == 1) then
-        player:setVar("Used_RED_RECOMMENDATION_LETTER",1);
+        player:setVar("RED_R_LETTER_USED",1);
         player:delKeyItem(RED_RECOMMENDATION_LETTER);
     elseif (csid == 0x008 and option == 0) then
         player:addQuest(CRYSTAL_WAR, STEAMED_RAMS);
@@ -101,7 +101,7 @@ function onEventFinish(player,csid,option)
         if (player:getVar("Campaign_Nation") == 0) then
             if (player:getFreeSlotsCount() >= 1) then
                 player:setCampaignAllegiance(1);
-                player:setVar("Used_RED_RECOMMENDATION_LETTER",0);
+                player:setVar("RED_R_LETTER_USED",0);
                 player:addTitle(KNIGHT_OF_THE_IRON_RAM);
                 player:addKeyItem(BRONZE_RIBBON_OF_SERVICE);
                 player:addItem(15754);
@@ -116,7 +116,7 @@ function onEventFinish(player,csid,option)
             end
         else
             player:setCampaignAllegiance(1);
-            player:setVar("Used_RED_RECOMMENDATION_LETTER",0);
+            player:setVar("RED_R_LETTER_USED",0);
             player:addTitle(KNIGHT_OF_THE_IRON_RAM);
             player:completeQuest(CRYSTAL_WAR,STEAMED_RAMS);
             player:delKeyItem(CHARRED_PROPELLER);

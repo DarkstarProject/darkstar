@@ -43,6 +43,8 @@ function onTrigger(player,npc)
 		player:startEvent(0x0136);
 	elseif(CurrentMission == SAINTLY_INVITATION and MissionStatus == 3) then
 		player:startEvent(0x0138);
+	elseif(CurrentMission == DOLL_OF_THE_DEAD and MissionStatus == 2) then
+		player:startEvent(0x016A);
 	else
 		player:startEvent(0x009A);
 	end
@@ -93,6 +95,8 @@ function onEventFinish(player,csid,option)
 		finishMissionTimeline(player,3,csid,option);
 	elseif(csid == 0x00C0 or csid == 0x00D8) then
 		finishMissionTimeline(player,1,csid,option);
+	elseif(csid == 0x016A) then
+		player:setVar("MissionStatus",3);
 	end
 	
 end;

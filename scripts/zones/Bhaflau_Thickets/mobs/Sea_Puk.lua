@@ -4,7 +4,7 @@
 -- Note: Place holder Nis Puk
 -----------------------------------	
 
-require("/scripts/zones/Bhaflau_Thickets/MobIDs");
+require("scripts/zones/Bhaflau_Thickets/MobIDs");
 	
 -----------------------------------	
 -- onMobDeath	

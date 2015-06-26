@@ -322,9 +322,9 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
         Action.param = m_PMobSkill->getMsgForAction();
         Action.messageID = 43; //readies message
         Action.knockback = 0;
-
-        m_PPet->health.tp = 0;
+ 
         m_skillTP = m_PPet->health.tp;
+        m_PPet->health.tp = 0;
 
         m_PPet->m_ActionList.push_back(Action);
         m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
@@ -511,6 +511,12 @@ void CAIPetDummy::ActionAbilityFinish(){
         if (PTarget->objtype == TYPE_MOB && !m_PTargetFind->checkIsPlayer(PTarget) && m_PMobSkill->isDamageMsg())
         {
             ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PPet, Action.param);
+        }
+
+        if (m_PBattleSubTarget->objtype == TYPE_MOB)
+        {
+            uint16 PWeaponskill = m_PMobSkill->getID();
+            luautils::OnWeaponskillHit(m_PBattleSubTarget, m_PPet, PWeaponskill);
         }
 
         // If we dealt damage.. we should wake up our target..

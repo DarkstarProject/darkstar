@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @addquest <logID> <questID> <player>
--- auth: <Unknown>, modified by TeoTwawki
 -- desc: Adds a quest to the given targets log.
 ---------------------------------------------------------------------------------------------------
 
@@ -24,6 +23,7 @@ function onTrigger(player, logId, questId, target)
     local targ = GetPlayerByName(target);
     if (targ ~= nil) then
         targ:addQuest( logId, questId );
+        player:PrintToPlayer( string.format( "Added Quest for log %u with ID %u to %s", logId, questId, target ) );
     else
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
         player:PrintToPlayer( "@addquest <logID> <questID> <player>" );

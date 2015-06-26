@@ -45,7 +45,7 @@ function onSpellCast(caster,target,spell)
         local duration = 180;
 
         --Resist
-        local resist = applyResistance(caster,spell,target,dINT,35,0);
+        local resist = applyResistanceEffect(caster,spell,target,dINT,BLUE_SKILL,0, EFFECT_SILENCE);
         
         if(resist >= 0.5) then --Do it!
             target:addStatusEffect(effectType,1,0,duration * resist);

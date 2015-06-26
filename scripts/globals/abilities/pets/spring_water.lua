@@ -2,9 +2,9 @@
 -- Spring Water
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
@@ -14,7 +14,7 @@ end;
 
 function onPetAbility(target, pet, skill)
 	local base = 47 + pet:getMainLvl()*3;
-	local tp = pet:getTP();
+	local tp = skill:getTP();
 	if tp < 100 then
 		tp = 100;
 	end

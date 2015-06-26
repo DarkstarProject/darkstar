@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
 		local DiabolosID = TavnaziaDiabolosList[math.random(1,4)];
 		
 			local ShortID = GetMobByID(DiabolosID):getShortID()	
-		                SpawnMob(DiabolosID):updateEnmity(player);
+		                SpawnMob(DiabolosID):updateClaim(player);
 			            GetMobByID(DiabolosID):setMobMod(MOBMOD_SUPERLINK,ShortID);
 						GetMobByID(DiabolosID):setPos(npcX-1,npcY-2,npcZ-1);
 						GetMobByID(DiabolosID):setSpawn(npcX-1,npcY-2,npcZ-1);		 
