@@ -1225,6 +1225,7 @@ MOD_EGGHELM             = 0x205 -- Egg Helm (Chocobo Digging)
 MOD_SHIELDBLOCKRATE = 0x206 -- Affects shield block rate, percent based (modID = 518))
 MOD_SCAVENGE_EFFECT = 0x138 -- (modId = 312)
 MOD_DIA_DOT         = 0x139 -- Increases the DoT damage of Dia (modId = 313)
+MOD_SHARPSHOT       = 0x13A -- Sharpshot accuracy bonus (modId = 314)
 
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
