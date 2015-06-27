@@ -14,7 +14,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
 	if(player:getQuestStatus(CRYSTAL_WAR,GIFTS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("GiftsOfGriffonProg") == 2) then
-		if(trade:hasItemQty(2528,1) and trade:getItemCount() == 1 and player:getVar("GiftsOfGriffon_Loux") == 0) then
+		if(trade:hasItemQty(2528,1) and trade:getItemCount() == 1 and not player:getMaskBit(player:getVar("GiftsOfGriffonPlumes"),1)) then
 			player:startEvent(0x01A) -- Gifts of Griffon Trade
 		end
 	end
@@ -34,11 +34,9 @@ function onTrigger(player,npc)
 		
 	elseif (player:getQuestStatus(CRYSTAL_WAR,GIFTS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("GiftsOfGriffonProg") == 1) then
 		player:startEvent(0x027); -- Gifts of Griffon Stage 2 Dialogue
-	
-	
 	else	
-	player:startEvent(0x025); -- Default Dialogue
-end
+		player:startEvent(0x025); -- Default Dialogue
+	end
 end;
 
 -----------------------------------
@@ -65,6 +63,6 @@ function onEventFinish(player,csid,option)
 		
 	elseif(csid == 0x01A) then
 		player:tradeComplete();
-		player:setVar("GiftsOfGriffon_Loux",1);
-end
+		player:setMaskBit(player:getVar("GiftsOfGriffonPlumes"),"GiftsOfGriffonPlumes",1,true);
+	end
 end;
