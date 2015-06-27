@@ -173,17 +173,17 @@ INSERT INTO `treasure_spawn_points` VALUES (17436993,12,190,99.899,-24.077,-25.5
 INSERT INTO `treasure_spawn_points` VALUES (17436993,13,0,57.319,-24.000,20.112); -- Castle Zvahl Baileys
 INSERT INTO `treasure_spawn_points` VALUES (17436993,14,127,52.638,-24.000,20.112); -- Castle Zvahl Baileys
 INSERT INTO `treasure_spawn_points` VALUES (17441084,0,62,-299.787,-48.000,24.873); -- Castle Zvahl Keep
-INSERT INTO `treasure_spawn_points` VALUES (17498612,0,129,189.673,18.999,30.161); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498612,1,16,173.566,20.431,42.832); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498612,2,124,413.783,8.448,-60.001); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498612,3,12,290.249,8.469,1.592); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498612,4,128,333.903,18.404,19.769); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498612,5,73,294.336,18.301,103.706); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498612,6,244,295.728,25.854,187.175); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498612,7,254,292.495,28.200,209.096); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498612,8,64,259.991,28.488,173.653); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498612,9,217,253.479,8.156,48.403); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498612,10,3,186.575,8.570,99.976); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498621,0,129,189.673,18.999,30.161); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498621,1,16,173.566,20.431,42.832); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498621,2,124,413.783,8.448,-60.001); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498621,3,12,290.249,8.469,1.592); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498621,4,128,333.903,18.404,19.769); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498621,5,73,294.336,18.301,103.706); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498621,6,244,295.728,25.854,187.175); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498621,7,254,292.495,28.200,209.096); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498621,8,64,259.991,28.488,173.653); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498621,9,217,253.479,8.156,48.403); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498621,10,3,186.575,8.570,99.976); -- Sea Serpent Grotto
 INSERT INTO `treasure_spawn_points` VALUES (17555951,0,250,150.304,0.000,245.834); -- King Ranperre's Tomb
 INSERT INTO `treasure_spawn_points` VALUES (17555951,1,250,150.304,0.000,193.493); -- King Ranperre's Tomb
 INSERT INTO `treasure_spawn_points` VALUES (17555951,2,126,236.549,-0.210,149.944); -- King Ranperre's Tomb
@@ -387,16 +387,16 @@ INSERT INTO `treasure_spawn_points` VALUES (17404389,10,66,260.650,8.445,-73.685
 INSERT INTO `treasure_spawn_points` VALUES (17404389,11,18,215.152,8.210,16.315); -- The Boyahda Tree
 INSERT INTO `treasure_spawn_points` VALUES (17404389,12,42,251.260,5.078,24.927); -- The Boyahda Tree
 INSERT INTO `treasure_spawn_points` VALUES (17404389,13,12,251.809,6.141,-18.487); -- The Boyahda Tree
-INSERT INTO `treasure_spawn_points` VALUES (17428982,0,192,-219.944,-0.800,30.638); -- Temple of Uggalepih
-INSERT INTO `treasure_spawn_points` VALUES (17428982,1,65,-130.001,0.000,32.935); -- Temple of Uggalepih
-INSERT INTO `treasure_spawn_points` VALUES (17428982,2,255,-220.044,-0.000,-19.961); -- Temple of Uggalepih
-INSERT INTO `treasure_spawn_points` VALUES (17428982,3,654,-99.999,-0.000,-15.989); -- Temple of Uggalepih
-INSERT INTO `treasure_spawn_points` VALUES (17428982,4,125,-122.910,-0.079,-30.315); -- Temple of Uggalepih
-INSERT INTO `treasure_spawn_points` VALUES (17428982,5,65,-149.978,0.000,-46.935); -- Temple of Uggalepih
-INSERT INTO `treasure_spawn_points` VALUES (17428982,6,65,-126.637,-0.951,-86.835); -- Temple of Uggalepih
-INSERT INTO `treasure_spawn_points` VALUES (17428982,7,255,-49.102,0.453,-100.020); -- Temple of Uggalepih
-INSERT INTO `treasure_spawn_points` VALUES (17428982,8,190,20.002,-2.011,-143.061); -- Temple of Uggalepih
-INSERT INTO `treasure_spawn_points` VALUES (17428982,9,65,-65.184,0.022,27.081); -- Temple of Uggalepih
+INSERT INTO `treasure_spawn_points` VALUES (17429003,0,192,-219.944,-0.800,30.638); -- Temple of Uggalepih
+INSERT INTO `treasure_spawn_points` VALUES (17429003,1,65,-130.001,0.000,32.935); -- Temple of Uggalepih
+INSERT INTO `treasure_spawn_points` VALUES (17429003,2,255,-220.044,-0.000,-19.961); -- Temple of Uggalepih
+INSERT INTO `treasure_spawn_points` VALUES (17429003,3,654,-99.999,-0.000,-15.989); -- Temple of Uggalepih
+INSERT INTO `treasure_spawn_points` VALUES (17429003,4,125,-122.910,-0.079,-30.315); -- Temple of Uggalepih
+INSERT INTO `treasure_spawn_points` VALUES (17429003,5,65,-149.978,0.000,-46.935); -- Temple of Uggalepih
+INSERT INTO `treasure_spawn_points` VALUES (17429003,6,65,-126.637,-0.951,-86.835); -- Temple of Uggalepih
+INSERT INTO `treasure_spawn_points` VALUES (17429003,7,255,-49.102,0.453,-100.020); -- Temple of Uggalepih
+INSERT INTO `treasure_spawn_points` VALUES (17429003,8,190,20.002,-2.011,-143.061); -- Temple of Uggalepih
+INSERT INTO `treasure_spawn_points` VALUES (17429003,9,65,-65.184,0.022,27.081); -- Temple of Uggalepih
 INSERT INTO `treasure_spawn_points` VALUES (17433077,0,95,371.199,-5.059,260.752); -- Den of Rancor
 INSERT INTO `treasure_spawn_points` VALUES (17433077,1,65,-17.924,36.239,-130.382); -- Den of Rancor
 INSERT INTO `treasure_spawn_points` VALUES (17433077,2,255,10.426,36.024,-83.844); -- Den of Rancor
@@ -445,17 +445,17 @@ INSERT INTO `treasure_spawn_points` VALUES (17490300,9,10,-92.888,-0.282,2.676);
 INSERT INTO `treasure_spawn_points` VALUES (17490300,10,192,-14.067,-11.940,-132.941); -- Kuftal Tunnel
 INSERT INTO `treasure_spawn_points` VALUES (17490300,11,61,-25.934,-11.000,-142.247); -- Kuftal Tunnel
 INSERT INTO `treasure_spawn_points` VALUES (17490300,12,30,-27.946,-21.825,-183.709); -- Kuftal Tunnel
-INSERT INTO `treasure_spawn_points` VALUES (17498613,0,207,-184.862,17.989,-108.860); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498613,1,4,-130.961,29.207,19.947); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498613,2,114,-106.972,19.055,-65.469); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498613,3,35,-168.173,18.653,-92.826); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498613,4,141,-130.746,20.058,-24.084); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498613,5,254,-188.832,19.446,56.939); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498613,6,65,-220.245,18.466,53.843); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498613,7,149,-288.582,17.787,-73.885); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498613,8,174,-227.255,10.000,-65.473); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498613,9,191,-259.927,8.705,-133.028); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17498613,10,254,-356.233,15.475,-104.030); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498622,0,207,-184.862,17.989,-108.860); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498622,1,4,-130.961,29.207,19.947); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498622,2,114,-106.972,19.055,-65.469); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498622,3,35,-168.173,18.653,-92.826); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498622,4,141,-130.746,20.058,-24.084); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498622,5,254,-188.832,19.446,56.939); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498622,6,65,-220.245,18.466,53.843); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498622,7,149,-288.582,17.787,-73.885); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498622,8,174,-227.255,10.000,-65.473); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498622,9,191,-259.927,8.705,-133.028); -- Sea Serpent Grotto
+INSERT INTO `treasure_spawn_points` VALUES (17498622,10,254,-356.233,15.475,-104.030); -- Sea Serpent Grotto
 INSERT INTO `treasure_spawn_points` VALUES (17502695,0,1,101.588,15.837,380.587); -- Ve'Lugannon Palace
 INSERT INTO `treasure_spawn_points` VALUES (17502695,1,128,-380.368,15.700,-220.126); -- Ve'Lugannon Palace
 INSERT INTO `treasure_spawn_points` VALUES (17502695,2,193,-459.988,16.000,-73.829); -- Ve'Lugannon Palace
@@ -501,16 +501,16 @@ INSERT INTO `treasure_spawn_points` VALUES (17617220,9,227,102.903,3.939,-97.614
 INSERT INTO `treasure_spawn_points` VALUES (17617220,10,2,-67.400,0.000,-39.111); -- Ifrit's Cauldron
 INSERT INTO `treasure_spawn_points` VALUES (17617220,11,255,-67.099,0.000,-0.796); -- Ifrit's Cauldron
 INSERT INTO `treasure_spawn_points` VALUES (17617220,12,182,160.900,-0.068,-22.165); -- Ifrit's Cauldron
-INSERT INTO `treasure_spawn_points` VALUES (17629732,0,255,613.598,-6.057,-680.984); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629732,1,192,540.553,-16.920,-770.118); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629732,2,255,429.401,-16.890,-739.502); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629732,3,194,495.848,-10.863,-827.019); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629732,4,255,629.929,-16.899,-820.711); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629732,5,66,740.357,-16.877,-789.623); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629732,6,94,826.074,-11.118,-733.808); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629732,7,156,867.442,1.146,-708.477); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629732,8,27,865.615,1.942,-622.742); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629732,9,192,677.287,3.220,-581.735); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629735,0,255,613.598,-6.057,-680.984); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629735,1,192,540.553,-16.920,-770.118); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629735,2,255,429.401,-16.890,-739.502); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629735,3,194,495.848,-10.863,-827.019); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629735,4,255,629.929,-16.899,-820.711); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629735,5,66,740.357,-16.877,-789.623); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629735,6,94,826.074,-11.118,-733.808); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629735,7,156,867.442,1.146,-708.477); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629735,8,27,865.615,1.942,-622.742); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629735,9,192,677.287,3.220,-581.735); -- Quicksand Caves
 
 /*!40000 ALTER TABLE `treasure_spawn_points` ENABLE KEYS */;
 UNLOCK TABLES;
