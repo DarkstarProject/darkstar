@@ -15,11 +15,11 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local tomes = {17429003,17429004,17429005,17429006,17429007};
+    local tomes = {17429024,17429025,17429026,17429027,17429028};
 
     SetGroundsTome(tomes);
 
-    UpdateTreasureSpawnPoint(17428982);
+    UpdateTreasureSpawnPoint(17429003);
 end;
 
 -----------------------------------

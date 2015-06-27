@@ -11,7 +11,7 @@ require("scripts/globals/keyitems");
 require("scripts/globals/zone");
 require("scripts/zones/Quicksand_Caves/TextIDs");
 
-base_id = 17629682;
+base_id = 17629685;
 
 -----------------------------------
 -- onInitialize
@@ -19,7 +19,7 @@ base_id = 17629682;
 
 function onInitialize(zone)
 
-    local tomes = {17629763,17629764,17629765,17629766,17629767,17629768};
+    local tomes = {17629766,17629767,17629768,17629769,17629770,17629771};
     
     SetGroundsTome(tomes);
 
@@ -64,7 +64,7 @@ function onInitialize(zone)
 	SetServerVariable("BastokFight8_1" ,0);
 	SetServerVariable("Bastok8-1LastClear", os.time()-QM_RESET_TIME); -- Set a delay on ??? mission NM pop.
     
-    UpdateTreasureSpawnPoint(17629732);
+    UpdateTreasureSpawnPoint(17629735);
 
 end;
 
