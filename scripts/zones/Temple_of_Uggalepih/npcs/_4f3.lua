@@ -61,12 +61,12 @@ function onEventFinish(player,csid,option)
 		if (player:delGil(250 * ((player:getVar("EVERYONES_GRUDGE_KILLS")/20)+1))) then
             player:setVar("EVERYONES_GRUDGE_KILLS",0);
 			player:messageSpecial(HATE_RESET);				
-			--GetNPCByID(17428912):castSpell(260);
-			local mob = GetNPCByID( 17428912 );
+			--GetNPCByID(17428933):castSpell(260);
+			local mob = GetNPCByID( 17428933 );
 			if (mob ~= nil) then
 				--mob:injectActionPacket( 43, 43 );
 			else
-				printf( "MOB IS NULL! %d", 17428912 );
+				printf( "MOB IS NULL! %d", 17428933 );
 			end
 			
         end
