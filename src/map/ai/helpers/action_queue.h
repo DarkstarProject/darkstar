@@ -24,7 +24,7 @@ This file is part of DarkStar-server source code.
 #ifndef _ACTIONQUEUE_H
 #define _ACTIONQUEUE_H
 
-#include <set>
+#include <queue>
 #include "../ai_common.h"
 #include "../../../common/cbasetypes.h"
 
@@ -64,7 +64,7 @@ public:
     void checkAction(time_point tick);
 private:
     CAIBase& AIBase;
-    std::set<queueAction> actionQueue;
+    std::priority_queue<queueAction> actionQueue;
 };
 
 #endif

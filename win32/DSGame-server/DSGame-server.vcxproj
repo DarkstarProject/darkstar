@@ -476,7 +476,6 @@
     <ClCompile Include="..\..\src\map\ai\states\magic_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\mobskill_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\range_state.cpp" />
-    <ClCompile Include="..\..\src\map\ai\states\state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\weaponskill_state.cpp" />
     <ClCompile Include="..\..\src\map\alliance.cpp" />
     <ClCompile Include="..\..\src\map\blue_spell.cpp" />

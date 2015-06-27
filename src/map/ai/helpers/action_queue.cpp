@@ -30,19 +30,18 @@ CAIActionQueue::CAIActionQueue(CAIBase& _AIBase) :
 
 void CAIActionQueue::pushAction(queueAction&& action)
 {
-    actionQueue.insert(std::move(action));
+    actionQueue.push(std::move(action));
 }
 
 void CAIActionQueue::checkAction(time_point tick)
 {
     if (!actionQueue.empty())
     {
-        auto it = actionQueue.begin();
-        if (tick > it->start_time + it->delay)
+        auto& action = actionQueue.top();
+        if (tick > action.start_time + action.delay)
         {
-            queueAction act = *it;
-            AIBase.ActionQueueStateChange(act);
+            AIBase.ActionQueueStateChange(action);
+            actionQueue.pop();
         }
-        actionQueue.erase(it);
     }
 }
