@@ -38,6 +38,7 @@ CInstanceLoader::CInstanceLoader(uint8 instanceid, CZone* PZone, CCharEntity* PR
     DSP_DEBUG_BREAK_IF(PZone->GetType() != ZONETYPE_DUNGEON_INSTANCED);
 
 	requester = PRequester;
+    zone = PZone;
     CInstance* instance = ((CZoneInstance*)PZone)->CreateInstance(instanceid);
 
 	SqlInstanceHandle = Sql_Malloc();
