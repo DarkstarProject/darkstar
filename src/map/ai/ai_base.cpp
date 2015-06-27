@@ -31,7 +31,7 @@ CAIBase::CAIBase(CBaseEntity* _PEntity) :
     PEntity(_PEntity),
     PActionTarget(nullptr),
     m_state(AIState::None),
-    ActionQueue(this)
+    ActionQueue(*this)
 {
 }
 
@@ -39,6 +39,11 @@ CAIBase::CAIBase(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _pathfind) 
     CAIBase(_PEntity)
 {
     pathfind = std::move(_pathfind);
+}
+
+void CAIBase::ActionQueueStateChange(queueAction& action)
+{
+    //pathfinding maybe
 }
 
 bool CAIBase::CanChangeState()
@@ -55,8 +60,14 @@ void CAIBase::Tick(time_point _tick)
 {
     m_Tick = _tick;
     CBaseEntity* PreEntity = PEntity;
-    //#TODO: check action queue here (maybe - maybe don't want to interrupt channeling actions) 
+    
+    // check Action Queue
+    if (CanChangeState())
+    {
+        ActionQueue.checkAction(m_Tick);
+    }
 
+    // check pathfinding
     if (pathfind)
     {
         //#TODO: pathfinding 

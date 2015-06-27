@@ -25,7 +25,7 @@
 
 #include "../../spell.h"
 
-CMagicState::CMagicState(CBattleEntity& PEntity, CTargetFind* PTargetFind) :
+CMagicState::CMagicState(CBattleEntity* PEntity, CTargetFind& PTargetFind) :
     CState(PEntity, PTargetFind),
     m_PSpell(nullptr)
 {
@@ -33,7 +33,7 @@ CMagicState::CMagicState(CBattleEntity& PEntity, CTargetFind* PTargetFind) :
 
 STATESTATUS CMagicState::Update(time_point tick)
 {
-    return STATESTATUS_NONE;
+    return m_State;
 }
 
 void CMagicState::Clear()
@@ -42,12 +42,29 @@ void CMagicState::Clear()
 
 bool CMagicState::Cancel()
 {
-    //if spell is currently casting, return false
+    if (m_State == STATESTATUS::InProgress)
+    {
+        //clean up (interrupt packet, etc)
+    }
     return true;
 }
 
-STATESTATUS CMagicState::CastSpell(CSpell* PSpell, CBattleEntity* PTarget)
+STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid)
 {
-    m_PSpell = PSpell;
-    m_PTarget = m_PTargetFind->getValidTarget(PTarget, PSpell->getValidTarget());
+    m_PSpell = spell::GetSpell(spellid);
+
+    if (m_PSpell)
+    {
+        m_PTarget = m_PTargetFind.getValidTarget(targetid, m_PSpell->getValidTarget());
+
+        //calculate cast time
+
+        m_State = STATESTATUS::InProgress;
+    }
+    else
+    {
+        m_State = STATESTATUS::Error;
+    }
+    return m_State;
+
 }

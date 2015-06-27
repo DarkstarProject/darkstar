@@ -46,6 +46,8 @@ public:
     // stores all events and their associated lua callbacks
     CAIEventHandler EventHandler;
 
+    virtual void ActionQueueStateChange(queueAction&);
+
 protected:
     // pathfinder, not guaranteed to be implemented
     std::unique_ptr<CPathFind> pathfind;

@@ -32,3 +32,17 @@ void CAIActionQueue::pushAction(queueAction&& action)
 {
     actionQueue.insert(std::move(action));
 }
+
+void CAIActionQueue::checkAction(time_point tick)
+{
+    if (!actionQueue.empty())
+    {
+        auto it = actionQueue.begin();
+        if (tick > it->start_time + it->delay)
+        {
+            queueAction act = *it;
+            AIBase.ActionQueueStateChange(act);
+        }
+        actionQueue.erase(it);
+    }
+}

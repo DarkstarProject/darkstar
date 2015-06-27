@@ -35,21 +35,33 @@ CAIBattle::CAIBattle(CBattleEntity* _PEntity) :
 {
 }
 
-void CAIBattle::Cast(CBattleEntity* PEntity, CSpell* PSpell)
+void CAIBattle::ActionQueueStateChange(queueAction* action)
+{
+    switch(action->action)
+    {
+        case AIState::Casting:
+            Cast(action->spell.spellid, action->spell.targid);
+            break;
+        default:
+            break;
+    }
+}
+
+void CAIBattle::Cast(uint16 targetid, uint16 spellid)
 {
     if (CanChangeState())
     {
         ChangeState(AIState::Casting);
-        actionStateContainer = std::unique_ptr<CState>(new CMagicState(PEntity, &targetFind));
-        /*if (magicState.IsOnCoolDown(m_Tick))
-        {
+        actionStateContainer = std::unique_ptr<CState>(new CMagicState(*PEntity, targetFind));
+        // check global cooldown, not inside state
+        /*{
             //MagicStartError();
             return;
         }*/
 
-        STATESTATUS status = dynamic_cast<CMagicState*>(actionStateContainer.get())->CastSpell(PSpell, targetFind.getValidTarget(PEntity, PSpell->getValidTarget()));
+        STATESTATUS status = dynamic_cast<CMagicState*>(actionStateContainer.get())->CastSpell(spellid, targetid);
 
-        if (status != STATESTATUS_START)
+        if (status != STATESTATUS::InProgress)
         {
             //MagicStartError();
         }

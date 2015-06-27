@@ -30,19 +30,17 @@
 class CBattleEntity;
 class CTargetFind;
 
-enum STATESTATUS {
-  STATESTATUS_NONE,
-  STATESTATUS_START,
-  STATESTATUS_TICK,
-  STATESTATUS_FINISH,
-  STATESTATUS_ERROR,
-  STATESTATUS_INTERRUPT
+enum class STATESTATUS {
+  None,
+  InProgress,
+  Error,
+  Interrupt
 };
 
 class CState
 {
   public:
-    CState(CBattleEntity& PEntity, CTargetFind* PTargetFind) :
+    CState(CBattleEntity* PEntity, CTargetFind& PTargetFind) :
         m_PEntity(PEntity), 
         m_PTarget(nullptr),
         m_PTargetFind(PTargetFind) {}
@@ -57,10 +55,11 @@ class CState
     virtual bool Cancel() = 0;
 
   protected:
-    CBattleEntity& m_PEntity;
+    CBattleEntity* m_PEntity;
     CBattleEntity* m_PTarget;
 
-    CTargetFind* m_PTargetFind;
+    CTargetFind& m_PTargetFind;
+    STATESTATUS m_State;
 };
 
 #endif

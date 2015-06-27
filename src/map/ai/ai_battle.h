@@ -36,7 +36,8 @@ class CAIBattle : CAIBase
 public:
     CAIBattle(CBattleEntity*);
 
-    virtual void Cast(CBattleEntity*, CSpell*);
+    virtual void ActionQueueStateChange(queueAction*) override;
+    virtual void Cast(uint16 targetid, uint16 spellid);
 
 protected:
     virtual void ActionAttacking() override;

@@ -37,13 +37,13 @@ enum MAGICFLAGS {
 class CMagicState : public CState
 {
 public:
-    CMagicState(CBattleEntity& PEntity, CTargetFind* PTargetFind);
+    CMagicState(CBattleEntity* PEntity, CTargetFind& PTargetFind);
     virtual STATESTATUS Update(time_point tick) override;
     virtual void Clear() override;
     virtual bool Cancel() override;
     
     //start spellcast on target
-    STATESTATUS CastSpell(CSpell*, CBattleEntity*);
+    STATESTATUS CastSpell(uint16 spellid, uint16 targetid);
 
 protected:
     CSpell* m_PSpell;

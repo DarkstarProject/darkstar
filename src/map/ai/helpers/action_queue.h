@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 
 #include <set>
 #include "../ai_common.h"
+#include "../../../common/cbasetypes.h"
 
 class CAIBase;
 
@@ -33,8 +34,25 @@ struct queueAction
 {
     time_point start_time;
     duration delay;
+    AIState action;
+
+    union
+    {
+        uint32 param;
+        struct
+        {
+            uint16 spellid;
+            uint16 targid;
+        } spell;
+        struct
+        {
+            uint16 skillid;
+            uint16 targid;
+        } mobskill;
+    };
 
     bool operator<(const queueAction& o) { return start_time + delay < o.start_time + o.delay; }
+    queueAction() : start_time(server_clock::now()), delay(0), action(AIState::None), param(0){}
 };
 
 class CAIActionQueue
@@ -43,6 +61,7 @@ public:
     CAIActionQueue(CAIBase&);
 
     void pushAction(queueAction&&);
+    void checkAction(time_point tick);
 private:
     CAIBase& AIBase;
     std::set<queueAction> actionQueue;
