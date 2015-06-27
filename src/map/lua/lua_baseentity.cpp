@@ -9388,7 +9388,13 @@ inline int32 CLuaBaseEntity::setInstance(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     CLuaInstance* PLuaInstance = Lunar<CLuaInstance>::check(L, 1);
-    m_PBaseEntity->PInstance = PLuaInstance->GetInstance();
+    CInstance* PInstance = PLuaInstance->GetInstance();
+    m_PBaseEntity->PInstance = PInstance;
+
+    if (PInstance)
+    {
+        PInstance->RegisterChar(dynamic_cast<CCharEntity*>(m_PBaseEntity));
+    }
 
     return 0;
 }
