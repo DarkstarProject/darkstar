@@ -2,19 +2,19 @@
 
 -- General Texts
 ITEM_CANNOT_BE_OBTAINED = 6584; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6587; -- Obtained: <item>.
-           GIL_OBTAINED = 6588; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6590; -- Obtained key item: <keyitem>.
+          ITEM_OBTAINED = 6588; -- Obtained: <item>.
+           GIL_OBTAINED = 6589; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6591; -- Obtained key item: <keyitem>.
 
 -- Treasure Coffer/Chest Dialog
-CHEST_UNLOCKED = 7266; -- You unlock the chest!
-    CHEST_FAIL = 7267; -- Fails to open the chest.
-    CHEST_TRAP = 7268; -- The chest was trapped!
-    CHEST_WEAK = 7269; -- You cannot open the chest when you are in a weakened state.
-   CHEST_MIMIC = 7270; -- The chest was a mimic!
-  CHEST_MOOGLE = 7271; -- You cannot open the chest while participating in the moogle event.
-CHEST_ILLUSION = 7272; -- The chest was but an illusion...
-  CHEST_LOCKED = 7273; -- The chest appears to be locked.
+CHEST_UNLOCKED = 7268; -- You unlock the chest!
+    CHEST_FAIL = 7269; -- Fails to open the chest.
+    CHEST_TRAP = 7270; -- The chest was trapped!
+    CHEST_WEAK = 7271; -- You cannot open the chest when you are in a weakened state.
+   CHEST_MIMIC = 7272; -- The chest was a mimic!
+  CHEST_MOOGLE = 7273; -- You cannot open the chest while participating in the moogle event.
+CHEST_ILLUSION = 7274; -- The chest was but an illusion...
+  CHEST_LOCKED = 7275; -- The chest appears to be locked.
 
 -- Mission Texts
       ORB_ALREADY_PLACED = 0; -- A dark Mana Orb is already placed here.
@@ -29,8 +29,8 @@ FOURTH_DARK_ORB_IN_PLACE = 9; -- Forth Mana Orb Receptacle is ready for use.
  SIXTH_DARK_ORB_IN_PLACE = 11; -- Sixth Mana Orb Receptacle is ready for use.
  DARK_MANA_ORB_RECHARGER = 12; -- This appears to be a device that recharges Mana Orbs.
 
-        DOOR_FIRMLY_SHUT = 7241; -- The door is firmly shut.
-    ALL_G_ORBS_ENERGIZED = 7244; -- The six Mana Orbs have been successfully energized with magic!
+        DOOR_FIRMLY_SHUT = 7243; -- The door is firmly shut.
+    ALL_G_ORBS_ENERGIZED = 7246; -- The six Mana Orbs have been successfully energized with magic!
 
 -- conquest Base
 CONQUEST_BASE = 15;
