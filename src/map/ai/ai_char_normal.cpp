@@ -1356,7 +1356,7 @@ void CAICharNormal::ActionMagicFinish()
 
 void CAICharNormal::ActionMagicInterrupt()
 {
-    m_PMagicState->InterruptSpell();
+    m_PMagicState->Interrupt();
 
     m_LastMeleeTime += (m_Tick - m_LastActionTime);
 

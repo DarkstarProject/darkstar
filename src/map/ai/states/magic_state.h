@@ -40,13 +40,15 @@ public:
     CMagicState(CBattleEntity* PEntity, CTargetFind& PTargetFind);
     virtual STATESTATUS Update(time_point tick) override;
     virtual void Clear() override;
-    virtual bool Cancel() override;
+    virtual bool CanChangeState() override;
+
+    void Interrupt();
     
     //start spellcast on target
     STATESTATUS CastSpell(uint16 spellid, uint16 targetid);
-
 protected:
     CSpell* m_PSpell;
+    duration m_castTime;
 };
 
 #endif

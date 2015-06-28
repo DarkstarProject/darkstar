@@ -48,11 +48,9 @@ class CState
     //state logic done per tick
     virtual STATESTATUS Update(time_point tick) = 0;
 
-    //reset the state (probably not needed)
+    //reset/cancel the state
     virtual void Clear() = 0;
-
-    //cancels the current action (if possible) - returns false if not possible
-    virtual bool Cancel() = 0;
+    virtual bool CanChangeState() = 0;
 
   protected:
     CBattleEntity* m_PEntity;
@@ -60,6 +58,8 @@ class CState
 
     CTargetFind& m_PTargetFind;
     STATESTATUS m_State;
+
+    time_point m_startTime;
 };
 
 #endif

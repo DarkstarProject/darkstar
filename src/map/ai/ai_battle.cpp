@@ -35,12 +35,12 @@ CAIBattle::CAIBattle(CBattleEntity* _PEntity) :
 {
 }
 
-void CAIBattle::ActionQueueStateChange(queueAction* action)
+void CAIBattle::ActionQueueStateChange(queueAction& action)
 {
-    switch(action->action)
+    switch(action.action)
     {
         case AIState::Casting:
-            Cast(action->spell.spellid, action->spell.targid);
+            Cast(action.spell.spellid, action.spell.targid);
             break;
         default:
             break;
@@ -52,7 +52,7 @@ void CAIBattle::Cast(uint16 targetid, uint16 spellid)
     if (CanChangeState())
     {
         ChangeState(AIState::Casting);
-        actionStateContainer = std::unique_ptr<CState>(new CMagicState(*PEntity, targetFind));
+        actionStateContainer = std::unique_ptr<CState>(new CMagicState(dynamic_cast<CBattleEntity*>(PEntity), targetFind));
         // check global cooldown, not inside state
         /*{
             //MagicStartError();
@@ -76,28 +76,25 @@ void CAIBattle::ActionCasting()
 {
     STATESTATUS status = actionStateContainer->Update(m_Tick);
 
-    if (status == STATESTATUS_INTERRUPT)
+    if (status == STATESTATUS::Interrupt)
     {
         //push packet, reset to whatever previous state
     }
-    else if (status == STATESTATUS_ERROR)
+    else if (status == STATESTATUS::Error)
     {
         //reset to previous state
-    }
-    else if (status == STATESTATUS_FINISH)
-    {
-        //magicState will handle spell finishing
     }
 }
 
 bool CAIBattle::CanChangeState()
 {
     return CAIBase::CanChangeState() && (!actionStateContainer ||
-        (actionStateContainer && actionStateContainer->Cancel()));
+        (actionStateContainer && actionStateContainer->CanChangeState()));
 }
 
 void CAIBattle::ChangeState(AIState state)
 {
+    actionStateContainer->Clear();
     actionStateContainer.reset();
     CAIBase::ChangeState(state);
 }
