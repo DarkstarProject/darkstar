@@ -37,7 +37,7 @@ STATESTATUS CMagicState::Update(time_point tick)
         tick > m_startTime + m_castTime)
     {
         //complete cast
-        m_State = STATESTATUS::None;
+        m_State = STATESTATUS::Finish;
     }
     return m_State;
 }

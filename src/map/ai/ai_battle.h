@@ -49,6 +49,8 @@ protected:
     CTargetFind targetFind;
     std::unique_ptr<CState> actionStateContainer;
     duration m_AttackTime;
+    //global cooldown
+    time_point m_LastActionTime;
 };
 
 #endif

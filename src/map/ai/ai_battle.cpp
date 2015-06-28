@@ -51,13 +51,13 @@ void CAIBattle::Cast(uint16 targetid, uint16 spellid)
 {
     if (CanChangeState())
     {
-        ChangeState(AIState::Casting);
-        actionStateContainer = std::unique_ptr<CState>(new CMagicState(dynamic_cast<CBattleEntity*>(PEntity), targetFind));
-        // check global cooldown, not inside state
-        /*{
+        if (m_Tick < m_LastActionTime + g_GCD)
+        {
             //MagicStartError();
             return;
-        }*/
+        }
+        ChangeState(AIState::Casting);
+        actionStateContainer = std::unique_ptr<CState>(new CMagicState(dynamic_cast<CBattleEntity*>(PEntity), targetFind));
 
         STATESTATUS status = dynamic_cast<CMagicState*>(actionStateContainer.get())->CastSpell(spellid, targetid);
 

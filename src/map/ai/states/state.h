@@ -34,7 +34,8 @@ enum class STATESTATUS {
   None,
   InProgress,
   Error,
-  Interrupt
+  Interrupt,
+  Finish
 };
 
 class CState

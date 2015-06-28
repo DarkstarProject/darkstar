@@ -46,4 +46,6 @@ typedef std::chrono::steady_clock server_clock;
 typedef server_clock::time_point time_point;
 typedef server_clock::duration duration;
 
+duration g_GCD = std::chrono::milliseconds(1500);
+
 #endif
