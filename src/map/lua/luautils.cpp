@@ -3397,6 +3397,38 @@ int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAb
 	return 0;
 }
 
+int32 OnInstanceZoneIn(CCharEntity* PChar, CInstance* PInstance)
+{
+    CZone* PZone = PInstance->GetZone();
+
+    lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
+
+    if (prepFile(File, "onInstanceZoneIn"))
+    {
+        return -1;
+    }
+
+    CLuaBaseEntity LuaEntity(PChar);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaEntity);
+
+    CLuaInstance LuaInstance(PInstance);
+    Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
+
+    if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::onInstanceZoneIn: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 0)
+    {
+        ShowError("luautils::onInstanceZoneIn (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+    return 0;
+}
+
 int32 AfterInstanceRegister(uint32 tick, CTaskMgr::CTask *PTask)
 {
 	CCharEntity* PChar = (CCharEntity*)PTask->m_data;
