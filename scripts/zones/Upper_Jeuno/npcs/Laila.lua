@@ -41,6 +41,20 @@ function onTrigger(player,npc)
 		player:startEvent(0x2781);
 	elseif(lakesideMin == QUEST_ACCEPTED) then
 		player:startEvent(0x2780) -- After accepting, reminder
+	elseif((player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_AVAILABLE or (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_COMPLETED and player:hasItem(19203)==false))
+			and player:getMainJob()==JOB_DNC and player:getMainLvl()>=40) then
+
+		player:startEvent(0x2791);
+
+	elseif(player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1")==5 and player:seenKeyItem(THE_ESSENCE_OF_DANCE) and player:getMainJob()==JOB_DNC) then
+		player:startEvent(0x2795);
+
+	elseif(player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED) then
+		player:startEvent(0x2796);
+
+	elseif(player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_COMPLETED and player:getQuestStatus(JEUNO,THE_ROAD_TO_DIVADOM) == QUEST_AVAILABLE and player:getMainJob()==JOB_DNC) then
+		player:startEvent(0x2798);
+
 	else
 		player:startEvent(0x2788); -- Default
 	end
@@ -74,6 +88,19 @@ function onEventFinish(player,csid,option)
 		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:delKeyItem(STARDUST_PEBBLE);
 		player:needToZone(true);
+	elseif(csid==0x2791) then
+		if (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_COMPLETED) then
+			player:delQuest(JEUNO,THE_UNFINISHED_WALTZ);
+			player:delKeyItem(THE_ESSENCE_OF_DANCE);
+		end
+		player:addQuest(JEUNO,THE_UNFINISHED_WALTZ);
+		player:setVar("QuestStatus_DNC_AF1", 1);
+
+	elseif(csid==0x2795) then
+		player:setVar("QuestStatus_DNC_AF1", 0);
+		player:addItem(19203); -- war hoop
+		player:messageSpecial(ITEM_OBTAINED,19203);
+		player:completeQuest(JEUNO,THE_UNFINISHED_WALTZ);
 	end
 end;
 

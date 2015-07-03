@@ -9500,6 +9500,17 @@ inline int32 CLuaBaseEntity::getAllegiance(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::setAllegiance(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    ALLEGIANCETYPE allegiance = (ALLEGIANCETYPE)lua_tointeger(L, 1);
+
+    m_PBaseEntity->allegiance = allegiance;
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::stun(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -10302,6 +10313,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawn),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentAction),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAllegiance),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setAllegiance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,stun),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,weaknessTrigger),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBehaviour),

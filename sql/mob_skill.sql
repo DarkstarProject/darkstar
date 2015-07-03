@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Ven 03 Février 2012    22:54
+-- GÃ©nÃ©rÃ© le : Ven 03 FÃ©vrier 2012    22:54
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Base de donnÃ©es: `dspdb`
 --
 
 -- --------------------------------------------------------
@@ -501,7 +501,7 @@ INSERT INTO `mob_skill` VALUES (139,47,139,'Jet_Stream',0,7.0,2000,1500,4,0,0,0)
 INSERT INTO `mob_skill` VALUES (666,125,143,'Blind_Vortex',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (667,125,144,'Giga_Scream',0,7.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (668,125,145,'Dread_Dive',0,7.0,2000,1500,4,0,0,2);
-INSERT INTO `mob_skill` VALUES (669,125,146,'Feather_Barrier',0,7.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (146,125,146,'Feather_Barrier',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (670,125,147,'Stormwind',1,15.0,6000,1500,4,0,0,0); -- Animation times may very.
 
 -- INSERT INTO `mob_skill` VALUES (143,?,143,'Scratch',0,7.0,2000,1500,4,0,0,0); -- Used in place of Blind Vortex by certain NM.
