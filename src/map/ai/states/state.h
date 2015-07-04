@@ -31,20 +31,27 @@ class CBattleEntity;
 class CTargetFind;
 
 enum class STATESTATUS {
-  None,
-  InProgress,
-  Error,
-  Interrupt,
-  Finish
+    None,
+    InProgress,
+    Interrupt,
+    Finish,
+    ErrorRange,
+    ErrorInvalidTarget,
+    ErrorFacing,
+    ErrorParalyzed,
+    ErrorIntimidated,
+    ErrorUnknown
 };
 
 class CState
 {
-  public:
+public:
     CState(CBattleEntity* PEntity, CTargetFind& PTargetFind) :
-        m_PEntity(PEntity), 
+        m_PEntity(PEntity),
         m_PTarget(nullptr),
         m_PTargetFind(PTargetFind) {}
+
+    virtual ~CState() = default;
 
     //state logic done per tick
     virtual STATESTATUS Update(time_point tick) = 0;
@@ -53,7 +60,7 @@ class CState
     virtual void Clear() = 0;
     virtual bool CanChangeState() = 0;
 
-  protected:
+protected:
     CBattleEntity* m_PEntity;
     CBattleEntity* m_PTarget;
 

@@ -45,9 +45,22 @@ protected:
 
     virtual bool CanChangeState() override;
     virtual void ChangeState(AIState) override;
+    //after active state, return to passive state
+    virtual void TransitionBack();
+
+    //determines whether the next auto attack swing will happen
+    virtual STATESTATUS CanAttack();
+    //whether the entity should disengage (target dead, etc)
+    virtual bool ShouldDisengage();
+
+    virtual void CastFinished();
+    virtual void CastInterrupted();
 
     CTargetFind targetFind;
     std::unique_ptr<CState> actionStateContainer;
+
+    CBattleEntity* PBattleTarget;
+
     duration m_AttackTime;
     //global cooldown
     time_point m_LastActionTime;

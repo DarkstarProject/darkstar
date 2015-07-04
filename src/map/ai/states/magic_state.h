@@ -42,6 +42,7 @@ public:
     virtual void Clear() override;
     virtual bool CanChangeState() override;
 
+    CSpell* GetSpell();
     void Interrupt();
     
     //start spellcast on target

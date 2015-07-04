@@ -33,13 +33,16 @@ CMagicState::CMagicState(CBattleEntity* PEntity, CTargetFind& PTargetFind) :
 
 STATESTATUS CMagicState::Update(time_point tick)
 {
-    if (m_State == STATESTATUS::InProgress && 
-        tick > m_startTime + m_castTime)
+    if (tick > m_startTime + m_castTime)
     {
-        //complete cast
-        m_State = STATESTATUS::Finish;
+        if (m_State == STATESTATUS::InProgress)
+        {
+            //complete cast
+            m_State = STATESTATUS::Finish;
+        }
+        return m_State;
     }
-    return m_State;
+    return STATESTATUS::InProgress;
 }
 
 void CMagicState::Clear()
@@ -47,12 +50,18 @@ void CMagicState::Clear()
     if (m_State == STATESTATUS::InProgress)
     {
         //clean up (interrupt packet, etc)
+        //PEntity->PAI->CastInterrupted();
     }
 }
 
 bool CMagicState::CanChangeState()
 {
     return m_State != STATESTATUS::InProgress;
+}
+
+CSpell* CMagicState::GetSpell()
+{
+    return m_PSpell;
 }
 
 void CMagicState::Interrupt()
@@ -68,13 +77,15 @@ STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid)
     {
         m_PTarget = m_PTargetFind.getValidTarget(targetid, m_PSpell->getValidTarget());
 
+        //check target
+
         //calculate cast time
 
         m_State = STATESTATUS::InProgress;
     }
     else
     {
-        m_State = STATESTATUS::Error;
+        m_State = STATESTATUS::ErrorUnknown;
     }
     return m_State;
 }
