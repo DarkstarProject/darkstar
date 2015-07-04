@@ -4702,7 +4702,8 @@ namespace charutils
                 "pos_x = %.3f,"
                 "pos_y = %.3f,"
                 "pos_z = %.3f,"
-                "boundary = %u "
+                "boundary = %u,"
+                "zoning = 1 "
                 "WHERE charid = %u;";
 
             Sql_Query(SqlHandle, Query,
