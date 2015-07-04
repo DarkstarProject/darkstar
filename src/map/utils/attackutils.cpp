@@ -141,7 +141,7 @@ bool IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 /************************************************************************
 *                                                                       *
-*  Handles damage multiplier, relic weapons ect				            *
+*  Handles damage multiplier, relic weapons etc.                        *
 *                                                                       *
 ************************************************************************/
 uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, PHYSICAL_ATTACK_TYPE attackType)
@@ -154,10 +154,9 @@ uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32
 
 	if (PWeapon->getModifier(MOD_OCC_DO_EXTRA_DMG) > 0 && PWeapon->getModifier(MOD_EXTRA_DMG_CHANCE) > 0)
 	{
-		// Relic weapons have 16% (ffxiclopedia) chance to do x times damage, cannot proc with weapon skills
 		if (WELL512::GetRandomNumber(100) <= (PWeapon->getModifier(MOD_EXTRA_DMG_CHANCE)/10))
 		{
-			return (damage = (damage * (PWeapon->getModifier(MOD_OCC_DO_EXTRA_DMG)/100)));
+			return (damage = (damage * (PWeapon->getModifier(MOD_OCC_DO_EXTRA_DMG)/100.f)));
 		}
 	}
 
@@ -169,7 +168,7 @@ uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32
 		case RAPID_SHOT_ATTACK:	if (WELL512::GetRandomNumber(100) < PChar->getMod(MOD_RAPID_SHOT_DOUBLE_DAMAGE))	return originalDamage * 2;
 		case SAMBA_ATTACK:		if (WELL512::GetRandomNumber(100) < PChar->getMod(MOD_SAMBA_DOUBLE_DAMAGE))		return originalDamage * 2;
 		default: break;
-	}	
+	}
 	return originalDamage;
 }
 
