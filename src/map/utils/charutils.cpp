@@ -606,7 +606,7 @@ namespace charutils
             "FROM char_stats WHERE charid = %u;";
 
         ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
-        bool zoning = false;
+        uint8 zoning = 0;
 
         if (ret != SQL_ERROR &&
             Sql_NumRows(SqlHandle) != 0 &&
@@ -759,7 +759,7 @@ namespace charutils
         PChar->health.hp = PChar->loc.destination == ZONE_RESIDENTIAL_AREA ? PChar->GetMaxHP() : HP;
         PChar->health.mp = PChar->loc.destination == ZONE_RESIDENTIAL_AREA ? PChar->GetMaxMP() : MP;
         PChar->UpdateHealth();
-        luautils::OnGameIn(PChar, zoning);
+        luautils::OnGameIn(PChar, zoning == 1);
     }
 
     /************************************************************************
