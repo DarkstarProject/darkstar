@@ -216,6 +216,7 @@ enum MODIFIER
     MOD_MOVE                      = 0xA9,  // % Movement Speed (modId = 169)
     MOD_FASTCAST                  = 0xAA,  // Increases Spell Cast Time (TRAIT) (modId = 170)
     MOD_UFASTCAST                 = 0x197, // uncapped fast cast (modId = 407)
+    MOD_CURE_CAST_TIME            = 0x207, // cure cast time reduction (modId = 519)
     MOD_DELAY                     = 0xAB,  // Increase/Decrease Delay (modId = 171)
     MOD_RANGED_DELAY              = 0xAC,  // Increase/Decrease Ranged Delay (modId = 172)
     MOD_MARTIAL_ARTS              = 0xAD,  // The integer amount of delay to reduce from H2H weapons' base delay. (TRAIT) (modId = 173)
@@ -568,8 +569,8 @@ enum MODIFIER
     MOD_DIA_DOT                   = 0x139, //Increases the DoT damage of Dia (modId = 313)
 
     // MOD_SPARE = 0x13B, // (modId = 315)
-    // MOD_SPARE = 0x207, // (modId = 519)
     // MOD_SPARE = 0x208, // (modId = 520)
+    // MOD_SPARE = 0x209, // (modId = 521)
 
 
 };

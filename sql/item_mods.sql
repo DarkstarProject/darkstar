@@ -3235,7 +3235,7 @@ INSERT INTO `item_mods` VALUES (11610, 10, -3);
 INSERT INTO `item_mods` VALUES (11611, 5, 16);
 INSERT INTO `item_mods` VALUES (11611, 8, -4);
 INSERT INTO `item_mods` VALUES (11611, 10, -4);
--- INSERT INTO `item_mods` VALUES (11611, ???, -10); TODO: Cure Cast Time
+INSERT INTO `item_mods` VALUES (11611, 519, 10); -- Cure cast time -10%
 INSERT INTO `item_mods` VALUES (11612, 71, 4);
 -- INSERT INTO `item_mods` VALUES (11612, ???, 2); TODO: Avatar Magic Attack Bonus
 INSERT INTO `item_mods` VALUES (11613, 27, 4);
@@ -14278,6 +14278,7 @@ INSERT INTO `item_mods` VALUES (15322, 5, 12);
 INSERT INTO `item_mods` VALUES (15322, 68, 8);
 INSERT INTO `item_mods` VALUES (15322, 169, 12);
 INSERT INTO `item_mods` VALUES (15323, 1, 14);
+INSERT INTO `item_mods` VALUES (15323, 519, 15); -- Cure cast time -15%
 INSERT INTO `item_mods` VALUES (15324, 1, 11);
 INSERT INTO `item_mods` VALUES (15325, 1, 11);
 INSERT INTO `item_mods` VALUES (15325, 5, 20);
