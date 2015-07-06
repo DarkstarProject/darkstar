@@ -1122,7 +1122,23 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 	local equippedMain = caster:getEquipID(SLOT_MAIN);
 	local equippedWaist = caster:getEquipID(SLOT_WAIST);
 	local weather = caster:getWeather();
-
+	
+	if(caster:getMainJob() == JOB_BLM and caster:getMainLvl() >= 75) then
+        	if(ele == ELE_FIRE) then
+        	 	bonusmab = bonusmab + caster:getMerit(MERIT_FIRE_MAGIC_POTENCY);
+        	elseif(ele == ELE_EARTH) then
+        	 	bonusmab = bonusmab + caster:getMerit(MERIT_EARTH_MAGIC_POTENCY);
+		elseif(ele == ELE_WATER) then
+            		bonusmab = bonusmab + caster:getMerit(MERIT_WATER_MAGIC_POTENCY);
+        	elseif(ele == ELE_WIND) then
+            		bonusmab = bonusmab + caster:getMerit(MERIT_WIND_MAGIC_POTENCY);
+        	elseif(ele == ELE_ICE) then
+        		 bonusmab = bonusmab + caster:getMerit(MERIT_ICE_MAGIC_POTENCY);
+        	elseif(ele == ELE_LIGHTNING) then
+            		bonusmab = bonusmab + caster:getMerit(MERIT_LIGHTNING_MAGIC_POTENCY);
+		end
+    	end
+    
 	if(weather == singleWeatherStrong[ele]) then
 		-- Iridescence
 		if(equippedMain == 18632 or equippedMain == 18633) then
@@ -1585,4 +1601,8 @@ function calculateBarspellPower(caster,enhanceSkill)
 	end
 
 	return power;
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> 14265a8682c7500c569c8e44a4f9234704610680
