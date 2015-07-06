@@ -32,6 +32,11 @@ CServerIPPacket::CServerIPPacket(CCharEntity* PChar, uint8 type, uint64 ipp)
 	this->type = 0x0B;
 	this->size = 0x0E;
 
+    // type 1 - logout, type 2 - change zones
+    Sql_Query(SqlHandle, "UPDATE char_stats SET zoning = %u WHERE charid = %u", (type == 2 ? 1 : 3), PChar->id);
+
+    PChar->status = (type == 2 ? STATUS_DISAPPEAR : STATUS_SHUTDOWN);
+
 	WBUFB(data,(0x04)) = type;
 	WBUFL(data,(0x08)) = ipp;
 	WBUFW(data,(0x0C)) = (ipp >> 32);

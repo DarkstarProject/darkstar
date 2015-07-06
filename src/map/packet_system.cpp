@@ -420,12 +420,10 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
         }
         session->shuttingDown = 1;
-        Sql_Query(SqlHandle, "UPDATE char_stats SET zoning = 0 WHERE charid = %u", PChar->id);
     }
     else
     {
         session->shuttingDown = 2;
-        Sql_Query(SqlHandle, "UPDATE char_stats SET zoning = 1 WHERE charid = %u", PChar->id);
         charutils::CheckEquipLogic(PChar, SCRIPT_CHANGEZONE, PChar->getZone());
     }
 
@@ -438,7 +436,7 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     charutils::SaveCharExp(PChar, PChar->GetMJob());
     charutils::SaveCharPoints(PChar);
 
-    PChar->status = STATUS_DISAPPEAR;
+    
     PChar->PBattleAI->Reset();
     return;
 }
@@ -724,7 +722,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PChar->loc.p = PChar->profile.home_point.p;
         PChar->loc.destination = PChar->profile.home_point.destination;
 
-        PChar->status = STATUS_DISAPPEAR;
+        
         PChar->animation = ANIMATION_NONE;
         PChar->updatemask |= UPDATE_HP;
 
@@ -806,7 +804,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             //PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
             PChar->loc.p = PChar->m_StartActionPos;
             PChar->loc.destination = PChar->getZone();
-            PChar->status = STATUS_DISAPPEAR;
+            
             PChar->loc.boundary = 0;
             PChar->clearPacketList();
             charutils::SendToZone(PChar, 2, zoneutils::GetZoneIPP(PChar->loc.destination));
@@ -1290,7 +1288,7 @@ void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             ShowWarning(CL_YELLOW"lightluggage detected: <%s> will be removed from server\n" CL_RESET, PChar->GetName());
 
-            PChar->status = STATUS_SHUTDOWN;
+            
             charutils::SendToZone(PChar, 1, 0);
         }
         return;
@@ -2665,7 +2663,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (PChar->status == STATUS_NORMAL)
     {
-        PChar->status = STATUS_DISAPPEAR;
+        
         PChar->loc.boundary = 0;
 
         // Exiting Mog House..
@@ -4466,7 +4464,7 @@ void SmallPacket0x0E7(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PChar->nameflags.flags & FLAG_GM ||
         PChar->m_GMlevel > 0)
     {
-        PChar->status = STATUS_SHUTDOWN;
+        
         charutils::SendToZone(PChar, 1, 0);
     }
     else if (PChar->animation == ANIMATION_NONE)
