@@ -831,7 +831,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 
                         ShowDebug(CL_CYAN"map_cleanup: %s timed out, closing session\n" CL_RESET, PChar->GetName());
 
-                        PChar->status = STATUS_SHUTDOWN;
+                        
                         PacketParser[0x00D](map_session_data, PChar, 0);
                     }
                     else
