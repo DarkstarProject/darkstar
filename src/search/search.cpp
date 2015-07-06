@@ -526,7 +526,8 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
 {
     uint8* data = (uint8*)PTCPRequest.GetData();
 
-    uint32 partyid = RBUFL(data, (0x10));
+    uint16 partyid = RBUFW(data, (0x10));
+    uint16 allianceid = RBUFW(data, (0x14));
     uint32 linkshellid1 = RBUFL(data, (0x18));
     uint32 linkshellid2 = RBUFL(data, (0x1C));
 
@@ -535,9 +536,9 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
 
     CDataLoader PDataLoader;
 
-    if (partyid != 0)
+    if (partyid != 0 || allianceid != 0)
     {
-        std::list<SearchEntity*> PartyList = PDataLoader.GetPartyList(partyid);
+        std::list<SearchEntity*> PartyList = PDataLoader.GetPartyList(partyid, allianceid);
 
         CPartyListPacket PPartyPacket(partyid, PartyList.size());
 

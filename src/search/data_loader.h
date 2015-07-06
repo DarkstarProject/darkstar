@@ -88,7 +88,7 @@ public:
     uint32 GetPlayersCount(search_req sr);
 
     std::vector<ahHistory*>  GetAHItemHystory(uint16 ItemID, bool stack);
-    std::list<SearchEntity*> GetPartyList(uint32 PartyID);
+    std::list<SearchEntity*> GetPartyList(uint16 PartyID, uint16 AllianceID);
     std::list<SearchEntity*> GetLinkshellList(uint32 LinkshellID);
     std::list<SearchEntity*> GetPlayersList(search_req sr, int* count);
     std::vector<ahItem*>     GetAHItemsToCategory(uint8 AHCategoryID, int8* OrderByString);
