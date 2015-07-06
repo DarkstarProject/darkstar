@@ -256,8 +256,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 				    }
                     if (m_PSyncTarget != nullptr && m_PSyncTarget != PChar)
                     {
-                        if (PChar->status != STATUS_DISAPPEAR &&
-                             PChar->getZone() == m_PSyncTarget->getZone() )
+                        if (PChar->status != STATUS_DISAPPEAR)
 		                {
                             CStatusEffect* sync = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC);
                             if (sync && sync->GetDuration() == 0)
@@ -335,8 +334,7 @@ void CParty::DelMember(CBattleEntity* PEntity)
 					}
 					if (m_PSyncTarget != nullptr && m_PSyncTarget != PChar)
 					{
-						if (PChar->status != STATUS_DISAPPEAR &&
-							PChar->getZone() == m_PSyncTarget->getZone())
+						if (PChar->status != STATUS_DISAPPEAR)
 						{
 							CStatusEffect* sync = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC);
 							if (sync && sync->GetDuration() == 0)
@@ -1003,8 +1001,7 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
 
 		            CCharEntity* member = (CCharEntity*)members.at(i);
 
-                    if (member->status != STATUS_DISAPPEAR &&
-                         member->getZone() == m_PSyncTarget->getZone() )
+                    if (member->status != STATUS_DISAPPEAR)
 		            {
                         CStatusEffect* sync = member->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC);
                         if (sync && sync->GetDuration() == 0)

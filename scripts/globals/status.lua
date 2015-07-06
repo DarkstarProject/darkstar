@@ -939,6 +939,7 @@ MOD_SPELLINTERRUPT    = 0xA8
 MOD_MOVE              = 0xA9
 MOD_FASTCAST          = 0xAA
 MOD_UFASTCAST         = 0x197
+MOD_CURE_CAST_TIME    = 0x207
 MOD_DELAY             = 0xAB
 MOD_RANGED_DELAY      = 0xAC
 MOD_MARTIAL_ARTS      = 0xAD
@@ -1232,7 +1233,7 @@ MOD_SHARPSHOT       = 0x13A -- Sharpshot accuracy bonus (modId = 314)
 
 -- MOD_SPARE = 0x13A -- (modId = 314)
 -- MOD_SPARE = 0x13B -- (modId = 315)
--- MOD_SPARE = 0x207 -- (modId = 519)
+-- MOD_SPARE = 0x208 -- (modId = 520)
 
 ------------------------------------
 -- Merit Definitions
