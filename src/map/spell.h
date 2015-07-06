@@ -114,6 +114,7 @@ public:
     bool        tookEffect(); // returns true if the spell landed, not resisted or missed
     bool        hasMPCost(); // checks if spell costs mp to use
     bool        isHeal(); // is a heal spell
+    bool        isCure(); // is a Cure spell
     bool        isNa(); // is a -na spell
     bool        canHitShadow(); // check if spell ignores shadows
 

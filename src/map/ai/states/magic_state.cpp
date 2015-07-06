@@ -254,8 +254,17 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
         cast = cast * (1.0f - ((songcasting > 50 ? 50 : songcasting) / 100.0f));
     }
 
-    int16 fastCast = dsp_cap(m_PEntity->getMod(MOD_FASTCAST),-100,50);
-    int16 uncappedFastCast = dsp_cap(m_PEntity->getMod(MOD_UFASTCAST),-100,100);
+    int16 fastCast = dsp_cap(m_PEntity->getMod(MOD_FASTCAST), -100, 50);
+    if (PSpell->isCure()) // Cure cast time reductions
+    {
+        fastCast += m_PEntity->getMod(MOD_CURE_CAST_TIME);
+        if (m_PEntity->objtype == TYPE_PC)
+        {
+            fastCast += ((CCharEntity*)m_PEntity)->PMeritPoints->GetMeritValue(MERIT_CURE_CAST_TIME, (CCharEntity*)m_PEntity);
+        }
+        fastCast = dsp_cap(fastCast, -100, 80);
+    }
+    int16 uncappedFastCast = dsp_cap(m_PEntity->getMod(MOD_UFASTCAST), -100, 100);
     float sumFastCast = dsp_cap(fastCast + uncappedFastCast, -100, 100);
 
     return cast * ((100.0f - sumFastCast)/100.0f);

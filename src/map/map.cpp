@@ -142,7 +142,6 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 		ShowError(CL_RED"recv_parse: Invalid login attempt from %s\n" CL_RESET, ip2str(map_session_data->client_addr, nullptr));
 		return nullptr;
 	}
-    ShowInfo(CL_WHITE"mapsession" CL_RESET":" CL_WHITE"%s" CL_RESET":" CL_WHITE"%u" CL_RESET" is coming to world...\n", ip2str(map_session_data->client_addr, nullptr), map_session_data->client_port);
     return map_session_data;
 }
 

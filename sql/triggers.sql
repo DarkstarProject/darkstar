@@ -85,7 +85,7 @@ CREATE TRIGGER char_pos
 BEGIN
     SET @zoning := 0;
     SELECT zoning INTO @zoning FROM char_stats WHERE charid = OLD.charid;
-    IF @zoning = 1 THEN
+    IF NOT @zoning = 0 THEN
         SET NEW.pos_x = OLD.pos_x;
         SET NEW.pos_y = OLD.pos_y;
         SET NEW.pos_z = OLD.pos_z;

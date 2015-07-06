@@ -320,6 +320,10 @@ int32 lobbydata_parse(int32 fd)
                 memcpy(MainReservePacket, ReservePacket, RBUFB(ReservePacket, 0));
             }
 
+            // disallow change of pos while 'zoning'
+            fmtQuery = "UPDATE char_stats SET zoning = 2 WHERE charid = %u";
+            Sql_Query(SqlHandle, fmtQuery, charid);
+
             unsigned char Hash[16];
             uint8 SendBuffSize = RBUFB(MainReservePacket, 0);
 

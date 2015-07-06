@@ -1266,12 +1266,70 @@ INSERT INTO `item_mods` VALUES (10505, 1, 28); -- DEF:28
 INSERT INTO `item_mods` VALUES (10505, 8, 5); -- STR+5
 INSERT INTO `item_mods` VALUES (10505, 288, 3); -- "Double Attack"+3%
 INSERT INTO `item_mods` VALUES (10505, 384, 30); -- Haste+3%
+-- -------------------------------------------------------
+-- Phorcys Mitts
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10523, 1, 31); -- DEF:31
+INSERT INTO `item_mods` VALUES (10523, 8, 9); -- STR+9
+INSERT INTO `item_mods` VALUES (10523, 10, 9); -- VIT+9
+INSERT INTO `item_mods` VALUES (10523, 13, 9); -- MND+9
+INSERT INTO `item_mods` VALUES (10523, 23, 15); -- ATTACK+15
+INSERT INTO `item_mods` VALUES (10523, 288, 2); -- "Double Attack"+2%
+
+-- -------------------------------------------------------
+-- Thaumas Gloves
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10528, 1, 28); -- DEF:28
+INSERT INTO `item_mods` VALUES (10528, 9, 8); -- DEX+8
+INSERT INTO `item_mods` VALUES (10528, 10, 8); -- VIT+8
+INSERT INTO `item_mods` VALUES (10528, 11, 8); -- AGI+8
+INSERT INTO `item_mods` VALUES (10528, 25, 9); -- Accuracy+9
+INSERT INTO `item_mods` VALUES (10528, 170, 3); -- Enhance "Fast Cast" effect+3
+INSERT INTO `item_mods` VALUES (10528, 384, 3); -- Haste+3%
+
+-- -------------------------------------------------------
+-- Nares Cuffs
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10533, 1, 24); -- DEF:24
+INSERT INTO `item_mods` VALUES (10533, 5, 3); -- MP+3%
+INSERT INTO `item_mods` VALUES (10533, 28, 13); -- Magic Attack Bonus +13
+INSERT INTO `item_mods` VALUES (10533, 71, 4); -- MP Recovered while healing+4
+INSERT INTO `item_mods` VALUES (10533, 312, 8); -- Avatar Magic Attack Bonus+8
 
 INSERT INTO `item_mods` VALUES (10552, 73, 2);
+
+-- -------------------------------------------------------
+-- Phorcys Dirs
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10554, 1, 51); -- DEF:51
+INSERT INTO `item_mods` VALUES (10554, 9, 10); -- DEX+10
+INSERT INTO `item_mods` VALUES (10554, 10, 10); -- VIT+10
+INSERT INTO `item_mods` VALUES (10554, 23, 24); -- ATTACK+24
+INSERT INTO `item_mods` VALUES (10554, 73, 6); -- "Store TP"+6
+INSERT INTO `item_mods` VALUES (10554, 384, 60); -- "Haste+6%
+
+-- -------------------------------------------------------
+-- Thaumas Kecks
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10559, 1, 47); -- DEF:47
+INSERT INTO `item_mods` VALUES (10559, 2, 40); -- HP+40
+INSERT INTO `item_mods` VALUES (10559, 8, 9); -- STR+9
+INSERT INTO `item_mods` VALUES (10559, 11, 9); -- AGI+9
+INSERT INTO `item_mods` VALUES (10559, 25, 14); -- Accuracy+14
+INSERT INTO `item_mods` VALUES (10559, 23, 14); -- Attack+14
+INSERT INTO `item_mods` VALUES (10559, 384, 60); -- "Haste+6%
 INSERT INTO `item_mods` VALUES (10562, 374, 3);
 INSERT INTO `item_mods` VALUES (10563, 374, 5);
-INSERT INTO `item_mods` VALUES (10564, 369, 1);
-INSERT INTO `item_mods` VALUES (10564, 374, 7);
+
+-- -------------------------------------------------------
+-- Nares Trews
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10564, 1, 42); -- DEF:42
+INSERT INTO `item_mods` VALUES (10654, 2, 4); -- HP+4%
+INSERT INTO `item_mods` VALUES (10654, 5, 4); -- MP+4%
+INSERT INTO `item_mods` VALUES (10654, 13, 14); -- MND+14
+INSERT INTO `item_mods` VALUES (10564, 369, 1); -- Refresh
+INSERT INTO `item_mods` VALUES (10564, 374, 7); -- Cure Potency+7
 
 -- -------------------------------------------------------
 -- Decennial Tights
@@ -1292,6 +1350,36 @@ INSERT INTO `item_mods` VALUES (10595, 1, 2); -- def 2
 -- Decennial Hose +1
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (10596, 1, 2); -- def 2
+
+-- -------------------------------------------------------
+-- Phorcys Schuhs
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10620, 1, 28); -- DEF:28
+INSERT INTO `item_mods` VALUES (10620, 25, 12); -- Accuracy+12
+INSERT INTO `item_mods` VALUES (10620, 288, 3); -- "Double Attack"+3%
+INSERT INTO `item_mods` VALUES (10620, 160, -5); -- Damage taken -5%
+
+-- -------------------------------------------------------
+-- Thaumas Nails
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10625, 1, 26); -- DEF:26
+INSERT INTO `item_mods` VALUES (10625, 9, 9); -- DEX+9
+INSERT INTO `item_mods` VALUES (10625, 11, 9); -- AGI+9
+INSERT INTO `item_mods` VALUES (10625, 13, 9); -- MND+9
+INSERT INTO `item_mods` VALUES (10625, 23, 14); -- Attack+14
+INSERT INTO `item_mods` VALUES (10625, 24, 14); -- Ranged Attack+14
+INSERT INTO `item_mods` VALUES (10625, 288, 3); -- "Double Attack"+3%
+
+-- -------------------------------------------------------
+-- Nares Clogs
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10630, 1, 21); -- DEF:21
+INSERT INTO `item_mods` VALUES (10630, 2, 3); -- HP+3%
+INSERT INTO `item_mods` VALUES (10630, 5, 3); -- MP+3%
+INSERT INTO `item_mods` VALUES (10630, 13, 8); -- MND+8
+INSERT INTO `item_mods` VALUES (10630, 14, 8); -- CHR+8
+INSERT INTO `item_mods` VALUES (10630, 30, 7); -- Magic Accuracy+7
+INSERT INTO `item_mods` VALUES (10630, 28, 7); -- "Magic Atk. Bonus"+7
 
 INSERT INTO `item_mods` VALUES (10635, 374, 1);
 INSERT INTO `item_mods` VALUES (10640, 374, 4);
@@ -1401,6 +1489,36 @@ INSERT INTO `item_mods` VALUES (10875, 54, -12); -- [Element: Fire]-12
 INSERT INTO `item_mods` VALUES (10875, 55, 12); -- [Element: Ice]+12
 
 INSERT INTO `item_mods` VALUES (10879, 73, 7);
+-- -------------------------------------------------------
+-- Phorcys Salade
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10901, 1, 36); -- DEF:36
+INSERT INTO `item_mods` VALUES (10901, 25, 10); -- Accuracy+10
+INSERT INTO `item_mods` VALUES (10901, 23, 10); -- ATTACK+10
+INSERT INTO `item_mods` VALUES (10901, 73, 5); -- "Store TP"+5
+INSERT INTO `item_mods` VALUES (10901, 384, 7); -- "Haste+7%
+INSERT INTO `item_mods` VALUES (10901, 289, 5); -- "Subtle Blow"+5
+
+-- -------------------------------------------------------
+-- Thaumas Hat
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10906, 1, 34); -- DEF:34
+INSERT INTO `item_mods` VALUES (10906, 8, 6); -- STR+6
+INSERT INTO `item_mods` VALUES (10906, 11, 14); -- AGI+14
+INSERT INTO `item_mods` VALUES (10906, 24, 6); -- Ranged Attack+6
+INSERT INTO `item_mods` VALUES (10906, 30, 6); -- Magic Accuracy+6
+INSERT INTO `item_mods` VALUES (10906, 28, 6); -- "Magic Atk. Bonus"+6
+INSERT INTO `item_mods` VALUES (10906, 165, 4); -- Critical hit rate+4%
+
+-- -------------------------------------------------------
+-- Nares Cap
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10911, 1, 29); -- DEF:29
+INSERT INTO `item_mods` VALUES (10911, 12, 12); -- INT+12
+INSERT INTO `item_mods` VALUES (10911, 288, 5); -- "Magic Atk. Bonus"+5
+INSERT INTO `item_mods` VALUES (10911, 296, 5); -- "Conserve MP"+5
+INSERT INTO `item_mods` VALUES (10911, 170, 1); -- Fast Cast
+
 INSERT INTO `item_mods` VALUES (10914, 1, 6);
 INSERT INTO `item_mods` VALUES (10914, 27, 2);
 -- INSERT INTO `item_mods` VALUES (10914, ???, -2); TODO: Pet Emnity
@@ -3117,7 +3235,7 @@ INSERT INTO `item_mods` VALUES (11610, 10, -3);
 INSERT INTO `item_mods` VALUES (11611, 5, 16);
 INSERT INTO `item_mods` VALUES (11611, 8, -4);
 INSERT INTO `item_mods` VALUES (11611, 10, -4);
--- INSERT INTO `item_mods` VALUES (11611, ???, -10); TODO: Cure Cast Time
+INSERT INTO `item_mods` VALUES (11611, 519, 10); -- Cure cast time -10%
 INSERT INTO `item_mods` VALUES (11612, 71, 4);
 -- INSERT INTO `item_mods` VALUES (11612, ???, 2); TODO: Avatar Magic Attack Bonus
 INSERT INTO `item_mods` VALUES (11613, 27, 4);
@@ -14160,6 +14278,7 @@ INSERT INTO `item_mods` VALUES (15322, 5, 12);
 INSERT INTO `item_mods` VALUES (15322, 68, 8);
 INSERT INTO `item_mods` VALUES (15322, 169, 12);
 INSERT INTO `item_mods` VALUES (15323, 1, 14);
+INSERT INTO `item_mods` VALUES (15323, 519, 15); -- Cure cast time -15%
 INSERT INTO `item_mods` VALUES (15324, 1, 11);
 INSERT INTO `item_mods` VALUES (15325, 1, 11);
 INSERT INTO `item_mods` VALUES (15325, 5, 20);
@@ -20681,8 +20800,64 @@ INSERT INTO `item_mods` VALUES (27174, 31, 51);
 INSERT INTO `item_mods` VALUES (27174, 68, 25);
 INSERT INTO `item_mods` VALUES (27174, 384, 51);
 INSERT INTO `item_mods` VALUES (27174, 508, 35);
+-- -------------------------------------------------------
+-- Ares' Mask +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27648, 1, 51); -- DEF:51
+INSERT INTO `item_mods` VALUES (27648, 3, 4); -- HP+4%
+INSERT INTO `item_mods` VALUES (27648, 6, 4); -- MP+4%
+INSERT INTO `item_mods` VALUES (27648, 25, 15); -- ACC+15
+INSERT INTO `item_mods` VALUES (27648, 23, 40); -- Attack+40
+INSERT INTO `item_mods` VALUES (27648, 384, 60); -- Haste+6%
+INSERT INTO `item_mods` VALUES (27648, 288, 1); -- "Double Attack"+1%
 
-INSERT INTO `item_mods` VALUES (27651, 374, 11);
+-- -------------------------------------------------------
+-- Skadi's Visor +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27649, 1, 37); -- DEF:37
+INSERT INTO `item_mods` VALUES (27649, 9, 13); -- DEX+13
+INSERT INTO `item_mods` VALUES (27649, 11, 13); -- AGI+13
+INSERT INTO `item_mods` VALUES (27649, 23, 10); -- Attack+10
+INSERT INTO `item_mods` VALUES (27649, 24, 10); -- Ranged Attack+10
+INSERT INTO `item_mods` VALUES (27649, 73, 4); -- "Store TP"+4
+INSERT INTO `item_mods` VALUES (27649, 384, 70); -- Haste+7%
+INSERT INTO `item_mods` VALUES (27649, 165, 1); -- "Critical hit rate"
+
+-- -------------------------------------------------------
+-- Usukane Somen +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27650, 1, 41); -- DEF:41
+INSERT INTO `item_mods` VALUES (27650, 8, 9); -- STR+9
+INSERT INTO `item_mods` VALUES (27650, 11, 9); -- AGI+9
+INSERT INTO `item_mods` VALUES (27650, 25, 10); -- ACC+10
+INSERT INTO `item_mods` VALUES (27650, 68, 10); -- EVA+10
+INSERT INTO `item_mods` VALUES (27650, 288, 4); -- "Double Attack"+4%
+INSERT INTO `item_mods` VALUES (27650, 384, 50); -- Haste+5%
+
+-- -------------------------------------------------------
+-- Marduk's Tiara +1  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27651, 1, 31); -- DEF:31 
+INSERT INTO `item_mods` VALUES (27651, 13, 13); -- MND+13
+INSERT INTO `item_mods` VALUES (27651, 14, 13); -- CHR+13
+INSERT INTO `item_mods` VALUES (27651, 111, 12); -- Divine Skill+12
+INSERT INTO `item_mods` VALUES (27651, 117, 12); -- Summoning Skill+12
+INSERT INTO `item_mods` VALUES (27651, 119, 12); -- Singing Skill+12
+INSERT INTO `item_mods` VALUES (27651, 374, 11); -- Cure Potency+11
+INSERT INTO `item_mods` VALUES (27651, 170, 10); -- Fast Cast+1%
+-- head Enhances "Regen" potency unknown not added
+
+-- -------------------------------------------------------
+-- Morrigan's Coronal +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27652, 1, 33); -- DEF:33
+INSERT INTO `item_mods` VALUES (27652, 5, 50); -- MP+50
+INSERT INTO `item_mods` VALUES (27652, 8, 10); -- STR+10 
+INSERT INTO `item_mods` VALUES (27652, 12, 10); -- INT+10
+INSERT INTO `item_mods` VALUES (27652, 13, 10); -- MND+10
+INSERT INTO `item_mods` VALUES (27652, 25, 12); -- ACC+12
+INSERT INTO `item_mods` VALUES (27652, 30, 12); -- Magic ACC+12
+INSERT INTO `item_mods` VALUES (27652, 28, 1); -- "Magic Attack Bonus"
 
 -- -------------------------------------------------------
 -- Ate's Mask
@@ -20729,6 +20904,68 @@ INSERT INTO `item_mods` VALUES (27662, 30, 1); -- Magic Accuracy+1
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (27756, 2, 3); -- HP+3
 INSERT INTO `item_mods` VALUES (27756, 1, 1); -- DEF:1
+-- -------------------------------------------------------
+-- Ares' Cuirass +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27788, 1, 81); -- DEF:81
+INSERT INTO `item_mods` VALUES (27788, 3, 5); -- HP+5%
+INSERT INTO `item_mods` VALUES (27788, 6, 5); -- MP+5%
+INSERT INTO `item_mods` VALUES (27788, 8, 16); -- STR+16
+INSERT INTO `item_mods` VALUES (27788, 10, 16); -- VIT+16
+INSERT INTO `item_mods` VALUES (27788, 62, 60); -- Attack+6%
+INSERT INTO `item_mods` VALUES (27788, 370, 2); -- Regen+2
+INSERT INTO `item_mods` VALUES (27788, 369, 2); -- Refresh+2
+INSERT INTO `item_mods` VALUES (27788, 288, 1); -- "Double Attack"+1%
+
+-- -------------------------------------------------------
+-- Skadi's Cuirie +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27789, 1, 65); -- DEF:65
+INSERT INTO `item_mods` VALUES (27789, 9, 12); -- DEX+12
+INSERT INTO `item_mods` VALUES (27789, 11, 12); -- AGI+12
+INSERT INTO `item_mods` VALUES (27789, 14, 12); -- CHR+12
+INSERT INTO `item_mods` VALUES (27789, 25, 14); -- ACC+14
+INSERT INTO `item_mods` VALUES (27789, 23, 14); -- Attack+14
+INSERT INTO `item_mods` VALUES (27789, 26, 14); -- Ranged ACC+14
+INSERT INTO `item_mods` VALUES (27789, 24, 14); -- Ranged Attack+14
+INSERT INTO `item_mods` VALUES (27789, 259, 7); -- "Dual Wield"
+INSERT INTO `item_mods` VALUES (27789, 165, 1); -- "Critical Hit Rate"
+ -- body effect "True Shot"+1 unknown not added   
+ 
+-- -------------------------------------------------------
+-- Usukane Haramaki +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27790, 1, 73); -- DEF:73
+INSERT INTO `item_mods` VALUES (27790, 8, 12); -- STR+12
+INSERT INTO `item_mods` VALUES (27790, 9, 12); -- DEX+12
+INSERT INTO `item_mods` VALUES (27790, 12, 12); -- INT+12
+INSERT INTO `item_mods` VALUES (27790, 25, 15); -- ACC+15
+INSERT INTO `item_mods` VALUES (27790, 68, 15); -- EVA+15
+INSERT INTO `item_mods` VALUES (27790, 165, 4); -- Critical Hit Rate+4%
+INSERT INTO `item_mods` VALUES (27790, 73, 7); -- "Store TP"+7
+INSERT INTO `item_mods` VALUES (27790, 384, 10); -- Haste+1%
+
+-- -------------------------------------------------------
+-- Marduk's Jubbah +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27791, 1, 56); -- DEF:56
+INSERT INTO `item_mods` VALUES (27791, 13, 15); -- MND+15
+INSERT INTO `item_mods` VALUES (27791, 14, 15); -- CHR+15
+INSERT INTO `item_mods` VALUES (27791, 170, 2); -- FAST CAST
+INSERT INTO `item_mods` VALUES (27791, 369, 2); -- Refresh
+-- body Summoning magic interruption rate down  not added
+
+-- -------------------------------------------------------
+-- Morrigan's Robe +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27792, 1, 55); -- DEF:55
+INSERT INTO `item_mods` VALUES (27792, 8, 12); -- STR+12
+INSERT INTO `item_mods` VALUES (27792, 12, 12); -- INT+12
+INSERT INTO `item_mods` VALUES (27792, 13, 12); -- MND+12
+INSERT INTO `item_mods` VALUES (27792, 23, 13); -- Attack+13
+INSERT INTO `item_mods` VALUES (27792, 25, 13); -- ACC+13
+INSERT INTO `item_mods` VALUES (27792, 28, 14); -- Magic Attack Bonus+14
+INSERT INTO `item_mods` VALUES (27792, 369, 2); -- Refesh 
 
 -- -------------------------------------------------------
 -- Ate's Cuirass
@@ -20779,6 +21016,63 @@ INSERT INTO `item_mods` VALUES (27802, 30, 2); -- Magic Accuracy+2
 INSERT INTO `item_mods` VALUES (27802, 28, 2); -- "Magic Atk. Bonus"+2
 INSERT INTO `item_mods` VALUES (27802, 114, 2); -- Enfeebling magic skill +2
 INSERT INTO `item_mods` VALUES (27802, 113, 2); -- Elemental magic skill +2
+
+-- -------------------------------------------------------
+-- Ares' Gauntlets +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27928, 1, 35); -- DEF:35
+INSERT INTO `item_mods` VALUES (27928, 3, 3); -- HP+3%
+INSERT INTO `item_mods` VALUES (27928, 6, 3); -- MP+3%
+INSERT INTO `item_mods` VALUES (27928, 8, 9); -- STR+9
+INSERT INTO `item_mods` VALUES (27928, 10, 9); -- VIT+9
+INSERT INTO `item_mods` VALUES (27928, 25, 8); -- ACC+8
+INSERT INTO `item_mods` VALUES (27928, 23, 8); -- Attack+8
+INSERT INTO `item_mods` VALUES (27928, 384, 40); -- Haste+4%
+INSERT INTO `item_mods` VALUES (27928, 288, 1); -- "Double Attack"+1%
+
+-- -------------------------------------------------------
+-- Skadi's Bazubands +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27929, 1, 32); -- DEF:32
+INSERT INTO `item_mods` VALUES (27929, 8, 8); -- STR+8
+INSERT INTO `item_mods` VALUES (27929, 11, 8);-- AGI+8
+INSERT INTO `item_mods` VALUES (27929, 23, 12); -- Attack+12
+INSERT INTO `item_mods` VALUES (27929, 24, 12); -- Ranged Attack+12
+INSERT INTO `item_mods` VALUES (27929, 384, 40); -- Haste+4%
+INSERT INTO `item_mods` VALUES (27929, 165, 1); -- "Critical hite rate"
+-- hands effect  Pet: Haste+3% unknown not added
+
+-- -------------------------------------------------------
+-- Usukane Gote +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27930, 1, 32); -- DEF:32
+INSERT INTO `item_mods` VALUES (27930, 25, 13); -- ACC+13
+INSERT INTO `item_mods` VALUES (27930, 68, 13); -- EVA+13
+INSERT INTO `item_mods` VALUES (27930, 289, 7); -- "Subtle Blow"+7
+INSERT INTO `item_mods` VALUES (27930, 291, 4); -- "Counter"+4
+INSERT INTO `item_mods` VALUES (27930, 288, 3); -- "Double Attack"+3%
+INSERT INTO `item_mods` VALUES (27930, 384, 10); -- Haste+1%
+
+-- -------------------------------------------------------
+-- Marduk's Dastanas +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27931, 1, 30); -- DEF:30
+INSERT INTO `item_mods` VALUES (27931, 13, 14); -- MND+14
+INSERT INTO `item_mods` VALUES (27931, 14, 14); -- CHR+14
+INSERT INTO `item_mods` VALUES (27931, 121, 11); -- Wind Instrument Skill+11
+INSERT INTO `item_mods` VALUES (27931, 455, 7); -- Song Spellcasting Time-7%
+INSERT INTO `item_mods` VALUES (27931, 370, 2); -- Regen
+INSERT INTO `item_mods` VALUES (27931, 170, 10); -- Fast Cast
+
+-- -------------------------------------------------------
+-- Morrigan's Cuffs +1 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27932, 1, 31); -- DEF:31
+INSERT INTO `item_mods` VALUES (27932, 5, 55); -- MP+55
+INSERT INTO `item_mods` VALUES (27932, 23, 12); -- Attack+12
+INSERT INTO `item_mods` VALUES (27932, 25, 12); -- ACC+12
+INSERT INTO `item_mods` VALUES (27932, 28, 11); -- "Magic Attack Bonus"+11
+INSERT INTO `item_mods` VALUES (27932, 30, 11); -- Magic Acc+11
 
 -- -------------------------------------------------------
 -- Ate's Gauntlets
@@ -20838,6 +21132,62 @@ INSERT INTO `item_mods` VALUES (28068, 289, 5); -- subtle blow+5
 INSERT INTO `item_mods` VALUES (28068, 384, 51); -- haste 5%
 
 -- -------------------------------------------------------
+-- Ares' Flanchard +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28071, 1, 53); -- DEF:53
+INSERT INTO `item_mods` VALUES (28071, 3, 4); -- HP+4%
+INSERT INTO `item_mods` VALUES (28071, 6, 4); -- MP+4%
+INSERT INTO `item_mods` VALUES (28071, 8, 8); -- STR+8
+INSERT INTO `item_mods` VALUES (28071, 9, 8); -- DEX+8
+INSERT INTO `item_mods` VALUES (28071, 302, 2); -- "Triple Attack"+2%
+INSERT INTO `item_mods` VALUES (28071, 384, 60); -- Haste+6%
+INSERT INTO `item_mods` VALUES (28071, 288, 1); -- "Double Attack"+1%
+
+-- -------------------------------------------------------
+-- Skadi's Chausses +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28072, 1, 52); -- DEF:52
+INSERT INTO `item_mods` VALUES (28072, 25, 7); -- ACC+7
+INSERT INTO `item_mods` VALUES (28072, 23, 17); -- Attack+17
+INSERT INTO `item_mods` VALUES (28072, 26, 7); -- Ranged ACC+7
+INSERT INTO `item_mods` VALUES (28072, 24, 17); -- Ranged Attack+17
+INSERT INTO `item_mods` VALUES (28072, 73, 8); -- "Store TP"+8
+INSERT INTO `item_mods` VALUES (28072, 384, 60); -- Haste +6%
+INSERT INTO `item_mods` VALUES (28072, 165, 1); -- Critical Hit Rate
+
+-- -------------------------------------------------------
+-- Usukane Hizayoroi +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28073, 1, 50); -- DEF:50
+INSERT INTO `item_mods` VALUES (28073, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (28073, 9, 7); -- DEX+7
+INSERT INTO `item_mods` VALUES (28073, 23, 20); -- Attack+20
+INSERT INTO `item_mods` VALUES (28073, 384, 60); -- Haste+6%
+
+-- -------------------------------------------------------
+-- Marduk's Shalwar +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28074, 1, 42); -- DEF:42 
+INSERT INTO `item_mods` VALUES (28074, 14, 15); -- CHR+15
+INSERT INTO `item_mods` VALUES (28074, 112, 11); -- Healing Skill+11
+INSERT INTO `item_mods` VALUES (28074, 117, 11); -- Summoning Skill+11
+INSERT INTO `item_mods` VALUES (28074, 121, 11); -- Wind Instrument+11
+INSERT INTO `item_mods` VALUES (28074, 454, 10); -- Song Duration
+INSERT INTO `item_mods` VALUES (28074, 170, 10); -- Fast Cast
+
+-- -------------------------------------------------------
+-- Morrigan's Slop +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28075, 1, 44); -- DEF:44
+INSERT INTO `item_mods` VALUES (28075, 5, 50); -- MP+50
+INSERT INTO `item_mods` VALUES (28075, 8, 10); -- STR+10
+INSERT INTO `item_mods` VALUES (28075, 12, 10); -- INT+10
+INSERT INTO `item_mods` VALUES (28075, 13, 10); -- MND+10
+INSERT INTO `item_mods` VALUES (28075, 30, 8); -- Magic Acc+8
+INSERT INTO `item_mods` VALUES (28075, 2, -6); -- Enmity-6
+INSERT INTO `item_mods` VALUES (28075, 28, 1); -- Magic Attack Bonus
+
+-- -------------------------------------------------------
 -- Ate's Flanchard
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (28081, 1, 27); -- DEF:27
@@ -20879,6 +21229,60 @@ INSERT INTO `item_mods` VALUES (28085, 3, 8); -- HP+8
 INSERT INTO `item_mods` VALUES (28085, 5, 8); -- MP+8
 INSERT INTO `item_mods` VALUES (28085, 13, 2); -- MND+2
 INSERT INTO `item_mods` VALUES (28085, 170, 1); -- Enhances "Fast Cast" effect
+
+-- -------------------------------------------------------
+-- Ares' Sollerets +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28208, 1, 33); -- DEF:33
+INSERT INTO `item_mods` VALUES (28208, 3, 3); -- HP+3%
+INSERT INTO `item_mods` VALUES (28208, 6, 3); -- MP+3%
+INSERT INTO `item_mods` VALUES (28208, 10, 8); -- VIT+8
+INSERT INTO `item_mods` VALUES (28208, 11, 8); -- AGI+8
+INSERT INTO `item_mods` VALUES (28208, 25, 11); -- ACC+11
+INSERT INTO `item_mods` VALUES (28208, 23, 17); -- Attack+17
+INSERT INTO `item_mods` VALUES (28208, 288, 1); -- "Double Attack"+1%
+-- -------------------------------------------------------
+-- Skadi's Jambeaux +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28209, 1, 30); -- DEF:30
+INSERT INTO `item_mods` VALUES (28209, 8, 5); -- STR+5
+INSERT INTO `item_mods` VALUES (28209, 10, 5); -- VIT+5
+INSERT INTO `item_mods` VALUES (28209, 25, 7); -- ACC+7
+INSERT INTO `item_mods` VALUES (28209, 26, 7); -- Ranged ACC+7
+INSERT INTO `item_mods` VALUES (28209, 169, 25); -- Movement speed
+INSERT INTO `item_mods` VALUES (28209, 165, 1); -- Critical hit rate
+
+-- -------------------------------------------------------
+-- Usukane Sune-Ate +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28210, 1, 27); -- DEF:27
+INSERT INTO `item_mods` VALUES (28210, 25, 15); -- ACC+15
+INSERT INTO `item_mods` VALUES (28210, 23, 15); -- Attack+15
+INSERT INTO `item_mods` VALUES (28210, 73, 9); -- "Store TP"+9
+INSERT INTO `item_mods` VALUES (28210, 384, 40); -- Haste+4
+INSERT INTO `item_mods` VALUES (28210, 27, 7); -- Enmity+7
+
+-- -------------------------------------------------------
+-- Marduks Crackows +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28211, 1, 30); -- DEF:30
+INSERT INTO `item_mods` VALUES (28211, 13, 12); -- MND+12
+INSERT INTO `item_mods` VALUES (28211, 114, 11); -- Enfeebling+11
+INSERT INTO `item_mods` VALUES (28211, 117, 11); -- Summoning Skill+11
+INSERT INTO `item_mods` VALUES (28211, 119, 11); -- String Intrument+11
+INSERT INTO `item_mods` VALUES (28211, 314, 2); -- Avatar Haste and Attack+2%
+INSERT INTO `item_mods` VALUES (28211, 170, 10); -- Fast Cast
+
+-- -------------------------------------------------------
+-- Morrigan's  Pgch+1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28212, 1, 26); -- DEF:26
+INSERT INTO `item_mods` VALUES (28212, 5, 50); -- MP+50
+INSERT INTO `item_mods` VALUES (28212, 8, 9); -- STR+9
+INSERT INTO `item_mods` VALUES (28212, 12, 9); -- INT+9
+INSERT INTO `item_mods` VALUES (28212, 13, 9); -- MND+9
+INSERT INTO `item_mods` VALUES (28212, 27, -7); -- Enmity-7
+INSERT INTO `item_mods` VALUES (28212, 28, 9); -- Magic Attack Bonus+9
 
 -- -------------------------------------------------------
 -- Ate's Sollerets
