@@ -23,9 +23,6 @@ function onTrade(player,npc,trade)
 				player:startEvent(0x0092);
 			end
 		end
-
-
-
 end;
 
 -----------------------------------
@@ -33,9 +30,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
 	if(player:getQuestStatus(OUTLANDS, GULLIBLES_TRAVELS) == 0 and player:getFameLevel(KAZHAM) >= 6) then --Checks if Gullible's Travels hasn't been started or completed and that player has at least 6 Kazham fame
-		player:setVar("MAGRIFFON_GIL_REQUEST", math.random(20000,30000));  --Generates an amount between 20,000 and 30,000 to request from the player
+		player:setVar("MAGRIFFON_GIL_REQUEST", math.random(10000,30000));  --Generates an amount between 20,000 and 30,000 to request from the player
 		player:startEvent(0x0090, 0, player:getVar("MAGRIFFON_GIL_REQUEST"));
 	elseif(player:getQuestStatus(OUTLANDS, GULLIBLES_TRAVELS) == 1) then --Checks if player is currently on Gullible's Travels
 		player:startEvent(0x0091, 0, player:getVar("MAGRIFFON_GIL_REQUEST"));
@@ -68,5 +64,4 @@ function onEventFinish(player,csid,option)
 		player:setTitle(285); --Global Variable not working for this quest
 		player:completeQuest(OUTLANDS, GULLIBLES_TRAVELS);
 	end
-
 end;
