@@ -4725,7 +4725,8 @@ namespace charutils
             SaveCharPosition(PChar);
         }
 
-        PChar->pushPacket(new CServerIPPacket(PChar, type, ipp));
+        if (PChar->status != STATUS_SHUTDOWN && PChar->status != STATUS_DISAPPEAR)
+            PChar->pushPacket(new CServerIPPacket(PChar, type, ipp));
     }
 
     int32 GetVar(CCharEntity* PChar, const char* var)
