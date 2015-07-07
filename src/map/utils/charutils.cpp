@@ -1551,12 +1551,16 @@ namespace charutils
     bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
     {
         CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
+        CItemArmor* oldItem = PChar->getEquip((SLOTTYPE)equipSlotID);
 
         if (PItem == nullptr)
         {
             ShowDebug("No item in inventory slot %u\n", slotID);
             return false;
         }
+
+        if (oldItem && PItem->getID() == oldItem->getID())
+            return false;
 
         if ((PChar->m_EquipBlock & (1 << equipSlotID)) ||
             !(PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) ||
@@ -1565,8 +1569,6 @@ namespace charutils
 
         if (equipSlotID == SLOT_MAIN)
         {
-            CItemArmor* oldItem = PChar->getEquip((SLOTTYPE)equipSlotID);
-
             if (!(slotID == PItem->getSlotID() && oldItem &&
                   (oldItem->isType(ITEM_WEAPON) && PItem->isType(ITEM_WEAPON)) &&
                   ((((CItemWeapon*)PItem)->isTwoHanded() == true) && (((CItemWeapon*)oldItem)->isTwoHanded() == true))))
