@@ -1601,8 +1601,4 @@ function calculateBarspellPower(caster,enhanceSkill)
 	end
 
 	return power;
-<<<<<<< HEAD
 end
-=======
-end
->>>>>>> 14265a8682c7500c569c8e44a4f9234704610680
