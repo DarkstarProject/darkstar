@@ -1110,10 +1110,25 @@ end;
 
 function addBonuses(caster, spell, target, dmg, bonusmab)
 	local ele = spell:getElement();
-
+	
 	local affinityBonus = AffinityBonus(caster, spell:getElement());
 	dmg = math.floor(dmg * affinityBonus);
 
+	if (caster:getMainJob() == JOB_BLM and caster:getMainLvl() >= 75) then
+        	if (ele == ELE_FIRE) then
+        	 	bonusmab = bonusmab + caster:getMerit(MERIT_FIRE_MAGIC_POTENCY);
+        	elseif (ele == ELE_EARTH) then
+        	 	bonusmab = bonusmab + caster:getMerit(MERIT_EARTH_MAGIC_POTENCY);
+		elseif (ele == ELE_WATER) then
+            		bonusmab = bonusmab + caster:getMerit(MERIT_WATER_MAGIC_POTENCY);
+        	elseif (ele == ELE_WIND) then
+            		bonusmab = bonusmab + caster:getMerit(MERIT_WIND_MAGIC_POTENCY);
+        	elseif (ele == ELE_ICE) then
+        		 bonusmab = bonusmab + caster:getMerit(MERIT_ICE_MAGIC_POTENCY);
+        	elseif (ele == ELE_LIGHTNING) then
+            		bonusmab = bonusmab + caster:getMerit(MERIT_LIGHTNING_MAGIC_POTENCY);
+		end
+    	end
 	local speciesReduction = target:getMod(defenseMod[ele]);
 	speciesReduction = 1.00 - (speciesReduction/1000);
 	dmg = math.floor(dmg * speciesReduction);
