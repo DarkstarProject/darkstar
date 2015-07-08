@@ -266,7 +266,7 @@ INSERT INTO `abilities` VALUES ('224', 'altruism', '20', '75', '1', '0', '231', 
 INSERT INTO `abilities` VALUES ('225', 'focalization', '20', '75', '1', '0', '231', '0', '0', '212', '20.0', '0', '1', '80', '3266', '33','WOTG');
 INSERT INTO `abilities` VALUES ('226', 'tranquility', '20', '75', '1', '0', '231', '0', '0', '211', '20.0', '0', '1', '80', '3268', '17','WOTG');
 INSERT INTO `abilities` VALUES ('227', 'equanimity', '20', '75', '1', '0', '231', '0', '0', '213', '20.0', '0', '1', '80', '3270', '33','WOTG');
-INSERT INTO `abilities` VALUES ('228', 'enlightenment', '20', '75', '1', '300', '231', '0', '0', '214', '20.0', '0', '1', '80', '3272', '1','WOTG');
+INSERT INTO `abilities` VALUES ('228', 'enlightenment', '20', '75', '1', '300', '235', '0', '0', '214', '20.0', '0', '1', '80', '3272', '1','WOTG');
 INSERT INTO `abilities` VALUES ('229', 'afflatus_solace', '3', '40', '1', '60', '29', '0', '0', '216', '20.0', '0', '1', '80', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('230', 'afflatus_misery', '3', '40', '1', '60', '30', '0', '0', '217', '20.0', '0', '1', '80', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('231', 'composure', '5', '50', '1', '300', '50', '0', '0', '215', '20.0', '0', '1', '80', '0', '0','WOTG');
