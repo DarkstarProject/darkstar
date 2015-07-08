@@ -1113,7 +1113,11 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 	
 	local affinityBonus = AffinityBonus(caster, spell:getElement());
 	dmg = math.floor(dmg * affinityBonus);
-
+	
+	if (bonusmab == nil) then
+		bonusmab = 0;
+	end
+	
 	if (caster:getMainJob() == JOB_BLM and caster:getMainLvl() >= 75) then
         	if (ele == ELE_FIRE) then
         	 	bonusmab = bonusmab + caster:getMerit(MERIT_FIRE_MAGIC_POTENCY);
