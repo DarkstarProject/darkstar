@@ -460,6 +460,15 @@ end;
 
 function mobAddBonuses(caster, spell, target, dmg, ele)
 
+	local master = caster:getMaster();
+	local merits = 0;
+	local bonusmab = 0;
+	merits = master:getMerit(MERIT_AVATAR_MAGICAL_ATTACK);
+	
+	if(master:getMainJob() == JOB_SMN and master:getMainLvl() >= 75) then
+        bonusmab = bonusmab + merits;
+    end
+
 	speciesReduction = target:getMod(defenseMod[ele]);
 	speciesReduction = 1.00 - (speciesReduction/1000);
 	dmg = math.floor(dmg * speciesReduction);
@@ -509,7 +518,7 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
 
 	dmg = math.floor(dmg * burst);
 
-    mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF)) ;
+    mab = (100 + caster:getMod(MOD_MATT) + bonusmab) / (100 + target:getMod(MOD_MDEF)) ;
 
 	dmg = math.floor(dmg * mab);
 
