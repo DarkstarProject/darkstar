@@ -1499,7 +1499,7 @@ function doElementalNuke(caster, spell, target, spellParams)
     DMG = DMG * resist;
 
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-    DMG = addBonuses(caster, spell, target, DMG);
+    DMG = addBonuses(caster, spell, target, DMG, 0);
 
     --add in target adjustment
     local ele = spell:getElement();
