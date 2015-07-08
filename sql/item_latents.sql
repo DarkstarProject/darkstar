@@ -1216,7 +1216,7 @@ INSERT INTO `item_latents` VALUES(18340, 55, 9, 48, 0); -- [Element: Ice]+9
 
 -- Millennium Horn  
 INSERT INTO `item_latents` VALUES(18341, 14, 3, 48, 0); -- CHR+3
--- INSERT INTO `item_latents` VALUES(18341, 55, 9, 48, 0); -- Needs a way to give +2 to all songs, once BRD is straightened out.
+INSERT INTO `item_latents` VALUES(18341, 452, 2, 48, 0); -- All songs +2
 
 -- Wolver Bow  
 INSERT INTO `item_latents` VALUES(18345, 366, 67, 48, 0); -- DMG:68 
@@ -2361,3 +2361,56 @@ INSERT INTO `item_latents` VALUES(13243, 11, 3, 31, 0); -- +3 AGI on Windsday
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13562, 3, -15, 31, 0); -- -15% HP on Windsday
 INSERT INTO `item_latents` VALUES(13562, 68, 15, 31, 0); -- +15 Evasion on Windsday
+
+-- -------------------------------------------------------
+-- Diabolos's Ring
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15557, 6, -15, 32, 0); -- -15% MP on Darksday
+INSERT INTO `item_latents` VALUES(15557, 116, 15, 32, 0); -- +15 Dark magic skill on Darksday
+
+-- -------------------------------------------------------
+-- Mighty Weapons + Sairen
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17204, 376, 10, 31, 0); -- Mighty Bow DMG+10 (to ranged) on Windsday
+INSERT INTO `item_latents` VALUES(17204, 56, 15, 31, 0); -- [Element: Wind]+15
+
+INSERT INTO `item_latents` VALUES(17465, 13, 8, 28, 0); -- Mighty Cudgel MND+8 on Firesday (has 1 base MND to total +9)
+INSERT INTO `item_latents` VALUES(17465, 12, 8, 28, 0); -- Mighty Cudgel INT+8 on Firesday (has 1 base INT to total +9)
+INSERT INTO `item_latents` VALUES(17465, 54, 15, 28, 0); -- [Element: Fire]+15
+
+INSERT INTO `item_latents` VALUES(17581, 111, 13, 31, 0); -- Mighty Pole Divine magic skill +13 Windsday
+INSERT INTO `item_latents` VALUES(17581, 115, 13, 31, 0); -- Mighty Pole Elemental magic skill +13 Windsday
+INSERT INTO `item_latents` VALUES(17581, 56, 15, 31, 0); -- [Element: Wind]+15
+
+INSERT INTO `item_latents` VALUES(17697, 366, 8, 31, 0); -- Mighty Talwar DMG+8 on Windsday
+INSERT INTO `item_latents` VALUES(17697, 56, 15, 31, 0); -- [Element: Wind]+15
+
+INSERT INTO `item_latents` VALUES(17788, 8, 4, 32, 0); -- Sairen STR +4 on Darksday (has 3 base STR to total +7)
+INSERT INTO `item_latents` VALUES(17788, 27, 1, 32, 0); -- Enmity +1
+
+INSERT INTO `item_latents` VALUES(17791, 366, 7, 28, 0); -- Rai Kunimitsu DMG+7 on Firesday
+INSERT INTO `item_latents` VALUES(17791, 54, 15, 28, 0); -- [Element: Fire]+15
+
+INSERT INTO `item_latents` VALUES(17824, 366, 10, 28, 0); -- Nukemaru DMG+10 on Firesday
+INSERT INTO `item_latents` VALUES(17824, 54, 15, 28, 0); -- [Element: Fire]+15
+
+INSERT INTO `item_latents` VALUES(17941, 366, 5, 31, 0); -- Mighty Pick DMG+5 on Windsday
+INSERT INTO `item_latents` VALUES(17941, 56, 15, 31, 0); -- [Element: Wind]+15
+
+INSERT INTO `item_latents` VALUES(18000, 366, 10, 31, 0); -- Mighty Knife DMG+10 on Windsday
+INSERT INTO `item_latents` VALUES(18000, 56, 15, 31, 0); -- [Element: Wind]+15
+
+INSERT INTO `item_latents` VALUES(18049, 366, 8, 31, 0); -- Mighty Zaghnal DMG+8 on Windsday
+INSERT INTO `item_latents` VALUES(18049, 56, 15, 31, 0); -- [Element: Wind]+15
+
+INSERT INTO `item_latents` VALUES(18091, 366, 12, 28, 0); -- Mighty Lance DMG+12 on Firesday
+INSERT INTO `item_latents` VALUES(18091, 54, 15, 28, 0); -- [Element: Fire]+15
+
+INSERT INTO `item_latents` VALUES(18213, 366, 10, 28, 0); -- Mighty Axe DMG+10 on Firesday
+INSERT INTO `item_latents` VALUES(18213, 54, 15, 28, 0); -- [Element: Fire]+15
+
+INSERT INTO `item_latents` VALUES(18352, 366, 5, 28, 0); -- Mighty Patas DMG+10 on Firesday
+INSERT INTO `item_latents` VALUES(18352, 54, 15, 28, 0); -- [Element: Fire]+15
+
+INSERT INTO `item_latents` VALUES(18374, 366, 9, 28, 0); -- Mighty Sword DMG+9 on Firesday
+INSERT INTO `item_latents` VALUES(18374, 54, 15, 28, 0); -- [Element: Fire]+15
