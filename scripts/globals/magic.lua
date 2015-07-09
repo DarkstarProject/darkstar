@@ -54,6 +54,8 @@ require("scripts/globals/utils")
 	defenseMod = {MOD_FIREDEF, MOD_EARTHDEF, MOD_WATERDEF, MOD_WINDDEF, MOD_ICEDEF, MOD_THUNDERDEF, MOD_LIGHTDEF, MOD_DARKDEF};
     absorbMod = {MOD_FIRE_ABSORB, MOD_EARTH_ABSORB, MOD_WATER_ABSORB, MOD_WIND_ABSORB, MOD_ICE_ABSORB, MOD_LTNG_ABSORB, MOD_LIGHT_ABSORB, MOD_DARK_ABSORB};
     nullMod = {MOD_FIRE_NULL, MOD_EARTH_NULL, MOD_WATER_NULL, MOD_WIND_NULL, MOD_ICE_NULL, MOD_LTNG_NULL, MOD_LIGHT_NULL, MOD_DARK_NULL};
+    blmMerit = {MERIT_FIRE_MAGIC_POTENCY, MERIT_EARTH_MAGIC_POTENCY, MERIT_WATER_MAGIC_POTENCY, MERIT_WIND_MAGIC_POTENCY, MERIT_ICE_MAGIC_POTENCY, MERIT_LIGHTNING_MAGIC_POTENCY};
+    rdmMerit = {MERIT_FIRE_MAGIC_ACCURACY, MERIT_EARTH_MAGIC_ACCURACY, MERIT_WATER_MAGIC_ACCURACY, MERIT_WIND_MAGIC_ACCURACY, MERIT_ICE_MAGIC_ACCURACY, MERIT_LIGHTNING_MAGIC_ACCURACY};
 
 -- USED FOR DAMAGING MAGICAL SPELLS (Stages 1 and 2 in Calculating Magic Damage on wiki)
 --Calculates magic damage using the standard magic damage calc.
@@ -360,20 +362,8 @@ function applyResistance(player,spell,target,diff,skill,bonus)
     end
 
     --add acc for RDM group 1 merits
-    if(player:getMainJob() == JOB_RDM and player:getMainLvl() >= 75) then
-        if(element == ELE_FIRE) then
-            magicaccbonus = magicaccbonus + player:getMerit(MERIT_FIRE_MAGIC_ACCURACY);
-        elseif(element == ELE_EARTH) then
-            magicaccbonus = magicaccbonus + player:getMerit(MERIT_EARTH_MAGIC_ACCURACY);
-        elseif(element == ELE_WATER) then
-            magicaccbonus = magicaccbonus + player:getMerit(MERIT_WATER_MAGIC_ACCURACY);
-        elseif(element == ELE_WIND) then
-            magicaccbonus = magicaccbonus + player:getMerit(MERIT_WIND_MAGIC_ACCURACY);
-        elseif(element == ELE_ICE) then
-            magicaccbonus = magicaccbonus + player:getMerit(MERIT_ICE_MAGIC_ACCURACY);
-        elseif(element == ELE_LIGHTNING) then
-            magicaccbonus = magicaccbonus + player:getMerit(MERIT_LIGHTNING_MAGIC_ACCURACY);
-        end
+    if (spell:getElement() > 0 and spell:getElement() <= 6) then
+        magicaccbonus = magicaccbonus + player:getMerit(rdmMerit[spell:getElement()]);
     end
     local skillchainTier, skillchainCount = FormMagicBurst(element, target);
     --add acc for skillchains
@@ -1113,22 +1103,11 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 	
 	local affinityBonus = AffinityBonus(caster, spell:getElement());
 	dmg = math.floor(dmg * affinityBonus);
-
-	if (caster:getMainJob() == JOB_BLM and caster:getMainLvl() >= 75) then
-        	if (ele == ELE_FIRE) then
-        	 	bonusmab = bonusmab + caster:getMerit(MERIT_FIRE_MAGIC_POTENCY);
-        	elseif (ele == ELE_EARTH) then
-        	 	bonusmab = bonusmab + caster:getMerit(MERIT_EARTH_MAGIC_POTENCY);
-		elseif (ele == ELE_WATER) then
-            		bonusmab = bonusmab + caster:getMerit(MERIT_WATER_MAGIC_POTENCY);
-        	elseif (ele == ELE_WIND) then
-            		bonusmab = bonusmab + caster:getMerit(MERIT_WIND_MAGIC_POTENCY);
-        	elseif (ele == ELE_ICE) then
-        		 bonusmab = bonusmab + caster:getMerit(MERIT_ICE_MAGIC_POTENCY);
-        	elseif (ele == ELE_LIGHTNING) then
-            		bonusmab = bonusmab + caster:getMerit(MERIT_LIGHTNING_MAGIC_POTENCY);
-		end
-    	end
+	
+	if (bonusmab == nil) then
+		bonusmab = 0;
+	end
+	
 	local speciesReduction = target:getMod(defenseMod[ele]);
 	speciesReduction = 1.00 - (speciesReduction/1000);
 	dmg = math.floor(dmg * speciesReduction);
@@ -1196,21 +1175,23 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 	end
 
 	dmg = math.floor(dmg * burst);
-	local mab = 0;
+	local mabbonus = 0;
 
 	if(spell:getID() >= 245 and spell:getID() <= 248) then
-		mab = 1
-	elseif (bonusmab ~= nil) then
-		mab = (100 + caster:getMod(MOD_MATT) + bonusmab) / (100 + target:getMod(MOD_MDEF));
-	else
-		mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF));
+		mabbonus = 1
+    else
+        local mab = caster:getMod(MOD_MATT) + bonusmab;
+        if (spell:getElement() > 0 and spell:getElement() <= 6) then
+            mab = mab + caster:getMerit(blmMerit[spell:getElement()]);
+        end
+		mabbonus = (100 + mab) / (100 + target:getMod(MOD_MDEF));
 	end
 
-    if(mab < 0) then
-        mab = 0;
+    if(mabbonus < 0) then
+        mabbonus = 0;
     end
 
-	dmg = math.floor(dmg * mab);
+	dmg = math.floor(dmg * mabbonus);
 
 	if (caster:hasStatusEffect(EFFECT_EBULLIENCE)) then
 		local equippedHead = caster:getEquipID(SLOT_HEAD);
