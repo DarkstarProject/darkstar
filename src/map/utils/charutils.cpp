@@ -1559,9 +1559,6 @@ namespace charutils
             return false;
         }
 
-        if (oldItem && PItem->getID() == oldItem->getID())
-            return false;
-
         if ((PChar->m_EquipBlock & (1 << equipSlotID)) ||
             !(PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) ||
             (PItem->getReqLvl() > PChar->jobs.job[PChar->GetMJob()]))
@@ -1937,6 +1934,11 @@ namespace charutils
 
     void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
     {
+        CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
+        
+        if (PItem && PItem == PChar->getEquip((SLOTTYPE)equipSlotID))
+            return;
+
         if (slotID == 0)
         {
             CItemArmor* PSubItem = PChar->getEquip(SLOT_SUB);
@@ -1950,7 +1952,6 @@ namespace charutils
         }
         else
         {
-            CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
 
             if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
             {
