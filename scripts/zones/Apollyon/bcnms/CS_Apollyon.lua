@@ -9,17 +9,18 @@ require("scripts/globals/keyitems");
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
 	SetServerVariable("[CS_Apollyon]UniqueID",GenerateLimbusKey());
-	HideArmouryCrates(GetInstanceRegion(1294),APPOLLYON_SE_NE);	
+	HideArmouryCrates(GetInstanceRegion(1294),APPOLLYON_SE_NE);
+	player:setVar("Limbus_Trade_Item",0);
 	SetServerVariable("[CS_Apollyon]Already_Received",0);
 	GetNPCByID(16933245):setAnimation(8);
 	GetNPCByID(16933246):setAnimation(8);
 	GetNPCByID(16933247):setAnimation(8);
 		despawnLimbusCS();
-    player:setVar("Limbus_Trade_Item",0);	
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
+	player:setVar("Limbus_Trade_Item",0);
 	player:setVar("limbusbitmap",0);
 	player:setVar("characterLimbusKey",GetServerVariable("[CS_Apollyon]UniqueID"));
 	player:setVar("LimbusID",1294);	
