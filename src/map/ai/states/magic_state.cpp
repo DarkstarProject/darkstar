@@ -23,7 +23,10 @@
 
 #include "magic_state.h"
 
+#include "../ai_battle.h"
 #include "../../spell.h"
+#include "../../lua/luautils.h"
+#include "../../utils/battleutils.h"
 
 CMagicState::CMagicState(CBattleEntity* PEntity, CTargetFind& PTargetFind) :
     CState(PEntity, PTargetFind),
@@ -49,8 +52,7 @@ void CMagicState::Clear()
 {
     if (m_State == STATESTATUS::InProgress)
     {
-        //clean up (interrupt packet, etc)
-        //PEntity->PAI->CastInterrupted();
+        dynamic_cast<CAIBattle*>(m_PEntity->PAI.get())->CastInterrupted();
     }
 }
 
@@ -59,11 +61,29 @@ bool CMagicState::CanChangeState()
     return m_State != STATESTATUS::InProgress;
 }
 
+int16 CMagicState::GetErrorMsg()
+{
+    return m_errorMsg;
+}
+
 CSpell* CMagicState::GetSpell()
 {
     return m_PSpell;
 }
 
+bool CMagicState::CanCastSpell()
+{
+    //TODO - check permissions, requirements (level, learned, correct buff, etc)
+    return true;
+}
+
+bool CMagicState::ValidTarget()
+{
+    //TODO - check target type vs valid targets
+    return true;
+}
+
+//TODO: TryInterrupt 
 void CMagicState::Interrupt()
 {
     m_State = m_State == STATESTATUS::InProgress ? STATESTATUS::Interrupt : m_State;
@@ -75,11 +95,31 @@ STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid)
 
     if (m_PSpell)
     {
+        if (!CanCastSpell())
+        {
+            return STATESTATUS::ErrorNotUsable;
+        }
+
         m_PTarget = m_PTargetFind.getValidTarget(targetid, m_PSpell->getValidTarget());
 
-        //check target
+        if (!ValidTarget())
+        {
+            return STATESTATUS::ErrorInvalidTarget;
+        }
 
-        //calculate cast time
+        if (distance(m_PEntity->loc.p, m_PTarget->loc.p) > m_PSpell->getMaxRange())
+        {
+            return STATESTATUS::ErrorRange;
+        }
+
+        m_errorMsg = luautils::OnMagicCastingCheck(m_PEntity, m_PTarget, m_PSpell);
+        if (m_errorMsg)
+        {
+            return STATESTATUS::ErrorScripted;
+        }
+
+        m_startTime = server_clock::now();
+        m_castTime = std::chrono::milliseconds(battleutils::CalculateSpellCastTime(m_PEntity, m_PSpell));
 
         m_State = STATESTATUS::InProgress;
     }

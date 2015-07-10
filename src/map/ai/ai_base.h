@@ -43,10 +43,11 @@ public:
     CAIBase(const CAIBase&) = delete;
     CAIBase& operator=(const CAIBase&) = delete;
 
+    void Tick(time_point _tick);
+    virtual void ActionQueueStateChange(queueAction&);
+
     // stores all events and their associated lua callbacks
     CAIEventHandler EventHandler;
-
-    virtual void ActionQueueStateChange(queueAction&);
 
 protected:
     // pathfinder, not guaranteed to be implemented
@@ -76,7 +77,6 @@ protected:
     virtual void ActionTrigger() {}
 
 private:
-    void Tick(time_point _tick);
     AIState m_state;
     CAIActionQueue ActionQueue;
 };

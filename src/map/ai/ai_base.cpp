@@ -115,7 +115,7 @@ void CAIBase::Tick(time_point _tick)
 
     //make sure this AI hasn't been replaced by another
     //#TODO: reactivate this once PEntity has a member for new AI
-    if (PreEntity->updatemask /* && PreEntity->PAI == this */)
+    if (PreEntity->updatemask && PreEntity->PAI.get() == this)
     {
         PreEntity->UpdateEntity();
     }

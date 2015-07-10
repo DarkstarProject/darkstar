@@ -42,12 +42,20 @@ public:
     virtual void Clear() override;
     virtual bool CanChangeState() override;
 
+    int16 GetErrorMsg();
     CSpell* GetSpell();
     void Interrupt();
-    
+
+    //check spell requirements vs. caster
+    bool CanCastSpell();
+
+    //check spell requirements vs. target
+    bool ValidTarget();
+
     //start spellcast on target
     STATESTATUS CastSpell(uint16 spellid, uint16 targetid);
 protected:
+    uint16 m_errorMsg;
     CSpell* m_PSpell;
     duration m_castTime;
 };

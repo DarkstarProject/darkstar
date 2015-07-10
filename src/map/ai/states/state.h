@@ -35,11 +35,14 @@ enum class STATESTATUS {
     InProgress,
     Interrupt,
     Finish,
+    OK,
+    ErrorNotUsable,
     ErrorRange,
     ErrorInvalidTarget,
     ErrorFacing,
     ErrorParalyzed,
     ErrorIntimidated,
+    ErrorScripted,
     ErrorUnknown
 };
 

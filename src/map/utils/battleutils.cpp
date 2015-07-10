@@ -4942,5 +4942,281 @@ namespace battleutils
         }
     }
 
+    uint32 CalculateSpellCastTime(CBattleEntity* PEntity, CSpell* PSpell)
+    {
+        if (PSpell == nullptr)
+        {
+            return 0;
+        }
+
+        bool applyArts = true;
+        uint32 base = PSpell->getCastTime();
+        uint32 cast = base;
+
+        if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+        {
+            if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
+            {
+                uint16 bonus = 0;
+                //Only apply Alacrity/celerity mod if the spell element matches the weather.
+                if (battleutils::WeatherMatchesElement(battleutils::GetWeather(PEntity, false), PSpell->getElement()))
+                {
+                    bonus = PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+                }
+                cast -= base * ((100 - (50 + bonus)) / 100.0f);
+                applyArts = false;
+            }
+            else if (applyArts)
+            {
+                if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_DARK_ARTS) || PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
+                {
+                    // Add any "Grimoire: Reduces spellcasting time" bonuses
+                    cast = cast * (1.0f + (PEntity->getMod(MOD_BLACK_MAGIC_CAST) + PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING)) / 100.0f);
+                }
+                else
+                {
+                    cast = cast * (1.0f + PEntity->getMod(MOD_BLACK_MAGIC_CAST) / 100.0f);
+                }
+            }
+        }
+        else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+        {
+            if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
+            {
+                uint16 bonus = 0;
+                //Only apply Alacrity/celerity mod if the spell element matches the weather.
+                if (battleutils::WeatherMatchesElement(battleutils::GetWeather(PEntity, false), PSpell->getElement()))
+                {
+                    bonus = PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+                }
+                cast -= base * ((100 - (50 + bonus)) / 100.0f);
+                applyArts = false;
+            }
+            else if (applyArts)
+            {
+                if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) || PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
+                {
+                    // Add any "Grimoire: Reduces spellcasting time" bonuses
+                    cast = cast * (1.0f + (PEntity->getMod(MOD_WHITE_MAGIC_CAST) + PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING)) / 100.0f);
+                }
+                else
+                {
+                    cast = cast * (1.0f + PEntity->getMod(MOD_WHITE_MAGIC_CAST) / 100.0f);
+                }
+            }
+        }
+        else if (PSpell->getSpellGroup() == SPELLGROUP_SONG)
+        {
+            if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_PIANISSIMO))
+            {
+                if (PSpell->getAOE() == SPELLAOE_PIANISSIMO)
+                {
+                    cast = base / 2;
+                }
+            }
+            if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_NIGHTINGALE))
+            {
+                if (PEntity->objtype == TYPE_PC &&
+                    WELL512::GetRandomNumber(100) < ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_NIGHTINGALE, (CCharEntity*)PEntity) - 25)
+                {
+                    return 0;
+                }
+                cast = cast * 0.5f;
+            }
+            if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TROUBADOUR))
+            {
+                cast = cast * 1.5f;
+            }
+            uint16 songcasting = PEntity->getMod(MOD_SONG_SPELLCASTING_TIME);
+            cast = cast * (1.0f - ((songcasting > 50 ? 50 : songcasting) / 100.0f));
+        }
+
+        int16 fastCast = dsp_cap(PEntity->getMod(MOD_FASTCAST), -100, 50);
+        if (PSpell->isCure()) // Cure cast time reductions
+        {
+            fastCast += m_PEntity->getMod(MOD_CURE_CAST_TIME);
+            if (PEntity->objtype == TYPE_PC)
+            {
+                fastCast += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_CURE_CAST_TIME, (CCharEntity*)PEntity);
+            }
+            fastCast = dsp_cap(fastCast, -100, 80);
+        }
+        int16 uncappedFastCast = dsp_cap(PEntity->getMod(MOD_UFASTCAST), -100, 100);
+        float sumFastCast = dsp_cap(fastCast + uncappedFastCast, -100, 100);
+
+        return cast * ((100.0f - sumFastCast) / 100.0f);
+    }
+
+    uint16 CalculateSpellCost(CBattleEntity* PEntity, CSpell* PSpell)
+    {
+        if (PSpell == nullptr)
+        {
+            ShowWarning("battleutils::CalculateMPCost Spell is NULL\n");
+            return 0;
+        }
+
+        // ninja tools or bard song
+        if (!PSpell->hasMPCost())
+        {
+            return 0;
+        }
+
+        bool applyArts = true;
+        uint16 base = PSpell->getMPCost();
+        if (PSpell->getID() == 478 || PSpell->getID() == 502) //Embrava/Kaustra
+        {
+            base = PEntity->health.maxmp * 0.2;
+        }
+
+        int16 cost = base;
+
+        if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+        {
+            if (PSpell->getAOE() == SPELLAOE_RADIAL_MANI && PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANIFESTATION))
+            {
+                cost *= 2;
+                applyArts = false;
+            }
+            if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_PARSIMONY))
+            {
+                cost /= 2;
+                applyArts = false;
+            }
+            else if (applyArts)
+            {
+                cost += base * (PEntity->getMod(MOD_BLACK_MAGIC_COST) / 100.0f);
+            }
+        }
+        else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+        {
+            if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE && PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ACCESSION))
+            {
+                cost *= 2;
+                applyArts = false;
+            }
+            if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_PENURY))
+            {
+                cost /= 2;
+                applyArts = false;
+            }
+            else if (applyArts)
+            {
+                cost += base * (PEntity->getMod(MOD_WHITE_MAGIC_COST) / 100.0f);
+            }
+        }
+        return dsp_cap(cost, 0, 9999);
+    }
+    uint32 CalculateSpellRecastTime(CBattleEntity* PEntity, CSpell* PSpell)
+    {
+        if (PSpell == nullptr)
+        {
+            return 0;
+        }
+
+        bool applyArts = true;
+        uint32 base = PSpell->getRecastTime();
+        uint32 recast = base;
+
+        //apply Fast Cast
+        recast *= ((100.0f - dsp_cap((float)PEntity->getMod(MOD_FASTCAST) / 2.0f, 0.0f, 25.0f)) / 100.0f);
+
+        int16 haste = PEntity->getMod(MOD_HASTE_MAGIC) + PEntity->getMod(MOD_HASTE_GEAR);
+
+        recast *= ((float)(1024 - haste) / 1024);
+
+        recast = dsp_max(recast, base * 0.2f);
+
+        if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_COMPOSURE))
+        {
+            recast *= 1.25;
+        }
+
+        if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+        {
+            if (PSpell->getAOE() == SPELLAOE_RADIAL_MANI && PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANIFESTATION))
+            {
+                if (PEntity->GetMJob() == JOB_SCH)
+                {
+                    recast *= 2;
+                }
+                else
+                {
+                    recast *= 3;
+                }
+                applyArts = false;
+            }
+            if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
+            {
+                uint16 bonus = 0;
+                //Only apply Alacrity/celerity mod if the spell element matches the weather.
+                if (battleutils::WeatherMatchesElement(battleutils::GetWeather(PEntity, false), PSpell->getElement()))
+                {
+                    bonus = PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+                }
+                recast *= ((50 - bonus) / 100.0f);
+
+                applyArts = false;
+            }
+            if (applyArts)
+            {
+                if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_DARK_ARTS) || PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
+                {
+                    // Add any "Grimoire: Reduces spellcasting time" bonuses
+                    recast *= (1.0f + (PEntity->getMod(MOD_BLACK_MAGIC_RECAST) + PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING)) / 100.0f);
+                }
+                else
+                {
+                    recast *= (1.0f + PEntity->getMod(MOD_BLACK_MAGIC_RECAST) / 100.0f);
+                }
+            }
+        }
+        else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+        {
+            if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE && PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ACCESSION))
+            {
+                if (PEntity->GetMJob() == JOB_SCH)
+                {
+                    recast *= 2;
+                }
+                else
+                {
+                    recast *= 3;
+                }
+                applyArts = false;
+            }
+            if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
+            {
+                uint16 bonus = 0;
+                //Only apply Alacrity/celerity mod if the spell element matches the weather.
+                if (battleutils::WeatherMatchesElement(battleutils::GetWeather(PEntity, true), PSpell->getElement()))
+                {
+                    bonus = PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+                }
+                recast *= ((50 - bonus) / 100.0f);
+
+                applyArts = false;
+            }
+            if (applyArts)
+            {
+                if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) || PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
+                {
+                    // Add any "Grimoire: Reduces spellcasting time" bonuses
+                    recast *= (1.0f + (PEntity->getMod(MOD_WHITE_MAGIC_RECAST) + PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING)) / 100.0f);
+                }
+                else
+                {
+                    recast *= (1.0f + PEntity->getMod(MOD_WHITE_MAGIC_RECAST) / 100.0f);
+                }
+            }
+        }
+        else if (PSpell->getSpellGroup() == SPELLGROUP_SONG)
+        {
+            if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_NIGHTINGALE))
+            {
+                recast *= 0.5f;
+            }
+        }
+        return recast / 1000;
+    }
 };
 

@@ -30,7 +30,7 @@ This file is part of DarkStar-server source code.
 #include "../utils/battleutils.h"
 
 CAIBattle::CAIBattle(CBattleEntity* _PEntity) :
-    CAIBase(_PEntity, std::unique_ptr<CPathFind>(new CPathFind(_PEntity))),
+    CAIBase(_PEntity, std::make_unique<CPathFind>(_PEntity)),
     targetFind(_PEntity),
     actionStateContainer(nullptr),
     m_AttackTime(0)
@@ -59,7 +59,7 @@ void CAIBattle::Cast(uint16 targetid, uint16 spellid)
             return;
         }
         ChangeState(AIState::Casting);
-        actionStateContainer = std::unique_ptr<CState>(new CMagicState(static_cast<CBattleEntity*>(PEntity), targetFind));
+        actionStateContainer = std::make_unique<CMagicState>(static_cast<CBattleEntity*>(PEntity), targetFind);
 
         STATESTATUS status = static_cast<CMagicState*>(actionStateContainer.get())->CastSpell(spellid, targetid);
 
@@ -81,7 +81,7 @@ void CAIBattle::ActionAttacking()
         case STATESTATUS::ErrorIntimidated:
         case STATESTATUS::ErrorUnknown:
             break; //todo: error handling
-        case STATESTATUS::Finish:
+        case STATESTATUS::OK:
             //attack
             break;
         default:
@@ -158,7 +158,7 @@ STATESTATUS CAIBattle::CanAttack()
         {
             return STATESTATUS::ErrorIntimidated;
         }
-        return STATESTATUS::Finish;
+        return STATESTATUS::OK;
     }
     return STATESTATUS::InProgress;
 }

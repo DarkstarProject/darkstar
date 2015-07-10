@@ -33,6 +33,8 @@ class CSpell;
 
 class CAIBattle : CAIBase
 {
+    //access to CastInterrupted for CMagicState::Clear
+    friend class CMagicState;
 public:
     CAIBattle(CBattleEntity*);
 
@@ -40,19 +42,23 @@ public:
     virtual void Cast(uint16 targetid, uint16 spellid);
 
 protected:
+    /* State handlers */
     virtual void ActionAttacking() override;
     virtual void ActionCasting() override;
 
+    /* State changing overrides */
     virtual bool CanChangeState() override;
     virtual void ChangeState(AIState) override;
     //after active state, return to passive state
     virtual void TransitionBack();
 
+    /* Attacking functions */
     //determines whether the next auto attack swing will happen
     virtual STATESTATUS CanAttack();
     //whether the entity should disengage (target dead, etc)
     virtual bool ShouldDisengage();
 
+    /* Casting Functions */
     virtual void CastFinished();
     virtual void CastInterrupted();
 

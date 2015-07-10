@@ -152,7 +152,6 @@ public:
 	uint8			allegiance;			// what types of targets the entity can fight
     uint8           updatemask;         // what to update next server tick to players nearby
 
-
 	virtual const int8* GetName();      // имя сущности
 
 	uint16			getZone();			// текущая зона
@@ -164,6 +163,7 @@ public:
 	bool			IsNameHidden();		// checks if name is hidden
 
     CAIGeneral*     PBattleAI;          // интеллект любой сущности
+    std::unique_ptr<CAIBase> PAI;       // AI container
 	CBattlefield*	PBCNM;				// pointer to bcnm (if in one)
 	CInstance*		PInstance;
 
@@ -180,7 +180,6 @@ public:
 
     CBaseEntity();						// конструктор
     virtual ~CBaseEntity();				// деструктор
-private:
 protected:
     std::map<std::string, uint32> m_localVars;
 };
