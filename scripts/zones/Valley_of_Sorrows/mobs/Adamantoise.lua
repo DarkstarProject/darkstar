@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-    killer:addTitle(TORTOISE_TORTURER);
+    killer:addTitle(title.TORTOISE_TORTURER);
 
     local Adamantoise  = mob:getID();
     local Aspidochelone = 17301538;

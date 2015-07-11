@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(KHIMAIRA_CARVER);
+	killer:addTitle(title.KHIMAIRA_CARVER);
 end;

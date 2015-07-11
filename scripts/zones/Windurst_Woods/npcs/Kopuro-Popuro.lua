@@ -144,7 +144,7 @@ function onEventFinish(player,csid,option)
      elseif (csid == 0x0124) then
       player:tradeComplete();
       player:addFame(WINDURST,WIN_FAME*80);
-      player:addTitle(CARDIAN_TUTOR);
+      player:addTitle(title.CARDIAN_TUTOR);
       player:addGil(GIL_RATE*200);
       player:completeQuest(WINDURST,THE_ALL_NEW_C_2000);
 		

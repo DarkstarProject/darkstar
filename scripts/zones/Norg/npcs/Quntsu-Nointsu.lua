@@ -7,13 +7,13 @@
 
 require("scripts/globals/titles");
 
-local title2 = { HONORARY_DOCTORATE_MAJORING_IN_TONBERRIES , BUSHIDO_BLADE , BLACK_MARKETEER , CRACKER_OF_THE_SECRET_CODE ,
-				LOOKS_SUBLIME_IN_A_SUBLIGAR , LOOKS_GOOD_IN_LEGGINGS , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title3 = { APPRENTICE_SOMMELIER , TREASUREHOUSE_RANSACKER , HEIR_OF_THE_GREAT_WATER , PARAGON_OF_SAMURAI_EXCELLENCE ,
-				PARAGON_OF_NINJA_EXCELLENCE , GUIDER_OF_SOULS_TO_THE_SANCTUARY , BEARER_OF_BONDS_BEYOND_TIME , FRIEND_OF_THE_OPOOPOS ,
-				PENTACIDE_PERPETRATOR , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title4 = { BEARER_OF_THE_WISEWOMANS_HOPE , BEARER_OF_THE_EIGHT_PRAYERS , LIGHTWEAVER , DESTROYER_OF_ANTIQUITY , SEALER_OF_THE_PORTAL_OF_THE_GODS ,
-				BURIER_OF_THE_ILLUSION , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title2 = { title.HONORARY_DOCTORATE_MAJORING_IN_TONBERRIES , title.BUSHIDO_BLADE , title.BLACK_MARKETEER , title.CRACKER_OF_THE_SECRET_CODE ,
+				title.LOOKS_SUBLIME_IN_A_SUBLIGAR , title.LOOKS_GOOD_IN_LEGGINGS , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title3 = { title.APPRENTICE_SOMMELIER , title.TREASUREHOUSE_RANSACKER , title.HEIR_OF_THE_GREAT_WATER , title.PARAGON_OF_SAMURAI_EXCELLENCE ,
+				title.PARAGON_OF_NINJA_EXCELLENCE , title.GUIDER_OF_SOULS_TO_THE_SANCTUARY , title.BEARER_OF_BONDS_BEYOND_TIME , title.FRIEND_OF_THE_OPOOPOS ,
+				title.PENTACIDE_PERPETRATOR , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title4 = { title.BEARER_OF_THE_WISEWOMANS_HOPE , title.BEARER_OF_THE_EIGHT_PRAYERS , LIGHTWEAVER , title.DESTROYER_OF_ANTIQUITY , title.SEALER_OF_THE_PORTAL_OF_THE_GODS ,
+				title.BURIER_OF_THE_ILLUSION , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title5 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title6 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }

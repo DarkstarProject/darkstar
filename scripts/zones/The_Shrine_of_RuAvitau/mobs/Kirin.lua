@@ -85,7 +85,7 @@ end
 -----------------------------------
 function onMobDeath( mob, killer )
     -- Award title and cleanup..
-    killer:addTitle( KIRIN_CAPTIVATOR );
+    killer:addTitle( title.KIRIN_CAPTIVATOR );
     killer:showText( mob, KIRIN_OFFSET + 1 );
     GetNPCByID( 17506693 ):hideNPC( 900 );
     

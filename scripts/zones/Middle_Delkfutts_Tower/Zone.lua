@@ -179,7 +179,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x000e) then
 		player:addItem(12516);
 		player:messageSpecial(ITEM_OBTAINED,12516); -- Chaos Burgeonet
-		player:addTitle(PARAGON_OF_DARK_KNIGHT_EXCELLENCE);
+		player:addTitle(title.PARAGON_OF_DARK_KNIGHT_EXCELLENCE);
 		player:setVar("bladeOfEvilCS",0);
 		player:addFame(BASTOK,AF3_FAME);
 		player:completeQuest(BASTOK,BLADE_OF_EVIL);

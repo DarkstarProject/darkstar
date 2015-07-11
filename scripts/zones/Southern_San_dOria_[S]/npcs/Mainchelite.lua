@@ -102,7 +102,7 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount() >= 1) then
                 player:setCampaignAllegiance(1);
                 player:setVar("RED_R_LETTER_USED",0);
-                player:addTitle(KNIGHT_OF_THE_IRON_RAM);
+                player:addTitle(title.KNIGHT_OF_THE_IRON_RAM);
                 player:addKeyItem(BRONZE_RIBBON_OF_SERVICE);
                 player:addItem(15754);
                 player:completeQuest(CRYSTAL_WAR,STEAMED_RAMS);
@@ -117,7 +117,7 @@ function onEventFinish(player,csid,option)
         else
             player:setCampaignAllegiance(1);
             player:setVar("RED_R_LETTER_USED",0);
-            player:addTitle(KNIGHT_OF_THE_IRON_RAM);
+            player:addTitle(title.KNIGHT_OF_THE_IRON_RAM);
             player:completeQuest(CRYSTAL_WAR,STEAMED_RAMS);
             player:delKeyItem(CHARRED_PROPELLER);
             player:delKeyItem(OXIDIZED_PLATE);

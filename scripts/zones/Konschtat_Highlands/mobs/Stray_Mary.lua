@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(MARYS_GUIDE);
+	killer:addTitle(title.MARYS_GUIDE);
 end;

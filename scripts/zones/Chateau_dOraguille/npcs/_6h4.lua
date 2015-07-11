@@ -46,7 +46,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x0064);
 	-- Mission San D'Oria 6-1 Leaute's Last Wishes
 	elseif(currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 1) then
-	    player:startEvent(87);
+	    player:startEvent(0x0057);
 	-- Mission San D'Oria 5-2 The Shadow Lord
 	elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 5) then
 		player:startEvent(0x003D);
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_AMBASSADOR);
 	elseif(csid == 0x003D) then
 		finishMissionTimeline(player,3,csid,option);
-	elseif(csid == 87)then
+	elseif(csid == 0x0057)then
         player:setVar('MissionStatus',2);
 	elseif(csid == 0x0064) then
 		player:setVar("Mission8-1Completed",0) -- dont need this var anymore. JP midnight is done and prev mission completed.

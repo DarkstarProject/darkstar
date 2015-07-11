@@ -87,7 +87,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-  killer:addTitle(APOLLYON_RAVAGER);
+  killer:addTitle(title.APOLLYON_RAVAGER);
     local mobX = mob:getXPos();
 	local mobY = mob:getYPos();
 	local mobZ = mob:getZPos();

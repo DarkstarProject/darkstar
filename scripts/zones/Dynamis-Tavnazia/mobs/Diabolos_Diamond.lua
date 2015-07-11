@@ -22,5 +22,5 @@ function onMobDeath(mob, killer)
 	    	killer:addKeyItem(DYNAMIS_TAVNAZIA_SLIVER);
 		    killer:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_TAVNAZIA_SLIVER);
 		end
-	killer:addTitle(NIGHTMARE_AWAKENER);
+	killer:addTitle(title.NIGHTMARE_AWAKENER);
 end;

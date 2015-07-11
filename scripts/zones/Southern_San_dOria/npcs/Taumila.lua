@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
 		player:addQuest(SANDORIA,TIGER_S_TEETH);
 	elseif(csid == 0x023c) then
 		player:tradeComplete();
-		player:addTitle(FANG_FINDER);
+		player:addTitle(title.FANG_FINDER);
 		player:addGil(GIL_RATE*2100);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100)
 		if(player:getQuestStatus(SANDORIA,TIGER_S_TEETH) == QUEST_ACCEPTED) then

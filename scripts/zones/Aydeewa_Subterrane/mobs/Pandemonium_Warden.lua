@@ -313,5 +313,5 @@ end;
 
 function onMobDeath(mob,killer)
     -- TODO: Death speech.
-    killer:addTitle(PANDEMONIUM_QUELLER);
+    killer:addTitle(title.PANDEMONIUM_QUELLER);
 end;

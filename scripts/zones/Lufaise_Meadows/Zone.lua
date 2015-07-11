@@ -106,6 +106,6 @@ function onEventFinish(player,csid,option)
 		player:setVar("PromathiaStatus",1);
 	 elseif(csid == 0x0074)then
 	 player:setVar("PromathiaStatus",7);
-	 player:addTitle(BANISHER_OF_EMPTINESS);
+	 player:addTitle(title.BANISHER_OF_EMPTINESS);
 	end
 end;

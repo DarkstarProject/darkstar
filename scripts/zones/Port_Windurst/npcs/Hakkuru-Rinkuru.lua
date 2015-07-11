@@ -135,7 +135,7 @@ function onEventFinish(player,csid,option)
 			player:addGil(GIL_RATE*1500);
 			player:completeQuest(WINDURST,MAKING_AMENDS);
 			player:addFame(WINDURST,WIN_FAME*75);
-			player:addTitle(QUICK_FIXER);
+			player:addTitle(title.QUICK_FIXER);
 			player:needToZone(true);
 			player:tradeComplete();
 	elseif(csid == 0x0103 and option == 1) then
@@ -163,7 +163,7 @@ function onEventFinish(player,csid,option)
 			player:addItem(12750); -- New Moon Armlets
 			player:messageSpecial(ITEM_OBTAINED, 12750); -- New Moon Armlets
 			player:addFame(WINDURST,WIN_FAME*150);
-			player:addTitle(DOCTOR_SHANTOTTOS_GUINEA_PIG);
+			player:addTitle(title.DOCTOR_SHANTOTTOS_GUINEA_PIG);
 			player:completeQuest(WINDURST,WONDER_WANDS);
 		end
 		-- ~[ Windurst Mission 6-1 Full Moon Fountain ]~ --

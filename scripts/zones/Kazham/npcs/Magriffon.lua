@@ -17,7 +17,7 @@ require("scripts/zones/Kazham/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if(player:getQuestStatus(OUTLANDS, GULLIBLES_TRAVELS) == QUEST_ACCEPTED) then   
+    if(player:getQuestStatus(OUTLANDS, GULLIBLES_TRAVELS) == QUEST_ACCEPTED) then
         if(trade:getGil() >= player:getVar("MAGRIFFON_GIL_REQUEST")) then
             player:startEvent(0x0092);
         end
@@ -28,18 +28,17 @@ end;
 -- onTrigger Action
 -----------------------------------
 
-function onTrigger(player,npc)   
+function onTrigger(player,npc)
     local gulliblesTravelsStatus = player:getQuestStatus(OUTLANDS, GULLIBLES_TRAVELS);
-    local magriffonGilRequest = gulliblesTravelsStatus == QUEST_ACCEPTED --Checks if Gullible's Travels is started and gets previously requested gil #
-    and player:getVar("MAGRIFFON_GIL_REQUEST");  
-        
-    if(gulliblesTravelsStatus == QUEST_AVAILABLE             -- Gullible's Travels: Fame check and quest available check
-        and player:getFameLevel(KAZHAM) >= 6) then
-        local gil = math.random(10, 30) * 1000;              -- # 10,000 - 30,000 in ticks of 1k
-            player:setVar("MAGRIFFON_GIL_REQUEST", gil); 
-            player:startEvent(0x0090, 0, gil);
-    elseif(gulliblesTravelsStatus == QUEST_ACCEPTED) then    -- Gullible's Travels: 'In progress' check
+
+    if(gulliblesTravelsStatus == QUEST_ACCEPTED) then        -- Gullible's Travels: 'In progress' check
+        local magriffonGilRequest = player:getVar("MAGRIFFON_GIL_REQUEST");
         player:startEvent(0x0091, 0, magriffonGilRequest);
+    elseif(gulliblesTravelsStatus == QUEST_AVAILABLE         -- Gullible's Travels: Fame check and quest available check
+            and player:getFameLevel(KAZHAM) >= 6) then
+        local gil = math.random(10, 30) * 1000;              -- # 10,000 - 30,000 in ticks of 1k
+        player:setVar("MAGRIFFON_GIL_REQUEST", gil);
+        player:startEvent(0x0090, 0, gil);
     elseif(gulliblesTravelsStatus == QUEST_COMPLETED) then   -- Gullible's Travels: 'Complete' check
         player:startEvent(0x0093);
     else

@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
     if(csid == 0x00CA)then
         player:setVar("PromathiaStatus",2);
     elseif(0x0078 and option ~=0)then -- Hume
-        player:addTitle(WARRIOR_OF_THE_CRYSTAL);	
+        player:addTitle(title.WARRIOR_OF_THE_CRYSTAL);	
         player:setVar("PromathiaStatus",3);
         player:addKeyItem(LIGHT_OF_VAHZL); 
         player:messageSpecial(KEYITEM_OBTAINED,LIGHT_OF_VAHZL);	   

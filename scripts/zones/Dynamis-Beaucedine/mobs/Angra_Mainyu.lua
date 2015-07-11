@@ -82,7 +82,7 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	killer:addTitle(DYNAMISBEAUCEDINE_INTERLOPER); -- Add title
+	killer:addTitle(title.DYNAMISBEAUCEDINE_INTERLOPER); -- Add title
 	killer:setVar("DynaBeaucedine_Win",1);
 	
 	if(killer:hasKeyItem(HYDRA_CORPS_INSIGNIA) == false) then

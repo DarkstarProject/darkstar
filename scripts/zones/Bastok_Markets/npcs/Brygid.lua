@@ -154,7 +154,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("BrygidGetBody",0);
 		player:setVar("BrygidGetLegs",0);
 		player:setVar("BrygidWantsSubligar",0);
-		player:addTitle(BASTOKS_SECOND_BEST_DRESSED);
+		player:addTitle(title.BASTOKS_SECOND_BEST_DRESSED);
 		player:addItem(14400+wantsSubligar);
 		player:messageSpecial(ITEM_OBTAINED,14400+wantsSubligar);
 		player:addFame(BASTOK,BAS_FAME*30);

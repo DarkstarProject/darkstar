@@ -113,7 +113,7 @@ function onEventFinish(player,csid,option)
 				player:addItem(item);
 				player:messageSpecial(ITEM_OBTAINED,item); -- Item
 			end
-			player:addTitle(HEIR_OF_THE_GREAT_WIND);
+			player:addTitle(title.HEIR_OF_THE_GREAT_WIND);
 			player:delKeyItem(WHISPER_OF_GALES); --Whisper of Gales, as a trade for the above rewards
 			player:setVar("TrialByWind_date", os.date("%j")); -- %M for next minute, %j for next day
 			player:addFame(RABAO,30);

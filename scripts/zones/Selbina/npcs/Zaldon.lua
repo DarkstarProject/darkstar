@@ -635,7 +635,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,17076);
             player:addGil(GIL_RATE*50);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
-            player:addTitle(CORDON_BLEU_FISHER);
+            player:addTitle(title.CORDON_BLEU_FISHER);
             player:setVar("ItB_Var",0);
             if (player:getQuestStatus(OTHER_AREAS,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS,INSIDE_THE_BELLY);
@@ -819,7 +819,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,13480);
             player:addGil(GIL_RATE*16);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*16);
-            player:addTitle(CORDON_BLEU_FISHER);
+            player:addTitle(title.CORDON_BLEU_FISHER);
             player:setVar("ItB_Var",0);
             if (player:getQuestStatus(OTHER_AREAS,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS,INSIDE_THE_BELLY);
@@ -900,7 +900,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,16837);
             player:addGil(GIL_RATE*250);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*250);
-            player:addTitle(ACE_ANGLER);
+            player:addTitle(title.ACE_ANGLER);
             player:setVar("ItB_Var",0);
             if (player:getQuestStatus(OTHER_AREAS,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS,INSIDE_THE_BELLY);
@@ -942,7 +942,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,16533);
             player:addGil(GIL_RATE*350);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*350);
-            player:addTitle(LU_SHANGLIKE_FISHER_KING);
+            player:addTitle(title.LU_SHANGLIKE_FISHER_KING);
             player:setVar("ItB_Var",0);
             if (player:getQuestStatus(OTHER_AREAS,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS,INSIDE_THE_BELLY);
@@ -1108,7 +1108,7 @@ function onEventFinish(player,csid,option)
             player:addGil(GIL_RATE*50);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
             player:setVar("ItB_Var",0);
-            player:addTitle(CORDON_BLEU_FISHER);
+            player:addTitle(title.CORDON_BLEU_FISHER);
             if (player:getQuestStatus(OTHER_AREAS,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS,INSIDE_THE_BELLY);
             end
@@ -1244,7 +1244,7 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addGil(GIL_RATE*16);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*16);
-            player:addTitle(CORDON_BLEU_FISHER);
+            player:addTitle(title.CORDON_BLEU_FISHER);
             player:setVar("ItB_Var",0);
             if (player:getQuestStatus(OTHER_AREAS,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS,INSIDE_THE_BELLY);
@@ -1301,7 +1301,7 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addGil(GIL_RATE*250);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*250);
-            player:addTitle(ACE_ANGLER);
+            player:addTitle(title.ACE_ANGLER);
             player:setVar("ItB_Var",0);
             if (player:getQuestStatus(OTHER_AREAS,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS,INSIDE_THE_BELLY);
@@ -1334,7 +1334,7 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addGil(GIL_RATE*350);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*350);
-            player:addTitle(LU_SHANGLIKE_FISHER_KING);
+            player:addTitle(title.LU_SHANGLIKE_FISHER_KING);
             player:setVar("ItB_Var",0);
             if (player:getQuestStatus(OTHER_AREAS,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS,INSIDE_THE_BELLY);

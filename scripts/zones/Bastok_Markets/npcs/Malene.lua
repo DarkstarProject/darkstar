@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
 		end
 	elseif (csid == 0x0068) then -- Quest: The Cold Light of Day - Traded Steam Clock
 		player:tradeComplete( );
-		player:addTitle(CRAB_CRUSHER);			
+		player:addTitle(title.CRAB_CRUSHER);			
 		player:addGil(GIL_RATE*500);
 		player:messageSpecial(GIL_OBTAINED, GIL_RATE*500);	
 		
