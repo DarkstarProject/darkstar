@@ -1,18 +1,20 @@
 language: cpp
+dist: trusty
 
 before_install:
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-  - sudo rm /etc/apt/sources.list.d/travis_ci_zeromq3-source.list
-  - sudo sh -c 'sed s/precise/trusty/g /etc/apt/sources.list > /etc/apt/sources.list.d/trusty.list'
-  - sudo apt-get update -qq
+
 
 install:
-  - sudo apt-get install -qq luajit-5.1-dev libzmq3-dev libmysqlclient-dev g++-4.8
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq -y software-properties-common
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq -y luajit-5.1-dev libzmq3-dev libmysqlclient-dev mysql-server-5.6 libmysqlclient-dev g++-4.9
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 90
   
 before_script:
   - sh autogen.sh
-  - mysql -e 'create database myapp_test;'
+  - mysql -u root -e 'create database myapp_test;'
 
 script:
   - ./configure
