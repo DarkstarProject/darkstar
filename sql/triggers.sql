@@ -40,6 +40,18 @@ BEGIN
     UPDATE `char_stats` SET zoning = 0 WHERE `charid` = OLD.charid;
 END $$
 
+DROP TRIGGER IF EXISTS session_zoneip $$
+CREATE TRIGGER session_zoneip
+BEFORE UPDATE ON accounts_sessions
+FOR EACH ROW BEGIN
+    SET @zoning := 0;
+    SELECT zoning INTO @zoning FROM char_stats WHERE charid = OLD.charid;
+    IF NOT @zoning = 0 THEN
+        SET NEW.server_addr = OLD.server_addr;
+        SET NEW.server_port = OLD.server_port;
+    END IF;
+END $$
+
 DROP TRIGGER IF EXISTS char_delete $$
 CREATE TRIGGER char_delete
 	BEFORE DELETE ON chars
