@@ -21608,3 +21608,113 @@ INSERT INTO `item_mods` VALUES (28670, 1, 1); -- DEF:1
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (16002, 374, 5);
 INSERT INTO `item_mods` VALUES (16002, 491, 5);
+
+-- -------------------------------------------------------
+-- Asn. Armlets +2 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10695, 1, 21); -- DEF:21
+INSERT INTO `item_mods` VALUES (10695, 14, 7); -- CHR+7
+INSERT INTO `item_mods` VALUES (10695, 25, 9); -- ACC+9
+INSERT INTO `item_mods` VALUES (10695, 68, 9); -- EVA+9
+INSERT INTO `item_mods` VALUES (10695, 27, 5); -- Enmity+5
+-- [NOT CODED] Treasure Hunter already coded
+
+
+-- -------------------------------------------------------
+-- Raid. Poulaines +2
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (11149, 1, 23); -- DEF:23
+INSERT INTO `item_mods` VALUES (11149, 11, 15); -- AGI+15 
+INSERT INTO `item_mods` VALUES (11149, 68, 11); -- EVA+11
+
+-- [NOT CODED] Enhances "Despoil" effect Set: Augments "Triple Attack" not coded
+-- [NOT CODED] Treasure Hunter already coded
+
+
+-- -------------------------------------------------------
+-- Toro Cape
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28615, 1, 10); -- DEF:10
+INSERT INTO `item_mods` VALUES (28615, 12, 8); -- INT+8
+INSERT INTO `item_mods` VALUES (28615, 28, 10); -- Magic Attack Bonus+10
+INSERT INTO `item_mods` VALUES (28615, 55, 20); -- Ice resist+20
+-- [NOT CODED]  Occasionally absorbs ice elemental damage
+
+
+-- -------------------------------------------------------
+-- Atheling Mantle 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (16260, 1, 15); -- DEF:10
+INSERT INTO `item_mods` VALUES (16260, 23, 20); -- Attack+20
+INSERT INTO `item_mods` VALUES (16260, 288, 3); -- double attack 3%
+
+
+
+-- -------------------------------------------------------
+--  Friomisi Earring 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28514, 28, 10); -- Magic Attack Bonus+10
+INSERT INTO `item_mods` VALUES (28514, 27, 2); -- Enmity+2
+
+
+-- -------------------------------------------------------
+--   Ifrit Ring +1 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27565, 8, 9); -- STR+9
+INSERT INTO `item_mods` VALUES (27565, 54, 16); -- Fire resist+16
+INSERT INTO `item_mods` VALUES (27565, 23, 5); -- Attack+5
+
+
+-- -------------------------------------------------------
+--    Shiva Ring +1 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27575, 12, 9); -- INT+9
+INSERT INTO `item_mods` VALUES (27575, 55, 16 16); -- Ice resist+16
+INSERT INTO `item_mods` VALUES (27575, 28, 3); -- Magic Attack Bonus+3
+
+
+-- -------------------------------------------------------
+--     Mes. Haubergeon  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27886, 1, 140); -- DEF:140
+INSERT INTO `item_mods` VALUES (27886, 2, 63); -- HP+63
+INSERT INTO `item_mods` VALUES (27886, 5, 35); -- MP+35
+INSERT INTO `item_mods` VALUES (27886, 8, 29); -- STR+29
+INSERT INTO `item_mods` VALUES (27886, 9, 29); -- DEX+29
+INSERT INTO `item_mods` VALUES (27886, 10, 29); -- VIT+29
+INSERT INTO `item_mods` VALUES (27886, 11, 6); -- AGI+6
+INSERT INTO `item_mods` VALUES (27886, 12, 6); -- INT+6
+INSERT INTO `item_mods` VALUES (27886, 13, 6); -- MND+6
+INSERT INTO `item_mods` VALUES (27886, 14, 6); -- CHR+6
+INSERT INTO `item_mods` VALUES (27886, 25, 30); -- Accuracy+30
+INSERT INTO `item_mods` VALUES (27886, 23, 30); -- Attack+30
+INSERT INTO `item_mods` VALUES (27886, 384, 3); -- Haste+3
+INSERT INTO `item_mods` VALUES (27886, 288, 2); -- "Double Attack"+2%
+
+
+-- -------------------------------------------------------
+--     Mes'yohi Slacks  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (228172, 1, 107); -- DEF:107
+INSERT INTO `item_mods` VALUES (228172, 2, 43); -- HP+43
+INSERT INTO `item_mods` VALUES (228172, 5, 29); -- MP+29
+INSERT INTO `item_mods` VALUES (228172, 8, 25); -- STR+25
+INSERT INTO `item_mods` VALUES (228172, 10, 12); -- VIT+12
+INSERT INTO `item_mods` VALUES (228172, 11, 17); -- AGI+17
+INSERT INTO `item_mods` VALUES (228172, 12, 39); -- INT+39
+INSERT INTO `item_mods` VALUES (228172, 13, 6); -- MND+29
+INSERT INTO `item_mods` VALUES (228172, 14, 6); -- CHR+19
+INSERT INTO `item_mods` VALUES (228172, 30, 20); -- Magic Accuracy+20
+INSERT INTO `item_mods` VALUES (228172, 31, 107); -- Magic Evasion+107
+INSERT INTO `item_mods` VALUES (228172, 29, 8; -- "Magic Def. Bonus"+8
+INSERT INTO `item_mods` VALUES (228172, 384, 5); -- Haste+5
+-- [NOT CODED] Depending on day: Magic Accuracy+25
+
+
+-- -------------------------------------------------------
+--     Cetl Belt  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28460, 1, 14); -- DEF:14
+INSERT INTO `item_mods` VALUES (28460, 288, 4); -- "Double Attack"+2%
+INSERT INTO `item_mods` VALUES (28460, 384, 5); -- Haste+5
+
