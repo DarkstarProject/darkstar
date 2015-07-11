@@ -1404,6 +1404,26 @@ INSERT INTO `item_mods` VALUES (10650, 9, 8);
 INSERT INTO `item_mods` VALUES (10650, 110, 9);
 INSERT INTO `item_mods` VALUES (10650, 483, 20);
 
+-- ------------------------------------------
+-- Melee Crown +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10651, 1, 30); -- DEF:30
+INSERT INTO `item_mods` VALUES (10651, 3, 6); -- HP+6%
+INSERT INTO `item_mods` VALUES (10651, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (10651, 10, 7); -- VIT+7
+INSERT INTO `item_mods` VALUES (10651, 289, 7); -- "Subtle Blow"+7
+INSERT INTO `item_mods` VALUES (10651, 27, -5); -- Enmity-5
+
+-- ------------------------------------------
+-- Cleric Cap +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10652, 1, 31); -- DEF:31
+INSERT INTO `item_mods` VALUES (10652, 5, 35); -- MP+35
+INSERT INTO `item_mods` VALUES (10652, 10, 7); -- VIT+7
+INSERT INTO `item_mods` VALUES (10652, 13, 7); -- MND+7
+INSERT INTO `item_mods` VALUES (10652, 170, 100); -- "Cure" spellcasting time-10%
+INSERT INTO `item_mods` VALUES (10652, 27, -7); -- Enmity-7
+
 INSERT INTO `item_mods` VALUES (10654, 369, 2);
 
 INSERT INTO `item_mods` VALUES (10663, 1, 33);
@@ -1413,14 +1433,99 @@ INSERT INTO `item_mods` VALUES (10663, 10, 7);
 INSERT INTO `item_mods` VALUES (10663, 23, 4);
 INSERT INTO `item_mods` VALUES (10663, 402, 43);
 INSERT INTO `item_mods` VALUES (10667, 370, 2);
-INSERT INTO `item_mods` VALUES (10671, 370, 2);
-INSERT INTO `item_mods` VALUES (10672, 369, 2);
+
+-- ------------------------------------------
+-- Warrior's Lorica +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10670, 1, 65); -- DEF:65
+INSERT INTO `item_mods` VALUES (10670, 2, 42); -- HP+42
+INSERT INTO `item_mods` VALUES (10670, 25, 15); -- ACC+15
+INSERT INTO `item_mods` VALUES (10670, 23, 15); -- Attack+15
+-- Enhances "Aggressor" effect unknown
+
+-- ------------------------------------------
+-- Melee Cyclas +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10671, 1, 57); -- DEF:57
+INSERT INTO `item_mods` VALUES (10671, 3, 7); -- HP+7%
+INSERT INTO `item_mods` VALUES (10671, 10, 8); -- VIT+8
+INSERT INTO `item_mods` VALUES (10671, 11, 8); -- AGI+8
+INSERT INTO `item_mods` VALUES (10671, 291, 2); -- "Counter"+2
+INSERT INTO `item_mods` VALUES (10671, 370, 2); -- "Regen" effect
+
+-- ------------------------------------------
+-- Cleric Briault +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10672, 1, 55); -- DEF:55
+INSERT INTO `item_mods` VALUES (10672, 5, 41); -- MP+41
+INSERT INTO `item_mods` VALUES (10672, 27, -5); -- Enmity-5
+INSERT INTO `item_mods` VALUES (10672, 369, 2); -- Refresh effect
+INSERT INTO `item_mods` VALUES (10672, 338, 2); -- Regen Potency
+
 INSERT INTO `item_mods` VALUES (10673, 369, 2);
 INSERT INTO `item_mods` VALUES (10681, 73, 7);
 INSERT INTO `item_mods` VALUES (10685, 369, 2);
 INSERT INTO `item_mods` VALUES (10687, 73, 10);
+
+-- ------------------------------------------
+-- Warrior's Mufflers +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10690, 1, 29); -- DEF:29
+INSERT INTO `item_mods` VALUES (10690, 2, 28); -- HP+29
+INSERT INTO `item_mods` VALUES (10690, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (10690, 10, 7); -- VIT+7
+INSERT INTO `item_mods` VALUES (10690, 23, 17); -- Attack+17
+INSERT INTO `item_mods` VALUES (10690, 161, -3); -- Physical damage taken-3%
+
+-- ------------------------------------------
+-- Melee Gloves +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10691, 1, 20); -- DEF:20
+INSERT INTO `item_mods` VALUES (10691, 3, 4); -- HP+4%
+INSERT INTO `item_mods` VALUES (10691, 25, 21); -- ACC+21
+INSERT INTO `item_mods` VALUES (10691, 23, 21); -- Attack+21
+INSERT INTO `item_mods` VALUES (10691, 289, 6); -- "Subtle Blow"+6
+
+-- ------------------------------------------
+-- Cleric mitts +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10692, 1, 21); -- DEF:21
+INSERT INTO `item_mods` VALUES (10692, 2, 28); -- HP+28
+INSERT INTO `item_mods` VALUES (10692, 5, 28); -- MP+28
+INSERT INTO `item_mods` VALUES (10692, 111, 18); -- Divine magic skill+18
+INSERT INTO `item_mods` VALUES (10692, 114, 18); -- Enfeebling magic skill+18
+INSERT INTO `item_mods` VALUES (10692, 27, -6); -- Enmity-6
+
 INSERT INTO `item_mods` VALUES (10695, 303, 2);
 INSERT INTO `item_mods` VALUES (10696, 385, 12);
+
+-- ------------------------------------------
+-- Warrior's Cuisses +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10710, 1, 51); -- DEF:51
+INSERT INTO `item_mods` VALUES (10710, 8, 8); -- STR+8
+INSERT INTO `item_mods` VALUES (10710, 10, 8); -- VIT+8
+INSERT INTO `item_mods` VALUES (10710, 288, 3); -- "Double Attack"+3%
+INSERT INTO `item_mods` VALUES (10710, 408, 2); -- Increases "Double Attack" damage
+
+-- ------------------------------------------
+-- Melee Hose +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10711, 1, 40); -- DEF:40
+INSERT INTO `item_mods` VALUES (10711, 3, 7); -- HP+7%
+INSERT INTO `item_mods` VALUES (10711, 9, 7); -- DEX+7
+INSERT INTO `item_mods` VALUES (10711, 11, 7); -- AGI+7
+INSERT INTO `item_mods` VALUES (10711, 289, 7); -- "Subtle Blow"+7
+
+-- ------------------------------------------
+-- Cleric Pantalin +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10712, 1, 40); -- DEF:40
+INSERT INTO `item_mods` VALUES (10712, 3, 24); -- HP+7%
+INSERT INTO `item_mods` VALUES (10712, 5, 24); -- DEX+7
+INSERT INTO `item_mods` VALUES (10712, 112, 18); -- Healing magic skill
+INSERT INTO `item_mods` VALUES (10712, 114, 18); -- Enhancing magic skill+18
+INSERT INTO `item_mods` VALUES (10712, 27, -5); -- Enmity-5
 
 -- ------------------------------------------
 -- Saotome Haidate +2
@@ -1431,6 +1536,35 @@ INSERT INTO `item_mods` VALUES (10721, 11, 6);
 INSERT INTO `item_mods` VALUES (10721, 23, 8);
 INSERT INTO `item_mods` VALUES (10721, 68, 8);
 INSERT INTO `item_mods` VALUES (10721, 508, 25);
+
+-- ------------------------------------------
+-- Warrior's Calligae +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10730, 1, 25); -- DEF:25
+INSERT INTO `item_mods` VALUES (10730, 2, 21); -- HP+5
+INSERT INTO `item_mods` VALUES (10730, 9, 8); -- DEX+8
+INSERT INTO `item_mods` VALUES (10730, 11, 8); -- AGI+8
+-- Enhances "Berserk" effect Unknown
+
+-- ------------------------------------------
+-- Melee Gaiters +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10731, 1, 20); DEF:20
+INSERT INTO `item_mods` VALUES (10731, 3, 5); -- HP+5%
+INSERT INTO `item_mods` VALUES (10731, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (10731, 9, 7); -- DEX+7
+INSERT INTO `item_mods` VALUES (10731, 291, 10); -- Increases "Counter" attack
+
+-- ------------------------------------------
+-- Cleric Duckbills  +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10732, 1, 20); -- DEF:20
+INSERT INTO `item_mods` VALUES (10732, 2, 25); -- HP+25
+INSERT INTO `item_mods` VALUES (10732, 5, 25); -- MP+25
+INSERT INTO `item_mods` VALUES (10732, 13, 8); -- MND+8
+INSERT INTO `item_mods` VALUES (10732, 113, 12); -- Enhancing magic skill+12
+INSERT INTO `item_mods` VALUES (10732, 114, 12); -- Enfeebling magic skill+12
+INSERT INTO `item_mods` VALUES (10732, 27, -4); -- Enmity-4
 
 INSERT INTO `item_mods` VALUES (10738, 364, 30);
 INSERT INTO `item_mods` VALUES (10753, 370, 2);
