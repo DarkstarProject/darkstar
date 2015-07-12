@@ -4,12 +4,12 @@
 --  Title Change NPC
 --  @pos 83 0 120 230
 -------------------------------------
-package.loaded["scripts/zones/TITLE_Southern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/TITLE_Southern_San_dOria/TextIDs");
+require("scripts/zones/Southern_San_dOria/TextIDs");
 
 local title2 = { TITLE_NEW_ADVENTURER , TITLE_BEAN_CUISINE_SALTER , TITLE_DAYBREAK_GAMBLER , TITLE_ENTRANCE_DENIED , RABBITER , TITLE_ROYAL_GRAVE_KEEPER ,
 				TITLE_COURIER_EXTRAORDINAIRE , TITLE_RONFAURIAN_RESCUER , TITLE_PICKPOCKET_PINCHER , TITLE_THE_PURE_ONE , TITLE_LOST_CHILD_OFFICER , TITLE_SILENCER_OF_THE_LAMBS ,
@@ -38,13 +38,13 @@ local title7 = { TITLE_ROYAL_ARCHER , TITLE_ROYAL_SPEARMAN , TITLE_ROYAL_SQUIRE 
 
 function onTrade(player,npc,trade)
 -- "Flyers for Regine" conditional script
-	local FlyerForRegine = player:getQuestStatus(SANDORIA,TITLE_FLYERS_FOR_REGINE);
+	local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
 	if (FlyerForRegine == 1) then
 		local count = trade:getItemCount();
 		local MagicFlyer = trade:hasItemQty(532,1);
 		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(TITLE_FLYER_REFUSED);
+			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
 end;
