@@ -91,6 +91,6 @@ function onEventFinish(player,csid,option)
 	player:setRank(10);
 	player:addGil(100000);
 	player:messageSpecial(GIL_OBTAINED,100000);
-	player:setTitle(TITLE_HERO_AMONG_HEROES);
+	player:setTitle(296);
 end
 end;

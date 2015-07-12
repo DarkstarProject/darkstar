@@ -112,7 +112,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED,12644); -- Gallant Surcoat
 			player:setVar("UnderOathCS",9);
 			player:addFame(SANDORIA,AF3_FAME*SAN_FAME);
-			player:setTitle(TITLE_PARAGON_OF_PALADIN_EXCELLENCE);
+			player:setTitle(PARAGON_OF_PALADIN_EXCELLENCE);
 			player:completeQuest(SANDORIA,UNDER_OATH);
 		end
 	elseif(csid == 0x0051) then
