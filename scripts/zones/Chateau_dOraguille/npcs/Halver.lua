@@ -207,7 +207,7 @@ function onEventFinish(player,csid,option)
 		player:setRank(10);
 		player:addGil(100000);
 		player:messageSpecial(GIL_OBTAINED,100000);
-		player:setTitle(295);
+		player:setTitle(TITLE_SAN_DORIAN_ROYAL_HEIR);
 		player:setVar("SandoEpilogue",1);
 	elseif(csid == 0x003A) then
 		player:setVar("MissionStatus",2);

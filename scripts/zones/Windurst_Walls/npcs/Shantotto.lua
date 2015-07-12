@@ -158,14 +158,14 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x00B4 and option == 3) then
 		player:setVar("CursesFoiledAgain",0);
 		player:addQuest(WINDURST,CURSES_FOILED_AGAIN_2);
-		player:setTitle(TARUTARU_MURDER_SUSPECT);
+		player:setTitle(TITLE_TARUTARU_MURDER_SUSPECT);
 	
 	elseif(csid == 0x00B7) then
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17116); 
 		else
 			player:tradeComplete();
-			player:setTitle(HEXER_VEXER);
+			player:setTitle(TITLE_HEXER_VEXER);
 			player:addItem(17116);
 			player:messageSpecial(ITEM_OBTAINED,17116);
 			player:completeQuest(WINDURST,CURSES_FOILED_AGAIN_2);
@@ -177,7 +177,7 @@ function onEventFinish(player,csid,option)
 		if(option == 1) then
 			player:addQuest(WINDURST,CURSES_FOILED_A_GOLEM);
 		else
-			player:setTitle(TOTAL_LOSER);
+			player:setTitle(TITLE_TOTAL_LOSER);
 		end
 		
 	elseif(csid == 0x0156) then
@@ -188,7 +188,7 @@ function onEventFinish(player,csid,option)
 			player:setVar("foiledagolemdeliverycomplete",0);
 			player:addItem(4870);
 			player:messageSpecial(ITEM_OBTAINED,4870);
-			player:setTitle(DOCTOR_SHANTOTTOS_FLAVOR_OF_THE_MONTH);
+			player:setTitle(TITLE_DOCTOR_SHANTOTTOS_FLAVOR_OF_THE_MONTH);
 			player:addFame(WINDURST,WIN_FAME*120);
 		end
 	elseif(csid == 0x0199) then

@@ -169,7 +169,7 @@ printf("RESULT: %u",option);
             player:setVar("TOAUM7",1)
             player:addKeyItem(RAILLEFALS_NOTE);
             player:messageSpecial(KEYITEM_OBTAINED,RAILLEFALS_NOTE);
-	    player:setTitle(483);
+	    player:setTitle(TITLE_ELITE_EINHERJAR);
 	    if(player:getFreeSlotsCount() == 0) then 
 		player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
             else
