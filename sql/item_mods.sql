@@ -1407,6 +1407,7 @@ INSERT INTO `item_mods` VALUES (10650, 483, 20);
 -- ------------------------------------------
 -- Melee Crown +2
 -- ------------------------------------------
+
 INSERT INTO `item_mods` VALUES (10651, 1, 30); -- DEF:30
 INSERT INTO `item_mods` VALUES (10651, 3, 6); -- HP+6%
 INSERT INTO `item_mods` VALUES (10651, 8, 7); -- STR+7
@@ -1488,7 +1489,35 @@ INSERT INTO `item_mods` VALUES (10672, 27, -5); -- Enmity-5
 INSERT INTO `item_mods` VALUES (10672, 369, 2); -- Refresh effect
 INSERT INTO `item_mods` VALUES (10672, 338, 2); -- Regen Potency
 
-INSERT INTO `item_mods` VALUES (10673, 369, 2);
+-- ------------------------------------------
+-- Sorcerer's Coat +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10673, 1, 53); -- DEF:53
+INSERT INTO `item_mods` VALUES (10673, 12, 8); -- INT+8
+INSERT INTO `item_mods` VALUES (10673, 115, 9); -- Elemental skill+9
+INSERT INTO `item_mods` VALUES (10673, 27, -4); -- Enmity-4
+INSERT INTO `item_mods` VALUES (10673, 369, 2); -- Refresh
+
+-- ------------------------------------------
+-- Duelist's Tabard +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10674, 1, 59); -- DEF:59
+INSERT INTO `item_mods` VALUES (10674, 5, 42); -- MP+42
+INSERT INTO `item_mods` VALUES (10674, 11, 6); -- AGI+6
+INSERT INTO `item_mods` VALUES (10674, 13, 6); -- MND+6
+INSERT INTO `item_mods` VALUES (10674, 112, 15); -- Healing skill+15
+INSERT INTO `item_mods` VALUES (10674, 113, 15); -- Enhancing skill+15
+INSERT INTO `item_mods` VALUES (10674, 170, 120); -- Fast cast
+
+-- ------------------------------------------
+-- Assassin's Vest +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10675, 1, 59); --DEF:59
+INSERT INTO `item_mods` VALUES (10675, 9, 7); -- DEX+7
+INSERT INTO `item_mods` VALUES (10675, 11, 7); -- AGI+7
+INSERT INTO `item_mods` VALUES (10675, 165, 3); -- Critical hit rate+3%
+INSERT INTO `item_mods` VALUES (10675, 421, 6); -- Critical hit damage Enmity+6
+
 INSERT INTO `item_mods` VALUES (10681, 73, 7);
 INSERT INTO `item_mods` VALUES (10685, 369, 2);
 INSERT INTO `item_mods` VALUES (10687, 73, 10);
@@ -1522,7 +1551,35 @@ INSERT INTO `item_mods` VALUES (10692, 111, 18); -- Divine magic skill+18
 INSERT INTO `item_mods` VALUES (10692, 114, 18); -- Enfeebling magic skill+18
 INSERT INTO `item_mods` VALUES (10692, 27, -6); -- Enmity-6
 
-INSERT INTO `item_mods` VALUES (10695, 303, 2);
+-- ------------------------------------------
+-- Sorcerer's Gloves +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10693, 1, 20); -- DEF:20
+INSERT INTO `item_mods` VALUES (10693, 5, 34); -- MP+34
+INSERT INTO `item_mods` VALUES (10693, 115, 15); -- Elemental skill+15
+INSERT INTO `item_mods` VALUES (10693, 116, 15); -- Dark skill+15
+INSERT INTO `item_mods` VALUES (10693, 27, -5); -- Enmity-5
+
+-- ------------------------------------------
+-- Duelist's Gloves +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10694, 1, 22); -- DEF:22
+INSERT INTO `item_mods` VALUES (10694, 5, 32); -- MP+32
+INSERT INTO `item_mods` VALUES (10694, 12, 7); -- INT+7
+INSERT INTO `item_mods` VALUES (10694, 13, 7); -- MND+7
+INSERT INTO `item_mods` VALUES (10694, 113, 18); -- Enhancing skill+18
+INSERT INTO `item_mods` VALUES (10694, 29, 4); -- Magic Defence Bonus+4
+
+-- ------------------------------------------
+-- Assassin's Armlets +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10695, 1, 21); -- DEF:21
+INSERT INTO `item_mods` VALUES (10695, 14, 7); -- CHR+7
+INSERT INTO `item_mods` VALUES (10695, 25, 9); -- ACC+9
+INSERT INTO `item_mods` VALUES (10695, 68, 9); -- Evasion+9
+INSERT INTO `item_mods` VALUES (10695, 27, 5); -- Enmity+5
+INSERT INTO `item_mods` VALUES (10695, 303, 2); -- Treasure Hunter+2
+
 INSERT INTO `item_mods` VALUES (10696, 385, 12);
 
 -- ------------------------------------------
@@ -1554,6 +1611,34 @@ INSERT INTO `item_mods` VALUES (10712, 114, 18); -- Enhancing magic skill+18
 INSERT INTO `item_mods` VALUES (10712, 27, -5); -- Enmity-5
 
 -- ------------------------------------------
+-- Sorcerer's Tonban +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10713, 1, 39); -- DEF:39
+INSERT INTO `item_mods` VALUES (10713, 5, 28); -- MP+28
+INSERT INTO `item_mods` VALUES (10713, 12, 5); -- INT+5
+INSERT INTO `item_mods` VALUES (10713, 28, 5); -- MAB+5
+INSERT INTO `item_mods` VALUES (10713, 27, -5); -- Enmity-5
+
+-- ------------------------------------------
+-- Duelist's Tights +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10714, 1, 43); -- DEF:43
+INSERT INTO `item_mods` VALUES (10714, 5, 22); -- MP+22
+INSERT INTO `item_mods` VALUES (10714, 9, 8); -- DEX+8
+INSERT INTO `item_mods` VALUES (10714, 12, 8); -- INT+8
+INSERT INTO `item_mods` VALUES (10714, 115, 15); -- Elemental skill+15
+INSERT INTO `item_mods` VALUES (10714, 500, 5); -- Enhances spikes spells
+
+-- ------------------------------------------
+-- Assassin's Culottes +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10715, 1, 44); -- DEF:44
+INSERT INTO `item_mods` VALUES (10715, 8, 5); -- STR+5
+INSERT INTO `item_mods` VALUES (10715, 9, 5); -- DEX+5
+INSERT INTO `item_mods` VALUES (10715, 25, 10); -- ACC+10
+INSERT INTO `item_mods` VALUES (10715, 27, 6); -- Enmity+6
+
+-- ------------------------------------------
 -- Saotome Haidate +2
 -- ------------------------------------------
 INSERT INTO `item_mods` VALUES (10721, 1, 52);
@@ -1575,7 +1660,7 @@ INSERT INTO `item_mods` VALUES (10730, 11, 8); -- AGI+8
 -- ------------------------------------------
 -- Melee Gaiters +2
 -- ------------------------------------------
-INSERT INTO `item_mods` VALUES (10731, 1, 20); DEF:20
+INSERT INTO `item_mods` VALUES (10731, 1, 20); -- DEF:20
 INSERT INTO `item_mods` VALUES (10731, 3, 5); -- HP+5%
 INSERT INTO `item_mods` VALUES (10731, 8, 7); -- STR+7
 INSERT INTO `item_mods` VALUES (10731, 9, 7); -- DEX+7
@@ -1591,6 +1676,35 @@ INSERT INTO `item_mods` VALUES (10732, 13, 8); -- MND+8
 INSERT INTO `item_mods` VALUES (10732, 113, 12); -- Enhancing magic skill+12
 INSERT INTO `item_mods` VALUES (10732, 114, 12); -- Enfeebling magic skill+12
 INSERT INTO `item_mods` VALUES (10732, 27, -4); -- Enmity-4
+
+-- ------------------------------------------
+-- Sorcerer's Sabots +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10733, 1, 18); -- DEF:18
+INSERT INTO `item_mods` VALUES (10733, 5, 25); -- MP+25
+INSERT INTO `item_mods` VALUES (10733, 12, 5); -- INT+5
+INSERT INTO `item_mods` VALUES (10733, 115, 7); -- Elemental skill+7
+INSERT INTO `item_mods` VALUES (10733, 27, -4); -- Enmity-4
+
+-- ------------------------------------------
+-- Duelist's Boots +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10734, 1, 20); -- DEF:20
+INSERT INTO `item_mods` VALUES (10734, 5, 21); -- MP+21
+INSERT INTO `item_mods` VALUES (10734, 12, 6); -- INT+6
+INSERT INTO `item_mods` VALUES (10734, 13, 6); -- MND+6
+INSERT INTO `item_mods` VALUES (10734, 30, 4); -- Magic Acc+4
+INSERT INTO `item_mods` VALUES (10734, 28, 7); -- MAB+7
+
+-- ------------------------------------------
+-- Assassin's Poulaines +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10735, 1, 20); -- DEF:20
+INSERT INTO `item_mods` VALUES (10735, 9, 7); -- DEX+7
+INSERT INTO `item_mods` VALUES (10735, 14, 7); -- CHR+7
+INSERT INTO `item_mods` VALUES (10735, 302, 3); -- Triple Attack+3%
+INSERT INTO `item_mods` VALUES (10735, 409, 2); -- Triple Attack Damage
+INSERT INTO `item_mods` VALUES (10735, 27, 4); -- Enmity+4
 
 INSERT INTO `item_mods` VALUES (10738, 364, 30);
 INSERT INTO `item_mods` VALUES (10753, 370, 2);
