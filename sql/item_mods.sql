@@ -21608,3 +21608,220 @@ INSERT INTO `item_mods` VALUES (28670, 1, 1); -- DEF:1
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (16002, 374, 5);
 INSERT INTO `item_mods` VALUES (16002, 491, 5);
+
+-- -------------------------------------------------------
+-- Arch. Coat +1  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (26807, 1, 125);
+INSERT INTO `item_mods` VALUES (26807, 2, 54);
+INSERT INTO `item_mods` VALUES (26807, 5, 59);
+INSERT INTO `item_mods` VALUES (26807, 8, 21);
+INSERT INTO `item_mods` VALUES (26807, 9, 21);
+INSERT INTO `item_mods` VALUES (26807, 10, 21);
+INSERT INTO `item_mods` VALUES (26807, 11, 21);
+INSERT INTO `item_mods` VALUES (26807, 12, 36);
+INSERT INTO `item_mods` VALUES (26807, 13, 29);
+INSERT INTO `item_mods` VALUES (26807, 14, 29);
+INSERT INTO `item_mods` VALUES (26807, 68, 41);
+INSERT INTO `item_mods` VALUES (26807, 31, 80);
+INSERT INTO `item_mods` VALUES (26807, 28, 10);
+INSERT INTO `item_mods` VALUES (26807, 29, 29);
+INSERT INTO `item_mods` VALUES (26807, 115, 20);
+INSERT INTO `item_mods` VALUES (26807, 384, 31);
+INSERT INTO `item_mods` VALUES (26807, 27, -10);
+INSERT INTO `item_mods` VALUES (26807, 369, 20);
+
+
+-- -------------------------------------------------------
+--  	Arch. Gloves +1  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (26983, 1, 82);
+INSERT INTO `item_mods` VALUES (26983, 2, 30);
+INSERT INTO `item_mods` VALUES (26983, 5, 22);
+INSERT INTO `item_mods` VALUES (26983, 8, 6);
+INSERT INTO `item_mods` VALUES (26983, 9, 28);
+INSERT INTO `item_mods` VALUES (26983, 10, 25);
+INSERT INTO `item_mods` VALUES (26983, 11, 5);
+INSERT INTO `item_mods` VALUES (26983, 12, 26);
+INSERT INTO `item_mods` VALUES (26983, 13, 33);
+INSERT INTO `item_mods` VALUES (26983, 14, 19);
+INSERT INTO `item_mods` VALUES (26983, 68, 22);
+INSERT INTO `item_mods` VALUES (26983, 31, 27);
+INSERT INTO `item_mods` VALUES (26983, 29, 3);
+INSERT INTO `item_mods` VALUES (26983, 115, 19);
+INSERT INTO `item_mods` VALUES (26983, 116, 19);
+INSERT INTO `item_mods` VALUES (26983, 384, 31);
+INSERT INTO `item_mods` VALUES (26983, 27, -8);
+INSERT INTO `item_mods` VALUES (26983, 25, 20);
+INSERT INTO `item_mods` VALUES (26983, 487, 16);
+INSERT INTO `item_mods` VALUES (26983, 30, 20);
+
+
+-- -------------------------------------------------------
+--  	Arch. Gloves +1  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (26631, 1, 95);
+INSERT INTO `item_mods` VALUES (26631, 2, 36);
+INSERT INTO `item_mods` VALUES (26631, 5, 32);
+INSERT INTO `item_mods` VALUES (26631, 8, 16);
+INSERT INTO `item_mods` VALUES (26631, 9, 16);
+INSERT INTO `item_mods` VALUES (26631, 10, 16);
+INSERT INTO `item_mods` VALUES (26631, 11, 16);
+INSERT INTO `item_mods` VALUES (26631, 12, 26);
+INSERT INTO `item_mods` VALUES (26631, 13, 33);
+INSERT INTO `item_mods` VALUES (26631, 14, 19);
+INSERT INTO `item_mods` VALUES (26631, 30, 12);
+INSERT INTO `item_mods` VALUES (26631, 28, 13);
+INSERT INTO `item_mods` VALUES (26631, 68, 36);
+INSERT INTO `item_mods` VALUES (26631, 31, 75);
+INSERT INTO `item_mods` VALUES (26631, 29, 5);
+INSERT INTO `item_mods` VALUES (26631, 384, 61);
+INSERT INTO `item_mods` VALUES (26631, 27, -5);
+INSERT INTO `item_mods` VALUES (26631, 115, 17);
+
+
+-- -------------------------------------------------------
+--  	 Arch. Sabots +1  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27335, 1, 63);
+INSERT INTO `item_mods` VALUES (27335, 2, 23);
+INSERT INTO `item_mods` VALUES (27335, 5, 24);
+INSERT INTO `item_mods` VALUES (27335, 8, 10);
+INSERT INTO `item_mods` VALUES (27335, 9, 11);
+INSERT INTO `item_mods` VALUES (27335, 10, 10);
+INSERT INTO `item_mods` VALUES (27335, 11, 33);
+INSERT INTO `item_mods` VALUES (27335, 30, 12);
+INSERT INTO `item_mods` VALUES (27335, 28, 12);
+INSERT INTO `item_mods` VALUES (27335, 68, 55);
+INSERT INTO `item_mods` VALUES (27335, 31, 107);
+INSERT INTO `item_mods` VALUES (27335, 29, 5);
+INSERT INTO `item_mods` VALUES (27335, 115, 13);
+INSERT INTO `item_mods` VALUES (27335, 384, 33);
+INSERT INTO `item_mods` VALUES (27335, 27, -4);
+
+
+-- -------------------------------------------------------
+--  	 Arch. Sabots +1  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27159, 1, 103);
+INSERT INTO `item_mods` VALUES (27159, 2, 43);
+INSERT INTO `item_mods` VALUES (27159, 5, 65);
+INSERT INTO `item_mods` VALUES (27159, 8, 25);
+INSERT INTO `item_mods` VALUES (27159, 10, 12);
+INSERT INTO `item_mods` VALUES (27159, 11, 17);
+INSERT INTO `item_mods` VALUES (27159, 12, 43);
+INSERT INTO `item_mods` VALUES (27159, 13, 44);
+INSERT INTO `item_mods` VALUES (27159, 14, 33);
+INSERT INTO `item_mods` VALUES (27159, 30, 14);
+INSERT INTO `item_mods` VALUES (27159, 28, 29);
+INSERT INTO `item_mods` VALUES (27159, 68, 27);
+INSERT INTO `item_mods` VALUES (27159, 31, 107);
+INSERT INTO `item_mods` VALUES (27159, 29, 6);
+INSERT INTO `item_mods` VALUES (27159, 384, 51);
+INSERT INTO `item_mods` VALUES (27159, 27, -5);
+INSERT INTO `item_mods` VALUES (27159, 163, 10);
+
+-- -------------------------------------------------------
+--  	 Locus ring 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28582, 28, 5);
+INSERT INTO `item_mods` VALUES (28582, 487, 5);
+
+
+-- -------------------------------------------------------
+--  	 Patricius Ring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28578, 25, 7);
+INSERT INTO `item_mods` VALUES (28578, 16', -5);
+
+
+-- -------------------------------------------------------
+--  	 Kunaji Ring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28577, 2, 40);
+INSERT INTO `item_mods` VALUES (28577, 18, 20);
+INSERT INTO `item_mods` VALUES (28577, 375, 5);
+
+
+-- -------------------------------------------------------
+--  	 Paqichikaji Ring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28576, 26, 14);
+INSERT INTO `item_mods` VALUES (28576, 289, 5);
+INSERT INTO `item_mods` VALUES (28576, 27, -3);
+
+
+-- -------------------------------------------------------
+--  	 Cho'j Band
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28575, 23, 14);
+INSERT INTO `item_mods` VALUES (28575, 27, -3);
+
+
+-- -------------------------------------------------------
+--  	 Dumakulem's Ring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28530, 9, 4);
+INSERT INTO `item_mods` VALUES (28530, 11, 4);
+INSERT INTO `item_mods` VALUES (28530, 23, 3);
+INSERT INTO `item_mods` VALUES (28530, 68, 3);
+INSERT INTO `item_mods` VALUES (28530, 73, 2);
+
+
+-- -------------------------------------------------------
+--  	 Dynamic Belt
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28466, 8, 3);
+INSERT INTO `item_mods` VALUES (28466, 25, 10);
+INSERT INTO `item_mods` VALUES (28466, 384, 50);
+
+
+-- -------------------------------------------------------
+--  	 Dynamic Belt +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28467, 8, 4);
+INSERT INTO `item_mods` VALUES (28467, 25, 11);
+INSERT INTO `item_mods` VALUES (28467, 384, 60);
+INSERT INTO `item_mods` VALUES (28580, 27, -2);
+INSERT INTO `item_mods` VALUES (28579, 2, 70);
+
+
+-- -------------------------------------------------------
+--  	 Whirlpool Mask
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (27774, 1, 102);
+INSERT INTO `item_mods` VALUES (27774, 2, 38);
+INSERT INTO `item_mods` VALUES (27774, 5, 23);
+INSERT INTO `item_mods` VALUES (27774, 8, 24);
+INSERT INTO `item_mods` VALUES (27774, 9, 20);
+INSERT INTO `item_mods` VALUES (27774, 10, 22);
+INSERT INTO `item_mods` VALUES (27774, 11, 20);
+INSERT INTO `item_mods` VALUES (27774, 12, 19);
+INSERT INTO `item_mods` VALUES (27774, 13, 19);
+INSERT INTO `item_mods` VALUES (27774, 14, 19);
+INSERT INTO `item_mods` VALUES (27774, 25, 25);
+INSERT INTO `item_mods` VALUES (27774, 23, 25);
+INSERT INTO `item_mods` VALUES (27774, 68, 33);
+INSERT INTO `item_mods` VALUES (27774, 29, 2);
+INSERT INTO `item_mods` VALUES (27774, 31, 43);
+INSERT INTO `item_mods` VALUES (27774, 289, 4);
+INSERT INTO `item_mods` VALUES (27774, 384, 70);
+
+
+-- -------------------------------------------------------
+--  	 Whirlpool Greaves
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28337, 1, 84);
+INSERT INTO `item_mods` VALUES (28337, 2, 15);
+INSERT INTO `item_mods` VALUES (28337, 8, 15);
+INSERT INTO `item_mods` VALUES (28337, 9, 17);
+INSERT INTO `item_mods` VALUES (28337, 10, 15);
+INSERT INTO `item_mods` VALUES (28337, 11, 32);
+INSERT INTO `item_mods` VALUES (28337, 13, 15);
+INSERT INTO `item_mods` VALUES (28337, 14, 26);
+INSERT INTO `item_mods` VALUES (28337, 25, 13);
+INSERT INTO `item_mods` VALUES (28337, 23, 20);
+INSERT INTO `item_mods` VALUES (28337, 68, 52);
+INSERT INTO `item_mods` VALUES (28337, 29, 2);
+INSERT INTO `item_mods` VALUES (28337, 31, 75);
+INSERT INTO `item_mods` VALUES (28337, 384, 50);
