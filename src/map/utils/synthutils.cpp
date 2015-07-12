@@ -188,13 +188,7 @@ bool isRightRecipe(CCharEntity* PChar)
 
 double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 {
-	uint8  ElementDirection = 0;
-	uint8  WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
-	uint8  crystalElement = PChar->CraftContainer->getType();
-	uint8  direction = (PChar->loc.p.rotation - 16)/32;
-	uint8  strongElement[8] = {2,3,5,4,0,1,7,6};
 	uint16 ModID = 0;
-
 	switch (skillID)
 	{
 		case SKILL_WOODWORKING:  ModID = MOD_WOOD;		break;
@@ -209,55 +203,8 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 
 	uint8 charSkill = PChar->RealSkills.skill[skillID]/10;  //player skill level is truncated before synth difficulty is calced
 	double difficult = PChar->CraftContainer->getQuantity(skillID-40) - (double)(charSkill + PChar->getMod(ModID));
-	double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
-
-	if (map_config.craft_day_matters == 1)
-	{
-		if (crystalElement == WeekDay)
-			difficult -= 1;
-		else if (strongElement[crystalElement] == WeekDay)
-			difficult += 1;
-		else if (strongElement[WeekDay] == crystalElement)
-			difficult -= 1;
-		else if (WeekDay == LIGHTSDAY)
-			difficult -= 1;
-		else if (WeekDay == DARKSDAY)
-			difficult += 1;
-	}
-
-	if (map_config.craft_moonphase_matters == 1)
-	{
-		difficult -= (MoonPhase - 50)/50;	// full moon reduces difficulty by 1, new moon increases difficulty by 1, 50% moon has 0 effect
-	}
-
-	if (map_config.craft_direction_matters == 1)
-	{
-		switch (direction)
-		{
-			case 0: ElementDirection = ELEMENT_WIND;	  break;
-			case 1: ElementDirection = ELEMENT_EARTH;	  break;
-			case 2: ElementDirection = ELEMENT_LIGHTNING; break;
-			case 3: ElementDirection = ELEMENT_WATER;	  break;
-			case 4: ElementDirection = ELEMENT_FIRE;	  break;
-			case 5: ElementDirection = ELEMENT_DARK;	  break;
-			case 6: ElementDirection = ELEMENT_LIGHT;	  break;
-			case 7: ElementDirection = ELEMENT_ICE;		  break;
-		}
-
-		if (crystalElement == ElementDirection)
-		{
-			difficult -= 0.5;
-		}
-		else if (strongElement[crystalElement] == ElementDirection)
-		{
-			difficult += 0.5;
-		}
-	}
 
 	#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-	ShowDebug(CL_CYAN"Direction = %i\n" CL_RESET, ElementDirection);
-	ShowDebug(CL_CYAN"Day = %i\n" CL_RESET, WeekDay);
-	ShowDebug(CL_CYAN"Moon = %g\n" CL_RESET, MoonPhase);
 	ShowDebug(CL_CYAN"Difficulty = %g\n" CL_RESET, difficult);
 	#endif
 
@@ -332,7 +279,8 @@ uint8 calcSynthResult(CCharEntity* PChar)
 	bool canHQ = true;
 
 	double success = 0;
-	double chance  = 0;
+	uint8 chance  = 0;
+    float bonus = 1;
 	double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
 	uint8  WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
 	uint8  crystalElement = PChar->CraftContainer->getType();
@@ -385,54 +333,58 @@ uint8 calcSynthResult(CCharEntity* PChar)
 			ShowDebug(CL_CYAN"Success: %g  Random: %g\n" CL_RESET, success, random);
 			#endif
 
-			if(random < success)
-			{
-				for(uint8 i = 0; i < 3; ++i)
-				{
-					if(mainID != skillID)
-					    break;
-					
-                    random = WELL512::GetRandomNumber(1.);
-					
-					switch(hqtier)
-					{
-						//case 5:  chance = 0.700; break; 
-						//Removed - HQ rate caps at 50%
-						case 4:  chance = 0.500; break;
-						case 3:  chance = 0.300; break;
-						case 2:  chance = 0.100; break;
-						case 1:  chance = 0.015; break;
-						default: chance = 0.000; break;
-					}
-					
-					if(chance > 0)
-					{
-						chance *= 1.0 - (MoonPhase - 50)/150;  //new moon +33% of base rate bonus to hq chance, full moon -33%, corresponding/weakday/lightsday -33%, opposing/darksday +33%
-						if (crystalElement == WeekDay)
-							chance *= 1.0 - ((double)1/3);
-						else if (strongElement[crystalElement] == WeekDay)
-							chance *= 1.0 + ((double)1/3);
-						else if (strongElement[WeekDay] == crystalElement)
-							chance *= 1.0 - ((double)1/3);
-						else if (WeekDay == LIGHTSDAY)
-							chance *= 1.0 - ((double)1/3);
-						else if (WeekDay == DARKSDAY)
-							chance *= 1.0 + ((double)1/3);
-					}
-					
-					if(chance > 0.500)
-					    chance = 0.500;
-					
-					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-					ShowDebug(CL_CYAN"HQ Tier: %i HQ Chance: %g Random: %g SkillID: %u\n" CL_RESET, hqtier, chance, random, skillID);
-					#endif
-					
-					if(chance < random)
-						break;
-					result += 1;
-					hqtier -= 1;
-				}
-			}else{
+            if (random < success)
+            {
+                if (mainID != skillID)
+                    break;
+
+                random = WELL512::GetRandomNumber(64);
+
+                switch (hqtier)
+                {
+                case 4:  chance = 32; break;
+                case 3:  chance = 16; break;
+                case 2:  chance = 4; break;
+                case 1:  chance = 1; break;
+                default: chance = 0; break;
+                }
+
+                if (chance > 0)
+                {
+                    bonus -= (MoonPhase - 50) / 100;
+                    if (crystalElement == WeekDay)
+                        bonus -= .5f;
+                    else if (strongElement[crystalElement] == WeekDay)
+                        bonus += .5f;
+                    else if (strongElement[WeekDay] == crystalElement)
+                        bonus -= .5f;
+                    else if (WeekDay == LIGHTSDAY)
+                        bonus -= .5f;
+                    else if (WeekDay == DARKSDAY)
+                        bonus += .5f;
+
+                    chance *= bonus;
+                    dsp_cap(chance, 1, 32);
+                }
+
+
+#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+                ShowDebug(CL_CYAN"HQ Tier: %i HQ Chance: %u Random: %g SkillID: %u\n" CL_RESET, hqtier, chance, random, skillID);
+#endif
+
+                if (chance > random)
+                {
+                    random = WELL512::GetRandomNumber(16);
+                    if (random < 1)
+                        result += 3;
+                    else if (random < 3)
+                        result += 2;
+                    else
+                        result += 1;
+                }
+            }
+            else
+            {
 				// сохраняем умение, из-за которого синтез провалился.
 				// используем slotID ячейки кристалла, т.к. он был удален еще в начале синтеза
 				PChar->CraftContainer->setInvSlotID(0,skillID);
