@@ -48,7 +48,7 @@ function onTrigger(player,npc)
 			if(player:hasKeyItem(ICE_FRAGMENT) and player:hasKeyItem(EARTH_FRAGMENT) and player:hasKeyItem(WATER_FRAGMENT) and 
 			   player:hasKeyItem(WIND_FRAGMENT) and player:hasKeyItem(LIGHTNING_FRAGMENT) and player:hasKeyItem(LIGHT_FRAGMENT)) then
 				player:messageSpecial(FOUND_ALL_FRAGS,FIRE_FRAGMENT);
-				player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
+				player:addTitle(TITLE_BEARER_OF_THE_EIGHT_PRAYERS);
 				player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
 				player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
 			else
@@ -94,7 +94,7 @@ function onEventFinish(player,csid,option)
 			player:addItem(13143);		
 			player:messageSpecial(ITEM_OBTAINED,13143);			
 			player:completeQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS);		
-			player:addTitle(FRIEND_OF_THE_OPOOPOS);
+			player:addTitle(TITLE_FRIEND_OF_THE_OPOOPOS);
 		end			
 	end
 end;

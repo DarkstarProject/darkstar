@@ -48,6 +48,6 @@ end;
 
 function onMobDeath(mob, killer)
 
-	killer:addTitle(HYDRA_HEADHUNTER);
+	killer:addTitle(TITLE_HYDRA_HEADHUNTER);
 
 end;

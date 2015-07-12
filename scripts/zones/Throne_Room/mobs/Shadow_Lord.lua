@@ -91,7 +91,7 @@ function onMobDeath(mob,killer)
 		killer:startEvent(0x7d04);
 		killer:setVar("mobid",mob:getID());
 	else
-		killer:addTitle(SHADOW_BANISHER);
+		killer:addTitle(TITLE_SHADOW_BANISHER);
 	end
 	--reset everything on death
 	mob:AnimationSub(0);

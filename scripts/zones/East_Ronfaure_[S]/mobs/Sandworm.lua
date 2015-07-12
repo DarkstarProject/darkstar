@@ -18,5 +18,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(SANDWORM_WRANGLER);
+	killer:addTitle(TITLE_SANDWORM_WRANGLER);
 end;

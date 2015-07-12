@@ -21,7 +21,7 @@ end;
 
 function onMobDeath(mob, killer)
 
-    killer:addTitle(BEHEMOTHS_BANE);
+    killer:addTitle(TITLE_BEHEMOTHS_BANE);
 
     local Behemoth      = mob:getID();
     local King_Behemoth = 17297441;

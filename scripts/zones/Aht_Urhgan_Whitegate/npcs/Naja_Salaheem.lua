@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
 		player:completeMission(TOAU,IMMORTAL_SENTRIES);
 		player:addMission(TOAU,PRESIDENT_SALAHEEM);
 		player:addCurrency("imperial_standing", 150);
-		player:addTitle(PRIVATE_SECOND_CLASS);
+		player:addTitle(TITLE_PRIVATE_SECOND_CLASS);
 		player:addKeyItem(PSC_WILDCAT_BADGE);
 		player:messageSpecial(KEYITEM_OBTAINED,PSC_WILDCAT_BADGE);
 	elseif(csid == 0x0BCC)then

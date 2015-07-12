@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 		player:addGil(GIL_RATE*200);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*200);
-		player:addTitle(DARK_RESISTANT);
+		player:addTitle(TITLE_DARK_RESISTANT);
 		if(player:getQuestStatus(AHT_URHGAN,FEAR_OF_THE_DARK_II) == QUEST_ACCEPTED)then
 		   player:completeQuest(AHT_URHGAN,FEAR_OF_THE_DARK_II);
 		end

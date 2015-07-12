@@ -70,7 +70,7 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	killer:addTitle(LIFTER_OF_SHADOWS);
+	killer:addTitle(TITLE_LIFTER_OF_SHADOWS);
 	
 	local npc = GetNPCByID(17330778); -- Spawn ???
 	npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());

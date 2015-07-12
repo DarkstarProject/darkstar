@@ -27,7 +27,7 @@ end;
 
 function onMobDeath(mob, killer)
 
-		killer:addTitle(DEITY_DEBUNKER);
+		killer:addTitle(TITLE_DEITY_DEBUNKER);
 -- killer:showText(mob,YAGUDO_KING_DEATH);
 
     -- Set Tzee_Xicu_the_Manifest's Window Open Time

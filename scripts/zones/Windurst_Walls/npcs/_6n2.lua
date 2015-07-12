@@ -90,7 +90,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0121) then
 		player:completeQuest(WINDURST,ONION_RINGS);
 		player:addFame(WINDURST,WIN_FAME*100);
-		player:addTitle(STAR_ONION_BRIGADIER);
+		player:addTitle(TITLE_STAR_ONION_BRIGADIER);
 		player:delKeyItem(OLD_RING);
 		player:setVar("OnionRingsTime",0);
 		player:setVar("OnionRings",2);

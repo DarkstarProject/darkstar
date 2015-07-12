@@ -63,7 +63,7 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 		player:addGil(GIL_RATE*300)
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
-      player:addTitle(HOT_DOG);
+      player:addTitle(TITLE_HOT_DOG);
 		if(player:getQuestStatus(BASTOK,SMOKE_ON_THE_MOUNTAIN) == QUEST_ACCEPTED) then
 			player:addFame(BASTOK,BAS_FAME*30);
 			player:completeQuest(BASTOK,SMOKE_ON_THE_MOUNTAIN);

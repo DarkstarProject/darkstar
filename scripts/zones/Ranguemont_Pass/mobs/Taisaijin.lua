@@ -21,6 +21,6 @@ function onMobDeath(mob, killer)
 	DeterMob(Taisaijin_PH, false);
 	SpawnMob(Taisaijin_PH, "", GetMobRespawnTime(Taisaijin_PH));
 	
-	killer:addTitle(BYEBYE_TAISAI);
+	killer:addTitle(TITLE_BYEBYE_TAISAI);
 	
 end;

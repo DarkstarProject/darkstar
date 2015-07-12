@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12727);
 		else 
-			player:addTitle(PROFESSIONAL_LOAFER);
+			player:addTitle(TITLE_PROFESSIONAL_LOAFER);
 			player:delKeyItem(CLOCK_TOWER_OIL);
 			player:addGil(1200);
 			player:messageSpecial(GIL_OBTAINED,1200);

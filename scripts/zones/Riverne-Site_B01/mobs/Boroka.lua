@@ -17,6 +17,6 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(BOROKA_BELEAGUERER);
+	killer:addTitle(TITLE_BOROKA_BELEAGUERER);
 	mob:setRespawnTime(math.random((75600),(86400))); -- 21-24 hour respawn
 end;

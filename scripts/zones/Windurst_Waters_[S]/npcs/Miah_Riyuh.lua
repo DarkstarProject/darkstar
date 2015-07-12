@@ -101,7 +101,7 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount() >= 1) then
                 player:setCampaignAllegiance(3);
                 player:setVar("GREEN_R_LETTER_USED",0);
-                player:addTitle(COBRA_UNIT_MERCENARY);
+                player:addTitle(TITLE_COBRA_UNIT_MERCENARY);
                 player:addKeyItem(BRONZE_RIBBON_OF_SERVICE);
                 player:addItem(15754);
                 player:completeQuest(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
@@ -114,7 +114,7 @@ function onEventFinish(player,csid,option)
         else
             player:setCampaignAllegiance(3);
             player:setVar("GREEN_R_LETTER_USED",0);
-            player:addTitle(COBRA_UNIT_MERCENARY);
+            player:addTitle(TITLE_COBRA_UNIT_MERCENARY);
             player:completeQuest(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
             player:setVar("SEALED_DOORS", 0);
         end

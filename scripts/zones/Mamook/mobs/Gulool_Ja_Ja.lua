@@ -30,5 +30,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(SHINING_SCALE_RIFLER);
+	killer:addTitle(TITLE_SHINING_SCALE_RIFLER);
 end;

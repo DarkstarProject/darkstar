@@ -68,6 +68,6 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);	
     if(csid == 0x7d01)then
 	   player:setPos(-25,-1 ,-620 ,208 ,33);-- al'taieu
-	   player:addTitle(THE_CHEBUKKIS_WORST_NIGHTMARE);
+	   player:addTitle(TITLE_THE_CHEBUKKIS_WORST_NIGHTMARE);
 	end
 end;

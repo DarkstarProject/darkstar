@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x010a) then
 		if (player:getFreeSlotsCount() ~= 0) then
 			player:completeQuest(AHT_URHGAN,NO_STRINGS_ATTACHED);
-			player:addTitle(PROUD_AUTOMATON_OWNER);
+			player:addTitle(TITLE_PROUD_AUTOMATON_OWNER);
 			player:unlockJob(18);
 			player:addItem(17859);
 			player:messageSpecial(ITEM_OBTAINED,17859); -- animator

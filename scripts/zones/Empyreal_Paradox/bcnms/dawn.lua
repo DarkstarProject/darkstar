@@ -78,7 +78,7 @@ end;
 function onEventFinish(player,csid,option)
   if(csid== 0x0006)then
     player:setPos(539,0,-593,192);	
-	player:addTitle(AVERTER_OF_THE_APOCALYPSE);
+	player:addTitle(TITLE_AVERTER_OF_THE_APOCALYPSE);
 	player:startEvent(0x0003);
 	  if(player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==2)then
 	   player:addKeyItem(TEAR_OF_ALTANA);

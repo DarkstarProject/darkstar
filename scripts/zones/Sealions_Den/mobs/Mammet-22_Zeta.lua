@@ -101,6 +101,6 @@ function onEventFinish(player,csid,option)
 			SpawnMob(16908308); --omega 3		 	
 		end
 		
-		player:addTitle(BRANDED_BY_LIGHTNING);
+		player:addTitle(TITLE_BRANDED_BY_LIGHTNING);
 	end
 end;	

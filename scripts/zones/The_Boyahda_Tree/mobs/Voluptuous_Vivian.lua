@@ -18,7 +18,7 @@ end;
 
 function onMobDeath(mob,killer)
 
-		killer:addTitle(THE_VIVISECTOR);
+		killer:addTitle(TITLE_THE_VIVISECTOR);
 
 		-- Set VV's ToD
 		SetServerVariable("[POP]Voluptuous_Vivian", os.time(t) + math.random((57600),(86400))); -- 16-24 hours

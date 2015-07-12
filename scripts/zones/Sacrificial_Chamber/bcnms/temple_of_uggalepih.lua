@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 	
 	if(csid == 0x7d01) then
-		player:addTitle(BEARER_OF_THE_WISEWOMANS_HOPE);
+		player:addTitle(TITLE_BEARER_OF_THE_WISEWOMANS_HOPE);
 		if(player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
 			player:startEvent(0x0007);
 		end

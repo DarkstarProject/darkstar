@@ -74,11 +74,11 @@ function onEventFinish(player,csid,option)
 		if(player:hasKeyItem(AIRSHIP_PASS)) then
 			player:addGil(GIL_RATE*20000);
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*20000); 
-			player:addTitle(CONQUEROR_OF_FATE);
+			player:addTitle(TITLE_CONQUEROR_OF_FATE);
 		else
 			player:addKeyItem(AIRSHIP_PASS);
 			player:messageSpecial(KEYITEM_OBTAINED,AIRSHIP_PASS);
-			player:addTitle(HAVE_WINGS_WILL_FLY);
+			player:addTitle(TITLE_HAVE_WINGS_WILL_FLY);
 		end
 		player:setVar("MissionStatus",6); -- all that's left is to go back to the embassy
 	elseif(csid == 0x2742) then

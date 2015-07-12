@@ -132,7 +132,7 @@ function onEventFinish(player,csid,option)
 		player:addQuest(JEUNO,IN_DEFIANT_CHALLENGE);
 	elseif(csid == 0x0051) then
 		player:tradeComplete();
-		player:addTitle(HORIZON_BREAKER);
+		player:addTitle(TITLE_HORIZON_BREAKER);
 		player:levelCap(55);
 		player:completeQuest(JEUNO,IN_DEFIANT_CHALLENGE);
 		player:addFame(JEUNO, JEUNO_FAME*30);			
@@ -140,7 +140,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0052 and option == 1) then
 		player:addQuest(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
 	elseif(csid == 0x0054) then
-		player:addTitle(SUMMIT_BREAKER);
+		player:addTitle(TITLE_SUMMIT_BREAKER);
 		player:delKeyItem(ROUND_FRIGICITE);
 		player:delKeyItem(SQUARE_FRIGICITE);
 		player:delKeyItem(TRIANGULAR_FRIGICITE);
@@ -152,7 +152,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0055 and option == 1) then
 		player:addQuest(JEUNO,WHENCE_BLOWS_THE_WIND);
 	elseif(csid == 0x0057) then
-		player:addTitle(SKY_BREAKER);
+		player:addTitle(TITLE_SKY_BREAKER);
 		player:delKeyItem(ORCISH_CREST);
 		player:delKeyItem(QUADAV_CREST);
 		player:delKeyItem(YAGUDO_CREST);
@@ -170,7 +170,7 @@ function onEventFinish(player,csid,option)
 			player:setVar("ridingOnTheClouds_4",0);
 		end
 	elseif(csid == 0x005a) then
-		player:addTitle(CLOUD_BREAKER);
+		player:addTitle(TITLE_CLOUD_BREAKER);
 		player:delKeyItem(SMILING_STONE);
 		player:delKeyItem(SCOWLING_STONE);
 		player:delKeyItem(SOMBER_STONE);
@@ -189,7 +189,7 @@ function onEventFinish(player,csid,option)
 		elseif(mJob == 5 or mJob == 6 or mJob == 9) then  	player:setPos(-349.899,104.213,-260.150,0,144);
 		elseif(mJob == 12 or mJob == 13 or mJob == 14) then player:setPos(-220.084,-0.645,4.442,191,168); end
 	elseif(csid == 0x005d) then
-		player:addTitle(STAR_BREAKER);
+		player:addTitle(TITLE_STAR_BREAKER);
 		player:levelCap(75);
 		player:setVar("maatDefeated",0);
 		player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_75);
@@ -198,7 +198,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid==0x004a)then
 		if(player:getFreeSlotsCount() > 0)then
 			player:completeQuest(JEUNO,BEYOND_THE_SUN);
-			player:addTitle(ULTIMATE_CHAMPION_OF_THE_WORLD);
+			player:addTitle(TITLE_ULTIMATE_CHAMPION_OF_THE_WORLD);
 			player:setVar("maatsCap",0);
 			player:addItem(15194);
 			player:messageSpecial(ITEM_OBTAINED,15194);

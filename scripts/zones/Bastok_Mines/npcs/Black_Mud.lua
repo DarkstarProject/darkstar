@@ -96,7 +96,7 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 		player:completeQuest(BASTOK,DRACHENFALL);
 		player:addFame(BASTOK,BAS_FAME*120); 
-		player:addTitle(DRACHENFALL_ASCETIC);
+		player:addTitle(TITLE_DRACHENFALL_ASCETIC);
 		player:addGil(GIL_RATE*2000);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*2000);
 	end

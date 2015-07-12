@@ -18,5 +18,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(THE_HORNSPLITTER);
+	killer:addTitle(TITLE_THE_HORNSPLITTER);
 end;

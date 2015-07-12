@@ -54,7 +54,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x7d01) then
 		player:delKeyItem(TUNING_FORK_OF_ICE);
 		player:addKeyItem(WHISPER_OF_FROST);
-		player:addTitle(HEIR_OF_THE_GREAT_ICE);
+		player:addTitle(TITLE_HEIR_OF_THE_GREAT_ICE);
 		player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_FROST);
 	end
 	

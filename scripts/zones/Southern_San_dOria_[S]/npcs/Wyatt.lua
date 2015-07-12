@@ -57,12 +57,12 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x0004) then
 		player:tradeComplete();
 		if(player:getQuestStatus(CRYSTAL_WAR,SEEING_SPOTS) == QUEST_ACCEPTED) then
-			player:addTitle(LADY_KILLER);
+			player:addTitle(TITLE_LADY_KILLER);
 			player:addGil(GIL_RATE*3000);
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
 			player:completeQuest(CRYSTAL_WAR,SEEING_SPOTS);
 		else
-			player:addTitle(LADY_KILLER);
+			player:addTitle(TITLE_LADY_KILLER);
 			player:addGil(GIL_RATE*1500);
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
 		end

@@ -100,7 +100,7 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x011c) then
         player:needToZone(true);
 		player:delKeyItem(BROKEN_WAND);
-		player:addTitle(HAKKURURINKURUS_BENEFACTOR);
+		player:addTitle(TITLE_HAKKURURINKURUS_BENEFACTOR);
 		player:addGil(GIL_RATE*6000);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*6000);
 		player:addFame(WINDURST,WIN_FAME*150);

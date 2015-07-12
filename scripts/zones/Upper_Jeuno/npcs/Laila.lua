@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x2786) then
 		player:setVar("Lakeside_Minuet_Progress",0);
 		player:completeQuest(JEUNO,LAKESIDE_MINUET);
-		player:addTitle(TROUPE_BRILIOTH_DANCER);
+		player:addTitle(TITLE_TROUPE_BRILIOTH_DANCER);
 		player:unlockJob(19);
 		player:messageSpecial(UNLOCK_DANCER);
 		player:addFame(JEUNO, JEUNO_FAME*30);

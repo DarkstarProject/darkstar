@@ -98,7 +98,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13094);
 		else
-			player:addTitle(ACTIVIST_FOR_KINDNESS);
+			player:addTitle(TITLE_ACTIVIST_FOR_KINDNESS);
 			player:delKeyItem(HOLY_CANDLE);
 			player:addItem(13094);
 			player:messageSpecial(ITEM_OBTAINED,13094);

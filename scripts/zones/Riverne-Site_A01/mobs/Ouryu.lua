@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(OURYU_OVERWHELMER);
+	killer:addTitle(TITLE_OURYU_OVERWHELMER);
 end;

@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount() >= 1) then
                 player:setCampaignAllegiance(2);
                 player:setVar("BLUE_R_LETTER_USED",0);
-                player:addTitle(FOURTH_DIVISION_SOLDIER);
+                player:addTitle(TITLE_FOURTH_DIVISION_SOLDIER);
                 player:addKeyItem(BRONZE_RIBBON_OF_SERVICE);
                 player:addItem(15754);
                 player:completeQuest(CRYSTAL_WAR,THE_FIGHTING_FOURTH);
@@ -107,7 +107,7 @@ function onEventFinish(player,csid,option)
         else
             player:setCampaignAllegiance(2);
             player:setVar("BLUE_R_LETTER_USED",0);
-            player:addTitle(FOURTH_DIVISION_SOLDIER);
+            player:addTitle(TITLE_FOURTH_DIVISION_SOLDIER);
             player:completeQuest(CRYSTAL_WAR,THE_FIGHTING_FOURTH);
         end
     end
