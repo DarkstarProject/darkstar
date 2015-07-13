@@ -40,11 +40,38 @@ STATESTATUS CMagicState::Update(time_point tick)
     {
         if (m_State == STATESTATUS::InProgress)
         {
-            //complete cast
-            m_State = STATESTATUS::Finish;
+            if (HasMoved())
+            {
+                m_State = STATESTATUS::Interrupt;
+            }
+            else if (!m_PTargetFind.isWithinRange(&m_PTarget->loc.p, m_PSpell->getMaxRange()))
+            {
+                m_State = STATESTATUS::ErrorRange;
+            }
+            else if (!CanCastSpell())
+            {
+                m_State = STATESTATUS::ErrorNotUsable;
+            }
+            else if (!ValidTarget())
+            {
+                m_State = STATESTATUS::ErrorInvalidTarget;
+            }
+            else if (battleutils::IsParalyzed(m_PEntity))
+            {
+                m_State = STATESTATUS::ErrorParalyzed;
+            }
+            else if (battleutils::IsIntimidated(m_PEntity, m_PTarget))
+            {
+                m_State = STATESTATUS::ErrorIntimidated;
+            }
+            else
+            {
+                m_State = STATESTATUS::Finish;
+            }
         }
         return m_State;
     }
+    //don't return interrupt until the cast is complete
     return STATESTATUS::InProgress;
 }
 
@@ -81,6 +108,12 @@ bool CMagicState::ValidTarget()
 {
     //TODO - check target type vs valid targets
     return true;
+}
+
+bool CMagicState::HasMoved()
+{
+    return floorf(m_startPos.x * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.x * 10 + 0.5) / 10 ||
+        floorf(m_startPos.z * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.z * 10 + 0.5) / 10;
 }
 
 //TODO: TryInterrupt 
@@ -120,7 +153,7 @@ STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid)
 
         m_startTime = server_clock::now();
         m_castTime = std::chrono::milliseconds(battleutils::CalculateSpellCastTime(m_PEntity, m_PSpell));
-
+        m_startPos = m_PEntity->loc.p;
         m_State = STATESTATUS::InProgress;
     }
     else

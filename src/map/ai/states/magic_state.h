@@ -46,18 +46,21 @@ public:
     CSpell* GetSpell();
     void Interrupt();
 
+    //start spellcast on target
+    STATESTATUS CastSpell(uint16 spellid, uint16 targetid);
+protected:
     //check spell requirements vs. caster
     bool CanCastSpell();
 
     //check spell requirements vs. target
     bool ValidTarget();
 
-    //start spellcast on target
-    STATESTATUS CastSpell(uint16 spellid, uint16 targetid);
-protected:
+    bool HasMoved();
+
     uint16 m_errorMsg;
     CSpell* m_PSpell;
     duration m_castTime;
+    position_t m_startPos;
 };
 
 #endif
