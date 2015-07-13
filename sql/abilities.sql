@@ -384,6 +384,7 @@ INSERT INTO `abilities` VALUES ('613', 'thunder_iv', '15', '60', '4', '60', '173
 INSERT INTO `abilities` VALUES ('614', 'chaotic_strike', '15', '70', '4', '60', '173', '0', '0', '164', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
 INSERT INTO `abilities` VALUES ('615', 'thunderstorm', '15', '75', '4', '60', '173', '0', '0', '182', '18.0', '0', '1', '60', '2952', '1','TOAU');
 INSERT INTO `abilities` VALUES ('616', 'judgment_bolt', '15', '1', '4', '60', '173', '0', '0', '0', '18.0', '0', '1', '60', '0', '2',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('646', 'nether_blast', '15', '65', '4', '60', '173', '0', '0', '109', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
 
 
 -- For old school server simply comment out the matching 1 hour abilities above, and uncomment the 2hrs below.
