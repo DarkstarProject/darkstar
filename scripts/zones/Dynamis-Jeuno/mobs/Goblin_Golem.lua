@@ -19,7 +19,7 @@ end;
 
 function onMobDeath(mob,killer)
 
-	killer:addTitle(DYNAMISJEUNO_INTERLOPER); -- Add title
+	killer:addTitle(title.DYNAMISJEUNO_INTERLOPER); -- Add title
 
 	local npc = GetNPCByID(17547510); -- Spawn ???
 	npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());

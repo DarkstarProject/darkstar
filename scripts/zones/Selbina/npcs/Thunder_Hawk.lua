@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
 		player:addQuest(OTHER_AREAS,THE_RESCUE);
 	elseif(csid == 0x0051) then
 		player:completeQuest(OTHER_AREAS,THE_RESCUE);
-		player:addTitle(HONORARY_CITIZEN_OF_SELBINA);
+		player:addTitle(title.HONORARY_CITIZEN_OF_SELBINA);
 		player:delKeyItem(TRADERS_SACK);
 		if(player:hasKeyItem(MAP_OF_THE_RANGUEMONT_PASS) == false) then
 			player:addKeyItem(MAP_OF_THE_RANGUEMONT_PASS);

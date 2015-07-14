@@ -81,22 +81,22 @@ function onEventFinish(player,csid,option)
     if(csid == 0x00CA)then
         player:setVar("PromathiaStatus",2);
     elseif(0x007C and option ~=0)then -- Mithra
-        player:addTitle(WARRIOR_OF_THE_CRYSTAL);
+        player:addTitle(title.WARRIOR_OF_THE_CRYSTAL);
         player:setVar("PromathiaStatus",3);	
         player:addKeyItem(LIGHT_OF_DEM); 
         player:messageSpecial(KEYITEM_OBTAINED,LIGHT_OF_DEM);
     elseif(0x0079 and option ~=0)then -- Elvaan
-        player:addTitle(WARRIOR_OF_THE_CRYSTAL);
+        player:addTitle(title.WARRIOR_OF_THE_CRYSTAL);
         player:setVar("PromathiaStatus",3);
         player:addKeyItem(LIGHT_OF_MEA); 
         player:messageSpecial(KEYITEM_OBTAINED,LIGHT_OF_MEA);
     elseif(0x007B and option ~=0)then -- Tarutaru
-        player:addTitle(WARRIOR_OF_THE_CRYSTAL);
+        player:addTitle(title.WARRIOR_OF_THE_CRYSTAL);
         player:setVar("PromathiaStatus",3);	
         player:addKeyItem(LIGHT_OF_HOLLA); 
         player:messageSpecial(KEYITEM_OBTAINED,LIGHT_OF_HOLLA);
     elseif(0x007A and option ~=0)then -- Galka
-        player:addTitle(WARRIOR_OF_THE_CRYSTAL);
+        player:addTitle(title.WARRIOR_OF_THE_CRYSTAL);
         player:setVar("PromathiaStatus",3);	
         player:addKeyItem(LIGHT_OF_ALTAIEU); 
         player:messageSpecial(KEYITEM_OBTAINED,LIGHT_OF_ALTAIEU);	   

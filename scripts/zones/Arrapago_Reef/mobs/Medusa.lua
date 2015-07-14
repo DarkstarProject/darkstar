@@ -30,5 +30,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(GORGONSTONE_SUNDERER);
+	killer:addTitle(title.GORGONSTONE_SUNDERER);
 end;

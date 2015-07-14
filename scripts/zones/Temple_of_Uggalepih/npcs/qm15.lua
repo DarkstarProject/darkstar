@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
 			player:addItem(12519);
 			player:messageSpecial(ITEM_OBTAINED,12519); -- Drachen Armet
 			player:addFame(SANDORIA,AF3_FAME*SAN_FAME);
-			player:addTitle(PARAGON_OF_DRAGOON_EXCELLENCE);
+			player:addTitle(title.PARAGON_OF_DRAGOON_EXCELLENCE);
 			player:delKeyItem(CHALLENGE_TO_THE_ROYAL_KNIGHTS);
 			player:setVar("KnightStalker_Option1",1); -- Optional post-quest cutscenes.
 			player:setVar("KnightStalker_Option2",1);

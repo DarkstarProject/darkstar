@@ -18,5 +18,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	killer:addTitle(BLACK_DRAGON_SLAYER);
+	killer:addTitle(title.BLACK_DRAGON_SLAYER);
 end;

@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(YILBEGAN_HIDEFLAYER);
+	killer:addTitle(title.YILBEGAN_HIDEFLAYER);
 end;

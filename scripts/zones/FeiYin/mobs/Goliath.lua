@@ -17,6 +17,6 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(GOLIATH_KILLER);
+	killer:addTitle(title.GOLIATH_KILLER);
 
 end;

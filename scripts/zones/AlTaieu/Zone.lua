@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
         player:setVar("PromathiaStatus",1);
         player:addKeyItem(LIGHT_OF_ALTAIEU);
         player:messageSpecial(KEYITEM_OBTAINED,LIGHT_OF_ALTAIEU);
-        player:addTitle(SEEKER_OF_THE_LIGHT);    
+        player:addTitle(title.SEEKER_OF_THE_LIGHT);    
     elseif(csid == 0x00A7)then        
         player:setVar("PromathiaStatus",1);
     end

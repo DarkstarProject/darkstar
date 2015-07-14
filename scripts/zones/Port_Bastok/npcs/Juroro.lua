@@ -125,7 +125,7 @@ function onEventFinish(player,csid,option)
 				player:addItem(item);
 				player:messageSpecial(ITEM_OBTAINED,item); -- Item
 			end
-			player:addTitle(HEIR_OF_THE_GREAT_EARTH);
+			player:addTitle(title.HEIR_OF_THE_GREAT_EARTH);
 			player:delKeyItem(WHISPER_OF_TREMORS); --Whisper of Tremors, as a trade for the above rewards
 			player:setVar("TrialByEarth_date", os.date("%j")); -- %M for next minute, %j for next day
 			player:addFame(BASTOK,BAS_FAME*30);

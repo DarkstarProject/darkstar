@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option)
 		if (BucketsOfGold == QUEST_ACCEPTED) then
 			player:completeQuest(BASTOK,BUCKETS_OF_GOLD);
 			player:addFame(BASTOK,BAS_FAME*75);
-			player:addTitle(BUCKET_FISHER);
+			player:addTitle(title.BUCKET_FISHER);
 		else
 			player:addFame(BASTOK,BAS_FAME*8);
 		end

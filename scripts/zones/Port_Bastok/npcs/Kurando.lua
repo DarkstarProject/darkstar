@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
 			player:tradeComplete();
 			player:addItem(13113,1);
 			player:messageSpecial(ITEM_OBTAINED,13113);
-			player:setTitle(AIRSHIP_DENOUNCER);
+			player:setTitle(title.AIRSHIP_DENOUNCER);
 			player:completeQuest(BASTOK,FEAR_OF_FLYING);
 			player:addFame(BASTOK,BAS_FAME*30);
 		end	

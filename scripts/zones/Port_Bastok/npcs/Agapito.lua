@@ -59,7 +59,7 @@ function onEventFinish(player,csid,option)
 		player:addGil(GIL_RATE*2100);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
 		player:addFame(BASTOK,BAS_FAME*100);
-		player:addTitle(STAR_OF_IFRIT);
+		player:addTitle(title.STAR_OF_IFRIT);
 		player:completeQuest(BASTOK,THE_STARS_OF_IFRIT);
 	end
 end;

@@ -114,5 +114,5 @@ function onMobDeath(mob,killer)
        killer:addKeyItem(DYNAMIS_VALKURM_SLIVER);
 	   killer:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_VALKURM_SLIVER);
   end
-       killer:addTitle(DYNAMISVALKURM_INTERLOPER);
+       killer:addTitle(title.DYNAMISVALKURM_INTERLOPER);
 end;

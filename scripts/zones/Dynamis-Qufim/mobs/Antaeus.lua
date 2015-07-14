@@ -61,5 +61,5 @@ function onMobDeath(mob,killer)
        killer:addKeyItem(DYNAMIS_QUFIM_SLIVER);
 	   killer:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_QUFIM_SLIVER);
   end
-       killer:addTitle(DYNAMISQUFIM_INTERLOPER);
+       killer:addTitle(title.DYNAMISQUFIM_INTERLOPER);
 end;

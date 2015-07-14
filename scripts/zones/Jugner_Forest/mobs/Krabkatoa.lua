@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(KRABKATOA_STEAMER);
+	killer:addTitle(title.KRABKATOA_STEAMER);
 end;

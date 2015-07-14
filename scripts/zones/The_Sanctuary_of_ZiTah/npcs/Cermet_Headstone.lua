@@ -36,7 +36,7 @@ function onTrigger(player,npc)
 			if(player:hasKeyItem(ICE_FRAGMENT) and player:hasKeyItem(EARTH_FRAGMENT) and player:hasKeyItem(WATER_FRAGMENT) and 
 			   player:hasKeyItem(FIRE_FRAGMENT) and player:hasKeyItem(LIGHTNING_FRAGMENT) and player:hasKeyItem(WIND_FRAGMENT)) then
 				player:messageSpecial(FOUND_ALL_FRAGS,LIGHT_FRAGMENT);
-				player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
+				player:addTitle(title.BEARER_OF_THE_EIGHT_PRAYERS);
 				player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
 				player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
 			else
@@ -85,7 +85,7 @@ function onEventFinish(player,csid,option)
 			player:addItem(13416);		
 			player:messageSpecial(ITEM_OBTAINED,13416);			
 			player:completeQuest(OUTLANDS,SOUL_SEARCHING);			
-			player:addTitle(GUIDER_OF_SOULS_TO_THE_SANCTUARY);	
+			player:addTitle(title.GUIDER_OF_SOULS_TO_THE_SANCTUARY);	
 		end			
 	end
 end;

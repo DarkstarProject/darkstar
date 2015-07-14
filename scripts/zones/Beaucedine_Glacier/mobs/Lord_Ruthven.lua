@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(RUTHVEN_ENTOMBER);
+	killer:addTitle(title.RUTHVEN_ENTOMBER);
 end;

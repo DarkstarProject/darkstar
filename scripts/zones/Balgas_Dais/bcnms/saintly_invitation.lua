@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x7d01) then
 		if(player:getCurrentMission(WINDURST) == SAINTLY_INVITATION) then
-			player:addTitle(VICTOR_OF_THE_BALGA_CONTEST);
+			player:addTitle(title.VICTOR_OF_THE_BALGA_CONTEST);
 			player:addKeyItem(BALGA_CHAMPION_CERTIFICATE);
 			player:messageSpecial(KEYITEM_OBTAINED,BALGA_CHAMPION_CERTIFICATE);
 			player:setVar("MissionStatus",2);

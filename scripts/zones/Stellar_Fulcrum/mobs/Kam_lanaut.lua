@@ -46,5 +46,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	killer:addTitle(DESTROYER_OF_ANTIQUITY);
+	killer:addTitle(title.DESTROYER_OF_ANTIQUITY);
 end;

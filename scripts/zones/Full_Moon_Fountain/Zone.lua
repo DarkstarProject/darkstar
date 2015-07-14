@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0032) then
 		finishMissionTimeline(player,3,csid,option);
 	elseif(csid == 0x003D) then
-		player:addTitle(GUIDING_STAR);
+		player:addTitle(title.GUIDING_STAR);
 		finishMissionTimeline(player,3,csid,option);
 	end
 end;	

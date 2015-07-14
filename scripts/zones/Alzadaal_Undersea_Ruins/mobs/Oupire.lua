@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(OUPIRE_IMPALER);
+	killer:addTitle(title.OUPIRE_IMPALER);
 end;
