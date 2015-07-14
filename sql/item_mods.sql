@@ -1453,13 +1453,152 @@ INSERT INTO `item_mods` VALUES (10655, 9, 7); -- DEX+7
 INSERT INTO `item_mods` VALUES (10655, 25, 6); -- ACC+6
 INSERT INTO `item_mods` VALUES (10655, 27, 4); -- Enmity+4
 
-INSERT INTO `item_mods` VALUES (10663, 1, 33);
-INSERT INTO `item_mods` VALUES (10663, 2, 22);
-INSERT INTO `item_mods` VALUES (10663, 8, 7);
-INSERT INTO `item_mods` VALUES (10663, 10, 7);
-INSERT INTO `item_mods` VALUES (10663, 23, 4);
-INSERT INTO `item_mods` VALUES (10663, 402, 43);
-INSERT INTO `item_mods` VALUES (10667, 370, 2);
+-- ------------------------------------------
+-- Valor Coronet +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10656, 1, 36); -- DEF:36
+INSERT INTO `item_mods` VALUES (10656, 2, 25); -- HP+25
+INSERT INTO `item_mods` VALUES (10656, 5, 25); -- MP+25
+INSERT INTO `item_mods` VALUES (10656, 10, 7); -- VIT+7
+INSERT INTO `item_mods` VALUES (10656, 27, 6); -- Enmity+6
+-- Enhances "rampart" effect unknown
+
+-- ------------------------------------------
+-- Abyss Burgeonet +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10657, 1, 35); -- DEF+35
+INSERT INTO `item_mods` VALUES (10657, 2, 42); -- HP+42
+INSERT INTO `item_mods` VALUES (10657, 8, 9); -- STR+9
+INSERT INTO `item_mods` VALUES (10657, 10, 9); -- VIT+9
+INSERT INTO `item_mods` VALUES (10657, 23, 15); -- Attack+15
+INSERT INTO `item_mods` VALUES (10657, 170, 80); -- Black magic casting time-8%
+
+-- ------------------------------------------
+-- Monster Helm +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10658, 1, 34); -- DEF:34
+INSERT INTO `item_mods` VALUES (10658, 2, 27); -- HP+27
+INSERT INTO `item_mods` VALUES (10658, 5, 27); -- MP+27
+INSERT INTO `item_mods` VALUES (10658, 9, 7); -- DEX+7
+INSERT INTO `item_mods` VALUES (10658, 14, 7); -- CHR+7
+INSERT INTO `item_mods` VALUES (10658, 224, 5); -- Killer Effect
+INSERT INTO `item_mods` VALUES (10658, 225, 5); -- Killer Effect
+INSERT INTO `item_mods` VALUES (10658, 226, 5); -- Killer Effect
+INSERT INTO `item_mods` VALUES (10658, 227, 5); -- Killer Effect
+INSERT INTO `item_mods` VALUES (10658, 228, 5); -- Killer Effect
+INSERT INTO `item_mods` VALUES (10658, 229, 5); -- Killer Effect
+INSERT INTO `item_mods` VALUES (10658, 230, 5); -- Killer Effect
+INSERT INTO `item_mods` VALUES (10658, 231, 5); -- Killer Effect
+INSERT INTO `item_mods` VALUES (10658, 232, 5); -- Killer Effect
+INSERT INTO `item_mods` VALUES (10658, 233, 5); -- Killer Effect
+INSERT INTO `item_mods` VALUES (10658, 234, 5); -- Killer Effect
+INSERT INTO `item_mods` VALUES (10658, 391, 6); -- Charm+6
+
+-- ------------------------------------------
+-- Bard's Roundlet +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10659, 1, 25); -- DEF:25
+INSERT INTO `item_mods` VALUES (10659, 2, 18); -- HP+18
+INSERT INTO `item_mods` VALUES (10659, 14, 8); -- CHR+8
+INSERT INTO `item_mods` VALUES (10659, 119, 7); -- Singing skill+7
+INSERT INTO `item_mods` VALUES (10659, 27, -6); -- Enmity-6
+
+-- ------------------------------------------
+-- Scount's Beret +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10660, 1, 31); -- DEF:31
+INSERT INTO `item_mods` VALUES (10660, 2, 21); -- HP+21
+INSERT INTO `item_mods` VALUES (10660, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (10660, 13, 7); -- MND+7
+INSERT INTO `item_mods` VALUES (10660, 27, -5); -- Enmity-5
+INSERT INTO `item_mods` VALUES (10660, 305, 30); -- Recycle
+
+-- ------------------------------------------
+-- Saomote Kabuto +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10661, 1, 33); -- DEF:33
+INSERT INTO `item_mods` VALUES (10661, 2, 28); -- HP+28
+INSERT INTO `item_mods` VALUES (10661, 8, 5); -- STR+5
+INSERT INTO `item_mods` VALUES (10661, 25, 15); -- ACC+15
+INSERT INTO `item_mods` VALUES (10661, 23, 15); -- Attack+15
+INSERT INTO `item_mods` VALUES (10661, 26, 9); -- Ranged ACC+9
+INSERT INTO `item_mods` VALUES (10661, 24, 9); -- Ranged Attack+9
+
+-- ------------------------------------------
+-- Koga Hatsuburi +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10662, 1, 29); -- DEF:29
+INSERT INTO `item_mods` VALUES (10662, 2, 38); -- HP+38
+INSERT INTO `item_mods` VALUES (10662, 25, 9); -- ACC+9 
+INSERT INTO `item_mods` VALUES (10662, 68, 9); -- Evasion+9
+INSERT INTO `item_mods` VALUES (10662, 110, 12); -- Parrying skill+12
+INSERT INTO `item_mods` VALUES (10662, 28, 10); -- Ninjutsu damage
+
+-- ------------------------------------------
+-- Wyrm Armet +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10663, 1, 33); -- DEF:33
+INSERT INTO `item_mods` VALUES (10663, 2, 22); -- HP+22
+INSERT INTO `item_mods` VALUES (10663, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (10663, 10, 7); -- VIT+7
+INSERT INTO `item_mods` VALUES (10663, 23, 4); -- Attack+4
+INSERT INTO `item_mods` VALUES (10663, 402, 43); -- Enhances Wyvern's breath
+
+-- ------------------------------------------
+-- Summoner's Horn +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10664, 1, 23); -- DEF:23
+INSERT INTO `item_mods` VALUES (10664, 5, 42); -- MP+42
+INSERT INTO `item_mods` VALUES (10664, 357, 5); -- Blood Pact Ability delay-5
+INSERT INTO `item_mods` VALUES (10664, 312, 4); -- Avater MAB+4
+INSERT INTO `item_mods` VALUES (10664, 349, 3); -- Perpetuation cost-3
+
+-- ------------------------------------------
+-- Mirage Keffiyeh +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10665, 1, 31); -- DEF:31
+INSERT INTO `item_mods` VALUES (10665, 2, 21); -- HP+21
+INSERT INTO `item_mods` VALUES (10665, 8, 5); -- MP+21
+INSERT INTO `item_mods` VALUES (10665, 10, 5); -- VIT+5
+INSERT INTO `item_mods` VALUES (10665, 122, 7); -- BLU Magic skill+7
+
+-- ------------------------------------------
+-- Commodore Tricorne +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10666, 1, 31); -- DEF:31
+INSERT INTO `item_mods` VALUES (10666, 2, 17); -- HP+17
+INSERT INTO `item_mods` VALUES (10666, 8, 6); -- STR+6
+INSERT INTO `item_mods` VALUES (10666, 24, 12); -- Ranged Attack+12
+
+-- ------------------------------------------
+-- Pantin Taj +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10667, 1, 25); -- DEF:25
+INSERT INTO `item_mods` VALUES (10667, 8, 6); -- STR+6
+INSERT INTO `item_mods` VALUES (10667, 11, 6); -- AGI+6
+INSERT INTO `item_mods` VALUES (10667, 370, 2); -- Regen
+-- Pantin Taj +2 Automaton: Adds "Regen" effect Adds "Refresh" effect not added
+
+-- ------------------------------------------
+-- Etoile Tiara +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10668, 1, 23); -- DEF:23
+INSERT INTO `item_mods` VALUES (10668, 2, 28); -- HP+28
+INSERT INTO `item_mods` VALUES (10668, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (10668, 25, 9); -- ACC+9
+INSERT INTO `item_mods` VALUES (10668, 23, 9); -- Attack+9
+INSERT INTO `item_mods` VALUES (10668, 491, 7); -- Waltz potency+7
+
+-- ------------------------------------------
+-- Argute Mortarboard +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10669, 1, 21); -- DEF:21
+INSERT INTO `item_mods` VALUES (10669, 2, 17); -- HP+17
+INSERT INTO `item_mods` VALUES (10669, 5, 17); -- MP+17
+INSERT INTO `item_mods` VALUES (10669, 12, 7); -- INT+7
+INSERT INTO `item_mods` VALUES (10669, 13, 7); -- MND+7
+INSERT INTO `item_mods` VALUES (10669, 115, 9); -- Elemental skill+9
+INSERT INTO `item_mods` VALUES (10669, 489, 5); -- Grimoire: Reduces spellcasting time
 
 -- ------------------------------------------
 -- Warrior's Lorica +2
@@ -1512,15 +1651,148 @@ INSERT INTO `item_mods` VALUES (10674, 170, 120); -- Fast cast
 -- ------------------------------------------
 -- Assassin's Vest +2
 -- ------------------------------------------
-INSERT INTO `item_mods` VALUES (10675, 1, 59); --DEF:59
+INSERT INTO `item_mods` VALUES (10675, 1, 59); -- DEF:59
 INSERT INTO `item_mods` VALUES (10675, 9, 7); -- DEX+7
 INSERT INTO `item_mods` VALUES (10675, 11, 7); -- AGI+7
 INSERT INTO `item_mods` VALUES (10675, 165, 3); -- Critical hit rate+3%
 INSERT INTO `item_mods` VALUES (10675, 421, 6); -- Critical hit damage Enmity+6
 
-INSERT INTO `item_mods` VALUES (10681, 73, 7);
-INSERT INTO `item_mods` VALUES (10685, 369, 2);
-INSERT INTO `item_mods` VALUES (10687, 73, 10);
+-- ------------------------------------------
+-- Valor Surcoat +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10676, 1, 72); -- DEF:72
+INSERT INTO `item_mods` VALUES (10676, 2, 42); -- HP+42
+INSERT INTO `item_mods` VALUES (10676, 160, -4); -- Damage taken +4%
+INSERT INTO `item_mods` VALUES (10676, 27, 7); -- Enmity+7
+
+-- ------------------------------------------
+-- Abyss Cuirass +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10677, 1, 64); -- DEF:64
+INSERT INTO `item_mods` VALUES (10677, 2, 38); -- HP+38
+INSERT INTO `item_mods` VALUES (10677, 8, 6); -- STR+6
+INSERT INTO `item_mods` VALUES (10677, 13, 6); -- MND+6
+INSERT INTO `item_mods` VALUES (10677, 25, 15); -- ACC+15
+INSERT INTO `item_mods` VALUES (10677, 23, 15); -- Attack+15
+INSERT INTO `item_mods` VALUES (10677, 28, 12); -- MAB+12
+
+-- ------------------------------------------
+-- Monster Jacket +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10678, 1, 64); -- DEF:64
+INSERT INTO `item_mods` VALUES (10678, 2, 29); -- HP+29
+INSERT INTO `item_mods` VALUES (10678, 8, 8); -- STR+8
+INSERT INTO `item_mods` VALUES (10678, 9, 8); -- DEX+8
+INSERT INTO `item_mods` VALUES (10678, 12, 8); -- INT+8
+INSERT INTO `item_mods` VALUES (10678, 391, 8); -- Charm+8
+
+-- ------------------------------------------
+-- Bard's Jstcorps +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10679, 1, 59); -- DEF:59
+INSERT INTO `item_mods` VALUES (10679, 2, 27); -- HP+27
+INSERT INTO `item_mods` VALUES (10679, 25, 25); -- ACC+25
+INSERT INTO `item_mods` VALUES (10679, 23, 25); -- Attack+25
+INSERT INTO `item_mods` VALUES (10679, 8, 10); -- Brd. Jstcorps +2  "Military Parade" unknown added base stats
+INSERT INTO `item_mods` VALUES (10679, 9, 10); -- Brd. Jstcorps +2  "Military Parade" unknown added base stats
+INSERT INTO `item_mods` VALUES (10679, 10, 10); -- Brd. Jstcorps +2  "Military Parade" unknown added base stats
+INSERT INTO `item_mods` VALUES (10679, 11, 10); -- Brd. Jstcorps +2  "Military Parade" unknown added base stats
+
+-- ------------------------------------------
+-- Recycle Jerkin +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10680, 1, 59); -- DEF:59
+INSERT INTO `item_mods` VALUES (10680, 9, 7); -- DEX+7
+INSERT INTO `item_mods` VALUES (10680, 11, 7); -- AGI+7
+INSERT INTO `item_mods` VALUES (10680, 359, 7); -- "Rapid Shot"+7
+INSERT INTO `item_mods` VALUES (10680, 27, -5); -- Enmity-5
+INSERT INTO `item_mods` VALUES (10680, 422, 45); -- "Double Shot" damage
+
+-- ------------------------------------------
+-- Saotome Domaru +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10681, 1, 65); -- DEF:65
+INSERT INTO `item_mods` VALUES (10681, 2, 48); -- HP+48
+INSERT INTO `item_mods` VALUES (10681, 8, 9); -- STR+9
+INSERT INTO `item_mods` VALUES (10681, 10, 9); -- VIT+9
+INSERT INTO `item_mods` VALUES (10681, 25, 9); -- ACC+9
+INSERT INTO `item_mods` VALUES (10681, 73, 7); -- Store TP+7
+
+-- ------------------------------------------
+-- Koga Chainmail +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10682, 1, 60); -- DEF:60
+INSERT INTO `item_mods` VALUES (10682, 25, 15); -- ACC+15
+INSERT INTO `item_mods` VALUES (10682, 23, 20); -- Attack+20
+INSERT INTO `item_mods` VALUES (10682, 26, 12); -- Ranged ACC+12
+INSERT INTO `item_mods` VALUES (10682, 24, 12); -- Ranged Attack+12
+INSERT INTO `item_mods` VALUES (10682, 259, 3); -- Dual Wield
+
+-- ------------------------------------------
+-- Wyrm Mail +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10683, 1, 64); -- DEF:64
+INSERT INTO `item_mods` VALUES (10683, 2, 46); -- HP+46
+INSERT INTO `item_mods` VALUES (10683, 23, 8); -- Attack+8
+INSERT INTO `item_mods` VALUES (10683, 68, 8); -- Evasion+8
+INSERT INTO `item_mods` VALUES (10683, 384, 30); -- Haste+3%
+
+-- ------------------------------------------
+-- Summoner's Doublet +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10684, 1, 49); -- DEF:49
+INSERT INTO `item_mods` VALUES (10684, 5, 28); -- MP+29
+INSERT INTO `item_mods` VALUES (10684, 357, 6); -- Blood Pact ability delay-6
+INSERT INTO `item_mods` VALUES (10684, 349, 3); -- Avatar perpetuation cost-3
+
+-- ------------------------------------------
+-- Mirage Jubbah +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10685, 1, 59); -- DEF:59
+INSERT INTO `item_mods` VALUES (10685, 5, 28); -- MP+28
+INSERT INTO `item_mods` VALUES (10685, 8, 5); -- STR+5
+INSERT INTO `item_mods` VALUES (10685, 9, 5); -- DEX+5
+INSERT INTO `item_mods` VALUES (10685, 25, 15); -- ACC+15
+INSERT INTO `item_mods` VALUES (10685, 23, 15); -- Attack+15
+INSERT INTO `item_mods` VALUES (10685, 369, 2); -- Refresh
+
+-- ------------------------------------------
+-- Commodore Frac +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10686, 1, 59); -- DEF:59
+INSERT INTO `item_mods` VALUES (10686, 8, 5); -- STR+5
+INSERT INTO `item_mods` VALUES (10686, 11, 5); -- AGI+5
+INSERT INTO `item_mods` VALUES (10686, 25, 12); -- ACC+12
+INSERT INTO `item_mods` VALUES (10686, 24, 12); -- Ranged Attack+12
+
+-- ------------------------------------------
+-- Pantin Tobe +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10687, 1, 59); -- DEF:59
+INSERT INTO `item_mods` VALUES (10687, 2, 21); -- HP+21
+INSERT INTO `item_mods` VALUES (10687, 25, 15); -- ACC+15
+INSERT INTO `item_mods` VALUES (10687, 23, 15); -- Attack+15
+-- Pantin Tobe +2  Automaton: Accuracy+15 "Store TP"+10 not added
+
+-- ------------------------------------------
+-- Etoile Casaque +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10688, 1, 51); -- DEF:51
+INSERT INTO `item_mods` VALUES (10688, 8, 6); -- STR+6
+INSERT INTO `item_mods` VALUES (10688, 9, 6); -- DEX+6
+INSERT INTO `item_mods` VALUES (10688, 25, 15); -- ACC+15
+INSERT INTO `item_mods` VALUES (10688, 23, 17); -- Attack+17
+
+-- ------------------------------------------
+-- Argute Gown +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10689, 1, 49); -- DEF:49
+INSERT INTO `item_mods` VALUES (10689, 2, 24); -- HP+24
+INSERT INTO `item_mods` VALUES (10689, 5, 24); -- MP+24
+INSERT INTO `item_mods` VALUES (10689, 112, 9); -- Healing skill+9
+INSERT INTO `item_mods` VALUES (10689, 113, 9); -- Enhancing skill+9
+INSERT INTO `item_mods` VALUES (10689, 28, 8); -- Magic Def Bonus+8
+INSERT INTO `item_mods` VALUES (10689, 401, 2); -- Sublimation
 
 -- ------------------------------------------
 -- Warrior's Mufflers +2
@@ -1580,7 +1852,145 @@ INSERT INTO `item_mods` VALUES (10695, 68, 9); -- Evasion+9
 INSERT INTO `item_mods` VALUES (10695, 27, 5); -- Enmity+5
 INSERT INTO `item_mods` VALUES (10695, 303, 2); -- Treasure Hunter+2
 
-INSERT INTO `item_mods` VALUES (10696, 385, 12);
+-- ------------------------------------------
+-- Valor Gauntlets +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10696, 1, 29); -- DEF:29
+INSERT INTO `item_mods` VALUES (10696, 2, 22); -- HP+22
+INSERT INTO `item_mods` VALUES (10696, 10, 8); -- VIT+8
+INSERT INTO `item_mods` VALUES (10696, 13, 8); -- MND+8
+INSERT INTO `item_mods` VALUES (10696, 27, 6); -- Enmity+6
+INSERT INTO `item_mods` VALUES (10696, 285, 12); -- Shield Bash+12
+
+-- ------------------------------------------
+-- Abyss Gauntlets +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10697, 1, 26); -- DEF:26
+INSERT INTO `item_mods` VALUES (10697, 8, 6); -- STR+6
+INSERT INTO `item_mods` VALUES (10697, 9, 6); -- DEX+6
+INSERT INTO `item_mods` VALUES (10697, 12, 10); -- INT+10
+INSERT INTO `item_mods` VALUES (10697, 13, 10); -- MND+10
+INSERT INTO `item_mods` VALUES (10697, 23, 6); -- Attack+6
+INSERT INTO `item_mods` VALUES (10697, 116, 9); -- Dark Magic skill+9
+
+-- ------------------------------------------
+-- Monster Gloves +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10698, 1, 20); -- DEF:20
+INSERT INTO `item_mods` VALUES (10698, 2, 28); -- HP+28
+INSERT INTO `item_mods` VALUES (10698, 9, 7); -- DEX+7
+INSERT INTO `item_mods` VALUES (10698, 11, 7); -- AGI+7
+INSERT INTO `item_mods` VALUES (10698, 391, 5); -- Charm+5
+
+-- ------------------------------------------
+-- Bard's cuff +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10699, 1, 23); -- DEF:23
+INSERT INTO `item_mods` VALUES (10699, 2, 22); -- HP+22
+INSERT INTO `item_mods` VALUES (10699, 30, 5); -- Magic ACC+5
+INSERT INTO `item_mods` VALUES (10699, 121, 7); -- Wind Instrument+7
+INSERT INTO `item_mods` VALUES (10699, 27, -6); -- Enmity-7
+
+-- ------------------------------------------
+-- Scout's Bracers +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10700, 1, 18); -- DEF:18
+INSERT INTO `item_mods` VALUES (10700, 2, 18); -- HP+18
+INSERT INTO `item_mods` VALUES (10700, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (10700, 11, 7); -- AGI+7
+INSERT INTO `item_mods` VALUES (10700, 24, 11); -- Ranged Attack+11
+INSERT INTO `item_mods` VALUES (10700, 68, 11); -- Evasion+11
+INSERT INTO `item_mods` VALUES (10700, 27, -3); -- Enmity-3
+
+-- ------------------------------------------
+-- Saotome Kote +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10701, 1, 27); -- DEF:27
+INSERT INTO `item_mods` VALUES (10701, 2, 28); -- HP+28
+INSERT INTO `item_mods` VALUES (10701, 25, 15); -- ACC+15
+INSERT INTO `item_mods` VALUES (10701, 23, 15); -- Attack+15
+-- Sao. Kote +2 Enhances "Meditate" effect unknown not added
+
+-- ------------------------------------------
+-- Koga Tekko +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10702, 1, 23); -- DEF:23
+INSERT INTO `item_mods` VALUES (10702, 8, 13); -- STR+13
+INSERT INTO `item_mods` VALUES (10703, 384, 40); -- Haste+4
+INSERT INTO `item_mods` VALUES (10702, 289, 5); -- Subtle Blow+5
+INSERT INTO `item_mods` VALUES (10702, 308, 33); -- Ninja Tool Expertise
+
+-- ------------------------------------------
+-- Wyrm Finger Gauntlets +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10703, 1, 25); -- DEF:25
+INSERT INTO `item_mods` VALUES (10703, 2, 22); -- HP+22
+INSERT INTO `item_mods` VALUES (10703, 5, 22); -- MP+22
+INSERT INTO `item_mods` VALUES (10703, 9, 6); -- DEX+6
+INSERT INTO `item_mods` VALUES (10703, 11, 6); -- AGI+6
+INSERT INTO `item_mods` VALUES (10703, 25, 9); -- ACC+9
+
+-- ------------------------------------------
+-- Summoner's Bracers +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10704, 1, 20); -- DEF:20
+INSERT INTO `item_mods` VALUES (10704, 5, 42); -- MP+42
+INSERT INTO `item_mods` VALUES (10704, 117, 15); -- Summoning skill+15
+INSERT INTO `item_mods` VALUES (10704, 357, 4); -- Blood pact ability delay+4
+INSERT INTO `item_mods` VALUES (10704, 315, 15); -- Enhances Avatar ACC
+
+-- ------------------------------------------
+-- Mirage Bazubands +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10705, 1, 22); -- DEF:22
+INSERT INTO `item_mods` VALUES (10705, 2, 17); -- HP+17
+INSERT INTO `item_mods` VALUES (10705, 5, 17);-- MP+17
+INSERT INTO `item_mods` VALUES (10705, 9, 8); -- DEX+8
+INSERT INTO `item_mods` VALUES (10705, 13, 8); -- MND+8
+INSERT INTO `item_mods` VALUES (10705, 68, 7); -- Evasion+7
+INSERT INTO `item_mods` VALUES (10705, 289, 7); -- Subtle Blow+7
+
+-- ------------------------------------------
+-- Commodore Gnats +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10706, 1, 18); -- DEF:18
+INSERT INTO `item_mods` VALUES (10706, 2, 21); -- HP+21
+INSERT INTO `item_mods` VALUES (10706, 11, 5); -- AGI+5
+INSERT INTO `item_mods` VALUES (10706, 26, 7); -- Ranged ACC+7
+INSERT INTO `item_mods` VALUES (10706, 24, 7); -- Ranged Attack+7
+INSERT INTO `item_mods` VALUES (10706, 365, 5); -- Snapshot
+
+-- ------------------------------------------
+-- Pantin Dastanas +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10707, 1, 23); -- DEF:23
+INSERT INTO `item_mods` VALUES (10707, 9, 5); -- DEX+5
+INSERT INTO `item_mods` VALUES (10707, 14, 5); -- CHR+5
+INSERT INTO `item_mods` VALUES (10707, 384, 40); -- HASTE+4% 
+-- Pantin Dastanas +2 Automaton: Haste+4% "Subtle Blow"+5 not added
+
+-- ------------------------------------------
+-- Etoile Bangles +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10708, 1, 22); -- DEF:22
+INSERT INTO `item_mods` VALUES (10708, 2, 21); -- HP+21
+INSERT INTO `item_mods` VALUES (10708, 10, 6); -- VIT+6
+INSERT INTO `item_mods` VALUES (10708, 11, 6); -- AGI+6
+INSERT INTO `item_mods` VALUES (10708, 25, 7); -- ACC+7
+INSERT INTO `item_mods` VALUES (10708, 23, 7); -- Attack+7
+INSERT INTO `item_mods` VALUES (10708, 68, 7); -- Evasion+7
+INSERT INTO `item_mods` VALUES (10708, 27, 4); -- Enmity+4
+
+-- ------------------------------------------
+-- Argute Bracers +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10709, 1, 18); -- DEF:18
+INSERT INTO `item_mods` VALUES (10709, 5, 28); -- MP+28
+INSERT INTO `item_mods` VALUES (10709, 12, 6); -- INT+6
+INSERT INTO `item_mods` VALUES (10709, 13, 6); -- MND+6
+INSERT INTO `item_mods` VALUES (10709, 112, 9); -- Healing skill+9
+INSERT INTO `item_mods` VALUES (10709, 114, 9); -- Enfeebling skill+9
+INSERT INTO `item_mods` VALUES (10709, 27, -5); -- Enmity-5
 
 -- ------------------------------------------
 -- Warrior's Cuisses +2
@@ -1639,6 +2049,55 @@ INSERT INTO `item_mods` VALUES (10715, 25, 10); -- ACC+10
 INSERT INTO `item_mods` VALUES (10715, 27, 6); -- Enmity+6
 
 -- ------------------------------------------
+-- Valor Breeches +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10716, 1, 56); -- DEF:56
+INSERT INTO `item_mods` VALUES (10716, 2, 28); -- HP+28
+INSERT INTO `item_mods` VALUES (10716, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (10716, 10, 7); -- AGI+7
+INSERT INTO `item_mods` VALUES (10716, 161, -4); -- Physical Damage taken-4%
+INSERT INTO `item_mods` VALUES (10716, 27, 6); -- Enmity+6
+
+-- ------------------------------------------
+-- Abyss Flanchard +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10717, 1, 49); -- DEF:49
+INSERT INTO `item_mods` VALUES (10717, 2, 25); -- HP+25
+INSERT INTO `item_mods` VALUES (10717, 5, 25); -- MP+25
+INSERT INTO `item_mods` VALUES (10717, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (10717, 13, 7); -- MND+7
+INSERT INTO `item_mods` VALUES (10717, 116, 10); -- Dark skill+10
+INSERT INTO `item_mods` VALUES (10717, 29, 7); -- Magic def Bounus+7
+
+-- ------------------------------------------
+-- Monster Trousers +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10718, 1, 44); -- DEF:44
+INSERT INTO `item_mods` VALUES (10718, 2, 24); -- HP+24
+INSERT INTO `item_mods` VALUES (10718, 8, 7);  -- STR+7
+INSERT INTO `item_mods` VALUES (10718, 9, 7); -- DEX+7
+INSERT INTO `item_mods` VALUES (10718, 391, 3); -- Charm+3
+
+-- ------------------------------------------
+-- Bard's Cannions +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10719, 1, 40); -- DEF:40
+INSERT INTO `item_mods` VALUES (10719, 2, 50); -- HP+50
+INSERT INTO `item_mods` VALUES (10719, 5, 50); -- MP+50
+INSERT INTO `item_mods` VALUES (10719, 30, 6); -- Magic ACC+6
+-- Brd. Cannions +2 "Courtly Measure" unknown added base stats
+
+-- ------------------------------------------
+-- Scout's Braccae +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10720, 1, 42); -- DEF:42
+INSERT INTO `item_mods` VALUES (10720, 2, 25); -- HP+25
+INSERT INTO `item_mods` VALUES (10720, 11, 4); -- AGI+4
+INSERT INTO `item_mods` VALUES (10720, 26, 11); -- Ranged ACC+11
+INSERT INTO `item_mods` VALUES (10720, 24, 11); -- Ranged Attack+11
+INSERT INTO `item_mods` VALUES (10720, 27, -4); -- Enmity-4
+
+-- ------------------------------------------
 -- Saotome Haidate +2
 -- ------------------------------------------
 INSERT INTO `item_mods` VALUES (10721, 1, 52);
@@ -1647,6 +2106,82 @@ INSERT INTO `item_mods` VALUES (10721, 11, 6);
 INSERT INTO `item_mods` VALUES (10721, 23, 8);
 INSERT INTO `item_mods` VALUES (10721, 68, 8);
 INSERT INTO `item_mods` VALUES (10721, 508, 25);
+
+-- ------------------------------------------
+-- Koga Hakama +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10722, 1, 40); -- DEF:40
+INSERT INTO `item_mods` VALUES (10722, 2, 56); -- HP+56
+INSERT INTO `item_mods` VALUES (10722, 11, 6); -- AGI+6
+INSERT INTO `item_mods` VALUES (10772, 68, 12); -- Evasion+12
+INSERT INTO `item_mods` VALUES (10722, 259, 7); -- Dual Wield
+
+-- ------------------------------------------
+-- Wyrm Brais +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10723, 1, 42); -- DEF:42
+INSERT INTO `item_mods` VALUES (10723, 2, 18); -- HP+18
+INSERT INTO `item_mods` VALUES (10723, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (10723, 9, 7); -- DEX+7
+
+-- ------------------------------------------
+-- Summoner's Spats +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10724, 1, 38); -- DEF:38
+INSERT INTO `item_mods` VALUES (10724, 5, 35); -- MP+35
+INSERT INTO `item_mods` VALUES (10724, 357, 4); -- Blood Pact ability delay-4
+INSERT INTO `item_mods` VALUES (10724, 315, 15); -- Enhances Avatar magic ACC
+
+-- ------------------------------------------
+-- Mirage Shalwar +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10725, 1, 40); -- DEF:40
+INSERT INTO `item_mods` VALUES (10725, 2, 21); -- HP+21
+INSERT INTO `item_mods` VALUES (10725, 5, 21); -- MP+21
+INSERT INTO `item_mods` VALUES (10725, 8, 5); -- STR+5
+INSERT INTO `item_mods` VALUES (10725, 11, 5); -- AGI+5
+INSERT INTO `item_mods` VALUES (10725, 25, 7); -- Magic ACC+7
+
+-- ------------------------------------------
+-- Commodore Culottes +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10726, 1, 39); -- DEF:39
+INSERT INTO `item_mods` VALUES (10726, 2, 31); -- HP+31
+INSERT INTO `item_mods` VALUES (10726, 8, 5); -- STR+5
+INSERT INTO `item_mods` VALUES (10726, 11, 5); -- AGI+5
+INSERT INTO `item_mods` VALUES (10726, 23, 9); -- Attack+9
+INSERT INTO `item_mods` VALUES (10726, 26, 5); -- Ranged ACC+5
+INSERT INTO `item_mods` VALUES (10726, 24, 5); -- Ranged Attack+5
+INSERT INTO `item_mods` VALUES (10726, 68, 9); -- Evasion+9
+
+-- ------------------------------------------
+-- Pantin Churidars +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10727, 1, 42); -- DEF:42
+INSERT INTO `item_mods` VALUES (10727, 8, 4); -- STR+4
+INSERT INTO `item_mods` VALUES (10727, 10, 4); -- VIT+4
+INSERT INTO `item_mods` VALUES (10727, 25, 9); -- ACC+9
+-- Ptn. Churidars +2  Automaton: Magic Accuracy+9 Enhances "Fast Cast" effect not added
+
+-- ------------------------------------------
+-- Etoile Tights +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10728, 1, 36); -- DEF:36
+INSERT INTO `item_mods` VALUES (10728, 8, 6); -- STR+6
+INSERT INTO `item_mods` VALUES (10728, 14, 6); -- CHR+6
+INSERT INTO `item_mods` VALUES (10728, 25, 6); -- ACC+6
+INSERT INTO `item_mods` VALUES (10728, 384, 40); -- HASTE+4%
+
+-- ------------------------------------------
+-- Argute Pants +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10729, 1, 35); -- DEF:35
+INSERT INTO `item_mods` VALUES (10729, 2, 24); -- HP+24
+INSERT INTO `item_mods` VALUES (10729, 5, 24); -- MP+24
+INSERT INTO `item_mods` VALUES (10729, 12, 8); -- INT+8
+INSERT INTO `item_mods` VALUES (10729, 115, 9); -- Elemental skill+9
+INSERT INTO `item_mods` VALUES (10729, 116, 9); -- Dark skill+9
+INSERT INTO `item_mods` VALUES (10729, 27, -5); -- Enmity-5
 
 -- ------------------------------------------
 -- Warrior's Calligae +2
@@ -1706,7 +2241,137 @@ INSERT INTO `item_mods` VALUES (10735, 302, 3); -- Triple Attack+3%
 INSERT INTO `item_mods` VALUES (10735, 409, 2); -- Triple Attack Damage
 INSERT INTO `item_mods` VALUES (10735, 27, 4); -- Enmity+4
 
-INSERT INTO `item_mods` VALUES (10738, 364, 30);
+-- ------------------------------------------
+-- Valor Leggings +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10736, 1, 25); -- DEF:25
+INSERT INTO `item_mods` VALUES (10736, 2, 25); -- HP+25
+INSERT INTO `item_mods` VALUES (10736, 163, -4); -- Magic Damage taken-4%
+INSERT INTO `item_mods` VALUES (10736, 27, 4); -- Enmity+4
+
+-- ------------------------------------------
+-- Abyss Sollerets +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10737, 1, 22); -- DEF:22
+INSERT INTO `item_mods` VALUES (10737, 8, 6); -- STR+6
+INSERT INTO `item_mods` VALUES (10737, 23, 6); -- Attack+6
+
+-- ------------------------------------------
+-- Monster Gaiters +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10738, 1, 18); -- DEF:18
+INSERT INTO `item_mods` VALUES (10738, 2, 18); -- HP+18
+INSERT INTO `item_mods` VALUES (10738, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (10738, 10, 7); -- VIT+7
+INSERT INTO `item_mods` VALUES (10738, 364, 30); -- Reward Effect
+INSERT INTO `item_mods` VALUES (10738, 391, 4); -- Charm+4
+
+-- ------------------------------------------
+-- Bard's Slippers +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10739, 1, 18); -- DEF:18
+INSERT INTO `item_mods` VALUES (10739, 2, 17); -- HP+17
+INSERT INTO `item_mods` VALUES (10739, 455, 6); -- Song spellcasting time-6%
+INSERT INTO `item_mods` VALUES (10739, 120, 5); -- String Instrument skill+5
+INSERT INTO `item_mods` VALUES (10739, 27, -5); -- Enmity-5
+
+-- ------------------------------------------
+-- Scout's Socks +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10740, 1, 21); -- DEF:21
+INSERT INTO `item_mods` VALUES (10740, 2, 17); -- HP+17
+INSERT INTO `item_mods` VALUES (10740, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (10740, 10, 7); -- VIT+7
+INSERT INTO `item_mods` VALUES (10740, 24, 15); -- Ranged Attack+15
+INSERT INTO `item_mods` VALUES (10740, 27, -5); -- Enmity-5
+
+-- ------------------------------------------
+-- Saotome sune-ate +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10741, 1, 23); -- DEF:23
+INSERT INTO `item_mods` VALUES (10741, 2, 32); -- HP+32
+INSERT INTO `item_mods` VALUES (10741, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (10741, 9, 7); -- DEX+7
+INSERT INTO `item_mods` VALUES (10741, 23, 12); -- Attack+12
+INSERT INTO `item_mods` VALUES (10741, 73, 5); -- Store TP+5
+
+-- ------------------------------------------
+-- Koga Kyahan +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10742, 1, 20); -- DEF:20
+INSERT INTO `item_mods` VALUES (10742, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (10742, 9, 7); -- DEX+7
+INSERT INTO `item_mods` VALUES (10742, 10, 9); -- VIT+9
+INSERT INTO `item_mods` VALUES (10742, 11, 9); -- AGI+9
+INSERT INTO `item_mods` VALUES (10742, 118, 15); -- Ninjutsu skill+15
+INSERT INTO `item_mods` VALUES (10742, 27, 4); -- Enmity+4
+
+-- ------------------------------------------
+-- Wyrm Greaves +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10743, 1, 21); -- DEF:21
+INSERT INTO `item_mods` VALUES (10743, 2, 14); -- HP+14
+INSERT INTO `item_mods` VALUES (10743, 8, 7); -- STR+7
+INSERT INTO `item_mods` VALUES (10743, 10, 7); -- VIT+7
+INSERT INTO `item_mods` VALUES (10743, 23, 7); -- Attack+7
+
+-- ------------------------------------------
+-- Summoner's Pigaches +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10744, 1, 18); -- DEF:18
+INSERT INTO `item_mods` VALUES (10744, 5, 35); -- MP+35
+INSERT INTO `item_mods` VALUES (10744, 357, 4); -- Blood Pact Delay-4
+INSERT INTO `item_mods` VALUES (10744, 314, 5); -- Avatar Attack Magic critical hit rate+5%
+
+-- ------------------------------------------
+-- Mirage Charuqs +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10745, 1, 21); -- DEF:21
+INSERT INTO `item_mods` VALUES (10745, 5, 21); -- MP+21
+INSERT INTO `item_mods` VALUES (10745, 11, 6); -- AGI+6
+INSERT INTO `item_mods` VALUES (10745, 12, 6); -- INT+6
+INSERT INTO `item_mods` VALUES (10745, 13, 6); -- MND+6
+INSERT INTO `item_mods` VALUES (10745, 23, 7); -- Attack+7
+INSERT INTO `item_mods` VALUES (10745, 122, 3); -- BLU Magic skill+3
+
+-- ------------------------------------------
+-- Commodore Bottes +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10746, 1, 21); -- DEF:21
+INSERT INTO `item_mods` VALUES (10746, 2, 17); -- HP+17
+INSERT INTO `item_mods` VALUES (10746, 9, 5); -- DEX+5
+INSERT INTO `item_mods` VALUES (10746, 12, 5); -- INT+5
+INSERT INTO `item_mods` VALUES (10746, 25, 9); -- ACC+9
+INSERT INTO `item_mods` VALUES (10746, 28, 6); -- MAB+6%
+
+-- ------------------------------------------
+-- Pantin Babouches +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10747, 1, 22); -- DEF+22
+INSERT INTO `item_mods` VALUES (10747, 2, 31); -- HP+31
+INSERT INTO `item_mods` VALUES (10747, 12, 5); -- INT+5
+INSERT INTO `item_mods` VALUES (10747, 13, 5); -- MND+5
+-- Ptn. Babouches +2 Automaton: Magic Accuracy+5 "Magic Atk. Bonus"+7 not added
+
+-- ------------------------------------------
+-- Etoile Shoes +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10748, 1, 21); -- DEF:21
+INSERT INTO `item_mods` VALUES (10748, 2, 28); -- HP+28
+INSERT INTO `item_mods` VALUES (10748, 9, 6); -- DEX+6
+INSERT INTO `item_mods` VALUES (10748, 11, 6); -- AGI+6
+INSERT INTO `item_mods` VALUES (10748, 25, 7); -- ACC+7
+INSERT INTO `item_mods` VALUES (10748, 68, 7); -- Evasion+7
+INSERT INTO `item_mods` VALUES (10748, 403, 15); -- Step ACC
+
+-- ------------------------------------------
+-- Argute Loafers +2
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (10749, 1, 17); -- DEF:17
+INSERT INTO `item_mods` VALUES (10749, 5, 35); -- MP+35
+INSERT INTO `item_mods` VALUES (10749, 112, 12); -- Healing Skill+12
+INSERT INTO `item_mods` VALUES (10749, 170, 50); -- Enhances Fast cast
+
 INSERT INTO `item_mods` VALUES (10753, 370, 2);
 INSERT INTO `item_mods` VALUES (10764, 370, 1);
 INSERT INTO `item_mods` VALUES (10787, 375, 3);
