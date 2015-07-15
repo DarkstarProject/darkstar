@@ -1551,6 +1551,7 @@ namespace charutils
     bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
     {
         CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
+        CItemArmor* oldItem = PChar->getEquip((SLOTTYPE)equipSlotID);
 
         if (PItem == nullptr)
         {
@@ -1565,8 +1566,6 @@ namespace charutils
 
         if (equipSlotID == SLOT_MAIN)
         {
-            CItemArmor* oldItem = PChar->getEquip((SLOTTYPE)equipSlotID);
-
             if (!(slotID == PItem->getSlotID() && oldItem &&
                   (oldItem->isType(ITEM_WEAPON) && PItem->isType(ITEM_WEAPON)) &&
                   ((((CItemWeapon*)PItem)->isTwoHanded() == true) && (((CItemWeapon*)oldItem)->isTwoHanded() == true))))
@@ -1935,6 +1934,11 @@ namespace charutils
 
     void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
     {
+        CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
+        
+        if (PItem && PItem == PChar->getEquip((SLOTTYPE)equipSlotID))
+            return;
+
         if (slotID == 0)
         {
             CItemArmor* PSubItem = PChar->getEquip(SLOT_SUB);
@@ -1948,7 +1952,6 @@ namespace charutils
         }
         else
         {
-            CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
 
             if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
             {

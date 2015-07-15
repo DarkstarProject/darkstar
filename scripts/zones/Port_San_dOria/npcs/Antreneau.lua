@@ -39,7 +39,7 @@ function onTrigger(player,npc)
 	elseif (player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT) == QUEST_AVAILABLE and player:getVar("aTasteForMeat") == 0) then
 		player:startEvent(0x020f);
 	else	
-		player:startEvent(0x020d);
+		player:startEvent(0x0215);
 	end;
 	
 end; 
