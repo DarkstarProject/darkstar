@@ -36,6 +36,8 @@ This file is part of DarkStar-server source code.
 #include "../utils/battleutils.h"
 #include "../utils/charutils.h"
 #include "../utils/puppetutils.h"
+#include "../packets/message_basic.h"
+#include "../packets/action.h"
 
 CAIAutomatonDummy::CAIAutomatonDummy(CPetEntity* PPet)
     : CAIPetDummy(PPet)

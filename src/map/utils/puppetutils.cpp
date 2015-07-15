@@ -27,6 +27,7 @@
 #include "battleutils.h"
 #include "charutils.h"
 #include "../packets/char_job_extra.h"
+#include "../packets/message_basic.h"
 
 namespace puppetutils
 {

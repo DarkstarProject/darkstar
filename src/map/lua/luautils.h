@@ -64,13 +64,7 @@ namespace luautils
     int32 prepFile(int8*, const char*);
 
     template<class T>
-    void pushArg(T& arg)
-    {
-        if (arg.methods)
-        {
-            Lunar<T>::push(LuaHandle, &arg);
-        }
-    }
+    void pushArg(T& arg);
 
     template<>
     void pushArg<int>(int& arg);

@@ -240,6 +240,15 @@ int32 prepFile(int8* File, const char* function)
     return 0;
 }
 
+template<class T>
+void pushArg(T& arg)
+{
+    if (T::methods)
+    {
+        Lunar<T>::push(LuaHandle, &arg);
+    }
+}
+
 template<>
 void pushArg<int>(int& arg)
 {

@@ -51,9 +51,10 @@ struct queueAction
         } mobskill;
     };
 
-    bool operator<(const queueAction& o) { return start_time + delay < o.start_time + o.delay; }
     queueAction() : start_time(server_clock::now()), delay(0), action(AIState::None), param(0){}
 };
+
+inline bool operator< (const queueAction& lhs, const queueAction& rhs) { return lhs.start_time + lhs.delay < rhs.start_time + rhs.delay; }
 
 class CAIActionQueue
 {

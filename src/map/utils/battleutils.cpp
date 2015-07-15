@@ -5034,7 +5034,7 @@ namespace battleutils
         int16 fastCast = dsp_cap(PEntity->getMod(MOD_FASTCAST), -100, 50);
         if (PSpell->isCure()) // Cure cast time reductions
         {
-            fastCast += m_PEntity->getMod(MOD_CURE_CAST_TIME);
+            fastCast += PEntity->getMod(MOD_CURE_CAST_TIME);
             if (PEntity->objtype == TYPE_PC)
             {
                 fastCast += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_CURE_CAST_TIME, (CCharEntity*)PEntity);
