@@ -109,7 +109,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,card);
         end
     elseif(csid == 0x00c8) then
-        player:addTitle(CARD_COLLECTOR);
+        player:addTitle(TITLE_CARD_COLLECTOR);
         player:addFame(JEUNO, JEUNO_FAME*30);
         player:tradeComplete();
         player:completeQuest(JEUNO,COLLECT_TARUT_CARDS);

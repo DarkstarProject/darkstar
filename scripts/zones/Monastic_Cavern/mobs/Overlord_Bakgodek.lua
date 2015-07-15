@@ -26,6 +26,6 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-		killer:addTitle(OVERLORD_OVERTHROWER);
+		killer:addTitle(TITLE_OVERLORD_OVERTHROWER);
 -- mob:messagePublic(mob,ORC_KING_DEATH);
 end;

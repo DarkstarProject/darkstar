@@ -87,7 +87,7 @@ function onEventFinish(player,csid,option)
 			player:addFame(WINDURST,WIN_FAME*80);
 			player:addItem(17154);
 			player:messageSpecial(ITEM_OBTAINED,17154);
-			player:addTitle(BOND_FIXER);
+			player:addTitle(TITLE_BOND_FIXER);
 		else
 			player:addFame(WINDURST,WIN_FAME*10);
 			player:addGil(GIL_RATE*900);

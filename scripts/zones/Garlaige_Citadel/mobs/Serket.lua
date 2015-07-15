@@ -18,7 +18,7 @@ end;
 
 function onMobDeath(mob, killer)
 
-    killer:addTitle(SERKET_BREAKER);
+    killer:addTitle(TITLE_SERKET_BREAKER);
 
     -- Set Serket's spawnpoint and respawn time (21-24 hours)
     UpdateNMSpawnPoint(mob:getID());

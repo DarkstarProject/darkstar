@@ -101,7 +101,7 @@ function onEventFinish(player,csid,option)
 				player:addItem(item);
 				player:messageSpecial(ITEM_OBTAINED,item); -- Item
 			end
-			player:addTitle(HEIR_OF_THE_GREAT_FIRE);
+			player:addTitle(TITLE_HEIR_OF_THE_GREAT_FIRE);
 			player:delKeyItem(WHISPER_OF_FLAMES);
 			player:setVar("TrialByFire_date", os.date("%j")); -- %M for next minute, %j for next day
 			player:addFame(KAZHAM,WIN_FAME*30);

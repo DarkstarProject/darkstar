@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,548);
 		else 
-			player:addTitle(TENSHODO_MEMBER);
+			player:addTitle(TITLE_TENSHODO_MEMBER);
 			player:delKeyItem(TENSHODO_APPLICATION_FORM);
 			player:addKeyItem(TENSHODO_MEMBERS_CARD);
 			player:messageSpecial(KEYITEM_OBTAINED,TENSHODO_MEMBERS_CARD);
@@ -94,7 +94,7 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(JEUNO,TENSHODO_MEMBERSHIP);
 		end
 	elseif(csid == 0x006c) then 
-		player:addTitle(TENSHODO_MEMBER);
+		player:addTitle(TITLE_TENSHODO_MEMBER);
 		player:addKeyItem(TENSHODO_MEMBERS_CARD);
 		player:messageSpecial(KEYITEM_OBTAINED,TENSHODO_MEMBERS_CARD);
 		player:messageSpecial(ITEM_OBTAINED,548);

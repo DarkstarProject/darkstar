@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
 		player:addFame(3,NORG_FAME*125);
 		player:addItem(13201);
 		player:messageSpecial(ITEM_OBTAINED,13201);
-		player:addTitle(PURPLE_BELT);
+		player:addTitle(TITLE_PURPLE_BELT);
 	elseif (csid == 0x0163) then
 		player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",2,true);
 	end

@@ -11,5 +11,5 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(MON_CHERRY);
+	killer:addTitle(TITLE_MON_CHERRY);
 end;

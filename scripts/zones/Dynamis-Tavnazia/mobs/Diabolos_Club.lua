@@ -30,5 +30,5 @@ function onMobDeath(mob, killer)
 		   DespawnMob(16949254);
         end
 
-	killer:addTitle(NIGHTMARE_AWAKENER);
+	killer:addTitle(TITLE_NIGHTMARE_AWAKENER);
 end;

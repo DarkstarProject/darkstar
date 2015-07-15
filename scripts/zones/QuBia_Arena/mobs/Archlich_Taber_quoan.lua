@@ -79,5 +79,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-    killer:addTitle(ARCHMAGE_ASSASSIN);
+    killer:addTitle(TITLE_ARCHMAGE_ASSASSIN);
 end;

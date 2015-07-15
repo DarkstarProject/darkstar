@@ -110,7 +110,7 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x030e) then
 		player:completeQuest(WINDURST,WILD_CARD);
 		player:addFame(WINDURST,WIN_FAME*135);
-		player:addTitle(DREAM_DWELLER);
+		player:addTitle(TITLE_DREAM_DWELLER);
 		player:setVar("WildCard",0);
 		player:needToZone(true);
 	elseif (csid == 0x003b) then  -- Show Off Hat

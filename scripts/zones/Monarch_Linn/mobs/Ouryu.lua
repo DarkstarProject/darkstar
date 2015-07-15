@@ -55,6 +55,6 @@ end;
 
 function onMobDeath(mob, killer)
 
-	killer:addTitle(MIST_MELTER);
+	killer:addTitle(TITLE_MIST_MELTER);
 
 end;

@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(XOLOTL_XTRAPOLATOR);	
+	killer:addTitle(TITLE_XOLOTL_XTRAPOLATOR);	
 	-- Do not respawn Xolotl for 21-24 hours
 	mob:setRespawnTime(math.random((75600),(86400)), true);
 end;

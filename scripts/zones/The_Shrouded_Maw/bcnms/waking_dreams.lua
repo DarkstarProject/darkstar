@@ -75,7 +75,7 @@ function onBcnmLeave(player,instance,leavecode)
 			player:delKeyItem(VIAL_OF_DREAM_INCENSE);
 			player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_DREAMS);
 		end
-		player:addTitle(HEIR_TO_THE_REALM_OF_DREAMS);
+		player:addTitle(TITLE_HEIR_TO_THE_REALM_OF_DREAMS);
 		player:startEvent(0x7d02);
 		
 	elseif(leavecode == 4) then

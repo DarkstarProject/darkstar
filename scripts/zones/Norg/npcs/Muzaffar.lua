@@ -70,7 +70,7 @@ function onEventFinish(player,csid,option)
            player:completeQuest(NORG,BLACK_MARKET);
        end
        player:addFame(NORG,40*NORG_FAME);
-       player:addTitle(BLACK_MARKETEER);
+       player:addTitle(TITLE_BLACK_MARKETEER);
        player:startEvent(0x0014);
    elseif(csid == 0x0012) then
        player:addGil(GIL_RATE*2000);
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
            player:completeQuest(NORG,BLACK_MARKET);
        end
        player:addFame(NORG,50*NORG_FAME);
-       player:addTitle(BLACK_MARKETEER);
+       player:addTitle(TITLE_BLACK_MARKETEER);
        player:startEvent(0x0014);
    elseif(csid == 0x0013) then
        player:addGil(GIL_RATE*3000);
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
            player:completeQuest(NORG,BLACK_MARKET);
        end
        player:addFame(NORG,80*NORG_FAME);
-       player:addTitle(BLACK_MARKETEER);
+       player:addTitle(TITLE_BLACK_MARKETEER);
        player:startEvent(0x0014);
    end
 end;

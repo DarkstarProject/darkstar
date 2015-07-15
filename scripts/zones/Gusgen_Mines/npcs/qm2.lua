@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x000a) then
 		if (player:getFreeSlotsCount() > 0) then	
 			player:addItem(16637);
-			player:addTitle(BLACK_DEATH);
+			player:addTitle(TITLE_BLACK_DEATH);
 			player:setVar("ChaosbringerKills", 0);
 			player:messageSpecial(ITEM_OBTAINED,16637);
 			player:delKeyItem(LETTER_FROM_ZEID);

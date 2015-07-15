@@ -24,5 +24,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(ULTIMA_UNDERTAKER);
+	killer:addTitle(TITLE_ULTIMA_UNDERTAKER);
 end;

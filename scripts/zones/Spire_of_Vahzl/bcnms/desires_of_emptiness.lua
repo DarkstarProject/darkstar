@@ -63,7 +63,7 @@ end;
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
     if(csid == 0x7d01)then
-	player:addTitle(FROZEN_DEAD_BODY);
+	player:addTitle(TITLE_FROZEN_DEAD_BODY);
 	player:setPos(-340 ,-100 ,137 ,67 ,111);
 	end
 end;

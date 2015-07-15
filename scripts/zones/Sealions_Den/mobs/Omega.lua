@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(OMEGA_OSTRACIZER);
+	killer:addTitle(TITLE_OMEGA_OSTRACIZER);
 	killer:startEvent(0x000b);
 end;
 

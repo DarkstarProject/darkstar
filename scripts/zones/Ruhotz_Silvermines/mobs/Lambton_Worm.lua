@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(LAMBTON_WORM_DESEGMENTER);
+	killer:addTitle(TITLE_LAMBTON_WORM_DESEGMENTER);
 end;

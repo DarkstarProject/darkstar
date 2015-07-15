@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13446);
 		else
-			player:addTitle(MERCY_ERRAND_RUNNER);
+			player:addTitle(TITLE_MERCY_ERRAND_RUNNER);
 			player:delKeyItem(SUPER_SOUP_POT);
 			player:setVar("CooksPrideVar",0);
 			player:addGil(GIL_RATE*3000);

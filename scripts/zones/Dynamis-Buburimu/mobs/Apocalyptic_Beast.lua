@@ -45,5 +45,5 @@ function onMobDeath(mob,killer)
        killer:addKeyItem(DYNAMIS_BUBURIMU_SLIVER);
 	   killer:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_BUBURIMU_SLIVER);
   end
-       killer:addTitle(DYNAMISBUBURIMU_INTERLOPER);
+       killer:addTitle(TITLE_DYNAMISBUBURIMU_INTERLOPER);
 end;

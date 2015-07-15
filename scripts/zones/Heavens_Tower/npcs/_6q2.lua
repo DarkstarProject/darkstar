@@ -85,10 +85,10 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x00D6) then
 		player:setVar("MissionStatus",2);
 		player:delKeyItem(STAR_CRESTED_SUMMONS);
-		player:addTitle(STARORDAINED_WARRIOR);
+		player:addTitle(TITLE_STARORDAINED_WARRIOR);
 	elseif(csid == 0x0136) then
 		player:setVar("MissionStatus",1);
-		player:addTitle(HERO_ON_BEHALF_OF_WINDURST);
+		player:addTitle(TITLE_HERO_ON_BEHALF_OF_WINDURST);
 		player:addKeyItem(HOLY_ONES_INVITATION);
 		player:messageSpecial(KEYITEM_OBTAINED,HOLY_ONES_INVITATION);
 	elseif(csid == 0x0138) then

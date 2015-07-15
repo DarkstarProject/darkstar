@@ -83,5 +83,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-    killer:addTitle(VIRTUOUS_SAINT);
+    killer:addTitle(TITLE_VIRTUOUS_SAINT);
 end;
