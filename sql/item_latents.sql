@@ -474,32 +474,32 @@ INSERT INTO `item_latents` VALUES(18491, 23, 10, 6, 1000); -- Attack+10 while TP
 -- -------------------------------------------------------
 -- Hachiman Jinpachi    
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15188, 288, 2, 7, 100); -- "Double Attack"+2% while TP >=100%
+INSERT INTO `item_latents` VALUES(15188, 288, 2, 7, 1000); -- "Double Attack"+2% while TP >=100%
 
 -- -------------------------------------------------------
 -- Hachiman Jinpachi +1
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15187, 288, 3, 7, 100); -- "Double Attack"+3% while TP >=100%
+INSERT INTO `item_latents` VALUES(15187, 288, 3, 7, 1000); -- "Double Attack"+3% while TP >=100%
 
 -- -------------------------------------------------------
 -- Hachiman Kote    
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(14876, 23, 10, 7, 100); -- Attack+10 while TP >=100%
+INSERT INTO `item_latents` VALUES(14876, 23, 10, 7, 1000); -- Attack+10 while TP >=100%
 
 -- -------------------------------------------------------
 -- Hachiman Kote +1
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(14878, 23, 12, 7, 100); -- Attack+12 while TP >=100%
+INSERT INTO `item_latents` VALUES(14878, 23, 12, 7, 1000); -- Attack+12 while TP >=100%
 
 -- -------------------------------------------------------
 -- Hachiman Hakama    
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15392, 24, 7, 7, 100); -- Ranged Attack+7 while TP >=100%
+INSERT INTO `item_latents` VALUES(15392, 24, 7, 7, 1000); -- Ranged Attack+7 while TP >=100%
 
 -- -------------------------------------------------------
 -- Hachiman Hakama +1
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15394, 24, 8, 7, 100); -- Ranged Attack+8 while TP >=100%
+INSERT INTO `item_latents` VALUES(15394, 24, 8, 7, 1000); -- Ranged Attack+8 while TP >=100%
 
 -- -------------------------------------------------------
 -- Rambler's Cloak
@@ -2414,3 +2414,156 @@ INSERT INTO `item_latents` VALUES(18352, 54, 15, 28, 0); -- [Element: Fire]+15
 
 INSERT INTO `item_latents` VALUES(18374, 366, 9, 28, 0); -- Mighty Sword DMG+9 on Firesday
 INSERT INTO `item_latents` VALUES(18374, 54, 15, 28, 0); -- [Element: Fire]+15
+
+-- -------------------------------------------------------
+-- Enhances Rice Ball gear
+-- -------------------------------------------------------
+-- Myochin Kote
+-- Tonosama Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 23, 50, 49, 4277); -- atk+50
+INSERT INTO `item_latents` VALUES(13972, 1, 30, 49, 4277); -- def+30
+INSERT INTO `item_latents` VALUES(13972, 288, 1, 49, 4277); -- double attack 1%
+-- Shogun Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 23, 50, 49, 4278); -- atk+50
+INSERT INTO `item_latents` VALUES(13972, 1, 30, 49, 4278); -- def+30
+INSERT INTO `item_latents` VALUES(13972, 288, 5, 49, 4278); -- double attack 5%
+-- Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 1, 50, 49, 4405); -- def+50
+-- Salmon Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 23, 40, 49, 4590); -- atk+40
+INSERT INTO `item_latents` VALUES(13972, 1, 40, 49, 4590); -- def+40
+-- Rogue Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 1, 50, 49, 4604); -- def+50
+INSERT INTO `item_latents` VALUES(13972, 230, 5, 49, 4604); -- beast killer 5% (guesstimated)
+-- Naval Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 23, 40, 49, 4605); -- atk+40
+INSERT INTO `item_latents` VALUES(13972, 1, 40, 49, 4605); -- def+40
+INSERT INTO `item_latents` VALUES(13972, 232, 5, 49, 4604); -- arcana killer 5% (guesstimated)
+-- Hinesama Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 23, 60, 49, 5928); -- atk+60
+INSERT INTO `item_latents` VALUES(13972, 1, 40, 49, 5928); -- def+40
+INSERT INTO `item_latents` VALUES(13972, 302, 1, 49, 5928); -- triple attack 1%
+-- Ojo Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 23, 60, 49, 5929); -- atk+60
+INSERT INTO `item_latents` VALUES(13972, 1, 40, 49, 5929); -- def+40
+INSERT INTO `item_latents` VALUES(13972, 302, 2, 49, 5929); -- triple attack 2%
+
+-- Myochin Kote +1
+-- Tonosama Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 23, 50, 49, 4277); -- atk+50
+INSERT INTO `item_latents` VALUES(14901, 1, 30, 49, 4277); -- def+30
+INSERT INTO `item_latents` VALUES(14901, 288, 1, 49, 4277); -- double attack 1%
+-- Shogun Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 23, 50, 49, 4278); -- atk+50
+INSERT INTO `item_latents` VALUES(14901, 1, 30, 49, 4278); -- def+30
+INSERT INTO `item_latents` VALUES(14901, 288, 5, 49, 4278); -- double attack 5%
+-- Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 1, 50, 49, 4405); -- def+50
+-- Salmon Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 23, 40, 49, 4590); -- atk+40
+INSERT INTO `item_latents` VALUES(14901, 1, 40, 49, 4590); -- def+40
+-- Rogue Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 1, 50, 49, 4604); -- def+50
+INSERT INTO `item_latents` VALUES(14901, 230, 5, 49, 4604); -- beast killer 5% (guesstimated)
+-- Naval Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 23, 40, 49, 4605); -- atk+40
+INSERT INTO `item_latents` VALUES(14901, 1, 40, 49, 4605); -- def+40
+INSERT INTO `item_latents` VALUES(14901, 232, 5, 49, 4604); -- arcana killer 5% (guesstimated)
+-- Hinesama Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 23, 60, 49, 5928); -- atk+60
+INSERT INTO `item_latents` VALUES(14901, 1, 40, 49, 5928); -- def+40
+INSERT INTO `item_latents` VALUES(14901, 302, 1, 49, 5928); -- triple attack 1%
+-- Ojo Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 23, 60, 49, 5929); -- atk+60
+INSERT INTO `item_latents` VALUES(14901, 1, 40, 49, 5929); -- def+40
+INSERT INTO `item_latents` VALUES(14901, 302, 2, 49, 5929); -- triple attack 2%
+
+-- Roshi Jinpachi
+-- Tonosama Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 23, 50, 49, 4277); -- atk+50
+INSERT INTO `item_latents` VALUES(13910, 1, 30, 49, 4277); -- def+30
+INSERT INTO `item_latents` VALUES(13910, 288, 1, 49, 4277); -- double attack 1%
+-- Shogun Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 23, 50, 49, 4278); -- atk+50
+INSERT INTO `item_latents` VALUES(13910, 1, 30, 49, 4278); -- def+30
+INSERT INTO `item_latents` VALUES(13910, 288, 5, 49, 4278); -- double attack 5%
+-- Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 1, 50, 49, 4405); -- def+50
+-- Salmon Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 23, 40, 49, 4590); -- atk+40
+INSERT INTO `item_latents` VALUES(13910, 1, 40, 49, 4590); -- def+40
+-- Rogue Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 1, 50, 49, 4604); -- def+50
+INSERT INTO `item_latents` VALUES(13910, 230, 5, 49, 4604); -- beast killer 5% (guesstimated)
+-- Naval Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 23, 40, 49, 4605); -- atk+40
+INSERT INTO `item_latents` VALUES(13910, 1, 40, 49, 4605); -- def+40
+INSERT INTO `item_latents` VALUES(13910, 232, 5, 49, 4604); -- arcana killer 5% (guesstimated)
+-- Hinesama Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 23, 60, 49, 5928); -- atk+60
+INSERT INTO `item_latents` VALUES(13910, 1, 40, 49, 5928); -- def+40
+INSERT INTO `item_latents` VALUES(13910, 302, 1, 49, 5928); -- triple attack 1%
+-- Ojo Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 23, 60, 49, 5929); -- atk+60
+INSERT INTO `item_latents` VALUES(13910, 1, 40, 49, 5929); -- def+40
+INSERT INTO `item_latents` VALUES(13910, 302, 2, 49, 5929); -- triple attack 2%
+
+-- Roshi Jinpachi +1
+-- Tonosama Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 23, 50, 49, 4277); -- atk+50
+INSERT INTO `item_latents` VALUES(13949, 1, 30, 49, 4277); -- def+30
+INSERT INTO `item_latents` VALUES(13949, 288, 1, 49, 4277); -- double attack 1%
+-- Shogun Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 23, 50, 49, 4278); -- atk+50
+INSERT INTO `item_latents` VALUES(13949, 1, 30, 49, 4278); -- def+30
+INSERT INTO `item_latents` VALUES(13949, 288, 5, 49, 4278); -- double attack 5%
+-- Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 1, 50, 49, 4405); -- def+50
+-- Salmon Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 23, 40, 49, 4590); -- atk+40
+INSERT INTO `item_latents` VALUES(13949, 1, 40, 49, 4590); -- def+40
+-- Rogue Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 1, 50, 49, 4604); -- def+50
+INSERT INTO `item_latents` VALUES(13949, 230, 5, 49, 4604); -- beast killer 5% (guesstimated)
+-- Naval Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 23, 40, 49, 4605); -- atk+40
+INSERT INTO `item_latents` VALUES(13949, 1, 40, 49, 4605); -- def+40
+INSERT INTO `item_latents` VALUES(13949, 232, 5, 49, 4604); -- arcana killer 5% (guesstimated)
+-- Hinesama Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 23, 60, 49, 5928); -- atk+60
+INSERT INTO `item_latents` VALUES(13949, 1, 40, 49, 5928); -- def+40
+INSERT INTO `item_latents` VALUES(13949, 302, 1, 49, 5928); -- triple attack 1%
+-- Ojo Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 23, 60, 49, 5929); -- atk+60
+INSERT INTO `item_latents` VALUES(13949, 1, 40, 49, 5929); -- def+40
+INSERT INTO `item_latents` VALUES(13949, 302, 2, 49, 5929); -- triple attack 2%
+
+-- Nobushi Kyahan
+-- Tonosama Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 23, 50, 49, 4277); -- atk+50
+INSERT INTO `item_latents` VALUES(11367, 1, 30, 49, 4277); -- def+30
+INSERT INTO `item_latents` VALUES(11367, 288, 1, 49, 4277); -- double attack 1%
+-- Shogun Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 23, 50, 49, 4278); -- atk+50
+INSERT INTO `item_latents` VALUES(11367, 1, 30, 49, 4278); -- def+30
+INSERT INTO `item_latents` VALUES(11367, 288, 5, 49, 4278); -- double attack 5%
+-- Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 1, 50, 49, 4405); -- def+50
+-- Salmon Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 23, 40, 49, 4590); -- atk+40
+INSERT INTO `item_latents` VALUES(11367, 1, 40, 49, 4590); -- def+40
+-- Rogue Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 1, 50, 49, 4604); -- def+50
+INSERT INTO `item_latents` VALUES(11367, 230, 5, 49, 4604); -- beast killer 5% (guesstimated)
+-- Naval Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 23, 40, 49, 4605); -- atk+40
+INSERT INTO `item_latents` VALUES(11367, 1, 40, 49, 4605); -- def+40
+INSERT INTO `item_latents` VALUES(11367, 232, 5, 49, 4604); -- arcana killer 5% (guesstimated)
+-- Hinesama Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 23, 60, 49, 5928); -- atk+60
+INSERT INTO `item_latents` VALUES(11367, 1, 40, 49, 5928); -- def+40
+INSERT INTO `item_latents` VALUES(11367, 302, 1, 49, 5928); -- triple attack 1%
+-- Ojo Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 23, 60, 49, 5929); -- atk+60
+INSERT INTO `item_latents` VALUES(11367, 1, 40, 49, 5929); -- def+40
+INSERT INTO `item_latents` VALUES(11367, 302, 2, 49, 5929); -- triple attack 2%
