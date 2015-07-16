@@ -27,7 +27,7 @@ function onTrigger(player,npc)
 	if(player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL) then
 		local MissionStatus = player:getVar("MissionStatus");
 		
-		if(MissionStatus == 4) then
+		if(MissionStatus >= 0 and MissionStatus <= 4) then
 			player:startEvent(0x006c);
 		elseif(MissionStatus >= 5 and MissionStatus <= 7) then
 			player:showText(npc, RESCUE_DRILL + 19);
