@@ -44,6 +44,10 @@ STATESTATUS CMagicState::Update(time_point tick)
             {
                 m_State = STATESTATUS::Interrupt;
             }
+            else if (!HasCost())
+            {
+                m_State = STATESTATUS::ErrorCost;
+            }
             else if (!m_PTargetFind.isWithinRange(&m_PTarget->loc.p, m_PSpell->getMaxRange()))
             {
                 m_State = STATESTATUS::ErrorRange;
@@ -104,6 +108,28 @@ bool CMagicState::CanCastSpell()
     return true;
 }
 
+bool CMagicState::HasCost()
+{
+    if (m_PSpell->getSpellGroup() == SPELLGROUP_NINJUTSU)
+    {
+        if (m_PEntity->objtype == TYPE_PC && !(m_flags & MAGICFLAGS_IGNORE_TOOLS) && !battleutils::HasNinjaTool(m_PEntity, m_PSpell, false))
+        {
+            return false;
+        }
+    }
+    // check has mp available
+    else if (!m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT) && 
+        !(m_flags & MAGICFLAGS_IGNORE_MP) && battleutils::CalculateSpellCost(m_PEntity, m_PSpell) > m_PEntity->health.mp)
+    {
+        if (m_PEntity->objtype == TYPE_MOB && m_PEntity->health.maxmp == 0)
+        {
+            ShowWarning("CMagicState::ValidCast Mob (%u) tried to cast magic with no mp!\n", m_PEntity->id);
+        }
+        return false;
+    }
+    return true;
+}
+
 bool CMagicState::ValidTarget()
 {
     //TODO - check target type vs valid targets
@@ -122,7 +148,7 @@ void CMagicState::Interrupt()
     m_State = m_State == STATESTATUS::InProgress ? STATESTATUS::Interrupt : m_State;
 }
 
-STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid)
+STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
 {
     m_PSpell = spell::GetSpell(spellid);
 
@@ -131,6 +157,11 @@ STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid)
         if (!CanCastSpell())
         {
             return STATESTATUS::ErrorNotUsable;
+        }
+
+        if (!HasCost())
+        {
+            return STATESTATUS::ErrorCost;
         }
 
         m_PTarget = m_PTargetFind.getValidTarget(targetid, m_PSpell->getValidTarget());
@@ -151,6 +182,7 @@ STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid)
             return STATESTATUS::ErrorScripted;
         }
 
+        m_flags = flags;
         m_startTime = server_clock::now();
         m_castTime = std::chrono::milliseconds(battleutils::CalculateSpellCastTime(m_PEntity, m_PSpell));
         m_startPos = m_PEntity->loc.p;

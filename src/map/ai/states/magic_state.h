@@ -47,10 +47,12 @@ public:
     void Interrupt();
 
     //start spellcast on target
-    STATESTATUS CastSpell(uint16 spellid, uint16 targetid);
+    STATESTATUS CastSpell(uint16 spellid, uint16 targetid, uint8 flags = 0);
 protected:
-    //check spell requirements vs. caster
+    //check spell requirements vs. caster ("you cannot cast this spell")
     bool CanCastSpell();
+
+    bool HasCost();
 
     //check spell requirements vs. target
     bool ValidTarget();
@@ -61,6 +63,7 @@ protected:
     CSpell* m_PSpell;
     duration m_castTime;
     position_t m_startPos;
+    uint8 m_flags;
 };
 
 #endif

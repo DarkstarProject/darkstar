@@ -37,6 +37,7 @@ enum class STATESTATUS {
     Finish,
     OK,
     ErrorNotUsable,
+    ErrorCost,
     ErrorRange,
     ErrorInvalidTarget,
     ErrorFacing,
@@ -55,6 +56,8 @@ public:
         m_PTargetFind(PTargetFind) {}
 
     virtual ~CState() = default;
+
+    CBattleEntity* GetTarget() { return m_PTarget; }
 
     //state logic done per tick
     virtual STATESTATUS Update(time_point tick) = 0;
