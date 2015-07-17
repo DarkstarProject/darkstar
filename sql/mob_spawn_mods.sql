@@ -202,6 +202,12 @@ INSERT INTO `mob_spawn_mods` VALUES (16814432,9,80,1);
 INSERT INTO `mob_spawn_mods` VALUES (16814432,170,50,0);
 INSERT INTO `mob_spawn_mods` VALUES (16814432,168,2,0);
 INSERT INTO `mob_spawn_mods` VALUES (16814432,29,33,0);
+INSERT INTO `mob_spawn_mods` VALUES (16921015,387,-95,0); -- Jailer of Fortitude -95% phys damage mods
+INSERT INTO `mob_spawn_mods` VALUES (16921015,390,-95,0);
+INSERT INTO `mob_spawn_mods` VALUES (16921016,60,100,0); -- Kf'ghrah res mods
+INSERT INTO `mob_spawn_mods` VALUES (16921016,61,-100,0); 
+INSERT INTO `mob_spawn_mods` VALUES (16921017,60,-100,0);
+INSERT INTO `mob_spawn_mods` VALUES (16921017,61,100,0); 
 /*!40000 ALTER TABLE `mob_spawn_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
