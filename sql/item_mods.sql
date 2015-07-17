@@ -1422,7 +1422,7 @@ INSERT INTO `item_mods` VALUES (10652, 5, 35); -- MP+35
 INSERT INTO `item_mods` VALUES (10652, 10, 7); -- VIT+7
 INSERT INTO `item_mods` VALUES (10652, 13, 7); -- MND+7
 INSERT INTO `item_mods` VALUES (10652, 27, -7); -- Enmity-7
-INSERT INTO `item_mods` VALUES (10652, 396, 100); -- "Cure" spellcasting time-10%
+INSERT INTO `item_mods` VALUES (10652, 519, 100); -- "Cure" spellcasting time-10%
 
 -- ------------------------------------------
 -- Sorcerer's Cap +2
