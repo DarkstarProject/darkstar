@@ -1118,3 +1118,19 @@ void CBattleEntity::delTrait(CTrait* PTrait)
     delModifier(PTrait->getMod(), PTrait->getValue());
     std::remove(TraitList.begin(), TraitList.end(), PTrait);
 }
+
+bool CBattleEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
+{
+    if (targetFlags & TARGET_ENEMY)
+    {
+        if (!isDead())
+        {
+            if (allegiance == (PInitiator->allegiance % 2 == 0 ? PInitiator->allegiance + 1 : PInitiator->allegiance - 1))
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}

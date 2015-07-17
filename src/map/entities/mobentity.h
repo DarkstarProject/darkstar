@@ -241,6 +241,8 @@ public:
 
   void      UpdateEntity() override;
 
+  virtual bool ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags) override;
+
   CMobEntity();
   ~CMobEntity();
 

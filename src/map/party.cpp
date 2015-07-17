@@ -29,11 +29,8 @@
 #include "alliance.h"
 #include "entities/battleentity.h"
 #include "utils/charutils.h"
-#include "conquest_system.h"
-#include "utils/battleutils.h"
 #include "utils/blueutils.h"
 #include "utils/jailutils.h"
-#include "utils/petutils.h"
 #include "utils/zoneutils.h"
 #include "map.h"
 #include "party.h"
@@ -47,6 +44,7 @@
 #include "packets/message_standard.h"
 #include "packets/party_define.h"
 #include "packets/party_member_update.h"
+#include "packets/message_basic.h"
 
 
 /************************************************************************
