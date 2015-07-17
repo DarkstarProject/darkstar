@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 3.3.8
 -- http://www.phpmyadmin.net
 --
@@ -2733,7 +2733,7 @@ INSERT INTO `mob_skill` VALUES (1649,380,143,'Noctoshield',1,7,2000,3000,1,0,0,0
 INSERT INTO `mob_skill` VALUES (1650,380,144,'Ultimate_Terror',1,7,2000,3000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1651,380,145,'Dream_Shroud',1,7,2000,3000,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1652,380,146,'Nightmare',1,30,2000,3000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1654,380,148,'Nether_Blast',0,25,2000,3000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (354,380,148,'nether_blast',0,10.0,646,3000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1655,380,149,'Ruinous_Omen',1,30,2000,3000,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (1655,380,324,'Pavor_Nocturnus',0,30,2000,3000,4,0,0,0);
 
