@@ -24,14 +24,11 @@
 #include "../common/showmsg.h"
 #include "../common/timer.h"
 
-#include "packets/inventory_finish.h"
 #include "packets/treasure_find_item.h"
 #include "packets/treasure_lot_item.h"
 
-#include <string.h>
-
 #include "utils/charutils.h"
-#include "entities/mobentity.h"
+#include "utils/itemutils.h"
 #include "treasure_pool.h"
 
 

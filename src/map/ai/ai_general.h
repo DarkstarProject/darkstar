@@ -157,7 +157,6 @@ public:
     CMagicState*     m_PMagicState;
     ActionQueue_t    m_actionQueue;
 
-
 private:
 
     //uint32			m_StartBattle;			// Battle start time
@@ -176,6 +175,7 @@ protected:
 	uint16			m_CorsairDoubleUp;		// Last used corsair roll eligible for DU
 	bool			m_AutoAttackEnabled;    // Flag to enable/disable auto attack
 	bool			m_MobAbilityEnabled;		// Flag to enable/disable mob skills
+    bool            m_enableCasting;
     CTargetFind*    m_PTargetFind;          // finds targets for AoEs
 
 	std::unique_ptr<CSpell>	        m_PSpell;				// читаемое заклинание

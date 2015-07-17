@@ -44,6 +44,7 @@ public:
 
     int16 GetErrorMsg();
     CSpell* GetSpell();
+    void TryInterrupt(CBattleEntity * PAttacker);
     void Interrupt();
 
     //start spellcast on target

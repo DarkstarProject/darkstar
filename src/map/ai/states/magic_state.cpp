@@ -144,7 +144,14 @@ bool CMagicState::HasMoved()
         floorf(m_startPos.z * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.z * 10 + 0.5) / 10;
 }
 
-//TODO: TryInterrupt 
+void CMagicState::TryInterrupt(CBattleEntity* PAttacker)
+{
+    if (m_State == STATESTATUS::InProgress && battleutils::TryInterruptSpell(PAttacker, m_PEntity))
+    {
+        Interrupt();
+    }
+}
+
 void CMagicState::Interrupt()
 {
     m_State = m_State == STATESTATUS::InProgress ? STATESTATUS::Interrupt : m_State;

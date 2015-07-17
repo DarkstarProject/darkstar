@@ -457,10 +457,7 @@ void CAIGeneral::SetAutoAttackEnabled(bool enabled)
 }
 void CAIGeneral::SetMagicCastingEnabled(bool enabled)
 {
-    if(m_PMagicState != nullptr)
-    {
-        m_PMagicState->m_enableCasting = enabled;
-    }
+    m_enableCasting = enabled;
 }
 void CAIGeneral::SetMobAbilityEnabled(bool enabled)
 {

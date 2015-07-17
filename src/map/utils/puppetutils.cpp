@@ -26,6 +26,7 @@
 #include "petutils.h"
 #include "battleutils.h"
 #include "charutils.h"
+#include "itemutils.h"
 #include "../packets/char_job_extra.h"
 #include "../packets/message_basic.h"
 

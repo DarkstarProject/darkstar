@@ -24,7 +24,6 @@
 #include "../../common/showmsg.h"
 #include "../../common/timer.h"
 #include "../../common/utils.h"
-#include "../../common/malloc.h"
 
 #include <string.h>
 #include <unordered_map>
@@ -43,7 +42,6 @@
 #include "lua_zone.h"
 #include "lua_item.h"
 
-#include "../alliance.h"
 #include "../ability.h"
 #include "../entities/baseentity.h"
 #include "../utils/battleutils.h"
@@ -56,17 +54,13 @@
 #include "../vana_time.h"
 #include "../utils/zoneutils.h"
 #include "../transport.h"
-#include "../zone_instance.h"
-#include "../packets/auction_house.h"
-#include "../packets/char_sync.h"
 #include "../packets/char_update.h"
 #include "../packets/entity_update.h"
-#include "../packets/char.h"
 #include "../packets/menu_raisetractor.h"
-#include "../packets/message_basic.h"
 #include "../packets/entity_visual.h"
 #include "../items/item_puppet.h"
 #include "../entities/automatonentity.h"
+#include "../utils/itemutils.h"
 
 namespace luautils
 {
