@@ -1422,7 +1422,7 @@ INSERT INTO `item_mods` VALUES (10652, 5, 35); -- MP+35
 INSERT INTO `item_mods` VALUES (10652, 10, 7); -- VIT+7
 INSERT INTO `item_mods` VALUES (10652, 13, 7); -- MND+7
 INSERT INTO `item_mods` VALUES (10652, 27, -7); -- Enmity-7
--- "Cure" spellcasting time unknown
+INSERT INTO `item_mods` VALUES (10652, 396, 100); -- "Cure" spellcasting time-10%
 
 -- ------------------------------------------
 -- Sorcerer's Cap +2
@@ -1470,7 +1470,8 @@ INSERT INTO `item_mods` VALUES (10657, 2, 42); -- HP+42
 INSERT INTO `item_mods` VALUES (10657, 8, 9); -- STR+9
 INSERT INTO `item_mods` VALUES (10657, 10, 9); -- VIT+9
 INSERT INTO `item_mods` VALUES (10657, 23, 15); -- Attack+15
--- Black magic casting time unknown
+INSERT INTO `item_mods` VALUES (10657, 395, 80); -- Black magic casting time-8%
+
 
 -- ------------------------------------------
 -- Monster Helm +2
