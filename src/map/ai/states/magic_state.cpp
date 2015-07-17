@@ -56,7 +56,7 @@ STATESTATUS CMagicState::Update(time_point tick)
             {
                 m_State = STATESTATUS::ErrorNotUsable;
             }
-            else if (!ValidTarget())
+            else if (!m_PTargetFind.getValidTarget(m_PTarget->targid, m_PSpell->getValidTarget()))
             {
                 m_State = STATESTATUS::ErrorInvalidTarget;
             }
@@ -130,12 +130,6 @@ bool CMagicState::HasCost()
     return true;
 }
 
-bool CMagicState::ValidTarget()
-{
-    //TODO - check target type vs valid targets
-    return true;
-}
-
 bool CMagicState::HasMoved()
 {
     return floorf(m_startPos.x * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.x * 10 + 0.5) / 10 ||
@@ -166,7 +160,7 @@ STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
 
         m_PTarget = m_PTargetFind.getValidTarget(targetid, m_PSpell->getValidTarget());
 
-        if (!ValidTarget())
+        if (!m_PTarget)
         {
             return STATESTATUS::ErrorInvalidTarget;
         }

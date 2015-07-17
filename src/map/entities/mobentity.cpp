@@ -518,3 +518,30 @@ void CMobEntity::UpdateEntity()
         updatemask = 0;
     }
 }
+
+bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
+{
+    if (StatusEffectContainer->GetConfrontationEffect() != PInitiator->StatusEffectContainer->GetConfrontationEffect())
+    {
+        return false;
+    }
+    if (CBattleEntity::ValidTarget(PInitiator, targetFlags))
+    {
+        return true;
+    }
+    if (targetFlags & TARGET_PLAYER_DEAD && (m_Behaviour & BEHAVIOUR_RAISABLE)
+        && isDead())
+    {
+        return true;
+    }
+
+    if (targetFlags & TARGET_NPC)
+    {
+        if (allegiance == PInitiator->allegiance && !(m_Behaviour & BEHAVIOUR_NOHELP))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}

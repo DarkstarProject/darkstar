@@ -54,9 +54,6 @@ protected:
 
     bool HasCost();
 
-    //check spell requirements vs. target
-    bool ValidTarget();
-
     bool HasMoved();
 
     uint16 m_errorMsg;
