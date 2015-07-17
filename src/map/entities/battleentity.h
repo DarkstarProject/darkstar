@@ -553,6 +553,7 @@ public:
     CStatusEffectContainer* StatusEffectContainer;
 
     virtual bool ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags);
+    virtual bool CanUseSpell(CSpell*);
 
     CBattleEntity();						// конструктор
     virtual ~CBattleEntity();						// деструктор

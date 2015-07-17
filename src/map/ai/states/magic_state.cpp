@@ -44,6 +44,15 @@ STATESTATUS CMagicState::Update(time_point tick)
             {
                 m_State = STATESTATUS::Interrupt;
             }
+            else if (!CanCastSpell())
+            {
+                m_State = STATESTATUS::ErrorNotUsable;
+            }
+            else if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
+                m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
+            {
+                m_State = STATESTATUS::ErrorNotUsableStatusEffect;
+            }
             else if (!HasCost())
             {
                 m_State = STATESTATUS::ErrorCost;
@@ -104,8 +113,7 @@ CSpell* CMagicState::GetSpell()
 
 bool CMagicState::CanCastSpell()
 {
-    //TODO - check permissions, requirements (level, learned, correct buff, etc)
-    return true;
+    return m_PEntity->CanUseSpell(m_PSpell);
 }
 
 bool CMagicState::HasCost()
@@ -152,19 +160,20 @@ STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
         {
             return STATESTATUS::ErrorNotUsable;
         }
-
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
+            m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
+        {
+            return STATESTATUS::ErrorNotUsableStatusEffect;
+        }
         if (!HasCost())
         {
             return STATESTATUS::ErrorCost;
         }
-
         m_PTarget = m_PTargetFind.getValidTarget(targetid, m_PSpell->getValidTarget());
-
         if (!m_PTarget)
         {
             return STATESTATUS::ErrorInvalidTarget;
         }
-
         if (distance(m_PEntity->loc.p, m_PTarget->loc.p) > m_PSpell->getMaxRange())
         {
             return STATESTATUS::ErrorRange;

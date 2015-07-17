@@ -1134,3 +1134,8 @@ bool CBattleEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
 
     return false;
 }
+
+bool CBattleEntity::CanUseSpell(CSpell* PSpell)
+{
+    return spell::CanUseSpell(this, PSpell);
+}

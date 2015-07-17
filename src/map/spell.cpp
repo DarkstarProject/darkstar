@@ -567,11 +567,17 @@ namespace spell
         return nullptr;
     }
 
-    //Check If user can cast spell
     bool CanUseSpell(CBattleEntity* PCaster, uint16 SpellID)
     {
-        bool usable = false;
         CSpell* spell = GetSpell(SpellID);
+        return CanUseSpell(PCaster, spell);
+    }
+
+    //Check If user can cast spell
+    bool CanUseSpell(CBattleEntity* PCaster, CSpell* spell)
+    {
+        bool usable = false;
+
         if (spell != nullptr)
         {
             uint8 JobMLVL = spell->getJob(PCaster->GetMJob());

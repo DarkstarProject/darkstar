@@ -328,6 +328,7 @@ public:
     virtual void delTrait(CTrait*) override;
 
     virtual bool ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags) override;
+    virtual bool CanUseSpell(CSpell*) override;
 
     CCharEntity();									// конструктор
     ~CCharEntity();									// деструктор

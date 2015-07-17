@@ -37,6 +37,7 @@ enum class STATESTATUS {
     Finish,
     OK,
     ErrorNotUsable,
+    ErrorNotUsableStatusEffect,
     ErrorCost,
     ErrorRange,
     ErrorInvalidTarget,
