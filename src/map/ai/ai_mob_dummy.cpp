@@ -1283,7 +1283,7 @@ void CAIMobDummy::ActionMagicInterrupt()
 {
     m_LastActionTime = m_Tick;
 
-    m_PMagicState->InterruptSpell();
+    m_PMagicState->Interrupt();
 
     m_PSpell = nullptr;
     m_PBattleSubTarget = nullptr;

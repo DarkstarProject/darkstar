@@ -25,52 +25,10 @@
 #define _CMOBSKILLSTATE_STATE_H
 
 #include "state.h"
-#include "../../entities/battleentity.h"
-
-class CMobSkill;
-class CMobEntity;
-
-enum PICKSKILL {
-  PICKSKILL_RANDOM = 0,
-  PICKSKILL_AOE = 1,
-  PICKSKILL_SINGLE = 2
-};
 
 class CMobSkillState : public CState
 {
-  public:
-    CMobSkillState(CBattleEntity* PEntity, CTargetFind* PTargetFind);
 
-    CMobSkill* PickSkill(PICKSKILL pickFlags);
-
-    bool CanUseSkill(CMobSkill* PMobSkill, CBattleEntity* PTarget);
-
-    // defaults to main job 2 hour
-    bool CanUseTwoHour(CBattleEntity* PTarget, JOBTYPE job = JOB_NON);
-    bool CanUseSpecial(CBattleEntity* PTarget);
-
-    STATESTATUS UseSkill(CMobSkill* PMobSkill, CBattleEntity* PTarget);
-    STATESTATUS UseTwoHour(CBattleEntity* PTarget, JOBTYPE job = JOB_NON);
-    STATESTATUS UseSpecial(CBattleEntity* PTarget);
-
-    void InterruptSkill();
-    void FinishSkill();
-
-    virtual STATESTATUS Update(uint32 tick);
-    virtual void Clear();
-
-    CMobSkill* GetSkill();
-
-    bool IsUsing();
-
-  private:
-    CMobSkill* m_PMobSkill;
-    CMobEntity* m_PMob;
-
-    uint32 m_startTime;
-    uint32 m_useTime;
-
-    bool ValidUse();
 };
 
 #endif
