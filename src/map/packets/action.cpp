@@ -45,6 +45,23 @@
 *																		*
 ************************************************************************/
 
+CActionPacket::CActionPacket(action_t& action)
+{
+    this->type = 0x28;
+    this->size = 0x12;
+
+    ref<uint32>(0x05) = action.id;
+
+    for (auto&& list : action.actionLists)
+    {
+        
+        for (auto&& target : list.actions)
+        {
+            
+        }
+    }
+}
+
 CActionPacket::CActionPacket(CBattleEntity * PEntity)
 {
 	this->type = 0x28;
