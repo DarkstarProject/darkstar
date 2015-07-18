@@ -25,6 +25,8 @@ This file is part of DarkStar-server source code.
 
 #include "../entities/baseentity.h"
 
+duration g_GCD = std::chrono::milliseconds(1500);
+
 CAIBase::CAIBase(CBaseEntity* _PEntity) :
     pathfind(nullptr),
     m_Tick(std::chrono::steady_clock::now()),

@@ -36,6 +36,7 @@ function onInitialize(zone)
     zone:registerRegion(20, 550, -2, 522, 557, 0, 529);  -- map 11 west porter (white)
     zone:registerRegion(21,-556, -2,-489,-550, 0,-483);  -- map 12 east porter (white)
     zone:registerRegion(22,-610, -2,-489,-603, 0,-483);  -- map 12 west porter (blue)
+zone:registerRegion(23,382, -1,-582,399, 1,-572); --mission 9 TOAU
 end;
 
 -----------------------------------
@@ -133,6 +134,11 @@ function onRegionEnter(player,region)
         [22] = function (x)
             player:startEvent(0x00D2);
         end,
+        [23] = function (x)
+        if(player:getCurrentMission(TOAU) == UNDERSEA_SCOUTING and player:getVar("TOAUM9") ==0)then
+            player:startEvent(0x0001);
+        end
+        end,
     }
 end;
 
@@ -148,8 +154,15 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+     printf("CSID: %u",csid);
+     printf("RESULT: %u",option);
+if(csid == 0x0001 and option == 10)then
+   player:updateEvent(1,0,0,0,0,0,0);
+elseif(csid == 0x0001 and option == 2)then
+   player:updateEvent(3,0,0,0,0,0,0);
+elseif(csid == 0x0001 and option == 3)then
+   player:updateEvent(7,0,0,0,0,0,0);    
+end
 end;
 
 -----------------------------------
@@ -157,6 +170,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+     printf("CSID: %u",csid);
+     printf("RESULT: %u",option);
+if(csid ==0x0001)then
+    player:addKeyItem(ASTRAL_COMPASS);
+    player:messageSpecial(KEYITEM_OBTAINED,ASTRAL_COMPASS);
+    player:setVar("TOAUM9",0);
+    player:completeMission(TOAU,UNDERSEA_SCOUTING);
+    player:addMission(TOAU,ASTRAL_WAVES);
+end
 end;

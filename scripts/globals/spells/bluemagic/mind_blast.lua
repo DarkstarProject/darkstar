@@ -54,7 +54,6 @@ function onSpellCast(caster,target,spell)
 
     if(damage > 0 and resist > 0.3) then
         local typeEffect = EFFECT_PARALYSIS;
-        target:delStatusEffect(typeEffect); -- Wiki says it can overwrite itself or other binds
         target:addStatusEffect(typeEffect,52,0,getBlueEffectDuration(caster,resist,typeEffect)); -- No info for power on the internet, static to 12 for now.
     end
 

@@ -31,6 +31,7 @@
 
 #include "luautils.h"
 #include "lua_ability.h"
+#include "lua_action.h"
 #include "lua_baseentity.h"
 #include "lua_battlefield.h"
 #include "lua_region.h"
@@ -129,6 +130,7 @@ int32 init()
     lua_register(LuaHandle,"getSpell",luautils::getSpell);
 
     Lunar<CLuaAbility>::Register(LuaHandle);
+    Lunar<CLuaAction>::Register(LuaHandle);
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
     Lunar<CLuaBattlefield>::Register(LuaHandle);
 	Lunar<CLuaInstance>::Register(LuaHandle);
@@ -3341,9 +3343,12 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbilit
 
     CLuaAbility LuaAbility(PAbility);
 	Lunar<CLuaAbility>::push(LuaHandle,&LuaAbility);
+	
+    CLuaAction LuaAction(action);
+    Lunar<CLuaAction>::push(LuaHandle, &LuaAction);
 
-	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
-	{
+    if( lua_pcall(LuaHandle,4,LUA_MULTRET,0) )
+    {
 		ShowError("luautils::onUseAbility: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return 0;
@@ -3437,6 +3442,38 @@ int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAb
         lua_pop(LuaHandle, returns);
     }
 	return 0;
+}
+
+int32 OnInstanceZoneIn(CCharEntity* PChar, CInstance* PInstance)
+{
+    CZone* PZone = PInstance->GetZone();
+
+    lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
+
+    if (prepFile(File, "onInstanceZoneIn"))
+    {
+        return -1;
+    }
+
+    CLuaBaseEntity LuaEntity(PChar);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaEntity);
+
+    CLuaInstance LuaInstance(PInstance);
+    Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
+
+    if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::onInstanceZoneIn: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 0)
+    {
+        ShowError("luautils::onInstanceZoneIn (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+    return 0;
 }
 
 int32 AfterInstanceRegister(uint32 tick, CTaskMgr::CTask *PTask)

@@ -939,6 +939,7 @@ MOD_SPELLINTERRUPT    = 0xA8
 MOD_MOVE              = 0xA9
 MOD_FASTCAST          = 0xAA
 MOD_UFASTCAST         = 0x197
+MOD_CURE_CAST_TIME    = 0x207
 MOD_DELAY             = 0xAB
 MOD_RANGED_DELAY      = 0xAC
 MOD_MARTIAL_ARTS      = 0xAD
@@ -1225,13 +1226,13 @@ MOD_EGGHELM             = 0x205 -- Egg Helm (Chocobo Digging)
 MOD_SHIELDBLOCKRATE = 0x206 -- Affects shield block rate, percent based (modID = 518))
 MOD_SCAVENGE_EFFECT = 0x138 -- (modId = 312)
 MOD_DIA_DOT         = 0x139 -- Increases the DoT damage of Dia (modId = 313)
+MOD_SHARPSHOT       = 0x13A -- Sharpshot accuracy bonus (modId = 314)
+MOD_ENH_DRAIN_ASPIR = 0x13B -- (modId = 315)
 
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
--- MOD_SPARE = 0x13A -- (modId = 314)
--- MOD_SPARE = 0x13B -- (modId = 315)
--- MOD_SPARE = 0x207 -- (modId = 519)
+-- MOD_SPARE = 0x208 -- (modId = 520)
 
 ------------------------------------
 -- Merit Definitions

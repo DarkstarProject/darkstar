@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: The Eldieme Necropolis [S]
+-- Area: The Eldieme Necropolis [S]
 --  NPC:  Turbulent Storm
---  Note: Starts Quest "The Fighting Fourth"
---  @pos 422 -48 -47 175
+-- Note: Starts Quest "The Fighting Fourth"
+-- @pos 422.461 -48.000 175
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -25,22 +25,26 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local WotgStatus = player:getVar("wotgStatus");	
-
-	if((player:getCurrentMission(WOTG) == BACK_TO_THE_BEGINNING) and WotgStatus == 0)
-		then player:startEvent(0x0007);
-	elseif((player:getCurrentMission(WOTG) == BACK_TO_THE_BEGINNING) and WotgStatus == 12)then
-		player:startEvent(0x0008);
-	end
-	return cs;
+    if (player:getCampaignAllegiance() > 0) then
+        if (player:getCampaignAllegiance() == 2) then
+            player:startEvent(9);
+        else
+            -- message for other nations missing
+            player:startEvent(9);
+        end
+    elseif (player:hasKeyItem(RED_RECOMMENDATION_LETTER) == true) then
+        player:startEvent(8);
+    elseif (player:hasKeyItem(RED_RECOMMENDATION_LETTER) == false) then
+        player:startEvent(7);
+    end
 end;
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,12 +52,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-	if(csid == 0x0007 and option == 0) then
-		player:addKeyItem(BLUE_RECOMMENDATION_LETTER);
-		player:messageSpecial(KEYITEM_OBTAINED,BLUE_RECOMMENDATION_LETTER);
-		player:setVar("WotgStatus",12);
-	end
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x0007 and option == 0) then
+        player:addKeyItem(BLUE_RECOMMENDATION_LETTER);
+        player:messageSpecial(KEYITEM_OBTAINED,BLUE_RECOMMENDATION_LETTER);
+    end
 end;
-

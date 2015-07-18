@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
+ï»¿-- phpMyAdmin SQL Dump
 -- version 3.3.8
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Ven 03 Février 2012    22:54
+-- GÃ©nÃ©rÃ© le : Ven 03 FÃ©vrier 2012    22:54
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Base de donnÃ©es: `dspdb`
 --
 
 -- --------------------------------------------------------
@@ -501,7 +501,7 @@ INSERT INTO `mob_skill` VALUES (139,47,139,'Jet_Stream',0,7.0,2000,1500,4,0,0,0)
 INSERT INTO `mob_skill` VALUES (666,125,143,'Blind_Vortex',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (667,125,144,'Giga_Scream',0,7.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (668,125,145,'Dread_Dive',0,7.0,2000,1500,4,0,0,2);
-INSERT INTO `mob_skill` VALUES (669,125,146,'Feather_Barrier',0,7.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (146,125,146,'Feather_Barrier',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (670,125,147,'Stormwind',1,15.0,6000,1500,4,0,0,0); -- Animation times may very.
 
 -- INSERT INTO `mob_skill` VALUES (143,?,143,'Scratch',0,7.0,2000,1500,4,0,0,0); -- Used in place of Blind Vortex by certain NM.
@@ -1387,21 +1387,21 @@ INSERT INTO `mob_skill` VALUES (263,98,818,'Cyclotail',1,10.0,2000,1500,4,0,0,0)
 INSERT INTO `mob_skill` VALUES (246,115,246,'Shackled_Fists',0,7.0,2000,0,4,1,0,0); -- Fomor Monks Only.
 INSERT INTO `mob_skill` VALUES (247,115,247,'Foxfire',4,10.0,2000,0,4,1,0,0); -- 1-Handed Weapon Wielders Only
 INSERT INTO `mob_skill` VALUES (248,115,248,'Grim_Halo',1,10.0,2000,0,4,1,0,0); -- 2-Handed Weapon Wielders Only
-INSERT INTO `mob_skill` VALUES (249,115,239,'Netherspikes',4,10.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skill` VALUES (250,115,241,'Carnal_Nightmare',1,10.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skill` VALUES (251,115,243,'Dancing_Chains',1,10.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skill` VALUES (252,115,242,'Aegis_Schism',0,7.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skill` VALUES (253,115,244,'Barbed_Crescent',0,7.0,2000,0,4,1,0,0);
+INSERT INTO `mob_skill` VALUES (249,115,249,'Netherspikes',4,10.0,2000,0,4,1,0,0);
+INSERT INTO `mob_skill` VALUES (250,115,250,'Carnal_Nightmare',1,10.0,2000,0,4,1,0,0);
+INSERT INTO `mob_skill` VALUES (251,115,251,'Aegis_Schism',0,7.0,2000,0,4,1,0,0);
+INSERT INTO `mob_skill` VALUES (252,115,252,'Dancing_Chains',1,10.0,2000,0,4,1,0,0);
+INSERT INTO `mob_skill` VALUES (253,115,253,'Barbed_Crescent',0,7.0,2000,0,4,1,0,0);
 
 -- Fomor (Dynamis - Hydra)
 INSERT INTO `mob_skill` VALUES (246,359,246,'Shackled_Fists',0,7.0,2000,0,4,1,0,0);    -- WS IDs are prob different.
 INSERT INTO `mob_skill` VALUES (247,359,247,'Foxfire',4,10.0,2000,0,4,1,0,0);          -- WS IDs are prob different.
 INSERT INTO `mob_skill` VALUES (248,359,248,'Grim_Halo',1,10.0,2000,0,4,1,0,0);        -- WS IDs are prob different.
-INSERT INTO `mob_skill` VALUES (249,359,239,'Netherspikes',4,10.0,2000,0,4,1,0,0);     -- WS IDs are prob different.
-INSERT INTO `mob_skill` VALUES (250,359,241,'Carnal_Nightmare',1,10.0,2000,0,4,1,0,0); -- WS IDs are prob different.
-INSERT INTO `mob_skill` VALUES (251,359,243,'Dancing_Chains',1,10.0,2000,0,4,1,0,0);   -- WS IDs are prob different.
-INSERT INTO `mob_skill` VALUES (252,359,242,'Aegis_Schism',0,7.0,2000,0,4,1,0,0);      -- WS IDs are prob different.
-INSERT INTO `mob_skill` VALUES (253,359,244,'Barbed_Crescent',0,7.0,2000,0,4,1,0,0);   -- WS IDs are prob different.
+INSERT INTO `mob_skill` VALUES (249,359,249,'Netherspikes',4,10.0,2000,0,4,1,0,0);     -- WS IDs are prob different.
+INSERT INTO `mob_skill` VALUES (250,359,250,'Carnal_Nightmare',1,10.0,2000,0,4,1,0,0); -- WS IDs are prob different.
+INSERT INTO `mob_skill` VALUES (251,359,251,'Aegis_Schism',0,7.0,2000,0,4,1,0,0);      -- WS IDs are prob different.
+INSERT INTO `mob_skill` VALUES (252,359,252,'Dancing_Chains',1,10.0,2000,0,4,1,0,0);   -- WS IDs are prob different.
+INSERT INTO `mob_skill` VALUES (253,359,253,'Barbed_Crescent',0,7.0,2000,0,4,1,0,0);   -- WS IDs are prob different.
 
 -- Tauri
 INSERT INTO `mob_skill` VALUES (242,240,851,'Triclip',0,7.0,2000,1500,4,0,0,0);
@@ -1713,10 +1713,14 @@ INSERT INTO `mob_skill` VALUES (1188,122,1062,'Vorpal_Blade',0,7.0,2000,1500,4,0
 INSERT INTO `mob_skill` VALUES (1189,122,1063,'Damnation_Dive',4,10.0,2000,1500,4,0,0,0); -- only used in bird form.  Logged on Eo'ghrah. theres a version that supposedly has knockback?
 INSERT INTO `mob_skill` VALUES (1190,122,1064,'Sickle_Slash',0,7.0,2000,1500,4,0,0,0); -- only used in spider form.
 
+-- Kf'Ghrah
 INSERT INTO `mob_skill` VALUES (1187,123,1061,'Hexidiscs',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1185,123,1065,'Actinic_Burst',1,10.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1189,123,1063,'Damnation_Dive',4,10.0,2000,1500,4,0,0,0); -- only used in bird form.  Logged on Eo'ghrah. theres a version that supposedly has knockback?
+INSERT INTO `mob_skill` VALUES (1190,123,1064,'Sickle_Slash',0,7.0,2000,1500,4,0,0,0); -- only used in spider form.
 
-INSERT INTO `mob_skill` VALUES (1187,124,1061,'Hexidiscs',0,7.0,2000,1500,4,0,0,0);
+-- Jailer of Fortitude
+INSERT INTO `mob_skill` VALUES (1188,124,1062,'Vorpal_Blade',0,7.0,2000,1500,4,0,0,0); -- only used in human form
 INSERT INTO `mob_skill` VALUES (1185,124,1065,'Actinic_Burst',1,10.0,2000,1500,4,0,0,0);
 
 -- Euvhi
@@ -1737,13 +1741,13 @@ INSERT INTO `mob_skill` VALUES (1212,272,1079,'Reactor_Overheat',4,10.0,2000,100
 INSERT INTO `mob_skill` VALUES (1213,272,1080,'Reactor_Overload',1,8.0,2000,1000,4,0,0,0); -- ring form only
 
 -- Yovra
--- INSERT INTO `mob_skill` VALUES (1114,271,1022,'Vitriolic_Barrage',1,10.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1114,271,1022,'Vitriolic_Barrage',1,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1115,271,1023,'Primal_Drill',1,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1116,271,1024,'Concussive_Oscillation',1,15.0,2000,1500,4,0,0,7);
 INSERT INTO `mob_skill` VALUES (1117,271,1025,'Ion_Shower',1,15.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (1118,271,1026,'Torrential_Torment',1,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1119,271,1027,'Asthenic_Fog',1,15.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (1120,271,1028,'Luminous_Drape',1,10.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1120,271,1028,'Luminous_Drape',1,10.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (1121,271,1029,'Fluorescence',0,7.0,2000,1500,1,0,0,0);
 
 -- Aern H2H fam 3 nin mnk
@@ -2472,7 +2476,7 @@ INSERT INTO `mob_skill` VALUES (1034,392,654,'Spike_Flail',1,23.0,2000,2000,4,8,
 INSERT INTO `mob_skill` VALUES (1035,392,962,'Glacial_Breath',4,18.0,2000,1500,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (1036,392,656,'Touchdown',1,6.0,2000,0,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (1037,392,964,'Sleet_Blast',1,23.0,2000,2000,4,8,0,0);
-INSERT INTO `mob_skill` VALUES (1038,392,653,'Gregale_Wing_Air',1,30.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1038,392,653,'Gregale_Wing_Air',1,30.0,2000,1500,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (1039,392,659,'Absolute_Terror',0,18.0,4000,1500,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (1040,392,660,'Horrid_Roar_3',0,18.0,4000,1500,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (439,392,432,'Blood_Weapon',0,18.0,2000,0,1,0,30,0);
@@ -2733,7 +2737,7 @@ INSERT INTO `mob_skill` VALUES (1649,380,143,'Noctoshield',1,7,2000,3000,1,0,0,0
 INSERT INTO `mob_skill` VALUES (1650,380,144,'Ultimate_Terror',1,7,2000,3000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1651,380,145,'Dream_Shroud',1,7,2000,3000,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1652,380,146,'Nightmare',1,30,2000,3000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1654,380,148,'Nether_Blast',0,25,2000,3000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (354,380,148,'nether_blast',0,10.0,646,3000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1655,380,149,'Ruinous_Omen',1,30,2000,3000,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (1655,380,324,'Pavor_Nocturnus',0,30,2000,3000,4,0,0,0);
 
@@ -2745,8 +2749,8 @@ INSERT INTO `mob_skill` VALUES (1887,389,152,'Perfect_defense',1,18.0,2000,1000,
 
 -- Soulflayers
 INSERT INTO `mob_skill` VALUES (1707,233,1327,'Mind_Blast',4,10.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1708,233,1328,'Immortal_Mind',0,7.0,2000,1000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (1709,233,1329,'Immortal_Shield',0,7.0,2000,1000,1,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (1708,233,1328,'Immortal_Mind',0,7.0,2000,1000,1,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (1709,233,1329,'Immortal_Shield',0,7.0,2000,1000,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1710,233,1330,'Mind_Purge',0,7.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1711,233,1331,'Tribulation',1,15.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1712,233,1332,'Immortal_Anathema',1,15.0,2000,1000,4,0,0,0);
@@ -2921,12 +2925,12 @@ INSERT INTO `mob_skill` VALUES (1497,310,1185,'Hysteric_Barrage',0,7.0,2000,1500
 INSERT INTO `mob_skill` VALUES (1502,310,1190,'Tail_Slap',4,10.0,2000,1500,4,0,0,3);
 
 -- Mahjlaef the Paintorn (311)
--- INSERT INTO `mob_skill` VALUES (1707,311,1327,'Mind_Blast',4,10.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1707,311,1327,'Mind_Blast',4,10.0,2000,1000,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (1708,311,1328,'Immortal_Mind',0,7.0,2000,1000,1,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (1709,311,1329,'Immortal_Shield',0,7.0,2000,1000,1,0,0,0);
--- INSERT INTO `mob_skill` VALUES (1710,311,1330,'Mind_Purge',0,7.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (1711,311,1331,'Tribulation',1,15.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (1712,311,1332,'Immortal_Anathema',1,15.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1710,311,1330,'Mind_Purge',0,7.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1711,311,1331,'Tribulation',1,15.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1712,311,1332,'Immortal_Anathema',1,15.0,2000,1000,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (0,311,0,'Reprobation',1,18.0,2000,1500,4,0,0,0); -- Only by NM
 
 -- Nuhn (312)

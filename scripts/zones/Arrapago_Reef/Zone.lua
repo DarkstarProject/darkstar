@@ -14,6 +14,7 @@ require("scripts/zones/Arrapago_Reef/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+zone:registerRegion(1,-462,-4,-420,-455,-1,-392);
 end;
 
 -----------------------------------
@@ -42,6 +43,9 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
+if(player:getCurrentMission(TOAU) ==  THE_BLACK_COFFIN and player:hasKeyItem(EPHRAMADIAN_GOLD_COIN) and player:getVar("TOAUM15") ==0)then
+player:startEvent(0x0008);
+end
 end;
 
 -----------------------------------
@@ -60,4 +64,11 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
+if(csid == 0x0008)then
+player:setVar("TOAUM15",1);
+player:delKeyItem(EPHRAMADIAN_GOLD_COIN);
+player:startEvent(0x0022,1,1,1,1,1,1,1,1);
+elseif(csid == 0x0022 and player:getVar("TOAUM15") == 1)then
+player:startEvent(0x0023);
+end    
 end;

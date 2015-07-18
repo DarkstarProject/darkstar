@@ -2856,7 +2856,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     case 0: // party - must by party leader or solo
         if (PChar->PParty == nullptr || PChar->PParty->GetLeader() == PChar)
         {
-            if (PChar->PParty && PChar->PParty->members.size() == 6)
+            if (PChar->PParty && PChar->PParty->members.size() > 5)
             {
                 PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
                 break;
@@ -3178,7 +3178,7 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 }
                 if (PInviter->PParty->GetLeader() == PInviter)
                 {
-                    if (PInviter->PParty->members.size() == 6){//someone else accepted invitation
+                    if (PInviter->PParty->members.size() > 5){//someone else accepted invitation
                         //PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 14)); Don't think retail sends error packet to inviter on full pt
                         PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
                     }
@@ -5454,7 +5454,7 @@ void PacketParserInitialize()
     PacketSize[0x015] = 0x10; PacketParser[0x015] = &SmallPacket0x015;
     PacketSize[0x016] = 0x04; PacketParser[0x016] = &SmallPacket0x016;
     PacketSize[0x017] = 0x00; PacketParser[0x017] = &SmallPacket0x017;
-    PacketSize[0x01A] = 0x08; PacketParser[0x01A] = &SmallPacket0x01A;
+    PacketSize[0x01A] = 0x0E; PacketParser[0x01A] = &SmallPacket0x01A;
     PacketSize[0x01B] = 0x00; PacketParser[0x01B] = &SmallPacket0x01B;
     PacketSize[0x01C] = 0x00; PacketParser[0x01C] = &SmallPacket0x01C;
     PacketSize[0x028] = 0x06; PacketParser[0x028] = &SmallPacket0x028;

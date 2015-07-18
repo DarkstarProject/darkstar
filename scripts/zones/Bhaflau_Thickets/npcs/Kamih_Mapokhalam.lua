@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
 -- NPC: Kamih Mapokhalam
--- 
+-- 20 -30 597 z 52 
 -----------------------------------
 package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
 -----------------------------------

@@ -567,6 +567,7 @@ public:
     int32 spawn(lua_State* L);
     int32 getCurrentAction(lua_State* L);
     int32 getAllegiance(lua_State* L);
+    int32 setAllegiance(lua_State* L);
     int32 stun(lua_State* L);
     int32 weaknessTrigger(lua_State* L);
     int32 setBehaviour(lua_State* L);
@@ -590,6 +591,9 @@ public:
     int32 retrieveItemFromSlip(lua_State *L);
 
     int32 getILvlMacc(lua_State *L);
+
+    int32 getConfrontationEffect(lua_State* L);
+    int32 copyConfrontationEffect(lua_State* L);    // copy confrontation effect, param = targetEntity:getShortID()
 };
 
 #endif

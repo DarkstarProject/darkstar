@@ -13,7 +13,6 @@ local offsets = {1, 3, 5, 2, 4, 6};
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_REGEN, 30);
 end;
 
 function onMobEngaged(mob)

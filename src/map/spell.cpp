@@ -158,6 +158,12 @@ bool CSpell::isHeal()
     return (getValidTarget() & TARGET_SELF) && getSkillType() == SKILL_HEA || m_ID == 549 || m_ID == 578 || m_ID == 581 || m_ID == 593;
 }
 
+
+bool CSpell::isCure()
+{
+    return ((m_ID >= 1 && m_ID <= 11) || m_ID == 93 || m_ID == 474 || m_ID == 475);
+}
+
 bool CSpell::isNa()
 {
     return m_ID >= 14 && m_ID <= 20;
@@ -172,6 +178,11 @@ bool CSpell::dealsDamage()
 {
     //damage or drain hp
     return m_message == 2 || m_message == 227 || m_message == 252 || m_message == 274;
+}
+
+float CSpell::getMaxRange()
+{
+    return 0;//TODO
 }
 
 float CSpell::getRadius()

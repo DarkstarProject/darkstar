@@ -43,7 +43,7 @@ function onMobFight(mob,target)
 
 	if (mob:getID() == DiabolosID) then
 
-		local TileOffset = 16818243;
+		local TileOffset = 16818258;
 
 		if(DiabolosHPP < 10 and GetNPCByID(TileOffset):getAnimation() == 9)then
 			GetNPCByID(TileOffset):setAnimation(8); -- Floor opens
@@ -81,7 +81,7 @@ function onMobFight(mob,target)
 
 	elseif (mob:getID() == DiabolosID+7) then
 
-		local TileOffset = 16818251;
+		local TileOffset = 16818266;
 
 		if(DiabolosHPP < 10 and GetNPCByID(TileOffset):getAnimation() == 9)then
 			GetNPCByID(TileOffset):setAnimation(8);
@@ -119,7 +119,7 @@ function onMobFight(mob,target)
 
 	elseif (mob:getID() == DiabolosID+14) then
 
-		local TileOffset = 16818259;
+		local TileOffset = 16818274;
 
 		if(DiabolosHPP < 10 and GetNPCByID(TileOffset):getAnimation() == 9)then
 			GetNPCByID(TileOffset):setAnimation(8);
