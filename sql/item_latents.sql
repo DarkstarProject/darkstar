@@ -1243,7 +1243,7 @@ INSERT INTO `item_latents` VALUES(16306, 25, 20, 13, 4); -- accuracy+20 while un
 -- -------------------------------------------------------
 -- Colossus's Earring         
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(16058, 161, -1, 53, 7); -- physical damage -2% during light weather (has -1% normally)
+INSERT INTO `item_latents` VALUES(16058, 161, -1, 52, 7); -- physical damage -2% during light weather (has -1% normally)
 
 -- -------------------------------------------------------
 -- Aesir Ear Pendant        
@@ -2367,6 +2367,23 @@ INSERT INTO `item_latents` VALUES(13562, 68, 15, 31, 0); -- +15 Evasion on Winds
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15557, 6, -15, 32, 0); -- -15% MP on Darksday
 INSERT INTO `item_latents` VALUES(15557, 116, 15, 32, 0); -- +15 Dark magic skill on Darksday
+
+-- -------------------------------------------------------
+-- Diabolos's Pole
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17599, 315, 25, 52, 8); -- +25% drain/aspir potency in Dark weather
+
+-- -------------------------------------------------------
+-- Diabolos's Earring
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14814, 25, -6, 52, 8); -- cumulative acc-3 in Dark weather
+INSERT INTO `item_latents` VALUES(14814, 30, 2, 52, 8); -- magic acc+2 in Dark weather
+
+-- -------------------------------------------------------
+-- Diabolos's Torque
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15516, 26, -16, 52, 8); -- cumulative ranged acc-8 in Dark weather
+INSERT INTO `item_latents` VALUES(15516, 24, 7, 52, 8); -- ranged acc+8 in Dark weather
 
 -- -------------------------------------------------------
 -- Mighty Weapons + Sairen
