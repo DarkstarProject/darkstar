@@ -32,7 +32,7 @@
 #include "lua/luautils.h"
 #include "packets/char_recast.h"
 #include "packets/char_skills.h"
-
+#include "packets/message_basic.h"
 
 CBattlefieldHandler::CBattlefieldHandler(uint16 zoneid)
 {

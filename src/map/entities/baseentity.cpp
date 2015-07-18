@@ -32,6 +32,7 @@ CBaseEntity::CBaseEntity()
 	namevis = 1;
 
     PBattleAI = nullptr;
+    PAI = nullptr;
 	PBCNM = nullptr;
 	PInstance = nullptr;
 

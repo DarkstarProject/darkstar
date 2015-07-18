@@ -21,7 +21,6 @@
 ===========================================================================
 */
 
-#include "../../common/lua/lunar.h"
 #include "../../common/showmsg.h"
 #include "../../common/timer.h"
 #include "../../common/utils.h"
@@ -29,6 +28,7 @@
 
 #include <string.h>
 #include <unordered_map>
+#include <cstdio>
 
 #include "luautils.h"
 #include "lua_ability.h"
@@ -181,6 +181,21 @@ int32 garbageCollect()
     return 0;
 }
 
+int register_fp()
+{
+    if (lua_isfunction(LuaHandle, -1))
+    {
+        lua_pushvalue(LuaHandle, -1);
+        return luaL_ref(LuaHandle, LUA_REGISTRYINDEX);
+    }
+    return 0;
+}
+
+void unregister_fp(int r)
+{
+    luaL_unref(LuaHandle, LUA_REGISTRYINDEX, r);
+}
+
 /************************************************************************
 *																		*
 *  Переопределение официальной lua функции print						*
@@ -227,11 +242,49 @@ int32 prepFile(int8* File, const char* function)
     return 0;
 }
 
+template<class T>
+void pushArg(T& arg)
+{
+    if (T::methods)
+    {
+        Lunar<T>::push(LuaHandle, &arg);
+    }
+}
+
+template<>
+void pushArg<int>(int& arg)
+{
+    lua_pushinteger(LuaHandle, arg);
+}
+
+template<>
+void pushArg<float>(float& arg)
+{
+    lua_pushnumber(LuaHandle, arg);
+}
+
+template<>
+void pushArg<bool>(bool& arg)
+{
+    lua_pushboolean(LuaHandle, arg);
+}
+
+template<>
+void pushArg<nullptr_t>(nullptr_t& arg)
+{
+    lua_pushnil(LuaHandle);
+}
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
 *                                                                       *
 ************************************************************************/
+
+void callFunc(int nargs)
+{
+    lua_pcall(LuaHandle, nargs, 0, 0);
+}
 
 int32 SendEntityVisualPacket(lua_State* L)
 {
