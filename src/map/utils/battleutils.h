@@ -30,7 +30,6 @@
 #include <list>
 
 #include "../entities/battleentity.h"
-#include "../merit.h"
 
 class CAbility;
 class CItemWeapon;
@@ -228,6 +227,10 @@ namespace battleutils
     void				DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset);
     void				DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll);
     void                AddTraits(CBattleEntity* PEntity, TraitList_t* TraitList, uint8 level);
+
+    uint32              CalculateSpellCastTime(CBattleEntity*, CSpell*);
+    uint16              CalculateSpellCost(CBattleEntity*, CSpell*);
+    uint32              CalculateSpellRecastTime(CBattleEntity*, CSpell*);
 };
 
 #endif

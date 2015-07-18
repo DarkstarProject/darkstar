@@ -64,8 +64,6 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
     m_PTargetFind = new CTargetFind(PMob);
     m_PPathFind = new CPathFind(PMob);
 
-    m_PMagicState = new CMagicState(PMob, m_PTargetFind);
-
     m_checkDespawn = false;
     m_PSpecialSkill = nullptr;
     m_firstSpell = true;
@@ -1213,82 +1211,82 @@ void CAIMobDummy::ActionStun()
 
 void CAIMobDummy::ActionMagicStart()
 {
-    DSP_DEBUG_BREAK_IF(m_PSpell == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == nullptr);
+    //DSP_DEBUG_BREAK_IF(m_PSpell == nullptr);
+    //DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == nullptr);
 
-    // this must be at the top to RESET magic cast timer
-    m_LastMagicTime = m_Tick;
+    //// this must be at the top to RESET magic cast timer
+    //m_LastMagicTime = m_Tick;
 
-    STATESTATUS status = m_PMagicState->CastSpell(GetCurrentSpell(), m_PBattleSubTarget);
+    //STATESTATUS status = m_PMagicState->CastSpell(GetCurrentSpell(), m_PBattleSubTarget);
 
-    if (status == STATESTATUS_START)
-    {
-        m_ActionType = ACTION_MAGIC_CASTING;
-    }
-    else
-    {
-        TransitionBack(true);
-    }
+    //if (status == STATESTATUS_START)
+    //{
+    //    m_ActionType = ACTION_MAGIC_CASTING;
+    //}
+    //else
+    //{
+    //    TransitionBack(true);
+    //}
 
 }
 
 void CAIMobDummy::ActionMagicCasting()
 {
-    STATESTATUS status = m_PMagicState->Update(m_Tick);
+    //STATESTATUS status = m_PMagicState->Update(m_Tick);
 
-    if (status == STATESTATUS_INTERRUPT)
-    {
-        m_ActionType = ACTION_MAGIC_INTERRUPT;
-        ActionMagicInterrupt();
-    }
-    else if (status == STATESTATUS_ERROR)
-    {
-        TransitionBack(true);
-    }
-    else if (status == STATESTATUS_FINISH)
-    {
-        m_ActionType = ACTION_MAGIC_FINISH;
-        ActionMagicFinish();
-    }
+    //if (status == STATESTATUS_INTERRUPT)
+    //{
+    //    m_ActionType = ACTION_MAGIC_INTERRUPT;
+    //    ActionMagicInterrupt();
+    //}
+    //else if (status == STATESTATUS_ERROR)
+    //{
+    //    TransitionBack(true);
+    //}
+    //else if (status == STATESTATUS_FINISH)
+    //{
+    //    m_ActionType = ACTION_MAGIC_FINISH;
+    //    ActionMagicFinish();
+    //}
 }
 
 void CAIMobDummy::ActionMagicFinish()
 {
-    m_LastActionTime = m_Tick;
-    m_LastMagicTime = m_Tick - WELL512::GetRandomNumber(m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) / 2);
-    m_DeaggroTime = m_Tick;
+    //m_LastActionTime = m_Tick;
+    //m_LastMagicTime = m_Tick - WELL512::GetRandomNumber(m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) / 2);
+    //m_DeaggroTime = m_Tick;
 
-    m_PMagicState->FinishSpell();
+    //m_PMagicState->FinishSpell();
 
-    if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0)){
-        // let's make CSing monsters actually use lots of spells.
-        m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + 5000;
-    }
-    else if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT,0) ||
-        m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SOUL_VOICE,0))
-    {
-        // cast magic sooner
-        m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + 10000;
-    }
+    //if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0)){
+    //    // let's make CSing monsters actually use lots of spells.
+    //    m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + 5000;
+    //}
+    //else if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT,0) ||
+    //    m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SOUL_VOICE,0))
+    //{
+    //    // cast magic sooner
+    //    m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + 10000;
+    //}
 
-    // display animation, then continue fighting
-    Stun(m_PSpell->getAnimationTime());
+    //// display animation, then continue fighting
+    //Stun(m_PSpell->getAnimationTime());
 
-    // this shouldn't have to exist all the way through
-    m_PSpell = nullptr;
-    m_PBattleSubTarget = nullptr;
+    //// this shouldn't have to exist all the way through
+    //m_PSpell = nullptr;
+    //m_PBattleSubTarget = nullptr;
 }
 
 void CAIMobDummy::ActionMagicInterrupt()
 {
-    m_LastActionTime = m_Tick;
+    //m_LastActionTime = m_Tick;
 
-    m_PMagicState->InterruptSpell();
+    //m_PMagicState->Interrupt();
 
-    m_PSpell = nullptr;
-    m_PBattleSubTarget = nullptr;
+    //m_PSpell = nullptr;
+    //m_PBattleSubTarget = nullptr;
 
-    TransitionBack();
+    //TransitionBack();
 }
 
 /************************************************************************

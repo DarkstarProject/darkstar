@@ -1118,3 +1118,29 @@ void CBattleEntity::delTrait(CTrait* PTrait)
     delModifier(PTrait->getMod(), PTrait->getValue());
     std::remove(TraitList.begin(), TraitList.end(), PTrait);
 }
+
+CAIBattle* CBattleEntity::PAIBattle()
+{
+    return static_cast<CAIBattle*>(PAI.get());
+}
+
+bool CBattleEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
+{
+    if (targetFlags & TARGET_ENEMY)
+    {
+        if (!isDead())
+        {
+            if (allegiance == (PInitiator->allegiance % 2 == 0 ? PInitiator->allegiance + 1 : PInitiator->allegiance - 1))
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+bool CBattleEntity::CanUseSpell(CSpell* PSpell)
+{
+    return spell::CanUseSpell(this, PSpell);
+}

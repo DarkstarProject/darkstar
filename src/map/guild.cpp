@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "items/item.h"
 
 #include "utils/charutils.h"
+#include "utils/itemutils.h"
 
 CGuild::CGuild(uint8 id, const char* _pointsName)
 {

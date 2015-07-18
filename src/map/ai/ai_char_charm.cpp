@@ -34,6 +34,7 @@ This file is part of DarkStar-server source code.
 #include "../packets/char.h"
 
 #include "../utils/battleutils.h"
+#include "../packets/message_basic.h"
 
 /************************************************************************
 *																		*

@@ -421,3 +421,40 @@ void CCharEntity::delTrait(CTrait* PTrait)
     CBattleEntity::delTrait(PTrait);
     charutils::delTrait(this, PTrait->getID());
 }
+
+bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
+{
+    if (StatusEffectContainer->GetConfrontationEffect() != PInitiator->StatusEffectContainer->GetConfrontationEffect())
+    {
+        return false;
+    }
+    if (CBattleEntity::ValidTarget(PInitiator, targetFlags))
+    {
+        return true;
+    }
+    if ((targetFlags & TARGET_SELF) &&
+        this == PInitiator)
+    {
+        return true;
+    }
+    if (targetFlags & TARGET_PLAYER)
+    {
+        return true;
+    }
+    if ((targetFlags & TARGET_PLAYER_PARTY) &&
+        (PParty && PInitiator->PParty == PParty))
+    {
+        return true;
+    }
+    if ((targetFlags & TARGET_PLAYER_DEAD) && isDead())
+    {
+        return true;
+    }
+
+    return false;
+}
+
+bool CCharEntity::CanUseSpell(CSpell* PSpell)
+{
+    return charutils::hasSpell(this, PSpell->getID()) && CBattleEntity::CanUseSpell(PSpell);
+}

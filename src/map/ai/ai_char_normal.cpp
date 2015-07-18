@@ -112,8 +112,6 @@ CAICharNormal::CAICharNormal(CCharEntity* PChar)
     m_PTargetFind = new CTargetFind(PChar);
     m_AttackMessageTime = 0;
     m_LastCoolDown = 0;
-
-    m_PMagicState = new CMagicState(PChar, m_PTargetFind, 21.5, 21.5);
 }
 
 /************************************************************************
@@ -1297,28 +1295,28 @@ void CAICharNormal::ActionMagicStart()
     // keeping this for legacy
     // m_PSpell will eventually be refactored out
     // needed for packets
-    DSP_DEBUG_BREAK_IF(m_PSpell == nullptr);
-    DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
+    //DSP_DEBUG_BREAK_IF(m_PSpell == nullptr);
+    //DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
 
-    if (m_PMagicState->IsOnCoolDown(m_Tick))
-    {
-        MagicStartError();
-        return;
-    }
+    //if (m_PMagicState->IsOnCoolDown(m_Tick))
+    //{
+    //    MagicStartError();
+    //    return;
+    //}
 
-    STATESTATUS status = m_PMagicState->CastSpell(GetCurrentSpell(), m_PTargetFind->getValidTarget(m_ActionTargetID, m_PSpell->getValidTarget()));
+    //STATESTATUS status = m_PMagicState->CastSpell(GetCurrentSpell(), m_PTargetFind->getValidTarget(m_ActionTargetID, m_PSpell->getValidTarget()));
 
 
-    if (status == STATESTATUS_START)
-    {
-        m_ActionTargetID = 0;
-        m_LastActionTime = m_Tick;
-        m_ActionType = ACTION_MAGIC_CASTING;
-    }
-    else
-    {
-        MagicStartError();
-    }
+    //if (status == STATESTATUS_START)
+    //{
+    //    m_ActionTargetID = 0;
+    //    m_LastActionTime = m_Tick;
+    //    m_ActionType = ACTION_MAGIC_CASTING;
+    //}
+    //else
+    //{
+    //    MagicStartError();
+    //}
 }
 
 /************************************************************************
@@ -1329,14 +1327,14 @@ void CAICharNormal::ActionMagicStart()
 
 void CAICharNormal::MagicStartError()
 {
-    DSP_DEBUG_BREAK_IF(m_ActionType != ACTION_MAGIC_START);
+    //DSP_DEBUG_BREAK_IF(m_ActionType != ACTION_MAGIC_START);
 
-    m_ActionTargetID = 0;
+    //m_ActionTargetID = 0;
 
-    m_PSpell = nullptr;
-    m_PBattleSubTarget = nullptr;
+    //m_PSpell = nullptr;
+    //m_PBattleSubTarget = nullptr;
 
-    TransitionBack();
+    //TransitionBack();
 }
 
 /************************************************************************
@@ -1347,22 +1345,22 @@ void CAICharNormal::MagicStartError()
 
 void CAICharNormal::ActionMagicCasting()
 {
-    STATESTATUS status = m_PMagicState->Update(m_Tick);
+    //STATESTATUS status = m_PMagicState->Update(m_Tick);
 
-    if (status == STATESTATUS_INTERRUPT)
-    {
-        m_ActionType = ACTION_MAGIC_INTERRUPT;
-        ActionMagicInterrupt();
-    }
-    else if (status == STATESTATUS_ERROR)
-    {
-        TransitionBack();
-    }
-    else if (status == STATESTATUS_FINISH)
-    {
-        m_ActionType = ACTION_MAGIC_FINISH;
-        ActionMagicFinish();
-    }
+    //if (status == STATESTATUS_INTERRUPT)
+    //{
+    //    m_ActionType = ACTION_MAGIC_INTERRUPT;
+    //    ActionMagicInterrupt();
+    //}
+    //else if (status == STATESTATUS_ERROR)
+    //{
+    //    TransitionBack();
+    //}
+    //else if (status == STATESTATUS_FINISH)
+    //{
+    //    m_ActionType = ACTION_MAGIC_FINISH;
+    //    ActionMagicFinish();
+    //}
 }
 
 /************************************************************************
@@ -1373,16 +1371,16 @@ void CAICharNormal::ActionMagicCasting()
 
 void CAICharNormal::ActionMagicFinish()
 {
-    m_PMagicState->FinishSpell();
+    //m_PMagicState->FinishSpell();
 
-    m_LastMeleeTime += (m_Tick - m_LastActionTime);
+    //m_LastMeleeTime += (m_Tick - m_LastActionTime);
 
-    m_PMagicState->SetLastCoolTime(m_Tick);
+    //m_PMagicState->SetLastCoolTime(m_Tick);
 
-    m_PSpell = nullptr;
-    m_PBattleSubTarget = nullptr;
+    //m_PSpell = nullptr;
+    //m_PBattleSubTarget = nullptr;
 
-    TransitionBack();
+    //TransitionBack();
 }
 
 /************************************************************************
@@ -1393,16 +1391,16 @@ void CAICharNormal::ActionMagicFinish()
 
 void CAICharNormal::ActionMagicInterrupt()
 {
-    m_PMagicState->InterruptSpell();
+    //m_PMagicState->Interrupt();
 
-    m_LastMeleeTime += (m_Tick - m_LastActionTime);
+    //m_LastMeleeTime += (m_Tick - m_LastActionTime);
 
-    m_PMagicState->SetLastCoolTime(m_Tick);
+    //m_PMagicState->SetLastCoolTime(m_Tick);
 
-    m_PSpell = nullptr;
-    m_PBattleSubTarget = nullptr;
+    //m_PSpell = nullptr;
+    //m_PBattleSubTarget = nullptr;
 
-    TransitionBack();
+    //TransitionBack();
 }
 
 /************************************************************************

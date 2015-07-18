@@ -21,14 +21,13 @@
 ===========================================================================
 */
 
-#include "../../common/lua/lunar.h"
 #include "../../common/showmsg.h"
 #include "../../common/timer.h"
 #include "../../common/utils.h"
-#include "../../common/malloc.h"
 
 #include <string.h>
 #include <unordered_map>
+#include <cstdio>
 
 #include "luautils.h"
 #include "lua_ability.h"
@@ -44,7 +43,6 @@
 #include "lua_zone.h"
 #include "lua_item.h"
 
-#include "../alliance.h"
 #include "../ability.h"
 #include "../entities/baseentity.h"
 #include "../utils/battleutils.h"
@@ -57,17 +55,13 @@
 #include "../vana_time.h"
 #include "../utils/zoneutils.h"
 #include "../transport.h"
-#include "../zone_instance.h"
-#include "../packets/auction_house.h"
-#include "../packets/char_sync.h"
 #include "../packets/char_update.h"
 #include "../packets/entity_update.h"
-#include "../packets/char.h"
 #include "../packets/menu_raisetractor.h"
-#include "../packets/message_basic.h"
 #include "../packets/entity_visual.h"
 #include "../items/item_puppet.h"
 #include "../entities/automatonentity.h"
+#include "../utils/itemutils.h"
 
 namespace luautils
 {
@@ -181,6 +175,21 @@ int32 garbageCollect()
     return 0;
 }
 
+int register_fp()
+{
+    if (lua_isfunction(LuaHandle, -1))
+    {
+        lua_pushvalue(LuaHandle, -1);
+        return luaL_ref(LuaHandle, LUA_REGISTRYINDEX);
+    }
+    return 0;
+}
+
+void unregister_fp(int r)
+{
+    luaL_unref(LuaHandle, LUA_REGISTRYINDEX, r);
+}
+
 /************************************************************************
 *																		*
 *  Переопределение официальной lua функции print						*
@@ -227,11 +236,49 @@ int32 prepFile(int8* File, const char* function)
     return 0;
 }
 
+template<class T>
+void pushArg(T& arg)
+{
+    if (T::methods)
+    {
+        Lunar<T>::push(LuaHandle, &arg);
+    }
+}
+
+template<>
+void pushArg<int>(int& arg)
+{
+    lua_pushinteger(LuaHandle, arg);
+}
+
+template<>
+void pushArg<float>(float& arg)
+{
+    lua_pushnumber(LuaHandle, arg);
+}
+
+template<>
+void pushArg<bool>(bool& arg)
+{
+    lua_pushboolean(LuaHandle, arg);
+}
+
+template<>
+void pushArg<nullptr_t>(nullptr_t& arg)
+{
+    lua_pushnil(LuaHandle);
+}
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
 *                                                                       *
 ************************************************************************/
+
+void callFunc(int nargs)
+{
+    lua_pcall(LuaHandle, nargs, 0, 0);
+}
 
 int32 SendEntityVisualPacket(lua_State* L)
 {

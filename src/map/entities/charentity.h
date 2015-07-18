@@ -28,7 +28,6 @@ This file is part of DarkStar-server source code.
 #include "../../common/mmo.h"
 
 #include <map>
-#include <list>
 #include <deque>
 #include <mutex>
 
@@ -43,9 +42,7 @@ This file is part of DarkStar-server source code.
 #include "../trade_container.h"
 #include "../treasure_pool.h"
 #include "../merit.h"
-#include "../instance.h"
 #include "../universal_container.h"
-#include "../utils/itemutils.h"
 
 // Quest Areas
 
@@ -329,6 +326,9 @@ public:
 
     virtual void addTrait(CTrait*) override;
     virtual void delTrait(CTrait*) override;
+
+    virtual bool ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags) override;
+    virtual bool CanUseSpell(CSpell*) override;
 
     CCharEntity();									// конструктор
     ~CCharEntity();									// деструктор

@@ -25,73 +25,56 @@
 #ifndef _CSTATE_H
 #define _CSTATE_H
 
-#include "../../../common/utils.h"
-#include "../../packets/message_basic.h"
-#include "../../packets/action.h"
+#include "../ai_base.h"
 
 class CBattleEntity;
 class CTargetFind;
 
-// delay for casting next spell
-#define COOL_DOWN_TIME 3000
-
-enum STATESTATUS {
-  STATESTATUS_NONE,
-  STATESTATUS_START,
-  STATESTATUS_TICK,
-  STATESTATUS_FINISH,
-  STATESTATUS_ERROR,
-  STATESTATUS_INTERRUPT
+enum class STATESTATUS {
+    None,
+    InProgress,
+    Interrupt,
+    Finish,
+    OK,
+    ErrorNotUsable,
+    ErrorNotUsableStatusEffect,
+    ErrorCost,
+    ErrorRange,
+    ErrorInvalidTarget,
+    ErrorFacing,
+    ErrorParalyzed,
+    ErrorIntimidated,
+    ErrorScripted,
+    ErrorUnknown
 };
 
 class CState
 {
+public:
+    CState(CBattleEntity* PEntity, CTargetFind& PTargetFind) :
+        m_PEntity(PEntity),
+        m_PTarget(nullptr),
+        m_PTargetFind(PTargetFind) {}
 
-  public:
-    CState(CBattleEntity* PEntity, CTargetFind* PTargetFind);
-    ~CState();
+    virtual ~CState() = default;
 
-    virtual STATESTATUS Update(uint32 tick);
-    virtual void Clear();
+    CBattleEntity* GetTarget() { return m_PTarget; }
 
-    bool CheckValidTarget(CBattleEntity* PTarget);
+    //state logic done per tick
+    virtual STATESTATUS Update(time_point tick) = 0;
 
-    bool IsOnCoolDown(uint32 tick);
+    //reset/cancel the state
+    virtual void Clear() = 0;
+    virtual bool CanChangeState() = 0;
 
-    void SetCoolDown(uint32 coolDown);
-    void SetLastCoolTime(uint32 tick);
-    void SetHiPCLvl(CBattleEntity* PTarget, uint8 lvl);
-    void ClearTarget();
-
-    CBattleEntity* GetTarget();
-
-    // has moved from start position
-    bool HasMoved();
-
-  protected:
-    // push message for everyone to see
-    void PushMessage(MSGBASIC_ID msgID, int32 param = 0, int32 value = 0);
-
-    // push message for only target to see
-    // outputs nothing for any other than char
-    void PushError(MSGBASIC_ID msgID, int32 param = 0, int32 value = 0, CBattleEntity* PTarget = nullptr);
-
+protected:
     CBattleEntity* m_PEntity;
     CBattleEntity* m_PTarget;
 
-    CTargetFind* m_PTargetFind;
-    uint8 m_flags;
+    CTargetFind& m_PTargetFind;
+    STATESTATUS m_State;
 
-    // last cool down time
-    uint32 m_lastCoolTime;
-
-    // amount of time to wait on cool down
-    uint32 m_coolTime;
-
-    position_t m_startPosition;
-
-  private:
-
+    time_point m_startTime;
 };
 
 #endif

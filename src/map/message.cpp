@@ -35,9 +35,9 @@ This file is part of DarkStar-server source code.
 #include "packets/party_invite.h"
 #include "packets/server_ip.h"
 
-#include "utils/charutils.h"
 #include "utils/zoneutils.h"
 #include "utils/jailutils.h"
+#include "items/item_linkshell.h"
 
 namespace message
 {

@@ -43,7 +43,6 @@ CAIGeneral::CAIGeneral()
 {
     m_PTargetFind = nullptr;
     m_PPathFind = nullptr;
-    m_PMagicState = nullptr;
 	Reset();
 }
 
@@ -57,11 +56,6 @@ CAIGeneral::~CAIGeneral()
 	if(m_PPathFind != nullptr)
 	{
 	    delete m_PPathFind;
-	}
-
-	if(m_PMagicState != nullptr)
-	{
-		delete m_PMagicState;
 	}
 }
 
@@ -286,11 +280,11 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
         {
             if (spell->getSpellGroup() == SPELLGROUP_BLUE)
             {
-                m_PSpell = std::unique_ptr<CSpell>(new CBlueSpell(*(CBlueSpell*)spell));
+                m_PSpell = std::make_unique<CBlueSpell>(*static_cast<CBlueSpell*>(spell));
             }
             else
             {
-                m_PSpell = std::unique_ptr<CSpell>(new CSpell(*spell));
+                m_PSpell = std::make_unique<CSpell>(*spell);
             }
         }
         else
@@ -457,10 +451,7 @@ void CAIGeneral::SetAutoAttackEnabled(bool enabled)
 }
 void CAIGeneral::SetMagicCastingEnabled(bool enabled)
 {
-    if(m_PMagicState != nullptr)
-    {
-        m_PMagicState->m_enableCasting = enabled;
-    }
+    m_enableCasting = enabled;
 }
 void CAIGeneral::SetMobAbilityEnabled(bool enabled)
 {
