@@ -552,6 +552,8 @@ public:
 
     CStatusEffectContainer* StatusEffectContainer;
 
+    virtual bool ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags);
+
     CBattleEntity();						// конструктор
     virtual ~CBattleEntity();						// деструктор
 
