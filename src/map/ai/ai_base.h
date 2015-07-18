@@ -45,6 +45,7 @@ public:
 
     void Tick(time_point _tick);
     virtual void ActionQueueStateChange(queueAction&);
+    AIState GetCurrentState();
 
     // stores all events and their associated lua callbacks
     CAIEventHandler EventHandler;

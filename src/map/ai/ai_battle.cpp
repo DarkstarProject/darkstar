@@ -177,6 +177,22 @@ void CAIBattle::CastInterrupted()
     TransitionBack();
 }
 
+void CAIBattle::TryHitInterrupt(CBattleEntity* PAttacker)
+{
+    if (GetCurrentState() == AIState::Casting)
+    {
+        static_cast<CMagicState*>(actionStateContainer.get())->TryInterrupt(PAttacker);
+    }
+}
+
+void CAIBattle::ResetIfTarget(CBaseEntity* PTarget)
+{
+    if (actionStateContainer && actionStateContainer->GetTarget() == PTarget)
+    {
+        actionStateContainer->Clear();
+    }
+}
+
 bool CAIBattle::ShouldDisengage()
 {
     return PBattleTarget->isDead();

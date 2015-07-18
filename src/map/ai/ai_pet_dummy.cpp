@@ -60,8 +60,6 @@ CAIPetDummy::CAIPetDummy(CPetEntity* PPet)
     m_queueSic = false;
     m_PTargetFind = new CTargetFind(PPet);
     m_PPathFind = new CPathFind(PPet);
-
-    m_PMagicState = new CMagicState(PPet, m_PTargetFind);
 }
 
 /************************************************************************
@@ -938,72 +936,72 @@ void CAIPetDummy::ActionDeath()
 
 void CAIPetDummy::ActionMagicStart()
 {
-    // disabled
-    DSP_DEBUG_BREAK_IF(m_PSpell == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == nullptr);
+    //// disabled
+    //DSP_DEBUG_BREAK_IF(m_PSpell == nullptr);
+    //DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == nullptr);
 
-    m_LastActionTime = m_Tick;
-    m_LastMagicTime = m_Tick;
+    //m_LastActionTime = m_Tick;
+    //m_LastMagicTime = m_Tick;
 
-    STATESTATUS status = m_PMagicState->CastSpell(GetCurrentSpell(), m_PBattleSubTarget);
+    //STATESTATUS status = m_PMagicState->CastSpell(GetCurrentSpell(), m_PBattleSubTarget);
 
-    if (status == STATESTATUS_START)
-    {
-        m_ActionType = ACTION_MAGIC_CASTING;
-    }
-    else
-    {
-        TransitionBack(true);
-    }
+    //if (status == STATESTATUS_START)
+    //{
+    //    m_ActionType = ACTION_MAGIC_CASTING;
+    //}
+    //else
+    //{
+    //    TransitionBack(true);
+    //}
 
 }
 
 void CAIPetDummy::ActionMagicCasting()
 {
-    m_PPathFind->LookAt(m_PMagicState->GetTarget()->loc.p);
+    //m_PPathFind->LookAt(m_PMagicState->GetTarget()->loc.p);
 
-    STATESTATUS status = m_PMagicState->Update(m_Tick);
+    //STATESTATUS status = m_PMagicState->Update(m_Tick);
 
-    if (status == STATESTATUS_INTERRUPT)
-    {
-        m_ActionType = ACTION_MAGIC_INTERRUPT;
-        ActionMagicInterrupt();
-    }
-    else if (status == STATESTATUS_ERROR)
-    {
-        TransitionBack(true);
-    }
-    else if (status == STATESTATUS_FINISH)
-    {
-        m_ActionType = ACTION_MAGIC_FINISH;
-        ActionMagicFinish();
-    }
+    //if (status == STATESTATUS_INTERRUPT)
+    //{
+    //    m_ActionType = ACTION_MAGIC_INTERRUPT;
+    //    ActionMagicInterrupt();
+    //}
+    //else if (status == STATESTATUS_ERROR)
+    //{
+    //    TransitionBack(true);
+    //}
+    //else if (status == STATESTATUS_FINISH)
+    //{
+    //    m_ActionType = ACTION_MAGIC_FINISH;
+    //    ActionMagicFinish();
+    //}
 }
 
 void CAIPetDummy::ActionMagicFinish()
 {
-    m_LastActionTime = m_Tick;
-    m_LastMagicTime = m_Tick;
+    //m_LastActionTime = m_Tick;
+    //m_LastMagicTime = m_Tick;
 
-    m_PMagicState->FinishSpell();
+    //m_PMagicState->FinishSpell();
 
-    m_PSpell = nullptr;
-    m_PBattleSubTarget = nullptr;
+    //m_PSpell = nullptr;
+    //m_PBattleSubTarget = nullptr;
 
-    TransitionBack();
+    //TransitionBack();
 }
 
 void CAIPetDummy::ActionMagicInterrupt()
 {
-    m_LastActionTime = m_Tick;
-    m_LastMagicTime = m_Tick;
+    //m_LastActionTime = m_Tick;
+    //m_LastMagicTime = m_Tick;
 
-    m_PMagicState->Interrupt();
+    //m_PMagicState->Interrupt();
 
-    m_PSpell = nullptr;
-    m_PBattleSubTarget = nullptr;
+    //m_PSpell = nullptr;
+    //m_PBattleSubTarget = nullptr;
 
-    TransitionBack();
+    //TransitionBack();
 }
 
 /************************************************************************

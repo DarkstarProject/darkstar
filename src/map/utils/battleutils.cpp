@@ -59,6 +59,7 @@
 #include "../packets/char_sync.h"
 #include "../packets/position.h"
 #include "../packets/lock_on.h"
+#include "../ai/ai_battle.h"
 #include "../ai/ai_pet_dummy.h"
 #include "../ai/ai_char_charm.h"
 #include "../utils/petutils.h"
@@ -1894,17 +1895,10 @@ namespace battleutils
             }
 
             // try to interrupt spell if not a ranged attack and not blocked by Shield Mastery
-            if (PDefender->PBattleAI->m_PMagicState != nullptr)
+            if ((!isRanged)
+                && !((isBlocked) && (PDefender->objtype == TYPE_PC) && (charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY))))
             {
-                if ((!isRanged)
-                    && !((isBlocked) && (PDefender->objtype == TYPE_PC) && (charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY))))
-                {
-                    PDefender->PBattleAI->m_PMagicState->TryHitInterrupt(PAttacker);
-                }
-            }
-            else
-            {
-                ShowError("battleutils::TakePhysicalDamage Entity (%d) has no magic state\n", PDefender->id);
+                PDefender->PAIBattle()->TryHitInterrupt(PAttacker);
             }
 
             int16 baseTp = 0;
@@ -2029,10 +2023,7 @@ namespace battleutils
             }
 
             // try to interrupt spell
-            if (PDefender->PBattleAI->m_PMagicState)
-                PDefender->PBattleAI->m_PMagicState->TryHitInterrupt(PChar);
-            else
-                ShowError("battleutils::TakeWeaponskillDamage Entity (%d) has no magic state\n", PDefender->id);
+            PDefender->PAIBattle()->TryHitInterrupt(PChar);
 
             int16 baseTp = 0;
 

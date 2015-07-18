@@ -43,7 +43,6 @@ CAIGeneral::CAIGeneral()
 {
     m_PTargetFind = nullptr;
     m_PPathFind = nullptr;
-    m_PMagicState = nullptr;
 	Reset();
 }
 
@@ -57,11 +56,6 @@ CAIGeneral::~CAIGeneral()
 	if(m_PPathFind != nullptr)
 	{
 	    delete m_PPathFind;
-	}
-
-	if(m_PMagicState != nullptr)
-	{
-		delete m_PMagicState;
 	}
 }
 

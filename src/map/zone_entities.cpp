@@ -24,6 +24,7 @@ This file is part of DarkStar-server source code.
 #include "zone_entities.h"
 
 #include "ai/ai_mob_dummy.h"
+#include "ai/ai_battle.h"
 
 #include "entities/mobentity.h"
 #include "entities/npcentity.h"
@@ -299,10 +300,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
     for (auto PCharIt : m_charList)
     {
         CCharEntity* PCurrentChar = (CCharEntity*)PCharIt.second;
-        if (PCurrentChar->PBattleAI->m_PMagicState->GetTarget() == PChar)
-        {
-            PCurrentChar->PBattleAI->m_PMagicState->ClearTarget();
-        }
+        PCurrentChar->PAIBattle()->ResetIfTarget(PChar);
     }
 
 	for (auto PMobIt : m_mobList)
@@ -314,26 +312,12 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 			PCurrentMob->m_OwnerID.clean();
             PCurrentMob->updatemask |= UPDATE_STATUS;
 		}
-        if (PCurrentMob->PBattleAI->m_PMagicState->GetTarget() == PChar)
-        {
-            PCurrentMob->PBattleAI->m_PMagicState->ClearTarget();
-        }
-        if (PCurrentMob->PBattleAI->GetBattleSubTarget() == PChar)
-        {
-            PCurrentMob->PBattleAI->SetBattleSubTarget(nullptr);
-        }
+        PCurrentMob->PAIBattle()->ResetIfTarget(PChar);
 	}
     for (auto PPetIt : m_petList)
     {
         CPetEntity* PCurrentPet = (CPetEntity*)PPetIt.second;
-        if (PCurrentPet->PBattleAI->m_PMagicState->GetTarget() == PChar)
-        {
-            PCurrentPet->PBattleAI->m_PMagicState->ClearTarget();
-        }
-        if (PCurrentPet->PBattleAI->GetBattleSubTarget() == PChar)
-        {
-            PCurrentPet->PBattleAI->SetBattleSubTarget(nullptr);
-        }
+        PCurrentPet->PAIBattle()->ResetIfTarget(PChar);
     }
 
 	// TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
@@ -915,6 +899,7 @@ void CZoneEntities::ZoneServer(uint32 tick)
 
 		PMob->StatusEffectContainer->CheckEffects(tick);
 		PMob->PBattleAI->CheckCurrentAction(tick);
+        PMob->PAI->Tick(server_clock::from_time_t(tick));
 		PMob->StatusEffectContainer->CheckRegen(tick);
 	}
 
@@ -925,6 +910,7 @@ void CZoneEntities::ZoneServer(uint32 tick)
 		if (PNpc->PBattleAI != nullptr)
 		{
 			PNpc->PBattleAI->CheckCurrentAction(tick);
+            PNpc->PAI->Tick(server_clock::from_time_t(tick));
 		}
         else
         {
@@ -938,6 +924,7 @@ void CZoneEntities::ZoneServer(uint32 tick)
 		CPetEntity* PPet = (CPetEntity*)pit->second;
 		PPet->StatusEffectContainer->CheckEffects(tick);
 		PPet->PBattleAI->CheckCurrentAction(tick);
+        PPet->PAI->Tick(server_clock::from_time_t(tick));
 		PPet->StatusEffectContainer->CheckRegen(tick);
 		if (PPet->status == STATUS_DISAPPEAR){
 			m_petList.erase(pit++);
@@ -970,6 +957,7 @@ void CZoneEntities::ZoneServerRegion(uint32 tick)
 
 		PMob->StatusEffectContainer->CheckEffects(tick);
 		PMob->PBattleAI->CheckCurrentAction(tick);
+        PMob->PAI->Tick(server_clock::from_time_t(tick));
 	}
 
 	for (EntityList_t::const_iterator it = m_petList.begin(); it != m_petList.end(); ++it)
@@ -978,6 +966,7 @@ void CZoneEntities::ZoneServerRegion(uint32 tick)
 
 		PPet->StatusEffectContainer->CheckEffects(tick);
 		PPet->PBattleAI->CheckCurrentAction(tick);
+        PPet->PAI->Tick(server_clock::from_time_t(tick));
 	}
 
 	for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
@@ -989,6 +978,7 @@ void CZoneEntities::ZoneServerRegion(uint32 tick)
 			PChar->PRecastContainer->Check();
 			PChar->StatusEffectContainer->CheckEffects(tick);
 			PChar->PBattleAI->CheckCurrentAction(tick);
+            PChar->PAI->Tick(server_clock::from_time_t(tick));
 			PChar->PTreasurePool->CheckItems(tick);
 
 			m_zone->CheckRegions(PChar);

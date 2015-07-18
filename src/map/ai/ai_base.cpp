@@ -46,6 +46,11 @@ void CAIBase::ActionQueueStateChange(queueAction& action)
     //pathfinding maybe
 }
 
+AIState CAIBase::GetCurrentState()
+{
+    return m_state;
+}
+
 bool CAIBase::CanChangeState()
 {
     return m_transitionable;

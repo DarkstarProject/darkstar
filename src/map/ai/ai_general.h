@@ -154,7 +154,6 @@ public:
     bool			 m_interruptSpell; // forces interrupt of current spell being cast
 
     // states
-    CMagicState*     m_PMagicState;
     ActionQueue_t    m_actionQueue;
 
 private:

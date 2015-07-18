@@ -1119,6 +1119,11 @@ void CBattleEntity::delTrait(CTrait* PTrait)
     std::remove(TraitList.begin(), TraitList.end(), PTrait);
 }
 
+CAIBattle* CBattleEntity::PAIBattle()
+{
+    return static_cast<CAIBattle*>(PAI.get());
+}
+
 bool CBattleEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
 {
     if (targetFlags & TARGET_ENEMY)

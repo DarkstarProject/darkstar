@@ -31,7 +31,7 @@ This file is part of DarkStar-server source code.
 class CBattleEntity;
 class CSpell;
 
-class CAIBattle : CAIBase
+class CAIBattle : public CAIBase
 {
     //access to CastInterrupted for CMagicState::Clear
     friend class CMagicState;
@@ -40,6 +40,8 @@ public:
 
     virtual void ActionQueueStateChange(queueAction&) override;
     virtual void Cast(uint16 targetid, uint16 spellid);
+    virtual void TryHitInterrupt(CBattleEntity* PAttacker);
+    void ResetIfTarget(CBaseEntity*);
 
 protected:
     /* State handlers */
