@@ -1405,7 +1405,7 @@ INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 56, 1, 255);
 -- Jailer of Faith
 INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 162, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 191, 1, 255);
-INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 257, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 357, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 365, 1, 255);
 
 
