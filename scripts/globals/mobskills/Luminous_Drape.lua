@@ -20,7 +20,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_CHARM_I;
-    local msg = MobStatusEffectMove(mob, target, typeEffect, 1, 0, 60);
+    local msg = MobStatusEffectMove(mob, target, typeEffect, 0, 0, 60);
 	
     skill:setMsg(msg);
     mob:resetEnmity(target);
