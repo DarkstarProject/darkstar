@@ -929,7 +929,6 @@ void CZone::CharZoneOut(CCharEntity* PChar)
             if (PChar->PParty->GetSyncTarget() == PChar || PChar->PParty->GetLeader() == PChar)
             {
                 PChar->PParty->SetSyncTarget(nullptr, 551);
-                PChar->PParty->DisableSync();
             }
             if (PChar->PParty->GetSyncTarget() != nullptr)
             {

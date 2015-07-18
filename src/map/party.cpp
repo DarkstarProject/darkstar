@@ -29,11 +29,8 @@
 #include "alliance.h"
 #include "entities/battleentity.h"
 #include "utils/charutils.h"
-#include "conquest_system.h"
-#include "utils/battleutils.h"
 #include "utils/blueutils.h"
 #include "utils/jailutils.h"
-#include "utils/petutils.h"
 #include "utils/zoneutils.h"
 #include "map.h"
 #include "party.h"
@@ -47,6 +44,7 @@
 #include "packets/message_standard.h"
 #include "packets/party_define.h"
 #include "packets/party_member_update.h"
+#include "packets/message_basic.h"
 
 
 /************************************************************************
@@ -961,7 +959,8 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
             {
                 for (uint8 i = 0; i < members.size(); ++i)
                 {
-                    if (members.at(i)->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION) || members.at(i)->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
+                    if (members.at(i)->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION) || 
+                        members.at(i)->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
                     {
                         ((CCharEntity*)GetLeader())->pushPacket(new CMessageBasicPacket((CCharEntity*)GetLeader(), (CCharEntity*)GetLeader(), 0, 0, 543));
                         return;
@@ -1013,6 +1012,7 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
 		            }
 	            }
             }
+            m_PSyncTarget = nullptr;
         }
     }
 }

@@ -1170,15 +1170,16 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 
     local burst = calculateMagicBurst(caster, spell, target);
 
-  if(burst > 1.0) then
+    if(burst > 1.0) then
         spell:setMsg(spell:getMagicBurstMessage()); -- "Magic Burst!"
     end
 
     dmg = math.floor(dmg * burst);
     local mabbonus = 0;
 
-    if(spell:getID() >= 245 and spell:getID() <= 248) then
-        mabbonus = 1
+    if(spell:getID() >= 245 and spell:getID() <= 248) then -- Drain/Aspir (II)
+        mabbonus = 1 + caster:getMod(MOD_ENH_DRAIN_ASPIR)/100;
+		-- print(mabbonus);
     else
         local mab = caster:getMod(MOD_MATT) + bonusmab;
         if (spell:getElement() > 0 and spell:getElement() <= 6) then
