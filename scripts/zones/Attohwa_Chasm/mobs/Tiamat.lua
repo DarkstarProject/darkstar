@@ -11,8 +11,6 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_DMGMAGIC, -50);
-    mob:addMod(MOD_DMGRANGE, -50);
 end;
 
 -----------------------------------
@@ -20,14 +18,14 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-	
-	-- Gains a large attack boost when health is under 25% which cannot be Dispelled. 
-	if(mob:getHP() < ((mob:getMaxHP() / 10) * 2.5)) then
-		if(mob:hasStatusEffect(EFFECT_ATTACK_BOOST) == false) then
-			mob:addStatusEffect(EFFECT_ATTACK_BOOST,75,0,0);
+
+    -- Gains a large attack boost when health is under 25% which cannot be Dispelled. 
+    if(mob:getHP() < ((mob:getMaxHP() / 10) * 2.5)) then
+        if(mob:hasStatusEffect(EFFECT_ATTACK_BOOST) == false) then
+            mob:addStatusEffect(EFFECT_ATTACK_BOOST,75,0,0);
             mob:getStatusEffect(EFFECT_ATTACK_BOOST):setFlag(32);
-		end
-	end
+        end;
+    end;
     if (mob:hasStatusEffect(EFFECT_MIGHTY_STRIKES) == false and mob:actionQueueEmpty() == true) then
         local changeTime = mob:getLocalVar("changeTime")
         local twohourTime = mob:getLocalVar("twohourTime")
@@ -36,7 +34,7 @@ function onMobFight(mob,target)
         if (twohourTime == 0) then
             twohourTime = math.random(8, 14);
             mob:setLocalVar("twohourTime", twohourTime);
-        end
+        end;
         
         if (mob:AnimationSub() == 2 and mob:getBattleTime()/15 > twohourTime) then
             mob:useMobAbility(432);
@@ -62,8 +60,8 @@ function onMobFight(mob,target)
             mob:SetMobSkillAttack(true);
             mob:setLocalVar("changeTime", mob:getBattleTime());
             mob:setLocalVar("changeHP", mob:getHP()/1000);
-        end
-	end
+        end;
+    end;
 end;
 
 -----------------------------------
@@ -71,6 +69,6 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(TIAMAT_TROUNCER);
-    mob:setRespawnTime(math.random((259200),(432000)));	-- 3 to 5 days	
+    killer:addTitle(TIAMAT_TROUNCER);
+    mob:setRespawnTime(math.random((259200),(432000))); -- 3 to 5 days
 end;
