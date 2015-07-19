@@ -1307,9 +1307,9 @@ namespace petutils
                 }
             }
 
-            CCharEntity* PChar = (CCharEntity*)PMaster;
             if (PMaster->objtype == TYPE_PC)
             {
+            	CCharEntity* PChar = (CCharEntity*)PMaster;
                 PPet->addModifier(MOD_MATT, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_MAGICAL_ATTACK, PChar));
                 PPet->addModifier(MOD_ATT, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_PHYSICAL_ATTACK, PChar));
                 PPet->addModifier(MOD_MACC, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_MAGICAL_ACCURACY, PChar));
