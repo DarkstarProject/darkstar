@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
 Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -1261,7 +1261,7 @@ namespace petutils
             }
             LoadAvatarStats(PPet); //follows PC calcs (w/o SJ)
             PPet->setModifier(MOD_DMGPHYS, -50); //-50% PDT
-            if (PPet->GetMLevel() >= 70){
+	     if (PPet->GetMLevel() >= 70){
                 PPet->setModifier(MOD_MATT, 32);
             }
             else if (PPet->GetMLevel() >= 50){
@@ -1284,7 +1284,7 @@ namespace petutils
 
             //Set B+ weapon skill (assumed capped for level derp)
             //attack is madly high for avatars (roughly x2)
-            PPet->setModifier(MOD_ATT, 2 * battleutils::GetMaxSkill(SKILL_CLB, JOB_WHM, PPet->GetMLevel()));
+	     PPet->setModifier(MOD_ATT, 2 * battleutils::GetMaxSkill(SKILL_CLB, JOB_WHM, PPet->GetMLevel()));
             PPet->setModifier(MOD_ACC, battleutils::GetMaxSkill(SKILL_CLB, JOB_WHM, PPet->GetMLevel()));
             //Set E evasion and def
             PPet->setModifier(MOD_EVA, battleutils::GetMaxSkill(SKILL_THR, JOB_WHM, PPet->GetMLevel()));
@@ -1306,7 +1306,14 @@ namespace petutils
                     }
                 }
             }
-
+	     CCharEntity* PChar = (CCharEntity*)PMaster;
+	     if (PMaster->objtype == TYPE_PC)
+	     {
+	     PPet->addModifier(MOD_MATT, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_MAGICAL_ATTACK, PChar));
+            PPet->addModifier(MOD_ATT, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_PHYSICAL_ATTACK, PChar));
+            PPet->addModifier(MOD_MACC, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_MAGICAL_ACCURACY, PChar));
+            PPet->addModifier(MOD_ACC, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_PHYSICAL_ACCURACY, PChar));
+	     }
             PMaster->addModifier(MOD_AVATAR_PERPETUATION, PerpetuationCost(PetID, PPet->GetMLevel()));
         }
         else if (PPet->getPetType() == PETTYPE_JUG_PET){
