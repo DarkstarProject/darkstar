@@ -26,8 +26,9 @@ CREATE TABLE `merits` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `merits` VALUES ('64', 'max_hp', '8', '10', '1048575', '0', '0');
-INSERT INTO `merits` VALUES ('66', 'max_mp', '8', '10', '1048575', '0', '0');
+INSERT INTO `merits` VALUES ('64', 'max_hp', '15', '10', '1048575', '0', '0');
+INSERT INTO `merits` VALUES ('66', 'max_mp', '15', '10', '1048575', '0', '0');
+INSERT INTO `merits` VALUES ('68', 'max_merits', '15', '1', '1048575', '9', '0');
 INSERT INTO `merits` VALUES ('128', 'str', '5', '1', '1048575', '1', '1');
 INSERT INTO `merits` VALUES ('130', 'dex', '5', '1', '1048575', '1', '1');
 INSERT INTO `merits` VALUES ('132', 'vit', '5', '1', '1048575', '1', '1');
