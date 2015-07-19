@@ -27,12 +27,12 @@ function onTrigger(player,npc)
 	
 	if(player:getCurrentMission(SANDORIA) == THE_DAVOI_REPORT and player:hasKeyItem(TEMPLE_KNIGHTS_DAVOI_REPORT)) then
 		player:startEvent(0x02b7); -- Finish Mission "The Davoi Report"
-	elseif(player:getCurrentMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE) and player:getVar("MissionStatus") == 0)then
-        player:startEvent(0x0007);
-	elseif(player:getCurrentMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE) and player:getVar("MissionStatus") == 1)then
-	    player:startEvent(0x0009);
-	elseif(player:getCurrentMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE) and player:hasKeyItem(ANCIENT_SANDORIAN_TABLET))then
-	    player:startEvent(0x0008);
+	elseif(player:getCurrentMission(SANDORIA) == PRESTIGE_OF_THE_PAPSQUE and player:getVar("MissionStatus") == 0) then
+		player:startEvent(0x0007);
+	elseif(player:getCurrentMission(SANDORIA) == PRESTIGE_OF_THE_PAPSQUE and player:getVar("MissionStatus") == 1) then
+		player:startEvent(0x0009);
+	elseif(player:getCurrentMission(SANDORIA) == PRESTIGE_OF_THE_PAPSQUE and player:hasKeyItem(ANCIENT_SANDORIAN_TABLET)) then
+		player:startEvent(0x0008);
 	end
 	return 1;
 	
