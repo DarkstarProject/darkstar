@@ -2458,6 +2458,11 @@ INSERT INTO `item_mods` VALUES (10922, 1, 9); -- DEF:9
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (10924, 511, 4); -- Chocobo riding time +4 min
 
+-- -------------------------------------------------------
+-- Fisher's Torque
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10925, 127, 2); -- Fishing skill +2
+
 INSERT INTO `item_mods` VALUES (10929, 1, 10);
 INSERT INTO `item_mods` VALUES (10929, 10, 9);
 INSERT INTO `item_mods` VALUES (10929, 246, 2); -- TODO: Confirm Amount
@@ -2470,9 +2475,24 @@ INSERT INTO `item_mods` VALUES (10936, 370, 2);
 INSERT INTO `item_mods` VALUES (10946, 369, 1);
 
 -- -------------------------------------------------------
+-- Carver's Torque
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10948, 128, 2); -- Woodworking skill +2
+
+-- -------------------------------------------------------
 -- Smithy's Torque
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (10949, 129, 2); -- Smithing skill +2
+
+-- -------------------------------------------------------
+-- Goldsm. Torque
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10950, 130, 2); -- Goldsmithing skill +2
+
+-- -------------------------------------------------------
+-- Weaver's Torque
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10951, 131, 2); -- Clothcraft skill +2
 
 -- -------------------------------------------------------
 -- Tanner's Torque
@@ -2488,6 +2508,11 @@ INSERT INTO `item_mods` VALUES (10953, 133, 2); -- Bonecraft skill +2
 -- Alchemst. Torque
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (10954, 134, 2); -- Alchemy skill +2
+
+-- -------------------------------------------------------
+--  Culin. Torque
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (10955, 135, 2); -- Cooking skill +2
 
 INSERT INTO `item_mods` VALUES (10960, 374, 4);
 INSERT INTO `item_mods` VALUES (10960, 375, 4);
@@ -17899,6 +17924,7 @@ INSERT INTO `item_mods` VALUES (16271, 27, -1);
 INSERT INTO `item_mods` VALUES (16271, 30, 2);
 INSERT INTO `item_mods` VALUES (16272, 23, 5);
 INSERT INTO `item_mods` VALUES (16272, 24, 5);
+INSERT INTO `item_mods` VALUES (16274, 73, 2);
 INSERT INTO `item_mods` VALUES (16274, 289, 2);
 INSERT INTO `item_mods` VALUES (16275, 9, 4);
 INSERT INTO `item_mods` VALUES (16275, 25, 9);
