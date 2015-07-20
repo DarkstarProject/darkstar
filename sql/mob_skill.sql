@@ -2731,13 +2731,13 @@ INSERT INTO `mob_skill` VALUES (656,379,6,'searing_light',1,10.0,502,3000,4,0,0,
 -- INSERT INTO `mob_skill` VALUES (656,379,8,'soothing_ruby',1,10.0,504,3000,4,0,0,0);
 
 -- Pet - Diabolos
-INSERT INTO `mob_skill` VALUES (1647,380,141,'Camisado',0,7,2000,3000,4,0,0,3);
-INSERT INTO `mob_skill` VALUES (1648,380,142,'Somnolence',0,25,2000,3000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1649,380,143,'Noctoshield',1,7,2000,3000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (1650,380,144,'Ultimate_Terror',1,7,2000,3000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1651,380,145,'Dream_Shroud',1,7,2000,3000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (1652,380,146,'Nightmare',1,30,2000,3000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (354,380,148,'nether_blast',0,10.0,646,3000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1647,380,141,'camisado',0,10.0,640,3000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1648,380,142,'somnolence',0,10.0,641,3000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1649,380,143,'noctoshield',1,10.0,644,1500,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1650,380,144,'ultimate_terror',1,10.0,643,3000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1651,380,145,'dream_shroud',1,10.0,645,3000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1652,380,146,'nightmare',1,10.0,642,3000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1654,380,148,'nether_blast',0,10.0,646,3000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1655,380,149,'Ruinous_Omen',1,30,2000,3000,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (1655,380,324,'Pavor_Nocturnus',0,30,2000,3000,4,0,0,0);
 
