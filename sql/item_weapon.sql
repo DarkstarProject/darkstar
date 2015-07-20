@@ -2423,7 +2423,7 @@ INSERT INTO `item_weapon` VALUES (18848,'brass_jadagna',11,0,0,0,0,3,1,340,45,0)
 INSERT INTO `item_weapon` VALUES (18849,'brass_jadagna_+1',11,0,0,0,0,3,1,334,46,0);
 INSERT INTO `item_weapon` VALUES (18850,'perdu_wand',11,0,0,0,0,3,1,216,34,0);
 INSERT INTO `item_weapon` VALUES (18851,'werebuster',11,0,0,0,0,3,1,267,29,0);
-INSERT INTO `item_weapon` VALUES (18852,'octave_club',11,0,0,0,0,3,8,264,11,0);
+INSERT INTO `item_weapon` VALUES (18852,'octave_club',11,0,0,0,0,3,1,264,11,0);
 INSERT INTO `item_weapon` VALUES (18853,'spirit_maul',11,0,0,0,0,3,1,324,26,0);
 INSERT INTO `item_weapon` VALUES (18854,'fourth_division_mace',11,0,0,0,0,3,1,288,25,0);
 INSERT INTO `item_weapon` VALUES (18855,'trainee_hammer',11,0,0,0,0,3,1,324,1,0);

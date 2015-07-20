@@ -567,8 +567,8 @@ enum MODIFIER
 
     MOD_SHIELDBLOCKRATE           = 0x206, // Affects shield block rate, percent based (modID = 518)
     MOD_DIA_DOT                   = 0x139, //Increases the DoT damage of Dia (modId = 313)
+    MOD_ENH_DRAIN_ASPIR           = 0x13B // (modId = 315)
 
-    // MOD_SPARE = 0x13B, // (modId = 315)
     // MOD_SPARE = 0x208, // (modId = 520)
     // MOD_SPARE = 0x209, // (modId = 521)
 
