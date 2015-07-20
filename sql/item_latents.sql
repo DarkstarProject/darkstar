@@ -474,32 +474,32 @@ INSERT INTO `item_latents` VALUES(18491, 23, 10, 6, 1000); -- Attack+10 while TP
 -- -------------------------------------------------------
 -- Hachiman Jinpachi    
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15188, 288, 2, 7, 100); -- "Double Attack"+2% while TP >=100%
+INSERT INTO `item_latents` VALUES(15188, 288, 2, 7, 1000); -- "Double Attack"+2% while TP >=100%
 
 -- -------------------------------------------------------
 -- Hachiman Jinpachi +1
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15187, 288, 3, 7, 100); -- "Double Attack"+3% while TP >=100%
+INSERT INTO `item_latents` VALUES(15187, 288, 3, 7, 1000); -- "Double Attack"+3% while TP >=100%
 
 -- -------------------------------------------------------
 -- Hachiman Kote    
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(14876, 23, 10, 7, 100); -- Attack+10 while TP >=100%
+INSERT INTO `item_latents` VALUES(14876, 23, 10, 7, 1000); -- Attack+10 while TP >=100%
 
 -- -------------------------------------------------------
 -- Hachiman Kote +1
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(14878, 23, 12, 7, 100); -- Attack+12 while TP >=100%
+INSERT INTO `item_latents` VALUES(14878, 23, 12, 7, 1000); -- Attack+12 while TP >=100%
 
 -- -------------------------------------------------------
 -- Hachiman Hakama    
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15392, 24, 7, 7, 100); -- Ranged Attack+7 while TP >=100%
+INSERT INTO `item_latents` VALUES(15392, 24, 7, 7, 1000); -- Ranged Attack+7 while TP >=100%
 
 -- -------------------------------------------------------
 -- Hachiman Hakama +1
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15394, 24, 8, 7, 100); -- Ranged Attack+8 while TP >=100%
+INSERT INTO `item_latents` VALUES(15394, 24, 8, 7, 1000); -- Ranged Attack+8 while TP >=100%
 
 -- -------------------------------------------------------
 -- Rambler's Cloak
@@ -1243,7 +1243,7 @@ INSERT INTO `item_latents` VALUES(16306, 25, 20, 13, 4); -- accuracy+20 while un
 -- -------------------------------------------------------
 -- Colossus's Earring         
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(16058, 161, -1, 53, 7); -- physical damage -2% during light weather (has -1% normally)
+INSERT INTO `item_latents` VALUES(16058, 161, -1, 52, 7); -- physical damage -2% during light weather (has -1% normally)
 
 -- -------------------------------------------------------
 -- Aesir Ear Pendant        
@@ -2369,6 +2369,23 @@ INSERT INTO `item_latents` VALUES(15557, 6, -15, 32, 0); -- -15% MP on Darksday
 INSERT INTO `item_latents` VALUES(15557, 116, 15, 32, 0); -- +15 Dark magic skill on Darksday
 
 -- -------------------------------------------------------
+-- Diabolos's Pole
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17599, 315, 25, 52, 8); -- +25% drain/aspir potency in Dark weather
+
+-- -------------------------------------------------------
+-- Diabolos's Earring
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14814, 25, -6, 52, 8); -- cumulative acc-3 in Dark weather
+INSERT INTO `item_latents` VALUES(14814, 30, 2, 52, 8); -- magic acc+2 in Dark weather
+
+-- -------------------------------------------------------
+-- Diabolos's Torque
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15516, 26, -16, 52, 8); -- cumulative ranged acc-8 in Dark weather
+INSERT INTO `item_latents` VALUES(15516, 24, 7, 52, 8); -- ranged acc+8 in Dark weather
+
+-- -------------------------------------------------------
 -- Mighty Weapons + Sairen
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(17204, 376, 10, 31, 0); -- Mighty Bow DMG+10 (to ranged) on Windsday
@@ -2414,3 +2431,207 @@ INSERT INTO `item_latents` VALUES(18352, 54, 15, 28, 0); -- [Element: Fire]+15
 
 INSERT INTO `item_latents` VALUES(18374, 366, 9, 28, 0); -- Mighty Sword DMG+9 on Firesday
 INSERT INTO `item_latents` VALUES(18374, 54, 15, 28, 0); -- [Element: Fire]+15
+
+-- -------------------------------------------------------
+-- Enhances Rice Ball gear
+-- -------------------------------------------------------
+-- Myochin Kote
+-- Tonosama Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 23, 50, 49, 4277); -- atk+50
+INSERT INTO `item_latents` VALUES(13972, 1, 30, 49, 4277); -- def+30
+INSERT INTO `item_latents` VALUES(13972, 288, 1, 49, 4277); -- double attack 1%
+-- Shogun Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 23, 50, 49, 4278); -- atk+50
+INSERT INTO `item_latents` VALUES(13972, 1, 30, 49, 4278); -- def+30
+INSERT INTO `item_latents` VALUES(13972, 288, 5, 49, 4278); -- double attack 5%
+-- Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 1, 50, 49, 4405); -- def+50
+-- Salmon Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 23, 40, 49, 4590); -- atk+40
+INSERT INTO `item_latents` VALUES(13972, 1, 40, 49, 4590); -- def+40
+-- Rogue Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 1, 50, 49, 4604); -- def+50
+INSERT INTO `item_latents` VALUES(13972, 230, 5, 49, 4604); -- beast killer 5% (guesstimated)
+-- Naval Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 23, 40, 49, 4605); -- atk+40
+INSERT INTO `item_latents` VALUES(13972, 1, 40, 49, 4605); -- def+40
+INSERT INTO `item_latents` VALUES(13972, 232, 5, 49, 4604); -- arcana killer 5% (guesstimated)
+-- Hinesama Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 23, 60, 49, 5928); -- atk+60
+INSERT INTO `item_latents` VALUES(13972, 1, 40, 49, 5928); -- def+40
+INSERT INTO `item_latents` VALUES(13972, 302, 1, 49, 5928); -- triple attack 1%
+-- Ojo Rice Ball
+INSERT INTO `item_latents` VALUES(13972, 23, 60, 49, 5929); -- atk+60
+INSERT INTO `item_latents` VALUES(13972, 1, 40, 49, 5929); -- def+40
+INSERT INTO `item_latents` VALUES(13972, 302, 2, 49, 5929); -- triple attack 2%
+
+-- Myochin Kote +1
+-- Tonosama Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 23, 50, 49, 4277); -- atk+50
+INSERT INTO `item_latents` VALUES(14901, 1, 30, 49, 4277); -- def+30
+INSERT INTO `item_latents` VALUES(14901, 288, 1, 49, 4277); -- double attack 1%
+-- Shogun Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 23, 50, 49, 4278); -- atk+50
+INSERT INTO `item_latents` VALUES(14901, 1, 30, 49, 4278); -- def+30
+INSERT INTO `item_latents` VALUES(14901, 288, 5, 49, 4278); -- double attack 5%
+-- Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 1, 50, 49, 4405); -- def+50
+-- Salmon Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 23, 40, 49, 4590); -- atk+40
+INSERT INTO `item_latents` VALUES(14901, 1, 40, 49, 4590); -- def+40
+-- Rogue Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 1, 50, 49, 4604); -- def+50
+INSERT INTO `item_latents` VALUES(14901, 230, 5, 49, 4604); -- beast killer 5% (guesstimated)
+-- Naval Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 23, 40, 49, 4605); -- atk+40
+INSERT INTO `item_latents` VALUES(14901, 1, 40, 49, 4605); -- def+40
+INSERT INTO `item_latents` VALUES(14901, 232, 5, 49, 4604); -- arcana killer 5% (guesstimated)
+-- Hinesama Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 23, 60, 49, 5928); -- atk+60
+INSERT INTO `item_latents` VALUES(14901, 1, 40, 49, 5928); -- def+40
+INSERT INTO `item_latents` VALUES(14901, 302, 1, 49, 5928); -- triple attack 1%
+-- Ojo Rice Ball
+INSERT INTO `item_latents` VALUES(14901, 23, 60, 49, 5929); -- atk+60
+INSERT INTO `item_latents` VALUES(14901, 1, 40, 49, 5929); -- def+40
+INSERT INTO `item_latents` VALUES(14901, 302, 2, 49, 5929); -- triple attack 2%
+
+-- Roshi Jinpachi
+-- Tonosama Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 23, 50, 49, 4277); -- atk+50
+INSERT INTO `item_latents` VALUES(13910, 1, 30, 49, 4277); -- def+30
+INSERT INTO `item_latents` VALUES(13910, 288, 1, 49, 4277); -- double attack 1%
+-- Shogun Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 23, 50, 49, 4278); -- atk+50
+INSERT INTO `item_latents` VALUES(13910, 1, 30, 49, 4278); -- def+30
+INSERT INTO `item_latents` VALUES(13910, 288, 5, 49, 4278); -- double attack 5%
+-- Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 1, 50, 49, 4405); -- def+50
+-- Salmon Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 23, 40, 49, 4590); -- atk+40
+INSERT INTO `item_latents` VALUES(13910, 1, 40, 49, 4590); -- def+40
+-- Rogue Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 1, 50, 49, 4604); -- def+50
+INSERT INTO `item_latents` VALUES(13910, 230, 5, 49, 4604); -- beast killer 5% (guesstimated)
+-- Naval Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 23, 40, 49, 4605); -- atk+40
+INSERT INTO `item_latents` VALUES(13910, 1, 40, 49, 4605); -- def+40
+INSERT INTO `item_latents` VALUES(13910, 232, 5, 49, 4604); -- arcana killer 5% (guesstimated)
+-- Hinesama Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 23, 60, 49, 5928); -- atk+60
+INSERT INTO `item_latents` VALUES(13910, 1, 40, 49, 5928); -- def+40
+INSERT INTO `item_latents` VALUES(13910, 302, 1, 49, 5928); -- triple attack 1%
+-- Ojo Rice Ball
+INSERT INTO `item_latents` VALUES(13910, 23, 60, 49, 5929); -- atk+60
+INSERT INTO `item_latents` VALUES(13910, 1, 40, 49, 5929); -- def+40
+INSERT INTO `item_latents` VALUES(13910, 302, 2, 49, 5929); -- triple attack 2%
+
+-- Roshi Jinpachi +1
+-- Tonosama Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 23, 50, 49, 4277); -- atk+50
+INSERT INTO `item_latents` VALUES(13949, 1, 30, 49, 4277); -- def+30
+INSERT INTO `item_latents` VALUES(13949, 288, 1, 49, 4277); -- double attack 1%
+-- Shogun Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 23, 50, 49, 4278); -- atk+50
+INSERT INTO `item_latents` VALUES(13949, 1, 30, 49, 4278); -- def+30
+INSERT INTO `item_latents` VALUES(13949, 288, 5, 49, 4278); -- double attack 5%
+-- Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 1, 50, 49, 4405); -- def+50
+-- Salmon Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 23, 40, 49, 4590); -- atk+40
+INSERT INTO `item_latents` VALUES(13949, 1, 40, 49, 4590); -- def+40
+-- Rogue Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 1, 50, 49, 4604); -- def+50
+INSERT INTO `item_latents` VALUES(13949, 230, 5, 49, 4604); -- beast killer 5% (guesstimated)
+-- Naval Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 23, 40, 49, 4605); -- atk+40
+INSERT INTO `item_latents` VALUES(13949, 1, 40, 49, 4605); -- def+40
+INSERT INTO `item_latents` VALUES(13949, 232, 5, 49, 4604); -- arcana killer 5% (guesstimated)
+-- Hinesama Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 23, 60, 49, 5928); -- atk+60
+INSERT INTO `item_latents` VALUES(13949, 1, 40, 49, 5928); -- def+40
+INSERT INTO `item_latents` VALUES(13949, 302, 1, 49, 5928); -- triple attack 1%
+-- Ojo Rice Ball
+INSERT INTO `item_latents` VALUES(13949, 23, 60, 49, 5929); -- atk+60
+INSERT INTO `item_latents` VALUES(13949, 1, 40, 49, 5929); -- def+40
+INSERT INTO `item_latents` VALUES(13949, 302, 2, 49, 5929); -- triple attack 2%
+
+-- Nobushi Kyahan
+-- Tonosama Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 23, 50, 49, 4277); -- atk+50
+INSERT INTO `item_latents` VALUES(11367, 1, 30, 49, 4277); -- def+30
+INSERT INTO `item_latents` VALUES(11367, 288, 1, 49, 4277); -- double attack 1%
+-- Shogun Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 23, 50, 49, 4278); -- atk+50
+INSERT INTO `item_latents` VALUES(11367, 1, 30, 49, 4278); -- def+30
+INSERT INTO `item_latents` VALUES(11367, 288, 5, 49, 4278); -- double attack 5%
+-- Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 1, 50, 49, 4405); -- def+50
+-- Salmon Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 23, 40, 49, 4590); -- atk+40
+INSERT INTO `item_latents` VALUES(11367, 1, 40, 49, 4590); -- def+40
+-- Rogue Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 1, 50, 49, 4604); -- def+50
+INSERT INTO `item_latents` VALUES(11367, 230, 5, 49, 4604); -- beast killer 5% (guesstimated)
+-- Naval Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 23, 40, 49, 4605); -- atk+40
+INSERT INTO `item_latents` VALUES(11367, 1, 40, 49, 4605); -- def+40
+INSERT INTO `item_latents` VALUES(11367, 232, 5, 49, 4604); -- arcana killer 5% (guesstimated)
+-- Hinesama Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 23, 60, 49, 5928); -- atk+60
+INSERT INTO `item_latents` VALUES(11367, 1, 40, 49, 5928); -- def+40
+INSERT INTO `item_latents` VALUES(11367, 302, 1, 49, 5928); -- triple attack 1%
+-- Ojo Rice Ball
+INSERT INTO `item_latents` VALUES(11367, 23, 60, 49, 5929); -- atk+60
+INSERT INTO `item_latents` VALUES(11367, 1, 40, 49, 5929); -- def+40
+INSERT INTO `item_latents` VALUES(11367, 302, 2, 49, 5929); -- triple attack 2%
+
+-- -------------------------------------------------------
+-- Phlegethon's Trousers
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(16367, 8, 4, 52, 1); -- cumulative STR+5 in Fire weather
+
+-- -------------------------------------------------------
+-- Casaba Melon Tank
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(16251, 71, 3, 52, 1); -- Healing MP +3 in Fire weather
+
+-- -------------------------------------------------------
+-- Haraldr's Muffler
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(16280, 73, 4, 52, 5); -- cumulative Store TP +5 in Ice weather
+
+-- -------------------------------------------------------
+-- Wurger
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(19222, 24, 3, 52, 3); -- Ranged attack +3 in Water weather
+
+-- -------------------------------------------------------
+-- Rain Hat
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15220, 370, 1, 52, 3); -- Regen 1HP/tick in Water weather
+
+-- -------------------------------------------------------
+-- Tempest Belt
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15946, 384, 61, 52, 4); -- Haste +6% in Wind weather
+
+-- -------------------------------------------------------
+-- Raikiri
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17814, 23, 10, 52, 6); -- Attack +10 in Thunder weather
+
+-- -------------------------------------------------------
+-- Desert Boots
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (14166, 169, 12, 52, 2); -- movement speed +12% in Earth weather
+INSERT INTO `item_latents` VALUES (14167, 169, 12, 52, 2); -- Desert Boots +1
+
+-- -------------------------------------------------------
+-- Monsoon equips
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13875, 68, 8, 52, 3); -- Jinpachi: Evasion +8 in Water weather
+INSERT INTO `item_latents` VALUES(14122, 68, 8, 52, 3); -- Kyahan: Evasion +8 in Water weather
+INSERT INTO `item_latents` VALUES(14005, 25, 8, 52, 3); -- Tekko: Accuracy +8 in Water weather
+INSERT INTO `item_latents` VALUES(14026, 25, 9, 52, 3); -- Hailstorm Tekko: Accuracy +9 in Water weather
+INSERT INTO `item_latents` VALUES(14027, 25, 10, 52, 3); -- Hailstorm Tekko +1: Accuracy +10 in Water weather
+INSERT INTO `item_latents` VALUES(16883, 25, 10, 52, 3); -- Spear: Accuracy +10 in Water weather

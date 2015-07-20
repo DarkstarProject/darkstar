@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 3.3.8
 -- http://www.phpmyadmin.net
 --
@@ -1713,10 +1713,14 @@ INSERT INTO `mob_skill` VALUES (1188,122,1062,'Vorpal_Blade',0,7.0,2000,1500,4,0
 INSERT INTO `mob_skill` VALUES (1189,122,1063,'Damnation_Dive',4,10.0,2000,1500,4,0,0,0); -- only used in bird form.  Logged on Eo'ghrah. theres a version that supposedly has knockback?
 INSERT INTO `mob_skill` VALUES (1190,122,1064,'Sickle_Slash',0,7.0,2000,1500,4,0,0,0); -- only used in spider form.
 
+-- Kf'Ghrah
 INSERT INTO `mob_skill` VALUES (1187,123,1061,'Hexidiscs',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1185,123,1065,'Actinic_Burst',1,10.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1189,123,1063,'Damnation_Dive',4,10.0,2000,1500,4,0,0,0); -- only used in bird form.  Logged on Eo'ghrah. theres a version that supposedly has knockback?
+INSERT INTO `mob_skill` VALUES (1190,123,1064,'Sickle_Slash',0,7.0,2000,1500,4,0,0,0); -- only used in spider form.
 
-INSERT INTO `mob_skill` VALUES (1187,124,1061,'Hexidiscs',0,7.0,2000,1500,4,0,0,0);
+-- Jailer of Fortitude
+INSERT INTO `mob_skill` VALUES (1188,124,1062,'Vorpal_Blade',0,7.0,2000,1500,4,0,0,0); -- only used in human form
 INSERT INTO `mob_skill` VALUES (1185,124,1065,'Actinic_Burst',1,10.0,2000,1500,4,0,0,0);
 
 -- Euvhi
@@ -2472,7 +2476,7 @@ INSERT INTO `mob_skill` VALUES (1034,392,654,'Spike_Flail',1,23.0,2000,2000,4,8,
 INSERT INTO `mob_skill` VALUES (1035,392,962,'Glacial_Breath',4,18.0,2000,1500,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (1036,392,656,'Touchdown',1,6.0,2000,0,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (1037,392,964,'Sleet_Blast',1,23.0,2000,2000,4,8,0,0);
-INSERT INTO `mob_skill` VALUES (1038,392,653,'Gregale_Wing_Air',1,30.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1038,392,653,'Gregale_Wing_Air',1,30.0,2000,1500,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (1039,392,659,'Absolute_Terror',0,18.0,4000,1500,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (1040,392,660,'Horrid_Roar_3',0,18.0,4000,1500,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (439,392,432,'Blood_Weapon',0,18.0,2000,0,1,0,30,0);
@@ -2733,7 +2737,7 @@ INSERT INTO `mob_skill` VALUES (1649,380,143,'Noctoshield',1,7,2000,3000,1,0,0,0
 INSERT INTO `mob_skill` VALUES (1650,380,144,'Ultimate_Terror',1,7,2000,3000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1651,380,145,'Dream_Shroud',1,7,2000,3000,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1652,380,146,'Nightmare',1,30,2000,3000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1654,380,148,'Nether_Blast',0,25,2000,3000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (354,380,148,'nether_blast',0,10.0,646,3000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1655,380,149,'Ruinous_Omen',1,30,2000,3000,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (1655,380,324,'Pavor_Nocturnus',0,30,2000,3000,4,0,0,0);
 

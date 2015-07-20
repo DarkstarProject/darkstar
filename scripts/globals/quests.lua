@@ -534,7 +534,7 @@ A_QUESTION_OF_TASTE             = 3;
 EVERYONES_GRUDGING              = 4;
 YOU_CALL_THAT_A_KNIFE           = 6;
 MISSIONARY_MAN                  = 7;  -- ± --
-GULLIBLES_TRAVELS               = 8;
+GULLIBLES_TRAVELS               = 8;  -- + --
 EVEN_MORE_GULLIBLES_TRAVELS     = 9;
 PERSONAL_HYGIENE                = 10;
 THE_OPO_OPO_AND_I               = 11;
@@ -581,7 +581,7 @@ OPEN_SESAME                     = 165;
 -- Rabao(192-201)
 
 DONT_FORGET_THE_ANTIDOTE        = 192; -- ± --
-THE_MISSING_PIECE               = 193;
+THE_MISSING_PIECE               = 193; -- ± --
 TRIAL_BY_WIND                   = 194; -- ± --
 THE_KUFTAL_TOUR                 = 195;
 THE_IMMORTAL_LU_SHANG           = 196; -- ± --
