@@ -1307,6 +1307,16 @@ namespace petutils
                 }
             }
 
+            
+            if (PMaster->objtype == TYPE_PC)
+            {
+                CCharEntity* PChar = (CCharEntity*)PMaster;
+                PPet->addModifier(MOD_MATT, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_MAGICAL_ATTACK, PChar));
+                PPet->addModifier(MOD_ATT, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_PHYSICAL_ATTACK, PChar));
+                PPet->addModifier(MOD_MACC, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_MAGICAL_ACCURACY, PChar));
+                PPet->addModifier(MOD_ACC, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_PHYSICAL_ACCURACY, PChar));
+            }
+
             PMaster->addModifier(MOD_AVATAR_PERPETUATION, PerpetuationCost(PetID, PPet->GetMLevel()));
         }
         else if (PPet->getPetType() == PETTYPE_JUG_PET){

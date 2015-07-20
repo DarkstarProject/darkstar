@@ -66,8 +66,9 @@ enum MERIT_CATEGORY
 
     MCATEGORY_WS         = 0x0680,
 
-    MCATEGORY_UNK_0      = 0x06C0,
-    MCATEGORY_UNK_1      = 0x0700,
+    MCATEGORY_GEO_1      = 0x06C0,
+    MCATEGORY_RUN_1      = 0x0700,
+
     MCATEGORY_UNK_2      = 0x0740,
     MCATEGORY_UNK_3      = 0x0780,
     MCATEGORY_UNK_4      = 0x07C0,
@@ -92,9 +93,11 @@ enum MERIT_CATEGORY
     MCATEGORY_PUP_2      = 0x0C40,
     MCATEGORY_DNC_2      = 0x0C80,
     MCATEGORY_SCH_2      = 0x0CC0,
+    MCATEGORY_GEO_2      = 0x0400,
+    MCATEGORY_RUN_2      = 0x0440,
 
     MCATEGORY_START      = 0x0040,
-    MCATEGORY_COUNT      = 0x0D00,
+    MCATEGORY_COUNT      = 0x0D80,
 };
 
 /************************************************************************
@@ -108,6 +111,7 @@ enum MERIT_TYPE
     //HP
     MERIT_MAX_HP                    = MCATEGORY_HP_MP + 0x00,
     MERIT_MAX_MP                    = MCATEGORY_HP_MP + 0x02,
+    MERIT_MAX_MERIT                 = MCATEGORY_HP_MP + 0x04,
 
     //ATTRIBUTES
     MERIT_STR                       = MCATEGORY_ATTRIBUTES + 0x00,
@@ -152,6 +156,8 @@ enum MERIT_TYPE
     MERIT_STRING                    = MCATEGORY_MAGIC + 0x12,
     MERIT_WIND                      = MCATEGORY_MAGIC + 0x14,
     MERIT_BLUE                      = MCATEGORY_MAGIC + 0x16,
+    MERIT_GEO                       = MCATEGORY_MAGIC + 0x18,
+    MERIT_HANDBELL                  = MCATEGORY_MAGIC + 0x1A,
 
     //OTHERS
     MERIT_ENMITY_INCREASE           = MCATEGORY_OTHERS + 0x00,
@@ -303,6 +309,20 @@ enum MERIT_TYPE
     MERIT_MODUS_VERITAS_DURATION    = MCATEGORY_SCH_1 + 0x02,
     MERIT_HELIX_MAGIC_ACC_ATT       = MCATEGORY_SCH_1 + 0x04,
     MERIT_MAX_SUBLIMATION           = MCATEGORY_SCH_1 + 0x06,
+
+    //GEO 1
+    MERIT_FULL_CIRCLE               = MCATEGORY_GEO_1 + 0x00,
+    MERIT_ECLIPTIC_ATT_RECAST       = MCATEGORY_GEO_1 + 0x02,
+    MERIT_LIFE_CYCLE_RECAST         = MCATEGORY_GEO_1 + 0x04,
+    MERIT_BLAZE_OF_GLORY_RECAST     = MCATEGORY_GEO_1 + 0x06,
+    MERIT_DEMATERIALIZE_RECAST      = MCATEGORY_GEO_1 + 0x08,
+
+    //RUN 1
+    MERIT_RUNE_ENHANCE              = MCATEGORY_RUN_1 + 0x00,
+    MERIT_VALLATION_EFFECT          = MCATEGORY_RUN_1 + 0x02,
+    MERIT_LUNGE_EFFECT              = MCATEGORY_RUN_1 + 0x04,
+    MERIT_PFLUG_EFFECT              = MCATEGORY_RUN_1 + 0x06,
+    MERIT_GAMBIT_EFFECT             = MCATEGORY_RUN_1 + 0x08,
 
     //WEAPON SKILLS
     MERIT_SHIJIN_SPIRAL             = MCATEGORY_WS + 0x00,
@@ -458,6 +478,18 @@ enum MERIT_TYPE
     MERIT_EQUANIMITY                = MCATEGORY_SCH_2 + 0x06,
     MERIT_ENLIGHTENMENT             = MCATEGORY_SCH_2 + 0x08,
     MERIT_STORMSURGE                = MCATEGORY_SCH_2 + 0x0A,
+
+    //GEO 2
+    MERIT_MENDING_HALATION          = MCATEGORY_GEO_2 + 0x00,
+    MERIT_RADIAL_ARCANA             = MCATEGORY_GEO_2 + 0x02,
+    MERIT_CURATIVE_RECANTATION      = MCATEGORY_GEO_2 + 0x04,
+    MERIT_PRIMEVAL_ZEAL             = MCATEGORY_GEO_2 + 0x06,
+
+    //RUN 2
+    MERIT_BATTUTA                   = MCATEGORY_RUN_2 + 0x00,
+    MERIT_RAYKE                     = MCATEGORY_RUN_2 + 0x02,
+    MERIT_INSPIRATION               = MCATEGORY_RUN_2 + 0x04,
+    MERIT_SLEIGHT_OF_SWORD          = MCATEGORY_RUN_2 + 0x06,
 };
 
 #define MERITS_COUNT  305  // 5 полных пакетов по 61 элементу
