@@ -42,14 +42,14 @@ public:
 };
 
 template<>
-static inline double dsprand::GetRandomNumber(double min, double max)
+inline double dsprand::GetRandomNumber(double min, double max)
 {
     std::uniform_real_distribution<> dist(min, max);
     return dist(mt());
 }
 
 template<>
-static inline float dsprand::GetRandomNumber(float min, float max)
+inline float dsprand::GetRandomNumber(float min, float max)
 {
     std::uniform_real_distribution<float> dist(min, max);
     return dist(mt());
