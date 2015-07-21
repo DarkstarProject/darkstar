@@ -29,21 +29,6 @@ public:
         return dist(mt());
     }
     
-    template<>
-    static inline double GetRandomNumber(double min, double max)
-    {
-        std::uniform_real_distribution<> dist(min, max);
-        return dist(mt());
-    }
-    
-    template<>
-    static inline float GetRandomNumber(float min, float max)
-    {
-        std::uniform_real_distribution<float> dist(min, max);
-        return dist(mt());
-    }
-
-
     /*Generates a random number in the half-open interval [0, max)
     @param min
     @param max
@@ -55,3 +40,17 @@ public:
         return GetRandomNumber<Type>(0, max);
     }
 };
+
+template<>
+static inline double dsprand::GetRandomNumber(double min, double max)
+{
+    std::uniform_real_distribution<> dist(min, max);
+    return dist(mt());
+}
+
+template<>
+static inline float dsprand::GetRandomNumber(float min, float max)
+{
+    std::uniform_real_distribution<float> dist(min, max);
+    return dist(mt());
+}
