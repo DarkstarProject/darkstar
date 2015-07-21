@@ -3121,7 +3121,7 @@ INSERT INTO `item_mods` VALUES (10946, 369, 1); -- Refresh + 1
 INSERT INTO `item_mods` VALUES (10947, 30, -3); -- Magic Accuracy + -3
 INSERT INTO `item_mods` VALUES (10947, 28, 9); -- Magic Attack Bonus + 9
 
---- -------------------------------------------------------
+-- -------------------------------------------------------
 -- Carver's Torque
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (10948, 128, 2); -- Woodworking skill +2
@@ -23682,6 +23682,8 @@ INSERT INTO `item_mods` VALUES (20717, 82, 228); -- Sword + 228
 INSERT INTO `item_mods` VALUES (20717, 110, 228); -- Parrying + 228
 INSERT INTO `item_mods` VALUES (20717, 113, 10); -- Enhancing Magic + 10
 INSERT INTO `item_mods` VALUES (20717, 114, 10); -- Enfeebling Magic + 10
+INSERT INTO `item_mods` VALUES (20717, 103, 188); -- Magic Accuracy Skill + 188
+-- INSERT INTO `item_mods` VALUES (20717, ?, 30); -- Occult Acumen +30
 
 -- -------------------------------------------------------
 -- Claidheamh Soluis
@@ -23944,6 +23946,7 @@ INSERT INTO `item_mods` VALUES (21192, 311, 86); -- Magic Damage Bonus + 86
 INSERT INTO `item_mods` VALUES (21192, 91, 81); -- Staff + 81
 INSERT INTO `item_mods` VALUES (21192, 110, 81); -- Parrying + 81
 INSERT INTO `item_mods` VALUES (21192, 103, 81); -- Magic Accuracy Skill + 81
+INSERT INTO `item_mods` VALUES (21192, 27, -15); -- Enmity + -15
 
 -- -------------------------------------------------------
 -- Voay Staff +1
@@ -23957,6 +23960,7 @@ INSERT INTO `item_mods` VALUES (21193, 311, 97); -- Magic Damage Bonus + 97
 INSERT INTO `item_mods` VALUES (21193, 91, 94); -- Staff + 94
 INSERT INTO `item_mods` VALUES (21193, 110, 94); -- Parrying + 94
 INSERT INTO `item_mods` VALUES (21193, 103, 89); -- Magic Accuracy Skill + 89
+INSERT INTO `item_mods` VALUES (21193, 27, -20); -- Enmity + -20
 
 -- -------------------------------------------------------
 -- Cibitshavore
