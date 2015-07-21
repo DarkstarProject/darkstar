@@ -38,23 +38,26 @@ function onSpellCast(caster,target,spell)
     local power = 10 * resist;
     local returnEffect = typeEffectOne;
 
-    -- TODO: Gaze check
     if(resist >= 0.5) then
-        if(target:hasStatusEffect(typeEffectOne) and target:hasStatusEffect(typeEffectTwo) and target:getTP() == 0) then
-            spell:setMsg(75); -- no effect
-        elseif(target:hasStatusEffect(typeEffectOne) and target:hasStatusEffect(typeEffectTwo)) then
-            target:delTP(power);
-            spell:setMsg(431); -- tp reduced
-        elseif (target:hasStatusEffect(typeEffectOne)) then
-            target:addStatusEffect(typeEffectTwo,1,0,duration);
-            target:delTP(power);
-            returnEffect = typeEffectTwo; -- make it return bind message if blind can't be inflicted
-            spell:setMsg(236);
+        if (target:isFacing(caster)) then
+            if(target:hasStatusEffect(typeEffectOne) and target:hasStatusEffect(typeEffectTwo) and target:getTP() == 0) then
+                spell:setMsg(75); -- no effect
+            elseif(target:hasStatusEffect(typeEffectOne) and target:hasStatusEffect(typeEffectTwo)) then
+                target:delTP(power);
+                spell:setMsg(431); -- tp reduced
+            elseif (target:hasStatusEffect(typeEffectOne)) then
+                target:addStatusEffect(typeEffectTwo,1,0,duration);
+                target:delTP(power);
+                returnEffect = typeEffectTwo; -- make it return bind message if blind can't be inflicted
+                spell:setMsg(236);
+            else
+                target:addStatusEffect(typeEffectOne,50,0,duration);
+                target:addStatusEffect(typeEffectTwo,1,0,duration);
+                target:delTP(power);
+                spell:setMsg(236);
+            end;
         else
-            target:addStatusEffect(typeEffectOne,50,0,duration);
-            target:addStatusEffect(typeEffectTwo,1,0,duration);
-            target:delTP(power);
-            spell:setMsg(236);
+            spell:setMsg(75);
         end;
     end;
 
