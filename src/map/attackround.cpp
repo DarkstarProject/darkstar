@@ -227,19 +227,19 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 		//ShowDebug(CL_CYAN"Create Attacks: Mikage Active, Rolling Attack Chance for %d Shadowss...\n" CL_RESET, shadows);
 		AddAttackSwing(ATTACK_NORMAL, direction, shadows);
 	}
-	else if (num == 1 && WELL512::GetRandomNumber(100) < quadAttack)
+	else if (num == 1 && dsprand::GetRandomNumber(100) < quadAttack)
 		AddAttackSwing(QUAD_ATTACK, direction, 3);
 	
-    else if (num == 1 && WELL512::GetRandomNumber(100) < tripleAttack)
+    else if (num == 1 && dsprand::GetRandomNumber(100) < tripleAttack)
 		AddAttackSwing(TRIPLE_ATTACK, direction, 2);
 	
-    else if (num == 1 && WELL512::GetRandomNumber(100) < doubleAttack)
+    else if (num == 1 && dsprand::GetRandomNumber(100) < doubleAttack)
 		AddAttackSwing(DOUBLE_ATTACK, direction, 1);
 
 	// TODO: Possible Lua function for the nitty gritty stuff below.
 
 	// Iga mod: Extra attack chance whilst dual wield is on.
-    if (direction == LEFTATTACK && WELL512::GetRandomNumber(100) < m_attacker->getMod(MOD_EXTRA_DUAL_WIELD_ATTACK))
+    if (direction == LEFTATTACK && dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_EXTRA_DUAL_WIELD_ATTACK))
 		AddAttackSwing(ATTACK_NORMAL, RIGHTATTACK, 1);
 
 }
@@ -263,7 +263,7 @@ void CAttackRound::CreateKickAttacks()
 
 		kickAttack = dsp_cap(kickAttack, 0, 100);
 
-        if (WELL512::GetRandomNumber(100) < kickAttack)
+        if (dsprand::GetRandomNumber(100) < kickAttack)
 		{
 			AddAttackSwing(KICK_ATTACK, RIGHTATTACK, 1);
 			m_kickAttackOccured = true;
@@ -272,7 +272,7 @@ void CAttackRound::CreateKickAttacks()
 		// TODO: Possible Lua function for the nitty gritty stuff below.
 
 		// Mantra set mod: Try an extra left kick attack.
-        if (m_kickAttackOccured && WELL512::GetRandomNumber(100) < m_attacker->getMod(MOD_EXTRA_KICK_ATTACK))
+        if (m_kickAttackOccured && dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_EXTRA_KICK_ATTACK))
 		{
 			AddAttackSwing(KICK_ATTACK, LEFTATTACK, 1);
 		}

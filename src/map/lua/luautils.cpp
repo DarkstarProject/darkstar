@@ -4058,7 +4058,7 @@ int32 UpdateNMSpawnPoint(lua_State* L)
           int32 r = 0;
           int32 ret = Sql_Query(SqlHandle, "SELECT count(mobid) FROM `nm_spawn_points` where mobid=%u", mobid);
 		  if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS && Sql_GetUIntData(SqlHandle, 0) > 0) {
-            r = WELL512::GetRandomNumber(Sql_GetUIntData(SqlHandle,0));
+            r = dsprand::GetRandomNumber(Sql_GetUIntData(SqlHandle,0));
 		  } else {
 			ShowDebug(CL_RED"UpdateNMSpawnPoint: SQL error: No entries for mobid <%u> found.\n" CL_RESET, mobid);
             return 0;
@@ -4066,7 +4066,7 @@ int32 UpdateNMSpawnPoint(lua_State* L)
 
 		  ret = Sql_Query(SqlHandle, "SELECT pos_x, pos_y, pos_z FROM `nm_spawn_points` WHERE mobid=%u AND pos=%i", mobid, r);
 		  if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-			PMob->m_SpawnPoint.rotation = WELL512::GetRandomNumber(256);
+			PMob->m_SpawnPoint.rotation = dsprand::GetRandomNumber(256);
 			PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle,0);
 			PMob->m_SpawnPoint.y = Sql_GetFloatData(SqlHandle,1);
 			PMob->m_SpawnPoint.z = Sql_GetFloatData(SqlHandle,2);
