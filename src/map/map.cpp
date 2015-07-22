@@ -74,11 +74,8 @@ const int8* MAP_CONF_FILENAME = nullptr;
 
 int8*  g_PBuff = nullptr;                // глобальный буфер обмена пакетами
 int8*  PTempBuff = nullptr;                // временный  буфер обмена пакетами
-#ifdef WIN32
-__declspec(thread) Sql_t* SqlHandle = nullptr; // SQL descriptor
-#else
+
 thread_local Sql_t* SqlHandle = nullptr;
-#endif
 
 int32  map_fd = 0;                      // main socket
 uint32 map_amntplayers = 0;             // map amnt unique players
@@ -167,7 +164,7 @@ int32 do_init(int32 argc, int8** argv)
     MAP_CONF_FILENAME = "./conf/map_darkstar.conf";
 
     srand((uint32)time(nullptr));
-    WELL512::seed((uint32)time(nullptr));
+    dsprand::seed();
 
     map_config_default();
     map_config_read(MAP_CONF_FILENAME);

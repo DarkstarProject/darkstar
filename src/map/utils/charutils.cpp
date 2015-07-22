@@ -2504,7 +2504,7 @@ namespace charutils
             int16  Diff = MaxSkill - CurSkill / 10;
             double SkillUpChance = Diff / 5.0 + map_config.skillup_chance_multiplier * (2.0 - log10(1.0 + CurSkill / 100));
 
-            double random = WELL512::GetRandomNumber(1.);
+            double random = dsprand::GetRandomNumber(1.);
 
             if (SkillUpChance > 0.5)
             {
@@ -2519,7 +2519,7 @@ namespace charutils
 
                 for (uint8 i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
                 {
-                    random = WELL512::GetRandomNumber(1.);
+                    random = dsprand::GetRandomNumber(1.);
 
                     switch (tier)
                     {
@@ -3216,7 +3216,7 @@ namespace charutils
                         uint16 Pzone = PMember->getZone();
                         if (PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255)))
                         {
-                            if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && WELL512::GetRandomNumber(100) < 20 &&
+                            if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && dsprand::GetRandomNumber(100) < 20 &&
                                 PMember->loc.zone == PMob->loc.zone) // Need to move to SIGNET_CHANCE constant
                             {
                                 PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);

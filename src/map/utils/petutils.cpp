@@ -1083,7 +1083,7 @@ namespace petutils
         {
             // increase charm duration
             // 30 mins - 1-5 mins
-            PPet->charmTime += 1800000 - WELL512::GetRandomNumber(300000u);
+            PPet->charmTime += 1800000 - dsprand::GetRandomNumber(300000u);
         }
 
         float rate = 0.10f;
@@ -1307,6 +1307,16 @@ namespace petutils
                 }
             }
 
+            
+            if (PMaster->objtype == TYPE_PC)
+            {
+                CCharEntity* PChar = (CCharEntity*)PMaster;
+                PPet->addModifier(MOD_MATT, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_MAGICAL_ATTACK, PChar));
+                PPet->addModifier(MOD_ATT, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_PHYSICAL_ATTACK, PChar));
+                PPet->addModifier(MOD_MACC, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_MAGICAL_ACCURACY, PChar));
+                PPet->addModifier(MOD_ACC, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_PHYSICAL_ACCURACY, PChar));
+            }
+
             PMaster->addModifier(MOD_AVATAR_PERPETUATION, PerpetuationCost(PetID, PPet->GetMLevel()));
         }
         else if (PPet->getPetType() == PETTYPE_JUG_PET){
@@ -1326,7 +1336,7 @@ namespace petutils
 			highestLvl += PChar->PMeritPoints->GetMeritValue(MERIT_BEAST_AFFINITY, PChar);
 
             // 0-2 lvls lower
-            highestLvl -= WELL512::GetRandomNumber(3);
+            highestLvl -= dsprand::GetRandomNumber(3);
 
             PPet->SetMLevel(highestLvl);
             LoadJugStats(PPet, PPetData); //follow monster calcs (w/o SJ)
