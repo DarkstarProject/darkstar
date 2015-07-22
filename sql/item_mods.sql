@@ -23644,21 +23644,13 @@ INSERT INTO `item_mods` VALUES (19859, 13, 13); -- MND+13
 INSERT INTO `item_mods` VALUES (19958, 365, 5); -- Snap shot (Ranged delay decrease)
 INSERT INTO `item_mods` VALUES (19958, 450, 35); -- Barrage accuracy
 
--- -------------------------------------------------------
--- Ohrmazd
--- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES (20530, 80, 242); -- Hand to Hand + 242
-INSERT INTO `item_mods` VALUES (20530, 107, 242); -- Guard + 242
-INSERT INTO `item_mods` VALUES (20530, 103, 188); -- Magic Accuracy Skill + 188
+-- 20530 Ohrmazd, iLvl only
 
 -- -------------------------------------------------------
 -- Tinhaspa
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (20536, 8, 3); -- STR + 3
 INSERT INTO `item_mods` VALUES (20536, 25, 5); -- Accuracy + 5
-INSERT INTO `item_mods` VALUES (20536, 80, 242); -- Hand to Hand + 242
-INSERT INTO `item_mods` VALUES (20536, 107, 242); -- Guard + 242
-INSERT INTO `item_mods` VALUES (20536, 103, 188); -- Magic Accuracy Skill + 188
 -- INSERT INTO `item_mods` VALUES (20536, ?, 15); -- Automaton Attack + 15
 -- INSERT INTO `item_mods` VALUES (20536, ?, 15); -- Automaton Ranged Attack + 15
 -- INSERT INTO `item_mods` VALUES (20536, ?, 15); -- Automaton Magic Attack + 15
@@ -23667,9 +23659,6 @@ INSERT INTO `item_mods` VALUES (20536, 103, 188); -- Magic Accuracy Skill + 188
 -- Ipetam
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (20616, 68, 22); -- Evasion + 22
-INSERT INTO `item_mods` VALUES (20616, 81, 242); -- Dagger + 242
-INSERT INTO `item_mods` VALUES (20616, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (20616, 103, 188); -- Magic Accuracy Skill + 188
 
 -- -------------------------------------------------------
 -- Arendsi Fleuret
@@ -23678,19 +23667,11 @@ INSERT INTO `item_mods` VALUES (20717, 25, 27); -- Accuracy + 27
 INSERT INTO `item_mods` VALUES (20717, 30, 15); -- Magic Accuracy + 15
 INSERT INTO `item_mods` VALUES (20717, 311, 90); -- Magic Damage Bonus + 90
 INSERT INTO `item_mods` VALUES (20717, 68, 13); -- Evasion + 13
-INSERT INTO `item_mods` VALUES (20717, 82, 228); -- Sword + 228
-INSERT INTO `item_mods` VALUES (20717, 110, 228); -- Parrying + 228
 INSERT INTO `item_mods` VALUES (20717, 113, 10); -- Enhancing Magic + 10
 INSERT INTO `item_mods` VALUES (20717, 114, 10); -- Enfeebling Magic + 10
-INSERT INTO `item_mods` VALUES (20717, 103, 188); -- Magic Accuracy Skill + 188
 -- INSERT INTO `item_mods` VALUES (20717, ?, 30); -- Occult Acumen +30
 
--- -------------------------------------------------------
--- Claidheamh Soluis
--- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES (20718, 82, 242); -- Sword + 242
-INSERT INTO `item_mods` VALUES (20718, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (20718, 103, 188); -- Magic Accuracy Skill + 188
+-- 20718 Claidheamh Soluis, iLvl only
 
 -- -------------------------------------------------------
 -- Mimesis
@@ -23703,9 +23684,6 @@ INSERT INTO `item_mods` VALUES (20721, 11, 10); -- AGI + 10
 INSERT INTO `item_mods` VALUES (20721, 12, 10); -- INT + 10
 INSERT INTO `item_mods` VALUES (20721, 13, 10); -- MND + 10
 INSERT INTO `item_mods` VALUES (20721, 14, 10); -- CHR + 10
-INSERT INTO `item_mods` VALUES (20721, 82, 242); -- Sword + 242
-INSERT INTO `item_mods` VALUES (20721, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (20721, 103, 188); -- Magic Accuracy Skill + 188
 INSERT INTO `item_mods` VALUES (20721, 27, -10); -- Enmity + -10
 
 -- -------------------------------------------------------
@@ -23713,52 +23691,32 @@ INSERT INTO `item_mods` VALUES (20721, 27, -10); -- Enmity + -10
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (20758, 8, 13); -- STR + 13
 INSERT INTO `item_mods` VALUES (20758, 23, 35); -- Attack + 35
-INSERT INTO `item_mods` VALUES (20758, 83, 228); -- Great Sword + 228
-INSERT INTO `item_mods` VALUES (20758, 110, 228); -- Parrying + 228
-INSERT INTO `item_mods` VALUES (20758, 103, 188); -- Magic Accuracy Skill + 188
 INSERT INTO `item_mods` VALUES (20758, 392, 30); -- Weapon Bash + 30
 -- INSERT INTO `item_mods` VALUES (20758, ?, 10); -- Absorb Potency + 10
 
--- -------------------------------------------------------
--- Macbain
--- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES (20759, 83, 242); -- Great Sword + 242
-INSERT INTO `item_mods` VALUES (20759, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (20759, 103, 188); -- Magic Accuracy Skill + 188
+-- 20759 Macbain, ilvl only
 
 -- -------------------------------------------------------
 -- Kbiroj
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (20763, 2, 20); -- HP + 20
 INSERT INTO `item_mods` VALUES (20763, 23, 8); -- Attack + 8
-INSERT INTO `item_mods` VALUES (20763, 83, 242); -- Great Sword + 242
-INSERT INTO `item_mods` VALUES (20763, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (20763, 103, 188); -- Magic Accuracy Skill + 188
 
 -- -------------------------------------------------------
 -- Voay Sword -1
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (20772, 25, -50); -- Accuracy + -50
-INSERT INTO `item_mods` VALUES (20772, 83, 51); -- Great Sword + 51
-INSERT INTO `item_mods` VALUES (20772, 110, 51); -- Parrying + 51
-INSERT INTO `item_mods` VALUES (20772, 103, 42); -- Magic Accuracy Skill + 42
 
 -- -------------------------------------------------------
 -- Voay Sword
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (20773, 23, 22); -- Attack + 22
-INSERT INTO `item_mods` VALUES (20773, 83, 76); -- Great Sword + 76
-INSERT INTO `item_mods` VALUES (20773, 110, 76); -- Parrying + 76
-INSERT INTO `item_mods` VALUES (20773, 103, 63); -- Magic Accuracy Skill + 63
 INSERT INTO `item_mods` VALUES (20773, 27, 15); -- Enmity + 15
 
 -- -------------------------------------------------------
 -- Voay Sword +1
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (20774, 23, 30); -- Attack + 30
-INSERT INTO `item_mods` VALUES (20774, 83, 89); -- Great Sword + 89
-INSERT INTO `item_mods` VALUES (20774, 110, 89); -- Parrying + 89
-INSERT INTO `item_mods` VALUES (20774, 103, 73); -- Magic Accuracy Skill + 73
 INSERT INTO `item_mods` VALUES (20774, 27, 20); -- Enmity + 20
 
 -- -------------------------------------------------------
@@ -23772,61 +23730,28 @@ INSERT INTO `item_mods` VALUES (20781, 2, 5); -- HP+5
 INSERT INTO `item_mods` VALUES (20784, 23, 9); -- Attack+9
 INSERT INTO `item_mods` VALUES (20784, 29, 5); -- "Magic Def. Bonus"+5
 
--- -------------------------------------------------------
--- Kumbhakarna
--- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES (20809, 84, 242); -- Axe + 242
-INSERT INTO `item_mods` VALUES (20809, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (20809, 103, 188); -- Magic Accuracy Skill + 188
-
--- -------------------------------------------------------
--- Svarga
--- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES (20857, 85, 242); -- Great Axe + 242
-INSERT INTO `item_mods` VALUES (20857, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (20857, 103, 188); -- Magic Accuracy Skill + 188
+-- 20809 Kumbhakarna, ilvl only
+-- 20857 Svarga, ilvl only
 
 -- -------------------------------------------------------
 -- Minos
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (20860, 23, 15); -- Attack + 15
-INSERT INTO `item_mods` VALUES (20860, 85, 242); -- Great Axe + 242
-INSERT INTO `item_mods` VALUES (20860, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (20860, 103, 188); -- Magic Accuracy Skill + 188
 INSERT INTO `item_mods` VALUES (20860, 27, -10); -- Enmity + -10
 INSERT INTO `item_mods` VALUES (20860, 288, 4); -- Double Attack + 4
 
--- -------------------------------------------------------
--- Inanna
--- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES (20901, 86, 242); -- Scythe + 242
-INSERT INTO `item_mods` VALUES (20901, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (20901, 103, 188); -- Magic Accuracy Skill + 188
+-- 20901 Inanna, ilvl only
 
 -- -------------------------------------------------------
 -- Cronus
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (20904, 25, 15); -- Accuracy + 15
 INSERT INTO `item_mods` VALUES (20904, 23, 15); -- Attack + 15
-INSERT INTO `item_mods` VALUES (20904, 86, 242); -- Scythe + 242
-INSERT INTO `item_mods` VALUES (20904, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (20904, 103, 188); -- Magic Accuracy Skill + 188
 INSERT INTO `item_mods` VALUES (20904, 27, -10); -- Enmity + -10
 INSERT INTO `item_mods` VALUES (20904, 431, 1); -- Added Effect HP Drain
 
--- -------------------------------------------------------
--- Olyndicus
--- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES (20946, 87, 242); -- Polearm + 242
-INSERT INTO `item_mods` VALUES (20946, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (20946, 103, 188); -- Magic Accuracy Skill + 188
-
--- -------------------------------------------------------
--- Eminent Lance
--- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES (20954, 87, 215); -- Polearm + 215
-INSERT INTO `item_mods` VALUES (20954, 110, 215); -- Parrying + 215
-INSERT INTO `item_mods` VALUES (20954, 103, 167); -- Magic Accuracy Skill + 167
+-- 20946 Olyndicus, ilvl only
+-- 20954 Eminent Lance, ilvl and latent only
 
 -- -------------------------------------------------------
 -- Kikoku (119-2)
@@ -23836,28 +23761,18 @@ INSERT INTO `item_mods` VALUES (20971, 355, 137); -- Adds WS
 INSERT INTO `item_mods` VALUES (20971, 431, 1); -- Add. Effect (Paralysis)
 INSERT INTO `item_mods` VALUES (20971, 506, 160); -- 16% chance of extra dmg.
 INSERT INTO `item_mods` VALUES (20971, 507, 300); -- Occ. 3x dmg
-INSERT INTO `item_mods` VALUES (20971, 356, 153); -- Adds WS in Dynamis
-INSERT INTO `item_mods` VALUES (20971, 88, 242); -- Katana skill
-INSERT INTO `item_mods` VALUES (20971, 110, 242); -- Parrying skill
-INSERT INTO `item_mods` VALUES (20971, 103, 215); -- Magic Accuracy skill
 -- INSERT INTO `item_mods` VALUES (20971, ?, ?); -- Afterglow effect
 
 -- -------------------------------------------------------
 -- Izuna
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (20989, 68, 22); -- Evasion + 22
-INSERT INTO `item_mods` VALUES (20989, 88, 242); -- Katana + 242
-INSERT INTO `item_mods` VALUES (20989, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (20989, 103, 188); -- Magic Accuracy Skill + 188
 
 -- -------------------------------------------------------
 -- Shigi
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (20994, 25, 27); -- Accuracy + 27
 INSERT INTO `item_mods` VALUES (20994, 68, 27); -- Evasion + 27
-INSERT INTO `item_mods` VALUES (20994, 88, 228); -- Katana + 228
-INSERT INTO `item_mods` VALUES (20994, 110, 228); -- Parrying + 228
-INSERT INTO `item_mods` VALUES (20994, 103, 215); -- Magic Accuracy Skill + 215
 INSERT INTO `item_mods` VALUES (20994, 118, 10); -- Ninjutsu + 10
 INSERT INTO `item_mods` VALUES (20994, 27, -10); -- Enmity + -10
 INSERT INTO `item_mods` VALUES (20994, 308, 5); -- Ninja Tool Expertise + 5
@@ -23867,9 +23782,6 @@ INSERT INTO `item_mods` VALUES (20994, 308, 5); -- Ninja Tool Expertise + 5
 -- Senkuto
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (21038, 25, 24); -- Accuracy + 24
-INSERT INTO `item_mods` VALUES (21038, 89, 203); -- Great Katana + 203
-INSERT INTO `item_mods` VALUES (21038, 110, 203); -- Parrying + 203
-INSERT INTO `item_mods` VALUES (21038, 103, 167); -- Magic Accuracy Skill + 167
 -- INSERT INTO `item_mods` VALUES (21038, ?, 400); -- Reives: Conserve TP + 400
 
 -- -------------------------------------------------------
@@ -23877,9 +23789,6 @@ INSERT INTO `item_mods` VALUES (21038, 103, 167); -- Magic Accuracy Skill + 167
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (21040, 8, 4); -- STR + 4
 INSERT INTO `item_mods` VALUES (21040, 23, 4); -- Attack + 4
-INSERT INTO `item_mods` VALUES (21040, 89, 242); -- Great Katana + 242
-INSERT INTO `item_mods` VALUES (21040, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (21040, 103, 188); -- Magic Accuracy Skill + 188
 
 -- -------------------------------------------------------
 -- Bolelabunga
@@ -23888,9 +23797,6 @@ INSERT INTO `item_mods` VALUES (21111, 12, 6); -- INT + 6
 INSERT INTO `item_mods` VALUES (21111, 13, 6); -- MND + 6
 INSERT INTO `item_mods` VALUES (21111, 28, 16); -- Magic Attack Bonus + 16
 INSERT INTO `item_mods` VALUES (21111, 311, 124); -- Magic Damage Bonus + 124
-INSERT INTO `item_mods` VALUES (21111, 90, 242); -- Club + 242
-INSERT INTO `item_mods` VALUES (21111, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (21111, 103, 215); -- Magic Accuracy Skill + 215
 INSERT INTO `item_mods` VALUES (21111, 338, 10); -- Regen Effectiveness + 10
 -- INSERT INTO `item_mods` VALUES (21111, ?, 1); -- Regen + 1
 -- INSERT INTO `item_mods` VALUES (21111, ?, 1); -- Refresh + 1
@@ -23902,9 +23808,6 @@ INSERT INTO `item_mods` VALUES (21169, 12, 12); -- INT + 12
 INSERT INTO `item_mods` VALUES (21169, 13, 12); -- MND + 12
 INSERT INTO `item_mods` VALUES (21169, 28, 28); -- Magic Attack Bonus + 28
 INSERT INTO `item_mods` VALUES (21169, 311, 217); -- Magic Damage Bonus + 217
-INSERT INTO `item_mods` VALUES (21169, 91, 242); -- Staff + 242
-INSERT INTO `item_mods` VALUES (21169, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (21169, 103, 228); -- Magic Accuracy Skill + 228
 -- INSERT INTO `item_mods` VALUES (21169, ?, 20); -- Avatar Magic Accuracy + 20
 -- INSERT INTO `item_mods` VALUES (21169, ?, 100); -- Avatar Magic Attack Bonus + 100
 
@@ -23916,9 +23819,6 @@ INSERT INTO `item_mods` VALUES (21173, 13, 12); -- MND + 12
 INSERT INTO `item_mods` VALUES (21173, 30, 20); -- Magic Accuracy + 20
 INSERT INTO `item_mods` VALUES (21173, 28, 20); -- Magic Attack Bonus + 20
 INSERT INTO `item_mods` VALUES (21173, 311, 224); -- Magic Damage Bonus + 224
-INSERT INTO `item_mods` VALUES (21173, 91, 242); -- Staff + 242
-INSERT INTO `item_mods` VALUES (21173, 110, 242); -- Parrying + 242
-INSERT INTO `item_mods` VALUES (21173, 103, 228); -- Magic Accuracy Skill + 228
 INSERT INTO `item_mods` VALUES (21173, 27, -10); -- Enmity + -10
 
 -- -------------------------------------------------------
@@ -23930,9 +23830,6 @@ INSERT INTO `item_mods` VALUES (21191, 25, -50); -- Accuracy + -50
 INSERT INTO `item_mods` VALUES (21191, 30, -50); -- Magic Accuracy + -50
 INSERT INTO `item_mods` VALUES (21191, 28, 4); -- Magic Attack Bonus + 4
 INSERT INTO `item_mods` VALUES (21191, 311, 65); -- Magic Damage Bonus + 65
-INSERT INTO `item_mods` VALUES (21191, 91, 54); -- Staff + 54
-INSERT INTO `item_mods` VALUES (21191, 110, 54); -- Parrying + 54
-INSERT INTO `item_mods` VALUES (21191, 103, 51); -- Magic Accuracy Skill + 51
 
 -- -------------------------------------------------------
 -- Voay Staff
@@ -23943,9 +23840,6 @@ INSERT INTO `item_mods` VALUES (21192, 25, -30); -- Accuracy + -30
 INSERT INTO `item_mods` VALUES (21192, 30, -60); -- Magic Accuracy + -60
 INSERT INTO `item_mods` VALUES (21192, 28, 60); -- Magic Attack Bonus + 60
 INSERT INTO `item_mods` VALUES (21192, 311, 86); -- Magic Damage Bonus + 86
-INSERT INTO `item_mods` VALUES (21192, 91, 81); -- Staff + 81
-INSERT INTO `item_mods` VALUES (21192, 110, 81); -- Parrying + 81
-INSERT INTO `item_mods` VALUES (21192, 103, 81); -- Magic Accuracy Skill + 81
 INSERT INTO `item_mods` VALUES (21192, 27, -15); -- Enmity + -15
 
 -- -------------------------------------------------------
@@ -23957,9 +23851,6 @@ INSERT INTO `item_mods` VALUES (21193, 25, -20); -- Accuracy + -20
 INSERT INTO `item_mods` VALUES (21193, 30, -70); -- Magic Accuracy + -70
 INSERT INTO `item_mods` VALUES (21193, 28, 70); -- Magic Attack Bonus + 70
 INSERT INTO `item_mods` VALUES (21193, 311, 97); -- Magic Damage Bonus + 97
-INSERT INTO `item_mods` VALUES (21193, 91, 94); -- Staff + 94
-INSERT INTO `item_mods` VALUES (21193, 110, 94); -- Parrying + 94
-INSERT INTO `item_mods` VALUES (21193, 103, 89); -- Magic Accuracy Skill + 89
 INSERT INTO `item_mods` VALUES (21193, 27, -20); -- Enmity + -20
 
 -- -------------------------------------------------------
@@ -23967,13 +23858,11 @@ INSERT INTO `item_mods` VALUES (21193, 27, -20); -- Enmity + -20
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (21229, 11, 3); -- AGI + 3
 INSERT INTO `item_mods` VALUES (21229, 26, 6); -- Ranged Accuracy + 6
-INSERT INTO `item_mods` VALUES (21229, 104, 242); -- Archery + 242
 
 -- -------------------------------------------------------
 -- One-Eyed
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES (21252, 26, 12); -- Ranged Accuracy + 12
-INSERT INTO `item_mods` VALUES (21252, 105, 102); -- Marksmanship + 102
 
 -- -------------------------------------------------------
 -- Raaz Arrow
