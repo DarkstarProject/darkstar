@@ -3,7 +3,7 @@
 class dsprand
 {
 private:
-    static std::mt19937 & mt()
+    static std::mt19937& mt()
     {
         static std::mt19937 e{};
         return e;
@@ -16,41 +16,35 @@ public:
         mt().seed(rd());
     }
 
-
     /*Generates a random number in the half-open interval [min, max)
     @param min
     @param max
     @returns result
     */
-    template <typename Type>
-    static inline Type GetRandomNumber(Type min, Type max)
+    template <typename T>
+    static inline typename std::enable_if<std::is_integral<T>::value,T>::type
+		GetRandomNumber(T min, T max)
     {        
-        std::uniform_int_distribution<Type> dist(min, max - 1);
+        std::uniform_int_distribution<T> dist(min, max - 1);
         return dist(mt());
     }
     
+	template<typename T>
+	static inline typename std::enable_if<std::is_floating_point<T>::value,T>::type
+		GetRandomNumber(T min, T max)
+	{
+		std::uniform_real_distribution<T> dist(min, max);
+		return dist(mt());
+	}
+
     /*Generates a random number in the half-open interval [0, max)
     @param min
     @param max
     @returns result
     */
-    template <typename Type>
-    static inline Type GetRandomNumber(Type max)
+    template <typename T>
+    static inline T GetRandomNumber(T max)
     {
-        return GetRandomNumber<Type>(0, max);
+        return GetRandomNumber<T>(0, max);
     }
 };
-
-template<>
-inline double dsprand::GetRandomNumber(double min, double max)
-{
-    std::uniform_real_distribution<> dist(min, max);
-    return dist(mt());
-}
-
-template<>
-inline float dsprand::GetRandomNumber(float min, float max)
-{
-    std::uniform_real_distribution<float> dist(min, max);
-    return dist(mt());
-}
