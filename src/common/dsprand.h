@@ -23,19 +23,19 @@ public:
     */
     template <typename T>
     static inline typename std::enable_if<std::is_integral<T>::value,T>::type
-		GetRandomNumber(T min, T max)
+        GetRandomNumber(T min, T max)
     {        
         std::uniform_int_distribution<T> dist(min, max - 1);
         return dist(mt());
     }
     
-	template<typename T>
-	static inline typename std::enable_if<std::is_floating_point<T>::value,T>::type
-		GetRandomNumber(T min, T max)
-	{
-		std::uniform_real_distribution<T> dist(min, max);
-		return dist(mt());
-	}
+    template<typename T>
+    static inline typename std::enable_if<std::is_floating_point<T>::value,T>::type
+        GetRandomNumber(T min, T max)
+    {
+        std::uniform_real_distribution<T> dist(min, max);
+        return dist(mt());
+    }
 
     /*Generates a random number in the half-open interval [0, max)
     @param min
