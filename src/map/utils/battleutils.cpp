@@ -1465,7 +1465,7 @@ namespace battleutils
         //get ratio (not capped for RAs)
         float ratio = (float)rAttack / (float)PDefender->DEF();
 
-        dsp_cap(ratio, 0, 3);
+        ratio = dsp_cap(ratio, 0, 3);
 
         //level correct (0.025 not 0.05 like for melee)
         if (PDefender->GetMLevel() > PAttacker->GetMLevel()) {
@@ -1492,8 +1492,8 @@ namespace battleutils
             maxPdif = ratio;
         }
 
-        dsp_cap(minPdif, 0, 3);
-        dsp_cap(maxPdif, 0, 3);
+        minPdif = dsp_cap(minPdif, 0, 3);
+        maxPdif = dsp_cap(maxPdif, 0, 3);
 
         //return random number between the two
         return dsprand::GetRandomNumber(minPdif, maxPdif);
