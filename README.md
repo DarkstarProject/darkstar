@@ -27,17 +27,7 @@ Bug reports should include steps to reproduce the bug.
 
 Pull Requests
 ========
-Commits should contain appropriate labels for the code you are modifying:
-* LOGIN/LOBBY (```darkstar/src/login```)
-* SEARCH (```darkstar/src/search```)
-* SCRIPTS (```darkstar/scripts```)
-* CORE (```darkstar/src/map```)
-* DATABASE/SQL (```darkstar/sql```)
-* CONF (```darkstar/conf```)
-* DOCS (```darkstar/documentation```)
-* PROJECT (anything that affects the build process - regardless of platform)
-
-e.g. ```SCRIPTS: added [something]``` or ```CORE: added lua bindings for [something]```
+Commits should contain a descriptive name for what you are modifying
 
 Remember to check back for any feedback, and drop a comment once requested changes have been made (if there are any).
 
