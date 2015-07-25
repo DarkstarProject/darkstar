@@ -126,7 +126,7 @@ uint8 CAutomatonEntity::addBurden(uint8 element, uint8 burden)
         //check for overload
         if (m_Burden[element] > thresh)
         {
-            if (WELL512::GetRandomNumber(100) < (m_Burden[element] - thresh + 5))
+            if (dsprand::GetRandomNumber(100) < (m_Burden[element] - thresh + 5))
             {
                 //return overload duration
                 return m_Burden[element] - thresh;

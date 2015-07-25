@@ -37,13 +37,16 @@ function onSpellCast(caster,target,spell)
     local resist = applyResistanceEffect(caster,spell,target,dINT,BLUE_SKILL,0,typeEffect);
     local duration = 90 * resist;
 
-    -- TODO: Check for mob looking at player (NOT gaze). Does not apply for enemies using the spell?
     if(resist > 0.5) then -- Do it!
-        if(target:addStatusEffect(typeEffect,2,0,duration)) then
-            spell:setMsg(236);
+        if ((target:isFacing(caster))) then -- TODO: Apparently this check shouldn't exist for enemies using this spell? Need more info.
+            if(target:addStatusEffect(typeEffect,2,0,duration)) then
+                spell:setMsg(236);
+            else
+                spell:setMsg(75);
+            end;
         else
             spell:setMsg(75);
-        end
+        end;
     else
         spell:setMsg(85);
     end;

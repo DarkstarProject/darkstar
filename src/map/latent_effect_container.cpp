@@ -411,7 +411,7 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                 }
                 break;
             case LATENT_PET_ID:
-                CheckLatentsPetType((PETTYPE)m_LatentEffectList.at(i)->GetConditionsValue());
+                CheckLatentsPetType(!m_POwner->PPet ? -1 : m_POwner->PPet->id);
                 break;
             case LATENT_SUBJOB:
                 if (m_POwner->GetSJob() == m_LatentEffectList.at(i)->GetConditionsValue())
@@ -1396,14 +1396,14 @@ void CLatentEffectContainer::CheckLatentsJobLevel()
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::CheckLatentsPetType(PETTYPE petID)
+void CLatentEffectContainer::CheckLatentsPetType(uint8 petID)
 {
     for (uint16 i = 0; i < m_LatentEffectList.size(); ++i)
     {
         if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_PET_ID)
         {
             CLatentEffect* latent = m_LatentEffectList.at(i);
-            if ((PETTYPE)latent->GetConditionsValue() == petID)
+            if (latent->GetConditionsValue() == petID)
             {
                 latent->Activate();
             }

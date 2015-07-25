@@ -1408,6 +1408,15 @@ INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 191, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 357, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 365, 1, 255);
 
+-- Sarameya
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 146, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 147, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 175, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 176, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 204, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 205, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 249, 1, 255);
+
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;

@@ -142,7 +142,7 @@ uint8 CItemArmor::getShieldAbsorption()
 
 bool CItemArmor::IsShield()
 {
-    return m_shieldSize > 0 && m_shieldSize < 6;
+    return m_shieldSize > 0 && m_shieldSize <= 6;
 }
 
 /************************************************************************

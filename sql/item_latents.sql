@@ -2584,3 +2584,54 @@ INSERT INTO `item_latents` VALUES(11367, 302, 1, 49, 5928); -- triple attack 1%
 INSERT INTO `item_latents` VALUES(11367, 23, 60, 49, 5929); -- atk+60
 INSERT INTO `item_latents` VALUES(11367, 1, 40, 49, 5929); -- def+40
 INSERT INTO `item_latents` VALUES(11367, 302, 2, 49, 5929); -- triple attack 2%
+
+-- -------------------------------------------------------
+-- Phlegethon's Trousers
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(16367, 8, 4, 52, 1); -- cumulative STR+5 in Fire weather
+
+-- -------------------------------------------------------
+-- Casaba Melon Tank
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(16251, 71, 3, 52, 1); -- Healing MP +3 in Fire weather
+
+-- -------------------------------------------------------
+-- Haraldr's Muffler
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(16280, 73, 4, 52, 5); -- cumulative Store TP +5 in Ice weather
+
+-- -------------------------------------------------------
+-- Wurger
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(19222, 24, 3, 52, 3); -- Ranged attack +3 in Water weather
+
+-- -------------------------------------------------------
+-- Rain Hat
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15220, 370, 1, 52, 3); -- Regen 1HP/tick in Water weather
+
+-- -------------------------------------------------------
+-- Tempest Belt
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15946, 384, 61, 52, 4); -- Haste +6% in Wind weather
+
+-- -------------------------------------------------------
+-- Raikiri
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17814, 23, 10, 52, 6); -- Attack +10 in Thunder weather
+
+-- -------------------------------------------------------
+-- Desert Boots
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (14166, 169, 12, 52, 2); -- movement speed +12% in Earth weather
+INSERT INTO `item_latents` VALUES (14167, 169, 12, 52, 2); -- Desert Boots +1
+
+-- -------------------------------------------------------
+-- Monsoon equips
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13875, 68, 8, 52, 3); -- Jinpachi: Evasion +8 in Water weather
+INSERT INTO `item_latents` VALUES(14122, 68, 8, 52, 3); -- Kyahan: Evasion +8 in Water weather
+INSERT INTO `item_latents` VALUES(14005, 25, 8, 52, 3); -- Tekko: Accuracy +8 in Water weather
+INSERT INTO `item_latents` VALUES(14026, 25, 9, 52, 3); -- Hailstorm Tekko: Accuracy +9 in Water weather
+INSERT INTO `item_latents` VALUES(14027, 25, 10, 52, 3); -- Hailstorm Tekko +1: Accuracy +10 in Water weather
+INSERT INTO `item_latents` VALUES(16883, 25, 10, 52, 3); -- Spear: Accuracy +10 in Water weather
