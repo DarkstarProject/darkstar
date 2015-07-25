@@ -1384,9 +1384,12 @@ namespace charutils
             {
                 if (PItem->getStackSize() == 1)
                 {
-                    AddItem(PTarget, LOC_INVENTORY, itemutils::GetItem(PItem));
+                    CItem* PNewItem = itemutils::GetItem(PItem);
+                    PNewItem->setReserve(0);
+                    AddItem(PTarget, LOC_INVENTORY, PNewItem);
                 }
-                else {
+                else 
+                {
                     AddItem(PTarget, LOC_INVENTORY, PItem->getID(), PItem->getReserve());
                 }
                 UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), -PItem->getReserve());
