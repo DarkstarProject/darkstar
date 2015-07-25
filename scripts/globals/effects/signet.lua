@@ -20,6 +20,9 @@ require("scripts/globals/status");
 function onEffectGain(target,effect)
 	target:addMod(MOD_DEF,15);
 	target:addMod(MOD_EVA,15);
+	target:addMod(MOD_REFRESH, 2);
+	target:addMod(MOD_REGEN, 2);
+	target:addMod(MOD_REGAIN, 2);
 end;
 
 -----------------------------------

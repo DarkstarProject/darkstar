@@ -35,6 +35,10 @@ function onEffectGain(target,effect)
         -- target:addLatent(LATENT_SIGIL_EXPLOSS, ?, MOD_EXPLOSS_REDUCTION, ?);
         -- exp loss reduction not implemented.
     end
+	
+	target:addMod(MOD_REFRESH, 2);
+	target:addMod(MOD_REGEN, 2);
+	target:addMod(MOD_REGAIN, 2);
 end;
 
 -----------------------------------
