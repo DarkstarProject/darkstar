@@ -42,7 +42,7 @@ public:
     virtual void Clear() override;
     virtual bool CanChangeState() override;
 
-    int16 GetErrorMsg();
+    uint16 GetErrorMsg();
     CSpell* GetSpell();
     void TryInterrupt(CBattleEntity * PAttacker);
     void Interrupt();

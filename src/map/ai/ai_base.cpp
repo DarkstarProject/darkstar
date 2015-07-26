@@ -43,7 +43,7 @@ CAIBase::CAIBase(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _pathfind) 
     pathfind = std::move(_pathfind);
 }
 
-void CAIBase::ActionQueueStateChange(queueAction& action)
+void CAIBase::ActionQueueStateChange(const queueAction& action)
 {
     //pathfinding maybe
 }

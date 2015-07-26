@@ -5008,7 +5008,7 @@ namespace battleutils
             if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_NIGHTINGALE))
             {
                 if (PEntity->objtype == TYPE_PC &&
-                    WELL512::GetRandomNumber(100) < ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_NIGHTINGALE, (CCharEntity*)PEntity) - 25)
+                    dsprand::GetRandomNumber(100) < ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_NIGHTINGALE, (CCharEntity*)PEntity) - 25)
                 {
                     return 0;
                 }

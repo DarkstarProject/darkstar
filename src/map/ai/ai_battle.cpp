@@ -27,6 +27,7 @@ This file is part of DarkStar-server source code.
 #include "../spell.h"
 #include "../entities/battleentity.h"
 #include "../packets/action.h"
+#include "../packets/message_basic.h"
 #include "../utils/battleutils.h"
 
 CAIBattle::CAIBattle(CBattleEntity* _PEntity) :
@@ -37,7 +38,7 @@ CAIBattle::CAIBattle(CBattleEntity* _PEntity) :
 {
 }
 
-void CAIBattle::ActionQueueStateChange(queueAction& action)
+void CAIBattle::ActionQueueStateChange(const queueAction& action)
 {
     switch(action.action)
     {
@@ -99,12 +100,10 @@ void CAIBattle::ActionCasting()
             CastFinished();
             break;
         case STATESTATUS::Interrupt:
-            CastInterrupted();
-            break;
         case STATESTATUS::ErrorRange:
         case STATESTATUS::ErrorInvalidTarget:
         case STATESTATUS::ErrorUnknown:
-            TransitionBack();
+            CastInterrupted();
             break;
         default:
             break;
@@ -171,9 +170,23 @@ void CAIBattle::CastFinished()
 
 void CAIBattle::CastInterrupted()
 {
-    //TODO: push interrupt action packet
-    action_t action;
-    //PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+    CSpell* PSpell = static_cast<CMagicState*>(actionStateContainer.get())->GetSpell();
+    if (PSpell)
+    {
+        action_t action;
+
+        action.id = PEntity->id;
+        action.actionid = ACTION_MAGIC_INTERRUPT;
+        action.spellgroup = PSpell->getSpellGroup();
+        
+        actionList_t& actionList = action.getNewActionList();
+        actionList.ActionTargetID = PEntity->id;
+
+        actionTarget_t& actionTarget = actionList.getNewActionTarget();
+        actionTarget.messageID = MSGBASIC_IS_INTERRUPTED;
+
+        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+    }
     TransitionBack();
 }
 

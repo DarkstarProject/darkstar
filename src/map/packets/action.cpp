@@ -51,15 +51,288 @@ CActionPacket::CActionPacket(action_t& action)
     this->size = 0x12;
 
     ref<uint32>(0x05) = action.id;
+    ref<uint8>(0x09) = action.actionLists.size();
+
+    ACTIONTYPE ActionType = action.actiontype;
+
+    switch (ActionType)
+    {
+    case ACTION_ATTACK:
+    {
+        ref<uint8>(0x0A) = 0x44;
+        ref<uint8>(0x0B) = 0x18;
+        ref<uint8>(0x0C) = 0xDD;
+        ref<uint8>(0x0D) = 0x1A;
+        ref<uint8>(0x0E) = 0x0C;
+    }
+    break;
+    case ACTION_WEAPONSKILL_START:
+    {
+        packBitsBE(data, action.actionid, 86, 10);
+    }
+    break;
+    case ACTION_WEAPONSKILL_FINISH:
+    {
+        packBitsBE(data, action.actionid, 86, 10);
+    }
+    break;
+    case ACTION_JOBABILITY_START:
+    {
+
+    }
+    break;
+    case ACTION_JOBABILITY_FINISH:
+    {
+        packBitsBE(data, action.actionid + 16, 86, 10);
+        packBitsBE(data, action.recast, 118, 10);
+    }
+    break;
+    case ACTION_MOBABILITY_START:
+    {
+        ref<uint8>(0x0A) = 0xDC;
+        ref<uint8>(0x0B) = 0x58;
+        ref<uint8>(0x0C) = 0x18;
+        ref<uint8>(0x0D) = 0x5D;
+        ref<uint8>(0x0E) = 0x19;
+
+        ActionType = ACTION_WEAPONSKILL_START;
+    }
+    break;
+    case ACTION_MOBABILITY_INTERRUPT:
+    {
+        ref<uint8>(0x0A) = 0xDC;
+        ref<uint8>(0x0B) = 0x1C;
+        ref<uint8>(0x0C) = 0x1C;
+        ref<uint8>(0x0D) = 0x5D;
+        ref<uint8>(0x0E) = 0x19;
+    }
+    break;
+    case ACTION_MOBABILITY_FINISH:
+    {
+        uint16 id = action.actionid;
+
+        //higher number of bits than anything else that we know of. CAP OF 4095 (2300ish is abyssea tp moves)!
+        packBitsBE(data, id, 86, 12);
+    }
+    break;
+    case ACTION_ITEM_START:
+    {
+        ref<uint8>(0x0A) = 0xE4;
+        ref<uint8>(0x0B) = 0x58;
+        ref<uint8>(0x0C) = 0x58;
+        ref<uint8>(0x0D) = 0x1A;
+        ref<uint8>(0x0E) = 0x1D;
+    }
+    break;
+    case ACTION_ITEM_INTERRUPT:
+    {
+        ref<uint8>(0x0A) = 0xE4;
+        ref<uint8>(0x0B) = 0x1C;
+        ref<uint8>(0x0C) = 0x5C;
+        ref<uint8>(0x0D) = 0x1A;
+        ref<uint8>(0x0E) = 0x1D;
+
+        ActionType = ACTION_ITEM_START;
+    }
+    break;
+    case ACTION_RANGED_START:
+    {
+        ref<uint8>(0x0A) = 0xF0;
+        ref<uint8>(0x0B) = 0x58;
+        ref<uint8>(0x0C) = 0x18;
+        ref<uint8>(0x0D) = 0xDB;
+        ref<uint8>(0x0E) = 0x19;
+    }
+    break;
+    case ACTION_RANGED_FINISH:
+    {
+        ref<uint8>(0x0A) = 0xC8;
+        ref<uint8>(0x0B) = 0x1C;
+        ref<uint8>(0x0C) = 0x1A;
+        ref<uint8>(0x0D) = 0xDB;
+        ref<uint8>(0x0E) = 0x19;
+    }
+    break;
+    case ACTION_RANGED_INTERRUPT:
+    {
+        ref<uint8>(0x0A) = 0xF0;
+        ref<uint8>(0x0B) = 0x1C;
+        ref<uint8>(0x0C) = 0x1C;
+        ref<uint8>(0x0D) = 0xDB;
+        ref<uint8>(0x0E) = 0x19;
+
+        ActionType = ACTION_RANGED_START;
+    }
+    break;
+    case ACTION_RAISE_MENU_SELECTION:
+    {
+        ref<uint8>(0x0A) = 0x10;
+
+        ActionType = ACTION_MAGIC_FINISH;
+    }
+    break;
+    case ACTION_MAGIC_START:
+    {
+        ref<uint8>(0x0A) = 0xE0;
+        ref<uint8>(0x0B) = 0x58;
+
+        switch (action.spellgroup)
+        {
+        case SPELLGROUP_WHITE:
+        {
+            ref<uint8>(0x0C) = 0xD8;
+            ref<uint8>(0x0D) = 0x1D;
+            ref<uint8>(0x0E) = 0x1A;
+        }
+        break;
+        case SPELLGROUP_BLACK:
+        {
+            ref<uint8>(0x0C) = 0x98;
+            ref<uint8>(0x0D) = 0xD8;
+            ref<uint8>(0x0E) = 0x1A;
+        }
+        break;
+        case SPELLGROUP_BLUE:
+        {
+            ref<uint8>(0x0C) = 0x98;
+            ref<uint8>(0x0D) = 0x18;
+            ref<uint8>(0x0E) = 0x1B;
+        }
+        break;
+        case SPELLGROUP_SONG:
+        {
+            ref<uint8>(0x0C) = 0xD8;
+            ref<uint8>(0x0D) = 0xDC;
+            ref<uint8>(0x0E) = 0x1B;
+        }
+        break;
+        case SPELLGROUP_NINJUTSU:
+        {
+            ref<uint8>(0x0C) = 0x98;
+            ref<uint8>(0x0D) = 0x9B;
+            ref<uint8>(0x0E) = 0x1A;
+        }
+        break;
+        case SPELLGROUP_SUMMONING:
+        {
+            ref<uint8>(0x0C) = 0xD8;
+            ref<uint8>(0x0D) = 0x5C;
+            ref<uint8>(0x0E) = 0x1B;
+        }
+        break;
+        }
+    }
+    break;
+    case ACTION_MAGIC_FINISH:
+    {
+        packBitsBE(data, action.actionid, 86, 10);
+        //either this way or enumerate all recast timers and compare the spell id.
+        packBitsBE(data, action.recast, 118, 10);
+    }
+    break;
+    case ACTION_MAGIC_INTERRUPT:
+    {
+        ref<uint8>(0x0A) = 0xE0;
+        ref<uint8>(0x0B) = 0x1C;
+
+        switch (action.spellgroup)
+        {
+        case SPELLGROUP_WHITE:
+        {
+            ref<uint8>(0x0C) = 0xDC;
+            ref<uint8>(0x0D) = 0x1D;
+            ref<uint8>(0x0E) = 0x1A;
+        }
+        break;
+        case SPELLGROUP_BLACK:
+        {
+            ref<uint8>(0x0C) = 0x9C;
+            ref<uint8>(0x0D) = 0xD8;
+            ref<uint8>(0x0E) = 0x1A;
+        }
+        break;
+        case SPELLGROUP_BLUE:
+        {
+            ref<uint8>(0x0C) = 0x9C;
+            ref<uint8>(0x0D) = 0x18;
+            ref<uint8>(0x0E) = 0x1B;
+        }
+        break;
+        case SPELLGROUP_SONG:
+        {
+            ref<uint8>(0x0C) = 0xDC;
+            ref<uint8>(0x0D) = 0xDC;
+            ref<uint8>(0x0E) = 0x1B;
+        }
+        break;
+        case SPELLGROUP_NINJUTSU:
+        {
+            ref<uint8>(0x0C) = 0x9C;
+            ref<uint8>(0x0D) = 0x9B;
+            ref<uint8>(0x0E) = 0x1A;
+        }
+        break;
+        case SPELLGROUP_SUMMONING:
+        {
+            ref<uint8>(0x0C) = 0xDC;
+            ref<uint8>(0x0D) = 0x5C;
+            ref<uint8>(0x0E) = 0x1B;
+        }
+        break;
+        }
+        ActionType = ACTION_MAGIC_START;
+    }
+    break;
+    }
+
+    uint32 bitOffset = packBitsBE(data, ActionType, 82, 4);
+    bitOffset += 64;
 
     for (auto&& list : action.actionLists)
     {
-        
-        for (auto&& target : list.actions)
+        bitOffset = packBitsBE(data, list.ActionTargetID, bitOffset, 32);
+        bitOffset = packBitsBE(data, list.actionTargets.size(), bitOffset, 4);
+
+        for (auto&& target : list.actionTargets)
         {
-            
+            bitOffset = packBitsBE(data, target.reaction, bitOffset, 5);				// физическая реакция на урон
+            bitOffset = packBitsBE(data, target.animation, bitOffset, 12);	            // анимация специальных эффектов (monster TP animations are 1800+)
+            bitOffset = packBitsBE(data, target.speceffect, bitOffset, 7);				// specialEffect
+            bitOffset = packBitsBE(data, target.knockback, bitOffset, 3);               // knockback amount (mobskill only)
+            bitOffset = packBitsBE(data, target.param, bitOffset, 17);					// параметр сообщения (урон)
+            bitOffset = packBitsBE(data, target.messageID, bitOffset, 10);				// сообщение
+            bitOffset += 31;
+
+
+            if (target.additionalEffect != SUBEFFECT_NONE)
+            {
+                bitOffset = packBitsBE(data, 1, bitOffset, 1);
+                bitOffset = packBitsBE(data, target.additionalEffect, bitOffset, 10);
+                bitOffset = packBitsBE(data, target.addEffectParam, bitOffset, 17);
+                bitOffset = packBitsBE(data, target.addEffectMessage, bitOffset, 10);
+            }
+            else
+            {
+                bitOffset += 1;
+            }
+            if (target.spikesEffect != SUBEFFECT_NONE)
+            {
+                bitOffset = packBitsBE(data, 1, bitOffset, 1);
+                bitOffset = packBitsBE(data, target.spikesEffect, bitOffset, 10);
+                bitOffset = packBitsBE(data, target.spikesParam, bitOffset, 14);
+                bitOffset = packBitsBE(data, target.spikesMessage, bitOffset, 10);
+            }
+            else
+            {
+                bitOffset += 1;
+            }
         }
     }
+    uint8 WorkSize = ((bitOffset >> 3) + (bitOffset % 8 != 0));
+
+    this->size = ((((WorkSize + 7) >> 1) + 1) & -2);
+
+    ref<uint8>(0x04) = WorkSize;
 }
 
 CActionPacket::CActionPacket(CBattleEntity * PEntity)

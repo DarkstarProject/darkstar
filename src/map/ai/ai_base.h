@@ -44,7 +44,7 @@ public:
     CAIBase& operator=(const CAIBase&) = delete;
 
     void Tick(time_point _tick);
-    virtual void ActionQueueStateChange(queueAction&);
+    virtual void ActionQueueStateChange(const queueAction&);
     AIState GetCurrentState();
 
     // stores all events and their associated lua callbacks

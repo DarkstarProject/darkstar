@@ -101,7 +101,7 @@ bool CMagicState::CanChangeState()
     return m_State != STATESTATUS::InProgress;
 }
 
-int16 CMagicState::GetErrorMsg()
+uint16 CMagicState::GetErrorMsg()
 {
     return m_errorMsg;
 }

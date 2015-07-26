@@ -38,8 +38,8 @@ struct actionTarget_t
 {
     REACTION		  reaction;			    //  5 bits
     uint16			  animation;			// 12 bits
-    SPECEFFECT		  speceffect;			// 7 bits
-    uint8             knockback;            // 3 bits
+    SPECEFFECT		  speceffect;			//  7 bits
+    uint8             knockback;            //  3 bits
     int32			  param;				// 17 bits
     uint16			  messageID;			// 10 bits
     SUBEFFECT         additionalEffect;     // 10 bits
@@ -60,9 +60,14 @@ struct actionTarget_t
 struct actionList_t
 {
     uint32    ActionTargetID;		    // 32 bits
-    std::vector<actionTarget_t> actions;
+    std::vector<actionTarget_t> actionTargets;
 
     actionList_t() : ActionTargetID(0) {}
+
+    actionTarget_t& getNewActionTarget()
+    {
+        return *actionTargets.emplace(actionTargets.end());
+    }
 };
 
 struct action_t
@@ -76,6 +81,11 @@ struct action_t
 
     action_t() : id(0), actiontype(ACTION_NONE), actionid(0),
         recast(0), spellgroup(SPELLGROUP_NONE) {}
+
+    actionList_t& getNewActionList()
+    {
+        return *actionLists.emplace(actionLists.end());
+    }
 };
 
 class CBattleEntity;

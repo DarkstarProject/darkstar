@@ -899,7 +899,7 @@ void CZoneEntities::ZoneServer(uint32 tick)
 
 		PMob->StatusEffectContainer->CheckEffects(tick);
 		PMob->PBattleAI->CheckCurrentAction(tick);
-        PMob->PAI->Tick(server_clock::from_time_t(tick));
+        PMob->PAI->Tick(server_clock::now());
 		PMob->StatusEffectContainer->CheckRegen(tick);
 	}
 
@@ -910,7 +910,7 @@ void CZoneEntities::ZoneServer(uint32 tick)
 		if (PNpc->PBattleAI != nullptr)
 		{
 			PNpc->PBattleAI->CheckCurrentAction(tick);
-            PNpc->PAI->Tick(server_clock::from_time_t(tick));
+            PNpc->PAI->Tick(server_clock::now());
 		}
         else
         {
@@ -924,7 +924,7 @@ void CZoneEntities::ZoneServer(uint32 tick)
 		CPetEntity* PPet = (CPetEntity*)pit->second;
 		PPet->StatusEffectContainer->CheckEffects(tick);
 		PPet->PBattleAI->CheckCurrentAction(tick);
-        PPet->PAI->Tick(server_clock::from_time_t(tick));
+        PPet->PAI->Tick(server_clock::now());
 		PPet->StatusEffectContainer->CheckRegen(tick);
 		if (PPet->status == STATUS_DISAPPEAR){
 			m_petList.erase(pit++);
@@ -957,7 +957,7 @@ void CZoneEntities::ZoneServerRegion(uint32 tick)
 
 		PMob->StatusEffectContainer->CheckEffects(tick);
 		PMob->PBattleAI->CheckCurrentAction(tick);
-        PMob->PAI->Tick(server_clock::from_time_t(tick));
+        PMob->PAI->Tick(server_clock::now());
 	}
 
 	for (EntityList_t::const_iterator it = m_petList.begin(); it != m_petList.end(); ++it)
@@ -966,7 +966,7 @@ void CZoneEntities::ZoneServerRegion(uint32 tick)
 
 		PPet->StatusEffectContainer->CheckEffects(tick);
 		PPet->PBattleAI->CheckCurrentAction(tick);
-        PPet->PAI->Tick(server_clock::from_time_t(tick));
+        PPet->PAI->Tick(server_clock::now());
 	}
 
 	for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
@@ -978,7 +978,7 @@ void CZoneEntities::ZoneServerRegion(uint32 tick)
 			PChar->PRecastContainer->Check();
 			PChar->StatusEffectContainer->CheckEffects(tick);
 			PChar->PBattleAI->CheckCurrentAction(tick);
-            PChar->PAI->Tick(server_clock::from_time_t(tick));
+            PChar->PAI->Tick(server_clock::now());
 			PChar->PTreasurePool->CheckItems(tick);
 
 			m_zone->CheckRegions(PChar);
