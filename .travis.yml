@@ -1,6 +1,9 @@
 language: cpp
 dist: trusty
 
+before_install:
+
+
 install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq -y software-properties-common
@@ -11,7 +14,7 @@ install:
   
 before_script:
   - sh autogen.sh
-  - mysql -u root -e 'create database dspdb_test;'
+  - mysql -u root -e 'create database myapp_test;'
 
 script:
   - ./configure
