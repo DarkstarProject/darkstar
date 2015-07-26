@@ -41,14 +41,8 @@ function onUseWeaponSkill(player, target, wsID)
 		params.ftp100 = 0.125; params.ftp200 = 0.5; params.ftp300 = 1;
 	end
 		
-	if (TP == 300) then
-		hp_param = Hitpoint * params;-- 0.46875 @300 TP -- ADOULIN 1.000 @300 TP
-	elseif (TP >= 200) then
-		hp_param = Hitpoint * params;-- 0.18750 @200 TP -- ADOULIN 0.500 @200 TP
-	elseif (TP >= 100) then
-		hp_param = Hitpoint * params;-- 0.12500 @100 TP -- ADOULIN 0.125 @100 TP
-	end
-
+	hp_param = Hitpoint * fTP(TP, params.ftp100,params.ftp200,params.ftp300); 
+	
 	local damage = target:breathDmgTaken(hp_param);
 	damage = damage * WEAPON_SKILL_POWER
 	return 1, 0, false, damage;
