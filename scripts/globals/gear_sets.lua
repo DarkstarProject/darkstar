@@ -151,7 +151,6 @@ GearSets =  {{1, "Usukane",	16092,14554,14969,15633,15719,-1,-1,-1,-1,-1,-1,-1,-
   			 {53, "Brilliant",-1,-1,-1,-1,-1,-1,19272,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
   			 {53, "Brilliant",-1,-1,-1,-1,-1,-1,19272,-1,-1,16006,-1,-1,-1,-1,-1,2},				--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)				 
 			 {56, "Twilight",11798,11362,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}};					--  Twilight Mail Set. Set Bonus: Auto Reraise III.
-			 -- Link: Next id must be 56.
 			 
 -- 			 Head, Body, Hand, Legs, Feet, Main, Sub, Neck, Back, ear1, ear2, ring1, ring2, ranged, ammo, matches-required	
 	
