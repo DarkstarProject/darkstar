@@ -43,12 +43,16 @@ GearSets =  {{1, "Usukane",	16092,14554,14969,15633,15719,-1,-1,-1,-1,-1,-1,-1,-
 			 {29, "Fazheluo",11824,11857,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.		 
 			 {30, "Cuauhtli",11809,11851,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
 			 {30, "Cuauhtli",11809,11859,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
+			 {30, "Cuauhtli",11809,11855,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
 			 {30, "Cuauhtli",11825,11851,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
 			 {30, "Cuauhtli",11825,11859,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.			 
+			 {30, "Cuauhtli",11825,11855,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.			 
 			 {31, "Hyskos",	11810,11852,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},					--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
 			 {31, "Hyskos",	11810,11860,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
+			 {31, "Hyskos",	11810,11856,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
 			 {31, "Hyskos",	11826,11852,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.	 
 			 {31, "Hyskos",	11826,11860,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
+			 {31, "Hyskos",	11826,11856,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
 			 {32, "Ogier", 	10876,10450,10500,11969,10600,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--  Ogier's Armor Set. Set Bonus: Adds "Refresh" Effect. Provides 1 mp/tick for 2-3 pieces worn, 2 mp/tick for 4-5 pieces worn.
 			 {33, "Athos", 	10877,10451,10501,11970,10601,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--  Athos's Armor Set. Set Bonus: Increases rate of critical hits. Gives +3% for the first 2 pieces and +1% for every additional piece. 
 			 {34, "Rubeus",	10878,10452,10502,11971,10602,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--  Rubeus Armor Set. Set Bonus: Enhances "Fast Cast" Effect. 2 or 3 pieces equipped: Fast Cast +4, 4 or 5 pieces equipped: Fast Cast +10 	
@@ -145,8 +149,8 @@ GearSets =  {{1, "Usukane",	16092,14554,14969,15633,15719,-1,-1,-1,-1,-1,-1,-1,-
   			 {53, "Brilliant",-1,-1,-1,-1,-1,19272,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
   			 {53, "Brilliant",-1,-1,-1,-1,-1,19272,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
   			 {53, "Brilliant",-1,-1,-1,-1,-1,-1,19272,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 {53, "Brilliant",-1,-1,-1,-1,-1,-1,19272,-1,-1,16006,-1,-1,-1,-1,-1,2}};				--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)				 
-			 -- Link: Next id must be 56.
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,-1,19272,-1,-1,16006,-1,-1,-1,-1,-1,2},				--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)				 
+			 {56, "Twilight",11798,11362,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}};					--  Twilight Mail Set. Set Bonus: Auto Reraise III.
 			 
 -- 			 Head, Body, Hand, Legs, Feet, Main, Sub, Neck, Back, ear1, ear2, ring1, ring2, ranged, ammo, matches-required	
 	
@@ -352,6 +356,9 @@ function SearchMods(player, modNameId, name, matches)
 		ApplyMod(player, modNameId, MOD_STORETP, modValue);
 		return;	
 	end	
+
+		--	Twilight Set. Set Bonus: Auto Reraise III
+	if (name == "Twilight" and matches == 2) then		ApplyMod(player, modNameId, MOD_RERAISE_III, 1); return; end
 	
 end;
 
@@ -368,15 +375,6 @@ Stronghold NM(WOTG)
 15818 -- Molione's Ring
 -- Set Bonus: +5 Accuracy
 -- Set Bonus: Enhances "Souleater" Effect
-
-=======
-Abyssea (Shinryu)
-=======
---Twilight Mail Set
--------------
-11798 -- Twilight Helm
-11362 -- Twilight Mail
--- Set Bonus: Auto-Reraise
 
 =======
 Empyrean +2
