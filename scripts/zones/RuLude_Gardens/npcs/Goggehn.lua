@@ -53,7 +53,7 @@ function onTrigger(player,npc)
 	         	player:startEvent(0x0023);
 	        elseif(player:hasKeyItem(MESSAGE_TO_JEUNO_BASTOK)) then
 		        player:startEvent(0x0037);
-		elseif(player:getRank() <= 4) then
+		elseif(player:getRank() <= 3 and currentMission ~= JEUNO_MISSION) then
 			player:startEvent(0x0004);
 	        end
 	elseif(pNation == WINDURST) then
