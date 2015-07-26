@@ -377,15 +377,6 @@ Stronghold NM(WOTG)
 -- Set Bonus: Enhances "Souleater" Effect
 
 =======
-Abyssea (Shinryu)
-=======
---Twilight Mail Set
--------------
-11798 -- Twilight Helm
-11362 -- Twilight Mail
--- Set Bonus: Auto-Reraise
-
-=======
 Empyrean +2
 =======
 
