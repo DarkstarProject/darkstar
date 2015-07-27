@@ -181,7 +181,9 @@ function onTrade(player,npc,trade)
       elseif (count == eventParams[6] * 3 and eventParams[5] == 0) then
          -- Has currencyamount of all three currencies
          if (trade:hasItemQty(1450,eventParams[6]) and trade:hasItemQty(1453,eventParams[6]) and trade:hasItemQty(1456,eventParams[6])) then
-            tradeOK = true;
+            if (eventParams[5] ~= 1451 and eventParams[5] ~= 1454 and eventParams[5] ~= 1457) then -- disallow trade of 10k piece, else the gob will eat it.
+               tradeOK = true;
+            end
          end
       end
 
