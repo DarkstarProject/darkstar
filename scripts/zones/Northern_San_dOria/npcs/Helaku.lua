@@ -37,7 +37,7 @@ function onTrigger(player,npc)
 		elseif (missionStatus == 3) then
 			player:showText(npc,HELAKU_DIALOG);
 		-- Bastok Mission 2-3 Part II - Windurst > San d'Oria
-		elseif (missionStatus == 7) then
+		elseif (missionStatus < 8 or missionStatus >=7) then
 			player:startEvent(0x0219);
 		elseif (missionStatus == 11) then
 			player:startEvent(0x022d);
