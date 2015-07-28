@@ -121,3 +121,18 @@ INSERT INTO `item_mods_pet` VALUES(14228, 25, 14); -- Pet: Accuracy +14
 --  Evoker's Spats + 1 - LVL 74
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES(15575, 25, 14); -- Pet: Accuracy +14
+
+-- -------------------------------------------------------
+--  Summoner's Pigaches - LVL 73
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(15146, 23, 14); -- Pet: Attack +14
+
+-- -------------------------------------------------------
+--  Summoner's Pigaches + 1 - LVL 75
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(15679, 23, 14); -- Pet: Attack +14
+
+-- -------------------------------------------------------
+--  Yinyang Robe - LVL 71
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(14468, 27, 5); -- Pet: Enmity +5

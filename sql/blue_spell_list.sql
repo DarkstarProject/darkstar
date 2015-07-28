@@ -102,7 +102,7 @@ INSERT INTO `blue_spell_list` VALUES ('612','1185','4','14','4','0','0'); -- Act
 INSERT INTO `blue_spell_list` VALUES ('613','1207','5','6','1','0','0'); -- Reactor Cool
 INSERT INTO `blue_spell_list` VALUES ('614','1096','3','11','1','0','0'); -- Saline Coat
 INSERT INTO `blue_spell_list` VALUES ('615','1102','5','14','4','0','0'); -- Plasma Charge
-INSERT INTO `blue_spell_list` VALUES ('616','1111','5','8','1','0','0'); -- Temporal Shift
+INSERT INTO `blue_spell_list` VALUES ('616','1110','5','8','1','0','0'); -- Temporal Shift
 INSERT INTO `blue_spell_list` VALUES ('617','1191','3','11','1','9','0'); -- Vertical Cleave
 INSERT INTO `blue_spell_list` VALUES ('618','382','2','0','1','0','0'); -- Blastbomb
 INSERT INTO `blue_spell_list` VALUES ('620','353','3','8','1','8','0'); -- Battle Dance

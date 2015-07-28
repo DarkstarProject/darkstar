@@ -1251,7 +1251,7 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
                 PStatusEffect->SetPower(m_POwner->getMod(MOD_STONESKIN));
             }
 
-            uint32 tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 100;
+            uint32 tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 1000;
             uint32 duration = PStatusEffect->GetDuration() == 0 ? 0 : realduration;
 
             Sql_Query(SqlHandle, Query,

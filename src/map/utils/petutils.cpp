@@ -582,7 +582,7 @@ namespace petutils
         }
     }
 
-    void LoadAvatarStats(CPetEntity* PChar)
+    void LoadAvatarStats(CPetEntity* PPet)
     {
         // Объявление переменных, нужных для рассчета.
         float raceStat = 0;			// конечное число HP для уровня на основе расы.
@@ -599,8 +599,8 @@ namespace petutils
 
         uint8 grade;
 
-        uint8 mlvl = PChar->GetMLevel();
-        JOBTYPE mjob = PChar->GetMJob();
+        uint8 mlvl = PPet->GetMLevel();
+        JOBTYPE mjob = PPet->GetMJob();
         uint8 race = 3;					//Tarutaru
 
         // Расчет прироста HP от main job
@@ -638,10 +638,10 @@ namespace petutils
 
         // Расчет бонусных HP
         bonusStat = (mainLevelOver10 + mainLevelOver50andUnder60) * 2;
-        if (PChar->m_PetID == PETID_ODIN || PChar->m_PetID == PETID_ALEXANDER)
+        if (PPet->m_PetID == PETID_ODIN || PPet->m_PetID == PETID_ALEXANDER)
             bonusStat += 6800;
-        PChar->health.maxhp = (int16)(raceStat + jobStat + bonusStat + sJobStat);
-        PChar->health.hp = PChar->health.maxhp;
+        PPet->health.maxhp = (int16)(raceStat + jobStat + bonusStat + sJobStat);
+        PPet->health.hp = PPet->health.maxhp;
 
         //Начало расчера MP
         raceStat = 0;
@@ -671,14 +671,15 @@ namespace petutils
                 grade::GetMPScale(grade, scaleOver60) * mainLevelOver60;
         }
 
-        PChar->health.maxmp = (int16)(raceStat + jobStat + sJobStat); // результат расчета MP
+        PPet->health.maxmp = (int16)(raceStat + jobStat + sJobStat); // результат расчета MP
+        PPet->health.mp = PPet->health.maxmp;
         //add in evasion from skill
-        int16 evaskill = PChar->GetSkill(SKILL_EVA);
+        int16 evaskill = PPet->GetSkill(SKILL_EVA);
         int16 eva = evaskill;
         if (evaskill > 200){ //Evasion skill is 0.9 evasion post-200
             eva = 200 + (evaskill - 200)*0.9;
         }
-        PChar->setModifier(MOD_EVA, eva);
+        PPet->setModifier(MOD_EVA, eva);
 
 
         //Начало расчета характеристик
@@ -715,7 +716,7 @@ namespace petutils
             jobStat = jobStat * 1.5; //stats from subjob (assuming BLM/BLM for avatars)
 
             // Вывод значения
-            WBUFW(&PChar->stats, counter) = (uint16)(raceStat + jobStat);
+            WBUFW(&PPet->stats, counter) = (uint16)(raceStat + jobStat);
             counter += 2;
         }
     }

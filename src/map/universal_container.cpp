@@ -59,7 +59,10 @@ void CUContainer::Clean()
     {
         for (auto&& PItem : m_PItem)
         {
-            PItem->setReserve(0);
+            if (PItem)
+            {
+                PItem->setReserve(0);
+            }
         }
     }
     m_ContainerType = UCONTAINER_EMPTY;
