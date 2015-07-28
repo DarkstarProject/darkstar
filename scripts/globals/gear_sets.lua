@@ -82,9 +82,9 @@ local GearSets =  {
              
              {id = 53, items = {16006,18450,18499,18861,18862,18952,19111,19217,19272}, matches = 2, matchType = matchtype.earring_weapon, mods = {{MOD_EVA, 10, 0, 0}, {MOD_HPHEAL, 10, 0, 0}, {MOD_ENMITY, -5, 0, 0}} }, --  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)
         }
-             -- Link: Next id must be 56.
+             -- increment id by (number of mods in previous gearset - 1)
 
---           {id, items{id, id, id}, matches, match type, mods { {id, value}, {id, value} } }
+--              {id, {item, ids, in, no, particular, order}, minimum matches required, match type, mods{id, value, modvalue for each additional match, additional whole set bonus}
 
 local HipsterSets = {
     -- stick the ids of sets that need their own handling here e.g. Rubeus
@@ -223,16 +223,6 @@ function HandleHipsterSet(player, gearset, matches)
         return;
     end
 end
-
-    --[[
-    --  Charis Attire +2 Set. Set Bonus: Augments "Samba". Occasionally doubles damage with Samba up. Adds approximately 1-2% per piece past the first.
-    if (name == "Charis" and matches > 1) then
-        local chance = matches - 1;
-        ApplyMod(player, modNameId, MOD_SAMBA_DOUBLE_DAMAGE, chance * 2);
-        return;
-    end
-    ]]--
-
 
 --[[    Unimplemented sets below
 
