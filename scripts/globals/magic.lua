@@ -57,6 +57,8 @@ require("scripts/globals/utils")
     blmMerit = {MERIT_FIRE_MAGIC_POTENCY, MERIT_EARTH_MAGIC_POTENCY, MERIT_WATER_MAGIC_POTENCY, MERIT_WIND_MAGIC_POTENCY, MERIT_ICE_MAGIC_POTENCY, MERIT_LIGHTNING_MAGIC_POTENCY};
     rdmMerit = {MERIT_FIRE_MAGIC_ACCURACY, MERIT_EARTH_MAGIC_ACCURACY, MERIT_WATER_MAGIC_ACCURACY, MERIT_WIND_MAGIC_ACCURACY, MERIT_ICE_MAGIC_ACCURACY, MERIT_LIGHTNING_MAGIC_ACCURACY};
     blmAMIIMerit = {MERIT_FLARE_II, MERIT_QUAKE_II, MERIT_FLOOD_II, MERIT_TORNADO_II, MERIT_FREEZE_II, MERIT_BURST_II};
+    ninNukeMerit = {MERIT_KATON_EFFECT, MERIT_DOTON_EFFECT, MERIT_SUITON_EFFECT, MERIT_HUTON_EFFECT, MERIT_HYOTON_EFFECT, MERIT_RAITON_EFFECT};
+    ninSanMerit = {MERIT_KATON_SAN, MERIT_DOTON_SAN, MERIT_SUITON_SAN, MERIT_HUTON_SAN, MERIT_HYOTON_SAN, MERIT_RAITON_SAN};
 
 -- USED FOR DAMAGING MAGICAL SPELLS (Stages 1 and 2 in Calculating Magic Damage on wiki)
 --Calculates magic damage using the standard magic damage calc.
@@ -380,6 +382,14 @@ function applyResistance(player,spell,target,diff,skill,bonus)
         if (player:getMerit(blmAMIIMerit[spell:getElement()]) ~= 0) then -- no bonus if the caster has zero merit investment - don't want to give them a negative bonus
             magicaccbonus = magicaccbonus + (player:getMerit(blmAMIIMerit[spell:getElement()]) - 1) * 5; -- bonus value granted by merit is 1; subtract 1 since unlock doesn't give an accuracy bonus
             -- print((player:getMerit(blmAMIIMerit[spell:getElement()]) - 1) * 5)
+        end
+    end
+
+    -- add acc for NIN San nukes
+    if (spell:getID() == 322 or spell:getID() == 325 or spell:getID() == 328 or spell:getID() == 331 or spell:getID() == 334 or spell:getID() == 337) then
+        if (player:getMerit(ninSanMerit[spell:getElement()]) ~= 0) then -- no bonus if the caster has zero merit investment - don't want to give them a negative bonus
+            magicaccbonus = magicaccbonus + player:getMerit(ninSanMerit[spell:getElement()]) - 5;
+            -- print(player:getMerit(ninSanMerit[spell:getElement()]) - 5)
         end
     end
     
@@ -1179,11 +1189,24 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 
     if(spell:getID() >= 245 and spell:getID() <= 248) then -- Drain/Aspir (II)
         mabbonus = 1 + caster:getMod(MOD_ENH_DRAIN_ASPIR)/100;
-		-- print(mabbonus);
+        -- print(mabbonus);
     else
         local mab = caster:getMod(MOD_MATT) + bonusmab;
         if (spell:getElement() > 0 and spell:getElement() <= 6) then
             mab = mab + caster:getMerit(blmMerit[spell:getElement()]);
+        end
+        --NIN T1 merits + "enhances Ninjutsu damage" mod
+        if (spell:getID() >= 320 and spell:getID() <= 337) then
+            mab = mab + caster:getMerit(ninNukeMerit[spell:getElement()]) + caster:getMod(MOD_NIN_NUKE_BONUS);
+            -- print(caster:getMerit(ninNukeMerit[spell:getElement()]))
+            -- print(caster:getMod(MOD_NIN_NUKE_BONUS));
+            -- NIN T2 merits
+            if (spell:getID() == 322 or spell:getID() == 325 or spell:getID() == 328 or spell:getID() == 331 or spell:getID() == 334 or spell:getID() == 337) then
+                if (caster:getMerit(ninSanMerit[spell:getElement()]) ~= 0) then -- no bonus if the caster has zero merit investment - don't want to give them a negative bonus
+                    mab = mab + caster:getMerit(ninSanMerit[spell:getElement()]) - 5;
+                    -- print(caster:getMerit(ninSanMerit[spell:getElement()]) - 5)
+                end
+            end
         end
         mabbonus = (100 + mab) / (100 + target:getMod(MOD_MDEF));
     end
@@ -1408,7 +1431,12 @@ end;
 
 function handleNinjutsuDebuff(caster, target, spell, basePower, baseDuration, modifier)
     -- Add new
-    target:addStatusEffectEx(EFFECT_NINJUTSU_ELE_DEBUFF, 0, basePower, 0, baseDuration, 0, modifier, 0);
+    local duration = baseDuration
+    if (spell:getID() >= 320 and spell:getID() <= 337) then -- T1 debuff duration extension - I'm not entirely sure what else calls this function so adding a spellID check to ensure it affects nuke duration only.
+        duration = duration + caster:getMerit(ninNukeMerit[spell:getElement()]);
+        -- print(duration)
+    end;
+    target:addStatusEffectEx(EFFECT_NINJUTSU_ELE_DEBUFF, 0, basePower, 0, duration, 0, modifier, 0);
     return EFFECT_NINJUTSU_ELE_DEBUFF;
 end;
 
@@ -1509,13 +1537,11 @@ function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,s
     --get the resisted damage
     dmg = dmg*resist;
     if(skill == NINJUTSU_SKILL) then
-        -- boost ninjitsu damage
-        -- 5% ninjitsu damage
-        local head = caster:getEquipID(SLOT_HEAD);
-        if(head == 15084) then
-            dmg = math.floor(dmg * 1.05);
+        -- Innin bonus from behind
+        if (caster:isBehind(target, 15) and caster:hasStatusEffect(EFFECT_INNIN)) then -- guesstimating the angle at 15 degrees here
+            dmg = math.floor (dmg * 1 + caster:getStatusEffect(EFFECT_INNIN):getPower()/100);
+            -- print(caster:getStatusEffect(EFFECT_INNIN):getPower());
         end
-
         -- boost with Futae
         if(caster:hasStatusEffect(EFFECT_FUTAE)) then
             dmg = math.floor(dmg * 1.50);
