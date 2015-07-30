@@ -6,42 +6,45 @@
 -- Skill Level: 175
 -- Delivers an unavoidable attack. Damage varies with HP and TP.
 -- Not aligned with any "elemental gorgets" or "elemental belts" due to it's absence of Skillchain properties.
--- Element: None
--- Modifiers: HP:
--- 100%TP    200%TP    300%TP
--- 12.5%       50%      100%
+-- Element: None 
+-- Modifiers: HP: (Damage is calculated by TP Multiplier times current HP) 
+-- 1000%TP    2000%TP    3000%TP
+-- 4/32       6/32      15/32   (Old Values - 2008 )
+-- 12.5% HP   50% HP    100% HP (New Values - ADOULIN)
 -----------------------------------
+require("scripts/globals/utils");
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
-require("scripts/globals/utils");
 -----------------------------------
 
 function onUseWeaponSkill(player, target, wsID)
-	local HP = player:getHP();
+	
+	local Hitpoint = player:getHP();
 	local TP = player:getTP();
-	local WSC = 0;
-	if (TP == 300) then
-		WSC = HP * 0.46875;
-	elseif (TP >= 200) then
-		WSC = HP * ((TP - 200) / (100 / (0.46875 - 0.1875)));
-	elseif (TP >= 100) then
-		WSC = HP * ((TP - 100) / (100 / (0.1875 - 0.125)));
-	end
-
+	local hp_param = 0;
+	local params = {};
+	params.numHits = 1;
+	--ftp damage mods (for Damage Varies with TP; lines are calculated in the function
+	params.ftp100 = 0.125; params.ftp200 = 0.1875 ; params.ftp300 = 0.46875;
+	--wscs are in % so 0.2=20%
+	params.str_wsc = 0; params.dex_wsc = 0; params.vit_wsc = 0; params.agi_wsc = 0; params.int_wsc = 0; params.mnd_wsc = 0; params.chr_wsc = 0;
+	--critical mods, again in % (ONLY USE FOR CRITICAL HIT VARIES WITH TP)
+	params.crit100 = 0; params.crit200= 0; params.crit300= 0;
+	params.canCrit = false;
+	--accuracy mods (ONLY USE FOR ACCURACY VARIES WITH TP) , should be the acc at those %s NOT the penalty values. Leave 0 if acc doesnt vary with tp.
+	params.acc100 = 0; params.acc200 = 0; params.acc300 = 0;
+	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
+	params.atkmulti = 1;
+	
 	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
-		-- Damage calculations changed based on: http://www.bg-wiki.com/bg/Spirits_Within http://www.bluegartr.com/threads/121610-Rehauled-Weapon-Skills-tier-lists?p=6142188&viewfull=1#post6142188
-		if (TP == 300) then
-		WSC = HP;
-		elseif (TP >= 200) then
-		WSC = HP * .5
-		elseif (TP >= 100) then
-		WSC = HP * .125;
-		end
+		params.ftp100 = 0.125; params.ftp200 = 0.5; params.ftp300 = 1;
 	end
-
-	local damage = target:breathDmgTaken(WSC);
+		
+	hp_param = Hitpoint * fTP(TP, params.ftp100,params.ftp200,params.ftp300); 
+	
+	local damage = target:breathDmgTaken(hp_param);
 	damage = damage * WEAPON_SKILL_POWER
 	return 1, 0, false, damage;
 
-end
+end;
