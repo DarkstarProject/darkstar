@@ -25220,6 +25220,7 @@ INSERT INTO `item_mods` VALUES (28665, 161, -8); -- Physical damage taken -8%
 -- -------------------------------------------------------
 -- Leafkin Shield
 -- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES (28670, 1, 1); -- DEF:1
 
 
 -- -------------------------------------------------------
@@ -25239,7 +25240,7 @@ INSERT INTO `item_mods` VALUES (27878, 28, 10);
 INSERT INTO `item_mods` VALUES (27878, 68, 41);
 INSERT INTO `item_mods` VALUES (27878, 31, 80);
 INSERT INTO `item_mods` VALUES (27878, 29, 6);
-INSERT INTO `item_mods` VALUES (27878, 384, 300);
+INSERT INTO `item_mods` VALUES (27878, 384, 31);
 INSERT INTO `item_mods` VALUES (27878, 369, 20);
 
 
@@ -25696,8 +25697,6 @@ INSERT INTO `item_mods` VALUES (28161, 29, 3);
 INSERT INTO `item_mods` VALUES (28161, 384, 61);
 INSERT INTO `item_mods` VALUES (28161, 73, 6);
 
-
-
 -- -------------------------------------------------------
 --  Otronif Gloves +1 
 -- -------------------------------------------------------
@@ -25735,5 +25734,3 @@ INSERT INTO `item_mods` VALUES (27729, 29, 43);
 INSERT INTO `item_mods` VALUES (27729, 31, 4);
 INSERT INTO `item_mods` VALUES (27729, 384, 81);
 INSERT INTO `item_mods` VALUES (27729, 73, 5);
-
-INSERT INTO `item_mods` VALUES (28670, 1, 1); -- DEF:1
