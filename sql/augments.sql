@@ -111,10 +111,10 @@ INSERT INTO `augments` VALUES ('72', '0', '0', '0', '0'); -- 72 currently unused
 INSERT INTO `augments` VALUES ('73', '0', '0', '0', '0'); -- 73 currently unused. Leave at zero.
 INSERT INTO `augments` VALUES ('74', '0', '0', '0', '0'); -- Cap. Point +1%
 INSERT INTO `augments` VALUES ('75', '0', '0', '0', '0'); -- Cap. Point +33%
-
--- 78 to 95 currently unused. Leave at zero.
 INSERT INTO `augments` VALUES ('76', '0', '0', '0', '0'); -- DMG+33 Unsure if main hand or off hand so leaving values blank for now, goes up in increments of 1 after the initial 33.
 INSERT INTO `augments` VALUES ('77', '0', '0', '0', '0'); -- Delay -33% Unsure if main hand or off hand so leaving values blank for now, goes up in increments of 1 after the initial 33.
+
+-- 78 to 95 currently unused. Leave at zero.
 INSERT INTO `augments` VALUES ('78', '0', '0', '0', '0');
 INSERT INTO `augments` VALUES ('79', '0', '0', '0', '0');
 INSERT INTO `augments` VALUES ('80', '0', '0', '0', '0');
