@@ -11,13 +11,15 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_BLAZE_SPIKES;
+    local typeEffectOne = EFFECT_STONESKIN;
+    local typeEffectTwo = EFFECT_BLAZE_SPIKES;
     local randy = math.random(40,70);
-    skill:setMsg(MobBuffMove(mob, typeEffect, randy, 0, 180));
+    skill:setMsg(MobBuffMove(mob, typeEffectOne, 1000, 0, 300));
+    MobBuffMove(mob, typeEffectTwo, randy, 0, 180);
 
-	return typeEffect;
+    return typeEffectOne;
 end;

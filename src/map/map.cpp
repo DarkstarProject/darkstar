@@ -74,11 +74,8 @@ const int8* MAP_CONF_FILENAME = nullptr;
 
 int8*  g_PBuff = nullptr;                // глобальный буфер обмена пакетами
 int8*  PTempBuff = nullptr;                // временный  буфер обмена пакетами
-#ifdef WIN32
-__declspec(thread) Sql_t* SqlHandle = nullptr; // SQL descriptor
-#else
+
 thread_local Sql_t* SqlHandle = nullptr;
-#endif
 
 int32  map_fd = 0;                      // main socket
 uint32 map_amntplayers = 0;             // map amnt unique players
@@ -142,7 +139,6 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 		ShowError(CL_RED"recv_parse: Invalid login attempt from %s\n" CL_RESET, ip2str(map_session_data->client_addr, nullptr));
 		return nullptr;
 	}
-    ShowInfo(CL_WHITE"mapsession" CL_RESET":" CL_WHITE"%s" CL_RESET":" CL_WHITE"%u" CL_RESET" is coming to world...\n", ip2str(map_session_data->client_addr, nullptr), map_session_data->client_port);
     return map_session_data;
 }
 
@@ -168,7 +164,7 @@ int32 do_init(int32 argc, int8** argv)
     MAP_CONF_FILENAME = "./conf/map_darkstar.conf";
 
     srand((uint32)time(nullptr));
-    WELL512::seed((uint32)time(nullptr));
+    dsprand::seed();
 
     map_config_default();
     map_config_read(MAP_CONF_FILENAME);

@@ -495,7 +495,7 @@ namespace battleutils
         double quart = pow(half, 2);
         double eighth = pow(half, 3);
         double sixteenth = pow(half, 4);
-        double resvar = WELL512::GetRandomNumber(1.);
+        double resvar = dsprand::GetRandomNumber(1.);
 
         // Determine resist based on which thresholds have been crossed.
         if (resvar <= sixteenth)
@@ -518,19 +518,19 @@ namespace battleutils
         else
         {
             // mobs random multiplier
-            dBonus += WELL512::GetRandomNumber(100) / 1000.0f;
+            dBonus += dsprand::GetRandomNumber(100) / 1000.0f;
         }
-        if (WeekDay == strongDay[element] && (obiBonus || WELL512::GetRandomNumber(100) < 33))
+        if (WeekDay == strongDay[element] && (obiBonus || dsprand::GetRandomNumber(100) < 33))
             dBonus += 0.1;
-        else if (WeekDay == weakDay[element] && (obiBonus || WELL512::GetRandomNumber(100) < 33))
+        else if (WeekDay == weakDay[element] && (obiBonus || dsprand::GetRandomNumber(100) < 33))
             dBonus -= 0.1;
-        if (weather == strongWeatherSingle[element] && (obiBonus || WELL512::GetRandomNumber(100) < 33))
+        if (weather == strongWeatherSingle[element] && (obiBonus || dsprand::GetRandomNumber(100) < 33))
             dBonus += 0.1;
-        else if (weather == strongWeatherDouble[element] && (obiBonus || WELL512::GetRandomNumber(100) < 33))
+        else if (weather == strongWeatherDouble[element] && (obiBonus || dsprand::GetRandomNumber(100) < 33))
             dBonus += 0.25;
-        else if (weather == weakWeatherSingle[element] && (obiBonus || WELL512::GetRandomNumber(100) < 33))
+        else if (weather == weakWeatherSingle[element] && (obiBonus || dsprand::GetRandomNumber(100) < 33))
             dBonus -= 0.1;
-        else if (weather == weakWeatherDouble[element] && (obiBonus || WELL512::GetRandomNumber(100) < 33))
+        else if (weather == weakWeatherDouble[element] && (obiBonus || dsprand::GetRandomNumber(100) < 33))
             dBonus -= 0.25;
 
         damage = (damage * (float)resist);
@@ -580,7 +580,7 @@ namespace battleutils
 
         // Handle Retaliation
         if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_RETALIATION)
-            && battleutils::GetHitRate(PDefender, PAttacker) / 2 > WELL512::GetRandomNumber(100)
+            && battleutils::GetHitRate(PDefender, PAttacker) / 2 > dsprand::GetRandomNumber(100)
             && isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
         {
             // Retaliation rate is based on player acc vs mob evasion. Missed retaliations do not even display in log.
@@ -603,7 +603,7 @@ namespace battleutils
                 }
 
                 // Check if crit
-                bool crit = battleutils::GetCritHitRate(PDefender, PAttacker, true) > WELL512::GetRandomNumber(100);
+                bool crit = battleutils::GetCritHitRate(PDefender, PAttacker, true) > dsprand::GetRandomNumber(100);
 
                 // Dmg math.
                 float DamageRatio = GetDamageRatio(PDefender, PAttacker, crit, 0);
@@ -814,7 +814,7 @@ namespace battleutils
     {
         int lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5) * 2;
 
-        if (WELL512::GetRandomNumber(100) <= chance + lvlDiff)
+        if (dsprand::GetRandomNumber(100) <= chance + lvlDiff)
         {
             // spikes landed
             if (spikesType == SUBEFFECT_CURSE_SPIKES)
@@ -825,7 +825,7 @@ namespace battleutils
             else
             {
                 uint8 ratio = dsp_cap((float)damage / 4, 1, 255);
-                Action->spikesParam = HandleStoneskin(PAttacker, damage - WELL512::GetRandomNumber(ratio) + WELL512::GetRandomNumber(ratio));
+                Action->spikesParam = HandleStoneskin(PAttacker, damage - dsprand::GetRandomNumber<uint16>(ratio) + dsprand::GetRandomNumber<uint16>(ratio));
                 PAttacker->addHP(-Action->spikesParam);
             }
 
@@ -852,7 +852,7 @@ namespace battleutils
                 break;
             case SUBEFFECT_ICE_SPIKES:
             {
-                if (WELL512::GetRandomNumber(100) <= 20 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false)
+                if (dsprand::GetRandomNumber(100) <= 20 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false)
                 {
                     PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS, EFFECT_PARALYSIS, 20, 0, 30));
                 }
@@ -860,7 +860,7 @@ namespace battleutils
             }
             case SUBEFFECT_SHOCK_SPIKES:
             {
-                if (WELL512::GetRandomNumber(100) <= 30 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) == false)
+                if (dsprand::GetRandomNumber(100) <= 30 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) == false)
                 {
                     PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_STUN, EFFECT_STUN, 1, 0, 3));
                 }
@@ -1075,7 +1075,7 @@ namespace battleutils
                 if (daze == EFFECT_DRAIN_DAZE)
                 {
                     uint16 multiplier = 3 + (5.5f * power - 1);
-                    int8 Samba = WELL512::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
+                    int8 Samba = dsprand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
 
                     // vary damage based on lvl diff
                     int8 lvlDiff = (PDefender->GetMLevel() - PAttacker->GetMLevel()) / 2;
@@ -1111,7 +1111,7 @@ namespace battleutils
                 else if (daze == EFFECT_ASPIR_DAZE)
                 {
                     uint16 multiplier = 1 + (2 * power - 1);
-                    int8 Samba = WELL512::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
+                    int8 Samba = dsprand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
 
                     if (Samba >= finaldamage / 4) { Samba = finaldamage / 4; }
 
@@ -1465,7 +1465,7 @@ namespace battleutils
         //get ratio (not capped for RAs)
         float ratio = (float)rAttack / (float)PDefender->DEF();
 
-        dsp_cap(ratio, 0, 3);
+        ratio = dsp_cap(ratio, 0, 3);
 
         //level correct (0.025 not 0.05 like for melee)
         if (PDefender->GetMLevel() > PAttacker->GetMLevel()) {
@@ -1492,11 +1492,11 @@ namespace battleutils
             maxPdif = ratio;
         }
 
-        dsp_cap(minPdif, 0, 3);
-        dsp_cap(maxPdif, 0, 3);
+        minPdif = dsp_cap(minPdif, 0, 3);
+        maxPdif = dsp_cap(maxPdif, 0, 3);
 
         //return random number between the two
-        return WELL512::GetRandomNumber(minPdif, maxPdif);
+        return dsprand::GetRandomNumber(minPdif, maxPdif);
     }
 
     int16 CalculateBaseTP(int delay) {
@@ -1571,7 +1571,7 @@ namespace battleutils
 
         float aquaveil = ((float)((100.0f - (meritReduction + (float)PDefender->getMod(MOD_SPELLINTERRUPT))) / 100.0f));
         check *= aquaveil;
-        uint8 chance = WELL512::GetRandomNumber(100);
+        uint8 chance = dsprand::GetRandomNumber(100);
 
         // caps, always give a 1% chance of interrupt
         if (check < 1) {
@@ -1605,7 +1605,7 @@ namespace battleutils
     uint8 GetBlockRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     {
         int8 shieldSize = 3;
-        int8 base = 0;
+        int32 base = 0;
         float blockRateMod = (100.0 + PDefender->getMod(MOD_SHIELDBLOCKRATE)) / 100.0;
         uint16 attackskill = PAttacker->GetSkill((SKILLTYPE)(PAttacker->m_Weapons[SLOT_MAIN]->getSkillType()));
         uint16 blockskill = PDefender->GetSkill(SKILL_SHL);
@@ -1652,7 +1652,7 @@ namespace battleutils
         }
 
         float skillmodifier = (blockskill - attackskill) * 0.215f;
-        return dsp_cap((int8)((base + (int8)skillmodifier) * blockRateMod), 5, (shieldSize == 6 ? 100 : dsp_max((int8)(65 * blockRateMod), 100)));
+        return (int8)dsp_cap((int32)((base + (int32)skillmodifier) * blockRateMod), 5, (shieldSize == 6 ? 100 : dsp_max((int32)(65 * blockRateMod), 100)));
     }
 
     uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
@@ -1871,7 +1871,7 @@ namespace battleutils
             PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 
             //40% chance to break bind when dmg received
-            if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && WELL512::GetRandomNumber(100) < 40)
+            if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && dsprand::GetRandomNumber(100) < 40)
                 PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
 
             switch (PDefender->objtype)
@@ -2006,7 +2006,7 @@ namespace battleutils
             PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 
             //40% chance to break bind when dmg received
-            if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && WELL512::GetRandomNumber(100) < 40)
+            if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && dsprand::GetRandomNumber(100) < 40)
                 PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
 
             switch (PDefender->objtype)
@@ -2268,7 +2268,7 @@ namespace battleutils
             cRatioMin = cRatio - 0.375;
         }
 
-        float pDIF = WELL512::GetRandomNumber(cRatioMin, cRatioMax);
+        float pDIF = dsprand::GetRandomNumber(cRatioMin, cRatioMax);
 
         if (isCritical)
         {
@@ -2278,7 +2278,7 @@ namespace battleutils
         }
 
         //x1.00 ~ x1.05 final multiplier, giving max value 3*1.05 -> 3.15
-        return pDIF * WELL512::GetRandomNumber(1.f, 1.05f);
+        return pDIF * dsprand::GetRandomNumber(1.f, 1.05f);
     }
 
     /************************************************************************
@@ -2357,7 +2357,7 @@ namespace battleutils
 
     uint8 getHitCount(uint8 hits)
     {
-        uint8 distribution = WELL512::GetRandomNumber(100);
+        uint8 distribution = dsprand::GetRandomNumber(100);
         uint8 num = 1;
 
         switch (hits)
@@ -2450,11 +2450,11 @@ namespace battleutils
             int16 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
             doubleAttack = dsp_cap(doubleAttack, 0, 100);
             tripleAttack = dsp_cap(tripleAttack, 0, 100);
-            if (WELL512::GetRandomNumber(100) < tripleAttack)
+            if (dsprand::GetRandomNumber(100) < tripleAttack)
             {
                 num += 2;
             }
-            else if (WELL512::GetRandomNumber(100) < doubleAttack)
+            else if (dsprand::GetRandomNumber(100) < doubleAttack)
             {
                 num += 1;
             }
@@ -2493,11 +2493,11 @@ namespace battleutils
         doubleAttack = dsp_cap(doubleAttack, 0, 100);
         tripleAttack = dsp_cap(tripleAttack, 0, 100);
 
-        if (WELL512::GetRandomNumber(100) < tripleAttack)
+        if (dsprand::GetRandomNumber(100) < tripleAttack)
         {
             num += 2;
         }
-        else if (WELL512::GetRandomNumber(100) < doubleAttack)
+        else if (dsprand::GetRandomNumber(100) < doubleAttack)
         {
             num += 1;
         }
@@ -2511,7 +2511,7 @@ namespace battleutils
                 if (PEntity->objtype == TYPE_PC)
                     zanshin += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)PEntity);
 
-                if (WELL512::GetRandomNumber(100) < (zanshin / 4))
+                if (dsprand::GetRandomNumber(100) < (zanshin / 4))
                     num++;
             }
         }
@@ -2526,7 +2526,7 @@ namespace battleutils
 
     bool IsParalyzed(CBattleEntity* PAttacker)
     {
-        return (WELL512::GetRandomNumber(100) < dsp_cap(PAttacker->getMod(MOD_PARALYZE) - PAttacker->getMod(MOD_PARALYZERES), 0, 100));
+        return (dsprand::GetRandomNumber(100) < dsp_cap(PAttacker->getMod(MOD_PARALYZE) - PAttacker->getMod(MOD_PARALYZERES), 0, 100));
     }
 
     /*****************************************************************************
@@ -2579,11 +2579,11 @@ namespace battleutils
         }
         else { //do have seigan, decay anticipations correctly (guesstimated)
             //5-6 anticipates is a 'lucky' streak, going to assume 15% decay per proc, with a 100% base w/ Seigan
-            if (WELL512::GetRandomNumber(100) < (100 - (pastAnticipations * 15))) {
+            if (dsprand::GetRandomNumber(100) < (100 - (pastAnticipations * 15))) {
                 //increment power and don't remove
                 effect->SetPower(effect->GetPower() + 1);
                 //chance to counter - 25% base
-                if (WELL512::GetRandomNumber(100) < 25 + PDefender->getMod(MOD_AUGMENTS_THIRD_EYE))
+                if (dsprand::GetRandomNumber(100) < 25 + PDefender->getMod(MOD_AUGMENTS_THIRD_EYE))
                     *thirdEyeCounter = true;
                 return true;
             }
@@ -2609,7 +2609,7 @@ namespace battleutils
             Shadow = PDefender->getMod(MOD_BLINK);
             modShadow = MOD_BLINK;
             //random chance, assume 80% proc
-            if (WELL512::GetRandomNumber(100) < 20) {
+            if (dsprand::GetRandomNumber(100) < 20) {
                 return false;
             }
         }
@@ -2685,7 +2685,7 @@ namespace battleutils
             case SYSTEM_UNDEAD:		KillerEffect = PDefender->getMod(MOD_UNDEAD_KILLER);   break;
             case SYSTEM_VERMIN:		KillerEffect = PDefender->getMod(MOD_VERMIN_KILLER);   break;
         }
-        return (WELL512::GetRandomNumber(100) < KillerEffect);
+        return (dsprand::GetRandomNumber(100) < KillerEffect);
     }
 
     /****************************************************************
@@ -2707,7 +2707,7 @@ namespace battleutils
             chance = chance + (PDefender->getMod((MODIFIER)(Effect + 238)) / 10);
         }
 
-        if (WELL512::GetRandomNumber(100) < chance)
+        if (dsprand::GetRandomNumber(100) < chance)
         {
             return true;
         }
@@ -3377,7 +3377,7 @@ namespace battleutils
 
                 uint16 chance = (PChar->getMod(MOD_NINJA_TOOL) + meritBonus);
 
-                if (ConsumeTool && WELL512::GetRandomNumber(100) > chance)
+                if (ConsumeTool && dsprand::GetRandomNumber(100) > chance)
                 {
                     charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
                     PChar->pushPacket(new CInventoryFinishPacket());
@@ -3809,7 +3809,7 @@ namespace battleutils
                 }
             }
 
-            if (WELL512::GetRandomNumber(100) < hitrate)
+            if (dsprand::GetRandomNumber(100) < hitrate)
             {
 
                 // attack hit, try to be absorbed by shadow
@@ -3975,7 +3975,7 @@ namespace battleutils
             //randomize charm time if > EM
             if (baseExp > 100)
             {
-                CharmTime *= WELL512::GetRandomNumber(0.75f, 1.25f);
+                CharmTime *= dsprand::GetRandomNumber(0.75f, 1.25f);
             }
 
 
@@ -4115,7 +4115,7 @@ namespace battleutils
         if (check < 5) {
             check = 5;
         }
-        if (check < WELL512::GetRandomNumber(100)) {
+        if (check < dsprand::GetRandomNumber(100)) {
             return true;
         }
         return false;
@@ -4194,7 +4194,7 @@ namespace battleutils
         resist = dsp_max(resist, 0.5f);
         damage = damage * resist;
 
-        if (WELL512::GetRandomNumber(100) < PDefender->getMod(MOD_ABSORB_DMG_CHANCE))
+        if (dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_ABSORB_DMG_CHANCE))
             damage = -damage;
         else
         {
@@ -4220,12 +4220,12 @@ namespace battleutils
         resist = dsp_max(resist, 0.5f);
         damage = damage * resist;
 
-        if (WELL512::GetRandomNumber(100) < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
-            (element && WELL512::GetRandomNumber(100) < PDefender->getMod(absorb[element - 1])) ||
-            WELL512::GetRandomNumber(100) < PDefender->getMod(MOD_MAGIC_ABSORB))
+        if (dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
+            (element && dsprand::GetRandomNumber(100) < PDefender->getMod(absorb[element - 1])) ||
+            dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_MAGIC_ABSORB))
             damage = -damage;
-        else if ((element && WELL512::GetRandomNumber(100) < PDefender->getMod(nullarray[element - 1])) ||
-                 WELL512::GetRandomNumber(100) < PDefender->getMod(MOD_MAGIC_NULL))
+        else if ((element && dsprand::GetRandomNumber(100) < PDefender->getMod(nullarray[element - 1])) ||
+                 dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_MAGIC_NULL))
             damage = 0;
         else
         {
@@ -4249,10 +4249,10 @@ namespace battleutils
         resist = dsp_max(resist, 0.5f);
         damage = damage * resist;
 
-        if (WELL512::GetRandomNumber(100) < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
-            WELL512::GetRandomNumber(100) < PDefender->getMod(MOD_PHYS_ABSORB))
+        if (dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
+            dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_PHYS_ABSORB))
             damage = -damage;
-        else if (WELL512::GetRandomNumber(100) < PDefender->getMod(MOD_NULL_PHYSICAL_DAMAGE))
+        else if (dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_NULL_PHYSICAL_DAMAGE))
             damage = 0;
         else
         {
@@ -4276,10 +4276,10 @@ namespace battleutils
         resist = dsp_max(resist, 0.5f);
         damage = damage * resist;
 
-        if (WELL512::GetRandomNumber(100) < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
-            WELL512::GetRandomNumber(100) < PDefender->getMod(MOD_PHYS_ABSORB))
+        if (dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
+            dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_PHYS_ABSORB))
             damage = -damage;
-        else if (WELL512::GetRandomNumber(100) < PDefender->getMod(MOD_NULL_PHYSICAL_DAMAGE))
+        else if (dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_NULL_PHYSICAL_DAMAGE))
             damage = 0;
         else
         {
@@ -4746,7 +4746,7 @@ namespace battleutils
         }
 
         // Restore some abilities (Randomly select some abilities?)
-        uint8 RecastsToDelete = WELL512::GetRandomNumber(TotalRecasts == 0 ? 1 : TotalRecasts);
+        uint8 RecastsToDelete = dsprand::GetRandomNumber(TotalRecasts == 0 ? 1 : TotalRecasts);
 
         // Restore at least 1 ability (unless none are on recast)
         RecastsToDelete = TotalRecasts == 0 ? 0 : RecastsToDelete == 0 ? 1 : RecastsToDelete;

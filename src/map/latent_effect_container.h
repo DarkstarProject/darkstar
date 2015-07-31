@@ -58,7 +58,7 @@ public:
 	void CheckLatentsPartyJobs();
 	void CheckLatentsPartyAvatar();
 	void CheckLatentsJobLevel();
-	void CheckLatentsPetType(PETTYPE petID);
+	void CheckLatentsPetType(uint8 petID);
 	void CheckLatentsTime();
 	void CheckLatentsWeaponBreak(uint8 slot);
 	void CheckLatentsZone();

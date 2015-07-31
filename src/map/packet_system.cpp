@@ -857,7 +857,7 @@ void SmallPacket0x01B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     // 0 - world pass, 2 - gold world pass; +1 - purchase
 
-    PChar->pushPacket(new CWorldPassPacket(RBUFB(data, (0x04)) & 1 ? WELL512::GetRandomNumber(9999999999) : 0));
+    PChar->pushPacket(new CWorldPassPacket(RBUFB(data, (0x04)) & 1 ? dsprand::GetRandomNumber(9999999999) : 0));
     return;
 }
 
@@ -1430,7 +1430,7 @@ void SmallPacket0x041(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (PChar->PTreasurePool != nullptr)
     {
         uint8 SlotID = RBUFB(data, (0x04));
-        PChar->PTreasurePool->LotItem(PChar, SlotID,WELL512::GetRandomNumber(1,1000)); //1 ~ 998+1
+        PChar->PTreasurePool->LotItem(PChar, SlotID,dsprand::GetRandomNumber(1,1000)); //1 ~ 998+1
     }
 }
 
@@ -2856,7 +2856,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     case 0: // party - must by party leader or solo
         if (PChar->PParty == nullptr || PChar->PParty->GetLeader() == PChar)
         {
-            if (PChar->PParty && PChar->PParty->members.size() == 6)
+            if (PChar->PParty && PChar->PParty->members.size() > 5)
             {
                 PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
                 break;
@@ -3178,7 +3178,7 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 }
                 if (PInviter->PParty->GetLeader() == PInviter)
                 {
-                    if (PInviter->PParty->members.size() == 6){//someone else accepted invitation
+                    if (PInviter->PParty->members.size() > 5){//someone else accepted invitation
                         //PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 14)); Don't think retail sends error packet to inviter on full pt
                         PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
                     }
@@ -3520,7 +3520,7 @@ void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0A2(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint16 diceroll = WELL512::GetRandomNumber(1000);
+    uint16 diceroll = dsprand::GetRandomNumber(1000);
 
     PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageStandardPacket(PChar, diceroll, 88));
     return;

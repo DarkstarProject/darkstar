@@ -26,15 +26,16 @@ CREATE TABLE `merits` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `merits` VALUES ('64', 'max_hp', '8', '10', '1048575', '0', '0');
-INSERT INTO `merits` VALUES ('66', 'max_mp', '8', '10', '1048575', '0', '0');
-INSERT INTO `merits` VALUES ('128', 'str', '5', '1', '1048575', '1', '1');
-INSERT INTO `merits` VALUES ('130', 'dex', '5', '1', '1048575', '1', '1');
-INSERT INTO `merits` VALUES ('132', 'vit', '5', '1', '1048575', '1', '1');
-INSERT INTO `merits` VALUES ('134', 'agi', '5', '1', '1048575', '1', '1');
-INSERT INTO `merits` VALUES ('136', 'int', '5', '1', '1048575', '1', '1');
-INSERT INTO `merits` VALUES ('138', 'mnd', '5', '1', '1048575', '1', '1');
-INSERT INTO `merits` VALUES ('140', 'chr', '5', '1', '1048575', '1', '1');
+INSERT INTO `merits` VALUES ('64', 'max_hp', '15', '10', '1048575', '0', '0');
+INSERT INTO `merits` VALUES ('66', 'max_mp', '15', '10', '1048575', '0', '0');
+INSERT INTO `merits` VALUES ('68', 'max_merits', '15', '1', '1048575', '9', '0');
+INSERT INTO `merits` VALUES ('128', 'str', '15', '1', '1048575', '1', '1');
+INSERT INTO `merits` VALUES ('130', 'dex', '15', '1', '1048575', '1', '1');
+INSERT INTO `merits` VALUES ('132', 'vit', '15', '1', '1048575', '1', '1');
+INSERT INTO `merits` VALUES ('134', 'agi', '15', '1', '1048575', '1', '1');
+INSERT INTO `merits` VALUES ('136', 'int', '15', '1', '1048575', '1', '1');
+INSERT INTO `merits` VALUES ('138', 'mnd', '15', '1', '1048575', '1', '1');
+INSERT INTO `merits` VALUES ('140', 'chr', '15', '1', '1048575', '1', '1');
 INSERT INTO `merits` VALUES ('192', 'h2h', '8', '2', '397347', '2', '2');
 INSERT INTO `merits` VALUES ('194', 'dagger', '8', '2', '1015801', '2', '2');
 INSERT INTO `merits` VALUES ('196', 'sword', '8', '2', '376817', '2', '2');
@@ -201,12 +202,12 @@ INSERT INTO `merits` VALUES ('2176', 'martyr', '5', '5', '4', '7', '33');
 INSERT INTO `merits` VALUES ('2178', 'devotion', '5', '5', '4', '7', '33');
 INSERT INTO `merits` VALUES ('2180', 'protectra_v', '5', '5', '4', '7', '33');
 INSERT INTO `merits` VALUES ('2182', 'shellra_v', '5', '2', '4', '7', '33');
-INSERT INTO `merits` VALUES ('2240', 'flare_ii', '5', '5', '8', '7', '34');
-INSERT INTO `merits` VALUES ('2242', 'freeze_ii', '5', '5', '8', '7', '34');
-INSERT INTO `merits` VALUES ('2244', 'tornado_ii', '5', '5', '8', '7', '34');
-INSERT INTO `merits` VALUES ('2246', 'quake_ii', '5', '5', '8', '7', '34');
-INSERT INTO `merits` VALUES ('2248', 'burst_ii', '5', '5', '8', '7', '34');
-INSERT INTO `merits` VALUES ('2250', 'flood_ii', '5', '5', '8', '7', '34');
+INSERT INTO `merits` VALUES ('2240', 'flare_ii', '5', '1', '8', '7', '34');
+INSERT INTO `merits` VALUES ('2242', 'freeze_ii', '5', '1', '8', '7', '34');
+INSERT INTO `merits` VALUES ('2244', 'tornado_ii', '5', '1', '8', '7', '34');
+INSERT INTO `merits` VALUES ('2246', 'quake_ii', '5', '1', '8', '7', '34');
+INSERT INTO `merits` VALUES ('2248', 'burst_ii', '5', '1', '8', '7', '34');
+INSERT INTO `merits` VALUES ('2250', 'flood_ii', '5', '1', '8', '7', '34');
 INSERT INTO `merits` VALUES ('2304', 'dia_iii', '5', '30', '16', '7', '35');
 INSERT INTO `merits` VALUES ('2306', 'slow_ii', '5', '1', '16', '7', '35');
 INSERT INTO `merits` VALUES ('2308', 'paralyze_ii', '5', '1', '16', '7', '35');

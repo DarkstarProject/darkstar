@@ -3397,6 +3397,38 @@ int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAb
 	return 0;
 }
 
+int32 OnInstanceZoneIn(CCharEntity* PChar, CInstance* PInstance)
+{
+    CZone* PZone = PInstance->GetZone();
+
+    lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
+
+    if (prepFile(File, "onInstanceZoneIn"))
+    {
+        return -1;
+    }
+
+    CLuaBaseEntity LuaEntity(PChar);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaEntity);
+
+    CLuaInstance LuaInstance(PInstance);
+    Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
+
+    if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::onInstanceZoneIn: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 0)
+    {
+        ShowError("luautils::onInstanceZoneIn (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+    return 0;
+}
+
 int32 AfterInstanceRegister(uint32 tick, CTaskMgr::CTask *PTask)
 {
 	CCharEntity* PChar = (CCharEntity*)PTask->m_data;
@@ -4026,7 +4058,7 @@ int32 UpdateNMSpawnPoint(lua_State* L)
           int32 r = 0;
           int32 ret = Sql_Query(SqlHandle, "SELECT count(mobid) FROM `nm_spawn_points` where mobid=%u", mobid);
 		  if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS && Sql_GetUIntData(SqlHandle, 0) > 0) {
-            r = WELL512::GetRandomNumber(Sql_GetUIntData(SqlHandle,0));
+            r = dsprand::GetRandomNumber(Sql_GetUIntData(SqlHandle,0));
 		  } else {
 			ShowDebug(CL_RED"UpdateNMSpawnPoint: SQL error: No entries for mobid <%u> found.\n" CL_RESET, mobid);
             return 0;
@@ -4034,7 +4066,7 @@ int32 UpdateNMSpawnPoint(lua_State* L)
 
 		  ret = Sql_Query(SqlHandle, "SELECT pos_x, pos_y, pos_z FROM `nm_spawn_points` WHERE mobid=%u AND pos=%i", mobid, r);
 		  if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-			PMob->m_SpawnPoint.rotation = WELL512::GetRandomNumber(256);
+			PMob->m_SpawnPoint.rotation = dsprand::GetRandomNumber(256);
 			PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle,0);
 			PMob->m_SpawnPoint.y = Sql_GetFloatData(SqlHandle,1);
 			PMob->m_SpawnPoint.z = Sql_GetFloatData(SqlHandle,2);

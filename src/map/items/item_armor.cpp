@@ -142,7 +142,7 @@ uint8 CItemArmor::getShieldAbsorption()
 
 bool CItemArmor::IsShield()
 {
-    return m_shieldSize > 0 && m_shieldSize < 6;
+    return m_shieldSize > 0 && m_shieldSize <= 6;
 }
 
 /************************************************************************
@@ -299,10 +299,13 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
 
         // apply modifier to item. increase modifier power by 'value' (default magnitude 1 for most augments) if multiplier isn't specified
         // otherwise increase modifier power using the multiplier
+        // check if we should be adding to or taking away from the mod power (handle scripted augments properly)
+        modValue = (modValue > 0 ? modValue + value : modValue - value) * (multiplier > 1 ? multiplier : 1);
+
         if (!type)
-            addModifier(new CModifier(modId, (multiplier > 1 ? modValue + (value * multiplier) : modValue + value)));
+            addModifier(new CModifier(modId, modValue));
         else
-            addPetModifier(new CModifier(modId, (multiplier > 1 ? modValue + (value * multiplier) : modValue + value)));
+            addPetModifier(new CModifier(modId, modValue));
     }
 }
 

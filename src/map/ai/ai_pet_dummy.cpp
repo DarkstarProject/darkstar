@@ -137,7 +137,7 @@ void CAIPetDummy::ActionAbilityStart()
                 int maxSearch = 10;
                 // keep looking for an ability until one is valid
                 do {
-                    SetCurrentMobSkill(MobSkills.at(WELL512::GetRandomNumber(MobSkills.size())));
+                    SetCurrentMobSkill(MobSkills.at(dsprand::GetRandomNumber(MobSkills.size())));
                 } while (luautils::OnMobSkillCheck(m_PBattleTarget, m_PPet, GetCurrentMobSkill()) != 0 && maxSearch--);
 
                 // could not find skill
@@ -159,7 +159,7 @@ void CAIPetDummy::ActionAbilityStart()
         if (m_MasterCommand == MASTERCOMMAND_SIC && m_PPet->health.tp >= 1000 && m_PBattleTarget != nullptr){ //choose random tp move
             m_MasterCommand = MASTERCOMMAND_NONE;
             if (m_PPet->PetSkills.size() > 0){
-                SetCurrentMobSkill(m_PPet->PetSkills.at(WELL512::GetRandomNumber(m_PPet->PetSkills.size())));
+                SetCurrentMobSkill(m_PPet->PetSkills.at(dsprand::GetRandomNumber(m_PPet->PetSkills.size())));
                 preparePetAbility(m_PBattleTarget);
                 return;
             }
@@ -185,7 +185,7 @@ void CAIPetDummy::ActionAbilityStart()
 
             //offensive or multipurpose wyvern
             if (m_PBattleTarget != nullptr){ //prepare elemental breaths
-                int skip = WELL512::GetRandomNumber(6);
+                int skip = dsprand::GetRandomNumber(6);
                 int hasSkipped = 0;
 
                 for (int i = 0; i < m_PPet->PetSkills.size(); i++){
@@ -795,7 +795,7 @@ void CAIPetDummy::ActionAttack()
                     {
                         Action.messageID = 32;
                     }
-                    else if ((WELL512::GetRandomNumber(100) < battleutils::GetHitRate(m_PPet, m_PBattleTarget)) &&
+                    else if ((dsprand::GetRandomNumber(100) < battleutils::GetHitRate(m_PPet, m_PBattleTarget)) &&
                         !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
                     {
                         if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
@@ -810,7 +810,7 @@ void CAIPetDummy::ActionAttack()
                             Action.speceffect = SPECEFFECT_HIT;
                             Action.messageID = 1;
 
-                            bool isCritical = (WELL512::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PPet, m_PBattleTarget, false));
+                            bool isCritical = (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PPet, m_PBattleTarget, false));
                             float DamageRatio = battleutils::GetDamageRatio(m_PPet, m_PBattleTarget, isCritical, 0);
 
                             if (isCritical)
@@ -835,7 +835,7 @@ void CAIPetDummy::ActionAttack()
                         charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PPet->GetMLevel());
                     }
 
-                    bool isBlocked = (WELL512::GetRandomNumber(100) < battleutils::GetBlockRate(m_PPet, m_PBattleTarget));
+                    bool isBlocked = (dsprand::GetRandomNumber(100) < battleutils::GetBlockRate(m_PPet, m_PBattleTarget));
                     if (isBlocked){ Action.reaction = REACTION_BLOCK; }
 
 

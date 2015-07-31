@@ -32365,6 +32365,10 @@ INSERT INTO `mob_droplist` VALUES (4521,0,2428,50);
 INSERT INTO `mob_droplist` VALUES (4521,0,2426,60);
 INSERT INTO `mob_droplist` VALUES (4521,0,2427,205);
 INSERT INTO `mob_droplist` VALUES (4522,0,16374,140); -- Sekhmet
+INSERT INTO `mob_droplist` VALUES (4523,0,919,1000); -- Ancient Goobbue
+INSERT INTO `mob_droplist` VALUES (4523,0,16990,179);
+INSERT INTO `mob_droplist` VALUES (4523,0,1264,1000);
+INSERT INTO `mob_droplist` VALUES (4523,0,1237,1000);
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;

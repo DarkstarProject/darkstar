@@ -397,7 +397,7 @@ void CTreasurePool::CheckTreasureItem(uint32 tick, uint8 SlotID)
 				}
 				else{
 					//select random member from this pool to give item to
-                    CCharEntity* PChar = tempLots.at(WELL512::GetRandomNumber(tempLots.size())).member;
+                    CCharEntity* PChar = tempLots.at(dsprand::GetRandomNumber(tempLots.size())).member;
 					if (charutils::AddItem(PChar, LOC_INVENTORY, m_PoolItems[SlotID].ID, 1, true) != ERROR_SLOTID)
 					{
 						TreasureWon(PChar, SlotID);
@@ -421,7 +421,7 @@ void CTreasurePool::CheckTreasureItem(uint32 tick, uint8 SlotID)
             }
             if (!m_PoolItems[SlotID].Lotters.empty())
             {
-                CCharEntity* PChar = m_PoolItems[SlotID].Lotters.at(WELL512::GetRandomNumber(m_PoolItems[SlotID].Lotters.size())).member;
+                CCharEntity* PChar = m_PoolItems[SlotID].Lotters.at(dsprand::GetRandomNumber(m_PoolItems[SlotID].Lotters.size())).member;
 
                 if (charutils::AddItem(PChar, LOC_INVENTORY, m_PoolItems[SlotID].ID, 1, true) != ERROR_SLOTID)
 		        {

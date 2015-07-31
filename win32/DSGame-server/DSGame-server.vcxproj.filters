@@ -1459,9 +1459,6 @@
     <ClCompile Include="..\..\src\map\ai\ai_ultimate_summon.cpp">
       <Filter>Source Files\ai</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\common\dsprand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\packets\synth_suggestion.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>

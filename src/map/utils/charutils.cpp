@@ -606,7 +606,7 @@ namespace charutils
             "FROM char_stats WHERE charid = %u;";
 
         ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
-        bool zoning = false;
+        uint8 zoning = 0;
 
         if (ret != SQL_ERROR &&
             Sql_NumRows(SqlHandle) != 0 &&
@@ -642,10 +642,12 @@ namespace charutils
             }
         }
 
-        if (zoning)
-        {
-            Sql_Query(SqlHandle, "UPDATE char_stats SET zoning = 0 WHERE charid = %u", PChar->id);
-        }
+
+        Sql_Query(SqlHandle, "UPDATE char_stats SET zoning = 0 WHERE charid = %u", PChar->id);
+        
+        if (zoning == 2)
+            ShowDebug("Player <%s> logging in to zone <%u>\n", PChar->name.c_str(), PChar->getZone());
+        
 
         PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
         PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
@@ -759,7 +761,7 @@ namespace charutils
         PChar->health.hp = PChar->loc.destination == ZONE_RESIDENTIAL_AREA ? PChar->GetMaxHP() : HP;
         PChar->health.mp = PChar->loc.destination == ZONE_RESIDENTIAL_AREA ? PChar->GetMaxMP() : MP;
         PChar->UpdateHealth();
-        luautils::OnGameIn(PChar, zoning);
+        luautils::OnGameIn(PChar, zoning == 1);
     }
 
     /************************************************************************
@@ -1382,9 +1384,12 @@ namespace charutils
             {
                 if (PItem->getStackSize() == 1)
                 {
-                    AddItem(PTarget, LOC_INVENTORY, itemutils::GetItem(PItem));
+                    CItem* PNewItem = itemutils::GetItem(PItem);
+                    PNewItem->setReserve(0);
+                    AddItem(PTarget, LOC_INVENTORY, PNewItem);
                 }
-                else {
+                else 
+                {
                     AddItem(PTarget, LOC_INVENTORY, PItem->getID(), PItem->getReserve());
                 }
                 UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), -PItem->getReserve());
@@ -1549,6 +1554,7 @@ namespace charutils
     bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
     {
         CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
+        CItemArmor* oldItem = PChar->getEquip((SLOTTYPE)equipSlotID);
 
         if (PItem == nullptr)
         {
@@ -1563,8 +1569,6 @@ namespace charutils
 
         if (equipSlotID == SLOT_MAIN)
         {
-            CItemArmor* oldItem = PChar->getEquip((SLOTTYPE)equipSlotID);
-
             if (!(slotID == PItem->getSlotID() && oldItem &&
                   (oldItem->isType(ITEM_WEAPON) && PItem->isType(ITEM_WEAPON)) &&
                   ((((CItemWeapon*)PItem)->isTwoHanded() == true) && (((CItemWeapon*)oldItem)->isTwoHanded() == true))))
@@ -1933,6 +1937,11 @@ namespace charutils
 
     void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
     {
+        CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
+        
+        if (PItem && PItem == PChar->getEquip((SLOTTYPE)equipSlotID))
+            return;
+
         if (slotID == 0)
         {
             CItemArmor* PSubItem = PChar->getEquip(SLOT_SUB);
@@ -1946,7 +1955,6 @@ namespace charutils
         }
         else
         {
-            CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
 
             if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
             {
@@ -2499,7 +2507,7 @@ namespace charutils
             int16  Diff = MaxSkill - CurSkill / 10;
             double SkillUpChance = Diff / 5.0 + map_config.skillup_chance_multiplier * (2.0 - log10(1.0 + CurSkill / 100));
 
-            double random = WELL512::GetRandomNumber(1.);
+            double random = dsprand::GetRandomNumber(1.);
 
             if (SkillUpChance > 0.5)
             {
@@ -2514,7 +2522,7 @@ namespace charutils
 
                 for (uint8 i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
                 {
-                    random = WELL512::GetRandomNumber(1.);
+                    random = dsprand::GetRandomNumber(1.);
 
                     switch (tier)
                     {
@@ -3211,7 +3219,7 @@ namespace charutils
                         uint16 Pzone = PMember->getZone();
                         if (PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255)))
                         {
-                            if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && WELL512::GetRandomNumber(100) < 20 &&
+                            if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && dsprand::GetRandomNumber(100) < 20 &&
                                 PMember->loc.zone == PMob->loc.zone) // Need to move to SIGNET_CHANCE constant
                             {
                                 PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
