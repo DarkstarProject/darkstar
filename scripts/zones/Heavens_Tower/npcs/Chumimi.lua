@@ -58,7 +58,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x010E,0,1105); -- Start Quest "Recollections"
 	elseif(recollections == QUEST_ACCEPTED and player:hasKeyItem(FOE_FINDER_MK_I)) then
 		player:startEvent(0x0113); -- Finish Quest "Recollections"
-	elseif(rootProblem == QUEST_AVAILABLE and mJob == 4 and mLvl >= 50 and player:needToZone() == false) then
+	elseif(recollections == QUEST_COMPLETED and rootProblem == QUEST_AVAILABLE and mJob == 4 and mLvl >= 50 and player:needToZone() == false) then
 			player:startEvent(0x114,0,829); -- Start Quest "The Root of The problem"
 	elseif(rootProblem == QUEST_ACCEPTED) then
 		if (player:getVar("rootProblem") == 1) then
