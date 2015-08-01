@@ -44,7 +44,7 @@ end;
 
 function onUseAbilityRoll(caster,target,ability,total)
     local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
-    local effectpowers = {5, 20, 6, 8, 9, 3, 10, 13, 14, 15, 25}
+    local effectpowers = {5, 20, 6, 8, 9, 3, 10, 13, 14, 15, 25, 5}
     local effectpower = effectpowers[total]
     if (total < 12 and caster:hasPartyJob(JOB_BLU) ) then
         effectpower = effectpower + 8;
