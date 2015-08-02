@@ -205,6 +205,8 @@ void CBattlefield::capPlayerToBCNM(){ //adjust player's level to the appropriate
 		}
 		for(int i=0; i<m_PlayerList.size(); i++)
 		{
+			m_PlayerList.at(i)->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);  //custom addition to prevent bcnm exploit
+			m_PlayerList.at(i)->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);  //custom addition to prevent bcnm exploit
 			m_PlayerList.at(i)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
 			m_PlayerList.at(i)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
 			m_PlayerList.at(i)->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEVEL_RESTRICTION,0,cap,0,0),true);
