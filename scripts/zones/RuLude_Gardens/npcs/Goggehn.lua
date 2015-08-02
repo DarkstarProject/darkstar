@@ -28,37 +28,41 @@ end;
 function onTrigger(player,npc)
 	
 	pNation = player:getNation();
-	currentMission = player:getCurrentMission(BASTOK);
-	missionStatus = player:getVar("MissionStatus");
+
+	if(pNation == BASTOK) then
+		currentMission = player:getCurrentMission(BASTOK);
+		missionStatus = player:getVar("MissionStatus");
 	
-	if(currentMission == JEUNO_MISSION and missionStatus == 1) then
-		player:startEvent(0x0029);
-	elseif(currentMission == JEUNO_MISSION and missionStatus == 2) then
-		player:startEvent(0x0042);
-	elseif(currentMission == JEUNO_MISSION and missionStatus == 3) then
-		player:startEvent(0x0026);
-	elseif(player:getRank() == 4 and player:getCurrentMission(BASTOK) == 255 and getMissionRankPoints(player,13) == 1) then
-		if(player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT)) then
-			player:startEvent(0x0081,1);
-		else
-			player:startEvent(0x0081); -- Start Mission 4-1 Magicite
-		end
-	elseif(currentMission == MAGICITE_BASTOK and missionStatus == 1) then
-		player:startEvent(0x0084);
-	elseif(currentMission == MAGICITE_BASTOK and missionStatus <= 5) then
-		player:startEvent(0x0087);
-	elseif(currentMission == MAGICITE_BASTOK and missionStatus == 6) then
-		player:startEvent(0x0023);
-	elseif(player:hasKeyItem(MESSAGE_TO_JEUNO_BASTOK)) then
-		player:startEvent(0x0037);
+	        if(currentMission == JEUNO_MISSION and missionStatus == 1) then
+	        	player:startEvent(0x0029);
+	        elseif(currentMission == JEUNO_MISSION and missionStatus == 2) then
+	        	player:startEvent(0x0042);
+	        elseif(currentMission == JEUNO_MISSION and missionStatus == 3) then
+	        	player:startEvent(0x0026);
+	        elseif(player:getRank() == 4 and player:getCurrentMission(BASTOK) == 255 and getMissionRankPoints(player,13) == 1) then
+	        	if(player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT)) then
+	        		player:startEvent(0x0081,1);
+	        	else
+	        		player:startEvent(0x0081); -- Start Mission 4-1 Magicite
+	        	end
+                elseif(currentMission == MAGICITE_BASTOK and missionStatus == 1) then
+        	        player:startEvent(0x0084);
+         	elseif(currentMission == MAGICITE_BASTOK and missionStatus <= 5) then
+		        player:startEvent(0x0087);
+	        elseif(currentMission == MAGICITE_BASTOK and missionStatus == 6) then
+	         	player:startEvent(0x0023);
+	        elseif(player:hasKeyItem(MESSAGE_TO_JEUNO_BASTOK)) then
+		        player:startEvent(0x0037);
+		elseif(player:getRank() <= 3 and currentMission ~= JEUNO_MISSION) then
+			player:startEvent(0x0004);
+	        end
 	elseif(pNation == WINDURST) then
-		player:startEvent(0x0004);
-	elseif(pNation == SANDORIA) then
 		player:startEvent(0x0002);
+	elseif(pNation == SANDORIA) then
+		player:startEvent(0x0001);
 	else
 		player:startEvent(0x0065);
 	end
-	
 end;
 
 -----------------------------------
