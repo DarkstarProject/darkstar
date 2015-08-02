@@ -311,7 +311,7 @@ void CAttack::ProcessDamage()
 		m_isFirstSwing && 
 		m_attackRound->GetTAEntity() != nullptr)
 	{
-		m_trickAttackDamage += m_attacker->AGI();
+		m_trickAttackDamage += m_attacker->AGI() * (1 + m_attacker->getMod(MOD_TRICK_ATK_AGI)/100);
 	}
 
 	// H2H.

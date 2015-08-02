@@ -46,9 +46,9 @@ INSERT INTO `mob_pool_mods` VALUES (2647,160,-50,0);
 INSERT INTO `mob_pool_mods` VALUES (733,302,5,0);
 INSERT INTO `mob_pool_mods` VALUES (2677,288,55,0);
 INSERT INTO `mob_pool_mods` VALUES (21,29,100,0);
-INSERT INTO `mob_pool_mods` VALUES (2156,370,30,0);
+INSERT INTO `mob_pool_mods` VALUES (2156,370,25,0);
 INSERT INTO `mob_pool_mods` VALUES (2262,370,125,0);
-INSERT INTO `mob_pool_mods` VALUES (4261,370,125,0);
+INSERT INTO `mob_pool_mods` VALUES (4261,370,25,0);
 INSERT INTO `mob_pool_mods` VALUES (4261,29,50,0);
 INSERT INTO `mob_pool_mods` VALUES (2420,302,10,0);
 INSERT INTO `mob_pool_mods` VALUES (1648,224,5,0);
@@ -57,7 +57,8 @@ INSERT INTO `mob_pool_mods` VALUES (2790,240,7,0);
 INSERT INTO `mob_pool_mods` VALUES (2790,168,50,0);
 INSERT INTO `mob_pool_mods` VALUES (3549,370,50,0);
 INSERT INTO `mob_pool_mods` VALUES (1648,17,1,1);
-INSERT INTO `mob_pool_mods` VALUES (3916,370,50,0);
+INSERT INTO `mob_pool_mods` VALUES (3916,370,25,0);
+INSERT INTO `mob_pool_mods` VALUES (3916,164,-50,0);
 INSERT INTO `mob_pool_mods` VALUES (3916,29,50,0);
 INSERT INTO `mob_pool_mods` VALUES (3796,21,97,1);
 INSERT INTO `mob_pool_mods` VALUES (4396,16,1,1);
@@ -75,6 +76,7 @@ INSERT INTO `mob_pool_mods` VALUES (2255,368,70,0);
 INSERT INTO `mob_pool_mods` VALUES (2255,370,50,0);
 INSERT INTO `mob_pool_mods` VALUES (2255,34,60,1);
 INSERT INTO `mob_pool_mods` VALUES (2255,3,100,1);
+INSERT INTO `mob_pool_mods` VALUES (2180,3,100,1);
 INSERT INTO `mob_pool_mods` VALUES (3598,368,70,0);
 INSERT INTO `mob_pool_mods` VALUES (3600,368,70,0);
 INSERT INTO `mob_pool_mods` VALUES (3601,368,70,0);
@@ -189,6 +191,8 @@ INSERT INTO `mob_pool_mods` VALUES (3124,48,434,1);
 INSERT INTO `mob_pool_mods` VALUES (2105,48,434,1);
 INSERT INTO `mob_pool_mods` VALUES (70,48,434,1);
 INSERT INTO `mob_pool_mods` VALUES (1270,39,-1,1);
+INSERT INTO `mob_pool_mods` VALUES (1851,16,1,1);
+INSERT INTO `mob_pool_mods` VALUES (1851,32,1,1);
 
 -- -------------------------
 --  Antlion MOBMOD_SPECIAL_SKILL Pit_Ambush 

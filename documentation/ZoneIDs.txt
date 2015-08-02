@@ -4,7 +4,7 @@ DSproject
 Список известных зон
 List of known zones
 
-    0 -  00 - Residential Area (Dummy)
+    0 -  00 - Tech Demo Area (Formerly used as Residential Area in DSP)
     1 -  01 - Phanauet Channel
     2 -  02 - Carpenters' Landing
     3 -  03 - Manaclipper
@@ -137,7 +137,7 @@ List of known zones
   130 -  82 - Ru'Aun Gardens
   131 -  83 - Mordion Gaol
   132 -  84 - Abyssea - La Theine
-  133 -  85 - Not a real zone: Character screen background
+  133 -  85 - Not a real zone: Character select screen background
   134 -  86 - Dynamis - Beaucedine
   135 -  87 - Dynamis - Xarcabard
   136 -  88 - Beaucedine Glacier [S]
@@ -214,7 +214,7 @@ List of known zones
   207 -  CF - Cloister of Flames
   208 -  D0 - Quicksand Caves
   209 -  D1 - Cloister of Tremors
-  210 -  D2 - 
+  210 -  D2 - GM Home (name comes from leaked official documentation)
   211 -  D3 - Cloister of Tides
   212 -  D4 - Gustav Tunnel
   213 -  D5 - Labyrinth of Onzozo
@@ -226,7 +226,7 @@ List of known zones
   219 -  DB - 
   220 -  DC - Ship bound for Selbina
   221 -  DD - Ship bound for Mhaura
-  222 -  DE - 
+  222 -  DE - Provenance
   223 -  DF - San d'Oria-Jeuno Airship
   224 -  E0 - Bastok-Jeuno Airship
   225 -  E1 - Windurst-Jeuno Airship
@@ -273,10 +273,10 @@ List of known zones
   266 - 10A - Arjami Ravine
   267 - 10B - Kamihr Drifts
   268 - 10C - Sih Gates
-  259 - 10D - Moh Gates
+  269 - 10D - Moh Gates
   270 - 10E - Cirdas Caverns
   271 - 10F - Cirdas Caverns [U]
-  252 - 110 - Dho Gates
+  272 - 110 - Dho Gates
   273 - 111 - Woh Gates
   274 - 112 - Outer Ra'Kaznar
   275 - 113 - Outer Ra'Kaznar [U]
@@ -285,8 +285,16 @@ List of known zones
   278 - 116 - 
   279 - 117 - 
   280 - 118 - Mog Garden
-  281 - 119 - 
-  282 - 11A - 
+  281 - 119 - Leafallia
+  282 - 11A - Mount Kamihr
   283 - 11B - Silver Knife
   284 - 11C - Celennia Memorial Library (formerly Wexworth Library)
   285 - 11D - Feretory
+  286 - 11E - 
+  287 - 11F - 
+  288 - 120 - Escha - Zi'Tah
+  289 - 121 - 
+  290 - 122 - 
+  291 - 123 - 
+  292 - 124 - 
+  293 - 125 - 

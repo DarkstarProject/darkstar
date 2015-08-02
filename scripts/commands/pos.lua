@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @pos <x> <y> <z> <optional zone> <optional target>
--- auth: <Unknown> :: Modded by atom0s :: Modded again by TeoTwawki
 -- desc: Sets the players position. If none is given, prints out the position instead.
 ---------------------------------------------------------------------------------------------------
 

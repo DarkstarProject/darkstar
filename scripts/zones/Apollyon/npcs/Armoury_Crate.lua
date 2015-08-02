@@ -64,25 +64,25 @@ function onTrigger(player,npc)
 	     elseif(CofferID==16932864+211)then
 		 		 		GetMobByID(16932896):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
 						GetMobByID(16932896):setSpawn(npc:getXPos(),npc:getYPos(),npc:getZPos());
-						GetMobByID(16932896):updateEnmity(player);
+						GetMobByID(16932896):updateClaim(player);
 	     elseif(CofferID==16932864+212)then
 		    	GetNPCByID(16932864+196):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
 	            GetNPCByID(16932864+196):setStatus(STATUS_NORMAL);
 	     elseif(CofferID==16932864+213)then
 		 				GetMobByID(16932897):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
 						GetMobByID(16932897):setSpawn(npc:getXPos(),npc:getYPos(),npc:getZPos());
-						GetMobByID(16932897):updateEnmity(player);
+						GetMobByID(16932897):updateClaim(player);
 	     elseif(CofferID==16932864+214)then
 		    	GetNPCByID(16932864+197):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
 	            GetNPCByID(16932864+197):setStatus(STATUS_NORMAL);
 	     elseif(CofferID==16932864+215)then
 			 			GetMobByID(16932898):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
 						GetMobByID(16932898):setSpawn(npc:getXPos(),npc:getYPos(),npc:getZPos());	
-						GetMobByID(16932898):updateEnmity(player);
+						GetMobByID(16932898):updateClaim(player);
 	     elseif(CofferID==16932864+216)then	
 		 		 		GetMobByID(16932899):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
 						GetMobByID(16932899):setSpawn(npc:getXPos(),npc:getYPos(),npc:getZPos());
-						GetMobByID(16932899):updateEnmity(player);
+						GetMobByID(16932899):updateClaim(player);
 	     end		
 	end  
 	if(DespawnOtherCoffer==true)then

@@ -32,16 +32,14 @@ This file is part of DarkStar-server source code.
 #include "entities/mobentity.h"
 #include "entities/npcentity.h"
 #include "lua/luautils.h"
-#include "utils/zoneutils.h"
 
-CInstanceLoader::CInstanceLoader(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester)
+CInstanceLoader::CInstanceLoader(uint8 instanceid, CZone* PZone, CCharEntity* PRequester)
 {
-	zone = zoneutils::GetZone(zoneid);
-
-	DSP_DEBUG_BREAK_IF(zone->GetType() != ZONETYPE_DUNGEON_INSTANCED);
+    DSP_DEBUG_BREAK_IF(PZone->GetType() != ZONETYPE_DUNGEON_INSTANCED);
 
 	requester = PRequester;
-	CInstance* instance = ((CZoneInstance*)zone)->CreateInstance(instanceid);
+    zone = PZone;
+    CInstance* instance = ((CZoneInstance*)PZone)->CreateInstance(instanceid);
 
 	SqlInstanceHandle = Sql_Malloc();
 
@@ -109,7 +107,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 		mob_pools.familyid, name_prefix, flags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-		allegiance, namevis, aggro \
+		allegiance, namevis, aggro, mob_groups.roam_distance \
 		FROM instance_entities INNER JOIN mob_spawn_points ON instance_entities.id = mob_spawn_points.mobid \
 		INNER JOIN mob_groups ON mob_groups.groupid = mob_spawn_points.groupid \
 		INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
@@ -230,6 +228,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->allegiance = Sql_GetUIntData(SqlInstanceHandle, 59);
             PMob->namevis = Sql_GetUIntData(SqlInstanceHandle, 60);
             PMob->m_Aggro = Sql_GetUIntData(SqlInstanceHandle, 61);
+            PMob->m_roamDistance = Sql_GetFloatData(SqlInstanceHandle, 62);
 
 			// must be here first to define mobmods
 			mobutils::InitializeMob(PMob, zone);

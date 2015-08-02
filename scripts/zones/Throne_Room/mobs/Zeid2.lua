@@ -7,7 +7,7 @@
 require("scripts/globals/titles");
 require("scripts/globals/status");
 require("scripts/globals/settings");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/monstertpmoves");
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------

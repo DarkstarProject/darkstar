@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2600,1) and trade:getItemCount() == 1) then -- Trade Golden Teeth
 		player:tradeComplete();
-		SpawnMob(16998872,180):updateEnmity(player);
+		SpawnMob(16998872,180):updateClaim(player);
 	end
 	
 end;

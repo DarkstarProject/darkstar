@@ -36,6 +36,7 @@ CItemArmor::CItemArmor(uint16 id) : CItemUsable(id)
 	m_shieldSize   = 0;
 	m_scriptType   = 0;
 	m_reqLvl       = 255;
+    m_iLvl         = 0;
 	m_equipSlotID  = 255;
     m_absorption   = 0;
 }
@@ -70,6 +71,11 @@ uint8 CItemArmor::getReqLvl()
 	return m_reqLvl;
 }
 
+uint8 CItemArmor::getILvl()
+{
+    return m_iLvl;
+}
+
 uint32 CItemArmor::getJobs()
 {
 	return m_jobs;
@@ -78,6 +84,11 @@ uint32 CItemArmor::getJobs()
 void CItemArmor::setReqLvl(uint8 lvl)
 {
 	m_reqLvl = lvl;
+}
+
+void CItemArmor::setILvl(uint8 lvl)
+{
+    m_iLvl = lvl;
 }
 
 void CItemArmor::setJobs(uint32 jobs)
@@ -131,7 +142,7 @@ uint8 CItemArmor::getShieldAbsorption()
 
 bool CItemArmor::IsShield()
 {
-    return m_shieldSize > 0 && m_shieldSize < 6;
+    return m_shieldSize > 0 && m_shieldSize <= 6;
 }
 
 /************************************************************************
@@ -288,10 +299,13 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
 
         // apply modifier to item. increase modifier power by 'value' (default magnitude 1 for most augments) if multiplier isn't specified
         // otherwise increase modifier power using the multiplier
+        // check if we should be adding to or taking away from the mod power (handle scripted augments properly)
+        modValue = (modValue > 0 ? modValue + value : modValue - value) * (multiplier > 1 ? multiplier : 1);
+
         if (!type)
-            addModifier(new CModifier(modId, (multiplier > 1 ? modValue + (value * multiplier) : modValue + value)));
+            addModifier(new CModifier(modId, modValue));
         else
-            addPetModifier(new CModifier(modId, (multiplier > 1 ? modValue + (value * multiplier) : modValue + value)));
+            addPetModifier(new CModifier(modId, modValue));
     }
 }
 

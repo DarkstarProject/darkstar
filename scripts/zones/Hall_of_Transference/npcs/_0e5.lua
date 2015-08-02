@@ -6,7 +6,7 @@
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
 -----------------------------------
 
-require("/scripts/globals/missions");
+require("scripts/globals/missions");
 require("scripts/zones/Hall_of_Transference/TextIDs");
 
 -----------------------------------
@@ -21,8 +21,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if(player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 2) then
-        player:startEvent(0x00A0); 
+    if(player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
+        player:startEvent(0x00A0);
     else
         player:messageSpecial(NO_RESPONSE_OFFSET);
     end

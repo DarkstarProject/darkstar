@@ -16,14 +16,14 @@ require("scripts/zones/AlTaieu/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	-- Trade the Fourth Virtue, Fifth Virtue and Sixth Virtue
-	--[[if(GetMobAction(16912848) == 0 and GetMobAction(16912876) == 0 and trade:hasItemQty(1848,1) and trade:hasItemQty(1847,1) and 
-	trade:hasItemQty(1849,1) and trade:getItemCount() == 3) then
-		player:tradeComplete();
-		SpawnMob(16912848,900):updateEnmity(player); -- Spawn Jailer of Love
-	end]]
-	
+    
+    -- Trade the Fourth Virtue, Fifth Virtue and Sixth Virtue
+    --[[if(GetMobAction(16912848) == 0 and GetMobAction(16912876) == 0 and trade:hasItemQty(1848,1) and trade:hasItemQty(1847,1) and 
+    trade:hasItemQty(1849,1) and trade:getItemCount() == 3) then
+        player:tradeComplete();
+        SpawnMob(16912848,900):updateClaim(player); -- Spawn Jailer of Love
+    end]]
+    
 end; 
 
 -----------------------------------
@@ -31,7 +31,6 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
 end;
 
 -----------------------------------
@@ -41,7 +40,7 @@ end;
 function onEventUpdate(player,csid,option)
 --printf("onUpdate CSID: %u",csid);
 --printf("onUpdate RESULT: %u",option);
-	end;
+end;
 
 -----------------------------------
 -- onEventFinish Action 
@@ -50,4 +49,4 @@ function onEventUpdate(player,csid,option)
 function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
-	end;
+end;

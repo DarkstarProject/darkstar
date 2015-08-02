@@ -392,7 +392,7 @@ void CZone::LoadNavMesh()
 
     if (m_navMesh == nullptr)
     {
-        m_navMesh = new CNavMesh();
+        m_navMesh = new CNavMesh((uint16)GetID());
     }
 
     int8 file[255];
@@ -402,11 +402,13 @@ void CZone::LoadNavMesh()
     if (m_navMesh->load(file))
     {
         // verify it can find proper paths
-        m_navMesh->test((int16)GetID());
+        m_navMesh->test((uint16)GetID());
     }
     else
     {
         m_useNavMesh = false;
+        delete m_navMesh;
+        m_navMesh = nullptr;
     }
 }
 
@@ -517,7 +519,7 @@ void CZone::UpdateWeather()
     uint8 WeatherChance = 0;
 
     // Random time between 3 minutes and 30 minutes for the next weather change
-    WeatherNextUpdate = (WELL512::GetRandomNumber(180,1620));
+    WeatherNextUpdate = (dsprand::GetRandomNumber(180,1620));
 
     // Find the timestamp since the start of vanadiel
     WeatherDay = CVanaTime::getInstance()->getVanaTime();
@@ -530,7 +532,7 @@ void CZone::UpdateWeather()
     WeatherDay = WeatherDay % WEATHER_CYCLE;
 
     // Get a random number to determine which weather effect we will use
-    WeatherChance = WELL512::GetRandomNumber(100);
+    WeatherChance = dsprand::GetRandomNumber(100);
 
     zoneWeather_t&& weatherType = zoneWeather_t(0, 0, 0);
 
@@ -822,11 +824,27 @@ void CZone::ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEn
     }
 }
 
+void CZone::ForEachMob(std::function<void(CMobEntity*)> func)
+{
+    for (auto PMob : m_zoneEntities->m_mobList)
+    {
+        func((CMobEntity*)PMob.second);
+    }
+}
+
 void CZone::ForEachMobInstance(CBaseEntity* PEntity, std::function<void(CMobEntity*)> func)
 {
     for (auto PMob : m_zoneEntities->m_mobList)
     {
         func((CMobEntity*)PMob.second);
+    }
+}
+
+void CZone::ForEachNpc(std::function<void(CNpcEntity*)> func)
+{
+    for (auto PNpc : m_zoneEntities->m_npcList)
+    {
+        func((CNpcEntity*)PNpc.second);
     }
 }
 

@@ -48,6 +48,8 @@ function onZoneIn( player, prevZone)
         cs = 0x0009;
     elseif(UnbridledPassionCS == 3) then
         cs = 0x0004;
+    elseif(player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1)then
+        cs = 0x000b; 
     end
 
     return cs;
@@ -81,6 +83,12 @@ function onEventUpdate( player, csid, option)
     -- printf("RESULT: %u",option);
     if (csid == 0x0009) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
+    elseif (csid == 0x000b)then
+        if(player:getPreviousZone() == 111)then
+            player:updateEvent(0,0,0,0,0,2);
+        else
+            player:updateEvent(0,0,0,0,0,3);
+        end
     end
 end;
 

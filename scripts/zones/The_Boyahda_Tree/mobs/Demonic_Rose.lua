@@ -4,7 +4,7 @@
 -- Note: Placeholder V. Vivian
 -----------------------------------
 
-require("/scripts/zones/The_Boyahda_Tree/MobIDs");
+require("scripts/zones/The_Boyahda_Tree/MobIDs");
 	
 -----------------------------------	
 -- onMobDeath	

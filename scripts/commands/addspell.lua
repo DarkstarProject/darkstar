@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @addspell <spellID> <player>
--- auth: Wolke (addspell), Demolish (givespell), merged by TeoTwawki
 -- desc: adds the ability to use a spell to the player
 ---------------------------------------------------------------------------------------------------
 

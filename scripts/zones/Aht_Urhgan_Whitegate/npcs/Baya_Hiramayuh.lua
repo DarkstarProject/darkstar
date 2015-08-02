@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-   -- Based on /scripts/zones/Mhaura/Dieh_Yamilsiah.lua
+   -- Based on scripts/zones/Mhaura/Dieh_Yamilsiah.lua
    local timer = 1152 - ((os.time() - 1009811376)%1152);
    local direction = 0; -- Arrive, 1 for depart
    local waiting = 195; -- Offset for Mhaura

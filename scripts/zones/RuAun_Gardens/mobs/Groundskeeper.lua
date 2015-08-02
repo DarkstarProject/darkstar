@@ -4,8 +4,8 @@
 -- Note: Place holder Despot
 -----------------------------------
 
-require("/scripts/zones/RuAun_Gardens/MobIDs");
-require("/scripts/globals/fieldsofvalor");
+require("scripts/zones/RuAun_Gardens/MobIDs");
+require("scripts/globals/fieldsofvalor");
 
 -----------------------------------
 -- onMobDeath

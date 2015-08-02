@@ -105,6 +105,8 @@ function onTrigger(player,npc)
 			player:startEvent(0x0067,0,0,STARWAY_STAIRWAY_BAUBLE);
 		elseif(currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
 			player:startEvent(0x0068);
+		elseif(player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and MissionStatus == 3) then
+			player:startEvent(0x0146);
 		elseif(player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS) and player:getVar("OwesPortalCharm") == 1) then
 			player:startEvent(0x0125); -- Kupipi repays your favor
 		else
@@ -171,6 +173,8 @@ function onEventFinish(player,csid,option)
 		player:setVar("OwesPortalCharm",0);
 		player:addKeyItem(PORTAL_CHARM);
 		player:messageSpecial(KEYITEM_OBTAINED,PORTAL_CHARM);
+	elseif(csid == 0x0146) then
+		player:setVar("MissionStatus",4);
 	end
 	
 end;

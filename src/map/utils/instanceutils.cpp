@@ -24,6 +24,7 @@ This file is part of DarkStar-server source code.
 #include "../instance_loader.h"
 
 #include "instanceutils.h"
+#include "zoneutils.h"
 
 #include "../lua/luautils.h"
 
@@ -45,9 +46,10 @@ namespace instanceutils
 
 	void LoadInstance(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester)
 	{
-		if (!Loader)
+        CZone* PZone = zoneutils::GetZone(zoneid);
+		if (!Loader && PZone)
 		{
-			Loader = new CInstanceLoader(instanceid, zoneid, PRequester);
+			Loader = new CInstanceLoader(instanceid, PZone, PRequester);
 		}
 		else
 		{

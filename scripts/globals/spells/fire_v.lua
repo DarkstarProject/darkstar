@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Fire
+-- Spell: Fire V
 -- Deals fire damage to an enemy.
 -----------------------------------------
 
@@ -10,22 +10,22 @@ require("scripts/globals/status");
 -- OnSpellCast
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
-	return 0;
+function onMagicCastingCheck(caster, target, spell)
+    return 0;
 end;
 
-function onSpellCast(caster,target,spell)
-	--calculate raw damage
-	local dmg = calculateMagicDamage(785,2.29,caster,spell,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);
-	--get resist multiplier (1x if no resist)
-	local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL,1.0);
-	--get the resisted damage
-	dmg = dmg*resist;
-	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-	dmg = addBonuses(caster,spell,target,dmg);
-	--add in target adjustment
-	dmg = adjustForTarget(target,dmg,spell:getElement());
-	--add in final adjustments
-	dmg = finalMagicAdjustments(caster,target,spell,dmg);
-	return dmg;
+function onSpellCast(caster, target, spell)
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = false;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 800;
+    spellParams.V50 = 1040;
+    spellParams.V100 = 1252;
+    spellParams.V200 = 1637;
+    spellParams.M0 = 4.8;
+    spellParams.M50 = 4.24;
+    spellParams.M100 = 3.85;
+    spellParams.M200 = 3;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

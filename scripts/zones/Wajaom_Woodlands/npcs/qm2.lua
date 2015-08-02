@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2577,1) and trade:getItemCount() == 1) then -- Trade Senorita Pamamas
 		player:tradeComplete();
-		SpawnMob(16986429,180):updateEnmity(player);
+		SpawnMob(16986429,180):updateClaim(player);
 	end
 	
 end;

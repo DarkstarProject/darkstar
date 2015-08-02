@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2595,1) and trade:getItemCount() == 1) then -- Trade Myrrh
 		player:tradeComplete();
-		SpawnMob(17101205,180):updateEnmity(player);
+		SpawnMob(17101205,180):updateClaim(player);
 	end
 	
 end;

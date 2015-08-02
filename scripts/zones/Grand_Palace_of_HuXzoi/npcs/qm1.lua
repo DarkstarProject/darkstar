@@ -35,16 +35,16 @@ function onTrade(player,npc,trade)
         player:tradeComplete(); -- Take the items
         npc:setLocalVar("[SEA]IxAern_DropRate", chance); -- Used to adjust droprates for IxAern's onMobSpawn.
         GetMobByID(IxAern):setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos());
-        SpawnMob(IxAern,300):updateEnmity(player);
+        SpawnMob(IxAern,300):updateClaim(player);
         
         -- Minions
         if (validTrade > 1) then
             GetMobByID(IxAern+1):setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos()-4);
-            SpawnMob(IxAern+1,300):updateEnmity(player);
+            SpawnMob(IxAern+1,300):updateClaim(player);
         end
         if (validTrade > 2) then
             GetMobByID(IxAern+2):setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos()+4);
-            SpawnMob(IxAern+2,300):updateEnmity(player);
+            SpawnMob(IxAern+2,300):updateClaim(player);
         end
         
         npc:hideNPC(900); -- 15 minute respawn timer

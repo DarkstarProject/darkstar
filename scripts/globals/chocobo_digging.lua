@@ -75,7 +75,7 @@ local function calculateSkillUp(player)
 
             if ((RealSkill / 10) < ((RealSkill + SkillIncrement) / 10)) then
                -- todo: get this working correctly (apparently the lua binding updates RealSkills and WorkingSkills)
-               player:setSkillLevel(SKILL_DIG, SkillRank + 0x20);
+               player:setSkillLevel(SKILL_DIG, player:getSkillLevel(SKILL_DIG) + 0x20);
             end
         end
     end

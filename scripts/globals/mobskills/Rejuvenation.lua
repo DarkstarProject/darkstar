@@ -1,10 +1,10 @@
 ---------------------------------------------
 --  Wheel of Impregnability
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
-require("/scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
+require("scripts/zones/Empyreal_Paradox/TextIDs");
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     return 1;

@@ -30,6 +30,7 @@ This file is part of DarkStar-server source code.
 #include "../common/utils.h"
 #include "../common/version.h"
 #include "../common/zlib.h"
+#include "../common/sql.h"
 
 #include <math.h>
 #include <stdio.h>
@@ -73,11 +74,8 @@ const int8* MAP_CONF_FILENAME = nullptr;
 
 int8*  g_PBuff = nullptr;                // глобальный буфер обмена пакетами
 int8*  PTempBuff = nullptr;                // временный  буфер обмена пакетами
-#ifdef WIN32
-__declspec(thread) Sql_t* SqlHandle = nullptr; // SQL descriptor
-#else
+
 thread_local Sql_t* SqlHandle = nullptr;
-#endif
 
 int32  map_fd = 0;                      // main socket
 uint32 map_amntplayers = 0;             // map amnt unique players
@@ -131,7 +129,16 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
     ipp |= port64 << 32;
     map_session_list[ipp] = map_session_data;
 
-    ShowInfo(CL_WHITE"mapsession" CL_RESET":" CL_WHITE"%s" CL_RESET":" CL_WHITE"%u" CL_RESET" is coming to world...\n", ip2str(map_session_data->client_addr, nullptr), map_session_data->client_port);
+	const int8* fmtQuery = "SELECT charid FROM accounts_sessions WHERE inet_ntoa(client_addr) = '%s' LIMIT 1;";
+
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, ip2str(map_session_data->client_addr, nullptr));
+
+	if (ret == SQL_ERROR ||
+		Sql_NumRows(SqlHandle) == 0)
+	{
+		ShowError(CL_RED"recv_parse: Invalid login attempt from %s\n" CL_RESET, ip2str(map_session_data->client_addr, nullptr));
+		return nullptr;
+	}
     return map_session_data;
 }
 
@@ -157,7 +164,7 @@ int32 do_init(int32 argc, int8** argv)
     MAP_CONF_FILENAME = "./conf/map_darkstar.conf";
 
     srand((uint32)time(nullptr));
-    WELL512::seed((uint32)time(nullptr));
+    dsprand::seed();
 
     map_config_default();
     map_config_read(MAP_CONF_FILENAME);
@@ -218,7 +225,7 @@ int32 do_init(int32 argc, int8** argv)
     petutils::LoadPetList();
     mobutils::LoadCustomMods();
 
-    ShowStatus("do_init: loading zones");
+    ShowStatus("do_init: loading zones\n");
     zoneutils::LoadZoneList();
     ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
@@ -361,6 +368,7 @@ int32 do_sockets(fd_set* rfd, int32 next)
                 map_session_data = mapsession_createsession(ip, ntohs(from.sin_port));
                 if (map_session_data == nullptr)
                 {
+					map_session_list.erase(ipp);
                     return -1;
                 }
             }
@@ -656,7 +664,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
     uint32 PacketCount = PChar->getPacketCount();
     uint8 packets = 0;
 
-    while (PacketSize > 1400 - FFXI_HEADER_SIZE - 16) //max size for client to accept
+    while (PacketSize > 1300 - FFXI_HEADER_SIZE - 16) //max size for client to accept
     {
         *buffsize = FFXI_HEADER_SIZE;
         PacketList_t packetList = PChar->getPacketList();
@@ -674,7 +682,6 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
             packetList.pop_front();
             packets++;
         }
-
         //Сжимаем данные без учета заголовка
         //Возвращаемый размер в 8 раз больше реальных данных
         PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, *buffsize - FFXI_HEADER_SIZE, PTempBuff, *buffsize, zlib_compress_table);
@@ -746,7 +753,7 @@ int32 map_close_session(uint32 tick, map_session_data_t* map_session_data)
         uint64 ipp = map_session_data->client_addr;
         ipp |= port64 << 32;
 
-        map_session_data->PChar->StatusEffectContainer->SaveStatusEffects();
+        map_session_data->PChar->StatusEffectContainer->SaveStatusEffects(map_session_data->shuttingDown == 1);
 
         aFree(map_session_data->server_packet_data);
         delete map_session_data->PChar;
@@ -820,7 +827,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                             petutils::DespawnPet(PChar);
                         }
 
-
+                        PChar->StatusEffectContainer->SaveStatusEffects(true);
                         ShowDebug(CL_CYAN"map_cleanup: %s timed out, closing session\n" CL_RESET, PChar->GetName());
 
                         PChar->status = STATUS_SHUTDOWN;
@@ -828,7 +835,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                     }
                     else
                     {
-                        map_session_data->PChar->StatusEffectContainer->SaveStatusEffects();
+                        map_session_data->PChar->StatusEffectContainer->SaveStatusEffects(true);
                         Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %u;", map_session_data->PChar->id);
 
                         aFree(map_session_data->server_packet_data);

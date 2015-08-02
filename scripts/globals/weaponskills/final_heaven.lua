@@ -8,8 +8,8 @@
 -- 3.0x		3.0x	3.0x
 -- Caestus/Spharai: Temporarily enhances Subtle Blow effect. * +10 Subtle Blow for a short duration after using the weapon skill. (Not implemented)
 -------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/weaponskills");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
 require("scripts/globals/weaponskills");
 -------------------------------
 function onUseWeaponSkill(player, target, wsID)

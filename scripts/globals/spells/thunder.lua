@@ -10,12 +10,22 @@ require("scripts/globals/status");
 -- OnSpellCast
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
-	return 0;
+function onMagicCastingCheck(caster, target, spell)
+    return 0;
 end;
 
-function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(60,1,caster,spell,target,false,1.0);
-	return dmg;
+function onSpellCast(caster, target, spell)
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = false;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 85;
+    spellParams.V50 = 135;
+    spellParams.V100 = 185;
+    spellParams.V200 = 185;
+    spellParams.M0 = 1;
+    spellParams.M50 = 1;
+    spellParams.M100 = 0;
+    spellParams.M200 = 0;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

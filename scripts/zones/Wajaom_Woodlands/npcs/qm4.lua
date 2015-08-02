@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2573,1) and trade:getItemCount() == 1) then -- Trade Monkey wine
 		player:tradeComplete();
-		SpawnMob(16986431,180):updateEnmity(player);
+		SpawnMob(16986431,180):updateClaim(player);
 	end
 	
 end;

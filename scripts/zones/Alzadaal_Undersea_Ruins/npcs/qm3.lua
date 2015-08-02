@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(2574,1) and trade:getItemCount() == 1) then -- Trade Ferrite
 		player:tradeComplete();
-		SpawnMob(17072178,180):updateEnmity(player);
+		SpawnMob(17072178,180):updateClaim(player);
 	end
 	
 end;

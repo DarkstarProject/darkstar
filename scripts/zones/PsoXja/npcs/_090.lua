@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 				local Rand = math.random(1,10);
 				if (Rand <=9) then -- Spawn Gargoyle
 					player:messageSpecial(TRAP_ACTIVATED); 
-					SpawnMob(16814081,120):updateEnmity(player); -- Gargoyle
+					SpawnMob(16814081,120):updateClaim(player); -- Gargoyle
 				else
 					player:messageSpecial(TRAP_FAILS);
 					npc:openDoor(30);
