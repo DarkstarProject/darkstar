@@ -2632,7 +2632,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
     m_PTargetFind->reset();
     m_PChar->m_ActionList.clear();
 
-    uint8 wspoints = 0;
+    uint16 wspoints = 0;
 
     // try to skill up if ws hit
     if (Action.reaction == REACTION_HIT)
