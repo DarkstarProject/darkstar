@@ -1,11 +1,11 @@
 ---------------------------------------------
---  Actinic Burst
---  Family: Ghrah
---  Description: Greatly lowers the accuracy of enemies within range for a brief period of time.
---  Type: Magical (Light)
+--  Faze
+--  Family: Qiqurn
+--  Description: Scares a single target.
+--  Type: Magical
 --  Utsusemi/Blink absorb: Ignores shadows
---  Range: Unknown
---  Notes:
+--  Range: Melee
+--  Notes: Target has to be facing user
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
@@ -17,11 +17,10 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_FLASH;
-    local power = 200;
-    local duration = 20;
+    local typeEffect = EFFECT_TERROR;
+    local duration = 5;
 
-    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
+    skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, duration));
 
     return typeEffect;
 end;
