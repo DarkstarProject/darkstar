@@ -27,6 +27,7 @@
 #include "../../spell.h"
 #include "../../lua/luautils.h"
 #include "../../utils/battleutils.h"
+#include "../../packets/action.h"
 
 CMagicState::CMagicState(CBattleEntity* PEntity, CTargetFind& PTargetFind) :
     CState(PEntity, PTargetFind),
@@ -92,7 +93,9 @@ void CMagicState::Clear()
 {
     if (m_State == STATESTATUS::InProgress)
     {
-        dynamic_cast<CAIBattle*>(m_PEntity->PAI.get())->CastInterrupted();
+        action_t action;
+        dynamic_cast<CAIBattle*>(m_PEntity->PAI.get())->CastInterrupted(action);
+        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
     }
 }
 
@@ -108,26 +111,26 @@ uint16 CMagicState::GetErrorMsg()
 
 CSpell* CMagicState::GetSpell()
 {
-    return m_PSpell;
+    return m_PSpell.get();
 }
 
 bool CMagicState::CanCastSpell()
 {
-    return m_PEntity->CanUseSpell(m_PSpell);
+    return m_PEntity->CanUseSpell(GetSpell());
 }
 
 bool CMagicState::HasCost()
 {
     if (m_PSpell->getSpellGroup() == SPELLGROUP_NINJUTSU)
     {
-        if (m_PEntity->objtype == TYPE_PC && !(m_flags & MAGICFLAGS_IGNORE_TOOLS) && !battleutils::HasNinjaTool(m_PEntity, m_PSpell, false))
+        if (m_PEntity->objtype == TYPE_PC && !(m_flags & MAGICFLAGS_IGNORE_TOOLS) && !battleutils::HasNinjaTool(m_PEntity, GetSpell(), false))
         {
             return false;
         }
     }
     // check has mp available
     else if (!m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT) && 
-        !(m_flags & MAGICFLAGS_IGNORE_MP) && battleutils::CalculateSpellCost(m_PEntity, m_PSpell) > m_PEntity->health.mp)
+        !(m_flags & MAGICFLAGS_IGNORE_MP) && battleutils::CalculateSpellCost(m_PEntity, GetSpell()) > m_PEntity->health.mp)
     {
         if (m_PEntity->objtype == TYPE_MOB && m_PEntity->health.maxmp == 0)
         {
@@ -136,6 +139,44 @@ bool CMagicState::HasCost()
         return false;
     }
     return true;
+}
+
+void CMagicState::SpendCost()
+{
+    if (m_PSpell->getSpellGroup() == SPELLGROUP_NINJUTSU)
+    {
+        if (!(m_flags & MAGICFLAGS_IGNORE_TOOLS))
+        {
+            // handle ninja tools
+            battleutils::HasNinjaTool(m_PEntity, GetSpell(), true);
+        }
+    }
+    else if (m_PSpell->hasMPCost() && !m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT) && !(m_flags & MAGICFLAGS_IGNORE_MP))
+    {
+        int16 cost = battleutils::CalculateSpellCost(m_PEntity, GetSpell());
+
+        // conserve mp
+        int16 rate = m_PEntity->getMod(MOD_CONSERVE_MP);
+
+        if (dsprand::GetRandomNumber(100) < rate)
+        {
+            cost *= (dsprand::GetRandomNumber(8.f, 16.f) / 16.0f);
+        }
+
+        m_PEntity->addMP(-cost);
+    }
+}
+
+uint32 CMagicState::GetRecast()
+{
+    uint32 RecastTime = 0;
+
+    if (!m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) &&
+        !m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SPONTANEITY))
+    {
+        RecastTime = battleutils::CalculateSpellRecastTime(m_PEntity, GetSpell());
+    }
+    return RecastTime;
 }
 
 bool CMagicState::HasMoved()
@@ -159,7 +200,16 @@ void CMagicState::Interrupt()
 
 STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
 {
-    m_PSpell = spell::GetSpell(spellid);
+    CSpell* PSpell = spell::GetSpell(spellid);
+
+    if (PSpell && PSpell->getSpellGroup() == SPELLGROUP_BLUE)
+    {
+        m_PSpell = std::make_unique<CBlueSpell>(*static_cast<CBlueSpell*>(PSpell));
+    }
+    else
+    {
+        m_PSpell = std::make_unique<CSpell>(*PSpell);
+    }
 
     if (m_PSpell)
     {
@@ -186,7 +236,7 @@ STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
             return STATESTATUS::ErrorRange;
         }
 
-        m_errorMsg = luautils::OnMagicCastingCheck(m_PEntity, m_PTarget, m_PSpell);
+        m_errorMsg = luautils::OnMagicCastingCheck(m_PEntity, m_PTarget, GetSpell());
         if (m_errorMsg)
         {
             return STATESTATUS::ErrorScripted;
@@ -194,7 +244,7 @@ STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
 
         m_flags = flags;
         m_startTime = server_clock::now();
-        m_castTime = std::chrono::milliseconds(battleutils::CalculateSpellCastTime(m_PEntity, m_PSpell));
+        m_castTime = std::chrono::milliseconds(battleutils::CalculateSpellCastTime(m_PEntity, GetSpell()));
         m_startPos = m_PEntity->loc.p;
         m_State = STATESTATUS::InProgress;
     }

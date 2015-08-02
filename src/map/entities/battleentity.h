@@ -37,7 +37,6 @@
 #include "../map.h"
 #include "../ai/ai_battle.h"
 
-
 enum ECOSYSTEM
 {
     SYSTEM_ERROR = 0,

@@ -30,6 +30,7 @@ This file is part of DarkStar-server source code.
 
 class CBattleEntity;
 class CSpell;
+struct action_t;
 
 class CAIBattle : public CAIBase
 {
@@ -61,8 +62,8 @@ protected:
     virtual bool ShouldDisengage();
 
     /* Casting Functions */
-    virtual void CastFinished();
-    virtual void CastInterrupted();
+    virtual void CastFinished(action_t&);
+    virtual void CastInterrupted(action_t&);
 
     CTargetFind targetFind;
     std::unique_ptr<CState> actionStateContainer;

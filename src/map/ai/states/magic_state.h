@@ -47,6 +47,9 @@ public:
     void TryInterrupt(CBattleEntity * PAttacker);
     void Interrupt();
 
+    void SpendCost();
+    uint32 GetRecast();
+
     //start spellcast on target
     STATESTATUS CastSpell(uint16 spellid, uint16 targetid, uint8 flags = 0);
 protected:
@@ -58,7 +61,7 @@ protected:
     bool HasMoved();
 
     uint16 m_errorMsg;
-    CSpell* m_PSpell;
+    std::unique_ptr<CSpell> m_PSpell;
     duration m_castTime;
     position_t m_startPos;
     uint8 m_flags;
