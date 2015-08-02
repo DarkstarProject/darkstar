@@ -45,8 +45,8 @@ function onSpellCast(caster,target,spell)
         end
 
         -- drain
-        caster:addTP(dmg);
-        target:addTP(-dmg);
+        caster:addTP(dmg/100*(100+(caster:getMod(MOD_LIBERATOR_ABSORB_BONUS))));
+        target:addTP(-dmg/100*(100+(caster:getMod(MOD_LIBERATOR_ABSORB_BONUS))));
 
     end
     return dmg;
