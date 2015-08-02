@@ -52,6 +52,8 @@ function onTrigger(player,npc)
             player:startEvent(0x0c00,0,0,0,0,0,0,0,0,0);
         elseif(player:getCurrentMission(TOAU) == THE_BLACK_COFFIN)then
             player:startEvent(0x0c01,0,0,0,0,0,0,0,0,0);
+        elseif(player:getCurrentMission(TOAU) == GHOSTS_OF_THE_PAST)then
+            player:startEvent(0x0c02,0,0,0,0,0,0,0,0,0);
 	else
 		player:startEvent(0x0bbb,1,0,0,0,0,0,0,1,0) -- go back to work
 		-- player:messageSpecial(0);--  need to find correct normal chat CS..
@@ -111,5 +113,8 @@ function onEventFinish(player,csid,option)
         elseif(csid == 0x0c00)then
             player:completeMission(TOAU,THE_DOLPHIN_CREST);
             player:addMission(TOAU,THE_BLACK_COFFIN);
+        elseif(csid == 0x0c02)then
+            player:completeMission(TOAU,GHOSTS_OF_THE_PAST);
+            player:addMission(TOAU,GUESTS_OF_THE_EMPIRE);
 	end
 end;
