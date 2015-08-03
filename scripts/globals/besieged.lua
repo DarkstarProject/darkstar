@@ -25,7 +25,7 @@ function hasRunicPortal(player,portal)
     for i = 6,1,-1 do
         twop = 2^i
 
-        if(runicPortal >= twop) then
+        if (runicPortal >= twop) then
             bit[i]=1; runicPortal = runicPortal - twop;
         else
             bit[i]=0;
@@ -43,22 +43,22 @@ function hasAssaultOrders(player)
     local event = 0;
     local keyitem = 0;
 
-    if(player:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS)) then -- assault @ Azouph Isle
+    if (player:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS)) then -- assault @ Azouph Isle
         event = 0x0078;
         keyitem = LEUJAOAM_ASSAULT_ORDERS;
-    elseif(player:hasKeyItem(MAMOOL_JA_ASSAULT_ORDERS)) then -- assault @ Mamool Ja
+    elseif (player:hasKeyItem(MAMOOL_JA_ASSAULT_ORDERS)) then -- assault @ Mamool Ja
         event = 0x0079;
         keyitem = MAMOOL_JA_ASSAULT_ORDERS;
-    elseif(player:hasKeyItem(LEBROS_ASSAULT_ORDERS)) then -- assault @ Halvung
+    elseif (player:hasKeyItem(LEBROS_ASSAULT_ORDERS)) then -- assault @ Halvung
         event = 0x007A;
         keyitem = LEBROS_ASSAULT_ORDERS;
-    elseif(player:hasKeyItem(PERIQIA_ASSAULT_ORDERS)) then -- assault @ Dvucca Isle
+    elseif (player:hasKeyItem(PERIQIA_ASSAULT_ORDERS)) then -- assault @ Dvucca Isle
         event = 0x007B;
         keyitem = PERIQIA_ASSAULT_ORDERS;
-    elseif(player:hasKeyItem(ILRUSI_ASSAULT_ORDERS)) then -- assault @ Ilrusi Atoll
+    elseif (player:hasKeyItem(ILRUSI_ASSAULT_ORDERS)) then -- assault @ Ilrusi Atoll
         event = 0x007C;
         keyitem = ILRUSI_ASSAULT_ORDERS;
-    elseif(player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS)) then -- assault @  Nyzul Isle
+    elseif (player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS)) then -- assault @  Nyzul Isle
         event = 0x007D;
         keyitem = NYZUL_ISLE_ASSAULT_ORDERS;
     end
@@ -72,9 +72,9 @@ end;
 ------------------------------------------------------------------
 
 function getMapBitmask(player)
-    if(player:hasKeyItem(1862)) then mamook = 1 else mamook = 0 end -- Map of Mammok
-    if(player:hasKeyItem(1863)) then halvung = 1 else halvung = 0 end -- Map of Halvung
-    if(player:hasKeyItem(1864)) then arrapago = 1 else arrapago = 0 end -- Map of Arrapago Reef
+    if (player:hasKeyItem(1862)) then mamook = 1 else mamook = 0 end -- Map of Mammok
+    if (player:hasKeyItem(1863)) then halvung = 1 else halvung = 0 end -- Map of Halvung
+    if (player:hasKeyItem(1864)) then arrapago = 1 else arrapago = 0 end -- Map of Arrapago Reef
     local maps = mamook + 2 * halvung + 4 * arrapago;
 
     return maps;
@@ -228,7 +228,7 @@ end;
 function getSanctionDuration(player)
     local duration = 10800 + 1200*1--(getMercenaryRank(player)-1);
 
-    if(getAstralCandescence() == 0) then
+    if (getAstralCandescence() == 0) then
         duration = duration / 2;
     end
 

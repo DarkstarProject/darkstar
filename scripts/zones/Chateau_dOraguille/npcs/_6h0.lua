@@ -36,25 +36,25 @@ function onTrigger(player,npc)
 	local Wait1DayRanperre = player:getVar("Wait1DayForRanperre_date");
 	local osdate = tonumber(os.date("%j"));
 	
-	if(player:getVar("aBoysDreamCS") == 8) then 
+	if (player:getVar("aBoysDreamCS") == 8) then 
 		player:startEvent(0x0058);
-	elseif(player:getQuestStatus(SANDORIA,A_BOY_S_DREAM) == QUEST_COMPLETED and player:getQuestStatus(SANDORIA,UNDER_OATH) == QUEST_AVAILABLE and player:getMainJob() == 7) then
+	elseif (player:getQuestStatus(SANDORIA,A_BOY_S_DREAM) == QUEST_COMPLETED and player:getQuestStatus(SANDORIA,UNDER_OATH) == QUEST_AVAILABLE and player:getMainJob() == 7) then
 		player:startEvent(0x005A);
-	elseif(player:getVar("UnderOathCS") == 8) then
+	elseif (player:getVar("UnderOathCS") == 8) then
 		player:startEvent(0x0059);
-	elseif(currentMission == INFILTRATE_DAVOI and infiltrateDavoi == false and MissionStatus == 0) then
+	elseif (currentMission == INFILTRATE_DAVOI and infiltrateDavoi == false and MissionStatus == 0) then
 		player:startEvent(0x0229,0,ROYAL_KNIGHTS_DAVOI_REPORT);
-	elseif(currentMission == INFILTRATE_DAVOI and MissionStatus == 4) then
+	elseif (currentMission == INFILTRATE_DAVOI and MissionStatus == 4) then
 		player:startEvent(0x022a,0,ROYAL_KNIGHTS_DAVOI_REPORT);
-	elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 1) then
+	elseif (currentMission == THE_SHADOW_LORD and MissionStatus == 1) then
 		player:startEvent(0x0223);
-	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 0) then
+	elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 0) then
 	    player:startEvent(0x0051);
-	elseif(CurrentMission == RANPERRE_S_FINAL_REST and MissionStatus == 4 and Wait1DayRanperre ~= osdate) then -- Ready now.
+	elseif (CurrentMission == RANPERRE_S_FINAL_REST and MissionStatus == 4 and Wait1DayRanperre ~= osdate) then -- Ready now.
 		player:startEvent(0x0015);		
-	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 7) then
+	elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 7) then
 	    player:startEvent(0x0015);
-	elseif(player:hasCompletedMission(SANDORIA,LIGHTBRINGER) and player:getRank() == 9 and player:getVar("Cutscenes_8-2") == 0) then
+	elseif (player:hasCompletedMission(SANDORIA,LIGHTBRINGER) and player:getRank() == 9 and player:getVar("Cutscenes_8-2") == 0) then
 		player:startEvent(0x003F);
 	else
 		player:startEvent(0x020a);
@@ -81,17 +81,17 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x0229) then
+	if (csid == 0x0229) then
 		player:setVar("MissionStatus",2);
-	elseif(csid == 0x0223) then
+	elseif (csid == 0x0223) then
 		player:setVar("MissionStatus",2);
-	elseif(csid == 0x022a) then
+	elseif (csid == 0x022a) then
 		finishMissionTimeline(player,3,csid,option);
-	elseif(csid == 0x0058) then
-		if(player:getFreeSlotsCount() == 0) then 
+	elseif (csid == 0x0058) then
+		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14095);
 		else
-			if(player:getMainJob() == 7) then 
+			if (player:getMainJob() == 7) then 
 				player:addQuest(SANDORIA,UNDER_OATH);
 			end
 			player:delKeyItem(KNIGHTS_BOOTS);
@@ -101,11 +101,11 @@ function onEventFinish(player,csid,option)
 			player:addFame(SANDORIA,AF2_FAME*SAN_FAME);
 			player:completeQuest(SANDORIA,A_BOY_S_DREAM);
 		end
-	elseif(csid == 0x005A and option ==1) then
+	elseif (csid == 0x005A and option ==1) then
 		player:addQuest(SANDORIA,UNDER_OATH);
 		player:setVar("UnderOathCS",0);
-	elseif(csid == 0x0059) then
-		if(player:getFreeSlotsCount() == 0) then 
+	elseif (csid == 0x0059) then
+		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12644);
 		else
 			player:addItem(12644);
@@ -115,12 +115,12 @@ function onEventFinish(player,csid,option)
 			player:setTitle(PARAGON_OF_PALADIN_EXCELLENCE);
 			player:completeQuest(SANDORIA,UNDER_OATH);
 		end
-	elseif(csid == 0x0051) then
+	elseif (csid == 0x0051) then
 	    player:setVar("MissionStatus",1);
-	elseif(csid == 0x0015) then
+	elseif (csid == 0x0015) then
 		player:setVar("Wait1DayForRanperre_date",0);
 	    player:setVar("MissionStatus",8);
-	elseif(csid == 0x003F) then
+	elseif (csid == 0x003F) then
 		player:setVar("Cutscenes_8-2",1)
 	end
 	

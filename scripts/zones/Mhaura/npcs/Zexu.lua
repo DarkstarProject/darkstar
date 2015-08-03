@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getVar("theSandCharmVar") == 1) then
+	if (player:getVar("theSandCharmVar") == 1) then
 		player:startEvent(0x007b); -- During quest "The Sand Charm" - 1st dialog
 	else
 		player:startEvent(0x0079); -- Standard dialog
@@ -45,7 +45,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x007b) then 
+	if (csid == 0x007b) then 
 		player:setVar("theSandCharmVar",2);
 	end
 end;

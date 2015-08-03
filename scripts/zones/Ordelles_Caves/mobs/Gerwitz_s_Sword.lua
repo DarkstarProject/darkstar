@@ -20,7 +20,7 @@ end;
 
 function onMobDeath(mob,killer)
 
-	if(killer:getVar("darkPuppetCS") >= 3) then
+	if (killer:getVar("darkPuppetCS") >= 3) then
 		killer:setVar("darkPuppetCS",4);
 	end
 

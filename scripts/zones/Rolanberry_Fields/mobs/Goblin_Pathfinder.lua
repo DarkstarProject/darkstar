@@ -17,7 +17,7 @@ require("scripts/zones/Rolanberry_Fields/TextIDs");
 function onMobDeath(mob,killer)
     checkRegime(killer,mob,86,2);
 
-    if(ENABLE_ACP == 1 and (killer:hasKeyItem(JUG_OF_GREASY_GOBLIN_JUICE) == false) and killer:getCurrentMission(ACP) >= THE_ECHO_AWAKENS) then
+    if (ENABLE_ACP == 1 and (killer:hasKeyItem(JUG_OF_GREASY_GOBLIN_JUICE) == false) and killer:getCurrentMission(ACP) >= THE_ECHO_AWAKENS) then
         -- Guesstimating 15% chance
         if (math.random(1,100) >= 85) then
             killer:addKeyItem(JUG_OF_GREASY_GOBLIN_JUICE);

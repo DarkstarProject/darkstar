@@ -10,7 +10,7 @@ function onBcnmRegister(player,instance)
 	SetServerVariable("[Central_Apollyon]UniqueID",GenerateLimbusKey());
 	HideArmouryCrates(GetInstanceRegion(1296),APPOLLYON_SE_NE);	
 	GetNPCByID(16933248):setAnimation(8);
-    if(IsMobDead(16933125)==false)then DespawnMob(16933125);end		
+    if (IsMobDead(16933125)==false) then DespawnMob(16933125);end		
      player:setVar("Limbus_Trade_Item",0);	
 end;
 
@@ -28,7 +28,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
-	if(leavecode == 4) then
+	if (leavecode == 4) then
         player:setPos(-668,0.1,-666);
 		ResetPlayerLimbusVariable(player)
 	end

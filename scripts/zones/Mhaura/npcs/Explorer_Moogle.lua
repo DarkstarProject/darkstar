@@ -25,7 +25,7 @@ function onTrigger(player,npc)
 	local accept = 0;
 	local event  = 0x014e;
 	
-	if (player:getGil() < 300)then
+	if (player:getGil() < 300) then
 		accept = 1;
 	end
 	if (player:getMainLvl() < EXPLORER_MOOGLE_LEVELCAP) then

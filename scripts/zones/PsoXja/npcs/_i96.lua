@@ -25,13 +25,13 @@ function onTrigger(player,npc)
 
 	local Z=player:getZPos();
 	
-	if(Z >= -238)then
+	if (Z >= -238) then
 		if (player:hasKeyItem(596)==true) then -- Green Bracelet
 			player:startEvent(0x003e);
 		else
 			player:messageSpecial(ARCH_GLOW_GREEN);	
 		end	
-	elseif(Z <= -239)then
+	elseif (Z <= -239) then
 		player:messageSpecial(CANNOT_OPEN_SIDE);
 	end
 

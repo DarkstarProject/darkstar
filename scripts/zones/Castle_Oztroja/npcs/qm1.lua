@@ -18,8 +18,8 @@ require("scripts/zones/Castle_Oztroja/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getQuestStatus(BASTOK,TRUE_STRENGTH) == QUEST_ACCEPTED and player:hasItem(1100) == false) then
-		if(trade:hasItemQty(4558,1) and trade:getItemCount() == 1) then -- Trade Yagudo Drink
+	if (player:getQuestStatus(BASTOK,TRUE_STRENGTH) == QUEST_ACCEPTED and player:hasItem(1100) == false) then
+		if (trade:hasItemQty(4558,1) and trade:getItemCount() == 1) then -- Trade Yagudo Drink
 			player:tradeComplete();
 			player:messageSpecial(SENSE_OF_FOREBODING);
 			SpawnMob(17396140,180):updateClaim(player);

@@ -26,7 +26,7 @@ function onTrigger(player,npc)
 	
 	local UnbridledPassionCS = player:getVar("unbridledPassion");	
 
-	if(UnbridledPassionCS == 4) then
+	if (UnbridledPassionCS == 4) then
 		player:startEvent(0x0008);
 	end
 	
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x0008) then
+	if (csid == 0x0008) then
 		SpawnMob(17236205,240):updateClaim(player);
 	end
 

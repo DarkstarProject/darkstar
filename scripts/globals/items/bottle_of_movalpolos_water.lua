@@ -22,9 +22,9 @@ end;
 function onItemUse(target)
 	local mMP = target:getMaxMP();
 	local cMP = target:getMP();
-	if(VanadielDayElement() == LIGHTDAY) then
-		if(cMP < (mMP * .85)) then
-			if(target:hasStatusEffect(EFFECT_REFRESH) == false) then
+	if (VanadielDayElement() == LIGHTDAY) then
+		if (cMP < (mMP * .85)) then
+			if (target:hasStatusEffect(EFFECT_REFRESH) == false) then
 				target:addStatusEffect(EFFECT_REFRESH,2,3,1800);
 			else
 				target:messageBasic(423);

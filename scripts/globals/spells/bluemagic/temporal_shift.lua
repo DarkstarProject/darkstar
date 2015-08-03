@@ -36,8 +36,8 @@ function onSpellCast(caster,target,spell)
     local resist = applyResistanceEffect(caster,spell,target,dINT,BLUE_SKILL,0,EFFECT_STUN);
     local duration = 5 * resist;
     
-    if(resist > 0.0625) then -- Do it!
-        if(target:addStatusEffect(typeEffect,2,0,duration)) then
+    if (resist > 0.0625) then -- Do it!
+        if (target:addStatusEffect(typeEffect,2,0,duration)) then
             spell:setMsg(236);
         else
             spell:setMsg(75);

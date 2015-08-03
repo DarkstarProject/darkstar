@@ -21,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
 	local duration = 60;
 	local power = mob:getMainLvl() / 3;
 
-	if(math.random() <= 0.5) then
+	if (math.random() <= 0.5) then
 		-- stun
 		typeEffect = EFFECT_STUN;
 		duration = 10;

@@ -23,10 +23,10 @@ function onSpellCast(caster,target,spell)
 	local power = 20;
 
 	--Calculates resist chance from Reist Blind
-	if(math.random(0,100) >= target:getMod(MOD_BLINDRES)) then
-		if(duration >= 80) then
+	if (math.random(0,100) >= target:getMod(MOD_BLINDRES)) then
+		if (duration >= 80) then
 
-			if(target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration)) then
+			if (target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration)) then
 				spell:setMsg(236);
 			else
 				spell:setMsg(75);

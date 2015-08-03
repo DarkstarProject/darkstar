@@ -20,7 +20,7 @@ function onMobWeaponSkill(target, mob, skill)
 	multiplier = 1+(1- (mob:getHP()/mob:getMaxHP())) * M;	--higher multiplier the lower your HP. at 15% HP, multiplier is 1+0.85*M
 	base = base * multiplier;
 	
-	if(mob:getHP()+base > mob:getMaxHP()) then
+	if (mob:getHP()+base > mob:getMaxHP()) then
 		base = mob:getMaxHP() - mob:getHP(); --cap it
 	end
 	skill:setMsg(MSG_SELF_HEAL);

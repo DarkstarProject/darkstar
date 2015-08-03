@@ -22,9 +22,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 6 and player:hasKeyItem(DELKFUTT_RECOGNITION_DEVICE))then
+    if (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 6 and player:hasKeyItem(DELKFUTT_RECOGNITION_DEVICE)) then
 	    SpawnMob(17531121,180):updateClaim(player);
-	elseif(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 7 and player:hasKeyItem(DELKFUTT_RECOGNITION_DEVICE))then
+	elseif (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 7 and player:hasKeyItem(DELKFUTT_RECOGNITION_DEVICE)) then
 	    player:startEvent(0x0019);
 	end
 
@@ -47,7 +47,7 @@ end;
 function onEventFinish(player,csid,option)
 --print("CSID:",csid);
 --print("RESULT:",option);
-     if(csid == 0x0019)then
+     if (csid == 0x0019) then
 	     player:setVar("COP_Tenzen_s_Path",8);
 	 end
 end;

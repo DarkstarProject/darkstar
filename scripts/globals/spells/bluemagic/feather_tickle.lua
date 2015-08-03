@@ -35,7 +35,7 @@ function onSpellCast(caster,target,spell)
     local resist = applyResistance(caster,spell,target,dINT,BLUE_SKILL);
     local power = 30 * resist;
     
-    if(target:getTP() == 0) then
+    if (target:getTP() == 0) then
         spell:setMsg(75);
     else
         target:delTP(power);

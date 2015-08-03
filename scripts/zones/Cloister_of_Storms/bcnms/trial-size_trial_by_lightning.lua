@@ -40,13 +40,13 @@ function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
 	trialLightning = player:getQuestStatus(OTHER_AREAS,TRIAL_SIZE_TRIAL_BY_LIGHTNING)
 	
-	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		if(trialLightning == QUEST_COMPLETED) then
+	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+		if (trialLightning == QUEST_COMPLETED) then
 			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
 		else
 			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
 		end
-	elseif(leavecode == 4) then
+	elseif (leavecode == 4) then
 		player:startEvent(0x7d02);
 	end
 end;
@@ -58,12 +58,12 @@ end;
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
-	if(csid == 0x7d01) then
-		if(player:hasSpell(303) == false) then
+	if (csid == 0x7d01) then
+		if (player:hasSpell(303) == false) then
 			player:addSpell(303) -- Ramuh
 			player:messageSpecial(RAMUH_UNLOCKED,0,0,5);			
 		end
-		if(player:hasItem(4181) == false) then
+		if (player:hasItem(4181) == false) then
 			player:addItem(4181);
 			player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
 		end

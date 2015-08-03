@@ -21,8 +21,8 @@ function onSpellCast(caster,target,spell)
     local resist = applyResistance(caster,spell,target,dINT,DIVINE_MAGIC_SKILL, 150);
     local duration = 12 * resist;
 
-    if(resist > 0.0625) then
-        if(target:addStatusEffect(EFFECT_FLASH,200,0,duration)) then
+    if (resist > 0.0625) then
+        if (target:addStatusEffect(EFFECT_FLASH,200,0,duration)) then
             spell:setMsg(236);
         else
             spell:setMsg(75);

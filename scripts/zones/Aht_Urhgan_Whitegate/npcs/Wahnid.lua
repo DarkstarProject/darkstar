@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(60426,1,18,6)) then
+	if (player:sendGuild(60426,1,18,6)) then
 		player:showText(npc,WAHNID_SHOP_DIALOG);
 	end
 end;

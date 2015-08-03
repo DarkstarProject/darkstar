@@ -31,7 +31,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
- if(IsMobDead(16928831)==true and IsMobDead(16928832)==true and IsMobDead(16928833)==true and IsMobDead(16928834)==true and IsMobDead(16928835)==true )then
+ if (IsMobDead(16928831)==true and IsMobDead(16928832)==true and IsMobDead(16928833)==true and IsMobDead(16928834)==true and IsMobDead(16928835)==true ) then
    	GetNPCByID(16928768+39):setPos(-599,85,438);
 	GetNPCByID(16928768+39):setStatus(STATUS_NORMAL);
 

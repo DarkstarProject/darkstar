@@ -34,9 +34,9 @@ function onEffectTick(target,effect)
 		target:getMerit(MERIT_MAX_SUBLIMATION);
 	
     if not (target:getHPP() < 51 ) then
-        if(target:hasStatusEffect(EFFECT_STONESKIN)) then
+        if (target:hasStatusEffect(EFFECT_STONESKIN)) then
             local skin = target:getMod(MOD_STONESKIN);
-            if(skin >= dmg) then --absorb all damage
+            if (skin >= dmg) then --absorb all damage
                 target:delMod(MOD_STONESKIN,dmg);
             else
                 target:delStatusEffect(EFFECT_STONESKIN);

@@ -19,8 +19,8 @@ function onMobWeaponSkill(target, mob, skill)
     local effect = target:stealStatusEffect();
     local dmg = 0;
 
-    if(effect ~= nil) then
-        if(mob:hasStatusEffect(effect:getType()) == false) then
+    if (effect ~= nil) then
+        if (mob:hasStatusEffect(effect:getType()) == false) then
             -- add to myself
             mob:addStatusEffect(effect:getType(), effect:getPower(), effect:getTickCount(), effect:getDuration());
         end

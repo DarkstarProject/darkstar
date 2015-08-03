@@ -47,15 +47,15 @@ end;
 
 function onTrade(player,npc,trade)
 
-	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+	if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
 		count = trade:getItemCount();
 		MagicFlyer = trade:hasItemQty(532,1);
 		if (MagicFlyer == true and count == 1) then
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	
-	elseif(player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(601,1) and trade:getItemCount() == 1) then
+	elseif (player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL) == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(601,1) and trade:getItemCount() == 1) then
 			player:startEvent(0x0201);
 			npc:wait(-1);
 		end
@@ -73,15 +73,15 @@ function onTrigger(player,npc)
 
 	npc:wait(-1);
 
-	if(aSentrysPeril == QUEST_AVAILABLE) then
+	if (aSentrysPeril == QUEST_AVAILABLE) then
 		player:startEvent(0x01fe);
-	elseif(aSentrysPeril == QUEST_ACCEPTED) then
+	elseif (aSentrysPeril == QUEST_ACCEPTED) then
 		if (player:hasItem(600) == true or player:hasItem(601) == true) then
 			player:startEvent(0x0208);
 		else
 			player:startEvent(0x0284);
 		end	
-	elseif(aSentrysPeril == QUEST_COMPLETED) then
+	elseif (aSentrysPeril == QUEST_COMPLETED) then
 		player:startEvent(0x0209);
 	else
 		npc:wait(0);
@@ -117,13 +117,13 @@ function onEventFinish(player,csid,option,npc)
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
 		end 	
 	elseif (csid == 0x0284) then
-		if(player:getFreeSlotsCount() > 0) then
+		if (player:getFreeSlotsCount() > 0) then
 			player:addItem(600);
 			player:messageSpecial(ITEM_OBTAINED,600);
 		else
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
 		end
-	elseif(csid == 0x0201) then
+	elseif (csid == 0x0201) then
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12832); -- Bronze Subligar
 		else

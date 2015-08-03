@@ -10,7 +10,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if(mob:getHPP() <= 70) then
+    if (mob:getHPP() <= 70) then
         return 0;
     end
     return 1;
@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_RANGED,MOBPARAM_PIERCE,info.hitslanded);
 
-    if(dmg > 0) then
+    if (dmg > 0) then
        target:addTP(2);
        mob:addTP(8);
     end

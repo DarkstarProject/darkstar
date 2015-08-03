@@ -13,7 +13,7 @@ function onMobDeath(mob,killer)
 local currentMission = killer:getCurrentMission(SANDORIA);
 	  MissionStatus = killer:getVar("MissionStatus");
 	
-	if(currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 2) then
+	if (currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 2) then
 		killer:setVar("Mission6-1MobKilled",1);
 	end
 	

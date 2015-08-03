@@ -33,7 +33,7 @@ function onMobDeath(mob,killer)
    local mobY = mob:getYPos();
    local mobZ = mob:getZPos();		
 	
-      if(mobID==16928871)then
+      if (mobID==16928871) then
 		   GetNPCByID(16928768+47):setPos(mobX,mobY,mobZ);
            GetNPCByID(16928768+47):setStatus(STATUS_NORMAL);
 	  end	 

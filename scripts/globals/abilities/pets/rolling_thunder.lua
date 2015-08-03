@@ -20,7 +20,7 @@ function onPetAbility(target, pet, skill, summoner)
     local magicskill = getSkillLvl(1, target:getMainLvl());
 
     local potency = 3 + ((6*magicskill)/100);
-    if(magicskill>200) then
+    if (magicskill>200) then
         potency = 5 + ((5*magicskill)/100);
     end
 

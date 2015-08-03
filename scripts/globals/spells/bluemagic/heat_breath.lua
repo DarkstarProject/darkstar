@@ -48,7 +48,7 @@ function onSpellCast(caster,target,spell)
     damage = BlueMagicalSpell(caster, target, spell, params, MND_BASED);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
     
-    if(caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
+    if (caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
         multi = multi + 0.50;
     end
     

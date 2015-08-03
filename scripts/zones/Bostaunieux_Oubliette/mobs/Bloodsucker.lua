@@ -16,7 +16,7 @@ function onMobDeath(mob,killer)
 
    local mobID = mob:getID();
 
-   if(mobID == 17461478) then
+   if (mobID == 17461478) then
       UpdateNMSpawnPoint(mob);
       mob:setRespawnTime(259200);
    end

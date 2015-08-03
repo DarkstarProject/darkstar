@@ -13,7 +13,7 @@ function onMobSkillCheck(target,mob,skill)
     -- called via script only
     if (skill:getParam() >= 30) then
         return 1;
-    elseif(mob:getHPP() <= 50) then
+    elseif (mob:getHPP() <= 50) then
         return 0;
     end
     return 1;

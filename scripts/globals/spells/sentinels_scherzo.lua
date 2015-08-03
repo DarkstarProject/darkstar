@@ -20,7 +20,7 @@ function onSpellCast(caster,target,spell)
 
 	local power = math.floor((sLvl+iLvl-350) / 10);
     
-	if(power >= 45) then
+	if (power >= 45) then
 		power = 45;
 	end
     

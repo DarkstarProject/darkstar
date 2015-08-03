@@ -1,5 +1,4 @@
 -------------------------------------------------
---	Author: Almendro, Ezekyel
 --	Treasure functions
 --  Info from: 
 --      http://wiki.ffxiclopedia.org/wiki/Picking_your_Coffers_and_Chests 
@@ -47,7 +46,7 @@ function spawnMimic(zone,npc,player)
 			 177,17502567};
 	
 	for nb = 1, table.getn(mimic), 2 do
-		if(zone == mimic[nb]) then
+		if (zone == mimic[nb]) then
 			SpawnMob(mimic[nb + 1],120):updateEnmity(player);
 			setMobPos(mimic[nb + 1],npc:getXPos(),npc:getYPos(),npc:getZPos(),npc:getRotPos());
 			break;
@@ -122,59 +121,59 @@ function getAFbyZone(zone)
 	
 	-- job#1, quest#1, item#1, job#2, quest#2, item#2, ...
 	
-	if(zone == 147) then -- Beadeaux
+	if (zone == 147) then -- Beadeaux
 		-- Beast Jackcoat (BST), Gallant Breeches (PLD), Temple Cyclas (MNK)
 		return {9,BORGHERTZ_S_WILD_HANDS,12646,
 				7,BORGHERTZ_S_STALWART_HANDS,14220,
 				2,BORGHERTZ_S_STRIKING_HANDS,12639};
-	elseif(zone == 150) then -- Monastic Cavern
+	elseif (zone == 150) then -- Monastic Cavern
 		-- Chaos Flanchard (DRK), Hunter's Jerkin (RNG), Wizard's Coat (BLM)
 		return { 8,BORGHERTZ_S_SHADOWY_HANDS,14221,
 				11,BORGHERTZ_S_CHASING_HANDS,12648,
 				 4,BORGHERTZ_S_SORCEROUS_HANDS,12641};
-	elseif(zone == 151) then -- Castle Oztroja
+	elseif (zone == 151) then -- Castle Oztroja
 		-- Chaos Cuirass(DRK), Choral Cannions (BRD), Rogue's Culottes (THF), Warlock's Tabard (RDM)
 		return { 8,BORGHERTZ_S_SHADOWY_HANDS,12645,
 				10,BORGHERTZ_S_HARMONIOUS_HANDS,14223,
 				 6,BORGHERTZ_S_SNEAKY_HANDS,14219,
 				 5,BORGHERTZ_S_VERMILLION_HANDS,12642};
-	elseif(zone == 153) then -- The Boyahda Tree
+	elseif (zone == 153) then -- The Boyahda Tree
 		-- Ninja Hatsuburi (NIN)
 		return {13,BORGHERTZ_S_LURKING_HANDS,13869};
-	elseif(zone == 159) then -- Temple of Uggalepih
+	elseif (zone == 159) then -- Temple of Uggalepih
 		-- Evoker's Doublet (SMN), Myochin Domaru (SAM)
 		return {15,BORGHERTZ_S_CALLING_HANDS,12650,
 				12,BORGHERTZ_S_LOYAL_HANDS,13781};
-	elseif(zone == 161) then -- Castle Zvahl Baileys
+	elseif (zone == 161) then -- Castle Zvahl Baileys
 		-- Fighter's Cuisses (WAR), Rogue's Vest (THF)
 		return {1,BORGHERTZ_S_WARRING_HANDS,14214,
 				6,BORGHERTZ_S_SNEAKY_HANDS,12643};
-	elseif(zone == 169) then -- Toraimarai Canal
+	elseif (zone == 169) then -- Toraimarai Canal
 		-- Evoker's Pigaches (SMN)
 		return {15,BORGHERTZ_S_CALLING_HANDS,14103};
-	elseif(zone == 176) then -- Sea Serpent Grotto
+	elseif (zone == 176) then -- Sea Serpent Grotto
 		-- Ninja Kyahan (NIN)
 		return {13,BORGHERTZ_S_LURKING_HANDS,14101};
-	elseif(zone == 195) then -- The eldieme Necropolis
+	elseif (zone == 195) then -- The eldieme Necropolis
 		-- Wizard's Tonban (BLM)
 		return {4,BORGHERTZ_S_SORCEROUS_HANDS,14217};
-	elseif(zone == 197) then -- Crawler's Nest
+	elseif (zone == 197) then -- Crawler's Nest
 		-- Choral Roundlet (BRD), Fighter's Mask (WAR), Healer's Pantaloons (WHM), Hunter's Braccae (RNG)
 		return {10,BORGHERTZ_S_HARMONIOUS_HANDS,13857,
 				 1,BORGHERTZ_S_WARRING_HANDS,12511,
 				 3,BORGHERTZ_S_HEALING_HANDS,14216,
 				11,BORGHERTZ_S_CHASING_HANDS,14224};
-	elseif(zone == 200) then -- Garlaige Citadel
+	elseif (zone == 200) then -- Garlaige Citadel
 		-- Beast Helm (BST), Gallant Coronet (PLD), Healer's Cap (WHM), Temple Crown (MNK), Warlock's Tights (RDM)
 		return {9,BORGHERTZ_S_WILD_HANDS,12517,
 				7,BORGHERTZ_S_STALWART_HANDS,12515,
 				3,BORGHERTZ_S_HEALING_HANDS,13855,
 				2,BORGHERTZ_S_STRIKING_HANDS,12512,
 				5,BORGHERTZ_S_VERMILLION_HANDS,14218};
-	elseif(zone == 205) then -- Ifrit's Cauldron
+	elseif (zone == 205) then -- Ifrit's Cauldron
 		-- Drachen Mail (DRG)
 		return {14,BORGHERTZ_S_DRAGON_HANDS,12649};
-	elseif(zone == 208) then -- Quicksand Caves
+	elseif (zone == 208) then -- Quicksand Caves
 		-- Drachen Greaves (DRG), Myochin Haidate (SAM)
 		return {14,BORGHERTZ_S_DRAGON_HANDS,14102,
 				12,BORGHERTZ_S_LOYAL_HANDS,14225};
@@ -191,11 +190,11 @@ function thfKeySuccess(trade,playerLVL,treasureLVL)
 	 lk = trade:hasItemQty(livingKey,1);
 	ttk = trade:hasItemQty(thftools,1);
 	success = 0;
-	if( sk ) then
+	if ( sk ) then
 		success = (playerLVL/treasureLVL) - 0.50 + SK_SUCCESS_INCREMENT;
-	elseif( lk )then
+	elseif ( lk ) then
 		success = (playerLVL/treasureLVL) - 0.50 + LK_SUCCESS_INCREMENT;
-	elseif( ttk ) then
+	elseif ( ttk ) then
 		success = (playerLVL/treasureLVL) - 0.50 + TTK_SUCCESS_INCREMENT;
 	end
 	return success;
@@ -209,7 +208,7 @@ function isTHFKey(trade)
 	 sk = trade:hasItemQty(skeletonKey,1);
 	 lk = trade:hasItemQty(livingKey,1);
 	ttk = trade:hasItemQty(thftools,1);
-	if( sk or lk or ttk )then
+	if ( sk or lk or ttk ) then
 		return true;
 	else
 		return false;
@@ -231,22 +230,22 @@ function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNe
 	-- SE impleted this in order to prevent coffer farming. 
 	-- Noone in the same area can open more than 1 coffer per hour except for AF, maps or quests items.
 
-	if(weak ~= nil) then -- old code: os.time() <= weak
+	if (weak ~= nil) then -- old code: os.time() <= weak
 		chance_answer = {-1,CHEST_WEAK};
-	elseif(os.time() < illu and questItemNeeded == 0) then
+	elseif (os.time() < illu and questItemNeeded == 0) then
 		UpdateTreasureSpawnPoint(npc:getID());
-		if(TreasureType == "Chest")then
+		if (TreasureType == "Chest") then
 			chance_answer = {-2,CHEST_ILLUSION};
-		elseif(TreasureType == "Coffer") then
-			if(isTHFKey(trade))then
+		elseif (TreasureType == "Coffer") then
+			if (isTHFKey(trade)) then
 				chance_answer = {-1,CHEST_ILLUSION}; -- if you used a THF tool you will lose it.
 			else
 				chance_answer = {-2,CHEST_ILLUSION}; -- if you traded a zone key droped from mobs you will keep the key
 			end		
 		end
-	elseif(not(isTHFKey(trade))) then 									  
+	elseif (not(isTHFKey(trade))) then 									  
 		chance_answer = {1,nil}; -- Zone Key is always 100% success
-	elseif(player:getMainJob() == 6 and player:getMainLvl() >= minLVL) then -- ifplayer is THF with level higher or equal than minimun lv for coffer/chest
+	elseif (player:getMainJob() == 6 and player:getMainLvl() >= minLVL) then -- ifplayer is THF with level higher or equal than minimun lv for coffer/chest
 		success = thfKeySuccess(trade,player:getMainLvl(),treasureLVL);
 		chance_answer = {success,nil};
 	else
@@ -420,10 +419,10 @@ gil = {147,{0.152,3440,9000},
 	rand = math.random();
 	rand = math.random();
 	for u = 1, table.getn(gil), 2 do
-		if(gil[u] == zone) then
-			if(rand <= gil[u + 1][1])then
+		if (gil[u] == zone) then
+			if (rand <= gil[u + 1][1]) then
 				reward = {"gil",math.random(gil[u + 1][2],gil[u + 1][3])};
-			elseif(rand <= (gil[u + 1][1] + gems[u + 1][1])) then
+			elseif (rand <= (gil[u + 1][1] + gems[u + 1][1])) then
 				local num_gems = 0;
 				local curr_gem = 2;
 				while(gems[u + 1][curr_gem] ~= nil) do
@@ -585,10 +584,10 @@ Any update should be here with the date which was modified as well as an URL whe
 	rand = math.random();
 	
 	for u = 1, table.getn(gil), 2 do
-		if(gil[u] == zone) then
-			if(rand <= gil[u + 1][1])then
+		if (gil[u] == zone) then
+			if (rand <= gil[u + 1][1]) then
 				reward = {"gil",math.random(gil[u + 1][2],gil[u + 1][3])};
-			elseif(rand <= (gil[u + 1][1] + gems[u + 1][1])) then
+			elseif (rand <= (gil[u + 1][1] + gems[u + 1][1])) then
 				local num_gems = 0;
 				local curr_gem = 2;
 				while(gems[u + 1][curr_gem] ~= nil) do

@@ -18,13 +18,13 @@ function onTrade(player,npc,trade)
 	
 	local theTraderInTheforest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
 	
-	if(theTraderInTheforest == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(592,1) == true and trade:getItemCount() == 1) then -- Trade Supplies Order
+	if (theTraderInTheforest == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(592,1) == true and trade:getItemCount() == 1) then -- Trade Supplies Order
 			player:startEvent(0x007c);
 		end
-	elseif(theTraderInTheforest == QUEST_COMPLETED) then 
-		if(trade:getGil() == 50) then 
-			if(player:getFreeSlotsCount() == 0) then 
+	elseif (theTraderInTheforest == QUEST_COMPLETED) then 
+		if (trade:getGil() == 50) then 
+			if (player:getFreeSlotsCount() == 0) then 
 				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4367);
 			else
 				player:tradeComplete();
@@ -45,13 +45,13 @@ function onTrigger(player,npc)
 	local theTraderInTheforest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
 	local hasBatagreens = player:hasItem(4367); -- Clump of Batagreens
 	
-	if(theTraderInTheforest == QUEST_ACCEPTED) then
-		if(hasBatagreens == true) then
+	if (theTraderInTheforest == QUEST_ACCEPTED) then
+		if (hasBatagreens == true) then
 			player:startEvent(0x007d);
 		else
 			player:startEvent(0x0075);
 		end
-	elseif(theTraderInTheforest == QUEST_COMPLETED or hasBatagreens == false) then
+	elseif (theTraderInTheforest == QUEST_COMPLETED or hasBatagreens == false) then
 		player:startEvent(0x007f,4367);
 	else
 		player:startEvent(0x0075);
@@ -76,8 +76,8 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x007c) then
-		if(player:getFreeSlotsCount() == 0) then 
+	if (csid == 0x007c) then
+		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4367);
 		else
 			player:tradeComplete();

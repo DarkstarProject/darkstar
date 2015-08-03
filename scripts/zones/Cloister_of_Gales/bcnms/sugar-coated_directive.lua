@@ -30,13 +30,13 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 	-- print("leave code "..leavecode);
 	
-	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage		
-		if(player:hasCompletedMission(ASA,SUGAR_COATED_DIRECTIVE)) then
+	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage		
+		if (player:hasCompletedMission(ASA,SUGAR_COATED_DIRECTIVE)) then
 			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,1);
 		else
 			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,0);
 		end
-	elseif(leavecode == 4) then
+	elseif (leavecode == 4) then
 		player:startEvent(0x7d02);
 	end
 	
@@ -49,7 +49,7 @@ end;
 function onEventFinish(player,csid,option)
 	-- print("bc finish csid "..csid.." and option "..option);
 	
-	if(csid == 0x7d01) then
+	if (csid == 0x7d01) then
 		player:addExp(400);
 		player:setVar("ASA4_Emerald","1");
 	end

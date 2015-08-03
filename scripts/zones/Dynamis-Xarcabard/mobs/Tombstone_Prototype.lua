@@ -39,10 +39,10 @@ function onMobDeath(mob,killer)
 	local mobID = mob:getID();
 	
 	-- Time Bonus: 010 060
-	if(mobID == 17330531 and mob:isInBattlefieldList() == false) then
+	if (mobID == 17330531 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(30);
 		mob:addInBattlefieldList();
-	elseif(mobID == 17330830 and mob:isInBattlefieldList() == false) then
+	elseif (mobID == 17330830 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(30);
 		mob:addInBattlefieldList();
 	end

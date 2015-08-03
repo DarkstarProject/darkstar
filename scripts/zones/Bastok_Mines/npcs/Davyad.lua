@@ -25,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(BASTOK) == TO_THE_FORSAKEN_MINES) then
+	if (player:getCurrentMission(BASTOK) == TO_THE_FORSAKEN_MINES) then
 		player:startEvent(0x0036);
 	else
 		player:startEvent(0x0035);

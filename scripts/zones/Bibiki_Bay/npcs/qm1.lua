@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
 	local Shen = 16793859;
 	
 	-- Trade Shrimp Lantern
-	if(GetMobAction(Shen) == 0 and trade:hasItemQty(1823,1) and trade:getItemCount() == 1)then
+	if (GetMobAction(Shen) == 0 and trade:hasItemQty(1823,1) and trade:getItemCount() == 1) then
 	  	player:tradeComplete();
 		SpawnMob(Shen,180):updateClaim(player);
 		SpawnMob(Shen+1,180):updateClaim(player);

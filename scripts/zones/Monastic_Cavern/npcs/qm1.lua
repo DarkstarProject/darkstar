@@ -25,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getQuestStatus(JEUNO,WHENCE_BLOWS_THE_WIND) == QUEST_ACCEPTED and player:hasKeyItem(ORCISH_CREST) == false) then
+	if (player:getQuestStatus(JEUNO,WHENCE_BLOWS_THE_WIND) == QUEST_ACCEPTED and player:hasKeyItem(ORCISH_CREST) == false) then
 		player:addKeyItem(ORCISH_CREST);
 		player:messageSpecial(KEYITEM_OBTAINED, ORCISH_CREST);
 	else

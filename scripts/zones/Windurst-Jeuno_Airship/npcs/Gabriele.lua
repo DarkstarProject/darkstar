@@ -65,7 +65,7 @@ function onTrigger(player,npc)
 	end
 
 	if (vMinutes <= 30) then
-		if( message == WILL_REACH_WINDURST) then
+		if ( message == WILL_REACH_WINDURST) then
 			message = IN_WINDURST_MOMENTARILY;
 		else -- WILL_REACH_JEUNO
 			message = IN_JEUNO_MOMENTARILY;

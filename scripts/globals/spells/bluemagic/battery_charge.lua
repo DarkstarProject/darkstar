@@ -32,11 +32,11 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    if(target:hasStatusEffect(EFFECT_REFRESH)) then
+    if (target:hasStatusEffect(EFFECT_REFRESH)) then
         target:delStatusEffect(EFFECT_REFRESH);
     end
 
-    if(target:addStatusEffect(EFFECT_REFRESH,3,3,300)) then
+    if (target:addStatusEffect(EFFECT_REFRESH,3,3,300)) then
         spell:setMsg(230);
     else
         spell:setMsg(75); -- no effect

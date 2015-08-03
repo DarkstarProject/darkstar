@@ -18,12 +18,12 @@ function onTrade(player,npc,trade)
 
 	local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
 
-	if(thickAsThievesGamblingCS == 2) then
-		if(trade:hasItemQty(936,1) and trade:getItemCount() == 1) then -- Trade 1x rock slat
+	if (thickAsThievesGamblingCS == 2) then
+		if (trade:hasItemQty(936,1) and trade:getItemCount() == 1) then -- Trade 1x rock slat
 			local rand1 = math.random(1,999);
 			local rand2 = math.random(1,999);	
 
-			if(rand1 > rand2) then
+			if (rand1 > rand2) then
 				player:startEvent(0x0088,1092,0,rand1,rand2); -- complete 1/3 gamble mini quest	
 			else
 				player:startEvent(0x008b,0,0,rand1,rand2); -- player looses	
@@ -57,10 +57,10 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 
-	if(csid == 0x008b and option == 1) then -- player looses dice game
+	if (csid == 0x008b and option == 1) then -- player looses dice game
 		player:tradeComplete();	 
 		player:setVar("thickAsThievesGamblingCS",2);		
-	elseif(csid == 0x0088 and option == 0) then -- player wins dice game
+	elseif (csid == 0x0088 and option == 0) then -- player wins dice game
 		player:tradeComplete();
 		player:setVar("thickAsThievesGamblingCS",3);
 	end		 

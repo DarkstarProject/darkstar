@@ -31,19 +31,19 @@ function onMobEngaged(mob,target)
  
  
 
- if(mobID ==16932882)then
+ if (mobID ==16932882) then
 						SpawnMob(16932889):updateEnmity(target);
- elseif(mobID ==16932883)then	
+ elseif (mobID ==16932883) then	
 						SpawnMob(16932890):updateEnmity(target);
- elseif(mobID ==16932884)then
+ elseif (mobID ==16932884) then
 						SpawnMob(16932891):updateEnmity(target);
- elseif(mobID ==16932885)then
+ elseif (mobID ==16932885) then
 						SpawnMob(16932892):updateEnmity(target);
- elseif(mobID ==16932886)then	
+ elseif (mobID ==16932886) then	
 						SpawnMob(16932893):updateEnmity(target);
- elseif(mobID ==16932887)then
+ elseif (mobID ==16932887) then
 						SpawnMob(16932894):updateEnmity(target);
- elseif(mobID ==16932888)then
+ elseif (mobID ==16932888) then
 						SpawnMob(16932895):updateEnmity(target);						
  end
 end;
@@ -60,7 +60,7 @@ function onMobDeath(mob,killer)
 	local mobZ = mob:getZPos();
  
  
- if(
+ if (
 IsMobDead(16932882)==true and
 IsMobDead(16932883)==true and
 IsMobDead(16932884)==true and
@@ -69,7 +69,7 @@ IsMobDead(16932886)==true and
 IsMobDead(16932887)==true and
 IsMobDead(16932888)==true 
  
- )then
+ ) then
  
 -- time
    	GetNPCByID(16932864+70):setPos(mobX+3,mobY,mobZ);

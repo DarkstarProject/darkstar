@@ -30,10 +30,10 @@ function onTrigger(player,npc)
 	mLvl = player:getMainLvl();
 	SeaStatue = player:hasKeyItem(SEA_SERPENT_STATUE);
 	
-	if(Stash == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 4 and mLvl >= 5) then
+	if (Stash == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 4 and mLvl >= 5) then
 		player:startEvent(0x0021); -- Start quest
-	elseif(Stash == QUEST_ACCEPTED) then
-		if(SeaStatue == true) then
+	elseif (Stash == QUEST_ACCEPTED) then
+		if (SeaStatue == true) then
 			player:startEvent(0x0023,SEA_SERPENT_STATUE); -- Finish quest
 		else
 			player:startEvent(0x0022); -- Reminder Dialogue
@@ -59,7 +59,7 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-	if(csid == 0x0021 and option == 1) then
+	if (csid == 0x0021 and option == 1) then
 		player:addQuest(OUTLANDS,THE_SAHAGINS_STASH);
 	elseif (csid == 0x0023) then
 		if (player:getFreeSlotsCount() == 0) then 

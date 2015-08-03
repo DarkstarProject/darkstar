@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:hasKeyItem(POUCH_OF_WEIGHTED_STONES) == false) then
+	if (player:hasKeyItem(POUCH_OF_WEIGHTED_STONES) == false) then
 		player:addKeyItem(POUCH_OF_WEIGHTED_STONES);
 		player:messageSpecial(KEYITEM_OBTAINED,POUCH_OF_WEIGHTED_STONES);
 	else

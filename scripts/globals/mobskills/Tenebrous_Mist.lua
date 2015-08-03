@@ -17,7 +17,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
    local reset = 0;
-   if(target:getTP() == 0) then
+   if (target:getTP() == 0) then
       skill:setMsg(MSG_NO_EFFECT); -- no effect
    else
       target:setTP(reset);

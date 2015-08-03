@@ -40,7 +40,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x0068) then
+	if (csid == 0x0068) then
 		player:setVar("THE_FIGHTING_FOURTH",2);
 	end		
 end;

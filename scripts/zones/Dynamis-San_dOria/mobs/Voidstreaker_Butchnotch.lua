@@ -25,7 +25,7 @@ end;
 
 function onMobDeath(mob,killer)
 
-	if(alreadyReceived(killer,7) == false) then
+	if (alreadyReceived(killer,7) == false) then
 		killer:addTimeToDynamis(30);
 		addDynamisList(killer,64);
 		SpawnMob(17535385); -- 145

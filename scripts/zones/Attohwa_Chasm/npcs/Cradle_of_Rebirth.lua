@@ -31,7 +31,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:hasKeyItem(MIMEO_JEWEL)==true)then
+	if (player:hasKeyItem(MIMEO_JEWEL)==true) then
 		player:delKeyItem(MIMEO_JEWEL);
 		player:messageSpecial(KEYITEM_LOST,MIMEO_JEWEL); 
 		player:addKeyItem(MIMEO_FEATHER);

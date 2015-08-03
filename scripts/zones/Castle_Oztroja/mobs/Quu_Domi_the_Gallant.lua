@@ -9,7 +9,7 @@
 
 function onMobDeath(mob,killer)
 
-	if(math.random((1),(100)) <= 7) then -- Hardcoded "this or this item" drop rate until implemented.
+	if (math.random((1),(100)) <= 7) then -- Hardcoded "this or this item" drop rate until implemented.
 		SetDropRate(1936,15737,1000); -- Sarutobi Kyahan
 		SetDropRate(1936,16820,0);
 	else

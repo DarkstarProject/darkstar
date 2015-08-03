@@ -23,11 +23,11 @@ function onSpellCast(caster,target,spell)
 
     if (sLvl+iLvl <= 416) then
         power = 12;		
-	elseif((sLvl+iLvl >= 417) and (sLvl+iLvl <= 445)) then
+	elseif ((sLvl+iLvl >= 417) and (sLvl+iLvl <= 445)) then
 		power = 13;
-	elseif((sLvl+iLvl >= 446) and (sLvl+iLvl <= 474)) then
+	elseif ((sLvl+iLvl >= 446) and (sLvl+iLvl <= 474)) then
 		power = 14;
-	elseif(sLvl+iLvl >= 475) then 
+	elseif (sLvl+iLvl >= 475) then 
 		power = 15;
     end
     

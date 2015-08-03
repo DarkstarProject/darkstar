@@ -15,7 +15,7 @@ require("scripts/globals/monstertpmoves");
 -- if not in Spider form, then ignore. 
 ---------------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-	if((mob:getFamily() == 122 or mob:getFamily() == 123 or mob:getFamily() == 124) and mob:AnimationSub() ~= 2) then
+	if ((mob:getFamily() == 122 or mob:getFamily() == 123 or mob:getFamily() == 124) and mob:AnimationSub() ~= 2) then
 		return 1;
 	else
 		return 0;
@@ -30,7 +30,7 @@ function onMobWeaponSkill(target, mob, skill)
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 
     -- cap off damage around 600
-    if(dmg > 600) then
+    if (dmg > 600) then
         dmg = dmg * 0.7;
     end
 

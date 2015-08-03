@@ -46,7 +46,7 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 
-	if(csid == 0x00D1) then
+	if (csid == 0x00D1) then
 		player:setVar("ChocoboOnTheLoose",2);
 	end
 end;

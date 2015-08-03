@@ -195,7 +195,7 @@ function onEventFinish(player,csid,option)
 			player:addKeyItem(MAP_OF_THE_CRAWLERS_NEST);
 			player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_CRAWLERS_NEST);
 		end
-	elseif(csid == 0x0450) then
+	elseif (csid == 0x0450) then
 		player:setVar("SIGNED_IN_BLOOD_Prog",2);
 	end
 end;

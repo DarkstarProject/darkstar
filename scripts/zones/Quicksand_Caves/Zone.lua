@@ -86,7 +86,7 @@ end;
 
 function onZoneIn(player,prevZone)		
 	local cs = -1;	
-	if((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-980.193,14.913,-282.863,60);
 	end	
 	return cs;	
@@ -100,7 +100,7 @@ function onRegionEnter(player,region)
 	
 	local RegionID = region:GetRegionID();	
 	
-	if(RegionID >= 30) then
+	if (RegionID >= 30) then
 		switch (RegionID): caseof
 		{
 			[30] = function (x)
@@ -123,9 +123,9 @@ function onRegionEnter(player,region)
 		local race = player:getRace();
 		 printf("entering region %u",RegionID);
 		
-		if(race == 8) then -- Galka
+		if (race == 8) then -- Galka
 			weight = 3;
-		elseif(race == 5 or race == 6) then -- Taru male or female
+		elseif (race == 5 or race == 6) then -- Taru male or female
 			weight = 1;
 		else -- Hume/Elvaan/Mithra
 			weight = 2;
@@ -136,7 +136,7 @@ function onRegionEnter(player,region)
 		w = w + weight;
 		SetServerVariable(varname,w);
 		
-		if(player:hasKeyItem(2051) or w >= 3) then
+		if (player:hasKeyItem(2051) or w >= 3) then
 			local door = GetNPCByID(base_id + RegionID - 1);
 			door:openDoor(15); -- open door with a 15 second time delay.
 			--platform = GetNPCByID(base_id + RegionID + 1);
@@ -154,13 +154,13 @@ function onRegionLeave(player,region)
 
 	local RegionID = region:GetRegionID();
 	
-	if(RegionID < 30) then
+	if (RegionID < 30) then
 		local race = player:getRace();
 		-- printf("exiting region %u",RegionID);
 		
-		if(race == 8) then -- Galka
+		if (race == 8) then -- Galka
 			weight = 3;
-		elseif(race == 5 or race == 6) then -- Taru male or female
+		elseif (race == 5 or race == 6) then -- Taru male or female
 			weight = 1;
 		else -- Hume/Elvaan/Mithra
 			weight = 2;
@@ -171,7 +171,7 @@ function onRegionLeave(player,region)
 		w = w - weight;
 		SetServerVariable(varname,w);
 		
-		if(lastWeight >= 3 and w < 3) then
+		if (lastWeight >= 3 and w < 3) then
 			--platform = GetNPCByID(base_id + RegionID + 1);
 			--platform:setAnimation(9);
 		end

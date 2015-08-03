@@ -23,7 +23,7 @@ function onMobWeaponSkill(target, mob, skill)
 
 	skill:setMsg(MSG_DRAIN_HP);
 
-	if(MobPhysicalHit(skill, 0, 0, 0)) then
+	if (MobPhysicalHit(skill, 0, 0, 0)) then
 		target:delHP(dmg);
 		mob:addHP(dmg);
 	end

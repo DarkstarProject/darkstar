@@ -49,15 +49,15 @@ function onZoneIn(player,prevZone)
 	if ((playerX == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
 		player:setPos(-29.956,-1.903,212.521,188);
 	end
-	if(ENABLE_COP_ZONE_CAP == 1)then
+	if (ENABLE_COP_ZONE_CAP == 1) then
 		local LVLcap = player:getVar("PSOXJA_RESTRICTION_LVL");
-		if (LVLcap > 0)then
+		if (LVLcap > 0) then
 			player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,LVLcap,0,0);-- ZONE LEVEL RESTRICTION
 		end
 	 end
-	if(playerX == -300 and player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==2)then
+	if (playerX == -300 and player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==2) then
 		cs = 0x0001; -- COP event
-	elseif(playerX == 220 and player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 8)then
+	elseif (playerX == 220 and player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 8) then
 	    cs = 0x0004;
 	end
 	return cs;
@@ -69,17 +69,17 @@ end;
 
 function onRegionEnter(player,region)
 
-	if(region:GetRegionID() == 1) then
+	if (region:GetRegionID() == 1) then
 		player:startEvent(0x0014);
-	elseif(region:GetRegionID() == 2) then
+	elseif (region:GetRegionID() == 2) then
 		player:startEvent(0x0015);
-	elseif(region:GetRegionID() == 3) then
+	elseif (region:GetRegionID() == 3) then
 		player:startEvent(0x0016);
-	elseif(region:GetRegionID() == 4) then
+	elseif (region:GetRegionID() == 4) then
 		player:startEvent(0x0017);
-	elseif(region:GetRegionID() == 5) then
+	elseif (region:GetRegionID() == 5) then
 		player:startEvent(0x0018);
-	elseif(region:GetRegionID() == 6) then
+	elseif (region:GetRegionID() == 6) then
 		player:startEvent(0x0019);
 	end	
 end;
@@ -107,21 +107,21 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-	if(csid == 0x0001)then
+	if (csid == 0x0001) then
 	  player:setVar("PromathiaStatus",3);
-	elseif(csid == 0x0004)then
+	elseif (csid == 0x0004) then
 	  player:setVar("COP_Tenzen_s_Path",9);
-	elseif(csid == 0x0014 and option == 1) then
+	elseif (csid == 0x0014 and option == 1) then
 		player:setPos(-20,-60.250,-60,63,111);
-	elseif(csid == 0x0015 and option == 1) then
+	elseif (csid == 0x0015 and option == 1) then
 		player:setPos(260,-0.25,-20,254,111);
-	elseif(csid == 0x0016 and option == 1) then
+	elseif (csid == 0x0016 and option == 1) then
 		player:setPos(60,-0.250,-340.000,190,111);
-	elseif(csid == 0x0017 and option == 1) then
+	elseif (csid == 0x0017 and option == 1) then
 		player:setPos(-340,-100.250,140,63,111);
-	elseif(csid == 0x0018 and option == 1) then
+	elseif (csid == 0x0018 and option == 1) then
 		player:setPos(-180,-40.25 ,-220,0,111);
-	elseif(csid == 0x0019 and option == 1) then
+	elseif (csid == 0x0019 and option == 1) then
 		player:setPos(100,-20.25,140,64,111);
 	end
 end;

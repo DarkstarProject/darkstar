@@ -14,7 +14,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	if(target:getStatusEffect(EFFECT_PARALYSIS) ~= nil) then
+	if (target:getStatusEffect(EFFECT_PARALYSIS) ~= nil) then
 		target:delStatusEffect(EFFECT_PARALYSIS);
 		spell:setMsg(83);
 	else

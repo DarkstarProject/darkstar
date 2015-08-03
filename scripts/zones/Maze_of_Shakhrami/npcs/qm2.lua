@@ -33,10 +33,10 @@ function onTrigger(player,npc)
         player:hasStatusEffect(EFFECT_LEVEL_RESTRICTION) and 
         player:hasKeyItem(INDIGESTED_MEAT) == false) then
         
-		if(player:getVar("ECOR_WAR_WIN-NMs_killed") == 1) then
+		if (player:getVar("ECOR_WAR_WIN-NMs_killed") == 1) then
 			player:addKeyItem(INDIGESTED_MEAT);
 			player:messageSpecial(KEYITEM_OBTAINED,INDIGESTED_MEAT);
-		elseif(GetMobAction(wyrm1) + GetMobAction(wyrm1) + GetMobAction(wyrm1) == 0) then
+		elseif (GetMobAction(wyrm1) + GetMobAction(wyrm1) + GetMobAction(wyrm1) == 0) then
 			SpawnMob(wyrm1,180):updateClaim(player);
 			SpawnMob(wyrm2,180):updateClaim(player);
 			SpawnMob(wyrm3,180):updateClaim(player);

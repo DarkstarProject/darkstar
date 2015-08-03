@@ -15,14 +15,14 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 ----------------------------------- 
 
 function onTrade(player,npc,trade) 
-if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED)then
-if(trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeMaugie") == 0)then 
+if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED) then
+if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeMaugie") == 0) then 
 player:messageSpecial(8709);
 player:setVar("FFR",player:getVar("FFR") - 1);
 player:setVar("tradeMaugie",1);
         player:messageSpecial(FLYER_ACCEPTED);
         trade:complete();
-elseif(player:getVar("tradeMaugie") ==1)then
+elseif (player:getVar("tradeMaugie") ==1) then
 player:messageSpecial(8710);
 end
 end
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
     if (grimySignpost == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 2) then
         player:startEvent(0x002d);
     elseif (grimySignpost == QUEST_ACCEPTED) then
-        if(player:getVar("CleanSignPost") == 15) then
+        if (player:getVar("CleanSignPost") == 15) then
             player:startEvent(0x002c);
         else
             player:startEvent(0x002b);

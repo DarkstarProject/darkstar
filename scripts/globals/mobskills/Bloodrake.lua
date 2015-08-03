@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     target:delHP(dmg);
 
-    if(MobPhysicalHit(skill, dmg, target, info.hitslanded) and target:isUndead() == false) then
+    if (MobPhysicalHit(skill, dmg, target, info.hitslanded) and target:isUndead() == false) then
         mob:addHP(dmg);
     end
 

@@ -14,13 +14,13 @@ require("scripts/globals/keyitems");
 
 function getMaxTravStones(player)
     local MaxTravStones = 3;
-    if(player:hasKeyItem(VIRIDIAN_ABYSSITE_OF_AVARICE)) then
+    if (player:hasKeyItem(VIRIDIAN_ABYSSITE_OF_AVARICE)) then
         MaxTravStones = MaxTravStones + 1;
     end
-    if(player:hasKeyItem(IVORY_ABYSSITE_OF_AVARICE)) then
+    if (player:hasKeyItem(IVORY_ABYSSITE_OF_AVARICE)) then
         MaxTravStones = MaxTravStones + 1;
     end
-    if(player:hasKeyItem(VERMILLION_ABYSSITE_OF_AVARICE)) then
+    if (player:hasKeyItem(VERMILLION_ABYSSITE_OF_AVARICE)) then
         MaxTravStones = MaxTravStones + 1;
     end
     return MaxTravStones;
@@ -34,22 +34,22 @@ end;
 
 function getTravStonesTotal(player)
     local STONES = 0;
-    if(player:hasKeyItem(TRAVERSER_STONE1)) then
+    if (player:hasKeyItem(TRAVERSER_STONE1)) then
         STONES = STONES + 1;
     end
-    if(player:hasKeyItem(TRAVERSER_STONE2)) then
+    if (player:hasKeyItem(TRAVERSER_STONE2)) then
         STONES = STONES + 1;
     end
-    if(player:hasKeyItem(TRAVERSER_STONE3)) then
+    if (player:hasKeyItem(TRAVERSER_STONE3)) then
         STONES = STONES + 1;
     end
-    if(player:hasKeyItem(TRAVERSER_STONE4)) then
+    if (player:hasKeyItem(TRAVERSER_STONE4)) then
         STONES = STONES + 1;
     end
-    if(player:hasKeyItem(TRAVERSER_STONE5)) then
+    if (player:hasKeyItem(TRAVERSER_STONE5)) then
         STONES = STONES + 1;
     end
-    if(player:hasKeyItem(TRAVERSER_STONE6)) then
+    if (player:hasKeyItem(TRAVERSER_STONE6)) then
         STONES = STONES + 1;
     end
     return STONES;
@@ -61,81 +61,81 @@ end;
 -----------------------------------
 
 function spendTravStones(player,spentstones)
-    if(spentstones == 4) then
-        if(player:hasKeyItem(TRAVERSER_STONE6)) then
+    if (spentstones == 4) then
+        if (player:hasKeyItem(TRAVERSER_STONE6)) then
             spentstones = 3;
             player:delKeyItem(TRAVERSER_STONE6);
-        elseif(player:hasKeyItem(TRAVERSER_STONE5)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE5)) then
             spentstones = 3;
             player:delKeyItem(TRAVERSER_STONE5);
-        elseif(player:hasKeyItem(TRAVERSER_STONE4)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE4)) then
             spentstones = 3;
             player:delKeyItem(TRAVERSER_STONE4);
-        elseif(player:hasKeyItem(TRAVERSER_STONE3)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE3)) then
             spentstones = 3;
             player:delKeyItem(TRAVERSER_STONE3);
-        elseif(player:hasKeyItem(TRAVERSER_STONE2)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE2)) then
             spentstones = 3;
             player:delKeyItem(TRAVERSER_STONE2);
-        elseif(player:hasKeyItem(TRAVERSER_STONE1)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE1)) then
             spentstones = 3;
             player:delKeyItem(TRAVERSER_STONE1);
         end
     end
-    if(spentstones == 3) then
-        if(player:hasKeyItem(TRAVERSER_STONE6)) then
+    if (spentstones == 3) then
+        if (player:hasKeyItem(TRAVERSER_STONE6)) then
             spentstones = 2;
             player:delKeyItem(TRAVERSER_STONE6);
-        elseif(player:hasKeyItem(TRAVERSER_STONE5)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE5)) then
             spentstones = 2;
             player:delKeyItem(TRAVERSER_STONE5);
-        elseif(player:hasKeyItem(TRAVERSER_STONE4)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE4)) then
             spentstones = 2;
             player:delKeyItem(TRAVERSER_STONE4);
-        elseif(player:hasKeyItem(TRAVERSER_STONE3)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE3)) then
             spentstones = 2;
             player:delKeyItem(TRAVERSER_STONE3);
-        elseif(player:hasKeyItem(TRAVERSER_STONE2)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE2)) then
             spentstones = 2;
             player:delKeyItem(TRAVERSER_STONE2);
-        elseif(player:hasKeyItem(TRAVERSER_STONE1)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE1)) then
             spentstones = 2;
             player:delKeyItem(TRAVERSER_STONE1);
         end
     end
-    if(spentstones == 2) then
-        if(player:hasKeyItem(TRAVERSER_STONE6)) then
+    if (spentstones == 2) then
+        if (player:hasKeyItem(TRAVERSER_STONE6)) then
             spentstones = 1;
             player:delKeyItem(TRAVERSER_STONE6);
-        elseif(player:hasKeyItem(TRAVERSER_STONE5)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE5)) then
             spentstones = 1;
             player:delKeyItem(TRAVERSER_STONE5);
-        elseif(player:hasKeyItem(TRAVERSER_STONE4)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE4)) then
             spentstones = 1;
             player:delKeyItem(TRAVERSER_STONE4);
-        elseif(player:hasKeyItem(TRAVERSER_STONE3)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE3)) then
             spentstones = 1;
             player:delKeyItem(TRAVERSER_STONE3);
-        elseif(player:hasKeyItem(TRAVERSER_STONE2)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE2)) then
             spentstones = 1;
             player:delKeyItem(TRAVERSER_STONE2);
-        elseif(player:hasKeyItem(TRAVERSER_STONE1)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE1)) then
             spentstones = 1;
             player:delKeyItem(TRAVERSER_STONE1);
         end
     end
-    if(spentstones == 1) then
-        if(player:hasKeyItem(TRAVERSER_STONE6)) then
+    if (spentstones == 1) then
+        if (player:hasKeyItem(TRAVERSER_STONE6)) then
             player:delKeyItem(TRAVERSER_STONE6);
-        elseif(player:hasKeyItem(TRAVERSER_STONE5)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE5)) then
             player:delKeyItem(TRAVERSER_STONE5);
-        elseif(player:hasKeyItem(TRAVERSER_STONE4)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE4)) then
             player:delKeyItem(TRAVERSER_STONE4);
-        elseif(player:hasKeyItem(TRAVERSER_STONE3)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE3)) then
             player:delKeyItem(TRAVERSER_STONE3);
-        elseif(player:hasKeyItem(TRAVERSER_STONE2)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE2)) then
             player:delKeyItem(TRAVERSER_STONE2);
-        elseif(player:hasKeyItem(TRAVERSER_STONE1)) then
+        elseif (player:hasKeyItem(TRAVERSER_STONE1)) then
             player:delKeyItem(TRAVERSER_STONE1);
         end
     end
@@ -151,22 +151,22 @@ function getAbyssiteTotal(player,Type)
     local FURTHERANCE = 0;
     local MERIT = 0;
     if (Type == "SOJOURN") then
-        if(player:hasKeyItem(IVORY_ABYSSITE_OF_SOJOURN)) then
+        if (player:hasKeyItem(IVORY_ABYSSITE_OF_SOJOURN)) then
             SOJOURN = SOJOURN + 1;
         end
-        if(player:hasKeyItem(SCARLET_ABYSSITE_OF_SOJOURN)) then
+        if (player:hasKeyItem(SCARLET_ABYSSITE_OF_SOJOURN)) then
             SOJOURN = SOJOURN + 1;
         end
-        if(player:hasKeyItem(JADE_ABYSSITE_OF_SOJOURN)) then
+        if (player:hasKeyItem(JADE_ABYSSITE_OF_SOJOURN)) then
             SOJOURN = SOJOURN + 1;
         end
-        if(player:hasKeyItem(SAPPHIRE_ABYSSITE_OF_SOJOURN)) then
+        if (player:hasKeyItem(SAPPHIRE_ABYSSITE_OF_SOJOURN)) then
             SOJOURN = SOJOURN + 1;
         end
-        if(player:hasKeyItem(INDIGO_ABYSSITE_OF_SOJOURN)) then
+        if (player:hasKeyItem(INDIGO_ABYSSITE_OF_SOJOURN)) then
             SOJOURN = SOJOURN + 1;
         end
-        if(player:hasKeyItem(EMERALD_ABYSSITE_OF_SOJOURN)) then
+        if (player:hasKeyItem(EMERALD_ABYSSITE_OF_SOJOURN)) then
             SOJOURN = SOJOURN + 1;
         end
         return SOJOURN;

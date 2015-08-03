@@ -22,14 +22,14 @@ function onSpellCast(caster,target,spell)
     local power = 20;
 
     --Calculates resist chanve from Reist Blind
-    if(target:hasStatusEffect(effect)) then
+    if (target:hasStatusEffect(effect)) then
         spell:setMsg(75); -- no effect
         return effect;
     end
 
-    if(math.random(0,100) >= target:getMod(MOD_POISONRES)) then
-        if(duration >= 120) then
-            if(target:addStatusEffect(effect,power,3,duration)) then
+    if (math.random(0,100) >= target:getMod(MOD_POISONRES)) then
+        if (duration >= 120) then
+            if (target:addStatusEffect(effect,power,3,duration)) then
                 spell:setMsg(236);
             else
                 spell:setMsg(75);

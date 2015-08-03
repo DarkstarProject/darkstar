@@ -13,7 +13,7 @@ require("scripts/globals/magic");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
+    if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
         return 0;
     end
     return 1;

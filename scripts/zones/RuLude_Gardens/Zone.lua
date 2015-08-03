@@ -69,7 +69,7 @@ function onRegionEnter(player,region)
         if (player:getVar("COP_3-taru_story") == 2 and player:getVar("COP_shikarees_story") == 1 and player:getVar("COP_louverance_story") == 3 and player:getVar("COP_tenzen_story") == 1 and player:getVar("COP_jabbos_story") == 1) then
             player:startEvent(0x007A);
         end
-    elseif(player:getCurrentMission(TOAU) == EASTERLY_WINDS)then
+    elseif (player:getCurrentMission(TOAU) == EASTERLY_WINDS) then
         player:startEvent(0x276E);
     end
 end;
@@ -121,9 +121,9 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_louverance_story",0);
         player:setVar("COP_tenzen_story",0);
         player:setVar("COP_jabbos_story",0);
-    elseif(csid == 0x276E) then
-        if(option ==1)then
-            if(player:getFreeSlotsCount() == 0) then 
+    elseif (csid == 0x276E) then
+        if (option ==1) then
+            if (player:getFreeSlotsCount() == 0) then 
                 player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
 		player:completeMission(TOAU,EASTERLY_WINDS);
 		player:addMission(TOAU,WESTERLY_WINDS);

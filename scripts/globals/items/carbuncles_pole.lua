@@ -13,7 +13,7 @@ function onAdditionalEffect(player,target,damage)
 
 	local chance = math.random(1,2)
 	
-	if(chance > 1) then
+	if (chance > 1) then
 	
 		local dmg = math.random(50,90);
 		local params = {};
@@ -52,7 +52,7 @@ function onItemUse(target)
 	local hpHeal = math.random(160,220);
 
 	local dif = target:getMaxHP() - target:getHP();
-	if(hpHeal > dif) then
+	if (hpHeal > dif) then
 		hpHeal = dif;
 	end
 	target:addHP(hpHeal);

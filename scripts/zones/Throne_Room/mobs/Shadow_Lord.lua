@@ -28,16 +28,16 @@ function onMobFight(mob,target)
 	-- 2nd form
 	-- the Shadow Lord will do nothing but his Implosion attack. This attack hits everyone in the battlefield, but he only has 4000 HP
 
-	if(mob:getID() < 17453060) then -- first phase AI
+	if (mob:getID() < 17453060) then -- first phase AI
 		--once he's under 50% HP, start changing immunities and attack patterns
-		if(mob:getHP() / mob:getMaxHP() <= 0.5) then
+		if (mob:getHP() / mob:getMaxHP() <= 0.5) then
 
 			--have to keep track of both the last time he changed immunity and the HP he changed at
             local changeTime = mob:getLocalVar("changeTime");
             local changeHP = mob:getLocalVar("changeHP");
 
 			--subanimation 0 is first phase subanim, so just go straight to magic mode
-			if(mob:AnimationSub() == 0) then
+			if (mob:AnimationSub() == 0) then
 				mob:AnimationSub(1);
 				mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
 				mob:addStatusEffectEx(EFFECT_MAGIC_SHIELD, 0, 1, 0, 0);
@@ -48,7 +48,7 @@ function onMobFight(mob,target)
 				mob:setLocalVar("changeTime", mob:getBattleTime());
                 mob:setLocalVar("changeHP", mob:getHP());
 			-- subanimation 2 is physical mode, so check if he should change into magic mode
-			elseif(mob:AnimationSub() == 2 and (mob:getHP() <= changeHP - 1000 or
+			elseif (mob:AnimationSub() == 2 and (mob:getHP() <= changeHP - 1000 or
 					mob:getBattleTime() - changeTime > 300)) then
 				mob:AnimationSub(1);
 				mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
@@ -59,7 +59,7 @@ function onMobFight(mob,target)
 				mob:setLocalVar("changeTime", mob:getBattleTime());
                 mob:setLocalVar("changeHP", mob:getHP());
 			-- subanimation 1 is magic mode, so check if he should change into physical mode
-			elseif(mob:AnimationSub() == 1 and (mob:getHP() <= changeHP - 1000 or
+			elseif (mob:AnimationSub() == 1 and (mob:getHP() <= changeHP - 1000 or
 					mob:getBattleTime() - changeTime > 300)) then
 				-- and use an ability before changing
 				mob:useMobAbility(417);
@@ -75,7 +75,7 @@ function onMobFight(mob,target)
 		end
 	else --second phase AI
 		-- Implode every 9 seconds
-		if( mob:getBattleTime() % 9 == 0 ) then
+		if ( mob:getBattleTime() % 9 == 0 ) then
 			mob:useMobAbility(413);
 		end
 	end
@@ -87,7 +87,7 @@ end;
 
 function onMobDeath(mob,killer)
 
-	if(mob:getID() < 17453060) then
+	if (mob:getID() < 17453060) then
 		killer:startEvent(0x7d04);
 		killer:setVar("mobid",mob:getID());
 	else
@@ -128,7 +128,7 @@ function onEventFinish(player,csid,option)
 --printf("finishCSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x7d04) then
+	if (csid == 0x7d04) then
 		local mobid = player:getVar("mobid");
 		DespawnMob(mobid);
 		player:setVar("mobid",0);

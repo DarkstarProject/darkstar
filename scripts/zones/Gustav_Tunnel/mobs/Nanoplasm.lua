@@ -20,7 +20,7 @@ local victory =  true
 for i,v in ipairs(plasms) do
 local action = GetMobAction(v);
 printf("action %u",action);
-if not(action == 0 or (action >=21 and action <=23))then
+if not(action == 0 or (action >=21 and action <=23)) then
 victory = false
 end
 end

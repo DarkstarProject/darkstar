@@ -11,7 +11,7 @@ require("scripts/globals/monstertpmoves");
 
 function onMobSkillCheck(target,mob,skill)
     -- not used in psoxja
-    if(target:getZoneID() == 9) then
+    if (target:getZoneID() == 9) then
         return 1;
     end
     return 0;

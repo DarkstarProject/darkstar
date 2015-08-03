@@ -18,7 +18,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_POISON;
-    if(target:hasStatusEffect(typeEffect) == false) then
+    if (target:hasStatusEffect(typeEffect) == false) then
             target:addStatusEffect(typeEffect,5,3,180*resist);
     end
 

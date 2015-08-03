@@ -13,14 +13,14 @@ function onAdditionalEffect(player,target,damage)
 
 	local chance = 1;
 	
-	if(player:getMLevel() - target:getMLevel() > 5) then
+	if (player:getMLevel() - target:getMLevel() > 5) then
 		chance = math.random(1,2);
 	else
 		chance = 2;
 	end
 	
 	
-	if(chance > 1) then
+	if (chance > 1) then
 	
 		local dmg = math.random(38,70);
 		local params = {};

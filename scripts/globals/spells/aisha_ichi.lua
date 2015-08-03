@@ -23,14 +23,14 @@ function onSpellCast(caster,target,spell)
     local power = 15;
 
     --Calculates Resist Chance
-    if(resist >= 0.125) then
+    if (resist >= 0.125) then
     	local duration = 120 * resist;
     	
-        if(duration >= 50) then
+        if (duration >= 50) then
             -- Erases a weaker attack down and applies the stronger one
             local attackdown = target:getStatusEffect(effect);
-            if(attackdown ~= nil) then
-                if(attackdown:getPower() < power) then
+            if (attackdown ~= nil) then
+                if (attackdown:getPower() < power) then
                     target:delStatusEffect(effect);
                     target:addStatusEffect(effect,power,0,duration);
                     spell:setMsg(237);

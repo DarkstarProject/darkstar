@@ -15,7 +15,7 @@ require("scripts/zones/Den_of_Rancor/TextIDs");
 function onTrade(player,npc,trade)
 	
 	-- Trade Unlit Lantern
-	if(trade:hasItemQty(1138,1) and trade:getItemCount() == 1) then
+	if (trade:hasItemQty(1138,1) and trade:getItemCount() == 1) then
 		player:tradeComplete();
 		player:addItem(1139);
 		player:messageSpecial(ITEM_OBTAINED,1139); -- Rancor Flame
