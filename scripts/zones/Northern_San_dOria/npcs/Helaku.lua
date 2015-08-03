@@ -25,39 +25,30 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local currentMission = player:getCurrentMission(BASTOK);
-	local missionStatus = player:getVar("MissionStatus");
+	
+	local pNation = player:getNation();
+	local currentMission = player:getCurrentMission(pNation);
+	local MissionStatus = player:getVar("MissionStatus");
 
-	if (currentMission == THE_EMISSARY) then
-		-- Bastok Mission 2-3 Part I - San d'Oria > Windurst
-		if (missionStatus == 1) then
-			player:startEvent(0x02a4);
-		elseif (missionStatus == 2) then
-			player:startEvent(0x0218);
-		elseif (missionStatus == 3) then
-			player:showText(npc,HELAKU_DIALOG);
-		-- Bastok Mission 2-3 Part II - Windurst > San d'Oria
-		elseif (missionStatus == 7) then
-			player:startEvent(0x0219);
-		elseif (missionStatus == 11) then
+	if(pNation == (BASTOK)) then 
+		-- Bastok Mission 2-3 Part II - Windurst > San d'Oria 
+		if (currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 11) then
 			player:startEvent(0x022d);
-		end
-	-- Bastok Mission 2-3 Part I - San d'Oria > Windurst
-	elseif (currentMission == THE_EMISSARY_SANDORIA) then
-		if (missionStatus <= 4) then
-			player:startEvent(0x021e);
-		else
-			player:startEvent(0x021f);
-		end
-	-- Bastok Mission 2-3 Part II - Windurst > San d'Oria
-	elseif (currentMission == THE_EMISSARY_SANDORIA2) then
-		missionStatus = player:getVar("MissionStatus");
-		if (missionStatus == 8) then
-			player:startEvent(0x0219);
-		elseif (missionStatus == 9) then
-			player:startEvent(0x021e);
-		elseif (player:hasKeyItem(KINDRED_CREST)) then
+		elseif (currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 10 and player:hasKeyItem(KINDRED_CREST)) then
 			player:startEvent(0x0221);
+		elseif (currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 7) then
+			player:startEvent(0x0219);
+		-- Bastok Mission 2-3 Part I - San d'Oria > Windurst
+		elseif (currentMission == THE_EMISSARY_SANDORIA and MissionStatus == 5) then
+			player:startEvent(0x021f);
+		elseif (currentMission == THE_EMISSARY_SANDORIA and MissionStatus <= 4) then
+			player:startEvent(0x021e);
+		elseif (currentMission == THE_EMISSARY_SANDORIA and MissionStatus == 3) then
+			player:showText(npc,HELAKU_DIALOG);
+		elseif (currentMission == THE_EMISSARY and MissionStatus == 2) then
+			player:startEvent(0x0218);
+		elseif (currentMission == THE_EMISSARY and MissionStatus == 1) then
+			player:startEvent(0x02a4);
 		end
 	else
 		player:startEvent(0x021d);
@@ -82,15 +73,14 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
 	if (csid == 0x0218) then
+		player:addMission(BASTOK,THE_EMISSARY_SANDORIA);
 		player:setVar("MissionStatus",3);
 	elseif (csid == 0x021f) then
-		player:addMission(BASTOK,THE_EMISSARY);
+		player:addMission(BASTOK,THE_EMISSARY_SANDORIA2);
 		player:setVar("MissionStatus",6);
 	elseif (csid == 0x0219 and option == 0) then
-		player:addMission(BASTOK,THE_EMISSARY_SANDORIA2);
 		player:setVar("MissionStatus",8);
 	elseif (csid == 0x0221) then
-		player:addMission(BASTOK,THE_EMISSARY);
 		player:setVar("MissionStatus",11);
 		player:addKeyItem(KINDRED_REPORT);
 		player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);

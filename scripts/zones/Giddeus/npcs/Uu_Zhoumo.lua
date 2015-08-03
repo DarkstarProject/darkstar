@@ -17,7 +17,7 @@ require("scripts/zones/Giddeus/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST and trade:hasItemQty(16509,1) and trade:getItemCount() == 1) then -- Trade Aspir Knife
+	if(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST and player:getVar("MissionStatus") == 5 and trade:hasItemQty(16509,1) and trade:getItemCount() == 1) then -- Trade Aspir Knife
 		player:startEvent(0x0029);
 	end
 
@@ -28,16 +28,20 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	if(player:hasKeyItem(SHIELD_OFFERING)) then
-		player:startEvent(0x002a);
-	elseif(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST) then
-		if(player:hasKeyItem(DULL_SWORD)) then
+	
+	local pNation = player:getNation();
+	local currentMission = player:getCurrentMission(pNation);
+	local MissionStatus = player:getVar("MissionStatus");
+	
+	if(pNation == (SANDORIA))then
+		if(currentMission == JOURNEY_TO_WINDURST and player:hasKeyItem(SHIELD_OFFERING)) then
+			player:startEvent(0x002a);
+		end
+	elseif(pNation == (BASTOK)) then
+		if(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 4 and player:hasKeyItem(DULL_SWORD)) then
 			player:startEvent(0x0028);
-		elseif(player:getVar("MissionStatus") == 5) then
+		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 5) then
 			player:startEvent(0x002b);
-		else
-			player:startEvent(0x002c);
 		end
 	else
 		player:startEvent(0x002c);
