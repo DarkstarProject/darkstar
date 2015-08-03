@@ -34,8 +34,7 @@ function onTrigger(player,npc)
 			player:messageSpecial(MAKARIM_DIALOG_I);
 	else
 		player:startEvent(0x0068);
-	end
-	
+	end	
 end;
 
 -----------------------------------
