@@ -43,7 +43,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x021f);
 		elseif (currentMission == THE_EMISSARY_SANDORIA and MissionStatus <= 4) then
 			player:startEvent(0x021e);
-		elseif (currentMission == THE_EMISSARY and MissionStatus == 3) then
+		elseif (currentMission == THE_EMISSARY_SANDORIA and MissionStatus == 3) then
 			player:showText(npc,HELAKU_DIALOG);
 		elseif (currentMission == THE_EMISSARY and MissionStatus == 2) then
 			player:startEvent(0x0218);

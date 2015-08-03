@@ -17,7 +17,7 @@ require("scripts/zones/Giddeus/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST and trade:hasItemQty(16509,1) and trade:getItemCount() == 1) then -- Trade Aspir Knife
+	if(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST and player:getVar("MissionStatus") == 5 and trade:hasItemQty(16509,1) and trade:getItemCount() == 1) then -- Trade Aspir Knife
 		player:startEvent(0x0029);
 	end
 

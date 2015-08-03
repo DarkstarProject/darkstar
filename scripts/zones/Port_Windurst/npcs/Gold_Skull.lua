@@ -28,27 +28,24 @@ function onTrigger(player,npc)
 	local MissionStatus = player:getVar("MissionStatus");
 	
 	if(pNation == (BASTOK) then 
-		-- Bastok Mission 2-3 Part II - Windurst > San d'Oria
-		if(currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 11 and KI(KINDRED_REPORT)) then
+		-- Bastok Mission 2-3 Part II - San d'Oria > Windurst
+		if(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 11 and KI(KINDRED_REPORT)) then
 			player:startEvent(0x0044);
-		elseif(currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 9) then
+		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 9) then
 			player:startEvent(0x0039);
-		elseif(currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 8) then
+		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 8) then
 			player:showText(npc,GOLD_SKULL_DIALOG + 27);
-		elseif(currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 7) then 
+		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 7) then 
 			player:startEvent(0x003e);
-		-- Bastok Mission 2-3 Part I - Windurst > San d'Oria THE_EMISSARY_WINDURST2
+		-- Bastok Mission 2-3 Part I - Windurst > San d'Oria THE_EMISSARY_WINDURST2		
+		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 6) then
+			player:showText(npc,GOLD_SKULL_DIALOG);
+		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 4 and KI(SWORD_OFFERING)) then
+			player:startEvent(0x0036);
 		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 3 and KI(SWORD_OFFERING)) then
 			player:startEvent(0x0035);
 		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 2) then 
 			player:startEvent(0x0032);
-		--[[elseif(missionStatus == 12) then
-				player:startEvent(0x0036);
-			elseif(missionStatus == 14) then
-				player:showText(npc,GOLD_SKULL_DIALOG);
-			elseif(missionStatus == 15) then
-				player:startEvent(0x0039);
-			end]]-- missionStatus only goes up to 11...
 		else
 			player:startEvent(0x002b);
 		end

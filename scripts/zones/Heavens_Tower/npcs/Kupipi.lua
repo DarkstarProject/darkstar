@@ -46,8 +46,7 @@ function onTrigger(player,npc)
 	local currentMission = player:getCurrentMission(pNation);
 	local MissionStatus = player:getVar("MissionStatus");
 	
-	if(pNation == SANDORIA) then
-		
+	if(pNation == SANDORIA) then		
 		-- San d'Oria Mission 2-3 Part I - Windurst > Bastok
 		if(currentMission == JOURNEY_TO_WINDURST and MissionStatus == 6) then
 			player:startEvent(0x00f1);			
@@ -82,28 +81,24 @@ function onTrigger(player,npc)
 			player:startEvent(0x00f2,1,1,1,1,pNation);
 		end
 	elseif(pNation == WINDURST) then
-		if(currentMission == THE_THREE_KINGDOMS and MissionStatus == 0) then
-			player:startEvent(0x005F,0,0,0,LETTER_TO_THE_CONSULS_WINDURST);
-		elseif(currentMission == THE_THREE_KINGDOMS and MissionStatus == 11) then
+		if(currentMission == THE_THREE_KINGDOMS and MissionStatus == 11) then
 			player:startEvent(0x0065,0,0,ADVENTURERS_CERTIFICATE);
+		elseif(currentMission == THE_THREE_KINGDOMS and MissionStatus == 0) then
+			player:startEvent(0x005F,0,0,0,LETTER_TO_THE_CONSULS_WINDURST);
 		elseif(currentMission == THE_THREE_KINGDOMS) then
 			player:startEvent(0x0061);
-		elseif(currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 0) then
-			player:startEvent(0x0067,0,0,STARWAY_STAIRWAY_BAUBLE);
 		elseif(currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
 			player:startEvent(0x0068);
-		elseif(player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and MissionStatus == 3) then
+		elseif(currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 0) then
+			player:startEvent(0x0067,0,0,STARWAY_STAIRWAY_BAUBLE);		
+		elseif(currentMission == THE_JESTER_WHO_D_BE_KING and MissionStatus == 3) then
 			player:startEvent(0x0146);
 		elseif(player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS) and player:getVar("OwesPortalCharm") == 1) then
 			player:startEvent(0x0125); -- Kupipi repays your favor
-		else
-			player:startEvent(0x00fb);
-		end
-	
+		end	
 	else
 		player:startEvent(0x00fb);
 	end
-	
 end;
 
 -----------------------------------

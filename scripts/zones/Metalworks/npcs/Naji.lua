@@ -61,13 +61,13 @@ function onTrigger(player,npc)
 		-- Bastok Mission 2-3 Part II - Windurst > San d'Oria
 		elseif(currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 11 and KI(KINDRED_REPORT)) then
 			player:startEvent(0x02ca);	
-		-- The Emissary 2-3 San->Win
+		-- Bastok Mission 2-3 Part II - San d'Oria > Windurst
 		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 10 and KI(KINDRED_REPORT)) then
 			player:startEvent(0x02ca);	
 		-- The Emissary 2-3 	
-		elseif(player:hasKeyItem(LETTER_TO_THE_CONSULS_BASTOK) == false and MissionStatus >= 0) then
+		elseif(currentMission == THE_EMISSARY and MissionStatus >= 0) then
 			player:showText(npc,GOOD_LUCK);
-		elseif(player:hasKeyItem(LETTER_TO_THE_CONSULS_BASTOK) == false and MissionStatus == 0) then
+		elseif(currentMission == THE_EMISSARY and MissionStatus == 0) then
 				player:startEvent(0x02c9);
 		-- The Crystal Line 2-1
 		elseif(currentMission == THE_CRYSTAL_LINE and KI(C_L_REPORTS)) then

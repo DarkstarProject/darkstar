@@ -25,13 +25,13 @@ end;
 
 function onTrigger(player,npc)
 	local pNation = player:getNation();
-	local currentMission = player:getCurrentMission(pNation);
+	local currentMission = player:getCurrentMission();
 	local MissionStatus = player:getVar("MissionStatus");
 	
-	if(pNation == (BASTOK)then
+	if(pNation = (BASTOK)) then
+		-- Bastok Mission 2-3 Part I - San d'Oria > Windurst
 		if(currentMission == THE_EMISSARY and MissionStatus == 2) then
-			player:showText(npc,11141);
-		-- San->Win route
+			player:showText(npc,11141);	
 		elseif(currentMission == THE_EMISSARY and MissionStatus == 1) then
 			player:startEvent(0x0245);
 		end

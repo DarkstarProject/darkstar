@@ -116,17 +116,16 @@ function onTrigger(player,npc)
 			player:startEvent(0x0214);	
 		end
 	elseif(pNation == BASTOK) then
-		--Bastok 2-3 San -> Win
-		if(currentMission == THE_EMISSARY_SANDORIA and MissionStatus == 3) then
-				player:startEvent(0x01f5);
-		--Bastok 2-3 San -> Win, report to consulate
-		elseif(currentMission == THE_EMISSARY_SANDORIA and MissionStatus >=4 ) then
-			player:showText(npc,HALVER_OFFSET+279);
-		--Bastok 2-3 Win -> San
+		if(currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 9) then
+				player:showText(npc,HALVER_OFFSET+279);
+		--Bastok 2-3 Win -> San	Part II	
 		elseif(currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 8) then
 				player:startEvent(0x01f7);
-		elseif(currentMission == THE_EMISSARY_WINDURST2 and MissionStatus <= 10) then
-				player:showText(npc,HALVER_OFFSET+279);
+		--Bastok 2-3 San -> Win Part I 
+		elseif(currentMission == THE_EMISSARY_SANDORIA and MissionStatus ==4 ) then
+			player:showText(npc,HALVER_OFFSET+279);
+		elseif(currentMission == THE_EMISSARY_SANDORIA and MissionStatus == 3) then
+				player:startEvent(0x01f5);		
 		else
 			player:showText(npc,HALVER_OFFSET+1092);
 		end

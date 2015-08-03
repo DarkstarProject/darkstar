@@ -48,14 +48,17 @@ end;
 	
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
+	local currentMission = player:getCurrentMission();
+	local MissionStatus = player:getVar("MissionStatus");
 	
 	if(csid == 0x7d01) then
-		if(player:hasKeyItem(DARK_KEY)) then
-			player:addKeyItem(KINDRED_CREST);
-			player:messageSpecial(KEYITEM_OBTAINED,KINDRED_CREST);
-			player:setVar("MissionStatus",9);
-			player:delKeyItem(DARK_KEY);
+		if(currentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or currentMission(SANDORIA) == THE_THREE_KINGDOMS_SANDORIA2 and MissionStatus == 8) then
+			if(player:hasKeyItem(DARK_KEY)) then
+				player:addKeyItem(KINDRED_CREST);
+				player:messageSpecial(KEYITEM_OBTAINED,KINDRED_CREST);
+				player:setVar("MissionStatus",9);
+				player:delKeyItem(DARK_KEY);
+			end
 		end
 	end
-	
 end;
