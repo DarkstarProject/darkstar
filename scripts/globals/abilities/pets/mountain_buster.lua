@@ -22,8 +22,13 @@ function onPetAbility(target, pet, skill)
 	totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,numhits);
 	target:delHP(totaldamage);
 	target:updateEnmityFromDamage(pet,totaldamage);
-	
-	local typeEffect = EFFECT_BIND;
-	
+
 	return totaldamage;
+	
+	if damage > 0 then
+
+		if(target:hasStatusEffect(EFFECT_BIND) == false) then
+			target:addStatusEffect(EFFECT_BIND, 1, 0, duration);
+		end
+	end
 end
