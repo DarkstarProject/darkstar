@@ -47,52 +47,39 @@ function onTrigger(player,npc)
 	local MissionStatus = player:getVar("MissionStatus");
 	
 	if(pNation == SANDORIA) then
+		
 		-- San d'Oria Mission 2-3 Part I - Windurst > Bastok
-		if(currentMission == JOURNEY_TO_WINDURST) then
-			if(MissionStatus == 4) then
-				player:startEvent(0x00ee,1,1,1,1,pNation);
-			elseif(MissionStatus == 5) then
-				player:startEvent(0x00f0);
-			elseif(MissionStatus == 6) then
-				player:startEvent(0x00f1);
-			end
+		if(currentMission == JOURNEY_TO_WINDURST and MissionStatus == 6) then
+			player:startEvent(0x00f1);			
+		elseif(currentMission == JOURNEY_TO_WINDURST and MissionStatus == 5) then
+			player:startEvent(0x00f0);
+		elseif(currentMission == JOURNEY_TO_WINDURST and MissionStatus == 4) then
+			player:startEvent(0x00ee,1,1,1,1,pNation);
 		-- San d'Oria Mission 2-3 Part II - Bastok > Windurst
-		elseif(currentMission == JOURNEY_TO_WINDURST2) then
-			if(MissionStatus == 7) then
-				player:startEvent(0x00f2,1,1,1,1,0);
-			elseif(MissionStatus == 8) then
-				player:startEvent(0x00f3);
-			elseif(MissionStatus == 9) then
-				player:startEvent(0x00f6);
-			elseif(MissionStatus == 10) then
-				player:startEvent(0x00f7);
-			end
-		else
-			player:startEvent(0x00fb);
+		elseif(currentMission == JOURNEY_TO_WINDURST2 and MissionStatus == 10) then
+			player:startEvent(0x00f7);
+		elseif(currentMission == JOURNEY_TO_WINDURST2 and MissionStatus == 9) then
+			player:startEvent(0x00f6);
+		elseif(currentMission == JOURNEY_TO_WINDURST2 and MissionStatus == 8) then
+			player:startEvent(0x00f3);
+		elseif(currentMission == JOURNEY_TO_WINDURST2 and MissionStatus == 7) then
+			player:startEvent(0x00f2,1,1,1,1,0);
 		end
 	elseif(pNation == BASTOK) then
-		-- Bastok Mission 2-3 Part I - Windurst > San d'Oria
-		if(currentMission == THE_EMISSARY_WINDURST) then
-			if(MissionStatus == 3) then
-				player:startEvent(0x00ee,1,1,1,1,pNation);
-			elseif(MissionStatus <= 5) then
-				player:startEvent(0x00f0);
-			elseif(MissionStatus == 6) then
-				player:startEvent(0x00f1);
-			end
+		-- Bastok Mission 2-3 Part I - Windurst > San d'Oria		
+		if(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 6) then
+			player:startEvent(0x00f1);
+		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus <= 5) then
+			player:startEvent(0x00f0);
+		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 2) then
+			player:startEvent(0x00ee,1,1,1,1,pNation);
 		-- Bastok Mission 2-3 Part II - San d'Oria > Windurst
-		elseif(currentMission == THE_EMISSARY_WINDURST2) then
-			if(MissionStatus == 7) then
-				player:startEvent(0x00f2,1,1,1,1,pNation);
-			elseif(MissionStatus == 8) then
-				player:startEvent(0x00f3);
-			elseif(MissionStatus == 9) then
-				player:startEvent(0x00f4);
-			elseif(MissionStatus == 10) then
-				player:startEvent(0x00f5);
-			end
-		else
-			player:startEvent(0x00fb);
+		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 10) then
+			player:startEvent(0x00f5);
+		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 8) then
+			player:startEvent(0x00f3);		
+		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 7) then
+			player:startEvent(0x00f2,1,1,1,1,pNation);
 		end
 	elseif(pNation == WINDURST) then
 		if(currentMission == THE_THREE_KINGDOMS and MissionStatus == 0) then
@@ -135,13 +122,14 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	local pNation = player:getNation();
 	
 	if(csid == 0x00ee) then
-		if(player:getNation() == BASTOK) then
-			player:setVar("MissionStatus",4);
+		if(pNation == BASTOK) then
+			player:setVar("MissionStatus",3);
 			player:addKeyItem(SWORD_OFFERING);
 			player:messageSpecial(KEYITEM_OBTAINED,SWORD_OFFERING);
-		else
+		elseif (pNation == SANDORIA) then
 			player:setVar("MissionStatus",5);
 			player:addKeyItem(SHIELD_OFFERING);
 			player:messageSpecial(KEYITEM_OBTAINED,SHIELD_OFFERING);
