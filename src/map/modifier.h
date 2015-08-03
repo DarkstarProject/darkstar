@@ -309,6 +309,7 @@ enum MODIFIER
     MOD_STEAL                     = 0x12A, // Increase/Decrease THF Steal chance (modId = 298)
     MOD_TRIPLE_ATTACK             = 0x12E, // Percent chance (modId = 302)
     MOD_TREASURE_HUNTER           = 0x12F, // Percent chance (modId = 303)
+    MOD_TRICK_ATK_AGI             = 0x208, // % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit) (modId = 520)
 
     // Paladin
     MOD_ABSORB_PHYSDMG_TO_MP      = 0x1AA, // Absorbs a percentage of physical damage taken to MP. (modId = 426)
@@ -370,6 +371,7 @@ enum MODIFIER
     // Ninja
     MOD_UTSUSEMI                  = 0x133, // Everyone's favorite --tracks shadows. (modId = 307)
     MOD_NINJA_TOOL                = 0x134, // Percent chance to not use a tool. (modId = 308)
+    MOD_NIN_NUKE_BONUS            = 0x20A, // magic attack bonus for NIN nukes (modId = 522)
 
     // Dragoon
     MOD_JUMP_TP_BONUS             = 0x169, // bonus tp player receives when using jump (must be divided by 10) (modId = 361)
@@ -568,11 +570,10 @@ enum MODIFIER
     MOD_SHIELDBLOCKRATE           = 0x206, // Affects shield block rate, percent based (modID = 518)
     MOD_DIA_DOT                   = 0x139, //Increases the DoT damage of Dia (modId = 313)
     MOD_ENH_DRAIN_ASPIR           = 0x13B, // % damage boost to Drain and Aspir(modId = 315)
-    MOD_TRICK_ATK_AGI             = 0x208, // % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit) (modId = 520)
     MOD_AUGMENTS_ABSORB           = 0x209  // Direct Absorb spell increase while Liberator is equipped (percentage based) (modId = 521)
 
-    // MOD_SPARE = 0x20A, // (modId = 522)
     // MOD_SPARE = 0x20B, // (modId = 523)
+    // MOD_SPARE = 0x20C, // (modId = 524)
 
 };
 
