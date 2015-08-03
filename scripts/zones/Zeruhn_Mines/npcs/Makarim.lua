@@ -24,13 +24,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	if(player:getCurrentMission(BASTOK) == THE_ZERUHN_REPORT) then
-		if(player:hasKeyItem(ZERUHN_REPORT)) then
+	
+	local currentMission = player:getCurrentMission(pNation);
+	local MissionStatus = player:getVar("MissionStatus");
+	
+	if(currentMission(BASTOK) == THE_ZERUHN_REPORT and MissionStatus == 0) then
+		player:startEvent(0x0079);
+	elseif(currentMission(BASTOK) == THE_ZERUHN_REPORT and MissionStatus == 1) then
 			player:messageSpecial(MAKARIM_DIALOG_I);
-		else
-			player:startEvent(0x0079);
-		end
 	else
 		player:startEvent(0x0068);
 	end
@@ -57,6 +58,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0079) then
 		player:addKeyItem(ZERUHN_REPORT);
 		player:messageSpecial(KEYITEM_OBTAINED,ZERUHN_REPORT);
+		player:setVar("MissionStatus",1);
 	end
 	
 end;

@@ -38,43 +38,46 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(player:hasKeyItem(YASINS_SWORD)) then -- The Doorman, WAR AF1
+	local KI = player:hasKeyItem();
+	local pNation = player:getNation();
+	local currentMission = player:getCurrentMission(pNation);
+	local MissionStatus = player:getVar("MissionStatus");
+	-- The Doorman, WAR AF1
+	if(player:hasKeyItem(YASINS_SWORD)) then 
 		player:startEvent(0x02ee);
-	elseif(player:getCurrentMission(BASTOK) ~= 255) then
-		local currentMission = player:getCurrentMission(BASTOK);
-		
-		if(currentMission == THE_ZERUHN_REPORT and player:hasKeyItem(ZERUHN_REPORT)) then
-			if(player:seenKeyItem(ZERUHN_REPORT)) then
-				player:startEvent(0x02C6,0);
-			else
-				player:startEvent(0x02C6,1);
-			end
-		elseif(currentMission == THE_CRYSTAL_LINE and player:hasKeyItem(C_L_REPORTS)) then
-			player:startEvent(0x02c7);
-		elseif(currentMission == THE_EMISSARY and player:hasKeyItem(KINDRED_REPORT)) then
-			player:startEvent(0x02ca);
-		elseif(currentMission == THE_EMISSARY) then
-			if(player:hasKeyItem(LETTER_TO_THE_CONSULS_BASTOK) == false and player:getVar("MissionStatus") == 0) then
-				player:startEvent(0x02c9);
-			else
-				player:showText(npc,GOOD_LUCK);
-			end
-		elseif(player:hasKeyItem(MESSAGE_TO_JEUNO_BASTOK) and player:getVar("MissionStatus") == 0) then
-			player:startEvent(0x02d0);
-		elseif(currentMission == DARKNESS_RISING and player:getVar("MissionStatus") == 1) then
-			player:startEvent(0x02d1);
-		elseif(player:hasKeyItem(BURNT_SEAL)) then
-			player:startEvent(0x02d2);
-		elseif(currentMission == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 0) then
-			player:startEvent(0x02f9);
-		elseif(currentMission == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 3) then
+	elseif(pNation == (BASTOK) then		
+		-- The Pirates' Cove 6-2
+		if(currentMission == THE_PIRATE_S_COVE and MissionStatus == 3) then
 			player:startEvent(0x02fa);
-		else
-			player:startEvent(0x02bc);
+		elseif(currentMission == THE_PIRATE_S_COVE and MissionStatus == 0) then
+			player:startEvent(0x02f9);
+		-- Darkness Rising 5-1
+		elseif(currentMission == DARKNESS_RISING and KI(BURNT_SEAL)) then
+			player:startEvent(0x02d2);		
+		elseif(currentMission == DARKNESS_RISING and MissionStatus == 1) then
+			player:startEvent(0x02d1);
+		elseif(currentMission == DARKNESS_RISING and MissionStatus == 0 and KI(MESSAGE_TO_JEUNO_BASTOK)) then
+			player:startEvent(0x02d0);			
+		-- Bastok Mission 2-3 Part II - Windurst > San d'Oria
+		elseif(currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 11 and KI(KINDRED_REPORT)) then
+			player:startEvent(0x02ca);	
+		-- The Emissary 2-3 San->Win
+		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 10 and KI(KINDRED_REPORT)) then
+			player:startEvent(0x02ca);	
+		-- The Emissary 2-3 	
+		elseif(player:hasKeyItem(LETTER_TO_THE_CONSULS_BASTOK) == false and MissionStatus >= 0) then
+			player:showText(npc,GOOD_LUCK);
+		elseif(player:hasKeyItem(LETTER_TO_THE_CONSULS_BASTOK) == false and MissionStatus == 0) then
+				player:startEvent(0x02c9);
+		-- The Crystal Line 2-1
+		elseif(currentMission == THE_CRYSTAL_LINE and KI(C_L_REPORTS)) then
+			player:startEvent(0x02c7);
+		-- The Zeruhn Report 1-1
+		elseif(currentMission == THE_ZERUHN_REPORT and MissionStatus == 1 and KI(ZERUHN_REPORT)) then
+			player:startEvent(0x02C6,0);
+		elseif(currentMission == THE_ZERUHN_REPORT and MissionStatus == 0) then
+			player:startEvent(0x02C6,1);
 		end
-	elseif(player:hasKeyItem(YASINS_SWORD)) then -- The Doorman
-		player:startEvent(0x02ee);
 	else
 		player:startEvent(0x02bc);
 	end
