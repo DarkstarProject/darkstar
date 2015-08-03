@@ -1744,7 +1744,7 @@ INSERT INTO `augments` VALUES ('1455', '0', '0', '0', '0'); -- Enhances "Rayke" 
 INSERT INTO `augments` VALUES ('1456', '0', '0', '0', '0'); -- Enhances "Inspire" effect
 INSERT INTO `augments` VALUES ('1457', '0', '0', '0', '0'); -- Enhances "Sleight of Sword" effect
 
--- 1458 to 2046 currently unused. Leave at zero.
+-- 1458 to 1791 currently unused. Leave at zero.
 INSERT INTO `augments` VALUES ('1458', '0', '0', '0', '0');
 INSERT INTO `augments` VALUES ('1459', '0', '0', '0', '0');
 INSERT INTO `augments` VALUES ('1460', '0', '0', '0', '0');
@@ -2109,21 +2109,27 @@ INSERT INTO `augments` VALUES ('1788', '0', '0', '0', '0');
 INSERT INTO `augments` VALUES ('1789', '0', '0', '0', '0');
 INSERT INTO `augments` VALUES ('1790', '0', '0', '0', '0');
 INSERT INTO `augments` VALUES ('1791', '0', '0', '0', '0');
-INSERT INTO `augments` VALUES ('1792', '0', '0', '0', '0');
-INSERT INTO `augments` VALUES ('1793', '0', '0', '0', '0');
-INSERT INTO `augments` VALUES ('1794', '0', '0', '0', '0');
-INSERT INTO `augments` VALUES ('1795', '0', '0', '0', '0');
-INSERT INTO `augments` VALUES ('1796', '0', '0', '0', '0');
-INSERT INTO `augments` VALUES ('1797', '0', '0', '0', '0');
-INSERT INTO `augments` VALUES ('1798', '0', '0', '0', '0');
-INSERT INTO `augments` VALUES ('1799', '0', '0', '0', '0');
-INSERT INTO `augments` VALUES ('1800', '0', '0', '0', '0');
-INSERT INTO `augments` VALUES ('1801', '0', '0', '0', '0');
-INSERT INTO `augments` VALUES ('1802', '0', '0', '0', '0');
-INSERT INTO `augments` VALUES ('1803', '0', '0', '0', '0');
-INSERT INTO `augments` VALUES ('1804', '0', '0', '0', '0');
-INSERT INTO `augments` VALUES ('1805', '0', '0', '0', '0');
-INSERT INTO `augments` VALUES ('1806', '0', '0', '0', '0');
+-- End unused block
+
+INSERT INTO `augments` VALUES ('1792', '0', '8', '1', '1'); -- Pet: STR+1
+INSERT INTO `augments` VALUES ('1793', '0', '9', '1', '1'); -- Pet: DEX+1
+INSERT INTO `augments` VALUES ('1794', '0', '10', '1', '1'); -- Pet: VIT+1
+INSERT INTO `augments` VALUES ('1795', '0', '11', '1', '1'); -- Pet: AGI+1
+INSERT INTO `augments` VALUES ('1796', '0', '12', '1', '1'); -- Pet: INT+1
+INSERT INTO `augments` VALUES ('1797', '0', '13', '1', '1'); -- Pet: MND+1
+INSERT INTO `augments` VALUES ('1798', '0', '14', '1', '1'); -- Pet: CHR+1
+INSERT INTO `augments` VALUES ('1799', '0', '8', '-1', '1'); -- Pet: STR-1
+INSERT INTO `augments` VALUES ('1800', '0', '9', '-1', '1'); -- Pet: DEX-1
+INSERT INTO `augments` VALUES ('1801', '0', '10', '-1', '1'); -- Pet: VIT-1
+INSERT INTO `augments` VALUES ('1802', '0', '11', '-1', '1'); -- Pet: AGI-1 
+INSERT INTO `augments` VALUES ('1803', '0', '12', '-1', '1'); -- Pet: INT-1
+INSERT INTO `augments` VALUES ('1804', '0', '13', '-1', '1'); -- Pet: MND-1
+INSERT INTO `augments` VALUES ('1805', '0', '14', '-1', '1'); -- Pet: CHR-1
+INSERT INTO `augments` VALUES ('1806', '0', '8', '1', '1'); -- Pet: STR+1 DEX+1 VIT+1
+INSERT INTO `augments` VALUES ('1806', '0', '9', '1', '1'); -- Cont.
+INSERT INTO `augments` VALUES ('1806', '0', '10', '1', '1'); -- Cont.
+
+-- 1807 to 2046 currently unused. Leave at zero.
 INSERT INTO `augments` VALUES ('1807', '0', '0', '0', '0');
 INSERT INTO `augments` VALUES ('1808', '0', '0', '0', '0');
 INSERT INTO `augments` VALUES ('1809', '0', '0', '0', '0');
