@@ -38,7 +38,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local KI = player:hasKeyItem();
+	
 	local pNation = player:getNation();
 	local currentMission = player:getCurrentMission(pNation);
 	local MissionStatus = player:getVar("MissionStatus");
@@ -52,17 +52,17 @@ function onTrigger(player,npc)
 		elseif(currentMission == THE_PIRATE_S_COVE and MissionStatus == 0) then
 			player:startEvent(0x02f9);
 		-- Darkness Rising 5-1
-		elseif(currentMission == DARKNESS_RISING and KI(BURNT_SEAL)) then
+		elseif(currentMission == DARKNESS_RISING and player:hasKeyItem(BURNT_SEAL)) then
 			player:startEvent(0x02d2);		
 		elseif(currentMission == DARKNESS_RISING and MissionStatus == 1) then
 			player:startEvent(0x02d1);
-		elseif(currentMission == DARKNESS_RISING and MissionStatus == 0 and KI(MESSAGE_TO_JEUNO_BASTOK)) then
+		elseif(currentMission == DARKNESS_RISING and MissionStatus == 0 and player:hasKeyItem(MESSAGE_TO_JEUNO_BASTOK)) then
 			player:startEvent(0x02d0);			
 		-- Bastok Mission 2-3 Part II - Windurst > San d'Oria
-		elseif(currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 11 and KI(KINDRED_REPORT)) then
+		elseif(currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 11 and player:hasKeyItem(KINDRED_REPORT)) then
 			player:startEvent(0x02ca);	
 		-- Bastok Mission 2-3 Part II - San d'Oria > Windurst
-		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 10 and KI(KINDRED_REPORT)) then
+		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 10 and player:hasKeyItem(KINDRED_REPORT)) then
 			player:startEvent(0x02ca);	
 		-- The Emissary 2-3 	
 		elseif(currentMission == THE_EMISSARY and MissionStatus >= 0) then
@@ -70,10 +70,10 @@ function onTrigger(player,npc)
 		elseif(currentMission == THE_EMISSARY and MissionStatus == 0) then
 				player:startEvent(0x02c9);
 		-- The Crystal Line 2-1
-		elseif(currentMission == THE_CRYSTAL_LINE and KI(C_L_REPORTS)) then
+		elseif(currentMission == THE_CRYSTAL_LINE and player:hasKeyItem(C_L_REPORTS)) then
 			player:startEvent(0x02c7);
 		-- The Zeruhn Report 1-1
-		elseif(currentMission == THE_ZERUHN_REPORT and MissionStatus == 1 and KI(ZERUHN_REPORT)) then
+		elseif(currentMission == THE_ZERUHN_REPORT and MissionStatus == 1 and player:hasKeyItem(ZERUHN_REPORT)) then
 			player:startEvent(0x02C6,0);
 		elseif(currentMission == THE_ZERUHN_REPORT and MissionStatus == 0) then
 			player:startEvent(0x02C6,1);

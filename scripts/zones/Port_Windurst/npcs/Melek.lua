@@ -25,7 +25,6 @@ end;
 
 function onTrigger(player,npc)
 	
-	local KI = player:hasKeyItem();
 	local pNation = player:getNation();
 	local currentMission = player:getCurrentMission(pNation);
 	local MissionStatus = player:getVar("MissionStatus");
@@ -38,16 +37,16 @@ function onTrigger(player,npc)
 			player:startEvent(0x0037);
 		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus <= 5) then
 			player:showText(npc,MELEK_DIALOG_B)
-		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 3 and KI(SWORD_OFFERING)) then
+		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 3 and player:hasKeyItem(SWORD_OFFERING)) then
 			player:startEvent(0x0035);
 		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 2) then
 			player:startEvent(0x0031);			
 		elseif(currentMission == THE_EMISSARY and MissionStatus == 1) then
 			player:startEvent(0x0030);		
 		-- Bastok Mission 2-3 Part II - San d'Oria > Windurst
-		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 10 and KI(KINDRED_REPORT)) then
+		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 10 and player:hasKeyItem(KINDRED_REPORT)) then
 			player:startEvent(0x0043);
-		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 9 and KI(KINDRED_CREST)) then
+		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 9 and player:hasKeyItem(KINDRED_CREST)) then
 			player:startEvent(0x0042);
 		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 8) then
 			player:showText(npc,MELEK_DIALOG_A);

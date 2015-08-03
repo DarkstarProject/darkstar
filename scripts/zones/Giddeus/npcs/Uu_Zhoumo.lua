@@ -28,17 +28,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local KI = player:hasKeyItem();
+	
 	local pNation = player:getNation();
 	local currentMission = player:getCurrentMission(pNation);
 	local MissionStatus = player:getVar("MissionStatus");
 	
 	if(pNation == (SANDORIA))then
-		if(currentMission == JOURNEY_TO_WINDURST and KI(SHIELD_OFFERING)) then
+		if(currentMission == JOURNEY_TO_WINDURST and player:hasKeyItem(SHIELD_OFFERING)) then
 			player:startEvent(0x002a);
 		end
 	elseif(pNation == (BASTOK)) then
-		if(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 4 and KI(DULL_SWORD)) then
+		if(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 4 and player:hasKeyItem(DULL_SWORD)) then
 			player:startEvent(0x0028);
 		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 5) then
 			player:startEvent(0x002b);

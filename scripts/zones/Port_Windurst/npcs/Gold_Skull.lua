@@ -22,14 +22,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local KI = player:hasKeyItem();
+	
 	local pNation = player:getNation();
 	local currentMission = player:getCurrentMission(pNation);
 	local MissionStatus = player:getVar("MissionStatus");
 	
 	if(pNation == (BASTOK) then 
 		-- Bastok Mission 2-3 Part II - San d'Oria > Windurst
-		if(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 11 and KI(KINDRED_REPORT)) then
+		if(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 11 and player:hasKeyItem(KINDRED_REPORT)) then
 			player:startEvent(0x0044);
 		elseif(currentMission == THE_EMISSARY_SANDORIA2 and MissionStatus == 9) then
 			player:startEvent(0x0039);
@@ -40,9 +40,9 @@ function onTrigger(player,npc)
 		-- Bastok Mission 2-3 Part I - Windurst > San d'Oria THE_EMISSARY_WINDURST2		
 		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 6) then
 			player:showText(npc,GOLD_SKULL_DIALOG);
-		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 4 and KI(SWORD_OFFERING)) then
+		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 4 and player:hasKeyItem(SWORD_OFFERING)) then
 			player:startEvent(0x0036);
-		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 3 and KI(SWORD_OFFERING)) then
+		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 3 and player:hasKeyItem(SWORD_OFFERING)) then
 			player:startEvent(0x0035);
 		elseif(currentMission == THE_EMISSARY_WINDURST and MissionStatus == 2) then 
 			player:startEvent(0x0032);

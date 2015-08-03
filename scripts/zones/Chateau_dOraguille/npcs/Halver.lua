@@ -34,7 +34,7 @@ end;
 
 function onTrigger(player,npc)
 	--print(player:getVar("MissionStatus"));
-    local KI = player:hasKeyItem();
+   
 	local pNation = player:getNation();
 	local currentMission = player:getCurrentMission(pNation);
 	local WildcatSandy = player:getVar("WildcatSandy");
@@ -46,7 +46,7 @@ function onTrigger(player,npc)
 	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,16) == false) then
 		player:startEvent(0x022e);
 	-- Blackmail quest
-	elseif(player:getQuestStatus(SANDORIA, BLACKMAIL) == QUEST_ACCEPTED and KI(SUSPICIOUS_ENVELOPE)) then
+	elseif(player:getQuestStatus(SANDORIA, BLACKMAIL) == QUEST_ACCEPTED and player:hasKeyItem(SUSPICIOUS_ENVELOPE)) then
 		player:startEvent(0x0225);
 		player:setVar("BlackMailQuest",1);
 		player:delKeyItem(SUSPICIOUS_ENVELOPE);	
@@ -76,7 +76,7 @@ function onTrigger(player,npc)
 		elseif(currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus >= 2 and MissionStatus <=5)then 
 			player:startEvent(0x001d);		
 		-- Mission San d'Oria 8-1 Coming of Age -- 
-		elseif(currentMission == COMING_OF_AGE and MissionStatus == 3 and KI(DROPS_OF_AMNIO)) then
+		elseif(currentMission == COMING_OF_AGE and MissionStatus == 3 and player:hasKeyItem(DROPS_OF_AMNIO)) then
 			player:startEvent(0x0066);
 		elseif(currentMission == COMING_OF_AGE and MissionStatus == 1) then
 			player:startEvent(0x003A);		
@@ -94,12 +94,12 @@ function onTrigger(player,npc)
 			player:showText(npc,HALVER_OFFSET+500);
 		elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 5) then
 			player:showText(npc,HALVER_OFFSET+471);
-		elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 4 and KI(SHADOW_FRAGMENT)) then
+		elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 4 and player:hasKeyItem(SHADOW_FRAGMENT)) then
 			player:startEvent(0x0224);		
 		elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 0) then
 			player:startEvent(0x0222);
 			-- Mission San D'Oria 5-1 The Ruins of Fei'Yin
-		elseif(currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 12 and KI(BURNT_SEAL)) then
+		elseif(currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 12 and player:hasKeyItem(BURNT_SEAL)) then
 			player:startEvent(0x0216);		
 		elseif(currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 10) then
 			player:showText(npc,HALVER_OFFSET+334);

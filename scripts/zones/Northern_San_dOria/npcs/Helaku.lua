@@ -25,7 +25,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local KI = player:hasKeyItem();
+	
 	local pNation = player:getNation();
 	local currentMission = player:getCurrentMission(pNation);
 	local MissionStatus = player:getVar("MissionStatus");
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
 		-- Bastok Mission 2-3 Part II - Windurst > San d'Oria 
 		if (currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 11) then
 			player:startEvent(0x022d);
-		elseif (currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 10 and KI(KINDRED_CREST)) then
+		elseif (currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 10 and player:hasKeyItem(KINDRED_CREST)) then
 			player:startEvent(0x0221);
 		elseif (currentMission == THE_EMISSARY_WINDURST2 and MissionStatus == 7) then
 			player:startEvent(0x0219);
