@@ -7425,7 +7425,7 @@ INSERT INTO `item_armor` VALUES (17706,'vulcan_blade',47,0,36257,263,0,0,3,0);
 INSERT INTO `item_armor` VALUES (17707,'martial_anelace',72,0,2195665,274,0,0,3,0);
 INSERT INTO `item_armor` VALUES (17708,'auriga_xiphos',19,0,209,264,0,0,3,0);
 INSERT INTO `item_armor` VALUES (17709,'swan_bilbo',60,0,512,181,0,0,3,0);
-INSERT INTO `item_armor` VALUES (17710,'justice_sword',73,0,112,249,0,0,3,0);
+INSERT INTO `item_armor` VALUES (17710,'justice_sword',73,0,112,254,0,0,3,0);
 INSERT INTO `item_armor` VALUES (17711,'shivas_shotel',72,0,43233,358,0,0,3,0);
 INSERT INTO `item_armor` VALUES (17712,'kaskara_+1',71,0,2097345,278,0,0,3,0);
 INSERT INTO `item_armor` VALUES (17713,'macuahuitl',65,0,2195665,381,0,0,3,0);
