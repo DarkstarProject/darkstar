@@ -568,11 +568,11 @@ enum MODIFIER
     MOD_SHIELDBLOCKRATE           = 0x206, // Affects shield block rate, percent based (modID = 518)
     MOD_DIA_DOT                   = 0x139, //Increases the DoT damage of Dia (modId = 313)
     MOD_ENH_DRAIN_ASPIR           = 0x13B, // % damage boost to Drain and Aspir(modId = 315)
-    MOD_TRICK_ATK_AGI             = 0x208 // % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit) (modId = 520)
-
-    // MOD_SPARE = 0x209, // (modId = 521)
+    MOD_TRICK_ATK_AGI             = 0x208, // % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit) (modId = 520)
+    MOD_AUGMENTS_ABSORB           = 0x209  // Direct Absorb spell increase while Liberator is equipped (percentage based) (modId = 521)
+	
     // MOD_SPARE = 0x20A, // (modId = 522)
-
+    // MOD_SPARE = 0x20B, // (modId = 523)
 
 };
 
