@@ -30,11 +30,11 @@ function onTrade(player,npc,trade)
 	local questItemNeeded = 0;
 	
 	-- Player traded a key.
-	if((trade:hasItemQty(1035,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
+	if ((trade:hasItemQty(1035,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
 		
 		local zone = player:getZoneID();
 		-- IMPORTANT ITEM: AF1 BST QUEST Beast collar  -----------
-		if(player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED and 
+		if (player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED and 
 		   player:getVar("scatIntoShadowCS") == 1 and player:hasItem(13121) == false) then 
 			questItemNeeded = 1;
 		end
@@ -42,21 +42,21 @@ function onTrade(player,npc,trade)
 		
 		local pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
 		local success = 0;
-		if(pack[2] ~= nil) then
+		if (pack[2] ~= nil) then
 			player:messageSpecial(pack[2]);
 			success = pack[1];
 		else
 			success = pack[1];
 		end
 		
-		if(success ~= -2) then
+		if (success ~= -2) then
 			player:tradeComplete();
 			
-			if(math.random() <= success) then
+			if (math.random() <= success) then
 				-- Succeded to open the coffer
 				player:messageSpecial(CHEST_UNLOCKED);
 				
-				if(questItemNeeded == 1) then
+				if (questItemNeeded == 1) then
 					player:addItem(13121);
 					player:messageSpecial(ITEM_OBTAINED,13121); -- Beast collar
 				else
@@ -67,7 +67,7 @@ function onTrade(player,npc,trade)
 					-- print("[1]", loot[1]); -- debug
 					-- print("[2]", loot[2]); -- debug
 					
-					if(loot[1]=="gil") then
+					if (loot[1]=="gil") then
 						player:addGil(loot[2]*GIL_RATE);
 						player:messageSpecial(GIL_OBTAINED,loot[2]*GIL_RATE);
 					else

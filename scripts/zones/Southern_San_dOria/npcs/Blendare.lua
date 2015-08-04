@@ -15,14 +15,14 @@ package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED)then
-if(trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeBlendare") == 0)then 
+if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED) then
+if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeBlendare") == 0) then 
 player:messageSpecial(8709);
 player:setVar("FFR",player:getVar("FFR") - 1);
 player:setVar("tradeBlendare",1);
 		player:messageSpecial(FLYER_ACCEPTED);
 		trade:complete();
-elseif(player:getVar("tradeBlendare") ==1)then
+elseif (player:getVar("tradeBlendare") ==1) then
 player:messageSpecial(8710);
 end
 end

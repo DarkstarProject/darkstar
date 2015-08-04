@@ -21,9 +21,9 @@ function onTrade(player,npc,trade)
 
 	local thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
 
-	if(thickAsThievesGrapplingCS >= 2 and thickAsThievesGrapplingCS <= 7) then
-		if(trade:hasItemQty(17474,1) and trade:getItemCount() == 1) then -- Trade grapel
-			if(player:getEquipID(SLOT_MAIN) == 0 and player:getEquipID(SLOT_SUB) == 0 and 
+	if (thickAsThievesGrapplingCS >= 2 and thickAsThievesGrapplingCS <= 7) then
+		if (trade:hasItemQty(17474,1) and trade:getItemCount() == 1) then -- Trade grapel
+			if (player:getEquipID(SLOT_MAIN) == 0 and player:getEquipID(SLOT_SUB) == 0 and 
 				player:getEquipID(SLOT_RANGED) == 0 and player:getEquipID(SLOT_AMMO) == 0 and 
 				player:getEquipID(SLOT_HEAD) == 0 and player:getEquipID(SLOT_BODY) == 0 and 
 				player:getEquipID(SLOT_HANDS) == 0 and player:getEquipID(SLOT_LEGS) == 0 and
@@ -48,17 +48,17 @@ function onTrigger(player,npc)
 	local thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES);
 	local thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
 	
-	if(thickAsThieves == QUEST_ACCEPTED) then
-		if(thickAsThievesGrapplingCS == 2) then
+	if (thickAsThieves == QUEST_ACCEPTED) then
+		if (thickAsThievesGrapplingCS == 2) then
 			player:messageSpecial(THF_AF_MOB);	
 			SpawnMob(17269107,120):updateClaim(player); -- Climbpix Highrise
 			setMobPos(17269107,193,32,211,0);	
-		elseif(thickAsThievesGrapplingCS == 0 or thickAsThievesGrapplingCS == 1 or
+		elseif (thickAsThievesGrapplingCS == 0 or thickAsThievesGrapplingCS == 1 or
 			thickAsThievesGrapplingCS == 3 or thickAsThievesGrapplingCS == 4 or
 			thickAsThievesGrapplingCS == 5 or thickAsThievesGrapplingCS == 6 or
 			thickAsThievesGrapplingCS == 7) then
 			player:messageSpecial(THF_AF_WALL_OFFSET);	--  It is impossible to climb this wall with your bare hands.
-		elseif(thickAsThievesGrapplingCS == 8) then
+		elseif (thickAsThievesGrapplingCS == 8) then
 			player:messageSpecial(THF_AF_WALL_OFFSET+1); -- There is no longer any need to climb the tower.
 		end	
 	else 
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 	
-	if(csid == 0x0002) then
+	if (csid == 0x0002) then
 		player:setVar("thickAsThievesGrapplingCS",8);
 		player:delKeyItem(FIRST_FORGED_ENVELOPE);
 		player:addKeyItem(FIRST_SIGNED_FORGED_ENVELOPE);

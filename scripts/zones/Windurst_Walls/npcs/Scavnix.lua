@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if(player:sendGuild(60418,11,22,6)) then
+    if (player:sendGuild(60418,11,22,6)) then
         player:showText(npc,SCAVNIX_SHOP_DIALOG);
 	end
 end;

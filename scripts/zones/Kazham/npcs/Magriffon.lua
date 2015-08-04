@@ -17,8 +17,8 @@ require("scripts/zones/Kazham/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if(player:getQuestStatus(OUTLANDS, GULLIBLES_TRAVELS) == QUEST_ACCEPTED) then
-        if(trade:getGil() >= player:getVar("MAGRIFFON_GIL_REQUEST")) then
+    if (player:getQuestStatus(OUTLANDS, GULLIBLES_TRAVELS) == QUEST_ACCEPTED) then
+        if (trade:getGil() >= player:getVar("MAGRIFFON_GIL_REQUEST")) then
             player:startEvent(0x0092);
         end
     end
@@ -31,14 +31,14 @@ end;
 function onTrigger(player,npc)
     local gulliblesTravelsStatus = player:getQuestStatus(OUTLANDS, GULLIBLES_TRAVELS);
 
-    if(gulliblesTravelsStatus == QUEST_ACCEPTED) then
+    if (gulliblesTravelsStatus == QUEST_ACCEPTED) then
         local magriffonGilRequest = player:getVar("MAGRIFFON_GIL_REQUEST");
         player:startEvent(0x0091, 0, magriffonGilRequest);
-    elseif(gulliblesTravelsStatus == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 6) then
+    elseif (gulliblesTravelsStatus == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 6) then
         local gil = math.random(10, 30) * 1000;
         player:setVar("MAGRIFFON_GIL_REQUEST", gil);
         player:startEvent(0x0090, 0, gil);
-    elseif(gulliblesTravelsStatus == QUEST_COMPLETED) then
+    elseif (gulliblesTravelsStatus == QUEST_COMPLETED) then
         player:startEvent(0x0093);
     else
         player:startEvent(0x008F);
@@ -58,9 +58,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if(csid == 0x0090 and option == 1)  then                 -- Gullible's Travels: First CS
+    if (csid == 0x0090 and option == 1)  then                 -- Gullible's Travels: First CS
         player:addQuest(OUTLANDS, GULLIBLES_TRAVELS);
-    elseif(csid == 0x0092) then                              -- Gullible's Travels: Final CS
+    elseif (csid == 0x0092) then                              -- Gullible's Travels: Final CS
         player:confirmTrade();
         player:delGil(player:getVar("MAGRIFFON_GIL_REQUEST"));
         player:setVar("MAGRIFFON_GIL_REQUEST", 0);

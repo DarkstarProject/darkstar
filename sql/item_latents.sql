@@ -472,6 +472,38 @@ INSERT INTO `item_latents` VALUES(18491, 25, 5, 6, 1000); -- Accuracy+5 while TP
 INSERT INTO `item_latents` VALUES(18491, 23, 10, 6, 1000); -- Attack+10 while TP <100%
 
 -- -------------------------------------------------------
+-- Trump Crown  
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15186, 2, 14, 51, 20); -- "MP +14 at Lv 20-29"
+INSERT INTO `item_latents` VALUES(15186, 5, 14, 51, 20); -- "HP +14 at Lv 20-29"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 30);  -- "MP +15 at Lv 30-33"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 30);  -- "HP +15 at Lv 30-33"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 34);  -- "MP +16 at Lv 34-39"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 34);  -- "HP +16 at Lv 34-39"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 40);  -- "MP +17 at Lv 40-43"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 40);  -- "HP +17 at Lv 40-43"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 44);  -- "MP +18 at Lv 44-46"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 44);  -- "HP +18 at Lv 44-46"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 47);  -- "MP +19 at Lv 47-49"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 47);  -- "HP +19 at Lv 47-49"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 50);  -- "MP +20 at Lv 50-54"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 50);  -- "HP +20 at Lv 50-54"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 55);  -- "MP +21 at Lv 55-57"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 55);  -- "HP +21 at Lv 55-57"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 58);  -- "MP +22 at Lv 58-60"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 58);  -- "HP +22 at Lv 58-60"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 61);  -- "MP +23 at Lv 61-64"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 61);  -- "HP +23 at Lv 61-64"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 65);  -- "MP +24 at Lv 65-69"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 65);  -- "HP +24 at Lv 65-69"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 70);  -- "MP +25 at Lv 70-72"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 70);  -- "HP +25 at Lv 70-72"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 73);  -- "MP +26 at Lv 73-74"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 73);  -- "HP +26 at Lv 73-74"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 75);  -- "MP +27 at Lv 75~"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 75);  -- "HP +27 at Lv 75~"
+
+-- -------------------------------------------------------
 -- Hachiman Jinpachi    
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15188, 288, 2, 7, 1000); -- "Double Attack"+2% while TP >=100%

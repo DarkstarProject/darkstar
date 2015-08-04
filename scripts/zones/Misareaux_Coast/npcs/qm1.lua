@@ -15,7 +15,7 @@ require("scripts/zones/Misareaux_Coast/TextIDs");
 function onTrade(player,npc,trade)
 	
 	-- Trade Hickory Shield OR Picaroon's Shield
-	if(GetMobAction(16879899) == 0 and (trade:hasItemQty(12370,1) or trade:hasItemQty(12359,1)) and trade:getItemCount() == 1)then
+	if (GetMobAction(16879899) == 0 and (trade:hasItemQty(12370,1) or trade:hasItemQty(12359,1)) and trade:getItemCount() == 1) then
 	  	player:tradeComplete();
 		SpawnMob(16879899,900):updateClaim(player);
     end

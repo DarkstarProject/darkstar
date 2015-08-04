@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getQuestStatus(JEUNO,RUBBISH_DAY) == QUEST_ACCEPTED and player:getVar("RubbishDayVar") == 0) then 
+	if (player:getQuestStatus(JEUNO,RUBBISH_DAY) == QUEST_ACCEPTED and player:getVar("RubbishDayVar") == 0) then 
 		player:startEvent(0x000b,1); -- For the quest "Rubbish day"
 	elseif (player:getQuestStatus(WINDURST,MAKING_AMENS) == QUEST_ACCEPTED) then
 		if (player:hasKeyItem(128) == true) then
@@ -54,10 +54,10 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 RubbishDay = player:getQuestStatus(JEUNO,RUBBISH_DAY);
 MakingAmens = player:getQuestStatus(WINDURST,MAKING_AMENS);
-	if(csid == 0x000b and option == 1 and RubbishDay == QUEST_ACCEPTED) then
+	if (csid == 0x000b and option == 1 and RubbishDay == QUEST_ACCEPTED) then
 		player:delKeyItem(MAGIC_TRASH);
 		player:setVar("RubbishDayVar",1);
-	elseif(csid == 0x000b and option == 0 and MakingAmens == QUEST_ACCEPTED) then
+	elseif (csid == 0x000b and option == 0 and MakingAmens == QUEST_ACCEPTED) then
 		player:addKeyItem(128); --Broken Wand
 		player:messageSpecial(KEYITEM_OBTAINED,128);
 		player:tradeComplete();

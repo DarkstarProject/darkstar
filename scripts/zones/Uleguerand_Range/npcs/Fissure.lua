@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 
-	if((csid == 0x0002 or csid == 0x0003 or csid == 0x0004) and option == 2) then
+	if ((csid == 0x0002 or csid == 0x0003 or csid == 0x0004) and option == 2) then
 		player:delKeyItem(MYSTIC_ICE);
 	end
 end;

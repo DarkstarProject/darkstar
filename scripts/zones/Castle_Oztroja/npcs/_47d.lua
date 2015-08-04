@@ -13,7 +13,7 @@ require("scripts/zones/Castle_Oztroja/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(npc:getAnimation() == 9) then
+	if (npc:getAnimation() == 9) then
 		npc:openDoor();
 	end	
 end;

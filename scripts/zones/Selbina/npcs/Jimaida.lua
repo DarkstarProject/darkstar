@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getVar("underTheSeaVar") == 2) then 
+	if (player:getVar("underTheSeaVar") == 2) then 
 		player:startEvent(0x0021); -- During quest "Under the sea" - 2nd dialog
 	else
 		player:startEvent(0x0098); -- Standard dialog
@@ -45,7 +45,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x0021) then 
+	if (csid == 0x0021) then 
 		player:setVar("underTheSeaVar",3);
 	end
 end;

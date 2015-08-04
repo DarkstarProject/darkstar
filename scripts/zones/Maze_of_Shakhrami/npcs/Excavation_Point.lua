@@ -16,9 +16,9 @@ require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(player:getVar("TheHolyCrest_Event") == 3 and player:hasItem(1159) == false) then
-		if(trade:hasItemQty(605,1) and trade:getItemCount() == 1) then
-			if(player:getFreeSlotsCount(0) >= 1) then
+	if (player:getVar("TheHolyCrest_Event") == 3 and player:hasItem(1159) == false) then
+		if (trade:hasItemQty(605,1) and trade:getItemCount() == 1) then
+			if (player:getFreeSlotsCount(0) >= 1) then
 				player:tradeComplete();
 				player:addItem(1159);
 				player:messageSpecial(ITEM_OBTAINED, 1159); -- Wyvern Egg

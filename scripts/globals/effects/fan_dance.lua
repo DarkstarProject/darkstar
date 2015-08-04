@@ -12,7 +12,7 @@ require("scripts/globals/status");
 
 function onEffectGain(target,effect)
     local fanDanceMerits = target:getMerit(MERIT_FAN_DANCE);
-    if(fanDanceMerits >5) then
+    if (fanDanceMerits >5) then
         target:addMod(MOD_WALTZ_RECAST, (fanDanceMerits-5));
     end
 	target:delStatusEffect(EFFECT_HASTE_SAMBA);
@@ -35,7 +35,7 @@ end;
 
 function onEffectLose(target,effect)
     local fanDanceMerits = target:getMerit(MERIT_FAN_DANCE);
-    if(fanDanceMerits >5) then
+    if (fanDanceMerits >5) then
         target:delMod(MOD_WALTZ_RECAST, (fanDanceMerits-5));
     end
     target:delMod(MOD_ENMITY, 15);

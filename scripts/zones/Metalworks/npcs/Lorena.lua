@@ -117,7 +117,7 @@ function onEventFinish(player,csid,option)
 	-- printf("RESULT: %u",option);
     if (csid == 0x320) then
         unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
-    elseif(csid == 0x321) then
+    elseif (csid == 0x321) then
         player:messageSpecial(GP_OBTAINED, option);
     end
 end;

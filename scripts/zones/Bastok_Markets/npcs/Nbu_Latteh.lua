@@ -29,7 +29,7 @@ function onTrigger(player,npc)
     local MomTheAdventurer = player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER)
     local questStatus = player:getVar("MomTheAdventurer_Event");
 
-    if(player:needToZone()) then
+    if (player:needToZone()) then
         player:startEvent(127); -- chat about my work
     elseif (pFame < 2 and MomTheAdventurer ~= QUEST_ACCEPTED and questStatus == 0) then
             player:startEvent(0x00e6);  

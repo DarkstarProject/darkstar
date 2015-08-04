@@ -51,7 +51,7 @@ function onMobDeath(mob,killer)
            GetNPCByID(16928768+68):setStatus(STATUS_NORMAL);
 		end	, 
 		[16929037] = function (x)		   
-           if(IsMobDead(16929038)==false)then
+           if (IsMobDead(16929038)==false) then
 		     DespawnMob(16929038);
 			 SpawnMob(16929044);
 		   end

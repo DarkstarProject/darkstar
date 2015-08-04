@@ -20,8 +20,8 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(player:getQuestStatus(SANDORIA,SLEEPLESS_NIGHTS) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(4527,1) and trade:getItemCount() == 1) then
+	if (player:getQuestStatus(SANDORIA,SLEEPLESS_NIGHTS) == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(4527,1) and trade:getItemCount() == 1) then
 			player:startEvent(0x0054);
 		end
 	end
@@ -36,11 +36,11 @@ function onTrigger(player,npc)
 
 	sleeplessNights = player:getQuestStatus(SANDORIA,SLEEPLESS_NIGHTS);
 
-	if(player:getFameLevel(SANDORIA) >= 2 and sleeplessNights == QUEST_AVAILABLE) then
+	if (player:getFameLevel(SANDORIA) >= 2 and sleeplessNights == QUEST_AVAILABLE) then
 		player:startEvent(0x0055);
-	elseif(sleeplessNights == QUEST_ACCEPTED) then
+	elseif (sleeplessNights == QUEST_ACCEPTED) then
 		player:startEvent(0x0053);
-	elseif(sleeplessNights == QUEST_COMPLETED) then
+	elseif (sleeplessNights == QUEST_COMPLETED) then
 		player:startEvent(0x0051);
 	else
 		player:startEvent(0x0052);
@@ -64,9 +64,9 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x0055 and option == 1) then
+	if (csid == 0x0055 and option == 1) then
 		player:addQuest(SANDORIA,SLEEPLESS_NIGHTS);
-	elseif(csid == 0x0054) then
+	elseif (csid == 0x0054) then
 		player:tradeComplete();
 		player:addTitle(SHEEPS_MILK_DELIVERER);
 		player:addGil(GIL_RATE*5000);

@@ -20,8 +20,8 @@ function onTrade(player,npc,trade)
 
 	local thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
 
-	if(thickAsThievesGrapplingCS >= 2 and thickAsThievesGrapplingCS <= 7) then
-		if(trade:hasItemQty(17474,1) and trade:getItemCount() == 1) then -- Trade grapel
+	if (thickAsThievesGrapplingCS >= 2 and thickAsThievesGrapplingCS <= 7) then
+		if (trade:hasItemQty(17474,1) and trade:getItemCount() == 1) then -- Trade grapel
 			player:messageSpecial(THF_AF_WALL_OFFSET+3,0,17474); -- You cannot get a decent grip on the wall using the [Grapnel].
 		end
 	end
@@ -36,12 +36,12 @@ function onTrigger(player,npc)
 	local thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES);
 	local thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
 	
-	if(thickAsThieves == QUEST_ACCEPTED) then
-		if(thickAsThievesGrapplingCS == 7) then
+	if (thickAsThieves == QUEST_ACCEPTED) then
+		if (thickAsThievesGrapplingCS == 7) then
 			player:messageSpecial(THF_AF_MOB);	
 			SpawnMob(17269107,120):updateClaim(player); -- Climbpix Highrise
 			setMobPos(17269107,194,15,269,0);		
-		elseif(thickAsThievesGrapplingCS == 0 or thickAsThievesGrapplingCS == 1 or
+		elseif (thickAsThievesGrapplingCS == 0 or thickAsThievesGrapplingCS == 1 or
 			thickAsThievesGrapplingCS == 2 or thickAsThievesGrapplingCS == 3 or
 			thickAsThievesGrapplingCS == 4 or thickAsThievesGrapplingCS == 5 or
 			thickAsThievesGrapplingCS == 6) then

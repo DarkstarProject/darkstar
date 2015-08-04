@@ -40,7 +40,7 @@ local AGCtime = player:getVar("AGreetingCardian_timer");
 	if (C2000 == QUEST_COMPLETED and AGreetingCardian == QUEST_AVAILABLE and player:getFameLevel (WINDURST) >= 3) then
 		player:startEvent(0x0128); -- A Greeting Cardian quest start
 	elseif (AGreetingCardian == QUEST_ACCEPTED and AGCcs == 3) then
-		if(player:needToZone() or tonumber(os.date("%j")) == AGCtime)then
+		if (player:needToZone() or tonumber(os.date("%j")) == AGCtime) then
 		player:startEvent(0x0115); --standard dialog if JP midnight has not passed
 		else
 		player:startEvent(0x012a); -- A Greeting Cardian part two
@@ -76,14 +76,14 @@ function onEventFinish(player,csid,option)
 	-- printf("RESULT: %u",option);
 	
 	-- A Greeting Cardian
-	if(csid == 0x0128) then
+	if (csid == 0x0128) then
 		player:addQuest(WINDURST,A_GREETING_CARDIAN);
 		player:setVar("AGreetingCardian_Event",2);
 		player:setVar("AGreetingCardian_timer", os.date("%j")); 
 		player:needToZone(true); -- wait one day and zone after next step
-	elseif(csid == 0x012a) then
+	elseif (csid == 0x012a) then
 		player:setVar("AGreetingCardian_Event",4);
-	elseif(csid == 0x012f) then
+	elseif (csid == 0x012f) then
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13330); -- Tourmaline Earring
 		else

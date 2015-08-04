@@ -14,10 +14,10 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	if(target:delStatusEffect(EFFECT_DISEASE)) then
+	if (target:delStatusEffect(EFFECT_DISEASE)) then
 		spell:setMsg(83);
 		return EFFECT_DISEASE;
-	elseif(target:delStatusEffect(EFFECT_PLAGUE)) then
+	elseif (target:delStatusEffect(EFFECT_PLAGUE)) then
 		spell:setMsg(83);
 		return EFFECT_PLAGUE;
 	else

@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 1) then
+	if (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 1) then
 		player:startEvent(0x002A);
 	else
 		player:showText(npc,DOOR_FIRMLY_CLOSED);
@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x002A) then
+	if (csid == 0x002A) then
 		player:setVar("MissionStatus",2);
 		
 		-- Generate a random value to use for the next part of the mission

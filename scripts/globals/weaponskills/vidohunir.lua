@@ -36,14 +36,14 @@ function onUseWeaponSkill(player, target, wsID)
 	if damage > 0 then
 		local tp = player:getTP();
 		local duration = (tp/100 * 60);
-		if(target:hasStatusEffect(EFFECT_MAGIC_DEF_DOWN) == false) then
+		if (target:hasStatusEffect(EFFECT_MAGIC_DEF_DOWN) == false) then
 			target:addStatusEffect(EFFECT_MAGIC_DEF_DOWN, 10, 0, duration);
 		end
 	end
 
 
-	if((player:getEquipID(SLOT_MAIN) == 18994) and (player:getMainJob() == JOB_BLM)) then
-		if(damage > 0) then
+	if ((player:getEquipID(SLOT_MAIN) == 18994) and (player:getMainJob() == JOB_BLM)) then
+		if (damage > 0) then
 
 --		AFTERMATH LV1
 

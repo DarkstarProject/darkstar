@@ -34,7 +34,7 @@ end;
  
 function onTrigger(player,npc) 
 	
-	if(player:getQuestStatus(SANDORIA,UNDER_OATH) == QUEST_ACCEPTED and player:getVar("UnderOathCS") == 0) then   -- Quest: Under Oath - PLD AF3
+	if (player:getQuestStatus(SANDORIA,UNDER_OATH) == QUEST_ACCEPTED and player:getVar("UnderOathCS") == 0) then   -- Quest: Under Oath - PLD AF3
 		player:startEvent(0x007); --Under Oath - mentions the boy missing
 	elseif (player:getVar("UnderOathCS") == 3 and player:hasKeyItem(MIQUES_PAINTBRUSH)) then
 		player:startEvent(0x005); --Under Oath - upset about the paintbrush

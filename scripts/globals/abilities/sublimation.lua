@@ -32,7 +32,7 @@ function onUseAbility(player,target,ability)
         mp = sublimationComplete:getPower();
         local maxmp = player:getMaxMP();
         local currmp = player:getMP();
-        if( mp + currmp > maxmp ) then
+        if ( mp + currmp > maxmp ) then
             mp = maxmp - currmp;
         end
         player:addMP(mp);
@@ -42,7 +42,7 @@ function onUseAbility(player,target,ability)
         mp = sublimationCharging:getPower();
         local maxmp = player:getMaxMP();
         local currmp = player:getMP();
-        if( mp + currmp > maxmp ) then
+        if ( mp + currmp > maxmp ) then
             mp = maxmp - currmp;
         end
         player:addMP(mp);

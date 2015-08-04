@@ -22,7 +22,7 @@ function onTrigger(player,npc)
 	local Torch1 = npc:getID();	
 	local Torch2 = npc:getID() + 1;	
 	
-	if(DoorA == 9 and TorchStandA == 9) then
+	if (DoorA == 9 and TorchStandA == 9) then
 		player:startEvent(0x000a);	
 	end	
 	

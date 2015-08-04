@@ -23,7 +23,7 @@ function onSpellCast(caster,target,spell)
     local magicAtk = caster:getMod(MOD_MATT);
     local power = ((int + 2) / 12 + 4) * (1 + (magicAtk / 100));
 
-   if(target:addStatusEffect(typeEffect,power,0,duration)) then
+   if (target:addStatusEffect(typeEffect,power,0,duration)) then
      spell:setMsg(230);
    else
      spell:setMsg(75);

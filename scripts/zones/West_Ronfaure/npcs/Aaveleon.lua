@@ -17,8 +17,8 @@ require("scripts/zones/West_Ronfaure/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(600,1) and trade:getItemCount() == 1) then
+	if (player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL) == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(600,1) and trade:getItemCount() == 1) then
 			player:startEvent(0x0064);
 		else
 			player:startEvent(118);

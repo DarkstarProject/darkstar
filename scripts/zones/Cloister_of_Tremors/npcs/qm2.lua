@@ -26,7 +26,7 @@ function onTrigger(player,npc)
 	local TREMORSTONE = 2796;
 	
 	-- Give Player a Tremorstone if they don't have one
-	if(player:hasItem(TREMORSTONE) == false) then
+	if (player:hasItem(TREMORSTONE) == false) then
 		player:addItem(TREMORSTONE);
 		player:messageSpecial(ITEM_OBTAINED, TREMORSTONE);
 	else

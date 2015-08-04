@@ -13,7 +13,7 @@ require("scripts/globals/monstertpmoves");
 function onMobSkillCheck(target,mob,skill)
  local mobID = mob:getID();   --(16908295 ,16908302 ,16908309 =omega ,          16928966=proto-ultima   )
  local mobhp = mob:getHPP();
-   if ((mobID == 16928966 and mobhp < 60 and mobhp > 20) or(mobhp < 40 and mobhp > 20 and(mobID == 16908295 or mobID == 16908302 or mobID == 16908309 )))then 
+   if ((mobID == 16928966 and mobhp < 60 and mobhp > 20) or(mobhp < 40 and mobhp > 20 and(mobID == 16908295 or mobID == 16908302 or mobID == 16908309 ))) then 
 	  return 0;
    end
    return 1;

@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(5142,8,23,3)) then
+	if (player:sendGuild(5142,8,23,3)) then
 		player:showText(npc,RETTO_MARUTTO_DIALOG);
 	end
 end;

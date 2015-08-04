@@ -16,7 +16,7 @@ require("scripts/globals/utils");
 function onMobSkillCheck(target,mob,skill)
     if (mob:hasStatusEffect(EFFECT_INVINCIBLE)) then
         return 1;
-	elseif(target:isBehind(mob, 48) == true) then
+	elseif (target:isBehind(mob, 48) == true) then
 		return 1;
     elseif (mob:AnimationSub() ~= 0) then
         return 1;

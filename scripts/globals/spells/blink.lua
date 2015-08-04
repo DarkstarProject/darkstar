@@ -18,7 +18,7 @@ function onSpellCast(caster,target,spell)
 		duration = duration * 3;
 	end
 
-	if(target:addStatusEffect(EFFECT_BLINK, BLINK_SHADOWS, 0, duration)) then
+	if (target:addStatusEffect(EFFECT_BLINK, BLINK_SHADOWS, 0, duration)) then
 		spell:setMsg(230);
 	else
 		spell:setMsg(75);

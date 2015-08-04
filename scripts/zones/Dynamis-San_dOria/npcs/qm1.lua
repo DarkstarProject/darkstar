@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:hasKeyItem(HYDRA_CORPS_COMMAND_SCEPTER) == false)then
+	if (player:hasKeyItem(HYDRA_CORPS_COMMAND_SCEPTER) == false) then
 		player:setVar("DynaSandoria_Win",1);
 		player:addKeyItem(HYDRA_CORPS_COMMAND_SCEPTER);
 		player:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_COMMAND_SCEPTER);

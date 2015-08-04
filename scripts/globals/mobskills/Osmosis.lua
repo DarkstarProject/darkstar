@@ -19,7 +19,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     local effect = target:stealStatusEffect();
 
-    if(effect ~= nil and mob:hasStatusEffect(effect:getType()) == false) then
+    if (effect ~= nil and mob:hasStatusEffect(effect:getType()) == false) then
         -- add to myself
         mob:addStatusEffect(effect:getType(), effect:getPower(), effect:getTickCount(), effect:getDuration());
     end
@@ -29,7 +29,7 @@ function onMobWeaponSkill(target, mob, skill)
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
 
 
-    if(target:isUndead() == false) then
+    if (target:isUndead() == false) then
         target:delHP(dmg);
         mob:addHP(dmg);
         skill:setMsg(MSG_DRAIN_HP);

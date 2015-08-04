@@ -11,7 +11,7 @@ require("scripts/globals/keyitems");
 -----------------------------------	
 	
 function onTrigger(player,npc)
-	if(player:hasKeyItem(MOONGATE_PASS) == true) then
+	if (player:hasKeyItem(MOONGATE_PASS) == true) then
 		return -1;
 	else
 		return 1;

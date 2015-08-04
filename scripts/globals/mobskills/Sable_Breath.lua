@@ -14,7 +14,7 @@ require("scripts/globals/utils");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-	if(target:isBehind(mob, 48) == true) then
+	if (target:isBehind(mob, 48) == true) then
 		return 1;
     elseif (mob:AnimationSub() ~= 0) then
         return 1;

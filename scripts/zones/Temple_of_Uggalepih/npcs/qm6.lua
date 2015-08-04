@@ -15,7 +15,7 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 function onTrade(player,npc,trade)
 	
 	-- Trade Uggalepih Whistle
-	if(trade:hasItemQty(1184,1) and trade:getItemCount() == 1) then 
+	if (trade:hasItemQty(1184,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17428816,300):updateClaim(player);
 	else

@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("MissionStatus") == 3) then
+	if (player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("MissionStatus") == 3) then
 		player:setVar("MissionStatus",4);
 		player:addKeyItem(PIECE_OF_A_BROKEN_KEY2);
 		player:messageSpecial(KEYITEM_OBTAINED,PIECE_OF_A_BROKEN_KEY2);

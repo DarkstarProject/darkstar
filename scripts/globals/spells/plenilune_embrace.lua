@@ -21,25 +21,25 @@ function onSpellCast(caster,target,spell)
 	local attBoost = 1;
 	local magAttBoost = 1;
 	local moonPhase = VanadielMoonPhase();
-	if(moonPhase <= 5) then
+	if (moonPhase <= 5) then
 		magAttBoost = 15;
 		attBoost = 1;
-	elseif(moonPhase <= 25) then
+	elseif (moonPhase <= 25) then
 		magAttBoost = 12;
 		attBoost = 3;
-	elseif(moonPhase <= 40) then
+	elseif (moonPhase <= 40) then
 		magAttBoost = 10;
 		attBoost = 5;
-	elseif(moonPhase <= 60) then
+	elseif (moonPhase <= 60) then
 		magAttBoost = 7;
 		attBoost = 7;
-	elseif(moonPhase <= 75) then
+	elseif (moonPhase <= 75) then
 		magAttBoost = 5;
 		attBoost = 10;
-	elseif(moonPhase <= 90) then
+	elseif (moonPhase <= 90) then
 		magAttBoost = 3;
 		attBoost = 12;
-	elseif(moonPhase <= 100) then
+	elseif (moonPhase <= 100) then
 		magAttBoost = 1;
 		attBoost = 15;
 	end
@@ -51,10 +51,10 @@ function onSpellCast(caster,target,spell)
 	local divisor = 0.6666;
 	local constant = 230;
 	local power = getCurePowerOld(caster);
-	if(power > 559) then
+	if (power > 559) then
 		divisor = 2.8333;
 		constant = 491.2
-	elseif(power > 319) then
+	elseif (power > 319) then
 		divisor =  1;
 		constant = 310;
 	end
@@ -63,7 +63,7 @@ function onSpellCast(caster,target,spell)
 
 	final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
 	local diff = (target:getMaxHP() - target:getHP());
-	if(final > diff) then
+	if (final > diff) then
 		final = diff;
 	end
 	target:addHP(final);

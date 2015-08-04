@@ -17,12 +17,12 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-	if(caster:hasStatusEffect(EFFECT_ACCURACY_BOOST)) then
+	if (caster:hasStatusEffect(EFFECT_ACCURACY_BOOST)) then
 		spell:setMsg(75); -- no effect
 	else
 		local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
 		local resist = applyResistance(caster,spell,target,dINT,37,0);
-		if(resist <= 0.125) then
+		if (resist <= 0.125) then
 			spell:setMsg(85);
 		else
 			spell:setMsg(533);

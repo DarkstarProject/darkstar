@@ -18,8 +18,8 @@ function onTrade(player,npc,trade)
 -- "Flyers for Regine" conditional script
 	local count = trade:getItemCount();
 
-	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:getGil() == 10 and trade:getItemCount() == 1)then
-		if(player:getFreeSlotsCount() > 0) then
+	if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:getGil() == 10 and trade:getItemCount() == 1) then
+		if (player:getFreeSlotsCount() > 0) then
 			player:addItem(532,1);
 			player:tradeComplete();
 			player:messageSpecial(ITEM_OBTAINED,532);
@@ -45,13 +45,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getVar("FFR") ==1)then
+	if (player:getVar("FFR") ==1) then
 		player:startEvent(0x1fe,2);
-	elseif(player:getVar("FFR") ==2)then
+	elseif (player:getVar("FFR") ==2) then
 		player:startEvent(0x025b);
-	elseif(player:getVar("FFR") >2 and not(player:hasItem(532)))then
+	elseif (player:getVar("FFR") >2 and not(player:hasItem(532))) then
 		player:startEvent(0x1fe,3);
-	elseif(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_AVAILABLE and player:getVar("FFR") == 0)then
+	elseif (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_AVAILABLE and player:getVar("FFR") == 0) then
 		player:startEvent(0x0259);
 	else
 		player:startEvent(0x1fe);
@@ -74,14 +74,14 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x1fe and option == 2) then
-		if(npcUtil.giveItem(player, {{532, 12}, {532, 3}})) then
+	if (csid == 0x1fe and option == 2) then
+		if (npcUtil.giveItem(player, {{532, 12}, {532, 3}})) then
 			player:addQuest(SANDORIA,FLYERS_FOR_REGINE);
 			player:setVar("FFR",17);
 		end
-	elseif(csid == 0x0259)then
+	elseif (csid == 0x0259) then
 		player:setVar("FFR",1);
-	elseif(csid == 0x025b)then
+	elseif (csid == 0x025b) then
 		player:completeQuest(SANDORIA,FLYERS_FOR_REGINE);
 		player:addGil(GIL_RATE*440)
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*440);

@@ -17,8 +17,8 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
+	if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
 	local DistantLoyalties = player:getQuestStatus(SANDORIA,DISTANT_LOYALTIES);
 	local WildcatSandy = player:getVar("WildcatSandy");
 	
-	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,3) == false) then
+	if (player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,3) == false) then
 		player:startEvent(0x0327);
 	elseif (player:getFameLevel(SANDORIA) >= 4 and DistantLoyalties == 0) then
 		player:startEvent(0x0297);
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x0327) then
+	if (csid == 0x0327) then
 		player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",3,true);
 	elseif (csid == 0x0297 and option == 0) then
 		player:addKeyItem(GOLDSMITHING_ORDER);

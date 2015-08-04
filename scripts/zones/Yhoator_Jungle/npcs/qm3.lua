@@ -24,9 +24,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED and player:hasKeyItem(OLD_TRICK_BOX) == false) then
-		if(player:getVar("trueWillKilledNM") >= 1) then
-			if(GetMobAction(17285544) == 0 and GetMobAction(17285545) == 0 and GetMobAction(17285546) == 0) then
+	if (player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED and player:hasKeyItem(OLD_TRICK_BOX) == false) then
+		if (player:getVar("trueWillKilledNM") >= 1) then
+			if (GetMobAction(17285544) == 0 and GetMobAction(17285545) == 0 and GetMobAction(17285546) == 0) then
 				player:addKeyItem(OLD_TRICK_BOX);
 				player:messageSpecial(KEYITEM_OBTAINED,OLD_TRICK_BOX);
 				player:setVar("trueWillKilledNM",0);

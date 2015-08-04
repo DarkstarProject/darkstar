@@ -23,7 +23,7 @@ function onTrigger(player,npc)
 
 	respawn = GetServerVariable("[TEMP]Respawn_qm1_for_rattle");
 	
-	if(player:hasItem(1266) == false and player:getFreeSlotsCount() >= 1 and respawn <= os.time(t)) then
+	if (player:hasItem(1266) == false and player:getFreeSlotsCount() >= 1 and respawn <= os.time(t)) then
 		player:addItem(1266);
 		player:messageSpecial(ITEM_OBTAINED,1266); -- Uggalepih Rattle
 		SetServerVariable("[TEMP]Respawn_qm1_for_rattle",os.time(t) + 7200); -- 2 hours

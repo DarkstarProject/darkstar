@@ -1,5 +1,4 @@
 -----------------------------------
--- Author: Linkandentity
 -- Gear sets
 -- Allows the use of gear sets with modifiers
 -----------------------------------

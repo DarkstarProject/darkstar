@@ -14,7 +14,7 @@ require("scripts/zones/Wajaom_Woodlands/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(2575,1) and trade:getItemCount() == 1) then -- Trade Sheep Botfly
+	if (trade:hasItemQty(2575,1) and trade:getItemCount() == 1) then -- Trade Sheep Botfly
 		player:tradeComplete();
 		SpawnMob(16986430,180):updateClaim(player);
 	end

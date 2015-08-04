@@ -59,7 +59,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	if (csid == 0x0006) then
 		player:addQuest(OUTLANDS,THE_MISSING_PIECE);
-	elseif(csid == 0x0008) then -- give the player the key items he needs to complete the quest
+	elseif (csid == 0x0008) then -- give the player the key items he needs to complete the quest
 		player:addKeyItem(TABLET_OF_ANCIENT_MAGIC);
 		player:addKeyItem(LETTER_FROM_ALFESAR);
 		player:delKeyItem(ANCIENT_TABLET_FRAGMENT); 

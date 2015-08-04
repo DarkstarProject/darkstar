@@ -41,7 +41,7 @@ function onTrade(player,npc,trade)
 	local Race = player:getRace();
 	local Hate = player:getVar("FOMOR_HATE");
 	
-	if (X == 73)then --luaith spawnpoint--
+	if (X == 73) then --luaith spawnpoint--
 		if ((Race==3 or Race==4)and GetMobAction(16892069) == 0) then  --elvaan
             if (Hate >= 50) then
 				player:setVar("FOMOR_HATE",0); --reset fomor hate

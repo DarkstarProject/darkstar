@@ -13,10 +13,10 @@ require("scripts/globals/missions");
 	
 function onMobDeath(mob,killer)	
 	
-	if(killer:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE and killer:hasKeyItem(LIGHTNING_FRAGMENT) == false) then
-		if(GetServerVariable("[ZM4]Lightning_Headstone_Active") == 0) then	
+	if (killer:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE and killer:hasKeyItem(LIGHTNING_FRAGMENT) == false) then
+		if (GetServerVariable("[ZM4]Lightning_Headstone_Active") == 0) then	
 			SetServerVariable("[ZM4]Lightning_Headstone_Active",1);	
-		elseif(GetServerVariable("[ZM4]Lightning_Headstone_Active") == 1) then	
+		elseif (GetServerVariable("[ZM4]Lightning_Headstone_Active") == 1) then	
 			SetServerVariable("[ZM4]Lightning_Headstone_Active",os.time()+ 900);
 		end
 	else

@@ -28,9 +28,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:hasKeyItem(LETTER_FROM_THE_TENSHODO)) then
+	if (player:hasKeyItem(LETTER_FROM_THE_TENSHODO)) then
 		player:startEvent(0x2725,0,LETTER_FROM_THE_TENSHODO); -- During Quest "The Tenshodo Showdown"
-	elseif(player:hasKeyItem(SIGNED_ENVELOPE)) then
+	elseif (player:hasKeyItem(SIGNED_ENVELOPE)) then
 		player:startEvent(0x2726); -- Finish Quest "The Tenshodo Showdown"
 	else
 		player:startEvent(0x00d9); -- Standard dialog
@@ -57,13 +57,13 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x2725) then
+	if (csid == 0x2725) then
 		player:setVar("theTenshodoShowdownCS",2);
 		player:delKeyItem(LETTER_FROM_THE_TENSHODO);
 		player:addKeyItem(TENSHODO_ENVELOPE);
 		player:messageSpecial(KEYITEM_OBTAINED,TENSHODO_ENVELOPE);
-	elseif(csid == 0x2726) then
-		if(player:getFreeSlotsCount() == 0 or player:hasItem(16764)) then 
+	elseif (csid == 0x2726) then
+		if (player:getFreeSlotsCount() == 0 or player:hasItem(16764)) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16764); -- Marauder's Knife
 		else
 			player:delKeyItem(SIGNED_ENVELOPE);

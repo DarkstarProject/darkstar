@@ -33,16 +33,16 @@ function onTrigger(player,npc)
   local correctcofferID = GetServerVariable("correctcoffer");
  print(npcID);
  print(correctcofferID);
-  if(npcID == correctcofferID)then --correct coffer ??
+  if (npcID == correctcofferID) then --correct coffer ??
    player:messageSpecial( GOLDEN);
    
-   if(player:getCurrentMission(ASSAULT)==GOLDEN_SALVAGE)then
+   if (player:getCurrentMission(ASSAULT)==GOLDEN_SALVAGE) then
    player:completeMission(ASSAULT,GOLDEN_SALVAGE);
    end
    GetNPCByID(17002654):setStatus(0);--spawn Ancient_Lockbox
      local ID;
      for ID=17002505,17002516,1 do
-     if(GetMobAction(ID) > 0)then DespawnMob(npcID);printf("mobdespawn: %u",ID);  end--despawn mimic
+     if (GetMobAction(ID) > 0) then DespawnMob(npcID);printf("mobdespawn: %u",ID);  end--despawn mimic
      end
 	GetNPCByID(npcID):setAnimation(89);--coffer open anim
    else

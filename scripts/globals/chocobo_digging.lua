@@ -203,7 +203,7 @@ function chocoboDig(player, itemMap, precheck, messageArray)
             -- make sure we have a valid item
             if (ItemID ~= 0) then
                 -- make sure we have enough room for the item
-                if(player:addItem(ItemID))then
+                if (player:addItem(ItemID)) then
                 player:messageSpecial(ITEM_OBTAINED, ItemID);
                 else
                 player:messageSpecial(DIG_THROW_AWAY, ItemID);

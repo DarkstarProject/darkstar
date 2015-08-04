@@ -65,16 +65,4 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-
-	if(csid == 0x0007) then
-		player:startEvent(0x0008);
-	elseif(csid == 0x0008) then
-		if(player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
-			player:delKeyItem(SACRIFICIAL_CHAMBER_KEY);
-			player:addKeyItem(DARK_FRAGMENT);
-			player:messageSpecial(KEYITEM_OBTAINED,DARK_FRAGMENT);
-			player:completeMission(ZILART,THE_TEMPLE_OF_UGGALEPIH);
-			player:addMission(ZILART,HEADSTONE_PILGRIMAGE);
-		end
-	end
 end;

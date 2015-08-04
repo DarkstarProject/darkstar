@@ -25,7 +25,7 @@ function onUseAbility(player,target,ability)
 
     local maxHeal = target:getMaxHP() - target:getHP();
 
-    if(heal > maxHeal) then
+    if (heal > maxHeal) then
         heal = maxHeal;
     end
 

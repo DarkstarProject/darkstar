@@ -19,8 +19,8 @@ require("scripts/zones/Port_Windurst/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 5) then
-		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
+	if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 5) then
+		if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
 			player:setVar("ridingOnTheClouds_4",0);
 			player:tradeComplete();
 			player:addKeyItem(SPIRITED_STONE);
@@ -40,29 +40,29 @@ function onTrigger(player,npc)
 	InspectorsGadget     = player:getQuestStatus(WINDURST,INSPECTOR_S_GADGET);
 	OnionRings           = player:getQuestStatus(WINDURST,ONION_RINGS);
 
-	if(player:getQuestStatus(WINDURST,THE_PROMISE) == QUEST_COMPLETED) then
+	if (player:getQuestStatus(WINDURST,THE_PROMISE) == QUEST_COMPLETED) then
 		Message = math.random(0,1)
 		
-		if(Message == 1) then
+		if (Message == 1) then
 			player:startEvent(0x0211);
 		else
 			player:startEvent(0x021d);
 		end
-	elseif(player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS) == QUEST_ACCEPTED) then
+	elseif (player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS) == QUEST_ACCEPTED) then
 		player:startEvent(0x01f8);
-	elseif(OnionRings == QUEST_COMPLETED) then
+	elseif (OnionRings == QUEST_COMPLETED) then
 		player:startEvent(0x01be);
-	elseif(OnionRings == QUEST_ACCEPTED ) then
+	elseif (OnionRings == QUEST_ACCEPTED ) then
 		player:startEvent(0x01b7);
-	elseif(InspectorsGadget == QUEST_COMPLETED) then
+	elseif (InspectorsGadget == QUEST_COMPLETED) then
 		player:startEvent(0x01ac);
-	elseif(InspectorsGadget == QUEST_ACCEPTED) then
+	elseif (InspectorsGadget == QUEST_ACCEPTED) then
 		player:startEvent(0x01a4);
-	elseif(player:getQuestStatus(WINDURST,KNOW_ONE_S_ONIONS) == QUEST_COMPLETED) then
+	elseif (player:getQuestStatus(WINDURST,KNOW_ONE_S_ONIONS) == QUEST_COMPLETED) then
 		player:startEvent(0x019c);
-	elseif(TruthJusticeOnionWay == QUEST_COMPLETED) then
+	elseif (TruthJusticeOnionWay == QUEST_COMPLETED) then
 		player:startEvent(0x0180);
-	elseif(TruthJusticeOnionWay == QUEST_ACCEPTED) then
+	elseif (TruthJusticeOnionWay == QUEST_ACCEPTED) then
 		player:startEvent(0x0179);
 	else
 		player:startEvent(0x016f);

@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 
 	local ANewDawnEvent = player:getVar("ANewDawn_Event");
 
-	if(trade:hasItemQty(717,1) and trade:getItemCount() == 1 and ANewDawnEvent == 3) then
+	if (trade:hasItemQty(717,1) and trade:getItemCount() == 1 and ANewDawnEvent == 3) then
 		player:tradeComplete();
 		player:startEvent(0x0094);
 	end
@@ -93,11 +93,11 @@ function onEventFinish(player,csid,option)
 
 	local ANewDawnEvent = player:getVar("ANewDawn_Event");
 
-	if(csid == 0x0092) then
-		if(ANewDawnEvent == 2) then
+	if (csid == 0x0092) then
+		if (ANewDawnEvent == 2) then
 			player:setVar("ANewDawn_Event",3);
 		end
-	elseif(csid == 0x0094) then
+	elseif (csid == 0x0094) then
 		player:addKeyItem(217); 
 		player:messageSpecial(KEYITEM_OBTAINED, 217); 
 		player:setVar("ANewDawn_Event",4);

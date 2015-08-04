@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 	local zoneMinute = VanadielMinute();
 	local correctTime = zoneHour >= 19 or zoneHour < 4 or (zoneHour == 4 and zoneMinute == 0);
 	
-	if(GetMobAction(17404337) == 0) then
+	if (GetMobAction(17404337) == 0) then
 		if (player:hasKeyItem(MOONDROP)) then
 			player:messageSpecial(CAN_SEE_SKY);
 			

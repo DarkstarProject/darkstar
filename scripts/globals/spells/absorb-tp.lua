@@ -35,12 +35,12 @@ function onSpellCast(caster,target,spell)
         dmg = cap;
     end
 
-    if(resist <= 0.125) then
+    if (resist <= 0.125) then
         spell:setMsg(85);
     else
         spell:setMsg(454);
 
-        if(target:getTP() < dmg) then
+        if (target:getTP() < dmg) then
             dmg = target:getTP();
         end
 

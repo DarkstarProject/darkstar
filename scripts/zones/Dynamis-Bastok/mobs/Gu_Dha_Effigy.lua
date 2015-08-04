@@ -27,7 +27,7 @@ end;
 
 function onMobDeath(mob,killer)
 
-	if(mob:isInBattlefieldList() == false) then
+	if (mob:isInBattlefieldList() == false) then
 		mob:addInBattlefieldList();
 
 		killer:addTimeToDynamis(30); -- Add + 30min

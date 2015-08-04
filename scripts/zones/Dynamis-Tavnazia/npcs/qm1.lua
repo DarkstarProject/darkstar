@@ -12,7 +12,7 @@ require("scripts/zones/Dynamis-Tavnazia/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if(GetServerVariable("[DynaTavnazia]Boss_Trigger")== 0 and trade:getItemCount() == 1  and trade:hasItemQty(3459,1) )then
+    if (GetServerVariable("[DynaTavnazia]Boss_Trigger")== 0 and trade:getItemCount() == 1  and trade:hasItemQty(3459,1) ) then
         
 		local npcX = npc:getXPos();
 		local npcY = npc:getYPos();
@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
 	--printf("DiabolosID: %u",DiabolosID);	 
 	
 
-            if(DiabolosID == 16949252)then -- diabolos smn				
+            if (DiabolosID == 16949252) then -- diabolos smn				
 		        SpawnMob(16949253):setMobMod(MOBMOD_SUPERLINK, ShortID);
 						GetMobByID(16949253):setPos(npcX-1,npcY-2,npcZ-1);
 						GetMobByID(16949253):setSpawn(npcX-1,npcY-2,npcZ-1);					

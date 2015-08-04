@@ -19,8 +19,8 @@ require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getCurrentMission(BASTOK) == JEUNO_MISSION and player:getVar("MissionStatus") == 2) then
-		if(trade:hasItemQty(549,1) and trade:getItemCount() == 1) then -- Trade Delkfutt Key
+	if (player:getCurrentMission(BASTOK) == JEUNO_MISSION and player:getVar("MissionStatus") == 2) then
+		if (trade:hasItemQty(549,1) and trade:getItemCount() == 1) then -- Trade Delkfutt Key
 			player:startEvent(0x0001);
 		end
 	end
@@ -35,9 +35,9 @@ function onTrigger(player,npc)
 	
 	local currentMission = player:getCurrentMission(BASTOK);
 	
-	if(currentMission == JEUNO_MISSION and player:getVar("MissionStatus") == 2 and player:hasKeyItem(DELKFUTT_KEY) == false) then
+	if (currentMission == JEUNO_MISSION and player:getVar("MissionStatus") == 2 and player:hasKeyItem(DELKFUTT_KEY) == false) then
 		player:messageSpecial(THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY);
-	elseif(currentMission == JEUNO_MISSION and player:getVar("MissionStatus") == 2 and player:hasKeyItem(DELKFUTT_KEY)) then
+	elseif (currentMission == JEUNO_MISSION and player:getVar("MissionStatus") == 2 and player:hasKeyItem(DELKFUTT_KEY)) then
 		player:startEvent(0x0001);
 	else
 		player:messageSpecial(DOOR_FIRMLY_SHUT);
@@ -64,8 +64,8 @@ function onEventFinish(player,csid,option)
 --print("CSID:",csid);
 --print("RESULT:",option);
 
-	if(csid == 0x0001) then
-		if(player:hasKeyItem(DELKFUTT_KEY) == false) then
+	if (csid == 0x0001) then
+		if (player:hasKeyItem(DELKFUTT_KEY) == false) then
 			player:tradeComplete();
 			player:addKeyItem(DELKFUTT_KEY);
 			player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_KEY);

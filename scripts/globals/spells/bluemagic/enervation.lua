@@ -37,8 +37,8 @@ function onSpellCast(caster,target,spell)
     local duration = 30 * resist;
     local returnEffect = typeEffectOne;
 
-    if(resist >= 0.5) then
-        if(target:hasStatusEffect(typeEffectOne) and target:hasStatusEffect(typeEffectTwo)) then -- the def/mag def down does not overwrite the same debuff from any other source
+    if (resist >= 0.5) then
+        if (target:hasStatusEffect(typeEffectOne) and target:hasStatusEffect(typeEffectTwo)) then -- the def/mag def down does not overwrite the same debuff from any other source
             spell:setMsg(75); -- no effect
         elseif (target:hasStatusEffect(typeEffectOne)) then
             target:addStatusEffect(typeEffectTwo,8,0,duration);

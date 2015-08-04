@@ -17,7 +17,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	if (killer:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and killer:getVar("PromathiaStatus")==3)then
+	if (killer:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and killer:getVar("PromathiaStatus")==3) then
 		killer:setVar("PromathiaStatus",4);
 	end
 end;

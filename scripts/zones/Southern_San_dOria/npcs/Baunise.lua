@@ -24,7 +24,7 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc)
-	if(player:hasKeyItem(BOOK_OF_TASKS) and player:hasKeyItem(BOOK_OF_THE_WEST) == false) then
+	if (player:hasKeyItem(BOOK_OF_TASKS) and player:hasKeyItem(BOOK_OF_THE_WEST) == false) then
 		player:startEvent(0x027a);
 	else
 		player:showText(npc, 7817)-- nothing to report

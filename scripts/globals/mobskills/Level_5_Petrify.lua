@@ -18,7 +18,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_PETRIFICATION;
-    if(target:getMainLvl()%5 == 0) then
+    if (target:getMainLvl()%5 == 0) then
 
 
         local power = 45;

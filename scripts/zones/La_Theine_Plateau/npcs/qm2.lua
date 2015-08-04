@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 		
 	local hittingTheMarquisateNanaaCS = player:getVar("hittingTheMarquisateNanaaCS");	
 		
-	if(trade:hasItemQty(605,1) and trade:getItemCount() == 1) then -- Trade pickaxe		
+	if (trade:hasItemQty(605,1) and trade:getItemCount() == 1) then -- Trade pickaxe		
 		if (hittingTheMarquisateNanaaCS == 1) then
 			player:startEvent(0x0077);
 		end

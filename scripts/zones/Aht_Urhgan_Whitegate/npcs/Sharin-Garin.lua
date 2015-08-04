@@ -31,7 +31,7 @@ function onTrigger(player,npc)
     
 	local cost = 200 -- 200 IS to get a permit
 	
-	if(getMercenaryRank(player) == 11) then
+	if (getMercenaryRank(player) == 11) then
 		captain = 1;
 	else
 		captain = 0;
@@ -60,11 +60,11 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 	
-	if(csid == 0x008C and option == 1) then
+	if (csid == 0x008C and option == 1) then
 		player:addKeyItem(RUNIC_PORTAL_USE_PERMIT);
 		player:messageSpecial(KEYITEM_OBTAINED,RUNIC_PORTAL_USE_PERMIT);
 		player:delCurrency("imperial_standing", 200);
-	elseif(csid == 0x008C and option == 2) then
+	elseif (csid == 0x008C and option == 2) then
 		player:addKeyItem(RUNIC_PORTAL_USE_PERMIT);
 		player:messageSpecial(KEYITEM_OBTAINED,RUNIC_PORTAL_USE_PERMIT);
 	end

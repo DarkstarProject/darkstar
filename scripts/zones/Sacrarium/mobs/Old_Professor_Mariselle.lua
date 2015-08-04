@@ -51,7 +51,7 @@ function onMobDeath(mob, killer)
 		end
 	end
 
-	if (killer:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and killer:getVar("PromathiaStatus") == 3 and  killer:hasKeyItem(RELIQUIARIUM_KEY)==false)then
+	if (killer:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and killer:getVar("PromathiaStatus") == 3 and  killer:hasKeyItem(RELIQUIARIUM_KEY)==false) then
 		killer:setVar("PromathiaStatus",4);
 	end
 

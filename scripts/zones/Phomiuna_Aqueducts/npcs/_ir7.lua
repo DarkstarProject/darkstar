@@ -15,10 +15,10 @@ require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(1660,1) and trade:getItemCount() == 1)then -- Bronze Key
+	if (trade:hasItemQty(1660,1) and trade:getItemCount() == 1) then -- Bronze Key
 		player:tradeComplete();
 		npc:openDoor(15);
-	elseif(trade:hasItemQty(1022,1) and trade:getItemCount() == 1 and player:getMainJob() == 6)then -- thief's tool
+	elseif (trade:hasItemQty(1022,1) and trade:getItemCount() == 1 and player:getMainJob() == 6) then -- thief's tool
 		player:tradeComplete();
 		npc:openDoor(15);
 	end
@@ -31,7 +31,7 @@ end;
 
 function onTrigger(player,npc)
    
-	if(player:getXPos() <= -71)then
+	if (player:getXPos() <= -71) then
 		npc:openDoor(15); -- Retail timed
 	else
 		player:messageSpecial(DOOR_LOCKED,1660);

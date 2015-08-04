@@ -34,7 +34,7 @@ function onUseAbility(player,target,ability)
     local duration = 60;
     local resist = applyResistanceAbility(player,target,ELE_DARK,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
     
-    if(resist < 0.25) then
+    if (resist < 0.25) then
         ability:setMsg(324);--resist message
         return 0;
     end
@@ -74,7 +74,7 @@ function onUseAbility(player,target,ability)
     
     ability:setMsg(321);
     local dispelledEffect = target:dispelStatusEffect();
-    if(dispelledEffect == EFFECT_NONE) then
+    if (dispelledEffect == EFFECT_NONE) then
         -- no effect
         ability:setMsg(323);
     end
