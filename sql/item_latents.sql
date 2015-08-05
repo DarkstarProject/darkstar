@@ -1511,8 +1511,8 @@ INSERT INTO `item_latents` VALUES(11486, 28, 4, 37, 4); -- Full moon magic attac
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14164, 12, 1, 37, 0); -- New moon INT+1
 INSERT INTO `item_latents` VALUES(14164, 116, 3, 37, 0); -- New moon Dark Magic skill +3
-INSERT INTO `item_latents` VALUES(14164, 12, 2, 37, 0); -- New moon INT+2
-INSERT INTO `item_latents` VALUES(14164, 116, 5, 37, 0); -- New moon Dark Magic skill +5
+INSERT INTO `item_latents` VALUES(14165, 12, 2, 37, 0); -- New moon INT+2
+INSERT INTO `item_latents` VALUES(14165, 116, 5, 37, 0); -- New moon Dark Magic skill +5
 
 -- -------------------------------------------------------
 -- Sirius Axe
