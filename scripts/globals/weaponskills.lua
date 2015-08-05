@@ -152,18 +152,18 @@ function doPhysicalWeaponskill(attacker, target, params)
 					finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * ftp * cpdif);
 				end
 				if (isTrickValid and attacker:getMainJob()==6) then
-					finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * ftp * cpdif);
+					finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * cpdif);
 				end
 			else
 				finaldmg = dmg * pdif;
 				if (isTrickValid and attacker:getMainJob()==6) then
-					finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * ftp * pdif);
+					finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * pdif);
 				end
 			end
 		else
 			finaldmg = dmg * pdif;
 			if (isTrickValid and attacker:getMainJob()==6) then
-				finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * ftp * pdif);
+				finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * pdif);
 			end
 		end
 		tpHitsLanded = 1;
