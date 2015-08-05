@@ -1,8 +1,8 @@
 ---------------------------------------------
---  Actinic Burst
---  Family: Ghrah
---  Description: Greatly lowers the accuracy of enemies within range for a brief period of time.
---  Type: Magical (Light)
+--  Sandspray
+--  Family: Qiqurn
+--  Description: Blinds enemies within a fan-shaped area originating from the user.
+--  Type: Magical
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Range: Unknown
 --  Notes:
@@ -17,9 +17,9 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_FLASH;
-    local power = 200;
-    local duration = 20;
+    local typeEffect = EFFECT_BLINDNESS;
+    local power = 25;
+    local duration = 90;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
 

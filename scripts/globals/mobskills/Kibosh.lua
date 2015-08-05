@@ -1,10 +1,10 @@
 ---------------------------------------------
---  Actinic Burst
---  Family: Ghrah
---  Description: Greatly lowers the accuracy of enemies within range for a brief period of time.
---  Type: Magical (Light)
+--  Kibosh
+--  Family: Qiqurn
+--  Description: Inflicts amnesia on a single target.
+--  Type: Magical
 --  Utsusemi/Blink absorb: Ignores shadows
---  Range: Unknown
+--  Range: Melee
 --  Notes:
 ---------------------------------------------
 require("scripts/globals/settings");
@@ -17,9 +17,9 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_FLASH;
-    local power = 200;
-    local duration = 20;
+    local typeEffect = EFFECT_AMNESIA;
+    local power = 1;
+    local duration = 60;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
 
