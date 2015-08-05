@@ -1466,7 +1466,7 @@ INSERT INTO `item_weapon` VALUES (17823,'shinsoku',10,0,0,0,0,2,1,450,80,0);
 INSERT INTO `item_weapon` VALUES (17824,'nukemaru',10,0,0,0,0,2,1,450,77,0);
 INSERT INTO `item_weapon` VALUES (17825,'honebami',10,0,0,0,0,3,1,420,68,0);
 INSERT INTO `item_weapon` VALUES (17826,'messhikimaru',10,0,0,0,0,2,1,450,76,0);
-INSERT INTO `item_weapon` VALUES (17827,'michishiba-no-tsuyu',10,0,0,0,0,2,1,420,65,0);
+INSERT INTO `item_weapon` VALUES (17827,'michishiba-no-tsuyu',10,0,0,0,0,2,1,420,65,500);
 INSERT INTO `item_weapon` VALUES (17828,'koen',10,0,0,0,0,2,1,463,47,0);
 INSERT INTO `item_weapon` VALUES (17829,'hagun',10,0,0,0,0,2,1,450,75,0);
 INSERT INTO `item_weapon` VALUES (17830,'wooden_katana',10,0,0,0,0,2,1,450,1,0);
@@ -1671,7 +1671,7 @@ INSERT INTO `item_weapon` VALUES (18044,'scarecrow_scythe',7,0,0,0,0,2,1,480,86,
 INSERT INTO `item_weapon` VALUES (18045,'platoon_zaghnal',7,0,0,0,0,2,1,470,34,0);
 INSERT INTO `item_weapon` VALUES (18046,'mutilator',7,0,0,0,0,2,1,502,62,0);
 INSERT INTO `item_weapon` VALUES (18047,'havoc_scythe',7,0,0,0,0,2,1,513,91,0);
-INSERT INTO `item_weapon` VALUES (18048,'king_maker',7,0,0,0,0,2,1,480,85,500);
+INSERT INTO `item_weapon` VALUES (18048,'king_maker',7,0,0,0,0,2,1,480,85,0);
 INSERT INTO `item_weapon` VALUES (18049,'mighty_zaghnal',7,0,0,0,0,2,1,494,86,0);
 INSERT INTO `item_weapon` VALUES (18050,'mandibular_sickle',7,0,0,0,0,2,1,501,67,0);
 INSERT INTO `item_weapon` VALUES (18051,'antlion_sickle',7,0,0,0,0,2,1,490,68,0);
