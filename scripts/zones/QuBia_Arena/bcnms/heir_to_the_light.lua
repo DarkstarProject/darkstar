@@ -6,7 +6,7 @@ package.loaded["scripts/zones/Qubia_arena/TextIDs"] = nil;
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Qubia_arena/TextIDs");
+require("scripts/zones/QuBia_Arena/TextIDs");
 
 -----------------------------------
 
