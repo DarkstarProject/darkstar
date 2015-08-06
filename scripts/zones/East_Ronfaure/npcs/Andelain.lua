@@ -17,7 +17,7 @@ require("scripts/globals/quests");
 function onTrade(player,npc,trade)
 	sermonQuest = player:getQuestStatus(SANDORIA,THE_VICASQUE_S_SERMON);
 	
-	if(sermonQuest == QUEST_ACCEPTED) then
+	if (sermonQuest == QUEST_ACCEPTED) then
 		count = trade:getItemCount();
 		BluePeas = trade:getItemQty(618);
 		if (BluePeas == 1 and count == 1 and player:getVar("sermonQuestVar") == 0) then
@@ -25,10 +25,10 @@ function onTrade(player,npc,trade)
 			player:showText(npc, 7349); 
 			player:startEvent(0x0013);
 			player:setVar("sermonQuestVar",1);
-		elseif(BluePeas > 1 and count == BluePeas) then
+		elseif (BluePeas > 1 and count == BluePeas) then
 			player:showText(npc, 7352); 
 			player:startEvent(0x0013);
-		elseif(BluePeas == 1 and count == 1) then
+		elseif (BluePeas == 1 and count == 1) then
 			player:showText(npc, 7352,618); 
 			player:startEvent(0x0013);
 		else

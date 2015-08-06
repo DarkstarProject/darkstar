@@ -7,9 +7,9 @@
 --  Range: 15' radial
 --  Notes:
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
@@ -18,7 +18,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_PETRIFICATION;
-    if(target:getMainLvl()%5 == 0) then
+    if (target:getMainLvl()%5 == 0) then
 
 
         local power = 45;

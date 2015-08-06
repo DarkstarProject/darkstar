@@ -26,23 +26,23 @@ function onTrigger(player,npc)
 	local old_nation = player:getNation();
 	local rank = getNationRank(new_nation);
 	
-	if(old_nation == new_nation) then
+	if (old_nation == new_nation) then
 		player:startEvent(0x2714,0,0,0,old_nation);
-	elseif(player:getCurrentMission(old_nation) ~= 255 or player:getVar("MissionStatus") ~= 0) then
+	elseif (player:getCurrentMission(old_nation) ~= 255 or player:getVar("MissionStatus") ~= 0) then
 		player:startEvent(0x2713,0,0,0,new_nation);
-	elseif(old_nation ~= new_nation) then
+	elseif (old_nation ~= new_nation) then
 		local has_gil = 0;
 		local cost = 0;
 		
-		if(rank == 1) then
+		if (rank == 1) then
 			cost = 40000;
-		elseif(rank == 2) then
+		elseif (rank == 2) then
 			cost = 12000;
-		elseif(rank == 3) then
+		elseif (rank == 3) then
 			cost = 4000;
 		end
 		
-		if(player:getGil() >= cost) then
+		if (player:getGil() >= cost) then
 			has_gil = 1
 		end
 		
@@ -68,16 +68,16 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 	
-	if(csid == 0x2712 and option == 1) then
+	if (csid == 0x2712 and option == 1) then
 		local new_nation = WINDURST;
 		local rank = getNationRank(new_nation);
 		local cost = 0;
 		
-		if(rank == 1) then
+		if (rank == 1) then
 			cost = 40000;
-		elseif(rank == 2) then
+		elseif (rank == 2) then
 			cost = 12000; 
-		elseif(rank == 3) then
+		elseif (rank == 3) then
 			cost = 4000;
 		end
 		

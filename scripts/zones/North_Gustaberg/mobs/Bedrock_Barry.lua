@@ -3,8 +3,8 @@
 --  NM:  Bedrock Barry
 -----------------------------------
 
-require("/scripts/globals/fieldsofvalor");
-require("/scripts/globals/status");
+require("scripts/globals/fieldsofvalor");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onMobDeath

@@ -47,7 +47,7 @@ enum MOBMODIFIER
     MOBMOD_MUG_GIL        = 15, // amount gil carried for mugging
     MOBMOD_MAIN_2HOUR     = 16, // give mob its main job two hour, value can maybe be sent to skill
     MOBMOD_NO_DESPAWN     = 17, // do not despawn when too far from spawn. Gob Diggers have this.
-    MOBMOD_VAR            = 18, // temp var for whatever
+    MOBMOD_VAR            = 18, // temp var for whatever. Gets cleared on spawn
     MOBMOD_SUB_2HOUR      = 19, // give mob its sub job two hour (dynamis NM)
     MOBMOD_TP_USE_CHANCE  = 20, // % chance to use tp
     MOBMOD_PET_SPELL_LIST = 21, // set pet spell list
@@ -60,7 +60,7 @@ enum MOBMODIFIER
     MOBMOD_EXP_BONUS      = 28, // bonus exp (bonus / 100) negative values reduce exp.
     MOBMOD_ASSIST         = 29, // mobs will assist me
     MOBMOD_SPECIAL_SKILL  = 30, // give special skill
-    // ID 31 available for use.
+    MOBMOD_ROAM_DISTANCE  = 31, // define a custom roam range
     MOBMOD_2HOUR_MULTI    = 32, // can use two hour multiple times
     MOBMOD_SPECIAL_COOL   = 33, // cool down for special
     MOBMOD_MAGIC_COOL     = 34, // cool down for magic

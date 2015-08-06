@@ -597,7 +597,7 @@ function checkGoVregime(killer,mob,rid,index)
                         if (k4 ~= 0) then
                             killer:setVar("fov_numkilled4",0);
                         end
-                        if(killer:getVar("fov_repeat") ~= 1) then
+                        if (killer:getVar("fov_repeat") ~= 1) then
                             killer:setVar("fov_regimeid",0);
                             killer:setVar("fov_numneeded1",0);
                             killer:setVar("fov_numneeded2",0);

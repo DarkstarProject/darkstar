@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(533,8,23,2)) then
+	if (player:sendGuild(533,8,23,2)) then
 		player:showText(npc, VICIOUS_EYE_SHOP_DIALOG);
 	end
 end;

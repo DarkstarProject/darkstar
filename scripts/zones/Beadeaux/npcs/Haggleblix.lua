@@ -134,7 +134,7 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 
-   if(csid == 134)then -- Buying an Hourglass
+   if (csid == 134) then -- Buying an Hourglass
       if (player:getFreeSlotsCount() == 0 or player:hasItem(4236) == true) then
          player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4236);
       else

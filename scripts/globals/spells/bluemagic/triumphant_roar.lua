@@ -34,17 +34,17 @@ function onSpellCast(caster,target,spell)
     local power = 15    
     local duration = 90;
     
-    if(caster:hasStatusEffect(EFFECT_DIFFUSION)) then
+    if (caster:hasStatusEffect(EFFECT_DIFFUSION)) then
         local diffMerit = caster:getMerit(MERIT_DIFFUSION);
         
-        if(diffMerit > 0) then
+        if (diffMerit > 0) then
             duration = duration + (duration/100)* diffMerit;
         end
         
         caster:delStatusEffect(EFFECT_DIFFUSION);
     end
     
-    if(caster:hasStatusEffect(EFFECT_ATTACK_BOOST) == true) then
+    if (caster:hasStatusEffect(EFFECT_ATTACK_BOOST) == true) then
         local effect = caster:getStatusEffect(EFFECT_ATTACK_BOOST);
         effect:setPower(effect:getPower() + power);
         caster:addMod(MOD_ATTP,power);

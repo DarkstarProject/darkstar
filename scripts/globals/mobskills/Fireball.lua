@@ -3,15 +3,15 @@
 -- Deals Fire damage in an area of effect.
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     -- not used in psoxja
-    if(target:getZoneID() == 9) then
+    if (target:getZoneID() == 9) then
         return 1;
     end
     return 0;

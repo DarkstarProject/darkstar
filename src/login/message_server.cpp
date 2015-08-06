@@ -232,39 +232,39 @@ void message_server_listen()
 
 void message_server_init()
 {
-	ChatSqlHandle = Sql_Malloc();
+    ChatSqlHandle = Sql_Malloc();
 
-	if (Sql_Connect(ChatSqlHandle, login_config.mysql_login,
-		login_config.mysql_password,
-		login_config.mysql_host,
-		login_config.mysql_port,
-		login_config.mysql_database) == SQL_ERROR)
-	{
-		exit(EXIT_FAILURE);
-	}
-	Sql_Keepalive(ChatSqlHandle);
+    if (Sql_Connect(ChatSqlHandle, login_config.mysql_login,
+        login_config.mysql_password,
+        login_config.mysql_host,
+        login_config.mysql_port,
+        login_config.mysql_database) == SQL_ERROR)
+    {
+        exit(EXIT_FAILURE);
+    }
+    Sql_Keepalive(ChatSqlHandle);
 
-	zContext = zmq::context_t(1);
-	zSocket = new zmq::socket_t(zContext, ZMQ_ROUTER);
+    zContext = zmq::context_t(1);
+    zSocket = new zmq::socket_t(zContext, ZMQ_ROUTER);
 
     uint32 to = 500;
     zSocket->setsockopt(ZMQ_RCVTIMEO, &to, sizeof to);
 
-	string_t server = "tcp://";
+    string_t server = "tcp://";
     server.append(login_config.msg_server_ip);
-	server.append(":");
+    server.append(":");
     server.append(std::to_string(login_config.msg_server_port));
 
-	try
-	{
-		zSocket->bind(server.c_str());
-	}
-	catch (zmq::error_t err)
-	{
-		ShowFatalError("Unable to bind chat socket: %s\n", err.what());
-	}
+    try
+    {
+        zSocket->bind(server.c_str());
+    }
+    catch (zmq::error_t err)
+    {
+        ShowFatalError("Unable to bind chat socket: %s\n", err.what());
+    }
 
-	message_server_listen();
+    message_server_listen();
 }
 
 void message_server_close()

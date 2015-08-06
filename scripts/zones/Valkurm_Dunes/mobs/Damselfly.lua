@@ -4,8 +4,8 @@
 -- Note: Place holder Valkurm Emperor 
 -----------------------------------	
 
-require("/scripts/zones/Valkurm_Dunes/MobIDs");
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/zones/Valkurm_Dunes/MobIDs");
+require("scripts/globals/fieldsofvalor");	
 	
 -----------------------------------	
 -- onMobDeath	

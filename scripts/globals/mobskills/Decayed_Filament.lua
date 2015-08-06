@@ -4,14 +4,14 @@
 --  Blinkable 1-2 hit, addtional effect poison on hit. 
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-	if(mob:AnimationSub() ~= 2) then
+	if (mob:AnimationSub() ~= 2) then
 		return 1;
 	end
 

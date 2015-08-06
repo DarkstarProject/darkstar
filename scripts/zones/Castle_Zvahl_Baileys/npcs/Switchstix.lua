@@ -141,16 +141,16 @@ function onTrade(player,npc,trade)
       eventParams = getRelicParameters(itemid);
 
          -- Stage 1->2 or 2->3, 3 items + relic itself
-         if(count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(eventParams[2],1) and
+         if (count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(eventParams[2],1) and
             trade:hasItemQty(eventParams[3],1) and trade:hasItemQty(itemid,1)) then
                tradeOK = true;
 
          -- Stage 3->4, just check for attestation + relic itself
-         elseif(count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(itemid,1)) then
+         elseif (count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(itemid,1)) then
             tradeOK = true;
 
          -- Stage 4->5, Shard + Necropschye + relic itself
-         elseif(count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(eventParams[2],1) and trade:hasItemQty(itemid,1)) then
+         elseif (count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(eventParams[2],1) and trade:hasItemQty(itemid,1)) then
             tradeOK = true;
          end
 
@@ -181,7 +181,9 @@ function onTrade(player,npc,trade)
       elseif (count == eventParams[6] * 3 and eventParams[5] == 0) then
          -- Has currencyamount of all three currencies
          if (trade:hasItemQty(1450,eventParams[6]) and trade:hasItemQty(1453,eventParams[6]) and trade:hasItemQty(1456,eventParams[6])) then
-            tradeOK = true;
+            if (eventParams[5] ~= 1451 and eventParams[5] ~= 1454 and eventParams[5] ~= 1457) then -- disallow trade of 10k piece, else the gob will eat it.
+               tradeOK = true;
+            end
          end
       end
 

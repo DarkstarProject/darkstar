@@ -14,8 +14,8 @@ function utils.stoneskin(target, dmg)
     --handling stoneskin
     if (dmg > 0) then
         skin = target:getMod(MOD_STONESKIN);
-        if(skin > 0) then
-            if(skin > dmg) then --absorb all damage
+        if (skin > 0) then
+            if (skin > dmg) then --absorb all damage
                 target:delMod(MOD_STONESKIN,dmg);
                 return 0;
             else --absorbs some damage then wear
@@ -30,41 +30,41 @@ function utils.stoneskin(target, dmg)
 end;
 
 function utils.takeShadows(target, dmg, shadowbehav)
-    if(shadowbehav == nil) then
+    if (shadowbehav == nil) then
         shadowbehav = 1;
     end
 
     local targShadows = target:getMod(MOD_UTSUSEMI);
     local shadowType = MOD_UTSUSEMI;
 
-    if(targShadows == 0) then --try blink, as utsusemi always overwrites blink this is okay
+    if (targShadows == 0) then --try blink, as utsusemi always overwrites blink this is okay
         targShadows = target:getMod(MOD_BLINK);
         shadowType = MOD_BLINK;
     end
 
-    if(targShadows > 0) then
+    if (targShadows > 0) then
     --Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
 
-        if(targShadows >= shadowbehav) then --no damage, just suck the shadows
+        if (targShadows >= shadowbehav) then --no damage, just suck the shadows
 
             local shadowsLeft = targShadows - shadowbehav;
 
             target:setMod(shadowType, shadowsLeft);
 
-            if(shadowsLeft > 0 and shadowType == MOD_UTSUSEMI) then --update icon
+            if (shadowsLeft > 0 and shadowType == MOD_UTSUSEMI) then --update icon
                 effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
-                if(effect ~= nil) then
-                    if(shadowsLeft == 1) then
+                if (effect ~= nil) then
+                    if (shadowsLeft == 1) then
                         effect:setIcon(EFFECT_COPY_IMAGE);
-                    elseif(shadowsLeft == 2) then
+                    elseif (shadowsLeft == 2) then
                         effect:setIcon(EFFECT_COPY_IMAGE_2);
-                    elseif(shadowsLeft == 3) then
+                    elseif (shadowsLeft == 3) then
                         effect:setIcon(EFFECT_COPY_IMAGE_3);
                     end
                 end
             end
             -- remove icon
-            if(shadowsLeft <= 0) then
+            if (shadowsLeft <= 0) then
                 target:delStatusEffect(EFFECT_COPY_IMAGE);
                 target:delStatusEffect(EFFECT_BLINK);
             end
@@ -86,13 +86,13 @@ function utils.thirdeye(target)
     --chance of anticipate based on previous successful anticipates.
     local teye = target:getStatusEffect(EFFECT_THIRD_EYE);
 
-    if(teye == nil) then
+    if (teye == nil) then
         return false;
     end
 
     local prevAnt = teye:getPower();
 
-    if( prevAnt == 0 or (math.random()*100) < (80-(prevAnt*10)) ) then
+    if ( prevAnt == 0 or (math.random()*100) < (80-(prevAnt*10)) ) then
         --anticipated!
         target:delStatusEffect(EFFECT_THIRD_EYE);
         return true;

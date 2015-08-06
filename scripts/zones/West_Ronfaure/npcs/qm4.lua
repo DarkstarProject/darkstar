@@ -25,15 +25,15 @@ end;
 
 function onTrigger(player,npc)
 
-	if(player:getCurrentMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE) and player:getVar("MissionStatus") == 1)then
-		if(GetMobAction(17187273) == 0) then
-			if(player:getVar("Mission7-1MobKilled") == 1) then
+	if (player:getCurrentMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE) and player:getVar("MissionStatus") == 1) then
+		if (GetMobAction(17187273) == 0) then
+			if (player:getVar("Mission7-1MobKilled") == 1) then
 				player:addKeyItem(ANCIENT_SANDORIAN_TABLET);
 				player:messageSpecial(KEYITEM_OBTAINED,ANCIENT_SANDORIAN_TABLET);
 				player:setVar("Mission7-1MobKilled",0);
 				player:setVar("MissionStatus",2);
 			else
-				SpawnMob(17187273):updateEnmity(player);
+				SpawnMob(17187273):updateClaim(player);
 			end
 		end
 	end;

@@ -6,14 +6,14 @@
 --  Utsusemi/Blink absorb: No
 --  Range: Single Target
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/magic");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
+    if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
         return 0;
     end
     return 1;

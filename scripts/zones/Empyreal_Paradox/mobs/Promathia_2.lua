@@ -5,7 +5,7 @@
 
 require("scripts/globals/titles");
 require("scripts/globals/status");
-require("/scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/zones/Empyreal_Paradox/TextIDs");
 
 -----------------------------------
 -- onMobInitialize Action

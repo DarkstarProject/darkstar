@@ -7,9 +7,9 @@
 -- Notes: If used against undead, it will simply do damage and not drain HP.
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
@@ -24,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     target:delHP(dmg);
 
-    if(target:isUndead() == false) then
+    if (target:isUndead() == false) then
         mob:addHP(dmg*.5);
         skill:setMsg(MSG_DRAIN_HP);
     end

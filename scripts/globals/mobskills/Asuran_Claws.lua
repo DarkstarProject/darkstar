@@ -3,13 +3,13 @@
 --Gnole Mobs, only used when standing
 ---------------------------------------------------
 ---------------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-	if(mob:AnimationSub() == 1) then
+	if (mob:AnimationSub() == 1) then
             return 1;
         end
 

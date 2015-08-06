@@ -36,13 +36,13 @@ function onUseWeaponSkill(player, target, wsID)
 	damage = damage * WEAPON_SKILL_POWER
 	local drain = (damage * 0.4);
 	player:addHP(drain);
-		if((player:getEquipID(SLOT_MAIN) == 18306) and (player:getMainJob() == JOB_DRK)) then
-		if(damage > 0) then
-			if(player:getTP() >= 100 and player:getTP() <200) then
+		if ((player:getEquipID(SLOT_MAIN) == 18306) and (player:getMainJob() == JOB_DRK)) then
+		if (damage > 0) then
+			if (player:getTP() >= 100 and player:getTP() <200) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 100, 0, 20, 0, 6);
-			elseif(player:getTP() >= 200 and player:getTP() <300) then
+			elseif (player:getTP() >= 200 and player:getTP() <300) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 100, 0, 40, 0, 6);
-			elseif(player:getTP() == 300) then
+			elseif (player:getTP() == 300) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 100, 0, 60, 0, 6);
 			end
 		end

@@ -29,8 +29,8 @@ end;
 function onZoneIn(player,prevZone)
 	local cs = -1;
 
-	if((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
-		if(prevZone == 220) then
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+		if (prevZone == 220) then
 			cs = 0x00ca;
 			player:setPos(32.500,-2.500,-45.500,192);
 		else
@@ -38,7 +38,7 @@ function onZoneIn(player,prevZone)
 		end
 	end
 
-	if(player:hasKeyItem(SEANCE_STAFF) and player:getVar("Enagakure_Killed") == 1) then
+	if (player:hasKeyItem(SEANCE_STAFF) and player:getVar("Enagakure_Killed") == 1) then
 		cs = 0x044d;
 	end
 
@@ -82,10 +82,10 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 
-	if(csid == 0x00c8) then
+	if (csid == 0x00c8) then
 		player:setPos(0,0,0,0,221);
-	elseif(csid == 0x044d) then
-		if(player:getFreeSlotsCount() < 1) then
+	elseif (csid == 0x044d) then
+		if (player:getFreeSlotsCount() < 1) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14226);
 		else
 			player:delKeyItem(SEANCE_STAFF);

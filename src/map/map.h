@@ -153,12 +153,8 @@ extern map_config_t map_config;
 extern uint32 map_amntplayers;
 extern int32 map_fd;
 
-//temporary until VC13 (where thread_local is defined)
-#ifdef WIN32
-extern __declspec(thread) Sql_t* SqlHandle; // SQL descriptor
-#else
 extern thread_local Sql_t* SqlHandle;
-#endif
+
 extern CCommandHandler CmdHandler;
 
 typedef std::map<uint64,map_session_data_t*> map_session_list_t;

@@ -1,5 +1,4 @@
 -------------------------------------------------
---  Author: Ezekyel
 --  Logging functions
 --  Info from:
 --      http://wiki.ffxiclopedia.org/wiki/Logging
@@ -24,7 +23,7 @@ local npcid = {2,  {16785769,16785770,16785771,16785772},                   -- C
                101,{17191526,17191527,17191528,17191529,17191530,17191531}, -- East Ronfaure
                104,{17203860,17203861,17203862,17203863,17203864,17203865}, -- Jugner Forest
                118,{17261171,17261172,17261173,17261174,17261175,17261176}, -- Buburimu Peninsula
-               123,{17281625,17281626,17281627,17281628,17281629,17281630}, -- Yuhtunga Jungle
+               123,{17281626,17281627,17281628,17281629,17281630,17281631}, -- Yuhtunga Jungle
                124,{17285671,17285672,17285673,17285674,17285675,17285676}, -- Yhoator Jungle
                140,{17350970,17350971,17350972,17350973}};                  -- Ghelsba Outpost
 -- Zone, {itemid,drop rate,itemid,drop rate,..}
@@ -49,7 +48,7 @@ function startLogging(player,zone,npc,trade,csid)
         local broke = hatchetBreak(player,trade);
         local item = getLoggingItem(player,zone);
 
-        if(player:getFreeSlotsCount() == 0) then
+        if (player:getFreeSlotsCount() == 0) then
             full = 1;
         else
             full = 0;

@@ -3,14 +3,14 @@
 -- Berserk Ability.
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if(mob:getHPP() <= 70) then
+    if (mob:getHPP() <= 70) then
         return 0;
     end
     return 1;

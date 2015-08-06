@@ -21,7 +21,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
+	if (target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
 		target:addStatusEffect(EFFECT_PARALYSIS,20,0,600);
 	else
 		target:messageBasic(423);

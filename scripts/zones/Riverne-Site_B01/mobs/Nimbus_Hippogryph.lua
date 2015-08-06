@@ -4,7 +4,7 @@
 -- Note: Place holder Imdugud
 -----------------------------------	
 
-require("/scripts/zones/Riverne-Site_B01/MobIDs");
+require("scripts/zones/Riverne-Site_B01/MobIDs");
 	
 -----------------------------------	
 -- onMobDeath	

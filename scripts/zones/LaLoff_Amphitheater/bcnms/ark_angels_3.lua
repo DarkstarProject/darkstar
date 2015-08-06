@@ -41,15 +41,15 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 
-	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
 	
-		if(player:hasCompletedMission(ZILART,ARK_ANGELS)) then
+		if (player:hasCompletedMission(ZILART,ARK_ANGELS)) then
 			player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,2,1);		-- winning CS (allow player to skip)
 		else
 			player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,2,0);		-- winning CS (allow player to skip)
 		end
 		
-	elseif(leavecode == 4) then
+	elseif (leavecode == 4) then
 		player:startEvent(0x7d02, 0, 0, 0, 0, 0, instance:getEntrance(), 180);	-- player lost
 	end
 end;
@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
    local AAKeyitems = (player:hasKeyItem(SHARD_OF_APATHY) and player:hasKeyItem(SHARD_OF_ARROGANCE)
          and player:hasKeyItem(SHARD_OF_COWARDICE) and player:hasKeyItem(SHARD_OF_RAGE));
 
-   if(csid == 0x7d01) then
+   if (csid == 0x7d01) then
       if (player:getCurrentMission(ZILART) == ARK_ANGELS  and player:getVar("ZilartStatus") == 1) then
          player:addKeyItem(SHARD_OF_ENVY);
          player:messageSpecial(KEYITEM_OBTAINED,SHARD_OF_ENVY);

@@ -1,24 +1,32 @@
 -----------------------------------
 -- Ability: No Foot Rise
+-- Instantly grants additional Finishing Moves.
+-- Obtained: Dancer Level 75 Merit Group 2
+-- Recast Time: 3 minutes
+-- Duration: Instant
 -----------------------------------
  
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-	if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
+    if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
         return 561,0;
-	else
+    else
         return 0,0;
     end
 end;
 
-function onUseAbility(player, target, ability)
-	
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(player,target,ability)
+    
     local moves = player:getMerit(MERIT_NO_FOOT_RISE);
     if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_1)) then
         if (moves > 4) then

@@ -1,17 +1,25 @@
 -----------------------------------
 -- Ability: High Jump
+-- Performs a high jumping attack on enemy.
+-- Obtained: Dragoon Level 35
+-- Recast Time: 2:00
+-- Duration: Instant
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
 	return 0,0;
 end;
 
-function onUseAbility(player, target, ability)
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(player,target,ability)
 end;

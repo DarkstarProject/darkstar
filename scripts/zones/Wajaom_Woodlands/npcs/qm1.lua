@@ -14,9 +14,9 @@ require("scripts/zones/Wajaom_Woodlands/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(2580,1) and trade:getItemCount() == 1) then -- Trade Hellcage Butterfly
+	if (trade:hasItemQty(2580,1) and trade:getItemCount() == 1) then -- Trade Hellcage Butterfly
 		player:tradeComplete();
-		SpawnMob(16986428,180):updateEnmity(player);
+		SpawnMob(16986428,180):updateClaim(player);
 	end
 	
 end;

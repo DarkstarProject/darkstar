@@ -83,9 +83,12 @@ void CNavMesh::ToDetourPos(position_t* pos, float* out){
 
 }
 
-CNavMesh::CNavMesh()
+CNavMesh::CNavMesh(uint16 zoneID)
 {
+  m_zoneID = zoneID;
   m_navMesh = nullptr;
+  m_hit.path = m_hitPath;
+  m_hit.maxPath = 20;
 }
 
 CNavMesh::~CNavMesh()
@@ -240,7 +243,7 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
 
   if(dtStatusFailed(status))
   {
-    ShowError("CNavMesh::findPath start point invalid (%f, %f, %f)\n", spos[0], spos[1], spos[2]);
+    ShowError("CNavMesh::findPath start point invalid (%f, %f, %f) (%u)\n", spos[0], spos[1], spos[2], m_zoneID);
     outputError(status);
     return ERROR_NEARESTPOLY;
   }
@@ -249,14 +252,14 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
 
   if(dtStatusFailed(status))
   {
-    ShowError("CNavMesh::findPath end point invalid (%f, %f, %f)\n", epos[0], epos[1], epos[2]);
+    ShowError("CNavMesh::findPath end point invalid (%f, %f, %f) (%u)\n", epos[0], epos[1], epos[2], m_zoneID);
     outputError(status);
     return ERROR_NEARESTPOLY;
   }
 
   if (!m_navMesh->isValidPolyRef(startRef) || !m_navMesh->isValidPolyRef(endRef))
   {
-    ShowError("CNavMesh::findPath Couldn't find path (%f, %f, %f)->(%f, %f, %f) \n", start.x, start.y, start.z, end.x, end.y, end.z);
+    ShowError("CNavMesh::findPath Couldn't find path (%f, %f, %f)->(%f, %f, %f) (%u) \n", start.x, start.y, start.z, end.x, end.y, end.z, m_zoneID);
     return ERROR_NEARESTPOLY;
   }
 
@@ -275,7 +278,7 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
 
   if(dtStatusFailed(status))
   {
-    ShowError("CNavMesh::findPath findPath error\n");
+    ShowError("CNavMesh::findPath findPath error (%u)\n", m_zoneID);
     outputError(status);
     return -1;
   }
@@ -289,7 +292,7 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
 
     if(dtStatusFailed(status))
     {
-      ShowError("CNavMesh::findPath findStraightPath error\n");
+      ShowError("CNavMesh::findPath findStraightPath error (%u)\n", m_zoneID);
       outputError(status);
       return -1;
     }
@@ -349,22 +352,22 @@ int16 CNavMesh::findRandomPath(position_t start, float maxRadius, position_t* pa
 
   if(dtStatusFailed(status))
   {
-    ShowError("CNavMesh::findRandomPath start point invalid (%f, %f, %f)\n", spos[0], spos[1], spos[2]);
+    ShowError("CNavMesh::findRandomPath start point invalid (%f, %f, %f) (%u)\n", spos[0], spos[1], spos[2], m_zoneID);
     outputError(status);
     return ERROR_NEARESTPOLY;
   }
 
   if (!m_navMesh->isValidPolyRef(startRef))
   {
-    ShowError("CNavMesh::findRandomPath startRef is invalid (%f, %f, %f)\n", start.x, start.y, start.z);
+    ShowError("CNavMesh::findRandomPath startRef is invalid (%f, %f, %f) (%u)\n", start.x, start.y, start.z, m_zoneID);
     return ERROR_NEARESTPOLY;
   }
 
-  status = m_navMeshQuery->findRandomPointAroundCircle(startRef, spos, maxRadius, &filter, []() -> float { return WELL512::GetRandomNumber(1.f); }, &randomRef, randomPt);
+  status = m_navMeshQuery->findRandomPointAroundCircle(startRef, spos, maxRadius, &filter, []() -> float { return dsprand::GetRandomNumber(1.f); }, &randomRef, randomPt);
 
   if(dtStatusFailed(status))
   {
-    ShowError("CNavMesh::findRandomPath Error\n");
+    ShowError("CNavMesh::findRandomPath Error (%u)\n", m_zoneID);
     outputError(status);
     return ERROR_NEARESTPOLY;
   }
@@ -412,30 +415,28 @@ bool CNavMesh::raycast(position_t start, position_t end)
 
   if(dtStatusFailed(status))
   {
-    ShowError("CNavMesh::raycastPoint start point invalid (%f, %f, %f)\n", spos[0], spos[1], spos[2]);
+    ShowError("CNavMesh::raycastPoint start point invalid (%f, %f, %f) (%u)\n", spos[0], spos[1], spos[2], m_zoneID);
     outputError(status);
     return true;
   }
 
   if (!m_navMesh->isValidPolyRef(startRef))
   {
-    ShowError("CNavMesh::raycastPoint startRef is invalid (%f, %f, %f)\n", start.x, start.y, start.z);
+    ShowError("CNavMesh::raycastPoint startRef is invalid (%f, %f, %f) (%u)\n", start.x, start.y, start.z, m_zoneID);
     return true;
   }
 
-  dtRaycastHit hit;
-
-  status = m_navMeshQuery->raycast(startRef, spos, epos, &filter, 0, &hit);
+  status = m_navMeshQuery->raycast(startRef, spos, epos, &filter, 0, &m_hit);
 
   if(dtStatusFailed(status))
   {
-    ShowError("CNavMesh::raycastPoint raycast failed (%f, %f, %f)->(%f, %f, %f)\n", spos[0], spos[1], spos[2], epos[0], epos[1], epos[2]);
+    ShowError("CNavMesh::raycastPoint raycast failed (%f, %f, %f)->(%f, %f, %f) (%u)\n", spos[0], spos[1], spos[2], epos[0], epos[1], epos[2], m_zoneID);
     outputError(status);
     return true;
   }
 
   // no wall was hit
-  if(hit.t == FLT_MAX){
+  if(m_hit.t == FLT_MAX){
     return true;
   }
 
@@ -451,17 +452,6 @@ bool CNavMesh::test(uint16 zoneId)
   int8 expectedLength = 0;
 
   switch(zoneId){
-    case 100:
-      // west ronfaure
-      start.x = -224;
-      start.y = 60;
-      start.z = -316;
-
-      end.x = -224;
-      end.y = 60;
-      end.z = -324;
-      expectedLength = 2;
-    break;
     case 127:
       // behe dominion
       // navmesh transformation x, -y, -z
@@ -487,7 +477,6 @@ bool CNavMesh::test(uint16 zoneId)
       expectedLength = 4;
     break;
     default:
-      ShowWarning("CNavMesh::test Skipping sanity test for zone (%d)\n", zoneId);
       return true;
   }
 

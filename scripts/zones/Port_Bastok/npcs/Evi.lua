@@ -26,11 +26,11 @@ function onTrigger(player,npc)
 
 	PastPerfect = player:getQuestStatus(BASTOK,PAST_PERFECT);
 
-	if(PastPerfect == QUEST_ACCEPTED and player:hasKeyItem(TATTERED_MISSION_ORDERS)) then
+	if (PastPerfect == QUEST_ACCEPTED and player:hasKeyItem(TATTERED_MISSION_ORDERS)) then
 		player:startEvent(0x0083);
-	elseif(player:getFameLevel(BASTOK) >= 2 and player:getVar("PastPerfectVar") == 2) then
+	elseif (player:getFameLevel(BASTOK) >= 2 and player:getVar("PastPerfectVar") == 2) then
 		player:startEvent(0x0082);
-	elseif(PastPerfect == QUEST_AVAILABLE) then
+	elseif (PastPerfect == QUEST_AVAILABLE) then
 		player:startEvent(0x0068);
 	else
 		player:startEvent(0x0015);
@@ -55,11 +55,11 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x0068 and player:getVar("PastPerfectVar") == 0) then
+	if (csid == 0x0068 and player:getVar("PastPerfectVar") == 0) then
 		player:setVar("PastPerfectVar",1);
-	elseif(csid == 0x0082) then
+	elseif (csid == 0x0082) then
 		player:addQuest(BASTOK,PAST_PERFECT);
-	elseif(csid == 0x0083) then
+	elseif (csid == 0x0083) then
 		player:delKeyItem(TATTERED_MISSION_ORDERS);
 		player:setVar("PastPerfectVar",0);
 		player:addItem(12560);

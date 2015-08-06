@@ -29,77 +29,77 @@ login_sd_list_t login_sd_list;
 
 login_session_data_t *find_loginsd_byaccid(int32 accid)
 {
-	for(login_sd_list_t::iterator i = login_sd_list.begin(); 
-		i != login_sd_list.end();
-		++i )
-	{
-		if( (*i)->accid == accid)
-			return (*i);
-	}
-	return nullptr;
+    for (login_sd_list_t::iterator i = login_sd_list.begin();
+    i != login_sd_list.end();
+        ++i)
+    {
+        if ((*i)->accid == accid)
+            return (*i);
+    }
+    return nullptr;
 }
 
 login_session_data_t *find_loginsd_byip(uint32 ip)
 {
-	//////// 19/03/2012 Fix for 1 IP -> Many Accounts
-	// Simply increases "serviced" by 1 every time a login is returned via an IP address.
-	// The result is the illusion of independancy (though really it's not!)
-	unsigned int minserv = 1000; 
-	int multiple_ip_count = 0;
-	for(login_sd_list_t::iterator i = login_sd_list.begin(); 
-		i != login_sd_list.end();
-		++i )
-	{
-		if( (*i)->client_addr == ip ){
-			multiple_ip_count++;
-			if((*i)->serviced < minserv){
-				minserv = (*i)->serviced;
-			}
-		}
-	}
+    //////// 19/03/2012 Fix for 1 IP -> Many Accounts
+    // Simply increases "serviced" by 1 every time a login is returned via an IP address.
+    // The result is the illusion of independancy (though really it's not!)
+    unsigned int minserv = 1000;
+    int multiple_ip_count = 0;
+    for (login_sd_list_t::iterator i = login_sd_list.begin();
+    i != login_sd_list.end();
+        ++i)
+    {
+        if ((*i)->client_addr == ip) {
+            multiple_ip_count++;
+            if ((*i)->serviced < minserv) {
+                minserv = (*i)->serviced;
+            }
+        }
+    }
 
-	if(multiple_ip_count>1){
-		ShowInfo("Detected %i instances from %s. Returning best account match.\n",multiple_ip_count,ip2str(ip,nullptr));
-	}
-	////////////////
-	for(login_sd_list_t::iterator i = login_sd_list.begin(); 
-		i != login_sd_list.end();
-		++i )
-	{
-		if( (*i)->client_addr == ip && (*i)->serviced == minserv){
-			(*i)->serviced++;
-			return (*i);
-		}
-	}
-	return nullptr;
+    if (multiple_ip_count > 1) {
+        ShowInfo("Detected %i instances from %s. Returning best account match.\n", multiple_ip_count, ip2str(ip, nullptr));
+    }
+    ////////////////
+    for (login_sd_list_t::iterator i = login_sd_list.begin();
+    i != login_sd_list.end();
+        ++i)
+    {
+        if ((*i)->client_addr == ip && (*i)->serviced == minserv) {
+            (*i)->serviced++;
+            return (*i);
+        }
+    }
+    return nullptr;
 }
 
 void erase_loginsd_byaccid(uint32 accid)
 {
-	for(login_sd_list_t::iterator i = login_sd_list.begin(); 
-		i != login_sd_list.end();
-		++i )
-	{
-		if( (*i)->accid == accid)
-		{
-			login_sd_list.erase(i);
-			return ;
-		}
-	}
-	return;
+    for (login_sd_list_t::iterator i = login_sd_list.begin();
+    i != login_sd_list.end();
+        ++i)
+    {
+        if ((*i)->accid == accid)
+        {
+            login_sd_list.erase(i);
+            return;
+        }
+    }
+    return;
 }
 
 void erase_loginsd(int32 loginfd)
 {
-	for(login_sd_list_t::iterator i = login_sd_list.begin(); 
-		i != login_sd_list.end();
-		++i )
-	{
-		if( (*i)->login_fd == loginfd)
-		{
-			login_sd_list.erase(i);
-			return ;
-		}
-	}
-	return;
+    for (login_sd_list_t::iterator i = login_sd_list.begin();
+    i != login_sd_list.end();
+        ++i)
+    {
+        if ((*i)->login_fd == loginfd)
+        {
+            login_sd_list.erase(i);
+            return;
+        }
+    }
+    return;
 }

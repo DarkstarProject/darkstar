@@ -17,10 +17,10 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(sermonQuest == QUEST_ACCEPTED) then
+	if (sermonQuest == QUEST_ACCEPTED) then
 		gil = trade:getGil();
 		count = trade:getItemCount();
-		if(gil == 70 and count == 1) then
+		if (gil == 70 and count == 1) then
 			player:tradeComplete();
 			player:startEvent(0x024F);
 		end
@@ -34,10 +34,10 @@ end;
 function onTrigger(player,npc)
 	sermonQuest = player:getQuestStatus(SANDORIA,THE_VICASQUE_S_SERMON);
 	
-	if(sermonQuest == QUEST_AVAILABLE) then
+	if (sermonQuest == QUEST_AVAILABLE) then
 		player:startEvent(0x024d);
-	elseif(sermonQuest == QUEST_ACCEPTED) then
-		if(player:getVar("sermonQuestVar") == 1) then
+	elseif (sermonQuest == QUEST_ACCEPTED) then
+		if (player:getVar("sermonQuestVar") == 1) then
 			player:tradeComplete();
 			player:startEvent(0x0258);
 		else

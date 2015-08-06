@@ -24,10 +24,10 @@ function onSpellCast(caster,target,spell)
 	local dINT = (pINT - mINT);
 		
     local resist = applyResistanceEffect(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,0,effect);
-    if(resist >= 0.5) then -- effect taken
+    if (resist >= 0.5) then -- effect taken
         duration = duration * resist;
 
-        if(target:addStatusEffect(effect,5,3,duration)) then
+        if (target:addStatusEffect(effect,5,3,duration)) then
             spell:setMsg(236);
         else
             spell:setMsg(75);

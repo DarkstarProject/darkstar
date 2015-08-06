@@ -27,10 +27,7 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_ICE,0) <= 0.5) then
         return 0,0,0;
     else
-        target:delStatusEffect(EFFECT_PARALYSIS)
-        if (not target:hasStatusEffect(EFFECT_PARALYSIS)) then
-            target:addStatusEffect(EFFECT_PARALYSIS, 1, 0, 60);
-        end
+        target:addStatusEffect(EFFECT_PARALYSIS, 5, 0, 30);
         return SUBEFFECT_PARALYSIS, 160, EFFECT_PARALYSIS;
     end
 end;

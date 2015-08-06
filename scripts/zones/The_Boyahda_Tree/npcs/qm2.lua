@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 	local zoneMinute = VanadielMinute();
 	local correctTime = zoneHour >= 19 or zoneHour < 4 or (zoneHour == 4 and zoneMinute == 0);
 	
-	if(GetMobAction(17404337) == 0) then
+	if (GetMobAction(17404337) == 0) then
 		if (player:hasKeyItem(MOONDROP)) then
 			player:messageSpecial(CAN_SEE_SKY);
 			
@@ -47,7 +47,7 @@ function onTrigger(player,npc)
 				
 			else
 				player:messageSpecial(SOMETHING_NOT_RIGHT);
-				SpawnMob(17404337,288):updateEnmity(player); --missing repop timer for Agas due to errors with SpawnMob
+				SpawnMob(17404337,288):updateClaim(player); --missing repop timer for Agas due to errors with SpawnMob
 			end
 			
 		else

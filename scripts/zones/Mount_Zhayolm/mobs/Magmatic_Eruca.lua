@@ -4,7 +4,7 @@
 -- Note: Place Holder Energetic Eruca
 -----------------------------------
 
-require("/scripts/zones/Mount_Zhayolm/MobIDs");
+require("scripts/zones/Mount_Zhayolm/MobIDs");
 
 -----------------------------------	
 -- onMobDeath	

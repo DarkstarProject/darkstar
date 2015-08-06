@@ -37,7 +37,7 @@ function onEventUpdate(player,csid,option)
 --printf("onUpdate CSID: %u",csid);
 --printf("onUpdate RESULT: %u",option);
 	
-	if(csid == 0x7d01) then
+	if (csid == 0x7d01) then
 		player:delStatusEffect(EFFECT_BATTLEFIELD);
 	end
 	
@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
 
-	if(csid == 0x7d01) then
+	if (csid == 0x7d01) then
 		player:delKeyItem(DAZEBREAKER_CHARM);
 	end
 	

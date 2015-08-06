@@ -28,18 +28,18 @@
 
 #include <list>
 
-struct login_session_data_t{
-	char login[17];
-	uint32 accid;
-	uint32 serviced;
-	uint32 client_addr;
-	uint16 client_port;
-	uint32 servip;
+struct login_session_data_t {
+    char login[17];
+    uint32 accid;
+    uint32 serviced;
+    uint32 client_addr;
+    uint16 client_port;
+    uint32 servip;
 
-	char charname[17];
-	int32 login_fd;
-	int32 login_lobbydata_fd;
-	int32 login_lobbyview_fd;
+    char charname[17];
+    int32 login_fd;
+    int32 login_lobbydata_fd;
+    int32 login_lobbyview_fd;
 };
 
 

@@ -4,8 +4,8 @@
 -- Note: PH for Spiny Spipi
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
-require("/scripts/zones/East_Sarutabaruta/MobIDs");
+require("scripts/globals/fieldsofvalor");	
+require("scripts/zones/East_Sarutabaruta/MobIDs");
 
 -----------------------------------	
 -- onMobDeath	

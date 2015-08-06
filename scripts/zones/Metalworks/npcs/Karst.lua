@@ -26,13 +26,13 @@ end;
 function onTrigger(player,npc)
 	local currentMission = player:getCurrentMission(BASTOK);
 
-	if(currentMission == XARCABARD_LAND_OF_TRUTHS and player:getVar("MissionStatus") == 0) then
+	if (currentMission == XARCABARD_LAND_OF_TRUTHS and player:getVar("MissionStatus") == 0) then
 		player:startEvent(0x025a);
-	elseif(currentMission == XARCABARD_LAND_OF_TRUTHS and player:hasKeyItem(SHADOW_FRAGMENT)) then
+	elseif (currentMission == XARCABARD_LAND_OF_TRUTHS and player:hasKeyItem(SHADOW_FRAGMENT)) then
 		player:startEvent(0x025b);
-	elseif(currentMission == ON_MY_WAY) and (player:getVar("MissionStatus") == 0) then
+	elseif (currentMission == ON_MY_WAY) and (player:getVar("MissionStatus") == 0) then
 		player:startEvent(0x02fd);
-	elseif(currentMission == ON_MY_WAY) and (player:getVar("MissionStatus") == 3) then
+	elseif (currentMission == ON_MY_WAY) and (player:getVar("MissionStatus") == 3) then
 		player:startEvent(0x02fe);
 	else
 		player:startEvent(0x0259);
@@ -55,11 +55,11 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-	if(csid == 0x025a) then
+	if (csid == 0x025a) then
 		player:setVar("MissionStatus",2);
-	elseif(csid == 0x02fd) then
+	elseif (csid == 0x02fd) then
 		player:setVar("MissionStatus",1);
-	elseif(csid == 0x02fe or csid == 0x025b) then
+	elseif (csid == 0x02fe or csid == 0x025b) then
 		finishMissionTimeline(player, 1, csid, option);
 	end
 end;

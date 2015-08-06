@@ -1,12 +1,16 @@
 -----------------------------------
 -- Ability: Animated Flourish
+-- Provokes the target. Requires at least one, but uses two Finishing Moves.
+-- Obtained: Dancer Level 20
+-- Finishing Moves Used: 1-2
+-- Recast Time: 00:30
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -25,12 +29,16 @@ function onAbilityCheck(player,target,ability)
 
     elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
         return 0,0;
-    else	
+    else    
         return MSGBASIC_NO_FINISHINGMOVES,0;
     end;
 end;
 
-function onUseAbility(player, target, ability)
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(player,target,ability)
     if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_1)) then
         player:delStatusEffect(EFFECT_FINISHING_MOVE_1);
 
@@ -50,7 +58,7 @@ function onUseAbility(player, target, ability)
 
     elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
         player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_5);
-        player:addStatusEffect(EFFECT_FINISHING_MOVE_3,1,0,7200);	
+        player:addStatusEffect(EFFECT_FINISHING_MOVE_3,1,0,7200);    
         target:addEnmity(player, 0, 500);
     end;
 end;

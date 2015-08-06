@@ -25,22 +25,22 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getVar("Dynamis_Status") == 1) then
+	if (player:getVar("Dynamis_Status") == 1) then
 		player:startEvent(0x02AE); -- cs with Cornelia
-	elseif(player:getVar("DynaSandoria_Win") == 1) then
+	elseif (player:getVar("DynaSandoria_Win") == 1) then
 		player:startEvent(0x02ba,HYDRA_CORPS_COMMAND_SCEPTER); -- Win CS
-	elseif(player:hasKeyItem(VIAL_OF_SHROUDED_SAND)) then
+	elseif (player:hasKeyItem(VIAL_OF_SHROUDED_SAND)) then
 		local firstDyna = 0;
 		local realDay = os.time();
 		local dynaWaitxDay = player:getVar("dynaWaitxDay");
 		
-		if(checkFirstDyna(player,1)) then  -- First Dyna-San d'oria => CS
+		if (checkFirstDyna(player,1)) then  -- First Dyna-San d'oria => CS
 			firstDyna = 1; 
 		end
 		
-		if(player:getMainLvl() < DYNA_LEVEL_MIN) then
+		if (player:getMainLvl() < DYNA_LEVEL_MIN) then
 			player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
-		elseif((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or player:getVar("DynamisID") == GetServerVariable("[DynaSandoria]UniqueID")) then
+		elseif ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or player:getVar("DynamisID") == GetServerVariable("[DynaSandoria]UniqueID")) then
 			player:startEvent(0x02ad,1,firstDyna,0,BETWEEN_2DYNA_WAIT_TIME,64,VIAL_OF_SHROUDED_SAND,4236,4237);
 		else
 			dayRemaining = math.floor(((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) - realDay)/3456);
@@ -69,14 +69,14 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("finishRESULT: %u",option);
 	
-	if(csid == 0x02AE) then
+	if (csid == 0x02AE) then
 		player:addKeyItem(VIAL_OF_SHROUDED_SAND);
 		player:messageSpecial(KEYITEM_OBTAINED,VIAL_OF_SHROUDED_SAND);
 		player:setVar("Dynamis_Status",0);
-	elseif(csid == 0x02ba) then
+	elseif (csid == 0x02ba) then
 		player:setVar("DynaSandoria_Win",0);
-	elseif(csid == 0x02ad and option == 0) then
-		if(checkFirstDyna(player,1)) then
+	elseif (csid == 0x02ad and option == 0) then
+		if (checkFirstDyna(player,1)) then
 			player:setVar("Dynamis_Status",player:getVar("Dynamis_Status") + 2);
 		end
 		

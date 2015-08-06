@@ -16,10 +16,7 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WIND,0) <= 0.5) then
         return 0,0,0;
     else
-        target:delStatusEffect(EFFECT_SILENCE);
-        if (not target:hasStatusEffect(EFFECT_SILENCE)) then
-            target:addStatusEffect(EFFECT_SILENCE, 1, 0, 60);
-        end
+        target:addStatusEffect(EFFECT_SILENCE, 10, 0, 30);
         return SUBEFFECT_SILENCE, 160, EFFECT_SILENCE;
     end
 end;

@@ -1,10 +1,10 @@
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if(mob:isMobType(MOBTYPE_NOTORIOUS) or mob:isInDynamis()) then
+    if (mob:isMobType(MOBTYPE_NOTORIOUS) or mob:isInDynamis()) then
         return 0;
     end
     return 1;

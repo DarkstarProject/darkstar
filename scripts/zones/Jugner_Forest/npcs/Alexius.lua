@@ -29,7 +29,7 @@ function onTrigger(player,npc)
    
 	if (player:hasKeyItem(WEAPONS_ORDER) == true) then
 		player:startEvent(0x0005);
-	elseif(SinHunting == 3) then
+	elseif (SinHunting == 3) then
 		player:startEvent(0x000a);		
 	end
 end;
@@ -50,11 +50,11 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-    if(csid == 0x0005) then
+    if (csid == 0x0005) then
         player:delKeyItem(WEAPONS_ORDER);
         player:addKeyItem(WEAPONS_RECEIPT);
         player:messageSpecial(KEYITEM_OBTAINED,WEAPONS_RECEIPT);
-	elseif(csid == 0x000a) then
+	elseif (csid == 0x000a) then
 		player:setVar("sinHunting",4);
     end
 end;

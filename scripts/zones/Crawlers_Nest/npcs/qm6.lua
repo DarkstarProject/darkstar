@@ -14,10 +14,10 @@ require("scripts/zones/Crawlers_Nest/TextIDs");
 
 function onTrade(player,npc,trade)
 	-- Trade Rolanberry 874
-	if(GetMobAction(17584134) == 0 and trade:hasItemQty(4530,1) and trade:getItemCount() == 1) then 
+	if (GetMobAction(17584134) == 0 and trade:hasItemQty(4530,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		if (math.random(1,100)<=34) then
-			SpawnMob(17584134,120):updateEnmity(player); -- Matron Crawler
+			SpawnMob(17584134,120):updateClaim(player); -- Matron Crawler
 		else 
 			player:messageSpecial(NOTHING_SEEMS_TO_HAPPEN);				
 		end

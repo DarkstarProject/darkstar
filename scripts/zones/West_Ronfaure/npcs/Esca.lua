@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
 	local freeSlot = player:getFreeSlotsCount();
 	local eagleButton = trade:hasItemQty(578, 1);
 	local hasGiltGlasses = player:hasItem(579);
-	if(eagleButton == true and hasGiltGlasses == false) then
+	if (eagleButton == true and hasGiltGlasses == false) then
 		if (count == 1 and freeSlot > 0) then
 			player:tradeComplete();
 			player:startEvent(0x0079);
@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
 	-- "The Pickpocket" recieving Gilt Glasses
 	if (csid == 0x0079) then
 		player:addItem(579);
-		player:messageSpecial(6381, 579);
+		player:messageSpecial(ITEM_OBTAINED, 579);
 	elseif (csid == 137) then
 		player:setVar("ChasingQuotas_Progress",5);
 		player:delKeyItem(SHINY_EARRING);

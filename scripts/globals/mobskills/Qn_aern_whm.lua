@@ -3,15 +3,15 @@
 -- Meant for Qn'aern (WHM) with Ix'Aern encounter
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:getID() == 16916817) then
-        if(mob:getHPP() <= 50) then
+        if (mob:getHPP() <= 50) then
             return 0;
         end
     end;

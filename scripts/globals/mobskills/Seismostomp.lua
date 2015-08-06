@@ -6,9 +6,9 @@
 --
 --
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     return 0;
@@ -20,7 +20,7 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 1;
     local dmgmod = 2.3;
 
-    if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
+    if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
         dmgmod = dmgmod + math.random();
     end
 
@@ -29,7 +29,7 @@ function onMobWeaponSkill(target, mob, skill)
     local shadows = info.hitslanded;
 
     -- wipe shadows
-    if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
+    if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
         shadows = MOBPARAM_WIPE_SHADOWS;
     end
 

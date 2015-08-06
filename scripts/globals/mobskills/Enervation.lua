@@ -5,9 +5,9 @@
 --  Type: Magical (Dark)
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 
@@ -28,9 +28,9 @@ function onMobWeaponSkill(target, mob, skill)
     skill:setMsg(MSG_ENFEEB_IS);
 
     -- display silenced first, else blind
-    if(silenced == MSG_ENFEEB_IS) then
+    if (silenced == MSG_ENFEEB_IS) then
         typeEffect = EFFECT_DEFENSE_DOWN;
-    elseif(blinded == MSG_ENFEEB_IS) then
+    elseif (blinded == MSG_ENFEEB_IS) then
         typeEffect = EFFECT_MAGIC_DEF_DOWN;
     else
         skill:setMsg(MSG_MISS);

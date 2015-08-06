@@ -348,7 +348,7 @@ inline int32 CLuaInstance::insertAlly(lua_State* L)
 
     uint32 groupid = lua_tointeger(L, 1);
 
-    CMobEntity* PAlly = mobutils::InstantiateAlly(groupid, m_PLuaInstance->GetID(), m_PLuaInstance);
+    CMobEntity* PAlly = mobutils::InstantiateAlly(groupid, m_PLuaInstance->GetZone()->GetID(), m_PLuaInstance);
     if (PAlly)
     {
         lua_getglobal(L, CLuaBaseEntity::className);

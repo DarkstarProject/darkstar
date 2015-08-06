@@ -15,9 +15,9 @@ require("scripts/zones/Halvung/TextIDs");
 function onTrade(player,npc,trade)
 	
 	-- Trade Smokey Flask
-	if(GetMobAction(17031401) == 0 and trade:hasItemQty(2384,1) and trade:getItemCount() == 1) then 
+	if (GetMobAction(17031401) == 0 and trade:hasItemQty(2384,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
-		SpawnMob(17031401,900):updateEnmity(player); -- Big Bomb
+		SpawnMob(17031401,900):updateClaim(player); -- Big Bomb
 	end
 
 

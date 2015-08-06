@@ -21,10 +21,10 @@ function onSpellCast(caster,target,spell)
 	local divisor = 0.6666;
 	local constant = 330;
 	local power = getCurePowerOld(caster);
-	if(power > 560) then
+	if (power > 560) then
 		divisor = 2.8333;
 		constant = 591.2;
-	elseif(power > 320) then
+	elseif (power > 320) then
 		divisor =  1;
 		constant = 410;
 	end
@@ -37,7 +37,7 @@ function onSpellCast(caster,target,spell)
 	final = final * CURE_POWER;
 	
 	local diff = (target:getMaxHP() - target:getHP());
-	if(final > diff) then
+	if (final > diff) then
 		final = diff;
 	end
 	target:addHP(final);

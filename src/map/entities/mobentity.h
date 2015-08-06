@@ -64,9 +64,9 @@ enum SPECIALFLAG
 enum ROAMFLAG : uint16
 {
   ROAMFLAG_NONE     = 0x00,
-  ROAMFLAG_SMALL    = 0x01,  // move around less than 5
-  ROAMFLAG_MEDIUM   = 0x02,  // move around 10-20
-  ROAMFLAG_LARGE    = 0x04,  // move around 15-25
+  ROAMFLAG_NONE0    = 0x01,  // move around less than 5
+  ROAMFLAG_NONE1    = 0x02,  // move around 10-20
+  ROAMFLAG_NONE2    = 0x04,  // move around 15-25
   ROAMFLAG_WANDER   = 0x08,  // roam to multiple points in a row
   ROAMFLAG_SCOUT    = 0x10,  // move around more often
   ROAMFLAG_GUARD    = 0x20,  // move less often
@@ -160,7 +160,8 @@ public:
 
   // aggro ranges
   bool      m_disableScent;             // stop detecting by scent
-  float     m_maxRoamDistance;          // maximum distance mob can be from spawn
+  float     m_maxRoamDistance;          // maximum distance mob can be from spawn before despawning
+  float     m_roamDistance;          // distance allowed to roam from spawn
 
   uint8     m_Type;                     // mob type
   uint16	m_Aggro;					// mob aggro type

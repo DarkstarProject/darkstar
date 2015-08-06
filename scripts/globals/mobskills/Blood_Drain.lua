@@ -3,9 +3,9 @@
 -- Steals an enemy's HP. Ineffective against undead.
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
@@ -19,7 +19,7 @@ function onMobWeaponSkill(target, mob, skill)
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
 
 
-    if(target:isUndead() == false) then
+    if (target:isUndead() == false) then
         target:delHP(dmg);
         mob:addHP(dmg);
         skill:setMsg(MSG_DRAIN_HP);

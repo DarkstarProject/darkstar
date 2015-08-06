@@ -18,8 +18,8 @@ require("scripts/zones/Al_Zahbi/TextIDs");
 -----------------------------------
 function onTrade(player,npc,trade)
 
-    if(player:getQuestStatus(AHT_URHGAN,FEAR_OF_THE_DARK_II) ~= QUEST_AVAILABLE) then
-		if(trade:hasItemQty(2163,2) and trade:getItemCount() == 2) then
+    if (player:getQuestStatus(AHT_URHGAN,FEAR_OF_THE_DARK_II) ~= QUEST_AVAILABLE) then
+		if (trade:hasItemQty(2163,2) and trade:getItemCount() == 2) then
 			player:startEvent(0x0010);
 		end
 	end
@@ -30,7 +30,7 @@ end;
 -----------------------------------
 function onTrigger(player,npc)
 
-    if(player:getQuestStatus(AHT_URHGAN,FEAR_OF_THE_DARK_II) == QUEST_AVAILABLE) then
+    if (player:getQuestStatus(AHT_URHGAN,FEAR_OF_THE_DARK_II) == QUEST_AVAILABLE) then
 		player:startEvent(0x000e);
 	else
 	    player:startEvent(0x000f);  
@@ -47,14 +47,14 @@ end;
 -- onEventFinish
 -----------------------------------
 function onEventFinish(player,csid,option)
-    if(csid == 0x000e and option == 1) then
+    if (csid == 0x000e and option == 1) then
 		player:addQuest(AHT_URHGAN,FEAR_OF_THE_DARK_II);	
-	elseif(csid == 0x0010) then			
+	elseif (csid == 0x0010) then			
 		player:tradeComplete();
 		player:addGil(GIL_RATE*200);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*200);
 		player:addTitle(DARK_RESISTANT);
-		if(player:getQuestStatus(AHT_URHGAN,FEAR_OF_THE_DARK_II) == QUEST_ACCEPTED)then
+		if (player:getQuestStatus(AHT_URHGAN,FEAR_OF_THE_DARK_II) == QUEST_ACCEPTED) then
 		   player:completeQuest(AHT_URHGAN,FEAR_OF_THE_DARK_II);
 		end
     

@@ -32,9 +32,10 @@ function onTrade(player,npc,trade)
 				if (pFame >= TheGobbieBag[2]) then
 					player:startEvent(0x0049, inventorySize+1);
 					offer = 1;
+				else
+					player:startEvent(0x002b,inventorySize+1,questStatus,offer);
 				end
 			end
-			player:startEvent(0x002b,inventorySize+1,questStatus,offer);
 		else
 			player:startEvent(0x002b,81); -- You're bag's bigger than any gobbie bag I've ever seen...;
 		end
@@ -124,7 +125,7 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 		player:completeQuest(JEUNO,TheGobbieBag[1]);
 		player:messageSpecial(INVENTORY_INCREASED);
-	elseif(csid == 10056) then
+	elseif (csid == 10056) then
 		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",12,true);
 	end
 end;

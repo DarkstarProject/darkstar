@@ -145,3 +145,9 @@ src/common/stamp-h1
 *.sw?
 
 navmeshes/*.nav
+tags
+log/DSP.leaks
+
+#Lua Developement Tools project files
+.metadata/**
+.project

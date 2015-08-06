@@ -216,11 +216,14 @@ enum MODIFIER
     MOD_MOVE                      = 0xA9,  // % Movement Speed (modId = 169)
     MOD_FASTCAST                  = 0xAA,  // Increases Spell Cast Time (TRAIT) (modId = 170)
     MOD_UFASTCAST                 = 0x197, // uncapped fast cast (modId = 407)
+    MOD_CURE_CAST_TIME            = 0x207, // cure cast time reduction (modId = 519)
     MOD_DELAY                     = 0xAB,  // Increase/Decrease Delay (modId = 171)
     MOD_RANGED_DELAY              = 0xAC,  // Increase/Decrease Ranged Delay (modId = 172)
     MOD_MARTIAL_ARTS              = 0xAD,  // The integer amount of delay to reduce from H2H weapons' base delay. (TRAIT) (modId = 173)
     MOD_SKILLCHAINBONUS           = 0xAE,  // Damage bonus applied to skill chain damage.  Modifier from effects/traits (modId = 174)
     MOD_SKILLCHAINDMG             = 0xAF,  // Damage bonus applied to skill chain damage.  Modifier from gear (multiplicative after effect/traits) (modId = 175)
+
+    MOD_MAGIC_DAMAGE             = 0x137, // Magic damage added directly to the spell's base damage (modId = 311)
 
     // FOOD!
     MOD_FOOD_HPP                  = 0xB0,  // (modId = 176)
@@ -357,6 +360,9 @@ enum MODIFIER
     MOD_VELOCITY_SNAPSHOT_BONUS   = 0x1A7, // Increases Snapshot whilst Velocity Shot is up. (modId = 423)
     MOD_VELOCITY_RATT_BONUS       = 0x1A8, // Increases Ranged Attack whilst Velocity Shot is up. (modId = 424)
     MOD_SHADOW_BIND_EXT           = 0x1A9, // Extends the time of shadowbind (modId = 425)
+    MOD_SCAVENGE_EFFECT           = 0x138, // (modId = 312)
+    MOD_SHARPSHOT                 = 0x13A, // (modId = 314)
+
 
     // Samurai
     MOD_ZANSHIN                   = 0x132, // Zanshin percent chance (modId = 306)
@@ -544,6 +550,7 @@ enum MODIFIER
     MOD_EAT_RAW_FISH              = 0x19C, // (modId = 412)
     MOD_EAT_RAW_MEAT              = 0x19D, // (modId = 413)
 
+    MOD_ENHANCES_CURSNA           = 0x136, // Used by gear with the "Enhances Cursna" attribute (modId = 310)
     MOD_RETALIATION               = 0x19E, // Increases damage of Retaliation hits (modId = 414)
     MOD_AUGMENTS_THIRD_EYE        = 0x1FC, // Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15% (modId = 508)
 
@@ -558,10 +565,14 @@ enum MODIFIER
 
     MOD_EGGHELM                   = 0x205,
 
-    // MOD_SPARE = 0x138, // (modId = 312)
-    // MOD_SPARE = 0x139, // (modId = 313)
-    // MOD_SPARE = 0x13A, // (modId = 314)
-    // MOD_SPARE = 0x13B, // (modId = 315)
+    MOD_SHIELDBLOCKRATE           = 0x206, // Affects shield block rate, percent based (modID = 518)
+    MOD_DIA_DOT                   = 0x139, //Increases the DoT damage of Dia (modId = 313)
+    MOD_ENH_DRAIN_ASPIR           = 0x13B, // % damage boost to Drain and Aspir(modId = 315)
+    MOD_TRICK_ATK_AGI             = 0x208, // % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit) (modId = 520)
+    MOD_AUGMENTS_ABSORB           = 0x209  // Direct Absorb spell increase while Liberator is equipped (percentage based) (modId = 521)
+
+    // MOD_SPARE = 0x20A, // (modId = 522)
+    // MOD_SPARE = 0x20B, // (modId = 523)
 
 };
 

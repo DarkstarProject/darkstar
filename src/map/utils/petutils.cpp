@@ -582,7 +582,7 @@ namespace petutils
         }
     }
 
-    void LoadAvatarStats(CPetEntity* PChar)
+    void LoadAvatarStats(CPetEntity* PPet)
     {
         // Объявление переменных, нужных для рассчета.
         float raceStat = 0;			// конечное число HP для уровня на основе расы.
@@ -599,8 +599,8 @@ namespace petutils
 
         uint8 grade;
 
-        uint8 mlvl = PChar->GetMLevel();
-        JOBTYPE mjob = PChar->GetMJob();
+        uint8 mlvl = PPet->GetMLevel();
+        JOBTYPE mjob = PPet->GetMJob();
         uint8 race = 3;					//Tarutaru
 
         // Расчет прироста HP от main job
@@ -638,10 +638,10 @@ namespace petutils
 
         // Расчет бонусных HP
         bonusStat = (mainLevelOver10 + mainLevelOver50andUnder60) * 2;
-        if (PChar->m_PetID == PETID_ODIN || PChar->m_PetID == PETID_ALEXANDER)
+        if (PPet->m_PetID == PETID_ODIN || PPet->m_PetID == PETID_ALEXANDER)
             bonusStat += 6800;
-        PChar->health.maxhp = (int16)(raceStat + jobStat + bonusStat + sJobStat);
-        PChar->health.hp = PChar->health.maxhp;
+        PPet->health.maxhp = (int16)(raceStat + jobStat + bonusStat + sJobStat);
+        PPet->health.hp = PPet->health.maxhp;
 
         //Начало расчера MP
         raceStat = 0;
@@ -671,14 +671,15 @@ namespace petutils
                 grade::GetMPScale(grade, scaleOver60) * mainLevelOver60;
         }
 
-        PChar->health.maxmp = (int16)(raceStat + jobStat + sJobStat); // результат расчета MP
+        PPet->health.maxmp = (int16)(raceStat + jobStat + sJobStat); // результат расчета MP
+        PPet->health.mp = PPet->health.maxmp;
         //add in evasion from skill
-        int16 evaskill = PChar->GetSkill(SKILL_EVA);
+        int16 evaskill = PPet->GetSkill(SKILL_EVA);
         int16 eva = evaskill;
         if (evaskill > 200){ //Evasion skill is 0.9 evasion post-200
             eva = 200 + (evaskill - 200)*0.9;
         }
-        PChar->setModifier(MOD_EVA, eva);
+        PPet->setModifier(MOD_EVA, eva);
 
 
         //Начало расчета характеристик
@@ -715,7 +716,7 @@ namespace petutils
             jobStat = jobStat * 1.5; //stats from subjob (assuming BLM/BLM for avatars)
 
             // Вывод значения
-            WBUFW(&PChar->stats, counter) = (uint16)(raceStat + jobStat);
+            WBUFW(&PPet->stats, counter) = (uint16)(raceStat + jobStat);
             counter += 2;
         }
     }
@@ -733,6 +734,8 @@ namespace petutils
 
         CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
 
+        PPet->allegiance = PMaster->allegiance;
+        PMaster->StatusEffectContainer->CopyConfrontationEffect(PPet);
 
         if (PetID == PETID_ALEXANDER || PetID == PETID_ODIN)
         {
@@ -794,6 +797,9 @@ namespace petutils
         PPet->HPscale = petData->HPscale;
         PPet->MPscale = petData->MPscale;
         PPet->m_HasSpellScript = petData->hasSpellScript;
+
+        PPet->allegiance = PMaster->allegiance;
+        PMaster->StatusEffectContainer->CopyConfrontationEffect(PPet);
 
         // assuming elemental spawn
         PPet->setModifier(MOD_DMGPHYS, -50); //-50% PDT
@@ -1078,7 +1084,7 @@ namespace petutils
         {
             // increase charm duration
             // 30 mins - 1-5 mins
-            PPet->charmTime += 1800000 - WELL512::GetRandomNumber(300000u);
+            PPet->charmTime += 1800000 - dsprand::GetRandomNumber(300000u);
         }
 
         float rate = 0.10f;
@@ -1302,6 +1308,16 @@ namespace petutils
                 }
             }
 
+            
+            if (PMaster->objtype == TYPE_PC)
+            {
+                CCharEntity* PChar = (CCharEntity*)PMaster;
+                PPet->addModifier(MOD_MATT, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_MAGICAL_ATTACK, PChar));
+                PPet->addModifier(MOD_ATT, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_PHYSICAL_ATTACK, PChar));
+                PPet->addModifier(MOD_MACC, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_MAGICAL_ACCURACY, PChar));
+                PPet->addModifier(MOD_ACC, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_PHYSICAL_ACCURACY, PChar));
+            }
+
             PMaster->addModifier(MOD_AVATAR_PERPETUATION, PerpetuationCost(PetID, PPet->GetMLevel()));
         }
         else if (PPet->getPetType() == PETTYPE_JUG_PET){
@@ -1321,7 +1337,7 @@ namespace petutils
 			highestLvl += PChar->PMeritPoints->GetMeritValue(MERIT_BEAST_AFFINITY, PChar);
 
             // 0-2 lvls lower
-            highestLvl -= WELL512::GetRandomNumber(3);
+            highestLvl -= dsprand::GetRandomNumber(3);
 
             PPet->SetMLevel(highestLvl);
             LoadJugStats(PPet, PPetData); //follow monster calcs (w/o SJ)

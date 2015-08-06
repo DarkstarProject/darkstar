@@ -51,7 +51,7 @@ class CPathFind
     ~CPathFind();
 
     // move to a random point around given point
-    bool RoamAround(position_t point, uint8 roamFlags = 0);
+    bool RoamAround(position_t point, float maxRadius, uint8 roamFlags = 0);
 
     // find and walk to the given point
     bool PathTo(position_t point, uint8 pathFlags = 0);

@@ -25,14 +25,14 @@ end;
 function onTrigger(player,npc)
 	local ratrace = player:getQuestStatus(AHT_URHGAN,RAT_RACE);
 	local ratRaceProg = player:getVar("ratraceCS");
-    if(ratrace == QUEST_AVAILABLE) then
+    if (ratrace == QUEST_AVAILABLE) then
        player:startEvent(0x0134);
-	elseif(ratRaceProg == 6) then  
+	elseif (ratRaceProg == 6) then  
 	   player:startEvent(0x0138);
-	elseif(ratrace == QUEST_ACCEPTED) then  
+	elseif (ratrace == QUEST_ACCEPTED) then  
 	   player:startEvent(0x0139);
 
-	elseif(ratrace == QUEST_COMPLETED) then  
+	elseif (ratrace == QUEST_COMPLETED) then  
 	   player:startEvent(0x013a);
 	end
 end; 
@@ -54,11 +54,11 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-    if(csid == 0x0134) then
+    if (csid == 0x0134) then
 	   player:setVar("ratraceCS",1);
 	   player:addQuest(AHT_URHGAN,RAT_RACE);
-	elseif(csid == 0x0138) then
-	    if(player:getFreeSlotsCount() <= 2) then
+	elseif (csid == 0x0138) then
+	    if (player:getFreeSlotsCount() <= 2) then
 		   player:messageSpecial(ITEM_CANNOT_BE_OBTAINEDX,2187,2);
 		   player:messageSpecial(ITEM_CANNOT_BE_OBTAINEDX,2186,2);
 		   player:messageSpecial(ITEM_CANNOT_BE_OBTAINEDX,2185,3);

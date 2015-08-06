@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(60427,8,23,2)) then
+	if (player:sendGuild(60427,8,23,2)) then
 		player:showText(npc,NDEGO_SHOP_DIALOG);
 	end
 end;

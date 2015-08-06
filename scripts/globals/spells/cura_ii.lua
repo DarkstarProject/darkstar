@@ -28,36 +28,36 @@ function onSpellCast(caster,target,spell)
 	local final = 0;
 
 	local minCure = 60;
-	if(USE_OLD_CURE_FORMULA == true) then
+	if (USE_OLD_CURE_FORMULA == true) then
 		power = getCurePowerOld(caster);
 		divisor = 1;
 		constant = 20;
-		if(power > 170) then
+		if (power > 170) then
 				divisor = 35.6666;
 				constant = 87.62;
-		elseif(power > 110) then
+		elseif (power > 110) then
 				divisor = 2;
 				constant = 47.5;
 		end
 	else
 		power = getCurePower(caster);
-		if(power < 70) then
+		if (power < 70) then
 			divisor = 1;
 			constant = 60;
 			basepower = 40;
-		elseif(power < 125) then
+		elseif (power < 125) then
 			divisor = 5.5;
 			constant = 90;
 			basepower = 70;
-		elseif(power < 200) then
+		elseif (power < 200) then
 			divisor = 7.5;
 			constant = 100;
 			basepower = 125;
-		elseif(power < 400) then
+		elseif (power < 400) then
 			divisor = 10;
 			constant = 110;
 			basepower = 200;
-		elseif(power < 700) then
+		elseif (power < 700) then
 			divisor = 20;
 			constant = 130;
 			basepower = 400;
@@ -68,14 +68,14 @@ function onSpellCast(caster,target,spell)
 		end
 	end
 
-	if(USE_OLD_CURE_FORMULA == true) then
+	if (USE_OLD_CURE_FORMULA == true) then
 		basecure = getBaseCure(power,divisor,constant);
 	else
 		basecure = getBaseCure(power,divisor,constant,basepower);
 	end
 
 	--Apply Afflatus Misery Bonus to Final Result
-	if(caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
+	if (caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
 		local misery = caster:getMod(MOD_AFFLATUS_MISERY);
 		
 		--THIS IS LARELY SEMI-EDUCATED GUESSWORK. THERE IS NOT A
@@ -92,7 +92,7 @@ function onSpellCast(caster,target,spell)
 		
 		basecure = basecure + misery;
 		
-		if(basecure > 375) then
+		if (basecure > 375) then
 			basecure = 375;
 		end
 		

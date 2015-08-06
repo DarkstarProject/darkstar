@@ -36,21 +36,21 @@ function onSpellCast(caster,target,spell)
     local power = (blueskill/3) + (caster:getMainLvl()/3) + 10;
     local duration = 300;
 
-    if(power > 150) then
+    if (power > 150) then
         power = 150;
     end
         
-    if(caster:hasStatusEffect(EFFECT_DIFFUSION)) then
+    if (caster:hasStatusEffect(EFFECT_DIFFUSION)) then
         local diffMerit = caster:getMerit(MERIT_DIFFUSION);
         
-        if(diffMerit > 0) then
+        if (diffMerit > 0) then
             duration = duration + (duration/100)* diffMerit;
         end
         
         caster:delStatusEffect(EFFECT_DIFFUSION);
     end
     
-    if(target:addStatusEffect(EFFECT_STONESKIN,power,0,duration)) then
+    if (target:addStatusEffect(EFFECT_STONESKIN,power,0,duration)) then
         spell:setMsg(230);
     else
         spell:setMsg(75);

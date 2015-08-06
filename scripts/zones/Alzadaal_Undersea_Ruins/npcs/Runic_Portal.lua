@@ -28,8 +28,8 @@ function onTrigger(player,npc)
 	local Z = player:getZPos();
 	
 	if (Z > 27.5 and Z > 39.5) then -- Northern Stage point.
-		if(player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES)then
-			if(hasRunicPortal(player,6) == 1) then
+		if (player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then
+			if (hasRunicPortal(player,6) == 1) then
 				player:startEvent(0x0075);
 			else
 				player:startEvent(0x0079);
@@ -38,8 +38,8 @@ function onTrigger(player,npc)
 			player:messageSpecial(RESPONSE);
 		end
 	else
-		if(player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES)then
-			if(hasRunicPortal(player,6) == 1) then
+		if (player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then
+			if (hasRunicPortal(player,6) == 1) then
 				player:startEvent(0x0076);
 			else
 				player:startEvent(0x007a);
@@ -68,10 +68,10 @@ function onEventFinish(player,csid,option)
 printf("CSID: %u",csid);
 printf("RESULT: %u",option);
 	
-	if((csid == 0x0079 or csid == 0x007a) and option == 1) then
+	if ((csid == 0x0079 or csid == 0x007a) and option == 1) then
 		player:addNationTeleport(AHTURHGAN,64);
 		toChamberOfPassage(player);
-	elseif((csid == 0x0075 or csid == 0x0076) and option == 1) then
+	elseif ((csid == 0x0075 or csid == 0x0076) and option == 1) then
 		toChamberOfPassage(player);
 	end
 	

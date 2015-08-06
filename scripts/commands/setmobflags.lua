@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @mobflags <flags> <optional MobID>
--- auth: TeoTwawki
 -- desc: Used to manipulate a mob's flags for testing.
 --       MUST either target a mob first or else specify a Mob ID.
 ---------------------------------------------------------------------------------------------------

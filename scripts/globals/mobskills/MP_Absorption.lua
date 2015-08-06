@@ -6,14 +6,14 @@
 -- Notes: If used against undead, it will simply do damage and not drain HP.
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if(target:getMP() > 0) then
+    if (target:getMP() > 0) then
         return 0;
     end
     return 1;
@@ -29,10 +29,10 @@ function onMobWeaponSkill(target, mob, skill)
 
     skill:setMsg(MSG_DRAIN_MP);
 
-    if(target:isUndead() == false) then
+    if (target:isUndead() == false) then
 
         -- can't go over limited mp
-        if(target:getMP() < dmg) then
+        if (target:getMP() < dmg) then
             dmg = target:getMP();
         end
 

@@ -7,9 +7,9 @@
 --  Range: 10' cone
 --  Notes: Additional effect can be removed with Poisona.
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
@@ -18,7 +18,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_POISON;
-    if(target:hasStatusEffect(typeEffect) == false) then
+    if (target:hasStatusEffect(typeEffect) == false) then
             target:addStatusEffect(typeEffect,5,3,180*resist);
     end
 

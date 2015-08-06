@@ -14,9 +14,9 @@ require("scripts/zones/Lufaise_Meadows/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(trade:hasItemQty(5210,1) and trade:getItemCount() == 1) then -- Adamantoise Soup 
+	if (trade:hasItemQty(5210,1) and trade:getItemCount() == 1) then -- Adamantoise Soup 
 		player:tradeComplete();
-		SpawnMob(16875778,120):updateEnmity(player); -- Kurrea
+		SpawnMob(16875778,120):updateClaim(player); -- Kurrea
 	end
 
 

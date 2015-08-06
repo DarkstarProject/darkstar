@@ -254,7 +254,7 @@ INSERT INTO `abilities` VALUES ('210', 'retaliation', '1', '60', '1', '180', '8'
 INSERT INTO `abilities` VALUES ('211', 'footwork', '2', '65', '1', '300', '21', '0', '0', '197', '20.0', '0', '1', '80', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('213', 'pianissimo', '10', '20', '1', '15', '112', '0', '0', '194', '20.0', '0', '1', '80', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('214', 'sekkanoki', '12', '40', '1', '300', '140', '0', '0', '199', '20.0', '0', '1', '80', '0', '0','WOTG');
-INSERT INTO `abilities` VALUES ('216', 'elemental_siphon', '15', '50', '1', '300', '175', '0', '0', '201', '20.0', '0', '1', '0', '0', '0','WOTG');
+INSERT INTO `abilities` VALUES ('216', 'elemental_siphon', '15', '50', '1', '300', '175', '451', '0', '201', '20.0', '0', '1', '0', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('217', 'sublimation', '20', '35', '1', '30', '234', '0', '0', '189', '20.0', '0', '1', '80', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('218', 'addendum_white', '20', '10', '1', '0', '231', '0', '0', '191', '20.0', '0', '1', '80', '0', '16','WOTG');
 INSERT INTO `abilities` VALUES ('219', 'addendum_black', '20', '30', '1', '0', '231', '0', '0', '192', '20.0', '0', '1', '80', '0', '32','WOTG');
@@ -266,7 +266,7 @@ INSERT INTO `abilities` VALUES ('224', 'altruism', '20', '75', '1', '0', '231', 
 INSERT INTO `abilities` VALUES ('225', 'focalization', '20', '75', '1', '0', '231', '0', '0', '212', '20.0', '0', '1', '80', '3266', '33','WOTG');
 INSERT INTO `abilities` VALUES ('226', 'tranquility', '20', '75', '1', '0', '231', '0', '0', '211', '20.0', '0', '1', '80', '3268', '17','WOTG');
 INSERT INTO `abilities` VALUES ('227', 'equanimity', '20', '75', '1', '0', '231', '0', '0', '213', '20.0', '0', '1', '80', '3270', '33','WOTG');
-INSERT INTO `abilities` VALUES ('228', 'enlightenment', '20', '75', '1', '300', '231', '0', '0', '214', '20.0', '0', '1', '80', '3272', '1','WOTG');
+INSERT INTO `abilities` VALUES ('228', 'enlightenment', '20', '75', '1', '300', '235', '0', '0', '214', '20.0', '0', '1', '80', '3272', '1','WOTG');
 INSERT INTO `abilities` VALUES ('229', 'afflatus_solace', '3', '40', '1', '60', '29', '0', '0', '216', '20.0', '0', '1', '80', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('230', 'afflatus_misery', '3', '40', '1', '60', '30', '0', '0', '217', '20.0', '0', '1', '80', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('231', 'composure', '5', '50', '1', '300', '50', '0', '0', '215', '20.0', '0', '1', '80', '0', '0','WOTG');
@@ -384,6 +384,13 @@ INSERT INTO `abilities` VALUES ('613', 'thunder_iv', '15', '60', '4', '60', '173
 INSERT INTO `abilities` VALUES ('614', 'chaotic_strike', '15', '70', '4', '60', '173', '0', '0', '164', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
 INSERT INTO `abilities` VALUES ('615', 'thunderstorm', '15', '75', '4', '60', '173', '0', '0', '182', '18.0', '0', '1', '60', '2952', '1','TOAU');
 INSERT INTO `abilities` VALUES ('616', 'judgment_bolt', '15', '1', '4', '60', '173', '0', '0', '0', '18.0', '0', '1', '60', '0', '2',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('640', 'camisado', '15', '1', '4', '60', '173', '0', '0', '20', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('641', 'somnolence', '15', '20', '4', '60', '174', '0', '0', '30', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('642', 'nightmare', '15', '29', '4', '60', '174', '0', '0', '42', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('643', 'ultimate_terror', '15', '37', '4', '60', '174', '0', '0', '27', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('644', 'noctoshield', '15', '49', '1', '60', '174', '0', '0', '92', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('645', 'dream_shroud', '15', '56', '1', '60', '174', '0', '0', '121', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('646', 'nether_blast', '15', '65', '4', '60', '173', '0', '0', '109', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
 
 
 -- For old school server simply comment out the matching 1 hour abilities above, and uncomment the 2hrs below.

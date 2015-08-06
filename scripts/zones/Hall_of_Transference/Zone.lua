@@ -1,13 +1,15 @@
 -----------------------------------
--- 
+--
 -- Zone: Hall_of_Transference
--- 
+--
 -----------------------------------
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("/scripts/globals/teleports");
+require("scripts/globals/teleports");
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
 require("scripts/zones/Hall_of_Transference/TextIDs");
 
 -----------------------------------
@@ -15,11 +17,11 @@ require("scripts/zones/Hall_of_Transference/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    zone:registerRegion(1,-281,-5,277,-276,0,284); 		-- Holla
-    zone:registerRegion(2,276,-84,-82,283,-80,-75); 	-- Mea
+    zone:registerRegion(1,-281,-5,277,-276,0,284);      -- Holla
+    zone:registerRegion(2,276,-84,-82,283,-80,-75);     -- Mea
     zone:registerRegion(3,-283,-45,-283,-276,-40,-276); -- Dem
     zone:registerRegion(4,0,0,0,0,0,0);
-    
+
     zone:registerRegion(5,288.847,-83.960,-40.693,291.209,-79.960,-37.510);     -- Mea Sky Teleporter
     zone:registerRegion(6,-240.181,-3.960,268.409,-237.671,1.960,271.291);      -- Holla Sky Teleporter
     zone:registerRegion(7,-240.797,-43.960,-291.552,-237.944,-39.960,-288.954); -- Dem Sky Teleporter
@@ -31,16 +33,34 @@ end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
-    
-    if((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         player:setPos(274,-82,-62 ,180);
-     end
-     
+	
+    elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then
+		if (player:getVar("cspromy3") == 1) then
+			if prevZone == 102 then
+		        if (player:hasKeyItem(LIGHT_OF_DEM) and player:hasKeyItem(LIGHT_OF_MEA) and not(player:hasKeyItem(LIGHT_OF_HOLLA))) then
+		            cs = 0x009B;
+				end
+		    elseif prevZone == 108 then
+			    if (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_MEA) and not(player:hasKeyItem(LIGHT_OF_DEM))) then
+                    cs = 0x009B;
+			    end
+            elseif prevZone == 117 then
+                if (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_DEM) and not(player:hasKeyItem(LIGHT_OF_MEA))) then
+		            cs = 0x009B;
+			    end
+            -- cs you got when you enter hall of transference for the last promyvion
+            end
+        end
+	end
+
     return cs;
 end;
 
 -----------------------------------
--- onRegionEnter          
+-- onRegionEnter
 -----------------------------------
 
 function onRegionEnter(player,region)
@@ -100,23 +120,22 @@ function onRegionEnter(player,region)
             end
         end,
     }
-    
 
 end;
------------------------------------	
--- onRegionLeave	
------------------------------------	
+-----------------------------------
+-- onRegionLeave
+-----------------------------------
 
 function onRegionLeave(player,region)
-end;	
+end;
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -124,25 +143,37 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
-    if(csid == 103 and option == 1)then
+    if (csid == 103 and option == 1) then
         player:setPos(340.082, 19.103, -59.979, 127, 102); 	-- To La Theine Plateau {R}
-    elseif(csid == 104 and option == 1)then
+    elseif (csid == 104 and option == 1) then
         player:setPos(179.92, 35.15, 260.137, 64, 117);	    -- To Tahrongi Canyon {R}
-    elseif(csid == 105 and option == 1)then
+    elseif (csid == 105 and option == 1) then
         player:setPos(139.974, 19.103, 219.989, 128, 108); 	-- To Konschtat Highlands {R}
-    elseif (csid == 0x00A1 and option == 1) then 
+    elseif (csid == 155) then
+		player:setVar("cspromy3",0)
+		player:setVar("cslastpromy",1)
+        if (not(player:hasKeyItem(LIGHT_OF_DEM))) then
+            -- print("shouldbezonedtodem")
+            player:setPos(185.891, 0, -52.331, 128, 18); -- To Promyvion Dem {R}
+        elseif (not(player:hasKeyItem(LIGHT_OF_HOLLA))) then
+            -- print("shouldbezonedtoholla")
+            player:setPos(92.033, 0, 80.380, 255, 16); -- To Promyvion Holla {R}
+        elseif (not(player:hasKeyItem(LIGHT_OF_MEA))) then
+            player:setPos(-93.268, 0, 170.749, 162, 20); -- To Promyvion Mea {R}
+        end
+    elseif (csid == 161 and option == 1) then
         toSkyGreenPorterLeft(player);
-    elseif (csid == 0x00A9 and option == 1) then
-        player:setVar("MeaChipRegistration",0); 
+    elseif (csid == 169 and option == 1) then
+        player:setVar("MeaChipRegistration",0);
         toSkyGreenPorterLeft(player);
-    elseif (csid == 0x00AA and option == 1) then
-        player:setVar("HollaChipRegistration",0); 
+    elseif (csid == 170 and option == 1) then
+        player:setVar("HollaChipRegistration",0);
         toSkyGreenPorterLeft(player);
-    elseif (csid == 0x00AB and option == 1) then
-        player:setVar("DemChipRegistration",0); 
+    elseif (csid == 171 and option == 1) then
+        player:setVar("DemChipRegistration",0);
         toSkyGreenPorterLeft(player);
     end
 end;

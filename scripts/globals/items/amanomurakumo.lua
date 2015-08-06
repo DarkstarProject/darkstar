@@ -3,6 +3,7 @@
 -- Item: Amanomurakumo
 -- Additional Effect: 10% Attack Down
 -----------------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
@@ -18,10 +19,8 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WATER,0) <= 0.5) then
         return 0,0,0;
     else
-        target:delStatusEffect(EFFECT_ATTACK_DOWN)
-        if (not target:hasStatusEffect(EFFECT_ATTACK_DOWN)) then
-            target:addStatusEffect(EFFECT_ATTACK_DOWN, 10, 0, 60);
-        end
-        return SUBEFFECT_DEFENSE_DOWN, 160, EFFECT_ATTACK_DOWN;
+        target:delStatusEffect(EFFECT_ATTACK_BOOST);
+        target:addStatusEffect(EFFECT_ATTACK_DOWN, 10, 0, 60); -- Power needs verification/correction
+        return SUBEFFECT_ATTACK_DOWN, 160, EFFECT_ATTACK_DOWN;
     end
 end;

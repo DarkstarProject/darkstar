@@ -7,9 +7,9 @@
 --  Range: 10' radial
 --  Notes: Severity of Bio effect varies by time of day, from 8/tic at midday to 20/tic at midnight.
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
@@ -21,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
 
 	local cTime = VanadielHour();
 	local power = 8;
-	if(12 <= cTime) then
+	if (12 <= cTime) then
 		local power = 8 + (cTime - 11);
 	end
 

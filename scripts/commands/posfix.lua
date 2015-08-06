@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @posfix
--- auth: Link (as "resetplayer"), renamed by TeoTwawki.
 -- desc: Resets a targets account session and warps them to Jeuno.
 ---------------------------------------------------------------------------------------------------
 

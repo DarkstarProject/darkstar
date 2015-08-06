@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @cnation <target> <campaign allegiance>
--- auth: TeoTwawki
 -- desc: check or alter target characters campaign allegiance
 ---------------------------------------------------------------------------------------------------
 

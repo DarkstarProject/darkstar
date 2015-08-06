@@ -4,7 +4,7 @@
 -- Note: Place holder Baobhan Sith
 -----------------------------------
 
-require("/scripts/zones/Gustav_Tunnel/MobIDs");
+require("scripts/zones/Gustav_Tunnel/MobIDs");
 
 -----------------------------------
 -- onMobDeath

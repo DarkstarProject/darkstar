@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: getmobaction
--- auth: demolish
 -- desc: Prints mob's current action to the command user.
 ---------------------------------------------------------------------------------------------------
 
@@ -13,7 +12,7 @@ cmdprops =
 function onTrigger(player, mob)
 
     if (mob ~= nil) then
-        if(mob > 16780000) then
+        if (mob > 16780000) then
             local action = GetMobAction(mob);
             local name = GetMobByID(mob):getName();
 

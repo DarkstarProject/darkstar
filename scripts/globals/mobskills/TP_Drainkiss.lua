@@ -6,14 +6,14 @@
 -- Range: Melee
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if(target:getTP() >= 50) then
+    if (target:getTP() >= 50) then
         return 0;
     end
     return 1;
@@ -28,9 +28,9 @@ function onMobWeaponSkill(target, mob, skill)
 
     skill:setMsg(MSG_DRAIN_TP);
 
-    if(target:isUndead() == false) then
+    if (target:isUndead() == false) then
         -- can't go over limited mp
-        if(target:getTP() < dmg) then
+        if (target:getTP() < dmg) then
             dmg = target:getTP();
         end
 

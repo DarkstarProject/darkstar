@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: adddynatime
--- auth: <Unknown> :: Modded by atom0s.
 -- desc: Adds an amount of time to the given target. If no target; then to the current player.
 ---------------------------------------------------------------------------------------------------
 

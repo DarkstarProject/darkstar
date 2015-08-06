@@ -19,7 +19,7 @@ end;
 
 function onMobDeath(mob, killer)
 
-	if(killer:getVar("twentyInPirateYearsCS") == 3) then
+	if (killer:getVar("twentyInPirateYearsCS") == 3) then
 		killer:setVar("TsuchigumoKilled",killer:getVar("TsuchigumoKilled") + 1);
 	end
 

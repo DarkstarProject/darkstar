@@ -137,7 +137,7 @@ void CAIPetDummy::ActionAbilityStart()
                 int maxSearch = 10;
                 // keep looking for an ability until one is valid
                 do {
-                    SetCurrentMobSkill(MobSkills.at(WELL512::GetRandomNumber(MobSkills.size())));
+                    SetCurrentMobSkill(MobSkills.at(dsprand::GetRandomNumber(MobSkills.size())));
                 } while (luautils::OnMobSkillCheck(m_PBattleTarget, m_PPet, GetCurrentMobSkill()) != 0 && maxSearch--);
 
                 // could not find skill
@@ -159,7 +159,7 @@ void CAIPetDummy::ActionAbilityStart()
         if (m_MasterCommand == MASTERCOMMAND_SIC && m_PPet->health.tp >= 1000 && m_PBattleTarget != nullptr){ //choose random tp move
             m_MasterCommand = MASTERCOMMAND_NONE;
             if (m_PPet->PetSkills.size() > 0){
-                SetCurrentMobSkill(m_PPet->PetSkills.at(WELL512::GetRandomNumber(m_PPet->PetSkills.size())));
+                SetCurrentMobSkill(m_PPet->PetSkills.at(dsprand::GetRandomNumber(m_PPet->PetSkills.size())));
                 preparePetAbility(m_PBattleTarget);
                 return;
             }
@@ -185,7 +185,7 @@ void CAIPetDummy::ActionAbilityStart()
 
             //offensive or multipurpose wyvern
             if (m_PBattleTarget != nullptr){ //prepare elemental breaths
-                int skip = WELL512::GetRandomNumber(6);
+                int skip = dsprand::GetRandomNumber(6);
                 int hasSkipped = 0;
 
                 for (int i = 0; i < m_PPet->PetSkills.size(); i++){
@@ -322,9 +322,9 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
         Action.param = m_PMobSkill->getMsgForAction();
         Action.messageID = 43; //readies message
         Action.knockback = 0;
-
-        m_PPet->health.tp = 0;
+ 
         m_skillTP = m_PPet->health.tp;
+        m_PPet->health.tp = 0;
 
         m_PPet->m_ActionList.push_back(Action);
         m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
@@ -511,6 +511,12 @@ void CAIPetDummy::ActionAbilityFinish(){
         if (PTarget->objtype == TYPE_MOB && !m_PTargetFind->checkIsPlayer(PTarget) && m_PMobSkill->isDamageMsg())
         {
             ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PPet, Action.param);
+        }
+
+        if (m_PBattleSubTarget->objtype == TYPE_MOB)
+        {
+            uint16 PWeaponskill = m_PMobSkill->getID();
+            luautils::OnWeaponskillHit(m_PBattleSubTarget, m_PPet, PWeaponskill);
         }
 
         // If we dealt damage.. we should wake up our target..
@@ -789,7 +795,7 @@ void CAIPetDummy::ActionAttack()
                     {
                         Action.messageID = 32;
                     }
-                    else if ((WELL512::GetRandomNumber(100) < battleutils::GetHitRate(m_PPet, m_PBattleTarget)) &&
+                    else if ((dsprand::GetRandomNumber(100) < battleutils::GetHitRate(m_PPet, m_PBattleTarget)) &&
                         !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
                     {
                         if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
@@ -804,7 +810,7 @@ void CAIPetDummy::ActionAttack()
                             Action.speceffect = SPECEFFECT_HIT;
                             Action.messageID = 1;
 
-                            bool isCritical = (WELL512::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PPet, m_PBattleTarget, false));
+                            bool isCritical = (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PPet, m_PBattleTarget, false));
                             float DamageRatio = battleutils::GetDamageRatio(m_PPet, m_PBattleTarget, isCritical, 0);
 
                             if (isCritical)
@@ -829,7 +835,7 @@ void CAIPetDummy::ActionAttack()
                         charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PPet->GetMLevel());
                     }
 
-                    bool isBlocked = (WELL512::GetRandomNumber(100) < battleutils::GetBlockRate(m_PPet, m_PBattleTarget));
+                    bool isBlocked = (dsprand::GetRandomNumber(100) < battleutils::GetBlockRate(m_PPet, m_PBattleTarget));
                     if (isBlocked){ Action.reaction = REACTION_BLOCK; }
 
 

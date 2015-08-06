@@ -19,15 +19,15 @@ require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 -----------------------------------
 
 function sarcophagusNumber(X,Z)
-	if(X <= -423 and X >= -426 and Z >= 494 and Z <= 499) then
+	if (X <= -423 and X >= -426 and Z >= 494 and Z <= 499) then
 		return 1;
-	elseif(X <= -418 and X >= -423 and Z >= 500 and Z <= 505) then
+	elseif (X <= -418 and X >= -423 and Z >= 500 and Z <= 505) then
 		return 2;
-	elseif(X <= -415 and X >= -418 and Z >= 500 and Z <= 505) then
+	elseif (X <= -415 and X >= -418 and Z >= 500 and Z <= 505) then
 		return 3;
-	elseif(X <= -410 and X >= -415 and Z >= 500 and Z <= 505) then
+	elseif (X <= -410 and X >= -415 and Z >= 500 and Z <= 505) then
 		return 4;
-	elseif(X <= -410 and X >= -415 and Z >= 494 and Z <= 499) then
+	elseif (X <= -410 and X >= -415 and Z >= 494 and Z <= 499) then
 		return 5;
 	end
 end;
@@ -38,18 +38,18 @@ end;
 
 function onTrade(player,npc,trade)
 	
-	if(player:getVar("TheRequiemCS") == 3 and trade:hasItemQty(4154,1) and trade:getItemCount() == 1) then 
-		if(player:getVar("TheRequiemRandom") == 0) then
+	if (player:getVar("TheRequiemCS") == 3 and trade:hasItemQty(4154,1) and trade:getItemCount() == 1) then 
+		if (player:getVar("TheRequiemRandom") == 0) then
 			player:setVar("TheRequiemRandom",math.random(1,5));
 		end
 		
-		if(sarcophagusNumber(npc:getXPos(),npc:getZPos()) == player:getVar("TheRequiemRandom") and player:getVar("TheRequiemYumKilled") == 0) then 
+		if (sarcophagusNumber(npc:getXPos(),npc:getZPos()) == player:getVar("TheRequiemRandom") and player:getVar("TheRequiemYumKilled") == 0) then 
 			player:tradeComplete();
 			player:messageSpecial(SENSE_OF_FOREBODING);
 			player:setVar("TheRequiemAlreadyPoped",1);
-			SpawnMob(17576264,300):updateEnmity(player); -- Spawn Yum Kimil NM @pos -414 8 499
-			SpawnMob(17576267,180):updateEnmity(player); -- Spawn Owl Guardian NM @pos -414 8 501
-			SpawnMob(17576266,180):updateEnmity(player); -- Spawn Dog Guardian NM @pos -414 8 497
+			SpawnMob(17576264,300):updateClaim(player); -- Spawn Yum Kimil NM @pos -414 8 499
+			SpawnMob(17576267,180):updateClaim(player); -- Spawn Owl Guardian NM @pos -414 8 501
+			SpawnMob(17576266,180):updateClaim(player); -- Spawn Dog Guardian NM @pos -414 8 497
 		else
 			player:messageSpecial(NOTHING_HAPPENED);
 		end
@@ -71,7 +71,7 @@ function onTrigger(player,npc)
 		if (ANewDawnEvent == 4) then
 			for i = 17576267, 17576269 do 
 				if (GetMobAction(i) == 0) then
-					SpawnMob(i,180):updateEnmity(player); -- Spawn Sturm, Taifun and Trombe. 
+					SpawnMob(i,180):updateClaim(player); -- Spawn Sturm, Taifun and Trombe. 
 				end
 			end
 		elseif (ANewDawnEvent == 5) then
@@ -79,14 +79,14 @@ function onTrigger(player,npc)
 		end
 	
 	-- BRD AF Quest
-	elseif(sarcophagusNumber(npc:getXPos(),npc:getZPos()) == player:getVar("TheRequiemRandom")) then
-		if(player:getVar("TheRequiemYumKilled") == 1) then
+	elseif (sarcophagusNumber(npc:getXPos(),npc:getZPos()) == player:getVar("TheRequiemRandom")) then
+		if (player:getVar("TheRequiemYumKilled") == 1) then
 			player:startEvent(0x002e);
-		elseif(player:getVar("TheRequiemAlreadyPoped") == 1) then
+		elseif (player:getVar("TheRequiemAlreadyPoped") == 1) then
 			player:messageSpecial(SENSE_OF_FOREBODING);
-			SpawnMob(17576264):updateEnmity(player); -- Spawn Yum Kimil NM @pos -414 8 499
-			SpawnMob(17576267):updateEnmity(player); -- Spawn Owl Guardian NM @pos -414 8 501
-			SpawnMob(17576266):updateEnmity(player); -- Spawn Dog Guardian NM @pos -414 8 497
+			SpawnMob(17576264):updateClaim(player); -- Spawn Yum Kimil NM @pos -414 8 499
+			SpawnMob(17576267):updateClaim(player); -- Spawn Owl Guardian NM @pos -414 8 501
+			SpawnMob(17576266):updateClaim(player); -- Spawn Dog Guardian NM @pos -414 8 497
 		end
 		
 	-- Standard Dialogue
@@ -113,7 +113,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x002e) then 
+	if (csid == 0x002e) then 
 		player:setVar("TheRequiemCS",0);
 		player:setVar("TheRequiemYumKilled",0);
 		player:setVar("TheRequiemRandom",0);

@@ -1,12 +1,16 @@
 -----------------------------------
 -- Ability: Dark Maneuver
+-- Enhances the effect of dark attachments. Must have animator equipped.
+-- Obtained: Puppetmaster level 1
+-- Recast Time: 10 seconds (shared with all maneuvers)
+-- Duration: 1 minute
 -----------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -18,7 +22,11 @@ function onAbilityCheck(player,target,ability)
     end
 end;
 
-function onUseAbility(player, target, ability)
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(player,target,ability)
 
     local burden = 10;
     if (target:getMP() < target:getPet():getMP()) then
@@ -26,17 +34,17 @@ function onUseAbility(player, target, ability)
     end
 
     local overload = target:addBurden(ELE_DARK-1, burden);
-    
+
     if (overload ~= 0) then
         target:removeAllManeuvers();
         target:addStatusEffect(EFFECT_OVERLOAD, 0, 0, overload);
-    else        
+    else
         if (target:getActiveManeuvers() == 3) then
             target:removeOldestManeuver();
         end
-        
+
         target:addStatusEffect(EFFECT_DARK_MANEUVER, 0, 0, 60);
     end
-    
+
     return EFFECT_DARK_MANEUVER;
 end;

@@ -23,9 +23,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(npc:getAnimation() == 9) then
-		if(player:getZPos() < 46) then
-			if(player:hasKeyItem(SILVER_BELL) and player:hasKeyItem(CORUSCANT_ROSARY) and player:hasKeyItem(BLACK_MATINEE_NECKLACE)) then
+	if (npc:getAnimation() == 9) then
+		if (player:getZPos() < 46) then
+			if (player:hasKeyItem(SILVER_BELL) and player:hasKeyItem(CORUSCANT_ROSARY) and player:hasKeyItem(BLACK_MATINEE_NECKLACE)) then
 				player:messageSpecial(THE_3_ITEMS_GLOW_FAINTLY,SILVER_BELL,CORUSCANT_ROSARY,BLACK_MATINEE_NECKLACE);
 				npc:openDoor(20); -- retail timed
 			else

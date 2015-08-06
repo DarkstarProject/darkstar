@@ -16,10 +16,10 @@ require("scripts/zones/Xarcabard/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getQuestStatus(WINDURST,THE_THREE_MAGI) == QUEST_ACCEPTED and player:hasItem(1104) == false) then
-		if(trade:hasItemQty(613,1) and trade:getItemCount() == 1) then -- Trade Faded Crystal
+	if (player:getQuestStatus(WINDURST,THE_THREE_MAGI) == QUEST_ACCEPTED and player:hasItem(1104) == false) then
+		if (trade:hasItemQty(613,1) and trade:getItemCount() == 1) then -- Trade Faded Crystal
 			player:tradeComplete();
-			SpawnMob(17236201,180):updateEnmity(player);
+			SpawnMob(17236201,180):updateClaim(player);
 		end
 	end
 	

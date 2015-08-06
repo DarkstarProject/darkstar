@@ -386,7 +386,7 @@ namespace battlefieldutils{
 	   if(maxloot!=0){
 		 for (uint8 group = 0; group <= maxloot; ++group){
 			uint16 maxRolls = getRollsPerGroup(battlefield,group);
-            uint16 groupRoll = WELL512::GetRandomNumber(maxRolls);
+            uint16 groupRoll = dsprand::GetRandomNumber(maxRolls);
 			uint16 itemRolls = 0;
 
 			for (uint8 item = 0; item < LootList->size(); ++item)

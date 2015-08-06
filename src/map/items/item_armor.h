@@ -57,6 +57,7 @@ public:
 	virtual ~CItemArmor();
 
 	uint8	getReqLvl();
+    uint8   getILvl();
 	uint32	getJobs();
 	uint16	getModelId();
 	uint16	getScriptType();
@@ -72,6 +73,7 @@ public:
     bool    IsShield();
 
 	void	setReqLvl(uint8 lvl);
+    void    setILvl(uint8 lvl);
 	void	setJobs(uint32 jobs);
 	void	setModelId(uint16 mdl);
 	void	setShieldSize(uint8 shield);
@@ -95,6 +97,7 @@ public:
 private:
 
 	uint8	m_reqLvl;
+    uint8   m_iLvl;
 	uint32  m_jobs;
 	uint16	m_modelID;
 	uint16	m_scriptType;

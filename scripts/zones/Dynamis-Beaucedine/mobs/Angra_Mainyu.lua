@@ -34,16 +34,16 @@ end;
 
 function onMobFight(mob,target)
 	
-	if(GetMobAction(17326082) == 0 and GetMobAction(17326279) ~= 0) then
+	if (GetMobAction(17326082) == 0 and GetMobAction(17326279) ~= 0) then
 		SpawnMob(17326082):updateEnmity(target);
 	end
-	if(GetMobAction(17326083) == 0 and GetMobAction(17326468) ~= 0) then
+	if (GetMobAction(17326083) == 0 and GetMobAction(17326468) ~= 0) then
 		SpawnMob(17326083):updateEnmity(target);
 	end
-	if(GetMobAction(17326084) == 0 and GetMobAction(17326353) ~= 0) then
+	if (GetMobAction(17326084) == 0 and GetMobAction(17326353) ~= 0) then
 		SpawnMob(17326084):updateEnmity(target);
 	end
-	if(GetMobAction(17326085) == 0 and GetMobAction(17326207) ~= 0) then
+	if (GetMobAction(17326085) == 0 and GetMobAction(17326207) ~= 0) then
 		SpawnMob(17326085):updateEnmity(target);
 	end
 	
@@ -52,7 +52,7 @@ end;
 -- Return the selected spell ID.
 function onMonsterMagicPrepare(mob, target)
     
-	if(mob:getHPP() < 25) then
+	if (mob:getHPP() < 25) then
 		return 244; -- Death
 	else
 		-- Can cast Blindga, Death, Graviga, Silencega, and Sleepga II.
@@ -85,7 +85,7 @@ function onMobDeath(mob,killer)
 	killer:addTitle(DYNAMISBEAUCEDINE_INTERLOPER); -- Add title
 	killer:setVar("DynaBeaucedine_Win",1);
 	
-	if(killer:hasKeyItem(HYDRA_CORPS_INSIGNIA) == false) then
+	if (killer:hasKeyItem(HYDRA_CORPS_INSIGNIA) == false) then
 		killer:addKeyItem(HYDRA_CORPS_INSIGNIA);
 		killer:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_INSIGNIA);
 	end

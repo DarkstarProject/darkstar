@@ -20,7 +20,7 @@ end;
 
 function onItemUse(target)
 
-	if(target:hasStatusEffect(EFFECT_POISON) == true) then
+	if (target:hasStatusEffect(EFFECT_POISON) == true) then
 		target:delStatusEffect(EFFECT_POISON);
 	end
 end;

@@ -64,7 +64,7 @@ function onTrigger(player,npc)
                 local MimicList={16928986,16928987,16928988,16928989,16928990,16928991,16928992,16928993,16928994,16928995,16928996,16928997,16928998,16928999,16929000,16929001,16929002,16929003};
                 GetMobByID(MimicList[randmimic]):setSpawn(X,Y,Z);
                 SpawnMob(MimicList[randmimic]):setPos(X,Y,Z);
-                GetMobByID(MimicList[randmimic]):updateEnmity(player);
+                GetMobByID(MimicList[randmimic]):updateClaim(player);
             else
                 player:BCNMSetLoot(lootID,InstanceRegion,CofferID);
                 player:getBCNMloot();
@@ -85,31 +85,31 @@ function onTrigger(player,npc)
         if (coffer == 284) then
             GetMobByID(16928844):setSpawn(X,Y,Z);
             SpawnMob(16928844):setPos(X,Y,Z)
-            GetMobByID(16928844):updateEnmity(player);
+            GetMobByID(16928844):updateClaim(player);
         elseif (coffer == 321) then
             GetMobByID(16928853):setSpawn(X,Y,Z);
             SpawnMob(16928853):setPos(X,Y,Z);
-            GetMobByID(16928853):updateEnmity(player);
+            GetMobByID(16928853):updateClaim(player);
         elseif (coffer == 348) then
             GetMobByID(16928862):setSpawn(X,Y,Z);
             SpawnMob(16928862):setPos(X,Y,Z);
-            GetMobByID(16928862):updateEnmity(player);
+            GetMobByID(16928862):updateClaim(player);
         elseif (coffer == 360) then
             GetMobByID(16928871):setSpawn(X,Y,Z);
             SpawnMob(16928871):setPos(X,Y,Z);
-            GetMobByID(16928871):updateEnmity(player);
+            GetMobByID(16928871):updateClaim(player);
         elseif (coffer == 393) then
             GetMobByID(16928880):setSpawn(X,Y,Z);
             SpawnMob(16928880):setPos(X,Y,Z);
-            GetMobByID(16928880):updateEnmity(player);
+            GetMobByID(16928880):updateClaim(player);
         elseif (coffer == 127) then
             GetMobByID(16928889):setSpawn(X,Y,Z);
             SpawnMob(16928889):setPos(X,Y,Z);
-            GetMobByID(16928889):updateEnmity(player);
+            GetMobByID(16928889):updateClaim(player);
         elseif (coffer == 123) then
             GetMobByID(16928894):setSpawn(X,Y,Z);
             SpawnMob(16928894):setPos(X,Y,Z);
-            GetMobByID(16928894):updateEnmity(player);
+            GetMobByID(16928894):updateClaim(player);
         end
     end
     if (DespawnOtherCoffer == true) then

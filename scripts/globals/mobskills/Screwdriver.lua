@@ -4,15 +4,15 @@
 -- 100% TP: ??? / 200% TP: ??? / 300% TP: ???
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     local zone = target:getZoneID();
-    if(zone >= 1 and zone <= 4) then
+    if (zone >= 1 and zone <= 4) then
         return 1;
     end
 	return 0;

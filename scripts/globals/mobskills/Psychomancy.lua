@@ -5,9 +5,9 @@
 -- Utsusemi/Blink absorb: ignore shadow
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
@@ -26,10 +26,10 @@ function onMobWeaponSkill(target, mob, skill)
 
     skill:setMsg(MSG_DRAIN_MP);
 
-    if(target:isUndead() == false) then
+    if (target:isUndead() == false) then
 
         -- can't go over limited mp
-        if(target:getMP() < dmg) then
+        if (target:getMP() < dmg) then
             dmg = target:getMP();
         end
 

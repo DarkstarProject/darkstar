@@ -6,9 +6,9 @@
 -- Range: Melee
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
@@ -23,7 +23,7 @@ function onMobWeaponSkill(target, mob, skill)
 
 	skill:setMsg(MSG_DRAIN_HP);
 
-	if(MobPhysicalHit(skill, 0, 0, 0)) then
+	if (MobPhysicalHit(skill, 0, 0, 0)) then
 		target:delHP(dmg);
 		mob:addHP(dmg);
 	end

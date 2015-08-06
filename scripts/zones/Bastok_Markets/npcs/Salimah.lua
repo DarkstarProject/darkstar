@@ -27,7 +27,7 @@ function onTrade(player,npc,trade)
 		local hasWildOnion = trade:hasItemQty(4387,1);
 
 		if (hasSleepshroom or hasTreantBulb or hasWildOnion) then
-			if(count == 1) then
+			if (count == 1) then
 				local vanatime = VanadielHour();
 				local item = 0;
 				local event = 203;

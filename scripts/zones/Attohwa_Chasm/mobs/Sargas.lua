@@ -26,7 +26,7 @@ function onAdditionalEffect(mob,target,damage)
         return 0,0,0;
     else
         local duration = math.random(5,15);
-        target:addStatusEffect(EFFECT_STUN,5,3,duration);
+        target:addStatusEffect(EFFECT_STUN,5,0,duration);
         return SUBEFFECT_STUN,0,EFFECT_STUN;
     end
 
@@ -51,14 +51,10 @@ function onSpikesDamage(mob,target,damage)
     dmg = dmg * applyResistanceAddEffect(mob,target,ELE_THUNDER,0);
     dmg = adjustForTarget(target,dmg,ELE_THUNDER);
 
-    if (dmg < 0) then
-        dmg = 10
-    end
-    
+
     dmg = finalMagicNonSpellAdjustments(mob,target,ELE_THUNDER,dmg);
 
     return SUBEFFECT_SHOCK_SPIKES,44,dmg;
-
 end;
 
 -----------------------------------

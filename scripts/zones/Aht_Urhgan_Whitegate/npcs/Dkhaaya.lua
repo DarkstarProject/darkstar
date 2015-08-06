@@ -25,15 +25,15 @@ end;
 function onTrigger(player,npc)
 	local olduumQuest = player:getQuestStatus(AHT_URHGAN, OLDUUM);
 	local ringCheck = player:hasItem(2217);
-	if(olduumQuest == QUEST_AVAILABLE) then
+	if (olduumQuest == QUEST_AVAILABLE) then
 		player:startEvent(0x004);
-	elseif(player:hasKeyItem(ELECTROLOCOMOTIVE) or player:hasKeyItem(ELECTROPOT) or player:hasKeyItem(ELECTROCELL) and ringCheck == false)then
-		if(olduumQuest == QUEST_ACCEPTED) then
+	elseif (player:hasKeyItem(ELECTROLOCOMOTIVE) or player:hasKeyItem(ELECTROPOT) or player:hasKeyItem(ELECTROCELL) and ringCheck == false) then
+		if (olduumQuest == QUEST_ACCEPTED) then
 			player:startEvent(0x006);
 		else
 			player:startEvent(0x008);
 		end
-	elseif(olduumQuest ~= QUEST_AVAILABLE and ringCheck == false) then
+	elseif (olduumQuest ~= QUEST_AVAILABLE and ringCheck == false) then
 		player:startEvent(0x005);
 	else
 		player:startEvent(0x007);
@@ -58,19 +58,19 @@ function onEventFinish(player,csid,option)
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
 
-	if(csid == 0x004) then
+	if (csid == 0x004) then
 		player:addKeyItem(DKHAAYAS_RESEARCH_JOURNAL);
 		player:messageSpecial(KEYITEM_OBTAINED, DKHAAYAS_RESEARCH_JOURNAL);
 		player:addQuest(AHT_URHGAN, OLDUUM);
-	elseif(csid == 0x006 or csid == 0x008) then
-		if(player:getFreeSlotsCount() >= 1) then
+	elseif (csid == 0x006 or csid == 0x008) then
+		if (player:getFreeSlotsCount() >= 1) then
 			player:addItem(2217);
 			player:messageSpecial(ITEM_OBTAINED, 2217);
 			player:delKeyItem(DKHAAYAS_RESEARCH_JOURNAL);
 			player:delKeyItem(ELECTROLOCOMOTIVE);
 			player:delKeyItem(ELECTROPOT);
 			player:delKeyItem(ELECTROCELL);
-			if(csid == 0x006) then
+			if (csid == 0x006) then
 				player:completeQuest(AHT_URHGAN, OLDUUM);
 			end
 		else

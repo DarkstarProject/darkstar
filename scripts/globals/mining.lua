@@ -74,7 +74,7 @@ function pickaxeBreak(player,trade)
 
     pickaxebreak = pickaxebreak + (player:getMod(MOD_MINNING_RESULT) / 1000);
 
-    if(pickaxebreak < MINING_BREAK_CHANCE) then
+    if (pickaxebreak < MINING_BREAK_CHANCE) then
         broke = 1;
         player:tradeComplete();
     end
@@ -91,9 +91,9 @@ function getMiningItem(player,zone)
     local Rate = math.random();
 
     for zon = 1, table.getn(drop), 2 do
-        if(drop[zon] == zone) then
+        if (drop[zon] == zone) then
             for itemlist = 1, table.getn(drop[zon + 1]), 2 do
-                if(Rate <= drop[zon + 1][itemlist + 1]) then
+                if (Rate <= drop[zon + 1][itemlist + 1]) then
                     item = drop[zon + 1][itemlist];
                     break;
                 end
@@ -118,7 +118,7 @@ function getMiningItem(player,zone)
 
     Rate = math.random();
 
-    if(Rate <= (1 - MINING_RATE)) then
+    if (Rate <= (1 - MINING_RATE)) then
         item = 0;
     end
 
@@ -133,7 +133,7 @@ function getNewMiningPositionNPC(player,npc,zone)
     local newnpcid = npc:getID();
 
     for u = 1, table.getn(npcid), 2 do
-        if(npcid[u] == zone) then
+        if (npcid[u] == zone) then
             nbNPC = table.getn(npcid[u + 1]);
             while newnpcid == npc:getID() do
                 newnpcid = math.random(1,nbNPC);

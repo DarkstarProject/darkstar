@@ -7,9 +7,9 @@
 --  Range: Melee
 --  Notes: A spell equivalent to Sanguine Blade in terms of functionality where damage dealt is absorbed as health recovered.
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     target:delHP(dmg);
 
-    if(MobPhysicalHit(skill, dmg, target, info.hitslanded) and target:isUndead() == false) then
+    if (MobPhysicalHit(skill, dmg, target, info.hitslanded) and target:isUndead() == false) then
         mob:addHP(dmg);
     end
 

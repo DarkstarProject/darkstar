@@ -34,7 +34,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(60418,11,22,0)) then
+	if (player:sendGuild(60418,11,22,0)) then
 	player:showText(npc,GAUDYLOX_SHOP_DIALOG);
 	end
 end; 

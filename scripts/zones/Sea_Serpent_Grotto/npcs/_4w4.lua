@@ -16,8 +16,8 @@ require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(748,1) and trade:getItemCount() == 1) then
-		if(player:getVar("SSG_GoldDoor") == 7) then
+	if (trade:hasItemQty(748,1) and trade:getItemCount() == 1) then
+		if (player:getVar("SSG_GoldDoor") == 7) then
 		npc:openDoor(5) --Open the door if a gold beastcoin has been traded after checking the door the required number of times
 		end
 	end
@@ -32,31 +32,31 @@ function onTrigger(player,npc)
 	Z = player:getZPos();
 	GoldDoorCheck = player:getVar("SSG_GoldDoor");
 	
-	if(X >= 55  and Z >= -80) then 
-		if(GoldDoorCheck == 0) then --Door has never been checked
+	if (X >= 55  and Z >= -80) then 
+		if (GoldDoorCheck == 0) then --Door has never been checked
 			player:messageSpecial(FIRST_CHECK);
 			player:setVar("SSG_GoldDoor",1);
-		elseif(GoldDoorCheck == 1) then --Door has been checked once
+		elseif (GoldDoorCheck == 1) then --Door has been checked once
 			player:messageSpecial(SECOND_CHECK);
 			player:setVar("SSG_GoldDoor",2);
-		elseif(GoldDoorCheck == 2) then --Door has been checked twice
+		elseif (GoldDoorCheck == 2) then --Door has been checked twice
 			player:messageSpecial(THIRD_CHECK);
 			player:setVar("SSG_GoldDoor",3);
-		elseif(GoldDoorCheck == 3) then --Door has been checked three times
+		elseif (GoldDoorCheck == 3) then --Door has been checked three times
 			player:messageSpecial(FOURTH_CHECK);
 			player:setVar("SSG_GoldDoor",4);
-		elseif(GoldDoorCheck == 4) then --Door has been checked four times
+		elseif (GoldDoorCheck == 4) then --Door has been checked four times
 			player:messageSpecial(FIFTH_CHECK);
 			player:setVar("SSG_GoldDoor",5);
-		elseif(GoldDoorCheck == 5) then --Door has been checked five times
+		elseif (GoldDoorCheck == 5) then --Door has been checked five times
 			player:messageSpecial(GOLD_CHECK);
 			player:setVar("SSG_GoldDoor",6);
-		elseif(GoldDoorCheck == 6 or GoldDoorCheck == 7) then --Door has been checked six or more times
+		elseif (GoldDoorCheck == 6 or GoldDoorCheck == 7) then --Door has been checked six or more times
 			player:messageSpecial(COMPLETED_CHECK,748);
 			player:setVar("SSG_GoldDoor",7);
 		end
 	return 1 --Keep the door closed
-	elseif(X > 55 and Z < -81) then
+	elseif (X > 55 and Z < -81) then
 	return -1 --Open the door if coming from the "inside"
 	end
 
