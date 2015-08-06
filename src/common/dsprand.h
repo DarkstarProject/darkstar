@@ -25,7 +25,7 @@ public:
     static inline typename std::enable_if<std::is_integral<T>::value, T>::type
         GetRandomNumber(T min, T max)
     {
-        if (min == max - 1)
+        if (min == max - 1 || max == min)
         {
             return min;
         }
