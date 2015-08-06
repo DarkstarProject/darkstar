@@ -2257,8 +2257,9 @@ void CAICharNormal::ActionJobAbilityFinish()
             {
 		charutils::UnequipItem(m_PChar, SLOT_AMMO);
                 charutils::SaveCharEquip(m_PChar);
-		charutils::UpdateItem(m_PChar, loc, slot, -1);
+		
             }
+            charutils::UpdateItem(m_PChar, loc, slot, -1);
             
             m_PChar->pushPacket(new CInventoryFinishPacket());
         }
