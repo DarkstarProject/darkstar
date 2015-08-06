@@ -411,7 +411,14 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                 }
                 break;
             case LATENT_PET_ID:
-                CheckLatentsPetType(!m_POwner->PPet ? -1 : m_POwner->PPet->id);
+                if (m_POwner->PPet && m_POwner->PPet->objtype == TYPE_PET && ((CPetEntity*)m_POwner->PPet)->m_PetID == m_LatentEffectList.at(i)->GetConditionsValue())
+                {
+                    m_LatentEffectList.at(i)->Activate();
+                }
+                else
+                {
+                    m_LatentEffectList.at(i)->Deactivate();
+                }
                 break;
             case LATENT_SUBJOB:
                 if (m_POwner->GetSJob() == m_LatentEffectList.at(i)->GetConditionsValue())
