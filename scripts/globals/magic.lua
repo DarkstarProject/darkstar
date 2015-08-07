@@ -323,6 +323,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
     local resist = 1.0;
     local magicaccbonus = 0;
     local element = spell:getElement();
+    local castersWeather = player:getWeather();
 
     if (bonus ~= nil) then
         magicaccbonus = magicaccbonus + bonus;
@@ -340,18 +341,26 @@ function applyResistance(player,spell,target,diff,skill,bonus)
     if player:hasStatusEffect(EFFECT_ALTRUISM) and spell:getSpellGroup() == SPELLGROUP_WHITE then
         magicacc = magicacc + player:getStatusEffect(EFFECT_ALTRUISM):getPower();
     end
+	
     if player:hasStatusEffect(EFFECT_FOCALIZATION) and spell:getSpellGroup() == SPELLGROUP_BLACK then
         magicacc = magicacc + player:getStatusEffect(EFFECT_FOCALIZATION):getPower();
     end
     --difference in int/mnd
+	
     if (diff > 10) then
         magicacc = magicacc + 10 + (diff - 10)/2;
     else
         magicacc = magicacc + diff;
     end
-    --add acc for ele/dark seal
+	
+    --Add acc for dark seal
     if (player:getStatusEffect(EFFECT_DARK_SEAL) ~= nil and skill == DARK_MAGIC_SKILL) then
         magicaccbonus = magicaccbonus + 256;
+    end
+	
+    --Add acc for klimaform
+    if (player:hasStatusEffect(EFFECT_KLIMAFORM) and (castersWeather == singleWeatherStrong[element] or castersWeather == doubleWeatherStrong[element])) then
+        magicaccbonus = magicaccbonus + 15;
     end
 
     if (element > ELE_NONE) then
