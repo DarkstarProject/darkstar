@@ -511,15 +511,15 @@ struct Merit_t
         struct
         {
             uint16 id;      // id мерита
-            uint8  next;    // необходимое количество меритов для следующего усиления
-            uint8  count;   // текущее количество усилений
+            uint8  next;    // required merit points for next upgrade
+            uint8  count;   // number of upgrades
         };
-        uint32 data;        // информация для отправки персонажу
+        uint32 data;        // data sent in packet
     };
 
-    uint32 value;           // коэффициент изменения параметра, привязанного к merit
-    uint8  upgrade;         // максимальное количество усилений для данного merit
-    uint32 jobs;            // маска профессий, для которых merit работает
+    uint32 value;           // the coefficient of variation of the parameter that is bound to merit 
+    uint8  upgrade;         // maximum number of upgrades
+    uint32 jobs;            // bitmask of jobs for which merit has effect
 	uint8  upgradeid;		// which set of upgrade values the merit will use
 	uint8  catid;			// cat which merit belongs to
     uint16 spellid;         // associated spell ID to learn/unlearn
@@ -558,7 +558,7 @@ class CMeritPoints
 		const Merit_t* GetMeritByIndex(uint16 index);				// get merit index, 0,1,2,3,4 and so on
 
 		void LoadMeritPoints(uint32 charid);						// load char applied merits
-		void SaveMeritPoints(uint32 charid, bool resetingMerits);	// save char applied merits
+		void SaveMeritPoints(uint32 charid);	// save char applied merits
 
     private:
 
