@@ -216,26 +216,25 @@ void CMeritPoints::LoadMeritPoints(uint32 charid)
         merits[i].next = upgrade[merits[i].upgradeid][merits[i].count];
     }
 
-	if (Sql_Query(SqlHandle, "SELECT meritid, upgrades FROM char_merit WHERE charid = %u", charid) != SQL_ERROR)
-	{
-		for (uint16 j = 0; j < Sql_NumRows(SqlHandle); j++)
-		{
-			if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-			{
-				uint32 meritID = Sql_GetUIntData(SqlHandle, 0);
-				uint32 upgrades = Sql_GetUIntData(SqlHandle, 1);
-				for (uint16 i = 0; i < MERITS_COUNT; i++)
-				{
-					if (merits[i].id == meritID)
-					{
-						merits[i].count = upgrades;
-						merits[i].next = upgrade[merits[i].upgradeid][merits[i].count];
-					}
-				}
-			}
-		}
-	}
-
+    if (Sql_Query(SqlHandle, "SELECT meritid, upgrades FROM char_merit WHERE charid = %u", charid) != SQL_ERROR)
+    {
+        for (uint16 j = 0; j < Sql_NumRows(SqlHandle); j++)
+        {
+            if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                uint32 meritID = Sql_GetUIntData(SqlHandle, 0);
+                uint32 upgrades = Sql_GetUIntData(SqlHandle, 1);
+                for (uint16 i = 0; i < MERITS_COUNT; i++)
+                {
+                    if (merits[i].id == meritID)
+                    {
+                        merits[i].count = upgrades;
+                        merits[i].next = upgrade[merits[i].upgradeid][merits[i].count];
+                    }
+                }
+            }
+        }
+    }
 }
 
 /************************************************************************
@@ -247,10 +246,10 @@ void CMeritPoints::LoadMeritPoints(uint32 charid)
 void CMeritPoints::SaveMeritPoints(uint32 charid)
 {
     for (uint16 i = 0; i < MERITS_COUNT; ++i)
-		if (merits[i].count > 0)
-			Sql_Query(SqlHandle, "INSERT INTO char_merit (charid, meritid, upgrades) VALUES(%u, %u, %u) ON DUPLICATE KEY UPDATE upgrades = %u", charid, merits[i].id, merits[i].count, merits[i].count);
-		else
-			Sql_Query(SqlHandle, "DELETE FROM char_merit WHERE charid = %u AND meritid = %u", charid, merits[i].id);
+        if (merits[i].count > 0)
+            Sql_Query(SqlHandle, "INSERT INTO char_merit (charid, meritid, upgrades) VALUES(%u, %u, %u) ON DUPLICATE KEY UPDATE upgrades = %u", charid, merits[i].id, merits[i].count, merits[i].count);
+        else
+            Sql_Query(SqlHandle, "DELETE FROM char_merit WHERE charid = %u AND meritid = %u", charid, merits[i].id);
 }
 
 /************************************************************************
