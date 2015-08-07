@@ -277,18 +277,6 @@ uint8 CMeritPoints::GetMeritPoints()
 
 /************************************************************************
 *                                                                       *
-*  Получаем указател на массив merits                                   *
-*                                                                       *
-************************************************************************/
-
-const Merit_t* CMeritPoints::GetMerits()
-{
-    return merits;
-}
-
-
-/************************************************************************
-*                                                                       *
 *  Добавляем персонажу limit points                                     *
 *                                                                       *
 ************************************************************************/
@@ -484,19 +472,6 @@ int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
 	return meritValue;
 }
 
-int32 CMeritPoints::GetMeritValue(Merit_t* merit, CCharEntity* PChar)
-{
-    uint8 meritValue = 0;
-    if (merit->catid < 5 || (merit->jobs & (1 << (PChar->GetMJob() - 1)) && PChar->GetMLevel() >= 75))
-        meritValue = dsp_min(merit->count, cap[PChar->GetMLevel()]);
-
-    if (merit->catid == 8 && PChar->GetMLevel() < 96)
-        meritValue = 0;
-
-	meritValue *= merit->value;
-
-	return meritValue;
-}
 
 /************************************************************************
 *                                                                       *

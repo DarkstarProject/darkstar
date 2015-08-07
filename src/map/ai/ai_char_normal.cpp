@@ -1563,7 +1563,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     if (m_PJobAbility->getMeritModID() > 0 && !(m_PJobAbility->getAddType() & ADDTYPE_MERIT))
     {
-        meritRecastReduction = m_PChar->PMeritPoints->GetMeritValue((Merit_t*)m_PChar->PMeritPoints->GetMerit((MERIT_TYPE)m_PJobAbility->getMeritModID()), m_PChar);
+        meritRecastReduction = m_PChar->PMeritPoints->GetMeritValue((MERIT_TYPE)m_PJobAbility->getMeritModID(), m_PChar);
     }
 
     uint32 RecastTime = (m_PJobAbility->getRecastTime() - meritRecastReduction);

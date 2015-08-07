@@ -131,6 +131,7 @@ namespace charutils
         uint8 slvl = PChar->GetSLevel();
         JOBTYPE mjob = PChar->GetMJob();
         JOBTYPE sjob = PChar->GetSJob();
+        MERIT_TYPE statMerit[] = { MERIT_STR, MERIT_DEX, MERIT_VIT, MERIT_AGI, MERIT_INT, MERIT_MND, MERIT_CHR };
 
         uint8 race = 0;					//Human
 
@@ -291,7 +292,7 @@ namespace charutils
             }
 
             // get each merit bonus stat, str,dex,vit and so on...
-            MeritBonus = PChar->PMeritPoints->GetMeritValue((Merit_t*)PChar->PMeritPoints->GetMeritByIndex(StatIndex), PChar);
+            MeritBonus = PChar->PMeritPoints->GetMeritValue(statMerit[StatIndex - 2], PChar);
 
             // Вывод значения
             WBUFW(&PChar->stats, counter) = (uint16)(map_config.player_stat_multiplier * (raceStat + jobStat + sJobStat) + MeritBonus);
@@ -2336,7 +2337,11 @@ namespace charutils
 
     void BuildingCharSkillsTable(CCharEntity* PChar)
     {
-        uint16 meritIndex = 8;		// h2h merit index starts at 8
+        MERIT_TYPE skillMerit[] = { MERIT_H2H, MERIT_DAGGER, MERIT_SWORD, MERIT_GSWORD, MERIT_AXE, MERIT_GAXE, MERIT_SCYTHE, MERIT_POLEARM, MERIT_KATANA, MERIT_GKATANA, MERIT_CLUB, MERIT_STAFF,
+            MERIT_ARCHERY, MERIT_MARKSMANSHIP, MERIT_THROWING, MERIT_GUARDING, MERIT_EVASION, MERIT_SHIELD, MERIT_PARRYING, MERIT_DIVINE, MERIT_HEALING, MERIT_ENHANCING, MERIT_ENFEEBLING,
+            MERIT_ELEMENTAL, MERIT_DARK, MERIT_SUMMONING, MERIT_NINJITSU, MERIT_SINGING, MERIT_STRING, MERIT_WIND, MERIT_BLUE, MERIT_GEO, MERIT_HANDBELL };
+
+        uint8 meritIndex = 0;
 
         for (int32 i = 0; i < 48; ++i)
         {
@@ -2415,9 +2420,9 @@ namespace charutils
             }
 
             //ignore these indexes when calculating merits
-            if (i < 13 || i > 24)
+            if ( i > 0 && (i < 13 || i > 24) && i < 46)
             {
-                skillBonus += PChar->PMeritPoints->GetMeritValue((Merit_t*)PChar->PMeritPoints->GetMeritByIndex(meritIndex), PChar);
+                skillBonus += PChar->PMeritPoints->GetMeritValue(skillMerit[meritIndex], PChar);
                 meritIndex++;
             }
 
