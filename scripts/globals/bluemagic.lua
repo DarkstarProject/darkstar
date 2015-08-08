@@ -198,12 +198,16 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
     -- print(magAccMerit);
 
     local statBonus = 0;
+    local dStat = 0; -- Please make sure to add an additional stat check if there is to be a spell that uses neither INT, MND, or CHR. None currently exist.
     if (statMod == INT_BASED) then -- Stat mod is INT
-        statBonus = (caster:getStat(MOD_INT) - target:getStat(MOD_INT))* params.tMultiplier;
+        dStat = caster:getStat(MOD_INT) - target:getStat(MOD_INT)
+        statBonus = (dStat)* params.tMultiplier;
     elseif (statMod == CHR_BASED) then -- Stat mod is CHR
-        statBonus = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR))* params.tMultiplier;
+        dStat = caster:getStat(MOD_CHR) - target:getStat(MOD_CHR)
+        statBonus = (dStat)* params.tMultiplier;
     elseif (statMod == MND_BASED) then -- Stat mod is MND
-        statBonus = (caster:getStat(MOD_MND) - target:getStat(MOD_MND))* params.tMultiplier;
+        dStat = caster:getStat(MOD_MND) - target:getStat(MOD_MND)
+        statBonus = (dStat)* params.tMultiplier;
     end
 
     D =(((D + ST) * params.multiplier * convergenceBonus) + statBonus);
@@ -213,7 +217,7 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
     local magicAttack = 1.0;
     local multTargetReduction = 1.0; -- TODO: Make this dynamically change, temp static till implemented.
     magicAttack = math.floor(D * multTargetReduction);
-    magicAttack = math.floor(magicAttack * applyResistance(caster,spell,target,caster:getStat(MOD_INT) - target:getStat(MOD_INT),BLUE_SKILL,magAccMerit));
+    magicAttack = math.floor(magicAttack * applyResistance(caster,spell,target,dStat,BLUE_SKILL,magAccMerit));
     dmg = math.floor(addBonuses(caster, spell, target, magicAttack));
 
     caster:delStatusEffectSilent(EFFECT_BURST_AFFINITY);
