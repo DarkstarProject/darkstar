@@ -21,10 +21,10 @@ function onTrade(player,npc,trade)
 	local LSE = GetNPCByID(Lantern_ID+3):getAnimation(); 
 	
 	-- Trade Crimson Rancor Flame
-	if(trade:hasItemQty(1139,1) and trade:getItemCount() == 1) then
+	if (trade:hasItemQty(1139,1) and trade:getItemCount() == 1) then
 		if (LNE == 8) then
 			player:messageSpecial(LANTERN_OFFSET + 7); -- already lit
-		elseif(LNE == 9)then
+		elseif (LNE == 9) then
 			npc:openDoor(LANTERNS_STAY_LIT);
 			local ALL = LNW+LSW+LSE;
 			player:tradeComplete();

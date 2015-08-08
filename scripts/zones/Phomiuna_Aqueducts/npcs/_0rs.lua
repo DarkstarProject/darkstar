@@ -30,12 +30,12 @@ function onTrigger(player,npc)
 	local element = VanadielDayElement();
 	--printf("element: %u",element);
 	
-	if(element == 3)then -- wind day
-		if(GetNPCByID(DoorOffset+1):getAnimation() == 8)then -- lamp wind open?
+	if (element == 3) then -- wind day
+		if (GetNPCByID(DoorOffset+1):getAnimation() == 8) then -- lamp wind open?
 			GetNPCByID(DoorOffset-7):openDoor(15); -- Open Door _0rk
 		end
-	elseif(element == 1)then -- earth day
-		if(GetNPCByID(DoorOffset-3):getAnimation() == 8)then -- lamp lightning open?
+	elseif (element == 1) then -- earth day
+		if (GetNPCByID(DoorOffset-3):getAnimation() == 8) then -- lamp lightning open?
 			GetNPCByID(DoorOffset-7):openDoor(15); -- Open Door _0rk
 		end
 	end

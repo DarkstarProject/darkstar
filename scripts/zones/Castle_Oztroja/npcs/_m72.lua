@@ -27,7 +27,7 @@ function onTrigger(player,npc)
 	TorchStand3A = GetNPCByID(Torch3):getAnimation();
 	TorchStand4A = GetNPCByID(Torch4):getAnimation();	
 	
-	if(DoorA == 9 and TorchStand1A == 9) then
+	if (DoorA == 9 and TorchStand1A == 9) then
 		player:startEvent(0x000a);	
 	else
 		player:messageSpecial(TORCH_LIT);
@@ -54,7 +54,7 @@ function onEventFinish(player,csid,option)
 
 	if (option == 1) then
 		GetNPCByID(Torch1):openDoor(55);
-		if((DoorA == 9) and (TorchStand2A == 8) and (TorchStand3A == 8) and (TorchStand4A == 8)) then
+		if ((DoorA == 9) and (TorchStand2A == 8) and (TorchStand3A == 8) and (TorchStand4A == 8)) then
 			GetNPCByID(DoorID):openDoor(35); -- confirmed retail tested
 			-- The lamps shouldn't go off here, but I couldn't get the torches to update animation times without turning them off first 
 			-- They need to be reset to the door open time(35s) + 4s (39 seconds)

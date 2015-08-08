@@ -14,9 +14,9 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 5) then	
+	if (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 5) then	
 	 player:startEvent(0x0000);
-	elseif(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 6 and player:hasKeyItem(DELKFUTT_RECOGNITION_DEVICE) == false) then	
+	elseif (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 6 and player:hasKeyItem(DELKFUTT_RECOGNITION_DEVICE) == false) then	
 	 player:addKeyItem(DELKFUTT_RECOGNITION_DEVICE);
 	 player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_RECOGNITION_DEVICE);
 	end
@@ -46,7 +46,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-   if(csid == 0x0000)then
+   if (csid == 0x0000) then
        player:setVar("COP_Tenzen_s_Path",6);
    end
 end;

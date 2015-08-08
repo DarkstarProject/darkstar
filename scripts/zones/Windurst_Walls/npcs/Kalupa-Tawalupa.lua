@@ -24,11 +24,11 @@ function onTrigger(player,npc)
 	local ToBee = player:getQuestStatus(WINDURST,TO_BEE_OR_NOT_TO_BEE);
 	local ToBeeOrNotStatus = player:getVar("ToBeeOrNot_var");
 	
-	if(ToBeeOrNotStatus == 10) then 
+	if (ToBeeOrNotStatus == 10) then 
 		player:startEvent(0x0042); -- During Too Bee quest before honey given to Zayhi: "are you alright sir"
-	elseif(ToBee == QUEST_ACCEPTED and ToBeeOrNotStatus > 0) then 
+	elseif (ToBee == QUEST_ACCEPTED and ToBeeOrNotStatus > 0) then 
 			player:startEvent(0x0048); -- During Too Bee quest after some honey was given to Zayhi: "hey did that honey help you just now?"
-	elseif(ToBee == QUEST_COMPLETED and player:needToZone()) then
+	elseif (ToBee == QUEST_COMPLETED and player:needToZone()) then
 		player:startEvent(0x004d); -- After Too Bee quest but before zone: "well I guess a tooth ache is to be expected"
 	else
 		player:startEvent(0x012a); -- Normal conversation

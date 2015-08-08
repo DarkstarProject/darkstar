@@ -1230,11 +1230,14 @@ MOD_SHARPSHOT       = 0x13A -- Sharpshot accuracy bonus (modId = 314)
 MOD_ENH_DRAIN_ASPIR = 0x13B -- % damage boost to Drain and Aspir(modId = 315)
 MOD_TRICK_ATK_AGI   = 0x208 -- % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit) (modId = 520)
 
+-- Mythic Weapon Mods
+MOD_AUGMENTS_ABSORB    = 0x209  -- Direct Absorb spell increase while Liberator is equipped (percentage based) (modId = 521)
+
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
--- MOD_SPARE = 0x209 -- (modId = 521)
 -- MOD_SPARE = 0x20A -- (modId = 522)
+-- MOD_SPARE = 0x20B -- (modId = 523)
 
 ------------------------------------
 -- Merit Definitions

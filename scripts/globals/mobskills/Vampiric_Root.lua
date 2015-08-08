@@ -24,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     target:delHP(dmg);
 
-    if(target:isUndead() == false) then
+    if (target:isUndead() == false) then
         mob:addHP(dmg*.5);
         skill:setMsg(MSG_DRAIN_HP);
     end

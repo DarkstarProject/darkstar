@@ -17,8 +17,8 @@ require("scripts/zones/Middle_Delkfutts_Tower/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(player:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_ACCEPTED and player:getVar("bladeOfEvilCS") == 0) then
-		if(trade:hasItemQty(1114,1) and trade:getItemCount() == 1) then -- Trade Quadav Mage Blood
+	if (player:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_ACCEPTED and player:getVar("bladeOfEvilCS") == 0) then
+		if (trade:hasItemQty(1114,1) and trade:getItemCount() == 1) then -- Trade Quadav Mage Blood
 			player:tradeComplete();
 			SpawnMob(17420629,300):updateClaim(player);
 			SpawnMob(17420630,180):updateClaim(player);

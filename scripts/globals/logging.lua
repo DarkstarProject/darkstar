@@ -1,5 +1,4 @@
 -------------------------------------------------
---  Author: Ezekyel
 --  Logging functions
 --  Info from:
 --      http://wiki.ffxiclopedia.org/wiki/Logging
@@ -49,7 +48,7 @@ function startLogging(player,zone,npc,trade,csid)
         local broke = hatchetBreak(player,trade);
         local item = getLoggingItem(player,zone);
 
-        if(player:getFreeSlotsCount() == 0) then
+        if (player:getFreeSlotsCount() == 0) then
             full = 1;
         else
             full = 0;

@@ -29,9 +29,9 @@ function onMobWeaponSkill(target, mob, skill)
     skill:setMsg(MSG_ENFEEB_IS);
 
     -- display blind first, else bio
-    if(blinded == MSG_ENFEEB_IS) then
+    if (blinded == MSG_ENFEEB_IS) then
         typeEffect = EFFECT_BLINDNESS;
-    elseif(bio == MSG_ENFEEB_IS) then
+    elseif (bio == MSG_ENFEEB_IS) then
         typeEffect = EFFECT_BIO;
     else
         skill:setMsg(MSG_MISS);

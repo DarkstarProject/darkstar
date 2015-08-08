@@ -135,14 +135,14 @@ freeHpTeleGroups[8] = { 42, 105}; -- Rabao
 
 function homepointMenu( player, csid, hpIndex)
 	
-	if( HOMEPOINT_HEAL == 1) then
+	if ( HOMEPOINT_HEAL == 1) then
 		player:addHP(player:getMaxHP());
 		player:addMP(player:getMaxMP());
 	end
 
-	if( HOMEPOINT_TELEPORT == 1) then
+	if ( HOMEPOINT_TELEPORT == 1) then
 		
-		if( homepoints[hpIndex] == nil) then return; end -- Check for valid hpIndex
+		if ( homepoints[hpIndex] == nil) then return; end -- Check for valid hpIndex
 
 		player:setLocalVar("currentHpIndex", hpIndex + 1);
 
@@ -153,8 +153,8 @@ function homepointMenu( player, csid, hpIndex)
 
 		-- Register new homepoint?
 		local newHp = 0;
-		if( homepoints[hpIndex][1] == 1) then
-			if( bit.rshift( bit.lshift( HpTeleportMask1, 32 - homepoints[hpIndex][2]), 31) == 0) then
+		if ( homepoints[hpIndex][1] == 1) then
+			if ( bit.rshift( bit.lshift( HpTeleportMask1, 32 - homepoints[hpIndex][2]), 31) == 0) then
 				newHp = 0x10000; -- This value causes the "You have registered a new home point!" dialog to display
 				
 				-- Update the homepoint teleport mask with the new location
@@ -164,8 +164,8 @@ function homepointMenu( player, csid, hpIndex)
 				player:setVar("HpTeleportMask1a", bit.rshift( HpTeleportMask1, 16));
 				player:setVar("HpTeleportMask1b", bit.rshift( bit.lshift( HpTeleportMask1, 16), 16));
 			end
-		elseif(  homepoints[hpIndex][1] == 2) then
-			if( bit.rshift( bit.lshift( HpTeleportMask2, 32 - homepoints[hpIndex][2]), 31) == 0) then
+		elseif (  homepoints[hpIndex][1] == 2) then
+			if ( bit.rshift( bit.lshift( HpTeleportMask2, 32 - homepoints[hpIndex][2]), 31) == 0) then
 				newHp = 0x10000;
 				
 				HpTeleportMask2 = bit.bor( HpTeleportMask2, bit.lshift( 1, homepoints[hpIndex][2] - 1)); 
@@ -173,8 +173,8 @@ function homepointMenu( player, csid, hpIndex)
 				player:setVar("HpTeleportMask2a", bit.rshift( HpTeleportMask2, 16));
 				player:setVar("HpTeleportMask2b", bit.rshift( bit.lshift( HpTeleportMask2, 16), 16));
 			end
-		elseif(  homepoints[hpIndex][1] == 3) then
-			if( bit.rshift( bit.lshift( HpTeleportMask3, 32 - homepoints[hpIndex][2]), 31) == 0) then
+		elseif (  homepoints[hpIndex][1] == 3) then
+			if ( bit.rshift( bit.lshift( HpTeleportMask3, 32 - homepoints[hpIndex][2]), 31) == 0) then
 				newHp = 0x10000;
 				
 				HpTeleportMask3 = bit.bor( HpTeleportMask3, bit.lshift( 1, homepoints[hpIndex][2] - 1)); 
@@ -182,8 +182,8 @@ function homepointMenu( player, csid, hpIndex)
 				player:setVar("HpTeleportMask3a", bit.rshift( HpTeleportMask3, 16));
 				player:setVar("HpTeleportMask3b", bit.rshift( bit.lshift( HpTeleportMask3, 16), 16));
 			end
-		elseif(  homepoints[hpIndex][1] == 4) then
-			if( bit.rshift( bit.lshift( HpTeleportMask4, 32 - homepoints[hpIndex][2]), 31) == 0) then
+		elseif (  homepoints[hpIndex][1] == 4) then
+			if ( bit.rshift( bit.lshift( HpTeleportMask4, 32 - homepoints[hpIndex][2]), 31) == 0) then
 				newHp = 0x10000;
 				
 				HpTeleportMask4 = bit.bor( HpTeleportMask4, bit.lshift( 1, homepoints[hpIndex][2] - 1)); 
@@ -202,11 +202,11 @@ end;
 
 function hpTeleport( player, option)
 
-	if( option == 2 or option > 0x10000 and option < 0x7F0003) then
+	if ( option == 2 or option > 0x10000 and option < 0x7F0003) then
 		local hpIndex = bit.rshift( option, 16); -- Calculate hpIndex based on option selected
 		
 		local teleportCost = homepoints[hpIndex][8];
-		if( freeHpTeleport( player, hpIndex)) then
+		if ( freeHpTeleport( player, hpIndex)) then
 			teleportCost = 0;
 		end
 
@@ -221,13 +221,13 @@ function freeHpTeleport( player, hpIndex)
 	local currentHpIndex = player:getLocalVar("currentHpIndex") - 1;
 
 	for x = 1, 20 do
-		if( freeHpTeleGroups[x] ~= nil) then
+		if ( freeHpTeleGroups[x] ~= nil) then
 			for y = 1, 20 do
-				if( freeHpTeleGroups[x][y] ~= nil) then
-					if( freeHpTeleGroups[x][y] == currentHpIndex) then
+				if ( freeHpTeleGroups[x][y] ~= nil) then
+					if ( freeHpTeleGroups[x][y] == currentHpIndex) then
 						for z = 1, 20 do
-							if( freeHpTeleGroups[x][z] ~= nil) then
-								if( freeHpTeleGroups[x][z] == hpIndex) then
+							if ( freeHpTeleGroups[x][z] ~= nil) then
+								if ( freeHpTeleGroups[x][z] == hpIndex) then
 									return true;
 								end
 							else

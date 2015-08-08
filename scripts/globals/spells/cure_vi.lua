@@ -26,23 +26,23 @@ function onSpellCast(caster,target,spell)
 
 	local minCure = 600;
 	power = getCurePower(caster);
-	if(power < 210) then
+	if (power < 210) then
 		divisor = 1.5;
 		constant = 600;
 		basepower = 90;
-	elseif(power < 300) then
+	elseif (power < 300) then
 		divisor =  0.9;
 		constant = 680;
 		basepower = 210;
-	elseif(power < 400) then
+	elseif (power < 400) then
 		divisor = 10/7;
 		constant = 780;
 		basepower = 300;
-	elseif(power < 500) then
+	elseif (power < 500) then
 		divisor = 2.5;
 		constant = 850;
 		basepower = 400;
-	elseif(power < 700) then
+	elseif (power < 700) then
 		divisor = 5/3;
 		constant = 890;
 		basepower = 500;
@@ -52,15 +52,15 @@ function onSpellCast(caster,target,spell)
 		basepower = 0;
 	end
 
-	if(target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == TYPE_PC or target:getObjType() == TYPE_MOB)) then
+	if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == TYPE_PC or target:getObjType() == TYPE_MOB)) then
 		basecure = getBaseCure(power,divisor,constant,basepower);
 		final = getCureFinal(caster,spell,basecure,minCure,false);
-		if(caster:hasStatusEffect(EFFECT_AFFLATUS_SOLACE) and target:hasStatusEffect(EFFECT_STONESKIN) == false) then
+		if (caster:hasStatusEffect(EFFECT_AFFLATUS_SOLACE) and target:hasStatusEffect(EFFECT_STONESKIN) == false) then
 			local solaceStoneskin = 0;
 			local equippedBody = caster:getEquipID(SLOT_BODY);
-			if(equippedBody == 11186) then
+			if (equippedBody == 11186) then
 				solaceStoneskin = math.floor(final * 0.30);
-			elseif(equippedBody == 11086) then
+			elseif (equippedBody == 11086) then
 				solaceStoneskin = math.floor(final * 0.35);
 			else
 				solaceStoneskin = math.floor(final * 0.25);
@@ -73,7 +73,7 @@ function onSpellCast(caster,target,spell)
 		final = final * CURE_POWER;
 
 		local diff = (target:getMaxHP() - target:getHP());
-		if(final > diff) then
+		if (final > diff) then
 			final = diff;
 		end
 		target:restoreHP(final);
@@ -81,7 +81,7 @@ function onSpellCast(caster,target,spell)
 		target:wakeUp();
 		caster:updateEnmityFromCure(target,final);
 	else
-		if(target:isUndead()) then
+		if (target:isUndead()) then
 			spell:setMsg(2);
 			local dmg = calculateMagicDamage(minCure,1,caster,spell,target,HEALING_MAGIC_SKILL,MOD_MND,false)*0.5;
 			local resist = applyResistance(caster,spell,target,caster:getStat(MOD_MND)-target:getStat(MOD_MND),HEALING_MAGIC_SKILL,1.0);
@@ -92,18 +92,18 @@ function onSpellCast(caster,target,spell)
 			final = dmg;
 			target:delHP(final);
 			target:updateEnmityFromDamage(caster,final);
-		elseif(caster:getObjType() == TYPE_PC) then
+		elseif (caster:getObjType() == TYPE_PC) then
 			spell:setMsg(75);
 		else
 			-- e.g. monsters healing themselves.
-			if(USE_OLD_CURE_FORMULA == true) then
+			if (USE_OLD_CURE_FORMULA == true) then
                 basecure = getBaseCureOld(power,divisor,constant);
             else
                 basecure = getBaseCure(power,divisor,constant,basepower);
             end
             final = getCureFinal(caster,spell,basecure,minCure,false);
             local diff = (target:getMaxHP() - target:getHP());
-            if(final > diff) then
+            if (final > diff) then
                 final = diff;
             end
             target:addHP(final);

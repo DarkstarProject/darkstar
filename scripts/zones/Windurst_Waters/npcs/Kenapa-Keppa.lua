@@ -81,7 +81,7 @@ function onTrigger(player,npc)
 			else
 				player:startEvent(0x0148); -- "..<Grin>.."
 			end
-		elseif(FoodForThought == QUEST_ACCEPTED and KenapaFood == 4) then -- Give standard conversation options if this NPC has been fed but others haven't
+		elseif (FoodForThought == QUEST_ACCEPTED and KenapaFood == 4) then -- Give standard conversation options if this NPC has been fed but others haven't
 			rand = math.random(1,2);
 			if (rand == 1) then
 				player:startEvent(0x012e); -- Standard converstation
@@ -89,45 +89,45 @@ function onTrigger(player,npc)
 				player:startEvent(0x012f); -- Standard converstation
 			end
 		end
-	elseif(FoodForThought == QUEST_COMPLETED and OvernightDelivery == QUEST_AVAILABLE and needToZone == false and (HourOfTheDay >= 7 and HourOfTheDay < 24) and pFame >= 1 and KenapaOvernight ~= 256) then
-		if(KenapaOvernight == 0) then
+	elseif (FoodForThought == QUEST_COMPLETED and OvernightDelivery == QUEST_AVAILABLE and needToZone == false and (HourOfTheDay >= 7 and HourOfTheDay < 24) and pFame >= 1 and KenapaOvernight ~= 256) then
+		if (KenapaOvernight == 0) then
 			player:startEvent(0x0150);
-		elseif(KenapaOvernight == 1) then
+		elseif (KenapaOvernight == 1) then
 			player:startEvent(0x0151);
-		elseif(KenapaOvernight == 2) then
+		elseif (KenapaOvernight == 2) then
 			player:startEvent(0x0152);
-		elseif(KenapaOvernight == 3) then
+		elseif (KenapaOvernight == 3) then
 			player:startEvent(0x0153); -- Actual quest acceptance Dialogue
 		end
-	elseif(FoodForThought == QUEST_COMPLETED and OvernightDelivery == QUEST_AVAILABLE and KenapaOvernight == 256) then
-		if(HourOfTheDay > 6 and HourOfTheDay < 7) then
+	elseif (FoodForThought == QUEST_COMPLETED and OvernightDelivery == QUEST_AVAILABLE and KenapaOvernight == 256) then
+		if (HourOfTheDay > 6 and HourOfTheDay < 7) then
 			player:startEvent(0x015b); -- Failed to return in time; dialogue before quest can be repeated
 		else
 			player:startEvent(0x0150); -- Restart the quest from the beginning
 		end
-	elseif(OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(SMALL_BAG) == false) then
-		if(KenapaOvernight == 4) then
+	elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(SMALL_BAG) == false) then
+		if (KenapaOvernight == 4) then
 			player:startEvent(0x0154); -- Reminder for Overnight Delivery #1
-		elseif(KenapaOvernight == 5) then
+		elseif (KenapaOvernight == 5) then
 			player:startEvent(0x0155); -- Reminder for Overnight Delivery #2
-		elseif(KenapaOvernight == 6) then
+		elseif (KenapaOvernight == 6) then
 			player:startEvent(0x0156); -- Reminder for Overnight Delivery #3
-		elseif(KenapaOvernight == 7) then
+		elseif (KenapaOvernight == 7) then
 			player:startEvent(0x0157); -- Reminder for Overnight Delivery #4
 		end
-	elseif(OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(SMALL_BAG) == true and (HourOfTheDay <= 6 or HourOfTheDay >= 18)) then
-		if(VanadielDayOfTheYear() == KenapaOvernightDay and (KenapaOvernightHour <= 24 or KenapaOvernightHour < 6)) then
+	elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(SMALL_BAG) == true and (HourOfTheDay <= 6 or HourOfTheDay >= 18)) then
+		if (VanadielDayOfTheYear() == KenapaOvernightDay and (KenapaOvernightHour <= 24 or KenapaOvernightHour < 6)) then
 			player:startEvent(0x015c); -- Brought the key item back inside the time frame; got the item and returned it on the same day
-		elseif(VanadielDayOfTheYear() == KenapaOvernightDay + 1 and KenapaOvernightHour <= 24) then
+		elseif (VanadielDayOfTheYear() == KenapaOvernightDay + 1 and KenapaOvernightHour <= 24) then
 			player:startEvent(0x015c); -- Brought the key item back inside the time frame
 		else
 			player:startEvent(0x015a); -- Failed to return in time
 		end
-	elseif(OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(SMALL_BAG) == true and HourOfTheDay > 6) then
+	elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(SMALL_BAG) == true and HourOfTheDay > 6) then
 		player:startEvent(0x015a); -- Failed to return in time
-	elseif(OvernightDelivery == QUEST_COMPLETED) then
+	elseif (OvernightDelivery == QUEST_COMPLETED) then
 		rand = math.random(1,2);
-		if(rand == 1) then
+		if (rand == 1) then
 			player:startEvent(0x015d); -- Random comment after Overnight Delivery #1
 		else
 			player:startEvent(0x015e); -- Random comment after Overnight Delivery #2
@@ -160,7 +160,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (csid == 0x0147 or csid == 0x014a) then
-		if(player:getVar("Kerutoto_Food_var") == 3 and player:getVar("Kenapa_Food_var") == 3 and player:getVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
+		if (player:getVar("Kerutoto_Food_var") == 3 and player:getVar("Kenapa_Food_var") == 3 and player:getVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
 			player:addGil(GIL_RATE*120);
 			player:tradeComplete();
 			player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
@@ -175,8 +175,8 @@ function onEventFinish(player,csid,option)
 			player:addGil(GIL_RATE*120);
 			player:setVar("Kenapa_Food_var",4); -- If this is NOT the last NPC given food, flag this NPC as completed.
 		end
-	elseif(csid == 0x014b) then
-		if(player:getVar("Kerutoto_Food_var") == 3 and player:getVar("Kenapa_Food_var") == 3 and player:getVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
+	elseif (csid == 0x014b) then
+		if (player:getVar("Kerutoto_Food_var") == 3 and player:getVar("Kenapa_Food_var") == 3 and player:getVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
 			player:addGil(GIL_RATE*120);
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*120); 
 			player:tradeComplete();
@@ -196,33 +196,33 @@ function onEventFinish(player,csid,option)
 	elseif  (csid == 0x0038) then  -- Show Off Hat
 		player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+4);
 		player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);	
-	elseif(csid == 0x0150) then
+	elseif (csid == 0x0150) then
 		player:setVar("Kenapa_Overnight_var",1);
-	elseif(csid == 0x0151) then
+	elseif (csid == 0x0151) then
 		player:setVar("Kenapa_Overnight_var",2);
-	elseif(csid == 0x0152) then
+	elseif (csid == 0x0152) then
 		player:setVar("Kenapa_Overnight_var",3);
-	elseif(csid == 0x0153) then
-		if(option == 0) then
+	elseif (csid == 0x0153) then
+		if (option == 0) then
 			player:addQuest(WINDURST,OVERNIGHT_DELIVERY);
 			player:setVar("Kenapa_Overnight_var",4);
 		else
 			player:setVar("Kenapa_Overnight_var",0);
 		end
-	elseif(csid == 0x0154) then
+	elseif (csid == 0x0154) then
 		player:setVar("Kenapa_Overnight_var",5);
-	elseif(csid == 0x0155) then
+	elseif (csid == 0x0155) then
 		player:setVar("Kenapa_Overnight_var",6);
-	elseif(csid == 0x0156) then
+	elseif (csid == 0x0156) then
 		player:setVar("Kenapa_Overnight_var",7);
-	elseif(csid == 0x0157) then
+	elseif (csid == 0x0157) then
 		player:setVar("Kenapa_Overnight_var",4); -- Begin reminder sequence
-	elseif(csid == 0x015a) then
+	elseif (csid == 0x015a) then
 		player:delQuest(WINDURST,OVERNIGHT_DELIVERY);
 		player:delKeyItem(SMALL_BAG);
 		player:setVar("Kenapa_Overnight_Hour_var",0);
 		player:setVar("Kenapa_Overnight_var",256);
-	elseif(csid == 0x015c) then
+	elseif (csid == 0x015c) then
 		player:addItem(12590);
 		player:delKeyItem(SMALL_BAG);
 		player:messageSpecial(ITEM_OBTAINED,12590); 

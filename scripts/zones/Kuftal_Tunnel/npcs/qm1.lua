@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
 	local mob = GetMobByID(17490233);
 	
 	-- Trade Darksteel ore
-	if(GetMobAction(17490233) == 0 and trade:hasItemQty(645,1) and trade:getItemCount() == 1) then 
+	if (GetMobAction(17490233) == 0 and trade:hasItemQty(645,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17490233,180):updateClaim(player); -- Phantom Worm
 		mob:setPos(x+1,y,z+1);

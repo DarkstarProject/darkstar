@@ -141,16 +141,16 @@ function onTrade(player,npc,trade)
       eventParams = getRelicParameters(itemid);
 
          -- Stage 1->2 or 2->3, 3 items + relic itself
-         if(count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(eventParams[2],1) and
+         if (count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(eventParams[2],1) and
             trade:hasItemQty(eventParams[3],1) and trade:hasItemQty(itemid,1)) then
                tradeOK = true;
 
          -- Stage 3->4, just check for attestation + relic itself
-         elseif(count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(itemid,1)) then
+         elseif (count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(itemid,1)) then
             tradeOK = true;
 
          -- Stage 4->5, Shard + Necropschye + relic itself
-         elseif(count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(eventParams[2],1) and trade:hasItemQty(itemid,1)) then
+         elseif (count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(eventParams[2],1) and trade:hasItemQty(itemid,1)) then
             tradeOK = true;
          end
 

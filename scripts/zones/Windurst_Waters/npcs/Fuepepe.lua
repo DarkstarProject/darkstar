@@ -19,7 +19,7 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 
 function onTrade(player,npc,trade)
 	if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED and player:getVar("QuestMakingTheGrade_prog") == 0) then
-		if(trade:hasItemQty(544,1) and trade:getItemCount() == 1 and trade:getGil() == 0) then
+		if (trade:hasItemQty(544,1) and trade:getItemCount() == 1 and trade:getGil() == 0) then
 			player:startEvent(0x01c7); -- Quest Progress: Test Papers Shown and told to deliver them to principal
 		end
 	end

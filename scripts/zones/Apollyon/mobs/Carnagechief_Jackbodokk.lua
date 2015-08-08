@@ -43,7 +43,7 @@ local lifepourcent= ((mob:getHP()/mob:getMaxHP())*100);
 local instancetime = target:getSpecialBattlefieldLeftTime(5);
 
 
-    if(lifepourcent < 50 and GetNPCByID(16933245):getAnimation() == 8)then
+    if (lifepourcent < 50 and GetNPCByID(16933245):getAnimation() == 8) then
 								SpawnMob(16933134):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 								SpawnMob(16933135):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 								SpawnMob(16933133):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
@@ -51,11 +51,11 @@ local instancetime = target:getSpecialBattlefieldLeftTime(5);
 								GetNPCByID(16933245):setAnimation(9);
 	end
     
-	if(instancetime < 13)then
+	if (instancetime < 13) then
 
-	   if(IsMobDead(16933144)==false)then  --link  dee wapa
+	   if (IsMobDead(16933144)==false) then  --link  dee wapa
 	       GetMobByID(16933144):updateEnmity(target);
-	   elseif(IsMobDead(16933137)==false)then  --link na qba
+	   elseif (IsMobDead(16933137)==false) then  --link na qba
 	       GetMobByID(16933137):updateEnmity(target);
 	   end
 	
@@ -67,7 +67,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-    if((IsMobDead(16933144)==false or IsMobDead(16933137)==false) and alreadyReceived(killer,1,GetInstanceRegion(1294)) == false)then		  
+    if ((IsMobDead(16933144)==false or IsMobDead(16933137)==false) and alreadyReceived(killer,1,GetInstanceRegion(1294)) == false) then		  
 		     killer:addTimeToSpecialBattlefield(5,5);
 	         addLimbusList(killer,1,GetInstanceRegion(1294));
 	end

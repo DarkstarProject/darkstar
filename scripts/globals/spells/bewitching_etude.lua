@@ -1,6 +1,6 @@
 -----------------------------------------
--- Spell: Sage Etude
--- Static INT Boost, BRD 66
+-- Spell: Bewitching Etude
+-- Static CHR Boost, BRD 62
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -23,11 +23,11 @@ function onSpellCast(caster,target,spell)
 
     if (sLvl+iLvl <= 416) then
         power = 12;		
-	elseif((sLvl+iLvl >= 417) and (sLvl+iLvl <= 445)) then
+	elseif ((sLvl+iLvl >= 417) and (sLvl+iLvl <= 445)) then
 		power = 13;
-	elseif((sLvl+iLvl >= 446) and (sLvl+iLvl <= 474)) then
+	elseif ((sLvl+iLvl >= 446) and (sLvl+iLvl <= 474)) then
 		power = 14;
-	elseif(sLvl+iLvl >= 475) then 
+	elseif (sLvl+iLvl >= 475) then 
 		power = 15;
     end
     
@@ -48,8 +48,8 @@ function onSpellCast(caster,target,spell)
         duration = duration * 2;
     end
     
-	if not (target:addBardSong(caster,EFFECT_ETUDE,power,10,duration,caster:getID(), MOD_INT, 2)) then
+	if not (target:addBardSong(caster,EFFECT_ETUDE,power,10,duration,caster:getID(), MOD_CHR, 2)) then
         spell:setMsg(75);
     end
-	   return EFFECT_ETUDE;
+	return EFFECT_ETUDE;
 end;

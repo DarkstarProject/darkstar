@@ -1,5 +1,4 @@
 -----------------------------------
--- Author: Linkandentity
 -- Gear sets
 -- Allows the use of gear sets with modifiers
 -----------------------------------
@@ -55,9 +54,9 @@ local GearSets =  {
                                                                                                    
              {id = 29, items = {11808,11824,11850,11857,11858}, matches = 2, matchType = matchtype.any, mods = {{MOD_DOUBLE_ATTACK, 5, 0, 0}} },   --  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
              
-             {id = 30, items = {11809, 11825,11851,11859,11859,11859}, matches = 2, matchType = matchtype.any, mods = {{MOD_HASTE_GEAR, 80, 0, 0}} }, --  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
+             {id = 30, items = {11809,11825,11851,11855,11859}, matches = 2, matchType = matchtype.any, mods = {{MOD_HASTE_GEAR, 80, 0, 0}} }, --  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
              
-             {id = 31, items = {11810,11826,11852,11860,11860,11860}, matches = 5, matchType = matchtype.any, mods = {{MOD_MATT, 5, 0, 0}} },    --  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
+             {id = 31, items = {11810,11826,11852,11856,11860}, matches = 2, matchType = matchtype.any, mods = {{MOD_MACC, 5, 0, 0}} },    --  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
              {id = 32, items = {10876,10450,10500,11969,10600}, matches = 2, matchType = matchtype.any, mods = {{MOD_REFRESH, 1, 0.4, 0}} },     --  Ogier's Armor Set. Set Bonus: Adds "Refresh" Effect. Provides 1 mp/tick for 2-3 pieces worn, 2 mp/tick for 4-5 pieces worn.
              {id = 33, items = {10877,10451,10501,11970,10601}, matches = 2, matchType = matchtype.any, mods = {{MOD_CRITHITRATE, 1, 1, 0}} },   --  Athos's Armor Set. Set Bonus: Increases rate of critical hits. Gives +3% for the first 2 pieces and +1% for every additional piece.
              
@@ -81,6 +80,7 @@ local GearSets =  {
              {id = 49, items = {18761,18597,17757,19218,18128,18500,16004,18951}, matches = 2, matchType = matchtype.earring_weapon, mods = {{MOD_STR, 6, 0, 0}, {MOD_ATT, 4, 0, 0}, {MOD_RATT, 4, 0, 0}, {MOD_MATT, 2, 0, 0}} }, --  Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
              
              {id = 53, items = {16006,18450,18499,18861,18862,18952,19111,19217,19272}, matches = 2, matchType = matchtype.earring_weapon, mods = {{MOD_EVA, 10, 0, 0}, {MOD_HPHEAL, 10, 0, 0}, {MOD_ENMITY, -5, 0, 0}} }, --  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)
+             {id = 56, items = {11798,11362}, matches = 2, matchType = matchtype.any, mods = {{MOD_RERAISE_III, 1, 0, 0}} },        -- Twilight Mail Set. Set Bonus: Auto-Reraise
         }
              -- increment id by (number of mods in previous gearset - 1)
 
@@ -236,15 +236,6 @@ Stronghold NM(WOTG)
 15818 -- Molione's Ring
 -- Set Bonus: +5 Accuracy
 -- Set Bonus: Enhances "Souleater" Effect
-
-=======
-Abyssea (Shinryu)
-=======
---Twilight Mail Set
--------------
-11798 -- Twilight Helm
-11362 -- Twilight Mail
--- Set Bonus: Auto-Reraise
 
 =======
 Empyrean +2

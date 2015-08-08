@@ -32,7 +32,7 @@ function onTrigger(player,npc)
  local  MimicID=0;
  
   for coffer = 1,table.getn (ARMOURY_CRATES_LIST_APPOLLYON),2 do
-      if(ARMOURY_CRATES_LIST_APPOLLYON[coffer]== CofferID-16932864)then	  
+      if (ARMOURY_CRATES_LIST_APPOLLYON[coffer]== CofferID-16932864) then	  
 	     CofferType=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][1];
 		 InstanceRegion=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][2];
 		 addtime=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][3];
@@ -50,42 +50,42 @@ function onTrigger(player,npc)
 -- printf("lootID: %u",lootID);
  
  
-    if(CofferType == cTIME)then 
+    if (CofferType == cTIME) then 
 	        player:addTimeToSpecialBattlefield(InstanceRegion,addtime);
-	elseif(CofferType == cITEM)then
+	elseif (CofferType == cITEM) then
             player:BCNMSetLoot(lootID,InstanceRegion,CofferID);
             player:getBCNMloot();
-    elseif(CofferType == cRESTORE)then 
+    elseif (CofferType == cRESTORE) then 
 			player:RestoreAndHealOnBattlefield(InstanceRegion);
-	elseif(CofferType == cMIMIC)then 
-	     if(CofferID==16932864+210)then 
+	elseif (CofferType == cMIMIC) then 
+	     if (CofferID==16932864+210) then 
 		    	GetNPCByID(16932864+195):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
                 GetNPCByID(16932864+195):setStatus(STATUS_NORMAL);
-	     elseif(CofferID==16932864+211)then
+	     elseif (CofferID==16932864+211) then
 		 		 		GetMobByID(16932896):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
 						GetMobByID(16932896):setSpawn(npc:getXPos(),npc:getYPos(),npc:getZPos());
 						GetMobByID(16932896):updateClaim(player);
-	     elseif(CofferID==16932864+212)then
+	     elseif (CofferID==16932864+212) then
 		    	GetNPCByID(16932864+196):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
 	            GetNPCByID(16932864+196):setStatus(STATUS_NORMAL);
-	     elseif(CofferID==16932864+213)then
+	     elseif (CofferID==16932864+213) then
 		 				GetMobByID(16932897):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
 						GetMobByID(16932897):setSpawn(npc:getXPos(),npc:getYPos(),npc:getZPos());
 						GetMobByID(16932897):updateClaim(player);
-	     elseif(CofferID==16932864+214)then
+	     elseif (CofferID==16932864+214) then
 		    	GetNPCByID(16932864+197):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
 	            GetNPCByID(16932864+197):setStatus(STATUS_NORMAL);
-	     elseif(CofferID==16932864+215)then
+	     elseif (CofferID==16932864+215) then
 			 			GetMobByID(16932898):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
 						GetMobByID(16932898):setSpawn(npc:getXPos(),npc:getYPos(),npc:getZPos());	
 						GetMobByID(16932898):updateClaim(player);
-	     elseif(CofferID==16932864+216)then	
+	     elseif (CofferID==16932864+216) then	
 		 		 		GetMobByID(16932899):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
 						GetMobByID(16932899):setSpawn(npc:getXPos(),npc:getYPos(),npc:getZPos());
 						GetMobByID(16932899):updateClaim(player);
 	     end		
 	end  
-	if(DespawnOtherCoffer==true)then
+	if (DespawnOtherCoffer==true) then
 	    HideArmouryCrates(InstanceRegion,APPOLLYON_SE_NE);
 	end
 	

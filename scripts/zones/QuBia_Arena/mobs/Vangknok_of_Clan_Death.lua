@@ -37,7 +37,7 @@ local victory =  true
 for i,v in ipairs(mobs[inst]) do
 local action = GetMobAction(v);
 printf("action %u",action);
-if not(action == 0 or (action >=21 and action <=23))then
+if not(action == 0 or (action >=21 and action <=23)) then
 victory = false
 end
 end
@@ -60,8 +60,8 @@ end;
 function onEventFinish(player,csid,option)
 printf("finishCSID: %u",csid);
 printf("RESULT: %u",option);
-if(csid == 0x7d04)then
- if(player:getBattlefield():getBattlefieldNumber() == 1)then
+if (csid == 0x7d04) then
+ if (player:getBattlefield():getBattlefieldNumber() == 1) then
 	SpawnMob(17621014);
 	SpawnMob(17621015);
 	SpawnMob(17621016);
@@ -69,14 +69,14 @@ if(csid == 0x7d04)then
 	trion:setSpawn(-403,-201,413,58);
 	trion:spawn();
 	player:setPos(-400,-201,419,61);
-elseif(player:getBattlefield():getBattlefieldNumber() == 2)then	SpawnMob(17621028);
+elseif (player:getBattlefield():getBattlefieldNumber() == 2) then	SpawnMob(17621028);
 	SpawnMob(17621029);
 	SpawnMob(17621030);
 	local trion = player:getBattlefield():insertAlly(14183)
 	trion:setSpawn(-3,-1,4,61);
 	trion:spawn();
 	player:setPos(0,-1,10,61);
-elseif(player:getBattlefield():getBattlefieldNumber() == 3)then	SpawnMob(17621042);
+elseif (player:getBattlefield():getBattlefieldNumber() == 3) then	SpawnMob(17621042);
 	SpawnMob(17621043);
 	SpawnMob(17621044);
 	local trion = player:getBattlefield():insertAlly(14183)

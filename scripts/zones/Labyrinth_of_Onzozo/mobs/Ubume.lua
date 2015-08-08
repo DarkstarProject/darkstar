@@ -19,7 +19,7 @@ end;
 
 function onMobDeath(mob,killer)
 
-	if(killer:getQuestStatus(OUTLANDS,YOMI_OKURI) == QUEST_ACCEPTED and killer:getVar("yomiOkuriCS") <= 3) then
+	if (killer:getQuestStatus(OUTLANDS,YOMI_OKURI) == QUEST_ACCEPTED and killer:getVar("yomiOkuriCS") <= 3) then
 		killer:setVar("yomiOkuriKilledNM",1);
 	end
 

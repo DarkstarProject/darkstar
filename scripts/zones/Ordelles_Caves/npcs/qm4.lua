@@ -16,8 +16,8 @@ require("scripts/zones/Ordelles_Caves/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(player:getVar("darkPuppetCS") >= 2 and player:hasItem(16681) == false) then
-		if(trade:hasItemQty(654,1) and trade:getItemCount() == 1) then -- Trade Darksteel Ingot
+	if (player:getVar("darkPuppetCS") >= 2 and player:hasItem(16681) == false) then
+		if (trade:hasItemQty(654,1) and trade:getItemCount() == 1) then -- Trade Darksteel Ingot
 			player:tradeComplete();
 			player:messageSpecial(GERWITZS_AXE_DIALOG);
 			SpawnMob(17568135,180):updateClaim(player);

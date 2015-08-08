@@ -61,7 +61,7 @@ function onTrigger(player,npc)
 		local asaStatus = player:getVar("ASA_Status");
 				
 		-- TODO: Other Enfeebling Kits
-		if(asaStatus == 0) then
+		if (asaStatus == 0) then
 			item = 2779;
 		else
 			printf("Error: Unknown ASA Status Encountered <%u>", asaStatus);

@@ -25,7 +25,7 @@ function onUseAbility(player,target,ability)
    -- is disputed.  Source used: http://wiki.bluegartr.com/bg/Sentinel
     local sFeet = player:getEquipID(SLOT_FEET);
     local power = 90;
-    if(sFeet == 15138 or sFeet == 15671) then
+    if (sFeet == 15138 or sFeet == 15671) then
         power = power + 13; -- -103%.  This is oddly correct.
     end
 

@@ -22,12 +22,12 @@ require("scripts/zones/Chateau_dOraguille/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
-		if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+	if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
+		if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
 			player:messageSpecial(FLYER_REFUSED);
 		end
-	elseif(trade:hasItemQty(533,1) and trade:getItemCount() == 1) then
-		if(player:getQuestStatus(SANDORIA,HER_MAJESTY_S_GARDEN) == QUEST_ACCEPTED) then
+	elseif (trade:hasItemQty(533,1) and trade:getItemCount() == 1) then
+		if (player:getQuestStatus(SANDORIA,HER_MAJESTY_S_GARDEN) == QUEST_ACCEPTED) then
 			player:startEvent(0x0053);
 		end
 	end
@@ -46,17 +46,17 @@ function onTrigger(player,npc)
 	local circleOfTime = player:getQuestStatus(JEUNO,THE_CIRCLE_OF_TIME);
 	local WildcatSandy = player:getVar("WildcatSandy");
 	
-	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,19) == false) then
+	if (player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,19) == false) then
 		player:startEvent(0x0231);
-	elseif(player:getCurrentMission(SANDORIA) == THE_CRYSTAL_SPRING and player:getVar("MissionStatus") == 3) then
+	elseif (player:getCurrentMission(SANDORIA) == THE_CRYSTAL_SPRING and player:getVar("MissionStatus") == 3) then
 		player:startEvent(0x022c);
-	elseif(herMajestysGarden == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 4) then
+	elseif (herMajestysGarden == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 4) then
 		player:startEvent(0x0054);
-	elseif(currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 4 and player:hasKeyItem(DREAMROSE)) then
+	elseif (currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 4 and player:hasKeyItem(DREAMROSE)) then
 	    player:startEvent(0x006f);
-	elseif(herMajestysGarden == QUEST_ACCEPTED) then
+	elseif (herMajestysGarden == QUEST_ACCEPTED) then
 		player:startEvent(0x0052);
-	elseif(circleOfTime == QUEST_ACCEPTED) then
+	elseif (circleOfTime == QUEST_ACCEPTED) then
 		if (player:getVar("circleTime") == 5) then
 			player:startEvent(0x0063);
 		elseif (player:getVar("circleTime") == 6) then
@@ -89,13 +89,13 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x022c or csid == 0x006f) then
+	if (csid == 0x022c or csid == 0x006f) then
 		finishMissionTimeline(player,3,csid,option);
-	elseif(csid == 0x0231) then
+	elseif (csid == 0x0231) then
 		player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",19,true);
-	elseif(csid == 0x0054 and option == 1) then
+	elseif (csid == 0x0054 and option == 1) then
 		player:addQuest(SANDORIA,HER_MAJESTY_S_GARDEN);
-	elseif(csid == 0x0053) then
+	elseif (csid == 0x0053) then
 		player:tradeComplete();
 		player:addKeyItem(MAP_OF_THE_NORTHLANDS_AREA);
 		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_NORTHLANDS_AREA);

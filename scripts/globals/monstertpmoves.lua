@@ -108,11 +108,11 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 
 	--get dstr (bias to monsters, so no fSTR)
 	local dstr = mob:getStat(MOD_STR) - target:getStat(MOD_VIT);
-	if(dstr < -10) then
+	if (dstr < -10) then
 		dstr = -10;
 	end
 
-	if(dstr > 10) then
+	if (dstr > 10) then
 		dstr = 10;
 	end
 
@@ -122,7 +122,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	local eva = target:getEVA();
 	--apply WSC
 	local base = mob:getWeaponDmg() + dstr; --todo: change to include WSC
-	if(base < 1) then
+	if (base < 1) then
 		base = 1;
 	end
 
@@ -151,7 +151,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 
 	--work out the base damage for a single hit
 	local hitdamage = (base + lvldiff);
-	if(hitdamage < 1) then
+	if (hitdamage < 1) then
 		hitdamage = 1;
 	end
 
@@ -161,28 +161,28 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	local maxRatio = 1;
 	local minRatio = 0;
     
-	if(ratio < 0.5) then
+	if (ratio < 0.5) then
 		maxRatio = ratio + 1;
-	elseif((0.5 <= ratio) and (ratio <= 0.7)) then
+	elseif ((0.5 <= ratio) and (ratio <= 0.7)) then
 		maxRatio = 1;
-	elseif((0.7 < ratio) and (ratio <= 1.2)) then
+	elseif ((0.7 < ratio) and (ratio <= 1.2)) then
 		maxRatio = ratio + 0.3;
-	elseif((1.2 < ratio) and (ratio <= 1.5)) then
+	elseif ((1.2 < ratio) and (ratio <= 1.5)) then
         maxRatio = (ratio * 0.25) + ratio;
-	elseif((1.5 < ratio) and (ratio <= 2.625)) then
+	elseif ((1.5 < ratio) and (ratio <= 2.625)) then
         maxRatio = ratio + 0.375;
-	elseif((2.625 < ratio) and (ratio <= 3.25)) then
+	elseif ((2.625 < ratio) and (ratio <= 3.25)) then
         maxRatio = 3;
     else 
         maxRatio = ratio;
     end
     
 
-	if(ratio < 0.38) then
+	if (ratio < 0.38) then
 		minRatio =  0;
-	elseif((0.38 <= ratio) and (ratio <= 1.25)) then
+	elseif ((0.38 <= ratio) and (ratio <= 1.25)) then
 		minRatio = ratio * (1176 / 1024) - (448 / 1024);
-	elseif((1.25 < ratio) and (ratio <= 1.51)) then
+	elseif ((1.25 < ratio) and (ratio <= 1.51)) then
 		minRatio = 1;
     elseif ((1.51 < ratio) and (ratio <= 2.44)) then
         minRatio = ratio * (1176 / 1024) - (775 / 1024);
@@ -191,7 +191,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     end
 
 	--apply ftp (assumes 1~3 scalar linear mod)
-	if(tpeffect==TP_DMG_BONUS) then
+	if (tpeffect==TP_DMG_BONUS) then
 		hitdamage = hitdamage * fTP(skill:getTP(), mtp000, mtp150, mtp300);
 	end
 
@@ -209,7 +209,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	-- first hit has a higher chance to land
 	local firstHitChance = hitrate * 1.5;
 
-	if(tpeffect==TP_RANGED) then
+	if (tpeffect==TP_RANGED) then
 		firstHitChance = hitrate * 1.2;
 	end
 
@@ -235,12 +235,12 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	-- printf("final: %f, hits: %f, acc: %f", finaldmg, hitslanded, hitrate);
 
 	-- if an attack landed it must do at least 1 damage
-	if(hitslanded >= 1 and finaldmg < 1) then
+	if (hitslanded >= 1 and finaldmg < 1) then
 		finaldmg = 1;
 	end
 
 	-- all hits missed
-	if(hitslanded == 0 or finaldmg == 0) then
+	if (hitslanded == 0 or finaldmg == 0) then
 		finaldmg = 0;
 		hitslanded = 0;
 		skill:setMsg(MSG_MISS);
@@ -290,7 +290,7 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
 		mab = 0.7;
 	end
 
-	if(tpeffect==TP_DMG_BONUS) then
+	if (tpeffect==TP_DMG_BONUS) then
 		damage = damage * ((skill:getTP()*tpvalue)/100);
 	end
 
@@ -303,11 +303,11 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
 
 	-- get elemental damage reduction
 	local defense = 1;
-	if(element > 0) then
+	if (element > 0) then
 		defense = 1 + (target:getMod(defenseMod[element]) / -1000);
 
 		-- max defense is 50%
-		if(defense < 0.5) then
+		if (defense < 0.5) then
 			defense = 0.5;
 		end
 	end
@@ -343,7 +343,7 @@ function applyPlayerResistance(mob,effect,target,diff,bonus,element)
 	local magiceva = target:getMod(MOD_MEVA);
 
 	-- add elemental resistence
-	if(element > 0) then
+	if (element > 0) then
 		magiceva = magiceva + target:getMod(resistMod[element]);
 	end
 
@@ -351,7 +351,7 @@ function applyPlayerResistance(mob,effect,target,diff,bonus,element)
 
 	--printf("acc: %f, eva: %f, bonus: %f", magicacc, magiceva, magicaccbonus);
 	--double any acc over 50 if it's over 50
-	if(p > 5) then
+	if (p > 5) then
 		p = 5 + (p - 5) * 2;
 	end
 
@@ -368,9 +368,9 @@ function applyPlayerResistance(mob,effect,target,diff,bonus,element)
 
 	-- printf("final power: %f", p);
 	--cap accuracy
-    if(p > 95) then
+    if (p > 95) then
         p = 95;
-    elseif(p < 5) then
+    elseif (p < 5) then
         p = 5;
     end
 
@@ -380,41 +380,41 @@ function applyPlayerResistance(mob,effect,target,diff,bonus,element)
     half = (1 - p);
 
 	-- add effect resistence
-	if(effect ~= nil and effect > 0) then
+	if (effect ~= nil and effect > 0) then
 		local effectres = 0;
-		if(effect == EFFECT_SLEEP_I or effect == EFFECT_SLEEP_II or effect == EFFECT_LULLABY) then
+		if (effect == EFFECT_SLEEP_I or effect == EFFECT_SLEEP_II or effect == EFFECT_LULLABY) then
 			effectres = MOD_SLEEPRES;
-		elseif(effect == EFFECT_POISON) then
+		elseif (effect == EFFECT_POISON) then
 			effectres = MOD_POISONRES;
-		elseif(effect == EFFECT_PARALYZE) then
+		elseif (effect == EFFECT_PARALYZE) then
 			effectres = MOD_PARALYZERES;
-		elseif(effect == EFFECT_BLIND) then
+		elseif (effect == EFFECT_BLIND) then
 			effectres = MOD_BLINDRES
-		elseif(effect == EFFECT_SILENCE) then
+		elseif (effect == EFFECT_SILENCE) then
 			effectres = MOD_SILENCERES;
-		elseif(effect == EFFECT_PLAGUE or effect == EFFECT_DISEASE) then
+		elseif (effect == EFFECT_PLAGUE or effect == EFFECT_DISEASE) then
 			effectres = MOD_VIRUSRES;
-		elseif(effect == EFFECT_PETRIFICATION) then
+		elseif (effect == EFFECT_PETRIFICATION) then
 			effectres = MOD_PETRIFYRES;
-		elseif(effect == EFFECT_BIND) then
+		elseif (effect == EFFECT_BIND) then
 			effectres = MOD_BINDRES;
-		elseif(effect == EFFECT_CURSE_I or effect == EFFECT_CURSE_II or effect == EFFECT_BANE) then
+		elseif (effect == EFFECT_CURSE_I or effect == EFFECT_CURSE_II or effect == EFFECT_BANE) then
 			effectres = MOD_CURSERES;
-		elseif(effect == EFFECT_WEIGHT) then
+		elseif (effect == EFFECT_WEIGHT) then
 			effectres = MOD_GRAVITYRES;
-		elseif(effect == EFFECT_SLOW) then
+		elseif (effect == EFFECT_SLOW) then
 			effectres = MOD_SLOWRES;
-		elseif(effect == EFFECT_STUN) then
+		elseif (effect == EFFECT_STUN) then
 			effectres = MOD_STUNRES;
-		elseif(effect == EFFECT_CHARM) then
+		elseif (effect == EFFECT_CHARM) then
 			effectres = MOD_CHARMRES;
-		elseif(effect == EFFECT_AMNESIA) then
+		elseif (effect == EFFECT_AMNESIA) then
 			effectres = MOD_AMNESIARES;
 		end
 
-		if(effectres > 0) then
+		if (effectres > 0) then
 			local resrate = 1+(target:getMod(effectres)/20);
-			if(resrate > 1.5) then
+			if (resrate > 1.5) then
 				resrate = 1.5;
 			end
 
@@ -438,16 +438,16 @@ function applyPlayerResistance(mob,effect,target,diff,bonus,element)
     resvar = math.random();
 
     -- Determine final resist based on which thresholds have been crossed.
-    if(resvar <= sixteenth) then
+    if (resvar <= sixteenth) then
         resist = 0.0625;
         --printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
-    elseif(resvar <= eighth) then
+    elseif (resvar <= eighth) then
         resist = 0.125;
         --printf("Spell resisted to 1/8!  Threshold = %u",eighth);
-    elseif(resvar <= quart) then
+    elseif (resvar <= quart) then
         resist = 0.25;
         --printf("Spell resisted to 1/4.  Threshold = %u",quart);
-    elseif(resvar <= half) then
+    elseif (resvar <= half) then
         resist = 0.5;
         --printf("Spell resisted to 1/2.  Threshold = %u",half);
     else
@@ -503,7 +503,7 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
     burst = calculateMobMagicBurst(caster, ele, target);
 
 	-- not sure what to do for this yet
-    -- if(burst > 1.0) then
+    -- if (burst > 1.0) then
 		-- spell:setMsg(spell:getMagicBurstMessage()); -- "Magic Burst!"
 	-- end
 
@@ -533,16 +533,16 @@ function calculateMobMagicBurst(caster, ele, target)
 
     local skillchainTier, skillchainCount = MobFormMagicBurst(ele, target);
 
-    if(skillchainTier > 0) then
-		if(skillchainCount == 1) then
+    if (skillchainTier > 0) then
+		if (skillchainCount == 1) then
 			burst = 1.3;
-		elseif(skillchainCount == 2) then
+		elseif (skillchainCount == 2) then
 			burst = 1.35;
-		elseif(skillchainCount == 3) then
+		elseif (skillchainCount == 3) then
 			 burst = 1.40;
-		elseif(skillchainCount == 4) then
+		elseif (skillchainCount == 4) then
 			burst = 1.45;
-		elseif(skillchainCount == 5) then
+		elseif (skillchainCount == 5) then
 			burst = 1.50;
 		else
 			-- Something strange is going on if this occurs.
@@ -562,24 +562,24 @@ end;
 function MobBreathMove(mob, target, percent, base, element, cap)
 	local damage = (mob:getHP() * percent) + (mob:getMainLvl() / base);
 
-	if(cap == nil) then
+	if (cap == nil) then
 		-- super cap for high health mobs
-		if(damage > 700) then
+		if (damage > 700) then
 			damage = 700 + math.random(200);
 		end
 
 		-- cap max damage
-		if(damage > mob:getHP()/5) then
+		if (damage > mob:getHP()/5) then
 			damage = math.floor(mob:getHP()/5);
 		end
 	else
-		if(damage > cap) then
+		if (damage > cap) then
 			damage = cap;
 		end
 	end
 
 	-- elemental resistence
-	if(element ~= nil and element > 0) then
+	if (element ~= nil and element > 0) then
 		-- no skill available, pass nil
 		-- breath moves get a bonus accuracy because they are hard to resist
 		local resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),mob:getMainLvl(),element);
@@ -588,7 +588,7 @@ function MobBreathMove(mob, target, percent, base, element, cap)
 		local defense = 1 - (target:getMod(resistMod[element]) + target:getMod(defenseMod[element])) / 256;
 
 		-- max defense is 50%
-		if(defense < 0.5) then
+		if (defense < 0.5) then
 			defense = 0.5;
 		end
 
@@ -601,12 +601,12 @@ end;
 function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
 
 	-- physical attack missed, skip rest
-	if(skill:hasMissMsg()) then
+	if (skill:hasMissMsg()) then
 		return 0;
 	end
 
 	--handle pd
-	if((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
+	if ((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
             and skilltype==MOBSKILL_PHYSICAL) then
 		skill:setMsg(MSG_MISS);
 		return 0;
@@ -617,49 +617,49 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	skill:setMsg(MSG_DAMAGE);
 
 	--Handle shadows depending on shadow behaviour / skilltype
-	if(shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
+	if (shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
 
-		if(skill:isAoE() or skill:isConal()) then
+		if (skill:isAoE() or skill:isConal()) then
 			shadowbehav = MobTakeAoEShadow(mob, target, shadowbehav);
 		end
 
 		dmg = utils.takeShadows(target, dmg, shadowbehav);
 
 		-- dealt zero damage, so shadows took hit
-		if(dmg == 0) then
+		if (dmg == 0) then
 			skill:setMsg(MSG_SHADOW);
 			return shadowbehav;
 		end
 
-	elseif(shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
+	elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
 		target:delStatusEffect(EFFECT_COPY_IMAGE);
 		target:delStatusEffect(EFFECT_BLINK);
 		target:delStatusEffect(EFFECT_THIRD_EYE);
 	end
 
-	if(skilltype == MOBSKILL_PHYSICAL and skill:isSingle() == false) then
+	if (skilltype == MOBSKILL_PHYSICAL and skill:isSingle() == false) then
 		target:delStatusEffect(EFFECT_THIRD_EYE);
 	end
 
 	--handle Third Eye using shadowbehav as a guide
-	if(skilltype == MOBSKILL_PHYSICAL and utils.thirdeye(target)) then
+	if (skilltype == MOBSKILL_PHYSICAL and utils.thirdeye(target)) then
 	    skill:setMsg(MSG_ANTICIPATE);
 	    return 0;
 	end
 
-	if(skilltype == MOBSKILL_PHYSICAL) then
+	if (skilltype == MOBSKILL_PHYSICAL) then
 
 		dmg = target:physicalDmgTaken(dmg);
 
-	elseif(skilltype == MOBSKILL_MAGICAL) then
+	elseif (skilltype == MOBSKILL_MAGICAL) then
 
 		dmg = target:magicDmgTaken(dmg);
 
-	elseif(skilltype == MOBSKILL_BREATH) then
+	elseif (skilltype == MOBSKILL_BREATH) then
 
 		dmg = target:breathDmgTaken(dmg);
 
-	elseif(skilltype == MOBSKILL_RANGED) then
+	elseif (skilltype == MOBSKILL_RANGED) then
 
 		dmg = target:rangedDmgTaken(dmg);
 
@@ -668,13 +668,13 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	--handling phalanx
 	dmg = dmg - target:getMod(MOD_PHALANX);
 
-	if(dmg < 0) then
+	if (dmg < 0) then
 		return 0;
 	end
 
 	dmg = utils.stoneskin(target, dmg);
 
-	if(dmg > 0) then
+	if (dmg > 0) then
 		target:wakeUp();
 		target:updateEnmityFromDamage(mob,dmg);
 	end
@@ -704,13 +704,13 @@ end;
 -- Adds a status effect to a target
 function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
 
-	if(target:canGainStatusEffect(typeEffect, power)) then
+	if (target:canGainStatusEffect(typeEffect, power)) then
 		local statmod = MOD_INT;
 		local element = mob:getStatusEffectElement(typeEffect);
 
 		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,element);
 
-		if(resist >= 0.5) then
+		if (resist >= 0.5) then
 			target:addStatusEffect(typeEffect,power,tick,duration*resist);
 			return MSG_ENFEEB_IS;
 		end
@@ -723,14 +723,14 @@ end;
 -- similar to status effect move except, this will not land if the attack missed
 function MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, tick, duration)
 
-    if(MobPhysicalHit(skill)) then
+    if (MobPhysicalHit(skill)) then
         MobStatusEffectMove(mob, target, typeEffect, power, tick, duration);
     end
 end;
 
 -- similar to statuseffect move except it will only take effect if facing
 function MobGazeMove(mob, target, typeEffect, power, tick, duration)
-	if(target:isFacing(mob)) then
+	if (target:isFacing(mob)) then
 		return MobStatusEffectMove(mob, target, typeEffect, power, tick, duration);
 	end
 	return MSG_NO_EFFECT;
@@ -738,7 +738,7 @@ end;
 
 function MobBuffMove(mob, typeEffect, power, tick, duration)
 
-    if(mob:addStatusEffect(typeEffect,power,tick,duration)) then
+    if (mob:addStatusEffect(typeEffect,power,tick,duration)) then
 	    return MSG_BUFF;
     end
 	return MSG_NO_EFFECT;
@@ -749,7 +749,7 @@ function MobHealMove(target, heal)
 	local mobHP = target:getHP();
 	local mobMaxHP = target:getMaxHP();
 
-	if(mobHP+heal > mobMaxHP) then
+	if (mobHP+heal > mobMaxHP) then
 		heal = mobMaxHP - mobHP;
 	end
 
@@ -769,9 +769,9 @@ function MobTakeAoEShadow(mob, target, max)
 
 	-- this is completely crap and should be using actual nin skill
 	-- TODO fix this
-	if(target:getMainJob() == JOB_NIN and math.random() < 0.6) then
+	if (target:getMainJob() == JOB_NIN and math.random() < 0.6) then
 		max = max - 1;
-		if(max < 1) then
+		if (max < 1) then
 			max = 1;
 		end
 	end
@@ -781,21 +781,21 @@ end;
 
 function MobTPMod(tp)
 	-- increase damage based on tp
-	if(tp >= 300) then
+	if (tp >= 300) then
 		return 2;
-	elseif(tp >= 200) then
+	elseif (tp >= 200) then
 		return 1.5;
 	end
 	return 1;
 end;
 
 function fTP(tp,ftp1,ftp2,ftp3)
-	if(tp<100) then
+	if (tp<100) then
 		tp=100;
 	end
-	if(tp>=100 and tp<150) then
+	if (tp>=100 and tp<150) then
 		return ftp1 + ( ((ftp2-ftp1)/50) * (tp-100));
-	elseif(tp>=150 and tp<=300) then
+	elseif (tp>=150 and tp<=300) then
 		--generate a straight line between ftp2 and ftp3 and find point @ tp
 		return ftp2 + ( ((ftp3-ftp2)/150) * (tp-150));
 	end

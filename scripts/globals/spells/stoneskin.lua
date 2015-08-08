@@ -51,7 +51,7 @@ function onSpellCast(caster,target,spell)
 	end
 
 	local final = pAbs + pEquipMods;
-	if(target:addStatusEffect(EFFECT_STONESKIN,final,0,duration)) then
+	if (target:addStatusEffect(EFFECT_STONESKIN,final,0,duration)) then
 		spell:setMsg(230);
 	else
 		spell:setMsg(MMSG_BUFF_FAIL);

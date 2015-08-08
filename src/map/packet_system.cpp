@@ -253,16 +253,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         zoneutils::GetZone(destination)->IncreaseZoneCounter(PChar);
 
-        bool firstLogin = true;
-        for (uint32 i = 0; i < sizeof(PChar->m_ZonesList); ++i)
-        {
-            if (PChar->m_ZonesList[i] != 0)
-            {
-                firstLogin = false;
-                break;
-            }
-        }
-
         PChar->m_ZonesList[PChar->getZone() >> 3] |= (1 << (PChar->getZone() % 8));
 
         const int8* fmtQuery = "UPDATE accounts_sessions SET targid = %u, session_key = x'%s', server_addr = %u, client_port = %u WHERE charid = %u";
@@ -289,9 +279,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (PChar->getZone() == Sql_GetUIntData(SqlHandle, 0))
                 PChar->loc.zoning = true;
         }
-
-        if (firstLogin)
-            PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);
 
         PChar->status = STATUS_NORMAL;
     }
@@ -3841,9 +3828,7 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 PChar->pushPacket(new CMeritPointsCategoriesPacket(PChar, merit));
 
                 charutils::SaveCharExp(PChar, PChar->GetMJob());
-                PChar->PMeritPoints->SaveMeritPoints(PChar->id, false);
-
-
+                PChar->PMeritPoints->SaveMeritPoints(PChar->id);
 
                 charutils::BuildingCharSkillsTable(PChar);
                 charutils::CalculateStats(PChar);

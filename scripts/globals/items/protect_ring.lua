@@ -22,7 +22,7 @@ function onItemUse(target)
 
     local power = 40;
 
-    if(target:addStatusEffect(EFFECT_PROTECT, power, 0, 1800)) then
+    if (target:addStatusEffect(EFFECT_PROTECT, power, 0, 1800)) then
         target:messageBasic(205);
     else
         target:messageBasic(423); -- no effect

@@ -761,6 +761,12 @@ namespace petutils
             charutils::BuildingCharPetAbilityTable((CCharEntity*)PMaster, PPet, PetID);
             ((CCharEntity*)PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)PMaster));
             ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
+
+            // check latents affected by pets
+            ((CCharEntity*)PMaster)->PLatentEffectContainer->CheckLatentsPetType(PetID);
+                PMaster->ForParty([](CBattleEntity* PMember) {
+                ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
+            });
         }
         // apply stats from previous zone if this pet is being transfered
         if (spawningFromZone == true)
@@ -769,10 +775,7 @@ namespace petutils
             PPet->health.hp = ((CCharEntity*)PMaster)->petZoningInfo.petHP;
         }
 
-        // check latents affected by pets
-        PMaster->ForParty([](CBattleEntity* PMember){
-            ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
-        });
+
 
     }
 
@@ -902,6 +905,7 @@ namespace petutils
             if (PPetEnt->getPetType() == PETTYPE_AVATAR)
                 PMaster->setModifier(MOD_AVATAR_PERPETUATION, 0);
 
+            ((CCharEntity*)PMaster)->PLatentEffectContainer->CheckLatentsPetType(-1);
             PMaster->ForParty([](CBattleEntity* PMember){
                 ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
             });

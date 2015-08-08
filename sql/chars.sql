@@ -29,7 +29,6 @@ CREATE TABLE `chars` (
   `home_x` float(7,3) NOT NULL DEFAULT '0.000',
   `home_y` float(7,3) NOT NULL DEFAULT '0.000',
   `home_z` float(7,3) NOT NULL DEFAULT '0.000',
-  `merits` blob,
   `missions` blob,
   `assault` blob,
   `campaign` blob,

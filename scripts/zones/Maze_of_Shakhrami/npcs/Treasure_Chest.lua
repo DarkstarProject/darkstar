@@ -29,34 +29,34 @@ function onTrade(player,npc,trade)
 	local questItemNeeded = 0;
 
 	-- Player traded a key.
-	if((trade:hasItemQty(1032,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
+	if ((trade:hasItemQty(1032,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
 		local zone = player:getZoneID();
 
 		-- IMPORTANT ITEM: The Goblin Tailor Quest -----------
-		if(player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 2 and VanadielRSERace() == player:getRace() and player:hasKeyItem(MAGICAL_PATTERN) == false) then
+		if (player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 2 and VanadielRSERace() == player:getRace() and player:hasKeyItem(MAGICAL_PATTERN) == false) then
 			questItemNeeded = 1;
 		end
 		--------------------------------------
 
 		local pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
 		local success = 0;
-		if(pack[2] ~= nil) then
+		if (pack[2] ~= nil) then
 			player:messageSpecial(pack[2]);
 			success = pack[1];
 		else
 			success = pack[1];
 		end
 
-		if(success ~= -2) then
+		if (success ~= -2) then
 			player:tradeComplete();
 
-			if(math.random() <= success) then
+			if (math.random() <= success) then
 				local respawn = false;
 
 				-- Succeded to open the coffer
 				player:messageSpecial(CHEST_UNLOCKED);
 
-				if(questItemNeeded == 1) then
+				if (questItemNeeded == 1) then
 					respawn = true;
 					player:addKeyItem(MAGICAL_PATTERN);
 					player:messageSpecial(KEYITEM_OBTAINED,MAGICAL_PATTERN);
@@ -68,7 +68,7 @@ function onTrade(player,npc,trade)
 					-- print("[1]", loot[1]); -- debug
 					-- print("[2]", loot[2]); -- debug
 
-					if(loot[1]=="gil") then
+					if (loot[1]=="gil") then
 						player:addGil(loot[2]*GIL_RATE);
 						player:messageSpecial(GIL_OBTAINED,loot[2]*GIL_RATE);
 					else

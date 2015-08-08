@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 2) then
+	if (player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 2) then
 		player:addKeyItem(FIGURE_OF_GARUDA);
 		player:messageSpecial(KEYITEM_OBTAINED,FIGURE_OF_GARUDA);
 		player:setVar("MissionStatus",3);

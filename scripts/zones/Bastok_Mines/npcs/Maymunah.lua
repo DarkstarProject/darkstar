@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(5262,8,23,6)) then
+	if (player:sendGuild(5262,8,23,6)) then
 		player:showText(npc, MAYMUNAH_SHOP_DIALOG);
 	end
 end;

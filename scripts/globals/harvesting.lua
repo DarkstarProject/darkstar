@@ -1,5 +1,4 @@
 -------------------------------------------------
---  Author: Ezekyel
 --  Harvesting functions
 --  Info from:
 --      http://wiki.ffxiclopedia.org/wiki/Harvesting
@@ -58,7 +57,7 @@ function startHarvesting(player,zone,npc,trade,csid)
         if (GetServerVariable("[HARVESTING]Zone "..zone) >= 3) then
             getNewHarvestingPositionNPC(player,npc,zone);
         end
-        if (player:getQuestStatus(AHT_URHGAN,VANISHING_ACT) == QUEST_ACCEPTED and player:hasKeyItem(RAINBOW_BERRY) == false and broke ~= 1 and zone == 51)then
+        if (player:getQuestStatus(AHT_URHGAN,VANISHING_ACT) == QUEST_ACCEPTED and player:hasKeyItem(RAINBOW_BERRY) == false and broke ~= 1 and zone == 51) then
            player:addKeyItem(RAINBOW_BERRY);
            player:messageSpecial(KEYITEM_OBTAINED,RAINBOW_BERRY);
         end
@@ -95,7 +94,7 @@ function getHarvestingItem(player,zone)
     for zon = 1, table.getn(drop), 2 do
         if (drop[zon] == zone) then
             for itemlist = 1, table.getn(drop[zon + 1]), 2 do
-                if(Rate <= drop[zon + 1][itemlist + 1]) then
+                if (Rate <= drop[zon + 1][itemlist + 1]) then
                     item = drop[zon + 1][itemlist];
                     break;
                 end

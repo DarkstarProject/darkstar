@@ -47,7 +47,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x0047 and option == 1) then
+	if (csid == 0x0047 and option == 1) then
 		player:setPos(0,0,-22,192,242);
 	end
 end;

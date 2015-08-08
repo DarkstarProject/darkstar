@@ -43,8 +43,8 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 
-	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		if(player:hasCompletedMission(ZILART,ARK_ANGELS)) then
+	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+		if (player:hasCompletedMission(ZILART,ARK_ANGELS)) then
 			player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,5,1);		-- winning CS (allow player to skip)
 		else
 			player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,5,0);		-- winning CS (allow player to skip)
@@ -58,7 +58,7 @@ function onBcnmLeave(player,instance,leavecode)
         7d02, 0, 80, 1, 512, 4, 4, 180 -- Neo DM (lose)
     ]]
         
-	elseif(leavecode == 4) then
+	elseif (leavecode == 4) then
 		player:startEvent(0x7d02, 0, 0, 0, 0, 0, instance:getEntrance(), 180);	-- player lost
 	end
 end;
@@ -71,7 +71,7 @@ end;
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
-   if(csid == 0x7d01) then
+   if (csid == 0x7d01) then
       if (player:getQuestStatus(OUTLANDS,DIVINE_MIGHT) == QUEST_ACCEPTED) then
          player:setVar("DivineMight",2); -- Used to use 2 to track completion, so that's preserved to maintain compatibility
          for i=SHARD_OF_APATHY, SHARD_OF_RAGE do

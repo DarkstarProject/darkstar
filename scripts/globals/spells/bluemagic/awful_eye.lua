@@ -31,12 +31,12 @@ end;
 
 function onSpellCast(caster,target,spell)
     
-    if(target:hasStatusEffect(EFFECT_STR_DOWN)) then
+    if (target:hasStatusEffect(EFFECT_STR_DOWN)) then
         spell:setMsg(75); 
     elseif (target:isFacing(caster)) then      
         local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
         local resist = applyResistance(caster,spell,target,dINT,BLUE_SKILL,0);
-        if(resist <= 0) then
+        if (resist <= 0) then
             spell:setMsg(85);
         else
             spell:setMsg(329);

@@ -36,7 +36,7 @@ function onEventFinish(player,csid,option)
 printf("onFinish CSID: %u",csid);
 printf("onFinish RESULT: %u",option);
 	
-	if(csid == 0x000E and option == 1)then
+	if (csid == 0x000E and option == 1) then
 		player:setPos(139.974, 19.103, 219.989, 128, 108); 	-- To Konschtat Highlands {R}
 	end
 	

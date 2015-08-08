@@ -14,7 +14,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
+    if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
         return 0;
     end
     return 1;
@@ -28,19 +28,19 @@ function onMobWeaponSkill(target, mob, skill)
     local effect3 = target:stealStatusEffect();
     local dmg = 0;
 
-    if(effect1 ~= nil) then
+    if (effect1 ~= nil) then
         local count = 1;
 
             -- add to myself
             mob:addStatusEffect(effect1:getType(), effect1:getPower(), effect1:getTickCount(), effect1:getDuration());
 
-        if(effect2 ~= nil) then
+        if (effect2 ~= nil) then
             count = count + 1;
                 -- add to myself
                 mob:addStatusEffect(effect2:getType(), effect2:getPower(), effect2:getTickCount(), effect2:getDuration());
         end
 
-        if(effect3 ~= nil) then
+        if (effect3 ~= nil) then
             count = count + 1;
                 -- add to myself
                 mob:addStatusEffect(effect3:getType(), effect3:getPower(), effect3:getTickCount(), effect3:getDuration());

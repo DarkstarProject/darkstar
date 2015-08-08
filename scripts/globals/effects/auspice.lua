@@ -20,7 +20,7 @@ function onEffectGain(target,effect)
 	target:addMod(MOD_SUBTLE_BLOW, subtleBlowBonus);	
 
 	--Afflatus Misery Bonuses	
-	if(target:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
+	if (target:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
 		target:getStatusEffect(EFFECT_AFFLATUS_MISERY):setSubPower(0);
 		target:addMod(MOD_ENSPELL,18);
 		target:addMod(MOD_ENSPELL_DMG,effect:getPower());
@@ -44,7 +44,7 @@ function onEffectLose(target,effect)
 	target:delMod(MOD_SUBTLE_BLOW, subtleBlow);
 	
 	--Clean Up Any Bonuses That From Afflatus Misery Combo
-	if(target:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
+	if (target:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
 		local accuracyBonus = target:getStatusEffect(EFFECT_AFFLATUS_MISERY):getSubPower();
 		--printf("AUSPICE: Removing Accuracy Bonus +%d!", accuracyBonus);
 		target:delMod(MOD_ACC, accuracyBonus);

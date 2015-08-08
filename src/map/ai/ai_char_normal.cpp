@@ -1563,7 +1563,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     if (m_PJobAbility->getMeritModID() > 0 && !(m_PJobAbility->getAddType() & ADDTYPE_MERIT))
     {
-        meritRecastReduction = m_PChar->PMeritPoints->GetMeritValue((Merit_t*)m_PChar->PMeritPoints->GetMerit((MERIT_TYPE)m_PJobAbility->getMeritModID()), m_PChar);
+        meritRecastReduction = m_PChar->PMeritPoints->GetMeritValue((MERIT_TYPE)m_PJobAbility->getMeritModID(), m_PChar);
     }
 
     uint32 RecastTime = (m_PJobAbility->getRecastTime() - meritRecastReduction);
@@ -2257,8 +2257,9 @@ void CAICharNormal::ActionJobAbilityFinish()
             {
 		charutils::UnequipItem(m_PChar, SLOT_AMMO);
                 charutils::SaveCharEquip(m_PChar);
-		charutils::UpdateItem(m_PChar, loc, slot, -1);
+		
             }
+            charutils::UpdateItem(m_PChar, loc, slot, -1);
             
             m_PChar->pushPacket(new CInventoryFinishPacket());
         }
@@ -2632,7 +2633,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
     m_PTargetFind->reset();
     m_PChar->m_ActionList.clear();
 
-    uint8 wspoints = 0;
+    uint16 wspoints = 0;
 
     // try to skill up if ws hit
     if (Action.reaction == REACTION_HIT)

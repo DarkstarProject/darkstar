@@ -108,7 +108,7 @@ end;
 
 function onZoneWeatherChange(weather)
 	local qm2 = GetNPCByID(17559907); -- Quest: An Empty Vessel
-	if(weather == WEATHER_NONE or weather == WEATHER_SUNSHINE) then
+	if (weather == WEATHER_NONE or weather == WEATHER_SUNSHINE) then
 		qm2:setStatus(STATUS_NORMAL);
 	else
 		qm2:setStatus(STATUS_DISAPPEAR);

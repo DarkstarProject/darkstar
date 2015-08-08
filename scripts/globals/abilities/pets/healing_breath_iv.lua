@@ -38,7 +38,7 @@ function onPetAbility(target, pet, skill, master)
    local tp = math.floor(skill:getTP()/20)/1.165; -- HP only increases for every 20% TP
 
    local base = math.floor(((53+tp+gear+deep)/256)*(pet:getMaxHP())+42);
-   if(target:getHP()+base > target:getMaxHP()) then
+   if (target:getHP()+base > target:getMaxHP()) then
       base = target:getMaxHP() - target:getHP(); --cap it
    end
    skill:setMsg(MSG_SELF_HEAL);

@@ -13,7 +13,7 @@ function onItemCheck(target)
 	
 	local result = 0;
 	
-	if(target:hasStatusEffect(EFFECT_FOOD)) then
+	if (target:hasStatusEffect(EFFECT_FOOD)) then
 		result = 246;
 	end
 	

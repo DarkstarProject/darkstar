@@ -23,7 +23,7 @@ function onTrigger(player,npc)
 	X = player:getXPos();
 	Z = player:getZPos();
 	
-	if((X >= 1.51 and X <= 9.49) and (Z >= 273.1 and Z <= 281)) then 
+	if ((X >= 1.51 and X <= 9.49) and (Z >= 273.1 and Z <= 281)) then 
 		if player:hasKeyItem(267) then
 			player:startEvent(0x0191);
 		else player:startEvent (0x0108);

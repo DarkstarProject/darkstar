@@ -113,7 +113,7 @@ function SetGroundsTome(tome)
     if (GROUNDS_TOMES == 1) then
         for i,id in ipairs(tome) do
             local npc = GetNPCByID(id);
-            if(npc ~= nil) then
+            if (npc ~= nil) then
                 npc:setStatus(0);
             end
         end

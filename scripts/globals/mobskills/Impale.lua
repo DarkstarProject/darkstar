@@ -28,7 +28,7 @@ function onMobWeaponSkill(target, mob, skill)
 
 	local shadows = info.hitslanded;
 
-	if(isNM) then
+	if (isNM) then
 		shadows = MOBPARAM_IGNORE_SHADOWS;
 	end
 
@@ -37,7 +37,7 @@ function onMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_PARALYSIS;
 	local power = 20;
 
-	if(isNM) then
+	if (isNM) then
 		typeEffect = EFFECT_POISON;
 	end
 

@@ -14,7 +14,7 @@ require("scripts/zones/Caedarva_Mire/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(2599,1) and trade:getItemCount() == 1) then -- Trade Mint Drop
+	if (trade:hasItemQty(2599,1) and trade:getItemCount() == 1) then -- Trade Mint Drop
 		player:tradeComplete();
 		SpawnMob(17101202,180):updateClaim(player);
 	end

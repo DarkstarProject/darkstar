@@ -31,7 +31,7 @@ end;
 
 function onUseAbility(player,target,ability)
     local id = player:getWeaponSubSkillType(SLOT_AMMO);
-    if(id == 0) then
+    if (id == 0) then
         printf("WARNING: jugpet id is ZERO\n");
     end
 

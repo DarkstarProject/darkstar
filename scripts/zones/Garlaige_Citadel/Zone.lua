@@ -61,7 +61,7 @@ end;
 function onZoneIn(player,prevZone)		
 	local cs = -1;	
 	
-	if((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-380.035,-13.548,398.032,64);
 	end
 	
@@ -91,13 +91,13 @@ function onRegionEnter(player,region)
 	local mylever = banishing_gates_base + regionID;
 	GetNPCByID(mylever):setAnimation(8);
 	
-	if(regionID >= 1 and regionID <= 4) then
+	if (regionID >= 1 and regionID <= 4) then
 		gateid = banishing_gates_base;
 		msg_offset = 0;
-	elseif(regionID >= 10 and regionID <= 13) then
+	elseif (regionID >= 10 and regionID <= 13) then
 		gateid = banishing_gates_base + 9;
 		msg_offset = 1;
-	elseif(regionID >= 19 and regionID <= 22) then
+	elseif (regionID >= 19 and regionID <= 22) then
 		gateid = banishing_gates_base + 18;
 		msg_offset = 2;
 	end;
@@ -108,7 +108,7 @@ function onRegionEnter(player,region)
 	gate3 = GetNPCByID(gateid + 3);
 	gate4 = GetNPCByID(gateid + 4);
 	
-	if(gate1:getAnimation() == 8 and gate2:getAnimation() == 8 and gate3:getAnimation() == 8 and gate4:getAnimation() == 8) then
+	if (gate1:getAnimation() == 8 and gate2:getAnimation() == 8 and gate3:getAnimation() == 8 and gate4:getAnimation() == 8) then
 		player:messageSpecial(BANISHING_GATES + msg_offset); -- Banishing gate opening
 		GetNPCByID(gateid):openDoor(30);
 	end

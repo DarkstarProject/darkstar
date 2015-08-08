@@ -32,14 +32,14 @@ local zeid = mob:getID();
 local shadow1 = zeid+1;
 local shadow2 = zeid+2;
 
-	if(mob:getHPP() <= mob:getLocalVar("2hourtime"))then
-		if(mob:getLocalVar("2hour") == 0)then
+	if (mob:getHPP() <= mob:getLocalVar("2hourtime")) then
+		if (mob:getLocalVar("2hour") == 0) then
 			mob:useMobAbility(439);
 			mob:setLocalVar("2hour",1);
 		end
-	elseif(mob:getHPP() <= 77) then
-		if (mob:getTP() >= 100)then
-			if ((GetMobAction(shadow1) and GetMobAction(shadow2)) == 0)then
+	elseif (mob:getHPP() <= 77) then
+		if (mob:getTP() >= 100) then
+			if ((GetMobAction(shadow1) and GetMobAction(shadow2)) == 0) then
 				mob:useMobAbility(728);
 			end
 		end

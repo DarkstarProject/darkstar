@@ -35,25 +35,25 @@ function onSpellCast(caster,target,spell)
     local dINT = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
     local resist = applyResistance(caster,spell,target,dINT,BLUE_SKILL,0);
 
-    if(target:getStatusEffect(EFFECT_BURN) ~= nil) then
+    if (target:getStatusEffect(EFFECT_BURN) ~= nil) then
         spell:setMsg(75); -- no effect
-    elseif(resist > 0.5) then
-        if(target:getStatusEffect(EFFECT_CHOKE) ~= nil) then
+    elseif (resist > 0.5) then
+        if (target:getStatusEffect(EFFECT_CHOKE) ~= nil) then
             target:delStatusEffect(EFFECT_CHOKE);
         end;
         local sINT = caster:getStat(MOD_INT);
         local DOT = getElementalDebuffDOT(sINT);
         local effect = target:getStatusEffect(typeEffect);
         local noeffect = false;
-        if(effect ~= nil) then
-            if(effect:getPower() >= DOT) then
+        if (effect ~= nil) then
+            if (effect:getPower() >= DOT) then
                 noeffect = true;
             end;
         end;
-        if(noeffect) then
+        if (noeffect) then
             spell:setMsg(75); -- no effect
         else
-            if(effect ~= nil) then
+            if (effect ~= nil) then
                 target:delStatusEffect(typeEffect);
             end;
                 spell:setMsg(237);

@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(519,1,18,5)) then
+	if (player:sendGuild(519,1,18,5)) then
 		player:showText(npc, MEP_NHAPOPOLUKO_DIALOG);
 	end
 end;

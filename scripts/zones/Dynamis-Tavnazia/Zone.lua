@@ -36,12 +36,12 @@ cs = -1;
 	local realDay = os.time();
 	local dynaWaitxDay = player:getVar("dynaWaitxDay");
 	
-	if((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or player:getVar("DynamisID") == GetServerVariable("[DynaTavnazia]UniqueID")) then
-		if(player:isBcnmsFull() == 1) then
-			if(player:hasStatusEffect(EFFECT_DYNAMIS, 0) == false) then
+	if ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or player:getVar("DynamisID") == GetServerVariable("[DynaTavnazia]UniqueID")) then
+		if (player:isBcnmsFull() == 1) then
+			if (player:hasStatusEffect(EFFECT_DYNAMIS, 0) == false) then
 				inst = player:addPlayerToDynamis(1289);
 				
-				if(inst == 1)then
+				if (inst == 1) then
 					player:bcnmEnter(1289);
 				else
 					 cs = 0x0065;
@@ -52,7 +52,7 @@ cs = -1;
 		else
 			inst = player:bcnmRegister(1289);
 			
-			if(inst == 1)then
+			if (inst == 1) then
 				player:bcnmEnter(1289);
 			else
 				cs = 0x0065;
@@ -88,7 +88,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x0065) then
+	if (csid == 0x0065) then
 		player:setPos(0.0,-7,-23,195,26);
 	end
 end;

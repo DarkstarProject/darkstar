@@ -24,11 +24,11 @@ function onTrigger(player,npc)
 	local ToBee = player:getQuestStatus(WINDURST,TO_BEE_OR_NOT_TO_BEE);
 	local ToBeeOrNotStatus = player:getVar("ToBeeOrNot_var");
 	
-	if(ToBeeOrNotStatus == 10) then 
+	if (ToBeeOrNotStatus == 10) then 
 		player:startEvent(0x0041); -- During Too Bee quest before honey given to Zayhi:  "Oh Crumb...lost his voice"
-	elseif(ToBee == QUEST_ACCEPTED and ToBeeOrNotStatus > 0) then 
+	elseif (ToBee == QUEST_ACCEPTED and ToBeeOrNotStatus > 0) then 
 		player:startEvent(0x0047); -- During Too Bee quest after some honey was given to Zayhi: "lap up more honey"
-	elseif(ToBee == QUEST_COMPLETED and player:needToZone()) then
+	elseif (ToBee == QUEST_COMPLETED and player:needToZone()) then
 		player:startEvent(0x004c); -- After Too Bee quest but before zone: "master let me speak for you"
 	else
 		player:startEvent(0x0129); -- Standard Conversation

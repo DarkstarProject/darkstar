@@ -27,9 +27,9 @@ function onMobWeaponSkill(target, mob, skill)
 
 	local duration = 20;
 	
-	if(mob:getTP() == 300) then
+	if (mob:getTP() == 300) then
 		duration = 60;
-	elseif(mob:getTP() >= 200) then
+	elseif (mob:getTP() >= 200) then
 		duration = 40;
 	end
 	

@@ -46,7 +46,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("OPTION: %u",option);
 	
-	if(csid == 0x002f) then
+	if (csid == 0x002f) then
 		player:delKeyItem(NOTES_FROM_HARIGAORIGA);
 		player:addKeyItem(NOTES_FROM_IPUPU);
 		player:messageSpecial(KEYITEM_OBTAINED,NOTES_FROM_IPUPU);

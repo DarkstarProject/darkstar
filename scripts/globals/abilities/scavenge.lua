@@ -44,7 +44,7 @@ function onUseAbility(player, target, ability, action)
     local bonuses = (player:getMod(MOD_SCAVENGE_EFFECT)  + player:getMerit(MERIT_SCAVENGE_EFFECT) ) / 100;
     local arrowsToReturn = math.floor(math.floor(player:getLocalVar("ArrowsUsed")  % 10000) * (player:getMainLvl() / 200 + bonuses));
     
-        if(arrowsToReturn == 0) then
+        if (arrowsToReturn == 0) then
             action:setMessageID(139);
         else
             if (arrowsToReturn > 99) then

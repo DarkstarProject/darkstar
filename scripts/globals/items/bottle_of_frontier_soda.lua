@@ -19,7 +19,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if(target:hasStatusEffect(EFFECT_REGAIN) == false) then
+	if (target:hasStatusEffect(EFFECT_REGAIN) == false) then
 		target:addStatusEffect(EFFECT_REGAIN,1,3,60);
 	else
 		target:messageBasic(423);

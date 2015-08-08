@@ -14,7 +14,7 @@ require("scripts/zones/Crawlers_Nest/TextIDs");
 
 function onTrade(player,npc,trade)
 	-- Trade Rolanberry 881
-	if(GetMobAction(17584132) == 0 and trade:hasItemQty(4529,1) and trade:getItemCount() == 1) then 
+	if (GetMobAction(17584132) == 0 and trade:hasItemQty(4529,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		if (math.random(1,100)<=50) then
 			SpawnMob(17584131,120):updateClaim(player); -- Drone Crawler

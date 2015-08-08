@@ -34,7 +34,7 @@ function onUseAbility(player,target,ability)
     local duration = 60;
     local resist = applyResistanceAbility(player,target,ELE_LIGHT,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
     
-    if(resist < 0.5) then
+    if (resist < 0.5) then
         ability:setMsg(324);--resist message
         return EFFECT_SLEEP_I;
     end
@@ -72,7 +72,7 @@ function onUseAbility(player,target,ability)
         newEffect:setStartTime(startTime);
     end
     
-    if(target:addStatusEffect(EFFECT_SLEEP_I,1,0,duration)) then
+    if (target:addStatusEffect(EFFECT_SLEEP_I,1,0,duration)) then
         ability:setMsg(127);
     else
         ability:setMsg(323);

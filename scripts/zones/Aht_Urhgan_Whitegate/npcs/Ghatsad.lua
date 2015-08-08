@@ -227,7 +227,7 @@ function onTrade(player,npc,trade)
                         player:setVar("PUP_AttachmentReady",getMidnight());
                         player:setVar("PUP_AttachmentWait",math.random(2,3));
                         player:startEvent(902);
-                    elseif(trade:getItemQty(4610) == 1) then
+                    elseif (trade:getItemQty(4610) == 1) then
                         player:tradeComplete();
                         player:setVar("PUP_AttachmentStatus", 12)
                         player:setVar("PUP_AttachmentReady",getMidnight());
@@ -247,7 +247,7 @@ function onTrade(player,npc,trade)
                         player:setVar("PUP_AttachmentReady",getMidnight());
                         player:setVar("PUP_AttachmentWait",math.random(2,3));
                         player:startEvent(902);
-                    elseif(trade:getItemQty(4752) == 1) then
+                    elseif (trade:getItemQty(4752) == 1) then
                         player:tradeComplete();
                         player:setVar("PUP_AttachmentStatus", 13)
                         player:setVar("PUP_AttachmentReady",getMidnight());
@@ -273,7 +273,7 @@ function onTrade(player,npc,trade)
                         player:setVar("PUP_AttachmentReady",getMidnight());
                         player:setVar("PUP_AttachmentWait",math.random(2,3));
                         player:startEvent(902);
-                    elseif(trade:getItemQty(4610) == 1) then
+                    elseif (trade:getItemQty(4610) == 1) then
                         player:tradeComplete();
                         player:setVar("PUP_AttachmentStatus", 12)
                         player:setVar("PUP_AttachmentReady",getMidnight());
@@ -293,7 +293,7 @@ function onTrade(player,npc,trade)
                         player:setVar("PUP_AttachmentReady",getMidnight());
                         player:setVar("PUP_AttachmentWait",math.random(2,3));
                         player:startEvent(902);
-                    elseif(trade:getItemQty(4752) == 1) then
+                    elseif (trade:getItemQty(4752) == 1) then
                         player:tradeComplete();
                         player:setVar("PUP_AttachmentStatus", 13)
                         player:setVar("PUP_AttachmentReady",getMidnight());

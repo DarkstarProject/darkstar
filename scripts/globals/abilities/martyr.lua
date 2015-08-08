@@ -14,7 +14,7 @@ require("scripts/globals/status");
 
 function onAbilityCheck(player,target,ability)
         -- Fails if HP < 4
-        if(player:getHP() < 4) then
+        if (player:getHP() < 4) then
             return MSGBASIC_UNABLE_TO_USE_JA,0;
         else
             return 0,0;

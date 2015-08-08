@@ -27,11 +27,11 @@ function onTrigger(player,npc)
 	twentyInPirateYearsCS = player:getVar("twentyInPirateYearsCS");
 	TsuchigumoKilled = player:getVar("TsuchigumoKilled");
 	
-	if(twentyInPirateYearsCS == 3 and TsuchigumoKilled <= 1) then
+	if (twentyInPirateYearsCS == 3 and TsuchigumoKilled <= 1) then
 		player:messageSpecial(SENSE_OF_FOREBODING);
 		SpawnMob(17244524,300):updateClaim(player);
 		SpawnMob(17244525,300):updateClaim(player);
-	elseif(twentyInPirateYearsCS == 3 and TsuchigumoKilled >= 2) then
+	elseif (twentyInPirateYearsCS == 3 and TsuchigumoKilled >= 2) then
 		player:addKeyItem(TRICK_BOX);
 		player:messageSpecial(KEYITEM_OBTAINED,TRICK_BOX);
 		player:setVar("twentyInPirateYearsCS",4);

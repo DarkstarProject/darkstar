@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	if(killer:hasKeyItem(MERTAIRES_BRACELET)) then 
+	if (killer:hasKeyItem(MERTAIRES_BRACELET)) then 
 		killer:setVar("TrosKilled",1);
 		killer:setVar("Tros_Timer",os.time());
 	end

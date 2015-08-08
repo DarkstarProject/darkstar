@@ -19,14 +19,14 @@ function onTrade(player,npc,trade)
 	walahraCoinCount = player:getVar("walahraCoinCount");
 	TradeCount = trade:getItemQty(2184);
 	
-	if(TradeCount > 0 and TradeCount == trade:getItemCount()) then
+	if (TradeCount > 0 and TradeCount == trade:getItemCount()) then
 
-		if(TradeCount >= 100) then	-- give bonus walahra water, 1 per 100+
+		if (TradeCount >= 100) then	-- give bonus walahra water, 1 per 100+
 			player:addItem(5354);
 			player:messageSpecial(ITEM_OBTAINED,5354);			
 		end
 	
-		if(walahraCoinCount + TradeCount > 1000) then -- give player turban, donated over 1000
+		if (walahraCoinCount + TradeCount > 1000) then -- give player turban, donated over 1000
 			if (player:getFreeSlotsCount() == 0) then 
 				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,15270);
 			else 
@@ -36,7 +36,7 @@ function onTrade(player,npc,trade)
 			player:tradeComplete();
 			player:startEvent(0x0066, 2184, 0, TradeCount);	
 			end
-		elseif(walahraCoinCount + TradeCount <= 1000) then -- turning in less than the amount needed to finish the quest
+		elseif (walahraCoinCount + TradeCount <= 1000) then -- turning in less than the amount needed to finish the quest
 			player:tradeComplete();
 			player:setVar("walahraCoinCount",walahraCoinCount + TradeCount);
 			player:startEvent(0x0066, 2184, 0, TradeCount);	

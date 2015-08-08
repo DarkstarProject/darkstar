@@ -14,7 +14,7 @@ require("scripts/zones/Riverne-Site_B01/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(1691,1) and trade:getItemCount() == 1) then -- Trade Giant Scale
+	if (trade:hasItemQty(1691,1) and trade:getItemCount() == 1) then -- Trade Giant Scale
 		player:tradeComplete();
 		npc:openDoor(RIVERNE_PORTERS);
 		player:messageSpecial(SD_HAS_GROWN);
@@ -28,7 +28,7 @@ end;
 
 function onTrigger(player,npc)
 
-	if(npc:getAnimation() == 8) then
+	if (npc:getAnimation() == 8) then
 		player:startEvent(0x16);
 	else
 		player:messageSpecial(SD_VERY_SMALL);

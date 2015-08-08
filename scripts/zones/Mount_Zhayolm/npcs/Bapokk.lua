@@ -14,7 +14,7 @@ require("scripts/zones/Mount_Zhayolm/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(trade:getItemCount() == 1 and trade:hasItemQty(2185,1)) then -- Silver
+	if (trade:getItemCount() == 1 and trade:hasItemQty(2185,1)) then -- Silver
 		player:tradeComplete();
 		player:setPos(-20,-6,0,192); -- using the pos method until the problem below is fixed
 		-- player:startEvent(163); -- << this CS goes black at the end, never fades in
@@ -29,7 +29,7 @@ end;
 function onTrigger(player,npc)
 
 	-- Ruins -> Zhayolm
-   if(player:getZPos() > -280) then 
+   if (player:getZPos() > -280) then 
 		player:startEvent(164);
 	-- Zhayolm -> Ruins
    else

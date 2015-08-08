@@ -27,9 +27,9 @@ function onTrigger(player,npc)
 
 	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,10) == false) then
 		player:startEvent(10055);
-	elseif(TenshodoMembership ~= QUEST_COMPLETED) then 
+	elseif (TenshodoMembership ~= QUEST_COMPLETED) then 
 		player:startEvent(0x00d0);
-	elseif(TenshodoMembership == QUEST_COMPLETED) then 
+	elseif (TenshodoMembership == QUEST_COMPLETED) then 
 		player:startEvent(0x00d3);
 	end
 end;

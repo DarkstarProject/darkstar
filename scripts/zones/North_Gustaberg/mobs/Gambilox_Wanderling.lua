@@ -19,7 +19,7 @@ function onMobDeath(mob,killer)
 
 	thickAsThievesGamblingCS = killer:getVar("thickAsThievesGamblingCS");
 	
-	if(thickAsThievesGamblingCS == 5) then
+	if (thickAsThievesGamblingCS == 5) then
 		killer:setVar("thickAsThievesGamblingCS",6)
 	end
 end;

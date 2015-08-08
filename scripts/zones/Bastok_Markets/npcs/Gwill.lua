@@ -22,12 +22,12 @@ require("scripts/zones/Bastok_Markets/TextIDs");
 
 function onTrade(player,npc,trade)
 	returnOfAdven = player:getQuestStatus(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
-	if(returnOfAdven == QUEST_ACCEPTED and trade:hasItemQty(628,1) and trade:getItemCount() == 1) then
+	if (returnOfAdven == QUEST_ACCEPTED and trade:hasItemQty(628,1) and trade:getItemCount() == 1) then
 		player:startEvent(0x00f3);
 	end
 	
-	if(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 2) then
-		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
+	if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 2) then
+		if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
 			player:setVar("ridingOnTheClouds_2",0);
 			player:tradeComplete();
 			player:addKeyItem(SMILING_STONE);
@@ -47,9 +47,9 @@ function onTrigger(player,npc)
 	FatherFigure = player:getQuestStatus(BASTOK,FATHER_FIGURE);
 	TheReturn = player:getQuestStatus(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
 
-	if(FatherFigure == QUEST_COMPLETED and TheReturn == QUEST_AVAILABLE and pFame >= 3) then
+	if (FatherFigure == QUEST_COMPLETED and TheReturn == QUEST_AVAILABLE and pFame >= 3) then
 		player:startEvent(0x00f2);
-	elseif(player:getQuestStatus(BASTOK,THE_COLD_LIGHT_OF_DAY) == QUEST_ACCEPTED) then
+	elseif (player:getQuestStatus(BASTOK,THE_COLD_LIGHT_OF_DAY) == QUEST_ACCEPTED) then
 		player:startEvent(0x0067);
 	else
 		player:startEvent(0x0071);
@@ -74,10 +74,10 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x00f2) then
+	if (csid == 0x00f2) then
 		player:addQuest(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
-	elseif(csid == 0x00f3) then
-		if(player:getFreeSlotsCount() >= 1) then
+	elseif (csid == 0x00f3) then
+		if (player:getFreeSlotsCount() >= 1) then
 			player:tradeComplete();
 			player:addTitle(KULATZ_BRIDGE_COMPANION);
 			player:addItem(12498);

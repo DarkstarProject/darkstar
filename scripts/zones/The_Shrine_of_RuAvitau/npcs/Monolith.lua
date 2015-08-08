@@ -24,7 +24,7 @@ function onTrigger(player,npc)
 	local npcID = npc:getID();
 	local Door_Offset = 17506718; -- _4y0
 	
-	if(npcID == Door_Offset+31 or npcID == Door_Offset+33 or npcID == Door_Offset+35 or npcID == Door_Offset+37 or npcID == Door_Offset+43 or 
+	if (npcID == Door_Offset+31 or npcID == Door_Offset+33 or npcID == Door_Offset+35 or npcID == Door_Offset+37 or npcID == Door_Offset+43 or 
 	   npcID == Door_Offset+45 or npcID == Door_Offset+51 or npcID == Door_Offset+53 or npcID == Door_Offset+61) then
 		GetNPCByID(Door_Offset+4):setAnimation(8); --blue door
 		GetNPCByID(Door_Offset+5):setAnimation(8);

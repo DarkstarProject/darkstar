@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
     local Ypos = player:getYPos();
 
     if (Ypos <= 16.5) then
-        if(trade:getItemCount() == 1 and trade:getGil() == 800) then
+        if (trade:getItemCount() == 1 and trade:getGil() == 800) then
             player:tradeComplete();
             player:startEvent(0x001C);
         end

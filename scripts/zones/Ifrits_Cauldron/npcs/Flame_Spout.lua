@@ -29,13 +29,13 @@ function onTrigger(player,npc)
 	local npcid = npc:getID();
 	
    -- Commented out to preserve CSIDs for the quest, since the workaround was removed.
-	--[[if(npcid == 17617204) then
+	--[[if (npcid == 17617204) then
 		player:startEvent(0x000b);
-	elseif(npcid == 17617205) then
+	elseif (npcid == 17617205) then
 		player:startEvent(0x000c);
-	elseif(npcid == 17617206) then
+	elseif (npcid == 17617206) then
 		player:startEvent(0x000d);
-	elseif(npcid == 17617207) then
+	elseif (npcid == 17617207) then
 		player:startEvent(0x000e);
 	end]]
 	

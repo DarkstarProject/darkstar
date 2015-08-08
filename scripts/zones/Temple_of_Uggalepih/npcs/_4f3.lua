@@ -25,8 +25,8 @@ function onTrigger(player,npc)
 	
 	local killCount = player:getVar("EVERYONES_GRUDGE_KILLS");	
 	
-	if(player:hasKeyItem(291) == true) then
-		if(killCount >= 1) then
+	if (player:hasKeyItem(291) == true) then
+		if (killCount >= 1) then
 			local payment = 250 * ((killCount/20)+1);
 			player:startEvent(0x0042,0,payment);		
 		else

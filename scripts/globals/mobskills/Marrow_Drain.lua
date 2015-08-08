@@ -10,7 +10,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
+    if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
         return 0;
     end
     return 1;
@@ -22,7 +22,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
 
 
-    if(target:isUndead() == false) then
+    if (target:isUndead() == false) then
         target:delMP(dmg);
         mob:addMP(dmg);
         skill:setMsg(MSG_DRAIN_MP);

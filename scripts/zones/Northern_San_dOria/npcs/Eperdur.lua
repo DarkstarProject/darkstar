@@ -31,23 +31,23 @@ function onTrigger(player,npc)
 	HealingTheLand = player:getQuestStatus(SANDORIA,HEALING_THE_LAND);
 	SorceryOfTheNorth = player:getQuestStatus(SANDORIA,SORCERY_OF_THE_NORTH);
 	
-	if(AltanaSorrow == QUEST_ACCEPTED and player:hasKeyItem(LETTER_FROM_VIRNAGE)) then
+	if (AltanaSorrow == QUEST_ACCEPTED and player:hasKeyItem(LETTER_FROM_VIRNAGE)) then
 		player:startEvent(0x02a7); -- Finish quest "Altana's Sorrow"
-	elseif(ActingInGoodFaith == QUEST_ACCEPTED and player:hasKeyItem(GANTINEUXS_LETTER)) then
+	elseif (ActingInGoodFaith == QUEST_ACCEPTED and player:hasKeyItem(GANTINEUXS_LETTER)) then
 		player:startEvent(0x02a8); -- Finish quest "Acting in Good Faith"
-	elseif(HealingTheLand == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 4 and player:getMainLvl() >= 10) then
+	elseif (HealingTheLand == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 4 and player:getMainLvl() >= 10) then
 		player:startEvent(0x02a9); -- Start quest "Healing the Land"
-	elseif(HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(SEAL_OF_BANISHING)) then
+	elseif (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(SEAL_OF_BANISHING)) then
 		player:startEvent(0x02aa); -- During quest "Healing the Land"
-	elseif(HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(SEAL_OF_BANISHING) == false) then
+	elseif (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(SEAL_OF_BANISHING) == false) then
 		player:startEvent(0x02ab); -- Finish quest "Healing the Land"
-	elseif(HealingTheLand == QUEST_COMPLETED and SorceryOfTheNorth == QUEST_AVAILABLE and player:needToZone()) then
+	elseif (HealingTheLand == QUEST_COMPLETED and SorceryOfTheNorth == QUEST_AVAILABLE and player:needToZone()) then
 		player:startEvent(0x02ac); -- New standard dialog after "Healing the Land"
-	elseif(HealingTheLand == QUEST_COMPLETED and SorceryOfTheNorth == QUEST_AVAILABLE and player:needToZone() == false) then
+	elseif (HealingTheLand == QUEST_COMPLETED and SorceryOfTheNorth == QUEST_AVAILABLE and player:needToZone() == false) then
 		player:startEvent(0x02ad); -- Start quest "Sorcery of the North"
-	elseif(SorceryOfTheNorth == QUEST_ACCEPTED and player:hasKeyItem(FEIYIN_MAGIC_TOME) == false) then
+	elseif (SorceryOfTheNorth == QUEST_ACCEPTED and player:hasKeyItem(FEIYIN_MAGIC_TOME) == false) then
 		player:startEvent(0x02ae); -- During quest "Sorcery of the North"
-	elseif(SorceryOfTheNorth == QUEST_ACCEPTED and player:hasKeyItem(FEIYIN_MAGIC_TOME)) then
+	elseif (SorceryOfTheNorth == QUEST_ACCEPTED and player:hasKeyItem(FEIYIN_MAGIC_TOME)) then
 		player:startEvent(0x02af); -- Finish quest "Sorcery of the North"
 	else
 		player:startEvent(0x02a6); -- Standard dialog
@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x02a7) then
+	if (csid == 0x02a7) then
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4731);
 		else
@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
 			player:addFame(BASTOK,BAS_FAME*30);
 			player:completeQuest(BASTOK,ALTANA_S_SORROW);
 		end
-	elseif(csid == 0x02a8) then
+	elseif (csid == 0x02a8) then
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4732);
 		else
@@ -94,11 +94,11 @@ function onEventFinish(player,csid,option)
 			player:addFame(WINDURST,WIN_FAME*30);
 			player:completeQuest(WINDURST,ACTING_IN_GOOD_FAITH);
 		end
-	elseif(csid == 0x02a9 and option == 0) then
+	elseif (csid == 0x02a9 and option == 0) then
 		player:addQuest(SANDORIA,HEALING_THE_LAND);
 		player:addKeyItem(SEAL_OF_BANISHING);
 		player:messageSpecial(KEYITEM_OBTAINED,SEAL_OF_BANISHING);
-	elseif(csid == 0x02ab) then
+	elseif (csid == 0x02ab) then
 		if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4730);
 		else
@@ -109,9 +109,9 @@ function onEventFinish(player,csid,option)
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:completeQuest(SANDORIA,HEALING_THE_LAND);
 		end
-	elseif(csid == 0x02ad and option == 0) then
+	elseif (csid == 0x02ad and option == 0) then
 		player:addQuest(SANDORIA,SORCERY_OF_THE_NORTH);
-	elseif(csid == 0x02af) then 
+	elseif (csid == 0x02af) then 
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4747);
 		else

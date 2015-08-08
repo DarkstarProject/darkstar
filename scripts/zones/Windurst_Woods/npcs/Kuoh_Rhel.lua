@@ -35,7 +35,7 @@ function onTrigger(player,npc)
 	
 	-- In a Stew
 	if (IAS == QUEST_AVAILABLE and chocobilious == QUEST_COMPLETED and player:getFameLevel (WINDURST) >= 3) then
-		if(player:needToZone()) then
+		if (player:needToZone()) then
 			player:startEvent(0x00E8); -- Post quest dialog from Chocobilious
 		else
 			player:startEvent(0x00EB); -- IAS start

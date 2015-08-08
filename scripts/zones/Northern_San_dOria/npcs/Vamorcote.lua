@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 	
-	if(csid == 0x028e and option == 1) then --Player accepts the quest
+	if (csid == 0x028e and option == 1) then --Player accepts the quest
 		player:addQuest(SANDORIA,THE_SETTING_SUN);
 	elseif (csid == 0x0292) then --The player trades the Engraved Key to the NPC. Here come the rewards!
 		player:tradeComplete();

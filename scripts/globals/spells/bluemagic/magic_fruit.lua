@@ -38,22 +38,22 @@ function onSpellCast(caster,target,spell)
     local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,true);
     local diff = (target:getMaxHP() - target:getHP());
     
-    if(power > 559) then
+    if (power > 559) then
         divisor = 2.8333;
         constant = 391.2
-    elseif(power > 319) then
+    elseif (power > 319) then
         divisor =  1;
         constant = 210;
     end
 
     final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
     
-    if(target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == TYPE_PC or target:getObjType() == TYPE_MOB)) then
+    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == TYPE_PC or target:getObjType() == TYPE_MOB)) then
         --Applying server mods....
         final = final * CURE_POWER;
     end
     
-    if(final > diff) then
+    if (final > diff) then
         final = diff;
     end
     
