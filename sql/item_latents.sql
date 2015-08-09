@@ -1693,7 +1693,7 @@ INSERT INTO `item_latents` VALUES(14014, 68, 7, 53, 1); -- EVA +7 in areas outsi
 -- Master Caster's Mitts
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14016, 11, 2, 53, 1); -- AGI +2 in areas outside own nation's control
-INSERT INTO `item_latents` VALUES(14016, 68, 10, 53, 1); -- EVA +10 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(14016, 108, 10, 53, 1); -- EVA skill +10 in areas outside own nation's control
 
 -- -------------------------------------------------------
 -- Tactician Magician's Hooks +1/+2
