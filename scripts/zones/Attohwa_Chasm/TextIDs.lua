@@ -7,14 +7,14 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6386; -- Obtained key item: <keyitem>.
            KEYITEM_LOST = 6387; -- Lost key item:
 NOTHING_OUT_OF_ORDINARY = 6397; -- There is nothing out of the ordinary here.
-            HOMEPOINT_SET = 8119; -- Home point set!
+            HOMEPOINT_SET = 8121; -- Home point set!
 
 -- Mining
-MINING_IS_POSSIBLE_HERE = 7197; -- Mining is possible here if you have
+MINING_IS_POSSIBLE_HERE = 7199; -- Mining is possible here if you have
 
 -- Other
- GASPONIA_POISON = 7217; -- The poison of the Gasponia has begun to spread through your body.
-OCCASIONAL_LUMPS = 7232; -- Occasionally lumps arise in the ground here, then settle down again. It seems that there is something beneath the earth.
+ GASPONIA_POISON = 7219; -- The poison of the Gasponia has begun to spread through your body.
+OCCASIONAL_LUMPS = 7234; -- Occasionally lumps arise in the ground here, then settle down again. It seems that there is something beneath the earth.
 
 -- conquest Base
-CONQUEST_BASE = 7038; -- Tallying conquest results...
+CONQUEST_BASE = 7040; -- Tallying conquest results...
