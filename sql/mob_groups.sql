@@ -9534,7 +9534,7 @@ INSERT INTO `mob_groups` VALUES (9486,3718,188,0,128,3292,8000,0,78,80,0,0); -- 
 INSERT INTO `mob_groups` VALUES (9487,3917,188,0,128,3523,8000,0,78,80,0,0); -- Ticktox_Beadyeyes
 INSERT INTO `mob_groups` VALUES (9488,3985,188,0,128,3575,8000,0,78,80,0,0); -- Trailblix_Goatmug
 INSERT INTO `mob_groups` VALUES (9489,4047,188,0,128,3619,8000,0,78,80,0,0); -- Tufflix_Loglimbs
-INSERT INTO `mob_groups` VALUES (9490,4064,188,0,128,3639,8000,0,78,77,0,0); -- Tymexox_Ninefingers
+INSERT INTO `mob_groups` VALUES (9490,4064,188,0,128,3639,8000,0,78,80,0,0); -- Tymexox_Ninefingers
 INSERT INTO `mob_groups` VALUES (9491,4133,188,0,128,3691,4000,0,77,79,0,0); -- Vanguard_Alchemist
 INSERT INTO `mob_groups` VALUES (9492,4134,188,0,128,3696,4000,0,77,79,0,0); -- Vanguard_Ambusher
 INSERT INTO `mob_groups` VALUES (9493,4136,188,0,128,3706,4000,0,77,79,0,0); -- Vanguard_Armorer
