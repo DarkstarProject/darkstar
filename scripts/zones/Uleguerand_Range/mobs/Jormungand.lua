@@ -11,7 +11,6 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_REGEN, 30);
 end;
 
 -----------------------------------

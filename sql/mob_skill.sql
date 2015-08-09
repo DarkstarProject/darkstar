@@ -2115,17 +2115,17 @@ INSERT INTO `mob_skill` VALUES (2376,5,1832,'Vacuole_Discharge',1,15.0,2000,1500
 -- Hippogryphs -- Need Scripts
 -- INSERT INTO `mob_skill` VALUES (324,140,914,'Fantod',0,7,2000,1500,1,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (323,140,913,'Choke_Breath',4,10,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (322,140,912,'Nihility_Song',1,15,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (320,140,910,'Back_Heel',0,7,2000,1500,4,0,0,2);
--- INSERT INTO `mob_skill` VALUES (2572,140,911,'Jettatura',4,10,2000,3000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (322,140,912,'Nihility_Song',1,12.5,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (320,140,910,'Back_Heel',0,7,2000,1500,4,0,0,2);
+INSERT INTO `mob_skill` VALUES (2572,140,911,'Jettatura',4,10,2000,3000,4,0,0,0);
 
 -- Hippogryphs (NM) -- Need Scripts
 -- INSERT INTO `mob_skill` VALUES (324,141,914,'Fantod',0,7,2000,1500,1,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (323,141,913,'Choke_Breath',4,10,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (322,141,912,'Nihility_Song',1,15,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (320,141,910,'Back_Heel',0,7,2000,1500,4,0,0,2);
--- INSERT INTO `mob_skill` VALUES (1074,141,910,'Hoof_Volley',0,7,2000,1500,4,0,0,6); -- Only used by NM's and Grauberg S hippos
--- INSERT INTO `mob_skill` VALUES (2572,141,911,'Jettatura',4,10,2000,3000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (322,141,912,'Nihility_Song',1,15,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (320,141,910,'Back_Heel',0,7,2000,1500,4,0,0,2);
+INSERT INTO `mob_skill` VALUES (1074,141,910,'Hoof_Volley',0,7,2000,3000,4,0,0,6); -- Only used by NM's and Grauberg S hippos
+INSERT INTO `mob_skill` VALUES (2572,141,911,'Jettatura',4,10,2000,3000,4,0,0,0);
 
 -- Qiqirn -- Need Scripts
 INSERT INTO `mob_skill` VALUES (1469,199,1200,'Kibosh',0,7,2000,1500,4,0,0,0);

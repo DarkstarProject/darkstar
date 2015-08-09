@@ -208,6 +208,10 @@ INSERT INTO `mob_spawn_mods` VALUES (16921016,60,100,0); -- Kf'ghrah res mods
 INSERT INTO `mob_spawn_mods` VALUES (16921016,61,-100,0); 
 INSERT INTO `mob_spawn_mods` VALUES (16921017,60,-100,0);
 INSERT INTO `mob_spawn_mods` VALUES (16921017,61,100,0); 
+INSERT INTO `mob_spawn_mods` VALUES (16912838,407,150,0); -- Jailer of Hope fastcast, -ga chance, 2hr/2hr multi
+INSERT INTO `mob_spawn_mods` VALUES (16912838,7,60,1);
+INSERT INTO `mob_spawn_mods` VALUES (16912838,16,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (16912838,32,1,1);
 /*!40000 ALTER TABLE `mob_spawn_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

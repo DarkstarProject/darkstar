@@ -7,4 +7,4 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6386; -- Obtained key item: <keyitem>
 
 -- Other Texts
-ALREADY_OBTAINED_TELE = 7579; -- You already possess the gate crystal for this telepoint.
+ALREADY_OBTAINED_TELE = 7582; -- You already possess the gate crystal for this telepoint.
