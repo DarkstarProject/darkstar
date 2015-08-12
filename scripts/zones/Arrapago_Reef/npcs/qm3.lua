@@ -14,7 +14,7 @@ require("scripts/zones/Arrapago_Reef/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(2598,1) and trade:getItemCount() == 1) then -- Trade Merow No 11 Molting
+	if (trade:hasItemQty(2598,1) and trade:getItemCount() == 1) then -- Trade Merow No 11 Molting
 		player:tradeComplete();
 		SpawnMob(16998873,180):updateClaim(player);
 	end

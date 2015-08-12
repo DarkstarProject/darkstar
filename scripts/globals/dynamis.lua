@@ -595,35 +595,35 @@ function getDynaMob(player,mobjob,list)
 	local pZone = player:getZoneID();
 
 	-- Dynamis San d'Oria -------------------------------
-	if(pZone == 185) then
+	if (pZone == 185) then
 		return GetMobIDByJob(17534980,17535204,mobjob);
 	-- Dynamis Bastok -----------------------------------
-	elseif(pZone == 186) then
+	elseif (pZone == 186) then
 		return GetMobIDByJob(17539074,17539305,mobjob);
 	-- Dynamis Windurst ---------------------------------
-	elseif(pZone == 187) then
+	elseif (pZone == 187) then
 		return GetMobIDByJob(17543172,17543460,mobjob);
 	-- Dynamis Jeuno ------------------------------------
-	elseif(pZone == 188) then
+	elseif (pZone == 188) then
 		return GetMobIDByJob(17547266,17547400,mobjob);
 	-- Dynamis Beaucedine -------------------------------
-	elseif(pZone == 134 and list == 1) then
+	elseif (pZone == 134 and list == 1) then
 		return GetMobIDByJob(17326280,17326348,mobjob); -- Yagudo's Vanguard
-	elseif(pZone == 134 and list == 2) then
+	elseif (pZone == 134 and list == 2) then
 		return GetMobIDByJob(17326354,17326463,mobjob); -- Goblin's Vanguard
-	elseif(pZone == 134 and list == 3) then
+	elseif (pZone == 134 and list == 3) then
 		return GetMobIDByJob(17326099,17326202,mobjob); -- Quadav's Vanguard
-	elseif(pZone == 134 and list == 4) then
+	elseif (pZone == 134 and list == 4) then
 		return GetMobIDByJob(17326208,17326274,mobjob); -- Orcish's Vanguard
-    elseif(pZone == 134 and list == 5) then
+    elseif (pZone == 134 and list == 5) then
     	return GetMobIDByJob(17326469,17326789,mobjob); -- Hydra's
 	-- Dynamis Xarcabard --------------------------------
-	elseif(pZone == 135) then
+	elseif (pZone == 135) then
 		return GetMobIDByJob(17330215,17330768,mobjob);
 	-- Dynamis Tavnazia
-    elseif(pZone == 42 and list == 1) then
+    elseif (pZone == 42 and list == 1) then
 		return GetMobIDByJob(16949281,16949302,mobjob); -- hydra
-	elseif(pZone == 42 and list == 2) then
+	elseif (pZone == 42 and list == 2) then
 		return GetMobIDByJob(16949349,16949375,mobjob); -- kindred
 	end
 end;
@@ -642,7 +642,7 @@ function checkFirstDyna(player,number)
 
 	for i = 7,0,-1 do
 		twop = 2^i;
-		if(dynaVar >= twop) then
+		if (dynaVar >= twop) then
 			bit[i+1] = 1;
 			dynaVar = dynaVar - twop;
 		else
@@ -651,7 +651,7 @@ function checkFirstDyna(player,number)
 		--printf("bit %u: %u\n",i,bit[i+1]);
 	end;
 	--printf("received %u",bit[number+1]);
-	if(bit[number+1] == 0) then
+	if (bit[number+1] == 0) then
 		return true;
 	else
 		return false;
@@ -669,31 +669,31 @@ function alreadyReceived(player,number)
 	local bit = {};
 	local pZone = player:getZoneID();
 
-	if(pZone == 185) then
+	if (pZone == 185) then
 		dynaVar = GetServerVariable("[DynaSandoria]Already_Received");
-	elseif(pZone == 186) then
+	elseif (pZone == 186) then
 		dynaVar = GetServerVariable("[DynaBastok]Already_Received");
-	elseif(pZone == 187) then
+	elseif (pZone == 187) then
 		dynaVar = GetServerVariable("[DynaWindurst]Already_Received");
-	elseif(pZone == 188) then
+	elseif (pZone == 188) then
 		dynaVar = GetServerVariable("[DynaJeuno]Already_Received");
-	elseif(pZone == 134) then
+	elseif (pZone == 134) then
 		dynaVar = GetServerVariable("[DynaBeaucedine]Already_Received");
-	elseif(pZone == 135) then
+	elseif (pZone == 135) then
 		dynaVar = GetServerVariable("[DynaXarcabard]Already_Received");
-	elseif(pZone == 39) then
+	elseif (pZone == 39) then
 		dynaVar = GetServerVariable("[DynaValkurm]Already_Received");
-	elseif(pZone == 40) then
+	elseif (pZone == 40) then
 		dynaVar = GetServerVariable("[DynaBuburimu]Already_Received");
-    elseif(pZone == 41) then
+    elseif (pZone == 41) then
 		dynaVar = GetServerVariable("[DynaQufim]Already_Received");
-    elseif(pZone == 42) then
+    elseif (pZone == 42) then
 		dynaVar = GetServerVariable("[DynaTavnazia]Already_Received");
 	end
 
 	for i = 12,0,-1 do
 		twop = 2^i;
-		if(dynaVar >= twop) then
+		if (dynaVar >= twop) then
 			bit[i+1] = 1;
 			dynaVar = dynaVar - twop;
 		else
@@ -701,7 +701,7 @@ function alreadyReceived(player,number)
 		end;
 	end;
 	-- printf("received %u",bit[number]);
-	if(bit[number] == 0) then
+	if (bit[number] == 0) then
 		return false;
 	else
 		return true;
@@ -717,25 +717,25 @@ function addDynamisList(player,number)
 
 	local pZone = player:getZoneID();
 
-	if(pZone == 185) then
+	if (pZone == 185) then
 		SetServerVariable("[DynaSandoria]Already_Received",GetServerVariable("[DynaSandoria]Already_Received") + number);
-	elseif(pZone == 186) then
+	elseif (pZone == 186) then
 		SetServerVariable("[DynaBastok]Already_Received",GetServerVariable("[DynaBastok]Already_Received") + number);
-	elseif(pZone == 187) then
+	elseif (pZone == 187) then
 		SetServerVariable("[DynaWindurst]Already_Received",GetServerVariable("[DynaWindurst]Already_Received") + number);
-	elseif(pZone == 188) then
+	elseif (pZone == 188) then
 		SetServerVariable("[DynaJeuno]Already_Received",GetServerVariable("[DynaJeuno]Already_Received") + number);
-	elseif(pZone == 134) then
+	elseif (pZone == 134) then
 		SetServerVariable("[DynaBeaucedine]Already_Received",GetServerVariable("[DynaBeaucedine]Already_Received") + number);
-	elseif(pZone == 135) then
+	elseif (pZone == 135) then
 		SetServerVariable("[DynaXarcabard]Already_Received",GetServerVariable("[DynaXarcabard]Already_Received") + number);
-	elseif(pZone == 39) then
+	elseif (pZone == 39) then
 		SetServerVariable("[DynaValkurm]Already_Received",GetServerVariable("[DynaValkurm]Already_Received") + number);
-	elseif(pZone == 40) then
+	elseif (pZone == 40) then
 		SetServerVariable("[DynaBuburimu]Already_Received",GetServerVariable("[DynaBuburimu]Already_Received") + number);
-    elseif(pZone == 41) then
+    elseif (pZone == 41) then
 		SetServerVariable("[DynaQufim]Already_Received",GetServerVariable("[DynaQufim]Already_Received") + number);
-    elseif(pZone == 42) then
+    elseif (pZone == 42) then
 		SetServerVariable("[DynaTavnazia]Already_Received",GetServerVariable("[DynaTavnazia]Already_Received") + number);
 	end
 

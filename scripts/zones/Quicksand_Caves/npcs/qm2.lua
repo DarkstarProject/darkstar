@@ -16,7 +16,7 @@ require("scripts/zones/Quicksand_Caves/TextIDs");
 function onTrade(player,npc,trade)
 	
 	-- Trade Antican Tag
-	if(GetMobAction(17629643) == 0 and trade:hasItemQty(1190,1) and trade:getItemCount() == 1)then
+	if (GetMobAction(17629643) == 0 and trade:hasItemQty(1190,1) and trade:getItemCount() == 1) then
 	  	player:tradeComplete();
 		SpawnMob(17629643,900):updateClaim(player);
 	end

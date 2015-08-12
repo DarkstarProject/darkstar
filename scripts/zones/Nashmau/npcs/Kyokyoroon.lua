@@ -17,8 +17,8 @@ require("scripts/zones/Nashmau/TextIDs");
 
 function onTrade(player,npc,trade)
 
-    if(player:getQuestStatus(AHT_URHGAN,RAT_RACE) == QUEST_ACCEPTED and player:getVar("ratraceCS") == 5) then
-        if(trade:hasItemQty(5595,1) and trade:getItemCount() == 1) then
+    if (player:getQuestStatus(AHT_URHGAN,RAT_RACE) == QUEST_ACCEPTED and player:getVar("ratraceCS") == 5) then
+        if (trade:hasItemQty(5595,1) and trade:getItemCount() == 1) then
 			player:startEvent(0x0137);
 	    end
 	end
@@ -31,11 +31,11 @@ end;
 function onTrigger(player,npc)
 	local ratRaceProg = player:getVar("ratraceCS");
 
-    if(ratRaceProg == 5) then  
+    if (ratRaceProg == 5) then  
        player:startEvent(0x0107);
-	elseif(ratRaceProg == 6) then  
+	elseif (ratRaceProg == 6) then  
        player:startEvent(0x0013c);
-	elseif(player:getQuestStatus(AHT_URHGAN,RAT_RACE) == QUEST_COMPLETED) then  
+	elseif (player:getQuestStatus(AHT_URHGAN,RAT_RACE) == QUEST_COMPLETED) then  
        player:startEvent(0x013d);
 	else
 	   player:startEvent(0x0107);
@@ -59,7 +59,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-    if(csid == 0x0137) then
+    if (csid == 0x0137) then
 	   player:tradeComplete();
 	   player:setVar("ratraceCS",6);
 	end

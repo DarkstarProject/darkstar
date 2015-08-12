@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(514,8,23,3)) then
+	if (player:sendGuild(514,8,23,3)) then
 		player:showText(npc,SHIH_TAYUUN_DIALOG);
 	end
 end;

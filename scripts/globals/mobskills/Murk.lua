@@ -25,9 +25,9 @@ function onMobWeaponSkill(target, mob, skill)
     skill:setMsg(MSG_ENFEEB_IS);
 
     -- display slow first, else weight
-    if(slowed == MSG_ENFEEB_IS) then
+    if (slowed == MSG_ENFEEB_IS) then
         typeEffect = EFFECT_SLOW;
-    elseif(weight == MSG_ENFEEB_IS) then
+    elseif (weight == MSG_ENFEEB_IS) then
         typeEffect = EFFECT_WEIGHT;
     else
         skill:setMsg(MSG_MISS);

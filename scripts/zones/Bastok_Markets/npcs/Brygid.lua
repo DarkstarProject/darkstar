@@ -29,21 +29,21 @@ function onTrade(player,npc,trade)
 	local BrygidReturns = player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST_RETURNS);
 	local wantsSubligar = player:getVar("BrygidWantsSubligar");
 	
-	if(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 3) then
-		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
+	if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 3) then
+		if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
 			player:setVar("ridingOnTheClouds_2",0);
 			player:tradeComplete();
 			player:addKeyItem(SMILING_STONE);
 			player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
 		end
-	elseif(BrygidReturns == QUEST_ACCEPTED and wantsSubligar ~= 0) then
-		if(wantsSubligar==13) then
-			if(trade:getItemCount() == 1 and trade:hasItemQty(15375+wantsSubligar,1)) then 
+	elseif (BrygidReturns == QUEST_ACCEPTED and wantsSubligar ~= 0) then
+		if (wantsSubligar==13) then
+			if (trade:getItemCount() == 1 and trade:hasItemQty(15375+wantsSubligar,1)) then 
 			player:tradeComplete();
 			player:startEvent(383);
 			end
 		else
-			if(trade:getItemCount() == 1 and trade:hasItemQty(15374+wantsSubligar,1)) then 
+			if (trade:getItemCount() == 1 and trade:hasItemQty(15374+wantsSubligar,1)) then 
 			player:tradeComplete();
 			player:startEvent(383);
 			end
@@ -69,11 +69,11 @@ function onTrigger(player,npc)
 	local wantsSubligar = player:getVar("BrygidWantsSubligar");
 	
 	local BrygidSet = 0;
-	if(body == 12600 and legs == 12832) then BrygidSet = 1 end;
+	if (body == 12600 and legs == 12832) then BrygidSet = 1 end;
 
-	if(BrygidTheStylist == QUEST_ACCEPTED and BrygidSet == 1) then
+	if (BrygidTheStylist == QUEST_ACCEPTED and BrygidSet == 1) then
 		player:startEvent(0x0137);
-	elseif((BrygidReturns ~= QUEST_ACCEPTED and BrygidTheStylist == QUEST_COMPLETED) and
+	elseif ((BrygidReturns ~= QUEST_ACCEPTED and BrygidTheStylist == QUEST_COMPLETED) and
 		   (isArtifactArmor(head) or isArtifactArmor(body) or isArtifactArmor(hands) 
 			or isArtifactArmor(legs) or isArtifactArmor(feet))) then
 			-- Randomize and store sets here
@@ -87,20 +87,20 @@ function onTrigger(player,npc)
 			player:setVar("BrygidGetLegs",getLegs);
 			--printf("Body %u Legs %u\n",getBody,getLegs);
 			player:startEvent(380,BrygidSet,getBody,getLegs,player:getMainJob());
-	elseif(BrygidReturns == QUEST_ACCEPTED and body == getBody and legs == getLegs and wantsSubligar == 0) then
+	elseif (BrygidReturns == QUEST_ACCEPTED and body == getBody and legs == getLegs and wantsSubligar == 0) then
 		-- Have the right equips, proceed with quest
 		player:startEvent(382);
-	elseif(BrygidReturns == QUEST_ACCEPTED and wantsSubligar == 0) then
+	elseif (BrygidReturns == QUEST_ACCEPTED and wantsSubligar == 0) then
 		-- Remind player what they need to wear
 		player:startEvent(381,BrygidSet,getBody,getLegs,player:getMainJob());
-	elseif(BrygidReturns == QUEST_ACCEPTED and wantsSubligar ~= 0) then
+	elseif (BrygidReturns == QUEST_ACCEPTED and wantsSubligar ~= 0) then
 		-- Remind player what subligar they need to turn in and the reward
-		if(wantsSubligar==13) then
+		if (wantsSubligar==13) then
 		player:startEvent(385,0,14400+wantsSubligar,15375+wantsSubligar);
 		else
 		player:startEvent(385,0,14400+wantsSubligar,15374+wantsSubligar);
 		end
-	elseif(BrygidTheStylist ~= QUEST_COMPLETED) then
+	elseif (BrygidTheStylist ~= QUEST_COMPLETED) then
 		player:startEvent(0x0136);
 	else
 		player:startEvent(0x0077);
@@ -115,10 +115,10 @@ end;
 function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 382) then
+	if (csid == 382) then
 		local canEquip = 0; 
 		local hasBody = 0;
-		if(player:canEquipItem(14400+option,true)) then	canEquip = 1; end
+		if (player:canEquipItem(14400+option,true)) then	canEquip = 1; end
 		if not(player:hasItem(14400+option)) then hasBody = 1; end
 		player:updateEvent(0,option-1,hasBody,canEquip);
 	end
@@ -133,10 +133,10 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	local wantsSubligar = player:getVar("BrygidWantsSubligar");
 	
-	if(csid == 0x0136 and player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST) == QUEST_AVAILABLE) then
+	if (csid == 0x0136 and player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST) == QUEST_AVAILABLE) then
 		player:addQuest(BASTOK,BRYGID_THE_STYLIST);
-	elseif(csid == 0x0137) then
-		if(player:getFreeSlotsCount() == 0) then
+	elseif (csid == 0x0137) then
+		if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12720);
 		else
 			player:addTitle(BRYGIDAPPROVED);
@@ -145,12 +145,12 @@ function onEventFinish(player,csid,option)
 			player:addFame(BASTOK,BAS_FAME*30);
 			player:completeQuest(BASTOK,BRYGID_THE_STYLIST);
 		end
-	elseif(csid == 380) then
+	elseif (csid == 380) then
 		player:delQuest(BASTOK,BRYGID_THE_STYLIST_RETURNS);
 		player:addQuest(BASTOK,BRYGID_THE_STYLIST_RETURNS);
-	elseif(csid == 382 and option ~= 99) then
+	elseif (csid == 382 and option ~= 99) then
 		player:setVar("BrygidWantsSubligar",option);
-	elseif(csid == 383) then
+	elseif (csid == 383) then
 		player:setVar("BrygidGetBody",0);
 		player:setVar("BrygidGetLegs",0);
 		player:setVar("BrygidWantsSubligar",0);

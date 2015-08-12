@@ -19,7 +19,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if(target:hasStatusEffect(EFFECT_FOOD) == false and target:hasStatusEffect(EFFECT_REGEN) == false) then
+	if (target:hasStatusEffect(EFFECT_FOOD) == false and target:hasStatusEffect(EFFECT_REGEN) == false) then
 		target:addStatusEffect(EFFECT_FOOD,0,0,3600,5704);
 		
 	else

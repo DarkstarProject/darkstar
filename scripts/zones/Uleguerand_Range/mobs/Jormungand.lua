@@ -11,7 +11,6 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_REGEN, 30);
 end;
 
 -----------------------------------
@@ -39,19 +38,19 @@ function onMobFight(mob,target)
         if (mob:AnimationSub() == 2 and mob:getBattleTime()/15 > twohourTime) then
             mob:useMobAbility(439);
             mob:setLocalVar("twohourTime", (mob:getBattleTime()/15)+20);
-        elseif(mob:AnimationSub() == 0 and mob:getBattleTime() - changeTime > 60) then
+        elseif (mob:AnimationSub() == 0 and mob:getBattleTime() - changeTime > 60) then
             mob:AnimationSub(1);
             mob:addStatusEffectEx(EFFECT_ALL_MISS, 0, 1, 0, 0);
             mob:SetMobSkillAttack(true);
             --and record the time this phase was started
             mob:setLocalVar("changeTime", mob:getBattleTime());
         -- subanimation 1 is flight, so check if he should land
-        elseif(mob:AnimationSub() == 1 and 
+        elseif (mob:AnimationSub() == 1 and 
                 mob:getBattleTime() - changeTime > 30) then
             mob:useMobAbility(1036);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         -- subanimation 2 is grounded mode, so check if he should take off
-        elseif(mob:AnimationSub() == 2 and 
+        elseif (mob:AnimationSub() == 2 and 
                 mob:getBattleTime() - changeTime > 60) then
             mob:AnimationSub(1);
             mob:addStatusEffectEx(EFFECT_ALL_MISS, 0, 1, 0, 0);

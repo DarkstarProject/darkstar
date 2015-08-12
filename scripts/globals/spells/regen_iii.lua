@@ -38,11 +38,11 @@ function onSpellCast(caster,target,spell)
 
 	duration = calculateDurationForLvl(duration, 66, target:getMainLvl());
 
-	if(target:hasStatusEffect(EFFECT_REGEN) and target:getStatusEffect(EFFECT_REGEN):getTier() == 1) then
+	if (target:hasStatusEffect(EFFECT_REGEN) and target:getStatusEffect(EFFECT_REGEN):getTier() == 1) then
 		target:delStatusEffect(EFFECT_REGEN);
 	end
 
-	if(target:addStatusEffect(EFFECT_REGEN,hp,3,duration,0,0,0)) then
+	if (target:addStatusEffect(EFFECT_REGEN,hp,3,duration,0,0,0)) then
 		spell:setMsg(230);
 	else
 		spell:setMsg(75); -- no effect

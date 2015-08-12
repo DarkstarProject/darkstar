@@ -22,7 +22,7 @@ function onMobSpawn(mob)
     16875552
   }
  
-  if(mob:getID() == 16875578) then
+  if (mob:getID() == 16875578) then
 	local random = math.random(table.getn(PadfootCloneSpawn));
     -- pick random padfoot to spawn as
     local myPadfoot = PadfootCloneSpawn[random];
@@ -49,7 +49,7 @@ function onMobSpawn(mob)
     end
  
     -- TODO: Add Treasure Hunter
-    if(math.random((1),(100)) <= 27) then -- Hardcoded "this or this item" drop rate until implemented.
+    if (math.random((1),(100)) <= 27) then -- Hardcoded "this or this item" drop rate until implemented.
       SetDropRate(4478,14782,1000); -- Astral Earring
       SetDropRate(4478,14676,0);
     else
@@ -74,7 +74,7 @@ function onMobDeath(mob,killer)
     16875552
   }
  
-  if(mob:getID() == 16875578) then
+  if (mob:getID() == 16875578) then
     local i = 1;
  
     while i <= (table.getn(PadfootClone)) do

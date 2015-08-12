@@ -26,8 +26,8 @@ function onTrigger(player,npc)
 	local Z=player:getZPos();
 	
 	if (npc:getAnimation() == 9) then	
-		if(Z >= -21)then
-			if(GetMobAction(16814095) == 0) then
+		if (Z >= -21) then
+			if (GetMobAction(16814095) == 0) then
 				local Rand = math.random(1,10);
 				if (Rand <=9) then -- Spawn Gargoyle
 					player:messageSpecial(TRAP_ACTIVATED); 
@@ -39,7 +39,7 @@ function onTrigger(player,npc)
 			else
 				player:messageSpecial(DOOR_LOCKED);
 			end	
-		elseif(Z <= -22)then
+		elseif (Z <= -22) then
 			player:startEvent(0x001A);
 		end
 	end
@@ -60,7 +60,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	if(csid == 0x001A and option == 1) then
+	if (csid == 0x001A and option == 1) then
 		player:setPos(260,-0.25,-20,254,111);
 	end
 end;

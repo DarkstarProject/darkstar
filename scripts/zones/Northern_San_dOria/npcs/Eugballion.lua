@@ -18,8 +18,8 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 function onTrade(player,npc,trade)
 
 	-- "Flyers for Regine" conditional script
-	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(532,1) and trade:getItemCount() == 1) then
+	if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
@@ -32,7 +32,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(GetRegionOwner(QUFIMISLAND) ~= SANDORIA) then 
+	if (GetRegionOwner(QUFIMISLAND) ~= SANDORIA) then 
 		player:showText(npc,EUGBALLION_CLOSED_DIALOG);
 	else
 		player:showText(npc,EUGBALLION_OPEN_DIALOG);

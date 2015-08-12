@@ -14,7 +14,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
+    if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
         return 1;
     end
     return 0;
@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
     local effect = target:stealStatusEffect();
     local dmg = 0;
 
-    if(effect ~= nil) then
+    if (effect ~= nil) then
             -- add to myself
             mob:addStatusEffect(effect:getType(), effect:getPower(), effect:getTickCount(), effect:getDuration());
         -- add buff to myself

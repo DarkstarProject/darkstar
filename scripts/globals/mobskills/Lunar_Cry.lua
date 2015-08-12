@@ -18,17 +18,17 @@ function onMobWeaponSkill(target, mob, skill)
 	local moon = 50;--VanadielMoonPhase();
 	local buffvalue = 1;
 
-	if(moon > 90) then
+	if (moon > 90) then
 		buffvalue = 31;
-	elseif(moon > 75) then
+	elseif (moon > 75) then
 		buffvalue = 26;
-	elseif(moon > 60) then
+	elseif (moon > 60) then
 		buffvalue = 21;
-	elseif(moon > 40) then
+	elseif (moon > 40) then
 		buffvalue = 16;
-	elseif(moon > 25) then
+	elseif (moon > 25) then
 		buffvalue = 11;
-	elseif(moon > 10) then
+	elseif (moon > 10) then
 		buffvalue = 6;
 	end
 

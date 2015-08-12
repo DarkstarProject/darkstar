@@ -92,7 +92,7 @@ end;
 
 function onTrigger(player,npc)
 
-	if( player:hasKeyItem(CLAMMING_KIT)) then -- Player has clamming kit
+	if ( player:hasKeyItem(CLAMMING_KIT)) then -- Player has clamming kit
 
 		if (player:getVar("ClammingKitBroken") == 1) then -- Broken bucket
 			player:startEvent(0x001E, 0, 0, 0, 0, 0, 0, 0, 0);

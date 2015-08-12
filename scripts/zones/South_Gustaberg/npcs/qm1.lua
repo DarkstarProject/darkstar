@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
   	gil = trade:getGil();
 
   	if ((trade:hasItemQty(4514,1) or trade:hasItemQty(5793,1)) and count == 1 and gil == 0) then
-		if(GetMobAction(17215494) == 0) then
+		if (GetMobAction(17215494) == 0) then
 			SpawnMob(17215494,288);
 			player:tradeComplete();
 		else

@@ -59,7 +59,7 @@ function onEventFinish(player,csid,option,npc)
 
     if (csid ==0x0096) then
         if (CoinType == 1) then -- Bronze Pieces
-            if(Quantity == 1) then
+            if (Quantity == 1) then
                 if (player:getFreeSlotsCount() == 0) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
                 else
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option,npc)
                     player:messageSpecial(ITEM_OBTAINED,2184);
                     player:addItem(2184);
                 end
-            elseif(Quantity <= 99) then
+            elseif (Quantity <= 99) then
                 if (player:getFreeSlotsCount() == 0) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
                 else
@@ -77,7 +77,7 @@ function onEventFinish(player,csid,option,npc)
                     player:messageSpecial(ITEM_OBTAINEDX,2184,Quantity);
                     player:addItem(2184,Quantity);
                 end
-            elseif(Quantity > 99 and Remainder == 0) then
+            elseif (Quantity > 99 and Remainder == 0) then
                 if (player:getFreeSlotsCount() <= Stacks) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
                 else
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option,npc)
                         player:addItem(2184,99);
                     end
                 end
-            elseif(Quantity > 99 and Remainder ~= 0) then
+            elseif (Quantity > 99 and Remainder ~= 0) then
                 if (player:getFreeSlotsCount() <= Stacks+1) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
                 else
@@ -102,7 +102,7 @@ function onEventFinish(player,csid,option,npc)
                 end
             end
         elseif (CoinType == 2) then -- Silver Pieces
-            if(Quantity == 1) then
+            if (Quantity == 1) then
                 if (player:getFreeSlotsCount() == 0) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
                 else
@@ -111,7 +111,7 @@ function onEventFinish(player,csid,option,npc)
                     player:messageSpecial(ITEM_OBTAINED,2185);
                     player:addItem(2185);
                 end
-            elseif(Quantity <= 99) then
+            elseif (Quantity <= 99) then
                 if (player:getFreeSlotsCount() == 0) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
                 else
@@ -120,7 +120,7 @@ function onEventFinish(player,csid,option,npc)
                     player:messageSpecial(ITEM_OBTAINEDX,2185,Quantity);
                     player:addItem(2185,Quantity);
                 end
-            elseif(Quantity > 99 and Remainder == 0) then
+            elseif (Quantity > 99 and Remainder == 0) then
                 if (player:getFreeSlotsCount() <= Stacks) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
                 else
@@ -131,7 +131,7 @@ function onEventFinish(player,csid,option,npc)
                         player:addItem(2185,99);
                     end
                 end
-            elseif(Quantity > 99 and Remainder ~= 0) then
+            elseif (Quantity > 99 and Remainder ~= 0) then
                 if (player:getFreeSlotsCount() <= Stacks+1) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
                 else
@@ -145,7 +145,7 @@ function onEventFinish(player,csid,option,npc)
                 end
             end
         elseif (CoinType == 3) then -- Mythril Pieces
-            if(Quantity == 1) then
+            if (Quantity == 1) then
                 if (player:getFreeSlotsCount() == 0) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2186);
                 else
@@ -154,7 +154,7 @@ function onEventFinish(player,csid,option,npc)
                     player:messageSpecial(ITEM_OBTAINED,2186);
                     player:addItem(2186);
                 end
-            elseif(Quantity <= 99) then
+            elseif (Quantity <= 99) then
                 if (player:getFreeSlotsCount() == 0) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2186);
                 else
@@ -163,7 +163,7 @@ function onEventFinish(player,csid,option,npc)
                     player:messageSpecial(ITEM_OBTAINEDX,2186,Quantity);
                     player:addItem(2186,Quantity);
                 end
-            elseif(Quantity > 99 and Remainder == 0) then
+            elseif (Quantity > 99 and Remainder == 0) then
                 if (player:getFreeSlotsCount() <= Stacks) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2186);
                 else
@@ -174,7 +174,7 @@ function onEventFinish(player,csid,option,npc)
                         player:addItem(2186,99);
                     end
                 end
-            elseif(Quantity > 99 and Remainder ~= 0) then
+            elseif (Quantity > 99 and Remainder ~= 0) then
                 if (player:getFreeSlotsCount() <= Stacks+1) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2186);
                 else
@@ -188,7 +188,7 @@ function onEventFinish(player,csid,option,npc)
                 end
             end
         elseif (CoinType == 4) then -- Gold Pieces
-            if(Quantity == 1) then
+            if (Quantity == 1) then
                 if (player:getFreeSlotsCount() == 0) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2187);
                 else
@@ -197,7 +197,7 @@ function onEventFinish(player,csid,option,npc)
                     player:messageSpecial(ITEM_OBTAINED,2187);
                     player:addItem(2187);
                 end
-            elseif(Quantity <= 99) then
+            elseif (Quantity <= 99) then
                 if (player:getFreeSlotsCount() == 0) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2187);
                 else
@@ -206,7 +206,7 @@ function onEventFinish(player,csid,option,npc)
                     player:messageSpecial(ITEM_OBTAINEDX,2187,Quantity);
                     player:addItem(2187,Quantity);
                 end
-            elseif(Quantity > 99 and Remainder == 0) then
+            elseif (Quantity > 99 and Remainder == 0) then
                 if (player:getFreeSlotsCount() <= Stacks) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2187);
                 else
@@ -217,7 +217,7 @@ function onEventFinish(player,csid,option,npc)
                         player:addItem(2187,99);
                     end
                 end
-            elseif(Quantity > 99 and Remainder ~= 0) then
+            elseif (Quantity > 99 and Remainder ~= 0) then
                 if (player:getFreeSlotsCount() <= Stacks+1) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2187);
                 else

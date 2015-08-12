@@ -45,7 +45,7 @@ function onTrigger(player,npc)
 	
 	Catch = player:getQuestStatus(WINDURST,CATCH_IT_IF_YOU_CAN);	
 	WonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS);
-	if(WonderWands == QUEST_ACCEPTED) then
+	if (WonderWands == QUEST_ACCEPTED) then
 		player:startEvent(0x0102,0,17053);
 	elseif (Catch == 0) then
 		prog = player:getVar("QuestCatchItIfYouCan_var");
@@ -70,7 +70,7 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x00fb); -- CATCH IT IF YOU CAN: During Quest 2
 		end	
-	elseif(WonderWands == QUEST_COMPLETED) then
+	elseif (WonderWands == QUEST_COMPLETED) then
 		player:startEvent(0x0109);
 	else
 		player:startEvent(0x00e6); -- STANDARD CONVERSATION

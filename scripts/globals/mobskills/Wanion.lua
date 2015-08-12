@@ -22,14 +22,14 @@ function onMobWeaponSkill(target, mob, skill)
 
     for i, effect in ipairs(effects) do
 
-        if(mob:hasStatusEffect(effect) == true) then
+        if (mob:hasStatusEffect(effect) == true) then
             effectCount = true;
 
             local currentEffect = mob:getStatusEffect(effect);
 
             local msg = MobStatusEffectMove(mob, target, effect, currentEffect:getPower(), 3, 120);
 
-            if(msg == MSG_ENFEEB_IS) then
+            if (msg == MSG_ENFEEB_IS) then
                 lastEffect = effect;
             end
 
@@ -38,12 +38,12 @@ function onMobWeaponSkill(target, mob, skill)
     end
 
     -- all resisted
-    if(lastEffect == 0) then
+    if (lastEffect == 0) then
         skill:setMsg(MSG_RESIST);
     end
 
     -- no effects present
-    if(effectCount == false) then
+    if (effectCount == false) then
         skill:setMsg(MSG_NO_EFFECT);
     end
 

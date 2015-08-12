@@ -87,13 +87,13 @@ function onEventFinish(player,csid,option)
 
 	if (csid == 0x0006) then
 		player:setVar("SirensTear",1);
-	elseif(csid == 0x0013) then
+	elseif (csid == 0x0013) then
 		player:setVar("SirensTear",2);
-	elseif(csid == 0x00b9) then
+	elseif (csid == 0x00b9) then
 		player:addQuest(BASTOK,LOVE_AND_ICE);
 		player:addKeyItem(CARMELOS_SONG_SHEET);
 		player:messageSpecial(KEYITEM_OBTAINED,CARMELOS_SONG_SHEET);
-	elseif(csid == 0x00ba) then
+	elseif (csid == 0x00ba) then
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17356);
 		else 
@@ -105,17 +105,17 @@ function onEventFinish(player,csid,option)
 			player:addFame(BASTOK,BAS_FAME*120);
 			player:completeQuest(BASTOK,LOVE_AND_ICE);
 		end
-	elseif(csid == 0x010e) then
+	elseif (csid == 0x010e) then
 		player:addQuest(BASTOK,A_TEST_OF_TRUE_LOVE);
-	elseif(csid == 0x0110) then
+	elseif (csid == 0x0110) then
 		player:setVar("ATestOfTrueLoveProgress",4);
 		player:needToZone(true);
-	elseif(csid == 0x0112) then
+	elseif (csid == 0x0112) then
 		player:setVar("ATestOfTrueLoveProgress",0);
 		player:needToZone(true);
 		player:addFame(BASTOK,BAS_FAME*120);
 		player:completeQuest(BASTOK,A_TEST_OF_TRUE_LOVE);
-	elseif(csid == 0x0113) then
+	elseif (csid == 0x0113) then
 		player:addQuest(BASTOK,LOVERS_IN_THE_DUSK);
 		player:addKeyItem(CHANSON_DE_LIBERTE);
 		player:messageSpecial(KEYITEM_OBTAINED,CHANSON_DE_LIBERTE);

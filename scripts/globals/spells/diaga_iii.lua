@@ -41,7 +41,7 @@ function onSpellCast(caster,target,spell)
 	local bio = target:getStatusEffect(EFFECT_BIO);
 
 	-- Do it!
-	if(bio == nil or (DIA_OVERWRITE == 0 and bio:getPower() <= 3) or (DIA_OVERWRITE == 1 and bio:getPower() < 3)) then
+	if (bio == nil or (DIA_OVERWRITE == 0 and bio:getPower() <= 3) or (DIA_OVERWRITE == 1 and bio:getPower() < 3)) then
 		target:addStatusEffect(EFFECT_DIA,3,3,duration,FLAG_ERASABLE, 0, 15);
 		spell:setMsg(2);
 	else
@@ -49,8 +49,8 @@ function onSpellCast(caster,target,spell)
 	end
 
 	-- Try to kill same tier Bio
-	if(BIO_OVERWRITE == 1 and bio ~= nil) then
-		if(bio:getPower() <= 3) then
+	if (BIO_OVERWRITE == 1 and bio ~= nil) then
+		if (bio:getPower() <= 3) then
 			target:delStatusEffect(EFFECT_BIO);
 		end
 	end

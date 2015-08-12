@@ -28,35 +28,35 @@ function onTrade(player,npc,trade)
 	local questItemNeeded = 0;
 
 	-- Player traded a key.
-	if((trade:hasItemQty(1055,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
+	if ((trade:hasItemQty(1055,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
 		local zone = player:getZoneID();
 		-- IMPORTANT ITEM: L'Ephemere & Map -----------
-		if(player:hasKeyItem(MAP_OF_THE_SEA_SERPENT_GROTTO) == false) then
+		if (player:hasKeyItem(MAP_OF_THE_SEA_SERPENT_GROTTO) == false) then
 			questItemNeeded = 1;
-		elseif(player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and player:hasKeyItem(LEPHEMERE) == false) then 
+		elseif (player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and player:hasKeyItem(LEPHEMERE) == false) then 
 			questItemNeeded = 2;
 		end
 		--------------------------------------
 		local pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
 		local success = 0;
-		if(pack[2] ~= nil) then
+		if (pack[2] ~= nil) then
 			player:messageSpecial(pack[2]);
 			success = pack[1];
 		else
 			success = pack[1];
 		end
 
-		if(success ~= -2) then
+		if (success ~= -2) then
 			player:tradeComplete();
 
-			if(math.random() <= success) then
+			if (math.random() <= success) then
 				-- Succeded to open the coffer
 				player:messageSpecial(CHEST_UNLOCKED);
 
-				if(questItemNeeded == 1) then
+				if (questItemNeeded == 1) then
 					player:addKeyItem(MAP_OF_THE_SEA_SERPENT_GROTTO);
 					player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_SEA_SERPENT_GROTTO); -- Map of Sea Serpent Grotto
-				elseif(questItemNeeded == 2) then
+				elseif (questItemNeeded == 2) then
 					player:setVar("ATestOfTrueLoveProgress",player:getVar("ATestOfTrueLoveProgress")+1);
 					player:addKeyItem(LEPHEMERE);
 					player:messageSpecial(KEYITEM_OBTAINED,LEPHEMERE); -- L'Ephemere for A Test Of True Love quest
@@ -68,7 +68,7 @@ function onTrade(player,npc,trade)
 					-- print("[1]", loot[1]); -- debug
 					-- print("[2]", loot[2]); -- debug
 
-					if(loot[1]=="gil") then
+					if (loot[1]=="gil") then
 						player:addGil(loot[2]*GIL_RATE);
 						player:messageSpecial(GIL_OBTAINED,loot[2]*GIL_RATE);
 					else

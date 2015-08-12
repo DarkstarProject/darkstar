@@ -26,23 +26,23 @@ function onTrigger(player,npc)
 	
 	local CurrentMission = player:getCurrentMission(SANDORIA)
 	
-	if(CurrentMission == THE_DAVOI_REPORT and player:getVar("MissionStatus") == 1) then
+	if (CurrentMission == THE_DAVOI_REPORT and player:getVar("MissionStatus") == 1) then
 		player:setVar("MissionStatus",2);
 		player:addKeyItem(LOST_DOCUMENT);
 		player:messageSpecial(KEYITEM_OBTAINED,LOST_DOCUMENT);
-	elseif(CurrentMission == INFILTRATE_DAVOI and player:getVar("MissionStatus") >= 6 and player:getVar("MissionStatus") <= 9) then
+	elseif (CurrentMission == INFILTRATE_DAVOI and player:getVar("MissionStatus") >= 6 and player:getVar("MissionStatus") <= 9) then
 		local X = npc:getXPos();
 		local Z = npc:getZPos();
 		
-		if(X >= 292 and X <= 296 and Z >= -30 and Z <= -26 and player:hasKeyItem(EAST_BLOCK_CODE) == false) then
+		if (X >= 292 and X <= 296 and Z >= -30 and Z <= -26 and player:hasKeyItem(EAST_BLOCK_CODE) == false) then
 			player:setVar("MissionStatus",player:getVar("MissionStatus") + 1);
 			player:addKeyItem(EAST_BLOCK_CODE);
 			player:messageSpecial(KEYITEM_OBTAINED,EAST_BLOCK_CODE);
-		elseif(X >= 333 and X <= 337 and Z >= -138 and Z <= -134 and player:hasKeyItem(SOUTH_BLOCK_CODE) == false) then
+		elseif (X >= 333 and X <= 337 and Z >= -138 and Z <= -134 and player:hasKeyItem(SOUTH_BLOCK_CODE) == false) then
 			player:setVar("MissionStatus",player:getVar("MissionStatus") + 1);
 			player:addKeyItem(SOUTH_BLOCK_CODE);
 			player:messageSpecial(KEYITEM_OBTAINED,SOUTH_BLOCK_CODE);
-		elseif(X >= 161 and X <= 165 and Z >= -20 and Z <= -16 and player:hasKeyItem(NORTH_BLOCK_CODE) == false) then
+		elseif (X >= 161 and X <= 165 and Z >= -20 and Z <= -16 and player:hasKeyItem(NORTH_BLOCK_CODE) == false) then
 			player:setVar("MissionStatus",player:getVar("MissionStatus") + 1);
 			player:addKeyItem(NORTH_BLOCK_CODE);
 			player:messageSpecial(KEYITEM_OBTAINED,NORTH_BLOCK_CODE);

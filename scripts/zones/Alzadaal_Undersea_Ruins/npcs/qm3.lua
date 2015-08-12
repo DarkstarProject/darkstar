@@ -14,7 +14,7 @@ require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(2574,1) and trade:getItemCount() == 1) then -- Trade Ferrite
+	if (trade:hasItemQty(2574,1) and trade:getItemCount() == 1) then -- Trade Ferrite
 		player:tradeComplete();
 		SpawnMob(17072178,180):updateClaim(player);
 	end

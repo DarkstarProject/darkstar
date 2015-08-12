@@ -19,7 +19,7 @@ require("scripts/zones/Kazham/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(1544,1) == true and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE) == QUEST_ACCEPTED  and player:getMainJob() == JOB_SMN) then
+	if (trade:hasItemQty(1544,1) == true and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE) == QUEST_ACCEPTED  and player:getMainJob() == JOB_SMN) then
 		player:startEvent(0x011f,0,1544,0,20);
 	end
 
@@ -32,17 +32,17 @@ end;
 function onTrigger(player,npc)
 	local TrialSizeFire = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE);
 
-	if(player:getMainLvl() >= 20 and player:getMainJob() == JOB_SMN and TrialSizeFire == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 2) then --Requires player to be Summoner at least lvl 20
+	if (player:getMainLvl() >= 20 and player:getMainJob() == JOB_SMN and TrialSizeFire == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 2) then --Requires player to be Summoner at least lvl 20
 		player:startEvent(0x011e,0,1544,0,20); 	--mini tuning fork, zone, level
-	elseif(TrialSizeFire == QUEST_ACCEPTED) then
+	elseif (TrialSizeFire == QUEST_ACCEPTED) then
 		local FireFork = player:hasItem(1544);
 		
-		if(FireFork == true) then 
+		if (FireFork == true) then 
 			player:startEvent(0x0110); --Dialogue given to remind player to be prepared
-		elseif(FireFork == false and tonumber(os.date("%j")) ~= player:getVar("TrialSizeFire_date")) then
+		elseif (FireFork == false and tonumber(os.date("%j")) ~= player:getVar("TrialSizeFire_date")) then
 			player:startEvent(0x0122,0,1544,0,20); --Need another mini tuning fork
 		end
-	elseif(TrialSizeFire == QUEST_COMPLETED) then
+	elseif (TrialSizeFire == QUEST_COMPLETED) then
 		player:startEvent(0x0121); --Defeated Avatar
 	else
 		player:startEvent(0x0113); --Standard dialogue
@@ -66,7 +66,7 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-	if(csid == 0x011e and option == 1) then
+	if (csid == 0x011e and option == 1) then
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1544); --Mini tuning fork 
 		else
@@ -75,14 +75,14 @@ function onEventFinish(player,csid,option)
 			player:addItem(1544); 
 			player:messageSpecial(ITEM_OBTAINED,1544); 
 		end
-	elseif(csid == 0x0122 and option == 1) then
+	elseif (csid == 0x0122 and option == 1) then
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1544); --Mini tuning fork 
 		else
 			player:addItem(1544); 
 			player:messageSpecial(ITEM_OBTAINED,1544); 
 		end
-	elseif(csid == 0x011f and option == 1) then
+	elseif (csid == 0x011f and option == 1) then
 		toCloisterOfFlames(player);
 	end	
 end;

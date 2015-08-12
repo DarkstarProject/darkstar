@@ -1,7 +1,7 @@
 #DarkStar Version Info
 
 #Minimum Client version allowed to login to server.
-Min_Client_Ver: 30150619_2
+Min_Client_Ver: 30150730_1
 
 #Current Server Version. Not the same thing as source revision.
 #DSP_VER: Unused because we aren't even close to a "release" yet.

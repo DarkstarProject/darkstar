@@ -19,7 +19,7 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 function onTrade(player,npc,trade)
     local newRank = tradeTestItem(player,npc,trade,SKILL_COOKING);
 
-    if(newRank ~= 0) then
+    if (newRank ~= 0) then
         player:setSkillRank(SKILL_COOKING,newRank);
         player:startEvent(0x271e,0,0,0,0,newRank);
     end

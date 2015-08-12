@@ -12,7 +12,7 @@ require("scripts/globals/monstertpmoves");
 
 function onMobSkillCheck(target,mob,skill)
     local zone = target:getZoneID();
-    if(zone >= 1 and zone <= 4) then
+    if (zone >= 1 and zone <= 4) then
         return 1;
     end
 	return 0;

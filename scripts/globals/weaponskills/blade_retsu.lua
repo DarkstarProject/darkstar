@@ -37,13 +37,13 @@ function onUseWeaponSkill(player, target, wsID)
 	if damage > 0 then
 		local tp = player:getTP();
 		local duration = (tp/100 * 30);
-		if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
+		if (target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
 			-- paralyze proc based on lvl difference
 			local power = 30 + (player:getMainLvl() - target:getMainLvl())*3;
-			if(power > 35) then
+			if (power > 35) then
 				power = 35;
 			end
-			if(power < 5) then
+			if (power < 5) then
 				power = 5;
 			end
 			target:addStatusEffect(EFFECT_PARALYSIS, power, 0, duration);

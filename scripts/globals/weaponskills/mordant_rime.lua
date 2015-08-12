@@ -35,12 +35,12 @@ function onUseWeaponSkill(player, target, wsID)
 	end
 
 	local chance = player:getTP()-100 > math.random()*150;
-	if(damage > 0 and chance) and (target:hasStatusEffect(EFFECT_WEIGHT) == false) then
+	if (damage > 0 and chance) and (target:hasStatusEffect(EFFECT_WEIGHT) == false) then
 		target:addStatusEffect(EFFECT_WEIGHT, 50, 0, 60);
 	end
 
-		if((player:getEquipID(SLOT_MAIN) == 19000) and (player:getMainJob() == JOB_BRD)) then
-		if(damage > 0) then
+		if ((player:getEquipID(SLOT_MAIN) == 19000) and (player:getMainJob() == JOB_BRD)) then
+		if (damage > 0) then
 
 --		AFTERMATH LV1
 

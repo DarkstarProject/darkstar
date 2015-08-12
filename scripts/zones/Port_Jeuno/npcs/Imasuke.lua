@@ -40,7 +40,7 @@ function onTrigger(player,npc)
 
 		if (player:getVar("circleTime") == 1) then
 			player:startEvent(0x1E);
-		elseif(player:getVar("circleTime") == 2) then
+		elseif (player:getVar("circleTime") == 2) then
 			player:startEvent(0x1D);
 		elseif (player:getVar("circleTime") == 3) then
 			player:startEvent(0x20);
@@ -49,9 +49,9 @@ function onTrigger(player,npc)
 		elseif (player:getVar("circleTime") == 5) then
 			player:startEvent(0x1F);
 		end
-	elseif(player:getFameLevel(JEUNO) >= 3 and TheAntiqueCollector == QUEST_AVAILABLE) then
+	elseif (player:getFameLevel(JEUNO) >= 3 and TheAntiqueCollector == QUEST_AVAILABLE) then
 		player:startEvent(0x000d); -- Start quest
-	elseif(TheAntiqueCollector == QUEST_ACCEPTED) then
+	elseif (TheAntiqueCollector == QUEST_ACCEPTED) then
 		player:startEvent(0x000e); -- Mid CS
 	else
 		player:startEvent(0x000c); -- Standard dialog
@@ -76,22 +76,22 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x000d and option == 1) then
+	if (csid == 0x000d and option == 1) then
 		player:addQuest(JEUNO,THE_ANTIQUE_COLLECTOR);
-	elseif(csid == 0x000f) then
+	elseif (csid == 0x000f) then
 		player:addTitle(TRADER_OF_ANTIQUITIES);
-		if(player:hasKeyItem(MAP_OF_DELKFUTTS_TOWER) == false) then
+		if (player:hasKeyItem(MAP_OF_DELKFUTTS_TOWER) == false) then
 			player:addKeyItem(MAP_OF_DELKFUTTS_TOWER);
 			player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_DELKFUTTS_TOWER);
 		end
 		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:tradeComplete(trade);
 		player:completeQuest(JEUNO,THE_ANTIQUE_COLLECTOR);
-	elseif(csid == 0x1D and option == 1) then
+	elseif (csid == 0x1D and option == 1) then
 		player:setVar("circleTime",3);
-	elseif(csid == 0x1E and option == 1) then
+	elseif (csid == 0x1E and option == 1) then
 		player:setVar("circleTime",3);
-	elseif(csid == 0x1E and option == 0) then
+	elseif (csid == 0x1E and option == 0) then
 		player:setVar("circleTime",2);
 	elseif (csid == 0x21) then
 		player:setVar("circleTime",5);

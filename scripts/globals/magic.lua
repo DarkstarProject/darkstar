@@ -78,21 +78,21 @@ function calculateMagicDamage(V,M,player,spell,target,skilltype,atttype,hasMulti
     local dint = player:getStat(atttype) - target:getStat(atttype);
     local dmg = V;
 
-    if(dint<=0) then --ifdINT penalises, it's always M=1
+    if (dint<=0) then --ifdINT penalises, it's always M=1
         dmg = dmg + dint;
-        if(dmg <= 0) then --dINT penalty cannot result in negative damage (target absorption)
+        if (dmg <= 0) then --dINT penalty cannot result in negative damage (target absorption)
             return 0;
         end
-    elseif(dint > 0 and dint <= SOFT_CAP) then --The standard calc, most spells hit this
+    elseif (dint > 0 and dint <= SOFT_CAP) then --The standard calc, most spells hit this
         dmg = dmg + (dint*M);
-    elseif(dint > 0 and dint > SOFT_CAP and dint < HARD_CAP) then --After SOFT_CAP, INT is only half effective
+    elseif (dint > 0 and dint > SOFT_CAP and dint < HARD_CAP) then --After SOFT_CAP, INT is only half effective
         dmg = dmg + SOFT_CAP*M + ((dint-SOFT_CAP)*M)/2;
-    elseif(dint > 0 and dint > SOFT_CAP and dint >= HARD_CAP) then --After HARD_CAP, INT has no effect.
+    elseif (dint > 0 and dint > SOFT_CAP and dint >= HARD_CAP) then --After HARD_CAP, INT has no effect.
         dmg = dmg + HARD_CAP*M;
     end
 
 
-    if(skilltype == DIVINE_MAGIC_SKILL and target:isUndead()) then
+    if (skilltype == DIVINE_MAGIC_SKILL and target:isUndead()) then
         -- 150% bonus damage
         dmg = dmg * 1.5;
     end
@@ -114,9 +114,9 @@ function doBoostGain(caster,target,spell,effect)
 
     local potency = math.floor((magicskill - 300) / 10) + 5;
 
-    if(potency > 25) then
+    if (potency > 25) then
         potency = 25;
-    elseif(potency < 5) then
+    elseif (potency < 5) then
         potency = 5;
     end
 
@@ -127,13 +127,13 @@ function doBoostGain(caster,target,spell,effect)
 
     for i, effect in ipairs(effectOverwrite) do
             --printf("BOOST-GAIN: CHECKING FOR EFFECT %d...",effect);
-            if(caster:hasStatusEffect(effect)) then
+            if (caster:hasStatusEffect(effect)) then
                 --printf("BOOST-GAIN: HAS EFFECT %d, DELETING...",effect);
                 caster:delStatusEffect(effect);
             end
     end
 
-    if(target:addStatusEffect(effect,potency,0,duration)) then
+    if (target:addStatusEffect(effect,potency,0,duration)) then
         spell:setMsg(230);
     else
         spell:setMsg(75);
@@ -142,7 +142,7 @@ end;
 
 function doEnspell(caster,target,spell,effect)
 
-    if(effect==EFFECT_BLOOD_WEAPON) then
+    if (effect==EFFECT_BLOOD_WEAPON) then
         target:addStatusEffect(EFFECT_BLOOD_WEAPON,1,0,30);
         return;
     end
@@ -155,11 +155,11 @@ function doEnspell(caster,target,spell,effect)
     local magicskill = target:getSkillLevel(ENHANCING_MAGIC_SKILL);
 
     local potency = 3 + math.floor((6*magicskill)/100);
-    if(magicskill>200) then
+    if (magicskill>200) then
         potency = 5 + math.floor((5*magicskill)/100);
     end
 
-    if(target:addStatusEffect(effect,potency,0,duration)) then
+    if (target:addStatusEffect(effect,potency,0,duration)) then
         spell:setMsg(230);
     else
         spell:setMsg(75);
@@ -168,7 +168,6 @@ end;
 
 
  ---------------------------------
- --   Author: ZeDingo
  --   getCurePower returns the caster's cure power
  --   getCureFinal returns the final cure amount
  --   Source: http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
@@ -195,12 +194,12 @@ function getBaseCureOld(power,divisor,constant)
 end;
 
 function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
-    if(basecure < minCure) then
+    if (basecure < minCure) then
         basecure = minCure;
     end
 
     local potency = 1 + (caster:getMod(MOD_CURE_POTENCY) / 100);
-    if(potency > 1.5) then
+    if (potency > 1.5) then
         potency = 1.5;
     end
 
@@ -210,12 +209,12 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
     end
 
     local rapture = 1;
-    if(isBlueMagic == false) then --rapture doesn't affect BLU cures as they're not white magic
+    if (isBlueMagic == false) then --rapture doesn't affect BLU cures as they're not white magic
         if (caster:hasStatusEffect(EFFECT_RAPTURE)) then
             local equippedHead = caster:getEquipID(SLOT_HEAD);
-            if(equippedHead == 11183) then
+            if (equippedHead == 11183) then
                 rapture = 1.55; --savant's bonnet +1
-            elseif(equippedHead == 11083) then
+            elseif (equippedHead == 11083) then
                 rapture = 1.6; --savant's bonnet +2
             else
                 rapture = 1.5;
@@ -230,46 +229,46 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
     local equippedMain = caster:getEquipID(SLOT_MAIN);
     local equippedWaist = caster:getEquipID(SLOT_WAIST);
 
-    if(castersWeather == singleWeatherStrong[ele]) then
-        if(equippedMain == 18632 or equippedMain == 18633) then
-            if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+    if (castersWeather == singleWeatherStrong[ele]) then
+        if (equippedMain == 18632 or equippedMain == 18633) then
+            if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+        if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif(castersWeather == singleWeatherWeak[ele]) then
-        if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+    elseif (castersWeather == singleWeatherWeak[ele]) then
+        if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
-    elseif(castersWeather == doubleWeatherStrong[ele]) then
-        if(equippedMain == 18632 or equippedMain == 18633) then
-            if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+    elseif (castersWeather == doubleWeatherStrong[ele]) then
+        if (equippedMain == 18632 or equippedMain == 18633) then
+            if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+        if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
             dayWeatherBonus = dayWeatherBonus + 0.25;
         end
-    elseif(castersWeather == doubleWeatherWeak[ele]) then
-        if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+    elseif (castersWeather == doubleWeatherWeak[ele]) then
+        if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
             dayWeatherBonus = dayWeatherBonus - 0.25;
         end
     end
 
     local dayElement = VanadielDayElement();
-    if(dayElement == dayStrong[ele]) then
-        if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+    if (dayElement == dayStrong[ele]) then
+        if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif(dayElement == dayWeak[ele]) then
-        if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+    elseif (dayElement == dayWeak[ele]) then
+        if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
     end
 
-    if(dayWeatherBonus > 1.35) then
+    if (dayWeatherBonus > 1.35) then
         dayWeatherBonus = 1.35;
     end
 
@@ -282,7 +281,6 @@ function getCureAsNukeFinal(caster,spell,power,divisor,constant,basepower)
 end;
 
 -----------------------------------
---    Author: ReaperX
 --     Returns the staff bonus for the caster and spell.
 -----------------------------------
 
@@ -304,9 +302,9 @@ function AffinityBonus(caster,ele)
         affinity = affinity + 2;
     end
 
-    if(affinity > 0) then
+    if (affinity > 0) then
         bonus = bonus + 0.05 + 0.05 * affinity;
-    elseif(affinity < 0) then
+    elseif (affinity < 0) then
         bonus = bonus - 0.05 + 0.05 * affinity;
     end
 
@@ -325,8 +323,9 @@ function applyResistance(player,spell,target,diff,skill,bonus)
     local resist = 1.0;
     local magicaccbonus = 0;
     local element = spell:getElement();
+    local castersWeather = player:getWeather();
 
-    if(bonus ~= nil) then
+    if (bonus ~= nil) then
         magicaccbonus = magicaccbonus + bonus;
     end
 
@@ -342,18 +341,26 @@ function applyResistance(player,spell,target,diff,skill,bonus)
     if player:hasStatusEffect(EFFECT_ALTRUISM) and spell:getSpellGroup() == SPELLGROUP_WHITE then
         magicacc = magicacc + player:getStatusEffect(EFFECT_ALTRUISM):getPower();
     end
+	
     if player:hasStatusEffect(EFFECT_FOCALIZATION) and spell:getSpellGroup() == SPELLGROUP_BLACK then
         magicacc = magicacc + player:getStatusEffect(EFFECT_FOCALIZATION):getPower();
     end
     --difference in int/mnd
-    if(diff > 10) then
+	
+    if (diff > 10) then
         magicacc = magicacc + 10 + (diff - 10)/2;
     else
         magicacc = magicacc + diff;
     end
-    --add acc for ele/dark seal
-    if(player:getStatusEffect(EFFECT_DARK_SEAL) ~= nil and skill == DARK_MAGIC_SKILL) then
+	
+    --Add acc for dark seal
+    if (player:getStatusEffect(EFFECT_DARK_SEAL) ~= nil and skill == DARK_MAGIC_SKILL) then
         magicaccbonus = magicaccbonus + 256;
+    end
+	
+    --Add acc for klimaform
+    if (player:hasStatusEffect(EFFECT_KLIMAFORM) and (castersWeather == singleWeatherStrong[element] or castersWeather == doubleWeatherStrong[element])) then
+        magicaccbonus = magicaccbonus + 15;
     end
 
     if (element > ELE_NONE) then
@@ -384,7 +391,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
     end
     
     --add acc for skillchains
-    if(skillchainTier > 0) then
+    if (skillchainTier > 0) then
         magicaccbonus = magicaccbonus + 25;
     end
 
@@ -410,7 +417,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
 
 
     --double any acc over 50 if it's over 50
-    if(p > 5) then
+    if (p > 5) then
         p = 5 + (p - 5) * 2;
     end
 
@@ -419,15 +426,15 @@ function applyResistance(player,spell,target,diff,skill,bonus)
 
     --add a scaling bonus or penalty based on difference of targets level from caster
     local leveldiff = player:getMainLvl() - target:getMainLvl();
-    if(leveldiff < 0) then
+    if (leveldiff < 0) then
         p = p - (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
     else
         p = p + (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
     end
     --cap accuracy
-    if(p > 95) then
+    if (p > 95) then
         p = 95;
-    elseif(p < 5) then
+    elseif (p < 5) then
         p = 5;
     end
 
@@ -446,16 +453,16 @@ function applyResistance(player,spell,target,diff,skill,bonus)
     local resvar = math.random();
 
     -- Determine final resist based on which thresholds have been crossed.
-    if(resvar <= sixteenth) then
+    if (resvar <= sixteenth) then
         resist = 0.0625;
         --printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
-    elseif(resvar <= eighth) then
+    elseif (resvar <= eighth) then
         resist = 0.125;
         --printf("Spell resisted to 1/8!  Threshold = %u",eighth);
-    elseif(resvar <= quart) then
+    elseif (resvar <= quart) then
         resist = 0.25;
         --printf("Spell resisted to 1/4.  Threshold = %u",quart);
-    elseif(resvar <= half) then
+    elseif (resvar <= half) then
         resist = 0.5;
         --printf("Spell resisted to 1/2.  Threshold = %u",half);
     else
@@ -473,12 +480,12 @@ end;
 
 function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
     -- resist everything if magic shield is active
-    if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
+    if (target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
         return 0;
     end
 
     -- If Stymie is active, as long as the mob is not immune then the effect is not resisted
-    if(player:hasStatusEffect(EFFECT_STYMIE) and target:canGainStatusEffect(effect)) then
+    if (player:hasStatusEffect(EFFECT_STYMIE) and target:canGainStatusEffect(effect)) then
         player:delStatusEffect(EFFECT_STYMIE);
         return 1;
     end
@@ -487,7 +494,7 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
     local magicaccbonus = 0;
     local element = spell:getElement();
 
-    if(bonus ~= nil) then
+    if (bonus ~= nil) then
         magicaccbonus = magicaccbonus + bonus;
     end
 
@@ -507,13 +514,13 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
         magicacc = magicacc + player:getStatusEffect(EFFECT_FOCALIZATION):getPower();
     end
     --difference in int/mnd
-    if(diff > 10) then
+    if (diff > 10) then
         magicacc = magicacc + 10 + (diff - 10)/2;
     else
         magicacc = magicacc + diff;
     end
     --add acc for ele/dark seal
-    if(player:getStatusEffect(EFFECT_DARK_SEAL) ~= nil and skill == DARK_MAGIC_SKILL) then
+    if (player:getStatusEffect(EFFECT_DARK_SEAL) ~= nil and skill == DARK_MAGIC_SKILL) then
         magicaccbonus = magicaccbonus + 256;
     end
 
@@ -536,7 +543,7 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
 
     local skillchainTier, skillchainCount = FormMagicBurst(element, target);
     --add acc for skillchains
-    if(skillchainTier > 0) then
+    if (skillchainTier > 0) then
         magicaccbonus = magicaccbonus + 25;
     end
 
@@ -562,7 +569,7 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
 
 
     --double any acc over 50 if it's over 50
-    if(p > 5) then
+    if (p > 5) then
         p = 5 + (p - 5) * 2;
     end
 
@@ -571,54 +578,54 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
 
     --add a scaling bonus or penalty based on difference of targets level from caster
     local leveldiff = player:getMainLvl() - target:getMainLvl();
-    if(leveldiff < 0) then
+    if (leveldiff < 0) then
         p = p - (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
     else
         p = p + (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
     end
     
     -- add effect resistence
-    if(effect ~= nil and effect > 0) then
+    if (effect ~= nil and effect > 0) then
         local effectres = 0;
-        if(effect == EFFECT_SLEEP_I or effect == EFFECT_SLEEP_II or effect == EFFECT_LULLABY) then
+        if (effect == EFFECT_SLEEP_I or effect == EFFECT_SLEEP_II or effect == EFFECT_LULLABY) then
             effectres = MOD_SLEEPRES;
-        elseif(effect == EFFECT_POISON) then
+        elseif (effect == EFFECT_POISON) then
             effectres = MOD_POISONRES;
-        elseif(effect == EFFECT_PARALYZE) then
+        elseif (effect == EFFECT_PARALYZE) then
             effectres = MOD_PARALYZERES;
-        elseif(effect == EFFECT_BLINDNESS) then
+        elseif (effect == EFFECT_BLINDNESS) then
             effectres = MOD_BLINDRES
-        elseif(effect == EFFECT_SILENCE) then
+        elseif (effect == EFFECT_SILENCE) then
             effectres = MOD_SILENCERES;
-        elseif(effect == EFFECT_PLAGUE or effect == EFFECT_DISEASE) then
+        elseif (effect == EFFECT_PLAGUE or effect == EFFECT_DISEASE) then
             effectres = MOD_VIRUSRES;
-        elseif(effect == EFFECT_PETRIFICATION) then
+        elseif (effect == EFFECT_PETRIFICATION) then
             effectres = MOD_PETRIFYRES;
-        elseif(effect == EFFECT_BIND) then
+        elseif (effect == EFFECT_BIND) then
             effectres = MOD_BINDRES;
-        elseif(effect == EFFECT_CURSE_I or effect == EFFECT_CURSE_II or effect == EFFECT_BANE) then
+        elseif (effect == EFFECT_CURSE_I or effect == EFFECT_CURSE_II or effect == EFFECT_BANE) then
             effectres = MOD_CURSERES;
-        elseif(effect == EFFECT_WEIGHT) then
+        elseif (effect == EFFECT_WEIGHT) then
             effectres = MOD_GRAVITYRES;
-        elseif(effect == EFFECT_SLOW) then
+        elseif (effect == EFFECT_SLOW) then
             effectres = MOD_SLOWRES;
-        elseif(effect == EFFECT_STUN) then
+        elseif (effect == EFFECT_STUN) then
             effectres = MOD_STUNRES;
-        elseif(effect == EFFECT_CHARM) then
+        elseif (effect == EFFECT_CHARM) then
             effectres = MOD_CHARMRES;
-        elseif(effect == EFFECT_AMNESIA) then
+        elseif (effect == EFFECT_AMNESIA) then
             effectres = MOD_AMNESIARES;
         end
 
-        if(effectres > 0) then
+        if (effectres > 0) then
             p = p - target:getMod(effectres);
         end
     end
     
     --cap accuracy
-    if(p > 95) then
+    if (p > 95) then
         p = 95;
-    elseif(p < 5) then
+    elseif (p < 5) then
         p = 5;
     end
 
@@ -637,16 +644,16 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
     local resvar = math.random();
 
     -- Determine final resist based on which thresholds have been crossed.
-    if(resvar <= sixteenth) then
+    if (resvar <= sixteenth) then
         resist = 0.0625;
         --printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
-    elseif(resvar <= eighth) then
+    elseif (resvar <= eighth) then
         resist = 0.125;
         --printf("Spell resisted to 1/8!  Threshold = %u",eighth);
-    elseif(resvar <= quart) then
+    elseif (resvar <= quart) then
         resist = 0.25;
         --printf("Spell resisted to 1/4.  Threshold = %u",quart);
-    elseif(resvar <= half) then
+    elseif (resvar <= half) then
         resist = 0.5;
         --printf("Spell resisted to 1/2.  Threshold = %u",half);
     else
@@ -664,7 +671,7 @@ function applyResistanceAbility(player,target,element,skill,bonus)
     local resist = 1.0;
     local magicaccbonus = 0;
 
-    if(bonus ~= nil) then
+    if (bonus ~= nil) then
         magicaccbonus = magicaccbonus + bonus;
     end
 
@@ -672,7 +679,7 @@ function applyResistanceAbility(player,target,element,skill,bonus)
 
     local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
 
-    if(element > ELE_NONE) then
+    if (element > ELE_NONE) then
         --add acc for staves
         local affinityBonus = AffinityBonus(player, element);
         magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
@@ -680,7 +687,7 @@ function applyResistanceAbility(player,target,element,skill,bonus)
 
     --base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
     local magiceva = target:getMod(MOD_MEVA);
-    if(element > ELE_NONE) then
+    if (element > ELE_NONE) then
         magiceva = magiceva + target:getMod(resistMod[element]);
     end
 
@@ -698,7 +705,7 @@ function applyResistanceAbility(player,target,element,skill,bonus)
     -- printf("acc: %f, eva: %f, bonus: %f", magicacc, magiceva, magicaccbonus);
 
     --double any acc over 50 if it's over 50
-    if(p > 5) then
+    if (p > 5) then
         p = 5 + (p - 5) * 2;
     end
 
@@ -707,15 +714,15 @@ function applyResistanceAbility(player,target,element,skill,bonus)
 
     --add a scaling bonus or penalty based on difference of targets level from caster
     local leveldiff = player:getMainLvl() - target:getMainLvl();
-    if(leveldiff < 0) then
+    if (leveldiff < 0) then
         p = p - (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
     else
         p = p + (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
     end
     --cap accuracy
-    if(p > 95) then
+    if (p > 95) then
         p = 95;
-    elseif(p < 5) then
+    elseif (p < 5) then
         p = 5;
     end
 
@@ -734,16 +741,16 @@ function applyResistanceAbility(player,target,element,skill,bonus)
     local resvar = math.random();
 
     -- Determine final resist based on which thresholds have been crossed.
-    if(resvar <= sixteenth) then
+    if (resvar <= sixteenth) then
         resist = 0.0625;
         --printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
-    elseif(resvar <= eighth) then
+    elseif (resvar <= eighth) then
         resist = 0.125;
         --printf("Spell resisted to 1/8!  Threshold = %u",eighth);
-    elseif(resvar <= quart) then
+    elseif (resvar <= quart) then
         resist = 0.25;
         --printf("Spell resisted to 1/4.  Threshold = %u",quart);
-    elseif(resvar <= half) then
+    elseif (resvar <= half) then
         resist = 0.5;
         --printf("Spell resisted to 1/2.  Threshold = %u",half);
     else
@@ -761,7 +768,7 @@ function applyResistanceAddEffect(player,target,element,bonus)
     local resist = 1.0;
     local magicaccbonus = 0;
 
-    if(bonus ~= nil) then
+    if (bonus ~= nil) then
         magicaccbonus = magicaccbonus + bonus;
     end
 
@@ -792,16 +799,16 @@ function applyResistanceAddEffect(player,target,element,bonus)
     p = p + 75;
     --add a scaling bonus or penalty based on difference of targets level from caster
     local leveldiff = player:getMainLvl() - target:getMainLvl();
-    --[[if(leveldiff < 0) then
+    --[[if (leveldiff < 0) then
         p = p - (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
     else
         p = p + (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
     end]]
     p = p + leveldiff*2;
     --cap accuracy
-    if(p > 95) then
+    if (p > 95) then
         p = 95;
-    elseif(p < 5) then
+    elseif (p < 5) then
         p = 5;
     end
 
@@ -820,16 +827,16 @@ function applyResistanceAddEffect(player,target,element,bonus)
     local resvar = math.random();
 
     -- Determine final resist based on which thresholds have been crossed.
-    if(resvar <= sixteenth) then
+    if (resvar <= sixteenth) then
         resist = 0.0625;
         --printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
-    elseif(resvar <= eighth) then
+    elseif (resvar <= eighth) then
         resist = 0.125;
         --printf("Spell resisted to 1/8!  Threshold = %u",eighth);
-    elseif(resvar <= quart) then
+    elseif (resvar <= quart) then
         resist = 0.25;
         --printf("Spell resisted to 1/4.  Threshold = %u",quart);
-    elseif(resvar <= half) then
+    elseif (resvar <= half) then
         resist = 0.5;
         --printf("Spell resisted to 1/2.  Threshold = %u",half);
     else
@@ -842,7 +849,6 @@ function applyResistanceAddEffect(player,target,element,bonus)
 end;
 
 -----------------------------------
---    Author: Tenjou
 --     SKILL LEVEL CALCULATOR
 --     Returns a skill level based on level and rating.
 --
@@ -856,80 +862,80 @@ function getSkillLvl(rank,level)
 
     local skill = 0; --Failsafe
 
-    if(level <= 50) then --Levels 1-50
-        if(rank == 1 or rank == 2) then --A-Rated Skill
+    if (level <= 50) then --Levels 1-50
+        if (rank == 1 or rank == 2) then --A-Rated Skill
             skill = (((level-1)*3)+6);
-        elseif(rank == 3 or rank == 4 or rank == 5) then --B-Rated Skill
+        elseif (rank == 3 or rank == 4 or rank == 5) then --B-Rated Skill
             skill = (((level-1)*2.9)+5);
-        elseif(rank == 6 or rank == 7 or rank == 8) then --C-Rated Skill
+        elseif (rank == 6 or rank == 7 or rank == 8) then --C-Rated Skill
             skill = (((level-1)*2.8)+5);
-        elseif(rank == 9) then --D-Rated Skill
+        elseif (rank == 9) then --D-Rated Skill
             skill = (((level-1)*2.7)+4);
-        elseif(rank == 10) then --E-Rated Skill
+        elseif (rank == 10) then --E-Rated Skill
             skill = (((level-1)*2.5)+4);
-        elseif(rank == 11) then --F-Rated Skill
+        elseif (rank == 11) then --F-Rated Skill
             skill = (((level-1)*2.3)+4);
         end
-    elseif(level > 50 and level <= 60) then --Levels 51-60
-        if(rank == 1 or rank == 2) then --A-Rated Skill
+    elseif (level > 50 and level <= 60) then --Levels 51-60
+        if (rank == 1 or rank == 2) then --A-Rated Skill
             skill = (((level-50)*5)+153);
-        elseif(rank == 3 or rank == 4 or rank == 5) then --B-Rated Skill
+        elseif (rank == 3 or rank == 4 or rank == 5) then --B-Rated Skill
             skill = (((level-50)*4.9)+147);
-        elseif(rank == 6 or rank == 7 or rank == 8) then --C-Rated Skill
+        elseif (rank == 6 or rank == 7 or rank == 8) then --C-Rated Skill
             skill = (((level-50)*4.8)+142);
-        elseif(rank == 9) then --D-Rated Skill
+        elseif (rank == 9) then --D-Rated Skill
             skill = (((level-50)*4.7)+136);
-        elseif(rank == 10) then --E-Rated Skill
+        elseif (rank == 10) then --E-Rated Skill
             skill = (((level-50)*4.5)+126);
-        elseif(rank == 11) then --F-Rated Skill
+        elseif (rank == 11) then --F-Rated Skill
             skill = (((level-50)*4.3)+116);
         end
-    elseif(level > 60 and level <= 70) then --Levels 61-70
-        if(rank == 1) then --A+ Rated Skill
+    elseif (level > 60 and level <= 70) then --Levels 61-70
+        if (rank == 1) then --A+ Rated Skill
             skill = (((level-60)*4.85)+203);
-        elseif(rank == 2) then --A- Rated Skill
+        elseif (rank == 2) then --A- Rated Skill
             skill = (((level-60)*4.10)+203);
-        elseif(rank == 3) then --B+ Rated Skill
+        elseif (rank == 3) then --B+ Rated Skill
             skill = (((level-60)*3.70)+196);
-        elseif(rank == 4) then --B Rated Skill
+        elseif (rank == 4) then --B Rated Skill
             skill = (((level-60)*3.23)+196);
-        elseif(rank == 5) then --B- Rated Skill
+        elseif (rank == 5) then --B- Rated Skill
             skill = (((level-60)*2.70)+196);
-        elseif(rank == 6) then --C+ Rated Skill
+        elseif (rank == 6) then --C+ Rated Skill
             skill = (((level-60)*2.50)+190);
-        elseif(rank == 7) then --C Rated Skill
+        elseif (rank == 7) then --C Rated Skill
             skill = (((level-60)*2.25)+190);
-        elseif(rank == 8) then --C- Rated Skill
+        elseif (rank == 8) then --C- Rated Skill
             skill = (((level-60)*2.00)+190);
-        elseif(rank == 9) then --D Rated Skill
+        elseif (rank == 9) then --D Rated Skill
             skill = (((level-60)*1.85)+183);
-        elseif(rank == 10) then --E Rated Skill
+        elseif (rank == 10) then --E Rated Skill
             skill = (((level-60)*1.95)+171);
-        elseif(rank == 11) then --F Rated Skill
+        elseif (rank == 11) then --F Rated Skill
             skill = (((level-60)*2.05)+159);
         end
     else --Level 71 and above
-        if(rank == 1) then --A+ Rated Skill
+        if (rank == 1) then --A+ Rated Skill
             skill = (((level-70)*5)+251);
-        elseif(rank == 2) then --A- Rated Skill
+        elseif (rank == 2) then --A- Rated Skill
             skill = (((level-70)*5)+244);
-        elseif(rank == 3) then --B+ Rated Skill
+        elseif (rank == 3) then --B+ Rated Skill
             skill = (((level-70)*3.70)+233);
-        elseif(rank == 4) then --B Rated Skill
+        elseif (rank == 4) then --B Rated Skill
             skill = (((level-70)*3.23)+228);
-        elseif(rank == 5) then --B- Rated Skill
+        elseif (rank == 5) then --B- Rated Skill
             skill = (((level-70)*2.70)+223);
-        elseif(rank == 6) then --C+ Rated Skill
+        elseif (rank == 6) then --C+ Rated Skill
             skill = (((level-70)*3)+215);
-        elseif(rank == 7) then --C Rated Skill
+        elseif (rank == 7) then --C Rated Skill
             skill = (((level-70)*2.6)+212);
-        elseif(rank == 8) then --C- Rated Skill
+        elseif (rank == 8) then --C- Rated Skill
             skill = (((level-70)*2.00)+210);
-        elseif(rank == 9) then --D Rated Skill
+        elseif (rank == 9) then --D Rated Skill
             skill = (((level-70)*1.85)+201);
-        elseif(rank == 10) then --E Rated Skill
+        elseif (rank == 10) then --E Rated Skill
             skill = (((level-70)*1.95)+190);
-        elseif(rank == 11) then --F Rated Skill
+        elseif (rank == 11) then --F Rated Skill
             skill = (((level-70)*2)+179);
         end
     end
@@ -939,11 +945,11 @@ function getSkillLvl(rank,level)
  end;
 
 function handleAfflatusMisery(caster, spell, dmg)
-    if(caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
+    if (caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
         local misery = caster:getMod(MOD_AFFLATUS_MISERY);
 
         --BGwiki puts the boost capping at 200% bonus at around 300hp
-        if(misery > 300) then
+        if (misery > 300) then
             misery = 300;
         end;
 
@@ -966,13 +972,13 @@ end;
     --Handles target's HP adjustment and returns UNSIGNED dmg (absorb message is set in this function)
 
     -- handle multiple targets
-    if(caster:isSpellAoE(spell:getID())) then
+    if (caster:isSpellAoE(spell:getID())) then
         local total = spell:getTotalTargets();
 
-        if(total > 9) then
+        if (total > 9) then
             -- ga spells on 10+ targets = 0.4
             dmg = dmg * 0.4;
-        elseif(total > 1) then
+        elseif (total > 1) then
             -- -ga spells on 2 to 9 targets = 0.9 - 0.05T where T = number of targets
             dmg = dmg * (0.9 - 0.05 * total);
         end
@@ -984,7 +990,7 @@ end;
         -- this logic will eventually be moved here
         -- dmg = utils.takeShadows(target, dmg, 1);
 
-        -- if(dmg == 0) then
+        -- if (dmg == 0) then
             -- spell:setMsg(31);
             -- return 1;
         -- end
@@ -1065,16 +1071,16 @@ function calculateMagicBurst(caster, spell, target)
 
     local skillchainTier, skillchainCount = FormMagicBurst(spell:getElement(), target);
 
-    if(skillchainTier > 0) then
-        if(skillchainCount == 1) then
+    if (skillchainTier > 0) then
+        if (skillchainCount == 1) then
             burst = 1.3;
-        elseif(skillchainCount == 2) then
+        elseif (skillchainCount == 2) then
             burst = 1.35;
-        elseif(skillchainCount == 3) then
+        elseif (skillchainCount == 3) then
              burst = 1.40;
-        elseif(skillchainCount == 4) then
+        elseif (skillchainCount == 4) then
             burst = 1.45;
-        elseif(skillchainCount == 5) then
+        elseif (skillchainCount == 5) then
             burst = 1.50;
         else
             -- Something strange is going on if this occurs.
@@ -1117,47 +1123,47 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
     local equippedWaist = caster:getEquipID(SLOT_WAIST);
     local weather = caster:getWeather();
 
-    if(weather == singleWeatherStrong[ele]) then
+    if (weather == singleWeatherStrong[ele]) then
         -- Iridescence
-        if(equippedMain == 18632 or equippedMain == 18633) then
-            if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
+        if (equippedMain == 18632 or equippedMain == 18633) then
+            if (math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
+        if (math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif(caster:getWeather() == singleWeatherWeak[ele]) then
-        if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
+    elseif (caster:getWeather() == singleWeatherWeak[ele]) then
+        if (math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
-    elseif(weather == doubleWeatherStrong[ele]) then
+    elseif (weather == doubleWeatherStrong[ele]) then
         -- Iridescence
-        if(equippedMain == 18632 or equippedMain == 18633) then
-            if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
+        if (equippedMain == 18632 or equippedMain == 18633) then
+            if (math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
+        if (math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus + 0.25;
         end
-    elseif(weather == doubleWeatherWeak[ele]) then
-        if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
+    elseif (weather == doubleWeatherWeak[ele]) then
+        if (math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus - 0.25;
         end
     end
 
     local dayElement = VanadielDayElement();
-    if(dayElement == dayStrong[ele]) then
+    if (dayElement == dayStrong[ele]) then
         local equippedLegs = caster:getEquipID(SLOT_LEGS);
-        if(equippedLegs == 15120 or equippedLegs == 15583) then
+        if (equippedLegs == 15120 or equippedLegs == 15583) then
             dayWeatherBonus = dayWeatherBonus + 0.05;
         end
-        if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
+        if (math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif(dayElement == dayWeak[ele]) then
-        if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
+    elseif (dayElement == dayWeak[ele]) then
+        if (math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
     end
@@ -1170,14 +1176,14 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 
     local burst = calculateMagicBurst(caster, spell, target);
 
-    if(burst > 1.0) then
+    if (burst > 1.0) then
         spell:setMsg(spell:getMagicBurstMessage()); -- "Magic Burst!"
     end
 
     dmg = math.floor(dmg * burst);
     local mabbonus = 0;
 
-    if(spell:getID() >= 245 and spell:getID() <= 248) then -- Drain/Aspir (II)
+    if (spell:getID() >= 245 and spell:getID() <= 248) then -- Drain/Aspir (II)
         mabbonus = 1 + caster:getMod(MOD_ENH_DRAIN_ASPIR)/100;
 		-- print(mabbonus);
     else
@@ -1188,7 +1194,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
         mabbonus = (100 + mab) / (100 + target:getMod(MOD_MDEF));
     end
 
-    if(mabbonus < 0) then
+    if (mabbonus < 0) then
         mabbonus = 0;
     end
 
@@ -1196,9 +1202,9 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 
     if (caster:hasStatusEffect(EFFECT_EBULLIENCE)) then
         local equippedHead = caster:getEquipID(SLOT_HEAD);
-        if(equippedHead == 11183) then
+        if (equippedHead == 11183) then
             dmg = dmg * 1.25; --savant's bonnet +1
-        elseif(equippedHead == 11083) then
+        elseif (equippedHead == 11083) then
             dmg = dmg * 1.3; --savant's bonnet +2
         else
             dmg = dmg * 1.2;
@@ -1232,47 +1238,47 @@ function addBonusesAbility(caster, ele, target, dmg, params)
     local equippedWaist = caster:getEquipID(SLOT_WAIST);
     local weather = caster:getWeather();
 
-    if(weather == singleWeatherStrong[ele]) then
+    if (weather == singleWeatherStrong[ele]) then
         -- Iridescence
-        if(equippedMain == 18632 or equippedMain == 18633) then
-            if(math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
+        if (equippedMain == 18632 or equippedMain == 18633) then
+            if (math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if(math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
+        if (math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif(caster:getWeather() == singleWeatherWeak[ele]) then
-        if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] ) then
+    elseif (caster:getWeather() == singleWeatherWeak[ele]) then
+        if (math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] ) then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
-    elseif(weather == doubleWeatherStrong[ele]) then
+    elseif (weather == doubleWeatherStrong[ele]) then
         -- Iridescence
-        if(equippedMain == 18632 or equippedMain == 18633) then
-            if(math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
+        if (equippedMain == 18632 or equippedMain == 18633) then
+            if (math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if(math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
+        if (math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
             dayWeatherBonus = dayWeatherBonus + 0.25;
         end
-    elseif(weather == doubleWeatherWeak[ele]) then
-        if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] ) then
+    elseif (weather == doubleWeatherWeak[ele]) then
+        if (math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] ) then
             dayWeatherBonus = dayWeatherBonus - 0.25;
         end
     end
 
     local dayElement = VanadielDayElement();
-    if(dayElement == dayStrong[ele]) then
+    if (dayElement == dayStrong[ele]) then
         local equippedLegs = caster:getEquipID(SLOT_LEGS);
-        if(equippedLegs == 15120 or equippedLegs == 15583) then
+        if (equippedLegs == 15120 or equippedLegs == 15583) then
             dayWeatherBonus = dayWeatherBonus + 0.05;
         end
-        if(math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
+        if (math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif(dayElement == dayWeak[ele]) then
-        if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] ) then
+    elseif (dayElement == dayWeak[ele]) then
+        if (math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] ) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
     end
@@ -1290,7 +1296,7 @@ function addBonusesAbility(caster, ele, target, dmg, params)
         mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF));
     end
 
-    if(mab < 0) then
+    if (mab < 0) then
         mab = 0;
     end
 
@@ -1307,7 +1313,6 @@ function addBonusesAbility(caster, ele, target, dmg, params)
 end;
 
 ---------------------------------------------------------------------
---    Author: ReaperX
 --     Elemental Debuff Potency functions
 ---------------------------------------------------------------------
 
@@ -1348,11 +1353,11 @@ function getHelixDuration(caster)
 
     local casterLevel = caster:getMainLvl();
     local duration = 30; --fallthrough
-    if(casterLevel <= 39) then
+    if (casterLevel <= 39) then
         duration = 30;
-    elseif(casterLevel <= 59) then
+    elseif (casterLevel <= 59) then
         duration = 60;
-    elseif(casterLevel <= 99) then
+    elseif (casterLevel <= 99) then
         duration = 90;
     end
     return duration;
@@ -1377,7 +1382,7 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
     local resm = applyResistance(caster, spell, target, dCHR, SINGING_SKILL, staff);
     -- print("rsem=" .. resm);
 
-    if(resm < 0.5) then
+    if (resm < 0.5) then
         -- print("resm resist");
         spell:setMsg(85);
         return EFFECT_THRENODY;
@@ -1420,12 +1425,12 @@ function canOverwrite(target, effect, power, mod)
     local statusEffect = target:getStatusEffect(effect);
 
     -- effect not found so overwrite
-    if(statusEffect == nil) then
+    if (statusEffect == nil) then
         return true;
     end
 
     -- overwrite if its weaker
-    if(statusEffect:getPower()*mod > power) then
+    if (statusEffect:getPower()*mod > power) then
         return false;
     end
 
@@ -1497,34 +1502,27 @@ function doDivineNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistB
     return doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,DIVINE_MAGIC_SKILL,MOD_MND);
 end
 
-function doNinjutsuNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-    return doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,NINJUTSU_SKILL,MOD_INT);
+function doNinjutsuNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,mabBonus)
+    return doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,NINJUTSU_SKILL,MOD_INT,mabBonus);
 end
 
-function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,skill,modStat)
+function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,skill,modStat,mabBonus)
     --calculate raw damage
     local dmg = calculateMagicDamage(V,M,caster,spell,target,skill,modStat,hasMultipleTargetReduction);
     --get resist multiplier (1x if no resist)
     local resist = applyResistance(caster,spell,target,caster:getStat(modStat)-target:getStat(modStat),skill,resistBonus);
     --get the resisted damage
     dmg = dmg*resist;
-    if(skill == NINJUTSU_SKILL) then
-        -- boost ninjitsu damage
-        -- 5% ninjitsu damage
-        local head = caster:getEquipID(SLOT_HEAD);
-        if(head == 15084) then
-            dmg = math.floor(dmg * 1.05);
-        end
-
+    if (skill == NINJUTSU_SKILL) then
         -- boost with Futae
-        if(caster:hasStatusEffect(EFFECT_FUTAE)) then
+        if (caster:hasStatusEffect(EFFECT_FUTAE)) then
             dmg = math.floor(dmg * 1.50);
             caster:delStatusEffect(EFFECT_FUTAE);
         end
     end
 
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-    dmg = addBonuses(caster,spell,target,dmg);
+    dmg = addBonuses(caster,spell,target,dmg,mabBonus);
     --add in target adjustment
     dmg = adjustForTarget(target,dmg,spell:getElement());
     --add in final adjustments
@@ -1555,7 +1553,7 @@ function doDivineBanishNuke(V,M,caster,spell,target,hasMultipleTargetReduction,r
 end
 
 function calculateDurationForLvl(duration, spellLvl, targetLvl)
-    if(targetLvl < spellLvl) then
+    if (targetLvl < spellLvl) then
         return duration * targetLvl / spellLvl;
     end
 
@@ -1573,11 +1571,11 @@ function calculateBarspellPower(caster,enhanceSkill)
     local power = 40 + 0.2 * enhanceSkill + meritBonus;
 
     local equippedLegs = caster:getEquipID(SLOT_LEGS);
-    if(equippedLegs == 15119) then
+    if (equippedLegs == 15119) then
         power = power + 20;
-    elseif(equippedLegs == 15582) then
+    elseif (equippedLegs == 15582) then
         power = power + 22;
-    elseif(equippedLegs == 10712) then
+    elseif (equippedLegs == 10712) then
         power = power + 25;
     end
 

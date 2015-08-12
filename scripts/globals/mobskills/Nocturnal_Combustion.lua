@@ -20,7 +20,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1;
-    if(mob:getHP()~=0) then
+    if (mob:getHP()~=0) then
         BOMB_TOSS_HPP = mob:getHP()/mob:getMaxHP();
     end
 

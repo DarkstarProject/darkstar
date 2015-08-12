@@ -14,7 +14,7 @@ require("scripts/zones/Arrapago_Reef/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(2601,1) and trade:getItemCount() == 1) then -- Trade Greenling
+	if (trade:hasItemQty(2601,1) and trade:getItemCount() == 1) then -- Trade Greenling
 		player:tradeComplete();
 		SpawnMob(16998871,180):updateClaim(player);
 	end

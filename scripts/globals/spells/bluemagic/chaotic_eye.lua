@@ -34,9 +34,9 @@ function onSpellCast(caster,target,spell)
     local resist = applyResistanceEffect(caster,spell,target,dINT,BLUE_SKILL,0,typeEffect);
     local duration = 180 * resist;
 
-    if(resist > 0.5) then -- Do it!
+    if (resist > 0.5) then -- Do it!
         if (target:isFacing(caster)) then
-            if(target:addStatusEffect(typeEffect,1,0,duration)) then
+            if (target:addStatusEffect(typeEffect,1,0,duration)) then
                 spell:setMsg(236);
             else
                 spell:setMsg(75);

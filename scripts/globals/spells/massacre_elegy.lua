@@ -19,12 +19,12 @@ function onSpellCast(caster,target,spell)
     local mCHR = target:getStat(MOD_CHR);
     local dCHR = (pCHR - mCHR);
     local resm = applyResistance(caster,spell,target,dCHR,SINGING_SKILL,0);
-    if(resm < 0.5) then
+    if (resm < 0.5) then
         spell:setMsg(85);--resist message
         return 1;
     end
 
-    if(100 * math.random() < target:getMod(MOD_SLOWRES)) then
+    if (100 * math.random() < target:getMod(MOD_SLOWRES)) then
         spell:setMsg(85); -- resisted spell
     else
         local iBoost = caster:getMod(MOD_ELEGY_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
@@ -44,7 +44,7 @@ function onSpellCast(caster,target,spell)
         end
 
         -- Try to overwrite weaker elegy
-        if(canOverwrite(target, EFFECT_ELEGY, power)) then
+        if (canOverwrite(target, EFFECT_ELEGY, power)) then
             -- overwrite them
             target:delStatusEffect(EFFECT_ELEGY);
             target:addStatusEffect(EFFECT_ELEGY,power,0,duration);

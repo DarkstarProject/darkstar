@@ -28,32 +28,32 @@ function onSpellCast(caster,target,spell)
 	local final = 0;
 
 	local minCure = 130;
-	if(USE_OLD_CURE_FORMULA == true) then
+	if (USE_OLD_CURE_FORMULA == true) then
 		power = getCurePowerOld(caster);
 		rate = 1;
 		constant = 70;
-		if(power > 300) then
+		if (power > 300) then
 				rate = 15.6666;
 				constant = 180.43;
-		elseif(power > 180) then
+		elseif (power > 180) then
 				rate = 2;
 				constant = 115;
 		end
 	else
 		power = getCurePower(caster);
-		if(power < 125) then
+		if (power < 125) then
 			divisor = 2.2
 			constant = 130;
 			basepower = 70;
-		elseif(power < 200) then
+		elseif (power < 200) then
 			divisor =  75/65;
 			constant = 155;
 			basepower = 125;
-		elseif(power < 300) then
+		elseif (power < 300) then
 			divisor = 2.5;
 			constant = 220;
 			basepower = 200;
-		elseif(power < 700) then
+		elseif (power < 700) then
 			divisor = 5;
 			constant = 260;
 			basepower = 300;
@@ -64,14 +64,14 @@ function onSpellCast(caster,target,spell)
 		end
 	end
 
-	if(USE_OLD_CURE_FORMULA == true) then
+	if (USE_OLD_CURE_FORMULA == true) then
 		basecure = getBaseCure(power,divisor,constant);
 	else
 		basecure = getBaseCure(power,divisor,constant,basepower);
 	end
 	
 	--Apply Afflatus Misery Bonus to the Result
-	if(caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
+	if (caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
 		local misery = caster:getMod(MOD_AFFLATUS_MISERY);
 		
 		--THIS IS LARELY SEMI-EDUCATED GUESSWORK. THERE IS NOT A
@@ -88,7 +88,7 @@ function onSpellCast(caster,target,spell)
 		
 		basecure = basecure + misery;
 		
-		if(basecure > 675) then
+		if (basecure > 675) then
 			basecure = 675;
 		end
 		
@@ -105,7 +105,7 @@ function onSpellCast(caster,target,spell)
 	final = final * CURE_POWER;
 
 	local diff = (target:getMaxHP() - target:getHP());
-	if(final > diff) then
+	if (final > diff) then
 		final = diff;
 	end
 	target:addHP(final);

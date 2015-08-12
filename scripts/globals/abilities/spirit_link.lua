@@ -39,8 +39,8 @@ function onUseAbility(player,target,ability)
     if (player:hasStatusEffect(EFFECT_STONESKIN)) then
         local skin = player:getMod(MOD_STONESKIN);
         
-        if(skin >= drainamount) then
-            if(skin == drainamount) then 
+        if (skin >= drainamount) then
+            if (skin == drainamount) then 
                 player:delStatusEffect(EFFECT_STONESKIN);
             else
                 local effect = player:getStatusEffect(EFFECT_STONESKIN);
@@ -61,7 +61,7 @@ function onUseAbility(player,target,ability)
     local healPet = drainamount * 2;
     local petTP = pet:getTP();
     
-    if(player:getEquipID(SLOT_HEAD)==15238) then
+    if (player:getEquipID(SLOT_HEAD)==15238) then
         healPet = healPet + 15;
     end
     
@@ -73,7 +73,7 @@ function onUseAbility(player,target,ability)
     removeSleepEffects(pet);
     pet:delStatusEffect(EFFECT_PARALYSIS);
     
-    if(math.random(1,2) == 1) then
+    if (math.random(1,2) == 1) then
         pet:delStatusEffect(EFFECT_DOOM);
     end
     

@@ -26,11 +26,11 @@ end;
 function onTrigger(player,npc)
 	saveMySister = player:getQuestStatus(JEUNO,SAVE_MY_SISTER);
 	
-	if(saveMySister == QUEST_AVAILABLE and player:getVar("saveMySisterVar") == 3) then
+	if (saveMySister == QUEST_AVAILABLE and player:getVar("saveMySisterVar") == 3) then
 		player:startEvent(0x0062); -- Real start of this quest (with addquest)
-	elseif(saveMySister == QUEST_ACCEPTED) then
+	elseif (saveMySister == QUEST_ACCEPTED) then
 		player:startEvent(0x0063); -- During quest
-	elseif(saveMySister == QUEST_COMPLETED and player:hasKeyItem(DUCAL_GUARDS_LANTERN) == true) then
+	elseif (saveMySister == QUEST_COMPLETED and player:hasKeyItem(DUCAL_GUARDS_LANTERN) == true) then
 		player:startEvent(0x0061); -- last CS (after talk with baudin)
 	else
 		player:startEvent(0x009C); -- Standard dialog
@@ -53,12 +53,12 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x0062) then 
+	if (csid == 0x0062) then 
 		player:addQuest(JEUNO,SAVE_MY_SISTER);
 		player:setVar("saveMySisterVar", 0);
 		player:addKeyItem(DUCAL_GUARDS_LANTERN);
 		player:messageSpecial(KEYITEM_OBTAINED,DUCAL_GUARDS_LANTERN);
-	elseif(csid == 0x0061) then 
+	elseif (csid == 0x0061) then 
 		player:delKeyItem(DUCAL_GUARDS_LANTERN);
 		player:setVar("saveMySisterFireLantern", 0);
 	end

@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
 	local freeSlot = player:getFreeSlotsCount();
 	local eagleButton = trade:hasItemQty(578, 1);
 	local hasGiltGlasses = player:hasItem(579);
-	if(eagleButton == true and hasGiltGlasses == false) then
+	if (eagleButton == true and hasGiltGlasses == false) then
 		if (count == 1 and freeSlot > 0) then
 			player:tradeComplete();
 			player:startEvent(0x0079);

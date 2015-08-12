@@ -31,25 +31,31 @@ end;
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-    
-    local duration = 90;
-    
-    if(caster:hasStatusEffect(EFFECT_DIFFUSION)) then
-        local diffMerit = caster:getMerit(MERIT_DIFFUSION);
-        
-        if(diffMerit > 0) then
-            duration = duration + (duration/100)* diffMerit;
-        end
-        
-        caster:delStatusEffect(EFFECT_DIFFUSION);
-    end
-    
-    if(caster:hasStatusEffect(EFFECT_MAGIC_ATK_BOOST) and caster:hasStatusEffect(EFFECT_MAGIC_DEF_BOOST) == true) then
-        spell:setMsg(75);
-    else
-        caster:addStatusEffect(EFFECT_MAGIC_ATK_BOOST,10,0,duration);
-        caster:addStatusEffect(EFFECT_MAGIC_DEF_BOOST,10,0,duration);
-    end
 
-    return EFFECT_MAGIC_ATK_BOOST;
+    local typeEffectOne = EFFECT_MAGIC_ATK_BOOST
+    local typeEffectTwo = EFFECT_MAGIC_DEF_BOOST
+    local power = 10;
+    local duration = 90;
+    local returnEffect = typeEffectOne;
+
+    if (caster:hasStatusEffect(EFFECT_DIFFUSION)) then
+        local diffMerit = caster:getMerit(MERIT_DIFFUSION);
+
+        if (diffMerit > 0) then
+            duration = duration + (duration/100)* diffMerit;
+        end;
+
+        caster:delStatusEffect(EFFECT_DIFFUSION);
+    end;
+
+    if (target:addStatusEffect(typeEffectOne,power,0,duration) == false and target:addStatusEffect(typeEffectTwo,power,0,duration) == false) then -- both statuses fail to apply
+        spell:setMsg(75);
+    elseif (target:addStatusEffect(typeEffectOne,power,0,duration) == false) then -- the first status fails to apply
+        spell:setMsg(230);
+        returnEffect = typeEffectTwo;
+    else -- either second status or neither status fails
+        spell:setMsg(230);
+    end;
+
+    return returnEffect;
 end;

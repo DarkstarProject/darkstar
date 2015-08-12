@@ -472,6 +472,38 @@ INSERT INTO `item_latents` VALUES(18491, 25, 5, 6, 1000); -- Accuracy+5 while TP
 INSERT INTO `item_latents` VALUES(18491, 23, 10, 6, 1000); -- Attack+10 while TP <100%
 
 -- -------------------------------------------------------
+-- Trump Crown  
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15186, 2, 14, 51, 20); -- "MP +14 at Lv 20-29"
+INSERT INTO `item_latents` VALUES(15186, 5, 14, 51, 20); -- "HP +14 at Lv 20-29"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 30);  -- "MP +15 at Lv 30-33"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 30);  -- "HP +15 at Lv 30-33"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 34);  -- "MP +16 at Lv 34-39"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 34);  -- "HP +16 at Lv 34-39"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 40);  -- "MP +17 at Lv 40-43"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 40);  -- "HP +17 at Lv 40-43"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 44);  -- "MP +18 at Lv 44-46"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 44);  -- "HP +18 at Lv 44-46"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 47);  -- "MP +19 at Lv 47-49"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 47);  -- "HP +19 at Lv 47-49"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 50);  -- "MP +20 at Lv 50-54"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 50);  -- "HP +20 at Lv 50-54"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 55);  -- "MP +21 at Lv 55-57"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 55);  -- "HP +21 at Lv 55-57"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 58);  -- "MP +22 at Lv 58-60"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 58);  -- "HP +22 at Lv 58-60"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 61);  -- "MP +23 at Lv 61-64"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 61);  -- "HP +23 at Lv 61-64"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 65);  -- "MP +24 at Lv 65-69"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 65);  -- "HP +24 at Lv 65-69"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 70);  -- "MP +25 at Lv 70-72"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 70);  -- "HP +25 at Lv 70-72"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 73);  -- "MP +26 at Lv 73-74"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 73);  -- "HP +26 at Lv 73-74"
+INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 75);  -- "MP +27 at Lv 75~"
+INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 75);  -- "HP +27 at Lv 75~"
+
+-- -------------------------------------------------------
 -- Hachiman Jinpachi    
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15188, 288, 2, 7, 1000); -- "Double Attack"+2% while TP >=100%
@@ -1435,14 +1467,52 @@ INSERT INTO `item_latents` VALUES(18581, 431, 2, 21, 8);  -- Additional effect: 
 INSERT INTO `item_latents` VALUES(17711, 431, 1, 21, 14); -- Additional effect: Ice damage
 
 -- -------------------------------------------------------
--- Amood
+-- Selene's Bow
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(18482, 288, 1, 37, 0); -- Occasionally Attacks Twice
+INSERT INTO `item_latents` VALUES(17212, 24, 25, 37, 0); -- New moon ratk
+INSERT INTO `item_latents` VALUES(17212, 26, 5, 37, 0); -- New moon racc
+INSERT INTO `item_latents` VALUES(17212, 24, 20, 37, 1); -- Waxing crescent
+INSERT INTO `item_latents` VALUES(17212, 26, 10, 37, 1);
+INSERT INTO `item_latents` VALUES(17212, 24, 15, 37, 2); -- First quarter
+INSERT INTO `item_latents` VALUES(17212, 26, 15, 37, 2);
+INSERT INTO `item_latents` VALUES(17212, 24, 10, 37, 3); -- Waxing gibbous
+INSERT INTO `item_latents` VALUES(17212, 26, 20, 37, 3);
+INSERT INTO `item_latents` VALUES(17212, 24, 5, 37, 4); -- Full moon
+INSERT INTO `item_latents` VALUES(17212, 26, 25, 37, 4);
+INSERT INTO `item_latents` VALUES(17212, 24, 10, 37, 5); -- Waning gibbous
+INSERT INTO `item_latents` VALUES(17212, 26, 20, 37, 5);
+INSERT INTO `item_latents` VALUES(17212, 24, 15, 37, 6); -- Last quarter
+INSERT INTO `item_latents` VALUES(17212, 26, 15, 37, 6);
+INSERT INTO `item_latents` VALUES(17212, 24, 20, 37, 7); -- Waning crescent
+INSERT INTO `item_latents` VALUES(17212, 26, 10, 37, 7);
 
 -- -------------------------------------------------------
--- Amood +1
+-- Luna Subligar
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(18483, 288, 1, 37, 0); -- Occasionally Attacks Twice
+INSERT INTO `item_latents` VALUES(14287, 9, 2, 37, 4); -- Full moon DEX+2
+INSERT INTO `item_latents` VALUES(14287, 11, 2, 37, 4); -- Full moon AGI+2
+INSERT INTO `item_latents` VALUES(14287, 14, 4, 37, 4); -- Full moon CHR +4 (total +7)
+
+-- -------------------------------------------------------
+-- Gnole Sainti (+1)
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(18757, 8, 2, 37, 4); -- Full moon STR+2
+INSERT INTO `item_latents` VALUES(18757, 9, 2, 37, 4); -- Full moon DEX+2
+INSERT INTO `item_latents` VALUES(18758, 8, 3, 37, 4); -- Full moon STR+3
+INSERT INTO `item_latents` VALUES(18758, 9, 3, 37, 4); -- Full moon DEX+3
+
+-- -------------------------------------------------------
+-- Diana Corona
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(11486, 28, 4, 37, 4); -- Full moon magic attack bonus +4
+
+-- -------------------------------------------------------
+-- Inferno Sabots (+1)
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14164, 12, 1, 37, 0); -- New moon INT+1
+INSERT INTO `item_latents` VALUES(14164, 116, 3, 37, 0); -- New moon Dark Magic skill +3
+INSERT INTO `item_latents` VALUES(14165, 12, 2, 37, 0); -- New moon INT+2
+INSERT INTO `item_latents` VALUES(14165, 116, 5, 37, 0); -- New moon Dark Magic skill +5
 
 -- -------------------------------------------------------
 -- Sirius Axe
@@ -1623,7 +1693,7 @@ INSERT INTO `item_latents` VALUES(14014, 68, 7, 53, 1); -- EVA +7 in areas outsi
 -- Master Caster's Mitts
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14016, 11, 2, 53, 1); -- AGI +2 in areas outside own nation's control
-INSERT INTO `item_latents` VALUES(14016, 68, 10, 53, 1); -- EVA +10 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(14016, 108, 10, 53, 1); -- EVA skill +10 in areas outside own nation's control
 
 -- -------------------------------------------------------
 -- Tactician Magician's Hooks +1/+2

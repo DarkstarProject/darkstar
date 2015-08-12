@@ -21,7 +21,7 @@ end;
 -----------------------------------	
 	
 function onTrade(player,npc,trade)	
- if (trade:hasItemQty(1720,1) and trade:getItemCount() == 1 and player:hasKeyItem(436)==false)then
+ if (trade:hasItemQty(1720,1) and trade:getItemCount() == 1 and player:hasKeyItem(436)==false) then
  player:addKeyItem(436); --add map
  player:tradeComplete();
  player:messageSpecial(KEYITEM_OBTAINED,436);

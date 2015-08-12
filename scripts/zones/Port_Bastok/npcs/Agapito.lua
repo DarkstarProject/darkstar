@@ -53,9 +53,9 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-	if(csid == 0x00b4) then
+	if (csid == 0x00b4) then
 		player:addQuest(BASTOK,THE_STARS_OF_IFRIT);
-	elseif(csid == 0x00b5) then
+	elseif (csid == 0x00b5) then
 		player:addGil(GIL_RATE*2100);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
 		player:addFame(BASTOK,BAS_FAME*100);

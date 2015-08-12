@@ -15,7 +15,7 @@ end;
 
 function onMobDeath(mob, killer)
 
-	if(killer:getVar("AyameAndKaede_Event") == 2) then
+	if (killer:getVar("AyameAndKaede_Event") == 2) then
 		leeches = killer:getVar("KorrolokaLeeches");
 
 		killer:setVar("KorrolokaLeeches",leeches+1);

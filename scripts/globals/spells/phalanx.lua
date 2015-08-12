@@ -21,22 +21,22 @@ function onSpellCast(caster,target,spell)
 		duration = duration * 3;
 	end
 
-	if(enhskill<=300) then
+	if (enhskill<=300) then
 		final = (enhskill/10) -2;
-		if(final<0) then
+		if (final<0) then
 			final = 0;
 		end
-	elseif(enhskill>300) then
+	elseif (enhskill>300) then
 		final = ((enhskill-300)/29) + 28;
 	else
 		print("Warning: Unknown enhancing magic skill for phalanx.");
 	end
 
-	if(final>35) then
+	if (final>35) then
 		final = 35;
 	end
 
-	if(target:addStatusEffect(EFFECT_PHALANX,final,0,duration)) then
+	if (target:addStatusEffect(EFFECT_PHALANX,final,0,duration)) then
 		spell:setMsg(230);
 	else
 		spell:setMsg(75);

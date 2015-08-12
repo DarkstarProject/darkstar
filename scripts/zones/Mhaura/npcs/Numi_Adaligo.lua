@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
 	local RychardetheChef = player:getQuestStatus(OTHER_AREAS,RYCHARDE_THE_CHEF);
 	local QuestStatus=player:getVar("QuestRychardetheChef_var"); 
 	
-	if((option == 2) and (RychardetheChef == QUEST_AVAILABLE) and (tonumber(QuestStatus) == 0)) then
+	if ((option == 2) and (RychardetheChef == QUEST_AVAILABLE) and (tonumber(QuestStatus) == 0)) then
 		player:setVar("QuestRychardetheChef_var",1);  -- first stage of rycharde the chef quest
 	end;
 	

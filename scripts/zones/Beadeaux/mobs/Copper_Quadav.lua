@@ -22,10 +22,10 @@ end;
 
 function onMobDeath(mob, killer)
 
-	if(killer:getCurrentMission(BASTOK) == THE_FOUR_MUSKETEERS) then
+	if (killer:getCurrentMission(BASTOK) == THE_FOUR_MUSKETEERS) then
 		local missionStatus = killer:getVar("MissionStatus");
 
-		if(missionStatus > 1 and missionStatus < 22) then
+		if (missionStatus > 1 and missionStatus < 22) then
 			killer:setVar("MissionStatus", missionStatus + 1)
 		end
 	end

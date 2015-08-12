@@ -33,7 +33,7 @@ end;
 function onTrigger(player,npc) 
 	--Prerequisites for this quest : A_CANDLELIGHT_VIGIL ACCEPTED
 	
-	if(player:getQuestStatus(JEUNO,CANDLE_MAKING) ~= QUEST_COMPLETED and 
+	if (player:getQuestStatus(JEUNO,CANDLE_MAKING) ~= QUEST_COMPLETED and 
 	   player:getQuestStatus(JEUNO,A_CANDLELIGHT_VIGIL) == QUEST_ACCEPTED) then 	
 		player:startEvent(0x0024);  -- Start Quest Candle-making
 	else
@@ -57,9 +57,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x0024 and player:getQuestStatus(JEUNO,CANDLE_MAKING) == QUEST_AVAILABLE) then 
+	if (csid == 0x0024 and player:getQuestStatus(JEUNO,CANDLE_MAKING) == QUEST_AVAILABLE) then 
 		player:addQuest(JEUNO,CANDLE_MAKING);
-	elseif(csid == 0x0025) then 
+	elseif (csid == 0x0025) then 
 		player:addTitle(BELIEVER_OF_ALTANA);
 		player:addKeyItem(HOLY_CANDLE);
 		player:messageSpecial(KEYITEM_OBTAINED,HOLY_CANDLE);

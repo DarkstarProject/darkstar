@@ -11,7 +11,7 @@ require("scripts/globals/monstertpmoves");
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:getID() == 16916816) then
-        if(mob:getHPP() <= 70) then
+        if (mob:getHPP() <= 70) then
             return 0;
         end
     end;

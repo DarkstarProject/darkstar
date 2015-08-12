@@ -16,7 +16,7 @@ require("scripts/globals/utils");
 function onMobSkillCheck(target,mob,skill)
  local mobID = mob:getID();   --(16908294 ,16908301 ,16908308 =omega ,16933124=proto-omega)
  local mobhp = mob:getHPP();
-   if (mobID == 16933124 and mobhp < 30 )then -- omega second quadripedform
+   if (mobID == 16933124 and mobhp < 30 ) then -- omega second quadripedform
 	  return 0;
    end
    return 1;

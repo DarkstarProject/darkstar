@@ -23,14 +23,14 @@ end;
 
 function onTrigger(player,npc)
 
-	if(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER)then
-		if(player:getVar("MissionStatus") == 2) then
+	if (player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER) then
+		if (player:getVar("MissionStatus") == 2) then
 			player:messageSpecial(EVIL);
 			SpawnMob(17489926, 180); -- Gordov's Ghost
 			SpawnMob(17489927, 180); -- Dervo's Ghost
 			SpawnMob(17489928, 180); -- Gizerl's Ghost
 			
-		elseif(player:getVar("MissionStatus") == 3)then
+		elseif (player:getVar("MissionStatus") == 3) then
 			player:startEvent(0x00D);
 		else
 			player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
@@ -59,7 +59,7 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 	
-	if(csid == 0x00D) then
+	if (csid == 0x00D) then
 		player:setVar("MissionStatus",4);
 		player:addKeyItem(OLD_PIECE_OF_WOOD);
 		player:messageSpecial(KEYITEM_OBTAINED,OLD_PIECE_OF_WOOD);

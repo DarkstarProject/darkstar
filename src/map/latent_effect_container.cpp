@@ -156,33 +156,33 @@ void CLatentEffectContainer::CheckLatentsHP(int32 hp)
             }
             break;
             //case LATENT_HP_OVER_VISIBLE_GEAR:
-            //	{
-            //	//TODO: figure out if this is actually right
-            //	CItemArmor* head = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HEAD]));
-            //	CItemArmor* body = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_BODY]));
-            //	CItemArmor* hands = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HANDS]));
-            //	CItemArmor* legs = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_LEGS]));
-            //	CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
+            //    {
+            //    //TODO: figure out if this is actually right
+            //    CItemArmor* head = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HEAD]));
+            //    CItemArmor* body = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_BODY]));
+            //    CItemArmor* hands = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HANDS]));
+            //    CItemArmor* legs = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_LEGS]));
+            //    CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
 
-            //	int32 visibleHp = 0;
-            //	visibleHp += (head ? head->getModifier(MOD_HP) : 0);
-            //	visibleHp += (body ? body->getModifier(MOD_HP) : 0);
-            //	visibleHp += (hands ? hands->getModifier(MOD_HP) : 0);
-            //	visibleHp += (legs ? legs->getModifier(MOD_HP) : 0);
-            //	visibleHp += (feet ? feet->getModifier(MOD_HP) : 0);
+            //    int32 visibleHp = 0;
+            //    visibleHp += (head ? head->getModifier(MOD_HP) : 0);
+            //    visibleHp += (body ? body->getModifier(MOD_HP) : 0);
+            //    visibleHp += (hands ? hands->getModifier(MOD_HP) : 0);
+            //    visibleHp += (legs ? legs->getModifier(MOD_HP) : 0);
+            //    visibleHp += (feet ? feet->getModifier(MOD_HP) : 0);
 
-            //	//TODO: add mp percent too
-            //	if ((float)( hp / ((m_POwner->health.hp - m_POwner->health.modhp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_HP)->count * 10 ) + 
-            //		visibleHp) ) <= m_LatentEffectList.at(i)->GetConditionsValue())
-            //	{
-            //		m_LatentEffectList.at(i)->Activate();
-            //	}
-            //	else
-            //	{
-            //		m_LatentEffectList.at(i)->Deactivate();
-            //	}
-            //	}
-            //	break;
+            //    //TODO: add mp percent too
+            //    if ((float)( hp / ((m_POwner->health.hp - m_POwner->health.modhp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_HP)->count * 10 ) + 
+            //        visibleHp) ) <= m_LatentEffectList.at(i)->GetConditionsValue())
+            //    {
+            //        m_LatentEffectList.at(i)->Activate();
+            //    }
+            //    else
+            //    {
+            //        m_LatentEffectList.at(i)->Deactivate();
+            //    }
+            //    }
+            //    break;
         default:
             break;
         }
@@ -283,33 +283,33 @@ void CLatentEffectContainer::CheckLatentsMP(int32 mp)
             }
             break;
             //case LATENT_MP_UNDER_VISIBLE_GEAR:
-            //	{
-            //	//TODO: figure out if this is actually right
-            //	CItemArmor* head = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HEAD]));
-            //	CItemArmor* body = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_BODY]));
-            //	CItemArmor* hands = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HANDS]));
-            //	CItemArmor* legs = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_LEGS]));
-            //	CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
+            //    {
+            //    //TODO: figure out if this is actually right
+            //    CItemArmor* head = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HEAD]));
+            //    CItemArmor* body = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_BODY]));
+            //    CItemArmor* hands = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HANDS]));
+            //    CItemArmor* legs = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_LEGS]));
+            //    CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
 
-            //	int32 visibleMp = 0;
-            //	visibleMp += (head ? head->getModifier(MOD_MP) : 0);
-            //	visibleMp += (body ? body->getModifier(MOD_MP) : 0);
-            //	visibleMp += (hands ? hands->getModifier(MOD_MP) : 0);
-            //	visibleMp += (legs ? legs->getModifier(MOD_MP) : 0);
-            //	visibleMp += (feet ? feet->getModifier(MOD_MP) : 0);
+            //    int32 visibleMp = 0;
+            //    visibleMp += (head ? head->getModifier(MOD_MP) : 0);
+            //    visibleMp += (body ? body->getModifier(MOD_MP) : 0);
+            //    visibleMp += (hands ? hands->getModifier(MOD_MP) : 0);
+            //    visibleMp += (legs ? legs->getModifier(MOD_MP) : 0);
+            //    visibleMp += (feet ? feet->getModifier(MOD_MP) : 0);
 
-            //	//TODO: add mp percent too
-            //	if ((float)( mp / ((m_POwner->health.mp - m_POwner->health.modmp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_MP)->count * 10 ) + 
-            //		visibleMp) ) <= m_LatentEffectList.at(i)->GetConditionsValue())
-            //	{
-            //		m_LatentEffectList.at(i)->Activate();
-            //	}
-            //	else
-            //	{
-            //		m_LatentEffectList.at(i)->Deactivate();
-            //	}
-            //	}
-            //	break;
+            //    //TODO: add mp percent too
+            //    if ((float)( mp / ((m_POwner->health.mp - m_POwner->health.modmp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_MP)->count * 10 ) + 
+            //        visibleMp) ) <= m_LatentEffectList.at(i)->GetConditionsValue())
+            //    {
+            //        m_LatentEffectList.at(i)->Activate();
+            //    }
+            //    else
+            //    {
+            //        m_LatentEffectList.at(i)->Deactivate();
+            //    }
+            //    }
+            //    break;
         default:
             break;
         }
@@ -411,7 +411,14 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                 }
                 break;
             case LATENT_PET_ID:
-                CheckLatentsPetType(!m_POwner->PPet ? -1 : m_POwner->PPet->id);
+                if (m_POwner->PPet && m_POwner->PPet->objtype == TYPE_PET && ((CPetEntity*)m_POwner->PPet)->m_PetID == m_LatentEffectList.at(i)->GetConditionsValue())
+                {
+                    m_LatentEffectList.at(i)->Activate();
+                }
+                else
+                {
+                    m_LatentEffectList.at(i)->Deactivate();
+                }
                 break;
             case LATENT_SUBJOB:
                 if (m_POwner->GetSJob() == m_LatentEffectList.at(i)->GetConditionsValue())
@@ -481,7 +488,7 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
             case LATENT_AVATAR_IN_PARTY:
                 CheckLatentsPartyAvatar();
                 break;
-            case LATENT_MOON_FIRST_QUARTER:
+            case LATENT_MOON_PHASE:
                 CheckLatentsMoonPhase();
                 break;
             case LATENT_TIME_OF_DAY:
@@ -835,13 +842,154 @@ void CLatentEffectContainer::CheckLatentsMoonPhase()
 {
     for (uint16 i = 0; i < m_LatentEffectList.size(); ++i)
     {
-        if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_MOON_FIRST_QUARTER)
+        if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_MOON_PHASE)
         {
-            if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_MOON_FIRST_QUARTER)
+            uint32 MoonPhase = CVanaTime::getInstance()->getMoonPhase();
+            uint32 MoonDirection = CVanaTime::getInstance()->getMoonDirection(); //directions: 1 = waning, 2 = waxing, 0 = neither
+            //New Moon - 10% waning -> 5% waxing
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == 0)
             {
-                uint32 MoonPhase = CVanaTime::getInstance()->getMoonPhase();
-
-                if (MoonPhase >= 40 && MoonPhase <= 55)
+                if (MoonPhase <= 5)
+                {
+                    if (!m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Activate();
+                    }
+                }
+                else if (MoonPhase <= 10 && MoonDirection == 1) //only 10%- if waning
+                {
+                    if (!m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Activate();
+                    }
+                }
+                else
+                {
+                    if (m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Deactivate();
+                    }
+                }
+            }
+            //Waxing Crescent - 7% -> 38% waxing
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == 1)
+            {
+                if (MoonPhase >= 7 && MoonPhase <= 38 && MoonDirection == 2)
+                {
+                    if (!m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Activate();
+                    }
+                }
+                else
+                {
+                    if (m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Deactivate();
+                    }
+                }
+            }
+            //First Quarter - 40%% -> 55% waxing
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == 2)
+            {
+                if (MoonPhase >= 40 && MoonPhase <= 55 && MoonDirection == 2)
+                {
+                    if (!m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Activate();
+                    }
+                }
+                else
+                {
+                    if (m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Deactivate();
+                    }
+                }
+            }
+            //Waxing Gibbous - 57% -> 88%
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == 3)
+            {
+                if (MoonPhase >= 57 && MoonPhase <= 88 && MoonDirection == 2)
+                {
+                    if (!m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Activate();
+                    }
+                }
+                else
+                {
+                    if (m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Deactivate();
+                    }
+                }
+            }
+            //Full Moon - waxing 90% -> waning 95%
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == 4)
+            {
+                if (MoonPhase >= 95)
+                {
+                    if (!m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Activate();
+                    }
+                }
+                else if (MoonPhase >= 90 && MoonDirection == 2) //only 90%+ if waxing
+                {
+                    if (!m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Activate();
+                    }
+                }
+                else
+                {
+                    if (m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Deactivate();
+                    }
+                }
+            }
+            //Waning Gibbous - 93% -> 62%
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == 5)
+            {
+                if (MoonPhase >= 62 && MoonPhase <= 93 && MoonDirection == 1)
+                {
+                    if (!m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Activate();
+                    }
+                }
+                else
+                {
+                    if (m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Deactivate();
+                    }
+                }
+            }
+            //Last Quarter - 60% -> 45%
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == 6)
+            {
+                if (MoonPhase >= 45 && MoonPhase <= 60 && MoonDirection == 1)
+                {
+                    if (!m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Activate();
+                    }
+                }
+                else
+                {
+                    if (m_LatentEffectList.at(i)->IsActivated())
+                    {
+                        m_LatentEffectList.at(i)->Deactivate();
+                    }
+                }
+            }
+            //Waning Crescent - 43% -> 12%
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == 7)
+            {
+                if (MoonPhase >= 12 && MoonPhase <= 43 && MoonDirection == 1)
                 {
                     if (!m_LatentEffectList.at(i)->IsActivated())
                     {

@@ -12,7 +12,7 @@
 
 function onTrigger(player,npc)
 
-	if(player:getZPos() < 50) then
+	if (player:getZPos() < 50) then
 		npc:openDoor();
 	else
 		player:messageSpecial(CANNOT_OPEN_SIDE);			

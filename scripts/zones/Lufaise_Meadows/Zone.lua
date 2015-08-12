@@ -48,15 +48,15 @@ end;
 function onZoneIn(player,prevZone)		
 	local cs = -1;	
 	
-	if(player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then	
+	if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then	
 		player:setPos(-475.825,-20.461,281.149,11);
 	end
 	
-	if(player:getCurrentMission(COP) == AN_INVITATION_WEST) then
-		if(player:getVar("PromathiaStatus") == 0) then
+	if (player:getCurrentMission(COP) == AN_INVITATION_WEST) then
+		if (player:getVar("PromathiaStatus") == 0) then
 		    cs = 0x006E;
 		end
-	elseif(player:getCurrentMission(COP) == CHAINS_AND_BONDS and player:getVar("PromathiaStatus") == 0) then
+	elseif (player:getCurrentMission(COP) == CHAINS_AND_BONDS and player:getVar("PromathiaStatus") == 0) then
         cs = 0x006F;	
 	end
 	
@@ -69,7 +69,7 @@ end;
 
 function onRegionEnter(player,region)
 local regionID =region:GetRegionID();
-  if(regionID==1 and player:getCurrentMission(COP) == DAWN 	and player:getVar("PromathiaStatus") == 6)then
+  if (regionID==1 and player:getCurrentMission(COP) == DAWN 	and player:getVar("PromathiaStatus") == 6) then
       player:startEvent(0x0074);
   end
 end;	
@@ -101,10 +101,10 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KI_STOLEN,0,MYSTERIOUS_AMULET);
 		player:delKeyItem(MYSTERIOUS_AMULET);
 		player:setVar("PromathiaStatus",1);
-    elseif(csid == 0x006F)then
+    elseif (csid == 0x006F) then
 		player:addItem(14657);
 		player:setVar("PromathiaStatus",1);
-	 elseif(csid == 0x0074)then
+	 elseif (csid == 0x0074) then
 	 player:setVar("PromathiaStatus",7);
 	 player:addTitle(BANISHER_OF_EMPTINESS);
 	end

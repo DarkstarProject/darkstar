@@ -40,20 +40,20 @@ function onSpellCast(caster,target,spell)
 
     final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
     
-    if(power > 459) then
+    if (power > 459) then
         divisor = 6.5;
         constant = 144.6666;
-    elseif(power > 219) then
+    elseif (power > 219) then
         divisor =  2;
         constant = 65;
     end
     
-    if(target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == TYPE_PC or target:getObjType() == TYPE_MOB)) then
+    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == TYPE_PC or target:getObjType() == TYPE_MOB)) then
         --Applying server mods....
         final = final * CURE_POWER;
     end
     
-    if(final > diff) then
+    if (final > diff) then
         final = diff;
     end
     

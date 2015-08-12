@@ -21,13 +21,13 @@ function onSpellCast(caster,target,spell)
     -- Duration, including resistance.  Unconfirmed.
     local duration = 30 * resist;
 
-    if(resist > 0.5) then
+    if (resist > 0.5) then
         if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
             duration = duration * 2;
             caster:delStatusEffect(EFFECT_SABOTEUR);
         end
 
-        if(target:addStatusEffect(EFFECT_PETRIFICATION,1,0,duration)) then
+        if (target:addStatusEffect(EFFECT_PETRIFICATION,1,0,duration)) then
             spell:setMsg(236);
         else
             spell:setMsg(75);

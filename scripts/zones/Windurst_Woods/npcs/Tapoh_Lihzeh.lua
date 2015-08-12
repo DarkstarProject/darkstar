@@ -18,7 +18,7 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 function onTrade(player,npc,trade)
 	local count = trade:getItemCount();
 	if (player:getQuestStatus(WINDURST,CHOCOBILIOUS) == QUEST_ACCEPTED and player:getVar("ChocobiliousQuest") == 1) then
-		if(count == 1 and trade:hasItemQty(938,1)) then
+		if (count == 1 and trade:hasItemQty(938,1)) then
 			player:startEvent(0x00e5,0,938); 
 			player:setVar("ChocobiliousQuest",2)
 		end

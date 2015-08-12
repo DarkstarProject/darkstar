@@ -27,7 +27,7 @@ ANC3K = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_3000);
 	-- The All New C-2000
     if (allnew == QUEST_ACCEPTED) then
       count = trade:getItemCount();
-      if(trade:hasItemQty(856,1) and trade:hasItemQty(4368,1) and trade:hasItemQty(846,1) and count == 3) then
+      if (trade:hasItemQty(856,1) and trade:hasItemQty(4368,1) and trade:hasItemQty(846,1) and count == 3) then
          player:startEvent(0x0124,GIL_RATE*200); -- Correct items given, complete quest.
       else
          player:startEvent(0x0120,0,856,846,4368); -- Incorrect or not enough items.
@@ -36,7 +36,7 @@ ANC3K = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_3000);
 	-- Legendary Plan B
 	elseif (LPB == QUEST_ACCEPTED) then
 		count = trade:getItemCount();
-		if(trade:hasItemQty(529,1) and trade:hasItemQty(940,1) and trade:hasItemQty(858,1) and count == 3) then
+		if (trade:hasItemQty(529,1) and trade:hasItemQty(940,1) and trade:hasItemQty(858,1) and count == 3) then
 			player:startEvent(0x013A,0,529,940,858); -- Correct items given, complete quest in onEventUpdate
 		else
 			player:startEvent(0x0135,0,529,940,858); -- Incorrect or not enough items
@@ -45,7 +45,7 @@ ANC3K = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_3000);
 	-- The All New C-3000
 	elseif (ANC3K == QUEST_ACCEPTED) then
 		count = trade:getItemCount();
-		if(trade:hasItemQty(889,1) and trade:hasItemQty(939,1) and count == 2) then
+		if (trade:hasItemQty(889,1) and trade:hasItemQty(939,1) and count == 2) then
 			player:startEvent(0x0291,0,889,939); -- Correct items given, complete quest in onEventUpdate
 		else
 			player:startEvent(0x0290,0,889,939); -- Incorrect or not enough items
@@ -54,7 +54,7 @@ ANC3K = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_3000);
 	-- Repeat The All New C-3000
 	elseif (ANC3K == QUEST_COMPLETED) then
 		count = trade:getItemCount();
-		if(trade:hasItemQty(889,1) and trade:hasItemQty(939,1) and count == 2) then
+		if (trade:hasItemQty(889,1) and trade:hasItemQty(939,1) and count == 2) then
 			player:startEvent(0x0291,0,889,939); -- Correct items given, complete quest in onEventUpdate
 		else
 			player:startEvent(0x0290,0,889,939); -- Incorrect or not enough items
@@ -77,7 +77,7 @@ local ANC3K = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_3000);
 
     -- The All New C-3000
 	if (LPB == QUEST_COMPLETED and ANC3K == QUEST_AVAILABLE and player:getFameLevel (WINDURST) >= 4) then
-		if(player:needToZone()) then
+		if (player:needToZone()) then
 			player:startEvent(0x013c); -- Post quest text from LPB
 		else
 		player:startEvent(0x028F,0,889,939); -- ANC3K start
@@ -93,7 +93,7 @@ local ANC3K = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_3000);
 	
 	-- Legendary Plan B
 	elseif (AGreetingCardian == QUEST_COMPLETED and LPB == QUEST_AVAILABLE and player:getFameLevel (WINDURST) >= 3) then
-		if(player:needToZone()) then
+		if (player:needToZone()) then
 			player:startEvent(0x0132); -- Supplemental text for AGreetingCardian before start of LPB
 		else
 		player:startEvent(0x0134,0,529,940,858); -- LPB start

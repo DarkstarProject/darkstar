@@ -96,10 +96,10 @@ function onEventFinish(player,csid,option)
 	local LastViridian = player:getVar("LastViridianKey"); -- When last Viridian key was obtained
 
 	if (csid == 0x0143) then
-		if(option == 1) then
+		if (option == 1) then
 			player:showText(player,DRYEYES_1);
-		elseif(option == 100) then
-			if(salad and juice and grub and ACPm >= GATHERER_OF_LIGHT_I and ViridianKey == false and now ~= LastViridian) then
+		elseif (option == 100) then
+			if (salad and juice and grub and ACPm >= GATHERER_OF_LIGHT_I and ViridianKey == false and now ~= LastViridian) then
 				player:addKeyItem(VIRIDIAN_KEY);
 				player:delKeyItem(BOWL_OF_BLAND_GOBLIN_SALAD);
 				player:delKeyItem(JUG_OF_GREASY_GOBLIN_JUICE);
@@ -107,14 +107,14 @@ function onEventFinish(player,csid,option)
 				player:setVar("LastViridianKey", os.date("%j"));
 				player:showText(player,DRYEYES_2);
 				player:messageSpecial(KEYITEM_OBTAINED,VIRIDIAN_KEY);
-			elseif(now == LastViridian or ViridianKey == true) then
+			elseif (now == LastViridian or ViridianKey == true) then
 				player:messageSpecial(DRYEYES_3,VIRIDIAN_KEY);
 			else
 				-- player:showText(player, ? );
 				-- Doesn't seem to be a message for trying when you don't have the key items?
 			end
 		-- Blue coral Key
-		-- elseif(option == 101) then
+		-- elseif (option == 101) then
 			-- if
 			-- end
 		end

@@ -47,7 +47,7 @@ function onSpellCast(caster,target,spell)
     
     local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT) - target:getStat(MOD_INT),BLUE_SKILL,1.0);
 
-    if(damage > 0 and resist > 0.125) then
+    if (damage > 0 and resist > 0.125) then
         local typeEffect = EFFECT_BIND;
         target:delStatusEffect(typeEffect); -- Wiki says it can overwrite itself or other binds
         target:addStatusEffect(typeEffect,1,0,getBlueEffectDuration(caster,resist,typeEffect));

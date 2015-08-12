@@ -16,7 +16,7 @@ require("scripts/zones/Port_Bastok/TextIDs");
 
 function onTrade(player,npc,trade) 
 	
-	if(trade:hasItemQty(0x218,1) and trade:getItemCount() == 1) then
+	if (trade:hasItemQty(0x218,1) and trade:getItemCount() == 1) then
 		player:startEvent(0x0008);
 	end
 	

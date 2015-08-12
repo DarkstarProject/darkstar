@@ -150,20 +150,20 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 	local item = trade:getItem();
 	local AddPoints = 0;
 
-	if(player:getNation() == guardnation or guardnation == OTHER) then
-		if(guardtype ~= 3 and guardtype ~= 4) then -- all guard can trade crystal except outpost and border.
-			if(item >= 4096 and item <= 4103 or item >= 4238 and item <= 4245) then
+	if (player:getNation() == guardnation or guardnation == OTHER) then
+		if (guardtype ~= 3 and guardtype ~= 4) then -- all guard can trade crystal except outpost and border.
+			if (item >= 4096 and item <= 4103 or item >= 4238 and item <= 4245) then
 				for Crystal = 1,table.getn(DonateCrys),1 do
 					local tcount = trade:getItemQty(DonateCrys[Crystal])
 
-					if(tcount > 0 and trade:hasItemQty(DonateCrys[Crystal],tcount)) then
-						if(player:getRank() == 1) then
+					if (tcount > 0 and trade:hasItemQty(DonateCrys[Crystal],tcount)) then
+						if (player:getRank() == 1) then
 							player:showText(npc,CONQUEST - 7);
 							break;
-						elseif(player:getRankPoints() == 4000) then
+						elseif (player:getRankPoints() == 4000) then
 							player:showText(npc,CONQUEST + 43);
 							break;
-						elseif(DonateCrys[Crystal] == 4102 or DonateCrys[Crystal] == 4103 or DonateCrys[Crystal] == 4244 or DonateCrys[Crystal] == 4245) then
+						elseif (DonateCrys[Crystal] == 4102 or DonateCrys[Crystal] == 4103 or DonateCrys[Crystal] == 4244 or DonateCrys[Crystal] == 4245) then
 							AddPoints = AddPoints + tcount * math.floor(4000 / (player:getRank() * 12 - 16));
 						else
 							AddPoints = AddPoints + tcount * math.floor(4000 / (player:getRank() * 12 - 12));
@@ -171,8 +171,8 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 					end
 				end
 
-				if(player:getRank() ~= 1 and player:getRankPoints() < 4000) then
-					if(AddPoints + player:getRankPoints() >= 4000) then
+				if (player:getRank() ~= 1 and player:getRankPoints() < 4000) then
+					if (AddPoints + player:getRankPoints() >= 4000) then
 						newpoint = (AddPoints + player:getRankPoints()) - 4000;
 						player:addCP(newpoint);
 						player:setRankPoints(4000);
@@ -187,10 +187,10 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 			end
 		end
 
-		if(item >= 15761 and item <= 15763) then -- All guard can recharge ring - I can't read number of charge atm
-			if(trade:hasItemQty(item,1) and trade:getItemCount() == 1 and player:getVar("CONQUEST_RING_RECHARGE") < os.time() and
+		if (item >= 15761 and item <= 15763) then -- All guard can recharge ring - I can't read number of charge atm
+			if (trade:hasItemQty(item,1) and trade:getItemCount() == 1 and player:getVar("CONQUEST_RING_RECHARGE") < os.time() and
             (ALLOW_MULTIPLE_EXP_RINGS == 1 or checkConquestRing(player) < 2)) then
-				if(myCP >= XpRing[item - 15760]) then
+				if (myCP >= XpRing[item - 15760]) then
 
 					player:delCP(XpRing[item - 15760]);
 					player:tradeComplete();
@@ -220,7 +220,7 @@ function supplyRunFresh(player)
     local started = player:getVar("supplyQuest_started");
 	local region = player:getVar("supplyQuest_region");
 
-	if((fresh <= os.time() and (region > 0 or player:hasKeyItem(75))) or
+	if ((fresh <= os.time() and (region > 0 or player:hasKeyItem(75))) or
       started <= 400) then -- Legacy support to remove supplies from the old system, otherwise they'd never go away.
 		return 0;
 	else
@@ -243,37 +243,37 @@ function getArg1(guardnation,player)
 	local output = 0;
 	local signet = 0;
 
-	if(guardnation == WINDURST) then
+	if (guardnation == WINDURST) then
 		output = 33;
-	elseif(guardnation == SANDORIA) then
+	elseif (guardnation == SANDORIA) then
 		output = 1;
-	elseif(guardnation == BASTOK) then
+	elseif (guardnation == BASTOK) then
 		output = 17;
 	end
 
-	if(guardnation == pNation) then
+	if (guardnation == pNation) then
 		signet = 0;
-	elseif(pNation == WINDURST) then
-		if(guardnation == BASTOK and windurst_bastok_ally == 1) or (guardnation == SANDORIA and sandy_windurst_ally == 1) then
+	elseif (pNation == WINDURST) then
+		if (guardnation == BASTOK and windurst_bastok_ally == 1) or (guardnation == SANDORIA and sandy_windurst_ally == 1) then
 			signet = 1;
 		else
 			signet = 7;
 		end
-	elseif(pNation == BASTOK) then
-		if(guardnation == WINDURST and windurst_bastok_ally == 1) or (guardnation == SANDORIA and sandy_bastok_ally == 1) then
+	elseif (pNation == BASTOK) then
+		if (guardnation == WINDURST and windurst_bastok_ally == 1) or (guardnation == SANDORIA and sandy_bastok_ally == 1) then
 			signet = 2;
 		else
 			signet = 7;
 		end
-	elseif(pNation == SANDORIA) then
-		if(guardnation == WINDURST and sandy_windurst_ally == 1) or (guardnation == BASTOK and sandy_bastok_ally == 1) then
+	elseif (pNation == SANDORIA) then
+		if (guardnation == WINDURST and sandy_windurst_ally == 1) or (guardnation == BASTOK and sandy_bastok_ally == 1) then
 			signet = 4;
 		else
 			signet = 7;
 		end
 	end
 
-	if(guardnation == OTHER) then
+	if (guardnation == OTHER) then
 		output = (pNation * 16) + (3 * 256)  + 65537;
 	else
 		output = output + 256 * signet;
@@ -308,22 +308,22 @@ function getSupplyAvailable(nation,player)
 
 	local mask = 2130706463;
 
-	if(player:getVar("supplyQuest_started") == vanaDay()) then
+	if (player:getVar("supplyQuest_started") == vanaDay()) then
 		mask = 4294967295; -- Need to wait 1 vanadiel day
 	end
 
 	for nb = 0,15 do
-		if(player:hasKeyItem(getSupplyKey(nb))) then
+		if (player:hasKeyItem(getSupplyKey(nb))) then
 			mask = -1; -- if you have supply run already activated
 		end
 	end
-	if(player:hasKeyItem(getSupplyKey(18))) then -- we need to skip 16 and 17 for now
+	if (player:hasKeyItem(getSupplyKey(18))) then -- we need to skip 16 and 17 for now
 		mask = -1;
 	end
 
-	if(mask ~= -1 and mask ~= 4294967295) then
+	if (mask ~= -1 and mask ~= 4294967295) then
 		for i = 0,18 do
-			if(GetRegionOwner(i) ~= nation or
+			if (GetRegionOwner(i) ~= nation or
 			   i == 16 or
 			   (i == 18 and player:hasCompletedMission(COP,DARKNESS_NAMED) == false)) then
 				mask = mask + 2^(i + 5);
@@ -346,11 +346,11 @@ function getArg6(player)
 	local output = player:getRank();
 	local nation = player:getNation();
 
-	if(nation == SANDORIA) then
+	if (nation == SANDORIA) then
 		return output;
-	elseif(nation == BASTOK) then
+	elseif (nation == BASTOK) then
 		return output + 32;
-	elseif(nation == WINDURST) then
+	elseif (nation == WINDURST) then
 		return output + 64;
 
 	end
@@ -371,15 +371,15 @@ end;
 
 function getSupplyKey(region)
 
-	if(region <= 9) then
+	if (region <= 9) then
 		return 75 + region;
-	elseif(region == 10) then
+	elseif (region == 10) then
 		return 124;
-	elseif(region <= 13) then
+	elseif (region <= 13) then
 		return 74 + region;
-	elseif(region <= 15) then
+	elseif (region <= 15) then
 		return 248 + region;
-	elseif(region == 18) then
+	elseif (region == 18) then
 		return 620;
 	end
 
@@ -393,10 +393,10 @@ function giltosetHP(guardnation,player)
 
 	local rank = player:getRank();
 
-	if(getArg1(guardnation,player) < 0x700) then -- determine ifplayer is in same or allied nation as guard
+	if (getArg1(guardnation,player) < 0x700) then -- determine ifplayer is in same or allied nation as guard
 		HPgil = 0;
 	else
-		if(rank <= 5) then
+		if (rank <= 5) then
 			HPgil = 100 * 2^(rank - 1);
 		else
 			HPgil = 800 * rank - 2400;
@@ -416,17 +416,17 @@ function hasOutpost(player, region)
 	local nation = player:getNation()
 	local bit = {};
 
-	if(nation == BASTOK) then
+	if (nation == BASTOK) then
 		supply_quests = player:getNationTeleport(BASTOK);
-	elseif(nation == SANDORIA) then
+	elseif (nation == SANDORIA) then
 		supply_quests = player:getNationTeleport(SANDORIA);
-	elseif(nation == WINDURST) then
+	elseif (nation == WINDURST) then
 		supply_quests = player:getNationTeleport(WINDURST);
 	end;
 
 	for i = 23,5,-1 do
 		twop = 2^i
-		if(supply_quests >= twop) then
+		if (supply_quests >= twop) then
 			bit[i]=1;
 			supply_quests = supply_quests - twop;
 		else
@@ -445,8 +445,8 @@ end;
 
 function OP_TeleFee(player,region)
 
-	if(hasOutpost(player, region+5) == 1) then
-		if(GetRegionOwner(region) == player:getNation()) then
+	if (hasOutpost(player, region+5) == 1) then
+		if (GetRegionOwner(region) == player:getNation()) then
 			return tpFees[region + 1];
 		else
 			return tpFees[region + 1] * 3;
@@ -463,9 +463,9 @@ end;
 
 function toHomeNation(player)
 
-	if(player:getNation() == BASTOK) then
+	if (player:getNation() == BASTOK) then
 		player:setPos(89, 0 , -66, 0, 234);
-	elseif(player:getNation() == SANDORIA) then
+	elseif (player:getNation() == SANDORIA) then
 		player:setPos(49, -1 , 29, 164, 231);
 	else
 		player:setPos(193, -12 , 220, 64, 240);
@@ -482,7 +482,7 @@ function getTeleAvailable(nation)
 	local mask = 2145386527;
 
 	for i = 5,23 do
-		if(GetRegionOwner(i - 5) ~= nation) then
+		if (GetRegionOwner(i - 5) ~= nation) then
 			mask = mask + 2^i;
 		end;
 	end
@@ -499,58 +499,58 @@ function toOutpost(player,option)
 -- Coordinates marked {R} have been obtained by packet capture from retail. Don't change them.
 
 	-- Ronfaure
-	if(option == 5) then
+	if (option == 5) then
 		player:setPos(-437.688, -20.255, -219.227, 124, 100); -- {R}
 	-- Zulkheim
-	elseif(option == 6) then
+	elseif (option == 6) then
 		player:setPos(148.231, -7.975 , 93.479, 154, 103); 	  -- {R}
 	-- Norvallen
-	elseif(option == 7) then
+	elseif (option == 7) then
 		player:setPos(62.030, 0.463, -2.025, 67, 104); 		  -- {R}
 	-- Gustaberg
-	elseif(option == 8) then
+	elseif (option == 8) then
 		player:setPos(-580.161, 39.578, 62.68, 89, 106);	  -- {R}
 	-- Derfland
-	elseif(option == 9) then
+	elseif (option == 9) then
 		player:setPos(465.820, 23.625, 423.164, 29, 109); 	  -- {R}
 	-- Sarutabaruta
-	elseif(option == 10) then
+	elseif (option == 10) then
 		player:setPos(-17.921, -13.335, 318.156, 254, 115);	  -- {R}
 	-- Kolshushu
-	elseif(option == 11) then
+	elseif (option == 11) then
 		player:setPos(-480.237, -30.943, 58.079, 62, 118);	  -- {R}
 	-- Aragoneu
-	elseif(option == 12) then
+	elseif (option == 12) then
 		player:setPos(-297.047, 16.988, 418.026, 225, 119);	  -- {R}
 	-- Fauregandi
-	elseif(option == 13) then
+	elseif (option == 13) then
 		player:setPos(-18.690, -60.048, -109.243, 100, 111);  -- {R}
 	-- Valdeaunia
-	elseif(option == 14) then
+	elseif (option == 14) then
 		player:setPos(211.210, -24.016, -207.338, 160, 112);  -- {R}
 	-- Qufim Island
-	elseif(option == 15) then
+	elseif (option == 15) then
 		player:setPos(-243.049, -19.983, 306.712, 71, 126);   -- {R}
 	-- Li'Telor
-	elseif(option == 16) then
+	elseif (option == 16) then
 		player:setPos(-37.669, 0.419, -141.216, 69, 121);	  -- {R}
 	-- Kuzotz
-	elseif(option == 17) then
+	elseif (option == 17) then
 		player:setPos(-249.983, 7.965, -252.976, 122, 114);   -- {R}
 	-- Vollbow
-	elseif(option == 18) then
+	elseif (option == 18) then
 		player:setPos(-176.360, 7.624, -63.580, 122, 113);	  -- {R}
 	-- Elshimo Lowlands
-	elseif(option == 19) then
+	elseif (option == 19) then
 		player:setPos(-240.860, -0.031, -388.434, 64, 123);   -- {R}
 	-- Elshimo Uplands
-	elseif(option == 20) then
+	elseif (option == 20) then
 		player:setPos(207.821, -0.128, -86.623, 159, 124);	  -- {R}
 	-- Tu'Lia ?!
-	elseif(option == 21) then
+	elseif (option == 21) then
 		player:setPos(4, -54, -600, 192, 130);                -- Dummied out?
 	-- Tavnazia
-	elseif(option == 23) then
+	elseif (option == 23) then
 		player:setPos(-535.861, -7.149, -53.628, 122, 24);    -- {R}
 	end;
 end;
@@ -1162,15 +1162,15 @@ function SetRegionalConquestOverseers(region)
     for i = 1, table.getn(npclist), 2 do
     	local npc = GetNPCByID(npclist[i]);
     	
-    	if(npc ~= nil) then
-            if(npclist[i+1] == nation) then
+    	if (npc ~= nil) then
+            if (npclist[i+1] == nation) then
                 npc:setStatus(0);
             else
                 npc:setStatus(2);
             end
         
-            if(npclist[i+1] == OTHER) then
-                if(nation ~= BEASTMEN) then
+            if (npclist[i+1] == OTHER) then
+                if (nation ~= BEASTMEN) then
                     npc:setStatus(0);
                 else
                     npc:setStatus(2);

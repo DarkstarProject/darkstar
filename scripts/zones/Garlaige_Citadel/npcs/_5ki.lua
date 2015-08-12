@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:hasKeyItem(POUCH_OF_WEIGHTED_STONES) == false or player:getZPos() > 359) then
+	if (player:hasKeyItem(POUCH_OF_WEIGHTED_STONES) == false or player:getZPos() > 359) then
 		player:messageSpecial(A_GATE_OF_STURDY_STEEL);
 		return 1;
 	else

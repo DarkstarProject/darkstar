@@ -23,8 +23,8 @@ end;
 
 function onTrigger(player,npc)
 
-	if(player:hasKeyItem(WASHUS_TASTY_WURST) and player:hasKeyItem(YOMOTSU_FEATHER) == false) then
-		if(player:getVar("yomiOkuriKilledNM") >= 1) then
+	if (player:hasKeyItem(WASHUS_TASTY_WURST) and player:hasKeyItem(YOMOTSU_FEATHER) == false) then
+		if (player:getVar("yomiOkuriKilledNM") >= 1) then
 			player:delKeyItem(WASHUS_TASTY_WURST);
 			player:addKeyItem(YOMOTSU_FEATHER);
 			player:messageSpecial(KEYITEM_OBTAINED,YOMOTSU_FEATHER);

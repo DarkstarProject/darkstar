@@ -5,4 +5,4 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6383; -- Obtained: <item>
            GIL_OBTAINED = 6384; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6386; -- Obtained key item: <keyitem>
-            HOMEPOINT_SET = 8637; -- Home point set!
+            HOMEPOINT_SET = 8639; -- Home point set!

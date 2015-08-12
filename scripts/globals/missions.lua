@@ -517,7 +517,7 @@ function getMissionRankPoints(player, missionID)
 
 	points_needed = 1024 * (crystals-.25) / (3*rankPointMath(player:getRank()));
 
-	if(player:getRankPoints() >= points_needed) then
+	if (player:getRankPoints() >= points_needed) then
 		return 1;
 	else
 		return 0;
@@ -532,291 +532,291 @@ function getMissionMask(player)
 	first_mission = 0;
 	repeat_mission = 0;
 
-	if(nation == WINDURST) then
-		if(rank >= 1) then
-			if(player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
+	if (nation == WINDURST) then
+		if (rank >= 1) then
+			if (player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
 				-- 1-1 NOTE: This mission will not be listed in the Mission List for Windurst
 				--first_mission = first_mission + 1;
 			end
-			if(player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) == false) then
+			if (player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) == false) then
 				-- 1-2 NOTE: This mission will not be listed in the Mission List for Windurst
 				--first_mission = first_mission + 2;
 			end
-			if(player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
+			if (player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
 				-- 1-3 NOTE: This mission will not be listed in the Mission List for Windurst
 				--first_mission = first_mission + 4;
 			end
 		end
-		if(rank >= 2) then
+		if (rank >= 2) then
 			-- 2-1
-			if(player:hasCompletedMission(WINDURST,LOST_FOR_WORDS) == false and getMissionRankPoints(player,3) == 1) then
+			if (player:hasCompletedMission(WINDURST,LOST_FOR_WORDS) == false and getMissionRankPoints(player,3) == 1) then
 				first_mission = first_mission + 8;
 			else
-				if(player:hasCompletedMission(WINDURST,LOST_FOR_WORDS) and (rank > 2 or getMissionRankPoints(player,4) == 1)) then
+				if (player:hasCompletedMission(WINDURST,LOST_FOR_WORDS) and (rank > 2 or getMissionRankPoints(player,4) == 1)) then
 					-- 2-2 Repeatable
 					repeat_mission = repeat_mission + 16;
 				end
-				if(player:hasCompletedMission(WINDURST,THE_THREE_KINGDOMS) == false and getMissionRankPoints(player,5) == 1) then
+				if (player:hasCompletedMission(WINDURST,THE_THREE_KINGDOMS) == false and getMissionRankPoints(player,5) == 1) then
 					-- 2-3
 					first_mission = first_mission + 32;
 				end
 			end
 		end
-		if(rank >= 3) then
+		if (rank >= 3) then
 			-- 3-1
-			if(player:hasCompletedMission(WINDURST,TO_EACH_HIS_OWN_RIGHT) == false and getMissionRankPoints(player,10) == 1) then
+			if (player:hasCompletedMission(WINDURST,TO_EACH_HIS_OWN_RIGHT) == false and getMissionRankPoints(player,10) == 1) then
 				first_mission = first_mission + 1024;
 			else
-				if(player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS) == false and getMissionRankPoints(player,11) == 1) then
+				if (player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS) == false and getMissionRankPoints(player,11) == 1) then
 					-- 3-2 Repeatable & Skippable
 					repeat_mission = repeat_mission + 2048;
-				elseif(rank > 3 or getMissionRankPoints(player,11) == 1) then
+				elseif (rank > 3 or getMissionRankPoints(player,11) == 1) then
 					-- 3-2 Repeatable & Skippable
 					repeat_mission = repeat_mission + 2048;
 				end
-				if(player:hasCompletedMission(WINDURST,A_NEW_JOURNEY) == false and getMissionRankPoints(player,12) == 1) then
+				if (player:hasCompletedMission(WINDURST,A_NEW_JOURNEY) == false and getMissionRankPoints(player,12) == 1) then
 					-- 3-3
 					first_mission = first_mission + 4096;
 				end
 			end
 		end
-		if(rank == 4) then
+		if (rank == 4) then
 			-- The mission is triggered by the Ambassador in Jeuno
 			-- first_mission = first_mission + 8192;
 		end
-		if(rank == 5) then
-			if(player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
+		if (rank == 5) then
+			if (player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
 				first_mission = first_mission + 16384;
 			end
-			if(player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) and player:hasCompletedMission(WINDURST,THE_SHADOW_AWAITS) == false and getMissionRankPoints(player,15) == 1) then
+			if (player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) and player:hasCompletedMission(WINDURST,THE_SHADOW_AWAITS) == false and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
 			end
 		end
-		if(rank == 6) then
-			if(player:hasCompletedMission(WINDURST,FULL_MOON_FOUNTAIN) == false and getMissionRankPoints(player,16) == 1) then
+		if (rank == 6) then
+			if (player:hasCompletedMission(WINDURST,FULL_MOON_FOUNTAIN) == false and getMissionRankPoints(player,16) == 1) then
 				-- 6-1
 				first_mission = first_mission + 65536;
-			elseif(player:hasCompletedMission(WINDURST,SAINTLY_INVITATION) == false and getMissionRankPoints(player,17) == 1) then
+			elseif (player:hasCompletedMission(WINDURST,SAINTLY_INVITATION) == false and getMissionRankPoints(player,17) == 1) then
 				-- 6-2
 				first_mission = first_mission + 131072;
 			end
 		end
-		if(rank == 7) then
-			if(player:hasCompletedMission(WINDURST,THE_SIXTH_MINISTRY) == false and getMissionRankPoints(player,18) == 1) then
+		if (rank == 7) then
+			if (player:hasCompletedMission(WINDURST,THE_SIXTH_MINISTRY) == false and getMissionRankPoints(player,18) == 1) then
 				-- 7-1
 				first_mission = first_mission + 262144;
-			elseif(player:hasCompletedMission(WINDURST,AWAKENING_OF_THE_GODS) == false and getMissionRankPoints(player,19) == 1) then
+			elseif (player:hasCompletedMission(WINDURST,AWAKENING_OF_THE_GODS) == false and getMissionRankPoints(player,19) == 1) then
 				-- 7-2
 				first_mission = first_mission + 524288;
 			end
 		end
-		if(rank == 8) then
-			if(player:hasCompletedMission(WINDURST,VAIN) == false and getMissionRankPoints(player,20) == 1) then
+		if (rank == 8) then
+			if (player:hasCompletedMission(WINDURST,VAIN) == false and getMissionRankPoints(player,20) == 1) then
 				-- 8-1
 				first_mission = first_mission + 1048576;
-			elseif(player:hasCompletedMission(WINDURST,THE_JESTER_WHO_D_BE_KING) == false and getMissionRankPoints(player,21) == 1) then
+			elseif (player:hasCompletedMission(WINDURST,THE_JESTER_WHO_D_BE_KING) == false and getMissionRankPoints(player,21) == 1) then
 				-- 8-2
 				first_mission = first_mission + 2097152;
 			end
 		end
-		if(rank == 9) then
-			if(player:hasCompletedMission(WINDURST,DOLL_OF_THE_DEAD) == false and getMissionRankPoints(player,22) == 1) then
+		if (rank == 9) then
+			if (player:hasCompletedMission(WINDURST,DOLL_OF_THE_DEAD) == false and getMissionRankPoints(player,22) == 1) then
 				-- 9-1
 				first_mission = first_mission + 4194304;
-			elseif(player:hasCompletedMission(WINDURST,MOON_READING) == false and getMissionRankPoints(player,23) == 1) then
+			elseif (player:hasCompletedMission(WINDURST,MOON_READING) == false and getMissionRankPoints(player,23) == 1) then
 				-- 9-2
 				first_mission = first_mission + 8388608;
 			end
 		end
-	elseif(nation == SANDORIA) then
-		if(rank >= 1) then
-			if(player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then -- The first mission is repeatable in San d'Oria
+	elseif (nation == SANDORIA) then
+		if (rank >= 1) then
+			if (player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then -- The first mission is repeatable in San d'Oria
 				-- 1-1
 				repeat_mission = repeat_mission + 1;
-			elseif(player:hasCompletedMission(SANDORIA,BAT_HUNT) == false) then
+			elseif (player:hasCompletedMission(SANDORIA,BAT_HUNT) == false) then
 				-- 1-2 If we completed 1-1, we can start and repeat this mission
 				repeat_mission = repeat_mission + 2 + 1;
-			elseif(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN) == false) then
+			elseif (player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN) == false) then
 				-- 1-3 If we completed 1-2, we can start and repeat this mission
 				repeat_mission = repeat_mission + 4 + 2 + 1;
 			else
 				repeat_mission = repeat_mission + 4 + 2 + 1;
 			end
 		end
-		if(rank >= 2) then
+		if (rank >= 2) then
 			-- 2-1
-			if(player:hasCompletedMission(SANDORIA,THE_RESCUE_DRILL) == false and getMissionRankPoints(player,3) == 1) then
+			if (player:hasCompletedMission(SANDORIA,THE_RESCUE_DRILL) == false and getMissionRankPoints(player,3) == 1) then
 				first_mission = first_mission + 8;
 			else
-				if(rank > 2 or getMissionRankPoints(player,4) == 1) then
+				if (rank > 2 or getMissionRankPoints(player,4) == 1) then
 					-- 2-2 Repeatable & Skippable
 					repeat_mission = repeat_mission + 16;
 				end
-				if(player:hasCompletedMission(SANDORIA,JOURNEY_ABROAD) == false and getMissionRankPoints(player,5) == 1) then
+				if (player:hasCompletedMission(SANDORIA,JOURNEY_ABROAD) == false and getMissionRankPoints(player,5) == 1) then
 					-- 2-3
 					first_mission = first_mission + 32;
 				end
 			end
 		end
-		if(rank >= 3) then
-			if(rank > 3 or getMissionRankPoints(player,10) == 1) then
+		if (rank >= 3) then
+			if (rank > 3 or getMissionRankPoints(player,10) == 1) then
 				-- 3-1
 				repeat_mission = repeat_mission + 1024;
 			end
-			if(player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI) == true and getMissionRankPoints(player,11) == 1) then
+			if (player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI) == true and getMissionRankPoints(player,11) == 1) then
 				-- 3-2 Repeatable & Skippable
 				repeat_mission = repeat_mission + 2048;
 			end
-			if(player:hasCompletedMission(SANDORIA,APPOINTMENT_TO_JEUNO) == false and getMissionRankPoints(player,12) == 1) then
+			if (player:hasCompletedMission(SANDORIA,APPOINTMENT_TO_JEUNO) == false and getMissionRankPoints(player,12) == 1) then
 				-- 3-3
 				first_mission = first_mission + 4096;
 			end
 		end
-		if(rank == 4) then
+		if (rank == 4) then
 			-- The mission is triggered by the Ambassador in Jeuno
 			-- first_mission = first_mission + 8192;
 		end
-		if(rank == 5) then
-			if(player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(69) == false) then
+		if (rank == 5) then
+			if (player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(69) == false) then
 				first_mission = first_mission + 16384;
 			end
-			if(player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) and getMissionRankPoints(player,15) == 1) then
+			if (player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
 			end
 		end
-		if(rank == 6) then
-			if(player:hasCompletedMission(SANDORIA,LEAUTE_S_LAST_WISHES) == false and getMissionRankPoints(player,16) == 1) then
+		if (rank == 6) then
+			if (player:hasCompletedMission(SANDORIA,LEAUTE_S_LAST_WISHES) == false and getMissionRankPoints(player,16) == 1) then
 				-- 6-1
 				first_mission = first_mission + 65536;
-			elseif(player:hasCompletedMission(SANDORIA,RANPERRE_S_FINAL_REST) == false and getMissionRankPoints(player,17) == 1) then
+			elseif (player:hasCompletedMission(SANDORIA,RANPERRE_S_FINAL_REST) == false and getMissionRankPoints(player,17) == 1) then
 				-- 6-2
 				first_mission = first_mission + 131072;
 			end
 		end
-		if(rank == 7) then
-			if(player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE) == false and getMissionRankPoints(player,18) == 1) then
+		if (rank == 7) then
+			if (player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE) == false and getMissionRankPoints(player,18) == 1) then
 				-- 7-1
 				first_mission = first_mission + 262144;
-			elseif(player:hasCompletedMission(SANDORIA,THE_SECRET_WEAPON) == false and getMissionRankPoints(player,19) == 1) then
+			elseif (player:hasCompletedMission(SANDORIA,THE_SECRET_WEAPON) == false and getMissionRankPoints(player,19) == 1) then
 				-- 7-2
 				first_mission = first_mission + 524288;
 			end
 		end
-		if(rank == 8) then
-			if(player:hasCompletedMission(SANDORIA,COMING_OF_AGE) == false and getMissionRankPoints(player,20) == 1) then
+		if (rank == 8) then
+			if (player:hasCompletedMission(SANDORIA,COMING_OF_AGE) == false and getMissionRankPoints(player,20) == 1) then
 				-- 8-1
 				first_mission = first_mission + 1048576;
-			elseif(player:hasCompletedMission(SANDORIA,LIGHTBRINGER) == false and getMissionRankPoints(player,21) == 1 and player:getVar("Mission8-1Completed") == 1) then
+			elseif (player:hasCompletedMission(SANDORIA,LIGHTBRINGER) == false and getMissionRankPoints(player,21) == 1 and player:getVar("Mission8-1Completed") == 1) then
 				-- 8-2
 				first_mission = first_mission + 2097152;
 			end
 		end
-		if(rank == 9) then
-			if(player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1) then
+		if (rank == 9) then
+			if (player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1) then
 				-- 9-1
 				first_mission = first_mission + 4194304;
-			elseif(player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getVar("Cutscenes_8-2") == 2) then
+			elseif (player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getVar("Cutscenes_8-2") == 2) then
 				-- 9-2
 				first_mission = first_mission + 8388608;
 
-	elseif(player:hasCompletedMission(SANDORIA,THE_HEIR_TO_THE_LIGHT) == false and getMissionRankPoints(player,23) == 1) then
+	elseif (player:hasCompletedMission(SANDORIA,THE_HEIR_TO_THE_LIGHT) == false and getMissionRankPoints(player,23) == 1) then
 				-- 9-2
 				first_mission = first_mission + 8388608;
 
 			end
 		end
-	elseif(nation == BASTOK) then
-		if(rank >= 1) then
-			if(player:hasCompletedMission(BASTOK,THE_ZERUHN_REPORT) == false) then
+	elseif (nation == BASTOK) then
+		if (rank >= 1) then
+			if (player:hasCompletedMission(BASTOK,THE_ZERUHN_REPORT) == false) then
 				-- 1-1 NOTE: This mission will not be listed in the Mission List for Bastok
 				--first_mission = first_mission + 1;
 			end
-			if(player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == false) then
+			if (player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == false) then
 				-- 1-2 NOTE: This mission will not be listed in the Mission List for Bastok
 				first_mission = first_mission + 2;
 			end
-			if(player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == true) then
+			if (player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == true) then
 				-- 1-3
 				repeat_mission = repeat_mission + 4;
 			end
 		end
-		if(rank >= 2) then
+		if (rank >= 2) then
 			-- 2-1
-			if(player:hasCompletedMission(BASTOK,THE_CRYSTAL_LINE) == false and getMissionRankPoints(player,3) == 1) then
+			if (player:hasCompletedMission(BASTOK,THE_CRYSTAL_LINE) == false and getMissionRankPoints(player,3) == 1) then
 				first_mission = first_mission + 8;
 			else
-				if(rank > 2 or getMissionRankPoints(player,4) == 1) then
+				if (rank > 2 or getMissionRankPoints(player,4) == 1) then
 					-- 2-2 Repeatable
 					repeat_mission = repeat_mission + 16;
 				end
-				if(player:hasCompletedMission(BASTOK,THE_EMISSARY) == false and getMissionRankPoints(player,5) == 1) then
+				if (player:hasCompletedMission(BASTOK,THE_EMISSARY) == false and getMissionRankPoints(player,5) == 1) then
 					-- 2-3
 					first_mission = first_mission + 32;
 				end
 			end
 		end
-		if(rank >= 3) then
+		if (rank >= 3) then
 			-- 3-1
-			if(player:hasCompletedMission(BASTOK,THE_FOUR_MUSKETEERS) == false and getMissionRankPoints(player,10) == 1) then
+			if (player:hasCompletedMission(BASTOK,THE_FOUR_MUSKETEERS) == false and getMissionRankPoints(player,10) == 1) then
 				first_mission = first_mission + 1024;
 			else
-				if(rank > 3 or getMissionRankPoints(player,11) == 1) then
+				if (rank > 3 or getMissionRankPoints(player,11) == 1) then
 					-- 3-2 Repeatable & Skippable
 					repeat_mission = repeat_mission + 2048;
 				end
-				if(player:hasCompletedMission(BASTOK,JEUNO_MISSION) == false and getMissionRankPoints(player,12) == 1) then
+				if (player:hasCompletedMission(BASTOK,JEUNO_MISSION) == false and getMissionRankPoints(player,12) == 1) then
 					-- 3-3
 					first_mission = first_mission + 4096;
 				end
 			end
 		end
-		if(rank == 4) then
+		if (rank == 4) then
 			-- The mission is triggered by the Ambassador in Jeuno
 			-- first_mission = first_mission + 8192;
 		end
-		if(rank == 5) then
-			if(player:hasCompletedMission(BASTOK,DARKNESS_RISING) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
+		if (rank == 5) then
+			if (player:hasCompletedMission(BASTOK,DARKNESS_RISING) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
 				first_mission = first_mission + 16384;
 			end
-			if(player:hasCompletedMission(BASTOK,DARKNESS_RISING) and player:hasCompletedMission(BASTOK,XARCABARD_LAND_OF_TRUTHS) == false and getMissionRankPoints(player,15) == 1) then
+			if (player:hasCompletedMission(BASTOK,DARKNESS_RISING) and player:hasCompletedMission(BASTOK,XARCABARD_LAND_OF_TRUTHS) == false and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
 			end
 		end
-		if(rank == 6) then
-			if(player:hasCompletedMission(BASTOK,RETURN_OF_THE_TALEKEEPER) == false and getMissionRankPoints(player,16) == 1) then
+		if (rank == 6) then
+			if (player:hasCompletedMission(BASTOK,RETURN_OF_THE_TALEKEEPER) == false and getMissionRankPoints(player,16) == 1) then
 				-- 6-1
 				first_mission = first_mission + 65536;
-			elseif(player:hasCompletedMission(BASTOK,THE_PIRATE_S_COVE) == false and getMissionRankPoints(player,17) == 1) then
+			elseif (player:hasCompletedMission(BASTOK,THE_PIRATE_S_COVE) == false and getMissionRankPoints(player,17) == 1) then
 				-- 6-2
 				first_mission = first_mission + 131072;
 			end
 		end
-		if(rank == 7) then
-			if(player:hasCompletedMission(BASTOK,THE_FINAL_IMAGE) == false and getMissionRankPoints(player,18) == 1) then
+		if (rank == 7) then
+			if (player:hasCompletedMission(BASTOK,THE_FINAL_IMAGE) == false and getMissionRankPoints(player,18) == 1) then
 				-- 7-1
 				first_mission = first_mission + 262144;
-			elseif(player:hasCompletedMission(BASTOK,ON_MY_WAY) == false and getMissionRankPoints(player,19) == 1) then
+			elseif (player:hasCompletedMission(BASTOK,ON_MY_WAY) == false and getMissionRankPoints(player,19) == 1) then
 				-- 7-2
 				first_mission = first_mission + 524288;
 			end
 		end
-		if(rank == 8) then
-			if(player:hasCompletedMission(BASTOK,THE_CHAINS_THAT_BIND_US) == false and getMissionRankPoints(player,20) == 1) then
+		if (rank == 8) then
+			if (player:hasCompletedMission(BASTOK,THE_CHAINS_THAT_BIND_US) == false and getMissionRankPoints(player,20) == 1) then
 				-- 8-1
 				first_mission = first_mission + 1048576;
-			elseif(player:hasCompletedMission(BASTOK,ENTER_THE_TALEKEEPER) == false and getMissionRankPoints(player,21) == 1) then
+			elseif (player:hasCompletedMission(BASTOK,ENTER_THE_TALEKEEPER) == false and getMissionRankPoints(player,21) == 1) then
 				-- 8-2
 				first_mission = first_mission + 2097152;
 			end
 		end
-		if(rank == 9) then
-			if(player:hasCompletedMission(BASTOK,THE_SALT_OF_THE_EARTH) == false and getMissionRankPoints(player,22) == 1) then
+		if (rank == 9) then
+			if (player:hasCompletedMission(BASTOK,THE_SALT_OF_THE_EARTH) == false and getMissionRankPoints(player,22) == 1) then
 				-- 9-1
 				first_mission = first_mission + 4194304;
-			elseif(player:hasCompletedMission(BASTOK,WHERE_TWO_PATHS_CONVERGE) == false and getMissionRankPoints(player,23) == 1) then
+			elseif (player:hasCompletedMission(BASTOK,WHERE_TWO_PATHS_CONVERGE) == false and getMissionRankPoints(player,23) == 1) then
 				-- 9-2
 				first_mission = first_mission + 8388608;
 			end
@@ -837,34 +837,34 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
 	offset = 0; cs = 0; params = {0,0,0,0,0,0,0,0};
 	nation = player:getNation();
 
-	if(nation == SANDORIA) then
+	if (nation == SANDORIA) then
 
-			if(guard == 1) then GuardCS = {0x03fe,0x03fd,0x0401,0x03ec,0x0400,0x03ed,0x03ee,0x0404,0x0405,0x03f4,0x0407};
-		elseif(guard == 2) then GuardCS = {0x07e6,0x07e5,0x07e9,0x07d4,0x07e8,0x07d5,0x07d6,0x07ec,0x07ed,0x07dc,0x07ef};
+			if (guard == 1) then GuardCS = {0x03fe,0x03fd,0x0401,0x03ec,0x0400,0x03ed,0x03ee,0x0404,0x0405,0x03f4,0x0407};
+		elseif (guard == 2) then GuardCS = {0x07e6,0x07e5,0x07e9,0x07d4,0x07e8,0x07d5,0x07d6,0x07ec,0x07ed,0x07dc,0x07ef};
 		end
 
 		switch (pMission) : caseof {
 			[0] = function (x) offset = 0; end, -- Mission 1-1
-			[1] = function (x) if(MissionStatus == 2) then cs = GuardCS[1]; else cs = GuardCS[2]; end end, -- Mission 1-2 (1) after check tombstone
-			[2] = function (x) if(MissionStatus == 0) then cs = GuardCS[3]; -- Mission 1-3 before Battlefield
-						   elseif(MissionStatus == 4 and player:hasCompletedMission(0,2) == false) then cs = GuardCS[4]; -- Mission 1-3 after Battlefield
-						   elseif(MissionStatus == 4) then cs = GuardCS[5]; else offset = 24; end end, -- Mission 1-3 after Battlefield (Finish Quest)
-			[3] = function (x) if(MissionStatus == 11) then cs = GuardCS[6]; else offset = 36; end end,
-			[4] = function (x) if(MissionStatus == 3 and player:hasCompletedMission(0,4)) then cs = GuardCS[7];
-						   elseif(MissionStatus == 3) then cs = GuardCS[8]; params = {0,0,0,44}; else offset = 44; end end,
-			[5] = function (x) if(MissionStatus == 0) then offset = 50; else offset = 51; end end,
-			[10] = function (x) if(MissionStatus == 0) then cs = GuardCS[9];
-							elseif(MissionStatus == 4) then offset = 55;
-							elseif(MissionStatus == 5) then offset = 60;
-							elseif(MissionStatus == 10) then cs = GuardCS[10]; end end,
-			[11] = function (x) if(MissionStatus == 0) then offset = 68;
-							elseif(MissionStatus == 2) then cs = GuardCS[11]; end end,
-			[12] = function (x) if(MissionStatus == 0) then offset = 74; end end,
-			[14] = function (x) if(MissionStatus == 0) then cs = 0x003D; end end,
+			[1] = function (x) if (MissionStatus == 2) then cs = GuardCS[1]; else cs = GuardCS[2]; end end, -- Mission 1-2 (1) after check tombstone
+			[2] = function (x) if (MissionStatus == 0) then cs = GuardCS[3]; -- Mission 1-3 before Battlefield
+						   elseif (MissionStatus == 4 and player:hasCompletedMission(0,2) == false) then cs = GuardCS[4]; -- Mission 1-3 after Battlefield
+						   elseif (MissionStatus == 4) then cs = GuardCS[5]; else offset = 24; end end, -- Mission 1-3 after Battlefield (Finish Quest)
+			[3] = function (x) if (MissionStatus == 11) then cs = GuardCS[6]; else offset = 36; end end,
+			[4] = function (x) if (MissionStatus == 3 and player:hasCompletedMission(0,4)) then cs = GuardCS[7];
+						   elseif (MissionStatus == 3) then cs = GuardCS[8]; params = {0,0,0,44}; else offset = 44; end end,
+			[5] = function (x) if (MissionStatus == 0) then offset = 50; else offset = 51; end end,
+			[10] = function (x) if (MissionStatus == 0) then cs = GuardCS[9];
+							elseif (MissionStatus == 4) then offset = 55;
+							elseif (MissionStatus == 5) then offset = 60;
+							elseif (MissionStatus == 10) then cs = GuardCS[10]; end end,
+			[11] = function (x) if (MissionStatus == 0) then offset = 68;
+							elseif (MissionStatus == 2) then cs = GuardCS[11]; end end,
+			[12] = function (x) if (MissionStatus == 0) then offset = 74; end end,
+			[14] = function (x) if (MissionStatus == 0) then cs = 0x003D; end end,
 		}
 		return cs, params, offset;
 
-	elseif(nation == BASTOK) then
+	elseif (nation == BASTOK) then
 
 		switch (pMission) : caseof {
 			[0] = function (x) offset = 0; end,
@@ -889,18 +889,18 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
 		}
 		return cs, params, offset;
 
-	elseif(nation == WINDURST) then
+	elseif (nation == WINDURST) then
 
-			if(guard == 1) then GuardCS = {0x007F,0x0088,0x0096,0x009A,0x00A0,0x01D9,0x00b1};
-		elseif(guard == 2) then GuardCS = {0x007b,0x0083,0x0136,0x0094,0x009c,0x00b1,0x00d7};
-		elseif(guard == 3) then GuardCS = {0x0059,0x0069,0x006e,0x0072,0x0078,0x0085,0x008a};
-		elseif(guard == 4) then GuardCS = {0x0063,0x006b,0x0070,0x0074,0x007a,0x007f,0x0086};
+			if (guard == 1) then GuardCS = {0x007F,0x0088,0x0096,0x009A,0x00A0,0x01D9,0x00b1};
+		elseif (guard == 2) then GuardCS = {0x007b,0x0083,0x0136,0x0094,0x009c,0x00b1,0x00d7};
+		elseif (guard == 3) then GuardCS = {0x0059,0x0069,0x006e,0x0072,0x0078,0x0085,0x008a};
+		elseif (guard == 4) then GuardCS = {0x0063,0x006b,0x0070,0x0074,0x007a,0x007f,0x0086};
 		end
 
 		switch (pMission) : caseof {
 			[0] = function (x) cs = GuardCS[1]; end,
 			[1] = function (x) cs = GuardCS[2]; end,
-			[2] = function (x) if(MissionStatus <= 2) then cs = GuardCS[3]; else cs = GuardCS[4]; end end,
+			[2] = function (x) if (MissionStatus <= 2) then cs = GuardCS[3]; else cs = GuardCS[4]; end end,
 			[3] = function (x) cs = GuardCS[5]; end,
 			[4] = function (x) cs = GuardCS[6]; end,
 			[5] = function (x) cs = GuardCS[7]; end,
@@ -931,15 +931,15 @@ function finishMissionTimeline(player,guard,csid,option)
 	-- 13: player:addTitle(number);
 	-- 14: player:setVar("MissionStatus",value);
 
-	if(nation == SANDORIA) then
-		if((csid == 0x03f1 or csid == 0x07d9) and option ~= 1073741824 and option ~= 31) then
-			if(option > 100) then
+	if (nation == SANDORIA) then
+		if ((csid == 0x03f1 or csid == 0x07d9) and option ~= 1073741824 and option ~= 31) then
+			if (option > 100) then
 				badoption = {101,1,102,2,104,4,110,10,111,11};
 				for op = 1, table.getn(badoption), 2 do
-					if(option == badoption[op]) then
+					if (option == badoption[op]) then
 					timeline = {badoption[op+1],{0x03f1,badoption[op]},{0x07d9,badoption[op]},{0,0},{0,0},{{1},{2}}}; end
 				end
-			elseif(option == 14) then
+			elseif (option == 14) then
 				timeline = {option,{0x03f1,option},{0x07d9,option},{0,0},{0,0},{{1},{2},{3,"MissionStatus",9}}};
 			else
 				timeline = {option,{0x03f1,option},{0x07d9,option},{0,0},{0,0},{{1},{2}}};
@@ -980,8 +980,8 @@ function finishMissionTimeline(player,guard,csid,option)
 				0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0}, ]]--
 						};
 		end
-	elseif(nation == BASTOK) then
-		if(csid == 0x03E9 and option ~= 1073741824 and option ~= 31) then
+	elseif (nation == BASTOK) then
+		if (csid == 0x03E9 and option ~= 1073741824 and option ~= 31) then
 			timeline = {option,{0x03E9,option},{0,0},{0,0},{0,0},{{1},{2}}};
 		else
 			timeline = {
@@ -1009,9 +1009,9 @@ function finishMissionTimeline(player,guard,csid,option)
 				
 						};
 		end
-	elseif(nation == WINDURST) then
+	elseif (nation == WINDURST) then
 		guardlist = {0x0072,0x006f,0x004e,0x005d};
-		if(csid == guardlist[guard] and option ~= 1073741824 and option ~= 31) then
+		if (csid == guardlist[guard] and option ~= 1073741824 and option ~= 31) then
 			timeline = {option,{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{{1},{2}}};
 		else
 			timeline = {
@@ -1048,16 +1048,16 @@ function finishMissionTimeline(player,guard,csid,option)
 	end
 
 	for cs = 1, table.getn(timeline), 6 do
-		if(csid == timeline[cs + guard][1] and option == timeline[cs + guard][2]) then
+		if (csid == timeline[cs + guard][1] and option == timeline[cs + guard][2]) then
 			for nb = 1, table.getn(timeline[cs + 5]), 1 do
 				messList = timeline[cs + 5][nb];
 
 				switch (messList[1]) : caseof {
-					[1] = function (x) if(messList[2] ~= nil) then player:addMission(nation,messList[2]); else player:addMission(nation,timeline[cs]); end end,
+					[1] = function (x) if (messList[2] ~= nil) then player:addMission(nation,messList[2]); else player:addMission(nation,timeline[cs]); end end,
 					[2] = function (x) player:messageSpecial(YOU_ACCEPT_THE_MISSION); end,
 					[3] = function (x) player:setVar(messList[2],messList[3]); end,
 					[4] = function (x) player:tradeComplete(); end,
-					[5] = function (x) if((player:getRankPoints() + messList[2]) > 4000) then player:setRankPoints(4000); else player:addRankPoints(messList[2]); end end,
+					[5] = function (x) if ((player:getRankPoints() + messList[2]) > 4000) then player:setRankPoints(4000); else player:addRankPoints(messList[2]); end end,
 					[6] = function (x) player:setRankPoints(0); end,
 					[7] = function (x) player:addCP(messList[2]); player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS); end,
 					[8] = function (x) player:addGil(GIL_RATE*messList[2]); player:messageSpecial(GIL_OBTAINED,GIL_RATE*messList[2]); end,

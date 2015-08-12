@@ -22,8 +22,8 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 1) then
-		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
+	if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 1) then
+		if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
 			player:setVar("ridingOnTheClouds_2",0);
 			player:tradeComplete();
 			player:addKeyItem(SMILING_STONE);
@@ -39,7 +39,7 @@ end;
 
 function onTrigger(player,npc)
 
-	if(player:getQuestStatus(BASTOK,THE_ELEVENTH_S_HOUR) == QUEST_ACCEPTED and player:getVar("EleventhsHour") == 1) then
+	if (player:getQuestStatus(BASTOK,THE_ELEVENTH_S_HOUR) == QUEST_ACCEPTED and player:getVar("EleventhsHour") == 1) then
 		player:startEvent(0x002d);
 	else
 		player:startEvent(0x0028);
@@ -64,9 +64,9 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x002d) then
+	if (csid == 0x002d) then
 
-		if(player:getFreeSlotsCount() > 1) then
+		if (player:getFreeSlotsCount() > 1) then
 			player:setVar("EleventhsHour",0);
 			player:delKeyItem(OLD_TOOLBOX);
 			player:addTitle(PURSUER_OF_THE_TRUTH);

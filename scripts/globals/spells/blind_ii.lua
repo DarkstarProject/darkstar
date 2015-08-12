@@ -25,11 +25,11 @@ function onSpellCast(caster,target,spell)
     -- Base power.  May need more research.
     local power = math.floor((dINT + 100) / 4);
 
-    if(power < 15) then
+    if (power < 15) then
         power = 15;
     end
 	
-    if(power > 30) then
+    if (power > 30) then
         power = 30;
     end
 	
@@ -42,14 +42,14 @@ function onSpellCast(caster,target,spell)
     -- Duration, including resistance.  Unconfirmed.
     local duration = 180 * applyResistanceEffect(caster,spell,target,dINT,35,merits*2,EFFECT_BLINDNESS);
 
-    if(duration >= 90) then --Do it!
+    if (duration >= 90) then --Do it!
 	
 	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         duration = duration * 2;
     end
     caster:delStatusEffect(EFFECT_SABOTEUR);
 
-        if(target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration)) then
+        if (target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration)) then
             spell:setMsg(236);
         else
             spell:setMsg(75);

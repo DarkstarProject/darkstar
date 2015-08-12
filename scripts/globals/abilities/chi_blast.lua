@@ -24,7 +24,7 @@ end;
 function onUseAbility(player,target,ability)
     local boost = player:getStatusEffect(EFFECT_BOOST);
     local multiplier = 1.0;
-    if(boost ~= nil) then
+    if (boost ~= nil) then
         multiplier = (boost:getPower()/100) * 4; --power is the raw % atk boost
     end
     

@@ -25,12 +25,12 @@ function onSpellCast(caster,target,spell)
     local power = 35;
 
     --Calculates resist chanve from Reist Blind
-    if(math.random(0,100) >= target:getMod(MOD_PARALYZERES)) then
-        if(duration >= 210) then
+    if (math.random(0,100) >= target:getMod(MOD_PARALYZERES)) then
+        if (duration >= 210) then
             -- Erases a weaker blind and applies the stronger one
             local paralysis = target:getStatusEffect(effect);
-            if(paralysis ~= nil) then
-                if(paralysis:getPower() < power) then
+            if (paralysis ~= nil) then
+                if (paralysis:getPower() < power) then
                     target:delStatusEffect(effect);
                     target:addStatusEffect(effect,power,0,duration);
                     spell:setMsg(237);

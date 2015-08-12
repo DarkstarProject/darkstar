@@ -13,7 +13,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
 	-- TODO: Replace this when there's a better method than isFacingTheSameDirection() aka isBehind
-	if(target:isBehind(mob) == false) then
+	if (target:isBehind(mob) == false) then
 		return 1;
 	end
 	return 0;

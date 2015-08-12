@@ -11,10 +11,10 @@ NOTHING_OUT_OF_ORDINARY = 6397; -- There is nothing out of the ordinary here.
     IRREPRESSIBLE_MIGHT = 6401; -- An aura of irrepressible might threatens to overwhelm you...
 
 -- ZM4 Dialog
-      ZILART_MONUMENT = 7211; -- It is an ancient Zilart monument.?Prompt?
-ALREADY_OBTAINED_FRAG = 7208; -- You have already obtained this monument's
-      FOUND_ALL_FRAGS = 7210; -- You have obtained ! You now have all 8 fragments of light!
-   CANNOT_REMOVE_FRAG = 7207; -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...?Prompt?
+      ZILART_MONUMENT = 7213; -- It is an ancient Zilart monument.?Prompt?
+ALREADY_OBTAINED_FRAG = 7210; -- You have already obtained this monument's
+      FOUND_ALL_FRAGS = 7212; -- You have obtained ! You now have all 8 fragments of light!
+   CANNOT_REMOVE_FRAG = 7209; -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...?Prompt?
 
 -- conquest Base
-CONQUEST_BASE = 7038; -- Tallying conquest results...
+CONQUEST_BASE = 7040; -- Tallying conquest results...

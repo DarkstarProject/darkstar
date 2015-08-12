@@ -25,11 +25,11 @@ function onTrigger(player,npc)
 	local BeaSmog = player:getQuestStatus(BASTOK,BEADEAUX_SMOG);
 	local keyitem = player:hasKeyItem(CORRUPTED_DIRT);
 
-	if(BeaSmog == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 4) then
+	if (BeaSmog == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 4) then
 		player:startEvent(0x02DB);
-	elseif(BeaSmog == QUEST_ACCEPTED and keyitem == false or BeaSmog == QUEST_COMPLETED) then
+	elseif (BeaSmog == QUEST_ACCEPTED and keyitem == false or BeaSmog == QUEST_COMPLETED) then
 		player:startEvent(0x02da);
-	elseif(BeaSmog == QUEST_ACCEPTED and keyitem == true) then
+	elseif (BeaSmog == QUEST_ACCEPTED and keyitem == true) then
 		player:startEvent(0x02dc);
 	end
 end;

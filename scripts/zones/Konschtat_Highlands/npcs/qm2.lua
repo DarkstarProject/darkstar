@@ -16,8 +16,8 @@ require("scripts/zones/Konschtat_Highlands/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getQuestStatus(OUTLANDS,FORGE_YOUR_DESTINY) == QUEST_ACCEPTED) then
-		if(trade:getItemCount() == 1 and trade:hasItemQty(1151,1) and GetMobAction(17219999) == 0) then -- Oriental Steel
+	if (player:getQuestStatus(OUTLANDS,FORGE_YOUR_DESTINY) == QUEST_ACCEPTED) then
+		if (trade:getItemCount() == 1 and trade:hasItemQty(1151,1) and GetMobAction(17219999) == 0) then -- Oriental Steel
 			SpawnMob(17219999, 300):updateClaim(player); -- Spawn Forger, Despawn after inactive for 5 minutes
 			player:tradeComplete();
 		end

@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(60429,8,23,4)) then
+	if (player:sendGuild(60429,8,23,4)) then
 		player:showText(npc,BORNAHN_SHOP_DIALOG);
 	end
 end;

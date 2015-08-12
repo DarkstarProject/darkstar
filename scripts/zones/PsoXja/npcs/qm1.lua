@@ -16,11 +16,11 @@ require("scripts/zones/PsoXja/TextIDs");
 function onTrade(player,npc,trade)
 	
 	-- Trade Odorous knife or Odorous knife +1
-	if(GetMobAction(16814432) == 0 and trade:hasItemQty(18014,1) and trade:getItemCount() == 1)then
+	if (GetMobAction(16814432) == 0 and trade:hasItemQty(18014,1) and trade:getItemCount() == 1) then
 	  	player:tradeComplete();
 		SpawnMob(16814432,900):updateClaim(player);
 		SetDropRate(1512, 0, 13145, 500);
-	elseif (GetMobAction(16814432) == 0 and trade:hasItemQty(18016,1) and trade:getItemCount() == 1)then
+	elseif (GetMobAction(16814432) == 0 and trade:hasItemQty(18016,1) and trade:getItemCount() == 1) then
 		SpawnMob(16814432,900):updateClaim(player);	
 		SetDropRate(1512, 0, 13145, 1000);
 	end	

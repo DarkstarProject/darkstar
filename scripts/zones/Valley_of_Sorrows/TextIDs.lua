@@ -14,7 +14,7 @@ FULL_INVENTORY_AFTER_TRADE = 6382; -- You cannot obtain the <item>. Try trading 
             AURA_THREATENS = 6401; -- An aura of irrepressible might threatens to overwhelm you...
 
 -- Mission
-		 SOMETHING_BURRIED = 7197; -- It looks like something was buried here.
+		 SOMETHING_BURRIED = 7199; -- It looks like something was buried here.
 
 -- conquest Base
-CONQUEST_BASE = 7038; -- Tallying conquest results...
+CONQUEST_BASE = 7040; -- Tallying conquest results...

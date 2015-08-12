@@ -1417,6 +1417,10 @@ INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 204, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 205, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 249, 1, 255);
 
+-- Jailer of Hope
+INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Hope', 140, 196, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Hope', 140, 213, 1, 255);
+
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;

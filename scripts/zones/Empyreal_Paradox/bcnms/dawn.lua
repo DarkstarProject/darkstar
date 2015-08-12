@@ -62,9 +62,9 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 	
-	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
 		player:startEvent(0x0006); 
-	elseif(leavecode == 4) then
+	elseif (leavecode == 4) then
 		player:startEvent(0x7d02);
 	end
 	--printf("leavecode: %u",leavecode);
@@ -76,11 +76,11 @@ function onEventUpdate(player,csid,option)
 end;
 	
 function onEventFinish(player,csid,option)
-  if(csid== 0x0006)then
+  if (csid== 0x0006) then
     player:setPos(539,0,-593,192);	
 	player:addTitle(AVERTER_OF_THE_APOCALYPSE);
 	player:startEvent(0x0003);
-	  if(player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==2)then
+	  if (player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==2) then
 	   player:addKeyItem(TEAR_OF_ALTANA);
        player:setVar("Promathia_kill_day",tonumber(os.date("%j")));	   
 	   player:setVar("PromathiaStatus",3);
