@@ -1,10 +1,10 @@
 -----------------------------------
 -- Area: Halvung
--- MOB:  Wheel Wamoura
+-- MOB:  Wamouracampa
 -----------------------------------
 require("scripts/globals/status");
 
--- TODO: Damage resistances in streched and curled stances. Halting movement during stance change.
+-- TODO: Damage resistances in streched and curled stances. Halting movement during stance change. Morph into Wamoura.
 
 -----------------------------------
 -- OnMobSpawn Action

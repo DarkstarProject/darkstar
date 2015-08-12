@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Halvung
--- MOB:  Wheel Wamoura
+-- Area: Mount Zhayolm
+-- MOB:  Brass Borer
 -----------------------------------
 require("scripts/globals/status");
 
