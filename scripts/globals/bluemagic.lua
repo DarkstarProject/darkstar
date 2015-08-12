@@ -123,7 +123,11 @@ function BluePhysicalSpell(caster, target, spell, params)
     ----------------------------------------------
     -- Get the possible pDIF range and hit rate --
     ----------------------------------------------
-    local cratio = BluecRatio(caster:getStat(MOD_ATT) / target:getStat(MOD_DEF), caster:getMainLvl(), target:getMainLvl());
+    if (params.offcratiomod == nil) then -- default to attack. Pretty much every physical spell will use this, Cannonball being the exception.
+        params.offcratiomod = caster:getStat(MOD_ATT)
+    end;
+    -- print(params.offcratiomod)
+    local cratio = BluecRatio(params.offcratiomod / target:getStat(MOD_DEF), caster:getMainLvl(), target:getMainLvl());
     local hitrate = BlueGetHitRate(caster,target,true);
 
     --print("Hit rate "..hitrate);

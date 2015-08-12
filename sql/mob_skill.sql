@@ -1614,10 +1614,10 @@ INSERT INTO `mob_skill` VALUES (1568,112,1286,'Amorphic_spikes',0,7.0,2000,1500,
 -- Wamouracampa
 INSERT INTO `mob_skill` VALUES (1559,254,1290,'Amber_scutum',0,10.0,2000,1000,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1560,254,1291,'Vitriolic_spray',4,10.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1561,254,1292,'Thermal_Pulse',1,15.0,2000,1000,4,0,0,0); -- Open form only
-INSERT INTO `mob_skill` VALUES (1562,254,1293,'Cannonball',0,7.0,2000,1000,4,0,0,0); -- Curled form only
+INSERT INTO `mob_skill` VALUES (1561,254,1292,'Thermal_Pulse',1,12.5,2000,1000,4,0,0,0); -- Open form only
+INSERT INTO `mob_skill` VALUES (1562,254,1293,'Cannonball',0,20,2000,1000,4,0,0,0); -- Curled form only
 INSERT INTO `mob_skill` VALUES (1563,254,1294,'Heat_barrier',0,7.0,2000,1000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (1564,254,1295,'Vitriolic_shower',4,10.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (1564,254,1295,'Vitriolic_shower',4,10.0,2000,1000,4,0,0,0); -- No page on any wiki for this move??? Seems to be NM only.
 
 -- Wamoura
 INSERT INTO `mob_skill` VALUES (1695,253,1345,'Magma_fan',4,10.0,2000,1000,4,0,0,0);
@@ -2794,11 +2794,11 @@ INSERT INTO `mob_skill` VALUES (1474,288,1203,'Deadeye',1,18,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (2103,288,1200,'Strap_Cutter',0,7,2000,1500,4,0,0,0);
 
 -- Brass Borer (289)
--- INSERT INTO `mob_skill` VALUES (1559,289,1290,'Amber_scutum',0,10.0,2000,1000,1,0,0,0);
--- INSERT INTO `mob_skill` VALUES (1560,289,1291,'Vitriolic_spray',4,10.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (1561,289,1292,'Thermal_Pulse',1,15.0,2000,1000,4,0,0,0); -- Open form only
--- INSERT INTO `mob_skill` VALUES (1562,289,1293,'Cannonball',0,7.0,2000,1000,4,0,0,0); -- Curled form only
--- INSERT INTO `mob_skill` VALUES (1563,289,1294,'Heat_barrier',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1559,289,1290,'Amber_scutum',0,10.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1560,289,1291,'Vitriolic_spray',4,10.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1561,289,1292,'Thermal_Pulse',1,12.5,2000,1000,4,0,0,0); -- Open form only
+INSERT INTO `mob_skill` VALUES (1562,289,1293,'Cannonball',0,20,2000,1000,4,0,0,0); -- Curled form only
+INSERT INTO `mob_skill` VALUES (1563,289,1294,'Heat_barrier',0,7.0,2000,1000,1,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (1564,289,1295,'Vitriolic_shower',4,10.0,2000,1000,4,0,0,0);
 
 -- Claret (290)
