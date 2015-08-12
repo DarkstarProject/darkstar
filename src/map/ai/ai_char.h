@@ -30,6 +30,20 @@ class CAIChar : public CAIBattle
 {
 public:
     CAIChar(CBattleEntity*);
+
+    // Player characters should not respond to action queue
+    virtual void ActionQueueStateChange(const queueAction&) override {}
+
+protected:
+    /* State handlers */
+
+    /* State changing overrides */
+
+    /* Attacking functions */
+
+    /* Casting functions */
+    virtual void CastFinished(action_t&) override;
+    virtual void CastInterrupted(action_t&) override;
 };
 
 #endif

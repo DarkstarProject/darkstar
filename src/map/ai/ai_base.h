@@ -57,7 +57,6 @@ protected:
     time_point m_Tick;
     //entity who holds this AI
     CBaseEntity* PEntity;
-    CBaseEntity* PActionTarget;
     //whether AI is currently able to change state from external means
     virtual bool CanChangeState();
     virtual void ChangeState(AIState);

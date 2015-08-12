@@ -179,6 +179,11 @@ uint32 CMagicState::GetRecast()
     return RecastTime;
 }
 
+void CMagicState::ApplyEnmity(action_t& action, int ce, int ve)
+{
+
+}
+
 bool CMagicState::HasMoved()
 {
     return floorf(m_startPos.x * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.x * 10 + 0.5) / 10 ||
@@ -246,6 +251,25 @@ STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
         m_startTime = server_clock::now();
         m_castTime = std::chrono::milliseconds(battleutils::CalculateSpellCastTime(m_PEntity, GetSpell()));
         m_startPos = m_PEntity->loc.p;
+
+        action_t action;
+        action.id = m_PEntity->id;
+        action.spellgroup = m_PSpell->getSpellGroup();
+        action.actiontype = ACTION_MAGIC_START;
+
+        actionList_t& actionList = action.getNewActionList();
+        actionList.ActionTargetID = m_PTarget->id;
+
+        actionTarget_t& actionTarget = actionList.getNewActionTarget();
+
+        actionTarget.reaction = REACTION_NONE;
+        actionTarget.speceffect = SPECEFFECT_NONE;
+        actionTarget.animation = 0;
+        actionTarget.param = m_PSpell->getID();
+        actionTarget.messageID = 327; // starts casting
+
+        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+
         m_State = STATESTATUS::InProgress;
     }
     else

@@ -27,7 +27,8 @@ This file is part of DarkStar-server source code.
 #include "../entities/charentity.h"
 
 CAINpc::CAINpc(CBaseEntity* _PEntity) :
-    CAIBase(_PEntity)
+    CAIBase(_PEntity),
+    PActionTarget(nullptr)
 {
 }
 

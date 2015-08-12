@@ -910,7 +910,7 @@ void CZoneEntities::ZoneServer(uint32 tick)
 		if (PNpc->PBattleAI != nullptr)
 		{
 			PNpc->PBattleAI->CheckCurrentAction(tick);
-            PNpc->PAI->Tick(server_clock::now());
+            //PNpc->PAI->Tick(server_clock::now());
 		}
         else
         {
@@ -943,6 +943,7 @@ void CZoneEntities::ZoneServer(uint32 tick)
 			PChar->PRecastContainer->Check();
 			PChar->StatusEffectContainer->CheckEffects(tick);
 			PChar->PBattleAI->CheckCurrentAction(tick);
+            PChar->PAI->Tick(server_clock::now());
 			PChar->PTreasurePool->CheckItems(tick);
 			PChar->StatusEffectContainer->CheckRegen(tick);
 		}

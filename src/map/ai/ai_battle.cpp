@@ -128,7 +128,10 @@ bool CAIBattle::CanChangeState()
 
 void CAIBattle::ChangeState(AIState state)
 {
-    actionStateContainer->Clear();
+    if (actionStateContainer)
+    {
+        actionStateContainer->Clear();
+    }
     actionStateContainer.reset();
     CAIBase::ChangeState(state);
 }
@@ -176,6 +179,8 @@ void CAIBattle::CastFinished(action_t& action)
 {
     CMagicState* container = static_cast<CMagicState*>(actionStateContainer.get());
     CSpell* PSpell = container->GetSpell();
+
+    CBaseEntity* PActionTarget = container->GetTarget();
 
     luautils::OnSpellPrecast(static_cast<CBattleEntity*>(PEntity), PSpell);
 
@@ -312,7 +317,8 @@ void CAIBattle::CastInterrupted(action_t& action)
     if (PSpell)
     {
         action.id = PEntity->id;
-        action.actionid = ACTION_MAGIC_INTERRUPT;
+        action.actiontype = ACTION_MAGIC_INTERRUPT;
+        action.actionid = PSpell->getID();
         action.spellgroup = PSpell->getSpellGroup();
         
         actionList_t& actionList = action.getNewActionList();
@@ -320,6 +326,7 @@ void CAIBattle::CastInterrupted(action_t& action)
 
         actionTarget_t& actionTarget = actionList.getNewActionTarget();
         actionTarget.messageID = MSGBASIC_IS_INTERRUPTED;
+        actionTarget.animation = PSpell->getAnimationID();
     }
 }
 

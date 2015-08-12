@@ -61,7 +61,7 @@ protected:
     //whether the entity should disengage (target dead, etc)
     virtual bool ShouldDisengage();
 
-    /* Casting Functions */
+    /* Casting functions */
     virtual void CastFinished(action_t&);
     virtual void CastInterrupted(action_t&);
 

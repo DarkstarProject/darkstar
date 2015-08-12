@@ -37,6 +37,7 @@ public:
 protected:
     virtual void ActionNone() override;
     virtual void ActionTrigger() override;
+    CBaseEntity* PActionTarget;
 };
 
 #endif

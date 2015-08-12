@@ -34,6 +34,7 @@
 #include "../spell.h"
 #include "../utils/charutils.h"
 #include "../utils/battleutils.h"
+#include "../ai/ai_char.h"
 
 
 CCharEntity::CCharEntity()
@@ -157,6 +158,9 @@ CCharEntity::CCharEntity()
 
     m_LastYell = 0;
     m_moghouseID = 0;
+
+    //TODO: fixme
+    PAI = std::make_unique<CAIChar>(this);
 }
 
 CCharEntity::~CCharEntity()

@@ -26,6 +26,7 @@
 
 #include "state.h"
 
+struct action_t;
 class CSpell;
 
 enum MAGICFLAGS {
@@ -49,6 +50,7 @@ public:
 
     void SpendCost();
     uint32 GetRecast();
+    void ApplyEnmity(action_t& action, int ce, int ve);
 
     //start spellcast on target
     STATESTATUS CastSpell(uint16 spellid, uint16 targetid, uint8 flags = 0);

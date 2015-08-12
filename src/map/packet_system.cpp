@@ -661,10 +661,11 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     case 0x03: // spellcast
     {
         uint16 SpellID = RBUFW(data, (0x0C));
-        if (!charutils::hasSpell(PChar, SpellID))
+        PChar->PAIBattle()->Cast(TargID, SpellID);
+        /*if (!charutils::hasSpell(PChar, SpellID))
             return;
         PChar->PBattleAI->SetCurrentSpell(SpellID);
-        PChar->PBattleAI->SetCurrentAction(ACTION_MAGIC_START, TargID);
+        PChar->PBattleAI->SetCurrentAction(ACTION_MAGIC_START, TargID);*/
     }
     break;
     case 0x04: // disengage
