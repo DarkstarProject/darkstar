@@ -3202,8 +3202,8 @@ INSERT INTO `mob_skill` VALUES (2113,39,1652,'Scintillant_lance',4,10.0,2000,100
 -- Slugs
 INSERT INTO `mob_skill` VALUES (1927,231,1572,'Fuscous_ooze',4,10.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1928,231,1573,'Purulent_ooze',4,10.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1929,0,1574,'Mucilaginous_ooze',1,15.0,2000,1000,4,0,0,0); -- Certain NM only
-INSERT INTO `mob_skill` VALUES (1930,231,1575,'Corrosive_ooze',1,15.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1929,231,1574,'Corrosive_ooze',1,15.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (1930,???,1575,'Mucilaginous_ooze',1,15.0,2000,1000,4,0,0,0); -- Certain NM only
 
 -- Sandworms
 INSERT INTO `mob_skill` VALUES (1931,215,1537,'Dustvoid',1,18.0,2000,1000,4,0,0,0);
