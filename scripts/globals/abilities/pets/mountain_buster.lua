@@ -23,5 +23,10 @@ function onPetAbility(target, pet, skill)
 	target:delHP(totaldamage);
 	target:updateEnmityFromDamage(pet,totaldamage);
 
+	if (damage > 0) then
+	    if (target:hasStatusEffect(EFFECT_BIND) == false) then
+	    target:addStatusEffect(EFFECT_BIND, 1, 0, duration);
+	    end
+	end
 	return totaldamage;
 end
