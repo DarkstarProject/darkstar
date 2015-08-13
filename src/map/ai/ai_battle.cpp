@@ -325,8 +325,10 @@ void CAIBattle::CastInterrupted(action_t& action)
         actionList.ActionTargetID = PEntity->id;
 
         actionTarget_t& actionTarget = actionList.getNewActionTarget();
-        actionTarget.messageID = MSGBASIC_IS_INTERRUPTED;
+        actionTarget.messageID = 0;
         actionTarget.animation = PSpell->getAnimationID();
+
+        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CMessageBasicPacket(PEntity, PEntity, 0, 0, MSGBASIC_IS_INTERRUPTED));
     }
 }
 
