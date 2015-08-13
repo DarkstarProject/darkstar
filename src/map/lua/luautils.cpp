@@ -236,35 +236,28 @@ int32 prepFile(int8* File, const char* function)
     return 0;
 }
 
-template<class T>
-void pushArg(T& arg)
+template<class T, class>
+void pushArg(T&& arg)
 {
-    if (T::methods)
-    {
-        Lunar<T>::push(LuaHandle, &arg);
-    }
+    Lunar<T>::push(LuaHandle, &arg);
 }
 
-template<>
-void pushArg<int>(int& arg)
+void pushArg(int&& arg)
 {
     lua_pushinteger(LuaHandle, arg);
 }
 
-template<>
-void pushArg<float>(float& arg)
+void pushArg(float&& arg)
 {
     lua_pushnumber(LuaHandle, arg);
 }
 
-template<>
-void pushArg<bool>(bool& arg)
+void pushArg(bool&& arg)
 {
     lua_pushboolean(LuaHandle, arg);
 }
 
-template<>
-void pushArg<nullptr_t>(nullptr_t& arg)
+void pushArg(nullptr_t&& arg)
 {
     lua_pushnil(LuaHandle);
 }

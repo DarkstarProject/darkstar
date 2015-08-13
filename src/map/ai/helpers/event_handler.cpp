@@ -60,12 +60,12 @@ void CAIEventHandler::triggerListener(std::string& eventname, std::function<bool
 template<class T>
 void CAIEventHandler::pushArg(T& type)
 {
-    luautils::pushArg(type);
+    luautils::pushArg(std::forward<T>(type));
 }
 
 template<class T, class... Types>
 void CAIEventHandler::pushArg(T& type, Types... args)
 {
-    pushArg(type);
-    pushArg(args...);
+    pushArg(std::forward<T>(type));
+    pushArg(std::forward<Types>(args)...);
 }

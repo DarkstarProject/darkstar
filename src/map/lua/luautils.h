@@ -51,8 +51,81 @@ class CRegion;
 class CStatusEffect;
 class CItemPuppet;
 
+class CLuaAbility;
+class CLuaAction;
+class CLuaBaseEntity;
+class CLuaBattlefield;
+class CLuaInstance;
+class CLuaMobSkill;
+class CLuaRegion;
+class CLuaSpell;
+class CLuaStatusEffect;
+class CLuaTradeContainer;
+class CLuaZone;
+class CLuaItem;
+
 namespace luautils
 {
+    namespace type_traits
+    {
+        template<class T>
+        struct _Is_lua_type
+            : std::false_type
+        {};
+
+        template<>
+        struct _Is_lua_type<CLuaAbility> 
+            : std::true_type {};
+
+        template<>
+        struct _Is_lua_type<CLuaAction>
+            : std::true_type {};
+
+        template<>
+        struct _Is_lua_type<CLuaBaseEntity>
+            : std::true_type {};
+
+        template<>
+        struct _Is_lua_type<CLuaBattlefield>
+            : std::true_type {};
+
+        template<>
+        struct _Is_lua_type<CLuaInstance>
+            : std::true_type {};
+
+        template<>
+        struct _Is_lua_type<CLuaMobSkill>
+            : std::true_type {};
+
+        template<>
+        struct _Is_lua_type<CLuaRegion>
+            : std::true_type {};
+
+        template<>
+        struct _Is_lua_type<CLuaSpell>
+            : std::true_type {};
+
+        template<>
+        struct _Is_lua_type<CLuaStatusEffect>
+            : std::true_type {};
+
+        template<>
+        struct _Is_lua_type<CLuaTradeContainer>
+            : std::true_type {};
+
+        template<>
+        struct _Is_lua_type<CLuaZone>
+            : std::true_type {};
+
+        template<>
+        struct _Is_lua_type<CLuaItem>
+            : std::true_type {};
+
+        template<class T>
+        struct is_lua_type
+            : _Is_lua_type<std::remove_cv_t<T>>
+        {};
+    };
 	extern struct lua_State* LuaHandle;
 
 	int32 init();
@@ -63,20 +136,16 @@ namespace luautils
 	int32 print(lua_State*);
     int32 prepFile(int8*, const char*);
 
-    template<class T>
-    void pushArg(T& arg);
+    template<class T, class = std::enable_if_t<type_traits::is_lua_type<T>::value>>
+    void pushArg(T&& arg);
 
-    template<>
-    void pushArg<int>(int& arg);
+    void pushArg(int&& arg);
 
-    template<>
-    void pushArg<float>(float& arg);
+    void pushArg(float&& arg);
 
-    template<>
-    void pushArg<bool>(bool& arg);
+    void pushArg(bool&& arg);
 
-    template<>
-    void pushArg<nullptr_t>(nullptr_t& arg);
+    void pushArg(nullptr_t&& arg);
 
     void callFunc(int nargs);
 
