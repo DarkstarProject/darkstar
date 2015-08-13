@@ -1722,6 +1722,7 @@ MSGBASIC_ALREADY_CLAIMED        = 12 -- Cannot attack. Your target is already cl
 MSGBASIC_IS_INTERRUPTED         = 16 -- The <player>'s casting is interrupted.
 MSGBASIC_UNABLE_TO_CAST         = 18 -- Unable to cast spells at this time.
 MSGBASIC_CANNOT_PERFORM         = 71 -- The <player> cannot perform that action.
+MSGBASIC_CANNOT_PERFORM_TARG    = 72 -- That action cannot be performed on <target>.
 MSGBASIC_UNABLE_TO_USE_JA       = 87 -- Unable to use job ability.
 MSGBASIC_UNABLE_TO_USE_JA2      = 88 -- Unable to use job ability.
 MSGBASIC_IS_PARALYZED           = 29 -- The <player> is paralyzed.
