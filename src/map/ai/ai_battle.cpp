@@ -242,8 +242,6 @@ void CAIBattle::CastFinished(action_t& action)
     action.spellgroup = PSpell->getSpellGroup();
 
     uint16 msg = 0;
-    int16 ce = 0;
-    int16 ve = 0;
 
     for (auto PTarget : targetFind.m_targets)
     {
@@ -258,8 +256,8 @@ void CAIBattle::CastFinished(action_t& action)
         actionTarget.param = 0;
         actionTarget.messageID = 0;
 
-        ce = PSpell->getCE();
-        ve = PSpell->getVE();
+        auto ce = PSpell->getCE();
+        auto ve = PSpell->getVE();
 
         // take all shadows
         if (PSpell->canTargetEnemy() && aoeType > 0)
@@ -298,9 +296,14 @@ void CAIBattle::CastFinished(action_t& action)
         }
 
         if (actionTarget.animation == 122 && msg == 283) // teleport spells don't target unqualified members
+        {
+            actionList.actionTargets.pop_back();
             continue;
+        }
 
         actionTarget.messageID = msg;
+
+        //TODO: enmity/claim/CharOnTarget
 
         if (PTarget->objtype == TYPE_MOB && msg != 31) // If message isn't the shadow loss message, because I had to move this outside of the above check for it.
         {
