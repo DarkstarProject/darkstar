@@ -81,6 +81,13 @@ local GearSets =  {
              
              {id = 53, items = {16006,18450,18499,18861,18862,18952,19111,19217,19272}, matches = 2, matchType = matchtype.earring_weapon, mods = {{MOD_EVA, 10, 0, 0}, {MOD_HPHEAL, 10, 0, 0}, {MOD_ENMITY, -5, 0, 0}} }, --  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)
              {id = 56, items = {11798,11362}, matches = 2, matchType = matchtype.any, mods = {{MOD_RERAISE_III, 1, 0, 0}} },        -- Twilight Mail Set. Set Bonus: Auto-Reraise
+             {id = 57, items = {18244,17595}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },        -- Begin Jailer weapons: Set is weapon + Virtue stone, bonus 50% extra melee swing.
+             {id = 58, items = {18244,17710}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },
+             {id = 59, items = {18244,17948}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },
+             {id = 60, items = {18244,18100}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },
+             {id = 61, items = {18244,18222}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },
+             {id = 62, items = {18244,18360}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },
+             {id = 63, items = {18244,18397}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },        -- End Jailer weapons
         }
              -- increment id by (number of mods in previous gearset - 1)
 
