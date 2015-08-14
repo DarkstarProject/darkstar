@@ -23,6 +23,9 @@ This file is part of DarkStar-server source code.
 
 #include "ai_char.h"
 #include "../entities/charentity.h"
+#include "../utils/battleutils.h"
+#include "../packets/action.h"
+#include "../packets/message_basic.h"
 
 CAIChar::CAIChar(CBattleEntity* PBattleEntity) :
     CAIBattle(PBattleEntity)
@@ -32,12 +35,52 @@ CAIChar::CAIChar(CBattleEntity* PBattleEntity) :
 void CAIChar::CastFinished(action_t& action)
 {
     CAIBattle::CastFinished(action);
-    //TODO: char specific stuff (recast container)
+
+    auto container = static_cast<CMagicState*>(actionStateContainer.get());
+    auto PSpell = container->GetSpell();
+    auto PTarget = container->GetTarget();
+
+    static_cast<CCharEntity*>(PEntity)->PRecastContainer->Add(RECAST_MAGIC, PSpell->getID(), action.recast);
+
+    for (auto&& actionList : action.actionLists)
+    {
+        for (auto&& actionTarget : actionList.actionTargets)
+        {
+            if (actionTarget.param > 0 && PSpell->dealsDamage() && PSpell->getSpellGroup() == SPELLGROUP_BLUE &&
+                static_cast<CBattleEntity*>(PEntity)->StatusEffectContainer->HasStatusEffect(EFFECT_CHAIN_AFFINITY) &&
+                static_cast<CBlueSpell*>(PSpell)->getPrimarySkillchain() != 0)
+            {
+
+                SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, static_cast<CBlueSpell*>(PSpell));
+                if (effect != SUBEFFECT_NONE)
+                {
+                    uint16 skillChainDamage = battleutils::TakeSkillchainDamage(static_cast<CBattleEntity*>(PEntity), PTarget, actionTarget.param);
+
+                    actionTarget.addEffectParam = skillChainDamage;
+                    actionTarget.addEffectMessage = 287 + effect;
+                    actionTarget.additionalEffect = effect;
+
+                }
+                if (static_cast<CBattleEntity*>(PEntity)->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI) ||
+                    static_cast<CBattleEntity*>(PEntity)->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
+                {
+                    static_cast<CBattleEntity*>(PEntity)->health.tp = (static_cast<CBattleEntity*>(PEntity)->health.tp > 1000 ? static_cast<CBattleEntity*>(PEntity)->health.tp - 1000 : 0);
+                }
+                else
+                {
+                    static_cast<CBattleEntity*>(PEntity)->health.tp = 0;
+                }
+
+                static_cast<CBattleEntity*>(PEntity)->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHAIN_AFFINITY);
+            }
+        }
+    }
 }
 
 void CAIChar::CastInterrupted(action_t& action)
 {
     CAIBattle::CastInterrupted(action);
-    //TODO: can't just get the param from the container.. maybe make the packet in the state
-    //static_cast<CCharEntity*>(PEntity)->pushPacket(new CMessageBasicPacket()
+
+    auto container = static_cast<CMagicState*>(actionStateContainer.get());
+    static_cast<CCharEntity*>(PEntity)->pushPacket(container->GetErrorMsg());
 }

@@ -3560,15 +3560,30 @@ namespace battleutils
         DSP_DEBUG_BREAK_IF(PSource == nullptr);
         DSP_DEBUG_BREAK_IF(PSource->objtype != TYPE_PC);
 
-        CCharEntity* PChar = (CCharEntity*)PSource;
+        CCharEntity* PIterSource = nullptr;
 
-        for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
+        if (PSource->objtype != TYPE_PC)
         {
-            CMobEntity* PCurrentMob = (CMobEntity*)it->second;
-
-            if (PCurrentMob->PEnmityContainer->HasTargetID(PSource->id))
+            if (PSource->PMaster && PSource->PMaster->objtype == TYPE_PC)
             {
-                PCurrentMob->PEnmityContainer->UpdateEnmity(PChar, CE, VE);
+                PIterSource = static_cast<CCharEntity*>(PSource->PMaster);
+            }
+        }
+        else
+        {
+            PIterSource = static_cast<CCharEntity*>(PSource);
+        }
+
+        if (PIterSource)
+        {
+            for (SpawnIDList_t::const_iterator it = PIterSource->SpawnMOBList.begin(); it != PIterSource->SpawnMOBList.end(); ++it)
+            {
+                CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+
+                if (PCurrentMob->PEnmityContainer->HasTargetID(PSource->id))
+                {
+                    PCurrentMob->PEnmityContainer->UpdateEnmity(PSource, CE, VE);
+                }
             }
         }
     }

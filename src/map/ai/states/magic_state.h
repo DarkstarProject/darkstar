@@ -28,6 +28,7 @@
 
 struct action_t;
 class CSpell;
+class CMessageBasicPacket;
 
 enum MAGICFLAGS {
   MAGICFLAGS_NONE = 0,
@@ -43,14 +44,14 @@ public:
     virtual void Clear() override;
     virtual bool CanChangeState() override;
 
-    uint16 GetErrorMsg();
+    CMessageBasicPacket* GetErrorMsg();
     CSpell* GetSpell();
     void TryInterrupt(CBattleEntity * PAttacker);
     void Interrupt();
 
     void SpendCost();
     uint32 GetRecast();
-    void ApplyEnmity(action_t& action, int ce, int ve);
+    void ApplyEnmity(CBattleEntity* PTarget, int ce, int ve);
 
     //start spellcast on target
     STATESTATUS CastSpell(uint16 spellid, uint16 targetid, uint8 flags = 0);
@@ -62,7 +63,7 @@ protected:
 
     bool HasMoved();
 
-    uint16 m_errorMsg;
+    std::unique_ptr<CMessageBasicPacket> m_errorMsg;
     std::unique_ptr<CSpell> m_PSpell;
     duration m_castTime;
     position_t m_startPos;

@@ -177,10 +177,9 @@ STATESTATUS CAIBattle::CanAttack()
 
 void CAIBattle::CastFinished(action_t& action)
 {
-    CMagicState* container = static_cast<CMagicState*>(actionStateContainer.get());
-    CSpell* PSpell = container->GetSpell();
-
-    CBaseEntity* PActionTarget = container->GetTarget();
+    auto container = static_cast<CMagicState*>(actionStateContainer.get());
+    auto PSpell = container->GetSpell();
+    auto PActionTarget = container->GetTarget();
 
     luautils::OnSpellPrecast(static_cast<CBattleEntity*>(PEntity), PSpell);
 
@@ -215,7 +214,7 @@ void CAIBattle::CastFinished(action_t& action)
     if (aoeType == SPELLAOE_RADIAL) {
         float distance = spell::GetSpellRadius(PSpell, static_cast<CBattleEntity*>(PEntity));
 
-        targetFind.findWithinArea(static_cast<CBattleEntity*>(PActionTarget), AOERADIUS_TARGET, distance, flags);
+        targetFind.findWithinArea(PActionTarget, AOERADIUS_TARGET, distance, flags);
 
     }
     else if (aoeType == SPELLAOE_CONAL)
@@ -223,12 +222,12 @@ void CAIBattle::CastFinished(action_t& action)
         //TODO: actual radius calculation
         float radius = spell::GetSpellRadius(PSpell, static_cast<CBattleEntity*>(PEntity));
 
-        targetFind.findWithinCone(static_cast<CBattleEntity*>(PActionTarget), radius, 45, flags);
+        targetFind.findWithinCone(PActionTarget, radius, 45, flags);
     }
     else
     {
         // only add target
-        targetFind.findSingleTarget(static_cast<CBattleEntity*>(PActionTarget), flags);
+        targetFind.findSingleTarget(PActionTarget, flags);
     }
 
     uint16 totalTargets = targetFind.m_targets.size();
@@ -303,7 +302,7 @@ void CAIBattle::CastFinished(action_t& action)
 
         actionTarget.messageID = msg;
 
-        //TODO: enmity/claim/CharOnTarget
+        container->ApplyEnmity(PTarget, ce, ve);
 
         if (PTarget->objtype == TYPE_MOB && msg != 31) // If message isn't the shadow loss message, because I had to move this outside of the above check for it.
         {

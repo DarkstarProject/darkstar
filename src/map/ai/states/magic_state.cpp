@@ -25,9 +25,11 @@
 
 #include "../ai_battle.h"
 #include "../../spell.h"
+#include "../../entities/mobentity.h"
 #include "../../lua/luautils.h"
 #include "../../utils/battleutils.h"
 #include "../../packets/action.h"
+#include "../../packets/message_basic.h"
 
 CMagicState::CMagicState(CBattleEntity* PEntity, CTargetFind& PTargetFind) :
     CState(PEntity, PTargetFind),
@@ -104,9 +106,9 @@ bool CMagicState::CanChangeState()
     return m_State != STATESTATUS::InProgress;
 }
 
-uint16 CMagicState::GetErrorMsg()
+CMessageBasicPacket* CMagicState::GetErrorMsg()
 {
-    return m_errorMsg;
+    return m_errorMsg.release();
 }
 
 CSpell* CMagicState::GetSpell()
@@ -179,9 +181,56 @@ uint32 CMagicState::GetRecast()
     return RecastTime;
 }
 
-void CMagicState::ApplyEnmity(action_t& action, int ce, int ve)
+void CMagicState::ApplyEnmity(CBattleEntity* PTarget, int ce, int ve)
 {
+    bool enmityApplied = false;
 
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    {
+        m_PEntity->addModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
+    }
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    {
+        m_PEntity->addModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
+    }
+
+    if (PTarget->objtype == TYPE_MOB && PTarget->allegiance != m_PEntity->allegiance)
+    {
+        if (PTarget->isDead())
+        {
+            ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
+        }
+
+        if (!(m_PSpell->isHeal()) || m_PSpell->tookEffect())  //can't claim mob with cure unless it does damage
+        {
+            if (m_PEntity->objtype == TYPE_PC)
+            {
+                ((CMobEntity*)PTarget)->m_OwnerID.id = m_PEntity->id;
+                ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PEntity->targid;
+                ((CMobEntity*)PTarget)->updatemask |= UPDATE_STATUS;
+            }
+            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PEntity, ce, ve);
+            enmityApplied = true;
+        }
+    }
+    else if (PTarget->allegiance == m_PEntity->allegiance)
+    {
+        battleutils::GenerateInRangeEnmity(m_PEntity, ce, ve);
+        enmityApplied = true;
+    }
+
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    {
+        m_PEntity->delModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
+        if (enmityApplied)
+            m_PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_TRANQUILITY);
+    }
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    {
+        m_PEntity->delModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
+        if (enmityApplied)
+            m_PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_EQUANIMITY);
+    }
 }
 
 bool CMagicState::HasMoved()
@@ -241,9 +290,10 @@ STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
             return STATESTATUS::ErrorRange;
         }
 
-        m_errorMsg = luautils::OnMagicCastingCheck(m_PEntity, m_PTarget, GetSpell());
-        if (m_errorMsg)
+        auto errorMsg = luautils::OnMagicCastingCheck(m_PEntity, m_PTarget, GetSpell());
+        if (errorMsg)
         {
+            m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PTarget, m_PSpell->getID(), 0, errorMsg);
             return STATESTATUS::ErrorScripted;
         }
 
