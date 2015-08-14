@@ -28,6 +28,8 @@ function onZoneIn(player,prevZone)
     end
     if (prevZone == 81 and player:getQuestStatus(CRYSTAL_WAR, KNOT_QUITE_THERE) == QUEST_ACCEPTED and player:getVar("KnotQuiteThere") == 2) then
         cs = 0x003E;
+    elseif (prevZone == 81 and player:getQuestStatus(CRYSTAL_WAR, DOWNWARD_HELIX) == QUEST_ACCEPTED and player:getVar("DownwardHelix") == 0) then
+        cs = 0x0041;
     end    
     return cs;
 end;
@@ -57,5 +59,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 0x003E) then
         player:setVar("KnotQuiteThere",3);
+    elseif (csid == 0x0041) then
+        player:setVar("DownwardHelix",1);
     end
 end;
