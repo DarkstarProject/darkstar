@@ -49,12 +49,15 @@ function onSpellCast(caster,target,spell)
         caster:delStatusEffect(EFFECT_DIFFUSION);
     end;
 
-    if (target:addStatusEffect(typeEffectOne,powerOne,0,duration) == false and target:addStatusEffect(typeEffectTwo,powerTwo,0,duration) == false) then
+    if (target:addStatusEffect(typeEffectOne,powerOne,0,duration) == false and target:addStatusEffect(typeEffectTwo,powerTwo,0,duration) == false) then -- both statuses fail to apply
         spell:setMsg(75);
-    elseif (target:addStatusEffect(typeEffectOne,powerOne,0,duration) == false) then
+    elseif (target:addStatusEffect(typeEffectOne,powerOne,0,duration) == false) then -- the first status fails to apply
+        target:addStatusEffect(typeEffectTwo,powerTwo,0,duration)
         spell:setMsg(230);
         returnEffect = typeEffectTwo;
     else
+        target:addStatusEffect(typeEffectOne,powerOne,0,duration)
+        target:addStatusEffect(typeEffectTwo,powerTwo,0,duration)
         spell:setMsg(230);
     end;
 
