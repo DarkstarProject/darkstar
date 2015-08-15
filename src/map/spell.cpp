@@ -166,7 +166,7 @@ bool CSpell::isCure()
 
 bool CSpell::isNa()
 {
-    return m_ID >= 14 && m_ID <= 20;
+    return (m_ID >= 14 && m_ID <= 20) || m_ID == 143;
 }
 
 bool CSpell::canHitShadow()
