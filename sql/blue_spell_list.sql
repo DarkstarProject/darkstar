@@ -70,7 +70,7 @@ INSERT INTO `blue_spell_list` VALUES ('570','138','2','0','1','0','0'); -- Blood
 INSERT INTO `blue_spell_list` VALUES ('572','154','1','6','1','0','0'); -- Sound Blast
 INSERT INTO `blue_spell_list` VALUES ('573','1445','3','4','1','0','0'); -- Feather Tickle
 INSERT INTO `blue_spell_list` VALUES ('574','146','2','19','1','0','0'); -- Feather Barrier
-INSERT INTO `blue_spell_list` VALUES ('575','321','4','0','1','0','0'); -- Jettatura
+INSERT INTO `blue_spell_list` VALUES ('575','2572','4','0','1','0','0'); -- Jettatura
 INSERT INTO `blue_spell_list` VALUES ('576','1457','3','5','1','0','0'); -- Yawn
 INSERT INTO `blue_spell_list` VALUES ('577','1','2','3','1','6','0'); -- Foot Kick
 INSERT INTO `blue_spell_list` VALUES ('578','67','3','5','1','0','0'); -- Wild Carrot
@@ -130,7 +130,7 @@ INSERT INTO `blue_spell_list` VALUES ('646','1702','4','6','1','0','0'); -- Magi
 INSERT INTO `blue_spell_list` VALUES ('647','1466','2','17','1','0','0'); -- Zephyr Mantle
 INSERT INTO `blue_spell_list` VALUES ('648','1897','1','19','1','0','0'); -- Regurgitation
 INSERT INTO `blue_spell_list` VALUES ('650','1907','2','1','1','0','0'); -- Seedspray
-INSERT INTO `blue_spell_list` VALUES ('651','1930','4','4','1','0','0'); -- Corrosive Ooze
+INSERT INTO `blue_spell_list` VALUES ('651','1929','4','4','1','0','0'); -- Corrosive Ooze
 INSERT INTO `blue_spell_list` VALUES ('652','1925','3','12','1','0','0'); -- Spiral Spin
 INSERT INTO `blue_spell_list` VALUES ('653','1920','2','21','1','0','0'); -- Asuran Claws
 INSERT INTO `blue_spell_list` VALUES ('654','2180','4','22','1','0','0'); -- Sub-Zero Smash
