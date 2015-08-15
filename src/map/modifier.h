@@ -295,6 +295,7 @@ enum MODIFIER
     MOD_AFFLATUS_SOLACE           = 0x125, // Pool of HP accumulated during Afflatus Solace (modId = 293)
     MOD_AFFLATUS_MISERY           = 0x126, // Pool of HP accumulated during Afflatus Misery (modId = 294)
     MOD_AUSPICE_EFFECT            = 0x1E4, // Bonus to Auspice Subtle Blow Effect.
+    MOD_AOE_NA                    = 0x20C, // Set to 1 to make -na spells/erase always AoE w/ Divine Veil (modId = 524)
 
     // Black Mage
     MOD_CLEAR_MIND                = 0x127, // Used in conjunction with MOD_HEALMP to increase amount between tics (modId = 295)
@@ -573,8 +574,8 @@ enum MODIFIER
     MOD_AUGMENTS_ABSORB           = 0x209, // Direct Absorb spell increase while Liberator is equipped (percentage based) (modId = 521)
     MOD_AMMO_SWING                = 0x20B  // Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players. (modId = 523)
 
-    // MOD_SPARE = 0x20C, // (modId = 524)
     // MOD_SPARE = 0x20D, // (modId = 525)
+    // MOD_SPARE = 0x20E, // (modId = 526)
 
 };
 
