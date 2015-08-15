@@ -253,7 +253,7 @@ INSERT INTO `merits` VALUES ('2826', 'doton_san', '5', '5', '4096', '7', '43');
 INSERT INTO `merits` VALUES ('2828', 'raiton_san', '5', '5', '4096', '7', '43');
 INSERT INTO `merits` VALUES ('2830', 'suiton_san', '5', '5', '4096', '7', '43');
 INSERT INTO `merits` VALUES ('2880', 'deep_breathing', '5', '1', '8192', '7', '44');
-INSERT INTO `merits` VALUES ('2882', 'angon', '5', '1', '8192', '7', '44');
+INSERT INTO `merits` VALUES ('2882', 'angon', '5', '15', '8192', '7', '44');
 INSERT INTO `merits` VALUES ('2884', 'empathy', '5', '5', '8192', '7', '44');
 INSERT INTO `merits` VALUES ('2886', 'strafe', '5', '5', '8192', '7', '44');
 INSERT INTO `merits` VALUES ('2944', 'meteor_strike', '5', '40', '16384', '7', '45');
