@@ -445,6 +445,9 @@ INSERT INTO `mob_skill` VALUES (115,174,115,'Plague_Breath',4,10.0,2000,1500,4,0
 -- INSERT INTO `mob_skill` VALUES (115,?,115,'Plague_Breath',4,10.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (365,?,969,'Snowball',1,11.0,2000,1500,4,0,0,0); -- only in colder regions
 
+-- Highlander Lizard
+INSERT INTO `mob_skill` VALUES (115,438,115,'Plague_Breath',4,10.0,2000,1500,4,0,0,0);
+
 -- Raptor (desert areas)
 INSERT INTO `mob_skill` VALUES (118,210,118,'Ripper_Fang',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (120,210,120,'Foul_Breath',4,15.0,2000,1500,4,0,0,0); -- only used in dry desert/mountainous areas
@@ -1128,6 +1131,9 @@ INSERT INTO `mob_skill` VALUES (426,135,426,'Crystal_Weapon_Wind',0,15.0,2000,15
 INSERT INTO `mob_skill` VALUES (429,216,429,'Sprout_Spin',1,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (430,216,430,'Slumber_Powder',1,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (431,216,431,'Sprout_Smack',0,7.0,2000,1500,4,0,0,0);
+
+-- Ghillie Dhu
+INSERT INTO `mob_skill` VALUES (429,437,429,'Sprout_Spin',1,15.0,2000,1500,4,0,0,0);
 
 -- Cardians
 INSERT INTO `mob_skill` VALUES (427,61,427,'Bludgeon',0,7.0,2000,1500,4,0,0,0);
