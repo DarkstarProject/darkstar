@@ -32365,6 +32365,8 @@ INSERT INTO `mob_droplist` VALUES (4521,0,2428,50);
 INSERT INTO `mob_droplist` VALUES (4521,0,2426,60);
 INSERT INTO `mob_droplist` VALUES (4521,0,2427,205);
 INSERT INTO `mob_droplist` VALUES (4522,0,16374,140); -- Sekhmet
+INSERT INTO `mob_droplist` VALUES (4523,0,19160,384); -- Ghillie Dhu
+INSERT INTO `mob_droplist` VALUES (4524,0,2834,129); -- Highlander Lizard
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
