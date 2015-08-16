@@ -81,31 +81,31 @@ local GearSets =  {
              {id = 56, items = {11798,11362}, matches = 2, matchType = matchtype.any, mods = {{MOD_RERAISE_III, 1, 0, 0}} },        -- Twilight Mail Set. Set Bonus: Auto-Reraise
              {id = 57, items = {18244,17595}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },        -- Begin Jailer weapons: Set is weapon + Virtue stone, bonus 50% extra melee swing.
              {id = 58, items = {18244,17710}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },
-    		  {id = 59, items = {18244,17948}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },
-			  {id = 60, items = {18244,18100}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },
-			  {id = 61, items = {18244,18222}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },
-			  {id = 62, items = {18244,18360}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },
-			  {id = 63, items = {18244,18397}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },        -- End Jailer weapons
-			  {id = 71, items = {28520,28521}, matches = 2, matchType = matchtype.any, mods = {{MOD_DOUBLE_ATTACK, 7, 0, 0}} }, -- Bladeborn/Steelflash Earrings
-			  {id = 72, items = {28522,28523}, matches = 2, matchType = matchtype.any, mods = {{MOD_DUAL_WIELD, 7, 0, 0}} }, -- Dudgeon/Heartseeker Earrings
-			  {id = 73, items = {28524,28525}, matches = 2, matchType = matchtype.any, mods = {{MOD_MACC, 12, 0, 0}} }, -- Psystorm/Lifestorm Earrings
-			  {id = 74, items = {26920,26921,27434,27259,27260,26762,26763,27074,27075,27433}, matches = 2, matchType = matchtype.any, mods = {{MOD_ZANSHIN_DOUBLE_DAMAGE, extraDamageChance, 0, 0}} }, -- Samurai 109/119 af3
-			  {id = 75, items = {27414,27413,27240,27239,27055,27054,26901,26900,26743,26742}, matches = 2, matchType = matchtype.any, mods = {{MOD_EXTRA_KICK_ATTACK, extraAttackChance, 0, 0}} }, -- MNK 109/119 af3
-			  {id = 76, items = {26740,26741,27411,27412,27238,27237,27053,27054,26899,26900}, matches = 2, matchType = matchtype.any, mods = {{MOD_DA_DOUBLE_DAMAGE, extraDamageChance, 0, 0}} }, -- 109/119 WAR AF3
-			  {id = 77, items = {26750,26751,27421,27422,27247,27248,27063,27062,26908,26909}, matches = 2, matchType = matchtype.any, mods = {{MOD_TA_TRIPLE_DAMAGE, extraDamageChance, 0, 0}} }, -- 109/119 THF AF3
-			  {id = 78, items = {26918,26919,26761,26762,27431,27432,27257,27258,27072,27073}, matches = 2, matchType = matchtype.any, mods = {{MOD_RAPID_SHOT_DOUBLE_DAMAGE, extraDamageChance, 0, 0}} }, -- 109/119 RNG AF3
-			  {id = 79, items = {26910,26911,26752,26753,27424,27423,27064,27065,27249,27250}, matches = 2, matchType = matchtype.any, mods = {{MOD_ABSORB_DMG_CHANCE, nullDamageChance, 0, 0}} }, -- 109/119 PLD AF3
-			  {id = 80, items = {26922,26923,26764,26765,27076,27077,27261,27262,27435,27436}, matches = 2, matchType = matchtype.any, mods = {{MOD_EXTRA_DUAL_WIELD_ATTACK, extraAttackChance, 0, 0}} }, -- 109/119 NIN AF3
-			  {id = 81, items = {27443,27444,26772,26773,26930,26931,27084,27085,27269,27270}, matches = 2, matchType = matchtype.any, mods = {{MOD_QUICK_DRAW_TRIPLE_DAMAGE, extraDamageChance, 0, 0}} }, -- 109/119 COR AF3
-			  {id = 82, items = {27275,27276,27449,27450,26778,26779,26936,26937,27090,27091}, matches = 2, matchType = matchtype.any, mods = {{MOD_GRIMOIRE_INSTANT_CAST, instantCastChance, 0, 0}} }, -- 109/119 SCH AF3
-			  {id = 82, items = {27241,27242,27415,27416,26744,26745,26902,26903,27056,27057}, matches = 2, matchType = matchtype.any, mods = {{MOD_BAR_ELEMENT_NULL_CHANCE, nullDamageChance, 0, 0}} }, -- 109/119 WHM AF3
+             {id = 59, items = {18244,17948}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },
+             {id = 60, items = {18244,18100}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },
+             {id = 61, items = {18244,18222}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },
+             {id = 62, items = {18244,18360}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },
+             {id = 63, items = {18244,18397}, matches = 2, matchType = matchtype.any, mods = {{MOD_AMMO_SWING, 50, 0, 0}} },        -- End Jailer weapons
+             {id = 71, items = {28520,28521}, matches = 2, matchType = matchtype.any, mods = {{MOD_DOUBLE_ATTACK, 7, 0, 0}} }, -- Bladeborn/Steelflash Earrings
+             {id = 72, items = {28522,28523}, matches = 2, matchType = matchtype.any, mods = {{MOD_DUAL_WIELD, 7, 0, 0}} }, -- Dudgeon/Heartseeker Earrings
+             {id = 73, items = {28524,28525}, matches = 2, matchType = matchtype.any, mods = {{MOD_MACC, 12, 0, 0}} }, -- Psystorm/Lifestorm Earrings
+             {id = 74, items = {26920,26921,27434,27259,27260,26762,26763,27074,27075,27433}, matches = 2, matchType = matchtype.any, mods = {{MOD_ZANSHIN_DOUBLE_DAMAGE, extraDamageChance, 0, 0}} }, -- Samurai 109/119 af3
+             {id = 75, items = {27414,27413,27240,27239,27055,27054,26901,26900,26743,26742}, matches = 2, matchType = matchtype.any, mods = {{MOD_EXTRA_KICK_ATTACK, extraAttackChance, 0, 0}} }, -- MNK 109/119 af3
+             {id = 76, items = {26740,26741,27411,27412,27238,27237,27053,27054,26899,26900}, matches = 2, matchType = matchtype.any, mods = {{MOD_DA_DOUBLE_DAMAGE, extraDamageChance, 0, 0}} }, -- 109/119 WAR AF3
+             {id = 77, items = {26750,26751,27421,27422,27247,27248,27063,27062,26908,26909}, matches = 2, matchType = matchtype.any, mods = {{MOD_TA_TRIPLE_DAMAGE, extraDamageChance, 0, 0}} }, -- 109/119 THF AF3
+             {id = 78, items = {26918,26919,26761,26762,27431,27432,27257,27258,27072,27073}, matches = 2, matchType = matchtype.any, mods = {{MOD_RAPID_SHOT_DOUBLE_DAMAGE, extraDamageChance, 0, 0}} }, -- 109/119 RNG AF3
+             {id = 79, items = {26910,26911,26752,26753,27424,27423,27064,27065,27249,27250}, matches = 2, matchType = matchtype.any, mods = {{MOD_ABSORB_DMG_CHANCE, nullDamageChance, 0, 0}} }, -- 109/119 PLD AF3
+             {id = 80, items = {26922,26923,26764,26765,27076,27077,27261,27262,27435,27436}, matches = 2, matchType = matchtype.any, mods = {{MOD_EXTRA_DUAL_WIELD_ATTACK, extraAttackChance, 0, 0}} }, -- 109/119 NIN AF3
+             {id = 81, items = {27443,27444,26772,26773,26930,26931,27084,27085,27269,27270}, matches = 2, matchType = matchtype.any, mods = {{MOD_QUICK_DRAW_TRIPLE_DAMAGE, extraDamageChance, 0, 0}} }, -- 109/119 COR AF3
+             {id = 82, items = {27275,27276,27449,27450,26778,26779,26936,26937,27090,27091}, matches = 2, matchType = matchtype.any, mods = {{MOD_GRIMOIRE_INSTANT_CAST, instantCastChance, 0, 0}} }, -- 109/119 SCH AF3
+             {id = 82, items = {27241,27242,27415,27416,26744,26745,26902,26903,27056,27057}, matches = 2, matchType = matchtype.any, mods = {{MOD_BAR_ELEMENT_NULL_CHANCE, nullDamageChance, 0, 0}} }, -- 109/119 WHM AF3
 
 
 
 
 
 
-		}
+        }
              -- increment id by (number of mods in previous gearset - 1)
 
 --              {id, {item, ids, in, no, particular, order}, minimum matches required, match type, mods{id, value, modvalue for each additional match, additional whole set bonus}
