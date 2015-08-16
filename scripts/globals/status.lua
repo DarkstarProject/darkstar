@@ -78,7 +78,7 @@ SUBEFFECT_DEATH             = 19;
 SUBEFFECT_SHIELD            = 20;
 SUBEFFECT_HP_DRAIN          = 21;  -- 1-10101      43
 SUBEFFECT_MP_DRAIN          = 22;  -- This is correct animation
-SUBEFFECT_TP_DRAIN          = 22;  -- Not sure this is correct, might be 21
+SUBEFFECT_TP_DRAIN          = 22;  -- Verified this should look exactly like Aspir Samba.
 SUBEFFECT_HASTE             = 23;
 
 -- SPIKES
