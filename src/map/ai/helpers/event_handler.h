@@ -62,9 +62,9 @@ private:
 
     // push parameters on lua stack
     template<class T>
-    void pushArg(T&);
+    void pushArg(T&&);
     template<class T, class... Types>
-    void pushArg(T&, Types...);
+    void pushArg(T&&, Types&&...);
 };
 
 #endif

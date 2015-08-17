@@ -30,7 +30,7 @@ void CAIEventHandler::addListener(std::string& eventname, ai_event_t& eventparam
     eventListeners[eventname].push_back(eventparam);
 }
 
-void CAIEventHandler::removeListener(std::string & eventname, std::string identifier)
+void CAIEventHandler::removeListener(std::string& eventname, std::string identifier)
 {
     std::remove_if(eventListeners[eventname].begin(), eventListeners[eventname].end(), [&identifier](const ai_event_t& event)
     {
@@ -51,21 +51,21 @@ void CAIEventHandler::triggerListener(std::string& eventname, std::function<bool
         if (checkFunction(event))
         {
             int nargs = sizeof...(args);
-            pushArg(std::forward<Types>(args)...);
+            pushArg(std::forward<Types&&...>(args)...);
             luautils::callFunc(nargs);
         }
     }
 }
 
 template<class T>
-void CAIEventHandler::pushArg(T& type)
+void CAIEventHandler::pushArg(T&& type)
 {
     luautils::pushArg(std::forward<T>(type));
 }
 
 template<class T, class... Types>
-void CAIEventHandler::pushArg(T& type, Types... args)
+void CAIEventHandler::pushArg(T&& type, Types&&... args)
 {
     pushArg(std::forward<T>(type));
-    pushArg(std::forward<Types>(args)...);
+    pushArg(std::forward<Types&&...>(args)...);
 }
