@@ -15443,6 +15443,7 @@ INSERT INTO `item_basic` VALUES (20642,0,'tzustes_knife_+1','tzustes_knife_+1',1
 INSERT INTO `item_basic` VALUES (20643,0,'macoquetza','macoquetza',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (20644,0,'tzustes_knife','tzustes_knife',1,2080,0,1,0);
 INSERT INTO `item_basic` VALUES (20646,0,'excalibur','excalibur',1,63552,0,1,0);
+INSERT INTO `item_basic` VALUES (20647,0,'murgleis','murgleis',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (20648,0,'murgleis','murgleis',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (20649,0,'burtgang','burtgang',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (20650,0,'burtgang','burtgang',1,63552,0,1,0);
