@@ -60,7 +60,7 @@ function onAdditionalEffect(mob,target,damage)
     if (CHANCE > math.random(0,99)) then
         local DRAIN = math.random(1,3); -- Its a pretty weaksauce drain.
         target:delTP(DRAIN);
-        return 22, 165, DRAIN;
+        return SUBEFFECT_TP_DRAIN, MSGBASIC_ADD_EFFECT_TP_DRAIN, DRAIN;
     else
         return 0,0,0;
     end
