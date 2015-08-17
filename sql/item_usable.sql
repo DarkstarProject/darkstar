@@ -1684,6 +1684,8 @@ INSERT INTO `item_usable` VALUES (6058,'klimaform_schema',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6059,'animus_augeo_schema',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6060,'animus_minuo_schema',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6061,'adloquium_schema',1,1,11,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6063,'fruit_parfait',1,1,26,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6064,'queens_crown',1,1,26,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6265,'toolbag_(ranka)',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6266,'toolbag_(furu)',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (10250,'moogle_suit',1,8,0,0,1,30,86400,0);
