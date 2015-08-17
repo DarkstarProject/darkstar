@@ -20,7 +20,7 @@ function onInitialize(zone)
     
     SetGroundsTome(tomes);
     
-    UpdateTreasureSpawnPoint(17404389);
+    UpdateTreasureSpawnPoint(17404387);
 
 end;
 
