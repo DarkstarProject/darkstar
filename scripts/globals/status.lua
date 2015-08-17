@@ -1235,12 +1235,15 @@ MOD_AMMO_SWING      = 0x20B -- Extra swing rate w/ ammo (ie. Jailer weapons). Us
 -- Mythic Weapon Mods
 MOD_AUGMENTS_ABSORB    = 0x209  -- Direct Absorb spell increase while Liberator is equipped (percentage based) (modId = 521)
 MOD_AOE_NA             = 0x20C  -- Set to 1 to make -na spells/erase always AoE w/ Divine Veil (modId = 524)
+MOD_AUGMENTS_CONVERT   = 0x20D  -- Convert HP to MP Ratio Multiplier. Value = MP multiplier rate. (modId = 525)
+MOD_AUGMENTS_SA        = 0x20E  -- Adds Critical Attack Bonus to Sneak Attack, percentage based. (modId = 526)
+MOD_AUGMENTS_TA        = 0x20F  -- Adds Critical Attack Bonus to Trick Attack, percentage based. (modId = 527)
 
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
--- MOD_SPARE = 0x20D -- (modId = 525)
--- MOD_SPARE = 0x20CE -- (modId = 526)
+-- MOD_SPARE = 0x210 -- (modId = 528)
+-- MOD_SPARE = 0x211 -- (modId = 529)
 
 ------------------------------------
 -- Merit Definitions
