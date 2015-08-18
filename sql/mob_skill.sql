@@ -2099,7 +2099,7 @@ INSERT INTO `mob_skill` VALUES (1903,131,1568,'Pandemic_Nip',0,7.0,2000,1500,4,0
 INSERT INTO `mob_skill` VALUES (1904,131,1569,'Bombilation',1,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1905,131,1570,'Cimicine_Discharge',0,10.0,2000,1000,4,0,0,0);
 
--- INSERT INTO `mob_skill` VALUES (1906,131,1571,'Emetic_Discharge',0,7.0,2000,1000,4,0,0,0); -- Only used by Bloodlapper and Brummbar.
+INSERT INTO `mob_skill` VALUES (1906,436,1571,'Emetic_Discharge',0,7.0,2000,1000,4,0,0,0); -- Only used by Bloodlapper and Brummbar.
 
 -- Limule
 INSERT INTO `mob_skill` VALUES (2308,173,1796,'Blazing_Bound',1,21.0,2000,1500,4,0,0,0);

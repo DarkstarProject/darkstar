@@ -197,16 +197,23 @@ INSERT INTO `mob_pool_mods` VALUES (1851,32,1,1);
 -- -------------------------
 --  Antlion MOBMOD_SPECIAL_SKILL Pit_Ambush 
 -- -------------------------
-INSERT INTO `mob_pool_mods` VALUES (586,30,22,1); -- Burrow Antlion
-INSERT INTO `mob_pool_mods` VALUES (3141,30,22,1); -- Pit Antlion
-INSERT INTO `mob_pool_mods` VALUES (3996,30,22,1); -- Trench Antlion
-INSERT INTO `mob_pool_mods` VALUES (662,30,22,1); -- Cave Antlion
+INSERT INTO `mob_pool_mods` VALUES (586,30,22,1); -- Burrow Antlion 
+INSERT INTO `mob_pool_mods` VALUES (3141,30,22,1); -- Pit Antlion 
+INSERT INTO `mob_pool_mods` VALUES (3996,30,22,1); -- Trench Antlion 
+INSERT INTO `mob_pool_mods` VALUES (662,30,22,1); -- Cave Antlion 
 
 -- -------------------------
 --  Race Runner
 -- -------------------------
-INSERT INTO `mob_pool_mods` VALUES (3301, 29, 100, 0); -- Magic Def
-INSERT INTO `mob_pool_mods` VALUES (3301, 302, 10, 0); -- Triple Attack
+INSERT INTO `mob_pool_mods` VALUES (3301, 29, 100, 0); -- Magic Def 
+INSERT INTO `mob_pool_mods` VALUES (3301, 302, 10, 0); -- Triple Attack 
+
+-- -------------------------
+--  Bloodlapper
+-- -------------------------
+INSERT INTO `mob_pool_mods` VALUES (459, 430, 20, 0); -- Quad Attack 
+INSERT INTO `mob_pool_mods` VALUES (459, 23, 50, 0); -- Attack 
+INSERT INTO `mob_pool_mods` VALUES (459, 73, 25, 0); -- Store TP  
 
 /*!40000 ALTER TABLE `mob_pool_mods` ENABLE KEYS */;
 UNLOCK TABLES;
