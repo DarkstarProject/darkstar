@@ -370,7 +370,7 @@ void CAttack::ProcessDamage()
     }
 
     // Apply Trick Attack Augment Mod
-    if (m_attacker->getMod(MOD_AUGMENTS_SA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+    if (m_attacker->getMod(MOD_AUGMENTS_TA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
     {
         m_damage += (m_damage * ((100+(m_attacker->getMod(MOD_AUGMENTS_TA)))/100));
     }
