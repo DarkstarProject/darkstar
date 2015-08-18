@@ -149,21 +149,21 @@ function doPhysicalWeaponskill(attacker, target, params)
 				local cpdif = generatePdif (ccritratio[1], ccritratio[2], true);
 				finaldmg = dmg * cpdif;
 				if (isSneakValid and attacker:getMainJob()==6) then --have to add on DEX bonus if on THF main
-					finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * ftp * cpdif);
+					finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_SA)))/100);
 				end
 				if (isTrickValid and attacker:getMainJob()==6) then
-					finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * cpdif);
+					finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
 				end
 			else
 				finaldmg = dmg * pdif;
 				if (isTrickValid and attacker:getMainJob()==6) then
-					finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * pdif);
+					finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * pdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
 				end
 			end
 		else
 			finaldmg = dmg * pdif;
 			if (isTrickValid and attacker:getMainJob()==6) then
-				finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * pdif);
+				finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * pdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
 			end
 		end
 		tpHitsLanded = 1;

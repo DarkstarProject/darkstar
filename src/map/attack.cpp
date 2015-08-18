@@ -363,6 +363,18 @@ void CAttack::ProcessDamage()
 		m_damage += (m_damage * (float)m_attacker->getMod(MOD_CRIT_DMG_INCREASE) / 100);
 	}
 
+    // Apply Sneak Attack Augment Mod
+    if (m_attacker->getMod(MOD_AUGMENTS_SA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
+    {
+        m_damage += (m_damage * ((100+(m_attacker->getMod(MOD_AUGMENTS_SA)))/100));
+    }
+
+    // Apply Trick Attack Augment Mod
+    if (m_attacker->getMod(MOD_AUGMENTS_TA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+    {
+        m_damage += (m_damage * ((100+(m_attacker->getMod(MOD_AUGMENTS_TA)))/100));
+    }
+
 	// Try skill up.
 	if (m_damage > 0)
 	{
