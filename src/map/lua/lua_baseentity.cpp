@@ -1193,31 +1193,9 @@ inline int32 CLuaBaseEntity::getWeather(lua_State *L)
         weather = battleutils::GetWeather((CBattleEntity*)m_PBaseEntity, false);
     else
         weather = zoneutils::GetZone(m_PBaseEntity->getZone())->GetWeather();
+    
+    lua_pushinteger(L, weather);
 
-    switch(weather)
-    {
-        case WEATHER_NONE:              lua_pushinteger(L, 0); break;
-        case WEATHER_SUNSHINE:          lua_pushinteger(L, 1); break;
-        case WEATHER_CLOUDS:            lua_pushinteger(L, 2); break;
-        case WEATHER_FOG:               lua_pushinteger(L, 3); break;
-        case WEATHER_HOT_SPELL:         lua_pushinteger(L, 4); break;
-        case WEATHER_HEAT_WAVE:         lua_pushinteger(L, 5); break;
-        case WEATHER_RAIN:              lua_pushinteger(L, 6); break;
-        case WEATHER_SQUALL:            lua_pushinteger(L, 7); break;
-        case WEATHER_DUST_STORM:        lua_pushinteger(L, 8); break;
-        case WEATHER_SAND_STORM:        lua_pushinteger(L, 9); break;
-        case WEATHER_WIND:              lua_pushinteger(L, 10); break;
-        case WEATHER_GALES:             lua_pushinteger(L, 11); break;
-        case WEATHER_SNOW:              lua_pushinteger(L, 12); break;
-        case WEATHER_BLIZZARDS:         lua_pushinteger(L, 13); break;
-        case WEATHER_THUNDER:           lua_pushinteger(L, 14); break;
-        case WEATHER_THUNDERSTORMS:     lua_pushinteger(L, 15); break;
-        case WEATHER_AURORAS:           lua_pushinteger(L, 16); break;
-        case WEATHER_STELLAR_GLARE:     lua_pushinteger(L, 17); break;
-        case WEATHER_GLOOM:             lua_pushinteger(L, 18); break;
-        case WEATHER_DARKNESS:          lua_pushinteger(L, 19); break;
-        default: lua_pushnil(L);
-    }
     return 1;
 }
 
@@ -4184,7 +4162,7 @@ inline int32 CLuaBaseEntity::costume(lua_State *L)
 
 /************************************************************************
 *                                                                       *
-*  Set monstrosity costume				                                *
+*  Set monstrosity costume                                              *
 *                                                                       *
 ************************************************************************/
 
@@ -5957,7 +5935,7 @@ inline int32 CLuaBaseEntity::updateEnmity(lua_State *L)
 
 /************************************************************************
 *                                                                       *
-*  updates enmity and claims monster									*
+*  updates enmity and claims monster                                    *
 *                                                                       *
 ************************************************************************/
 
@@ -10370,5 +10348,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getILvlMacc),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getConfrontationEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,copyConfrontationEffect),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPetMod),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delPetMod),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPetMod),
     {nullptr,nullptr}
 };
