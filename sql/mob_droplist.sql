@@ -1981,8 +1981,8 @@ INSERT INTO `mob_droplist` VALUES (329,0,4272,30);
 INSERT INTO `mob_droplist` VALUES (329,0,4377,390);
 INSERT INTO `mob_droplist` VALUES (329,0,5152,230);
 INSERT INTO `mob_droplist` VALUES (329,0,16059,100);
-INSERT INTO `mob_droplist` VALUES (330,0,2522,410);
-INSERT INTO `mob_droplist` VALUES (330,0,15013,340);
+INSERT INTO `mob_droplist` VALUES (330,0,2522,410);  -- Bloodlapper
+INSERT INTO `mob_droplist` VALUES (330,0,15013,340); -- Bloodlapper
 INSERT INTO `mob_droplist` VALUES (331,0,2282,100);
 INSERT INTO `mob_droplist` VALUES (331,0,17742,20);
 INSERT INTO `mob_droplist` VALUES (331,0,17743,20);
