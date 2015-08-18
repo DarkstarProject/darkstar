@@ -32,7 +32,7 @@ void CAIEventHandler::addListener(std::string& eventname, ai_event_t& eventparam
 
 void CAIEventHandler::removeListener(std::string& eventname, std::string identifier)
 {
-    std::remove_if(eventListeners[eventname].begin(), eventListeners[eventname].end(), [&identifier](const ai_event_t& event)
+    eventListeners[eventname].erase(std::remove_if(eventListeners[eventname].begin(), eventListeners[eventname].end(), [&identifier](const ai_event_t& event)
     {
         if (identifier == event.identifier || identifier == "")
         {
@@ -40,7 +40,7 @@ void CAIEventHandler::removeListener(std::string& eventname, std::string identif
             return true;
         }
         return false;
-    });
+    }), eventListeners[eventname].end());
 }
 
 template<class... Types>
