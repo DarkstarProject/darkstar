@@ -50,11 +50,14 @@ local ValidSpells = {
 
 local function AddAllSpells(player)
     for i = 1, #ValidSpells do
+        local silent = true;    -- prevent packet spam
+        local save = false;     -- dont wanna write to the db every time addSpell is called
+        
         if i == #ValidSpells then
-            player:addSpell(ValidSpells[i]);
-        else
-            player:addSpell(ValidSpells[i], true); -- silent cause we dont want packet spam
+            silent = false;
+            save = true;
         end
+        player:addSpell(ValidSpells[i], silent, save);
     end
 end;
 

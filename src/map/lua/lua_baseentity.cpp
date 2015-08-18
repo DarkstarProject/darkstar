@@ -2075,22 +2075,21 @@ inline int32 CLuaBaseEntity::addSpell(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    bool silent = false;
-
-    uint32 n = lua_gettop(L);
+    bool silent = lua_isnil(L, 2) ? false : lua_toboolean(L, 2);
+    bool save = lua_isnil(L, 3) ? true : lua_toboolean(L, 3);
 
     uint16 SpellID = (uint16)lua_tointeger(L, 1);
-    if (n > 1)
-        silent = lua_toboolean(L, 2);
 
     if (charutils::addSpell(PChar, SpellID))
     {
         if (!silent)
         {
-            charutils::SaveSpells(PChar);
             PChar->pushPacket(new CCharSpellsPacket(PChar));
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 23));
         }
+
+        if (save)
+            charutils::SaveSpells(PChar);
     }
     return 0;
 }
