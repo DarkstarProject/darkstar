@@ -5680,6 +5680,10 @@ INSERT INTO `item_basic` VALUES (6196,0,'halcyon_icefall_tincture','e_tincture_(
 INSERT INTO `item_basic` VALUES (6197,0,'rime_prominence_tincture','e_tincture_(pri)',1,58944,99,1,0);
 INSERT INTO `item_basic` VALUES (6198,0,'crystalline_claw_tincture','e_tincture_(cc)',1,58944,99,1,0);
 
+INSERT INTO `item_basic` VALUES (6260,0,'akamochi','akamochi',12,1536,56,0,140);
+INSERT INTO `item_basic` VALUES (6261,0,'akamochi+1','akamochi+1',12,1536,56,0,175);
+INSERT INTO `item_basic` VALUES (6262,0,'kusamochi','kusamochi',12,1536,56,0,140);
+INSERT INTO `item_basic` VALUES (6263,0,'kusamochi+1','kusamochi+1',12,1536,56,0,175);
 INSERT INTO `item_basic` VALUES (6265,0,'toolbag_(ranka)','toolbag_(ranka)',12,1536,49,0,0);
 INSERT INTO `item_basic` VALUES (6266,0,'toolbag_(furu)','toolbag_(furu)',12,1536,49,0,0);
 
@@ -5804,6 +5808,7 @@ INSERT INTO `item_basic` VALUES (8707,0,'raaz_hide','raaz_hide',12,0,41,0,100);
 INSERT INTO `item_basic` VALUES (8708,0,'square_of_raaz_leather','raaz_leather',12,0,41,0,100);
 INSERT INTO `item_basic` VALUES (8709,0,'raaz_tusk','raaz_tusk',12,0,42,0,100);
 
+INSERT INTO `item_basic` VALUES (8800,0,'azuki_bean','azuki_bean',12,0,59,0,40);
 INSERT INTO `item_basic` VALUES (8803,0,'ranka','ranka',99,0,49,0,0);
 INSERT INTO `item_basic` VALUES (8804,0,'furusumi','furusumi',99,0,49,0,0);
 
