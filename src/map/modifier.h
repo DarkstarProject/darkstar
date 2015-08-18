@@ -573,10 +573,12 @@ enum MODIFIER
     MOD_ENH_DRAIN_ASPIR           = 0x13B, // % damage boost to Drain and Aspir(modId = 315)
     MOD_AUGMENTS_ABSORB           = 0x209, // Direct Absorb spell increase while Liberator is equipped (percentage based) (modId = 521)
     MOD_AMMO_SWING                = 0x20B, // Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players. (modId = 523)
-    MOD_AUGMENTS_CONVERT          = 0x20D  // Convert HP to MP Ratio Multiplier. Value = MP multiplier rate. (modId = 525)
+    MOD_AUGMENTS_CONVERT          = 0x20D, // Convert HP to MP Ratio Multiplier. Value = MP multiplier rate. (modId = 525)
+    MOD_AUGMENTS_SA               = 0x20E, // Adds Critical Attack Bonus to Sneak Attack, percentage based. (modId = 526)
+    MOD_AUGMENTS_TA               = 0x20F, // Adds Critical Attack Bonus to Trick Attack, percentage based. (modId = 527)
 
-    // MOD_SPARE = 0x20E, // (modId = 526)
-    // MOD_SPARE = 0x20F, // (modId = 527)
+    // MOD_SPARE = 0x210, // (modId = 528)
+    // MOD_SPARE = 0x211, // (modId = 529)
 
 };
 

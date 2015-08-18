@@ -9,6 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+    target:addMod(MOD_CRIT_DMG_INCREASE,(target:getMod(MOD_AUGMENTS_SA)));
 end;
 
 -----------------------------------
@@ -23,4 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+    target:delMod(MOD_CRIT_DMG_INCREASE,(target:getMod(MOD_AUGMENTS_SA)));
 end;
