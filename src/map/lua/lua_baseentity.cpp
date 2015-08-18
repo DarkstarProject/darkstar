@@ -2093,34 +2093,6 @@ inline int32 CLuaBaseEntity::addSpell(lua_State *L)
     return 0;
 }
 
-/************************************************************************
-*                                                                       *
-*  @addallspells GM command - Adds all Valid spells only                *
-*                                                                       *
-************************************************************************/
-
-inline int32 CLuaBaseEntity::addAllSpells(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
-    uint16 elements = sizeof ValidSpells / sizeof ValidSpells[0];
-
-    for(uint16 i = 0; i < elements; ++i)
-    {
-        if (charutils::addSpell(PChar, ValidSpells[i]))
-        {
-            charutils::SaveSpells(PChar);
-        }
-    }
-
-    PChar->pushPacket(new CCharSpellsPacket(PChar));
-    PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 23));
-
-    return 0;
-}
 
 /************************************************************************
 *                                                                       *
@@ -10180,7 +10152,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEVA),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,capSkill),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,capAllSkills),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addAllSpells),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMeleeHitDamage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecasts),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecast),
