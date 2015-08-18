@@ -49,8 +49,12 @@ local ValidSpells = {
 };
 
 local function AddAllSpells(player)
-    for _, spellid in pairs(ValidSpells) do
-        player:addSpell(spellid);
+    for i = 1, #ValidSpells do
+        if i == #ValidSpells then
+            player:addSpell(ValidSpells[i]);
+        else
+            player:addSpell(ValidSpells[i], true); -- silent cause we dont want packet spam
+        end
     end
 end;
 

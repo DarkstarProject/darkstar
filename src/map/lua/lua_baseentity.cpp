@@ -2085,10 +2085,12 @@ inline int32 CLuaBaseEntity::addSpell(lua_State *L)
 
     if (charutils::addSpell(PChar, SpellID))
     {
-        charutils::SaveSpells(PChar);
-        PChar->pushPacket(new CCharSpellsPacket(PChar));
-        if(!silent)
+        if (!silent)
+        {
+            charutils::SaveSpells(PChar);
+            PChar->pushPacket(new CCharSpellsPacket(PChar));
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 23));
+        }
     }
     return 0;
 }
