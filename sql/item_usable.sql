@@ -1694,6 +1694,8 @@ INSERT INTO `item_usable` VALUES (6262,'kusamochi',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6263,'kusamochi+1',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6265,'toolbag_(ranka)',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6266,'toolbag_(furu)',1,1,55,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6343,'grape_daifuku',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6344,'grape_daifuku+1',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (10250,'moogle_suit',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10264,'marine_gilet_+1',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10265,'marine_top_+1',1,8,0,0,1,30,86400,0);
