@@ -5709,6 +5709,8 @@ INSERT INTO `item_basic` VALUES (6329,0,'beists_coffer','beists_coffer',99,22080
 INSERT INTO `item_basic` VALUES (6330,0,'malatrixs_coffer','malatrixs_coffer',99,22080,0,1,0);
 INSERT INTO `item_basic` VALUES (6331,0,'velozs_coffer','velozs_coffer',99,22080,0,1,0);
 INSERT INTO `item_basic` VALUES (6332,0,'menders_coffer','menders_coffer',99,22080,0,1,0);
+INSERT INTO `item_basic` VALUES (6343,0,'grape_daifuku','grape_daifuku',12,1536,56,0,128);
+INSERT INTO `item_basic` VALUES (6344,0,'grape_daifuku+1','grape_daifuku+1',12,1536,56,0,143);
 INSERT INTO `item_basic` VALUES (6350,0,'saman_coffer','saman_coffer',99,22080,0,1,0);
 INSERT INTO `item_basic` VALUES (6351,0,'heiligtums_coffer','heiligtums_coffer',99,22080,0,1,0);
 INSERT INTO `item_basic` VALUES (6352,0,'doumas_coffer','doumas_coffer',99,22080,0,1,0);
