@@ -32,6 +32,16 @@ CAIChar::CAIChar(CBattleEntity* PBattleEntity) :
 {
 }
 
+bool CAIChar::Cast(uint16 targetid, uint16 spellid)
+{
+    auto result = CAIBattle::Cast(targetid, spellid);
+    if (!result)
+    {
+        static_cast<CCharEntity*>(PEntity)->pushPacket(static_cast<CMagicState*>(GetCurrentState())->GetErrorMsg());
+    }
+    return result;
+}
+
 void CAIChar::CastFinished(action_t& action)
 {
     CAIBattle::CastFinished(action);

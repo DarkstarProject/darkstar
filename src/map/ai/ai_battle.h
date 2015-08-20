@@ -40,7 +40,7 @@ public:
     CAIBattle(CBattleEntity*);
 
     virtual void ActionQueueStateChange(const queueAction&) override;
-    virtual void Cast(uint16 targetid, uint16 spellid);
+    virtual bool Cast(uint16 targetid, uint16 spellid);
     virtual void TryHitInterrupt(CBattleEntity* PAttacker);
     void ResetIfTarget(CBaseEntity*);
 

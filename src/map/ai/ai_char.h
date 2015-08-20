@@ -33,6 +33,7 @@ public:
 
     // Player characters should not respond to action queue
     virtual void ActionQueueStateChange(const queueAction&) override {}
+    virtual bool Cast(uint16 targetid, uint16 spellid) override;
 
 protected:
     /* State handlers */

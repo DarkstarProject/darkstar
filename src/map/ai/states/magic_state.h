@@ -44,17 +44,17 @@ public:
     virtual void Clear() override;
     virtual bool CanChangeState() override;
 
+    /* Releases ownership to the caller */
     CMessageBasicPacket* GetErrorMsg();
     CSpell* GetSpell();
-    void TryInterrupt(CBattleEntity * PAttacker);
-    void Interrupt();
+    void TryInterrupt(CBattleEntity* PAttacker);
 
     void SpendCost();
     uint32 GetRecast();
     void ApplyEnmity(CBattleEntity* PTarget, int ce, int ve);
 
     //start spellcast on target
-    STATESTATUS CastSpell(uint16 spellid, uint16 targetid, uint8 flags = 0);
+    bool CastSpell(uint16 spellid, uint16 targetid, uint8 flags = 0);
 protected:
     //check spell requirements vs. caster ("you cannot cast this spell")
     bool CanCastSpell();
@@ -69,6 +69,7 @@ protected:
     time_point m_startTime;
     duration m_castTime;
     position_t m_startPos;
+    bool m_interrupted;
     uint8 m_flags;
 };
 

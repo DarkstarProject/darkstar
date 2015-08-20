@@ -63,7 +63,6 @@ protected:
     virtual bool CanChangeState();
     template<typename T, typename... Args>
     void ChangeState(Args&&... args) { if (CanChangeState()) { m_stateStack.emplace(std::make_unique<T>(std::forward<Args>(args)...)); } }
-    bool m_transitionable;
 
 private:
     std::stack<std::unique_ptr<CState>> m_stateStack;

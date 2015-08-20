@@ -30,24 +30,6 @@
 class CBattleEntity;
 class CTargetFind;
 
-enum class STATESTATUS {
-    None,
-    InProgress,
-    Interrupt,
-    Finish,
-    OK,
-    ErrorNotUsable,
-    ErrorNotUsableStatusEffect,
-    ErrorCost,
-    ErrorRange,
-    ErrorInvalidTarget,
-    ErrorFacing,
-    ErrorParalyzed,
-    ErrorIntimidated,
-    ErrorScripted,
-    ErrorUnknown
-};
-
 class CState
 {
 public:

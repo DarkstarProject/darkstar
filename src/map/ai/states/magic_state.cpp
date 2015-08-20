@@ -42,50 +42,59 @@ bool CMagicState::Update(time_point tick)
 {
     if (tick > m_startTime + m_castTime)
     {
-        /*if (m_State == STATESTATUS::InProgress)
+        //#TODO: convert the m_State assignments into m_errorMsg and call interrupted
+        if (HasMoved())
         {
-            if (HasMoved())
-            {
-                m_State = STATESTATUS::Interrupt;
-            }
-            else if (!CanCastSpell())
-            {
-                m_State = STATESTATUS::ErrorNotUsable;
-            }
-            else if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
-                m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
-            {
-                m_State = STATESTATUS::ErrorNotUsableStatusEffect;
-            }
-            else if (!HasCost())
-            {
-                m_State = STATESTATUS::ErrorCost;
-            }
-            else if (!m_PTargetFind.isWithinRange(&m_PTarget->loc.p, m_PSpell->getMaxRange()))
-            {
-                m_State = STATESTATUS::ErrorRange;
-            }
-            else if (!CanCastSpell())
-            {
-                m_State = STATESTATUS::ErrorNotUsable;
-            }
-            else if (!m_PTargetFind.getValidTarget(m_PTarget->targid, m_PSpell->getValidTarget()))
-            {
-                m_State = STATESTATUS::ErrorInvalidTarget;
-            }
-            else if (battleutils::IsParalyzed(m_PEntity))
-            {
-                m_State = STATESTATUS::ErrorParalyzed;
-            }
-            else if (battleutils::IsIntimidated(m_PEntity, m_PTarget))
-            {
-                m_State = STATESTATUS::ErrorIntimidated;
-            }
-            else
-            {
-                m_State = STATESTATUS::Finish;
-            }*/
-        //}
+            //m_State = STATESTATUS::Interrupt;
+        }
+        else if (!CanCastSpell())
+        {
+            //m_State = STATESTATUS::ErrorNotUsable;
+        }
+        else if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
+            m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
+        {
+            //m_State = STATESTATUS::ErrorNotUsableStatusEffect;
+        }
+        else if (!HasCost())
+        {
+            //m_State = STATESTATUS::ErrorCost;
+        }
+        else if (!m_PTargetFind->isWithinRange(&m_PTarget->loc.p, m_PSpell->getMaxRange()))
+        {
+            //m_State = STATESTATUS::ErrorRange;
+        }
+        else if (!CanCastSpell())
+        {
+            //m_State = STATESTATUS::ErrorNotUsable;
+        }
+        else if (!m_PTargetFind->getValidTarget(m_PTarget->targid, m_PSpell->getValidTarget()))
+        {
+            //m_State = STATESTATUS::ErrorInvalidTarget;
+        }
+        else if (battleutils::IsParalyzed(m_PEntity))
+        {
+            //m_State = STATESTATUS::ErrorParalyzed;
+        }
+        else if (battleutils::IsIntimidated(m_PEntity, static_cast<CBattleEntity*>(m_PTarget)))
+        {
+            //m_State = STATESTATUS::ErrorIntimidated;
+        }
+        else
+        {
+            //m_State = STATESTATUS::Finish;
+        }
+
+        action_t action;
+        if (m_interrupted)
+        {
+            m_PEntity->PAIBattle()->CastInterrupted(action);
+        }
+        else
+        {
+            m_PEntity->PAIBattle()->CastFinished(action);
+        }
+        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
         return true;
     }
     //don't return interrupt until the cast is complete
@@ -95,7 +104,7 @@ bool CMagicState::Update(time_point tick)
 void CMagicState::Clear()
 {
     action_t action;
-    dynamic_cast<CAIBattle*>(m_PEntity->PAI.get())->CastInterrupted(action);
+    m_PEntity->PAIBattle()->CastInterrupted(action);
     m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
 }
 
@@ -242,16 +251,12 @@ void CMagicState::TryInterrupt(CBattleEntity* PAttacker)
 {
     if (battleutils::TryInterruptSpell(PAttacker, m_PEntity))
     {
-        Interrupt();
+        m_interrupted = true;
     }
 }
 
-void CMagicState::Interrupt()
-{
-    //#TODO
-}
-
-STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
+//#TODO: error messages
+bool CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
 {
     CSpell* PSpell = spell::GetSpell(spellid);
 
@@ -268,32 +273,32 @@ STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
     {
         if (!CanCastSpell())
         {
-            return STATESTATUS::ErrorNotUsable;
+            return false;
         }
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
             m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
         {
-            return STATESTATUS::ErrorNotUsableStatusEffect;
+            return false;
         }
         if (!HasCost())
         {
-            return STATESTATUS::ErrorCost;
+            return false;
         }
         m_PTarget = m_PTargetFind->getValidTarget(targetid, m_PSpell->getValidTarget());
         if (!m_PTarget)
         {
-            return STATESTATUS::ErrorInvalidTarget;
+            return false;
         }
         if (distance(m_PEntity->loc.p, m_PTarget->loc.p) > m_PSpell->getMaxRange())
         {
-            return STATESTATUS::ErrorRange;
+            return false;
         }
 
         auto errorMsg = luautils::OnMagicCastingCheck(m_PEntity, m_PTarget, GetSpell());
         if (errorMsg)
         {
             m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PTarget, m_PSpell->getID(), 0, errorMsg);
-            return STATESTATUS::ErrorScripted;
+            return false;
         }
 
         m_flags = flags;
@@ -318,12 +323,10 @@ STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
         actionTarget.messageID = 327; // starts casting
 
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
-
-        //m_State = STATESTATUS::InProgress;
     }
     else
     {
-        //m_State = STATESTATUS::ErrorUnknown;
+        return false;
     }
-    return STATESTATUS::None;// m_State;
+    return true;// m_State;
 }

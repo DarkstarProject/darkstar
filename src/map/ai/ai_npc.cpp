@@ -33,7 +33,7 @@ CAINpc::CAINpc(CBaseEntity* _PEntity) :
 
 void CAINpc::InitPathfinding()
 {
-    pathfind = std::unique_ptr<CPathFind>(new CPathFind(PEntity));
+    pathfind = std::make_unique<CPathFind>(PEntity);
 }
 
 void CAINpc::Trigger(CBaseEntity* PTarget)

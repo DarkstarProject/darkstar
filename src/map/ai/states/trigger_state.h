@@ -21,8 +21,8 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _CMAGIC_STATE_H
-#define _CMAGIC_STATE_H
+#ifndef _CTRIGGER_STATE_H
+#define _CTRIGGER_STATE_H
 
 #include "state.h"
 

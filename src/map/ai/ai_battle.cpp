@@ -49,24 +49,20 @@ void CAIBattle::ActionQueueStateChange(const queueAction& action)
     //}
 }
 
-void CAIBattle::Cast(uint16 targetid, uint16 spellid)
+bool CAIBattle::Cast(uint16 targetid, uint16 spellid)
 {
     if (CanChangeState())
     {
         if (m_Tick < m_LastActionTime + g_GCD)
         {
             //MagicStartError();
-            return;
+            return false;
         }
         ChangeState<CMagicState>(static_cast<CBattleEntity*>(PEntity), &targetFind);
 
-        STATESTATUS status = static_cast<CMagicState*>(GetCurrentState())->CastSpell(spellid, targetid);
-
-        if (status != STATESTATUS::InProgress)
-        {
-            //MagicStartError();
-        }
+        return static_cast<CMagicState*>(GetCurrentState())->CastSpell(spellid, targetid);
     }
+    return false;
 }
 
 //void CAIBattle::ActionCasting()
