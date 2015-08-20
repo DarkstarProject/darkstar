@@ -98,8 +98,9 @@ local GearSets =  {
              {id = 80, items = {26922,26923,26764,26765,27076,27077,27261,27262,27435,27436}, matches = 2, matchType = matchtype.any, mods = {{MOD_EXTRA_DUAL_WIELD_ATTACK, extraAttackChance, 0, 0}} }, -- 109/119 NIN AF3
              {id = 81, items = {27443,27444,26772,26773,26930,26931,27084,27085,27269,27270}, matches = 2, matchType = matchtype.any, mods = {{MOD_QUICK_DRAW_TRIPLE_DAMAGE, extraDamageChance, 0, 0}} }, -- 109/119 COR AF3
              {id = 82, items = {27275,27276,27449,27450,26778,26779,26936,26937,27090,27091}, matches = 2, matchType = matchtype.any, mods = {{MOD_GRIMOIRE_INSTANT_CAST, instantCastChance, 0, 0}} }, -- 109/119 SCH AF3
-             {id = 82, items = {27241,27242,27415,27416,26744,26745,26902,26903,27056,27057}, matches = 2, matchType = matchtype.any, mods = {{MOD_BAR_ELEMENT_NULL_CHANCE, nullDamageChance, 0, 0}} }, -- 109/119 WHM AF3
-
+             {id = 83, items = {27241,27242,27415,27416,26744,26745,26902,26903,27056,27057}, matches = 2, matchType = matchtype.any, mods = {{MOD_BAR_ELEMENT_NULL_CHANCE, nullDamageChance, 0, 0}} }, -- 109/119 WHM AF3
+             {id = 84, items = {11867,10868,10865}, matches = 2, matchType = matchtype.any, mods = {{MOD_REFRESH, 3, 0, 0}} }, -- Heka's body + NQ or HQ Khat = 3 tick refresh
+             {id = 85, items = {10868,11870,11864,10865}, matches = 2, matchType = matchtype.any, mods = {{MOD_REFRESH, 2, 0, 0}} }, -- Nefer body/head NQ/HQ combo gives Refresh +2
 
 
 
