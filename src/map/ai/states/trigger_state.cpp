@@ -21,19 +21,27 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _AINPC_H
-#define _AINPC_H
+#include "trigger_state.h"
 
-#include "ai_base.h"
+#include "../../lua/luautils.h"
+#include "../../entities/charentity.h"
 
-class CAINpc : CAIBase
+CTriggerState::CTriggerState(CBaseEntity* PEntity) :
+    CState(PEntity, nullptr)
 {
-public:
-    CAINpc(CBaseEntity*);
+}
 
-    void InitPathfinding();
-    void Trigger(CBaseEntity*);
-};
+bool CTriggerState::Update(time_point tick)
+{
+    luautils::OnTrigger(dynamic_cast<CCharEntity*>(m_PTarget), m_PEntity);
+    return true;
+}
 
-#endif
+void CTriggerState::Clear()
+{
+}
 
+bool CTriggerState::CanChangeState()
+{
+    return false;
+}

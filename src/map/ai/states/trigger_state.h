@@ -21,19 +21,18 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _AINPC_H
-#define _AINPC_H
+#ifndef _CMAGIC_STATE_H
+#define _CMAGIC_STATE_H
 
-#include "ai_base.h"
+#include "state.h"
 
-class CAINpc : CAIBase
+class CTriggerState : public CState
 {
 public:
-    CAINpc(CBaseEntity*);
-
-    void InitPathfinding();
-    void Trigger(CBaseEntity*);
+    CTriggerState(CBaseEntity* PEntity);
+    virtual bool Update(time_point tick) override;
+    virtual void Clear() override;
+    virtual bool CanChangeState() override;
 };
 
-#endif
-
+#endif#pragma once

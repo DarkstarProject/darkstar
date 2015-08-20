@@ -34,7 +34,7 @@ struct queueAction
 {
     time_point start_time;
     duration delay;
-    AIState action;
+    //AIState action;
 
     union
     {
@@ -51,7 +51,7 @@ struct queueAction
         } mobskill;
     };
 
-    queueAction() : start_time(server_clock::now()), delay(0), action(AIState::None), param(0){}
+    queueAction() : start_time(server_clock::now()), delay(0), /*action(AIState::None),*/ param(0){}
 };
 
 inline bool operator< (const queueAction& lhs, const queueAction& rhs) { return lhs.start_time + lhs.delay < rhs.start_time + rhs.delay; }

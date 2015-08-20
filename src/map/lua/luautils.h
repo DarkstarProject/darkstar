@@ -137,7 +137,7 @@ namespace luautils
     int32 prepFile(int8*, const char*);
 
     template<class T, class = std::enable_if_t<type_traits::is_lua_type<T>::value>>
-    void pushArg(T&& arg);
+    void pushArg(T&& arg) { Lunar<T>::push(LuaHandle, &arg); }
 
     void pushArg(int&& arg);
 

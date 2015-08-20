@@ -26,22 +26,6 @@ This file is part of DarkStar-server source code.
 
 #include <chrono>
 
-enum class AIState
-{
-    None,
-    Dead,
-    Roaming,
-    Attacking,
-    RangedAttack,
-    Casting,
-    JobAbility,
-    Weaponskill,
-    Mobskill,
-    Item,
-    ChangeTarget,
-    Trigger
-};
-
 typedef std::chrono::steady_clock server_clock;
 typedef server_clock::time_point time_point;
 typedef server_clock::duration duration;

@@ -33,22 +33,20 @@ This file is part of DarkStar-server source code.
 
 CAIBattle::CAIBattle(CBattleEntity* _PEntity) :
     CAIBase(_PEntity, std::make_unique<CPathFind>(_PEntity)),
-    targetFind(_PEntity),
-    actionStateContainer(nullptr),
-    m_AttackTime(0)
+    targetFind(_PEntity)
 {
 }
 
 void CAIBattle::ActionQueueStateChange(const queueAction& action)
 {
-    switch(action.action)
-    {
-        case AIState::Casting:
-            Cast(action.spell.spellid, action.spell.targid);
-            break;
-        default:
-            break;
-    }
+    //switch(action.action)
+    //{
+    //    case AIState::Casting:
+    //        Cast(action.spell.spellid, action.spell.targid);
+    //        break;
+    //    default:
+    //        break;
+    //}
 }
 
 void CAIBattle::Cast(uint16 targetid, uint16 spellid)
@@ -60,10 +58,9 @@ void CAIBattle::Cast(uint16 targetid, uint16 spellid)
             //MagicStartError();
             return;
         }
-        ChangeState(AIState::Casting);
-        actionStateContainer = std::make_unique<CMagicState>(static_cast<CBattleEntity*>(PEntity), targetFind);
+        ChangeState<CMagicState>(static_cast<CBattleEntity*>(PEntity), &targetFind);
 
-        STATESTATUS status = static_cast<CMagicState*>(actionStateContainer.get())->CastSpell(spellid, targetid);
+        STATESTATUS status = static_cast<CMagicState*>(GetCurrentState())->CastSpell(spellid, targetid);
 
         if (status != STATESTATUS::InProgress)
         {
@@ -72,118 +69,44 @@ void CAIBattle::Cast(uint16 targetid, uint16 spellid)
     }
 }
 
-void CAIBattle::ActionAttacking()
-{
-    switch(CanAttack())
-    {
-        case STATESTATUS::ErrorRange:
-        case STATESTATUS::ErrorInvalidTarget:
-        case STATESTATUS::ErrorFacing:
-        case STATESTATUS::ErrorParalyzed:
-        case STATESTATUS::ErrorIntimidated:
-        case STATESTATUS::ErrorUnknown:
-            break; //todo: error handling
-        case STATESTATUS::OK:
-            //attack
-            break;
-        default:
-            break;
-    }
-}
-
-void CAIBattle::ActionCasting()
-{
-    STATESTATUS status = actionStateContainer->Update(m_Tick);
-
-    action_t action;
-    bool acted = true;
-
-    switch (status)
-    {
-        case STATESTATUS::Finish:
-            CastFinished(action);
-            break;
-        case STATESTATUS::Interrupt:
-        case STATESTATUS::ErrorRange:
-        case STATESTATUS::ErrorInvalidTarget:
-        case STATESTATUS::ErrorUnknown:
-            CastInterrupted(action);
-            break;
-        default:
-            acted = false;
-            break;
-    }
-    if (acted)
-    {
-        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
-        TransitionBack();
-    }
-}
-
-bool CAIBattle::CanChangeState()
-{
-    return CAIBase::CanChangeState() && (!actionStateContainer ||
-        (actionStateContainer && actionStateContainer->CanChangeState()));
-}
-
-void CAIBattle::ChangeState(AIState state)
-{
-    if (actionStateContainer)
-    {
-        actionStateContainer->Clear();
-    }
-    actionStateContainer.reset();
-    CAIBase::ChangeState(state);
-}
-
-void CAIBattle::TransitionBack()
-{
-    if (PEntity->animation == ANIMATION_ATTACK)
-    {
-        ChangeState(AIState::Attacking);
-    }
-    else
-    {
-        ChangeState(AIState::None);
-    }
-}
-
-STATESTATUS CAIBattle::CanAttack()
-{
-    if (m_AttackTime < std::chrono::milliseconds(0))
-    {
-        float dist = distance(PEntity->loc.p, PBattleTarget->loc.p);
-
-        if (dist > PBattleTarget->m_ModelSize)
-        {
-            return STATESTATUS::ErrorRange;
-        }
-        if (!isFaceing(PEntity->loc.p, PBattleTarget->loc.p, 40))
-        {
-            return STATESTATUS::ErrorFacing;
-        }
-        if (battleutils::IsParalyzed(static_cast<CBattleEntity*>(PEntity)))
-        {
-            return STATESTATUS::ErrorParalyzed;
-        }
-        if (battleutils::IsIntimidated(static_cast<CBattleEntity*>(PEntity), PBattleTarget))
-        {
-            return STATESTATUS::ErrorIntimidated;
-        }
-        return STATESTATUS::OK;
-    }
-    return STATESTATUS::InProgress;
-}
+//void CAIBattle::ActionCasting()
+//{
+//    STATESTATUS status = actionStateContainer->Update(m_Tick);
+//
+//    action_t action;
+//    bool acted = true;
+//
+//    switch (status)
+//    {
+//        case STATESTATUS::Finish:
+//            CastFinished(action);
+//            break;
+//        case STATESTATUS::Interrupt:
+//        case STATESTATUS::ErrorRange:
+//        case STATESTATUS::ErrorInvalidTarget:
+//        case STATESTATUS::ErrorUnknown:
+//            CastInterrupted(action);
+//            break;
+//        default:
+//            acted = false;
+//            break;
+//    }
+//    if (acted)
+//    {
+//        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+//        TransitionBack();
+//    }
+//}
 
 void CAIBattle::CastFinished(action_t& action)
 {
-    auto container = static_cast<CMagicState*>(actionStateContainer.get());
-    auto PSpell = container->GetSpell();
-    auto PActionTarget = container->GetTarget();
+    auto state = static_cast<CMagicState*>(GetCurrentState());
+    auto PSpell = state->GetSpell();
+    auto PActionTarget = static_cast<CBattleEntity*>(state->GetTarget());
 
     luautils::OnSpellPrecast(static_cast<CBattleEntity*>(PEntity), PSpell);
 
-    container->SpendCost();
+    state->SpendCost();
 
     // remove effects based on spell cast first
     int16 effectFlags = EFFECTFLAG_INVISIBLE | EFFECTFLAG_MAGIC_BEGIN;
@@ -237,7 +160,7 @@ void CAIBattle::CastFinished(action_t& action)
     action.id = PEntity->id;
     action.actiontype = ACTION_MAGIC_FINISH;
     action.actionid = PSpell->getID();
-    action.recast = container->GetRecast();
+    action.recast = state->GetRecast();
     action.spellgroup = PSpell->getSpellGroup();
 
     uint16 msg = 0;
@@ -302,7 +225,7 @@ void CAIBattle::CastFinished(action_t& action)
 
         actionTarget.messageID = msg;
 
-        container->ApplyEnmity(PTarget, ce, ve);
+        state->ApplyEnmity(PTarget, ce, ve);
 
         if (PTarget->objtype == TYPE_MOB && msg != 31) // If message isn't the shadow loss message, because I had to move this outside of the above check for it.
         {
@@ -315,7 +238,7 @@ void CAIBattle::CastFinished(action_t& action)
 
 void CAIBattle::CastInterrupted(action_t& action)
 {
-    CSpell* PSpell = static_cast<CMagicState*>(actionStateContainer.get())->GetSpell();
+    CSpell* PSpell = static_cast<CMagicState*>(GetCurrentState())->GetSpell();
     if (PSpell)
     {
         action.id = PEntity->id;
@@ -336,21 +259,8 @@ void CAIBattle::CastInterrupted(action_t& action)
 
 void CAIBattle::TryHitInterrupt(CBattleEntity* PAttacker)
 {
-    if (GetCurrentState() == AIState::Casting)
-    {
-        static_cast<CMagicState*>(actionStateContainer.get())->TryInterrupt(PAttacker);
-    }
-}
-
-void CAIBattle::ResetIfTarget(CBaseEntity* PTarget)
-{
-    if (actionStateContainer && actionStateContainer->GetTarget() == PTarget)
-    {
-        actionStateContainer->Clear();
-    }
-}
-
-bool CAIBattle::ShouldDisengage()
-{
-    return PBattleTarget->isDead();
+    //if (GetCurrentState() == AIState::Casting)
+    //{
+    //    static_cast<CMagicState*>(GetCurrentState())->TryInterrupt(PAttacker);
+    //}
 }

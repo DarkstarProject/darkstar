@@ -31,17 +31,18 @@
 #include "../../packets/action.h"
 #include "../../packets/message_basic.h"
 
-CMagicState::CMagicState(CBattleEntity* PEntity, CTargetFind& PTargetFind) :
+CMagicState::CMagicState(CBattleEntity* PEntity, CTargetFind* PTargetFind) :
     CState(PEntity, PTargetFind),
+    m_PEntity(PEntity),
     m_PSpell(nullptr)
 {
 }
 
-STATESTATUS CMagicState::Update(time_point tick)
+bool CMagicState::Update(time_point tick)
 {
     if (tick > m_startTime + m_castTime)
     {
-        if (m_State == STATESTATUS::InProgress)
+        /*if (m_State == STATESTATUS::InProgress)
         {
             if (HasMoved())
             {
@@ -83,29 +84,27 @@ STATESTATUS CMagicState::Update(time_point tick)
             else
             {
                 m_State = STATESTATUS::Finish;
-            }
-        }
-        return m_State;
+            }*/
+        //}
+        return true;
     }
     //don't return interrupt until the cast is complete
-    return STATESTATUS::InProgress;
+    return false;
 }
 
 void CMagicState::Clear()
 {
-    if (m_State == STATESTATUS::InProgress)
-    {
-        action_t action;
-        dynamic_cast<CAIBattle*>(m_PEntity->PAI.get())->CastInterrupted(action);
-        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
-    }
+    action_t action;
+    dynamic_cast<CAIBattle*>(m_PEntity->PAI.get())->CastInterrupted(action);
+    m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
 }
 
 bool CMagicState::CanChangeState()
 {
-    return m_State != STATESTATUS::InProgress;
+    return false;
 }
 
+/* Releases ownership to the caller */
 CMessageBasicPacket* CMagicState::GetErrorMsg()
 {
     return m_errorMsg.release();
@@ -241,7 +240,7 @@ bool CMagicState::HasMoved()
 
 void CMagicState::TryInterrupt(CBattleEntity* PAttacker)
 {
-    if (m_State == STATESTATUS::InProgress && battleutils::TryInterruptSpell(PAttacker, m_PEntity))
+    if (battleutils::TryInterruptSpell(PAttacker, m_PEntity))
     {
         Interrupt();
     }
@@ -249,7 +248,7 @@ void CMagicState::TryInterrupt(CBattleEntity* PAttacker)
 
 void CMagicState::Interrupt()
 {
-    m_State = m_State == STATESTATUS::InProgress ? STATESTATUS::Interrupt : m_State;
+    //#TODO
 }
 
 STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
@@ -280,7 +279,7 @@ STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
         {
             return STATESTATUS::ErrorCost;
         }
-        m_PTarget = m_PTargetFind.getValidTarget(targetid, m_PSpell->getValidTarget());
+        m_PTarget = m_PTargetFind->getValidTarget(targetid, m_PSpell->getValidTarget());
         if (!m_PTarget)
         {
             return STATESTATUS::ErrorInvalidTarget;
@@ -320,11 +319,11 @@ STATESTATUS CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
 
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
 
-        m_State = STATESTATUS::InProgress;
+        //m_State = STATESTATUS::InProgress;
     }
     else
     {
-        m_State = STATESTATUS::ErrorUnknown;
+        //m_State = STATESTATUS::ErrorUnknown;
     }
-    return m_State;
+    return STATESTATUS::None;// m_State;
 }

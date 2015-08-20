@@ -39,8 +39,8 @@ enum MAGICFLAGS {
 class CMagicState : public CState
 {
 public:
-    CMagicState(CBattleEntity* PEntity, CTargetFind& PTargetFind);
-    virtual STATESTATUS Update(time_point tick) override;
+    CMagicState(CBattleEntity* PEntity, CTargetFind* PTargetFind);
+    virtual bool Update(time_point tick) override;
     virtual void Clear() override;
     virtual bool CanChangeState() override;
 
@@ -63,8 +63,10 @@ protected:
 
     bool HasMoved();
 
+    CBattleEntity* m_PEntity;
     std::unique_ptr<CMessageBasicPacket> m_errorMsg;
     std::unique_ptr<CSpell> m_PSpell;
+    time_point m_startTime;
     duration m_castTime;
     position_t m_startPos;
     uint8 m_flags;

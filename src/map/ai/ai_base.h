@@ -25,6 +25,7 @@ This file is part of DarkStar-server source code.
 #define _AIBASE_H
 
 #include <memory>
+#include <stack>
 
 #include "ai_common.h"
 #include "helpers/action_queue.h"
@@ -32,6 +33,7 @@ This file is part of DarkStar-server source code.
 #include "helpers/event_handler.h"
 
 class CBaseEntity;
+class CState;
 
 class CAIBase
 {
@@ -45,7 +47,7 @@ public:
 
     void Tick(time_point _tick);
     virtual void ActionQueueStateChange(const queueAction&);
-    AIState GetCurrentState();
+    CState* GetCurrentState();
 
     // stores all events and their associated lua callbacks
     CAIEventHandler EventHandler;
@@ -59,25 +61,12 @@ protected:
     CBaseEntity* PEntity;
     //whether AI is currently able to change state from external means
     virtual bool CanChangeState();
-    virtual void ChangeState(AIState);
+    template<typename T, typename... Args>
+    void ChangeState(Args&&... args) { if (CanChangeState()) { m_stateStack.emplace(std::make_unique<T>(std::forward<Args>(args)...)); } }
     bool m_transitionable;
 
-    //State handlers
-    virtual void ActionNone() {}
-    virtual void ActionDead() {}
-    virtual void ActionRoaming() {}
-    virtual void ActionAttacking() {}
-    virtual void ActionRangedAttack() {}
-    virtual void ActionCasting() {}
-    virtual void ActionJobAbility() {}
-    virtual void ActionWeaponskill() {}
-    virtual void ActionMobskill() {}
-    virtual void ActionItem() {}
-    virtual void ActionChangeTarget() {}
-    virtual void ActionTrigger() {}
-
 private:
-    AIState m_state;
+    std::stack<std::unique_ptr<CState>> m_stateStack;
     CAIActionQueue ActionQueue;
 };
 

@@ -45,32 +45,14 @@ public:
     void ResetIfTarget(CBaseEntity*);
 
 protected:
-    /* State handlers */
-    virtual void ActionAttacking() override;
-    virtual void ActionCasting() override;
-
-    /* State changing overrides */
-    virtual bool CanChangeState() override;
-    virtual void ChangeState(AIState) override;
-    //after active state, return to passive state
-    virtual void TransitionBack();
-
-    /* Attacking functions */
-    //determines whether the next auto attack swing will happen
-    virtual STATESTATUS CanAttack();
-    //whether the entity should disengage (target dead, etc)
-    virtual bool ShouldDisengage();
 
     /* Casting functions */
     virtual void CastFinished(action_t&);
     virtual void CastInterrupted(action_t&);
 
     CTargetFind targetFind;
-    std::unique_ptr<CState> actionStateContainer;
-
     CBattleEntity* PBattleTarget;
 
-    duration m_AttackTime;
     //global cooldown
     time_point m_LastActionTime;
 };

@@ -22,13 +22,12 @@ This file is part of DarkStar-server source code.
 */
 
 #include "ai_npc.h"
-
+#include "states/trigger_state.h"
 #include "../lua/luautils.h"
 #include "../entities/charentity.h"
 
 CAINpc::CAINpc(CBaseEntity* _PEntity) :
-    CAIBase(_PEntity),
-    PActionTarget(nullptr)
+    CAIBase(_PEntity)
 {
 }
 
@@ -41,24 +40,10 @@ void CAINpc::Trigger(CBaseEntity* PTarget)
 {
     if (CanChangeState())
     {
-        ChangeState(AIState::Trigger);
+        ChangeState<CTriggerState>(PEntity);
         if (pathfind)
         {
             pathfind->Clear(); //#TODO: pause/resume after?
         }
-        PActionTarget = PTarget;
     }
-}
-
-void CAINpc::ActionNone()
-{
-    if (pathfind)
-    {
-        pathfind->FollowPath();
-    }
-}
-
-void CAINpc::ActionTrigger()
-{
-    luautils::OnTrigger(dynamic_cast<CCharEntity*>(PActionTarget), PEntity);
 }

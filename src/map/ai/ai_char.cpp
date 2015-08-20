@@ -36,9 +36,9 @@ void CAIChar::CastFinished(action_t& action)
 {
     CAIBattle::CastFinished(action);
 
-    auto container = static_cast<CMagicState*>(actionStateContainer.get());
-    auto PSpell = container->GetSpell();
-    auto PTarget = container->GetTarget();
+    auto state = static_cast<CMagicState*>(GetCurrentState());
+    auto PSpell = state->GetSpell();
+    auto PTarget = static_cast<CBattleEntity*>(state->GetTarget());
 
     static_cast<CCharEntity*>(PEntity)->PRecastContainer->Add(RECAST_MAGIC, PSpell->getID(), action.recast);
 
@@ -81,6 +81,6 @@ void CAIChar::CastInterrupted(action_t& action)
 {
     CAIBattle::CastInterrupted(action);
 
-    auto container = static_cast<CMagicState*>(actionStateContainer.get());
+    auto container = static_cast<CMagicState*>(GetCurrentState());
     static_cast<CCharEntity*>(PEntity)->pushPacket(container->GetErrorMsg());
 }

@@ -51,30 +51,27 @@ enum class STATESTATUS {
 class CState
 {
 public:
-    CState(CBattleEntity* PEntity, CTargetFind& PTargetFind) :
+    CState(CBaseEntity* PEntity, CTargetFind* PTargetFind) :
         m_PEntity(PEntity),
         m_PTarget(nullptr),
         m_PTargetFind(PTargetFind) {}
 
     virtual ~CState() = default;
 
-    CBattleEntity* GetTarget() { return m_PTarget; }
+    CBaseEntity* GetTarget() { return m_PTarget; }
 
     //state logic done per tick
-    virtual STATESTATUS Update(time_point tick) = 0;
+    virtual bool Update(time_point tick) = 0;
 
     //reset/cancel the state
     virtual void Clear() = 0;
     virtual bool CanChangeState() = 0;
 
 protected:
-    CBattleEntity* m_PEntity;
-    CBattleEntity* m_PTarget;
+    CBaseEntity* m_PEntity;
+    CBaseEntity* m_PTarget;
 
-    CTargetFind& m_PTargetFind;
-    STATESTATUS m_State;
-
-    time_point m_startTime;
+    CTargetFind* m_PTargetFind;
 };
 
 #endif

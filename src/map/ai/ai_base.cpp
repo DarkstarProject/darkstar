@@ -31,7 +31,6 @@ CAIBase::CAIBase(CBaseEntity* _PEntity) :
     pathfind(nullptr),
     m_Tick(std::chrono::steady_clock::now()),
     PEntity(_PEntity),
-    m_state(AIState::None),
     ActionQueue(*this)
 {
 }
@@ -47,19 +46,19 @@ void CAIBase::ActionQueueStateChange(const queueAction& action)
     //pathfinding maybe
 }
 
-AIState CAIBase::GetCurrentState()
+CState* CAIBase::GetCurrentState()
 {
-    return m_state;
+    if (!m_stateStack.empty())
+    {
+        return m_stateStack.top().get();
+    }
+    return nullptr;
 }
 
 bool CAIBase::CanChangeState()
 {
-    return m_transitionable;
-}
-
-void CAIBase::ChangeState(AIState state)
-{
-    m_state = state;
+    return (!GetCurrentState() ||
+            (GetCurrentState()->CanChangeState()));
 }
 
 void CAIBase::Tick(time_point _tick)
@@ -79,48 +78,15 @@ void CAIBase::Tick(time_point _tick)
         //#TODO: pathfinding 
     }
 
-    switch (m_state)
+    if (!m_stateStack.empty())
     {
-        case AIState::None:
-            ActionNone();
-            break;
-        case AIState::Dead:
-            ActionDead();
-            break;
-        case AIState::Roaming:
-            ActionRoaming();
-            break;
-        case AIState::Attacking:
-            ActionAttacking();
-            break;
-        case AIState::RangedAttack:
-            ActionRangedAttack();
-            break;
-        case AIState::Casting:
-            ActionCasting();
-            break;
-        case AIState::JobAbility:
-            ActionJobAbility();
-            break;
-        case AIState::Weaponskill:
-            ActionWeaponskill();
-            break;
-        case AIState::Mobskill:
-            ActionMobskill();
-            break;
-        case AIState::Item:
-            ActionItem();
-            break;
-        case AIState::ChangeTarget:
-            ActionChangeTarget();
-            break;
-        case AIState::Trigger:
-            ActionTrigger();
-            break;
+        if (m_stateStack.top()->Update(_tick))
+        {
+            m_stateStack.pop();
+        }
     }
 
     //make sure this AI hasn't been replaced by another
-    //#TODO: reactivate this once PEntity has a member for new AI
     if (PreEntity->updatemask && PreEntity->PAI.get() == this)
     {
         PreEntity->UpdateEntity();
