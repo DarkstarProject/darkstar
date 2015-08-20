@@ -391,6 +391,7 @@ enum MODIFIER
 
     // Corsair
     MOD_EXP_BONUS                 = 0x17E, // (modId = 382)
+    MOD_ROLL_RANGE                = 0x210, // Additional range for COR roll abilities. (modId = 528)
 
     MOD_DMG_REFLECT               = 0x13C, // Tracks totals (modId = 316)
     MOD_ROLL_ROGUES               = 0x13D, // Tracks totals (modId = 317)
@@ -575,10 +576,10 @@ enum MODIFIER
     MOD_AMMO_SWING                = 0x20B, // Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players. (modId = 523)
     MOD_AUGMENTS_CONVERT          = 0x20D, // Convert HP to MP Ratio Multiplier. Value = MP multiplier rate. (modId = 525)
     MOD_AUGMENTS_SA               = 0x20E, // Adds Critical Attack Bonus to Sneak Attack, percentage based. (modId = 526)
-    MOD_AUGMENTS_TA               = 0x20F, // Adds Critical Attack Bonus to Trick Attack, percentage based. (modId = 527)
+    MOD_AUGMENTS_TA               = 0x20F  // Adds Critical Attack Bonus to Trick Attack, percentage based. (modId = 527)
 
-    // MOD_SPARE = 0x210, // (modId = 528)
     // MOD_SPARE = 0x211, // (modId = 529)
+    // MOD_SPARE = 0x212, // (modId = 530)
 
 };
 
