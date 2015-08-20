@@ -25,7 +25,7 @@ This file is part of DarkStar-server source code.
 
 #include "../entities/baseentity.h"
 
-duration g_GCD = std::chrono::milliseconds(1500);
+duration g_GCD = 1500ms;
 
 CAIBase::CAIBase(CBaseEntity* _PEntity) :
     pathfind(nullptr),
@@ -57,8 +57,7 @@ CState* CAIBase::GetCurrentState()
 
 bool CAIBase::CanChangeState()
 {
-    return (!GetCurrentState() ||
-            (GetCurrentState()->CanChangeState()));
+    return !GetCurrentState() || GetCurrentState()->CanChangeState();
 }
 
 void CAIBase::Tick(time_point _tick)

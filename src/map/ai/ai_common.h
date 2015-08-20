@@ -26,9 +26,10 @@ This file is part of DarkStar-server source code.
 
 #include <chrono>
 
-typedef std::chrono::steady_clock server_clock;
-typedef server_clock::time_point time_point;
-typedef server_clock::duration duration;
+using namespace std::chrono_literals;
+using server_clock = std::chrono::steady_clock;
+using time_point = server_clock::time_point;
+using duration = server_clock::duration;
 
 extern duration g_GCD;
 

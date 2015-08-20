@@ -137,15 +137,15 @@ namespace luautils
     int32 prepFile(int8*, const char*);
 
     template<class T, class = std::enable_if_t<type_traits::is_lua_type<T>::value>>
-    void pushArg(T&& arg) { Lunar<T>::push(LuaHandle, &arg); }
+    void pushArg(T arg) { Lunar<T>::push(LuaHandle, &arg); }
 
-    void pushArg(int&& arg);
+    void pushArg(int arg);
 
-    void pushArg(float&& arg);
+    void pushArg(float arg);
 
-    void pushArg(bool&& arg);
+    void pushArg(bool arg);
 
-    void pushArg(nullptr_t&& arg);
+    void pushArg(nullptr_t arg);
 
     void callFunc(int nargs);
 

@@ -236,22 +236,22 @@ int32 prepFile(int8* File, const char* function)
     return 0;
 }
 
-void pushArg(int&& arg)
+void pushArg(int arg)
 {
     lua_pushinteger(LuaHandle, arg);
 }
 
-void pushArg(float&& arg)
+void pushArg(float arg)
 {
     lua_pushnumber(LuaHandle, arg);
 }
 
-void pushArg(bool&& arg)
+void pushArg(bool arg)
 {
     lua_pushboolean(LuaHandle, arg);
 }
 
-void pushArg(nullptr_t&& arg)
+void pushArg(nullptr_t arg)
 {
     lua_pushnil(LuaHandle);
 }

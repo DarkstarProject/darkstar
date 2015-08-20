@@ -55,16 +55,31 @@ public:
 
     // checks function to see if lua callback should be triggered, parameter pack to be passed to lua function
     template<class... Types>
-    void triggerListener(std::string& eventname, std::function<bool(ai_event_t&)> checkFunction, Types&&... args);
+    void triggerListener(std::string& eventname, std::function<bool(ai_event_t&)> checkFunction, Types&&... args)
+    {
+        for (auto&& event : eventListeners[eventname])
+        {
+            if (checkFunction(event))
+            {
+                int nargs = sizeof...(args);
+                pushArg(std::forward<Types&&...>(args)...);
+                luautils::callFunc(nargs);
+            }
+        }
+    }
 
 private:
     std::map<std::string, std::vector<ai_event_t>> eventListeners;
 
     // push parameters on lua stack
     template<class T>
-    void pushArg(T&&);
+    void pushArg(T&&) { luautils::pushArg(std::forward<T>(type)); }
     template<class T, class... Types>
-    void pushArg(T&&, Types&&...);
+    void pushArg(T&&, Types&&...) 
+    {
+        pushArg(std::forward<T>(type));
+        pushArg(std::forward<Types&&...>(args)...);
+    }
 };
 
 #endif
