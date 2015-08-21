@@ -15807,6 +15807,8 @@ INSERT INTO `item_basic` VALUES (26663,0,'pedagogy_mortarboard_+1','pedagogy_mbo
 INSERT INTO `item_basic` VALUES (26702,0,'gavialis_helm','gavialis_helm',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (26710,0,'imperial_wing_hairpin_+1','imperial_wing_hairpin_+1',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (26715,0,'adorned_helm_+1','adorned_helm_+1',1,63552,0,1,0);
+INSERT INTO `item_basic` VALUES (26719,0,'sheep_cap','sheep_cap',1,22528,0,1,0);
+INSERT INTO `item_basic` VALUES (26720,0,'sheep_cap_+1','sheep_cap_+1',1,23808,0,1,0);
 INSERT INTO `item_basic` VALUES (26721,0,'rabid_visor','rabid_visor',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (26732,0,'stinger_helm_+1','stinger_helm_+1',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (26740,0,'boii_mask','boii_mask',1,63552,0,1,0);
