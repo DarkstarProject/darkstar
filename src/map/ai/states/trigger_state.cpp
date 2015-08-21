@@ -25,6 +25,8 @@ This file is part of DarkStar-server source code.
 
 #include "../../lua/luautils.h"
 #include "../../entities/charentity.h"
+#include "../../entities/npcentity.h"
+#include "../../packets/entity_update.h"
 
 CTriggerState::CTriggerState(CBaseEntity* PEntity) :
     CState(PEntity, nullptr)
@@ -33,7 +35,13 @@ CTriggerState::CTriggerState(CBaseEntity* PEntity) :
 
 bool CTriggerState::Update(time_point tick)
 {
-    luautils::OnTrigger(dynamic_cast<CCharEntity*>(m_PTarget), m_PEntity);
+    auto PChar = static_cast<CCharEntity*>(m_PTarget);
+    if (luautils::OnTrigger(PChar, m_PEntity) == -1 && m_PEntity->animation == ANIMATION_CLOSE_DOOR)
+    {
+        m_PEntity->animation = ANIMATION_OPEN_DOOR;
+        PChar->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PEntity, ENTITY_UPDATE, UPDATE_COMBAT));
+        CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_door", /*tick +*/ 7000, m_PEntity, CTaskMgr::TASK_ONCE, close_door));
+    }
     return true;
 }
 

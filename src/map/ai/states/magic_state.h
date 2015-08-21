@@ -47,7 +47,7 @@ public:
     /* Releases ownership to the caller */
     CMessageBasicPacket* GetErrorMsg();
     CSpell* GetSpell();
-    void TryInterrupt(CBattleEntity* PAttacker);
+    virtual void TryInterrupt(CBattleEntity* PAttacker) override;
 
     void SpendCost();
     uint32 GetRecast();

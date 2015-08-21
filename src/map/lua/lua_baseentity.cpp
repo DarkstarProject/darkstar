@@ -9935,6 +9935,7 @@ inline int32 CLuaBaseEntity::copyConfrontationEffect(lua_State* L)
     lua_pushinteger(L, power);
     return 1;
 }
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";

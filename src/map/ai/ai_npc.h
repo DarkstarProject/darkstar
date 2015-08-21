@@ -26,7 +26,7 @@ This file is part of DarkStar-server source code.
 
 #include "ai_base.h"
 
-class CAINpc : CAIBase
+class CAINpc : public CAIBase
 {
 public:
     CAINpc(CBaseEntity*);

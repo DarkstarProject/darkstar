@@ -44,6 +44,7 @@ public:
 
     //state logic done per tick
     virtual bool Update(time_point tick) = 0;
+    virtual void TryInterrupt(CBattleEntity* PAttacker) = 0;
 
     //reset/cancel the state
     virtual void Clear() = 0;

@@ -33,6 +33,7 @@ public:
     virtual bool Update(time_point tick) override;
     virtual void Clear() override;
     virtual bool CanChangeState() override;
+    virtual void TryInterrupt(CBattleEntity* PAttacker) override {}
 };
 
 #endif#pragma once

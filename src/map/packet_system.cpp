@@ -57,6 +57,8 @@ This file is part of DarkStar-server source code.
 #include "utils/zoneutils.h"
 #include "message.h"
 
+#include "ai/ai_npc.h"
+
 #include "items/item_shop.h"
 
 #include "lua/luautils.h"
@@ -615,12 +617,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 10)
         {
-            if (luautils::OnTrigger(PChar, PNpc) == -1 && PNpc->animation == ANIMATION_CLOSE_DOOR)
-            {
-                PNpc->animation = ANIMATION_OPEN_DOOR;
-                PChar->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_UPDATE, UPDATE_COMBAT));
-                CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_door", gettick() + 7000, PNpc, CTaskMgr::TASK_ONCE, close_door));
-            }
+            static_cast<CAINpc*>(PNpc->PAI.get())->Trigger(PChar);
         }
         if (PChar->m_event.EventID == -1)
         {
