@@ -569,7 +569,8 @@ enum MODIFIER
     MOD_AMMO_SWING                = 523, // Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players.
     MOD_AUGMENTS_CONVERT          = 525, // Convert HP to MP Ratio Multiplier. Value = MP multiplier rate.
     MOD_AUGMENTS_SA               = 526, // Adds Critical Attack Bonus to Sneak Attack, percentage based.
-    MOD_AUGMENTS_TA               = 527  // Adds Critical Attack Bonus to Trick Attack, percentage based.
+    MOD_AUGMENTS_TA               = 527, // Adds Critical Attack Bonus to Trick Attack, percentage based.
+    MOD_ENHANCES_REFRESH          = 529, // "Enhances Refresh" adds +1 per modifier to spell's tick result.
 
     // MOD_SPARE = 92, // stuff
     // MOD_SPARE = 93, // stuff
@@ -581,6 +582,7 @@ enum MODIFIER
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
     // MOD_SPARE = 530, // stuff
+    // MOD_SPARE = 531, // stuff
 
 };
 
