@@ -1239,6 +1239,7 @@ MOD_AUGMENTS_CONVERT   = 525 -- Convert HP to MP Ratio Multiplier. Value = MP mu
 MOD_AUGMENTS_SA        = 526 -- Adds Critical Attack Bonus to Sneak Attack, percentage based.
 MOD_AUGMENTS_TA        = 527 -- Adds Critical Attack Bonus to Trick Attack, percentage based.
 MOD_ROLL_RANGE         = 528 -- Additional range for COR roll abilities.
+MOD_ENHANCES_REFRESH   = 529 -- "Enhances Refresh" adds +1 per modifier to spell's tick result.
 
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
@@ -1253,6 +1254,7 @@ MOD_ROLL_RANGE         = 528 -- Additional range for COR roll abilities.
 -- MOD_SPARE = 99, -- stuff
 -- MOD_SPARE = 100, -- stuff
 -- MOD_SPARE = 530, -- stuff
+-- MOD_SPARE = 531, -- stuff
 
 ------------------------------------
 -- Merit Definitions
