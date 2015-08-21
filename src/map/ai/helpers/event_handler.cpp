@@ -22,7 +22,6 @@ This file is part of DarkStar-server source code.
 */
 
 #include "event_handler.h"
-#include "../../lua/luautils.h"
 
 void CAIEventHandler::addListener(std::string& eventname, ai_event_t& eventparam)
 {
@@ -41,9 +40,4 @@ void CAIEventHandler::removeListener(std::string& eventname, std::string identif
         }
         return false;
     }), eventListeners[eventname].end());
-}
-
-void CAIEventHandler::callFunc(int nArgs)
-{
-    luautils::callFunc(nArgs);
 }

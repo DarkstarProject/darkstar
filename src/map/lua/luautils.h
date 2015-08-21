@@ -26,8 +26,7 @@
 
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
-#include "../entities/battleentity.h"
-#include "../conquest_system.h"
+#include "../../common/taskmgr.h"
 
 #define lua_prepscript(n,...) int8 File[255]; int32 oldtop = lua_gettop(LuaHandle); \
                               snprintf( File, sizeof(File), n, ##__VA_ARGS__);
@@ -50,6 +49,11 @@ class CMobSkill;
 class CRegion;
 class CStatusEffect;
 class CItemPuppet;
+class CItemWeapon;
+class CInstance;
+class CZone;
+struct apAction_t;
+enum ConquestUpdate : uint8;
 
 class CLuaAbility;
 class CLuaAction;

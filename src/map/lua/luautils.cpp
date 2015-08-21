@@ -62,6 +62,7 @@
 #include "../items/item_puppet.h"
 #include "../entities/automatonentity.h"
 #include "../utils/itemutils.h"
+#include "../conquest_system.h"
 
 namespace luautils
 {

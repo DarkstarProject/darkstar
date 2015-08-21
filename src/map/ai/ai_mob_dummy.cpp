@@ -40,6 +40,7 @@
 #include "../map.h"
 #include "../attack.h"
 #include "../attackround.h"
+#include "../conquest_system.h"
 
 #include "ai_mob_dummy.h"
 

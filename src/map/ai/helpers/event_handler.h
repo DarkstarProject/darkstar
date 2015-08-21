@@ -29,6 +29,7 @@ This file is part of DarkStar-server source code.
 #include <functional>
 
 #include "../../../common/cbasetypes.h"
+#include "../../lua/luautils.h"
 
 struct ai_event_t
 {
@@ -63,7 +64,7 @@ public:
             {
                 int nargs = sizeof...(args);
                 pushArg(std::forward<Types&&...>(args)...);
-                callFunc(nargs);
+                luautils::callFunc(nargs);
             }
         }
     }
@@ -80,8 +81,6 @@ private:
         pushArg(std::forward<T>(arg));
         pushArg(std::forward<Types&&...>(args)...);
     }
-
-    void callFunc(int nArgs);
 };
 
 #endif
