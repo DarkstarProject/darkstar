@@ -82,12 +82,12 @@ SUBEFFECT_TP_DRAIN          = 22;  -- Verified this should look exactly like Asp
 SUBEFFECT_HASTE             = 23;
 
 -- SPIKES
-SUBEFFECT_BLAZE_SPIKES      = 1;    -- 01-1000       6
-SUBEFFECT_ICE_SPIKES        = 2;    -- 01-0100      10
-SUBEFFECT_DREAD_SPIKES      = 3;    -- 01-1100      14
-SUBEFFECT_CURSE_SPIKES      = 4;    -- 01-0010      18
-SUBEFFECT_SHOCK_SPIKES      = 5;    -- 01-1010      22
-SUBEFFECT_REPRISAL          = 6;    -- 01-0110      26
+SUBEFFECT_BLAZE_SPIKES      = 1;   -- 01-1000       6
+SUBEFFECT_ICE_SPIKES        = 2;   -- 01-0100      10
+SUBEFFECT_DREAD_SPIKES      = 3;   -- 01-1100      14
+SUBEFFECT_CURSE_SPIKES      = 4;   -- 01-0010      18
+SUBEFFECT_SHOCK_SPIKES      = 5;   -- 01-1010      22
+SUBEFFECT_REPRISAL          = 6;   -- 01-0110      26
 SUBEFFECT_WIND_SPIKES       = 7;
 SUBEFFECT_STONE_SPIKES      = 8;
 SUBEFFECT_COUNTER           = 63;
@@ -795,456 +795,464 @@ end;
 -- Note that the above will ignore base statistics, and that getStat() should be used for stats, Attack, and Defense, while getACC(), getRACC(), and getEVA() also exist.
 ------------------------------------
 
-MOD_NONE       = 0x00
-MOD_DEF        = 0x01
-MOD_HP         = 0x02
-MOD_HPP        = 0x03
-MOD_CONVMPTOHP = 0x04
-MOD_MP         = 0x05
-MOD_MPP        = 0x06
-MOD_CONVHPTOMP = 0x07
-MOD_STR        = 0x08
-MOD_DEX        = 0x09
-MOD_VIT        = 0x0A
-MOD_AGI        = 0x0B
-MOD_INT        = 0x0C
-MOD_MND        = 0x0D
-MOD_CHR        = 0x0E
-MOD_FIREDEF    = 0x0F
-MOD_ICEDEF     = 0x10
-MOD_WINDDEF    = 0x11
-MOD_EARTHDEF   = 0x12
-MOD_THUNDERDEF = 0x13
-MOD_WATERDEF   = 0x14
-MOD_LIGHTDEF   = 0x15
-MOD_DARKDEF    = 0x16
-MOD_ATT        = 0x17
-MOD_RATT       = 0x18
-MOD_ACC        = 0x19
-MOD_RACC       = 0x1A
-MOD_ENMITY     = 0x1B
-MOD_ENMITY_LOSS_REDUCTION = 0x1F6
-MOD_MATT              = 0x1C
-MOD_MDEF              = 0x1D
-MOD_MACC              = 0x1E
-MOD_MEVA              = 0x1F
-MOD_FIREATT           = 0x20
-MOD_ICEATT            = 0x21
-MOD_WINDATT           = 0x22
-MOD_EARTHATT          = 0x23
-MOD_THUNDERATT        = 0x24
-MOD_WATERATT          = 0x25
-MOD_LIGHTATT          = 0x26
-MOD_DARKATT           = 0x27
-MOD_FIREACC           = 0x28
-MOD_ICEACC            = 0x29
-MOD_WINDACC           = 0x2A
-MOD_EARTHACC          = 0x2B
-MOD_THUNDERACC        = 0x2C
-MOD_WATERACC          = 0x2D
-MOD_LIGHTACC          = 0x2E
-MOD_DARKACC           = 0x2F
-MOD_WSACC             = 0x30
-MOD_SLASHRES          = 0x31
-MOD_PIERCERES         = 0x32
-MOD_IMPACTRES         = 0x33
-MOD_HTHRES            = 0x34
-MOD_FIRERES           = 0x36
-MOD_ICERES            = 0x37
-MOD_WINDRES           = 0x38
-MOD_EARTHRES          = 0x39
-MOD_THUNDERRES        = 0x3A
-MOD_WATERRES          = 0x3B
-MOD_LIGHTRES          = 0x3C
-MOD_DARKRES           = 0x3D
-MOD_ATTP              = 0x3E
-MOD_DEFP              = 0x3F
-MOD_ACCP              = 0x40
-MOD_EVAP              = 0x41
-MOD_RATTP             = 0x42
-MOD_RACCP             = 0x43
-MOD_EVA               = 0x44
-MOD_RDEF              = 0x45
-MOD_REVA              = 0x46
-MOD_MPHEAL            = 0x47
-MOD_HPHEAL            = 0x48
-MOD_STORETP           = 0x49
-MOD_HTH               = 0x50
-MOD_DAGGER            = 0x51
-MOD_SWORD             = 0x52
-MOD_GSWORD            = 0x53
-MOD_AXE               = 0x54
-MOD_GAXE              = 0x55
-MOD_SCYTHE            = 0x56
-MOD_POLEARM           = 0x57
-MOD_KATANA            = 0x58
-MOD_GKATANA           = 0x59
-MOD_CLUB              = 0x5A
-MOD_STAFF             = 0x5B
-MOD_AUTO_MELEE_SKILL  = 0x65
-MOD_AUTO_RANGED_SKILL = 0x66
-MOD_AUTO_MAGIC_SKILL  = 0x67
-MOD_ARCHERY           = 0x68
-MOD_MARKSMAN          = 0x69
-MOD_THROW             = 0x6A
-MOD_GUARD             = 0x6B
-MOD_EVASION           = 0x6C
-MOD_SHIELD            = 0x6D
-MOD_PARRY             = 0x6E
-MOD_DIVINE            = 0x6F
-MOD_HEALING           = 0x70
-MOD_ENHANCE           = 0x71
-MOD_ENFEEBLE          = 0x72
-MOD_ELEM              = 0x73
-MOD_DARK              = 0x74
-MOD_SUMMONING         = 0x75
-MOD_NINJUTSU          = 0x76
-MOD_SINGING           = 0x77
-MOD_STRING            = 0x78
-MOD_WIND              = 0x79
-MOD_BLUE              = 0x7A
-MOD_FISH              = 0x7F
-MOD_WOOD              = 0x80
-MOD_SMITH             = 0x81
-MOD_GOLDSMITH         = 0x82
-MOD_CLOTH             = 0x83
-MOD_LEATHER           = 0x84
-MOD_BONE              = 0x85
-MOD_ALCHEMY           = 0x86
-MOD_COOK              = 0x87
-MOD_SYNERGY           = 0x88
-MOD_RIDING            = 0x89
-MOD_ANTIHQ_WOOD       = 0x90
-MOD_ANTIHQ_SMITH      = 0x91
-MOD_ANTIHQ_GOLDSMITH  = 0x92
-MOD_ANTIHQ_CLOTH      = 0x93
-MOD_ANTIHQ_LEATHER    = 0x94
-MOD_ANTIHQ_BONE       = 0x95
-MOD_ANTIHQ_ALCHEMY    = 0x96
-MOD_ANTIHQ_COOK       = 0x97
-MOD_DMG               = 0xA0
-MOD_DMGPHYS           = 0xA1
-MOD_DMGBREATH         = 0xA2
-MOD_DMGMAGIC          = 0xA3
-MOD_DMGRANGE          = 0xA4
-MOD_UDMGPHYS          = 0x183
-MOD_UDMGBREATH        = 0x184
-MOD_UDMGMAGIC         = 0x185
-MOD_UDMGRANGE         = 0x186
-MOD_CRITHITRATE       = 0xA5
-MOD_CRIT_DMG_INCREASE = 0x1A5
-MOD_ENEMYCRITRATE     = 0xA6
-MOD_HASTE_MAGIC       = 0xA7
-MOD_SPELLINTERRUPT    = 0xA8
-MOD_MOVE              = 0xA9
-MOD_FASTCAST          = 0xAA
-MOD_UFASTCAST         = 0x197
-MOD_CURE_CAST_TIME    = 0x207
-MOD_DELAY             = 0xAB
-MOD_RANGED_DELAY      = 0xAC
-MOD_MARTIAL_ARTS      = 0xAD
-MOD_SKILLCHAINBONUS   = 0xAE
-MOD_SKILLCHAINDMG     = 0xAF
-MOD_FOOD_HPP          = 0xB0
-MOD_FOOD_HP_CAP       = 0xB1
-MOD_FOOD_MPP          = 0xB2
-MOD_FOOD_MP_CAP       = 0xB3
-MOD_FOOD_ATTP         = 0xB4
-MOD_FOOD_ATT_CAP      = 0xB5
-MOD_FOOD_DEFP         = 0xB6
-MOD_FOOD_DEF_CAP      = 0xB7
-MOD_FOOD_ACCP         = 0xB8
-MOD_FOOD_ACC_CAP      = 0xB9
-MOD_FOOD_RATTP        = 0xBA
-MOD_FOOD_RATT_CAP     = 0xBB
-MOD_FOOD_RACCP        = 0xBC
-MOD_FOOD_RACC_CAP     = 0xBD
-MOD_VERMIN_KILLER     = 0xE0
-MOD_BIRD_KILLER       = 0xE1
-MOD_AMORPH_KILLER     = 0xE2
-MOD_LIZARD_KILLER     = 0xE3
-MOD_AQUAN_KILLER      = 0xE4
-MOD_PLANTOID_KILLER   = 0xE5
-MOD_BEAST_KILLER      = 0xE6
-MOD_UNDEAD_KILLER     = 0xE7
-MOD_ARCANA_KILLER     = 0xE8
-MOD_DRAGON_KILLER     = 0xE9
-MOD_DEMON_KILLER      = 0xEA
-MOD_EMPTY_KILLER      = 0xEB
-MOD_HUMANOID_KILLER   = 0xEC
-MOD_LUMORIAN_KILLER   = 0xED
-MOD_LUMINION_KILLER   = 0xEE
-MOD_SLEEPRES          = 0xF0
-MOD_POISONRES         = 0xF1
-MOD_PARALYZERES       = 0xF2
-MOD_BLINDRES          = 0xF3
-MOD_SILENCERES        = 0xF4
-MOD_VIRUSRES          = 0xF5
-MOD_PETRIFYRES        = 0xF6
-MOD_BINDRES           = 0xF7
-MOD_CURSERES          = 0xF8
-MOD_GRAVITYRES        = 0xF9
-MOD_SLOWRES           = 0xFA
-MOD_STUNRES           = 0xFB
-MOD_CHARMRES          = 0xFC
-MOD_AMNESIARES        = 0xFD
--- PLACEHOLDER           = 0xFE
-MOD_DEATHRES           = 0xFF
-MOD_PARALYZE           = 0x101
-MOD_MIJIN_GAKURE       = 0x102
-MOD_DUAL_WIELD         = 0x103
-MOD_DOUBLE_ATTACK      = 0x120
-MOD_SUBTLE_BLOW        = 0x121
-MOD_COUNTER            = 0x123
-MOD_KICK_ATTACK        = 0x124
-MOD_AFFLATUS_SOLACE    = 0x125
-MOD_AFFLATUS_MISERY    = 0x126
-MOD_CLEAR_MIND         = 0x127
-MOD_CONSERVE_MP        = 0x128
-MOD_STEAL              = 0x12A
-MOD_BLINK              = 0x12B
-MOD_STONESKIN          = 0x12C
-MOD_PHALANX            = 0x12D
-MOD_TRIPLE_ATTACK      = 0x12E
-MOD_TREASURE_HUNTER    = 0x12F
-MOD_TAME               = 0x130
-MOD_RECYCLE            = 0x131
-MOD_ZANSHIN            = 0x132
-MOD_UTSUSEMI           = 0x133
-MOD_NINJA_TOOL         = 0x134
-MOD_BLUE_POINTS        = 0x135
-MOD_DMG_REFLECT        = 0x13C
-MOD_ROLL_ROGUES        = 0x13D
-MOD_ROLL_GALLANTS      = 0x13E
-MOD_ROLL_CHAOS         = 0x13F
-MOD_ROLL_BEAST         = 0x140
-MOD_ROLL_CHORAL        = 0x141
-MOD_ROLL_HUNTERS       = 0x142
-MOD_ROLL_SAMURAI       = 0x143
-MOD_ROLL_NINJA         = 0x144
-MOD_ROLL_DRACHEN       = 0x145
-MOD_ROLL_EVOKERS       = 0x146
-MOD_ROLL_MAGUS         = 0x147
-MOD_ROLL_CORSAIRS      = 0x148
-MOD_ROLL_PUPPET        = 0x149
-MOD_ROLL_DANCERS       = 0x14A
-MOD_ROLL_SCHOLARS      = 0x14B
-MOD_BUST               = 0x14C
-MOD_FINISHING_MOVES    = 0x14D
-MOD_SAMBA_DURATION     = 0x1EA -- Samba duration bonus(modId = 490)
-MOD_WALTZ_POTENTCY     = 0x1EB -- Waltz Potentcy Bonus(modId = 491)
-MOD_CHOCO_JIG_DURATION = 0x1EC -- Chocobo Jig duration bonus (modId = 492)
-MOD_VFLOURISH_MACC     = 0x1ED -- Violent Flourish accuracy bonus (modId = 493)
-MOD_STEP_FINISH        = 0x1EE -- Bonus finishing moves from steps (modId = 494)
-MOD_STEP_ACCURACY      = 0x193 -- Accuracy bonus for steps (modID = 403)
-MOD_SPECTRAL_JIG       = 0x1EF -- Spectral Jig duration modifier (percent increase) (modId = 495)
-MOD_WALTZ_RECAST       = 0x1F1 -- (modID = 497) Waltz recast modifier (percent)
-MOD_SAMBA_PDURATION    = 0x1F2 -- (modID = 498) Samba percent duration bonus
-MOD_WIDESCAN           = 0x154
-MOD_BARRAGE_ACC        = 0x1A4 -- (modID = 420)
-MOD_ENSPELL            = 0x155
-MOD_SPIKES             = 0x156
-MOD_ENSPELL_DMG        = 0x157
-MOD_SPIKES_DMG         = 0x158
-MOD_TP_BONUS           = 0x159
-MOD_PERPETUATION_REDUCTION = 0x15A
-MOD_FIRE_AFFINITY    = 0x15B
-MOD_EARTH_AFFINITY   = 0x15C
-MOD_WATER_AFFINITY   = 0x15D
-MOD_ICE_AFFINITY     = 0x15E
-MOD_THUNDER_AFFINITY = 0x15F
-MOD_WIND_AFFINITY    = 0x160
-MOD_LIGHT_AFFINITY   = 0x161
-MOD_DARK_AFFINITY    = 0x162
-MOD_ADDS_WEAPONSKILL = 0x163
-MOD_ADDS_WEAPONSKILL_DYN = 0x164
-MOD_BP_DELAY       = 0x165
-MOD_STEALTH        = 0x166
-MOD_RAPID_SHOT     = 0x167
-MOD_CHARM_TIME     = 0x168
-MOD_JUMP_TP_BONUS  = 0x169
-MOD_JUMP_ATT_BONUS = 0x16A
-MOD_HIGH_JUMP_ENMITY_REDUCTION = 0x16B
-MOD_REWARD_HP_BONUS = 0x16C
-MOD_SNAP_SHOT       = 0x16D
-MOD_MAIN_DMG_RATING = 0x16E
-MOD_SUB_DMG_RATING  = 0x16F
-MOD_REGAIN          = 0x170
-MOD_REFRESH         = 0x171
-MOD_REGEN           = 0x172
-MOD_AVATAR_PERPETUATION = 0x173
-MOD_WEATHER_REDUCTION   = 0x174
-MOD_DAY_REDUCTION       = 0x175
-MOD_CURE_POTENCY        = 0x176
-MOD_CURE_POTENCY_RCVD   = 0x177
-MOD_DELAYP              = 0x17C
-MOD_RANGED_DELAYP       = 0x17D
-MOD_EXP_BONUS           = 0x17E
-MOD_HASTE_ABILITY       = 0x17F
-MOD_HASTE_GEAR          = 0x180
-MOD_SHIELD_BASH         = 0x181
-MOD_KICK_DMG            = 0x182
-MOD_CHARM_CHANCE        = 0x187
-MOD_WEAPON_BASH         = 0x188
-MOD_BLACK_MAGIC_COST    = 0x189
-MOD_WHITE_MAGIC_COST    = 0x18A
-MOD_BLACK_MAGIC_CAST    = 0x18B
-MOD_WHITE_MAGIC_CAST    = 0x18C
-MOD_BLACK_MAGIC_RECAST  = 0x18D
-MOD_WHITE_MAGIC_RECAST  = 0x18E
-MOD_ALACRITY_CELERITY_EFFECT = 0x18F
-MOD_LIGHT_ARTS_EFFECT   = 0x14E
-MOD_DARK_ARTS_EFFECT    = 0x14F
-MOD_LIGHT_ARTS_SKILL    = 0x150
-MOD_DARK_ARTS_SKILL     = 0x151
-MOD_REGEN_EFFECT        = 0x152
-MOD_REGEN_DURATION      = 0x153
-MOD_HELIX_EFFECT        = 0x1DE
-MOD_HELIX_DURATION      = 0x1DD
-MOD_STORMSURGE_EFFECT   = 0x190
-MOD_SUBLIMATION_BONUS   = 0x191
-MOD_GRIMOIRE_SPELLCASTING = 0x1E9 -- (modID = 489) "Grimoire: Reduces spellcasting time" bonus
-MOD_WYVERN_BREATH         = 0x192
-MOD_REGEN_DOWN            = 0x194 -- poison
-MOD_REFRESH_DOWN          = 0x195 -- plague, reduce mp
-MOD_REGAIN_DOWN           = 0x196 -- plague, reduce tp
-MOD_MAGIC_DAMAGE          = 0x137 --  Magic damage added directly to the spell's base damage (modId = 311)
+MOD_NONE       = 0
+MOD_DEF        = 1
+MOD_HP         = 2
+MOD_HPP        = 3
+MOD_CONVMPTOHP = 4
+MOD_MP         = 5
+MOD_MPP        = 6
+MOD_CONVHPTOMP = 7
+MOD_STR        = 8
+MOD_DEX        = 9
+MOD_VIT        = 10
+MOD_AGI        = 11
+MOD_INT        = 12
+MOD_MND        = 13
+MOD_CHR        = 14
+MOD_FIREDEF    = 15
+MOD_ICEDEF     = 16
+MOD_WINDDEF    = 17
+MOD_EARTHDEF   = 18
+MOD_THUNDERDEF = 19
+MOD_WATERDEF   = 20
+MOD_LIGHTDEF   = 21
+MOD_DARKDEF    = 22
+MOD_ATT        = 23
+MOD_RATT       = 24
+MOD_ACC        = 25
+MOD_RACC       = 26
+MOD_ENMITY     = 27
+MOD_ENMITY_LOSS_REDUCTION = 502
+MOD_MATT              = 28
+MOD_MDEF              = 29
+MOD_MACC              = 30
+MOD_MEVA              = 31
+MOD_FIREATT           = 32
+MOD_ICEATT            = 33
+MOD_WINDATT           = 34
+MOD_EARTHATT          = 35
+MOD_THUNDERATT        = 36
+MOD_WATERATT          = 37
+MOD_LIGHTATT          = 38
+MOD_DARKATT           = 39
+MOD_FIREACC           = 40
+MOD_ICEACC            = 41
+MOD_WINDACC           = 42
+MOD_EARTHACC          = 43
+MOD_THUNDERACC        = 44
+MOD_WATERACC          = 45
+MOD_LIGHTACC          = 46
+MOD_DARKACC           = 47
+MOD_WSACC             = 48
+MOD_SLASHRES          = 49
+MOD_PIERCERES         = 50
+MOD_IMPACTRES         = 51
+MOD_HTHRES            = 52
+MOD_FIRERES           = 54
+MOD_ICERES            = 55
+MOD_WINDRES           = 59
+MOD_EARTHRES          = 57
+MOD_THUNDERRES        = 58
+MOD_WATERRES          = 59
+MOD_LIGHTRES          = 60
+MOD_DARKRES           = 61
+MOD_ATTP              = 62
+MOD_DEFP              = 63
+MOD_ACCP              = 64
+MOD_EVAP              = 65
+MOD_RATTP             = 66
+MOD_RACCP             = 67
+MOD_EVA               = 68
+MOD_RDEF              = 69
+MOD_REVA              = 70
+MOD_MPHEAL            = 71
+MOD_HPHEAL            = 72
+MOD_STORETP           = 73
+MOD_HTH               = 80
+MOD_DAGGER            = 81
+MOD_SWORD             = 82
+MOD_GSWORD            = 83
+MOD_AXE               = 84
+MOD_GAXE              = 85
+MOD_SCYTHE            = 86
+MOD_POLEARM           = 87
+MOD_KATANA            = 88
+MOD_GKATANA           = 89
+MOD_CLUB              = 90
+MOD_STAFF             = 91
+MOD_AUTO_MELEE_SKILL  = 101
+MOD_AUTO_RANGED_SKILL = 102
+MOD_AUTO_MAGIC_SKILL  = 103
+MOD_ARCHERY           = 104
+MOD_MARKSMAN          = 105
+MOD_THROW             = 106
+MOD_GUARD             = 107
+MOD_EVASION           = 108
+MOD_SHIELD            = 109
+MOD_PARRY             = 110
+MOD_DIVINE            = 111
+MOD_HEALING           = 112
+MOD_ENHANCE           = 113
+MOD_ENFEEBLE          = 114
+MOD_ELEM              = 115
+MOD_DARK              = 116
+MOD_SUMMONING         = 117
+MOD_NINJUTSU          = 118
+MOD_SINGING           = 119
+MOD_STRING            = 120
+MOD_WIND              = 121
+MOD_BLUE              = 122
+MOD_FISH              = 127
+MOD_WOOD              = 128
+MOD_SMITH             = 129
+MOD_GOLDSMITH         = 130
+MOD_CLOTH             = 131
+MOD_LEATHER           = 132
+MOD_BONE              = 133
+MOD_ALCHEMY           = 134
+MOD_COOK              = 135
+MOD_SYNERGY           = 136
+MOD_RIDING            = 137
+MOD_ANTIHQ_WOOD       = 144
+MOD_ANTIHQ_SMITH      = 145
+MOD_ANTIHQ_GOLDSMITH  = 146
+MOD_ANTIHQ_CLOTH      = 147
+MOD_ANTIHQ_LEATHER    = 148
+MOD_ANTIHQ_BONE       = 149
+MOD_ANTIHQ_ALCHEMY    = 150
+MOD_ANTIHQ_COOK       = 151
+MOD_DMG               = 160
+MOD_DMGPHYS           = 161
+MOD_DMGBREATH         = 162
+MOD_DMGMAGIC          = 163
+MOD_DMGRANGE          = 164
+MOD_UDMGPHYS          = 387
+MOD_UDMGBREATH        = 388
+MOD_UDMGMAGIC         = 389
+MOD_UDMGRANGE         = 390
+MOD_CRITHITRATE       = 165
+MOD_CRIT_DMG_INCREASE = 421
+MOD_ENEMYCRITRATE     = 166
+MOD_HASTE_MAGIC       = 167
+MOD_SPELLINTERRUPT    = 168
+MOD_MOVE              = 169
+MOD_FASTCAST          = 170
+MOD_UFASTCAST         = 407
+MOD_CURE_CAST_TIME    = 519
+MOD_DELAY             = 171
+MOD_RANGED_DELAY      = 172
+MOD_MARTIAL_ARTS      = 173
+MOD_SKILLCHAINBONUS   = 174
+MOD_SKILLCHAINDMG     = 175
+MOD_FOOD_HPP          = 176
+MOD_FOOD_HP_CAP       = 177
+MOD_FOOD_MPP          = 178
+MOD_FOOD_MP_CAP       = 179
+MOD_FOOD_ATTP         = 180
+MOD_FOOD_ATT_CAP      = 181
+MOD_FOOD_DEFP         = 182
+MOD_FOOD_DEF_CAP      = 183
+MOD_FOOD_ACCP         = 184
+MOD_FOOD_ACC_CAP      = 185
+MOD_FOOD_RATTP        = 186
+MOD_FOOD_RATT_CAP     = 187
+MOD_FOOD_RACCP        = 188
+MOD_FOOD_RACC_CAP     = 189
+MOD_VERMIN_KILLER     = 224
+MOD_BIRD_KILLER       = 225
+MOD_AMORPH_KILLER     = 226
+MOD_LIZARD_KILLER     = 227
+MOD_AQUAN_KILLER      = 228
+MOD_PLANTOID_KILLER   = 229
+MOD_BEAST_KILLER      = 230
+MOD_UNDEAD_KILLER     = 231
+MOD_ARCANA_KILLER     = 232
+MOD_DRAGON_KILLER     = 233
+MOD_DEMON_KILLER      = 234
+MOD_EMPTY_KILLER      = 235
+MOD_HUMANOID_KILLER   = 236
+MOD_LUMORIAN_KILLER   = 237
+MOD_LUMINION_KILLER   = 238
+MOD_SLEEPRES          = 240
+MOD_POISONRES         = 241
+MOD_PARALYZERES       = 242
+MOD_BLINDRES          = 243
+MOD_SILENCERES        = 244
+MOD_VIRUSRES          = 245
+MOD_PETRIFYRES        = 246
+MOD_BINDRES           = 247
+MOD_CURSERES          = 248
+MOD_GRAVITYRES        = 249
+MOD_SLOWRES           = 250
+MOD_STUNRES           = 251
+MOD_CHARMRES          = 252
+MOD_AMNESIARES        = 253
+-- PLACEHOLDER           = 254
+MOD_DEATHRES           = 255
+MOD_PARALYZE           = 257
+MOD_MIJIN_GAKURE       = 258
+MOD_DUAL_WIELD         = 259
+MOD_DOUBLE_ATTACK      = 288
+MOD_SUBTLE_BLOW        = 289
+MOD_COUNTER            = 291
+MOD_KICK_ATTACK        = 292
+MOD_AFFLATUS_SOLACE    = 293
+MOD_AFFLATUS_MISERY    = 294
+MOD_CLEAR_MIND         = 295
+MOD_CONSERVE_MP        = 296
+MOD_STEAL              = 298
+MOD_BLINK              = 299
+MOD_STONESKIN          = 300
+MOD_PHALANX            = 301
+MOD_TRIPLE_ATTACK      = 302
+MOD_TREASURE_HUNTER    = 303
+MOD_TAME               = 304
+MOD_RECYCLE            = 305
+MOD_ZANSHIN            = 306
+MOD_UTSUSEMI           = 307
+MOD_NINJA_TOOL         = 308
+MOD_BLUE_POINTS        = 309
+MOD_DMG_REFLECT        = 316
+MOD_ROLL_ROGUES        = 317
+MOD_ROLL_GALLANTS      = 318
+MOD_ROLL_CHAOS         = 319
+MOD_ROLL_BEAST         = 320
+MOD_ROLL_CHORAL        = 321
+MOD_ROLL_HUNTERS       = 322
+MOD_ROLL_SAMURAI       = 323
+MOD_ROLL_NINJA         = 324
+MOD_ROLL_DRACHEN       = 325
+MOD_ROLL_EVOKERS       = 326
+MOD_ROLL_MAGUS         = 327
+MOD_ROLL_CORSAIRS      = 328
+MOD_ROLL_PUPPET        = 329
+MOD_ROLL_DANCERS       = 330
+MOD_ROLL_SCHOLARS      = 331
+MOD_BUST               = 332
+MOD_FINISHING_MOVES    = 333
+MOD_SAMBA_DURATION     = 490 -- Samba duration bonus
+MOD_WALTZ_POTENTCY     = 491 -- Waltz Potentcy Bonus
+MOD_CHOCO_JIG_DURATION = 492 -- Chocobo Jig duration bonus
+MOD_VFLOURISH_MACC     = 493 -- Violent Flourish accuracy bonus
+MOD_STEP_FINISH        = 494 -- Bonus finishing moves from steps
+MOD_STEP_ACCURACY      = 403 -- Accuracy bonus for steps
+MOD_SPECTRAL_JIG       = 495 -- Spectral Jig duration modifier (percent increase)
+MOD_WALTZ_RECAST       = 497 -- Waltz recast modifier (percent)
+MOD_SAMBA_PDURATION    = 498 -- Samba percent duration bonus
+MOD_WIDESCAN           = 340
+MOD_BARRAGE_ACC        = 420 --
+MOD_ENSPELL            = 341
+MOD_SPIKES             = 342
+MOD_ENSPELL_DMG        = 343
+MOD_SPIKES_DMG         = 344
+MOD_TP_BONUS           = 345
+MOD_PERPETUATION_REDUCTION = 346
+MOD_FIRE_AFFINITY    = 347
+MOD_EARTH_AFFINITY   = 348
+MOD_WATER_AFFINITY   = 349
+MOD_ICE_AFFINITY     = 350
+MOD_THUNDER_AFFINITY = 351
+MOD_WIND_AFFINITY    = 352
+MOD_LIGHT_AFFINITY   = 353
+MOD_DARK_AFFINITY    = 354
+MOD_ADDS_WEAPONSKILL = 355
+MOD_ADDS_WEAPONSKILL_DYN = 356
+MOD_BP_DELAY       = 357
+MOD_STEALTH        = 358
+MOD_RAPID_SHOT     = 359
+MOD_CHARM_TIME     = 360
+MOD_JUMP_TP_BONUS  = 361
+MOD_JUMP_ATT_BONUS = 362
+MOD_HIGH_JUMP_ENMITY_REDUCTION = 363
+MOD_REWARD_HP_BONUS = 364
+MOD_SNAP_SHOT       = 365
+MOD_MAIN_DMG_RATING = 366
+MOD_SUB_DMG_RATING  = 367
+MOD_REGAIN          = 368
+MOD_REFRESH         = 369
+MOD_REGEN           = 370
+MOD_AVATAR_PERPETUATION = 371
+MOD_WEATHER_REDUCTION   = 372
+MOD_DAY_REDUCTION       = 373
+MOD_CURE_POTENCY        = 374
+MOD_CURE_POTENCY_RCVD   = 375
+MOD_DELAYP              = 380
+MOD_RANGED_DELAYP       = 381
+MOD_EXP_BONUS           = 382
+MOD_HASTE_ABILITY       = 383
+MOD_HASTE_GEAR          = 384
+MOD_SHIELD_BASH         = 385
+MOD_KICK_DMG            = 386
+MOD_CHARM_CHANCE        = 391
+MOD_WEAPON_BASH         = 392
+MOD_BLACK_MAGIC_COST    = 393
+MOD_WHITE_MAGIC_COST    = 394
+MOD_BLACK_MAGIC_CAST    = 395
+MOD_WHITE_MAGIC_CAST    = 396
+MOD_BLACK_MAGIC_RECAST  = 397
+MOD_WHITE_MAGIC_RECAST  = 398
+MOD_ALACRITY_CELERITY_EFFECT = 399
+MOD_LIGHT_ARTS_EFFECT   = 334
+MOD_DARK_ARTS_EFFECT    = 335
+MOD_LIGHT_ARTS_SKILL    = 336
+MOD_DARK_ARTS_SKILL     = 337
+MOD_REGEN_EFFECT        = 338
+MOD_REGEN_DURATION      = 339
+MOD_HELIX_EFFECT        = 478
+MOD_HELIX_DURATION      = 477
+MOD_STORMSURGE_EFFECT   = 400
+MOD_SUBLIMATION_BONUS   = 401
+MOD_GRIMOIRE_SPELLCASTING = 489 -- "Grimoire: Reduces spellcasting time" bonus
+MOD_WYVERN_BREATH         = 402
+MOD_REGEN_DOWN            = 404 -- poison
+MOD_REFRESH_DOWN          = 405 -- plague, reduce mp
+MOD_REGAIN_DOWN           = 406 -- plague, reduce tp
+MOD_MAGIC_DAMAGE          = 311 --  Magic damage added directly to the spell's base damage
 
 -- Gear set modifiers
-MOD_DA_DOUBLE_DAMAGE         = 0x198 -- Double attack's double damage chance %.
-MOD_TA_TRIPLE_DAMAGE         = 0x199 -- Triple attack's triple damage chance %.
-MOD_ZANSHIN_DOUBLE_DAMAGE    = 0x19A -- Zanshin's double damage chance %.
-MOD_RAPID_SHOT_DOUBLE_DAMAGE = 0x1DF -- Rapid shot's double damage chance %.
-MOD_ABSORB_DMG_CHANCE        = 0x1E0 -- Chance to absorb damage %
-MOD_EXTRA_DUAL_WIELD_ATTACK  = 0x1E1 -- Chance to land an extra attack when dual wielding
-MOD_EXTRA_KICK_ATTACK        = 0x1E2 -- Occasionally allows a second Kick Attack during an attack round without the use of Footwork.
-MOD_SAMBA_DOUBLE_DAMAGE      = 0x19F -- Double damage chance when samba is up.
-MOD_NULL_PHYSICAL_DAMAGE     = 0x1A0 -- Chance to null physical damage.
-MOD_QUICK_DRAW_TRIPLE_DAMAGE = 0x1A1 -- Chance to do triple damage with quick draw.
-MOD_BAR_ELEMENT_NULL_CHANCE  = 0x1A2 -- Bar Elemental spells will occasionally nullify damage of the same element.
-MOD_GRIMOIRE_INSTANT_CAST    = 0x1A3 -- Spells that match your current Arts will occasionally cast instantly, without recast.
+MOD_DA_DOUBLE_DAMAGE         = 408 -- Double attack's double damage chance %.
+MOD_TA_TRIPLE_DAMAGE         = 409 -- Triple attack's triple damage chance %.
+MOD_ZANSHIN_DOUBLE_DAMAGE    = 410 -- Zanshin's double damage chance %.
+MOD_RAPID_SHOT_DOUBLE_DAMAGE = 479 -- Rapid shot's double damage chance %.
+MOD_ABSORB_DMG_CHANCE        = 480 -- Chance to absorb damage %
+MOD_EXTRA_DUAL_WIELD_ATTACK  = 481 -- Chance to land an extra attack when dual wielding
+MOD_EXTRA_KICK_ATTACK        = 482 -- Occasionally allows a second Kick Attack during an attack round without the use of Footwork.
+MOD_SAMBA_DOUBLE_DAMAGE      = 415 -- Double damage chance when samba is up.
+MOD_NULL_PHYSICAL_DAMAGE     = 416 -- Chance to null physical damage.
+MOD_QUICK_DRAW_TRIPLE_DAMAGE = 417 -- Chance to do triple damage with quick draw.
+MOD_BAR_ELEMENT_NULL_CHANCE  = 418 -- Bar Elemental spells will occasionally nullify damage of the same element.
+MOD_GRIMOIRE_INSTANT_CAST    = 419 -- Spells that match your current Arts will occasionally cast instantly, without recast.
 
-MOD_DOUBLE_SHOT_RATE          = 0x1A6 -- The rate that double shot can proc
-MOD_VELOCITY_SNAPSHOT_BONUS   = 0x1A7 -- Increases Snapshot whilst Velocity Shot is up.
-MOD_VELOCITY_RATT_BONUS       = 0x1A8 -- Increases Ranged Attack whilst Velocity Shot is up.
-MOD_SHADOW_BIND_EXT           = 0x1A9 -- Extends the time of shadowbind
-MOD_ABSORB_PHYSDMG_TO_MP      = 0x1AA -- Absorbs a percentage of physical damage taken to MP.
-MOD_ENMITY_REDUCTION_PHYSICAL = 0x1AB -- Reduces Enmity decrease when taking physical damage
-MOD_SHIELD_MASTERY_TP         = 0x1E5 -- Shield mastery TP bonus when blocking with a shield (modId = 485)
-MOD_PERFECT_COUNTER_ATT       = 0x1AC -- Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
-MOD_FOOTWORK_ATT_BONUS        = 0x1AD -- Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
+MOD_DOUBLE_SHOT_RATE          = 422 -- The rate that double shot can proc
+MOD_VELOCITY_SNAPSHOT_BONUS   = 423 -- Increases Snapshot whilst Velocity Shot is up.
+MOD_VELOCITY_RATT_BONUS       = 424 -- Increases Ranged Attack whilst Velocity Shot is up.
+MOD_SHADOW_BIND_EXT           = 425 -- Extends the time of shadowbind
+MOD_ABSORB_PHYSDMG_TO_MP      = 426 -- Absorbs a percentage of physical damage taken to MP.
+MOD_ENMITY_REDUCTION_PHYSICAL = 427 -- Reduces Enmity decrease when taking physical damage
+MOD_SHIELD_MASTERY_TP         = 485 -- Shield mastery TP bonus when blocking with a shield
+MOD_PERFECT_COUNTER_ATT       = 428 -- Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
+MOD_FOOTWORK_ATT_BONUS        = 429 -- Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
 
-MOD_MINNE_EFFECT        = 0x1B1 -- (modId = 433)
-MOD_MINUET_EFFECT       = 0x1B2 -- (modId = 434)
-MOD_PAEON_EFFECT        = 0x1B3 -- (modId = 435)
-MOD_REQUIEM_EFFECT      = 0x1B4 -- (modId = 436)
-MOD_THRENODY_EFFECT     = 0x1B5 -- (modId = 437)
-MOD_MADRIGAL_EFFECT     = 0x1B6 -- (modId = 438)
-MOD_MAMBO_EFFECT        = 0x1B7 -- (modId = 439)
-MOD_LULLABY_EFFECT      = 0x1B8 -- (modId = 440)
-MOD_ETUDE_EFFECT        = 0x1B9 -- (modId = 441)
-MOD_BALLAD_EFFECT       = 0x1BA -- (modId = 442)
-MOD_MARCH_EFFECT        = 0x1BB -- (modId = 443)
-MOD_FINALE_EFFECT       = 0x1BC -- (modId = 444)
-MOD_CAROL_EFFECT        = 0x1BD -- (modId = 445)
-MOD_MAZURKA_EFFECT      = 0x1BE -- (modId = 446)
-MOD_ELEGY_EFFECT        = 0x1BF -- (modId = 447)
-MOD_PRELUDE_EFFECT      = 0x1C0 -- (modId = 448)
-MOD_HYMNUS_EFFECT       = 0x1C1 -- (modId = 449)
-MOD_VIRELAI_EFFECT      = 0x1C2 -- (modId = 450)
-MOD_SCHERZO_EFFECT      = 0x1C3 -- (modId = 451)
-MOD_ALL_SONGS_EFFECT    = 0x1C4 -- (modId = 452)
-MOD_MAXIMUM_SONGS_BONUS = 0x1C5 -- (modId = 453)
-MOD_SONG_DURATION_BONUS = 0x1C6 -- (modId = 454)
+MOD_MINNE_EFFECT        = 433 --
+MOD_MINUET_EFFECT       = 434 --
+MOD_PAEON_EFFECT        = 435 --
+MOD_REQUIEM_EFFECT      = 436 --
+MOD_THRENODY_EFFECT     = 437 --
+MOD_MADRIGAL_EFFECT     = 438 --
+MOD_MAMBO_EFFECT        = 439 --
+MOD_LULLABY_EFFECT      = 440 --
+MOD_ETUDE_EFFECT        = 441 --
+MOD_BALLAD_EFFECT       = 442 --
+MOD_MARCH_EFFECT        = 443 --
+MOD_FINALE_EFFECT       = 444 --
+MOD_CAROL_EFFECT        = 445 --
+MOD_MAZURKA_EFFECT      = 446 --
+MOD_ELEGY_EFFECT        = 447 --
+MOD_PRELUDE_EFFECT      = 448 --
+MOD_HYMNUS_EFFECT       = 449 --
+MOD_VIRELAI_EFFECT      = 450 --
+MOD_SCHERZO_EFFECT      = 451 --
+MOD_ALL_SONGS_EFFECT    = 452 --
+MOD_MAXIMUM_SONGS_BONUS = 453 --
+MOD_SONG_DURATION_BONUS = 454 --
 
-MOD_QUICK_DRAW_DMG            = 0x19B -- (modId = 411)
-MOD_QUAD_ATTACK               = 0x1AE -- Quadruple attack chance.
+MOD_QUICK_DRAW_DMG            = 411 --
+MOD_QUAD_ATTACK               = 430 -- Quadruple attack chance.
 
-MOD_ADDITIONAL_EFFECT         = 0x1AF -- All additional effects (modId = 431)
-MOD_ENSPELL_DMG_BONUS         = 0x1B0
+MOD_ADDITIONAL_EFFECT         = 431 -- All additional effects
+MOD_ENSPELL_DMG_BONUS         = 432
 
-MOD_FIRE_ABSORB  = 0x1CB -- (modId = 459)
-MOD_EARTH_ABSORB = 0x1CC -- (modId = 460)
-MOD_WATER_ABSORB = 0x1CD -- (modId = 461)
-MOD_WIND_ABSORB  = 0x1CE -- (modId = 462)
-MOD_ICE_ABSORB   = 0x1CF -- (modId = 463)
-MOD_LTNG_ABSORB  = 0x1D0 -- (modId = 464)
-MOD_LIGHT_ABSORB = 0x1D1 -- (modId = 465)
-MOD_DARK_ABSORB  = 0x1D2 -- (modId = 466)
+MOD_FIRE_ABSORB  = 459 --
+MOD_EARTH_ABSORB = 460 --
+MOD_WATER_ABSORB = 461 --
+MOD_WIND_ABSORB  = 462 --
+MOD_ICE_ABSORB   = 463 --
+MOD_LTNG_ABSORB  = 464 --
+MOD_LIGHT_ABSORB = 465 --
+MOD_DARK_ABSORB  = 466 --
 
-MOD_FIRE_NULL  = 0x1D3 -- (modId = 467)
-MOD_EARTH_NULL = 0x1D4 -- (modId = 468)
-MOD_WATER_NULL = 0x1D5 -- (modId = 469)
-MOD_WIND_NULL  = 0x1D6 -- (modId = 470)
-MOD_ICE_NULL   = 0x1D7 -- (modId = 471)
-MOD_LTNG_NULL  = 0x1D8 -- (modId = 472)
-MOD_LIGHT_NULL = 0x1D9 -- (modId = 473)
-MOD_DARK_NULL  = 0x1DA -- (modId = 474)
+MOD_FIRE_NULL  = 467 --
+MOD_EARTH_NULL = 468 --
+MOD_WATER_NULL = 469 --
+MOD_WIND_NULL  = 470 --
+MOD_ICE_NULL   = 471 --
+MOD_LTNG_NULL  = 472 --
+MOD_LIGHT_NULL = 473 --
+MOD_DARK_NULL  = 474 --
 
-MOD_MAGIC_ABSORB     = 0x1DB -- (modId = 475)
-MOD_MAGIC_NULL       = 0x1DC -- (modId = 476)
-MOD_PHYS_ABSORB      = 0x200 -- (modId = 512)
-MOD_ABSORB_DMG_TO_MP = 0x204 -- Unlike PLD gear mod, works on all damage types (Ethereal Earring) (modId = 516)
+MOD_MAGIC_ABSORB     = 475 --
+MOD_MAGIC_NULL       = 476 --
+MOD_PHYS_ABSORB      = 512 --
+MOD_ABSORB_DMG_TO_MP = 516 -- Unlike PLD gear mod, works on all damage types (Ethereal Earring)
 
-MOD_WARCRY_DURATION = 0x1E3 -- Warcy duration bonus from gear
-MOD_AUSPICE_EFFECT  = 0x1E4 -- Auspice Subtle Blow Bonus (modId = 484)
-MOD_TACTICAL_PARRY  = 0x1E6 -- Tactical Parry TP Bonus (modid = 486)
-MOD_MAG_BURST_BONUS = 0x1E7 -- Magic Burst Bonus (modid = 487)
-MOD_INHIBIT_TP      = 0x1E8 -- Inhibits TP Gain (percent) (modId = 488)
+MOD_WARCRY_DURATION = 483 -- Warcy duration bonus from gear
+MOD_AUSPICE_EFFECT  = 484 -- Auspice Subtle Blow Bonus
+MOD_TACTICAL_PARRY  = 486 -- Tactical Parry TP Bonus
+MOD_MAG_BURST_BONUS = 487 -- Magic Burst Bonus
+MOD_INHIBIT_TP      = 488 -- Inhibits TP Gain (percent)
 
-MOD_GOV_CLEARS      = 0x1F0 -- Tracks GoV page completion (for 4% bonus on rewards).
+MOD_GOV_CLEARS      = 496 -- Tracks GoV page completion (for 4% bonus on rewards).
 
 -- Reraise (Auto Reraise, will be used by ATMA)
-MOD_RERAISE_I       = 0x1C8 -- Reraise. (modId = 456)
-MOD_RERAISE_II      = 0x1C9 -- Reraise II. (modId = 457)
-MOD_RERAISE_III     = 0x1CA -- Reraise III. (modId = 458)
+MOD_RERAISE_I       = 456 -- Reraise.
+MOD_RERAISE_II      = 457 -- Reraise II.
+MOD_RERAISE_III     = 458 -- Reraise III.
 
-MOD_ITEM_SPIKES_TYPE   = 0x1F3 -- Type spikes an item has (modId = 499)
-MOD_ITEM_SPIKES_DMG    = 0x1F4 -- Damage of an items spikes (modId = 500)
-MOD_ITEM_SPIKES_CHANCE = 0x1F5 -- Chance of an items spike proc (modId = 501)
+MOD_ITEM_SPIKES_TYPE   = 499 -- Type spikes an item has
+MOD_ITEM_SPIKES_DMG    = 500 -- Damage of an items spikes
+MOD_ITEM_SPIKES_CHANCE = 501 -- Chance of an items spike proc
 
-MOD_FERAL_HOWL_DURATION = 0x1F7 -- +20% duration per merit when wearing augmented Monster Jackcoat +2 (modId = 503)
-MOD_MANEUVER_BONUS      = 0x1F8 -- Maneuver Stat Bonus
-MOD_OVERLOAD_THRESH     = 0x1F9 -- Overload Threshold Bonus
-MOD_EXTRA_DMG_CHANCE    = 0x1FA -- Proc rate of MOD_OCC_DO_EXTRA_DMG. 111 would be 11.1% (modId = 506)
-MOD_OCC_DO_EXTRA_DMG    = 0x1FB -- Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage. (modId = 507)
+MOD_FERAL_HOWL_DURATION = 503 -- +20% duration per merit when wearing augmented Monster Jackcoat +2
+MOD_MANEUVER_BONUS      = 504 -- Maneuver Stat Bonus
+MOD_OVERLOAD_THRESH     = 505 -- Overload Threshold Bonus
+MOD_EXTRA_DMG_CHANCE    = 506 -- Proc rate of MOD_OCC_DO_EXTRA_DMG. 111 would be 11.1%
+MOD_OCC_DO_EXTRA_DMG    = 507 -- Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage.
 
-MOD_EAT_RAW_FISH       = 0x19C -- (modId = 412)
-MOD_EAT_RAW_MEAT       = 0x19D -- (modId = 413)
-MOD_ENHANCES_CURSNA    = 0x136 -- Raises success rate of Cursna when removing effect (like Doom) that are not 100% chance to remove (modId = 310)
-MOD_RETALIATION        = 0x19E -- Increases damage of Retaliation hits (modId = 414)
-MOD_AUGMENTS_THIRD_EYE = 0x1FC -- Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15% (modId = 508)
+MOD_EAT_RAW_FISH       = 412 --
+MOD_EAT_RAW_MEAT       = 413 --
+MOD_ENHANCES_CURSNA    = 310 -- Raises success rate of Cursna when removing effect (like Doom) that are not 100% chance to remove
+MOD_RETALIATION        = 414 -- Increases damage of Retaliation hits
+MOD_AUGMENTS_THIRD_EYE = 508 -- Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15%
 
-MOD_CLAMMING_IMPROVED_RESULTS  = 0x1FD -- (modId = 509)
-MOD_CLAMMING_REDUCED_INCIDENTS = 0x1FE -- (modId = 510)
-MOD_CHOCOBO_RIDING_TIME = 0x1FF -- Increases chocobo riding time (modId = 511)
-MOD_HARVESTING_RESULT   = 0x201 -- Improves harvesting results (modId = 513)
-MOD_LOGGING_RESULT      = 0x202 -- Improves logging results (modId = 514)
-MOD_MINNING_RESULT      = 0x203 -- Improves mining results (modId = 515)
-MOD_EGGHELM             = 0x205 -- Egg Helm (Chocobo Digging)
+MOD_CLAMMING_IMPROVED_RESULTS  = 509 --
+MOD_CLAMMING_REDUCED_INCIDENTS = 510 --
+MOD_CHOCOBO_RIDING_TIME = 511 -- Increases chocobo riding time
+MOD_HARVESTING_RESULT   = 513 -- Improves harvesting results
+MOD_LOGGING_RESULT      = 514 -- Improves logging results
+MOD_MINNING_RESULT      = 515 -- Improves mining results
+MOD_EGGHELM             = 517 -- Egg Helm (Chocobo Digging)
 
-MOD_SHIELDBLOCKRATE = 0x206 -- Affects shield block rate, percent based (modID = 518))
-MOD_SCAVENGE_EFFECT = 0x138 -- (modId = 312)
-MOD_DIA_DOT         = 0x139 -- Increases the DoT damage of Dia (modId = 313)
-MOD_SHARPSHOT       = 0x13A -- Sharpshot accuracy bonus (modId = 314)
-MOD_ENH_DRAIN_ASPIR = 0x13B -- % damage boost to Drain and Aspir(modId = 315)
-MOD_TRICK_ATK_AGI   = 0x208 -- % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit) (modId = 520)
-MOD_NIN_NUKE_BONUS  = 0x20A -- magic attack bonus for NIN nukes (modId = 522)
-MOD_AMMO_SWING      = 0x20B -- Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players. (modId = 523)
+MOD_SHIELDBLOCKRATE = 518 -- Affects shield block rate, percent based
+MOD_SCAVENGE_EFFECT = 312 --
+MOD_DIA_DOT         = 313 -- Increases the DoT damage of Dia
+MOD_SHARPSHOT       = 314 -- Sharpshot accuracy bonus
+MOD_ENH_DRAIN_ASPIR = 315 -- % damage boost to Drain and Aspir
+MOD_TRICK_ATK_AGI   = 520 -- % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
+MOD_NIN_NUKE_BONUS  = 522 -- magic attack bonus for NIN nukes
+MOD_AMMO_SWING      = 523 -- Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players.
 
 -- Mythic Weapon Mods
-MOD_AUGMENTS_ABSORB    = 0x209  -- Direct Absorb spell increase while Liberator is equipped (percentage based) (modId = 521)
-MOD_AOE_NA             = 0x20C  -- Set to 1 to make -na spells/erase always AoE w/ Divine Veil (modId = 524)
-MOD_AUGMENTS_CONVERT   = 0x20D  -- Convert HP to MP Ratio Multiplier. Value = MP multiplier rate. (modId = 525)
-MOD_AUGMENTS_SA        = 0x20E  -- Adds Critical Attack Bonus to Sneak Attack, percentage based. (modId = 526)
-MOD_AUGMENTS_TA        = 0x20F  -- Adds Critical Attack Bonus to Trick Attack, percentage based. (modId = 527)
-MOD_ROLL_RANGE         = 0x210  -- Additional range for COR roll abilities. (modId = 528)
+MOD_AUGMENTS_ABSORB    = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)
+MOD_AOE_NA             = 524 -- Set to 1 to make -na spells/erase always AoE w/ Divine Veil
+MOD_AUGMENTS_CONVERT   = 525 -- Convert HP to MP Ratio Multiplier. Value = MP multiplier rate.
+MOD_AUGMENTS_SA        = 526 -- Adds Critical Attack Bonus to Sneak Attack, percentage based.
+MOD_AUGMENTS_TA        = 527 -- Adds Critical Attack Bonus to Trick Attack, percentage based.
+MOD_ROLL_RANGE         = 528 -- Additional range for COR roll abilities.
 
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
--- MOD_SPARE = 0x210 -- (modId = 528)
--- MOD_SPARE = 0x211 -- (modId = 529)
+-- MOD_SPARE = 92, -- stuff
+-- MOD_SPARE = 93, -- stuff
+-- MOD_SPARE = 94, -- stuff
+-- MOD_SPARE = 95, -- stuff
+-- MOD_SPARE = 96, -- stuff
+-- MOD_SPARE = 97, -- stuff
+-- MOD_SPARE = 98, -- stuff
+-- MOD_SPARE = 99, -- stuff
+-- MOD_SPARE = 100, -- stuff
+-- MOD_SPARE = 530, -- stuff
 
 ------------------------------------
 -- Merit Definitions
