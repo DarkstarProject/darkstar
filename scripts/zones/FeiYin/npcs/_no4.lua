@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x0016);
 		
 	-- Curses, Foiled A_Golem!?
-	if (player:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
+	elseif (player:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
 		player:startEvent(0x000E); -- deliver spell
 	elseif (player:hasKeyItem(SHANTOTTOS_EXSPELL)) then
 		player:startEvent(0x000D); -- spell erased, try again!
@@ -41,8 +41,6 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x000f); 
 	end
-	end
-	return 1;
 end;
 
 -----------------------------------
