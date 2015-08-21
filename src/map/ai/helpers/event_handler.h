@@ -29,6 +29,7 @@ This file is part of DarkStar-server source code.
 #include <functional>
 
 #include "../../../common/cbasetypes.h"
+#include "../../lua/luautils.h"
 
 struct ai_event_t
 {
@@ -73,11 +74,11 @@ private:
 
     // push parameters on lua stack
     template<class T>
-    void pushArg(T&&) { luautils::pushArg(std::forward<T>(type)); }
+    void pushArg(T&& ) { luautils::pushArg(std::forward<T>(arg)); }
     template<class T, class... Types>
-    void pushArg(T&&, Types&&...) 
+    void pushArg(T&& arg, Types&&... args) 
     {
-        pushArg(std::forward<T>(type));
+        pushArg(std::forward<T>(arg));
         pushArg(std::forward<Types&&...>(args)...);
     }
 };
