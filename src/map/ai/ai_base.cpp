@@ -74,7 +74,7 @@ void CAIBase::Tick(time_point _tick)
     // check pathfinding
     if (pathfind)
     {
-        //#TODO: pathfinding 
+        pathfind->FollowPath();
     }
 
     if (!m_stateStack.empty())
