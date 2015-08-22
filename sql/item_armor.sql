@@ -9986,6 +9986,8 @@ INSERT INTO `item_armor` VALUES (26663,'pedagogy_mortarboard_+1',99,119,524288,1
 INSERT INTO `item_armor` VALUES (26702,'gavialis_helm',99,119,14785,375,0,0,16,0);
 INSERT INTO `item_armor` VALUES (26710,'imperial_wing_hairpin_+1',99,119,4194303,0,0,0,16,0);
 INSERT INTO `item_armor` VALUES (26715,'adorned_helm_+1',99,119,2106341,55,0,0,16,0);
+INSERT INTO `item_armor` VALUES (26719,'sheep_cap',1,0,4194303,383,0,0,16,0);
+INSERT INTO `item_armor` VALUES (26720,'sheep_cap_+1',1,0,4194303,383,0,0,16,0);
 INSERT INTO `item_armor` VALUES (26721,'rabid_visor',99,119,2141649,336,0,0,16,0);
 INSERT INTO `item_armor` VALUES (26732,'stinger_helm_+1',99,119,10368,114,0,0,16,0);
 INSERT INTO `item_armor` VALUES (26740,'boii_mask',99,109,1,282,0,0,16,0);
