@@ -26,7 +26,6 @@ This file is part of DarkStar-server source code.
 #include "states/magic_state.h"
 #include "../spell.h"
 #include "../entities/battleentity.h"
-#include "../packets/message_basic.h"
 #include "../utils/battleutils.h"
 #include "../lua/luautils.h"
 #include "../packets/action.h"
@@ -232,7 +231,7 @@ void CAIBattle::CastFinished(action_t& action)
     static_cast<CBattleEntity*>(PEntity)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END);
 }
 
-void CAIBattle::CastInterrupted(action_t& action)
+void CAIBattle::CastInterrupted(action_t& action, MSGBASIC_ID msg)
 {
     CSpell* PSpell = static_cast<CMagicState*>(GetCurrentState())->GetSpell();
     if (PSpell)
@@ -249,7 +248,7 @@ void CAIBattle::CastInterrupted(action_t& action)
         actionTarget.messageID = 0;
         actionTarget.animation = PSpell->getAnimationID();
 
-        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CMessageBasicPacket(PEntity, PEntity, 0, 0, MSGBASIC_IS_INTERRUPTED));
+        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CMessageBasicPacket(PEntity, PEntity, 0, 0, msg));
     }
 }
 

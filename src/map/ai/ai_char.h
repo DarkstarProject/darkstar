@@ -44,7 +44,7 @@ protected:
 
     /* Casting functions */
     virtual void CastFinished(action_t&) override;
-    virtual void CastInterrupted(action_t&) override;
+    virtual void CastInterrupted(action_t&, MSGBASIC_ID) override;
 };
 
 #endif

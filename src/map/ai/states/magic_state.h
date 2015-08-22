@@ -63,7 +63,7 @@ protected:
 
     bool HasMoved();
 
-    CBattleEntity* m_PEntity;
+    CBattleEntity* const m_PEntity;
     std::unique_ptr<CMessageBasicPacket> m_errorMsg;
     std::unique_ptr<CSpell> m_PSpell;
     time_point m_startTime;

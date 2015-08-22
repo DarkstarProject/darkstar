@@ -44,6 +44,7 @@ bool CMagicState::Update(time_point tick)
     {
         m_interrupted = false;
         m_PTarget = m_PTargetFind->getValidTarget(m_PTarget->targid, m_PSpell->getValidTarget());
+        MSGBASIC_ID msg = MSGBASIC_IS_INTERRUPTED;
 
         action_t action;
 
@@ -51,19 +52,20 @@ bool CMagicState::Update(time_point tick)
         {
             m_interrupted = true;
         }
-        //#TODO: message for interrupt/para (part of action, replaces regular "interrupt" message)
         else if (battleutils::IsParalyzed(m_PEntity))
         {
+            msg = MSGBASIC_IS_PARALYZED;
             m_interrupted = true;
         }
         else if (battleutils::IsIntimidated(m_PEntity, static_cast<CBattleEntity*>(m_PTarget)))
         {
+            msg = MSGBASIC_IS_INTIMIDATED;
             m_interrupted = true;
         }
 
         if (m_interrupted)
         {
-            m_PEntity->PAIBattle()->CastInterrupted(action);
+            m_PEntity->PAIBattle()->CastInterrupted(action, msg);
         }
         else
         {
@@ -78,7 +80,7 @@ bool CMagicState::Update(time_point tick)
 void CMagicState::Clear()
 {
     action_t action;
-    m_PEntity->PAIBattle()->CastInterrupted(action);
+    m_PEntity->PAIBattle()->CastInterrupted(action, MSGBASIC_IS_INTERRUPTED);
     m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
 }
 

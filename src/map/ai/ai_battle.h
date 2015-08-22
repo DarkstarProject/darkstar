@@ -27,6 +27,7 @@ This file is part of DarkStar-server source code.
 #include "ai_base.h"
 #include "helpers/targetfind.h"
 #include "states/state.h"
+#include "../packets/message_basic.h"
 
 class CBattleEntity;
 class CSpell;
@@ -47,7 +48,7 @@ protected:
 
     /* Casting functions */
     virtual void CastFinished(action_t&);
-    virtual void CastInterrupted(action_t&);
+    virtual void CastInterrupted(action_t&, MSGBASIC_ID msg);
 
     CTargetFind targetFind;
     CBattleEntity* PBattleTarget;

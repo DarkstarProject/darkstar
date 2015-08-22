@@ -42,19 +42,21 @@ public:
 
     CBaseEntity* GetTarget() { return m_PTarget; }
 
-    //state logic done per tick
+    //state logic done per tick - returns whether to exit the state or not
     virtual bool Update(time_point tick) = 0;
+    //try interrupt (on hit)
     virtual void TryInterrupt(CBattleEntity* PAttacker) = 0;
 
-    //reset/cancel the state
+    //reset/cancel the state (forced exit)
     virtual void Clear() = 0;
+    //whether the state can be changed by normal means
     virtual bool CanChangeState() = 0;
 
 protected:
-    CBaseEntity* m_PEntity;
+    CBaseEntity* const m_PEntity;
     CBaseEntity* m_PTarget;
 
-    CTargetFind* m_PTargetFind;
+    CTargetFind* const m_PTargetFind;
 };
 
 #endif

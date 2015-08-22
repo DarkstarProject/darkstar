@@ -87,9 +87,9 @@ void CAIChar::CastFinished(action_t& action)
     }
 }
 
-void CAIChar::CastInterrupted(action_t& action)
+void CAIChar::CastInterrupted(action_t& action, MSGBASIC_ID msg)
 {
-    CAIBattle::CastInterrupted(action);
+    CAIBattle::CastInterrupted(action, msg);
 
     auto container = static_cast<CMagicState*>(GetCurrentState());
     auto message = container->GetErrorMsg();
