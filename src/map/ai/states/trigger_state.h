@@ -36,4 +36,4 @@ public:
     virtual void TryInterrupt(CBattleEntity* PAttacker) override {}
 };
 
-#endif#pragma once
+#endif

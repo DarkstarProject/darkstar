@@ -48,6 +48,7 @@ public:
     void Tick(time_point _tick);
     virtual void ActionQueueStateChange(const queueAction&);
     CState* GetCurrentState();
+    void ResetIfTarget(CBaseEntity*);
 
     // stores all events and their associated lua callbacks
     CAIEventHandler EventHandler;

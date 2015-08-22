@@ -255,8 +255,6 @@ void CAIBattle::CastInterrupted(action_t& action)
 
 void CAIBattle::TryHitInterrupt(CBattleEntity* PAttacker)
 {
-    //if (GetCurrentState() == AIState::Casting)
-    //{
-    //    static_cast<CMagicState*>(GetCurrentState())->TryInterrupt(PAttacker);
-    //}
+    if (GetCurrentState())
+        GetCurrentState()->TryInterrupt(PAttacker);
 }

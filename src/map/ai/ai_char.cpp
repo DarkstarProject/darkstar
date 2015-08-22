@@ -92,5 +92,8 @@ void CAIChar::CastInterrupted(action_t& action)
     CAIBattle::CastInterrupted(action);
 
     auto container = static_cast<CMagicState*>(GetCurrentState());
-    static_cast<CCharEntity*>(PEntity)->pushPacket(container->GetErrorMsg());
+    auto message = container->GetErrorMsg();
+
+    if (message)
+        static_cast<CCharEntity*>(PEntity)->pushPacket(message);
 }

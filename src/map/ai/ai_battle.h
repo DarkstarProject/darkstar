@@ -42,7 +42,6 @@ public:
     virtual void ActionQueueStateChange(const queueAction&) override;
     virtual bool Cast(uint16 targetid, uint16 spellid);
     virtual void TryHitInterrupt(CBattleEntity* PAttacker);
-    void ResetIfTarget(CBaseEntity*);
 
 protected:
 

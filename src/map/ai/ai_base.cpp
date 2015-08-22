@@ -91,3 +91,12 @@ void CAIBase::Tick(time_point _tick)
         PreEntity->UpdateEntity();
     }
 }
+
+void CAIBase::ResetIfTarget(CBaseEntity* PTarget)
+{
+    while (!m_stateStack.empty() && GetCurrentState()->GetTarget() == PTarget)
+    {
+        m_stateStack.top()->Clear();
+        m_stateStack.pop();
+    }
+}

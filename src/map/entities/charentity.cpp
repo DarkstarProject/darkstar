@@ -460,5 +460,6 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
 
 bool CCharEntity::CanUseSpell(CSpell* PSpell)
 {
-    return charutils::hasSpell(this, PSpell->getID()) && CBattleEntity::CanUseSpell(PSpell);
+    return charutils::hasSpell(this, PSpell->getID()) && CBattleEntity::CanUseSpell(PSpell) && 
+        !PRecastContainer->Has(RECAST_MAGIC, PSpell->getID());
 }
