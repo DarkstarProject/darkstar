@@ -36,6 +36,14 @@ function onTrigger(player,npc)
     elseif (player:getVar("BoyAndTheBeast") > 1 and player:getQuestStatus(CRYSTAL_WAR,BOY_AND_THE_BEAST) ~= QUEST_COMPLETED) then
         player:startEvent(0x0039);
         
+    elseif (player:getQuestStatus(CRYSTAL_WAR,BOY_AND_THE_BEAST) == QUEST_COMPLETED and player:getQuestStatus(CRYSTAL_WAR,WRATH_OF_THE_GRIFFON) == QUEST_AVAILABLE) then
+        player:startEvent(0x003B);
+    elseif (player:getQuestStatus(CRYSTAL_WAR,WRATH_OF_THE_GRIFFON) == QUEST_ACCEPTED) then
+        if (player:getVar("WrathOfTheGriffon") < 2) then
+            player:startEvent(0x003D);
+        elseif (player:getVar("WrathOfTheGriffon") == 2) then
+            player:startEvent(0x003C);
+        end
     else
         player:startEvent(0x0020); -- Default Dialogue
     end
@@ -80,6 +88,13 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 0x0038) then
         player:setVar("BoyAndTheBeast",2);
+    elseif (csid == 0x003B) then
+        player:addQuest(CRYSTAL_WAR,WRATH_OF_THE_GRIFFON);
+    elseif (csid == 0x003C) then
+        player:completeQuest(CRYSTAL_WAR,WRATH_OF_THE_GRIFFON);
+        player:setVar("WrathOfTheGriffon",0);
+        player:addKeyItem(MILITARY_SCRIP);
+        player:messageSpecial(KEYITEM_OBTAINED,MILITARY_SCRIP);
     end
 
 end;
