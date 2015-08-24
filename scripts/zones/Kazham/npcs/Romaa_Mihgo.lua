@@ -23,9 +23,9 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 3) then
+	if (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
 		player:startEvent(0x010A);
-	elseif (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 4) then
+	elseif (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 3) then
 		player:startEvent(0x010B);
 	else
 		player:startEvent(0x0107);
@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
 	-- printf("RESULT: %u",option);
 	
 	if (csid == 0x010A) then
-		player:setVar("MissionStatus",4);
+		player:setVar("MissionStatus",3);
 	end
 	
 end;
