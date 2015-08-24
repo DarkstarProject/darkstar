@@ -101,7 +101,7 @@ local GearSets =  {
              {id = 83, items = {27241,27242,27415,27416,26744,26745,26902,26903,27056,27057}, matches = 2, matchType = matchtype.any, mods = {{MOD_BAR_ELEMENT_NULL_CHANCE, nullDamageChance, 0, 0}} }, -- 109/119 WHM AF3
              {id = 84, items = {11867,10868,10865}, matches = 2, matchType = matchtype.any, mods = {{MOD_REFRESH, 3, 0, 0}} }, -- Heka's body + NQ or HQ Khat = 3 tick refresh
              {id = 85, items = {10868,11870,11864,10865}, matches = 2, matchType = matchtype.any, mods = {{MOD_REFRESH, 2, 0, 0}} }, -- Nefer body/head NQ/HQ combo gives Refresh +2
-
+             {id = 86, items = {15852,15853}, matches = 2, matchType = matchtype.any, mods = {{MOD_HP, 50, 0, 0},{MOD_MP, 50, 0, 0}} }, -- Dasra's/Nasatya's Ring set gives HP/MP +50
 
 
 
