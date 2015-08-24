@@ -1,4 +1,4 @@
-     -----------------------------------
+-----------------------------------
 --  Area: Kazham
 --   NPC: Lulupp
 --  Type: Standard NPC
@@ -6,7 +6,6 @@
 --  @pos -26.567 -3.5 -3.544
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/pathfind");
 
 local path = {
