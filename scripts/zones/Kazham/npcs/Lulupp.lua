@@ -132,7 +132,7 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,npc)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
     if (csid == 0x00D9 and option == 1)  then                   -- Opo Opo and I quest start CS
