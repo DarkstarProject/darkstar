@@ -23,17 +23,19 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getQuestStatus(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("ClawsOfGriffonProg") == 1) then
-		player:startEvent(0xC9);
-	
-	elseif (player:getQuestStatus(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("ClawsOfGriffonProg") == 2) then
-		player:startEvent(0xCA)
-			
-	elseif (player:getQuestStatus(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("ClawsOfGriffonProg") == 3) then
-		player:startEvent(0xCB)
-	else
-		player:messageSpecial(NOTHING_HAPPENS);
-	end
+    if (player:getQuestStatus(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON) == QUEST_ACCEPTED) then
+        if (player:getVar("ClawsOfGriffonProg") == 1) then
+            player:startEvent(0x00C9);
+        elseif (player:getVar("ClawsOfGriffonProg") == 2) then
+            if (player:needToZone() and player:getVar("FingerfilcherKilled") == 1) then
+                player:startEvent(0x00CB)
+            else
+                player:startEvent(0x00CA)
+            end
+        end
+    else
+        player:messageSpecial(NOTHING_HAPPENS);
+    end
 end;
 
 -----------------------------------
@@ -41,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,20 +52,18 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-	
-	if (csid == 0xC9) then
-		player:setVar("ClawsOfGriffonProg",2);
-		
-	elseif (csid == 0xCA) then
-		SpawnMob(17113462,180):updateClaim(player);
-		
-	elseif (csid == 0xCB) then
-		player:addItem(8131,1)
-		player:messageSpecial(ITEM_OBTAINED,813)
-		player:completeQuest(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON);
-		player:setVar("ClawsOfGriffonProg",0);
-	end
-	
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    
+    if (csid == 0x00C9) then
+        player:setVar("ClawsOfGriffonProg",2);
+    elseif (csid == 0x00CA) then
+        SpawnMob(17113462,180):updateClaim(player);
+    elseif (csid == 0x00CB) then
+        player:addItem(8131,1)
+        player:messageSpecial(ITEM_OBTAINED,813)
+        player:completeQuest(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON);
+        player:setVar("ClawsOfGriffonProg",0);
+    end
+    
 end;
