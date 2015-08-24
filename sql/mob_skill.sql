@@ -1141,12 +1141,6 @@ INSERT INTO `mob_skill` VALUES (428,61,428,'Deal_Out',4,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (77,61,77,'Double_Down',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (74,61,74,'Shuffle',4,10.0,2000,1500,4,0,0,0);
 
-INSERT INTO `mob_skill` VALUES (438,61,438,'Invincible',0,7.0,2000,0,1,2,0,0);
-INSERT INTO `mob_skill` VALUES (433,61,433,'Benediction',1,20.0,2000,0,1,2,0,0);
-INSERT INTO `mob_skill` VALUES (435,61,435,'Manafont',0,7.0,2000,0,1,2,0,0);
-INSERT INTO `mob_skill` VALUES (436,61,436,'Chainspell',0,7.0,2000,0,1,2,0,0);
-
-
 -- anim 432 = 2h cloud
 -- now they dont start matching up....
 
@@ -2976,7 +2970,7 @@ INSERT INTO `mob_skill` VALUES (1771,315,1382,'Plague_Swipe',4,16.0,2000,1500,4,
 INSERT INTO `mob_skill` VALUES (1766,315,1367,'Tenebrous_Mist',1,18.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1767,315,1368,'Thunderstrike',1,18.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1768,315,1371,'Tourbillion',1,18.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (432,315,432,'Mighty_Strikes',0,7.0,2000,0,1,2,0,0);
+-- INSERT INTO `mob_skill` VALUES (432,315,432,'Mighty_Strikes',0,7.0,2000,0,1,2,0,0); -- No mention of this on any wiki. Commenting it out for now.
 
 -- Shinryu (316)
 -- Wings out
@@ -3117,8 +3111,8 @@ INSERT INTO `mob_skill` VALUES (1296,449,1137,'Gigaflare',0,15.0,2000,1500,4,0,0
 INSERT INTO `mob_skill` VALUES (1297,449,1138,'Teraflare',0,15.0,2000,1500,4,0,0,0);
 
 -- Prishe
-INSERT INTO `mob_skill` VALUES (1229,476,1091,'Hundred_Fists',0,7.0,2000,0,1,0,1,0);
-INSERT INTO `mob_skill` VALUES (1230,476,1092,'Benediction',1,7.0,2000,0,1,0,1,0);
+INSERT INTO `mob_skill` VALUES (1229,476,1091,'Hundred_Fists',0,7.0,2000,0,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1230,476,1092,'Benediction',1,7.0,2000,0,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1231,476,1093,'Prishe_Item_1',0,7.0,2000,0,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1232,476,1094,'Prishe_Item_2',0,7.0,2000,0,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1233,476,1095,'Nullifying_Dropkick',0,7.0,2000,1500,4,0,0,0);
