@@ -5224,5 +5224,13 @@ namespace battleutils
         }
         return recast / 1000;
     }
+    int32 GetMeritValue(CBattleEntity* PEntity, MERIT_TYPE merit)
+    {
+        if (PEntity->objtype == TYPE_PC)
+        {
+            return static_cast<CCharEntity*>(PEntity)->PMeritPoints->GetMeritValue(merit, static_cast<CCharEntity*>(PEntity));
+        }
+        return 0;
+    }
 };
 

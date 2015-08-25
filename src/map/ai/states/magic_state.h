@@ -28,7 +28,6 @@
 
 struct action_t;
 class CSpell;
-class CMessageBasicPacket;
 
 enum MAGICFLAGS {
   MAGICFLAGS_NONE = 0,
@@ -39,13 +38,11 @@ enum MAGICFLAGS {
 class CMagicState : public CState
 {
 public:
-    CMagicState(CBattleEntity* PEntity, CTargetFind* PTargetFind);
+    CMagicState(CBattleEntity* PEntity, uint16 targid, CTargetFind* PTargetFind);
     virtual bool Update(time_point tick) override;
     virtual void Clear() override;
     virtual bool CanChangeState() override;
 
-    /* Releases ownership to the caller */
-    CMessageBasicPacket* GetErrorMsg();
     CSpell* GetSpell();
     virtual void TryInterrupt(CBattleEntity* PAttacker) override;
 
@@ -54,17 +51,16 @@ public:
     void ApplyEnmity(CBattleEntity* PTarget, int ce, int ve);
 
     //start spellcast on target
-    bool CastSpell(uint16 spellid, uint16 targetid, uint8 flags = 0);
+    bool CastSpell(uint16 spellid, uint8 flags = 0);
 protected:
-    //check spell requirements vs. caster ("you cannot cast this spell")
-    bool CanCastSpell();
+    bool CanCastSpell(CBattleEntity* PTarget);
 
     bool HasCost();
 
     bool HasMoved();
 
     CBattleEntity* const m_PEntity;
-    std::unique_ptr<CMessageBasicPacket> m_errorMsg;
+    CTargetFind* const m_PTargetFind;
     std::unique_ptr<CSpell> m_PSpell;
     time_point m_startTime;
     duration m_castTime;

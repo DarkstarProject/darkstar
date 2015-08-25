@@ -38,9 +38,10 @@ class CAIBattle : public CAIBase
     //access to CastInterrupted for CMagicState::Clear
     friend class CMagicState;
 public:
-    CAIBattle(CBattleEntity*);
+    CAIBattle(CBattleEntity*, std::unique_ptr<CPathFind>&&);
 
     virtual void ActionQueueStateChange(const queueAction&) override;
+    virtual bool Attack(uint16 targetid);
     virtual bool Cast(uint16 targetid, uint16 spellid);
     virtual void TryHitInterrupt(CBattleEntity* PAttacker);
 

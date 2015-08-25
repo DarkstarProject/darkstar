@@ -26,6 +26,7 @@
 #define _CSTATE_H
 
 #include "../ai_base.h"
+#include "../../packets/message_basic.h"
 
 class CBattleEntity;
 class CTargetFind;
@@ -33,14 +34,16 @@ class CTargetFind;
 class CState
 {
 public:
-    CState(CBaseEntity* PEntity, CTargetFind* PTargetFind) :
+    CState(CBaseEntity* PEntity, uint16 _targid) :
         m_PEntity(PEntity),
-        m_PTarget(nullptr),
-        m_PTargetFind(PTargetFind) {}
+        targid(_targid) {}
 
     virtual ~CState() = default;
 
-    CBaseEntity* GetTarget() { return m_PTarget; }
+    uint16 GetTarget() { return targid; }
+
+    /* Releases ownership to the caller */
+    CMessageBasicPacket* GetErrorMsg() { return m_errorMsg.release(); }
 
     //state logic done per tick - returns whether to exit the state or not
     virtual bool Update(time_point tick) = 0;
@@ -53,10 +56,10 @@ public:
     virtual bool CanChangeState() = 0;
 
 protected:
-    CBaseEntity* const m_PEntity;
-    CBaseEntity* m_PTarget;
+    std::unique_ptr<CMessageBasicPacket> m_errorMsg;
 
-    CTargetFind* const m_PTargetFind;
+    CBaseEntity* const m_PEntity;
+    uint16 targid;
 };
 
 #endif

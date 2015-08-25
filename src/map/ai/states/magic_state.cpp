@@ -25,15 +25,17 @@
 
 #include "../ai_battle.h"
 #include "../../spell.h"
+#include "../../entities/battleentity.h"
 #include "../../entities/mobentity.h"
 #include "../../lua/luautils.h"
 #include "../../utils/battleutils.h"
 #include "../../packets/action.h"
 #include "../../packets/message_basic.h"
 
-CMagicState::CMagicState(CBattleEntity* PEntity, CTargetFind* PTargetFind) :
-    CState(PEntity, PTargetFind),
+CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, CTargetFind* PTargetFind) :
+    CState(PEntity, targid),
     m_PEntity(PEntity),
+    m_PTargetFind(PTargetFind),
     m_PSpell(nullptr)
 {
 }
@@ -43,12 +45,12 @@ bool CMagicState::Update(time_point tick)
     if (tick > m_startTime + m_castTime)
     {
         m_interrupted = false;
-        m_PTarget = m_PTargetFind->getValidTarget(m_PTarget->targid, m_PSpell->getValidTarget());
+        auto PTarget = m_PTargetFind->getValidTarget(targid, m_PSpell->getValidTarget());
         MSGBASIC_ID msg = MSGBASIC_IS_INTERRUPTED;
 
         action_t action;
 
-        if (HasMoved() || !CanCastSpell())
+        if (HasMoved() || !CanCastSpell(PTarget))
         {
             m_interrupted = true;
         }
@@ -57,7 +59,7 @@ bool CMagicState::Update(time_point tick)
             msg = MSGBASIC_IS_PARALYZED;
             m_interrupted = true;
         }
-        else if (battleutils::IsIntimidated(m_PEntity, static_cast<CBattleEntity*>(m_PTarget)))
+        else if (battleutils::IsIntimidated(m_PEntity, static_cast<CBattleEntity*>(PTarget)))
         {
             msg = MSGBASIC_IS_INTIMIDATED;
             m_interrupted = true;
@@ -89,49 +91,43 @@ bool CMagicState::CanChangeState()
     return false;
 }
 
-/* Releases ownership to the caller */
-CMessageBasicPacket* CMagicState::GetErrorMsg()
-{
-    return m_errorMsg.release();
-}
-
 CSpell* CMagicState::GetSpell()
 {
     return m_PSpell.get();
 }
 
-bool CMagicState::CanCastSpell()
+bool CMagicState::CanCastSpell(CBattleEntity* PTarget)
 {
     auto ret = m_PEntity->CanUseSpell(GetSpell());
 
     if (!ret)
     {
-        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PTarget, m_PSpell->getID(), 0, MSGBASIC_CANNOT_CAST_SPELL);
+        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_CANNOT_CAST_SPELL);
         return ret;
     }
     if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
         m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
     {
-        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PTarget, m_PSpell->getID(), 0, MSGBASIC_UNABLE_TO_CAST_SPELLS);
+        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_UNABLE_TO_CAST_SPELLS);
         return false;
     }
     if (!HasCost())
     {
         return false;
     }
-    if (!m_PTarget)
+    if (!PTarget)
     {
-        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PTarget, m_PSpell->getID(), 0, MSGBASIC_CANNOT_ON_THAT_TARG);
+        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_CANNOT_ON_THAT_TARG);
         return false;
     }
-    if (distance(m_PEntity->loc.p, m_PTarget->loc.p) > 40)
+    if (distance(m_PEntity->loc.p, PTarget->loc.p) > 40)
     {
-        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PTarget, m_PSpell->getID(), 0, MSGBASIC_TOO_FAR_AWAY);
+        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_TOO_FAR_AWAY);
         return false;
     }
-    if (distance(m_PEntity->loc.p, m_PTarget->loc.p) > m_PSpell->getMaxRange())
+    if (distance(m_PEntity->loc.p, PTarget->loc.p) > m_PSpell->getMaxRange())
     {
-        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PTarget, m_PSpell->getID(), 0, MSGBASIC_OUT_OF_RANGE_UNABLE_CAST);
+        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_OUT_OF_RANGE_UNABLE_CAST);
         return false;
     }
     return true;
@@ -143,7 +139,7 @@ bool CMagicState::HasCost()
     {
         if (m_PEntity->objtype == TYPE_PC && !(m_flags & MAGICFLAGS_IGNORE_TOOLS) && !battleutils::HasNinjaTool(m_PEntity, GetSpell(), false))
         {
-            m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PTarget, m_PSpell->getID(), 0, MSGBASIC_NO_NINJA_TOOLS);
+            m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, m_PSpell->getID(), 0, MSGBASIC_NO_NINJA_TOOLS);
             return false;
         }
     }
@@ -155,7 +151,7 @@ bool CMagicState::HasCost()
         {
             ShowWarning("CMagicState::ValidCast Mob (%u) tried to cast magic with no mp!\n", m_PEntity->id);
         }
-        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PTarget, m_PSpell->getID(), 0, MSGBASIC_NOT_ENOUGH_MP);
+        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, m_PSpell->getID(), 0, MSGBASIC_NOT_ENOUGH_MP);
         return false;
     }
     return true;
@@ -265,8 +261,7 @@ void CMagicState::TryInterrupt(CBattleEntity* PAttacker)
     }
 }
 
-//#TODO: error messages
-bool CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
+bool CMagicState::CastSpell(uint16 spellid, uint8 flags)
 {
     CSpell* PSpell = spell::GetSpell(spellid);
 
@@ -281,17 +276,17 @@ bool CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
 
     if (m_PSpell)
     {
-        m_PTarget = m_PTargetFind->getValidTarget(targetid, m_PSpell->getValidTarget());
+        auto PTarget = m_PTargetFind->getValidTarget(targid, m_PSpell->getValidTarget());
 
-        if (!CanCastSpell())
+        if (!CanCastSpell(PTarget))
         {
             return false;
         }
 
-        auto errorMsg = luautils::OnMagicCastingCheck(m_PEntity, m_PTarget, GetSpell());
+        auto errorMsg = luautils::OnMagicCastingCheck(m_PEntity, PTarget, GetSpell());
         if (errorMsg)
         {
-            m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PTarget, m_PSpell->getID(), 0, errorMsg);
+            m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, errorMsg);
             return false;
         }
 
@@ -306,7 +301,7 @@ bool CMagicState::CastSpell(uint16 spellid, uint16 targetid, uint8 flags)
         action.actiontype = ACTION_MAGIC_START;
 
         actionList_t& actionList = action.getNewActionList();
-        actionList.ActionTargetID = m_PTarget->id;
+        actionList.ActionTargetID = PTarget->id;
 
         actionTarget_t& actionTarget = actionList.getNewActionTarget();
 

@@ -28,15 +28,15 @@ This file is part of DarkStar-server source code.
 #include "../../entities/npcentity.h"
 #include "../../packets/entity_update.h"
 
-CTriggerState::CTriggerState(CBaseEntity* PEntity) :
-    CState(PEntity, nullptr)
+CTriggerState::CTriggerState(CBaseEntity* PEntity, uint16 targid) :
+    CState(PEntity, targid)
 {
 }
 
 bool CTriggerState::Update(time_point tick)
 {
-    auto PChar = static_cast<CCharEntity*>(m_PTarget);
-    if (luautils::OnTrigger(PChar, m_PEntity) == -1 && m_PEntity->animation == ANIMATION_CLOSE_DOOR)
+    auto PChar = static_cast<CCharEntity*>(m_PEntity->GetEntity(targid));
+    if (PChar && luautils::OnTrigger(PChar, m_PEntity) == -1 && m_PEntity->animation == ANIMATION_CLOSE_DOOR)
     {
         m_PEntity->animation = ANIMATION_OPEN_DOOR;
         PChar->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PEntity, ENTITY_UPDATE, UPDATE_COMBAT));

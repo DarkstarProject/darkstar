@@ -30,6 +30,7 @@ duration g_GCD = 1500ms;
 CAIBase::CAIBase(CBaseEntity* _PEntity) :
     pathfind(nullptr),
     m_Tick(std::chrono::steady_clock::now()),
+    m_PrevTick(std::chrono::steady_clock::now()),
     PEntity(_PEntity),
     ActionQueue(*this)
 {
@@ -62,6 +63,7 @@ bool CAIBase::CanChangeState()
 
 void CAIBase::Tick(time_point _tick)
 {
+    m_PrevTick = m_Tick;
     m_Tick = _tick;
     CBaseEntity* PreEntity = PEntity;
     
@@ -92,11 +94,17 @@ void CAIBase::Tick(time_point _tick)
     }
 }
 
-void CAIBase::ResetIfTarget(CBaseEntity* PTarget)
+bool CAIBase::IsStateStackEmpty()
 {
-    while (!m_stateStack.empty() && GetCurrentState()->GetTarget() == PTarget)
-    {
-        m_stateStack.top()->Clear();
-        m_stateStack.pop();
-    }
+    return m_stateStack.empty();
+}
+
+time_point CAIBase::getTick()
+{
+    return m_Tick;
+}
+
+time_point CAIBase::getPrevTick()
+{
+    return m_PrevTick;
 }

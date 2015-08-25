@@ -32,7 +32,7 @@ public:
     CAINpc(CBaseEntity*);
 
     void InitPathfinding();
-    void Trigger(CBaseEntity*);
+    void Trigger(uint16 targID);
 };
 
 #endif

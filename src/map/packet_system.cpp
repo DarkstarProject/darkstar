@@ -617,7 +617,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 10)
         {
-            static_cast<CAINpc*>(PNpc->PAI.get())->Trigger(PChar);
+            static_cast<CAINpc*>(PNpc->PAI.get())->Trigger(TargID);
         }
         if (PChar->m_event.EventID == -1)
         {
@@ -630,7 +630,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         if (PChar->isDead() == false)
         {
-            PChar->PBattleAI->SetCurrentAction(ACTION_ENGAGE, TargID);
+            /*PChar->PBattleAI->SetCurrentAction(ACTION_ENGAGE, TargID);
 
             if (PChar->PBattleAI->GetCurrentAction() == ACTION_ENGAGE)
             {
@@ -638,6 +638,10 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 {
                     PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
                 }
+            }*/
+            if (PChar->PAI->IsStateStackEmpty())
+            {
+                PChar->PAIBattle()->Attack(TargID);
             }
         }
     }

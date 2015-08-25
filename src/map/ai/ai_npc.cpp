@@ -36,11 +36,11 @@ void CAINpc::InitPathfinding()
     pathfind = std::make_unique<CPathFind>(PEntity);
 }
 
-void CAINpc::Trigger(CBaseEntity* PTarget)
+void CAINpc::Trigger(uint16 targID)
 {
     if (CanChangeState())
     {
-        ChangeState<CTriggerState>(PEntity);
+        ChangeState<CTriggerState>(PEntity, targID);
         if (pathfind)
         {
             pathfind->Clear(); //#TODO: pause/resume after?

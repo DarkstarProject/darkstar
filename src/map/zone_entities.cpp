@@ -297,13 +297,6 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 		}
 	}
 
-    for (auto PCharIt : m_charList)
-    {
-        CCharEntity* PCurrentChar = (CCharEntity*)PCharIt.second;
-        //#TODO
-        /*PCurrentChar->PAIBattle()->ResetIfTarget(PChar);*/
-    }
-
 	for (auto PMobIt : m_mobList)
 	{
         CMobEntity* PCurrentMob = (CMobEntity*)PMobIt.second;
@@ -313,13 +306,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 			PCurrentMob->m_OwnerID.clean();
             PCurrentMob->updatemask |= UPDATE_STATUS;
 		}
-        //PCurrentMob->PAIBattle()->ResetIfTarget(PChar);
 	}
-    for (auto PPetIt : m_petList)
-    {
-        CPetEntity* PCurrentPet = (CPetEntity*)PPetIt.second;
-        //PCurrentPet->PAIBattle()->ResetIfTarget(PChar);
-    }
 
 	// TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
 

@@ -28,7 +28,7 @@ This file is part of DarkStar-server source code.
 #include "../packets/message_basic.h"
 
 CAIChar::CAIChar(CBattleEntity* PBattleEntity) :
-    CAIBattle(PBattleEntity)
+    CAIBattle(PBattleEntity, nullptr)
 {
 }
 
@@ -48,7 +48,7 @@ void CAIChar::CastFinished(action_t& action)
 
     auto state = static_cast<CMagicState*>(GetCurrentState());
     auto PSpell = state->GetSpell();
-    auto PTarget = static_cast<CBattleEntity*>(state->GetTarget());
+    auto PTarget = static_cast<CBattleEntity*>(PEntity->GetEntity(state->GetTarget()));
 
     static_cast<CCharEntity*>(PEntity)->PRecastContainer->Add(RECAST_MAGIC, PSpell->getID(), action.recast);
 

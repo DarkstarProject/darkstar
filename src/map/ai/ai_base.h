@@ -48,7 +48,10 @@ public:
     void Tick(time_point _tick);
     virtual void ActionQueueStateChange(const queueAction&);
     CState* GetCurrentState();
-    void ResetIfTarget(CBaseEntity*);
+    bool IsStateStackEmpty();
+
+    time_point getTick();
+    time_point getPrevTick();
 
     // stores all events and their associated lua callbacks
     CAIEventHandler EventHandler;
@@ -58,6 +61,7 @@ protected:
     std::unique_ptr<CPathFind> pathfind;
     // current synchronized server time (before AI loop execution)
     time_point m_Tick;
+    time_point m_PrevTick;
     //entity who holds this AI
     CBaseEntity* PEntity;
     //whether AI is currently able to change state from external means

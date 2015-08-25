@@ -29,7 +29,7 @@ This file is part of DarkStar-server source code.
 class CTriggerState : public CState
 {
 public:
-    CTriggerState(CBaseEntity* PEntity);
+    CTriggerState(CBaseEntity* PEntity, uint16 targid);
     virtual bool Update(time_point tick) override;
     virtual void Clear() override;
     virtual bool CanChangeState() override;

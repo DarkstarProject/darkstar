@@ -24,14 +24,15 @@ This file is part of DarkStar-server source code.
 #include "ai_battle.h"
 
 #include "states/magic_state.h"
+#include "states/attack_state.h"
 #include "../spell.h"
 #include "../entities/battleentity.h"
 #include "../utils/battleutils.h"
 #include "../lua/luautils.h"
 #include "../packets/action.h"
 
-CAIBattle::CAIBattle(CBattleEntity* _PEntity) :
-    CAIBase(_PEntity, std::make_unique<CPathFind>(_PEntity)),
+CAIBattle::CAIBattle(CBattleEntity* _PEntity, std::unique_ptr<CPathFind>&& pathfind) :
+    CAIBase(_PEntity, std::forward<std::unique_ptr<CPathFind>>(pathfind)),
     targetFind(_PEntity)
 {
 }
@@ -48,56 +49,38 @@ void CAIBattle::ActionQueueStateChange(const queueAction& action)
     //}
 }
 
+bool CAIBattle::Attack(uint16 targetid)
+{
+    //#TODO: engage while casting?
+    if (CanChangeState())
+    {
+        //#TODO: gcd/re-engage delay
+        ChangeState<CAttackState>(static_cast<CBattleEntity*>(PEntity), targetid);
+    }
+    return false;
+}
+
 bool CAIBattle::Cast(uint16 targetid, uint16 spellid)
 {
     if (CanChangeState())
     {
         if (m_Tick < m_LastActionTime + g_GCD)
         {
-            //MagicStartError();
+            //#TODO: MagicStartError();
             return false;
         }
-        ChangeState<CMagicState>(static_cast<CBattleEntity*>(PEntity), &targetFind);
+        ChangeState<CMagicState>(static_cast<CBattleEntity*>(PEntity), targetid, &targetFind);
 
-        return static_cast<CMagicState*>(GetCurrentState())->CastSpell(spellid, targetid);
+        return static_cast<CMagicState*>(GetCurrentState())->CastSpell(spellid);
     }
     return false;
 }
-
-//void CAIBattle::ActionCasting()
-//{
-//    STATESTATUS status = actionStateContainer->Update(m_Tick);
-//
-//    action_t action;
-//    bool acted = true;
-//
-//    switch (status)
-//    {
-//        case STATESTATUS::Finish:
-//            CastFinished(action);
-//            break;
-//        case STATESTATUS::Interrupt:
-//        case STATESTATUS::ErrorRange:
-//        case STATESTATUS::ErrorInvalidTarget:
-//        case STATESTATUS::ErrorUnknown:
-//            CastInterrupted(action);
-//            break;
-//        default:
-//            acted = false;
-//            break;
-//    }
-//    if (acted)
-//    {
-//        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
-//        TransitionBack();
-//    }
-//}
 
 void CAIBattle::CastFinished(action_t& action)
 {
     auto state = static_cast<CMagicState*>(GetCurrentState());
     auto PSpell = state->GetSpell();
-    auto PActionTarget = static_cast<CBattleEntity*>(state->GetTarget());
+    auto PActionTarget = static_cast<CBattleEntity*>(PEntity->GetEntity(state->GetTarget()));
 
     luautils::OnSpellPrecast(static_cast<CBattleEntity*>(PEntity), PSpell);
 
