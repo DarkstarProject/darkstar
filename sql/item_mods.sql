@@ -15761,13 +15761,21 @@ INSERT INTO `item_mods` VALUES (15434,1,3);
 INSERT INTO `item_mods` VALUES (15434,8,3);
 INSERT INTO `item_mods` VALUES (15434,23,5);
 INSERT INTO `item_mods` VALUES (15435,1,7);
+INSERT INTO `item_mods` VALUES (15435,531,1); -- fire obi
 INSERT INTO `item_mods` VALUES (15436,1,7);
+INSERT INTO `item_mods` VALUES (15436,535,1); -- ice obi
 INSERT INTO `item_mods` VALUES (15437,1,7);
+INSERT INTO `item_mods` VALUES (15437,534,1); -- wind obi
 INSERT INTO `item_mods` VALUES (15438,1,7);
+INSERT INTO `item_mods` VALUES (15438,532,1); -- earth obi
 INSERT INTO `item_mods` VALUES (15439,1,7);
+INSERT INTO `item_mods` VALUES (15439,536,1); -- thunder obi
 INSERT INTO `item_mods` VALUES (15440,1,7);
+INSERT INTO `item_mods` VALUES (15440,533,1); -- water obi
 INSERT INTO `item_mods` VALUES (15441,1,7);
+INSERT INTO `item_mods` VALUES (15441,537,1); -- light obi
 INSERT INTO `item_mods` VALUES (15442,1,7);
+INSERT INTO `item_mods` VALUES (15442,538,1); -- dark obi
 INSERT INTO `item_mods` VALUES (15443,2,20);
 INSERT INTO `item_mods` VALUES (15443,5,20);
 INSERT INTO `item_mods` VALUES (15455,27,1);
@@ -35112,6 +35120,16 @@ INSERT INTO `item_mods` VALUES (28404,68,15);
 INSERT INTO `item_mods` VALUES (28405,25,16);
 INSERT INTO `item_mods` VALUES (28405,26,16);
 INSERT INTO `item_mods` VALUES (28405,68,16);
+INSERT INTO `item_mods` VALUES (28419,1,7);
+INSERT INTO `item_mods` VALUES (28419,530,1); -- hachirin-no-obi no MP cost %
+INSERT INTO `item_mods` VALUES (28419,531,1); -- start day/weather bonus forcing
+INSERT INTO `item_mods` VALUES (28419,532,1);
+INSERT INTO `item_mods` VALUES (28419,533,1);
+INSERT INTO `item_mods` VALUES (28419,534,1);
+INSERT INTO `item_mods` VALUES (28419,535,1);
+INSERT INTO `item_mods` VALUES (28419,536,1);
+INSERT INTO `item_mods` VALUES (28419,537,1);
+INSERT INTO `item_mods` VALUES (28419,538,1); -- end day/weather bonus forcing
 INSERT INTO `item_mods` VALUES (28440,1,9);
 INSERT INTO `item_mods` VALUES (28440,25,2);
 INSERT INTO `item_mods` VALUES (28440,302,2);

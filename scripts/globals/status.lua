@@ -1223,14 +1223,25 @@ MOD_LOGGING_RESULT      = 514 -- Improves logging results
 MOD_MINNING_RESULT      = 515 -- Improves mining results
 MOD_EGGHELM             = 517 -- Egg Helm (Chocobo Digging)
 
-MOD_SHIELDBLOCKRATE = 518 -- Affects shield block rate, percent based
-MOD_SCAVENGE_EFFECT = 312 --
-MOD_DIA_DOT         = 313 -- Increases the DoT damage of Dia
-MOD_SHARPSHOT       = 314 -- Sharpshot accuracy bonus
-MOD_ENH_DRAIN_ASPIR = 315 -- % damage boost to Drain and Aspir
-MOD_TRICK_ATK_AGI   = 520 -- % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
-MOD_NIN_NUKE_BONUS  = 522 -- magic attack bonus for NIN nukes
-MOD_AMMO_SWING      = 523 -- Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players.
+MOD_SHIELDBLOCKRATE           = 518 -- Affects shield block rate, percent based
+MOD_SCAVENGE_EFFECT           = 312 --
+MOD_DIA_DOT                   = 313 -- Increases the DoT damage of Dia
+MOD_SHARPSHOT                 = 314 -- Sharpshot accuracy bonus
+MOD_ENH_DRAIN_ASPIR           = 315 -- % damage boost to Drain and Aspir
+MOD_TRICK_ATK_AGI             = 520 -- % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
+MOD_NIN_NUKE_BONUS            = 522 -- magic attack bonus for NIN nukes
+MOD_AMMO_SWING                = 523 -- Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players.
+MOD_ROLL_RANGE                = 528 -- Additional range for COR roll abilities.
+MOD_ENHANCES_REFRESH          = 529 -- "Enhances Refresh" adds +1 per modifier to spell's tick result.
+MOD_NO_SPELL_MP_DEPLETION     = 530 -- % to not deplete MP on spellcast.
+MOD_FORCE_FIRE_DWBONUS        = 531 -- Set to 1 to force fire day/weather spell bonus/penalty. Do not have it total more than 1.
+MOD_FORCE_EARTH_DWBONUS       = 532 -- Set to 1 to force earth day/weather spell bonus/penalty. Do not have it total more than 1.
+MOD_FORCE_WATER_DWBONUS       = 533 -- Set to 1 to force water day/weather spell bonus/penalty. Do not have it total more than 1.
+MOD_FORCE_WIND_DWBONUS        = 534 -- Set to 1 to force wind day/weather spell bonus/penalty. Do not have it total more than 1.
+MOD_FORCE_ICE_DWBONUS         = 535 -- Set to 1 to force ice day/weather spell bonus/penalty. Do not have it total more than 1.
+MOD_FORCE_LIGHTNING_DWBONUS   = 536 -- Set to 1 to force lightning day/weather spell bonus/penalty. Do not have it total more than 1.
+MOD_FORCE_LIGHT_DWBONUS       = 537 -- Set to 1 to force light day/weather spell bonus/penalty. Do not have it total more than 1.
+MOD_FORCE_DARK_DWBONUS        = 538 -- Set to 1 to force dark day/weather spell bonus/penalty. Do not have it total more than 1.
 
 -- Mythic Weapon Mods
 MOD_AUGMENTS_ABSORB    = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)
@@ -1238,8 +1249,6 @@ MOD_AOE_NA             = 524 -- Set to 1 to make -na spells/erase always AoE w/ 
 MOD_AUGMENTS_CONVERT   = 525 -- Convert HP to MP Ratio Multiplier. Value = MP multiplier rate.
 MOD_AUGMENTS_SA        = 526 -- Adds Critical Attack Bonus to Sneak Attack, percentage based.
 MOD_AUGMENTS_TA        = 527 -- Adds Critical Attack Bonus to Trick Attack, percentage based.
-MOD_ROLL_RANGE         = 528 -- Additional range for COR roll abilities.
-MOD_ENHANCES_REFRESH   = 529 -- "Enhances Refresh" adds +1 per modifier to spell's tick result.
 
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
@@ -1253,8 +1262,8 @@ MOD_ENHANCES_REFRESH   = 529 -- "Enhances Refresh" adds +1 per modifier to spell
 -- MOD_SPARE = 98, -- stuff
 -- MOD_SPARE = 99, -- stuff
 -- MOD_SPARE = 100, -- stuff
--- MOD_SPARE = 530, -- stuff
--- MOD_SPARE = 531, -- stuff
+-- MOD_SPARE = 539, -- stuff
+-- MOD_SPARE = 540, -- stuff
 
 ------------------------------------
 -- Merit Definitions
