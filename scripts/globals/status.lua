@@ -80,6 +80,10 @@ SUBEFFECT_HP_DRAIN          = 21;  -- 1-10101      43
 SUBEFFECT_MP_DRAIN          = 22;  -- This is correct animation
 SUBEFFECT_TP_DRAIN          = 22;  -- Verified this should look exactly like Aspir Samba.
 SUBEFFECT_HASTE             = 23;
+-- Below are almost certain to be wrong: 
+-- Someone needs to go on retail and verify the SubEffect IDs
+SUBEFFECT_AMNESIA           = 11; --
+SUBEFFECT_DISPEL            = 13; -- Correct ID possibly 20 ?
 
 -- SPIKES
 SUBEFFECT_BLAZE_SPIKES      = 1;   -- 01-1000       6
@@ -90,6 +94,8 @@ SUBEFFECT_SHOCK_SPIKES      = 5;   -- 01-1010      22
 SUBEFFECT_REPRISAL          = 6;   -- 01-0110      26
 SUBEFFECT_WIND_SPIKES       = 7;
 SUBEFFECT_STONE_SPIKES      = 8;
+SUBEFFECT_DELUGE_SPIKES     = 9;
+SUBEFFECT_DEATH_SPIKES      = 10;  -- yes really: http://www.ffxiah.com/item/26944/
 SUBEFFECT_COUNTER           = 63;
 
 -- SKILLCHAINS
@@ -1798,6 +1804,10 @@ MSGBASIC_ADD_EFFECT_MP_DRAIN    = 162 -- Additional effect: <number> MP drained 
 MSGBASIC_ADD_EFFECT_DMG         = 163 -- Additional effect: <number> points of damage.
 MSGBASIC_ADD_EFFECT_STATUS2     = 164 -- Additional effect: <Status Effect>. (Duplicate?)
 MSGBASIC_ADD_EFFECT_TP_DRAIN    = 165 -- Additional effect: <number> TP drained from <target>.
+MSGBASIC_ADD_EFFECT_STATUS3     = 166 -- Additional effect: The <target> gains the effect of <Status Effect>. (Only difference from 160 and 164 is "The")
+MSGBASIC_ADD_EFFECT_HEAL        = 167 -- Additional effect: The <target> recovers <number> HP. (used when target absorbs element)
+MSGBASIC_ADD_EFFECT_DISPEL      = 168 -- Additional effect: <target>'s KO effect disappears!
+MSGBASIC_ADD_EFFECT_WARP        = 169 -- Additional effect: Warp! (used by holloween staves)
 
 -- Charm
 MSGBASIC_CANNOT_CHARM           = 210 -- The <player> cannot charm <target>!

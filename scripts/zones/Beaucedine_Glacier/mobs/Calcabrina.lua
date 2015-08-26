@@ -45,13 +45,15 @@ function onAdditionalEffect(mob,target,damage)
         drain = addBonusesAbility(mob, ELE_DARK, target, drain, params);
         drain = drain * applyResistanceAddEffect(mob,target,ELE_DARK,0);
         drain = adjustForTarget(target,drain,ELE_DARK);
+        drain = finalMagicNonSpellAdjustments(target,mob,ELE_DARK,drain);
 
-        if (drain < 0) then
-            drain = 10
+        if (drain <= 0) then
+            drain = 0;
+        else
+            mob:addHP(drain);
         end
 
-        drain = finalMagicNonSpellAdjustments(target,mob,ELE_DARK,drain);
-        return SUBEFFECT_HP_DRAIN, 161, mob:addHP(drain);
+        return SUBEFFECT_HP_DRAIN, MSGBASIC_ADD_EFFECT_HP_DRAIN, drain;
     end
 
 end;
