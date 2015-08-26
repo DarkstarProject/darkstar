@@ -4327,6 +4327,7 @@ INSERT INTO `item_basic` VALUES (4688,82,'scroll_of_recall-pashh','recall-pashh'
 INSERT INTO `item_basic` VALUES (4689,83,'scroll_of_recall-meriph','recall-meriph',1,1664,28,0,2290);
 INSERT INTO `item_basic` VALUES (4690,84,'scroll_of_baramnesia','baramnesia',1,34432,28,0,1680);
 INSERT INTO `item_basic` VALUES (4691,85,'scroll_of_baramnesra','baramnesra',1,34432,28,0,1722);
+INSERT INTO `item_basic` VALUES (4692,847,'scroll_of_haste_ii','haste_ii',1,1664,28,0,9250);
 INSERT INTO `item_basic` VALUES (4694,86,'scroll_of_barsleepra','barsleepra',1,1664,28,0,241);
 INSERT INTO `item_basic` VALUES (4695,87,'scroll_of_barpoisonra','barpoisonra',1,1664,28,0,399);
 INSERT INTO `item_basic` VALUES (4696,88,'scroll_of_barparalyzra','barparalyzra',1,1664,28,0,518);
