@@ -16772,6 +16772,7 @@ INSERT INTO `item_basic` VALUES (28405,0,'ej_necklace_+1','ej_necklace_+1',1,208
 INSERT INTO `item_basic` VALUES (28406,0,'nuna_gorget','nuna_gorget',1,2080,0,1,0);
 INSERT INTO `item_basic` VALUES (28407,0,'nuna_gorget_+1','nuna_gorget_+1',1,2080,0,1,0);
 INSERT INTO `item_basic` VALUES (28418,0,'incarnation_sash','incarnation_sash',1,63552,0,1,0);
+INSERT INTO `item_basic` VALUES (28419,0,'hachirin-no-obi','hachirin-no-obi',1,55312,0,1,0);
 INSERT INTO `item_basic` VALUES (28440,0,'windbuffet_belt_+1','windbuffet_belt_+1',1,34816,99,0,0);
 INSERT INTO `item_basic` VALUES (28442,0,'olseni_belt','olseni_belt',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (28443,0,'yamabuki-no-obi','yamabuki-no-obi',1,63568,0,1,0);

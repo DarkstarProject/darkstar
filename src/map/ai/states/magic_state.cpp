@@ -327,6 +327,10 @@ int16 CMagicState::CalculateMPCost(CSpell* PSpell)
             cost += base * (m_PEntity->getMod(MOD_WHITE_MAGIC_COST)/100.0f);
         }
     }
+    if (dsprand::GetRandomNumber(100) < (m_PEntity->getMod(MOD_NO_SPELL_MP_DEPLETION)))
+    {
+        cost = 0;
+    }
     return dsp_cap(cost, 0, 9999);
 }
 

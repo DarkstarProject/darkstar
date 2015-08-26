@@ -10827,6 +10827,7 @@ INSERT INTO `item_armor` VALUES (28405,'ej_necklace_+1',99,0,5188164,0,0,0,512,0
 INSERT INTO `item_armor` VALUES (28406,'nuna_gorget',99,0,1758748,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (28407,'nuna_gorget_+1',99,0,1758748,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (28418,'incarnation_sash',99,0,153204,0,0,0,1024,0);
+INSERT INTO `item_armor` VALUES (28419,'hachirin-no-obi',71,0,4194303,0,0,0,1024,0);
 INSERT INTO `item_armor` VALUES (28440,'windbuffet_belt_+1',99,0,4194303,0,0,0,1024,0);
 INSERT INTO `item_armor` VALUES (28442,'olseni_belt',99,0,4194303,0,0,0,1024,0);
 INSERT INTO `item_armor` VALUES (28443,'yamabuki-no-obi',99,0,3851870,0,0,0,1024,0);
