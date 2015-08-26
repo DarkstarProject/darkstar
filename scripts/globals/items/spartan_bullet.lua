@@ -21,6 +21,6 @@ function onAdditionalEffect(player,target,damage)
         if (not target:hasStatusEffect(EFFECT_STUN)) then
             target:addStatusEffect(EFFECT_STUN, 1, 0, 4);
         end
-        return SUBEFFECT_STUN, 160, EFFECT_STUN;
+        return SUBEFFECT_STUN, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_STUN;
     end
 end;

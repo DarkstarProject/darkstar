@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
--- NPC:  Genbu
--- ID: 17309980
+--  NPC: Genbu
 -----------------------------------
 
 require("scripts/zones/RuAun_Gardens/TextIDs");
@@ -49,5 +48,5 @@ function onAdditionalEffect(mob, target, damage)
     dmg = adjustForTarget(target,dmg,ELE_WATER);
     dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WATER,dmg);
 
-    return SUBEFFECT_WATER_DAMAGE,163,dmg;
+    return SUBEFFECT_WATER_DAMAGE, MSGBASIC_ADD_EFFECT_DMG, dmg;
 end;
