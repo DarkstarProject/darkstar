@@ -623,6 +623,7 @@ INSERT INTO `item_usable` VALUES (4688,'scroll_of_recall-pashh',1,1,11,5,0,0,0,0
 INSERT INTO `item_usable` VALUES (4689,'scroll_of_recall-meriph',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4690,'scroll_of_baramnesia',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4691,'scroll_of_baramnesra',1,1,11,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4692,'scroll_of_haste_ii',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4694,'scroll_of_barsleepra',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4695,'scroll_of_barpoisonra',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4696,'scroll_of_barparalyzra',1,1,11,5,0,0,0,0);
