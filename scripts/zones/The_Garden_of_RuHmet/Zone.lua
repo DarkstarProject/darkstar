@@ -65,6 +65,9 @@ function onInitialize(zone)
 	local qm3 = GetNPCByID(Jailer_of_Faith_QM);
 	local qm3position = math.random(1,5);
 	qm3:setPos(Jailer_of_Faith_QM_POS[qm3position][1], Jailer_of_Faith_QM_POS[qm3position][2], Jailer_of_Faith_QM_POS[qm3position][3]);
+
+    -- Give Ix'DRG a random placeholder by picking one of the four groups at random, then adding a random number of 0-2 for the specific mob.
+    SetServerVariable("[SEA]IxAernDRG_PH", AwAernDRGGroups[math.random(1, #AwAernDRGGroups)] + math.random(0, 2));
 end;
 
 -----------------------------------		
