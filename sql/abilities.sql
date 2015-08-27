@@ -312,6 +312,7 @@ INSERT INTO `abilities` VALUES ('363', 'Ward', '22', '1', '1', '0', '0', '0', '0
 INSERT INTO `abilities` VALUES ('364', 'Effusion', '22', '1', '1', '0', '0', '0', '0', '0', '20.0', '0', '1', '300', '0', '0',null);
 
 INSERT INTO `abilities` VALUES ('367', 'Vivacious_pulse', '22', '1', '1', '300', '0', '0', '0', '327', '20.0', '0', '1', '300', '0', '0',null);
+INSERT INTO `abilities` VALUES ('369', 'apogee', '15', '70', '1', '180', '108', '0', '0', '333', '20.0', '0', '1', '0', '0', '0',null);
 
 -- run
 
