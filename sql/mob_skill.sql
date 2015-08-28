@@ -179,8 +179,8 @@ INSERT INTO `mob_skill` VALUES (48,178,48,'Photosynthesis',0,7.0,2000,1500,1,0,0
 INSERT INTO `mob_skill` VALUES (49,178,49,'Leaf_Dagger',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (44,178,44,'Head_Butt',0,7.0,1500,1500,4,0,0,0); -- occasional knockback..
 INSERT INTO `mob_skill` VALUES (50,178,50,'Scream',1,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1954,496,1603,'Petal_Pirouette',1,15.0,2000,1500,4,0,0,0); -- Only used by Chaneque
 
--- INSERT INTO `mob_skill` VALUES (1954,?,?,'Petal_Pirouette',1,15.0,2000,1500,4,0,0,0); -- Only used by certain NM
 -- INSERT INTO `mob_skill` VALUES (2154,?,?,'Demonic_Flower',0,7.0,2000,1500,4,0,0,0); -- Only used by certain NM
 -- INSERT INTO `mob_skill` VALUES (2345,?,?,'Petalback_Spin',1,15.0,2000,1500,4,0,0,0); -- Only used by certain NM
 -- INSERT INTO `mob_skill` VALUES (2343,?,?,'Tepal_Twist',1,15.0,2000,1500,4,0,0,0); -- Only used by certain NM
