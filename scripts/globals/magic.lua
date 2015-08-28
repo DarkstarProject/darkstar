@@ -45,8 +45,8 @@ require("scripts/globals/utils")
     doubleWeatherStrong = {WEATHER_HEAT_WAVE, WEATHER_SAND_STORM, WEATHER_SQUALL, WEATHER_GALES, WEATHER_BLIZZARDS, WEATHER_THUNDERSTORMS, WEATHER_STELLAR_GLARE, WEATHER_DARKNESS};
     singleWeatherWeak = {WEATHER_RAIN, WEATHER_WIND, WEATHER_THUNDER, WEATHER_SNOW, WEATHER_HOT_SPELL, WEATHER_DUST_STORM, WEATHER_GLOOM, WEATHER_AURORAS};
     doubleWeatherWeak = {WEATHER_SQUALL, WEATHER_GALES, WEATHER_THUNDERSTORMS, WEATHER_BLIZZARDS, WEATHER_HEAT_WAVE, WEATHER_SAND_STORM, WEATHER_DARKNESS, WEATHER_STELLAR_GLARE};
-    elementalObi = {15435, 15438, 15440, 15437, 15436, 15439, 15441, 15442};
-    elementalObiWeak = {15440, 15437, 15439, 15436, 15435, 15438, 15442, 15441};
+    elementalObi = {MOD_FORCE_FIRE_DWBONUS, MOD_FORCE_EARTH_DWBONUS, MOD_FORCE_WATER_DWBONUS, MOD_FORCE_WIND_DWBONUS, MOD_FORCE_ICE_DWBONUS, MOD_FORCE_LIGHTNING_DWBONUS, MOD_FORCE_LIGHT_DWBONUS, MOD_FORCE_DARK_DWBONUS};
+    elementalObiWeak = {MOD_FORCE_WATER_DWBONUS, MOD_FORCE_WIND_DWBONUS, MOD_FORCE_LIGHTNING_DWBONUS, MOD_FORCE_ICE_DWBONUS, MOD_FORCE_FIRE_DWBONUS, MOD_FORCE_EARTH_DWBONUS, MOD_FORCE_DARK_DWBONUS, MOD_FORCE_LIGHT_DWBONUS};
     spellAcc = {MOD_FIREACC, MOD_EARTHACC, MOD_WATERACC, MOD_WINDACC, MOD_ICEACC, MOD_THUNDERACC, MOD_LIGHTACC, MOD_DARKACC};
     strongAffinity = {MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_ICE_AFFINITY, MOD_THUNDER_AFFINITY, MOD_LIGHT_AFFINITY, MOD_DARK_AFFINITY};
     weakAffinity = {MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_THUNDER_AFFINITY, MOD_ICE_AFFINITY, MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_DARK_AFFINITY, MOD_LIGHT_AFFINITY};
@@ -231,39 +231,39 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
 
     if (castersWeather == singleWeatherStrong[ele]) then
         if (equippedMain == 18632 or equippedMain == 18633) then
-            if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+            if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
     elseif (castersWeather == singleWeatherWeak[ele]) then
-        if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
     elseif (castersWeather == doubleWeatherStrong[ele]) then
         if (equippedMain == 18632 or equippedMain == 18633) then
-            if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+            if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus + 0.25;
         end
     elseif (castersWeather == doubleWeatherWeak[ele]) then
-        if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus - 0.25;
         end
     end
 
     local dayElement = VanadielDayElement();
     if (dayElement == dayStrong[ele]) then
-        if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
     elseif (dayElement == dayWeak[ele]) then
-        if (math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
     end
@@ -1126,29 +1126,29 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
     if (weather == singleWeatherStrong[ele]) then
         -- Iridescence
         if (equippedMain == 18632 or equippedMain == 18633) then
-            if (math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
+            if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 or isHelixSpell(spell)) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if (math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
+        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
     elseif (caster:getWeather() == singleWeatherWeak[ele]) then
-        if (math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiWeak[ele]) >= 1 or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
     elseif (weather == doubleWeatherStrong[ele]) then
         -- Iridescence
         if (equippedMain == 18632 or equippedMain == 18633) then
-            if (math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
+            if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 or isHelixSpell(spell)) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if (math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
+        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus + 0.25;
         end
     elseif (weather == doubleWeatherWeak[ele]) then
-        if (math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiWeak[ele]) >= 1 or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus - 0.25;
         end
     end
@@ -1159,12 +1159,12 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
         if (equippedLegs == 15120 or equippedLegs == 15583) then
             dayWeatherBonus = dayWeatherBonus + 0.05;
         end
-        if (math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
+        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
     elseif (dayElement == dayWeak[ele]) then
-        if (math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
-            dayWeatherBonus = dayWeatherBonus + 0.10;
+        if (math.random() < 0.33 or caster:getMod(elementalObiWeak[ele]) >= 1 or isHelixSpell(spell)) then
+            dayWeatherBonus = dayWeatherBonus - 0.10;
         end
     end
 
@@ -1241,29 +1241,29 @@ function addBonusesAbility(caster, ele, target, dmg, params)
     if (weather == singleWeatherStrong[ele]) then
         -- Iridescence
         if (equippedMain == 18632 or equippedMain == 18633) then
-            if (math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
+            if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if (math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
+        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
     elseif (caster:getWeather() == singleWeatherWeak[ele]) then
-        if (math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] ) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiWeak[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
     elseif (weather == doubleWeatherStrong[ele]) then
         -- Iridescence
         if (equippedMain == 18632 or equippedMain == 18633) then
-            if (math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
+            if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if (math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
+        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus + 0.25;
         end
     elseif (weather == doubleWeatherWeak[ele]) then
-        if (math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] ) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiWeak[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus - 0.25;
         end
     end
@@ -1274,12 +1274,12 @@ function addBonusesAbility(caster, ele, target, dmg, params)
         if (equippedLegs == 15120 or equippedLegs == 15583) then
             dayWeatherBonus = dayWeatherBonus + 0.05;
         end
-        if (math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
+        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
     elseif (dayElement == dayWeak[ele]) then
-        if (math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] ) then
-            dayWeatherBonus = dayWeatherBonus + 0.10;
+        if (math.random() < 0.33 or caster:getMod(elementalObiWeak[ele]) >= 1) then
+            dayWeatherBonus = dayWeatherBonus - 0.10;
         end
     end
 
