@@ -24,6 +24,6 @@ function onAdditionalEffect(player,target,damage)
         if (not target:hasStatusEffect(EFFECT_BLINDNESS)) then
             target:addStatusEffect(EFFECT_BLINDNESS, 10, 0, 30);
         end
-        return SUBEFFECT_BLIND, 160, EFFECT_BLINDNESS;
+        return SUBEFFECT_BLIND, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_BLINDNESS;
     end
 end;

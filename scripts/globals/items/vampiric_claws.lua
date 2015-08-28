@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 17510
--- Item: VaHPiric Claws
+-- Item: Vampiric Claws
 -- Additional effect: HP Drain
 -----------------------------------------
 
@@ -26,6 +26,6 @@ function onAdditionalEffect(player,target,damage)
         drain = adjustForTarget(target,drain,ELE_DARK);
         drain = finalMagicNonSpellAdjustments(player,target,ELE_DARK,drain);
 
-        return SUBEFFECT_HP_DRAIN, 161, player:addHP(drain);
+        return SUBEFFECT_HP_DRAIN, MSGBASIC_ADD_EFFECT_HP_DRAIN, player:addHP(drain);
     end
 end;
