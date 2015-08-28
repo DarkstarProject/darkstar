@@ -756,7 +756,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         if (slotID != ERROR_SLOTID)
         {
-            // diglet, use dig!
+            // attempt to dig
             if (luautils::OnChocoboDig(PChar, true))
             {
                 charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -1);
@@ -764,11 +764,11 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 PChar->pushPacket(new CInventoryFinishPacket());
                 PChar->pushPacket(new CChocoboDiggingPacket(PChar));
 
-                // diglet uses dig, it's super effective!
+                // dig is possible
                 luautils::OnChocoboDig(PChar, false);
             }
             else {
-                // diglet uses dig, it's not very effective...
+                // unable to dig yet
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
             }
         }
