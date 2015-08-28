@@ -2128,7 +2128,7 @@ INSERT INTO `item_basic` VALUES (2233,0,'lambent_wind_cell','lam_wind_cell',12,4
 INSERT INTO `item_basic` VALUES (2234,0,'wailing_shell','wailing_shell',12,0,42,0,131);
 INSERT INTO `item_basic` VALUES (2235,0,'bag_of_wildgrass_seeds','wildgrass_seeds',12,0,46,0,80);
 INSERT INTO `item_basic` VALUES (2236,0,'bag_of_simsim','simsim',12,0,59,0,77);
-INSERT INTO `item_basic` VALUES (2237,0,'bag_of_imperial_flour','imperial_flour',12,0,59,0,246);
+INSERT INTO `item_basic` VALUES (2237,0,'bag_of_imperial_flour','imperial_flour',12,0,59,0,15);
 INSERT INTO `item_basic` VALUES (2238,8449,'strobe','strobe',12,0,61,0,723);
 INSERT INTO `item_basic` VALUES (2239,8450,'tension_spring','tension_spring',12,0,61,0,261);
 INSERT INTO `item_basic` VALUES (2240,8451,'inhibitor','inhibitor',12,0,61,0,397);
