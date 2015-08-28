@@ -1576,6 +1576,9 @@
     <ClCompile Include="..\..\src\map\ai\states\trigger_state.cpp">
       <Filter>Source Files\ai\states</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\states\state.cpp">
+      <Filter>Source Files\ai\states</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\documentation\message.log">

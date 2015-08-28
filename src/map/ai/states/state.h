@@ -34,19 +34,17 @@ class CTargetFind;
 class CState
 {
 public:
-    CState(CBaseEntity* PEntity, uint16 _targid) :
-        m_PEntity(PEntity),
-        targid(_targid) {}
+    CState(CBaseEntity* PEntity, uint16 _targid);
 
     virtual ~CState() = default;
 
-    uint16 GetTarget() { return targid; }
+    CBaseEntity* GetTarget();
+    void SetTarget(uint16 targid);
 
     /* Releases ownership to the caller */
-    CMessageBasicPacket* GetErrorMsg() { return m_errorMsg.release(); }
+    CMessageBasicPacket* GetErrorMsg();
 
-    //state logic done per tick - returns whether to exit the state or not
-    virtual bool Update(time_point tick) = 0;
+    bool DoUpdate(time_point tick);
     //try interrupt (on hit)
     virtual void TryInterrupt(CBattleEntity* PAttacker) = 0;
 
@@ -56,10 +54,16 @@ public:
     virtual bool CanChangeState() = 0;
 
 protected:
+    //state logic done per tick - returns whether to exit the state or not
+    virtual bool Update(time_point tick) = 0;
+
     std::unique_ptr<CMessageBasicPacket> m_errorMsg;
 
     CBaseEntity* const m_PEntity;
     uint16 targid;
+private:
+    void UpdateTarget();
+    CBaseEntity* m_PTarget;
 };
 
 #endif

@@ -80,7 +80,7 @@ void CAIBattle::CastFinished(action_t& action)
 {
     auto state = static_cast<CMagicState*>(GetCurrentState());
     auto PSpell = state->GetSpell();
-    auto PActionTarget = static_cast<CBattleEntity*>(PEntity->GetEntity(state->GetTarget()));
+    auto PActionTarget = static_cast<CBattleEntity*>(state->GetTarget());
 
     luautils::OnSpellPrecast(static_cast<CBattleEntity*>(PEntity), PSpell);
 

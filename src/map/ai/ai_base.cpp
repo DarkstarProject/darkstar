@@ -81,7 +81,7 @@ void CAIBase::Tick(time_point _tick)
 
     if (!m_stateStack.empty())
     {
-        if (m_stateStack.top()->Update(_tick))
+        if (m_stateStack.top()->DoUpdate(_tick))
         {
             m_stateStack.pop();
         }
