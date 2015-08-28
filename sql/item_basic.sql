@@ -4105,7 +4105,7 @@ INSERT INTO `item_basic` VALUES (4454,0,'emperor_fish','emperor_fish',1,1536,51,
 INSERT INTO `item_basic` VALUES (4455,0,'bowl_of_pebble_soup','pebble_soup',1,1536,55,0,74);
 INSERT INTO `item_basic` VALUES (4456,0,'boiled_crab','boiled_crab',12,1536,53,0,450);
 INSERT INTO `item_basic` VALUES (4457,0,'eel_kabob','eel_kabob',12,1536,53,0,496);
-INSERT INTO `item_basic` VALUES (4458,0,'loaf_of_goblin_bread','goblin_bread',12,1536,56,0,507);
+INSERT INTO `item_basic` VALUES (4458,0,'loaf_of_goblin_bread','goblin_bread',12,1536,56,0,76);
 INSERT INTO `item_basic` VALUES (4459,0,'nebimonite_bake','nebimonite_bake',12,1536,53,0,300);
 INSERT INTO `item_basic` VALUES (4460,0,'block_of_stone_cheese','stone_cheese',12,1536,59,0,69);
 INSERT INTO `item_basic` VALUES (4461,0,'bastore_bream','bastore_bream',12,1536,51,0,600);
@@ -12501,7 +12501,7 @@ INSERT INTO `item_basic` VALUES (17001,0,'giant_shell_bug','giant_shell_bug',12,
 INSERT INTO `item_basic` VALUES (17002,0,'robber_rig','robber_rig',1,2048,47,0,1513);
 INSERT INTO `item_basic` VALUES (17003,0,'super_scoop','super_scoop',99,2048,47,0,1);
 INSERT INTO `item_basic` VALUES (17004,0,'judge_minnow','judge_minnow',1,2048,47,0,60);
-INSERT INTO `item_basic` VALUES (17005,0,'lufaise_fly','lufaise_fly',99,2048,47,0,680);
+INSERT INTO `item_basic` VALUES (17005,0,'lufaise_fly','lufaise_fly',99,2048,47,0,27);
 INSERT INTO `item_basic` VALUES (17006,0,'drill_calamary','drill_calamary',99,30800,0,1,0);
 INSERT INTO `item_basic` VALUES (17007,0,'dwarf_pugil','dwarf_pugil',99,30800,0,1,0);
 INSERT INTO `item_basic` VALUES (17008,0,'regular_maze_monger_ball','reg_mmm_ball',12,30800,0,1,0);
