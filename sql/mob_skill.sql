@@ -3104,16 +3104,16 @@ INSERT INTO `mob_skill` VALUES (2628,453,2020,'Deracinator',1,18.0,2000,1000,4,0
 INSERT INTO `mob_skill` VALUES (2629,453,2021,'Beautiful_death',1,18.0,2000,1000,4,0,0,0);
 
 -- Bahamut
-INSERT INTO `mob_skill` VALUES (1286,449,1133,'Trample',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1287,449,1134,'Tempest_wing',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1288,449,1139,'Touchdown',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1289,449,1135,'Sweeping_ Flail',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1286,449,1133,'Trample',1,15.0,2000,1500,4,0,0,3);
+INSERT INTO `mob_skill` VALUES (1287,449,1134,'Tempest_wing',4,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1288,449,1139,'Touchdown',1,15.0,2000,1500,4,0,0,5);
+INSERT INTO `mob_skill` VALUES (1289,449,1135,'Sweeping_Flail',1,20.0,2000,1500,4,0,0,10);
 INSERT INTO `mob_skill` VALUES (1290,449,1140,'Prodigious_spike',0,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1291,449,1141,'Impulsion',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1292,449,1143,'Absolute_terror',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1292,449,1143,'Absolute_terror',1,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1293,449,1142,'Horrible_roar',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1295,449,1136,'Megaflare',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1296,449,1137,'Gigaflare',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1295,449,1136,'Megaflare',4,15.0,6000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1296,449,1137,'Gigaflare',1,15.0,6000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1297,449,1138,'Teraflare',0,15.0,2000,1500,4,0,0,0);
 
 -- Prishe

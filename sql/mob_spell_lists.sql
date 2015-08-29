@@ -1421,6 +1421,19 @@ INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 249, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Hope', 140, 196, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Hope', 140, 213, 1, 255);
 
+-- Bahamut
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 141, 5, 1, 255);  -- Cure V
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 141, 106, 1, 255); -- Phalanx
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 141, 54, 1, 255);  -- Stoneskin
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 141, 47, 1, 255);  -- Protect V
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 141, 52, 1, 255);  -- Shell V
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 141, 148, 1, 255);  -- Fire V
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 141, 205, 1, 255);  -- Flare II
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 141, 177, 1, 255);  -- Firaga IV
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 141, 359, 1, 255);  -- Silencega
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 141, 360, 1, 255);  -- Dispelga
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 141, 366, 1, 255);  -- Graviga
+
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
