@@ -594,6 +594,9 @@ public:
 
     int32 getConfrontationEffect(lua_State* L);
     int32 copyConfrontationEffect(lua_State* L);    // copy confrontation effect, param = targetEntity:getShortID()
+
+    int32 queue(lua_State* L);
+    int32 timer(lua_State* L); //execute lua closure after some time
 };
 
 #endif

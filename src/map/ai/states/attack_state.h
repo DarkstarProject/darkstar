@@ -44,7 +44,6 @@ public:
 
 private:
     bool CanAttack(CBattleEntity* PTarget);
-    void DoAttack(CBattleEntity* PTarget);
     CBattleEntity* const m_PEntity;
     duration m_attackTime;
 };

@@ -25,7 +25,6 @@ This file is part of DarkStar-server source code.
 
 void CAIEventHandler::addListener(std::string& eventname, ai_event_t& eventparam)
 {
-    eventparam.lua_func = luautils::register_fp();
     eventListeners[eventname].push_back(eventparam);
 }
 

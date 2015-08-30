@@ -22,26 +22,45 @@ This file is part of DarkStar-server source code.
 */
 
 #include "action_queue.h"
-#include "../ai_base.h"
+#include "../../entities/baseentity.h"
+#include "../../lua/luautils.h"
 
-CAIActionQueue::CAIActionQueue(CAIBase& _AIBase) :
-    AIBase(_AIBase)
+CAIActionQueue::CAIActionQueue(CBaseEntity* _PEntity) :
+    PEntity(_PEntity)
 {}
 
-void CAIActionQueue::pushAction(queueAction&& action)
+void CAIActionQueue::pushAction(queueAction_t&& action)
 {
     actionQueue.push(std::move(action));
 }
 
 void CAIActionQueue::checkAction(time_point tick)
 {
-    if (!actionQueue.empty())
+    while (!actionQueue.empty())
     {
         auto& action = actionQueue.top();
-        if (tick > action.start_time + action.delay)
+        if (tick > action.start_time + action.delay && 
+            (!action.checkState || PEntity->PAI->CanChangeState()))
         {
-            AIBase.ActionQueueStateChange(action);
+            if (action.lua_func)
+            {
+                luautils::pushArg(PEntity);
+                luautils::callFunc(1);
+            }
+            if (action.func)
+            {
+                action.func(PEntity);
+            }
             actionQueue.pop();
         }
+        else
+        {
+            break;
+        }
     }
+}
+
+queueAction_t::~queueAction_t()
+{
+    if (lua_func) luautils::unregister_fp(lua_func);
 }

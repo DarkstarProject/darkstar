@@ -25,47 +25,51 @@ This file is part of DarkStar-server source code.
 #define _ACTIONQUEUE_H
 
 #include <queue>
+#include <functional>
 #include "../ai_common.h"
 #include "../../../common/cbasetypes.h"
 
-class CAIBase;
+class CBaseEntity;
 
-struct queueAction
+struct queueAction_t
 {
     time_point start_time;
     duration delay;
-    //AIState action;
+    bool checkState;
+    int lua_func;
+    std::function<void(CBaseEntity*)> func;
 
-    union
-    {
-        uint32 param;
-        struct
-        {
-            uint16 spellid;
-            uint16 targid;
-        } spell;
-        struct
-        {
-            uint16 skillid;
-            uint16 targid;
-        } mobskill;
-    };
+    queueAction_t(bool _checkstate, int _lua_func) :
+        start_time(server_clock::now()), 
+        delay(0), 
+        lua_func(_lua_func), 
+        checkState(_checkstate) {}
+    queueAction_t(bool _checkstate, std::function<void(CBaseEntity*)> _func) :
+        start_time(server_clock::now()),
+        delay(0),
+        lua_func(0),
+        func(_func),
+        checkState(_checkstate) {}
+    ~queueAction_t();
 
-    queueAction() : start_time(server_clock::now()), delay(0), /*action(AIState::None),*/ param(0){}
+    queueAction_t(const queueAction_t&) = delete;
+    queueAction_t& operator=(const queueAction_t&) = delete;
+    queueAction_t(queueAction_t&&) = default;
+    queueAction_t& operator=(queueAction_t&&) = default;
 };
 
-inline bool operator< (const queueAction& lhs, const queueAction& rhs) { return lhs.start_time + lhs.delay < rhs.start_time + rhs.delay; }
+inline bool operator< (const queueAction_t& lhs, const queueAction_t& rhs) { return lhs.start_time + lhs.delay < rhs.start_time + rhs.delay; }
 
 class CAIActionQueue
 {
 public:
-    CAIActionQueue(CAIBase&);
+    CAIActionQueue(CBaseEntity*);
 
-    void pushAction(queueAction&&);
+    void pushAction(queueAction_t&&);
     void checkAction(time_point tick);
 private:
-    CAIBase& AIBase;
-    std::priority_queue<queueAction> actionQueue;
+    CBaseEntity* PEntity;
+    std::priority_queue<queueAction_t> actionQueue;
 };
 
 #endif

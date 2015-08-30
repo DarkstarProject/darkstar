@@ -176,12 +176,16 @@ int32 garbageCollect()
     return 0;
 }
 
-int register_fp()
+int register_fp(int index)
 {
-    if (lua_isfunction(LuaHandle, -1))
+    if (lua_isfunction(LuaHandle, index))
     {
-        lua_pushvalue(LuaHandle, -1);
+        lua_pushvalue(LuaHandle, index);
         return luaL_ref(LuaHandle, LUA_REGISTRYINDEX);
+    }
+    else
+    {
+        ShowWarning("[Lua] register_fp: index %d not a function\n", index);
     }
     return 0;
 }

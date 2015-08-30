@@ -32,7 +32,7 @@ CAIBase::CAIBase(CBaseEntity* _PEntity) :
     m_Tick(std::chrono::steady_clock::now()),
     m_PrevTick(std::chrono::steady_clock::now()),
     PEntity(_PEntity),
-    ActionQueue(*this)
+    ActionQueue(_PEntity)
 {
 }
 
@@ -40,11 +40,6 @@ CAIBase::CAIBase(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _pathfind) 
     CAIBase(_PEntity)
 {
     pathfind = std::move(_pathfind);
-}
-
-void CAIBase::ActionQueueStateChange(const queueAction& action)
-{
-    //pathfinding maybe
 }
 
 CState* CAIBase::GetCurrentState()
@@ -67,11 +62,7 @@ void CAIBase::Tick(time_point _tick)
     m_Tick = _tick;
     CBaseEntity* PreEntity = PEntity;
     
-    // check Action Queue
-    if (CanChangeState())
-    {
-        ActionQueue.checkAction(m_Tick);
-    }
+    CheckActionQueue(_tick);
 
     // check pathfinding
     if (pathfind)
@@ -107,4 +98,14 @@ time_point CAIBase::getTick()
 time_point CAIBase::getPrevTick()
 {
     return m_PrevTick;
+}
+
+void CAIBase::CheckActionQueue(time_point tick)
+{
+    ActionQueue.checkAction(tick);
+}
+
+void CAIBase::queueAction(queueAction_t&& action)
+{
+    ActionQueue.pushAction(std::move(action));
 }

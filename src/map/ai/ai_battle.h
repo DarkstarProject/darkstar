@@ -35,21 +35,21 @@ struct action_t;
 
 class CAIBattle : public CAIBase
 {
-    //access to CastInterrupted for CMagicState::Clear
-    friend class CMagicState;
 public:
     CAIBattle(CBattleEntity*, std::unique_ptr<CPathFind>&&);
 
-    virtual void ActionQueueStateChange(const queueAction&) override;
-    virtual bool Attack(uint16 targetid);
+    virtual bool Engage(uint16 targetid);
     virtual bool Cast(uint16 targetid, uint16 spellid);
     virtual void TryHitInterrupt(CBattleEntity* PAttacker);
 
-protected:
-
-    /* Casting functions */
+    /* State finish functions */
+    /* Auto attack */
+    virtual void Attack(action_t&);
+    /* Casting */
     virtual void CastFinished(action_t&);
     virtual void CastInterrupted(action_t&, MSGBASIC_ID msg);
+
+protected:
 
     CTargetFind targetFind;
     CBattleEntity* PBattleTarget;

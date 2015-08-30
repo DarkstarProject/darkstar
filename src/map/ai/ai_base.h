@@ -46,12 +46,15 @@ public:
     CAIBase& operator=(const CAIBase&) = delete;
 
     void Tick(time_point _tick);
-    virtual void ActionQueueStateChange(const queueAction&);
     CState* GetCurrentState();
     bool IsStateStackEmpty();
+    //whether AI is currently able to change state from external means
+    virtual bool CanChangeState();
 
     time_point getTick();
     time_point getPrevTick();
+
+    virtual void queueAction(queueAction_t&&);
 
     // stores all events and their associated lua callbacks
     CAIEventHandler EventHandler;
@@ -64,8 +67,8 @@ protected:
     time_point m_PrevTick;
     //entity who holds this AI
     CBaseEntity* PEntity;
-    //whether AI is currently able to change state from external means
-    virtual bool CanChangeState();
+
+    virtual void CheckActionQueue(time_point);
     template<typename T, typename... Args>
     void ChangeState(Args&&... args) { if (CanChangeState()) { m_stateStack.emplace(std::make_unique<T>(std::forward<Args>(args)...)); } }
 

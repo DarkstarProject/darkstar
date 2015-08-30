@@ -9936,6 +9936,28 @@ inline int32 CLuaBaseEntity::copyConfrontationEffect(lua_State* L)
     return 1;
 }
 
+int32 CLuaBaseEntity::queue(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isfunction(L, 2));
+
+    m_PBaseEntity->PAI->queueAction(queueAction_t(true, luautils::register_fp(2)));
+
+    return 0;
+}
+
+int32 CLuaBaseEntity::timer(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isfunction(L, 2));
+
+    m_PBaseEntity->PAI->queueAction(queueAction_t(false, luautils::register_fp(2)));
+
+    return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";

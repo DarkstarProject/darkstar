@@ -135,7 +135,7 @@ namespace luautils
 	int32 init();
 	int32 free();
     int32 garbageCollect(); // performs a full garbage collecting cycle
-    int register_fp();
+    int register_fp(int index);
     void unregister_fp(int);
 	int32 print(lua_State*);
     int32 prepFile(int8*, const char*);

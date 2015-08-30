@@ -25,6 +25,7 @@ This file is part of DarkStar-server source code.
 
 #include "states/magic_state.h"
 #include "states/attack_state.h"
+#include "../attackround.h"
 #include "../spell.h"
 #include "../entities/battleentity.h"
 #include "../utils/battleutils.h"
@@ -37,19 +38,7 @@ CAIBattle::CAIBattle(CBattleEntity* _PEntity, std::unique_ptr<CPathFind>&& pathf
 {
 }
 
-void CAIBattle::ActionQueueStateChange(const queueAction& action)
-{
-    //switch(action.action)
-    //{
-    //    case AIState::Casting:
-    //        Cast(action.spell.spellid, action.spell.targid);
-    //        break;
-    //    default:
-    //        break;
-    //}
-}
-
-bool CAIBattle::Attack(uint16 targetid)
+bool CAIBattle::Engage(uint16 targetid)
 {
     //#TODO: engage while casting?
     if (CanChangeState())
@@ -58,6 +47,161 @@ bool CAIBattle::Attack(uint16 targetid)
         ChangeState<CAttackState>(static_cast<CBattleEntity*>(PEntity), targetid);
     }
     return false;
+}
+
+void CAIBattle::Attack(action_t& action)
+{
+    auto PBattleEntity = static_cast<CBattleEntity*>(PEntity);
+    auto state = static_cast<CAttackState*>(GetCurrentState());
+    auto PTarget = static_cast<CBattleEntity*>(state->GetTarget());
+
+    // Create a new attack round.
+    CAttackRound attackRound(PBattleEntity);
+
+    action.actiontype = ACTION_ATTACK;
+    action.id = PBattleEntity->id;
+    actionList_t& list = action.getNewActionList();
+
+    list.ActionTargetID = PTarget->id;
+
+    /////////////////////////////////////////////////////////////////////////
+    //	Start of the attack loop.
+    /////////////////////////////////////////////////////////////////////////
+    while (attackRound.GetAttackSwingCount() && !(PTarget->isDead()))
+    {
+        actionTarget_t& actionTarget = list.getNewActionTarget();
+        // Reference to the current swing.
+        CAttack attack = attackRound.GetCurrentAttack();
+
+        // Set the swing animation.
+        actionTarget.animation = attack.GetAnimationID();
+
+        if (PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE, 0))
+        {
+            actionTarget.messageID = 32;
+            actionTarget.reaction = REACTION_EVADE;
+            actionTarget.speceffect = SPECEFFECT_NONE;
+        }
+        else if ((dsprand::GetRandomNumber(100) < attack.GetHitRate() || attackRound.GetSATAOccured()) &&
+                 !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
+        {
+            // attack hit, try to be absorbed by shadow unless it is a SATA attack round
+            if (!(attackRound.GetSATAOccured()) && battleutils::IsAbsorbByShadow(PTarget))
+            {
+                actionTarget.messageID = 0;
+                actionTarget.reaction = REACTION_EVADE;
+                attack.SetEvaded(true);
+                PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget, PTarget, 0, 1, 31));
+            }
+            else
+            {
+                // Set this attack's critical flag.
+                attack.SetCritical(dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(PBattleEntity, PTarget, !attack.IsFirstSwing()));
+
+                // Critical hit.
+                if (attack.IsCritical())
+                {
+                    actionTarget.reaction = REACTION_HIT;
+                    actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
+                    actionTarget.messageID = 67;
+
+                    if (PTarget->objtype == TYPE_MOB)
+                    {
+                        luautils::OnCriticalHit(PTarget);
+                    }
+                }
+                // Not critical hit.
+                else
+                {
+                    actionTarget.reaction = REACTION_HIT;
+                    actionTarget.speceffect = SPECEFFECT_HIT;
+                    actionTarget.messageID = 1;
+                }
+
+                // Guarded. TODO: Stuff guards that shouldn't.
+                if (attack.IsGuarded())
+                {
+                    actionTarget.reaction = REACTION_GUARD;
+                }
+
+                // Process damage.
+                attack.ProcessDamage();
+
+                // Try shield block
+                if (attack.IsBlocked())
+                {
+                    actionTarget.reaction = REACTION_BLOCK;
+                }
+
+                actionTarget.param = battleutils::TakePhysicalDamage(PBattleEntity, PTarget, attack.GetDamage(), attack.IsBlocked(), attack.GetWeaponSlot(), 1, attackRound.GetTAEntity(), true, true);
+                if (actionTarget.param < 0)
+                {
+                    actionTarget.param = -(actionTarget.param);
+                    actionTarget.messageID = 373;
+                }
+            }
+        }
+        else
+        {
+            // Player misses the target
+            actionTarget.reaction = REACTION_EVADE;
+            actionTarget.speceffect = SPECEFFECT_NONE;
+            actionTarget.messageID = 15;
+            attack.SetEvaded(true);
+
+            // Check & Handle Afflatus Misery Accuracy Bonus
+            battleutils::HandleAfflatusMiseryAccuracyBonus(PBattleEntity);
+        }
+
+        if (actionTarget.reaction != REACTION_HIT && actionTarget.reaction != REACTION_BLOCK && actionTarget.reaction != REACTION_GUARD)
+        {
+            actionTarget.param = 0;
+            battleutils::ClaimMob(PTarget, PBattleEntity);
+        }
+
+        if (actionTarget.reaction != REACTION_EVADE && actionTarget.reaction != REACTION_PARRY)
+        {
+            //#TODO
+            //battleutils::HandleEnspell(PBattleEntity, PTarget, &Action, attack.IsFirstSwing(), (CItemWeapon*)PBattleEntity->m_Weapons[attack.GetWeaponSlot()], attack.GetDamage());
+            //battleutils::HandleSpikesDamage(PBattleEntity, PTarget, &Action, attack.GetDamage());
+        }
+
+        if (actionTarget.speceffect == SPECEFFECT_HIT && actionTarget.param > 0)
+        {
+            actionTarget.speceffect = SPECEFFECT_RECOIL;
+        }
+
+        //try zanshin only on single swing attack rounds - it is last priority in the multi-hit order
+        //if zanshin procs, the attack is repeated
+        if (attack.IsFirstSwing() && attackRound.GetAttackSwingCount() == 1)
+        {
+            uint16 zanshinChance = PBattleEntity->getMod(MOD_ZANSHIN) + battleutils::GetMeritValue(PBattleEntity, MERIT_ZASHIN_ATTACK_RATE);
+            zanshinChance = dsp_cap(zanshinChance, 0, 100);
+            //zanshin may only proc on a missed/guarded/countered swing or as SAM main with hasso up (at 25% of the base zanshin rate)
+            if (((actionTarget.reaction == REACTION_EVADE || actionTarget.reaction == REACTION_GUARD ||
+                  actionTarget.spikesEffect == SUBEFFECT_COUNTER) && dsprand::GetRandomNumber(100) < zanshinChance) ||
+                (PBattleEntity->GetMJob() == JOB_SAM && PBattleEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) && dsprand::GetRandomNumber(100) < (zanshinChance / 4)))
+            {
+                attack.SetAttackType(ZANSHIN_ATTACK);
+                attack.SetAsFirstSwing(false);
+            }
+            else
+                attackRound.DeleteAttackSwing();
+        }
+        else
+            attackRound.DeleteAttackSwing();
+
+        if (list.actionTargets.size() == 8)
+        {
+            break;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    // End of attack loop
+    /////////////////////////////////////////////////////////////////////////////////////////////
+
+    PBattleEntity->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK | EFFECTFLAG_DETECTABLE);
+    PBattleEntity->loc.zone->PushPacket(PBattleEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
 }
 
 bool CAIBattle::Cast(uint16 targetid, uint16 spellid)
