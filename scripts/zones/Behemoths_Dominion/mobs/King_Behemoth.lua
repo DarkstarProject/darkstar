@@ -15,6 +15,20 @@ function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_MAGIC_COOL, 60);
 end;
 
+-----------------------------------
+-- onAdditionalEffect Action
+-----------------------------------
+function onAdditionalEffect(mob,target,damage)
+    if ((math.random(0,99) >= 20) or (target:hasStatusEffect(EFFECT_STUN) == true)) then
+        return 0,0,0;
+    else
+        local duration = 2;
+		local dINT = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
+		local resist = applyPlayerResistance(mob,EFFECT_STUN,target,dINT,0,ELE_LIGHTNING);
+        target:addStatusEffect(EFFECT_STUN,5,0,duration*resist);
+        return SUBEFFECT_STUN,0,EFFECT_STUN;
+    end
+end;
 
 -----------------------------------
 -- onMobDeath
