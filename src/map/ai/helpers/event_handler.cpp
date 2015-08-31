@@ -23,20 +23,28 @@ This file is part of DarkStar-server source code.
 
 #include "event_handler.h"
 
-void CAIEventHandler::addListener(std::string& eventname, ai_event_t& eventparam)
+void CAIEventHandler::addListener(std::string eventname, int lua_func, std::string identifier)
 {
-    eventListeners[eventname].push_back(eventparam);
+    eventListeners[eventname].emplace_back(identifier, lua_func);
 }
 
-void CAIEventHandler::removeListener(std::string& eventname, std::string identifier)
+void CAIEventHandler::removeListener(std::string eventname, std::string identifier)
 {
     eventListeners[eventname].erase(std::remove_if(eventListeners[eventname].begin(), eventListeners[eventname].end(), [&identifier](const ai_event_t& event)
     {
         if (identifier == event.identifier || identifier == "")
         {
-            luautils::unregister_fp(event.lua_func);
+            if (event.lua_func)
+            {
+                luautils::unregister_fp(event.lua_func);
+            }
             return true;
         }
         return false;
     }), eventListeners[eventname].end());
+
+    if (eventListeners[eventname].empty())
+    {
+        eventListeners.erase(eventname);
+    }
 }

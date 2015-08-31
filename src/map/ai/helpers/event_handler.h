@@ -36,36 +36,35 @@ struct ai_event_t
     std::string identifier;
     int lua_func;
 
-    union
-    {
-        uint32 param;
-        struct
-        {
-            uint32 param;
-        } some_event;
-    };
-
-    ai_event_t() : lua_func(0), param(0) {}
+    ai_event_t(std::string _ident, int _lua_func) : 
+        identifier(_ident), lua_func(_lua_func) {}
 };
 
 class CAIEventHandler
 {
 public:
-    void addListener(std::string& eventname, ai_event_t& eventparam);
-    void removeListener(std::string& eventname, std::string identifier = "");
+    void addListener(std::string eventname, int lua_func, std::string identifier = "");
+    void removeListener(std::string eventname, std::string identifier = "");
 
-    // checks function to see if lua callback should be triggered, parameter pack to be passed to lua function
+    // calls event from core
     template<class... Types>
-    void triggerListener(std::string& eventname, std::function<bool(ai_event_t&)> checkFunction, Types&&... args)
+    void triggerListener(std::string& eventname, Types&&... args)
     {
         for (auto&& event : eventListeners[eventname])
         {
-            if (checkFunction(event))
-            {
-                int nargs = sizeof...(args);
-                pushArg(std::forward<Types&&...>(args)...);
-                luautils::callFunc(nargs);
-            }
+            int nargs = sizeof...(args);
+            luautils::pushFunc(event.lua_func);
+            pushArg(std::forward<Types&&...>(args)...);
+            luautils::callFunc(nargs);
+        }
+    }
+    //calls event from lua
+    void triggerListener(std::string eventname, int nargs)
+    {
+        for (auto&& event : eventListeners[eventname])
+        {
+            luautils::pushFunc(event.lua_func, nargs);
+            luautils::callFunc(nargs);
         }
     }
 

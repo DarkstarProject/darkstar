@@ -151,6 +151,7 @@ namespace luautils
 
     void pushArg(nullptr_t arg);
 
+    void pushFunc(int lua_func, int index = 0);
     void callFunc(int nargs);
 
     int32 SendEntityVisualPacket(lua_State*);                                    // временное решение для работы гейзеров в Dangruf_Wadi

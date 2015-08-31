@@ -9958,6 +9958,59 @@ int32 CLuaBaseEntity::timer(lua_State* L)
     return 0;
 }
 
+int32 CLuaBaseEntity::addListener(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isfunction(L, 2));
+
+    auto eventName = lua_tostring(L, 1);
+
+    if (!lua_isnil(L, 3) && lua_isstring(L, 3))
+    {
+        auto identifier = lua_tostring(L, 3);
+        m_PBaseEntity->PAI->EventHandler.addListener(eventName, luautils::register_fp(2), identifier);
+    }
+    else
+    {
+        m_PBaseEntity->PAI->EventHandler.addListener(eventName, luautils::register_fp(2));
+    }
+
+    return 0;
+}
+
+int32 CLuaBaseEntity::removeListener(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+
+    auto eventName = lua_tostring(L, 1);
+
+    if (!lua_isnil(L, 2) && lua_isstring(L, 2))
+    {
+        auto identifier = lua_tostring(L, 2);
+        m_PBaseEntity->PAI->EventHandler.removeListener(eventName, identifier);
+    }
+    else
+    {
+        m_PBaseEntity->PAI->EventHandler.removeListener(eventName);
+    }
+
+    return 0;
+}
+
+int32 CLuaBaseEntity::triggerListener(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+
+    auto eventName = lua_tostring(L, 1);
+    auto top = lua_gettop(L);
+
+    m_PBaseEntity->PAI->EventHandler.triggerListener(eventName, top - 1);
+
+    return 0;
+}
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -10393,5 +10446,10 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getILvlMacc),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getConfrontationEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,copyConfrontationEffect),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,queue),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,timer),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addListener),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeListener),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,triggerListener),
     {nullptr,nullptr}
 };

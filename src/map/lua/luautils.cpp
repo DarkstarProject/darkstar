@@ -267,6 +267,12 @@ void pushArg(nullptr_t arg)
 *                                                                       *
 ************************************************************************/
 
+void pushFunc(int lua_func, int index)
+{
+    lua_rawgeti(LuaHandle, LUA_REGISTRYINDEX, lua_func);
+    lua_insert(LuaHandle, lua_gettop(LuaHandle) - index);
+}
+
 void callFunc(int nargs)
 {
     lua_pcall(LuaHandle, nargs, 0, 0);

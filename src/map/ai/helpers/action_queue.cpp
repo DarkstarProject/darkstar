@@ -44,6 +44,7 @@ void CAIActionQueue::checkAction(time_point tick)
         {
             if (action.lua_func)
             {
+                luautils::pushFunc(action.lua_func);
                 luautils::pushArg(PEntity);
                 luautils::callFunc(1);
             }

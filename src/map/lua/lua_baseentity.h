@@ -597,6 +597,10 @@ public:
 
     int32 queue(lua_State* L);
     int32 timer(lua_State* L); //execute lua closure after some time
+
+    int32 addListener(lua_State* L);
+    int32 removeListener(lua_State* L);
+    int32 triggerListener(lua_State* L);
 };
 
 #endif
