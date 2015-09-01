@@ -24,6 +24,7 @@ This file is part of DarkStar-server source code.
 #include "action_queue.h"
 #include "../../entities/baseentity.h"
 #include "../../lua/luautils.h"
+#include "../../lua/lua_baseentity.h"
 
 CAIActionQueue::CAIActionQueue(CBaseEntity* _PEntity) :
     PEntity(_PEntity)
@@ -45,8 +46,10 @@ void CAIActionQueue::checkAction(time_point tick)
             if (action.lua_func)
             {
                 luautils::pushFunc(action.lua_func);
-                luautils::pushArg(PEntity);
+                CLuaBaseEntity luaEntity(PEntity);
+                luautils::pushArg(luaEntity);
                 luautils::callFunc(1);
+                luautils::unregister_fp(action.lua_func);
             }
             if (action.func)
             {
@@ -59,9 +62,4 @@ void CAIActionQueue::checkAction(time_point tick)
             break;
         }
     }
-}
-
-queueAction_t::~queueAction_t()
-{
-    if (lua_func) luautils::unregister_fp(lua_func);
 }

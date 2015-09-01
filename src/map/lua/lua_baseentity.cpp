@@ -9942,7 +9942,9 @@ int32 CLuaBaseEntity::queue(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isfunction(L, 2));
 
-    m_PBaseEntity->PAI->queueAction(queueAction_t(true, luautils::register_fp(2)));
+    auto ms = lua_tointeger(L, 1);
+
+    m_PBaseEntity->PAI->queueAction(queueAction_t(ms, true, luautils::register_fp(2)));
 
     return 0;
 }
@@ -9953,7 +9955,9 @@ int32 CLuaBaseEntity::timer(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isfunction(L, 2));
 
-    m_PBaseEntity->PAI->queueAction(queueAction_t(false, luautils::register_fp(2)));
+    auto ms = lua_tointeger(L, 1);
+
+    m_PBaseEntity->PAI->queueAction(queueAction_t(ms, false, luautils::register_fp(2)));
 
     return 0;
 }

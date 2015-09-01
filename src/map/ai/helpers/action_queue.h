@@ -39,18 +39,17 @@ struct queueAction_t
     int lua_func;
     std::function<void(CBaseEntity*)> func;
 
-    queueAction_t(bool _checkstate, int _lua_func) :
+    queueAction_t(int _ms, bool _checkstate, int _lua_func) :
         start_time(server_clock::now()), 
-        delay(0), 
+        delay(std::chrono::milliseconds(_ms)), 
         lua_func(_lua_func), 
         checkState(_checkstate) {}
-    queueAction_t(bool _checkstate, std::function<void(CBaseEntity*)> _func) :
+    queueAction_t(int _ms, bool _checkstate, std::function<void(CBaseEntity*)> _func) :
         start_time(server_clock::now()),
-        delay(0),
+        delay(std::chrono::milliseconds(_ms)),
         lua_func(0),
         func(_func),
         checkState(_checkstate) {}
-    ~queueAction_t();
 
     queueAction_t(const queueAction_t&) = delete;
     queueAction_t& operator=(const queueAction_t&) = delete;

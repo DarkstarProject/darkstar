@@ -62,7 +62,7 @@ void CAIBase::Tick(time_point _tick)
     m_Tick = _tick;
     CBaseEntity* PreEntity = PEntity;
     
-    CheckActionQueue(_tick);
+    ActionQueue.checkAction(_tick);
 
     // check pathfinding
     if (pathfind)
@@ -98,11 +98,6 @@ time_point CAIBase::getTick()
 time_point CAIBase::getPrevTick()
 {
     return m_PrevTick;
-}
-
-void CAIBase::CheckActionQueue(time_point tick)
-{
-    ActionQueue.checkAction(tick);
 }
 
 void CAIBase::queueAction(queueAction_t&& action)

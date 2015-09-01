@@ -241,25 +241,25 @@ int32 prepFile(int8* File, const char* function)
     return 0;
 }
 
-void pushArg(int arg)
-{
-    lua_pushinteger(LuaHandle, arg);
-}
-
-void pushArg(float arg)
-{
-    lua_pushnumber(LuaHandle, arg);
-}
-
-void pushArg(bool arg)
-{
-    lua_pushboolean(LuaHandle, arg);
-}
-
-void pushArg(nullptr_t arg)
-{
-    lua_pushnil(LuaHandle);
-}
+//void pushArg(int arg)
+//{
+//    lua_pushinteger(LuaHandle, arg);
+//}
+//
+//void pushArg(float arg)
+//{
+//    lua_pushnumber(LuaHandle, arg);
+//}
+//
+//void pushArg(bool arg)
+//{
+//    lua_pushboolean(LuaHandle, arg);
+//}
+//
+//void pushArg(nullptr_t arg)
+//{
+//    lua_pushnil(LuaHandle);
+//}
 
 /************************************************************************
 *                                                                       *
@@ -270,12 +270,16 @@ void pushArg(nullptr_t arg)
 void pushFunc(int lua_func, int index)
 {
     lua_rawgeti(LuaHandle, LUA_REGISTRYINDEX, lua_func);
-    lua_insert(LuaHandle, lua_gettop(LuaHandle) - index);
+    lua_insert(LuaHandle, -(index+1));
 }
 
 void callFunc(int nargs)
 {
-    lua_pcall(LuaHandle, nargs, 0, 0);
+    if (lua_pcall(LuaHandle, nargs, 0, 0))
+    {
+        ShowError("[Lua] Anonymous function: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+    }
 }
 
 int32 SendEntityVisualPacket(lua_State* L)

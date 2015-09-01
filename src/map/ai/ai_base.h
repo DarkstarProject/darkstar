@@ -68,7 +68,6 @@ protected:
     //entity who holds this AI
     CBaseEntity* PEntity;
 
-    virtual void CheckActionQueue(time_point);
     template<typename T, typename... Args>
     void ChangeState(Args&&... args) { if (CanChangeState()) { m_stateStack.emplace(std::make_unique<T>(std::forward<Args>(args)...)); } }
 
