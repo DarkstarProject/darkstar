@@ -476,8 +476,9 @@ bool CAIGeneral::GetMagicCastingEnabled()
 {
     if (m_PMagicState)
     {
-        m_PMagicState->m_enableCasting = true;
+        return m_PMagicState->m_enableCasting; 
     }
+    return false;
 }
 
 bool CAIGeneral::GetMobAbilityEnabled()
