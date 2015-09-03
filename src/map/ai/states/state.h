@@ -48,6 +48,8 @@ public:
     //try interrupt (on hit)
     virtual void TryInterrupt(CBattleEntity* PAttacker) = 0;
 
+    //called when state completes
+    virtual void Cleanup() = 0;
     //reset/cancel the state (forced exit)
     virtual void Clear() = 0;
     //whether the state can be changed by normal means
@@ -56,13 +58,13 @@ public:
 protected:
     //state logic done per tick - returns whether to exit the state or not
     virtual bool Update(time_point tick) = 0;
+    virtual void UpdateTarget(uint16 targid);
 
     std::unique_ptr<CMessageBasicPacket> m_errorMsg;
 
     CBaseEntity* const m_PEntity;
-    uint16 targid;
+    uint16 m_targid;
 private:
-    void UpdateTarget();
     CBaseEntity* m_PTarget;
 };
 

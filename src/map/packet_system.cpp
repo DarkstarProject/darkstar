@@ -628,37 +628,18 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x02: // attack
     {
-        if (PChar->isDead() == false)
-        {
-            /*PChar->PBattleAI->SetCurrentAction(ACTION_ENGAGE, TargID);
-
-            if (PChar->PBattleAI->GetCurrentAction() == ACTION_ENGAGE)
-            {
-                if (PChar->animation == ANIMATION_CHOCOBO)
-                {
-                    PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
-                }
-            }*/
-            if (PChar->PAI->IsStateStackEmpty())
-            {
-                PChar->PAIBattle()->Engage(TargID);
-            }
-        }
+        PChar->PAIBattle()->Engage(TargID);
     }
     break;
     case 0x03: // spellcast
     {
         uint16 SpellID = RBUFW(data, (0x0C));
         PChar->PAIBattle()->Cast(TargID, SpellID);
-        /*if (!charutils::hasSpell(PChar, SpellID))
-            return;
-        PChar->PBattleAI->SetCurrentSpell(SpellID);
-        PChar->PBattleAI->SetCurrentAction(ACTION_MAGIC_START, TargID);*/
     }
     break;
     case 0x04: // disengage
     {
-        PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+        PChar->PAIBattle()->Disengage();
     }
     break;
     case 0x05: // call for help
@@ -743,7 +724,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x0F: // change target
     {
-        PChar->PBattleAI->SetCurrentAction(ACTION_CHANGE_TARGET, TargID);
+        PChar->PAIBattle()->SetBattleTargetID(TargID);
     }
     break;
     case 0x10: // rangedattack

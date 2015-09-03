@@ -40,6 +40,7 @@ class CMagicState : public CState
 public:
     CMagicState(CBattleEntity* PEntity, uint16 targid, CTargetFind* PTargetFind);
     virtual bool Update(time_point tick) override;
+    virtual void Cleanup() override {}
     virtual void Clear() override;
     virtual bool CanChangeState() override;
 

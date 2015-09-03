@@ -45,7 +45,7 @@ bool CMagicState::Update(time_point tick)
     if (tick > m_startTime + m_castTime)
     {
         m_interrupted = false;
-        auto PTarget = m_PTargetFind->getValidTarget(targid, m_PSpell->getValidTarget());
+        auto PTarget = m_PTargetFind->getValidTarget(m_targid, m_PSpell->getValidTarget());
         MSGBASIC_ID msg = MSGBASIC_IS_INTERRUPTED;
 
         action_t action;
@@ -276,7 +276,7 @@ bool CMagicState::CastSpell(uint16 spellid, uint8 flags)
 
     if (m_PSpell)
     {
-        auto PTarget = m_PTargetFind->getValidTarget(targid, m_PSpell->getValidTarget());
+        auto PTarget = m_PTargetFind->getValidTarget(m_targid, m_PSpell->getValidTarget());
 
         if (!CanCastSpell(PTarget))
         {

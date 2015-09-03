@@ -3097,7 +3097,7 @@ void CAICharNormal::TransitionBack(bool skipWait)
 void CAICharNormal::DoAttack()
 {
     // Create a new attack round.
-    CAttackRound attackRound(m_PChar);
+    CAttackRound attackRound(m_PChar, m_PBattleTarget);
 
     /////////////////////////////////////////////////////////////////////////
     //	Start of the attack loop.

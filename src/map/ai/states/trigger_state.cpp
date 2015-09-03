@@ -35,7 +35,7 @@ CTriggerState::CTriggerState(CBaseEntity* PEntity, uint16 targid) :
 
 bool CTriggerState::Update(time_point tick)
 {
-    auto PChar = static_cast<CCharEntity*>(m_PEntity->GetEntity(targid));
+    auto PChar = static_cast<CCharEntity*>(GetTarget());
     if (PChar && luautils::OnTrigger(PChar, m_PEntity) == -1 && m_PEntity->animation == ANIMATION_CLOSE_DOOR)
     {
         m_PEntity->animation = ANIMATION_OPEN_DOOR;
@@ -43,10 +43,6 @@ bool CTriggerState::Update(time_point tick)
         CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_door", /*tick +*/ 7000, m_PEntity, CTaskMgr::TASK_ONCE, close_door));
     }
     return true;
-}
-
-void CTriggerState::Clear()
-{
 }
 
 bool CTriggerState::CanChangeState()

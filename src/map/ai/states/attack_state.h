@@ -29,21 +29,23 @@ This file is part of DarkStar-server source code.
 class CAttackState : public CState
 {
 public:
-    CAttackState(CBattleEntity* PEntity, uint16 targid);
-    virtual ~CAttackState();
+    CAttackState(CBattleEntity* PEntity);
 
     //state logic done per tick - returns whether to exit the state or not
     virtual bool Update(time_point tick) override;
     //try interrupt (on hit)
     virtual void TryInterrupt(CBattleEntity* PAttacker) override {}
 
+    virtual void Cleanup() override;
     //reset/cancel the state (forced exit)
     virtual void Clear() override;
     //whether the state can be changed by normal means
     virtual bool CanChangeState() override { return true; };
 
-private:
+protected:
+    virtual void UpdateTarget(uint16 = 0) override;
     bool CanAttack(CBattleEntity* PTarget);
+
     CBattleEntity* const m_PEntity;
     duration m_attackTime;
 };

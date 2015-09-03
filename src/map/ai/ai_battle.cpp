@@ -34,19 +34,38 @@ This file is part of DarkStar-server source code.
 
 CAIBattle::CAIBattle(CBattleEntity* _PEntity, std::unique_ptr<CPathFind>&& pathfind) :
     CAIBase(_PEntity, std::forward<std::unique_ptr<CPathFind>>(pathfind)),
-    targetFind(_PEntity)
+    targetFind(_PEntity),
+    m_battleTarget(0)
 {
 }
 
 bool CAIBattle::Engage(uint16 targetid)
 {
-    //#TODO: engage while casting?
-    if (CanChangeState())
+    //#TODO: pet engage/disengage
+    auto PTarget = static_cast<CBattleEntity*>(PEntity->GetEntity(targetid));
+
+    //#TODO: use valid target stuff from spell
+    if (!m_battleTarget && PTarget && !PTarget->isDead())
     {
-        //#TODO: gcd/re-engage delay
-        ChangeState<CAttackState>(static_cast<CBattleEntity*>(PEntity), targetid);
+        m_battleTarget = targetid;
+        PEntity->PAI->queueAction(queueAction_t(0, true, [this](CBaseEntity* PEntity) {
+            ChangeState<CAttackState>(static_cast<CBattleEntity*>(PEntity));
+        }));
+        PEntity->animation = ANIMATION_ATTACK;
+        PEntity->updatemask |= UPDATE_HP;
+        return true;
     }
     return false;
+}
+
+void CAIBattle::Disengage()
+{
+    m_battleTarget = 0;
+    if (PEntity->animation == ANIMATION_ATTACK)
+    {
+        PEntity->animation = ANIMATION_NONE;
+    }
+    PEntity->updatemask |= UPDATE_HP;
 }
 
 void CAIBattle::Attack(action_t& action)
@@ -56,7 +75,7 @@ void CAIBattle::Attack(action_t& action)
     auto PTarget = static_cast<CBattleEntity*>(state->GetTarget());
 
     // Create a new attack round.
-    CAttackRound attackRound(PBattleEntity);
+    CAttackRound attackRound(PBattleEntity, PTarget);
 
     action.actiontype = ACTION_ATTACK;
     action.id = PBattleEntity->id;
@@ -377,6 +396,16 @@ void CAIBattle::CastInterrupted(action_t& action, MSGBASIC_ID msg)
 
         PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CMessageBasicPacket(PEntity, PEntity, 0, 0, msg));
     }
+}
+
+void CAIBattle::SetBattleTargetID(uint16 targid)
+{
+    m_battleTarget = targid;
+}
+
+uint16 CAIBattle::GetBattleTargetID()
+{
+    return m_battleTarget;
 }
 
 void CAIBattle::TryHitInterrupt(CBattleEntity* PAttacker)

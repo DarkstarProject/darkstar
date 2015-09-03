@@ -22,9 +22,12 @@ This file is part of DarkStar-server source code.
 */
 
 #include "ai_char.h"
+#include "states/attack_state.h"
 #include "../entities/charentity.h"
 #include "../utils/battleutils.h"
 #include "../packets/action.h"
+#include "../packets/lock_on.h"
+#include "../packets/char_update.h"
 #include "../packets/message_basic.h"
 
 CAIChar::CAIChar(CBattleEntity* PBattleEntity) :
@@ -40,6 +43,31 @@ bool CAIChar::Cast(uint16 targetid, uint16 spellid)
         static_cast<CCharEntity*>(PEntity)->pushPacket(static_cast<CMagicState*>(GetCurrentState())->GetErrorMsg());
     }
     return result;
+}
+
+bool CAIChar::Engage(uint16 targid)
+{
+    //#TODO: check gcd
+
+    auto ret = CAIBattle::Engage(targid);
+    auto PChar = static_cast<CCharEntity*>(PEntity);
+    auto PTarget = static_cast<CBattleEntity*>(PEntity->GetEntity(targid));
+
+    if (ret)
+    {
+        PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(true);
+        PChar->pushPacket(new CLockOnPacket(PChar, PTarget));
+        PChar->pushPacket(new CCharUpdatePacket(PChar));
+    }
+    return ret;
+}
+
+void CAIChar::Disengage()
+{
+    CAIBattle::Disengage();
+    auto PChar = static_cast<CCharEntity*>(PEntity);
+    PChar->pushPacket(new CCharUpdatePacket(PChar));
+    PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(false);
 }
 
 void CAIChar::CastFinished(action_t& action)
@@ -95,5 +123,7 @@ void CAIChar::CastInterrupted(action_t& action, MSGBASIC_ID msg)
     auto message = container->GetErrorMsg();
 
     if (message)
+    {
         static_cast<CCharEntity*>(PEntity)->pushPacket(message);
+    }
 }

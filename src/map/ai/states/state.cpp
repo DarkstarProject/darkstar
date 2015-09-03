@@ -26,9 +26,9 @@ This file is part of DarkStar-server source code.
 
 CState::CState(CBaseEntity* PEntity, uint16 _targid) :
     m_PEntity(PEntity),
-    targid(_targid) {}
+    m_targid(_targid) {}
 
-void CState::UpdateTarget()
+void CState::UpdateTarget(uint16 targid)
 {
     m_PTarget = m_PEntity->GetEntity(targid);
 }
@@ -40,11 +40,10 @@ CBaseEntity* CState::GetTarget()
 
 void CState::SetTarget(uint16 _targid)
 {
-    auto update = _targid != targid;
-    targid = _targid;
-    if (update)
+    if (_targid != m_targid)
     {
-        UpdateTarget();
+        m_targid = _targid;
+        UpdateTarget(_targid);
     }
 }
 
@@ -55,6 +54,6 @@ CMessageBasicPacket* CState::GetErrorMsg()
 
 bool CState::DoUpdate(time_point tick)
 {
-    UpdateTarget();
+    UpdateTarget(m_targid);
     return Update(tick);
 }

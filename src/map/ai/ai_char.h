@@ -34,11 +34,10 @@ public:
     virtual bool Cast(uint16 targetid, uint16 spellid) override;
 
 protected:
-    /* State handlers */
-
-    /* State changing overrides */
 
     /* Attacking functions */
+    virtual bool Engage(uint16 targid) override;
+    virtual void Disengage() override;
 
     /* Casting functions */
     virtual void CastFinished(action_t&) override;

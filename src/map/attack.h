@@ -60,7 +60,8 @@ class CAttackRound;
 class CAttack
 {
 public:
-	CAttack(CBattleEntity* attacker, PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIRECTION direction, CAttackRound* attackRound);
+	CAttack(CBattleEntity* attacker, CBattleEntity* defender, PHYSICAL_ATTACK_TYPE type, 
+            PHYSICAL_ATTACK_DIRECTION direction, CAttackRound* attackRound);
 
 	uint8						GetAnimationID();		// Returns the animation ID.
 	PHYSICAL_ATTACK_TYPE		GetAttackType();		// Returns the attack type (Double, Triple, Zanshin ect).

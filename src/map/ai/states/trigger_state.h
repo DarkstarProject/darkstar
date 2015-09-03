@@ -31,7 +31,8 @@ class CTriggerState : public CState
 public:
     CTriggerState(CBaseEntity* PEntity, uint16 targid);
     virtual bool Update(time_point tick) override;
-    virtual void Clear() override;
+    virtual void Cleanup() override {}
+    virtual void Clear() override {}
     virtual bool CanChangeState() override;
     virtual void TryInterrupt(CBattleEntity* PAttacker) override {}
 };

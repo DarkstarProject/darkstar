@@ -39,6 +39,7 @@ public:
     CAIBattle(CBattleEntity*, std::unique_ptr<CPathFind>&&);
 
     virtual bool Engage(uint16 targetid);
+    virtual void Disengage();
     virtual bool Cast(uint16 targetid, uint16 spellid);
     virtual void TryHitInterrupt(CBattleEntity* PAttacker);
 
@@ -49,10 +50,13 @@ public:
     virtual void CastFinished(action_t&);
     virtual void CastInterrupted(action_t&, MSGBASIC_ID msg);
 
+    void SetBattleTargetID(uint16 targid);
+    uint16 GetBattleTargetID();
+
 protected:
 
     CTargetFind targetFind;
-    CBattleEntity* PBattleTarget;
+    uint16 m_battleTarget;
 
     //global cooldown
     time_point m_LastActionTime;

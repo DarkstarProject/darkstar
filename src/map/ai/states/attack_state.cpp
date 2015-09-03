@@ -28,25 +28,18 @@ This file is part of DarkStar-server source code.
 #include "../../utils/battleutils.h"
 #include "../../packets/action.h"
 
-CAttackState::CAttackState(CBattleEntity* PEntity, uint16 targid) :
-    CState(PEntity, targid),
+CAttackState::CAttackState(CBattleEntity* PEntity):
+    CState(PEntity, 0),
     m_PEntity(PEntity),
     m_attackTime(1s)
 {
-}
-
-CAttackState::~CAttackState()
-{
-    if (m_PEntity->animation == ANIMATION_ATTACK)
-    {
-        m_PEntity->animation = ANIMATION_NONE;
-    }
+    UpdateTarget();
 }
 
 bool CAttackState::Update(time_point tick)
 {
-    auto PTarget = static_cast<CBattleEntity*>(m_PEntity->GetEntity(targid));
-    if (!PTarget || static_cast<CBattleEntity*>(PTarget)->isDead())
+    auto PTarget = static_cast<CBattleEntity*>(GetTarget());
+    if (!PTarget || PTarget->isDead())
     {
         return true;
     }
@@ -62,8 +55,19 @@ bool CAttackState::Update(time_point tick)
     return false;
 }
 
+void CAttackState::Cleanup()
+{
+    m_PEntity->PAIBattle()->Disengage();
+}
+
 void CAttackState::Clear()
 {
+}
+
+void CAttackState::UpdateTarget(uint16 _)
+{
+    //#TODO: handle char changing target
+    CState::UpdateTarget(m_PEntity->PAIBattle()->GetBattleTargetID());
 }
 
 bool CAttackState::CanAttack(CBattleEntity* PTarget)
