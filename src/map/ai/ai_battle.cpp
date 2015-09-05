@@ -68,11 +68,26 @@ void CAIBattle::Disengage()
     PEntity->updatemask |= UPDATE_HP;
 }
 
-void CAIBattle::Attack(action_t& action)
+void CAIBattle::ChangeTarget(bool changed, CBattleEntity* PTarget)
+{
+}
+
+bool CAIBattle::Attack(action_t& action)
 {
     auto PBattleEntity = static_cast<CBattleEntity*>(PEntity);
     auto state = static_cast<CAttackState*>(GetCurrentState());
     auto PTarget = static_cast<CBattleEntity*>(state->GetTarget());
+
+    if (battleutils::IsParalyzed(PBattleEntity))
+    {
+        //#TODO: paralyze message
+        return false;
+    }
+    if (battleutils::IsIntimidated(PBattleEntity, PTarget))
+    {
+        //#TODO: intimidated message
+        return false;
+    }
 
     // Create a new attack round.
     CAttackRound attackRound(PBattleEntity, PTarget);
@@ -221,6 +236,8 @@ void CAIBattle::Attack(action_t& action)
 
     PBattleEntity->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK | EFFECTFLAG_DETECTABLE);
     PBattleEntity->loc.zone->PushPacket(PBattleEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+
+    return true;
 }
 
 bool CAIBattle::Cast(uint16 targetid, uint16 spellid)

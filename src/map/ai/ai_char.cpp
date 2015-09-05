@@ -40,7 +40,7 @@ bool CAIChar::Cast(uint16 targetid, uint16 spellid)
     auto result = CAIBattle::Cast(targetid, spellid);
     if (!result)
     {
-        static_cast<CCharEntity*>(PEntity)->pushPacket(static_cast<CMagicState*>(GetCurrentState())->GetErrorMsg());
+        static_cast<CCharEntity*>(PEntity)->pushPacket(GetCurrentState()->GetErrorMsg());
     }
     return result;
 }
@@ -62,12 +62,40 @@ bool CAIChar::Engage(uint16 targid)
     return ret;
 }
 
+void CAIChar::ChangeTarget(bool changed, CBattleEntity* PNewTarget)
+{
+    if (changed)
+    {
+        auto PChar = static_cast<CCharEntity*>(PEntity);
+        PChar->pushPacket(new CLockOnPacket(PChar, PNewTarget));
+    }
+    else
+    {
+        //error message (from state)
+    }
+}
+
 void CAIChar::Disengage()
 {
     CAIBattle::Disengage();
     auto PChar = static_cast<CCharEntity*>(PEntity);
     PChar->pushPacket(new CCharUpdatePacket(PChar));
     PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(false);
+}
+
+bool CAIChar::Attack(action_t& action)
+{
+    if (GetCurrentState()->HasErrorMsg())
+    {
+        auto PChar = static_cast<CCharEntity*>(PEntity);
+        if (m_errMsgTime + std::chrono::milliseconds(PChar->GetWeaponDelay(false)) < getTick())
+        {
+            m_errMsgTime = getTick();
+            PChar->pushPacket(GetCurrentState()->GetErrorMsg());
+        }
+        return false;
+    }
+    return CAIBattle::Attack(action);
 }
 
 void CAIChar::CastFinished(action_t& action)

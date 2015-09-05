@@ -40,12 +40,13 @@ public:
 
     virtual bool Engage(uint16 targetid);
     virtual void Disengage();
+    virtual void ChangeTarget(bool changed, CBattleEntity* PTarget);
     virtual bool Cast(uint16 targetid, uint16 spellid);
     virtual void TryHitInterrupt(CBattleEntity* PAttacker);
 
     /* State finish functions */
     /* Auto attack */
-    virtual void Attack(action_t&);
+    virtual bool Attack(action_t&);
     /* Casting */
     virtual void CastFinished(action_t&);
     virtual void CastInterrupted(action_t&, MSGBASIC_ID msg);

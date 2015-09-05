@@ -28,7 +28,7 @@ This file is part of DarkStar-server source code.
 #include "../../utils/battleutils.h"
 #include "../../packets/action.h"
 
-CAttackState::CAttackState(CBattleEntity* PEntity):
+CAttackState::CAttackState(CBattleEntity* PEntity) :
     CState(PEntity, 0),
     m_PEntity(PEntity),
     m_attackTime(1s)
@@ -45,12 +45,11 @@ bool CAttackState::Update(time_point tick)
     }
     if (CanAttack(PTarget))
     {
-        m_attackTime += std::chrono::milliseconds(m_PEntity->GetWeaponDelay(false));
-
         action_t action;
-        m_PEntity->PAIBattle()->Attack(action);
-
-        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+        if (m_PEntity->PAIBattle()->Attack(action))
+        {
+            m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+        }
     }
     return false;
 }
@@ -64,9 +63,16 @@ void CAttackState::Clear()
 {
 }
 
-void CAttackState::UpdateTarget(uint16 _)
+void CAttackState::UpdateTarget(uint16 targid)
 {
-    //#TODO: handle char changing target
+    auto newTargid = m_PEntity->PAIBattle()->GetBattleTargetID();
+    if (targid != newTargid)
+    {
+        //#TODO: check validity, range, etc
+        auto PNewTarget = static_cast<CBattleEntity*>(m_PEntity->GetEntity(newTargid));
+        m_PEntity->PAIBattle()->ChangeTarget(true, PNewTarget);
+        SetTarget(newTargid);
+    }
     CState::UpdateTarget(m_PEntity->PAIBattle()->GetBattleTargetID());
 }
 
@@ -74,30 +80,30 @@ bool CAttackState::CanAttack(CBattleEntity* PTarget)
 {
     m_attackTime -= (m_PEntity->PAI->getTick() - m_PEntity->PAI->getPrevTick());
 
-    //#TODO: push the error messages
-    //#TODO: message time vs attack time?
     if (m_attackTime < 0ms)
     {
-        m_attackTime += std::chrono::milliseconds(m_PEntity->GetWeaponDelay(false));
         auto PEntity = static_cast<CBattleEntity*>(m_PEntity);
 
         float dist = distance(PEntity->loc.p, PTarget->loc.p);
 
-        if (dist > PTarget->m_ModelSize)
+        if (dist > 30)
         {
+            m_errorMsg = std::make_unique<CMessageBasicPacket>(PEntity, PTarget, 0, 0, MSGBASIC_LOSE_SIGHT);
+            SetTarget(0);
             return false;
         }
-        if (!isFaceing(PEntity->loc.p, PTarget->loc.p, 40))
+        else if (!isFaceing(PEntity->loc.p, PTarget->loc.p, 40))
         {
-            return false;
+            m_errorMsg = std::make_unique<CMessageBasicPacket>(PEntity, PTarget, 0, 0, MSGBASIC_UNABLE_TO_SEE_TARG);
         }
-        if (battleutils::IsParalyzed(static_cast<CBattleEntity*>(PEntity)))
+        else if (dist > PTarget->m_ModelSize)
         {
-            return false;
+            m_errorMsg = std::make_unique<CMessageBasicPacket>(PEntity, PTarget, 0, 0, MSGBASIC_TARG_OUT_OF_RANGE);
         }
-        if (battleutils::IsIntimidated(static_cast<CBattleEntity*>(PEntity), PTarget))
+        else
         {
-            return true;
+            m_errorMsg.reset();
+            m_attackTime += std::chrono::milliseconds(m_PEntity->GetWeaponDelay(false));
         }
         return true;
     }

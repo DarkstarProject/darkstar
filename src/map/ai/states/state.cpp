@@ -38,6 +38,11 @@ CBaseEntity* CState::GetTarget()
     return m_PTarget;
 }
 
+uint16 CState::GetTargetID()
+{
+    return m_targid;
+}
+
 void CState::SetTarget(uint16 _targid)
 {
     if (_targid != m_targid)
@@ -45,6 +50,11 @@ void CState::SetTarget(uint16 _targid)
         m_targid = _targid;
         UpdateTarget(_targid);
     }
+}
+
+bool CState::HasErrorMsg()
+{
+    return m_errorMsg != nullptr;
 }
 
 CMessageBasicPacket* CState::GetErrorMsg()

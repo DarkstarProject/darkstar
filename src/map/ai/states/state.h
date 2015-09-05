@@ -41,6 +41,7 @@ public:
     CBaseEntity* GetTarget();
     void SetTarget(uint16 targid);
 
+    bool HasErrorMsg();
     /* Releases ownership to the caller */
     CMessageBasicPacket* GetErrorMsg();
 
@@ -59,6 +60,8 @@ protected:
     //state logic done per tick - returns whether to exit the state or not
     virtual bool Update(time_point tick) = 0;
     virtual void UpdateTarget(uint16 targid);
+
+    uint16 GetTargetID();
 
     std::unique_ptr<CMessageBasicPacket> m_errorMsg;
 
