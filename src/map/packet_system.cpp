@@ -1012,7 +1012,7 @@ void SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 targid = RBUFW(data, (0x08));
 
     CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(targid, TYPE_PC);
-
+	ShowDebug(CL_CYAN"%s initiated trade request with %s\n" CL_RESET, PChar->GetName(), PTarget->GetName());
     if ((PTarget != nullptr) && (PTarget->id == charid))
     {
         if (jailutils::InPrison(PChar) || jailutils::InPrison(PTarget))
@@ -1024,12 +1024,12 @@ void SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         if (PTarget->TradePending.id == PChar->id)
         {
-            ShowDebug(CL_CYAN"You have already sent a trade request to %s\n" CL_RESET, PTarget->GetName());
+            ShowDebug(CL_CYAN"%s already sent a trade request to %s\n" CL_RESET, PChar->GetName(), PTarget->GetName());
             return;
         }
         if (!PTarget->UContainer->IsContainerEmpty())
         {
-            ShowDebug(CL_CYAN"You cannot trade with %s at this time\n" CL_RESET, PTarget->GetName());
+            ShowDebug(CL_CYAN"%s UContainer is not empty. %s cannot trade with them at this time\n" CL_RESET, PTarget->GetName(), PChar->GetName());
             return;
         }
         PChar->TradePending.id = charid;
@@ -1061,6 +1061,7 @@ void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
         case 0x00: // request accepted
         {
+			ShowDebug(CL_CYAN"%s accepted trade request from %s\n" CL_RESET, PTarget->GetName(), PChar->GetName());
             if (PChar->TradePending.id == PTarget->id && PTarget->TradePending.id == PChar->id)
             {
                 if (PChar->UContainer->IsContainerEmpty() && PTarget->UContainer->IsContainerEmpty())
@@ -1084,6 +1085,7 @@ void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         break;
         case 0x01: // trade cancelled
         {
+			ShowDebug(CL_CYAN"%s cancelled trade with %s\n" CL_RESET, PTarget->GetName(), PChar->GetName());
             if (PChar->TradePending.id == PTarget->id && PTarget->TradePending.id == PChar->id)
             {
                 if (PTarget->UContainer->GetType() == UCONTAINER_TRADE)
@@ -1105,6 +1107,7 @@ void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         break;
         case 0x02: // trade accepted
         {
+			ShowDebug(CL_CYAN"%s accepted trade with %s\n" CL_RESET, PTarget->GetName(), PChar->GetName());
             if (PChar->TradePending.id == PTarget->id && PTarget->TradePending.id == PChar->id)
             {
                 PChar->UContainer->SetLock();
@@ -1124,6 +1127,7 @@ void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     {
                         // Failed to trade..
                         // Either players containers are full or illegal item trade attempted..
+						ShowDebug(CL_CYAN"%s->%s trade failed (full inventory or illegal items)\n" CL_RESET, PChar->GetName(), PTarget->GetName());
                         PChar->pushPacket(new CTradeActionPacket(PTarget, 1));
                         PTarget->pushPacket(new CTradeActionPacket(PChar, 1));
                     }
@@ -1159,15 +1163,25 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (PTarget != nullptr && PTarget->id == PChar->TradePending.id)
     {
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
-
         // We used to disable Rare/Ex items being added to the container, but that is handled properly else where now
         if (PItem != nullptr && PItem->getID() == itemID && quantity + PItem->getReserve() <= PItem->getQuantity())
         {
+			
             PItem->setReserve(quantity);
             // If item count is zero.. remove from container..
-            PChar->UContainer->SetItem(tradeSlotID, quantity > 0 ? PItem : nullptr);
-
+			if (quantity > 0)
+			{
+				ShowDebug(CL_CYAN"%s->%s trade updating trade slot id %d with item %s, quantity %d\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName(), quantity);
+				PChar->UContainer->SetItem(tradeSlotID, PItem);
+			}
+			else
+			{
+				ShowDebug(CL_CYAN"%s->%s trade updating trade slot id %d with item %d, quantity 0\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName());
+				PChar->UContainer->SetItem(tradeSlotID, nullptr);
+			}
+			ShowDebug(CL_CYAN"%s->%s trade pushing packet to %s\n" CL_RESET, PChar->GetName(), PTarget->GetName(), PChar->GetName());
             PChar->pushPacket(new CTradeItemPacket(PItem, tradeSlotID));
+			ShowDebug(CL_CYAN"%s->%s trade pushing packet to %s\n" CL_RESET, PChar->GetName(), PTarget->GetName(), PTarget->GetName());
             PTarget->pushPacket(new CTradeUpdatePacket(PItem, tradeSlotID));
 
             PChar->UContainer->UnLock();
