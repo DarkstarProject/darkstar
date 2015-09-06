@@ -65,7 +65,7 @@ function onMobRoam(mob)
             mob:messageText(mob, PRISHE_TEXT + 1);
             baseID = baseID + 1;
         end
-        mob:setLocalVar("ready", baseID));
+        mob:setLocalVar("ready", baseID);
         mob:setLocalVar("wait", 0);
     elseif (ready > 0) then
         mob:addEnmity(GetMobByID(ready),0,1);
