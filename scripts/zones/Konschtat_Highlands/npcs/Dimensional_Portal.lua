@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:hasKeyItem(LIGHT_OF_ALTAIEU) == true) or (DIMENSIONAL_PORTAL_UNLOCK == true) then
+	if (player:getCurrentMission(COP) > THE_WARRIOR_S_PATH) or (DIMENSIONAL_PORTAL_UNLOCK == true) then
 		player:startEvent(0x0393);
 	else
 		player:messageSpecial(ALREADY_OBTAINED_TELE+1); -- Telepoint Disappeared
