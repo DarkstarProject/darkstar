@@ -18,7 +18,7 @@ function onMobSkillCheck(target,mob,skill)
     local result = 1;
     local mobhp = mob:getHPP();
 
-    if (mobhp <= 25 and target:isBehind(mob, 48) == false) then
+    if (mobhp <= 25) then
         result = 0;
     end;
 
