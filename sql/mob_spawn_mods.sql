@@ -72,8 +72,10 @@ INSERT INTO `mob_spawn_mods` VALUES (16887889,12,15,1);
 INSERT INTO `mob_spawn_mods` VALUES (17297441,12,25,1);
 INSERT INTO `mob_spawn_mods` VALUES (17408018,12,20,1);
 INSERT INTO `mob_spawn_mods` VALUES (16806227,12,8,1);
+INSERT INTO `mob_spawn_mods` VALUES (16806227,49,1,1); -- Tiamat scripted 2hr
 INSERT INTO `mob_spawn_mods` VALUES (16896161,12,15,1);
 INSERT INTO `mob_spawn_mods` VALUES (16797969,12,15,1);
+INSERT INTO `mob_spawn_mods` VALUES (16797969,49,1,1); -- Jormundgand scripted 2hr
 INSERT INTO `mob_spawn_mods` VALUES (16900314,12,15,1);
 INSERT INTO `mob_spawn_mods` VALUES (17309982,1,1500,1);
 INSERT INTO `mob_spawn_mods` VALUES (17309982,2,18000,1);
@@ -212,6 +214,21 @@ INSERT INTO `mob_spawn_mods` VALUES (16912838,407,150,0); -- Jailer of Hope fast
 INSERT INTO `mob_spawn_mods` VALUES (16912838,7,60,1);
 INSERT INTO `mob_spawn_mods` VALUES (16912838,16,1,1);
 INSERT INTO `mob_spawn_mods` VALUES (16912838,32,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (17572197,16,1,1); -- Enable standard 2hr for Jack cardians for Windurst 6-1
+INSERT INTO `mob_spawn_mods` VALUES (17572198,16,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (17572199,16,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (17572200,16,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (17621014,49,1,1); -- San d'Oria 9-2 BCNM scripted 2hrs
+INSERT INTO `mob_spawn_mods` VALUES (17621015,49,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (17621016,49,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (17621017,49,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (17453064,49,1,1); -- Bastok 9-2 BCNM scripted 2hr for second form Zeid
+INSERT INTO `mob_spawn_mods` VALUES (16904202,49,1,1); -- Ouryu (CoP 4-2) scripted 2hr
+INSERT INTO `mob_spawn_mods` VALUES (17506670,49,1,1); -- Kirin's scripted Astral Flow
+INSERT INTO `mob_spawn_mods` VALUES (16926464,49,1,1); -- Prishe in CoP 8-4
+INSERT INTO `mob_spawn_mods` VALUES (16916815,49,1,1); -- Ix'Aern MNK and helpers
+INSERT INTO `mob_spawn_mods` VALUES (16916816,49,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (16916817,49,1,1);
 /*!40000 ALTER TABLE `mob_spawn_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
