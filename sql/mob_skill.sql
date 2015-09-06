@@ -2347,7 +2347,7 @@ INSERT INTO `mob_skill` VALUES (1530,62,1224,'Sulfurous_Breath',0,7.0,2000,1500,
 INSERT INTO `mob_skill` VALUES (1531,62,1225,'Scorching_Lash',1,20.0,2000,1500,4,0,0,0); -- ~900 dmg
 INSERT INTO `mob_skill` VALUES (1532,62,1226,'Ululation',1,20.0,2000,1500,4,0,0,0); -- Paralyze
 INSERT INTO `mob_skill` VALUES (1533,62,1227,'Magma_Hoplon',0,7.0,2000,1500,1,0,0,0); -- Stoneskin + Blaze Spike
-INSERT INTO `mob_skill` VALUES (1534,62,1228,'Gates_of_Hades',1,20.0,2000,1500,4,0,0,0); -- ~950 dmg + 20hp/tick
+INSERT INTO `mob_skill` VALUES (1534,62,1228,'Gates_of_Hades',1,20.0,2000,3000,4,0,0,0); -- ~950 dmg + 20hp/tick
 
 -- Cerberuses (Orthrus Subspecies)
 -- INSERT INTO `mob_skill` VALUES (1534,62,1228,'Acheron_Flame',1,20.0,2000,1500,4,0,0,0); -- Stronger version of Gates of Hades.
