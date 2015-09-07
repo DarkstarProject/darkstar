@@ -98,6 +98,8 @@ class CPathFind
     void Clear();
     bool isNavMeshEnabled();
 
+    bool ValidPosition(position_t* pos);
+
     // checks if mob is at given point
     bool AtPoint(position_t* pos);
 

@@ -4665,61 +4665,67 @@ namespace battleutils
         }
     }
 
-    void DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset)
+    bool DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset)
     {
-        if (PMob->getMobMod(MOBMOD_DRAW_IN) > 0)
+        position_t* pos = &PMob->loc.p;
+        position_t nearEntity = nearPosition(*pos, offset, M_PI);
+
+        // validate the drawin position before continuing
+        if(!PMob->PBattleAI->m_PPathFind->ValidPosition(pos))
         {
-            position_t* pos = &PMob->loc.p;
-            position_t nearEntity = nearPosition(*pos, offset, M_PI);
+            return false;
+        }
 
-            float drawInDistance = (PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? PMob->getMobMod(MOBMOD_DRAW_IN) : PMob->m_ModelSize * 2);
+        float drawInDistance = (PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? PMob->getMobMod(MOBMOD_DRAW_IN) : PMob->m_ModelSize * 2);
 
-            std::function <void(CBattleEntity*)> drawInFunc = [PMob, drawInDistance, nearEntity](CBattleEntity* PMember)
+        std::function <void(CBattleEntity*)> drawInFunc = [PMob, drawInDistance, nearEntity](CBattleEntity* PMember)
+        {
+            float pDistance = distance(PMob->loc.p, PMember->loc.p);
+
+            if (PMob->loc.zone == PMember->loc.zone && pDistance > drawInDistance && PMember->status != STATUS_CUTSCENE_ONLY)
             {
-                float pDistance = distance(PMob->loc.p, PMember->loc.p);
-
-                if (PMob->loc.zone == PMember->loc.zone && pDistance > drawInDistance && PMember->status != STATUS_CUTSCENE_ONLY)
+                // don't draw in dead players for now!
+                // see tractor
+                if (PMember->isDead() || PMember->animation == ANIMATION_CHOCOBO)
                 {
-                    // don't draw in dead players for now!
-                    // see tractor
-                    if (PMember->isDead() || PMember->animation == ANIMATION_CHOCOBO)
+                    // don't do anything
+                }
+                else
+                {
+                    // draw in!
+                    PMember->loc.p.x = nearEntity.x;
+                    // move a little higher to prevent getting stuck
+                    PMember->loc.p.y = nearEntity.y - 0.1f;
+                    PMember->loc.p.z = nearEntity.z;
+
+                    if (PMember->objtype == TYPE_PC)
                     {
-                        // don't do anything
+                        CCharEntity* PChar = (CCharEntity*)PMember;
+                        PChar->pushPacket(new CPositionPacket(PChar));
                     }
                     else
                     {
-                        // draw in!
-                        PMember->loc.p.x = nearEntity.x;
-                        PMember->loc.p.y = nearEntity.y;
-                        PMember->loc.p.z = nearEntity.z;
-
-                        if (PMember->objtype == TYPE_PC)
-                        {
-                            CCharEntity* PChar = (CCharEntity*)PMember;
-                            PChar->pushPacket(new CPositionPacket(PChar));
-                        }
-                        else
-                        {
-                            PMember->loc.zone->PushPacket(PMember, CHAR_INRANGE, new CEntityUpdatePacket(PMember, ENTITY_UPDATE, UPDATE_POS));
-                        }
-
-                        luautils::OnMobDrawIn(PMob, PMember);
-                        PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CMessageBasicPacket(PMember, PMember, 0, 0, 232));
+                        PMember->loc.zone->PushPacket(PMember, CHAR_INRANGE, new CEntityUpdatePacket(PMember, ENTITY_UPDATE, UPDATE_POS));
                     }
-                }
-            };
 
-            // check if i should draw-in party/alliance
-            if (PMob->getMobMod(MOBMOD_DRAW_IN) > 1)
-            {
-                PEntity->ForAlliance(drawInFunc);
+                    luautils::OnMobDrawIn(PMob, PMember);
+                    PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CMessageBasicPacket(PMember, PMember, 0, 0, 232));
+                }
             }
-            // no party present or draw-in is set to target only
-            else
-            {
-                drawInFunc(PEntity);
-            }
+        };
+
+        // check if i should draw-in party/alliance
+        if (PMob->getMobMod(MOBMOD_DRAW_IN) > 1)
+        {
+            PEntity->ForAlliance(drawInFunc);
         }
+        // no party present or draw-in is set to target only
+        else
+        {
+            drawInFunc(PEntity);
+        }
+
+        return true;
     }
 
     /************************************************************************
