@@ -79,9 +79,6 @@ class CNavMesh
     // returns true if no wall was hit
     bool raycast(position_t start, position_t end);
 
-    // validate the integrity of the navmesh
-    bool test(uint16 zoneId);
-
   private:
     void outputError(uint32 status);
 

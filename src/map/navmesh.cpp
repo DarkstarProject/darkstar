@@ -107,7 +107,6 @@ bool CNavMesh::load(char* path)
 
   if (!fp)
   {
-    ShowError("CNavMesh::load Error loading navmesh (%s)\n", path);
     return false;
   }
 
@@ -441,59 +440,4 @@ bool CNavMesh::raycast(position_t start, position_t end)
   }
 
   return false;
-}
-
-bool CNavMesh::test(uint16 zoneId)
-{
-  position_t path[30];
-  int8 size = 30;
-  position_t start;
-  position_t end;
-  int8 expectedLength = 0;
-
-  switch(zoneId){
-    case 127:
-      // behe dominion
-      // navmesh transformation x, -y, -z
-      start.x = 153;
-      start.y = 4;
-      start.z = -98;
-
-      end.x = 152;
-      end.y = 4;
-      end.z = -120;
-
-      expectedLength = 3;
-    break;
-    case 103:
-      // valkurm dunes
-      start.x = 656;
-      start.y = 1;
-      start.z = -116;
-
-      end.x = 646;
-      end.y = 0;
-      end.z = -148;
-      expectedLength = 4;
-    break;
-    default:
-      return true;
-  }
-
-  int8 totalLength = findPath(start, end, path, size);
-
-  if(totalLength == expectedLength)
-  {
-    if(end.x != path[totalLength-1].x || end.z != path[totalLength-1].z){
-      ShowError("CNavMesh::test Zone (%d) Failed sanity test, end points do not match\n", zoneId);
-      return false;
-    }
-  }
-  else
-  {
-    ShowError("CNavMesh::test Zone (%d) Failed sanity test, totalLength: (%d) expected: (%d)\n", zoneId, totalLength, expectedLength);
-    return false;
-  }
-
-  return true;
 }
