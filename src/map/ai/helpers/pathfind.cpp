@@ -168,6 +168,18 @@ bool CPathFind::isNavMeshEnabled()
 	return m_PTarget->loc.zone && m_PTarget->loc.zone->m_navMesh != nullptr;
 }
 
+bool CPathFind::ValidPosition(position_t* pos)
+{
+    if(isNavMeshEnabled())
+    {
+      return m_PTarget->loc.zone->m_navMesh->validPosition(*pos);
+    }
+    else
+    {
+      return true;
+    }
+}
+
 void CPathFind::LimitDistance(float maxLength)
 {
 	m_maxDistance = maxLength;

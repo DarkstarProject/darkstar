@@ -387,6 +387,34 @@ bool CNavMesh::inWater(position_t point)
   return false;
 }
 
+bool CNavMesh::validPosition(position_t position)
+{
+  float spos[3];
+  CNavMesh::ToDetourPos(&position, spos);
+
+  float polyPickExt[3];
+  polyPickExt[0] = 30;
+  polyPickExt[1] = 60;
+  polyPickExt[2] = 30;
+
+  float snearest[3];
+
+  dtQueryFilter filter;
+  filter.setIncludeFlags(0xffff);
+  filter.setExcludeFlags(0);
+
+  dtPolyRef startRef;
+
+  dtStatus status = m_navMeshQuery->findNearestPoly(spos, polyPickExt, &filter, &startRef, snearest);
+
+  if(dtStatusFailed(status))
+  {
+    return false;
+  }
+
+  return m_navMesh->isValidPolyRef(startRef);
+}
+
 bool CNavMesh::raycast(position_t start, position_t end)
 {
   dtStatus status;
