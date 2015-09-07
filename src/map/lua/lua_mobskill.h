@@ -56,6 +56,9 @@ public:
 	int32 getMsg(lua_State*);
 	int32 getTotalTargets(lua_State*);
 	int32 setSkillchain(lua_State*);
+
+        // Set a temporary knockback
+	int32 setKnockback(lua_State*);
 };
 
 #endif
