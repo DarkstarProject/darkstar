@@ -1870,9 +1870,8 @@ namespace battleutils
         {
             PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 
-            //40% chance to break bind when dmg received
-            if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && dsprand::GetRandomNumber(100) < 40)
-                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
+            // Check for bind breaking
+            BindBreakCheck(PAttacker, PDefender);
 
             switch (PDefender->objtype)
             {
@@ -2005,9 +2004,8 @@ namespace battleutils
             damage = getOverWhelmDamageBonus(PChar, PDefender, (uint16)damage);
             PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 
-            //40% chance to break bind when dmg received
-            if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && dsprand::GetRandomNumber(100) < 40)
-                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
+            // Check for bind breaking
+            BindBreakCheck(PChar, PDefender);
 
             switch (PDefender->objtype)
             {
@@ -2926,7 +2924,7 @@ namespace battleutils
             if (skillchain != SC_NONE)
             {
                 PSCEffect->SetStartTime(gettick());
-                ShowDebug("duration: %d", PSCEffect->GetDuration());
+             //   ShowDebug("duration: %d", PSCEffect->GetDuration());
                 PSCEffect->SetDuration(PSCEffect->GetDuration() - 1000);
                 PSCEffect->SetTier(GetSkillchainTier((SKILLCHAIN_ELEMENT)skillchain));
                 PSCEffect->SetPower(skillchain);
@@ -4341,8 +4339,8 @@ namespace battleutils
         }
     }
 
-    float HandleTranquilHeart(CBattleEntity* PEntity) {
-
+    float HandleTranquilHeart(CBattleEntity* PEntity)
+    {
         float reductionPercent = 0.f;
 
         if (PEntity->objtype == TYPE_PC && charutils::hasTrait((CCharEntity*)PEntity, TRAIT_TRANQUIL_HEART))
@@ -4361,6 +4359,52 @@ namespace battleutils
         }
 
         return reductionPercent;
+    }
+
+    void BindBreakCheck(CBattleEntity* PAttacker, CBattleEntity* PDefender)
+    {
+        if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND))
+        {
+            uint16 BindBreakChance = 0; // 0-1000 (100.0%) scale. Maybe change to a float later..
+            uint16 LvDiffByExp = charutils::GetRealExp(PAttacker->GetMLevel(), PDefender->GetMLevel()); // This is temp.
+
+            // Todo: replace with an actual calculated value based on level difference. Not it, Bro!
+            // This entire block of conditionals should not exist. Lv diff really shouldn't be handled at the exp check level either.
+            // It might not even be in sync with the check values the entire way from lv 1 to lv 99 for all we know.
+            if (LvDiffByExp >= 400) // IT
+            {
+                BindBreakChance = 999;
+            }
+            else if (LvDiffByExp >= 240) // VT
+            {
+                BindBreakChance = 990;
+            }
+            else if (LvDiffByExp >= 120) // T
+            {
+                BindBreakChance = 750;
+            }
+            else if (LvDiffByExp == 100) // EM
+            {
+                BindBreakChance = 300; // Should probably be higher.
+            }
+            else if (LvDiffByExp >= 75) // DC
+            {
+                BindBreakChance = 150; // Should probably be higher.
+            }
+            else if (LvDiffByExp >= 15) // EP
+            {
+                BindBreakChance = 150;
+            }
+            else if (LvDiffByExp < 15) // Everything weaker than EP, including both TW and that tier we don't have implimented.
+            {
+                BindBreakChance = 10; // Should probably be higher than 1% and I know darn well it ain't zero.
+            }
+
+            if (BindBreakChance > dsprand::GetRandomNumber(1000))
+            {
+                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
+            }
+        }
     }
 
     int32 HandleStoneskin(CBattleEntity* PDefender, int32 damage)
@@ -4507,8 +4551,8 @@ namespace battleutils
     uint8 GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell)
     {
         if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE) // Divine Veil goes here because -na spells have AoE w/ Accession
-            if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ACCESSION) || (PCaster->objtype == TYPE_PC && 
-            charutils::hasTrait((CCharEntity*)PCaster, TRAIT_DIVINE_VEIL) && PSpell->isNa() && 
+            if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ACCESSION) || (PCaster->objtype == TYPE_PC &&
+            charutils::hasTrait((CCharEntity*)PCaster, TRAIT_DIVINE_VEIL) && PSpell->isNa() &&
             (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_DIVINE_SEAL) || PCaster->getMod(MOD_AOE_NA) == 1)))
                 return SPELLAOE_RADIAL;
             else

@@ -207,11 +207,14 @@ namespace battleutils
     int32               HandleSevereDamageEffect(CBattleEntity* PDefender, EFFECT effect, int32 damage, bool removeEffect);
     void                HandleTacticalParry(CBattleEntity* PEntity);
 
+    // Handles everything related to breaking Bind
+    void                BindBreakCheck(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+
     // returns damage taken
     int32               HandleStoneskin(CBattleEntity* PDefender, int32 damage);
     int32               HandleFanDance(CBattleEntity* PDefender, int32 damage);
 
-    // stores damage for afflatus misery if active	
+    // stores damage for afflatus misery if active
     void                HandleAfflatusMiseryDamage(CBattleEntity* PDefender, int32 damage);
     // boosts accuracy when afflatus msiery is active
     void                HandleAfflatusMiseryAccuracyBonus(CBattleEntity* PAttacker);
