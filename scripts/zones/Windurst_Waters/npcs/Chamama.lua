@@ -146,8 +146,8 @@ function onEventFinish(player,csid,option)
 		player:setVar("ThePromise",1);
 	elseif (csid == 0x031f) then
 		player:tradeComplete();
-		player:addKeyItem(FAKE_MOUSTACHE);
-		player:messageSpecial(KEYITEM_OBTAINED,FAKE_MOUSTACHE);
+		player:addKeyItem(INVISIBLE_MAN_STICKER);
+		player:messageSpecial(KEYITEM_OBTAINED,INVISIBLE_MAN_STICKER);
 	elseif (csid == 0x028e and option == 1) then  -- IN A PICKLE + RARAB TAIL: Quest Begin
 		player:addQuest(WINDURST,IN_A_PICKLE);
 	elseif (csid == 0x0293) then  -- IN A PICKLE: Quest Turn In (1st Time)
