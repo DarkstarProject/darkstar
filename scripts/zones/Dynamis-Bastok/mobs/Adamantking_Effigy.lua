@@ -48,7 +48,6 @@ function onMobEngaged(mob,target)
 						if (DynaMob ~= nil) then
 							-- Spawn Mob
 							SpawnMob(DynaMob):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
-							printf("super link? %d", GetMobByID(DynaMob):getMobMod(MOBMOD_SUPERLINK));
 							GetMobByID(DynaMob):setPos(X,Y,Z);
 							GetMobByID(DynaMob):setSpawn(X,Y,Z);
 							-- Spawn Pet for BST, DRG, and SMN

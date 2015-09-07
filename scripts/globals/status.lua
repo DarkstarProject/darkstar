@@ -857,7 +857,7 @@ MOD_IMPACTRES         = 51
 MOD_HTHRES            = 52
 MOD_FIRERES           = 54
 MOD_ICERES            = 55
-MOD_WINDRES           = 59
+MOD_WINDRES           = 56
 MOD_EARTHRES          = 57
 MOD_THUNDERRES        = 58
 MOD_WATERRES          = 59
@@ -1907,6 +1907,7 @@ MOBMOD_ADD_EFFECT     = 45
 MOBMOD_AUTO_SPIKES    = 46
 MOBMOD_SPAWN_LEASH    = 47
 MOBMOD_SHARE_TARGET   = 48
+MOBMOD_SCRIPTED_2HOUR = 49
 
 
 ------------------------------------

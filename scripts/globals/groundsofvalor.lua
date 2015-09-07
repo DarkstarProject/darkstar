@@ -38,7 +38,7 @@ GOV_MENU_REVIEW_PROWESS = 7;
 -----------------------------------
 
 GOV_MENU_REPATRIATION    = 20;
-GOV_MENU_CIRCUMSPECTION  = 37;
+GOV_MENU_CIRCUMSPECTION  = 36;
 GOV_MENU_HOMING_INSTINCT = 52;
 GOV_MENU_RERAISE         = 68;
 GOV_MENU_RERAISE_II      = 84;
@@ -151,9 +151,11 @@ GOV_EVENT_QUICKSAND_CAVES        = 15;
 ----------------------------------
 
 function startGov(eventid,player)
-    local hasRegime = player:getVar("fov_regimeid");
-    local tabs = player:getCurrency("valor_point");
-    player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
+    if (GROUNDS_TOMES == 1) then
+       local hasRegime = player:getVar("fov_regimeid");
+       local tabs = player:getCurrency("valor_point");
+       player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
+	end;
 end
 
 ----------------------------------

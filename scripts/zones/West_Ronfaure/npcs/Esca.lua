@@ -48,16 +48,16 @@ function onTrigger(player,npc)
 	local Quotas_Status = player:getVar("ChasingQuotas_Progress");
 	
 	-- "The Pickpocket" Quest Dialog
-	if (thePickpocket == 1 and player:getVar("thePickpocketGiltGlasses") == 1)  then
+	if (Quotas_Status == 4) then
+		player:startEvent(137); -- My earring!  I stole the last dragoon's armor.  Chosen option does not matter.
+	elseif (Quotas_Status == 5) then
+		player:startEvent(138); -- Reminder for finding the armor.
+	elseif (thePickpocket == 1 and player:getVar("thePickpocketGiltGlasses") == 1)  then
 		player:startEvent(0x0080);
 	elseif (thePickpocket == 1) then
 		player:startEvent(0x0078);
 	elseif (thePickpocket == 2) then
 		player:startEvent(0x007b);
-	elseif (Quotas_Status == 4) then
-		player:startEvent(137); -- My earring!  I stole the last dragoon's armor.  Chosen option does not matter.
-	elseif (Quotas_Status == 5) then
-		player:startEvent(138); -- Reminder for finding the armor.
 	else
 		player:startEvent(0x0077);
 	end;
