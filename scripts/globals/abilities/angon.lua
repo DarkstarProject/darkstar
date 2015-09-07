@@ -36,5 +36,6 @@ function onUseAbility(player,target,ability)
         ability:setMsg(75);
     end
 
+    target:updateClaim(player);
     return typeEffect;
 end;
