@@ -24,7 +24,11 @@ function onMobWeaponSkill(target, mob, skill)
 
 	local typeEffect = EFFECT_STUN;
 
-    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 4);
+        if math.random() < 0.6 then
+          skill:setKnockback(1);
+        end
+
+    -- MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 4);
 
 	target:delHP(dmg);
 	return dmg;

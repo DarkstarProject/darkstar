@@ -1047,6 +1047,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
         // reset the skill's message back to default
         m_PMobSkill->setMsg(defaultMessage);
+        m_PMobSkill->setTempKnockback(0);
 
         Action.param = luautils::OnMobWeaponSkill(PTarget, m_PMob, GetCurrentMobSkill());
 
@@ -1076,7 +1077,8 @@ void CAIMobDummy::ActionAbilityFinish()
         if (Action.speceffect & SPECEFFECT_HIT)
         {
             Action.speceffect = SPECEFFECT_RECOIL;
-            Action.knockback = m_PMobSkill->getKnockback();
+            Action.knockback = (m_PMobSkill->getTempKnockback() != 0) ? m_PMobSkill->getTempKnockback() : m_PMobSkill->getKnockback();
+
             if (it == m_PTargetFind->m_targets.begin() && (m_PMobSkill->getSkillchain() != 0))
             {
                 CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(m_PMobSkill->getSkillchain());

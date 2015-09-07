@@ -173,12 +173,12 @@ INSERT INTO `mob_skill` VALUES (33,188,33,'Stone_Throw',0,25.0,2000,1500,4,0,0,0
 INSERT INTO `mob_skill` VALUES (36,188,36,'Blank_Gaze_Dispel',0,16.0,2000,2000,4,0,0,0);
 
 -- Mandragora
-INSERT INTO `mob_skill` VALUES (45,178,45,'Dream_Flower',1,15.0,2000,1500,4,0,0,0); -- Not used by Lycopodia
-INSERT INTO `mob_skill` VALUES (46,178,46,'Wild_Oats',0,7.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (48,178,48,'Photosynthesis',0,7.0,2000,1500,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (49,178,49,'Leaf_Dagger',0,7.0,2000,1500,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (45,178,45,'Dream_Flower',1,15.0,2000,1500,4,0,0,0); -- Not used by Lycopodia
+-- INSERT INTO `mob_skill` VALUES (46,178,46,'Wild_Oats',0,7.0,2000,1500,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (48,178,48,'Photosynthesis',0,7.0,2000,1500,1,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (49,178,49,'Leaf_Dagger',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (44,178,44,'Head_Butt',0,7.0,1500,1500,4,0,0,0); -- occasional knockback..
-INSERT INTO `mob_skill` VALUES (50,178,50,'Scream',1,15.0,2000,1500,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (50,178,50,'Scream',1,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1954,496,1603,'Petal_Pirouette',1,15.0,2000,1500,4,0,0,0); -- Only used by Chaneque
 
 -- INSERT INTO `mob_skill` VALUES (2154,?,?,'Demonic_Flower',0,7.0,2000,1500,4,0,0,0); -- Only used by certain NM
@@ -907,7 +907,7 @@ INSERT INTO `mob_skill` VALUES (810,334,740,'Fanatic_Dance',1,10.0,2000,2000,4,0
 -- Quadav
 INSERT INTO `mob_skill` VALUES (355,200,355,'Ore_Toss',0,10.0,2000,2000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (377,200,354,'Howl',1,20.0,2000,1500,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (356,200,356,'Head_Butt',0,7.0,2000,2000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (356,200,356,'Head_Butt',0,7.0,2000,2000,4,0,0,1);
 INSERT INTO `mob_skill` VALUES (357,200,357,'Shell_Bash',0,7.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (358,200,358,'Shell_Guard',0,7.0,2000,3000,1,0,0,0);
 
@@ -915,13 +915,13 @@ INSERT INTO `mob_skill` VALUES (358,200,358,'Shell_Guard',0,7.0,2000,3000,1,0,0,
 
 INSERT INTO `mob_skill` VALUES (377,201,354,'Howl',1,20.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (355,201,355,'Ore_Toss',0,10.0,2000,2000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (356,201,356,'Head_Butt',0,7.0,2000,2000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (356,201,356,'Head_Butt',0,7.0,2000,2000,4,0,0,1);
 INSERT INTO `mob_skill` VALUES (357,201,357,'Shell_Bash',0,7.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (358,201,358,'Shell_Guard',0,7.0,2000,3000,1,0,0,0);
 
 INSERT INTO `mob_skill` VALUES (377,202,354,'Howl',1,20.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (355,202,355,'Ore_Toss',0,10.0,2000,2000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (356,202,356,'Head_Butt',0,7.0,2000,2000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (356,202,356,'Head_Butt',0,7.0,2000,2000,4,0,0,1);
 INSERT INTO `mob_skill` VALUES (357,202,357,'Shell_Bash',0,7.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (358,202,358,'Shell_Guard',0,7.0,2000,3000,1,0,0,0);
 
@@ -943,7 +943,7 @@ INSERT INTO `mob_skill` VALUES (355,397,355,'Ore_Toss',0,10.0,2000,2000,4,0,0,0)
 -- Quadav NM
 INSERT INTO `mob_skill` VALUES (377,337,354,'Howl',1,20.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (355,337,355,'Ore_Toss',0,10.0,2000,2000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (356,337,356,'Head_Butt',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (356,337,356,'Head_Butt',0,7.0,2000,1500,4,0,0,1);
 INSERT INTO `mob_skill` VALUES (357,337,357,'Shell_Bash',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (358,337,358,'Shell_Guard',0,7.0,2000,3000,1,0,0,0);
 
@@ -1230,7 +1230,7 @@ INSERT INTO `mob_skill` VALUES (146,333,146,'Feather_Barrier',0,7.0,2000,1500,1,
 INSERT INTO `mob_skill` VALUES (147,333,147,'Stormwind',1,15.0,2000,1500,4,0,0,0);
 
 -- Pet Genbu
-INSERT INTO `mob_skill` VALUES (549,330,477,'Head_Butt_Turtle',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (549,330,477,'Head_Butt_Turtle',0,7.0,2000,1500,4,0,0,2);
 INSERT INTO `mob_skill` VALUES (550,330,478,'Tortoise_Stomp',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (551,330,479,'Harden_Shell',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (552,330,480,'Earth_Breath',4,10.0,2000,1500,4,0,0,0);
@@ -1251,7 +1251,7 @@ INSERT INTO `mob_skill` VALUES (17,332,17,'Claw_Cyclone',4,15.0,2000,1500,4,0,0,
 
 -- Adamantoises
 INSERT INTO `mob_skill` VALUES (548,2,476,'Tortoise_Song',1,20.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (549,2,477,'Head_Butt_Turtle',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (549,2,477,'Head_Butt_Turtle',0,7.0,2000,1500,4,0,0,2);
 INSERT INTO `mob_skill` VALUES (550,2,478,'Tortoise_Stomp',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (551,2,479,'Harden_Shell',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (552,2,480,'Earth_Breath',4,15.0,2000,1500,4,0,0,0);
@@ -1307,7 +1307,7 @@ INSERT INTO `mob_skill` VALUES (146,280,146,'Feather_Barrier',0,7.0,2000,1500,1,
 INSERT INTO `mob_skill` VALUES (147,280,147,'Stormwind',1,15.0,2000,1500,4,0,0,0);
 
 -- Genbu
-INSERT INTO `mob_skill` VALUES (549,277,477,'Head_Butt_Turtle',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (549,277,477,'Head_Butt_Turtle',0,7.0,2000,1500,4,0,0,2);
 INSERT INTO `mob_skill` VALUES (550,277,478,'Tortoise_Stomp',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (551,277,479,'Harden_Shell',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (552,277,480,'Earth_Breath',4,15.0,2000,1500,4,0,0,0);
@@ -2223,7 +2223,7 @@ INSERT INTO `mob_skill` VALUES (2155,407,2411,'Phantasmal_Dance',1,15.0,2000,150
 
 -- Seed Quadav
 INSERT INTO `mob_skill` VALUES (355,408,355,'Ore_Toss',0,10.0,2000,2000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (356,408,356,'Head_Butt',0,7.0,2000,2000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (356,408,356,'Head_Butt',0,7.0,2000,2000,4,0,0,1);
 INSERT INTO `mob_skill` VALUES (357,408,357,'Shell_Bash',0,7.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (358,408,358,'Shell_Guard',0,7.0,2000,3000,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (377,408,354,'Howl',1,20.0,2000,1500,1,0,0,0);
