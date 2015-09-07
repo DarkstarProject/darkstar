@@ -264,11 +264,6 @@ uint8 CMobSkill::getKnockback()
     return m_knockback;
 }
 
-uint8 CMobSkill::getTempKnockback()
-{
-    return m_tempKnockback;
-}
-
 bool CMobSkill::isDamageMsg()
 {
   return m_Message == 110 || m_Message == 185 || m_Message == 197 || m_Message == 264 || m_Message == 187 || m_Message == 225 || m_Message == 226;
@@ -282,11 +277,6 @@ void CMobSkill::setParam(int16 value)
 void CMobSkill::setKnockback(uint8 knockback)
 {
     m_knockback = knockback;
-}
-
-void CMobSkill::setTempKnockback(uint8 knockback)
-{
-    m_tempKnockback = knockback;
 }
 
 uint16 CMobSkill::getValidTargets()
