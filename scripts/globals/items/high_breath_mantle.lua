@@ -12,8 +12,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-	if (target:hasStatusEffect(EFFECT_ENCHANTMENT) == true) then
-		target:delStatusEffect(EFFECT_ENCHANTMENT);
+	if (target:getStatusEffect(EFFECT_ENCHANTMENT) ~= nil) then
+		local effect = target:getStatusEffect(EFFECT_ENCHANTMENT);
+		if (effect:getSubType() == 15487) then
+			target:delStatusEffect(EFFECT_ENCHANTMENT);
+		end;
 	end;
 	return 0;
 end;
