@@ -67,7 +67,6 @@ public:
     float       getRadius();
     int16       getParam();
     uint8       getKnockback();
-    uint8       getTempKnockback();
     uint8       getSkillchain();
 
     bool        isDamageMsg();
@@ -86,7 +85,6 @@ public:
     void        setTotalTargets(uint16 targets);
     void        setParam(int16 value);
     void        setKnockback(uint8 knockback);
-    void        setTempKnockback(uint8 knockback);
     void        setSkillchain(uint8 skillchain);
 
     const int8* getName();
@@ -108,7 +106,6 @@ private:
     uint16      m_Message;          //message param, scripters can edit this depending on self/resist/etc.
     int16       m_TP;               //the tp at the time of finish readying (for scripts)
     uint8       m_knockback;        //knockback value (0-7)
-    uint8       m_tempKnockback;    // Used from mobskill scripts. knockback value (0-7)
     uint8       m_skillchain;       //weaponskill ID of skillchain properties
 
     string_t    m_name;
