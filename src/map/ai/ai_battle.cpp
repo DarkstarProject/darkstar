@@ -48,8 +48,8 @@ bool CAIBattle::Engage(uint16 targetid)
     if (!m_battleTarget && PTarget && !PTarget->isDead())
     {
         m_battleTarget = targetid;
-        PEntity->PAI->queueAction(queueAction_t(0, true, [this](CBaseEntity* PEntity) {
-            ChangeState<CAttackState>(static_cast<CBattleEntity*>(PEntity));
+        PEntity->PAI->queueAction(queueAction_t(0, true, [this, targetid](CBaseEntity* PEntity) {
+            ChangeState<CAttackState>(static_cast<CBattleEntity*>(PEntity), targetid);
         }));
         PEntity->animation = ANIMATION_ATTACK;
         PEntity->updatemask |= UPDATE_HP;
@@ -237,6 +237,15 @@ bool CAIBattle::Attack(action_t& action)
     PBattleEntity->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK | EFFECTFLAG_DETECTABLE);
     PBattleEntity->loc.zone->PushPacket(PBattleEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
 
+    return true;
+}
+
+bool CAIBattle::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg)
+{
+    if (distance(PEntity->loc.p, PTarget->loc.p) > PTarget->m_ModelSize)
+    {
+        return false;
+    }
     return true;
 }
 

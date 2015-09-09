@@ -29,7 +29,7 @@ This file is part of DarkStar-server source code.
 class CAttackState : public CState
 {
 public:
-    CAttackState(CBattleEntity* PEntity);
+    CAttackState(CBattleEntity* PEntity, uint16 targid);
 
     //state logic done per tick - returns whether to exit the state or not
     virtual bool Update(time_point tick) override;
@@ -44,7 +44,7 @@ public:
 
 protected:
     virtual void UpdateTarget(uint16 = 0) override;
-    bool CanAttack(CBattleEntity* PTarget);
+    virtual bool CanAttack(CBattleEntity* PTarget);
 
     CBattleEntity* const m_PEntity;
     duration m_attackTime;

@@ -38,12 +38,14 @@ protected:
     /* Attacking functions */
     virtual bool Engage(uint16 targid) override;
     virtual void Disengage() override;
+    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
     virtual bool Attack(action_t&) override;
     virtual void ChangeTarget(bool changed, CBattleEntity* PNewTarget) override;
 
     /* Casting functions */
     virtual void CastFinished(action_t&) override;
     virtual void CastInterrupted(action_t&, MSGBASIC_ID) override;
+
 
     time_point m_errMsgTime;
 };

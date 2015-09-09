@@ -47,6 +47,8 @@ public:
     /* State finish functions */
     /* Auto attack */
     virtual bool Attack(action_t&);
+    /* Returns whether to call Attack or not (which includes error messages) */
+    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg);
     /* Casting */
     virtual void CastFinished(action_t&);
     virtual void CastInterrupted(action_t&, MSGBASIC_ID msg);

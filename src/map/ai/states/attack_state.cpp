@@ -28,8 +28,8 @@ This file is part of DarkStar-server source code.
 #include "../../utils/battleutils.h"
 #include "../../packets/action.h"
 
-CAttackState::CAttackState(CBattleEntity* PEntity) :
-    CState(PEntity, 0),
+CAttackState::CAttackState(CBattleEntity* PEntity, uint16 targid) :
+    CState(PEntity, targid),
     m_PEntity(PEntity),
     m_attackTime(1s)
 {
@@ -65,13 +65,17 @@ void CAttackState::Clear()
 
 void CAttackState::UpdateTarget(uint16 targid)
 {
+    m_errorMsg.reset();
     auto newTargid = m_PEntity->PAIBattle()->GetBattleTargetID();
     if (targid != newTargid)
     {
         //#TODO: check validity, range, etc
-        auto PNewTarget = static_cast<CBattleEntity*>(m_PEntity->GetEntity(newTargid));
-        m_PEntity->PAIBattle()->ChangeTarget(true, PNewTarget);
-        SetTarget(newTargid);
+        if (targid != 0)
+        {
+            auto PNewTarget = static_cast<CBattleEntity*>(m_PEntity->GetEntity(newTargid));
+            m_PEntity->PAIBattle()->ChangeTarget(true, PNewTarget);
+            SetTarget(newTargid);
+        }
     }
     CState::UpdateTarget(m_PEntity->PAIBattle()->GetBattleTargetID());
 }
@@ -82,27 +86,10 @@ bool CAttackState::CanAttack(CBattleEntity* PTarget)
 
     if (m_attackTime < 0ms)
     {
-        auto PEntity = static_cast<CBattleEntity*>(m_PEntity);
+        auto ret = m_PEntity->PAIBattle()->CanAttack(PTarget, m_errorMsg);
 
-        float dist = distance(PEntity->loc.p, PTarget->loc.p);
-
-        if (dist > 30)
+        if (ret && !m_errorMsg)
         {
-            m_errorMsg = std::make_unique<CMessageBasicPacket>(PEntity, PTarget, 0, 0, MSGBASIC_LOSE_SIGHT);
-            SetTarget(0);
-            return false;
-        }
-        else if (!isFaceing(PEntity->loc.p, PTarget->loc.p, 40))
-        {
-            m_errorMsg = std::make_unique<CMessageBasicPacket>(PEntity, PTarget, 0, 0, MSGBASIC_UNABLE_TO_SEE_TARG);
-        }
-        else if (dist > PTarget->m_ModelSize)
-        {
-            m_errorMsg = std::make_unique<CMessageBasicPacket>(PEntity, PTarget, 0, 0, MSGBASIC_TARG_OUT_OF_RANGE);
-        }
-        else
-        {
-            m_errorMsg.reset();
             m_attackTime += std::chrono::milliseconds(m_PEntity->GetWeaponDelay(false));
         }
         return true;

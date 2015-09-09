@@ -79,8 +79,35 @@ void CAIChar::Disengage()
 {
     CAIBattle::Disengage();
     auto PChar = static_cast<CCharEntity*>(PEntity);
+    if (GetCurrentState()->HasErrorMsg())
+    {
+        PChar->pushPacket(GetCurrentState()->GetErrorMsg());
+    }
     PChar->pushPacket(new CCharUpdatePacket(PChar));
     PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(false);
+}
+
+bool CAIChar::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg)
+{
+    auto PBattleEntity = static_cast<CBattleEntity*>(PEntity);
+
+    float dist = distance(PEntity->loc.p, PTarget->loc.p);
+
+    if (dist > 30)
+    {
+        errMsg = std::make_unique<CMessageBasicPacket>(PEntity, PTarget, 0, 0, MSGBASIC_LOSE_SIGHT);
+        PBattleEntity->PAIBattle()->SetBattleTargetID(0);
+        return false;
+    }
+    else if (!isFaceing(PEntity->loc.p, PTarget->loc.p, 40))
+    {
+        errMsg = std::make_unique<CMessageBasicPacket>(PEntity, PTarget, 0, 0, MSGBASIC_UNABLE_TO_SEE_TARG);
+    }
+    else if (dist > PTarget->m_ModelSize)
+    {
+        errMsg = std::make_unique<CMessageBasicPacket>(PEntity, PTarget, 0, 0, MSGBASIC_TARG_OUT_OF_RANGE);
+    }
+    return true;
 }
 
 bool CAIChar::Attack(action_t& action)
