@@ -752,6 +752,7 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 		// no gil drop and no mugging!
 		PMob->setMobMod(MOBMOD_GIL_MAX, -1);
 		PMob->setMobMod(MOBMOD_MUG_GIL, -1);
+		PMob->setMobMod(MOBMOD_2HOUR_PROC, 80);
 	}
 
 	// add two hours
@@ -775,6 +776,7 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 	PMob->defaultMobMod(MOBMOD_LINK_RADIUS, MOB_LINK_RADIUS);
 	PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, MOB_TP_USE_CHANCE);
 	PMob->defaultMobMod(MOBMOD_ROAM_COOL, 30);
+	PMob->defaultMobMod(MOBMOD_2HOUR_PROC, 60);
 
     // Killer Effect
     switch (PMob->m_EcoSystem)

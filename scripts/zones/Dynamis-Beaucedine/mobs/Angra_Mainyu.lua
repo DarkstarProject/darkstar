@@ -52,7 +52,7 @@ end;
 -- Return the selected spell ID.
 function onMonsterMagicPrepare(mob, target)
     
-	if (mob:getHPP() < 25) then
+	if (mob:getHPP() <= 25) then
 		return 244; -- Death
 	else
 		-- Can cast Blindga, Death, Graviga, Silencega, and Sleepga II.
