@@ -64,12 +64,12 @@ enum SPECIALFLAG
 enum ROAMFLAG : uint16
 {
   ROAMFLAG_NONE     = 0x00,
-  ROAMFLAG_NONE0    = 0x01,  // move around less than 5
-  ROAMFLAG_NONE1    = 0x02,  // move around 10-20
-  ROAMFLAG_NONE2    = 0x04,  // move around 15-25
-  ROAMFLAG_WANDER   = 0x08,  // roam to multiple points in a row
-  ROAMFLAG_SCOUT    = 0x10,  // move around more often
-  ROAMFLAG_GUARD    = 0x20,  // move less often
+  ROAMFLAG_NO_TURN  = 0x01,  // make 1-5 turns per roam
+  ROAMFLAG_WANDER   = 0x02,  //
+  ROAMFLAG_NONE2    = 0x04,  //
+  ROAMFLAG_NONE3    = 0x08,  //
+  ROAMFLAG_NONE4    = 0x10,  //
+  ROAMFLAG_NONE5    = 0x20,  //
   ROAMFLAG_WORM     = 0x40,  // pop up and down when moving
   ROAMFLAG_AMBUSH   = 0x80,  // stays hidden until someone comes close (antlion)
   ROAMFLAG_EVENT    = 0x100, // calls lua method for roaming logic

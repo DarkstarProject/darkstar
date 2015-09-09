@@ -71,7 +71,7 @@ class CNavMesh
     void unload();
 
     int16 findPath(position_t start, position_t end, position_t* path, uint16 pathSize);
-    int16 findRandomPath(position_t start, float maxRadius, position_t* path, uint16 pathSize);
+    int16 findRandomPosition(position_t start, float maxRadius, position_t* randomPosition);
 
     // returns true if the point is in water
     bool inWater(position_t point);

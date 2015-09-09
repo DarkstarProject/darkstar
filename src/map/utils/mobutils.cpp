@@ -537,11 +537,11 @@ void CalculateStats(CMobEntity * PMob)
       } 
       else if(PMob->loc.zone->GetType() == ZONETYPE_OUTDOORS)
       {
-        PMob->m_roamDistance = 7.0f;
+        PMob->m_roamDistance = 4.0f;
       }
       else
       {
-        PMob->m_roamDistance = 5.0f;
+        PMob->m_roamDistance = 3.5f;
       }
 
     }
@@ -554,6 +554,12 @@ void CalculateStats(CMobEntity * PMob)
         // always stay close to spawn
         PMob->m_maxRoamDistance = 2.0f;
         PMob->m_roamDistance = 1.0f;
+        PMob->m_roamFlags |= ROAMFLAG_NO_TURN;
+    }
+
+    if(zoneType == ZONETYPE_OUTDOORS){
+        // mobs outside should make more turns
+        PMob->m_roamFlags |= ROAMFLAG_WANDER;
     }
 
     // cap all stats for lvl / job
