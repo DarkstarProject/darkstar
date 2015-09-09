@@ -1248,6 +1248,7 @@ MOD_FORCE_ICE_DWBONUS         = 535 -- Set to 1 to force ice day/weather spell b
 MOD_FORCE_LIGHTNING_DWBONUS   = 536 -- Set to 1 to force lightning day/weather spell bonus/penalty. Do not have it total more than 1.
 MOD_FORCE_LIGHT_DWBONUS       = 537 -- Set to 1 to force light day/weather spell bonus/penalty. Do not have it total more than 1.
 MOD_FORCE_DARK_DWBONUS        = 538 -- Set to 1 to force dark day/weather spell bonus/penalty. Do not have it total more than 1.
+MOD_STONESKIN_BONUS_HP        = 539 -- Bonus "HP" granted to Stoneskin spell.
 
 -- Mythic Weapon Mods
 MOD_AUGMENTS_ABSORB    = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)
@@ -1268,8 +1269,8 @@ MOD_AUGMENTS_TA        = 527 -- Adds Critical Attack Bonus to Trick Attack, perc
 -- MOD_SPARE = 98, -- stuff
 -- MOD_SPARE = 99, -- stuff
 -- MOD_SPARE = 100, -- stuff
--- MOD_SPARE = 539, -- stuff
 -- MOD_SPARE = 540, -- stuff
+-- MOD_SPARE = 541, -- stuff
 
 ------------------------------------
 -- Merit Definitions
