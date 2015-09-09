@@ -79,8 +79,9 @@ enum MOBMODIFIER
     MOBMOD_SPAWN_LEASH    = 47, // forces a mob to not move farther from its spawn than its leash distance
     MOBMOD_SHARE_TARGET   = 48, // mob always targets same target as ID in this var
     MOBMOD_SCRIPTED_2HOUR = 49, // disable two hour ability unless called upon by the script
+    MOBMOD_2HOUR_PROC     = 50  // chance of mob's 2 hour activating 0-100%
 };
 
-#define MAX_MOBMODIFIER         50
+#define MAX_MOBMODIFIER         51
 
 #endif
