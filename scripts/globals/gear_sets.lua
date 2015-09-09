@@ -40,7 +40,7 @@ local GearSets =  {
              {id = 14, items = {10890,10462,10512,11980,10610},  matches = 5, matchType = matchtype.any, mods = {{MOD_HASTE_GEAR, 60, 0, 0}} },   --  Calma Armor Set haste%6
              {id = 15, items = {10892,10464,10514,11982,10612},  matches = 5, matchType = matchtype.any, mods = {{MOD_MACC, 5, 0, 0}} },        --  Magavan Armor Set  magic accuracy +5
              {id = 16, items = {10891,10463,10513,11981,10611},  matches = 5, matchType = matchtype.any, mods = {{MOD_CRITHITRATE, 5, 0, 0}} },  --  Mustela Harness Set  crit rate 5%
-         --   {id = 17, items = {16146,14588,15009,16315,15755},  matches = 2, matchType = matchtype.any, mods = {{MOD_UNKNOWN, 5, 5, 10}} },           --  Iron Ram Haubert Set
+             {id = 17, items = {16126,15744}, matches = 2, matchType = matchtype.any, mods = {{MOD_RATT, 15, 0, 0}} }, -- Bowman's set: Ranged atk +15
              {id = 18, items = {16147,14589,15010,16316,15756},  matches = 2, matchType = matchtype.any, mods = {{MOD_ATT, 1, 4.7, 0}} },        --  Fourth Division Brune Set
              {id = 19, items = {16148,14590,15011,16317,15757},  matches = 2, matchType = matchtype.any, mods = {{MOD_COUNTER, 1, 1, 0}} },      --  Cobra Unit Harness Set
              {id = 20, items = {16149,14591,15012,16318,15758},  matches = 2, matchType = matchtype.any, mods = {{MOD_MACC, 1, 1, 0}} },        --  Cobra Unit Robe Set
@@ -102,7 +102,10 @@ local GearSets =  {
              {id = 84, items = {11867,10868,10865}, matches = 2, matchType = matchtype.any, mods = {{MOD_REFRESH, 3, 0, 0}} }, -- Heka's body + NQ or HQ Khat = 3 tick refresh
              {id = 85, items = {10868,11870,11864,10865}, matches = 2, matchType = matchtype.any, mods = {{MOD_REFRESH, 2, 0, 0}} }, -- Nefer body/head NQ/HQ combo gives Refresh +2
              {id = 86, items = {15852,15853}, matches = 2, matchType = matchtype.any, mods = {{MOD_HP, 50, 0, 0},{MOD_MP, 50, 0, 0}} }, -- Dasra's/Nasatya's Ring set gives HP/MP +50
-
+             {id = 87, items = {16037,16038}, matches = 2, matchType = matchtype.any, mods = {{MOD_MATT, 5, 0, 0},{MOD_MACC, 5, 0, 0}} }, -- Helenus's/Cassandra's earring set: Mag atk bonus+5 and Mag acc +5
+             {id = 88, items = {15850,15851}, matches = 2, matchType = matchtype.any, mods = {{MOD_ATT, 6, 0, 0},{MOD_ACC, 12, 0, 0},{MOD_DEF, 6, 0, 0}} }, -- Lava's/Kusha's earring set: Atk+6/Acc+12
+             {id = 91, items = {16146,14588,15009,16315,15755},  matches = 2, matchType = matchtype.any, mods = {{MOD_FIRERES, 5, 5, 10},{MOD_ICERES, 5, 5, 10},{MOD_WINDRES, 5, 5, 10},{MOD_EARTHRES, 5, 5, 10},{MOD_THUNDERRES, 5, 5, 10},{MOD_WATERRES, 5, 5, 10},{MOD_LIGHTRES, 5, 5, 10},{MOD_DARKRES, 5, 5, 10}} }, --  Iron Ram Haubert Set
+             {id = 99, items = {16035,16036}, matches = 2, matchType = matchtype.any, mods = {{MOD_AGI, 8, 0, 0}} } -- Altdorf's/Wilhelm's earring: AGI+8
 
 
 
