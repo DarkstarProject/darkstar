@@ -34,6 +34,7 @@ class CBaseEntity;
 
 // no path can be longer than this
 #define MAX_PATH_POINTS 50
+#define MAX_TURN_POINTS 5
 #define VERTICAL_PATH_LIMIT 3.5
 
 enum PATHFLAG {
@@ -98,6 +99,8 @@ class CPathFind
     void Clear();
     bool isNavMeshEnabled();
 
+    bool ValidPosition(position_t* pos);
+
     // checks if mob is at given point
     bool AtPoint(position_t* pos);
 
@@ -118,19 +121,24 @@ class CPathFind
     bool FindClosestPath(position_t* start, position_t* end);
 
     // finds a random path around the given point
-    bool FindRandomPath(position_t* start, float maxRadius);
+    bool FindRandomPath(position_t* start, float maxRadius, uint8 roamFlags);
 
     void AddPoints(position_t* points, uint8 totalPoints, bool reverse = false);
 
+    void FinishedPath();
+
     CBaseEntity* m_PTarget;
     position_t m_points[MAX_PATH_POINTS];
-    position_t* m_PLastPoint;
+    position_t m_turnPoints[MAX_TURN_POINTS];
 
     uint8 m_pathFlags;
     uint16 m_roamFlags;
     bool m_onPoint;
     int16 m_currentPoint;
     int16 m_pathLength;
+
+    uint8 m_currentTurn;
+    uint8 m_turnLength;
 
     float m_distanceMoved;
     float m_maxDistance;

@@ -467,6 +467,25 @@ void CAIGeneral::SetMobAbilityEnabled(bool enabled)
 	m_MobAbilityEnabled = enabled;
 }
 
+bool CAIGeneral::GetAutoAttackEnabled()
+{
+    return m_AutoAttackEnabled;
+}
+
+bool CAIGeneral::GetMagicCastingEnabled()
+{
+    if (m_PMagicState)
+    {
+        return m_PMagicState->m_enableCasting; 
+    }
+    return false;
+}
+
+bool CAIGeneral::GetMobAbilityEnabled()
+{
+    return m_MobAbilityEnabled;
+}
+
 bool CAIGeneral::MoveTo(position_t* pos)
 {
     if(m_PPathFind != nullptr && m_ActionType == ACTION_ROAMING){

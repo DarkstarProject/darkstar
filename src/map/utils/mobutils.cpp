@@ -537,11 +537,11 @@ void CalculateStats(CMobEntity * PMob)
       } 
       else if(PMob->loc.zone->GetType() == ZONETYPE_OUTDOORS)
       {
-        PMob->m_roamDistance = 7.0f;
+        PMob->m_roamDistance = 4.0f;
       }
       else
       {
-        PMob->m_roamDistance = 5.0f;
+        PMob->m_roamDistance = 3.5f;
       }
 
     }
@@ -554,6 +554,12 @@ void CalculateStats(CMobEntity * PMob)
         // always stay close to spawn
         PMob->m_maxRoamDistance = 2.0f;
         PMob->m_roamDistance = 1.0f;
+        PMob->m_roamFlags |= ROAMFLAG_NO_TURN;
+    }
+
+    if(zoneType == ZONETYPE_OUTDOORS){
+        // mobs outside should make more turns
+        PMob->m_roamFlags |= ROAMFLAG_WANDER;
     }
 
     // cap all stats for lvl / job
@@ -746,6 +752,7 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 		// no gil drop and no mugging!
 		PMob->setMobMod(MOBMOD_GIL_MAX, -1);
 		PMob->setMobMod(MOBMOD_MUG_GIL, -1);
+		PMob->setMobMod(MOBMOD_2HOUR_PROC, 80);
 	}
 
 	// add two hours
@@ -769,6 +776,7 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 	PMob->defaultMobMod(MOBMOD_LINK_RADIUS, MOB_LINK_RADIUS);
 	PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, MOB_TP_USE_CHANCE);
 	PMob->defaultMobMod(MOBMOD_ROAM_COOL, 30);
+	PMob->defaultMobMod(MOBMOD_2HOUR_PROC, 60);
 
     // Killer Effect
     switch (PMob->m_EcoSystem)

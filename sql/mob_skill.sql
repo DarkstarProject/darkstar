@@ -173,12 +173,12 @@ INSERT INTO `mob_skill` VALUES (33,188,33,'Stone_Throw',0,25.0,2000,1500,4,0,0,0
 INSERT INTO `mob_skill` VALUES (36,188,36,'Blank_Gaze_Dispel',0,16.0,2000,2000,4,0,0,0);
 
 -- Mandragora
-INSERT INTO `mob_skill` VALUES (45,178,45,'Dream_Flower',1,15.0,2000,1500,4,0,0,0); -- Not used by Lycopodia
-INSERT INTO `mob_skill` VALUES (46,178,46,'Wild_Oats',0,7.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (48,178,48,'Photosynthesis',0,7.0,2000,1500,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (49,178,49,'Leaf_Dagger',0,7.0,2000,1500,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (45,178,45,'Dream_Flower',1,15.0,2000,1500,4,0,0,0); -- Not used by Lycopodia
+-- INSERT INTO `mob_skill` VALUES (46,178,46,'Wild_Oats',0,7.0,2000,1500,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (48,178,48,'Photosynthesis',0,7.0,2000,1500,1,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (49,178,49,'Leaf_Dagger',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (44,178,44,'Head_Butt',0,7.0,1500,1500,4,0,0,0); -- occasional knockback..
-INSERT INTO `mob_skill` VALUES (50,178,50,'Scream',1,15.0,2000,1500,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (50,178,50,'Scream',1,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1954,496,1603,'Petal_Pirouette',1,15.0,2000,1500,4,0,0,0); -- Only used by Chaneque
 
 -- INSERT INTO `mob_skill` VALUES (2154,?,?,'Demonic_Flower',0,7.0,2000,1500,4,0,0,0); -- Only used by certain NM
@@ -400,7 +400,7 @@ INSERT INTO `mob_skill` VALUES (976,78,922,'Murk',1,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (977,78,923,'Material_Fend',0,10.0,2000,1500,1,0,0,0);
 
 -- Craver NM
-INSERT INTO `mob_skill` VALUES (978,78,924,'Carousel',1,10.0,2000,1500,4,0,0,0); -- NM only   (doesn't apply to Coveter,he uses normal Craver moves)
+INSERT INTO `mob_skill` VALUES (978,78,924,'Carousel',1,10.0,2000,1500,4,0,0,2); -- NM only   (doesn't apply to Coveter,he uses normal Craver moves)
 INSERT INTO `mob_skill` VALUES (1018,78,919,'Impalement',0,10.0,2000,1500,4,0,0,0); -- NM only (doesn't apply to Coveter,he uses normal Craver moves)
 
 -- Thinker
@@ -766,7 +766,7 @@ INSERT INTO `mob_skill` VALUES (268,175,268,'Mind_Drain',0,7.0,2000,1500,4,0,0,0
 -- Dolls
 INSERT INTO `mob_skill` VALUES (278,83,278,'Kartstrahl',0,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (279,83,279,'Blitzstrahl',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (280,83,280,'Panzerfaust',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (280,83,280,'Panzerfaust',0,7.0,2000,1500,4,0,0,2);
 INSERT INTO `mob_skill` VALUES (281,83,281,'Berserk',0,7.0,2000,1500,1,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (282,83,282,'Panzerschreck',0,15.0,2000,1500,1,0,0,0); -- Needs scripts
 INSERT INTO `mob_skill` VALUES (283,83,283,'Typhoon',1,10.0,2000,1500,4,0,0,1);
@@ -775,7 +775,7 @@ INSERT INTO `mob_skill` VALUES (287,83,287,'Meltdown',1,15.0,2000,5000,4,0,0,0);
 
 INSERT INTO `mob_skill` VALUES (278,84,278,'Kartstrahl',0,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (279,84,279,'Blitzstrahl',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (280,84,280,'Panzerfaust',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (280,84,280,'Panzerfaust',0,7.0,2000,1500,4,0,0,2);
 INSERT INTO `mob_skill` VALUES (281,84,281,'Berserk',0,7.0,2000,1500,1,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (282,83,282,'Panzerschreck',0,15.0,2000,1500,1,0,0,0); -- Needs scripts
 INSERT INTO `mob_skill` VALUES (283,84,283,'Typhoon',1,10.0,2000,1500,4,0,0,1);
@@ -784,7 +784,7 @@ INSERT INTO `mob_skill` VALUES (287,84,287,'Meltdown',1,15.0,2000,5000,4,0,0,0);
 
 INSERT INTO `mob_skill` VALUES (278,85,278,'Kartstrahl',0,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (279,85,279,'Blitzstrahl',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (280,85,280,'Panzerfaust',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (280,85,280,'Panzerfaust',0,7.0,2000,1500,4,0,0,2);
 INSERT INTO `mob_skill` VALUES (281,85,281,'Berserk',0,7.0,2000,1500,1,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (282,83,282,'Panzerschreck',0,15.0,2000,1500,1,0,0,0); -- Needs scripts
 INSERT INTO `mob_skill` VALUES (283,85,283,'Typhoon',1,10.0,2000,1500,4,0,0,1);
@@ -907,7 +907,7 @@ INSERT INTO `mob_skill` VALUES (810,334,740,'Fanatic_Dance',1,10.0,2000,2000,4,0
 -- Quadav
 INSERT INTO `mob_skill` VALUES (355,200,355,'Ore_Toss',0,10.0,2000,2000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (377,200,354,'Howl',1,20.0,2000,1500,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (356,200,356,'Head_Butt',0,7.0,2000,2000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (356,200,356,'Head_Butt',0,7.0,2000,2000,4,0,0,1);
 INSERT INTO `mob_skill` VALUES (357,200,357,'Shell_Bash',0,7.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (358,200,358,'Shell_Guard',0,7.0,2000,3000,1,0,0,0);
 
@@ -915,13 +915,13 @@ INSERT INTO `mob_skill` VALUES (358,200,358,'Shell_Guard',0,7.0,2000,3000,1,0,0,
 
 INSERT INTO `mob_skill` VALUES (377,201,354,'Howl',1,20.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (355,201,355,'Ore_Toss',0,10.0,2000,2000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (356,201,356,'Head_Butt',0,7.0,2000,2000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (356,201,356,'Head_Butt',0,7.0,2000,2000,4,0,0,1);
 INSERT INTO `mob_skill` VALUES (357,201,357,'Shell_Bash',0,7.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (358,201,358,'Shell_Guard',0,7.0,2000,3000,1,0,0,0);
 
 INSERT INTO `mob_skill` VALUES (377,202,354,'Howl',1,20.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (355,202,355,'Ore_Toss',0,10.0,2000,2000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (356,202,356,'Head_Butt',0,7.0,2000,2000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (356,202,356,'Head_Butt',0,7.0,2000,2000,4,0,0,1);
 INSERT INTO `mob_skill` VALUES (357,202,357,'Shell_Bash',0,7.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (358,202,358,'Shell_Guard',0,7.0,2000,3000,1,0,0,0);
 
@@ -937,21 +937,13 @@ INSERT INTO `mob_skill` VALUES (358,202,358,'Shell_Guard',0,7.0,2000,3000,1,0,0,
 -- INSERT INTO `mob_skill` VALUES (?,?,?,'Shell_Charge',4,10.0,2000,2000,4,0,0,1);          -- Certain NM only
 -- INSERT INTO `mob_skill` VALUES (2118,?,?,'Torment_of_Gu'Dha',1,20.0,2000,2000,4,0,0,1);  -- Certain NM only
 
--- Quadav (Dynamis)
--- INSERT INTO `mob_skill` VALUES (819,?,?,'Ore_Toss',0,7.0,2000,2000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (820,?,?,'Head_Butt',0,7.0,2000,2000,4,0,0,1);
--- INSERT INTO `mob_skill` VALUES (821,?,?,'Shell_Bash',0,7.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (822,?,?,'Shell_Guard',0,7.0,2000,3000,1,0,0,0);
--- INSERT INTO `mob_skill` VALUES (823,?,?,'Howl',1,20.0,2000,1500,1,0,0,0);
--- INSERT INTO `mob_skill` VALUES (824,?,742,'The_Wrath_of_Gu'Dha',1,15.0,2000,2000,4,0,0,1); -- Used only by named Dynamis Quadav NM's and Wings of the Goddess NMs. Possibly exclusive.
-
 -- Qu'Vho Deathhurler
 INSERT INTO `mob_skill` VALUES (355,397,355,'Ore_Toss',0,10.0,2000,2000,4,0,0,0);
 
 -- Quadav NM
 INSERT INTO `mob_skill` VALUES (377,337,354,'Howl',1,20.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (355,337,355,'Ore_Toss',0,10.0,2000,2000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (356,337,356,'Head_Butt',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (356,337,356,'Head_Butt',0,7.0,2000,1500,4,0,0,1);
 INSERT INTO `mob_skill` VALUES (357,337,357,'Shell_Bash',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (358,337,358,'Shell_Guard',0,7.0,2000,3000,1,0,0,0);
 
@@ -991,11 +983,11 @@ INSERT INTO `mob_skill` VALUES (364,360,364,'Sweep',1,10.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (2119,?,?,'Vorticose_Sands',1,15.0,2000,1500,4,0,0,0); -- Tzee Xicu the Manifest WOTG missions only
 
 -- Birds
-INSERT INTO `mob_skill` VALUES (366,55,366,'Helldive',0,9.0,2000,1500,4,0,0,1);
+INSERT INTO `mob_skill` VALUES (366,55,366,'Helldive',0,9.0,2000,1500,4,0,0,2);
 INSERT INTO `mob_skill` VALUES (367,55,367,'Wing_Cutter',4,10.0,2000,1500,4,0,0,0);
 
 -- Birds (COP,TOAU)
--- INSERT INTO `mob_skill` VALUES (366,55,?,'Helldive',0,9.0,2000,1500,4,0,0,1);
+-- INSERT INTO `mob_skill` VALUES (366,55,?,'Helldive',0,9.0,2000,1500,4,0,0,2);
 -- INSERT INTO `mob_skill` VALUES (367,55,?,'Wing_Cutter',4,10.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (1324,?,343,'Damnation_Dive',4,10.0,2000,1500,4,0,0,0);     -- COP/TOAU
 -- INSERT INTO `mob_skill` VALUES (1323,?,342,'Blind_Side_Barrage',0,7.0,2000,1500,4,0,0,0);  -- COP/TOAU
@@ -1005,7 +997,7 @@ INSERT INTO `mob_skill` VALUES (367,55,367,'Wing_Cutter',4,10.0,2000,1500,4,0,0,
 INSERT INTO `mob_skill` VALUES (372,51,372,'Wild_Horn',4,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (373,51,373,'Thunderbolt',1,40.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (374,51,374,'Kick_Out',4,10.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (375,51,375,'Shock_Wave',4,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (375,51,375,'Shock_Wave',4,7.0,2000,1500,4,0,0,2);
 INSERT INTO `mob_skill` VALUES (376,51,376,'Flame_Armor',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (377,51,377,'Howl',0,7.0,2000,1500,1,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (378,51,378,'Meteor',2,30.0,2000,1500,4,0,0,0); -- Chlevnik
@@ -1014,7 +1006,7 @@ INSERT INTO `mob_skill` VALUES (377,51,377,'Howl',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (372,479,372,'Wild_Horn',4,10.0,2000,1500,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (373,479,373,'Thunderbolt',1,40.0,2000,1500,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (374,479,374,'Kick_Out',4,10.0,2000,1500,4,8,0,0);
-INSERT INTO `mob_skill` VALUES (375,479,375,'Shock_Wave',4,7.0,2000,1500,4,8,0,0);
+INSERT INTO `mob_skill` VALUES (375,479,375,'Shock_Wave',4,7.0,2000,1500,4,8,0,2);
 INSERT INTO `mob_skill` VALUES (376,479,376,'Flame_Armor',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (377,479,377,'Howl',0,7.0,2000,1500,1,0,0,0);
 
@@ -1141,12 +1133,6 @@ INSERT INTO `mob_skill` VALUES (428,61,428,'Deal_Out',4,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (77,61,77,'Double_Down',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (74,61,74,'Shuffle',4,10.0,2000,1500,4,0,0,0);
 
-INSERT INTO `mob_skill` VALUES (438,61,438,'Invincible',0,7.0,2000,0,1,2,0,0);
-INSERT INTO `mob_skill` VALUES (433,61,433,'Benediction',1,20.0,2000,0,1,2,0,0);
-INSERT INTO `mob_skill` VALUES (435,61,435,'Manafont',0,7.0,2000,0,1,2,0,0);
-INSERT INTO `mob_skill` VALUES (436,61,436,'Chainspell',0,7.0,2000,0,1,2,0,0);
-
-
 -- anim 432 = 2h cloud
 -- now they dont start matching up....
 
@@ -1244,7 +1230,7 @@ INSERT INTO `mob_skill` VALUES (146,333,146,'Feather_Barrier',0,7.0,2000,1500,1,
 INSERT INTO `mob_skill` VALUES (147,333,147,'Stormwind',1,15.0,2000,1500,4,0,0,0);
 
 -- Pet Genbu
-INSERT INTO `mob_skill` VALUES (549,330,477,'Head_Butt_Turtle',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (549,330,477,'Head_Butt_Turtle',0,7.0,2000,1500,4,0,0,2);
 INSERT INTO `mob_skill` VALUES (550,330,478,'Tortoise_Stomp',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (551,330,479,'Harden_Shell',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (552,330,480,'Earth_Breath',4,10.0,2000,1500,4,0,0,0);
@@ -1265,7 +1251,7 @@ INSERT INTO `mob_skill` VALUES (17,332,17,'Claw_Cyclone',4,15.0,2000,1500,4,0,0,
 
 -- Adamantoises
 INSERT INTO `mob_skill` VALUES (548,2,476,'Tortoise_Song',1,20.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (549,2,477,'Head_Butt_Turtle',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (549,2,477,'Head_Butt_Turtle',0,7.0,2000,1500,4,0,0,2);
 INSERT INTO `mob_skill` VALUES (550,2,478,'Tortoise_Stomp',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (551,2,479,'Harden_Shell',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (552,2,480,'Earth_Breath',4,15.0,2000,1500,4,0,0,0);
@@ -1321,7 +1307,7 @@ INSERT INTO `mob_skill` VALUES (146,280,146,'Feather_Barrier',0,7.0,2000,1500,1,
 INSERT INTO `mob_skill` VALUES (147,280,147,'Stormwind',1,15.0,2000,1500,4,0,0,0);
 
 -- Genbu
-INSERT INTO `mob_skill` VALUES (549,277,477,'Head_Butt_Turtle',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (549,277,477,'Head_Butt_Turtle',0,7.0,2000,1500,4,0,0,2);
 INSERT INTO `mob_skill` VALUES (550,277,478,'Tortoise_Stomp',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (551,277,479,'Harden_Shell',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (552,277,480,'Earth_Breath',4,15.0,2000,1500,4,0,0,0);
@@ -2233,11 +2219,11 @@ INSERT INTO `mob_skill` VALUES (351,407,351,'Slam_Dunk',0,7.0,2000,1500,4,0,0,0)
 INSERT INTO `mob_skill` VALUES (352,407,352,'Arm_Block',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (353,407,353,'Battle_Dance',1,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (377,407,354,'Howl',1,20.0,2000,1500,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (2155,407,2411,'Phantasmal_Dance',1,15.0,2000,1500,4,0,0,16); -- Wiki says knockback is larger than the skill range.
+INSERT INTO `mob_skill` VALUES (2155,407,2411,'Phantasmal_Dance',1,15.0,2000,1500,4,0,0,15); -- Wiki says knockback is larger than the skill range.
 
 -- Seed Quadav
 INSERT INTO `mob_skill` VALUES (355,408,355,'Ore_Toss',0,10.0,2000,2000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (356,408,356,'Head_Butt',0,7.0,2000,2000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (356,408,356,'Head_Butt',0,7.0,2000,2000,4,0,0,1);
 INSERT INTO `mob_skill` VALUES (357,408,357,'Shell_Bash',0,7.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (358,408,358,'Shell_Guard',0,7.0,2000,3000,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (377,408,354,'Howl',1,20.0,2000,1500,1,0,0,0);
@@ -2347,7 +2333,7 @@ INSERT INTO `mob_skill` VALUES (1530,62,1224,'Sulfurous_Breath',0,7.0,2000,1500,
 INSERT INTO `mob_skill` VALUES (1531,62,1225,'Scorching_Lash',1,20.0,2000,1500,4,0,0,0); -- ~900 dmg
 INSERT INTO `mob_skill` VALUES (1532,62,1226,'Ululation',1,20.0,2000,1500,4,0,0,0); -- Paralyze
 INSERT INTO `mob_skill` VALUES (1533,62,1227,'Magma_Hoplon',0,7.0,2000,1500,1,0,0,0); -- Stoneskin + Blaze Spike
-INSERT INTO `mob_skill` VALUES (1534,62,1228,'Gates_of_Hades',1,20.0,2000,1500,4,0,0,0); -- ~950 dmg + 20hp/tick
+INSERT INTO `mob_skill` VALUES (1534,62,1228,'Gates_of_Hades',1,20.0,2000,3000,4,0,0,0); -- ~950 dmg + 20hp/tick
 
 -- Cerberuses (Orthrus Subspecies)
 -- INSERT INTO `mob_skill` VALUES (1534,62,1228,'Acheron_Flame',1,20.0,2000,1500,4,0,0,0); -- Stronger version of Gates of Hades.
@@ -2976,7 +2962,7 @@ INSERT INTO `mob_skill` VALUES (1771,315,1382,'Plague_Swipe',4,16.0,2000,1500,4,
 INSERT INTO `mob_skill` VALUES (1766,315,1367,'Tenebrous_Mist',1,18.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1767,315,1368,'Thunderstrike',1,18.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1768,315,1371,'Tourbillion',1,18.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (432,315,432,'Mighty_Strikes',0,7.0,2000,0,1,2,0,0);
+-- INSERT INTO `mob_skill` VALUES (432,315,432,'Mighty_Strikes',0,7.0,2000,0,1,2,0,0); -- No mention of this on any wiki. Commenting it out for now.
 
 -- Shinryu (316)
 -- Wings out
@@ -3043,7 +3029,7 @@ INSERT INTO `mob_skill` VALUES (733,394,690,'Eald2_Warp_Out',0,22.0,500,0,1,0,0,
 -- INSERT INTO `mob_skill` VALUES (2078,39,1612,'Wrath_of_Zeus',1,10.0,2000,1500,12,0,0,0);
 
 -- -------------------------------------------------------------------------------
--- NOTE: all skills below are special skill lists given to NMs / special families
+-- NOTE: all skills 700+ are special skill lists given to NMs / special families
 -- -------------------------------------------------------------------------------
 
 -- Demonic_Tiphia
@@ -3064,6 +3050,15 @@ INSERT INTO `mob_skill` VALUES (646,704,629,'Wyvern_Gust_Breath',0,10.0,2000,150
 INSERT INTO `mob_skill` VALUES (647,704,630,'Wyvern_Sand_Breath',0,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (648,704,631,'Wyvern_Lightning_Breath',0,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (649,704,632,'Wyvern_Hydro_Breath',0,10.0,2000,1500,4,0,0,0);
+
+-- Quadav NM (Dynamis)
+INSERT INTO `mob_skill` VALUES (819,705,1557,'Ore_Toss',0,7.0,2000,2000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (820,705,1558,'Head_Butt',0,7.0,2000,2000,4,0,0,1);
+INSERT INTO `mob_skill` VALUES (821,705,1559,'Shell_Bash',0,7.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (822,705,1560,'Shell_Guard',0,7.0,2000,3000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (823,705,1561,'Howl',1,20.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (824,705,742,'The_Wrath_of_GuDha',1,15.0,2000,2000,4,0,0,7); -- Used only by named Dynamis Quadav NM's and Wings of the Goddess NMs. Possibly exclusive.
+
 
 -- Biotechnological Weapons
 INSERT INTO `mob_skill` VALUES (1278,54,1090,'Guided_Missile',2,5.0,2000,1500,4,0,0,0); --
@@ -3117,8 +3112,8 @@ INSERT INTO `mob_skill` VALUES (1296,449,1137,'Gigaflare',0,15.0,2000,1500,4,0,0
 INSERT INTO `mob_skill` VALUES (1297,449,1138,'Teraflare',0,15.0,2000,1500,4,0,0,0);
 
 -- Prishe
-INSERT INTO `mob_skill` VALUES (1229,476,1091,'Hundred_Fists',0,7.0,2000,0,1,0,1,0);
-INSERT INTO `mob_skill` VALUES (1230,476,1092,'Benediction',1,7.0,2000,0,1,0,1,0);
+INSERT INTO `mob_skill` VALUES (1229,476,1091,'Hundred_Fists',0,7.0,2000,0,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1230,476,1092,'Benediction',1,7.0,2000,0,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1231,476,1093,'Prishe_Item_1',0,7.0,2000,0,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1232,476,1094,'Prishe_Item_2',0,7.0,2000,0,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1233,476,1095,'Nullifying_Dropkick',0,7.0,2000,1500,4,0,0,0);
@@ -3375,8 +3370,8 @@ INSERT INTO `mob_skill` VALUES (2692,339,2170,'Sanguinary_slash',1,18.0,2000,100
 INSERT INTO `mob_skill` VALUES (2693,339,2171,'Sanguinary_slash',1,18.0,2000,1000,4,0,0,0);
 
 -- Yilbegan
-INSERT INTO `mob_skill` VALUES (2263,470,1756,'Dexter_Wing',1,18.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (2264,470,1757,'Sinister_Wing',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2263,470,1756,'Dexter_Wing',1,18.0,2000,1000,4,0,0,2);
+INSERT INTO `mob_skill` VALUES (2264,470,1757,'Sinister_Wing',1,18.0,2000,1000,4,0,0,2);
 INSERT INTO `mob_skill` VALUES (2265,470,1758,'Chaos_blast',1,18.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2266,470,1759,'Abyssic_buster',1,18.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2267,470,1760,'Dancing_tail',1,18.0,2000,1000,4,0,0,0);

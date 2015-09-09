@@ -212,6 +212,7 @@ INSERT INTO `mob_pool_mods` VALUES (459, 23, 50, 0); -- Attack
 INSERT INTO `mob_pool_mods` VALUES (459, 73, 25, 0); -- Store TP  
 
 -- -------------------------
+<<<<<<< HEAD
 --  King Behemoth
 -- -------------------------
 INSERT INTO `mob_pool_mods` VALUES (2255,368,70,0); -- Regain
@@ -219,6 +220,18 @@ INSERT INTO `mob_pool_mods` VALUES (2255,34,60,1);  -- Wind Damage
 INSERT INTO `mob_pool_mods` VALUES (2255,3,100,1);  -- HPP
 INSERT INTO `mob_pool_mods` VALUES (2255,302,10,0); -- Triple Attack
 
+=======
+-- Quadav NM (Dynamis)
+-- -------------------------
+INSERT INTO `mob_pool_mods` VALUES (16, 14, 705, 1); -- Special mob skills
+INSERT INTO `mob_pool_mods` VALUES (1859, 14, 705, 1);
+INSERT INTO `mob_pool_mods` VALUES (400, 14, 705, 1);
+INSERT INTO `mob_pool_mods` VALUES (1614, 14, 705, 1);
+INSERT INTO `mob_pool_mods` VALUES (2285, 14, 705, 1);
+INSERT INTO `mob_pool_mods` VALUES (4499, 14, 705, 1);
+INSERT INTO `mob_pool_mods` VALUES (1179, 14, 705, 1);
+INSERT INTO `mob_pool_mods` VALUES (1855, 14, 705, 1);
+>>>>>>> origin/master
 
 /*!40000 ALTER TABLE `mob_pool_mods` ENABLE KEYS */;
 UNLOCK TABLES;

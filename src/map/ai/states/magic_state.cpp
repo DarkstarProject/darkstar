@@ -218,7 +218,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
         else if (applyArts)
         {
             if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
-            {                
+            {
                 // Add any "Grimoire: Reduces spellcasting time" bonuses
                 cast = cast * (1.0f + (m_PEntity->getMod(MOD_WHITE_MAGIC_CAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f);
             }
@@ -388,13 +388,13 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
         if (applyArts)
         {
             if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_DARK_ARTS) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
-            {     
+            {
                 // Add any "Grimoire: Reduces spellcasting time" bonuses
-                recast *= (1.0f + (m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f); 
+                recast *= (1.0f + (m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f);
             }
             else
             {
-                recast *= (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)/100.0f); 
+                recast *= (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)/100.0f);
             }
         }
     }
@@ -427,13 +427,13 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
         if (applyArts)
         {
             if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
-            {     
+            {
                 // Add any "Grimoire: Reduces spellcasting time" bonuses
-                recast *= (1.0f + (m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f); 
+                recast *= (1.0f + (m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f);
             }
             else
             {
-                recast *= (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)/100.0f); 
+                recast *= (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)/100.0f);
             }
         }
     }
@@ -669,6 +669,9 @@ void CMagicState::FinishSpell()
 			if (m_PSpell->canTargetEnemy() && action.param > 0 && m_PSpell->dealsDamage())
             {
                 PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+
+                // Check for bind breaking
+                battleutils::BindBreakCheck(m_PEntity, PTarget);
             }
 
             if(msg == 0)

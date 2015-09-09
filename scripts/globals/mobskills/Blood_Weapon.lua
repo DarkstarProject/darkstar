@@ -1,6 +1,5 @@
 ---------------------------------------------------
--- Berserk
--- Berserk Ability.
+-- Blood Weapon
 ---------------------------------------------------
 
 require("scripts/globals/settings");
@@ -10,10 +9,9 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    -- called via script only
-    if (skill:getParam() >= 30) then
+    if (mob:getMobMod(MOBMOD_SCRIPTED_2HOUR) == 1) then
         return 1;
-    elseif (mob:getHPP() <= 50) then
+    elseif (mob:getHPP() <= mob:getMobMod(MOBMOD_2HOUR_PROC)) then
         return 0;
     end
     return 1;
@@ -21,7 +19,11 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_BLOOD_WEAPON;
-    MobBuffMove(mob, typeEffect, 1, 0, 30);
+    local duration = 30;
+    if (skill:getParam() ~= 0 and mob:getMobMod(MOBMOD_SCRIPTED_2HOUR) == 1) then
+        duration = skill:getParam();
+    end
+    MobBuffMove(mob, typeEffect, 1, 0, duration);
     
     skill:setMsg(MSG_USES);
     return typeEffect;

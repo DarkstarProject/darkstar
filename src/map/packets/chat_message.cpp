@@ -29,11 +29,11 @@ This file is part of DarkStar-server source code.
 CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE MessageType, int8* buff)
 {
      // Determine the return message length..
-     int32 buffSize = (strlen(buff) > 108) ? 108 : strlen(buff);
+     int32 buffSize = (strlen(buff) > 111) ? 111 : strlen(buff);
 
      // Build the packet..
      this->type = 0x17;
-     this->size = dsp_min((32 + (buffSize + 1) + ((4 - ((buffSize + 1) % 4)) % 4)) / 2, 128);
+     this->size = 12 + ((buffSize / 4) + 1) * 2;
 
      WBUFB(data, (0x04) ) = MessageType;
      if (PChar->nameflags.flags & FLAG_GM)
