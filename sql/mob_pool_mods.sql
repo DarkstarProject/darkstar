@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.6.13-log
+-- Server version   5.6.13-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -72,9 +72,6 @@ INSERT INTO `mob_pool_mods` VALUES (2254,407,100,0);
 INSERT INTO `mob_pool_mods` VALUES (1719,29,2,1);
 INSERT INTO `mob_pool_mods` VALUES (1663,29,3,1);
 INSERT INTO `mob_pool_mods` VALUES (3824,29,2,1);
-INSERT INTO `mob_pool_mods` VALUES (2255,368,70,0);
-INSERT INTO `mob_pool_mods` VALUES (2255,34,60,1);
-INSERT INTO `mob_pool_mods` VALUES (2255,3,100,1);
 INSERT INTO `mob_pool_mods` VALUES (2180,3,100,1);
 INSERT INTO `mob_pool_mods` VALUES (3598,368,70,0);
 INSERT INTO `mob_pool_mods` VALUES (3600,368,70,0);
@@ -215,6 +212,15 @@ INSERT INTO `mob_pool_mods` VALUES (459, 23, 50, 0); -- Attack
 INSERT INTO `mob_pool_mods` VALUES (459, 73, 25, 0); -- Store TP  
 
 -- -------------------------
+<<<<<<< HEAD
+--  King Behemoth
+-- -------------------------
+INSERT INTO `mob_pool_mods` VALUES (2255,368,70,0); -- Regain
+INSERT INTO `mob_pool_mods` VALUES (2255,34,60,1);  -- Wind Damage
+INSERT INTO `mob_pool_mods` VALUES (2255,3,100,1);  -- HPP
+INSERT INTO `mob_pool_mods` VALUES (2255,302,10,0); -- Triple Attack
+
+=======
 -- Quadav NM (Dynamis)
 -- -------------------------
 INSERT INTO `mob_pool_mods` VALUES (16, 14, 705, 1); -- Special mob skills
@@ -225,6 +231,7 @@ INSERT INTO `mob_pool_mods` VALUES (2285, 14, 705, 1);
 INSERT INTO `mob_pool_mods` VALUES (4499, 14, 705, 1);
 INSERT INTO `mob_pool_mods` VALUES (1179, 14, 705, 1);
 INSERT INTO `mob_pool_mods` VALUES (1855, 14, 705, 1);
+>>>>>>> origin/master
 
 /*!40000 ALTER TABLE `mob_pool_mods` ENABLE KEYS */;
 UNLOCK TABLES;
