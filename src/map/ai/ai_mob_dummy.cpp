@@ -715,20 +715,10 @@ void CAIMobDummy::ActionAbilityStart()
 
     std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->getMobMod(MOBMOD_SKILLS));
 
-    if (m_PMob->m_EcoSystem == SYSTEM_ELEMENTAL)
-    {
-        // elementals have no tp moves
-        m_PMob->health.tp = 0;
-        TransitionBack(true);
-        return;
-    }
-
     // не у всех монстов прописаны способности, так что выходим из процедуры, если способность не найдена
     // We don't have any skills we can use, so let's go back to attacking
     if (MobSkills.size() == 0)
     {
-        ShowWarning("CAIMobDummy::ActionAbilityStart No TP moves found for family (%d)\n", m_PMob->m_Family);
-        m_PMob->health.tp = 0;
         TransitionBack(true);
         return;
     }
@@ -854,7 +844,6 @@ void CAIMobDummy::ActionAbilityStart()
     if (!valid)
     {
         // couldn't find anything so go back to attack
-        m_PMob->health.tp = 0;
         TransitionBack(true);
         return;
     }
