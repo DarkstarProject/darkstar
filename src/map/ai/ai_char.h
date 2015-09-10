@@ -40,11 +40,13 @@ protected:
     virtual void Disengage() override;
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
     virtual bool Attack(action_t&) override;
+    virtual CBattleEntity* IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
     virtual void ChangeTarget(bool changed, CBattleEntity* PNewTarget) override;
 
     /* Casting functions */
     virtual void CastFinished(action_t&) override;
     virtual void CastInterrupted(action_t&, MSGBASIC_ID) override;
+
 
 
     time_point m_errMsgTime;

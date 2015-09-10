@@ -249,6 +249,13 @@ bool CAIBattle::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicP
     return true;
 }
 
+CBattleEntity* CAIBattle::IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
+{
+    auto PTarget = targetFind.getValidTarget(targid, validTargetFlags);
+
+    return PTarget;
+}
+
 bool CAIBattle::Cast(uint16 targetid, uint16 spellid)
 {
     if (CanChangeState())
@@ -258,7 +265,7 @@ bool CAIBattle::Cast(uint16 targetid, uint16 spellid)
             //#TODO: MagicStartError();
             return false;
         }
-        ChangeState<CMagicState>(static_cast<CBattleEntity*>(PEntity), targetid, &targetFind);
+        ChangeState<CMagicState>(static_cast<CBattleEntity*>(PEntity), targetid);
 
         return static_cast<CMagicState*>(GetCurrentState())->CastSpell(spellid);
     }

@@ -639,7 +639,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x04: // disengage
     {
-        PChar->PAIBattle()->Disengage();
+        PChar->PAIBattle()->SetBattleTargetID(0);
     }
     break;
     case 0x05: // call for help

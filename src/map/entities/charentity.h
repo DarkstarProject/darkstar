@@ -327,6 +327,7 @@ public:
     virtual void addTrait(CTrait*) override;
     virtual void delTrait(CTrait*) override;
 
+    bool IsMobOwner(CBattleEntity*);
     virtual bool ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags) override;
     virtual bool CanUseSpell(CSpell*) override;
 

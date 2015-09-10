@@ -45,6 +45,11 @@ bool CAttackState::Update(time_point tick)
     }
     if (CanAttack(PTarget))
     {
+        //CanAttack may have set target id to 0 (disengage from out of range)
+        if (m_PEntity->PAIBattle()->GetBattleTargetID() == 0)
+        {
+            return true;
+        }
         action_t action;
         if (m_PEntity->PAIBattle()->Attack(action))
         {
@@ -69,12 +74,16 @@ void CAttackState::UpdateTarget(uint16 targid)
     auto newTargid = m_PEntity->PAIBattle()->GetBattleTargetID();
     if (targid != newTargid)
     {
-        //#TODO: check validity, range, etc
         if (targid != 0)
         {
-            auto PNewTarget = static_cast<CBattleEntity*>(m_PEntity->GetEntity(newTargid));
+            auto PNewTarget = m_PEntity->PAIBattle()->IsValidTarget(newTargid, TARGET_ENEMY, m_errorMsg);
             m_PEntity->PAIBattle()->ChangeTarget(true, PNewTarget);
             SetTarget(newTargid);
+            if (!PNewTarget)
+            {
+                m_errorMsg.reset();
+                return;
+            }
         }
     }
     CState::UpdateTarget(m_PEntity->PAIBattle()->GetBattleTargetID());

@@ -48,18 +48,59 @@ bool CAIChar::Cast(uint16 targetid, uint16 spellid)
 bool CAIChar::Engage(uint16 targid)
 {
     //#TODO: check gcd
-
-    auto ret = CAIBattle::Engage(targid);
+    //#TODO: pet engage/disengage
+    std::unique_ptr<CMessageBasicPacket> errMsg;
     auto PChar = static_cast<CCharEntity*>(PEntity);
-    auto PTarget = static_cast<CBattleEntity*>(PEntity->GetEntity(targid));
+    auto PTarget = IsValidTarget(targid, TARGET_ENEMY, errMsg);
 
-    if (ret)
+    //#TODO: use valid target stuff from spell
+    if (PTarget)
     {
-        PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(true);
-        PChar->pushPacket(new CLockOnPacket(PChar, PTarget));
-        PChar->pushPacket(new CCharUpdatePacket(PChar));
+        if (distance(PChar->loc.p, PTarget->loc.p) < 30)
+        {
+            m_battleTarget = targid;
+            PEntity->PAI->queueAction(queueAction_t(0, true, [this, targid](CBaseEntity* PEntity) {
+                ChangeState<CAttackState>(static_cast<CBattleEntity*>(PEntity), targid);
+            }));
+            PEntity->animation = ANIMATION_ATTACK;
+            PEntity->updatemask |= UPDATE_HP;
+
+            PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(true);
+            PChar->pushPacket(new CLockOnPacket(PChar, PTarget));
+            PChar->pushPacket(new CCharUpdatePacket(PChar));
+            return true;
+        }
+        else
+        {
+            errMsg = std::make_unique<CMessageBasicPacket>(PChar, PTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY);
+        }
     }
-    return ret;
+    if (errMsg)
+    {
+        PChar->pushPacket(errMsg.release());
+    }
+    return false;
+}
+
+CBattleEntity* CAIChar::IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
+{
+    auto PTarget = CAIBattle::IsValidTarget(targid, validTargetFlags, errMsg);
+    if (PTarget)
+    {
+        if (static_cast<CCharEntity*>(PEntity)->IsMobOwner(PTarget))
+        {
+            return PTarget;
+        }
+        else
+        {
+            errMsg = std::make_unique<CMessageBasicPacket>(PEntity, PTarget, 0, 0, MSGBASIC_ALREADY_CLAIMED);
+        }
+    }
+    else
+    {
+        errMsg = std::make_unique<CMessageBasicPacket>(PEntity, PEntity, 0, 0, MSGBASIC_CANNOT_ATTACK_TARGET);
+    }
+    return nullptr;
 }
 
 void CAIChar::ChangeTarget(bool changed, CBattleEntity* PNewTarget)

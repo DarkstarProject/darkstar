@@ -426,6 +426,27 @@ void CCharEntity::delTrait(CTrait* PTrait)
     charutils::delTrait(this, PTrait->getID());
 }
 
+bool CCharEntity::IsMobOwner(CBattleEntity* PBattleTarget)
+{
+    DSP_DEBUG_BREAK_IF(PBattleTarget == nullptr);
+
+    if (PBattleTarget->m_OwnerID.id == 0 || PBattleTarget->m_OwnerID.id == id || PBattleTarget->objtype == TYPE_PC)
+    {
+        return true;
+    }
+
+    bool found = false;
+
+    ForAlliance([&PBattleTarget, &found](CBattleEntity* PChar) {
+        if (PChar->id == PBattleTarget->m_OwnerID.id)
+        {
+            found = true;
+        }
+    });
+
+    return found;
+}
+
 bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
 {
     if (StatusEffectContainer->GetConfrontationEffect() != PInitiator->StatusEffectContainer->GetConfrontationEffect())
