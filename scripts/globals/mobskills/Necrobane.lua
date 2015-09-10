@@ -1,35 +1,43 @@
 ---------------------------------------------
--- Tourbillion
---
--- Description: Delivers an area attack. Additional effect duration varies with TP. Additional effect: Weakens defense.
--- Type: Physical
--- Shadow per hit
--- Range: Unknown range
+-- Necrobane
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
+  if(mob:getFamily() == 316) then
     local mobSkin = mob:getModelId();
 
-    if (mobSkin == 1805) then
+    if (mobSkin == 1839) then
         return 0;
     else
         return 1;
     end
+  end
+  if(mob:getFamily() == 91) then
+    local mobSkin = mob:getModelId();
+
+    if (mobSkin == 1840) then
+        return 0;
+    else
+        return 1;
+    end
+  end
+
+  return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local numhits = 3;
+    local numhits = 1;
     local accmod = 1;
-    local dmgmod = 1.5;
+    local dmgmod = 2;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
-    local duration = 20 * (skill:getTP() / 100);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_DEFENSE_DOWN, 20, 0, duration);
     target:delHP(dmg);
+    MobStatusEffectMove(mob, target, EFFECT_CURSE_I, 1, 0, 60);
 
     return dmg;
 end;
