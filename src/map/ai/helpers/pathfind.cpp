@@ -327,7 +327,7 @@ bool CPathFind::FindPath(position_t* start, position_t* end)
 
 bool CPathFind::FindRandomPath(position_t* start, float maxRadius, uint8 roamFlags)
 {
-    int8 maxTurns = 3;
+    int maxTurns = 3;
 
     if(roamFlags & ROAMFLAG_NO_TURN)
     {
@@ -340,7 +340,7 @@ bool CPathFind::FindRandomPath(position_t* start, float maxRadius, uint8 roamFla
             maxTurns = 5;
         }
 
-        m_turnLength = dsprand::GetRandomNumber<int8>(1, maxTurns);
+        m_turnLength = dsprand::GetRandomNumber(1, maxTurns);
     }
 
     position_t startPosition = *start;
