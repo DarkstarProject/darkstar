@@ -184,78 +184,47 @@ namespace battleutils
 
     void LoadMobSkillsList()
     {
-        const int8* fmtQuery = "SELECT mob_skill_id, family_id, mob_anim_id, mob_skill_name, \
-        mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
-        mob_valid_targets, mob_skill_flag, mob_skill_param, knockback \
-        FROM mob_skill \
-        INNER JOIN mob_family_system ON family_id = familyid \
-        INNER JOIN mob_pools ON mob_pools.familyid = mob_family_system.familyid \
-        INNER JOIN mob_groups ON mob_groups.poolid = mob_pools.poolid \
-        INNER JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
-        WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE) \
-        UNION \
-        (SELECT  mob_skill_id, family_id, mob_anim_id, mob_skill_name, \
-        mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
-        mob_valid_targets, mob_skill_flag, mob_skill_param, knockback \
-        FROM mob_skill \
-        INNER JOIN mob_family_system ON family_id = familyid \
-        INNER JOIN mob_pools ON mob_pools.familyid = mob_family_system.familyid \
-        WHERE family_id IN(SELECT familyid FROM pet_list JOIN mob_pools USING(poolid))) \
-        ORDER BY family_Id, mob_skill_id ASC;";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, map_ip, inet_ntoa(map_ip), map_port);
+        // Load all mob skills
+        const int8* specialQuery = "SELECT mob_skill_id, mob_anim_id, mob_skill_name, \
+        mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
+        mob_valid_targets, mob_skill_flag, mob_skill_param, knockback \
+        FROM mob_skills;";
+
+        int32 ret = Sql_Query(SqlHandle, specialQuery);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 CMobSkill* PMobSkill = new CMobSkill(Sql_GetIntData(SqlHandle, 0));
-                PMobSkill->setfamilyID(Sql_GetIntData(SqlHandle, 1));
-                PMobSkill->setAnimationID(Sql_GetIntData(SqlHandle, 2));
-                PMobSkill->setName(Sql_GetData(SqlHandle, 3));
-                PMobSkill->setAoe(Sql_GetIntData(SqlHandle, 4));
-                PMobSkill->setDistance(Sql_GetFloatData(SqlHandle, 5));
-                PMobSkill->setAnimationTime(Sql_GetIntData(SqlHandle, 6));
-                PMobSkill->setActivationTime(Sql_GetIntData(SqlHandle, 7));
-                PMobSkill->setValidTargets(Sql_GetIntData(SqlHandle, 8));
-                PMobSkill->setFlag(Sql_GetIntData(SqlHandle, 9));
-                PMobSkill->setParam(Sql_GetIntData(SqlHandle, 10));
-                PMobSkill->setKnockback(Sql_GetUIntData(SqlHandle, 11));
+                PMobSkill->setAnimationID(Sql_GetIntData(SqlHandle, 1));
+                PMobSkill->setName(Sql_GetData(SqlHandle, 2));
+                PMobSkill->setAoe(Sql_GetIntData(SqlHandle, 3));
+                PMobSkill->setDistance(Sql_GetFloatData(SqlHandle, 4));
+                PMobSkill->setAnimationTime(Sql_GetIntData(SqlHandle, 5));
+                PMobSkill->setActivationTime(Sql_GetIntData(SqlHandle, 6));
+                PMobSkill->setValidTargets(Sql_GetIntData(SqlHandle, 7));
+                PMobSkill->setFlag(Sql_GetIntData(SqlHandle, 8));
+                PMobSkill->setParam(Sql_GetIntData(SqlHandle, 9));
+                PMobSkill->setKnockback(Sql_GetUIntData(SqlHandle, 10));
                 PMobSkill->setMsg(185); //standard damage message. Scripters will change this.
                 g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
-                g_PMobFamilySkills[PMobSkill->getfamilyID()].push_back(PMobSkill);
             }
         }
 
+        const int8* fmtQuery = "SELECT skill_list_id, mob_skill_id \
+        FROM mob_skill_lists;";
 
-        // Load special skills; ranged attacks, call beast, etc
-        const int8* specialQuery = "SELECT mob_skill_id, family_id, mob_anim_id, mob_skill_name, \
-        mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
-        mob_valid_targets, mob_skill_flag, mob_skill_param, knockback \
-        FROM mob_skill \
-        WHERE family_id = 0;";
-
-        ret = Sql_Query(SqlHandle, specialQuery);
+        ret = Sql_Query(SqlHandle, fmtQuery);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                CMobSkill* PMobSkill = new CMobSkill(Sql_GetIntData(SqlHandle, 0));
-                PMobSkill->setfamilyID(Sql_GetIntData(SqlHandle, 1));
-                PMobSkill->setAnimationID(Sql_GetIntData(SqlHandle, 2));
-                PMobSkill->setName(Sql_GetData(SqlHandle, 3));
-                PMobSkill->setAoe(Sql_GetIntData(SqlHandle, 4));
-                PMobSkill->setDistance(Sql_GetFloatData(SqlHandle, 5));
-                PMobSkill->setAnimationTime(Sql_GetIntData(SqlHandle, 6));
-                PMobSkill->setActivationTime(Sql_GetIntData(SqlHandle, 7));
-                PMobSkill->setValidTargets(Sql_GetIntData(SqlHandle, 8));
-                PMobSkill->setFlag(Sql_GetIntData(SqlHandle, 9));
-                PMobSkill->setParam(Sql_GetIntData(SqlHandle, 10));
-                PMobSkill->setKnockback(Sql_GetUIntData(SqlHandle, 11));
-                PMobSkill->setMsg(185); //standard damage message. Scripters will change this.
-                g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
-                g_PMobFamilySkills[PMobSkill->getfamilyID()].push_back(PMobSkill);
+                int16 skillListId = Sql_GetIntData(SqlHandle, 0);
+                CMobSkill* PMobSkill = GetMobSkill(Sql_GetIntData(SqlHandle, 1));
+                g_PMobFamilySkills[skillListId].push_back(PMobSkill);
             }
         }
     }
