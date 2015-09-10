@@ -28,18 +28,19 @@ This file is part of DarkStar-server source code.
 
 CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE MessageType, int8* buff)
 {
-     // Determine the return message length..
-     int32 buffSize = (strlen(buff) > 111) ? 111 : strlen(buff);
+    // Determine the return message length..
+    int32 buffSize = (strlen(buff) > 111) ? 111 : strlen(buff);
 
-     // Build the packet..
-     this->type = 0x17;
-     this->size = 12 + ((buffSize / 4) + 1) * 2;
+    // Build the packet..
+    this->type = 0x17;
+    this->size = 32 + strlen(buff) + strlen(buff) % 2; // Non retail perfect, but works without crash!
+    // this->size = 12 + ((buffSize / 4) + 1) * 2; // This doesn't.
 
-     WBUFB(data, (0x04) ) = MessageType;
-     if (PChar->nameflags.flags & FLAG_GM)
+    WBUFB(data, (0x04) ) = MessageType;
+    if (PChar->nameflags.flags & FLAG_GM)
         WBUFB(data, (0x05) ) = 0x01;
-     WBUFW(data, (0x06) ) = PChar->getZone();
+    WBUFW(data, (0x06) ) = PChar->getZone();
 
-     memcpy(data + (0x08) , PChar->GetName(), PChar->name.size());
-     memcpy(data + (0x18) , buff, buffSize);
+    memcpy(data + (0x08) , PChar->GetName(), PChar->name.size());
+    memcpy(data + (0x18) , buff, buffSize);
 }
