@@ -713,7 +713,7 @@ void CAIMobDummy::ActionAbilityStart()
 {
     DSP_DEBUG_BREAK_IF(m_PBattleTarget == nullptr);
 
-    std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->getMobMod(MOBMOD_SKILLS));
+    std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillList(m_PMob->getMobMod(MOBMOD_SKILL_LIST));
 
     // не у всех монстов прописаны способности, так что выходим из процедуры, если способность не найдена
     // We don't have any skills we can use, so let's go back to attacking
@@ -1503,7 +1503,7 @@ void CAIMobDummy::ActionAttack()
     //If using mobskills instead of attacks, calculate distance to move and ability to use here
     if (m_mobskillattack)
     {
-        std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->getMobMod(MOBMOD_SKILLS));
+        std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillList(m_PMob->getMobMod(MOBMOD_SKILL_LIST));
 
         //get rid of every skill that doesn't have the auto attack flag
         for (int i = 0; i<MobSkills.size(); i++)

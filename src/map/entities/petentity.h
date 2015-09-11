@@ -53,6 +53,7 @@ public:
 	PETTYPE getPetType();
     bool isBstPet();
 	uint16 m_Family;
+	uint16 m_MobSkillList;
 	uint8 m_Element;
 	uint32 m_PetID;
 

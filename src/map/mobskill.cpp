@@ -27,7 +27,6 @@
 CMobSkill::CMobSkill(uint16 id)
 {
 	m_ID = id;
-	m_FamilyID= 0;
 	m_AnimID = 0;
 	m_Aoe = 0;
     m_Distance = 0;
@@ -81,11 +80,6 @@ void CMobSkill::setMsg(uint16 msg)
 void CMobSkill::setTotalTargets(uint16 targets)
 {
     m_TotalTargets = targets;
-}
-
-void CMobSkill::setfamilyID(uint16 familyID)
-{
-	m_FamilyID = familyID;
 }
 
 void CMobSkill::setAnimationID(uint16 animID)
@@ -145,14 +139,47 @@ uint16 CMobSkill::getID()
 	return m_ID;
 }
 
-uint16 CMobSkill::getfamilyID()
-{
-	return m_FamilyID;
-}
-
 uint16 CMobSkill::getAnimationID()
 {
 	return m_AnimID;
+}
+
+uint16 CMobSkill::getAvatarAnimationID()
+{
+  // levi
+  if(m_AnimID >= 552 && m_AnimID <= 560){
+    return m_AnimID - 488;
+  }
+  // garuda
+  if(m_AnimID >= 565 && m_AnimID <= 573){
+    return m_AnimID - 485;
+  }
+  // titan
+  if(m_AnimID >= 539 && m_AnimID <= 547){
+    return m_AnimID - 491;
+  }
+  // ifrit
+  if(m_AnimID >= 526 && m_AnimID <= 534){
+    return m_AnimID - 494;
+  }
+  // fenrir
+  if(m_AnimID >= 513 && m_AnimID <= 521){
+    return m_AnimID - 497;
+  }
+  // shiva
+  if(m_AnimID >= 578 && m_AnimID <= 586){
+    return m_AnimID - 482;
+  }
+  // rumah
+  if(m_AnimID >= 591 && m_AnimID <= 599){
+    return m_AnimID - 479;
+  }
+  // carbuncle
+  if(m_AnimID >= 605 && m_AnimID <= 611){
+    return m_AnimID - 605;
+  }
+
+  return m_AnimID;
 }
 
 int16 CMobSkill::getTP()

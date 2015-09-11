@@ -77,7 +77,7 @@ CWeaponSkill* g_PWeaponSkillList[MAX_WEAPONSKILL_ID];			// Holds all Weapon skil
 std::unordered_map<uint16, CMobSkill*> g_PMobSkillList;			// List of mob skills
 
 std::list<CWeaponSkill*> g_PWeaponSkillsList[MAX_SKILLTYPE];	// Holds Weapon skills by type
-std::unordered_map<uint16, std::vector<CMobSkill*>>  g_PMobFamilySkills;	// Mob Skills By Family
+std::unordered_map<uint16, std::vector<CMobSkill*>>  g_PMobSkillLists;	// List of mob skills defined from mob_skill_lists.sql
 
 /************************************************************************
 *  battleutils															*
@@ -224,7 +224,7 @@ namespace battleutils
             {
                 int16 skillListId = Sql_GetIntData(SqlHandle, 0);
                 CMobSkill* PMobSkill = GetMobSkill(Sql_GetIntData(SqlHandle, 1));
-                g_PMobFamilySkills[skillListId].push_back(PMobSkill);
+                g_PMobSkillLists[skillListId].push_back(PMobSkill);
             }
         }
     }
@@ -384,14 +384,51 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *  Get Mob Skills by family id                                          *
+    *  Get Mob Skills by list id                                          *
     *                                                                       *
     ************************************************************************/
 
-    std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
+    std::vector<CMobSkill*> GetMobSkillList(uint16 ListID)
     {
-        return g_PMobFamilySkills[FamilyID];
+        return g_PMobSkillLists[ListID];
     }
+
+    /************************************************************************
+    *                                                                       *
+    *	get mobs 2 hour skills	(should be moved into mobskill.cpp)         *
+    *                                                                       *
+    ************************************************************************/
+    CMobSkill* GetTwoHourMobSkill(JOBTYPE job)
+    {
+        uint16 id = 0;
+
+        switch (job)
+        {
+            case JOB_WAR: id = 432; break;
+            case JOB_MNK: id = 434; break;
+            case JOB_WHM: id = 433; break;
+            case JOB_BLM: id = 435; break;
+            case JOB_RDM: id = 436; break;
+            case JOB_THF: id = 437; break;
+            case JOB_PLD: id = 438; break;
+            case JOB_DRK: id = 439; break;
+            case JOB_BST: id = 484; break;
+            case JOB_BRD: id = 440; break;
+            case JOB_RNG: id = 479; break;
+            case JOB_SAM: id = 474; break;
+            case JOB_NIN: id = 475; break;
+            case JOB_DRG: id = 476; break;
+                // case JOB_SMN: id = 478; break;  // alt 2000
+                // case JOB_BLU: id = 1933; break; // alt 2001
+                // case JOB_COR: id = 1934; break; // alt 2002
+                // case JOB_PUP: id = 1935; break; // alt 2003
+                // case JOB_DNC: id = 2454; break; // alt 2004
+                // case JOB_SCH: id = 2102 break;  // alt 2005
+            default: return nullptr;
+        }
+        return GetMobSkill(id);
+    }
+
 
     int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element) {
         int32 damage = 0;
@@ -4448,42 +4485,6 @@ namespace battleutils
         //ShowDebug(CL_CYAN"HandleSevereDamageEffect: NOT Reducing Severe Damage!\n" CL_RESET);
 
         return damage;
-    }
-
-    /************************************************************************
-    *                                                                       *
-    *	get mobs 2 hour skills	(should be moved into mobskill.cpp)         *
-    *                                                                       *
-    ************************************************************************/
-    CMobSkill* GetTwoHourMobSkill(JOBTYPE job)
-    {
-        uint16 id = 0;
-
-        switch (job)
-        {
-            case JOB_WAR: id = 432; break;
-            case JOB_MNK: id = 434; break;
-            case JOB_WHM: id = 433; break;
-            case JOB_BLM: id = 435; break;
-            case JOB_RDM: id = 436; break;
-            case JOB_THF: id = 437; break;
-            case JOB_PLD: id = 438; break;
-            case JOB_DRK: id = 439; break;
-            case JOB_BST: id = 484; break;
-            case JOB_BRD: id = 440; break;
-            case JOB_RNG: id = 479; break;
-            case JOB_SAM: id = 474; break;
-            case JOB_NIN: id = 475; break;
-            case JOB_DRG: id = 476; break;
-                // case JOB_SMN: id = 478; break;  // alt 2000
-                // case JOB_BLU: id = 1933; break; // alt 2001
-                // case JOB_COR: id = 1934; break; // alt 2002
-                // case JOB_PUP: id = 1935; break; // alt 2003
-                // case JOB_DNC: id = 2454; break; // alt 2004
-                // case JOB_SCH: id = 2102 break;  // alt 2005
-            default: return nullptr;
-        }
-        return GetMobSkill(id);
     }
 
 

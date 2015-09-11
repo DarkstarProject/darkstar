@@ -36,6 +36,7 @@ CPetEntity::CPetEntity(PETTYPE petType)
 	m_PetType = petType;
 	m_EcoSystem = SYSTEM_UNCLASSIFIED;
 	allegiance = ALLEGIANCE_PLAYER;
+        m_MobSkillList = 0;
 }
 
 CPetEntity::~CPetEntity()

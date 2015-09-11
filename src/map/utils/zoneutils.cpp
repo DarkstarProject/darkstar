@@ -359,7 +359,7 @@ void LoadMOBList()
             Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
             mob_pools.familyid, name_prefix, flags, animationsub, \
             (mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-            allegiance, namevis, aggro, roamflag, mob_groups.roam_distance \
+            allegiance, namevis, aggro, roamflag, mob_groups.roam_distance, mob_pools.skill_list_id \
             FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
             INNER JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
             INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
@@ -507,6 +507,7 @@ void LoadMOBList()
 
                 PMob->m_roamFlags = (uint16)Sql_GetUIntData(SqlHandle, 63);
                 PMob->m_roamDistance = Sql_GetFloatData(SqlHandle, 64);
+                PMob->m_MobSkillList = Sql_GetUIntData(SqlHandle, 65);
 
                 // must be here first to define mobmods
                 mobutils::InitializeMob(PMob, GetZone(ZoneID));

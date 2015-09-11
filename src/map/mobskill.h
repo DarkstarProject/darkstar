@@ -52,7 +52,7 @@ public:
 
     uint16      getID();
     uint16      getAnimationID();
-    uint16      getfamilyID();
+    uint16      getAvatarAnimationID();
     uint8       getAoe();
     float       getDistance();
     uint8       getFlag();
@@ -73,7 +73,6 @@ public:
 
     void        setID(uint16 id);
     void        setAnimationID(uint16 aid);
-    void        setfamilyID(uint16 familyID);
     void        setAoe(uint8 aoe);
     void        setDistance(float distance);
     void        setFlag(uint8 flag);
@@ -94,7 +93,6 @@ private:
 
     uint16      m_ID;
     uint16      m_TotalTargets;
-    uint16      m_FamilyID;
     int16       m_Param;
     uint16      m_AnimID;           //animation id
     uint8       m_Aoe;              // не используется
