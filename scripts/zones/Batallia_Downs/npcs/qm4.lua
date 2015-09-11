@@ -14,12 +14,13 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 5) then	
-	 player:startEvent(0x0000);
-	elseif (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 6 and player:hasKeyItem(DELKFUTT_RECOGNITION_DEVICE) == false) then	
-	 player:addKeyItem(DELKFUTT_RECOGNITION_DEVICE);
-	 player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_RECOGNITION_DEVICE);
-	end
+    local missionProgress = player:getVar("COP_Tenzen_s_Path")
+    if (player:getCurrentMission(COP) == THREE_PATHS and missionProgress == 5) then    
+        player:startEvent(0x0000);
+    elseif (player:getCurrentMission(COP) == THREE_PATHS and (missionProgress == 6 or missionProgress == 7) and player:hasKeyItem(DELKFUTT_RECOGNITION_DEVICE) == false) then    
+        player:addKeyItem(DELKFUTT_RECOGNITION_DEVICE);
+        player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_RECOGNITION_DEVICE);
+    end
 
 end;
 
