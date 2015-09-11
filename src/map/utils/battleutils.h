@@ -116,9 +116,10 @@ namespace battleutils
 
     CWeaponSkill*	GetWeaponSkill(uint16 WSkillID);
     CMobSkill*		GetMobSkill(uint16 SkillID);
+    CMobSkill*          GetTwoHourMobSkill(JOBTYPE job);
 
     std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill);
-    std::vector<CMobSkill*>  GetMobSkillsByFamily(uint16 FamilyID);
+    std::vector<CMobSkill*>  GetMobSkillList(uint16 ListID);
 
     void				FreeWeaponSkillsList();
     void				FreeMobSkillsList();
@@ -223,7 +224,6 @@ namespace battleutils
     float               HandleTranquilHeart(CBattleEntity* PEntity);
 
     void				assistTarget(CCharEntity* PChar, uint16 TargID);
-    CMobSkill*          GetTwoHourMobSkill(JOBTYPE job);
 
     uint8               GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell);
     WEATHER             GetWeather(CBattleEntity* PEntity, bool ignoreScholar);

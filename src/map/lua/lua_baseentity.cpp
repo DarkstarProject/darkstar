@@ -8446,7 +8446,7 @@ inline int32 CLuaBaseEntity::hasTPMoves(lua_State* L)
     {
         familyID = ((CMobEntity*)m_PBaseEntity)->m_Family;
     }
-    std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(familyID);
+    std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillList(familyID);
     lua_pushboolean(L,MobSkills.size() != 0);
     return 1;
 }

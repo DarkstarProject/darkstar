@@ -284,7 +284,7 @@ bool CAIAutomatonDummy::CheckTPMove()
     //TODO: range checks
     if (m_PPet->health.tp > 1000)
     {
-        std::vector<CMobSkill*> FamilySkills = battleutils::GetMobSkillsByFamily(m_PPet->m_Family);
+        std::vector<CMobSkill*> FamilySkills = battleutils::GetMobSkillList(m_PPet->m_Family);
 
         std::map<uint16, CMobSkill*> validSkills;
 
