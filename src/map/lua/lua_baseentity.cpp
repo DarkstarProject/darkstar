@@ -5548,7 +5548,7 @@ inline int32 CLuaBaseEntity::injectPacket(lua_State *L)
         if (size <= 256)
         {
             fseek(File,0,SEEK_SET);
-            uint16 read_elements = fread(PPacket,1,size*2,File);
+            uint16 read_elements = fread(*PPacket,1,size*2,File);
 
             ((CCharEntity*)m_PBaseEntity)->pushPacket(PPacket);
         }
