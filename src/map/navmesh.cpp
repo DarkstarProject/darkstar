@@ -323,7 +323,7 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
   return pos;
 }
 
-int16 CNavMesh::findRandomPath(position_t start, float maxRadius, position_t* path, uint16 pathSize)
+int16 CNavMesh::findRandomPosition(position_t start, float maxRadius, position_t* randomPosition)
 {
 
   dtStatus status;
@@ -371,14 +371,12 @@ int16 CNavMesh::findRandomPath(position_t start, float maxRadius, position_t* pa
     return ERROR_NEARESTPOLY;
   }
 
-  position_t end;
-
   CNavMesh::ToFFXIPos(randomPt);
-  end.x = randomPt[0];
-  end.y = randomPt[1];
-  end.z = randomPt[2];
+  randomPosition->x = randomPt[0];
+  randomPosition->y = randomPt[1];
+  randomPosition->z = randomPt[2];
 
-  return findPath(start, end, path, pathSize);
+  return 0;
 }
 
 bool CNavMesh::inWater(position_t point)

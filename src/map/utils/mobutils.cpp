@@ -537,11 +537,11 @@ void CalculateStats(CMobEntity * PMob)
       } 
       else if(PMob->loc.zone->GetType() == ZONETYPE_OUTDOORS)
       {
-        PMob->m_roamDistance = 7.0f;
+        PMob->m_roamDistance = 4.0f;
       }
       else
       {
-        PMob->m_roamDistance = 5.0f;
+        PMob->m_roamDistance = 3.5f;
       }
 
     }
@@ -554,6 +554,12 @@ void CalculateStats(CMobEntity * PMob)
         // always stay close to spawn
         PMob->m_maxRoamDistance = 2.0f;
         PMob->m_roamDistance = 1.0f;
+        PMob->m_roamFlags |= ROAMFLAG_NO_TURN;
+    }
+
+    if(zoneType == ZONETYPE_OUTDOORS){
+        // mobs outside should make more turns
+        PMob->m_roamFlags |= ROAMFLAG_WANDER;
     }
 
     // cap all stats for lvl / job
@@ -746,6 +752,7 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 		// no gil drop and no mugging!
 		PMob->setMobMod(MOBMOD_GIL_MAX, -1);
 		PMob->setMobMod(MOBMOD_MUG_GIL, -1);
+		PMob->setMobMod(MOBMOD_2HOUR_PROC, 80);
 	}
 
 	// add two hours
@@ -765,10 +772,11 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 
 	PMob->m_Immunity |= PMob->getMobMod(MOBMOD_IMMUNITY);
 
-	PMob->defaultMobMod(MOBMOD_SKILLS, PMob->m_Family);
+	PMob->defaultMobMod(MOBMOD_SKILL_LIST, PMob->m_MobSkillList);
 	PMob->defaultMobMod(MOBMOD_LINK_RADIUS, MOB_LINK_RADIUS);
 	PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, MOB_TP_USE_CHANCE);
 	PMob->defaultMobMod(MOBMOD_ROAM_COOL, 30);
+	PMob->defaultMobMod(MOBMOD_2HOUR_PROC, 60);
 
     // Killer Effect
     switch (PMob->m_EcoSystem)
@@ -1034,7 +1042,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 		mob_pools.familyid, name_prefix, flags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-		allegiance, namevis, aggro, mob_groups.roam_distance \
+		allegiance, namevis, aggro, mob_groups.roam_distance, mob_pools.skill_list_id \
 		FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE mob_groups.groupid = %u";
@@ -1152,6 +1160,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 			PMob->namevis = Sql_GetUIntData(SqlHandle, 56);
 			PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 57);
 			PMob->m_roamDistance = Sql_GetFloatData(SqlHandle, 58);
+			PMob->m_MobSkillList = Sql_GetUIntData(SqlHandle, 59);
 
 			// must be here first to define mobmods
 			mobutils::InitializeMob(PMob, zoneutils::GetZone(zoneID));

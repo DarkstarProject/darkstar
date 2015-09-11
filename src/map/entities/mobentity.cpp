@@ -47,6 +47,7 @@ CMobEntity::CMobEntity()
     m_roamFlags = ROAMFLAG_NONE;
     m_specialFlags = SPECIALFLAG_NONE;
     m_name_prefix = 0;
+    m_MobSkillList = 0;
 
     memset(m_mobModStat,0, sizeof(m_mobModStat));
     memset(m_mobModStatSave,0, sizeof(m_mobModStatSave));

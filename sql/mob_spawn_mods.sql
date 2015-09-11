@@ -229,6 +229,8 @@ INSERT INTO `mob_spawn_mods` VALUES (16926464,49,1,1); -- Prishe in CoP 8-4
 INSERT INTO `mob_spawn_mods` VALUES (16916815,49,1,1); -- Ix'Aern MNK and helpers
 INSERT INTO `mob_spawn_mods` VALUES (16916816,49,1,1);
 INSERT INTO `mob_spawn_mods` VALUES (16916817,49,1,1);
+
+INSERT INTO `mob_spawn_mods` VALUES (17326081,50,25,1); -- Angra_Mainyu chainspell at 25%
 /*!40000 ALTER TABLE `mob_spawn_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

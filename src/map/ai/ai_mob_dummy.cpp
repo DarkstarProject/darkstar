@@ -713,22 +713,12 @@ void CAIMobDummy::ActionAbilityStart()
 {
     DSP_DEBUG_BREAK_IF(m_PBattleTarget == nullptr);
 
-    std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->getMobMod(MOBMOD_SKILLS));
-
-    if (m_PMob->m_EcoSystem == SYSTEM_ELEMENTAL)
-    {
-        // elementals have no tp moves
-        m_PMob->health.tp = 0;
-        TransitionBack(true);
-        return;
-    }
+    std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillList(m_PMob->getMobMod(MOBMOD_SKILL_LIST));
 
     // не у всех монстов прописаны способности, так что выходим из процедуры, если способность не найдена
     // We don't have any skills we can use, so let's go back to attacking
     if (MobSkills.size() == 0)
     {
-        ShowWarning("CAIMobDummy::ActionAbilityStart No TP moves found for family (%d)\n", m_PMob->m_Family);
-        m_PMob->health.tp = 0;
         TransitionBack(true);
         return;
     }
@@ -854,7 +844,6 @@ void CAIMobDummy::ActionAbilityStart()
     if (!valid)
     {
         // couldn't find anything so go back to attack
-        m_PMob->health.tp = 0;
         TransitionBack(true);
         return;
     }
@@ -1274,7 +1263,7 @@ void CAIMobDummy::ActionMagicFinish()
         m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SOUL_VOICE,0))
     {
         // cast magic sooner
-        m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + 10000;
+        m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + 5000;
     }
 
     // display animation, then continue fighting
@@ -1514,7 +1503,7 @@ void CAIMobDummy::ActionAttack()
     //If using mobskills instead of attacks, calculate distance to move and ability to use here
     if (m_mobskillattack)
     {
-        std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->getMobMod(MOBMOD_SKILLS));
+        std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillList(m_PMob->getMobMod(MOBMOD_SKILL_LIST));
 
         //get rid of every skill that doesn't have the auto attack flag
         for (int i = 0; i<MobSkills.size(); i++)

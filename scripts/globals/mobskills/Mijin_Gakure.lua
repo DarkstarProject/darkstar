@@ -14,7 +14,7 @@ function onMobSkillCheck(target,mob,skill)
     elseif (skill:getParam() == 2 and math.random() <= 0.5) then -- not always used
         return 1;
     end
-    if (mob:getHPP() <= 60) then
+    if (mob:getHPP() <= mob:getMobMod(MOBMOD_2HOUR_PROC)) then
         return 0;
     end
     return 1;

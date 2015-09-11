@@ -130,7 +130,7 @@ void CAIPetDummy::ActionAbilityStart()
         {
             m_MasterCommand = MASTERCOMMAND_NONE;
             CMobEntity* PMob = (CMobEntity*)m_PPet->PMaster->PPet;
-            std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(PMob->m_Family);
+            std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillList(PMob->getMobMod(MOBMOD_SKILL_LIST));
 
             if (MobSkills.size() > 0)
             {
@@ -475,11 +475,24 @@ void CAIPetDummy::ActionAbilityFinish(){
     m_PMobSkill->setTotalTargets(totalTargets);
     m_PMobSkill->setTP(m_skillTP);
 
+    uint16 animationId;
+    if(m_PPet->getPetType() == PETTYPE_AVATAR)
+    {
+      // TODO: this is totally a hack
+      // override mob animation ids with valid pet animation id
+      // pets need their own skills
+      animationId = m_PMobSkill->getAvatarAnimationID();
+    }
+    else
+    {
+      animationId = m_PMobSkill->getAnimationID();
+    }
+
     apAction_t Action;
     Action.ActionTarget = nullptr;
     Action.reaction = REACTION_HIT;
     Action.speceffect = SPECEFFECT_HIT;
-    Action.animation = m_PMobSkill->getAnimationID();
+    Action.animation = animationId;
     Action.knockback = 0;
 
     uint16 msg = 0;
