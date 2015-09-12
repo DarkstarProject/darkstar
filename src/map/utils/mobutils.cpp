@@ -167,53 +167,60 @@ void CalculateStats(CMobEntity * PMob)
     {
 
         float growth = 1.06;
+        float petGrowth = 0.75;
         float base = 18.0;
-        uint8 lvl = PMob->GetMLevel();
 
         //give hp boost every 10 levels after 25
         //special boosts at 25 and 50
-        if(lvl > 75)
+        if(mLvl > 75)
         {
             growth = 1.28;
+            petGrowth = 1.03;
         }
-        else if(lvl > 65)
+        else if(mLvl > 65)
         {
             growth = 1.27;
+            petGrowth = 1.02;
         }
-        else if(lvl > 55)
+        else if(mLvl > 55)
         {
             growth = 1.25;
+            petGrowth = 0.99;
         }
-        else if(lvl > 50)
+        else if(mLvl > 50)
         {
             growth = 1.21;
+            petGrowth = 0.96;
         }
-        else if(lvl > 45)
+        else if(mLvl > 45)
         {
             growth = 1.17;
+            petGrowth = 0.95;
         }
-        else if(lvl > 35)
+        else if(mLvl > 35)
         {
             growth = 1.14;
+            petGrowth = 0.92;
         }
-        else if(lvl > 25)
+        else if(mLvl > 25)
         {
             growth = 1.1;
+            petGrowth = 0.82;
         }
 
         // pets have lower health
         if(PMob->PMaster != nullptr)
         {
-            growth = 0.95;
+            growth = petGrowth;
         }
 
 
-        PMob->health.maxhp = (int16)(base * pow(lvl, growth) * PMob->HPscale);
+        PMob->health.maxhp = (int16)(base * pow(mLvl, growth) * PMob->HPscale);
 
         if(isNM)
         {
             PMob->health.maxhp *= 2.0;
-            if(PMob->GetMLevel() > 75){
+            if(mLvl > 75){
                 PMob->health.maxhp *= 2.5;
             }
         }
@@ -277,11 +284,11 @@ void CalculateStats(CMobEntity * PMob)
 
         if(PMob->MPmodifier == 0)
         {
-            PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * scale) + 10;
+            PMob->health.maxmp = (int16)(18.2 * pow(mLvl,1.1075) * scale) + 10;
             if(isNM)
             {
                 PMob->health.maxmp *= 1.5;
-                if(PMob->GetMLevel()>75)
+                if(mLvl>75)
                 {
                     PMob->health.maxmp *= 1.5;
                 }
@@ -315,21 +322,21 @@ void CalculateStats(CMobEntity * PMob)
         PMob->m_Weapons[SLOT_MAIN]->resetDelay();
     }
 
-    uint16 fSTR = GetBaseToRank(PMob->strRank, PMob->GetMLevel());
-    uint16 fDEX = GetBaseToRank(PMob->dexRank, PMob->GetMLevel());
-    uint16 fVIT = GetBaseToRank(PMob->vitRank, PMob->GetMLevel());
-    uint16 fAGI = GetBaseToRank(PMob->agiRank, PMob->GetMLevel());
-    uint16 fINT = GetBaseToRank(PMob->intRank, PMob->GetMLevel());
-    uint16 fMND = GetBaseToRank(PMob->mndRank, PMob->GetMLevel());
-    uint16 fCHR = GetBaseToRank(PMob->chrRank, PMob->GetMLevel());
+    uint16 fSTR = GetBaseToRank(PMob->strRank, mLvl);
+    uint16 fDEX = GetBaseToRank(PMob->dexRank, mLvl);
+    uint16 fVIT = GetBaseToRank(PMob->vitRank, mLvl);
+    uint16 fAGI = GetBaseToRank(PMob->agiRank, mLvl);
+    uint16 fINT = GetBaseToRank(PMob->intRank, mLvl);
+    uint16 fMND = GetBaseToRank(PMob->mndRank, mLvl);
+    uint16 fCHR = GetBaseToRank(PMob->chrRank, mLvl);
 
-    uint16 mSTR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),2), PMob->GetMLevel());
-    uint16 mDEX = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),3), PMob->GetMLevel());
-    uint16 mVIT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),4), PMob->GetMLevel());
-    uint16 mAGI = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),5), PMob->GetMLevel());
-    uint16 mINT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),6), PMob->GetMLevel());
-    uint16 mMND = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),7), PMob->GetMLevel());
-    uint16 mCHR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),8), PMob->GetMLevel());
+    uint16 mSTR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),2), mLvl);
+    uint16 mDEX = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),3), mLvl);
+    uint16 mVIT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),4), mLvl);
+    uint16 mAGI = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),5), mLvl);
+    uint16 mINT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),6), mLvl);
+    uint16 mMND = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),7), mLvl);
+    uint16 mCHR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),8), mLvl);
 
     uint16 sSTR = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),2), PMob->GetSLevel());
     uint16 sDEX = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),3), PMob->GetSLevel());
@@ -392,7 +399,7 @@ void CalculateStats(CMobEntity * PMob)
     // aggro mobs move around a bit more often
     if(PMob->m_Aggro != AGGRO_NONE && PMob->speed != 0)
     {
-        PMob->setMobMod(MOBMOD_ROAM_COOL, 20);
+        PMob->setMobMod(MOBMOD_ROAM_COOL, 40);
     }
 
     // setup special ability
@@ -533,15 +540,15 @@ void CalculateStats(CMobEntity * PMob)
       if(PMob->m_Type & MOBTYPE_NOTORIOUS)
       {
         // Notorious monsters don't roam very far
-        PMob->m_roamDistance = 3.0f;
+        PMob->m_roamDistance = 2.5f;
       } 
       else if(PMob->loc.zone->GetType() == ZONETYPE_OUTDOORS)
       {
-        PMob->m_roamDistance = 7.0f;
+        PMob->m_roamDistance = 3.0f;
       }
       else
       {
-        PMob->m_roamDistance = 5.0f;
+        PMob->m_roamDistance = 2.5f;
       }
 
     }
@@ -554,12 +561,18 @@ void CalculateStats(CMobEntity * PMob)
         // always stay close to spawn
         PMob->m_maxRoamDistance = 2.0f;
         PMob->m_roamDistance = 1.0f;
+        PMob->m_roamFlags |= ROAMFLAG_NO_TURN;
     }
 
-    // cap all stats for lvl / job
+    if(zoneType == ZONETYPE_OUTDOORS){
+        // mobs outside should make more turns
+        PMob->m_roamFlags |= ROAMFLAG_WANDER;
+    }
+
+    // cap all stats for mLvl / job
     for (int i=SKILL_DIV; i <=SKILL_BLU; i++)
     {
-        uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetMJob(),PMob->GetMLevel());
+        uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetMJob(),mLvl > 99 ? 99 : mLvl);
         if (maxSkill != 0)
             {
             PMob->WorkingSkills.skill[i] = maxSkill;
@@ -567,7 +580,7 @@ void CalculateStats(CMobEntity * PMob)
         else //if the mob is WAR/BLM and can cast spell
         {
             // set skill as high as main level, so their spells won't get resisted
-            uint16 maxSubSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetSJob(),PMob->GetMLevel());
+            uint16 maxSubSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetSJob(),mLvl > 99 ? 99 : mLvl);
 
             if (maxSubSkill != 0)
             {
@@ -608,12 +621,12 @@ void CalculateStats(CMobEntity * PMob)
     }
 
     //natural magic evasion
-    PMob->addModifier(MOD_MEVA, battleutils::GetMaxSkill(mEvasionRating, JOB_RDM, mLvl));
+    PMob->addModifier(MOD_MEVA, battleutils::GetMaxSkill(mEvasionRating, JOB_RDM, mLvl > 99 ? 99 : mLvl));
 
     if((PMob->m_Type & MOBTYPE_NOTORIOUS) && mJob == JOB_WHM && mLvl >= 25)
     {
         // whm nms have stronger regen effect
-        PMob->addModifier(MOD_REGEN, PMob->GetMLevel()/4);
+        PMob->addModifier(MOD_REGEN, mLvl/4);
     }
 
     // add traits for sub and main
@@ -746,6 +759,7 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 		// no gil drop and no mugging!
 		PMob->setMobMod(MOBMOD_GIL_MAX, -1);
 		PMob->setMobMod(MOBMOD_MUG_GIL, -1);
+		PMob->setMobMod(MOBMOD_2HOUR_PROC, 80);
 	}
 
 	// add two hours
@@ -765,10 +779,11 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 
 	PMob->m_Immunity |= PMob->getMobMod(MOBMOD_IMMUNITY);
 
-	PMob->defaultMobMod(MOBMOD_SKILLS, PMob->m_Family);
+	PMob->defaultMobMod(MOBMOD_SKILL_LIST, PMob->m_MobSkillList);
 	PMob->defaultMobMod(MOBMOD_LINK_RADIUS, MOB_LINK_RADIUS);
 	PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, MOB_TP_USE_CHANCE);
-	PMob->defaultMobMod(MOBMOD_ROAM_COOL, 30);
+	PMob->defaultMobMod(MOBMOD_ROAM_COOL, 50);
+	PMob->defaultMobMod(MOBMOD_2HOUR_PROC, 60);
 
     // Killer Effect
     switch (PMob->m_EcoSystem)
@@ -1034,7 +1049,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 		mob_pools.familyid, name_prefix, flags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-		allegiance, namevis, aggro, mob_groups.roam_distance \
+		allegiance, namevis, aggro, mob_groups.roam_distance, mob_pools.skill_list_id \
 		FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE mob_groups.groupid = %u";
@@ -1152,6 +1167,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 			PMob->namevis = Sql_GetUIntData(SqlHandle, 56);
 			PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 57);
 			PMob->m_roamDistance = Sql_GetFloatData(SqlHandle, 58);
+			PMob->m_MobSkillList = Sql_GetUIntData(SqlHandle, 59);
 
 			// must be here first to define mobmods
 			mobutils::InitializeMob(PMob, zoneutils::GetZone(zoneID));

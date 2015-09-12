@@ -15,6 +15,15 @@ require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
+  if(mob:getFamily() == 316) then
+    local mobSkin = mob:getModelId();
+
+    if (mobSkin == 1793) then
+        return 0;
+    else
+        return 1;
+    end
+  end
     local result = 1;
     local mobhp = mob:getHPP();
 
@@ -26,15 +35,14 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_BURN;
-	local power = 21;
+    local typeEffect = EFFECT_BURN;
+    local power = 21;
 
+    MobStatusEffectMove(mob, target, typeEffect, power, 3, 60);
 
-	MobStatusEffectMove(mob, target, typeEffect, power, 3, 60);
-
-	local dmgmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*6,ELE_FIRE,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
-	target:delHP(dmg);
-	return dmg;
+    local dmgmod = 1;
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*6,ELE_FIRE,dmgmod,TP_NO_EFFECT);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
+    target:delHP(dmg);
+    return dmg;
 end;

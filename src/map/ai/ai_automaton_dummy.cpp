@@ -284,7 +284,7 @@ bool CAIAutomatonDummy::CheckTPMove()
     //TODO: range checks
     if (m_PPet->health.tp > 1000)
     {
-        std::vector<CMobSkill*> FamilySkills = battleutils::GetMobSkillsByFamily(m_PPet->m_Family);
+        const std::vector<uint16>& FamilySkills = battleutils::GetMobSkillList(m_PPet->m_Family);
 
         std::map<uint16, CMobSkill*> validSkills;
 
@@ -296,9 +296,10 @@ bool CAIAutomatonDummy::CheckTPMove()
             skilltype = SKILL_ARA;
         }
 
-        for (auto PSkill : FamilySkills)
+        for (auto skillid : FamilySkills)
         {
-            if (m_PPet->PMaster && m_PPet->PMaster->GetSkill(skilltype) > PSkill->getParam() && PSkill->getParam() != -1)
+            auto PSkill = battleutils::GetMobSkill(skillid);
+            if (PSkill && m_PPet->PMaster && m_PPet->PMaster->GetSkill(skilltype) > PSkill->getParam() && PSkill->getParam() != -1)
             {
                 validSkills.insert(std::make_pair(m_PPet->PMaster->GetSkill(skilltype), PSkill));
             }

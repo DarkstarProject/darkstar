@@ -36,6 +36,7 @@ enum LATENT
     LATENT_HP_OVER_VISIBLE_GEAR     = 46, //hp more than or equal to %, calculated using HP bonuses from visible gear only 
     LATENT_MP_UNDER_PERCENT         = 4,  //mp less than or equal to % - PARAM: MP PERCENT
     LATENT_MP_UNDER                 = 5,  //mp less than # - PARAM: MP #
+    LATENT_MP_OVER                  = 55, //mp greater than # - PARAM: MP #
     LATENT_MP_UNDER_VISIBLE_GEAR    = 45, //mp less than or equal to %, calculated using MP bonuses from visible gear only
     LATENT_TP_UNDER                 = 6,  //tp under # and during WS - PARAM: TP VALUE
     LATENT_TP_OVER                  = 7,  //tp over # - PARAM: TP VALUE
@@ -79,7 +80,7 @@ enum LATENT
     LATENT_ZONE_HOME_NATION         = 54  //in zone and citizen of nation (aketons)
 };
 
-#define MAX_LATENTEFFECTID    55
+#define MAX_LATENTEFFECTID    56
 
 /************************************************************************
 *																		*

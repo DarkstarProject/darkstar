@@ -37,9 +37,9 @@ end;
 function onEffectGain(target,effect)
 	target:addMod(MOD_DEX, -4);
 	target:addMod(MOD_FOOD_ATTP, 15.5);
-	target:addMod(MOD_FOOD_ATT_CAP, 999);
+	target:addMod(MOD_FOOD_ATT_CAP, 80);
 	target:addMod(MOD_FOOD_RATTP, 15.5);
-	target:addMod(MOD_FOOD_RATT_CAP, 999);
+	target:addMod(MOD_FOOD_RATT_CAP, 80);
 end;
 
 -----------------------------------------
@@ -49,7 +49,7 @@ end;
 function onEffectLose(target,effect)
 	target:delMod(MOD_DEX, -4);
 	target:delMod(MOD_FOOD_ATTP, 15.5);
-	target:delMod(MOD_FOOD_ATT_CAP, 999);
+	target:delMod(MOD_FOOD_ATT_CAP, 80);
 	target:delMod(MOD_FOOD_RATTP, 15.5);
-	target:delMod(MOD_FOOD_RATT_CAP, 999);
+	target:delMod(MOD_FOOD_RATT_CAP, 80);
 end;

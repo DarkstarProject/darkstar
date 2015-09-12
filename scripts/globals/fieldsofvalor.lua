@@ -137,9 +137,11 @@ FOV_EVENT_SORROWS         = 0x003d;
 ----------------------------------
 
 function startFov(eventid,player)
-	local hasRegime = player:getVar("fov_regimeid");
-	local tabs = player:getCurrency("valor_point");
-	player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
+	if (FIELD_MANUALS == 1) then
+	   local hasRegime = player:getVar("fov_regimeid");
+	   local tabs = player:getCurrency("valor_point");
+	   player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
+	end;
 end
 
 ----------------------------------

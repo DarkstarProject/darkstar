@@ -80,6 +80,10 @@ SUBEFFECT_HP_DRAIN          = 21;  -- 1-10101      43
 SUBEFFECT_MP_DRAIN          = 22;  -- This is correct animation
 SUBEFFECT_TP_DRAIN          = 22;  -- Verified this should look exactly like Aspir Samba.
 SUBEFFECT_HASTE             = 23;
+-- Below are almost certain to be wrong: 
+-- Someone needs to go on retail and verify the SubEffect IDs
+SUBEFFECT_AMNESIA           = 11; --
+SUBEFFECT_DISPEL            = 13; -- Correct ID possibly 20 ?
 
 -- SPIKES
 SUBEFFECT_BLAZE_SPIKES      = 1;   -- 01-1000       6
@@ -90,6 +94,8 @@ SUBEFFECT_SHOCK_SPIKES      = 5;   -- 01-1010      22
 SUBEFFECT_REPRISAL          = 6;   -- 01-0110      26
 SUBEFFECT_WIND_SPIKES       = 7;
 SUBEFFECT_STONE_SPIKES      = 8;
+SUBEFFECT_DELUGE_SPIKES     = 9;
+SUBEFFECT_DEATH_SPIKES      = 10;  -- yes really: http://www.ffxiah.com/item/26944/
 SUBEFFECT_COUNTER           = 63;
 
 -- SKILLCHAINS
@@ -851,7 +857,7 @@ MOD_IMPACTRES         = 51
 MOD_HTHRES            = 52
 MOD_FIRERES           = 54
 MOD_ICERES            = 55
-MOD_WINDRES           = 59
+MOD_WINDRES           = 56
 MOD_EARTHRES          = 57
 MOD_THUNDERRES        = 58
 MOD_WATERRES          = 59
@@ -1223,14 +1229,25 @@ MOD_LOGGING_RESULT      = 514 -- Improves logging results
 MOD_MINNING_RESULT      = 515 -- Improves mining results
 MOD_EGGHELM             = 517 -- Egg Helm (Chocobo Digging)
 
-MOD_SHIELDBLOCKRATE = 518 -- Affects shield block rate, percent based
-MOD_SCAVENGE_EFFECT = 312 --
-MOD_DIA_DOT         = 313 -- Increases the DoT damage of Dia
-MOD_SHARPSHOT       = 314 -- Sharpshot accuracy bonus
-MOD_ENH_DRAIN_ASPIR = 315 -- % damage boost to Drain and Aspir
-MOD_TRICK_ATK_AGI   = 520 -- % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
-MOD_NIN_NUKE_BONUS  = 522 -- magic attack bonus for NIN nukes
-MOD_AMMO_SWING      = 523 -- Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players.
+MOD_SHIELDBLOCKRATE           = 518 -- Affects shield block rate, percent based
+MOD_SCAVENGE_EFFECT           = 312 --
+MOD_DIA_DOT                   = 313 -- Increases the DoT damage of Dia
+MOD_SHARPSHOT                 = 314 -- Sharpshot accuracy bonus
+MOD_ENH_DRAIN_ASPIR           = 315 -- % damage boost to Drain and Aspir
+MOD_TRICK_ATK_AGI             = 520 -- % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
+MOD_NIN_NUKE_BONUS            = 522 -- magic attack bonus for NIN nukes
+MOD_AMMO_SWING                = 523 -- Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players.
+MOD_ROLL_RANGE                = 528 -- Additional range for COR roll abilities.
+MOD_ENHANCES_REFRESH          = 529 -- "Enhances Refresh" adds +1 per modifier to spell's tick result.
+MOD_NO_SPELL_MP_DEPLETION     = 530 -- % to not deplete MP on spellcast.
+MOD_FORCE_FIRE_DWBONUS        = 531 -- Set to 1 to force fire day/weather spell bonus/penalty. Do not have it total more than 1.
+MOD_FORCE_EARTH_DWBONUS       = 532 -- Set to 1 to force earth day/weather spell bonus/penalty. Do not have it total more than 1.
+MOD_FORCE_WATER_DWBONUS       = 533 -- Set to 1 to force water day/weather spell bonus/penalty. Do not have it total more than 1.
+MOD_FORCE_WIND_DWBONUS        = 534 -- Set to 1 to force wind day/weather spell bonus/penalty. Do not have it total more than 1.
+MOD_FORCE_ICE_DWBONUS         = 535 -- Set to 1 to force ice day/weather spell bonus/penalty. Do not have it total more than 1.
+MOD_FORCE_LIGHTNING_DWBONUS   = 536 -- Set to 1 to force lightning day/weather spell bonus/penalty. Do not have it total more than 1.
+MOD_FORCE_LIGHT_DWBONUS       = 537 -- Set to 1 to force light day/weather spell bonus/penalty. Do not have it total more than 1.
+MOD_FORCE_DARK_DWBONUS        = 538 -- Set to 1 to force dark day/weather spell bonus/penalty. Do not have it total more than 1.
 
 -- Mythic Weapon Mods
 MOD_AUGMENTS_ABSORB    = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)
@@ -1238,8 +1255,6 @@ MOD_AOE_NA             = 524 -- Set to 1 to make -na spells/erase always AoE w/ 
 MOD_AUGMENTS_CONVERT   = 525 -- Convert HP to MP Ratio Multiplier. Value = MP multiplier rate.
 MOD_AUGMENTS_SA        = 526 -- Adds Critical Attack Bonus to Sneak Attack, percentage based.
 MOD_AUGMENTS_TA        = 527 -- Adds Critical Attack Bonus to Trick Attack, percentage based.
-MOD_ROLL_RANGE         = 528 -- Additional range for COR roll abilities.
-MOD_ENHANCES_REFRESH   = 529 -- "Enhances Refresh" adds +1 per modifier to spell's tick result.
 
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
@@ -1253,8 +1268,8 @@ MOD_ENHANCES_REFRESH   = 529 -- "Enhances Refresh" adds +1 per modifier to spell
 -- MOD_SPARE = 98, -- stuff
 -- MOD_SPARE = 99, -- stuff
 -- MOD_SPARE = 100, -- stuff
--- MOD_SPARE = 530, -- stuff
--- MOD_SPARE = 531, -- stuff
+-- MOD_SPARE = 539, -- stuff
+-- MOD_SPARE = 540, -- stuff
 
 ------------------------------------
 -- Merit Definitions
@@ -1798,6 +1813,10 @@ MSGBASIC_ADD_EFFECT_MP_DRAIN    = 162 -- Additional effect: <number> MP drained 
 MSGBASIC_ADD_EFFECT_DMG         = 163 -- Additional effect: <number> points of damage.
 MSGBASIC_ADD_EFFECT_STATUS2     = 164 -- Additional effect: <Status Effect>. (Duplicate?)
 MSGBASIC_ADD_EFFECT_TP_DRAIN    = 165 -- Additional effect: <number> TP drained from <target>.
+MSGBASIC_ADD_EFFECT_STATUS3     = 166 -- Additional effect: The <target> gains the effect of <Status Effect>. (Only difference from 160 and 164 is "The")
+MSGBASIC_ADD_EFFECT_HEAL        = 167 -- Additional effect: The <target> recovers <number> HP. (used when target absorbs element)
+MSGBASIC_ADD_EFFECT_DISPEL      = 168 -- Additional effect: <target>'s KO effect disappears!
+MSGBASIC_ADD_EFFECT_WARP        = 169 -- Additional effect: Warp! (used by holloween staves)
 
 -- Charm
 MSGBASIC_CANNOT_CHARM           = 210 -- The <player> cannot charm <target>!
@@ -1853,7 +1872,7 @@ MOBMOD_SUBLINK        = 10
 MOBMOD_LINK_RADIUS    = 11
 MOBMOD_DRAW_IN        = 12
 MOBMOD_RAGE           = 13
-MOBMOD_SKILLS         = 14
+MOBMOD_SKILL_LIST     = 14
 MOBMOD_MUG_GIL        = 15
 MOBMOD_MAIN_2HOUR     = 16
 MOBMOD_NO_DESPAWN     = 17
@@ -1888,6 +1907,8 @@ MOBMOD_ADD_EFFECT     = 45
 MOBMOD_AUTO_SPIKES    = 46
 MOBMOD_SPAWN_LEASH    = 47
 MOBMOD_SHARE_TARGET   = 48
+MOBMOD_SCRIPTED_2HOUR = 49
+MOBMOD_2HOUR_PROC     = 50
 
 
 ------------------------------------

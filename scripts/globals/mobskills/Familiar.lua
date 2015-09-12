@@ -10,7 +10,9 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:getHPP() <= 90 and mob:hasPet()) then
+    if (mob:getMobMod(MOBMOD_SCRIPTED_2HOUR) == 1) then
+        return 1;
+    elseif (mob:getHPP() <= mob:getMobMod(MOBMOD_2HOUR_PROC) and mob:hasPet()) then
         return 0;
     end
     return 1;

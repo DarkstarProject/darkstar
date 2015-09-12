@@ -282,6 +282,16 @@ void CLatentEffectContainer::CheckLatentsMP(int32 mp)
                 m_LatentEffectList.at(i)->Deactivate();
             }
             break;
+        case LATENT_MP_OVER:
+            if (mp >= m_LatentEffectList.at(i)->GetConditionsValue())
+            {
+               m_LatentEffectList.at(i)->Activate();
+            }
+            else
+            {
+               m_LatentEffectList.at(i)->Deactivate();
+            }
+            break;
             //case LATENT_MP_UNDER_VISIBLE_GEAR:
             //    {
             //    //TODO: figure out if this is actually right
@@ -382,6 +392,16 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                 break;
             case LATENT_MP_UNDER:
                 if (m_POwner->health.mp <= m_LatentEffectList.at(i)->GetConditionsValue())
+                {
+                    m_LatentEffectList.at(i)->Activate();
+                }
+                else
+                {
+                    m_LatentEffectList.at(i)->Deactivate();
+                }
+                break;
+            case LATENT_MP_OVER:
+                if (m_POwner->health.mp >= m_LatentEffectList.at(i)->GetConditionsValue())
                 {
                     m_LatentEffectList.at(i)->Activate();
                 }

@@ -28,6 +28,7 @@
 #include <string.h>
 #include <algorithm>
 #include <unordered_map>
+#include <array>
 
 #include "../packets/char.h"
 #include "../packets/char_health.h"
@@ -69,15 +70,15 @@
 *	lists used in battleutils											*
 ************************************************************************/
 
-uint16 g_SkillTable[100][14];									// All Skills by level/skilltype
-uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// Holds skill ranks by skilltype and job
-uint16 g_SkillChainDamageModifiers[MAX_SKILLCHAIN_LEVEL + 1][MAX_SKILLCHAIN_COUNT + 1]; // Holds damage modifiers for skill chains [chain level][chain count]
+std::array<std::array<uint16, 14>, 100> g_SkillTable;
+std::array<std::array<uint8, MAX_JOBTYPE>, MAX_SKILLTYPE> g_SkillRanks;
+std::array<std::array<uint16, MAX_SKILLCHAIN_COUNT + 1>, MAX_SKILLCHAIN_LEVEL + 1> g_SkillChainDamageModifiers;
 
-CWeaponSkill* g_PWeaponSkillList[MAX_WEAPONSKILL_ID];			// Holds all Weapon skills
-std::unordered_map<uint16, CMobSkill*> g_PMobSkillList;			// List of mob skills
+std::array<CWeaponSkill*, MAX_WEAPONSKILL_ID> g_PWeaponSkillList;			// Holds all Weapon skills
+std::array<CMobSkill*, 4096> g_PMobSkillList;		        	// List of mob skills
 
-std::list<CWeaponSkill*> g_PWeaponSkillsList[MAX_SKILLTYPE];	// Holds Weapon skills by type
-std::unordered_map<uint16, std::vector<CMobSkill*>>  g_PMobFamilySkills;	// Mob Skills By Family
+std::array<std::list<CWeaponSkill*>, MAX_SKILLTYPE> g_PWeaponSkillsList;
+std::unordered_map<uint16, std::vector<uint16>>  g_PMobSkillLists;	// List of mob skills defined from mob_skill_lists.sql
 
 /************************************************************************
 *  battleutils															*
@@ -94,9 +95,6 @@ namespace battleutils
 
     void LoadSkillTable()
     {
-        memset(g_SkillTable, 0, sizeof(g_SkillTable));
-        memset(g_SkillRanks, 0, sizeof(g_SkillRanks));
-
         const int8* fmtQuery = "SELECT r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13 \
 						    FROM skill_caps \
 							ORDER BY level \
@@ -141,8 +139,6 @@ namespace battleutils
 
     void LoadWeaponSkillsList()
     {
-        memset(g_PWeaponSkillList, 0, sizeof(g_PWeaponSkillList));
-
         const int8* fmtQuery = "SELECT weaponskillid, name, jobs, type, skilllevel, element, animation, `range`, aoe, primary_sc, secondary_sc, tertiary_sc, main_only \
 							FROM weapon_skills \
 							WHERE weaponskillid < %u \
@@ -184,86 +180,52 @@ namespace battleutils
 
     void LoadMobSkillsList()
     {
-        const int8* fmtQuery = "SELECT mob_skill_id, family_id, mob_anim_id, mob_skill_name, \
-        mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
-        mob_valid_targets, mob_skill_flag, mob_skill_param, knockback \
-        FROM mob_skill \
-        INNER JOIN mob_family_system ON family_id = familyid \
-        INNER JOIN mob_pools ON mob_pools.familyid = mob_family_system.familyid \
-        INNER JOIN mob_groups ON mob_groups.poolid = mob_pools.poolid \
-        INNER JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
-        WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE) \
-        UNION \
-        (SELECT  mob_skill_id, family_id, mob_anim_id, mob_skill_name, \
-        mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
-        mob_valid_targets, mob_skill_flag, mob_skill_param, knockback \
-        FROM mob_skill \
-        INNER JOIN mob_family_system ON family_id = familyid \
-        INNER JOIN mob_pools ON mob_pools.familyid = mob_family_system.familyid \
-        WHERE family_id IN(SELECT familyid FROM pet_list JOIN mob_pools USING(poolid))) \
-        ORDER BY family_Id, mob_skill_id ASC;";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, map_ip, inet_ntoa(map_ip), map_port);
+        // Load all mob skills
+        const int8* specialQuery = "SELECT mob_skill_id, mob_anim_id, mob_skill_name, \
+        mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
+        mob_valid_targets, mob_skill_flag, mob_skill_param, knockback \
+        FROM mob_skills;";
+
+        int32 ret = Sql_Query(SqlHandle, specialQuery);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 CMobSkill* PMobSkill = new CMobSkill(Sql_GetIntData(SqlHandle, 0));
-                PMobSkill->setfamilyID(Sql_GetIntData(SqlHandle, 1));
-                PMobSkill->setAnimationID(Sql_GetIntData(SqlHandle, 2));
-                PMobSkill->setName(Sql_GetData(SqlHandle, 3));
-                PMobSkill->setAoe(Sql_GetIntData(SqlHandle, 4));
-                PMobSkill->setDistance(Sql_GetFloatData(SqlHandle, 5));
-                PMobSkill->setAnimationTime(Sql_GetIntData(SqlHandle, 6));
-                PMobSkill->setActivationTime(Sql_GetIntData(SqlHandle, 7));
-                PMobSkill->setValidTargets(Sql_GetIntData(SqlHandle, 8));
-                PMobSkill->setFlag(Sql_GetIntData(SqlHandle, 9));
-                PMobSkill->setParam(Sql_GetIntData(SqlHandle, 10));
-                PMobSkill->setKnockback(Sql_GetUIntData(SqlHandle, 11));
+                PMobSkill->setAnimationID(Sql_GetIntData(SqlHandle, 1));
+                PMobSkill->setName(Sql_GetData(SqlHandle, 2));
+                PMobSkill->setAoe(Sql_GetIntData(SqlHandle, 3));
+                PMobSkill->setDistance(Sql_GetFloatData(SqlHandle, 4));
+                PMobSkill->setAnimationTime(Sql_GetIntData(SqlHandle, 5));
+                PMobSkill->setActivationTime(Sql_GetIntData(SqlHandle, 6));
+                PMobSkill->setValidTargets(Sql_GetIntData(SqlHandle, 7));
+                PMobSkill->setFlag(Sql_GetIntData(SqlHandle, 8));
+                PMobSkill->setParam(Sql_GetIntData(SqlHandle, 9));
+                PMobSkill->setKnockback(Sql_GetUIntData(SqlHandle, 10));
                 PMobSkill->setMsg(185); //standard damage message. Scripters will change this.
                 g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
-                g_PMobFamilySkills[PMobSkill->getfamilyID()].push_back(PMobSkill);
             }
         }
 
+        const int8* fmtQuery = "SELECT skill_list_id, mob_skill_id \
+        FROM mob_skill_lists;";
 
-        // Load special skills; ranged attacks, call beast, etc
-        const int8* specialQuery = "SELECT mob_skill_id, family_id, mob_anim_id, mob_skill_name, \
-        mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
-        mob_valid_targets, mob_skill_flag, mob_skill_param, knockback \
-        FROM mob_skill \
-        WHERE family_id = 0;";
-
-        ret = Sql_Query(SqlHandle, specialQuery);
+        ret = Sql_Query(SqlHandle, fmtQuery);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                CMobSkill* PMobSkill = new CMobSkill(Sql_GetIntData(SqlHandle, 0));
-                PMobSkill->setfamilyID(Sql_GetIntData(SqlHandle, 1));
-                PMobSkill->setAnimationID(Sql_GetIntData(SqlHandle, 2));
-                PMobSkill->setName(Sql_GetData(SqlHandle, 3));
-                PMobSkill->setAoe(Sql_GetIntData(SqlHandle, 4));
-                PMobSkill->setDistance(Sql_GetFloatData(SqlHandle, 5));
-                PMobSkill->setAnimationTime(Sql_GetIntData(SqlHandle, 6));
-                PMobSkill->setActivationTime(Sql_GetIntData(SqlHandle, 7));
-                PMobSkill->setValidTargets(Sql_GetIntData(SqlHandle, 8));
-                PMobSkill->setFlag(Sql_GetIntData(SqlHandle, 9));
-                PMobSkill->setParam(Sql_GetIntData(SqlHandle, 10));
-                PMobSkill->setKnockback(Sql_GetUIntData(SqlHandle, 11));
-                PMobSkill->setMsg(185); //standard damage message. Scripters will change this.
-                g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
-                g_PMobFamilySkills[PMobSkill->getfamilyID()].push_back(PMobSkill);
+                int16 skillListId = Sql_GetIntData(SqlHandle, 0);
+                g_PMobSkillLists[skillListId].push_back(Sql_GetIntData(SqlHandle, 1));
             }
         }
     }
 
     void LoadSkillChainDamageModifiers()
     {
-        memset(g_SkillChainDamageModifiers, 0, sizeof(g_SkillChainDamageModifiers));
-
         const int8* fmtQuery = "SELECT chain_level, chain_count, initial_modifier, magic_burst_modifier \
                            FROM skillchain_damage_modifiers \
                            ORDER BY chain_level, chain_count";
@@ -303,13 +265,8 @@ namespace battleutils
     {
         for (auto mobskill : g_PMobSkillList)
         {
-            delete mobskill.second;
+            delete mobskill;
         }
-    }
-
-    void FreeSkillChainDamageModifiers()
-    {
-        // These aren't dynamicly allocated at this point so no need to free them.
     }
 
     /************************************************************************
@@ -415,14 +372,51 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *  Get Mob Skills by family id                                          *
+    *  Get Mob Skills by list id                                          *
     *                                                                       *
     ************************************************************************/
 
-    std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
+    const std::vector<uint16>& GetMobSkillList(uint16 ListID)
     {
-        return g_PMobFamilySkills[FamilyID];
+        return g_PMobSkillLists[ListID];
     }
+
+    /************************************************************************
+    *                                                                       *
+    *	get mobs 2 hour skills	(should be moved into mobskill.cpp)         *
+    *                                                                       *
+    ************************************************************************/
+    CMobSkill* GetTwoHourMobSkill(JOBTYPE job)
+    {
+        uint16 id = 0;
+
+        switch (job)
+        {
+            case JOB_WAR: id = 432; break;
+            case JOB_MNK: id = 434; break;
+            case JOB_WHM: id = 433; break;
+            case JOB_BLM: id = 435; break;
+            case JOB_RDM: id = 436; break;
+            case JOB_THF: id = 437; break;
+            case JOB_PLD: id = 438; break;
+            case JOB_DRK: id = 439; break;
+            case JOB_BST: id = 484; break;
+            case JOB_BRD: id = 440; break;
+            case JOB_RNG: id = 479; break;
+            case JOB_SAM: id = 474; break;
+            case JOB_NIN: id = 475; break;
+            case JOB_DRG: id = 476; break;
+                // case JOB_SMN: id = 478; break;  // alt 2000
+                // case JOB_BLU: id = 1933; break; // alt 2001
+                // case JOB_COR: id = 1934; break; // alt 2002
+                // case JOB_PUP: id = 1935; break; // alt 2003
+                // case JOB_DNC: id = 2454; break; // alt 2004
+                // case JOB_SCH: id = 2102 break;  // alt 2005
+            default: return nullptr;
+        }
+        return GetMobSkill(id);
+    }
+
 
     int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element) {
         int32 damage = 0;
@@ -1870,9 +1864,8 @@ namespace battleutils
         {
             PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 
-            //40% chance to break bind when dmg received
-            if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && dsprand::GetRandomNumber(100) < 40)
-                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
+            // Check for bind breaking
+            BindBreakCheck(PAttacker, PDefender);
 
             switch (PDefender->objtype)
             {
@@ -2005,9 +1998,8 @@ namespace battleutils
             damage = getOverWhelmDamageBonus(PChar, PDefender, (uint16)damage);
             PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 
-            //40% chance to break bind when dmg received
-            if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && dsprand::GetRandomNumber(100) < 40)
-                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
+            // Check for bind breaking
+            BindBreakCheck(PChar, PDefender);
 
             switch (PDefender->objtype)
             {
@@ -2926,7 +2918,7 @@ namespace battleutils
             if (skillchain != SC_NONE)
             {
                 PSCEffect->SetStartTime(gettick());
-                ShowDebug("duration: %d", PSCEffect->GetDuration());
+             //   ShowDebug("duration: %d", PSCEffect->GetDuration());
                 PSCEffect->SetDuration(PSCEffect->GetDuration() - 1000);
                 PSCEffect->SetTier(GetSkillchainTier((SKILLCHAIN_ELEMENT)skillchain));
                 PSCEffect->SetPower(skillchain);
@@ -4341,8 +4333,8 @@ namespace battleutils
         }
     }
 
-    float HandleTranquilHeart(CBattleEntity* PEntity) {
-
+    float HandleTranquilHeart(CBattleEntity* PEntity)
+    {
         float reductionPercent = 0.f;
 
         if (PEntity->objtype == TYPE_PC && charutils::hasTrait((CCharEntity*)PEntity, TRAIT_TRANQUIL_HEART))
@@ -4361,6 +4353,52 @@ namespace battleutils
         }
 
         return reductionPercent;
+    }
+
+    void BindBreakCheck(CBattleEntity* PAttacker, CBattleEntity* PDefender)
+    {
+        if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND))
+        {
+            uint16 BindBreakChance = 0; // 0-1000 (100.0%) scale. Maybe change to a float later..
+            uint16 LvDiffByExp = charutils::GetRealExp(PAttacker->GetMLevel(), PDefender->GetMLevel()); // This is temp.
+
+            // Todo: replace with an actual calculated value based on level difference. Not it, Bro!
+            // This entire block of conditionals should not exist. Lv diff really shouldn't be handled at the exp check level either.
+            // It might not even be in sync with the check values the entire way from lv 1 to lv 99 for all we know.
+            if (LvDiffByExp >= 400) // IT
+            {
+                BindBreakChance = 999;
+            }
+            else if (LvDiffByExp >= 240) // VT
+            {
+                BindBreakChance = 990;
+            }
+            else if (LvDiffByExp >= 120) // T
+            {
+                BindBreakChance = 750;
+            }
+            else if (LvDiffByExp == 100) // EM
+            {
+                BindBreakChance = 300; // Should probably be higher.
+            }
+            else if (LvDiffByExp >= 75) // DC
+            {
+                BindBreakChance = 150; // Should probably be higher.
+            }
+            else if (LvDiffByExp >= 15) // EP
+            {
+                BindBreakChance = 150;
+            }
+            else if (LvDiffByExp < 15) // Everything weaker than EP, including both TW and that tier we don't have implimented.
+            {
+                BindBreakChance = 10; // Should probably be higher than 1% and I know darn well it ain't zero.
+            }
+
+            if (BindBreakChance > dsprand::GetRandomNumber(1000))
+            {
+                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
+            }
+        }
     }
 
     int32 HandleStoneskin(CBattleEntity* PDefender, int32 damage)
@@ -4437,42 +4475,6 @@ namespace battleutils
         return damage;
     }
 
-    /************************************************************************
-    *                                                                       *
-    *	get mobs 2 hour skills	(should be moved into mobskill.cpp)         *
-    *                                                                       *
-    ************************************************************************/
-    CMobSkill* GetTwoHourMobSkill(JOBTYPE job)
-    {
-        uint16 id = 0;
-
-        switch (job)
-        {
-            case JOB_WAR: id = 432; break;
-            case JOB_MNK: id = 434; break;
-            case JOB_WHM: id = 433; break;
-            case JOB_BLM: id = 435; break;
-            case JOB_RDM: id = 436; break;
-            case JOB_THF: id = 437; break;
-            case JOB_PLD: id = 438; break;
-            case JOB_DRK: id = 439; break;
-            case JOB_BST: id = 484; break;
-            case JOB_BRD: id = 440; break;
-            case JOB_RNG: id = 479; break;
-            case JOB_SAM: id = 474; break;
-            case JOB_NIN: id = 475; break;
-            case JOB_DRG: id = 476; break;
-                // case JOB_SMN: id = 478; break;  // alt 2000
-                // case JOB_BLU: id = 1933; break; // alt 2001
-                // case JOB_COR: id = 1934; break; // alt 2002
-                // case JOB_PUP: id = 1935; break; // alt 2003
-                // case JOB_DNC: id = 2454; break; // alt 2004
-                // case JOB_SCH: id = 2102 break;  // alt 2005
-            default: return nullptr;
-        }
-        return GetMobSkill(id);
-    }
-
 
 
     /************************************************************************
@@ -4507,8 +4509,8 @@ namespace battleutils
     uint8 GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell)
     {
         if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE) // Divine Veil goes here because -na spells have AoE w/ Accession
-            if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ACCESSION) || (PCaster->objtype == TYPE_PC && 
-            charutils::hasTrait((CCharEntity*)PCaster, TRAIT_DIVINE_VEIL) && PSpell->isNa() && 
+            if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ACCESSION) || (PCaster->objtype == TYPE_PC &&
+            charutils::hasTrait((CCharEntity*)PCaster, TRAIT_DIVINE_VEIL) && PSpell->isNa() &&
             (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_DIVINE_SEAL) || PCaster->getMod(MOD_AOE_NA) == 1)))
                 return SPELLAOE_RADIAL;
             else
@@ -4665,61 +4667,67 @@ namespace battleutils
         }
     }
 
-    void DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset)
+    bool DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset)
     {
-        if (PMob->getMobMod(MOBMOD_DRAW_IN) > 0)
+        position_t* pos = &PMob->loc.p;
+        position_t nearEntity = nearPosition(*pos, offset, M_PI);
+
+        // validate the drawin position before continuing
+        if(!PMob->PBattleAI->m_PPathFind->ValidPosition(pos))
         {
-            position_t* pos = &PMob->loc.p;
-            position_t nearEntity = nearPosition(*pos, offset, M_PI);
+            return false;
+        }
 
-            float drawInDistance = (PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? PMob->getMobMod(MOBMOD_DRAW_IN) : PMob->m_ModelSize * 2);
+        float drawInDistance = (PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? PMob->getMobMod(MOBMOD_DRAW_IN) : PMob->m_ModelSize * 2);
 
-            std::function <void(CBattleEntity*)> drawInFunc = [PMob, drawInDistance, nearEntity](CBattleEntity* PMember)
+        std::function <void(CBattleEntity*)> drawInFunc = [PMob, drawInDistance, nearEntity](CBattleEntity* PMember)
+        {
+            float pDistance = distance(PMob->loc.p, PMember->loc.p);
+
+            if (PMob->loc.zone == PMember->loc.zone && pDistance > drawInDistance && PMember->status != STATUS_CUTSCENE_ONLY)
             {
-                float pDistance = distance(PMob->loc.p, PMember->loc.p);
-
-                if (PMob->loc.zone == PMember->loc.zone && pDistance > drawInDistance && PMember->status != STATUS_CUTSCENE_ONLY)
+                // don't draw in dead players for now!
+                // see tractor
+                if (PMember->isDead() || PMember->animation == ANIMATION_CHOCOBO)
                 {
-                    // don't draw in dead players for now!
-                    // see tractor
-                    if (PMember->isDead() || PMember->animation == ANIMATION_CHOCOBO)
+                    // don't do anything
+                }
+                else
+                {
+                    // draw in!
+                    PMember->loc.p.x = nearEntity.x;
+                    // move a little higher to prevent getting stuck
+                    PMember->loc.p.y = nearEntity.y - 0.5f;
+                    PMember->loc.p.z = nearEntity.z;
+
+                    if (PMember->objtype == TYPE_PC)
                     {
-                        // don't do anything
+                        CCharEntity* PChar = (CCharEntity*)PMember;
+                        PChar->pushPacket(new CPositionPacket(PChar));
                     }
                     else
                     {
-                        // draw in!
-                        PMember->loc.p.x = nearEntity.x;
-                        PMember->loc.p.y = nearEntity.y;
-                        PMember->loc.p.z = nearEntity.z;
-
-                        if (PMember->objtype == TYPE_PC)
-                        {
-                            CCharEntity* PChar = (CCharEntity*)PMember;
-                            PChar->pushPacket(new CPositionPacket(PChar));
-                        }
-                        else
-                        {
-                            PMember->loc.zone->PushPacket(PMember, CHAR_INRANGE, new CEntityUpdatePacket(PMember, ENTITY_UPDATE, UPDATE_POS));
-                        }
-
-                        luautils::OnMobDrawIn(PMob, PMember);
-                        PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CMessageBasicPacket(PMember, PMember, 0, 0, 232));
+                        PMember->loc.zone->PushPacket(PMember, CHAR_INRANGE, new CEntityUpdatePacket(PMember, ENTITY_UPDATE, UPDATE_POS));
                     }
-                }
-            };
 
-            // check if i should draw-in party/alliance
-            if (PMob->getMobMod(MOBMOD_DRAW_IN) > 1)
-            {
-                PEntity->ForAlliance(drawInFunc);
+                    luautils::OnMobDrawIn(PMob, PMember);
+                    PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CMessageBasicPacket(PMember, PMember, 0, 0, 232));
+                }
             }
-            // no party present or draw-in is set to target only
-            else
-            {
-                drawInFunc(PEntity);
-            }
+        };
+
+        // check if i should draw-in party/alliance
+        if (PMob->getMobMod(MOBMOD_DRAW_IN) > 1)
+        {
+            PEntity->ForAlliance(drawInFunc);
         }
+        // no party present or draw-in is set to target only
+        else
+        {
+            drawInFunc(PEntity);
+        }
+
+        return true;
     }
 
     /************************************************************************

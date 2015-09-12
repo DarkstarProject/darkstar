@@ -47,6 +47,7 @@ CMobEntity::CMobEntity()
     m_roamFlags = ROAMFLAG_NONE;
     m_specialFlags = SPECIALFLAG_NONE;
     m_name_prefix = 0;
+    m_MobSkillList = 0;
 
     memset(m_mobModStat,0, sizeof(m_mobModStat));
     memset(m_mobModStatSave,0, sizeof(m_mobModStatSave));
@@ -347,6 +348,10 @@ void CMobEntity::ChangeMJob(uint16 job)
 
 uint8 CMobEntity::TPUseChance()
 {
+    if (!PBattleAI->GetMobAbilityEnabled())
+    {
+        return 0;
+    }
     if(health.tp < 1000) return 0;
 
     if(health.tp == 3000 || (GetHPP() <= 25 && health.tp >= 1000))

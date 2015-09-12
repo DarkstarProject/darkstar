@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
--- NPC:  Seiryu
--- ID:    17309981
+--  NPC: Seiryu
 -----------------------------------
 
 require("scripts/zones/RuAun_Gardens/TextIDs");
@@ -71,5 +70,5 @@ function onAdditionalEffect(mob, target, damage)
     dmg = adjustForTarget(target,dmg,ELE_WIND);
     dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WIND,dmg);
 
-    return SUBEFFECT_WIND_DAMAGE,163,dmg;
+    return SUBEFFECT_WIND_DAMAGE, MSGBASIC_ADD_EFFECT_DMG, dmg;
 end;

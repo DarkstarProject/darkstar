@@ -571,6 +571,15 @@ enum MODIFIER
     MOD_AUGMENTS_SA               = 526, // Adds Critical Attack Bonus to Sneak Attack, percentage based.
     MOD_AUGMENTS_TA               = 527, // Adds Critical Attack Bonus to Trick Attack, percentage based.
     MOD_ENHANCES_REFRESH          = 529, // "Enhances Refresh" adds +1 per modifier to spell's tick result.
+    MOD_NO_SPELL_MP_DEPLETION     = 530, // % to not deplete MP on spellcast.
+    MOD_FORCE_FIRE_DWBONUS        = 531, // Set to 1 to force fire day/weather spell bonus/penalty. Do not have it total more than 1.
+    MOD_FORCE_EARTH_DWBONUS       = 532, // Set to 1 to force earth day/weather spell bonus/penalty. Do not have it total more than 1.
+    MOD_FORCE_WATER_DWBONUS       = 533, // Set to 1 to force water day/weather spell bonus/penalty. Do not have it total more than 1.
+    MOD_FORCE_WIND_DWBONUS        = 534, // Set to 1 to force wind day/weather spell bonus/penalty. Do not have it total more than 1.
+    MOD_FORCE_ICE_DWBONUS         = 535, // Set to 1 to force ice day/weather spell bonus/penalty. Do not have it total more than 1.
+    MOD_FORCE_LIGHTNING_DWBONUS   = 536, // Set to 1 to force lightning day/weather spell bonus/penalty. Do not have it total more than 1.
+    MOD_FORCE_LIGHT_DWBONUS       = 537, // Set to 1 to force light day/weather spell bonus/penalty. Do not have it total more than 1.
+    MOD_FORCE_DARK_DWBONUS        = 538, // Set to 1 to force dark day/weather spell bonus/penalty. Do not have it total more than 1.
 
     // MOD_SPARE = 92, // stuff
     // MOD_SPARE = 93, // stuff
@@ -581,8 +590,8 @@ enum MODIFIER
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 530, // stuff
-    // MOD_SPARE = 531, // stuff
+    // MOD_SPARE = 539, // stuff
+    // MOD_SPARE = 540, // stuff
 
 };
 

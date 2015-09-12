@@ -85,24 +85,24 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 
     switch (m_ActionType)
     {
-    case ACTION_NONE:							break;
-    case ACTION_ROAMING:	ActionRoaming();	break;
-    case ACTION_DEATH:		ActionDeath();		break;
-    case ACTION_SPAWN:		ActionSpawn();		break;
-    case ACTION_FALL:		ActionFall();		break;
-    case ACTION_ENGAGE:		ActionEngage();		break;
-    case ACTION_ATTACK:		ActionAttack();		break;
-    case ACTION_SLEEP:		ActionSleep();		break;
-    case ACTION_DISENGAGE:	ActionDisengage();	break;
-    case ACTION_MOBABILITY_START:	ActionAbilityStart();	break;
-    case ACTION_MOBABILITY_USING: ActionAbilityUsing(); break;
-    case ACTION_MOBABILITY_FINISH: ActionAbilityFinish(); break;
-    case ACTION_MOBABILITY_INTERRUPT: ActionAbilityInterrupt(); break;
-    case ACTION_MAGIC_START: ActionMagicStart(); break;
-    case ACTION_MAGIC_CASTING: ActionMagicCasting(); break;
-    case ACTION_MAGIC_FINISH: ActionMagicFinish(); break;
+        case ACTION_NONE:							break;
+        case ACTION_ROAMING:	ActionRoaming();	break;
+        case ACTION_DEATH:		ActionDeath();		break;
+        case ACTION_SPAWN:		ActionSpawn();		break;
+        case ACTION_FALL:		ActionFall();		break;
+        case ACTION_ENGAGE:		ActionEngage();		break;
+        case ACTION_ATTACK:		ActionAttack();		break;
+        case ACTION_SLEEP:		ActionSleep();		break;
+        case ACTION_DISENGAGE:	ActionDisengage();	break;
+        case ACTION_MOBABILITY_START:	ActionAbilityStart();	break;
+        case ACTION_MOBABILITY_USING: ActionAbilityUsing(); break;
+        case ACTION_MOBABILITY_FINISH: ActionAbilityFinish(); break;
+        case ACTION_MOBABILITY_INTERRUPT: ActionAbilityInterrupt(); break;
+        case ACTION_MAGIC_START: ActionMagicStart(); break;
+        case ACTION_MAGIC_CASTING: ActionMagicCasting(); break;
+        case ACTION_MAGIC_FINISH: ActionMagicFinish(); break;
 
-    default: DSP_DEBUG_BREAK_IF(true);
+        default: DSP_DEBUG_BREAK_IF(true);
     }
 
     //check if this AI was replaced (the new AI will update if this is the case)
@@ -130,18 +130,24 @@ void CAIPetDummy::ActionAbilityStart()
         {
             m_MasterCommand = MASTERCOMMAND_NONE;
             CMobEntity* PMob = (CMobEntity*)m_PPet->PMaster->PPet;
-            std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(PMob->m_Family);
+            std::vector<uint16> MobSkills = battleutils::GetMobSkillList(PMob->getMobMod(MOBMOD_SKILL_LIST));
 
             if (MobSkills.size() > 0)
             {
-                int maxSearch = 10;
-                // keep looking for an ability until one is valid
-                do {
-                    SetCurrentMobSkill(MobSkills.at(dsprand::GetRandomNumber(MobSkills.size())));
-                } while (luautils::OnMobSkillCheck(m_PBattleTarget, m_PPet, GetCurrentMobSkill()) != 0 && maxSearch--);
+                std::shuffle(MobSkills.begin(), MobSkills.end(), dsprand::mt());
+
+                for (auto&& skillid : MobSkills)
+                {
+                    auto PMobSkill = battleutils::GetMobSkill(skillid);
+                    if (PMobSkill && luautils::OnMobSkillCheck(m_PBattleTarget, m_PPet, PMobSkill) != 0)
+                    {
+                        SetCurrentMobSkill(PMobSkill);
+                        break;
+                    }
+                }
 
                 // could not find skill
-                if (maxSearch == 0)
+                if (!GetCurrentMobSkill())
                 {
                     TransitionBack(true);
                     return;
@@ -155,20 +161,25 @@ void CAIPetDummy::ActionAbilityStart()
     }
 
 
-    if (m_PPet->getPetType() == PETTYPE_JUG_PET){
-        if (m_MasterCommand == MASTERCOMMAND_SIC && m_PPet->health.tp >= 1000 && m_PBattleTarget != nullptr){ //choose random tp move
+    if (m_PPet->getPetType() == PETTYPE_JUG_PET) {
+        if (m_MasterCommand == MASTERCOMMAND_SIC && m_PPet->health.tp >= 1000 && m_PBattleTarget != nullptr) { //choose random tp move
             m_MasterCommand = MASTERCOMMAND_NONE;
-            if (m_PPet->PetSkills.size() > 0){
-                SetCurrentMobSkill(m_PPet->PetSkills.at(dsprand::GetRandomNumber(m_PPet->PetSkills.size())));
-                preparePetAbility(m_PBattleTarget);
-                return;
+            if (m_PPet->PetSkills.size() > 0) {
+                auto PMobSkill = battleutils::GetMobSkill(m_PPet->PetSkills.at(dsprand::GetRandomNumber(m_PPet->PetSkills.size())));
+                if (PMobSkill)
+                {
+                    SetCurrentMobSkill(PMobSkill);
+                    preparePetAbility(m_PBattleTarget);
+                    return;
+                }
             }
         }
     }
-    else if (m_PPet->getPetType() == PETTYPE_AVATAR){
-        for (int i = 0; i < m_PPet->PetSkills.size(); i++){
-            if (m_PPet->PetSkills[i]->getAnimationTime() == m_MasterCommand){
-                SetCurrentMobSkill(m_PPet->PetSkills[i]);
+    else if (m_PPet->getPetType() == PETTYPE_AVATAR) {
+        for (int i = 0; i < m_PPet->PetSkills.size(); i++) {
+            auto PMobSkill = battleutils::GetMobSkill(m_PPet->PetSkills.at(i));
+            if (PMobSkill && PMobSkill->getAnimationTime() == m_MasterCommand) {
+                SetCurrentMobSkill(PMobSkill);
                 m_MasterCommand = MASTERCOMMAND_NONE;
                 preparePetAbility(m_PPet);
                 return;
@@ -176,25 +187,26 @@ void CAIPetDummy::ActionAbilityStart()
         }
         m_MasterCommand = MASTERCOMMAND_NONE;
     }
-    else if (m_PPet->getPetType() == PETTYPE_WYVERN){
+    else if (m_PPet->getPetType() == PETTYPE_WYVERN) {
 
         WYVERNTYPE wyverntype = m_PPet->getWyvernType();
 
-        if (m_MasterCommand == MASTERCOMMAND_ELEMENTAL_BREATH && (wyverntype == WYVERNTYPE_MULTIPURPOSE || wyverntype == WYVERNTYPE_OFFENSIVE)){
+        if (m_MasterCommand == MASTERCOMMAND_ELEMENTAL_BREATH && (wyverntype == WYVERNTYPE_MULTIPURPOSE || wyverntype == WYVERNTYPE_OFFENSIVE)) {
             m_MasterCommand = MASTERCOMMAND_NONE;
 
             //offensive or multipurpose wyvern
-            if (m_PBattleTarget != nullptr){ //prepare elemental breaths
+            if (m_PBattleTarget != nullptr) { //prepare elemental breaths
                 int skip = dsprand::GetRandomNumber(6);
                 int hasSkipped = 0;
 
-                for (int i = 0; i < m_PPet->PetSkills.size(); i++){
-                    if (m_PPet->PetSkills[i]->getValidTargets() == TARGET_ENEMY){
-                        if (hasSkipped == skip){
-                            SetCurrentMobSkill(m_PPet->PetSkills[i]);
+                for (int i = 0; i < m_PPet->PetSkills.size(); i++) {
+                    auto PMobSkill = battleutils::GetMobSkill(m_PPet->PetSkills.at(i));
+                    if (PMobSkill && PMobSkill->getValidTargets() == TARGET_ENEMY) {
+                        if (hasSkipped == skip) {
+                            SetCurrentMobSkill(PMobSkill);
                             break;
                         }
-                        else{
+                        else {
                             hasSkipped++;
                         }
                     }
@@ -217,63 +229,64 @@ void CAIPetDummy::ActionAbilityStart()
 
             uint16 masterHead = masterHeadItem ? masterHeadItem->getID() : 0;
 
-			// Determine what the required HP percentage will need to be 
-			// at or under in order for healing breath to activate.
-			uint8 requiredHPP = 0;
-			if (((CCharEntity*)(m_PPet->PMaster))->objtype == TYPE_PC && (masterHead == 12519 || masterHead == 15238)) { //Check for player & AF head, or +1
-				if (wyverntype == WYVERNTYPE_DEFENSIVE) { //healer wyvern
-					requiredHPP = 50;
-				}
-				else if (wyverntype == WYVERNTYPE_MULTIPURPOSE) { //hybrid wyvern
-					requiredHPP = 33;
-				}
-			}
-			else {
-				if (wyverntype == WYVERNTYPE_DEFENSIVE) { //healer wyvern
-					requiredHPP = 33;
-				}
-				else if (wyverntype == WYVERNTYPE_MULTIPURPOSE) { //hybrid wyvern
-					requiredHPP = 25;
-				}
-			}
+            // Determine what the required HP percentage will need to be 
+            // at or under in order for healing breath to activate.
+            uint8 requiredHPP = 0;
+            if (((CCharEntity*)(m_PPet->PMaster))->objtype == TYPE_PC && (masterHead == 12519 || masterHead == 15238)) { //Check for player & AF head, or +1
+                if (wyverntype == WYVERNTYPE_DEFENSIVE) { //healer wyvern
+                    requiredHPP = 50;
+                }
+                else if (wyverntype == WYVERNTYPE_MULTIPURPOSE) { //hybrid wyvern
+                    requiredHPP = 33;
+                }
+            }
+            else {
+                if (wyverntype == WYVERNTYPE_DEFENSIVE) { //healer wyvern
+                    requiredHPP = 33;
+                }
+                else if (wyverntype == WYVERNTYPE_MULTIPURPOSE) { //hybrid wyvern
+                    requiredHPP = 25;
+                }
+            }
 
-			// Only attempt to find a target if there is an HP percentage to calculate.
-			if (requiredHPP) {
-				CBattleEntity* master = m_PPet->PMaster;
-				// Check the master first.
-				if (master->GetHPP() <= requiredHPP) {
-					m_PBattleSubTarget = master;
-				}
+            // Only attempt to find a target if there is an HP percentage to calculate.
+            if (requiredHPP) {
+                CBattleEntity* master = m_PPet->PMaster;
+                // Check the master first.
+                if (master->GetHPP() <= requiredHPP) {
+                    m_PBattleSubTarget = master;
+                }
 
-				// Otherwise if this is a healer wyvern, and the member is in a party 
-				// check all of the party members who qualify.
-				else if (wyverntype == WYVERNTYPE_DEFENSIVE && master->PParty != nullptr) {
-					master->ForParty([this, requiredHPP](CBattleEntity* PTarget){
-						if (PTarget->GetHPP() <= requiredHPP) {
-							m_PBattleSubTarget = PTarget;
-						}
-					});
-				}
-			}
+                // Otherwise if this is a healer wyvern, and the member is in a party 
+                // check all of the party members who qualify.
+                else if (wyverntype == WYVERNTYPE_DEFENSIVE && master->PParty != nullptr) {
+                    master->ForParty([this, requiredHPP](CBattleEntity* PTarget) {
+                        if (PTarget->GetHPP() <= requiredHPP) {
+                            m_PBattleSubTarget = PTarget;
+                        }
+                    });
+                }
+            }
 
-            if (m_PBattleSubTarget != nullptr){ //target to heal
+            if (m_PBattleSubTarget != nullptr) { //target to heal
                 //get highest breath for wyverns level
                 m_PMobSkill = nullptr;
-                for (int i = 0; i < m_PPet->PetSkills.size(); i++){
-                    if (m_PPet->PetSkills[i]->getValidTargets() == TARGET_PLAYER_PARTY){
-                        if (m_PPet->PetSkills[i]->getID() == 638 &&
-                            m_PPet->PMaster->GetMLevel() < 20){ //can only using hb1
-                            SetCurrentMobSkill(m_PPet->PetSkills[i]);
+                for (int i = 0; i < m_PPet->PetSkills.size(); i++) {
+                    auto PMobSkill = battleutils::GetMobSkill(m_PPet->PetSkills.at(i));
+                    if (PMobSkill && PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY) {
+                        if (PMobSkill->getID() == 638 &&
+                            m_PPet->PMaster->GetMLevel() < 20) { //can only using hb1
+                            SetCurrentMobSkill(PMobSkill);
                             break;
                         }
-                        else if (m_PPet->PetSkills[i]->getID() == 639 &&
-                            m_PPet->PMaster->GetMLevel() < 40){ //can only using hb2
-                            SetCurrentMobSkill(m_PPet->PetSkills[i]);
+                        else if (PMobSkill->getID() == 639 &&
+                            m_PPet->PMaster->GetMLevel() < 40) { //can only using hb2
+                            SetCurrentMobSkill(PMobSkill);
                             break;
                         }
-                        else if (m_PPet->PetSkills[i]->getID() == 640 &&
-                            m_PPet->PMaster->GetMLevel() >= 40){ //can only using hb3
-                            SetCurrentMobSkill(m_PPet->PetSkills[i]);
+                        else if (PMobSkill->getID() == 640 &&
+                            m_PPet->PMaster->GetMLevel() >= 40) { //can only using hb3
+                            SetCurrentMobSkill(PMobSkill);
                             break;
                         }
                     }
@@ -287,8 +300,8 @@ void CAIPetDummy::ActionAbilityStart()
     TransitionBack(true);
 }
 
-void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
-    if (m_PMobSkill != nullptr){
+void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg) {
+    if (m_PMobSkill != nullptr) {
 
         apAction_t Action;
         m_PPet->m_ActionList.clear();
@@ -300,11 +313,11 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
         }
         else if (m_PMobSkill->getValidTargets() & TARGET_PLAYER_PARTY)
         {
-			// Only overwrite the sub target if it it not specified or
-			// the input target doesn't match the sub target.
-			if (m_PBattleSubTarget == nullptr || PTarg != m_PBattleSubTarget) {
-				m_PBattleSubTarget = m_PPet->PMaster;
-			}
+            // Only overwrite the sub target if it it not specified or
+            // the input target doesn't match the sub target.
+            if (m_PBattleSubTarget == nullptr || PTarg != m_PBattleSubTarget) {
+                m_PBattleSubTarget = m_PPet->PMaster;
+            }
         }
         else
         {
@@ -322,7 +335,7 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
         Action.param = m_PMobSkill->getMsgForAction();
         Action.messageID = 43; //readies message
         Action.knockback = 0;
- 
+
         m_skillTP = m_PPet->health.tp;
         m_PPet->health.tp = 0;
 
@@ -332,7 +345,7 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
         m_LastActionTime = m_Tick;
         m_ActionType = ACTION_MOBABILITY_USING;
     }
-    else{
+    else {
         ShowWarning("ai_pet_dummy::ActionAbilityFinish Pet skill is NULL \n");
         TransitionBack(true);
     }
@@ -346,7 +359,7 @@ void CAIPetDummy::ActionAbilityUsing()
     if (m_PPet->objtype == TYPE_MOB)
     {
         if (m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->isDead() ||
-            m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->getZone() != m_PPet->getZone()){
+            m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->getZone() != m_PPet->getZone()) {
             m_ActionType = ACTION_MOBABILITY_INTERRUPT;
             ActionAbilityInterrupt();
             return;
@@ -355,19 +368,19 @@ void CAIPetDummy::ActionAbilityUsing()
     else
     {
         if (m_PPet->getPetType() != PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->isDead() ||
-            m_PPet->getPetType() != PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->getZone() != m_PPet->getZone()){
+            m_PPet->getPetType() != PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->getZone() != m_PPet->getZone()) {
             m_ActionType = ACTION_MOBABILITY_INTERRUPT;
             ActionAbilityInterrupt();
             return;
         }
         else if (m_PPet->getPetType() == PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->isDead() ||
-            m_PPet->getPetType() == PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->getZone() != m_PPet->getZone()){
+            m_PPet->getPetType() == PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->getZone() != m_PPet->getZone()) {
             m_ActionType = ACTION_MOBABILITY_INTERRUPT;
             ActionAbilityInterrupt();
             return;
         }
         else if (m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY && m_PBattleSubTarget->isDead() ||
-            m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY && m_PBattleSubTarget->getZone() != m_PPet->getZone()){
+            m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY && m_PBattleSubTarget->getZone() != m_PPet->getZone()) {
             m_ActionType = ACTION_MOBABILITY_INTERRUPT;
             ActionAbilityInterrupt();
             return;
@@ -401,7 +414,7 @@ void CAIPetDummy::ActionAbilityUsing()
         if (m_PPet->objtype == TYPE_MOB)
         {
             if (m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget != m_PPet &&
-                distance(m_PBattleSubTarget->loc.p, m_PPet->loc.p) > m_PMobSkill->getDistance()){
+                distance(m_PBattleSubTarget->loc.p, m_PPet->loc.p) > m_PMobSkill->getDistance()) {
 
                 // Pet's target is too far away (and isn't itself)
                 SendTooFarInterruptMessage(m_PBattleSubTarget);
@@ -412,7 +425,7 @@ void CAIPetDummy::ActionAbilityUsing()
         {
             if (m_PPet->getPetType() != PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY &&
                 m_PBattleSubTarget != m_PPet &&
-                distance(m_PBattleSubTarget->loc.p, m_PPet->loc.p) > m_PMobSkill->getDistance()){
+                distance(m_PBattleSubTarget->loc.p, m_PPet->loc.p) > m_PMobSkill->getDistance()) {
 
                 // Avatar's target is too far away (and isn't the avatar itself)
                 SendTooFarInterruptMessage(m_PBattleSubTarget);
@@ -420,14 +433,14 @@ void CAIPetDummy::ActionAbilityUsing()
             }
             else if (m_PPet->getPetType() == PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY &&
                 m_PBattleSubTarget != m_PPet &&
-                distance(m_PBattleSubTarget->loc.p, m_PPet->loc.p) > m_PMobSkill->getDistance()){
+                distance(m_PBattleSubTarget->loc.p, m_PPet->loc.p) > m_PMobSkill->getDistance()) {
 
                 // Avatar's sub target is too far away (and isn't the avatar itself)
                 SendTooFarInterruptMessage(m_PBattleSubTarget);
                 return;
             }
             else if (m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY &&
-                distance(m_PBattleSubTarget->loc.p, m_PPet->loc.p) > m_PMobSkill->getDistance()){
+                distance(m_PBattleSubTarget->loc.p, m_PPet->loc.p) > m_PMobSkill->getDistance()) {
 
                 // Player in the pet's party is too far away
                 SendTooFarInterruptMessage(m_PBattleSubTarget);
@@ -441,7 +454,7 @@ void CAIPetDummy::ActionAbilityUsing()
     }
 }
 
-void CAIPetDummy::ActionAbilityFinish(){
+void CAIPetDummy::ActionAbilityFinish() {
     DSP_DEBUG_BREAK_IF(m_PMobSkill == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == nullptr);
 
@@ -475,11 +488,24 @@ void CAIPetDummy::ActionAbilityFinish(){
     m_PMobSkill->setTotalTargets(totalTargets);
     m_PMobSkill->setTP(m_skillTP);
 
+    uint16 animationId;
+    if (m_PPet->getPetType() == PETTYPE_AVATAR)
+    {
+        // TODO: this is totally a hack
+        // override mob animation ids with valid pet animation id
+        // pets need their own skills
+        animationId = m_PMobSkill->getAvatarAnimationID();
+    }
+    else
+    {
+        animationId = m_PMobSkill->getAnimationID();
+    }
+
     apAction_t Action;
     Action.ActionTarget = nullptr;
     Action.reaction = REACTION_HIT;
     Action.speceffect = SPECEFFECT_HIT;
-    Action.animation = m_PMobSkill->getAnimationID();
+    Action.animation = animationId;
     Action.knockback = 0;
 
     uint16 msg = 0;
@@ -490,14 +516,14 @@ void CAIPetDummy::ActionAbilityFinish(){
 
         Action.ActionTarget = PTarget;
 
-        if (m_PPet->isBstPet()){
+        if (m_PPet->isBstPet()) {
             Action.param = luautils::OnMobWeaponSkill(PTarget, m_PPet, GetCurrentMobSkill());
         }
         else {
             Action.param = luautils::OnPetAbility(PTarget, m_PPet, GetCurrentMobSkill(), m_PPet->PMaster);
         }
 
-        if (msg == 0){
+        if (msg == 0) {
             msg = m_PMobSkill->getMsg();
         }
         else {
@@ -528,7 +554,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 
     m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
 
-    if (Action.ActionTarget != nullptr && m_PPet->getPetType() == PETTYPE_AVATAR){ //todo: remove pet type avatar maybe
+    if (Action.ActionTarget != nullptr && m_PPet->getPetType() == PETTYPE_AVATAR) { //todo: remove pet type avatar maybe
         Action.ActionTarget->loc.zone->PushPacket(Action.ActionTarget, CHAR_INRANGE, new CEntityUpdatePacket(Action.ActionTarget, ENTITY_UPDATE, UPDATE_COMBAT));
     }
 
@@ -536,7 +562,7 @@ void CAIPetDummy::ActionAbilityFinish(){
     m_ActionType = ACTION_ATTACK;
 }
 
-void CAIPetDummy::ActionAbilityInterrupt(){
+void CAIPetDummy::ActionAbilityInterrupt() {
     m_LastActionTime = m_Tick;
     //cancel the whole readying animation
     apAction_t Action;
@@ -557,19 +583,19 @@ void CAIPetDummy::ActionAbilityInterrupt(){
     m_ActionType = ACTION_ATTACK;
 }
 
-bool CAIPetDummy::PetIsHealing(){
+bool CAIPetDummy::PetIsHealing() {
 
     bool isMasterHealing = (m_PPet->PMaster->animation == ANIMATION_HEALING);
     bool isPetHealing = (m_PPet->animation == ANIMATION_HEALING);
 
-    if (isMasterHealing && !isPetHealing && !m_PPet->StatusEffectContainer->HasPreventActionEffect()){
+    if (isMasterHealing && !isPetHealing && !m_PPet->StatusEffectContainer->HasPreventActionEffect()) {
         //animation down
         m_PPet->animation = ANIMATION_HEALING;
         m_PPet->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING, 0, 0, 10, 0));
         m_PPet->updatemask |= UPDATE_HP;
         return true;
     }
-    else if (!isMasterHealing && isPetHealing){
+    else if (!isMasterHealing && isPetHealing) {
         //animation up
         m_PPet->animation = ANIMATION_NONE;
         m_PPet->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
@@ -587,20 +613,20 @@ bool CAIPetDummy::PetIsHealing(){
 
 void CAIPetDummy::ActionRoaming()
 {
-    if (m_PPet->PMaster == nullptr || m_PPet->PMaster->isDead()){
+    if (m_PPet->PMaster == nullptr || m_PPet->PMaster->isDead()) {
         m_ActionType = ACTION_FALL;
         ActionFall();
         return;
     }
 
     //automaton, wyvern
-    if (m_PPet->getPetType() == PETTYPE_WYVERN || m_PPet->getPetType() == PETTYPE_AUTOMATON){
-        if (PetIsHealing()){
+    if (m_PPet->getPetType() == PETTYPE_WYVERN || m_PPet->getPetType() == PETTYPE_AUTOMATON) {
+        if (PetIsHealing()) {
             return;
         }
     }
 
-    if (m_PBattleTarget != nullptr){
+    if (m_PBattleTarget != nullptr) {
         m_ActionType = ACTION_ENGAGE;
         ActionEngage();
         return;
@@ -703,7 +729,7 @@ void CAIPetDummy::ActionEngage()
 
 void CAIPetDummy::ActionAttack()
 {
-    if (m_PPet->PMaster == nullptr || m_PPet->PMaster->isDead() || m_PPet->isDead()){
+    if (m_PPet->PMaster == nullptr || m_PPet->PMaster->isDead() || m_PPet->isDead()) {
         m_ActionType = ACTION_FALL;
         ActionFall();
         return;
@@ -720,7 +746,7 @@ void CAIPetDummy::ActionAttack()
 
 
     //wyvern behaviour
-    if (m_PPet->getPetType() == PETTYPE_WYVERN && m_PPet->PMaster->PBattleAI->GetBattleTarget() == nullptr){
+    if (m_PPet->getPetType() == PETTYPE_WYVERN && m_PPet->PMaster->PBattleAI->GetBattleTarget() == nullptr) {
         m_PBattleTarget = nullptr;
     }
 
@@ -763,7 +789,7 @@ void CAIPetDummy::ActionAttack()
     {
         int32 WeaponDelay = m_PPet->m_Weapons[SLOT_MAIN]->getDelay();
         //try to attack
-        if (m_Tick > m_LastActionTime + WeaponDelay){
+        if (m_Tick > m_LastActionTime + WeaponDelay) {
             if (battleutils::IsParalyzed(m_PPet))
             {
                 m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CMessageBasicPacket(m_PPet, m_PBattleTarget, 0, 0, 29));
@@ -781,7 +807,7 @@ void CAIPetDummy::ActionAttack()
 
                 uint8 numAttacks = battleutils::CheckMultiHits(m_PPet, m_PPet->m_Weapons[SLOT_MAIN]);
 
-                for (uint8 i = 0; i < numAttacks; i++){
+                for (uint8 i = 0; i < numAttacks; i++) {
                     Action.reaction = REACTION_EVADE;
                     Action.speceffect = SPECEFFECT_NONE;
                     Action.animation = 0;
@@ -825,7 +851,7 @@ void CAIPetDummy::ActionAttack()
                     }
                     else {
                         // create enmity even on misses
-                        if (m_PBattleTarget->objtype == TYPE_MOB){
+                        if (m_PBattleTarget->objtype == TYPE_MOB) {
                             CMobEntity* PMob = (CMobEntity*)m_PBattleTarget;
                             PMob->PEnmityContainer->UpdateEnmity(m_PPet, 0, 0);
                         }
@@ -836,7 +862,7 @@ void CAIPetDummy::ActionAttack()
                     }
 
                     bool isBlocked = (dsprand::GetRandomNumber(100) < battleutils::GetBlockRate(m_PPet, m_PBattleTarget));
-                    if (isBlocked){ Action.reaction = REACTION_BLOCK; }
+                    if (isBlocked) { Action.reaction = REACTION_BLOCK; }
 
 
                     Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, nullptr, true, true);
@@ -859,7 +885,7 @@ void CAIPetDummy::ActionAttack()
 
                 m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
 
-                if (m_PPet->PMaster != nullptr && m_PPet->PMaster->objtype == TYPE_PC && m_PPet->PMaster->PPet != nullptr){
+                if (m_PPet->PMaster != nullptr && m_PPet->PMaster->objtype == TYPE_PC && m_PPet->PMaster->PPet != nullptr) {
                     ((CCharEntity*)m_PPet->PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)m_PPet->PMaster));
                 }
             }
@@ -883,7 +909,7 @@ void CAIPetDummy::ActionSleep()
 
 void CAIPetDummy::ActionDisengage()
 {
-    if (m_PPet->PMaster == nullptr || m_PPet->PMaster->isDead()){
+    if (m_PPet->PMaster == nullptr || m_PPet->PMaster->isDead()) {
         m_ActionType = ACTION_FALL;
         ActionFall();
         return;
@@ -907,13 +933,13 @@ void CAIPetDummy::ActionFall()
 {
     bool isMob = m_PPet->objtype == TYPE_MOB;
     // remove master from pet
-    if (m_PPet->PMaster != nullptr && m_PPet->PMaster->PPet == m_PPet){
+    if (m_PPet->PMaster != nullptr && m_PPet->PMaster->PPet == m_PPet) {
         petutils::DetachPet(m_PPet->PMaster);
     }
 
     // detach pet just deleted this
     // so break out of here
-    if (isMob){
+    if (isMob) {
         return;
     }
 
@@ -926,7 +952,7 @@ void CAIPetDummy::ActionFall()
 
 void CAIPetDummy::ActionDeath()
 {
-    if (m_Tick - m_LastActionTime > 3000){
+    if (m_Tick - m_LastActionTime > 3000) {
         m_PPet->status = STATUS_DISAPPEAR;
         m_PPet->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
 
@@ -1015,7 +1041,7 @@ void CAIPetDummy::ActionMagicInterrupt()
 
 void CAIPetDummy::ActionSpawn()
 {
-    if (m_PPet->PMaster == nullptr || m_PPet->PMaster->isDead()){
+    if (m_PPet->PMaster == nullptr || m_PPet->PMaster->isDead()) {
         m_ActionType = ACTION_FALL;
         ActionFall();
         return;

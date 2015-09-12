@@ -31,6 +31,7 @@ This file is part of DarkStar-server source code.
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
+#include <array>
 
 #include "../lua/luautils.h"
 
@@ -90,8 +91,8 @@ This file is part of DarkStar-server source code.
 *																		*
 ************************************************************************/
 
-uint16 g_ExpTable[50][20];
-uint16 g_ExpPerLevel[100];
+std::array<std::array<uint16, 20>, 50> g_ExpTable;
+std::array<uint16, 100> g_ExpPerLevel;
 
 /************************************************************************
 *																		*
@@ -1344,7 +1345,7 @@ namespace charutils
 
     /************************************************************************
     *                                                                       *
-    *  Проверяем возможность обмена между персонажами                       *
+    *  Check the possibility of trade between the characters             *
     *                                                                       *
     ************************************************************************/
 
@@ -1352,6 +1353,7 @@ namespace charutils
     {
         if (PTarget->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() < PChar->UContainer->GetItemsCount())
         {
+			ShowDebug(CL_CYAN"Unable to trade, %s doesn't have enough inventory space\n" CL_RESET, PTarget->GetName());
             return false;
         }
         for (uint8 slotid = 0; slotid <= 8; ++slotid)
@@ -1362,6 +1364,7 @@ namespace charutils
             {
                 if (HasItem(PTarget, PItem->getID()))
                 {
+					ShowDebug(CL_CYAN"Unable to trade, %s has the rare item already (%s)\n" CL_RESET, PTarget->GetName(), PItem->getName());
                     return false;
                 }
             }
@@ -1377,6 +1380,7 @@ namespace charutils
 
     void DoTrade(CCharEntity* PChar, CCharEntity* PTarget)
     {
+		ShowDebug(CL_CYAN"%s->%s trade item movement started\n" CL_RESET, PChar->GetName(), PTarget->GetName());
         for (uint8 slotid = 0; slotid <= 8; ++slotid)
         {
             CItem* PItem = PChar->UContainer->GetItem(slotid);
@@ -1386,13 +1390,16 @@ namespace charutils
                 if (PItem->getStackSize() == 1)
                 {
                     CItem* PNewItem = itemutils::GetItem(PItem);
+					ShowDebug(CL_CYAN"Adding %s to %s inventory stacksize 1\n" CL_RESET, PNewItem->getName(), PTarget->GetName());
                     PNewItem->setReserve(0);
                     AddItem(PTarget, LOC_INVENTORY, PNewItem);
                 }
                 else 
                 {
+					ShowDebug(CL_CYAN"Adding %s to %s inventory\n" CL_RESET, PItem->getName(), PTarget->GetName());
                     AddItem(PTarget, LOC_INVENTORY, PItem->getID(), PItem->getReserve());
                 }
+				ShowDebug(CL_CYAN"Removing %s from %s's inventory\n" CL_RESET, PItem->getName(), PChar->GetName());
                 UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), -PItem->getReserve());
                 PItem->setReserve(0);
             }
@@ -2868,9 +2875,6 @@ namespace charutils
 
     void LoadExpTable()
     {
-        memset(g_ExpTable, 0, sizeof(g_ExpTable));
-        memset(g_ExpPerLevel, 0, sizeof(g_ExpPerLevel));
-
         const int8* fmtQuery = "SELECT r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20 "
             "FROM exp_table "
             "ORDER BY level ASC "

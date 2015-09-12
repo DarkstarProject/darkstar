@@ -17,8 +17,9 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
-		local mp=math.random(4,16);
+		local mp = math.random(4,16);
 		player:addMP(mp);
 		player:messageBasic(25,0,mp);
+        return 0,0,0; -- Function REQUIRES a return or will error!
     end
 end;

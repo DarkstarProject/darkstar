@@ -2,14 +2,13 @@
 
 class dsprand
 {
-private:
+public:
     static std::mt19937& mt()
     {
-        static std::mt19937 e{};
+        static thread_local std::mt19937 e{};
         return e;
     }
 
-public:
     static void seed(void)
     {
         std::random_device rd;
