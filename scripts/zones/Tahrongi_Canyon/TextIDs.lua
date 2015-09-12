@@ -18,6 +18,11 @@ MINING_IS_POSSIBLE_HERE = 7410; -- Mining is possible here if you have
 REPULSIVE_CREATURE_EMERGES = 7535; -- A repulsive creature emerges from the ground!
 SPROUT_DOES_NOT_NEED_WATER = 7536; -- The sprout does not need any more water now.
      SPROUT_LOOKING_BETTER = 7538; -- The sprout is looking better.
+     
+-- Tahrongi Cactus
+            BUD_BREAKS_OFF = 7387; -- The bud breaks off. You obtain <item>.
+    POISONOUS_LOOKING_BUDS = 7388; -- The flowers have poisonous-looking buds.
+        CANT_TAKE_ANY_MORE = 7389; -- You can't take any more.
 
 -- Other Texts
 TELEPOINT_HAS_BEEN_SHATTERED = 7491; -- The telepoint has been shattered into a thousand pieces...
