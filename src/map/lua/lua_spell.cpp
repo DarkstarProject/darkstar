@@ -176,6 +176,13 @@ inline int32 CLuaSpell::getID(lua_State *L)
 	return 1;
 }
 
+inline int32 CLuaSpell::getSkillType(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
+	lua_pushinteger(L,m_PLuaSpell->getSkillType());
+	return 1;
+}
+
 inline int32 CLuaSpell::getSpellGroup(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
@@ -210,6 +217,7 @@ Lunar<CLuaSpell>::Register_t CLuaSpell::methods[] =
     LUNAR_DECLARE_METHOD(CLuaSpell,getMagicBurstMessage),
     LUNAR_DECLARE_METHOD(CLuaSpell,getElement),
 	LUNAR_DECLARE_METHOD(CLuaSpell,getTotalTargets),
+	LUNAR_DECLARE_METHOD(CLuaSpell,getSkillType),
 	LUNAR_DECLARE_METHOD(CLuaSpell,getID),
 	LUNAR_DECLARE_METHOD(CLuaSpell,getSpellGroup),
 	LUNAR_DECLARE_METHOD(CLuaSpell,getFlag),

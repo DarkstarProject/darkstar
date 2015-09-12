@@ -336,7 +336,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
     end
 
     --get the base acc (just skill plus magic acc mod)
-    local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC) + player:getILvlMacc();
+    local magicacc = player:getILvlMacc();
 
     if player:hasStatusEffect(EFFECT_ALTRUISM) and spell:getSpellGroup() == SPELLGROUP_WHITE then
         magicacc = magicacc + player:getStatusEffect(EFFECT_ALTRUISM):getPower();
@@ -363,23 +363,6 @@ function applyResistance(player,spell,target,diff,skill,bonus)
         magicaccbonus = magicaccbonus + 15;
     end
 
-    if (element > ELE_NONE) then
-        -- Add acc for staves
-        local affinityBonus = AffinityBonus(player, element);
-        magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
-    end
-
-    --add acc for RDM group 1 merits
-    if (spell:getElement() > 0 and spell:getElement() <= 6) then
-        magicaccbonus = magicaccbonus + player:getMerit(rdmMerit[spell:getElement()]);
-    end
-
-    -- BLU mag acc merits - nuke acc is handled in bluemagic.lua. For the handful of BLU enfeebles that don't check a status resist (ie. dispel spells)
-    if (skill == BLUE_SKILL) then
-        magicaccbonus = magicaccbonus + player:getMerit(MERIT_MAGICAL_ACCURACY);
-        -- print(player:getMerit(MERIT_MAGICAL_ACCURACY))
-    end
-
     local skillchainTier, skillchainCount = FormMagicBurst(element, target);
 
     --add acc for BLM AMII spells
@@ -395,83 +378,9 @@ function applyResistance(player,spell,target,diff,skill,bonus)
         magicaccbonus = magicaccbonus + 25;
     end
 
-    local resMod = 0; -- Some spells may possibly be non elemental, but could be resisted via meva.
-    if (element > ELE_NONE) then
-        resMod = target:getMod(resistMod[element]);
-    end
-    -- Base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
-    local magiceva = target:getMod(MOD_MEVA) + resMod;
+    local p = getMagicHitRate(player, target, skill, element, magicacc, magicaccbonus);
 
-    --get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
-    local multiplier = 0;
-    if player:getMainLvl() < 40 then
-        multiplier = 100 / 120;
-    else
-        multiplier = 100 / (player:getMainLvl() * 3);
-    end;
-    local p = (magicacc * multiplier) - (magiceva * 0.45);
-    magicaccbonus = magicaccbonus / 2;
-    --add magicacc bonus
-    p = p + magicaccbonus;
-    -- printf("acc: %f, eva: %f, bonus: %f, element: %u", magicacc, magiceva, magicaccbonus, element);
-
-
-    --double any acc over 50 if it's over 50
-    if (p > 5) then
-        p = 5 + (p - 5) * 2;
-    end
-
-    --add a flat bonus that won't get doubled in the previous step
-    p = p + 45;
-
-    --add a scaling bonus or penalty based on difference of targets level from caster
-    local leveldiff = player:getMainLvl() - target:getMainLvl();
-    if (leveldiff < 0) then
-        p = p - (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
-    else
-        p = p + (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
-    end
-    --cap accuracy
-    if (p > 95) then
-        p = 95;
-    elseif (p < 5) then
-        p = 5;
-    end
-
-    p = p / 100;
-
-    -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
-    local half = (1 - p);
-    local quart = ((1 - p)^2);
-    local eighth = ((1 - p)^3);
-    local sixteenth = ((1 - p)^4);
-    -- print("HALF:",half);
-    -- print("QUART:",quart);
-    -- print("EIGHTH:",eighth);
-    -- print("SIXTEENTH:",sixteenth);
-
-    local resvar = math.random();
-
-    -- Determine final resist based on which thresholds have been crossed.
-    if (resvar <= sixteenth) then
-        resist = 0.0625;
-        --printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
-    elseif (resvar <= eighth) then
-        resist = 0.125;
-        --printf("Spell resisted to 1/8!  Threshold = %u",eighth);
-    elseif (resvar <= quart) then
-        resist = 0.25;
-        --printf("Spell resisted to 1/4.  Threshold = %u",quart);
-    elseif (resvar <= half) then
-        resist = 0.5;
-        --printf("Spell resisted to 1/2.  Threshold = %u",half);
-    else
-        resist = 1.0;
-        --printf("1.0");
-    end
-
-    return resist;
-
+    return getMagicResist(p);
 end;
 
 -- USED FOR Status Effect Enfeebs (blind, slow, para, etc.)
@@ -479,10 +388,6 @@ end;
 -- The factor to multiply down duration (1/2 1/4 1/8 1/16)
 
 function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
-    -- resist everything if magic shield is active
-    if (target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
-        return 0;
-    end
 
     -- If Stymie is active, as long as the mob is not immune then the effect is not resisted
     if (player:hasStatusEffect(EFFECT_STYMIE) and target:canGainStatusEffect(effect)) then
@@ -490,9 +395,9 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
         return 1;
     end
 
-    local resist = 1.0;
     local magicaccbonus = 0;
     local element = spell:getElement();
+    local magicacc = 0;
 
     if (bonus ~= nil) then
         magicaccbonus = magicaccbonus + bonus;
@@ -504,15 +409,13 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
         end
     end
 
-    -- Get the base acc (just skill + skill mod (79 + skillID = ModID) + magic acc mod)
-    local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
-
     if player:hasStatusEffect(EFFECT_ALTRUISM) and spell:getSpellGroup() == SPELLGROUP_WHITE then
-        magicacc = magicacc + player:getStatusEffect(EFFECT_ALTRUISM):getPower();
+      magicacc = magicacc + player:getStatusEffect(EFFECT_ALTRUISM):getPower();
     end
     if player:hasStatusEffect(EFFECT_FOCALIZATION) and spell:getSpellGroup() == SPELLGROUP_BLACK then
-        magicacc = magicacc + player:getStatusEffect(EFFECT_FOCALIZATION):getPower();
+      magicacc = magicacc + player:getStatusEffect(EFFECT_FOCALIZATION):getPower();
     end
+
     --difference in int/mnd
     if (diff > 10) then
         magicacc = magicacc + 10 + (diff - 10)/2;
@@ -524,66 +427,12 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
         magicaccbonus = magicaccbonus + 256;
     end
 
-    if (element > ELE_NONE) then
-        -- Add acc for staves
-        local affinityBonus = AffinityBonus(player, element);
-        magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
-    end
-
-    --add acc for RDM group 1 merits
-    if (spell:getElement() > 0 and spell:getElement() <= 6) then
-        magicaccbonus = magicaccbonus + player:getMerit(rdmMerit[spell:getElement()]);
-    end
-
-    -- BLU mag acc merits - nuke acc is handled in bluemagic.lua
-    if (skill == BLUE_SKILL) then
-        magicaccbonus = magicaccbonus + player:getMerit(MERIT_MAGICAL_ACCURACY);
-        -- print(player:getMerit(MERIT_MAGICAL_ACCURACY))
-    end
-
     local skillchainTier, skillchainCount = FormMagicBurst(element, target);
     --add acc for skillchains
     if (skillchainTier > 0) then
         magicaccbonus = magicaccbonus + 25;
     end
 
-    local resMod = 0; -- Some spells may possibly be non elemental, but have status effects.
-    if (element > ELE_NONE) then
-        resMod = target:getMod(resistMod[element]);
-    end
-    -- Base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
-    local magiceva = target:getMod(MOD_MEVA) + resMod;
-
-    --get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
-    local multiplier = 0;
-    if player:getMainLvl() < 40 then
-        multiplier = 100 / 120;
-    else
-        multiplier = 100 / (player:getMainLvl() * 3);
-    end;
-    local p = (magicacc * multiplier) - (magiceva * 0.45);
-    magicaccbonus = magicaccbonus / 2;
-    --add magicacc bonus
-    p = p + magicaccbonus;
-    -- printf("acc: %f, eva: %f, bonus: %f, element: %u", magicacc, magiceva, magicaccbonus, element);
-
-
-    --double any acc over 50 if it's over 50
-    if (p > 5) then
-        p = 5 + (p - 5) * 2;
-    end
-
-    --add a flat bonus that won't get doubled in the previous step
-    p = p + 45;
-
-    --add a scaling bonus or penalty based on difference of targets level from caster
-    local leveldiff = player:getMainLvl() - target:getMainLvl();
-    if (leveldiff < 0) then
-        p = p - (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
-    else
-        p = p + (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
-    end
-    
     -- add effect resistence
     if (effect ~= nil and effect > 0) then
         local effectres = 0;
@@ -618,211 +467,126 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
         end
 
         if (effectres > 0) then
-            p = p - target:getMod(effectres);
+            magicacc = magicacc - target:getMod(effectres);
         end
     end
-    
-    --cap accuracy
-    if (p > 95) then
-        p = 95;
-    elseif (p < 5) then
-        p = 5;
-    end
 
-    p = p / 100;
+    local p = getMagicHitRate(player, target, skill, element, magicacc, magicaccbonus);
 
-    -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
-    half = (1 - p);
-    quart = half^2;
-    eighth = half^3;
-    sixteenth = half^4;
-    -- printf("HALF: %f", half);
-    -- printf("QUART: %f", quart);
-    -- printf("EIGHTH: %f", eighth);
-    -- printf("SIXTEENTH: %f", sixteenth);
-
-    local resvar = math.random();
-
-    -- Determine final resist based on which thresholds have been crossed.
-    if (resvar <= sixteenth) then
-        resist = 0.0625;
-        --printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
-    elseif (resvar <= eighth) then
-        resist = 0.125;
-        --printf("Spell resisted to 1/8!  Threshold = %u",eighth);
-    elseif (resvar <= quart) then
-        resist = 0.25;
-        --printf("Spell resisted to 1/4.  Threshold = %u",quart);
-    elseif (resvar <= half) then
-        resist = 0.5;
-        --printf("Spell resisted to 1/2.  Threshold = %u",half);
-    else
-        resist = 1.0;
-        --printf("1.0");
-    end
-
-    return resist;
-
+    return getMagicResist(p);
 end;
 
 --Applies resistance for things that may not be spells - ie. Quick Draw
 function applyResistanceAbility(player,target,element,skill,bonus)
+    local p = getMagicHitRate(player, target, skill, element, 0, bonus);
 
-    local resist = 1.0;
-    local magicaccbonus = 0;
-
-    if (bonus ~= nil) then
-        magicaccbonus = magicaccbonus + bonus;
-    end
-
-    --get the base acc (just skill plus magic acc mod)
-
-    local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
-
-    if (element > ELE_NONE) then
-        --add acc for staves
-        local affinityBonus = AffinityBonus(player, element);
-        magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
-    end
-
-    --base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
-    local magiceva = target:getMod(MOD_MEVA);
-    if (element > ELE_NONE) then
-        magiceva = magiceva + target:getMod(resistMod[element]);
-    end
-
-    --get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
-    local multiplier = 0;
-    if player:getMainLvl() < 40 then
-        multiplier = 100 / 120;
-    else
-        multiplier = 100 / (player:getMainLvl() * 3);
-    end;
-    local p = (magicacc * multiplier) - (magiceva * 0.45);
-    magicaccbonus = magicaccbonus / 2;
-    --add magicacc bonus
-    p = p + magicaccbonus;
-    -- printf("acc: %f, eva: %f, bonus: %f", magicacc, magiceva, magicaccbonus);
-
-    --double any acc over 50 if it's over 50
-    if (p > 5) then
-        p = 5 + (p - 5) * 2;
-    end
-
-    --add a flat bonus that won't get doubled in the previous step
-    p = p + 45;
-
-    --add a scaling bonus or penalty based on difference of targets level from caster
-    local leveldiff = player:getMainLvl() - target:getMainLvl();
-    if (leveldiff < 0) then
-        p = p - (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
-    else
-        p = p + (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
-    end
-    --cap accuracy
-    if (p > 95) then
-        p = 95;
-    elseif (p < 5) then
-        p = 5;
-    end
-
-    p = p / 100;
-
-    -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
-    local half = (1 - p);
-    local quart = ((1 - p)^2);
-    local eighth = ((1 - p)^3);
-    local sixteenth = ((1 - p)^4);
-    -- print("HALF:",half);
-    -- print("QUART:",quart);
-    -- print("EIGHTH:",eighth);
-    -- print("SIXTEENTH:",sixteenth);
-
-    local resvar = math.random();
-
-    -- Determine final resist based on which thresholds have been crossed.
-    if (resvar <= sixteenth) then
-        resist = 0.0625;
-        --printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
-    elseif (resvar <= eighth) then
-        resist = 0.125;
-        --printf("Spell resisted to 1/8!  Threshold = %u",eighth);
-    elseif (resvar <= quart) then
-        resist = 0.25;
-        --printf("Spell resisted to 1/4.  Threshold = %u",quart);
-    elseif (resvar <= half) then
-        resist = 0.5;
-        --printf("Spell resisted to 1/2.  Threshold = %u",half);
-    else
-        resist = 1.0;
-        --printf("1.0");
-    end
-
-    return resist;
-
+    return getMagicResist(p);
 end;
 
 --Applies resistance for additional effects
 function applyResistanceAddEffect(player,target,element,bonus)
 
-    local resist = 1.0;
-    local magicaccbonus = 0;
+    -- Add a base 75 magic acc
+    local p = getMagicHitRate(player, target, 0, element, 75, bonus);
 
-    if (bonus ~= nil) then
-        magicaccbonus = magicaccbonus + bonus;
-    end
+    return getMagicResist(p);
+end;
 
-    --get the base acc (just skill plus magic acc mod)
-    local magicacc = 0;
+function getMagicHitRate(caster, target, skillType, element, fullBonus, minorBonus)
+  -- resist everything if magic shield is active
+  if (target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
+    return 0;
+  end
 
-    --add acc for staves
-    local affinityBonus = AffinityBonus(player, element);
-    magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
+  local magicacc = 0;
+  local magiceva = 0;
+  local p = 0;
 
-    --base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
-    local magiceva = target:getMod(resistMod[element]);
+  if(minorBonus == nil) then
+    minorBonus = 0;
+  end
 
-    --get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
-    local multiplier = 0;
-    if player:getMainLvl() < 40 then
-        multiplier = 100 / 120;
-    else
-        multiplier = 100 / (player:getMainLvl() * 3);
-    end;
-    local p = (magicacc * multiplier) - (magiceva * 0.45);
-    magicaccbonus = magicaccbonus / 2;
-    --add magicacc bonus
-    p = p + magicaccbonus;
-    --printf("acc: %f, eva: %f, bonus: %f", magicacc, magiceva, magicaccbonus);
+  -- Get the base acc (just skill + skill mod (79 + skillID = ModID) + magic acc mod)
+  local magicacc = caster:getMod(MOD_MACC);
 
-    --add a flat bonus that won't get doubled in the previous step
-    p = p + 75;
-    --add a scaling bonus or penalty based on difference of targets level from caster
-    local leveldiff = player:getMainLvl() - target:getMainLvl();
-    --[[if (leveldiff < 0) then
-        p = p - (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
-    else
-        p = p + (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
-    end]]
-    p = p + leveldiff*2;
+  if(skillType ~= 0) then
+    magicacc = magicacc + caster:getSkillLevel(skillType) + caster:getMod(79 + skillType);
+  end
+
+  magicacc = magicacc + fullBonus;
+
+  local resMod = 0; -- Some spells may possibly be non elemental, but have status effects.
+  if (element > ELE_NONE) then
+      resMod = target:getMod(resistMod[element]);
+  end
+
+  if (element > ELE_NONE) then
+    -- Add acc for staves
+    local affinityBonus = AffinityBonus(caster, element);
+    minorBonus = minorBonus + (affinityBonus-1) * 200;
+  end
+
+  --add acc for RDM group 1 merits
+  if (element > 0 and element <= 6) then
+    minorBonus = minorBonus + caster:getMerit(rdmMerit[element]);
+  end
+
+  -- BLU mag acc merits - nuke acc is handled in bluemagic.lua
+  if (skill == BLUE_SKILL) then
+    minorBonus = minorBonus + caster:getMerit(MERIT_MAGICAL_ACCURACY);
+  end
+
+  -- Base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
+  local magiceva = target:getMod(MOD_MEVA) + resMod;
+
+  --get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
+  local multiplier = 0;
+  if caster:getMainLvl() < 40 then
+      multiplier = 100 / 120;
+  else
+      multiplier = 100 / (caster:getMainLvl() * 3);
+  end;
+  p = (magicacc * multiplier) - (magiceva * 0.45);
+  --add magicacc bonus
+  p = p + (minorBonus / 2);
+
+  --double any acc over 50 if it's over 50
+  if (p > 5) then
+      p = 5 + (p - 5) * 2;
+  end
+
+  --add a flat bonus that won't get doubled in the previous step
+  p = p + 45;
+
+  --add a scaling bonus or penalty based on difference of targets level from caster
+  local leveldiff = caster:getMainLvl() - target:getMainLvl();
+  if (leveldiff < 0) then
+      p = p - (25 * ( (caster:getMainLvl()) / 75 )) + leveldiff;
+  else
+      p = p + (25 * ( (caster:getMainLvl()) / 75 )) + leveldiff;
+  end
+  -- printf("acc: %f, eva: %f, bonus: %f, element: %u, leveldiff: %f", magicacc, magiceva, minorBonus, element, leveldiff);
+
+  return utils.clamp(p, 5, 95);
+end
+
+-- Returns resistance value from given magic hit rate (p)
+function getMagicResist(magicHitRate)
     --cap accuracy
-    if (p > 95) then
-        p = 95;
-    elseif (p < 5) then
-        p = 5;
-    end
+    magicHitRate = utils.clamp(magicHitRate, 5, 95);
 
-    p = p / 100;
+    local p = magicHitRate / 100;
+    local resist = 1;
 
     -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
     local half = (1 - p);
     local quart = ((1 - p)^2);
     local eighth = ((1 - p)^3);
     local sixteenth = ((1 - p)^4);
-    --print("HALF: "..half);
-    --print("QUART: "..quart);
-    --print("EIGHTH: "..eighth);
-    --print("SIXTEENTH: "..sixteenth);
+    -- print("HALF: "..half);
+    -- print("QUART: "..quart);
+    -- print("EIGHTH: "..eighth);
+    -- print("SIXTEENTH: "..sixteenth);
 
     local resvar = math.random();
 
@@ -845,8 +609,7 @@ function applyResistanceAddEffect(player,target,element,bonus)
     end
 
     return resist;
-
-end;
+end
 
 -----------------------------------
 --     SKILL LEVEL CALCULATOR
