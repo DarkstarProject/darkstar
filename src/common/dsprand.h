@@ -5,7 +5,7 @@ class dsprand
 public:
     static std::mt19937& mt()
     {
-        static std::mt19937 e{};
+        static thread_local std::mt19937 e{};
         return e;
     }
 
