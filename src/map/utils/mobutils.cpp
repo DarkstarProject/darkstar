@@ -167,6 +167,7 @@ void CalculateStats(CMobEntity * PMob)
     {
 
         float growth = 1.06;
+        float petGrowth = 0.75;
         float base = 18.0;
         uint8 lvl = PMob->GetMLevel();
 
@@ -175,36 +176,43 @@ void CalculateStats(CMobEntity * PMob)
         if(lvl > 75)
         {
             growth = 1.28;
+            petGrowth = 1.03;
         }
         else if(lvl > 65)
         {
             growth = 1.27;
+            petGrowth = 1.02;
         }
         else if(lvl > 55)
         {
             growth = 1.25;
+            petGrowth = 0.99;
         }
         else if(lvl > 50)
         {
             growth = 1.21;
+            petGrowth = 0.96;
         }
         else if(lvl > 45)
         {
             growth = 1.17;
+            petGrowth = 0.95;
         }
         else if(lvl > 35)
         {
             growth = 1.14;
+            petGrowth = 0.92;
         }
         else if(lvl > 25)
         {
             growth = 1.1;
+            petGrowth = 0.82;
         }
 
         // pets have lower health
         if(PMob->PMaster != nullptr)
         {
-            growth = 0.95;
+            growth = petGrowth;
         }
 
 
