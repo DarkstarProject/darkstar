@@ -119,11 +119,10 @@ namespace battleutils
     CMobSkill*          GetTwoHourMobSkill(JOBTYPE job);
 
     std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill);
-    std::vector<CMobSkill*>  GetMobSkillList(uint16 ListID);
+    const std::vector<uint16>& GetMobSkillList(uint16 ListID);
 
     void				FreeWeaponSkillsList();
-    void				FreeMobSkillsList();
-    void				FreeSkillChainDamageModifiers();
+    void				FreeMobSkillList();
 
     SUBEFFECT			GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill);
     SUBEFFECT			GetSkillChainEffect(CBattleEntity* PDefender, CBlueSpell* PSpell);

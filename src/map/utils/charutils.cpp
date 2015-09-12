@@ -31,6 +31,7 @@ This file is part of DarkStar-server source code.
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
+#include <array>
 
 #include "../lua/luautils.h"
 
@@ -90,8 +91,8 @@ This file is part of DarkStar-server source code.
 *																		*
 ************************************************************************/
 
-uint16 g_ExpTable[50][20];
-uint16 g_ExpPerLevel[100];
+std::array<std::array<uint16, 20>, 50> g_ExpTable;
+std::array<uint16, 100> g_ExpPerLevel;
 
 /************************************************************************
 *																		*
@@ -2874,9 +2875,6 @@ namespace charutils
 
     void LoadExpTable()
     {
-        memset(g_ExpTable, 0, sizeof(g_ExpTable));
-        memset(g_ExpPerLevel, 0, sizeof(g_ExpPerLevel));
-
         const int8* fmtQuery = "SELECT r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20 "
             "FROM exp_table "
             "ORDER BY level ASC "

@@ -168,35 +168,34 @@ void CalculateStats(CMobEntity * PMob)
 
         float growth = 1.06;
         float base = 18.0;
-        uint8 lvl = PMob->GetMLevel();
 
         //give hp boost every 10 levels after 25
         //special boosts at 25 and 50
-        if(lvl > 75)
+        if(mLvl > 75)
         {
             growth = 1.28;
         }
-        else if(lvl > 65)
+        else if(mLvl > 65)
         {
             growth = 1.27;
         }
-        else if(lvl > 55)
+        else if(mLvl > 55)
         {
             growth = 1.25;
         }
-        else if(lvl > 50)
+        else if(mLvl > 50)
         {
             growth = 1.21;
         }
-        else if(lvl > 45)
+        else if(mLvl > 45)
         {
             growth = 1.17;
         }
-        else if(lvl > 35)
+        else if(mLvl > 35)
         {
             growth = 1.14;
         }
-        else if(lvl > 25)
+        else if(mLvl > 25)
         {
             growth = 1.1;
         }
@@ -208,12 +207,12 @@ void CalculateStats(CMobEntity * PMob)
         }
 
 
-        PMob->health.maxhp = (int16)(base * pow(lvl, growth) * PMob->HPscale);
+        PMob->health.maxhp = (int16)(base * pow(mLvl, growth) * PMob->HPscale);
 
         if(isNM)
         {
             PMob->health.maxhp *= 2.0;
-            if(PMob->GetMLevel() > 75){
+            if(mLvl > 75){
                 PMob->health.maxhp *= 2.5;
             }
         }
@@ -277,11 +276,11 @@ void CalculateStats(CMobEntity * PMob)
 
         if(PMob->MPmodifier == 0)
         {
-            PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * scale) + 10;
+            PMob->health.maxmp = (int16)(18.2 * pow(mLvl,1.1075) * scale) + 10;
             if(isNM)
             {
                 PMob->health.maxmp *= 1.5;
-                if(PMob->GetMLevel()>75)
+                if(mLvl>75)
                 {
                     PMob->health.maxmp *= 1.5;
                 }
@@ -315,21 +314,21 @@ void CalculateStats(CMobEntity * PMob)
         PMob->m_Weapons[SLOT_MAIN]->resetDelay();
     }
 
-    uint16 fSTR = GetBaseToRank(PMob->strRank, PMob->GetMLevel());
-    uint16 fDEX = GetBaseToRank(PMob->dexRank, PMob->GetMLevel());
-    uint16 fVIT = GetBaseToRank(PMob->vitRank, PMob->GetMLevel());
-    uint16 fAGI = GetBaseToRank(PMob->agiRank, PMob->GetMLevel());
-    uint16 fINT = GetBaseToRank(PMob->intRank, PMob->GetMLevel());
-    uint16 fMND = GetBaseToRank(PMob->mndRank, PMob->GetMLevel());
-    uint16 fCHR = GetBaseToRank(PMob->chrRank, PMob->GetMLevel());
+    uint16 fSTR = GetBaseToRank(PMob->strRank, mLvl);
+    uint16 fDEX = GetBaseToRank(PMob->dexRank, mLvl);
+    uint16 fVIT = GetBaseToRank(PMob->vitRank, mLvl);
+    uint16 fAGI = GetBaseToRank(PMob->agiRank, mLvl);
+    uint16 fINT = GetBaseToRank(PMob->intRank, mLvl);
+    uint16 fMND = GetBaseToRank(PMob->mndRank, mLvl);
+    uint16 fCHR = GetBaseToRank(PMob->chrRank, mLvl);
 
-    uint16 mSTR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),2), PMob->GetMLevel());
-    uint16 mDEX = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),3), PMob->GetMLevel());
-    uint16 mVIT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),4), PMob->GetMLevel());
-    uint16 mAGI = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),5), PMob->GetMLevel());
-    uint16 mINT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),6), PMob->GetMLevel());
-    uint16 mMND = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),7), PMob->GetMLevel());
-    uint16 mCHR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),8), PMob->GetMLevel());
+    uint16 mSTR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),2), mLvl);
+    uint16 mDEX = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),3), mLvl);
+    uint16 mVIT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),4), mLvl);
+    uint16 mAGI = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),5), mLvl);
+    uint16 mINT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),6), mLvl);
+    uint16 mMND = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),7), mLvl);
+    uint16 mCHR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),8), mLvl);
 
     uint16 sSTR = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),2), PMob->GetSLevel());
     uint16 sDEX = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),3), PMob->GetSLevel());
@@ -562,10 +561,10 @@ void CalculateStats(CMobEntity * PMob)
         PMob->m_roamFlags |= ROAMFLAG_WANDER;
     }
 
-    // cap all stats for lvl / job
+    // cap all stats for mLvl / job
     for (int i=SKILL_DIV; i <=SKILL_BLU; i++)
     {
-        uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetMJob(),PMob->GetMLevel());
+        uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetMJob(),mLvl > 99 ? 99 : mLvl);
         if (maxSkill != 0)
             {
             PMob->WorkingSkills.skill[i] = maxSkill;
@@ -573,7 +572,7 @@ void CalculateStats(CMobEntity * PMob)
         else //if the mob is WAR/BLM and can cast spell
         {
             // set skill as high as main level, so their spells won't get resisted
-            uint16 maxSubSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetSJob(),PMob->GetMLevel());
+            uint16 maxSubSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetSJob(),mLvl > 99 ? 99 : mLvl);
 
             if (maxSubSkill != 0)
             {
@@ -614,12 +613,12 @@ void CalculateStats(CMobEntity * PMob)
     }
 
     //natural magic evasion
-    PMob->addModifier(MOD_MEVA, battleutils::GetMaxSkill(mEvasionRating, JOB_RDM, mLvl));
+    PMob->addModifier(MOD_MEVA, battleutils::GetMaxSkill(mEvasionRating, JOB_RDM, mLvl > 99 ? 99 : mLvl));
 
     if((PMob->m_Type & MOBTYPE_NOTORIOUS) && mJob == JOB_WHM && mLvl >= 25)
     {
         // whm nms have stronger regen effect
-        PMob->addModifier(MOD_REGEN, PMob->GetMLevel()/4);
+        PMob->addModifier(MOD_REGEN, mLvl/4);
     }
 
     // add traits for sub and main
