@@ -392,7 +392,7 @@ void CalculateStats(CMobEntity * PMob)
     // aggro mobs move around a bit more often
     if(PMob->m_Aggro != AGGRO_NONE && PMob->speed != 0)
     {
-        PMob->setMobMod(MOBMOD_ROAM_COOL, 20);
+        PMob->setMobMod(MOBMOD_ROAM_COOL, 40);
     }
 
     // setup special ability
@@ -533,15 +533,15 @@ void CalculateStats(CMobEntity * PMob)
       if(PMob->m_Type & MOBTYPE_NOTORIOUS)
       {
         // Notorious monsters don't roam very far
-        PMob->m_roamDistance = 3.0f;
+        PMob->m_roamDistance = 2.5f;
       } 
       else if(PMob->loc.zone->GetType() == ZONETYPE_OUTDOORS)
       {
-        PMob->m_roamDistance = 4.0f;
+        PMob->m_roamDistance = 3.0f;
       }
       else
       {
-        PMob->m_roamDistance = 3.5f;
+        PMob->m_roamDistance = 2.5f;
       }
 
     }
@@ -775,7 +775,7 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 	PMob->defaultMobMod(MOBMOD_SKILL_LIST, PMob->m_MobSkillList);
 	PMob->defaultMobMod(MOBMOD_LINK_RADIUS, MOB_LINK_RADIUS);
 	PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, MOB_TP_USE_CHANCE);
-	PMob->defaultMobMod(MOBMOD_ROAM_COOL, 30);
+	PMob->defaultMobMod(MOBMOD_ROAM_COOL, 50);
 	PMob->defaultMobMod(MOBMOD_2HOUR_PROC, 60);
 
     // Killer Effect
