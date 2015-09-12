@@ -62,7 +62,7 @@ public:
     WYVERNTYPE getWyvernType();
     void UpdateEntity() override;
 
-	std::vector<CMobSkill*> PetSkills;
+	std::vector<uint16> PetSkills;
 private:
 	PETTYPE m_PetType;					//the type of pet e.g. avatar/wyvern/jugpet etc
 };

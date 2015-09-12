@@ -28,6 +28,7 @@
 #include <string.h>
 #include <algorithm>
 #include <unordered_map>
+#include <array>
 
 #include "../packets/char.h"
 #include "../packets/char_health.h"
@@ -69,15 +70,15 @@
 *	lists used in battleutils											*
 ************************************************************************/
 
-uint16 g_SkillTable[100][14];									// All Skills by level/skilltype
-uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// Holds skill ranks by skilltype and job
-uint16 g_SkillChainDamageModifiers[MAX_SKILLCHAIN_LEVEL + 1][MAX_SKILLCHAIN_COUNT + 1]; // Holds damage modifiers for skill chains [chain level][chain count]
+std::array<std::array<uint16, 14>, 100> g_SkillTable;
+std::array<std::array<uint8, MAX_JOBTYPE>, MAX_SKILLTYPE> g_SkillRanks;
+std::array<std::array<uint16, MAX_SKILLCHAIN_COUNT + 1>, MAX_SKILLCHAIN_LEVEL + 1> g_SkillChainDamageModifiers;
 
-CWeaponSkill* g_PWeaponSkillList[MAX_WEAPONSKILL_ID];			// Holds all Weapon skills
-std::unordered_map<uint16, CMobSkill*> g_PMobSkillList;			// List of mob skills
+std::array<CWeaponSkill*, MAX_WEAPONSKILL_ID> g_PWeaponSkillList;			// Holds all Weapon skills
+std::array<CMobSkill*, 4096> g_PMobSkillList;		        	// List of mob skills
 
-std::list<CWeaponSkill*> g_PWeaponSkillsList[MAX_SKILLTYPE];	// Holds Weapon skills by type
-std::unordered_map<uint16, std::vector<CMobSkill*>>  g_PMobSkillLists;	// List of mob skills defined from mob_skill_lists.sql
+std::array<std::list<CWeaponSkill*>, MAX_SKILLTYPE> g_PWeaponSkillsList;
+std::unordered_map<uint16, std::vector<uint16>>  g_PMobSkillLists;	// List of mob skills defined from mob_skill_lists.sql
 
 /************************************************************************
 *  battleutils															*
@@ -94,9 +95,6 @@ namespace battleutils
 
     void LoadSkillTable()
     {
-        memset(g_SkillTable, 0, sizeof(g_SkillTable));
-        memset(g_SkillRanks, 0, sizeof(g_SkillRanks));
-
         const int8* fmtQuery = "SELECT r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13 \
 						    FROM skill_caps \
 							ORDER BY level \
@@ -141,8 +139,6 @@ namespace battleutils
 
     void LoadWeaponSkillsList()
     {
-        memset(g_PWeaponSkillList, 0, sizeof(g_PWeaponSkillList));
-
         const int8* fmtQuery = "SELECT weaponskillid, name, jobs, type, skilllevel, element, animation, `range`, aoe, primary_sc, secondary_sc, tertiary_sc, main_only \
 							FROM weapon_skills \
 							WHERE weaponskillid < %u \
@@ -223,16 +219,13 @@ namespace battleutils
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 int16 skillListId = Sql_GetIntData(SqlHandle, 0);
-                CMobSkill* PMobSkill = GetMobSkill(Sql_GetIntData(SqlHandle, 1));
-                g_PMobSkillLists[skillListId].push_back(PMobSkill);
+                g_PMobSkillLists[skillListId].push_back(Sql_GetIntData(SqlHandle, 1));
             }
         }
     }
 
     void LoadSkillChainDamageModifiers()
     {
-        memset(g_SkillChainDamageModifiers, 0, sizeof(g_SkillChainDamageModifiers));
-
         const int8* fmtQuery = "SELECT chain_level, chain_count, initial_modifier, magic_burst_modifier \
                            FROM skillchain_damage_modifiers \
                            ORDER BY chain_level, chain_count";
@@ -272,13 +265,8 @@ namespace battleutils
     {
         for (auto mobskill : g_PMobSkillList)
         {
-            delete mobskill.second;
+            delete mobskill;
         }
-    }
-
-    void FreeSkillChainDamageModifiers()
-    {
-        // These aren't dynamicly allocated at this point so no need to free them.
     }
 
     /************************************************************************
@@ -388,7 +376,7 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    std::vector<CMobSkill*> GetMobSkillList(uint16 ListID)
+    const std::vector<uint16>& GetMobSkillList(uint16 ListID)
     {
         return g_PMobSkillLists[ListID];
     }
