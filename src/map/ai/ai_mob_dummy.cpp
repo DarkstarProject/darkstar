@@ -2385,7 +2385,7 @@ void CAIMobDummy::FollowPath()
         // if I just finished reset my last action time
         if (!m_PPathFind->IsFollowingPath())
         {
-            m_LastActionTime = m_Tick - dsprand::GetRandomNumber(m_PMob->getBigMobMod(MOBMOD_ROAM_COOL)) + 10000;
+            m_LastActionTime = m_Tick - dsprand::GetRandomNumber(10000);
 
             // i'm a worm pop back up
             if (m_PMob->m_roamFlags & ROAMFLAG_WORM)

@@ -167,6 +167,7 @@ void CalculateStats(CMobEntity * PMob)
     {
 
         float growth = 1.06;
+        float petGrowth = 0.75;
         float base = 18.0;
 
         //give hp boost every 10 levels after 25
@@ -174,36 +175,43 @@ void CalculateStats(CMobEntity * PMob)
         if(mLvl > 75)
         {
             growth = 1.28;
+            petGrowth = 1.03;
         }
         else if(mLvl > 65)
         {
             growth = 1.27;
+            petGrowth = 1.02;
         }
         else if(mLvl > 55)
         {
             growth = 1.25;
+            petGrowth = 0.99;
         }
         else if(mLvl > 50)
         {
             growth = 1.21;
+            petGrowth = 0.96;
         }
         else if(mLvl > 45)
         {
             growth = 1.17;
+            petGrowth = 0.95;
         }
         else if(mLvl > 35)
         {
             growth = 1.14;
+            petGrowth = 0.92;
         }
         else if(mLvl > 25)
         {
             growth = 1.1;
+            petGrowth = 0.82;
         }
 
         // pets have lower health
         if(PMob->PMaster != nullptr)
         {
-            growth = 0.95;
+            growth = petGrowth;
         }
 
 
@@ -391,7 +399,7 @@ void CalculateStats(CMobEntity * PMob)
     // aggro mobs move around a bit more often
     if(PMob->m_Aggro != AGGRO_NONE && PMob->speed != 0)
     {
-        PMob->setMobMod(MOBMOD_ROAM_COOL, 20);
+        PMob->setMobMod(MOBMOD_ROAM_COOL, 40);
     }
 
     // setup special ability
@@ -532,15 +540,15 @@ void CalculateStats(CMobEntity * PMob)
       if(PMob->m_Type & MOBTYPE_NOTORIOUS)
       {
         // Notorious monsters don't roam very far
-        PMob->m_roamDistance = 3.0f;
+        PMob->m_roamDistance = 2.5f;
       } 
       else if(PMob->loc.zone->GetType() == ZONETYPE_OUTDOORS)
       {
-        PMob->m_roamDistance = 4.0f;
+        PMob->m_roamDistance = 3.0f;
       }
       else
       {
-        PMob->m_roamDistance = 3.5f;
+        PMob->m_roamDistance = 2.5f;
       }
 
     }
@@ -774,7 +782,7 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 	PMob->defaultMobMod(MOBMOD_SKILL_LIST, PMob->m_MobSkillList);
 	PMob->defaultMobMod(MOBMOD_LINK_RADIUS, MOB_LINK_RADIUS);
 	PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, MOB_TP_USE_CHANCE);
-	PMob->defaultMobMod(MOBMOD_ROAM_COOL, 30);
+	PMob->defaultMobMod(MOBMOD_ROAM_COOL, 50);
 	PMob->defaultMobMod(MOBMOD_2HOUR_PROC, 60);
 
     // Killer Effect
