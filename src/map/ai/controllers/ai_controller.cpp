@@ -21,33 +21,15 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _AICHAR_H
-#define _AICHAR_H
+#include "ai_controller.h"
 
-#include "ai_battle.h"
-
-class CCharEntity;
-
-class CAIChar : public CAIBattle
+CAIController::CAIController(CBattleEntity* PEntity) :
+    CController(PEntity, true)
 {
-public:
-    CAIChar(CCharEntity*);
 
-protected:
+}
 
-    /* Attacking functions */
-    virtual bool Internal_Engage(uint16 targid) override;
-    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
-    virtual bool Attack(action_t&) override;
-    virtual CBattleEntity* IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
-    virtual void OnChangeTarget(CBattleEntity* PNewTarget) override;
-    virtual void PostDisengage() override;
+void CAIController::Tick(time_point tick)
+{
 
-    /* Casting functions */
-    virtual void CastFinished(action_t&) override;
-    virtual void CastInterrupted(action_t&, MSGBASIC_ID) override;
-
-    time_point m_errMsgTime;
-};
-
-#endif
+}

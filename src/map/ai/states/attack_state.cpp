@@ -61,7 +61,7 @@ bool CAttackState::Update(time_point tick)
 
 void CAttackState::Cleanup()
 {
-    m_PEntity->PAIBattle()->Disengage();
+    m_PEntity->PAIBattle()->PostDisengage();
 }
 
 void CAttackState::Clear()
@@ -77,7 +77,7 @@ void CAttackState::UpdateTarget(uint16 targid)
         if (targid != 0)
         {
             auto PNewTarget = m_PEntity->PAIBattle()->IsValidTarget(newTargid, TARGET_ENEMY, m_errorMsg);
-            m_PEntity->PAIBattle()->ChangeTarget(true, PNewTarget);
+            m_PEntity->PAIBattle()->OnChangeTarget(PNewTarget);
             SetTarget(newTargid);
             if (!PNewTarget)
             {

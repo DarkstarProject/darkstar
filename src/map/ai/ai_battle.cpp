@@ -23,6 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "ai_battle.h"
 
+#include "controllers/controller.h"
 #include "states/magic_state.h"
 #include "states/attack_state.h"
 #include "../attackround.h"
@@ -32,14 +33,64 @@ This file is part of DarkStar-server source code.
 #include "../lua/luautils.h"
 #include "../packets/action.h"
 
-CAIBattle::CAIBattle(CBattleEntity* _PEntity, std::unique_ptr<CPathFind>&& pathfind) :
-    CAIBase(_PEntity, std::forward<std::unique_ptr<CPathFind>>(pathfind)),
+CAIBattle::CAIBattle(CBattleEntity* _PEntity, std::unique_ptr<CPathFind>&& pathfind,
+    std::unique_ptr<CController>&& controller) :
+    CAIBase(_PEntity, std::forward<std::unique_ptr<CPathFind>>(pathfind),
+        std::forward<std::unique_ptr<CController>>(controller)),
     targetFind(_PEntity),
     m_battleTarget(0)
 {
 }
 
-bool CAIBattle::Engage(uint16 targetid)
+void CAIBattle::Cast(uint16 targid, uint16 spellid)
+{
+    if (Controller)
+    {
+        Controller->Cast(targid, spellid);
+    }
+    else
+    {
+        Internal_Cast(targid, spellid);
+    }
+}
+
+void CAIBattle::Engage(uint16 targid)
+{
+    if (Controller)
+    {
+        Controller->Engage(targid);
+    }
+    else
+    {
+        Internal_Engage(targid);
+    }
+}
+
+void CAIBattle::ChangeTarget(uint16 targid)
+{
+    if (Controller)
+    {
+        Controller->ChangeTarget(targid);
+    }
+    else
+    {
+        Internal_ChangeTarget(targid);
+    }
+}
+
+void CAIBattle::Disengage()
+{
+    if (Controller)
+    {
+        Controller->Disengage();
+    }
+    else
+    {
+        Internal_Disengage();
+    }
+}
+
+bool CAIBattle::Internal_Engage(uint16 targetid)
 {
     //#TODO: pet engage/disengage
     auto PTarget = static_cast<CBattleEntity*>(PEntity->GetEntity(targetid));
@@ -58,7 +109,7 @@ bool CAIBattle::Engage(uint16 targetid)
     return false;
 }
 
-void CAIBattle::Disengage()
+void CAIBattle::PostDisengage()
 {
     m_battleTarget = 0;
     if (PEntity->animation == ANIMATION_ATTACK)
@@ -68,7 +119,7 @@ void CAIBattle::Disengage()
     PEntity->updatemask |= UPDATE_HP;
 }
 
-void CAIBattle::ChangeTarget(bool changed, CBattleEntity* PTarget)
+void CAIBattle::OnChangeTarget(CBattleEntity* PTarget)
 {
 }
 
@@ -256,20 +307,25 @@ CBattleEntity* CAIBattle::IsValidTarget(uint16 targid, uint8 validTargetFlags, s
     return PTarget;
 }
 
-bool CAIBattle::Cast(uint16 targetid, uint16 spellid)
+bool CAIBattle::Internal_Cast(uint16 targetid, uint16 spellid)
 {
     if (CanChangeState())
     {
-        if (m_Tick < m_LastActionTime + g_GCD)
-        {
-            //#TODO: MagicStartError();
-            return false;
-        }
         ChangeState<CMagicState>(static_cast<CBattleEntity*>(PEntity), targetid);
 
         return static_cast<CMagicState*>(GetCurrentState())->CastSpell(spellid);
     }
     return false;
+}
+
+void CAIBattle::Internal_ChangeTarget(uint16 targetid)
+{
+    m_battleTarget = targetid;
+}
+
+void CAIBattle::Internal_Disengage()
+{
+    m_battleTarget = 0;
 }
 
 void CAIBattle::CastFinished(action_t& action)
@@ -429,11 +485,6 @@ void CAIBattle::CastInterrupted(action_t& action, MSGBASIC_ID msg)
 
         PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CMessageBasicPacket(PEntity, PEntity, 0, 0, msg));
     }
-}
-
-void CAIBattle::SetBattleTargetID(uint16 targid)
-{
-    m_battleTarget = targid;
 }
 
 uint16 CAIBattle::GetBattleTargetID()

@@ -81,6 +81,12 @@
     <Filter Include="Header Files\common\marshal">
       <UniqueIdentifier>{e12005cb-3c26-42a1-9752-8898f7492816}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ai\controllers">
+      <UniqueIdentifier>{dadf369a-26a2-4af4-9a1e-d99d2739b7d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ai\controllers">
+      <UniqueIdentifier>{f581ed5f-506f-47f2-8ef0-4bc43b6467e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\map\ability.h">
@@ -860,6 +866,15 @@
     <ClInclude Include="..\..\src\map\ai\states\trigger_state.h">
       <Filter>Header Files\ai\states</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\controllers\controller.h">
+      <Filter>Header Files\ai\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\controllers\player_controller.h">
+      <Filter>Header Files\ai\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\controllers\ai_controller.h">
+      <Filter>Header Files\ai\controllers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1578,6 +1593,15 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\ai\states\state.cpp">
       <Filter>Source Files\ai\states</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\controllers\ai_controller.cpp">
+      <Filter>Source Files\ai\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\controllers\player_controller.cpp">
+      <Filter>Source Files\ai\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\controllers\controller.cpp">
+      <Filter>Source Files\ai\controllers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

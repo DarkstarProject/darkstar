@@ -639,7 +639,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x04: // disengage
     {
-        PChar->PAIBattle()->SetBattleTargetID(0);
+        PChar->PAIBattle()->Disengage();
     }
     break;
     case 0x05: // call for help
@@ -724,7 +724,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x0F: // change target
     {
-        PChar->PAIBattle()->SetBattleTargetID(TargID);
+        PChar->PAIBattle()->ChangeTarget(TargID);
     }
     break;
     case 0x10: // rangedattack

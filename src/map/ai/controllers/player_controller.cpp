@@ -21,33 +21,46 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _AICHAR_H
-#define _AICHAR_H
+#include "player_controller.h"
 
-#include "ai_battle.h"
+#include "../../entities/charentity.h"
+#include "../../packets/char_update.h"
 
-class CCharEntity;
-
-class CAIChar : public CAIBattle
+CPlayerController::CPlayerController(CCharEntity* _PChar) :
+    CController(_PChar)
 {
-public:
-    CAIChar(CCharEntity*);
 
-protected:
+}
 
-    /* Attacking functions */
-    virtual bool Internal_Engage(uint16 targid) override;
-    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
-    virtual bool Attack(action_t&) override;
-    virtual CBattleEntity* IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
-    virtual void OnChangeTarget(CBattleEntity* PNewTarget) override;
-    virtual void PostDisengage() override;
+void CPlayerController::Cast(uint16 targid, uint16 spellid)
+{
+    //#TODO: check gcd here
+    CController::Cast(targid, spellid);
 
-    /* Casting functions */
-    virtual void CastFinished(action_t&) override;
-    virtual void CastInterrupted(action_t&, MSGBASIC_ID) override;
+    if (POwner)
+    {
+        auto state = POwner->PAIBattle()->GetCurrentState();
 
-    time_point m_errMsgTime;
-};
+        if (state && state->HasErrorMsg())
+        {
+            static_cast<CCharEntity*>(POwner)->pushPacket(state->GetErrorMsg());
+        }
+    }
+}
 
-#endif
+void CPlayerController::Engage(uint16 targid)
+{
+    CController::Engage(targid);
+}
+
+void CPlayerController::ChangeTarget(uint16 targid)
+{
+    CController::ChangeTarget(targid);
+}
+
+void CPlayerController::Disengage()
+{
+    CController::Disengage();
+
+
+}

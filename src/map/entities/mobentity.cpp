@@ -21,12 +21,13 @@
 ===========================================================================
 */
 
+#include "mobentity.h"
+
 #include "../../common/timer.h"
 #include "../packets/entity_update.h"
+#include "../ai/controllers/ai_controller.h"
 
 #include <string.h>
-
-#include "mobentity.h"
 
 CMobEntity::CMobEntity()
 {
@@ -104,7 +105,7 @@ CMobEntity::CMobEntity()
     // For Dyna Stats
     m_StatPoppedMobs = false;
     //TODO: fixme
-    PAI = std::make_unique<CAIBattle>(this, std::make_unique<CPathFind>(this));
+    PAI = std::make_unique<CAIBattle>(this, std::make_unique<CPathFind>(this), std::make_unique<CAIController>(this));
 }
 
 void CMobEntity::setMobFlags(uint32 MobFlags)

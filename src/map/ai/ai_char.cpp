@@ -22,6 +22,7 @@ This file is part of DarkStar-server source code.
 */
 
 #include "ai_char.h"
+#include "controllers/player_controller.h"
 #include "states/attack_state.h"
 #include "../entities/charentity.h"
 #include "../utils/battleutils.h"
@@ -30,23 +31,14 @@ This file is part of DarkStar-server source code.
 #include "../packets/char_update.h"
 #include "../packets/message_basic.h"
 
-CAIChar::CAIChar(CBattleEntity* PBattleEntity) :
-    CAIBattle(PBattleEntity, nullptr)
+CAIChar::CAIChar(CCharEntity* PChar) :
+    CAIBattle(PChar, nullptr, std::make_unique<CPlayerController>(PChar))
 {
 }
 
-bool CAIChar::Cast(uint16 targetid, uint16 spellid)
+bool CAIChar::Internal_Engage(uint16 targid)
 {
-    auto result = CAIBattle::Cast(targetid, spellid);
-    if (!result)
-    {
-        static_cast<CCharEntity*>(PEntity)->pushPacket(GetCurrentState()->GetErrorMsg());
-    }
-    return result;
-}
-
-bool CAIChar::Engage(uint16 targid)
-{
+    //#TODO: move to controller
     //#TODO: check gcd
     //#TODO: pet engage/disengage
     std::unique_ptr<CMessageBasicPacket> errMsg;
@@ -103,26 +95,20 @@ CBattleEntity* CAIChar::IsValidTarget(uint16 targid, uint8 validTargetFlags, std
     return nullptr;
 }
 
-void CAIChar::ChangeTarget(bool changed, CBattleEntity* PNewTarget)
+void CAIChar::OnChangeTarget(CBattleEntity* PNewTarget)
 {
-    if (changed)
-    {
-        auto PChar = static_cast<CCharEntity*>(PEntity);
-        PChar->pushPacket(new CLockOnPacket(PChar, PNewTarget));
-    }
-    else
-    {
-        //error message (from state)
-    }
+    auto PChar = static_cast<CCharEntity*>(PEntity);
+    PChar->pushPacket(new CLockOnPacket(PChar, PNewTarget));
 }
 
-void CAIChar::Disengage()
+void CAIChar::PostDisengage()
 {
-    CAIBattle::Disengage();
+    CAIBattle::PostDisengage();
     auto PChar = static_cast<CCharEntity*>(PEntity);
-    if (GetCurrentState()->HasErrorMsg())
+    auto state = PChar->PAIBattle()->GetCurrentState();
+    if (state && state->HasErrorMsg())
     {
-        PChar->pushPacket(GetCurrentState()->GetErrorMsg());
+        PChar->pushPacket(state->GetErrorMsg());
     }
     PChar->pushPacket(new CCharUpdatePacket(PChar));
     PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(false);
@@ -137,7 +123,7 @@ bool CAIChar::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPac
     if (dist > 30)
     {
         errMsg = std::make_unique<CMessageBasicPacket>(PEntity, PTarget, 0, 0, MSGBASIC_LOSE_SIGHT);
-        PBattleEntity->PAIBattle()->SetBattleTargetID(0);
+        PBattleEntity->PAIBattle()->Disengage();
         return false;
     }
     else if (!isFaceing(PEntity->loc.p, PTarget->loc.p, 40))

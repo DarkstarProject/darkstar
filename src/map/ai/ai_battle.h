@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 
 #include "ai_base.h"
 #include "helpers/targetfind.h"
+#include "controllers/controller.h"
 #include "states/state.h"
 #include "../packets/message_basic.h"
 
@@ -36,12 +37,20 @@ struct action_t;
 class CAIBattle : public CAIBase
 {
 public:
-    CAIBattle(CBattleEntity*, std::unique_ptr<CPathFind>&&);
+    CAIBattle(CBattleEntity*, std::unique_ptr<CPathFind>&&, std::unique_ptr<CController>&&);
 
-    virtual bool Engage(uint16 targetid);
+    virtual void Cast(uint16 targid, uint16 spellid);
+    virtual void Engage(uint16 targid);
+    virtual void ChangeTarget(uint16 targid);
     virtual void Disengage();
-    virtual void ChangeTarget(bool changed, CBattleEntity* PTarget);
-    virtual bool Cast(uint16 targetid, uint16 spellid);
+
+    /* Internal Controller functions */
+    virtual bool Internal_Engage(uint16 targetid);
+    virtual bool Internal_Cast(uint16 targetid, uint16 spellid);
+    virtual void Internal_ChangeTarget(uint16 targetid);
+    virtual void Internal_Disengage();
+
+    virtual void OnChangeTarget(CBattleEntity* PTarget);
     virtual void TryHitInterrupt(CBattleEntity* PAttacker);
 
     /* State finish functions */
@@ -50,20 +59,17 @@ public:
     /* Returns whether to call Attack or not (which includes error messages) */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg);
     virtual CBattleEntity* IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg);
+    virtual void PostDisengage();
     /* Casting */
     virtual void CastFinished(action_t&);
     virtual void CastInterrupted(action_t&, MSGBASIC_ID msg);
 
-    void SetBattleTargetID(uint16 targid);
     uint16 GetBattleTargetID();
 
 protected:
 
     CTargetFind targetFind;
     uint16 m_battleTarget;
-
-    //global cooldown
-    time_point m_LastActionTime;
 };
 
 #endif

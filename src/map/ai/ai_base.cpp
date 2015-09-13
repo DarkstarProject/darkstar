@@ -36,10 +36,12 @@ CAIBase::CAIBase(CBaseEntity* _PEntity) :
 {
 }
 
-CAIBase::CAIBase(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _pathfind) :
+CAIBase::CAIBase(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _pathfind,
+    std::unique_ptr<CController>&& _controller) :
     CAIBase(_PEntity)
 {
     pathfind = std::move(_pathfind);
+    Controller = std::move(_controller);
 }
 
 CState* CAIBase::GetCurrentState()
@@ -68,6 +70,11 @@ void CAIBase::Tick(time_point _tick)
     if (pathfind)
     {
         pathfind->FollowPath();
+    }
+
+    if (Controller && Controller->canUpdate)
+    {
+        Controller->Tick(_tick);
     }
 
     if (!m_stateStack.empty())

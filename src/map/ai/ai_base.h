@@ -28,6 +28,7 @@ This file is part of DarkStar-server source code.
 #include <stack>
 
 #include "ai_common.h"
+#include "controllers/controller.h"
 #include "helpers/action_queue.h"
 #include "helpers/pathfind.h"
 #include "helpers/event_handler.h"
@@ -39,7 +40,7 @@ class CAIBase
 {
 public:
     CAIBase(CBaseEntity*);
-    CAIBase(CBaseEntity*, std::unique_ptr<CPathFind>&&);
+    CAIBase(CBaseEntity*, std::unique_ptr<CPathFind>&&, std::unique_ptr<CController>&&);
 
     //no copy construct/assign (only move)
     CAIBase(const CAIBase&) = delete;
@@ -62,6 +63,8 @@ public:
 protected:
     // pathfinder, not guaranteed to be implemented
     std::unique_ptr<CPathFind> pathfind;
+    // input controller
+    std::unique_ptr<CController> Controller;
     // current synchronized server time (before AI loop execution)
     time_point m_Tick;
     time_point m_PrevTick;
