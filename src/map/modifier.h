@@ -580,6 +580,7 @@ enum MODIFIER
     MOD_FORCE_LIGHTNING_DWBONUS   = 536, // Set to 1 to force lightning day/weather spell bonus/penalty. Do not have it total more than 1.
     MOD_FORCE_LIGHT_DWBONUS       = 537, // Set to 1 to force light day/weather spell bonus/penalty. Do not have it total more than 1.
     MOD_FORCE_DARK_DWBONUS        = 538, // Set to 1 to force dark day/weather spell bonus/penalty. Do not have it total more than 1.
+    MOD_STONESKIN_BONUS_HP        = 539, // Bonus "HP" granted to Stoneskin spell.
 
     // MOD_SPARE = 92, // stuff
     // MOD_SPARE = 93, // stuff
@@ -590,8 +591,8 @@ enum MODIFIER
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 539, // stuff
     // MOD_SPARE = 540, // stuff
+    // MOD_SPARE = 541, // stuff
 
 };
 
