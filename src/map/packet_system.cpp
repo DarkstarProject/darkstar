@@ -2840,7 +2840,6 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     uint32 charid = RBUFL(data, 0x04);
     uint16 targid = RBUFW(data, 0x08);
-
     // cannot invite yourself
     if (PChar->id == charid)
         return;
@@ -2869,14 +2868,17 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             if (PInvitee)
             {
+				ShowDebug(CL_CYAN"%s sent party invite to %s\n" CL_RESET, PChar->GetName(), PInvitee->GetName());
                 //make sure invitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
                 if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != nullptr)
                 {
+					ShowDebug(CL_CYAN"%s is dead, in prision, has a pending invite, or is already in a party\n" CL_RESET, PInvitee->GetName());
                     PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
                     break;
                 }
                 if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
                 {
+					ShowDebug(CL_CYAN"%s has level sync, unable to send invite\n" CL_RESET, PInvitee->GetName());
                     PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 236));
                     break;
                 }
@@ -2884,12 +2886,13 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 PInvitee->InvitePending.id = PChar->id;
                 PInvitee->InvitePending.targid = PChar->targid;
                 PInvitee->pushPacket(new CPartyInvitePacket(charid, targid, PChar, INVITE_PARTY));
-
+				ShowDebug(CL_CYAN"Sent party invite packet to %s\n" CL_RESET, PInvitee->GetName());
                 if (PChar->PParty && PChar->PParty->GetSyncTarget())
                     PInvitee->pushPacket(new CMessageStandardPacket(PInvitee, 0, 0, 235));
             }
             else
             {
+				ShowDebug(CL_CYAN"Building invite packet to send to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
                 //on another server (hopefully)
                 uint8 packetData[12];
                 WBUFL(packetData, 0) = charid;
@@ -2897,10 +2900,14 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 WBUFL(packetData, 6) = PChar->id;
                 WBUFW(packetData, 10) = PChar->targid;
                 message::send(MSG_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_PARTY));
+				ShowDebug(CL_CYAN"Sent invite packet to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
             }
         }
-        else //in party but not leader, cannot invite
-            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 21));
+		else //in party but not leader, cannot invite
+		{
+			ShowDebug(CL_CYAN"%s is not party leader, cannot send invite\n" CL_RESET, PChar->GetName());
+			PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 21));
+		}
         break;
 
     case 5: // alliance - must be unallied party leader or alliance leader of a non-full alliance
@@ -2915,15 +2922,18 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             if (PInvitee)
             {
+				ShowDebug(CL_CYAN"%s sent party invite to %s\n" CL_RESET, PChar->GetName(), PInvitee->GetName());
                 //make sure intvitee isn't dead or in jail, they are an unallied party leader and don't already have an invite pending
                 if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 ||
                     PInvitee->PParty == nullptr || PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)
                 {
+					ShowDebug(CL_CYAN"%s is dead, in prision, has a pending invite, or is already in a party/alliance\n" CL_RESET, PInvitee->GetName());
                     PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
                     break;
                 }
                 if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
                 {
+					ShowDebug(CL_CYAN"%s has level sync, unable to send invite\n" CL_RESET, PInvitee->GetName());
                     PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 236));
                     break;
                 }
@@ -2931,9 +2941,11 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 PInvitee->InvitePending.id = PChar->id;
                 PInvitee->InvitePending.targid = PChar->targid;
                 PInvitee->pushPacket(new CPartyInvitePacket(charid, targid, PChar, INVITE_ALLIANCE));
+				ShowDebug(CL_CYAN"Sent party invite packet to %s\n" CL_RESET, PInvitee->GetName());
             }
             else
             {
+				ShowDebug(CL_CYAN"(Alliance)Building invite packet to send to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
                 //on another server (hopefully)
                 uint8 packetData[12];
                 WBUFL(packetData, 0) = charid;
@@ -2941,6 +2953,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 WBUFL(packetData, 6) = PChar->id;
                 WBUFW(packetData, 10) = PChar->targid;
                 message::send(MSG_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_ALLIANCE));
+				ShowDebug(CL_CYAN"(Alliance)Sent invite packet to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
             }
         }
         break;
@@ -2966,21 +2979,41 @@ void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         case 0: // party - anyone may remove themself from party regardless of leadership or alliance
             if (PChar->PParty->m_PAlliance && PChar->PParty->members.size() == 1) // single member alliance parties must be removed from alliance before disband
             {
-                if (PChar->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
-                    PChar->PParty->m_PAlliance->dissolveAlliance();
-                else
-                    PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+				ShowDebug(CL_CYAN"%s party size is one\n" CL_RESET, PChar->GetName());
+				if (PChar->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
+				{
+					ShowDebug(CL_CYAN"%s alliance size is one party\n" CL_RESET, PChar->GetName());
+					PChar->PParty->m_PAlliance->dissolveAlliance();
+					ShowDebug(CL_CYAN"%s alliance is dissolved\n" CL_RESET, PChar->GetName());
+				}
+				else
+				{
+					ShowDebug(CL_CYAN"Removing %s party from alliance\n" CL_RESET, PChar->GetName());
+					PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+					ShowDebug(CL_CYAN"%s party is removed from alliance\n" CL_RESET, PChar->GetName());
+				}
             }
+			ShowDebug(CL_CYAN"Removing %s from party" CL_RESET, PChar->GetName());
             PChar->PParty->RemoveMember(PChar);
+			ShowDebug(CL_CYAN"%s is removed from party\n" CL_RESET, PChar->GetName());
             break;
 
         case 5: // alliance - any party leader in alliance may remove their party
             if (PChar->PParty->m_PAlliance && PChar->PParty->GetLeader() == PChar)
             {
-                if (PChar->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
-                    PChar->PParty->m_PAlliance->dissolveAlliance();
-                else
-                    PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+				ShowDebug(CL_CYAN"%s is leader of a party in an alliance\n" CL_RESET, PChar->GetName());
+				if (PChar->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
+				{
+					ShowDebug(CL_CYAN"One party in alliance, %s wants to dissolve the alliance\n" CL_RESET, PChar->GetName());
+					PChar->PParty->m_PAlliance->dissolveAlliance();
+					ShowDebug(CL_CYAN"%s has dissolved the alliance\n" CL_RESET, PChar->GetName());
+				}
+				else
+				{
+					ShowDebug(CL_CYAN"%s wants to remove their party from the alliance\n" CL_RESET, PChar->GetName());
+					PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+					ShowDebug(CL_CYAN"%s party is removed from the alliance\n" CL_RESET, PChar->GetName());
+				}
             }
             break;
 
@@ -3003,13 +3036,21 @@ void SmallPacket0x070(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         switch (RBUFB(data, (0x04)))
     {
         case 0: // party - party leader may disband party if not an alliance member
-            if (PChar->PParty->m_PAlliance == nullptr)
-                PChar->PParty->DisbandParty();
+			if (PChar->PParty->m_PAlliance == nullptr)
+			{
+				ShowDebug(CL_CYAN"%s is disbanding the party (pcmd breakup)\n" CL_RESET, PChar->GetName());
+				PChar->PParty->DisbandParty();
+				ShowDebug(CL_CYAN"%s party has been disbanded (pcmd breakup)\n" CL_RESET, PChar->GetName());
+			}
             break;
 
         case 5: // alliance - only alliance leader may dissolve the entire alliance
-            if (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
-                PChar->PParty->m_PAlliance->dissolveAlliance();
+			if (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
+			{
+				ShowDebug(CL_CYAN"%s is disbanding the alliance (acmd breakup)\n" CL_RESET, PChar->GetName());
+				PChar->PParty->m_PAlliance->dissolveAlliance();
+				ShowDebug(CL_CYAN"%s alliance has been disbanded (acmd breakup)\n" CL_RESET, PChar->GetName());
+			}
             break;
 
         default:
@@ -3035,20 +3076,30 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             CCharEntity* PVictim = (CCharEntity*)(PChar->PParty->GetMemberByName(data[0x0C]));
             if (PVictim)
             {
+				ShowDebug(CL_CYAN"%s is trying to kick %s from party\n" CL_RESET, PChar->GetName(), PVictim->GetName());
                 if (PVictim == PChar) // using kick on yourself, let's borrow the logic from /pcmd leave to prevent alliance crash
                 {
                     if (PChar->PParty->m_PAlliance && PChar->PParty->members.size() == 1) // single member alliance parties must be removed from alliance before disband
                     {
-                        if (PChar->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
-                            PChar->PParty->m_PAlliance->dissolveAlliance();
-                        else
-                            PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+						if (PChar->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
+						{
+							ShowDebug(CL_CYAN"One party in alliance, %s wants to dissolve the alliance\n" CL_RESET, PChar->GetName());
+							PChar->PParty->m_PAlliance->dissolveAlliance();
+							ShowDebug(CL_CYAN"%s has dissolved the alliance\n" CL_RESET, PChar->GetName());
+						}
+						else
+						{
+							ShowDebug(CL_CYAN"%s wants to remove their party from the alliance\n" CL_RESET, PChar->GetName());
+							PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+							ShowDebug(CL_CYAN"%s party is removed from the alliance\n" CL_RESET, PChar->GetName());
+						}
                     }
                 }
                 else if (PChar->PParty->GetLeader() != PChar) // not leader, cannot kick others
                     break;
 
                 PChar->PParty->RemoveMember(PVictim);
+				ShowDebug(CL_CYAN"%s has removed %s from party\n" CL_RESET, PChar->GetName(), PVictim->GetName());
             }
         }
         break;
@@ -3090,15 +3141,23 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
             {
                 PVictim = (CCharEntity*)(PChar->PParty->m_PAlliance->partyList[i]->GetMemberByName(data[0x0C]));
+				ShowDebug(CL_CYAN"%s is trying to kick %s party from alliance\n" CL_RESET, PChar->GetName(), PVictim->GetName());
                 if (PVictim && PVictim->PParty && PVictim->PParty->m_PAlliance) // victim is in this party
                 {
                     //if using kick on yourself, or alliance leader using kick on another party leader - remove the party
                     if (PVictim == PChar || (PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty && PVictim->PParty->GetLeader() == PVictim))
                     {
-                        if (PVictim->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
-                            PVictim->PParty->m_PAlliance->dissolveAlliance();
-                        else
-                            PVictim->PParty->m_PAlliance->removeParty(PVictim->PParty);
+						if (PVictim->PParty->m_PAlliance->partyCount() == 1) // if there is only 1 party then dissolve alliance
+						{
+							ShowDebug(CL_CYAN"One party in alliance, %s wants to dissolve the alliance\n" CL_RESET, PChar->GetName());
+							PVictim->PParty->m_PAlliance->dissolveAlliance();
+							ShowDebug(CL_CYAN"%s has dissolved the alliance\n" CL_RESET, PChar->GetName());
+						}
+						else
+						{
+							PVictim->PParty->m_PAlliance->removeParty(PVictim->PParty);
+							ShowDebug(CL_CYAN"%s has removed %s party from alliance\n" CL_RESET, PChar->GetName(), PVictim->GetName());
+						}
                     }
                     break; // we're done, break the for
                 }
@@ -3129,6 +3188,7 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         if (InviteAnswer == 0)
         {
+			ShowDebug(CL_CYAN"%s declined party invite from %s\n" CL_RESET, PChar->GetName(), PInviter->GetName());
             //invitee declined invite
             PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 11));
             PChar->InvitePending.clean();
@@ -3141,12 +3201,14 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             //both invitee and and inviter are party leaders
             if (PInviter->PParty->GetLeader() == PInviter && PChar->PParty->GetLeader() == PChar)
             {
+				ShowDebug(CL_CYAN"%s invited %s to an alliance\n" CL_RESET, PInviter->GetName(), PChar->GetName());
                 //the inviter already has an alliance and wants to add another party - only add if they have room for another party
                 if (PInviter->PParty->m_PAlliance && PInviter->PParty->m_PAlliance->getMainParty() == PInviter->PParty)
                 {
                     //break if alliance is full
                     if (PInviter->PParty->m_PAlliance->partyCount() == 3)
                     {
+						ShowDebug(CL_CYAN"Alliance is full, invite to %s cancelled\n" CL_RESET, PChar->GetName());
                         PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
                         PChar->InvitePending.clean();
                         return;
@@ -3155,14 +3217,17 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     //alliance is not full, add the new party
                     PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
                     PChar->InvitePending.clean();
+					ShowDebug(CL_CYAN"%s party added to %s alliance\n" CL_RESET, PChar->GetName(), PInviter->GetName());
                     return;
                 }
                 else
                 {
                     //party leaders have no alliance - create a new one!
+					ShowDebug(CL_CYAN"Creating new alliance\n" CL_RESET);
                     CAlliance* PAlliance = new CAlliance(PInviter);
                     PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
                     PChar->InvitePending.clean();
+					ShowDebug(CL_CYAN"%s party added to %s alliance\n" CL_RESET, PChar->GetName(), PInviter->GetName());
                     return;
                 }
             }
@@ -3173,17 +3238,22 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             if (!(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION)))
             {
+				ShowDebug(CL_CYAN"%s is not under lvl sync or restriction\n" CL_RESET, PChar->GetName());
                 if (PInviter->PParty == nullptr)
                 {
+					ShowDebug(CL_CYAN"Creating new party\n" CL_RESET);
                     CParty* PParty = new CParty(PInviter);
                 }
                 if (PInviter->PParty->GetLeader() == PInviter)
                 {
                     if (PInviter->PParty->members.size() > 5){//someone else accepted invitation
                         //PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 14)); Don't think retail sends error packet to inviter on full pt
+						ShowDebug(CL_CYAN"Someone else accepted party invite, %s cannot be added to party\n" CL_RESET, PChar->GetName());
                         PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
                     }
-                    else{
+                    else
+					{
+						ShowDebug(CL_CYAN"Added %s to %s's party\n" CL_RESET, PChar->GetName(), PInviter->GetName());
                         PInviter->PParty->AddMember(PChar);
                     }
                 }
@@ -3196,6 +3266,7 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     }
     else
     {
+		ShowDebug(CL_CYAN"(Party)Building invite packet to send to lobby server for %s\n" CL_RESET, PChar->GetName());
         uint8 packetData[13];
         WBUFL(packetData, 0) = PChar->InvitePending.id;
         WBUFW(packetData, 4) = PChar->InvitePending.targid;
@@ -3204,6 +3275,7 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         WBUFB(packetData, 12) = InviteAnswer;
         PChar->InvitePending.clean();
         message::send(MSG_PT_INV_RES, packetData, sizeof packetData, nullptr);
+		ShowDebug(CL_CYAN"(Party)Sent invite packet to send to lobby server for %s\n" CL_RESET, PChar->GetName());
     }
     PChar->InvitePending.clean();
     return;
@@ -3244,6 +3316,7 @@ void SmallPacket0x077(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (PChar->PParty != nullptr &&
             PChar->PParty->GetLeader() == PChar)
         {
+			ShowDebug(CL_CYAN"(Party)Changing leader to %s\n" CL_RESET, data[0x04]);
             PChar->PParty->AssignPartyRole(data[0x04], RBUFB(data, (0x15)));
         }
     }
@@ -3280,6 +3353,7 @@ void SmallPacket0x077(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->PParty->GetLeader() == PChar && 
             PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
         {
+			ShowDebug(CL_CYAN"(Alliance)Changing leader to %s\n" CL_RESET, data[0x04]);
             PChar->PParty->m_PAlliance->assignAllianceLeader(data[0x04]);
             uint8 data[4];
             WBUFL(data, 0) = PChar->PParty->m_PAlliance->m_AllianceID;
