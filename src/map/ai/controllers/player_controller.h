@@ -40,6 +40,8 @@ public:
     virtual void ChangeTarget(uint16 targid) override;
     virtual void Disengage() override;
 
+protected:
+    time_point m_LastActionTime;
 };
 
 #endif // _PLAYERCONTROLLER

@@ -28,20 +28,19 @@ This file is part of DarkStar-server source code.
 duration g_GCD = 1500ms;
 
 CAIBase::CAIBase(CBaseEntity* _PEntity) :
-    pathfind(nullptr),
-    m_Tick(std::chrono::steady_clock::now()),
-    m_PrevTick(std::chrono::steady_clock::now()),
-    PEntity(_PEntity),
-    ActionQueue(_PEntity)
+    CAIBase(_PEntity, nullptr, nullptr)
 {
 }
 
 CAIBase::CAIBase(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _pathfind,
     std::unique_ptr<CController>&& _controller) :
-    CAIBase(_PEntity)
+    m_Tick(server_clock::now()),
+    m_PrevTick(server_clock::now()),
+    PEntity(_PEntity),
+    ActionQueue(_PEntity),
+    pathfind(std::move(_pathfind)),
+    Controller(std::move(_controller))
 {
-    pathfind = std::move(_pathfind);
-    Controller = std::move(_controller);
 }
 
 CState* CAIBase::GetCurrentState()

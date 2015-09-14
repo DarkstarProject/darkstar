@@ -27,30 +27,59 @@ This file is part of DarkStar-server source code.
 #include "../../packets/char_update.h"
 
 CPlayerController::CPlayerController(CCharEntity* _PChar) :
-    CController(_PChar)
+    CController(_PChar),
+    m_LastActionTime(server_clock::now())
 {
 
 }
 
 void CPlayerController::Cast(uint16 targid, uint16 spellid)
 {
-    //#TODO: check gcd here
-    CController::Cast(targid, spellid);
-
-    if (POwner)
+    auto PChar = static_cast<CCharEntity*>(POwner);
+    if (m_LastActionTime + g_GCD < server_clock::now())
     {
-        auto state = POwner->PAIBattle()->GetCurrentState();
+        CController::Cast(targid, spellid);
+        m_LastActionTime = server_clock::now();
 
-        if (state && state->HasErrorMsg())
+        if (POwner)
         {
-            static_cast<CCharEntity*>(POwner)->pushPacket(state->GetErrorMsg());
+            auto state = POwner->PAIBattle()->GetCurrentState();
+
+            if (state && state->HasErrorMsg())
+            {
+                static_cast<CCharEntity*>(POwner)->pushPacket(state->GetErrorMsg());
+            }
         }
+    }
+    else
+    {
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
     }
 }
 
 void CPlayerController::Engage(uint16 targid)
 {
-    CController::Engage(targid);
+    //#TODO: check gcd/engage delay
+    //#TODO: pet engage/disengage
+    std::unique_ptr<CMessageBasicPacket> errMsg;
+    auto PChar = static_cast<CCharEntity*>(POwner);
+    auto PTarget = PChar->PAIBattle()->IsValidTarget(targid, TARGET_ENEMY, errMsg);
+
+    if (PTarget)
+    {
+        if (distance(PChar->loc.p, PTarget->loc.p) < 30)
+        {
+            CController::Engage(targid);
+        }
+        else
+        {
+            errMsg = std::make_unique<CMessageBasicPacket>(PChar, PTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY);
+        }
+    }
+    if (errMsg)
+    {
+        PChar->pushPacket(errMsg.release());
+    }
 }
 
 void CPlayerController::ChangeTarget(uint16 targid)

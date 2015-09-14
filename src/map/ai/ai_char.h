@@ -36,7 +36,6 @@ public:
 protected:
 
     /* Attacking functions */
-    virtual bool Internal_Engage(uint16 targid) override;
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
     virtual bool Attack(action_t&) override;
     virtual CBattleEntity* IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg) override;

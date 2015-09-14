@@ -36,44 +36,6 @@ CAIChar::CAIChar(CCharEntity* PChar) :
 {
 }
 
-bool CAIChar::Internal_Engage(uint16 targid)
-{
-    //#TODO: move to controller
-    //#TODO: check gcd
-    //#TODO: pet engage/disengage
-    std::unique_ptr<CMessageBasicPacket> errMsg;
-    auto PChar = static_cast<CCharEntity*>(PEntity);
-    auto PTarget = IsValidTarget(targid, TARGET_ENEMY, errMsg);
-
-    //#TODO: use valid target stuff from spell
-    if (PTarget)
-    {
-        if (distance(PChar->loc.p, PTarget->loc.p) < 30)
-        {
-            m_battleTarget = targid;
-            PEntity->PAI->queueAction(queueAction_t(0, true, [this, targid](CBaseEntity* PEntity) {
-                ChangeState<CAttackState>(static_cast<CBattleEntity*>(PEntity), targid);
-            }));
-            PEntity->animation = ANIMATION_ATTACK;
-            PEntity->updatemask |= UPDATE_HP;
-
-            PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(true);
-            PChar->pushPacket(new CLockOnPacket(PChar, PTarget));
-            PChar->pushPacket(new CCharUpdatePacket(PChar));
-            return true;
-        }
-        else
-        {
-            errMsg = std::make_unique<CMessageBasicPacket>(PChar, PTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY);
-        }
-    }
-    if (errMsg)
-    {
-        PChar->pushPacket(errMsg.release());
-    }
-    return false;
-}
-
 CBattleEntity* CAIChar::IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
 {
     auto PTarget = CAIBattle::IsValidTarget(targid, validTargetFlags, errMsg);
