@@ -8,7 +8,7 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 
 -----------------------------------
--- onMobInitialize Action
+-- onMobInitialize
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -20,7 +20,13 @@ end;
 
 function onMobDeath(mob, killer)
     killer:addTitle(TORTOISE_TORTURER);
+end;
 
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local Adamantoise  = mob:getID();
     local Aspidochelone = 17301538;
     local ToD     = GetServerVariable("[POP]Aspidochelone");
