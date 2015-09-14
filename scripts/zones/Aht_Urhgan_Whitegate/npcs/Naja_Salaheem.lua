@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 	local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
 	local needToZone = player:needToZone();
 	
-	if (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES) then
+	if (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES and player:hasKeyItem(BOARDING_PERMIT)) then
 	 	if (player:getVar("TOAUM2") == 1 or player:getVar("TOAUM2") == 2) then
 	 		player:startEvent(0x0BBA,0,0,0,0,0,0,0,0,0);
 	 	end
