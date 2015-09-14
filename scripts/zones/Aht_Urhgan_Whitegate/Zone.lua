@@ -74,7 +74,7 @@ function onRegionEnter(player,region)
 	end
 	end,
 	[3] = function (x) -- TOAU Mission 1 
-	if (player:getCurrentMission(TOAU)== LAND_OF_SACRED_SERPENTS and player:getVar("TOAUM") == 0) then	
+	if (player:getCurrentMission(TOAU)== LAND_OF_SACRED_SERPENTS and player:getVar("TOAUM") == 0 and prevZone == 46) then	
 	    player:startEvent(0x0BB8,0,0,0,0,0,0,0,0,0);
 	    player:completeMission(TOAU,LAND_OF_SACRED_SERPENTS,player);
 	    player:addMission(TOAU,IMMORTAL_SENTRIES,player);
