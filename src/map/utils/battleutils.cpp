@@ -3534,22 +3534,19 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    void GenerateCureEnmity(CBattleEntity* PSource, CBattleEntity* PTarget, uint16 amount)
+    void GenerateCureEnmity(CCharEntity* PSource, CBattleEntity* PTarget, uint16 amount)
     {
         DSP_DEBUG_BREAK_IF(PSource == nullptr);
         DSP_DEBUG_BREAK_IF(PTarget == nullptr);
         DSP_DEBUG_BREAK_IF(amount < 0);
-        DSP_DEBUG_BREAK_IF(PSource->objtype != TYPE_PC);
 
-        CCharEntity* PChar = (CCharEntity*)PSource;
-
-        for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
+        for (SpawnIDList_t::const_iterator it = PSource->SpawnMOBList.begin(); it != PSource->SpawnMOBList.end(); ++it)
         {
             CMobEntity* PCurrentMob = (CMobEntity*)it->second;
 
             if (PCurrentMob->PEnmityContainer->HasTargetID(PTarget->id))
             {
-                PCurrentMob->PEnmityContainer->UpdateEnmityFromCure(PChar, PTarget->GetMLevel(), amount, (amount == 65535)); //true for "cure v"
+                PCurrentMob->PEnmityContainer->UpdateEnmityFromCure(PSource, PTarget->GetMLevel(), amount, (amount == 65535)); //true for "cure v"
             }
         }
     }

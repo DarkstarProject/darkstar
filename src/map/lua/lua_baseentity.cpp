@@ -6152,9 +6152,9 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
     uint32 amount = lua_tointeger(L, 2);
 
     if (PEntity != nullptr &&
-        PEntity->GetBaseEntity()->objtype == TYPE_PC)
+        m_PBaseEntity->objtype == TYPE_PC)
     {
-        battleutils::GenerateCureEnmity((CBattleEntity*)m_PBaseEntity, (CBattleEntity*)PEntity->GetBaseEntity(), amount);
+        battleutils::GenerateCureEnmity((CCharEntity*)m_PBaseEntity, (CBattleEntity*)PEntity->GetBaseEntity(), amount);
     }
 
     return 0;

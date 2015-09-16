@@ -150,7 +150,6 @@ namespace battleutils
     int32				TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool giveTPtoAttacker, bool isCounter = false);
     int32				TakeWeaponskillDamage(CCharEntity* PChar, CBattleEntity* PDefender, int32 damage, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar);
     int32				TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 lastSkillDamage);
-    uint32				MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 
     bool                TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     float				GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
@@ -165,16 +164,14 @@ namespace battleutils
 
     uint8				GetEnmityModDamage(uint8 level);
     uint8				GetEnmityModCure(uint8 level);
-    bool				Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);
     bool				isValidSelfTargetWeaponskill(int wsid);
-    int16				CalculateBaseTP(int delay, int stp);
-    void				GenerateCureEnmity(CBattleEntity* PSource, CBattleEntity* PTarget, uint16 amount);
+    int16				CalculateBaseTP(int delay);
+    void				GenerateCureEnmity(CCharEntity* PSource, CBattleEntity* PTarget, uint16 amount);
     void                GenerateInRangeEnmity(CBattleEntity* PSource, int16 CE, int16 VE);
 
     CItemWeapon*		GetEntityWeapon(CBattleEntity* PEntity, SLOTTYPE Slot);
     CItemArmor*			GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot);
 
-    uint32				HandleSpecialPhysicalDamageReduction(CCharEntity* PAttacker, uint32 damage, apAction_t* Action);
     void				MakeEntityStandUp(CBattleEntity* PEntity);
     bool				IsEngauged(CBattleEntity* PEntity);
     CBattleEntity*		getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity* PMob);
