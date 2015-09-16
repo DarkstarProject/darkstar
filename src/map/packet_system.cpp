@@ -2552,7 +2552,8 @@ void SmallPacket0x05B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         if (PChar->m_event.Option != 0) Result = PChar->m_event.Option;
 
-        if (RBUFB(data, (0x0E)) != 0) {
+        if (RBUFB(data, (0x0E)) != 0)
+        {
             luautils::OnEventUpdate(PChar, EventID, Result);
         }
         else
@@ -2563,7 +2564,6 @@ void SmallPacket0x05B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             {
                 PChar->m_event.reset();
             }
-
         }
     }
 
@@ -2581,21 +2581,29 @@ void SmallPacket0x05C(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     uint16 EventID = RBUFW(data, (0x1A));
 
-    PChar->loc.p.x = RBUFF(data, (0x04));
-    PChar->loc.p.y = RBUFF(data, (0x08));
-    PChar->loc.p.z = RBUFF(data, (0x0C));
-    PChar->loc.p.rotation = RBUFB(data, (0x1F));
+    if (PChar->m_event.EventID == EventID)
+    {
+        PChar->loc.p.x = RBUFF(data, (0x04));
+        PChar->loc.p.y = RBUFF(data, (0x08));
+        PChar->loc.p.z = RBUFF(data, (0x0C));
+        PChar->loc.p.rotation = RBUFB(data, (0x1F));
 
-    if (RBUFB(data, (0x1E)) != 0){
-        luautils::OnEventUpdate(PChar, EventID, 0);
-    }
-    else{
-        luautils::OnEventFinish(PChar, EventID, 0);
-        PChar->m_event.reset();
-    }
+        if (RBUFB(data, (0x1E)) != 0)
+        {
+            luautils::OnEventUpdate(PChar, EventID, 0);
+        }
+        else
+        {
+            luautils::OnEventFinish(PChar, EventID, 0);
+            if (PChar->m_event.EventID == EventID)
+            {
+                PChar->m_event.reset();
+            }
+        }
 
-    PChar->pushPacket(new CCSPositionPacket(PChar));
-    PChar->pushPacket(new CPositionPacket(PChar));
+        PChar->pushPacket(new CCSPositionPacket(PChar));
+        PChar->pushPacket(new CPositionPacket(PChar));
+    }
     PChar->pushPacket(new CReleasePacket(PChar, RELEASE_EVENT));
     return;
 }
