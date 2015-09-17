@@ -43,6 +43,7 @@ When a status effect is gained twice on a player. It can do one or more of the f
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
 #include "packets/message_basic.h"
+#include "packets/status_effects.h"
 
 #include "utils/charutils.h"
 #include "entities/battleentity.h"
@@ -1090,6 +1091,7 @@ void CStatusEffectContainer::UpdateStatusIcons()
     ((CCharEntity*)m_POwner)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_POwner));
     ((CCharEntity*)m_POwner)->pushPacket(new CCharJobExtraPacket((CCharEntity*)m_POwner, true));
     ((CCharEntity*)m_POwner)->pushPacket(new CCharJobExtraPacket((CCharEntity*)m_POwner, false));
+    //((CCharEntity*)m_POwner)->pushPacket(new CStatusEffectPacket((CCharEntity*)m_POwner));
 }
 
 /************************************************************************
@@ -1450,6 +1452,14 @@ void CStatusEffectContainer::CopyConfrontationEffect(CBattleEntity* PEntity)
         {
             PEntity->StatusEffectContainer->AddStatusEffect(new CStatusEffect(*PEffect));
         }
+    }
+}
+
+void CStatusEffectContainer::ForEachEffect(std::function<void(CStatusEffect*)> func)
+{
+    for (auto&& PEffect : m_StatusEffectList)
+    {
+        func(PEffect);
     }
 }
 
