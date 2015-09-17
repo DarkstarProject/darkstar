@@ -52,6 +52,7 @@ end;
 	
 function onEventFinish(player,csid,option)
 	--print("bc finish csid "..csid.." and option "..option);
+	local currentMission = player:getCurrentMission(SANDORIA);
 	local MissionStatus = player:getVar("MissionStatus");
 
 	if (csid == 0x7d01) then 

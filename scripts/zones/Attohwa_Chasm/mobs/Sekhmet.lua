@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
--- NPC: Sekhmet
--- ID: 16805962
+--  NM:  Sekhmet
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -37,7 +36,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-    mob:setRespawnTime(math.random(5400,7200));	-- 1.5 to 2 hours.
+    mob:setRespawnTime(math.random(5400,7200)); -- 1.5 to 2 hours.
     UpdateNMSpawnPoint(mob:getID());
 end;
 
@@ -54,9 +53,9 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob, player)
-    local chance = 100;	
-	local resist = applyResistanceAddEffect(mob,player,ELE_DARK,EFFECT_ENASPIR);
-	if (math.random(0,99) >= chance or resist <= 0.5) then
+    local chance = 100;
+    local resist = applyResistanceAddEffect(mob,player,ELE_DARK,EFFECT_ENASPIR);
+    if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else
         local mp = math.random(1,10);
@@ -68,7 +67,7 @@ function onAdditionalEffect(mob, player)
         else
             player:delMP(mp);
             mob:addMP(mp);
-            return SUBEFFECT_MP_DRAIN, 162, mp;
+            return SUBEFFECT_MP_DRAIN, MSGBASIC_ADD_EFFECT_MP_DRAIN, mp;
         end
     end
 end;

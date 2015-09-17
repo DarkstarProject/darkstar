@@ -48,7 +48,7 @@ bool CPathFind::RoamAround(position_t point, float maxRadius, uint8 roamFlags)
 	if (isNavMeshEnabled())
 	{
 
-		if (FindRandomPath(&point, maxRadius))
+		if (FindRandomPath(&point, maxRadius, roamFlags))
 		{
 			return true;
 		}
@@ -168,6 +168,18 @@ bool CPathFind::isNavMeshEnabled()
 	return m_PTarget->loc.zone && m_PTarget->loc.zone->m_navMesh != nullptr;
 }
 
+bool CPathFind::ValidPosition(position_t* pos)
+{
+    if(isNavMeshEnabled())
+    {
+      return m_PTarget->loc.zone->m_navMesh->validPosition(*pos);
+    }
+    else
+    {
+      return true;
+    }
+}
+
 void CPathFind::LimitDistance(float maxLength)
 {
 	m_maxDistance = maxLength;
@@ -239,8 +251,7 @@ void CPathFind::FollowPath()
 
 		if (m_currentPoint >= m_pathLength)
 		{
-			// i'm finished!
-			Clear();
+                        FinishedPath();
 		}
 
 		m_onPoint = true;
@@ -303,6 +314,7 @@ bool CPathFind::FindPath(position_t* start, position_t* end)
 {
 
 	m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(*start, *end, m_points, MAX_PATH_POINTS);
+        m_currentPoint = 0;
 
 	if (m_pathLength <= 0)
 	{
@@ -313,25 +325,55 @@ bool CPathFind::FindPath(position_t* start, position_t* end)
 	return true;
 }
 
-bool CPathFind::FindRandomPath(position_t* start, float maxRadius)
+bool CPathFind::FindRandomPath(position_t* start, float maxRadius, uint8 roamFlags)
 {
+    int maxTurns = 3;
 
-	m_pathLength = m_PTarget->loc.zone->m_navMesh->findRandomPath(*start, maxRadius, m_points, MAX_PATH_POINTS);
+    if(roamFlags & ROAMFLAG_NO_TURN)
+    {
+        m_turnLength = 1;
+    }
+    else
+    {
+        if(roamFlags & ROAMFLAG_WANDER)
+        {
+            maxTurns = 5;
+        }
 
-	if (m_pathLength <= 0)
-	{
-		// Remarked out by Whasf, log spam!!
-		//   ShowError("CPathFind::FindRandomPath Entity (%d) could not find path\n", m_PTarget->id);
-		return false;
-	}
+        m_turnLength = dsprand::GetRandomNumber(1, maxTurns);
+    }
 
-	return true;
+    position_t startPosition = *start;
+
+    // find end points for turns
+    for(int8 i=0; i<m_turnLength; i++){
+        // look for new point centered around the last point
+        int16 status = m_PTarget->loc.zone->m_navMesh->findRandomPosition(startPosition, maxRadius, &m_turnPoints[i]);
+
+        // couldn't find one point so just break out
+        if(status != 0){
+            return false;
+        }
+
+        startPosition = m_turnPoints[i];
+    }
+
+    m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(*start, m_turnPoints[0], m_points, MAX_PATH_POINTS);
+    m_currentPoint = 0;
+
+    if (m_pathLength <= 0)
+    {
+        return false;
+    }
+
+    return true;
 }
 
 bool CPathFind::FindClosestPath(position_t* start, position_t* end)
 {
 
 	m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(*start, *end, m_points, MAX_PATH_POINTS);
+        m_currentPoint = 0;
 
 	if (m_pathLength <= 0)
 	{
@@ -351,8 +393,8 @@ void CPathFind::LookAt(position_t point)
 	// don't look if i'm at that point
 	if (!AtPoint(&point)){
 		m_PTarget->loc.p.rotation = getangle(m_PTarget->loc.p, point);
+                m_PTarget->updatemask |= UPDATE_POS;
 	}
-    m_PTarget->updatemask |= UPDATE_POS;
 }
 
 bool CPathFind::OnPoint()
@@ -428,12 +470,16 @@ void CPathFind::Clear()
 	m_distanceMoved = 0;
 
 	m_onPoint = true;
+
+        m_currentTurn = 0;
+        m_turnLength = 0;
 }
 
 void CPathFind::AddPoints(position_t* points, uint8 totalPoints, bool reverse)
 {
 
 	m_pathLength = totalPoints;
+        m_currentPoint = 0;
 
 	if (totalPoints > MAX_PATH_POINTS)
 	{
@@ -459,4 +505,27 @@ void CPathFind::AddPoints(position_t* points, uint8 totalPoints, bool reverse)
 		m_points[index].z = points[i].z;
 	}
 
+}
+
+void CPathFind::FinishedPath()
+{
+    m_currentTurn++;
+
+    // turning is only available to navmeshed maps
+    if(m_currentTurn < m_turnLength && isNavMeshEnabled())
+    {
+        // move on to next turn
+        position_t* nextTurn = &m_turnPoints[m_currentTurn];
+
+        bool result = FindPath(&m_PTarget->loc.p, nextTurn);
+
+        if(!result)
+        {
+            Clear();
+        }
+    }
+    else
+    {
+        Clear();
+    }
 }

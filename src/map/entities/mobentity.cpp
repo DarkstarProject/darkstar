@@ -29,6 +29,9 @@
 
 #include <string.h>
 
+
+#include "../utils/battleutils.h"
+
 CMobEntity::CMobEntity()
 {
 	objtype = TYPE_MOB;
@@ -48,6 +51,7 @@ CMobEntity::CMobEntity()
     m_roamFlags = ROAMFLAG_NONE;
     m_specialFlags = SPECIALFLAG_NONE;
     m_name_prefix = 0;
+    m_MobSkillList = 0;
 
     memset(m_mobModStat,0, sizeof(m_mobModStat));
     memset(m_mobModStatSave,0, sizeof(m_mobModStatSave));
@@ -350,9 +354,14 @@ void CMobEntity::ChangeMJob(uint16 job)
 
 uint8 CMobEntity::TPUseChance()
 {
-    if(health.tp < 1000) return 0;
+    auto& MobSkillList = battleutils::GetMobSkillList(getMobMod(MOBMOD_SKILL_LIST));
 
-    if(health.tp == 3000 || (GetHPP() <= 25 && health.tp >= 1000))
+    if (health.tp < 1000 || MobSkillList.empty() == true || !PBattleAI->GetMobAbilityEnabled())
+    {
+        return 0;
+    }
+
+    if (health.tp == 3000 || (GetHPP() <= 25 && health.tp >= 1000))
     {
         return 100;
     }

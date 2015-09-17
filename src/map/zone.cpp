@@ -142,7 +142,6 @@ CZone::CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)
     m_BattlefieldHandler = nullptr;
     m_Weather = WEATHER_NONE;
     m_WeatherChangeTime = 0;
-    m_useNavMesh = false;
     m_navMesh = nullptr;
     m_zoneEntities = new CZoneEntities(this);
 
@@ -343,7 +342,6 @@ void CZone::LoadZoneSettings()
           "zone.battlemulti,"
           "zone.tax,"
           "zone.misc,"
-          "zone.navmesh,"
           "zone.zonetype,"
           "bcnm.name "
         "FROM zone_settings AS zone "
@@ -366,11 +364,10 @@ void CZone::LoadZoneSettings()
         m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle,6);   // party battle music
         m_tax = (uint16)(Sql_GetFloatData(SqlHandle,7) * 100);      // tax for bazaar
         m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,8);
-        m_useNavMesh = (bool)Sql_GetIntData(SqlHandle,9);
 
-        m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 10);
+        m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 9);
 
-        if (Sql_GetData(SqlHandle,11) != nullptr) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
+        if (Sql_GetData(SqlHandle,10) != nullptr) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
         {
             m_BattlefieldHandler = new CBattlefieldHandler(m_zoneID);
         }
@@ -387,8 +384,10 @@ void CZone::LoadZoneSettings()
 
 void CZone::LoadNavMesh()
 {
-    // disable / enable maps navmesh in zone_settings.sql
-    if (!m_useNavMesh) return;
+    // Cities don't have roaming mobs
+    if(m_zoneType == ZONETYPE_CITY){
+      return;
+    }
 
     if (m_navMesh == nullptr)
     {
@@ -399,14 +398,8 @@ void CZone::LoadNavMesh()
     memset(file,0,sizeof(file));
     snprintf(file, sizeof(file), "navmeshes/%s.nav", GetName());
 
-    if (m_navMesh->load(file))
+    if (!m_navMesh->load(file))
     {
-        // verify it can find proper paths
-        m_navMesh->test((uint16)GetID());
-    }
-    else
-    {
-        m_useNavMesh = false;
         delete m_navMesh;
         m_navMesh = nullptr;
     }

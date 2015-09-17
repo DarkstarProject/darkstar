@@ -81,6 +81,8 @@ struct Pet_t
     uint8        defRank;
     uint8        accRank;
 
+    uint16       m_MobSkillList;
+
     // magic stuff
     bool hasSpellScript;
     uint16 spellList;
@@ -154,7 +156,7 @@ namespace petutils
                 hasSpellScript, spellList, \
                 Slash, Pierce, H2H, Impact, \
                 Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, \
-                cmbDelay, name_prefix \
+                cmbDelay, name_prefix, mob_pools.skill_list_id \
                 FROM pet_list, mob_pools, mob_family_system \
                 WHERE pet_list.poolid = mob_pools.poolid AND mob_pools.familyid = mob_family_system.familyid";
 
@@ -222,6 +224,7 @@ namespace petutils
 
                 Pet->cmbDelay = (uint16)Sql_GetIntData(SqlHandle, 37);
                 Pet->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 38);
+                Pet->m_MobSkillList = (uint16)Sql_GetUIntData(SqlHandle, 39);
 
                 g_PPetList.push_back(Pet);
             }
@@ -796,6 +799,7 @@ namespace petutils
         PPet->name = petData->name;
         PPet->m_EcoSystem = petData->EcoSystem;
         PPet->m_Family = petData->m_Family;
+        PPet->m_MobSkillList = petData->m_MobSkillList;
         PPet->m_Element = petData->m_Element;
         PPet->HPscale = petData->HPscale;
         PPet->MPscale = petData->MPscale;
@@ -1249,6 +1253,7 @@ namespace petutils
         }
         PPet->m_name_prefix = g_PPetList.at(PetID)->name_prefix;
         PPet->m_Family = g_PPetList.at(PetID)->m_Family;
+        PPet->m_MobSkillList = g_PPetList.at(PetID)->m_MobSkillList;
         PPet->SetMJob(g_PPetList.at(PetID)->mJob);
         PPet->m_Element = g_PPetList.at(PetID)->m_Element;
         PPet->m_PetID = PetID;
@@ -1378,7 +1383,7 @@ namespace petutils
         }
 
 		FinalizePetStatistics(PMaster, PPet);
-		PPet->PetSkills = battleutils::GetMobSkillsByFamily(PPet->m_Family);
+		PPet->PetSkills = battleutils::GetMobSkillList(PPet->m_MobSkillList);
 		PPet->status = STATUS_NORMAL;
 		PPet->m_ModelSize += g_PPetList.at(PetID)->size;
 		PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;

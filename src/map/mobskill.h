@@ -27,12 +27,11 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 
-// TODO: implement this
 enum SKILLFLAG
 {
-	SKILLFLAG_NONE           = 0x000,
-	SKILLFLAG_WS             = 0x001,
-	SKILLFLAG_TWO_HOUR       = 0x002,
+    SKILLFLAG_NONE           = 0x000,
+    SKILLFLAG_WS             = 0x001,
+    SKILLFLAG_TWO_HOUR       = 0x002,
     SKILLFLAG_SPECIAL        = 0x004,
     SKILLFLAG_HIT_ALL        = 0x008,
     SKILLFLAG_REPLACE_ATTACK = 0x010,
@@ -43,7 +42,7 @@ class CMobSkill
 {
 public:
 
-	CMobSkill(uint16 id);
+    CMobSkill(uint16 id);
 
     bool        hasMissMsg();
     bool        isAoE();
@@ -51,65 +50,63 @@ public:
     bool        isSingle();
     bool        isTwoHour();
 
-	uint16		getID();
-	uint16		getAnimationID();
-	uint16		getfamilyID();
-	uint8		getAoe();
-	float		getDistance();
-	uint8		getFlag();
+    uint16      getID();
+    uint16      getAnimationID();
+    uint16      getAvatarAnimationID();
+    uint8       getAoe();
+    float       getDistance();
+    uint8       getFlag();
     uint16      getAnimationTime();
     uint16      getActivationTime();
-	uint16		getMsg();
+    uint16      getMsg();
     uint16      getAoEMsg();
-	uint16		getValidTargets();
-	int16		getTP();
+    uint16      getValidTargets();
+    int16       getTP();
     uint16      getTotalTargets();
     uint16      getMsgForAction();
     float       getRadius();
-    int16		getParam();
+    int16       getParam();
     uint8       getKnockback();
     uint8       getSkillchain();
 
     bool        isDamageMsg();
 
-	void		setID(uint16 id);
-	void		setAnimationID(uint16 aid);
-	void		setfamilyID(uint16 familyID);
-	void		setAoe(uint8 aoe);
-	void		setDistance(float distance);
-	void		setFlag(uint8 flag);
+    void        setID(uint16 id);
+    void        setAnimationID(uint16 aid);
+    void        setAoe(uint8 aoe);
+    void        setDistance(float distance);
+    void        setFlag(uint8 flag);
     void        setAnimationTime(uint16 AnimationTime);
     void        setActivationTime(uint16 ActivationTime);
-	void		setMsg(uint16 msg);
-	void		setValidTargets(uint16 targ);
-	void		setTP(int16 tp);
+    void        setMsg(uint16 msg);
+    void        setValidTargets(uint16 targ);
+    void        setTP(int16 tp);
     void        setTotalTargets(uint16 targets);
-    void 		setParam(int16 value);
+    void        setParam(int16 value);
     void        setKnockback(uint8 knockback);
     void        setSkillchain(uint8 skillchain);
 
-	const int8* getName();
-	void		setName(int8* name);
+    const int8* getName();
+    void        setName(int8* name);
 
 private:
 
-	uint16		m_ID;
+    uint16      m_ID;
     uint16      m_TotalTargets;
-	uint16      m_FamilyID;
-	int16		m_Param;
-	uint16		m_AnimID;			//animation id
-	uint8       m_Aoe;              // не используется
-	float		m_Distance;         // не используется
-	uint8		m_Flag;             // не используется
-    uint8       m_ValidTarget;		//same as
-    uint16      m_AnimationTime;	//how long the tp animation lasts for in ms
-    uint16      m_ActivationTime;	//how long the mob prepares the tp move for
-	uint16		m_Message;			//message param, scripters can edit this depending on self/resist/etc.
-	int16		m_TP;				//the tp at the time of finish readying (for scripts)
+    int16       m_Param;
+    uint16      m_AnimID;           //animation id
+    uint8       m_Aoe;              // не используется
+    float       m_Distance;         // не используется
+    uint8       m_Flag;             // не используется
+    uint8       m_ValidTarget;      //same as
+    uint16      m_AnimationTime;    //how long the tp animation lasts for in ms
+    uint16      m_ActivationTime;   //how long the mob prepares the tp move for
+    uint16      m_Message;          //message param, scripters can edit this depending on self/resist/etc.
+    int16       m_TP;               //the tp at the time of finish readying (for scripts)
     uint8       m_knockback;        //knockback value (0-7)
     uint8       m_skillchain;       //weaponskill ID of skillchain properties
 
-	string_t	m_name;
+    string_t    m_name;
 };
 
 #endif

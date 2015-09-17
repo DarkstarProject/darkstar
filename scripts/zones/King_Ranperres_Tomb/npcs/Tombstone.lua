@@ -37,7 +37,7 @@ function onTrigger(player,npc)
 	local Z = npc:getZPos();
 	
 	if (X >= -1 and X <= 1 and Z >= -106 and Z <= -102) then
-		if (currentMission == BAT_HUNT and MissionStatus == 1) then 
+		if (currentMission == BAT_HUNT and MissionStatus <= 1) then 
 			player:startEvent(0x0004);
 		else
 			player:startEvent(0x0002);

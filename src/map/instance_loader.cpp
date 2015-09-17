@@ -107,7 +107,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 		mob_pools.familyid, name_prefix, flags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-		allegiance, namevis, aggro, mob_groups.roam_distance \
+		allegiance, namevis, aggro, mob_groups.roam_distance, mob_pools.skill_list_id \
 		FROM instance_entities INNER JOIN mob_spawn_points ON instance_entities.id = mob_spawn_points.mobid \
 		INNER JOIN mob_groups ON mob_groups.groupid = mob_spawn_points.groupid \
 		INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
@@ -229,6 +229,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->namevis = Sql_GetUIntData(SqlInstanceHandle, 60);
             PMob->m_Aggro = Sql_GetUIntData(SqlInstanceHandle, 61);
             PMob->m_roamDistance = Sql_GetFloatData(SqlInstanceHandle, 62);
+            PMob->m_MobSkillList = Sql_GetUIntData(SqlInstanceHandle, 63);
 
 			// must be here first to define mobmods
 			mobutils::InitializeMob(PMob, zone);

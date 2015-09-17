@@ -18,6 +18,7 @@ require("scripts/globals/status");
 
 function onAbilityCheck(player,target,ability)
     local effectID = getCorsairRollEffect(ability:getID());
+    ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
     if (player:hasStatusEffect(effectID) or player:hasBustEffect(effectID)) then
         return MSGBASIC_ROLL_ALREADY_ACTIVE,0;
     else

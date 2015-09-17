@@ -32,13 +32,15 @@
 
 CLuaAbility::CLuaAbility(lua_State *L)
 {
-	if( !lua_isnil(L,-1) )
-	{
-		m_PLuaAbility = (CAbility*)(lua_touserdata(L,-1));
-		lua_pop(L,1);
-	}else{
-		m_PLuaAbility = nullptr;
-	}
+    if (!lua_isnil(L, -1))
+    {
+        m_PLuaAbility = (CAbility*)(lua_touserdata(L, -1));
+        lua_pop(L, 1);
+    }
+    else
+    {
+        m_PLuaAbility = nullptr;
+    }
 }
 
 /************************************************************************
@@ -49,7 +51,7 @@ CLuaAbility::CLuaAbility(lua_State *L)
 
 CLuaAbility::CLuaAbility(CAbility* PAbility)
 {
-	m_PLuaAbility = PAbility;
+    m_PLuaAbility = PAbility;
 }
 
 inline int32 CLuaAbility::getID(lua_State *L)
@@ -68,13 +70,21 @@ inline int32 CLuaAbility::getRecast(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaAbility::getRange(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+
+    lua_pushinteger(L, m_PLuaAbility->getRange());
+    return 1;
+}
+
 inline int32 CLuaAbility::setMsg(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr); 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaAbility->setMessage(lua_tointeger(L,-1));
-	return 0;
+    m_PLuaAbility->setMessage(lua_tointeger(L, -1));
+    return 0;
 }
 
 inline int32 CLuaAbility::setAnimation(lua_State *L)
@@ -113,6 +123,15 @@ inline int32 CLuaAbility::setVE(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaAbility::setRange(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+
+    m_PLuaAbility->setRange(lua_tointeger(L, -1));
+    return 0;
+}
+
 /************************************************************************
 *																		*
 *  Инициализация методов в lua											*
@@ -121,14 +140,16 @@ inline int32 CLuaAbility::setVE(lua_State* L)
 
 const int8 CLuaAbility::className[] = "CAbility";
 
-Lunar<CLuaAbility>::Register_t CLuaAbility::methods[] = 
+Lunar<CLuaAbility>::Register_t CLuaAbility::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaAbility,getID),
     LUNAR_DECLARE_METHOD(CLuaAbility,getRecast),
+    LUNAR_DECLARE_METHOD(CLuaAbility,getRange),
     LUNAR_DECLARE_METHOD(CLuaAbility,setMsg),
     LUNAR_DECLARE_METHOD(CLuaAbility,setAnimation),
     LUNAR_DECLARE_METHOD(CLuaAbility,setRecast),
     LUNAR_DECLARE_METHOD(CLuaAbility,setCE),
     LUNAR_DECLARE_METHOD(CLuaAbility,setVE),
-	{nullptr,nullptr}
-}; 
+    LUNAR_DECLARE_METHOD(CLuaAbility,setRange),
+    {nullptr,nullptr}
+};

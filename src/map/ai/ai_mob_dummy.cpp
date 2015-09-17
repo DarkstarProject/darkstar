@@ -712,22 +712,12 @@ void CAIMobDummy::ActionAbilityStart()
 {
     DSP_DEBUG_BREAK_IF(m_PBattleTarget == nullptr);
 
-    std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->getMobMod(MOBMOD_SKILLS));
-
-    if (m_PMob->m_EcoSystem == SYSTEM_ELEMENTAL)
-    {
-        // elementals have no tp moves
-        m_PMob->health.tp = 0;
-        TransitionBack(true);
-        return;
-    }
+    std::vector<uint16> MobSkills = battleutils::GetMobSkillList(m_PMob->getMobMod(MOBMOD_SKILL_LIST));
 
     // не у всех монстов прописаны способности, так что выходим из процедуры, если способность не найдена
     // We don't have any skills we can use, so let's go back to attacking
     if (MobSkills.size() == 0)
     {
-        ShowWarning("CAIMobDummy::ActionAbilityStart No TP moves found for family (%d)\n", m_PMob->m_Family);
-        m_PMob->health.tp = 0;
         TransitionBack(true);
         return;
     }
@@ -820,10 +810,15 @@ void CAIMobDummy::ActionAbilityStart()
     // no 2 hour picked, lets find a normal skill
     if (!valid)
     {
-        std::random_shuffle(MobSkills.begin(), MobSkills.end()); //Start the selection process by randomizing the container
+        std::shuffle(MobSkills.begin(), MobSkills.end(), dsprand::mt()); //Start the selection process by randomizing the container
 
-        for (auto PMobSkill : MobSkills)
+        for (auto skillid : MobSkills)
         {
+            auto PMobSkill = battleutils::GetMobSkill(skillid);
+            if (!PMobSkill)
+            {
+                continue;
+            }
             if (PMobSkill->getValidTargets() == TARGET_ENEMY) //enemy
             {
                 m_PBattleSubTarget = m_PBattleTarget;
@@ -853,7 +848,6 @@ void CAIMobDummy::ActionAbilityStart()
     if (!valid)
     {
         // couldn't find anything so go back to attack
-        m_PMob->health.tp = 0;
         TransitionBack(true);
         return;
     }
@@ -1005,6 +999,12 @@ void CAIMobDummy::ActionAbilityFinish()
         findFlags |= FINDFLAGS_HIT_ALL;
     }
 
+    // Mob buff abilities also hit monster's pets
+    if(m_PMobSkill->getValidTargets() == TARGET_SELF)
+    {
+        findFlags |= FINDFLAGS_PET;
+    }
+
     if (m_PTargetFind->isWithinRange(&m_PBattleSubTarget->loc.p, distance))
     {
         if (m_PMobSkill->isAoE())
@@ -1014,11 +1014,11 @@ void CAIMobDummy::ActionAbilityFinish()
         else if (m_PMobSkill->isConal())
         {
             float angle = 45.0f;
-            m_PTargetFind->findWithinCone(m_PBattleSubTarget, distance, angle);
+            m_PTargetFind->findWithinCone(m_PBattleSubTarget, distance, angle, findFlags);
         }
         else
         {
-            m_PTargetFind->findSingleTarget(m_PBattleSubTarget);
+            m_PTargetFind->findSingleTarget(m_PBattleSubTarget, findFlags);
         }
     }
 
@@ -1507,25 +1507,24 @@ void CAIMobDummy::ActionAttack()
     //If using mobskills instead of attacks, calculate distance to move and ability to use here
     if (m_mobskillattack)
     {
-        std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->getMobMod(MOBMOD_SKILLS));
+        std::vector<uint16> MobSkills = battleutils::GetMobSkillList(m_PMob->getMobMod(MOBMOD_SKILL_LIST));
 
         //get rid of every skill that doesn't have the auto attack flag
-        for (int i = 0; i<MobSkills.size(); i++)
-        {
-            if (!(MobSkills.at(i)->getFlag() & SKILLFLAG_REPLACE_ATTACK))
-            {
-                MobSkills.erase(MobSkills.begin() + i);
-                i--;
-            }
-        }
-        std::random_shuffle(MobSkills.begin(), MobSkills.end()); //Start the selection process by randomizing the container
+        MobSkills.erase(std::remove_if(MobSkills.begin(), MobSkills.end(), [](uint16 skillid) {
+            auto PMobSkill = battleutils::GetMobSkill(skillid);
+            if (PMobSkill->getFlag() & SKILLFLAG_REPLACE_ATTACK)
+                return false;
+            return true;
+        }), MobSkills.end());
+        std::shuffle(MobSkills.begin(), MobSkills.end(), dsprand::mt()); //Start the selection process by randomizing the container
 
         for (int i = 0; i<MobSkills.size(); i++){
-            SetCurrentMobSkill(MobSkills.at(i));
-            if (m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
+            auto PMobSkill = battleutils::GetMobSkill(MobSkills.at(i));
+            SetCurrentMobSkill(PMobSkill);
+            if (m_PMobSkill && m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
                 m_PBattleSubTarget = m_PBattleTarget;
             }
-            else if (m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
+            else if (m_PMobSkill && m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
                 m_PBattleSubTarget = m_PMob;
             }
             else
@@ -2385,7 +2384,7 @@ void CAIMobDummy::FollowPath()
         // if I just finished reset my last action time
         if (!m_PPathFind->IsFollowingPath())
         {
-            m_LastActionTime = m_Tick - dsprand::GetRandomNumber(m_PMob->getBigMobMod(MOBMOD_ROAM_COOL)) + 10000;
+            m_LastActionTime = m_Tick - dsprand::GetRandomNumber(10000);
 
             // i'm a worm pop back up
             if (m_PMob->m_roamFlags & ROAMFLAG_WORM)

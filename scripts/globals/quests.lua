@@ -268,7 +268,7 @@ LET_SLEEPING_DOGS_LIE           = 46;
 CAN_CARDIANS_CRY                = 47; -- + --
 WONDER_WANDS                    = 48; -- + --
 HEAVEN_CENT                     = 49;
-SAY_IT_WITH_FLOWERS             = 50;
+SAY_IT_WITH_FLOWERS             = 50; -- + --
 HOIST_THE_JELLY_ROGER           = 51; -- + --
 SOMETHING_FISHY                 = 52; -- + --
 TO_CATCH_A_FALLIHG_STAR         = 53; -- + --
@@ -473,7 +473,7 @@ HIS_NAME_IS_VALGEIR             = 3;  -- + --
 EXPERTISE                       = 4;  -- + --
 THE_CLUE                        = 5;  -- + --
 THE_BASICS                      = 6;  -- + --
-ORLANDO_S_ANTIQUES              = 7;
+ORLANDO_S_ANTIQUES              = 7;  -- + --
 THE_SAND_CHARM                  = 8;  -- + --
 A_POTTER_S_PREFERENCE           = 9;  -- + --
 THE_OLD_LADY                    = 10; -- + --
@@ -518,16 +518,30 @@ IN_SEARCH_OF_THE_TRUTH          = 80;
 UNINVITED_GUESTS                = 81;
 TANGO_WITH_A_TRACKER            = 82;
 REQUIEM_OF_SIN                  = 83;
+VW_OP_026_TAVNAZIAN_TERRORS     = 84;
+VW_OP_004_BIBIKI_BOMBARDMENT    = 85;
 
 BOMBS_AWAY                      = 96;
 MITHRAN_DELICACIES              = 97;
+
+GIVE_A_MOOGLE_A_BREAK           = 100;
+THE_MOOGLE_PICNIC               = 101;
+MOOGLE_IN_THE_WILD              = 102;
+MISSIONARY_MOBLIN               = 103;
+FOR_THE_BIRDS                   = 104;
+BETTER_THE_DEMON_YOU_KNOW       = 105;
+AN_UNDERSTANDING_OVERLORD       = 106;
+AN_AFFABLE_ADAMANTKING          = 107;
+A_MORAL_MANIFEST                = 108;
+A_GENEROUS_GENERAL              = 109;
+RECORDS_OF_EMINENCE             = 110;
+UNITY_CONCORD                   = 111;
 
 -----------------------------------
 --  Outlands - 5
 -----------------------------------
 
--- Kazham(1-15)
-
+-- Kazham (1-15)
 THE_FIREBLOOM_TREE              = 1;
 GREETINGS_TO_THE_GUARDIAN       = 2;  -- + --
 A_QUESTION_OF_TASTE             = 3;
@@ -535,19 +549,24 @@ EVERYONES_GRUDGING              = 4;
 YOU_CALL_THAT_A_KNIFE           = 6;
 MISSIONARY_MAN                  = 7;  -- ± --
 GULLIBLES_TRAVELS               = 8;  -- + --
-EVEN_MORE_GULLIBLES_TRAVELS     = 9;
-PERSONAL_HYGIENE                = 10;
-THE_OPO_OPO_AND_I               = 11;
+EVEN_MORE_GULLIBLES_TRAVELS     = 9;  -- + --
+PERSONAL_HYGIENE                = 10; -- + --
+THE_OPO_OPO_AND_I               = 11; -- + --
 TRIAL_BY_FIRE                   = 12; -- ± --
 CLOAK_AND_DAGGER                = 13;
 A_DISCERNING_EYE_KAZHAM         = 14;
 TRIAL_SIZE_TRIAL_BY_FIRE        = 15; -- + --
 
--- Norg(128-149)
+-- Voidwatch (100-105)
+VOIDWATCH_OPS_BORDER_CROSSING   = 100;
+VW_OP_054_ELSHIMO_LIST          = 101;
+VW_OP_101_DETOUR_TO_ZEPWELL     = 102;
+VW_OP_115_LI_TELOR_VARIANT      = 103;
+SKYWARD_HO_VOIDWATCHER          = 104;
 
+-- Norg (128-149)
 THE_SAHAGINS_KEY                = 128; -- ± --
 FORGE_YOUR_DESTINY              = 129; -- ± --
-
 BLACK_MARKET                    = 130;
 MAMA_MIA                        = 131;
 STOP_YOUR_WHINING               = 132; -- + --
@@ -569,8 +588,7 @@ BUGI_SODEN                      = 147;
 TRIAL_SIZE_TRIAL_BY_WATER       = 148; -- + --
 AN_UNDYING_PLEDGE               = 149;
 
--- Misc(160-165)
-
+-- Misc (160-165)
 WRATH_OF_THE_OPO_OPOS           = 160;
 WANDERING_SOULS                 = 161;
 SOUL_SEARCHING                  = 162;
@@ -578,8 +596,7 @@ DIVINE_MIGHT                    = 163; -- ± --
 DIVINE_MIGHT_REPEAT             = 164; -- ± --
 OPEN_SESAME                     = 165;
 
--- Rabao(192-201)
-
+-- Rabao (192-201)
 DONT_FORGET_THE_ANTIDOTE        = 192; -- ± --
 THE_MISSING_PIECE               = 193; -- ± --
 TRIAL_BY_WIND                   = 194; -- ± --
@@ -630,10 +647,22 @@ FIVE_SECONDS_OF_FAME            = 32;
 
 DELIVERING_THE_GOODS            = 61; -- + --
 VANISHING_ACT                   = 62; -- + --
-
+STRIKING_A_BALANCE              = 63;
 NOT_MEANT_TO_BE                 = 64; -- + --
-
+LED_ASTRAY                      = 65;
 RAT_RACE                        = 66; -- + --
+THE_PRINCE_AND_THE_HOPPER       = 67;
+VW_OP_050_AHT_URGAN_ASSAULT     = 68;
+VW_OP_068_SUBTERRAINEAN_SKIRMISH= 69;
+AN_IMPERIAL_HEIST               = 70;
+DUTIES_TASKS_AND_DEEDS          = 71;
+FORGING_A_NEW_MYTH              = 72;
+COMING_FULL_CIRCLE              = 73;
+WAKING_THE_COLLOSSUS            = 74;
+DIVINE_INTERFERANCE             = 75;
+THE_RIDER_COMETH                = 76;
+UNWAVERING_RESOLVE              = 77;
+A_STYGIAN_PACT                  = 78;
 
 -----------------------------------
 --  Crystal War - 7

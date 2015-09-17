@@ -136,3 +136,23 @@ INSERT INTO `item_mods_pet` VALUES(15679, 23, 14); -- Pet: Attack +14
 --  Yinyang Robe - LVL 71
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES(14468, 27, 5); -- Pet: Enmity +5
+
+-- -------------------------------------------------------
+--  Summoner's Doublet - LVL 74
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(15101, 165, 3); -- Pet: Critical Hit Rate +3%
+
+-- -------------------------------------------------------
+--  Summoner's Doublet + 1 - LVL 75
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(14514, 165, 4); -- Pet: Critical Hit Rate +4%
+
+-- -------------------------------------------------------
+--  Summoner's Doublet + 2 - LVL 90
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(10684, 165, 6); -- Pet: Critical Hit Rate +6%
+
+-- -------------------------------------------------------
+--  Nirvana *Mythic* - LVL 75 - ignored the Aftermath acc, atk occ.attacks twice
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(19005, 28, 20); -- Pet: MAB +20

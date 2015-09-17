@@ -78,12 +78,13 @@ end;
 function onEventFinish(player,csid,option)
   if (csid== 0x0006) then
     player:setPos(539,0,-593,192);	
-	player:addTitle(AVERTER_OF_THE_APOCALYPSE);
-	player:startEvent(0x0003);
-	  if (player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==2) then
-	   player:addKeyItem(TEAR_OF_ALTANA);
-       player:setVar("Promathia_kill_day",tonumber(os.date("%j")));	   
-	   player:setVar("PromathiaStatus",3);
-	 end
+    player:addTitle(AVERTER_OF_THE_APOCALYPSE);
+    player:startEvent(0x0003);
+    if (player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==2) then
+        player:addKeyItem(TEAR_OF_ALTANA);
+        player:messageSpecial(KEYITEM_OBTAINED,TEAR_OF_ALTANA);
+        player:setVar("Promathia_kill_day",tonumber(os.date("%j")));	   
+	player:setVar("PromathiaStatus",3);
+    end
   end
 end;

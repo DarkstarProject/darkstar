@@ -22,6 +22,10 @@ ALREADY_HAVE_ALL_FRAGS = 7664; -- You have obtained all of the fragments. You mu
        FOUND_ALL_FRAGS = 7665; -- You now have all 8 fragments of light!
        ZILART_MONUMENT = 7666; -- It is an ancient Zilart monument.
 
+-- Rafflesia Scent
+FLOWER_BLOOMING = 7642; -- A large flower is blooming.
+FOUND_NOTHING_IN_FLOWER = 7645; -- You find nothing inside the flower.
+FEEL_DIZZY = 7646; -- You feel slightly dizzy. You must have breathed in too much of the pollen.
 -- Other
 NOTHING_HAPPENS = 119; -- Nothing happens...
 

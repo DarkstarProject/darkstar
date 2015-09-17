@@ -332,9 +332,10 @@ void CAIBattle::CastFinished(action_t& action)
 {
     auto state = static_cast<CMagicState*>(GetCurrentState());
     auto PSpell = state->GetSpell();
+    auto PBattleEntity = static_cast<CBattleEntity*>(PEntity);
     auto PActionTarget = static_cast<CBattleEntity*>(state->GetTarget());
 
-    luautils::OnSpellPrecast(static_cast<CBattleEntity*>(PEntity), PSpell);
+    luautils::OnSpellPrecast(PBattleEntity, PSpell);
 
     state->SpendCost();
 
@@ -346,7 +347,7 @@ void CAIBattle::CastFinished(action_t& action)
         effectFlags |= EFFECTFLAG_DETECTABLE;
     }
 
-    static_cast<CBattleEntity*>(PEntity)->StatusEffectContainer->DelStatusEffectsByFlag(effectFlags);
+    PBattleEntity->StatusEffectContainer->DelStatusEffectsByFlag(effectFlags);
 
     targetFind.reset();
 
@@ -362,10 +363,10 @@ void CAIBattle::CastFinished(action_t& action)
     {
         flags |= FINDFLAGS_HIT_ALL;
     }
-    uint8 aoeType = battleutils::GetSpellAoEType(static_cast<CBattleEntity*>(PEntity), PSpell);
+    uint8 aoeType = battleutils::GetSpellAoEType(PBattleEntity, PSpell);
 
     if (aoeType == SPELLAOE_RADIAL) {
-        float distance = spell::GetSpellRadius(PSpell, static_cast<CBattleEntity*>(PEntity));
+        float distance = spell::GetSpellRadius(PSpell, PBattleEntity);
 
         targetFind.findWithinArea(PActionTarget, AOERADIUS_TARGET, distance, flags);
 
@@ -373,7 +374,7 @@ void CAIBattle::CastFinished(action_t& action)
     else if (aoeType == SPELLAOE_CONAL)
     {
         //TODO: actual radius calculation
-        float radius = spell::GetSpellRadius(PSpell, static_cast<CBattleEntity*>(PEntity));
+        float radius = spell::GetSpellRadius(PSpell, PBattleEntity);
 
         targetFind.findWithinCone(PActionTarget, radius, 45, flags);
     }
@@ -429,13 +430,16 @@ void CAIBattle::CastFinished(action_t& action)
         }
         else
         {
-            actionTarget.param = luautils::OnSpellCast(static_cast<CBattleEntity*>(PEntity), PTarget, PSpell);
+            actionTarget.param = luautils::OnSpellCast(PBattleEntity, PTarget, PSpell);
 
             // remove effects from damage
             if (PSpell->canTargetEnemy() && actionTarget.param > 0 && PSpell->dealsDamage())
             {
                 PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
             }
+
+            // Check for bind breaking
+            battleutils::BindBreakCheck(PBattleEntity, PTarget);
 
             if (msg == 0)
             {
@@ -459,11 +463,11 @@ void CAIBattle::CastFinished(action_t& action)
 
         if (PTarget->objtype == TYPE_MOB && msg != 31) // If message isn't the shadow loss message, because I had to move this outside of the above check for it.
         {
-            luautils::OnMagicHit(static_cast<CBattleEntity*>(PEntity), PTarget, PSpell);
+            luautils::OnMagicHit(PBattleEntity, PTarget, PSpell);
         }
     }
 
-    static_cast<CBattleEntity*>(PEntity)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END);
+    PBattleEntity->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END);
 }
 
 void CAIBattle::CastInterrupted(action_t& action, MSGBASIC_ID msg)

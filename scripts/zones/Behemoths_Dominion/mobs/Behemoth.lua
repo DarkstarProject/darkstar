@@ -8,11 +8,10 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 
 -----------------------------------
--- onMobInitialize Action
+-- onMobInitialize
 -----------------------------------
 
 function onMobInitialize(mob)
-
 end;
 
 -----------------------------------
@@ -20,9 +19,14 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-
     killer:addTitle(BEHEMOTHS_BANE);
+end;
 
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local Behemoth      = mob:getID();
     local King_Behemoth = 17297441;
     local ToD     = GetServerVariable("[POP]King_Behemoth");

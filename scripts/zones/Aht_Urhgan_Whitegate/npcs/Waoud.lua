@@ -75,7 +75,7 @@ function onEventUpdate(player,csid,option)
 			player:setVar("SuccessfullyAnswered",success+1);
 		elseif (option == 6) then
 			player:setVar("SuccessfullyAnswered",success+1);
-		elseif (option == 7) then
+		elseif (option == 7 or option == 9) then
 			player:setVar("SuccessfullyAnswered",success+1);
 		elseif (option == 12) then
 			player:setVar("SuccessfullyAnswered",success+1);

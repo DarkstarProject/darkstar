@@ -1348,6 +1348,7 @@ INSERT INTO `guild_shops` VALUES ('5302', '4556', '10644', '10644', '55', '11', 
 INSERT INTO `guild_shops` VALUES ('5302', '4570', '47', '245', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('5302', '4571', '75', '460', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('5302', '4572', '1360', '7260', '55', '11', '22');
+INSERT INTO `guild_shops` VALUES ('5302', '8800', '600', '600', '255', '48', '100');
 
 -- Doggomehr (Northern San d'Oria) Smithing Guild (S)
 INSERT INTO `guild_shops` VALUES ('531', '640', '9', '36', '255', '48', '100');

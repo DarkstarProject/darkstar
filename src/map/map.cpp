@@ -269,7 +269,7 @@ void do_final(int code)
 
     itemutils::FreeItemList();
     battleutils::FreeWeaponSkillsList();
-    battleutils::FreeSkillChainDamageModifiers();
+    battleutils::FreeMobSkillList();
 
     petutils::FreePetList();
     zoneutils::FreeZoneList();

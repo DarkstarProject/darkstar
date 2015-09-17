@@ -97,10 +97,14 @@ void CAIUltimateSummon::ActionAbilityStart()
 		return;
 	}
 
-    if (m_PPet->PetSkills[0]){
-		SetCurrentMobSkill(m_PPet->PetSkills[0]);
-		preparePetAbility(m_PPet);
-		return;
+    if (m_PPet->PetSkills[0])
+    {
+        auto PMobSkill = battleutils::GetMobSkill(m_PPet->PetSkills[0]);
+        if (PMobSkill)
+        {
+            SetCurrentMobSkill(PMobSkill);
+            preparePetAbility(m_PPet);
+        }
 	}
 }
 

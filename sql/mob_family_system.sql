@@ -476,7 +476,10 @@ INSERT INTO `mob_family_system` VALUES (409,'Seed_Yagudo',7,'Beastmen',0,40,85,1
 INSERT INTO `mob_family_system` VALUES (410,'Seed_Goblin',7,'Beastmen',0,40,91,120,1,3,5,3,4,4,4,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1.25,1,1);
 -- 411 Reserved for Seed Crystal
 -- 412 Reserved for Seed Thrall (hopefully can set skills on the fly and use only one ID...)
--- 413-438 Available
+-- 413-435 Available
+INSERT INTO `mob_family_system` VALUES (436,'Bloodlapper',20,'Vermin',0,40,90,120,4,1,4,2,3,6,6,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,8);
+INSERT INTO `mob_family_system` VALUES (437,'Ghillie_Dhu',17,'Plantoid',0,40,90,120,3,2,4,3,3,3,5,2,3,3,3,1,1,1,1,1.25,1,1,1,1,1,0.875,1.25,4);
+INSERT INTO `mob_family_system` VALUES (438,'Highlander_Lizard',14,'Lizard',1,40,108,120,2,3,2,3,4,4,5,2,3,3,3,1,1,1,1,1,1.25,1.25,1,1,1,1,1,1);
 INSERT INTO `mob_family_system` VALUES (439,'Aernstaff',15,'Luminian',0,40,120,140,1,1,1,1,1,1,1,3,3,3,3,1,1,1,1,1,1,1,1,1,1,0.5,1,0);
 INSERT INTO `mob_family_system` VALUES (440,'Aernpolearm',15,'Luminian',0,40,120,140,1,1,1,1,1,1,1,3,3,3,3,1,1,1,1,1,1,1,1,1,1,0.5,1,0);
 INSERT INTO `mob_family_system` VALUES (441,'Aernsword',15,'Luminian',0,40,120,140,1,1,1,1,1,1,1,3,3,3,3,1,1,1,1,1,1,1,1,1,1,0.5,1,0);
@@ -533,6 +536,7 @@ INSERT INTO `mob_family_system` VALUES (492,'Balamor',9,'Demon',1,40,90,140,6,3,
 INSERT INTO `mob_family_system` VALUES (493,'Ashrakk',9,'Demon',1,40,90,140,6,3,3,3,1,5,4,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,0.875,0);
 INSERT INTO `mob_family_system` VALUES (494,'Sekhmet',6,'Beast',1,60,94,90,1,1,4,2,6,6,2,3,3,3,3,1,1,1,1,1,1,1,1.25,0.875,1,1,1,5);
 INSERT INTO `mob_family_system` VALUES (495,'Astral_Flow_Pet',5,'Avatar',0,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (496,'Mandragora',17,'Plantoid',0,40,107,120,3,3,4,5,4,4,2,3,3,3,3,1,1.25,1,1,1.25,1.25,1.25,1,1.25,1,0.875,1.25,4); -- for chaneque unique TP move
 
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
