@@ -15744,7 +15744,10 @@ INSERT INTO `item_basic` VALUES (21345,0,'focal_orb','focal_orb',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (21350,0,'wingcutter+1','wingcutter+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (21364,0,'elders_grip_+1','elders_grip_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (21374,0,'paeapua','paeapua',1,63552,0,1,0);
+INSERT INTO `item_basic` VALUES (21377,0,'idaraaja','idaraaja',1,63552,0,1,0);
+INSERT INTO `item_basic` VALUES (21381,0,'seraphicaller','seraphicaller',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (21382,0,'dosis_tathlum','dosis_tathlum',1,34880,15,0,100);
+INSERT INTO `item_basic` VALUES (21383,0,'eminent_satchet','eminent_satchet',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (21384,0,'kalboron_stone','kalboron_stone',1,34816,15,0,100);
 INSERT INTO `item_basic` VALUES (21385,0,'aqreqaq_bomblet','aqreqaq_bomblet',1,34880,15,0,100);
 INSERT INTO `item_basic` VALUES (21386,0,'jukukik_feather','jukukik_feather',1,34880,15,0,100);
@@ -15896,7 +15899,8 @@ INSERT INTO `item_basic` VALUES (26836,0,'horos_casaque','horos_casaque',1,63552
 INSERT INTO `item_basic` VALUES (26837,0,'horos_casaque_+1','horos_casaque_+1',1,63552,99,0,0);
 INSERT INTO `item_basic` VALUES (26838,0,'pedagogy_gown','pedagogy_gown',1,63552,99,0,0);
 INSERT INTO `item_basic` VALUES (26839,0,'pedagogy_gown_+1','pedagogy_gown_+1',1,63552,99,0,0);
-
+INSERT INTO `item_basic` VALUES (26852,0,'apogee_dalmatica','apogee_dalmatica',1,63552,99,0,0);
+INSERT INTO `item_basic` VALUES (26853,0,'apogee_dalmatica+1','apo_dalmatica+1',1,63552,99,0,0);
 INSERT INTO `item_basic` VALUES (26869,0,'rosette_jaseran_+1','rosette_jaseran_+1',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (26871,0,'emet_harness_+1','emet_harness_+1',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (26873,0,'hime_domaru_+1','hime_domaru_+1',1,63552,0,1,0);

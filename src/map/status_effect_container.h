@@ -96,8 +96,6 @@ public:
     uint16 GetConfrontationEffect(); // gets confrontation number (bcnm, confrontation, campaign, reive mark)
     void CopyConfrontationEffect(CBattleEntity* PEntity); // copies confrontation status (pet summoning, etc)
 
-    void ForEachEffect(std::function<void(CStatusEffect*)> func);
-
 	CStatusEffectContainer(CBattleEntity* PEntity);
 	~CStatusEffectContainer();
 

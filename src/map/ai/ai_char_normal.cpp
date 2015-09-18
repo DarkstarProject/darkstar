@@ -1589,9 +1589,13 @@ void CAICharNormal::ActionJobAbilityFinish()
         {
             RecastTime -= 15;
         }
-        else{
+        else
+        {
             RecastTime -= m_PChar->getMod(MOD_BP_DELAY);
         }
+
+        // Blood Pact Delay II is separate from Blood Pact Delay. There is no reachable cap so far.
+        RecastTime -= m_PChar->getMod(MOD_BP_DELAY_II);
     }
 
     // check paralysis
