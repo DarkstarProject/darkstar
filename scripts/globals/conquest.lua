@@ -1120,7 +1120,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("TAVNAZIA");
 
-	local Jemmoquel = 16875831;
+	local Jemmoquel = 16875861;
 
 	npc  = {
 	--
