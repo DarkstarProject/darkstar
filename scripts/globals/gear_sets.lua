@@ -106,6 +106,7 @@ local GearSets =  {
              {id = 90, items = {15850,15851}, matches = 2, matchType = matchtype.any, mods = {{MOD_ATT, 6, 0, 0},{MOD_ACC, 12, 0, 0},{MOD_DEF, 6, 0, 0}} }, -- Lava's/Kusha's earring set: Atk+6/Acc+12
              {id = 93, items = {16146,14588,15009,16315,15755},  matches = 2, matchType = matchtype.any, mods = {{MOD_FIRERES, 5, 5, 10},{MOD_ICERES, 5, 5, 10},{MOD_WINDRES, 5, 5, 10},{MOD_EARTHRES, 5, 5, 10},{MOD_THUNDERRES, 5, 5, 10},{MOD_WATERRES, 5, 5, 10},{MOD_LIGHTRES, 5, 5, 10},{MOD_DARKRES, 5, 5, 10}} }, --  Iron Ram Haubert Set
              {id = 101, items = {16035,16036}, matches = 2, matchType = matchtype.any, mods = {{MOD_AGI, 8, 0, 0}} } -- Altdorf's/Wilhelm's earring: AGI+8
+             {id = 102, items = {15042,11402}, matches = 2, matchType = matchtype.any, mods = {{MOD_ATT, 5, 0, 0},{MOD_RATT, 5, 0, 0}} } -- Gothic Gauntlets/Sabatons: Atk/RAtk +5
 
 
 
