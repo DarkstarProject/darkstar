@@ -379,6 +379,7 @@ enum MODIFIER
     MOD_DAY_REDUCTION             = 373, // stores perpetuation reduction depending on day
     MOD_PERPETUATION_REDUCTION    = 346, // stores the MP/tick reduction from gear
     MOD_BP_DELAY                  = 357, // stores blood pact delay reduction
+    MOD_BP_DELAY_II               = 541, // Blood Pact Delay Reduction II
 
     // Blue Mage
     MOD_BLUE_POINTS               = 309, // Tracks extra blue points
@@ -592,8 +593,8 @@ enum MODIFIER
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 541, // stuff
     // MOD_SPARE = 542, // stuff
+    // MOD_SPARE = 543, // stuff
 
 };
 
