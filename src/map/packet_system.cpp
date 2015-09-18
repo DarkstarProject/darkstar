@@ -4169,13 +4169,25 @@ void SmallPacket0x0D3(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 /************************************************************************
 *                                                                       *
+*  Set Preferred Language                                               *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x0DB(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    PChar->search.language = RBUFB(data, (0x24));
+    return;
+}
+
+/************************************************************************
+*                                                                       *
 *  Set Name Flags (Party, Away, Autogroup, etc.)                        *
 *                                                                       *
 ************************************************************************/
 
 void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    switch (RBUFW(data, (0x04)))
+    switch (RBUFL(data, (0x04)))
     {
     case 0x0001:
         PChar->nameflags.flags ^= FLAG_INVITE;
@@ -4199,24 +4211,16 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         //if(RBUFB(data,(0x10)) == 1)    // autogroup on
         //if(RBUFB(data,(0x10)) == 2)    // autogroup off
         break;
+    case 0x200000:
+        //if(RBUFB(data,(0x10)) == 1)    // party request on
+        //if(RBUFB(data,(0x10)) == 2)    // party request off
+        break;
     }
     charutils::SaveCharStats(PChar);
 
     PChar->updatemask |= UPDATE_HP;
     PChar->pushPacket(new CMenuConfigPacket(PChar));
     PChar->pushPacket(new CCharUpdatePacket(PChar));
-    return;
-}
-
-/************************************************************************
-*                                                                       *
-*  Set Preferred Language                                               *
-*                                                                       *
-************************************************************************/
-
-void SmallPacket0x0DB(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
-{
-    PChar->search.language = RBUFB(data, (0x24));
     return;
 }
 
