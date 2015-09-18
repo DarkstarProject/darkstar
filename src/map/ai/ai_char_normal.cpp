@@ -1581,7 +1581,11 @@ void CAICharNormal::ActionJobAbilityFinish()
     }
     else if (m_PJobAbility->getID() >= ABILITY_HEALING_RUBY)
     {
-        if (m_PChar->getMod(MOD_BP_DELAY) > 15)
+        if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE))
+        {
+            RecastTime = 0;
+        }
+        else if (m_PChar->getMod(MOD_BP_DELAY) > 15)
         {
             RecastTime -= 15;
         }
@@ -1879,9 +1883,16 @@ void CAICharNormal::ActionJobAbilityFinish()
                         m_PChar->addMP(-m_PChar->GetMLevel() * 2);
                     }
                 }
+                else if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE))
+                {
+                    m_PChar->addMP(-m_PJobAbility->getAnimationID() * 1.5);
+                }
                 else {
                     m_PChar->addMP(-m_PJobAbility->getAnimationID()); // TODO: ...
                 }
+                
+                // Remove Apogee effect
+                m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);  
                 m_PChar->m_ActionList.push_back(Action);
                 m_PChar->PPet->PBattleAI->SetBattleSubTarget(m_PBattleSubTarget);
 
