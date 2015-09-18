@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.6.21-log
+-- Server version   5.6.21-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -606,6 +606,7 @@ INSERT INTO `status_effects` VALUES (578,'fishy_intuition',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (579,'commitment',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (580,'haste_ii',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (581,'flurry_ii',32,0,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (583,'apogee',2097185,0,0,0,0,0,0,0);
 
 
 INSERT INTO `status_effects` VALUES (768,'abyssea_str',256,0,0,0,0,0,1,0);
