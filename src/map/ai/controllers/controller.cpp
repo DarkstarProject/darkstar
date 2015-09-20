@@ -38,12 +38,13 @@ void CController::Cast(uint16 targid, uint16 spellid)
     }
 }
 
-void CController::Engage(uint16 targid)
+bool CController::Engage(uint16 targid)
 {
     if (POwner)
     {
-        POwner->PAIBattle()->Internal_Engage(targid);
+        return POwner->PAIBattle()->Internal_Engage(targid);
     }
+    return false;
 }
 
 void CController::ChangeTarget(uint16 targid)

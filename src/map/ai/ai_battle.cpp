@@ -131,12 +131,12 @@ bool CAIBattle::Attack(action_t& action)
 
     if (battleutils::IsParalyzed(PBattleEntity))
     {
-        //#TODO: paralyze message
+        PBattleEntity->loc.zone->PushPacket(PBattleEntity, CHAR_INRANGE_SELF, new CMessageBasicPacket(PBattleEntity, PTarget, 0, 0, MSGBASIC_IS_PARALYZED));
         return false;
     }
     if (battleutils::IsIntimidated(PBattleEntity, PTarget))
     {
-        //#TODO: intimidated message
+        PBattleEntity->loc.zone->PushPacket(PBattleEntity, CHAR_INRANGE_SELF, new CMessageBasicPacket(PBattleEntity, PTarget, 0, 0, MSGBASIC_IS_INTIMIDATED));
         return false;
     }
 

@@ -36,12 +36,19 @@ public:
     virtual void Tick(time_point) override {}
 
     virtual void Cast(uint16 targid, uint16 spellid) override;
-    virtual void Engage(uint16 targid) override;
+    virtual bool Engage(uint16 targid) override;
     virtual void ChangeTarget(uint16 targid) override;
     virtual void Disengage() override;
 
+    virtual void UseJobAbility(uint16 targid, uint16 abilityid);
+
+    void setLastActionTime(time_point);
+    void setLastAttackTime(time_point);
+
 protected:
     time_point m_LastActionTime;
+    time_point m_LastAbilityTime;
+    time_point m_LastAttackTime;
 };
 
 #endif // _PLAYERCONTROLLER

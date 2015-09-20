@@ -25,21 +25,24 @@ This file is part of DarkStar-server source code.
 
 #include "../../entities/charentity.h"
 #include "../../packets/char_update.h"
+#include "../../packets/lock_on.h"
+#include "../../utils/battleutils.h"
 
 CPlayerController::CPlayerController(CCharEntity* _PChar) :
     CController(_PChar),
-    m_LastActionTime(server_clock::now())
+    m_LastActionTime(server_clock::now()),
+    m_LastAttackTime(server_clock::now()),
+    m_LastAbilityTime(server_clock::now())
 {
-
 }
 
 void CPlayerController::Cast(uint16 targid, uint16 spellid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
-    if (m_LastActionTime + g_GCD < server_clock::now())
+    if (m_LastActionTime + g_GCD < server_clock::now() && !PChar->PRecastContainer->HasRecast(RECAST_MAGIC, spellid))
     {
-        CController::Cast(targid, spellid);
         m_LastActionTime = server_clock::now();
+        CController::Cast(targid, spellid);
 
         if (POwner)
         {
@@ -49,17 +52,20 @@ void CPlayerController::Cast(uint16 targid, uint16 spellid)
             {
                 static_cast<CCharEntity*>(POwner)->pushPacket(state->GetErrorMsg());
             }
+            else
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_CAST));
+            }
         }
     }
     else
     {
-        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_CAST));
     }
 }
 
-void CPlayerController::Engage(uint16 targid)
+bool CPlayerController::Engage(uint16 targid)
 {
-    //#TODO: check gcd/engage delay
     //#TODO: pet engage/disengage
     std::unique_ptr<CMessageBasicPacket> errMsg;
     auto PChar = static_cast<CCharEntity*>(POwner);
@@ -69,7 +75,20 @@ void CPlayerController::Engage(uint16 targid)
     {
         if (distance(PChar->loc.p, PTarget->loc.p) < 30)
         {
-            CController::Engage(targid);
+            if (m_LastAttackTime + std::chrono::milliseconds(PChar->GetWeaponDelay(false)) < server_clock::now())
+            {
+                if (CController::Engage(targid))
+                {
+                    PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(true);
+                    PChar->pushPacket(new CLockOnPacket(PChar, PTarget));
+                    PChar->pushPacket(new CCharUpdatePacket(PChar));
+                    return true;
+                }
+            }
+            else
+            {
+                errMsg = std::make_unique<CMessageBasicPacket>(PChar, PTarget, 0, 0, MSGBASIC_WAIT_LONGER);
+            }
         }
         else
         {
@@ -80,6 +99,7 @@ void CPlayerController::Engage(uint16 targid)
     {
         PChar->pushPacket(errMsg.release());
     }
+    return false;
 }
 
 void CPlayerController::ChangeTarget(uint16 targid)
@@ -90,6 +110,30 @@ void CPlayerController::ChangeTarget(uint16 targid)
 void CPlayerController::Disengage()
 {
     CController::Disengage();
+}
 
+void CPlayerController::UseJobAbility(uint16 targid, uint16 abilityid)
+{
+    auto PChar = static_cast<CCharEntity*>(POwner);
+    if (m_LastActionTime + g_GCD < server_clock::now() && m_LastActionTime + g_GCD < server_clock::now())
+    {
+        //does not set lastActionTime (can cast a spell immediately after)
+        m_LastAbilityTime = server_clock::now();
 
+        //#TODO
+    }
+    else
+    {
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
+    }
+}
+
+void CPlayerController::setLastActionTime(time_point _LastActionTime)
+{
+    m_LastActionTime = _LastActionTime;
+}
+
+void CPlayerController::setLastAttackTime(time_point _LastAttackTime)
+{
+    m_LastAttackTime = _LastAttackTime;
 }

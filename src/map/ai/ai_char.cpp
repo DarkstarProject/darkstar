@@ -101,9 +101,9 @@ bool CAIChar::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPac
 
 bool CAIChar::Attack(action_t& action)
 {
+    auto PChar = static_cast<CCharEntity*>(PEntity);
     if (GetCurrentState()->HasErrorMsg())
     {
-        auto PChar = static_cast<CCharEntity*>(PEntity);
         if (m_errMsgTime + std::chrono::milliseconds(PChar->GetWeaponDelay(false)) < getTick())
         {
             m_errMsgTime = getTick();
@@ -111,6 +111,7 @@ bool CAIChar::Attack(action_t& action)
         }
         return false;
     }
+    static_cast<CPlayerController*>(Controller.get())->setLastAttackTime(server_clock::now());
     return CAIBattle::Attack(action);
 }
 
@@ -122,6 +123,7 @@ void CAIChar::CastFinished(action_t& action)
     auto PSpell = state->GetSpell();
     auto PTarget = static_cast<CBattleEntity*>(state->GetTarget());
 
+    static_cast<CPlayerController*>(Controller.get())->setLastActionTime(server_clock::now());
     static_cast<CCharEntity*>(PEntity)->PRecastContainer->Add(RECAST_MAGIC, PSpell->getID(), action.recast);
 
     for (auto&& actionList : action.actionLists)

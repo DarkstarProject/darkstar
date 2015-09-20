@@ -35,7 +35,7 @@ public:
     CController(CBattleEntity* _POwner, bool _canUpdate = false);
     virtual void Tick(time_point tick) = 0;
     virtual void Cast(uint16 targid, uint16 spellid);
-    virtual void Engage(uint16 targid);
+    virtual bool Engage(uint16 targid);
     virtual void ChangeTarget(uint16 targid);
     virtual void Disengage();
 

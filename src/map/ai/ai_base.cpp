@@ -25,7 +25,7 @@ This file is part of DarkStar-server source code.
 
 #include "../entities/baseentity.h"
 
-duration g_GCD = 1500ms;
+duration g_GCD = 2500ms;
 
 CAIBase::CAIBase(CBaseEntity* _PEntity) :
     CAIBase(_PEntity, nullptr, nullptr)
