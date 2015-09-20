@@ -268,7 +268,7 @@ enum MODIFIER
     MOD_STUNRES                   = 251, // Enhances "Resist Stun" effect
     MOD_CHARMRES                  = 252, // Enhances "Resist Charm" effect
     MOD_AMNESIARES                = 253, // Enhances "Resist Amnesia" effect
-    // PLACEHOLDER                   = 254, // placeholder for future resist effect
+    MOD_LULLABYRES                = 254, // Enhances "Resist Lullaby" effect
     MOD_DEATHRES                  = 255, // Used by gear and ATMA that give resistance to instance KO
 
     MOD_PARALYZE                  = 257, // Paralyze -- percent chance to proc

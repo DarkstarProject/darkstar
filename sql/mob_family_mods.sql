@@ -122,6 +122,12 @@ INSERT INTO `mob_family_mods` VALUES (124,389,-32,0);
 INSERT INTO `mob_family_mods` VALUES (175,389,-128,0);
 INSERT INTO `mob_family_mods` VALUES (171,389,-32,0);
 
+-- Demons and fomors are highly resistant to lullaby
+INSERT INTO `mob_family_mods` VALUES (358,254,200,0);
+INSERT INTO `mob_family_mods` VALUES (169,254,200,0);
+INSERT INTO `mob_family_mods` VALUES (115,254,200,0);
+INSERT INTO `mob_family_mods` VALUES (359,254,200,0);
+
 /*!40000 ALTER TABLE `mob_family_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
