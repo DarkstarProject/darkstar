@@ -1,7 +1,8 @@
 ---------------------------------------------
---  Stygian Vapor
---
---  Description: AoE Powerful plague
+---  Shadow Spread
+---
+---  Description: A dark shroud renders any nearby targets blinded, asleep, and cursed.
+---
 ---------------------------------------------
 
 require("scripts/globals/settings");
@@ -19,21 +20,21 @@ function onMobWeaponSkill(target, mob, skill)
     local currentMsg = MSG_NONE;
     local msg = MSG_NONE;
 
-    msg = MobStatusEffectMove(mob, target, EFFECT_CURSE_I, 25, 0, 180);
+    msg = MobStatusEffectMove(mob, target, EFFECT_CURSE_I, 25, 0, 300);
 
     if(msg == MSG_ENFEEB_IS) then
         typeEffect = EFFECT_CURSE_I;
         currentMsg = msg;
     end
 
-    msg = MobStatusEffectMove(mob, target, EFFECT_BLINDNESS, 25, 0, 60);
+    msg = MobStatusEffectMove(mob, target, EFFECT_BLINDNESS, 20, 0, 180);
 
     if(msg == MSG_ENFEEB_IS) then
         typeEffect = EFFECT_BLINDNESS;
         currentMsg = msg;
     end
 
-    msg = MobStatusEffectMove(mob, target, EFFECT_SLEEP_I, 1, 0, 60);
+    msg = MobStatusEffectMove(mob, target, EFFECT_SLEEP_I, 1, 0, 30);
 
     if(msg == MSG_ENFEEB_IS) then
         typeEffect = EFFECT_SLEEP_I;
