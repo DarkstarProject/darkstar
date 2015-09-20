@@ -692,6 +692,7 @@ EFFECT_FISHY_INTUITION          = 578
 EFFECT_COMMITMENT               = 579
 EFFECT_HASTE_II                 = 580
 EFFECT_FLURRY_II                = 581
+EFFECT_APOGEE                   = 583
 
 -- Effect icons in packet can go from 0-767, so no custom effects should go in that range.
 
@@ -994,7 +995,7 @@ MOD_SLOWRES           = 250
 MOD_STUNRES           = 251
 MOD_CHARMRES          = 252
 MOD_AMNESIARES        = 253
--- PLACEHOLDER           = 254
+MOD_LULLABYRES        = 254
 MOD_DEATHRES           = 255
 MOD_PARALYZE           = 257
 MOD_MIJIN_GAKURE       = 258
@@ -1250,6 +1251,7 @@ MOD_FORCE_LIGHT_DWBONUS       = 537 -- Set to 1 to force light day/weather spell
 MOD_FORCE_DARK_DWBONUS        = 538 -- Set to 1 to force dark day/weather spell bonus/penalty. Do not have it total more than 1.
 MOD_STONESKIN_BONUS_HP        = 539 -- Bonus "HP" granted to Stoneskin spell.
 MOD_ENHANCES_ELEMENTAL_SIPHON = 540 -- Bonus Base MP added to Elemental Siphon skill.
+MOD_BP_DELAY_II               = 541  -- Blood Pact Delay Reduction II
 
 -- Mythic Weapon Mods
 MOD_AUGMENTS_ABSORB    = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)
@@ -1270,8 +1272,8 @@ MOD_AUGMENTS_TA        = 527 -- Adds Critical Attack Bonus to Trick Attack, perc
 -- MOD_SPARE = 98, -- stuff
 -- MOD_SPARE = 99, -- stuff
 -- MOD_SPARE = 100, -- stuff
--- MOD_SPARE = 541, -- stuff
 -- MOD_SPARE = 542, -- stuff
+-- MOD_SPARE = 543, -- stuff
 
 ------------------------------------
 -- Merit Definitions

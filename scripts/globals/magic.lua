@@ -467,6 +467,10 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
         if (effectres > 0) then
             magicacc = magicacc - target:getMod(effectres);
         end
+
+        if(effect == EFFECT_LULLABY) then
+            magicacc = magicacc - target:getMod(MOD_LULLABYRES);
+        end
     end
 
     local p = getMagicHitRate(player, target, skill, element, magicacc, magicaccbonus);

@@ -268,7 +268,7 @@ enum MODIFIER
     MOD_STUNRES                   = 251, // Enhances "Resist Stun" effect
     MOD_CHARMRES                  = 252, // Enhances "Resist Charm" effect
     MOD_AMNESIARES                = 253, // Enhances "Resist Amnesia" effect
-    // PLACEHOLDER                   = 254, // placeholder for future resist effect
+    MOD_LULLABYRES                = 254, // Enhances "Resist Lullaby" effect
     MOD_DEATHRES                  = 255, // Used by gear and ATMA that give resistance to instance KO
 
     MOD_PARALYZE                  = 257, // Paralyze -- percent chance to proc
@@ -379,6 +379,7 @@ enum MODIFIER
     MOD_DAY_REDUCTION             = 373, // stores perpetuation reduction depending on day
     MOD_PERPETUATION_REDUCTION    = 346, // stores the MP/tick reduction from gear
     MOD_BP_DELAY                  = 357, // stores blood pact delay reduction
+    MOD_BP_DELAY_II               = 541, // Blood Pact Delay Reduction II
 
     // Blue Mage
     MOD_BLUE_POINTS               = 309, // Tracks extra blue points
@@ -592,8 +593,8 @@ enum MODIFIER
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 541, // stuff
     // MOD_SPARE = 542, // stuff
+    // MOD_SPARE = 543, // stuff
 
 };
 
