@@ -116,12 +116,13 @@ INSERT INTO `mob_skill_lists` VALUES ('',188,33);
 INSERT INTO `mob_skill_lists` VALUES ('',188,36);
 
 -- Mandragora
--- INSERT INTO `mob_skill_lists` VALUES ('',178,45);
--- INSERT INTO `mob_skill_lists` VALUES ('',178,46);
--- INSERT INTO `mob_skill_lists` VALUES ('',178,48);
--- INSERT INTO `mob_skill_lists` VALUES ('',178,49);
 INSERT INTO `mob_skill_lists` VALUES ('',178,44);
--- INSERT INTO `mob_skill_lists` VALUES ('',178,50);
+INSERT INTO `mob_skill_lists` VALUES ('',178,45);
+INSERT INTO `mob_skill_lists` VALUES ('',178,46);
+INSERT INTO `mob_skill_lists` VALUES ('',178,48);
+INSERT INTO `mob_skill_lists` VALUES ('',178,49);
+INSERT INTO `mob_skill_lists` VALUES ('',178,50);
+
 INSERT INTO `mob_skill_lists` VALUES ('',496,1954);
 
 -- INSERT INTO `mob_skill_lists` VALUES ('',2154,?,?);

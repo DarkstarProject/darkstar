@@ -78,6 +78,12 @@ INSERT INTO `mob_skills` VALUES (34,34,'Spinning_Claw',1,15.0,2000,1500,4,0,0,0)
 INSERT INTO `mob_skills` VALUES (36,36,'Blank_Gaze_Dispel',0,16.0,2000,2000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (38,38,'Eye_Scratch',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (39,39,'Magic_Fruit',0,7.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skills` VALUES (44,44,'Head_Butt',0,7.0,1500,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (45,45,'Dream_Flower',1,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (46,46,'Wild_Oats',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (48,48,'Photosynthesis',0,7.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skills` VALUES (49,49,'Leaf_Dagger',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (50,50,'Scream',1,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (52,52,'Frogkick',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (53,53,'Spore',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (54,54,'Queasyshroom',0,7,2000,1500,4,0,0,0);
