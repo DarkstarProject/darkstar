@@ -1091,7 +1091,7 @@ void CStatusEffectContainer::UpdateStatusIcons()
     ((CCharEntity*)m_POwner)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_POwner));
     ((CCharEntity*)m_POwner)->pushPacket(new CCharJobExtraPacket((CCharEntity*)m_POwner, true));
     ((CCharEntity*)m_POwner)->pushPacket(new CCharJobExtraPacket((CCharEntity*)m_POwner, false));
-    //((CCharEntity*)m_POwner)->pushPacket(new CStatusEffectPacket((CCharEntity*)m_POwner));
+    ((CCharEntity*)m_POwner)->pushPacket(new CStatusEffectPacket((CCharEntity*)m_POwner));
 }
 
 /************************************************************************

@@ -34,13 +34,13 @@ CStatusEffectPacket::CStatusEffectPacket(CCharEntity* PChar)
 
     std::fill(reinterpret_cast<uint16*>(data+0x08), reinterpret_cast<uint16*>(data+0x08+32), 0x00FF);
 
-    WBUFB(data, 0x06) = 0xC4;
-    WBUFB(data, 0x04) = 0x09;
+    ref<uint8>(0x04) = 0x09;
+    ref<uint8>(0x06) = 0xC4;
 
     PChar->StatusEffectContainer->ForEachEffect([this, &i](CStatusEffect* PEffect)
     {
         ref<uint16>(0x08 + (i * 0x02)) = PEffect->GetIcon();
-        //ref<uint32>(0x48 + (i * 0x04)) = some timestamp, unknown format
+        ref<uint32>(0x48 + (i * 0x04)) = (((PEffect->GetDuration() - (gettick() - PEffect->GetStartTime())) / 1000) + CVanaTime::getInstance()->getVanaTime()) * 60;
         ++i;
     });
 }
