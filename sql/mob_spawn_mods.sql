@@ -231,6 +231,7 @@ INSERT INTO `mob_spawn_mods` VALUES (16916816,49,1,1);
 INSERT INTO `mob_spawn_mods` VALUES (16916817,49,1,1);
 
 INSERT INTO `mob_spawn_mods` VALUES (17326081,50,25,1); -- Angra_Mainyu chainspell at 25%
+
 /*!40000 ALTER TABLE `mob_spawn_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

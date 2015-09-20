@@ -327,14 +327,14 @@ INSERT INTO `mob_skill_lists` VALUES ('',137,488);
 INSERT INTO `mob_skill_lists` VALUES ('',137,491);
 INSERT INTO `mob_skill_lists` VALUES ('',137,494);
 INSERT INTO `mob_skill_lists` VALUES ('',137,496);
--- INSERT INTO `mob_skill_lists` VALUES ('',137,499);
 
-INSERT INTO `mob_skill_lists` VALUES ('',138,485);
-INSERT INTO `mob_skill_lists` VALUES ('',138,488);
-INSERT INTO `mob_skill_lists` VALUES ('',138,491);
-INSERT INTO `mob_skill_lists` VALUES ('',138,494);
-INSERT INTO `mob_skill_lists` VALUES ('',138,496);
--- INSERT INTO `mob_skill_lists` VALUES ('',138,499);
+-- Gorger NM
+INSERT INTO `mob_skill_lists` VALUES ('',708,485);
+INSERT INTO `mob_skill_lists` VALUES ('',708,488);
+INSERT INTO `mob_skill_lists` VALUES ('',708,491);
+INSERT INTO `mob_skill_lists` VALUES ('',708,494);
+INSERT INTO `mob_skill_lists` VALUES ('',708,496);
+-- INSERT INTO `mob_skill_lists` VALUES ('',708,499);
 
 -- Craver
 INSERT INTO `mob_skill_lists` VALUES ('',78,973);
@@ -344,8 +344,11 @@ INSERT INTO `mob_skill_lists` VALUES ('',78,976);
 INSERT INTO `mob_skill_lists` VALUES ('',78,977);
 
 -- Craver NM
-INSERT INTO `mob_skill_lists` VALUES ('',78,978);
-INSERT INTO `mob_skill_lists` VALUES ('',78,1018);
+INSERT INTO `mob_skill_lists` VALUES ('',707,977);
+INSERT INTO `mob_skill_lists` VALUES ('',707,975);
+INSERT INTO `mob_skill_lists` VALUES ('',707,976);
+INSERT INTO `mob_skill_lists` VALUES ('',707,978);
+INSERT INTO `mob_skill_lists` VALUES ('',707,1018);
 
 -- Thinker
 INSERT INTO `mob_skill_lists` VALUES ('',241,986);
@@ -359,8 +362,12 @@ INSERT INTO `mob_skill_lists` VALUES ('',241,993);
 INSERT INTO `mob_skill_lists` VALUES ('',241,994);
 
 -- NM Thinker
-INSERT INTO `mob_skill_lists` VALUES ('',241,995);
-INSERT INTO `mob_skill_lists` VALUES ('',241,996);
+INSERT INTO `mob_skill_lists` VALUES ('',706,987);
+INSERT INTO `mob_skill_lists` VALUES ('',706,988);
+INSERT INTO `mob_skill_lists` VALUES ('',706,989);
+INSERT INTO `mob_skill_lists` VALUES ('',706,992);
+INSERT INTO `mob_skill_lists` VALUES ('',706,995);
+INSERT INTO `mob_skill_lists` VALUES ('',706,996);
 
 -- Seether
 INSERT INTO `mob_skill_lists` VALUES ('',220,997);
