@@ -310,6 +310,7 @@ INSERT INTO `mob_skills` VALUES (361,361,'Feather_Storm',0,7.0,2000,1500,4,0,0,0
 INSERT INTO `mob_skills` VALUES (362,362,'Double_Kick',0,7.0,2000,1500,4,0,0,1);
 INSERT INTO `mob_skills` VALUES (363,363,'Parry',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (364,364,'Sweep',1,10.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (365,969,'Snowball',1,11.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (366,366,'Helldive',0,9.0,2000,1500,4,0,0,2);
 INSERT INTO `mob_skills` VALUES (367,367,'Wing_Cutter',4,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (372,372,'Wild_Horn',4,10.0,2000,1500,4,0,0,0);

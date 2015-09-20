@@ -387,14 +387,14 @@ INSERT INTO `mob_skill_lists` VALUES ('',174,114);
 INSERT INTO `mob_skill_lists` VALUES ('',174,115);
 
 -- Lizards (cold region)
--- INSERT INTO `mob_skill_lists` VALUES ('',110,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',112,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',113,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',116,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',117,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',114,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',115,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',365,?);
+INSERT INTO `mob_skill_lists` VALUES ('',97,110);
+INSERT INTO `mob_skill_lists` VALUES ('',97,112);
+INSERT INTO `mob_skill_lists` VALUES ('',97,113);
+INSERT INTO `mob_skill_lists` VALUES ('',97,116);
+INSERT INTO `mob_skill_lists` VALUES ('',97,117);
+INSERT INTO `mob_skill_lists` VALUES ('',97,114);
+INSERT INTO `mob_skill_lists` VALUES ('',97,115);
+INSERT INTO `mob_skill_lists` VALUES ('',97,365);
 
 -- Highlander Lizard
 INSERT INTO `mob_skill_lists` VALUES ('',438,115);
