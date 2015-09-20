@@ -581,9 +581,9 @@ INSERT INTO `mob_skill_lists` VALUES ('',400,187);
 INSERT INTO `mob_skill_lists` VALUES ('',400,186);
 
 -- Shadows
-INSERT INTO `mob_skill_lists` VALUES ('',221,190);
-INSERT INTO `mob_skill_lists` VALUES ('',222,190);
-INSERT INTO `mob_skill_lists` VALUES ('',223,190);
+INSERT INTO `mob_skill_lists` VALUES ('',221,3839);
+INSERT INTO `mob_skill_lists` VALUES ('',222,3839);
+INSERT INTO `mob_skill_lists` VALUES ('',223,3839);
 
 -- Pugil
 INSERT INTO `mob_skill_lists` VALUES ('',197,195);
@@ -1327,24 +1327,24 @@ INSERT INTO `mob_skill_lists` VALUES ('',98,262);
 INSERT INTO `mob_skill_lists` VALUES ('',98,263);
 
 -- Fomor
-INSERT INTO `mob_skill_lists` VALUES ('',115,246);
-INSERT INTO `mob_skill_lists` VALUES ('',115,247);
-INSERT INTO `mob_skill_lists` VALUES ('',115,248);
-INSERT INTO `mob_skill_lists` VALUES ('',115,249);
-INSERT INTO `mob_skill_lists` VALUES ('',115,250);
-INSERT INTO `mob_skill_lists` VALUES ('',115,251);
-INSERT INTO `mob_skill_lists` VALUES ('',115,252);
-INSERT INTO `mob_skill_lists` VALUES ('',115,253);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3830);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3831);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3832);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3833);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3834);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3835);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3836);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3837);
 
 -- Fomor (Dynamis - Hydra)
-INSERT INTO `mob_skill_lists` VALUES ('',359,246);
-INSERT INTO `mob_skill_lists` VALUES ('',359,247);
-INSERT INTO `mob_skill_lists` VALUES ('',359,248);
-INSERT INTO `mob_skill_lists` VALUES ('',359,249);
-INSERT INTO `mob_skill_lists` VALUES ('',359,250);
-INSERT INTO `mob_skill_lists` VALUES ('',359,251);
-INSERT INTO `mob_skill_lists` VALUES ('',359,252);
-INSERT INTO `mob_skill_lists` VALUES ('',359,253);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3830);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3831);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3832);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3833);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3834);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3835);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3836);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3837);
 
 -- Tauri
 INSERT INTO `mob_skill_lists` VALUES ('',240,242);
