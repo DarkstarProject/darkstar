@@ -263,6 +263,7 @@ INSERT INTO `mob_skills` VALUES (278,278,'Kartstrahl',0,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (279,279,'Blitzstrahl',0,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (280,280,'Panzerfaust',0,7.0,2000,1500,4,0,0,2);
 INSERT INTO `mob_skills` VALUES (281,281,'Berserk',0,7.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skills` VALUES (282,282,'Panzerschreck',0,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (283,283,'Typhoon',1,10.0,2000,1500,4,0,0,1);
 INSERT INTO `mob_skills` VALUES (284,898,'Tremorous_Tread',1,5.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (285,285,'Gravity_Field',2,10.0,2000,1500,4,0,0,0);
