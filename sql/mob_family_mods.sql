@@ -53,11 +53,14 @@ INSERT INTO `mob_family_mods` VALUES (193,3,40,1);
 INSERT INTO `mob_family_mods` VALUES (34,3,100,1);
 INSERT INTO `mob_family_mods` VALUES (267,4,20,1);
 INSERT INTO `mob_family_mods` VALUES (87,4,18,1);
+
+-- Define sublinks
 INSERT INTO `mob_family_mods` VALUES (87,5,10,1);
 INSERT INTO `mob_family_mods` VALUES (240,10,1,1);
 INSERT INTO `mob_family_mods` VALUES (169,10,1,1);
 INSERT INTO `mob_family_mods` VALUES (190,10,2,1);
 INSERT INTO `mob_family_mods` VALUES (189,10,2,1);
+INSERT INTO `mob_family_mods` VALUES (334,10,2,1);
 INSERT INTO `mob_family_mods` VALUES (46,10,3,1);
 INSERT INTO `mob_family_mods` VALUES (252,10,3,1);
 INSERT INTO `mob_family_mods` VALUES (47,10,3,1);
@@ -70,6 +73,7 @@ INSERT INTO `mob_family_mods` VALUES (253,10,6,1);
 INSERT INTO `mob_family_mods` VALUES (254,10,6,1);
 INSERT INTO `mob_family_mods` VALUES (212,10,7,1);
 INSERT INTO `mob_family_mods` VALUES (362,10,7,1);
+
 INSERT INTO `mob_family_mods` VALUES (169,11,15,1);
 INSERT INTO `mob_family_mods` VALUES (358,11,15,1);
 INSERT INTO `mob_family_mods` VALUES (110,3,50,1);
