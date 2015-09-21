@@ -219,7 +219,21 @@ namespace battleutils
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 int16 skillListId = Sql_GetIntData(SqlHandle, 0);
-                g_PMobSkillLists[skillListId].push_back(Sql_GetIntData(SqlHandle, 1));
+
+                uint16 skillId = Sql_GetIntData(SqlHandle, 1);
+                CMobSkill* PMobSkill = g_PMobSkillList[skillId];
+
+                // ensure mobskill actually exists
+                if(PMobSkill == nullptr)
+                {
+                    // Comment this out for now so error log doesn't spam
+                    // ShowError("battleutils::LoadMobSkillsList Mob skill (%d) is undefined for list (%d)\n", skillId, skillListId);
+                }
+                else
+                {
+                    g_PMobSkillLists[skillListId].push_back(skillId);
+                }
+
             }
         }
     }

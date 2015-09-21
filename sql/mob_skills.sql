@@ -881,6 +881,8 @@ INSERT INTO `mob_skills` VALUES (1557,1334,'PW_Calcifying_Deluge',2,15,2000,2000
 INSERT INTO `mob_skills` VALUES (1558,1339,'PW_Gorgon_Dance',1,15,2000,2000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1559,1290,'Amber_scutum',0,10.0,2000,1000,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (1560,1291,'Vitriolic_spray',4,10.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1561,1292,'Thermal_Pulse',1,12.5,2000,1000,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1562,1293,'Cannonball',0,24.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1563,1294,'Heat_barrier',0,7.0,2000,1000,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (1565,1283,'Amplification',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (1566,1284,'Boiling_Point',4,16.0,2000,1500,4,0,0,0);

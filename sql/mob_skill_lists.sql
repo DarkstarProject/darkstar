@@ -268,7 +268,7 @@ INSERT INTO `mob_skill_lists` VALUES ('',15,932);
 INSERT INTO `mob_skill_lists` VALUES ('',11,933);
 INSERT INTO `mob_skill_lists` VALUES ('',24,934);
 INSERT INTO `mob_skill_lists` VALUES ('',14,935);
-INSERT INTO `mob_skill_lists` VALUES ('',8,936);
+-- INSERT INTO `mob_skill_lists` VALUES ('',8,936);
 INSERT INTO `mob_skill_lists` VALUES ('',12,937);
 INSERT INTO `mob_skill_lists` VALUES ('',20,938);
 INSERT INTO `mob_skill_lists` VALUES ('',19,939);
@@ -276,7 +276,7 @@ INSERT INTO `mob_skill_lists` VALUES ('',17,940);
 INSERT INTO `mob_skill_lists` VALUES ('',13,941);
 INSERT INTO `mob_skill_lists` VALUES ('',9,942);
 INSERT INTO `mob_skill_lists` VALUES ('',23,943);
-INSERT INTO `mob_skill_lists` VALUES ('',7,944);
+-- INSERT INTO `mob_skill_lists` VALUES ('',7,944);
 INSERT INTO `mob_skill_lists` VALUES ('',18,945);
 INSERT INTO `mob_skill_lists` VALUES ('',22,1175);
 
@@ -2067,7 +2067,7 @@ INSERT INTO `mob_skill_lists` VALUES ('',140,2572);
 -- INSERT INTO `mob_skill_lists` VALUES ('',141,323);
 INSERT INTO `mob_skill_lists` VALUES ('',141,322);
 INSERT INTO `mob_skill_lists` VALUES ('',141,320);
-INSERT INTO `mob_skill_lists` VALUES ('',141,1074);
+-- INSERT INTO `mob_skill_lists` VALUES ('',141,1074);
 INSERT INTO `mob_skill_lists` VALUES ('',141,2572);
 
 -- Qiqirn -- Need Scripts
@@ -3089,7 +3089,7 @@ INSERT INTO `mob_skill_lists` VALUES ('',149,1137);
 INSERT INTO `mob_skill_lists` VALUES ('',149,1138);
 INSERT INTO `mob_skill_lists` VALUES ('',149,1139);
 INSERT INTO `mob_skill_lists` VALUES ('',149,1141);
-INSERT INTO `mob_skill_lists` VALUES ('',149,1142);
+-- INSERT INTO `mob_skill_lists` VALUES ('',149,1142);
 INSERT INTO `mob_skill_lists` VALUES ('',149,1143);
 
 -- Lady Lilith
