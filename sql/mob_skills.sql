@@ -194,6 +194,8 @@ INSERT INTO `mob_skills` VALUES (193,193,'Intimidate',4,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (194,194,'Aqua_Ball',2,12.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (195,195,'Splash_Breath',4,12.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (196,196,'Screwdriver',0,9.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (197,197,'Water_Wall',0,7.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skills` VALUES (198,198,'Water_Shield',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (200,200,'Tentacle',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (202,202,'Ink_Jet',4,12.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (203,203,'Hard_Membrane',0,7.0,2000,1500,1,0,0,0);
@@ -319,6 +321,7 @@ INSERT INTO `mob_skills` VALUES (380,380,'Flame_Arrow',0,10.0,2000,1500,4,0,0,0)
 INSERT INTO `mob_skills` VALUES (381,381,'Firebomb',4,9.5,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (382,382,'Blastbomb',2,13.5,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (383,383,'Fountain',4,9.5,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (385,973,'Recoil_Dive',4,9.5,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (386,386,'Flame_Breath',4,12.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (387,387,'Poison_Breath',4,12.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (388,388,'Wind_Breath',4,12.0,2000,1500,4,0,0,0);

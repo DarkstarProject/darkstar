@@ -594,12 +594,12 @@ INSERT INTO `mob_skill_lists` VALUES ('',197,194);
 INSERT INTO `mob_skill_lists` VALUES ('',197,193);
 
 -- Pugils (Jagils Subspecies)
--- INSERT INTO `mob_skill_lists` VALUES ('',195,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',197,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',198,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',194,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',193,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',385,?);
+INSERT INTO `mob_skill_lists` VALUES ('',709,193);
+INSERT INTO `mob_skill_lists` VALUES ('',709,194);
+INSERT INTO `mob_skill_lists` VALUES ('',709,195);
+INSERT INTO `mob_skill_lists` VALUES ('',709,197);
+INSERT INTO `mob_skill_lists` VALUES ('',709,198);
+INSERT INTO `mob_skill_lists` VALUES ('',709,385);
 
 -- Pugils (Dynamis - Nightmare Makara) ?
 -- INSERT INTO `mob_skill_lists` VALUES ('',1610,?,?);
