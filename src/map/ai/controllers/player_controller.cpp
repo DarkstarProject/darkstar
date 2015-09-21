@@ -128,6 +128,11 @@ void CPlayerController::UseJobAbility(uint16 targid, uint16 abilityid)
     }
 }
 
+void CPlayerController::Weaponskill(uint16 targid, uint16 wsid)
+{
+
+}
+
 void CPlayerController::setLastActionTime(time_point _LastActionTime)
 {
     m_LastActionTime = _LastActionTime;

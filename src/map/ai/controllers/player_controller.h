@@ -41,6 +41,7 @@ public:
     virtual void Disengage() override;
 
     virtual void UseJobAbility(uint16 targid, uint16 abilityid);
+    virtual void Weaponskill(uint16 targid, uint16 wsid);
 
     void setLastActionTime(time_point);
     void setLastAttackTime(time_point);
