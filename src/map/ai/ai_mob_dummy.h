@@ -37,6 +37,10 @@
 // mobs will deaggro if player is out of range for this long
 #define MOB_DEAGGRO_TIME 25000
 
+// cool down time after attempting a mob skill or
+// after using one
+#define MOB_SKILL_COOL 4000
+
 // time a mob is neutral after disengaging
 #define MOB_NEUTRAL_TIME 10000
 
@@ -83,6 +87,7 @@ protected:
 	bool m_checkDespawn; // check and despawn if i'm too far from spawn
 	uint32 m_SpawnTime;
 	uint32 m_LastSpecialTime;
+	uint32 m_LastMobSkillTime;
 	uint32 m_LastStunTime;
 	uint32 m_StunTime;
 	uint32 m_DeaggroTime;

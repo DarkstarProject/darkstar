@@ -70,6 +70,7 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
     m_PSpecialSkill = nullptr;
     m_firstSpell = true;
     m_LastSpecialTime = 0;
+    m_LastMobSkillTime = 0;
     m_skillTP = 0;
     m_LastStandbackTime = 0;
     m_DeaggroTime = 0;
@@ -610,6 +611,7 @@ void CAIMobDummy::ActionSpawn()
         m_PMob->m_neutral = true;
         m_LastActionTime = m_Tick + dsprand::GetRandomNumber(2000,10000);
         m_SpawnTime = m_Tick;
+        m_LastMobSkillTime = m_Tick;
         m_firstSpell = true;
         m_ActionType = ACTION_ROAMING;
         m_PBattleTarget = nullptr;
@@ -714,6 +716,9 @@ void CAIMobDummy::ActionAbilityStart()
     DSP_DEBUG_BREAK_IF(m_PBattleTarget == nullptr);
 
     std::vector<uint16> MobSkills = battleutils::GetMobSkillList(m_PMob->getMobMod(MOBMOD_SKILL_LIST));
+
+    // Fixes crash, prevent spam checking of mob abilities
+    m_LastMobSkillTime = m_Tick;
 
     // не у всех монстов прописаны способности, так что выходим из процедуры, если способность не найдена
     // We don't have any skills we can use, so let's go back to attacking
@@ -985,6 +990,8 @@ void CAIMobDummy::ActionAbilityFinish()
     }
 
     m_DeaggroTime = m_Tick;
+    m_LastMobSkillTime = m_Tick;
+
     m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
 
     // store the skill used
@@ -1141,6 +1148,8 @@ void CAIMobDummy::ActionAbilityFinish()
 void CAIMobDummy::ActionAbilityInterrupt()
 {
     m_LastActionTime = m_Tick;
+    m_LastMobSkillTime = m_Tick;
+
     //cancel the whole readying animation
     apAction_t Action;
     m_PMob->m_ActionList.clear();
@@ -1338,7 +1347,7 @@ void CAIMobDummy::ActionAttack()
         m_DeaggroTime = m_Tick;
     }
 
-    if (!m_actionQueue.empty() && m_Tick >= m_LastSpecialTime)
+    if (!m_actionQueue.empty() && m_Tick >= m_LastMobSkillTime + MOB_SKILL_COOL)
     {
         quAction_t action = m_actionQueue.front();
         m_actionQueue.pop();
@@ -1424,7 +1433,7 @@ void CAIMobDummy::ActionAttack()
         FinishAttack();
         return;
     }
-    else if (m_Tick >= m_LastSpecialTime && dsprand::GetRandomNumber(100) < m_PMob->TPUseChance())
+    else if (m_Tick >= m_LastMobSkillTime + MOB_SKILL_COOL && dsprand::GetRandomNumber(100) < m_PMob->TPUseChance())
     {
         m_ActionType = ACTION_MOBABILITY_START;
         ActionAbilityStart();
@@ -1902,7 +1911,7 @@ void CAIMobDummy::ActionAttack()
             m_DeaggroTime = m_Tick;
         }
     }
-    else if (m_Tick >= m_LastSpecialTime && dsprand::GetRandomNumber(100) < m_PMob->TPUseChance())
+    else if (m_Tick >= m_LastMobSkillTime + MOB_SKILL_COOL && dsprand::GetRandomNumber(100) < m_PMob->TPUseChance())
     {
         // not in range to attack my target
         // so try an other tp move
@@ -2426,6 +2435,7 @@ void CAIMobDummy::SetupEngage()
     m_StartBattle = m_Tick;
     m_DeaggroTime = m_Tick;
     m_LastActionTime = m_Tick - 1000; // Why do we subtract 1 sec?
+    m_LastMobSkillTime = m_Tick;
     m_firstSpell = true;
     m_CanStandback = true;
     m_PPathFind->Clear();
