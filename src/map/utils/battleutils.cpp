@@ -226,8 +226,7 @@ namespace battleutils
                 // ensure mobskill actually exists
                 if(PMobSkill == nullptr)
                 {
-                    // Comment this out for now so error log doesn't spam
-                    // ShowError("battleutils::LoadMobSkillsList Mob skill (%d) is undefined for list (%d)\n", skillId, skillListId);
+                    ShowError("battleutils::LoadMobSkillsList Mob skill (%d) does not exist but was added to list (%d)\n", skillId, skillListId);
                 }
                 else
                 {
