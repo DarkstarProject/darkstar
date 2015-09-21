@@ -221,10 +221,9 @@ namespace battleutils
                 int16 skillListId = Sql_GetIntData(SqlHandle, 0);
 
                 uint16 skillId = Sql_GetIntData(SqlHandle, 1);
-                CMobSkill* PMobSkill = g_PMobSkillList[skillId];
 
                 // ensure mobskill actually exists
-                if(PMobSkill == nullptr)
+                if (!battleutils::GetMobSkill(skillId))
                 {
                     ShowError("battleutils::LoadMobSkillsList Mob skill (%d) does not exist but was added to list (%d)\n", skillId, skillListId);
                 }
@@ -934,8 +933,8 @@ namespace battleutils
             if ((PDefender->m_EcoSystem != SYSTEM_UNDEAD) || (daze == EFFECT_HASTE_DAZE))
             {
                 PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(daze,
-                                                                                    0, power,
-                                                                                    0, 10, PAttacker->id), true);
+                    0, power,
+                    0, 10, PAttacker->id), true);
             }
         }
 
@@ -1015,7 +1014,7 @@ namespace battleutils
         }
         //check weapon for additional effects
         else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0 && PAttacker->GetMLevel() >= weapon->getReqLvl() &&
-                 luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
+            luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
         {
             if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
             {
@@ -1560,7 +1559,7 @@ namespace battleutils
             if (cap == 0)
             {
                 cap = GetMaxSkill((SKILLTYPE)PChar->PBattleAI->GetCurrentSpell()->getSkillType(), PChar->GetSJob(),
-                                  PChar->GetSLevel()); // << this might be GetMLevel, however this leaves no chance of avoiding interuption
+                    PChar->GetSLevel()); // << this might be GetMLevel, however this leaves no chance of avoiding interuption
             }
 
             if (skill > cap)
@@ -1666,7 +1665,7 @@ namespace battleutils
     {
         CItemWeapon* PWeapon = GetEntityWeapon(PDefender, SLOT_MAIN);
         if ((PWeapon != nullptr && PWeapon->getID() != 0 && PWeapon->getID() != 65535 &&
-             PWeapon->getSkillType() != SKILL_H2H) && battleutils::IsEngauged(PDefender))
+            PWeapon->getSkillType() != SKILL_H2H) && battleutils::IsEngauged(PDefender))
         {
             JOBTYPE job = PDefender->GetMJob();
 
@@ -1833,7 +1832,7 @@ namespace battleutils
                         // Subpower is the remaining damage that can be reflected. When it reaches 0 the effect ends
                         // Set Reprisal spike damage
                         PDefender->setModifier(MOD_SPIKES_DMG, dsp_cap((int32)(blockedDamage * (reprisalEffect->GetPower())) / 100,
-                                                                       0, reprisalEffect->GetSubPower()));
+                            0, reprisalEffect->GetSubPower()));
                     }
                 }
 
@@ -2103,7 +2102,7 @@ namespace battleutils
         int32 hitrate = 75;
 
         if (PAttacker->objtype == TYPE_PC && ((PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) && (abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23 || PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))) ||
-                                              (charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_ASSASSIN) && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK) && battleutils::getAvailableTrickAttackChar(PAttacker, PDefender))))
+            (charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_ASSASSIN) && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK) && battleutils::getAvailableTrickAttackChar(PAttacker, PDefender))))
         {
             hitrate = 100; //attack with SA active or TA/Assassin cannot miss
         }
@@ -2166,7 +2165,7 @@ namespace battleutils
             }
         }
         else if (PAttacker->objtype == TYPE_PC && PAttacker->GetMJob() == JOB_THF && charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_ASSASSIN) && (!ignoreSneakTrickAttack) &&
-                 PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+            PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
         {
             CBattleEntity* taChar = battleutils::getAvailableTrickAttackChar(PAttacker, PDefender);
             if (taChar != nullptr) crithitrate = 100;
@@ -2931,7 +2930,7 @@ namespace battleutils
             if (skillchain != SC_NONE)
             {
                 PSCEffect->SetStartTime(gettick());
-             //   ShowDebug("duration: %d", PSCEffect->GetDuration());
+                //   ShowDebug("duration: %d", PSCEffect->GetDuration());
                 PSCEffect->SetDuration(PSCEffect->GetDuration() - 1000);
                 PSCEffect->SetTier(GetSkillchainTier((SKILLCHAIN_ELEMENT)skillchain));
                 PSCEffect->SetPower(skillchain);
@@ -3180,9 +3179,9 @@ namespace battleutils
         //            TODO:     × (1 + Staff Affinity)
 
         int32 damage = floor((double)(abs(lastSkillDamage))
-                             * g_SkillChainDamageModifiers[chainLevel][chainCount] / 1000
-                             * (100 + PAttacker->getMod(MOD_SKILLCHAINBONUS)) / 100
-                             * (100 + PAttacker->getMod(MOD_SKILLCHAINDMG)) / 100);
+            * g_SkillChainDamageModifiers[chainLevel][chainCount] / 1000
+            * (100 + PAttacker->getMod(MOD_SKILLCHAINBONUS)) / 100
+            * (100 + PAttacker->getMod(MOD_SKILLCHAINDMG)) / 100);
 
         damage = damage * (1000 - resistance) / 1000;
         damage = MagicDmgTaken(PDefender, damage, appliedEle);
@@ -3288,9 +3287,9 @@ namespace battleutils
         DSP_DEBUG_BREAK_IF(PEntity == nullptr);
 
         return (PEntity->animation == ANIMATION_ATTACK &&
-                PEntity->PBattleAI != nullptr &&
-                PEntity->PBattleAI->GetBattleTarget() != nullptr &&
-                PEntity->status != STATUS_DISAPPEAR);
+            PEntity->PBattleAI != nullptr &&
+            PEntity->PBattleAI->GetBattleTarget() != nullptr &&
+            PEntity->status != STATUS_DISAPPEAR);
     }
 
     /************************************************************************
@@ -4227,7 +4226,7 @@ namespace battleutils
             dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_MAGIC_ABSORB))
             damage = -damage;
         else if ((element && dsprand::GetRandomNumber(100) < PDefender->getMod(nullarray[element - 1])) ||
-                 dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_MAGIC_NULL))
+            dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_MAGIC_NULL))
             damage = 0;
         else
         {
@@ -4520,8 +4519,8 @@ namespace battleutils
     {
         if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE) // Divine Veil goes here because -na spells have AoE w/ Accession
             if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ACCESSION) || (PCaster->objtype == TYPE_PC &&
-            charutils::hasTrait((CCharEntity*)PCaster, TRAIT_DIVINE_VEIL) && PSpell->isNa() &&
-            (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_DIVINE_SEAL) || PCaster->getMod(MOD_AOE_NA) == 1)))
+                charutils::hasTrait((CCharEntity*)PCaster, TRAIT_DIVINE_VEIL) && PSpell->isNa() &&
+                (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_DIVINE_SEAL) || PCaster->getMod(MOD_AOE_NA) == 1)))
                 return SPELLAOE_RADIAL;
             else
                 return SPELLAOE_NONE;
@@ -4683,7 +4682,7 @@ namespace battleutils
         position_t nearEntity = nearPosition(*pos, offset, M_PI);
 
         // validate the drawin position before continuing
-        if(!PMob->PBattleAI->m_PPathFind->ValidPosition(pos))
+        if (!PMob->PBattleAI->m_PPathFind->ValidPosition(pos))
         {
             return false;
         }
