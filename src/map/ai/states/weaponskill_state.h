@@ -22,12 +22,23 @@ This file is part of DarkStar-server source code.
 */
 
 #include "state.h"
+#include "../../weapon_skill.h"
 
 class CWeaponskillState : public CState
 {
 public:
     CWeaponskillState(CCharEntity* PChar, uint16 targid);
+    CWeaponskillState(CMobEntity* PMob, uint16 targid);
+
+    bool StartWeaponskill(uint16 wsid);
+    CWeaponSkill* GetWeaponSkill();
 protected:
     virtual bool CanChangeState() override { return false; }
     virtual bool Update(time_point tick) override;
+
+    CBattleEntity* const m_PEntity;
+    std::unique_ptr<CWeaponSkill> m_PWeaponskill;
+    time_point m_finishTime;
+private:
+    CWeaponskillState(CBattleEntity* PEntity, uint16 targid, duration casttime);
 };

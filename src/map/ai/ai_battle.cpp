@@ -24,8 +24,9 @@ This file is part of DarkStar-server source code.
 #include "ai_battle.h"
 
 #include "controllers/controller.h"
-#include "states/magic_state.h"
 #include "states/attack_state.h"
+#include "states/magic_state.h"
+#include "states/weaponskill_state.h"
 #include "../attackround.h"
 #include "../spell.h"
 #include "../entities/battleentity.h"
@@ -109,7 +110,7 @@ bool CAIBattle::Internal_Engage(uint16 targetid)
     return false;
 }
 
-void CAIBattle::PostDisengage()
+void CAIBattle::OnDisengage()
 {
     m_battleTarget = 0;
     if (PEntity->animation == ANIMATION_ATTACK)
@@ -311,9 +312,10 @@ bool CAIBattle::Internal_Cast(uint16 targetid, uint16 spellid)
 {
     if (CanChangeState())
     {
-        ChangeState<CMagicState>(static_cast<CBattleEntity*>(PEntity), targetid);
-
-        return static_cast<CMagicState*>(GetCurrentState())->CastSpell(spellid);
+        if (ChangeState<CMagicState>(static_cast<CBattleEntity*>(PEntity), targetid))
+        {
+            return static_cast<CMagicState*>(GetCurrentState())->CastSpell(spellid);
+        }
     }
     return false;
 }
@@ -328,7 +330,7 @@ void CAIBattle::Internal_Disengage()
     m_battleTarget = 0;
 }
 
-void CAIBattle::CastFinished(action_t& action)
+void CAIBattle::OnCastFinished(action_t& action)
 {
     auto state = static_cast<CMagicState*>(GetCurrentState());
     auto PSpell = state->GetSpell();
@@ -470,7 +472,7 @@ void CAIBattle::CastFinished(action_t& action)
     PBattleEntity->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END);
 }
 
-void CAIBattle::CastInterrupted(action_t& action, MSGBASIC_ID msg)
+void CAIBattle::OnCastInterrupted(action_t& action, MSGBASIC_ID msg)
 {
     CSpell* PSpell = static_cast<CMagicState*>(GetCurrentState())->GetSpell();
     if (PSpell)
@@ -489,6 +491,15 @@ void CAIBattle::CastInterrupted(action_t& action, MSGBASIC_ID msg)
 
         PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CMessageBasicPacket(PEntity, PEntity, 0, 0, msg));
     }
+}
+
+void CAIBattle::OnWeaponskillFinished(action_t& action)
+{
+    //common WS code goes here (set up action, etc)
+    auto state = static_cast<CWeaponskillState*>(GetCurrentState());
+    auto PWeaponskill = state->GetWeaponSkill();
+    auto PBattleEntity = static_cast<CBattleEntity*>(PEntity);
+    auto PActionTarget = static_cast<CBattleEntity*>(state->GetTarget());
 }
 
 uint16 CAIBattle::GetBattleTargetID()

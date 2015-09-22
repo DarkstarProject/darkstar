@@ -59,10 +59,12 @@ public:
     /* Returns whether to call Attack or not (which includes error messages) */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg);
     virtual CBattleEntity* IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg);
-    virtual void PostDisengage();
+    virtual void OnDisengage();
     /* Casting */
-    virtual void CastFinished(action_t&);
-    virtual void CastInterrupted(action_t&, MSGBASIC_ID msg);
+    virtual void OnCastFinished(action_t&);
+    virtual void OnCastInterrupted(action_t&, MSGBASIC_ID msg);
+    /* Weaponskill */
+    virtual void OnWeaponskillFinished(action_t&);
 
     uint16 GetBattleTargetID();
 

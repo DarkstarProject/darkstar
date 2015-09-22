@@ -61,7 +61,7 @@ bool CAttackState::Update(time_point tick)
 
 void CAttackState::Cleanup()
 {
-    m_PEntity->PAIBattle()->PostDisengage();
+    m_PEntity->PAIBattle()->OnDisengage();
 }
 
 void CAttackState::Clear()

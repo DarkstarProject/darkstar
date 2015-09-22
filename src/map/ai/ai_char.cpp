@@ -63,9 +63,9 @@ void CAIChar::OnChangeTarget(CBattleEntity* PNewTarget)
     PChar->pushPacket(new CLockOnPacket(PChar, PNewTarget));
 }
 
-void CAIChar::PostDisengage()
+void CAIChar::OnDisengage()
 {
-    CAIBattle::PostDisengage();
+    CAIBattle::OnDisengage();
     auto PChar = static_cast<CCharEntity*>(PEntity);
     auto state = PChar->PAIBattle()->GetCurrentState();
     if (state && state->HasErrorMsg())
@@ -115,9 +115,9 @@ bool CAIChar::Attack(action_t& action)
     return CAIBattle::Attack(action);
 }
 
-void CAIChar::CastFinished(action_t& action)
+void CAIChar::OnCastFinished(action_t& action)
 {
-    CAIBattle::CastFinished(action);
+    CAIBattle::OnCastFinished(action);
 
     auto state = static_cast<CMagicState*>(GetCurrentState());
     auto PSpell = state->GetSpell();
@@ -161,9 +161,9 @@ void CAIChar::CastFinished(action_t& action)
     }
 }
 
-void CAIChar::CastInterrupted(action_t& action, MSGBASIC_ID msg)
+void CAIChar::OnCastInterrupted(action_t& action, MSGBASIC_ID msg)
 {
-    CAIBattle::CastInterrupted(action, msg);
+    CAIBattle::OnCastInterrupted(action, msg);
 
     auto container = static_cast<CMagicState*>(GetCurrentState());
     auto message = container->GetErrorMsg();
@@ -172,4 +172,9 @@ void CAIChar::CastInterrupted(action_t& action, MSGBASIC_ID msg)
     {
         static_cast<CCharEntity*>(PEntity)->pushPacket(message);
     }
+}
+
+void CAIChar::OnWeaponskillFinished(action_t& action)
+{
+    CAIBattle::OnWeaponskillFinished(action);
 }

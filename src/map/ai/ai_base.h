@@ -72,7 +72,7 @@ protected:
     CBaseEntity* PEntity;
 
     template<typename T, typename... Args>
-    void ChangeState(Args&&... args) { if (CanChangeState()) { m_stateStack.emplace(std::make_unique<T>(std::forward<Args>(args)...)); } }
+    bool ChangeState(Args&&... args) { if (CanChangeState()) { m_stateStack.emplace(std::make_unique<T>(std::forward<Args>(args)...)); return true; } return false; }
 
 private:
     std::stack<std::unique_ptr<CState>> m_stateStack;
