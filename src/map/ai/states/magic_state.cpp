@@ -66,11 +66,11 @@ bool CMagicState::Update(time_point tick)
 
         if (m_interrupted)
         {
-            m_PEntity->PAIBattle()->OnCastInterrupted(action, msg);
+            m_PEntity->PAIBattle()->OnCastInterrupted(*this, action, msg);
         }
         else
         {
-            m_PEntity->PAIBattle()->OnCastFinished(action);
+            m_PEntity->PAIBattle()->OnCastFinished(*this,action);
         }
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
         return true;
@@ -81,7 +81,7 @@ bool CMagicState::Update(time_point tick)
 void CMagicState::Clear()
 {
     action_t action;
-    m_PEntity->PAIBattle()->OnCastInterrupted(action, MSGBASIC_IS_INTERRUPTED);
+    m_PEntity->PAIBattle()->OnCastInterrupted(*this, action, MSGBASIC_IS_INTERRUPTED);
     m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
 }
 

@@ -24,6 +24,7 @@ This file is part of DarkStar-server source code.
 #include "ai_char.h"
 #include "controllers/player_controller.h"
 #include "states/attack_state.h"
+#include "states/weaponskill_state.h"
 #include "../entities/charentity.h"
 #include "../utils/battleutils.h"
 #include "../packets/action.h"
@@ -115,13 +116,12 @@ bool CAIChar::Attack(action_t& action)
     return CAIBattle::Attack(action);
 }
 
-void CAIChar::OnCastFinished(action_t& action)
+void CAIChar::OnCastFinished(CMagicState& state, action_t& action)
 {
-    CAIBattle::OnCastFinished(action);
+    CAIBattle::OnCastFinished(state, action);
 
-    auto state = static_cast<CMagicState*>(GetCurrentState());
-    auto PSpell = state->GetSpell();
-    auto PTarget = static_cast<CBattleEntity*>(state->GetTarget());
+    auto PSpell = state.GetSpell();
+    auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
     static_cast<CPlayerController*>(Controller.get())->setLastActionTime(server_clock::now());
     static_cast<CCharEntity*>(PEntity)->PRecastContainer->Add(RECAST_MAGIC, PSpell->getID(), action.recast);
@@ -161,9 +161,9 @@ void CAIChar::OnCastFinished(action_t& action)
     }
 }
 
-void CAIChar::OnCastInterrupted(action_t& action, MSGBASIC_ID msg)
+void CAIChar::OnCastInterrupted(CMagicState& state, action_t& action, MSGBASIC_ID msg)
 {
-    CAIBattle::OnCastInterrupted(action, msg);
+    CAIBattle::OnCastInterrupted(state, action, msg);
 
     auto container = static_cast<CMagicState*>(GetCurrentState());
     auto message = container->GetErrorMsg();
@@ -174,7 +174,7 @@ void CAIChar::OnCastInterrupted(action_t& action, MSGBASIC_ID msg)
     }
 }
 
-void CAIChar::OnWeaponskillFinished(action_t& action)
+void CAIChar::OnWeaponskillFinished(CWeaponskillState& state, action_t& action)
 {
-    CAIBattle::OnWeaponskillFinished(action);
+    CAIBattle::OnWeaponskillFinished(state, action);
 }

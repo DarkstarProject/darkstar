@@ -43,9 +43,9 @@ protected:
     virtual void OnDisengage() override;
 
     /* Casting functions */
-    virtual void OnCastFinished(action_t&) override;
-    virtual void OnCastInterrupted(action_t&, MSGBASIC_ID) override;
-    virtual void OnWeaponskillFinished(action_t&) override;
+    virtual void OnCastFinished(CMagicState&, action_t&) override;
+    virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg) override;
+    virtual void OnWeaponskillFinished(CWeaponskillState&, action_t&) override;
 
     time_point m_errMsgTime;
 };

@@ -330,16 +330,15 @@ void CAIBattle::Internal_Disengage()
     m_battleTarget = 0;
 }
 
-void CAIBattle::OnCastFinished(action_t& action)
+void CAIBattle::OnCastFinished(CMagicState& state, action_t& action)
 {
-    auto state = static_cast<CMagicState*>(GetCurrentState());
-    auto PSpell = state->GetSpell();
+    auto PSpell = state.GetSpell();
     auto PBattleEntity = static_cast<CBattleEntity*>(PEntity);
-    auto PActionTarget = static_cast<CBattleEntity*>(state->GetTarget());
+    auto PActionTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
     luautils::OnSpellPrecast(PBattleEntity, PSpell);
 
-    state->SpendCost();
+    state.SpendCost();
 
     // remove effects based on spell cast first
     int16 effectFlags = EFFECTFLAG_INVISIBLE | EFFECTFLAG_MAGIC_BEGIN;
@@ -393,7 +392,7 @@ void CAIBattle::OnCastFinished(action_t& action)
     action.id = PEntity->id;
     action.actiontype = ACTION_MAGIC_FINISH;
     action.actionid = PSpell->getID();
-    action.recast = state->GetRecast();
+    action.recast = state.GetRecast();
     action.spellgroup = PSpell->getSpellGroup();
 
     uint16 msg = 0;
@@ -461,7 +460,7 @@ void CAIBattle::OnCastFinished(action_t& action)
 
         actionTarget.messageID = msg;
 
-        state->ApplyEnmity(PTarget, ce, ve);
+        state.ApplyEnmity(PTarget, ce, ve);
 
         if (PTarget->objtype == TYPE_MOB && msg != 31) // If message isn't the shadow loss message, because I had to move this outside of the above check for it.
         {
@@ -472,7 +471,7 @@ void CAIBattle::OnCastFinished(action_t& action)
     PBattleEntity->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END);
 }
 
-void CAIBattle::OnCastInterrupted(action_t& action, MSGBASIC_ID msg)
+void CAIBattle::OnCastInterrupted(CMagicState& state, action_t& action, MSGBASIC_ID msg)
 {
     CSpell* PSpell = static_cast<CMagicState*>(GetCurrentState())->GetSpell();
     if (PSpell)
@@ -493,13 +492,13 @@ void CAIBattle::OnCastInterrupted(action_t& action, MSGBASIC_ID msg)
     }
 }
 
-void CAIBattle::OnWeaponskillFinished(action_t& action)
+void CAIBattle::OnWeaponskillFinished(CWeaponskillState& state, action_t& action)
 {
-    //common WS code goes here (set up action, etc)
-    auto state = static_cast<CWeaponskillState*>(GetCurrentState());
-    auto PWeaponskill = state->GetWeaponSkill();
-    auto PBattleEntity = static_cast<CBattleEntity*>(PEntity);
-    auto PActionTarget = static_cast<CBattleEntity*>(state->GetTarget());
+    auto PWeaponskill = state.GetWeaponSkill();
+
+    action.id = PEntity->id;
+    action.actiontype = ACTION_WEAPONSKILL_FINISH;
+    action.actionid = PWeaponskill->getID();
 }
 
 uint16 CAIBattle::GetBattleTargetID()

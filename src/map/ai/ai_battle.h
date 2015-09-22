@@ -31,6 +31,8 @@ This file is part of DarkStar-server source code.
 #include "../packets/message_basic.h"
 
 class CBattleEntity;
+class CWeaponskillState;
+class CMagicState;
 class CSpell;
 struct action_t;
 
@@ -61,10 +63,10 @@ public:
     virtual CBattleEntity* IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg);
     virtual void OnDisengage();
     /* Casting */
-    virtual void OnCastFinished(action_t&);
-    virtual void OnCastInterrupted(action_t&, MSGBASIC_ID msg);
+    virtual void OnCastFinished(CMagicState&, action_t&);
+    virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg);
     /* Weaponskill */
-    virtual void OnWeaponskillFinished(action_t&);
+    virtual void OnWeaponskillFinished(CWeaponskillState&, action_t&);
 
     uint16 GetBattleTargetID();
 

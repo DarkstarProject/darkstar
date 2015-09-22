@@ -64,7 +64,7 @@ bool CWeaponskillState::Update(time_point tick)
     if (tick > m_finishTime)
     {
         action_t action;
-        m_PEntity->PAIBattle()->OnWeaponskillFinished(action);
+        m_PEntity->PAIBattle()->OnWeaponskillFinished(*this, action);
 
         return true;
     }
