@@ -2900,7 +2900,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             else
             {
-				ShowDebug(CL_CYAN"Building invite packet to send to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
+                ShowDebug(CL_CYAN"Building invite packet to send to lobby server from %s\n" CL_RESET, PChar->GetName());
                 //on another server (hopefully)
                 uint8 packetData[12];
                 WBUFL(packetData, 0) = charid;
@@ -2908,7 +2908,8 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 WBUFL(packetData, 6) = PChar->id;
                 WBUFW(packetData, 10) = PChar->targid;
                 message::send(MSG_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_PARTY));
-				ShowDebug(CL_CYAN"Sent invite packet to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
+
+                ShowDebug(CL_CYAN"Sent invite packet to lobby server from %s\n" CL_RESET, PChar->GetName());
             }
         }
 		else //in party but not leader, cannot invite
@@ -2953,7 +2954,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             else
             {
-				ShowDebug(CL_CYAN"(Alliance)Building invite packet to send to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
+                ShowDebug(CL_CYAN"(Alliance)Building invite packet to send to lobby server from %s\n" CL_RESET, PChar->GetName());
                 //on another server (hopefully)
                 uint8 packetData[12];
                 WBUFL(packetData, 0) = charid;
@@ -2961,7 +2962,8 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 WBUFL(packetData, 6) = PChar->id;
                 WBUFW(packetData, 10) = PChar->targid;
                 message::send(MSG_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_ALLIANCE));
-				ShowDebug(CL_CYAN"(Alliance)Sent invite packet to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
+
+                ShowDebug(CL_CYAN"(Alliance)Sent invite packet to lobby server from %s\n" CL_RESET, PChar->GetName());
             }
         }
         break;
