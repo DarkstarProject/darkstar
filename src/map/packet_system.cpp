@@ -3802,7 +3802,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     {
                         std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
                         qStr += PChar->GetName();
-                        qStr += "','ALLIANCE','";
+                        qStr += "','PARTY','";
                         qStr += escape(data[6]);
                         qStr += "',current_timestamp());";
                         const char * cC = qStr.c_str();
