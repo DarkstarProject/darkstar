@@ -760,6 +760,17 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 		PMob->setMobMod(MOBMOD_GIL_MAX, -1);
 		PMob->setMobMod(MOBMOD_MUG_GIL, -1);
 		PMob->setMobMod(MOBMOD_2HOUR_PROC, 80);
+
+                // dynamis mobs have true sight
+                if(PMob->m_Aggro & AGGRO_DETECT_SIGHT)
+                {
+                    PMob->m_Aggro |= AGGRO_DETECT_TRUESIGHT;
+                }
+
+                if(PMob->m_Aggro & AGGRO_DETECT_HEARING)
+                {
+                    PMob->m_Aggro |= AGGRO_DETECT_TRUEHEARING;
+                }
 	}
 
 	// add two hours
