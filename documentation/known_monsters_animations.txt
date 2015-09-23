@@ -739,7 +739,7 @@
  738    ??? Animation
  739    ??? Animation
  740    Fanatic Dance
- 741    ??? Animation
+ 741    Doom
  742    The Wrath of GuDha
  743    Frypan
  744    Smokebomb
@@ -761,17 +761,17 @@
  760    Dice Reset
  761    Seismostomp
  762    Numbing Glare
- 763    ??? Animation
+ 763    Seismostomp
  764    Tormentful Glare
- 765    ??? Animation
+ 765    Seismostomp
  766    Torpid Glare
- 767    ??? Animation
+ 767    Seismostomp
  768    Lead Breath
- 769    ??? Animation
- 770    ??? Animation
- 771    ??? Animation
- 772    ??? Animation
- 773    ??? Animation
+ 769    Lead Breath
+ 770    Yagudo RNG 2 hour
+ 771    Quad RNG 2 hour
+ 772    heal HP
+ 773    heal MP
  774    ??? Animation
  775    ??? Animation
  776    ??? Animation

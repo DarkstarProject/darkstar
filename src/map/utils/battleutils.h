@@ -116,7 +116,7 @@ namespace battleutils
 
     CWeaponSkill*	GetWeaponSkill(uint16 WSkillID);
     CMobSkill*		GetMobSkill(uint16 SkillID);
-    CMobSkill*          GetTwoHourMobSkill(JOBTYPE job);
+    CMobSkill*          GetTwoHourMobSkill(JOBTYPE job, uint16 familyId);
 
     std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill);
     const std::vector<uint16>& GetMobSkillList(uint16 ListID);

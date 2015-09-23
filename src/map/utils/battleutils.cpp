@@ -398,7 +398,7 @@ namespace battleutils
     *	get mobs 2 hour skills	(should be moved into mobskill.cpp)         *
     *                                                                       *
     ************************************************************************/
-    CMobSkill* GetTwoHourMobSkill(JOBTYPE job)
+    CMobSkill* GetTwoHourMobSkill(JOBTYPE job, uint16 familyId)
     {
         uint16 id = 0;
 
@@ -414,7 +414,23 @@ namespace battleutils
             case JOB_DRK: id = 439; break;
             case JOB_BST: id = 484; break;
             case JOB_BRD: id = 440; break;
-            case JOB_RNG: id = 479; break;
+            case JOB_RNG:
+                          if(familyId == 270 || familyId == 360)
+                          {
+                              // Yagudo has it's own version
+                              id = 865;
+                          }
+                          else if(familyId == 337 || familyId == 200 || familyId == 201
+                                  || familyId == 202)
+                          {
+                              // Quadav has it's own version
+                              id = 866;
+                          }
+                          else
+                          {
+                              id = 479;
+                          }
+                          break;
             case JOB_SAM: id = 474; break;
             case JOB_NIN: id = 475; break;
             case JOB_DRG: id = 476; break;

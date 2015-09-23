@@ -856,14 +856,14 @@ INSERT INTO `mob_skills` VALUES (790,660,'Horrid_Roar_2',0,18.0,4000,1500,4,8,0,
 INSERT INTO `mob_skills` VALUES (808,351,'Jump',0,9.5,2000,0,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (809,809,'Eagle_Eye_Shot',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (810,740,'Fanatic_Dance',1,10.0,2000,2000,4,0,0,0); -- Only NM's in Dynamis and Falsespinner Bhudbrodd
--- INSERT INTO `mob_skills` VALUES (811,811,'Doom',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (811,741,'Doom',0,9.0,2000,2000,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (812,812,'Feather_Storm',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (813,813,'Double_Kick',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (814,814,'Parry',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (815,815,'Sweep',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (816,816,'Howl',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (817,817,'Doom',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (818,818,'The_Wrath_of_Gu'Dha',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (817,741,'Doom',0,9.0,2000,2000,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (818,742,'The_Wrath_of_GuDha',1,15.0,2000,2000,4,0,0,7);
 INSERT INTO `mob_skills` VALUES (819,1557,'Ore_Toss',0,7.0,2000,2000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (820,1558,'Head_Butt',0,7.0,2000,2000,4,0,0,1);
 INSERT INTO `mob_skills` VALUES (821,1559,'Shell_Bash',0,7.0,2000,1000,4,0,0,0);
@@ -901,17 +901,17 @@ INSERT INTO `mob_skills` VALUES (852,759,'Dice_Dispel',1,10.0,3000,1500,4,0,0,0)
 INSERT INTO `mob_skills` VALUES (853,760,'Dice_Reset',1,10.0,3000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (854,761,'Seismostomp',1,15.0,3000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (855,762,'Numbing_Glare',4,15.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (856,856,'Seismostomp',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (856,763,'Seismostomp',1,15.0,3000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (857,764,'Tormentful_Glare',4,15.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (858,858,'Seismostomp',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (858,765,'Seismostomp',1,15.0,3000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (859,766,'Torpid_Glare',4,15.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (860,860,'Seismostomp',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (860,767,'Seismostomp',1,15.0,3000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (861,768,'Lead_Breath',4,15.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (862,862,'Lead_Breath',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (862,769,'Lead_Breath',4,15.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (863,863,'Frag_Bomb',0,7.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (864,66,'10000_Needles',1,10.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (865,865,'Eagle_Eye_Shot',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (866,866,'Eagle_Eye_Shot',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (864,69,'10000_Needles',1,10.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (865,770,'Eagle_Eye_Shot',0,25.0,2000,0,4,0,0,0); -- Yagudo Move
+INSERT INTO `mob_skills` VALUES (866,771,'Eagle_Eye_Shot',0,25.0,2000,0,4,0,0,0); -- Quadav Move
 -- INSERT INTO `mob_skills` VALUES (867,867,'Ore_Toss',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (868,868,'#868',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (869,869,'#869',0,7.0,2000,1500,4,0,0,0);
