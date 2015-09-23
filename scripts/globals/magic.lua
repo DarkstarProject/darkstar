@@ -434,8 +434,10 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
     -- add effect resistence
     if (effect ~= nil and effect > 0) then
         local effectres = 0;
-        if (effect == EFFECT_SLEEP_I or effect == EFFECT_SLEEP_II or effect == EFFECT_LULLABY) then
+        if (effect == EFFECT_SLEEP_I or effect == EFFECT_SLEEP_II) then
             effectres = MOD_SLEEPRES;
+        elseif(effect == EFFECT_LULLABY) then
+            effectres = MOD_LULLABYRES;
         elseif (effect == EFFECT_POISON) then
             effectres = MOD_POISONRES;
         elseif (effect == EFFECT_PARALYZE) then
@@ -466,10 +468,6 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
 
         if (effectres > 0) then
             percentBonus = percentBonus - target:getMod(effectres);
-        end
-
-        if(effect == EFFECT_LULLABY) then
-            magicacc = magicacc - target:getMod(MOD_LULLABYRES);
         end
     end
 
@@ -550,7 +548,7 @@ function calculateMagicHitRate(magicacc, magiceva, percentBonus, casterLvl, targ
 
     p = 50 - 0.5 * (magiceva - magicacc) + levelDiff * 2 + percentBonus;
 
-    -- printf("P: %f, acc: %f, eva: %f, bonus: %f, leveldiff: %f", p, magicacc, magiceva, percentBonus, levelDiff);
+    -- printf("P: %f, macc: %f, meva: %f, bonus: %d%%, leveldiff: %d%%", p, magicacc, magiceva, percentBonus, levelDiff);
 
     return utils.clamp(p, 5, 95);
 end

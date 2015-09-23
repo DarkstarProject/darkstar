@@ -640,6 +640,22 @@ void CalculateStats(CMobEntity * PMob)
     // add traits for sub and main
     battleutils::AddTraits(PMob, traits::GetTraits(mJob), mLvl);
     battleutils::AddTraits(PMob, traits::GetTraits(PMob->GetSJob()), PMob->GetSLevel());
+
+    // job resist traits are much more powerful in dynamis
+    // according to wiki
+    if(zoneType == ZONETYPE_DYNAMIS)
+    {
+        for(auto&& PTrait : PMob->TraitList)
+        {
+            uint16 type = PTrait->getMod();
+
+            if(type >= 240 && type <= 255)
+            {
+                // give mob a total of x4 the regular rate
+                PMob->addModifier(type, PTrait->getValue() * 3);
+            }
+        }
+    }
 }
 
 void RecalculateSpellContainer(CMobEntity* PMob)
