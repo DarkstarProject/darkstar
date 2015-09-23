@@ -837,7 +837,7 @@ void LoadCustomMods()
 {
 
 	// load family mods
-	const int8 QueryFamilyMods[] = "SELECT familyid, modid, value, type FROM mob_family_mods;";
+	const int8 QueryFamilyMods[] = "SELECT familyid, modid, value, is_mob_mod FROM mob_family_mods;";
 
     int32 ret = Sql_Query(SqlHandle, QueryFamilyMods);
 
@@ -850,8 +850,8 @@ void LoadCustomMods()
 			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
 			mod->setModAmount(Sql_GetIntData(SqlHandle,2));
 
-			uint16 type = Sql_GetUIntData(SqlHandle,3);
-			if(type == 1)
+			int8 isMobMod = Sql_GetIntData(SqlHandle,3);
+			if(isMobMod == 1)
 			{
 				familyMods->mobMods.push_back(mod);
 			}
@@ -863,7 +863,7 @@ void LoadCustomMods()
 	}
 
 	// load pool mods
-	const int8 QueryPoolMods[] = "SELECT poolid, modid, value, type FROM mob_pool_mods;";
+	const int8 QueryPoolMods[] = "SELECT poolid, modid, value, is_mob_mod FROM mob_pool_mods;";
 
     ret = Sql_Query(SqlHandle, QueryPoolMods);
 
@@ -880,8 +880,8 @@ void LoadCustomMods()
 			CModifier* mod = new CModifier(id);
 			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
 
-			uint16 type = Sql_GetUIntData(SqlHandle,3);
-			if(type == 1)
+			int8 isMobMod = Sql_GetIntData(SqlHandle,3);
+			if(isMobMod == 1)
 			{
 				poolMods->mobMods.push_back(mod);
 			}
@@ -893,7 +893,7 @@ void LoadCustomMods()
 	}
 
 	// load spawn mods
-	const int8 QuerySpawnMods[] = "SELECT mobid, modid, value, type FROM mob_spawn_mods;";
+	const int8 QuerySpawnMods[] = "SELECT mobid, modid, value, is_mob_mod FROM mob_spawn_mods;";
 
     ret = Sql_Query(SqlHandle, QuerySpawnMods);
 
@@ -906,8 +906,8 @@ void LoadCustomMods()
 			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
 			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
 
-			uint16 type = Sql_GetUIntData(SqlHandle,3);
-			if(type == 1)
+			int8 isMobMod = Sql_GetIntData(SqlHandle,3);
+			if(isMobMod == 1)
 			{
 				spawnMods->mobMods.push_back(mod);
 			}

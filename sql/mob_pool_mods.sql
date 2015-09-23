@@ -26,7 +26,7 @@ CREATE TABLE `mob_pool_mods` (
   `poolid` smallint(5) unsigned NOT NULL,
   `modid` smallint(5) unsigned NOT NULL,
   `value` smallint(5) NOT NULL DEFAULT '0',
-  `type` smallint(5) NOT NULL DEFAULT '0',
+  `is_mob_mod` boolean NOT NULL DEFAULT '0',
   PRIMARY KEY (`poolid`,`modid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=13 PACK_KEYS=1;
 /*!40101 SET character_set_client = @saved_cs_client */;
