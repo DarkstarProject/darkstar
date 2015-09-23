@@ -27,6 +27,7 @@ This file is part of DarkStar-server source code.
 #include "states/weaponskill_state.h"
 #include "../entities/charentity.h"
 #include "../utils/battleutils.h"
+#include "../utils/charutils.h"
 #include "../packets/action.h"
 #include "../packets/lock_on.h"
 #include "../packets/char_update.h"
@@ -174,7 +175,134 @@ void CAIChar::OnCastInterrupted(CMagicState& state, action_t& action, MSGBASIC_I
     }
 }
 
-void CAIChar::OnWeaponskillFinished(CWeaponskillState& state, action_t& action)
+void CAIChar::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action)
 {
-    CAIBattle::OnWeaponskillFinished(state, action);
+    CAIBattle::OnWeaponSkillFinished(state, action);
+
+    auto PWeaponSkill = state.GetWeaponSkill();
+    auto PChar = static_cast<CCharEntity*>(PEntity);
+    auto PBattleTarget = static_cast<CBattleEntity*>(state.GetTarget());
+
+    int16 tp = battleutils::CalculateWeaponSkillTP(PChar, PWeaponSkill);
+    state.SpendCost();
+    PChar->PLatentEffectContainer->CheckLatentsTP(PChar->health.tp);
+
+    if (distance(PEntity->loc.p, PBattleTarget->loc.p) - PBattleTarget->m_ModelSize < PWeaponSkill->getRange())
+    {
+        //WS scripts currently rely on user:getTP() to get the tp
+        int16 prevTP = PChar->health.tp;
+        PChar->health.tp = tp;
+
+        uint8 damslot = SLOT_MAIN;
+        if (PWeaponSkill->getID() >= 192 && PWeaponSkill->getID() <= 221)
+        {
+            damslot = SLOT_RANGED;
+        }
+
+        targetFind.reset();
+        //#TODO: revise parameters
+        targetFind.findWithinArea(PBattleTarget, AOERADIUS_TARGET, 10);
+
+        for (auto&& PTarget : targetFind.m_targets)
+        {
+            actionList_t& actionList = action.getNewActionList();
+            actionList.ActionTargetID = PTarget->id;
+
+            actionTarget_t& actionTarget = actionList.getNewActionTarget();
+
+            uint16 tpHitsLanded;
+            uint16 extraHitsLanded;
+            int32 damage = luautils::OnUseWeaponSkill(PChar, PTarget, tpHitsLanded, extraHitsLanded);
+
+            actionTarget.reaction = REACTION_NONE;
+            actionTarget.speceffect = SPECEFFECT_NONE;
+            actionTarget.animation = PWeaponSkill->getAnimationId();
+            actionTarget.messageID = 0;
+
+            bool primary = PTarget == PBattleTarget;
+
+            CBattleEntity* taChar = nullptr;
+
+            if (primary)
+            {
+                if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+                    taChar = battleutils::getAvailableTrickAttackChar(PChar, PBattleTarget);
+            }
+
+            if (!battleutils::isValidSelfTargetWeaponskill(PWeaponSkill->getID()))
+            {
+                damage = battleutils::TakeWeaponskillDamage(PChar, PBattleTarget, damage, damslot, tpHitsLanded, taChar);
+                actionTarget.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
+                actionTarget.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
+                PChar->addTP(extraHitsLanded * 10);
+
+                if (actionTarget.reaction == REACTION_EVADE)
+                    actionTarget.messageID = primary ? 188 : 282; //but misses
+                else if (damage < 0)
+                {
+                    actionTarget.param = -damage;
+                    actionTarget.messageID = primary ? 238 : 263; //absorbed ws
+                }
+                else
+                {
+                    actionTarget.param = damage;
+                    actionTarget.messageID = primary ? 185 : 264; //damage ws
+
+                    if (primary && PBattleTarget->objtype == TYPE_MOB)
+                    {
+                        luautils::OnWeaponskillHit(PBattleTarget, PChar, PWeaponSkill->getID());
+                    }
+                }
+            }
+            else
+            {
+                actionTarget.messageID = primary ? 224 : 276; //restores mp msg
+                actionTarget.reaction = REACTION_HIT;
+                dsp_max(damage, 0);
+                actionTarget.param = PChar->addMP(damage);
+            }
+
+            if (primary)
+            {
+                if (PWeaponSkill->getID() >= 192 && PWeaponSkill->getID() <= 218)
+                {
+                    battleutils::RemoveAmmo(PChar);
+                }
+                int wspoints = 1;
+                if (actionTarget.reaction == REACTION_HIT && PWeaponSkill->getPrimarySkillchain() != 0)
+                {
+                    // NOTE: GetSkillChainEffect is INSIDE this if statement because it
+                    //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
+                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill);
+                    if (effect != SUBEFFECT_NONE)
+                    {
+                        actionTarget.addEffectParam = battleutils::TakeSkillchainDamage(PChar, PBattleTarget, damage);
+                        if (actionTarget.addEffectParam < 0)
+                        {
+                            actionTarget.addEffectParam = -actionTarget.addEffectParam;
+                            actionTarget.addEffectMessage = 384 + effect;
+                        }
+                        else
+                            actionTarget.addEffectMessage = 287 + effect;
+                        actionTarget.additionalEffect = effect;
+
+                        if (effect >= 7)
+                            wspoints += 1;
+                        else if (effect >= 3)
+                            wspoints += 2;
+                        else
+                            wspoints += 4;
+                    }
+                }
+                // check for ws points
+                charutils::AddWeaponSkillPoints(PChar, (SLOTTYPE)damslot, wspoints);
+            }
+        }
+        PChar->health.tp = prevTP;
+    }
+    else
+    {
+        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PEntity, PEntity, 0, 0, MSGBASIC_TOO_FAR_AWAY));
+    }
+    charutils::UpdateHealth(PChar);
 }

@@ -4740,6 +4740,26 @@ namespace charutils
         PChar->pushPacket(new CServerIPPacket(PChar, type, ipp));
     }
 
+    void AddWeaponSkillPoints(CCharEntity* PChar, SLOTTYPE slotid, int wspoints)
+    {
+        CItemWeapon* PWeapon = (CItemWeapon*)PChar->m_Weapons[slotid];
+
+        if (PWeapon && PWeapon->isUnlockable() && !PWeapon->isUnlocked())
+        {
+            if (PWeapon->addWsPoints(wspoints))
+            {
+                // weapon is now broken
+                PChar->PLatentEffectContainer->CheckLatentsWeaponBreak(slotid);
+                PChar->pushPacket(new CCharStatsPacket(PChar));
+            }
+            int8 extra[sizeof(PWeapon->m_extra) * 2 + 1];
+            Sql_EscapeStringLen(SqlHandle, extra, (const char*)PWeapon->m_extra, sizeof(PWeapon->m_extra));
+
+            const int8* Query = "UPDATE char_inventory SET extra = '%s' WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
+            Sql_Query(SqlHandle, Query, extra, PChar->id, PWeapon->getLocationID(), PWeapon->getSlotID());
+        }
+    }
+
     int32 GetVar(CCharEntity* PChar, const char* var)
     {
         const int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;";

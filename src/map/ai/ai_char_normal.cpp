@@ -2557,7 +2557,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
     int32 damage = 0;
     m_PChar->PLatentEffectContainer->CheckLatentsTP(0);
 
-    damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
+    //damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
 
     if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
     {
@@ -2745,7 +2745,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
             m_PChar->health.tp = wsTP;
 
-            damage = luautils::OnUseWeaponSkill(m_PChar, PTarget, &tpHitsLanded, &extraHitsLanded);
+            //damage = luautils::OnUseWeaponSkill(m_PChar, PTarget, &tpHitsLanded, &extraHitsLanded);
 
             if (!(battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())))
             {

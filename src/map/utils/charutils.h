@@ -171,6 +171,7 @@ namespace charutils
     int32   GetPoints(CCharEntity* PChar, const char* type);
     std::string GetConquestPointsName(CCharEntity* PChar);
     void    SendToZone(CCharEntity* PChar, uint8 type, uint64 ipp);
+    void    AddWeaponSkillPoints(CCharEntity*, SLOTTYPE, int);
 
     int32   GetVar(CCharEntity* PChar, const char* var);
 };

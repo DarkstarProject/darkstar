@@ -492,7 +492,7 @@ void CAIBattle::OnCastInterrupted(CMagicState& state, action_t& action, MSGBASIC
     }
 }
 
-void CAIBattle::OnWeaponskillFinished(CWeaponskillState& state, action_t& action)
+void CAIBattle::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action)
 {
     auto PWeaponskill = state.GetWeaponSkill();
 

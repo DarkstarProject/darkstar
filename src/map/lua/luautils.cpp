@@ -2950,7 +2950,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLanded, uint16* extraHitsLanded)
+    int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16& tpHitsLanded, uint16& extraHitsLanded)
     {
         CWeaponSkill* wskill = PChar->PBattleAI->GetCurrentWeaponSkill();
 
@@ -2980,8 +2980,8 @@ namespace luautils
             lua_pop(LuaHandle, returns);
             return 0;
         }
-        (*tpHitsLanded) = lua_tonumber(LuaHandle, -4);
-        (*extraHitsLanded) = lua_tonumber(LuaHandle, -3);
+        tpHitsLanded = lua_tonumber(LuaHandle, -4);
+        extraHitsLanded = lua_tonumber(LuaHandle, -3);
         bool criticalHit = lua_toboolean(LuaHandle, -2);
         int32 dmg = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
 

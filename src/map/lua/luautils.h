@@ -270,7 +270,7 @@ namespace luautils
 
     int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbility, CBaseEntity** PMsgTarget);	// triggers when a player attempts to use a job ability or roll
     int32 OnPetAbility(CBaseEntity* PPet, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PPetMaster);		// triggers when pet uses an ability
-    int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLanded, uint16* extraHitsLanded);	// triggers when weapon skill is used
+    int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16& tpHitsLanded, uint16& extraHitsLanded);	// triggers when weapon skill is used
     int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, apAction_t* action);		    // triggers when job ability is used
     int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, uint8 total);			// triggers on corsair roll
 

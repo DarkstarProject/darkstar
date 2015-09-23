@@ -45,7 +45,7 @@ protected:
     /* Casting functions */
     virtual void OnCastFinished(CMagicState&, action_t&) override;
     virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg) override;
-    virtual void OnWeaponskillFinished(CWeaponskillState&, action_t&) override;
+    virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
 
     time_point m_errMsgTime;
 };

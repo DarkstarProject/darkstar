@@ -26,45 +26,79 @@ This file is part of DarkStar-server source code.
 #include "../../entities/mobentity.h"
 #include "../../packets/action.h"
 #include "../../utils/battleutils.h"
+#include "../../mobskill.h"
+#include "../../weapon_skill.h"
 
-CWeaponskillState::CWeaponskillState(CCharEntity* PChar, uint16 targid) :
-    CWeaponskillState(PChar, targid, 0s)
-{}
-
-CWeaponskillState::CWeaponskillState(CMobEntity* PMob, uint16 targid) :
-    CWeaponskillState(PMob, targid, 4s)
-{}
-
-CWeaponskillState::CWeaponskillState(CBattleEntity* PEntity, uint16 targid, duration casttime) :
+CWeaponSkillState::CWeaponSkillState(CBattleEntity* PEntity, uint16 targid) :
     CState(PEntity, targid),
     m_PEntity(PEntity),
-    m_finishTime(server_clock::now() + casttime),
-    m_PWeaponskill(nullptr)
+    m_PWeaponSkill(nullptr),
+    m_PMobSkill(nullptr)
 {}
 
-bool CWeaponskillState::StartWeaponskill(uint16 wsid)
+bool CWeaponSkillState::StartWeaponSkill(uint16 wsid)
 {
     CWeaponSkill* PWeaponskill = battleutils::GetWeaponSkill(wsid);
 
     if (PWeaponskill)
     {
-        m_PWeaponskill = std::make_unique<CWeaponSkill>(*PWeaponskill);
+        m_PWeaponSkill = std::make_unique<CWeaponSkill>(*PWeaponskill);
+
+        return true;
     }
 
     return false;
 }
 
-CWeaponSkill * CWeaponskillState::GetWeaponSkill()
+bool CWeaponSkillState::StartMobSkill(uint16 mobskillid)
 {
-    return m_PWeaponskill.get();
+    CMobSkill* PMobskill = battleutils::GetMobSkill(mobskillid);
+
+    if (PMobskill)
+    {
+        m_PMobSkill = std::make_unique<CMobSkill>(*PMobskill);
+        m_finishTime = server_clock::now() + std::chrono::milliseconds(PMobskill->getActivationTime());
+        //#TODO: start the cast if it has a time
+        return true;
+    }
+
+    return false;
 }
 
-bool CWeaponskillState::Update(time_point tick)
+CWeaponSkill* CWeaponSkillState::GetWeaponSkill()
+{
+    return m_PWeaponSkill.get();
+}
+
+CMobSkill* CWeaponSkillState::GetMobSkill()
+{
+    return m_PMobSkill.get();
+}
+
+void CWeaponSkillState::SpendCost()
+{
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
+    {
+        m_PEntity->addTP(-1000);
+    }
+    else if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI))
+    {
+        m_PEntity->addTP(-1000);
+        m_PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
+    }
+    else
+    {
+        m_PEntity->health.tp = 0;
+    }
+}
+
+bool CWeaponSkillState::Update(time_point tick)
 {
     if (tick > m_finishTime)
     {
         action_t action;
-        m_PEntity->PAIBattle()->OnWeaponskillFinished(*this, action);
+        m_PEntity->PAIBattle()->OnWeaponSkillFinished(*this, action);
+        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
 
         return true;
     }

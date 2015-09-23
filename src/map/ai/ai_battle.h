@@ -31,7 +31,7 @@ This file is part of DarkStar-server source code.
 #include "../packets/message_basic.h"
 
 class CBattleEntity;
-class CWeaponskillState;
+class CWeaponSkillState;
 class CMagicState;
 class CSpell;
 struct action_t;
@@ -66,7 +66,7 @@ public:
     virtual void OnCastFinished(CMagicState&, action_t&);
     virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg);
     /* Weaponskill */
-    virtual void OnWeaponskillFinished(CWeaponskillState&, action_t&);
+    virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&);
 
     uint16 GetBattleTargetID();
 

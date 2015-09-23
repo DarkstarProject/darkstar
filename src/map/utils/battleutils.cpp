@@ -5225,6 +5225,109 @@ namespace battleutils
         }
         return recast / 1000;
     }
+
+    int16 CalculateWeaponSkillTP(CBattleEntity* PEntity, CWeaponSkill* PWeaponSkill)
+    {
+        //apply TP Bonus
+        int16 tp = PEntity->health.tp + PEntity->getMod(MOD_TP_BONUS);
+        
+        if (PEntity->objtype == TYPE_PC)
+        {
+            auto PChar = static_cast<CCharEntity*>(PEntity);
+            uint8 damslot = SLOT_MAIN;
+            if (PWeaponSkill->getID() >= 192 && PWeaponSkill->getID() <= 221)
+            {
+                damslot = SLOT_RANGED;
+            }
+
+            //remove TP Bonus from offhand weapon
+            if (PChar->equip[SLOT_SUB] != 0)
+            {
+                std::vector<CModifier*>::iterator modIterator;
+                std::vector<CModifier*> modList = ((CItemArmor*)PChar->getEquip(SLOT_SUB))->modList;
+
+                for (modIterator = modList.begin(); modIterator != modList.end(); modIterator++)
+                {
+                    if ((*modIterator)->getModID() == MOD_TP_BONUS) {
+                        tp -= (*modIterator)->getModAmount();
+                    }
+                }
+            }
+
+            //if ranged WS, remove TP bonus from mainhand weapon
+            if (damslot == SLOT_RANGED)
+            {
+                if (PChar->equip[SLOT_MAIN] != 0)
+                {
+                    std::vector<CModifier*>::iterator modIterator;
+                    std::vector<CModifier*> modList = ((CItemArmor*)PChar->getEquip(SLOT_MAIN))->modList;
+
+                    for (modIterator = modList.begin(); modIterator != modList.end(); modIterator++)
+                    {
+                        if ((*modIterator)->getModID() == MOD_TP_BONUS)
+                        {
+                            tp -= (*modIterator)->getModAmount();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                //if melee WS, remove TP bonus from ranged weapon
+                if (PChar->equip[SLOT_RANGED] != 0)
+                {
+                    std::vector<CModifier*>::iterator modIterator;
+                    std::vector<CModifier*> modList = ((CItemArmor*)PChar->getEquip(SLOT_RANGED))->modList;
+
+                    for (modIterator = modList.begin(); modIterator != modList.end(); modIterator++)
+                    {
+                        if ((*modIterator)->getModID() == MOD_TP_BONUS)
+                        {
+                            tp -= (*modIterator)->getModAmount();
+                        }
+                    }
+                }
+            }
+        }
+
+        if (tp > 3000)
+        {
+            tp = 3000;
+        }
+        return tp;
+    }
+
+    void RemoveAmmo(CCharEntity* PChar)
+    {
+        //ranged WS IDs
+        CItemWeapon* PAmmo = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
+
+        uint16 recycleChance = PChar->getMod(MOD_RECYCLE) + PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE, PChar);
+
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
+        {
+            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_UNLIMITED_SHOT);
+            recycleChance = 100;
+        }
+
+        if (PAmmo != nullptr && dsprand::GetRandomNumber(100) > recycleChance)
+        {
+            if ((PAmmo->getQuantity() - 1) < 1) // ammo will run out after this shot, make sure we remove it from equip
+            {
+                uint8 slot = PChar->equip[SLOT_AMMO];
+                uint8 loc = PChar->equipLoc[SLOT_AMMO];
+                charutils::UnequipItem(PChar, SLOT_AMMO);
+                charutils::SaveCharEquip(PChar);
+                charutils::UpdateItem(PChar, loc, slot, -1);
+            }
+            else
+            {
+                charutils::UpdateItem(PChar, PChar->equipLoc[SLOT_AMMO], PChar->equip[SLOT_AMMO], -1);
+            }
+            PChar->pushPacket(new CInventoryFinishPacket());
+        }
+    }
+
     int32 GetMeritValue(CBattleEntity* PEntity, MERIT_TYPE merit)
     {
         if (PEntity->objtype == TYPE_PC)
