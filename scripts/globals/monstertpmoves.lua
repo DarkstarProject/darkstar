@@ -328,7 +328,6 @@ end
 --effect = EFFECT_WHATEVER if enfeeble
 --statmod = the stat to account for resist (INT,MND,etc) e.g. MOD_INT
 --This determines how much the monsters ability resists on the player.
---TODO: update all mob moves to use the new function
 function applyPlayerResistance(mob,effect,target,diff,bonus,element)
     resist = 1.0;
     magicaccbonus = 0;
