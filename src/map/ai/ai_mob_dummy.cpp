@@ -225,7 +225,7 @@ void CAIMobDummy::ActionRoaming()
             // do not check for despawning because i'm at home
             m_checkDespawn = false;
 
-            if (m_PSpecialSkill != nullptr && TrySpecialSkill())
+            if (m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 && TrySpecialSkill())
             {
                 // I spawned a pet
             }
@@ -653,15 +653,6 @@ void CAIMobDummy::ActionSpawn()
             if(purse == 0)
                 purse = m_PMob->GetRandomGil();
             m_PMob->setMobMod(MOBMOD_MUG_GIL, purse);
-        }
-
-        // get my special skill
-        if (m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL))
-        {
-            m_PSpecialSkill = battleutils::GetMobSkill(m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL));
-            if(m_PSpecialSkill == nullptr){
-                ShowError("CAIMobDummy::ActionSpawn Special skill was set but not found! (%d)\n", m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL));
-            }
         }
 
         // spawn somewhere around my point
@@ -1423,7 +1414,7 @@ void CAIMobDummy::ActionAttack()
     }
 
     // Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-    if (m_PSpecialSkill != nullptr && !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) && (m_Tick >= m_LastSpecialTime + m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)) && TrySpecialSkill())
+    if (m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 && !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) && (m_Tick >= m_LastSpecialTime + m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)) && TrySpecialSkill())
     {
         FinishAttack();
         return;
@@ -1475,7 +1466,7 @@ void CAIMobDummy::ActionAttack()
             // you're so far away i'm going to standback when I get closer
             m_CanStandback = true;
         }
-        else if (m_PSpecialSkill == nullptr && !CanCastSpells() || m_PMob->GetHPP() <= 65)
+        else if (m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL) == 0 && !CanCastSpells() || m_PMob->GetHPP() <= 65)
         {
             // can't standback anymore cause I don't have any ranged moves
             m_CanStandback = false;
@@ -2218,7 +2209,7 @@ void CAIMobDummy::ActionSpecialSkill()
     m_LastActionTime = m_Tick;
     m_DeaggroTime = m_Tick;
 
-    uint32 halfSpecial = (float)m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)/2;
+    uint32 halfSpecial = (float)m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)/4;
 
     m_LastSpecialTime = m_Tick - dsprand::GetRandomNumber(halfSpecial);
 
@@ -2328,10 +2319,14 @@ void CAIMobDummy::CastSpell(uint16 spellId, CBattleEntity* PTarget)
 
 bool CAIMobDummy::TrySpecialSkill()
 {
-    if (m_PSpecialSkill == nullptr)
-    {
+    // get my special skill
+    m_PSpecialSkill = battleutils::GetMobSkill(m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL));
+
+    if(m_PSpecialSkill == nullptr){
+        ShowError("CAIMobDummy::ActionSpawn Special skill was set but not found! (%d)\n", m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL));
         return false;
     }
+
     if (!m_MobAbilityEnabled)
     {
         return false;
@@ -2435,15 +2430,14 @@ void CAIMobDummy::SetupEngage()
     m_StartBattle = m_Tick;
     m_DeaggroTime = m_Tick;
     m_LastActionTime = m_Tick - 1000; // Why do we subtract 1 sec?
-    m_LastMobSkillTime = m_Tick;
     m_firstSpell = true;
     m_CanStandback = true;
     m_PPathFind->Clear();
 
-    // drg shouldn't use jump right away
-    if (m_PMob->GetMJob() == JOB_DRG && m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) != 0)
+    // don't use offensive special skill right away
+    if (m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 && m_PMob->GetMJob() != JOB_BST && m_PMob->GetMJob() != JOB_PUP)
     {
-        m_LastSpecialTime = m_Tick - dsprand::GetRandomNumber(m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)) + 5000;
+        m_LastSpecialTime = m_Tick - dsprand::GetRandomNumber((int16)m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) / 2) + 1000;
     }
 
     if (m_PMob->m_roamFlags & ROAMFLAG_WORM)

@@ -117,7 +117,6 @@ namespace battlefieldutils{
 
 							if(strcmp(PMob->GetName(),"Maat")==0){
 								mobutils::SetupMaat(PMob, (JOBTYPE)battlefield->getPlayerMainJob());
-								PMob->m_DropID = 4485; //Give Maat his stealable Warp Scroll 
 
 								// disable players subjob
 								battlefield->disableSubJob();

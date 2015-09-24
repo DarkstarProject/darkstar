@@ -656,6 +656,11 @@ void CalculateStats(CMobEntity * PMob)
             }
         }
     }
+
+    if(PMob->m_Family == 335)
+    {
+        mobutils::SetupMaatAfterSpawn(PMob);
+    }
 }
 
 void RecalculateSpellContainer(CMobEntity* PMob)
@@ -1055,21 +1060,37 @@ void AddCustomMods(CMobEntity* PMob)
 
 void SetupMaat(CMobEntity* PMob, JOBTYPE job)
 {
-	//set job based on characters job
-	PMob->ChangeMJob(job);
+    //set job based on characters job
+    PMob->ChangeMJob(job);
+    PMob->m_DropID = 4485; //Give Maat his stealable Warp Scroll 
+}
 
-	// reset just incase
-	CalculateStats(PMob);
+void SetupMaatAfterSpawn(CMobEntity* PMob)
+{
+    PMob->m_Weapons[SLOT_MAIN]->setDelay((240*1000)/60);
 
-	PMob->m_Weapons[SLOT_MAIN]->setDelay((240*1000)/60);
-
-	// this is kind a hacky but make nin maat always double attacks
-	switch(PMob->GetMJob()){
-		case JOB_NIN:
-			PMob->setModifier(MOD_DOUBLE_ATTACK, 100);
-			PMob->m_Weapons[SLOT_MAIN]->resetDelay();
-		break;
-	}
+    switch(PMob->GetMJob()){
+        case JOB_DRG:
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 0);
+            break;
+        case JOB_NIN:
+            // this is kind a hacky but make nin maat always double attack
+            PMob->setModifier(MOD_DOUBLE_ATTACK, 100);
+            PMob->m_Weapons[SLOT_MAIN]->resetDelay();
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 0);
+            break;
+        case JOB_DRK:
+        case JOB_PLD:
+            // Give shield bash
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 780);
+            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 45);
+            break;
+        case JOB_BST:
+            // Call beast skill
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 761);
+            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
+            break;
+    }
 }
 
 CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)

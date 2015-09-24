@@ -402,6 +402,31 @@ namespace battleutils
     {
         uint16 id = 0;
 
+        if(familyId == 335)
+        {
+            // Maat has his own two hour animations
+            switch (job)
+            {
+                case JOB_WAR: id = 752; break;
+                case JOB_MNK: id = 753; break;
+                case JOB_WHM: id = 754; break;
+                case JOB_BLM: id = 755; break;
+                case JOB_RDM: id = 756; break;
+                case JOB_THF: id = 757; break;
+                case JOB_PLD: id = 758; break;
+                case JOB_DRK: id = 759; break;
+                case JOB_BST: id = 760; break;
+                case JOB_BRD: id = 762; break;
+                case JOB_RNG: id = 763; break;
+                case JOB_SAM: id = 764; break;
+                case JOB_NIN: id = 765; break;
+                case JOB_DRG: id = 766; break;
+                // case JOB_SMN: id = 767; break;
+            }
+
+            return GetMobSkill(id);
+        }
+
         switch (job)
         {
             case JOB_WAR: id = 432; break;
