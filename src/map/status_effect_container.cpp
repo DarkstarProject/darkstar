@@ -96,7 +96,7 @@ namespace effects
         uint32    MinDuration;
     };
 
-    EffectParams_t EffectsParams[MAX_EFFECTID];
+    std::array<EffectParams_t, MAX_EFFECTID> EffectsParams;
 
     /************************************************************************
     *                                                                       *
