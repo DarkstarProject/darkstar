@@ -47,7 +47,7 @@ public:
 
     bool DoUpdate(time_point tick);
     //try interrupt (on hit)
-    virtual void TryInterrupt(CBattleEntity* PAttacker) = 0;
+    virtual void TryInterrupt(CBattleEntity* PAttacker) {}
 
     //called when state completes
     virtual void Cleanup() = 0;

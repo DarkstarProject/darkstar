@@ -34,7 +34,6 @@ public:
     virtual void Cleanup() override {}
     virtual void Clear() override {}
     virtual bool CanChangeState() override;
-    virtual void TryInterrupt(CBattleEntity* PAttacker) override {}
 };
 
 #endif

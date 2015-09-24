@@ -63,6 +63,7 @@
 #include "../entities/automatonentity.h"
 #include "../utils/itemutils.h"
 #include "../conquest_system.h"
+#include "../weapon_skill.h"
 
 namespace luautils
 {
@@ -2950,15 +2951,13 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16& tpHitsLanded, uint16& extraHitsLanded)
+    std::tuple<int32, uint8, uint8> OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill) 
     {
-        CWeaponSkill* wskill = PChar->PBattleAI->GetCurrentWeaponSkill();
-
         lua_prepscript("scripts/globals/weaponskills/%s.lua", wskill->getName());
 
         if (prepFile(File, "onUseWeaponSkill"))
         {
-            return 0;
+            return std::tuple<int32, uint8, uint8>();
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
@@ -2971,17 +2970,17 @@ namespace luautils
         {
             ShowError("luautils::onUseWeaponSkill: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
-            return 0;
+            return std::tuple<int32, uint8, uint8>();
         }
         int32 returns = lua_gettop(LuaHandle) - oldtop;
         if (returns < 4)
         {
             ShowError("luautils::onUseWeaponSkill (%s): 4 returns expected, got %d\n", File, returns);
             lua_pop(LuaHandle, returns);
-            return 0;
+            return std::tuple<int32, uint8, uint8>();
         }
-        tpHitsLanded = lua_tonumber(LuaHandle, -4);
-        extraHitsLanded = lua_tonumber(LuaHandle, -3);
+        uint8 tpHitsLanded = lua_tonumber(LuaHandle, -4);
+        uint8 extraHitsLanded = lua_tonumber(LuaHandle, -3);
         bool criticalHit = lua_toboolean(LuaHandle, -2);
         int32 dmg = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
 
@@ -2996,7 +2995,7 @@ namespace luautils
             ShowError("luautils::onUseWeaponSkill (%s): 4 returns expected, got %d\n", File, returns);
             lua_pop(LuaHandle, returns - 4);
         }
-        return dmg;
+        return std::make_tuple(dmg, tpHitsLanded, extraHitsLanded);
     }
 
     /***********************************************************************

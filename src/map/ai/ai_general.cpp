@@ -336,9 +336,11 @@ void CAIGeneral::SetCurrentWeaponSkill(uint16 WSkillID)
 
 CWeaponSkill* CAIGeneral::GetCurrentWeaponSkill()
 {
-	DSP_DEBUG_BREAK_IF(m_PWeaponSkill == nullptr);
+	//DSP_DEBUG_BREAK_IF(m_PWeaponSkill == nullptr);
 
-	return m_PWeaponSkill.get();
+	//return m_PWeaponSkill.get();
+    //#TODO
+    return battleutils::GetWeaponSkill(51);
 }
 
 /************************************************************************

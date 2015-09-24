@@ -104,3 +104,8 @@ bool CWeaponSkillState::Update(time_point tick)
     }
     return false;
 }
+
+void CWeaponSkillState::Clear()
+{
+    //#TODO: interrupt an in progress ws
+}

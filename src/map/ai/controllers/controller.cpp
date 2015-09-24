@@ -62,3 +62,11 @@ void CController::Disengage()
         POwner->PAIBattle()->Internal_Disengage();
     }
 }
+
+void CController::WeaponSkill(uint16 targid, uint16 wsid)
+{
+    if (POwner)
+    {
+        POwner->PAIBattle()->Internal_WeaponSkill(targid, wsid);
+    }
+}

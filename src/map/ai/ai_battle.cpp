@@ -91,6 +91,18 @@ void CAIBattle::Disengage()
     }
 }
 
+void CAIBattle::WeaponSkill(uint16 targid, uint16 wsid)
+{
+    if (Controller)
+    {
+        Controller->WeaponSkill(targid, wsid);
+    }
+    else
+    {
+        Internal_WeaponSkill(targid, wsid);
+    }
+}
+
 bool CAIBattle::Internal_Engage(uint16 targetid)
 {
     //#TODO: pet engage/disengage
@@ -330,6 +342,18 @@ void CAIBattle::Internal_Disengage()
     m_battleTarget = 0;
 }
 
+bool CAIBattle::Internal_WeaponSkill(uint16 targid, uint16 wsid)
+{
+    if (CanChangeState())
+    {
+        if (ChangeState<CWeaponSkillState>(static_cast<CBattleEntity*>(PEntity), targid))
+        {
+            return static_cast<CWeaponSkillState*>(GetCurrentState())->StartWeaponSkill(wsid);
+        }
+    }
+    return false;
+}
+
 void CAIBattle::OnCastFinished(CMagicState& state, action_t& action)
 {
     auto PSpell = state.GetSpell();
@@ -511,3 +535,4 @@ void CAIBattle::TryHitInterrupt(CBattleEntity* PAttacker)
     if (GetCurrentState())
         GetCurrentState()->TryInterrupt(PAttacker);
 }
+

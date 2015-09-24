@@ -212,7 +212,8 @@ void CAIChar::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action)
 
             uint16 tpHitsLanded;
             uint16 extraHitsLanded;
-            int32 damage = luautils::OnUseWeaponSkill(PChar, PTarget, tpHitsLanded, extraHitsLanded);
+            int32 damage;
+            std::tie(damage, tpHitsLanded, extraHitsLanded) = luautils::OnUseWeaponSkill(PChar, PTarget, PWeaponSkill);
 
             actionTarget.reaction = REACTION_NONE;
             actionTarget.speceffect = SPECEFFECT_NONE;
@@ -269,7 +270,7 @@ void CAIChar::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action)
                     battleutils::RemoveAmmo(PChar);
                 }
                 int wspoints = 1;
-                if (actionTarget.reaction == REACTION_HIT && PWeaponSkill->getPrimarySkillchain() != 0)
+                if (actionTarget.reaction == REACTION_HIT && PWeaponSkill->getPrimarySkillchain() != 0 || PBattleTarget->isDead())
                 {
                     // NOTE: GetSkillChainEffect is INSIDE this if statement because it
                     //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.

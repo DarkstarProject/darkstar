@@ -38,6 +38,7 @@ public:
     virtual bool Engage(uint16 targid);
     virtual void ChangeTarget(uint16 targid);
     virtual void Disengage();
+    virtual void WeaponSkill(uint16 targid, uint16 wsid);
 
     bool canUpdate;
 

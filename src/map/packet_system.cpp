@@ -663,10 +663,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     case 0x07: // weaponskill
     {
         uint16 WSkillID = RBUFW(data, (0x0C));
-        if (!charutils::hasWeaponSkill(PChar, WSkillID))
-            return;
-        PChar->PBattleAI->SetCurrentWeaponSkill(WSkillID);
-        PChar->PBattleAI->SetCurrentAction(ACTION_WEAPONSKILL_START, TargID);
+        PChar->PAIBattle()->WeaponSkill(TargID, WSkillID);
     }
     break;
     case 0x09: // jobability

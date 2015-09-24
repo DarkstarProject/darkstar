@@ -33,8 +33,6 @@ public:
 
     //state logic done per tick - returns whether to exit the state or not
     virtual bool Update(time_point tick) override;
-    //try interrupt (on hit)
-    virtual void TryInterrupt(CBattleEntity* PAttacker) override {}
 
     virtual void Cleanup() override;
     //reset/cancel the state (forced exit)

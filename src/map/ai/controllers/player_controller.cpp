@@ -27,12 +27,15 @@ This file is part of DarkStar-server source code.
 #include "../../packets/char_update.h"
 #include "../../packets/lock_on.h"
 #include "../../utils/battleutils.h"
+#include "../../utils/charutils.h"
+#include "../../weapon_skill.h"
 
 CPlayerController::CPlayerController(CCharEntity* _PChar) :
     CController(_PChar),
     m_LastActionTime(server_clock::now()),
-    m_LastAttackTime(server_clock::now()),
-    m_LastAbilityTime(server_clock::now())
+    m_LastAbilityTime(server_clock::now()),
+    m_LastWeaponSkillTime(server_clock::now()),
+    m_LastAttackTime(server_clock::now())
 {
 }
 
@@ -128,9 +131,69 @@ void CPlayerController::UseJobAbility(uint16 targid, uint16 abilityid)
     }
 }
 
-void CPlayerController::Weaponskill(uint16 targid, uint16 wsid)
+void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
 {
+    auto PChar = static_cast<CCharEntity*>(POwner);
+    //does not check gcd (but does affect subsequent actions - including another WS)
+    if (m_LastWeaponSkillTime + g_GCD < server_clock::now())
+    {
+        m_LastWeaponSkillTime = server_clock::now();
 
+        CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(wsid);
+
+        if (PWeaponSkill && !charutils::hasWeaponSkill(PChar, PWeaponSkill->getID()))
+        {
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_WS));
+            return;
+        }
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA))
+        {
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_ANY_WS));
+            return;
+        }
+        if (PChar->health.tp < 1000)
+        {
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_NOT_ENOUGH_TP));
+            return;
+        }
+        if (PWeaponSkill->getType() == SKILL_ARC || PWeaponSkill->getType() == SKILL_MRK)
+        {
+            CItemWeapon* PItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
+
+            // before allowing ranged weapon skill...
+            if (PItem == nullptr ||
+                !(PItem->isType(ITEM_WEAPON)) ||
+                !PChar->m_Weapons[SLOT_AMMO]->isRanged() ||
+                !PChar->m_Weapons[SLOT_RANGED]->isRanged() ||
+                PChar->equip[SLOT_AMMO] == 0)
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_NO_RANGED_WEAPON));
+                return;
+            }
+        }
+
+        std::unique_ptr<CMessageBasicPacket> errMsg;
+        auto PTarget = PChar->PAIBattle()->IsValidTarget(targid, battleutils::isValidSelfTargetWeaponskill(wsid) ? TARGET_SELF : TARGET_ENEMY, errMsg);
+
+        if (PTarget)
+        {
+            if (!isFaceing(PChar->loc.p, PTarget->loc.p, 40))
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, MSGBASIC_CANNOT_SEE));
+                return;
+            }
+
+            CController::WeaponSkill(targid, wsid);
+        }
+        else if (errMsg)
+        {
+            PChar->pushPacket(errMsg.release());
+        }
+    }
+    else
+    {
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_WS));
+    }
 }
 
 void CPlayerController::setLastActionTime(time_point _LastActionTime)

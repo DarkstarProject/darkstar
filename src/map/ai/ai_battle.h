@@ -45,12 +45,14 @@ public:
     virtual void Engage(uint16 targid);
     virtual void ChangeTarget(uint16 targid);
     virtual void Disengage();
+    virtual void WeaponSkill(uint16 targid, uint16 wsid);
 
     /* Internal Controller functions */
     virtual bool Internal_Engage(uint16 targetid);
     virtual bool Internal_Cast(uint16 targetid, uint16 spellid);
     virtual void Internal_ChangeTarget(uint16 targetid);
     virtual void Internal_Disengage();
+    virtual bool Internal_WeaponSkill(uint16 targid, uint16 wsid);
 
     virtual void OnChangeTarget(CBattleEntity* PTarget);
     virtual void TryHitInterrupt(CBattleEntity* PAttacker);
