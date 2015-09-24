@@ -206,8 +206,6 @@ public:
 
   uint8     TPUseChance();                           // return % chance to use TP move
 
-  void      ChangeMJob(uint16 job);                  // this will change jobs and update traits, stats, spells
-
   bool      CanDeaggro();
   uint32    GetDespawnTimer();
   void      SetDespawnTimer(uint32 duration);

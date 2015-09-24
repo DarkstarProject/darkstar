@@ -116,7 +116,7 @@ namespace battlefieldutils{
 							PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 
 							if(strcmp(PMob->GetName(),"Maat")==0){
-								mobutils::SetupMaat(PMob, (JOBTYPE)battlefield->getPlayerMainJob());
+								mobutils::InitializeMaat(PMob, (JOBTYPE)battlefield->getPlayerMainJob());
 
 								// disable players subjob
 								battlefield->disableSubJob();
