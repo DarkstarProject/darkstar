@@ -26,7 +26,7 @@ CREATE TABLE `mob_spawn_mods` (
   `mobid` int(10) unsigned NOT NULL,
   `modid` smallint(5) unsigned NOT NULL,
   `value` smallint(5) NOT NULL DEFAULT '0',
-  `type` smallint(5) NOT NULL DEFAULT '0',
+  `is_mob_mod` boolean NOT NULL DEFAULT '0',
   PRIMARY KEY (`mobid`,`modid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=13 PACK_KEYS=1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -156,8 +156,8 @@ INSERT INTO `mob_spawn_mods` VALUES (17629430,1,1200,1);
 INSERT INTO `mob_spawn_mods` VALUES (17629430,2,3000,1);
 INSERT INTO `mob_spawn_mods` VALUES (16990474,1,5000,1);
 INSERT INTO `mob_spawn_mods` VALUES (16990474,2,7000,1);
-INSERT INTO `mob_spawn_mods` VALUES (17404333,1,20000,1);
-INSERT INTO `mob_spawn_mods` VALUES (17404333,2,24000,1);
+INSERT INTO `mob_spawn_mods` VALUES (17404331,1,20000,1);
+INSERT INTO `mob_spawn_mods` VALUES (17404331,2,24000,1);
 INSERT INTO `mob_spawn_mods` VALUES (17461478,1,3000,1);
 INSERT INTO `mob_spawn_mods` VALUES (17461478,2,9900,1);
 INSERT INTO `mob_spawn_mods` VALUES (17285460,1,379,1);

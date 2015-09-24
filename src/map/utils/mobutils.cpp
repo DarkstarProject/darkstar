@@ -613,15 +613,23 @@ void CalculateStats(CMobEntity * PMob)
     PMob->addModifier(MOD_ATT, GetBase(PMob,PMob->attRank));
     PMob->addModifier(MOD_ACC, GetBase(PMob,PMob->accRank));
 
-    SKILLTYPE mEvasionRating = SKILL_ELE;
+    uint8 mEvaRank = 7;
 
-    if(mLvl > 83)
+    if(mLvl > 50)
     {
-        mEvasionRating = SKILL_SWD;
+        mEvaRank = 4;
+    }
+    else if(mLvl > 35)
+    {
+        mEvaRank = 5;
+    }
+    else if(mLvl > 25)
+    {
+        mEvaRank = 6;
     }
 
     //natural magic evasion
-    PMob->addModifier(MOD_MEVA, battleutils::GetMaxSkill(mEvasionRating, JOB_RDM, mLvl > 99 ? 99 : mLvl));
+    PMob->addModifier(MOD_MEVA, GetBase(PMob, mEvaRank));
 
     if((PMob->m_Type & MOBTYPE_NOTORIOUS) && mJob == JOB_WHM && mLvl >= 25)
     {
@@ -632,6 +640,22 @@ void CalculateStats(CMobEntity * PMob)
     // add traits for sub and main
     battleutils::AddTraits(PMob, traits::GetTraits(mJob), mLvl);
     battleutils::AddTraits(PMob, traits::GetTraits(PMob->GetSJob()), PMob->GetSLevel());
+
+    // job resist traits are much more powerful in dynamis
+    // according to wiki
+    if(zoneType == ZONETYPE_DYNAMIS)
+    {
+        for(auto&& PTrait : PMob->TraitList)
+        {
+            uint16 type = PTrait->getMod();
+
+            if(type >= 240 && type <= 255)
+            {
+                // give mob a total of x4 the regular rate
+                PMob->addModifier(type, PTrait->getValue() * 3);
+            }
+        }
+    }
 }
 
 void RecalculateSpellContainer(CMobEntity* PMob)
@@ -760,6 +784,17 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 		PMob->setMobMod(MOBMOD_GIL_MAX, -1);
 		PMob->setMobMod(MOBMOD_MUG_GIL, -1);
 		PMob->setMobMod(MOBMOD_2HOUR_PROC, 80);
+
+                // dynamis mobs have true sight
+                if(PMob->m_Aggro & AGGRO_DETECT_SIGHT)
+                {
+                    PMob->m_Aggro |= AGGRO_DETECT_TRUESIGHT;
+                }
+
+                if(PMob->m_Aggro & AGGRO_DETECT_HEARING)
+                {
+                    PMob->m_Aggro |= AGGRO_DETECT_TRUEHEARING;
+                }
 	}
 
 	// add two hours
@@ -818,7 +853,7 @@ void LoadCustomMods()
 {
 
 	// load family mods
-	const int8 QueryFamilyMods[] = "SELECT familyid, modid, value, type FROM mob_family_mods;";
+	const int8 QueryFamilyMods[] = "SELECT familyid, modid, value, is_mob_mod FROM mob_family_mods;";
 
     int32 ret = Sql_Query(SqlHandle, QueryFamilyMods);
 
@@ -831,8 +866,8 @@ void LoadCustomMods()
 			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
 			mod->setModAmount(Sql_GetIntData(SqlHandle,2));
 
-			uint16 type = Sql_GetUIntData(SqlHandle,3);
-			if(type == 1)
+			int8 isMobMod = Sql_GetIntData(SqlHandle,3);
+			if(isMobMod == 1)
 			{
 				familyMods->mobMods.push_back(mod);
 			}
@@ -844,7 +879,7 @@ void LoadCustomMods()
 	}
 
 	// load pool mods
-	const int8 QueryPoolMods[] = "SELECT poolid, modid, value, type FROM mob_pool_mods;";
+	const int8 QueryPoolMods[] = "SELECT poolid, modid, value, is_mob_mod FROM mob_pool_mods;";
 
     ret = Sql_Query(SqlHandle, QueryPoolMods);
 
@@ -861,8 +896,8 @@ void LoadCustomMods()
 			CModifier* mod = new CModifier(id);
 			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
 
-			uint16 type = Sql_GetUIntData(SqlHandle,3);
-			if(type == 1)
+			int8 isMobMod = Sql_GetIntData(SqlHandle,3);
+			if(isMobMod == 1)
 			{
 				poolMods->mobMods.push_back(mod);
 			}
@@ -874,7 +909,7 @@ void LoadCustomMods()
 	}
 
 	// load spawn mods
-	const int8 QuerySpawnMods[] = "SELECT mobid, modid, value, type FROM mob_spawn_mods;";
+	const int8 QuerySpawnMods[] = "SELECT mobid, modid, value, is_mob_mod FROM mob_spawn_mods;";
 
     ret = Sql_Query(SqlHandle, QuerySpawnMods);
 
@@ -887,8 +922,8 @@ void LoadCustomMods()
 			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
 			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
 
-			uint16 type = Sql_GetUIntData(SqlHandle,3);
-			if(type == 1)
+			int8 isMobMod = Sql_GetIntData(SqlHandle,3);
+			if(isMobMod == 1)
 			{
 				spawnMods->mobMods.push_back(mod);
 			}

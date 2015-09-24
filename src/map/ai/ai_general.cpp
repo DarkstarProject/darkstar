@@ -486,6 +486,22 @@ bool CAIGeneral::GetMobAbilityEnabled()
     return m_MobAbilityEnabled;
 }
 
+bool CAIGeneral::IsInSleepableAction()
+{
+    switch(GetCurrentAction())
+    {
+        case ACTION_FALL:
+        case ACTION_NONE:
+        case ACTION_DROPITEMS:
+        case ACTION_DEATH:
+        case ACTION_FADE_OUT:
+        case ACTION_DESPAWN:
+            return false;
+        default:
+            return true;
+    }
+}
+
 bool CAIGeneral::MoveTo(position_t* pos)
 {
     if(m_PPathFind != nullptr && m_ActionType == ACTION_ROAMING){

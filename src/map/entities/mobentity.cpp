@@ -68,7 +68,6 @@ CMobEntity::CMobEntity()
     m_RageMode = 0;
 
     strRank = 3;
-    defRank = 3;
     vitRank = 3;
     agiRank = 3;
     intRank = 3;

@@ -735,7 +735,7 @@ void CAIMobDummy::ActionAbilityStart()
     if (m_PMob->getMobMod(MOBMOD_MAIN_2HOUR) > 0)
     {
         // get my job two hour
-        SetCurrentMobSkill(battleutils::GetTwoHourMobSkill(m_PMob->GetMJob()));
+        SetCurrentMobSkill(battleutils::GetTwoHourMobSkill(m_PMob->GetMJob(), m_PMob->m_Family));
 
         if (m_PMobSkill != nullptr)
         {
@@ -776,7 +776,7 @@ void CAIMobDummy::ActionAbilityStart()
     {
 
         // get my job two hour
-        SetCurrentMobSkill(battleutils::GetTwoHourMobSkill(m_PMob->GetSJob()));
+        SetCurrentMobSkill(battleutils::GetTwoHourMobSkill(m_PMob->GetSJob(), m_PMob->m_Family));
 
         if (m_PMobSkill != nullptr)
         {

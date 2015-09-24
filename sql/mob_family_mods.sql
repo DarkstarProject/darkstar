@@ -26,7 +26,7 @@ CREATE TABLE `mob_family_mods` (
   `familyid` smallint(5) unsigned NOT NULL,
   `modid` smallint(5) unsigned NOT NULL,
   `value` smallint(5) NOT NULL DEFAULT '0',
-  `type` smallint(5) NOT NULL DEFAULT '0',
+  `is_mob_mod` boolean NOT NULL DEFAULT '0',
   PRIMARY KEY (`familyid`,`modid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=13 PACK_KEYS=1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -46,9 +46,7 @@ INSERT INTO `mob_family_mods` VALUES (169,29,25,0);
 INSERT INTO `mob_family_mods` VALUES (110,29,13,0);
 INSERT INTO `mob_family_mods` VALUES (111,29,13,0);
 INSERT INTO `mob_family_mods` VALUES (171,29,13,0);
-INSERT INTO `mob_family_mods` VALUES (47,240,2,0);
-INSERT INTO `mob_family_mods` VALUES (46,240,2,0);
-INSERT INTO `mob_family_mods` VALUES (4,244,2,0);
+INSERT INTO `mob_family_mods` VALUES (4,244,20,0);
 INSERT INTO `mob_family_mods` VALUES (193,3,40,1);
 INSERT INTO `mob_family_mods` VALUES (34,3,100,1);
 INSERT INTO `mob_family_mods` VALUES (267,4,20,1);
@@ -58,6 +56,7 @@ INSERT INTO `mob_family_mods` VALUES (87,4,18,1);
 INSERT INTO `mob_family_mods` VALUES (87,5,10,1);
 INSERT INTO `mob_family_mods` VALUES (240,10,1,1);
 INSERT INTO `mob_family_mods` VALUES (169,10,1,1);
+INSERT INTO `mob_family_mods` VALUES (358,10,1,1);
 INSERT INTO `mob_family_mods` VALUES (190,10,2,1);
 INSERT INTO `mob_family_mods` VALUES (189,10,2,1);
 INSERT INTO `mob_family_mods` VALUES (334,10,2,1);
@@ -127,10 +126,22 @@ INSERT INTO `mob_family_mods` VALUES (175,389,-128,0);
 INSERT INTO `mob_family_mods` VALUES (171,389,-32,0);
 
 -- Demons and fomors are highly resistant to lullaby
-INSERT INTO `mob_family_mods` VALUES (358,254,200,0);
-INSERT INTO `mob_family_mods` VALUES (169,254,200,0);
-INSERT INTO `mob_family_mods` VALUES (115,254,200,0);
-INSERT INTO `mob_family_mods` VALUES (359,254,200,0);
+INSERT INTO `mob_family_mods` VALUES (358,254,100,0);
+INSERT INTO `mob_family_mods` VALUES (169,254,100,0);
+INSERT INTO `mob_family_mods` VALUES (115,254,100,0);
+INSERT INTO `mob_family_mods` VALUES (359,254,100,0);
+INSERT INTO `mob_family_mods` VALUES (359,240,100,0);
+
+-- Immunities
+INSERT INTO `mob_family_mods` VALUES (92,23,2047,1);
+INSERT INTO `mob_family_mods` VALUES (93,23,2047,1);
+INSERT INTO `mob_family_mods` VALUES (94,23,2047,1);
+INSERT INTO `mob_family_mods` VALUES (95,23,2047,1);
+
+INSERT INTO `mob_family_mods` VALUES (92,73,100,0);
+INSERT INTO `mob_family_mods` VALUES (93,73,100,0);
+INSERT INTO `mob_family_mods` VALUES (94,73,100,0);
+INSERT INTO `mob_family_mods` VALUES (95,73,100,0);
 
 /*!40000 ALTER TABLE `mob_family_mods` ENABLE KEYS */;
 UNLOCK TABLES;
