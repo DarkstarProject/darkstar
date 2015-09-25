@@ -89,7 +89,6 @@ CMobEntity::CMobEntity()
     m_bcnmID = 0;
 
     m_maxRoamDistance = 10.0f;
-    m_roamDistance = 5.0f;
     m_disableScent = false;
 
     setMobMod(MOBMOD_SIGHT_RANGE, MOB_SIGHT_RANGE);
@@ -481,4 +480,14 @@ void CMobEntity::UpdateEntity()
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
         updatemask = 0;
     }
+}
+
+float CMobEntity::GetRoamDistance()
+{
+    return (float)getMobMod(MOBMOD_ROAM_DISTANCE) / 10.0f;
+}
+
+float CMobEntity::GetRoamRate()
+{
+    return (float)getMobMod(MOBMOD_ROAM_RATE) / 10.0f;
 }

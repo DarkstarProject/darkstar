@@ -60,12 +60,12 @@ enum MOBMODIFIER
     MOBMOD_EXP_BONUS      = 28, // bonus exp (bonus / 100) negative values reduce exp.
     MOBMOD_ASSIST         = 29, // mobs will assist me
     MOBMOD_SPECIAL_SKILL  = 30, // give special skill
-    MOBMOD_ROAM_DISTANCE  = 31, // define a custom roam range
+    MOBMOD_ROAM_DISTANCE  = 31, // distance allowed to roam from spawn
     MOBMOD_2HOUR_MULTI    = 32, // can use two hour multiple times
     MOBMOD_SPECIAL_COOL   = 33, // cool down for special
     MOBMOD_MAGIC_COOL     = 34, // cool down for magic
     MOBMOD_STANDBACK_TIME = 35, // amount of time the mob stands back
-    MOBMOD_ROAM_COOL      = 36, // cool down for roaming
+    MOBMOD_ROAM_COOL      = 36, // cool down time in seconds after roaming
     MOBMOD_ALWAYS_AGGRO   = 37, // aggro regardless of level. Spheroids
     MOBMOD_NO_DROPS       = 38, // If set monster cannot drop any items, not even seals.
     MOBMOD_SHARE_POS      = 39, // share a pos with another mob (eald'narche exoplates)
@@ -79,9 +79,11 @@ enum MOBMODIFIER
     MOBMOD_SPAWN_LEASH    = 47, // forces a mob to not move farther from its spawn than its leash distance
     MOBMOD_SHARE_TARGET   = 48, // mob always targets same target as ID in this var
     MOBMOD_SCRIPTED_2HOUR = 49, // disable two hour ability unless called upon by the script
-    MOBMOD_2HOUR_PROC     = 50  // chance of mob's 2 hour activating 0-100%
+    MOBMOD_2HOUR_PROC     = 50, // chance of mob's 2 hour activating 0-100%
+    MOBMOD_ROAM_TURNS     = 51, // Maximum amount of turns during a roam
+    MOBMOD_ROAM_RATE      = 52  // Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
 };
 
-#define MAX_MOBMODIFIER         51
+#define MAX_MOBMODIFIER         53
 
 #endif

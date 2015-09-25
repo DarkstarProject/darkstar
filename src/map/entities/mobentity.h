@@ -64,8 +64,8 @@ enum SPECIALFLAG
 enum ROAMFLAG : uint16
 {
   ROAMFLAG_NONE     = 0x00,
-  ROAMFLAG_NO_TURN  = 0x01,  // make 1-5 turns per roam
-  ROAMFLAG_WANDER   = 0x02,  //
+  ROAMFLAG_NONE0  = 0x01,  // 
+  ROAMFLAG_NONE1   = 0x02,  //
   ROAMFLAG_NONE2    = 0x04,  //
   ROAMFLAG_NONE3    = 0x08,  //
   ROAMFLAG_NONE4    = 0x10,  //
@@ -161,7 +161,6 @@ public:
   // aggro ranges
   bool      m_disableScent;             // stop detecting by scent
   float     m_maxRoamDistance;          // maximum distance mob can be from spawn before despawning
-  float     m_roamDistance;          // distance allowed to roam from spawn
 
   uint8     m_Type;                     // mob type
   uint16	m_Aggro;					// mob aggro type
@@ -239,6 +238,8 @@ public:
   bool      IsUntargetable();
 
   void      UpdateEntity() override;
+  float     GetRoamDistance();
+  float     GetRoamRate();
 
   CMobEntity();
   ~CMobEntity();

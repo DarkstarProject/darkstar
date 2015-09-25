@@ -257,7 +257,7 @@ void CAIMobDummy::ActionRoaming()
                 luautils::OnMobRoamAction(m_PMob);
                 m_LastActionTime = m_Tick;
             }
-            else if (m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamDistance, m_PMob->m_roamFlags))
+            else if (m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->GetRoamDistance(), m_PMob->getMobMod(MOBMOD_ROAM_TURNS), m_PMob->m_roamFlags))
             {
 
                 if (m_PMob->m_roamFlags & ROAMFLAG_WORM)
@@ -2389,7 +2389,8 @@ void CAIMobDummy::FollowPath()
         // if I just finished reset my last action time
         if (!m_PPathFind->IsFollowingPath())
         {
-            m_LastActionTime = m_Tick - dsprand::GetRandomNumber(10000);
+            uint16 roamRandomness = (float)m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) / m_PMob->GetRoamRate();
+            m_LastActionTime = m_Tick - dsprand::GetRandomNumber(roamRandomness);
 
             // i'm a worm pop back up
             if (m_PMob->m_roamFlags & ROAMFLAG_WORM)

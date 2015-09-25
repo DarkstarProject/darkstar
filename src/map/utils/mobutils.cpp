@@ -377,12 +377,6 @@ void CalculateStats(CMobEntity * PMob)
         PMob->stats.CHR *= map_config.mob_stat_multiplier;
     }
 
-    // aggro mobs move around a bit more often
-    if(PMob->m_Aggro != AGGRO_NONE && PMob->speed != 0)
-    {
-        PMob->setMobMod(MOBMOD_ROAM_COOL, 40);
-    }
-
     // special case, give spell list to my pet
     if(PMob->getMobMod(MOBMOD_PET_SPELL_LIST) && PMob->PPet != nullptr)
     {
@@ -396,31 +390,6 @@ void CalculateStats(CMobEntity * PMob)
     if(PMob->getMobMod(MOBMOD_SPELL_LIST))
     {
         PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(PMob->getMobMod(MOBMOD_SPELL_LIST));
-    }
-
-    // apply custom roaming distance
-    if(PMob->getMobMod(MOBMOD_ROAM_DISTANCE) != 0)
-    {
-      PMob->m_roamDistance = (float)PMob->getMobMod(MOBMOD_ROAM_DISTANCE);
-    }
-
-    // Default roam distance if not set from database
-    if(PMob->m_roamDistance == 0)
-    {
-        PMob->m_roamDistance = 3.0f;
-    }
-
-    PMob->m_roamFlags |= ROAMFLAG_WANDER;
-
-    if(PMob->m_roamFlags & ROAMFLAG_AMBUSH)
-    {
-        PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 22);
-        PMob->setMobMod(MOBMOD_SPECIAL_COOL, 1);
-        PMob->m_specialFlags |= SPECIALFLAG_HIDDEN;
-        // always stay close to spawn
-        PMob->m_maxRoamDistance = 2.0f;
-        PMob->m_roamDistance = 1.0f;
-        PMob->m_roamFlags |= ROAMFLAG_NO_TURN;
     }
 
     // cap all stats for mLvl / job
@@ -473,6 +442,7 @@ void CalculateStats(CMobEntity * PMob)
     battleutils::AddTraits(PMob, traits::GetTraits(PMob->GetSJob()), PMob->GetSLevel());
 
     SetupJob(PMob);
+    SetupRoaming(PMob);
 
     if(zoneType == ZONETYPE_DUNGEON)
     {
@@ -609,6 +579,41 @@ void SetupJob(CMobEntity* PMob)
 
 }
 
+void SetupRoaming(CMobEntity* PMob)
+{
+    uint16 distance = 10;
+    uint16 turns = 1;
+    uint16 cool = 20;
+    uint16 rate = 15;
+
+    switch(PMob->m_EcoSystem)
+    {
+        case SYSTEM_BEASTMEN:
+            distance = 20;
+            turns = 4;
+            cool = 45;
+            break;
+    }
+
+    // default mob roaming mods
+    PMob->defaultMobMod(MOBMOD_ROAM_DISTANCE, distance);
+    PMob->defaultMobMod(MOBMOD_ROAM_TURNS, turns);
+    PMob->defaultMobMod(MOBMOD_ROAM_COOL, cool);
+    PMob->defaultMobMod(MOBMOD_ROAM_RATE, rate);
+
+    if(PMob->m_roamFlags & ROAMFLAG_AMBUSH)
+    {
+        PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 22);
+        PMob->setMobMod(MOBMOD_SPECIAL_COOL, 1);
+        PMob->m_specialFlags |= SPECIALFLAG_HIDDEN;
+        // always stay close to spawn
+        PMob->m_maxRoamDistance = 2.0f;
+        PMob->setMobMod(MOBMOD_ROAM_DISTANCE, 5);
+        PMob->setMobMod(MOBMOD_ROAM_TURNS, 1);
+    }
+
+}
+
 void SetupDynamisMob(CMobEntity* PMob)
 {
     JOBTYPE mJob = PMob->GetMJob();
@@ -685,13 +690,6 @@ void SetupBattlefieldMob(CMobEntity* PMob)
 
 void SetupDungeonMob(CMobEntity* PMob)
 {
-    if(PMob->m_roamDistance == 0)
-    {
-        PMob->m_roamDistance = 2.5f;
-    }
-
-    // make less turns
-    PMob->m_roamFlags &= ~ROAMFLAG_WANDER;
 }
 
 void SetupEventMob(CMobEntity* PMob)
@@ -711,12 +709,6 @@ void SetupNMMob(CMobEntity* PMob)
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
     // enmity range is larger
     PMob->m_enmityRange = 28;
-
-    // Notorious monsters don't roam very far
-    if(PMob->m_roamDistance == 0)
-    {
-        PMob->m_roamDistance = 2.5f;
-    }
 
     if(mJob == JOB_WHM && mLvl >= 25)
     {
@@ -833,7 +825,6 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 	PMob->defaultMobMod(MOBMOD_SKILL_LIST, PMob->m_MobSkillList);
 	PMob->defaultMobMod(MOBMOD_LINK_RADIUS, MOB_LINK_RADIUS);
 	PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, MOB_TP_USE_CHANCE);
-	PMob->defaultMobMod(MOBMOD_ROAM_COOL, 50);
 	PMob->defaultMobMod(MOBMOD_2HOUR_PROC, 60);
 
     // Killer Effect
@@ -1121,7 +1112,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 		mob_pools.familyid, name_prefix, flags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-		allegiance, namevis, aggro, mob_groups.roam_distance, mob_pools.skill_list_id \
+		allegiance, namevis, aggro, mob_pools.skill_list_id, \
 		FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE mob_groups.groupid = %u";
@@ -1238,8 +1229,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 			PMob->allegiance = Sql_GetUIntData(SqlHandle, 55);
 			PMob->namevis = Sql_GetUIntData(SqlHandle, 56);
 			PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 57);
-			PMob->m_roamDistance = Sql_GetFloatData(SqlHandle, 58);
-			PMob->m_MobSkillList = Sql_GetUIntData(SqlHandle, 59);
+			PMob->m_MobSkillList = Sql_GetUIntData(SqlHandle, 58);
 
 			// must be here first to define mobmods
 			mobutils::InitializeMob(PMob, zoneutils::GetZone(zoneID));
