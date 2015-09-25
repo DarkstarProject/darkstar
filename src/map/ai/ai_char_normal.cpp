@@ -387,37 +387,6 @@ void CAICharNormal::ActionEngage()
 
 void CAICharNormal::ActionChangeBattleTarget()
 {
-    DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
-    DSP_DEBUG_BREAK_IF(m_PBattleTarget == nullptr);
-
-    if (m_PBattleTarget->targid != m_ActionTargetID)
-    {
-        CBattleEntity* PBattleTarget = nullptr;
-
-        if (GetValidTarget(&PBattleTarget, TARGET_ENEMY))
-        {
-            if (IsMobOwner(PBattleTarget))
-            {
-                if (distance(m_PChar->loc.p, PBattleTarget->loc.p) <= 30)
-                {
-                    m_LastActionTime = m_Tick;
-                    m_PBattleTarget = PBattleTarget;
-
-                    m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
-                }
-                else
-                {
-                    m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY));
-                }
-            }
-            else
-            {
-                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ALREADY_CLAIMED));
-            }
-        }
-    }
-    m_ActionTargetID = 0;
-    m_ActionType = ACTION_ATTACK;
 }
 
 /************************************************************************
@@ -428,21 +397,6 @@ void CAICharNormal::ActionChangeBattleTarget()
 
 void CAICharNormal::ActionDisengage()
 {
-    m_ActionType = ACTION_NONE;
-    m_LastActionTime = m_Tick;
-    m_PBattleTarget = nullptr;
-    m_PBattleSubTarget = nullptr;
-
-    m_PChar->animation = ANIMATION_NONE;
-    m_PChar->updatemask |= UPDATE_HP;
-    m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
-    m_PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(false);
-
-    if (m_PChar->PPet != nullptr && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
-    {
-        m_PChar->PPet->PBattleAI->SetBattleTarget(nullptr);
-    }
-
 }
 
 /************************************************************************
@@ -2330,81 +2284,6 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 void CAICharNormal::ActionWeaponSkillStart()
 {
-    DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
-    DSP_DEBUG_BREAK_IF(m_PWeaponSkill == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBattleTarget == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != nullptr);
-
-    if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA))
-    {
-        WeaponSkillStartError(89);
-        return;
-    }
-
-    if (!charutils::hasWeaponSkill(m_PChar, m_PWeaponSkill->getID()))
-    {
-        WeaponSkillStartError(MSGBASIC_CANNOT_USE_WS);
-        return;
-    }
-
-    if (m_PChar->health.tp < 1000)
-    {
-        WeaponSkillStartError(MSGBASIC_NOT_ENOUGH_TP);
-        return;
-    }
-
-    if (GetValidTarget(&m_PBattleSubTarget, TARGET_ENEMY))
-    {
-        if (!IsMobOwner(m_PBattleSubTarget))
-        {
-            WeaponSkillStartError(MSGBASIC_ALREADY_CLAIMED);
-            return;
-        }
-
-        float Distance = distance(m_PChar->loc.p, m_PBattleSubTarget->loc.p);
-
-        if ((Distance - m_PBattleSubTarget->m_ModelSize) > m_PWeaponSkill->getRange())
-        {
-            WeaponSkillStartError(MSGBASIC_TOO_FAR_AWAY);
-            return;
-        }
-        if (!isFaceing(m_PChar->loc.p, m_PBattleSubTarget->loc.p, 40))
-        {
-            WeaponSkillStartError(MSGBASIC_UNABLE_TO_SEE_TARG);
-            return;
-        }
-        if (218 >= m_PWeaponSkill->getID() && m_PWeaponSkill->getID() >= 192) // ranged WS IDs
-        {
-            CItemWeapon* PItem = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
-
-            // before allowing ranged weapon skill...
-            if (PItem == nullptr ||								// check item is not nullptr
-                !(PItem->isType(ITEM_WEAPON)) ||
-                !m_PChar->m_Weapons[SLOT_AMMO]->isRanged() ||		// make sure ammo item is a ranged item
-                !m_PChar->m_Weapons[SLOT_RANGED]->isRanged() ||	// make sure range weapon is a range weapon
-                m_PChar->equip[SLOT_AMMO] == 0)					// make sure ammo is equiped (the ammo qty checks the inventory slot and not the ammo slot)
-            {
-                WeaponSkillStartError(MSGBASIC_NO_RANGED_WEAPON); // You do not have an appropriate ranged weapon equipped
-                return;
-            }
-
-        }
-        m_LastActionTime = m_Tick;
-        m_ActionType = ACTION_WEAPONSKILL_FINISH;
-        return;
-    }
-
-    if (m_PBattleSubTarget == m_PChar)
-    {
-        if (battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
-        {
-            m_LastActionTime = m_Tick;
-            m_ActionType = ACTION_WEAPONSKILL_FINISH;
-
-            return;
-        }
-    }
-    WeaponSkillStartError(MSGBASIC_CANNOT_ATTACK_TARGET);
 }
 
 /************************************************************************
@@ -2415,19 +2294,6 @@ void CAICharNormal::ActionWeaponSkillStart()
 
 void CAICharNormal::WeaponSkillStartError(uint16 error)
 {
-    DSP_DEBUG_BREAK_IF(m_ActionType != ACTION_WEAPONSKILL_START);
-
-    if (error != 0)
-    {
-        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, (m_PBattleSubTarget != nullptr ? m_PBattleSubTarget : m_PChar), 0, 0, error));
-    }
-    m_ActionTargetID = 0;
-
-    m_PWeaponSkill = nullptr;
-    m_PBattleSubTarget = nullptr;
-
-    m_ActionType = ACTION_ATTACK;
-    ActionAttack();
 }
 
 /************************************************************************
@@ -2438,364 +2304,6 @@ void CAICharNormal::WeaponSkillStartError(uint16 error)
 
 void CAICharNormal::ActionWeaponSkillFinish()
 {
-    DSP_DEBUG_BREAK_IF(m_PWeaponSkill == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == nullptr);
-
-    m_LastMeleeTime += (m_Tick - m_LastActionTime);
-
-    if (m_PBattleSubTarget->isDead())
-    {
-        m_PWeaponSkill = nullptr;
-        m_PBattleSubTarget = nullptr;
-        TransitionBack();
-        return;
-    }
-
-    float Distance = distance(m_PChar->loc.p, m_PBattleSubTarget->loc.p);
-
-    // check if mob is too far away, lose tp
-    if ((Distance - m_PBattleSubTarget->m_ModelSize) > m_PWeaponSkill->getRange())
-    {
-        m_PWeaponSkill = nullptr;
-        m_PBattleSubTarget = nullptr;
-
-        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_TARG_OUT_OF_RANGE));
-
-        // this is stupid but lose tp
-        // this whole thing has to be refactored
-        if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
-        {
-            m_PChar->addTP(-1000);
-        }
-        else if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI))
-        {
-            m_PChar->addTP(-1000);
-            m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
-        }
-        else
-        {
-            m_PChar->health.tp = 0;
-        }
-
-        m_PChar->PLatentEffectContainer->CheckLatentsTP(m_PChar->health.tp);
-        TransitionBack();
-        return;
-    }
-
-    //apply TP Bonus
-    float bonusTp = m_PChar->getMod(MOD_TP_BONUS);
-
-    uint8 damslot = SLOT_MAIN;
-    if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 221)
-    {
-        damslot = SLOT_RANGED;
-    }
-
-    //remove TP Bonus from offhand weapon
-    if (m_PChar->equip[SLOT_SUB] != 0)
-    {
-        std::vector<CModifier*>::iterator modIterator;
-        std::vector<CModifier*> modList = ((CItemArmor*)m_PChar->getEquip(SLOT_SUB))->modList;
-
-        for (modIterator = modList.begin(); modIterator != modList.end(); modIterator++)
-        {
-            if ((*modIterator)->getModID() == MOD_TP_BONUS){
-                bonusTp = bonusTp - (*modIterator)->getModAmount();
-            }
-        }
-    }
-
-    //if ranged WS, remove TP bonus from mainhand weapon
-    if (damslot == SLOT_RANGED)
-    {
-        if (m_PChar->equip[SLOT_MAIN] != 0)
-        {
-            std::vector<CModifier*>::iterator modIterator;
-            std::vector<CModifier*> modList = ((CItemArmor*)m_PChar->getEquip(SLOT_MAIN))->modList;
-
-            for (modIterator = modList.begin(); modIterator != modList.end(); modIterator++)
-            {
-                if ((*modIterator)->getModID() == MOD_TP_BONUS)
-                {
-                    bonusTp = bonusTp - (*modIterator)->getModAmount();
-                }
-            }
-        }
-    }
-    else
-    {
-        //if melee WS, remove TP bonus from ranged weapon
-        if (m_PChar->equip[SLOT_RANGED] != 0)
-        {
-            std::vector<CModifier*>::iterator modIterator;
-            std::vector<CModifier*> modList = ((CItemArmor*)m_PChar->getEquip(SLOT_RANGED))->modList;
-
-            for (modIterator = modList.begin(); modIterator != modList.end(); modIterator++)
-            {
-                if ((*modIterator)->getModID() == MOD_TP_BONUS)
-                {
-                    bonusTp = bonusTp - (*modIterator)->getModAmount();
-                }
-            }
-        }
-    }
-
-    if (bonusTp + m_PChar->health.tp > 3000)
-    {
-        bonusTp = 3000 - m_PChar->health.tp;
-        m_PChar->health.tp = 3000;
-    }
-    else
-    {
-        m_PChar->addTP(bonusTp);
-    }
-
-
-    float wsTP = m_PChar->health.tp;
-    uint16 tpHitsLanded = 0;
-    uint16 extraHitsLanded = 0;
-    int32 damage = 0;
-    m_PChar->PLatentEffectContainer->CheckLatentsTP(0);
-
-    //damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
-
-    if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
-    {
-        m_PChar->addTP(-1000 - bonusTp);
-    }
-    else if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI))
-    {
-        m_PChar->addTP(-1000 - bonusTp);
-        m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
-    }
-    else
-    {
-        m_PChar->health.tp = 0;
-    }
-
-    m_PChar->PLatentEffectContainer->CheckLatentsTP(m_PChar->health.tp);
-
-    //incase a TA party member is available
-    CBattleEntity* taChar = nullptr;
-
-    if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
-        taChar = battleutils::getAvailableTrickAttackChar(m_PChar, m_PBattleSubTarget);
-
-    apAction_t Action;
-    Action.ActionTarget = m_PBattleSubTarget;
-    Action.animation = m_PWeaponSkill->getAnimationId();
-
-
-    if (!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
-    {
-        damage = battleutils::TakeWeaponskillDamage(m_PChar, m_PBattleSubTarget, damage, damslot, tpHitsLanded, taChar);
-        Action.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
-        Action.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
-        m_PChar->addTP(extraHitsLanded * 10);
-
-        if (Action.reaction == REACTION_EVADE)
-            Action.messageID = 188; //but misses
-        else if (damage < 0)
-        {
-            Action.param = -damage;
-            Action.messageID = 238; //absorbed ws
-        }
-        else
-        {
-            Action.param = damage;
-            Action.messageID = 185; //damage ws
-
-            if (m_PBattleSubTarget->objtype == TYPE_MOB)
-            {
-                uint16 PWeaponskill = m_PWeaponSkill->getID();
-                luautils::OnWeaponskillHit(m_PBattleSubTarget, m_PChar, PWeaponskill);
-            }
-        }
-    }
-    else
-    {
-        Action.messageID = 224; //restores mp msg
-        Action.reaction = REACTION_HIT;
-        dsp_max(damage, 0);
-        Action.param = m_PChar->addMP(damage);
-    }
-    
-    float afterWsTP = m_PChar->health.tp;
-
-    if (m_PChar->PPet != nullptr && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
-    {
-        ((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_ELEMENTAL_BREATH;
-        m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
-    }
-
-    m_PTargetFind->reset();
-    m_PChar->m_ActionList.clear();
-
-    uint16 wspoints = 0;
-
-    // try to skill up if ws hit
-    if (Action.reaction == REACTION_HIT)
-    {
-        charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PWeaponSkill->getType(), m_PBattleSubTarget->GetMLevel());
-        wspoints = 1;
-    }
-
-    if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 218)
-    {
-        //ranged WS IDs
-        CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
-
-        uint16 recycleChance = m_PChar->getMod(MOD_RECYCLE) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE, m_PChar);
-
-        if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
-        {
-            m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_UNLIMITED_SHOT);
-            recycleChance = 100;
-        }
-        // ranged WS will apply ammo additional effects silently
-        if (Action.reaction == REACTION_HIT && PAmmo != nullptr && PAmmo->getModifier(MOD_ADDITIONAL_EFFECT) > 0 && damage >= 0)
-        {
-            luautils::OnAdditionalEffect(m_PChar, m_PBattleSubTarget, PAmmo, &Action, (uint32)damage);
-            Action.additionalEffect = SUBEFFECT_NONE;
-        }
-        if (PAmmo != nullptr && dsprand::GetRandomNumber(100) > recycleChance)
-        {
-            if ((PAmmo->getQuantity() - 1) < 1) // ammo will run out after this shot, make sure we remove it from equip
-            {
-                uint8 slot = m_PChar->equip[SLOT_AMMO];
-		uint8 loc = m_PChar->equipLoc[SLOT_AMMO];	
-                charutils::UnequipItem(m_PChar, SLOT_AMMO);
-                charutils::SaveCharEquip(m_PChar);
-		charutils::UpdateItem(m_PChar, loc, slot, -1);
-            }
-            else
-            {
-                charutils::UpdateItem(m_PChar, m_PChar->equipLoc[SLOT_AMMO], m_PChar->equip[SLOT_AMMO], -1);
-            }
-            m_PChar->pushPacket(new CInventoryFinishPacket());
-        }
-    }
-
-    // DO NOT REMOVE!  This is here for a reason...
-    // Skill chains should not be affected by MISSED weapon skills or non-elemental
-    // weapon skills such as: Spirits Within, Spirit Taker, Energy Steal, Energy Drain, Starlight, and Moonlight.
-    if (Action.reaction == REACTION_HIT && m_PWeaponSkill->getPrimarySkillchain() != 0 && !(m_PBattleSubTarget->isDead()))
-    {
-        // NOTE: GetSkillChainEffect is INSIDE this if statement because it
-        //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
-        SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, GetCurrentWeaponSkill());
-        if (effect != SUBEFFECT_NONE)
-        {
-            Action.addEffectParam = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, damage);
-            if (Action.addEffectParam < 0)
-            {
-                Action.addEffectParam = -Action.addEffectParam;
-                Action.addEffectMessage = 384 + effect;
-            }
-            else
-                Action.addEffectMessage = 287 + effect;
-            Action.additionalEffect = effect;
-
-            if (effect >= 7)
-                wspoints += 1;
-            else if (effect >= 3)
-                wspoints += 2;
-            else
-                wspoints += 4;
-        }
-    }
-
-    // check for ws points
-    CItemWeapon* PWeapon = (CItemWeapon*)m_PChar->m_Weapons[damslot];
-
-    if (PWeapon->isUnlockable() && !PWeapon->isUnlocked())
-    {
-        if (PWeapon->addWsPoints(wspoints))
-        {
-            // weapon is now broken
-            m_PChar->PLatentEffectContainer->CheckLatentsWeaponBreak(damslot);
-            m_PChar->pushPacket(new CCharStatsPacket(m_PChar));
-        }
-        int8 extra[sizeof(PWeapon->m_extra) * 2 + 1];
-        Sql_EscapeStringLen(SqlHandle, extra, (const char*)PWeapon->m_extra, sizeof(PWeapon->m_extra));
-
-        const int8* Query = "UPDATE char_inventory SET extra = '%s' WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
-        Sql_Query(SqlHandle, Query, extra, m_PChar->id, PWeapon->getLocationID(), PWeapon->getSlotID());
-    }
-
-    m_PChar->m_ActionList.push_back(Action);
-
-    if (m_PWeaponSkill->isAoE())
-    {
-        float radius = 10;
-
-        m_PTargetFind->reset();
-        m_PTargetFind->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, radius);
-
-        uint16 actionsLength = m_PTargetFind->m_targets.size();
-
-        for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin(); it != m_PTargetFind->m_targets.end(); ++it)
-        {
-            CBattleEntity* PTarget = *it;
-
-            // don't add same target twice
-            if (PTarget == m_PBattleSubTarget) continue;
-
-            Action.ActionTarget = PTarget;
-
-            m_PChar->health.tp = wsTP;
-
-            //damage = luautils::OnUseWeaponSkill(m_PChar, PTarget, &tpHitsLanded, &extraHitsLanded);
-
-            if (!(battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())))
-            {
-                damage = battleutils::TakeWeaponskillDamage(m_PChar, PTarget, damage, SLOT_MAIN, tpHitsLanded, taChar);
-
-                Action.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
-                Action.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
-
-                if (Action.reaction == REACTION_EVADE)
-                {
-                    Action.messageID = 282;
-                    Action.param = 0;
-                }
-                else if (damage < 0)
-                {
-                    Action.param = -damage;
-                    Action.messageID = 263;
-                }
-                else
-                {
-                    Action.messageID = 264; // "xxx takes ### damage." only
-                    Action.param = damage;
-                }
-            }
-            else
-            {
-                Action.messageID = 276; //xxx recovers mp
-                dsp_max(damage, 0);
-                Action.param = PTarget->addMP(damage);
-                if (PTarget->objtype == TYPE_PC)
-                    charutils::UpdateHealth((CCharEntity*)PTarget);
-            }
-
-            m_PChar->health.tp = afterWsTP;
-            m_PChar->m_ActionList.push_back(Action);
-        }
-    }
-
-    charutils::UpdateHealth(m_PChar);
-
-    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-
-    if (Action.param >= m_PBattleSubTarget->health.hp)
-    {
-        m_PChar->setWeaponSkillKill(true);
-    }
-
-    m_PWeaponSkill = nullptr;
-    m_PBattleSubTarget = nullptr;
-    m_ActionType = ACTION_ATTACK;
 }
 
 
@@ -2829,162 +2337,162 @@ void CAICharNormal::ActionSleep()
 
 void CAICharNormal::ActionAttack()
 {
-    DSP_DEBUG_BREAK_IF(m_PBattleTarget == nullptr);
-
-    //disengage if player has charmed the mob
-    if (m_PChar->PPet != nullptr && m_PChar->PPet == m_PBattleTarget)
-    {
-        m_PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
-        return;
-    }
-
-    //disengage if another player has charmed the mob
-    if (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->PMaster != nullptr && m_PBattleTarget->PMaster->objtype == TYPE_PC)
-    {
-        m_PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
-        return;
-    }
-
-
-    CMobEntity* Monster = (CMobEntity*)m_PBattleTarget;
-    if (Monster->m_HiPCLvl < m_PChar->GetMLevel())
-    {
-        Monster->m_HiPCLvl = m_PChar->GetMLevel();
-    }
-
-    if (m_PBattleTarget->isDead())
-    {
-        if (m_PChar->m_hasAutoTarget && m_PBattleTarget->objtype == TYPE_MOB) // Auto-Target
-        {
-            for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin(); it != m_PChar->SpawnMOBList.end(); ++it)
-            {
-                CBattleEntity* PTarget = (CBattleEntity*)it->second;
-
-                if (PTarget->animation == ANIMATION_ATTACK &&
-                    isFaceing(m_PChar->loc.p, PTarget->loc.p, 64) &&
-                    distance(m_PChar->loc.p, PTarget->loc.p) <= 10)
-                {
-                    if (m_PChar->PParty != nullptr)
-                    {
-                        if (m_PChar->PParty->m_PAlliance != nullptr)
-                        {
-                            for (uint8 a = 0; a < m_PChar->PParty->m_PAlliance->partyList.size(); ++a)
-                            {
-                                for (uint8 i = 0; i < m_PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
-                                {
-                                    if (PTarget->m_OwnerID.id == m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i]->id ||
-                                        (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i]))
-                                    {
-
-                                        if (!PTarget->isCharmed)
-                                        {
-                                            m_PBattleTarget = PTarget;
-                                            m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
-                                            return;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
-                            {
-                                if (PTarget->m_OwnerID.id == m_PChar->PParty->members[i]->id ||
-                                    (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar->PParty->members[i]))
-                                {
-
-                                    if (!PTarget->isCharmed)
-                                    {
-                                        m_PBattleTarget = PTarget;
-                                        m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
-                                        return;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else if (PTarget->m_OwnerID.id == m_PChar->id ||
-                        (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar))
-                    {
-                        // lock on to the new, if its not charmed
-                        if (!PTarget->isCharmed)
-                        {
-                            m_PBattleTarget = PTarget;
-                            m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
-                        }
-                        return;
-                    }
-                }
-            }
-        }
-        m_ActionType = ACTION_DISENGAGE;
-        ActionDisengage();
-        return;
-    }
-
-    if (!IsMobOwner(m_PBattleTarget))
-    {
-        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleTarget, 0, 0, MSGBASIC_ALREADY_CLAIMED));
-
-        m_ActionType = ACTION_DISENGAGE;
-        ActionDisengage();
-        return;
-    }
-
-    float Distance = distance(m_PChar->loc.p, m_PBattleTarget->loc.p);
-
-    if (Distance > 30)
-    {
-        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleTarget, 0, 0, MSGBASIC_LOSE_SIGHT));
-
-        m_ActionType = ACTION_DISENGAGE;
-        ActionDisengage();
-        return;
-    }
-
-
-    uint16 WeaponDelay = m_PChar->GetWeaponDelay(false);
-
-    if (m_Tick > m_LastMeleeTime + WeaponDelay)
-    {
-        if (!isFaceing(m_PChar->loc.p, m_PBattleTarget->loc.p, 40))
-        {
-            if (m_Tick > m_AttackMessageTime + WeaponDelay)
-            {
-                m_AttackMessageTime = m_Tick;
-                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleTarget, 0, 0, MSGBASIC_UNABLE_TO_SEE_TARG));
-            }
-            return;
-        }
-        if (Distance > m_PBattleTarget->m_ModelSize)
-        {
-            if (m_Tick > m_AttackMessageTime + WeaponDelay)
-            {
-                m_AttackMessageTime = m_Tick;
-                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleTarget, 0, 0, MSGBASIC_TARG_OUT_OF_RANGE));
-            }
-            return;
-        }
-        m_LastMeleeTime = m_Tick;
-        if (battleutils::IsParalyzed(m_PChar))
-        {
-            m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleTarget, 0, 0, MSGBASIC_IS_PARALYZED));
-        }
-        else if (battleutils::IsIntimidated(m_PChar, m_PBattleTarget))
-        {
-            m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleTarget, 0, 0, MSGBASIC_IS_INTIMIDATED));
-        }
-        else
-        {
-            DoAttack();
-
-            if (m_PChar->PPet != nullptr && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
-            {
-                m_PChar->PPet->PBattleAI->SetBattleTarget(m_PBattleTarget);
-            }
-        }
-    }
+//    DSP_DEBUG_BREAK_IF(m_PBattleTarget == nullptr);
+//
+//    //disengage if player has charmed the mob
+//    if (m_PChar->PPet != nullptr && m_PChar->PPet == m_PBattleTarget)
+//    {
+//        m_PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+//        return;
+//    }
+//
+//    //disengage if another player has charmed the mob
+//    if (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->PMaster != nullptr && m_PBattleTarget->PMaster->objtype == TYPE_PC)
+//    {
+//        m_PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+//        return;
+//    }
+//
+//
+//    CMobEntity* Monster = (CMobEntity*)m_PBattleTarget;
+//    if (Monster->m_HiPCLvl < m_PChar->GetMLevel())
+//    {
+//        Monster->m_HiPCLvl = m_PChar->GetMLevel();
+//    }
+//
+//    if (m_PBattleTarget->isDead())
+//    {
+//        if (m_PChar->m_hasAutoTarget && m_PBattleTarget->objtype == TYPE_MOB) // Auto-Target
+//        {
+//            for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin(); it != m_PChar->SpawnMOBList.end(); ++it)
+//            {
+//                CBattleEntity* PTarget = (CBattleEntity*)it->second;
+//
+//                if (PTarget->animation == ANIMATION_ATTACK &&
+//                    isFaceing(m_PChar->loc.p, PTarget->loc.p, 64) &&
+//                    distance(m_PChar->loc.p, PTarget->loc.p) <= 10)
+//                {
+//                    if (m_PChar->PParty != nullptr)
+//                    {
+//                        if (m_PChar->PParty->m_PAlliance != nullptr)
+//                        {
+//                            for (uint8 a = 0; a < m_PChar->PParty->m_PAlliance->partyList.size(); ++a)
+//                            {
+//                                for (uint8 i = 0; i < m_PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
+//                                {
+//                                    if (PTarget->m_OwnerID.id == m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i]->id ||
+//                                        (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i]))
+//                                    {
+//
+//                                        if (!PTarget->isCharmed)
+//                                        {
+//                                            m_PBattleTarget = PTarget;
+//                                            m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
+//                                            return;
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                        else
+//                        {
+//                            for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
+//                            {
+//                                if (PTarget->m_OwnerID.id == m_PChar->PParty->members[i]->id ||
+//                                    (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar->PParty->members[i]))
+//                                {
+//
+//                                    if (!PTarget->isCharmed)
+//                                    {
+//                                        m_PBattleTarget = PTarget;
+//                                        m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
+//                                        return;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                    else if (PTarget->m_OwnerID.id == m_PChar->id ||
+//                        (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar))
+//                    {
+//                        // lock on to the new, if its not charmed
+//                        if (!PTarget->isCharmed)
+//                        {
+//                            m_PBattleTarget = PTarget;
+//                            m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
+//                        }
+//                        return;
+//                    }
+//                }
+//            }
+//        }
+//        m_ActionType = ACTION_DISENGAGE;
+//        ActionDisengage();
+//        return;
+//    }
+//
+//    if (!IsMobOwner(m_PBattleTarget))
+//    {
+//        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleTarget, 0, 0, MSGBASIC_ALREADY_CLAIMED));
+//
+//        m_ActionType = ACTION_DISENGAGE;
+//        ActionDisengage();
+//        return;
+//    }
+//
+//    float Distance = distance(m_PChar->loc.p, m_PBattleTarget->loc.p);
+//
+//    if (Distance > 30)
+//    {
+//        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleTarget, 0, 0, MSGBASIC_LOSE_SIGHT));
+//
+//        m_ActionType = ACTION_DISENGAGE;
+//        ActionDisengage();
+//        return;
+//    }
+//
+//
+//    uint16 WeaponDelay = m_PChar->GetWeaponDelay(false);
+//
+//    if (m_Tick > m_LastMeleeTime + WeaponDelay)
+//    {
+//        if (!isFaceing(m_PChar->loc.p, m_PBattleTarget->loc.p, 40))
+//        {
+//            if (m_Tick > m_AttackMessageTime + WeaponDelay)
+//            {
+//                m_AttackMessageTime = m_Tick;
+//                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleTarget, 0, 0, MSGBASIC_UNABLE_TO_SEE_TARG));
+//            }
+//            return;
+//        }
+//        if (Distance > m_PBattleTarget->m_ModelSize)
+//        {
+//            if (m_Tick > m_AttackMessageTime + WeaponDelay)
+//            {
+//                m_AttackMessageTime = m_Tick;
+//                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleTarget, 0, 0, MSGBASIC_TARG_OUT_OF_RANGE));
+//            }
+//            return;
+//        }
+//        m_LastMeleeTime = m_Tick;
+//        if (battleutils::IsParalyzed(m_PChar))
+//        {
+//            m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleTarget, 0, 0, MSGBASIC_IS_PARALYZED));
+//        }
+//        else if (battleutils::IsIntimidated(m_PChar, m_PBattleTarget))
+//        {
+//            m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleTarget, 0, 0, MSGBASIC_IS_INTIMIDATED));
+//        }
+//        else
+//        {
+//            DoAttack();
+//
+//            if (m_PChar->PPet != nullptr && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
+//            {
+//                m_PChar->PPet->PBattleAI->SetBattleTarget(m_PBattleTarget);
+//            }
+//        }
+//    }
 }
 
 /************************************************************************
@@ -3096,151 +2604,4 @@ void CAICharNormal::TransitionBack(bool skipWait)
 
 void CAICharNormal::DoAttack()
 {
-    // Create a new attack round.
-    CAttackRound attackRound(m_PChar, m_PBattleTarget);
-
-    /////////////////////////////////////////////////////////////////////////
-    //	Start of the attack loop.
-    /////////////////////////////////////////////////////////////////////////
-    while (attackRound.GetAttackSwingCount() && !(m_PBattleTarget->isDead()))
-    {
-        apAction_t Action;
-        Action.ActionTarget = m_PBattleTarget;
-        Action.knockback = 0;
-
-        // Reference to the current swing.
-        CAttack attack = attackRound.GetCurrentAttack();
-
-        // Set the swing animation.
-        Action.animation = attack.GetAnimationID();
-
-        // сначала вычисляем вероятность попадания по монстру
-        // затем нужно вычислить вероятность нанесения критического удара
-        if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE, 0))
-        {
-            Action.messageID = 32;
-            Action.reaction = REACTION_EVADE;
-            Action.speceffect = SPECEFFECT_NONE;
-        }
-        else if ((dsprand::GetRandomNumber(100) < attack.GetHitRate() || attackRound.GetSATAOccured()) &&
-            !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
-        {
-            // attack hit, try to be absorbed by shadow unless it is a SATA attack round
-            if (!(attackRound.GetSATAOccured()) && battleutils::IsAbsorbByShadow(m_PBattleTarget))
-            {
-                Action.messageID = 0;
-                Action.reaction = REACTION_EVADE;
-                attack.SetEvaded(true);
-                m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 1, 31));
-            }
-            else
-            {
-                // Set this attack's critical flag.
-                attack.SetCritical(dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, !attack.IsFirstSwing()));
-
-                // Critical hit.
-                if (attack.IsCritical())
-                {
-                    Action.reaction = REACTION_HIT;
-                    Action.speceffect = SPECEFFECT_CRITICAL_HIT;
-                    Action.messageID = 67;
-
-                    if (m_PBattleTarget->objtype == TYPE_MOB)
-                    {
-                        luautils::OnCriticalHit(m_PBattleTarget);
-                    }
-                }
-                // Not critical hit.
-                else
-                {
-                    Action.reaction = REACTION_HIT;
-                    Action.speceffect = SPECEFFECT_HIT;
-                    Action.messageID = 1;
-                }
-
-                // Guarded. TODO: Stuff guards that shouldn't.
-                if (attack.IsGuarded())
-                {
-                    Action.reaction = REACTION_GUARD;
-                }
-
-                // Process damage.
-                attack.ProcessDamage();
-
-                // Try shield block
-                if (attack.IsBlocked())
-                {
-                    Action.reaction = REACTION_BLOCK;
-                }
-
-                Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, attack.GetDamage(), attack.IsBlocked(), attack.GetWeaponSlot(), 1, attackRound.GetTAEntity(), true, true);
-                if (Action.param < 0)
-                {
-                    Action.param = -(Action.param);
-                    Action.messageID = 373;
-                }
-            }
-        }
-        else
-        {
-            // Player misses the target
-            Action.reaction = REACTION_EVADE;
-            Action.speceffect = SPECEFFECT_NONE;
-            Action.messageID = 15;
-            attack.SetEvaded(true);
-
-            // Check & Handle Afflatus Misery Accuracy Bonus
-            battleutils::HandleAfflatusMiseryAccuracyBonus(m_PChar);
-        }
-
-        if (Action.reaction != REACTION_HIT && Action.reaction != REACTION_BLOCK && Action.reaction != REACTION_GUARD)
-        {
-            Action.param = 0;
-            battleutils::ClaimMob(m_PBattleTarget, m_PChar);
-        }
-
-        if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
-        {
-            battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, attack.IsFirstSwing(), (CItemWeapon*)m_PChar->m_Weapons[attack.GetWeaponSlot()], attack.GetDamage());
-            battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, attack.GetDamage());
-        }
-
-        if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
-        {
-            Action.speceffect = SPECEFFECT_RECOIL;
-        }
-
-        m_PChar->m_ActionList.push_back(Action);
-
-        //try zanshin only on single swing attack rounds - it is last priority in the multi-hit order
-        //if zanshin procs, the attack is repeated
-        if (attack.IsFirstSwing() && attackRound.GetAttackSwingCount() == 1)
-        {
-            uint16 zanshinChance = m_PChar->getMod(MOD_ZANSHIN) + m_PChar->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, m_PChar);
-            zanshinChance = dsp_cap(zanshinChance, 0, 100);
-            //zanshin may only proc on a missed/guarded/countered swing or as SAM main with hasso up (at 25% of the base zanshin rate)
-            if (((Action.reaction == REACTION_EVADE || Action.reaction == REACTION_GUARD || 
-                Action.spikesEffect == SUBEFFECT_COUNTER) && dsprand::GetRandomNumber(100) < zanshinChance) || 
-                (m_PChar->GetMJob() == JOB_SAM && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) && dsprand::GetRandomNumber(100) < (zanshinChance / 4)))
-            {
-                attack.SetAttackType(ZANSHIN_ATTACK);
-                attack.SetAsFirstSwing(false);
-            }
-            else
-                attackRound.DeleteAttackSwing();
-        }
-        else
-            attackRound.DeleteAttackSwing();
-
-        if (m_PChar->m_ActionList.size() == 8)
-        {
-            break;
-        }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////
-    // End of attack loop
-    /////////////////////////////////////////////////////////////////////////////////////////////
-
-    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK | EFFECTFLAG_DETECTABLE);
-    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 }
