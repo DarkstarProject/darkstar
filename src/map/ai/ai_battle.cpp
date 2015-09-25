@@ -29,6 +29,8 @@ This file is part of DarkStar-server source code.
 #include "states/weaponskill_state.h"
 #include "../attackround.h"
 #include "../spell.h"
+#include "../mobskill.h"
+#include "../weapon_skill.h"
 #include "../entities/battleentity.h"
 #include "../utils/battleutils.h"
 #include "../lua/luautils.h"
