@@ -228,6 +228,11 @@ void CAIMobDummy::ActionRoaming()
             {
                 // I spawned a pet
             }
+            else if (m_PMob->GetMJob() == JOB_SMN && CanCastSpells() && m_PMob->SpellContainer->HasBuffSpells() && m_Tick >= m_LastMagicTime + m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL))
+            {
+                // summon pet
+                CastSpell(m_PMob->SpellContainer->GetBuffSpell());
+            }
             else if (CanCastSpells() && dsprand::GetRandomNumber(10) < 3 && m_PMob->SpellContainer->HasBuffSpells())
             {
                 // cast buff
@@ -2023,9 +2028,13 @@ bool CAIMobDummy::CanCastSpells()
     }
 
     // smn can only cast spells if it has an existing pet
-    if (m_PMob->GetMJob() == JOB_SMN && m_PMob->PPet == nullptr)
+    if (m_PMob->GetMJob() == JOB_SMN)
     {
-        return false;
+        if(m_PMob->PPet == nullptr ||
+                !m_PMob->PPet->isDead())
+        {
+            return false;
+        }
     }
 
     return true;

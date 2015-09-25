@@ -29,6 +29,7 @@
 #include "../grades.h"
 #include "../trait.h"
 #include "mobutils.h"
+#include "petutils.h"
 #include "zoneutils.h"
 #include "../lua/luautils.h"
 #include "../mob_modifier.h"
@@ -444,6 +445,8 @@ void CalculateStats(CMobEntity * PMob)
     SetupJob(PMob);
     SetupRoaming(PMob);
 
+    PMob->m_Behaviour |= PMob->getMobMod(MOBMOD_BEHAVIOR);
+
     if(zoneType == ZONETYPE_DUNGEON)
     {
         SetupDungeonMob(PMob);
@@ -534,7 +537,11 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 40);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 15);
-            PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
+
+            if (PMob->m_EcoSystem != SYSTEM_AVATAR)
+            {
+                PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
+            }
             break;
         case JOB_WHM:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
@@ -612,8 +619,9 @@ void SetupDynamisMob(CMobEntity* PMob)
         PMob->m_Aggro |= AGGRO_DETECT_TRUEHEARING;
     }
 
+    // Hydra's and beastmen can 2 hour
     if(PMob->m_EcoSystem == SYSTEM_BEASTMEN ||
-            PMob->m_EcoSystem == SYSTEM_HUMANOID)
+            PMob->m_EcoSystem == SYSTEM_UNDEAD)
     {
         PMob->setMobMod(MOBMOD_MAIN_2HOUR, 1);
     }
@@ -1065,6 +1073,9 @@ void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
             break;
         case JOB_BLU:
             spellList = 8;
+            break;
+        case JOB_SMN:
+            spellList = 141;
             break;
     }
 

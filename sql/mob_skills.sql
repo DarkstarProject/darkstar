@@ -627,7 +627,7 @@ INSERT INTO `mob_skills` VALUES (578,516,'ecliptic_growl',1,10.0,516,3000,1,0,0,
 INSERT INTO `mob_skills` VALUES (579,517,'lunar_roar',1,10.0,515,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (580,518,'eclipse_bite',0,10.0,518,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (581,519,'ecliptic_howl',1,10.0,517,3000,1,0,0,0);
-INSERT INTO `mob_skills` VALUES (582,521,'howling_moon',1,10.0,520,3000,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (582,521,'howling_moon',1,10.0,520,0,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (583,521,'Howling_Moon',1,30.0,520,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (584,526,'punch',0,10.0,528,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (585,527,'fire_ii',0,10.0,529,3000,4,0,0,0);
@@ -637,7 +637,7 @@ INSERT INTO `mob_skills` VALUES (588,530,'crimson_howl',1,10.0,532,3000,1,0,0,0)
 INSERT INTO `mob_skills` VALUES (589,531,'fire_iv',0,10.0,533,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (590,532,'flaming_crush',0,10.0,534,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (591,533,'meteor_strike',0,10.0,535,3000,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (592,534,'inferno',1,10.0,536,3000,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (592,534,'inferno',1,10.0,536,0,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (593,539,'rock_throw',0,12.0,544,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (594,540,'stone_ii',0,10.0,545,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (595,541,'rock_buster',0,10.0,546,3000,4,0,0,0);
@@ -655,7 +655,7 @@ INSERT INTO `mob_skills` VALUES (606,556,'slowga',1,10.0,564,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (607,557,'water_iv',0,20.0,565,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (608,558,'spinning_dive',0,10.0,566,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (609,559,'grand_fall',0,10.0,567,3000,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (610,560,'tidal_wave',1,20.0,568,3000,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (610,560,'tidal_wave',1,20.0,568,0,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (611,565,'claw',0,10.0,576,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (612,566,'aero_ii',0,10.0,577,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (613,569,'whispering_wind',1,10.0,578,3000,1,0,0,0);
@@ -702,13 +702,13 @@ INSERT INTO `mob_skills` VALUES (653,3,'glittering_ruby',1,10.0,499,3000,1,0,0,0
 INSERT INTO `mob_skills` VALUES (654,609,'meteorite',0,10.0,500,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (655,610,'healing_ruby_ii',1,10.0,501,3000,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (656,611,'searing_light',1,30.0,0,0,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (657,534,'Inferno',1,30.0,536,0,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (658,547,'Earthen_Fury',1,10.0,552,0,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (659,560,'Tidal_Wave',1,30.0,568,0,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (660,573,'Aerial_Blast',1,30.0,584,0,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (661,586,'Diamond_Dust',1,30.0,0,0,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (662,599,'Judgment_Bolt',1,30.0,616,0,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (663,663,'Searing_Light',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (657,534,'Inferno',1,25.0,2000,0,4,0,0,0); -- Mob avatar skills
+INSERT INTO `mob_skills` VALUES (658,547,'Earthen_Fury',1,25.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (659,560,'Tidal_Wave',1,25.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (660,573,'Aerial_Blast',1,25.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (661,586,'Diamond_Dust',1,25.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (662,599,'Judgment_Bolt',1,25.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (663,611,'Searing_Light',1,25.0,2000,0,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (664,503,'Everyones_Grudge',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (665,504,'Everyones_Rancor',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (666,143,'Blind_Vortex',0,7.0,2000,1500,4,0,0,0);
@@ -812,7 +812,7 @@ INSERT INTO `mob_skills` VALUES (763,720,'Eagle_Eye_Shot',0,25.0,2000,0,4,0,0,0)
 INSERT INTO `mob_skills` VALUES (764,721,'Meikyo_Shisui',0,7.0,2000,0,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (765,722,'Mijin_Gakure',1,20.0,2000,0,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (766,723,'Call_Wyvern',0,7.0,2000,0,1,0,0,0);
-INSERT INTO `mob_skills` VALUES (767,724,'Astral_Flow',0,7.0,2000,0,1,0,0,0);
+INSERT INTO `mob_skills` VALUES (767,724,'Astral_Flow_Pet',0,7.0,2000,0,1,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (768,725,'Warp_Out',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (769,726,'Warp_In',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (770,727,'Arbor_Storm',0,7.0,2000,1500,4,0,0,0);
@@ -2045,7 +2045,7 @@ INSERT INTO `mob_skills` VALUES (1993,432,'Blood_Weapon',0,18.0,2000,0,1,0,30,0)
 -- INSERT INTO `mob_skills` VALUES (1997,1997,'Meikyo_Shisui',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1998,1998,'Mijin_Gakure',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1999,1999,'Spirit_Surge',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (2000,2000,'Astral_Flow',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (2000,432,'Astral_Flow_Pet',0,7.0,2000,0,1,2,0,0);
 -- INSERT INTO `mob_skills` VALUES (2001,2001,'Azure_Lore',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2002,2002,'Wild_Card',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2003,2003,'Overdrive',0,7.0,2000,1500,4,0,0,0);

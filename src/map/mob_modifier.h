@@ -81,9 +81,10 @@ enum MOBMODIFIER
     MOBMOD_SCRIPTED_2HOUR = 49, // disable two hour ability unless called upon by the script
     MOBMOD_2HOUR_PROC     = 50, // chance of mob's 2 hour activating 0-100%
     MOBMOD_ROAM_TURNS     = 51, // Maximum amount of turns during a roam
-    MOBMOD_ROAM_RATE      = 52  // Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
+    MOBMOD_ROAM_RATE      = 52, // Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
+    MOBMOD_BEHAVIOR       = 53  // Add behaviors to mob
 };
 
-#define MAX_MOBMODIFIER         53
+#define MAX_MOBMODIFIER         54
 
 #endif

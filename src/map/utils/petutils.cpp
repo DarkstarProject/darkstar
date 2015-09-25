@@ -797,6 +797,7 @@ namespace petutils
 
         PPet->look = petData->look;
         PPet->name = petData->name;
+        PPet->SetMJob(petData->mJob);
         PPet->m_EcoSystem = petData->EcoSystem;
         PPet->m_Family = petData->m_Family;
         PPet->m_MobSkillList = petData->m_MobSkillList;
