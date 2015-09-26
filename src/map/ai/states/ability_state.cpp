@@ -95,11 +95,11 @@ bool CAbilityState::CanUseAbility()
     if (m_PEntity->PRecastContainer->HasRecast(RECAST_ABILITY, PAbility->getRecastId()))
     {
         m_PEntity->pushPacket(new CMessageBasicPacket(m_PEntity, m_PEntity, 0, 0, MSGBASIC_WAIT_LONGER));
-        return;
+        return false;
     }
     if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA)) {
         m_PEntity->pushPacket(new CMessageBasicPacket(m_PEntity, m_PEntity, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
-        return;
+        return false;
     }
     std::unique_ptr<CMessageBasicPacket> errMsg;
     auto PTarget = GetTarget();
@@ -108,7 +108,7 @@ bool CAbilityState::CanUseAbility()
         if (m_PEntity != PTarget && distance(m_PEntity->loc.p, PTarget->loc.p) > PAbility->getRange())
         {
             m_PEntity->pushPacket(new CMessageBasicPacket(m_PEntity, PTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY));
-            return;
+            return false;
         }
         if (PAbility->getID() >= ABILITY_HEALING_RUBY)
         {
@@ -116,7 +116,7 @@ bool CAbilityState::CanUseAbility()
             if (m_PEntity->health.mp < PAbility->getAnimationID())
             {
                 m_PEntity->pushPacket(new CMessageBasicPacket(m_PEntity, PTarget, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
-                return;
+                return false;
             }
         }
         CBaseEntity* PMsgTarget = m_PEntity;
@@ -124,7 +124,7 @@ bool CAbilityState::CanUseAbility()
         if (errNo != 0)
         {
             m_PEntity->pushPacket(new CMessageBasicPacket(m_PEntity, PMsgTarget, PAbility->getID() + 16, PAbility->getID(), errNo));
-            return;
+            return false;
         }
         // #TODO: needed??
         //if (PAbility->getValidTarget() == TARGET_ENEMY)
@@ -138,5 +138,7 @@ bool CAbilityState::CanUseAbility()
         //        return;
         //    }
         //}
+        return true;
     }
+    return false;
 }
