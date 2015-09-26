@@ -138,11 +138,10 @@ void CAIBattle::OnChangeTarget(CBattleEntity* PTarget)
 {
 }
 
-bool CAIBattle::Attack(action_t& action)
+bool CAIBattle::OnAttack(CAttackState& state, action_t& action)
 {
     auto PBattleEntity = static_cast<CBattleEntity*>(PEntity);
-    auto state = static_cast<CAttackState*>(GetCurrentState());
-    auto PTarget = static_cast<CBattleEntity*>(state->GetTarget());
+    auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
     if (battleutils::IsParalyzed(PBattleEntity))
     {

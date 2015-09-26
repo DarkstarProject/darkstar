@@ -4171,6 +4171,11 @@ namespace battleutils
                 }
             }
 
+            if (mob->m_HiPCLvl < PAttacker->GetMLevel())
+            {
+                mob->m_HiPCLvl = PAttacker->GetMLevel();
+            }
+
             mob->PEnmityContainer->AddBaseEnmity(PAttacker);
             mob->m_OwnerID.id = PAttacker->id;
             mob->m_OwnerID.targid = PAttacker->targid;

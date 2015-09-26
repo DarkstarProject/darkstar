@@ -55,6 +55,10 @@ bool CAttackState::Update(time_point tick)
         {
             m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
         }
+        if (m_PEntity->PAIBattle()->GetBattleTargetID() == 0)
+        {
+            return true;
+        }
     }
     return false;
 }
@@ -72,11 +76,16 @@ void CAttackState::UpdateTarget(uint16 targid)
 {
     m_errorMsg.reset();
     auto newTargid = m_PEntity->PAIBattle()->GetBattleTargetID();
+    auto PNewTarget = m_PEntity->PAIBattle()->IsValidTarget(newTargid, TARGET_ENEMY, m_errorMsg);
+    if (!PNewTarget)
+    {
+        m_PEntity->PAIBattle()->ChangeTarget(0);
+        newTargid = 0;
+    }
     if (targid != newTargid)
     {
         if (targid != 0)
         {
-            auto PNewTarget = m_PEntity->PAIBattle()->IsValidTarget(newTargid, TARGET_ENEMY, m_errorMsg);
             m_PEntity->PAIBattle()->OnChangeTarget(PNewTarget);
             SetTarget(newTargid);
             if (!PNewTarget)

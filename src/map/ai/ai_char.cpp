@@ -84,10 +84,17 @@ bool CAIChar::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPac
 
     float dist = distance(PEntity->loc.p, PTarget->loc.p);
 
-    if (dist > 30)
+    if (!IsMobOwner(PTarget))
+    {
+        errMsg = std::make_unique<CMessageBasicPacket>(PEntity, PTarget, 0, 0, MSGBASIC_ALREADY_CLAIMED);
+
+        Controller->Disengage();
+        return false;
+    }
+    else if (dist > 30)
     {
         errMsg = std::make_unique<CMessageBasicPacket>(PEntity, PTarget, 0, 0, MSGBASIC_LOSE_SIGHT);
-        PBattleEntity->PAIBattle()->Disengage();
+        Controller->Disengage();
         return false;
     }
     else if (!isFaceing(PEntity->loc.p, PTarget->loc.p, 40))
@@ -101,7 +108,7 @@ bool CAIChar::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPac
     return true;
 }
 
-bool CAIChar::Attack(action_t& action)
+bool CAIChar::OnAttack(CAttackState& state, action_t& action)
 {
     auto PChar = static_cast<CCharEntity*>(PEntity);
     if (GetCurrentState()->HasErrorMsg())
@@ -114,7 +121,30 @@ bool CAIChar::Attack(action_t& action)
         return false;
     }
     static_cast<CPlayerController*>(Controller.get())->setLastAttackTime(server_clock::now());
-    return CAIBattle::Attack(action);
+    auto ret = CAIBattle::OnAttack(state, action);
+
+    auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+
+    if (PTarget->isDead())
+    {
+        if (PChar->m_hasAutoTarget && PTarget->objtype == TYPE_MOB) // Auto-Target
+        {
+            for (auto&& PPotentialTarget : PChar->SpawnMOBList)
+            {
+                if (PPotentialTarget.second->animation == ANIMATION_ATTACK &&
+                    isFaceing(PChar->loc.p, PPotentialTarget.second->loc.p, 64) &&
+                    distance(PChar->loc.p, PPotentialTarget.second->loc.p) <= 10)
+                {
+                    std::unique_ptr<CMessageBasicPacket> errMsg;
+                    if (IsValidTarget(PPotentialTarget.second->targid, TARGET_ENEMY, errMsg))
+                    {
+                        Controller->ChangeTarget(PPotentialTarget.second->targid);
+                    }
+                }
+            }
+        }
+    }
+    return ret;
 }
 
 void CAIChar::OnCastFinished(CMagicState& state, action_t& action)
@@ -306,4 +336,25 @@ void CAIChar::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action)
         PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PEntity, PEntity, 0, 0, MSGBASIC_TOO_FAR_AWAY));
     }
     charutils::UpdateHealth(PChar);
+}
+
+bool CAIChar::IsMobOwner(CBattleEntity* PBattleTarget)
+{
+    DSP_DEBUG_BREAK_IF(PBattleTarget == nullptr);
+
+    if (PBattleTarget->m_OwnerID.id == 0 || PBattleTarget->m_OwnerID.id == PEntity->id || PBattleTarget->objtype == TYPE_PC)
+    {
+        return true;
+    }
+
+    bool found = false;
+
+    static_cast<CCharEntity*>(PEntity)->ForAlliance([&PBattleTarget, &found](CBattleEntity* PChar) {
+        if (PChar->id == PBattleTarget->m_OwnerID.id)
+        {
+            found = true;
+        }
+    });
+
+    return found;
 }

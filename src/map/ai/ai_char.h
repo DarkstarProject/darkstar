@@ -37,7 +37,7 @@ protected:
 
     /* Attacking functions */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
-    virtual bool Attack(action_t&) override;
+    virtual bool OnAttack(CAttackState&, action_t&) override;
     virtual CBattleEntity* IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
     virtual void OnChangeTarget(CBattleEntity* PNewTarget) override;
     virtual void OnDisengage() override;
@@ -46,6 +46,8 @@ protected:
     virtual void OnCastFinished(CMagicState&, action_t&) override;
     virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg) override;
     virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
+
+    bool IsMobOwner(CBattleEntity* PTarget);
 
     time_point m_errMsgTime;
 };
