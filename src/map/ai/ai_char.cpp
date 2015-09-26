@@ -23,19 +23,48 @@ This file is part of DarkStar-server source code.
 
 #include "ai_char.h"
 #include "controllers/player_controller.h"
+#include "states/ability_state.h"
 #include "states/attack_state.h"
 #include "states/weaponskill_state.h"
+#include "../ability.h"
+#include "../weapon_skill.h"
 #include "../entities/charentity.h"
 #include "../utils/battleutils.h"
 #include "../utils/charutils.h"
 #include "../packets/action.h"
 #include "../packets/lock_on.h"
+#include "../packets/char_recast.h"
 #include "../packets/char_update.h"
 #include "../packets/message_basic.h"
 
 CAIChar::CAIChar(CCharEntity* PChar) :
     CAIBattle(PChar, nullptr, std::make_unique<CPlayerController>(PChar))
 {
+}
+
+void CAIChar::Ability(uint16 targid, uint16 abilityid)
+{
+    auto PlayerController = static_cast<CPlayerController*>(Controller.get());
+    if (PlayerController)
+    {
+        PlayerController->Ability(targid, abilityid);
+    }
+    else
+    {
+        Internal_Ability(targid, abilityid);
+    }
+}
+
+bool CAIChar::Internal_Ability(uint16 targetid, uint16 abilityid)
+{
+    if (CanChangeState())
+    {
+        if (ChangeState<CAbilityState>(static_cast<CCharEntity*>(PEntity), targetid))
+        {
+            return static_cast<CAbilityState*>(GetCurrentState())->StartAbility(abilityid);
+        }
+    }
+    return false;
 }
 
 CBattleEntity* CAIChar::IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
@@ -336,6 +365,687 @@ void CAIChar::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action)
         PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PEntity, PEntity, 0, 0, MSGBASIC_TOO_FAR_AWAY));
     }
     charutils::UpdateHealth(PChar);
+}
+
+void CAIChar::OnAbility(CAbilityState& state, action_t& action)
+{
+    auto PChar = static_cast<CCharEntity*>(PEntity);
+    auto PAbility = state.GetAbility();
+    if (PChar->PRecastContainer->HasRecast(RECAST_ABILITY, PAbility->getRecastId()))
+    {
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
+        return;
+    }
+    if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA)) {
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
+        return;
+    }
+    auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+    std::unique_ptr<CMessageBasicPacket> errMsg;
+    if (IsValidTarget(PTarget->targid, PAbility->getValidTarget(), errMsg))
+    {
+        if (PChar != PTarget && distance(PChar->loc.p, PTarget->loc.p) > PAbility->getRange())
+        {
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY));
+            return;
+        }
+        if (PAbility->getID() >= ABILITY_HEALING_RUBY) 
+        {
+            // Blood pact MP costs are stored under animation ID
+            if (PChar->health.mp < PAbility->getAnimationID())
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
+                return;
+            }
+        }
+        CBaseEntity* PMsgTarget = PChar;
+        int32 errNo = luautils::OnAbilityCheck(PChar, PTarget, PAbility, &PMsgTarget);
+        if (errNo != 0)
+        {
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PMsgTarget, PAbility->getID() + 16, PAbility->getID(), errNo));
+            return;
+        }
+        // #TODO: needed??
+        //if (PAbility->getValidTarget() == TARGET_ENEMY)
+        //{
+        //    if (!IsMobOwner(PTarget))
+        //    {
+        //        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_ALREADY_CLAIMED));
+
+        //        TransitionBack();
+        //        PAbility = nullptr;
+        //        return;
+        //    }
+        //}
+
+        if (battleutils::IsParalyzed(PChar)) {
+            // display paralyzed
+            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PTarget, 0, 0, MSGBASIC_IS_PARALYZED));
+            return;
+        }
+
+        // get any available merit recast reduction
+        uint8 meritRecastReduction = 0;
+
+        if (PAbility->getMeritModID() > 0 && !(PAbility->getAddType() & ADDTYPE_MERIT))
+        {
+            meritRecastReduction = PChar->PMeritPoints->GetMeritValue((MERIT_TYPE)PAbility->getMeritModID(), PChar);
+        }
+
+        uint32 RecastTime = (PAbility->getRecastTime() - meritRecastReduction);
+
+        if (PAbility->getID() == ABILITY_LIGHT_ARTS || PAbility->getID() == ABILITY_DARK_ARTS || PAbility->getRecastId() == 231) //stratagems
+        {
+            if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
+                RecastTime = 0;
+        }
+        else if (PAbility->getID() == ABILITY_DEACTIVATE && PChar->PAutomaton && PChar->PAutomaton->health.hp == PChar->PAutomaton->GetMaxHP())
+        {
+            CAbility* PAbility = ability::GetAbility(ABILITY_ACTIVATE);
+            if (PAbility)
+                PChar->PRecastContainer->Del(RECAST_ABILITY, PAbility->getRecastId());
+        }
+        else if (PAbility->getID() >= ABILITY_HEALING_RUBY)
+        {
+            if (PChar->getMod(MOD_BP_DELAY) > 15) {
+                RecastTime -= 15;
+            }
+            else {
+                RecastTime -= PChar->getMod(MOD_BP_DELAY);
+            }
+        }
+
+        // remove invisible if aggresive
+        if (PAbility->getID() != ABILITY_FIGHT)
+        {
+            if (PAbility->getValidTarget() & TARGET_ENEMY) {
+                // aggresive action
+                PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+            }
+            else if (PAbility->getID() != ABILITY_TRICK_ATTACK) {
+                // remove invisible only
+                PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_INVISIBLE);
+            }
+        }
+
+        if (PAbility->getID() == ABILITY_REWARD) {
+            CItem* PItem = PChar->getEquip(SLOT_HEAD);
+            if (PItem && (PItem->getID() == 15157 || PItem->getID() == 15158 || PItem->getID() == 16104 || PItem->getID() == 16105)) {
+                //TODO: Transform this into an item MOD_REWARD_RECAST perhaps ?
+                //The Bison/Brave's Warbonnet & Khimaira/Stout Bonnet reduces recast time by 10 seconds.
+                RecastTime -= 10;   // remove 10 seconds
+            }
+        }
+
+        //#TODO: move this somewhere (hopefully entirely to script!)
+        /*if (PAbility->getID() >= ABILITY_FIGHTERS_ROLL && PAbility->getID() <= ABILITY_SCHOLARS_ROLL)
+        {
+            PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
+            uint8 roll = dsprand::GetRandomNumber(1, 7);
+            PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
+                EFFECT_DOUBLE_UP_CHANCE,
+                EFFECT_DOUBLE_UP_CHANCE,
+                roll,
+                0,
+                45,
+                PAbility->getID(),
+                PAbility->getAnimationID(),
+                battleutils::getCorsairRollEffect(PAbility->getID())
+                ), true);
+
+            m_CorsairDoubleUp = PAbility->getID();
+
+            if (PChar->StatusEffectContainer->CheckForElevenRoll())
+            {
+                RecastTime /= 2;
+            }
+
+            action.reaction = REACTION_NONE;
+            action.speceffect = (SPECEFFECT)roll;
+            action.animation = PAbility->getAnimationID();
+            action.param = roll;
+            action.knockback = 0;
+
+            if (PChar->PParty != nullptr)
+            {
+                for (uint32 i = 0; i < PChar->PParty->members.size(); i++)
+                {
+                    CCharEntity* PTarget = (CCharEntity*)PChar->PParty->members[i];
+
+                    if (!PTarget->isDead() &&
+                        PTarget->getZone() == PChar->getZone() &&
+                        distance(PChar->loc.p, PTarget->loc.p) <= PAbility->getRange())
+                    {
+                        action.ActionTarget = PTarget;
+                        luautils::OnUseAbilityRoll(PChar, action.ActionTarget, PAbility, roll);
+                        if (PTarget->id == PChar->id) {
+                            if (PAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL) {
+                                action.messageID = MSGBASIC_ROLL_MAIN_FAIL;
+                            }
+                            else {
+                                action.messageID = PAbility->getMessage();
+                            }
+                        }
+                        else if (PAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL) {
+                            action.messageID = MSGBASIC_ROLL_SUB_FAIL;
+                        }
+                        else {
+                            action.messageID = MSGBASIC_ROLL_SUB;
+                        }
+                        PChar->m_ActionList.push_back(Action);
+                    }
+                }
+            }
+            else {
+                action.ActionTarget = PTarget;
+                luautils::OnUseAbilityRoll(PChar, action.ActionTarget, PAbility, roll);
+                if (PAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL) {
+                    action.messageID = MSGBASIC_ROLL_MAIN_FAIL;
+                }
+                else {
+                    action.messageID = PAbility->getMessage();
+                }
+
+                PChar->m_ActionList.push_back(Action);
+            }
+            PChar->PRecastContainer->Add(RECAST_ABILITY, 194, 8); //double up
+        }
+        else if (PAbility->getID() == ABILITY_WILD_CARD)
+        {
+            uint8 roll = dsprand::GetRandomNumber(1, 7);
+            uint16 AnimationId = 132 + (roll - 1);
+
+            CAbility* rollAbility = ability::GetAbility(ABILITY_WILD_CARD);
+            action.animation = AnimationId;
+            action.reaction = REACTION_NONE;
+            action.speceffect = (SPECEFFECT)roll;
+            action.param = roll;
+            action.knockback = 0;
+
+            if (PChar->PParty != nullptr)
+            {
+                for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
+                {
+                    CCharEntity* PTarget = (CCharEntity*)PChar->PParty->members[i];
+
+                    if (!PTarget->isDead() &&
+                        PTarget->getZone() == PChar->getZone() &&
+                        distance(PChar->loc.p, PTarget->loc.p) <= PAbility->getRange())
+                    {
+                        action.ActionTarget = PTarget;
+                        battleutils::DoWildCardToEntity(PChar, PTarget, roll);
+                        PTarget->pushPacket(new CCharSkillsPacket(PTarget));
+                        PTarget->pushPacket(new CCharRecastPacket(PTarget));
+                        PTarget->pushPacket(new CCharHealthPacket(PTarget));
+                        action.messageID = PAbility->getMessage();
+                        PChar->m_ActionList.push_back(Action);
+                    }
+                }
+            }
+            else
+            {
+                battleutils::DoWildCardToEntity(PChar, PChar, roll);
+                action.ActionTarget = PTarget;
+                PChar->pushPacket(new CCharSkillsPacket(PChar));
+                PChar->pushPacket(new CCharRecastPacket(PChar));
+                PChar->pushPacket(new CCharHealthPacket(PChar));
+                action.messageID = PAbility->getMessage();
+                PChar->m_ActionList.push_back(Action);
+            }
+            luautils::OnUseAbilityRoll(PChar, action.ActionTarget, rollAbility, roll);
+        }
+        else if (PAbility->getID() == ABILITY_DOUBLE_UP)
+        {
+            if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_UP_CHANCE))
+            {
+                //TODO: some reason cosair double up chance is sometimes null
+                uint8 roll = (dsprand::GetRandomNumber(1, 7));
+                CStatusEffect* doubleUpEffect = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DOUBLE_UP_CHANCE);
+
+                if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNAKE_EYE))
+                {
+                    //check for instant 11 via Snake Eye merits
+                    if (doubleUpEffect->GetPower() >= 5 && dsprand::GetRandomNumber(100) < PChar->StatusEffectContainer->GetStatusEffect(EFFECT_SNAKE_EYE)->GetPower())
+                    {
+                        roll = 11 - doubleUpEffect->GetPower();
+                    }
+                    else
+                    {
+                        roll = 1;
+                    }
+                    PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_SNAKE_EYE);
+                }
+
+                uint8 total = doubleUpEffect->GetPower() + roll;
+                if (total > 12)
+                {
+                    total = 12;
+                }
+                doubleUpEffect->SetPower(total);
+
+                CAbility* rollAbility = ability::GetAbility(m_CorsairDoubleUp);
+
+                action.animation = doubleUpEffect->GetSubPower();
+                action.reaction = REACTION_NONE;
+                action.speceffect = (SPECEFFECT)roll;
+                action.param = total;
+
+                if (total == 12) //bust!
+                {
+                    if (PChar->PParty != nullptr)
+                    {
+                        for (uint32 i = 0; i < PChar->PParty->members.size(); i++)
+                        {
+                            CCharEntity* PTarget = (CCharEntity*)PChar->PParty->members[i];
+
+                            if (!PTarget->isDead() &&
+                                PTarget->getZone() == PChar->getZone() &&
+                                distance(PChar->loc.p, PTarget->loc.p) <= PAbility->getRange())
+                            {
+                                action.ActionTarget = PTarget;
+                                if (PTarget->id == PChar->id) {
+                                    action.messageID = MSGBASIC_DOUBLEUP_BUST;
+                                    luautils::OnUseAbilityRoll(PChar, action.ActionTarget, rollAbility, total);
+                                }
+                                else {
+                                    action.messageID = MSGBASIC_DOUBLEUP_BUST_SUB;
+                                }
+                                PTarget->StatusEffectContainer->DelStatusEffectSilent(battleutils::getCorsairRollEffect(m_CorsairDoubleUp));
+                                PChar->m_ActionList.push_back(Action);
+                            }
+                        }
+                    }
+                    else {
+                        action.ActionTarget = PTarget;
+                        luautils::OnUseAbilityRoll(PChar, action.ActionTarget, rollAbility, total);
+                        action.messageID = MSGBASIC_DOUBLEUP_BUST;
+                        PChar->StatusEffectContainer->DelStatusEffectSilent(battleutils::getCorsairRollEffect(m_CorsairDoubleUp));
+                        PChar->m_ActionList.push_back(Action);
+                    }
+                    PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
+                }
+                else {
+                    if (total == 11)
+                    {
+                        PChar->PRecastContainer->Del(RECAST_ABILITY, 193); //phantom roll
+                    }
+                    if (PChar->PParty != nullptr)
+                    {
+                        for (uint32 i = 0; i < PChar->PParty->members.size(); i++)
+                        {
+                            CCharEntity* PTarget = (CCharEntity*)PChar->PParty->members[i];
+
+                            if (!PTarget->isDead() &&
+                                PTarget->getZone() == PChar->getZone() &&
+                                distance(PChar->loc.p, PTarget->loc.p) <= PAbility->getRange())
+                            {
+                                action.ActionTarget = PTarget;
+                                luautils::OnUseAbilityRoll(PChar, action.ActionTarget, rollAbility, total);
+                                if (PTarget->id == PChar->id) {
+                                    if (PAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL) {
+                                        action.messageID = MSGBASIC_DOUBLEUP_FAIL;
+                                    }
+                                    else {
+                                        action.messageID = PAbility->getMessage();
+                                    }
+                                }
+                                else if (PAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL) {
+                                    action.messageID = MSGBASIC_ROLL_SUB_FAIL;
+                                }
+                                else {
+                                    action.messageID = MSGBASIC_ROLL_SUB;
+                                }
+                                PChar->m_ActionList.push_back(Action);
+                            }
+                        }
+                    }
+                    else {
+                        action.ActionTarget = PTarget;
+                        luautils::OnUseAbilityRoll(PChar, action.ActionTarget, rollAbility, total);
+                        if (PAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL) {
+                            action.messageID = MSGBASIC_DOUBLEUP_FAIL;
+                        }
+                        else {
+                            action.messageID = PAbility->getMessage();
+                        }
+                        PChar->m_ActionList.push_back(Action);
+                    }
+                }
+            }
+        }*/
+
+        action.id = PEntity->id;
+        action.actiontype = ACTION_JOBABILITY_FINISH;
+        action.actionid = PAbility->getID();
+
+        // #TODO: get rid of this to script, too
+        if (PAbility->isAvatarAbility())
+        {
+            if (PChar->PPet != nullptr) //is a bp - dont display msg and notify pet
+            {
+                actionList_t& actionList = action.getNewActionList();
+                actionList.ActionTargetID = PTarget->id;
+                actionTarget_t& actionTarget = actionList.getNewActionTarget();
+                actionTarget.animation = 94; //assault anim
+                actionTarget.reaction = REACTION_NONE;
+                actionTarget.speceffect = SPECEFFECT_RECOIL;
+                actionTarget.param = 0;
+                actionTarget.messageID = 0;
+
+                if (PAbility->getID() == ABILITY_SEARING_LIGHT || PAbility->getID() == ABILITY_AERIAL_BLAST || PAbility->getID() == ABILITY_EARTHEN_FURY) {
+                    if (PChar->health.mp >= PChar->GetMLevel() * 2) {
+                        PChar->addMP(-PChar->GetMLevel() * 2);
+                    }
+                }
+                else {
+                    PChar->addMP(-PAbility->getAnimationID()); // TODO: ...
+                }
+                //PChar->m_ActionList.push_back(Action);
+                //PChar->PPet->PBattleAI->SetBattleSubTarget(PTarget);
+
+                //((CAIPetDummy*)PChar->PPet->PBattleAI)->m_MasterCommand = PAbility->getID(); // TODO: ?? ?????????? ??????
+
+                //PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
+                charutils::UpdateHealth(PChar);
+            }
+        }
+        //#TODO: make this generic enough to not require an if
+        else if (PAbility->isAoE() && PChar->PParty != nullptr)
+        {
+            targetFind.reset();
+            PChar->m_ActionList.clear();
+
+            float distance = PAbility->getRange();
+
+            targetFind.findWithinArea(PChar, AOERADIUS_ATTACKER, distance);
+
+            uint16 msg = 0;
+            for (auto&& PTarget : targetFind.m_targets)
+            {
+                actionList_t& actionList = action.getNewActionList();
+                actionList.ActionTargetID = PTarget->id;
+                actionTarget_t& actionTarget = actionList.getNewActionTarget();
+                actionTarget.reaction = REACTION_NONE;
+                actionTarget.speceffect = SPECEFFECT_NONE;
+                actionTarget.animation = PAbility->getAnimationID();
+                actionTarget.messageID = PAbility->getMessage();
+                actionTarget.param = luautils::OnUseAbility(PChar, PTarget, PAbility, &actionTarget);
+
+                if (msg == 0) {
+                    msg = PAbility->getMessage();
+                }
+                else {
+                    msg = PAbility->getAoEMsg();
+                }
+
+                if (actionTarget.param < 0)
+                {
+                    msg = ability::GetAbsorbMessage(msg);
+                    actionTarget.param = -actionTarget.param;
+                }
+
+                actionTarget.messageID = msg;
+            }
+        }
+        else
+        { 
+            actionList_t& actionList = action.getNewActionList();
+            actionList.ActionTargetID = PTarget->id;
+            actionTarget_t& actionTarget = actionList.getNewActionTarget();
+            actionTarget.reaction = REACTION_NONE;
+            actionTarget.speceffect = SPECEFFECT_RECOIL;
+            actionTarget.animation = PAbility->getAnimationID();
+            actionTarget.param = 0;
+
+            int32 value = luautils::OnUseAbility(PChar, PTarget, PAbility, &actionTarget);
+            actionTarget.messageID = PAbility->getMessage();
+            actionTarget.param = value;
+
+            if (value < 0)
+            {
+                actionTarget.messageID = ability::GetAbsorbMessage(actionTarget.messageID);
+                actionTarget.param = -value;
+            }
+
+            //#TODO: set the HP from script
+            //if (PAbility->getID() == ABILITY_MIJIN_GAKURE)
+            //{
+            //    PChar->setMijinGakure(true);
+            //    PChar->health.hp = 0;
+            //    charutils::UpdateHealth(PChar);
+            //    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CActionPacket(PChar));
+            //}
+
+            /* TODO: Handle post-Lv. 75 genkai job abilities from support jobs that
+            * deal damage points and defeats a monster while Blade of Darkness and/or
+            * Blade of Death quests are active.
+            */
+
+            //#TODO: move all of these to script!
+            // Shadow Bind
+            //if (PAbility->getID() == ABILITY_SHADOWBIND)
+            //{
+            //    //action.flag = 3;
+
+            //    uint16 shadowBindDuration = 30 + PChar->getMod(MOD_SHADOW_BIND_EXT);
+            //    if (dsprand::GetRandomNumber(100) >= PTarget->getMod(MOD_BINDRES))
+            //    {
+            //        // Shadow bind success!
+            //        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PTarget, PAbility->getID() + 16, 11, 277));
+            //        PTarget->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_BIND, EFFECT_BIND, 1, 0, shadowBindDuration));
+            //    }
+            //    else
+            //    {
+            //        // Shadowbind failed!
+            //        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PTarget, PAbility->getID() + 16, 11, 283));
+            //    }
+            //}
+
+            //// Jump
+            //if (PAbility->getID() == ABILITY_JUMP)
+            //{
+            //    action.param = battleutils::jumpAbility(PChar, PTarget, 1);
+            //    if (action.param == 0)
+            //    {
+            //        action.messageID = 0;
+            //        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PTarget, PAbility->getID() + 16, 0, MSGBASIC_USES_BUT_MISSES));
+            //    }
+            //    else if (action.param >= PTarget->health.hp)
+            //    {
+            //        PChar->setWeaponSkillKill(true);
+            //    }
+            //}
+
+            //// High Jump
+            //else if (PAbility->getID() == ABILITY_HIGH_JUMP)
+            //{
+            //    action.param = battleutils::jumpAbility(PChar, PTarget, 2);
+            //    if (action.param == 0)
+            //    {
+            //        action.messageID = 0;
+            //        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PTarget, PAbility->getID() + 16, 0, MSGBASIC_USES_BUT_MISSES));
+            //    }
+            //    else if (action.param >= PTarget->health.hp)
+            //    {
+            //        PChar->setWeaponSkillKill(true);
+            //    }
+            //}
+
+            //// Super Jump
+            //else if (PAbility->getID() == ABILITY_SUPER_JUMP)
+            //{
+            //    battleutils::jumpAbility(PChar, PTarget, 3);
+            //    action.messageID = 0;
+            //    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PTarget, PAbility->getID() + 16, 0, MSGBASIC_USES_JA));
+            //}
+
+            // Handle Accomplice / Collabrator..
+            if (PAbility->getID() == ABILITY_ACCOMPLICE || PAbility->getID() == ABILITY_COLLABORATOR)
+            {
+                // Find all mobs within 8.5 radius of the target..
+                //#TODO: use spawned mob list to avoid iterating 400 mobs
+                //for (uint32 x = 0; x < 0x400; x++)
+                //{
+                //    CBaseEntity* PTarget = PTarget->GetEntity(x, TYPE_MOB);
+                //    if (PTarget != nullptr && PTarget->objtype == TYPE_MOB)
+                //    {
+                //        if (targetFind.isWithinRange(&PTarget->loc.p, 8.5f))
+                //        {
+                //            CMobEntity* PTargetMob = (CMobEntity*)PTarget;
+                //            if (PTargetMob->PEnmityContainer->HasTargetID(PTarget->id))
+                //                battleutils::TransferEnmity(PChar, PTarget, PTargetMob, (PAbility->getID() == ABILITY_ACCOMPLICE) ? 50 : 25);
+                //        }
+                //    }
+                //}
+            }
+
+            //#TODO: move these 3 BST abilities to scripts
+            //if (PAbility->getID() == ABILITY_SNARL)
+            //{
+            //    //Snarl
+            //    CBattleEntity* PTarget = (CBattleEntity*)PTarget->PBattleAI->GetBattleTarget();
+
+            //    if (PTarget != nullptr)
+            //    {
+            //        switch (PTarget->objtype)
+            //        {
+            //            case TYPE_MOB:
+            //                ((CMobEntity*)PTarget)->PEnmityContainer->LowerEnmityByPercent(PChar, 100, PTarget);
+            //                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PTarget, PAbility->getID() + 16, 0, 528));  //528 - The <player> uses .. Enmity is transferred to the <player>'s pet.
+            //                break;
+
+            //            case TYPE_PET:
+            //                // pets have no emnity container
+            //                break;
+
+            //            case TYPE_PC:
+            //                PTarget->PBattleAI->SetBattleTarget(PTarget); //Change target. in prevision of future PvP
+            //                break;
+            //        }
+            //    }
+            //}
+            //if (PAbility->getID() == ABILITY_GAUGE) {
+            //    if (PTarget != nullptr && PTarget->objtype == TYPE_MOB) {
+            //        if (((CMobEntity*)PTarget)->m_Type & MOBTYPE_NOTORIOUS ||
+            //            PTarget->m_EcoSystem == SYSTEM_BEASTMEN ||
+            //            PTarget->m_EcoSystem == SYSTEM_ARCANA)
+            //        {
+            //            //NM, Beastman or Arcana, cannot charm at all !
+            //            PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, MSGBASIC_CANNOT_CHARM));
+            //        }
+            //        else {
+            //            uint16 baseExp = charutils::GetRealExp(PChar->GetMLevel(), PTarget->GetMLevel());
+
+            //            if (baseExp >= 400) {//IT
+            //                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, MSGBASIC_VERY_DIFFICULT_CHARM));
+            //            }
+            //            else if (baseExp >= 240) {//VT
+            //                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, MSGBASIC_DIFFICULT_TO_CHARM));
+            //            }
+            //            else if (baseExp >= 120) {//T
+            //                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, MSGBASIC_MIGHT_BE_ABLE_CHARM));
+            //            }
+            //            else if (baseExp >= 100) {//EM
+            //                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, MSGBASIC_SHOULD_BE_ABLE_CHARM));
+            //            }
+            //            else {
+            //                PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, MSGBASIC_SHOULD_BE_ABLE_CHARM));
+            //            }
+            //        }
+            //    }
+            //}
+            //if (PAbility->getID() == ABILITY_REWARD)
+            //{
+            //    PChar->PPet->UpdateHealth();
+            //    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PTarget, PAbility->getID() + 16, value, MSGBASIC_USES_RECOVERS_HP));
+
+            //    //Reward gives enmity to the pet and not the Beastmaster.
+            //    CBattleEntity* PTarget = PChar->PPet->PBattleAI->GetBattleTarget();
+            //    if (PTarget != nullptr && PTarget->objtype == TYPE_MOB)
+            //    {
+            //        ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromCure(PChar->PPet, PChar->PPet->GetMLevel(), value, false);
+            //    }
+            //}
+
+            state.ApplyEnmity();
+        }
+
+        // #TODO: delete ammo from script
+
+        //if (PAbility->getID() == ABILITY_CALL_BEAST || PAbility->getID() == ABILITY_REWARD ||
+        //    PAbility->getID() == ABILITY_ANGON || PAbility->getID() == ABILITY_TOMAHAWK || PAbility->getID() == ABILITY_REPAIR)
+        //{
+        //    CItemArmor* PAmmo = PChar->getEquip(SLOT_AMMO);
+        //    uint8 slot = PChar->equip[SLOT_AMMO];
+        //    uint8 loc = PChar->equipLoc[SLOT_AMMO];
+        //    if (PAmmo->getQuantity() == 1)
+        //    {
+        //        charutils::UnequipItem(PChar, SLOT_AMMO);
+        //        charutils::SaveCharEquip(PChar);
+        //    }
+        //    charutils::UpdateItem(PChar, loc, slot, -1);
+
+        //    PChar->pushPacket(new CInventoryFinishPacket());
+        //}
+
+        //if (PAbility->getID() >= ABILITY_FIRE_SHOT && PAbility->getID() <= ABILITY_DARK_SHOT)
+        //{
+        //    CItemContainer* inventory = PChar->getStorage(LOC_INVENTORY);
+        //    uint8 slotID = inventory->SearchItem(2176 + PAbility->getID() - ABILITY_FIRE_SHOT); //Elemental Card
+
+        //    if (slotID != ERROR_SLOTID)
+        //    {
+        //        charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -1);
+        //    }
+        //    else
+        //    {
+        //        slotID = inventory->SearchItem(2974); //Trump Card
+        //        DSP_DEBUG_BREAK_IF(slotID == ERROR_SLOTID);
+        //        charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -1);
+        //    }
+        //    PChar->pushPacket(new CInventoryFinishPacket());
+        //}
+
+        //#TODO: command pet from script
+        //if (PAbility->getID() == ABILITY_SIC && PChar->PPet != nullptr) {//Sic
+
+        //    CAIPetDummy* PPetAI = (CAIPetDummy*)PChar->PPet->PBattleAI;
+
+        //    if (PChar->PPet->health.tp >= 1000)
+        //    {
+        //        PPetAI->m_MasterCommand = MASTERCOMMAND_SIC;
+        //        PPetAI->SetCurrentAction(ACTION_MOBABILITY_START);
+        //    }
+        //    else
+        //    {
+        //        // queue sic and use when ready
+        //        PPetAI->m_queueSic = true;
+        //    }
+        //}
+
+        uint32 chargeTime = 0;
+        uint8 maxCharges = 0;
+        Charge_t* charge = ability::GetCharge(PChar, PAbility->getRecastId());
+        if (charge != nullptr)
+        {
+            chargeTime = charge->chargeTime;
+            maxCharges = charge->maxCharges;
+        }
+        PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), RecastTime, chargeTime, maxCharges);
+        PChar->pushPacket(new CCharRecastPacket(PChar));
+        action.recast = RecastTime;
+
+        //#TODO: refactor 
+        //if (PChar->getMijinGakure())
+        //{
+        //    m_ActionType = ACTION_FALL;
+        //    ActionFall();
+        //}
+    }
+    else if (errMsg)
+    {
+        PChar->pushPacket(std::move(errMsg));
+    }
 }
 
 bool CAIChar::IsMobOwner(CBattleEntity* PBattleTarget)

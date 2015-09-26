@@ -27,13 +27,16 @@ This file is part of DarkStar-server source code.
 #include "ai_battle.h"
 
 class CCharEntity;
+class CAbilityState;
 
 class CAIChar : public CAIBattle
 {
 public:
     CAIChar(CCharEntity*);
 
-protected:
+    virtual void Ability(uint16 targid, uint16 abilityid);
+
+    virtual bool Internal_Ability(uint16 targetid, uint16 abilityid);
 
     /* Attacking functions */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
@@ -45,8 +48,12 @@ protected:
     /* Casting functions */
     virtual void OnCastFinished(CMagicState&, action_t&) override;
     virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg) override;
+
     virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
 
+    virtual void OnAbility(CAbilityState&, action_t&);
+
+protected:
     bool IsMobOwner(CBattleEntity* PTarget);
 
     time_point m_errMsgTime;

@@ -51,7 +51,7 @@ bool CAttackState::Update(time_point tick)
             return true;
         }
         action_t action;
-        if (m_PEntity->PAIBattle()->Attack(action))
+        if (m_PEntity->PAIBattle()->OnAttack(*this, action))
         {
             m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
         }

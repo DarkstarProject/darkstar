@@ -23,6 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "player_controller.h"
 
+#include "../ai_char.h"
 #include "../../entities/charentity.h"
 #include "../../packets/char_update.h"
 #include "../../packets/lock_on.h"
@@ -100,7 +101,7 @@ bool CPlayerController::Engage(uint16 targid)
     }
     if (errMsg)
     {
-        PChar->pushPacket(errMsg.release());
+        PChar->pushPacket(std::move(errMsg));
     }
     return false;
 }
@@ -115,7 +116,7 @@ void CPlayerController::Disengage()
     CController::Disengage();
 }
 
-void CPlayerController::UseJobAbility(uint16 targid, uint16 abilityid)
+void CPlayerController::Ability(uint16 targid, uint16 abilityid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
     if (m_LastActionTime + g_GCD < server_clock::now() && m_LastActionTime + g_GCD < server_clock::now())
@@ -123,7 +124,7 @@ void CPlayerController::UseJobAbility(uint16 targid, uint16 abilityid)
         //does not set lastActionTime (can cast a spell immediately after)
         m_LastAbilityTime = server_clock::now();
 
-        //#TODO
+        static_cast<CAIChar*>(PChar->PAI.get())->Internal_Ability(targid, abilityid);
     }
     else
     {
@@ -187,7 +188,7 @@ void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
         }
         else if (errMsg)
         {
-            PChar->pushPacket(errMsg.release());
+            PChar->pushPacket(std::move(errMsg));
         }
     }
     else

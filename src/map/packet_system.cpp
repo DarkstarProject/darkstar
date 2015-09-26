@@ -58,6 +58,7 @@ This file is part of DarkStar-server source code.
 #include "message.h"
 
 #include "ai/ai_npc.h"
+#include "ai/ai_char.h"
 
 #include "items/item_shop.h"
 
@@ -601,7 +602,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 TargID = RBUFW(data, (0x08));
     uint8  action = RBUFB(data, (0x0A));
 
-
     switch (action)
     {
     case 0x00: // trigger
@@ -669,10 +669,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     case 0x09: // jobability
     {
         uint16 JobAbilityID = RBUFW(data, (0x0C));
-        if ((JobAbilityID < 496 && !charutils::hasAbility(PChar, JobAbilityID - 16)) || JobAbilityID >= 496 && !charutils::hasPetAbility(PChar, JobAbilityID - 512))
-            return;
-        PChar->PBattleAI->SetCurrentJobAbility(JobAbilityID - 16);
-        PChar->PBattleAI->SetCurrentAction(ACTION_JOBABILITY_START, TargID);
+        //if ((JobAbilityID < 496 && !charutils::hasAbility(PChar, JobAbilityID - 16)) || JobAbilityID >= 496 && !charutils::hasPetAbility(PChar, JobAbilityID - 512))
+        //    return;
+        static_cast<CAIChar*>(PChar->PAI.get())->Ability(TargID, JobAbilityID - 16);
     }
     break;
     case 0x0B: // homepoint

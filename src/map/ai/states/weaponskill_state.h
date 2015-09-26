@@ -21,8 +21,13 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
+#ifndef _CWEAPONSKILL_STATE_H
+#define _CWEAPONSKILL_STATE_H
+
 #include "state.h"
-#include "../../weapon_skill.h"
+
+class CWeaponSkill;
+class CMobSkill;
 
 class CWeaponSkillState : public CState
 {
@@ -46,3 +51,5 @@ protected:
     std::unique_ptr<CMobSkill> m_PMobSkill;
     time_point m_finishTime;
 };
+
+#endif

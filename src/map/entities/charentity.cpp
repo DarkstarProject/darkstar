@@ -215,6 +215,11 @@ void CCharEntity::pushPacket(CBasicPacket* packet)
     PacketList.push_back(packet);
 }
 
+void CCharEntity::pushPacket(std::unique_ptr<CBasicPacket> packet)
+{
+    pushPacket(packet.release());
+}
+
 CBasicPacket* CCharEntity::popPacket()
 {
     std::lock_guard<std::mutex> lk(m_PacketListMutex);
