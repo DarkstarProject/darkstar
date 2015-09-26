@@ -2552,7 +2552,8 @@ void SmallPacket0x05B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         if (PChar->m_event.Option != 0) Result = PChar->m_event.Option;
 
-        if (RBUFB(data, (0x0E)) != 0) {
+        if (RBUFB(data, (0x0E)) != 0)
+        {
             luautils::OnEventUpdate(PChar, EventID, Result);
         }
         else
@@ -2563,7 +2564,6 @@ void SmallPacket0x05B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             {
                 PChar->m_event.reset();
             }
-
         }
     }
 
@@ -2581,21 +2581,29 @@ void SmallPacket0x05C(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     uint16 EventID = RBUFW(data, (0x1A));
 
-    PChar->loc.p.x = RBUFF(data, (0x04));
-    PChar->loc.p.y = RBUFF(data, (0x08));
-    PChar->loc.p.z = RBUFF(data, (0x0C));
-    PChar->loc.p.rotation = RBUFB(data, (0x1F));
+    if (PChar->m_event.EventID == EventID)
+    {
+        PChar->loc.p.x = RBUFF(data, (0x04));
+        PChar->loc.p.y = RBUFF(data, (0x08));
+        PChar->loc.p.z = RBUFF(data, (0x0C));
+        PChar->loc.p.rotation = RBUFB(data, (0x1F));
 
-    if (RBUFB(data, (0x1E)) != 0){
-        luautils::OnEventUpdate(PChar, EventID, 0);
-    }
-    else{
-        luautils::OnEventFinish(PChar, EventID, 0);
-        PChar->m_event.reset();
-    }
+        if (RBUFB(data, (0x1E)) != 0)
+        {
+            luautils::OnEventUpdate(PChar, EventID, 0);
+        }
+        else
+        {
+            luautils::OnEventFinish(PChar, EventID, 0);
+            if (PChar->m_event.EventID == EventID)
+            {
+                PChar->m_event.reset();
+            }
+        }
 
-    PChar->pushPacket(new CCSPositionPacket(PChar));
-    PChar->pushPacket(new CPositionPacket(PChar));
+        PChar->pushPacket(new CCSPositionPacket(PChar));
+        PChar->pushPacket(new CPositionPacket(PChar));
+    }
     PChar->pushPacket(new CReleasePacket(PChar, RELEASE_EVENT));
     return;
 }
@@ -2892,7 +2900,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             else
             {
-				ShowDebug(CL_CYAN"Building invite packet to send to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
+                ShowDebug(CL_CYAN"Building invite packet to send to lobby server from %s to (%d)\n" CL_RESET, PChar->GetName(), charid);
                 //on another server (hopefully)
                 uint8 packetData[12];
                 WBUFL(packetData, 0) = charid;
@@ -2900,7 +2908,8 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 WBUFL(packetData, 6) = PChar->id;
                 WBUFW(packetData, 10) = PChar->targid;
                 message::send(MSG_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_PARTY));
-				ShowDebug(CL_CYAN"Sent invite packet to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
+
+                ShowDebug(CL_CYAN"Sent invite packet to lobby server from %s to (%d)\n" CL_RESET, PChar->GetName(), charid);
             }
         }
 		else //in party but not leader, cannot invite
@@ -2945,7 +2954,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             else
             {
-				ShowDebug(CL_CYAN"(Alliance)Building invite packet to send to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
+                ShowDebug(CL_CYAN"(Alliance)Building invite packet to send to lobby server from %s to (%d)\n" CL_RESET, PChar->GetName(), charid);
                 //on another server (hopefully)
                 uint8 packetData[12];
                 WBUFL(packetData, 0) = charid;
@@ -2953,7 +2962,8 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 WBUFL(packetData, 6) = PChar->id;
                 WBUFW(packetData, 10) = PChar->targid;
                 message::send(MSG_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_ALLIANCE));
-				ShowDebug(CL_CYAN"(Alliance)Sent invite packet to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
+
+                ShowDebug(CL_CYAN"(Alliance)Sent invite packet to lobby server from %s to (%d)\n" CL_RESET, PChar->GetName(), charid);
             }
         }
         break;
@@ -3794,7 +3804,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     {
                         std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
                         qStr += PChar->GetName();
-                        qStr += "','ALLIANCE','";
+                        qStr += "','PARTY','";
                         qStr += escape(data[6]);
                         qStr += "',current_timestamp());";
                         const char * cC = qStr.c_str();
@@ -4161,13 +4171,25 @@ void SmallPacket0x0D3(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 /************************************************************************
 *                                                                       *
+*  Set Preferred Language                                               *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x0DB(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    PChar->search.language = RBUFB(data, (0x24));
+    return;
+}
+
+/************************************************************************
+*                                                                       *
 *  Set Name Flags (Party, Away, Autogroup, etc.)                        *
 *                                                                       *
 ************************************************************************/
 
 void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    switch (RBUFW(data, (0x04)))
+    switch (RBUFL(data, (0x04)))
     {
     case 0x0001:
         PChar->nameflags.flags ^= FLAG_INVITE;
@@ -4191,24 +4213,16 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         //if(RBUFB(data,(0x10)) == 1)    // autogroup on
         //if(RBUFB(data,(0x10)) == 2)    // autogroup off
         break;
+    case 0x200000:
+        //if(RBUFB(data,(0x10)) == 1)    // party request on
+        //if(RBUFB(data,(0x10)) == 2)    // party request off
+        break;
     }
     charutils::SaveCharStats(PChar);
 
     PChar->updatemask |= UPDATE_HP;
     PChar->pushPacket(new CMenuConfigPacket(PChar));
     PChar->pushPacket(new CCharUpdatePacket(PChar));
-    return;
-}
-
-/************************************************************************
-*                                                                       *
-*  Set Preferred Language                                               *
-*                                                                       *
-************************************************************************/
-
-void SmallPacket0x0DB(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
-{
-    PChar->search.language = RBUFB(data, (0x24));
     return;
 }
 

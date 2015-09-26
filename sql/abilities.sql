@@ -155,7 +155,7 @@ INSERT INTO `abilities` VALUES ('110', 'ice_shot', '17', '40', '4', '60', '195',
 INSERT INTO `abilities` VALUES ('111', 'wind_shot', '17', '40', '4', '60', '195', '110', '0', '127', '18.0', '0', '0', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('112', 'earth_shot', '17', '40', '4', '60', '195', '110', '0', '128', '18.0', '0', '0', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('113', 'thunder_shot', '17', '40', '4', '60', '195', '110', '0', '129', '18.0', '0', '0', '0', '0', '0','TOAU');
-INSERT INTO `abilities` VALUES ('114', 'water_shot', '17', '40', '4', '60', '195', '0', '110', '130', '18.0', '0', '0', '0', '0', '0','TOAU');
+INSERT INTO `abilities` VALUES ('114', 'water_shot', '17', '40', '4', '60', '195', '110', '0', '130', '18.0', '0', '0', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('115', 'light_shot', '17', '40', '4', '60', '195', '0', '0', '123', '18.0', '0', '0', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('116', 'dark_shot', '17', '40', '4', '60', '195', '0', '0', '124', '18.0', '0', '0', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('117', 'random_deal', '17', '50', '1', '1200', '196', '0', '0', '131', '20.0', '1', '1', '300', '1414', '0','TOAU');
@@ -312,6 +312,7 @@ INSERT INTO `abilities` VALUES ('363', 'Ward', '22', '1', '1', '0', '0', '0', '0
 INSERT INTO `abilities` VALUES ('364', 'Effusion', '22', '1', '1', '0', '0', '0', '0', '0', '20.0', '0', '1', '300', '0', '0',null);
 
 INSERT INTO `abilities` VALUES ('367', 'Vivacious_pulse', '22', '1', '1', '300', '0', '0', '0', '327', '20.0', '0', '1', '300', '0', '0',null);
+INSERT INTO `abilities` VALUES ('369', 'apogee', '15', '70', '1', '180', '108', '0', '0', '333', '20.0', '0', '1', '0', '0', '0',null);
 
 -- run
 

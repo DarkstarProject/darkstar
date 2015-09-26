@@ -52,7 +52,7 @@ class CPathFind
     ~CPathFind();
 
     // move to a random point around given point
-    bool RoamAround(position_t point, float maxRadius, uint8 roamFlags = 0);
+    bool RoamAround(position_t point, float maxRadius, uint8 maxTurns, uint8 roamFlags = 0);
 
     // find and walk to the given point
     bool PathTo(position_t point, uint8 pathFlags = 0);
@@ -121,7 +121,7 @@ class CPathFind
     bool FindClosestPath(position_t* start, position_t* end);
 
     // finds a random path around the given point
-    bool FindRandomPath(position_t* start, float maxRadius, uint8 roamFlags);
+    bool FindRandomPath(position_t* start, float maxRadius, uint8 maxTurns, uint8 roamFlags);
 
     void AddPoints(position_t* points, uint8 totalPoints, bool reverse = false);
 

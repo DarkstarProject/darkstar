@@ -2702,6 +2702,12 @@ INSERT INTO `item_latents` VALUES (14166, 169, 12, 52, 2); -- movement speed +12
 INSERT INTO `item_latents` VALUES (14167, 169, 12, 52, 2); -- Desert Boots +1
 
 -- -------------------------------------------------------
+-- Marabout Sandals
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15760, 5, 15, 28, 0); -- Firesday: MP +15
+INSERT INTO `item_latents` VALUES(15760, 28, 4, 28, 0); -- Firesday: MATT +4
+
+-- -------------------------------------------------------
 -- Monsoon equips
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13875, 68, 8, 52, 3); -- Jinpachi: Evasion +8 in Water weather

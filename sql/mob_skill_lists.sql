@@ -116,12 +116,13 @@ INSERT INTO `mob_skill_lists` VALUES ('',188,33);
 INSERT INTO `mob_skill_lists` VALUES ('',188,36);
 
 -- Mandragora
--- INSERT INTO `mob_skill_lists` VALUES ('',178,45);
--- INSERT INTO `mob_skill_lists` VALUES ('',178,46);
--- INSERT INTO `mob_skill_lists` VALUES ('',178,48);
--- INSERT INTO `mob_skill_lists` VALUES ('',178,49);
 INSERT INTO `mob_skill_lists` VALUES ('',178,44);
--- INSERT INTO `mob_skill_lists` VALUES ('',178,50);
+INSERT INTO `mob_skill_lists` VALUES ('',178,45);
+INSERT INTO `mob_skill_lists` VALUES ('',178,46);
+INSERT INTO `mob_skill_lists` VALUES ('',178,48);
+INSERT INTO `mob_skill_lists` VALUES ('',178,49);
+INSERT INTO `mob_skill_lists` VALUES ('',178,50);
+
 INSERT INTO `mob_skill_lists` VALUES ('',496,1954);
 
 -- INSERT INTO `mob_skill_lists` VALUES ('',2154,?,?);
@@ -237,21 +238,21 @@ INSERT INTO `mob_skill_lists` VALUES ('',273,468);
 -- Aqrabuamelu
 INSERT INTO `mob_skill_lists` VALUES ('',402,93);
 
+-- DynamisStatue-Goblin
+INSERT INTO `mob_skill_lists` VALUES ('',92,858);
+INSERT INTO `mob_skill_lists` VALUES ('',92,859);
+
 -- DynamisStatue-Orc
 INSERT INTO `mob_skill_lists` VALUES ('',93,854);
 INSERT INTO `mob_skill_lists` VALUES ('',93,855);
 
--- DynamisStatue-Yagudo
-INSERT INTO `mob_skill_lists` VALUES ('',95,854);
-INSERT INTO `mob_skill_lists` VALUES ('',95,857);
-
--- DynamisStatue-Goblin
-INSERT INTO `mob_skill_lists` VALUES ('',92,854);
-INSERT INTO `mob_skill_lists` VALUES ('',92,859);
-
 -- DynamisStatue-Quadav
-INSERT INTO `mob_skill_lists` VALUES ('',94,854);
+INSERT INTO `mob_skill_lists` VALUES ('',94,860);
 INSERT INTO `mob_skill_lists` VALUES ('',94,861);
+
+-- DynamisStatue-Yagudo
+INSERT INTO `mob_skill_lists` VALUES ('',95,856);
+INSERT INTO `mob_skill_lists` VALUES ('',95,857);
 
 -- Dynamis Lord
 INSERT INTO `mob_skill_lists` VALUES ('',361,871);
@@ -326,14 +327,14 @@ INSERT INTO `mob_skill_lists` VALUES ('',137,488);
 INSERT INTO `mob_skill_lists` VALUES ('',137,491);
 INSERT INTO `mob_skill_lists` VALUES ('',137,494);
 INSERT INTO `mob_skill_lists` VALUES ('',137,496);
--- INSERT INTO `mob_skill_lists` VALUES ('',137,499);
 
-INSERT INTO `mob_skill_lists` VALUES ('',138,485);
-INSERT INTO `mob_skill_lists` VALUES ('',138,488);
-INSERT INTO `mob_skill_lists` VALUES ('',138,491);
-INSERT INTO `mob_skill_lists` VALUES ('',138,494);
-INSERT INTO `mob_skill_lists` VALUES ('',138,496);
--- INSERT INTO `mob_skill_lists` VALUES ('',138,499);
+-- Gorger NM
+INSERT INTO `mob_skill_lists` VALUES ('',708,485);
+INSERT INTO `mob_skill_lists` VALUES ('',708,488);
+INSERT INTO `mob_skill_lists` VALUES ('',708,491);
+INSERT INTO `mob_skill_lists` VALUES ('',708,494);
+INSERT INTO `mob_skill_lists` VALUES ('',708,496);
+-- INSERT INTO `mob_skill_lists` VALUES ('',708,499);
 
 -- Craver
 INSERT INTO `mob_skill_lists` VALUES ('',78,973);
@@ -343,8 +344,11 @@ INSERT INTO `mob_skill_lists` VALUES ('',78,976);
 INSERT INTO `mob_skill_lists` VALUES ('',78,977);
 
 -- Craver NM
-INSERT INTO `mob_skill_lists` VALUES ('',78,978);
-INSERT INTO `mob_skill_lists` VALUES ('',78,1018);
+INSERT INTO `mob_skill_lists` VALUES ('',707,977);
+INSERT INTO `mob_skill_lists` VALUES ('',707,975);
+INSERT INTO `mob_skill_lists` VALUES ('',707,976);
+INSERT INTO `mob_skill_lists` VALUES ('',707,978);
+INSERT INTO `mob_skill_lists` VALUES ('',707,1018);
 
 -- Thinker
 INSERT INTO `mob_skill_lists` VALUES ('',241,986);
@@ -358,8 +362,12 @@ INSERT INTO `mob_skill_lists` VALUES ('',241,993);
 INSERT INTO `mob_skill_lists` VALUES ('',241,994);
 
 -- NM Thinker
-INSERT INTO `mob_skill_lists` VALUES ('',241,995);
-INSERT INTO `mob_skill_lists` VALUES ('',241,996);
+INSERT INTO `mob_skill_lists` VALUES ('',706,987);
+INSERT INTO `mob_skill_lists` VALUES ('',706,988);
+INSERT INTO `mob_skill_lists` VALUES ('',706,989);
+INSERT INTO `mob_skill_lists` VALUES ('',706,992);
+INSERT INTO `mob_skill_lists` VALUES ('',706,995);
+INSERT INTO `mob_skill_lists` VALUES ('',706,996);
 
 -- Seether
 INSERT INTO `mob_skill_lists` VALUES ('',220,997);
@@ -379,14 +387,14 @@ INSERT INTO `mob_skill_lists` VALUES ('',174,114);
 INSERT INTO `mob_skill_lists` VALUES ('',174,115);
 
 -- Lizards (cold region)
--- INSERT INTO `mob_skill_lists` VALUES ('',110,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',112,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',113,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',116,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',117,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',114,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',115,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',365,?);
+INSERT INTO `mob_skill_lists` VALUES ('',97,110);
+INSERT INTO `mob_skill_lists` VALUES ('',97,112);
+INSERT INTO `mob_skill_lists` VALUES ('',97,113);
+INSERT INTO `mob_skill_lists` VALUES ('',97,116);
+INSERT INTO `mob_skill_lists` VALUES ('',97,117);
+INSERT INTO `mob_skill_lists` VALUES ('',97,114);
+INSERT INTO `mob_skill_lists` VALUES ('',97,115);
+INSERT INTO `mob_skill_lists` VALUES ('',97,365);
 
 -- Highlander Lizard
 INSERT INTO `mob_skill_lists` VALUES ('',438,115);
@@ -573,9 +581,9 @@ INSERT INTO `mob_skill_lists` VALUES ('',400,187);
 INSERT INTO `mob_skill_lists` VALUES ('',400,186);
 
 -- Shadows
-INSERT INTO `mob_skill_lists` VALUES ('',221,190);
-INSERT INTO `mob_skill_lists` VALUES ('',222,190);
-INSERT INTO `mob_skill_lists` VALUES ('',223,190);
+INSERT INTO `mob_skill_lists` VALUES ('',221,3839);
+INSERT INTO `mob_skill_lists` VALUES ('',222,3839);
+INSERT INTO `mob_skill_lists` VALUES ('',223,3839);
 
 -- Pugil
 INSERT INTO `mob_skill_lists` VALUES ('',197,195);
@@ -586,12 +594,12 @@ INSERT INTO `mob_skill_lists` VALUES ('',197,194);
 INSERT INTO `mob_skill_lists` VALUES ('',197,193);
 
 -- Pugils (Jagils Subspecies)
--- INSERT INTO `mob_skill_lists` VALUES ('',195,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',197,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',198,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',194,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',193,?);
--- INSERT INTO `mob_skill_lists` VALUES ('',385,?);
+INSERT INTO `mob_skill_lists` VALUES ('',709,193);
+INSERT INTO `mob_skill_lists` VALUES ('',709,194);
+INSERT INTO `mob_skill_lists` VALUES ('',709,195);
+INSERT INTO `mob_skill_lists` VALUES ('',709,197);
+INSERT INTO `mob_skill_lists` VALUES ('',709,198);
+INSERT INTO `mob_skill_lists` VALUES ('',709,385);
 
 -- Pugils (Dynamis - Nightmare Makara) ?
 -- INSERT INTO `mob_skill_lists` VALUES ('',1610,?,?);
@@ -711,7 +719,7 @@ INSERT INTO `mob_skill_lists` VALUES ('',83,278);
 INSERT INTO `mob_skill_lists` VALUES ('',83,279);
 INSERT INTO `mob_skill_lists` VALUES ('',83,280);
 INSERT INTO `mob_skill_lists` VALUES ('',83,281);
--- INSERT INTO `mob_skill_lists` VALUES ('',83,282);
+INSERT INTO `mob_skill_lists` VALUES ('',83,282);
 INSERT INTO `mob_skill_lists` VALUES ('',83,283);
 INSERT INTO `mob_skill_lists` VALUES ('',83,285);
 INSERT INTO `mob_skill_lists` VALUES ('',83,287);
@@ -720,7 +728,7 @@ INSERT INTO `mob_skill_lists` VALUES ('',84,278);
 INSERT INTO `mob_skill_lists` VALUES ('',84,279);
 INSERT INTO `mob_skill_lists` VALUES ('',84,280);
 INSERT INTO `mob_skill_lists` VALUES ('',84,281);
--- INSERT INTO `mob_skill_lists` VALUES ('',83,282);
+INSERT INTO `mob_skill_lists` VALUES ('',84,282);
 INSERT INTO `mob_skill_lists` VALUES ('',84,283);
 INSERT INTO `mob_skill_lists` VALUES ('',84,285);
 INSERT INTO `mob_skill_lists` VALUES ('',84,287);
@@ -729,7 +737,7 @@ INSERT INTO `mob_skill_lists` VALUES ('',85,278);
 INSERT INTO `mob_skill_lists` VALUES ('',85,279);
 INSERT INTO `mob_skill_lists` VALUES ('',85,280);
 INSERT INTO `mob_skill_lists` VALUES ('',85,281);
--- INSERT INTO `mob_skill_lists` VALUES ('',83,282);
+INSERT INTO `mob_skill_lists` VALUES ('',85,282);
 INSERT INTO `mob_skill_lists` VALUES ('',85,283);
 INSERT INTO `mob_skill_lists` VALUES ('',85,285);
 INSERT INTO `mob_skill_lists` VALUES ('',85,287);
@@ -913,8 +921,13 @@ INSERT INTO `mob_skill_lists` VALUES ('',360,362);
 INSERT INTO `mob_skill_lists` VALUES ('',360,363);
 INSERT INTO `mob_skill_lists` VALUES ('',360,364);
 
--- Yagudo (Dynamis)
--- INSERT INTO `mob_skill_lists` VALUES ('',?,?,?);
+-- Yagudo Dynamis NM
+INSERT INTO `mob_skill_lists` VALUES ('',710,361);
+INSERT INTO `mob_skill_lists` VALUES ('',710,377);
+INSERT INTO `mob_skill_lists` VALUES ('',710,362);
+INSERT INTO `mob_skill_lists` VALUES ('',710,363);
+INSERT INTO `mob_skill_lists` VALUES ('',710,364);
+INSERT INTO `mob_skill_lists` VALUES ('',710,811);
 
 -- Yagudo (WoTG)
 -- INSERT INTO `mob_skill_lists` VALUES ('',1949,?);
@@ -1319,24 +1332,24 @@ INSERT INTO `mob_skill_lists` VALUES ('',98,262);
 INSERT INTO `mob_skill_lists` VALUES ('',98,263);
 
 -- Fomor
-INSERT INTO `mob_skill_lists` VALUES ('',115,246);
-INSERT INTO `mob_skill_lists` VALUES ('',115,247);
-INSERT INTO `mob_skill_lists` VALUES ('',115,248);
-INSERT INTO `mob_skill_lists` VALUES ('',115,249);
-INSERT INTO `mob_skill_lists` VALUES ('',115,250);
-INSERT INTO `mob_skill_lists` VALUES ('',115,251);
-INSERT INTO `mob_skill_lists` VALUES ('',115,252);
-INSERT INTO `mob_skill_lists` VALUES ('',115,253);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3830);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3831);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3832);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3833);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3834);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3835);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3836);
+INSERT INTO `mob_skill_lists` VALUES ('',115,3837);
 
 -- Fomor (Dynamis - Hydra)
-INSERT INTO `mob_skill_lists` VALUES ('',359,246);
-INSERT INTO `mob_skill_lists` VALUES ('',359,247);
-INSERT INTO `mob_skill_lists` VALUES ('',359,248);
-INSERT INTO `mob_skill_lists` VALUES ('',359,249);
-INSERT INTO `mob_skill_lists` VALUES ('',359,250);
-INSERT INTO `mob_skill_lists` VALUES ('',359,251);
-INSERT INTO `mob_skill_lists` VALUES ('',359,252);
-INSERT INTO `mob_skill_lists` VALUES ('',359,253);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3830);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3831);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3832);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3833);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3834);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3835);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3836);
+INSERT INTO `mob_skill_lists` VALUES ('',359,3837);
 
 -- Tauri
 INSERT INTO `mob_skill_lists` VALUES ('',240,242);
@@ -2059,7 +2072,7 @@ INSERT INTO `mob_skill_lists` VALUES ('',140,2572);
 -- INSERT INTO `mob_skill_lists` VALUES ('',141,323);
 INSERT INTO `mob_skill_lists` VALUES ('',141,322);
 INSERT INTO `mob_skill_lists` VALUES ('',141,320);
-INSERT INTO `mob_skill_lists` VALUES ('',141,1074);
+-- INSERT INTO `mob_skill_lists` VALUES ('',141,1074);
 INSERT INTO `mob_skill_lists` VALUES ('',141,2572);
 
 -- Qiqirn -- Need Scripts
@@ -3081,7 +3094,7 @@ INSERT INTO `mob_skill_lists` VALUES ('',149,1137);
 INSERT INTO `mob_skill_lists` VALUES ('',149,1138);
 INSERT INTO `mob_skill_lists` VALUES ('',149,1139);
 INSERT INTO `mob_skill_lists` VALUES ('',149,1141);
-INSERT INTO `mob_skill_lists` VALUES ('',149,1142);
+-- INSERT INTO `mob_skill_lists` VALUES ('',149,1142);
 INSERT INTO `mob_skill_lists` VALUES ('',149,1143);
 
 -- Lady Lilith

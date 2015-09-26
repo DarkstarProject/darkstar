@@ -32,7 +32,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	GetNPCByID(16879940):hideNPC(900);
+	GetNPCByID(16879943):hideNPC(900);
 	local kills = killer:getVar("FOMOR_HATE");
 	if (kills > 1) then
 		killer:setVar("FOMOR_HATE",kills -2);
