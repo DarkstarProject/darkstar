@@ -44,6 +44,8 @@ protected:
     virtual void Cleanup() override {}
     virtual void Clear() override {}
 
+    bool CanUseAbility();
+
     CCharEntity* const m_PEntity;
     std::unique_ptr<CAbility> m_PAbility;
 };

@@ -79,9 +79,64 @@ void CAbilityState::ApplyEnmity()
 
 bool CAbilityState::Update(time_point tick)
 {
-    action_t action;
-    static_cast<CAIChar*>(m_PEntity->PAI.get())->OnAbility(*this, action);
-    m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+    if (CanUseAbility())
+    {
+        action_t action;
+        static_cast<CAIChar*>(m_PEntity->PAI.get())->OnAbility(*this, action);
+        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+    }
 
     return true;
+}
+
+bool CAbilityState::CanUseAbility()
+{
+    auto PAbility = GetAbility();
+    if (m_PEntity->PRecastContainer->HasRecast(RECAST_ABILITY, PAbility->getRecastId()))
+    {
+        m_PEntity->pushPacket(new CMessageBasicPacket(m_PEntity, m_PEntity, 0, 0, MSGBASIC_WAIT_LONGER));
+        return;
+    }
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA)) {
+        m_PEntity->pushPacket(new CMessageBasicPacket(m_PEntity, m_PEntity, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
+        return;
+    }
+    std::unique_ptr<CMessageBasicPacket> errMsg;
+    auto PTarget = GetTarget();
+    if (m_PEntity->PAIBattle()->IsValidTarget(PTarget->targid, PAbility->getValidTarget(), errMsg))
+    {
+        if (m_PEntity != PTarget && distance(m_PEntity->loc.p, PTarget->loc.p) > PAbility->getRange())
+        {
+            m_PEntity->pushPacket(new CMessageBasicPacket(m_PEntity, PTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY));
+            return;
+        }
+        if (PAbility->getID() >= ABILITY_HEALING_RUBY)
+        {
+            // Blood pact MP costs are stored under animation ID
+            if (m_PEntity->health.mp < PAbility->getAnimationID())
+            {
+                m_PEntity->pushPacket(new CMessageBasicPacket(m_PEntity, PTarget, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
+                return;
+            }
+        }
+        CBaseEntity* PMsgTarget = m_PEntity;
+        int32 errNo = luautils::OnAbilityCheck(m_PEntity, PTarget, PAbility, &PMsgTarget);
+        if (errNo != 0)
+        {
+            m_PEntity->pushPacket(new CMessageBasicPacket(m_PEntity, PMsgTarget, PAbility->getID() + 16, PAbility->getID(), errNo));
+            return;
+        }
+        // #TODO: needed??
+        //if (PAbility->getValidTarget() == TARGET_ENEMY)
+        //{
+        //    if (!IsMobOwner(PTarget))
+        //    {
+        //        m_PEntity->pushPacket(new CMessageBasicPacket(m_PEntity, m_PEntity, 0, 0, MSGBASIC_ALREADY_CLAIMED));
+
+        //        TransitionBack();
+        //        PAbility = nullptr;
+        //        return;
+        //    }
+        //}
+    }
 }
