@@ -29,17 +29,10 @@
 
 CAutomatonEntity::CAutomatonEntity()
     : CPetEntity(PETTYPE_AUTOMATON)
-{
-    memset(&m_Equip, 0, sizeof m_Equip);
-    memset(&m_ElementMax, 0, sizeof m_ElementMax);
-    memset(&m_ElementEquip, 0, sizeof m_ElementEquip);
-    memset(&m_Burden, 40, sizeof m_Burden);
-}
+{}
 
 CAutomatonEntity::~CAutomatonEntity()
-{
-
-}
+{}
 
 void CAutomatonEntity::setFrame(AUTOFRAMETYPE frame)
 {
@@ -63,55 +56,52 @@ AUTOHEADTYPE CAutomatonEntity::getHead()
 
 void CAutomatonEntity::setAttachment(uint8 slotid, uint8 id)
 {
-    if (slotid < 12)
-    {
-        m_Equip.Attachments[slotid] = id;
-    }
+    m_Equip.Attachments[slotid] = id;
 }
 
 uint8 CAutomatonEntity::getAttachment(uint8 slotid)
 {
-    if (slotid < 12)
+    return m_Equip.Attachments[slotid];
+}
+
+bool CAutomatonEntity::hasAttachment(uint8 attachment)
+{
+    for (auto&& attachmentid : m_Equip.Attachments)
     {
-        return m_Equip.Attachments[slotid];
+        if (attachmentid == attachment)
+        {
+            return true;
+        }
     }
-    return 0;
 }
 
 void CAutomatonEntity::setElementMax(uint8 element, uint8 max)
 {
-    if (element < 8)
-        m_ElementMax[element] = max;
+    m_ElementMax[element] = max;
 }
 
 uint8 CAutomatonEntity::getElementMax(uint8 element)
 {
-    if (element < 8)
-        return m_ElementMax[element];
-    return 0;
+    return m_ElementMax[element];
 }
 
 void CAutomatonEntity::addElementCapacity(uint8 element, int8 value)
 {
-    if (element < 8)
-        m_ElementEquip[element] += value;
+    m_ElementEquip[element] += value;
 }
 
 uint8 CAutomatonEntity::getElementCapacity(uint8 element)
 {
-    if (element < 8)
-        return m_ElementEquip[element];
-    return 0;
+    return m_ElementEquip[element];
 }
 
 void CAutomatonEntity::burdenTick()
 {
-    for (int i = 0; i < 8; i++)
+    for (auto&& burden : m_Burden)
     {
-        if (m_Burden[i] > 0)
+        if (burden > 0)
         {
-            //TODO: heat sink attachment
-            m_Burden[i]--;
+            --burden;
         }
     }
 }
@@ -120,17 +110,14 @@ uint8 CAutomatonEntity::addBurden(uint8 element, uint8 burden)
 {
     //TODO: tactical processor attachment
     uint8 thresh = 30 + PMaster->getMod(MOD_OVERLOAD_THRESH);
-    if (element < 8)
+    m_Burden[element] += burden;
+    //check for overload
+    if (m_Burden[element] > thresh)
     {
-        m_Burden[element] += burden;
-        //check for overload
-        if (m_Burden[element] > thresh)
+        if (dsprand::GetRandomNumber(100) < (m_Burden[element] - thresh + 5))
         {
-            if (dsprand::GetRandomNumber(100) < (m_Burden[element] - thresh + 5))
-            {
-                //return overload duration
-                return m_Burden[element] - thresh;
-            }
+            //return overload duration
+            return m_Burden[element] - thresh;
         }
     }
     return 0;
