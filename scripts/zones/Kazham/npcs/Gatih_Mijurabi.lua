@@ -30,7 +30,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x00C3);
         end
-    elseif player:getVar("PERSONAL_HYGIENE_PROGRESS") == 1 then
+    elseif (player:getQuestStatus(OUTLANDS, PERSONAL_HYGIENE) == QUEST_ACCEPTED and player:getVar("BathedInScent") == 0) then
         player:startEvent(0x00C1);
     else 
         player:startEvent(0x00c4);
@@ -59,7 +59,6 @@ function onEventFinish(player,csid,option)
         player:completeQuest(OUTLANDS, PERSONAL_HYGIENE);
         player:addItem(13247)   -- Mithran Stone
         player:messageSpecial(ITEM_OBTAINED,13247);
-        player:setVar("PERSONAL_HYGIENE_PROGRESS", 0);
     end
 end;
 
