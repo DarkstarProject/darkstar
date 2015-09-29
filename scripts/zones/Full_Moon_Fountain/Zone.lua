@@ -35,6 +35,16 @@ function onZoneIn(player,prevZone)
 	return cs;
 end;		
 
+-----------------------------------
+-- afterZoneIn
+-----------------------------------
+
+function afterZoneIn(player)
+    player:entityVisualPacket("kilk");
+    player:entityVisualPacket("izum");
+    player:entityVisualPacket("hast");
+end;
+
 -----------------------------------		
 -- onConquestUpdate		
 -----------------------------------		
