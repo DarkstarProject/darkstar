@@ -1251,7 +1251,8 @@ MOD_FORCE_LIGHT_DWBONUS       = 537 -- Set to 1 to force light day/weather spell
 MOD_FORCE_DARK_DWBONUS        = 538 -- Set to 1 to force dark day/weather spell bonus/penalty. Do not have it total more than 1.
 MOD_STONESKIN_BONUS_HP        = 539 -- Bonus "HP" granted to Stoneskin spell.
 MOD_ENHANCES_ELEMENTAL_SIPHON = 540 -- Bonus Base MP added to Elemental Siphon skill.
-MOD_BP_DELAY_II               = 541  -- Blood Pact Delay Reduction II
+MOD_BP_DELAY_II               = 541 -- Blood Pact Delay Reduction II
+MOD_JOB_BONUS_CHANCE          = 542 --  Chance to apply job bonus to COR roll without having the job in the party.
 
 -- Mythic Weapon Mods
 MOD_AUGMENTS_ABSORB    = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)
@@ -1272,8 +1273,8 @@ MOD_AUGMENTS_TA        = 527 -- Adds Critical Attack Bonus to Trick Attack, perc
 -- MOD_SPARE = 98, -- stuff
 -- MOD_SPARE = 99, -- stuff
 -- MOD_SPARE = 100, -- stuff
--- MOD_SPARE = 542, -- stuff
 -- MOD_SPARE = 543, -- stuff
+-- MOD_SPARE = 544, -- stuff
 
 ------------------------------------
 -- Merit Definitions
