@@ -24,8 +24,8 @@ function onSpellCast(caster,target,spell)
 			duration = duration * 3;
 		end
 
-		if (target:getMainLvl() < 20) then
-			duration = duration * target:getMainLvl() / 20; -- level adjustment
+		if (target:getMainLvl() < 25) then
+			duration = duration * target:getMainLvl() / 25; -- level adjustment
 		end
 		if (target:getEquipID(15) == 13692) then -- skulker's cape
 			duration = duration * 1.5;

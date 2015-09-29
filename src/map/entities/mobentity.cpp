@@ -89,7 +89,6 @@ CMobEntity::CMobEntity()
     m_bcnmID = 0;
 
     m_maxRoamDistance = 10.0f;
-    m_roamDistance = 5.0f;
     m_disableScent = false;
 
     setMobMod(MOBMOD_SIGHT_RANGE, MOB_SIGHT_RANGE);
@@ -304,48 +303,6 @@ bool CMobEntity::CanBeNeutral()
     return !(m_Type & MOBTYPE_NOTORIOUS);
 }
 
-void CMobEntity::ChangeMJob(uint16 job)
-{
-    this->SetMJob(job);
-
-    // give him a spell list based on job
-    if(m_EcoSystem == SYSTEM_BEASTMEN || m_EcoSystem == SYSTEM_UNDEAD || m_EcoSystem == SYSTEM_HUMANOID){
-        uint16 spellList = 0;
-
-        switch(job){
-            case JOB_WHM:
-                spellList = 1;
-            break;
-            case JOB_BLM:
-                spellList = 2;
-            break;
-            case JOB_RDM:
-                spellList = 3;
-            break;
-            case JOB_PLD:
-                spellList = 4;
-            break;
-            case JOB_DRK:
-                spellList = 5;
-            break;
-            case JOB_BRD:
-                spellList = 6;
-            break;
-            case JOB_NIN:
-                spellList = 7;
-            break;
-            case JOB_BLU:
-                spellList = 8;
-            break;
-        }
-
-        m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
-    }
-
-    // give spells and proper traits
-    mobutils::CalculateStats(this);
-}
-
 uint8 CMobEntity::TPUseChance()
 {
     auto& MobSkillList = battleutils::GetMobSkillList(getMobMod(MOBMOD_SKILL_LIST));
@@ -523,4 +480,14 @@ void CMobEntity::UpdateEntity()
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
         updatemask = 0;
     }
+}
+
+float CMobEntity::GetRoamDistance()
+{
+    return (float)getMobMod(MOBMOD_ROAM_DISTANCE) / 10.0f;
+}
+
+float CMobEntity::GetRoamRate()
+{
+    return (float)getMobMod(MOBMOD_ROAM_RATE) / 10.0f;
 }

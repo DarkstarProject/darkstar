@@ -97,7 +97,6 @@ protected:
 	bool m_mobskillattack;
 	bool m_actionqueueability;
 
-	bool  m_CanStandback;
 	uint32 m_LastStandbackTime;
 
 	void ActionRoaming();

@@ -32402,7 +32402,7 @@ INSERT INTO `mob_droplist` VALUES (4537,0,701,1);
 INSERT INTO `mob_droplist` VALUES (4538,0,838,214);
 INSERT INTO `mob_droplist` VALUES (4538,0,614,78);
 INSERT INTO `mob_droplist` VALUES (4539,0,846,503);
-INSERT INTO `mob_droplist` VALUES (4539,0,6014,89);;
+INSERT INTO `mob_droplist` VALUES (4539,0,6014,89);
 INSERT INTO `mob_droplist` VALUES (4540,0,3928,196);
 INSERT INTO `mob_droplist` VALUES (4541,0,2506,501);
 INSERT INTO `mob_droplist` VALUES (4543,0,868,212); -- Foret de Hennetiel
@@ -32426,7 +32426,7 @@ INSERT INTO `mob_droplist` VALUES (4552,0,3935,99);
 INSERT INTO `mob_droplist` VALUES (4552,0,3917,97);
 INSERT INTO `mob_droplist` VALUES (4553,0,6016,90);
 INSERT INTO `mob_droplist` VALUES (4555,0,2154,384);
-INSERT INTO `mob_droplist` VALUES (4555,0,5563,93);;
+INSERT INTO `mob_droplist` VALUES (4555,0,5563,93);
 INSERT INTO `mob_droplist` VALUES (4556,0,2522,488);
 INSERT INTO `mob_droplist` VALUES (4556,0,6019,34); -- end of foret mobs
 INSERT INTO `mob_droplist` VALUES (4557,0,18767,97);

@@ -64,8 +64,8 @@ enum SPECIALFLAG
 enum ROAMFLAG : uint16
 {
   ROAMFLAG_NONE     = 0x00,
-  ROAMFLAG_NO_TURN  = 0x01,  // make 1-5 turns per roam
-  ROAMFLAG_WANDER   = 0x02,  //
+  ROAMFLAG_NONE0  = 0x01,  // 
+  ROAMFLAG_NONE1   = 0x02,  //
   ROAMFLAG_NONE2    = 0x04,  //
   ROAMFLAG_NONE3    = 0x08,  //
   ROAMFLAG_NONE4    = 0x10,  //
@@ -104,13 +104,14 @@ enum AGGRO : uint16
 
 enum BEHAVIOUR : uint16
 {
-	BEHAVIOUR_NONE				= 0x000,
-	BEHAVIOUR_NO_DESPAWN		= 0x001, // mob does not despawn on death
-	BEHAVIOUR_STANDBACK			= 0x002, // mob will standback forever
-	BEHAVIOUR_RAISABLE			= 0x004, // mob can be raised via Raise spells
+    BEHAVIOUR_NONE				= 0x000,
+    BEHAVIOUR_NO_DESPAWN		= 0x001, // mob does not despawn on death
+    BEHAVIOUR_STANDBACK			= 0x002, // mob will standback forever
+    BEHAVIOUR_RAISABLE			= 0x004, // mob can be raised via Raise spells
     BEHAVIOUR_NOHELP            = 0x008, // mob can not be targeted by helpful magic from players (cure, protect, etc)
-	BEHAVIOUR_AGGRO_AMBUSH		= 0x200, // mob aggroes by ambush
-	BEHAVIOUR_NO_TURN           = 0x400  // mob does not turn to face target
+    BEHAVIOUR_AGGRO_AMBUSH		= 0x200, // mob aggroes by ambush
+    BEHAVIOUR_NO_TURN           = 0x400,  // mob does not turn to face target
+    BEHAVIOUR_HP_STANDBACK = 0x800 // standback forever if HP above 70%
 };
 
 
@@ -161,7 +162,6 @@ public:
   // aggro ranges
   bool      m_disableScent;             // stop detecting by scent
   float     m_maxRoamDistance;          // maximum distance mob can be from spawn before despawning
-  float     m_roamDistance;          // distance allowed to roam from spawn
 
   uint8     m_Type;                     // mob type
   uint16	m_Aggro;					// mob aggro type
@@ -206,8 +206,6 @@ public:
 
   uint8     TPUseChance();                           // return % chance to use TP move
 
-  void      ChangeMJob(uint16 job);                  // this will change jobs and update traits, stats, spells
-
   bool      CanDeaggro();
   uint32    GetDespawnTimer();
   void      SetDespawnTimer(uint32 duration);
@@ -241,6 +239,8 @@ public:
   bool      IsUntargetable();
 
   void      UpdateEntity() override;
+  float     GetRoamDistance();
+  float     GetRoamRate();
 
   CMobEntity();
   ~CMobEntity();

@@ -387,6 +387,7 @@ enum MODIFIER
     // Corsair
     MOD_EXP_BONUS                 = 382, //
     MOD_ROLL_RANGE                = 528, // Additional range for COR roll abilities.
+    MOD_JOB_BONUS_CHANCE          = 542, // Chance to apply job bonus to COR roll without having the job in the party.
 
     MOD_DMG_REFLECT               = 316, // Tracks totals
     MOD_ROLL_ROGUES               = 317, // Tracks totals
@@ -593,8 +594,8 @@ enum MODIFIER
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 542, // stuff
     // MOD_SPARE = 543, // stuff
+    // MOD_SPARE = 544, // stuff
 
 };
 

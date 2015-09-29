@@ -144,25 +144,6 @@ void CalculateStats(CMobEntity * PMob)
     uint8 mLvl = PMob->GetMLevel();
     ZONETYPE zoneType = PMob->loc.zone->GetType();
 
-    // event mob types will always have custom roaming
-    if(PMob->m_Type & MOBTYPE_EVENT)
-    {
-        PMob->m_roamFlags |= ROAMFLAG_EVENT;
-        PMob->m_maxRoamDistance = 0.2f; // always go back to spawn
-    }
-
-    if(isNM)
-    {
-        // enmity range is larger
-        PMob->m_enmityRange = 28;
-    }
-
-    if(mJob == JOB_DRG)
-    {
-        // drg can use 2 hour multiple times
-        PMob->setMobMod(MOBMOD_2HOUR_MULTI, 1);
-    }
-
     if(PMob->HPmodifier == 0)
     {
 
@@ -396,123 +377,6 @@ void CalculateStats(CMobEntity * PMob)
         PMob->stats.CHR *= map_config.mob_stat_multiplier;
     }
 
-    // aggro mobs move around a bit more often
-    if(PMob->m_Aggro != AGGRO_NONE && PMob->speed != 0)
-    {
-        PMob->setMobMod(MOBMOD_ROAM_COOL, 40);
-    }
-
-    // setup special ability
-    if(mJob == JOB_RNG)
-    {
-
-        // giga
-        if(PMob->m_Family == 126 && PMob->m_Family <= 130)
-        {
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 35);
-            // catapult
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 402);
-        }
-        else
-        {
-            // all other rangers
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 20);
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 16);
-        }
-
-    }
-    else if(mJob == JOB_NIN)
-    {
-        PMob->setMobMod(MOBMOD_SPECIAL_COOL, 35);
-        PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 16);
-    }
-    else if(mJob == JOB_DRG && PMob->m_Family != 193)
-    {
-        PMob->setMobMod(MOBMOD_SPECIAL_COOL, 45);
-
-        // sahigans
-        if(PMob->m_Family == 213)
-        {
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 514);
-        }
-        else
-        {
-            // all other dragoons
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 808);
-        }
-    }
-
-    // all pets must be defined in the mob_pets file
-    // set recast times for summoning pets
-    if(PMob->loc.zone->GetType() != ZONETYPE_DYNAMIS)
-    {
-        if(mJob == JOB_BST)
-        {
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 100);
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 761);
-        }
-        else if(mJob == JOB_DRG && !isNM)
-        {
-            // only drgs in 3rd expansion calls wyvern as non-NM
-            // include fomors
-            if(PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT || PMob->m_Family == 115)
-            {
-                // 20 min recast
-                PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 476);
-                PMob->setMobMod(MOBMOD_SPECIAL_COOL, 720);
-            }
-        }
-        else if(mJob == JOB_PUP)
-        {
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1645);
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 720);
-        }
-    }
-
-    // handle standback
-    // mobs that stand back: blm, whm, rng, cor, nin
-    if(mJob == JOB_RNG)
-    {
-
-        // giga
-        if(PMob->m_Family == 126 && PMob->m_Family <= 130)
-        {
-            PMob->setMobMod(MOBMOD_STANDBACK_TIME, 20);
-        }
-        else if(PMob->m_Family == 199)
-        {
-            // they stay back forever
-            PMob->setMobMod(MOBMOD_STANDBACK_TIME, 90);
-        }
-        else
-        {
-            PMob->setMobMod(MOBMOD_STANDBACK_TIME, 60);
-        }
-
-    }
-    else if(mJob == JOB_COR)
-    {
-        PMob->setMobMod(MOBMOD_STANDBACK_TIME, 60);
-    }
-    else if(mJob == JOB_BLM)
-    {
-        PMob->setMobMod(MOBMOD_STANDBACK_TIME, 42);
-    }
-    else if(mJob == JOB_WHM)
-    {
-        PMob->setMobMod(MOBMOD_STANDBACK_TIME, 32);
-    }
-    else if(mJob == JOB_NIN)
-    {
-        PMob->setMobMod(MOBMOD_STANDBACK_TIME, 25);
-    }
-
-    // mobs with zero speed cannot standback
-    if(PMob->speed == 0)
-    {
-        PMob->setMobMod(MOBMOD_STANDBACK_TIME, 0);
-    }
-
     // special case, give spell list to my pet
     if(PMob->getMobMod(MOBMOD_PET_SPELL_LIST) && PMob->PPet != nullptr)
     {
@@ -526,47 +390,6 @@ void CalculateStats(CMobEntity * PMob)
     if(PMob->getMobMod(MOBMOD_SPELL_LIST))
     {
         PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(PMob->getMobMod(MOBMOD_SPELL_LIST));
-    }
-
-    // apply custom roaming distance
-    if(PMob->getMobMod(MOBMOD_ROAM_DISTANCE) != 0)
-    {
-      PMob->m_roamDistance = (float)PMob->getMobMod(MOBMOD_ROAM_DISTANCE);
-    }
-
-    // Default roam distance if not set from database
-    if(PMob->m_roamDistance == 0)
-    {
-      if(PMob->m_Type & MOBTYPE_NOTORIOUS)
-      {
-        // Notorious monsters don't roam very far
-        PMob->m_roamDistance = 2.5f;
-      } 
-      else if(PMob->loc.zone->GetType() == ZONETYPE_OUTDOORS)
-      {
-        PMob->m_roamDistance = 3.0f;
-      }
-      else
-      {
-        PMob->m_roamDistance = 2.5f;
-      }
-
-    }
-
-    if(PMob->m_roamFlags & ROAMFLAG_AMBUSH)
-    {
-        PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 22);
-        PMob->setMobMod(MOBMOD_SPECIAL_COOL, 1);
-        PMob->m_specialFlags |= SPECIALFLAG_HIDDEN;
-        // always stay close to spawn
-        PMob->m_maxRoamDistance = 2.0f;
-        PMob->m_roamDistance = 1.0f;
-        PMob->m_roamFlags |= ROAMFLAG_NO_TURN;
-    }
-
-    if(zoneType == ZONETYPE_OUTDOORS){
-        // mobs outside should make more turns
-        PMob->m_roamFlags |= ROAMFLAG_WANDER;
     }
 
     // cap all stats for mLvl / job
@@ -587,23 +410,6 @@ void CalculateStats(CMobEntity * PMob)
                 PMob->WorkingSkills.skill[i] = maxSubSkill;
             }
         }
-    }
-
-    if(zoneType == ZONETYPE_DYNAMIS || zoneType == ZONETYPE_BATTLEFIELD)
-    {
-        // never despawn
-        PMob->SetDespawnTimer(0);
-        // do not roam around
-        PMob->m_roamFlags |= ROAMFLAG_EVENT;
-        PMob->m_maxRoamDistance = 0.5f;
-    }
-
-    if((zoneType == ZONETYPE_BATTLEFIELD) && (PMob->m_bcnmID != 864) && (PMob->m_bcnmID != 704) && (PMob->m_bcnmID != 706))
-    {
-        // bcnmID 864 (desires of emptiness), 704 (darkness named), and 706 (waking dreams) don't superlink
-        // force all mobs in same instance to superlink
-        // plus one in case id is zero
-        PMob->setMobMod(MOBMOD_SUPERLINK, PMob->m_battlefieldID);
     }
 
     uint8 evaRank = battleutils::GetSkillRank(SKILL_EVA, PMob->GetMJob());
@@ -631,30 +437,304 @@ void CalculateStats(CMobEntity * PMob)
     //natural magic evasion
     PMob->addModifier(MOD_MEVA, GetBase(PMob, mEvaRank));
 
-    if((PMob->m_Type & MOBTYPE_NOTORIOUS) && mJob == JOB_WHM && mLvl >= 25)
-    {
-        // whm nms have stronger regen effect
-        PMob->addModifier(MOD_REGEN, mLvl/4);
-    }
-
     // add traits for sub and main
     battleutils::AddTraits(PMob, traits::GetTraits(mJob), mLvl);
     battleutils::AddTraits(PMob, traits::GetTraits(PMob->GetSJob()), PMob->GetSLevel());
 
+    SetupJob(PMob);
+    SetupRoaming(PMob);
+
+    if(zoneType == ZONETYPE_DUNGEON)
+    {
+        SetupDungeonMob(PMob);
+    }
+    else if(zoneType == ZONETYPE_BATTLEFIELD)
+    {
+        SetupBattlefieldMob(PMob);
+    }
+    else if(zoneType == ZONETYPE_DYNAMIS)
+    {
+        SetupDynamisMob(PMob);
+    }
+
+    if(PMob->m_Type & MOBTYPE_NOTORIOUS)
+    {
+        SetupNMMob(PMob);
+    }
+
+    if(PMob->m_Type & MOBTYPE_EVENT)
+    {
+        SetupEventMob(PMob);
+    }
+
+    if(PMob->m_Family == 335)
+    {
+        SetupMaat(PMob);
+    }
+}
+
+void SetupJob(CMobEntity* PMob)
+{
+    JOBTYPE mJob = PMob->GetMJob();
+
+    switch(mJob)
+    {
+        case JOB_DRG:
+            // drg can use 2 hour multiple times
+            PMob->setMobMod(MOBMOD_2HOUR_MULTI, 1);
+
+            // only drgs in 3rd expansion calls wyvern as non-NM
+            // include fomors
+            if(!(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT || PMob->m_Family == 115)
+            {
+                // 20 min recast
+                PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 476);
+                PMob->setMobMod(MOBMOD_SPECIAL_COOL, 720);
+            }
+            break;
+        case JOB_RNG:
+
+            // giga
+            if(PMob->m_Family >= 126 && PMob->m_Family <= 130 || PMob->m_Family == 328)
+            {
+                // only used while at range
+                PMob->setMobMod(MOBMOD_SPECIAL_COOL, 12);
+                // catapult
+                PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 402);
+            }
+            else
+            {
+                // all other rangers
+                PMob->setMobMod(MOBMOD_SPECIAL_COOL, 12);
+                PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 16);
+                PMob->setMobMod(MOBMOD_STANDBACK_COOL, 8);
+            }
+
+            PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
+
+            break;
+        case JOB_NIN:
+            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 9);
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 16);
+            PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
+            PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
+            break;
+        case JOB_BST:
+            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 70);
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 761);
+            break;
+        case JOB_PUP:
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1645);
+            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 720);
+            break;
+        case JOB_BLM:
+            PMob->setMobMod(MOBMOD_STANDBACK_COOL, 16);
+            PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_GA_CHANCE, 40);
+            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 15);
+            PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
+            break;
+        case JOB_WHM:
+            PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
+            break;
+        case JOB_BRD:
+            PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_GA_CHANCE, 25);
+            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 60);
+        case JOB_BLU:
+            PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
+        case JOB_RDM:
+            PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_GA_CHANCE, 15);
+            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 40);
+        case JOB_SMN:
+            PMob->setMobMod(MOBMOD_MAGIC_COOL, 70);
+            // smn only has "buffs"
+            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 100);
+    }
+
+}
+
+void SetupRoaming(CMobEntity* PMob)
+{
+    uint16 distance = 10;
+    uint16 turns = 1;
+    uint16 cool = 20;
+    uint16 rate = 15;
+
+    switch(PMob->m_EcoSystem)
+    {
+        case SYSTEM_BEASTMEN:
+            distance = 20;
+            turns = 5;
+            cool = 45;
+            break;
+    }
+
+    // default mob roaming mods
+    PMob->defaultMobMod(MOBMOD_ROAM_DISTANCE, distance);
+    PMob->defaultMobMod(MOBMOD_ROAM_TURNS, turns);
+    PMob->defaultMobMod(MOBMOD_ROAM_COOL, cool);
+    PMob->defaultMobMod(MOBMOD_ROAM_RATE, rate);
+
+    if(PMob->m_roamFlags & ROAMFLAG_AMBUSH)
+    {
+        PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 22);
+        PMob->setMobMod(MOBMOD_SPECIAL_COOL, 1);
+        PMob->m_specialFlags |= SPECIALFLAG_HIDDEN;
+        // always stay close to spawn
+        PMob->m_maxRoamDistance = 2.0f;
+        PMob->setMobMod(MOBMOD_ROAM_DISTANCE, 5);
+        PMob->setMobMod(MOBMOD_ROAM_TURNS, 1);
+    }
+
+}
+
+void SetupDynamisMob(CMobEntity* PMob)
+{
+    JOBTYPE mJob = PMob->GetMJob();
+
+    if(mJob == JOB_BST)
+    {
+        // bsts are spawned with pets
+        PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 0);
+    }
+
+    // no gil drop and no mugging!
+    PMob->setMobMod(MOBMOD_GIL_MAX, -1);
+    PMob->setMobMod(MOBMOD_MUG_GIL, -1);
+    PMob->setMobMod(MOBMOD_2HOUR_PROC, 80);
+
+    // dynamis mobs have true sight
+    if(PMob->m_Aggro & AGGRO_DETECT_SIGHT)
+    {
+        PMob->m_Aggro |= AGGRO_DETECT_TRUESIGHT;
+    }
+
+    if(PMob->m_Aggro & AGGRO_DETECT_HEARING)
+    {
+        PMob->m_Aggro |= AGGRO_DETECT_TRUEHEARING;
+    }
+
+    if(PMob->m_EcoSystem == SYSTEM_BEASTMEN ||
+            PMob->m_EcoSystem == SYSTEM_HUMANOID)
+    {
+        PMob->setMobMod(MOBMOD_MAIN_2HOUR, 1);
+    }
+
+    // never despawn
+    PMob->SetDespawnTimer(0);
+    PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
+
+    // do not roam around
+    PMob->m_roamFlags |= ROAMFLAG_EVENT;
+    PMob->m_maxRoamDistance = 0.5f;
+
     // job resist traits are much more powerful in dynamis
     // according to wiki
-    if(zoneType == ZONETYPE_DYNAMIS)
+    for(auto&& PTrait : PMob->TraitList)
     {
-        for(auto&& PTrait : PMob->TraitList)
-        {
-            uint16 type = PTrait->getMod();
+        uint16 type = PTrait->getMod();
 
-            if(type >= 240 && type <= 255)
-            {
-                // give mob a total of x4 the regular rate
-                PMob->addModifier(type, PTrait->getValue() * 3);
-            }
+        if(type >= 240 && type <= 255)
+        {
+            // give mob a total of x4 the regular rate
+            PMob->addModifier(type, PTrait->getValue() * 3);
         }
+    }
+}
+
+void SetupBattlefieldMob(CMobEntity* PMob)
+{
+    PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
+
+    // never despawn
+    PMob->SetDespawnTimer(0);
+    // do not roam around
+    PMob->m_roamFlags |= ROAMFLAG_EVENT;
+    PMob->m_maxRoamDistance = 0.5f;
+
+    if((PMob->m_bcnmID != 864) && (PMob->m_bcnmID != 704) && (PMob->m_bcnmID != 706))
+    {
+        // bcnmID 864 (desires of emptiness), 704 (darkness named), and 706 (waking dreams) don't superlink
+        // force all mobs in same instance to superlink
+        // plus one in case id is zero
+        PMob->setMobMod(MOBMOD_SUPERLINK, PMob->m_battlefieldID);
+    }
+
+}
+
+void SetupDungeonMob(CMobEntity* PMob)
+{
+}
+
+void SetupEventMob(CMobEntity* PMob)
+{
+    // event mob types will always have custom roaming
+    PMob->m_roamFlags |= ROAMFLAG_EVENT;
+    PMob->m_maxRoamDistance = 0.2f; // always go back to spawn
+
+    PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
+}
+
+void SetupNMMob(CMobEntity* PMob)
+{
+    JOBTYPE mJob = PMob->GetMJob();
+    uint8 mLvl = PMob->GetMLevel();
+
+    PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
+    // enmity range is larger
+    PMob->m_enmityRange = 28;
+
+    // NMs cure earlier
+    PMob->defaultMobMod(MOBMOD_HP_HEAL_CHANCE, 50);
+    PMob->defaultMobMod(MOBMOD_HEAL_CHANCE, 40);
+
+    if(mLvl >= 25)
+    {
+        if(mJob == JOB_NIN)
+        {
+            PMob->setMobMod(MOBMOD_DUAL_WIELD, 1);
+        }
+
+        if(mJob == JOB_WHM)
+        {
+            // whm nms have stronger regen effect
+            PMob->addModifier(MOD_REGEN, mLvl/4);
+        }
+
+        // add two hours
+        if(PMob->m_EcoSystem == SYSTEM_BEASTMEN ||
+                PMob->m_EcoSystem == SYSTEM_HUMANOID)
+        {
+            PMob->defaultMobMod(MOBMOD_MAIN_2HOUR, 1);
+        }
+    }
+
+}
+
+void SetupMaat(CMobEntity* PMob)
+{
+    PMob->m_Weapons[SLOT_MAIN]->setDelay((240*1000)/60);
+
+    switch(PMob->GetMJob()){
+        case JOB_NIN:
+            PMob->setMobMod(MOBMOD_DUAL_WIELD, 1);
+            PMob->m_Weapons[SLOT_MAIN]->resetDelay();
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 0);
+            break;
+        case JOB_DRK:
+        case JOB_PLD:
+            // Give shield bash
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 780);
+            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
+            break;
+        case JOB_BST:
+            // Call beast skill
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 761);
+            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
+            break;
     }
 }
 
@@ -673,11 +753,7 @@ void RecalculateSpellContainer(CMobEntity* PMob)
 	}
 }
 
-/* Gets the available spells for the specified monster. This looks up the types of spells the monster
- * can cast based on the bitmask in mob_pools (which has been preloaded into memory). It then resolves
- * the list of actual spell IDs based on the bits set. This mapping from bitmask > spellids is based
- * on numerous factors including the type of mob, the level of the mob, etc. The list of spells are
- * then stored in PMob->PSpellContainer
+/* Gets the available spells for the specified monster.
  */
 void GetAvailableSpells(CMobEntity* PMob) {
 	//make sure the mob actually has a spell list
@@ -686,63 +762,9 @@ void GetAvailableSpells(CMobEntity* PMob) {
 		return;
 	}
 
-	// setup recast times
-	switch(PMob->GetMJob())
-	{
-		case JOB_BLM:
-		case JOB_BRD:
-			PMob->setMobMod(MOBMOD_MAGIC_COOL, 30);
-		break;
-		case JOB_BLU:
-			PMob->setMobMod(MOBMOD_MAGIC_COOL, 40);
-		break;
-		case JOB_NIN:
-		case JOB_WHM:
-		case JOB_RDM:
-			PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
-		break;
-		case JOB_SMN:
-			PMob->setMobMod(MOBMOD_MAGIC_COOL, 70);
-		break;
-		default:
-			PMob->setMobMod(MOBMOD_MAGIC_COOL, 45);
-		break;
-
-	}
-
-	// change spell chances
-	switch(PMob->GetMJob())
-	{
-		case JOB_SMN:
-			// smn only has "buffs"
-			PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 100);
-		break;
-		case JOB_BLM:
-			PMob->defaultMobMod(MOBMOD_GA_CHANCE, 40);
-			PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 15);
-		break;
-		case JOB_RDM:
-			PMob->defaultMobMod(MOBMOD_GA_CHANCE, 15);
-			PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 40);
-		break;
-		case JOB_NIN:
-			PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 30);
-		break;
-		case JOB_BRD:
-			PMob->defaultMobMod(MOBMOD_GA_CHANCE, 25);
-			PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 60);
-		break;
-	}
-
-	if(PMob->m_Type & MOBTYPE_NOTORIOUS)
-	{
-		// NMs cure earlier
-		PMob->defaultMobMod(MOBMOD_HP_HEAL_CHANCE, 50);
-		PMob->defaultMobMod(MOBMOD_HEAL_CHANCE, 40);
-	}
-
 	// catch all non-defaulted spell chances
-	PMob->defaultMobMod(MOBMOD_GA_CHANCE, 45);
+        PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
+	PMob->defaultMobMod(MOBMOD_GA_CHANCE, 35);
 	PMob->defaultMobMod(MOBMOD_NA_CHANCE, 40);
 	PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 35);
 	PMob->defaultMobMod(MOBMOD_HEAL_CHANCE, 40);
@@ -770,46 +792,10 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
     // this only has to be added once
     AddCustomMods(PMob);
 
-    ZONETYPE zoneType = PZone->GetType();
-
 	// do not despawn if I match this criteria
-	if((PMob->m_Type & MOBTYPE_NOTORIOUS) || (PMob->m_Type & MOBTYPE_EVENT) || MOB_NO_DESPAWN || zoneType == ZONETYPE_DYNAMIS || zoneType == ZONETYPE_BATTLEFIELD)
+	if(MOB_NO_DESPAWN)
 	{
 		PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
-	}
-
-	if(zoneType == ZONETYPE_DYNAMIS)
-	{
-		// no gil drop and no mugging!
-		PMob->setMobMod(MOBMOD_GIL_MAX, -1);
-		PMob->setMobMod(MOBMOD_MUG_GIL, -1);
-		PMob->setMobMod(MOBMOD_2HOUR_PROC, 80);
-
-                // dynamis mobs have true sight
-                if(PMob->m_Aggro & AGGRO_DETECT_SIGHT)
-                {
-                    PMob->m_Aggro |= AGGRO_DETECT_TRUESIGHT;
-                }
-
-                if(PMob->m_Aggro & AGGRO_DETECT_HEARING)
-                {
-                    PMob->m_Aggro |= AGGRO_DETECT_TRUEHEARING;
-                }
-	}
-
-	// add two hours
-	// this mod should be added to all NMs that two hour.
-	// for dynamis mobs the statue should give mobs its two hour
-	if(PMob->GetMLevel() >= 10)
-	{
-		if(PMob->m_Type & MOBTYPE_NOTORIOUS || zoneType == ZONETYPE_DYNAMIS)
-		{
-			if(PMob->m_EcoSystem == SYSTEM_BEASTMEN ||
-				PMob->m_EcoSystem == SYSTEM_HUMANOID)
-			{
-				PMob->defaultMobMod(MOBMOD_MAIN_2HOUR, 1);
-			}
-		}
 	}
 
 	PMob->m_Immunity |= PMob->getMobMod(MOBMOD_IMMUNITY);
@@ -817,7 +803,6 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 	PMob->defaultMobMod(MOBMOD_SKILL_LIST, PMob->m_MobSkillList);
 	PMob->defaultMobMod(MOBMOD_LINK_RADIUS, MOB_LINK_RADIUS);
 	PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, MOB_TP_USE_CHANCE);
-	PMob->defaultMobMod(MOBMOD_ROAM_COOL, 50);
 	PMob->defaultMobMod(MOBMOD_2HOUR_PROC, 60);
 
     // Killer Effect
@@ -1053,23 +1038,44 @@ void AddCustomMods(CMobEntity* PMob)
 	}
 }
 
-void SetupMaat(CMobEntity* PMob, JOBTYPE job)
+void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
 {
-	//set job based on characters job
-	PMob->ChangeMJob(job);
+    //set job based on characters job
+    PMob->SetMJob(job);
 
-	// reset just incase
-	CalculateStats(PMob);
+    // give him a spell list based on job
+    uint16 spellList = 0;
 
-	PMob->m_Weapons[SLOT_MAIN]->setDelay((240*1000)/60);
+    switch(job){
+        case JOB_WHM:
+            spellList = 1;
+            break;
+        case JOB_BLM:
+            spellList = 2;
+            break;
+        case JOB_RDM:
+            spellList = 3;
+            break;
+        case JOB_PLD:
+            spellList = 4;
+            break;
+        case JOB_DRK:
+            spellList = 5;
+            break;
+        case JOB_BRD:
+            spellList = 6;
+            break;
+        case JOB_NIN:
+            spellList = 7;
+            break;
+        case JOB_BLU:
+            spellList = 8;
+            break;
+    }
 
-	// this is kind a hacky but make nin maat always double attacks
-	switch(PMob->GetMJob()){
-		case JOB_NIN:
-			PMob->setModifier(MOD_DOUBLE_ATTACK, 100);
-			PMob->m_Weapons[SLOT_MAIN]->resetDelay();
-		break;
-	}
+    PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
+
+    PMob->m_DropID = 4485; //Give Maat his stealable Warp Scroll 
 }
 
 CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
@@ -1084,7 +1090,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 		mob_pools.familyid, name_prefix, flags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-		allegiance, namevis, aggro, mob_groups.roam_distance, mob_pools.skill_list_id \
+		allegiance, namevis, aggro, mob_pools.skill_list_id, \
 		FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE mob_groups.groupid = %u";
@@ -1201,8 +1207,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 			PMob->allegiance = Sql_GetUIntData(SqlHandle, 55);
 			PMob->namevis = Sql_GetUIntData(SqlHandle, 56);
 			PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 57);
-			PMob->m_roamDistance = Sql_GetFloatData(SqlHandle, 58);
-			PMob->m_MobSkillList = Sql_GetUIntData(SqlHandle, 59);
+			PMob->m_MobSkillList = Sql_GetUIntData(SqlHandle, 58);
 
 			// must be here first to define mobmods
 			mobutils::InitializeMob(PMob, zoneutils::GetZone(zoneID));

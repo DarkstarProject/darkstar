@@ -836,6 +836,14 @@ INSERT INTO `mob_skill_lists` VALUES ('',334,479);
 -- right hand
 INSERT INTO `mob_skill_lists` VALUES ('',334,439);
 
+INSERT INTO `mob_skill_lists` VALUES ('Orc DRG',713,808);
+INSERT INTO `mob_skill_lists` VALUES ('Orc DRG',713,377);
+INSERT INTO `mob_skill_lists` VALUES ('Orc DRG',713,353);
+INSERT INTO `mob_skill_lists` VALUES ('Orc DRG',713,352);
+INSERT INTO `mob_skill_lists` VALUES ('Orc DRG',713,351);
+INSERT INTO `mob_skill_lists` VALUES ('Orc DRG',713,349);
+INSERT INTO `mob_skill_lists` VALUES ('Orc DRG',713,350);
+
 -- INSERT INTO `mob_skill_lists` VALUES ('',810,?);
 -- INSERT INTO `mob_skill_lists` VALUES ('',2155,?,?);
 
@@ -1097,6 +1105,12 @@ INSERT INTO `mob_skill_lists` VALUES ('',213,515);
 INSERT INTO `mob_skill_lists` VALUES ('',213,521);
 INSERT INTO `mob_skill_lists` VALUES ('',213,524);
 INSERT INTO `mob_skill_lists` VALUES ('',213,518);
+
+INSERT INTO `mob_skill_lists` VALUES ('Sahagin DRG',712,514);
+INSERT INTO `mob_skill_lists` VALUES ('Sahagin DRG',712,515);
+INSERT INTO `mob_skill_lists` VALUES ('Sahagin DRG',712,521);
+INSERT INTO `mob_skill_lists` VALUES ('Sahagin DRG',712,524);
+INSERT INTO `mob_skill_lists` VALUES ('Sahagin DRG',712,518);
 
 -- Tonberries
 INSERT INTO `mob_skill_lists` VALUES ('',243,527);
