@@ -513,60 +513,53 @@ void SetupJob(CMobEntity* PMob)
             // giga
             if(PMob->m_Family >= 126 && PMob->m_Family <= 130 || PMob->m_Family == 328)
             {
-                PMob->setMobMod(MOBMOD_SPECIAL_COOL, 35);
+                // only used while at range
+                PMob->setMobMod(MOBMOD_SPECIAL_COOL, 12);
                 // catapult
                 PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 402);
-                PMob->setMobMod(MOBMOD_STANDBACK_TIME, 20);
             }
             else
             {
                 // all other rangers
-                PMob->setMobMod(MOBMOD_SPECIAL_COOL, 20);
+                PMob->setMobMod(MOBMOD_SPECIAL_COOL, 12);
                 PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 16);
-                PMob->setMobMod(MOBMOD_STANDBACK_TIME, 60);
+                PMob->setMobMod(MOBMOD_STANDBACK_COOL, 8);
             }
 
-            if(PMob->m_Family == 199)
-            {
-                // they stay back forever
-                PMob->setMobMod(MOBMOD_STANDBACK_TIME, 90);
-            }
+            PMob->m_Behaviour |= BEHAVIOUR_STANDBACK;
 
             break;
         case JOB_NIN:
-            PMob->setMobMod(MOBMOD_STANDBACK_TIME, 25);
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 35);
+            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 9);
             PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 16);
             PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
-            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 30);
+            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
+            PMob->m_Behaviour |= BEHAVIOUR_STANDBACK;
             break;
         case JOB_BST:
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 100);
+            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 70);
             PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 761);
             break;
         case JOB_PUP:
             PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1645);
             PMob->setMobMod(MOBMOD_SPECIAL_COOL, 720);
             break;
-        case JOB_COR:
-            PMob->setMobMod(MOBMOD_STANDBACK_TIME, 60);
-            break;
         case JOB_BLM:
-            PMob->setMobMod(MOBMOD_STANDBACK_TIME, 42);
-            PMob->setMobMod(MOBMOD_MAGIC_COOL, 30);
+            PMob->setMobMod(MOBMOD_STANDBACK_COOL, 16);
+            PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 40);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 15);
+            PMob->m_Behaviour |= BEHAVIOUR_STANDBACK;
             break;
         case JOB_WHM:
-            PMob->setMobMod(MOBMOD_STANDBACK_TIME, 32);
             PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
             break;
         case JOB_BRD:
-            PMob->setMobMod(MOBMOD_MAGIC_COOL, 30);
+            PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 25);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 60);
         case JOB_BLU:
-            PMob->setMobMod(MOBMOD_MAGIC_COOL, 40);
+            PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
         case JOB_RDM:
             PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 15);
@@ -590,7 +583,7 @@ void SetupRoaming(CMobEntity* PMob)
     {
         case SYSTEM_BEASTMEN:
             distance = 20;
-            turns = 4;
+            turns = 5;
             cool = 45;
             break;
     }
@@ -785,8 +778,8 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	}
 
 	// catch all non-defaulted spell chances
-        PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 45);
-	PMob->defaultMobMod(MOBMOD_GA_CHANCE, 45);
+        PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
+	PMob->defaultMobMod(MOBMOD_GA_CHANCE, 35);
 	PMob->defaultMobMod(MOBMOD_NA_CHANCE, 40);
 	PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 35);
 	PMob->defaultMobMod(MOBMOD_HEAL_CHANCE, 40);

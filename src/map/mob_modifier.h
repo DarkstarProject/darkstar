@@ -64,7 +64,7 @@ enum MOBMODIFIER
     MOBMOD_2HOUR_MULTI    = 32, // can use two hour multiple times
     MOBMOD_SPECIAL_COOL   = 33, // cool down for special
     MOBMOD_MAGIC_COOL     = 34, // cool down for magic
-    MOBMOD_STANDBACK_TIME = 35, // amount of time the mob stands back
+    MOBMOD_STANDBACK_COOL = 35, // cool down time for standing back (casting spell while not in attack range)
     MOBMOD_ROAM_COOL      = 36, // cool down time in seconds after roaming
     MOBMOD_ALWAYS_AGGRO   = 37, // aggro regardless of level. Spheroids
     MOBMOD_NO_DROPS       = 38, // If set monster cannot drop any items, not even seals.

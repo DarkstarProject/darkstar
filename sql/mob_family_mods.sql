@@ -187,6 +187,7 @@ INSERT INTO `mob_family_mods` VALUES (174,@roam_rate,30,1);
 
 -- Bee
 INSERT INTO `mob_family_mods` VALUES (48,@roam_cool,15,1);
+INSERT INTO `mob_family_mods` VALUES (48,@roam_turns,2,1);
 
 -- Beetle
 INSERT INTO `mob_family_mods` VALUES (49,@roam_distance,15,1);
@@ -322,7 +323,7 @@ INSERT INTO `mob_family_mods` VALUES (180,@roam_cool,30,1);
 INSERT INTO `mob_family_mods` VALUES (180,@roam_turns,2,1);
 INSERT INTO `mob_family_mods` VALUES (180,@roam_rate,30,1);
 
-INSERT INTO `mob_family_mods` VALUES (208,@roam_cool,50,1);
+INSERT INTO `mob_family_mods` VALUES (208,@roam_cool,60,1);
 INSERT INTO `mob_family_mods` VALUES (208,@roam_rate,30,1);
 
 INSERT INTO `mob_family_mods` VALUES (2,@roam_cool,50,1);
@@ -332,8 +333,8 @@ INSERT INTO `mob_family_mods` VALUES (58,@roam_cool,30,1);
 INSERT INTO `mob_family_mods` VALUES (58,@roam_turns,2,1);
 INSERT INTO `mob_family_mods` VALUES (58,@roam_rate,30,1);
 
-INSERT INTO `mob_family_mods` VALUES (98,@roam_cool,40,1);
-INSERT INTO `mob_family_mods` VALUES (98,@roam_turns,2,1);
+INSERT INTO `mob_family_mods` VALUES (98,@roam_cool,50,1);
+INSERT INTO `mob_family_mods` VALUES (98,@roam_turns,5,1);
 INSERT INTO `mob_family_mods` VALUES (98,@roam_rate,30,1);
 
 -- Raptors
