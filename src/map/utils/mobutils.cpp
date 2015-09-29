@@ -483,22 +483,6 @@ void SetupJob(CMobEntity* PMob)
             // drg can use 2 hour multiple times
             PMob->setMobMod(MOBMOD_2HOUR_MULTI, 1);
 
-            if(PMob->m_Family != 193)
-            {
-                PMob->setMobMod(MOBMOD_SPECIAL_COOL, 45);
-
-                // sahigans
-                if(PMob->m_Family == 213)
-                {
-                    PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 514);
-                }
-                else
-                {
-                    // all other dragoons
-                    PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 808);
-                }
-            }
-
             // only drgs in 3rd expansion calls wyvern as non-NM
             // include fomors
             if(!(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT || PMob->m_Family == 115)
@@ -703,19 +687,24 @@ void SetupNMMob(CMobEntity* PMob)
     // enmity range is larger
     PMob->m_enmityRange = 28;
 
-    if(mJob == JOB_WHM && mLvl >= 25)
-    {
-        // whm nms have stronger regen effect
-        PMob->addModifier(MOD_REGEN, mLvl/4);
-    }
-
     // NMs cure earlier
     PMob->defaultMobMod(MOBMOD_HP_HEAL_CHANCE, 50);
     PMob->defaultMobMod(MOBMOD_HEAL_CHANCE, 40);
 
-    // add two hours
-    if(mLvl >= 10)
+    if(mLvl >= 25)
     {
+        if(mJob == JOB_NIN)
+        {
+            PMob->setMobMod(MOBMOD_DUAL_WIELD, 1);
+        }
+
+        if(mJob == JOB_WHM)
+        {
+            // whm nms have stronger regen effect
+            PMob->addModifier(MOD_REGEN, mLvl/4);
+        }
+
+        // add two hours
         if(PMob->m_EcoSystem == SYSTEM_BEASTMEN ||
                 PMob->m_EcoSystem == SYSTEM_HUMANOID)
         {
@@ -730,12 +719,8 @@ void SetupMaat(CMobEntity* PMob)
     PMob->m_Weapons[SLOT_MAIN]->setDelay((240*1000)/60);
 
     switch(PMob->GetMJob()){
-        case JOB_DRG:
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 0);
-            break;
         case JOB_NIN:
-            // this is kind a hacky but make nin maat always double attack
-            PMob->setModifier(MOD_DOUBLE_ATTACK, 100);
+            PMob->setMobMod(MOBMOD_DUAL_WIELD, 1);
             PMob->m_Weapons[SLOT_MAIN]->resetDelay();
             PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 0);
             break;
