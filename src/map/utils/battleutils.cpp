@@ -445,6 +445,37 @@ namespace battleutils
                               // Yagudo has it's own version
                               id = 865;
                           }
+                          else if(familyId == 169 || familyId == 358)
+                          {
+                              // Kindred has it's own version
+                              id = 895;
+                          }
+                          else if (familyId == 133 || familyId == 327)
+                          {
+                              // Goblin
+                              id = 479;
+                          }
+                          else if (familyId == 25)
+                          {
+                              // Antica
+                              id = 480;
+                          }
+                          else if (familyId == 189 || familyId == 334)
+                          {
+                              // Orc
+                              id = 481;
+                          }
+                          else if (familyId == 115 || familyId == 359 || familyId == 221
+                                  || familyId == 222 || familyId == 223)
+                          {
+                              // Fomor / Shadow
+                              id = 482;
+                          }
+                          else if (familyId == 328 || familyId >= 126 && familyId <= 130)
+                          {
+                              // Giga
+                              id = 483;
+                          }
                           else if(familyId == 337 || familyId == 200 || familyId == 201
                                   || familyId == 202)
                           {

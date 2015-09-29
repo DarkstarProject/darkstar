@@ -239,6 +239,26 @@ INSERT INTO `mob_pool_mods` VALUES (3202,14,708,1);
 INSERT INTO `mob_pool_mods` VALUES (3204,14,708,1);
 INSERT INTO `mob_pool_mods` VALUES (3483,14,708,1);
 
+INSERT INTO `mob_pool_mods` VALUES (4186,34,20,1);
+INSERT INTO `mob_pool_mods` VALUES (4186,35,0,1);
+INSERT INTO `mob_pool_mods` VALUES (4186,244,15,0);
+
+INSERT INTO `mob_pool_mods` VALUES (4187,34,20,1);
+INSERT INTO `mob_pool_mods` VALUES (4187,35,0,1);
+INSERT INTO `mob_pool_mods` VALUES (4187,244,15,0);
+
+INSERT INTO `mob_pool_mods` VALUES (4188,34,20,1);
+INSERT INTO `mob_pool_mods` VALUES (4188,35,0,1);
+INSERT INTO `mob_pool_mods` VALUES (4188,244,15,0);
+
+INSERT INTO `mob_pool_mods` VALUES (4189,34,20,1);
+INSERT INTO `mob_pool_mods` VALUES (4189,35,0,1);
+INSERT INTO `mob_pool_mods` VALUES (4189,244,15,0);
+
+INSERT INTO `mob_pool_mods` VALUES (2032,34,20,1);
+INSERT INTO `mob_pool_mods` VALUES (2032,35,0,1);
+INSERT INTO `mob_pool_mods` VALUES (2032,244,15,0);
+
 /*!40000 ALTER TABLE `mob_pool_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

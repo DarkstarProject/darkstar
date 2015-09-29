@@ -471,6 +471,7 @@ void CalculateStats(CMobEntity * PMob)
     {
         SetupMaat(PMob);
     }
+
 }
 
 void SetupJob(CMobEntity* PMob)
@@ -488,8 +489,8 @@ void SetupJob(CMobEntity* PMob)
             if(!(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT || PMob->m_Family == 115)
             {
                 // 20 min recast
-                PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 476);
-                PMob->setMobMod(MOBMOD_SPECIAL_COOL, 720);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 476);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 720);
             }
             break;
         case JOB_RNG:
@@ -498,58 +499,58 @@ void SetupJob(CMobEntity* PMob)
             if(PMob->m_Family >= 126 && PMob->m_Family <= 130 || PMob->m_Family == 328)
             {
                 // only used while at range
-                PMob->setMobMod(MOBMOD_SPECIAL_COOL, 12);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
                 // catapult
-                PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 402);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 402);
             }
             else
             {
                 // all other rangers
-                PMob->setMobMod(MOBMOD_SPECIAL_COOL, 12);
-                PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 16);
-                PMob->setMobMod(MOBMOD_STANDBACK_COOL, 8);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 16);
+                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 8);
             }
 
             PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
 
             break;
         case JOB_NIN:
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 9);
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 16);
-            PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 9);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 16);
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
             PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
             break;
         case JOB_BST:
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 70);
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 761);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 70);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 761);
             break;
         case JOB_PUP:
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1645);
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 720);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1645);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 720);
             break;
         case JOB_BLM:
-            PMob->setMobMod(MOBMOD_STANDBACK_COOL, 16);
-            PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 16);
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 40);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 15);
             PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
             break;
         case JOB_WHM:
-            PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             break;
         case JOB_BRD:
-            PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 25);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 60);
         case JOB_BLU:
-            PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
         case JOB_RDM:
-            PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 15);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 40);
         case JOB_SMN:
-            PMob->setMobMod(MOBMOD_MAGIC_COOL, 70);
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 70);
             // smn only has "buffs"
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 100);
     }
@@ -594,12 +595,6 @@ void SetupRoaming(CMobEntity* PMob)
 void SetupDynamisMob(CMobEntity* PMob)
 {
     JOBTYPE mJob = PMob->GetMJob();
-
-    if(mJob == JOB_BST)
-    {
-        // bsts are spawned with pets
-        PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 0);
-    }
 
     // no gil drop and no mugging!
     PMob->setMobMod(MOBMOD_GIL_MAX, -1);
