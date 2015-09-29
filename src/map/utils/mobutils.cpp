@@ -526,7 +526,7 @@ void SetupJob(CMobEntity* PMob)
                 PMob->setMobMod(MOBMOD_STANDBACK_COOL, 8);
             }
 
-            PMob->m_Behaviour |= BEHAVIOUR_STANDBACK;
+            PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
 
             break;
         case JOB_NIN:
@@ -534,7 +534,7 @@ void SetupJob(CMobEntity* PMob)
             PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 16);
             PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
-            PMob->m_Behaviour |= BEHAVIOUR_STANDBACK;
+            PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
             break;
         case JOB_BST:
             PMob->setMobMod(MOBMOD_SPECIAL_COOL, 70);
@@ -549,7 +549,7 @@ void SetupJob(CMobEntity* PMob)
             PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 40);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 15);
-            PMob->m_Behaviour |= BEHAVIOUR_STANDBACK;
+            PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
             break;
         case JOB_WHM:
             PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);

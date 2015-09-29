@@ -1563,6 +1563,7 @@ void CAIMobDummy::ActionAttack()
                 }
             }
             else if (!(m_PMob->m_Behaviour & BEHAVIOUR_STANDBACK && currentDistance < 20) &&
+                    !(m_PMob->m_Behaviour & BEHAVIOUR_HP_STANDBACK && currentDistance < 20 && m_PMob->GetHPP() > 70) &&
                 !(m_PMob->getMobMod(MOBMOD_SPAWN_LEASH) > 0 && distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) > m_PMob->getMobMod(MOBMOD_SPAWN_LEASH)))
             {
 
