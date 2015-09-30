@@ -577,6 +577,24 @@ INSERT INTO `mob_family_mods` VALUES (87,54,100,1);
 INSERT INTO `mob_family_mods` VALUES (115,54,10,1);
 INSERT INTO `mob_family_mods` VALUES (359,54,10,1);
 
+-- All animated weapons have MP
+INSERT INTO `mob_family_mods` VALUES (7,3,50,1);
+INSERT INTO `mob_family_mods` VALUES (8,3,50,1);
+INSERT INTO `mob_family_mods` VALUES (9,3,50,1);
+INSERT INTO `mob_family_mods` VALUES (11,3,50,1);
+INSERT INTO `mob_family_mods` VALUES (12,3,50,1);
+INSERT INTO `mob_family_mods` VALUES (13,3,50,1);
+INSERT INTO `mob_family_mods` VALUES (14,3,50,1);
+INSERT INTO `mob_family_mods` VALUES (15,3,50,1);
+INSERT INTO `mob_family_mods` VALUES (16,3,50,1);
+INSERT INTO `mob_family_mods` VALUES (17,3,50,1);
+INSERT INTO `mob_family_mods` VALUES (18,3,50,1);
+INSERT INTO `mob_family_mods` VALUES (19,3,50,1);
+INSERT INTO `mob_family_mods` VALUES (20,3,50,1);
+INSERT INTO `mob_family_mods` VALUES (21,3,50,1);
+INSERT INTO `mob_family_mods` VALUES (23,3,50,1);
+INSERT INTO `mob_family_mods` VALUES (24,3,50,1);
+
 /*!40000 ALTER TABLE `mob_family_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

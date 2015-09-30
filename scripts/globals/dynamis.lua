@@ -1,6 +1,8 @@
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
 
+dynamis = {};
+
 -----------------------------------
 -- Dynamis-Bastok
 -----------------------------------
@@ -793,4 +795,77 @@ function getDynamisMapList(player)
 	end
 
 	return bitmask;
+end;
+
+function dynamis.spawnGroup(mob, spawnList, mobTypeList)
+    local mobID = mob:getID();
+    local superLinkId = mob:getShortID();
+    local X = mob:getXPos();
+    local Y = mob:getYPos();
+    local Z = mob:getZPos();
+
+    -- Ensure my members superlink with me
+    mob:setMobMod(MOBMOD_SUPERLINK, superLinkId);
+
+    if (mob:getStatPoppedMobs() == false) then
+        mob:setStatPoppedMobs(true);
+        for nb = 1, table.getn(spawnList), 2 do
+            if (mobID == spawnList[nb]) then
+                for nbi = 1, table.getn(spawnList[nb + 1]), 1 do
+                    if ((nbi % 2) == 0) then X=X+2; Z=Z+2; else X=X-2; Z=Z-2; end
+                    local mobNBR = spawnList[nb + 1][nbi];
+
+                    if (mobNBR <= 20) then
+                        -- Spawn random mob by job
+                        if (mobNBR == 0) then 
+                            -- Spawn random Vanguard (TEMPORARY)
+                            mobNBR = math.random(1,15);
+                        end
+
+                        local DynaMob = getDynaMob(mob,mobNBR,mobTypeList);
+
+                        if (DynaMob ~= nil) then
+                            dynamis.spawnMob(DynaMob, superLinkId, X, Y, Z);
+                        end
+                    elseif (mobNBR > 20) then
+                        -- Spawn specific mob by mob id
+                        dynamis.spawnMob(mobNBR, superLinkId, X, Y, Z);
+                    end
+                end
+            end
+        end
+    end
+end;
+
+function dynamis.spawnMob(mobId, superLinkId, x, y, z)
+    -- Spawn Mob
+    local mob = SpawnMob(mobId);
+    mob:setMobMod(MOBMOD_SUPERLINK, superLinkId);
+    mob:setPos(x,y,z);
+    mob:setSpawn(x,y,z);
+
+    local mJob = mob:getMainJob();
+
+    -- Spawn Pet for BST, and SMN
+    if (mJob == JOB_BST or mJob == JOB_SMN) then
+        if(mob:getPet() ~= nil) then
+            local petId = nil;
+
+            -- randomize pet for SMN
+            if (mJob == JOB_SMN) then
+                petId = math.random(8, 14);
+
+                -- switch pet to Ramuh if pet is Fenrir
+                if (petId == 9) then
+                    petId = 15;
+                end
+            end
+
+            mob:spawnPet(petId);
+
+            local pet = mob:getPet();
+
+            pet:setMobMod(MOBMOD_SUPERLINK, superLinkId);
+        end
+    end
 end;
