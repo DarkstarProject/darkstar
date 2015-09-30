@@ -175,19 +175,14 @@ uint32 CMobEntity::GetRandomGil()
     // randomize it
     gil += dsprand::GetRandomNumber(highGil);
 
-    // NMs get more gil
-    if((m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS){
-        gil *= 10;
-    }
-
-    // thfs drop more gil
-    if(GetMJob() == JOB_THF){
-        gil = (float)gil * 1.5;
-    }
-
     if(min && gil < min)
     {
         gil = min;
+    }
+
+    if (getMobMod(MOBMOD_GIL_BONUS) != 0)
+    {
+        gil = (float)gil * (getMobMod(MOBMOD_GIL_BONUS) / 10.0f);
     }
 
     return gil;
@@ -201,6 +196,11 @@ bool CMobEntity::CanDropGil()
     if(getMobMod(MOBMOD_GIL_MIN) > 0 || getMobMod(MOBMOD_GIL_MAX))
     {
         return true;
+    }
+
+    if(getMobMod(MOBMOD_GIL_BONUS) > 0)
+    {
+            return true;
     }
 
     return m_EcoSystem == SYSTEM_BEASTMEN;

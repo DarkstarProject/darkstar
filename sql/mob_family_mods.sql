@@ -51,9 +51,10 @@ INSERT INTO `mob_family_mods` VALUES (193,3,40,1);
 INSERT INTO `mob_family_mods` VALUES (34,3,100,1);
 INSERT INTO `mob_family_mods` VALUES (267,4,20,1);
 INSERT INTO `mob_family_mods` VALUES (87,4,18,1);
+INSERT INTO `mob_family_mods` VALUES (87,5,10,1);
+INSERT INTO `mob_family_mods` VALUES (87,3,10,1);
 
 -- Define sublinks
-INSERT INTO `mob_family_mods` VALUES (87,5,10,1);
 INSERT INTO `mob_family_mods` VALUES (240,10,1,1);
 INSERT INTO `mob_family_mods` VALUES (169,10,1,1);
 INSERT INTO `mob_family_mods` VALUES (358,10,1,1);
@@ -561,6 +562,20 @@ INSERT INTO `mob_family_mods` VALUES (190,@roam_rate,30,1);
 INSERT INTO `mob_family_mods` VALUES (59,@roam_cool,50,1);
 INSERT INTO `mob_family_mods` VALUES (59,@roam_rate,30,1);
 INSERT INTO `mob_family_mods` VALUES (59,@roam_turns,2,1);
+
+INSERT INTO `mob_family_mods` VALUES (126,54,18,1);
+INSERT INTO `mob_family_mods` VALUES (127,54,18,1);
+INSERT INTO `mob_family_mods` VALUES (128,54,18,1);
+INSERT INTO `mob_family_mods` VALUES (129,54,18,1);
+INSERT INTO `mob_family_mods` VALUES (130,54,18,1);
+INSERT INTO `mob_family_mods` VALUES (328,54,18,1);
+
+INSERT INTO `mob_family_mods` VALUES (169,54,12,1);
+INSERT INTO `mob_family_mods` VALUES (358,54,12,1);
+
+INSERT INTO `mob_family_mods` VALUES (87,54,100,1);
+INSERT INTO `mob_family_mods` VALUES (115,54,10,1);
+INSERT INTO `mob_family_mods` VALUES (359,54,10,1);
 
 /*!40000 ALTER TABLE `mob_family_mods` ENABLE KEYS */;
 UNLOCK TABLES;

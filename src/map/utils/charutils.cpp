@@ -2969,7 +2969,7 @@ namespace charutils
             // First gather all valid party members
             PChar->ForAlliance([PMob, &members](CBattleEntity* PPartyMember)
             {
-                if (!PPartyMember->isDead() && PPartyMember->getZone() == PMob->getZone() && distance(PPartyMember->loc.p, PMob->loc.p) < 100)
+                if (PPartyMember->getZone() == PMob->getZone() && distance(PPartyMember->loc.p, PMob->loc.p) < 100)
                 {
                     members.push_back((CCharEntity*)PPartyMember);
                 }

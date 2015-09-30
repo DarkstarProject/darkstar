@@ -483,6 +483,10 @@ void SetupJob(CMobEntity* PMob)
 
     switch(mJob)
     {
+        case JOB_THF:
+            // thfs drop more gil
+            PMob->defaultMobMod(MOBMOD_GIL_BONUS, 15);
+            break;
         case JOB_DRG:
             // drg can use 2 hour multiple times
             PMob->setMobMod(MOBMOD_2HOUR_MULTI, 1);
@@ -655,6 +659,9 @@ void SetupBattlefieldMob(CMobEntity* PMob)
 {
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
 
+    // Battlefield mobs don't drop gil
+    PMob->setMobMod(MOBMOD_GIL_MAX, -1);
+
     // never despawn
     PMob->SetDespawnTimer(0);
     // do not roam around
@@ -696,6 +703,12 @@ void SetupNMMob(CMobEntity* PMob)
     // NMs cure earlier
     PMob->defaultMobMod(MOBMOD_HP_HEAL_CHANCE, 50);
     PMob->defaultMobMod(MOBMOD_HEAL_CHANCE, 40);
+
+    // give a gil bonus if accurate value was not set
+    if (PMob->getMobMod(MOBMOD_GIL_MAX) == 0)
+    {
+        PMob->defaultMobMod(MOBMOD_GIL_BONUS, 100);
+    }
 
     if(mLvl >= 25)
     {

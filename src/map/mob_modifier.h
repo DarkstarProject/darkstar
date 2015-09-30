@@ -82,9 +82,10 @@ enum MOBMODIFIER
     MOBMOD_2HOUR_PROC     = 50, // chance of mob's 2 hour activating 0-100%
     MOBMOD_ROAM_TURNS     = 51, // Maximum amount of turns during a roam
     MOBMOD_ROAM_RATE      = 52, // Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
-    MOBMOD_BEHAVIOR       = 53  // Add behaviors to mob
+    MOBMOD_BEHAVIOR       = 53, // Add behaviors to mob
+    MOBMOD_GIL_BONUS      = 54  // Multipler to gil dropped by mob divided by 10
 };
 
-#define MAX_MOBMODIFIER         54
+#define MAX_MOBMODIFIER         55
 
 #endif
