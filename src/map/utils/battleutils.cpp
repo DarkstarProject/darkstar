@@ -5023,5 +5023,33 @@ namespace battleutils
         }
     }
 
+    bool HasClaim(CBattleEntity* PEntity, CBattleEntity* PTarget)
+    {
+        DSP_DEBUG_BREAK_IF(PTarget == nullptr);
+        CBattleEntity* PMaster = PEntity;
+
+        if (PEntity->PMaster != nullptr)
+        {
+            PMaster = PEntity->PMaster;
+        }
+
+        if (PTarget->m_OwnerID.id == 0 || PTarget->m_OwnerID.id == PMaster->id || PTarget->objtype == TYPE_PC ||
+                PTarget->objtype == TYPE_PET)
+        {
+            return true;
+        }
+
+        bool found = false;
+
+        PMaster->ForAlliance([&PTarget, &found](CBattleEntity* PChar){
+                if (PChar->id == PTarget->m_OwnerID.id)
+                {
+                    found = true;
+                }
+                });
+
+        return found;
+    }
+
 };
 

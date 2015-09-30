@@ -410,6 +410,15 @@ void CAIPetDummy::ActionAbilityUsing()
 
     if (m_Tick > m_LastActionTime + m_PMobSkill->getActivationTime())
     {
+
+        if (!battleutils::HasClaim(m_PPet, m_PBattleSubTarget)) {
+            m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+            // already claimed - 12
+            m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CMessageBasicPacket(m_PBattleSubTarget, m_PBattleSubTarget, 0, 0, 12));
+            ActionAbilityInterrupt();
+            return;
+        }
+
         //Range check
         if (m_PPet->objtype == TYPE_MOB)
         {
@@ -673,39 +682,7 @@ void CAIPetDummy::ActionEngage()
         return;
     }
 
-    bool hasClaim = false;
-
-    if (m_PBattleTarget->m_OwnerID.id == m_PPet->PMaster->id)
-        hasClaim = true;
-
-    if (m_PBattleTarget->m_OwnerID.id == 0)
-        hasClaim = true;
-
-
-    if (m_PPet->PMaster->PParty != nullptr)
-    {
-        // alliance
-        if (m_PPet->PMaster->PParty->m_PAlliance != nullptr)
-        {
-            for (uint8 a = 0; a < m_PPet->PMaster->PParty->m_PAlliance->partyList.size(); ++a)
-            {
-                for (uint8 i = 0; i < m_PPet->PMaster->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
-                {
-                    if (m_PPet->PMaster->PParty->m_PAlliance->partyList.at(a)->members[i]->id == m_PBattleTarget->m_OwnerID.id)
-                        hasClaim = true;
-                }
-            }
-        }
-        else  // party
-            for (uint8 i = 0; i < m_PPet->PMaster->PParty->members.size(); ++i)
-            {
-                if (m_PPet->PMaster->PParty->members[i]->id == m_PBattleTarget->m_OwnerID.id)
-                    hasClaim = true;
-            }
-    }
-
-
-    if (hasClaim)
+    if (battleutils::HasClaim(m_PPet, m_PBattleTarget))
     {
         m_PPet->animation = ANIMATION_ATTACK;
         m_PPet->updatemask |= UPDATE_HP;
@@ -753,7 +730,8 @@ void CAIPetDummy::ActionAttack()
     //handle death of target
     if (m_PBattleTarget == nullptr ||
         m_PBattleTarget->isDead() ||
-        m_PBattleTarget->animation == ANIMATION_CHOCOBO)
+        m_PBattleTarget->animation == ANIMATION_CHOCOBO ||
+        !battleutils::HasClaim(m_PPet, m_PBattleTarget))
     {
         m_ActionType = ACTION_DISENGAGE;
         ActionDisengage();
