@@ -609,7 +609,7 @@ void SetupDynamisMob(CMobEntity* PMob)
     PMob->setMobMod(MOBMOD_2HOUR_PROC, 80);
 
     // used for dynamis stat-spawned mobs
-    m_PMob->m_StatPoppedMobs = false;
+    PMob->m_StatPoppedMobs = false;
 
     // dynamis mobs have true sight
     if(PMob->m_Aggro & AGGRO_DETECT_SIGHT)
