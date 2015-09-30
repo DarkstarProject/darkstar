@@ -39,7 +39,7 @@ INSERT INTO `blue_spell_list` VALUES ('529','427','2','7','1','3','0'); -- Bludg
 INSERT INTO `blue_spell_list` VALUES ('530','313','4','0','1','0','0'); -- Refueling
 INSERT INTO `blue_spell_list` VALUES ('531','420','3','13','1','0','0'); -- Ice Break
 INSERT INTO `blue_spell_list` VALUES ('532','279','4','0','1','0','0'); -- Blitzstrahl
-INSERT INTO `blue_spell_list` VALUES ('533','253','3','14','2','0','0'); -- Self-Destruct
+INSERT INTO `blue_spell_list` VALUES ('533','255','3','14','2','0','0'); -- Self-Destruct
 INSERT INTO `blue_spell_list` VALUES ('534','267','4','10','1','0','0'); -- Mysterious Light
 INSERT INTO `blue_spell_list` VALUES ('535','1390','1','14','1','0','0'); -- Cold Wave
 INSERT INTO `blue_spell_list` VALUES ('536','210','1','4','1','0','0'); -- Poison Breath
