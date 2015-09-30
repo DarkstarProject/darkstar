@@ -613,9 +613,14 @@ void CAIMobDummy::ActionSpawn()
     {
         m_NeutralTime = m_Tick;
         m_PMob->m_neutral = true;
-        m_LastActionTime = m_Tick + dsprand::GetRandomNumber(2000,10000);
+
+        // Force mob to roam / cast spell right on spawn
+        m_LastActionTime = 0;
+        m_LastSpecialTime = 0;
+        m_LastMagicTime = 0;
+        m_LastMobSkillTime = 0;
         m_SpawnTime = m_Tick;
-        m_LastMobSkillTime = m_Tick;
+
         m_firstSpell = true;
         m_ActionType = ACTION_ROAMING;
         m_PBattleTarget = nullptr;
@@ -690,12 +695,6 @@ void CAIMobDummy::ActionSpawn()
             }
         }
 
-        // used for dynamis stat-spawned mobs
-        if (m_PMob->loc.zone->GetType() == ZONETYPE_DYNAMIS)
-        {
-            m_PMob->m_StatPoppedMobs = false;
-        }
-        
         luautils::OnMobSpawn( m_PMob );
     }
 }

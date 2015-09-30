@@ -751,7 +751,8 @@ void CAIPetDummy::ActionAttack()
     }
 
     //handle death of target
-    if (m_PBattleTarget == nullptr || m_PBattleTarget->isDead() ||
+    if (m_PBattleTarget == nullptr ||
+        m_PBattleTarget->isDead() ||
         m_PBattleTarget->animation == ANIMATION_CHOCOBO)
     {
         m_ActionType = ACTION_DISENGAGE;
