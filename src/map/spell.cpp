@@ -54,6 +54,12 @@ CSpell::CSpell(uint16 id)
     memset(m_job, 0, sizeof(m_job));
 }
 
+  std::unique_ptr<CSpell> CSpell::clone()
+  {
+      //no make_unique because it requires the copy constructor to be public
+      return std::unique_ptr<CSpell>(new CSpell(*this));
+  }
+
 void CSpell::setTotalTargets(uint16 total)
 {
     m_totalTargets = total;

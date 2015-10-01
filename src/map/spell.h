@@ -77,6 +77,7 @@ class CSpell
 public:
 
     CSpell(uint16 id);
+    virtual std::unique_ptr<CSpell> clone();
 
     bool        canTargetEnemy();
     bool        isBuff();
@@ -148,8 +149,12 @@ public:
     const int8* getName();
     void        setName(int8* name);
 
-private:
+protected:
 
+    CSpell(const CSpell&) = default;
+    CSpell& operator=(const CSpell&) = default;
+
+private:
     uint16      m_ID;                                   // spell id
     uint32      m_castTime;                             // time to cast spell
     uint32      m_recastTime;                           // recast time

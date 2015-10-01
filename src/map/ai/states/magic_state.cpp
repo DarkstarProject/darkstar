@@ -264,14 +264,7 @@ bool CMagicState::CastSpell(uint16 spellid, uint8 flags)
 {
     CSpell* PSpell = spell::GetSpell(spellid);
 
-    if (PSpell && PSpell->getSpellGroup() == SPELLGROUP_BLUE)
-    {
-        m_PSpell = std::make_unique<CBlueSpell>(*static_cast<CBlueSpell*>(PSpell));
-    }
-    else
-    {
-        m_PSpell = std::make_unique<CSpell>(*PSpell);
-    }
+    m_PSpell = PSpell->clone();
 
     if (m_PSpell)
     {

@@ -278,14 +278,7 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
         CSpell* spell = spell::GetSpell(SpellID);
         if (spell)
         {
-            if (spell->getSpellGroup() == SPELLGROUP_BLUE)
-            {
-                m_PSpell = std::make_unique<CBlueSpell>(*static_cast<CBlueSpell*>(spell));
-            }
-            else
-            {
-                m_PSpell = std::make_unique<CSpell>(*spell);
-            }
+            m_PSpell = spell->clone();
         }
         else
         {
