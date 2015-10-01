@@ -47,21 +47,18 @@ end;
 
 function onTrade(player,npc,trade)
 
-	if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(532,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
-		end
-	
-	elseif (player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL) == QUEST_ACCEPTED) then
-		if (trade:hasItemQty(601,1) and trade:getItemCount() == 1) then
-			player:startEvent(0x0201);
-			npc:wait(-1);
-		end
-	end
-	
-end; 
+    local count = trade:getItemCount();
+    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and
+        trade:hasItemQty(532,1) and count == 1) then
+            player:messageSpecial(FLYER_REFUSED);
+
+    elseif (player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL) == QUEST_ACCEPTED and
+        trade:hasItemQty(601,1) and count == 1) then
+            player:startEvent(0x0201);
+            npc:wait(-1);
+    end
+
+end;
 
 -----------------------------------
 -- onTrigger Action
