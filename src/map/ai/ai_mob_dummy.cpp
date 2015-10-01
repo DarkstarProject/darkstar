@@ -575,7 +575,16 @@ void CAIMobDummy::ActionFadeOut()
         if (m_PMob->PMaster != nullptr && m_PMob->PMaster->objtype == TYPE_MOB)
         {
             CAIMobDummy* PBattleAI = (CAIMobDummy*)m_PMob->PMaster->PBattleAI;
-            PBattleAI->m_LastSpecialTime = m_Tick - dsprand::GetRandomNumber(10000);
+
+            if (m_PMob->PMaster->GetMJob() == JOB_SMN)
+            {
+                PBattleAI->m_LastMagicTime = m_Tick - dsprand::GetRandomNumber(10000);
+            }
+            else
+            {
+                // Handle bst / pup / drg
+                PBattleAI->m_LastSpecialTime = m_Tick - dsprand::GetRandomNumber(10000);
+            }
         }
 
         m_LastActionTime = m_Tick;
