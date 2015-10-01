@@ -11,6 +11,7 @@ FULL_INVENTORY_AFTER_TRADE = 6383; -- You cannot obtain the #. Try trading again
 
 -- Other dialog
 NOTHING_OUT_OF_ORDINARY = 6398; -- There is nothing out of the ordinary here.
+EGGSHELLS_LIE_SCATTERED = 7260; -- Eggshells lie scattered around the place...
 
 -- Altar of Ashes Dialog (unable to find csid)
 ALTAR_COMPLETED = 7232; -- You have already made an offering today.
