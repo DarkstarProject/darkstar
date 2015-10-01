@@ -62,15 +62,15 @@ function onRegionEnter(player,region)
         {
             [1] = function (x)  -- Left Pool
                 player:messageSpecial(ENTERED_SPRING);
-                player:setVar("POOL_TIME", os.time());
+                player:setLocalVar("POOL_TIME", os.time());
             end,
             [2] = function (x)  -- Center Pool
                 player:messageSpecial(ENTERED_SPRING);
-                player:setVar("POOL_TIME", os.time());
+                player:setLocalVar("POOL_TIME", os.time());
             end,
             [3] = function (x)  -- Right pool
                 player:messageSpecial(ENTERED_SPRING);
-                player:setVar("POOL_TIME", os.time());
+                player:setLocalVar("POOL_TIME", os.time());
             end,
         }
     end
@@ -85,23 +85,16 @@ end;
 function onRegionLeave(player,region)
 
 	local RegionID = region:GetRegionID();
-	local pooltime = (os.time() - player:getVar("POOL_TIME"));
+	local pooltime = (os.time() - player:getLocalVar("POOL_TIME"));
     
 	if(RegionID <= 3 and player:getVar("BathedInScent") == 1) then
         if pooltime >= 300 then
-            if (player:getQuestStatus(OUTLANDS, PERSONAL_HYGIENE) == QUEST_ACCEPTED) then
-                player:messageSpecial(LEFT_SPRING_CLEAN);
-                player:setVar("POOL_TIME", 0);
-                player:setVar("BathedInScent", 0);
-                player:setVar("PERSONAL_HYGIENE_PROGRESS", 1);
-            else
-                player:messageSpecial(LEFT_SPRING_CLEAN);
-                player:setVar("POOL_TIME", 0);
-                player:setVar("BathedInScent", 0);
-            end
+            player:messageSpecial(LEFT_SPRING_CLEAN);
+            player:setLocalVar("POOL_TIME", 0);
+            player:setVar("BathedInScent", 0);
         else
             player:messageSpecial(LEFT_SPRING_EARLY);
-            player:setVar("POOL_TIME", 0);
+            player:setLocalVar("POOL_TIME", 0);
         end
     end
 end;
