@@ -15,13 +15,13 @@
 function onTrade(player,npc,trade)
 if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED) then
 	if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeVilion") == 0) then 
-		player:messageSpecial(11932);
+		player:messageSpecial(VILLION_DIALOG);
 		player:setVar("FFR",player:getVar("FFR") - 1);
 		player:setVar("tradeVilion",1);
 		player:messageSpecial(FLYER_ACCEPTED);
-		trade:complete();
+                player:tradeComplete();
 	elseif (player:getVar("tradeVilion") ==1) then
-		player:messageSpecial(11936);
+		player:messageSpecial(FLYER_ALREADY);
 	end
 end
 end;
