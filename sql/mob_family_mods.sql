@@ -126,11 +126,11 @@ INSERT INTO `mob_family_mods` VALUES (175,389,-128,0);
 INSERT INTO `mob_family_mods` VALUES (171,389,-32,0);
 
 -- Demons and fomors are highly resistant to lullaby
-INSERT INTO `mob_family_mods` VALUES (358,254,100,0);
-INSERT INTO `mob_family_mods` VALUES (169,254,100,0);
-INSERT INTO `mob_family_mods` VALUES (115,254,100,0);
-INSERT INTO `mob_family_mods` VALUES (359,254,100,0);
-INSERT INTO `mob_family_mods` VALUES (359,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (358,254,25,0);
+INSERT INTO `mob_family_mods` VALUES (169,254,25,0);
+INSERT INTO `mob_family_mods` VALUES (115,254,25,0);
+INSERT INTO `mob_family_mods` VALUES (359,254,25,0);
+INSERT INTO `mob_family_mods` VALUES (359,240,25,0);
 
 -- Immunities
 INSERT INTO `mob_family_mods` VALUES (92,23,2047,1);
@@ -594,6 +594,17 @@ INSERT INTO `mob_family_mods` VALUES (20,3,50,1);
 INSERT INTO `mob_family_mods` VALUES (21,3,50,1);
 INSERT INTO `mob_family_mods` VALUES (23,3,50,1);
 INSERT INTO `mob_family_mods` VALUES (24,3,50,1);
+
+-- Family defense multiplier
+INSERT INTO `mob_family_mods` VALUES (26,63,20,0);
+INSERT INTO `mob_family_mods` VALUES (357,63,20,0);
+INSERT INTO `mob_family_mods` VALUES (58,63,20,0);
+INSERT INTO `mob_family_mods` VALUES (57,63,20,0);
+INSERT INTO `mob_family_mods` VALUES (208,63,20,0);
+INSERT INTO `mob_family_mods` VALUES (2,63,20,0);
+INSERT INTO `mob_family_mods` VALUES (180,63,20,0);
+INSERT INTO `mob_family_mods` VALUES (245,63,20,0);
+INSERT INTO `mob_family_mods` VALUES (59,63,20,0);
 
 /*!40000 ALTER TABLE `mob_family_mods` ENABLE KEYS */;
 UNLOCK TABLES;

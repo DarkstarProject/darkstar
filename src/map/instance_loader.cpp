@@ -179,15 +179,6 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 			PMob->setModifier(MOD_HTHRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 37) * 1000));
 			PMob->setModifier(MOD_IMPACTRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 38) * 1000));
 
-			PMob->setModifier(MOD_FIREDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 39) - 1) * -1000)); // These are stored as floating percentages
-			PMob->setModifier(MOD_ICEDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 40) - 1) * -1000)); // and need to be adjusted into modifier units.
-			PMob->setModifier(MOD_WINDDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 41) - 1) * -1000)); // Higher DEF = lower damage.
-			PMob->setModifier(MOD_EARTHDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 42) - 1) * -1000)); // Negatives signify increased damage.
-			PMob->setModifier(MOD_THUNDERDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 43) - 1) * -1000)); // Positives signify reduced damage.
-			PMob->setModifier(MOD_WATERDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 44) - 1) * -1000)); // Ex: 125% damage would be 1.25, 50% damage would be 0.50
-			PMob->setModifier(MOD_LIGHTDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 45) - 1) * -1000)); // (1.25 - 1) * -1000 = -250 DEF
-			PMob->setModifier(MOD_DARKDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 46) - 1) * -1000)); // (0.50 - 1) * -1000 = 500 DEF
-
 			PMob->setModifier(MOD_FIRERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 39) - 1) * -100)); // These are stored as floating percentages
 			PMob->setModifier(MOD_ICERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 40) - 1) * -100)); // and need to be adjusted into modifier units.
 			PMob->setModifier(MOD_WINDRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 41) - 1) * -100)); // Higher RES = lower damage.
