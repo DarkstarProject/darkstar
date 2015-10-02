@@ -3320,7 +3320,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, actionTarget_t* action)
+    int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, action_t* action, actionList_t* actionList)
     {
         lua_prepscript("scripts/globals/abilities/%s.lua", PAbility->getName());
 
@@ -3338,11 +3338,10 @@ namespace luautils
         CLuaAbility LuaAbility(PAbility);
         Lunar<CLuaAbility>::push(LuaHandle, &LuaAbility);
 
-        //#TODO: move to new action struct (and change pcall back to 4 arguments)
-        //CLuaAction LuaAction(action);
-        //Lunar<CLuaAction>::push(LuaHandle, &LuaAction);
+        CLuaAction LuaAction(action, actionList);
+        Lunar<CLuaAction>::push(LuaHandle, &LuaAction);
 
-        if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
+        if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
         {
             ShowError("luautils::onUseAbility: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
@@ -3353,25 +3352,27 @@ namespace luautils
 
         if (returns > 3)
         {
-            action->speceffect = (SPECEFFECT)(!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
-            action->animation = (!lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2) ? (int32)lua_tonumber(LuaHandle, -2) : 0);
+            //action->speceffect = (SPECEFFECT)(!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
+            //action->animation = (!lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2) ? (int32)lua_tonumber(LuaHandle, -2) : 0);
             int32 retVal = (!lua_isnil(LuaHandle, -3) && lua_isnumber(LuaHandle, -3) ? (int32)lua_tonumber(LuaHandle, -3) : 0);
-            ShowError("luautils::onUseAbility (%s): 3 returns expected, got %d\n", File, lua_gettop(LuaHandle));
+            ShowError("luautils::onUseAbility (%s): returning more than one value is deprecated\n", File);
             lua_pop(LuaHandle, returns);
             return retVal;
         }
         else if (returns == 3)
         {
-            action->speceffect = (SPECEFFECT)(!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
-            action->animation = (!lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2) ? (int32)lua_tonumber(LuaHandle, -2) : 0);
+            //action->speceffect = (SPECEFFECT)(!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
+            //action->animation = (!lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2) ? (int32)lua_tonumber(LuaHandle, -2) : 0);
             int32 retVal = (!lua_isnil(LuaHandle, -3) && lua_isnumber(LuaHandle, -3) ? (int32)lua_tonumber(LuaHandle, -3) : 0);
+            ShowError("luautils::onUseAbility (%s): returning more than one value is deprecated\n", File);
             lua_pop(LuaHandle, 3);
             return retVal;
         }
         else if (returns == 2)
         {
-            action->animation = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -2) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
+            //action->animation = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -2) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
             uint32 retVal = (!lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2) ? (int32)lua_tonumber(LuaHandle, -2) : 0);
+            ShowError("luautils::onUseAbility (%s): returning more than one value is deprecated\n", File);
             lua_pop(LuaHandle, 2);
             return retVal;
         }

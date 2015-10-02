@@ -27,11 +27,12 @@
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
 
-#include "../entities/battleentity.h"
+#include "../packets/action.h"
 
 class CLuaAction
 {
-    apAction_t* m_PLuaAction;
+    action_t* m_PLuaAction;
+    actionList_t* m_PLuaActionList;
 
 public:
 
@@ -39,9 +40,9 @@ public:
     static Lunar<CLuaAction>::Register_t methods[];
 
     CLuaAction(lua_State*);
-    CLuaAction(apAction_t*);
+    CLuaAction(action_t*, actionList_t*);
 
-    apAction_t* GetAction() const
+    action_t* GetAction() const
     {
         return m_PLuaAction;
     }

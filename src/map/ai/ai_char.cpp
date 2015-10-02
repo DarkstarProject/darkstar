@@ -769,7 +769,7 @@ void CAIChar::OnAbility(CAbilityState& state, action_t& action)
                 actionTarget.speceffect = SPECEFFECT_NONE;
                 actionTarget.animation = PAbility->getAnimationID();
                 actionTarget.messageID = PAbility->getMessage();
-                actionTarget.param = luautils::OnUseAbility(PChar, PTarget, PAbility, &actionTarget);
+                actionTarget.param = luautils::OnUseAbility(PChar, PTarget, PAbility, &action, &actionList);
 
                 if (msg == 0) {
                     msg = PAbility->getMessage();
@@ -797,7 +797,7 @@ void CAIChar::OnAbility(CAbilityState& state, action_t& action)
             actionTarget.animation = PAbility->getAnimationID();
             actionTarget.param = 0;
 
-            int32 value = luautils::OnUseAbility(PChar, PTarget, PAbility, &actionTarget);
+            int32 value = luautils::OnUseAbility(PChar, PTarget, PAbility, &action, &actionList);
             actionTarget.messageID = PAbility->getMessage();
             actionTarget.param = value;
 

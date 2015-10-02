@@ -1143,8 +1143,9 @@ void CAICharNormal::ActionRangedFinish()
             //or else sleep effect won't work
             //battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
             //TODO: move all hard coded additional effect ammo to scripts
-            if ((PAmmo != nullptr && PAmmo->getModifier(MOD_ADDITIONAL_EFFECT) > 0) || (PItem != nullptr && PItem->getModifier(MOD_ADDITIONAL_EFFECT) > 0))
-                luautils::OnAdditionalEffect(m_PChar, m_PBattleSubTarget, (PAmmo != nullptr ? PAmmo : PItem), &Action, totalDamage);
+            //#TODO: fix call
+            if ((PAmmo != nullptr && PAmmo->getModifier(MOD_ADDITIONAL_EFFECT) > 0) || (PItem != nullptr && PItem->getModifier(MOD_ADDITIONAL_EFFECT) > 0)) {}
+                //luautils::OnAdditionalEffect(m_PChar, m_PBattleSubTarget, (PAmmo != nullptr ? PAmmo : PItem), &Action, totalDamage);
         }
         else if (shadowsTaken > 0)
         {

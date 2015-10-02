@@ -53,8 +53,8 @@ class CItemWeapon;
 class CInstance;
 class CWeaponSkill;
 class CZone;
-struct apAction_t;
-struct actionTarget_t;
+struct action_t;
+struct actionList_t;
 enum ConquestUpdate : uint8;
 
 class CLuaAbility;
@@ -273,7 +273,7 @@ namespace luautils
     int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbility, CBaseEntity** PMsgTarget);	// triggers when a player attempts to use a job ability or roll
     int32 OnPetAbility(CBaseEntity* PPet, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PPetMaster);		// triggers when pet uses an ability
     std::tuple<int32, uint8, uint8> OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill);// returns: damage, tphits landed, extra hits landed
-    int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, actionTarget_t* action);		    // triggers when job ability is used
+    int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, action_t* action, actionList_t* actionList);		    // triggers when job ability is used
     int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, uint8 total);			// triggers on corsair roll
 
     int32 OnInstanceZoneIn(CCharEntity* PChar, CInstance* PInstance);           // triggered on zone in to instance
@@ -294,8 +294,8 @@ namespace luautils
     int32 UpdateTreasureSpawnPoint(lua_State* L);                               // Update the spawn point of an Treasure
     int32 UpdateServerMessage(lua_State*);										// update server message, first modify in conf and update
 
-    int32 OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, apAction_t* Action, uint32 damage); // for items with additional effects
-    int32 OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, apAction_t* Action, uint32 damage);                         // for mobs with spikes
+    //int32 OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, apAction_t* Action, uint32 damage); // for items with additional effects
+    //int32 OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, apAction_t* Action, uint32 damage);                         // for mobs with spikes
 
     int32 nearLocation(lua_State*);
 

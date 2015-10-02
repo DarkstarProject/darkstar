@@ -620,7 +620,8 @@ namespace battleutils
             // check if spikes are handled in mobs script
             if (PDefender->objtype == TYPE_MOB && ((CMobEntity*)PDefender)->getMobMod(MOBMOD_AUTO_SPIKES) > 0)
             {
-                luautils::OnSpikesDamage(PDefender, PAttacker, Action, Action->spikesParam);
+                //#TODO
+                //luautils::OnSpikesDamage(PDefender, PAttacker, Action, Action->spikesParam);
             }
 
             // calculate damage
@@ -1002,8 +1003,9 @@ namespace battleutils
             }
         }
         //check weapon for additional effects
+        //#TODO: fix
         else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0 && PAttacker->GetMLevel() >= weapon->getReqLvl() &&
-                 luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
+                 /*luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage)*/0 == 0 && Action->additionalEffect)
         {
             if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
             {
@@ -1012,7 +1014,7 @@ namespace battleutils
         }
         else if (PAttacker->objtype == TYPE_MOB && ((CMobEntity*)PAttacker)->getMobMod(MOBMOD_ADD_EFFECT) > 0)
         {
-            luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
+            //luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
         }
         else
         {
