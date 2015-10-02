@@ -606,6 +606,9 @@ INSERT INTO `mob_family_mods` VALUES (180,63,20,0);
 INSERT INTO `mob_family_mods` VALUES (245,63,20,0);
 INSERT INTO `mob_family_mods` VALUES (59,63,20,0);
 
+-- Sahagins have 50% dmg reduction to water
+INSERT INTO `mob_family_mods` VALUES (213,20,128,0);
+
 /*!40000 ALTER TABLE `mob_family_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

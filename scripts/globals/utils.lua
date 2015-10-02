@@ -4,7 +4,7 @@ utils = {};
 function utils.clamp(input, min_val, max_val)
     if input < min_val then
         input = min_val;
-    elseif input > max_val then
+    elseif max_val ~= nil and input > max_val then
         input = max_val;
     end
     return input;

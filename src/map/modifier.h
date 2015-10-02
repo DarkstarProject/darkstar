@@ -47,6 +47,7 @@ enum MODIFIER
     MOD_CHR                       = 14, // Charisma
 
     // Elemental Defenses
+    // 128 = 128 / 256 = 50% reduction
     MOD_FIREDEF                   = 15, // Fire Defense
     MOD_ICEDEF                    = 16, // Ice Defense
     MOD_WINDDEF                   = 17, // Wind Defense

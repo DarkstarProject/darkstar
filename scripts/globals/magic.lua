@@ -730,16 +730,15 @@ end;
 function addBonuses(caster, spell, target, dmg, bonusmab)
     local ele = spell:getElement();
 
-    local affinityBonus = AffinityBonus(caster, spell:getElement());
+    local affinityBonus = AffinityBonus(caster, ele);
     dmg = math.floor(dmg * affinityBonus);
 
     if (bonusmab == nil) then
         bonusmab = 0;
     end
 
-    local speciesReduction = target:getMod(defenseMod[ele]);
-    speciesReduction = 1.00 - (speciesReduction/1000);
-    dmg = math.floor(dmg * speciesReduction);
+    local magicDefense = getElementalDamageReduction(target, ele);
+    dmg = math.floor(dmg * magicDefense);
 
     local dayWeatherBonus = 1.00;
     local equippedMain = caster:getEquipID(SLOT_MAIN);
@@ -852,9 +851,8 @@ function addBonusesAbility(caster, ele, target, dmg, params)
     local affinityBonus = AffinityBonus(caster, ele);
     dmg = math.floor(dmg * affinityBonus);
 
-    local speciesReduction = target:getMod(defenseMod[ele]);
-    speciesReduction = 1.00 - (speciesReduction/1000);
-    dmg = math.floor(dmg * speciesReduction);
+    local magicDefense = getElementalDamageReduction(target, ele);
+    dmg = math.floor(dmg * magicDefense);
 
     local dayWeatherBonus = 1.00;
     local equippedMain = caster:getEquipID(SLOT_MAIN);
@@ -934,6 +932,18 @@ function addBonusesAbility(caster, ele, target, dmg, params)
 
     return dmg;
 end;
+
+-- get elemental damage reduction
+function getElementalDamageReduction(target, element)
+    local defense = 1;
+    if (element > 0) then
+        defense = 1 - (target:getMod(defenseMod[element]) / 256);
+
+        return utils.clamp(defense, 0.0, 2.0);
+    end
+
+    return defense;
+end
 
 ---------------------------------------------------------------------
 --     Elemental Debuff Potency functions
