@@ -77,6 +77,7 @@ function onUseAbility(player,target,ability)
     else
         ability:setMsg(323);
     end
-    
+
+    target:updateClaim(player);
     return EFFECT_SLEEP_I;
 end;

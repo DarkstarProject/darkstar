@@ -152,8 +152,7 @@ void CAIMobDummy::ActionRoaming()
     }
     else if (m_PMob->GetDespawnTimer() > 0 && m_PMob->GetDespawnTimer() < m_Tick)
     {
-        m_LastActionTime = m_Tick - 12000;
-        m_PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
+        Despawn();
         return;
     }
 
@@ -214,8 +213,7 @@ void CAIMobDummy::ActionRoaming()
             }
             else
             {
-                // despawn
-                m_ActionType = ACTION_DEATH;
+                Despawn();
                 return;
             }
         }
@@ -388,12 +386,14 @@ void CAIMobDummy::ActionFall()
     m_LastActionTime = m_Tick;
     m_PMob->animation = ANIMATION_DEATH;
 
-    // my pet should fall as well
-    if (m_PMob->PPet != nullptr && !m_PMob->PPet->isDead() && m_PMob->GetMJob() == JOB_SMN)
+    // pets always die with master
+    if (m_PMob->PPet != nullptr && m_PMob->PPet->isAlive() && m_PMob->GetMJob() == JOB_SMN)
     {
         m_PMob->PPet->health.hp = 0;
         m_PMob->PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
+        m_PMob->PPet->updatemask |= (UPDATE_STATUS | UPDATE_HP);
     }
+
 }
 
 /************************************************************************
@@ -1980,7 +1980,7 @@ void CAIMobDummy::TryLink()
     // Avatars defend masters by attacking mobs if the avatar isn't attacking anything currently (bodyguard behaviour)
     if (m_PBattleTarget->PPet != nullptr && m_PBattleTarget->PPet->PBattleAI->GetBattleTarget()==nullptr)
     {
-        if (((CPetEntity*)m_PBattleTarget->PPet)->getPetType()==PETTYPE_AVATAR)
+        if (m_PBattleTarget->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PBattleTarget->PPet)->getPetType()==PETTYPE_AVATAR)
         {
             m_PBattleTarget->PPet->PBattleAI->SetBattleTarget(m_PMob);
         }
@@ -2040,7 +2040,7 @@ bool CAIMobDummy::CanCastSpells()
         return false;
     }
 
-    // smn can only cast spells if it has an existing pet
+    // smn can only cast spells if it has no pet
     if (m_PMob->GetMJob() == JOB_SMN)
     {
         if(m_PMob->PPet == nullptr ||
@@ -2423,6 +2423,20 @@ void CAIMobDummy::SetupEngage()
     m_StartBattle = m_Tick;
     m_DeaggroTime = m_Tick;
     m_LastActionTime = m_Tick - 1000; // Why do we subtract 1 sec?
+
+    JOBTYPE mJob = m_PMob->GetMJob();
+
+    // Don't cast magic or use special ability right away
+    if(mJob != JOB_SMN)
+    {
+        m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + dsprand::GetRandomNumber(7000);
+    }
+
+    if(mJob != JOB_BST && mJob != JOB_PUP && mJob != JOB_DRG)
+    {
+        m_LastSpecialTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) + dsprand::GetRandomNumber(7000);
+    }
+
     m_firstSpell = true;
     m_PPathFind->Clear();
 
@@ -2610,5 +2624,18 @@ void CAIMobDummy::OnTick()
     if (battleutils::IsEngauged(m_PMob) && (m_Tick - m_StartBattle) % 1000 < 500)
     {
         luautils::OnMobFight(m_PMob, m_PBattleTarget);
+    }
+}
+
+void CAIMobDummy::Despawn()
+{
+    // Despawn instantly
+    m_LastActionTime = m_Tick - 12000;
+    m_PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
+
+    if (m_PMob->PPet != nullptr && m_PMob->PPet->isAlive() && m_PMob->PPet->PBattleAI != nullptr && m_PMob->GetMJob() == JOB_SMN)
+    {
+        CAIMobDummy* ai = (CAIMobDummy*)m_PMob->PPet->PBattleAI;
+        ai->Despawn();
     }
 }

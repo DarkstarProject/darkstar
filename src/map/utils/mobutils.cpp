@@ -518,7 +518,10 @@ void SetupJob(CMobEntity* PMob)
                 PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 8);
             }
 
-            PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
+            if(PMob->getMobMod(MOBMOD_NO_STANDBACK) == 0)
+            {
+                PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
+            }
 
             break;
         case JOB_NIN:
@@ -526,7 +529,11 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 16);
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
-            PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
+
+            if(PMob->getMobMod(MOBMOD_NO_STANDBACK) == 0)
+            {
+                PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
+            }
             break;
         case JOB_BST:
             PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 70);
@@ -542,7 +549,7 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 40);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 15);
 
-            if (PMob->m_EcoSystem != SYSTEM_AVATAR)
+            if(PMob->getMobMod(MOBMOD_NO_STANDBACK) == 0)
             {
                 PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
             }

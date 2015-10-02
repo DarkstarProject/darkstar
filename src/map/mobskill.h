@@ -52,7 +52,7 @@ public:
 
     uint16      getID();
     uint16      getAnimationID();
-    uint16      getAvatarAnimationID();
+    uint16      getPetAnimationID();
     uint8       getAoe();
     float       getDistance();
     uint8       getFlag();

@@ -143,7 +143,7 @@ uint16 CMobSkill::getAnimationID()
 	return m_AnimID;
 }
 
-uint16 CMobSkill::getAvatarAnimationID()
+uint16 CMobSkill::getPetAnimationID()
 {
   // levi
   if(m_AnimID >= 552 && m_AnimID <= 560){
@@ -176,6 +176,11 @@ uint16 CMobSkill::getAvatarAnimationID()
   // carbuncle
   if(m_AnimID >= 605 && m_AnimID <= 611){
     return m_AnimID - 605;
+  }
+
+  // wyvern
+  if (m_AnimID >= 621 && m_AnimID <= 632) {
+      return m_AnimID - 493;
   }
 
   return m_AnimID;
