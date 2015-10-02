@@ -34,7 +34,8 @@ function onMobWeaponSkill(target, mob, skill)
     mob:setLocalVar("lanceTime", mob:getBattleTime())
     mob:setLocalVar("lanceOut", 0)
     target:AnimationSub(3);
-    target:addStatusEffect(EFFECT_STUN, 0, 0, 20);
+
+    MobStatusEffectMove(mob, target, EFFECT_STUN, 1, 0, 20);
     
     target:delHP(dmg);
     return dmg;
