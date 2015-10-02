@@ -387,7 +387,7 @@ void CAIMobDummy::ActionFall()
     m_PMob->animation = ANIMATION_DEATH;
 
     // pets always die with master
-    if (m_PMob->PPet != nullptr && m_PMob->PPet->isAlive())
+    if (m_PMob->PPet != nullptr && m_PMob->PPet->isAlive() && m_PMob->GetMJob() == JOB_SMN)
     {
         m_PMob->PPet->health.hp = 0;
         m_PMob->PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
@@ -2423,6 +2423,20 @@ void CAIMobDummy::SetupEngage()
     m_StartBattle = m_Tick;
     m_DeaggroTime = m_Tick;
     m_LastActionTime = m_Tick - 1000; // Why do we subtract 1 sec?
+
+    JOBTYPE mJob = m_PMob->GetMJob();
+
+    // Don't cast magic or use special ability right away
+    if(mJob != JOB_SMN)
+    {
+        m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + dsprand::GetRandomNumber(7000);
+    }
+
+    if(mJob != JOB_BST && mJob != JOB_PUP && mJob != JOB_DRG)
+    {
+        m_LastSpecialTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) + dsprand::GetRandomNumber(7000);
+    }
+
     m_firstSpell = true;
     m_PPathFind->Clear();
 
@@ -2619,7 +2633,7 @@ void CAIMobDummy::Despawn()
     m_LastActionTime = m_Tick - 12000;
     m_PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
 
-    if (m_PMob->PPet != nullptr && m_PMob->PPet->isAlive() && m_PMob->PPet->PBattleAI != nullptr)
+    if (m_PMob->PPet != nullptr && m_PMob->PPet->isAlive() && m_PMob->PPet->PBattleAI != nullptr && m_PMob->GetMJob() == JOB_SMN)
     {
         CAIMobDummy* ai = (CAIMobDummy*)m_PMob->PPet->PBattleAI;
         ai->Despawn();
