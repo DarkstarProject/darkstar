@@ -497,18 +497,10 @@ void CAIPetDummy::ActionAbilityFinish() {
     m_PMobSkill->setTotalTargets(totalTargets);
     m_PMobSkill->setTP(m_skillTP);
 
-    uint16 animationId;
-    if (m_PPet->getPetType() == PETTYPE_AVATAR || m_PPet->getPetType() == PETTYPE_WYVERN)
-    {
-        // TODO: this is totally a hack
-        // override mob animation ids with valid pet animation id
-        // pets need their own skills
-        animationId = m_PMobSkill->getPetAnimationID();
-    }
-    else
-    {
-        animationId = m_PMobSkill->getAnimationID();
-    }
+    // TODO: this is totally a hack
+    // override mob animation ids with valid pet animation id
+    // pets need their own skills
+    uint16 animationId = m_PMobSkill->getPetAnimationID();
 
     apAction_t Action;
     Action.ActionTarget = nullptr;
