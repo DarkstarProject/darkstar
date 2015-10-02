@@ -2161,7 +2161,6 @@ INSERT INTO `mob_skill_lists` VALUES ('',199,1472);
 -- INSERT INTO `mob_skill_lists` VALUES ('',1913,?);
 
 -- Pet Wyvern
--- mob wyverns use custom skill list
 INSERT INTO `mob_skill_lists` VALUES ('',193,638);
 INSERT INTO `mob_skill_lists` VALUES ('',193,639);
 INSERT INTO `mob_skill_lists` VALUES ('',193,640);
@@ -2174,6 +2173,14 @@ INSERT INTO `mob_skill_lists` VALUES ('',193,646);
 INSERT INTO `mob_skill_lists` VALUES ('',193,647);
 INSERT INTO `mob_skill_lists` VALUES ('',193,648);
 INSERT INTO `mob_skill_lists` VALUES ('',193,649);
+
+-- mob wyverns use custom skill list
+INSERT INTO `mob_skill_lists` VALUES ('',714,644);
+INSERT INTO `mob_skill_lists` VALUES ('',714,645);
+INSERT INTO `mob_skill_lists` VALUES ('',714,646);
+INSERT INTO `mob_skill_lists` VALUES ('',714,647);
+INSERT INTO `mob_skill_lists` VALUES ('',714,648);
+INSERT INTO `mob_skill_lists` VALUES ('',714,649);
 
 -- --------------------------------------
 -- ACP specific mobs
