@@ -24,6 +24,7 @@
 #ifndef _MOBENTITY_H
 #define _MOBENTITY_H
 
+#include <map>
 #include "battleentity.h"
 #include "../enmity_container.h"
 #include "../utils/mobutils.h"
@@ -249,8 +250,8 @@ private:
 
   bool      m_RageMode;                              // Mode rage
   uint32    m_DespawnTimer;                          // Despawn Timer to despawn mob after set duration
-  int16     m_mobModStat[MAX_MOBMODIFIER];           // mob specific mods
-  int16     m_mobModStatSave[MAX_MOBMODIFIER];       // saved state
+  std::map<int, int16>     m_mobModStat;
+  std::map<int, int16>     m_mobModStatSave;
 };
 
 #endif

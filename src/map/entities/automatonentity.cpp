@@ -73,6 +73,7 @@ bool CAutomatonEntity::hasAttachment(uint8 attachment)
             return true;
         }
     }
+    return false;
 }
 
 void CAutomatonEntity::setElementMax(uint8 element, uint8 max)

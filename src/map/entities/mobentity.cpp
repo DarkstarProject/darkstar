@@ -50,9 +50,6 @@ CMobEntity::CMobEntity()
     m_name_prefix = 0;
     m_MobSkillList = 0;
 
-    memset(m_mobModStat,0, sizeof(m_mobModStat));
-    memset(m_mobModStatSave,0, sizeof(m_mobModStatSave));
-
     m_AllowRespawn = 0;
     m_DespawnTimer = 0;
     m_DropItemTime = 0;
@@ -322,66 +319,30 @@ uint8 CMobEntity::TPUseChance()
 
 void CMobEntity::setMobMod(uint16 type, int16 value)
 {
-    if (type < MAX_MOBMODIFIER)
-    {
-        m_mobModStat[type] = value;
-    }
-    else
-    {
-        ShowError("CMobEntity::setMobMod Trying to set value out of range (%d)\n", type);
-    }
+    m_mobModStat[type] = value;
 }
 
 int16 CMobEntity::getMobMod(uint16 type)
 {
-    if (type < MAX_MOBMODIFIER)
-    {
-        return m_mobModStat[type];
-    }
-    else
-    {
-        ShowError("CMobEntity::getMobMod Trying to get value out of range (%d)\n", type);
-        return -1;
-    }
+    return m_mobModStat[type];
 }
 
 void CMobEntity::addMobMod(uint16 type, int16 value)
 {
-    if (type < MAX_MOBMODIFIER)
-    {
-        m_mobModStat[type] += value;
-    }
-    else
-    {
-        ShowError("CMobEntity::addMobMod Trying to set value out of range (%d)\n", type);
-    }
+    m_mobModStat[type] += value;
 }
 
 void CMobEntity::defaultMobMod(uint16 type, int16 value)
 {
-    if (type < MAX_MOBMODIFIER)
+    if(m_mobModStat[type] == 0)
     {
-        if(m_mobModStat[type] == 0)
-        {
-            m_mobModStat[type] = value;
-        }
-    }
-    else
-    {
-        ShowError("CMobEntity::addMobMod Trying to set value out of range (%d)\n", type);
+        m_mobModStat[type] = value;
     }
 }
 
 void CMobEntity::resetMobMod(uint16 type)
 {
-    if (type < MAX_MOBMODIFIER)
-    {
-        m_mobModStat[type] = m_mobModStatSave[type];
-    }
-    else
-    {
-        ShowError("CMobEntity::addMobMod Trying to set value out of range (%d)\n", type);
-    }
+    m_mobModStat[type] = m_mobModStatSave[type];
 }
 
 int32 CMobEntity::getBigMobMod(uint16 type)
@@ -391,12 +352,12 @@ int32 CMobEntity::getBigMobMod(uint16 type)
 
 void CMobEntity::saveMobModifiers()
 {
-    memcpy(m_mobModStatSave, m_mobModStat, sizeof(m_mobModStat));
+    m_mobModStatSave = m_mobModStat;
 }
 
 void CMobEntity::restoreMobModifiers()
 {
-    memcpy(m_mobModStat, m_mobModStatSave, sizeof(m_mobModStatSave));
+    m_mobModStat = m_mobModStatSave;
 }
 
 void CMobEntity::HideModel(bool hide)

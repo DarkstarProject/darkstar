@@ -27,7 +27,7 @@
 This is a list of mob specific modifiers. They can be added to pools / families / spawn points.
 */
 
-enum MOBMODIFIER
+enum MOBMODIFIER : int
 {
     MOBMOD_NONE           = 0,
     MOBMOD_GIL_MIN        = 1,  // minimum gil drop -- spawn mod only
@@ -83,9 +83,8 @@ enum MOBMODIFIER
     MOBMOD_ROAM_TURNS     = 51, // Maximum amount of turns during a roam
     MOBMOD_ROAM_RATE      = 52, // Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
     MOBMOD_BEHAVIOR       = 53, // Add behaviors to mob
-    MOBMOD_GIL_BONUS      = 54  // Multipler to gil dropped by mob divided by 10
+    MOBMOD_GIL_BONUS      = 54, // Multipler to gil dropped by mob divided by 10
+    MOBMOD_IDLE_DESPAWN   = 55  // Time (in seconds) to despawn after being idle
 };
-
-#define MAX_MOBMODIFIER         55
 
 #endif

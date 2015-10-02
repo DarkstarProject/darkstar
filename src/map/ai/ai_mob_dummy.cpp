@@ -345,6 +345,11 @@ void CAIMobDummy::ActionDisengage()
 {
     m_PPathFind->Clear();
 
+    if (m_PMob->getMobMod(MOBMOD_IDLE_DESPAWN))
+    {
+        m_PMob->SetDespawnTimer(m_PMob->getMobMod(MOBMOD_IDLE_DESPAWN));
+    }
+
     // this will let me decide to walk home or despawn
     m_LastActionTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME;
     m_PMob->m_neutral = true;
