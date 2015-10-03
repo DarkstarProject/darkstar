@@ -132,7 +132,6 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
         -- print ("Nothing passed, defaulting to attack");
     end;
     local ratio = offcratiomod/target:getStat(MOD_DEF);
-    ratio = utils.clamp(ratio, 0, 2);
 
     local lvldiff = lvluser - lvltarget;
     if lvldiff < 0 then
@@ -161,7 +160,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     local minRatio = 0;
     
     if (ratio < 0.5) then
-        maxRatio = ratio + 1;
+        maxRatio = ratio + 0.5;
     elseif ((0.5 <= ratio) and (ratio <= 0.7)) then
         maxRatio = 1;
     elseif ((0.7 < ratio) and (ratio <= 1.2)) then
