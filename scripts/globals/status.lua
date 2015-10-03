@@ -1863,7 +1863,7 @@ SPELLGROUP_WHITE     = 6
 ------------------------------------
 -- MOBMODs
 ------------------------------------
-
+MOBMOD_NONE           = 0
 MOBMOD_GIL_MIN        = 1
 MOBMOD_GIL_MAX        = 2
 MOBMOD_MP_BASE        = 3
@@ -1881,7 +1881,7 @@ MOBMOD_SKILL_LIST     = 14
 MOBMOD_MUG_GIL        = 15
 MOBMOD_MAIN_2HOUR     = 16
 MOBMOD_NO_DESPAWN     = 17
-MOBMOD_VAR            = 18 -- Used by funguar to track skill uses.
+MOBMOD_VAR            = 18
 MOBMOD_SUB_2HOUR      = 19
 MOBMOD_TP_USE_CHANCE  = 20
 MOBMOD_PET_SPELL_LIST = 21
@@ -1898,10 +1898,10 @@ MOBMOD_ROAM_DISTANCE  = 31
 MOBMOD_2HOUR_MULTI    = 32
 MOBMOD_SPECIAL_COOL   = 33
 MOBMOD_MAGIC_COOL     = 34
-MOBMOD_STANDBACK_TIME = 35
+MOBMOD_STANDBACK_COOL = 35
 MOBMOD_ROAM_COOL      = 36
 MOBMOD_ALWAYS_AGGRO   = 37
-MOBMOD_NO_DROPS       = 38 -- If set monster cannot drop any items, not even seals.
+MOBMOD_NO_DROPS       = 38
 MOBMOD_SHARE_POS      = 39
 MOBMOD_TELEPORT_CD    = 40
 MOBMOD_TELEPORT_START = 41
@@ -1914,7 +1914,12 @@ MOBMOD_SPAWN_LEASH    = 47
 MOBMOD_SHARE_TARGET   = 48
 MOBMOD_SCRIPTED_2HOUR = 49
 MOBMOD_2HOUR_PROC     = 50
-
+MOBMOD_ROAM_TURNS     = 51
+MOBMOD_ROAM_RATE      = 52
+MOBMOD_BEHAVIOR       = 53
+MOBMOD_GIL_BONUS      = 54
+MOBMOD_IDLE_DESPAWN   = 55
+MOBMOD_NO_STANDBACK   = 56
 
 ------------------------------------
 -- Skills
@@ -2092,7 +2097,7 @@ BEHAVIOUR_NO_TURN      = 0x400; -- mob does not turn to face target
 -- Elevator IDs
 ------------------------------------
 
-ELEVATOR_KUFTAL_TUNNEL_DSPPRNG_RCK = 1;
+ELEVATOR_KUFTAL_TUNNEL_DSPPRNG_RCK = 0;
 ELEVATOR_PORT_BASTOK_DRWBRDG       = 2;
 ELEVATOR_DAVOI_LIFT                = 3;
 ELEVATOR_PALBOROUGH_MINES_LIFT     = 4;
