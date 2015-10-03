@@ -445,6 +445,11 @@ void CalculateStats(CMobEntity * PMob)
     SetupJob(PMob);
     SetupRoaming(PMob);
 
+    if (PMob->PMaster != nullptr)
+    {
+        SetupPetSkills(PMob);
+    }
+
     PMob->m_Behaviour |= PMob->getMobMod(MOBMOD_BEHAVIOR);
 
     if(zoneType == ZONETYPE_DUNGEON)
@@ -608,6 +613,42 @@ void SetupRoaming(CMobEntity* PMob)
         PMob->setMobMod(MOBMOD_ROAM_TURNS, 1);
     }
 
+}
+
+void SetupPetSkills(CMobEntity* PMob)
+{
+    int16 skillListId = 0;
+    // same mob can spawn as different families
+    // can't set this from the database
+    switch(PMob->m_Family)
+    {
+        case 383: // ifrit
+            skillListId = 715;
+            break;
+        case 388: // titan
+            skillListId = 716;
+            break;
+        case 384: // levi
+            skillListId = 717;
+            break;
+        case 382: //garuda
+            skillListId = 718;
+            break;
+        case 387: // shiva
+            skillListId = 719;
+            break;
+        case 386: // ramuh
+            skillListId = 720;
+            break;
+        case 379: // carbuncle
+            skillListId = 721;
+            break;
+    }
+
+    if (skillListId != 0)
+    {
+        PMob->setMobMod(MOBMOD_SKILL_LIST, skillListId);
+    }
 }
 
 void SetupDynamisMob(CMobEntity* PMob)

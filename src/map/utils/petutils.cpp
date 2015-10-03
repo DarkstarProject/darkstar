@@ -800,7 +800,6 @@ namespace petutils
         PPet->SetMJob(petData->mJob);
         PPet->m_EcoSystem = petData->EcoSystem;
         PPet->m_Family = petData->m_Family;
-        PPet->m_MobSkillList = petData->m_MobSkillList;
         PPet->m_Element = petData->m_Element;
         PPet->HPscale = petData->HPscale;
         PPet->MPscale = petData->MPscale;
@@ -809,8 +808,11 @@ namespace petutils
         PPet->allegiance = PMaster->allegiance;
         PMaster->StatusEffectContainer->CopyConfrontationEffect(PPet);
 
-        // assuming elemental spawn
-        PPet->setModifier(MOD_DMGPHYS, -50); //-50% PDT
+        if (PPet->m_EcoSystem == SYSTEM_AVATAR || PPet->m_EcoSystem == SYSTEM_ELEMENTAL)
+        {
+            // assuming elemental spawn
+            PPet->setModifier(MOD_DMGPHYS, -50); //-50% PDT
+        }
 
         PPet->m_SpellListContainer = mobSpellList::GetMobSpellList(petData->spellList);
 

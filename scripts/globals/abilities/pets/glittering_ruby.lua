@@ -32,8 +32,7 @@ function onPetAbility(target, pet, skill)
 		effectid = EFFECT_CHR_BOOST;
 	end
 
-	target:delStatusEffect(effectid);
-	target:addStatusEffect(effectid,12,0,90);
+	target:addStatusEffect(effectid,math.random(12,14),0,90);
 	skill:setMsg(MSG_BUFF);
 	return effectid;
 end
