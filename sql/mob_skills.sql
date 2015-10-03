@@ -611,7 +611,7 @@ INSERT INTO `mob_skills` VALUES (562,490,'Tail_Crush',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (563,563,'Blizzard_Breath',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (564,564,'Thunder_Breath',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (565,493,'Radiant_Breath',4,15.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (566,566,'Chaos_Breath',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (566,494,'Chaos_Breath',4,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (567,495,'Fire_Blade',0,7,2000,0,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (568,496,'Frost_Blade',0,7,2000,0,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (569,497,'Wind_Blade2',0,7,2000,0,1,0,0,0);

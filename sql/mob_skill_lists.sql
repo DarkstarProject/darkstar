@@ -1240,6 +1240,8 @@ INSERT INTO `mob_skill_lists` VALUES ('',235,556);
 -- INSERT INTO `mob_skill_lists` VALUES ('',705,?,?);
 
 -- Wyverns
+
+-- Simorg
 INSERT INTO `mob_skill_lists` VALUES ('',265,557);
 INSERT INTO `mob_skill_lists` VALUES ('',265,558);
 INSERT INTO `mob_skill_lists` VALUES ('',265,559);
@@ -1253,6 +1255,7 @@ INSERT INTO `mob_skill_lists` VALUES ('',265,565);
 -- INSERT INTO `mob_skill_lists` VALUES ('',564,?);
 -- INSERT INTO `mob_skill_lists` VALUES ('',1966,?,?);
 
+-- standard Wyvern family mobs
 INSERT INTO `mob_skill_lists` VALUES ('',266,557);
 INSERT INTO `mob_skill_lists` VALUES ('',266,558);
 INSERT INTO `mob_skill_lists` VALUES ('',266,559);
@@ -1261,6 +1264,7 @@ INSERT INTO `mob_skill_lists` VALUES ('',266,561);
 INSERT INTO `mob_skill_lists` VALUES ('',266,562);
 INSERT INTO `mob_skill_lists` VALUES ('',266,565);
 
+-- Andras_s_Vouivre, Guivre, Kindred_s_Vouivre, 
 INSERT INTO `mob_skill_lists` VALUES ('',267,557);
 INSERT INTO `mob_skill_lists` VALUES ('',267,558);
 INSERT INTO `mob_skill_lists` VALUES ('',267,559);
@@ -1268,6 +1272,15 @@ INSERT INTO `mob_skill_lists` VALUES ('',267,560);
 INSERT INTO `mob_skill_lists` VALUES ('',267,561);
 INSERT INTO `mob_skill_lists` VALUES ('',267,562);
 INSERT INTO `mob_skill_lists` VALUES ('',267,565);
+
+-- Cyranuce_M_Cutauleon
+INSERT INTO `mob_skill_lists` VALUES ('',498,557);
+INSERT INTO `mob_skill_lists` VALUES ('',498,558);
+INSERT INTO `mob_skill_lists` VALUES ('',498,559);
+INSERT INTO `mob_skill_lists` VALUES ('',498,560);
+INSERT INTO `mob_skill_lists` VALUES ('',498,561);
+INSERT INTO `mob_skill_lists` VALUES ('',498,562);
+INSERT INTO `mob_skill_lists` VALUES ('',498,566);
 
 -- Suzaku
 INSERT INTO `mob_skill_lists` VALUES ('',280,143);
