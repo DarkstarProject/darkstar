@@ -1580,9 +1580,7 @@ void CAIMobDummy::ActionAttack()
                     return;
                 }
             }
-            else if (!(m_PMob->m_Behaviour & BEHAVIOUR_STANDBACK && currentDistance < 20) &&
-                    !(m_PMob->m_Behaviour & BEHAVIOUR_HP_STANDBACK && currentDistance < 20 && m_PMob->GetHPP() > 70) &&
-                !(m_PMob->getMobMod(MOBMOD_SPAWN_LEASH) > 0 && distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) > m_PMob->getMobMod(MOBMOD_SPAWN_LEASH)))
+            else if (CanMoveForward(currentDistance))
             {
 
                 m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
@@ -2638,4 +2636,30 @@ void CAIMobDummy::Despawn()
         CAIMobDummy* ai = (CAIMobDummy*)m_PMob->PPet->PBattleAI;
         ai->Despawn();
     }
+}
+
+bool CAIMobDummy::CanMoveForward(float currentDistance)
+{
+    if(m_PMob->m_Behaviour & BEHAVIOUR_STANDBACK && currentDistance < 20)
+    {
+        return false;
+    }
+
+    if(m_PMob->m_Behaviour & BEHAVIOUR_HP_STANDBACK && currentDistance < 20 && m_PMob->GetHPP() > 70)
+    {
+        // Excluding Nins, mobs should not standback if can't cast magic
+        if (m_PMob->GetMJob() != JOB_NIN && m_PMob->SpellContainer->HasSpells() && !CanCastSpells())
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    if(m_PMob->getMobMod(MOBMOD_SPAWN_LEASH) > 0 && distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) > m_PMob->getMobMod(MOBMOD_SPAWN_LEASH))
+    {
+        return false;
+    }
+
+    return true;
 }
