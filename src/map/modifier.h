@@ -453,15 +453,34 @@ enum MODIFIER
 
     MOD_TP_BONUS                  = 345, //
 
-    //stores the amount of elemental affinity (elemental staves mostly)
-    MOD_FIRE_AFFINITY             = 347, // Fire Affinity
-    MOD_EARTH_AFFINITY            = 348, // Earth Affinity
-    MOD_WATER_AFFINITY            = 349, // Water Affinity
-    MOD_ICE_AFFINITY              = 350, // Ice Affinity
-    MOD_THUNDER_AFFINITY          = 351, // Lightning Affinity
-    MOD_WIND_AFFINITY             = 352, // Wind Affinity
-    MOD_LIGHT_AFFINITY            = 353, // Light Affinity
-    MOD_DARK_AFFINITY             = 354, // Dark Affinity
+    //stores the amount of elemental affinity (elemental staves mostly) - damage, acc, and perpetuation is all handled separately
+    MOD_FIRE_AFFINITY_DMG         = 347, // They're stored separately due to Magian stuff - they can grant different levels of
+    MOD_EARTH_AFFINITY_DMG        = 348, // the damage/acc/perp affinity on the same weapon, so they must be separated.
+    MOD_WATER_AFFINITY_DMG        = 349, // Each level of damage affinity is +/-5% damage, acc is +/-10 acc, and perp is
+    MOD_ICE_AFFINITY_DMG          = 350, // +/-1 mp/tic. This means that anyone adding these modifiers will have to add
+    MOD_THUNDER_AFFINITY_DMG      = 351, // 1 to the wiki amount. For example, Fire Staff has 2 in fire affinity for
+    MOD_WIND_AFFINITY_DMG         = 352, // DMG, ACC, and PERP, while the wiki lists it as having 1 in each.
+    MOD_LIGHT_AFFINITY_DMG        = 353,
+    MOD_DARK_AFFINITY_DMG         = 354,
+    MOD_ALL_AFFINITY_DMG          = 543,
+    MOD_FIRE_AFFINITY_ACC         = 544,
+    MOD_EARTH_AFFINITY_ACC        = 545,
+    MOD_WATER_AFFINITY_ACC        = 546,
+    MOD_ICE_AFFINITY_ACC          = 547,
+    MOD_THUNDER_AFFINITY_ACC      = 548,
+    MOD_WIND_AFFINITY_ACC         = 549,
+    MOD_LIGHT_AFFINITY_ACC        = 550,
+    MOD_DARK_AFFINITY_ACC         = 551,
+    MOD_ALL_AFFINITY_ACC          = 552,
+    MOD_FIRE_AFFINITY_PERP        = 553,
+    MOD_EARTH_AFFINITY_PERP       = 554,
+    MOD_WATER_AFFINITY_PERP       = 555,
+    MOD_ICE_AFFINITY_PERP         = 556,
+    MOD_THUNDER_AFFINITY_PERP     = 557,
+    MOD_WIND_AFFINITY_PERP        = 558,
+    MOD_LIGHT_AFFINITY_PERP       = 559,
+    MOD_DARK_AFFINITY_PERP        = 560,
+    MOD_ALL_AFFINITY_PERP         = 561,
 
     // Special Modifier+
     MOD_ADDS_WEAPONSKILL          = 355, //
@@ -595,8 +614,8 @@ enum MODIFIER
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 543, // stuff
     // MOD_SPARE = 544, // stuff
+    // MOD_SPARE = 545, // stuff
 
 };
 
