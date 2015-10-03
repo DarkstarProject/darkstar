@@ -1689,7 +1689,7 @@ void CAIMobDummy::ActionAttack()
                                     }
                                     
                                     isCritical = (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob, false));
-                                    float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, isCritical, 0);
+                                    float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, SLOT_MAIN, isCritical, 0);
                                     damage = (int32)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob, SLOT_MAIN)) * DamageRatio);
                                     Action.spikesParam = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, nullptr, true, false, true);
                                     Action.spikesMessage = 33;
@@ -1752,7 +1752,7 @@ void CAIMobDummy::ActionAttack()
                                     isCritical=true;
                                 }
 
-                                float DamageRatio = battleutils::GetDamageRatio(m_PMob, m_PBattleTarget,isCritical, 0);
+                                float DamageRatio = battleutils::GetDamageRatio(m_PMob, m_PBattleTarget, SLOT_MAIN, isCritical, 0);
 
                                 if (isCritical)
                                 {
@@ -1840,7 +1840,7 @@ void CAIMobDummy::ActionAttack()
                                     }
                                     
                                     isCritical = (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob, false));
-                                    float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, isCritical, 0);
+                                    float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob, SLOT_MAIN, isCritical, 0);
                                     damage = (int32)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob, SLOT_MAIN)) * DamageRatio);
                                     Action.spikesParam = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, nullptr, true, false, true);
                                     Action.spikesMessage = 33;

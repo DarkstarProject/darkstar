@@ -535,70 +535,102 @@ uint16 CBattleEntity::CHR()
     return dsp_cap(stats.CHR + m_modStat[MOD_CHR], 0, 999);
 }
 
-uint16 CBattleEntity::ATT()
+uint16 CBattleEntity::ATT(uint8 attackNumber, uint8 offsetAttack)
 {
-    //TODO: consider which weapon!
-    int32 ATT = 8 + m_modStat[MOD_ATT];
-    if (m_Weapons[SLOT_MAIN]->isTwoHanded())
-    {
-        ATT += (STR() * 3) / 4;
-    }
-    else {
-        ATT += (STR()) / 2;
-    }
+    int32 att = 8 + m_modStat[MOD_ATT] + offsetAttack;
+
+    if (attackNumber == 0 && m_Weapons[SLOT_MAIN]->isTwoHanded())
+        att += (STR() * 3) / 4;
+    else
+        att += (STR()) / 2;
 
     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_ENDARK))
-        ATT += this->getMod(MOD_ENSPELL_DMG);
+        att += this->getMod(MOD_ENSPELL_DMG);
 
-    if (this->objtype & TYPE_PC) {
-        ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType()) + m_Weapons[SLOT_MAIN]->getILvlSkill();
+    if (this->objtype == TYPE_PC) {
+        uint8 skill = 0;
+        uint16 iLvlSkill = 0;
+        if (attackNumber == 0) 
+        {
+            skill = m_Weapons[SLOT_MAIN]->getSkillType();
+            iLvlSkill = m_Weapons[SLOT_MAIN]->getILvlSkill();
+            if (skill == SKILL_NON && GetSkill(SKILL_H2H) > 0)
+                skill = SKILL_H2H;
+        }
+        else if (attackNumber == 1) 
+        {
+            skill = m_Weapons[SLOT_SUB]->getSkillType();
+            iLvlSkill = m_Weapons[SLOT_SUB]->getILvlSkill();
+            if (skill == SKILL_NON && GetSkill(SKILL_H2H) > 0 &&
+                (m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_NON || m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H))
+            {
+                skill = SKILL_H2H;
+            }
+        }
+        else if (attackNumber == 2) 
+        {
+            skill = SKILL_H2H;
+            iLvlSkill = m_Weapons[SLOT_MAIN]->getILvlSkill();
+        }
+        att += GetSkill(skill); 
+        att += iLvlSkill; 
     }
-    else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
-    {
-        ATT += PMaster->GetSkill(SKILL_AME);
-        return ATT + (ATT * (m_modStat[MOD_ATTP] + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster)) / 100) +
-            dsp_min((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
+
+    uint32 petAttpBonusModifier = 0; 
+    if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON) {
+        att += PMaster->GetSkill(SKILL_AME);
+        petAttpBonusModifier = ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster); 
     }
-    return ATT + (ATT * m_modStat[MOD_ATTP] / 100) +
-        dsp_min((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
+
+    uint32 attpBonus = att * (m_modStat[MOD_ATTP] + petAttpBonusModifier) / 100; 
+    uint32 foodBonus = dsp_min((att * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]); 
+    return att + attpBonus + foodBonus; 
 }
 
 uint16 CBattleEntity::RATT(uint8 skill, uint16 bonusSkill)
 {
-    int32 ATT = 8 + GetSkill(skill) + bonusSkill + m_modStat[MOD_RATT] + battleutils::GetRangedAttackBonuses(this) + STR() / 2;
+    int32 att = 8 + GetSkill(skill) + bonusSkill;
+    att += m_modStat[MOD_RATT];
+    att += battleutils::GetRangedAttackBonuses(this);
+    att += STR() / 2;
 
-    if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
-    {
-        return ATT + (ATT * (m_modStat[MOD_ATTP] + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster)) / 100) +
-            dsp_min((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
+    int32 petAttpBonusModifier = 0; 
+    if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON) {
+        petAttpBonusModifier = ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster); 
     }
 
-    return ATT + (ATT * m_modStat[MOD_RATTP] / 100) +
-        dsp_min((ATT * m_modStat[MOD_FOOD_RATTP] / 100), m_modStat[MOD_FOOD_RATT_CAP]);
+    int32 attpBonus = (att * (m_modStat[MOD_RATTP] + petAttpBonusModifier) / 100); 
+    int32 foodBonus = dsp_min((att * m_modStat[MOD_FOOD_RATTP] / 100), m_modStat[MOD_FOOD_RATT_CAP]); 
+    return att + attpBonus + foodBonus; 
 }
 
 uint16 CBattleEntity::RACC(uint8 skill, uint16 bonusSkill)
 {
-    int skill_level = GetSkill(skill) + bonusSkill;
-    uint16 acc = skill_level;
-    if (skill_level > 200)
-    {
-        acc = 200 + (skill_level - 200)*0.9;
-    }
+    uint16 acc = GetSkill(skill) + bonusSkill;
+
+    //the 200+ acc correction
+    if (acc > 200)
+        acc = 200 + (acc - 200) * 0.9;
+
     acc += getMod(MOD_RACC);
     acc += battleutils::GetRangedAccuracyBonuses(this);
     acc += AGI() / 2;
-    if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
-    {
+
+    if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON) {
         acc += ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PMaster);
     }
 
-    return ((100 + getMod(MOD_RACCP)) * acc) / 100 +
-        dsp_min(((100 + getMod(MOD_FOOD_RACCP)) * acc) / 100, getMod(MOD_FOOD_RACC_CAP));
+    uint16 accpBonus = (acc * getMod(MOD_RACCP)) / 100; 
+    uint16 foodBonus = dsp_min(((100 + getMod(MOD_FOOD_RACCP)) * acc) / 100, getMod(MOD_FOOD_RACC_CAP)); 
+    acc += accpBonus + foodBonus; 
+    return acc; //TODO cap this at no smaller than 0 like melee acc? 
 }
 
 uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
 {
+    uint16 acc = 0; 
+
+    //first we have to apply the skill and ilvl bonuses, and then the 200+ acc correction. 
     if (this->objtype & TYPE_PC) {
         uint8 skill = 0;
         uint16 iLvlSkill = 0;
@@ -622,38 +654,36 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
             iLvlSkill = m_Weapons[SLOT_MAIN]->getILvlSkill();
             skill = SKILL_H2H;
         }
-        int16 ACC = GetSkill(skill) + iLvlSkill;
-        ACC = (ACC > 200 ? (((ACC - 200)*0.9) + 200) : ACC);
-        if (m_Weapons[SLOT_MAIN]->isTwoHanded() == true)
-        {
-            ACC += DEX() * 0.75;
-        }
-        else
-        {
-            ACC += DEX() * 0.5;
-        }
-        ACC = (ACC + m_modStat[MOD_ACC] + offsetAccuracy);
-        ACC = ACC + (ACC * m_modStat[MOD_ACCP] / 100) +
-            dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]);
-        return dsp_max(0, ACC);
+        acc += GetSkill(skill);
+        acc += iLvlSkill;
     }
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
     {
-        int16 ACC = PMaster->GetSkill(SKILL_AME);
-        ACC = (ACC > 200 ? (((ACC - 200)*0.9) + 200) : ACC);
-        ACC += DEX() * 0.5;
-        ACC += m_modStat[MOD_ACC] + offsetAccuracy + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PMaster);
-        ACC = ACC + (ACC * m_modStat[MOD_ACCP] / 100) +
-            dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]);
-        return dsp_max(0, ACC);
+        acc += PMaster->GetSkill(SKILL_AME);
     }
+
+    //the 200+ acc correction
+    if (acc > 200)
+        acc = 200 + (acc - 200) * 0.9;
+
+    //apply other modifiers after the 200+ correction
+
+    if (this->objtype == TYPE_PC && attackNumber == 0 && m_Weapons[SLOT_MAIN]->isTwoHanded())
+        acc += DEX() * 0.75; //TODO is this PC only? Should this apply to monsters? Can this apply to monsters? 
     else
-    {
-        int16 ACC = m_modStat[MOD_ACC];
-        ACC = ACC + (ACC * m_modStat[MOD_ACCP] / 100) +
-            dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]) + DEX() / 2; //food mods here for Snatch Morsel
-        return dsp_max(0, ACC);
+        acc += DEX() * 0.5;
+
+    acc += m_modStat[MOD_ACC]; 
+    acc += offsetAccuracy; 
+
+    if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON) {
+        acc += ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PMaster);
     }
+
+    int16 accpBonus = acc * m_modStat[MOD_ACCP] / 100;
+    int16 foodBonus = dsp_min((acc * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]); //mobs can have food bonus too. See "Snatch Morsel". 
+    acc += accpBonus + foodBonus; 
+    return dsp_max(0, acc);
 }
 
 uint16 CBattleEntity::DEF()

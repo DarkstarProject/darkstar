@@ -101,7 +101,7 @@ bool CAttack::IsCritical()
 void CAttack::SetCritical(bool value)
 {
 	m_isCritical = value;
-	m_damageRatio = battleutils::GetDamageRatio(m_attacker, m_victim, m_isCritical, 0);
+	m_damageRatio = battleutils::GetDamageRatio(m_attacker, m_victim, GetWeaponSlot(), m_isCritical, 0);
 }
 
 /************************************************************************
