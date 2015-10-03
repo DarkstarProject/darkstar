@@ -1,7 +1,7 @@
 -----------------------------------
 -- Catastrophe
 -- Scythe weapon skill
--- Skill Level: N/A
+-- Skill Level: 300
 -- Drain target's HP. Bec de Faucon/Apocalypse: Additional effect: Haste
 -- This weapon skill is available with the stage 5 relic Scythe Apocalypse or within Dynamis with the stage 4 Bec de Faucon.
 -- Also available without Aftermath effects with the Crisis Scythe. After 13 weapon skills have been used successfully, gives one "charge" of Catastrophe.

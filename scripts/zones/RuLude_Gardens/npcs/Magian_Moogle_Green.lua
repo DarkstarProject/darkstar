@@ -16,19 +16,7 @@ require("scripts/globals/magiantrials");
 -- onTrade Action
 -----------------------------------
 
-function onTrade(player,npc,trade)
-   if (trade:getItemCount() == 1) then
-        local ItemID = trade:getItem();
-        local TrialInfo = getEmoteTrialInfo(ItemID);
-        local invalid = 0;
-        if (TrialInfo.t1 == 0 and TrialInfo.t2 == 0 and TrialInfo.t3 == 0 and TrialInfo.t4 == 0) then
-            invalid = 1;
-        end
-        player:startEvent(10153, TrialInfo.t1, TrialInfo.t2, TrialInfo.t3, TrialInfo.t4, 0, ItemID, 0, invalid);
-    else
-        -- placeholder for torque+other required item trade.
-    end
-end;
+
 
 -----------------------------------
 -- onTrigger Action

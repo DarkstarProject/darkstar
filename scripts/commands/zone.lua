@@ -62,10 +62,6 @@ local zone_list =
     { 0x14, 0xB0, 36 }, -- Empyreal Paradox
     { 0x14, 0xB1, 37 }, -- Temenos
     { 0x14, 0xB2, 38 }, -- Apollyon
-    { 0x14, 0xB4, 39 }, -- Dynamis - Valkurm
-    { 0x14, 0xB5, 40 }, -- Dynamis - Buburimu
-    { 0x14, 0xB6, 41 }, -- Dynamis - Qufim
-    { 0x14, 0xB7, 42 }, -- Dynamis - Tavnazia
     { 0x14, 0xAF, 43 }, -- Diorama Abdhaljs-Ghelsba
     { 0x14, 0xB8, 44 }, -- Abdhaljs Isle-Purgonorgo
     { 0x14, 0xB9, 46 }, -- Open sea route to Al Zahbi
@@ -155,8 +151,6 @@ local zone_list =
     { 0x14, 0x43, 128 }, -- Valley of Sorrows
     { 0x27, 0x31, 129 }, -- Ghoyu's Reverie
     { 0x14, 0x6F, 130 }, -- Ru'Aun Gardens
-    { 0x14, 0x82, 134 }, -- Dynamis - Beaucedine
-    { 0x14, 0x83, 135 }, -- Dynamis - Xarcabard
     { 0x27, 0x46, 136 }, -- Beaucedine Glacier [S]
     { 0x27, 0x48, 137 }, -- Xarcabard [S]
     { 0x14, 0x65, 139 }, -- Horlais Peak
@@ -204,10 +198,6 @@ local zone_list =
     { 0x14, 0x73, 180 }, -- La'Loff Amphitheater
     { 0x14, 0x74, 181 }, -- The Celestial Nexus
     { 0x14, 0x0D, 184 }, -- Lower Delkfutt's Tower
-    { 0x14, 0x7E, 185 }, -- Dynamis - San d'Oria
-    { 0x14, 0x7F, 186 }, -- Dynamis - Bastok
-    { 0x14, 0x80, 187 }, -- Dynamis - Windurst
-    { 0x14, 0x81, 188 }, -- Dynamis - Jeuno
     { 0x14, 0x6E, 190 }, -- King Ranperre's Tomb
     { 0x14, 0x62, 191 }, -- Dangruf Wadi
     { 0x14, 0x1C, 192 }, -- Inner Horutoto Ruins

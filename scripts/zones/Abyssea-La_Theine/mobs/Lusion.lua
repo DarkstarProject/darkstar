@@ -49,3 +49,14 @@ function onMobEngaged(mob,target)
 		end
 	end
 end;
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer)
+		killer:addCurrency("Cruor",250);
+		killer:messageSpecial(CRUOR_OBTAINED, 250);
+		
+    end
+

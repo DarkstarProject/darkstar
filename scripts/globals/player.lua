@@ -323,9 +323,19 @@ function CharCreate(player)
 	-- Needs Moghouse Intro
 	player:setVar("MoghouseExplication",1);
     
+	-- GIVE THE NEW CHARACTER A LINKPEARL
+	-- to linkshell myLinkshellName (change to linkshell on server)
+	-- first check for valid ls
+	if (isValidLS("VRTRAFFXI") == true) then 
+		player:addLS("VRTRAFFXI"); -- add the pearl
+	end
+
 end;
 
+
+
 function onPlayerLevelUp(player)
+   player:capAllSkills();
 end
 
 function onPlayerLevelDown(player)

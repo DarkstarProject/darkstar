@@ -1,12 +1,12 @@
 -----------------------------------
--- Area: Ru'Aun Gardens
+-- Area: Escha_RuAun
 -- NPC:  Pincerstone
 -- NPCs which activates the blue teleports in sky
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
+package.loaded["scripts/zones/Escha_RuAun/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/zones/RuAun_Gardens/TextIDs");
+require("scripts/zones/Escha_RuAun/TextIDs");
 
 -----------------------------------
 -- onTrade Action

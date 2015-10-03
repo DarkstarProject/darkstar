@@ -3,7 +3,8 @@
 -- Item: Cream Puff
 -- Food Effect: 30 mintutes, All Races
 -----------------------------------------
--- Intelligence +7
+-- Intelligence +25
+-- Mind +25
 -- HP -10
 -- Resist Slow
 -----------------------------------------
@@ -35,7 +36,8 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_INT, 7);
+   target:addMod(MOD_INT, 25);
+   target:addMod(MOD_MND, 25);
    target:addMod(MOD_HP, -10);
    target:addMod(MOD_SLOWRES, 5);
 end;
@@ -45,7 +47,8 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-   target:delMod(MOD_INT, 7);
+   target:addMod(MOD_INT, 25);
+   target:addMod(MOD_MND, 25);
    target:delMod(MOD_HP, -10);
    target:delMod(MOD_SLOWRES, 5);
 end;

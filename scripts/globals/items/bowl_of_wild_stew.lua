@@ -40,14 +40,16 @@ end;
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_STR, 4);
-	target:addMod(MOD_AGI, 1);
-	target:addMod(MOD_VIT, 2);
-	target:addMod(MOD_INT, -2);
-	target:addMod(MOD_FOOD_ATTP, 25);
-	target:addMod(MOD_FOOD_ATT_CAP, 50);
-	target:addMod(MOD_FOOD_RATTP, 25);
-	target:addMod(MOD_FOOD_RATT_CAP, 50);
+	target:addMod(MOD_STR, 25);
+	target:addMod(MOD_INT, 25);
+	target:addMod(MOD_ATTP, 150);
+	target:addMod(MOD_FOOD_ATT_CAP, 300);
+    target:addPetMod(MOD_ATTP, 1500);
+	target:addPetMod(MOD_HP, 1000);
+	target:addPetMod(MOD_RATT, 500);
+	target:addPetMod(MOD_MATT, 500);
+	
+	
 end;
 
 -----------------------------------------
@@ -55,12 +57,12 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_STR, 4);
-	target:delMod(MOD_AGI, 1);
-	target:delMod(MOD_VIT, 2);
-	target:delMod(MOD_INT, -2);
-	target:delMod(MOD_FOOD_ATTP, 25);
-	target:delMod(MOD_FOOD_ATT_CAP, 50);
-	target:delMod(MOD_FOOD_RATTP, 25);
-	target:delMod(MOD_FOOD_RATT_CAP, 50);
+	target:delMod(MOD_STR, 25);
+	target:delMod(MOD_INT, 25);
+	target:delMod(MOD_FOOD_ATTP, 150);
+	target:delMod(MOD_FOOD_ATT_CAP, 300);
+	target:delPetMod(MOD_ATTP, 1500);
+	target:delPetMod(MOD_HP, 1000);
+	target:delPetMod(MOD_RATT, 500);
+	target:delPetMod(MOD_MATT, 500);
 end;
