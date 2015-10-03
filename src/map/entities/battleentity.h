@@ -228,6 +228,7 @@ enum SLOTTYPE
     SLOT_BACK = 0x0F,
     SLOT_LINK1 = 0x10,
     SLOT_LINK2 = 0x11,
+    SLOT_KICKS = 0x12, 
 };
 
 // CROSSBOW и GUN - это Piercing, разделение сделано из-за одинакового skilltype
@@ -458,8 +459,8 @@ public:
     uint16          MND();
     uint16          CHR();
     uint16          DEF();
-    uint16          ATT();
-    uint16			ACC(uint8 attackNumber, uint8 offsetAccuracy);
+    uint16          ATT(uint8 weaponSlot, uint8 offsetAttack);
+    uint16			ACC(uint8 weaponSlot, uint8 offsetAccuracy);
     uint16          EVA();
     uint16          RATT(uint8 skill, uint16 bonusSkill = 0);
     uint16          RACC(uint8 skill, uint16 bonusSkill = 0);
@@ -540,7 +541,7 @@ public:
 
     uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
     ECOSYSTEM		m_EcoSystem;			    // эко-система сущности
-    CItemWeapon*	m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
+    CItemWeapon*	m_Weapons[0x13];		    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
 
     TraitList_t       TraitList;                    // список постянно активных способностей в виде указателей
 

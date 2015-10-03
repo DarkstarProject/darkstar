@@ -59,7 +59,7 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
 	WBUFW(data,(0x2C)) = dsp_cap(PChar->getMod(MOD_MND), -999 + PChar->stats.MND, 999 - PChar->stats.MND);
 	WBUFW(data,(0x2E)) = dsp_cap(PChar->getMod(MOD_CHR), -999 + PChar->stats.CHR, 999 - PChar->stats.CHR);
 
-    WBUFW(data,(0x30)) = PChar->ATT();
+    WBUFW(data,(0x30)) = PChar->ATT(SLOT_MAIN, 0);
 	WBUFW(data,(0x32)) = PChar->DEF();
 
 	WBUFW(data,(0x34)) = PChar->getMod(MOD_FIRERES);
