@@ -17,7 +17,7 @@
 -------------------------------------------------
 
 function getRegimeInfo(regimeid)
-    a = {};
+    local a = {};
     if (regimeid >= 1 and regimeid <= 146) then -- FoV (1~146)
         if (regimeid <= 50) then
             if (regimeid <= 10) then
