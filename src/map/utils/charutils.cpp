@@ -2975,12 +2975,16 @@ namespace charutils
                 }
             });
 
-            // distribute gil
-            uint32 gilPerPerson = gil / members.size();
-            for (auto PMember : members)
+            // all members might not be in range
+            if (members.size() > 0)
             {
-                UpdateItem(PMember, LOC_INVENTORY, 0, gilPerPerson);
-                PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, gilPerPerson, 0, 565));
+                // distribute gil
+                uint32 gilPerPerson = gil / members.size();
+                for (auto PMember : members)
+                {
+                    UpdateItem(PMember, LOC_INVENTORY, 0, gilPerPerson);
+                    PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, gilPerPerson, 0, 565));
+                }
             }
         }
         else if (distance(PChar->loc.p, PMob->loc.p) < 100)
