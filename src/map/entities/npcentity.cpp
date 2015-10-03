@@ -24,6 +24,7 @@
 #include "../../common/taskmgr.h"
 
 #include "npcentity.h"
+#include "../ai/ai_npc.h"
 #include "../utils/zoneutils.h"
 
 #include "../packets/entity_update.h"
@@ -95,11 +96,12 @@ int32 reappear_npc(uint32 tick, CTaskMgr::CTask* PTask)
 *																		*
 ************************************************************************/
 
-CNpcEntity::CNpcEntity() 
+CNpcEntity::CNpcEntity()
 {
 	objtype = TYPE_NPC;
 	look.face = 0x32;
 	allegiance = ALLEGIANCE_MOB;
+    PAI = std::make_unique<CAINpc>(this);
 }
 
 CNpcEntity::~CNpcEntity()

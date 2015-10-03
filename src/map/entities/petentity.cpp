@@ -28,7 +28,7 @@
 #include "../mob_spell_list.h"
 #include "../packets/entity_update.h"
 #include "../packets/pet_sync.h"
-
+#include "../ai/controllers/ai_controller.h"
 
 CPetEntity::CPetEntity(PETTYPE petType)
 {
@@ -36,7 +36,8 @@ CPetEntity::CPetEntity(PETTYPE petType)
 	m_PetType = petType;
 	m_EcoSystem = SYSTEM_UNCLASSIFIED;
 	allegiance = ALLEGIANCE_PLAYER;
-        m_MobSkillList = 0;
+    m_MobSkillList = 0;
+    PAI = std::make_unique<CAIBattle>(this, std::make_unique<CPathFind>(this), std::make_unique<CAIController>(this));
 }
 
 CPetEntity::~CPetEntity()
