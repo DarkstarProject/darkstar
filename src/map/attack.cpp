@@ -101,7 +101,7 @@ bool CAttack::IsCritical()
 void CAttack::SetCritical(bool value)
 {
 	m_isCritical = value;
-	m_damageRatio = battleutils::GetDamageRatio(m_attacker, m_victim, m_isCritical, 0);
+	m_damageRatio = battleutils::GetDamageRatio(m_attacker, m_victim, GetWeaponSlot(), m_isCritical, 0);
 }
 
 /************************************************************************
@@ -194,11 +194,15 @@ float CAttack::GetDamageRatio()
 ************************************************************************/
 uint8 CAttack::GetWeaponSlot()
 {
-	if (m_attackRound->IsH2H())
-	{
-		return SLOT_MAIN;
-	}
-	return m_attackDirection == RIGHTATTACK ? SLOT_MAIN : SLOT_SUB;
+    if (m_attackType == KICK_ATTACK)
+    {
+        return SLOT_KICKS;
+    }
+    if (m_attackRound->IsH2H()) 
+    {
+        return SLOT_MAIN;
+    }
+    return m_attackDirection == RIGHTATTACK ? SLOT_MAIN : SLOT_SUB;
 }
 
 /************************************************************************
@@ -355,7 +359,7 @@ void CAttack::ProcessDamage()
 	}
 
 	// Get damage multipliers.
-	m_damage = attackutils::CheckForDamageMultiplier((CCharEntity*)m_attacker, m_attacker->m_Weapons[GetWeaponSlot()], m_damage, m_attackType);
+    m_damage = attackutils::CheckForDamageMultiplier((CCharEntity*)m_attacker, m_attacker->m_Weapons[GetWeaponSlot()], m_damage, m_attackType);
 
 	// Get critical bonus mods.
 	if (m_isCritical)
@@ -378,6 +382,7 @@ void CAttack::ProcessDamage()
 	// Try skill up.
 	if (m_damage > 0)
 	{
-		charutils::TrySkillUP((CCharEntity*)m_attacker, (SKILLTYPE)m_attacker->m_Weapons[GetWeaponSlot()]->getSkillType(), m_victim->GetMLevel());
+        SKILLTYPE skillType = (SKILLTYPE)m_attacker->m_Weapons[GetWeaponSlot()]->getSkillType(); 
+        charutils::TrySkillUP((CCharEntity*)m_attacker, skillType, m_victim->GetMLevel());
 	}
 }

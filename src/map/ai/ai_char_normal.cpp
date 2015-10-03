@@ -3219,7 +3219,8 @@ void CAICharNormal::DoAttack()
 
         if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
         {
-            battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, attack.IsFirstSwing(), (CItemWeapon*)m_PChar->m_Weapons[attack.GetWeaponSlot()], attack.GetDamage());
+            CItemWeapon* weapon = (CItemWeapon*)m_PChar->m_Weapons[attack.GetWeaponSlot()]; 
+            battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, attack.IsFirstSwing(), weapon, attack.GetDamage());
             battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, attack.GetDamage());
         }
 

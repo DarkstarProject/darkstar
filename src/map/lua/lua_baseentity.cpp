@@ -2067,7 +2067,6 @@ inline int32 CLuaBaseEntity::getStat(lua_State *L)
         case MOD_INT:  lua_pushinteger(L, PEntity->INT()); break;
         case MOD_MND:  lua_pushinteger(L, PEntity->MND()); break;
         case MOD_CHR:  lua_pushinteger(L, PEntity->CHR()); break;
-        case MOD_ATT:  lua_pushinteger(L, PEntity->ATT()); break;
         case MOD_DEF:  lua_pushinteger(L, PEntity->DEF()); break;
         default: lua_pushnil(L);
     }
@@ -6615,19 +6614,67 @@ inline int32 CLuaBaseEntity::getRACC(lua_State *L)
 
 //==========================================================//
 
+inline int32 CLuaBaseEntity::getATT(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    uint8 slot = SLOT_MAIN;
+    if ( ! lua_isnil(L, 1) && lua_isnumber(L, 1))
+    {
+        slot = lua_tointeger(L, 1); 
+        switch (slot)
+        {
+        case SLOT_MAIN: 
+        case SLOT_SUB:  
+        case SLOT_RANGED: 
+        case SLOT_AMMO:   
+        case SLOT_KICKS: 
+            break; 
+        default: 
+            DSP_DEBUG_BREAK_IF(1); 
+        }
+    }
+
+    uint8 offsetAttack = 0;
+    if ( ! lua_isnil(L, 2) && lua_isnumber(L, 2)) {
+        offsetAttack = lua_tointeger(L, 2); 
+    }
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+    uint16 ATT = PEntity->ATT(slot, offsetAttack);
+
+    lua_pushinteger(L, ATT);
+    return 1;
+}
+
+//==========================================================//
+
 inline int32 CLuaBaseEntity::getACC(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
     uint8 slot = SLOT_MAIN;
-    uint8 offsetAccuracy = 0;
-    // if((L,1) == 1){
-    //  slot = SLOT_SUB;
-    //}
-    if ((L, 2) > 0)
+    if ( ! lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        offsetAccuracy = (L, 2);
+        slot = lua_tointeger(L, 1); 
+        switch (slot)
+        {
+        case SLOT_MAIN: 
+        case SLOT_SUB:  
+        case SLOT_RANGED: 
+        case SLOT_AMMO:   
+        case SLOT_KICKS: 
+            break; 
+        default: 
+            DSP_DEBUG_BREAK_IF(1); 
+        }
+    }
+
+    uint8 offsetAccuracy = 0;
+    if ( ! lua_isnil(L, 2) && lua_isnumber(L, 2)) {
+        offsetAccuracy = lua_tointeger(L, 2); 
     }
 
     CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
@@ -6694,7 +6741,7 @@ inline int32 CLuaBaseEntity::getMeleeHitDamage(lua_State *L)
 
     if (dsprand::GetRandomNumber(100) < hitrate)
     {
-        float DamageRatio = battleutils::GetDamageRatio(PAttacker, PDefender, false, 0);
+        float DamageRatio = battleutils::GetDamageRatio(PAttacker, PDefender, SLOT_MAIN, false, 0); //TODO might want to use other weapons
         int damage = (uint16)((PAttacker->GetMainWeaponDmg() + battleutils::GetFSTR(PAttacker, PDefender, SLOT_MAIN)) * DamageRatio);
         lua_pushinteger(L, damage);
         return 1;
@@ -10267,6 +10314,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAmmoDmg),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRATT),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRACC),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getATT),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getACC),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEVA),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,capSkill),
