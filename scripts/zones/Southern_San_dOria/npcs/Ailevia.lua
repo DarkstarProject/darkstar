@@ -19,13 +19,13 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 ----------------------------------- 
 
 function onTrade(player,npc,trade)
---Adventurer coupon 
-	if (trade:getItemCount() == 1 and trade:hasItemQty(0x218,1) == true) then
-		player:startEvent(0x028f);
-	end
--- "Flyers for Regine" conditional script
-count = trade:getItemCount();
-MagicFlyer = trade:hasItemQty(532,1);
+    --Adventurer coupon 
+    if (trade:getItemCount() == 1 and trade:hasItemQty(0x218,1) == true) then
+        player:startEvent(0x028f);
+    end
+    -- "Flyers for Regine" conditional script
+    count = trade:getItemCount();
+    MagicFlyer = trade:hasItemQty(532,1);
 
 	if (MagicFlyer == true and count == 1) then
 		FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);

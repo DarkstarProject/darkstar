@@ -2964,19 +2964,24 @@ namespace charutils
         // Distribute gil to player/party/alliance
         if (PChar->PParty != nullptr)
         {
-            PChar->ForAlliance([PMob, gil](CBattleEntity* PPartyMember)
+            std::vector<CCharEntity*> members;
+
+            // First gather all valid party members
+            PChar->ForAlliance([PMob, &members](CBattleEntity* PPartyMember)
             {
-                uint8 count = 0;
-                //work out how many pt members should get the gil
-                CCharEntity* PMember = (CCharEntity*)PPartyMember;
                 if (PPartyMember->getZone() == PMob->getZone() && distance(PPartyMember->loc.p, PMob->loc.p) < 100)
                 {
-                    count++;
-                    uint32 gilperperson = count == 0 ? gil : (gil / count);
-                    UpdateItem(PMember, LOC_INVENTORY, 0, gilperperson);
-                    PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, gilperperson, 0, 565));
+                    members.push_back((CCharEntity*)PPartyMember);
                 }
             });
+
+            // distribute gil
+            uint32 gilPerPerson = gil / members.size();
+            for (auto PMember : members)
+            {
+                UpdateItem(PMember, LOC_INVENTORY, 0, gilPerPerson);
+                PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, gilPerPerson, 0, 565));
+            }
         }
         else if (distance(PChar->loc.p, PMob->loc.p) < 100)
         {

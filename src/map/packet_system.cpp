@@ -260,10 +260,13 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         const int8* fmtQuery = "UPDATE accounts_sessions SET targid = %u, session_key = x'%s', server_addr = %u, client_port = %u WHERE charid = %u";
 
+        // Current zone could either be current zone or destination
+        CZone* currentZone = zoneutils::GetZone(PChar->getZone());
+
         Sql_Query(SqlHandle, fmtQuery,
             PChar->targid,
             session_key,
-            PChar->loc.zone->GetIP(),
+            currentZone->GetIP(),
             session->client_port,
             PChar->id);
 
@@ -606,6 +609,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
     case 0x00: // trigger
     {
+        if(PChar->StatusEffectContainer->HasPreventActionEffect())
+            return;
+
         if (PChar->m_Costum != 0 || PChar->animation == ANIMATION_SYNTH)
         {
             PChar->pushPacket(new CReleasePacket(PChar, RELEASE_STANDARD));
@@ -644,6 +650,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x05: // call for help
     {
+        if(PChar->StatusEffectContainer->HasPreventActionEffect())
+            return;
+
         for (SpawnIDList_t::iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
         {
             CMobEntity* MOB = (CMobEntity*)it->second;
@@ -715,6 +724,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x0E: // Fishing
     {
+        if(PChar->StatusEffectContainer->HasPreventActionEffect())
+            return;
+
         fishingutils::StartFishing(PChar);
     }
     break;
@@ -725,6 +737,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x10: // rangedattack
     {
+        if(PChar->StatusEffectContainer->HasPreventActionEffect())
+            return;
+
         PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_START, TargID);
     }
     break;
@@ -2879,7 +2894,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             else
             {
-				ShowDebug(CL_CYAN"Building invite packet to send to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
+                ShowDebug(CL_CYAN"Building invite packet to send to lobby server from %s to (%d)\n" CL_RESET, PChar->GetName(), charid);
                 //on another server (hopefully)
                 uint8 packetData[12];
                 WBUFL(packetData, 0) = charid;
@@ -2887,7 +2902,8 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 WBUFL(packetData, 6) = PChar->id;
                 WBUFW(packetData, 10) = PChar->targid;
                 message::send(MSG_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_PARTY));
-				ShowDebug(CL_CYAN"Sent invite packet to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
+
+                ShowDebug(CL_CYAN"Sent invite packet to lobby server from %s to (%d)\n" CL_RESET, PChar->GetName(), charid);
             }
         }
 		else //in party but not leader, cannot invite
@@ -2932,7 +2948,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             else
             {
-				ShowDebug(CL_CYAN"(Alliance)Building invite packet to send to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
+                ShowDebug(CL_CYAN"(Alliance)Building invite packet to send to lobby server from %s to (%d)\n" CL_RESET, PChar->GetName(), charid);
                 //on another server (hopefully)
                 uint8 packetData[12];
                 WBUFL(packetData, 0) = charid;
@@ -2940,7 +2956,8 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 WBUFL(packetData, 6) = PChar->id;
                 WBUFW(packetData, 10) = PChar->targid;
                 message::send(MSG_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_ALLIANCE));
-				ShowDebug(CL_CYAN"(Alliance)Sent invite packet to lobby server for %s\n" CL_RESET, zoneutils::GetCharFromWorld(charid, targid)->GetName());
+
+                ShowDebug(CL_CYAN"(Alliance)Sent invite packet to lobby server from %s to (%d)\n" CL_RESET, PChar->GetName(), charid);
             }
         }
         break;
@@ -3781,7 +3798,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     {
                         std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
                         qStr += PChar->GetName();
-                        qStr += "','ALLIANCE','";
+                        qStr += "','PARTY','";
                         qStr += escape(data[6]);
                         qStr += "',current_timestamp());";
                         const char * cC = qStr.c_str();
@@ -4148,13 +4165,25 @@ void SmallPacket0x0D3(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 /************************************************************************
 *                                                                       *
+*  Set Preferred Language                                               *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x0DB(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    PChar->search.language = RBUFB(data, (0x24));
+    return;
+}
+
+/************************************************************************
+*                                                                       *
 *  Set Name Flags (Party, Away, Autogroup, etc.)                        *
 *                                                                       *
 ************************************************************************/
 
 void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    switch (RBUFW(data, (0x04)))
+    switch (RBUFL(data, (0x04)))
     {
     case 0x0001:
         PChar->nameflags.flags ^= FLAG_INVITE;
@@ -4178,24 +4207,16 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         //if(RBUFB(data,(0x10)) == 1)    // autogroup on
         //if(RBUFB(data,(0x10)) == 2)    // autogroup off
         break;
+    case 0x200000:
+        //if(RBUFB(data,(0x10)) == 1)    // party request on
+        //if(RBUFB(data,(0x10)) == 2)    // party request off
+        break;
     }
     charutils::SaveCharStats(PChar);
 
     PChar->updatemask |= UPDATE_HP;
     PChar->pushPacket(new CMenuConfigPacket(PChar));
     PChar->pushPacket(new CCharUpdatePacket(PChar));
-    return;
-}
-
-/************************************************************************
-*                                                                       *
-*  Set Preferred Language                                               *
-*                                                                       *
-************************************************************************/
-
-void SmallPacket0x0DB(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
-{
-    PChar->search.language = RBUFB(data, (0x24));
     return;
 }
 
@@ -4522,6 +4543,9 @@ void SmallPacket0x0E7(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (PChar->status != STATUS_NORMAL)
         return;
 
+    if(PChar->StatusEffectContainer->HasPreventActionEffect())
+        return;
+
     if (PChar->m_moghouseID ||
         PChar->nameflags.flags & FLAG_GM ||
         PChar->m_GMlevel > 0)
@@ -4567,16 +4591,13 @@ void SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (PChar->status != STATUS_NORMAL)
         return;
 
+    if(PChar->StatusEffectContainer->HasPreventActionEffect())
+        return;
+
     switch (PChar->animation)
     {
     case ANIMATION_NONE:
     {
-        // cannot rest while stunned, slept etc
-        if (PChar->StatusEffectContainer->HasPreventActionEffect())
-        {
-            return;
-        }
-
         if (PChar->PPet == nullptr ||
             (PChar->PPet->m_EcoSystem != SYSTEM_AVATAR &&
             PChar->PPet->m_EcoSystem != SYSTEM_ELEMENTAL))
@@ -4616,6 +4637,9 @@ void SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x0EA(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     if (PChar->status != STATUS_NORMAL)
+        return;
+
+    if(PChar->StatusEffectContainer->HasPreventActionEffect())
         return;
 
     PChar->animation = (PChar->animation == ANIMATION_SIT ? ANIMATION_NONE : ANIMATION_SIT);

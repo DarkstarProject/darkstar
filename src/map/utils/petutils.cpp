@@ -204,14 +204,14 @@ namespace petutils
                 Pet->hthres = (uint16)(Sql_GetFloatData(SqlHandle, 27) * 1000);
                 Pet->impactres = (uint16)(Sql_GetFloatData(SqlHandle, 28) * 1000);
 
-                Pet->firedef = (uint16)((Sql_GetFloatData(SqlHandle, 29) - 1) * -1000);
-                Pet->icedef = (uint16)((Sql_GetFloatData(SqlHandle, 30) - 1) * -1000);
-                Pet->winddef = (uint16)((Sql_GetFloatData(SqlHandle, 31) - 1) * -1000);
-                Pet->earthdef = (uint16)((Sql_GetFloatData(SqlHandle, 32) - 1) * -1000);
-                Pet->thunderdef = (uint16)((Sql_GetFloatData(SqlHandle, 33) - 1) * -1000);
-                Pet->waterdef = (uint16)((Sql_GetFloatData(SqlHandle, 34) - 1) * -1000);
-                Pet->lightdef = (uint16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -1000);
-                Pet->darkdef = (uint16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -1000);
+                Pet->firedef = 0;
+                Pet->icedef = 0;
+                Pet->winddef = 0;
+                Pet->earthdef = 0;
+                Pet->thunderdef = 0;
+                Pet->waterdef = 0;
+                Pet->lightdef = 0;
+                Pet->darkdef = 0;
 
                 Pet->fireres = (uint16)((Sql_GetFloatData(SqlHandle, 29) - 1) * -100);
                 Pet->iceres = (uint16)((Sql_GetFloatData(SqlHandle, 30) - 1) * -100);
@@ -797,6 +797,7 @@ namespace petutils
 
         PPet->look = petData->look;
         PPet->name = petData->name;
+        PPet->SetMJob(petData->mJob);
         PPet->m_EcoSystem = petData->EcoSystem;
         PPet->m_Family = petData->m_Family;
         PPet->m_MobSkillList = petData->m_MobSkillList;

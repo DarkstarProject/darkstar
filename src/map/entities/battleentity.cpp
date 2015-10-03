@@ -79,6 +79,11 @@ bool CBattleEntity::isDead()
     return (health.hp <= 0 || status == STATUS_DISAPPEAR);
 }
 
+bool CBattleEntity::isAlive()
+{
+    return !(health.hp <= 0 || status == STATUS_DISAPPEAR);
+}
+
 bool CBattleEntity::isInDynamis()
 {
     if (loc.zone != nullptr) {

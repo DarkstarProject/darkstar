@@ -123,6 +123,7 @@ public:
 	uint16			GetLastCorsairRoll();
 	bool			GetAutoAttackEnabled();
 	bool			GetMagicCastingEnabled();
+        bool                    IsInSleepableAction();
     bool            GetMobAbilityEnabled();
     bool            MoveTo(position_t* pos); // move entity to position. Doesn't pathfind
     void			Wait(int32 waitTime);

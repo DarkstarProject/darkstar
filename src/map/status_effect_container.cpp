@@ -35,6 +35,7 @@ When a status effect is gained twice on a player. It can do one or more of the f
 #include "../common/timer.h"
 
 #include <string.h>
+#include <array>
 
 #include "lua/luautils.h"
 
@@ -43,6 +44,7 @@ When a status effect is gained twice on a player. It can do one or more of the f
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
 #include "packets/message_basic.h"
+#include "packets/status_effects.h"
 
 #include "utils/charutils.h"
 #include "entities/battleentity.h"
@@ -95,7 +97,7 @@ namespace effects
         uint32    MinDuration;
     };
 
-    EffectParams_t EffectsParams[MAX_EFFECTID];
+    std::array<EffectParams_t, MAX_EFFECTID> EffectsParams;
 
     /************************************************************************
     *                                                                       *
@@ -1090,6 +1092,7 @@ void CStatusEffectContainer::UpdateStatusIcons()
     ((CCharEntity*)m_POwner)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_POwner));
     ((CCharEntity*)m_POwner)->pushPacket(new CCharJobExtraPacket((CCharEntity*)m_POwner, true));
     ((CCharEntity*)m_POwner)->pushPacket(new CCharJobExtraPacket((CCharEntity*)m_POwner, false));
+    ((CCharEntity*)m_POwner)->pushPacket(new CStatusEffectPacket((CCharEntity*)m_POwner));
 }
 
 /************************************************************************
@@ -1127,7 +1130,7 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
 
 
     //todo: find a better place to put this?
-    if(!m_POwner->isDead())
+    if(m_POwner->PBattleAI != nullptr && m_POwner->PBattleAI->IsInSleepableAction())
     {
         // this should actually go into a char charm AI
         if(m_POwner->PPet != nullptr && m_POwner->objtype == TYPE_PC)
@@ -1450,6 +1453,14 @@ void CStatusEffectContainer::CopyConfrontationEffect(CBattleEntity* PEntity)
         {
             PEntity->StatusEffectContainer->AddStatusEffect(new CStatusEffect(*PEffect));
         }
+    }
+}
+
+void CStatusEffectContainer::ForEachEffect(std::function<void(CStatusEffect*)> func)
+{
+    for (auto&& PEffect : m_StatusEffectList)
+    {
+        func(PEffect);
     }
 }
 

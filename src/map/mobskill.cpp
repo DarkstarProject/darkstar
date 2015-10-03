@@ -62,9 +62,8 @@ bool CMobSkill::isSingle()
 
 bool CMobSkill::isTwoHour()
 {
-  // id zero means it was put on mob skill list
   // flag means this skill is a real two hour
-  return m_ID == 0 || m_Flag & SKILLFLAG_TWO_HOUR;
+  return m_Flag & SKILLFLAG_TWO_HOUR;
 }
 
 void CMobSkill::setID(uint16 id)
@@ -144,7 +143,7 @@ uint16 CMobSkill::getAnimationID()
 	return m_AnimID;
 }
 
-uint16 CMobSkill::getAvatarAnimationID()
+uint16 CMobSkill::getPetAnimationID()
 {
   // levi
   if(m_AnimID >= 552 && m_AnimID <= 560){
@@ -179,6 +178,11 @@ uint16 CMobSkill::getAvatarAnimationID()
     return m_AnimID - 605;
   }
 
+  // wyvern
+  if (m_AnimID >= 621 && m_AnimID <= 632) {
+      return m_AnimID - 493;
+  }
+
   return m_AnimID;
 }
 
@@ -204,8 +208,12 @@ uint16 CMobSkill::getMsgForAction()
     uint8 flag = getFlag();
     if (flag == SKILLFLAG_WS)
     {
-        if (id == 190) //dimensional death
-            messageid = 255;
+        // Fomor weaponskills
+        // the actual message is a player ability
+        // messageid for 3825 should be 241
+        // so 3825 - 3584 = 241, etc
+        if (id >= 3825)
+            messageid = id - 3584;
         else
             messageid = id;
     }

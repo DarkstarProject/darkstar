@@ -47,6 +47,7 @@ enum MODIFIER
     MOD_CHR                       = 14, // Charisma
 
     // Elemental Defenses
+    // 128 = 128 / 256 = 50% reduction
     MOD_FIREDEF                   = 15, // Fire Defense
     MOD_ICEDEF                    = 16, // Ice Defense
     MOD_WINDDEF                   = 17, // Wind Defense
@@ -268,7 +269,7 @@ enum MODIFIER
     MOD_STUNRES                   = 251, // Enhances "Resist Stun" effect
     MOD_CHARMRES                  = 252, // Enhances "Resist Charm" effect
     MOD_AMNESIARES                = 253, // Enhances "Resist Amnesia" effect
-    // PLACEHOLDER                   = 254, // placeholder for future resist effect
+    MOD_LULLABYRES                = 254, // Enhances "Resist Lullaby" effect
     MOD_DEATHRES                  = 255, // Used by gear and ATMA that give resistance to instance KO
 
     MOD_PARALYZE                  = 257, // Paralyze -- percent chance to proc
@@ -379,6 +380,7 @@ enum MODIFIER
     MOD_DAY_REDUCTION             = 373, // stores perpetuation reduction depending on day
     MOD_PERPETUATION_REDUCTION    = 346, // stores the MP/tick reduction from gear
     MOD_BP_DELAY                  = 357, // stores blood pact delay reduction
+    MOD_BP_DELAY_II               = 541, // Blood Pact Delay Reduction II
 
     // Blue Mage
     MOD_BLUE_POINTS               = 309, // Tracks extra blue points
@@ -386,6 +388,7 @@ enum MODIFIER
     // Corsair
     MOD_EXP_BONUS                 = 382, //
     MOD_ROLL_RANGE                = 528, // Additional range for COR roll abilities.
+    MOD_JOB_BONUS_CHANCE          = 542, // Chance to apply job bonus to COR roll without having the job in the party.
 
     MOD_DMG_REFLECT               = 316, // Tracks totals
     MOD_ROLL_ROGUES               = 317, // Tracks totals
@@ -581,6 +584,7 @@ enum MODIFIER
     MOD_FORCE_LIGHT_DWBONUS       = 537, // Set to 1 to force light day/weather spell bonus/penalty. Do not have it total more than 1.
     MOD_FORCE_DARK_DWBONUS        = 538, // Set to 1 to force dark day/weather spell bonus/penalty. Do not have it total more than 1.
     MOD_STONESKIN_BONUS_HP        = 539, // Bonus "HP" granted to Stoneskin spell.
+    MOD_ENHANCES_ELEMENTAL_SIPHON = 540, // Bonus Base MP added to Elemental Siphon skill.
 
     // MOD_SPARE = 92, // stuff
     // MOD_SPARE = 93, // stuff
@@ -591,8 +595,8 @@ enum MODIFIER
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 540, // stuff
-    // MOD_SPARE = 541, // stuff
+    // MOD_SPARE = 543, // stuff
+    // MOD_SPARE = 544, // stuff
 
 };
 

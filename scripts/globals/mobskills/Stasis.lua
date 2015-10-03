@@ -22,12 +22,11 @@ function onMobWeaponSkill(target, mob, skill)
 
 	local typeEffect = EFFECT_PARALYSIS;
 
-    mob:resetEnmity(target);
+        mob:resetEnmity(target);
 
     if (MobPhysicalHit(skill)) then
-        target:addStatusEffect(typeEffect,40,0,60);
-        skill:setMsg(MSG_ENFEEB_IS);
-		return typeEffect;
+        skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 40, 0, 60));
+        return typeEffect;
     end
 
     return shadows;

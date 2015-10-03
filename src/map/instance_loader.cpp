@@ -107,7 +107,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 		mob_pools.familyid, name_prefix, flags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-		allegiance, namevis, aggro, mob_groups.roam_distance, mob_pools.skill_list_id \
+		allegiance, namevis, aggro, mob_pools.skill_list_id \
 		FROM instance_entities INNER JOIN mob_spawn_points ON instance_entities.id = mob_spawn_points.mobid \
 		INNER JOIN mob_groups ON mob_groups.groupid = mob_spawn_points.groupid \
 		INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
@@ -179,15 +179,6 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 			PMob->setModifier(MOD_HTHRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 37) * 1000));
 			PMob->setModifier(MOD_IMPACTRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 38) * 1000));
 
-			PMob->setModifier(MOD_FIREDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 39) - 1) * -1000)); // These are stored as floating percentages
-			PMob->setModifier(MOD_ICEDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 40) - 1) * -1000)); // and need to be adjusted into modifier units.
-			PMob->setModifier(MOD_WINDDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 41) - 1) * -1000)); // Higher DEF = lower damage.
-			PMob->setModifier(MOD_EARTHDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 42) - 1) * -1000)); // Negatives signify increased damage.
-			PMob->setModifier(MOD_THUNDERDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 43) - 1) * -1000)); // Positives signify reduced damage.
-			PMob->setModifier(MOD_WATERDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 44) - 1) * -1000)); // Ex: 125% damage would be 1.25, 50% damage would be 0.50
-			PMob->setModifier(MOD_LIGHTDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 45) - 1) * -1000)); // (1.25 - 1) * -1000 = -250 DEF
-			PMob->setModifier(MOD_DARKDEF, (int16)((Sql_GetFloatData(SqlInstanceHandle, 46) - 1) * -1000)); // (0.50 - 1) * -1000 = 500 DEF
-
 			PMob->setModifier(MOD_FIRERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 39) - 1) * -100)); // These are stored as floating percentages
 			PMob->setModifier(MOD_ICERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 40) - 1) * -100)); // and need to be adjusted into modifier units.
 			PMob->setModifier(MOD_WINDRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 41) - 1) * -100)); // Higher RES = lower damage.
@@ -228,8 +219,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->allegiance = Sql_GetUIntData(SqlInstanceHandle, 59);
             PMob->namevis = Sql_GetUIntData(SqlInstanceHandle, 60);
             PMob->m_Aggro = Sql_GetUIntData(SqlInstanceHandle, 61);
-            PMob->m_roamDistance = Sql_GetFloatData(SqlInstanceHandle, 62);
-            PMob->m_MobSkillList = Sql_GetUIntData(SqlInstanceHandle, 63);
+            PMob->m_MobSkillList = Sql_GetUIntData(SqlInstanceHandle, 62);
 
 			// must be here first to define mobmods
 			mobutils::InitializeMob(PMob, zone);

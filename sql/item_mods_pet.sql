@@ -156,3 +156,34 @@ INSERT INTO `item_mods_pet` VALUES(10684, 165, 6); -- Pet: Critical Hit Rate +6%
 --  Nirvana *Mythic* - LVL 75 - ignored the Aftermath acc, atk occ.attacks twice
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES(19005, 28, 20); -- Pet: MAB +20
+
+-- -------------------------------------------------------
+--  Esper Stone - LVL 94
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(19772, 28, 1); -- Pet: MAB +1
+
+-- -------------------------------------------------------
+--  Esper Stone + 1 - LVL 99
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(21361, 28, 6); -- Pet: MAB +6
+
+-- -------------------------------------------------------
+--  Caller's Pendant - LVL 84
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(11619, 368, 25); -- Pet: Regain + 25
+
+-- -------------------------------------------------------
+--  Eidolon Pendant - LVL 79
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(11612, 28, 2); -- Pet: MAB +2
+
+-- -------------------------------------------------------
+--  Eidolon Pendant + 1 - LVL 99
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(28356, 28, 5); -- Pet: MAB +5
+
+-- -------------------------------------------------------
+--  Caller's Sash - LVL 80
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES(11739, 28, 2); -- Pet: MAB +2
+INSERT INTO `item_mods_pet` VALUES(11739, 27, 2); -- Pet: Enmity +2

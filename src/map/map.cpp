@@ -828,6 +828,8 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                         }
 
                         PChar->StatusEffectContainer->SaveStatusEffects(true);
+                        charutils::SaveCharPosition(PChar);
+
                         ShowDebug(CL_CYAN"map_cleanup: %s timed out, closing session\n" CL_RESET, PChar->GetName());
 
                         PChar->status = STATUS_SHUTDOWN;

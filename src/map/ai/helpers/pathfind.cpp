@@ -39,7 +39,7 @@ CPathFind::~CPathFind()
 	Clear();
 }
 
-bool CPathFind::RoamAround(position_t point, float maxRadius, uint8 roamFlags)
+bool CPathFind::RoamAround(position_t point, float maxRadius, uint8 maxTurns, uint8 roamFlags)
 {
 	Clear();
 
@@ -48,7 +48,7 @@ bool CPathFind::RoamAround(position_t point, float maxRadius, uint8 roamFlags)
 	if (isNavMeshEnabled())
 	{
 
-		if (FindRandomPath(&point, maxRadius, roamFlags))
+		if (FindRandomPath(&point, maxRadius, maxTurns, roamFlags))
 		{
 			return true;
 		}
@@ -325,23 +325,9 @@ bool CPathFind::FindPath(position_t* start, position_t* end)
 	return true;
 }
 
-bool CPathFind::FindRandomPath(position_t* start, float maxRadius, uint8 roamFlags)
+bool CPathFind::FindRandomPath(position_t* start, float maxRadius, uint8 maxTurns, uint8 roamFlags)
 {
-    int maxTurns = 3;
-
-    if(roamFlags & ROAMFLAG_NO_TURN)
-    {
-        m_turnLength = 1;
-    }
-    else
-    {
-        if(roamFlags & ROAMFLAG_WANDER)
-        {
-            maxTurns = 5;
-        }
-
-        m_turnLength = dsprand::GetRandomNumber(1, maxTurns);
-    }
+    m_turnLength = dsprand::GetRandomNumber(1, (int)maxTurns);
 
     position_t startPosition = *start;
 

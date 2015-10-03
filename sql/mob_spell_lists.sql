@@ -244,7 +244,8 @@ INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,4,55,255);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,21,55,98);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,22,99,255);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,28,7,33);
-INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,29,34,255);
+INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,29,34,65);
+INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,30,66,255);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,43,10,29);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,44,30,49);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,45,50,69);
@@ -1422,6 +1423,14 @@ INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 235, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Hope', 140, 196, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Hope', 140, 213, 1, 255);
 
+-- SMN Dynamis / Maat spell list
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 296, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 298, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 299, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 300, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 301, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 302, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 303, 1, 255);
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;

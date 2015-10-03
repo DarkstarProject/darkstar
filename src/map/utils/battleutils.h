@@ -115,7 +115,7 @@ namespace battleutils
 
     CWeaponSkill*	GetWeaponSkill(uint16 WSkillID);
     CMobSkill*		GetMobSkill(uint16 SkillID);
-    CMobSkill*          GetTwoHourMobSkill(JOBTYPE job);
+    CMobSkill*          GetTwoHourMobSkill(JOBTYPE job, uint16 familyId);
 
     std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill);
     const std::vector<uint16>& GetMobSkillList(uint16 ListID);
@@ -226,6 +226,7 @@ namespace battleutils
     bool				DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset);
     void				DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll);
     void                AddTraits(CBattleEntity* PEntity, TraitList_t* TraitList, uint8 level);
+    bool                HasClaim(CBattleEntity* PEntity, CBattleEntity* PTarget);
 
     uint32              CalculateSpellCastTime(CBattleEntity*, CSpell*);
     uint16              CalculateSpellCost(CBattleEntity*, CSpell*);

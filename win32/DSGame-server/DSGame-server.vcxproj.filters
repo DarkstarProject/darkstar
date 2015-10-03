@@ -839,6 +839,9 @@
     <ClInclude Include="..\..\src\common\marshal\string.h">
       <Filter>Header Files\common\marshal</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\status_effects.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\map\ai\ai_base.h">
       <Filter>Header Files\ai</Filter>
     </ClInclude>
@@ -1565,6 +1568,9 @@
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\guild.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\status_effects.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\ai\ai_base.cpp">

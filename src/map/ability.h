@@ -31,18 +31,18 @@
 
 enum ADDTYPE
 {
-	ADDTYPE_NORMAL		= 0,
-	ADDTYPE_MERIT		= 1,
-	ADDTYPE_ASTRAL_FLOW	= 2,
-	ADDTYPE_MAIN_ONLY	= 4,
-	ADDTYPE_LEARNED		= 8,
+    ADDTYPE_NORMAL      = 0,
+    ADDTYPE_MERIT       = 1,
+    ADDTYPE_ASTRAL_FLOW = 2,
+    ADDTYPE_MAIN_ONLY   = 4,
+    ADDTYPE_LEARNED     = 8,
     ADDTYPE_LIGHT_ARTS  = 16,
     ADDTYPE_DARK_ARTS   = 32
 };
 
 enum ABILITY
 {
-	ABILITY_MIGHTY_STRIKES     = 0,
+    ABILITY_MIGHTY_STRIKES     = 0,
     ABILITY_HUNDRED_FISTS      = 1,
     ABILITY_BENEDICTION        = 2,
     ABILITY_MANAFONT           = 3,
@@ -409,60 +409,60 @@ enum ABILITY
     ABILITY_EFFUSION           = 364,
     ABILITY_CHOCOBO_JIG_II     = 365,
     ABILITY_RELINQUISH         = 366,
-
+    ABILITY_APOGEE             = 369,
     ABILITY_HEALING_RUBY       = 496,
     ABILITY_POISON_NAILS       = 497,
     ABILITY_SHINING_RUBY       = 498,
     ABILITY_GLITTERING_RUBY    = 499,
     ABILITY_METEORITE          = 500,
     ABILITY_HEALING_RUBY_II    = 501,
-	ABILITY_SEARING_LIGHT	   = 502,
+    ABILITY_SEARING_LIGHT      = 502,
     ABILITY_HOLY_MIST          = 503,
     ABILITY_SOOTHING_RUBY      = 504,
 
-	ABILITY_MOONLIT_CHARGE	   = 512,
-	ABILITY_CRESCENT_FANG	   = 513,
-	ABILITY_LUNAR_CRY		   = 514,
-	ABILITY_LUNAR_ROAR		   = 515,
-	ABILITY_ECLIPTIC_GROWL	   = 516,
-	ABILITY_ECLIPTIC_HOWL	   = 517,
-	ABILITY_ECLIPSE_BITE	   = 518,
+    ABILITY_MOONLIT_CHARGE     = 512,
+    ABILITY_CRESCENT_FANG      = 513,
+    ABILITY_LUNAR_CRY          = 514,
+    ABILITY_LUNAR_ROAR         = 515,
+    ABILITY_ECLIPTIC_GROWL     = 516,
+    ABILITY_ECLIPTIC_HOWL      = 517,
+    ABILITY_ECLIPSE_BITE       = 518,
 
-	ABILITY_HOWLING_MOON	   = 520,
+    ABILITY_HOWLING_MOON       = 520,
     ABILITY_LUNAR_BAY          = 521,
     ABILITY_HEAVENWARD_HOWL    = 522,
 
-	ABILITY_PUNCH			   = 528,
-	ABILITY_FIRE_II			   = 529,
-	ABILITY_BURNING_STRIKE	   = 530,
-	ABILITY_DOUBLE_PUNCH	   = 531,
-	ABILITY_CRIMSON_HOWL	   = 532,
-	ABILITY_FIRE_IV			   = 533,
-	ABILITY_FLAMING_CRUSH	   = 534,
-	ABILITY_METEOR_STRIKE	   = 535,
-	ABILITY_INFERNO			   = 536,
+    ABILITY_PUNCH              = 528,
+    ABILITY_FIRE_II            = 529,
+    ABILITY_BURNING_STRIKE     = 530,
+    ABILITY_DOUBLE_PUNCH       = 531,
+    ABILITY_CRIMSON_HOWL       = 532,
+    ABILITY_FIRE_IV            = 533,
+    ABILITY_FLAMING_CRUSH      = 534,
+    ABILITY_METEOR_STRIKE      = 535,
+    ABILITY_INFERNO            = 536,
     ABILITY_INFERNO_HOWL       = 537,
 
-	ABILITY_ROCK_THROW		   = 544,
-	ABILITY_STONE_II		   = 545,
-	ABILITY_ROCK_BUSTER		   = 546,
-	ABILITY_MEGALITH_THROW	   = 547,
-	ABILITY_EARTHEN_WARD	   = 548,
-	ABILITY_STONE_IV		   = 549,
-	ABILITY_MOUNTAIN_BUSTER	   = 550,
-	ABILITY_GEOCRUSH		   = 551,
-	ABILITY_EARTHEN_FURY	   = 552,
+    ABILITY_ROCK_THROW         = 544,
+    ABILITY_STONE_II           = 545,
+    ABILITY_ROCK_BUSTER        = 546,
+    ABILITY_MEGALITH_THROW     = 547,
+    ABILITY_EARTHEN_WARD       = 548,
+    ABILITY_STONE_IV           = 549,
+    ABILITY_MOUNTAIN_BUSTER    = 550,
+    ABILITY_GEOCRUSH           = 551,
+    ABILITY_EARTHEN_FURY       = 552,
     ABILITY_EARTHEN_ARMOR      = 553,
 
-	ABILITY_BARRACUDA_DIVE	   = 560,
-	ABILITY_WATER_II		   = 561,
-	ABILITY_TAIL_WHIP		   = 562,
-	ABILITY_SLOWGA			   = 564,
-	ABILITY_SPRING_WATER	   = 563,
-	ABILITY_WATER_IV		   = 565,
-	ABILITY_SPINNING_DIVE	   = 566,
-	ABILITY_GRAND_FALL		   = 567,
-	ABILITY_TIDAL_WAVE		   = 568,
+    ABILITY_BARRACUDA_DIVE     = 560,
+    ABILITY_WATER_II           = 561,
+    ABILITY_TAIL_WHIP          = 562,
+    ABILITY_SLOWGA             = 564,
+    ABILITY_SPRING_WATER       = 563,
+    ABILITY_WATER_IV           = 565,
+    ABILITY_SPINNING_DIVE      = 566,
+    ABILITY_GRAND_FALL         = 567,
+    ABILITY_TIDAL_WAVE         = 568,
     ABILITY_TIDAL_ROAR         = 569,
 
     ABILITY_CLAW               = 576,
@@ -473,29 +473,29 @@ enum ABILITY
     ABILITY_AERO_IV            = 581,
     ABILITY_PREDATOR_CLAWS     = 582,
     ABILITY_WIND_BLADE         = 583,
-	ABILITY_AERIAL_BLAST	   = 584,
+    ABILITY_AERIAL_BLAST       = 584,
     ABILITY_FLEET_WIND         = 585,
 
-	ABILITY_AXE_KICK		   = 592,
-	ABILITY_BLIZZARD_II		   = 593,
-	ABILITY_FROST_ARMOR		   = 594,
-	ABILITY_SLEEPGA			   = 595,
-	ABILITY_DOUBLE_SLAP		   = 596,
-	ABILITY_BLIZZARD_IV		   = 597,
-	ABILITY_RUSH			   = 598,
-	ABILITY_HEAVENLY_STRIKE	   = 599,
-	ABILITY_DIAMOND_DUST	   = 600,
+    ABILITY_AXE_KICK           = 592,
+    ABILITY_BLIZZARD_II        = 593,
+    ABILITY_FROST_ARMOR        = 594,
+    ABILITY_SLEEPGA            = 595,
+    ABILITY_DOUBLE_SLAP        = 596,
+    ABILITY_BLIZZARD_IV        = 597,
+    ABILITY_RUSH               = 598,
+    ABILITY_HEAVENLY_STRIKE    = 599,
+    ABILITY_DIAMOND_DUST       = 600,
     ABILITY_DIAMOND_STORM      = 601,
 
-	ABILITY_SHOCK_STRIKE	   = 608,
-	ABILITY_THUNDER_II		   = 609,
-	ABILITY_THUNDERSPARK	   = 611,
-	ABILITY_ROLLING_THUNDER	   = 610,
-	ABILITY_LIGHTNING_ARMOR	   = 612,
-	ABILITY_THUNDER_IV		   = 613,
-	ABILITY_CHAOTIC_STRIKE	   = 614,
-	ABILITY_THUNDERSTORM	   = 615,
-	ABILITY_JUDGMENT_BOLT	   = 616,
+    ABILITY_SHOCK_STRIKE       = 608,
+    ABILITY_THUNDER_II         = 609,
+    ABILITY_THUNDERSPARK       = 611,
+    ABILITY_ROLLING_THUNDER    = 610,
+    ABILITY_LIGHTNING_ARMOR    = 612,
+    ABILITY_THUNDER_IV         = 613,
+    ABILITY_CHAOTIC_STRIKE     = 614,
+    ABILITY_THUNDERSTORM       = 615,
+    ABILITY_JUDGMENT_BOLT      = 616,
     ABILITY_SHOCK_SQUALL       = 617,
 
     ABILITY_HEALING_BREATH_IV  = 623,
@@ -624,7 +624,7 @@ enum ABILITY
 
 };
 
-#define MAX_ABILITY_ID	752
+#define MAX_ABILITY_ID  752
 
 struct Charge_t 
 {
@@ -645,63 +645,63 @@ class CAbility
 {
 public:
 
-	CAbility(uint16 id);
+    CAbility(uint16 id);
 
     bool        isAvatarAbility();
     bool        isAoE();
     bool        isConal();
 
-	uint16		getID();
-	JOBTYPE		getJob();
-	uint8		getLevel();
-	uint16		getAnimationID();
-	float		getRange();
-	uint8		getAOE();
-	uint8		getValidTarget();
-	uint8		getAddType();
+    uint16      getID();
+    JOBTYPE     getJob();
+    uint8       getLevel();
+    uint16      getAnimationID();
+    float       getRange();
+    uint8       getAOE();
+    uint8       getValidTarget();
+    uint8       getAddType();
     uint16      getMessage();
     uint16      getAoEMsg();
-	uint16		getRecastTime();
-	uint16		getRecastId();
-	uint16		getCE();
-	uint16		getVE();
-	uint16		getMeritModID();
+    uint16      getRecastTime();
+    uint16      getRecastId();
+    uint16      getCE();
+    uint16      getVE();
+    uint16      getMeritModID();
 
-	void		setID(uint16 id);
-	void		setJob(JOBTYPE Job);
-	void		setLevel(uint8 level);
-	void		setAnimationID(uint16 animationID);
-	void		setRange(float range);
-	void		setAOE(uint8 aoe);
-	void		setValidTarget(uint8 validTarget);
-	void		setAddType(uint8 addtype);
+    void        setID(uint16 id);
+    void        setJob(JOBTYPE Job);
+    void        setLevel(uint8 level);
+    void        setAnimationID(uint16 animationID);
+    void        setRange(float range);
+    void        setAOE(uint8 aoe);
+    void        setValidTarget(uint8 validTarget);
+    void        setAddType(uint8 addtype);
     void        setMessage(uint16 message);
-	void		setRecastTime(uint16 recastTime);
-	void		setRecastId(uint16 recastId);
-	void		setCE(uint16 CE);
-	void		setVE(uint16 VE);
-	void        setMeritModID(uint16 value);
+    void        setRecastTime(uint16 recastTime);
+    void        setRecastId(uint16 recastId);
+    void        setCE(uint16 CE);
+    void        setVE(uint16 VE);
+    void        setMeritModID(uint16 value);
 
-	const int8* getName();
-	void		setName(int8* name);
+    const int8* getName();
+    void        setName(int8* name);
 
 private:
 
-	uint16		m_ID;
-	JOBTYPE		m_Job;
-	uint8		m_level;
-	uint16		m_animationID;
-	uint8		m_range;
-	uint8		m_aoe;
-	uint8		m_validTarget;
-	uint8		m_addType;
+    uint16      m_ID;
+    JOBTYPE     m_Job;
+    uint8       m_level;
+    uint16      m_animationID;
+    uint8       m_range;
+    uint8       m_aoe;
+    uint8       m_validTarget;
+    uint8       m_addType;
     uint16      m_message;
-	uint16		m_recastTime;
-	uint16		m_recastId;
-	uint16		m_CE;
-	uint16		m_VE;
-	uint16		m_meritModID;
-	string_t	m_name;
+    uint16      m_recastTime;
+    uint16      m_recastId;
+    uint16      m_CE;
+    uint16      m_VE;
+    uint16      m_meritModID;
+    string_t    m_name;
 };
 
 /************************************************************************
@@ -717,7 +717,7 @@ namespace ability
     CAbility* GetAbility(uint16 AbilityID);
 
     CAbility* GetTwoHourAbility(JOBTYPE JobID);
-	bool CanLearnAbility(CBattleEntity* PUser, uint16 AbilityID);
+    bool CanLearnAbility(CBattleEntity* PUser, uint16 AbilityID);
     Charge_t* GetCharge(CBattleEntity* PUser, uint16 chargeID);
     uint32 GetAbsorbMessage(uint32 message);
 

@@ -142,8 +142,28 @@ int16 CMobSpellContainer::GetSpell()
     return GetBuffSpell();
   }
 
-  // try damage spell
-  return GetDamageSpell();
+  // Grab whatever spell can be found
+  // starting from damage spell
+  if(HasDamageSpells())
+  {
+      // try damage spell
+      return GetDamageSpell();
+  }
+
+  if(HasBuffSpells())
+  {
+      return GetBuffSpell();
+  }
+
+  if(HasGaSpells())
+  {
+      return GetGaSpell();
+  }
+
+  if(HasHealSpells())
+  {
+      return GetHealSpell();
+  }
 }
 
 int16 CMobSpellContainer::GetGaSpell()

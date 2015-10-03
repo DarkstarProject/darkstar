@@ -60,21 +60,25 @@ function onUseAbility(player,target,ability)
     local pet = player:getPet();    
     local healPet = drainamount * 2;
     local petTP = pet:getTP();
+    local regenAmount = player:getMainLvl()/3; -- level/3 tic regen
     
     if (player:getEquipID(SLOT_HEAD)==15238) then
         healPet = healPet + 15;
     end
-    
-    pet:addHP(healPet); --add the hp to pet    
-    player:addTP(petTP/2); --add half pet tp to you
-    pet:delTP(petTP/2); -- remove half tp from pet
 
     pet:delStatusEffect(EFFECT_POISON);
-    removeSleepEffects(pet);
+    pet:delStatusEffect(EFFECT_BLIND);
     pet:delStatusEffect(EFFECT_PARALYSIS);
     
     if (math.random(1,2) == 1) then
         pet:delStatusEffect(EFFECT_DOOM);
     end
-    
+    if (pet:getHP() < pet:getMaxHP()) then -- sleep is only removed if it heals the wyvern
+        removeSleepEffects(pet);
+    end
+
+    pet:addHP(healPet); --add the hp to pet
+    pet:addStatusEffect(EFFECT_REGEN,regenAmount,3,90,0,0,0); -- 90 seconds of regen
+    player:addTP(petTP/2); --add half pet tp to you
+    pet:delTP(petTP/2); -- remove half tp from pet
 end;

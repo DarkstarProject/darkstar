@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.6.21-log
+-- Server version   5.6.21-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -173,8 +173,8 @@ INSERT INTO `status_effects` VALUES (130,'choke',16418,0,0,0,129,131,4,0);
 INSERT INTO `status_effects` VALUES (131,'rasp',16418,0,0,0,130,132,2,0);
 INSERT INTO `status_effects` VALUES (132,'shock',16418,0,0,0,131,133,6,0);
 INSERT INTO `status_effects` VALUES (133,'drown',16418,0,0,0,132,128,3,0);
-INSERT INTO `status_effects` VALUES (134,'dia',16418,0,135,0,0,0,7,0);
-INSERT INTO `status_effects` VALUES (135,'bio',16418,0,134,0,0,0,8,0);
+INSERT INTO `status_effects` VALUES (134,'dia',16418,0,135,1,0,0,7,0);
+INSERT INTO `status_effects` VALUES (135,'bio',16418,0,134,1,0,0,8,0);
 INSERT INTO `status_effects` VALUES (136,'str_down',16418,0,0,0,0,80,3,0);
 INSERT INTO `status_effects` VALUES (137,'dex_down',16418,0,0,0,0,81,2,0);
 INSERT INTO `status_effects` VALUES (138,'vit_down',16418,0,0,0,0,82,4,0);
@@ -606,6 +606,7 @@ INSERT INTO `status_effects` VALUES (578,'fishy_intuition',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (579,'commitment',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (580,'haste_ii',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (581,'flurry_ii',32,0,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (583,'apogee',2097185,0,0,0,0,0,0,0);
 
 
 INSERT INTO `status_effects` VALUES (768,'abyssea_str',256,0,0,0,0,0,1,0);

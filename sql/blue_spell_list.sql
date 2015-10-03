@@ -39,7 +39,7 @@ INSERT INTO `blue_spell_list` VALUES ('529','427','2','7','1','3','0'); -- Bludg
 INSERT INTO `blue_spell_list` VALUES ('530','313','4','0','1','0','0'); -- Refueling
 INSERT INTO `blue_spell_list` VALUES ('531','420','3','13','1','0','0'); -- Ice Break
 INSERT INTO `blue_spell_list` VALUES ('532','279','4','0','1','0','0'); -- Blitzstrahl
-INSERT INTO `blue_spell_list` VALUES ('533','253','3','14','2','0','0'); -- Self-Destruct
+INSERT INTO `blue_spell_list` VALUES ('533','255','3','14','2','0','0'); -- Self-Destruct
 INSERT INTO `blue_spell_list` VALUES ('534','267','4','10','1','0','0'); -- Mysterious Light
 INSERT INTO `blue_spell_list` VALUES ('535','1390','1','14','1','0','0'); -- Cold Wave
 INSERT INTO `blue_spell_list` VALUES ('536','210','1','4','1','0','0'); -- Poison Breath
@@ -81,7 +81,7 @@ INSERT INTO `blue_spell_list` VALUES ('584','8','2','2','1','0','0'); -- Sheep S
 INSERT INTO `blue_spell_list` VALUES ('585','10','4','3','1','12','0'); -- Ram Charge
 INSERT INTO `blue_spell_list` VALUES ('587','17','2','3','1','4','0'); -- Claw Cyclone
 INSERT INTO `blue_spell_list` VALUES ('588','241','2','4','1','0','0'); -- Lowing
-INSERT INTO `blue_spell_list` VALUES ('589','190','5','16','1','1','8'); -- Dimensional Death
+INSERT INTO `blue_spell_list` VALUES ('589','3839','5','16','1','1','8'); -- Dimensional Death
 INSERT INTO `blue_spell_list` VALUES ('591','544','4','6','1','0','0'); -- Heat Breath
 INSERT INTO `blue_spell_list` VALUES ('592','36','2','0','1','0','0'); -- Blank Gaze
 INSERT INTO `blue_spell_list` VALUES ('593','39','3','5','1','0','0'); -- Magic Fruit
@@ -177,7 +177,7 @@ INSERT INTO `blue_spell_list` VALUES ('695','564','4','15','1','0','0'); -- Thun
 INSERT INTO `blue_spell_list` VALUES ('696','1945','5','21','1','0','0'); -- Orcish Counterstance
 INSERT INTO `blue_spell_list` VALUES ('697','1568','4','28','1','2','0'); -- Amorphic Spikes
 INSERT INTO `blue_spell_list` VALUES ('698','388','2','22','1','0','0'); -- Wind breath
-INSERT INTO `blue_spell_list` VALUES ('699','253','2','25','1','2','0'); -- Barbed Crescent
+INSERT INTO `blue_spell_list` VALUES ('699','3837','2','25','1','2','0'); -- Barbed Crescent
 -- INSERT INTO `blue_spell_list` VALUES ('700','2689','6','16','8','0','0'); -- Nature's Meditation
 -- INSERT INTO `blue_spell_list` VALUES ('701','2694','6','18','8','0','0'); -- Tempestuous Upheaval
 -- INSERT INTO `blue_spell_list` VALUES ('702','2702','6','13','8','0','0'); -- Rending Deluge

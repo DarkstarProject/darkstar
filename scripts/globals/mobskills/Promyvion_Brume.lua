@@ -17,10 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_POISON;
-    if (target:hasStatusEffect(typeEffect) == false) then
-            target:addStatusEffect(typeEffect,5,3,180*resist);
-    end
+    MobStatusEffectMove(mob, target, typeEffect, 5, 3, 180);
 
     local dmgmod = 1;
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_WATER,dmgmod,TP_NO_EFFECT);

@@ -370,6 +370,7 @@ void CBattlefield::cleanup(){
 	//wipe enmity from all mobs in list if needed
 	for(int i=0; i<m_EnemyList.size(); i++){
 		m_EnemyList.at(i)->PBattleAI->SetCurrentAction(ACTION_DESPAWN);
+		m_EnemyList.at(i)->status = STATUS_DISAPPEAR;
 		m_EnemyList.at(i)->PBCNM = nullptr;
 	}
 	//wipe mob list
