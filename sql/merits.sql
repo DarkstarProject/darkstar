@@ -4,14 +4,13 @@ Source Host: localhost
 Source Database: dspdb
 Target Host: localhost
 Target Database: dspdb
-Date: 2/16/2013 9:54:02 PM
+Date: 10/3/2015 5:07:10 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for merits
 -- ----------------------------
-DROP TABLE IF EXISTS `merits`;
 CREATE TABLE `merits` (
   `meritid` smallint(5) unsigned NOT NULL,
   `name` char(25) NOT NULL,
@@ -36,24 +35,24 @@ INSERT INTO `merits` VALUES ('134', 'agi', '15', '1', '1048575', '1', '1');
 INSERT INTO `merits` VALUES ('136', 'int', '15', '1', '1048575', '1', '1');
 INSERT INTO `merits` VALUES ('138', 'mnd', '15', '1', '1048575', '1', '1');
 INSERT INTO `merits` VALUES ('140', 'chr', '15', '1', '1048575', '1', '1');
-INSERT INTO `merits` VALUES ('192', 'h2h', '8', '2', '397347', '2', '2');
-INSERT INTO `merits` VALUES ('194', 'dagger', '8', '2', '1015801', '2', '2');
-INSERT INTO `merits` VALUES ('196', 'sword', '8', '2', '376817', '2', '2');
-INSERT INTO `merits` VALUES ('198', 'gsword', '8', '2', '193', '2', '2');
-INSERT INTO `merits` VALUES ('200', 'axe', '8', '2', '1409', '2', '2');
-INSERT INTO `merits` VALUES ('202', 'gaxe', '8', '2', '129', '2', '2');
-INSERT INTO `merits` VALUES ('204', 'scythe', '8', '2', '393', '2', '2');
-INSERT INTO `merits` VALUES ('206', 'polearm', '8', '2', '10305', '2', '2');
-INSERT INTO `merits` VALUES ('208', 'katana', '8', '2', '4096', '2', '2');
-INSERT INTO `merits` VALUES ('210', 'gkatana', '8', '2', '6144', '2', '2');
-INSERT INTO `merits` VALUES ('212', 'club', '8', '2', '720895', '2', '2');
-INSERT INTO `merits` VALUES ('214', 'staff', '8', '2', '549455', '2', '2');
-INSERT INTO `merits` VALUES ('216', 'archery', '8', '2', '7217', '2', '2');
-INSERT INTO `merits` VALUES ('218', 'marksmanship', '8', '2', '70817', '2', '2');
-INSERT INTO `merits` VALUES ('220', 'throwing', '8', '2', '990783', '2', '2');
-INSERT INTO `merits` VALUES ('222', 'guarding_skill', '8', '2', '131074', '3', '2');
-INSERT INTO `merits` VALUES ('224', 'evasion_skill', '8', '2', '1048575', '3', '2');
-INSERT INTO `merits` VALUES ('226', 'shield_skill', '8', '2', '373', '3', '2');
+INSERT INTO `merits` VALUES ('192', 'h2h', '15', '2', '397347', '2', '2');
+INSERT INTO `merits` VALUES ('194', 'dagger', '15', '2', '1015801', '2', '2');
+INSERT INTO `merits` VALUES ('196', 'sword', '15', '2', '376817', '2', '2');
+INSERT INTO `merits` VALUES ('198', 'gsword', '15', '2', '193', '2', '2');
+INSERT INTO `merits` VALUES ('200', 'axe', '15', '2', '1409', '2', '2');
+INSERT INTO `merits` VALUES ('202', 'gaxe', '15', '2', '129', '2', '2');
+INSERT INTO `merits` VALUES ('204', 'scythe', '15', '2', '393', '2', '2');
+INSERT INTO `merits` VALUES ('206', 'polearm', '15', '2', '10305', '2', '2');
+INSERT INTO `merits` VALUES ('208', 'katana', '15', '2', '4096', '2', '2');
+INSERT INTO `merits` VALUES ('210', 'gkatana', '15', '2', '6144', '2', '2');
+INSERT INTO `merits` VALUES ('212', 'club', '15', '2', '720895', '2', '2');
+INSERT INTO `merits` VALUES ('214', 'staff', '15', '2', '549455', '2', '2');
+INSERT INTO `merits` VALUES ('216', 'archery', '15', '2', '7217', '2', '2');
+INSERT INTO `merits` VALUES ('218', 'marksmanship', '15', '2', '70817', '2', '2');
+INSERT INTO `merits` VALUES ('220', 'throwing', '15', '2', '990783', '2', '2');
+INSERT INTO `merits` VALUES ('222', 'guarding_skill', '15', '2', '131074', '3', '2');
+INSERT INTO `merits` VALUES ('224', 'evasion_skill', '15', '2', '1048575', '3', '2');
+INSERT INTO `merits` VALUES ('226', 'shield_skill', '15', '2', '373', '3', '2');
 INSERT INTO `merits` VALUES ('228', 'parrying_skill', '8', '2', '1031155', '3', '2');
 INSERT INTO `merits` VALUES ('256', 'divine', '8', '2', '524372', '4', '3');
 INSERT INTO `merits` VALUES ('258', 'healing', '8', '2', '524372', '4', '3');

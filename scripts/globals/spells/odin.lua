@@ -1,6 +1,6 @@
 -----------------------------------------
--- Spell: Alexander
--- Summons Alexander to fight by your side
+-- Spell: Odin
+-- Summons Odin to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");

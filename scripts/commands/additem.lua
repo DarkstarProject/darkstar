@@ -5,10 +5,10 @@
 
 cmdprops =
 {
-    permission = 1,
+
+    permission = 5,
     parameters = "iiiiiiiiiii"
 };
-
 function onTrigger(player, itemId, quantity, aug0, aug0val, aug1, aug1val, aug2, aug2val, aug3, aug3val, trialId)
     -- Load needed text ids for players current zone..
     local TextIDs = "scripts/zones/" .. player:getZoneName() .. "/TextIDs";

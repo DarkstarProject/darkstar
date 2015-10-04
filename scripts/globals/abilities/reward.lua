@@ -86,8 +86,8 @@ function onUseAbility(player,target,ability)
             end,
         [17021] = function (x) -- pet food zeta biscuit
             -- printf("Food: pet food zeta biscuit.");
-            minimumHealing = 900;
-            regenAmount = 14;
+            minimumHealing = 4900;
+            regenAmount = 1500;
             totalHealing = math.floor(minimumHealing + 3*(playerMnd-45));
             end,
         [17022] = function (x) -- pet food eta biscuit

@@ -19,7 +19,7 @@ function onSpellCast(caster,target,spell)
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     local resist = applyResistanceEffect(caster,spell,target,dINT,35,0,EFFECT_PETRIFICATION);
     -- Duration, including resistance.  Unconfirmed.
-    local duration = 30 * resist;
+    local duration = 5 * resist;
 
     if (resist > 0.5) then
         if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then

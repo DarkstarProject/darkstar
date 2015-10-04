@@ -16,6 +16,9 @@ function onTrade(player,npc,trade)
    if (player:getVar("RELIC_IN_PROGRESS") == 18293 and trade:getItemCount() == 4 and trade:hasItemQty(18293,1) and
        trade:hasItemQty(1576,1) and trade:hasItemQty(1589,1) and trade:hasItemQty(1457,1)) then
          player:startEvent(10035,18294);
+		 
+	
+		 
    end
 end;
 

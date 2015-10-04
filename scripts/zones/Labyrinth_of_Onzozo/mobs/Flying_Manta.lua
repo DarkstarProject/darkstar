@@ -19,7 +19,7 @@ function onMobDeath(mob,killer)
 
         local ToD = GetServerVariable("[POP]Lord_of_Onzozo");
         if (ToD <= os.time(t) and GetMobAction(Lord_of_Onzozo) == 0) then
-            if (math.random((1),(25)) == 5) then
+            if (math.random((1),(5)) == 3) then
                 UpdateNMSpawnPoint(Lord_of_Onzozo);
                 GetMobByID(Lord_of_Onzozo):setRespawnTime(GetMobRespawnTime(mob));
                 SetServerVariable("[PH]Lord_of_Onzozo", mob);

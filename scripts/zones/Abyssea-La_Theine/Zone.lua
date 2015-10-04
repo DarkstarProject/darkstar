@@ -31,6 +31,15 @@ function onZoneIn(player,prevZone)
     if (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED
     and player:getVar("1stTimeAyssea") == 0) then
         player:setVar("1stTimeAyssea",1);
+	end	
+	if (player:hasKeyItem(TRAVERSER_STONE1) == true) then
+	    
+		player:addMod(MOD_INT, 10);
+		player:addMod(MOD_MND, 10);
+		player:addMod(MOD_REFRESH, 3);
+		player:addMod(MOD_MACC, 50);
+		player:addMod(MOD_MATT, 10);
+		
     end
 
     return cs;
