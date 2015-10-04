@@ -48,8 +48,10 @@ require("scripts/globals/utils")
     elementalObi = {MOD_FORCE_FIRE_DWBONUS, MOD_FORCE_EARTH_DWBONUS, MOD_FORCE_WATER_DWBONUS, MOD_FORCE_WIND_DWBONUS, MOD_FORCE_ICE_DWBONUS, MOD_FORCE_LIGHTNING_DWBONUS, MOD_FORCE_LIGHT_DWBONUS, MOD_FORCE_DARK_DWBONUS};
     elementalObiWeak = {MOD_FORCE_WATER_DWBONUS, MOD_FORCE_WIND_DWBONUS, MOD_FORCE_LIGHTNING_DWBONUS, MOD_FORCE_ICE_DWBONUS, MOD_FORCE_FIRE_DWBONUS, MOD_FORCE_EARTH_DWBONUS, MOD_FORCE_DARK_DWBONUS, MOD_FORCE_LIGHT_DWBONUS};
     spellAcc = {MOD_FIREACC, MOD_EARTHACC, MOD_WATERACC, MOD_WINDACC, MOD_ICEACC, MOD_THUNDERACC, MOD_LIGHTACC, MOD_DARKACC};
-    strongAffinity = {MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_ICE_AFFINITY, MOD_THUNDER_AFFINITY, MOD_LIGHT_AFFINITY, MOD_DARK_AFFINITY};
-    weakAffinity = {MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_THUNDER_AFFINITY, MOD_ICE_AFFINITY, MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_DARK_AFFINITY, MOD_LIGHT_AFFINITY};
+    strongAffinityDmg = {MOD_FIRE_AFFINITY_DMG, MOD_EARTH_AFFINITY_DMG, MOD_WATER_AFFINITY_DMG, MOD_WIND_AFFINITY_DMG, MOD_ICE_AFFINITY_DMG, MOD_THUNDER_AFFINITY_DMG, MOD_LIGHT_AFFINITY_DMG, MOD_DARK_AFFINITY_DMG};
+    weakAffinityDmg = {MOD_WATER_AFFINITY_DMG, MOD_WIND_AFFINITY_DMG, MOD_THUNDER_AFFINITY_DMG, MOD_ICE_AFFINITY_DMG, MOD_FIRE_AFFINITY_DMG, MOD_EARTH_AFFINITY_DMG, MOD_DARK_AFFINITY_DMG, MOD_LIGHT_AFFINITY_DMG};
+    strongAffinityAcc = {MOD_FIRE_AFFINITY_ACC, MOD_EARTH_AFFINITY_ACC, MOD_WATER_AFFINITY_ACC, MOD_WIND_AFFINITY_ACC, MOD_ICE_AFFINITY_ACC, MOD_THUNDER_AFFINITY_ACC, MOD_LIGHT_AFFINITY_ACC, MOD_DARK_AFFINITY_ACC};
+    weakAffinityAcc = {MOD_WATER_AFFINITY_ACC, MOD_WIND_AFFINITY_ACC, MOD_THUNDER_AFFINITY_ACC, MOD_ICE_AFFINITY_ACC, MOD_FIRE_AFFINITY_ACC, MOD_EARTH_AFFINITY_ACC, MOD_DARK_AFFINITY_ACC, MOD_LIGHT_AFFINITY_ACC};
     resistMod = {MOD_FIRERES, MOD_EARTHRES, MOD_WATERRES, MOD_WINDRES, MOD_ICERES, MOD_THUNDERRES, MOD_LIGHTRES, MOD_DARKRES};
     defenseMod = {MOD_FIREDEF, MOD_EARTHDEF, MOD_WATERDEF, MOD_WINDDEF, MOD_ICEDEF, MOD_THUNDERDEF, MOD_LIGHTDEF, MOD_DARKDEF};
     absorbMod = {MOD_FIRE_ABSORB, MOD_EARTH_ABSORB, MOD_WATER_ABSORB, MOD_WIND_ABSORB, MOD_ICE_ABSORB, MOD_LTNG_ABSORB, MOD_LIGHT_ABSORB, MOD_DARK_ABSORB};
@@ -287,29 +289,20 @@ end;
 -- affinities that strengthen/weaken the index element
 
 
-function AffinityBonus(caster,ele)
+function AffinityBonusDmg(caster,ele)
 
-    local bonus = 1.00;
-
-    local affinity = caster:getMod(strongAffinity[ele]) - caster:getMod(weakAffinity[ele]);
-
-    -- Iridal and Chatoyant will return affinity for strong and weak, cancelling their bonus out, so they need to be specifically checked.
-    -- Could do an if strong == weak, but that would cause problems once/if augments or magian gear is added.
-    local equippedMain = caster:getEquipID(SLOT_MAIN);
-    if (equippedMain == 18632) then
-        affinity = affinity + 1;
-    elseif (equippedMain == 18633) then
-        affinity = affinity + 2;
-    end
-
-    if (affinity > 0) then
-        bonus = bonus + 0.05 + 0.05 * affinity;
-    elseif (affinity < 0) then
-        bonus = bonus - 0.05 + 0.05 * affinity;
-    end
-
+    local affinity = caster:getMod(strongAffinityDmg[ele]) - caster:getMod(weakAffinityDmg[ele]) + caster:getMod(MOD_ALL_AFFINITY_DMG);
+    local bonus = 1.00 + affinity * 0.05; -- 5% per level of affinity
+    -- print(bonus);
     return bonus;
+end;
 
+function AffinityBonusAcc(caster,ele)
+
+    local affinity = caster:getMod(strongAffinityAcc[ele]) - caster:getMod(weakAffinityAcc[ele]) + caster:getMod(MOD_ALL_AFFINITY_ACC);
+    local bonus = 0 + affinity * 10; -- 10 acc per level of affinity
+    -- print(bonus);
+    return bonus;
 end;
 
 -- USED FOR DAMAGING MAGICAL SPELLS. Stage 3 of Calculating Magic Damage on wiki
@@ -404,9 +397,11 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
     if (element ~= ELE_NONE) then
         resMod = target:getMod(resistMod[element]);
 
-        -- Add acc for staves
-        local affinityBonus = AffinityBonus(caster, element);
-        bonusAcc = bonusAcc + (affinityBonus-1) * 200;
+        -- Add acc for elemental affinity accuracy and element specific accuracy
+        local affinityBonus = AffinityBonusAcc(caster, element);
+        local elementBonus = caster:getMod(spellAcc[element]);
+        -- print(elementBonus);
+        bonusAcc = bonusAcc + affinityBonus + elementBonus;
     end
 
     -- Base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
@@ -730,7 +725,7 @@ end;
 function addBonuses(caster, spell, target, dmg, bonusmab)
     local ele = spell:getElement();
 
-    local affinityBonus = AffinityBonus(caster, ele);
+    local affinityBonus = AffinityBonusDmg(caster, ele);
     dmg = math.floor(dmg * affinityBonus);
 
     if (bonusmab == nil) then
@@ -848,7 +843,7 @@ end;
 
 function addBonusesAbility(caster, ele, target, dmg, params)
 
-    local affinityBonus = AffinityBonus(caster, ele);
+    local affinityBonus = AffinityBonusDmg(caster, ele);
     dmg = math.floor(dmg * affinityBonus);
 
     local magicDefense = getElementalDamageReduction(target, ele);
@@ -1008,7 +1003,7 @@ end;
 
 function handleThrenody(caster, target, spell, basePower, baseDuration, modifier)
     -- Process resitances
-    local staff = AffinityBonus(caster, spell:getElement());
+    local staff = AffinityBonusAcc(caster, spell:getElement());
     -- print("staff=" .. staff);
     local dCHR = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR));
     -- print("dCHR=" .. dCHR);

@@ -4313,24 +4313,24 @@ namespace charutils
         uint16 reduction = PChar->getMod(MOD_PERPETUATION_REDUCTION);
 
         static const MODIFIER strong[8] = {
-            MOD_FIRE_AFFINITY,
-            MOD_EARTH_AFFINITY,
-            MOD_WATER_AFFINITY,
-            MOD_WIND_AFFINITY,
-            MOD_ICE_AFFINITY,
-            MOD_THUNDER_AFFINITY,
-            MOD_LIGHT_AFFINITY,
-            MOD_DARK_AFFINITY };
+            MOD_FIRE_AFFINITY_PERP,
+            MOD_EARTH_AFFINITY_PERP,
+            MOD_WATER_AFFINITY_PERP,
+            MOD_WIND_AFFINITY_PERP,
+            MOD_ICE_AFFINITY_PERP,
+            MOD_THUNDER_AFFINITY_PERP,
+            MOD_LIGHT_AFFINITY_PERP,
+            MOD_DARK_AFFINITY_PERP };
 
         static const MODIFIER weak[8] = {
-            MOD_WATER_AFFINITY,
-            MOD_WIND_AFFINITY,
-            MOD_THUNDER_AFFINITY,
-            MOD_ICE_AFFINITY,
-            MOD_FIRE_AFFINITY,
-            MOD_EARTH_AFFINITY,
-            MOD_DARK_AFFINITY,
-            MOD_LIGHT_AFFINITY };
+            MOD_WATER_AFFINITY_PERP,
+            MOD_WIND_AFFINITY_PERP,
+            MOD_THUNDER_AFFINITY_PERP,
+            MOD_ICE_AFFINITY_PERP,
+            MOD_FIRE_AFFINITY_PERP,
+            MOD_EARTH_AFFINITY_PERP,
+            MOD_DARK_AFFINITY_PERP,
+            MOD_LIGHT_AFFINITY_PERP };
 
         static const WEATHER weatherStrong[8] = {
             WEATHER_HOT_SPELL,
@@ -4346,23 +4346,7 @@ namespace charutils
 
         DSP_DEBUG_BREAK_IF(element > 7);
 
-        int16 affinity = PChar->getMod(strong[element]) - PChar->getMod(weak[element]);
-
-        // TODO: don't use ItemIDs in CORE. it must be MOD
-
-        CItemWeapon* mainHand = (CItemWeapon*)PChar->getEquip(SLOT_MAIN);
-
-        if (mainHand && mainHand->getID() == 18632)
-            affinity = affinity + 1;
-        else if (mainHand && mainHand->getID() == 18633)
-            affinity = affinity + 2;
-
-        //-----------------------------------------------
-
-        if (affinity > 0)
-            reduction = reduction + affinity + 1;
-        else if (affinity < 0)
-            reduction = reduction - affinity - 1;
+        reduction = reduction + PChar->getMod(strong[element]) - PChar->getMod(weak[element]) + PChar->getMod(MOD_ALL_AFFINITY_PERP);
 
         if (CVanaTime::getInstance()->getWeekday() == element)
             reduction = reduction + PChar->getMod(MOD_DAY_REDUCTION);
