@@ -1402,6 +1402,10 @@ namespace petutils
 		PPet->SetMJob(JOB_DRG);
 		PPet->SetMLevel(PMaster->GetMLevel());
 
+        if (PMaster->objtype == TYPE_PC) {
+            PPet->m_MobSkillList = 193; //set the mob skill list id for player dragoon wyvern pets
+        }
+
 		LoadAvatarStats(PPet); //follows PC calcs (w/o SJ)
 		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f / 60.0f))); //320 delay
 		PPet->m_Weapons[SLOT_MAIN]->setDamage(1 + floor(PPet->GetMLevel()*0.9f));
