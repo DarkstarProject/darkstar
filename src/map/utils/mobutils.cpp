@@ -479,7 +479,6 @@ void CalculateStats(CMobEntity * PMob)
     {
         SetupMaat(PMob);
     }
-
 }
 
 void SetupJob(CMobEntity* PMob)
@@ -709,6 +708,7 @@ void SetupBattlefieldMob(CMobEntity* PMob)
 
     // Battlefield mobs don't drop gil
     PMob->setMobMod(MOBMOD_GIL_MAX, -1);
+    PMob->setMobMod(MOBMOD_MUG_GIL, -1);
 
     // never despawn
     PMob->SetDespawnTimer(0);

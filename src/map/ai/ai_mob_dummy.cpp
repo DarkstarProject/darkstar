@@ -188,7 +188,8 @@ void CAIMobDummy::ActionRoaming()
                 // health updated
                 m_PMob->updatemask |= UPDATE_HP;
             }
-            else
+
+            if(m_PMob->GetHPP() == 100)
             {
                 // at max health undirty exp
                 m_PMob->m_giveExp = true;
