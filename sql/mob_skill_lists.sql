@@ -2173,7 +2173,7 @@ INSERT INTO `mob_skill_lists` VALUES ('',199,1472);
 
 -- INSERT INTO `mob_skill_lists` VALUES ('',1913,?);
 
--- Pet Wyvern
+-- Player Dragoon wyvern pets
 INSERT INTO `mob_skill_lists` VALUES ('',193,638);
 INSERT INTO `mob_skill_lists` VALUES ('',193,639);
 INSERT INTO `mob_skill_lists` VALUES ('',193,640);
