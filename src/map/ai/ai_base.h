@@ -49,6 +49,12 @@ public:
     void Tick(time_point _tick);
     CState* GetCurrentState();
     bool IsStateStackEmpty();
+    /* Or have each state return a static number/string that Lua can use as well, in case this is not sufficient */
+    template<typename T>
+    bool IsCurrentState() { return typeid(T) == typeid(GetCurrentState()); }
+    bool IsSpawned();
+    bool IsRoaming();
+    bool IsEngaged();
     //whether AI is currently able to change state from external means
     virtual bool CanChangeState();
 
@@ -60,9 +66,10 @@ public:
     // stores all events and their associated lua callbacks
     CAIEventHandler EventHandler;
 
-protected:
     // pathfinder, not guaranteed to be implemented
-    std::unique_ptr<CPathFind> pathfind;
+    std::unique_ptr<CPathFind> PathFind;
+
+protected:
     // input controller
     std::unique_ptr<CController> Controller;
     // current synchronized server time (before AI loop execution)

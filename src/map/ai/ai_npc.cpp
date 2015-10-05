@@ -33,7 +33,7 @@ CAINpc::CAINpc(CBaseEntity* _PEntity) :
 
 void CAINpc::InitPathfinding()
 {
-    pathfind = std::make_unique<CPathFind>(PEntity);
+    PathFind = std::make_unique<CPathFind>(PEntity);
 }
 
 void CAINpc::Trigger(uint16 targID)
@@ -41,9 +41,9 @@ void CAINpc::Trigger(uint16 targID)
     if (CanChangeState())
     {
         ChangeState<CTriggerState>(PEntity, targID);
-        if (pathfind)
+        if (PathFind)
         {
-            pathfind->Clear(); //#TODO: pause/resume after?
+            PathFind->Clear(); //#TODO: pause/resume after?
         }
     }
 }

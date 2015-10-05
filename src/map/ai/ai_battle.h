@@ -42,11 +42,11 @@ class CAIBattle : public CAIBase
 public:
     CAIBattle(CBattleEntity*, std::unique_ptr<CPathFind>&&, std::unique_ptr<CController>&&);
 
-    virtual void Cast(uint16 targid, uint16 spellid);
-    virtual void Engage(uint16 targid);
-    virtual void ChangeTarget(uint16 targid);
-    virtual void Disengage();
-    virtual void WeaponSkill(uint16 targid, uint16 wsid);
+    void Cast(uint16 targid, uint16 spellid);
+    void Engage(uint16 targid);
+    void ChangeTarget(uint16 targid);
+    void Disengage();
+    void WeaponSkill(uint16 targid, uint16 wsid);
 
     /* Internal Controller functions */
     virtual bool Internal_Engage(uint16 targetid);
@@ -72,10 +72,10 @@ public:
     virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&);
 
     uint16 GetBattleTargetID();
+    CTargetFind targetFind;
 
 protected:
 
-    CTargetFind targetFind;
     uint16 m_battleTarget;
 };
 

@@ -43,6 +43,7 @@ public:
     bool canUpdate;
 
 protected:
+    time_point m_Tick;
     CBattleEntity* POwner;
 };
 

@@ -740,12 +740,12 @@ void CAIChar::OnAbility(CAbilityState& state, action_t& action)
                 else {
                     PChar->addMP(-PAbility->getAnimationID()); // TODO: ...
                 }
-                //PChar->m_ActionList.push_back(Action);
                 //PChar->PPet->PBattleAI->SetBattleSubTarget(PTarget);
 
-                //((CAIPetDummy*)PChar->PPet->PBattleAI)->m_MasterCommand = PAbility->getID(); // TODO: ?? ?????????? ??????
+                //((CAIPetDummy*)PChar->PPet->PBattleAI)->m_MasterCommand = PAbility->getID();
+                //#TODO: probably needs to be in a script, since the pet abilities actually have their own IDs
+                PChar->PPet->PAIBattle()->WeaponSkill(PTarget->targid, PAbility->getID());
 
-                //PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
                 charutils::UpdateHealth(PChar);
             }
         }

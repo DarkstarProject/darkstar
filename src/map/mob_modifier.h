@@ -85,7 +85,8 @@ enum MOBMODIFIER : int
     MOBMOD_BEHAVIOR       = 53, // Add behaviors to mob
     MOBMOD_GIL_BONUS      = 54, // Multipler to gil dropped by mob divided by 10
     MOBMOD_IDLE_DESPAWN   = 55, // Time (in seconds) to despawn after being idle
-    MOBMOD_NO_STANDBACK   = 56  // Mob will never standback
+    MOBMOD_NO_STANDBACK   = 56, // Mob will never standback
+    MOBMOD_ATTACK_SKILL_LIST = 57 // skill list to use in place of regular attacks
 };
 
 #endif

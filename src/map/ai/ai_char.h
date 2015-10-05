@@ -34,7 +34,7 @@ class CAIChar : public CAIBattle
 public:
     CAIChar(CCharEntity*);
 
-    virtual void Ability(uint16 targid, uint16 abilityid);
+    void Ability(uint16 targid, uint16 abilityid);
 
     virtual bool Internal_Ability(uint16 targetid, uint16 abilityid);
 

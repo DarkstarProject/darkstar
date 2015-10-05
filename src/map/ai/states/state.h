@@ -29,7 +29,6 @@
 #include "../../packets/message_basic.h"
 
 class CBattleEntity;
-class CTargetFind;
 
 class CState
 {

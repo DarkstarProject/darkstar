@@ -22,4 +22,43 @@ This file is part of DarkStar-server source code.
 */
 
 #include "ai_mob.h"
+#include "../entities/mobentity.h"
 
+void CAIMob::Internal_Disengage()
+{
+    auto PMob = static_cast<CMobEntity*>(PEntity);
+    PathFind->Clear();
+
+    if (PMob->getMobMod(MOBMOD_IDLE_DESPAWN))
+    {
+        PMob->SetDespawnTimer(PMob->getMobMod(MOBMOD_IDLE_DESPAWN));
+    }
+
+    PMob->delRageMode();
+    PMob->m_OwnerID.clean();
+    PMob->updatemask |= (UPDATE_STATUS | UPDATE_HP);
+    PMob->CallForHelp(false);
+    PMob->animation = ANIMATION_NONE;
+
+    CAIBattle::Disengage();
+}
+
+bool CAIMob::IsAutoAttackEnabled()
+{
+    return m_AutoAttackEnabled;
+}
+
+void CAIMob::SetAutoAttackEnabled(bool enabled)
+{
+    m_AutoAttackEnabled = enabled;
+}
+
+bool CAIMob::IsWeaponSkillEnabled()
+{
+    return m_WeaponSkillEnabled;
+}
+
+void CAIMob::SetWeaponSkillEnabled(bool enabled)
+{
+    m_WeaponSkillEnabled = enabled;
+}

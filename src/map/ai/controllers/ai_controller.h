@@ -21,18 +21,50 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#include "controller.h"
-
 #ifndef _AI_CONTROLLER_H
 #define _AI_CONTROLLER_H
+
+#include "controller.h"
+#include "../../entities/mobentity.h"
+
+// mobs will deaggro if player is out of range for this long
+#define MOB_DEAGGRO_TIME 25000
+
+// time a mob is neutral after disengaging
+#define MOB_NEUTRAL_TIME 10000
 
 class CAIController : public CController
 {
 public:
-    CAIController(CBattleEntity* PMob);
+    CAIController(CMobEntity* PMob);
 
     virtual void Tick(time_point tick) override;
 
+    virtual void Disengage() override;
+
+private:
+    bool TryDeaggro();
+    void TryLink();
+    bool CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false);
+    bool CanSeePoint(position_t pos);
+    bool WeaponSkill(int list = 0);
+    bool TrySpecialSkill();
+    bool TryCastSpell();
+    bool CanCastSpells();
+    void CastSpell(uint16 spellid);
+
+    CBattleEntity* PTarget;
+
+    CMobEntity* const PMob;
+
+    time_point m_LastActionTime;
+    time_point m_LastMagicTime;
+    time_point m_LastMobSkillTime;
+    time_point m_LastSpecialTime;
+    time_point m_DeaggroTime;
+    time_point m_NeutralTime;
+
+    bool m_firstSpell{ true };
 };
 
 #endif // _AI_CONTROLLER_H

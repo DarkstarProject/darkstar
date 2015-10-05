@@ -24,11 +24,21 @@ This file is part of DarkStar-server source code.
 #ifndef _CAIMOB_H
 #define _CAIMOB_H
 
-#include "ai_base.h"
+#include "ai_battle.h"
 
-class CAIMob : CAIBase
+class CAIMob : public CAIBattle
 {
+public:
 
+    virtual void Internal_Disengage() override;
+    bool IsAutoAttackEnabled();
+    void SetAutoAttackEnabled(bool);
+    bool IsWeaponSkillEnabled();
+    void SetWeaponSkillEnabled(bool);
+
+private:
+    bool m_AutoAttackEnabled{ true };
+    bool m_WeaponSkillEnabled{ true };
 };
 
 #endif

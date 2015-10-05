@@ -38,7 +38,7 @@ CAIBase::CAIBase(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _pathfind,
     m_PrevTick(server_clock::now()),
     PEntity(_PEntity),
     ActionQueue(_PEntity),
-    pathfind(std::move(_pathfind)),
+    PathFind(std::move(_pathfind)),
     Controller(std::move(_controller))
 {
 }
@@ -67,9 +67,9 @@ void CAIBase::Tick(time_point _tick)
     ActionQueue.checkAction(_tick);
 
     // check pathfinding
-    if (pathfind)
+    if (PathFind)
     {
-        pathfind->FollowPath();
+        PathFind->FollowPath();
     }
 
     if (Controller && Controller->canUpdate)
@@ -96,6 +96,21 @@ void CAIBase::Tick(time_point _tick)
 bool CAIBase::IsStateStackEmpty()
 {
     return m_stateStack.empty();
+}
+
+bool CAIBase::IsSpawned()
+{
+    return PEntity->status != STATUS_DISAPPEAR;
+}
+
+bool CAIBase::IsRoaming()
+{
+    return PEntity->animation == ANIMATION_NONE;
+}
+
+bool CAIBase::IsEngaged()
+{
+    return PEntity->animation == ANIMATION_ATTACK;
 }
 
 time_point CAIBase::getTick()
