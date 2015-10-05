@@ -80,12 +80,16 @@ bool CPathFind::RoamAround(position_t point, float maxRadius, uint8 maxTurns, ui
 	return true;
 }
 
-bool CPathFind::PathTo(position_t point, uint8 pathFlags)
+bool CPathFind::PathTo(position_t point, uint8 pathFlags, bool clear)
 {
 	// don't follow a new path if the current path has script flag and new path doesn't
 	if (IsFollowingPath() && m_pathFlags & PATHFLAG_SCRIPT && !(pathFlags & PATHFLAG_SCRIPT))
 		return false;
-	Clear();
+
+        if (clear)
+        {
+            Clear();
+        }
 
 	m_pathFlags = pathFlags;
 
@@ -121,17 +125,23 @@ bool CPathFind::PathTo(position_t point, uint8 pathFlags)
 	return true;
 }
 
-bool CPathFind::PathAround(position_t point, float distance, uint8 pathFlags)
+bool CPathFind::PathAround(position_t point, float distanceFromPoint, uint8 pathFlags)
 {
+    Clear();
+    position_t* lastPoint = &point;
 
-	position_t* lastPoint = &point;
+    float randomRadian = dsprand::GetRandomNumber<float>(0,2*M_PI);
 
-	float randomRadian = dsprand::GetRandomNumber<float>(0,2*M_PI);
+    lastPoint->x += cosf(randomRadian) * distanceFromPoint;
+    lastPoint->z += sinf(randomRadian) * distanceFromPoint;
 
-	lastPoint->x += cosf(randomRadian) * distance;
-	lastPoint->z += sinf(randomRadian) * distance;
+    // save for sliding logic
+    m_originalPoint = point;
+    m_distanceFromPoint = 1;
 
-	return PathTo(point, pathFlags);
+    // Don't clear path so
+    // original point / distance are kept
+    return PathTo(point, pathFlags, false);
 }
 
 bool CPathFind::PathThrough(position_t* points, uint8 totalPoints, uint8 pathFlags)
@@ -261,52 +271,53 @@ void CPathFind::FollowPath()
 void CPathFind::StepTo(position_t* pos, bool run)
 {
 
-	float speed = GetRealSpeed();
+    float speed = GetRealSpeed();
 
-	int8 mode = 2;
+    int8 mode = 2;
 
-	if (!run)
-	{
-		mode = 1;
-		speed /= 2;
-	}
+    if (!run)
+    {
+        mode = 1;
+        speed /= 2;
+    }
 
-	// face point mob is moving towards
-	LookAt(*pos);
+    float stepDistance = ((float)speed / 10) / 2;
+    float distanceTo = distance(m_PTarget->loc.p, *pos);
 
-	float stepDistance = ((float)speed / 10) / 2;
-	float distanceTo = distance(m_PTarget->loc.p, *pos);
+    if (distanceTo <= stepDistance ||
+        (m_pathFlags & PATHFLAG_SLIDE) && distance(m_originalPoint, m_PTarget->loc.p) < m_distanceFromPoint)
+    {
+        m_distanceMoved += distanceTo;
 
-	// if i'm going to overshoot the checkpoint just put me there
-	if (distanceTo <= stepDistance)
-	{
-		m_distanceMoved += distanceTo;
+        m_PTarget->loc.p.x = pos->x;
+        m_PTarget->loc.p.y = pos->y;
+        m_PTarget->loc.p.z = pos->z;
 
-		m_PTarget->loc.p.x = pos->x;
-		m_PTarget->loc.p.y = pos->y;
-		m_PTarget->loc.p.z = pos->z;
+    }
+    else
+    {
+        m_distanceMoved += stepDistance;
+        // take a step towards target point
+        float radians = (1 - (float)m_PTarget->loc.p.rotation / 256) * 2 * M_PI;
 
-	}
-	else
-	{
-		m_distanceMoved += stepDistance;
-		// take a step towards target point
-		float radians = (1 - (float)m_PTarget->loc.p.rotation / 256) * 2 * M_PI;
+        m_PTarget->loc.p.x += cosf(radians) * stepDistance;
 
-		m_PTarget->loc.p.x += cosf(radians) * stepDistance;
+        m_PTarget->loc.p.y = pos->y;
 
-		m_PTarget->loc.p.y = pos->y;
+        m_PTarget->loc.p.z += sinf(radians) * stepDistance;
 
-		m_PTarget->loc.p.z += sinf(radians) * stepDistance;
+    }
 
-	}
+    // face point mob is moving towards
+    LookAt(*pos);
 
-	m_PTarget->loc.p.moving += ((0x36 * ((float)m_PTarget->speed / 0x28)) - (0x14 * (mode - 1)));
+    m_PTarget->loc.p.moving += ((0x36 * ((float)m_PTarget->speed / 0x28)) - (0x14 * (mode - 1)));
 
-	if (m_PTarget->loc.p.moving > 0x2fff)
-	{
-		m_PTarget->loc.p.moving = 0;
-	}
+    if (m_PTarget->loc.p.moving > 0x2fff)
+    {
+        m_PTarget->loc.p.moving = 0;
+    }
+
     m_PTarget->updatemask |= UPDATE_POS;
 }
 
@@ -447,6 +458,7 @@ bool CPathFind::CanSeePoint(position_t point)
 
 void CPathFind::Clear()
 {
+        m_distanceFromPoint = 0;
 	m_pathFlags = 0;
 	m_roamFlags = 0;
 
