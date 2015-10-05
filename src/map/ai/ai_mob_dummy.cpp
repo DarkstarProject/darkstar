@@ -179,6 +179,11 @@ void CAIMobDummy::ActionRoaming()
     {
         // lets buff up or move around
 
+        if (m_PMob->CalledForHelp())
+        {
+            m_PMob->CallForHelp(false);
+        }
+
         // can't rest with poison or disease
         if (m_PMob->CanRest())
         {
@@ -361,7 +366,6 @@ void CAIMobDummy::ActionDisengage()
     m_PMob->delRageMode();
     m_PMob->m_OwnerID.clean();
     m_PMob->updatemask |= (UPDATE_STATUS | UPDATE_HP);
-    m_PMob->CallForHelp(false);
     m_PMob->animation = ANIMATION_NONE;
 
     //if (m_PMob->animationsub == 2) m_PMob->animationsub = 3;
@@ -651,6 +655,7 @@ void CAIMobDummy::ActionSpawn()
         m_PMob->status = m_PMob->allegiance == ALLEGIANCE_MOB ? STATUS_MOB : STATUS_NORMAL;
         m_PMob->animation = ANIMATION_NONE;
         m_PMob->HideName(false);
+        m_PMob->CallForHelp(false);
         m_PMob->ResetLocalVars();
 
         m_PMob->PEnmityContainer->Clear();
