@@ -28,6 +28,7 @@ function onMobSpawn(mob)
         SetDropRate(4398,1901,chance*10); -- Vice of Antipathy
     end
     GetNPCByID(QuestionMark):setLocalVar("[SEA]IxAern_DropRate", 0); -- Clears the var from the ???.
+    mob:AnimationSub(1); -- Reset the subanim - otherwise it will respawn with bracers on. Note that Aerns are never actually supposed to be in subanim 0.
 end;
 
 -----------------------------------
