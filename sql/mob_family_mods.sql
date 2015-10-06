@@ -167,7 +167,7 @@ INSERT INTO `mob_family_mods` VALUES (405,@roam_cool,35,1);
 INSERT INTO `mob_family_mods` VALUES (405,@roam_rate,30,1);
 
 -- Sheep
-INSERT INTO `mob_family_mods` VALUES (226,@roam_turns,4,1);
+INSERT INTO `mob_family_mods` VALUES (226,@roam_turns,5,1);
 INSERT INTO `mob_family_mods` VALUES (226,@roam_distance,15,1);
 INSERT INTO `mob_family_mods` VALUES (226,@roam_cool,60,1);
 INSERT INTO `mob_family_mods` VALUES (226,@roam_rate,30,1);
@@ -312,7 +312,8 @@ INSERT INTO `mob_family_mods` VALUES (479,@roam_cool,50,1);
 INSERT INTO `mob_family_mods` VALUES (51,@roam_cool,50,1);
 
 INSERT INTO `mob_family_mods` VALUES (57,@roam_cool,50,1);
-INSERT INTO `mob_family_mods` VALUES (57,@roam_turns,2,1);
+INSERT INTO `mob_family_mods` VALUES (57,@roam_turns,4,1);
+INSERT INTO `mob_family_mods` VALUES (57,@roam_rate,30,1);
 
 INSERT INTO `mob_family_mods` VALUES (62,@roam_cool,50,1);
 
@@ -330,8 +331,8 @@ INSERT INTO `mob_family_mods` VALUES (208,@roam_rate,30,1);
 INSERT INTO `mob_family_mods` VALUES (2,@roam_cool,50,1);
 INSERT INTO `mob_family_mods` VALUES (2,@roam_rate,30,1);
 
-INSERT INTO `mob_family_mods` VALUES (58,@roam_cool,30,1);
-INSERT INTO `mob_family_mods` VALUES (58,@roam_turns,2,1);
+INSERT INTO `mob_family_mods` VALUES (58,@roam_cool,45,1);
+INSERT INTO `mob_family_mods` VALUES (58,@roam_turns,3,1);
 INSERT INTO `mob_family_mods` VALUES (58,@roam_rate,30,1);
 
 INSERT INTO `mob_family_mods` VALUES (98,@roam_cool,50,1);

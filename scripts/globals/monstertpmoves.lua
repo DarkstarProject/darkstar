@@ -132,7 +132,6 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
         -- print ("Nothing passed, defaulting to attack");
     end;
     local ratio = offcratiomod/target:getStat(MOD_DEF);
-    ratio = utils.clamp(ratio, 0, 2);
 
     local lvldiff = lvluser - lvltarget;
     if lvldiff < 0 then
@@ -143,30 +142,29 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     ratio = utils.clamp(ratio, 0, 4);
     
     --work out hit rate for mobs (bias towards them)
-    local hitrate = (acc*accmod) - eva + (lvldiff*3) + 85;
+    local hitrate = (acc*accmod) - eva + (lvldiff*2) + 75;
 
     -- printf("acc: %f, eva: %f, hitrate: %f", acc, eva, hitrate);
-    if (hitrate > 95) then
-        hitrate = 95;
-    elseif (hitrate < 20) then
-        hitrate = 20;
-    end
-
+    hitrate = utils.clamp(hitrate, 20, 95);
 
     --work out the base damage for a single hit
-    local hitdamage = (base + lvldiff);
+    local hitdamage = base + lvldiff;
     if (hitdamage < 1) then
         hitdamage = 1;
     end
 
-    hitdamage = hitdamage * dmgmod * MobTPMod(skill:getTP());
+    hitdamage = hitdamage * dmgmod;
+
+    if (tpeffect == TP_DMG_VARIES) then
+        hitdamage = hitdamage * MobTPMod(skill:getTP());
+    end
 
     --work out min and max cRatio
     local maxRatio = 1;
     local minRatio = 0;
     
     if (ratio < 0.5) then
-        maxRatio = ratio + 1;
+        maxRatio = ratio + 0.5;
     elseif ((0.5 <= ratio) and (ratio <= 0.7)) then
         maxRatio = 1;
     elseif ((0.7 < ratio) and (ratio <= 1.2)) then
@@ -217,7 +215,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
         firstHitChance = hitrate * 1.2;
     end
 
-    firstHitChance = utils.clamp(firstHitChance, 60, 95);
+    firstHitChance = utils.clamp(firstHitChance, 35, 95);
 
     if ((chance*100) <= firstHitChance) then
         pdif = math.random((minRatio*1000),(maxRatio*1000)) --generate random PDIF
@@ -237,6 +235,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     end
 
     -- printf("final: %f, hits: %f, acc: %f", finaldmg, hitslanded, hitrate);
+    -- printf("ratio: %f, min: %f, max: %f, pdif, %f hitdmg: %f", ratio, minRatio, maxRatio, pdif, hitdamage);
 
     -- if an attack landed it must do at least 1 damage
     if (hitslanded >= 1 and finaldmg < 1) then
@@ -585,8 +584,9 @@ function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
     if (target:canGainStatusEffect(typeEffect, power)) then
         local statmod = MOD_INT;
         local element = mob:getStatusEffectElement(typeEffect);
+        local bonusAcc = mob:getMainLvl() / 2;
 
-        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,element);
+        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),bonusAcc,element);
 
         if (resist >= 0.25) then
 

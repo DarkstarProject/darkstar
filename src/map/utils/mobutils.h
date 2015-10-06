@@ -54,6 +54,7 @@ namespace mobutils
         void  SetupEventMob(CMobEntity* PMob);
         void  SetupNMMob(CMobEntity* PMob);
 	void  SetupMaat(CMobEntity* PMob);
+	void  SetupPetSkills(CMobEntity* PMob);
 
 	uint16	GetWeaponDamage(CMobEntity* PMob);
 	void    GetAvailableSpells(CMobEntity* PMob);

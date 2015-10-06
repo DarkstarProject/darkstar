@@ -445,6 +445,11 @@ void CalculateStats(CMobEntity * PMob)
     SetupJob(PMob);
     SetupRoaming(PMob);
 
+    if (PMob->PMaster != nullptr)
+    {
+        SetupPetSkills(PMob);
+    }
+
     PMob->m_Behaviour |= PMob->getMobMod(MOBMOD_BEHAVIOR);
 
     if(zoneType == ZONETYPE_DUNGEON)
@@ -474,7 +479,6 @@ void CalculateStats(CMobEntity * PMob)
     {
         SetupMaat(PMob);
     }
-
 }
 
 void SetupJob(CMobEntity* PMob)
@@ -529,6 +533,7 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 16);
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
 
             if(PMob->getMobMod(MOBMOD_NO_STANDBACK) == 0)
             {
@@ -554,19 +559,28 @@ void SetupJob(CMobEntity* PMob)
                 PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
             }
             break;
+        case JOB_PLD:
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
+            break;
+        case JOB_DRK:
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
+            break;
         case JOB_WHM:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 5);
             break;
         case JOB_BRD:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 25);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 60);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
         case JOB_BLU:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
         case JOB_RDM:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 15);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 40);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 5);
         case JOB_SMN:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 70);
             // smn only has "buffs"
@@ -608,6 +622,42 @@ void SetupRoaming(CMobEntity* PMob)
         PMob->setMobMod(MOBMOD_ROAM_TURNS, 1);
     }
 
+}
+
+void SetupPetSkills(CMobEntity* PMob)
+{
+    int16 skillListId = 0;
+    // same mob can spawn as different families
+    // can't set this from the database
+    switch(PMob->m_Family)
+    {
+        case 383: // ifrit
+            skillListId = 715;
+            break;
+        case 388: // titan
+            skillListId = 716;
+            break;
+        case 384: // levi
+            skillListId = 717;
+            break;
+        case 382: //garuda
+            skillListId = 718;
+            break;
+        case 387: // shiva
+            skillListId = 719;
+            break;
+        case 386: // ramuh
+            skillListId = 720;
+            break;
+        case 379: // carbuncle
+            skillListId = 721;
+            break;
+    }
+
+    if (skillListId != 0)
+    {
+        PMob->setMobMod(MOBMOD_SKILL_LIST, skillListId);
+    }
 }
 
 void SetupDynamisMob(CMobEntity* PMob)
@@ -668,6 +718,7 @@ void SetupBattlefieldMob(CMobEntity* PMob)
 
     // Battlefield mobs don't drop gil
     PMob->setMobMod(MOBMOD_GIL_MAX, -1);
+    PMob->setMobMod(MOBMOD_MUG_GIL, -1);
 
     // never despawn
     PMob->SetDespawnTimer(0);
@@ -755,6 +806,7 @@ void SetupMaat(CMobEntity* PMob)
             // Give shield bash
             PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 780);
             PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
+            PMob->setMobMod(MOBMOD_SPECIAL_DELAY, 40);
             break;
         case JOB_BST:
             // Call beast skill
@@ -794,7 +846,7 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	PMob->defaultMobMod(MOBMOD_NA_CHANCE, 40);
 	PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 35);
 	PMob->defaultMobMod(MOBMOD_HEAL_CHANCE, 40);
-	PMob->defaultMobMod(MOBMOD_HP_HEAL_CHANCE, 25);
+	PMob->defaultMobMod(MOBMOD_HP_HEAL_CHANCE, 40);
 
 	RecalculateSpellContainer(PMob);
 

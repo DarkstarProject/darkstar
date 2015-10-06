@@ -3084,7 +3084,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
 
     uint16 xpReturned = ceil(expLost * ratioReturned);
 
-    if (!m_PChar->getMijinGakure())
+    if (!m_PChar->getMijinGakure() && m_PChar->GetMLevel() >= map_config.exp_loss_level)
     {
         charutils::AddExperiencePoints(true, m_PChar, m_PChar, xpReturned);
     }

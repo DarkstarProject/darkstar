@@ -146,6 +146,7 @@ protected:
 
 	void Deaggro(); // deaggro targe
 	void OnTick();
+        bool CanMoveForward(float currentDistance);
 
 private:
 
