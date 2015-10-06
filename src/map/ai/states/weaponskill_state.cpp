@@ -52,13 +52,34 @@ bool CWeaponSkillState::StartWeaponSkill(uint16 wsid)
 
 bool CWeaponSkillState::StartMobSkill(uint16 mobskillid)
 {
-    CMobSkill* PMobskill = battleutils::GetMobSkill(mobskillid);
+    CMobSkill* PMobskill {battleutils::GetMobSkill(mobskillid)};
 
     if (PMobskill)
     {
         m_PMobSkill = std::make_unique<CMobSkill>(*PMobskill);
-        m_finishTime = server_clock::now() + std::chrono::milliseconds(PMobskill->getActivationTime());
-        //#TODO: start the cast if it has a time
+        m_PMobSkill->setTP(m_PEntity->health.tp);
+        SpendCost();
+        auto activationTime {PMobskill->getActivationTime()};
+        if (activationTime > 0)
+        {
+            action_t action;
+            action.id = m_PEntity->id;
+            action.actiontype = ACTION_WEAPONSKILL_START;
+
+            actionList_t& actionList = action.getNewActionList();
+            actionList.ActionTargetID = m_targid;
+
+            actionTarget_t& actionTarget = actionList.getNewActionTarget();
+
+            actionTarget.reaction = REACTION_HIT;
+            actionTarget.speceffect = SPECEFFECT_HIT;
+            actionTarget.animation = 0;
+            actionTarget.param = PMobskill->getID();
+            actionTarget.messageID = PMobskill->getMsg() == 0 ? 0 : 43;
+
+            m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+        }
+        m_finishTime = server_clock::now() + std::chrono::milliseconds(activationTime);
         return true;
     }
 

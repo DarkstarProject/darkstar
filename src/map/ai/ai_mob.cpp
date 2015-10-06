@@ -22,7 +22,9 @@ This file is part of DarkStar-server source code.
 */
 
 #include "ai_mob.h"
+#include "states/weaponskill_state.h"
 #include "../entities/mobentity.h"
+#include "../packets/entity_update.h"
 
 void CAIMob::Internal_Disengage()
 {
@@ -41,6 +43,30 @@ void CAIMob::Internal_Disengage()
     PMob->animation = ANIMATION_NONE;
 
     CAIBattle::Disengage();
+}
+
+bool CAIMob::Internal_WeaponSkill(uint16 targid, uint16 wsid)
+{
+    if (CanChangeState())
+    {
+        if (ChangeState<CWeaponSkillState>(static_cast<CBattleEntity*>(PEntity), targid))
+        {
+            if (PEntity->look.size == MODEL_EQUIPED)
+            {
+                return static_cast<CWeaponSkillState*>(GetCurrentState())->StartWeaponSkill(wsid);
+            }
+            else
+            {
+                return static_cast<CWeaponSkillState*>(GetCurrentState())->StartMobSkill(wsid);
+            }
+        }
+    }
+    return false;
+}
+
+void CAIMob::OnWeaponSkillFinished(CWeaponSkillState&, action_t&)
+{
+    //#TODO
 }
 
 bool CAIMob::IsAutoAttackEnabled()

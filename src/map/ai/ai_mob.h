@@ -31,6 +31,10 @@ class CAIMob : public CAIBattle
 public:
 
     virtual void Internal_Disengage() override;
+    virtual bool Internal_WeaponSkill(uint16 targid, uint16 wsid) override;
+
+    virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
+
     bool IsAutoAttackEnabled();
     void SetAutoAttackEnabled(bool);
     bool IsWeaponSkillEnabled();

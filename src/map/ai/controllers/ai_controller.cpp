@@ -43,13 +43,13 @@ void CAIController::Tick(time_point tick)
 
         if (!PMob->PAIBattle()->GetBattleTargetID())
         {
-            auto PTarget = PMob->PEnmityContainer->GetHighestEnmity();
+            auto PTarget {PMob->PEnmityContainer->GetHighestEnmity()};
             ChangeTarget(PTarget ? PTarget->targid : 0);
         }
     }
     else
     {
-        auto PTarget = PMob->PEnmityContainer->GetHighestEnmity();
+        auto PTarget {PMob->PEnmityContainer->GetHighestEnmity()};
         ChangeTarget(PTarget ? PTarget->targid : 0);
     }
 
@@ -77,7 +77,7 @@ void CAIController::Tick(time_point tick)
     }
 
     // Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-    if (PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 && !PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) && 
+    if (PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 && !PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) &&
         (m_Tick >= m_LastSpecialTime + std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_SPECIAL_COOL))) && TrySpecialSkill())
     {
         return;
@@ -114,7 +114,7 @@ void CAIController::Tick(time_point tick)
     bool move = PMob->PAI->PathFind->IsFollowingPath();
 
     //If using mobskills instead of attacks, calculate distance to move and ability to use here
-    if (PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST)) 
+    if (PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST))
     {
         auto WeaponDelay = std::chrono::milliseconds(PMob->GetWeaponDelay(false));
         if (static_cast<CAIMob*>(PMob->PAI.get())->IsAutoAttackEnabled() && m_Tick > m_LastActionTime + WeaponDelay)
@@ -357,11 +357,47 @@ bool CAIController::CanSeePoint(position_t pos)
 
 bool CAIController::WeaponSkill(int wsList)
 {
+    /* #TODO: mob 2 hours, etc */
     if (!wsList) wsList = PMob->getMobMod(MOBMOD_SKILL_LIST);
-    auto skillList = battleutils::GetMobSkillList(wsList);
-    //#TODO: select WS, select target, call WeaponSkill(targid, wsid)
+    auto skillList {battleutils::GetMobSkillList(wsList)};
+
+    if (skillList.empty())
+    {
+        return false;
+    }
 
     std::shuffle(skillList.begin(), skillList.end(), dsprand::mt());
+    CBattleEntity* PActionTarget {nullptr};
+
+    for (auto skillid : skillList)
+    {
+        auto PMobSkill {battleutils::GetMobSkill(skillid)};
+        if (!PMobSkill)
+        {
+            continue;
+        }
+        if (PMobSkill->getValidTargets() == TARGET_ENEMY) //enemy
+        {
+            PActionTarget = PTarget;
+        }
+        else if (PMobSkill->getValidTargets() == TARGET_SELF) //self
+        {
+            PActionTarget = PMob;
+        }
+        else
+        {
+            continue;
+        }
+        float currentDistance = distance(PMob->loc.p, PActionTarget->loc.p);
+        if (!PMobSkill->isTwoHour() && luautils::OnMobSkillCheck(PActionTarget, PMob, PMobSkill) == 0) //A script says that the move in question is valid
+        {
+            if (currentDistance <= PMobSkill->getDistance())
+            {
+                CController::WeaponSkill(PTarget->targid, PMobSkill->getID());
+                break;
+            }
+        }
+    }
 
     return false;
 }
