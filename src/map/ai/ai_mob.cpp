@@ -23,6 +23,8 @@ This file is part of DarkStar-server source code.
 
 #include "ai_mob.h"
 #include "states/weaponskill_state.h"
+#include "../mobskill.h"
+#include "../weapon_skill.h"
 #include "../entities/mobentity.h"
 #include "../packets/entity_update.h"
 

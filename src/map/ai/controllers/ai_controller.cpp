@@ -43,13 +43,13 @@ void CAIController::Tick(time_point tick)
 
         if (!PMob->PAIBattle()->GetBattleTargetID())
         {
-            auto PTarget {PMob->PEnmityContainer->GetHighestEnmity()};
+            auto PTarget = PMob->PEnmityContainer->GetHighestEnmity();
             ChangeTarget(PTarget ? PTarget->targid : 0);
         }
     }
     else
     {
-        auto PTarget {PMob->PEnmityContainer->GetHighestEnmity()};
+        auto PTarget = PMob->PEnmityContainer->GetHighestEnmity();
         ChangeTarget(PTarget ? PTarget->targid : 0);
     }
 
@@ -359,7 +359,7 @@ bool CAIController::WeaponSkill(int wsList)
 {
     /* #TODO: mob 2 hours, etc */
     if (!wsList) wsList = PMob->getMobMod(MOBMOD_SKILL_LIST);
-    auto skillList {battleutils::GetMobSkillList(wsList)};
+    auto skillList = battleutils::GetMobSkillList(wsList);
 
     if (skillList.empty())
     {
@@ -371,7 +371,7 @@ bool CAIController::WeaponSkill(int wsList)
 
     for (auto skillid : skillList)
     {
-        auto PMobSkill {battleutils::GetMobSkill(skillid)};
+        auto PMobSkill = battleutils::GetMobSkill(skillid);
         if (!PMobSkill)
         {
             continue;
