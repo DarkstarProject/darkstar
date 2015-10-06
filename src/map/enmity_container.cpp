@@ -410,7 +410,6 @@ void CEnmityContainer::DecayEnmity()
 
         //Should lose 60/sec, and this is called twice a sec, hence 30.
         PEnmityObject->VE -= PEnmityObject->VE > 30 ? 30 : PEnmityObject->VE;
-        ShowDebug("CE: %d VE: %d\n", PEnmityObject->CE, PEnmityObject->VE);
     }
 }
 
