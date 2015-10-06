@@ -2313,7 +2313,7 @@ namespace battleutils
         cRatio = dsp_cap(cRatio, 0, 4);
 
         if ((0 <= cRatio) && (cRatio < 0.5)) {
-            cRatioMax = cRatio + 1;
+            cRatioMax = cRatio + 0.5f;
         }
         else if ((0.5 <= cRatio) && (cRatio <= 0.7)) {
             cRatioMax = 1;

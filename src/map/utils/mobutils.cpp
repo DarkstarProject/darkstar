@@ -52,8 +52,32 @@ namespace mobutils
 
 uint16 GetWeaponDamage(CMobEntity* PMob)
 {
-	float MainLevel = PMob->GetMLevel();
-    return (uint16)(MainLevel * ((float)PMob->m_dmgMult / 100.0f) * (MainLevel < 40 ? 1.4 - MainLevel / 100 : 1));
+    uint8 lvl = PMob->GetMLevel();
+    uint8 bonus = 0;
+
+    if (lvl >= 75)
+    {
+        bonus = 3;
+    }
+    else if (lvl >= 60)
+    {
+        bonus = 2;
+    }
+    else if (lvl >= 50)
+    {
+        bonus = 1;
+    }
+
+    uint16 damage = lvl + bonus;
+
+    damage *= (float)PMob->m_dmgMult / 100.0f;
+
+    if (PMob->getMobMod(MOBMOD_WEAPON_BONUS) != 0)
+    {
+        damage *= (float)PMob->getMobMod(MOBMOD_WEAPON_BONUS) / 100.0f;
+    }
+
+    return damage;
 }
 
 /************************************************************************
@@ -567,7 +591,7 @@ void SetupJob(CMobEntity* PMob)
             break;
         case JOB_WHM:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
-            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 5);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
             break;
         case JOB_BRD:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
@@ -580,7 +604,7 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 15);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 40);
-            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 5);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
         case JOB_SMN:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 70);
             // smn only has "buffs"
@@ -690,6 +714,10 @@ void SetupDynamisMob(CMobEntity* PMob)
         PMob->setMobMod(MOBMOD_MAIN_2HOUR, 1);
     }
 
+    // boost dynamis mobs weapon damage
+    PMob->setMobMod(MOBMOD_WEAPON_BONUS, 135);
+    PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
+
     // never despawn
     PMob->SetDespawnTimer(0);
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
@@ -793,6 +821,7 @@ void SetupNMMob(CMobEntity* PMob)
 
 void SetupMaat(CMobEntity* PMob)
 {
+    // Should swing normally when not a mnk
     PMob->m_Weapons[SLOT_MAIN]->setDelay((240*1000)/60);
 
     switch(PMob->GetMJob()){

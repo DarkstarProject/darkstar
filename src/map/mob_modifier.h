@@ -87,7 +87,8 @@ enum MOBMODIFIER : int
     MOBMOD_IDLE_DESPAWN   = 55, // Time (in seconds) to despawn after being idle
     MOBMOD_NO_STANDBACK   = 56, // Mob will never standback
     MOBMOD_MAGIC_DELAY    = 57, // Amount of seconds mob waits before casting first spell
-    MOBMOD_SPECIAL_DELAY  = 58  // Amount of seconds mob waits before using first special
+    MOBMOD_SPECIAL_DELAY  = 58, // Amount of seconds mob waits before using first special
+    MOBMOD_WEAPON_BONUS   = 59  // Add a bonus percentage to mob weapon damage ( bonus / 100 )
 };
 
 #endif
