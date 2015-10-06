@@ -59,7 +59,7 @@ bool CWeaponSkillState::StartMobSkill(uint16 mobskillid)
         m_PMobSkill = std::make_unique<CMobSkill>(*PMobskill);
         m_PMobSkill->setTP(m_PEntity->health.tp);
         SpendCost();
-        auto activationTime = PMobskill->getActivationTime();
+        auto activationTime {PMobskill->getActivationTime()};
         if (activationTime > 0)
         {
             action_t action;
