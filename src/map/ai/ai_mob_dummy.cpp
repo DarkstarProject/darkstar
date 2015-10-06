@@ -2434,14 +2434,14 @@ void CAIMobDummy::SetupEngage()
     JOBTYPE mJob = m_PMob->GetMJob();
 
     // Don't cast magic or use special ability right away
-    if(mJob != JOB_SMN)
+    if(m_PMob->getBigMobMod(MOBMOD_MAGIC_DELAY) != 0)
     {
-        m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + dsprand::GetRandomNumber(7000);
+        m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + dsprand::GetRandomNumber(m_PMob->getBigMobMod(MOBMOD_MAGIC_DELAY));
     }
 
-    if(mJob != JOB_BST && mJob != JOB_PUP && mJob != JOB_DRG)
+    if(m_PMob->getBigMobMod(MOBMOD_SPECIAL_DELAY) != 0)
     {
-        m_LastSpecialTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) + dsprand::GetRandomNumber(7000);
+        m_LastSpecialTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) + dsprand::GetRandomNumber(m_PMob->getBigMobMod(MOBMOD_SPECIAL_DELAY));
     }
 
     m_firstSpell = true;

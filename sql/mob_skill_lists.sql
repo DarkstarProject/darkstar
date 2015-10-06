@@ -134,7 +134,6 @@ INSERT INTO `mob_skill_lists` VALUES ('',496,1954);
 -- Morbol
 INSERT INTO `mob_skill_lists` VALUES ('',186,60);
 INSERT INTO `mob_skill_lists` VALUES ('',186,61);
-INSERT INTO `mob_skill_lists` VALUES ('',186,62);
 INSERT INTO `mob_skill_lists` VALUES ('',186,63);
 INSERT INTO `mob_skill_lists` VALUES ('',186,64);
 -- INSERT INTO `mob_skill_lists` VALUES ('',186,470);

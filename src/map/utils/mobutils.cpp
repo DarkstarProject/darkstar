@@ -533,6 +533,7 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 16);
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
 
             if(PMob->getMobMod(MOBMOD_NO_STANDBACK) == 0)
             {
@@ -558,19 +559,28 @@ void SetupJob(CMobEntity* PMob)
                 PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
             }
             break;
+        case JOB_PLD:
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
+            break;
+        case JOB_DRK:
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
+            break;
         case JOB_WHM:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 5);
             break;
         case JOB_BRD:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 25);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 60);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
         case JOB_BLU:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
         case JOB_RDM:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 15);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 40);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 5);
         case JOB_SMN:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 70);
             // smn only has "buffs"
@@ -796,6 +806,7 @@ void SetupMaat(CMobEntity* PMob)
             // Give shield bash
             PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 780);
             PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
+            PMob->setMobMod(MOBMOD_SPECIAL_DELAY, 40);
             break;
         case JOB_BST:
             // Call beast skill

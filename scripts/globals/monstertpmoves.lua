@@ -153,7 +153,11 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
         hitdamage = 1;
     end
 
-    hitdamage = hitdamage * dmgmod * MobTPMod(skill:getTP());
+    hitdamage = hitdamage * dmgmod;
+
+    if (tpeffect == TP_DMG_VARIES) then
+        hitdamage = hitdamage * MobTPMod(skill:getTP());
+    end
 
     --work out min and max cRatio
     local maxRatio = 1;
