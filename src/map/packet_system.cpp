@@ -125,6 +125,7 @@ This file is part of DarkStar-server source code.
 #include "packets/server_message.h"
 #include "packets/shop_appraise.h"
 #include "packets/shop_buy.h"
+#include "packets/status_effects.h"
 #include "packets/stop_downloading.h"
 #include "packets/synth_suggestion.h"
 #include "packets/trade_action.h"
@@ -2818,6 +2819,7 @@ void SmallPacket0x061(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PChar->pushPacket(new CMenuMeritPacket(PChar));
     PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
     PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
+    PChar->pushPacket(new CStatusEffectPacket(PChar));
 
     return;
 }
