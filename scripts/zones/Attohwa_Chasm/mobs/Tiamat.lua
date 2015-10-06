@@ -14,6 +14,15 @@ function onMobInitialize(mob)
 end;
 
 -----------------------------------
+-- onMobSpawn Action
+-----------------------------------
+
+function onMobSpawn(mob)
+    mob:SetMobSkillAttack(false); -- resetting so it doesn't respawn in flight mode.
+    mob:AnimationSub(0); -- subanim 0 is only used when it spawns until first flight.
+end;
+
+-----------------------------------
 -- onMobFight Action
 -----------------------------------
 
