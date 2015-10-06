@@ -14,19 +14,19 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	-- Trade 12 La Theine Cabbages to pop Habetrot
-	if(GetMobAction(17428811) == 0 and GetMobAction(17428812) == 0 and trade:hasItemQty(4366,12) and trade:getItemCount() == 12) then
-		player:tradeComplete();		
-		-- 20% Chance to spawn Habetrot, else it's a Rumble Crawler
-		local roll = math.random(1,5);
-		if (roll < 2) then
-			SpawnMob(17428811,900):updateClaim(player); -- Spawn Habetrot
-		else
-			SpawnMob(17428812,900):updateClaim(player); -- Spawn Rumble Crawler
-		end
-	end
-	
+
+    -- Trade 12 La Theine Cabbages to pop Habetrot
+    if(GetMobAction(17428811) == 0 and GetMobAction(17428812) == 0 and trade:hasItemQty(4366,12) and trade:getItemCount() == 12) then
+        player:tradeComplete();
+        -- 20% Chance to spawn Habetrot, else it's a Rumble Crawler
+        local roll = math.random(1,5);
+        if (roll < 2) then
+            SpawnMob(17428811,900):updateClaim(player); -- Spawn Habetrot
+        else
+            SpawnMob(17428812,900):updateClaim(player); -- Spawn Rumble Crawler
+        end
+    end
+
 end; 
 
 -----------------------------------
