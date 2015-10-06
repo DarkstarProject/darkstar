@@ -141,12 +141,12 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         if (PEnmity->second->CE == 0 && CE + VE <= 0)
             return;
 
-        PEnmity->second->CE += CE > 0 ? CE * bonus : CE;
-        PEnmity->second->VE += VE > 0 ? VE * bonus : VE;
+        int newCE = PEnmity->second->CE + CE > 0 ? CE * bonus : CE;
+        int newVE = PEnmity->second->VE = VE > 0 ? VE * bonus : VE;
 
         //Check for cap limit
-        PEnmity->second->CE = dsp_cap(PEnmity->second->CE, 1, 10000);
-        PEnmity->second->VE = dsp_cap(PEnmity->second->VE, 0, 10000);
+        PEnmity->second->CE = dsp_cap(newCE, 1, 10000);
+        PEnmity->second->VE = dsp_cap(newVE, 0, 10000);
 
         if (CE + VE > 0 && PEntity->getMod(MOD_TREASURE_HUNTER) > PEnmity->second->maxTH)
             PEnmity->second->maxTH = (uint8)(PEntity->getMod(MOD_TREASURE_HUNTER));
@@ -157,8 +157,8 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
 
         float bonus = CalculateEnmityBonus(PEntity);
 
-        PEnmityObject->CE = CE * bonus;
-        PEnmityObject->VE = VE * bonus;
+        PEnmityObject->CE = dsp_cap(CE * bonus, 1, 10000);
+        PEnmityObject->VE = dsp_cap(VE * bonus, 0, 10000);
         PEnmityObject->PEnmityOwner = PEntity;
 
         if (CE + VE > 0)
@@ -234,8 +234,8 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
 
         uint16 mod = battleutils::GetEnmityModCure(level);
 
-        uint16 CE = 40 / mod * CureAmount;
-        uint16 VE = 240 / mod * CureAmount;
+        uint16 CE = 40. / mod * CureAmount;
+        uint16 VE = 240. / mod * CureAmount;
 
         // you're too far away so i'm ignoring you
         if (!IsWithinEnmityRange(PEntity))
@@ -259,12 +259,12 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
             float bonus = CalculateEnmityBonus(PEntity);
             float tranquilHeartReduction = 1.f - battleutils::HandleTranquilHeart(PEntity);
 
-            PEnmity->second->CE += CE * bonus * tranquilHeartReduction;
-            PEnmity->second->VE += VE * bonus * tranquilHeartReduction;
+            int newCE = PEnmity->second->CE + (CE * bonus * tranquilHeartReduction);
+            int newVE = PEnmity->second->VE + (VE * bonus * tranquilHeartReduction);
 
             //Check for cap limit
-            PEnmity->second->CE = dsp_cap(PEnmity->second->CE, 1, 10000);
-            PEnmity->second->VE = dsp_cap(PEnmity->second->VE, 0, 10000);
+            PEnmity->second->CE = dsp_cap(newCE, 1, 10000);
+            PEnmity->second->VE = dsp_cap(newVE, 0, 10000);
         }
         else if (CE >= 0 && VE >= 0)
         {
@@ -273,8 +273,8 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
             float bonus = CalculateEnmityBonus(PEntity);
             float tranquilHeartReduction = 1.f - battleutils::HandleTranquilHeart(PEntity);
 
-            PEnmityObject->CE = CE * bonus * tranquilHeartReduction;
-            PEnmityObject->VE = VE * bonus * tranquilHeartReduction;
+            PEnmityObject->CE = dsp_cap(CE * bonus * tranquilHeartReduction, 1, 10000);
+            PEnmityObject->VE = dsp_cap(VE * bonus * tranquilHeartReduction, 0, 10000);
             PEnmityObject->PEnmityOwner = PEntity;
             PEnmityObject->maxTH = 0;
 
@@ -314,8 +314,8 @@ void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percen
         {
             UpdateEnmity(HateReceiver, 0, 0);
             EnmityList_t::iterator PEnmityReceiver = m_EnmityList.lower_bound(HateReceiver->id);
-            PEnmityReceiver->second->CE += CEValue;
-            PEnmityReceiver->second->VE += VEValue;
+            PEnmityReceiver->second->CE += dsp_cap(PEnmityReceiver->second->CE + CEValue,1,10000);
+            PEnmityReceiver->second->VE += dsp_cap(PEnmityReceiver->second->VE + VEValue,0,10000);
         }
     }
 
@@ -410,6 +410,7 @@ void CEnmityContainer::DecayEnmity()
 
         //Should lose 60/sec, and this is called twice a sec, hence 30.
         PEnmityObject->VE -= PEnmityObject->VE > 30 ? 30 : PEnmityObject->VE;
+        ShowDebug("CE: %d VE: %d\n", PEnmityObject->CE, PEnmityObject->VE);
     }
 }
 

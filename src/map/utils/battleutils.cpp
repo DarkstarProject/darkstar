@@ -1968,6 +1968,12 @@ namespace battleutils
                 case TYPE_PET:
                     ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE, UPDATE_COMBAT));
                     break;
+                case TYPE_PC:
+                    if (PAttacker->objtype == TYPE_MOB)
+                    {
+                        ((CMobEntity*)PAttacker)->PEnmityContainer->UpdateEnmityFromAttack(PDefender, damage);
+                    }
+                    break;
             }
 
             // try to interrupt spell if not a ranged attack and not blocked by Shield Mastery
