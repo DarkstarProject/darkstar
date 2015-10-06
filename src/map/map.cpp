@@ -1269,6 +1269,10 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.msg_server_ip = aStrdup(w2);
         }
+        else if (strcmp(w1, "mob_no_despawn") == 0)
+        {
+            map_config.mob_no_despawn = atoi(w2);
+        }
         else
         {
             ShowWarning(CL_YELLOW"Unknown setting '%s' in file %s\n" CL_RESET, w1, cfgName);

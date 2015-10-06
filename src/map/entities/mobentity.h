@@ -36,12 +36,9 @@
 // forward declaration
 class CMobSpellContainer;
 
-// this will make mobs walk back to spawn point instead of despawning
-#define MOB_NO_DESPAWN false
+#define MOB_ROAM_HOME_DISTANCE 30
 #define MOB_SOUND_RANGE 8
 #define MOB_SIGHT_RANGE 15
-#define MOB_LINK_RADIUS 10
-#define MOB_TP_USE_CHANCE 30      // 30% chance to use tp if over 100
 
 enum SPAWNTYPE
 {

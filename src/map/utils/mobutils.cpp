@@ -894,23 +894,20 @@ void SetSpellList(CMobEntity* PMob, uint16 spellList)
 
 void InitializeMob(CMobEntity* PMob, CZone* PZone)
 {
-	// add special mob mods
+    // add special mob mods
 
     // this only has to be added once
     AddCustomMods(PMob);
 
-	// do not despawn if I match this criteria
-	if(MOB_NO_DESPAWN)
-	{
-		PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
-	}
+    PMob->m_Immunity |= PMob->getMobMod(MOBMOD_IMMUNITY);
 
-	PMob->m_Immunity |= PMob->getMobMod(MOBMOD_IMMUNITY);
+    PMob->defaultMobMod(MOBMOD_SKILL_LIST, PMob->m_MobSkillList);
+    PMob->defaultMobMod(MOBMOD_LINK_RADIUS, 10);
+    PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, 30);
+    PMob->defaultMobMod(MOBMOD_2HOUR_PROC, 60);
+    PMob->defaultMobMod(MOBMOD_SIGHT_RANGE, MOB_SIGHT_RANGE);
+    PMob->defaultMobMod(MOBMOD_SOUND_RANGE, MOB_SOUND_RANGE);
 
-	PMob->defaultMobMod(MOBMOD_SKILL_LIST, PMob->m_MobSkillList);
-	PMob->defaultMobMod(MOBMOD_LINK_RADIUS, MOB_LINK_RADIUS);
-	PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, MOB_TP_USE_CHANCE);
-	PMob->defaultMobMod(MOBMOD_2HOUR_PROC, 60);
 
     // Killer Effect
     switch (PMob->m_EcoSystem)
