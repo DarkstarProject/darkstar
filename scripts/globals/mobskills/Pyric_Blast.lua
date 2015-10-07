@@ -31,7 +31,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-   local dmgmod = MobBreathMove(mob, target, 0.01, 0.1, ELE_FIRE, 200);
+   local dmgmod = MobBreathMove(mob, target, 0.01, 0.1, ELE_FIRE, 600 + math.random(100));
 	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
 
    MobStatusEffectMove(mob, target, EFFECT_PLAGUE, 5, 3, 60);
