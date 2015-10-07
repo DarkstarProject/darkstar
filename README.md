@@ -31,6 +31,7 @@ Commits should contain a descriptive name for what you are modifying
 
 Remember to check back for any feedback, and drop a comment once requested changes have been made (if there are any).
 
+Also, rip out your tab key OR have your editor insert 4 spaces on indent/instead of tab character.
 
 Please *test your code* before committing changes/submitting a pull request.
 
