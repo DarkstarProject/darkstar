@@ -22,8 +22,8 @@ function onAdditionalEffect(player,target,damage)
             TpDrain = target:getTP();
         end
 
-        target:addTp(-TpDrain);
-        player:addTp(TpDrain);
+        target:addTP(-TpDrain);
+        player:addTP(TpDrain);
 
         return SUBEFFECT_TP_DRAIN, MSGBASIC_ADD_EFFECT_TP_DRAIN, TpDrain;
     end
