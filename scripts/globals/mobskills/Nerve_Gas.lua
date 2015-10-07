@@ -31,7 +31,11 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-   MobStatusEffectMove(mob, target, EFFECT_CURSE_I, 25, 0, 420);
-   MobStatusEffectMove(mob, target, EFFECT_POISON, 20, 3, 60);
+    local Tinnin = 0;
+    if (mob:getFamily() == 313) then
+        Tinnin = 20;
+    end
+    MobStatusEffectMove(mob, target, EFFECT_CURSE_I, 25, 0, 420);
+    MobStatusEffectMove(mob, target, EFFECT_POISON, 20 + Tinnin, 3, 60);
 
 end;
