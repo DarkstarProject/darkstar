@@ -86,45 +86,45 @@ This file is part of DarkStar-server source code.
 #include "zoneutils.h"
 
 /************************************************************************
-*																		*
-*  Таблицы получаемого опыта											*
-*																		*
+*                                                                                                                                                *
+*  Таблицы получаемого опыта                                                                                        *
+*                                                                                                                                                *
 ************************************************************************/
 
 std::array<std::array<uint16, 20>, 50> g_ExpTable;
 std::array<uint16, 100> g_ExpPerLevel;
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                                                                                                *
+*                                                                                                                                                *
+*                                                                                                                                                *
 ************************************************************************/
 
 namespace charutils
 {
 
     /************************************************************************
-    *																		*
-    *  Расчет характеристик персонажей										*
-    *																		*
+    *                                                                                                                                                *
+    *  Расчет характеристик персонажей                                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void CalculateStats(CCharEntity* PChar)
     {
         // Объявление переменных, нужных для рассчета.
 
-        float raceStat = 0;			// конечное число HP для уровня на основе расы.
-        float jobStat = 0;			// конечное число HP для уровня на основе первичной профессии.
-        float sJobStat = 0;			// коенчное число HP для уровня на основе вторичной профессии.
-        int32 bonusStat = 0;			// бонусное число HP которое добавляется при соблюдении некоторых условий.
+        float raceStat = 0;                        // конечное число HP для уровня на основе расы.
+        float jobStat = 0;                        // конечное число HP для уровня на основе первичной профессии.
+        float sJobStat = 0;                        // коенчное число HP для уровня на основе вторичной профессии.
+        int32 bonusStat = 0;                        // бонусное число HP которое добавляется при соблюдении некоторых условий.
 
-        int32 baseValueColumn = 0;	// номер колонки с базовым количеством HP
-        int32 scaleTo60Column = 1;	// номер колонки с модификатором до 60 уровня
-        int32 scaleOver30Column = 2;	// номер колонки с модификатором после 30 уровня
-        int32 scaleOver60Column = 3;	// номер колонки с модификатором после 60 уровня
-        int32 scaleOver75Column = 4;	// номер колонки с модификатором после 75 уровня
-        int32 scaleOver60 = 2;			// номер колонки с модификатором для расчета MP после 60 уровня
-        int32 scaleOver75 = 3;			// номер колонки с модификатором для расчета Статов после 75-го уровня
+        int32 baseValueColumn = 0;        // номер колонки с базовым количеством HP
+        int32 scaleTo60Column = 1;        // номер колонки с модификатором до 60 уровня
+        int32 scaleOver30Column = 2;        // номер колонки с модификатором после 30 уровня
+        int32 scaleOver60Column = 3;        // номер колонки с модификатором после 60 уровня
+        int32 scaleOver75Column = 4;        // номер колонки с модификатором после 75 уровня
+        int32 scaleOver60 = 2;                        // номер колонки с модификатором для расчета MP после 60 уровня
+        int32 scaleOver75 = 3;                        // номер колонки с модификатором для расчета Статов после 75-го уровня
 
         uint8 grade;
 
@@ -134,35 +134,35 @@ namespace charutils
         JOBTYPE sjob = PChar->GetSJob();
         MERIT_TYPE statMerit[] = { MERIT_STR, MERIT_DEX, MERIT_VIT, MERIT_AGI, MERIT_INT, MERIT_MND, MERIT_CHR };
 
-        uint8 race = 0;					//Human
+        uint8 race = 0;                                        //Human
 
         switch (PChar->look.race)
         {
             case 3:
-            case 4: race = 1; break;	//Elvaan
+            case 4: race = 1; break;        //Elvaan
             case 5:
-            case 6: race = 2; break;	//Tarutaru
-            case 7: race = 3; break;	//Mithra
-            case 8: race = 4; break;	//Galka
+            case 6: race = 2; break;        //Tarutaru
+            case 7: race = 3; break;        //Mithra
+            case 8: race = 4; break;        //Galka
         }
 
         // Расчет прироста HP от main job
 
-        int32 mainLevelOver30 = dsp_cap(mlvl - 30, 0, 30);			// Расчет условия +1HP каждый лвл после 30 уровня
-        int32 mainLevelUpTo60 = (mlvl < 60 ? mlvl - 1 : 59);		// Первый режим рассчета до 60 уровня (Используется так же и для MP)
-        int32 mainLevelOver60To75 = dsp_cap(mlvl - 60, 0, 15);		// Второй режим расчета после 60 уровня
-        int32 mainLevelOver75 = (mlvl < 75 ? 0 : mlvl - 75);			// Третий режим расчета после 75 уровня
+        int32 mainLevelOver30 = dsp_cap(mlvl - 30, 0, 30);                        // Расчет условия +1HP каждый лвл после 30 уровня
+        int32 mainLevelUpTo60 = (mlvl < 60 ? mlvl - 1 : 59);                // Первый режим рассчета до 60 уровня (Используется так же и для MP)
+        int32 mainLevelOver60To75 = dsp_cap(mlvl - 60, 0, 15);                // Второй режим расчета после 60 уровня
+        int32 mainLevelOver75 = (mlvl < 75 ? 0 : mlvl - 75);                        // Третий режим расчета после 75 уровня
 
         //Расчет бонусного количества HP
 
-        int32 mainLevelOver10 = (mlvl < 10 ? 0 : mlvl - 10);			// +2HP на каждом уровне после 10
-        int32 mainLevelOver50andUnder60 = dsp_cap(mlvl - 50, 0, 10);	// +2HP на каждом уровне в промежутке от 50 до 60 уровня
+        int32 mainLevelOver10 = (mlvl < 10 ? 0 : mlvl - 10);                        // +2HP на каждом уровне после 10
+        int32 mainLevelOver50andUnder60 = dsp_cap(mlvl - 50, 0, 10);        // +2HP на каждом уровне в промежутке от 50 до 60 уровня
         int32 mainLevelOver60 = (mlvl < 60 ? 0 : mlvl - 60);
 
         // Расчет прироста HP от дополнительной профессии
 
-        int32 subLevelOver10 = dsp_cap(slvl - 10, 0, 20);				// +1HP на каждый уровень после 10 (/2)
-        int32 subLevelOver30 = (slvl < 30 ? 0 : slvl - 30);				// +1HP на каждый уровень после 30
+        int32 subLevelOver10 = dsp_cap(slvl - 10, 0, 20);                                // +1HP на каждый уровень после 10 (/2)
+        int32 subLevelOver30 = (slvl < 30 ? 0 : slvl - 30);                                // +1HP на каждый уровень после 30
 
         // Расчет raceStat jobStat bonusStat sJobStat
         // Расчет по расе
@@ -217,9 +217,9 @@ namespace charutils
         //Если у main job нет МП рейтинга, расчитиваем расовый бонус на основе уровня subjob уровня(при условии, что у него есть МП рейтинг)
         if (grade::GetJobGrade(mjob, 1) == 0)
         {
-            if (grade::GetJobGrade(sjob, 1) != 0 && slvl > 0)					// В этом выражении ошибка
+            if (grade::GetJobGrade(sjob, 1) != 0 && slvl > 0)                                        // В этом выражении ошибка
             {
-                raceStat = (grade::GetMPScale(grade, 0) + grade::GetMPScale(grade, scaleTo60Column) * (slvl - 1)) / map_config.sj_mp_divisor;	// Вот здесь ошибка
+                raceStat = (grade::GetMPScale(grade, 0) + grade::GetMPScale(grade, scaleTo60Column) * (slvl - 1)) / map_config.sj_mp_divisor;        // Вот здесь ошибка
             }
         }
         else {
@@ -302,10 +302,10 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Предварительная версия загрузки персонажа. Функция будет				*
-    *  оптимизирована после определения всех необходимых данных и таблиц	*
-    *																		*
+    *                                                                                                                                                *
+    *  Предварительная версия загрузки персонажа. Функция будет                                *
+    *  оптимизирована после определения всех необходимых данных и таблиц        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void LoadChar(CCharEntity* PChar)
@@ -767,9 +767,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Загружаем инвентарь персонажа										*
-    *																		*
+    *                                                                                                                                                *
+    *  Загружаем инвентарь персонажа                                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void LoadInventory(CCharEntity* PChar)
@@ -938,9 +938,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Отправляем список текущих/завершенных квестов и миссий				*
-    *																		*
+    *                                                                                                                                                *
+    *  Отправляем список текущих/завершенных квестов и миссий                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SendQuestMissionLog(CCharEntity* PChar)
@@ -991,9 +991,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Отправляем списки ключевых предметов персонажа						*
-    *																		*
+    *                                                                                                                                                *
+    *  Отправляем списки ключевых предметов персонажа                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SendKeyItems(CCharEntity* PChar)
@@ -1067,9 +1067,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Добавляем новый предмет персонажу в выбранный контейнер				*
-    *																		*
+    *                                                                                                                                                *
+    *  Добавляем новый предмет персонажу в выбранный контейнер                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     // TODO: мне не нравится параметр silens, нужно придумать что-нибудь более элегантное
@@ -1093,9 +1093,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Добавляем новый предмет персонажу в выбранный контейнер				*
-    *																		*
+    *                                                                                                                                                *
+    *  Добавляем новый предмет персонажу в выбранный контейнер                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem, bool silence)
@@ -1262,9 +1262,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Обновляем количество предметов в указанных контейнере и ячейке		*
-    *																		*
+    *                                                                                                                                                *
+    *  Обновляем количество предметов в указанных контейнере и ячейке                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     uint32 UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quantity)
@@ -1353,7 +1353,7 @@ namespace charutils
     {
         if (PTarget->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() < PChar->UContainer->GetItemsCount())
         {
-			ShowDebug(CL_CYAN"Unable to trade, %s doesn't have enough inventory space\n" CL_RESET, PTarget->GetName());
+                        ShowDebug(CL_CYAN"Unable to trade, %s doesn't have enough inventory space\n" CL_RESET, PTarget->GetName());
             return false;
         }
         for (uint8 slotid = 0; slotid <= 8; ++slotid)
@@ -1364,7 +1364,7 @@ namespace charutils
             {
                 if (HasItem(PTarget, PItem->getID()))
                 {
-					ShowDebug(CL_CYAN"Unable to trade, %s has the rare item already (%s)\n" CL_RESET, PTarget->GetName(), PItem->getName());
+                                        ShowDebug(CL_CYAN"Unable to trade, %s has the rare item already (%s)\n" CL_RESET, PTarget->GetName(), PItem->getName());
                     return false;
                 }
             }
@@ -1380,7 +1380,7 @@ namespace charutils
 
     void DoTrade(CCharEntity* PChar, CCharEntity* PTarget)
     {
-		ShowDebug(CL_CYAN"%s->%s trade item movement started\n" CL_RESET, PChar->GetName(), PTarget->GetName());
+                ShowDebug(CL_CYAN"%s->%s trade item movement started\n" CL_RESET, PChar->GetName(), PTarget->GetName());
         for (uint8 slotid = 0; slotid <= 8; ++slotid)
         {
             CItem* PItem = PChar->UContainer->GetItem(slotid);
@@ -1390,16 +1390,16 @@ namespace charutils
                 if (PItem->getStackSize() == 1)
                 {
                     CItem* PNewItem = itemutils::GetItem(PItem);
-					ShowDebug(CL_CYAN"Adding %s to %s inventory stacksize 1\n" CL_RESET, PNewItem->getName(), PTarget->GetName());
+                                        ShowDebug(CL_CYAN"Adding %s to %s inventory stacksize 1\n" CL_RESET, PNewItem->getName(), PTarget->GetName());
                     PNewItem->setReserve(0);
                     AddItem(PTarget, LOC_INVENTORY, PNewItem);
                 }
                 else 
                 {
-					ShowDebug(CL_CYAN"Adding %s to %s inventory\n" CL_RESET, PItem->getName(), PTarget->GetName());
+                                        ShowDebug(CL_CYAN"Adding %s to %s inventory\n" CL_RESET, PItem->getName(), PTarget->GetName());
                     AddItem(PTarget, LOC_INVENTORY, PItem->getID(), PItem->getReserve());
                 }
-				ShowDebug(CL_CYAN"Removing %s from %s's inventory\n" CL_RESET, PItem->getName(), PChar->GetName());
+                                ShowDebug(CL_CYAN"Removing %s from %s's inventory\n" CL_RESET, PItem->getName(), PChar->GetName());
                 UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), -PItem->getReserve());
                 PItem->setReserve(0);
             }
@@ -1407,10 +1407,10 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Снимаем с персонажа экипированный предмет без обновления внешного	*
-    *  вида. Используется как вспомогательная функция в связке с другими	*
-    *																		*
+    *                                                                                                                                                *
+    *  Снимаем с персонажа экипированный предмет без обновления внешного        *
+    *  вида. Используется как вспомогательная функция в связке с другими        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void UnequipItem(CCharEntity* PChar, uint8 equipSlotID, bool update)
@@ -1477,7 +1477,7 @@ namespace charutils
                 case SLOT_SUB:
                 {
                     PChar->look.sub = 0;
-                    PChar->m_Weapons[SLOT_SUB] = itemutils::GetUnarmedItem();			// << equips "nothing" in the sub slot to prevent multi attack exploit
+                    PChar->m_Weapons[SLOT_SUB] = itemutils::GetUnarmedItem();                        // << equips "nothing" in the sub slot to prevent multi attack exploit
                     PChar->health.tp = 0;
                     BuildingCharWeaponSkills(PChar);
                     UpdateWeaponStyle(PChar, equipSlotID, nullptr);
@@ -1554,9 +1554,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Пытаемся экипировать предмет с соблюдением всех условий	 			*
-    *																		*
+    *                                                                                                                                                *
+    *  Пытаемся экипировать предмет с соблюдением всех условий                                 *
+    *                                                                                                                                                *
     ************************************************************************/
 
     bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
@@ -1938,9 +1938,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *																		*
-    *																		*
+    *                                                                                                                                                *
+    *                                                                                                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
@@ -2031,9 +2031,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Проверяем возможность персонажа носить экипированные на нем предметы	*
-    *																		*
+    *                                                                                                                                                *
+    *  Проверяем возможность персонажа носить экипированные на нем предметы        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void CheckValidEquipment(CCharEntity* PChar)
@@ -2105,9 +2105,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Проверяем логику всей экипировки персонажа							*
-    *																		*
+    *                                                                                                                                                *
+    *  Проверяем логику всей экипировки персонажа                                                        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     // позднее нужно будет сделать экипировку в структуре,
@@ -2134,9 +2134,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Load the Characters weapon skill list								*
-    *																		*
+    *                                                                                                                                                *
+    *  Load the Characters weapon skill list                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void BuildingCharWeaponSkills(CCharEntity* PChar)
@@ -2262,10 +2262,10 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Собираем рабочую таблицу способностей персонажа. С нулевым уровнем	*
-    *  должны быть 2h способности. По этому условию отсеиваем их для sjob	*
-    *																		*
+    *                                                                                                                                                *
+    *  Собираем рабочую таблицу способностей персонажа. С нулевым уровнем        *
+    *  должны быть 2h способности. По этому условию отсеиваем их для sjob        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void BuildingCharAbilityTable(CCharEntity* PChar)
@@ -2336,10 +2336,10 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Собираем рабочую таблицу умений персонажа на основе реальной.		*
+    *                                                                                                                                                *
+    *  Собираем рабочую таблицу умений персонажа на основе реальной.                *
     *  Добавляем ограничения, отмечаем умения основной профессии (rank != 0)*
-    *																		*
+    *                                                                                                                                                *
     ************************************************************************/
 
     void BuildingCharSkillsTable(CCharEntity* PChar)
@@ -2500,9 +2500,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Пытаемся увеличить значение умения									*
-    *																		*
+    *                                                                                                                                                *
+    *  Пытаемся увеличить значение умения                                                                        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
@@ -2593,9 +2593,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  When skill level gained check for weapon skill						*
-    *																		*
+    *                                                                                                                                                *
+    *  When skill level gained check for weapon skill                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void CheckWeaponSkill(CCharEntity* PChar, uint8 skill)
@@ -2624,9 +2624,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Методы для работы с ключевыми предметами								*
-    *																		*
+    *                                                                                                                                                *
+    *  Методы для работы с ключевыми предметами                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     int32 hasKeyItem(CCharEntity* PChar, uint16 KeyItemID)
@@ -2655,9 +2655,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Методы для работы с заклинаниями										*
-    *																		*
+    *                                                                                                                                                *
+    *  Методы для работы с заклинаниями                                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     int32 hasSpell(CCharEntity* PChar, uint16 SpellID)
@@ -2690,9 +2690,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Learned abilities (corsair rolls)									*
-    *																		*
+    *                                                                                                                                                *
+    *  Learned abilities (corsair rolls)                                                                        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     int32 hasLearnedAbility(CCharEntity* PChar, uint16 AbilityID)
@@ -2741,9 +2741,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Методы для работы с основными способностями							*
-    *																		*
+    *                                                                                                                                                *
+    *  Методы для работы с основными способностями                                                        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     int32 hasAbility(CCharEntity* PChar, uint16 AbilityID)
@@ -2762,9 +2762,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Weapon Skill functions												*
-    *																		*
+    *                                                                                                                                                *
+    *  Weapon Skill functions                                                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     int32 hasWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID)
@@ -2783,9 +2783,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Trait Functions														*
-    *																		*
+    *                                                                                                                                                *
+    *  Trait Functions                                                                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     int32 hasTrait(CCharEntity* PChar, uint8 TraitID)
@@ -2820,7 +2820,7 @@ namespace charutils
 
     /************************************************************************
     *
-    *		Pet Command Functions
+    *                Pet Command Functions
     *
     *************************************************************************/
     int32 hasPetAbility(CCharEntity* PChar, uint16 AbilityID)
@@ -2869,9 +2869,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Инициализируем таблицу опыта											*
-    *																		*
+    *                                                                                                                                                *
+    *  Инициализируем таблицу опыта                                                                                        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void LoadExpTable()
@@ -2911,9 +2911,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Узнаем реальное количество опыта, который персонаж получит с цели	*
-    *																		*
+    *                                                                                                                                                *
+    *  Узнаем реальное количество опыта, который персонаж получит с цели        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     uint32 GetRealExp(uint8 charlvl, uint8 moblvl)
@@ -2928,9 +2928,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Узнаем количество опыта, необходимое для получения следующего уровня	*
-    *																		*
+    *                                                                                                                                                *
+    *  Узнаем количество опыта, необходимое для получения следующего уровня        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     uint32 GetExpNEXTLevel(uint8 charlvl)
@@ -2943,9 +2943,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                                                                                                *
     *  Distributes gil to party members.                                    *
-    *																		*
+    *                                                                                                                                                *
     ************************************************************************/
 
     // TODO: REALISATION MUST BE IN TREASUREPOOL
@@ -2996,9 +2996,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Allocate experience points											*
-    *																		*
+    *                                                                                                                                                *
+    *  Allocate experience points                                                                                        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
@@ -3065,10 +3065,10 @@ namespace charutils
                             switch (pcinzone)
                             {
                                 case 1: exp *= 1.00f; break;
-                                case 2:	exp *= 0.75f; break;
+                                case 2:        exp *= 0.75f; break;
                                 case 3: exp *= 0.55f; break;
                                 case 4: exp *= 0.45f; break;
-                                case 5:	exp *= 0.39f; break;
+                                case 5:        exp *= 0.39f; break;
                                 case 6: exp *= 0.35f; break;
                                 default: break;
                             }
@@ -3077,7 +3077,7 @@ namespace charutils
                         {
                             switch (pcinzone)
                             {
-                                case 1:	exp *= 1.00f; break;
+                                case 1:        exp *= 1.00f; break;
                                 case 2: exp *= 0.60f; break;
                                 case 3: exp *= 0.45f; break;
                                 case 4: exp *= 0.40f; break;
@@ -3140,7 +3140,7 @@ namespace charutils
                             switch (PMember->expChain.chainNumber)
                             {
                                 case 0: PMember->expChain.chainTime = gettick() + 50000; break;
-                                case 1:	PMember->expChain.chainTime = gettick() + 40000; break;
+                                case 1:        PMember->expChain.chainTime = gettick() + 40000; break;
                                 case 2: PMember->expChain.chainTime = gettick() + 30000; break;
                                 case 3: PMember->expChain.chainTime = gettick() + 20000; break;
                                 case 4: PMember->expChain.chainTime = gettick() + 10000; break;
@@ -3153,7 +3153,7 @@ namespace charutils
                             switch (PMember->expChain.chainNumber)
                             {
                                 case 0: PMember->expChain.chainTime = gettick() + 100000; break;
-                                case 1:	PMember->expChain.chainTime = gettick() + 80000; break;
+                                case 1:        PMember->expChain.chainTime = gettick() + 80000; break;
                                 case 2: PMember->expChain.chainTime = gettick() + 60000; break;
                                 case 3: PMember->expChain.chainTime = gettick() + 40000; break;
                                 case 4: PMember->expChain.chainTime = gettick() + 20000; break;
@@ -3166,7 +3166,7 @@ namespace charutils
                             switch (PMember->expChain.chainNumber)
                             {
                                 case 0: PMember->expChain.chainTime = gettick() + 150000; break;
-                                case 1:	PMember->expChain.chainTime = gettick() + 120000; break;
+                                case 1:        PMember->expChain.chainTime = gettick() + 120000; break;
                                 case 2: PMember->expChain.chainTime = gettick() + 90000; break;
                                 case 3: PMember->expChain.chainTime = gettick() + 60000; break;
                                 case 4: PMember->expChain.chainTime = gettick() + 30000; break;
@@ -3179,7 +3179,7 @@ namespace charutils
                             switch (PMember->expChain.chainNumber)
                             {
                                 case 0: PMember->expChain.chainTime = gettick() + 200000; break;
-                                case 1:	PMember->expChain.chainTime = gettick() + 160000; break;
+                                case 1:        PMember->expChain.chainTime = gettick() + 160000; break;
                                 case 2: PMember->expChain.chainTime = gettick() + 120000; break;
                                 case 3: PMember->expChain.chainTime = gettick() + 80000; break;
                                 case 4: PMember->expChain.chainTime = gettick() + 40000; break;
@@ -3192,7 +3192,7 @@ namespace charutils
                             switch (PMember->expChain.chainNumber)
                             {
                                 case 0: PMember->expChain.chainTime = gettick() + 250000; break;
-                                case 1:	PMember->expChain.chainTime = gettick() + 200000; break;
+                                case 1:        PMember->expChain.chainTime = gettick() + 200000; break;
                                 case 2: PMember->expChain.chainTime = gettick() + 150000; break;
                                 case 3: PMember->expChain.chainTime = gettick() + 100000; break;
                                 case 4: PMember->expChain.chainTime = gettick() + 50000; break;
@@ -3205,7 +3205,7 @@ namespace charutils
                             switch (PMember->expChain.chainNumber)
                             {
                                 case 0: PMember->expChain.chainTime = gettick() + 300000; break;
-                                case 1:	PMember->expChain.chainTime = gettick() + 240000; break;
+                                case 1:        PMember->expChain.chainTime = gettick() + 240000; break;
                                 case 2: PMember->expChain.chainTime = gettick() + 180000; break;
                                 case 3: PMember->expChain.chainTime = gettick() + 120000; break;
                                 case 4: PMember->expChain.chainTime = gettick() + 90000; break;
@@ -3218,7 +3218,7 @@ namespace charutils
                             switch (PMember->expChain.chainNumber)
                             {
                                 case 0: PMember->expChain.chainTime = gettick() + 360000; break;
-                                case 1:	PMember->expChain.chainTime = gettick() + 300000; break;
+                                case 1:        PMember->expChain.chainTime = gettick() + 300000; break;
                                 case 2: PMember->expChain.chainTime = gettick() + 240000; break;
                                 case 3: PMember->expChain.chainTime = gettick() + 165000; break;
                                 case 4: PMember->expChain.chainTime = gettick() + 105000; break;
@@ -3312,7 +3312,7 @@ namespace charutils
                 switch (PChar->expChain.chainNumber)
                 {
                     case 0: PChar->expChain.chainTime = gettick() + 50000; break;
-                    case 1:	PChar->expChain.chainTime = gettick() + 40000; break;
+                    case 1:        PChar->expChain.chainTime = gettick() + 40000; break;
                     case 2: PChar->expChain.chainTime = gettick() + 30000; break;
                     case 3: PChar->expChain.chainTime = gettick() + 20000; break;
                     case 4: PChar->expChain.chainTime = gettick() + 10000; break;
@@ -3325,7 +3325,7 @@ namespace charutils
                 switch (PChar->expChain.chainNumber)
                 {
                     case 0: PChar->expChain.chainTime = gettick() + 100000; break;
-                    case 1:	PChar->expChain.chainTime = gettick() + 80000; break;
+                    case 1:        PChar->expChain.chainTime = gettick() + 80000; break;
                     case 2: PChar->expChain.chainTime = gettick() + 60000; break;
                     case 3: PChar->expChain.chainTime = gettick() + 40000; break;
                     case 4: PChar->expChain.chainTime = gettick() + 20000; break;
@@ -3338,7 +3338,7 @@ namespace charutils
                 switch (PChar->expChain.chainNumber)
                 {
                     case 0: PChar->expChain.chainTime = gettick() + 150000; break;
-                    case 1:	PChar->expChain.chainTime = gettick() + 120000; break;
+                    case 1:        PChar->expChain.chainTime = gettick() + 120000; break;
                     case 2: PChar->expChain.chainTime = gettick() + 90000; break;
                     case 3: PChar->expChain.chainTime = gettick() + 60000; break;
                     case 4: PChar->expChain.chainTime = gettick() + 30000; break;
@@ -3351,7 +3351,7 @@ namespace charutils
                 switch (PChar->expChain.chainNumber)
                 {
                     case 0: PChar->expChain.chainTime = gettick() + 200000; break;
-                    case 1:	PChar->expChain.chainTime = gettick() + 160000; break;
+                    case 1:        PChar->expChain.chainTime = gettick() + 160000; break;
                     case 2: PChar->expChain.chainTime = gettick() + 120000; break;
                     case 3: PChar->expChain.chainTime = gettick() + 80000; break;
                     case 4: PChar->expChain.chainTime = gettick() + 40000; break;
@@ -3364,7 +3364,7 @@ namespace charutils
                 switch (PChar->expChain.chainNumber)
                 {
                     case 0: PChar->expChain.chainTime = gettick() + 250000; break;
-                    case 1:	PChar->expChain.chainTime = gettick() + 200000; break;
+                    case 1:        PChar->expChain.chainTime = gettick() + 200000; break;
                     case 2: PChar->expChain.chainTime = gettick() + 150000; break;
                     case 3: PChar->expChain.chainTime = gettick() + 100000; break;
                     case 4: PChar->expChain.chainTime = gettick() + 50000; break;
@@ -3377,7 +3377,7 @@ namespace charutils
                 switch (PChar->expChain.chainNumber)
                 {
                     case 0: PChar->expChain.chainTime = gettick() + 300000; break;
-                    case 1:	PChar->expChain.chainTime = gettick() + 240000; break;
+                    case 1:        PChar->expChain.chainTime = gettick() + 240000; break;
                     case 2: PChar->expChain.chainTime = gettick() + 180000; break;
                     case 3: PChar->expChain.chainTime = gettick() + 120000; break;
                     case 4: PChar->expChain.chainTime = gettick() + 90000; break;
@@ -3390,7 +3390,7 @@ namespace charutils
                 switch (PChar->expChain.chainNumber)
                 {
                     case 0: PChar->expChain.chainTime = gettick() + 360000; break;
-                    case 1:	PChar->expChain.chainTime = gettick() + 300000; break;
+                    case 1:        PChar->expChain.chainTime = gettick() + 300000; break;
                     case 2: PChar->expChain.chainTime = gettick() + 240000; break;
                     case 3: PChar->expChain.chainTime = gettick() + 165000; break;
                     case 4: PChar->expChain.chainTime = gettick() + 105000; break;
@@ -3695,9 +3695,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Устанавливаем ограничение уровня персонажа							*
-    *																		*
+    *                                                                                                                                                *
+    *  Устанавливаем ограничение уровня персонажа                                                        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SetLevelRestriction(CCharEntity* PChar, uint8 lvl)
@@ -3706,9 +3706,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Сохраняем позицию													*
-    *																		*
+    *                                                                                                                                                *
+    *  Сохраняем позицию                                                                                                        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveCharPosition(CCharEntity* PChar)
@@ -3737,9 +3737,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Сохраняем список квестов												*
-    *																		*
+    *                                                                                                                                                *
+    *  Сохраняем список квестов                                                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveQuestsList(CCharEntity* PChar)
@@ -3759,9 +3759,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Сохраняем список квестов												*
-    *																		*
+    *                                                                                                                                                *
+    *  Сохраняем список квестов                                                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveFame(CCharEntity* PChar)
@@ -3787,9 +3787,9 @@ namespace charutils
 
 
     /************************************************************************
-    *																		*
-    *  Save Character Missions												*
-    *																		*
+    *                                                                                                                                                *
+    *  Save Character Missions                                                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveMissionsList(CCharEntity* PChar)
@@ -3828,9 +3828,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Cохраняем список колючевых предметов									*
-    *																		*
+    *                                                                                                                                                *
+    *  Cохраняем список колючевых предметов                                                                        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveCharInventoryCapacity(CCharEntity* PChar)
@@ -3857,9 +3857,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Cохраняем список колючевых предметов									*
-    *																		*
+    *                                                                                                                                                *
+    *  Cохраняем список колючевых предметов                                                                        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveKeyItems(CCharEntity* PChar)
@@ -3873,9 +3873,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Сохраняем список выученных заклинаний								*
-    *																		*
+    *                                                                                                                                                *
+    *  Сохраняем список выученных заклинаний                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveSpells(CCharEntity* PChar)
@@ -3895,9 +3895,9 @@ namespace charutils
 
 
     /************************************************************************
-    *																		*
-    *  Сохраняем список выученных заклинаний								*
-    *																		*
+    *                                                                                                                                                *
+    *  Сохраняем список выученных заклинаний                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveLearnedAbilities(CCharEntity* PChar)
@@ -3941,9 +3941,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Сохраняем список посещенных зон										*
-    *																		*
+    *                                                                                                                                                *
+    *  Сохраняем список посещенных зон                                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveZonesVisited(CCharEntity* PChar)
@@ -3957,9 +3957,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Сохраняем экипировку и внешний вид персонажа.						*
-    *																		*
+    *                                                                                                                                                *
+    *  Сохраняем экипировку и внешний вид персонажа.                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveCharEquip(CCharEntity* PChar)
@@ -4022,9 +4022,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Сохраняем часть текущих характеристик персонажа						*
-    *																		*
+    *                                                                                                                                                *
+    *  Сохраняем часть текущих характеристик персонажа                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveCharStats(CCharEntity* PChar)
@@ -4050,9 +4050,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Save the char's GM level and nameflags       						*
-    *																		*
+    *                                                                                                                                                *
+    *  Save the char's GM level and nameflags                                                       *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveCharGMLevel(CCharEntity* PChar)
@@ -4077,9 +4077,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Saves character nation changes										*
-    *																		*
+    *                                                                                                                                                *
+    *  Saves character nation changes                                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveCharNation(CCharEntity* PChar)
@@ -4115,9 +4115,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Сохраняем текущие уровни профессий персонажа							*
-    *																		*
+    *                                                                                                                                                *
+    *  Сохраняем текущие уровни профессий персонажа                                                        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveCharJob(CCharEntity* PChar, JOBTYPE job)
@@ -4163,9 +4163,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Сохраняем текущий опыт персонажа										*
-    *																		*
+    *                                                                                                                                                *
+    *  Сохраняем текущий опыт персонажа                                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveCharExp(CCharEntity* PChar, JOBTYPE job)
@@ -4207,9 +4207,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Сохраняем значение выбранного умения персонажа						*
-    *																		*
+    *                                                                                                                                                *
+    *  Сохраняем значение выбранного умения персонажа                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveCharSkills(CCharEntity* PChar, uint8 SkillID)
@@ -4235,9 +4235,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Conquest Point / Nation TP, ...										*
-    *																		*
+    *                                                                                                                                                *
+    *  Conquest Point / Nation TP, ...                                                                                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveCharPoints(CCharEntity* PChar)
@@ -4361,9 +4361,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Record now as when the character has died and save it to the db.		*
-    *																		*
+    *                                                                                                                                                *
+    *  Record now as when the character has died and save it to the db.                *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void SaveDeathTime(CCharEntity* PChar)
@@ -4382,9 +4382,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Checks which UnarmedItem to grant when SLOT_MAIN is empty.			*
-    *																		*
+    *                                                                                                                                                *
+    *  Checks which UnarmedItem to grant when SLOT_MAIN is empty.                        *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void CheckUnarmedWeapon(CCharEntity* PChar)
@@ -4396,7 +4396,7 @@ namespace charutils
             (!PSubslot || !PSubslot->isType(ITEM_ARMOR)))
         {
             PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedH2HItem();
-            PChar->look.main = 21;											// The secret to H2H animations.  setModelId for UnarmedH2H didn't work.
+            PChar->look.main = 21;                                                                                        // The secret to H2H animations.  setModelId for UnarmedH2H didn't work.
         }
         else {
             PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedItem();
@@ -4406,9 +4406,9 @@ namespace charutils
     }
 
     /************************************************************************
-    *																		*
-    *  Opens the characters send box                            			*
-    *																		*
+    *                                                                                                                                                *
+    *  Opens the characters send box                                                    *
+    *                                                                                                                                                *
     ************************************************************************/
 
     void OpenSendBox(CCharEntity* PChar)
@@ -4749,111 +4749,111 @@ namespace charutils
         return 0;
     }
 
-	/************************************************************************
-	*																		*
-	*  Load Spells													*
-	*																		*
-	************************************************************************/
+        /************************************************************************
+        *                                                                                                                                                *
+        *  Load Spells                                                                                                        *
+        *                                                                                                                                                *
+        ************************************************************************/
 
-	void LoadSpells(CCharEntity* PChar)
-	{
-		const int8* fmtQuery =
-			"SELECT spells FROM chars WHERE charid = %u;";
+        void LoadSpells(CCharEntity* PChar)
+        {
+                const int8* fmtQuery =
+                        "SELECT spells FROM chars WHERE charid = %u;";
 
-		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+                int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
 
-		DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
-		if (ret != SQL_ERROR &&
-			Sql_NumRows(SqlHandle) != 0 &&
-			Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			size_t length = 0;
-			length = 0;
-			int8* spells = NULL;
-			Sql_GetData(SqlHandle, 1, &spells, &length);
-			memcpy(PChar->m_SpellList, spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
-			memcpy(PChar->m_EnabledSpellList, spells, (length > sizeof(PChar->m_EnabledSpellList) ? sizeof(PChar->m_EnabledSpellList) : length));
-			charutils::filterEnabledSpells(PChar);
-		}
-	}
+                DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
+                if (ret != SQL_ERROR &&
+                        Sql_NumRows(SqlHandle) != 0 &&
+                        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                {
+                        size_t length = 0;
+                        length = 0;
+                        int8* spells = NULL;
+                        Sql_GetData(SqlHandle, 1, &spells, &length);
+                        memcpy(PChar->m_SpellList, spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
+                        memcpy(PChar->m_EnabledSpellList, spells, (length > sizeof(PChar->m_EnabledSpellList) ? sizeof(PChar->m_EnabledSpellList) : length));
+                        charutils::filterEnabledSpells(PChar);
+                }
+        }
 
-	/************************************************************************
-	*																		*
-	*  Load KI's													*
-	*																		*
-	************************************************************************/
+        /************************************************************************
+        *                                                                                                                                                *
+        *  Load KI's                                                                                                        *
+        *                                                                                                                                                *
+        ************************************************************************/
 
-	void LoadKIs(CCharEntity* PChar)
-	{
-		const int8* fmtQuery =
-			"SELECT keyitems FROM chars WHERE charid = %u;";
+        void LoadKIs(CCharEntity* PChar)
+        {
+                const int8* fmtQuery =
+                        "SELECT keyitems FROM chars WHERE charid = %u;";
 
-		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+                int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
 
-		DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
-		if (ret != SQL_ERROR &&
-			Sql_NumRows(SqlHandle) != 0 &&
-			Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			size_t length = 0;
-			length = 0;
-			int8* keyitems = NULL;
-			Sql_GetData(SqlHandle, 1, &keyitems, &length);
-			memcpy(PChar->keys.keysList, keyitems, (length > sizeof(PChar->keys) ? sizeof(PChar->keys) : length));
+                DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
+                if (ret != SQL_ERROR &&
+                        Sql_NumRows(SqlHandle) != 0 &&
+                        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                {
+                        size_t length = 0;
+                        length = 0;
+                        int8* keyitems = NULL;
+                        Sql_GetData(SqlHandle, 1, &keyitems, &length);
+                        memcpy(PChar->keys.keysList, keyitems, (length > sizeof(PChar->keys) ? sizeof(PChar->keys) : length));
 
-		}
-	}
+                }
+        }
 
-	/************************************************************************
-	*																		*
-	*  Load Missions													*
-	*																		*
-	************************************************************************/
+        /************************************************************************
+        *                                                                                                                                                *
+        *  Load Missions                                                                                                        *
+        *                                                                                                                                                *
+        ************************************************************************/
 
-	void LoadMissions(CCharEntity* PChar)
-	{
-		const int8* fmtQuery =
-			"SELECT missions FROM chars WHERE charid = %u;";
+        void LoadMissions(CCharEntity* PChar)
+        {
+                const int8* fmtQuery =
+                        "SELECT missions FROM chars WHERE charid = %u;";
 
-		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+                int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
 
-		DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
-		if (ret != SQL_ERROR &&
-			Sql_NumRows(SqlHandle) != 0 &&
-			Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			size_t length = 0;
-			length = 0;
-			int8* missions = NULL;
-			Sql_GetData(SqlHandle, 1, &missions, &length);
-			memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
+                DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
+                if (ret != SQL_ERROR &&
+                        Sql_NumRows(SqlHandle) != 0 &&
+                        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                {
+                        size_t length = 0;
+                        length = 0;
+                        int8* missions = NULL;
+                        Sql_GetData(SqlHandle, 1, &missions, &length);
+                        memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
-		}
-	}
+                }
+        }
 
-	/************************************************************************
-	*																		*
-	*  Load Quests													*
-	*																		*
-	************************************************************************/
+        /************************************************************************
+        *                                                                                                                                                *
+        *  Load Quests                                                                                                        *
+        *                                                                                                                                                *
+        ************************************************************************/
 
-	void LoadQuests(CCharEntity* PChar)
-	{
-		const int8* fmtQuery =
-			"SELECT quests FROM chars WHERE charid = %u;";
+        void LoadQuests(CCharEntity* PChar)
+        {
+                const int8* fmtQuery =
+                        "SELECT quests FROM chars WHERE charid = %u;";
 
-		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+                int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
 
-		DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
-		if (ret != SQL_ERROR &&
-			Sql_NumRows(SqlHandle) != 0 &&
-			Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			size_t length = 0;
-			int8* quests = NULL;
-			Sql_GetData(SqlHandle, 1, &quests, &length);
-			memcpy(PChar->m_questLog, quests, (length > sizeof(PChar->m_questLog) ? sizeof(PChar->m_questLog) : length));
+                DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
+                if (ret != SQL_ERROR &&
+                        Sql_NumRows(SqlHandle) != 0 &&
+                        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                {
+                        size_t length = 0;
+                        int8* quests = NULL;
+                        Sql_GetData(SqlHandle, 1, &quests, &length);
+                        memcpy(PChar->m_questLog, quests, (length > sizeof(PChar->m_questLog) ? sizeof(PChar->m_questLog) : length));
 
-		}
-	}
+                }
+        }
 }; // namespace charutils
