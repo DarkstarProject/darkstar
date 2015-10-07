@@ -141,8 +141,8 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         if (PEnmity->second->CE == 0 && CE + VE <= 0)
             return;
 
-        int newCE = PEnmity->second->CE + CE > 0 ? CE * bonus : CE;
-        int newVE = PEnmity->second->VE + VE > 0 ? VE * bonus : VE;
+        int16 newCE = PEnmity->second->CE + (CE > 0) ? CE * bonus : CE;
+        int16 newVE = PEnmity->second->VE + (VE > 0) ? VE * bonus : VE;
 
         //Check for cap limit
         PEnmity->second->CE = dsp_cap(newCE, 1, 10000);
@@ -259,8 +259,8 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
             float bonus = CalculateEnmityBonus(PEntity);
             float tranquilHeartReduction = 1.f - battleutils::HandleTranquilHeart(PEntity);
 
-            int newCE = PEnmity->second->CE + (CE * bonus * tranquilHeartReduction);
-            int newVE = PEnmity->second->VE + (VE * bonus * tranquilHeartReduction);
+            int16 newCE = PEnmity->second->CE + (CE * bonus * tranquilHeartReduction);
+            int16 newVE = PEnmity->second->VE + (VE * bonus * tranquilHeartReduction);
 
             //Check for cap limit
             PEnmity->second->CE = dsp_cap(newCE, 1, 10000);
@@ -314,8 +314,8 @@ void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percen
         {
             UpdateEnmity(HateReceiver, 0, 0);
             EnmityList_t::iterator PEnmityReceiver = m_EnmityList.lower_bound(HateReceiver->id);
-            PEnmityReceiver->second->CE += dsp_cap(PEnmityReceiver->second->CE + CEValue,1,10000);
-            PEnmityReceiver->second->VE += dsp_cap(PEnmityReceiver->second->VE + VEValue,0,10000);
+            PEnmityReceiver->second->CE = dsp_cap(PEnmityReceiver->second->CE + CEValue,1,10000);
+            PEnmityReceiver->second->VE = dsp_cap(PEnmityReceiver->second->VE + VEValue,0,10000);
         }
     }
 
@@ -373,7 +373,9 @@ void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PEntity, uint16 Dam
         return;
     }
     float reduction = (100.f - dsp_min(PEntity->getMod(MOD_ENMITY_LOSS_REDUCTION), 100)) / 100.0f;
-    UpdateEnmity(PEntity, -(1800 * Damage / PEntity->GetMaxHP()) * reduction, 0);
+    int16 CE = -(1800 * Damage / PEntity->GetMaxHP()) * reduction;
+
+    UpdateEnmity(PEntity, CE, 0);
 }
 
 /************************************************************************
@@ -410,6 +412,7 @@ void CEnmityContainer::DecayEnmity()
 
         //Should lose 60/sec, and this is called twice a sec, hence 30.
         PEnmityObject->VE -= PEnmityObject->VE > 30 ? 30 : PEnmityObject->VE;
+        // ShowDebug("CE: %d VE: %d\n", PEnmityObject->CE, PEnmityObject->VE);
     }
 }
 
