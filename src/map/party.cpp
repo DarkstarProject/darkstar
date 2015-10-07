@@ -46,6 +46,7 @@
 #include "packets/menu_config.h"
 #include "packets/message_standard.h"
 #include "packets/party_define.h"
+#include "packets/party_effects.h"
 #include "packets/party_member_update.h"
 
 
@@ -762,8 +763,12 @@ void CParty::ReloadParty()
 			}
 		}
 	}
+    for (auto&& PMember : members)
+    {
+        CCharEntity* PChar = (CCharEntity*)PMember;
+        PChar->pushPacket(new CPartyEffectsPacket(this));
+    }
 }
-
 
 /************************************************************************
 *																		*

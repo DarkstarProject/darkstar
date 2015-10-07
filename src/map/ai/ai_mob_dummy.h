@@ -71,6 +71,7 @@ public:
 
     bool isActionQueueAttack();
 	void Stun(uint32 stunTime);
+    void Despawn();
 
     // time of day change, update mobs
     // TODO:
@@ -97,7 +98,6 @@ protected:
 	bool m_mobskillattack;
 	bool m_actionqueueability;
 
-	bool  m_CanStandback;
 	uint32 m_LastStandbackTime;
 
 	void ActionRoaming();
@@ -146,6 +146,7 @@ protected:
 
 	void Deaggro(); // deaggro targe
 	void OnTick();
+        bool CanMoveForward(float currentDistance);
 
 private:
 

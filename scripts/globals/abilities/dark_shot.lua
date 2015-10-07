@@ -78,6 +78,7 @@ function onUseAbility(player,target,ability)
         -- no effect
         ability:setMsg(323);
     end
-    
+
+    target:updateClaim(player);
     return dispelledEffect;
 end;

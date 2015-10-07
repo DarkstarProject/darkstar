@@ -828,6 +828,8 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                         }
 
                         PChar->StatusEffectContainer->SaveStatusEffects(true);
+                        charutils::SaveCharPosition(PChar);
+
                         ShowDebug(CL_CYAN"map_cleanup: %s timed out, closing session\n" CL_RESET, PChar->GetName());
 
                         PChar->status = STATUS_SHUTDOWN;
@@ -1266,6 +1268,10 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "msg_server_ip") == 0)
         {
             map_config.msg_server_ip = aStrdup(w2);
+        }
+        else if (strcmp(w1, "mob_no_despawn") == 0)
+        {
+            map_config.mob_no_despawn = atoi(w2);
         }
         else
         {

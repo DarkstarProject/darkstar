@@ -470,6 +470,7 @@ public:
     bool			isCharmed;					// is the battle entity charmed?
 
     bool		    isDead();					// проверяем, мертва ли сущность
+    bool		    isAlive();
     bool			isInDynamis();
     bool			hasImmunity(uint32 imID);
     bool			isAsleep();

@@ -16,12 +16,10 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 	local dmgmod = 1;
-	if (mob:getHP()~=0) then
-		BOMB_TOSS_HPP = mob:getHP()/mob:getMaxHP();
-	end
+        local BOMB_TOSS_HPP = mob:getHP()/mob:getMaxHP();
 
-    local job = mob:getMainJob();
-	local power = math.random(12,15);
+        local job = mob:getMainJob();
+	local power = math.random(10,15);
 
 	-- did I drop it in my face?
 	if (math.random() < 0.2) then

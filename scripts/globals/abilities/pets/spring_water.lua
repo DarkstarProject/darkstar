@@ -28,7 +28,7 @@ function onPetAbility(target, pet, skill)
 	target:delStatusEffect(EFFECT_PARALYSIS);
 	target:delStatusEffect(EFFECT_DISEASE);
 	target:delStatusEffect(EFFECT_PETRIFICATION);
-	removeSleepEffects(target);
+        target:wakeUp();
 	target:delStatusEffect(EFFECT_SILENCE);
 	if math.random() > 0.5 then
 		target:delStatusEffect(EFFECT_SLOW);

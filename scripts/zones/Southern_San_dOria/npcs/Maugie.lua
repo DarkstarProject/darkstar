@@ -15,18 +15,18 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 ----------------------------------- 
 
 function onTrade(player,npc,trade) 
-if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED) then
-if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeMaugie") == 0) then 
-player:messageSpecial(8709);
-player:setVar("FFR",player:getVar("FFR") - 1);
-player:setVar("tradeMaugie",1);
-        player:messageSpecial(FLYER_ACCEPTED);
-        trade:complete();
-elseif (player:getVar("tradeMaugie") ==1) then
-player:messageSpecial(8710);
-end
-end
-end;
+    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED) then
+        if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeMaugie") == 0) then 
+            player:messageSpecial(MAUGIE_DIALOG);
+            player:setVar("FFR",player:getVar("FFR") - 1);
+            player:setVar("tradeMaugie",1);
+            player:messageSpecial(FLYER_ACCEPTED);
+            player:tradeComplete();
+            elseif (player:getVar("tradeMaugie") ==1) then
+                player:messageSpecial(FLYER_ALREADY);
+            end
+        end
+    end;
 
 ----------------------------------- 
 -- onTrigger Action 

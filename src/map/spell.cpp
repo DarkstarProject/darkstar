@@ -400,21 +400,17 @@ void CSpell::setExpansionCode(int8* expansionCode)
 //Implement namespace to work with spells       
 namespace spell
 {
-    CSpell* PSpellList[MAX_SPELL_ID]; // spell list
-    std::map<uint16, uint16> PMobSkillToBlueSpell[256]; // maps the skill id (key) to spell id (value).
-
+    std::array<CSpell*, 1024> PSpellList; // spell list
+    std::map<uint16, uint16> PMobSkillToBlueSpell; // maps the skill id (key) to spell id (value).
 
     //Load a list of spells
     void LoadSpellList()
     {
-        memset(PSpellList, 0, sizeof(PSpellList));
-
         const int8* Query = "SELECT spellid, name, jobs, `group`, validTargets, skill, castTime, recastTime, animation, animationTime, mpCost, \
                              AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements, required_expansion \
-                             FROM spell_list \
-                             WHERE spellid < %u;";
+                             FROM spell_list;";
 
-        int32 ret = Sql_Query(SqlHandle, Query, MAX_SPELL_ID);
+        int32 ret = Sql_Query(SqlHandle, Query);
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -487,10 +483,6 @@ namespace spell
 
                 // Sanity check the spell ID
                 uint16 spellId = Sql_GetIntData(SqlHandle,0);
-                if (spellId > MAX_SPELL_ID || spellId < 0x200) {
-                    ShowWarning("Tried to load a blue magic spell with ID %u which is higher than the max (%u) or less than 0x200!\n", spellId, MAX_SPELL_ID);
-                    continue;
-                }
 
                 if(PSpellList[spellId] == nullptr)
                 {
@@ -504,7 +496,7 @@ namespace spell
                 ((CBlueSpell*)PSpellList[spellId])->setTraitWeight(Sql_GetIntData(SqlHandle,4));
                 ((CBlueSpell*)PSpellList[spellId])->setPrimarySkillchain(Sql_GetIntData(SqlHandle,5));
                 ((CBlueSpell*)PSpellList[spellId])->setSecondarySkillchain(Sql_GetIntData(SqlHandle,6));
-                PMobSkillToBlueSpell->insert(std::make_pair(Sql_GetIntData(SqlHandle,1), spellId));
+                PMobSkillToBlueSpell.insert(std::make_pair(Sql_GetIntData(SqlHandle,1), spellId));
             }
         }
         ret = Sql_Query(SqlHandle,"SELECT spellId, modId, value FROM blue_spell_mods WHERE spellId IN (SELECT spellId FROM spell_list LEFT JOIN blue_spell_list USING (spellId))");
@@ -517,7 +509,7 @@ namespace spell
                 uint16 modID  = (uint16)Sql_GetUIntData(SqlHandle,1);
                 int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
-                if (!(spellId > MAX_SPELL_ID) && (PSpellList[spellId] != nullptr))
+                if (PSpellList[spellId])
                 {
                     ((CBlueSpell*)PSpellList[spellId])->addModifier(new CModifier(modID,value));
                 }
@@ -539,7 +531,7 @@ namespace spell
 
                 uint16 spellId = (uint16)Sql_GetUIntData(SqlHandle,0);
 
-                if (!(spellId >= MAX_SPELL_ID) && (PSpellList[spellId] != nullptr))
+                if (PSpellList[spellId])
                 {
                     PSpellList[spellId]->setMeritId(Sql_GetUIntData(SqlHandle,1));
                 }
@@ -548,16 +540,12 @@ namespace spell
     }
 
     CSpell* GetSpellByMonsterSkillId(uint16 SkillID) {
-        std::map<uint16,uint16>::iterator it = PMobSkillToBlueSpell->find(SkillID);
-        if (it == PMobSkillToBlueSpell->end()) {
+        std::map<uint16,uint16>::iterator it = PMobSkillToBlueSpell.find(SkillID);
+        if (it == PMobSkillToBlueSpell.end()) {
             return nullptr;
         }
         else {
             uint16 spellId = it->second;
-            if (spellId > MAX_SPELL_ID) {
-                ShowError("Resolved spell ID from mob skill %u is out of spell range (%u)\n",SkillID,spellId);
-                return nullptr;
-            }
             return PSpellList[spellId];
         }
     }
@@ -565,12 +553,7 @@ namespace spell
     //Get Spell By ID
     CSpell* GetSpell(uint16 SpellID)
     {
-        if (SpellID < MAX_SPELL_ID)
-        {
-            return PSpellList[SpellID];
-        }
-        ShowFatalError(CL_RED"SpellID <%u> out of range\n" CL_RESET, SpellID);
-        return nullptr;
+        return PSpellList[SpellID];
     }
 
     //Check If user can cast spell

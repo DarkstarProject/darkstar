@@ -963,7 +963,7 @@ INSERT INTO `mob_groups` VALUES (922,4659,35,0,128,0,9000,0,77,77,0);
 INSERT INTO `mob_groups` VALUES (923,2492,35,0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (924,3199,35,0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (925,3205,35,0,0,0,0,0,0,0,0);
-INSERT INTO `mob_groups` VALUES (926,3269,35,0,128,0,0,0,82,87,0);
+INSERT INTO `mob_groups` VALUES (926,5549,35,0,128,0,0,0,80,82,0);
 INSERT INTO `mob_groups` VALUES (927,3272,35,1056,0,0,0,0,77,83,0);
 INSERT INTO `mob_groups` VALUES (928,3601,35,0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (929,3875,35,0,0,0,0,0,0,0,0);
@@ -1028,7 +1028,7 @@ INSERT INTO `mob_groups` VALUES (986,2152,37,0,128,0,0,0,75,80,0);  -- Ji_Gho_Ag
 INSERT INTO `mob_groups` VALUES (987,2193,37,0,128,4413,11000,0,75,80,0);  -- Kari                    ok
 INSERT INTO `mob_groups` VALUES (988,2234,37,0,128,4413,9000,500,75,80,0);  -- Kindred_Black_Mage     ok
 INSERT INTO `mob_groups` VALUES (989,2235,37,0,128,4413,9000,400,75,80,0);  -- Kindred_Dark_Knight    ok
-INSERT INTO `mob_groups` VALUES (990,2243,37,0,128,4413,9000,500,75,80,0);  -- Kindred_Summoner       ok
+INSERT INTO `mob_groups` VALUES (990,5550,37,0,128,4413,9000,500,75,80,0);  -- Kindred_Summoner       ok
 INSERT INTO `mob_groups` VALUES (991,2244,37,0,128,0,5000,500,60,64,0);  -- Kindred_s_Avatar          ok
 INSERT INTO `mob_groups` VALUES (992,2245,37,0,128,0,2000,500,60,64,0);  -- Kindred_s_Elemental       ok
 INSERT INTO `mob_groups` VALUES (993,2249,37,0,128,4413,6000,0,75,80,0);  -- Kindred_Warrior          ok
@@ -1473,7 +1473,7 @@ INSERT INTO `mob_groups` VALUES (1422,2239,42,0,128,1914,5500,0,78,80,0); -- Kin
 INSERT INTO `mob_groups` VALUES (1423,2240,42,0,128,1916,5500,0,78,80,0); -- Kindred_Ranger
 INSERT INTO `mob_groups` VALUES (1424,2241,42,0,128,1918,5500,0,78,80,0); -- Kindred_Red_Mage
 INSERT INTO `mob_groups` VALUES (1425,2242,42,0,128,1920,5500,0,78,80,0); -- Kindred_Samurai
-INSERT INTO `mob_groups` VALUES (1426,2243,42,0,128,1923,5500,0,78,80,0); -- Kindred_Summoner
+INSERT INTO `mob_groups` VALUES (1426,5550,42,0,128,1923,5500,0,78,80,0); -- Kindred_Summoner
 INSERT INTO `mob_groups` VALUES (1427,2244,42,0,128,0,3300,1000,73,75,0); -- Kindred_s_Avatar
 INSERT INTO `mob_groups` VALUES (1428,2246,42,0,128,0,3300,0,73,75,0); -- Kindred_s_Vouivre
 INSERT INTO `mob_groups` VALUES (1429,2247,42,0,128,0,3300,1000,73,75,0); -- Kindred_s_Wyvern
@@ -12032,6 +12032,9 @@ INSERT INTO `mob_groups` VALUES (14335,5545,108,1800,0,4524,950,0,27,28,0);
 
 -- Chaneque
 INSERT INTO `mob_groups` VALUES (14336,5546,84,5400,0,4557,5000,0,56,57,0);
+
+-- Rumble Crawler that may spawn instead of Habetrot
+INSERT INTO `mob_groups` VALUES (14340,3415,159,1056,128,3015,0,0,53,56,0);
 
 /*!40000 ALTER TABLE `mob_groups` ENABLE KEYS */;
 UNLOCK TABLES;

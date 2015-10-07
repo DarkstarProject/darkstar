@@ -24,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
 	target:delHP(dmg);
 
 	local typeEffect = EFFECT_STUN;
-    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 10);
+        MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 10);
 
 	return dmg;
 

@@ -2679,7 +2679,8 @@ namespace charutils
 
     void filterEnabledSpells(CCharEntity* PChar)
     {
-        for (int i = 0; i < MAX_SPELL_ID; i++)
+        //128 bytes, 1 bit per byte
+        for (int i = 0; i < 1024; ++i)
         {
             if (spell::GetSpell(i) == nullptr || luautils::IsExpansionEnabled(spell::GetSpell(i)->getExpansionCode()) == false)
             {
@@ -2964,19 +2965,28 @@ namespace charutils
         // Distribute gil to player/party/alliance
         if (PChar->PParty != nullptr)
         {
-            PChar->ForAlliance([PMob, gil](CBattleEntity* PPartyMember)
+            std::vector<CCharEntity*> members;
+
+            // First gather all valid party members
+            PChar->ForAlliance([PMob, &members](CBattleEntity* PPartyMember)
             {
-                uint8 count = 0;
-                //work out how many pt members should get the gil
-                CCharEntity* PMember = (CCharEntity*)PPartyMember;
                 if (PPartyMember->getZone() == PMob->getZone() && distance(PPartyMember->loc.p, PMob->loc.p) < 100)
                 {
-                    count++;
-                    uint32 gilperperson = count == 0 ? gil : (gil / count);
-                    UpdateItem(PMember, LOC_INVENTORY, 0, gilperperson);
-                    PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, gilperperson, 0, 565));
+                    members.push_back((CCharEntity*)PPartyMember);
                 }
             });
+
+            // all members might not be in range
+            if (members.size() > 0)
+            {
+                // distribute gil
+                uint32 gilPerPerson = gil / members.size();
+                for (auto PMember : members)
+                {
+                    UpdateItem(PMember, LOC_INVENTORY, 0, gilPerPerson);
+                    PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, gilPerPerson, 0, 565));
+                }
+            }
         }
         else if (distance(PChar->loc.p, PMob->loc.p) < 100)
         {
@@ -4304,24 +4314,24 @@ namespace charutils
         uint16 reduction = PChar->getMod(MOD_PERPETUATION_REDUCTION);
 
         static const MODIFIER strong[8] = {
-            MOD_FIRE_AFFINITY,
-            MOD_EARTH_AFFINITY,
-            MOD_WATER_AFFINITY,
-            MOD_WIND_AFFINITY,
-            MOD_ICE_AFFINITY,
-            MOD_THUNDER_AFFINITY,
-            MOD_LIGHT_AFFINITY,
-            MOD_DARK_AFFINITY };
+            MOD_FIRE_AFFINITY_PERP,
+            MOD_EARTH_AFFINITY_PERP,
+            MOD_WATER_AFFINITY_PERP,
+            MOD_WIND_AFFINITY_PERP,
+            MOD_ICE_AFFINITY_PERP,
+            MOD_THUNDER_AFFINITY_PERP,
+            MOD_LIGHT_AFFINITY_PERP,
+            MOD_DARK_AFFINITY_PERP };
 
         static const MODIFIER weak[8] = {
-            MOD_WATER_AFFINITY,
-            MOD_WIND_AFFINITY,
-            MOD_THUNDER_AFFINITY,
-            MOD_ICE_AFFINITY,
-            MOD_FIRE_AFFINITY,
-            MOD_EARTH_AFFINITY,
-            MOD_DARK_AFFINITY,
-            MOD_LIGHT_AFFINITY };
+            MOD_WATER_AFFINITY_PERP,
+            MOD_WIND_AFFINITY_PERP,
+            MOD_THUNDER_AFFINITY_PERP,
+            MOD_ICE_AFFINITY_PERP,
+            MOD_FIRE_AFFINITY_PERP,
+            MOD_EARTH_AFFINITY_PERP,
+            MOD_DARK_AFFINITY_PERP,
+            MOD_LIGHT_AFFINITY_PERP };
 
         static const WEATHER weatherStrong[8] = {
             WEATHER_HOT_SPELL,
@@ -4337,23 +4347,7 @@ namespace charutils
 
         DSP_DEBUG_BREAK_IF(element > 7);
 
-        int16 affinity = PChar->getMod(strong[element]) - PChar->getMod(weak[element]);
-
-        // TODO: don't use ItemIDs in CORE. it must be MOD
-
-        CItemWeapon* mainHand = (CItemWeapon*)PChar->getEquip(SLOT_MAIN);
-
-        if (mainHand && mainHand->getID() == 18632)
-            affinity = affinity + 1;
-        else if (mainHand && mainHand->getID() == 18633)
-            affinity = affinity + 2;
-
-        //-----------------------------------------------
-
-        if (affinity > 0)
-            reduction = reduction + affinity + 1;
-        else if (affinity < 0)
-            reduction = reduction - affinity - 1;
+        reduction = reduction + PChar->getMod(strong[element]) - PChar->getMod(weak[element]) + PChar->getMod(MOD_ALL_AFFINITY_PERP);
 
         if (CVanaTime::getInstance()->getWeekday() == element)
             reduction = reduction + PChar->getMod(MOD_DAY_REDUCTION);

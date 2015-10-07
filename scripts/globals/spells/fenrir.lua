@@ -16,6 +16,8 @@ function onMagicCastingCheck(caster,target,spell)
 		return MSGBASIC_CANT_BE_USED_IN_AREA;
     elseif (caster:getObjType() == TYPE_PC) then
 		return avatarMiniFightCheck(caster);
+    elseif (caster:hasPet()) then
+        return 1;
 	end
 	return 0;
 end;

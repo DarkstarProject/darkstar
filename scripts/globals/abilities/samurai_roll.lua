@@ -34,6 +34,7 @@ function onAbilityCheck(player,target,ability)
     if (player:hasStatusEffect(effectID) or player:hasBustEffect(effectID)) then
         return MSGBASIC_ROLL_ALREADY_ACTIVE,0;
     else
+        player:setLocalVar("SAM_roll_bonus", 0);
         return 0,0;
     end
 end;
@@ -46,8 +47,22 @@ function onUseAbilityRoll(caster,target,ability,total)
     local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
     local effectpowers = {8, 32, 10, 12, 14, 4, 16, 20, 22, 24, 40, 5}
     local effectpower = effectpowers[total]
-    if (total < 12 and caster:hasPartyJob(JOB_SAM) ) then
-        effectpower = effectpower + 10;
+    local jobBonus = caster:getLocalVar("SAM_roll_bonus");
+
+    if (total < 12) then -- see chaos_roll.lua for comments
+        if (jobBonus == 0) then
+            if (caster:hasPartyJob(JOB_SAM) or math.random(0, 99) < caster:getMod(MOD_JOB_BONUS_CHANCE)) then
+                jobBonus = 1;
+            else
+                jobBonus = 2;
+            end
+        end
+        if (jobBonus == 1) then
+            effectpower = effectpower + 10;
+        end
+        if (target:getID() == caster:getID()) then
+            caster:setLocalVar("SAM_roll_bonus", jobBonus);
+        end
     end
 
     if (caster:getMainJob() == JOB_COR and caster:getMainLvl() < target:getMainLvl()) then

@@ -27,7 +27,7 @@
 This is a list of mob specific modifiers. They can be added to pools / families / spawn points.
 */
 
-enum MOBMODIFIER
+enum MOBMODIFIER : int
 {
     MOBMOD_NONE           = 0,
     MOBMOD_GIL_MIN        = 1,  // minimum gil drop -- spawn mod only
@@ -64,7 +64,7 @@ enum MOBMODIFIER
     MOBMOD_2HOUR_MULTI    = 32, // can use two hour multiple times
     MOBMOD_SPECIAL_COOL   = 33, // cool down for special
     MOBMOD_MAGIC_COOL     = 34, // cool down for magic
-    MOBMOD_STANDBACK_TIME = 35, // amount of time the mob stands back
+    MOBMOD_STANDBACK_COOL = 35, // cool down time for standing back (casting spell while not in attack range)
     MOBMOD_ROAM_COOL      = 36, // cool down time in seconds after roaming
     MOBMOD_ALWAYS_AGGRO   = 37, // aggro regardless of level. Spheroids
     MOBMOD_NO_DROPS       = 38, // If set monster cannot drop any items, not even seals.
@@ -81,9 +81,14 @@ enum MOBMODIFIER
     MOBMOD_SCRIPTED_2HOUR = 49, // disable two hour ability unless called upon by the script
     MOBMOD_2HOUR_PROC     = 50, // chance of mob's 2 hour activating 0-100%
     MOBMOD_ROAM_TURNS     = 51, // Maximum amount of turns during a roam
-    MOBMOD_ROAM_RATE      = 52  // Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
+    MOBMOD_ROAM_RATE      = 52, // Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
+    MOBMOD_BEHAVIOR       = 53, // Add behaviors to mob
+    MOBMOD_GIL_BONUS      = 54, // Multipler to gil dropped by mob divided by 10
+    MOBMOD_IDLE_DESPAWN   = 55, // Time (in seconds) to despawn after being idle
+    MOBMOD_NO_STANDBACK   = 56, // Mob will never standback
+    MOBMOD_MAGIC_DELAY    = 57, // Amount of seconds mob waits before casting first spell
+    MOBMOD_SPECIAL_DELAY  = 58, // Amount of seconds mob waits before using first special
+    MOBMOD_WEAPON_BONUS   = 59  // Add a bonus percentage to mob weapon damage ( bonus / 100 )
 };
-
-#define MAX_MOBMODIFIER         53
 
 #endif
