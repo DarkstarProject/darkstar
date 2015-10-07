@@ -4749,4 +4749,111 @@ namespace charutils
         return 0;
     }
 
+	/************************************************************************
+	*																		*
+	*  Load Spells													*
+	*																		*
+	************************************************************************/
+
+	void LoadSpells(CCharEntity* PChar)
+	{
+		const int8* fmtQuery =
+			"SELECT spells FROM chars WHERE charid = %u;";
+
+		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+		DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
+		if (ret != SQL_ERROR &&
+			Sql_NumRows(SqlHandle) != 0 &&
+			Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			size_t length = 0;
+			length = 0;
+			int8* spells = NULL;
+			Sql_GetData(SqlHandle, 1, &spells, &length);
+			memcpy(PChar->m_SpellList, spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
+			memcpy(PChar->m_EnabledSpellList, spells, (length > sizeof(PChar->m_EnabledSpellList) ? sizeof(PChar->m_EnabledSpellList) : length));
+			charutils::filterEnabledSpells(PChar);
+		}
+	}
+
+	/************************************************************************
+	*																		*
+	*  Load KI's													*
+	*																		*
+	************************************************************************/
+
+	void LoadKIs(CCharEntity* PChar)
+	{
+		const int8* fmtQuery =
+			"SELECT keyitems FROM chars WHERE charid = %u;";
+
+		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+		DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
+		if (ret != SQL_ERROR &&
+			Sql_NumRows(SqlHandle) != 0 &&
+			Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			size_t length = 0;
+			length = 0;
+			int8* keyitems = NULL;
+			Sql_GetData(SqlHandle, 1, &keyitems, &length);
+			memcpy(PChar->keys.keysList, keyitems, (length > sizeof(PChar->keys) ? sizeof(PChar->keys) : length));
+
+		}
+	}
+
+	/************************************************************************
+	*																		*
+	*  Load Missions													*
+	*																		*
+	************************************************************************/
+
+	void LoadMissions(CCharEntity* PChar)
+	{
+		const int8* fmtQuery =
+			"SELECT missions FROM chars WHERE charid = %u;";
+
+		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+		DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
+		if (ret != SQL_ERROR &&
+			Sql_NumRows(SqlHandle) != 0 &&
+			Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			size_t length = 0;
+			length = 0;
+			int8* missions = NULL;
+			Sql_GetData(SqlHandle, 1, &missions, &length);
+			memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
+
+		}
+	}
+
+	/************************************************************************
+	*																		*
+	*  Load Quests													*
+	*																		*
+	************************************************************************/
+
+	void LoadQuests(CCharEntity* PChar)
+	{
+		const int8* fmtQuery =
+			"SELECT quests FROM chars WHERE charid = %u;";
+
+		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+		DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
+		if (ret != SQL_ERROR &&
+			Sql_NumRows(SqlHandle) != 0 &&
+			Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			size_t length = 0;
+			int8* quests = NULL;
+			Sql_GetData(SqlHandle, 1, &quests, &length);
+			memcpy(PChar->m_questLog, quests, (length > sizeof(PChar->m_questLog) ? sizeof(PChar->m_questLog) : length));
+
+		}
+	}
 }; // namespace charutils

@@ -41,6 +41,11 @@ namespace charutils
     void	LoadInventory(CCharEntity* PChar);
     void    LoadEquip(CCharEntity* PChar);
 
+    void    LoadSpells(CCharEntity* PChar);
+    void    LoadKIs(CCharEntity* PChar);
+    void    LoadMissions(CCharEntity* PChar);
+    void    LoadQuests(CCharEntity* PChar);
+
     void	SendQuestMissionLog(CCharEntity* PChar);
     void	SendKeyItems(CCharEntity* PChar);
     void	SendInventory(CCharEntity* PChar);
