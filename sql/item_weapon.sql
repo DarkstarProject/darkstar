@@ -3534,7 +3534,7 @@ INSERT INTO `item_weapon` VALUES (20713,'excalipoor',3,0,0,0,0,2,1,240,1,0);
 INSERT INTO `item_weapon` VALUES (20714,'excalipoor_ii',3,0,0,0,0,2,1,233,2,0);
 INSERT INTO `item_weapon` VALUES (20715,'acclimator',3,0,242,242,188,2,1,240,130,0);
 INSERT INTO `item_weapon` VALUES (20717,'arendsi_fleuret',3,0,242,242,188,2,1,224,119,0);
-INSERT INTO `item_weapon` VALUES (20718,'claidheamh_soluis',3,0,0,0,0,2,1,270,142,0);
+INSERT INTO `item_weapon` VALUES (20718,'claidheamh_soluis',3,0,242,242,188,2,1,270,142,0);
 INSERT INTO `item_weapon` VALUES (20721,'mimesis',3,0,242,242,188,2,1,236,128,0);
 INSERT INTO `item_weapon` VALUES (20722,'usonmunku',3,0,242,242,188,2,1,231,132,0);
 INSERT INTO `item_weapon` VALUES (20733,'anahera_saber',3,0,242,242,188,2,1,240,130,0);
