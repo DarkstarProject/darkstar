@@ -141,8 +141,8 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         if (PEnmity->second->CE == 0 && CE + VE <= 0)
             return;
 
-        int16 newCE = PEnmity->second->CE + (CE > 0) ? CE * bonus : CE;
-        int16 newVE = PEnmity->second->VE + (VE > 0) ? VE * bonus : VE;
+        int newCE = PEnmity->second->CE + (CE > 0) ? CE * bonus : CE;
+        int newVE = PEnmity->second->VE + (VE > 0) ? VE * bonus : VE;
 
         //Check for cap limit
         PEnmity->second->CE = dsp_cap(newCE, 1, 10000);
@@ -259,8 +259,8 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
             float bonus = CalculateEnmityBonus(PEntity);
             float tranquilHeartReduction = 1.f - battleutils::HandleTranquilHeart(PEntity);
 
-            int16 newCE = PEnmity->second->CE + (CE * bonus * tranquilHeartReduction);
-            int16 newVE = PEnmity->second->VE + (VE * bonus * tranquilHeartReduction);
+            int newCE = PEnmity->second->CE + (CE * bonus * tranquilHeartReduction);
+            int newVE = PEnmity->second->VE + (VE * bonus * tranquilHeartReduction);
 
             //Check for cap limit
             PEnmity->second->CE = dsp_cap(newCE, 1, 10000);
