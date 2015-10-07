@@ -21,13 +21,15 @@ function onMobSkillCheck(target,mob,skill)
         else
             return 1;
         end
+    elseif (mob:getFamily() == 313) then -- Tinnin
+        if (mob:AnimationSub() < 2 and target:isBehind(mob, 48) == true) then
+            return 0;
+        else
+            return 1;
+        end
     end
 
-    if (mob:AnimationSub() < 2 and target:isBehind(mob, 48) == true and mob:getFamily() == 313) then -- Tinnin
-        return 0;
-    else
-        return 1;
-    end
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
