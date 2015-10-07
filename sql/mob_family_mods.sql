@@ -660,6 +660,7 @@ INSERT INTO `mob_family_mods` VALUES (264,59,125,1);
 INSERT INTO `mob_family_mods` VALUES (169,59,120,1);
 INSERT INTO `mob_family_mods` VALUES (358,59,120,1);
 INSERT INTO `mob_family_mods` VALUES (371,59,125,1);
+INSERT INTO `mob_family_mods` VALUES (165,29,24,0); -- Imp MDEF 24
 
 /*!40000 ALTER TABLE `mob_family_mods` ENABLE KEYS */;
 UNLOCK TABLES;
