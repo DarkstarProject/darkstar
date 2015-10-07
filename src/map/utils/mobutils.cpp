@@ -52,7 +52,7 @@ namespace mobutils
 
 uint16 GetWeaponDamage(CMobEntity* PMob)
 {
-    uint8 lvl = PMob->GetMLevel();
+    uint16 lvl = PMob->GetMLevel();
     uint8 bonus = 0;
 
     if (lvl >= 75)
@@ -80,6 +80,12 @@ uint16 GetWeaponDamage(CMobEntity* PMob)
     return damage;
 }
 
+uint16 GetMagicEvasion(CMobEntity* PMob)
+{
+    uint8 mEvaRank = 3;
+
+    return GetBase(PMob, mEvaRank);
+}
 /************************************************************************
 *																		*
 *  Базовое значение для расчера характеристик							*
@@ -444,23 +450,8 @@ void CalculateStats(CMobEntity * PMob)
     PMob->addModifier(MOD_ATT, GetBase(PMob,PMob->attRank));
     PMob->addModifier(MOD_ACC, GetBase(PMob,PMob->accRank));
 
-    uint8 mEvaRank = 7;
-
-    if(mLvl > 50)
-    {
-        mEvaRank = 4;
-    }
-    else if(mLvl > 35)
-    {
-        mEvaRank = 5;
-    }
-    else if(mLvl > 25)
-    {
-        mEvaRank = 6;
-    }
-
     //natural magic evasion
-    PMob->addModifier(MOD_MEVA, GetBase(PMob, mEvaRank));
+    PMob->addModifier(MOD_MEVA, GetMagicEvasion(PMob));
 
     // add traits for sub and main
     battleutils::AddTraits(PMob, traits::GetTraits(mJob), mLvl);

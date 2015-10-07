@@ -12086,7 +12086,7 @@ INSERT INTO `item_basic` VALUES (16585,0,'darksteel_claymore','dst_claymore',1,2
 INSERT INTO `item_basic` VALUES (16586,0,'adaman_claymore','adaman_claymore',1,2048,4,0,9112);
 INSERT INTO `item_basic` VALUES (16587,0,'gold_algol','gold_algol',1,2080,4,0,9503);
 INSERT INTO `item_basic` VALUES (16588,0,'flame_claymore','flame_claymore',1,2080,4,0,979);
-INSERT INTO `item_basic` VALUES (16589,0,'two-handed_sword','two-hand_sword',1,2080,4,0,1);
+INSERT INTO `item_basic` VALUES (16589,0,'two-handed_sword','two-hand_sword',1,2080,4,0,2367);
 INSERT INTO `item_basic` VALUES (16590,0,'greatsword','greatsword',1,2080,4,0,6758);
 INSERT INTO `item_basic` VALUES (16591,0,'zweihander','zweihander',1,2080,4,0,7810);
 INSERT INTO `item_basic` VALUES (16592,0,'gigant_sword','gigant_sword',1,2048,4,0,9503);

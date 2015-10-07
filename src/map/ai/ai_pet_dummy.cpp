@@ -139,7 +139,7 @@ void CAIPetDummy::ActionAbilityStart()
                 for (auto&& skillid : MobSkills)
                 {
                     auto PMobSkill = battleutils::GetMobSkill(skillid);
-                    if (PMobSkill && luautils::OnMobSkillCheck(m_PBattleTarget, m_PPet, PMobSkill) != 0)
+                    if (PMobSkill && luautils::OnMobSkillCheck(m_PBattleTarget, m_PPet, PMobSkill) == 0)
                     {
                         SetCurrentMobSkill(PMobSkill);
                         break;
