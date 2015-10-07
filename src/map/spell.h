@@ -31,7 +31,6 @@
 #include "entities/charentity.h"
 
 #define CANNOT_USE_SPELL    0
-#define MAX_SPELL_ID        847
 
 enum SPELLGROUP
 {

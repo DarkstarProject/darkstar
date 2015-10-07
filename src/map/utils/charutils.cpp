@@ -2679,7 +2679,8 @@ namespace charutils
 
     void filterEnabledSpells(CCharEntity* PChar)
     {
-        for (int i = 0; i < MAX_SPELL_ID; i++)
+        //128 bytes, 1 bit per byte
+        for (int i = 0; i < 1024; ++i)
         {
             if (spell::GetSpell(i) == nullptr || luautils::IsExpansionEnabled(spell::GetSpell(i)->getExpansionCode()) == false)
             {
