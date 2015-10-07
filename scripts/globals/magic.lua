@@ -417,7 +417,7 @@ function calculateMagicHitRate(magicacc, magiceva, percentBonus, casterLvl, targ
     --add a scaling bonus or penalty based on difference of targets level from caster
     local levelDiff = utils.clamp(casterLvl - targetLvl, -5, 5);
 
-    p = 50 - 0.5 * (magiceva - magicacc) + levelDiff * 2 + percentBonus;
+    p = 70 - 0.5 * (magiceva - magicacc) + levelDiff * 3 + percentBonus;
 
     -- printf("P: %f, macc: %f, meva: %f, bonus: %d%%, leveldiff: %d", p, magicacc, magiceva, percentBonus, levelDiff);
 
@@ -1223,17 +1223,10 @@ function outputMagicHitRateInfo()
 
             if(targetLvl >= 0) then
                 -- assume BLM spell, A+
-                local magicAcc = utils.getSkillLvl(1, casterLvl);
+                local magicAcc = utils.getSkillLvl(6, casterLvl);
                 -- assume default monster magic eva, D
-                local magicEvaRank = 7;
-
-                if(targetLvl > 50) then
-                    magicEvaRank = 4;
-                elseif(targetLvl > 35) then
-                    magicEvaRank = 5;
-                elseif(targetLvl > 25) then
-                    magicEvaRank = 6;
-                end
+                local magicEvaRank = 3;
+                local rate = 0;
 
                 local magicEva = utils.getMobSkillLvl(magicEvaRank, targetLvl);
 

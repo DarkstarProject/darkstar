@@ -584,9 +584,8 @@ function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
     if (target:canGainStatusEffect(typeEffect, power)) then
         local statmod = MOD_INT;
         local element = mob:getStatusEffectElement(typeEffect);
-        local bonusAcc = mob:getMainLvl() / 2;
 
-        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),bonusAcc,element);
+        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,element);
 
         if (resist >= 0.25) then
 
