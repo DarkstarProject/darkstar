@@ -114,9 +114,9 @@ INSERT INTO `mob_skills` VALUES (65,65,'Needleshot',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (66,66,'1000_Needles',1,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (67,37,'Wild_Carrot',0,20.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (68,68,'Photosynthesis',0,7.0,2000,1500,1,0,0,0);
--- INSERT INTO `mob_skills` VALUES (69,69,'Random_Kiss',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (70,70,'Absorbing_Kiss',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (71,71,'Deep_Kiss',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (69,161,'Random_Kiss',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (70,164,'Absorbing_Kiss',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (71,165,'Deep_Kiss',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (72,72,'Drill_Branch',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (73,73,'Pinecone_Bomb',0,23.5,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (74,74,'Shuffle',4,10.0,2000,1500,4,0,0,0);
@@ -1346,7 +1346,7 @@ INSERT INTO `mob_skills` VALUES (1297,1138,'Teraflare',0,15.0,2000,1500,4,0,0,0)
 -- INSERT INTO `mob_skills` VALUES (1298,1298,'Camisado',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1299,1299,'Blessed_Radiance',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1300,1300,'Regeneration',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1301,1146,'Eagle_Eye_Shot',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1301,1146,'Eagle_Eye_Shot',0,7.0,2000,1500,4,0,0,0); -- EES breath
 -- INSERT INTO `mob_skills` VALUES (1302,1302,'Smite_of_Fury',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1303,1303,'Flurry_of_Rage',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1304,1304,'Whispers_of_Ire',0,7.0,2000,1500,4,0,0,0);
@@ -1580,7 +1580,7 @@ INSERT INTO `mob_skills` VALUES (1531,1225,'Scorching_Lash',1,20.0,2000,1500,4,0
 INSERT INTO `mob_skills` VALUES (1532,1226,'Ululation',1,20.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1533,1227,'Magma_Hoplon',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (1534,1228,'Gates_of_Hades',1,20.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1535,1535,'Incinerate',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1535,1217,'Incinerate',4,12.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1536,1536,'Nullsong',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1537,62,'Vampiric_Root',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1538,1538,'Perdition',0,7.0,2000,1500,4,0,0,0);

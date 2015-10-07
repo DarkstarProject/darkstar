@@ -15,7 +15,10 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    skill:setMsg(MobDrainStatusEffectMove(mob, target));
+    -- str down - chr down
+    local effectType = math.random(136, 142);
+
+    skill:setMsg(MobDrainAttribute(mob, target, effectType, 10, 3, 120));
 
     return 1;
 end;

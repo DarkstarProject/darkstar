@@ -31,6 +31,10 @@ MOBPARAM_SLASH = 2;
 MOBPARAM_PIERCE = 3;
 MOBPARAM_H2H = 4;
 
+MOBDRAIN_HP = 0;
+MOBDRAIN_MP = 1;
+MOBDRAIN_TP = 2;
+
 --skillparam (MAGICAL)
 -- this is totally useless and should be removed
 -- add resistence using ELE_FIRE, see bomb_toss.lua
@@ -78,6 +82,7 @@ MSG_DAMAGE = 185; -- player uses, target takes 10 damage. DEFAULT
 MSG_MISS = 188;
 MSG_RESIST = 85;
 MSG_EFFECT_DRAINED = 370; -- <num> status effects are drained from <target>.
+MSG_ATTR_DRAINED = 369;
 MSG_TP_REDUCED = 362; -- tp reduced to
 MSG_DISAPPEAR = 159; -- <target>'s stun effect disappears!
 MSG_DISAPPEAR_NUM = 231; -- <num> of <target>'s effects disappear!
@@ -577,6 +582,115 @@ end;
 
 -- function MobMagicAoEHit()
 -- end;
+
+function MobDrainMove(mob, target, drainType, drain)
+
+    if (target:isUndead() == false) then
+
+        if (drainType == MOBDRAIN_MP) then
+            -- can't go over limited mp
+            if (target:getMP() < drain) then
+                drain = target:getMP();
+            end
+
+            target:delMP(drain);
+            mob:addMP(drain);
+
+            return MSG_DRAIN_MP;
+        elseif (drainType == MOBDRAIN_TP) then
+
+            -- can't go over limited tp
+            if (target:getTP() < drain) then
+                drain = target:getTP();
+            end
+
+            target:delTP(drain);
+            mob:addTP(drain);
+
+            return MSG_DRAIN_TP;
+        elseif (drainType == MOBDRAIN_HP) then
+            -- can't go over limited hp
+            if (target:getHP() < drain) then
+                drain = target:getHP();
+            end
+
+            target:delHP(drain);
+            mob:addHP(drain);
+
+            return MSG_DRAIN_HP;
+        end
+
+    else
+        -- it's undead so just deal damage
+        -- can't go over limited hp
+        if (target:getHP() < drain) then
+            drain = target:getHP();
+        end
+
+        target:delHP(drain);
+        return MSG_DAMAGE;
+    end
+
+    return MSG_NO_EFFECT;
+end;
+
+function MobPhysicalDrainMove(mob, target, skill, drainType, drain)
+    if (MobPhysicalHit(skill)) then
+        return MobDrainMove(mob, target, drainType, drain);
+    end
+
+    return MSG_MISS;
+end;
+
+function MobDrainAttribute(mob, target, typeEffect, power, tick, duration)
+    local positive = nil;
+    if (typeEffect == EFFECT_STR_DOWN) then
+        positive = EFFECT_STR_BOOST;
+    elseif (typeEffect == EFFECT_DEX_DOWN) then
+        positive = EFFECT_DEX_BOOST;
+    elseif (typeEffect == EFFECT_AGI_DOWN) then
+        positive = EFFECT_AGI_BOOST;
+    elseif (typeEffect == EFFECT_VIT_DOWN) then
+        positive = EFFECT_VIT_BOOST;
+    elseif (typeEffect == EFFECT_MND_DOWN) then
+        positive = EFFECT_MND_BOOST;
+    elseif (typeEffect == EFFECT_INT_DOWN) then
+        positive = EFFECT_INT_BOOST;
+    elseif (typeEffect == EFFECT_CHR_DOWN) then
+        positive = EFFECT_CHR_BOOST;
+    end
+
+    if (positive ~= nil) then
+        local results = MobStatusEffectMove(mob, target, typeEffect, power, tick, duration);
+
+        if (results == MSG_ENFEEB_IS) then
+            mob:addStatusEffect(positive, power, tick, duration);
+
+            return MSG_ATTR_DRAINED;
+        end
+
+        return MSG_MISS;
+    end
+
+    return MSG_NO_EFFECT;
+end;
+
+function MobDrainStatusEffectMove(mob, target)
+    -- try to drain buff
+    local effect = target:stealStatusEffect();
+    local dmg = 0;
+
+    if (effect ~= nil) then
+        if (mob:hasStatusEffect(effect:getType()) == false) then
+            -- add to myself
+            mob:addStatusEffect(effect:getType(), effect:getPower(), effect:getTickCount(), effect:getDuration());
+        end
+        -- add buff to myself
+        return MSG_EFFECT_DRAINED;
+    end
+
+    return MSG_NO_EFFECT;
+end;
 
 -- Adds a status effect to a target
 function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
