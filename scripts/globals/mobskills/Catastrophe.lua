@@ -35,8 +35,7 @@ function onMobWeaponSkill(target, mob, skill)
 	
 	MobBuffMove(mob, EFFECT_HASTE, 20, 0, duration);
 
-	mob:addHP(dmg);
-	target:delHP(dmg);
+        skill:setMsg(MobPhysicalDrainMove(mob, target, skill, MOBDRAIN_HP, dmg));
 	return dmg;
 	
 end;

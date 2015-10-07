@@ -199,7 +199,6 @@ INSERT INTO `mob_skill_lists` VALUES ('',49,87);
 INSERT INTO `mob_skill_lists` VALUES ('',49,85);
 
 -- Crawler
--- TODO: Find out which crawlers have ID entries 1325-27
 INSERT INTO `mob_skill_lists` VALUES ('',79,90);
 INSERT INTO `mob_skill_lists` VALUES ('',79,89);
 INSERT INTO `mob_skill_lists` VALUES ('',79,88);
@@ -207,11 +206,11 @@ INSERT INTO `mob_skill_lists` VALUES ('',79,88);
 -- Crawlers (Eruca)
 INSERT INTO `mob_skill_lists` VALUES ('',107,90);
 INSERT INTO `mob_skill_lists` VALUES ('',107,88);
--- INSERT INTO `mob_skill_lists` VALUES ('',107,386);
+INSERT INTO `mob_skill_lists` VALUES ('',107,1535);
 
 INSERT INTO `mob_skill_lists` VALUES ('',108,90);
 INSERT INTO `mob_skill_lists` VALUES ('',108,88);
--- INSERT INTO `mob_skill_lists` VALUES ('',?,108,?);
+INSERT INTO `mob_skill_lists` VALUES ('',108,1535);
 
 -- Scorpion
 INSERT INTO `mob_skill_lists` VALUES ('',217,94);
@@ -484,6 +483,36 @@ INSERT INTO `mob_skill_lists` VALUES ('',172,167);
 INSERT INTO `mob_skill_lists` VALUES ('',172,162);
 INSERT INTO `mob_skill_lists` VALUES ('',172,165);
 INSERT INTO `mob_skill_lists` VALUES ('',172,164);
+
+INSERT INTO `mob_skill_lists` VALUES ('Prune',722,69);
+INSERT INTO `mob_skill_lists` VALUES ('Prune',722,158);
+INSERT INTO `mob_skill_lists` VALUES ('Prune',722,159);
+INSERT INTO `mob_skill_lists` VALUES ('Prune',722,160);
+INSERT INTO `mob_skill_lists` VALUES ('Prune',722,161);
+INSERT INTO `mob_skill_lists` VALUES ('Prune',722,167);
+INSERT INTO `mob_skill_lists` VALUES ('Prune',722,162);
+INSERT INTO `mob_skill_lists` VALUES ('Prune',722,165);
+INSERT INTO `mob_skill_lists` VALUES ('Prune',722,164);
+
+INSERT INTO `mob_skill_lists` VALUES ('Phoedme',723,71);
+INSERT INTO `mob_skill_lists` VALUES ('Phoedme',723,158);
+INSERT INTO `mob_skill_lists` VALUES ('Phoedme',723,159);
+INSERT INTO `mob_skill_lists` VALUES ('Phoedme',723,160);
+INSERT INTO `mob_skill_lists` VALUES ('Phoedme',723,161);
+INSERT INTO `mob_skill_lists` VALUES ('Phoedme',723,167);
+INSERT INTO `mob_skill_lists` VALUES ('Phoedme',723,162);
+INSERT INTO `mob_skill_lists` VALUES ('Phoedme',723,165);
+INSERT INTO `mob_skill_lists` VALUES ('Phoedme',723,164);
+
+INSERT INTO `mob_skill_lists` VALUES ('Pepper',724,70);
+INSERT INTO `mob_skill_lists` VALUES ('Pepper',724,158);
+INSERT INTO `mob_skill_lists` VALUES ('Pepper',724,159);
+INSERT INTO `mob_skill_lists` VALUES ('Pepper',724,160);
+INSERT INTO `mob_skill_lists` VALUES ('Pepper',724,161);
+INSERT INTO `mob_skill_lists` VALUES ('Pepper',724,167);
+INSERT INTO `mob_skill_lists` VALUES ('Pepper',724,162);
+INSERT INTO `mob_skill_lists` VALUES ('Pepper',724,165);
+INSERT INTO `mob_skill_lists` VALUES ('Pepper',724,164);
 
 -- INSERT INTO `mob_skill_lists` VALUES ('',70,?,?);
 -- INSERT INTO `mob_skill_lists` VALUES ('',71,?,?);
@@ -1020,7 +1049,6 @@ INSERT INTO `mob_skill_lists` VALUES ('',374,404);
 INSERT INTO `mob_skill_lists` VALUES ('',375,62);
 INSERT INTO `mob_skill_lists` VALUES ('',375,403);
 INSERT INTO `mob_skill_lists` VALUES ('',375,404);
--- INSERT INTO `mob_skill_lists` VALUES ('',?,375,?);
 
 -- Gigas (non-abyssea?)
 INSERT INTO `mob_skill_lists` VALUES ('',126,406);
