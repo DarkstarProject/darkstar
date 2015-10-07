@@ -1459,7 +1459,11 @@ void SmallPacket0x041(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (PChar->PTreasurePool != nullptr)
     {
         uint8 SlotID = RBUFB(data, (0x04));
-        PChar->PTreasurePool->LotItem(PChar, SlotID,dsprand::GetRandomNumber(1,1000)); //1 ~ 998+1
+
+        if (!PChar->PTreasurePool->HasLottedItem(PChar, SlotID))
+        {
+            PChar->PTreasurePool->LotItem(PChar, SlotID,dsprand::GetRandomNumber(1,1000)); //1 ~ 998+1
+        }
     }
 }
 
@@ -1476,7 +1480,11 @@ void SmallPacket0x042(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (PChar->PTreasurePool != nullptr)
     {
         uint8 SlotID = RBUFB(data, (0x04));
-        PChar->PTreasurePool->LotItem(PChar, SlotID, 0);
+
+        if (!PChar->PTreasurePool->HasPassedItem(PChar, SlotID))
+        {
+            PChar->PTreasurePool->PassItem(PChar, SlotID);
+        }
     }
 }
 

@@ -266,42 +266,92 @@ void CTreasurePool::UpdatePool(CCharEntity* PChar)
 void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot)
 {
     DSP_DEBUG_BREAK_IF(PChar == nullptr);
-	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
+    DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
     if (SlotID >= TREASUREPOOL_SIZE) return;
 
-	LotInfo li;
-	li.lot = Lot;
-	li.member = PChar;
-	bool hasLottedBefore = false;
+    LotInfo li;
+    li.lot = Lot;
+    li.member = PChar;
 
-	if(Lot==0){ //passed mask is FF FF
-		Lot = 65535;
-		//if this member has lotted on this item previously, set their lot to 0.
-		for(int i=0; i<m_PoolItems[SlotID].Lotters.size();i++){
-			if(m_PoolItems[SlotID].Lotters[i].member->id == PChar->id){
-				m_PoolItems[SlotID].Lotters[i].lot = 0;
-				hasLottedBefore = true;
-				break;
-			}
-		}
-	}
+    m_PoolItems[SlotID].Lotters.push_back(li);
 
-	if(!hasLottedBefore){
-		m_PoolItems[SlotID].Lotters.push_back(li);
-	}
+    //Player lots Item for XXX message
+    for (uint32 i = 0; i < members.size(); ++i)
+    {
+        members[i]->pushPacket(new CTreasureLotItemPacket(PChar,SlotID,Lot));
+    }
 
-	//Player lots Item for XXX message
-	for (uint32 i = 0; i < members.size(); ++i)
-	{
-		members[i]->pushPacket(new CTreasureLotItemPacket(PChar,SlotID,Lot));
-	}
+    //if all lotters have lotted, evaluate immediately.
+    if(m_PoolItems[SlotID].Lotters.size() == members.size()){
+        CheckTreasureItem(m_Tick,SlotID);
+    }
 
-	//if all lotters have lotted, evaluate immediately.
-	if(m_PoolItems[SlotID].Lotters.size() == members.size()){
-		CheckTreasureItem(m_Tick,SlotID);
-	}
+}
 
+void CTreasurePool::PassItem(CCharEntity* PChar, uint8 SlotID)
+{
+    DSP_DEBUG_BREAK_IF(PChar == nullptr);
+    DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
+
+    if (SlotID >= TREASUREPOOL_SIZE) return;
+
+    LotInfo li;
+    li.lot = 0;
+    li.member = PChar;
+    bool hasLottedBefore = false;
+
+    // if this member has lotted on this item previously, set their lot to 0.
+    for(int i=0; i<m_PoolItems[SlotID].Lotters.size();i++){
+        if(m_PoolItems[SlotID].Lotters[i].member->id == PChar->id){
+            m_PoolItems[SlotID].Lotters[i].lot = 0;
+            hasLottedBefore = true;
+            break;
+        }
+    }
+
+    if(!hasLottedBefore){
+        m_PoolItems[SlotID].Lotters.push_back(li);
+    }
+
+    uint16 PassedLot = 65535; // passed mask is FF FF
+    //Player lots Item for XXX message
+    for (uint32 i = 0; i < members.size(); ++i)
+    {
+        members[i]->pushPacket(new CTreasureLotItemPacket(PChar,SlotID,PassedLot));
+    }
+
+    //if all lotters have lotted, evaluate immediately.
+    if(m_PoolItems[SlotID].Lotters.size() == members.size()){
+        CheckTreasureItem(m_Tick,SlotID);
+    }
+
+}
+
+bool CTreasurePool::HasLottedItem(CCharEntity* PChar, uint8 SlotID)
+{
+    std::vector<LotInfo> lotters = m_PoolItems[SlotID].Lotters;
+
+    for(int i=0; i<lotters.size(); i++){
+        if(lotters[i].member->id == PChar->id){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool CTreasurePool::HasPassedItem(CCharEntity* PChar, uint8 SlotID)
+{
+    std::vector<LotInfo> lotters = m_PoolItems[SlotID].Lotters;
+
+    for(int i=0; i<lotters.size(); i++){
+        if(lotters[i].member->id == PChar->id){
+            return lotters[i].lot == 0;
+        }
+    }
+
+    return false;
 }
 
 /************************************************************************
