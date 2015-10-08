@@ -4514,11 +4514,11 @@ void SmallPacket0x0E1(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8 slot = data.ref<uint8>(0x07);
     if (slot == PChar->equip[SLOT_LINK1])
     {
-        PChar->pushPacket(new CLinkshellMessagePacket(PChar->PLinkshell1, 1));
+        PChar->PLinkshell1->PushLinkshellMessage(PChar, true);
     }
     else if (slot == PChar->equip[SLOT_LINK2])
     {
-        PChar->pushPacket(new CLinkshellMessagePacket(PChar->PLinkshell2, 2));
+        PChar->PLinkshell2->PushLinkshellMessage(PChar, false);
     }
     return;
 }
@@ -4547,29 +4547,13 @@ void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL ||
                 PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK)
             {
-                string_t Message = data[16];
-                uint32   MessageTime = time(nullptr);
-                int8 sqlMessage[256];
-                Sql_EscapeString(SqlHandle, sqlMessage, Message.c_str());
-
-                const int8* Query = "UPDATE linkshells SET poster = '%s', message = '%s', messagetime = %u WHERE linkshellid = %u LIMIT 1";
-
-                if (Sql_Query(SqlHandle, Query, PChar->GetName(), sqlMessage, MessageTime, PChar->PLinkshell1->getID()) != SQL_ERROR &&
-                    Sql_AffectedRows(SqlHandle) != 0)
-                {
-                    PChar->PLinkshell1->setPoster((int8*)PChar->GetName());
-                    PChar->PLinkshell1->setMessage((int8*)Message.c_str());
-                    PChar->PLinkshell1->setMessageTime(MessageTime);
-
-                    PChar->PLinkshell1->PushPacket(0, new CLinkshellMessagePacket(PChar->PLinkshell1, 1));
-                    return;
-                }
+                PChar->PLinkshell1->setMessage(data[16], PChar->GetName());
             }
         }
         break;
         }
     }
-    PChar->pushPacket(new CLinkshellMessagePacket(nullptr, 1)); // you are not authorized to this action
+    PChar->pushPacket(new CLinkshellMessagePacket(nullptr, nullptr, nullptr, 0, 1)); // you are not authorized to this action
     return;
 }
 
