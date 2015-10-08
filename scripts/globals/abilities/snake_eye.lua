@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT_SNAKE_EYE,(player:getMerit(MERIT_SNAKE_EYE) - 5),0,60);
+    player:addStatusEffect(EFFECT_SNAKE_EYE,(player:getMerit(MERIT_SNAKE_EYE) - 10),0,60);
 
     return EFFECT_SNAKE_EYE;
 end;
