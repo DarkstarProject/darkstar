@@ -36,6 +36,7 @@ CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE Mes
     int32 buffSize = (strlen(buff) > 236) ? 236 : strlen(buff);
 
     // Build the packet..
+    CBasicPacket::id(id);
     this->type = 0x17;
     //12 (base length / 2) + ((buffSize in chunks of 4) / 2) 
     //this->size = 12 + ((buffSize / 4) + 1) * 2;
