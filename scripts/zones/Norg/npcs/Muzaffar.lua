@@ -21,13 +21,13 @@ function onTrade(player,npc,trade)
     local EasternPottery = trade:hasItemQty(1200,4);
     local SouthernMummies = trade:hasItemQty(1201,4);
     if (player:getQuestStatus(NORG,BLACK_MARKET) == QUEST_ACCEPTED or player:getQuestStatus(NORG,BLACK_MARKET) == QUEST_COMPLETED) then
-        if (NorthernFurs == true and count == 4) then
+        if (NorthernFurs and count == 4) then
             player:tradeComplete();
             player:startEvent(0x0011, 1199, 1199);
-        elseif (EasternPottery == true and count == 4) then
+        elseif (EasternPottery and count == 4) then
             player:tradeComplete();
             player:startEvent(0x0012, 1200, 1200);
-        elseif (SouthernMummies == true and count == 4) then
+        elseif (SouthernMummies and count == 4) then
             player:tradeComplete();
             player:startEvent(0x0013, 1201, 1201);
         end
