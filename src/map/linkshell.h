@@ -55,7 +55,7 @@ public:
 	void		setMessage(const int8* message, const int8* poster);
 
     void        AddMember(CCharEntity* PChar,int8 type, uint8 lsNum);
-    void        DelMember(CCharEntity* PChar);
+    bool        DelMember(CCharEntity* PChar);
 
     void        RemoveMemberByName(int8* MemberName);
 	void		ChangeMemberRank(int8* MemberName, uint8 toSack);
@@ -81,7 +81,7 @@ private:
 
 namespace linkshell
 {
-    void LoadLinkshellList();
+    CLinkshell* LoadLinkshell(uint32 id);
 
     bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, uint8 lsNum);
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);
