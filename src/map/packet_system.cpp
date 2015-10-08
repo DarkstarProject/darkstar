@@ -4548,6 +4548,7 @@ void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK)
             {
                 PChar->PLinkshell1->setMessage(data[16], PChar->GetName());
+                return;
             }
         }
         break;

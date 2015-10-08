@@ -213,7 +213,6 @@ int32 do_init(int32 argc, int8** argv)
 
     guildutils::Initialize();
     charutils::LoadExpTable();
-    linkshell::LoadLinkshellList();
     traits::LoadTraitsList();
     effects::LoadEffectsParameters();
     battleutils::LoadSkillTable();
