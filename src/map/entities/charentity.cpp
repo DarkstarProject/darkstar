@@ -77,7 +77,6 @@ CCharEntity::CCharEntity()
     memset(&nameflags, 0, sizeof(nameflags));
 
     memset(&m_SpellList, 0, sizeof(m_SpellList));
-    memset(&m_EnabledSpellList, 0, sizeof(m_EnabledSpellList));
     memset(&m_LearnedAbilities, 0, sizeof(m_LearnedAbilities));
     memset(&m_TitleList, 0, sizeof(m_TitleList));
     memset(&m_ZonesList, 0, sizeof(m_ZonesList));
