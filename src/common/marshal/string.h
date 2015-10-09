@@ -21,6 +21,9 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
+#ifndef _MARSHAL_STRING_H
+#define _MARSHAL_STRING_H
+
 #if defined(_MSC_VER)
 #pragma warning(push)
 #pragma warning(disable: 4351 4996)
@@ -160,4 +163,5 @@ namespace marshal
 
 #if defined(_MSC_VER)
 #pragma warning(pop)
+#endif
 #endif
