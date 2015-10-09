@@ -31,6 +31,7 @@ function onMobSpawn(mob)
     mob:setUnkillable(true);
     mob:setMod(MOD_REGAIN, 50);
     mob:setMod(MOD_REGEN, 90);
+    mob:AnimationSub(2);
     
     -- Regen Head every 1.5-4 minutes 90-240
     mob:setLocalVar("headTimer", os.time() + math.random(60,190));
