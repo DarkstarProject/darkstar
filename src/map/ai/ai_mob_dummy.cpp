@@ -2401,9 +2401,7 @@ void CAIMobDummy::FollowPath()
             // face spawn rotation if I just moved back to spawn
             // used by dynamis mobs, bcnm mobs etc
             if ((m_PMob->m_roamFlags & ROAMFLAG_EVENT) &&
-                 m_PMob->m_SpawnPoint.x == m_PMob->loc.p.x &&
-                 m_PMob->m_SpawnPoint.y == m_PMob->loc.p.y &&
-                 m_PMob->m_SpawnPoint.z == m_PMob->loc.p.z)
+                distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) <= m_PMob->m_maxRoamDistance)
             {
                 m_PMob->loc.p.rotation = m_PMob->m_SpawnPoint.rotation;
             }
