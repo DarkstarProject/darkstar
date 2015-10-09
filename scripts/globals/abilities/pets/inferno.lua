@@ -20,18 +20,17 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onPetAbility(target, pet, skill)
-	local master = pet:getMaster();
-	local smnSkill = master:getSkillLevel(SKILL_SUM);
-	local dmgmod = 3 + math.floor(smnSkill / 100);
-	
-	local damage = MobMagicalMove(pet,target,skill,pet:getWeaponDmg()*3,ELE_FIRE,dmgmod,TP_NO_EFFECT);
-	damage = mobAddBonuses(pet, nil, target, damage.dmg, ELE_FIRE);
-	damage = MobFinalAdjustments(damage,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
-	
-	target:delHP(damage);
-	target:updateEnmityFromDamage(pet,damage);
-	
-	master:setMP(0);
-	
-	return damage;
+    local dINT = math.floor(pet:getStat(MOD_INT) - target:getStat(MOD_INT));
+    
+    local level = pet:getMainLvl()
+    local damage = 48 + (level * 8);
+    damage = damage + (dINT * 1.5);
+    damage = MobMagicalMove(pet,target,skill,damage,ELE_FIRE,1,TP_NO_EFFECT,0);
+    damage = mobAddBonuses(pet, nil, target, damage.dmg, ELE_FIRE);
+    damage = AvatarFinalAdjustments(damage,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1);
+
+    target:delHP(damage);
+    target:updateEnmityFromDamage(pet,damage);
+
+    return damage; 
 end

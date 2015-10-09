@@ -627,7 +627,7 @@ INSERT INTO `mob_skills` VALUES (578,516,'ecliptic_growl',1,10.0,516,3000,1,0,0,
 INSERT INTO `mob_skills` VALUES (579,517,'lunar_roar',1,10.0,515,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (580,518,'eclipse_bite',0,10.0,518,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (581,519,'ecliptic_howl',1,10.0,517,3000,1,0,0,0);
-INSERT INTO `mob_skills` VALUES (582,521,'howling_moon',1,10.0,520,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (582,521,'howling_moon',1,10.0,520,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (583,521,'howling_moon',1,30.0,520,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (584,526,'punch',0,10.0,528,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (585,527,'fire_ii',0,10.0,529,3000,4,0,0,0);
