@@ -1938,7 +1938,7 @@ MOBMOD_ROAM_RATE      = 52
 MOBMOD_BEHAVIOR       = 53
 MOBMOD_GIL_BONUS      = 54
 MOBMOD_IDLE_DESPAWN   = 55
-MOBMOD_NO_STANDBACK   = 56
+MOBMOD_HP_STANDBACK   = 56
 
 ------------------------------------
 -- Skills

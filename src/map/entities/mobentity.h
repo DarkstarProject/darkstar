@@ -108,8 +108,7 @@ enum BEHAVIOUR : uint16
     BEHAVIOUR_RAISABLE     = 0x004, // mob can be raised via Raise spells
     BEHAVIOUR_NOHELP       = 0x008, // mob can not be targeted by helpful magic from players (cure, protect, etc)
     BEHAVIOUR_AGGRO_AMBUSH = 0x200, // mob aggroes by ambush
-    BEHAVIOUR_NO_TURN      = 0x400,  // mob does not turn to face target
-    BEHAVIOUR_HP_STANDBACK = 0x800 // standback forever if HP above 70%
+    BEHAVIOUR_NO_TURN      = 0x400  // mob does not turn to face target
 };
 
 

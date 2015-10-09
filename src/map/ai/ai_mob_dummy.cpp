@@ -72,7 +72,6 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
     m_LastSpecialTime = 0;
     m_LastMobSkillTime = 0;
     m_skillTP = 0;
-    m_LastStandbackTime = 0;
     m_DeaggroTime = 0;
     m_NeutralTime = 0;
     m_drawnIn = false;
@@ -216,6 +215,13 @@ void CAIMobDummy::ActionRoaming()
 
                 // move back every 5 seconds
                 m_LastActionTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME;
+            }
+            else if (m_PMob->getMobMod(MOBMOD_NO_DESPAWN) != 0 ||
+                    map_config.mob_no_despawn)
+            {
+                // mob couldn't find path home
+                // but should never despawn, so cancel walking home
+                m_checkDespawn = false;
             }
             else
             {
@@ -2653,7 +2659,7 @@ bool CAIMobDummy::CanMoveForward(float currentDistance)
         return false;
     }
 
-    if(m_PMob->m_Behaviour & BEHAVIOUR_HP_STANDBACK && currentDistance < 20 && m_PMob->GetHPP() > 70)
+    if(m_PMob->getMobMod(MOBMOD_HP_STANDBACK) == 1 && currentDistance < 20 && m_PMob->GetHPP() > 70)
     {
         // Excluding Nins, mobs should not standback if can't cast magic
         if (m_PMob->GetMJob() != JOB_NIN && m_PMob->SpellContainer->HasSpells() && !CanCastSpells())

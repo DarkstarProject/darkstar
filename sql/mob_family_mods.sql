@@ -611,25 +611,25 @@ INSERT INTO `mob_family_mods` VALUES (59,63,20,0);
 INSERT INTO `mob_family_mods` VALUES (213,20,128,0);
 
 -- Never standback
-INSERT INTO `mob_family_mods` VALUES (32,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (33,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (34,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (35,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (36,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (37,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (38,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (39,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (40,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (41,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (42,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (43,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (44,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (45,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (495,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (92,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (93,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (94,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (95,56,1,1);
+INSERT INTO `mob_family_mods` VALUES (32,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (33,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (34,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (35,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (36,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (37,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (38,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (39,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (40,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (41,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (42,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (43,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (44,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (45,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (495,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (92,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (93,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (94,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (95,56,-1,1);
 
 -- Weapon bonus damage
 INSERT INTO `mob_family_mods` VALUES (57,59,125,1);

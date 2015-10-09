@@ -537,10 +537,7 @@ void SetupJob(CMobEntity* PMob)
                 PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 8);
             }
 
-            if(PMob->getMobMod(MOBMOD_NO_STANDBACK) == 0)
-            {
-                PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
-            }
+            PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 1);
 
             break;
         case JOB_NIN:
@@ -550,10 +547,7 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
             PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
 
-            if(PMob->getMobMod(MOBMOD_NO_STANDBACK) == 0)
-            {
-                PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
-            }
+            PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 1);
             break;
         case JOB_BST:
             PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 70);
@@ -569,10 +563,8 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 40);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 15);
 
-            if(PMob->getMobMod(MOBMOD_NO_STANDBACK) == 0)
-            {
-                PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
-            }
+
+            PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 1);
             break;
         case JOB_PLD:
             PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
