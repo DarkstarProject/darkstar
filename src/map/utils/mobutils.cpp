@@ -763,7 +763,7 @@ void SetupEventMob(CMobEntity* PMob)
 {
     // event mob types will always have custom roaming
     PMob->m_roamFlags |= ROAMFLAG_EVENT;
-    PMob->m_maxRoamDistance = 0.2f; // always go back to spawn
+    PMob->m_maxRoamDistance = 0.5f; // always go back to spawn
 
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
 }
