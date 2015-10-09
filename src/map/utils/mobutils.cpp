@@ -177,6 +177,12 @@ void CalculateStats(CMobEntity * PMob)
 
     if(PMob->HPmodifier == 0)
     {
+        float hpScale = PMob->HPscale;
+
+        if (PMob->getMobMod(MOBMOD_HP_SCALE) != 0)
+        {
+            hpScale = (float)PMob->getMobMod(MOBMOD_HP_SCALE) / 100.0f;
+        }
 
         float growth = 1.06;
         float petGrowth = 0.75;
@@ -227,7 +233,7 @@ void CalculateStats(CMobEntity * PMob)
         }
 
 
-        PMob->health.maxhp = (int16)(base * pow(mLvl, growth) * PMob->HPscale);
+        PMob->health.maxhp = (int16)(base * pow(mLvl, growth) * hpScale);
 
         if(isNM)
         {
