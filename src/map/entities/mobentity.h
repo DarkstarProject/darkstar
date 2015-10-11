@@ -155,14 +155,14 @@ public:
     uint8     accRank;
     uint8     evaRank; // not used
 
-    uint16	m_dmgMult;
+    uint16	  m_dmgMult;
 
     // aggro ranges
     bool      m_disableScent;             // stop detecting by scent
     float     m_maxRoamDistance;          // maximum distance mob can be from spawn before despawning
 
     uint8     m_Type;                     // mob type
-    uint16	m_Aggro;					  // mob aggro type
+    uint16	  m_Aggro;					  // mob aggro type
     uint8     m_Link;                     // link with mobs of it's family
     uint16    m_Behaviour;                // mob behaviour
     SPAWNTYPE m_SpawnType;                // condition for mob to spawn
@@ -172,7 +172,7 @@ public:
     bool      m_giveExp;                  // prevent exp gain
     bool      m_neutral;                  // stop linking / aggroing
 
-    position_t    m_SpawnPoint;           // spawn point of mob
+    position_t  m_SpawnPoint;           // spawn point of mob
 
     uint8     m_Element;
     uint8     m_HiPCLvl;                  // Highest Level of Player Character that hit the Monster
@@ -236,7 +236,6 @@ public:
     float     GetRoamDistance();
     float     GetRoamRate();
 
-    uint8     spawnanimationsub;                       // reset animationsub to this on spawn
     
     CMobEntity();
     ~CMobEntity();
