@@ -19,6 +19,7 @@ end;
 -----------------------------------
 
 function onMobSpawn(mob)
+    mob:AnimationSub(0);
 end;
 
 -----------------------------------
