@@ -55,7 +55,7 @@ end;
 
 function onMobFight(mob, target)
 
-    if (mob:getHPP() < 100) then -- it will attack once it has been damaged.
+    if (mob:getHP() < mob:getMaxHP()) then -- it will attack once it has been damaged.
         if (mob:getLocalVar("damaged") == 0) then
             mob:SetAutoAttackEnabled(true);
             mob:SetMobAbilityEnabled(true);
