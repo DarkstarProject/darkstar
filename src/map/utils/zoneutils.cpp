@@ -473,6 +473,7 @@ void LoadMOBList()
                 // yovra 1: en hauteur, 2: en bas, 3: en haut
                 // phuabo 1: sous l'eau, 2: sort de l'eau, 3: rentre dans l'eau
                 PMob->animationsub = (uint32)Sql_GetIntData(SqlHandle, 52);
+                PMob->spawnanimationsub = PMob->animationsub;
 
                 // Setup HP / MP Stat Percentage Boost
                 PMob->HPscale = Sql_GetFloatData(SqlHandle, 53);
