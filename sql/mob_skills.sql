@@ -1570,10 +1570,10 @@ INSERT INTO `mob_skills` VALUES (1515,1258,'Tail_Slap',4,10.0,2000,1500,4,0,0,3)
 INSERT INTO `mob_skills` VALUES (1522,1205,'Spinal_Cleave',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1523,1206,'Mangle',4,16.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1524,1207,'Leaping_Cleave',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1525,1525,'Hex_Palm',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1526,1526,'Animating_Wail',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1527,1527,'Fortifying_Wail',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1528,1528,'Unblest_Jambiya',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1525,1208,'Hex_Palm',4,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1526,1209,'Animating_Wail',1,15.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skills` VALUES (1527,1210,'Fortifying_Wail',1,15.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skills` VALUES (1528,1211,'Unblest_Jambiya',1,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1529,1223,'Lava_Spit',1,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1530,1224,'Sulfurous_Breath',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1531,1225,'Scorching_Lash',1,20.0,2000,1500,4,0,0,0);

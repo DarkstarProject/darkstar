@@ -1579,23 +1579,23 @@ INSERT INTO `mob_skill_lists` VALUES ('',198,1462);
 INSERT INTO `mob_skill_lists` VALUES ('',203,1522);
 INSERT INTO `mob_skill_lists` VALUES ('',203,1523);
 INSERT INTO `mob_skill_lists` VALUES ('',203,1524);
--- INSERT INTO `mob_skill_lists` VALUES ('',203,1525);
--- INSERT INTO `mob_skill_lists` VALUES ('',203,1526);
--- INSERT INTO `mob_skill_lists` VALUES ('',203,1527);
+INSERT INTO `mob_skill_lists` VALUES ('',203,1525);
+INSERT INTO `mob_skill_lists` VALUES ('',203,1526);
+INSERT INTO `mob_skill_lists` VALUES ('',203,1527);
 
 INSERT INTO `mob_skill_lists` VALUES ('',204,1522);
 INSERT INTO `mob_skill_lists` VALUES ('',204,1523);
 INSERT INTO `mob_skill_lists` VALUES ('',204,1524);
--- INSERT INTO `mob_skill_lists` VALUES ('',204,1525);
--- INSERT INTO `mob_skill_lists` VALUES ('',204,1526);
--- INSERT INTO `mob_skill_lists` VALUES ('',204,1527);
+INSERT INTO `mob_skill_lists` VALUES ('',204,1525);
+INSERT INTO `mob_skill_lists` VALUES ('',204,1526);
+INSERT INTO `mob_skill_lists` VALUES ('',204,1527);
 
 INSERT INTO `mob_skill_lists` VALUES ('',205,1522);
 INSERT INTO `mob_skill_lists` VALUES ('',205,1523);
 INSERT INTO `mob_skill_lists` VALUES ('',205,1524);
--- INSERT INTO `mob_skill_lists` VALUES ('',205,1525);
--- INSERT INTO `mob_skill_lists` VALUES ('',205,1526);
--- INSERT INTO `mob_skill_lists` VALUES ('',205,1527);
+INSERT INTO `mob_skill_lists` VALUES ('',205,1525);
+INSERT INTO `mob_skill_lists` VALUES ('',205,1526);
+INSERT INTO `mob_skill_lists` VALUES ('',205,1527);
 
 -- INSERT INTO `mob_skill_lists` VALUES ('',1528,?);
 -- INSERT INTO `mob_skill_lists` VALUES ('',2634,?);
@@ -2907,10 +2907,10 @@ INSERT INTO `mob_skill_lists` VALUES ('',302,1818);
 INSERT INTO `mob_skill_lists` VALUES ('',303,1522);
 INSERT INTO `mob_skill_lists` VALUES ('',303,1523);
 INSERT INTO `mob_skill_lists` VALUES ('',303,1524);
--- INSERT INTO `mob_skill_lists` VALUES ('',303,1525);
--- INSERT INTO `mob_skill_lists` VALUES ('',303,1526);
--- INSERT INTO `mob_skill_lists` VALUES ('',303,1527);
--- INSERT INTO `mob_skill_lists` VALUES ('',303,1528);
+INSERT INTO `mob_skill_lists` VALUES ('',303,1525);
+INSERT INTO `mob_skill_lists` VALUES ('',303,1526);
+INSERT INTO `mob_skill_lists` VALUES ('',303,1527);
+INSERT INTO `mob_skill_lists` VALUES ('',303,1528);
 
 -- Armed Gears (304)
 -- INSERT INTO `mob_skill_lists` VALUES ('',304,1791);
