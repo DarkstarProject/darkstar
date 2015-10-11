@@ -19,10 +19,8 @@ function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function onPetAbility(target, pet, skill)
+function onPetAbility(target, pet, skill, master)
     local dINT = math.floor(pet:getStat(MOD_INT) - target:getStat(MOD_INT));
-    print(pet:getStat(MOD_INT))
-    print(target:getStat(MOD_INT))
     
     local level = pet:getMainLvl()
     local damage = 48 + (level * 8);
@@ -31,6 +29,7 @@ function onPetAbility(target, pet, skill)
     damage = mobAddBonuses(pet, nil, target, damage.dmg, ELE_WIND);
     damage = AvatarFinalAdjustments(damage,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1);
 
+    master:setMP(0);
     target:delHP(damage);
     target:updateEnmityFromDamage(pet,damage);
 
