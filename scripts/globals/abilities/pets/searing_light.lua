@@ -19,7 +19,7 @@ function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function onPetAbility(target, pet, skill)
+function onPetAbility(target, pet, skill, master)
     local dINT = math.floor(pet:getStat(MOD_INT) - target:getStat(MOD_INT));
     
     local level = pet:getMainLvl()
@@ -31,6 +31,7 @@ function onPetAbility(target, pet, skill)
 
     target:delHP(damage);
     target:updateEnmityFromDamage(pet,damage);
+    master:setMP(0);
 
     return damage; 
 end
