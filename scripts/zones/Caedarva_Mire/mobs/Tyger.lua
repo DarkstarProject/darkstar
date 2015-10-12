@@ -5,7 +5,7 @@
 -- Spawn with Singed Buffalo: @additem 2593
 -----------------------------------
 
-require("scripts/globals/titles");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onMobSpawn Action
