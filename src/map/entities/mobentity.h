@@ -152,7 +152,7 @@ public:
     uint8     attRank;
     uint8     defRank;
     uint8     accRank;
-    uint8     evaRank; // not used
+    uint8     evaRank;
 
     uint16	  m_dmgMult;
 
