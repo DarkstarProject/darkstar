@@ -701,7 +701,7 @@ INSERT INTO `mob_skills` VALUES (652,607,'shining_ruby',1,10.0,498,3000,1,0,0,0)
 INSERT INTO `mob_skills` VALUES (653,608,'glittering_ruby',1,10.0,499,3000,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (654,609,'meteorite',0,10.0,500,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (655,610,'healing_ruby_ii',1,10.0,501,3000,1,0,0,0);
-INSERT INTO `mob_skills` VALUES (656,611,'searing_light',1,30.0,0,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (656,611,'searing_light',1,10.0,502,0,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (657,534,'Inferno',1,25.0,2000,0,4,0,0,0); -- Mob avatar skills
 INSERT INTO `mob_skills` VALUES (658,547,'Earthen_Fury',1,25.0,2000,0,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (659,560,'tidal_wave',1,25.0,2000,0,4,0,0,0);
