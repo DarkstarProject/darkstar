@@ -618,7 +618,7 @@ end;
 
     if (dmg > 0) then
         dmg = dmg - target:getMod(MOD_PHALANX);
-        utils.clamp(dmg, 0, 99999);
+        dmg = utils.clamp(dmg, 0, 99999);
     end
 
     --handling stoneskin
@@ -647,7 +647,7 @@ function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
 
     if (dmg > 0) then
         dmg = dmg - target:getMod(MOD_PHALANX);
-        utils.clamp(dmg, 0, 99999);
+        dmg = utils.clamp(dmg, 0, 99999);
     end
 
     --handling stoneskin
