@@ -19,8 +19,8 @@ function onTrigger(player,npc)
 	local DoorID = npc:getID() - 1;		
 	local DoorA = GetNPCByID(DoorID):getAnimation();
 	
-	if(player:getXPos() < -186) then
-	  if(DoorA == 9 and npc:getAnimation() == 9) then
+	if (player:getXPos() < -186) then
+	  if (DoorA == 9 and npc:getAnimation() == 9) then
 		npc:openDoor(6.5);
 		-- Should be a 1 second delay here before the door opens
 		GetNPCByID(DoorID):openDoor(4.5); 

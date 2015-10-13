@@ -15,15 +15,29 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+  if(mob:getFamily() == 316) then
+    local mobSkin = mob:getModelId();
+
+    if (mobSkin == 1793) then
+        return 0;
+    else
+        return 1;
+    end
+  end
+
+    if (target:isBehind(mob, 48) == false) then
+        return 1;
+    else
+        return 0;
+    end;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local numhits = 3;
-	local accmod = 1;
-	local dmgmod = 1.3;
-	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
-	target:delHP(dmg);
-	return dmg;
+    local numhits = 3;
+    local accmod = 1;
+    local dmgmod = 1.3;
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
+    target:delHP(dmg);
+    return dmg;
 end;

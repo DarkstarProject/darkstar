@@ -29,7 +29,7 @@ function onPetAbility(target, pet, skill)
 	end
 	duration = duration * resm
 
-	if(duration > 0 and AvatarPhysicalHit(skill, totaldamage) and target:hasStatusEffect(EFFECT_WEIGHT) == false) then
+	if (duration > 0 and AvatarPhysicalHit(skill, totaldamage) and target:hasStatusEffect(EFFECT_WEIGHT) == false) then
 		target:addStatusEffect(EFFECT_WEIGHT, 50, 0, duration);
 	end
 	target:delHP(totaldamage);

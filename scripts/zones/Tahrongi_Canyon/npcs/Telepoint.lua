@@ -17,8 +17,8 @@ function onTrade(player,npc,trade)
 
 	item = trade:getItem();
 
-	if(trade:getItemCount() == 1 and item > 4095 and item < 4104) then	
-		if(player:getFreeSlotsCount() > 0 and player:hasItem(613) == false) then
+	if (trade:getItemCount() == 1 and item > 4095 and item < 4104) then	
+		if (player:getFreeSlotsCount() > 0 and player:hasItem(613) == false) then
 			player:tradeComplete();
 			player:addItem(613);
 			player:messageSpecial(ITEM_OBTAINED,613); -- Faded Crystal
@@ -35,7 +35,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:hasKeyItem(MEA_GATE_CRYSTAL) == false) then
+	if (player:hasKeyItem(MEA_GATE_CRYSTAL) == false) then
 		player:addKeyItem(MEA_GATE_CRYSTAL);
 		player:messageSpecial(KEYITEM_OBTAINED,MEA_GATE_CRYSTAL);
 	else

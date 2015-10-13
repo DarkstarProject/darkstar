@@ -16,13 +16,13 @@ function onSpellCast(caster,target,spell)
     local pCHR = caster:getStat(MOD_CHR);
     local mCHR = target:getStat(MOD_CHR);
     local dCHR = (pCHR - mCHR);
-    local resm = applyResistance(caster,spell,target,dCHR,40,0);
-    if(resm < 0.5) then
+    local resm = applyResistanceEffect(caster,spell,target,dCHR,SKILL_SNG,0,EFFECT_LULLABY);
+    if (resm < 0.5) then
         spell:setMsg(85);--resist message
         return EFFECT_LULLABY;
     end
 
-    if(target:hasImmunity(1) or 100 * math.random() < target:getMod(MOD_SLEEPRES)) then
+    if (target:hasImmunity(1) or 100 * math.random() < target:getMod(MOD_SLEEPRES)) then
         --No effect
         spell:setMsg(75);
     else
@@ -31,7 +31,7 @@ function onSpellCast(caster,target,spell)
 
         duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
 
-        if(target:addStatusEffect(EFFECT_LULLABY,1,0,duration)) then
+        if (target:addStatusEffect(EFFECT_LULLABY,1,0,duration)) then
             spell:setMsg(237);
         else
             spell:setMsg(75);

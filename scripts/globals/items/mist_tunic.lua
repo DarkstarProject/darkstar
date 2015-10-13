@@ -19,7 +19,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if(target:hasStatusEffect(EFFECT_EVASION_BOOST) == false) then
+    if (target:hasStatusEffect(EFFECT_EVASION_BOOST) == false) then
         target:addStatusEffect(EFFECT_EVASION_BOOST,20,0,180);
     else
         target:messageBasic(423);

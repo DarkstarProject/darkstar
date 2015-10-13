@@ -11,7 +11,7 @@ require("scripts/globals/missions");
 	
 function onMobDeath(mob,killer)	
 	
-	if(killer:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and killer:getVar("MissionStatus") == 2) then
+	if (killer:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and killer:getVar("MissionStatus") == 2) then
 		killer:setVar("Mission6-1MobKilled",1);
 	end
 	

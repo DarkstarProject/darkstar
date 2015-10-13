@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
     local z = npc:getZPos();
     local mob = GetMobByID(16822459);
 
-    if(GetMobAction(16822459) == 0 and trade:hasItemQty(4541,1) and trade:getItemCount() == 1) then
+    if (GetMobAction(16822459) == 0 and trade:hasItemQty(4541,1) and trade:getItemCount() == 1) then
         player:tradeComplete();
         SpawnMob(16822459,300):updateClaim(player);
         mob:setPos(x-1,y,z);

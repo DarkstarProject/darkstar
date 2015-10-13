@@ -13,24 +13,21 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
-        return 1;
-    end
     return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
 
+    local basehp = skill:getParam();
+    if(basehp == 0) then
+        basehp = 50;
+    end
+
     -- time to drain HP. 50-100
-    local power = math.random(0, 51) + 50;
+    local power = math.random(0, 51) + basehp;
     local dmg = MobFinalAdjustments(power,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_1_SHADOW);
 
-    skill:setMsg(MSG_DRAIN_HP);
-
-    if(MobPhysicalHit(skill, 0, 0, 0)) then
-        target:delHP(dmg);
-        mob:addHP(dmg);
-    end
+    skill:setMsg(MobPhysicalDrainMove(mob, target, skill, MOBDRAIN_HP, dmg));
 
     return dmg;
 end;

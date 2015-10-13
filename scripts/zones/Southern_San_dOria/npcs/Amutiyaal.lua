@@ -51,8 +51,8 @@ Chateau d'Oraguille (East to West)
 
 function onTrade(player,npc,trade)
 	
-	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
+	if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
@@ -85,7 +85,7 @@ function onTrigger(player,npc)
 				player:startEvent(0x032e);
 			end
 		end
-	elseif(player:getCurrentMission(TOAU) >= 2)then
+	elseif (player:getCurrentMission(TOAU) >= 2) then
 		player:startEvent(0x0370);
 	else
 		player:startEvent(0x0330);
@@ -113,7 +113,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("WildcatSandy",0);
 		player:addKeyItem(RED_SENTINEL_BADGE);
 		player:messageSpecial(KEYITEM_OBTAINED,RED_SENTINEL_BADGE);
-	elseif(csid == 0x032f) then
+	elseif (csid == 0x032f) then
 		player:completeQuest(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
 		player:addFame(SANDORIA,150);
 		player:setVar("WildcatSandy",0);
@@ -121,7 +121,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(RED_INVITATION_CARD);
 		player:messageSpecial(KEYITEM_LOST,RED_SENTINEL_BADGE);
 		player:messageSpecial(KEYITEM_OBTAINED,RED_INVITATION_CARD);
-	elseif(csid == 0x0371)then
+	elseif (csid == 0x0371) then
 		player:tradeComplete();
 		toAhtUrhganWhitegate(player);
 	end

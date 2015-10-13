@@ -14,21 +14,20 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    if (mob:getID() == 17584131) then
+        GetNPCByID(17584457):setStatus(STATUS_NORMAL); -- qm3
+    elseif (mob:getID() == 17584132) then
+        GetNPCByID(17584458):setStatus(STATUS_NORMAL); -- qm4
+    end
+end;
+
+-----------------------------------
 -- onMobDeath
 -----------------------------------
 
-
 function onMobDeath(mob,killer)
-
-	mob = mob:getID();
-
-	if (mob == 17584131) then
-		GetNPCByID(17584457):hideNPC(900); -- qm3
-	elseif (mob == 17584132) then
-		GetNPCByID(17584458):hideNPC(900);-- qm4
-	end
-
 end;
-
-
-

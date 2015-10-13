@@ -14,6 +14,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
+    ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
     if (not player:hasStatusEffect(EFFECT_DOUBLE_UP_CHANCE)) then
         return MSGBASIC_NO_ELIGIBLE_ROLL,0;
     else

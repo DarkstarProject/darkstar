@@ -37,45 +37,20 @@
 
 // массив больше на одно значение, заполняемое нулем
 
-#ifdef ABYSSEA_EXPANSION
-static uint8 upgrade[9][16] =
+static uint8 upgrade[10][16] =
 {
-    {1,2,3,4,5,5,5,5,5,7,7,7,9,9,9},    // HP-MP
-    {3,6,9,9,9,12,12,12,12,15,15,15},   // Attributes
-    {1,2,3,3,3,3,3,3},                  // Combat Skills
-    {1,2,3,3},                          // Defensive Skills
-    {1,2,3,3,3,3,3,3},                  // Magic Skills
-    {1,2,3,4,5},                        // Others
-    {1,2,3,4,5},                        // Job Group 1
-    {3,4,5,5,5},                        // Job Group 2
-    {10,15,20,25,30},                   // Weapon Skills
+    {1,2,3,4,5,5,5,5,5,7,7,7,9,9,9},             // HP-MP
+    {3,6,9,9,9,12,12,12,12,15,15,15,15,19,18},   // Attributes
+    {1,2,3,3,3,3,3,3},                           // Combat Skills
+    {1,2,3,3,3,3,3,3},                           // Defensive Skills
+    {1,2,3,3,3,3,3,3},                           // Magic Skills
+    {1,2,3,4,5},                                 // Others
+    {1,2,3,4,5},                                 // Job Group 1
+    {3,4,5,5,5},                                 // Job Group 2
+    {20,22,24,27,30},                            // Weapon Skills
+    {1,3,5,7,9,12,15,18,21,24,27,30,33,36,39}    // Max merits
 };
 #define MAX_LIMIT_POINTS  10000         // количество опыта для получения одного merit
-//#define MAX_MERIT_POINTS  30            // максимальное количество неиспользованных merit
-
-// option to change max points, kept the original above
-#define MAX_MERIT_POINTS  map_config.max_merit_points
-
-#else
-static uint8 upgrade[9][9] =
-{
-    {1,2,3,4,5,5,5,5},			        //0 HP-MP
-    {3,6,9,9,9},				        //1 Attributes
-    {1,2,3,3,3,3,3,3},			        //2 Combat Skills
-    {1,2,3,3},					        //3 Defensive Skills
-    {1,2,3,3,3,3,3,3},			        //4 Magic Skills
-    {1,2,3,4,5},					    //5 Others
-    {1,2,3,4,5},				        //6 Job Group 1
-    {3,4,5,5,5},				        //7 Job Group 2
-    {0},                                //8 Weapon Skills
-};
-#define MAX_LIMIT_POINTS  10000         // количество опыта для получения одного merit
-//#define MAX_MERIT_POINTS  100         // максимальное количество неиспользованных merit
-
-// option to change max points, kept the original above
-#define MAX_MERIT_POINTS  map_config.max_merit_points
-
-#endif
 
 // TODO: скорее всего придется все это перенести в базу
 
@@ -96,9 +71,10 @@ static uint8 cap[100] =
     6,6,6,6,6,              // 55-59 6
     7,7,7,7,7,              // 60-64 7
     8,8,8,8,8,              // 65-69 8
-    8,8,8,8,8,8,8,8,8,8,    // 70-79 8
-    8,8,8,8,8,8,8,8,8,8,    // 80-89 8
-    8,8,8,8,8,8,8,8,8,8,    // 90-99 8
+    9,9,9,9,9,              // 70-74 9
+    10,10,10,10,10,         // 75-79 10
+    15,15,15,15,15,15,15,15,15,15,    // 80-89 15
+    15,15,15,15,15,15,15,15,15,15,    // 90-99 15
 };
 
 /************************************************************************
@@ -116,10 +92,10 @@ struct MeritCategoryInfo_t
 
 static const MeritCategoryInfo_t meritCatInfo[] =
 {
-    {2,15,0},  //MCATEGORY_HP_MP
-    {7,12,1},  //MCATEGORY_ATTRIBUTES
-    {19,32,2}, //MCATEGORY_COMBAT
-    {12,24,4}, //MCATEGORY_MAGIC
+    {3,45,0},  //MCATEGORY_HP_MP
+    {7,60,1},  //MCATEGORY_ATTRIBUTES
+    {19,112,2}, //MCATEGORY_COMBAT
+    {14,80,4}, //MCATEGORY_MAGIC
     {5,10,5},  //MCATEGORY_OTHERS
 
     {5,10,6},  //MCATEGORY_WAR_1
@@ -221,49 +197,44 @@ CMeritPoints::CMeritPoints(CCharEntity* PChar)
 
 void CMeritPoints::LoadMeritPoints(uint32 charid)
 {
+    uint8 catNumber = 0;
 
-    const int8* Query = "SELECT merits FROM chars WHERE charid = %u";
+    for (uint16 i = 0; i < MERITS_COUNT; ++i)
+    {
+        if ((catNumber < 51 && i == meritNameSpace::groupOffset[catNumber]) || (catNumber > 25 && catNumber < 31))
+        {
 
-	if (Sql_Query(SqlHandle, Query, charid) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-	   size_t length = 0;
-       int8*  points = 0;
+            if (catNumber > 25 && catNumber < 31) // point these to valid merits to prevent crash
+                Categories[catNumber] = &merits[163];
+            else
+                Categories[catNumber] = &merits[i];
 
-       Sql_GetData(SqlHandle, 0, &points, &length);
+            catNumber++;
+        }
 
-       if (length == MERITS_COUNT)
-       {
-		   uint8 catNumber = 0;
-
-           for (uint16 i = 0; i < MERITS_COUNT; ++i)
-		   {
-			   if ( (catNumber < 51 && i == meritNameSpace::groupOffset[catNumber]) || (catNumber > 25 && catNumber < 31) )
-			   {
-
-				   if (catNumber > 25 && catNumber < 31) // point these to valid merits to prevent crash
-						Categories[catNumber] = &merits[163];
-				   else
-						Categories[catNumber] = &merits[i];
-
-				   catNumber++;
-			   }
-
-               merits[i].count = points[i];
-			   merits[i].next = upgrade[merits[i].upgradeid][merits[i].count];
-           }
-           return;
-
-       }
-	   else if(length == 0)
-	   {
-		   //merits were not set to zero on char creation for this character, set them now
-		   SaveMeritPoints(charid,true);
-		   return;
-	   }
+        merits[i].count = 0;
+        merits[i].next = upgrade[merits[i].upgradeid][merits[i].count];
     }
 
-	ShowError(CL_RED"MeritSystem: can't load merits for charid %u" CL_RESET, charid);
-
+    if (Sql_Query(SqlHandle, "SELECT meritid, upgrades FROM char_merit WHERE charid = %u", charid) != SQL_ERROR)
+    {
+        for (uint16 j = 0; j < Sql_NumRows(SqlHandle); j++)
+        {
+            if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                uint32 meritID = Sql_GetUIntData(SqlHandle, 0);
+                uint32 upgrades = Sql_GetUIntData(SqlHandle, 1);
+                for (uint16 i = 0; i < MERITS_COUNT; i++)
+                {
+                    if (merits[i].id == meritID)
+                    {
+                        merits[i].count = upgrades;
+                        merits[i].next = upgrade[merits[i].upgradeid][merits[i].count];
+                    }
+                }
+            }
+        }
+    }
 }
 
 /************************************************************************
@@ -272,29 +243,13 @@ void CMeritPoints::LoadMeritPoints(uint32 charid)
 *                                                                       *
 ************************************************************************/
 
-void CMeritPoints::SaveMeritPoints(uint32 charid, bool resetingMerits)
+void CMeritPoints::SaveMeritPoints(uint32 charid)
 {
-	const int8* Query =  "UPDATE chars SET merits = '%s' WHERE charid = %u";
-
-	int8 points[MERITS_COUNT*2+1];
-    int8 MeritCounts[MERITS_COUNT];
-
     for (uint16 i = 0; i < MERITS_COUNT; ++i)
-    {
-		if (resetingMerits)
-			MeritCounts[i] = 0;
-		else
-			MeritCounts[i] = merits[i].count;
-    }
-
-	Sql_EscapeStringLen(SqlHandle, points, (const int8*)MeritCounts, MERITS_COUNT);
-
-	Sql_Query(SqlHandle, Query, points, charid);
-
-
-	// reload merit points if they were reset
-	if (resetingMerits)
-		LoadMeritPoints(charid);
+        if (merits[i].count > 0)
+            Sql_Query(SqlHandle, "INSERT INTO char_merit (charid, meritid, upgrades) VALUES(%u, %u, %u) ON DUPLICATE KEY UPDATE upgrades = %u", charid, merits[i].id, merits[i].count, merits[i].count);
+        else
+            Sql_Query(SqlHandle, "DELETE FROM char_merit WHERE charid = %u AND meritid = %u", charid, merits[i].id);
 }
 
 /************************************************************************
@@ -322,18 +277,6 @@ uint8 CMeritPoints::GetMeritPoints()
 
 /************************************************************************
 *                                                                       *
-*  Получаем указател на массив merits                                   *
-*                                                                       *
-************************************************************************/
-
-const Merit_t* CMeritPoints::GetMerits()
-{
-    return merits;
-}
-
-
-/************************************************************************
-*                                                                       *
 *  Добавляем персонажу limit points                                     *
 *                                                                       *
 ************************************************************************/
@@ -347,13 +290,13 @@ bool CMeritPoints::AddLimitPoints(uint16 points)
     if (m_LimitPoints >= MAX_LIMIT_POINTS)
     {
 		//check if player has reached cap
-		if (m_MeritPoints == MAX_MERIT_POINTS)
+		if (m_MeritPoints == map_config.max_merit_points + GetMeritValue(MERIT_MAX_MERIT, m_PChar))
 		{
 			m_LimitPoints = MAX_LIMIT_POINTS -1;
 			return false;
 		}
 
-        uint8 MeritPoints = dsp_min(m_MeritPoints + m_LimitPoints / MAX_LIMIT_POINTS, MAX_MERIT_POINTS);
+        uint8 MeritPoints = dsp_min(m_MeritPoints + m_LimitPoints / MAX_LIMIT_POINTS, map_config.max_merit_points + GetMeritValue(MERIT_MAX_MERIT, m_PChar));
 
         m_LimitPoints = m_LimitPoints % MAX_LIMIT_POINTS;
 
@@ -385,7 +328,7 @@ void CMeritPoints::SetLimitPoints(uint16 points)
 
 void CMeritPoints::SetMeritPoints(uint16 points)
 {
-    m_MeritPoints = dsp_min(points, MAX_MERIT_POINTS);
+    m_MeritPoints = dsp_min(points, map_config.max_merit_points + GetMeritValue(MERIT_MAX_MERIT, m_PChar));
 }
 
 /************************************************************************
@@ -453,6 +396,8 @@ void CMeritPoints::RaiseMerit(MERIT_TYPE merit)
 {
     Merit_t* PMerit = GetMeritPointer(merit);
 
+    ShowDebug("Merit ID: %d\n", merit);
+
     if (m_MeritPoints >= PMerit->next)
     {
         m_MeritPoints -= PMerit->next;
@@ -519,21 +464,14 @@ int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
     if (PMerit->catid < 5 || (PMerit->jobs & (1 << (PChar->GetMJob() - 1)) && PChar->GetMLevel() >= 75))
         meritValue = dsp_min(PMerit->count, cap[PChar->GetMLevel()]);
 
+    if (PMerit->catid == 8 && PChar->GetMLevel() < 96)
+        meritValue = 0;
+
 	meritValue *= PMerit->value;
 
 	return meritValue;
 }
 
-int32 CMeritPoints::GetMeritValue(Merit_t* merit, CCharEntity* PChar)
-{
-    uint8 meritValue = 0;
-    if (merit->catid < 5 || (merit->jobs & (1 << (PChar->GetMJob() - 1)) && PChar->GetMLevel() >= 75))
-        meritValue = dsp_min(merit->count, cap[PChar->GetMLevel()]);
-
-	meritValue *= merit->value;
-
-	return meritValue;
-}
 
 /************************************************************************
 *                                                                       *

@@ -27,12 +27,12 @@ function onTrigger(player,npc)
 	
 	local Z = npc:getZPos();
 	
-	if(Z < -15 and Z > -19) then
+	if (Z < -15 and Z > -19) then
 				
 		local DoorID = npc:getID() - 1;		
 		local DoorA = GetNPCByID(DoorID):getAnimation();		
 		
-		if(DoorA == 9) then
+		if (DoorA == 9) then
 			GetNPCByID(DoorID):openDoor(6);
 		end 
 	end	

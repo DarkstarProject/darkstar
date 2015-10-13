@@ -14,7 +14,7 @@ require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(2592,1) and trade:getItemCount() == 1) then -- Trade Coq Lubricant
+	if (trade:hasItemQty(2592,1) and trade:getItemCount() == 1) then -- Trade Coq Lubricant
 		player:tradeComplete();
 		SpawnMob(17072171,180):updateClaim(player);
 	end

@@ -13,10 +13,10 @@ require("scripts/zones/Qubia_Arena/TextIDs");
 require("scripts/zones/Throne_Room/TextIDs");
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-if(mob:getFamily() == 482)then
+if (mob:getFamily() == 482) then
 	target:showText(mob,NO_HIDE_AWAY);
     return 0;
-elseif(mob:getFamily() == 483)then
+elseif (mob:getFamily() == 483) then
 	target:showText(mob,RLB_PREPARE);
     return 0;
 else 
@@ -25,9 +25,9 @@ end
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	if(mob:getFamily() == 482)then
+	if (mob:getFamily() == 482) then
 	target:showText(mob,FEEL_MY_PAIN);
-	elseif(mob:getFamily() == 483)then
+	elseif (mob:getFamily() == 483) then
 	target:showText(mob,RLB_LAND);
 	else
 	mob:messageBasic(43, 0, 687+256);

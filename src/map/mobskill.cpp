@@ -27,7 +27,6 @@
 CMobSkill::CMobSkill(uint16 id)
 {
 	m_ID = id;
-	m_FamilyID= 0;
 	m_AnimID = 0;
 	m_Aoe = 0;
     m_Distance = 0;
@@ -63,9 +62,8 @@ bool CMobSkill::isSingle()
 
 bool CMobSkill::isTwoHour()
 {
-  // id zero means it was put on mob skill list
   // flag means this skill is a real two hour
-  return m_ID == 0 || m_Flag & SKILLFLAG_TWO_HOUR;
+  return m_Flag & SKILLFLAG_TWO_HOUR;
 }
 
 void CMobSkill::setID(uint16 id)
@@ -81,11 +79,6 @@ void CMobSkill::setMsg(uint16 msg)
 void CMobSkill::setTotalTargets(uint16 targets)
 {
     m_TotalTargets = targets;
-}
-
-void CMobSkill::setfamilyID(uint16 familyID)
-{
-	m_FamilyID = familyID;
 }
 
 void CMobSkill::setAnimationID(uint16 animID)
@@ -145,14 +138,52 @@ uint16 CMobSkill::getID()
 	return m_ID;
 }
 
-uint16 CMobSkill::getfamilyID()
-{
-	return m_FamilyID;
-}
-
 uint16 CMobSkill::getAnimationID()
 {
 	return m_AnimID;
+}
+
+uint16 CMobSkill::getPetAnimationID()
+{
+  // levi
+  if(m_AnimID >= 552 && m_AnimID <= 560){
+    return m_AnimID - 488;
+  }
+  // garuda
+  if(m_AnimID >= 565 && m_AnimID <= 573){
+    return m_AnimID - 485;
+  }
+  // titan
+  if(m_AnimID >= 539 && m_AnimID <= 547){
+    return m_AnimID - 491;
+  }
+  // ifrit
+  if(m_AnimID >= 526 && m_AnimID <= 534){
+    return m_AnimID - 494;
+  }
+  // fenrir
+  if(m_AnimID >= 513 && m_AnimID <= 521){
+    return m_AnimID - 497;
+  }
+  // shiva
+  if(m_AnimID >= 578 && m_AnimID <= 586){
+    return m_AnimID - 482;
+  }
+  // rumah
+  if(m_AnimID >= 591 && m_AnimID <= 599){
+    return m_AnimID - 479;
+  }
+  // carbuncle
+  if(m_AnimID >= 605 && m_AnimID <= 611){
+    return m_AnimID - 605;
+  }
+
+  // wyvern
+  if (m_AnimID >= 621 && m_AnimID <= 632) {
+      return m_AnimID - 493;
+  }
+
+  return m_AnimID;
 }
 
 int16 CMobSkill::getTP()
@@ -177,8 +208,12 @@ uint16 CMobSkill::getMsgForAction()
     uint8 flag = getFlag();
     if (flag == SKILLFLAG_WS)
     {
-        if (id == 190) //dimensional death
-            messageid = 255;
+        // Fomor weaponskills
+        // the actual message is a player ability
+        // messageid for 3825 should be 241
+        // so 3825 - 3584 = 241, etc
+        if (id >= 3825)
+            messageid = id - 3584;
         else
             messageid = id;
     }

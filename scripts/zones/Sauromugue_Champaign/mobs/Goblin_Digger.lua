@@ -18,7 +18,7 @@ function onMobDeath(mob,killer)
     checkRegime(killer,mob,97,2);
     checkRegime(killer,mob,98,2);
 
-    if(ENABLE_ACP == 1 and (killer:hasKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB) == false) and killer:getCurrentMission(ACP) >= THE_ECHO_AWAKENS) then
+    if (ENABLE_ACP == 1 and (killer:hasKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB) == false) and killer:getCurrentMission(ACP) >= THE_ECHO_AWAKENS) then
         -- Guesstimating 15% chance
         if (math.random(1,100) >= 85) then
             killer:addKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB);

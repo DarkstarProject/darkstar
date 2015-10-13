@@ -286,11 +286,11 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
         {
             if (spell->getSpellGroup() == SPELLGROUP_BLUE)
             {
-                m_PSpell = std::unique_ptr<CSpell>(new CBlueSpell(*(CBlueSpell*)spell));
+                m_PSpell = std::make_unique<CBlueSpell>(*static_cast<CBlueSpell*>(spell));
             }
             else
             {
-                m_PSpell = std::unique_ptr<CSpell>(new CSpell(*spell));
+                m_PSpell = std::make_unique<CSpell>(*spell);
             }
         }
         else
@@ -465,6 +465,40 @@ void CAIGeneral::SetMagicCastingEnabled(bool enabled)
 void CAIGeneral::SetMobAbilityEnabled(bool enabled)
 {
 	m_MobAbilityEnabled = enabled;
+}
+
+bool CAIGeneral::GetAutoAttackEnabled()
+{
+    return m_AutoAttackEnabled;
+}
+
+bool CAIGeneral::GetMagicCastingEnabled()
+{
+    if (m_PMagicState)
+    {
+        return m_PMagicState->m_enableCasting; 
+    }
+    return false;
+}
+
+bool CAIGeneral::GetMobAbilityEnabled()
+{
+    return m_MobAbilityEnabled;
+}
+
+bool CAIGeneral::IsInSleepableAction()
+{
+    switch(GetCurrentAction())
+    {
+        case ACTION_FALL:
+        case ACTION_DROPITEMS:
+        case ACTION_DEATH:
+        case ACTION_FADE_OUT:
+        case ACTION_DESPAWN:
+            return false;
+        default:
+            return true;
+    }
 }
 
 bool CAIGeneral::MoveTo(position_t* pos)

@@ -30,16 +30,16 @@ function onTrigger(player,npc)
 	local MissionStatus = player:getVar("MissionStatus");
 	
 	-- Enter the Talekeeper 8-2	
-	if(currentMission == ENTER_THE_TALEKEEPER and MissionStatus == 4 ) then
+	if (currentMission == ENTER_THE_TALEKEEPER and MissionStatus == 4 ) then
 		player:startEvent(0x00cc);
-	elseif(currentMission == ENTER_THE_TALEKEEPER and MissionStatus > 1 and MissionStatus < 4 ) then
+	elseif (currentMission == ENTER_THE_TALEKEEPER and MissionStatus > 1 and MissionStatus < 4 ) then
 		player:startEvent(0x00cb);
-	elseif(currentMission == ENTER_THE_TALEKEEPER and MissionStatus == 0) then
+	elseif (currentMission == ENTER_THE_TALEKEEPER and MissionStatus == 0) then
 		player:startEvent(0x00ca);	
 	-- Return of the Talekeeper 6-1
-	elseif(currentMission == RETURN_OF_THE_TALEKEEPER and MissionStatus > 1) then
+	elseif (currentMission == RETURN_OF_THE_TALEKEEPER and MissionStatus > 1) then
 		player:startEvent(0x00c9);
-	elseif(currentMission == RETURN_OF_THE_TALEKEEPER and MissionStatus == 1) then
+	elseif (currentMission == RETURN_OF_THE_TALEKEEPER and MissionStatus == 1) then
 		player:startEvent(0x00c8);			
 	else
 		player:startEvent(0x006c);
@@ -64,11 +64,11 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 	
-	if(csid == 0x00c8) then
+	if (csid == 0x00c8) then
 		player:setVar("MissionStatus",2);
-	elseif(csid == 0x00ca) then
+	elseif (csid == 0x00ca) then
 		player:setVar("Missionstatus",1);
-	elseif(csid == 0x00cc) then
+	elseif (csid == 0x00cc) then
 		player:setVar("Missionstatus",5);
 		player:delKeyItem(OLD_PIECE_OF_WOOD);
 	end

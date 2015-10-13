@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.6.21-log
+-- Server version   5.6.21-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -173,8 +173,8 @@ INSERT INTO `status_effects` VALUES (130,'choke',16418,0,0,0,129,131,4,0);
 INSERT INTO `status_effects` VALUES (131,'rasp',16418,0,0,0,130,132,2,0);
 INSERT INTO `status_effects` VALUES (132,'shock',16418,0,0,0,131,133,6,0);
 INSERT INTO `status_effects` VALUES (133,'drown',16418,0,0,0,132,128,3,0);
-INSERT INTO `status_effects` VALUES (134,'dia',16418,0,135,0,0,0,7,0);
-INSERT INTO `status_effects` VALUES (135,'bio',16418,0,134,0,0,0,8,0);
+INSERT INTO `status_effects` VALUES (134,'dia',16418,0,135,1,0,0,7,0);
+INSERT INTO `status_effects` VALUES (135,'bio',16418,0,134,1,0,0,8,0);
 INSERT INTO `status_effects` VALUES (136,'str_down',16418,0,0,0,0,80,3,0);
 INSERT INTO `status_effects` VALUES (137,'dex_down',16418,0,0,0,0,81,2,0);
 INSERT INTO `status_effects` VALUES (138,'vit_down',16418,0,0,0,0,82,4,0);
@@ -404,7 +404,7 @@ INSERT INTO `status_effects` VALUES (367,'manifestation',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (368,'drain_samba',32,368,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (369,'aspir_samba',32,368,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (370,'haste_samba',32,368,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (371,'velocity_shot',32,0,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (371,'velocity_shot',288,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (375,'building_flourish',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (376,'trance',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (377,'tabula_rasa',32,0,0,0,0,0,0,0);
@@ -449,7 +449,7 @@ INSERT INTO `status_effects` VALUES (415,'equanimity',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (416,'enlightenment',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (417,'afflatus_solace',289,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (418,'afflatus_misery',289,0,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (419,'composure',33,0,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (419,'composure',289,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (420,'yonin',289,420,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (421,'innin',289,420,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (422,'carbuncles_favor',32,0,0,0,0,0,0,0);
@@ -606,6 +606,7 @@ INSERT INTO `status_effects` VALUES (578,'fishy_intuition',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (579,'commitment',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (580,'haste_ii',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (581,'flurry_ii',32,0,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (583,'apogee',2097185,0,0,0,0,0,0,0);
 
 
 INSERT INTO `status_effects` VALUES (768,'abyssea_str',256,0,0,0,0,0,1,0);

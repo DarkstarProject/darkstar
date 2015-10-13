@@ -22,11 +22,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 2)then
+	if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 2) then
 	    player:startEvent(0x0033); --COP event
-	elseif(player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and player:getVar("MissionStatus") < 2) then
+	elseif (player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and player:getVar("MissionStatus") < 2) then
 		player:startEvent(0x02b5);
-	elseif(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN) and player:getVar("OptionalCSforSTC") == 1) then
+	elseif (player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN) and player:getVar("OptionalCSforSTC") == 1) then
 		player:startEvent(0x02b6);
 	else
 		player:startEvent(0x0014);
@@ -50,7 +50,7 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-   if(csid == 0x0033)then
+   if (csid == 0x0033) then
 		player:setVar("EMERALD_WATERS_Status",3);
    elseif (csid == 0x02b5) then
 		player:setVar("MissionStatus",2);

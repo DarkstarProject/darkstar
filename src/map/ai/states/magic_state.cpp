@@ -218,7 +218,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
         else if (applyArts)
         {
             if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
-            {                
+            {
                 // Add any "Grimoire: Reduces spellcasting time" bonuses
                 cast = cast * (1.0f + (m_PEntity->getMod(MOD_WHITE_MAGIC_CAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f);
             }
@@ -240,7 +240,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_NIGHTINGALE))
         {
             if (m_PEntity->objtype == TYPE_PC &&
-                WELL512::GetRandomNumber(100) < ((CCharEntity*)m_PEntity)->PMeritPoints->GetMeritValue(MERIT_NIGHTINGALE, (CCharEntity*)m_PEntity) - 25)
+                dsprand::GetRandomNumber(100) < ((CCharEntity*)m_PEntity)->PMeritPoints->GetMeritValue(MERIT_NIGHTINGALE, (CCharEntity*)m_PEntity) - 25)
             {
                 return 0;
             }
@@ -327,6 +327,10 @@ int16 CMagicState::CalculateMPCost(CSpell* PSpell)
             cost += base * (m_PEntity->getMod(MOD_WHITE_MAGIC_COST)/100.0f);
         }
     }
+    if (dsprand::GetRandomNumber(100) < (m_PEntity->getMod(MOD_NO_SPELL_MP_DEPLETION)))
+    {
+        cost = 0;
+    }
     return dsp_cap(cost, 0, 9999);
 }
 
@@ -384,13 +388,13 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
         if (applyArts)
         {
             if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_DARK_ARTS) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
-            {     
+            {
                 // Add any "Grimoire: Reduces spellcasting time" bonuses
-                recast *= (1.0f + (m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f); 
+                recast *= (1.0f + (m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f);
             }
             else
             {
-                recast *= (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)/100.0f); 
+                recast *= (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)/100.0f);
             }
         }
     }
@@ -423,13 +427,13 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
         if (applyArts)
         {
             if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
-            {     
+            {
                 // Add any "Grimoire: Reduces spellcasting time" bonuses
-                recast *= (1.0f + (m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f); 
+                recast *= (1.0f + (m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f);
             }
             else
             {
-                recast *= (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)/100.0f); 
+                recast *= (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)/100.0f);
             }
         }
     }
@@ -665,6 +669,9 @@ void CMagicState::FinishSpell()
 			if (m_PSpell->canTargetEnemy() && action.param > 0 && m_PSpell->dealsDamage())
             {
                 PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+
+                // Check for bind breaking
+                battleutils::BindBreakCheck(m_PEntity, PTarget);
             }
 
             if(msg == 0)
@@ -904,7 +911,7 @@ void CMagicState::SpendCost(CSpell* PSpell)
         // conserve mp
         int16 rate = m_PEntity->getMod(MOD_CONSERVE_MP);
 
-        if (WELL512::GetRandomNumber(100) < rate)
+        if (dsprand::GetRandomNumber(100) < rate)
         {
             cost = ConserveMP(cost);
         }
@@ -916,7 +923,7 @@ void CMagicState::SpendCost(CSpell* PSpell)
 
 int16 CMagicState::ConserveMP(int16 cost)
 {
-    return cost * (WELL512::GetRandomNumber(8.f,16.f) / 16.0f);
+    return cost * (dsprand::GetRandomNumber(8.f,16.f) / 16.0f);
 }
 
 void CMagicState::SetRecast(CSpell* PSpell)

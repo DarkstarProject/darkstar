@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
- if (killer:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and killer:getVar("PromathiaStatus")==1)then
+ if (killer:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and killer:getVar("PromathiaStatus")==1) then
 	killer:setVar("PromathiaStatus",2);
   end
 end;

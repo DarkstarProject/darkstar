@@ -33,16 +33,16 @@ function onMobDeath(mob,killer)
 	local mobY = mob:getYPos();
 	local mobZ = mob:getZPos();
  
- if(mobID ==16932951)then -- recover
+ if (mobID ==16932951) then -- recover
    	GetNPCByID(16932864+289):setPos(mobX,mobY,mobZ);
 	GetNPCByID(16932864+289):setStatus(STATUS_NORMAL);
- elseif(mobID ==16932952)then -- timer 1
+ elseif (mobID ==16932952) then -- timer 1
    	GetNPCByID(16932864+43):setPos(mobX,mobY,mobZ);
 	GetNPCByID(16932864+43):setStatus(STATUS_NORMAL);
- elseif(mobID ==16932954)then -- timer 2
+ elseif (mobID ==16932954) then -- timer 2
   	GetNPCByID(16932864+44):setPos(mobX,mobY,mobZ);
 	GetNPCByID(16932864+44):setStatus(STATUS_NORMAL);
- elseif(mobID ==16932957)then -- timer 3
+ elseif (mobID ==16932957) then -- timer 3
   	GetNPCByID(16932864+45):setPos(mobX,mobY,mobZ);
 	GetNPCByID(16932864+45):setStatus(STATUS_NORMAL);	
  end

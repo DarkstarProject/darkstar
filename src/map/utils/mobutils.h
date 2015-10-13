@@ -46,7 +46,21 @@ typedef std::unordered_map<uint32,ModsList_t*> ModsMap_t;
 namespace mobutils
 {
 	void	CalculateStats(CMobEntity* PMob);
+        void  SetupJob(CMobEntity* PMob);
+        void  SetupRoaming(CMobEntity* PMob);
+        void  SetupDynamisMob(CMobEntity* PMob);
+        void  SetupBattlefieldMob(CMobEntity* PMob);
+        void  SetupDungeonMob(CMobEntity* PMob);
+        void  SetupEventMob(CMobEntity* PMob);
+        void  SetupNMMob(CMobEntity* PMob);
+	void  SetupMaat(CMobEntity* PMob);
+	void  SetupPetSkills(CMobEntity* PMob);
+
 	uint16	GetWeaponDamage(CMobEntity* PMob);
+        uint16  GetMagicEvasion(CMobEntity* PMob);
+        uint16  GetEvasion(CMobEntity* PMob);
+        uint16  GetBase(CMobEntity* PMob, uint8 rank);
+        uint16  GetBaseToRank(uint8 rank, uint16 level);
 	void    GetAvailableSpells(CMobEntity* PMob);
 	void	InitializeMob(CMobEntity* PMob, CZone* PZone);
 	void	LoadCustomMods();
@@ -57,7 +71,10 @@ namespace mobutils
 	ModsList_t* GetMobSpawnMods(uint32 mobId, bool create = false);
 
 	void  AddCustomMods(CMobEntity* PMob);
-	void  SetupMaat(CMobEntity* PMob, JOBTYPE job);
+
+        // Set job before spawn
+	void  InitializeMaat(CMobEntity* PMob, JOBTYPE job);
+
 	void  SetSpellList(CMobEntity*, uint16);
 	CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* = nullptr);
     void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level);

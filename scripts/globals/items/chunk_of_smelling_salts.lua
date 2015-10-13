@@ -25,7 +25,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if(target:addStatusEffect(EFFECT_MEDICINE,0,0,180,5320)) then
+	if (target:addStatusEffect(EFFECT_MEDICINE,0,0,180,5320)) then
 		target:messageBasic(205);
 		pet:delStatusEffect(EFFECT_SLEEP_I);
 		pet:delStatusEffect(EFFECT_SLEEP_II);

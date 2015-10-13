@@ -32,58 +32,58 @@
 
 enum ENTITYTYPE
 {
-	TYPE_PC		= 0x01,
-	TYPE_NPC	= 0x02,
-	TYPE_MOB	= 0x04,
-	TYPE_PET	= 0x08,
+    TYPE_PC     = 0x01,
+    TYPE_NPC    = 0x02,
+    TYPE_MOB    = 0x04,
+    TYPE_PET    = 0x08,
     TYPE_SHIP   = 0x10
 };
 
 enum STATUSTYPE
 {
-	STATUS_NORMAL			= 0,
-    STATUS_MOB              = 1,
-	//STATUS_UPDATE			= 1,
-	STATUS_DISAPPEAR		= 2,
-	STATUS_3				= 3,
-	STATUS_4				= 4,
-	STATUS_CUTSCENE_ONLY	= 6,
-	STATUS_18				= 18,
-	STATUS_SHUTDOWN			= 20
+    STATUS_NORMAL        = 0,
+    STATUS_MOB           = 1,
+  //STATUS_UPDATE        = 1,
+    STATUS_DISAPPEAR     = 2,
+    STATUS_3             = 3,
+    STATUS_4             = 4,
+    STATUS_CUTSCENE_ONLY = 6,
+    STATUS_18            = 18,
+    STATUS_SHUTDOWN      = 20
 };
 
 enum ANIMATIONTYPE
 {
-	ANIMATION_NONE					= 0,
-	ANIMATION_ATTACK				= 1,
-	ANIMATION_DEATH					= 3,
-    ANIMATION_CHOCOBO               = 5,
-	ANIMATION_FISHING   			= 6,
+    ANIMATION_NONE               = 0,
+    ANIMATION_ATTACK             = 1,
+    ANIMATION_DEATH              = 3,
+    ANIMATION_CHOCOBO            = 5,
+    ANIMATION_FISHING            = 6,
     //healing 7
-	ANIMATION_OPEN_DOOR				= 8,
-	ANIMATION_CLOSE_DOOR			= 9,
-	ANIMATION_ELEVATOR_UP			= 10,
-	ANIMATION_ELEVATOR_DOWN			= 11,
-	ANIMATION_HEALING				= 33,
-	ANIMATION_FISHING_FISH			= 38,
-	ANIMATION_FISHING_CAUGHT		= 39,
-	ANIMATION_FISHING_ROD_BREAK		= 40,
-	ANIMATION_FISHING_LINE_BREAK	= 41,
-	ANIMATION_FISHING_MONSTER		= 42,
-	ANIMATION_FISHING_STOP			= 43,
-	ANIMATION_SYNTH					= 44,
-	ANIMATION_SIT					= 47,
-	ANIMATION_RANGED				= 48,
-	ANIMATION_FISHING_START			= 50
+    ANIMATION_OPEN_DOOR          = 8,
+    ANIMATION_CLOSE_DOOR         = 9,
+    ANIMATION_ELEVATOR_UP        = 10,
+    ANIMATION_ELEVATOR_DOWN      = 11,
+    ANIMATION_HEALING            = 33,
+    ANIMATION_FISHING_FISH       = 38,
+    ANIMATION_FISHING_CAUGHT     = 39,
+    ANIMATION_FISHING_ROD_BREAK  = 40,
+    ANIMATION_FISHING_LINE_BREAK = 41,
+    ANIMATION_FISHING_MONSTER    = 42,
+    ANIMATION_FISHING_STOP       = 43,
+    ANIMATION_SYNTH              = 44,
+    ANIMATION_SIT                = 47,
+    ANIMATION_RANGED             = 48,
+    ANIMATION_FISHING_START      = 50
 };
 
 enum ALLEGIANCETYPE
 {
-	ALLEGIANCE_MOB			= 0,
-	ALLEGIANCE_PLAYER		= 1,
-	ALLEGIANCE_SAN_DORIA	= 2,
-	ALLEGIANCE_BASTOK		= 3,
-	ALLEGIANCE_WINDURST		= 4
+    ALLEGIANCE_MOB       = 0,
+    ALLEGIANCE_PLAYER    = 1,
+    ALLEGIANCE_SAN_DORIA = 2,
+    ALLEGIANCE_BASTOK    = 3,
+    ALLEGIANCE_WINDURST  = 4
 };
 
 enum UPDATETYPE
@@ -117,12 +117,12 @@ class CZone;
 
 struct location_t
 {
-	position_t	p;              // позиция сущности
+    position_t	p;              // позиция сущности
     uint16		destination;    // текущая зона
     CZone*      zone;           // текущая зона
-	uint16		prevzone;       // предыдущая зона (для монстров и npc не используется)
-	bool		zoning;         // флаг сбрасывается при каждом входе в новую зону. необходим для реализации логики игровых задач ("quests")
-	uint16		boundary;       // определенная область в зоне, в которой находится сущность (используется персонажами и транспортом)
+    uint16		prevzone;       // предыдущая зона (для монстров и npc не используется)
+    bool		zoning;         // флаг сбрасывается при каждом входе в новую зону. необходим для реализации логики игровых задач ("quests")
+    uint16		boundary;       // определенная область в зоне, в которой находится сущность (используется персонажами и транспортом)
 };
 
 /************************************************************************
@@ -135,39 +135,39 @@ class CBaseEntity
 {
 public:
 
-	uint32			id;					// глобальный идентификатор, уникальный на сервере
-	uint16			targid;				// локалный идентификатор, уникальный в зоне
-	ENTITYTYPE		objtype;			// тип сущности
-	STATUSTYPE		status;				// статус сущности (разные сущности - разные статусы)
-	uint16			m_TargID;			// targid объекта, на который смотрит сущность
-	string_t		name;				// имя сущности
-	look_t			look;				// внешний вид всех сущностей
-	look_t			mainlook;			// only used if mob use changeSkin() or player /lockstyle
-	location_t		loc;				// местоположение сущности
-	uint8			animation;			// анимация
-	uint8			animationsub;		// дополнительный параметры анимации
-	uint8			speed;				// скорость передвижения
-	uint8			speedsub;			// подолнительный параметр скорости передвижения
-	uint8			namevis; 
-	uint8			allegiance;			// what types of targets the entity can fight
+    uint32			id;					// глобальный идентификатор, уникальный на сервере
+    uint16			targid;				// локалный идентификатор, уникальный в зоне
+    ENTITYTYPE		objtype;			// тип сущности
+    STATUSTYPE		status;				// статус сущности (разные сущности - разные статусы)
+    uint16			m_TargID;			// targid объекта, на который смотрит сущность
+    string_t		name;				// имя сущности
+    look_t			look;				// внешний вид всех сущностей
+    look_t			mainlook;			// only used if mob use changeSkin() or player /lockstyle
+    location_t		loc;				// местоположение сущности
+    uint8			animation;			// анимация
+    uint8			animationsub;		// дополнительный параметры анимации
+    uint8			speed;				// скорость передвижения
+    uint8			speedsub;			// подолнительный параметр скорости передвижения
+    uint8			namevis;
+    uint8			allegiance;			// what types of targets the entity can fight
     uint8           updatemask;         // what to update next server tick to players nearby
 
 
-	virtual const int8* GetName();      // имя сущности
+    virtual const int8* GetName();      // имя сущности
 
-	uint16			getZone();			// текущая зона
-	float			GetXPos();			// позиция по координате X
-	float			GetYPos();			// позиция по координате Y
-	float			GetZPos();			// позиция по координате Z
-	uint8			GetRotPos();
-	void			HideName(bool hide); // hide / show name
-	bool			IsNameHidden();		// checks if name is hidden
+    uint16			getZone();			// текущая зона
+    float			GetXPos();			// позиция по координате X
+    float			GetYPos();			// позиция по координате Y
+    float			GetZPos();			// позиция по координате Z
+    uint8			GetRotPos();
+    void			HideName(bool hide); // hide / show name
+    bool			IsNameHidden();		// checks if name is hidden
 
     CAIGeneral*     PBattleAI;          // интеллект любой сущности
-	CBattlefield*	PBCNM;				// pointer to bcnm (if in one)
-	CInstance*		PInstance;
+    CBattlefield*	PBCNM;				// pointer to bcnm (if in one)
+    CInstance*		PInstance;
 
-	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);
+    CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);
 
     void            ResetLocalVars();
     uint32          GetLocalVar(const char* var);

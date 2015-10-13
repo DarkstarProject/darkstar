@@ -27,10 +27,10 @@ function onTrigger(player,npc)
 local ColoredDrop = 4258+math.random(0,7);
 	
 	-- COP mission
-	if(player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 2) then
+	if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 2) then
 		player:startEvent(0x0021);		
-    elseif(player:getCurrentMission(COP) == DAWN and player:getVar("COP_3-taru_story")== 1)then
-		if(player:getFreeSlotsCount() == 0) then
+    elseif (player:getCurrentMission(COP) == DAWN and player:getVar("COP_3-taru_story")== 1) then
+		if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,ColoredDrop);
 		else
 			player:setVar("ColoredDrop",ColoredDrop);
@@ -60,9 +60,9 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x0021) then
+	if (csid == 0x0021) then
         player:setVar("COP_Louverance_s_Path",3);	
-	elseif(csid == 0x002B)then
+	elseif (csid == 0x002B) then
 		local ColoredDropID=player:getVar("ColoredDrop");				     
 		player:addItem(ColoredDropID);
 		player:messageSpecial(ITEM_OBTAINED,ColoredDropID);

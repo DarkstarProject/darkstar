@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 	
 	-- Rock Racketeer
 	if (RRvar == 6) then
-		if(trade:hasItemQty(598,1) == true and trade:getItemCount() == 1) then  -- Sharp Stone
+		if (trade:hasItemQty(598,1) == true and trade:getItemCount() == 1) then  -- Sharp Stone
 			player:startEvent(0x0066,2100); -- finish quest
 		end
 	
@@ -40,9 +40,9 @@ function onTrigger(player,npc)
 	RRvar = player:getVar("rockracketeer_sold");
 	
 	-- Rock Racketeer
-	if(RockRacketeer == QUEST_ACCEPTED and RRvar == 3) then 
+	if (RockRacketeer == QUEST_ACCEPTED and RRvar == 3) then 
 		player:startEvent(0x0064); 									-- talk about lost stone
-	elseif(RockRacketeer == QUEST_ACCEPTED and RRvar == 4) then  
+	elseif (RockRacketeer == QUEST_ACCEPTED and RRvar == 4) then  
 		player:startEvent(0x0065,0,598);							-- send player to Palborough Mines
 		
 	-- standard dialog
@@ -69,11 +69,11 @@ function onEventFinish(player,csid,option)
 	-- printf("RESULT: %u",option);
 	
 	-- Rock Racketeer
-	if(csid == 0x0064) then
+	if (csid == 0x0064) then
 		player:setVar("rockracketeer_sold",4);
-	elseif(csid == 0x0065) then
+	elseif (csid == 0x0065) then
 		player:setVar("rockracketeer_sold",5);
-	elseif(csid == 0x0066) then
+	elseif (csid == 0x0066) then
 		player:tradeComplete();
 		player:addFame(WINDURST,WIN_FAME*30);
 		player:addGil(GIL_RATE*2100);

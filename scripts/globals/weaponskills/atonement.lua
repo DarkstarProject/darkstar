@@ -34,8 +34,8 @@ function onUseWeaponSkill(player, target, wsID)
 	end
 
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	if((player:getEquipID(SLOT_MAIN) == 18997) and (player:getMainJob() == JOB_PLD)) then
-		if(damage > 0) then
+	if ((player:getEquipID(SLOT_MAIN) == 18997) and (player:getMainJob() == JOB_PLD)) then
+		if (damage > 0) then
 
 -- AFTERMATH LEVEL 1
 

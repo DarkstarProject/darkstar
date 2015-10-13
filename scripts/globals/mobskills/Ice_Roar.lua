@@ -12,7 +12,7 @@ require("scripts/globals/monstertpmoves");
 
 function onMobSkillCheck(target,mob,skill)
 
-	if(mob:getZoneID() == 135 or mob:getZoneID() == 111) then
+	if (mob:getZoneID() == 135 or mob:getZoneID() == 111) then
         return 0;
     end
 

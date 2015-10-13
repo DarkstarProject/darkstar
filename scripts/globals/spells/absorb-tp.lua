@@ -35,18 +35,18 @@ function onSpellCast(caster,target,spell)
         dmg = cap;
     end
 
-    if(resist <= 0.125) then
+    if (resist <= 0.125) then
         spell:setMsg(85);
     else
         spell:setMsg(454);
 
-        if(target:getTP() < dmg) then
+        if (target:getTP() < dmg) then
             dmg = target:getTP();
         end
 
         -- drain
-        caster:addTP(dmg);
-        target:addTP(-dmg);
+        caster:addTP(dmg*(100+(caster:getMod(MOD_AUGMENTS_ABSORB)))/100);
+        target:addTP(-dmg*(100+(caster:getMod(MOD_AUGMENTS_ABSORB)))/100);
 
     end
     return dmg;

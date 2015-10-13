@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
 	target:delHP(dmg);
 
 	-- king vinegrroon
-	if(mob:getID() == 17289575) then
+	if (mob:getID() == 17289575) then
 	    local typeEffect = EFFECT_POISON;
 	    local power = 25;
 	    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 3, 60);

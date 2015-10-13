@@ -47,37 +47,30 @@ public:
 
     uint32      getID();
     uint16      getColor();
-    uint32      getMessageTime();
 
     void        setColor(uint16 color);
-    void        setMessageTime(uint32 time);
 
     const int8* getName();
 	void		setName(int8* name);
-    const int8* getPoster();
-	void		setPoster(int8* poster);
-    const int8* getMessage();
-	void		setMessage(int8* message);
+	void		setMessage(const int8* message, const int8* poster);
 
     void        AddMember(CCharEntity* PChar,int8 type, uint8 lsNum);
-    void        DelMember(CCharEntity* PChar);
+    bool        DelMember(CCharEntity* PChar);
 
     void        RemoveMemberByName(int8* MemberName);
 	void		ChangeMemberRank(int8* MemberName, uint8 toSack);
 
     void        PushPacket(uint32 senderID, CBasicPacket* packet);
+    void        PushLinkshellMessage(CCharEntity* PChar, bool ls1);
 
     std::vector<CCharEntity*> members; // список участников linkshell
 
 private:
 
     uint32      m_id;
-    uint32      m_time;
     uint16      m_color;
 
     string_t    m_name;
-    string_t    m_poster;
-    string_t    m_message;
 };
 
 /************************************************************************
@@ -88,7 +81,7 @@ private:
 
 namespace linkshell
 {
-    void LoadLinkshellList();
+    CLinkshell* LoadLinkshell(uint32 id);
 
     bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, uint8 lsNum);
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);

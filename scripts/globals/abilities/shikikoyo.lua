@@ -4,20 +4,25 @@
 -- Obtained: Samurai Level 75
 -- Recast Time: 5:00
 -- Duration: Instant
+-- Target: Party member, cannot target self.
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/utils");
 
 -----------------------------------
 -- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if (player:getTP() < 100) then
+    if (player:getID() == target:getID()) then
+        return MSGBASIC_CANNOT_PERFORM_TARG,0;
+    elseif (player:getTP() < 100) then
         return MSGBASIC_NOT_ENOUGH_TP, 0;
+    else
+        return 0,0;
     end
-    return 0,0;
 end;
 
 -----------------------------------
@@ -25,11 +30,11 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-    local pTP = player:getTP() - 100;
+    local pTP = player:getTP() - 100 + (player:getMerit(MERIT_SHIKIKOYO) - 12);
+    pTP = utils.clamp(pTP, 0,300 - target:getTP());
 
-    if (pTP > 0) then
-        player:setTP(100);
-        target:setTP(target:getTP() + pTP + (player:getMerit(MERIT_SHIKIKOYO) - 12));
-    end
+    player:setTP(100);
+    target:setTP(target:getTP() + pTP);
 
+    return pTP;
 end;

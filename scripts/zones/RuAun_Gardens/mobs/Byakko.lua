@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
--- NPC:  Byakko
--- ID: 17309982
+--  NPC: Byakko 
 -----------------------------------
 
 require("scripts/zones/RuAun_Gardens/TextIDs");
@@ -49,5 +48,5 @@ function onAdditionalEffect(mob, target, damage)
     dmg = adjustForTarget(target,dmg,ELE_LIGHT);
     dmg = finalMagicNonSpellAdjustments(mob,target,ELE_LIGHT,dmg);
 
-    return SUBEFFECT_LIGHT_DAMAGE,163,dmg;
+    return SUBEFFECT_LIGHT_DAMAGE, MSGBASIC_ADD_EFFECT_DMG, dmg;
 end;

@@ -33,7 +33,7 @@ function onEventUpdate(player,csid,option)
 --printf("updateCSID: %u",csid);
 --printf("updateRESULT: %u",option);
 	
-	if(option == 300) then
+	if (option == 300) then
 		player:updateEvent(player:getCurrency("zeni_point"),0);
 	else
 		player:updateEvent(0,0);

@@ -16,7 +16,7 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:getItemCount() == 2) then
+	if (trade:getItemCount() == 2) then
 		
 		-- abjuration, item, item -1, reward, reward +1
 		abjuList = {1314,1344,1345,13934,13935, 1315,1346,1347,14387,14388, 1316,1348,1349,14821,14822, 1317,1350,1351,14303,14304, 1318,1352,1353,14184,14185,
@@ -33,11 +33,11 @@ function onTrade(player,npc,trade)
 		reward = 0;
 
 		for i = 1,table.getn(abjuList),5 do
-			if(trade:hasItemQty(abjuList[i],1)) then
-				if(trade:hasItemQty(abjuList[i + 1],1)) then
+			if (trade:hasItemQty(abjuList[i],1)) then
+				if (trade:hasItemQty(abjuList[i + 1],1)) then
 					item = abjuList[i + 1];
 					reward = abjuList[i + 3];
-				elseif(trade:hasItemQty(abjuList[i + 2],1)) then
+				elseif (trade:hasItemQty(abjuList[i + 2],1)) then
 					item = abjuList[i + 2];
 					reward = abjuList[i + 4];
 				end
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 	
-	if(csid == 0x02d0 and player:getVar("reward") ~= 0) then
+	if (csid == 0x02d0 and player:getVar("reward") ~= 0) then
 		reward = player:getVar("reward");
 		
 		player:tradeComplete();

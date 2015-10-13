@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getZPos() >= 12) then 
+	if (player:getZPos() >= 12) then 
 		player:startEvent(0x0206);
 	end
 	

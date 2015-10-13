@@ -28,23 +28,23 @@ function onUseAbility(player,target,ability)
     local body = player:getEquipID(SLOT_BODY);
     local hand = player:getEquipID(SLOT_HANDS);
 
-    if(player:hasStatusEffect(EFFECT_POISON)) then
+    if (player:hasStatusEffect(EFFECT_POISON)) then
         player:delStatusEffect(EFFECT_POISON);
     end
 
-    if(player:hasStatusEffect(EFFECT_BLINDNESS)) then
+    if (player:hasStatusEffect(EFFECT_BLINDNESS)) then
         player:delStatusEffect(EFFECT_BLINDNESS);
     end
 
-    if((body == 12639) or (body == 14474)) then -- Temple Cyclas (+1) equipped
-        if(player:hasStatusEffect(EFFECT_PARALYSIS)) then
+    if ((body == 12639) or (body == 14474)) then -- Temple Cyclas (+1) equipped
+        if (player:hasStatusEffect(EFFECT_PARALYSIS)) then
             player:delStatusEffect(EFFECT_PARALYSIS);
         end
         multi = multi + 1;
     end
 
-    if((hand == 15103) or (hand == 14910)) then -- Melee Gloves (+1) equipped
-        if(player:hasStatusEffect(EFFECT_DISEASE)) then
+    if ((hand == 15103) or (hand == 14910)) then -- Melee Gloves (+1) equipped
+        if (player:hasStatusEffect(EFFECT_DISEASE)) then
             player:delStatusEffect(EFFECT_DISEASE);
         end
         multi = multi + 0.6;
@@ -53,8 +53,8 @@ function onUseAbility(player,target,ability)
     local recover = (multi * vit);
     player:setHP((hp + recover));
 
-    if(merits >= 1) then
-        if(player:hasStatusEffect(EFFECT_REGEN)) then
+    if (merits >= 1) then
+        if (player:hasStatusEffect(EFFECT_REGEN)) then
             player:delStatusEffect(EFFECT_REGEN);
         end
         player:addStatusEffect(EFFECT_REGEN,10,0,merits,0,0,1);

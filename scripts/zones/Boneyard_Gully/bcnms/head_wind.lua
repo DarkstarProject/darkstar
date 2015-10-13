@@ -30,14 +30,14 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 
 	
-	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		if(player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 5) then
+	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+		if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 5) then
 			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);	
 			player:setVar("COP_Ulmia_s_Path",6);
 		else
 			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);			
 		end
-	elseif(leavecode == 4) then
+	elseif (leavecode == 4) then
 	       player:startEvent(0x7d02);
    end
 	
@@ -49,7 +49,7 @@ end;
 	
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);	
-    if(csid == 0x7d01)then
+    if (csid == 0x7d01) then
      player:addExp(1000);
 	end
 end;

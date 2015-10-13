@@ -18,8 +18,8 @@ require("scripts/zones/FeiYin/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(player:getQuestStatus(SANDORIA,PIEUJE_S_DECISION) == QUEST_ACCEPTED and player:hasItem(13842) == false) then
-		if(trade:hasItemQty(1098,1) and trade:getItemCount() == 1) then -- Trade Tavnazia Bell
+	if (player:getQuestStatus(SANDORIA,PIEUJE_S_DECISION) == QUEST_ACCEPTED and player:hasItem(13842) == false) then
+		if (trade:hasItemQty(1098,1) and trade:getItemCount() == 1) then -- Trade Tavnazia Bell
 			player:tradeComplete();
 			player:messageSpecial(SENSE_OF_FOREBODING);
 			SpawnMob(17612836,180):updateClaim(player);

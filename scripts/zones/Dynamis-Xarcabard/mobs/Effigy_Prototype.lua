@@ -39,7 +39,7 @@ function onMobDeath(mob,killer)
 	local mobID = mob:getID();
 	
 	-- HP Bonus: 112 142
-	if(mobID == 17330532 or mobID == 17330911) then
+	if (mobID == 17330532 or mobID == 17330911) then
 		killer:restoreHP(2000);
 		killer:messageBasic(024,(killer:getMaxHP()-killer:getHP()));
 	end

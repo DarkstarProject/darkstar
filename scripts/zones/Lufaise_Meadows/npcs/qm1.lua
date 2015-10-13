@@ -15,7 +15,7 @@ require("scripts/zones/Lufaise_Meadows/TextIDs");
 function onTrade(player,npc,trade)
 	
 	-- Trade Relic Shield
-	if(GetMobAction(16875779) == 0 and trade:hasItemQty(15066,1) and trade:getItemCount() == 1) then 
+	if (GetMobAction(16875779) == 0 and trade:hasItemQty(15066,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(16875779,120):updateClaim(player); -- Amaltheia
 	end

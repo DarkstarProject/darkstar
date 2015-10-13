@@ -75,6 +75,9 @@ public:
 
 	void LotItem(uint8 SlotID, uint16 Lot);
 	void LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot);
+        void PassItem(CCharEntity* PChar, uint8 SlotID);
+        bool HasLottedItem(CCharEntity* PChar, uint8 SlotID);
+        bool HasPassedItem(CCharEntity* PChar, uint8 SlotID);
 	void AddMember(CCharEntity* PChar);
 	void DelMember(CCharEntity* PChar);
 	void UpdatePool(CCharEntity* PChar);

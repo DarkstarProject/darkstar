@@ -76,7 +76,7 @@ function onTrigger(player,npc)
 				player:startEvent(0x02e2);
 			end
 		end
-	elseif(player:getCurrentMission(TOAU) >= 2)then
+	elseif (player:getCurrentMission(TOAU) >= 2) then
 		player:startEvent(0x0319);
 	else
 		player:startEvent(0x02e4);
@@ -104,7 +104,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("WildcatWindurst",0);
 		player:addKeyItem(GREEN_SENTINEL_BADGE);
 		player:messageSpecial(KEYITEM_OBTAINED,GREEN_SENTINEL_BADGE);
-	elseif(csid == 0x02e3) then
+	elseif (csid == 0x02e3) then
 		player:completeQuest(WINDURST,LURE_OF_THE_WILDCAT_WINDURST);
 		player:addFame(WINDURST,150);
 		player:setVar("WildcatWindurst",0);
@@ -112,7 +112,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(GREEN_INVITATION_CARD);
 		player:messageSpecial(KEYITEM_LOST,GREEN_SENTINEL_BADGE);
 		player:messageSpecial(KEYITEM_OBTAINED,GREEN_INVITATION_CARD);
-	elseif(csid == 0x031a)then
+	elseif (csid == 0x031a) then
 		player:tradeComplete();
 		toAhtUrhganWhitegate(player);
 	end

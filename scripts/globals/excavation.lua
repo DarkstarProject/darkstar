@@ -1,5 +1,4 @@
 -------------------------------------------------
---	Author: Ezekyel
 --	Excavation functions
 --  Info from:
 --      http://wiki.ffxiclopedia.org/wiki/Excavation
@@ -30,12 +29,12 @@ local rocks = {0x0301,0x0302,0x0303,0x0304,0x0305,0x0306,0x0308,0x0307};
 
 function startExcavation(player,zone,npc,trade,csid)
 
-	if(trade:hasItemQty(605,1) and trade:getItemCount() == 1) then
+	if (trade:hasItemQty(605,1) and trade:getItemCount() == 1) then
 
 		broke = pickaxeBreakEx(player,trade);
 		item = getExcavationItem(player,zone);
 
-		if(player:getFreeSlotsCount() == 0) then
+		if (player:getFreeSlotsCount() == 0) then
 			full = 1;
 		else
 			full = 0;
@@ -43,16 +42,16 @@ function startExcavation(player,zone,npc,trade,csid)
 
 		player:startEvent(csid,item,broke,full);
 
-		if(item ~= 0 and full == 0) then
+		if (item ~= 0 and full == 0) then
 			player:addItem(item);
 			SetServerVariable("[EXCAVATION]Zone "..zone,GetServerVariable("[EXCAVATION]Zone "..zone) + 1);
 		end
 
-		if(GetServerVariable("[EXCAVATION]Zone "..zone) >= 3) then
+		if (GetServerVariable("[EXCAVATION]Zone "..zone) >= 3) then
 			getNewExcavationPositionNPC(player,npc,zone);
 		end
 
-		if(broke ~= 1 and player:getQuestStatus(AHT_URHGAN,OLDUUM) == QUEST_ACCEPTED and player:hasKeyItem(ELECTROCELL) == false and player:hasKeyItem(ELECTROPOT) == false and player:hasKeyItem(ELECTROLOCOMOTIVE) == false and zone == 68) then
+		if (broke ~= 1 and player:getQuestStatus(AHT_URHGAN,OLDUUM) == QUEST_ACCEPTED and player:hasKeyItem(ELECTROCELL) == false and player:hasKeyItem(ELECTROPOT) == false and player:hasKeyItem(ELECTROLOCOMOTIVE) == false and zone == 68) then
 			local randPick = math.random(0,2);
 
 			if randPick == 1 then
@@ -82,7 +81,7 @@ function pickaxeBreakEx(player,trade)
 	local broke = 0;
 	pickaxebreak = math.random();
 
-	if(pickaxebreak < EXCAVATION_BREAK_CHANCE) then
+	if (pickaxebreak < EXCAVATION_BREAK_CHANCE) then
 		broke = 1;
 		player:tradeComplete();
 	end
@@ -100,9 +99,9 @@ function getExcavationItem(player,zone)
 	Rate = math.random();
 
 	for zon = 1, table.getn(drop), 2 do
-		if(drop[zon] == zone) then
+		if (drop[zon] == zone) then
 			for itemlist = 1, table.getn(drop[zon + 1]), 2 do
-				if(Rate <= drop[zon + 1][itemlist + 1]) then
+				if (Rate <= drop[zon + 1][itemlist + 1]) then
 					item = drop[zon + 1][itemlist];
 					break;
 				end
@@ -127,7 +126,7 @@ function getExcavationItem(player,zone)
 
 	Rate = math.random();
 
-	if(Rate <= (1 - EXCAVATION_RATE)) then
+	if (Rate <= (1 - EXCAVATION_RATE)) then
 		item = 0;
 	end
 
@@ -144,7 +143,7 @@ function getNewExcavationPositionNPC(player,npc,zone)
 	local newnpcid = npc:getID();
 
 	for u = 1, table.getn(npcid), 2 do
-		if(npcid[u] == zone) then
+		if (npcid[u] == zone) then
 			nbNPC = table.getn(npcid[u + 1]);
 			while newnpcid == npc:getID() do
 				newnpcid = math.random(1,nbNPC);

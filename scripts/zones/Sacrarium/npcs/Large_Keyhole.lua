@@ -37,7 +37,7 @@ function onTrade(player,npc,trade)
     local DoorID = GetNPCByID(LargeKeyholeID):getID() - 2;
 
     if (trade:hasItemQty(1658,1) and trade:getItemCount() == 1) then
-        if (CurentTime < Timemax)then
+        if (CurentTime < Timemax) then
             GetNPCByID(DoorID):openDoor(15);
             SetServerVariable("SACRARIUM_Coral_Key_trade",0);
         end

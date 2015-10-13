@@ -22,6 +22,7 @@
 */
 
 #include "attackround.h"
+#include "packets/inventory_finish.h"
 
 
 /************************************************************************
@@ -31,9 +32,9 @@
 ************************************************************************/
 CAttackRound::CAttackRound(CBattleEntity* attacker)
 {
-	m_attacker = attacker;
-	m_kickAttackOccured = false;
-	m_sataOccured = false;
+    m_attacker = attacker;
+    m_kickAttackOccured = false;
+    m_sataOccured = false;
     m_subWeaponType = 0;
 
     if (attacker->m_Weapons[SLOT_SUB]->isType(ITEM_WEAPON))
@@ -41,35 +42,35 @@ CAttackRound::CAttackRound(CBattleEntity* attacker)
         m_subWeaponType = attacker->m_Weapons[SLOT_SUB]->getDmgType();
     }
 
-	// Grab a trick attack assistant.
-	m_taEntity = battleutils::getAvailableTrickAttackChar(attacker, attacker->PBattleAI->GetBattleTarget());
+    // Grab a trick attack assistant.
+    m_taEntity = battleutils::getAvailableTrickAttackChar(attacker, attacker->PBattleAI->GetBattleTarget());
 
-	// Build main weapon attacks.
-	CreateAttacks(attacker->m_Weapons[SLOT_MAIN], RIGHTATTACK);
+    // Build main weapon attacks.
+    CreateAttacks(attacker->m_Weapons[SLOT_MAIN], RIGHTATTACK);
 
-	// Build dual wield off hand weapon attacks.
-	if ((m_subWeaponType > 0 && m_subWeaponType < 4))
-	{
-		CreateAttacks(attacker->m_Weapons[SLOT_SUB], LEFTATTACK);
-	}
+    // Build dual wield off hand weapon attacks.
+    if ((m_subWeaponType > 0 && m_subWeaponType < 4))
+    {
+        CreateAttacks(attacker->m_Weapons[SLOT_SUB], LEFTATTACK);
+    }
 
-	if (IsH2H())
-	{
-		// Build left hand H2H attacks.
-		CreateAttacks(attacker->m_Weapons[SLOT_MAIN], LEFTATTACK);
+    if (IsH2H())
+    {
+        // Build left hand H2H attacks.
+        CreateAttacks(attacker->m_Weapons[SLOT_MAIN], LEFTATTACK);
 
-		// Build kick attacks.
-		CreateKickAttacks();
-	}
+        // Build kick attacks.
+        CreateKickAttacks();
+    }
 
-	// Set the first attack flag
-	m_attackSwings[0].SetAsFirstSwing();
+    // Set the first attack flag
+    m_attackSwings[0].SetAsFirstSwing();
 
-	// Delete the haste samba effect.
+    // Delete the haste samba effect.
     attacker->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_SAMBA_HASTE);
 
-	// Clear the action list.
-	attacker->m_ActionList.clear();
+    // Clear the action list.
+    attacker->m_ActionList.clear();
 }
 
 /************************************************************************
@@ -89,7 +90,7 @@ CAttackRound::~CAttackRound()
 ************************************************************************/
 uint8 CAttackRound::GetAttackSwingCount()
 {
-	return m_attackSwings.size();
+    return m_attackSwings.size();
 }
 
 /************************************************************************
@@ -99,7 +100,7 @@ uint8 CAttackRound::GetAttackSwingCount()
 ************************************************************************/
 CAttack CAttackRound::GetAttack(uint8 index)
 {
-	return m_attackSwings[index];
+    return m_attackSwings[index];
 }
 
 /************************************************************************
@@ -109,7 +110,7 @@ CAttack CAttackRound::GetAttack(uint8 index)
 ************************************************************************/
 CAttack CAttackRound::GetCurrentAttack()
 {
-	return m_attackSwings[0];
+    return m_attackSwings[0];
 }
 
 /************************************************************************
@@ -119,7 +120,7 @@ CAttack CAttackRound::GetCurrentAttack()
 ************************************************************************/
 void CAttackRound::SetSATA(bool value)
 {
-	m_sataOccured = value; 
+    m_sataOccured = value; 
 }
 
 /************************************************************************
@@ -129,7 +130,7 @@ void CAttackRound::SetSATA(bool value)
 ************************************************************************/
 bool CAttackRound::GetSATAOccured()
 {
-	return m_sataOccured; 
+    return m_sataOccured; 
 }
 
 /************************************************************************
@@ -139,7 +140,7 @@ bool CAttackRound::GetSATAOccured()
 ************************************************************************/
 CBattleEntity*	CAttackRound::GetTAEntity()
 {
-	return m_taEntity;
+    return m_taEntity;
 }
 
 /************************************************************************
@@ -149,7 +150,7 @@ CBattleEntity*	CAttackRound::GetTAEntity()
 ************************************************************************/
 bool CAttackRound::IsH2H()
 {
-	return m_attacker->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH ? true : false;
+    return m_attacker->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH ? true : false;
 }
 
 /************************************************************************
@@ -159,19 +160,19 @@ bool CAttackRound::IsH2H()
 ************************************************************************/
 void CAttackRound::AddAttackSwing(PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIRECTION direction, uint8 count)
 {
-	if (m_attackSwings.size() < MAX_ATTACKS)
-	{
-		for (uint8 i = 0; i < count; ++i)
-		{
-			CAttack attack(m_attacker, type, direction, this);
-			m_attackSwings.push_back(attack);
+    if (m_attackSwings.size() < MAX_ATTACKS)
+    {
+        for (uint8 i = 0; i < count; ++i)
+        {
+            CAttack attack(m_attacker, type, direction, this);
+            m_attackSwings.push_back(attack);
 
-			if (m_attackSwings.size() == MAX_ATTACKS)
-			{
-				return;
-			}
-		}
-	}
+            if (m_attackSwings.size() == MAX_ATTACKS)
+            {
+                return;
+            }
+        }
+    }
 }
 
 /************************************************************************
@@ -181,7 +182,7 @@ void CAttackRound::AddAttackSwing(PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIR
 ************************************************************************/
 void CAttackRound::DeleteAttackSwing()
 {
-	m_attackSwings.erase(m_attackSwings.begin());
+    m_attackSwings.erase(m_attackSwings.begin());
 }
 
 /************************************************************************
@@ -193,54 +194,77 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 {
     uint8 num = 1;
 
-	// Checking the players weapon hit count
+    // Checking the players weapon hit count
     if (PWeapon->getReqLvl() <= m_attacker->GetMLevel())
     {
         num = PWeapon->getHitCount();
     }
 
-	AddAttackSwing(ATTACK_NORMAL, direction, num);
+    AddAttackSwing(ATTACK_NORMAL, direction, num);
 
-	// Checking the players triple, double and quadruple attack
-	int16 tripleAttack = m_attacker->getMod(MOD_TRIPLE_ATTACK);
-	int16 doubleAttack = m_attacker->getMod(MOD_DOUBLE_ATTACK);
-	int16 quadAttack = m_attacker->getMod(MOD_QUAD_ATTACK);
+    // Checking the players triple, double and quadruple attack
+    int16 tripleAttack = m_attacker->getMod(MOD_TRIPLE_ATTACK);
+    int16 doubleAttack = m_attacker->getMod(MOD_DOUBLE_ATTACK);
+    int16 quadAttack = m_attacker->getMod(MOD_QUAD_ATTACK);
 
-	//check for merit upgrades
-	if (m_attacker->objtype == TYPE_PC)
-	{
-		CCharEntity* PChar = (CCharEntity*)m_attacker;
+    //check for merit upgrades
+    if (m_attacker->objtype == TYPE_PC)
+    {
+        CCharEntity* PChar = (CCharEntity*)m_attacker;
 
-		//merit chance only applies if player has the job trait
-		if (charutils::hasTrait(PChar, TRAIT_TRIPLE_ATTACK)) tripleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_TRIPLE_ATTACK_RATE, PChar);
-		if (charutils::hasTrait(PChar, TRAIT_DOUBLE_ATTACK)) doubleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_DOUBLE_ATTACK_RATE, PChar);
-		// TODO: Quadruple attack merits when SE release them.
-	}
+        //merit chance only applies if player has the job trait
+        if (charutils::hasTrait(PChar, TRAIT_TRIPLE_ATTACK)) tripleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_TRIPLE_ATTACK_RATE, PChar);
+        if (charutils::hasTrait(PChar, TRAIT_DOUBLE_ATTACK)) doubleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_DOUBLE_ATTACK_RATE, PChar);
+        // TODO: Quadruple attack merits when SE release them.
+    }
 
-	quadAttack = dsp_cap(quadAttack,0,100);
+    quadAttack = dsp_cap(quadAttack,0,100);
     doubleAttack = dsp_cap(doubleAttack,0,100);
     tripleAttack = dsp_cap(tripleAttack,0,100);
 
-	// Checking Mikage Effect - Hits Vary With Num of Utsusemi Shadows for Main Weapon
-	if (m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_MIKAGE) && m_attacker->m_Weapons[SLOT_MAIN]->getID() == PWeapon->getID()){
-		int16 shadows = m_attacker->getMod(MOD_UTSUSEMI);
-		//ShowDebug(CL_CYAN"Create Attacks: Mikage Active, Rolling Attack Chance for %d Shadowss...\n" CL_RESET, shadows);
-		AddAttackSwing(ATTACK_NORMAL, direction, shadows);
-	}
-	else if (num == 1 && WELL512::GetRandomNumber(100) < quadAttack)
-		AddAttackSwing(QUAD_ATTACK, direction, 3);
-	
-    else if (num == 1 && WELL512::GetRandomNumber(100) < tripleAttack)
-		AddAttackSwing(TRIPLE_ATTACK, direction, 2);
-	
-    else if (num == 1 && WELL512::GetRandomNumber(100) < doubleAttack)
-		AddAttackSwing(DOUBLE_ATTACK, direction, 1);
+    // Checking Mikage Effect - Hits Vary With Num of Utsusemi Shadows for Main Weapon
+    if (m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_MIKAGE) && m_attacker->m_Weapons[SLOT_MAIN]->getID() == PWeapon->getID())
+    {
+        int16 shadows = m_attacker->getMod(MOD_UTSUSEMI);
+        //ShowDebug(CL_CYAN"Create Attacks: Mikage Active, Rolling Attack Chance for %d Shadowss...\n" CL_RESET, shadows);
+        AddAttackSwing(ATTACK_NORMAL, direction, shadows);
+    }
+    else if (num == 1 && dsprand::GetRandomNumber(100) < quadAttack)
+        AddAttackSwing(QUAD_ATTACK, direction, 3);
+    
+    else if (num == 1 && dsprand::GetRandomNumber(100) < tripleAttack)
+        AddAttackSwing(TRIPLE_ATTACK, direction, 2);
+    
+    else if (num == 1 && dsprand::GetRandomNumber(100) < doubleAttack)
+        AddAttackSwing(DOUBLE_ATTACK, direction, 1);
 
-	// TODO: Possible Lua function for the nitty gritty stuff below.
+    // Ammo extra swing - players only
+    if (m_attacker->objtype == TYPE_PC && m_attacker->getMod(MOD_AMMO_SWING) > 0)
+    {
+        // Check for ammo
+        CCharEntity* PChar = (CCharEntity*)m_attacker;
+        CItemArmor* PAmmo = PChar->getEquip(SLOT_AMMO);
+        uint8 slot = PChar->equip[SLOT_AMMO];
+        uint8 loc = PChar->equipLoc[SLOT_AMMO];
+        if (dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING))
+        {
+            // Add swing, then subtract an ammo item, unequip if there's one left.
+            AddAttackSwing(ATTACK_NORMAL, direction, 1);
+            if (PAmmo->getQuantity() == 1)
+            {
+                charutils::UnequipItem(PChar, SLOT_AMMO);
+                charutils::SaveCharEquip(PChar);
+            }
+            charutils::UpdateItem(PChar, loc, slot, -1);
+            PChar->pushPacket(new CInventoryFinishPacket());
+        }
+    }
 
-	// Iga mod: Extra attack chance whilst dual wield is on.
-    if (direction == LEFTATTACK && WELL512::GetRandomNumber(100) < m_attacker->getMod(MOD_EXTRA_DUAL_WIELD_ATTACK))
-		AddAttackSwing(ATTACK_NORMAL, RIGHTATTACK, 1);
+    // TODO: Possible Lua function for the nitty gritty stuff below.
+
+    // Iga mod: Extra attack chance whilst dual wield is on.
+    if (direction == LEFTATTACK && dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_EXTRA_DUAL_WIELD_ATTACK))
+        AddAttackSwing(ATTACK_NORMAL, RIGHTATTACK, 1);
 
 }
 
@@ -251,30 +275,30 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 ************************************************************************/
 void CAttackRound::CreateKickAttacks()
 {
-	if (m_attacker->objtype == TYPE_PC)
-	{
-		// kick attack mod (All jobs)
-		uint16 kickAttack = m_attacker->getMod(MOD_KICK_ATTACK); 
+    if (m_attacker->objtype == TYPE_PC)
+    {
+        // kick attack mod (All jobs)
+        uint16 kickAttack = m_attacker->getMod(MOD_KICK_ATTACK); 
 
-		if (m_attacker->GetMJob() == JOB_MNK) // MNK (Main job)
-		{
-			kickAttack += ((CCharEntity*)m_attacker)->PMeritPoints->GetMeritValue(MERIT_KICK_ATTACK_RATE, (CCharEntity*)m_attacker);
-		}
+        if (m_attacker->GetMJob() == JOB_MNK) // MNK (Main job)
+        {
+            kickAttack += ((CCharEntity*)m_attacker)->PMeritPoints->GetMeritValue(MERIT_KICK_ATTACK_RATE, (CCharEntity*)m_attacker);
+        }
 
-		kickAttack = dsp_cap(kickAttack, 0, 100);
+        kickAttack = dsp_cap(kickAttack, 0, 100);
 
-        if (WELL512::GetRandomNumber(100) < kickAttack)
-		{
-			AddAttackSwing(KICK_ATTACK, RIGHTATTACK, 1);
-			m_kickAttackOccured = true;
-		}
+        if (dsprand::GetRandomNumber(100) < kickAttack)
+        {
+            AddAttackSwing(KICK_ATTACK, RIGHTATTACK, 1);
+            m_kickAttackOccured = true;
+        }
 
-		// TODO: Possible Lua function for the nitty gritty stuff below.
+        // TODO: Possible Lua function for the nitty gritty stuff below.
 
-		// Mantra set mod: Try an extra left kick attack.
-        if (m_kickAttackOccured && WELL512::GetRandomNumber(100) < m_attacker->getMod(MOD_EXTRA_KICK_ATTACK))
-		{
-			AddAttackSwing(KICK_ATTACK, LEFTATTACK, 1);
-		}
-	}
+        // Mantra set mod: Try an extra left kick attack.
+        if (m_kickAttackOccured && dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_EXTRA_KICK_ATTACK))
+        {
+            AddAttackSwing(KICK_ATTACK, LEFTATTACK, 1);
+        }
+    }
 }

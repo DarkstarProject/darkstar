@@ -25,7 +25,7 @@ function onUseAbility(player,target,ability)
     local power = 50;
 
     local feet = player:getEquipID(SLOT_FEET);
-    if(feet == 15133 or feet == 15666) then
+    if (feet == 15133 or feet == 15666) then
         power = power + 10;
     end
 

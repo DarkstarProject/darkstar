@@ -31,7 +31,7 @@ function onUseAbility(player,target,ability)
     local merit = target:getMerit(MERIT_FOLD);
     merit = merit - 10;
     
-    if (math.random(0, 101) <= merit) then
+    if (math.random(0, 99) < merit) then
         target:resetRecast(RECAST_ABILITY,193);
     end
     

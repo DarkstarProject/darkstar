@@ -14,7 +14,7 @@ require("scripts/zones/Riverne-Site_B01/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(GetMobAction(16896155) == 0 and trade:hasItemQty(1880,1) and trade:getItemCount() == 1) then -- Trade Clustered tar
+	if (GetMobAction(16896155) == 0 and trade:hasItemQty(1880,1) and trade:getItemCount() == 1) then -- Trade Clustered tar
 		player:tradeComplete();
 		SpawnMob(16896155):updateClaim(player); -- Unstable Cluster
 	end	

@@ -45,8 +45,8 @@ function onZoneIn(player,prevZone)
 		end
 		player:setVar("PlayerMainJob",0);
 	end
-	if(prevZone == 172) then
-		if(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 5) then
+	if (prevZone == 172) then
+		if (player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 5) then
 			cs = 0x00b0
 		end
 	end -- this if was leaking into the other functions
@@ -89,12 +89,12 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-	if(csid == 0x01) then
+	if (csid == 0x01) then
 		player:messageSpecial(ITEM_OBTAINED,0x218);
 	elseif (csid == 0x7534 and option == 0) then
 		player:setHomePoint();
 		player:messageSpecial(HOMEPOINT_SET);
-	elseif(csid == 0x00b0) then
+	elseif (csid == 0x00b0) then
 		finishMissionTimeline(player,1,csid,option);
 	end -- you're not useing the script i sent youuu
 end;

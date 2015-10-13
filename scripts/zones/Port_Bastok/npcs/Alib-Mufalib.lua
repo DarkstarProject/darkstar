@@ -71,7 +71,7 @@ function onTrigger(player,npc)
 				player:startEvent(0x0167);
 			end
 		end
-	elseif(player:getCurrentMission(TOAU) >= 2)then
+	elseif (player:getCurrentMission(TOAU) >= 2) then
 		player:startEvent(0x017a);
 	else
 		player:startEvent(0x0169);
@@ -90,7 +90,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("WildcatBastok",0);
 		player:addKeyItem(BLUE_SENTINEL_BADGE);
 		player:messageSpecial(KEYITEM_OBTAINED,BLUE_SENTINEL_BADGE);
-	elseif(csid == 0x0168) then
+	elseif (csid == 0x0168) then
 		player:completeQuest(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
 		player:addFame(BASTOK,150);
 		player:setVar("WildcatBastok",0);
@@ -98,7 +98,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(BLUE_INVITATION_CARD);
 		player:messageSpecial(KEYITEM_LOST,BLUE_SENTINEL_BADGE);
 		player:messageSpecial(KEYITEM_OBTAINED,BLUE_INVITATION_CARD);
-	elseif(csid == 0x017b)then
+	elseif (csid == 0x017b) then
 		player:tradeComplete();
 		toAhtUrhganWhitegate(player);
 	end

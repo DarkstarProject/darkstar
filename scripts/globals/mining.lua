@@ -15,7 +15,7 @@ require("scripts/globals/status");
 -- Zone, {npcid,npcid,npcid,..}
 local npcid = {11,{16822521,16822522,16822523,16822524,16822525,16822526},   -- Oldton Movalpolos
          12,{16826617,16826618,16826619,16826620,16826621,16826622},   -- Newton Movalpolos
-         61,{17027549,17027550,17027551,17027552,17027553,17027554},   -- Mount Zhayolm
+         61,{17027552,17027553,17027554,17027555,17027556,17027557},   -- Mount Zhayolm
          62,{17031711,17031712,17031713,17031714,17031715,17031716},   -- Halvung
          88,{17138511,17138512,17138513,17138514,17138515,17138516},   -- North Gustaberg [S]
          142,{17359049,17359050,17359051,17359052,17359053,17359054},  -- Yughott Grotto
@@ -74,7 +74,7 @@ function pickaxeBreak(player,trade)
 
     pickaxebreak = pickaxebreak + (player:getMod(MOD_MINNING_RESULT) / 1000);
 
-    if(pickaxebreak < MINING_BREAK_CHANCE) then
+    if (pickaxebreak < MINING_BREAK_CHANCE) then
         broke = 1;
         player:tradeComplete();
     end
@@ -91,9 +91,9 @@ function getMiningItem(player,zone)
     local Rate = math.random();
 
     for zon = 1, table.getn(drop), 2 do
-        if(drop[zon] == zone) then
+        if (drop[zon] == zone) then
             for itemlist = 1, table.getn(drop[zon + 1]), 2 do
-                if(Rate <= drop[zon + 1][itemlist + 1]) then
+                if (Rate <= drop[zon + 1][itemlist + 1]) then
                     item = drop[zon + 1][itemlist];
                     break;
                 end
@@ -118,7 +118,7 @@ function getMiningItem(player,zone)
 
     Rate = math.random();
 
-    if(Rate <= (1 - MINING_RATE)) then
+    if (Rate <= (1 - MINING_RATE)) then
         item = 0;
     end
 
@@ -133,7 +133,7 @@ function getNewMiningPositionNPC(player,npc,zone)
     local newnpcid = npc:getID();
 
     for u = 1, table.getn(npcid), 2 do
-        if(npcid[u] == zone) then
+        if (npcid[u] == zone) then
             nbNPC = table.getn(npcid[u + 1]);
             while newnpcid == npc:getID() do
                 newnpcid = math.random(1,nbNPC);

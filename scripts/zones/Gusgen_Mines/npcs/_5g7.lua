@@ -71,7 +71,7 @@ function onEventUpdate(player,csid,option)
 		if (hasStrAppDocStatus(player) == false) then
 
 			local docStatus = 1; -- Assistant
-			if( option == strAppPass(player)) then -- Good password
+			if ( option == strAppPass(player)) then -- Good password
 				docStatus = 0; -- Doctor
 				giveStrAppDocStatus(player);
 			end
@@ -96,7 +96,7 @@ function onEventFinish(player,csid,option)
 
 		if (drop ~= 0) then
 
-			if( dropQty == 0) then
+			if ( dropQty == 0) then
 				dropQty = 1;
 			end
 

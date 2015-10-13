@@ -1,5 +1,4 @@
 -------------------------------------------------
---  Author: santssoft
 --  Chocobo functions
 --  Info from:
 --      http://wiki.ffxiclopedia.org/wiki/Chocobo_Renter
@@ -56,7 +55,7 @@ function getChocoboPrice(player)
     local price = 0;
 
     for u = 1, table.getn(chocobo), 2 do
-        if(chocobo[u] == zone) then
+        if (chocobo[u] == zone) then
             local last_price = GetServerVariable("[CHOCOBO]["..zone.."]Price");
             local last_time = GetServerVariable("[CHOCOBO]["..zone.."]Time");
 
@@ -81,7 +80,7 @@ function updateChocoboPrice(player, price)
     local zone = player:getZoneID();
 
     for u = 1, table.getn(chocobo), 2 do
-        if(chocobo[u] == zone) then
+        if (chocobo[u] == zone) then
             SetServerVariable("[CHOCOBO]["..chocobo[u].."]Price", price + chocobo[u + 1].addedprice);
             SetServerVariable("[CHOCOBO]["..chocobo[u].."]Time", os.time(t));
 

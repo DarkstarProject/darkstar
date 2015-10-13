@@ -32,29 +32,29 @@
 
 class CLuaTradeContainer
 {
-	CTradeContainer *m_pMyTradeContainer;
+    CTradeContainer *m_pMyTradeContainer;
 public:
 
-	static const int8 className[];
-	static Lunar<CLuaTradeContainer>::Register_t methods[];
+    static const int8 className[];
+    static Lunar<CLuaTradeContainer>::Register_t methods[];
 
-	CLuaTradeContainer(lua_State*);
-	CLuaTradeContainer(CTradeContainer*);
+    CLuaTradeContainer(lua_State*);
+    CLuaTradeContainer(CTradeContainer*);
 
-	CTradeContainer* GetTradeContainer()const
-	{
-		return m_pMyTradeContainer;
-	}
+    CTradeContainer* GetTradeContainer()const
+    {
+        return m_pMyTradeContainer;
+    }
 
-	int32 getGil(lua_State*);
-	int32 getItem(lua_State*);
-	int32 getItemSubId(lua_State*);
-	int32 getItemQty(lua_State*);
-	int32 hasItemQty(lua_State*);
-	int32 getSlotQty(lua_State*);		// количество предметов в указанной ячейке
-	int32 getItemCount(lua_State*);		// общее количество предметов
+    int32 getGil(lua_State*);
+    int32 getItem(lua_State*);
+    int32 getItemSubId(lua_State*);
+    int32 getItemQty(lua_State*);
+    int32 hasItemQty(lua_State*);
+    int32 getSlotQty(lua_State*);		// количество предметов в указанной ячейке
+    int32 getItemCount(lua_State*);		// общее количество предметов
     int32 getSlotCount(lua_State*);
-	int32 confirmItem(lua_State*);
+    int32 confirmItem(lua_State*);
 };
 
 #endif
