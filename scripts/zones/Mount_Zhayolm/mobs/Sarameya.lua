@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:addMod(MOD_MEVA, 110);
+    mob:addMod(MOD_MEVA, 95);
     mob:addMod(MOD_MDEF, 30);
     mob:addMod(MOD_SILENCERES, 20);
     mob:addMod(MOD_GRAVITYRES, 20);
