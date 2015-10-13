@@ -34,13 +34,18 @@ This file is part of DarkStar-server source code.
 *																		*
 ************************************************************************/
 
-class CParty;
+class CBattleEntity;
 
 class CPartyEffectsPacket : public CBasicPacket
 {
 public:
 
-    CPartyEffectsPacket(CParty* PParty);
+    CPartyEffectsPacket();
+    void AddMemberEffects(CBattleEntity* PMember);
+    void AddMemberEffects(uint32 id);
+
+private:
+    int members {0};
 };
 
 #endif
