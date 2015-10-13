@@ -4,7 +4,7 @@
 -- Type: Adventurer's Assistant
 -- @pos 10.012 1.453 121.883 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
+package.loaded["scripts/zones/RuLude_Gardens/TextIDs"];
 -----------------------------------
 
 require("scripts/globals/settings");
