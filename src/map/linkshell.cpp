@@ -84,7 +84,7 @@ void CLinkshell::setMessage(const int8* message, const int8* poster)
 {
     int8 sqlMessage[256];
     Sql_EscapeString(SqlHandle, sqlMessage, message);
-    Sql_Query(SqlHandle, "UPDATE linkshells SET poster = '%s', message = '%s', messagetime = %d WHERE linkshellid = %u;",
+    Sql_Query(SqlHandle, "UPDATE linkshells SET poster = '%s', message = '%s', messagetime = %llu WHERE linkshellid = %d;",
         poster, sqlMessage , time(nullptr), m_id);
 
     int8 packetData[8];
