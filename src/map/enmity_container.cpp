@@ -115,7 +115,7 @@ float CEnmityContainer::CalculateEnmityBonus(CBattleEntity* PEntity){
 *                                                                       *
 ************************************************************************/
 
-void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster)
+void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster, bool aggroEnmity)
 {
     // you're too far away so i'm ignoring you
     if (!IsWithinEnmityRange(PEntity))
@@ -147,6 +147,7 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         //Check for cap limit
         PEnmity->second->CE = dsp_cap(newCE, 1, 10000);
         PEnmity->second->VE = dsp_cap(newVE, 0, 10000);
+        PEnmity->second->isAggroEnmity = aggroEnmity;
 
         if (CE + VE > 0 && PEntity->getMod(MOD_TREASURE_HUNTER) > PEnmity->second->maxTH)
             PEnmity->second->maxTH = (uint8)(PEntity->getMod(MOD_TREASURE_HUNTER));
@@ -160,6 +161,7 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         PEnmityObject->CE = dsp_cap(CE * bonus, 1, 10000);
         PEnmityObject->VE = dsp_cap(VE * bonus, 0, 10000);
         PEnmityObject->PEnmityOwner = PEntity;
+        PEnmityObject->isAggroEnmity = aggroEnmity;
 
         if (CE + VE > 0)
             PEnmityObject->maxTH = (uint8)(PEntity->getMod(MOD_TREASURE_HUNTER));
@@ -201,14 +203,19 @@ void CEnmityContainer::AddPartyEnmity(CCharEntity* PChar)
 
 void CEnmityContainer::AddLinkEnmity(CBattleEntity* PEntity)
 {
-    UpdateEnmity(PEntity, 0, 0, false);
+    UpdateEnmity(PEntity, 0, 0, false, true);
+}
+
+void CEnmityContainer::AddAggroEnmity(CBattleEntity* PEntity)
+{
+    UpdateEnmity(PEntity, 0, 0, true, true);
 }
 
 bool CEnmityContainer::HasTargetID(uint32 TargetID){
     EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(TargetID);
 
     if (PEnmity != m_EnmityList.end() &&
-        !m_EnmityList.key_comp()(TargetID, PEnmity->first) && PEnmity->second->CE > 0)
+        !m_EnmityList.key_comp()(TargetID, PEnmity->first) && PEnmity->second->isAggroEnmity == false)
     {
         return true;
     }
