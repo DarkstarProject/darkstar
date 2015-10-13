@@ -103,7 +103,7 @@ function onAdditionalEffect(mob, player)
         if (mob:getMainLvl() > player:getMainLvl()) then
             duration = duration + (mob:getMainLvl() - player:getMainLvl())
         end
-        utils.clamp(duration,1,30);
+        duration = utils.clamp(duration,1,30);
         duration = duration * resist;
         if (player:hasStatusEffect(EFFECT_POISON) == false) then
             player:addStatusEffect(EFFECT_POISON, 50, 3, duration); -- Don't know potency on the poison.

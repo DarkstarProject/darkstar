@@ -22,7 +22,7 @@ function onAdditionalEffect(player,target,damage)
         if (target:getMainLvl() > player:getMainLvl()) then
             duration = duration - (target:getMainLvl() - player:getMainLvl())
         end
-        utils.clamp(duration,1,25);
+        duration = utils.clamp(duration,1,25);
         duration = duration * applyResistanceAddEffect(player,target,ELE_LIGHT,0);
         if (not target:hasStatusEffect(EFFECT_SLEEP_I)) then
             target:addStatusEffect(EFFECT_SLEEP_I, 1, 0, duration);
