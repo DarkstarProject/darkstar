@@ -122,7 +122,7 @@ namespace marshal
 
         void _trim()
         {	// clear any trailing bits in last word
-            _trim_if(std::bool_constant<_bits % 8 != 0>());
+            _trim_if(std::integral_constant<bool,_bits % 8 != 0>());
         }
 
         void _trim_if(std::true_type)
