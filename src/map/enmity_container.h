@@ -36,6 +36,7 @@ struct EnmityObject_t
 	int16 CE;						// Cumulative Enmity
 	int16 VE;						// Volatile Enmity
 	uint8 maxTH;                    // Maximum Treasure Hunter level of this Enmity Owner
+        bool isAggroEnmity;     // Enmity generated from aggro / link
 };
 
 typedef std::map<uint32,EnmityObject_t*> EnmityList_t;
@@ -52,11 +53,12 @@ public:
 	float   CalculateEnmityBonus(CBattleEntity* PEntity);
 	void	Clear(uint32 EntityID = 0);			// Removes Entries from list
     void	AddBaseEnmity(CBattleEntity* PEntity);
-	void	UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster = true);
+	void	UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster = true, bool aggroEnmity = false);
 	void	UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Damage);
 	void	UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level, uint16 CureAmount, bool isCureV);
 	void	UpdateEnmityFromAttack(CBattleEntity* PEntity,uint16 Damage);
-  void  AddLinkEnmity(CBattleEntity* PEntity);
+        void    AddLinkEnmity(CBattleEntity* PEntity);
+        void    AddAggroEnmity(CBattleEntity* PEntity);
 	void	AddPartyEnmity(CCharEntity* PChar);
 	bool    HasTargetID(uint32 TargetID); //true if ID is in the container with non-zero enmity level
 	void    LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent, CBattleEntity* HateReceiver); // lower % of hate or transfer it
