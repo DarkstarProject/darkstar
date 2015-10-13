@@ -4512,11 +4512,11 @@ void SmallPacket0x0E0(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x0E1(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     uint8 slot = data.ref<uint8>(0x07);
-    if (slot == PChar->equip[SLOT_LINK1])
+    if (slot == PChar->equip[SLOT_LINK1] && PChar->PLinkshell1)
     {
         PChar->PLinkshell1->PushLinkshellMessage(PChar, true);
     }
-    else if (slot == PChar->equip[SLOT_LINK2])
+    else if (slot == PChar->equip[SLOT_LINK2] && PChar->PLinkshell2)
     {
         PChar->PLinkshell2->PushLinkshellMessage(PChar, false);
     }

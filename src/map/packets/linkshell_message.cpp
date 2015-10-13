@@ -35,19 +35,18 @@ CLinkshellMessagePacket::CLinkshellMessagePacket(const int8* poster, const int8*
     ref<uint8>(0x04) = 0x03;
     ref<uint8>(0x05) = 0x90;
 
+    ref<uint8>(0x04) = 0x70;
+    ref<uint8>(0x05) = 0x06;
+
+    if (!ls1)
+    {
+        ref<uint8>(0x05) |= 0x40; //LS2
+    }
     if (message)
     {
-        ref<uint8>(0x04) = 0x70;
-        ref<uint8>(0x05) = 0x06;
-
-        if (!ls1)
-        {
-            ref<uint8>(0x05) |= 0x40; //LS2
-        }
-
-        memcpy(data+(0x08), message, dsp_min(strlen(message), 115));
-        memcpy(data+(0x8C), poster, dsp_min(strlen(poster), 15));
-        memcpy(data+(0xA0), lsname, dsp_min(strlen(lsname), 16));
+        memcpy(data + (0x08), message, dsp_min(strlen(message), 115));
+        memcpy(data + (0x8C), poster, dsp_min(strlen(poster), 15));
+        memcpy(data + (0xA0), lsname, dsp_min(strlen(lsname), 16));
 
         ref<uint32>(0x88) = posttime;
     }
