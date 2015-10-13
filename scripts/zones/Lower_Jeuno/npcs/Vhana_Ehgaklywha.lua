@@ -90,7 +90,7 @@ function onPath(npc)
 				--printf("%s lamp reached | ID is: %i",GetNPCByID(lampOffset):getName(), lampOffset);
 				return;
 			else
-				if(npc:atPoint(pathfind.get(path,48))) then
+				if (npc:atPoint(pathfind.get(path,48))) then
 					npc:wait(1000);
 					npc:setStatus(2);
 				end

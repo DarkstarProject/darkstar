@@ -39,7 +39,7 @@ function onSpellCast(caster,target,spell)
         dmg = 0
     end
     
-	if(target:isUndead()) then
+	if (target:isUndead()) then
 		spell:setMsg(75); -- No effect
 		return dmg;
 	end

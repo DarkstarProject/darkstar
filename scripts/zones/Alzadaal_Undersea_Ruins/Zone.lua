@@ -135,7 +135,7 @@ function onRegionEnter(player,region)
             player:startEvent(0x00D2);
         end,
         [23] = function (x)
-        if(player:getCurrentMission(TOAU) == UNDERSEA_SCOUTING and player:getVar("TOAUM9") ==0)then
+        if (player:getCurrentMission(TOAU) == UNDERSEA_SCOUTING and player:getVar("TOAUM9") ==0) then
             player:startEvent(0x0001);
         end
         end,
@@ -156,11 +156,11 @@ end;
 function onEventUpdate(player,csid,option)
      printf("CSID: %u",csid);
      printf("RESULT: %u",option);
-if(csid == 0x0001 and option == 10)then
+if (csid == 0x0001 and option == 10) then
    player:updateEvent(1,0,0,0,0,0,0);
-elseif(csid == 0x0001 and option == 2)then
+elseif (csid == 0x0001 and option == 2) then
    player:updateEvent(3,0,0,0,0,0,0);
-elseif(csid == 0x0001 and option == 3)then
+elseif (csid == 0x0001 and option == 3) then
    player:updateEvent(7,0,0,0,0,0,0);    
 end
 end;
@@ -172,7 +172,7 @@ end;
 function onEventFinish(player,csid,option)
      printf("CSID: %u",csid);
      printf("RESULT: %u",option);
-if(csid ==0x0001)then
+if (csid ==0x0001) then
     player:addKeyItem(ASTRAL_COMPASS);
     player:messageSpecial(KEYITEM_OBTAINED,ASTRAL_COMPASS);
     player:setVar("TOAUM9",0);

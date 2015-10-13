@@ -123,7 +123,11 @@ function BluePhysicalSpell(caster, target, spell, params)
     ----------------------------------------------
     -- Get the possible pDIF range and hit rate --
     ----------------------------------------------
-    local cratio = BluecRatio(caster:getStat(MOD_ATT) / target:getStat(MOD_DEF), caster:getMainLvl(), target:getMainLvl());
+    if (params.offcratiomod == nil) then -- default to attack. Pretty much every physical spell will use this, Cannonball being the exception.
+        params.offcratiomod = caster:getStat(MOD_ATT)
+    end;
+    -- print(params.offcratiomod)
+    local cratio = BluecRatio(params.offcratiomod / target:getStat(MOD_DEF), caster:getMainLvl(), target:getMainLvl());
     local hitrate = BlueGetHitRate(caster,target,true);
 
     --print("Hit rate "..hitrate);
@@ -177,19 +181,19 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
 
     local ST = BlueGetWsc(caster, params); -- According to Wiki ST is the same as WSC, essentially Blue mage spells that are magical use the dmg formula of Magical type Weapon skills
 
-    if(caster:hasStatusEffect(EFFECT_BURST_AFFINITY)) then
+    if (caster:hasStatusEffect(EFFECT_BURST_AFFINITY)) then
         ST = ST * 2;
     end
 
     local convergenceBonus = 1.0;
-    if(caster:hasStatusEffect(EFFECT_CONVERGENCE)) then
+    if (caster:hasStatusEffect(EFFECT_CONVERGENCE)) then
         convergenceEffect = getStatusEffect(EFFECT_CONVERGENCE);
         local convLvl = convergenceEffect:getPower();
-        if(convLvl == 1) then
+        if (convLvl == 1) then
             convergenceBonus = 1.05;
-        elseif(convLvl == 2) then
+        elseif (convLvl == 2) then
             convergenceBonus = 1.1;
-        elseif(convLvl == 3) then
+        elseif (convLvl == 3) then
             convergenceBonus = 1.15;
         end
     end
@@ -198,12 +202,16 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
     -- print(magAccMerit);
 
     local statBonus = 0;
-    if(statMod == INT_BASED) then -- Stat mod is INT
-        statBonus = (caster:getStat(MOD_INT) - target:getStat(MOD_INT))* params.tMultiplier;
-    elseif(statMod == CHR_BASED) then -- Stat mod is CHR
-        statBonus = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR))* params.tMultiplier;
-    elseif(statMod == MND_BASED) then -- Stat mod is MND
-        statBonus = (caster:getStat(MOD_MND) - target:getStat(MOD_MND))* params.tMultiplier;
+    local dStat = 0; -- Please make sure to add an additional stat check if there is to be a spell that uses neither INT, MND, or CHR. None currently exist.
+    if (statMod == INT_BASED) then -- Stat mod is INT
+        dStat = caster:getStat(MOD_INT) - target:getStat(MOD_INT)
+        statBonus = (dStat)* params.tMultiplier;
+    elseif (statMod == CHR_BASED) then -- Stat mod is CHR
+        dStat = caster:getStat(MOD_CHR) - target:getStat(MOD_CHR)
+        statBonus = (dStat)* params.tMultiplier;
+    elseif (statMod == MND_BASED) then -- Stat mod is MND
+        dStat = caster:getStat(MOD_MND) - target:getStat(MOD_MND)
+        statBonus = (dStat)* params.tMultiplier;
     end
 
     D =(((D + ST) * params.multiplier * convergenceBonus) + statBonus);
@@ -213,7 +221,7 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
     local magicAttack = 1.0;
     local multTargetReduction = 1.0; -- TODO: Make this dynamically change, temp static till implemented.
     magicAttack = math.floor(D * multTargetReduction);
-    magicAttack = math.floor(magicAttack * applyResistance(caster,spell,target,caster:getStat(MOD_INT) - target:getStat(MOD_INT),BLUE_SKILL,magAccMerit));
+    magicAttack = math.floor(magicAttack * applyResistance(caster,spell,target,dStat,BLUE_SKILL,magAccMerit));
     dmg = math.floor(addBonuses(caster, spell, target, magicAttack));
 
     caster:delStatusEffectSilent(EFFECT_BURST_AFFINITY);
@@ -222,12 +230,12 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
 end;
 
 function BlueFinalAdjustments(caster, target, spell, dmg, params)
-    if(dmg<0) then
+    if (dmg<0) then
         dmg = 0;
     end
 
     dmg = dmg - target:getMod(MOD_PHALANX);
-    if(dmg<0) then
+    if (dmg<0) then
         dmg = 0;
     end
 
@@ -262,9 +270,9 @@ function BluecRatio(ratio,atk_lvl,def_lvl)
     ratio = ratio - levelcor;
 
     --apply caps
-    if(ratio<0) then
+    if (ratio<0) then
         ratio = 0;
-    elseif(ratio>2) then
+    elseif (ratio>2) then
         ratio = 2;
     end
 
@@ -288,7 +296,7 @@ function BluecRatio(ratio,atk_lvl,def_lvl)
         cratiomax = 1.2 * ratio;
     end
     cratio = {};
-    if(cratiomin < 0) then
+    if (cratiomin < 0) then
         cratiomin = 0;
     end
     cratio[1] = cratiomin;
@@ -302,9 +310,9 @@ end;
 -- ftp2 - The TP 150% value
 -- ftp3 - The TP 300% value
 function BluefTP(tp,ftp1,ftp2,ftp3)
-    if(tp>=0 and tp<150) then
+    if (tp>=0 and tp<150) then
         return ftp1 + ( ((ftp2-ftp1)/100) * tp);
-    elseif(tp>=150 and tp<=300) then
+    elseif (tp>=150 and tp<=300) then
         --generate a straight line between ftp2 and ftp3 and find point @ tp
         return ftp2 + ( ((ftp3-ftp2)/100) * (tp-150));
     else
@@ -339,9 +347,9 @@ function BlueGetHitRate(attacker,target,capHitRate)
     local acc = attacker:getACC();
     local eva = target:getEVA();
 
-    if(attacker:getMainLvl() > target:getMainLvl()) then --acc bonus!
+    if (attacker:getMainLvl() > target:getMainLvl()) then --acc bonus!
         acc = acc + ((attacker:getMainLvl()-target:getMainLvl())*4);
-    elseif(attacker:getMainLvl() < target:getMainLvl()) then --acc penalty :(
+    elseif (attacker:getMainLvl() < target:getMainLvl()) then --acc penalty :(
         acc = acc - ((target:getMainLvl()-attacker:getMainLvl())*4);
     end
 
@@ -359,7 +367,7 @@ function BlueGetHitRate(attacker,target,capHitRate)
 
 
     --Applying hitrate caps
-    if(capHitRate) then --this isn't capped for when acc varies with tp, as more penalties are due
+    if (capHitRate) then --this isn't capped for when acc varies with tp, as more penalties are due
         if (hitrate>0.95) then
             hitrate = 0.95;
         end
@@ -376,23 +384,23 @@ function getBlueEffectDuration(caster,resist,effect)
 
     local duration = 0;
 
-    if(resist == 0.125) then
+    if (resist == 0.125) then
         resist = 1;
-    elseif(resist == 0.25) then
+    elseif (resist == 0.25) then
         resist = 2;
-    elseif(resist == 0.5) then
+    elseif (resist == 0.5) then
         resist = 3;
     else
         resist = 4;
     end
 
-    if(effect == EFFECT_BIND) then
+    if (effect == EFFECT_BIND) then
         duration = math.random(0,5) + resist * 5;
-    elseif(effect == EFFECT_STUN) then
+    elseif (effect == EFFECT_STUN) then
         duration = math.random(2,3) + resist;
-    elseif(effect == EFFECT_WEIGHT) then
+    elseif (effect == EFFECT_WEIGHT) then
         duration = math.random(20,24) + resist * 9; -- 30-60
-    elseif(effect == EFFECT_PARALYSIS) then
+    elseif (effect == EFFECT_PARALYSIS) then
         duration = math.random(50,60) + resist * 15; --60- 120
     end
     printf("Duration of stun is %i",duration);

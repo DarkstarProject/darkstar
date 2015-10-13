@@ -14,7 +14,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	if(target:delStatusEffect(EFFECT_PETRIFICATION)) then
+	if (target:delStatusEffect(EFFECT_PETRIFICATION)) then
 		spell:setMsg(83);
 	else
 		spell:setMsg(75);

@@ -13,7 +13,7 @@ install:
 
 before_script:
   - sh autogen.sh
-  - mysql -u root -e 'create database myapp_test;'
+  - mysql -u root -e 'create database dspdb_test;'
 
 script:
   - ./configure

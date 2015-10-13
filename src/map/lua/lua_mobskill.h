@@ -32,30 +32,30 @@
 
 class CLuaMobSkill
 {
-	CMobSkill *m_PLuaMobSkill;
+    CMobSkill *m_PLuaMobSkill;
 public:
 
-	static const int8 className[];
-	static Lunar<CLuaMobSkill>::Register_t methods[];
+    static const int8 className[];
+    static Lunar<CLuaMobSkill>::Register_t methods[];
 
-	CLuaMobSkill(lua_State*);
-	CLuaMobSkill(CMobSkill*);
+    CLuaMobSkill(lua_State*);
+    CLuaMobSkill(CMobSkill*);
 
-	CMobSkill* GetMobSkill() const
-	{
-		return m_PLuaMobSkill;
-	}
-	int32 getTP(lua_State*);
-	int32 getID(lua_State*);
-	int32 getParam(lua_State*);
-	int32 isAoE(lua_State*);
-	int32 isConal(lua_State*);
-	int32 isSingle(lua_State*);
-	int32 hasMissMsg(lua_State*);
-	int32 setMsg(lua_State*);
-	int32 getMsg(lua_State*);
-	int32 getTotalTargets(lua_State*);
-	int32 setSkillchain(lua_State*);
+    CMobSkill* GetMobSkill() const
+    {
+        return m_PLuaMobSkill;
+    }
+    int32 getTP(lua_State*);
+    int32 getID(lua_State*);
+    int32 getParam(lua_State*);
+    int32 isAoE(lua_State*);
+    int32 isConal(lua_State*);
+    int32 isSingle(lua_State*);
+    int32 hasMissMsg(lua_State*);
+    int32 setMsg(lua_State*);
+    int32 getMsg(lua_State*);
+    int32 getTotalTargets(lua_State*);
+    int32 setSkillchain(lua_State*);
 };
 
 #endif

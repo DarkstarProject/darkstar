@@ -71,6 +71,7 @@ function onUseAbility(player,target,ability)
         local newEffect = target:getStatusEffect(effectId);
         newEffect:setStartTime(startTime);
     end
-    
+
+    target:updateClaim(player);
     return dmg;
 end;

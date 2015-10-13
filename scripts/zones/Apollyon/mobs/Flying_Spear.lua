@@ -28,11 +28,11 @@ end;
 
 function onMobDeath(mob,killer)
  local mobID = mob:GetID();	
- if(mobID ==16933034)then -- time
+ if (mobID ==16933034) then -- time
  
- elseif(mobID ==16933037)then -- recover
+ elseif (mobID ==16933037) then -- recover
  
- elseif(mobID ==16933040)then -- item
+ elseif (mobID ==16933040) then -- item
  
  end
  

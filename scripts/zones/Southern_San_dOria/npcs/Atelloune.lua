@@ -28,8 +28,8 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 		end
 	end
 	-----lady bug
-	if(player:getQuestStatus(SANDORIA,ATELLOUNE_S_LAMENT) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(2506,1) and trade:getItemCount() == 1) then
+	if (player:getQuestStatus(SANDORIA,ATELLOUNE_S_LAMENT) == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(2506,1) and trade:getItemCount() == 1) then
 			player:startEvent(0x037b);
 		end
 	end
@@ -74,9 +74,9 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x037a) then
+	if (csid == 0x037a) then
 		player:addQuest(SANDORIA,ATELLOUNE_S_LAMENT);
-	elseif(csid == 0x037b) then
+	elseif (csid == 0x037b) then
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,15008); -- Trainee Gloves
 		else

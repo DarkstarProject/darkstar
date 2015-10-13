@@ -24,9 +24,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(BASTOK) == THE_FINAL_IMAGE and player:getVar("MissionStatus") == 1) then
-		if(GetMobAction(17276929) == 0 and GetMobAction(17276930) == 0) then
-			if(player:getVar("Mission7-1MobKilled") >= 1) then
+	if (player:getCurrentMission(BASTOK) == THE_FINAL_IMAGE and player:getVar("MissionStatus") == 1) then
+		if (GetMobAction(17276929) == 0 and GetMobAction(17276930) == 0) then
+			if (player:getVar("Mission7-1MobKilled") >= 1) then
 				player:addKeyItem(REINFORCED_CERMET);
 				player:messageSpecial(KEYITEM_OBTAINED,REINFORCED_CERMET);
 				player:setVar("Mission7-1MobKilled",0);

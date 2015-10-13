@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:hasCompletedMission(COP,THE_MOTHERCRYSTALS)) then
+	if (player:hasCompletedMission(COP,THE_MOTHERCRYSTALS)) then
 		player:startEvent(0x012c);
 	else
 		player:messageSpecial(AN_EMPTY_LIGHT_SWIRLS);
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x012c and option == 1) then
+	if (csid == 0x012c and option == 1) then
 		toMisareauxCoast(player);
 	end
 	

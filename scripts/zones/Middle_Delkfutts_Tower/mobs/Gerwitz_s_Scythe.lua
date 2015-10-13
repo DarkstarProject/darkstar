@@ -19,7 +19,7 @@ end;
 
 function onMobDeath(mob,killer)
 
-	if(killer:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_ACCEPTED) then
+	if (killer:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_ACCEPTED) then
 		killer:setVar("bladeOfEvilCS",1);
 	end
 

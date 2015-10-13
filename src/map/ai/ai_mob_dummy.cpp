@@ -70,11 +70,10 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
     m_PSpecialSkill = nullptr;
     m_firstSpell = true;
     m_LastSpecialTime = 0;
+    m_LastMobSkillTime = 0;
     m_skillTP = 0;
-    m_LastStandbackTime = 0;
     m_DeaggroTime = 0;
     m_NeutralTime = 0;
-    m_CanStandback = false;
     m_drawnIn = false;
     m_mobskillattack = false;
     m_actionqueueability = false;
@@ -152,8 +151,7 @@ void CAIMobDummy::ActionRoaming()
     }
     else if (m_PMob->GetDespawnTimer() > 0 && m_PMob->GetDespawnTimer() < m_Tick)
     {
-        m_LastActionTime = m_Tick - 12000;
-        m_PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
+        Despawn();
         return;
     }
 
@@ -180,6 +178,11 @@ void CAIMobDummy::ActionRoaming()
     {
         // lets buff up or move around
 
+        if (m_PMob->CalledForHelp())
+        {
+            m_PMob->CallForHelp(false);
+        }
+
         // can't rest with poison or disease
         if (m_PMob->CanRest())
         {
@@ -189,7 +192,8 @@ void CAIMobDummy::ActionRoaming()
                 // health updated
                 m_PMob->updatemask |= UPDATE_HP;
             }
-            else
+
+            if(m_PMob->GetHPP() == 100)
             {
                 // at max health undirty exp
                 m_PMob->m_giveExp = true;
@@ -212,10 +216,16 @@ void CAIMobDummy::ActionRoaming()
                 // move back every 5 seconds
                 m_LastActionTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME;
             }
+            else if (m_PMob->getMobMod(MOBMOD_NO_DESPAWN) != 0 ||
+                    map_config.mob_no_despawn)
+            {
+                // mob couldn't find path home
+                // but should never despawn, so cancel walking home
+                m_checkDespawn = false;
+            }
             else
             {
-                // despawn
-                m_ActionType = ACTION_DEATH;
+                Despawn();
                 return;
             }
         }
@@ -224,9 +234,14 @@ void CAIMobDummy::ActionRoaming()
             // do not check for despawning because i'm at home
             m_checkDespawn = false;
 
-            if (m_PSpecialSkill != nullptr && TrySpecialSkill())
+            if (m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 && m_Tick >= m_LastSpecialTime + m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) && TrySpecialSkill())
             {
                 // I spawned a pet
+            }
+            else if (m_PMob->GetMJob() == JOB_SMN && CanCastSpells() && m_PMob->SpellContainer->HasBuffSpells() && m_Tick >= m_LastMagicTime + m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL))
+            {
+                // summon pet
+                CastSpell(m_PMob->SpellContainer->GetBuffSpell());
             }
             else if (CanCastSpells() && dsprand::GetRandomNumber(10) < 3 && m_PMob->SpellContainer->HasBuffSpells())
             {
@@ -256,7 +271,7 @@ void CAIMobDummy::ActionRoaming()
                 luautils::OnMobRoamAction(m_PMob);
                 m_LastActionTime = m_Tick;
             }
-            else if (m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamDistance, m_PMob->m_roamFlags))
+            else if (m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->GetRoamDistance(), m_PMob->getMobMod(MOBMOD_ROAM_TURNS), m_PMob->m_roamFlags))
             {
 
                 if (m_PMob->m_roamFlags & ROAMFLAG_WORM)
@@ -340,6 +355,11 @@ void CAIMobDummy::ActionDisengage()
 {
     m_PPathFind->Clear();
 
+    if (m_PMob->getMobMod(MOBMOD_IDLE_DESPAWN))
+    {
+        m_PMob->SetDespawnTimer(m_PMob->getMobMod(MOBMOD_IDLE_DESPAWN));
+    }
+
     // this will let me decide to walk home or despawn
     m_LastActionTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME;
     m_PMob->m_neutral = true;
@@ -352,7 +372,6 @@ void CAIMobDummy::ActionDisengage()
     m_PMob->delRageMode();
     m_PMob->m_OwnerID.clean();
     m_PMob->updatemask |= (UPDATE_STATUS | UPDATE_HP);
-    m_PMob->CallForHelp(false);
     m_PMob->animation = ANIMATION_NONE;
 
     //if (m_PMob->animationsub == 2) m_PMob->animationsub = 3;
@@ -378,12 +397,14 @@ void CAIMobDummy::ActionFall()
     m_LastActionTime = m_Tick;
     m_PMob->animation = ANIMATION_DEATH;
 
-    // my pet should fall as well
-    if (m_PMob->PPet != nullptr && !m_PMob->PPet->isDead() && m_PMob->GetMJob() == JOB_SMN)
+    // pets always die with master
+    if (m_PMob->PPet != nullptr && m_PMob->PPet->isAlive() && m_PMob->GetMJob() == JOB_SMN)
     {
         m_PMob->PPet->health.hp = 0;
         m_PMob->PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
+        m_PMob->PPet->updatemask |= (UPDATE_STATUS | UPDATE_HP);
     }
+
 }
 
 /************************************************************************
@@ -570,7 +591,16 @@ void CAIMobDummy::ActionFadeOut()
         if (m_PMob->PMaster != nullptr && m_PMob->PMaster->objtype == TYPE_MOB)
         {
             CAIMobDummy* PBattleAI = (CAIMobDummy*)m_PMob->PMaster->PBattleAI;
-            PBattleAI->m_LastSpecialTime = m_Tick - dsprand::GetRandomNumber(10000);
+
+            if (m_PMob->PMaster->GetMJob() == JOB_SMN)
+            {
+                PBattleAI->m_LastMagicTime = m_Tick - dsprand::GetRandomNumber(10000);
+            }
+            else
+            {
+                // Handle bst / pup / drg
+                PBattleAI->m_LastSpecialTime = m_Tick - dsprand::GetRandomNumber(10000);
+            }
         }
 
         m_LastActionTime = m_Tick;
@@ -608,8 +638,14 @@ void CAIMobDummy::ActionSpawn()
     {
         m_NeutralTime = m_Tick;
         m_PMob->m_neutral = true;
-        m_LastActionTime = m_Tick + dsprand::GetRandomNumber(2000,10000);
+
+        // Force mob to roam / cast spell right on spawn
+        m_LastActionTime = 0;
+        m_LastSpecialTime = 0;
+        m_LastMagicTime = 0;
+        m_LastMobSkillTime = 0;
         m_SpawnTime = m_Tick;
+
         m_firstSpell = true;
         m_ActionType = ACTION_ROAMING;
         m_PBattleTarget = nullptr;
@@ -624,7 +660,9 @@ void CAIMobDummy::ActionSpawn()
         m_PMob->m_DropItemTime = 1000;
         m_PMob->status = m_PMob->allegiance == ALLEGIANCE_MOB ? STATUS_MOB : STATUS_NORMAL;
         m_PMob->animation = ANIMATION_NONE;
+        m_PMob->animationsub = m_PMob->getMobMod(MOBMOD_SPAWN_ANIMATIONSUB);
         m_PMob->HideName(false);
+        m_PMob->CallForHelp(false);
         m_PMob->ResetLocalVars();
 
         m_PMob->PEnmityContainer->Clear();
@@ -651,15 +689,6 @@ void CAIMobDummy::ActionSpawn()
             if(purse == 0)
                 purse = m_PMob->GetRandomGil();
             m_PMob->setMobMod(MOBMOD_MUG_GIL, purse);
-        }
-
-        // get my special skill
-        if (m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL))
-        {
-            m_PSpecialSkill = battleutils::GetMobSkill(m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL));
-            if(m_PSpecialSkill == nullptr){
-                ShowError("CAIMobDummy::ActionSpawn Special skill was set but not found! (%d)\n", m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL));
-            }
         }
 
         // spawn somewhere around my point
@@ -693,12 +722,6 @@ void CAIMobDummy::ActionSpawn()
             }
         }
 
-        // used for dynamis stat-spawned mobs
-        if (m_PMob->loc.zone->GetType() == ZONETYPE_DYNAMIS)
-        {
-            m_PMob->m_StatPoppedMobs = false;
-        }
-        
         luautils::OnMobSpawn( m_PMob );
     }
 }
@@ -713,22 +736,15 @@ void CAIMobDummy::ActionAbilityStart()
 {
     DSP_DEBUG_BREAK_IF(m_PBattleTarget == nullptr);
 
-    std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->getMobMod(MOBMOD_SKILLS));
+    std::vector<uint16> MobSkills = battleutils::GetMobSkillList(m_PMob->getMobMod(MOBMOD_SKILL_LIST));
 
-    if (m_PMob->m_EcoSystem == SYSTEM_ELEMENTAL)
-    {
-        // elementals have no tp moves
-        m_PMob->health.tp = 0;
-        TransitionBack(true);
-        return;
-    }
+    // Fixes crash, prevent spam checking of mob abilities
+    m_LastMobSkillTime = m_Tick;
 
     // не у всех монстов прописаны способности, так что выходим из процедуры, если способность не найдена
     // We don't have any skills we can use, so let's go back to attacking
     if (MobSkills.size() == 0)
     {
-        ShowWarning("CAIMobDummy::ActionAbilityStart No TP moves found for family (%d)\n", m_PMob->m_Family);
-        m_PMob->health.tp = 0;
         TransitionBack(true);
         return;
     }
@@ -740,7 +756,7 @@ void CAIMobDummy::ActionAbilityStart()
     if (m_PMob->getMobMod(MOBMOD_MAIN_2HOUR) > 0)
     {
         // get my job two hour
-        SetCurrentMobSkill(battleutils::GetTwoHourMobSkill(m_PMob->GetMJob()));
+        SetCurrentMobSkill(battleutils::GetTwoHourMobSkill(m_PMob->GetMJob(), m_PMob->m_Family));
 
         if (m_PMobSkill != nullptr)
         {
@@ -781,7 +797,7 @@ void CAIMobDummy::ActionAbilityStart()
     {
 
         // get my job two hour
-        SetCurrentMobSkill(battleutils::GetTwoHourMobSkill(m_PMob->GetSJob()));
+        SetCurrentMobSkill(battleutils::GetTwoHourMobSkill(m_PMob->GetSJob(), m_PMob->m_Family));
 
         if (m_PMobSkill != nullptr)
         {
@@ -821,10 +837,15 @@ void CAIMobDummy::ActionAbilityStart()
     // no 2 hour picked, lets find a normal skill
     if (!valid)
     {
-        std::random_shuffle(MobSkills.begin(), MobSkills.end()); //Start the selection process by randomizing the container
+        std::shuffle(MobSkills.begin(), MobSkills.end(), dsprand::mt()); //Start the selection process by randomizing the container
 
-        for (auto PMobSkill : MobSkills)
+        for (auto skillid : MobSkills)
         {
+            auto PMobSkill = battleutils::GetMobSkill(skillid);
+            if (!PMobSkill)
+            {
+                continue;
+            }
             if (PMobSkill->getValidTargets() == TARGET_ENEMY) //enemy
             {
                 m_PBattleSubTarget = m_PBattleTarget;
@@ -854,7 +875,6 @@ void CAIMobDummy::ActionAbilityStart()
     if (!valid)
     {
         // couldn't find anything so go back to attack
-        m_PMob->health.tp = 0;
         TransitionBack(true);
         return;
     }
@@ -991,6 +1011,8 @@ void CAIMobDummy::ActionAbilityFinish()
     }
 
     m_DeaggroTime = m_Tick;
+    m_LastMobSkillTime = m_Tick;
+
     m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
 
     // store the skill used
@@ -1006,6 +1028,12 @@ void CAIMobDummy::ActionAbilityFinish()
         findFlags |= FINDFLAGS_HIT_ALL;
     }
 
+    // Mob buff abilities also hit monster's pets
+    if(m_PMobSkill->getValidTargets() == TARGET_SELF)
+    {
+        findFlags |= FINDFLAGS_PET;
+    }
+
     if (m_PTargetFind->isWithinRange(&m_PBattleSubTarget->loc.p, distance))
     {
         if (m_PMobSkill->isAoE())
@@ -1015,11 +1043,11 @@ void CAIMobDummy::ActionAbilityFinish()
         else if (m_PMobSkill->isConal())
         {
             float angle = 45.0f;
-            m_PTargetFind->findWithinCone(m_PBattleSubTarget, distance, angle);
+            m_PTargetFind->findWithinCone(m_PBattleSubTarget, distance, angle, findFlags);
         }
         else
         {
-            m_PTargetFind->findSingleTarget(m_PBattleSubTarget);
+            m_PTargetFind->findSingleTarget(m_PBattleSubTarget, findFlags);
         }
     }
 
@@ -1141,6 +1169,8 @@ void CAIMobDummy::ActionAbilityFinish()
 void CAIMobDummy::ActionAbilityInterrupt()
 {
     m_LastActionTime = m_Tick;
+    m_LastMobSkillTime = m_Tick;
+
     //cancel the whole readying animation
     apAction_t Action;
     m_PMob->m_ActionList.clear();
@@ -1255,7 +1285,26 @@ void CAIMobDummy::ActionMagicCasting()
 void CAIMobDummy::ActionMagicFinish()
 {
     m_LastActionTime = m_Tick;
-    m_LastMagicTime = m_Tick - dsprand::GetRandomNumber(m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) / 2);
+
+    int32 standbackCool = m_PMob->getBigMobMod(MOBMOD_STANDBACK_COOL);
+    CBattleEntity* PBattleTarget = m_PBattleSubTarget;
+
+    // Use current battle target if mob was casting on itself
+    if (PBattleTarget == m_PMob && m_PBattleTarget != nullptr)
+    {
+        PBattleTarget = m_PBattleTarget;
+    }
+
+    if (standbackCool != 0 && distance(m_PMob->loc.p, PBattleTarget->loc.p) > m_PMob->m_ModelSize)
+    {
+        // magic casting cooldown is usually reduced for some mobs (blm) when casting from a distance
+        m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + standbackCool - dsprand::GetRandomNumber(standbackCool / 4);
+    }
+    else
+    {
+        m_LastMagicTime = m_Tick - dsprand::GetRandomNumber(m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) / 1.75f);
+    }
+
     m_DeaggroTime = m_Tick;
 
     m_PMagicState->FinishSpell();
@@ -1268,7 +1317,7 @@ void CAIMobDummy::ActionMagicFinish()
         m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SOUL_VOICE,0))
     {
         // cast magic sooner
-        m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + 10000;
+        m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + 5000;
     }
 
     // display animation, then continue fighting
@@ -1338,7 +1387,7 @@ void CAIMobDummy::ActionAttack()
         m_DeaggroTime = m_Tick;
     }
 
-    if (!m_actionQueue.empty() && m_Tick >= m_LastSpecialTime)
+    if (!m_actionQueue.empty() && m_Tick >= m_LastMobSkillTime + MOB_SKILL_COOL)
     {
         quAction_t action = m_actionQueue.front();
         m_actionQueue.pop();
@@ -1414,7 +1463,7 @@ void CAIMobDummy::ActionAttack()
     }
 
     // Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-    if (m_PSpecialSkill != nullptr && !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) && (m_Tick >= m_LastSpecialTime + m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)) && TrySpecialSkill())
+    if (m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 && !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) && (m_Tick >= m_LastSpecialTime + m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)) && TrySpecialSkill())
     {
         FinishAttack();
         return;
@@ -1424,7 +1473,7 @@ void CAIMobDummy::ActionAttack()
         FinishAttack();
         return;
     }
-    else if (m_Tick >= m_LastSpecialTime && dsprand::GetRandomNumber(100) < m_PMob->TPUseChance())
+    else if (m_Tick >= m_LastMobSkillTime + MOB_SKILL_COOL && dsprand::GetRandomNumber(100) < m_PMob->TPUseChance())
     {
         m_ActionType = ACTION_MOBABILITY_START;
         ActionAbilityStart();
@@ -1450,56 +1499,10 @@ void CAIMobDummy::ActionAttack()
             {
                 SetCurrentMobSkill(teleportBegin);
                 m_PBattleSubTarget = m_PMob;
-                m_LastStandbackTime = m_Tick;
                 m_ActionType = ACTION_MOBABILITY_FINISH;
                 ActionAbilityFinish();
                 m_LastSpecialTime = m_Tick;
             }
-        }
-    }
-    // try to standback if I can
-
-    if (m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME) && m_PMob->getMobMod(MOBMOD_TELEPORT_TYPE) != 2)
-    {
-        if (currentDistance > 28)
-        {
-            // you're so far away i'm going to standback when I get closer
-            m_CanStandback = true;
-        }
-        else if (m_PSpecialSkill == nullptr && !CanCastSpells() || m_PMob->GetHPP() <= 65)
-        {
-            // can't standback anymore cause I don't have any ranged moves
-            m_CanStandback = false;
-
-            // don't stand back again
-            m_LastStandbackTime = m_Tick + m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME);
-        }
-        else if (currentDistance < 20 && currentDistance > m_PMob->m_ModelSize * 2)
-        {
-
-            if (m_CanStandback && currentDistance > m_PMob->m_ModelSize)
-            {
-                uint16 halfStandback = (float)m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME)/3;
-                m_LastStandbackTime = m_Tick + m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME) - dsprand::GetRandomNumber(halfStandback);
-                m_CanStandback = false;
-            }
-
-            if (m_Tick >= m_LastStandbackTime + m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME))
-            {
-                // speed up my ranged attacks cause i'm waiting here
-                if (m_LastSpecialTime > 1000 && m_LastMagicTime > 500)
-                {
-                    m_LastSpecialTime -= 1000;
-                    m_LastMagicTime -= 500;
-                }
-                FinishAttack();
-            }
-
-        }
-        else
-        {
-            // if i'm chasing too much, just melee attack
-            m_LastStandbackTime -= 1000;
         }
     }
 
@@ -1508,25 +1511,24 @@ void CAIMobDummy::ActionAttack()
     //If using mobskills instead of attacks, calculate distance to move and ability to use here
     if (m_mobskillattack)
     {
-        std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->getMobMod(MOBMOD_SKILLS));
+        std::vector<uint16> MobSkills = battleutils::GetMobSkillList(m_PMob->getMobMod(MOBMOD_SKILL_LIST));
 
         //get rid of every skill that doesn't have the auto attack flag
-        for (int i = 0; i<MobSkills.size(); i++)
-        {
-            if (!(MobSkills.at(i)->getFlag() & SKILLFLAG_REPLACE_ATTACK))
-            {
-                MobSkills.erase(MobSkills.begin() + i);
-                i--;
-            }
-        }
-        std::random_shuffle(MobSkills.begin(), MobSkills.end()); //Start the selection process by randomizing the container
+        MobSkills.erase(std::remove_if(MobSkills.begin(), MobSkills.end(), [](uint16 skillid) {
+            auto PMobSkill = battleutils::GetMobSkill(skillid);
+            if (PMobSkill->getFlag() & SKILLFLAG_REPLACE_ATTACK)
+                return false;
+            return true;
+        }), MobSkills.end());
+        std::shuffle(MobSkills.begin(), MobSkills.end(), dsprand::mt()); //Start the selection process by randomizing the container
 
         for (int i = 0; i<MobSkills.size(); i++){
-            SetCurrentMobSkill(MobSkills.at(i));
-            if (m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
+            auto PMobSkill = battleutils::GetMobSkill(MobSkills.at(i));
+            SetCurrentMobSkill(PMobSkill);
+            if (m_PMobSkill && m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
                 m_PBattleSubTarget = m_PBattleTarget;
             }
-            else if (m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
+            else if (m_PMobSkill && m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
                 m_PBattleSubTarget = m_PMob;
             }
             else
@@ -1534,6 +1536,7 @@ void CAIMobDummy::ActionAttack()
                 continue;
             }
             float currentDistance = distance(m_PMob->loc.p, m_PBattleSubTarget->loc.p);
+
             if (currentDistance <= m_PMobSkill->getDistance())
             {
                 int16 WeaponDelay = m_PMob->GetWeaponDelay(true);
@@ -1590,11 +1593,13 @@ void CAIMobDummy::ActionAttack()
                     return;
                 }
             }
-            else if (!(m_PMob->m_Behaviour & BEHAVIOUR_STANDBACK && currentDistance < 20) &&
-                !(m_PMob->getMobMod(MOBMOD_SPAWN_LEASH) > 0 && distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) > m_PMob->getMobMod(MOBMOD_SPAWN_LEASH)))
+            else if (CanMoveForward(currentDistance))
             {
 
-                m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
+                // stand around an enemy between 1-2 yalms away
+                float distanceFromTarget = dsp_cap(currentDistance, 1.0f, 2.0f);
+
+                m_PPathFind->PathAround(m_PBattleTarget->loc.p, distanceFromTarget, PATHFLAG_WALLHACK | PATHFLAG_RUN | PATHFLAG_SLIDE);
                 m_PPathFind->FollowPath();
 
                 // recalculate
@@ -1903,7 +1908,7 @@ void CAIMobDummy::ActionAttack()
             m_DeaggroTime = m_Tick;
         }
     }
-    else if (m_Tick >= m_LastSpecialTime && dsprand::GetRandomNumber(100) < m_PMob->TPUseChance())
+    else if (m_Tick >= m_LastMobSkillTime + MOB_SKILL_COOL && dsprand::GetRandomNumber(100) < m_PMob->TPUseChance())
     {
         // not in range to attack my target
         // so try an other tp move
@@ -1989,7 +1994,7 @@ void CAIMobDummy::TryLink()
     // Avatars defend masters by attacking mobs if the avatar isn't attacking anything currently (bodyguard behaviour)
     if (m_PBattleTarget->PPet != nullptr && m_PBattleTarget->PPet->PBattleAI->GetBattleTarget()==nullptr)
     {
-        if (((CPetEntity*)m_PBattleTarget->PPet)->getPetType()==PETTYPE_AVATAR)
+        if (m_PBattleTarget->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PBattleTarget->PPet)->getPetType()==PETTYPE_AVATAR)
         {
             m_PBattleTarget->PPet->PBattleAI->SetBattleTarget(m_PMob);
         }
@@ -2049,10 +2054,14 @@ bool CAIMobDummy::CanCastSpells()
         return false;
     }
 
-    // smn can only cast spells if it has an existing pet
-    if (m_PMob->GetMJob() == JOB_SMN && m_PMob->PPet == nullptr)
+    // smn can only cast spells if it has no pet
+    if (m_PMob->GetMJob() == JOB_SMN)
     {
-        return false;
+        if(m_PMob->PPet == nullptr ||
+                !m_PMob->PPet->isDead())
+        {
+            return false;
+        }
     }
 
     return true;
@@ -2141,15 +2150,6 @@ bool CAIMobDummy::TryCastSpell()
 
     int chosenSpellId = -1;
 
-    // only cast first spell if target is out of range
-    if (m_firstSpell && m_PBattleTarget != nullptr && distance(m_PMob->loc.p, m_PBattleTarget->loc.p) <= m_PMob->m_ModelSize)
-    {
-
-        m_firstSpell = false;
-        m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + dsprand::GetRandomNumber(3000,8000);
-        return false;
-    }
-
     if (m_PMob->m_HasSpellScript)
     {
         // skip logic and follow script
@@ -2210,12 +2210,17 @@ void CAIMobDummy::ActionSpecialSkill()
     m_LastActionTime = m_Tick;
     m_DeaggroTime = m_Tick;
 
-    uint32 halfSpecial = (float)m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)/2;
 
-    m_LastSpecialTime = m_Tick - dsprand::GetRandomNumber(halfSpecial);
-
-    // don't use magic right after
-    m_LastMagicTime = m_Tick + m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + dsprand::GetRandomNumber(5000) + 4000;
+    int32 standbackCool = m_PMob->getBigMobMod(MOBMOD_STANDBACK_COOL);
+    if (standbackCool != 0 && distance(m_PMob->loc.p, m_PBattleSubTarget->loc.p) > m_PMob->m_ModelSize)
+    {
+        // reduce special cool down when using skill outside of attack range (rng mobs)
+        m_LastSpecialTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) + standbackCool;
+    }
+    else
+    {
+        m_LastSpecialTime = m_Tick;
+    }
 
     m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
     apAction_t Action;
@@ -2320,10 +2325,14 @@ void CAIMobDummy::CastSpell(uint16 spellId, CBattleEntity* PTarget)
 
 bool CAIMobDummy::TrySpecialSkill()
 {
-    if (m_PSpecialSkill == nullptr)
-    {
+    // get my special skill
+    m_PSpecialSkill = battleutils::GetMobSkill(m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL));
+
+    if(m_PSpecialSkill == nullptr){
+        ShowError("CAIMobDummy::ActionSpawn Special skill was set but not found! (%d)\n", m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL));
         return false;
     }
+
     if (!m_MobAbilityEnabled)
     {
         return false;
@@ -2386,7 +2395,8 @@ void CAIMobDummy::FollowPath()
         // if I just finished reset my last action time
         if (!m_PPathFind->IsFollowingPath())
         {
-            m_LastActionTime = m_Tick - dsprand::GetRandomNumber(m_PMob->getBigMobMod(MOBMOD_ROAM_COOL)) + 10000;
+            uint16 roamRandomness = (float)m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) / m_PMob->GetRoamRate();
+            m_LastActionTime = m_Tick - dsprand::GetRandomNumber(roamRandomness);
 
             // i'm a worm pop back up
             if (m_PMob->m_roamFlags & ROAMFLAG_WORM)
@@ -2398,9 +2408,7 @@ void CAIMobDummy::FollowPath()
             // face spawn rotation if I just moved back to spawn
             // used by dynamis mobs, bcnm mobs etc
             if ((m_PMob->m_roamFlags & ROAMFLAG_EVENT) &&
-                 m_PMob->m_SpawnPoint.x == m_PMob->loc.p.x &&
-                 m_PMob->m_SpawnPoint.y == m_PMob->loc.p.y &&
-                 m_PMob->m_SpawnPoint.z == m_PMob->loc.p.z)
+                distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) <= m_PMob->m_maxRoamDistance)
             {
                 m_PMob->loc.p.rotation = m_PMob->m_SpawnPoint.rotation;
             }
@@ -2427,15 +2435,22 @@ void CAIMobDummy::SetupEngage()
     m_StartBattle = m_Tick;
     m_DeaggroTime = m_Tick;
     m_LastActionTime = m_Tick - 1000; // Why do we subtract 1 sec?
-    m_firstSpell = true;
-    m_CanStandback = true;
-    m_PPathFind->Clear();
 
-    // drg shouldn't use jump right away
-    if (m_PMob->GetMJob() == JOB_DRG && m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) != 0)
+    JOBTYPE mJob = m_PMob->GetMJob();
+
+    // Don't cast magic or use special ability right away
+    if(m_PMob->getBigMobMod(MOBMOD_MAGIC_DELAY) != 0)
     {
-        m_LastSpecialTime = m_Tick - dsprand::GetRandomNumber(m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)) + 5000;
+        m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + dsprand::GetRandomNumber(m_PMob->getBigMobMod(MOBMOD_MAGIC_DELAY));
     }
+
+    if(m_PMob->getBigMobMod(MOBMOD_SPECIAL_DELAY) != 0)
+    {
+        m_LastSpecialTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) + dsprand::GetRandomNumber(m_PMob->getBigMobMod(MOBMOD_SPECIAL_DELAY));
+    }
+
+    m_firstSpell = true;
+    m_PPathFind->Clear();
 
     if (m_PMob->m_roamFlags & ROAMFLAG_WORM)
     {
@@ -2622,4 +2637,43 @@ void CAIMobDummy::OnTick()
     {
         luautils::OnMobFight(m_PMob, m_PBattleTarget);
     }
+}
+
+void CAIMobDummy::Despawn()
+{
+    // Despawn instantly
+    m_LastActionTime = m_Tick - 12000;
+    m_PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
+
+    if (m_PMob->PPet != nullptr && m_PMob->PPet->isAlive() && m_PMob->PPet->PBattleAI != nullptr && m_PMob->GetMJob() == JOB_SMN)
+    {
+        CAIMobDummy* ai = (CAIMobDummy*)m_PMob->PPet->PBattleAI;
+        ai->Despawn();
+    }
+}
+
+bool CAIMobDummy::CanMoveForward(float currentDistance)
+{
+    if(m_PMob->m_Behaviour & BEHAVIOUR_STANDBACK && currentDistance < 20)
+    {
+        return false;
+    }
+
+    if(m_PMob->getMobMod(MOBMOD_HP_STANDBACK) == 1 && currentDistance < 20 && m_PMob->GetHPP() > 70)
+    {
+        // Excluding Nins, mobs should not standback if can't cast magic
+        if (m_PMob->GetMJob() != JOB_NIN && m_PMob->SpellContainer->HasSpells() && !CanCastSpells())
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    if(m_PMob->getMobMod(MOBMOD_SPAWN_LEASH) > 0 && distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) > m_PMob->getMobMod(MOBMOD_SPAWN_LEASH))
+    {
+        return false;
+    }
+
+    return true;
 }

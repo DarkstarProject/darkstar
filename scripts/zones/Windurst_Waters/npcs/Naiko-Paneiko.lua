@@ -21,8 +21,8 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 2) then
-		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
+	if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 2) then
+		if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
 			player:setVar("ridingOnTheClouds_4",0);
 			player:tradeComplete();
 			player:addKeyItem(SPIRITED_STONE);
@@ -44,9 +44,9 @@ function onTrigger(player,npc)
 	
 	MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
 	
-	if(MakingHeadlines == 0) then
+	if (MakingHeadlines == 0) then
 		player:startEvent(0x0299); -- Quest Start
-	elseif(MakingHeadlines == 1) then
+	elseif (MakingHeadlines == 1) then
 		prog = player:getVar("QuestMakingHeadlines_var"); 
 		-- 	Variable to track if player has talked to 4 NPCs and a door
 		-- 	1 = Kyume
@@ -54,20 +54,20 @@ function onTrigger(player,npc)
 		--	4 = Hiwom
 		--	8 = Umumu
 		--	16 = Mahogany Door
-		if(testflag(tonumber(prog),1) == false or testflag(tonumber(prog),2) == false or testflag(tonumber(prog),4) == false or testflag(tonumber(prog),8) == false) then
+		if (testflag(tonumber(prog),1) == false or testflag(tonumber(prog),2) == false or testflag(tonumber(prog),4) == false or testflag(tonumber(prog),8) == false) then
 			rand = math.random(1,2);
-			if(rand == 1) then
+			if (rand == 1) then
 				player:startEvent(0x029a); -- Quest Reminder 1
 			else
 				player:startEvent(0x029f); -- Quest Reminder 2
 			end			
-		elseif(testflag(tonumber(prog),8) == true and testflag(tonumber(prog),16) == false) then
+		elseif (testflag(tonumber(prog),8) == true and testflag(tonumber(prog),16) == false) then
 			player:startEvent(0x02a1); -- Advises to validate story
-		elseif(prog == 31) then
+		elseif (prog == 31) then
 			rand = math.random(1,2);
-			if(rand == 1) then
+			if (rand == 1) then
 				player:startEvent(0x02a2); -- Quest finish 1
-			elseif(scoop == 4 and door == 1) then
+			elseif (scoop == 4 and door == 1) then
 				player:startEvent(0x029e);	-- Quest finish 2
 			end
 		end
@@ -94,7 +94,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x0299) then
+	if (csid == 0x0299) then
 		player:addQuest(WINDURST,MAKING_HEADLINES);
 	elseif (csid == 0x029e or csid == 0x02a2) then
 		player:addTitle(EDITORS_HATCHET_MAN);

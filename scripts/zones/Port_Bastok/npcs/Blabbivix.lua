@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if(player:sendGuild(60418,11,22,3)) then
+    if (player:sendGuild(60418,11,22,3)) then
         player:showText(npc,BLABBIVIX_SHOP_DIALOG);
     end
 end; 

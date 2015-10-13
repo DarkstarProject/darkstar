@@ -31,6 +31,7 @@ This file is part of DarkStar-server source code.
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
+#include <array>
 
 #include "../lua/luautils.h"
 
@@ -90,8 +91,8 @@ This file is part of DarkStar-server source code.
 *																		*
 ************************************************************************/
 
-uint16 g_ExpTable[50][20];
-uint16 g_ExpPerLevel[100];
+std::array<std::array<uint16, 20>, 50> g_ExpTable;
+std::array<uint16, 100> g_ExpPerLevel;
 
 /************************************************************************
 *																		*
@@ -131,6 +132,7 @@ namespace charutils
         uint8 slvl = PChar->GetSLevel();
         JOBTYPE mjob = PChar->GetMJob();
         JOBTYPE sjob = PChar->GetSJob();
+        MERIT_TYPE statMerit[] = { MERIT_STR, MERIT_DEX, MERIT_VIT, MERIT_AGI, MERIT_INT, MERIT_MND, MERIT_CHR };
 
         uint8 race = 0;					//Human
 
@@ -291,7 +293,7 @@ namespace charutils
             }
 
             // get each merit bonus stat, str,dex,vit and so on...
-            MeritBonus = PChar->PMeritPoints->GetMeritValue((Merit_t*)PChar->PMeritPoints->GetMeritByIndex(StatIndex), PChar);
+            MeritBonus = PChar->PMeritPoints->GetMeritValue(statMerit[StatIndex - 2], PChar);
 
             // Вывод значения
             WBUFW(&PChar->stats, counter) = (uint16)(map_config.player_stat_multiplier * (raceStat + jobStat + sJobStat) + MeritBonus);
@@ -383,8 +385,8 @@ namespace charutils
             length = 0;
             int8* spells = nullptr;
             Sql_GetData(SqlHandle, 16, &spells, &length);
-            memcpy(PChar->m_SpellList, spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
-            memcpy(PChar->m_EnabledSpellList, spells, (length > sizeof(PChar->m_EnabledSpellList) ? sizeof(PChar->m_EnabledSpellList) : length));
+            memcpy(PChar->m_SpellList.data(), spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
+            memcpy(PChar->m_EnabledSpellList.data(), spells, (length > sizeof(PChar->m_EnabledSpellList) ? sizeof(PChar->m_EnabledSpellList) : length));
             filterEnabledSpells(PChar);
 
             length = 0;
@@ -1343,7 +1345,7 @@ namespace charutils
 
     /************************************************************************
     *                                                                       *
-    *  Проверяем возможность обмена между персонажами                       *
+    *  Check the possibility of trade between the characters             *
     *                                                                       *
     ************************************************************************/
 
@@ -1351,6 +1353,7 @@ namespace charutils
     {
         if (PTarget->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() < PChar->UContainer->GetItemsCount())
         {
+			ShowDebug(CL_CYAN"Unable to trade, %s doesn't have enough inventory space\n" CL_RESET, PTarget->GetName());
             return false;
         }
         for (uint8 slotid = 0; slotid <= 8; ++slotid)
@@ -1361,6 +1364,7 @@ namespace charutils
             {
                 if (HasItem(PTarget, PItem->getID()))
                 {
+					ShowDebug(CL_CYAN"Unable to trade, %s has the rare item already (%s)\n" CL_RESET, PTarget->GetName(), PItem->getName());
                     return false;
                 }
             }
@@ -1376,6 +1380,7 @@ namespace charutils
 
     void DoTrade(CCharEntity* PChar, CCharEntity* PTarget)
     {
+		ShowDebug(CL_CYAN"%s->%s trade item movement started\n" CL_RESET, PChar->GetName(), PTarget->GetName());
         for (uint8 slotid = 0; slotid <= 8; ++slotid)
         {
             CItem* PItem = PChar->UContainer->GetItem(slotid);
@@ -1385,13 +1390,16 @@ namespace charutils
                 if (PItem->getStackSize() == 1)
                 {
                     CItem* PNewItem = itemutils::GetItem(PItem);
+					ShowDebug(CL_CYAN"Adding %s to %s inventory stacksize 1\n" CL_RESET, PNewItem->getName(), PTarget->GetName());
                     PNewItem->setReserve(0);
                     AddItem(PTarget, LOC_INVENTORY, PNewItem);
                 }
                 else 
                 {
+					ShowDebug(CL_CYAN"Adding %s to %s inventory\n" CL_RESET, PItem->getName(), PTarget->GetName());
                     AddItem(PTarget, LOC_INVENTORY, PItem->getID(), PItem->getReserve());
                 }
+				ShowDebug(CL_CYAN"Removing %s from %s's inventory\n" CL_RESET, PItem->getName(), PChar->GetName());
                 UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), -PItem->getReserve());
                 PItem->setReserve(0);
             }
@@ -2336,7 +2344,11 @@ namespace charutils
 
     void BuildingCharSkillsTable(CCharEntity* PChar)
     {
-        uint16 meritIndex = 8;		// h2h merit index starts at 8
+        MERIT_TYPE skillMerit[] = { MERIT_H2H, MERIT_DAGGER, MERIT_SWORD, MERIT_GSWORD, MERIT_AXE, MERIT_GAXE, MERIT_SCYTHE, MERIT_POLEARM, MERIT_KATANA, MERIT_GKATANA, MERIT_CLUB, MERIT_STAFF,
+            MERIT_ARCHERY, MERIT_MARKSMANSHIP, MERIT_THROWING, MERIT_GUARDING, MERIT_EVASION, MERIT_SHIELD, MERIT_PARRYING, MERIT_DIVINE, MERIT_HEALING, MERIT_ENHANCING, MERIT_ENFEEBLING,
+            MERIT_ELEMENTAL, MERIT_DARK, MERIT_SUMMONING, MERIT_NINJITSU, MERIT_SINGING, MERIT_STRING, MERIT_WIND, MERIT_BLUE, MERIT_GEO, MERIT_HANDBELL };
+
+        uint8 meritIndex = 0;
 
         for (int32 i = 0; i < 48; ++i)
         {
@@ -2415,9 +2427,9 @@ namespace charutils
             }
 
             //ignore these indexes when calculating merits
-            if (i < 13 || i > 24)
+            if ( i > 0 && (i < 13 || i > 24) && i < 46)
             {
-                skillBonus += PChar->PMeritPoints->GetMeritValue((Merit_t*)PChar->PMeritPoints->GetMeritByIndex(meritIndex), PChar);
+                skillBonus += PChar->PMeritPoints->GetMeritValue(skillMerit[meritIndex], PChar);
                 meritIndex++;
             }
 
@@ -2650,28 +2662,37 @@ namespace charutils
 
     int32 hasSpell(CCharEntity* PChar, uint16 SpellID)
     {
-        return hasBit(SpellID, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
+        return PChar->m_EnabledSpellList[SpellID];
     }
 
     int32 addSpell(CCharEntity* PChar, uint16 SpellID)
     {
-        addBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
-        return addBit(SpellID, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
+        if (!hasSpell(PChar, SpellID)) {
+            PChar->m_EnabledSpellList[SpellID] = true;
+            PChar->m_SpellList[SpellID] = true;
+            return 1;
+        }
+        return 0;
     }
 
     int32 delSpell(CCharEntity* PChar, uint16 SpellID)
     {
-        delBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
-        return delBit(SpellID, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
+        if (hasSpell(PChar, SpellID)) {
+            PChar->m_SpellList[SpellID] = false;
+            PChar->m_EnabledSpellList[SpellID] = false;
+            return 1;
+        }
+        return 0;
     }
 
     void filterEnabledSpells(CCharEntity* PChar)
     {
-        for (int i = 0; i < MAX_SPELL_ID; i++)
+        //128 bytes, 1 bit per byte
+        for (int i = 0; i < 1024; ++i)
         {
             if (spell::GetSpell(i) == nullptr || luautils::IsExpansionEnabled(spell::GetSpell(i)->getExpansionCode()) == false)
             {
-                delBit(i, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
+                PChar->m_EnabledSpellList[i] = false;
             }
         }
     }
@@ -2863,9 +2884,6 @@ namespace charutils
 
     void LoadExpTable()
     {
-        memset(g_ExpTable, 0, sizeof(g_ExpTable));
-        memset(g_ExpPerLevel, 0, sizeof(g_ExpPerLevel));
-
         const int8* fmtQuery = "SELECT r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20 "
             "FROM exp_table "
             "ORDER BY level ASC "
@@ -2955,19 +2973,28 @@ namespace charutils
         // Distribute gil to player/party/alliance
         if (PChar->PParty != nullptr)
         {
-            PChar->ForAlliance([PMob, gil](CBattleEntity* PPartyMember)
+            std::vector<CCharEntity*> members;
+
+            // First gather all valid party members
+            PChar->ForAlliance([PMob, &members](CBattleEntity* PPartyMember)
             {
-                uint8 count = 0;
-                //work out how many pt members should get the gil
-                CCharEntity* PMember = (CCharEntity*)PPartyMember;
                 if (PPartyMember->getZone() == PMob->getZone() && distance(PPartyMember->loc.p, PMob->loc.p) < 100)
                 {
-                    count++;
-                    uint32 gilperperson = count == 0 ? gil : (gil / count);
-                    UpdateItem(PMember, LOC_INVENTORY, 0, gilperperson);
-                    PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, gilperperson, 0, 565));
+                    members.push_back((CCharEntity*)PPartyMember);
                 }
             });
+
+            // all members might not be in range
+            if (members.size() > 0)
+            {
+                // distribute gil
+                uint32 gilPerPerson = gil / members.size();
+                for (auto PMember : members)
+                {
+                    UpdateItem(PMember, LOC_INVENTORY, 0, gilPerPerson);
+                    PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, gilPerPerson, 0, 565));
+                }
+            }
         }
         else if (distance(PChar->loc.p, PMob->loc.p) < 100)
         {
@@ -3867,7 +3894,7 @@ namespace charutils
             "WHERE charid = %u;";
 
         int8 spells[sizeof(PChar->m_SpellList) * 2 + 1];
-        Sql_EscapeStringLen(SqlHandle, spells, (const int8*)PChar->m_SpellList, sizeof(PChar->m_SpellList));
+        Sql_EscapeStringLen(SqlHandle, spells, (const int8*)PChar->m_SpellList.data(), sizeof(PChar->m_SpellList));
 
         Sql_Query(SqlHandle, Query,
                   spells,
@@ -4295,24 +4322,24 @@ namespace charutils
         uint16 reduction = PChar->getMod(MOD_PERPETUATION_REDUCTION);
 
         static const MODIFIER strong[8] = {
-            MOD_FIRE_AFFINITY,
-            MOD_EARTH_AFFINITY,
-            MOD_WATER_AFFINITY,
-            MOD_WIND_AFFINITY,
-            MOD_ICE_AFFINITY,
-            MOD_THUNDER_AFFINITY,
-            MOD_LIGHT_AFFINITY,
-            MOD_DARK_AFFINITY };
+            MOD_FIRE_AFFINITY_PERP,
+            MOD_EARTH_AFFINITY_PERP,
+            MOD_WATER_AFFINITY_PERP,
+            MOD_WIND_AFFINITY_PERP,
+            MOD_ICE_AFFINITY_PERP,
+            MOD_THUNDER_AFFINITY_PERP,
+            MOD_LIGHT_AFFINITY_PERP,
+            MOD_DARK_AFFINITY_PERP };
 
         static const MODIFIER weak[8] = {
-            MOD_WATER_AFFINITY,
-            MOD_WIND_AFFINITY,
-            MOD_THUNDER_AFFINITY,
-            MOD_ICE_AFFINITY,
-            MOD_FIRE_AFFINITY,
-            MOD_EARTH_AFFINITY,
-            MOD_DARK_AFFINITY,
-            MOD_LIGHT_AFFINITY };
+            MOD_WATER_AFFINITY_PERP,
+            MOD_WIND_AFFINITY_PERP,
+            MOD_THUNDER_AFFINITY_PERP,
+            MOD_ICE_AFFINITY_PERP,
+            MOD_FIRE_AFFINITY_PERP,
+            MOD_EARTH_AFFINITY_PERP,
+            MOD_DARK_AFFINITY_PERP,
+            MOD_LIGHT_AFFINITY_PERP };
 
         static const WEATHER weatherStrong[8] = {
             WEATHER_HOT_SPELL,
@@ -4328,23 +4355,7 @@ namespace charutils
 
         DSP_DEBUG_BREAK_IF(element > 7);
 
-        int16 affinity = PChar->getMod(strong[element]) - PChar->getMod(weak[element]);
-
-        // TODO: don't use ItemIDs in CORE. it must be MOD
-
-        CItemWeapon* mainHand = (CItemWeapon*)PChar->getEquip(SLOT_MAIN);
-
-        if (mainHand && mainHand->getID() == 18632)
-            affinity = affinity + 1;
-        else if (mainHand && mainHand->getID() == 18633)
-            affinity = affinity + 2;
-
-        //-----------------------------------------------
-
-        if (affinity > 0)
-            reduction = reduction + affinity + 1;
-        else if (affinity < 0)
-            reduction = reduction - affinity - 1;
+        reduction = reduction + PChar->getMod(strong[element]) - PChar->getMod(weak[element]) + PChar->getMod(MOD_ALL_AFFINITY_PERP);
 
         if (CVanaTime::getInstance()->getWeekday() == element)
             reduction = reduction + PChar->getMod(MOD_DAY_REDUCTION);

@@ -8,21 +8,25 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 
 -----------------------------------
--- onMobInitialize Action
+-- onMobInitialize
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
-
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, killer)
-
     killer:addTitle(FAFNIR_SLAYER);
+end;
 
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local Fafnir  = mob:getID();
     local Nidhogg = 17408019;
     local ToD     = GetServerVariable("[POP]Nidhogg");

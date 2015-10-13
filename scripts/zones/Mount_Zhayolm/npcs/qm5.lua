@@ -14,7 +14,7 @@ require("scripts/zones/Mount_Zhayolm/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(2583,1) and trade:getItemCount() == 1) then -- Trade Buffalo Corpse
+	if (trade:hasItemQty(2583,1) and trade:getItemCount() == 1) then -- Trade Buffalo Corpse
 		player:tradeComplete();
 		SpawnMob(17027485,180):updateClaim(player);
 	end

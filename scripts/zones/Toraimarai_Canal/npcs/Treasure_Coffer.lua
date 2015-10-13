@@ -30,20 +30,20 @@ function onTrade(player,npc,trade)
 	-- trade:hasItemQty(1022,1);			-- Thief's Tools
 	local questItemNeeded = 0;
 	local count = trade:getItemCount();
-	if(trade:hasItemQty(1057,1) and count == 1 and player:getVar("WildCard") == 2) then
+	if (trade:hasItemQty(1057,1) and count == 1 and player:getVar("WildCard") == 2) then
 		player:tradeComplete();
 		player:addKeyItem(JOKER_CARD);
 		player:messageSpecial(KEYITEM_OBTAINED,JOKER_CARD);
 		player:setVar("WildCard",3);
 	
-	elseif((trade:hasItemQty(1057,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and count == 1) then 
+	elseif ((trade:hasItemQty(1057,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and count == 1) then 
 		
 		-- IMPORTANT ITEM: AF Keyitems, AF Items, & Map -----------
 		local mJob = player:getMainJob();
 		local zone = player:getZoneID();
 		local listAF = getAFbyZone(zone);
 		for nb = 1,table.getn(listAF),3 do
-			if(player:getQuestStatus(JEUNO,listAF[nb + 1]) ~= QUEST_AVAILABLE and mJob == listAF[nb] and player:hasItem(listAF[nb + 2]) == false) then
+			if (player:getQuestStatus(JEUNO,listAF[nb + 1]) ~= QUEST_AVAILABLE and mJob == listAF[nb] and player:hasItem(listAF[nb + 2]) == false) then
 				questItemNeeded = 2;
 				break
 			end
@@ -52,23 +52,23 @@ function onTrade(player,npc,trade)
 		
 		local pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
 		local success = 0;
-		if(pack[2] ~= nil) then
+		if (pack[2] ~= nil) then
 			player:messageSpecial(pack[2]);
 			success = pack[1];
 		else
 			success = pack[1];
 		end
 		
-		if(success ~= -2) then
+		if (success ~= -2) then
 			player:tradeComplete();
 			
-			if(math.random() <= success) then
+			if (math.random() <= success) then
 				-- Succeded to open the coffer
 				player:messageSpecial(CHEST_UNLOCKED);
 				
-				if(questItemNeeded == 2) then
+				if (questItemNeeded == 2) then
 					for nb = 1,table.getn(listAF),3 do
-						if(mJob == listAF[nb]) then
+						if (mJob == listAF[nb]) then
 							player:addItem(listAF[nb + 2]);
 							player:messageSpecial(ITEM_OBTAINED,listAF[nb + 2]);
 							break
@@ -82,7 +82,7 @@ function onTrade(player,npc,trade)
 					-- print("[1]", loot[1]); -- debug
 					-- print("[2]", loot[2]); -- debug
 					
-					if(loot[1]=="gil") then
+					if (loot[1]=="gil") then
 						player:addGil(loot[2]);
 						player:messageSpecial(GIL_OBTAINED,loot[2]);
 					else

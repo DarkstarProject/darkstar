@@ -48,7 +48,7 @@ function onZoneIn(player,prevZone)
 
     if (prevZone == 111 and currentMission == 14 and MissionStatus == 10) then
         cs = 0x0001; -- MISSION 5-1
-    elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 2)then
+    elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 2) then
         cs = 0x0017; -- San d'Oria 9-2 
     elseif (player:getCurrentMission(ACP) == THOSE_WHO_LURK_IN_SHADOWS_I) then
         cs = 0x001D;

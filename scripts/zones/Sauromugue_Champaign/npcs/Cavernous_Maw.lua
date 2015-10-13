@@ -27,9 +27,16 @@ end;
 
 function onTrigger(player,npc)
     if (ENABLE_WOTG == 1 and player:hasKeyItem(PURE_WHITE_FEATHER) == false) then
-        player:startEvent(0x01f4,2);
+        player:startEvent(500,2);
     elseif (ENABLE_WOTG == 1 and hasMawActivated(player,2)) then
-        player:startEvent(0x0388);
+        if (player:getCurrentMission(WOTG) == BACK_TO_THE_BEGINNING and
+        (player:getQuestStatus(CRYSTAL_WAR, CLAWS_OF_THE_GRIFFON) == QUEST_COMPLETED or
+         player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_COMPLETED or
+         player:getQuestStatus(CRYSTAL_WAR, FIRES_OF_DISCONTENT) == QUEST_COMPLETED)) then
+		player:startEvent(501);
+        else
+        player:startEvent(904);
+        end
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end
@@ -51,7 +58,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID:",csid);
     -- printf("RESULT:",option);
-    if (csid == 0x01f4) then
+    if (csid == 500) then
         local r = math.random(1,3);
         player:addKeyItem(PURE_WHITE_FEATHER);
         player:messageSpecial(KEYITEM_OBTAINED,PURE_WHITE_FEATHER);
@@ -67,7 +74,12 @@ function onEventFinish(player,csid,option)
             player:addNationTeleport(MAW,4);
             toMaw(player,5); -- go to Sauromugue_Champaign_[S]
         end;
-    elseif (csid == 0x0388 and option == 1) then
+    elseif (csid == 904 and option == 1) then
         toMaw(player,5); -- go to Sauromugue_Champaign_[S]
+    elseif (csid == 501) then
+        player:completeMission(WOTG, BACK_TO_THE_BEGINNING);
+        player:addMission(WOTG, CAIT_SITH);
+        player:addTitle(CAIT_SITHS_ASSISTANT);	
+        toMaw(player,5);
     end;
 end;

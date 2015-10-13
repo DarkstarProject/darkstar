@@ -24,9 +24,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 2) then
-		if(GetMobAction(17289654) == 0 and GetMobAction(17289655) == 0) then
-			if(player:getVar("Mission6-1MobKilled") >= 1) then
+	if (player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 2) then
+		if (GetMobAction(17289654) == 0 and GetMobAction(17289655) == 0) then
+			if (player:getVar("Mission6-1MobKilled") >= 1) then
 				player:addKeyItem(ALTEPA_MOONPEBBLE);
 				player:messageSpecial(KEYITEM_OBTAINED,ALTEPA_MOONPEBBLE);
 				player:setVar("Mission6-1MobKilled",0);

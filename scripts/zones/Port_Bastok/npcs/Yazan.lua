@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 
 	BiteDust = player:getQuestStatus(BASTOK,BITE_THE_DUST);
 
-	if(BiteDust ~= QUEST_AVAILABLE and trade:hasItemQty(1015,1) and trade:getItemCount() == 1) then
+	if (BiteDust ~= QUEST_AVAILABLE and trade:hasItemQty(1015,1) and trade:getItemCount() == 1) then
 		player:tradeComplete();
 		player:startEvent(0x00c1);
 	end
@@ -34,9 +34,9 @@ function onTrigger(player,npc)
 
 	BiteDust = player:getQuestStatus(BASTOK,BITE_THE_DUST);
 
-	if(BiteDust == QUEST_AVAILABLE) then
+	if (BiteDust == QUEST_AVAILABLE) then
 		player:startEvent(0x00bf);
-	elseif(BiteDust == QUEST_ACCEPTED) then
+	elseif (BiteDust == QUEST_ACCEPTED) then
 		player:startEvent(0x00c0);
 	else
 		player:startEvent(0x00be);
@@ -61,10 +61,10 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x00bf) then
+	if (csid == 0x00bf) then
 		player:addQuest(BASTOK,BITE_THE_DUST);
-	elseif(csid == 0x00c1) then
-		if(player:getQuestStatus(BASTOK,BITE_THE_DUST) == QUEST_ACCEPTED) then
+	elseif (csid == 0x00c1) then
+		if (player:getQuestStatus(BASTOK,BITE_THE_DUST) == QUEST_ACCEPTED) then
 			player:addTitle(SAND_BLASTER)
 			player:addFame(BASTOK,BAS_FAME*120);
 			player:completeQuest(BASTOK,BITE_THE_DUST);

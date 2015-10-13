@@ -30,20 +30,20 @@ function onMobFight(mob, target)
 	 		mob:addTP(10);
 	 end
 
-	 if(Mem_Recep == 16867382 or Mem_Recep == 16867387) then -- Floor 1
+	 if (Mem_Recep == 16867382 or Mem_Recep == 16867387) then -- Floor 1
   	 for i = Mem_Recep+1, Mem_Recep+3 do -- Keep pets linked
       	if (GetMobAction(i) == 16) then
       	   GetMobByID(i):updateEnmity(target);
      	  end
    	 end
-	 elseif(Mem_Recep == 16867429 or Mem_Recep == 16867436 or Mem_Recep == 16867494 or Mem_Recep == 16867501 or Mem_Recep == 16867508 or -- Floor 2/3
+	 elseif (Mem_Recep == 16867429 or Mem_Recep == 16867436 or Mem_Recep == 16867494 or Mem_Recep == 16867501 or Mem_Recep == 16867508 or -- Floor 2/3
 	  Mem_Recep == 16867515) then 
   	 for i = Mem_Recep+1, Mem_Recep+5 do 
       	if (GetMobAction(i) == 16) then
       	   GetMobByID(i):updateEnmity(target);
      	  end
    	 end   	 
-	 elseif(Mem_Recep == 16867586 or Mem_Recep == 16867595 or Mem_Recep == 16867604) then -- Floor 4
+	 elseif (Mem_Recep == 16867586 or Mem_Recep == 16867595 or Mem_Recep == 16867604) then -- Floor 4
   	 for i = Mem_Recep+1, Mem_Recep+7 do 
       	if (GetMobAction(i) == 16) then
       	   GetMobByID(i):updateEnmity(target);
@@ -105,67 +105,67 @@ function onMobDeath(mob,killer)
 	switch (mob:getID()) : caseof {
 		[16867387] = function (x) 
 		GetNPCByID(16867700):openDoor(180);
-			if(Distance <4 and killeranimation == 0)then 
+			if (Distance <4 and killeranimation == 0) then 
 			    killer:startEvent(32); 
 			end
 		end,
 		[16867382] = function (x) 
 		GetNPCByID(16867699):openDoor(180);
-			if(Distance <4 and killeranimation == 0)then 
+			if (Distance <4 and killeranimation == 0) then 
 					killer:startEvent(33); 	
 			end
 		end,
 		[16867429] = function (x) 
 		GetNPCByID(16867697):openDoor(180);
-			if(Distance <4 and killeranimation == 0)then 
+			if (Distance <4 and killeranimation == 0) then 
 					killer:startEvent(30); 
 			end
 		end,
 		[16867436] = function (x) 
 		GetNPCByID(16867698):openDoor(180);
-			if(Distance <4 and killeranimation == 0)then 
+			if (Distance <4 and killeranimation == 0) then 
 					killer:startEvent(31); 	
 			end
 		end,
 		[16867501] = function (x) 
 		GetNPCByID(16867703):openDoor(180);
-			if(Distance <4 and killeranimation == 0)then 
+			if (Distance <4 and killeranimation == 0) then 
 					killer:startEvent(35); 
 			end
 		end,
 		[16867515] = function (x) 
 		GetNPCByID(16867705):openDoor(180);
-			if(Distance <4 and killeranimation == 0)then 
+			if (Distance <4 and killeranimation == 0) then 
 			        killer:startEvent(36); 
 			end
 		end,
 		[16867494] = function (x) 
 		GetNPCByID(16867702):openDoor(180);
-			if(Distance <4 and killeranimation == 0)then 
+			if (Distance <4 and killeranimation == 0) then 
 			        killer:startEvent(37); 
 			end
 		end,
 		[16867508] = function (x) 
 		GetNPCByID(16867704):openDoor(180);
-			if(Distance <4 and killeranimation == 0)then 
+			if (Distance <4 and killeranimation == 0) then 
 			        killer:startEvent(38); 
 			end
 		end,
 		[16867604] = function (x) 
 		GetNPCByID(16867707):openDoor(180);
-			if(Distance <4 and killeranimation == 0)then 
+			if (Distance <4 and killeranimation == 0) then 
 			        killer:startEvent(34); 
 			end
 		end,
 		[16867586] = function (x) 
 		GetNPCByID(16867701):openDoor(180);
-			if(Distance <4 and killeranimation == 0)then 
+			if (Distance <4 and killeranimation == 0) then 
 			        killer:startEvent(39); 
 			end
 		end,
 		[16867595] = function (x) 
 		GetNPCByID(16867706):openDoor(180);
-		    if(Distance <4 and killeranimation == 0)then 
+		    if (Distance <4 and killeranimation == 0) then 
 			        killer:startEvent(40);
 			end
 		end,

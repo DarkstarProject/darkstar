@@ -15,59 +15,60 @@ ACP      = 9;
 AMK      = 10;
 ASA      = 11;
 SOA      = 12;
+ROV      = 13;
 
 -----------------------------------
 --  San d'Oria (0)
 -----------------------------------
 
-SMASH_THE_ORCISH_SCOUTS = 0;  -- ± --
-BAT_HUNT                = 1;  -- ± --
-SAVE_THE_CHILDREN       = 2;  -- ± --
-THE_RESCUE_DRILL        = 3;  -- ± --
-THE_DAVOI_REPORT        = 4;  -- ± --
-JOURNEY_ABROAD          = 5;  -- ± --
-JOURNEY_TO_BASTOK       = 6;  -- ± --
-JOURNEY_TO_WINDURST     = 7;  -- ± --
-JOURNEY_TO_BASTOK2      = 8;  -- ± --
-JOURNEY_TO_WINDURST2    = 9;  -- ± --
-INFILTRATE_DAVOI        = 10; -- ± --
-THE_CRYSTAL_SPRING      = 11; -- ± --
-APPOINTMENT_TO_JEUNO    = 12; -- ± --
-MAGICITE_SAN_D_ORIA     = 13; -- ± --
-THE_RUINS_OF_FEI_YIN    = 14; -- ± --
-THE_SHADOW_LORD         = 15; -- ± --
-LEAUTE_S_LAST_WISHES    = 16; -- ± --
-RANPERRE_S_FINAL_REST   = 17; -- ± --
-PRESTIGE_OF_THE_PAPSQUE = 18; -- ± --
-THE_SECRET_WEAPON       = 19; -- ± --
-COMING_OF_AGE           = 20; -- ± --
-LIGHTBRINGER            = 21; -- ± --
-BREAKING_BARRIERS       = 22; -- ± --
+SMASH_THE_ORCISH_SCOUTS = 0;  -- Â± --
+BAT_HUNT                = 1;  -- Â± --
+SAVE_THE_CHILDREN       = 2;  -- Â± --
+THE_RESCUE_DRILL        = 3;  -- Â± --
+THE_DAVOI_REPORT        = 4;  -- Â± --
+JOURNEY_ABROAD          = 5;  -- Â± --
+JOURNEY_TO_BASTOK       = 6;  -- Â± --
+JOURNEY_TO_WINDURST     = 7;  -- Â± --
+JOURNEY_TO_BASTOK2      = 8;  -- Â± --
+JOURNEY_TO_WINDURST2    = 9;  -- Â± --
+INFILTRATE_DAVOI        = 10; -- Â± --
+THE_CRYSTAL_SPRING      = 11; -- Â± --
+APPOINTMENT_TO_JEUNO    = 12; -- Â± --
+MAGICITE_SAN_D_ORIA     = 13; -- Â± --
+THE_RUINS_OF_FEI_YIN    = 14; -- Â± --
+THE_SHADOW_LORD         = 15; -- Â± --
+LEAUTE_S_LAST_WISHES    = 16; -- Â± --
+RANPERRE_S_FINAL_REST   = 17; -- Â± --
+PRESTIGE_OF_THE_PAPSQUE = 18; -- Â± --
+THE_SECRET_WEAPON       = 19; -- Â± --
+COMING_OF_AGE           = 20; -- Â± --
+LIGHTBRINGER            = 21; -- Â± --
+BREAKING_BARRIERS       = 22; -- Â± --
 THE_HEIR_TO_THE_LIGHT   = 23;
 
 -----------------------------------
 --  Bastok (1)
 -----------------------------------
 
-THE_ZERUHN_REPORT         = 0;  -- ± --
-GEOLOGICAL_SURVEY         = 1;  -- ± --
-FETICHISM                 = 2;  -- ± --
-THE_CRYSTAL_LINE          = 3;  -- ± --
-WADING_BEASTS             = 4;  -- ± --
-THE_EMISSARY              = 5;  -- ± --
-THE_EMISSARY_SANDORIA     = 6;  -- ± --
-THE_EMISSARY_WINDURST     = 7;  -- ± --
-THE_EMISSARY_SANDORIA2    = 8;  -- ± --
-THE_EMISSARY_WINDURST2    = 9;  -- ± --
-THE_FOUR_MUSKETEERS       = 10; -- ± --
-TO_THE_FORSAKEN_MINES     = 11; -- ± --
-JEUNO_MISSION             = 12; -- ± --
-MAGICITE_BASTOK           = 13; -- ± --
-DARKNESS_RISING           = 14; -- ± --
-XARCABARD_LAND_OF_TRUTHS  = 15; -- ± --
-RETURN_OF_THE_TALEKEEPER  = 16; -- ± --
-THE_PIRATE_S_COVE         = 17; -- ± --
-THE_FINAL_IMAGE           = 18; -- ± --
+THE_ZERUHN_REPORT         = 0;  -- Â± --
+GEOLOGICAL_SURVEY         = 1;  -- Â± --
+FETICHISM                 = 2;  -- Â± --
+THE_CRYSTAL_LINE          = 3;  -- Â± --
+WADING_BEASTS             = 4;  -- Â± --
+THE_EMISSARY              = 5;  -- Â± --
+THE_EMISSARY_SANDORIA     = 6;  -- Â± --
+THE_EMISSARY_WINDURST     = 7;  -- Â± --
+THE_EMISSARY_SANDORIA2    = 8;  -- Â± --
+THE_EMISSARY_WINDURST2    = 9;  -- Â± --
+THE_FOUR_MUSKETEERS       = 10; -- Â± --
+TO_THE_FORSAKEN_MINES     = 11; -- Â± --
+JEUNO_MISSION             = 12; -- Â± --
+MAGICITE_BASTOK           = 13; -- Â± --
+DARKNESS_RISING           = 14; -- Â± --
+XARCABARD_LAND_OF_TRUTHS  = 15; -- Â± --
+RETURN_OF_THE_TALEKEEPER  = 16; -- Â± --
+THE_PIRATE_S_COVE         = 17; -- Â± --
+THE_FINAL_IMAGE           = 18; -- Â± --
 ON_MY_WAY                 = 19;
 THE_CHAINS_THAT_BIND_US   = 20;
 ENTER_THE_TALEKEEPER      = 21;
@@ -78,26 +79,26 @@ WHERE_TWO_PATHS_CONVERGE  = 23;
 --  Windurst (2)
 -----------------------------------
 
-THE_HORUTOTO_RUINS_EXPERIMENT = 0;  -- ± --
-THE_HEART_OF_THE_MATTER       = 1;  -- ± --
-THE_PRICE_OF_PEACE            = 2;  -- ± --
-LOST_FOR_WORDS                = 3;  -- ± --
-A_TESTING_TIME                = 4;  -- ± --
-THE_THREE_KINGDOMS            = 5;  -- ± --
-THE_THREE_KINGDOMS_SANDORIA   = 6;  -- ± --
-THE_THREE_KINGDOMS_BASTOK     = 7;  -- ± --
-THE_THREE_KINGDOMS_SANDORIA2  = 8;  -- ± --
-THE_THREE_KINGDOMS_BASTOK2    = 9;  -- ± --
-TO_EACH_HIS_OWN_RIGHT         = 10; -- ± --
-WRITTEN_IN_THE_STARS          = 11; -- ± --
-A_NEW_JOURNEY                 = 12; -- ± --
-MAGICITE                      = 13; -- ± --
-THE_FINAL_SEAL                = 14; -- ± --
-THE_SHADOW_AWAITS             = 15; -- ± --
-FULL_MOON_FOUNTAIN            = 16; -- ± --
-SAINTLY_INVITATION            = 17; -- ± --
-THE_SIXTH_MINISTRY            = 18; -- ± --
-AWAKENING_OF_THE_GODS         = 19; -- ± --
+THE_HORUTOTO_RUINS_EXPERIMENT = 0;  -- Â± --
+THE_HEART_OF_THE_MATTER       = 1;  -- Â± --
+THE_PRICE_OF_PEACE            = 2;  -- Â± --
+LOST_FOR_WORDS                = 3;  -- Â± --
+A_TESTING_TIME                = 4;  -- Â± --
+THE_THREE_KINGDOMS            = 5;  -- Â± --
+THE_THREE_KINGDOMS_SANDORIA   = 6;  -- Â± --
+THE_THREE_KINGDOMS_BASTOK     = 7;  -- Â± --
+THE_THREE_KINGDOMS_SANDORIA2  = 8;  -- Â± --
+THE_THREE_KINGDOMS_BASTOK2    = 9;  -- Â± --
+TO_EACH_HIS_OWN_RIGHT         = 10; -- Â± --
+WRITTEN_IN_THE_STARS          = 11; -- Â± --
+A_NEW_JOURNEY                 = 12; -- Â± --
+MAGICITE                      = 13; -- Â± --
+THE_FINAL_SEAL                = 14; -- Â± --
+THE_SHADOW_AWAITS             = 15; -- Â± --
+FULL_MOON_FOUNTAIN            = 16; -- Â± --
+SAINTLY_INVITATION            = 17; -- Â± --
+THE_SIXTH_MINISTRY            = 18; -- Â± --
+AWAKENING_OF_THE_GODS         = 19; -- Â± --
 VAIN                          = 20;
 THE_JESTER_WHO_D_BE_KING      = 21;
 DOLL_OF_THE_DEAD              = 22;
@@ -107,21 +108,21 @@ MOON_READING                  = 23;
 --  Zilart Missions (3)
 -----------------------------------
 
-THE_NEW_FRONTIER              = 0;  -- ± --
-WELCOME_TNORG                 = 4;  -- ± --
-KAZAMS_CHIEFTAINESS           = 6;  -- ± --
-THE_TEMPLE_OF_UGGALEPIH       = 8;  -- ± --
-HEADSTONE_PILGRIMAGE          = 10; -- ± --
-THROUGH_THE_QUICKSAND_CAVES   = 12; -- ± --
-THE_CHAMBER_OF_ORACLES        = 14; -- ± --
-RETURN_TO_DELKFUTTS_TOWER     = 16; -- ± --
-ROMAEVE                       = 18; -- ± --
-THE_TEMPLE_OF_DESOLATION      = 20; -- ± --
-THE_HALL_OF_THE_GODS          = 22; -- ± --
-THE_MITHRA_AND_THE_CRYSTAL    = 23; -- ± --
-THE_GATE_OF_THE_GODS          = 24; -- ± --
-ARK_ANGELS                    = 26; -- ± --
-THE_SEALED_SHRINE             = 27; -- ± --
+THE_NEW_FRONTIER              = 0;  -- Â± --
+WELCOME_TNORG                 = 4;  -- Â± --
+KAZAMS_CHIEFTAINESS           = 6;  -- Â± --
+THE_TEMPLE_OF_UGGALEPIH       = 8;  -- Â± --
+HEADSTONE_PILGRIMAGE          = 10; -- Â± --
+THROUGH_THE_QUICKSAND_CAVES   = 12; -- Â± --
+THE_CHAMBER_OF_ORACLES        = 14; -- Â± --
+RETURN_TO_DELKFUTTS_TOWER     = 16; -- Â± --
+ROMAEVE                       = 18; -- Â± --
+THE_TEMPLE_OF_DESOLATION      = 20; -- Â± --
+THE_HALL_OF_THE_GODS          = 22; -- Â± --
+THE_MITHRA_AND_THE_CRYSTAL    = 23; -- Â± --
+THE_GATE_OF_THE_GODS          = 24; -- Â± --
+ARK_ANGELS                    = 26; -- Â± --
+THE_SEALED_SHRINE             = 27; -- Â± --
 THE_CELESTIAL_NEXUS           = 28;
 AWAKENING                     = 30;
 THE_LAST_VERSE                = 31;
@@ -131,68 +132,68 @@ THE_LAST_VERSE                = 31;
 -----------------------------------
 
 ANCIENT_FLAMES_BECKON            = 0  -- Category
-THE_RITES_OF_LIFE                = 1  -- ± --
-BELOW_THE_ARKS                   = 2  -- ± --
-THE_MOTHERCRYSTALS               = 3  -- ± --
+THE_RITES_OF_LIFE                = 1  -- Â± --
+BELOW_THE_ARKS                   = 2  -- Â± --
+THE_MOTHERCRYSTALS               = 3  -- Â± --
 -- THE_ISLE_OF_FORGOTTEN_SAINTS  =    -- Category
-AN_INVITATION_WEST               = 5  -- ± --
-THE_LOST_CITY                    = 15  -- ± --
-DISTANT_BELIEFS                  = 16  -- ± --
-AN_ETERNAL_MELODY                = 17  -- ± --
-ANCIENT_VOWS                     = 18  -- ± --
+AN_INVITATION_WEST               = 5  -- Â± --
+THE_LOST_CITY                    = 15  -- Â± --
+DISTANT_BELIEFS                  = 16  -- Â± --
+AN_ETERNAL_MELODY                = 17  -- Â± --
+ANCIENT_VOWS                     = 18  -- Â± --
 A_TRANSIENT_DREAM                = 19 -- Category
-THE_CALL_OF_THE_WYRMKING         = 20 -- ± --
-A_VESSEL_WITHOUT_A_CAPTAIN       = 27 -- ± --
-THE_ROAD_FORKS                   = 28 -- ± --
+THE_CALL_OF_THE_WYRMKING         = 20 -- Â± --
+A_VESSEL_WITHOUT_A_CAPTAIN       = 27 -- Â± --
+THE_ROAD_FORKS                   = 28 -- Â± --
 -- EMERALD_WATERS                =    -- Sub-category
--- VICISSITUDES                  =    -- ± --
-DESCENDANTS_OF_A_LINE_LOST       = 29 -- ± --
--- LOUVERANCE                    =    -- ± --
+-- VICISSITUDES                  =    -- Â± --
+DESCENDANTS_OF_A_LINE_LOST       = 29 -- Â± --
+-- LOUVERANCE                    =    -- Â± --
 -- MEMORIES_OF_A_MAIDEN          =    -- Sub-category
-COMEDY_OF_ERRORS_ACT_I           = 30 -- ± --
--- COMEDY_OF_ERRORS_ACT_II       =    -- ± --
--- EXIT_STAGE_LEFT               =    -- ± --
-TENDING_AGED_WOUNDS              = 31 -- ± --
-DARKNESS_NAMED                   = 32 -- ± --
+COMEDY_OF_ERRORS_ACT_I           = 30 -- Â± --
+-- COMEDY_OF_ERRORS_ACT_II       =    -- Â± --
+-- EXIT_STAGE_LEFT               =    -- Â± --
+TENDING_AGED_WOUNDS              = 31 -- Â± --
+DARKNESS_NAMED                   = 32 -- Â± --
 -- THE_CRADLES_OF_CHILDREN_LOST  =    -- Category
-SHELTERING_DOUBT                 = 33 -- ± --
-THE_SAVAGE                       = 40 -- ± --
-THE_SECRETS_OF_WORSHIP           = 41 -- ± --
-SLANDEROUS_UTTERINGS             = 42 -- ± --
+SHELTERING_DOUBT                 = 33 -- Â± --
+THE_SAVAGE                       = 40 -- Â± --
+THE_SECRETS_OF_WORSHIP           = 41 -- Â± --
+SLANDEROUS_UTTERINGS             = 42 -- Â± --
 -- THE_RETURN_HOME               =    -- Category
-THE_ENDURING_TUMULT_OF_WAR       = 43 -- ± --
-DESIRES_OF_EMPTINESS             = 52 -- ± --
-THREE_PATHS                      = 54 -- ± --
--- PAST_SINS                     = -- ± --
--- SOUTHERN_LEGEND               = -- ± --
-PARTNERS_WITHOUT_FAME            = 55 -- ± --
--- A_CENTURY_OF_HARDSHIP         = -- ± --
--- DEPARTURES                    = -- ± --
--- THE_PURSUIT_OF_PARADISE       = -- ± --
-SPIRAL                           = 56 -- ± --
--- BRANDED                       = -- ± --
--- PRIDE_AND_HONOR               = -- ± --
--- AND_THE_COMPASS_GUIDES        = -- ± --
-WHERE_MESSENGERS_GATHER          = 57 -- ± --
--- ENTANGLEMENT                  = -- ± --
--- HEAD_WIND                     = -- ± --
-FLAMES_FOR_THE_DEAD              = 58 -- ± --
--- ECHOES_OF_TIME                =  -- ± --   -- Category
-FOR_WHOM_THE_VERSE_IS_SUNG       = 60 -- ± --
-A_PLACE_TO_RETURN                = 65 -- ± ---- It's necessary to increase MAX_MISSIONID in charentity.h to reach values > 63
-MORE_QUESTIONS_THAN_ANSWERS      = 66 -- ± --
-ONE_TO_BE_FEARED                 = 67 -- ± --
--- IN_THE_LIGHT_OF_THE_CRYSTAL   =  -- ± --   -- Category
-CHAINS_AND_BONDS                 = 68 -- ± --
-FLAMES_IN_THE_DARKNESS           = 77 -- ± --
-FIRE_IN_THE_EYES_OF_MEN          = 78 -- ± --
-CALM_BEFORE_THE_STORM            = 80 -- ± --
-THE_WARRIOR_S_PATH               = 81 -- ± --
-EMPTINESS_BLEEDS                 = 82 -- ± ---- Category
-GARDEN_OF_ANTIQUITY              = 87 -- ± --
-A_FATE_DECIDED                   = 90 -- ± --
-WHEN_ANGELS_FALL                 = 91 -- ± --
-DAWN                             = 92 -- ± --
+THE_ENDURING_TUMULT_OF_WAR       = 43 -- Â± --
+DESIRES_OF_EMPTINESS             = 52 -- Â± --
+THREE_PATHS                      = 54 -- Â± --
+-- PAST_SINS                     = -- Â± --
+-- SOUTHERN_LEGEND               = -- Â± --
+PARTNERS_WITHOUT_FAME            = 55 -- Â± --
+-- A_CENTURY_OF_HARDSHIP         = -- Â± --
+-- DEPARTURES                    = -- Â± --
+-- THE_PURSUIT_OF_PARADISE       = -- Â± --
+SPIRAL                           = 56 -- Â± --
+-- BRANDED                       = -- Â± --
+-- PRIDE_AND_HONOR               = -- Â± --
+-- AND_THE_COMPASS_GUIDES        = -- Â± --
+WHERE_MESSENGERS_GATHER          = 57 -- Â± --
+-- ENTANGLEMENT                  = -- Â± --
+-- HEAD_WIND                     = -- Â± --
+FLAMES_FOR_THE_DEAD              = 58 -- Â± --
+-- ECHOES_OF_TIME                =  -- Â± --   -- Category
+FOR_WHOM_THE_VERSE_IS_SUNG       = 60 -- Â± --
+A_PLACE_TO_RETURN                = 65 -- Â± ---- It's necessary to increase MAX_MISSIONID in charentity.h to reach values > 63
+MORE_QUESTIONS_THAN_ANSWERS      = 66 -- Â± --
+ONE_TO_BE_FEARED                 = 67 -- Â± --
+-- IN_THE_LIGHT_OF_THE_CRYSTAL   =  -- Â± --   -- Category
+CHAINS_AND_BONDS                 = 68 -- Â± --
+FLAMES_IN_THE_DARKNESS           = 77 -- Â± --
+FIRE_IN_THE_EYES_OF_MEN          = 78 -- Â± --
+CALM_BEFORE_THE_STORM            = 80 -- Â± --
+THE_WARRIOR_S_PATH               = 81 -- Â± --
+EMPTINESS_BLEEDS                 = 82 -- Â± ---- Category
+GARDEN_OF_ANTIQUITY              = 87 -- Â± --
+A_FATE_DECIDED                   = 90 -- Â± --
+WHEN_ANGELS_FALL                 = 91 -- Â± --
+DAWN                             = 92 -- Â± --
 THE_LAST_VERSE                   = 94
 
 -----------------------------------
@@ -373,15 +374,15 @@ NYZUL_ISLE_UNCHARTED_AREA_SURVEY  = 52;
 --  A Crystalline Prophecy (9)
 -----------------------------------
 
-A_CRYSTALLINE_PROPHECY        = 0; -- ± --
-THE_ECHO_AWAKENS              = 1; -- ± --
-GATHERER_OF_LIGHT_I           = 2; -- ± --
+A_CRYSTALLINE_PROPHECY        = 0; -- Â± --
+THE_ECHO_AWAKENS              = 1; -- Â± --
+GATHERER_OF_LIGHT_I           = 2; -- Â± --
 GATHERER_OF_LIGHT_II          = 3;
-THOSE_WHO_LURK_IN_SHADOWS_I   = 4; -- ± --
-THOSE_WHO_LURK_IN_SHADOWS_II  = 5; -- ± --
-THOSE_WHO_LURK_IN_SHADOWS_III = 6; -- ± --
-REMEMBER_ME_IN_YOUR_DREAMS    = 7; -- ± --
-BORN_OF_HER_NIGHTMARES        = 8; -- ± --
+THOSE_WHO_LURK_IN_SHADOWS_I   = 4; -- Â± --
+THOSE_WHO_LURK_IN_SHADOWS_II  = 5; -- Â± --
+THOSE_WHO_LURK_IN_SHADOWS_III = 6; -- Â± --
+REMEMBER_ME_IN_YOUR_DREAMS    = 7; -- Â± --
+BORN_OF_HER_NIGHTMARES        = 8; -- Â± --
 BANISHING_THE_ECHO            = 9;
 ODE_OF_LIFE_BESTOWING         = 10;
 A_CRYSTALLINE_PROPHECY_FIN    = 11;
@@ -410,10 +411,10 @@ A_MOOGLE_KUPO_DETAT_FIN             = 14;
 --  A Shantotto Ascension (11)
 -----------------------------------
 
-A_SHANTOTTO_ASCENSION       = 0; -- ± --
-BURGEONING_DREAD            = 1; -- ± --
-THAT_WHICH_CURDLES_BLOOD    = 2; -- ± --
-SUGAR_COATED_DIRECTIVE      = 3; -- ± --
+A_SHANTOTTO_ASCENSION       = 0; -- Â± --
+BURGEONING_DREAD            = 1; -- Â± --
+THAT_WHICH_CURDLES_BLOOD    = 2; -- Â± --
+SUGAR_COATED_DIRECTIVE      = 3; -- Â± --
 ENEMY_OF_THE_EMPIRE_I       = 4;
 ENEMY_OF_THE_EMPIRE_II      = 5;
 SUGAR_COATED_SUBTERFUGE     = 6;
@@ -491,6 +492,12 @@ SALVATION                       = 54;
 GLIMMER_OF_PORTENT              = 55;
 -- FIN                          = 56;
 
+-----------------------------------
+--  Rhapsodies of Vana Diel (13)
+-----------------------------------
+RHAPSODIES_OF_VANADIEL          = 0;
+RESONACE                        = 1;
+
 function rankPointMath(rank)
 	return 0.372*rank^2 - 1.62*rank + 6.2;
 end
@@ -517,7 +524,7 @@ function getMissionRankPoints(player, missionID)
 
 	points_needed = 1024 * (crystals-.25) / (3*rankPointMath(player:getRank()));
 
-	if(player:getRankPoints() >= points_needed) then
+	if (player:getRankPoints() >= points_needed) then
 		return 1;
 	else
 		return 0;
@@ -532,291 +539,291 @@ function getMissionMask(player)
 	first_mission = 0;
 	repeat_mission = 0;
 
-	if(nation == WINDURST) then
-		if(rank >= 1) then
-			if(player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
+	if (nation == WINDURST) then
+		if (rank >= 1) then
+			if (player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
 				-- 1-1 NOTE: This mission will not be listed in the Mission List for Windurst
 				--first_mission = first_mission + 1;
 			end
-			if(player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) == false) then
+			if (player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) == false) then
 				-- 1-2 NOTE: This mission will not be listed in the Mission List for Windurst
 				--first_mission = first_mission + 2;
 			end
-			if(player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
+			if (player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
 				-- 1-3 NOTE: This mission will not be listed in the Mission List for Windurst
 				--first_mission = first_mission + 4;
 			end
 		end
-		if(rank >= 2) then
+		if (rank >= 2) then
 			-- 2-1
-			if(player:hasCompletedMission(WINDURST,LOST_FOR_WORDS) == false and getMissionRankPoints(player,3) == 1) then
+			if (player:hasCompletedMission(WINDURST,LOST_FOR_WORDS) == false and getMissionRankPoints(player,3) == 1) then
 				first_mission = first_mission + 8;
 			else
-				if(player:hasCompletedMission(WINDURST,LOST_FOR_WORDS) and (rank > 2 or getMissionRankPoints(player,4) == 1)) then
+				if (player:hasCompletedMission(WINDURST,LOST_FOR_WORDS) and (rank > 2 or getMissionRankPoints(player,4) == 1)) then
 					-- 2-2 Repeatable
 					repeat_mission = repeat_mission + 16;
 				end
-				if(player:hasCompletedMission(WINDURST,THE_THREE_KINGDOMS) == false and getMissionRankPoints(player,5) == 1) then
+				if (player:hasCompletedMission(WINDURST,THE_THREE_KINGDOMS) == false and getMissionRankPoints(player,5) == 1) then
 					-- 2-3
 					first_mission = first_mission + 32;
 				end
 			end
 		end
-		if(rank >= 3) then
+		if (rank >= 3) then
 			-- 3-1
-			if(player:hasCompletedMission(WINDURST,TO_EACH_HIS_OWN_RIGHT) == false and getMissionRankPoints(player,10) == 1) then
+			if (player:hasCompletedMission(WINDURST,TO_EACH_HIS_OWN_RIGHT) == false and getMissionRankPoints(player,10) == 1) then
 				first_mission = first_mission + 1024;
 			else
-				if(player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS) == false and getMissionRankPoints(player,11) == 1) then
+				if (player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS) == false and getMissionRankPoints(player,11) == 1) then
 					-- 3-2 Repeatable & Skippable
 					repeat_mission = repeat_mission + 2048;
-				elseif(rank > 3 or getMissionRankPoints(player,11) == 1) then
+				elseif (rank > 3 or getMissionRankPoints(player,11) == 1) then
 					-- 3-2 Repeatable & Skippable
 					repeat_mission = repeat_mission + 2048;
 				end
-				if(player:hasCompletedMission(WINDURST,A_NEW_JOURNEY) == false and getMissionRankPoints(player,12) == 1) then
+				if (player:hasCompletedMission(WINDURST,A_NEW_JOURNEY) == false and getMissionRankPoints(player,12) == 1) then
 					-- 3-3
 					first_mission = first_mission + 4096;
 				end
 			end
 		end
-		if(rank == 4) then
+		if (rank == 4) then
 			-- The mission is triggered by the Ambassador in Jeuno
 			-- first_mission = first_mission + 8192;
 		end
-		if(rank == 5) then
-			if(player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
+		if (rank == 5) then
+			if (player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
 				first_mission = first_mission + 16384;
 			end
-			if(player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) and player:hasCompletedMission(WINDURST,THE_SHADOW_AWAITS) == false and getMissionRankPoints(player,15) == 1) then
+			if (player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) and player:hasCompletedMission(WINDURST,THE_SHADOW_AWAITS) == false and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
 			end
 		end
-		if(rank == 6) then
-			if(player:hasCompletedMission(WINDURST,FULL_MOON_FOUNTAIN) == false and getMissionRankPoints(player,16) == 1) then
+		if (rank == 6) then
+			if (player:hasCompletedMission(WINDURST,FULL_MOON_FOUNTAIN) == false and getMissionRankPoints(player,16) == 1) then
 				-- 6-1
 				first_mission = first_mission + 65536;
-			elseif(player:hasCompletedMission(WINDURST,SAINTLY_INVITATION) == false and getMissionRankPoints(player,17) == 1) then
+			elseif (player:hasCompletedMission(WINDURST,SAINTLY_INVITATION) == false and getMissionRankPoints(player,17) == 1) then
 				-- 6-2
 				first_mission = first_mission + 131072;
 			end
 		end
-		if(rank == 7) then
-			if(player:hasCompletedMission(WINDURST,THE_SIXTH_MINISTRY) == false and getMissionRankPoints(player,18) == 1) then
+		if (rank == 7) then
+			if (player:hasCompletedMission(WINDURST,THE_SIXTH_MINISTRY) == false and getMissionRankPoints(player,18) == 1) then
 				-- 7-1
 				first_mission = first_mission + 262144;
-			elseif(player:hasCompletedMission(WINDURST,AWAKENING_OF_THE_GODS) == false and getMissionRankPoints(player,19) == 1) then
+			elseif (player:hasCompletedMission(WINDURST,AWAKENING_OF_THE_GODS) == false and getMissionRankPoints(player,19) == 1) then
 				-- 7-2
 				first_mission = first_mission + 524288;
 			end
 		end
-		if(rank == 8) then
-			if(player:hasCompletedMission(WINDURST,VAIN) == false and getMissionRankPoints(player,20) == 1) then
+		if (rank == 8) then
+			if (player:hasCompletedMission(WINDURST,VAIN) == false and getMissionRankPoints(player,20) == 1) then
 				-- 8-1
 				first_mission = first_mission + 1048576;
-			elseif(player:hasCompletedMission(WINDURST,THE_JESTER_WHO_D_BE_KING) == false and getMissionRankPoints(player,21) == 1) then
+			elseif (player:hasCompletedMission(WINDURST,THE_JESTER_WHO_D_BE_KING) == false and getMissionRankPoints(player,21) == 1) then
 				-- 8-2
 				first_mission = first_mission + 2097152;
 			end
 		end
-		if(rank == 9) then
-			if(player:hasCompletedMission(WINDURST,DOLL_OF_THE_DEAD) == false and getMissionRankPoints(player,22) == 1) then
+		if (rank == 9) then
+			if (player:hasCompletedMission(WINDURST,DOLL_OF_THE_DEAD) == false and getMissionRankPoints(player,22) == 1) then
 				-- 9-1
 				first_mission = first_mission + 4194304;
-			elseif(player:hasCompletedMission(WINDURST,MOON_READING) == false and getMissionRankPoints(player,23) == 1) then
+			elseif (player:hasCompletedMission(WINDURST,MOON_READING) == false and getMissionRankPoints(player,23) == 1) then
 				-- 9-2
 				first_mission = first_mission + 8388608;
 			end
 		end
-	elseif(nation == SANDORIA) then
-		if(rank >= 1) then
-			if(player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then -- The first mission is repeatable in San d'Oria
+	elseif (nation == SANDORIA) then
+		if (rank >= 1) then
+			if (player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then -- The first mission is repeatable in San d'Oria
 				-- 1-1
 				repeat_mission = repeat_mission + 1;
-			elseif(player:hasCompletedMission(SANDORIA,BAT_HUNT) == false) then
+			elseif (player:hasCompletedMission(SANDORIA,BAT_HUNT) == false) then
 				-- 1-2 If we completed 1-1, we can start and repeat this mission
 				repeat_mission = repeat_mission + 2 + 1;
-			elseif(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN) == false) then
+			elseif (player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN) == false) then
 				-- 1-3 If we completed 1-2, we can start and repeat this mission
 				repeat_mission = repeat_mission + 4 + 2 + 1;
 			else
 				repeat_mission = repeat_mission + 4 + 2 + 1;
 			end
 		end
-		if(rank >= 2) then
+		if (rank >= 2) then
 			-- 2-1
-			if(player:hasCompletedMission(SANDORIA,THE_RESCUE_DRILL) == false and getMissionRankPoints(player,3) == 1) then
+			if (player:hasCompletedMission(SANDORIA,THE_RESCUE_DRILL) == false and getMissionRankPoints(player,3) == 1) then
 				first_mission = first_mission + 8;
 			else
-				if(rank > 2 or getMissionRankPoints(player,4) == 1) then
+				if (rank > 2 or getMissionRankPoints(player,4) == 1) then
 					-- 2-2 Repeatable & Skippable
 					repeat_mission = repeat_mission + 16;
 				end
-				if(player:hasCompletedMission(SANDORIA,JOURNEY_ABROAD) == false and getMissionRankPoints(player,5) == 1) then
+				if (player:hasCompletedMission(SANDORIA,JOURNEY_ABROAD) == false and getMissionRankPoints(player,5) == 1) then
 					-- 2-3
 					first_mission = first_mission + 32;
 				end
 			end
 		end
-		if(rank >= 3) then
-			if(rank > 3 or getMissionRankPoints(player,10) == 1) then
+		if (rank >= 3) then
+			if (rank > 3 or getMissionRankPoints(player,10) == 1) then
 				-- 3-1
 				repeat_mission = repeat_mission + 1024;
 			end
-			if(player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI) == true and getMissionRankPoints(player,11) == 1) then
+			if (player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI) == true and getMissionRankPoints(player,11) == 1) then
 				-- 3-2 Repeatable & Skippable
 				repeat_mission = repeat_mission + 2048;
 			end
-			if(player:hasCompletedMission(SANDORIA,APPOINTMENT_TO_JEUNO) == false and getMissionRankPoints(player,12) == 1) then
+			if (player:hasCompletedMission(SANDORIA,APPOINTMENT_TO_JEUNO) == false and getMissionRankPoints(player,12) == 1) then
 				-- 3-3
 				first_mission = first_mission + 4096;
 			end
 		end
-		if(rank == 4) then
+		if (rank == 4) then
 			-- The mission is triggered by the Ambassador in Jeuno
 			-- first_mission = first_mission + 8192;
 		end
-		if(rank == 5) then
-			if(player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(69) == false) then
+		if (rank == 5) then
+			if (player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(69) == false) then
 				first_mission = first_mission + 16384;
 			end
-			if(player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) and getMissionRankPoints(player,15) == 1) then
+			if (player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
 			end
 		end
-		if(rank == 6) then
-			if(player:hasCompletedMission(SANDORIA,LEAUTE_S_LAST_WISHES) == false and getMissionRankPoints(player,16) == 1) then
+		if (rank == 6) then
+			if (player:hasCompletedMission(SANDORIA,LEAUTE_S_LAST_WISHES) == false and getMissionRankPoints(player,16) == 1) then
 				-- 6-1
 				first_mission = first_mission + 65536;
-			elseif(player:hasCompletedMission(SANDORIA,RANPERRE_S_FINAL_REST) == false and getMissionRankPoints(player,17) == 1) then
+			elseif (player:hasCompletedMission(SANDORIA,RANPERRE_S_FINAL_REST) == false and getMissionRankPoints(player,17) == 1) then
 				-- 6-2
 				first_mission = first_mission + 131072;
 			end
 		end
-		if(rank == 7) then
-			if(player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE) == false and getMissionRankPoints(player,18) == 1) then
+		if (rank == 7) then
+			if (player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE) == false and getMissionRankPoints(player,18) == 1) then
 				-- 7-1
 				first_mission = first_mission + 262144;
-			elseif(player:hasCompletedMission(SANDORIA,THE_SECRET_WEAPON) == false and getMissionRankPoints(player,19) == 1) then
+			elseif (player:hasCompletedMission(SANDORIA,THE_SECRET_WEAPON) == false and getMissionRankPoints(player,19) == 1) then
 				-- 7-2
 				first_mission = first_mission + 524288;
 			end
 		end
-		if(rank == 8) then
-			if(player:hasCompletedMission(SANDORIA,COMING_OF_AGE) == false and getMissionRankPoints(player,20) == 1) then
+		if (rank == 8) then
+			if (player:hasCompletedMission(SANDORIA,COMING_OF_AGE) == false and getMissionRankPoints(player,20) == 1) then
 				-- 8-1
 				first_mission = first_mission + 1048576;
-			elseif(player:hasCompletedMission(SANDORIA,LIGHTBRINGER) == false and getMissionRankPoints(player,21) == 1 and player:getVar("Mission8-1Completed") == 1) then
+			elseif (player:hasCompletedMission(SANDORIA,LIGHTBRINGER) == false and getMissionRankPoints(player,21) == 1 and player:getVar("Mission8-1Completed") == 1) then
 				-- 8-2
 				first_mission = first_mission + 2097152;
 			end
 		end
-		if(rank == 9) then
-			if(player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1) then
+		if (rank == 9) then
+			if (player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1) then
 				-- 9-1
 				first_mission = first_mission + 4194304;
-			elseif(player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getVar("Cutscenes_8-2") == 2) then
+			elseif (player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getVar("Cutscenes_8-2") == 2) then
 				-- 9-2
 				first_mission = first_mission + 8388608;
 
-	elseif(player:hasCompletedMission(SANDORIA,THE_HEIR_TO_THE_LIGHT) == false and getMissionRankPoints(player,23) == 1) then
+	elseif (player:hasCompletedMission(SANDORIA,THE_HEIR_TO_THE_LIGHT) == false and getMissionRankPoints(player,23) == 1) then
 				-- 9-2
 				first_mission = first_mission + 8388608;
 
 			end
 		end
-	elseif(nation == BASTOK) then
-		if(rank >= 1) then
-			if(player:hasCompletedMission(BASTOK,THE_ZERUHN_REPORT) == false) then
+	elseif (nation == BASTOK) then
+		if (rank >= 1) then
+			if (player:hasCompletedMission(BASTOK,THE_ZERUHN_REPORT) == false) then
 				-- 1-1 NOTE: This mission will not be listed in the Mission List for Bastok
 				--first_mission = first_mission + 1;
 			end
-			if(player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == false) then
+			if (player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == false) then
 				-- 1-2 NOTE: This mission will not be listed in the Mission List for Bastok
 				first_mission = first_mission + 2;
 			end
-			if(player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == true) then
+			if (player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == true) then
 				-- 1-3
 				repeat_mission = repeat_mission + 4;
 			end
 		end
-		if(rank >= 2) then
+		if (rank >= 2) then
 			-- 2-1
-			if(player:hasCompletedMission(BASTOK,THE_CRYSTAL_LINE) == false and getMissionRankPoints(player,3) == 1) then
+			if (player:hasCompletedMission(BASTOK,THE_CRYSTAL_LINE) == false and getMissionRankPoints(player,3) == 1) then
 				first_mission = first_mission + 8;
 			else
-				if(rank > 2 or getMissionRankPoints(player,4) == 1) then
+				if (rank > 2 or getMissionRankPoints(player,4) == 1) then
 					-- 2-2 Repeatable
 					repeat_mission = repeat_mission + 16;
 				end
-				if(player:hasCompletedMission(BASTOK,THE_EMISSARY) == false and getMissionRankPoints(player,5) == 1) then
+				if (player:hasCompletedMission(BASTOK,THE_EMISSARY) == false and getMissionRankPoints(player,5) == 1) then
 					-- 2-3
 					first_mission = first_mission + 32;
 				end
 			end
 		end
-		if(rank >= 3) then
+		if (rank >= 3) then
 			-- 3-1
-			if(player:hasCompletedMission(BASTOK,THE_FOUR_MUSKETEERS) == false and getMissionRankPoints(player,10) == 1) then
+			if (player:hasCompletedMission(BASTOK,THE_FOUR_MUSKETEERS) == false and getMissionRankPoints(player,10) == 1) then
 				first_mission = first_mission + 1024;
 			else
-				if(rank > 3 or getMissionRankPoints(player,11) == 1) then
+				if (rank > 3 or getMissionRankPoints(player,11) == 1) then
 					-- 3-2 Repeatable & Skippable
 					repeat_mission = repeat_mission + 2048;
 				end
-				if(player:hasCompletedMission(BASTOK,JEUNO_MISSION) == false and getMissionRankPoints(player,12) == 1) then
+				if (player:hasCompletedMission(BASTOK,JEUNO_MISSION) == false and getMissionRankPoints(player,12) == 1) then
 					-- 3-3
 					first_mission = first_mission + 4096;
 				end
 			end
 		end
-		if(rank == 4) then
+		if (rank == 4) then
 			-- The mission is triggered by the Ambassador in Jeuno
 			-- first_mission = first_mission + 8192;
 		end
-		if(rank == 5) then
-			if(player:hasCompletedMission(BASTOK,DARKNESS_RISING) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
+		if (rank == 5) then
+			if (player:hasCompletedMission(BASTOK,DARKNESS_RISING) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
 				first_mission = first_mission + 16384;
 			end
-			if(player:hasCompletedMission(BASTOK,DARKNESS_RISING) and player:hasCompletedMission(BASTOK,XARCABARD_LAND_OF_TRUTHS) == false and getMissionRankPoints(player,15) == 1) then
+			if (player:hasCompletedMission(BASTOK,DARKNESS_RISING) and player:hasCompletedMission(BASTOK,XARCABARD_LAND_OF_TRUTHS) == false and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
 			end
 		end
-		if(rank == 6) then
-			if(player:hasCompletedMission(BASTOK,RETURN_OF_THE_TALEKEEPER) == false and getMissionRankPoints(player,16) == 1) then
+		if (rank == 6) then
+			if (player:hasCompletedMission(BASTOK,RETURN_OF_THE_TALEKEEPER) == false and getMissionRankPoints(player,16) == 1) then
 				-- 6-1
 				first_mission = first_mission + 65536;
-			elseif(player:hasCompletedMission(BASTOK,THE_PIRATE_S_COVE) == false and getMissionRankPoints(player,17) == 1) then
+			elseif (player:hasCompletedMission(BASTOK,THE_PIRATE_S_COVE) == false and getMissionRankPoints(player,17) == 1) then
 				-- 6-2
 				first_mission = first_mission + 131072;
 			end
 		end
-		if(rank == 7) then
-			if(player:hasCompletedMission(BASTOK,THE_FINAL_IMAGE) == false and getMissionRankPoints(player,18) == 1) then
+		if (rank == 7) then
+			if (player:hasCompletedMission(BASTOK,THE_FINAL_IMAGE) == false and getMissionRankPoints(player,18) == 1) then
 				-- 7-1
 				first_mission = first_mission + 262144;
-			elseif(player:hasCompletedMission(BASTOK,ON_MY_WAY) == false and getMissionRankPoints(player,19) == 1) then
+			elseif (player:hasCompletedMission(BASTOK,ON_MY_WAY) == false and getMissionRankPoints(player,19) == 1) then
 				-- 7-2
 				first_mission = first_mission + 524288;
 			end
 		end
-		if(rank == 8) then
-			if(player:hasCompletedMission(BASTOK,THE_CHAINS_THAT_BIND_US) == false and getMissionRankPoints(player,20) == 1) then
+		if (rank == 8) then
+			if (player:hasCompletedMission(BASTOK,THE_CHAINS_THAT_BIND_US) == false and getMissionRankPoints(player,20) == 1) then
 				-- 8-1
 				first_mission = first_mission + 1048576;
-			elseif(player:hasCompletedMission(BASTOK,ENTER_THE_TALEKEEPER) == false and getMissionRankPoints(player,21) == 1) then
+			elseif (player:hasCompletedMission(BASTOK,ENTER_THE_TALEKEEPER) == false and getMissionRankPoints(player,21) == 1) then
 				-- 8-2
 				first_mission = first_mission + 2097152;
 			end
 		end
-		if(rank == 9) then
-			if(player:hasCompletedMission(BASTOK,THE_SALT_OF_THE_EARTH) == false and getMissionRankPoints(player,22) == 1) then
+		if (rank == 9) then
+			if (player:hasCompletedMission(BASTOK,THE_SALT_OF_THE_EARTH) == false and getMissionRankPoints(player,22) == 1) then
 				-- 9-1
 				first_mission = first_mission + 4194304;
-			elseif(player:hasCompletedMission(BASTOK,WHERE_TWO_PATHS_CONVERGE) == false and getMissionRankPoints(player,23) == 1) then
+			elseif (player:hasCompletedMission(BASTOK,WHERE_TWO_PATHS_CONVERGE) == false and getMissionRankPoints(player,23) == 1) then
 				-- 9-2
 				first_mission = first_mission + 8388608;
 			end
@@ -837,34 +844,34 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
 	offset = 0; cs = 0; params = {0,0,0,0,0,0,0,0};
 	nation = player:getNation();
 
-	if(nation == SANDORIA) then
+	if (nation == SANDORIA) then
 
-			if(guard == 1) then GuardCS = {0x03fe,0x03fd,0x0401,0x03ec,0x0400,0x03ed,0x03ee,0x0404,0x0405,0x03f4,0x0407};
-		elseif(guard == 2) then GuardCS = {0x07e6,0x07e5,0x07e9,0x07d4,0x07e8,0x07d5,0x07d6,0x07ec,0x07ed,0x07dc,0x07ef};
+			if (guard == 1) then GuardCS = {0x03fe,0x03fd,0x0401,0x03ec,0x0400,0x03ed,0x03ee,0x0404,0x0405,0x03f4,0x0407};
+		elseif (guard == 2) then GuardCS = {0x07e6,0x07e5,0x07e9,0x07d4,0x07e8,0x07d5,0x07d6,0x07ec,0x07ed,0x07dc,0x07ef};
 		end
 
 		switch (pMission) : caseof {
 			[0] = function (x) offset = 0; end, -- Mission 1-1
-			[1] = function (x) if(MissionStatus == 2) then cs = GuardCS[1]; else cs = GuardCS[2]; end end, -- Mission 1-2 (1) after check tombstone
-			[2] = function (x) if(MissionStatus == 0) then cs = GuardCS[3]; -- Mission 1-3 before Battlefield
-						   elseif(MissionStatus == 4 and player:hasCompletedMission(0,2) == false) then cs = GuardCS[4]; -- Mission 1-3 after Battlefield
-						   elseif(MissionStatus == 4) then cs = GuardCS[5]; else offset = 24; end end, -- Mission 1-3 after Battlefield (Finish Quest)
-			[3] = function (x) if(MissionStatus == 11) then cs = GuardCS[6]; else offset = 36; end end,
-			[4] = function (x) if(MissionStatus == 3 and player:hasCompletedMission(0,4)) then cs = GuardCS[7];
-						   elseif(MissionStatus == 3) then cs = GuardCS[8]; params = {0,0,0,44}; else offset = 44; end end,
-			[5] = function (x) if(MissionStatus == 0) then offset = 50; else offset = 51; end end,
-			[10] = function (x) if(MissionStatus == 0) then cs = GuardCS[9];
-							elseif(MissionStatus == 4) then offset = 55;
-							elseif(MissionStatus == 5) then offset = 60;
-							elseif(MissionStatus == 10) then cs = GuardCS[10]; end end,
-			[11] = function (x) if(MissionStatus == 0) then offset = 68;
-							elseif(MissionStatus == 2) then cs = GuardCS[11]; end end,
-			[12] = function (x) if(MissionStatus == 0) then offset = 74; end end,
-			[14] = function (x) if(MissionStatus == 0) then cs = 0x003D; end end,
+			[1] = function (x) if (MissionStatus == 2) then cs = GuardCS[1]; else cs = GuardCS[2]; end end, -- Mission 1-2 (1) after check tombstone
+			[2] = function (x) if (MissionStatus == 0) then cs = GuardCS[3]; -- Mission 1-3 before Battlefield
+						   elseif (MissionStatus == 4 and player:hasCompletedMission(0,2) == false) then cs = GuardCS[4]; -- Mission 1-3 after Battlefield
+						   elseif (MissionStatus == 4) then cs = GuardCS[5]; else offset = 24; end end, -- Mission 1-3 after Battlefield (Finish Quest)
+			[3] = function (x) if (MissionStatus == 11) then cs = GuardCS[6]; else offset = 36; end end,
+			[4] = function (x) if (MissionStatus == 3 and player:hasCompletedMission(0,4)) then cs = GuardCS[7];
+						   elseif (MissionStatus == 3) then cs = GuardCS[8]; params = {0,0,0,44}; else offset = 44; end end,
+			[5] = function (x) if (MissionStatus == 0) then offset = 50; else offset = 51; end end,
+			[10] = function (x) if (MissionStatus == 0) then cs = GuardCS[9];
+							elseif (MissionStatus == 4) then offset = 55;
+							elseif (MissionStatus == 5) then offset = 60;
+							elseif (MissionStatus == 10) then cs = GuardCS[10]; end end,
+			[11] = function (x) if (MissionStatus == 0) then offset = 68;
+							elseif (MissionStatus == 2) then cs = GuardCS[11]; end end,
+			[12] = function (x) if (MissionStatus == 0) then offset = 74; end end,
+			[14] = function (x) if (MissionStatus == 0) then cs = 0x003D; end end,
 		}
 		return cs, params, offset;
 
-	elseif(nation == BASTOK) then
+	elseif (nation == BASTOK) then
 
 		switch (pMission) : caseof {
 			[0] = function (x) offset = 0; end,
@@ -889,18 +896,18 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
 		}
 		return cs, params, offset;
 
-	elseif(nation == WINDURST) then
+	elseif (nation == WINDURST) then
 
-			if(guard == 1) then GuardCS = {0x007F,0x0088,0x0096,0x009A,0x00A0,0x01D9,0x00b1};
-		elseif(guard == 2) then GuardCS = {0x007b,0x0083,0x0136,0x0094,0x009c,0x00b1,0x00d7};
-		elseif(guard == 3) then GuardCS = {0x0059,0x0069,0x006e,0x0072,0x0078,0x0085,0x008a};
-		elseif(guard == 4) then GuardCS = {0x0063,0x006b,0x0070,0x0074,0x007a,0x007f,0x0086};
+			if (guard == 1) then GuardCS = {0x007F,0x0088,0x0096,0x009A,0x00A0,0x01D9,0x00b1};
+		elseif (guard == 2) then GuardCS = {0x007b,0x0083,0x0136,0x0094,0x009c,0x00b1,0x00d7};
+		elseif (guard == 3) then GuardCS = {0x0059,0x0069,0x006e,0x0072,0x0078,0x0085,0x008a};
+		elseif (guard == 4) then GuardCS = {0x0063,0x006b,0x0070,0x0074,0x007a,0x007f,0x0086};
 		end
 
 		switch (pMission) : caseof {
 			[0] = function (x) cs = GuardCS[1]; end,
 			[1] = function (x) cs = GuardCS[2]; end,
-			[2] = function (x) if(MissionStatus <= 2) then cs = GuardCS[3]; else cs = GuardCS[4]; end end,
+			[2] = function (x) if (MissionStatus <= 2) then cs = GuardCS[3]; else cs = GuardCS[4]; end end,
 			[3] = function (x) cs = GuardCS[5]; end,
 			[4] = function (x) cs = GuardCS[6]; end,
 			[5] = function (x) cs = GuardCS[7]; end,
@@ -931,15 +938,15 @@ function finishMissionTimeline(player,guard,csid,option)
 	-- 13: player:addTitle(number);
 	-- 14: player:setVar("MissionStatus",value);
 
-	if(nation == SANDORIA) then
-		if((csid == 0x03f1 or csid == 0x07d9) and option ~= 1073741824 and option ~= 31) then
-			if(option > 100) then
+	if (nation == SANDORIA) then
+		if ((csid == 0x03f1 or csid == 0x07d9) and option ~= 1073741824 and option ~= 31) then
+			if (option > 100) then
 				badoption = {101,1,102,2,104,4,110,10,111,11};
 				for op = 1, table.getn(badoption), 2 do
-					if(option == badoption[op]) then
+					if (option == badoption[op]) then
 					timeline = {badoption[op+1],{0x03f1,badoption[op]},{0x07d9,badoption[op]},{0,0},{0,0},{{1},{2}}}; end
 				end
-			elseif(option == 14) then
+			elseif (option == 14) then
 				timeline = {option,{0x03f1,option},{0x07d9,option},{0,0},{0,0},{{1},{2},{3,"MissionStatus",9}}};
 			else
 				timeline = {option,{0x03f1,option},{0x07d9,option},{0,0},{0,0},{{1},{2}}};
@@ -980,8 +987,8 @@ function finishMissionTimeline(player,guard,csid,option)
 				0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0}, ]]--
 						};
 		end
-	elseif(nation == BASTOK) then
-		if(csid == 0x03E9 and option ~= 1073741824 and option ~= 31) then
+	elseif (nation == BASTOK) then
+		if (csid == 0x03E9 and option ~= 1073741824 and option ~= 31) then
 			timeline = {option,{0x03E9,option},{0,0},{0,0},{0,0},{{1},{2}}};
 		else
 			timeline = {
@@ -1009,9 +1016,9 @@ function finishMissionTimeline(player,guard,csid,option)
 				
 						};
 		end
-	elseif(nation == WINDURST) then
+	elseif (nation == WINDURST) then
 		guardlist = {0x0072,0x006f,0x004e,0x005d};
-		if(csid == guardlist[guard] and option ~= 1073741824 and option ~= 31) then
+		if (csid == guardlist[guard] and option ~= 1073741824 and option ~= 31) then
 			timeline = {option,{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{{1},{2}}};
 		else
 			timeline = {
@@ -1048,16 +1055,16 @@ function finishMissionTimeline(player,guard,csid,option)
 	end
 
 	for cs = 1, table.getn(timeline), 6 do
-		if(csid == timeline[cs + guard][1] and option == timeline[cs + guard][2]) then
+		if (csid == timeline[cs + guard][1] and option == timeline[cs + guard][2]) then
 			for nb = 1, table.getn(timeline[cs + 5]), 1 do
 				messList = timeline[cs + 5][nb];
 
 				switch (messList[1]) : caseof {
-					[1] = function (x) if(messList[2] ~= nil) then player:addMission(nation,messList[2]); else player:addMission(nation,timeline[cs]); end end,
+					[1] = function (x) if (messList[2] ~= nil) then player:addMission(nation,messList[2]); else player:addMission(nation,timeline[cs]); end end,
 					[2] = function (x) player:messageSpecial(YOU_ACCEPT_THE_MISSION); end,
 					[3] = function (x) player:setVar(messList[2],messList[3]); end,
 					[4] = function (x) player:tradeComplete(); end,
-					[5] = function (x) if((player:getRankPoints() + messList[2]) > 4000) then player:setRankPoints(4000); else player:addRankPoints(messList[2]); end end,
+					[5] = function (x) if ((player:getRankPoints() + messList[2]) > 4000) then player:setRankPoints(4000); else player:addRankPoints(messList[2]); end end,
 					[6] = function (x) player:setRankPoints(0); end,
 					[7] = function (x) player:addCP(messList[2]); player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS); end,
 					[8] = function (x) player:addGil(GIL_RATE*messList[2]); player:messageSpecial(GIL_OBTAINED,GIL_RATE*messList[2]); end,

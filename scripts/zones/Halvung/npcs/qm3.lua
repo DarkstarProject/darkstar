@@ -14,7 +14,7 @@ require("scripts/zones/Halvung/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(2588,1) and trade:getItemCount() == 1) then -- Trade Bone Charcoal
+	if (trade:hasItemQty(2588,1) and trade:getItemCount() == 1) then -- Trade Bone Charcoal
 		player:tradeComplete();
 		SpawnMob(17031599,180):updateClaim(player);
 	end

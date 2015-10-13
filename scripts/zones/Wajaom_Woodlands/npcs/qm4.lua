@@ -14,7 +14,7 @@ require("scripts/zones/Wajaom_Woodlands/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(2573,1) and trade:getItemCount() == 1) then -- Trade Monkey wine
+	if (trade:hasItemQty(2573,1) and trade:getItemCount() == 1) then -- Trade Monkey wine
 		player:tradeComplete();
 		SpawnMob(16986431,180):updateClaim(player);
 	end

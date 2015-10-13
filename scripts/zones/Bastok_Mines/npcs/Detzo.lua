@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 
 	Rivals = player:getQuestStatus(BASTOK,RIVALS);
 
-	if(Rivals == QUEST_ACCEPTED) then
+	if (Rivals == QUEST_ACCEPTED) then
 		FreeSlots = player:getFreeSlotsCount();
 		
 		if (FreeSlots >= 1) then
@@ -46,12 +46,12 @@ function onTrigger(player,npc)
 
 	Rivals = player:getQuestStatus(BASTOK,RIVALS);
 	
-	if(player:getVar("theTalekeeperGiftCS") == 1) then
+	if (player:getVar("theTalekeeperGiftCS") == 1) then
 		player:startEvent(0x00ab);
 		player:setVar("theTalekeeperGiftCS",2);
-	elseif(Rivals == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 3) then
+	elseif (Rivals == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 3) then
 		player:startEvent(0x005d);
-	elseif(Rivals == QUEST_ACCEPTED) then
+	elseif (Rivals == QUEST_ACCEPTED) then
 		player:showText(npc,10311);
 	else
 		player:startEvent(0x001e);

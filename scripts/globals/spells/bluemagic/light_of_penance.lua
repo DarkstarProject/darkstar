@@ -38,11 +38,11 @@ function onSpellCast(caster,target,spell)
     local power = 10 * resist;
     local returnEffect = typeEffectOne;
 
-    if(resist >= 0.5) then
+    if (resist >= 0.5) then
         if (target:isFacing(caster)) then
-            if(target:hasStatusEffect(typeEffectOne) and target:hasStatusEffect(typeEffectTwo) and target:getTP() == 0) then
+            if (target:hasStatusEffect(typeEffectOne) and target:hasStatusEffect(typeEffectTwo) and target:getTP() == 0) then
                 spell:setMsg(75); -- no effect
-            elseif(target:hasStatusEffect(typeEffectOne) and target:hasStatusEffect(typeEffectTwo)) then
+            elseif (target:hasStatusEffect(typeEffectOne) and target:hasStatusEffect(typeEffectTwo)) then
                 target:delTP(power);
                 spell:setMsg(431); -- tp reduced
             elseif (target:hasStatusEffect(typeEffectOne)) then

@@ -47,7 +47,7 @@ function onUseAbility(player,target,ability)
     local thfLevel;
     local stolen = 0;
 
-    if(player:getMainJob() == JOB_THF) then
+    if (player:getMainJob() == JOB_THF) then
         thfLevel = player:getMainLvl();
     else
         thfLevel = player:getSubLvl();
@@ -58,7 +58,7 @@ function onUseAbility(player,target,ability)
     local stealChance = 50 + stealMod * 2 + thfLevel - target:getMainLvl();
 
     stolen = target:getStealItem();
-    if(target:isMob() and math.random(100) < stealChance and stolen ~= 0) then
+    if (target:isMob() and math.random(100) < stealChance and stolen ~= 0) then
         if (checkThfAfQuest(player, target) == true) then
             stolen = 4569;
         end
@@ -78,7 +78,7 @@ function checkThfAfQuest(player, target)
 
     local targid = target:getID();
 
-    if(player:getVar("theTenshodoShowdownCS") == 3) then
+    if (player:getVar("theTenshodoShowdownCS") == 3) then
         for key, value in pairs(validThfQuestMobs) do
             if value == targid then
                 return true

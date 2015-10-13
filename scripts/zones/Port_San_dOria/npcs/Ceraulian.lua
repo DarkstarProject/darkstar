@@ -35,7 +35,7 @@ function onTrigger(player,npc)
 	local Stalker_Status = player:getQuestStatus(SANDORIA,KNIGHT_STALKER);
 	local Stalker_Progress = player:getVar("KnightStalker_Progress");
 
-	if(player:getMainLvl() >= ADVANCED_JOB_LEVEL and player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_AVAILABLE) then
+	if (player:getMainLvl() >= ADVANCED_JOB_LEVEL and player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_AVAILABLE) then
 		player:startEvent(0x0018);
 
 	-- Chasing Quotas (DRG AF2)
@@ -100,7 +100,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x0018) then
+	if (csid == 0x0018) then
 		player:setVar("TheHolyCrest_Event",1);
 
 	-- Chasing Quotas (DRG AF2)
@@ -120,7 +120,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("ChasingQuotas_Progress",2);
 		player:setVar("ChasingQuotas_date",0);
 	elseif (csid == 15) then
-		if(player:getFreeSlotsCount() < 1) then 
+		if (player:getFreeSlotsCount() < 1) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14227);
 		else
 			player:delKeyItem(RANCHURIOMES_LEGACY);

@@ -3,7 +3,8 @@ cd sql
 for f in *.sql
   do
      echo -n "Importing $f into the database..."
-     mysql myapp_test -u root < $f && echo "Success"
-     if [ $? -ne 0 ]; then exit $?; fi
+     mysql dspdb_test -u root < $f && echo "Success"
+     CODE=$?
+     if [ $CODE -ne 0 ]; then exit $CODE; fi
   done
 cd ..

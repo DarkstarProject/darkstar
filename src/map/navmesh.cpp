@@ -107,7 +107,6 @@ bool CNavMesh::load(char* path)
 
   if (!fp)
   {
-    ShowError("CNavMesh::load Error loading navmesh (%s)\n", path);
     return false;
   }
 
@@ -324,7 +323,7 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
   return pos;
 }
 
-int16 CNavMesh::findRandomPath(position_t start, float maxRadius, position_t* path, uint16 pathSize)
+int16 CNavMesh::findRandomPosition(position_t start, float maxRadius, position_t* randomPosition)
 {
 
   dtStatus status;
@@ -372,20 +371,46 @@ int16 CNavMesh::findRandomPath(position_t start, float maxRadius, position_t* pa
     return ERROR_NEARESTPOLY;
   }
 
-  position_t end;
-
   CNavMesh::ToFFXIPos(randomPt);
-  end.x = randomPt[0];
-  end.y = randomPt[1];
-  end.z = randomPt[2];
+  randomPosition->x = randomPt[0];
+  randomPosition->y = randomPt[1];
+  randomPosition->z = randomPt[2];
 
-  return findPath(start, end, path, pathSize);
+  return 0;
 }
 
 bool CNavMesh::inWater(position_t point)
 {
   // TODO:
   return false;
+}
+
+bool CNavMesh::validPosition(position_t position)
+{
+  float spos[3];
+  CNavMesh::ToDetourPos(&position, spos);
+
+  float polyPickExt[3];
+  polyPickExt[0] = 30;
+  polyPickExt[1] = 60;
+  polyPickExt[2] = 30;
+
+  float snearest[3];
+
+  dtQueryFilter filter;
+  filter.setIncludeFlags(0xffff);
+  filter.setExcludeFlags(0);
+
+  dtPolyRef startRef;
+
+  dtStatus status = m_navMeshQuery->findNearestPoly(spos, polyPickExt, &filter, &startRef, snearest);
+
+  if(dtStatusFailed(status))
+  {
+    return false;
+  }
+
+  return m_navMesh->isValidPolyRef(startRef);
 }
 
 bool CNavMesh::raycast(position_t start, position_t end)
@@ -441,59 +466,4 @@ bool CNavMesh::raycast(position_t start, position_t end)
   }
 
   return false;
-}
-
-bool CNavMesh::test(uint16 zoneId)
-{
-  position_t path[30];
-  int8 size = 30;
-  position_t start;
-  position_t end;
-  int8 expectedLength = 0;
-
-  switch(zoneId){
-    case 127:
-      // behe dominion
-      // navmesh transformation x, -y, -z
-      start.x = 153;
-      start.y = 4;
-      start.z = -98;
-
-      end.x = 152;
-      end.y = 4;
-      end.z = -120;
-
-      expectedLength = 3;
-    break;
-    case 103:
-      // valkurm dunes
-      start.x = 656;
-      start.y = 1;
-      start.z = -116;
-
-      end.x = 646;
-      end.y = 0;
-      end.z = -148;
-      expectedLength = 4;
-    break;
-    default:
-      return true;
-  }
-
-  int8 totalLength = findPath(start, end, path, size);
-
-  if(totalLength == expectedLength)
-  {
-    if(end.x != path[totalLength-1].x || end.z != path[totalLength-1].z){
-      ShowError("CNavMesh::test Zone (%d) Failed sanity test, end points do not match\n", zoneId);
-      return false;
-    }
-  }
-  else
-  {
-    ShowError("CNavMesh::test Zone (%d) Failed sanity test, totalLength: (%d) expected: (%d)\n", zoneId, totalLength, expectedLength);
-    return false;
-  }
-
-  return true;
 }

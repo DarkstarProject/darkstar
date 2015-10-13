@@ -289,7 +289,7 @@ function onTrigger(player, p1, zoneId)
 	
 	
 	-- Not enough info.. 
-	if(p1 == nil and zone == nil) then
+	if (p1 == nil and zone == nil) then
 		player:PrintToPlayer( string.format("Must specify 2 players or zone: @zoneplayer <player to be sent> (<player to arrive at> or zone) ") );
 		return;
 	end

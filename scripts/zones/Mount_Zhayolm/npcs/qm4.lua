@@ -14,7 +14,7 @@ require("scripts/zones/Mount_Zhayolm/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(2585,1) and trade:getItemCount() == 1) then -- Trade Vinegar Pie
+	if (trade:hasItemQty(2585,1) and trade:getItemCount() == 1) then -- Trade Vinegar Pie
 		player:tradeComplete();
 		SpawnMob(17027474,180):updateClaim(player);
 	end

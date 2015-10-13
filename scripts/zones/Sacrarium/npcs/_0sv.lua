@@ -15,7 +15,7 @@ function onTrigger(player,npc)
 	local DoorID = npc:getID() + 1;
 	local DoorA = GetNPCByID(DoorID):getAnimation();
 
-	if(player:getZPos() < 52) then
+	if (player:getZPos() < 52) then
 		if (DoorA == 8) then
 			npc:openDoor(15); -- Retail tested
 		end  

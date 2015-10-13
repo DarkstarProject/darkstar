@@ -21,7 +21,7 @@ function onAdditionalEffect(player,target,damage)
         if (not target:hasStatusEffect(EFFECT_SILENCE)) then
             target:addStatusEffect(EFFECT_SILENCE, 1, 0, 60);
         end
-        return SUBEFFECT_SILENCE, 160, EFFECT_SILENCE;
+        return SUBEFFECT_SILENCE, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_SILENCE;
     end
 end;
 

@@ -325,22 +325,22 @@ function GenerateLimbusKey()
 end;
 
 function HideArmouryCrates(Region,Zone)
-   if(Zone == APPOLLYON_SE_NE or Zone == APPOLLYON_NW_SW)then
+   if (Zone == APPOLLYON_SE_NE or Zone == APPOLLYON_NW_SW) then
         for X = 1,table.getn (ARMOURY_CRATES_LIST_APPOLLYON),2 do 
-           if(ARMOURY_CRATES_LIST_APPOLLYON[X+1][2] ==  Region)then
+           if (ARMOURY_CRATES_LIST_APPOLLYON[X+1][2] ==  Region) then
               GetNPCByID((ARMOURY_CRATES_LIST_APPOLLYON[X])+16932864):setStatus(STATUS_DISAPPEAR);
            end
        end
-  elseif(Zone == TEMENOS)then
+  elseif (Zone == TEMENOS) then
        for X = 1,table.getn (ARMOURY_CRATES_LIST_TEMENOS),2 do  
-           if(ARMOURY_CRATES_LIST_TEMENOS[X+1][2] ==  Region)then
+           if (ARMOURY_CRATES_LIST_TEMENOS[X+1][2] ==  Region) then
               GetNPCByID((ARMOURY_CRATES_LIST_TEMENOS[X])+16928768):setStatus(STATUS_DISAPPEAR);
            end
        end  
   end   
 end;
 function HideTemenosDoor(Region)
-           if(Region==Temenos_Northern_Tower)then
+           if (Region==Temenos_Northern_Tower) then
        GetNPCByID((450)+16928770):setStatus(STATUS_DISAPPEAR);
        GetNPCByID((451)+16928770):setStatus(STATUS_DISAPPEAR);
        GetNPCByID((452)+16928770):setStatus(STATUS_DISAPPEAR);
@@ -348,7 +348,7 @@ function HideTemenosDoor(Region)
        GetNPCByID((454)+16928770):setStatus(STATUS_DISAPPEAR);
        GetNPCByID((455)+16928770):setStatus(STATUS_DISAPPEAR);
        GetNPCByID((456)+16928770):setStatus(STATUS_DISAPPEAR);
-       elseif(Region==Temenos_Eastern_Tower)then
+       elseif (Region==Temenos_Eastern_Tower) then
        GetNPCByID((457)+16928770):setStatus(STATUS_DISAPPEAR);
        GetNPCByID((458)+16928770):setStatus(STATUS_DISAPPEAR);
        GetNPCByID((459)+16928770):setStatus(STATUS_DISAPPEAR);
@@ -356,7 +356,7 @@ function HideTemenosDoor(Region)
        GetNPCByID((461)+16928770):setStatus(STATUS_DISAPPEAR);
        GetNPCByID((462)+16928770):setStatus(STATUS_DISAPPEAR);
        GetNPCByID((463)+16928770):setStatus(STATUS_DISAPPEAR);
-       elseif(Region==Temenos_Western_Tower)then
+       elseif (Region==Temenos_Western_Tower) then
        GetNPCByID((464)+16928770):setStatus(STATUS_DISAPPEAR);
        GetNPCByID((465)+16928770):setStatus(STATUS_DISAPPEAR);
        GetNPCByID((466)+16928770):setStatus(STATUS_DISAPPEAR);
@@ -364,15 +364,15 @@ function HideTemenosDoor(Region)
        GetNPCByID((468)+16928770):setStatus(STATUS_DISAPPEAR);
        GetNPCByID((469)+16928770):setStatus(STATUS_DISAPPEAR);
        GetNPCByID((470)+16928770):setStatus(STATUS_DISAPPEAR);
-       elseif(Region==Central_Temenos_1st_Floor)then
+       elseif (Region==Central_Temenos_1st_Floor) then
        GetNPCByID((471)+16928770):setStatus(STATUS_DISAPPEAR);
-       elseif(Region==Central_Temenos_2nd_Floor)then
+       elseif (Region==Central_Temenos_2nd_Floor) then
        GetNPCByID((472)+16928770):setStatus(STATUS_DISAPPEAR);     
-       elseif(Region==Central_Temenos_3rd_Floor)then
+       elseif (Region==Central_Temenos_3rd_Floor) then
        GetNPCByID((473)+16928770):setStatus(STATUS_DISAPPEAR);     
-       elseif(Region==Central_Temenos_4th_Floor)then
+       elseif (Region==Central_Temenos_4th_Floor) then
        GetNPCByID((474)+16928770):setStatus(STATUS_DISAPPEAR);   
-       elseif(Region==Central_Temenos_Basement)then
+       elseif (Region==Central_Temenos_Basement) then
        GetNPCByID((475)+16928770):setStatus(STATUS_DISAPPEAR);  
        end
 end;
@@ -380,36 +380,36 @@ end;
 function IselementalDayAreDead()
  local day = GetServerVariable("[SW_Apollyon]ElementalTrigger") - 1;
  local daykill=false;
-if(day==0)then -- fire
-   if(IsMobDead(16932913)==true and IsMobDead(16932921)==true  and IsMobDead(16932929)==true )then
+if (day==0) then -- fire
+   if (IsMobDead(16932913)==true and IsMobDead(16932921)==true  and IsMobDead(16932929)==true ) then
    daykill=true;
    end
-elseif(day==1)then-- earth
-   if(IsMobDead(16932912)==true  and IsMobDead(16932920)==true  and IsMobDead(16932928)==true )then
+elseif (day==1) then-- earth
+   if (IsMobDead(16932912)==true  and IsMobDead(16932920)==true  and IsMobDead(16932928)==true ) then
    daykill=true;
    end
-elseif(day==2)then-- water
-   if(IsMobDead(16932916)==true and IsMobDead(16932924)==true  and IsMobDead(16932932)==true )then
+elseif (day==2) then-- water
+   if (IsMobDead(16932916)==true and IsMobDead(16932924)==true  and IsMobDead(16932932)==true ) then
    daykill=true;
    end
-elseif(day==3)then-- wind
-   if(IsMobDead(16932910)==true and IsMobDead(16932918)==true  and IsMobDead(16932926)==true )then
+elseif (day==3) then-- wind
+   if (IsMobDead(16932910)==true and IsMobDead(16932918)==true  and IsMobDead(16932926)==true ) then
    daykill=true;
    end
-elseif(day==4)then-- ice
-   if(IsMobDead(16932914)==true and IsMobDead(16932922)==true  and IsMobDead(16932930)==true )then
+elseif (day==4) then-- ice
+   if (IsMobDead(16932914)==true and IsMobDead(16932922)==true  and IsMobDead(16932930)==true ) then
    daykill=true;
    end
-elseif(day==5)then-- lightning
-   if(IsMobDead(16932917)==true and IsMobDead(16932925)==true  and IsMobDead(16932933)==true )then
+elseif (day==5) then-- lightning
+   if (IsMobDead(16932917)==true and IsMobDead(16932925)==true  and IsMobDead(16932933)==true ) then
    daykill=true;
    end
-elseif(day==6)then-- ligth
-   if(IsMobDead(16932931)==true and IsMobDead(16932915)==true  and IsMobDead(16932923)==true )then
+elseif (day==6) then-- ligth
+   if (IsMobDead(16932931)==true and IsMobDead(16932915)==true  and IsMobDead(16932923)==true ) then
    daykill=true;
    end
-elseif(day==7)then -- dark
-   if(IsMobDead(16932911)==true and IsMobDead(16932919)==true  and IsMobDead(16932927)==true )then
+elseif (day==7) then -- dark
+   if (IsMobDead(16932911)==true and IsMobDead(16932919)==true  and IsMobDead(16932927)==true ) then
    daykill=true;
    end
 end
@@ -429,15 +429,15 @@ function alreadyReceived(player,number,region)
     local pZone = player:getZoneID();
 
 
-    if(pZone == 37) then
+    if (pZone == 37) then
         
-    elseif(pZone == 38) then
+    elseif (pZone == 38) then
         LimbusVar = GetServerVariable("[CS_Apollyon]Already_Received");
     end
 
     for i = 12,0,-1 do
         twop = 2^i;
-        if(LimbusVar >= twop) then
+        if (LimbusVar >= twop) then
             bit[i+1] = 1;
             LimbusVar = LimbusVar - twop;
         else
@@ -445,7 +445,7 @@ function alreadyReceived(player,number,region)
         end;
     end;
     -- printf("received %u",bit[number]);
-    if(bit[number] == 0) then
+    if (bit[number] == 0) then
         return false;
     else
         return true;
@@ -456,8 +456,8 @@ function addLimbusList(player,number,Region)
 
     local pZone = player:getZoneID();
 
-    if(pZone == 37) then
-    elseif(pZone == 38) then
+    if (pZone == 37) then
+    elseif (pZone == 38) then
         SetServerVariable("[CS_Apollyon]Already_Received",GetServerVariable("[CS_Apollyon]Already_Received") + number);
     end
 
@@ -486,7 +486,7 @@ local KeyAlreadyExist = {
         GetServerVariable("[C_Temenos_4th_II]UniqueID"),
                 };
             for nl = 1, table.getn (KeyAlreadyExist),1 do
-                if(KeyAlreadyExist[nl] == Key)then
+                if (KeyAlreadyExist[nl] == Key) then
                    H= true;
                    break;
                 end
@@ -560,7 +560,7 @@ end;
 
 function IsMobDead(mobID)
 local ActionValue=GetMobAction(mobID);
-if(ActionValue==0 or ActionValue==21 or ActionValue==22 or ActionValue==23)then
+if (ActionValue==0 or ActionValue==21 or ActionValue==22 or ActionValue==23) then
       return true;
   else
      return false;
@@ -568,13 +568,13 @@ if(ActionValue==0 or ActionValue==21 or ActionValue==22 or ActionValue==23)then
 end;
 function despawnLimbusCS()
  for n= 16933130,16933136,1 do
-   if(IsMobDead(n)==false)then DespawnMob(n);end
+   if (IsMobDead(n)==false) then DespawnMob(n);end
  end
  for n= 16933138,16933143,1 do
-   if(IsMobDead(n)==false)then DespawnMob(n);end
+   if (IsMobDead(n)==false) then DespawnMob(n);end
  end
  for n= 16933145,16933152,1 do
-   if(IsMobDead(n)==false)then DespawnMob(n);end
+   if (IsMobDead(n)==false) then DespawnMob(n);end
  end
 end;
 
@@ -644,19 +644,19 @@ function Randomcoffer(Floor,region)
  local cofferType=0;
  local spawnchance=math.random(0,100);
 
-       if(spawnchance < 31)then
-          if(spawnchance < 15)then
+       if (spawnchance < 31) then
+          if (spawnchance < 15) then
           cofferType=cITEM;
-          elseif(spawnchance < 25)then
+          elseif (spawnchance < 25) then
           cofferType=cRESTORE;
-          elseif(spawnchance < 30)then
+          elseif (spawnchance < 30) then
           cofferType=cTIME;
           end      
        else
 --      print("nothing_spawn");
        end
        
-       if(region==Temenos_Western_Tower and cofferType==cITEM)then
+       if (region==Temenos_Western_Tower and cofferType==cITEM) then
             switch (Floor): caseof {
                  [1] = function (x)
                     cofferID=1;
@@ -677,7 +677,7 @@ function Randomcoffer(Floor,region)
                     cofferID=12;
                  end,                                            
                                         }
-       elseif(region==Temenos_Western_Tower and cofferType==cRESTORE)then
+       elseif (region==Temenos_Western_Tower and cofferType==cRESTORE) then
             switch (Floor): caseof {
                  [1] = function (x)
                      cofferID=203;                   
@@ -698,7 +698,7 @@ function Randomcoffer(Floor,region)
                       cofferID=208;                    
                  end,                                            
                                         }
-       elseif(region==Temenos_Western_Tower and cofferType==cTIME)then
+       elseif (region==Temenos_Western_Tower and cofferType==cTIME) then
             switch (Floor): caseof {
                  [1] = function (x)
                      cofferID=128;                   
@@ -731,7 +731,7 @@ function ResetKeyForEmptyLimbus(player,instanceID)
    
   -- print("instancestatus"..instancestatus);
    
- if(instancestatus==0)then
+ if (instancestatus==0) then
     switch (instanceID): caseof {
        [1290] = function (x)
              SetServerVariable("[NW_Apollyon]UniqueID",0);  print("[NW_Apollyon]KeyDelete");     
@@ -796,17 +796,17 @@ end;
 function GetInstanceRegion(instanceID)
   region = 0;
    for K = 1,table.getn (APPOLLYON_SE_NE_BCNM_LIST),2 do
-      if( APPOLLYON_SE_NE_BCNM_LIST[K] == instanceID)then
+      if ( APPOLLYON_SE_NE_BCNM_LIST[K] == instanceID) then
         region =APPOLLYON_SE_NE_BCNM_LIST[K+1][5]; 
       end
    end
    for L = 1,table.getn (APPOLLYON_NW_SW_BCNM_LIST),2 do
-      if(APPOLLYON_NW_SW_BCNM_LIST[L] == instanceID)then
+      if (APPOLLYON_NW_SW_BCNM_LIST[L] == instanceID) then
         region =APPOLLYON_NW_SW_BCNM_LIST[L+1][5] ;   
       end
    end
    for M = 1,table.getn (TEMENOS_LIST),2 do
-      if(TEMENOS_LIST[M] ==  instanceID)then
+      if (TEMENOS_LIST[M] ==  instanceID) then
         region = TEMENOS_LIST[M+1][5];    
       end
    end
@@ -820,20 +820,20 @@ local inst=0;
   
   ResetKeyForEmptyLimbus(player,instanceID); -- instancekey will be reset if this instance is empty
 
-     if(playerLimbusID == 0 )then
+     if (playerLimbusID == 0 ) then
         playerLimbusID = instanceID;
      end
   --   print("Player_:_instanceID_"..playerLimbusID.." Playerkey "..playerLimbusKeyID);
-        if(playerLimbusID~=0)then
+        if (playerLimbusID~=0) then
 
-            if(GetLimbusKeyFromInstance(playerLimbusID)==0 and playerLimbusKeyID==0)then  
+            if (GetLimbusKeyFromInstance(playerLimbusID)==0 and playerLimbusKeyID==0) then  
                inst = player:bcnmRegister(playerLimbusID);          -- Build Limbus 
                 printf("Regionfound: %u",inst);
-                if(inst == GetInstanceRegion(playerLimbusID))then                               
+                if (inst == GetInstanceRegion(playerLimbusID)) then                               
                       player:bcnmEnter(playerLimbusID); 
                       printf("BCNM_CREATE_WITH_REGION: %u",inst);
                 else
-                      if(playerLimbusID== 1290 or playerLimbusID== 1291 or playerLimbusID== 1294 or playerLimbusID== 1295 or playerLimbusID== 1296 or playerLimbusID== 1297)then
+                      if (playerLimbusID== 1290 or playerLimbusID== 1291 or playerLimbusID== 1294 or playerLimbusID== 1295 or playerLimbusID== 1296 or playerLimbusID== 1297) then
                          player:setPos(-668,0.1,-666);
                        else
                          player:setPos(643,0.1,-600);
@@ -852,12 +852,12 @@ local currentlimbus=0;
 local playerLimbusID = player:getVar("LimbusID");
 local playerLimbusKeyID = player:getVar("characterLimbusKey");    
      --    print("Player_:_instanceID_"..playerLimbusID.." Playerkey "..playerLimbusKeyID);     
-                 if( GetLimbusKeyFromInstance(playerLimbusID) == playerLimbusKeyID and player:isSpecialBattlefieldEmpty(GetInstanceRegion(playerLimbusID))==1 )then  -- player deco and back
+                 if ( GetLimbusKeyFromInstance(playerLimbusID) == playerLimbusKeyID and player:isSpecialBattlefieldEmpty(GetInstanceRegion(playerLimbusID))==1 ) then  -- player deco and back
                    currentlimbus=playerLimbusID;
 
                    print("trying_to_add_player_on_the_current_bcnm");
                     local registration = player:addPlayerToSpecialBattlefield(playerLimbusID);
-                          if(registration ~= 1)then
+                          if (registration ~= 1) then
                                 currentlimbus=0;
                           end
                  else

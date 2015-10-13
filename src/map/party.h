@@ -59,7 +59,6 @@ enum PARTYFLAG
 class CParty 
 {
 public:
-
     CParty(CBattleEntity* PEntity);
 	CParty(uint32 id);
 	
@@ -91,6 +90,7 @@ public:
     void SetPartyNumber(uint8 number);
 
     void PushPacket(uint32 senderID, uint16 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
+    void PushEffectsPacket();
 	
 	CAlliance* m_PAlliance;
 
@@ -100,7 +100,7 @@ public:
 
 private:
 
-	
+    struct partyInfo_t;
     uint32    m_PartyID;                                // уникальный ID группы
     PARTYTYPE m_PartyType;                              // тип существ, составляющих группу
     uint8     m_PartyNumber;                            // party number in alliance
@@ -112,8 +112,8 @@ private:
 
 	void SetLeader(const char* MemberName);                   // устанавливаем лидера группы
     void SetQuarterMaster(const char* MemberName);            // устанавливаем владельца сокровищ
-
 	void RemovePartyLeader(CBattleEntity* PEntity);     // лидер покидает группу
+    std::vector<partyInfo_t> GetPartyInfo();
 };
 
 #endif

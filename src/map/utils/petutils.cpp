@@ -81,6 +81,8 @@ struct Pet_t
     uint8        defRank;
     uint8        accRank;
 
+    uint16       m_MobSkillList;
+
     // magic stuff
     bool hasSpellScript;
     uint16 spellList;
@@ -154,7 +156,7 @@ namespace petutils
                 hasSpellScript, spellList, \
                 Slash, Pierce, H2H, Impact, \
                 Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, \
-                cmbDelay, name_prefix \
+                cmbDelay, name_prefix, mob_pools.skill_list_id \
                 FROM pet_list, mob_pools, mob_family_system \
                 WHERE pet_list.poolid = mob_pools.poolid AND mob_pools.familyid = mob_family_system.familyid";
 
@@ -202,14 +204,14 @@ namespace petutils
                 Pet->hthres = (uint16)(Sql_GetFloatData(SqlHandle, 27) * 1000);
                 Pet->impactres = (uint16)(Sql_GetFloatData(SqlHandle, 28) * 1000);
 
-                Pet->firedef = (uint16)((Sql_GetFloatData(SqlHandle, 29) - 1) * -1000);
-                Pet->icedef = (uint16)((Sql_GetFloatData(SqlHandle, 30) - 1) * -1000);
-                Pet->winddef = (uint16)((Sql_GetFloatData(SqlHandle, 31) - 1) * -1000);
-                Pet->earthdef = (uint16)((Sql_GetFloatData(SqlHandle, 32) - 1) * -1000);
-                Pet->thunderdef = (uint16)((Sql_GetFloatData(SqlHandle, 33) - 1) * -1000);
-                Pet->waterdef = (uint16)((Sql_GetFloatData(SqlHandle, 34) - 1) * -1000);
-                Pet->lightdef = (uint16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -1000);
-                Pet->darkdef = (uint16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -1000);
+                Pet->firedef = 0;
+                Pet->icedef = 0;
+                Pet->winddef = 0;
+                Pet->earthdef = 0;
+                Pet->thunderdef = 0;
+                Pet->waterdef = 0;
+                Pet->lightdef = 0;
+                Pet->darkdef = 0;
 
                 Pet->fireres = (uint16)((Sql_GetFloatData(SqlHandle, 29) - 1) * -100);
                 Pet->iceres = (uint16)((Sql_GetFloatData(SqlHandle, 30) - 1) * -100);
@@ -222,6 +224,7 @@ namespace petutils
 
                 Pet->cmbDelay = (uint16)Sql_GetIntData(SqlHandle, 37);
                 Pet->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 38);
+                Pet->m_MobSkillList = (uint16)Sql_GetUIntData(SqlHandle, 39);
 
                 g_PPetList.push_back(Pet);
             }
@@ -761,6 +764,12 @@ namespace petutils
             charutils::BuildingCharPetAbilityTable((CCharEntity*)PMaster, PPet, PetID);
             ((CCharEntity*)PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)PMaster));
             ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
+
+            // check latents affected by pets
+            ((CCharEntity*)PMaster)->PLatentEffectContainer->CheckLatentsPetType(PetID);
+                PMaster->ForParty([](CBattleEntity* PMember) {
+                ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
+            });
         }
         // apply stats from previous zone if this pet is being transfered
         if (spawningFromZone == true)
@@ -769,10 +778,7 @@ namespace petutils
             PPet->health.hp = ((CCharEntity*)PMaster)->petZoningInfo.petHP;
         }
 
-        // check latents affected by pets
-        PMaster->ForParty([](CBattleEntity* PMember){
-            ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
-        });
+
 
     }
 
@@ -791,6 +797,7 @@ namespace petutils
 
         PPet->look = petData->look;
         PPet->name = petData->name;
+        PPet->SetMJob(petData->mJob);
         PPet->m_EcoSystem = petData->EcoSystem;
         PPet->m_Family = petData->m_Family;
         PPet->m_Element = petData->m_Element;
@@ -801,8 +808,11 @@ namespace petutils
         PPet->allegiance = PMaster->allegiance;
         PMaster->StatusEffectContainer->CopyConfrontationEffect(PPet);
 
-        // assuming elemental spawn
-        PPet->setModifier(MOD_DMGPHYS, -50); //-50% PDT
+        if (PPet->m_EcoSystem == SYSTEM_AVATAR || PPet->m_EcoSystem == SYSTEM_ELEMENTAL)
+        {
+            // assuming elemental spawn
+            PPet->setModifier(MOD_DMGPHYS, -50); //-50% PDT
+        }
 
         PPet->m_SpellListContainer = mobSpellList::GetMobSpellList(petData->spellList);
 
@@ -902,6 +912,7 @@ namespace petutils
             if (PPetEnt->getPetType() == PETTYPE_AVATAR)
                 PMaster->setModifier(MOD_AVATAR_PERPETUATION, 0);
 
+            ((CCharEntity*)PMaster)->PLatentEffectContainer->CheckLatentsPetType(-1);
             PMaster->ForParty([](CBattleEntity* PMember){
                 ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
             });
@@ -1245,6 +1256,7 @@ namespace petutils
         }
         PPet->m_name_prefix = g_PPetList.at(PetID)->name_prefix;
         PPet->m_Family = g_PPetList.at(PetID)->m_Family;
+        PPet->m_MobSkillList = g_PPetList.at(PetID)->m_MobSkillList;
         PPet->SetMJob(g_PPetList.at(PetID)->mJob);
         PPet->m_Element = g_PPetList.at(PetID)->m_Element;
         PPet->m_PetID = PetID;
@@ -1374,7 +1386,7 @@ namespace petutils
         }
 
 		FinalizePetStatistics(PMaster, PPet);
-		PPet->PetSkills = battleutils::GetMobSkillsByFamily(PPet->m_Family);
+		PPet->PetSkills = battleutils::GetMobSkillList(PPet->m_MobSkillList);
 		PPet->status = STATUS_NORMAL;
 		PPet->m_ModelSize += g_PPetList.at(PetID)->size;
 		PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;

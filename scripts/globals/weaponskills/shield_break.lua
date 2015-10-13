@@ -39,7 +39,7 @@ function onUseWeaponSkill(player, target, wsID)
 	if damage > 0 then
 		local tp = player:getTP();
 		local duration = (tp/100 * 60) + 120;
-		if(target:hasStatusEffect(EFFECT_EVASION_DOWN) == false) then
+		if (target:hasStatusEffect(EFFECT_EVASION_DOWN) == false) then
 			target:addStatusEffect(EFFECT_EVASION_DOWN, 40, 0, duration);
 		end
 	end

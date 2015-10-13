@@ -26,7 +26,7 @@ end;
 
 function onMobDeath(mob,killer)
 
-	if(alreadyReceived(killer,4) == false) then
+	if (alreadyReceived(killer,4) == false) then
 		killer:addTimeToDynamis(30);
 		addDynamisList(killer,8);
 	end

@@ -41,7 +41,7 @@ function onTrigger(player,npc)
 
 BareBones = player:getQuestStatus(BASTOK,THE_BARE_BONES);
 
-	if(player:getVar("BeatAroundTheBushin") == 3) then
+	if (player:getVar("BeatAroundTheBushin") == 3) then
 		player:startEvent(0x0156);
 	elseif (BareBones == 0) then
 		player:startEvent(0x0100);
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x0156) then
+	if (csid == 0x0156) then
 		player:setVar("BeatAroundTheBushin",4);
 	elseif (csid == 0x0100) then
 		player:addQuest(BASTOK,THE_BARE_BONES);

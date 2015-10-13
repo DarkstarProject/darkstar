@@ -93,9 +93,9 @@ struct MeritCategoryInfo_t
 static const MeritCategoryInfo_t meritCatInfo[] =
 {
     {3,45,0},  //MCATEGORY_HP_MP
-    {7,45,1},  //MCATEGORY_ATTRIBUTES
-    {19,56,2}, //MCATEGORY_COMBAT
-    {14,48,4}, //MCATEGORY_MAGIC
+    {7,60,1},  //MCATEGORY_ATTRIBUTES
+    {19,112,2}, //MCATEGORY_COMBAT
+    {14,80,4}, //MCATEGORY_MAGIC
     {5,10,5},  //MCATEGORY_OTHERS
 
     {5,10,6},  //MCATEGORY_WAR_1
@@ -197,49 +197,44 @@ CMeritPoints::CMeritPoints(CCharEntity* PChar)
 
 void CMeritPoints::LoadMeritPoints(uint32 charid)
 {
+    uint8 catNumber = 0;
 
-    const int8* Query = "SELECT merits FROM chars WHERE charid = %u";
+    for (uint16 i = 0; i < MERITS_COUNT; ++i)
+    {
+        if ((catNumber < 51 && i == meritNameSpace::groupOffset[catNumber]) || (catNumber > 25 && catNumber < 31))
+        {
 
-	if (Sql_Query(SqlHandle, Query, charid) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-	   size_t length = 0;
-       int8*  points = 0;
+            if (catNumber > 25 && catNumber < 31) // point these to valid merits to prevent crash
+                Categories[catNumber] = &merits[163];
+            else
+                Categories[catNumber] = &merits[i];
 
-       Sql_GetData(SqlHandle, 0, &points, &length);
+            catNumber++;
+        }
 
-       if (length == MERITS_COUNT)
-       {
-		   uint8 catNumber = 0;
-
-           for (uint16 i = 0; i < MERITS_COUNT; ++i)
-		   {
-			   if ( (catNumber < 51 && i == meritNameSpace::groupOffset[catNumber]) || (catNumber > 25 && catNumber < 31) )
-			   {
-
-				   if (catNumber > 25 && catNumber < 31) // point these to valid merits to prevent crash
-						Categories[catNumber] = &merits[163];
-				   else
-						Categories[catNumber] = &merits[i];
-
-				   catNumber++;
-			   }
-
-               merits[i].count = points[i];
-			   merits[i].next = upgrade[merits[i].upgradeid][merits[i].count];
-           }
-           return;
-
-       }
-	   else if(length == 0)
-	   {
-		   //merits were not set to zero on char creation for this character, set them now
-		   SaveMeritPoints(charid,true);
-		   return;
-	   }
+        merits[i].count = 0;
+        merits[i].next = upgrade[merits[i].upgradeid][merits[i].count];
     }
 
-	ShowError(CL_RED"MeritSystem: can't load merits for charid %u" CL_RESET, charid);
-
+    if (Sql_Query(SqlHandle, "SELECT meritid, upgrades FROM char_merit WHERE charid = %u", charid) != SQL_ERROR)
+    {
+        for (uint16 j = 0; j < Sql_NumRows(SqlHandle); j++)
+        {
+            if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                uint32 meritID = Sql_GetUIntData(SqlHandle, 0);
+                uint32 upgrades = Sql_GetUIntData(SqlHandle, 1);
+                for (uint16 i = 0; i < MERITS_COUNT; i++)
+                {
+                    if (merits[i].id == meritID)
+                    {
+                        merits[i].count = upgrades;
+                        merits[i].next = upgrade[merits[i].upgradeid][merits[i].count];
+                    }
+                }
+            }
+        }
+    }
 }
 
 /************************************************************************
@@ -248,29 +243,13 @@ void CMeritPoints::LoadMeritPoints(uint32 charid)
 *                                                                       *
 ************************************************************************/
 
-void CMeritPoints::SaveMeritPoints(uint32 charid, bool resetingMerits)
+void CMeritPoints::SaveMeritPoints(uint32 charid)
 {
-	const int8* Query =  "UPDATE chars SET merits = '%s' WHERE charid = %u";
-
-	int8 points[MERITS_COUNT*2+1];
-    int8 MeritCounts[MERITS_COUNT];
-
     for (uint16 i = 0; i < MERITS_COUNT; ++i)
-    {
-		if (resetingMerits)
-			MeritCounts[i] = 0;
-		else
-			MeritCounts[i] = merits[i].count;
-    }
-
-	Sql_EscapeStringLen(SqlHandle, points, (const int8*)MeritCounts, MERITS_COUNT);
-
-	Sql_Query(SqlHandle, Query, points, charid);
-
-
-	// reload merit points if they were reset
-	if (resetingMerits)
-		LoadMeritPoints(charid);
+        if (merits[i].count > 0)
+            Sql_Query(SqlHandle, "INSERT INTO char_merit (charid, meritid, upgrades) VALUES(%u, %u, %u) ON DUPLICATE KEY UPDATE upgrades = %u", charid, merits[i].id, merits[i].count, merits[i].count);
+        else
+            Sql_Query(SqlHandle, "DELETE FROM char_merit WHERE charid = %u AND meritid = %u", charid, merits[i].id);
 }
 
 /************************************************************************
@@ -293,18 +272,6 @@ uint16 CMeritPoints::GetLimitPoints()
 uint8 CMeritPoints::GetMeritPoints()
 {
     return m_MeritPoints;
-}
-
-
-/************************************************************************
-*                                                                       *
-*  Получаем указател на массив merits                                   *
-*                                                                       *
-************************************************************************/
-
-const Merit_t* CMeritPoints::GetMerits()
-{
-    return merits;
 }
 
 
@@ -505,19 +472,6 @@ int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
 	return meritValue;
 }
 
-int32 CMeritPoints::GetMeritValue(Merit_t* merit, CCharEntity* PChar)
-{
-    uint8 meritValue = 0;
-    if (merit->catid < 5 || (merit->jobs & (1 << (PChar->GetMJob() - 1)) && PChar->GetMLevel() >= 75))
-        meritValue = dsp_min(merit->count, cap[PChar->GetMLevel()]);
-
-    if (merit->catid == 8 && PChar->GetMLevel() < 96)
-        meritValue = 0;
-
-	meritValue *= merit->value;
-
-	return meritValue;
-}
 
 /************************************************************************
 *                                                                       *

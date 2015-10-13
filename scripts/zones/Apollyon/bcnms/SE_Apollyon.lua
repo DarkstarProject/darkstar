@@ -27,7 +27,7 @@ end;
 function onBcnmLeave(player,instance,leavecode)
   -- print("leave code "..leavecode);
    
-	if(leavecode == 4) then
+	if (leavecode == 4) then
 	 	player:setPos(643,0.1,-600);
 		ResetPlayerLimbusVariable(player)
 	end

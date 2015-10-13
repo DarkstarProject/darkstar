@@ -32,44 +32,44 @@
 
 class CLuaStatusEffect
 {
-	CStatusEffect *m_PLuaStatusEffect;
-	
+    CStatusEffect *m_PLuaStatusEffect;
+
 public:
 
-	static const int8 className[];
-	static Lunar<CLuaStatusEffect>::Register_t methods[];
+    static const int8 className[];
+    static Lunar<CLuaStatusEffect>::Register_t methods[];
 
-	CLuaStatusEffect(lua_State*);
-	CLuaStatusEffect(CStatusEffect*);
+    CLuaStatusEffect(lua_State*);
+    CLuaStatusEffect(CStatusEffect*);
 
-	CStatusEffect* GetStatusEffect()const
-	{
-		return m_PLuaStatusEffect;
-	}
+    CStatusEffect* GetStatusEffect()const
+    {
+        return m_PLuaStatusEffect;
+    }
 
-	int32 getType(lua_State*);
-	int32 getSubType(lua_State*);
-	int32 getPower(lua_State*);
+    int32 getType(lua_State*);
+    int32 getSubType(lua_State*);
+    int32 getPower(lua_State*);
     int32 getSubPower(lua_State*);
     int32 getTier(lua_State*);
-	int32 getDuration(lua_State*);
-	int32 getStartTime(lua_State*);
+    int32 getDuration(lua_State*);
+    int32 getStartTime(lua_State*);
     int32 getLastTick(lua_State*);
     int32 getTimeRemaining(lua_State*);
-	int32 getTickCount(lua_State*);
+    int32 getTickCount(lua_State*);
     int32 getTick(lua_State*);
-	
+
     int32 setIcon(lua_State*);
-	int32 setPower(lua_State*);
+    int32 setPower(lua_State*);
     int32 setSubPower(lua_State*);
     int32 setTier(lua_State*);
-	int32 setDuration(lua_State*);
+    int32 setDuration(lua_State*);
     int32 setTick(lua_State*);
     int32 setStartTime(lua_State*);
 
     int32 resetStartTime(lua_State*);
 
-	int32 addMod(lua_State*);
+    int32 addMod(lua_State*);
     int32 setFlag(lua_State*);
     int32 unsetFlag(lua_State*);
 };

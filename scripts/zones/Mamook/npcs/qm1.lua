@@ -14,7 +14,7 @@ require("scripts/zones/Mamook/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(2581,1) and trade:getItemCount() == 1) then -- Trade Floral Nectar
+	if (trade:hasItemQty(2581,1) and trade:getItemCount() == 1) then -- Trade Floral Nectar
 		player:tradeComplete();
 		SpawnMob(17043887,180):updateClaim(player);
 	end

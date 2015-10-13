@@ -55,8 +55,8 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 67) then
-		if(player:getFreeSlotsCount() < 1) then 
+	if (csid == 67) then
+		if (player:getFreeSlotsCount() < 1) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12519);
 		else
 			player:addItem(12519);

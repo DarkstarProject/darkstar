@@ -1,5 +1,4 @@
 -------------------------------------------------
---	Author: Ezekyel
 --	Crafting functions
 --  Info from:
 --      http://wiki.ffxiclopedia.org/wiki/Crafts_%26_Hobbies
@@ -78,7 +77,7 @@ function isGuildMember(player,guild)
 	for i = 12,1,-1 do
 		twop = 2^i
 
-		if(guildOK >= twop) then
+		if (guildOK >= twop) then
 			bit[i]=1; guildOK = guildOK - twop;
 		else
 			bit[i]=0;
@@ -134,7 +133,7 @@ function canGetNewRank(player,skillLvL,craftID)
 	local canGet = 0;
 
 	-- 0 fonctionne pas en lua donc rank + 1
-	if(Rank == 1 and skillLvL >= 256 or
+	if (Rank == 1 and skillLvL >= 256 or
 	   Rank == 2 and skillLvL >= 577 or
 	   Rank == 3 and skillLvL >= 898 or
 	   Rank == 4 and skillLvL >= 1219 or
@@ -161,7 +160,7 @@ function tradeTestItem(player,npc,trade,craftID)
     local myTI = getTestItem(player,npc,craftID);
     local newRank = 0;
 
-    if(canGetNewRank(player,skillLvL,craftID) == 1 and
+    if (canGetNewRank(player,skillLvL,craftID) == 1 and
         trade:hasItemQty(myTI,1) and
         trade:getItemCount() == 1) then
         newRank = player:getSkillRank(craftID) + 1;

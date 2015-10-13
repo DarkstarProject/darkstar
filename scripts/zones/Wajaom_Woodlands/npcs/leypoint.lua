@@ -15,7 +15,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
 
-	if(player:getQuestStatus(AHT_URHGAN,OLDUUM) == QUEST_COMPLETED and player:hasItem(15769) == false) then
+	if (player:getQuestStatus(AHT_URHGAN,OLDUUM) == QUEST_COMPLETED and player:hasItem(15769) == false) then
 		if (trade:hasItemQty(2217,1) and trade:getItemCount() == 1) then -- Trade Lightning Band
 			player:tradeComplete(); -- Trade Complete
 			player:addItem(15769); -- Receive Olduum Ring
@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 		end
 	end
 
-	if(player:getQuestStatus(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getVar("NavigatingtheUnfriendlySeas") == 2) then
+	if (player:getQuestStatus(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getVar("NavigatingtheUnfriendlySeas") == 2) then
         if (trade:hasItemQty(2341,1) and trade:getItemCount() == 1) then -- Trade Hydrogauge
 			player:messageSpecial(PLACE_HYDROGAUGE,2341); -- You set the <item> in the trench.
             player:tradeComplete(); --Trade Complete
@@ -41,8 +41,8 @@ end;
 
 function onTrigger(player,npc)
 
-	if(player:getQuestStatus(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getVar("NavigatingtheUnfriendlySeas") == 3) then
-        if(player:getVar("Leypoint_waitJTime") <= os.time()) then
+	if (player:getQuestStatus(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getVar("NavigatingtheUnfriendlySeas") == 3) then
+        if (player:getVar("Leypoint_waitJTime") <= os.time()) then
             player:startEvent(0x01FC);
 			player:setVar("NavigatingtheUnfriendlySeas",4);   -- play cs for having waited enough time
         else

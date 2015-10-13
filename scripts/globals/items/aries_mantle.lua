@@ -20,7 +20,7 @@ end;
 
 function onItemUse(target)
 
-    if(hasSleepEffects(target)) then
+    if (hasSleepEffects(target)) then
         target:messageBasic(423);
     else
         target:addStatusEffect(EFFECT_SLEEP_I, 0, 0, 30);

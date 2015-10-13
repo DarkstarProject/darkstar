@@ -117,10 +117,10 @@ enum MERIT_TYPE
     MERIT_STR                       = MCATEGORY_ATTRIBUTES + 0x00,
     MERIT_DEX                       = MCATEGORY_ATTRIBUTES + 0x02,
     MERIT_VIT                       = MCATEGORY_ATTRIBUTES + 0x04,
-    MERIT_AGI                       = MCATEGORY_ATTRIBUTES + 0x08,
-    MERIT_INT                       = MCATEGORY_ATTRIBUTES + 0x0A,
-    MERIT_MND                       = MCATEGORY_ATTRIBUTES + 0x0C,
-    MERIT_CHR                       = MCATEGORY_ATTRIBUTES + 0x0E,
+    MERIT_AGI                       = MCATEGORY_ATTRIBUTES + 0x06,
+    MERIT_INT                       = MCATEGORY_ATTRIBUTES + 0x08,
+    MERIT_MND                       = MCATEGORY_ATTRIBUTES + 0x0A,
+    MERIT_CHR                       = MCATEGORY_ATTRIBUTES + 0x0C,
 
     //COMBAT SKILLS
     MERIT_H2H                       = MCATEGORY_COMBAT + 0x00,
@@ -511,15 +511,15 @@ struct Merit_t
         struct
         {
             uint16 id;      // id мерита
-            uint8  next;    // необходимое количество меритов для следующего усиления
-            uint8  count;   // текущее количество усилений
+            uint8  next;    // required merit points for next upgrade
+            uint8  count;   // number of upgrades
         };
-        uint32 data;        // информация для отправки персонажу
+        uint32 data;        // data sent in packet
     };
 
-    uint32 value;           // коэффициент изменения параметра, привязанного к merit
-    uint8  upgrade;         // максимальное количество усилений для данного merit
-    uint32 jobs;            // маска профессий, для которых merit работает
+    uint32 value;           // the coefficient of variation of the parameter that is bound to merit 
+    uint8  upgrade;         // maximum number of upgrades
+    uint32 jobs;            // bitmask of jobs for which merit has effect
 	uint8  upgradeid;		// which set of upgrade values the merit will use
 	uint8  catid;			// cat which merit belongs to
     uint16 spellid;         // associated spell ID to learn/unlearn
@@ -541,7 +541,6 @@ class CMeritPoints
         uint16      GetLimitPoints();
         uint8       GetMeritPoints();
         int32       GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar);
-        int32       GetMeritValue(Merit_t* merit, CCharEntity* PChar);
 
         bool        AddLimitPoints(uint16 points);                  // automatically adds merit points > 10000
         bool        IsMeritExist(MERIT_TYPE merit);                 // проверяем существование merit
@@ -552,13 +551,11 @@ class CMeritPoints
         void        SetLimitPoints(uint16 points);                  // used for loading player limit points on login
         void        SetMeritPoints(uint16 points);                  // used for loading player merit points on login
 
-        const Merit_t* GetMerits();
-
         const Merit_t* GetMerit(MERIT_TYPE merit);
 		const Merit_t* GetMeritByIndex(uint16 index);				// get merit index, 0,1,2,3,4 and so on
 
 		void LoadMeritPoints(uint32 charid);						// load char applied merits
-		void SaveMeritPoints(uint32 charid, bool resetingMerits);	// save char applied merits
+		void SaveMeritPoints(uint32 charid);	// save char applied merits
 
     private:
 

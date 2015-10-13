@@ -34,7 +34,7 @@
 CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemask)
 {
 	this->type = 0x0D;
-	this->size = 0x36;
+	this->size = 0x3A;
 
 	WBUFL(data,(0x04)) = PChar->id;
 	WBUFW(data,(0x08)) = PChar->targid;
@@ -112,33 +112,33 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
             }
 			if (PChar->PPet != nullptr)
 			{
-				WBUFW(data,(0x3C)) = PChar->PPet->targid << 3;
+				WBUFW(data,(0x3C)) = PChar->PPet->targid;
 			}
 
             if (updatemask & UPDATE_LOOK)
             {
                 look_t *look = (PChar->getStyleLocked() ? &PChar->mainlook : &PChar->look);
-                WBUFB(data, (0x44) ) = look->face;
-                WBUFB(data, (0x45) ) = look->race;
-                WBUFW(data, (0x46) ) = look->head + 0x1000;
-                WBUFW(data, (0x48) ) = look->body + 0x2000;
-                WBUFW(data, (0x4A) ) = look->hands + 0x3000;
-                WBUFW(data, (0x4C) ) = look->legs + 0x4000;
-                WBUFW(data, (0x4E) ) = look->feet + 0x5000;
-                WBUFW(data, (0x50) ) = look->main + 0x6000;
-                WBUFW(data, (0x52) ) = look->sub + 0x7000;
-                WBUFW(data, (0x54) ) = look->ranged + 0x8000;
+                WBUFB(data, (0x48) ) = look->face;
+                WBUFB(data, (0x49) ) = look->race;
+                WBUFW(data, (0x4A) ) = look->head + 0x1000;
+                WBUFW(data, (0x4C) ) = look->body + 0x2000;
+                WBUFW(data, (0x4E) ) = look->hands + 0x3000;
+                WBUFW(data, (0x50) ) = look->legs + 0x4000;
+                WBUFW(data, (0x52) ) = look->feet + 0x5000;
+                WBUFW(data, (0x54) ) = look->main + 0x6000;
+                WBUFW(data, (0x56) ) = look->sub + 0x7000;
+                WBUFW(data, (0x58) ) = look->ranged + 0x8000;
 
                 if (PChar->m_Monstrosity != 0)
                 {
-                    WBUFW(data, (0x44) ) = PChar->m_Monstrosity;
-                    WBUFW(data, (0x54) ) = 0xFFFF;
+                    WBUFW(data, (0x48) ) = PChar->m_Monstrosity;
+                    WBUFW(data, (0x58) ) = 0xFFFF;
                 }
             }
 
             if (updatemask & UPDATE_NAME)
             {
-                memcpy(data + (0x56) , PChar->GetName(), PChar->name.size());
+                memcpy(data + (0x5A) , PChar->GetName(), PChar->name.size());
             }
 		}
 		break;

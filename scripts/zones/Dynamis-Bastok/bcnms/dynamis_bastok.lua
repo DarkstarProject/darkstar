@@ -32,7 +32,7 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 	
-	if(leavecode == 4) then
+	if (leavecode == 4) then
 		GetNPCByID(17539323):setStatus(2);
 		SetServerVariable("[DynaBastok]UniqueID",0);
 	end

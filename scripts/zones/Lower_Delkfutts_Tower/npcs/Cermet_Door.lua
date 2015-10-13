@@ -40,7 +40,7 @@ function onEventFinish(player,csid,option)
 	--print("CSID:",csid);
 	--print("RESULT:",option);
 
-	if(csid == 0x0014 and option == 1) then
+	if (csid == 0x0014 and option == 1) then
 		player:setPos(313, 16, 20, 128, 0x9E);	-- to Upper Delkfutt's Tower
 	end
 end;

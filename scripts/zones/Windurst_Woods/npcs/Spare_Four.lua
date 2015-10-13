@@ -48,7 +48,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x0127) then
+	if (csid == 0x0127) then
 		player:setVar("AGreetingCardian_Event",3);
 		end
 end;

@@ -19,9 +19,9 @@ end;
 
 function onTrigger(player,npc)
 
-	if(player:hasKeyItem(126) ==true) then
+	if (player:hasKeyItem(126) ==true) then
 		player:startEvent(0x0198,0,126);
-	elseif(player:getVar("CHASING_TALES_TRACK_BOOK") >= 1) then
+	elseif (player:getVar("CHASING_TALES_TRACK_BOOK") >= 1) then
 	    player:startEvent(0x0195); -- Neeed CS here
     		
     else

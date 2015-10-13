@@ -19,7 +19,7 @@ end;
 
 function onMobDeath(mob,killer)
 
-	if(killer:hasKeyItem(SEANCE_STAFF) and killer:getVar("Enagakure_Killed") == 0) then
+	if (killer:hasKeyItem(SEANCE_STAFF) and killer:getVar("Enagakure_Killed") == 0) then
 		killer:setVar("Enagakure_Killed",1);
 	end
 

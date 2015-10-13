@@ -25,11 +25,13 @@
 
 CLuaAction::CLuaAction(lua_State *L)
 {
-    if( !lua_isnil(L,-1) )
+    if (!lua_isnil(L, -1))
     {
         m_PLuaAction = (apAction_t*)(lua_touserdata(L, -1));
-        lua_pop(L,1);
-    }else{
+        lua_pop(L, 1);
+    }
+    else
+    {
         m_PLuaAction = nullptr;
     }
 }
@@ -73,7 +75,7 @@ inline int32 CLuaAction::setAddEffectParam(lua_State* L)
 // Initialize Lua Methods
 const int8 CLuaAction::className[] = "CAction";
 
-Lunar<CLuaAction>::Register_t CLuaAction::methods[] = 
+Lunar<CLuaAction>::Register_t CLuaAction::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaAction, setParam),
     LUNAR_DECLARE_METHOD(CLuaAction, setMessageID),

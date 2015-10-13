@@ -24,11 +24,11 @@ end;
 
 function onTrigger(player,npc)
 	local ratRaceProg = player:getVar("ratraceCS");
-    if(ratRaceProg == 1) then
+    if (ratRaceProg == 1) then
        player:startEvent(0x0351);
-	elseif(ratRaceProg == 2) then  
+	elseif (ratRaceProg == 2) then  
        player:startEvent(0x0353);
-	elseif(ratRaceProg >= 3) then  
+	elseif (ratRaceProg >= 3) then  
        player:startEvent(0x0354);
 	else
 	   player:startEvent(0x005a);
@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-    if(csid == 0x0351) then
+    if (csid == 0x0351) then
 	   player:setVar("ratraceCS",2);
 	end
 end;

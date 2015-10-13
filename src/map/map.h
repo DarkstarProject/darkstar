@@ -95,6 +95,7 @@ struct map_config_t
     bool   craft_direction_matters; // Enable/disable Compass direction factor in synthesis
 	float  mob_tp_multiplier;		// Multiplies the amount of TP mobs gain on any effect that would grant TP
 	float  player_tp_multiplier;	// Multiplies the amount of TP players gain on any effect that would grant TP
+        bool   mob_no_despawn;  // Toggle whether mobs roam home or despawn
     float  nm_hp_multiplier;        // Multiplier for max HP of NM.
 	float  mob_hp_multiplier;		// Multiplier for max HP pool of mob
 	float  player_hp_multiplier;	// Multiplier for max HP pool of player

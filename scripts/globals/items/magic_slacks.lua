@@ -22,7 +22,7 @@ function onItemUse(target)
     local hpHeal = math.random(30,40);
 
     local dif = target:getMaxMP() - target:getMP();
-    if(hpHeal > dif) then
+    if (hpHeal > dif) then
         hpHeal = dif;
     end
     target:addMP(hpHeal);

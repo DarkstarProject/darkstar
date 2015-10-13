@@ -373,20 +373,20 @@ INSERT INTO `treasure_spawn_points` VALUES (17396207,6,160,-13.623,-39.834,-184.
 INSERT INTO `treasure_spawn_points` VALUES (17396207,7,193,-60.369,-71.750,-146.231); -- Castle Oztroja
 INSERT INTO `treasure_spawn_points` VALUES (17396207,8,63,-139.729,-71.750,-53.252); -- Castle Oztroja
 INSERT INTO `treasure_spawn_points` VALUES (17396207,9,65,-100.197,-72.511,-13.141); -- Castle Oztroja
-INSERT INTO `treasure_spawn_points` VALUES (17404389,0,95,28.477,6.335,145.925); -- The Boyahda Tree
-INSERT INTO `treasure_spawn_points` VALUES (17404389,1,120,-62.707,8.787,80.017); -- The Boyahda Tree
-INSERT INTO `treasure_spawn_points` VALUES (17404389,2,5,-100.194,7.716,71.802); -- The Boyahda Tree
-INSERT INTO `treasure_spawn_points` VALUES (17404389,3,27,26.121,6.102,95.937); -- The Boyahda Tree
-INSERT INTO `treasure_spawn_points` VALUES (17404389,4,180,68.144,6.428,54.531); -- The Boyahda Tree
-INSERT INTO `treasure_spawn_points` VALUES (17404389,5,234,108.235,7.085,26.143); -- The Boyahda Tree
-INSERT INTO `treasure_spawn_points` VALUES (17404389,6,139,136.094,10.600,26.152); -- The Boyahda Tree
-INSERT INTO `treasure_spawn_points` VALUES (17404389,7,81,176.461,8.172,65.105); -- The Boyahda Tree
-INSERT INTO `treasure_spawn_points` VALUES (17404389,8,200,184.816,5.867,-52.454); -- The Boyahda Tree
-INSERT INTO `treasure_spawn_points` VALUES (17404389,9,0,201.244,8.791,-163.229); -- The Boyahda Tree
-INSERT INTO `treasure_spawn_points` VALUES (17404389,10,66,260.650,8.445,-73.685); -- The Boyahda Tree
-INSERT INTO `treasure_spawn_points` VALUES (17404389,11,18,215.152,8.210,16.315); -- The Boyahda Tree
-INSERT INTO `treasure_spawn_points` VALUES (17404389,12,42,251.260,5.078,24.927); -- The Boyahda Tree
-INSERT INTO `treasure_spawn_points` VALUES (17404389,13,12,251.809,6.141,-18.487); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404390,0,95,28.477,6.335,145.925); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404390,1,120,-62.707,8.787,80.017); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404390,2,5,-100.194,7.716,71.802); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404390,3,27,26.121,6.102,95.937); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404390,4,180,68.144,6.428,54.531); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404390,5,234,108.235,7.085,26.143); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404390,6,139,136.094,10.600,26.152); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404390,7,81,176.461,8.172,65.105); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404390,8,200,184.816,5.867,-52.454); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404390,9,0,201.244,8.791,-163.229); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404390,10,66,260.650,8.445,-73.685); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404390,11,18,215.152,8.210,16.315); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404390,12,42,251.260,5.078,24.927); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404390,13,12,251.809,6.141,-18.487); -- The Boyahda Tree
 INSERT INTO `treasure_spawn_points` VALUES (17429003,0,192,-219.944,-0.800,30.638); -- Temple of Uggalepih
 INSERT INTO `treasure_spawn_points` VALUES (17429003,1,65,-130.001,0.000,32.935); -- Temple of Uggalepih
 INSERT INTO `treasure_spawn_points` VALUES (17429003,2,255,-220.044,-0.000,-19.961); -- Temple of Uggalepih

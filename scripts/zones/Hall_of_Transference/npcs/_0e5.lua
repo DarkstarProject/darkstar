@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if(player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
+    if (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
         player:startEvent(0x00A0);
     else
         player:messageSpecial(NO_RESPONSE_OFFSET);
@@ -44,7 +44,7 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-    if(csid == 0x00A0) then
+    if (csid == 0x00A0) then
         player:setPos(185.891, 0, -52.331, 128, 18); -- To Promyvion Dem {R}
     end
 end;

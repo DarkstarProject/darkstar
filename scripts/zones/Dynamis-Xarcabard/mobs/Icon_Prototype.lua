@@ -39,15 +39,15 @@ function onMobDeath(mob,killer)
 	local mobID = mob:getID();
 	
 	-- Time Bonus: 043
-	if(mobID == 17330814 and mob:isInBattlefieldList() == false) then
+	if (mobID == 17330814 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(30);
 		mob:addInBattlefieldList();
 	-- HP Bonus: 052
-	elseif(mobID == 17330533) then
+	elseif (mobID == 17330533) then
 		killer:restoreHP(2000);
 		killer:messageBasic(024,(killer:getMaxHP()-killer:getHP()));
 	-- HP Bonus: 073
-	elseif(mobID == 17330843) then
+	elseif (mobID == 17330843) then
 		killer:restoreMP(2000);
 		killer:messageBasic(025,(killer:getMaxMP()-killer:getMP()));
 	end

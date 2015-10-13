@@ -44,13 +44,13 @@ end;
 function onMobFight(mob,target)
 local mobID = mob:getID();
 local lifepourcent= ((mob:getHP()/mob:getMaxHP())*100); 
-   if(lifepourcent > 70 or lifepourcent <30)then
+   if (lifepourcent > 70 or lifepourcent <30) then
 	   mob:AnimationSub(1);	     
-   elseif(lifepourcent > 30 and lifepourcent < 70)then
+   elseif (lifepourcent > 30 and lifepourcent < 70) then
        mob:AnimationSub(2);	
    end
    
-   if(lifepourcent > 30 and lifepourcent < 70 and mob:getLocalVar("form") == 8)then   -- bipede
+   if (lifepourcent > 30 and lifepourcent < 70 and mob:getLocalVar("form") == 8) then   -- bipede
        mob:setMod(MOD_SLASHRES,1400);
        mob:setMod(MOD_PIERCERES,1400);
        mob:setMod(MOD_IMPACTRES,1400);
@@ -64,7 +64,7 @@ local lifepourcent= ((mob:getHP()/mob:getMaxHP())*100);
 	   SpawnMob(16933125):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());-- spawn gunpod
 	   mob:setLocalVar("form", 9)	   
 	  -- print("bipede");   
-   elseif(lifepourcent < 30 and mob:getLocalVar("form") == 9  )then	                 -- quadripede 
+   elseif (lifepourcent < 30 and mob:getLocalVar("form") == 9  ) then	                 -- quadripede 
        mob:setMod(MOD_SLASHRES,1450);
        mob:setMod(MOD_PIERCERES,1450);
        mob:setMod(MOD_IMPACTRES,1450);

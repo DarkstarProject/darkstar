@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-     	if(killer:hasKeyItem(DYNAMIS_TAVNAZIA_SLIVER ) == false)then
+     	if (killer:hasKeyItem(DYNAMIS_TAVNAZIA_SLIVER ) == false) then
 	    	killer:addKeyItem(DYNAMIS_TAVNAZIA_SLIVER);
 		    killer:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_TAVNAZIA_SLIVER);
 		end

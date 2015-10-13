@@ -18,8 +18,8 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getQuestStatus(SANDORIA,GRAVE_CONCERNS) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(547,1) and trade:getItemCount() == 1) then
+	if (player:getQuestStatus(SANDORIA,GRAVE_CONCERNS) == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(547,1) and trade:getItemCount() == 1) then
 			player:tradeComplete();
 			player:addItem(567);
 			player:messageSpecial(ITEM_OBTAINED,567); -- Tomb Waterskin
