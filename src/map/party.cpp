@@ -153,7 +153,7 @@ void CParty::DisbandParty(bool playerInitiated)
         // make sure chat server isn't notified of a disband if this came from the chat server already
         if (playerInitiated)
         {
-            uint8 data[8];
+            uint8 data[8] {};
             WBUFL(data, 0) = m_PartyID;
             WBUFL(data, 4) = m_PartyID;
             message::send(MSG_PT_DISBAND, data, sizeof data, nullptr);
@@ -180,7 +180,7 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
         case 6: SetSyncTarget(MemberName, 238);	break;
         case 7: SetSyncTarget(nullptr, 553);       break;
 	}
-	uint8 data[4];
+    uint8 data[4] {};
 	WBUFL(data, 0) = m_PartyID;
     message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 	return;
@@ -288,7 +288,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 
 					Sql_Query(SqlHandle, "DELETE FROM accounts_parties WHERE charid = %u;", PChar->id);
 
-					uint8 data[4];
+                    uint8 data[4] {};
 					WBUFL(data, 0) = m_PartyID;
                     message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 
@@ -485,7 +485,7 @@ void CParty::AddMember(CBattleEntity* PEntity)
         }
 
         Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", PChar->id, m_PartyID, allianceid, GetMemberFlags(PChar));
-		uint8 data[4];
+        uint8 data[4] {};
 		WBUFL(data, 0) = m_PartyID;
         message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 		ReloadTreasurePool(PChar);
@@ -532,7 +532,7 @@ void CParty::AddMember(uint32 id)
             allianceid = m_PAlliance->m_AllianceID;
         }
 		Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", id, m_PartyID, allianceid, 0);
-		uint8 data[4];
+        uint8 data[4] {};
 		WBUFL(data, 0) = m_PartyID;
         message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 

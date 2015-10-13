@@ -1574,14 +1574,14 @@ inline int32 CLuaBaseEntity::delMission(lua_State *L)
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
         uint8 current = PChar->m_missionLog[LogID].current;
-        uint8 complete = PChar->m_missionLog[LogID].complete[MissionID];
+        bool complete = PChar->m_missionLog[LogID].complete[MissionID];
 
         if (current == MissionID)
         {
             PChar->m_missionLog[LogID].current = LogID > 2 ? 0 : -1;
             PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID + 11, 1));
         }
-        if (complete != 0)
+        if (complete)
         {
             PChar->m_missionLog[LogID].complete[MissionID] = false;
             PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID + 11, 2));

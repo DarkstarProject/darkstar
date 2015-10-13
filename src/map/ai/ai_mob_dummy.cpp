@@ -1936,7 +1936,7 @@ bool CAIMobDummy::TryDeaggro()
     }
 
     // target is no longer valid, so wipe them from our enmity list
-    if (m_PBattleTarget->isDead() ||
+    if (!m_PBattleTarget || m_PBattleTarget->isDead() ||
         m_PBattleTarget->animation == ANIMATION_CHOCOBO ||
         m_PBattleTarget->loc.zone->GetID() != m_PMob->loc.zone->GetID() || 
         m_PMob->StatusEffectContainer->GetConfrontationEffect() != m_PBattleTarget->StatusEffectContainer->GetConfrontationEffect())
