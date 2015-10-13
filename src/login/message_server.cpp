@@ -73,7 +73,7 @@ void message_server_send(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zm
     }
     catch (zmq::error_t e)
     {
-        ShowError("Message: %s", e.what());
+        ShowError("Message: %s\n", e.what());
     }
 }
 
@@ -195,6 +195,10 @@ void message_server_listen()
                         chat_message_t msg = msg_queue.front();
                         msg_queue.pop();
                         message_server_send(msg.dest, msg.type, msg.data, msg.packet);
+
+                        // clear data and packet
+                        delete msg.data;
+                        delete msg.packet;
                     }
                 }
                 continue;
@@ -219,7 +223,9 @@ void message_server_listen()
         }
         catch (zmq::error_t e)
         {
-            if (!zSocket)
+            // Context was terminated
+            // Exit loop
+            if (!zSocket || e.num() == 156384765)
             {
                 return;
             }
@@ -269,6 +275,8 @@ void message_server_init()
 
 void message_server_close()
 {
+    Sql_Free(ChatSqlHandle);
+
     zContext.close();
     if (zSocket)
     {
