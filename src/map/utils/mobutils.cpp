@@ -549,7 +549,10 @@ void SetupJob(CMobEntity* PMob)
     {
         case JOB_THF:
             // thfs drop more gil
-            PMob->defaultMobMod(MOBMOD_GIL_BONUS, 15);
+            if (PMob->CanDropGil())
+            {
+                PMob->defaultMobMod(MOBMOD_GIL_BONUS, 15);
+            }
             break;
         case JOB_DRG:
             // drg can use 2 hour multiple times

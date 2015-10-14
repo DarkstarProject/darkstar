@@ -193,7 +193,7 @@ bool CMobEntity::CanDropGil()
 
     if(getMobMod(MOBMOD_GIL_BONUS) > 0)
     {
-            return true;
+        return true;
     }
 
     return m_EcoSystem == SYSTEM_BEASTMEN;
