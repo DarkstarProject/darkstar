@@ -450,32 +450,26 @@ function MobBreathMove(mob, target, percent, base, element, cap)
     local damage = (mob:getHP() * percent) + (mob:getMainLvl() / base);
 
     if (cap == nil) then
-        -- super cap for high health mobs
-        if (damage > 700) then
-            damage = 700 + math.random(200);
-        end
-
         -- cap max damage
-        if (damage > mob:getHP()/5) then
-            damage = math.floor(mob:getHP()/5);
-        end
-    else
-        if (damage > cap) then
-            damage = cap;
-        end
+        cap = math.floor(mob:getHP()/5);
     end
+
+    -- Deal bonus damage vs mob ecosystem
+    local systemBonus = utils.getSystemStrengthBonus(mob, target);
+    damage = damage + (damage * (systemBonus * 0.25));
 
     -- elemental resistence
     if (element ~= nil and element > 0) then
         -- no skill available, pass nil
-        -- breath moves get a bonus accuracy because they are hard to resist
-        local resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),mob:getMainLvl(),element);
+        local resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),0,element);
 
         -- get elemental damage reduction
         local defense = getElementalDamageReduction(target, element)
 
         damage = damage * resist * defense;
     end
+
+    damage = utils.clamp(damage, 1, cap);
 
     return damage;
 end;
