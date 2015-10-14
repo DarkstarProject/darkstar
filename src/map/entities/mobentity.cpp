@@ -175,7 +175,7 @@ uint32 CMobEntity::GetRandomGil()
 
     if (getMobMod(MOBMOD_GIL_BONUS) != 0)
     {
-        gil = (float)gil * (getMobMod(MOBMOD_GIL_BONUS) / 10.0f);
+        gil = (float)gil * (getMobMod(MOBMOD_GIL_BONUS) / 100.0f);
     }
 
     return gil;
@@ -191,12 +191,7 @@ bool CMobEntity::CanDropGil()
         return true;
     }
 
-    if(getMobMod(MOBMOD_GIL_BONUS) > 0)
-    {
-        return true;
-    }
-
-    return m_EcoSystem == SYSTEM_BEASTMEN;
+    return getMobMod(MOBMOD_GIL_BONUS) > 0;
 }
 
 bool CMobEntity::CanRoamHome()

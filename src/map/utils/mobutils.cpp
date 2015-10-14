@@ -505,6 +505,12 @@ void CalculateStats(CMobEntity * PMob)
     SetupJob(PMob);
     SetupRoaming(PMob);
 
+    // All beastmen drop gil
+    if (PMob->m_EcoSystem == SYSTEM_BEASTMEN)
+    {
+        PMob->defaultMobMod(MOBMOD_GIL_BONUS, 100);
+    }
+
     if (PMob->PMaster != nullptr)
     {
         SetupPetSkills(PMob);
@@ -549,9 +555,10 @@ void SetupJob(CMobEntity* PMob)
     {
         case JOB_THF:
             // thfs drop more gil
-            if (PMob->CanDropGil())
+            if (PMob->m_EcoSystem == SYSTEM_BEASTMEN)
             {
-                PMob->defaultMobMod(MOBMOD_GIL_BONUS, 15);
+                // 50% bonus
+                PMob->defaultMobMod(MOBMOD_GIL_BONUS, 150);
             }
             break;
         case JOB_DRG:
