@@ -545,6 +545,11 @@ void CalculateStats(CMobEntity * PMob)
     {
         SetupMaat(PMob);
     }
+
+    if (PMob->CanStealGil())
+    {
+        PMob->ResetGilPurse();
+    }
 }
 
 void SetupJob(CMobEntity* PMob)

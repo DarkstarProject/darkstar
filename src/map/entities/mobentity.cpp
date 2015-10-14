@@ -194,6 +194,20 @@ bool CMobEntity::CanDropGil()
     return getMobMod(MOBMOD_GIL_BONUS) > 0;
 }
 
+bool CMobEntity::CanStealGil()
+{
+    // TODO: Some mobs cannot be mugged
+    return CanDropGil();
+}
+
+void CMobEntity::ResetGilPurse()
+{
+    uint32 purse = GetRandomGil() / ((dsprand::GetRandomNumber(4,7)));
+    if(purse == 0)
+        purse = GetRandomGil();
+    setMobMod(MOBMOD_MUG_GIL, purse);
+}
+
 bool CMobEntity::CanRoamHome()
 {
     if(speed == 0 && !(m_roamFlags & ROAMFLAG_WORM)) return false;

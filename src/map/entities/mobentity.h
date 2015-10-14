@@ -209,6 +209,8 @@ public:
     bool      CanLink(position_t* pos, int16 superLink = 0);
 
     bool      CanDropGil();                            // mob has gil to drop
+    bool      CanStealGil();                            // can steal gil from mob 
+    void      ResetGilPurse();                          // reset total gil held
 
     CMobSpellContainer* SpellContainer;                // retrieves spells for the mob
     uint8     m_HasSpellScript;                        // 1 if they have a spell script to use for working out what to cast.
