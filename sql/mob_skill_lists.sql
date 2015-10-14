@@ -1263,11 +1263,13 @@ INSERT INTO `mob_skill_lists` VALUES ('BrassBorer',289,1561);
 INSERT INTO `mob_skill_lists` VALUES ('BrassBorer',289,1562);
 INSERT INTO `mob_skill_lists` VALUES ('BrassBorer',289,1563);
 -- INSERT INTO `mob_skill_lists` VALUES ('BrassBorer',289,1564);
-INSERT INTO `mob_skill_lists` VALUES ('Claret',290,176);
-INSERT INTO `mob_skill_lists` VALUES ('Claret',290,175);
-INSERT INTO `mob_skill_lists` VALUES ('Claret',290,177);
--- INSERT INTO `mob_skill_lists` VALUES ('Claret',290,1061);
--- INSERT INTO `mob_skill_lists` VALUES ('Claret',290,1063);
+
+INSERT INTO `mob_skill_lists` VALUES ('Claret',290,2293); -- Fluid_Toss_Claret
+INSERT INTO `mob_skill_lists` VALUES ('Claret',290,175);  -- Fluid_Spread
+INSERT INTO `mob_skill_lists` VALUES ('Claret',290,177);  -- Digest
+INSERT INTO `mob_skill_lists` VALUES ('Claret',290,1061); -- Mucous_Spread
+INSERT INTO `mob_skill_lists` VALUES ('Claret',290,1063); -- Epoxy_Spread
+
 INSERT INTO `mob_skill_lists` VALUES ('Velionis',292,222);
 INSERT INTO `mob_skill_lists` VALUES ('Velionis',292,223);
 INSERT INTO `mob_skill_lists` VALUES ('Velionis',292,228);
