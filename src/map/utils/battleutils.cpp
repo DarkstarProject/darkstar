@@ -728,7 +728,10 @@ namespace battleutils
                     {
                         Action->addEffectMessage = 132;
 
-                        PDefender->addHP(Action->spikesParam);
+                        if (PDefender->isAlive())
+                        {
+                            PDefender->addHP(Action->spikesParam);
+                        }
                         PAttacker->addHP(-Action->spikesParam);
                     }
                     break;
