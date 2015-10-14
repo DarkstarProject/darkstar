@@ -26,12 +26,12 @@ This file is part of DarkStar-server source code.
 
 #include "../../common/cbasetypes.h"
 #include "../../common/mmo.h"
-#include "../../common/marshal/bitset.h"
 
 #include <map>
 #include <list>
 #include <deque>
 #include <mutex>
+#include <bitset>
 
 #include "battleentity.h"
 #include "../item_container.h"
@@ -196,8 +196,8 @@ public:
     uint16                  styleItems[16];                 // Item IDs for items that are style locked.
 
     uint8					m_ZonesList[36];				// список посещенных персонажем зон
-    marshal::bitset<1024>	m_SpellList;				    // список изученных заклинаний
-    marshal::bitset<1024>	m_EnabledSpellList;		        // spell list of enabled spells
+    std::bitset<1024>	    m_SpellList;				    // список изученных заклинаний
+    std::bitset<1024>	    m_EnabledSpellList;		        // spell list of enabled spells
     uint8					m_TitleList[94];				// список заслуженных завний
     uint8					m_Abilities[62];				// список текущих способностей
     uint8					m_LearnedAbilities[46];			// learnable abilities (corsair rolls)

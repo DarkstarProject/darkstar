@@ -385,8 +385,8 @@ namespace charutils
             length = 0;
             int8* spells = nullptr;
             Sql_GetData(SqlHandle, 16, &spells, &length);
-            memcpy(PChar->m_SpellList.data(), spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
-            memcpy(PChar->m_EnabledSpellList.data(), spells, (length > sizeof(PChar->m_EnabledSpellList) ? sizeof(PChar->m_EnabledSpellList) : length));
+            memcpy(&PChar->m_SpellList, spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
+            memcpy(&PChar->m_EnabledSpellList, spells, (length > sizeof(PChar->m_EnabledSpellList) ? sizeof(PChar->m_EnabledSpellList) : length));
             filterEnabledSpells(PChar);
 
             length = 0;
@@ -3894,7 +3894,7 @@ namespace charutils
             "WHERE charid = %u;";
 
         int8 spells[sizeof(PChar->m_SpellList) * 2 + 1];
-        Sql_EscapeStringLen(SqlHandle, spells, (const int8*)PChar->m_SpellList.data(), sizeof(PChar->m_SpellList));
+        Sql_EscapeStringLen(SqlHandle, spells, (const int8*)&PChar->m_SpellList, sizeof(PChar->m_SpellList));
 
         Sql_Query(SqlHandle, Query,
                   spells,
