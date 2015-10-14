@@ -16,12 +16,17 @@ function onMobSkillCheck(target,mob,skill)
     local pet = mob:getPet();
 
     if(pet:getSystem() ~= 5) then
-        -- pet is not avatar
+        -- pet is not an avatar
         return 1;
     end
 
     -- pet needs to be active
-    if (pet:hasStatusEffect(EFFECT_SLEEP) or pet:hasStatusEffect(EFFECT_SLEEP_II) or pet:hasStatusEffect(EFFECT_LULLABY)) then
+    if (pet:hasStatusEffect(EFFECT_LULLABY) or
+        pet:hasStatusEffect(EFFECT_STUN) or
+        pet:hasStatusEffect(EFFECT_PETRIFICATION) or
+        pet:hasStatusEffect(EFFECT_SLEEP_II) or
+        pet:hasStatusEffect(EFFECT_SLEEP_I) or
+        pet:hasStatusEffect(EFFECT_TERROR)) then
         return 1;
     end
 
@@ -77,7 +82,7 @@ function onMobWeaponSkill(target, mob, skill)
         pet:hasStatusEffect(EFFECT_STUN) or
         pet:hasStatusEffect(EFFECT_PETRIFICATION) or
         pet:hasStatusEffect(EFFECT_SLEEP_II) or
-        pet:hasStatusEffect(EFFECT_SLEEP) or
+        pet:hasStatusEffect(EFFECT_SLEEP_I) or
         pet:hasStatusEffect(EFFECT_TERROR)) then
         return typeEffect;
     end

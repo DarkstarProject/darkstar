@@ -25,17 +25,24 @@ This file is part of DarkStar-server source code.
 #include "../party.h"
 #include "../entities/battleentity.h"
 
-CPartyEffectsPacket::CPartyEffectsPacket(CParty* PParty)
+CPartyEffectsPacket::CPartyEffectsPacket()
 {
     this->type = 0x76;
     this->size = 0x7A;
+}
 
-    int i = 0;
-    for (auto&& PMember : PParty->members) {
-        ref<uint32>(i * 0x30 + 0x04) = PMember->id;
-        ref<uint16>(i * 0x30 + 0x08) = PMember->targid;
-        ref<uint64>(i * 0x30 + 0x0C) = PMember->StatusEffectContainer->m_Flags;
-        memcpy(data + (i * 0x30 + 0x14), PMember->StatusEffectContainer->m_StatusIcons, 32);
-        ++i;
-    }
+void CPartyEffectsPacket::AddMemberEffects(CBattleEntity* PMember)
+{
+    ref<uint32>(members * 0x30 + 0x04) = PMember->id;
+    ref<uint16>(members * 0x30 + 0x08) = PMember->targid;
+    ref<uint64>(members * 0x30 + 0x0C) = PMember->StatusEffectContainer->m_Flags;
+    memcpy(data + (members * 0x30 + 0x14), PMember->StatusEffectContainer->m_StatusIcons, 32);
+    ++members;
+}
+
+void CPartyEffectsPacket::AddMemberEffects(uint32 id)
+{
+    ref<uint32>(members * 0x30 + 0x04) = id;
+    memset(data + (members * 0x30 + 0x14), 0xFF, 32);
+    ++members;
 }

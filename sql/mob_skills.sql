@@ -380,8 +380,8 @@ INSERT INTO `mob_skills` VALUES (331,331,'Antiphase',1,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (332,107,'Death_Trap',1,30.0,2000,2000,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (333,333,'Mortal_Ray',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (334,334,'Goblin_Rush',0,6.0,2000,1500,4,0,0,1);
-INSERT INTO `mob_skills` VALUES (335,335,'Bomb_Toss',2,13.5,2000,1500,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (336,336,'Bomb_Toss_Suicide',1,13.5,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (335,335,'Bomb_Toss',2,13.5,2000,2000,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (336,336,'Bomb_Toss_Suicide',1,13.5,2000,2000,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (337,337,'Berserk',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (338,880,'PL_Vulcanian_Impact',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (339,339,'Heat_Wave',0,7.0,2000,1500,4,0,0,0);
@@ -701,7 +701,7 @@ INSERT INTO `mob_skills` VALUES (652,607,'shining_ruby',1,10.0,498,3000,1,0,0,0)
 INSERT INTO `mob_skills` VALUES (653,608,'glittering_ruby',1,10.0,499,3000,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (654,609,'meteorite',0,10.0,500,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (655,610,'healing_ruby_ii',1,10.0,501,3000,1,0,0,0);
-INSERT INTO `mob_skills` VALUES (656,611,'searing_light',1,30.0,0,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (656,611,'searing_light',1,10.0,502,0,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (657,534,'Inferno',1,25.0,2000,0,4,0,0,0); -- Mob avatar skills
 INSERT INTO `mob_skills` VALUES (658,547,'Earthen_Fury',1,25.0,2000,0,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (659,560,'tidal_wave',1,25.0,2000,0,4,0,0,0);

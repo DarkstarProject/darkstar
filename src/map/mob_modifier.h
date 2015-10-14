@@ -85,11 +85,12 @@ enum MOBMODIFIER : int
     MOBMOD_BEHAVIOR           = 53, // Add behaviors to mob
     MOBMOD_GIL_BONUS          = 54, // Multipler to gil dropped by mob divided by 10
     MOBMOD_IDLE_DESPAWN       = 55, // Time (in seconds) to despawn after being idle
-    MOBMOD_NO_STANDBACK       = 56, // Mob will never standback
+    MOBMOD_HP_STANDBACK       = 56, // if set to 1 mob will always standback with hp over 70%
     MOBMOD_MAGIC_DELAY        = 57, // Amount of seconds mob waits before casting first spell
     MOBMOD_SPECIAL_DELAY      = 58, // Amount of seconds mob waits before using first special
     MOBMOD_WEAPON_BONUS       = 59, // Add a bonus percentage to mob weapon damage ( bonus / 100 )
-    MOBMOD_SPAWN_ANIMATIONSUB = 60  // reset animationsub to this on spawn
+    MOBMOD_SPAWN_ANIMATIONSUB = 60,  // reset animationsub to this on spawn
+    MOBMOD_HP_SCALE           = 61  // Scale the mobs max HP. ( hp_scale / 100 ) * maxhp
 };
 
 #endif

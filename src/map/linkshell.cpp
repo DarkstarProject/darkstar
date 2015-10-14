@@ -84,10 +84,10 @@ void CLinkshell::setMessage(const int8* message, const int8* poster)
 {
     int8 sqlMessage[256];
     Sql_EscapeString(SqlHandle, sqlMessage, message);
-    Sql_Query(SqlHandle, "UPDATE linkshells SET poster = '%s', message = '%s', messagetime = %d WHERE linkshellid = %u;",
+    Sql_Query(SqlHandle, "UPDATE linkshells SET poster = '%s', message = '%s', messagetime = %llu WHERE linkshellid = %d;",
         poster, sqlMessage , time(nullptr), m_id);
 
-    int8 packetData[8];
+    int8 packetData[8] {};
     WBUFL(packetData, 0) = m_id;
     WBUFL(packetData, 4) = 0;
     message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CLinkshellMessagePacket(poster, message, m_name.c_str(), time(nullptr), true));

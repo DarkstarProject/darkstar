@@ -86,6 +86,45 @@ uint16 GetMagicEvasion(CMobEntity* PMob)
 
     return GetBase(PMob, mEvaRank);
 }
+
+uint16 GetEvasion(CMobEntity* PMob)
+{
+    uint8 evaRank = PMob->evaRank;
+
+    // Mob evasion is based on job
+    // but occasionally war mobs
+    // might have a different rank
+    switch (PMob->GetMJob())
+    {
+        case JOB_THF:
+        case JOB_NIN:
+            evaRank = 1;
+        break;
+        case JOB_MNK:
+        case JOB_DNC:
+        case JOB_SAM:
+        case JOB_PUP:
+        case JOB_RUN:
+            evaRank = 2;
+        break;
+        case JOB_RDM:
+        case JOB_BRD:
+        case JOB_GEO:
+        case JOB_COR:
+            evaRank = 4;
+        break;
+        case JOB_WHM:
+        case JOB_SCH:
+        case JOB_RNG:
+        case JOB_SMN:
+        case JOB_BLM:
+            evaRank = 5;
+        break;
+    }
+
+    return GetBase(PMob, evaRank);
+}
+
 /************************************************************************
 *																		*
 *  Базовое значение для расчера характеристик							*
@@ -97,13 +136,13 @@ uint16 GetBaseToRank(uint8 rank, uint16 lvl)
 {
 	switch (rank)
 	{
-		case 1: return (5+((lvl-1)*50)/100);
-		case 2: return (4+((lvl-1)*45)/100);
-		case 3: return (4+((lvl-1)*40)/100);
-		case 4: return (3+((lvl-1)*35)/100);
-		case 5: return (3+((lvl-1)*30)/100);
-		case 6: return (2+((lvl-1)*25)/100);
-		case 7: return (2+((lvl-1)*20)/100);
+		case 1: return (5+((lvl-1)*50)/100); // A
+		case 2: return (4+((lvl-1)*45)/100); // B
+		case 3: return (4+((lvl-1)*40)/100); // C
+		case 4: return (3+((lvl-1)*35)/100); // D
+		case 5: return (3+((lvl-1)*30)/100); // E
+		case 6: return (2+((lvl-1)*25)/100); // F
+		case 7: return (2+((lvl-1)*20)/100); // G
 	}
 	return 0;
 }
@@ -120,19 +159,19 @@ uint16 GetBase(CMobEntity * PMob, uint8 rank)
  	uint8 lvl = PMob->GetMLevel();
  	if(lvl > 50){
  		switch(rank){
- 			case 1:
+ 			case 1: // A
  				return (float)153+(lvl-50)*5.0;
- 			case 2:
+ 			case 2: // B
  				return (float)147+(lvl-50)*4.9;
- 			case 3:
+ 			case 3: // C
  				return (float)136+(lvl-50)*4.8;
- 			case 4:
+ 			case 4: // D
  				return (float)126+(lvl-50)*4.7;
- 			case 5:
+ 			case 5: // E
  				return (float)116+(lvl-50)*4.5;
- 			case 6:
+ 			case 6: // F
  				return (float)106+(lvl-50)*4.4;
- 			case 7:
+ 			case 7: // G
  				return (float)96+(lvl-50)*4.3;
  		}
  	} else {
@@ -153,6 +192,8 @@ uint16 GetBase(CMobEntity * PMob, uint8 rank)
  				return (float)3+(lvl-1)*2.3;
  		}
  	}
+
+        ShowError("Mobutils::GetBase rank (%d) is out of bounds for mob (%u) \n", rank, PMob->id);
 	return 0;
 }
 
@@ -177,6 +218,12 @@ void CalculateStats(CMobEntity * PMob)
 
     if(PMob->HPmodifier == 0)
     {
+        float hpScale = PMob->HPscale;
+
+        if (PMob->getMobMod(MOBMOD_HP_SCALE) != 0)
+        {
+            hpScale = (float)PMob->getMobMod(MOBMOD_HP_SCALE) / 100.0f;
+        }
 
         float growth = 1.06;
         float petGrowth = 0.75;
@@ -227,7 +274,7 @@ void CalculateStats(CMobEntity * PMob)
         }
 
 
-        PMob->health.maxhp = (int16)(base * pow(mLvl, growth) * PMob->HPscale);
+        PMob->health.maxhp = (int16)(base * pow(mLvl, growth) * hpScale);
 
         if(isNM)
         {
@@ -443,10 +490,8 @@ void CalculateStats(CMobEntity * PMob)
         }
     }
 
-    uint8 evaRank = battleutils::GetSkillRank(SKILL_EVA, PMob->GetMJob());
-
     PMob->addModifier(MOD_DEF, GetBase(PMob,PMob->defRank));
-    PMob->addModifier(MOD_EVA, GetBase(PMob,evaRank));
+    PMob->addModifier(MOD_EVA, GetEvasion(PMob));
     PMob->addModifier(MOD_ATT, GetBase(PMob,PMob->attRank));
     PMob->addModifier(MOD_ACC, GetBase(PMob,PMob->accRank));
 
@@ -504,7 +549,10 @@ void SetupJob(CMobEntity* PMob)
     {
         case JOB_THF:
             // thfs drop more gil
-            PMob->defaultMobMod(MOBMOD_GIL_BONUS, 15);
+            if (PMob->CanDropGil())
+            {
+                PMob->defaultMobMod(MOBMOD_GIL_BONUS, 15);
+            }
             break;
         case JOB_DRG:
             // drg can use 2 hour multiple times
@@ -537,10 +585,7 @@ void SetupJob(CMobEntity* PMob)
                 PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 8);
             }
 
-            if(PMob->getMobMod(MOBMOD_NO_STANDBACK) == 0)
-            {
-                PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
-            }
+            PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 1);
 
             break;
         case JOB_NIN:
@@ -550,10 +595,7 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
             PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
 
-            if(PMob->getMobMod(MOBMOD_NO_STANDBACK) == 0)
-            {
-                PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
-            }
+            PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 1);
             break;
         case JOB_BST:
             PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 70);
@@ -569,10 +611,8 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 40);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 15);
 
-            if(PMob->getMobMod(MOBMOD_NO_STANDBACK) == 0)
-            {
-                PMob->m_Behaviour |= BEHAVIOUR_HP_STANDBACK;
-            }
+
+            PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 1);
             break;
         case JOB_PLD:
             PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);

@@ -98,8 +98,6 @@ protected:
 	bool m_mobskillattack;
 	bool m_actionqueueability;
 
-	uint32 m_LastStandbackTime;
-
 	void ActionRoaming();
 	void ActionEngage();
 	void ActionDisengage();

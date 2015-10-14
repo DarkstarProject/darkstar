@@ -409,7 +409,7 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
 
 			if (validAggro && PAIMob->CanAggroTarget(PChar))
 			{
-				PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
+				PCurrentMob->PEnmityContainer->AddAggroEnmity(PChar);
 			}
 		}
 		else
@@ -755,8 +755,9 @@ CCharEntity* CZoneEntities::GetCharByID(uint32 id)
 
 void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, CBasicPacket* packet)
 {
+    if (!packet) { return; }
 	// Do not send packets that are updates of a hidden GM..
-	if (packet != nullptr && packet->id() == 0x00D && PEntity != nullptr && PEntity->objtype == TYPE_PC && ((CCharEntity*)PEntity)->m_isGMHidden)
+	if (packet->id() == 0x00D && PEntity != nullptr && PEntity->objtype == TYPE_PC && ((CCharEntity*)PEntity)->m_isGMHidden)
 	{
 		// Ensure this packet is not despawning us..
 		if (packet->ref<uint8>(0x0A) != 0x20)
@@ -787,7 +788,7 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
 						if (distance(PEntity->loc.p, PCurrentChar->loc.p) < 50 && 
                             ((PEntity->objtype != TYPE_PC) || (((CCharEntity*)PEntity)->m_moghouseID == PCurrentChar->m_moghouseID)))
 						{
-							if (packet != nullptr && packet->id() == 0x00E &&
+							if (packet->id() == 0x00E &&
                                 (packet->ref<uint8>(0x0A) != 0x20 || packet->ref<uint8>(0x0A) != 0x0F))
 							{
 								uint32 id = packet->ref<uint32>(0x04);
