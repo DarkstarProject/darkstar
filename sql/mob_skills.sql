@@ -156,7 +156,7 @@ INSERT INTO `mob_skills` VALUES (107,831,'Grapple',4,12.5,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (108,832,'Filamented_Hold',4,12.5,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (109,833,'Spinning_Top',1,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (110,110,'Tail_Blow',0,7.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (111,111,'Fireball',1,11.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (111,111,'Fireball',2,11.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (112,112,'Blockhead',0,7.0,2000,1500,4,0,0,1);
 INSERT INTO `mob_skills` VALUES (113,113,'Brain_Crush',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (114,114,'Baleful_Gaze',0,10.0,2000,2000,4,0,0,0);
@@ -410,7 +410,7 @@ INSERT INTO `mob_skills` VALUES (361,361,'Feather_Storm',0,7.0,2000,1500,4,0,0,0
 INSERT INTO `mob_skills` VALUES (362,362,'Double_Kick',0,7.0,2000,1500,4,0,0,1);
 INSERT INTO `mob_skills` VALUES (363,363,'Parry',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (364,364,'Sweep',1,10.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (365,969,'Snowball',1,11.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (365,969,'Snowball',2,11.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (366,366,'Helldive',0,9.0,2000,1500,4,0,0,2);
 INSERT INTO `mob_skills` VALUES (367,367,'Wing_Cutter',4,10.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (368,368,'Vulture_1',0,7.0,2000,1500,4,0,0,0);
