@@ -195,7 +195,7 @@ INSERT INTO `status_effects` VALUES (152,'magic_shield',33,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (153,'damage_spikes',33,34,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (154,'shining_ruby',33,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (155,'medicine',0,0,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (156,'flash',16418,0,0,2,0,0,7,0);
+INSERT INTO `status_effects` VALUES (156,'flash',16418,0,0,1,0,0,7,0);
 INSERT INTO `status_effects` VALUES (157,'sj_restriction',0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (158,'provoke',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (159,'penalty',32,0,0,0,0,0,0,0);
