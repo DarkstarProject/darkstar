@@ -2115,7 +2115,7 @@ inline int32 CLuaBaseEntity::addSpell(lua_State *L)
         }
 
         if (save)
-            charutils::SaveSpells(PChar);
+            charutils::SaveSpell(PChar, SpellID);
     }
     return 0;
 }
@@ -2179,7 +2179,7 @@ inline int32 CLuaBaseEntity::delSpell(lua_State *L)
 
     if (charutils::delSpell(PChar, SpellID))
     {
-        charutils::SaveSpells(PChar);
+        charutils::DeleteSpell(PChar, SpellID);
         PChar->pushPacket(new CCharSpellsPacket(PChar));
     }
     return 0;
