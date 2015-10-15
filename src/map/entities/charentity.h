@@ -197,7 +197,6 @@ public:
 
     uint8					m_ZonesList[36];				// список посещенных персонажем зон
     std::bitset<1024>	    m_SpellList;				    // список изученных заклинаний
-    std::bitset<1024>	    m_EnabledSpellList;		        // spell list of enabled spells
     uint8					m_TitleList[94];				// список заслуженных завний
     uint8					m_Abilities[62];				// список текущих способностей
     uint8					m_LearnedAbilities[46];			// learnable abilities (corsair rolls)

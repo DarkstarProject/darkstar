@@ -333,17 +333,16 @@ namespace charutils
             "nation,"               // 13
             "quests,"               // 14
             "keyitems,"             // 15
-            "spells,"               // 16
-            "abilities,"            // 17
-            "titles,"               // 18
-            "zones,"                // 19
-            "missions,"             // 20
-            "assault,"              // 21
-            "campaign,"             // 22
-            "playtime,"             // 23
-            "isnewplayer,"          // 24
-            "campaign_allegiance,"  // 25
-            "isstylelocked "        // 26
+            "abilities,"            // 16
+            "titles,"               // 17
+            "zones,"                // 18
+            "missions,"             // 19
+            "assault,"              // 20
+            "campaign,"             // 21
+            "playtime,"             // 22
+            "isnewplayer,"          // 23
+            "campaign_allegiance,"  // 24
+            "isstylelocked "        // 25
             "FROM chars "
             "WHERE charid = %u";
 
@@ -383,48 +382,42 @@ namespace charutils
             memcpy(PChar->keys.keysList, keyitems, (length > sizeof(PChar->keys) ? sizeof(PChar->keys) : length));
 
             length = 0;
-            int8* spells = nullptr;
-            Sql_GetData(SqlHandle, 16, &spells, &length);
-            memcpy(&PChar->m_SpellList, spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
-            memcpy(&PChar->m_EnabledSpellList, spells, (length > sizeof(PChar->m_EnabledSpellList) ? sizeof(PChar->m_EnabledSpellList) : length));
-            filterEnabledSpells(PChar);
-
-            length = 0;
             int8* abilities = nullptr;
-            Sql_GetData(SqlHandle, 17, &abilities, &length);
+            Sql_GetData(SqlHandle, 16, &abilities, &length);
             memcpy(PChar->m_LearnedAbilities, abilities, (length > sizeof(PChar->m_LearnedAbilities) ? sizeof(PChar->m_LearnedAbilities) : length));
 
             length = 0;
             int8* titles = nullptr;
-            Sql_GetData(SqlHandle, 18, &titles, &length);
+            Sql_GetData(SqlHandle, 17, &titles, &length);
             memcpy(PChar->m_TitleList, titles, (length > sizeof(PChar->m_TitleList) ? sizeof(PChar->m_TitleList) : length));
 
             length = 0;
             int8* zones = nullptr;
-            Sql_GetData(SqlHandle, 19, &zones, &length);
+            Sql_GetData(SqlHandle, 18, &zones, &length);
             memcpy(PChar->m_ZonesList, zones, (length > sizeof(PChar->m_ZonesList) ? sizeof(PChar->m_ZonesList) : length));
 
             length = 0;
             int8* missions = nullptr;
-            Sql_GetData(SqlHandle, 20, &missions, &length);
+            Sql_GetData(SqlHandle, 19, &missions, &length);
             memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
             length = 0;
             int8* assault = nullptr;
-            Sql_GetData(SqlHandle, 21, &assault, &length);
+            Sql_GetData(SqlHandle, 20, &assault, &length);
             memcpy(&PChar->m_assaultLog, assault, (length > sizeof(PChar->m_assaultLog) ? sizeof(PChar->m_assaultLog) : length));
 
             length = 0;
             int8* campaign = nullptr;
-            Sql_GetData(SqlHandle, 22, &campaign, &length);
+            Sql_GetData(SqlHandle, 21, &campaign, &length);
             memcpy(&PChar->m_campaignLog, campaign, (length > sizeof(PChar->m_campaignLog) ? sizeof(PChar->m_campaignLog) : length));
 
-            PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 23));
-            PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 24) == 1 ? true : false;
-            PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 25);
-            PChar->setStyleLocked(Sql_GetIntData(SqlHandle, 26) == 1 ? true : false);
+            PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 22));
+            PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 23) == 1 ? true : false;
+            PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 24);
+            PChar->setStyleLocked(Sql_GetIntData(SqlHandle, 25) == 1 ? true : false);
         }
 
+        LoadSpells(PChar);
 
         fmtQuery =
             "SELECT "
@@ -764,6 +757,58 @@ namespace charutils
         PChar->health.mp = PChar->loc.destination == ZONE_RESIDENTIAL_AREA ? PChar->GetMaxMP() : MP;
         PChar->UpdateHealth();
         luautils::OnGameIn(PChar, zoning == 1);
+    }
+
+    void LoadSpells(CCharEntity* PChar)
+    {
+        // disable all spells
+        PChar->m_SpellList.reset();
+
+        std::string enabledExpansions;
+
+        // Compile a string of all enabled expansions
+        uint8 count = 0;
+        for (auto&& expan : {"COP", "TOAU", "WOTG", "ACP", "AMK", "ASA", "ABYSSEA", "SOA"})
+        {
+            if (luautils::IsExpansionEnabled(expan))
+            {
+                if (count > 0)
+                {
+                    enabledExpansions += ",";
+                }
+                enabledExpansions += "\"";
+                enabledExpansions += expan;
+                enabledExpansions += "\"";
+                count++;
+            }
+        }
+
+        // Select all player spells from enabled expansions
+        const int8* fmtQuery =
+            "SELECT char_spells.spellid "
+            "FROM char_spells "
+            "JOIN spell_list "
+            "ON spell_list.spellid = char_spells.spellid "
+            "WHERE charid = %u AND "
+            "(spell_list.required_expansion IN (%s) OR "
+            "spell_list.required_expansion IS NULL);";
+
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, enabledExpansions.c_str());
+
+        if (ret != SQL_ERROR &&
+            Sql_NumRows(SqlHandle) != 0)
+        {
+            while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                uint16 spellId = Sql_GetUIntData(SqlHandle, 0);
+
+                if (spell::GetSpell(spellId) != nullptr)
+                {
+                    PChar->m_SpellList[spellId] = true;
+                }
+            }
+        }
+
     }
 
     /************************************************************************
@@ -2662,13 +2707,12 @@ namespace charutils
 
     int32 hasSpell(CCharEntity* PChar, uint16 SpellID)
     {
-        return PChar->m_EnabledSpellList[SpellID];
+        return PChar->m_SpellList[SpellID];
     }
 
     int32 addSpell(CCharEntity* PChar, uint16 SpellID)
     {
         if (!hasSpell(PChar, SpellID)) {
-            PChar->m_EnabledSpellList[SpellID] = true;
             PChar->m_SpellList[SpellID] = true;
             return 1;
         }
@@ -2679,22 +2723,9 @@ namespace charutils
     {
         if (hasSpell(PChar, SpellID)) {
             PChar->m_SpellList[SpellID] = false;
-            PChar->m_EnabledSpellList[SpellID] = false;
             return 1;
         }
         return 0;
-    }
-
-    void filterEnabledSpells(CCharEntity* PChar)
-    {
-        //128 bytes, 1 bit per byte
-        for (int i = 0; i < 1024; ++i)
-        {
-            if (spell::GetSpell(i) == nullptr || luautils::IsExpansionEnabled(spell::GetSpell(i)->getExpansionCode()) == false)
-            {
-                PChar->m_EnabledSpellList[i] = false;
-            }
-        }
     }
 
     /************************************************************************
@@ -3886,21 +3917,27 @@ namespace charutils
     *																		*
     ************************************************************************/
 
-    void SaveSpells(CCharEntity* PChar)
+    void SaveSpell(CCharEntity* PChar, uint16 spellID)
     {
         const int8* Query =
-            "UPDATE chars SET "
-            "spells = '%s' "
-            "WHERE charid = %u;";
-
-        int8 spells[sizeof(PChar->m_SpellList) * 2 + 1];
-        Sql_EscapeStringLen(SqlHandle, spells, (const int8*)&PChar->m_SpellList, sizeof(PChar->m_SpellList));
+            "INSERT IGNORE INTO char_spells "
+            "VALUES (%u, %u);";
 
         Sql_Query(SqlHandle, Query,
-                  spells,
-                  PChar->id);
+                  PChar->id,
+                  spellID);
     }
 
+    void DeleteSpell(CCharEntity* PChar, uint16 spellID)
+    {
+        const int8* Query =
+            "DELETE FROM char_spells "
+            "WHERE charid = %u AND spellid = %u;";
+
+        Sql_Query(SqlHandle, Query,
+                  PChar->id,
+                  spellID);
+    }
 
     /************************************************************************
     *																		*
