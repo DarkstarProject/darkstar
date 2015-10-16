@@ -381,7 +381,7 @@ INSERT INTO `mob_skills` VALUES (332,107,'Death_Trap',1,30.0,2000,2000,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (333,333,'Mortal_Ray',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (334,334,'Goblin_Rush',0,6.0,2000,1500,4,0,0,1);
 INSERT INTO `mob_skills` VALUES (335,335,'Bomb_Toss',2,13.5,2000,2000,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (336,336,'Bomb_Toss_Suicide',1,13.5,2000,2000,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (336,336,'Bomb_Toss_Suicide',0,13.5,2000,2000,1,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (337,337,'Berserk',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (338,880,'PL_Vulcanian_Impact',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (339,339,'Heat_Wave',0,7.0,2000,1500,4,0,0,0);
