@@ -1047,6 +1047,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
     m_PMobSkill->setTotalTargets(actionsLength);
     m_PMobSkill->setTP(m_skillTP);
+    m_PMobSkill->setHPP(m_PMob->GetHPP());
 
     apAction_t Action;
     Action.ActionTarget = m_PBattleSubTarget;
