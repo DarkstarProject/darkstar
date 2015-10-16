@@ -15,7 +15,7 @@ require("scripts/globals/status");
 function onTrade(player,npc,trade)
     local mobID = 17031600;
     if (trade:hasItemQty(2586,1) and trade:getItemCount() == 1) then -- Trade Rock Juice
-        if (GetMobAction(mobID) == ACTION_NONE) then\n
+        if (GetMobAction(mobID) == ACTION_NONE) then
             player:tradeComplete();
             SpawnMob(mobID):updateClaim(player);
         end
