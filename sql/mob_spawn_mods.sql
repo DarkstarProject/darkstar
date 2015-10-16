@@ -241,6 +241,37 @@ INSERT INTO `mob_spawn_mods` VALUES (17428811,2,5625,1);
 
 INSERT INTO `mob_spawn_mods` VALUES (16986431,16,1,1); -- Tinnin 2hour
 
+-- Timers for mobs that depop when idle+unclaimed
+INSERT INTO `mob_spawn_mods` VALUES (16986428,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16986429,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16986430,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16986431,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16998871,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16998872,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16998873,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16998874,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16990473,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16990474,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17027471,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17027472,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17027473,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17027474,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17027485,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17031598,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17031599,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17031600,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17043887,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17043888,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17056157,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17056186,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17072171,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17072172,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17072178,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17072179,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17101202,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17101203,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17101204,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17101205,55,180,1);
 
 /*!40000 ALTER TABLE `mob_spawn_mods` ENABLE KEYS */;
 UNLOCK TABLES;
