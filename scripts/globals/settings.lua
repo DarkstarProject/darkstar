@@ -24,6 +24,7 @@ ENABLE_AMK     = 0;
 ENABLE_ASA     = 0;
 ENABLE_ABYSSEA = 0;
 ENABLE_SOA     = 0;
+ENABLE_ROV     = 0;
 
 -- Setting to lock content more accurately to the expansions you have defined above
 -- This generally results in a more accurate presentation of your selected expansions
