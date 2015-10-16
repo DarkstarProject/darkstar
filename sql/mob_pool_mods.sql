@@ -267,6 +267,16 @@ INSERT INTO `mob_pool_mods` VALUES (2461,61,25,1);
 INSERT INTO `mob_pool_mods` VALUES (2462,61,25,1);
 INSERT INTO `mob_pool_mods` VALUES (2463,61,20,1);
 
+-- Qiqirn standback forever
+INSERT INTO `mob_pool_mods` VALUES (3245,56,1,1);
+INSERT INTO `mob_pool_mods` VALUES (3252,56,1,1);
+INSERT INTO `mob_pool_mods` VALUES (3257,56,1,1);
+INSERT INTO `mob_pool_mods` VALUES (3262,56,1,1);
+INSERT INTO `mob_pool_mods` VALUES (3264,56,1,1);
+INSERT INTO `mob_pool_mods` VALUES (3265,56,1,1);
+INSERT INTO `mob_pool_mods` VALUES (3268,56,1,1);
+INSERT INTO `mob_pool_mods` VALUES (1750,56,1,1);
+
 /*!40000 ALTER TABLE `mob_pool_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

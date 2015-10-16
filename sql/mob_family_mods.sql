@@ -645,6 +645,8 @@ INSERT INTO `mob_family_mods` VALUES (103,56,-1,1);
 INSERT INTO `mob_family_mods` VALUES (104,56,-1,1);
 INSERT INTO `mob_family_mods` VALUES (105,56,-1,1);
 INSERT INTO `mob_family_mods` VALUES (106,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (4,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (139,56,-1,1);
 
 -- Weapon bonus damage
 INSERT INTO `mob_family_mods` VALUES (57,59,125,1);
