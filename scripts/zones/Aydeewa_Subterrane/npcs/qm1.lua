@@ -20,6 +20,7 @@ function onTrade(player,npc,trade)
             SpawnMob(mobID):updateClaim(player);
         end
     end
+end;
 
 -----------------------------------
 -- onTrigger Action
