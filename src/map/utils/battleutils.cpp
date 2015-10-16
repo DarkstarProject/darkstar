@@ -730,6 +730,16 @@ namespace battleutils
 
                         if (PDefender->isAlive())
                         {
+                            // Subpower is the remaining damage that can be drained. When it reaches 0 the effect ends
+                            int remainingDrain = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_DREAD_SPIKES)->GetSubPower();
+                            if (remainingDrain - Action->spikesParam <= 0)
+                            {
+                                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DREAD_SPIKES);
+                            }
+                            else
+                            {
+                                PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_DREAD_SPIKES)->SetSubPower(remainingDrain - Action->spikesParam);
+                            }
                             PDefender->addHP(Action->spikesParam);
                         }
                         PAttacker->addHP(-Action->spikesParam);
@@ -743,10 +753,13 @@ namespace battleutils
 
                         // Subpower is the remaining damage that can be reflected. When it reaches 0 the effect ends
                         int remainingReflect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL)->GetSubPower();
-                        PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL)->SetSubPower(remainingReflect - Action->spikesParam);
-                        if (PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL)->GetSubPower() <= 0)
+                        if (remainingReflect - Action->spikesParam <= 0)
                         {
                             PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_REPRISAL);
+                        }
+                        else
+                        {
+                            PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL)->SetSubPower(remainingReflect - Action->spikesParam);
                         }
                     }
                     else
