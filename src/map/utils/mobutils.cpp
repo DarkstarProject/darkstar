@@ -969,6 +969,15 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
         case SYSTEM_UNDEAD:   PMob->addModifier(MOD_ARCANA_KILLER,   5); break;
         case SYSTEM_VERMIN:   PMob->addModifier(MOD_PLANTOID_KILLER, 5); break;
       }
+
+    if (PMob->m_maxLevel == 0 && PMob->m_minLevel == 0)
+    {
+        if (PMob->getZone() >= 1 && PMob->getZone() <= 252)
+        {
+            ShowError("Mob %s level is 0! zoneid %d, poolid %d\n", PMob->GetName(), PMob->getZone(), PMob->m_Pool);
+        }
+    }
+
 }
 
 /*
