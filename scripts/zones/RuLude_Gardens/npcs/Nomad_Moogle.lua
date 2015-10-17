@@ -17,13 +17,13 @@ require("scripts/zones/RuLude_Gardens/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-   local meritCount = player:getMeritCount();
+    local meritCount = player:getMeritCount();
 
-   if(trade:hasItemQty(1127,5) == true and trade:getGil() == 0 and trade:getItemCount() == 5 and meritCount > 2) then
+    if(trade:hasItemQty(1127,5) == true and trade:getGil() == 0 and trade:getItemCount() == 5 and meritCount > 2) then
       if(player:getQuestStatus(JEUNO,NEW_WORLDS_AWAIT) == QUEST_ACCEPTED) then
          player:startEvent(0x2797);
       end
-   elseif(trade:hasItemQty(2955,5) == true and trade:getGil() == 0 and trade:getItemCount() == 5 and meritCount > 3) then
+    elseif(trade:hasItemQty(2955,5) == true and trade:getGil() == 0 and trade:getItemCount() == 5 and meritCount > 3) then
       if(player:getQuestStatus(JEUNO,EXPANDING_HORIZONS) == QUEST_ACCEPTED) then
          player:startEvent(0x2798);
       end
@@ -93,10 +93,9 @@ function onEventFinish(player,csid,option)
  if(csid == 0x273d and option == -1) then
     player:addKeyItem(LIMIT_BREAKER);
     player:messageSpecial(KEYITEM_OBTAINED,LIMIT_BREAKER);
-    
  elseif(csid == 0x273d) then
     if(option == 5) then
-       player:addQuest(JEUNO,NEW_WORLDS_AWAIT);
+    player:addQuest(JEUNO,NEW_WORLDS_AWAIT);
  elseif(option == 7 )then
     player:addQuest(JEUNO,EXPANDING_HORIZONS);
  elseif(option == 9) then
