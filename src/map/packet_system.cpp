@@ -3042,7 +3042,7 @@ void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 					ShowDebug(CL_CYAN"%s party is removed from alliance\n" CL_RESET, PChar->GetName());
 				}
             }
-			ShowDebug(CL_CYAN"Removing %s from party" CL_RESET, PChar->GetName());
+			ShowDebug(CL_CYAN"Removing %s from party\n" CL_RESET, PChar->GetName());
             PChar->PParty->RemoveMember(PChar);
 			ShowDebug(CL_CYAN"%s is removed from party\n" CL_RESET, PChar->GetName());
             break;
