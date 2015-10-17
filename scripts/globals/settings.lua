@@ -86,6 +86,7 @@ LandKingSystem_HQ = 2;
 
 -- DYNAMIS SETTINGS
     BETWEEN_2DYNA_WAIT_TIME = 1;        -- wait time between 2 Dynamis (in real day) min: 1 day
+        DYNA_MIDNIGHT_RESET = true;     -- if true, makes the wait time count by number of server midnights instead of full 24 hour intervals
              DYNA_LEVEL_MIN = 65;       -- level min for entering in Dynamis
     TIMELESS_HOURGLASS_COST = 500000;   -- cost of the timeless hourglass for Dynamis.
      CURRENCY_EXCHANGE_RATE = 100;      -- X Tier 1 ancient currency -> 1 Tier 2, and so on.  Certain values may conflict with shop items.  Not designed to exceed 198.
