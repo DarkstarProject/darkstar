@@ -235,6 +235,13 @@ INSERT INTO `mob_spawn_mods` VALUES (17326081,50,25,1); -- Angra_Mainyu chainspe
 INSERT INTO `mob_spawn_mods` VALUES (17293486,51,1,1);
 INSERT INTO `mob_spawn_mods` VALUES (17293486,31,5,1);
 
+INSERT INTO `mob_spawn_mods` VALUES (17428812,17,1,1); -- Habetrot's Rumble Crawler
+INSERT INTO `mob_spawn_mods` VALUES (17428811,1,2000,1);
+INSERT INTO `mob_spawn_mods` VALUES (17428811,2,5625,1);
+
+INSERT INTO `mob_spawn_mods` VALUES (16986431,16,1,1); -- Tinnin 2hour
+
+
 /*!40000 ALTER TABLE `mob_spawn_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

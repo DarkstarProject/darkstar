@@ -98,8 +98,6 @@ protected:
 	bool m_mobskillattack;
 	bool m_actionqueueability;
 
-	uint32 m_LastStandbackTime;
-
 	void ActionRoaming();
 	void ActionEngage();
 	void ActionDisengage();
@@ -146,6 +144,7 @@ protected:
 
 	void Deaggro(); // deaggro targe
 	void OnTick();
+        bool CanMoveForward(float currentDistance);
 
 private:
 

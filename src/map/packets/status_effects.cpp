@@ -40,7 +40,7 @@ CStatusEffectPacket::CStatusEffectPacket(CCharEntity* PChar)
     PChar->StatusEffectContainer->ForEachEffect([this, &i](CStatusEffect* PEffect)
     {
         ref<uint16>(0x08 + (i * 0x02)) = PEffect->GetIcon();
-        ref<uint32>(0x48 + (i * 0x04)) = (((PEffect->GetDuration() - (gettick() - PEffect->GetStartTime())) / 1000) + CVanaTime::getInstance()->getVanaTime()) * 60;
+        ref<uint32>(0x48 + (i * 0x04)) = PEffect->GetDuration() == 0 ? 0x7FFFFFFF : (((PEffect->GetDuration() - (gettick() - PEffect->GetStartTime())) / 1000) + CVanaTime::getInstance()->getVanaTime()) * 60;
         ++i;
     });
 }

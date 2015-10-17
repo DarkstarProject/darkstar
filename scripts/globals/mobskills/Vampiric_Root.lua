@@ -22,12 +22,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_DARK,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_1_SHADOW);
 
-    target:delHP(dmg);
-
-    if (target:isUndead() == false) then
-        mob:addHP(dmg*.5);
-        skill:setMsg(MSG_DRAIN_HP);
-    end
+    skill:setMsg(MobPhysicalDrainMove(mob, target, skill, MOBDRAIN_HP, dmg));
 
     return dmg;
 end;

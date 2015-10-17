@@ -1432,6 +1432,12 @@ INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 301, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 302, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 303, 1, 255);
 
+-- Prune
+INSERT INTO `mob_spell_lists` VALUES ('Charming_Trio', 142, 245, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Charming_Trio', 142, 247, 1, 255);
+
+INSERT INTO `mob_spell_lists` VALUES ('Onki', 143, 288, 1, 255);
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

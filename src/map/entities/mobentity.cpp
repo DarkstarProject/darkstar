@@ -88,12 +88,8 @@ CMobEntity::CMobEntity()
 	m_battlefieldID = 0;
     m_bcnmID = 0;
 
-    m_maxRoamDistance = 10.0f;
+    m_maxRoamDistance = 20.0f;
     m_disableScent = false;
-
-    setMobMod(MOBMOD_SIGHT_RANGE, MOB_SIGHT_RANGE);
-    setMobMod(MOBMOD_SOUND_RANGE, MOB_SOUND_RANGE);
-    setMobMod(MOBMOD_ROAM_COOL, 45);
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 
@@ -184,7 +180,7 @@ uint32 CMobEntity::GetRandomGil()
 
     if (getMobMod(MOBMOD_GIL_BONUS) != 0)
     {
-        gil = (float)gil * (getMobMod(MOBMOD_GIL_BONUS) / 10.0f);
+        gil = (float)gil * (getMobMod(MOBMOD_GIL_BONUS) / 100.0f);
     }
 
     return gil;
@@ -200,18 +196,34 @@ bool CMobEntity::CanDropGil()
         return true;
     }
 
-    if(getMobMod(MOBMOD_GIL_BONUS) > 0)
-    {
-            return true;
-    }
+    return getMobMod(MOBMOD_GIL_BONUS) > 0;
+}
 
-    return m_EcoSystem == SYSTEM_BEASTMEN;
+bool CMobEntity::CanStealGil()
+{
+    // TODO: Some mobs cannot be mugged
+    return CanDropGil();
+}
+
+void CMobEntity::ResetGilPurse()
+{
+    uint32 purse = GetRandomGil() / ((dsprand::GetRandomNumber(4,7)));
+    if(purse == 0)
+        purse = GetRandomGil();
+    setMobMod(MOBMOD_MUG_GIL, purse);
 }
 
 bool CMobEntity::CanRoamHome()
 {
     if(speed == 0 && !(m_roamFlags & ROAMFLAG_WORM)) return false;
-    return getMobMod(MOBMOD_NO_DESPAWN);
+
+    if (getMobMod(MOBMOD_NO_DESPAWN) != 0 ||
+        map_config.mob_no_despawn)
+    {
+        return true;
+    }
+
+    return distance(m_SpawnPoint, loc.p) < MOB_ROAM_HOME_DISTANCE;
 }
 
 bool CMobEntity::CanRoam()

@@ -730,7 +730,10 @@ namespace battleutils
                     {
                         Action->addEffectMessage = 132;
 
-                        PDefender->addHP(Action->spikesParam);
+                        if (PDefender->isAlive())
+                        {
+                            PDefender->addHP(Action->spikesParam);
+                        }
                         PAttacker->addHP(-Action->spikesParam);
                     }
                     break;
@@ -1971,6 +1974,12 @@ namespace battleutils
                 case TYPE_PET:
                     ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE, UPDATE_COMBAT));
                     break;
+                case TYPE_PC:
+                    if (PAttacker->objtype == TYPE_MOB)
+                    {
+                        ((CMobEntity*)PAttacker)->PEnmityContainer->UpdateEnmityFromAttack(PDefender, damage);
+                    }
+                    break;
             }
 
             // try to interrupt spell if not a ranged attack and not blocked by Shield Mastery
@@ -2300,7 +2309,7 @@ namespace battleutils
         cRatio = dsp_cap(cRatio, 0, 4);
 
         if ((0 <= cRatio) && (cRatio < 0.5)) {
-            cRatioMax = cRatio + 1;
+            cRatioMax = cRatio + 0.5f;
         }
         else if ((0.5 <= cRatio) && (cRatio <= 0.7)) {
             cRatioMax = 1;

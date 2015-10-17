@@ -407,7 +407,7 @@ void CMeritPoints::RaiseMerit(MERIT_TYPE merit)
         {
             if (charutils::addSpell(m_PChar, PMerit->spellid))
             {
-                charutils::SaveSpells(m_PChar);
+                charutils::SaveSpell(m_PChar, PMerit->spellid);
                 m_PChar->pushPacket(new CCharSpellsPacket(m_PChar));
             }
         }
@@ -433,7 +433,7 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
     {
         if (charutils::delSpell(m_PChar, PMerit->spellid))
         {
-            charutils::SaveSpells(m_PChar);
+            charutils::DeleteSpell(m_PChar, PMerit->spellid);
             m_PChar->pushPacket(new CCharSpellsPacket(m_PChar));
         }
     }

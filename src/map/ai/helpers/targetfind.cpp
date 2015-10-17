@@ -144,7 +144,8 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
             withPet = PETS_CAN_AOE_BUFF;
         }
 
-        if (m_findFlags & FINDFLAGS_HIT_ALL)
+        if (m_findFlags & FINDFLAGS_HIT_ALL ||
+            m_findType == FIND_MONSTER_PLAYER && ((CMobEntity*)m_PBattleEntity)->CalledForHelp())
         {
             addAllInZone(m_PMasterTarget, withPet);
         }
@@ -153,13 +154,13 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
             addAllInAlliance(m_PMasterTarget, withPet);
 
             // Is the monster casting on a player..
-			if (m_findType == FIND_MONSTER_PLAYER)
-			{
-				if (m_PBattleEntity->allegiance == ALLEGIANCE_PLAYER)
-					addAllInZone(m_PMasterTarget, withPet);
-				else
-					addAllInEnmityList();
-			}
+            if (m_findType == FIND_MONSTER_PLAYER)
+            {
+                if (m_PBattleEntity->allegiance == ALLEGIANCE_PLAYER)
+                    addAllInZone(m_PMasterTarget, withPet);
+                else
+                    addAllInEnmityList();
+            }
         }
     }
 }

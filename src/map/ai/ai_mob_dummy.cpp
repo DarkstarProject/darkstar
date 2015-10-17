@@ -71,7 +71,6 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
     m_LastSpecialTime = 0;
     m_LastMobSkillTime = 0;
     m_skillTP = 0;
-    m_LastStandbackTime = 0;
     m_DeaggroTime = 0;
     m_NeutralTime = 0;
     m_drawnIn = false;
@@ -178,6 +177,11 @@ void CAIMobDummy::ActionRoaming()
     {
         // lets buff up or move around
 
+        if (m_PMob->CalledForHelp())
+        {
+            m_PMob->CallForHelp(false);
+        }
+
         // can't rest with poison or disease
         if (m_PMob->CanRest())
         {
@@ -187,7 +191,8 @@ void CAIMobDummy::ActionRoaming()
                 // health updated
                 m_PMob->updatemask |= UPDATE_HP;
             }
-            else
+
+            if(m_PMob->GetHPP() == 100)
             {
                 // at max health undirty exp
                 m_PMob->m_giveExp = true;
@@ -209,6 +214,13 @@ void CAIMobDummy::ActionRoaming()
 
                 // move back every 5 seconds
                 m_LastActionTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME;
+            }
+            else if (m_PMob->getMobMod(MOBMOD_NO_DESPAWN) != 0 ||
+                    map_config.mob_no_despawn)
+            {
+                // mob couldn't find path home
+                // but should never despawn, so cancel walking home
+                m_checkDespawn = false;
             }
             else
             {
@@ -359,7 +371,6 @@ void CAIMobDummy::ActionDisengage()
     m_PMob->delRageMode();
     m_PMob->m_OwnerID.clean();
     m_PMob->updatemask |= (UPDATE_STATUS | UPDATE_HP);
-    m_PMob->CallForHelp(false);
     m_PMob->animation = ANIMATION_NONE;
 
     //if (m_PMob->animationsub == 2) m_PMob->animationsub = 3;
@@ -648,7 +659,9 @@ void CAIMobDummy::ActionSpawn()
         m_PMob->m_DropItemTime = 1000;
         m_PMob->status = m_PMob->allegiance == ALLEGIANCE_MOB ? STATUS_MOB : STATUS_NORMAL;
         m_PMob->animation = ANIMATION_NONE;
+        m_PMob->animationsub = m_PMob->getMobMod(MOBMOD_SPAWN_ANIMATIONSUB);
         m_PMob->HideName(false);
+        m_PMob->CallForHelp(false);
         m_PMob->ResetLocalVars();
 
         m_PMob->PEnmityContainer->Clear();
@@ -668,14 +681,6 @@ void CAIMobDummy::ActionSpawn()
 
         mobutils::CalculateStats(m_PMob);
         mobutils::GetAvailableSpells(m_PMob);
-        
-        if (m_PMob->getMobMod(MOBMOD_MUG_GIL) == 0)
-        {
-            uint32 purse = m_PMob->GetRandomGil() / ((dsprand::GetRandomNumber(4,7)));
-            if(purse == 0)
-                purse = m_PMob->GetRandomGil();
-            m_PMob->setMobMod(MOBMOD_MUG_GIL, purse);
-        }
 
         // spawn somewhere around my point
         m_PMob->loc.p = m_PMob->m_SpawnPoint;
@@ -1663,7 +1668,7 @@ bool CAIMobDummy::TryDeaggro()
     }
 
     // target is no longer valid, so wipe them from our enmity list
-    if (m_PBattleTarget->isDead() ||
+    if (!m_PBattleTarget || m_PBattleTarget->isDead() ||
         m_PBattleTarget->animation == ANIMATION_CHOCOBO ||
         m_PBattleTarget->loc.zone->GetID() != m_PMob->loc.zone->GetID() || 
         m_PMob->StatusEffectContainer->GetConfrontationEffect() != m_PBattleTarget->StatusEffectContainer->GetConfrontationEffect())
@@ -2135,9 +2140,7 @@ void CAIMobDummy::FollowPath()
             // face spawn rotation if I just moved back to spawn
             // used by dynamis mobs, bcnm mobs etc
             if ((m_PMob->m_roamFlags & ROAMFLAG_EVENT) &&
-                 m_PMob->m_SpawnPoint.x == m_PMob->loc.p.x &&
-                 m_PMob->m_SpawnPoint.y == m_PMob->loc.p.y &&
-                 m_PMob->m_SpawnPoint.z == m_PMob->loc.p.z)
+                distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) <= m_PMob->m_maxRoamDistance)
             {
                 m_PMob->loc.p.rotation = m_PMob->m_SpawnPoint.rotation;
             }
@@ -2168,14 +2171,14 @@ void CAIMobDummy::SetupEngage()
     JOBTYPE mJob = m_PMob->GetMJob();
 
     // Don't cast magic or use special ability right away
-    if(mJob != JOB_SMN)
+    if(m_PMob->getBigMobMod(MOBMOD_MAGIC_DELAY) != 0)
     {
-        m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + dsprand::GetRandomNumber(7000);
+        m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + dsprand::GetRandomNumber(m_PMob->getBigMobMod(MOBMOD_MAGIC_DELAY));
     }
 
-    if(mJob != JOB_BST && mJob != JOB_PUP && mJob != JOB_DRG)
+    if(m_PMob->getBigMobMod(MOBMOD_SPECIAL_DELAY) != 0)
     {
-        m_LastSpecialTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) + dsprand::GetRandomNumber(7000);
+        m_LastSpecialTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) + dsprand::GetRandomNumber(m_PMob->getBigMobMod(MOBMOD_SPECIAL_DELAY));
     }
 
     m_firstSpell = true;
@@ -2379,4 +2382,30 @@ void CAIMobDummy::Despawn()
         CAIMobDummy* ai = (CAIMobDummy*)m_PMob->PPet->PBattleAI;
         ai->Despawn();
     }
+}
+
+bool CAIMobDummy::CanMoveForward(float currentDistance)
+{
+    if(m_PMob->m_Behaviour & BEHAVIOUR_STANDBACK && currentDistance < 20)
+    {
+        return false;
+    }
+
+    if(m_PMob->getMobMod(MOBMOD_HP_STANDBACK) == 1 && currentDistance < 20 && m_PMob->GetHPP() > 70)
+    {
+        // Excluding Nins, mobs should not standback if can't cast magic
+        if (m_PMob->GetMJob() != JOB_NIN && m_PMob->SpellContainer->HasSpells() && !CanCastSpells())
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    if(m_PMob->getMobMod(MOBMOD_SPAWN_LEASH) > 0 && distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) > m_PMob->getMobMod(MOBMOD_SPAWN_LEASH))
+    {
+        return false;
+    }
+
+    return true;
 }

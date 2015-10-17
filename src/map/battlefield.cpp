@@ -341,7 +341,8 @@ void CBattlefield::addNpc(CBaseEntity* PNpc){
 bool CBattlefield::allEnemiesDefeated(){
 	bool allDefeated = true;
 	for(int i=0; i<m_EnemyVictoryList.size(); i++){
-		if(m_EnemyVictoryList.at(i).MobEntity->PBattleAI->GetCurrentAction() >= 20 && m_EnemyVictoryList.at(i).MobEntity->PBattleAI->GetCurrentAction() <= 23){
+                uint8 currentAction = m_EnemyVictoryList.at(i).MobEntity->PBattleAI->GetCurrentAction();
+		if(currentAction >= 20 && currentAction <= 23){
 			m_EnemyVictoryList.at(i).killed = true;
 		}
 		if(m_EnemyVictoryList.at(i).killed == false){

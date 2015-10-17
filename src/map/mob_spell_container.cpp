@@ -164,6 +164,9 @@ int16 CMobSpellContainer::GetSpell()
   {
       return GetHealSpell();
   }
+
+  // Got no spells to use
+  return -1;
 }
 
 int16 CMobSpellContainer::GetGaSpell()
