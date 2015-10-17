@@ -151,7 +151,7 @@ void CAIController::Tick(time_point tick)
                 }
             }
             else if (!(PMob->m_Behaviour & BEHAVIOUR_STANDBACK && currentDistance < 20) &&
-                !(PMob->m_Behaviour & BEHAVIOUR_HP_STANDBACK && currentDistance < 20 && PMob->GetHPP() > 70) &&
+                !(PMob->getMobMod(MOBMOD_HP_STANDBACK) == 1 && currentDistance < 20 && PMob->GetHPP() > 70) &&
                 !(PMob->getMobMod(MOBMOD_SPAWN_LEASH) > 0 && distance(PMob->loc.p, PMob->m_SpawnPoint) > PMob->getMobMod(MOBMOD_SPAWN_LEASH)))
             {
                 PMob->PAI->PathFind->PathAround(PTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);

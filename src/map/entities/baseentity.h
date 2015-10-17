@@ -164,7 +164,7 @@ public:
 
     CAIGeneral*     PBattleAI;          // интеллект любой сущности
     std::unique_ptr<CAIBase> PAI;       // AI container
-    CBattlefield*	PBCNM;				// pointer to bcnm (if in one)
+    CBattlefield*	PBCNM;              // pointer to bcnm (if in one)
     CInstance*		PInstance;
 
     CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);
