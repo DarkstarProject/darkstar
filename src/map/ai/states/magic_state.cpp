@@ -176,6 +176,11 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
     uint32 base = PSpell->getCastTime();
     uint32 cast = base;
 
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
+    {
+        cast = cast * 1.5f;
+    }
+
     if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
     {
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
@@ -357,6 +362,10 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
     if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_COMPOSURE))
     {
         recast *= 1.25;
+    }
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
+    {
+        recast *= 1.5;
     }
 
     if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)

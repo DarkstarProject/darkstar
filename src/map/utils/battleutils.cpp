@@ -730,6 +730,20 @@ namespace battleutils
 
                         if (PDefender->isAlive())
                         {
+                            auto PEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_DREAD_SPIKES);
+                            if (PEffect)
+                            {
+                                // Subpower is the remaining damage that can be drained. When it reaches 0 the effect ends
+                                int remainingDrain = PEffect->GetSubPower();
+                                if (remainingDrain - Action->spikesParam <= 0)
+                                {
+                                    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DREAD_SPIKES);
+                                }
+                                else
+                                {
+                                    PEffect->SetSubPower(remainingDrain - Action->spikesParam);
+                                }
+                            }
                             PDefender->addHP(Action->spikesParam);
                         }
                         PAttacker->addHP(-Action->spikesParam);
@@ -740,13 +754,19 @@ namespace battleutils
                     if (Action->reaction == REACTION_BLOCK)
                     {
                         PAttacker->addHP(-Action->spikesParam);
-
-                        // Subpower is the remaining damage that can be reflected. When it reaches 0 the effect ends
-                        int remainingReflect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL)->GetSubPower();
-                        PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL)->SetSubPower(remainingReflect - Action->spikesParam);
-                        if (PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL)->GetSubPower() <= 0)
+                        auto PEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL);
+                        if (PEffect)
                         {
-                            PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_REPRISAL);
+                            // Subpower is the remaining damage that can be reflected. When it reaches 0 the effect ends
+                            int remainingReflect = PEffect->GetSubPower();
+                            if (remainingReflect - Action->spikesParam <= 0)
+                            {
+                                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_REPRISAL);
+                            }
+                            else
+                            {
+                                PEffect->SetSubPower(remainingReflect - Action->spikesParam);
+                            }
                         }
                     }
                     else

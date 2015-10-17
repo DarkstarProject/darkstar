@@ -21,7 +21,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1;
-    local hpmod = mob:getHP() / mob:getMaxHP();
+    local hpmod = skill:getHPP() / 100;
     local basePower = 6;
 
     -- Maat has a weaker Mijin
@@ -29,7 +29,7 @@ function onMobWeaponSkill(target, mob, skill)
         basePower = 4;
     end
 
-    local power = hpmod * 8 + basePower;
+    local power = hpmod * 10 + basePower;
 
     local baseDmg = mob:getWeaponDmg() * power;
 

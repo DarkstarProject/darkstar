@@ -62,6 +62,7 @@ public:
     uint16      getAoEMsg();
     uint16      getValidTargets();
     int16       getTP();
+    uint8       getHPP();
     uint16      getTotalTargets();
     uint16      getMsgForAction();
     float       getRadius();
@@ -81,6 +82,7 @@ public:
     void        setMsg(uint16 msg);
     void        setValidTargets(uint16 targ);
     void        setTP(int16 tp);
+    void        setHPP(uint8 hpp);
     void        setTotalTargets(uint16 targets);
     void        setParam(int16 value);
     void        setKnockback(uint8 knockback);
@@ -103,6 +105,7 @@ private:
     uint16      m_ActivationTime;   //how long the mob prepares the tp move for
     uint16      m_Message;          //message param, scripters can edit this depending on self/resist/etc.
     int16       m_TP;               //the tp at the time of finish readying (for scripts)
+    uint8       m_HPP;              // HPP at the time of using mob skill (for scripts)
     uint8       m_knockback;        //knockback value (0-7)
     uint8       m_skillchain;       //weaponskill ID of skillchain properties
 
