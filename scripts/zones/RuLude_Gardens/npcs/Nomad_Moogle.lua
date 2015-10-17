@@ -104,7 +104,6 @@ function onEventFinish(player,csid,option)
     player:addQuest(JEUNO,DORMANT_POWERS_DISLODGED);
  end  
        
-       
  elseif(csid == 0x2797) then
     player:tradeComplete();
     player:setMerits(meritCount - 3);
