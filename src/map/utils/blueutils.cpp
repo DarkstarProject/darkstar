@@ -132,7 +132,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
                 if (dsprand::GetRandomNumber(100) < 33) {
 					if (charutils::addSpell(PBlueMage, PSpell->getID())) {
 						PBlueMage->pushPacket(new CMessageBasicPacket(PBlueMage, PBlueMage, PSpell->getID(), 0, MSGBASIC_LEARNS_SPELL));
-						charutils::SaveSpells(PBlueMage);
+						charutils::SaveSpell(PBlueMage, PSpell->getID());
 						PBlueMage->pushPacket(new CCharSpellsPacket(PBlueMage));
 					}
 				}

@@ -83,7 +83,7 @@ enum MOBMODIFIER : int
     MOBMOD_ROAM_TURNS         = 51, // Maximum amount of turns during a roam
     MOBMOD_ROAM_RATE          = 52, // Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
     MOBMOD_BEHAVIOR           = 53, // Add behaviors to mob
-    MOBMOD_GIL_BONUS          = 54, // Multipler to gil dropped by mob divided by 10
+    MOBMOD_GIL_BONUS          = 54, // Allow mob to drop gil. Multipler to gil dropped by mob (bonus / 100) * total
     MOBMOD_IDLE_DESPAWN       = 55, // Time (in seconds) to despawn after being idle
     MOBMOD_HP_STANDBACK       = 56, // if set to 1 mob will always standback with hp over 70%
     MOBMOD_MAGIC_DELAY        = 57, // Amount of seconds mob waits before casting first spell

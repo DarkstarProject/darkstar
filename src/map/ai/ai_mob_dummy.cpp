@@ -682,14 +682,6 @@ void CAIMobDummy::ActionSpawn()
 
         mobutils::CalculateStats(m_PMob);
         mobutils::GetAvailableSpells(m_PMob);
-        
-        if (m_PMob->getMobMod(MOBMOD_MUG_GIL) == 0)
-        {
-            uint32 purse = m_PMob->GetRandomGil() / ((dsprand::GetRandomNumber(4,7)));
-            if(purse == 0)
-                purse = m_PMob->GetRandomGil();
-            m_PMob->setMobMod(MOBMOD_MUG_GIL, purse);
-        }
 
         // spawn somewhere around my point
         m_PMob->loc.p = m_PMob->m_SpawnPoint;
@@ -1936,7 +1928,7 @@ bool CAIMobDummy::TryDeaggro()
     }
 
     // target is no longer valid, so wipe them from our enmity list
-    if (m_PBattleTarget->isDead() ||
+    if (!m_PBattleTarget || m_PBattleTarget->isDead() ||
         m_PBattleTarget->animation == ANIMATION_CHOCOBO ||
         m_PBattleTarget->loc.zone->GetID() != m_PMob->loc.zone->GetID() || 
         m_PMob->StatusEffectContainer->GetConfrontationEffect() != m_PBattleTarget->StatusEffectContainer->GetConfrontationEffect())

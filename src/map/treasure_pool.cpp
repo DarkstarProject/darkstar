@@ -433,6 +433,9 @@ void CTreasurePool::CheckTreasureItem(uint32 tick, uint8 SlotID)
 						}
 					}
 
+                    if (charutils::HasItem(members[i], m_PoolItems[SlotID].ID) && itemutils::GetItem(m_PoolItems[SlotID].ID)->getFlag() & ITEM_FLAG_RARE)
+                        continue;
+
 					if (members[i]->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0 && !hasPassed) 
 					{
 						LotInfo templi;
