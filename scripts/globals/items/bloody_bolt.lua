@@ -14,7 +14,7 @@ function onAdditionalEffect(player,target,damage)
         chance = chance - 5 * (target:getMainLvl() - player:getMainLvl())
         chance = utils.clamp(chance, 5, 95);
     end
-    if (math.random(0,99) >= chance) then
+    if (math.random(0,99) >= chance or target:isUndead()) then
         return 0,0,0;
     else
         local diff = player:getStat(MOD_INT) - target:getStat(MOD_INT);

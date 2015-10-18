@@ -504,6 +504,7 @@ void CAIPetDummy::ActionAbilityFinish() {
        m_skillTP += bonusTP;
 
     m_PMobSkill->setTP(m_skillTP);
+    m_PMobSkill->setHPP(m_PPet->GetHPP());
 
     // TODO: this is totally a hack
     // override mob animation ids with valid pet animation id

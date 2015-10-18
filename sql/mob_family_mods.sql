@@ -636,6 +636,17 @@ INSERT INTO `mob_family_mods` VALUES (92,56,-1,1);
 INSERT INTO `mob_family_mods` VALUES (93,56,-1,1);
 INSERT INTO `mob_family_mods` VALUES (94,56,-1,1);
 INSERT INTO `mob_family_mods` VALUES (95,56,-1,1);
+-- elementals don't standback
+INSERT INTO `mob_family_mods` VALUES (99,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (100,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (101,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (102,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (103,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (104,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (105,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (106,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (4,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (139,56,-1,1);
 
 -- Weapon bonus damage
 INSERT INTO `mob_family_mods` VALUES (57,59,125,1);

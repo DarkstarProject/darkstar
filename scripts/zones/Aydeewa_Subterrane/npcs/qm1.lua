@@ -1,24 +1,25 @@
 -----------------------------------
 -- Area: Aydeewa Subterrane
--- NPC:  ??? (Spawn Nosferatu(ZNM T3))
+--  NPC: ??? (Spawn Nosferatu(ZNM T3))
 -- @pos -199 8 -62 68
 -----------------------------------
 package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Aydeewa_Subterrane/TextIDs");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
+    local mobID = 17056157;
     if (trade:hasItemQty(2584,1) and trade:getItemCount() == 1) then -- Trade Pure Blood
-        player:tradeComplete();
-        SpawnMob(17056157,180):updateClaim(player);
+        if (GetMobAction(mobID) == ACTION_NONE) then
+            player:tradeComplete();
+            SpawnMob(mobID):updateClaim(player);
+        end
     end
-
 end;
 
 -----------------------------------

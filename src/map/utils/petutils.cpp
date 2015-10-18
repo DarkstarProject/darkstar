@@ -79,6 +79,7 @@ struct Pet_t
     uint8        chrRank;
     uint8        attRank;
     uint8        defRank;
+    uint8        evaRank;
     uint8        accRank;
 
     uint16       m_MobSkillList;
@@ -153,6 +154,7 @@ namespace petutils
                 mob_family_system.DEF,\
                 mob_family_system.ATT,\
                 mob_family_system.ACC, \
+                mob_family_system.EVA, \
                 hasSpellScript, spellList, \
                 Slash, Pierce, H2H, Impact, \
                 Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, \
@@ -193,16 +195,17 @@ namespace petutils
                 Pet->defRank = (uint8)Sql_GetIntData(SqlHandle, 20);
                 Pet->attRank = (uint8)Sql_GetIntData(SqlHandle, 21);
                 Pet->accRank = (uint8)Sql_GetIntData(SqlHandle, 22);
+                Pet->evaRank = (uint8)Sql_GetIntData(SqlHandle, 23);
 
-                Pet->hasSpellScript = (bool)Sql_GetIntData(SqlHandle, 23);
+                Pet->hasSpellScript = (bool)Sql_GetIntData(SqlHandle, 24);
 
-                Pet->spellList = (uint8)Sql_GetIntData(SqlHandle, 24);
+                Pet->spellList = (uint8)Sql_GetIntData(SqlHandle, 25);
 
                 // resistances
-                Pet->slashres = (uint16)(Sql_GetFloatData(SqlHandle, 25) * 1000);
-                Pet->pierceres = (uint16)(Sql_GetFloatData(SqlHandle, 26) * 1000);
-                Pet->hthres = (uint16)(Sql_GetFloatData(SqlHandle, 27) * 1000);
-                Pet->impactres = (uint16)(Sql_GetFloatData(SqlHandle, 28) * 1000);
+                Pet->slashres = (uint16)(Sql_GetFloatData(SqlHandle, 26) * 1000);
+                Pet->pierceres = (uint16)(Sql_GetFloatData(SqlHandle, 27) * 1000);
+                Pet->hthres = (uint16)(Sql_GetFloatData(SqlHandle, 28) * 1000);
+                Pet->impactres = (uint16)(Sql_GetFloatData(SqlHandle, 29) * 1000);
 
                 Pet->firedef = 0;
                 Pet->icedef = 0;
@@ -213,18 +216,18 @@ namespace petutils
                 Pet->lightdef = 0;
                 Pet->darkdef = 0;
 
-                Pet->fireres = (uint16)((Sql_GetFloatData(SqlHandle, 29) - 1) * -100);
-                Pet->iceres = (uint16)((Sql_GetFloatData(SqlHandle, 30) - 1) * -100);
-                Pet->windres = (uint16)((Sql_GetFloatData(SqlHandle, 31) - 1) * -100);
-                Pet->earthres = (uint16)((Sql_GetFloatData(SqlHandle, 32) - 1) * -100);
-                Pet->thunderres = (uint16)((Sql_GetFloatData(SqlHandle, 33) - 1) * -100);
-                Pet->waterres = (uint16)((Sql_GetFloatData(SqlHandle, 34) - 1) * -100);
-                Pet->lightres = (uint16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100);
-                Pet->darkres = (uint16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100);
+                Pet->fireres = (uint16)((Sql_GetFloatData(SqlHandle, 30) - 1) * -100);
+                Pet->iceres = (uint16)((Sql_GetFloatData(SqlHandle, 31) - 1) * -100);
+                Pet->windres = (uint16)((Sql_GetFloatData(SqlHandle, 32) - 1) * -100);
+                Pet->earthres = (uint16)((Sql_GetFloatData(SqlHandle, 33) - 1) * -100);
+                Pet->thunderres = (uint16)((Sql_GetFloatData(SqlHandle, 34) - 1) * -100);
+                Pet->waterres = (uint16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100);
+                Pet->lightres = (uint16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100);
+                Pet->darkres = (uint16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100);
 
-                Pet->cmbDelay = (uint16)Sql_GetIntData(SqlHandle, 37);
-                Pet->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 38);
-                Pet->m_MobSkillList = (uint16)Sql_GetUIntData(SqlHandle, 39);
+                Pet->cmbDelay = (uint16)Sql_GetIntData(SqlHandle, 38);
+                Pet->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 39);
+                Pet->m_MobSkillList = (uint16)Sql_GetUIntData(SqlHandle, 40);
 
                 g_PPetList.push_back(Pet);
             }
@@ -384,10 +387,8 @@ namespace petutils
         PMob->health.hp = PMob->GetMaxHP();
         PMob->health.mp = PMob->GetMaxMP();
 
-        uint16 evaRank = battleutils::GetSkillRank(SKILL_EVA, PMob->GetMJob());
-
         PMob->setModifier(MOD_DEF, GetJugBase(PMob, petStats->defRank));
-        PMob->setModifier(MOD_EVA, GetJugBase(PMob, evaRank));
+        PMob->setModifier(MOD_EVA, GetJugBase(PMob, petStats->evaRank));
         PMob->setModifier(MOD_ATT, GetJugBase(PMob, petStats->attRank));
         PMob->setModifier(MOD_ACC, GetJugBase(PMob, petStats->accRank));
 
