@@ -265,6 +265,7 @@ void CPathFind::FollowPath()
         }
 
         m_onPoint = true;
+        //#event onPoint event
     }
 }
 

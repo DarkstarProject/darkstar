@@ -24,6 +24,7 @@ This file is part of DarkStar-server source code.
 #include "ai_base.h"
 
 #include "../entities/baseentity.h"
+#include "../packets/entity_animation.h"
 
 duration g_GCD = 2500ms;
 
@@ -121,6 +122,11 @@ time_point CAIBase::getTick()
 time_point CAIBase::getPrevTick()
 {
     return m_PrevTick;
+}
+
+void CAIBase::Despawn()
+{
+    //#TODO: make a state
 }
 
 void CAIBase::queueAction(queueAction_t&& action)

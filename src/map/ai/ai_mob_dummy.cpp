@@ -569,7 +569,7 @@ void CAIMobDummy::ActionDeath()
     if (m_Tick > m_LastActionTime + 12000 && !(m_PMob->m_Behaviour & BEHAVIOUR_NO_DESPAWN))
     {
         m_ActionType = ACTION_FADE_OUT;
-        m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityAnimationPacket(m_PMob, CEntityAnimationPacket::FADE_OUT));
+        m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityAnimationPacket(m_PMob, CEntityAnimationPacket::Fade_Out));
     }
 }
 

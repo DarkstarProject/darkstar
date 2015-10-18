@@ -39,10 +39,9 @@ public:
     CAIController(CMobEntity* PMob);
 
     virtual void Tick(time_point tick) override;
-
     virtual void Disengage() override;
 
-private:
+protected:
     bool TryDeaggro();
     void TryLink();
     bool CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false);
@@ -53,6 +52,10 @@ private:
     bool CanCastSpells();
     void CastSpell(uint16 spellid);
 
+    void DoCombatTick(time_point tick);
+    void DoRoamTick(time_point tick);
+    void Wait(duration _duration);
+private:
     CBattleEntity* PTarget;
 
     CMobEntity* const PMob;
@@ -63,6 +66,7 @@ private:
     time_point m_LastSpecialTime;
     time_point m_DeaggroTime;
     time_point m_NeutralTime;
+    time_point m_WaitTime;
 
     bool m_firstSpell{ true };
 };

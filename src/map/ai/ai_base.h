@@ -61,6 +61,8 @@ public:
     time_point getTick();
     time_point getPrevTick();
 
+    void Despawn();
+
     virtual void queueAction(queueAction_t&&);
 
     // stores all events and their associated lua callbacks
