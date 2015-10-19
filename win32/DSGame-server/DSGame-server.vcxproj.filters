@@ -881,6 +881,9 @@
     <ClInclude Include="..\..\src\map\ai\controllers\ai_controller.h">
       <Filter>Header Files\ai\controllers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\states\spawn_state.h">
+      <Filter>Header Files\ai\states</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1614,6 +1617,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\ai\controllers\controller.cpp">
       <Filter>Source Files\ai\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\states\spawn_state.cpp">
+      <Filter>Source Files\ai\states</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

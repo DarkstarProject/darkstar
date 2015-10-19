@@ -78,11 +78,14 @@ bool CMagicState::Update(time_point tick)
     return false;
 }
 
-void CMagicState::Clear()
+void CMagicState::Cleanup(time_point tick)
 {
-    action_t action;
-    m_PEntity->PAIBattle()->OnCastInterrupted(*this, action, MSGBASIC_IS_INTERRUPTED);
-    m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+    if (!(tick > m_startTime + m_castTime))
+    {
+        action_t action;
+        m_PEntity->PAIBattle()->OnCastInterrupted(*this, action, MSGBASIC_IS_INTERRUPTED);
+        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+    }
 }
 
 bool CMagicState::CanChangeState()

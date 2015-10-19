@@ -49,9 +49,7 @@ public:
     virtual void TryInterrupt(CBattleEntity* PAttacker) {}
 
     //called when state completes
-    virtual void Cleanup() = 0;
-    //reset/cancel the state (forced exit)
-    virtual void Clear() = 0;
+    virtual void Cleanup(time_point tick) = 0;
     //whether the state can be changed by normal means
     virtual bool CanChangeState() = 0;
 

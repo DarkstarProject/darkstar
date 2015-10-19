@@ -43,8 +43,8 @@ struct queueAction_t
         delay(std::chrono::milliseconds(_ms)), 
         lua_func(_lua_func), 
         checkState(_checkstate) {}
-    queueAction_t(int _ms, bool _checkstate, std::function<void(CBaseEntity*)> _func) :
-        delay(std::chrono::milliseconds(_ms)),
+    queueAction_t(duration _ms, bool _checkstate, std::function<void(CBaseEntity*)> _func) :
+        delay(_ms),
         func(_func),
         checkState(_checkstate) {}
 

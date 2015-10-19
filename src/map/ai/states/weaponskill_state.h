@@ -43,8 +43,7 @@ public:
 protected:
     virtual bool CanChangeState() override { return false; }
     virtual bool Update(time_point tick) override;
-    virtual void Cleanup() override {}
-    virtual void Clear() override;
+    virtual void Cleanup(time_point tick) override;
 
     CBattleEntity* const m_PEntity;
     std::unique_ptr<CWeaponSkill> m_PWeaponSkill;

@@ -23,6 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "ai_base.h"
 
+#include "states/spawn_state.h"
 #include "../entities/baseentity.h"
 #include "../packets/entity_animation.h"
 
@@ -82,7 +83,7 @@ void CAIBase::Tick(time_point _tick)
     {
         if (m_stateStack.top()->DoUpdate(_tick))
         {
-            m_stateStack.top()->Cleanup();
+            m_stateStack.top()->Cleanup(_tick);
             m_stateStack.pop();
         }
     }
@@ -97,6 +98,14 @@ void CAIBase::Tick(time_point _tick)
 bool CAIBase::IsStateStackEmpty()
 {
     return m_stateStack.empty();
+}
+
+void CAIBase::ClearStateStack()
+{
+    while (!m_stateStack.empty())
+    {
+        m_stateStack.pop();
+    }
 }
 
 bool CAIBase::IsSpawned()
@@ -126,10 +135,22 @@ time_point CAIBase::getPrevTick()
 
 void CAIBase::Despawn()
 {
-    //#TODO: make a state
+    if (Controller)
+    {
+        Controller->Despawn();
+    }
+    else
+    {
+        Internal_Despawn(0s);
+    }
 }
 
 void CAIBase::queueAction(queueAction_t&& action)
 {
     ActionQueue.pushAction(std::move(action));
+}
+
+void CAIBase::Internal_Despawn(duration spawnTime)
+{
+    ChangeState<CSpawnState>(PEntity, spawnTime);
 }

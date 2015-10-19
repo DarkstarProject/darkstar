@@ -49,9 +49,13 @@ public:
     void Tick(time_point _tick);
     CState* GetCurrentState();
     bool IsStateStackEmpty();
+    void ClearStateStack();
+    // Pop the top state if it's the expected state
+    template<typename State>
+    bool PopState() { if (IsCurrentState<State>()) m_stateStack.pop(); }
     /* Or have each state return a static number/string that Lua can use as well, in case this is not sufficient */
-    template<typename T>
-    bool IsCurrentState() { return typeid(T) == typeid(GetCurrentState()); }
+    template<typename State>
+    bool IsCurrentState() { return typeid(State) == typeid(GetCurrentState()); }
     bool IsSpawned();
     bool IsRoaming();
     bool IsEngaged();
@@ -64,6 +68,8 @@ public:
     void Despawn();
 
     virtual void queueAction(queueAction_t&&);
+
+    virtual void Internal_Despawn(duration spawnTime);
 
     // stores all events and their associated lua callbacks
     CAIEventHandler EventHandler;

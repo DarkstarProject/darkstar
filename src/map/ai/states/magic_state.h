@@ -40,8 +40,7 @@ class CMagicState : public CState
 public:
     CMagicState(CBattleEntity* PEntity, uint16 targid);
     virtual bool Update(time_point tick) override;
-    virtual void Cleanup() override {}
-    virtual void Clear() override;
+    virtual void Cleanup(time_point tick) override;
     virtual bool CanChangeState() override;
 
     CSpell* GetSpell();

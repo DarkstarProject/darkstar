@@ -21,33 +21,22 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _CABILITY_STATE_H
-#define _CABILITY_STATE_H
+#ifndef _CSPAWN_STATE_H
+#define _CSPAWN_STATE_H
 
 #include "state.h"
 
-class CAbility;
-
-class CAbilityState : public CState
+class CSpawnState : public CState
 {
 public:
-    CAbilityState(CCharEntity* PEntity, uint16 targid);
-
-    bool StartAbility(uint16 abilityid);
-    CAbility* GetAbility();
-
-    void ApplyEnmity();
-
-protected:
-    virtual bool CanChangeState() override { return false; }
+    CSpawnState(CBaseEntity* PEntity);
+    CSpawnState(CBaseEntity* PEntity, duration spawnTime);
     virtual bool Update(time_point tick) override;
-    virtual void Cleanup(time_point tick) override {}
-
-    bool CanUseAbility();
-
-    CCharEntity* const m_PEntity;
-    std::unique_ptr<CAbility> m_PAbility;
+    virtual void Cleanup(time_point tick) override;
+    virtual bool CanChangeState() override;
+private:
+    time_point m_enterStateTime {server_clock::now()};
+    duration m_spawnTime;
 };
-
 
 #endif

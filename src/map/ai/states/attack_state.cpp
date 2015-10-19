@@ -63,13 +63,9 @@ bool CAttackState::Update(time_point tick)
     return false;
 }
 
-void CAttackState::Cleanup()
+void CAttackState::Cleanup(time_point tick)
 {
     m_PEntity->PAIBattle()->OnDisengage();
-}
-
-void CAttackState::Clear()
-{
 }
 
 void CAttackState::UpdateTarget(uint16 targid)

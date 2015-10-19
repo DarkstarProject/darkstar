@@ -240,6 +240,7 @@
     <ClInclude Include="..\..\src\map\ai\states\magic_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\mobskill_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\range_state.h" />
+    <ClInclude Include="..\..\src\map\ai\states\spawn_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\state.h" />
     <ClInclude Include="..\..\src\map\ai\states\trigger_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\weaponskill_state.h" />
@@ -489,6 +490,7 @@
     <ClCompile Include="..\..\src\map\ai\states\magic_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\mobskill_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\range_state.cpp" />
+    <ClCompile Include="..\..\src\map\ai\states\spawn_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\trigger_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\weaponskill_state.cpp" />

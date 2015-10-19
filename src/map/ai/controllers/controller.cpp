@@ -30,6 +30,14 @@ CController::CController(CBattleEntity* _POwner, bool _canUpdate) :
     canUpdate(_canUpdate)
 {}
 
+void CController::Despawn()
+{
+    if (POwner)
+    {
+        POwner->PAI->Internal_Despawn(0s);
+    }
+}
+
 void CController::Cast(uint16 targid, uint16 spellid)
 {
     if (POwner)
