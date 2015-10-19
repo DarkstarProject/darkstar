@@ -14,6 +14,11 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
+    if (mob:getFamily() == 290) then -- Claret
+        if (mob:checkDistance(target) < 3) then -- Don't use it if he is on his target.
+            return 1;
+        end;
+    end;
     return 0;
 end;
 

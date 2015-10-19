@@ -2,10 +2,10 @@
 -- version 3.3.8
 -- http://www.phpmyadmin.net
 --
--- Serveur: localhost
--- Généré le : Ven 03 Février 2012    22:54
--- Version du serveur: 6.0.0
--- Version de PHP: 5.2.9-2
+-- Server address: localhost
+-- Generated on : Fri, February 3, 2012  22:54
+-- Server Version: 6.0.0
+-- PHP Version: 5.2.9-2
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -16,13 +16,13 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Database: `dspdb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `mob_skills`
+-- Table structure for `mob_skills`
 --
 
 DROP TABLE IF EXISTS `mob_skills`;
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `mob_skills` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `mob_skills`
+-- Table contents for `mob_skills`
 --
 
 -- INSERT INTO `mob_skills` VALUES (0,0,'#0',0,7.0,2000,1500,4,0,0,0);
@@ -1106,9 +1106,9 @@ INSERT INTO `mob_skills` VALUES (1055,968,'Sable_Breath',4,18.0,2000,1500,4,8,0,
 -- INSERT INTO `mob_skills` VALUES (1058,1058,'Cyclone_Wing',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1059,659,'Absolute_Terror',0,18.0,4000,1500,4,8,0,0);
 INSERT INTO `mob_skills` VALUES (1060,660,'Horrid_Roar_3',0,18.0,4000,1500,4,8,0,0);
--- INSERT INTO `mob_skills` VALUES (1061,1061,'Mucus_Spread',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1061,1061,'Mucus_Spread',1,10,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1062,1062,'WZ_SLIME_04',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1063,1063,'Epoxy_Spread',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1063,1063,'Epoxy_Spread',1,10,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1064,1064,'WZ_EYES_04',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1065,1065,'WZ_CRAWL_03',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1066,1066,'Gerjis'_Grip',0,7.0,2000,1500,4,0,0,0);
@@ -2338,7 +2338,7 @@ INSERT INTO `mob_skills` VALUES (2289,1755,'Doom_arc',1,18.0,2000,1000,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2290,2290,'.',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2291,2291,'.',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2292,2292,'Fluid_Spread',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (2293,2293,'Fluid_Toss',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (2293,176,'Fluid_Toss_Claret',0,15,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2294,2294,'Dissolve',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2295,2295,'Mucus_Spread',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2296,2296,'Epoxy_Spread',0,7.0,2000,1500,4,0,0,0);
