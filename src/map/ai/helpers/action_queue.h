@@ -33,21 +33,18 @@ class CBaseEntity;
 
 struct queueAction_t
 {
-    time_point start_time;
-    duration delay;
-    bool checkState;
-    int lua_func;
-    std::function<void(CBaseEntity*)> func;
+    time_point start_time {server_clock::now()};
+    duration delay {0ms};
+    bool checkState {false};
+    int lua_func {0};
+    std::function<void(CBaseEntity*)> func {};
 
     queueAction_t(int _ms, bool _checkstate, int _lua_func) :
-        start_time(server_clock::now()), 
         delay(std::chrono::milliseconds(_ms)), 
         lua_func(_lua_func), 
         checkState(_checkstate) {}
     queueAction_t(int _ms, bool _checkstate, std::function<void(CBaseEntity*)> _func) :
-        start_time(server_clock::now()),
         delay(std::chrono::milliseconds(_ms)),
-        lua_func(0),
         func(_func),
         checkState(_checkstate) {}
 

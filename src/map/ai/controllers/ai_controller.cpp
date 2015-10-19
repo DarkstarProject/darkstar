@@ -770,11 +770,6 @@ void CAIController::DoRoamTick(time_point tick)
     }
 }
 
-void CAIController::DoSpawnTick(time_point tick)
-{
-
-}
-
 void CAIController::Wait(duration _duration)
 {
     m_WaitTime = m_Tick += _duration;
