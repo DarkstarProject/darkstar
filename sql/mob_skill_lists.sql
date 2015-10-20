@@ -1964,16 +1964,16 @@ INSERT INTO `mob_skill_lists` VALUES ('',182,1502);
 -- INSERT INTO `mob_skill_lists` VALUES ('',171,1503);
 
 
--- MEDUSA
--- INSERT INTO `mob_skill_lists` VALUES ('',171,1557);
--- INSERT INTO `mob_skill_lists` VALUES ('',171,1558);
--- INSERT INTO `mob_skill_lists` VALUES ('',171,1556);
--- INSERT INTO `mob_skill_lists` VALUES ('',171,1553);
--- INSERT INTO `mob_skill_lists` VALUES ('',171,1555);
+-- Medusa
+INSERT INTO `mob_skill_lists` VALUES ('Medusa',725,1515);
+INSERT INTO `mob_skill_lists` VALUES ('Medusa',725,1553);
+INSERT INTO `mob_skill_lists` VALUES ('Medusa',725,1556);
+INSERT INTO `mob_skill_lists` VALUES ('Medusa',725,1557);
+INSERT INTO `mob_skill_lists` VALUES ('Medusa',725,1558);
+
 -- or 1338
 -- INSERT INTO `mob_skill_lists` VALUES ('',171,1502);
 -- 1340 1341 call for help reinforcement by adds or maybe drawn in. 1338 is an
-
 
 -- INSERT INTO `mob_skill_lists` VALUES ('',?,469);
 
