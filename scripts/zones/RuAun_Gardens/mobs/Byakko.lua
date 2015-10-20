@@ -35,10 +35,7 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob, target, damage)
-    local LV_diff = target:getMainLvl() - mob:getMainLvl();
-    local INT_diff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
-    local ranDmgMod = math.random(0,15)
-    local dmg = INT_diff+LV_diff+ranDmgMod;
+    local dmg = math.random(35,50);
     local params = {};
     params.bonusmab = 0;
     params.includemab = false;
