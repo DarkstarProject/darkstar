@@ -412,7 +412,7 @@ INSERT INTO `augments` VALUES ('339', '0', '0', '0', '0'); -- Elemental Siphon+5
 INSERT INTO `augments` VALUES ('340', '0', '0', '0', '0'); -- Phantom Roll ability delay -1
 INSERT INTO `augments` VALUES ('341', '0', '0', '0', '0'); -- Repair potency+1%
 INSERT INTO `augments` VALUES ('342', '0', '0', '0', '0'); -- Waltz TP cost -1
-INSERT INTO `augments` VALUES ('343', '0', '0', '0', '0'); -- "Drain" and "Aspir" Potency +1
+INSERT INTO `augments` VALUES ('343', '0', '315', '1', '0'); -- "Drain" and "Aspir" Potency +1
 INSERT INTO `augments` VALUES ('343', '0', '0', '0', '0'); -- Cont.
 
 -- 344 to 349 currently unused. Leave at zero.
