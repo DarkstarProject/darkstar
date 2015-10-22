@@ -14,7 +14,7 @@ require("scripts/zones/Mount_Zhayolm/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-   GetMobByID(17027458):setMobRespawnTime( ( math.random((12),(36)) * 3600 ) + 43200 );
+   GetMobByID(17027458):setRespawnTime( ( math.random((12),(36)) * 3600 ) + 43200 );
 end;
 
 -----------------------------------		

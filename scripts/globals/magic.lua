@@ -808,7 +808,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 
         local mab_crit = caster:getMod(MOD_MAGIC_CRITHITRATE);
         if( math.random(1,100) < mab_crit ) then
-           mab = mab + ( 10 + caster:getMod(MOD_MAGIC_CRIT_DMG_INCREASE );
+           mab = mab + ( 10 + caster:getMod(MOD_MAGIC_CRIT_DMG_INCREASE ) );
         end
 
         if (spell:getElement() > 0 and spell:getElement() <= 6 and caster:getMainJob() == JOB_BLM and caster:getMainLvl() >= 75) then
