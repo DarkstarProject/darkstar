@@ -204,6 +204,8 @@ enum MODIFIER
     MOD_CRITHITRATE               = 165, // Raises chance to crit
     MOD_CRIT_DMG_INCREASE         = 421, // Raises the damage of critcal hit by percent %
     MOD_ENEMYCRITRATE             = 166, // Raises chance enemy will crit
+    MOD_MAGIC_CRITHITRATE         = 541, // Raises chance to magic crit
+    MOD_MAGIC_CRIT_DMG_INCREASE   = 542, // Raises damage done when criting with magic
 
     MOD_HASTE_MAGIC               = 167, // Haste (and Slow) from magic - 1024 base! (448 cap)
     MOD_HASTE_ABILITY             = 383, // Haste (and Slow) from abilities - 1024 base! (256 cap?)
@@ -604,7 +606,6 @@ enum MODIFIER
     MOD_FORCE_DARK_DWBONUS        = 538, // Set to 1 to force dark day/weather spell bonus/penalty. Do not have it total more than 1.
     MOD_STONESKIN_BONUS_HP        = 539, // Bonus "HP" granted to Stoneskin spell.
     MOD_ENHANCES_ELEMENTAL_SIPHON = 540, // Bonus Base MP added to Elemental Siphon skill.
-
     // MOD_SPARE = 92, // stuff
     // MOD_SPARE = 93, // stuff
     // MOD_SPARE = 94, // stuff
