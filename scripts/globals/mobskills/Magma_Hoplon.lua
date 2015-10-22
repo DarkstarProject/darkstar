@@ -17,7 +17,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     local typeEffectOne = EFFECT_STONESKIN;
     local typeEffectTwo = EFFECT_BLAZE_SPIKES;
-    local randy = math.random(40,70);
+    local randy = math.random(20,30);
     skill:setMsg(MobBuffMove(mob, typeEffectOne, 1000, 0, 300));
     MobBuffMove(mob, typeEffectTwo, randy, 0, 180);
     local effect1 = mob:getStatusEffect(typeEffectOne);
