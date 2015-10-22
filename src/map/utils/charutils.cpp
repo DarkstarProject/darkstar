@@ -3047,6 +3047,8 @@ namespace charutils
         uint32 baseexp = 0, exp = 0, dedication = 0;
         float permonstercap, monsterbonus = 1.0f;
         bool chainactive = false;
+        REGIONTYPE region = PChar->loc.zone->GetRegionID();
+
         if (PChar->PParty != nullptr)
         {
             if (PChar->PParty->GetSyncTarget() != nullptr)
@@ -3099,7 +3101,7 @@ namespace charutils
                             }
                         }
                         else exp = baseexp;
-                        if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) || PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION))
+                        if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && ( region >= 0 && region <= 22 ) )
                         {
                             switch (pcinzone)
                             {
@@ -3111,6 +3113,20 @@ namespace charutils
                                 case 6: exp *= 0.35f; break;
                                 default: break;
                             }
+                        }
+                        else if( PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION) && ( region >= 28 && region <= 32 ) )
+                        {
+                            switch (pcinzone)
+                            {
+                                case 1: exp *= 1.00f; break;
+                                case 2: exp *= 0.75f; break;
+                                case 3: exp *= 0.55f; break;
+                                case 4: exp *= 0.45f; break;
+                                case 5: exp *= 0.39f; break;
+                                case 6: exp *= 0.35f; break;
+                                default: break;
+                            }
+
                         }
                         else
                         {
