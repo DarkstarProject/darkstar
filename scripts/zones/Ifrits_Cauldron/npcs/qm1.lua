@@ -14,13 +14,13 @@ require("scripts/zones/Ifrits_Cauldron/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	-- Trade a Rattling Egg to pop Tarasque
-	if(GetMobAction(17617164) == 0 and trade:hasItemQty(1189,1) and trade:getItemCount() == 1) then
-		player:tradeComplete();
-		SpawnMob(17617164,900):updateClaim(player); -- Spawn Tarasque
-	end
-	
+    
+    -- Trade a Rattling Egg to pop Tarasque
+    if(GetMobAction(17617164) == 0 and trade:hasItemQty(1189,1) and trade:getItemCount() == 1) then
+        player:tradeComplete();
+        SpawnMob(17617164,900):updateClaim(player); -- Spawn Tarasque
+        npc:setStatus(STATUS_DISAPPEAR);
+    end
 end; 
 
 -----------------------------------
@@ -28,7 +28,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(EGGSHELLS_LIE_SCATTERED);
+    player:messageSpecial(EGGSHELLS_LIE_SCATTERED);
 end;
 
 -----------------------------------

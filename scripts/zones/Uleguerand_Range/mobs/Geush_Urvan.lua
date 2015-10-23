@@ -16,5 +16,12 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	GetNPCByID(16798095):hideNPC(900);
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    GetNPCByID(16798097):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

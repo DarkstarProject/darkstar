@@ -9,5 +9,12 @@
 -----------------------------------
 
 function onMobDeath(mob,killer)
-   GetNPCByID(17428871):hideNPC(900); -- 15min, qm8 in npc_list
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    GetNPCByID(17428871):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

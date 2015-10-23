@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
     local chance = 0; -- Rate in percent in which an item will drop.
     local validTrade = 0;
     -- Trade Organs
-	if (GetMobAction(IxAern) == 0) then
+    if (GetMobAction(IxAern) == 0) then
         if (trade:hasItemQty(1900,1) and trade:getItemCount() == 1) then -- 1 HQ Aern Organ (33%)
             chance=33;
             validTrade=1;
@@ -47,7 +47,7 @@ function onTrade(player,npc,trade)
             SpawnMob(IxAern+2,300):updateClaim(player);
         end
         
-        npc:hideNPC(900); -- 15 minute respawn timer
+        npc:setStatus(STATUS_DISAPPEAR);
          -- Change the location to G-7 or I-7
         if (math.random(0,1) ==1) then
             npc:setPos(380,0,540,0); -- G-7

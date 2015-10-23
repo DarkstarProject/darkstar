@@ -13,14 +13,13 @@ require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	-- Trade moldy buckler
-	if (GetMobAction(17424444) == 0 and trade:hasItemQty(2386,1) and trade:getItemCount() == 1) then 
-		player:tradeComplete();
-		SpawnMob(17424444,120):updateClaim(player); -- Pallas
-	end
-
-
+    
+    -- Trade moldy buckler
+    if (GetMobAction(17424444) == 0 and trade:hasItemQty(2386,1) and trade:getItemCount() == 1) then 
+        player:tradeComplete();
+        SpawnMob(17424444,120):updateClaim(player); -- Pallas
+        npc:setStatus(STATUS_DISAPPEAR);
+    end
 end; 
 
 -----------------------------------
