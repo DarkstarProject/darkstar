@@ -811,7 +811,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
            mab = mab + ( 10 + caster:getMod(MOD_MAGIC_CRIT_DMG_INCREASE ) );
         end
 
-        if (spell:getElement() > 0 and spell:getElement() <= 6 and caster:getMainJob() == JOB_BLM and caster:getMainLvl() >= 75) then
+        if (spell:getElement() > 0 and spell:getElement() <= 6 ) then
             mab = mab + caster:getMerit(blmMerit[spell:getElement()]);
         end
         mabbonus = (100 + mab) / (100 + target:getMod(MOD_MDEF));
