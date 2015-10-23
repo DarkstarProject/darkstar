@@ -805,7 +805,13 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 		-- print(mabbonus);
     else
         local mab = caster:getMod(MOD_MATT) + bonusmab;
-        if (spell:getElement() > 0 and spell:getElement() <= 6) then
+
+        local mab_crit = caster:getMod(MOD_MAGIC_CRITHITRATE);
+        if( math.random(1,100) < mab_crit ) then
+           mab = mab + ( 10 + caster:getMod(MOD_MAGIC_CRIT_DMG_INCREASE ) );
+        end
+
+        if (spell:getElement() > 0 and spell:getElement() <= 6 ) then
             mab = mab + caster:getMerit(blmMerit[spell:getElement()]);
         end
         mabbonus = (100 + mab) / (100 + target:getMod(MOD_MDEF));

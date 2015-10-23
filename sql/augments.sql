@@ -89,7 +89,7 @@ INSERT INTO `augments` VALUES ('53', '0', '168', '-1', '0'); -- Spell interrupti
 INSERT INTO `augments` VALUES ('54', '0', '161', '-1', '0'); -- Phys. dmg. taken -1%
 INSERT INTO `augments` VALUES ('55', '0', '163', '-1', '0'); -- Magic dmg. taken -1%
 INSERT INTO `augments` VALUES ('56', '0', '162', '-1', '0'); -- Breath dmg. taken -1%
-INSERT INTO `augments` VALUES ('57', '0', '0', '0', '0'); -- Magic crit. hit rate+1
+INSERT INTO `augments` VALUES ('57', '0', '541', '1', '0'); -- Magic crit. hit rate+1
 INSERT INTO `augments` VALUES ('58', '0', '29', '-1', '0'); -- Mag.Def.Bns.-1
 INSERT INTO `augments` VALUES ('59', '0', '0', '0', '0'); -- Latent effect: Regain+1 (Do via Script: triggered with your current weapon drawn for 1 TP/tick.)
 INSERT INTO `augments` VALUES ('60', '0', '0', '0', '0'); -- Latent effect: Refresh+1 (Do via Script: triggered with your current weapon not drawn for 1 MP/tick. Refresh is not present while resting(/heal), chocobo or /sit.)
@@ -404,7 +404,7 @@ INSERT INTO `augments` VALUES ('331', '0', '0', '0', '0'); -- Waltz ability dela
 INSERT INTO `augments` VALUES ('332', '0', '175', '1', '0'); -- Sklchn.dmg.+1%
 INSERT INTO `augments` VALUES ('333', '0', '0', '0', '0'); -- Conserve TP+1
 INSERT INTO `augments` VALUES ('334', '0', '487', '1', '0'); -- Magic burst dmg.+1%
-INSERT INTO `augments` VALUES ('335', '0', '0', '0', '0'); -- Mag. crit. hit dmg.+1%
+INSERT INTO `augments` VALUES ('335', '0', '542', '1', '0'); -- Mag. crit. hit dmg.+1%
 INSERT INTO `augments` VALUES ('336', '0', '0', '0', '0'); -- Sic and Ready ability delay -1
 INSERT INTO `augments` VALUES ('337', '0', '0', '0', '0'); -- Song recast delay -1
 INSERT INTO `augments` VALUES ('338', '0', '0', '0', '0'); -- Barrage+1 (additional shots, NOT acc)
@@ -412,7 +412,7 @@ INSERT INTO `augments` VALUES ('339', '0', '0', '0', '0'); -- Elemental Siphon+5
 INSERT INTO `augments` VALUES ('340', '0', '0', '0', '0'); -- Phantom Roll ability delay -1
 INSERT INTO `augments` VALUES ('341', '0', '0', '0', '0'); -- Repair potency+1%
 INSERT INTO `augments` VALUES ('342', '0', '0', '0', '0'); -- Waltz TP cost -1
-INSERT INTO `augments` VALUES ('343', '0', '0', '0', '0'); -- "Drain" and "Aspir" Potency +1
+INSERT INTO `augments` VALUES ('343', '0', '315', '1', '0'); -- "Drain" and "Aspir" Potency +1
 INSERT INTO `augments` VALUES ('343', '0', '0', '0', '0'); -- Cont.
 
 -- 344 to 349 currently unused. Leave at zero.
