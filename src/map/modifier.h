@@ -204,8 +204,8 @@ enum MODIFIER
     MOD_CRITHITRATE               = 165, // Raises chance to crit
     MOD_CRIT_DMG_INCREASE         = 421, // Raises the damage of critcal hit by percent %
     MOD_ENEMYCRITRATE             = 166, // Raises chance enemy will crit
-    MOD_MAGIC_CRITHITRATE         = 541, // Raises chance to magic crit
-    MOD_MAGIC_CRIT_DMG_INCREASE   = 542, // Raises damage done when criting with magic
+    MOD_MAGIC_CRITHITRATE         = 562, // Raises chance to magic crit
+    MOD_MAGIC_CRIT_DMG_INCREASE   = 563, // Raises damage done when criting with magic
 
     MOD_HASTE_MAGIC               = 167, // Haste (and Slow) from magic - 1024 base! (448 cap)
     MOD_HASTE_ABILITY             = 383, // Haste (and Slow) from abilities - 1024 base! (256 cap?)
@@ -615,8 +615,8 @@ enum MODIFIER
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 544, // stuff
-    // MOD_SPARE = 545, // stuff
+    // MOD_SPARE = 564, // stuff
+    // MOD_SPARE = 565, // stuff
 
 };
 
