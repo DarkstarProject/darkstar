@@ -407,8 +407,6 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
     -- Base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
     local magiceva = target:getMod(MOD_MEVA) + resMod;
 
-    printf( "Magic eva " .. magiceva )
-
     magicacc = magicacc + bonusAcc;
 
     return calculateMagicHitRate(magicacc, magiceva, percentBonus, caster:getMainLvl(), target:getMainLvl());
