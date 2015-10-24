@@ -83,5 +83,5 @@ function onMobDespawn(mob)
     DespawnMob(mob:getID()+1);
     DespawnMob(mob:getID()+2);
     local QuestionMark = 16916819; -- The ??? that spawned this mob.
-    QuestionMark::updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    QuestionMark:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;
