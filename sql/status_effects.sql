@@ -231,7 +231,7 @@ INSERT INTO `status_effects` VALUES (188,'sublimation_complete',32,0,0,0,0,0,0,0
 INSERT INTO `status_effects` VALUES (189,'max_tp_down',16418,0,0,0,0,0,8,0);
 INSERT INTO `status_effects` VALUES (190,'magic_atk_boost',33,0,0,0,0,0,5,0);
 INSERT INTO `status_effects` VALUES (191,'magic_def_boost',33,0,0,0,0,0,3,0);
-INSERT INTO `status_effects` VALUES (192,'requiem',65568,0,0,1,0,0,7,0);
+INSERT INTO `status_effects` VALUES (192,'requiem',65570,0,0,1,0,0,7,0);
 INSERT INTO `status_effects` VALUES (193,'lullaby',65584,2,19,2,2,0,7,1);
 INSERT INTO `status_effects` VALUES (194,'elegy',65570,0,0,1,0,0,2,0);
 INSERT INTO `status_effects` VALUES (195,'paeon',65825,0,0,4,0,0,7,0);

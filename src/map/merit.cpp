@@ -396,8 +396,6 @@ void CMeritPoints::RaiseMerit(MERIT_TYPE merit)
 {
     Merit_t* PMerit = GetMeritPointer(merit);
 
-    ShowDebug("Merit ID: %d\n", merit);
-
     if (m_MeritPoints >= PMerit->next)
     {
         m_MeritPoints -= PMerit->next;

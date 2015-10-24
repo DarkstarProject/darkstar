@@ -15,18 +15,19 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	
-	-- Trade quus
-	if (GetMobAction(17490231) == 0 and GetMobAction(17490232) == 0 and trade:hasItemQty(4514,1) and trade:getItemCount() == 1) then 
-		player:tradeComplete(); 
-		
-		if (math.random((1),(14)) <= 13) then
-			SpawnMob(17490232,180) -- Robber Crab
-		else 
-			SpawnMob(17490231,180) -- Cancer about 7% chance to pop per trade
-		end
-	end
+    
+    
+    -- Trade quus
+    if (GetMobAction(17490231) == 0 and GetMobAction(17490232) == 0 and trade:hasItemQty(4514,1) and trade:getItemCount() == 1) then 
+        player:tradeComplete(); 
+        
+        if (math.random((1),(14)) <= 13) then
+            SpawnMob(17490232,180) -- Robber Crab
+        else 
+            SpawnMob(Cancer,180) -- Cancer about 7% chance to pop per trade
+        end
+        npc:setStatus(STATUS_DISAPPEAR);
+    end
 end; 
 
 -----------------------------------

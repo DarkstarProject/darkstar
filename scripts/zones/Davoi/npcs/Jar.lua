@@ -1,34 +1,37 @@
 -----------------------------------
--- Area: Ifrit's Cauldron
--- NPC:  qm1 (???) 
--- Notes: Used to spawn Tarasque
--- @pos 126 18 166 0
+-- Area:  Davoi
+-- NPC:   Jar
+-- Involved in Quest: Test my Mettle
+-- Notes: Used to obtain Power Sandals
+-- @pos 183, 0, -190 149
 -----------------------------------
-package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
+package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/zones/Ifrits_Cauldron/TextIDs");
+require("scripts/globals/settings");
+require("scripts/zones/Davoi/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    -- Trade a Rattling Egg to pop Tarasque
-    if(GetMobAction(17617164) == 0 and trade:hasItemQty(1189,1) and trade:getItemCount() == 1) then
-        player:tradeComplete();
-        SpawnMob(17617164,900):updateClaim(player); -- Spawn Tarasque
-        npc:setStatus(STATUS_DISAPPEAR);
-    end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(EGGSHELLS_LIE_SCATTERED);
+	local POWER_SANDALS = 13012;
+	
+	-- Give Player Power Sandals if they don't have them
+	if (player:hasItem(POWER_SANDALS) == false) then
+		player:addItem(POWER_SANDALS);
+		player:messageSpecial(ITEM_OBTAINED, POWER_SANDALS);
+	else
+		player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY);
+	end
 end;
 
 -----------------------------------
@@ -36,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+--printf("CSID2: %u",csid);
+--printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
