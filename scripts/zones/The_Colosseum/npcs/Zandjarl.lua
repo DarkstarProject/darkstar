@@ -29,8 +29,6 @@ function onTrade(player,npc,trade)
 			player:messageSpecial(CURRENCY_OBTAINED, 200, player:getCurrency("jetton"));		
 	end	
 end;
-	
-end;
 
 -----------------------------------
 -- onTrigger Action
