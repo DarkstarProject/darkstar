@@ -22,15 +22,6 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer)
-    killer:showText(mob,SKY_GOD_OFFSET + 10);
-    GetNPCByID(17310052):hideNPC(900);
-end;
-
------------------------------------
 -- onMonsterMagicPrepare
 -----------------------------------
 
@@ -68,4 +59,20 @@ function onAdditionalEffect(mob, target, damage)
     dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WIND,dmg);
 
     return SUBEFFECT_WIND_DAMAGE, MSGBASIC_ADD_EFFECT_DMG, dmg;
+end;
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, killer)
+    killer:showText(mob,SKY_GOD_OFFSET + 10);
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    GetNPCByID(17310053):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

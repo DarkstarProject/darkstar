@@ -7,17 +7,22 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)	
+function onMobDeath(mob,killer)    
+end;
 
-	local npc = GetNPCByID(17490254);
-	
-	npc:hideNPC(900);
-	
-	local randpos = math.random(1,16);
-	
-	switch (randpos): caseof
-	{
-	[1] = function (x) npc:setPos(75.943,29.969,118.854); end, 
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    local npc = GetNPCByID(17490253);
+    npc:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+
+    local randpos = math.random(1,16);
+
+    switch (randpos): caseof
+    {
+    [1] = function (x) npc:setPos(75.943,29.969,118.854); end, 
     [2] = function (x) npc:setPos(75.758,30.000,125.815); end,
     [3] = function (x) npc:setPos(65.222,29.364,131.645); end,
     [4] = function (x) npc:setPos(53.088,25.033,138.725); end,
@@ -33,7 +38,5 @@ function onMobDeath(mob,killer)
     [14] = function (x) npc:setPos(80.460,30.293,112.721); end,
     [15] = function (x) npc:setPos(76.929,30.050,127.630); end,
     [16] = function (x) npc:setPos(68.810,30.175,123.516); end,
-	}
-	
+    }
 end;
-

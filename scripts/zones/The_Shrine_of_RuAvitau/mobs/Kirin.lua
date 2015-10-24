@@ -87,7 +87,6 @@ function onMobDeath( mob, killer )
     -- Award title and cleanup..
     killer:addTitle( KIRIN_CAPTIVATOR );
     killer:showText( mob, KIRIN_OFFSET + 1 );
-    GetNPCByID( 17506693 ):hideNPC( 900 );
     
     -- Despawn pets..
     DespawnMob( 17506671 );
@@ -105,4 +104,5 @@ function onMobDespawn( mob )
     DespawnMob( 17506672 );
     DespawnMob( 17506673 );
     DespawnMob( 17506674 );
+    GetNPCByID( 17506693 ):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end
