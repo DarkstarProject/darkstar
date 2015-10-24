@@ -10452,6 +10452,7 @@ INSERT INTO `item_armor` VALUES (27729,'otronif_mask_+1',99,119,137218,247,0,0,1
 INSERT INTO `item_armor` VALUES (27730,'iuitl_headgear_+1',99,119,361760,256,0,0,16,0);
 INSERT INTO `item_armor` VALUES (27731,'gendewitha_caubeen_+1',99,119,524820,265,0,0,16,0);
 INSERT INTO `item_armor` VALUES (27732,'hagondes_hat_+1',99,119,1605656,262,0,0,16,0);
+INSERT INTO `item_armor` VALUES (27735,'enedron_glasses',99,107,4194303,0,0,0,16,0);
 INSERT INTO `item_armor` VALUES (27739,'otomi_helm',99,115,10689,348,0,0,16,0);
 INSERT INTO `item_armor` VALUES (27752,'karieyh_morion_+1',99,109,10689,342,0,0,16,0);
 INSERT INTO `item_armor` VALUES (27753,'thurandaut_chapeau_+1',99,109,2593826,343,0,0,16,0);
@@ -10717,6 +10718,7 @@ INSERT INTO `item_armor` VALUES (28161,'otronif_brais_+1',99,119,137218,247,0,0,
 INSERT INTO `item_armor` VALUES (28162,'iuitl_tights_+1',99,119,361760,256,0,0,128,0);
 INSERT INTO `item_armor` VALUES (28163,'gendewitha_spats_+1',99,119,524820,265,0,0,128,0);
 INSERT INTO `item_armor` VALUES (28164,'hagondes_pants_+1',99,119,1605656,262,0,0,128,0);
+INSERT INTO `item_armor` VALUES (28165,'laktisma_hose',99,107,6146,61,0,0,128,0);
 INSERT INTO `item_armor` VALUES (28166,'quiahuiz_trousers',99,115,2593826,320,0,0,128,0);
 INSERT INTO `item_armor` VALUES (28172,'mesyohi_slacks',99,119,3851870,11,0,0,128,0);
 INSERT INTO `item_armor` VALUES (28182,'karieyh_brayette_+1',99,109,10689,342,0,0,128,0);
