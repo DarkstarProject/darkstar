@@ -12,22 +12,22 @@ package.loaded["scripts/zones/The_Colosseum/TextIDs"] = nil;
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(2184,1) and trade:getItemCount() == 1) then
-	    player:tradeComplete();
-		player:addCurrency("jetton", 2);
-		player:messageSpecial(CURRENCY_OBTAINED, 2, player:getCurrency("jetton"));
+        player:tradeComplete();
+	player:addCurrency("jetton", 2);
+	player:messageSpecial(CURRENCY_OBTAINED, 2, player:getCurrency("jetton"));
     elseif (trade:hasItemQty(2185,1) and trade:getItemCount() == 1) then
-		    player:tradeComplete();
-			player:addCurrency("jetton", 10);
-			player:messageSpecial(CURRENCY_OBTAINED, 10, player:getCurrency("jetton"));
-	elseif (trade:hasItemQty(2186,1) and trade:getItemCount() == 1) then
-			player:tradeComplete();
-			player:addCurrency("jetton", 30);
-			player:messageSpecial(CURRENCY_OBTAINED, 30, player:getCurrency("jetton"));
-	elseif (trade:hasItemQty(2187,1) and trade:getItemCount() == 1) then
-			player:tradeComplete();
-			player:addCurrency("jetton", 200);
-			player:messageSpecial(CURRENCY_OBTAINED, 200, player:getCurrency("jetton"));		
-	end	
+        player:tradeComplete();
+	player:addCurrency("jetton", 10);
+	player:messageSpecial(CURRENCY_OBTAINED, 10, player:getCurrency("jetton"));
+    elseif (trade:hasItemQty(2186,1) and trade:getItemCount() == 1) then
+	player:tradeComplete();
+	player:addCurrency("jetton", 30);
+	player:messageSpecial(CURRENCY_OBTAINED, 30, player:getCurrency("jetton"));
+    elseif (trade:hasItemQty(2187,1) and trade:getItemCount() == 1) then
+	player:tradeComplete();
+	player:addCurrency("jetton", 200);
+	player:messageSpecial(CURRENCY_OBTAINED, 200, player:getCurrency("jetton"));		
+    end	
 end;
 
 -----------------------------------
