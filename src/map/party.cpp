@@ -560,7 +560,26 @@ void CParty::PushMember(CBattleEntity* PEntity)
     PEntity->PParty = this;
     members.push_back(PEntity);
 
-    //TODO: get flags from db, set leader/qm/etc appropriately
+    auto info = GetPartyInfo();
+
+    for (auto&& memberinfo : info)
+    {
+        if (memberinfo.id == PEntity->id)
+        {
+            if (memberinfo.flags & PARTY_LEADER)
+            {
+                m_PLeader = PEntity;
+            }
+            if (memberinfo.flags & PARTY_QM)
+            {
+                m_PQuaterMaster = PEntity;
+            }
+            if (memberinfo.flags & PARTY_SYNC)
+            {
+                m_PSyncTarget = PEntity;
+            }
+        }
+    }
 
     ReloadTreasurePool((CCharEntity*)PEntity);
 }
@@ -614,8 +633,6 @@ CBattleEntity* CParty::GetQuaterMaster()
     return m_PQuaterMaster;
 }
 
-
-
 /************************************************************************
 *                                                                       *
 *  Получаем список флагов персонажа                                     *
@@ -657,63 +674,12 @@ void CParty::ReloadParty()
 {
     auto info = GetPartyInfo();
 
-    //check if partyflags have changed
-    for (auto& memberinfo : info)
-    {
-        if (memberinfo.flags & PARTY_LEADER)
-        {
-            bool found = false;
-            for (auto member : members)
-            {
-                if (member->id == memberinfo.id)
-                {
-                    m_PLeader = member;
-                    found = true;
-                }
-            }
-            if (!found)
-            {
-                m_PLeader = nullptr;
-            }
-        }
-        if (memberinfo.flags & PARTY_QM)
-        {
-            bool found = false;
-            for (auto member : members)
-            {
-                if (member->id == memberinfo.id)
-                {
-                    m_PQuaterMaster = member;
-                    found = true;
-                }
-            }
-            if (!found)
-            {
-                m_PQuaterMaster = nullptr;
-            }
-        }
-        if (memberinfo.flags & ALLIANCE_LEADER && m_PAlliance)
-        {
-            bool found = false;
-            for (auto member : members)
-            {
-                if (member->id == memberinfo.id)
-                {
-                    m_PAlliance->setMainParty(this);
-                    found = true;
-                }
-            }
-            if (!found)
-            {
-                m_PAlliance->setMainParty(nullptr);
-            }
-        }
-    }
     //alliance
     if (this->m_PAlliance != nullptr)
     {
         for (auto&& party : m_PAlliance->partyList)
         {
+            party->RefreshFlags(info);
             for (auto&& member : party->members)
             {
                 CCharEntity* PChar = (CCharEntity*)member;
@@ -753,6 +719,7 @@ void CParty::ReloadParty()
     }
     else
     {
+        RefreshFlags(info);
         //regular party
         for (uint8 i = 0; i < members.size(); ++i)
         {
@@ -1156,4 +1123,62 @@ void CParty::RefreshSync()
 void CParty::SetPartyNumber(uint8 number)
 {
     m_PartyNumber = number;
+}
+
+void CParty::RefreshFlags(std::vector<partyInfo_t>& info)
+{
+    for (auto&& memberinfo : info)
+    {
+        if (memberinfo.partyid == m_PartyID)
+        {
+            if (memberinfo.flags & PARTY_LEADER)
+            {
+                bool found = false;
+                for (auto member : members)
+                {
+                    if (member->id == memberinfo.id)
+                    {
+                        m_PLeader = member;
+                        found = true;
+                    }
+                }
+                if (!found)
+                {
+                    m_PLeader = nullptr;
+                }
+            }
+            if (memberinfo.flags & PARTY_QM)
+            {
+                bool found = false;
+                for (auto member : members)
+                {
+                    if (member->id == memberinfo.id)
+                    {
+                        m_PQuaterMaster = member;
+                        found = true;
+                    }
+                }
+                if (!found)
+                {
+                    m_PQuaterMaster = nullptr;
+                }
+            }
+            if (memberinfo.flags & ALLIANCE_LEADER && m_PAlliance)
+            {
+                bool found = false;
+                for (auto member : members)
+                {
+                    if (member->id == memberinfo.id)
+                    {
+                        m_PAlliance->setMainParty(this);
+                        found = true;
+                    }
+                }
+                if (!found)
+                {
+                    m_PAlliance->setMainParty(nullptr);
+                }
+            }
+        }
+    }
 }
