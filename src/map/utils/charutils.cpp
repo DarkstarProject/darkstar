@@ -3081,7 +3081,7 @@ namespace charutils
 				}
 				for (uint8 j = 0; j < numAllianceParties; j++)
 				{
-					for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
+					for (uint8 i = 0; i < PParty->members.size(); ++i)
 					{
 						exp = 0;
 						monsterbonus = 1.0f;
