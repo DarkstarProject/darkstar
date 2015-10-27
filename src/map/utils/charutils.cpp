@@ -764,22 +764,16 @@ namespace charutils
         // disable all spells
         PChar->m_SpellList.reset();
 
-        std::string enabledExpansions;
+        std::string enabledExpansions = "\"\"";
 
         // Compile a string of all enabled expansions
-        uint8 count = 0;
         for (auto&& expan : {"COP", "TOAU", "WOTG", "ACP", "AMK", "ASA", "ABYSSEA", "SOA"})
         {
             if (luautils::IsExpansionEnabled(expan))
             {
-                if (count > 0)
-                {
-                    enabledExpansions += ",";
-                }
                 enabledExpansions += "\"";
                 enabledExpansions += expan;
                 enabledExpansions += "\"";
-                count++;
             }
         }
 
@@ -804,7 +798,7 @@ namespace charutils
 
                 if (spell::GetSpell(spellId) != nullptr)
                 {
-                    PChar->m_SpellList[spellId] = true;
+                    PChar->m_SpellList.set(spellId);
                 }
             }
         }
