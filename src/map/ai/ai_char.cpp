@@ -183,7 +183,6 @@ void CAIChar::OnCastFinished(CMagicState& state, action_t& action)
     auto PSpell = state.GetSpell();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    static_cast<CPlayerController*>(Controller.get())->setLastActionTime(server_clock::now());
     static_cast<CCharEntity*>(PEntity)->PRecastContainer->Add(RECAST_MAGIC, PSpell->getID(), action.recast);
 
     for (auto&& actionList : action.actionLists)

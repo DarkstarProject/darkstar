@@ -61,11 +61,11 @@ protected:
 
     CBattleEntity* const m_PEntity;
     std::unique_ptr<CSpell> m_PSpell;
-    time_point m_startTime;
     duration m_castTime;
     position_t m_startPos;
     bool m_interrupted;
     uint8 m_flags;
+    bool m_used {false};
 };
 
 #endif

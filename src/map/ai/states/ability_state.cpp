@@ -43,10 +43,8 @@ bool CAbilityState::StartAbility(uint16 abilityid)
     if (PAbility)
     {
         m_PAbility = std::make_unique<CAbility>(*PAbility);
-
         return true;
     }
-
     return false;
 }
 
@@ -77,6 +75,11 @@ void CAbilityState::ApplyEnmity()
     }
 }
 
+bool CAbilityState::CanChangeState()
+{
+    return m_used;
+}
+
 bool CAbilityState::Update(time_point tick)
 {
     if (CanUseAbility())
@@ -84,9 +87,17 @@ bool CAbilityState::Update(time_point tick)
         action_t action;
         static_cast<CAIChar*>(m_PEntity->PAI.get())->OnAbility(*this, action);
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+        m_useTime = server_clock::now();
+        m_used = true;
     }
 
-    return true;
+    //#TODO: after ability has animation time column
+    //if (m_used && tick > m_useTime + m_PAbility->getAnimationTime())
+    //{
+        return true;
+    //}
+
+    //return false;
 }
 
 bool CAbilityState::CanUseAbility()

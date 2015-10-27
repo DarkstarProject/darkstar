@@ -55,7 +55,7 @@ public:
     bool PopState() { if (IsCurrentState<State>()) m_stateStack.pop(); }
     /* Or have each state return a static number/string that Lua can use as well, in case this is not sufficient */
     template<typename State>
-    bool IsCurrentState() { return typeid(State) == typeid(GetCurrentState()); }
+    bool IsCurrentState() { return dynamic_cast<State*>(GetCurrentState()); }
     bool IsSpawned();
     bool IsRoaming();
     bool IsEngaged();

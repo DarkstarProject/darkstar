@@ -43,13 +43,9 @@ public:
 
     virtual void Ability(uint16 targid, uint16 abilityid);
 
-    void setLastActionTime(time_point);
     void setLastAttackTime(time_point);
 
 protected:
-    time_point m_LastActionTime;
-    time_point m_LastAbilityTime;
-    time_point m_LastWeaponSkillTime;
     time_point m_LastAttackTime;
 };
 

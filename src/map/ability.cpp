@@ -106,9 +106,19 @@ void CAbility::setAnimationID(uint16 animationID)
 	m_animationID = animationID;
 }
 
+void CAbility::setAnimationTime(duration time)
+{
+    m_animationTime = time;
+}
+
 uint16 CAbility::getAnimationID()
 {
 	return m_animationID;
+}
+
+duration CAbility::getAnimationTime()
+{
+    return m_animationTime;
 }
 
 void CAbility::setRecastTime(uint16 recastTime)
@@ -280,6 +290,7 @@ namespace ability
               "message1, "
               "message2, "
               "animation,"
+              "animationTime,"
               "`range`,"
               "isAOE,"
               "recastId,"
@@ -315,13 +326,14 @@ namespace ability
                 PAbility->setMessage(Sql_GetIntData(SqlHandle,6));
               //PAbility->setMessage(Sql_GetIntData(SqlHandle,7));
 			    PAbility->setAnimationID(Sql_GetIntData(SqlHandle,8));
-			    PAbility->setRange(Sql_GetFloatData(SqlHandle,9));
-			    PAbility->setAOE(Sql_GetIntData(SqlHandle,10));
-			    PAbility->setRecastId(Sql_GetIntData(SqlHandle,11));
-			    PAbility->setCE(Sql_GetIntData(SqlHandle,12));
-			    PAbility->setVE(Sql_GetIntData(SqlHandle,13));
-			    PAbility->setMeritModID(Sql_GetIntData(SqlHandle,14));
-				PAbility->setAddType(Sql_GetUIntData(SqlHandle,15));
+			    PAbility->setAnimationTime(std::chrono::milliseconds(Sql_GetUIntData(SqlHandle,9)));
+			    PAbility->setRange(Sql_GetFloatData(SqlHandle,10));
+			    PAbility->setAOE(Sql_GetIntData(SqlHandle,11));
+			    PAbility->setRecastId(Sql_GetIntData(SqlHandle,12));
+			    PAbility->setCE(Sql_GetIntData(SqlHandle,13));
+			    PAbility->setVE(Sql_GetIntData(SqlHandle,14));
+			    PAbility->setMeritModID(Sql_GetIntData(SqlHandle,15));
+				PAbility->setAddType(Sql_GetUIntData(SqlHandle,16));
 
 			    PAbilityList[PAbility->getID()] = PAbility;
 			    PAbilitiesList[PAbility->getJob()].push_back(PAbility);

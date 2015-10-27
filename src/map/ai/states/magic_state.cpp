@@ -41,7 +41,7 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid) :
 
 bool CMagicState::Update(time_point tick)
 {
-    if (tick > m_startTime + m_castTime)
+    if (tick > getEntryTime() + m_castTime && !m_used)
     {
         m_interrupted = false;
         auto PTarget = m_PEntity->PAIBattle()->IsValidTarget(m_targid, m_PSpell->getValidTarget(), m_errorMsg);
@@ -73,6 +73,10 @@ bool CMagicState::Update(time_point tick)
             m_PEntity->PAIBattle()->OnCastFinished(*this,action);
         }
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+        m_used = true;
+    }
+    else if (m_used && tick > getEntryTime() + m_castTime + std::chrono::milliseconds(m_PSpell->getAnimationTime()))
+    {
         return true;
     }
     return false;
@@ -80,7 +84,7 @@ bool CMagicState::Update(time_point tick)
 
 void CMagicState::Cleanup(time_point tick)
 {
-    if (!(tick > m_startTime + m_castTime))
+    if (!m_used)
     {
         action_t action;
         m_PEntity->PAIBattle()->OnCastInterrupted(*this, action, MSGBASIC_IS_INTERRUPTED);
@@ -286,7 +290,6 @@ bool CMagicState::CastSpell(uint16 spellid, uint8 flags)
         }
 
         m_flags = flags;
-        m_startTime = server_clock::now();
         m_castTime = std::chrono::milliseconds(battleutils::CalculateSpellCastTime(m_PEntity, GetSpell()));
         m_startPos = m_PEntity->loc.p;
 

@@ -59,6 +59,7 @@ protected:
     virtual void UpdateTarget(uint16 targid);
 
     uint16 GetTargetID();
+    time_point getEntryTime();
 
     std::unique_ptr<CMessageBasicPacket> m_errorMsg;
 
@@ -66,6 +67,7 @@ protected:
     uint16 m_targid;
 private:
     CBaseEntity* m_PTarget;
+    time_point m_entryTime {server_clock::now()};
 };
 
 #endif

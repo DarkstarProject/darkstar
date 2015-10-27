@@ -140,10 +140,11 @@ namespace battleutils
 
     void LoadWeaponSkillsList()
     {
-        const int8* fmtQuery = "SELECT weaponskillid, name, jobs, type, skilllevel, element, animation, `range`, aoe, primary_sc, secondary_sc, tertiary_sc, main_only \
-							FROM weapon_skills \
-							WHERE weaponskillid < %u \
-							ORDER BY type, skilllevel ASC";
+        const int8* fmtQuery = "SELECT weaponskillid, name, jobs, type, skilllevel, element, animation, "
+                            "animationTime, `range`, aoe, primary_sc, secondary_sc, tertiary_sc, main_only "
+							"FROM weapon_skills "
+							"WHERE weaponskillid < %u "
+							"ORDER BY type, skilllevel ASC";
 
         int32 ret = Sql_Query(SqlHandle, fmtQuery, MAX_WEAPONSKILL_ID);
 
@@ -159,12 +160,13 @@ namespace battleutils
                 PWeaponSkill->setSkillLevel(Sql_GetIntData(SqlHandle, 4));
                 PWeaponSkill->setElement(Sql_GetIntData(SqlHandle, 5));
                 PWeaponSkill->setAnimationId(Sql_GetIntData(SqlHandle, 6));
-                PWeaponSkill->setRange(Sql_GetIntData(SqlHandle, 7));
-                PWeaponSkill->setAoe(Sql_GetIntData(SqlHandle, 8));
-                PWeaponSkill->setPrimarySkillchain(Sql_GetIntData(SqlHandle, 9));
-                PWeaponSkill->setSecondarySkillchain(Sql_GetIntData(SqlHandle, 10));
-                PWeaponSkill->setTertiarySkillchain(Sql_GetIntData(SqlHandle, 11));
-                PWeaponSkill->setMainOnly(Sql_GetIntData(SqlHandle, 12));
+                PWeaponSkill->setAnimationTime(std::chrono::milliseconds(Sql_GetUIntData(SqlHandle, 7)));
+                PWeaponSkill->setRange(Sql_GetIntData(SqlHandle, 8));
+                PWeaponSkill->setAoe(Sql_GetIntData(SqlHandle, 9));
+                PWeaponSkill->setPrimarySkillchain(Sql_GetIntData(SqlHandle, 10));
+                PWeaponSkill->setSecondarySkillchain(Sql_GetIntData(SqlHandle, 11));
+                PWeaponSkill->setTertiarySkillchain(Sql_GetIntData(SqlHandle, 12));
+                PWeaponSkill->setMainOnly(Sql_GetIntData(SqlHandle, 13));
 
                 g_PWeaponSkillList[PWeaponSkill->getID()] = PWeaponSkill;
                 g_PWeaponSkillsList[PWeaponSkill->getType()].push_back(PWeaponSkill);

@@ -24,6 +24,7 @@ This file is part of DarkStar-server source code.
 #include "ai_controller.h"
 #include "../ai_mob.h"
 #include "../states/ability_state.h"
+#include "../states/magic_state.h"
 #include "../states/weaponskill_state.h"
 #include "../../mobskill.h"
 #include "../../entities/mobentity.h"

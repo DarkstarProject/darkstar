@@ -33,9 +33,6 @@ This file is part of DarkStar-server source code.
 
 CPlayerController::CPlayerController(CCharEntity* _PChar) :
     CController(_PChar),
-    m_LastActionTime(server_clock::now()),
-    m_LastAbilityTime(server_clock::now()),
-    m_LastWeaponSkillTime(server_clock::now()),
     m_LastAttackTime(server_clock::now())
 {
 }
@@ -43,9 +40,8 @@ CPlayerController::CPlayerController(CCharEntity* _PChar) :
 void CPlayerController::Cast(uint16 targid, uint16 spellid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
-    if (m_LastActionTime + g_GCD < server_clock::now() && !PChar->PRecastContainer->HasRecast(RECAST_MAGIC, spellid))
+    if (!PChar->PRecastContainer->HasRecast(RECAST_MAGIC, spellid))
     {
-        m_LastActionTime = server_clock::now();
         CController::Cast(targid, spellid);
 
         if (POwner)
@@ -119,11 +115,8 @@ void CPlayerController::Disengage()
 void CPlayerController::Ability(uint16 targid, uint16 abilityid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
-    if (m_LastActionTime + g_GCD < server_clock::now() && m_LastActionTime + g_GCD < server_clock::now())
+    if (PChar->PAI->CanChangeState())
     {
-        //does not set lastActionTime (can cast a spell immediately after)
-        m_LastAbilityTime = server_clock::now();
-
         static_cast<CAIChar*>(PChar->PAI.get())->Internal_Ability(targid, abilityid);
     }
     else
@@ -135,11 +128,8 @@ void CPlayerController::Ability(uint16 targid, uint16 abilityid)
 void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
-    //does not check gcd (but does affect subsequent actions - including another WS)
-    if (m_LastWeaponSkillTime + g_GCD < server_clock::now())
+    if (PChar->PAI->CanChangeState())
     {
-        m_LastWeaponSkillTime = server_clock::now();
-
         CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(wsid);
 
         if (PWeaponSkill && !charutils::hasWeaponSkill(PChar, PWeaponSkill->getID()))
@@ -195,11 +185,6 @@ void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
     {
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_WS));
     }
-}
-
-void CPlayerController::setLastActionTime(time_point _LastActionTime)
-{
-    m_LastActionTime = _LastActionTime;
 }
 
 void CPlayerController::setLastAttackTime(time_point _LastAttackTime)

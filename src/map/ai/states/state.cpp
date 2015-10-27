@@ -43,6 +43,11 @@ uint16 CState::GetTargetID()
     return m_targid;
 }
 
+time_point CState::getEntryTime()
+{
+    return m_entryTime;
+}
+
 void CState::SetTarget(uint16 _targid)
 {
     if (_targid != m_targid)

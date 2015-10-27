@@ -45,10 +45,12 @@ protected:
     virtual bool Update(time_point tick) override;
     virtual void Cleanup(time_point tick) override;
 
+private:
     CBattleEntity* const m_PEntity;
     std::unique_ptr<CWeaponSkill> m_PWeaponSkill;
     std::unique_ptr<CMobSkill> m_PMobSkill;
     time_point m_finishTime;
+    bool m_used;
 };
 
 #endif
