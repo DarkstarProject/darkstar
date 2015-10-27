@@ -819,7 +819,7 @@ namespace luautils
 
                 if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
                 {
-                    PMob->SetDespawnTimer((uint32)lua_tointeger(L, 2));
+                    PMob->SetDespawnTime(std::chrono::milliseconds(lua_tointeger(L, 2)));
                 }
 
                 if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
@@ -881,7 +881,7 @@ namespace luautils
             {
                 if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
                 {
-                    PMob->SetDespawnTimer((uint32)lua_tointeger(L, 2));
+                    PMob->SetDespawnTime(std::chrono::milliseconds(lua_tointeger(L, 2)));
                 }
                 else
                 {

@@ -42,6 +42,7 @@ protected:
     virtual void UpdateTarget(uint16 = 0) override;
     virtual bool CanAttack(CBattleEntity* PTarget);
 
+private:
     CBattleEntity* const m_PEntity;
     duration m_attackTime;
 };

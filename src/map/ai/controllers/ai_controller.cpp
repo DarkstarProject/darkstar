@@ -48,7 +48,6 @@ void CAIController::Tick(time_point tick)
             DoRoamTick(tick);
         }
     }
-    //#event onTick
 }
 
 bool CAIController::TryDeaggro()
@@ -621,24 +620,21 @@ void CAIController::DoRoamTick(time_point tick)
 
         battleutils::ClaimMob(PMob, PTarget);
 
-        // TODO: ???????? ?????????? ????????? ???? ??????? ?????????? ?????????
-
         Engage(PTarget->targid);
         return;
     }
     //#TODO
-    /*else if (PMob->GetDespawnTimer() > 0 && PMob->GetDespawnTimer() < m_Tick)
+    else if (PMob->GetDespawnTime() > time_point::min() && PMob->GetDespawnTime() < m_Tick)
     {
         Despawn();
         return;
-    }*/
+    }
 
-    //#TODO: combine with last action time or something
     // wait my time
-    /*if (m_Tick < m_LastWaitTime + m_WaitTime)
+    if (m_Tick < m_WaitTime)
     {
         return;
-    }*/
+    }
 
     if (PMob->m_roamFlags & ROAMFLAG_IGNORE)
     {
@@ -773,7 +769,22 @@ void CAIController::DoRoamTick(time_point tick)
 
 void CAIController::Wait(duration _duration)
 {
-    m_WaitTime = m_Tick += _duration;
+    if (m_Tick > m_WaitTime)
+    {
+        m_WaitTime = m_Tick += _duration;
+    }
+    else
+    {
+        m_WaitTime += _duration;
+    }
+}
+
+void CAIController::Despawn()
+{
+    if (PMob)
+    {
+        PMob->PAI->Internal_Despawn(std::chrono::milliseconds(PMob->m_RespawnTime));
+    }
 }
 
 void CAIController::Disengage()

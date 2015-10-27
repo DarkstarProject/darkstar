@@ -35,7 +35,7 @@ void CAIMob::Internal_Disengage()
 
     if (PMob->getMobMod(MOBMOD_IDLE_DESPAWN))
     {
-        PMob->SetDespawnTimer(PMob->getMobMod(MOBMOD_IDLE_DESPAWN));
+        PMob->SetDespawnTime(std::chrono::milliseconds(PMob->getMobMod(MOBMOD_IDLE_DESPAWN)));
     }
 
     PMob->delRageMode();

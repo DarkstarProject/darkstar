@@ -763,7 +763,7 @@ void SetupDynamisMob(CMobEntity* PMob)
     PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
 
     // never despawn
-    PMob->SetDespawnTimer(0);
+    PMob->SetDespawnTime(0s);
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
 
     // do not roam around
@@ -793,7 +793,7 @@ void SetupBattlefieldMob(CMobEntity* PMob)
     PMob->setMobMod(MOBMOD_MUG_GIL, -1);
 
     // never despawn
-    PMob->SetDespawnTimer(0);
+    PMob->SetDespawnTime(0s);
     // do not roam around
     PMob->m_roamFlags |= ROAMFLAG_EVENT;
     PMob->m_maxRoamDistance = 0.5f;

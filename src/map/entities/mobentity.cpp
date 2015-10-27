@@ -54,7 +54,6 @@ CMobEntity::CMobEntity()
     m_MobSkillList = 0;
 
     m_AllowRespawn = 0;
-    m_DespawnTimer = 0;
     m_DropItemTime = 0;
 	m_Family = 0;
 	m_Type      = MOBTYPE_NORMAL;
@@ -120,14 +119,21 @@ CMobEntity::~CMobEntity()
 *                                                                       *
 ************************************************************************/
 
-uint32 CMobEntity::GetDespawnTimer()
+time_point CMobEntity::GetDespawnTime()
 {
 	return m_DespawnTimer;
 }
 
-void CMobEntity::SetDespawnTimer(uint32 duration)
+void CMobEntity::SetDespawnTime(duration _duration)
 {
-	m_DespawnTimer = (duration > 0 ? (duration * 1000) + gettick() : duration);
+    if (_duration > 0s)
+    {
+        m_DespawnTimer = server_clock::now() + _duration;
+    }
+    else
+    {
+        m_DespawnTimer = time_point::min();
+    }
 }
 
 uint32 CMobEntity::GetRandomGil()

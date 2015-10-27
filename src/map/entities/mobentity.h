@@ -200,8 +200,8 @@ public:
     uint8     TPUseChance();                           // return % chance to use TP move
 
     bool      CanDeaggro();
-    uint32    GetDespawnTimer();
-    void      SetDespawnTimer(uint32 duration);
+    time_point GetDespawnTime();
+    void      SetDespawnTime(duration _duration);
     uint32    GetRandomGil();                          // returns a random amount of gil
     bool      CanRoamHome();                           // is it possible for me to walk back?
     bool      CanRoam();                               // check if mob can walk around
@@ -245,7 +245,7 @@ public:
 private:
 
     bool      m_RageMode;                              // Mode rage
-    uint32    m_DespawnTimer;                          // Despawn Timer to despawn mob after set duration
+    time_point    m_DespawnTimer;                          // Despawn Timer to despawn mob after set duration
     std::unordered_map<int, int16>     m_mobModStat;
     std::unordered_map<int, int16>     m_mobModStatSave;
 };

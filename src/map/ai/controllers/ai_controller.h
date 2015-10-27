@@ -40,6 +40,7 @@ public:
 
     virtual void Tick(time_point tick) override;
     virtual void Disengage() override;
+    virtual void Despawn() override;
 
 protected:
     bool TryDeaggro();
@@ -55,6 +56,8 @@ protected:
     void DoCombatTick(time_point tick);
     void DoRoamTick(time_point tick);
     void Wait(duration _duration);
+
+
 private:
     CBattleEntity* PTarget;
 

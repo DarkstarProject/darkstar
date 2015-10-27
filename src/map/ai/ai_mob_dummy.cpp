@@ -184,7 +184,7 @@ void CAIMobDummy::ActionDisengage()
 
     if (m_PMob->getMobMod(MOBMOD_IDLE_DESPAWN))
     {
-        m_PMob->SetDespawnTimer(m_PMob->getMobMod(MOBMOD_IDLE_DESPAWN));
+        //m_PMob->SetDespawnTimer(m_PMob->getMobMod(MOBMOD_IDLE_DESPAWN));
     }
 
     // this will let me decide to walk home or despawn
@@ -2042,14 +2042,14 @@ void CAIMobDummy::WeatherChange(WEATHER weather, uint8 element)
     {
         if (m_PMob->m_Element == element)
         {
-            m_PMob->SetDespawnTimer(0);
+            //m_PMob->SetDespawnTimer(0);
             m_PMob->m_AllowRespawn = true;
             SetLastActionTime(0);
             SetCurrentAction(ACTION_SPAWN);
         }
         else
         {
-            m_PMob->SetDespawnTimer(1);
+            //m_PMob->SetDespawnTimer(1);
             m_PMob->m_AllowRespawn = false;
         }
     }
@@ -2057,14 +2057,14 @@ void CAIMobDummy::WeatherChange(WEATHER weather, uint8 element)
     {
         if (weather == WEATHER_FOG)
         {
-			m_PMob->SetDespawnTimer(0);
+			//m_PMob->SetDespawnTimer(0);
 			m_PMob->m_AllowRespawn = true;
             SetLastActionTime(0);
 			m_PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
         }
         else
         {
-            m_PMob->SetDespawnTimer(1);
+            //m_PMob->SetDespawnTimer(1);
             m_PMob->m_AllowRespawn = false;
         }
     }

@@ -45,7 +45,7 @@ CSpawnState::CSpawnState(CBaseEntity* _PEntity) :
 
 bool CSpawnState::Update(time_point tick)
 {
-    if (m_spawnTime > 0s && tick > m_enterStateTime + m_spawnTime)
+    if (m_spawnTime > 0s && tick > getEntryTime() + m_spawnTime)
     {
         return true;
     }
@@ -54,7 +54,7 @@ bool CSpawnState::Update(time_point tick)
 
 void CSpawnState::Cleanup(time_point tick)
 {
-    //spawn here - PEntity with a virtual reset method?
+    //spawn here - PEntity with a virtual reset method?(cant use in constructor)
 }
 
 bool CSpawnState::CanChangeState()

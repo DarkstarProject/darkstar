@@ -35,7 +35,6 @@ public:
     virtual void Cleanup(time_point tick) override;
     virtual bool CanChangeState() override;
 private:
-    time_point m_enterStateTime {server_clock::now()};
     duration m_spawnTime;
 };
 
