@@ -87,17 +87,15 @@ bool CAbilityState::Update(time_point tick)
         action_t action;
         static_cast<CAIChar*>(m_PEntity->PAI.get())->OnAbility(*this, action);
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
-        m_useTime = server_clock::now();
         m_used = true;
     }
 
-    //#TODO: after ability has animation time column
-    //if (m_used && tick > m_useTime + m_PAbility->getAnimationTime())
-    //{
+    if (m_used && tick > getEntryTime() + m_PAbility->getAnimationTime())
+    {
         return true;
-    //}
+    }
 
-    //return false;
+    return false;
 }
 
 bool CAbilityState::CanUseAbility()
