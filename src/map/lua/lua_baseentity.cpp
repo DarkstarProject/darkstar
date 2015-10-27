@@ -1574,7 +1574,7 @@ inline int32 CLuaBaseEntity::delMission(lua_State *L)
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
         uint8 current = PChar->m_missionLog[LogID].current;
-        bool complete = (LogID == MISSION_COP || MissionID >= 64) ? false : PChar->m_missionLog[LogID].complete[MissionID];
+        bool complete = (LogID == MISSION_COP-11 || MissionID >= 64) ? false : PChar->m_missionLog[LogID].complete[MissionID];
 
         if (current == MissionID)
         {
@@ -1616,7 +1616,7 @@ inline int32 CLuaBaseEntity::hasCompletedMission(lua_State *L)
 
     if (LogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
-        complete = (LogID == MISSION_COP || MissionID >= 64) ? MissionID > ((CCharEntity*)m_PBaseEntity)->m_missionLog[LogID].current :
+        complete = (LogID == MISSION_COP-11 || MissionID >= 64) ? MissionID < ((CCharEntity*)m_PBaseEntity)->m_missionLog[LogID].current :
             ((CCharEntity*)m_PBaseEntity)->m_missionLog[LogID].complete[MissionID];
     }
     else
@@ -1683,7 +1683,7 @@ inline int32 CLuaBaseEntity::completeMission(lua_State *L)
         else
         {
             PChar->m_missionLog[LogID].current = LogID > 2 ? 0 : -1;
-            if (LogID != MISSION_COP && MissionID < 64)
+            if (LogID != MISSION_COP-11 && MissionID < 64)
             {
                 PChar->m_missionLog[LogID].complete[MissionID] = true;
                 PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID + 11, 2));
