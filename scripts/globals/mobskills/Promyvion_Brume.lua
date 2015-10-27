@@ -17,6 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
+    local typeEffect = EFFECT_POISON;
     MobStatusEffectMove(mob, target, typeEffect, 5, 3, 180);
 
     local dmgmod = 1;
