@@ -3076,12 +3076,12 @@ namespace charutils
             if (baseexp != 0)
             {
                 uint8 numAllianceParties = 1;
-                if (PChar->PParty->m_PAlliance) {
-	                numAllianceParties = PChar->PParty->m_PAlliance->partyList.size();
-                }
+                if (PChar->PParty->m_PAlliance) numAllianceParties = PChar->PParty->m_PAlliance->partyList.size();
                 for (uint8 j = 0; j < numAllianceParties; j++)
                 {
-	                CParty* innerPParty = (CParty*)PChar->PParty->m_PAlliance->partyList[j];
+                    CParty* innerPParty;
+                    if (numAllianceParties > 1) innerPParty = (CParty*)PChar->PParty->m_PAlliance->partyList[j];
+                    else innerPParty = PChar->PParty;
 	                for (uint8 i = 0; i < innerPParty->members.size(); ++i)
 	                {
 		                exp = 0;
