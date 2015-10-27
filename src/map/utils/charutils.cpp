@@ -3081,12 +3081,13 @@ namespace charutils
 				}
 				for (uint8 j = 0; j < numAllianceParties; j++)
 				{
-					for (uint8 i = 0; i < PParty->members.size(); ++i)
+					CParty* innerPParty = (CParty*)PChar->PParty->m_PAlliance->partyList[j];
+					for (uint8 i = 0; i < innerPParty->members.size(); ++i)
 					{
 						exp = 0;
 						monsterbonus = 1.0f;
 						chainactive = false;
-						CCharEntity* PMember = (CCharEntity*)PChar->PParty->m_PAlliance->partyList[j]->members[i];
+						CCharEntity* PMember = (CCharEntity*)innerPParty->members[i];
 						if (PMember->getZone() == PMob->getZone())
 						{
 							if (map_config.exp_party_gap_penalties == 1)
