@@ -1,5 +1,4 @@
 -------------------------------------------------
---  Author: Ezekyel
 --  Harvesting functions
 --  Info from:
 --      http://wiki.ffxiclopedia.org/wiki/Harvesting
@@ -14,12 +13,12 @@ require("scripts/globals/status");
 -------------------------------------------------
 
 -- Zone, {npcid,npcid,npcid,..}
-local npcid = {51, {16986712,16986713,16986714,16986715,16986716,16986717},  -- Wajaom Woodlands
+local npcid = {51, {16986718,16986719,16986720,16986721,16986722,16986723},  -- Wajaom Woodlands
                52, {16990603,16990604,16990605,16990606,16990607,16990608},  -- Bhaflau Thickets
-               89, {17142544,17142545,17142546,17142547,17142548,17142549},  -- Grauberg [S]
+               89, {17142545,17142546,17142547,17142548,17142549,17142550},  -- Grauberg [S]
                95, {17167162,17167163,17167164,17167165,17167166,17167167},  -- West Sarutabaruta [S]
-               115,{17248855,17248856,17248857,17248858,17248859,17248860},  -- West Sarutabaruta
-               123,{17281631,17281632,17281633},                             -- Yuhtunga Jungle
+               115,{17248862,17248863,17248864,17248865,17248866,17248867},  -- West Sarutabaruta
+               123,{17281632,17281633,17281634},                             -- Yuhtunga Jungle
                124,{17285677,17285678,17285679},                             -- Yhoator Jungle
                145,{17371605,17371606,17371607,17371608,17371609,17371610},  -- Giddeus
                254,{17818220,17818221,17818222,17818223,17818224,17818225}}; -- Abyssea - Grauberg
@@ -58,7 +57,7 @@ function startHarvesting(player,zone,npc,trade,csid)
         if (GetServerVariable("[HARVESTING]Zone "..zone) >= 3) then
             getNewHarvestingPositionNPC(player,npc,zone);
         end
-        if (player:getQuestStatus(AHT_URHGAN,VANISHING_ACT) == QUEST_ACCEPTED and player:hasKeyItem(RAINBOW_BERRY) == false and broke ~= 1 and zone == 51)then
+        if (player:getQuestStatus(AHT_URHGAN,VANISHING_ACT) == QUEST_ACCEPTED and player:hasKeyItem(RAINBOW_BERRY) == false and broke ~= 1 and zone == 51) then
            player:addKeyItem(RAINBOW_BERRY);
            player:messageSpecial(KEYITEM_OBTAINED,RAINBOW_BERRY);
         end
@@ -95,7 +94,7 @@ function getHarvestingItem(player,zone)
     for zon = 1, table.getn(drop), 2 do
         if (drop[zon] == zone) then
             for itemlist = 1, table.getn(drop[zon + 1]), 2 do
-                if(Rate <= drop[zon + 1][itemlist + 1]) then
+                if (Rate <= drop[zon + 1][itemlist + 1]) then
                     item = drop[zon + 1][itemlist];
                     break;
                 end

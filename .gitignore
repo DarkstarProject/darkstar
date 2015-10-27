@@ -36,6 +36,7 @@ x64/
 *.vspscc
 *.vssscc
 .builds
+*.pyc
 
 # Visual C++ cache files
 ipch/
@@ -145,3 +146,9 @@ src/common/stamp-h1
 *.sw?
 
 navmeshes/*.nav
+tags
+log/DSP.leaks
+
+#Lua Developement Tools project files
+.metadata/**
+.project

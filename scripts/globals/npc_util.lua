@@ -12,7 +12,7 @@ function npcUtil.giveGil(player, amount, options)
 	local total = amount;
 
 	-- don't give bonus gil if rate is false
-	if(options == nil or options["rate"] == true) then
+	if (options == nil or options["rate"] == true) then
 		total = total * GIL_RATE
 	end
 
@@ -32,7 +32,7 @@ end
 -- npcUtil.giveItem(player, {{927, 5}, 927})
 ---
 --- Usage:
---- if(npcUtil.giveItem(player, 927)) then
+--- if (npcUtil.giveItem(player, 927)) then
 ---    -- player got items with message!
 --- else
 ---    -- player did not get items and got a could not obtain msg
@@ -40,22 +40,22 @@ end
 function npcUtil.giveItem(player, items)
 	local freeSlots = player:getFreeSlotsCount()
 
-	if(type(items) == "number") then
+	if (type(items) == "number") then
 		items = {items}
 	end
 
-	if(freeSlots < table.getn(items)) then
+	if (freeSlots < table.getn(items)) then
 
 		local msg = nil;
 
 		-- find right message
-		if(ITEM_CANNOT_BE_OBTAINED_2 ~= nil) then
+		if (ITEM_CANNOT_BE_OBTAINED_2 ~= nil) then
 			msg = ITEM_CANNOT_BE_OBTAINED_2
-		elseif(ITEM_CANNOT_BE_OBTAINED_3 ~= nil) then
+		elseif (ITEM_CANNOT_BE_OBTAINED_3 ~= nil) then
 			msg = ITEM_CANNOT_BE_OBTAINED_3
-		elseif(ITEM_CANNOT_BE_OBTAINED_1 ~= nil) then
+		elseif (ITEM_CANNOT_BE_OBTAINED_1 ~= nil) then
 			msg = ITEM_CANNOT_BE_OBTAINED_1
-		elseif(ITEM_CANNOT_BE_OBTAINED ~= nil) then
+		elseif (ITEM_CANNOT_BE_OBTAINED ~= nil) then
 			msg = ITEM_CANNOT_BE_OBTAINED
 		end
 
@@ -67,7 +67,7 @@ function npcUtil.giveItem(player, items)
 	local itemId = 0;
 
 	for k, v in pairs(items) do
-		if(type(v) == "number") then
+		if (type(v) == "number") then
 			itemId = v;
 			player:addItem(v, 1);
 		else
@@ -98,45 +98,45 @@ function npcUtil.completeQuest(player, area, quest, options)
 
 	options = options or {}
 
-	if(options["item"] ~= nil) then
-		if(npcUtil.giveItem(player, options["item"]) == false) then
+	if (options["item"] ~= nil) then
+		if (npcUtil.giveItem(player, options["item"]) == false) then
 			return false
 		end
 	end
 
-	if(options["title"] ~= nil) then
+	if (options["title"] ~= nil) then
 		player:addTitle(options["title"])
 	end
 
 
-	if(options["gil"] ~= nil) then
+	if (options["gil"] ~= nil) then
 		npcUtil.giveGil(player, options["gil"])
 	end
 
-	if(options["keyItem"] ~= nil) then
+	if (options["keyItem"] ~= nil) then
 		npcUtil.giveKeyItem(player, options["keyItem"])
 	end
 
 	-- default to 30
-	if(options["fame"] == nil) then
+	if (options["fame"] == nil) then
 		options["fame"] = 30;
 	end
 
 	local bonus = 1;
 
-	if(area == SANDORIA) then
+	if (area == SANDORIA) then
 		bonus = SAN_FAME;
-	elseif(area == BASTOK) then
+	elseif (area == BASTOK) then
 		bonus = BAS_FAME;
-	elseif(area == WINDURST) then
+	elseif (area == WINDURST) then
 		bonus = WIN_FAME;
-	elseif(area == JEUNO) then
+	elseif (area == JEUNO) then
 		bonus = JEUN_FAME;
-	elseif(area == SELBINA) then
+	elseif (area == SELBINA) then
 		bonus = SELB_FAME;
-	elseif(area == RABAO) then
+	elseif (area == RABAO) then
 		bonus = RABA_FAME;
-	elseif(area == NORG) then
+	elseif (area == NORG) then
 		bonus = NORG_FAME;
 	end
 
@@ -154,33 +154,33 @@ end
 function npcUtil.tradeHas(trade, items, gil)
 	local itemCount = {};
 
-	if(gil ~= nil and trade:getGil() ~= gil) then
+	if (gil ~= nil and trade:getGil() ~= gil) then
 		-- given wrong armound of gil
 		return false;
-	elseif(trade:getGil() ~= 0 and gil == nil) then
+	elseif (trade:getGil() ~= 0 and gil == nil) then
 		-- given gil when I don't want it
 			return false;
 	end
 
-	if(items ~= nil) then
+	if (items ~= nil) then
 
-		if(type(items) == "number") then
+		if (type(items) == "number") then
 			items = {items}
 		end
 
 		-- given different amount of items
-		if(trade:getItemCount() ~= table.getn(items)) then
+		if (trade:getItemCount() ~= table.getn(items)) then
 			return false;
 		end
 
 		for k, v in pairs(items) do
-			if(itemCount[k] == nil) then
+			if (itemCount[k] == nil) then
 				itemCount[k] = 1;
 			else
 				itemCount[k] = itemCount[k] + 1
 			end
 
-			if(trade:hasItemQty(k, itemCount[k]) == false) then
+			if (trade:hasItemQty(k, itemCount[k]) == false) then
 				-- don't have the right amount of item
 				return false;
 			end
@@ -194,7 +194,7 @@ function npcUtil.genTmask(player,title)
 	local val1 = 0
 
 	for i = 1, #title do
-		if(title[i] == 0 or player:hasTitle(title[i]) ~= true)then
+		if (title[i] == 0 or player:hasTitle(title[i]) ~= true) then
 			val1 = bit.bor(val1, bit.lshift(1, i))
 		end
 	end

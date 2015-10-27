@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 
 	if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,19) == false) then
 		player:startEvent(0x026d);
-	elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==9)then
+	elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==9) then
 		player:startEvent(0x0250);--COP event
 	elseif (MakingHeadlines == 1) then
 		local prog = player:getVar("QuestMakingHeadlines_var");

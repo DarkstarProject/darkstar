@@ -36,7 +36,7 @@ function onZoneIn(player,prevZone)
 			player:setPos(0.003,-6.252,117.971,65);
 		end
 	end
-	if(player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==3 and player:getVar("Promathia_kill_day") ~= currentday and player:getVar("COP_shikarees_story")== 0 )then
+	if (player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==3 and player:getVar("Promathia_kill_day") ~= currentday and player:getVar("COP_shikarees_story")== 0 ) then
 		cs=0x0142;
 	end
 return cs;
@@ -96,7 +96,7 @@ function onEventFinish(player,csid,option)
         else
             player:setPos(8,-1,5,62,249); -- Something went wrong, dump them on the dock for safety.
         end
-    elseif(csid == 0x0142)then
+    elseif (csid == 0x0142) then
         player:setVar("COP_shikarees_story",1);
     end
 end;

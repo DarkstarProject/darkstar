@@ -20,9 +20,9 @@ function onTrade(player,npc,trade)
 	gravelQty = trade:getItemQty(597); -- Mine Gravel
 	already_in = player:getVar("refiner_input");
 
-	if(already_in + gravelQty > 10) then
+	if (already_in + gravelQty > 10) then
 		player:startEvent(0x0014);
-	elseif(trade:getItemCount() == gravelQty) then
+	elseif (trade:getItemCount() == gravelQty) then
 		player:tradeComplete();
 		player:setVar("refiner_input",already_in + gravelQty);
 		player:startEvent(0x0013,597,gravelQty);

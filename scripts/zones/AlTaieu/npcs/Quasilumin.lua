@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc, QUASILUMIN_01);
+    player:showText(npc, QUASILUMIN_01);
 end;
 
 -----------------------------------

@@ -75,7 +75,7 @@ local function calculateSkillUp(player)
 
             if ((RealSkill / 10) < ((RealSkill + SkillIncrement) / 10)) then
                -- todo: get this working correctly (apparently the lua binding updates RealSkills and WorkingSkills)
-               player:setSkillLevel(SKILL_DIG, SkillRank + 0x20);
+               player:setSkillLevel(SKILL_DIG, player:getSkillLevel(SKILL_DIG) + 0x20);
             end
         end
     end
@@ -203,7 +203,7 @@ function chocoboDig(player, itemMap, precheck, messageArray)
             -- make sure we have a valid item
             if (ItemID ~= 0) then
                 -- make sure we have enough room for the item
-                if(player:addItem(ItemID))then
+                if (player:addItem(ItemID)) then
                 player:messageSpecial(ITEM_OBTAINED, ItemID);
                 else
                 player:messageSpecial(DIG_THROW_AWAY, ItemID);

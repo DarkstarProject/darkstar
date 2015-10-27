@@ -13,7 +13,7 @@
 -- Combos: Auto Refresh
 -----------------------------------------
 
-require("/scripts/globals/settings");
+require("scripts/globals/settings");
 require("scripts/globals/magic");
 require("scripts/globals/status");
 require("scripts/globals/bluemagic");
@@ -37,7 +37,7 @@ function onSpellCast(caster,target,spell)
     local damage = caster:getHP() -1;
 
     
-    if(damage > 0) then
+    if (damage > 0) then
         target:delHP(playerHP);
         caster:setHP(1);
         caster:delStatusEffect(EFFECT_WEAKNESS);

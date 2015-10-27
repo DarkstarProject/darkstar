@@ -18,13 +18,14 @@ end;
 function onSpellCast(caster,target,spell)
     if (target:hasStatusEffect(EFFECT_DEODORIZE) == false) then
 
-        local duration = math.random(30, 300);
-        if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
-            duration = duration * 3;
-        end
+        local duration = math.random(420, 540);
 
         if (target:getMainLvl() < 15) then
             duration = duration * target:getMainLvl() / 15; -- level adjustment
+        end
+
+        if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+            duration = duration * 3;
         end
 
         spell:setMsg(230);

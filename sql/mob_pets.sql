@@ -50,7 +50,7 @@ INSERT INTO `mob_pets` VALUES (16809992, 2, 9);
 INSERT INTO `mob_pets` VALUES (16809997, 2, 9);
 INSERT INTO `mob_pets` VALUES (16810086, 2, 9);
 INSERT INTO `mob_pets` VALUES (16810092, 2, 9);
-INSERT INTO `mob_pets` VALUES (16814174, 2, 9);
+INSERT INTO `mob_pets` VALUES (16814174, 1, 9);
 INSERT INTO `mob_pets` VALUES (16814180, 1, 9);
 INSERT INTO `mob_pets` VALUES (16814186, 1, 9);
 INSERT INTO `mob_pets` VALUES (16822282, 1, 9);
@@ -684,7 +684,7 @@ INSERT INTO `mob_pets` VALUES (17461402, 1, 15);
 INSERT INTO `mob_pets` VALUES (17461409, 1, 15);
 INSERT INTO `mob_pets` VALUES (17461417, 1, 15);
 INSERT INTO `mob_pets` VALUES (17461421, 1, 15);
-INSERT INTO `mob_pets` VALUES (17506670, 1, 15);
+INSERT INTO `mob_pets` VALUES (17506670, 5, 15); -- Kirin's Avatar is offset by 5 (first 4 are the god spawns)
 -- INSERT INTO `mob_pets` VALUES (17125974, 1, 15);
 -- INSERT INTO `mob_pets` VALUES (17125975, 1, 15);
 -- INSERT INTO `mob_pets` VALUES (17125976, 1, 15);

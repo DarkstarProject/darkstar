@@ -47,7 +47,7 @@ end;
 
 function onMobRoam(mob)
 	-- move to start position if not moving
-	if(mob:isFollowingPath() == false) then
+	if (mob:isFollowingPath() == false) then
 		mob:pathThrough(pathfind.first(path));
 	end
 end;

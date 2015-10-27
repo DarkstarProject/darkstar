@@ -7,9 +7,9 @@
 --  Range: 30' radial.
 --  Notes: Used only by Jormungand and Isgebind
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
         return 1;
     elseif (mob:AnimationSub() == 1) then
         return 1;
-	elseif(target:isBehind(mob, 48) == true) then
+	elseif (target:isBehind(mob, 48) == true) then
         return 1;
     end
 	return 0;

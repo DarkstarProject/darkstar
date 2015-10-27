@@ -32,9 +32,9 @@ function onTrigger(player,npc)
 	
 	-- Check for Missions first (priority?)
 	-- We should allow both missions and quests to activate
-	if(CurrentMission == LOST_FOR_WORDS and MissionStatus == 4) then
+	if (CurrentMission == LOST_FOR_WORDS and MissionStatus == 4) then
 		player:startEvent(0x002e);
-	elseif(MakingHeadlines == 1) then
+	elseif (MakingHeadlines == 1) then
 		function testflag(set,flag)
 			return (set % (2*flag) >= flag)
 		end
@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x002e) then
+	if (csid == 0x002e) then
 		-- Mark the progress
 		player:setVar("MissionStatus",5);
 	end

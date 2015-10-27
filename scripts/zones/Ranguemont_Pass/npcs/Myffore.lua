@@ -38,7 +38,7 @@ end;
 function onEventFinish(player,csid,option,npc)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-	if(csid == 0x0001 and option == 0) then
+	if (csid == 0x0001 and option == 0) then
 		local DoorID = npc:getID()+1;
 		GetNPCByID(DoorID):openDoor(10);
 	end

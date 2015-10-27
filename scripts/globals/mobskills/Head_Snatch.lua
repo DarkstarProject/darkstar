@@ -8,13 +8,22 @@
 --  Notes: Only used by Gurfurlur the Menacing. Reduces HP to 10%.
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
+  if(mob:getFamily() == 316) then
+    local mobSkin = mob:getModelId();
+
+    if (mobSkin == 1867) then
+        return 0;
+    else
+        return 1;
+    end
+  end
 	return 0;
 end;
 

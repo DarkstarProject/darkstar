@@ -3,15 +3,15 @@
 -- NPC: _3e1 (Moongate)
 -----------------------------------	
 
-require("/scripts/globals/settings");
-require("/scripts/globals/keyitems");
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 
 -----------------------------------	
 -- onTrigger Action	
 -----------------------------------	
 	
 function onTrigger(player,npc)
-	if(player:hasKeyItem(MOONGATE_PASS) == true) then
+	if (player:hasKeyItem(MOONGATE_PASS) == true) then
 		return -1;
 	else
 		return 1;

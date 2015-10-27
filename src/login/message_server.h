@@ -30,8 +30,8 @@ struct chat_message_t
 {
     uint64 dest;
     MSGSERVTYPE type;
-    zmq::message_t* data;
-    zmq::message_t* packet;
+    zmq::message_t data;
+    zmq::message_t packet;
 };
 
 void message_server_init();

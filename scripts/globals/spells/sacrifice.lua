@@ -10,7 +10,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
@@ -21,13 +21,13 @@ function onSpellCast(caster,target,spell)
     -- remove one effect and add it to me
     for i, effect in ipairs(removables) do
 
-        if(target:hasStatusEffect(effect)) then
+        if (target:hasStatusEffect(effect)) then
             spell:setMsg(572);
 
             local statusEffect = target:getStatusEffect(effect);
 
             -- only add it to me if I don't have it
-            if(caster:hasStatusEffect(effect) == false) then
+            if (caster:hasStatusEffect(effect) == false) then
                 caster:addStatusEffect(effect, statusEffect:getPower(), statusEffect:getTickCount(), statusEffect:getDuration());
             end
 

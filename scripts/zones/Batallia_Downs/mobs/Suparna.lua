@@ -20,7 +20,7 @@ function onMobDeath(mob,killer)
 
 	local kills = killer:getVar("Mission9-1Kills");
 
-	if(killer:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and killer:getVar("MissionStatus") == 3 and kills < 2) then
+	if (killer:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and killer:getVar("MissionStatus") == 3 and kills < 2) then
 		killer:setVar("Mission9-1Kills",kills + 1);
 	end
 

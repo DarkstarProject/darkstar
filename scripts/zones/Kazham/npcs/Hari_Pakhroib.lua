@@ -28,21 +28,21 @@ function onTrigger(player,npc)
 	pfame = player:getFameLevel(KAZHAM)
 	needToZone = player:needToZone();
 	
-	if(Guardian == QUEST_ACCEPTED) then
-		if(Pamamas == 1) then
+	if (Guardian == QUEST_ACCEPTED) then
+		if (Pamamas == 1) then
 			player:startEvent(0x0047); --Finish Quest
 		else
 			player:startEvent(0x0045,0,4596); --Reminder Dialogue
 		end
-	elseif(Guardian == QUEST_AVAILABLE and pfame >= 7) then
+	elseif (Guardian == QUEST_AVAILABLE and pfame >= 7) then
 		player:startEvent(0x0044,4596,4596,4596); --Start Quest
-	elseif(Guardian == QUEST_COMPLETED and needToZone == false) then
-		if(Pamamas == 2) then
+	elseif (Guardian == QUEST_COMPLETED and needToZone == false) then
+		if (Pamamas == 2) then
 			player:startEvent(0x0047); --Finish quest dialogue (no different csid between initial and repeats)
 		else
 			player:startEvent(0x0048); --Dialogue for after completion of quest
 		end
-	elseif(Guardian == QUEST_COMPLETED and needToZone == true) then
+	elseif (Guardian == QUEST_COMPLETED and needToZone == true) then
 		player:startEvent(0x0048);
 	else
 		player:startEvent(0x0054); --Standard Dialogue
@@ -64,11 +64,11 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x0044 and option == 1) then
+	if (csid == 0x0044 and option == 1) then
 		player:addQuest(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
 		player:setVar("PamamaVar",0);
-	elseif(csid == 0x0047) then
-		if(Pamamas == 1) then --First completion of quest; set title, complete quest, and give higher fame
+	elseif (csid == 0x0047) then
+		if (Pamamas == 1) then --First completion of quest; set title, complete quest, and give higher fame
 			player:addGil(GIL_RATE*5000);
 			player:messageSpecial(GIL_OBTAINED, 5000);
 			player:completeQuest(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
 			player:addTitle(KAZHAM_CALLER);
 			player:setVar("PamamaVar",0);
 			player:needToZone(true);
-		elseif(Pamamas == 2) then --Repeats of quest; give only gil and less fame
+		elseif (Pamamas == 2) then --Repeats of quest; give only gil and less fame
 			player:addGil(GIL_RATE*5000);
 			player:messageSpecial(GIL_OBTAINED, 5000);
 			player:addFame(WINDURST,WIN_FAME*30);

@@ -41,6 +41,9 @@ function onZoneIn(player,prevZone)
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-0.008,-33.595,123.478,62);
 	end	
+    if (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
+        cs = 0x0003; -- doll telling "you're in the right area"
+    end
 	return cs;	
 end;		
 
@@ -62,7 +65,7 @@ function onGameDay()
 	local direction = VanadielMoonDirection();
 	local phase = VanadielMoonPhase();
 	
-	if(((direction == 2 and phase >= 90) or (direction == 1 and phase >= 95)) and GetNPCByID(Moongate_Offset):getWeather() == 0) then
+	if (((direction == 2 and phase >= 90) or (direction == 1 and phase >= 95)) and GetNPCByID(Moongate_Offset):getWeather() == 0) then
 		GetNPCByID(Moongate_Offset):openDoor(432);
 		GetNPCByID(Moongate_Offset+1):openDoor(432);
 	end

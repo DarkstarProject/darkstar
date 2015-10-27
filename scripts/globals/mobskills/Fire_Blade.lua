@@ -5,9 +5,9 @@
 --  Used only by Kam'lanaut. Enfire aspect adds 70+ to his melee attacks.
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 

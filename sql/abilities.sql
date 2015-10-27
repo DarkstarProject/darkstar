@@ -155,7 +155,7 @@ INSERT INTO `abilities` VALUES ('110', 'ice_shot', '17', '40', '4', '60', '195',
 INSERT INTO `abilities` VALUES ('111', 'wind_shot', '17', '40', '4', '60', '195', '110', '0', '127', '18.0', '0', '0', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('112', 'earth_shot', '17', '40', '4', '60', '195', '110', '0', '128', '18.0', '0', '0', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('113', 'thunder_shot', '17', '40', '4', '60', '195', '110', '0', '129', '18.0', '0', '0', '0', '0', '0','TOAU');
-INSERT INTO `abilities` VALUES ('114', 'water_shot', '17', '40', '4', '60', '195', '0', '110', '130', '18.0', '0', '0', '0', '0', '0','TOAU');
+INSERT INTO `abilities` VALUES ('114', 'water_shot', '17', '40', '4', '60', '195', '110', '0', '130', '18.0', '0', '0', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('115', 'light_shot', '17', '40', '4', '60', '195', '0', '0', '123', '18.0', '0', '0', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('116', 'dark_shot', '17', '40', '4', '60', '195', '0', '0', '124', '18.0', '0', '0', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('117', 'random_deal', '17', '50', '1', '1200', '196', '0', '0', '131', '20.0', '1', '1', '300', '1414', '0','TOAU');
@@ -177,8 +177,8 @@ INSERT INTO `abilities` VALUES ('133', 'warriors_charge', '1', '75', '1', '300',
 INSERT INTO `abilities` VALUES ('134', 'tomahawk', '1', '75', '4', '180', '7', '0', '0', '244', '20.0', '0', '1', '600', '2050', '1','TOAU');
 INSERT INTO `abilities` VALUES ('135', 'mantra', '2', '75', '1', '600', '19', '441', '0', '155', '20.0', '1', '1', '60', '2112', '1','TOAU');
 INSERT INTO `abilities` VALUES ('136', 'formless_strikes', '2', '75', '1', '600', '20', '0', '0', '156', '20.0', '0', '1', '300', '2114', '1','TOAU');
-INSERT INTO `abilities` VALUES ('137', 'martyr', '3', '75', '2', '600', '27', '119', '0', '157', '20.0', '0', '1', '300', '2176', '1','TOAU');
-INSERT INTO `abilities` VALUES ('138', 'devotion', '3', '75', '2', '600', '28', '119', '0', '158', '10.0', '0', '1', '300', '2178', '1','TOAU');
+INSERT INTO `abilities` VALUES ('137', 'martyr', '3', '75', '2', '600', '27', '102', '0', '157', '20.0', '0', '1', '300', '2176', '1','TOAU');
+INSERT INTO `abilities` VALUES ('138', 'devotion', '3', '75', '2', '600', '28', '224', '0', '158', '10.0', '0', '1', '300', '2178', '1','TOAU');
 INSERT INTO `abilities` VALUES ('139', 'assassins_charge', '6', '75', '1', '300', '67', '0', '0', '160', '20.0', '0', '1', '300', '2368', '1','TOAU');
 INSERT INTO `abilities` VALUES ('140', 'feint', '6', '75', '1', '600', '68', '0', '0', '159', '20.0', '0', '1', '300', '2370', '1','TOAU');
 INSERT INTO `abilities` VALUES ('141', 'fealty', '7', '75', '1', '600', '78', '0', '0', '148', '20.0', '0', '1', '300', '2432', '1','TOAU');
@@ -191,10 +191,10 @@ INSERT INTO `abilities` VALUES ('147', 'nightingale', '10', '75', '1', '600', '1
 INSERT INTO `abilities` VALUES ('148', 'troubadour', '10', '75', '1', '600', '110', '0', '0', '162', '20.0', '0', '1', '300', '2626', '1','TOAU');
 INSERT INTO `abilities` VALUES ('149', 'stealth_shot', '11', '75', '1', '300', '127', '0', '0', '150', '20.0', '0', '1', '3000', '2688', '1','TOAU');
 INSERT INTO `abilities` VALUES ('150', 'flashy_shot', '11', '75', '1', '600', '128', '0', '0', '151', '20.0', '0', '1', '300', '2690', '1','TOAU');
-INSERT INTO `abilities` VALUES ('151', 'shikikoyo', '12', '75', '2', '300', '136', '0', '0', '152', '20.0', '0', '1', '80', '2752', '1','TOAU');
+INSERT INTO `abilities` VALUES ('151', 'shikikoyo', '12', '75', '2', '300', '136', '452', '0', '152', '20.0', '0', '1', '80', '2752', '1','TOAU');
 INSERT INTO `abilities` VALUES ('152', 'blade_bash', '12', '75', '4', '180', '137', '110', '0', '202', '4.4', '0', '0', '0', '2754', '1','TOAU');
 INSERT INTO `abilities` VALUES ('153', 'deep_breathing', '14', '75', '1', '300', '164', '0', '0', '153', '20.0', '0', '0', '0', '2880', '1','TOAU');
-INSERT INTO `abilities` VALUES ('154', 'angon', '14', '75', '4', '180', '165', '0', '0', '245', '20.0', '0', '0', '0', '2882', '1','TOAU');
+INSERT INTO `abilities` VALUES ('154', 'angon', '14', '75', '4', '180', '165', '127', '0', '245', '20.0', '0', '0', '0', '2882', '1','TOAU');
 INSERT INTO `abilities` VALUES ('155', 'sange', '13', '75', '1', '300', '145', '0', '0', '200', '20.0', '0', '1', '0', '2816', '1','TOAU');
 INSERT INTO `abilities` VALUES ('156', 'blood_pact_ward', '15', '1', '1', '60', '174', '0', '0', '0', '20.0', '0', '0', '0', '0', '0',null); -- ROTZ Not really RotZ, but it will otherwise shut off abilities that were since it used to be one category
 INSERT INTO `abilities` VALUES ('157', 'hasso', '12', '25', '1', '60', '138', '0', '0', '163', '20.0', '0', '1', '300', '0', '0','TOAU');
@@ -254,7 +254,7 @@ INSERT INTO `abilities` VALUES ('210', 'retaliation', '1', '60', '1', '180', '8'
 INSERT INTO `abilities` VALUES ('211', 'footwork', '2', '65', '1', '300', '21', '0', '0', '197', '20.0', '0', '1', '80', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('213', 'pianissimo', '10', '20', '1', '15', '112', '0', '0', '194', '20.0', '0', '1', '80', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('214', 'sekkanoki', '12', '40', '1', '300', '140', '0', '0', '199', '20.0', '0', '1', '80', '0', '0','WOTG');
-INSERT INTO `abilities` VALUES ('216', 'elemental_siphon', '15', '50', '1', '300', '175', '0', '0', '201', '20.0', '0', '1', '0', '0', '0','WOTG');
+INSERT INTO `abilities` VALUES ('216', 'elemental_siphon', '15', '50', '1', '300', '175', '451', '0', '201', '20.0', '0', '1', '0', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('217', 'sublimation', '20', '35', '1', '30', '234', '0', '0', '189', '20.0', '0', '1', '80', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('218', 'addendum_white', '20', '10', '1', '0', '231', '0', '0', '191', '20.0', '0', '1', '80', '0', '16','WOTG');
 INSERT INTO `abilities` VALUES ('219', 'addendum_black', '20', '30', '1', '0', '231', '0', '0', '192', '20.0', '0', '1', '80', '0', '32','WOTG');
@@ -266,7 +266,7 @@ INSERT INTO `abilities` VALUES ('224', 'altruism', '20', '75', '1', '0', '231', 
 INSERT INTO `abilities` VALUES ('225', 'focalization', '20', '75', '1', '0', '231', '0', '0', '212', '20.0', '0', '1', '80', '3266', '33','WOTG');
 INSERT INTO `abilities` VALUES ('226', 'tranquility', '20', '75', '1', '0', '231', '0', '0', '211', '20.0', '0', '1', '80', '3268', '17','WOTG');
 INSERT INTO `abilities` VALUES ('227', 'equanimity', '20', '75', '1', '0', '231', '0', '0', '213', '20.0', '0', '1', '80', '3270', '33','WOTG');
-INSERT INTO `abilities` VALUES ('228', 'enlightenment', '20', '75', '1', '300', '231', '0', '0', '214', '20.0', '0', '1', '80', '3272', '1','WOTG');
+INSERT INTO `abilities` VALUES ('228', 'enlightenment', '20', '75', '1', '300', '235', '0', '0', '214', '20.0', '0', '1', '80', '3272', '1','WOTG');
 INSERT INTO `abilities` VALUES ('229', 'afflatus_solace', '3', '40', '1', '60', '29', '0', '0', '216', '20.0', '0', '1', '80', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('230', 'afflatus_misery', '3', '40', '1', '60', '30', '0', '0', '217', '20.0', '0', '1', '80', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('231', 'composure', '5', '50', '1', '300', '50', '0', '0', '215', '20.0', '0', '1', '80', '0', '0','WOTG');
@@ -312,6 +312,7 @@ INSERT INTO `abilities` VALUES ('363', 'Ward', '22', '1', '1', '0', '0', '0', '0
 INSERT INTO `abilities` VALUES ('364', 'Effusion', '22', '1', '1', '0', '0', '0', '0', '0', '20.0', '0', '1', '300', '0', '0',null);
 
 INSERT INTO `abilities` VALUES ('367', 'Vivacious_pulse', '22', '1', '1', '300', '0', '0', '0', '327', '20.0', '0', '1', '300', '0', '0',null);
+INSERT INTO `abilities` VALUES ('369', 'apogee', '15', '70', '1', '180', '108', '0', '0', '333', '20.0', '0', '1', '0', '0', '0',null);
 
 -- run
 
@@ -384,6 +385,13 @@ INSERT INTO `abilities` VALUES ('613', 'thunder_iv', '15', '60', '4', '60', '173
 INSERT INTO `abilities` VALUES ('614', 'chaotic_strike', '15', '70', '4', '60', '173', '0', '0', '164', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
 INSERT INTO `abilities` VALUES ('615', 'thunderstorm', '15', '75', '4', '60', '173', '0', '0', '182', '18.0', '0', '1', '60', '2952', '1','TOAU');
 INSERT INTO `abilities` VALUES ('616', 'judgment_bolt', '15', '1', '4', '60', '173', '0', '0', '0', '18.0', '0', '1', '60', '0', '2',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('640', 'camisado', '15', '1', '4', '60', '173', '0', '0', '20', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('641', 'somnolence', '15', '20', '4', '60', '174', '0', '0', '30', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('642', 'nightmare', '15', '29', '4', '60', '174', '0', '0', '42', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('643', 'ultimate_terror', '15', '37', '4', '60', '174', '0', '0', '27', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('644', 'noctoshield', '15', '49', '1', '60', '174', '0', '0', '92', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('645', 'dream_shroud', '15', '56', '1', '60', '174', '0', '0', '121', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('646', 'nether_blast', '15', '65', '4', '60', '173', '0', '0', '109', '18.0', '0', '1', '60', '0', '0',null); -- ROTZ
 
 
 -- For old school server simply comment out the matching 1 hour abilities above, and uncomment the 2hrs below.

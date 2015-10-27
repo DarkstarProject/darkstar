@@ -61,7 +61,7 @@ function onTrigger(player,npc)
 	end
 
 	if (vMinutes <= 30) then
-		if( message == WILL_REACH_BASTOK) then
+		if ( message == WILL_REACH_BASTOK) then
 			message = IN_BASTOK_MOMENTARILY;
 		else -- WILL_REACH_JEUNO
 			message = IN_JEUNO_MOMENTARILY;

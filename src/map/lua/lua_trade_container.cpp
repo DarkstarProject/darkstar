@@ -31,197 +31,202 @@
 
 CLuaTradeContainer::CLuaTradeContainer(lua_State *L)
 {
-	if( !lua_isnil(L,-1) )
-	{
-		m_pMyTradeContainer = (CTradeContainer*)(lua_touserdata(L,-1));
-		lua_pop(L,1);
-	}else{
-		m_pMyTradeContainer = nullptr;
-	}
+    if (!lua_isnil(L, -1))
+    {
+        m_pMyTradeContainer = (CTradeContainer*)(lua_touserdata(L, -1));
+        lua_pop(L, 1);
+    }
+    else
+    {
+        m_pMyTradeContainer = nullptr;
+    }
 }
 
 //======================================================//
 
 CLuaTradeContainer::CLuaTradeContainer(CTradeContainer *pTrade)
 {
-	m_pMyTradeContainer = pTrade;
+    m_pMyTradeContainer = pTrade;
 }
 
 //======================================================//
 
 inline int32 CLuaTradeContainer::getGil(lua_State *L)
 {
-	if( m_pMyTradeContainer != nullptr) 
-	{
-		uint16 itemID = m_pMyTradeContainer->getItemID(0);
-		lua_pushinteger( L, (itemID == 0xFFFF ? m_pMyTradeContainer->getQuantity(0) : 0) );
-		return 1;
-	}
-	lua_pushnil(L);
-	return 1;
+    if (m_pMyTradeContainer != nullptr)
+    {
+        uint16 itemID = m_pMyTradeContainer->getItemID(0);
+        lua_pushinteger(L, (itemID == 0xFFFF ? m_pMyTradeContainer->getQuantity(0) : 0));
+        return 1;
+    }
+    lua_pushnil(L);
+    return 1;
 }
 
 //======================================================//
 
 inline int32 CLuaTradeContainer::getItem(lua_State *L)
 {
-	if( m_pMyTradeContainer != nullptr) 
-	{
-		uint8 SlotID = 0;
+    if (m_pMyTradeContainer != nullptr)
+    {
+        uint8 SlotID = 0;
 
-		if( !lua_isnil(L,1) && lua_isnumber(L,1) )
-		{
-			SlotID = (uint8)lua_tonumber(L,1);
-		}
-		lua_pushinteger( L, m_pMyTradeContainer->getItemID(SlotID));
-		return 1;
-	}
-	lua_pushnil(L);
-	return 1;	
+        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+        {
+            SlotID = (uint8)lua_tonumber(L, 1);
+        }
+        lua_pushinteger(L, m_pMyTradeContainer->getItemID(SlotID));
+        return 1;
+    }
+    lua_pushnil(L);
+    return 1;
 }
 
 //======================================================//
 
 inline int32 CLuaTradeContainer::getItemSubId(lua_State *L)
 {
-	if( m_pMyTradeContainer != nullptr) 
-	{
-		uint8 SlotID = 0;
+    if (m_pMyTradeContainer != nullptr)
+    {
+        uint8 SlotID = 0;
 
-		if( !lua_isnil(L,1) && lua_isnumber(L,1) )
-		{
-			SlotID = (uint8)lua_tonumber(L,1);
-		}
-		CItem* PItem = m_pMyTradeContainer->getItem(SlotID);
-		if (PItem)
-		{
-			lua_pushinteger(L, PItem->getSubID());
-			return 1;
-		}
-	}
-	lua_pushinteger(L,0);
-	return 1;	
+        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+        {
+            SlotID = (uint8)lua_tonumber(L, 1);
+        }
+        CItem* PItem = m_pMyTradeContainer->getItem(SlotID);
+        if (PItem)
+        {
+            lua_pushinteger(L, PItem->getSubID());
+            return 1;
+        }
+    }
+    lua_pushinteger(L, 0);
+    return 1;
 }
 
 //======================================================//
 
 inline int32 CLuaTradeContainer::getItemCount(lua_State *L)
 {
-	if( m_pMyTradeContainer != nullptr) 
-	{
-		lua_pushinteger( L, m_pMyTradeContainer->getTotalQuantity());
-		return 1;
-	}
-	lua_pushnil(L);
-	return 1;
+    if (m_pMyTradeContainer != nullptr)
+    {
+        lua_pushinteger(L, m_pMyTradeContainer->getTotalQuantity());
+        return 1;
+    }
+    lua_pushnil(L);
+    return 1;
 }
 
 //======================================================//
 
 inline int32 CLuaTradeContainer::getSlotCount(lua_State *L)
 {
-	if( m_pMyTradeContainer != nullptr) 
-	{
-		lua_pushinteger( L, m_pMyTradeContainer->getSlotCount());
-		return 1;
-	}
-	lua_pushnil(L);
-	return 1;
+    if (m_pMyTradeContainer != nullptr)
+    {
+        lua_pushinteger(L, m_pMyTradeContainer->getSlotCount());
+        return 1;
+    }
+    lua_pushnil(L);
+    return 1;
 }
 
 //======================================================//
 
 inline int32 CLuaTradeContainer::getItemQty(lua_State *L)
 {
-	if( m_pMyTradeContainer != nullptr) 
-	{
-		if( !lua_isnil(L,1) && lua_isnumber(L,1) )
-		{
-			uint16 itemID = (uint16) lua_tonumber(L, 1);
-			lua_pushinteger( L, m_pMyTradeContainer->getItemQuantity(itemID));
-		}else
-			lua_pushnil(L);
-		return 1;
-	}
-	lua_pushnil(L);
-	return 1;
+    if (m_pMyTradeContainer != nullptr)
+    {
+        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+        {
+            uint16 itemID = (uint16)lua_tonumber(L, 1);
+            lua_pushinteger(L, m_pMyTradeContainer->getItemQuantity(itemID));
+        }
+        else
+            lua_pushnil(L);
+        return 1;
+    }
+    lua_pushnil(L);
+    return 1;
 }
 
 //======================================================//
 
 inline int32 CLuaTradeContainer::getSlotQty(lua_State *L)
 {
-	if( m_pMyTradeContainer != nullptr) 
-	{
-		if( !lua_isnil(L,1) && lua_isnumber(L,1) )
-		{
-			uint8 slotID = (uint8) lua_tonumber(L, 1);
-			lua_pushinteger( L, m_pMyTradeContainer->getQuantity(slotID));
-		}else
-			lua_pushnil(L);
-		return 1;
-	}
-	lua_pushnil(L);
-	return 1;
+    if (m_pMyTradeContainer != nullptr)
+    {
+        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+        {
+            uint8 slotID = (uint8)lua_tonumber(L, 1);
+            lua_pushinteger(L, m_pMyTradeContainer->getQuantity(slotID));
+        }
+        else
+            lua_pushnil(L);
+        return 1;
+    }
+    lua_pushnil(L);
+    return 1;
 }
 
 //======================================================//
 
 inline int32 CLuaTradeContainer::hasItemQty(lua_State *L)
 {
-	if( m_pMyTradeContainer != nullptr) 
-	{
-		if( !lua_isnil(L,-1) && lua_isnumber(L,-1) &&
-			!lua_isnil(L,-2) && lua_isnumber(L,-2) )
-		{
-			uint32 quantity = (uint32) lua_tonumber(L, -1);
-			uint16 itemID   = (uint16) lua_tonumber(L, -2);
+    if (m_pMyTradeContainer != nullptr)
+    {
+        if (!lua_isnil(L, -1) && lua_isnumber(L, -1) &&
+            !lua_isnil(L, -2) && lua_isnumber(L, -2))
+        {
+            uint32 quantity = (uint32)lua_tonumber(L, -1);
+            uint16 itemID = (uint16)lua_tonumber(L, -2);
 
-			uint32 tradeQuantity = m_pMyTradeContainer->getItemQuantity(itemID);
+            uint32 tradeQuantity = m_pMyTradeContainer->getItemQuantity(itemID);
 
-			lua_pushboolean(L, (quantity == tradeQuantity ? true : false) );
+            lua_pushboolean(L, (quantity == tradeQuantity ? true : false));
 
-		}else
-			lua_pushnil(L);
-		return 1;
-	}
-	lua_pushnil(L);
-	return 1;
+        }
+        else
+            lua_pushnil(L);
+        return 1;
+    }
+    lua_pushnil(L);
+    return 1;
 }
 
 //======================================================//
 
 inline int32 CLuaTradeContainer::confirmItem(lua_State *L)
 {
-	if( m_pMyTradeContainer != nullptr) 
-	{
-		if( !lua_isnil(L,1) && lua_isnumber(L,1) )
-		{
-			uint8 slotID = (uint8) lua_tonumber(L, 1);
+    if (m_pMyTradeContainer != nullptr)
+    {
+        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+        {
+            uint8 slotID = (uint8)lua_tonumber(L, 1);
             uint8 amount = -1;
             if (lua_isnumber(L, 2))
             {
                 amount = (uint8)lua_tonumber(L, 2);
             }
-			m_pMyTradeContainer->setConfirmedStatus(slotID, amount);
-		}
-	}
+            m_pMyTradeContainer->setConfirmedStatus(slotID, amount);
+        }
+    }
     return 0;
 }
 
 //======================================================//
 
 const int8 CLuaTradeContainer::className[] = "TradeContainer";
-Lunar<CLuaTradeContainer>::Register_t CLuaTradeContainer::methods[] = 
+Lunar<CLuaTradeContainer>::Register_t CLuaTradeContainer::methods[] =
 {
-	LUNAR_DECLARE_METHOD(CLuaTradeContainer,getGil),
-	LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItem),
-	LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItemSubId),
-	LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItemCount),
+    LUNAR_DECLARE_METHOD(CLuaTradeContainer,getGil),
+    LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItem),
+    LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItemSubId),
+    LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItemCount),
     LUNAR_DECLARE_METHOD(CLuaTradeContainer,getSlotCount),
-	LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItemQty),
-	LUNAR_DECLARE_METHOD(CLuaTradeContainer,getSlotQty),
-	LUNAR_DECLARE_METHOD(CLuaTradeContainer,hasItemQty),
-	LUNAR_DECLARE_METHOD(CLuaTradeContainer,confirmItem),
-	{nullptr,nullptr}
-}; 
+    LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItemQty),
+    LUNAR_DECLARE_METHOD(CLuaTradeContainer,getSlotQty),
+    LUNAR_DECLARE_METHOD(CLuaTradeContainer,hasItemQty),
+    LUNAR_DECLARE_METHOD(CLuaTradeContainer,confirmItem),
+    {nullptr,nullptr}
+};

@@ -32,5 +32,5 @@ function onSpellCast(caster,target,spell)
 		power = merit + caster:getMod(MOD_STORMSURGE_EFFECT) + 2;
 	end
 	target:addStatusEffect(EFFECT_HAILSTORM,power,0,180);
-	return EFFECT_FIRESTORM;
+	return EFFECT_HAILSTORM;
 end;

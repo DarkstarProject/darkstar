@@ -53,6 +53,7 @@ namespace conquest
 {
 	void	UpdateConquestSystem();										// Update conquest information in the DB
 
+    void    UpdateInfluencePoints(int points, unsigned int nation, unsigned int region);
 	void	GainInfluencePoints(CCharEntity* PChar, uint32 points);		// Gain influence for player's nation (+1)
 	void	LoseInfluencePoints(CCharEntity* PChar);					// Lose influence for player's nation and gain for beastmen influence
 	

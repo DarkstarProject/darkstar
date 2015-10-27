@@ -6,9 +6,9 @@
 --  Range: Melee
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 
@@ -27,16 +27,15 @@ function onMobWeaponSkill(target, mob, skill)
 
 	local duration = 20;
 	
-	if(mob:getTP() == 300) then
+	if (mob:getTP() == 300) then
 		duration = 60;
-	elseif(mob:getTP() >= 200) then
+	elseif (mob:getTP() >= 200) then
 		duration = 40;
 	end
 	
 	MobBuffMove(mob, EFFECT_HASTE, 20, 0, duration);
 
-	mob:addHP(dmg);
-	target:delHP(dmg);
+        skill:setMsg(MobPhysicalDrainMove(mob, target, skill, MOBDRAIN_HP, dmg));
 	return dmg;
 	
 end;

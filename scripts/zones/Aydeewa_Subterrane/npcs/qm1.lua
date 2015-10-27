@@ -1,24 +1,25 @@
 -----------------------------------
 -- Area: Aydeewa Subterrane
--- NPC:  ??? (Spawn Nosferatu(ZNM T3))
--- @pos -199 8 -62 68 
+--  NPC: ??? (Spawn Nosferatu(ZNM T3))
+-- @pos -199 8 -62 68
 -----------------------------------
 package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Aydeewa_Subterrane/TextIDs");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	if(trade:hasItemQty(2584,1) and trade:getItemCount() == 1) then -- Trade Pure Blood
-		player:tradeComplete();
-		SpawnMob(17056158,180):updateEnmity(player);
-	end
-	
+    local mobID = 17056157;
+    if (trade:hasItemQty(2584,1) and trade:getItemCount() == 1) then -- Trade Pure Blood
+        if (GetMobAction(mobID) == ACTION_NONE) then
+            player:tradeComplete();
+            SpawnMob(mobID):updateClaim(player);
+        end
+    end
 end;
 
 -----------------------------------
@@ -26,7 +27,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(NOTHING_HAPPENS);
+    player:messageSpecial(NOTHING_HAPPENS);
 end;
 
 -----------------------------------
@@ -34,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,6 +44,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

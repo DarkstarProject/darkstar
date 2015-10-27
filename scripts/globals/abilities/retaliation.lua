@@ -1,7 +1,9 @@
 -----------------------------------
--- EFFECT_RETALIATION
+-- Ability: Retaliation
 -- Allows you to counterattack but reduces movement speed.
--- Unlike counter, grants TP like a regular melee attack.
+-- Obtained: Warrior Level 60
+-- Recast Time: 3:00
+-- Duration: 3:00
 -----------------------------------
 
 require("scripts/globals/status");

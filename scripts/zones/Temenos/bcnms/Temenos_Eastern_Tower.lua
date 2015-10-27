@@ -7,13 +7,13 @@
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
-if(GetMobAction(16928844) > 0)then DespawnMob(16928844);end
-if(GetMobAction(16928853) > 0)then DespawnMob(16928853);end
-if(GetMobAction(16928862) > 0)then DespawnMob(16928862);end
-if(GetMobAction(16928871) > 0)then DespawnMob(16928871);end
-if(GetMobAction(16928880) > 0)then DespawnMob(16928880);end
-if(GetMobAction(16928889) > 0)then DespawnMob(16928889);end
-if(GetMobAction(16928894) > 0)then DespawnMob(16928894);end
+if (GetMobAction(16928844) > 0) then DespawnMob(16928844);end
+if (GetMobAction(16928853) > 0) then DespawnMob(16928853);end
+if (GetMobAction(16928862) > 0) then DespawnMob(16928862);end
+if (GetMobAction(16928871) > 0) then DespawnMob(16928871);end
+if (GetMobAction(16928880) > 0) then DespawnMob(16928880);end
+if (GetMobAction(16928889) > 0) then DespawnMob(16928889);end
+if (GetMobAction(16928894) > 0) then DespawnMob(16928894);end
 	SetServerVariable("[Temenos_E_Tower]UniqueID",GenerateLimbusKey());
 	HideArmouryCrates(GetInstanceRegion(1300),TEMENOS);		
     HideTemenosDoor(GetInstanceRegion(1300));
@@ -35,7 +35,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
-	if(leavecode == 4) then
+	if (leavecode == 4) then
 	 	player:setPos(580,-1.5,4.452,192);
 		ResetPlayerLimbusVariable(player)
 	end

@@ -9,14 +9,14 @@
 -- Removes all Shadow Images on the target.
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-	if(mob:getMobMod(MOBMOD_VAR) == 0) then
+	if (mob:getMobMod(MOBMOD_VAR) == 0) then
 		return 0;
 	end
 	return 1;

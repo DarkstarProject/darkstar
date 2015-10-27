@@ -856,12 +856,12 @@ int32 realloc_fifo(int32 fd, uint32 rfifo_size, uint32 wfifo_size)
 		return 0;
 
 	if( session[fd]->max_rdata != rfifo_size && session[fd]->rdata_size < rfifo_size) {
-		RECREATE(session[fd]->rdata, unsigned char, rfifo_size);
+		RECREATE(session[fd]->rdata, char, rfifo_size);
 		session[fd]->max_rdata  = rfifo_size;
 	}
 
 	if( session[fd]->max_wdata != wfifo_size && session[fd]->wdata_size < wfifo_size) {
-		RECREATE(session[fd]->wdata, unsigned char, wfifo_size);
+		RECREATE(session[fd]->wdata, char, wfifo_size);
 		session[fd]->max_wdata  = wfifo_size;
 	}
 	return 0;
@@ -887,7 +887,7 @@ int32 realloc_writefifo(int32 fd, size_t addition)
 	else // no change
 		return 0;
 
-	RECREATE(session[fd]->wdata, unsigned char, newsize);
+	RECREATE(session[fd]->wdata, char, newsize);
 	session[fd]->max_wdata  = newsize;
 
 	return 0;
@@ -1103,8 +1103,8 @@ void set_eof(int32 fd)
 int create_session(int fd, RecvFunc func_recv, SendFunc func_send, ParseFunc func_parse)
 {
 	CREATE(session[fd], struct socket_data, 1);
-	CREATE(session[fd]->rdata, unsigned char, RFIFO_SIZE);
-	CREATE(session[fd]->wdata, unsigned char, WFIFO_SIZE);
+	CREATE(session[fd]->rdata, char, RFIFO_SIZE);
+	CREATE(session[fd]->wdata, char, WFIFO_SIZE);
 
 	session[fd]->max_rdata  = RFIFO_SIZE;
 	session[fd]->max_wdata  = WFIFO_SIZE;

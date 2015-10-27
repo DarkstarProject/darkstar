@@ -3,7 +3,7 @@
 -- NM:   Voluptuous Vivian (NM)
 -----------------------------------
 
-require("/scripts/zones/The_Boyahda_Tree/MobIDs");
+require("scripts/zones/The_Boyahda_Tree/MobIDs");
 require("scripts/globals/titles");
 
 function onMobInitialize(mob)

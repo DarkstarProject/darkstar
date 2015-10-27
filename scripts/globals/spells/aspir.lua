@@ -32,12 +32,12 @@ function onSpellCast(caster,target,spell)
         dmg = 0
     end
     
-	if(target:isUndead()) then
+	if (target:isUndead()) then
 		spell:setMsg(75); -- No effect
 		return dmg;
 	end
 
-	if(target:getMP() > dmg) then
+	if (target:getMP() > dmg) then
 		caster:addMP(dmg);
 		target:delMP(dmg);
 	else

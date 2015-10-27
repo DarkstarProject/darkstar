@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:hasItem(16575) == false and player:getFreeSlotsCount() >= 1) then
+	if (player:hasItem(16575) == false and player:getFreeSlotsCount() >= 1) then
 		player:addItem(16575);
 		player:messageSpecial(ITEM_OBTAINED,16575); -- Curtana
 		

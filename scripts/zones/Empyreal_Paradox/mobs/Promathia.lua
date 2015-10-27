@@ -5,7 +5,7 @@
 
 require("scripts/globals/titles");
 require("scripts/globals/status");
-require("/scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/zones/Empyreal_Paradox/TextIDs");
 
 -----------------------------------
 -- onMobInitialize Action
@@ -27,7 +27,7 @@ function onMobEngaged(mob,target)
             if not v:getTarget() then
                 v:entityAnimationPacket("prov");
                 v:showText(v, PRISHE_TEXT);
-                v:setLocalVar("ready", bit.band(mob:getID(), 0xFFF));
+                v:setLocalVar("ready", mob:getID());
             end
         else
             v:addEnmity(mob,0,1);
@@ -89,7 +89,7 @@ function onEventFinish(player,csid,option,target)
 --printf("finishCSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x7d04) then
+	if (csid == 0x7d04) then
         DespawnMob(target:getID());
 		mob = SpawnMob(target:getID()+1);
         local bcnmAllies = mob:getBattlefield():getAllies();

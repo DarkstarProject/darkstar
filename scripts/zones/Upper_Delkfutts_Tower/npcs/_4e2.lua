@@ -15,7 +15,7 @@ require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(549,1) and trade:getItemCount() == 1) then -- Trade Delkfutt Key
+	if (trade:hasItemQty(549,1) and trade:getItemCount() == 1) then -- Trade Delkfutt Key
 		player:startEvent(0x0006);
 	end
 	
@@ -27,7 +27,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:hasKeyItem(DELKFUTT_KEY)) then
+	if (player:hasKeyItem(DELKFUTT_KEY)) then
 		player:startEvent(0x0006);
 	else
 		player:messageSpecial(THIS_ELEVATOR_GOES_DOWN);

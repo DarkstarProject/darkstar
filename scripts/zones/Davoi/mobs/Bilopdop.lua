@@ -23,7 +23,7 @@ function onMobDeath(mob, killer)
 	local theFirstMeeting = killer:getQuestStatus(BASTOK,THE_FIRST_MEETING);
 	local martialArtsScroll = killer:hasKeyItem(SANDORIAN_MARTIAL_ARTS_SCROLL);
 
-	if(theFirstMeeting == QUEST_ACCEPTED and martialArtsScroll == false) then
+	if (theFirstMeeting == QUEST_ACCEPTED and martialArtsScroll == false) then
 		killer:setVar("theFirstMeetingKilledNM",killer:getVar("theFirstMeetingKilledNM") + 1);
 	end
 

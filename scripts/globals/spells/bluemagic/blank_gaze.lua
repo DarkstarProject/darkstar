@@ -35,12 +35,16 @@ function onSpellCast(caster,target,spell)
     local resist = applyResistance(caster,spell,target,dINT,BLUE_SKILL);
     local effect = EFFECT_NONE;
 
-    if(resist > 0.0625) then
-        spell:setMsg(341);
-        effect = target:dispelStatusEffect();
-        if(effect == EFFECT_NONE) then
+    if (resist > 0.0625) then
+        if (target:isFacing(caster)) then
+            spell:setMsg(341);
+            effect = target:dispelStatusEffect();
+            if (effect == EFFECT_NONE) then
+                spell:setMsg(75);
+            end;
+        else
             spell:setMsg(75);
-        end
+        end;
     else
         spell:setMsg(85);
     end

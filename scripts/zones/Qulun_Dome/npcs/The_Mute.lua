@@ -23,7 +23,7 @@ end;
 function onTrigger(player,npc)
 	local duration = math.random(600,900);
 
-	if(player:hasStatusEffect(EFFECT_SILENCE) == false) then
+	if (player:hasStatusEffect(EFFECT_SILENCE) == false) then
 		player:addStatusEffect(EFFECT_SILENCE,0,0,duration);
 	end
 end;

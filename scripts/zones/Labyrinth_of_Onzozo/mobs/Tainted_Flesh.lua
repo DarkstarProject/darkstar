@@ -4,7 +4,7 @@
 -- Note: Place holder Hellion
 -----------------------------------	
 
-require("/scripts/zones/Labyrinth_of_Onzozo/MobIDs");
+require("scripts/zones/Labyrinth_of_Onzozo/MobIDs");
 	
 -----------------------------------	
 -- onMobDeath	

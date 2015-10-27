@@ -39,27 +39,29 @@ CInventorySizePacket::CInventorySizePacket(CCharEntity* PChar)
     this->type = 0x1C;
     this->size = 0x1A;
 
-    WBUFB(data, (0x04) ) = 1 + PChar->getStorage(LOC_INVENTORY)->GetSize();
-    WBUFB(data, (0x05) ) = 1 + PChar->getStorage(LOC_MOGSAFE)->GetSize();
-    WBUFB(data, (0x06) ) = 1 + PChar->getStorage(LOC_STORAGE)->GetSize();
-    WBUFB(data, (0x07) ) = 1 + PChar->getStorage(LOC_TEMPITEMS)->GetSize();
-    WBUFB(data, (0x08) ) = 1 + PChar->getStorage(LOC_MOGLOCKER)->GetSize();
-    WBUFB(data, (0x09) ) = 1 + PChar->getStorage(LOC_MOGSATCHEL)->GetSize();
-    WBUFB(data, (0x0A) ) = 1 + PChar->getStorage(LOC_MOGSACK)->GetSize();
-    WBUFB(data, (0x0B) ) = 1 + PChar->getStorage(LOC_MOGCASE)->GetSize();
-    WBUFB(data, (0x0C) ) = 1 + PChar->getStorage(LOC_WARDROBE)->GetSize();
+    WBUFB(data, (0x04)) = 1 + PChar->getStorage(LOC_INVENTORY)->GetSize();
+    WBUFB(data, (0x05)) = 1 + PChar->getStorage(LOC_MOGSAFE)->GetSize();
+    WBUFB(data, (0x06)) = 1 + PChar->getStorage(LOC_STORAGE)->GetSize();
+    WBUFB(data, (0x07)) = 1 + PChar->getStorage(LOC_TEMPITEMS)->GetSize();
+    WBUFB(data, (0x08)) = 1 + PChar->getStorage(LOC_MOGLOCKER)->GetSize();
+    WBUFB(data, (0x09)) = 1 + PChar->getStorage(LOC_MOGSATCHEL)->GetSize();
+    WBUFB(data, (0x0A)) = 1 + PChar->getStorage(LOC_MOGSACK)->GetSize();
+    WBUFB(data, (0x0B)) = 1 + PChar->getStorage(LOC_MOGCASE)->GetSize();
+    WBUFB(data, (0x0C)) = 1 + PChar->getStorage(LOC_WARDROBE)->GetSize();
+    WBUFB(data, (0x0D)) = 1 + PChar->getStorage(LOC_MOGSAFE2)->GetSize();
 
-    WBUFW(data, (0x14) ) = 1 + PChar->getStorage(LOC_INVENTORY)->GetBuff();
-    WBUFW(data, (0x16) ) = 1 + PChar->getStorage(LOC_MOGSAFE)->GetBuff();
-    WBUFW(data, (0x18) ) = 1 + PChar->getStorage(LOC_STORAGE)->GetBuff();
-    WBUFW(data, (0x1A) ) = 1 + PChar->getStorage(LOC_TEMPITEMS)->GetBuff();
+    WBUFW(data, (0x14)) = 1 + PChar->getStorage(LOC_INVENTORY)->GetBuff();
+    WBUFW(data, (0x16)) = 1 + PChar->getStorage(LOC_MOGSAFE)->GetBuff();
+    WBUFW(data, (0x18)) = 1 + PChar->getStorage(LOC_STORAGE)->GetBuff();
+    WBUFW(data, (0x1A)) = 1 + PChar->getStorage(LOC_TEMPITEMS)->GetBuff();
     if (charutils::hasMogLockerAccess(PChar))
-        WBUFW(data, (0x1C) ) = 1 + PChar->getStorage(LOC_MOGLOCKER)->GetBuff();
+        WBUFW(data, (0x1C)) = 1 + PChar->getStorage(LOC_MOGLOCKER)->GetBuff();
     else
-        WBUFW(data, (0x1C) ) = 0x00;
+        WBUFW(data, (0x1C)) = 0x00;
 
-    WBUFW(data, (0x1E) ) = 1 + PChar->getStorage(LOC_MOGSATCHEL)->GetBuff();
-    WBUFW(data, (0x20) ) = 1 + PChar->getStorage(LOC_MOGSACK)->GetBuff();
-    WBUFW(data, (0x22) ) = 1 + PChar->getStorage(LOC_MOGCASE)->GetBuff();
-    WBUFW(data, (0x24) ) = 1 + PChar->getStorage(LOC_WARDROBE)->GetBuff();
+    WBUFW(data, (0x1E)) = 1 + PChar->getStorage(LOC_MOGSATCHEL)->GetBuff();
+    WBUFW(data, (0x20)) = 1 + PChar->getStorage(LOC_MOGSACK)->GetBuff();
+    WBUFW(data, (0x22)) = 1 + PChar->getStorage(LOC_MOGCASE)->GetBuff();
+    WBUFW(data, (0x24)) = 1 + PChar->getStorage(LOC_WARDROBE)->GetBuff();
+    WBUFW(data, (0x26)) = 1 + PChar->getStorage(LOC_MOGSAFE2)->GetBuff();
 }

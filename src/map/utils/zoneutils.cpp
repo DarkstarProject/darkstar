@@ -323,10 +323,19 @@ void LoadNPCList()
                 memcpy(&PNpc->look, Sql_GetData(SqlHandle, 14), 20);
 
                 GetZone(ZoneID)->InsertNPC(PNpc);
-                luautils::OnNpcSpawn(PNpc);
             }
         }
     }
+
+    // handle npc spawn functions after they're all done loading
+    ForEachZone([](CZone* PZone)
+    {
+        PZone->ForEachNpc([](CNpcEntity* PNpc)
+        {
+            luautils::OnNpcSpawn(PNpc);
+        });
+    });
+
 }
 
 /************************************************************************
@@ -350,7 +359,7 @@ void LoadMOBList()
             Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
             mob_pools.familyid, name_prefix, flags, animationsub, \
             (mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-            allegiance, namevis, aggro, roamflag \
+            allegiance, namevis, aggro, roamflag, mob_pools.skill_list_id \
             FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
             INNER JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
             INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
@@ -435,15 +444,6 @@ void LoadMOBList()
                 PMob->setModifier(MOD_HTHRES, (uint16)(Sql_GetFloatData(SqlHandle, 38) * 1000));
                 PMob->setModifier(MOD_IMPACTRES, (uint16)(Sql_GetFloatData(SqlHandle, 39) * 1000));
 
-                PMob->setModifier(MOD_FIREDEF, (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -1000)); // These are stored as floating percentages
-                PMob->setModifier(MOD_ICEDEF, (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -1000)); // and need to be adjusted into modifier units.
-                PMob->setModifier(MOD_WINDDEF, (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -1000)); // Higher DEF = lower damage.
-                PMob->setModifier(MOD_EARTHDEF, (int16)((Sql_GetFloatData(SqlHandle, 43) - 1) * -1000)); // Negatives signify increased damage.
-                PMob->setModifier(MOD_THUNDERDEF, (int16)((Sql_GetFloatData(SqlHandle, 44) - 1) * -1000)); // Positives signify reduced damage.
-                PMob->setModifier(MOD_WATERDEF, (int16)((Sql_GetFloatData(SqlHandle, 45) - 1) * -1000)); // Ex: 125% damage would be 1.25, 50% damage would be 0.50
-                PMob->setModifier(MOD_LIGHTDEF, (int16)((Sql_GetFloatData(SqlHandle, 46) - 1) * -1000)); // (1.25 - 1) * -1000 = -250 DEF
-                PMob->setModifier(MOD_DARKDEF, (int16)((Sql_GetFloatData(SqlHandle, 47) - 1) * -1000)); // (0.50 - 1) * -1000 = 500 DEF
-
                 PMob->setModifier(MOD_FIRERES, (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -100)); // These are stored as floating percentages
                 PMob->setModifier(MOD_ICERES, (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -100)); // and need to be adjusted into modifier units.
                 PMob->setModifier(MOD_WINDRES, (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -100)); // Higher RES = lower damage.
@@ -473,7 +473,10 @@ void LoadMOBList()
                 // yovra 1: en hauteur, 2: en bas, 3: en haut
                 // phuabo 1: sous l'eau, 2: sort de l'eau, 3: rentre dans l'eau
                 PMob->animationsub = (uint32)Sql_GetIntData(SqlHandle, 52);
-
+                
+                if (PMob->animationsub != 0) 
+                    PMob->setMobMod(MOBMOD_SPAWN_ANIMATIONSUB, PMob->animationsub);
+                
                 // Setup HP / MP Stat Percentage Boost
                 PMob->HPscale = Sql_GetFloatData(SqlHandle, 53);
                 PMob->MPscale = Sql_GetFloatData(SqlHandle, 54);
@@ -497,19 +500,26 @@ void LoadMOBList()
                 PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 62);
 
                 PMob->m_roamFlags = (uint16)Sql_GetUIntData(SqlHandle, 63);
+                PMob->m_MobSkillList = Sql_GetUIntData(SqlHandle, 64);
 
                 // must be here first to define mobmods
                 mobutils::InitializeMob(PMob, GetZone(ZoneID));
 
                 GetZone(ZoneID)->InsertMOB(PMob);
-
-                luautils::OnMobInitialize(PMob);
-
-                PMob->saveModifiers();
-                PMob->saveMobModifiers();
             }
         }
     }
+
+    // handle mob initialise functions after they're all loaded
+    ForEachZone([](CZone* PZone)
+    {
+        PZone->ForEachMob([](CMobEntity* PMob)
+        {
+            luautils::OnMobInitialize(PMob);
+            PMob->saveModifiers();
+            PMob->saveMobModifiers();
+        });
+    });
 
     // attach pets to mobs
     const int8* PetQuery =

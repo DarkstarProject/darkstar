@@ -40,7 +40,7 @@ function onZoneIn(player,prevZone)
 		player:setPos(729.749,-20.319,407.153,90); -- {R}
 	end
 	-- ZONE LEVEL RESTRICTION
-	if(ENABLE_COP_ZONE_CAP == 1)then
+	if (ENABLE_COP_ZONE_CAP == 1) then
 		player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0);
 	end	
 return cs;

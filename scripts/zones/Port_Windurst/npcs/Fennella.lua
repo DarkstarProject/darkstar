@@ -112,7 +112,7 @@ function onEventFinish(player,csid,option,target)
      
     if (csid == 0x2724) then
         unionRepresentativeTriggerFinish(player, option, target, 0, "guild_Fishing", keyitems, items);
-    elseif(csid == 0x2725) then
+    elseif (csid == 0x2725) then
         player:messageSpecial(GP_OBTAINED, option);
     end
 end;

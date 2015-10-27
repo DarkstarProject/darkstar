@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x002a and option == 0) then
+	if (csid == 0x002a and option == 0) then
 		player:messageSpecial(POWER_OF_THE_ORB_ALLOW_PASS);
 		npc:openDoor(12); -- needs retail timing
 	end

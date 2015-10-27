@@ -7,12 +7,21 @@
 --  Notes: Only used by Puks in Mamook, Besieged, and the following Notorious Monsters: Vulpangue, Nis Puk, Nguruvilu, Seps , Phantom Puk and Waugyl. Dispels one effect.
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
+    if(mob:getFamily() == 316) then
+        local mobSkin = mob:getModelId();
+
+        if (mobSkin == 1746) then
+            return 0;
+        else
+            return 1;
+        end
+    end
 	return 0;
 end;
 

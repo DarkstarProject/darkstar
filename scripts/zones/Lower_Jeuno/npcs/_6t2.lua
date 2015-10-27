@@ -38,8 +38,8 @@ function onTrigger(player,npc)
 	local mJob = player:getMainJob();
 	
 	-- A New Dawn (BST AF3)
-	if(ScatteredIntoShadow == QUEST_COMPLETED and ANewDawn == QUEST_AVAILABLE) then
-		if(mJob == 9 and mLvl >= 50) then
+	if (ScatteredIntoShadow == QUEST_COMPLETED and ANewDawn == QUEST_AVAILABLE) then
+		if (mJob == 9 and mLvl >= 50) then
 			if (ANewDawnEvent == 0) then
 				player:startEvent(0x0005);
 			elseif (ANewDawnEvent == 1) then
@@ -58,21 +58,21 @@ function onTrigger(player,npc)
 		player:startEvent(0x0000); 
 	
 	-- Save My Son
-	elseif(player:getQuestStatus(JEUNO, SAVE_MY_SON) == QUEST_AVAILABLE and mLvl >= 30) then
+	elseif (player:getQuestStatus(JEUNO, SAVE_MY_SON) == QUEST_AVAILABLE and mLvl >= 30) then
 		player:startEvent(0x00a4);
-	elseif(player:getQuestStatus(JEUNO, SAVE_MY_SON) == QUEST_ACCEPTED) then
-		if(SaveMySon == 0) then
+	elseif (player:getQuestStatus(JEUNO, SAVE_MY_SON) == QUEST_ACCEPTED) then
+		if (SaveMySon == 0) then
 			player:startEvent(0x00e5);
-		elseif(SaveMySon == 1) then
+		elseif (SaveMySon == 1) then
 			player:startEvent(0x00a3);
 		end
-	elseif(player:needToZone() == false and player:getQuestStatus(JEUNO, SAVE_MY_SON) == QUEST_COMPLETED and SaveMySon == 2) then
+	elseif (player:needToZone() == false and player:getQuestStatus(JEUNO, SAVE_MY_SON) == QUEST_COMPLETED and SaveMySon == 2) then
 		player:startEvent(0x0084);
 	
 	-- Chocobos Wounds
-	elseif(ChocobosWounds == QUEST_AVAILABLE) then
+	elseif (ChocobosWounds == QUEST_AVAILABLE) then
 		player:startEvent(0x0040);
-	elseif(player:getVar("ChocobosWounds_Event") > 3) then
+	elseif (player:getVar("ChocobosWounds_Event") > 3) then
 		player:startEvent(0x003f);
 		
 	-- Standard Dialogue?, Probably Wrong
@@ -101,10 +101,10 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x00a4 and option == 0) then
+	if (csid == 0x00a4 and option == 0) then
 		player:addQuest(JEUNO, SAVE_MY_SON);
-	elseif(csid == 0x00a3) then
-		if(player:getFreeSlotsCount(0) >= 1) then
+	elseif (csid == 0x00a3) then
+		if (player:getFreeSlotsCount(0) >= 1) then
 			player:addTitle(LIFE_SAVER);
 			player:addItem(13110);
 			player:messageSpecial(ITEM_OBTAINED, 13110);

@@ -9,9 +9,10 @@
 --
 -- Updated Aug-09-2013 by Zerahn, based on bgwiki and gamerescape
 -----------------------------------
+package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
@@ -35,7 +36,7 @@ function onTrigger(player,npc)
         0x4294,  1521,3,     --Brass Baghnakhs
         0x4015,   104,3,     --Cat Baghnakhs
         0x4292,   312,3,     --Bronze Hammer
-        0x4293,   312,3,     --Brass Hammer
+        0x4293,  2083,3,     --Brass Hammer
         0x4299,    47,3,     --Maple Wand
         0x4280,    66,3,     --Ash Club
         0x42A3,    90,3,     --Bronze Rod

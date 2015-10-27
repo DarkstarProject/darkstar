@@ -2,10 +2,10 @@
 -- Geocrush
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
-require("/scripts/globals/magic");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
+require("scripts/globals/magic");
 
 ---------------------------------------------------
 
@@ -16,7 +16,7 @@ end;
 function onPetAbility(target, pet, skill)
 
 	local dINT = math.floor(pet:getStat(MOD_INT) - target:getStat(MOD_INT));
-	local tp = pet:getTP();
+	local tp = skill:getTP();
 	local master = pet:getMaster();
 	local merits = 0;
 	if (master ~= nil and master:isPC()) then
@@ -38,7 +38,7 @@ function onPetAbility(target, pet, skill)
 	target:delHP(damage);
 	target:updateEnmityFromDamage(pet,damage);
 
-	if(target:hasStatusEffect(EFFECT_STUN) == false) then
+	if (target:hasStatusEffect(EFFECT_STUN) == false) then
 		target:addStatusEffect(EFFECT_STUN,3,3,3);
 	end
 

@@ -26,7 +26,7 @@ end;
 
 function onItemUse(target)
 	target:addStatusEffect(EFFECT_FOOD,0,0,180,4565);
-    if(target:hasStatusEffect(EFFECT_SILENCE) == false) then
+    if (target:hasStatusEffect(EFFECT_SILENCE) == false) then
         target:addStatusEffect(EFFECT_SILENCE,1,3,180);
     else
         target:messageBasic(423);

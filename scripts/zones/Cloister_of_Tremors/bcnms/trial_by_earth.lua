@@ -31,13 +31,13 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
 	
-	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		if(player:hasCompleteQuest(BASTOK,TRIAL_BY_EARTH)) then
+	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+		if (player:hasCompleteQuest(BASTOK,TRIAL_BY_EARTH)) then
 			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
 		else
 			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
 		end
-	elseif(leavecode == 4) then
+	elseif (leavecode == 4) then
 		player:startEvent(0x7d02);
 	end
 	
@@ -50,7 +50,7 @@ end;
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 	
-	if(csid == 0x7d01) then
+	if (csid == 0x7d01) then
 		player:delKeyItem(TUNING_FORK_OF_EARTH);
 		player:addKeyItem(WHISPER_OF_TREMORS);
 		player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_TREMORS);

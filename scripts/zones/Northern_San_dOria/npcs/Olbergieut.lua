@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(SCRIPTURE_OF_WIND);
 		player:messageSpecial(KEYITEM_OBTAINED, SCRIPTURE_OF_WIND);
 	elseif (csid == 0x026c) then
-        if(player:getFreeSlotsCount() == 0) then
+        if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 13584);
 		else
 			player:completeQuest(SANDORIA,GATES_TO_PARADISE);

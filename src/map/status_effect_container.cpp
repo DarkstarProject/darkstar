@@ -35,6 +35,7 @@ When a status effect is gained twice on a player. It can do one or more of the f
 #include "../common/timer.h"
 
 #include <string.h>
+#include <array>
 
 #include "lua/luautils.h"
 
@@ -43,6 +44,8 @@ When a status effect is gained twice on a player. It can do one or more of the f
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
 #include "packets/message_basic.h"
+#include "packets/party_effects.h"
+#include "packets/status_effects.h"
 
 #include "utils/charutils.h"
 #include "entities/battleentity.h"
@@ -90,9 +93,12 @@ namespace effects
         EFFECT   RemoveId;
         // status effect element, used in resistances
         uint8    Element;
+
+        // minimum duration. IE: stun cannot last less than 1 second
+        uint32    MinDuration;
     };
 
-    EffectParams_t EffectsParams[MAX_EFFECTID];
+    std::array<EffectParams_t, MAX_EFFECTID> EffectsParams;
 
     /************************************************************************
     *                                                                       *
@@ -107,7 +113,7 @@ namespace effects
             EffectsParams[i].Flag = 0;
         }
 
-        int32 ret = Sql_Query(SqlHandle, "SELECT id, name, flags, type, negative_id, overwrite, block_id, remove_id, element FROM status_effects WHERE id < %u", MAX_EFFECTID);
+        int32 ret = Sql_Query(SqlHandle, "SELECT id, name, flags, type, negative_id, overwrite, block_id, remove_id, element, min_duration FROM status_effects WHERE id < %u", MAX_EFFECTID);
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
@@ -124,6 +130,8 @@ namespace effects
                 EffectsParams[EffectID].RemoveId = (EFFECT)Sql_GetIntData(SqlHandle,7);
 
                 EffectsParams[EffectID].Element = Sql_GetIntData(SqlHandle,8);
+                // convert from second to millisecond
+                EffectsParams[EffectID].MinDuration = Sql_GetIntData(SqlHandle,9) * 1000;
             }
         }
     }
@@ -332,6 +340,12 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 
 	if(CanGainStatusEffect((EFFECT)statusId, PStatusEffect->GetPower()))
 	{
+
+            // check for minimum duration
+            if(PStatusEffect->GetDuration() < effects::EffectsParams[statusId].MinDuration){
+                PStatusEffect->SetDuration(effects::EffectsParams[statusId].MinDuration);
+            }
+
         // remove clean up other effects
         OverwriteStatusEffect(PStatusEffect);
 
@@ -600,7 +614,7 @@ EFFECT CStatusEffectContainer::EraseStatusEffect()
     }
     if (!erasableList.empty())
     {
-        uint16 rndIdx = WELL512::GetRandomNumber(erasableList.size());
+        uint16 rndIdx = dsprand::GetRandomNumber(erasableList.size());
         EFFECT result = m_StatusEffectList.at(erasableList.at(rndIdx))->GetStatusID();
         RemoveStatusEffect(erasableList.at(rndIdx));
         return result;
@@ -622,7 +636,7 @@ EFFECT CStatusEffectContainer::HealingWaltz()
    }
    if( !waltzableList.empty() )
    {
-       uint16 rndIdx = WELL512::GetRandomNumber(waltzableList.size());
+       uint16 rndIdx = dsprand::GetRandomNumber(waltzableList.size());
       EFFECT result = m_StatusEffectList.at(waltzableList.at(rndIdx))->GetStatusID();
       RemoveStatusEffect(waltzableList.at(rndIdx));
       return result;
@@ -669,7 +683,7 @@ EFFECT CStatusEffectContainer::DispelStatusEffect(EFFECTFLAG flag)
 	}
 	if (!dispelableList.empty())
 	{
-        uint16 rndIdx = WELL512::GetRandomNumber(dispelableList.size());
+        uint16 rndIdx = dsprand::GetRandomNumber(dispelableList.size());
 		EFFECT result = m_StatusEffectList.at(dispelableList.at(rndIdx))->GetStatusID();
 		RemoveStatusEffect(dispelableList.at(rndIdx), true);
 		return result;
@@ -1025,7 +1039,7 @@ CStatusEffect* CStatusEffectContainer::StealStatusEffect()
 	}
     if (!dispelableList.empty())
     {
-        uint16 rndIdx = WELL512::GetRandomNumber(dispelableList.size());
+        uint16 rndIdx = dsprand::GetRandomNumber(dispelableList.size());
         uint16 effectIndex = dispelableList.at(rndIdx);
 
         CStatusEffect* oldEffect = m_StatusEffectList.at(effectIndex);
@@ -1049,6 +1063,8 @@ CStatusEffect* CStatusEffectContainer::StealStatusEffect()
 void CStatusEffectContainer::UpdateStatusIcons()
 {
     if (m_POwner->objtype != TYPE_PC) return;
+
+    auto PChar = static_cast<CCharEntity*>(m_POwner);
 
     m_Flags = 0;
     memset(m_StatusIcons, EFFECT_NONE, sizeof(m_StatusIcons));
@@ -1076,9 +1092,14 @@ void CStatusEffectContainer::UpdateStatusIcons()
             if (++count == 32) break;
         }
 	}
-    ((CCharEntity*)m_POwner)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_POwner));
-    ((CCharEntity*)m_POwner)->pushPacket(new CCharJobExtraPacket((CCharEntity*)m_POwner, true));
-    ((CCharEntity*)m_POwner)->pushPacket(new CCharJobExtraPacket((CCharEntity*)m_POwner, false));
+    PChar->pushPacket(new CCharUpdatePacket(PChar));
+    PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+    PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
+    PChar->pushPacket(new CStatusEffectPacket(PChar));
+    if (PChar->PParty)
+    {
+        PChar->PParty->PushEffectsPacket();
+    }
 }
 
 /************************************************************************
@@ -1116,7 +1137,7 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
 
 
     //todo: find a better place to put this?
-    if(!m_POwner->isDead())
+    if(m_POwner->PBattleAI != nullptr && m_POwner->isAlive() && m_POwner->PBattleAI->IsInSleepableAction())
     {
         // this should actually go into a char charm AI
         if(m_POwner->PPet != nullptr && m_POwner->objtype == TYPE_PC)
@@ -1169,6 +1190,8 @@ void CStatusEffectContainer::LoadStatusEffects()
 
 	int32 ret = Sql_Query(SqlHandle, Query, m_POwner->id);
 
+    std::vector<CStatusEffect*> PEffectList;
+
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
@@ -1183,7 +1206,7 @@ void CStatusEffectContainer::LoadStatusEffects()
                 (uint16)Sql_GetUIntData(SqlHandle,6),
                 (uint16)Sql_GetUIntData(SqlHandle,7));
 
-			AddStatusEffect(PStatusEffect);
+			PEffectList.push_back(PStatusEffect);
 
             // load shadows left
             if(PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE){
@@ -1193,6 +1216,12 @@ void CStatusEffectContainer::LoadStatusEffects()
             }
 		}
 	}
+
+    for (auto&& PStatusEffect : PEffectList)
+    {
+        AddStatusEffect(PStatusEffect);
+    }
+
     m_POwner->UpdateHealth(); // после загрузки эффектов пересчитываем максимальное количество HP/MP
 }
 
@@ -1202,40 +1231,51 @@ void CStatusEffectContainer::LoadStatusEffects()
 *																		*
 ************************************************************************/
 
-void CStatusEffectContainer::SaveStatusEffects()
+void CStatusEffectContainer::SaveStatusEffects(bool logout)
 {
     DSP_DEBUG_BREAK_IF(m_POwner->objtype != TYPE_PC);
 
 	Sql_Query(SqlHandle,"DELETE FROM char_effects WHERE charid = %u", m_POwner->id);
 
-	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i)
-	{
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
         CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
-        if (PStatusEffect->GetDuration() != 0)
+
+        if (logout && PStatusEffect->GetFlag() & EFFECTFLAG_LOGOUT)
+            continue;
+
+        uint32 realduration = (PStatusEffect->GetDuration() + PStatusEffect->GetStartTime() - gettick()) / 1000;
+
+        if (realduration > 0)
         {
             const int8* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid, subpower, tier) VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u);";
 
             // save power of utsusemi and blink
-            if(PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE){
+            if (PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE) {
                 PStatusEffect->SetPower(m_POwner->getMod(MOD_UTSUSEMI));
-            } else if(PStatusEffect->GetStatusID() == EFFECT_BLINK){
+            }
+            else if (PStatusEffect->GetStatusID() == EFFECT_BLINK) {
                 PStatusEffect->SetPower(m_POwner->getMod(MOD_BLINK));
-            } else if(PStatusEffect->GetStatusID() == EFFECT_STONESKIN){
+            }
+            else if (PStatusEffect->GetStatusID() == EFFECT_STONESKIN) {
                 PStatusEffect->SetPower(m_POwner->getMod(MOD_STONESKIN));
             }
 
-			Sql_Query(SqlHandle, Query,
-				m_POwner->id,
-				PStatusEffect->GetStatusID(),
+            uint32 tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 1000;
+            uint32 duration = PStatusEffect->GetDuration() == 0 ? 0 : realduration;
+
+            Sql_Query(SqlHandle, Query,
+                m_POwner->id,
+                PStatusEffect->GetStatusID(),
                 PStatusEffect->GetIcon(),
-				PStatusEffect->GetPower(),
-				PStatusEffect->GetTickTime() / 1000,
-			   (PStatusEffect->GetDuration() + PStatusEffect->GetStartTime() - gettick()) / 1000,
-				PStatusEffect->GetSubID(),
+                PStatusEffect->GetPower(),
+                tick,
+                duration,
+                PStatusEffect->GetSubID(),
                 PStatusEffect->GetSubPower(),
                 PStatusEffect->GetTier());
-		}
-	}
+        }
+    }
 }
 
 /************************************************************************
@@ -1410,6 +1450,25 @@ uint16 CStatusEffectContainer::GetConfrontationEffect()
         }
     }
     return 0;
+}
+
+void CStatusEffectContainer::CopyConfrontationEffect(CBattleEntity* PEntity)
+{
+    for (auto PEffect : m_StatusEffectList)
+    {
+        if (PEffect->GetFlag() & EFFECTFLAG_CONFRONTATION)
+        {
+            PEntity->StatusEffectContainer->AddStatusEffect(new CStatusEffect(*PEffect));
+        }
+    }
+}
+
+void CStatusEffectContainer::ForEachEffect(std::function<void(CStatusEffect*)> func)
+{
+    for (auto&& PEffect : m_StatusEffectList)
+    {
+        func(PEffect);
+    }
 }
 
 bool CStatusEffectContainer::CheckForElevenRoll()

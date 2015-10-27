@@ -20,7 +20,7 @@ end;
 
 function onItemUse(target)
 
-    if(target:hasStatusEffect(EFFECT_REGAIN)) then
+    if (target:hasStatusEffect(EFFECT_REGAIN)) then
         target:messageBasic(423);
     else
         -- delete old

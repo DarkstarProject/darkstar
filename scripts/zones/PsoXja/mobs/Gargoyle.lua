@@ -23,7 +23,7 @@ function onMobDeath(mob, killer)
 	local GargoyleOffset = 16814082 + (i-1);
 	local DoorOffset = 16814445 + (i);
 
-		if(mob:getID() == GargoyleOffset) then
+		if (mob:getID() == GargoyleOffset) then
 			GetNPCByID(DoorOffset):openDoor(30);
 		end
 	end

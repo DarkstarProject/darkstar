@@ -50,9 +50,9 @@ function onZoneIn(player,prevZone)
 		player:setPos(-14.744,0.036,-119.736,1); -- To Floor 1 {R}
 	end	
 	
-	if(player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==0)then
+	if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==0) then
 		cs = 0x0032;	
-    elseif(ENABLE_COP_ZONE_CAP == 1)then
+    elseif (ENABLE_COP_ZONE_CAP == 1) then
 		player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0);-- ZONE LEVEL RESTRICTION	
 	end
 	return cs;	
@@ -65,66 +65,66 @@ end;
 function onRegionEnter(player,region)
 	local regionID =region:GetRegionID();
 	-- printf("regionID: %u",regionID);
-	if(player:getAnimation()==0)then
+	if (player:getAnimation()==0) then
 	switch (region:GetRegionID()): caseof
 	{
 		[10] = function (x) player:startEvent(0x002D); end,--ok
 		[11] = function (x) 
-			if(GetNPCByID(16867700):getAnimation() == 8) then 
+			if (GetNPCByID(16867700):getAnimation() == 8) then 
 				player:startEvent(32);--ok 
 			end
 		end,
 		[12] = function (x) 
-		     if(GetNPCByID(16867699):getAnimation() == 8) then 
+		     if (GetNPCByID(16867699):getAnimation() == 8) then 
 	            player:startEvent(33); end --ok
 		     end,
 		[20] = function (x)player:startEvent(41);end,--ok
 		
 		[21] = function (x)
-			if(GetNPCByID(16867697):getAnimation() == 8) then 
+			if (GetNPCByID(16867697):getAnimation() == 8) then 
 				player:startEvent(30);--ok
 			end
 		end,
 		[22] = function (x)
-			if(GetNPCByID(16867698):getAnimation() == 8) then
+			if (GetNPCByID(16867698):getAnimation() == 8) then
 				player:startEvent(31);--ok  
 			end
 		end,
 		[30] = function (x) player:startEvent(42);end,
 		
 		[31] = function (x) 
-		    if(GetNPCByID(16867703):getAnimation() == 8) then
+		    if (GetNPCByID(16867703):getAnimation() == 8) then
 	            player:startEvent(35); --ok
             end
         end,
 		[32] = function (x) 
-			if(GetNPCByID(16867705):getAnimation() == 8) then 
+			if (GetNPCByID(16867705):getAnimation() == 8) then 
 				player:startEvent(36);
 			end
 		end,
 		[33] = function (x) 
-			if(GetNPCByID(16867702):getAnimation() == 8) then 
+			if (GetNPCByID(16867702):getAnimation() == 8) then 
 				player:startEvent(37); 
 		    end
 		end,
 		[34] = function (x) 
-			if(GetNPCByID(16867704):getAnimation() == 8) then 
+			if (GetNPCByID(16867704):getAnimation() == 8) then 
 				player:startEvent(38); 
 			end
 		end,
 		[40] = function (x) player:startEvent(43); end,
 		[41] = function (x) 
-			if(GetNPCByID(16867707):getAnimation() == 8) then 
+			if (GetNPCByID(16867707):getAnimation() == 8) then 
 				player:startEvent(34); 
 			end
 		end,
 		[42] = function (x) 
-			if(GetNPCByID(16867701):getAnimation() == 8) then 
+			if (GetNPCByID(16867701):getAnimation() == 8) then 
 				player:startEvent(39); 
 			end
 		end,
 		[43] = function (x) 
-			if(GetNPCByID(16867706):getAnimation() == 8) then 
+			if (GetNPCByID(16867706):getAnimation() == 8) then 
 				player:startEvent(40); 
 			end
 		end,
@@ -151,12 +151,12 @@ end;
 function onEventFinish(player,csid,option)	
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
-	if(csid ==0x0032)then
+	if (csid ==0x0032) then
 		player:setVar("PromathiaStatus",1);
-		if(ENABLE_COP_ZONE_CAP == 1)then
+		if (ENABLE_COP_ZONE_CAP == 1) then
 			player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0);-- ZONE LEVEL RESTRICTION
 		end
-	elseif(csid ==0x002D and option == 1)then
+	elseif (csid ==0x002D and option == 1) then
 		player:setPos(-379.947, 48.045, 334.059, 192, 9); -- To Pso'Xja {R}
 	end
 end;	

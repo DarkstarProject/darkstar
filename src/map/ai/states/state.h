@@ -74,7 +74,7 @@ class CState
 
     // push message for only target to see
     // outputs nothing for any other than char
-    void PushError(MSGBASIC_ID msgID, int32 param = 0, int32 value = 0);
+    void PushError(MSGBASIC_ID msgID, int32 param = 0, int32 value = 0, CBattleEntity* PTarget = nullptr);
 
     CBattleEntity* m_PEntity;
     CBattleEntity* m_PTarget;

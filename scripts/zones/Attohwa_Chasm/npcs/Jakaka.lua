@@ -63,11 +63,11 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-    if(csid == 12) then
+    if (csid == 12) then
 		player:addKeyItem(MIASMA_FILTER);
 		player:messageSpecial(KEYITEM_OBTAINED,MIASMA_FILTER);
 		player:setVar("[ENM]MiasmaFilter",os.time(t)+86400*MIASMA_FILTER_COOLDOWN); -- Current time + 1dayInSeconds*MIASMA_FILTER_COOLDOWN
-	elseif(csid == 13) then
+	elseif (csid == 13) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1777); -- Flaxen Pouch
             return;

@@ -3,7 +3,7 @@
 -- MOB:  Giant Spider	
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");
+require("scripts/globals/fieldsofvalor");
 require("scripts/zones/Eastern_Altepa_Desert/MobIDs");	
 	
 -----------------------------------	

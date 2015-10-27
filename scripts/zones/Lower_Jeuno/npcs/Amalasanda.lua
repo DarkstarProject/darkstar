@@ -25,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
 	if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then 
-		if(player:sendGuild(60416,1,23,1)) then
+		if (player:sendGuild(60416,1,23,1)) then
 			player:showText(npc, AMALASANDA_SHOP_DIALOG);
 		end
 	else

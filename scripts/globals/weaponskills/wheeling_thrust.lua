@@ -27,7 +27,7 @@ function onUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
 	--Defense ignored is 50%, 75%, 100% (50% at 100 TP is accurate, other values are guesses)
-	params.ignoredDef = true;
+	params.ignoresDef = true;
 	params.ignored100 = 0.5;
 	params.ignored200 = 0.75;
 	params.ignored300 = 1;

@@ -38,7 +38,7 @@ function onSpellCast(caster,target,spell)
         dmg = 0
     end
     
-	if(target:isUndead()) then
+	if (target:isUndead()) then
 		spell:setMsg(75); -- No effect
 		return dmg;
 	end
@@ -49,7 +49,7 @@ function onSpellCast(caster,target,spell)
 
 	local leftOver = (caster:getHP() + dmg) - caster:getMaxHP();
 
-	if(leftOver > 0) then
+	if (leftOver > 0) then
 		caster:addStatusEffect(EFFECT_MAX_HP_BOOST, (leftOver/caster:getMaxHP())*100, 0, 60);
 	end
 

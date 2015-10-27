@@ -16,9 +16,9 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 function onTrade(player,npc,trade)
 	
 	-- Trade Bee Larvae
-	if(trade:hasItemQty(1267,1) and trade:getItemCount() == 1) then 
+	if (trade:hasItemQty(1267,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
-		SpawnMob(17428810,300):updateEnmity(player);
+		SpawnMob(17428810,300):updateClaim(player);
 		-- Note: The ??? reappears after 15 minutes
 	end
 

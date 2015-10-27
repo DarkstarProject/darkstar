@@ -246,7 +246,7 @@ void CMeritPointsCategoriesPacket::MeritPointsCategoriesPacket(CCharEntity* PCha
 	Minuet Effect (+1 per upgrade)
 	Madrigal Effect (+1 per upgrade)
 0x04 0x00 - RNG - Group 1
-	Scavenge Recast (-10 seconds per upgrade)
+	Scavenge (5% increase to recovered/spent ammo per upgrade)
 	Camouflage Recast (-10 seconds per upgrade)
 	Sharpshot Recast (-10 seconds per upgrade)
 	Unlimited Shot Recast (-6 seconds per upgrade)

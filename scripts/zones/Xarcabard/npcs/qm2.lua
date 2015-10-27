@@ -25,8 +25,8 @@ end;
 
 function onTrigger(player,npc)
 	local BorealTiger = GetMobAction(17236204);
-	if((OldSchoolG2 == false) or (BorealTiger == ACTION_NONE or BorealTiger == ACTION_SPAWN)) then
-		if(player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(ROUND_FRIGICITE) == false) then
+	if ((OldSchoolG2 == false) or (BorealTiger == ACTION_NONE or BorealTiger == ACTION_SPAWN)) then
+		if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(ROUND_FRIGICITE) == false) then
 			player:addKeyItem(ROUND_FRIGICITE);
 			player:messageSpecial(KEYITEM_OBTAINED, ROUND_FRIGICITE);
 		else

@@ -6,7 +6,7 @@
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
-require("/scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/zones/Empyreal_Paradox/TextIDs");
 
 function onMobInitialize(mob)
     mob:addMod(MOD_REGAIN, 50);

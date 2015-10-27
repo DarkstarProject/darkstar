@@ -32,15 +32,15 @@
 
 CLuaRegion::CLuaRegion(lua_State *L)
 {
-	if (!lua_isnil(L,-1))
-	{
-		m_PLuaRegion = (CRegion*)(lua_touserdata(L,-1));
-        lua_pop(L,1);
-	} 
-    else 
+    if (!lua_isnil(L, -1))
     {
-		m_PLuaRegion = nullptr;
-	}
+        m_PLuaRegion = (CRegion*)(lua_touserdata(L, -1));
+        lua_pop(L, 1);
+    }
+    else
+    {
+        m_PLuaRegion = nullptr;
+    }
 }
 
 /************************************************************************
@@ -51,9 +51,9 @@ CLuaRegion::CLuaRegion(lua_State *L)
 
 CLuaRegion::CLuaRegion(CRegion* PRegion)
 {
-    DSP_DEBUG_BREAK_IF(PRegion == nullptr); 
+    DSP_DEBUG_BREAK_IF(PRegion == nullptr);
 
-	m_PLuaRegion = PRegion;
+    m_PLuaRegion = PRegion;
 }
 
 /************************************************************************
@@ -64,10 +64,10 @@ CLuaRegion::CLuaRegion(CRegion* PRegion)
 
 inline int32 CLuaRegion::GetRegionID(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaRegion == nullptr); 
+    DSP_DEBUG_BREAK_IF(m_PLuaRegion == nullptr);
 
     lua_pushinteger(L, m_PLuaRegion->GetRegionID());
-	return 1;
+    return 1;
 }
 
 /************************************************************************
@@ -78,10 +78,10 @@ inline int32 CLuaRegion::GetRegionID(lua_State *L)
 
 inline int32 CLuaRegion::GetCount(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaRegion == nullptr); 
+    DSP_DEBUG_BREAK_IF(m_PLuaRegion == nullptr);
 
     lua_pushinteger(L, m_PLuaRegion->GetCount());
-	return 1;
+    return 1;
 }
 
 /************************************************************************
@@ -92,11 +92,11 @@ inline int32 CLuaRegion::GetCount(lua_State *L)
 
 inline int32 CLuaRegion::AddCount(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaRegion == nullptr); 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+    DSP_DEBUG_BREAK_IF(m_PLuaRegion == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    lua_pushinteger(L, m_PLuaRegion->AddCount(lua_tointeger(L,-1)));
-	return 1;
+    lua_pushinteger(L, m_PLuaRegion->AddCount(lua_tointeger(L, -1)));
+    return 1;
 }
 
 /************************************************************************
@@ -107,11 +107,11 @@ inline int32 CLuaRegion::AddCount(lua_State *L)
 
 inline int32 CLuaRegion::DelCount(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaRegion == nullptr); 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+    DSP_DEBUG_BREAK_IF(m_PLuaRegion == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    lua_pushinteger(L, m_PLuaRegion->DelCount(lua_tointeger(L,-1)));
-	return 1;
+    lua_pushinteger(L, m_PLuaRegion->DelCount(lua_tointeger(L, -1)));
+    return 1;
 }
 
 /************************************************************************
@@ -122,11 +122,11 @@ inline int32 CLuaRegion::DelCount(lua_State *L)
 
 const int8 CLuaRegion::className[] = "CRegion";
 
-Lunar<CLuaRegion>::Register_t CLuaRegion::methods[] = 
+Lunar<CLuaRegion>::Register_t CLuaRegion::methods[] =
 {
-	LUNAR_DECLARE_METHOD(CLuaRegion,GetRegionID),
+    LUNAR_DECLARE_METHOD(CLuaRegion,GetRegionID),
     LUNAR_DECLARE_METHOD(CLuaRegion,GetCount),
     LUNAR_DECLARE_METHOD(CLuaRegion,AddCount),
     LUNAR_DECLARE_METHOD(CLuaRegion,DelCount),
-	{nullptr,nullptr}
-}; 
+    {nullptr,nullptr}
+};

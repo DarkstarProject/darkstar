@@ -8,9 +8,9 @@
 --  Notes: Used instead of Gliding Spike by certain notorious monsters.
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 ---------------------------------------------------
@@ -19,7 +19,7 @@ require("/scripts/globals/monstertpmoves");
 -- if not in Bird form, then ignore. 
 ---------------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-	if((mob:getFamily() == 122 or mob:getFamily() == 123 or mob:getFamily() == 124) and mob:AnimationSub() ~= 3) then
+	if ((mob:getFamily() == 122 or mob:getFamily() == 123 or mob:getFamily() == 124) and mob:AnimationSub() ~= 3) then
 		return 1;
 	else
 		return 0;

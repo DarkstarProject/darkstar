@@ -7,9 +7,9 @@
 --  Range: Melee?
 --  Notes: Very potent paralysis effect. Is NOT a Gaze Attack, unlike Chaotic Eye.
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)

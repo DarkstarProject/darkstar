@@ -32,28 +32,30 @@
 
 class CLuaAbility
 {
-	CAbility* m_PLuaAbility;
+    CAbility* m_PLuaAbility;
 
 public:
 
-	static const int8 className[];
-	static Lunar<CLuaAbility>::Register_t methods[];
+    static const int8 className[];
+    static Lunar<CLuaAbility>::Register_t methods[];
 
-	CLuaAbility(lua_State*);
-	CLuaAbility(CAbility*);
+    CLuaAbility(lua_State*);
+    CLuaAbility(CAbility*);
 
-	CAbility* GetAbility() const
-	{
-		return m_PLuaAbility;
-	}
+    CAbility* GetAbility() const
+    {
+        return m_PLuaAbility;
+    }
 
-	int32 getID(lua_State*);
+    int32 getID(lua_State*);
     int32 getRecast(lua_State*);
+    int32 getRange(lua_State*);
     int32 setMsg(lua_State*);
     int32 setAnimation(lua_State*);
     int32 setRecast(lua_State*);
     int32 setCE(lua_State*);
     int32 setVE(lua_State*);
+    int32 setRange(lua_State*);
 };
 
 #endif

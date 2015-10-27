@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @givegil <amount> <player>
--- auth: Link, modified by TeoTwawki
 -- desc: Gives the specified amount of gil to GM or target player.
 ---------------------------------------------------------------------------------------------------
 

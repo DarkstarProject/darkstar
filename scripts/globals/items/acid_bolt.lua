@@ -20,6 +20,6 @@ function onAdditionalEffect(player,target,damage)
     else
         target:delStatusEffect(EFFECT_DEFENSE_BOOST);
         target:addStatusEffect(EFFECT_DEFENSE_DOWN, 1, 0, 60);
-        return SUBEFFECT_DEFENSE_DOWN, 160, EFFECT_DEFENSE_DOWN;
+        return SUBEFFECT_DEFENSE_DOWN, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_DEFENSE_DOWN;
     end
 end;

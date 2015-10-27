@@ -35,9 +35,9 @@ function onTrigger(player,npc)
 
 	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,16) == false) then
 		player:startEvent(316);
-	elseif(player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET) == QUEST_ACCEPTED and ChildsPlay == QUEST_AVAILABLE) then 
+	elseif (player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET) == QUEST_ACCEPTED and ChildsPlay == QUEST_AVAILABLE) then 
 		player:startEvent(0x0000); -- Start quest 
-	elseif(ChildsPlay == QUEST_ACCEPTED) then
+	elseif (ChildsPlay == QUEST_ACCEPTED) then
 		player:startEvent(0x003d); -- mid quest CS
 	else
 		player:startEvent(0x003a); -- Standard dialog
@@ -61,16 +61,16 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x0000) then 
+	if (csid == 0x0000) then 
 		player:addQuest(JEUNO,CHILD_S_PLAY);
-	elseif(csid == 0x0001) then 
+	elseif (csid == 0x0001) then 
 		player:addTitle(TRADER_OF_MYSTERIES);
 		player:addKeyItem(WONDER_MAGIC_SET);
 		player:messageSpecial(KEYITEM_OBTAINED,WONDER_MAGIC_SET);
 		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:tradeComplete(trade);
 		player:completeQuest(JEUNO,CHILD_S_PLAY);
-	elseif(csid == 316) then
+	elseif (csid == 316) then
 		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",16,true);
 	end
 end;

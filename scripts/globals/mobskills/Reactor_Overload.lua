@@ -4,14 +4,14 @@
 --  Blinkable 1-3 hit, addtional effect Silence on hit. 
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-	if(mob:AnimationSub() ~= 3) then
+	if (mob:AnimationSub() ~= 3) then
 		return 1;
 	end
 

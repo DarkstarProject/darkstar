@@ -8,22 +8,30 @@ package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
-
+require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local mobspawn = GetMobByID(16921015); 
-    local qm1 = GetNPCByID(16921027);
     -- Trade 12 Ghrah M Chips
-    --[[if (GetMobAction(16921015) == 0 and trade:hasItemQty(1872,12) and trade:getItemCount() == 12) then
-            player:tradeComplete();
-            qm1:hideNPC(900); -- hides the ??? for 15 mins, in seconds.
-            mobspawn:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players @pos.
-            SpawnMob(16921015,180):updateEnmity(player); -- Spawn Jailer of Fortitude
-    end]]
+    if (GetMobAction(Jailer_of_Fortitude) == 0 and trade:hasItemQty(1872,12) and trade:getItemCount() == 12) then
+        local qm1 = GetNPCByID(Jailer_of_Fortitude_QM);
+        -- Complete the trade
+        player:tradeComplete();
+        -- Hide the NPC, will become unhidden after Jailer of Fortitude despawns
+        qm1:setStatus(STATUS_DISAPPEAR);
+        -- Change MobSpawn to ???'s @pos. 
+        GetMobByID(Jailer_of_Fortitude):setSpawn(qm1:getXPos(),qm1:getYPos(),qm1:getZPos()); 
+        -- Change spawn point of pets to be at the ???'s pos as well
+        GetMobByID(Kf_Ghrah_WHM):setSpawn(qm1:getXPos(),qm1:getYPos(),qm1:getZPos());
+        GetMobByID(Kf_Ghrah_BLM):setSpawn(qm1:getXPos(),qm1:getYPos(),qm1:getZPos());
+        -- Spawn Jailer of Fortitude
+        SpawnMob(Jailer_of_Fortitude,180):updateClaim(player); 
+        SpawnMob(Kf_Ghrah_WHM,180):updateClaim(player); 
+        SpawnMob(Kf_Ghrah_BLM,180):updateClaim(player); 
+    end
 end;               
 -----------------------------------
 -- onTrigger Action

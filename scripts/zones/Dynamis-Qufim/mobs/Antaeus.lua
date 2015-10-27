@@ -22,7 +22,7 @@ end;
 
 function onMobEngaged(mob,target)
 
-   if(GetServerVariable("[DynaQufim]Boss_Trigger")==0)then	
+   if (GetServerVariable("[DynaQufim]Boss_Trigger")==0) then	
    --spwan additional mob :     
            for  Nightmare_Stirge = 16945407, 16945420, 1 do	
 		         SpawnMob(Nightmare_Stirge);   
@@ -57,7 +57,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-  if(killer:hasKeyItem(DYNAMIS_QUFIM_SLIVER ) == false)then 
+  if (killer:hasKeyItem(DYNAMIS_QUFIM_SLIVER ) == false) then 
        killer:addKeyItem(DYNAMIS_QUFIM_SLIVER);
 	   killer:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_QUFIM_SLIVER);
   end

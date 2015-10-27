@@ -469,7 +469,7 @@ int8* DecodeStringLinkshell(int8* signature, int8* target)
 
         if (tempChar == '\0')
         {
-            decodedSignature[currChar-1] = '\0';
+            decodedSignature[currChar == 0 ? currChar : currChar-1] = '\0';
             break;
         }
         else if (tempChar == 63)

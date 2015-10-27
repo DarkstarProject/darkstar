@@ -3,7 +3,7 @@
 -- NPC:  Signpost		
 -----------------------------------	
 	
-require("/scripts/globals/settings");	
+require("scripts/globals/settings");	
 	
 -----------------------------------	
 -- onTrigger Action	

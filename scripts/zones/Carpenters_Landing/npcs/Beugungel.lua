@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(534,5,22,0)) then
+	if (player:sendGuild(534,5,22,0)) then
 		player:showText(npc,BEUGUNGEL_SHOP_DIALOG);
 	end
 end;

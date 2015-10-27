@@ -121,7 +121,7 @@ function onEventUpdate(player,csid,option)
 			local improvedResults = giveImprovedResults(player);
 
 			for itemDrop = 3, table.getn(clammingItems), 4 do
-				if(dropRate <= clammingItems[itemDrop + improvedResults]) then
+				if (dropRate <= clammingItems[itemDrop + improvedResults]) then
 					
 					player:setLocalVar("ClammedItem", clammingItems[itemDrop - 2]);
 					player:setVar("ClammedItem_" .. clammingItems[itemDrop - 2], player:getVar("ClammedItem_" .. clammingItems[itemDrop - 2]) + 1);

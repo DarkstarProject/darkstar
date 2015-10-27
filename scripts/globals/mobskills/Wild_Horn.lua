@@ -7,13 +7,13 @@
 --  Range: Unknown cone
 --  Notes:
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-	if(target:isBehind(mob, 48) == true) then
+	if (target:isBehind(mob, 48) == true) then
 		return 1;
     end
 	return 0;

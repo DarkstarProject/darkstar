@@ -1,9 +1,9 @@
 ---------------------------------------------
 --  Winds of Oblivion
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     mob:showText(mob, PROMATHIA_TEXT + 6);

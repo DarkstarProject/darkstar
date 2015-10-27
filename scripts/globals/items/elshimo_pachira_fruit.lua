@@ -26,7 +26,7 @@ end;
 
 function onItemUse(target)
 	target:addStatusEffect(EFFECT_FOOD,0,0,120,5604);
-	if(target:hasStatusEffect(EFFECT_POISON) == false) then
+	if (target:hasStatusEffect(EFFECT_POISON) == false) then
 		target:addStatusEffect(EFFECT_POISON,1,3,120);
 	else
 		target:messageBasic(423);

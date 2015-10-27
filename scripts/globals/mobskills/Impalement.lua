@@ -6,22 +6,19 @@
 --  Utsusemi/Blink absorb: No
 --  Range: Single Target
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/magic");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
-        return 0;
-    end
-    return 1;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    target:addStatusEffect(EFFECT_SLOW,128,0,120);
+    MobStatusEffectMove(mob, target, EFFECT_SLOW, 128, 0, 120);
 
     local currentHP = target:getHP();
     -- remove all by 5%

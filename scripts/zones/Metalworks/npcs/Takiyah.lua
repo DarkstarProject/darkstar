@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-	if(GetRegionOwner(QUFIMISLAND) ~= BASTOK) then 
+	if (GetRegionOwner(QUFIMISLAND) ~= BASTOK) then 
 		player:showText(npc,TAKIYAH_CLOSED_DIALOG);
 	else
 		player:showText(npc,TAKIYAH_OPEN_DIALOG);

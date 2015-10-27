@@ -6,7 +6,7 @@
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
-require("/scripts/zones/Throne_Room/TextIDs");
+require("scripts/zones/Throne_Room/TextIDs");
 require("scripts/globals/settings");
 
 function onMobInitialize(mob)

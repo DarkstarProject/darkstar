@@ -1,24 +1,30 @@
 -----------------------------------------
 -- ID: 4605
--- Item: naval_rice_ball
+-- Item: Naval Rice Ball
 -- Food Effect: 30Min, All Races
 -----------------------------------------
--- HP +26, Dex +3, Vit +4, hHP +2 (Atk +40, Def +40, Arcana Killer)*enhances rice ball effect
+-- HP +26
+-- Dex +3
+-- Vit +4
+-- hHP +2 
+-- Effect with enhancing equipment (Note: these are latents on gear with the effect)
+-- Atk +40
+-- Def +40
+-- Arcana Killer (guesstimated 5%)
 -----------------------------------------
 
 require("scripts/globals/status");
-require("scripts/globals/equipment");
 
 -----------------------------------------
 -- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
-   local result = 0;
-	if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-		result = 246;
-	end
-return result;
+    local result = 0;
+    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+        result = 246;
+    end
+    return result;
 end;
 
 -----------------------------------------
@@ -26,7 +32,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_FOOD,RiceBalls(target),0,1800,4605);
+    target:addStatusEffect(EFFECT_FOOD,0,0,1800,4605);
 end;
 
 -----------------------------------
@@ -34,14 +40,10 @@ end;
 -----------------------------------
 
 function onEffectGain(target,effect)
-   local power = effect:getPower();
-	target:addMod(MOD_HP, 26);
-   target:addMod(MOD_DEX, 3);
-   target:addMod(MOD_VIT, 3);
-   target:addMod(MOD_HPHEAL, 2);
-   target:addMod(MOD_ATT, 40*power);
-   target:addMod(MOD_DEF, 40*power);
-   target:addMod(MOD_ARCANA_KILLER,5*power); -- TODO: This power is sort of made up.
+    target:addMod(MOD_HP, 26);
+    target:addMod(MOD_DEX, 3);
+    target:addMod(MOD_VIT, 3);
+    target:addMod(MOD_HPHEAL, 2);
 end;
 
 -----------------------------------------
@@ -49,12 +51,8 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-   local power = effect:getPower();
-	target:delMod(MOD_HP, 26);
-   target:delMod(MOD_DEX, 3);
-   target:delMod(MOD_VIT, 3);
-   target:delMod(MOD_HPHEAL, 2);
-   target:delMod(MOD_ATT, 40*power);
-   target:delMod(MOD_DEF, 40*power);
-   target:delMod(MOD_ARCANA_KILLER,5*power);
+    target:delMod(MOD_HP, 26);
+    target:delMod(MOD_DEX, 3);
+    target:delMod(MOD_VIT, 3);
+    target:delMod(MOD_HPHEAL, 2);
 end;
