@@ -1,24 +1,25 @@
 -----------------------------------
 -- Area: Wajaom Woodlands
--- NPC:  ??? (Spawn Gotoh Zha the Redolent(ZNM T3))
+--  NPC: ??? (Spawn Gotoh Zha the Redolent(ZNM T3))
 -- @pos -337 -31 676 51
 -----------------------------------
 package.loaded["scripts/zones/Wajaom_Woodlands/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Wajaom_Woodlands/TextIDs");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	if (trade:hasItemQty(2575,1) and trade:getItemCount() == 1) then -- Trade Sheep Botfly
-		player:tradeComplete();
-		SpawnMob(16986430,180):updateClaim(player);
-	end
-	
+    local mobID = 16986430;
+    if (trade:hasItemQty(2575,1) and trade:getItemCount() == 1) then -- Trade Sheep Botfly
+        if (GetMobAction(mobID) == ACTION_NONE) then
+            player:tradeComplete();
+            SpawnMob(mobID):updateClaim(player);
+        end
+    end
 end;
 
 -----------------------------------
@@ -26,7 +27,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(NOTHING_HAPPENS);
+    player:messageSpecial(NOTHING_HAPPENS);
 end;
 
 -----------------------------------
@@ -34,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,6 +44,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

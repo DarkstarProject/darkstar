@@ -1574,7 +1574,7 @@ inline int32 CLuaBaseEntity::delMission(lua_State *L)
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
         uint8 current = PChar->m_missionLog[LogID].current;
-        bool complete = (LogID == MISSION_COP || MissionID >= 64) ? false : PChar->m_missionLog[LogID].complete[MissionID];
+        bool complete = (LogID == MISSION_COP-11 || MissionID >= 64) ? false : PChar->m_missionLog[LogID].complete[MissionID];
 
         if (current == MissionID)
         {
@@ -1616,7 +1616,7 @@ inline int32 CLuaBaseEntity::hasCompletedMission(lua_State *L)
 
     if (LogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
-        complete = (LogID == MISSION_COP || MissionID >= 64) ? MissionID > ((CCharEntity*)m_PBaseEntity)->m_missionLog[LogID].current :
+        complete = (LogID == MISSION_COP-11 || MissionID >= 64) ? MissionID < ((CCharEntity*)m_PBaseEntity)->m_missionLog[LogID].current :
             ((CCharEntity*)m_PBaseEntity)->m_missionLog[LogID].complete[MissionID];
     }
     else
@@ -1683,7 +1683,7 @@ inline int32 CLuaBaseEntity::completeMission(lua_State *L)
         else
         {
             PChar->m_missionLog[LogID].current = LogID > 2 ? 0 : -1;
-            if (LogID != MISSION_COP && MissionID < 64)
+            if (LogID != MISSION_COP-11 && MissionID < 64)
             {
                 PChar->m_missionLog[LogID].complete[MissionID] = true;
                 PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID + 11, 2));
@@ -7544,6 +7544,20 @@ inline int32 CLuaBaseEntity::hideNPC(lua_State *L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::updateNPCHideTime(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+
+    if (m_PBaseEntity->status == STATUS_DISAPPEAR)
+    {
+        uint32 OpenTime = (!lua_isnil(L, 1) && lua_isnumber(L, 1)) ? (uint32)lua_tointeger(L, 1) * 1000 : 15000;
+
+        CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", gettick() + OpenTime, m_PBaseEntity, CTaskMgr::TASK_ONCE, reappear_npc));
+    }
+    return 0;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::getCurrency(lua_State *L)
@@ -10387,6 +10401,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAngle),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,showNPC),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideNPC),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateNPCHideTime),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBCNMloot),

@@ -797,6 +797,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
     m_PMobSkill->setTotalTargets(actionsLength);
     m_PMobSkill->setTP(m_skillTP);
+    m_PMobSkill->setHPP(m_PMob->GetHPP());
 
     apAction_t Action;
     Action.ActionTarget = m_PBattleSubTarget;
@@ -1180,7 +1181,7 @@ void CAIMobDummy::ActionAttack()
                                 else
                                 {
                                     int16 naturalh2hDMG = 0;
-                                    if (m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH || (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK))
+                                    if (m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H || (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK))
                                     {
                                         naturalh2hDMG = (float)(m_PBattleTarget->GetSkill(SKILL_H2H) * 0.11f) + 3;
                                     }
@@ -2142,7 +2143,7 @@ bool CAIMobDummy::CanMoveForward(float currentDistance)
         return false;
     }
 
-    if(m_PMob->getMobMod(MOBMOD_HP_STANDBACK) == 1 && currentDistance < 20 && m_PMob->GetHPP() > 70)
+    if(m_PMob->getMobMod(MOBMOD_HP_STANDBACK) > 0 && currentDistance < 20 && m_PMob->GetHPP() >= m_PMob->getMobMod(MOBMOD_HP_STANDBACK))
     {
         // Excluding Nins, mobs should not standback if can't cast magic
         if (m_PMob->GetMJob() != JOB_NIN && m_PMob->SpellContainer->HasSpells() && !CanCastSpells())

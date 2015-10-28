@@ -114,6 +114,7 @@ private:
     void SetQuarterMaster(const char* MemberName);            // устанавливаем владельца сокровищ
 	void RemovePartyLeader(CBattleEntity* PEntity);     // лидер покидает группу
     std::vector<partyInfo_t> GetPartyInfo();
+    void RefreshFlags(std::vector<partyInfo_t>&);
 };
 
 #endif

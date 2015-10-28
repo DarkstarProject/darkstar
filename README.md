@@ -1,10 +1,12 @@
 [![Build Status](https://travis-ci.org/DarkstarProject/darkstar.svg?branch=master)](https://travis-ci.org/DarkstarProject/darkstar)
+[![Build status](https://ci.appveyor.com/api/projects/status/69bemc5htluv9ss3/branch/master?svg=true)](https://ci.appveyor.com/project/teschnei/darkstar/branch/master)
 Darkstar Project
 ========
 
 Welcome to the DarkStar project, an emulation server for FFXI.
 Visit our forums and IRC to keep in touch with the latest developments.
 
+**Roadmap:** https://trello.com/b/hBZnfihW
 **Forums:** https://forums.dspt.info/index.php
 
 **IRC Channel**

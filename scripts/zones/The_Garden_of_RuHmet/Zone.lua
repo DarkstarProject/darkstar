@@ -96,23 +96,12 @@ end;
 function onGameHour(npc, mob, player)
     
     local VanadielHour = VanadielHour();
-    local qm2 = GetNPCByID(16921028); -- Jailer of Faith
-    local qm3 = GetNPCByID(16921029); -- Ix'aern drk
+    local qm2 = GetNPCByID(16921028); -- Ix'aern drk
+    local qm3 = GetNPCByID(Jailer_of_Faith_QM); -- Jailer of Faith
     local s = math.random(6,12) -- wait time till change to next spawn pos, random 15~30 mins.
-    
-    -- Jailer of Fortitude spawn randomiser
-    if (VanadielHour % 6 == 0) then
-        local qm1 = GetNPCByID(Jailer_of_Fortitude_QM);
-        qm1:hideNPC(60);
-        
-        local qm1position = math.random(1,5);
-        qm1:setPos(Jailer_of_Fortitude_QM_POS[qm1position][1], Jailer_of_Fortitude_QM_POS[qm1position][2], Jailer_of_Fortitude_QM_POS[qm1position][3]);
-    end
-    
+
     -- Jailer of Faith spawn randomiser
     if (VanadielHour % s == 0) then
-        -- Get the ??? NPC 
-        local qm3 = GetNPCByID(Jailer_of_Faith_QM);
         -- Hide it for 60 seconds
         qm3:hideNPC(60);
         
@@ -121,7 +110,7 @@ function onGameHour(npc, mob, player)
         -- Set the new ??? place
         qm3:setPos(Jailer_of_Faith_QM_POS[qm3position][1], Jailer_of_Faith_QM_POS[qm3position][2], Jailer_of_Faith_QM_POS[qm3position][3]);
     end
-    
+
     --[[
     -- Ix'DRK spawn randomiser
     if (VanadielHour % 6 == 0) then -- Change ??? position every 6 hours Vana'diel time (~15 mins)

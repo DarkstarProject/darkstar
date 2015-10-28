@@ -22,15 +22,6 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer)
-    killer:showText(mob,SKY_GOD_OFFSET + 10);
-    GetNPCByID(17310052):hideNPC(900);
-end;
-
------------------------------------
 -- onMonsterMagicPrepare
 -----------------------------------
 
@@ -57,10 +48,7 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob, target, damage)
-    local LV_diff = target:getMainLvl() - mob:getMainLvl();
-    local INT_diff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
-    local ranDmgMod = math.random(0,15)
-    local dmg = INT_diff+LV_diff+ranDmgMod;
+    local dmg = math.random(130,150)
     local params = {};
     params.bonusmab = 0;
     params.includemab = false;
@@ -71,4 +59,20 @@ function onAdditionalEffect(mob, target, damage)
     dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WIND,dmg);
 
     return SUBEFFECT_WIND_DAMAGE, MSGBASIC_ADD_EFFECT_DMG, dmg;
+end;
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, killer)
+    killer:showText(mob,SKY_GOD_OFFSET + 10);
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    GetNPCByID(17310053):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

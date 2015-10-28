@@ -14,14 +14,14 @@ require("scripts/zones/RuAun_Gardens/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	-- Trade Gem of the East and Springstone
-	if (GetMobAction(17309981) == 0 and trade:hasItemQty(1418,1) and trade:hasItemQty(1419,1) and trade:getItemCount() == 2) then
-		player:tradeComplete();
-		SpawnMob(17309981,300):updateClaim(player); -- Spawn Seiryu
-		player:showText(npc,SKY_GOD_OFFSET + 9);
-	end
-	
+    
+    -- Trade Gem of the East and Springstone
+    if (GetMobAction(17309981) == 0 and trade:hasItemQty(1418,1) and trade:hasItemQty(1419,1) and trade:getItemCount() == 2) then
+        player:tradeComplete();
+        SpawnMob(17309981,300):updateClaim(player); -- Spawn Seiryu
+        player:showText(npc,SKY_GOD_OFFSET + 9);
+        npc:setStatus(STATUS_DISAPPEAR);
+    end
 end; 
 
 -----------------------------------
@@ -29,7 +29,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(SKY_GOD_OFFSET + 1);
+    player:messageSpecial(SKY_GOD_OFFSET + 1);
 end; 
 
 -----------------------------------

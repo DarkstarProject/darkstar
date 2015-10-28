@@ -49,7 +49,7 @@ local GearSets =  {
              {id = 24, items = {16143,14583,15007,16314,15751} , matches = 2, matchType = matchtype.any, mods = {{MOD_MP, 10, 10, 0}} },        --  Cobra Unit Coat Set
              {id = 25, items = {16062,14525,14933,15604,15688} , matches = 5, matchType = matchtype.any, mods = {{MOD_UDMGBREATH, -8, 0, 0}, {MOD_UDMGMAGIC, -8, 0, 0}} },       --  Amir Korazin Set - Double mod here! It is why it has 2 IDs.
 
-             {id = 27, items = {11281,15015,16337,11364}, matches = 2, matchType = matchtype.any, mods = {{MOD_STORETP, 5, 5, 0}} },             --  Hachiryu Haramaki Set - Store tp
+             {id = 27, items = {11281,15015,16337,11364}, matches = 2, matchType = matchtype.any, mods = {{MOD_STORETP, 5, 5, 5}} },             --  Hachiryu Haramaki Set - Store tp
              {id = 28, items = {11064,11084,11104,11124,11144}, matches = 5, matchType = matchtype.any, mods = {{MOD_DA_DOUBLE_DAMAGE, 5, 0, 0}} }, --  Ravager's Armor +2 Set - Double attack double damage chance
 
              {id = 29, items = {11808,11824,11850,11857,11858}, matches = 2, matchType = matchtype.any, mods = {{MOD_DOUBLE_ATTACK, 5, 0, 0}} },   --  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.

@@ -211,7 +211,7 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
     }
     uint16 MinimumDelay = m_Weapons[SLOT_MAIN]->getDelay(); // Track base delay.  We will need this later.  MOD_DELAY is ignored for now.
     uint16 WeaponDelay = m_Weapons[SLOT_MAIN]->getDelay() - getMod(MOD_DELAY);
-    if (m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH)
+    if (m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H)
     {
         if (!StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK))
         {

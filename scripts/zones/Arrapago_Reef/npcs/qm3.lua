@@ -1,24 +1,25 @@
 -----------------------------------
 -- Area: Arrapago Reef
--- NPC:  ??? (Spawn Zareehkl the Jubilant(ZNM T2))
+--  NPC: ??? (Spawn Zareehkl the Jubilant(ZNM T2))
 -- @pos 176 -4 182 54
 -----------------------------------
 package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Arrapago_Reef/TextIDs");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	if (trade:hasItemQty(2598,1) and trade:getItemCount() == 1) then -- Trade Merow No 11 Molting
-		player:tradeComplete();
-		SpawnMob(16998873,180):updateClaim(player);
-	end
-	
+    local mobID = 16998873;
+    if (trade:hasItemQty(2598,1) and trade:getItemCount() == 1) then -- Trade Merow No 11 Molting
+        if (GetMobAction(mobID) == ACTION_NONE) then
+            player:tradeComplete();
+            SpawnMob(mobID):updateClaim(player);
+        end
+    end
 end;
 
 -----------------------------------
@@ -26,7 +27,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(NOTHING_HAPPENS);
+    player:messageSpecial(NOTHING_HAPPENS);
 end;
 
 -----------------------------------
@@ -34,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,6 +44,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -333,8 +333,8 @@ INSERT INTO `zone_settings` VALUES (284,1,'127.0.0.1',54230,'Celennia_Memorial_L
 INSERT INTO `zone_settings` VALUES (285,1,'127.0.0.1',54230,'Feretory',0,0,0,0,0,0.00,32);
 INSERT INTO `zone_settings` VALUES (286,0,'127.0.0.1',0,'286',0,0,0,0,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (287,0,'127.0.0.1',0,'287',0,0,0,0,0,0.00,0);
-INSERT INTO `zone_settings` VALUES (288,0,'127.0.0.1',54230,'Escha-ZiTah',80,80,80,80,0,0.00,0);
-INSERT INTO `zone_settings` VALUES (289,0,'127.0.0.1',0,'289',0,0,0,0,0,0.00,0);
+INSERT INTO `zone_settings` VALUES (288,2,'127.0.0.1',54230,'Escha_ZiTah',80,80,80,80,0,0.00,0);
+INSERT INTO `zone_settings` VALUES (289,2,'127.0.0.1',54230,'Escha_RuAun',80,80,80,80,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (290,0,'127.0.0.1',0,'290',0,0,0,0,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (291,0,'127.0.0.1',0,'291',0,0,0,0,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (292,0,'127.0.0.1',0,'292',0,0,0,0,0,0.00,0);
