@@ -83,11 +83,6 @@ bool CAIController::TryDeaggro()
         tryTimeDeaggro = PMob->m_disableScent;
     }
 
-    if (tryTimeDeaggro && m_Tick >= m_DeaggroTime + std::chrono::milliseconds(MOB_DEAGGRO_TIME) && PMob->CanDeaggro())
-    {
-        tryDetectDeaggro = true;
-    }
-
     //Hide allows you to lose aggro on certain types of enemies.
     //Generally works on monsters that don't track by scent, regardless of detection method.
     //Can work on monsters that track by scent if the proper conditions are met (double rain weather, crossing over water, etc.) 
@@ -513,12 +508,6 @@ void CAIController::DoCombatTick(time_point tick)
     if (!(PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
     {
         PMob->PAI->PathFind->LookAt(PTarget->loc.p);
-    }
-
-    if (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_BIND))
-    {
-        // bind prevents deaggro
-        m_DeaggroTime = m_Tick;
     }
 
     // Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.

@@ -28,6 +28,11 @@ This file is part of DarkStar-server source code.
 #include "../entities/mobentity.h"
 #include "../packets/entity_update.h"
 
+CAIMob::CAIMob(CBattleEntity* _PEntity, std::unique_ptr<CPathFind>&& _Pathfind, std::unique_ptr<CController>&& _Controller) :
+    CAIBattle(_PEntity, std::forward<std::unique_ptr<CPathFind>>(_Pathfind),
+        std::forward<std::unique_ptr<CController>>(_Controller))
+{}
+
 void CAIMob::Internal_Disengage()
 {
     auto PMob = static_cast<CMobEntity*>(PEntity);
@@ -44,7 +49,7 @@ void CAIMob::Internal_Disengage()
     PMob->CallForHelp(false);
     PMob->animation = ANIMATION_NONE;
 
-    CAIBattle::Disengage();
+    CAIBattle::Internal_Disengage();
 }
 
 bool CAIMob::Internal_WeaponSkill(uint16 targid, uint16 wsid)
@@ -89,4 +94,25 @@ bool CAIMob::IsWeaponSkillEnabled()
 void CAIMob::SetWeaponSkillEnabled(bool enabled)
 {
     m_WeaponSkillEnabled = enabled;
+}
+
+void CAIMob::OnDisengage()
+{
+    auto PMob = static_cast<CMobEntity*>(PEntity);
+    PathFind->Clear();
+    PMob->PEnmityContainer->Clear();
+
+    if (PMob->getMobMod(MOBMOD_IDLE_DESPAWN))
+    {
+        PMob->SetDespawnTime(std::chrono::milliseconds(PMob->getMobMod(MOBMOD_IDLE_DESPAWN)));
+    }
+    // this will let me decide to walk home or despawn
+    PMob->m_neutral = true;
+
+    PMob->delRageMode();
+    PMob->m_OwnerID.clean();
+
+    CAIBattle::OnDisengage();
+
+    luautils::OnMobDisengage(PMob);
 }

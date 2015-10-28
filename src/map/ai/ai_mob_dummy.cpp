@@ -180,32 +180,6 @@ void CAIMobDummy::ActionEngage()
 
 void CAIMobDummy::ActionDisengage()
 {
-    m_PPathFind->Clear();
-
-    if (m_PMob->getMobMod(MOBMOD_IDLE_DESPAWN))
-    {
-        //m_PMob->SetDespawnTimer(m_PMob->getMobMod(MOBMOD_IDLE_DESPAWN));
-    }
-
-    // this will let me decide to walk home or despawn
-    m_LastActionTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME;
-    m_PMob->m_neutral = true;
-
-    m_checkDespawn = true;
-    m_NeutralTime = m_Tick;
-
-    m_PBattleTarget  = nullptr;
-
-    m_PMob->delRageMode();
-    m_PMob->m_OwnerID.clean();
-    m_PMob->updatemask |= (UPDATE_STATUS | UPDATE_HP);
-    m_PMob->animation = ANIMATION_NONE;
-
-    //if (m_PMob->animationsub == 2) m_PMob->animationsub = 3;
-
-    TransitionBack();
-
-    luautils::OnMobDisengage(m_PMob);
 }
 
 /************************************************************************

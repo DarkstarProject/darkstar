@@ -67,7 +67,6 @@ private:
     time_point m_LastMagicTime;
     time_point m_LastMobSkillTime;
     time_point m_LastSpecialTime;
-    time_point m_DeaggroTime;
     time_point m_NeutralTime;
     time_point m_WaitTime;
 

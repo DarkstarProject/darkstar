@@ -25,10 +25,10 @@
 
 #include "../../common/timer.h"
 #include "../packets/entity_update.h"
+#include "../ai/ai_mob.h"
 #include "../ai/controllers/ai_controller.h"
 
 #include <string.h>
-
 
 #include "../utils/battleutils.h"
 
@@ -98,8 +98,8 @@ CMobEntity::CMobEntity()
 
     // For Dyna Stats
     m_StatPoppedMobs = false;
-    //TODO: fixme
-    PAI = std::make_unique<CAIBattle>(this, std::make_unique<CPathFind>(this), std::make_unique<CAIController>(this));
+
+    PAI = std::make_unique<CAIMob>(this, std::make_unique<CPathFind>(this), std::make_unique<CAIController>(this));
 }
 
 void CMobEntity::setMobFlags(uint32 MobFlags)
@@ -505,6 +505,7 @@ bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
 
 void CMobEntity::Spawn()
 {
+    CBattleEntity::Spawn();
     m_giveExp = true;
     m_HiPCLvl = 0;
     m_THLvl = 0;
@@ -561,5 +562,4 @@ void CMobEntity::Spawn()
         }
     }
 
-    luautils::OnMobSpawn(this);
 }

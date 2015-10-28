@@ -54,6 +54,7 @@ bool CDespawnState::Update(time_point tick)
 
 void CDespawnState::Cleanup(time_point tick)
 {
+    m_PEntity->Spawn();
     //spawn here - PEntity with a virtual reset method?(cant use in constructor)
 }
 

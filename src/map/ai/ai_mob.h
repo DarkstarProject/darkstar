@@ -29,11 +29,13 @@ This file is part of DarkStar-server source code.
 class CAIMob : public CAIBattle
 {
 public:
+    CAIMob(CBattleEntity*, std::unique_ptr<CPathFind>&&, std::unique_ptr<CController>&&);
 
     virtual void Internal_Disengage() override;
     virtual bool Internal_WeaponSkill(uint16 targid, uint16 wsid) override;
 
     virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
+    virtual void OnDisengage() override;
 
     bool IsAutoAttackEnabled();
     void SetAutoAttackEnabled(bool);

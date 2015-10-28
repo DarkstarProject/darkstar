@@ -887,7 +887,7 @@ void CZoneEntities::ZoneServer(uint32 tick)
 		CMobEntity* PMob = (CMobEntity*)it->second;
 
 		PMob->StatusEffectContainer->CheckEffects(tick);
-		PMob->PBattleAI->CheckCurrentAction(tick);
+		//PMob->PBattleAI->CheckCurrentAction(tick);
         PMob->PAI->Tick(server_clock::now());
 		PMob->StatusEffectContainer->CheckRegen(tick);
 	}
@@ -931,7 +931,7 @@ void CZoneEntities::ZoneServer(uint32 tick)
 		{
 			PChar->PRecastContainer->Check();
 			PChar->StatusEffectContainer->CheckEffects(tick);
-			PChar->PBattleAI->CheckCurrentAction(tick);
+			//PChar->PBattleAI->CheckCurrentAction(tick);
             PChar->PAI->Tick(server_clock::now());
 			PChar->PTreasurePool->CheckItems(tick);
 			PChar->StatusEffectContainer->CheckRegen(tick);
@@ -946,7 +946,7 @@ void CZoneEntities::ZoneServerRegion(uint32 tick)
 		CMobEntity* PMob = (CMobEntity*)it->second;
 
 		PMob->StatusEffectContainer->CheckEffects(tick);
-		PMob->PBattleAI->CheckCurrentAction(tick);
+		//PMob->PBattleAI->CheckCurrentAction(tick);
         PMob->PAI->Tick(server_clock::now());
 	}
 
@@ -967,7 +967,7 @@ void CZoneEntities::ZoneServerRegion(uint32 tick)
 		{
 			PChar->PRecastContainer->Check();
 			PChar->StatusEffectContainer->CheckEffects(tick);
-			PChar->PBattleAI->CheckCurrentAction(tick);
+			//PChar->PBattleAI->CheckCurrentAction(tick);
             PChar->PAI->Tick(server_clock::now());
 			PChar->PTreasurePool->CheckItems(tick);
 

@@ -5106,6 +5106,11 @@ namespace battleutils
         uint32 base = PSpell->getCastTime();
         uint32 cast = base;
 
+        if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) || PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
+        {
+            cast = cast * 1.5f;
+        }
+
         if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
         {
             if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
@@ -5286,6 +5291,11 @@ namespace battleutils
         if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_COMPOSURE))
         {
             recast *= 1.25;
+        }
+
+        if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) || PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
+        {
+            recast *= 1.5;
         }
 
         if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
