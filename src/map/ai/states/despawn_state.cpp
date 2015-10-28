@@ -21,11 +21,11 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#include "spawn_state.h"
+#include "despawn_state.h"
 #include "../../entities/baseentity.h"
 #include "../../packets/entity_animation.h"
 
-CSpawnState::CSpawnState(CBaseEntity* _PEntity, duration spawnTime) :
+CDespawnState::CDespawnState(CBaseEntity* _PEntity, duration spawnTime) :
     CState(_PEntity, _PEntity->targid),
     m_spawnTime(spawnTime)
 {
@@ -39,11 +39,11 @@ CSpawnState::CSpawnState(CBaseEntity* _PEntity, duration spawnTime) :
     }
 }
 
-CSpawnState::CSpawnState(CBaseEntity* _PEntity) :
-    CSpawnState(_PEntity, 0s)
+CDespawnState::CDespawnState(CBaseEntity* _PEntity) :
+    CDespawnState(_PEntity, 0s)
 {}
 
-bool CSpawnState::Update(time_point tick)
+bool CDespawnState::Update(time_point tick)
 {
     if (m_spawnTime > 0s && tick > getEntryTime() + m_spawnTime)
     {
@@ -52,12 +52,12 @@ bool CSpawnState::Update(time_point tick)
     return false;
 }
 
-void CSpawnState::Cleanup(time_point tick)
+void CDespawnState::Cleanup(time_point tick)
 {
     //spawn here - PEntity with a virtual reset method?(cant use in constructor)
 }
 
-bool CSpawnState::CanChangeState()
+bool CDespawnState::CanChangeState()
 {
     return false;
 }

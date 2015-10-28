@@ -23,7 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "ai_base.h"
 
-#include "states/spawn_state.h"
+#include "states/despawn_state.h"
 #include "../entities/baseentity.h"
 #include "../packets/entity_animation.h"
 
@@ -152,5 +152,5 @@ void CAIBase::queueAction(queueAction_t&& action)
 
 void CAIBase::Internal_Despawn(duration spawnTime)
 {
-    ChangeState<CSpawnState>(PEntity, spawnTime);
+    ChangeState<CDespawnState>(PEntity, spawnTime);
 }

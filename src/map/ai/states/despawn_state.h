@@ -26,11 +26,11 @@ This file is part of DarkStar-server source code.
 
 #include "state.h"
 
-class CSpawnState : public CState
+class CDespawnState : public CState
 {
 public:
-    CSpawnState(CBaseEntity* PEntity);
-    CSpawnState(CBaseEntity* PEntity, duration spawnTime);
+    CDespawnState(CBaseEntity* PEntity);
+    CDespawnState(CBaseEntity* PEntity, duration spawnTime);
     virtual bool Update(time_point tick) override;
     virtual void Cleanup(time_point tick) override;
     virtual bool CanChangeState() override;
