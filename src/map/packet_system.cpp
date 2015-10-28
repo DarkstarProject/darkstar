@@ -3860,7 +3860,10 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     {
                         PChar->m_LastYell = gettick() + (map_config.yell_cooldown * 1000);
                         // ShowDebug(CL_CYAN" LastYell: %u \n" CL_RESET, PChar->m_LastYell);
-                        message::send(MSG_CHAT_YELL, nullptr, 0, new CChatMessagePacket(PChar, MESSAGE_YELL, data[6]));
+                        int8 packetData[4] {};
+                        WBUFL(packetData, 0) = PChar->id;
+
+                        message::send(MSG_CHAT_YELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_YELL, data[6]));
                     }
                     else // You must wait longer to perform that action.
                     {
