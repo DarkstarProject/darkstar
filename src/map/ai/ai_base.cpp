@@ -59,6 +59,14 @@ bool CAIBase::CanChangeState()
     return !GetCurrentState() || GetCurrentState()->CanChangeState();
 }
 
+void CAIBase::Reset()
+{
+    if (PathFind)
+    {
+        PathFind->Clear();
+    }
+}
+
 void CAIBase::Tick(time_point _tick)
 {
     m_PrevTick = m_Tick;
@@ -145,7 +153,7 @@ void CAIBase::Despawn()
     }
 }
 
-void CAIBase::queueAction(queueAction_t&& action)
+void CAIBase::QueueAction(queueAction_t&& action)
 {
     ActionQueue.pushAction(std::move(action));
 }

@@ -483,11 +483,6 @@ void LoadMOBList()
 
                 PMob->PBattleAI = new CAIMobDummy(PMob);
 
-                if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
-                {
-                    PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-                }
-
                 // Check if we should be looking up scripts for this mob
                 PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle, 55);
 
@@ -506,6 +501,16 @@ void LoadMOBList()
                 mobutils::InitializeMob(PMob, GetZone(ZoneID));
 
                 GetZone(ZoneID)->InsertMOB(PMob);
+
+
+                if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
+                {
+                    PMob->Spawn();
+                }
+                else
+                {
+                    PMob->PAI->Despawn();
+                }
             }
         }
     }

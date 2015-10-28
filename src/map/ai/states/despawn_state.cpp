@@ -32,7 +32,7 @@ CDespawnState::CDespawnState(CBaseEntity* _PEntity, duration spawnTime) :
     if (_PEntity->PAI->IsSpawned())
     {
         _PEntity->loc.zone->PushPacket(_PEntity, CHAR_INRANGE, new CEntityAnimationPacket(_PEntity, CEntityAnimationPacket::Fade_Out));
-        _PEntity->PAI->queueAction(queueAction_t(3s, false, [](CBaseEntity* PEntity) {
+        _PEntity->PAI->QueueAction(queueAction_t(3s, false, [](CBaseEntity* PEntity) {
             PEntity->status = STATUS_DISAPPEAR;
             //#event despawn
         }));

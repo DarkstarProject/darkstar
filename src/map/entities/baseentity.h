@@ -135,6 +135,30 @@ class CBaseEntity
 {
 public:
 
+    CBaseEntity();						// конструктор
+    virtual ~CBaseEntity();				// деструктор
+
+    virtual void    Spawn();
+    virtual const int8* GetName();      // имя сущности
+    uint16			getZone();			// текущая зона
+    float			GetXPos();			// позиция по координате X
+    float			GetYPos();			// позиция по координате Y
+    float			GetZPos();			// позиция по координате Z
+    uint8			GetRotPos();
+    void			HideName(bool hide); // hide / show name
+    bool			IsNameHidden();		// checks if name is hidden
+
+    CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);
+
+    void            ResetLocalVars();
+    uint32          GetLocalVar(const char* var);
+    void            SetLocalVar(const char* var, uint32 val);
+
+    virtual void    UpdateEntity() = 0;
+
+    void            SetModelId(uint16 modelId);     // Set new modelid
+    uint16          GetModelId();                   // Get the modelid
+
     uint32			id;					// глобальный идентификатор, уникальный на сервере
     uint16			targid;				// локалный идентификатор, уникальный в зоне
     ENTITYTYPE		objtype;			// тип сущности
@@ -152,34 +176,10 @@ public:
     uint8			allegiance;			// what types of targets the entity can fight
     uint8           updatemask;         // what to update next server tick to players nearby
 
-    virtual const int8* GetName();      // имя сущности
-
-    uint16			getZone();			// текущая зона
-    float			GetXPos();			// позиция по координате X
-    float			GetYPos();			// позиция по координате Y
-    float			GetZPos();			// позиция по координате Z
-    uint8			GetRotPos();
-    void			HideName(bool hide); // hide / show name
-    bool			IsNameHidden();		// checks if name is hidden
-
     CAIGeneral*     PBattleAI;          // интеллект любой сущности
     std::unique_ptr<CAIBase> PAI;       // AI container
     CBattlefield*	PBCNM;              // pointer to bcnm (if in one)
     CInstance*		PInstance;
-
-    CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);
-
-    void            ResetLocalVars();
-    uint32          GetLocalVar(const char* var);
-    void            SetLocalVar(const char* var, uint32 val);
-
-    virtual void    UpdateEntity() = 0;
-
-    void            SetModelId(uint16 modelId);     // Set new modelid
-    uint16          GetModelId();                   // Get the modelid
-
-    CBaseEntity();						// конструктор
-    virtual ~CBaseEntity();				// деструктор
 protected:
     std::map<std::string, uint32> m_localVars;
 };

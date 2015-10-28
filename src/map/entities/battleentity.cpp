@@ -1149,3 +1149,11 @@ bool CBattleEntity::CanUseSpell(CSpell* PSpell)
 {
     return spell::CanUseSpell(this, PSpell);
 }
+
+void CBattleEntity::Spawn()
+{
+    CBaseEntity::Spawn();
+    animation = ANIMATION_NONE;
+    m_OwnerID.clean();
+    HideName(false);
+}

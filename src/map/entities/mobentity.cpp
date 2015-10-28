@@ -502,3 +502,64 @@ bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
 
     return false;
 }
+
+void CMobEntity::Spawn()
+{
+    m_giveExp = true;
+    m_HiPCLvl = 0;
+    m_THLvl = 0;
+    m_ItemStolen = false;
+    m_DropItemTime = 1000;
+    animationsub = getMobMod(MOBMOD_SPAWN_ANIMATIONSUB);
+    CallForHelp(false);
+
+    PEnmityContainer->Clear();
+
+    uint8 level = m_minLevel;
+
+    // Generate a random level between min and max level
+    if (m_maxLevel != m_minLevel)
+    {
+        level += dsprand::GetRandomNumber(0, m_maxLevel - m_minLevel);
+    }
+
+    SetMLevel(level);
+    SetSLevel(level);//calculated in function
+    delRageMode();
+
+    mobutils::CalculateStats(this);
+    mobutils::GetAvailableSpells(this);
+
+    // spawn somewhere around my point
+    loc.p = m_SpawnPoint;
+
+    if (m_roamFlags & ROAMFLAG_AMBUSH)
+    {
+        HideName(true);
+        animationsub = 0;
+        // this will hide the mob
+        HideModel(true);
+    }
+
+    if (m_roamFlags & ROAMFLAG_STEALTH)
+    {
+        HideName(true);
+        Untargetable(true);
+    }
+
+    // add people to my posse
+    if (getMobMod(MOBMOD_ASSIST))
+    {
+        for (int8 i = 1; i < getMobMod(MOBMOD_ASSIST) + 1; i++)
+        {
+            CMobEntity* PMob = (CMobEntity*)GetEntity(targid + i, TYPE_MOB);
+
+            if (PMob != nullptr)
+            {
+                PMob->setMobMod(MOBMOD_SUPERLINK, targid);
+            }
+        }
+    }
+
+    luautils::OnMobSpawn(this);
+}

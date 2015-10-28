@@ -10017,7 +10017,7 @@ int32 CLuaBaseEntity::queue(lua_State* L)
 
     auto ms = lua_tointeger(L, 1);
 
-    m_PBaseEntity->PAI->queueAction(queueAction_t(ms, true, luautils::register_fp(2)));
+    m_PBaseEntity->PAI->QueueAction(queueAction_t(ms, true, luautils::register_fp(2)));
 
     return 0;
 }
@@ -10030,7 +10030,7 @@ int32 CLuaBaseEntity::timer(lua_State* L)
 
     auto ms = lua_tointeger(L, 1);
 
-    m_PBaseEntity->PAI->queueAction(queueAction_t(ms, false, luautils::register_fp(2)));
+    m_PBaseEntity->PAI->QueueAction(queueAction_t(ms, false, luautils::register_fp(2)));
 
     return 0;
 }

@@ -46,6 +46,7 @@ public:
     CAIBase(const CAIBase&) = delete;
     CAIBase& operator=(const CAIBase&) = delete;
 
+    virtual void Reset();
     void Tick(time_point _tick);
     CState* GetCurrentState();
     bool IsStateStackEmpty();
@@ -67,7 +68,7 @@ public:
 
     void Despawn();
 
-    virtual void queueAction(queueAction_t&&);
+    virtual void QueueAction(queueAction_t&&);
 
     virtual void Internal_Despawn(duration spawnTime);
 

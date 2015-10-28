@@ -114,7 +114,7 @@ bool CAIBattle::Internal_Engage(uint16 targetid)
     if (!m_battleTarget && PTarget && !PTarget->isDead())
     {
         m_battleTarget = targetid;
-        PEntity->PAI->queueAction(queueAction_t(0s, true, [this, targetid](CBaseEntity* PEntity) {
+        PEntity->PAI->QueueAction(queueAction_t(0s, true, [this, targetid](CBaseEntity* PEntity) {
             ChangeState<CAttackState>(static_cast<CBattleEntity*>(PEntity), targetid);
         }));
         PEntity->animation = ANIMATION_ATTACK;

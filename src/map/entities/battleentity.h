@@ -441,14 +441,10 @@ class CPetEntity;
 class CBattleEntity : public CBaseEntity
 {
 public:
+    CBattleEntity();						// конструктор
+    virtual ~CBattleEntity();						// деструктор
 
-    health_t	    health;						// hp,mp,tp
-    stats_t		    stats;						// атрибуты STR,DEX,VIT,AGI,INT,MND,CHR
-    skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
-    uint16		    m_Immunity;					// Mob immunity
-    uint16			m_magicEvasion;		        // store this so it can be removed easily
-    uint8			m_enmityRange;              // only get enmity from entities this close
-    bool            m_unkillable;               //entity is not able to die (probably until some action removes this flag)
+    CAIBattle*      PAIBattle();
 
     uint16          STR();
     uint16          DEX();
@@ -466,15 +462,11 @@ public:
 
     uint8           GetSpeed();
 
-    uint32			charmTime;					// to hold the time entity is charmed
-    bool			isCharmed;					// is the battle entity charmed?
-
     bool		    isDead();					// проверяем, мертва ли сущность
     bool		    isAlive();
     bool			isInDynamis();
     bool			hasImmunity(uint32 imID);
     bool			isAsleep();
-
 
     JOBTYPE		    GetMJob();					// главная профессия
     JOBTYPE		    GetSJob();					// дополнительная профессия
@@ -538,6 +530,22 @@ public:
     virtual void    addTrait(CTrait*);
     virtual void    delTrait(CTrait*);
 
+    virtual bool    ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags);
+    virtual bool    CanUseSpell(CSpell*);
+
+    virtual void    Spawn() override;
+
+    health_t	    health;						// hp,mp,tp
+    stats_t		    stats;						// атрибуты STR,DEX,VIT,AGI,INT,MND,CHR
+    skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
+    uint16		    m_Immunity;					// Mob immunity
+    uint16			m_magicEvasion;		        // store this so it can be removed easily
+    uint8			m_enmityRange;              // only get enmity from entities this close
+    bool            m_unkillable;               // entity is not able to die (probably until some action removes this flag)
+
+    uint32			charmTime;					// to hold the time entity is charmed
+    bool			isCharmed;					// is the battle entity charmed?
+
     uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
     ECOSYSTEM		m_EcoSystem;			    // эко-система сущности
     CItemWeapon*	m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
@@ -554,12 +562,7 @@ public:
 
     CStatusEffectContainer* StatusEffectContainer;
 
-    CAIBattle*      PAIBattle();
-    virtual bool ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags);
-    virtual bool CanUseSpell(CSpell*);
 
-    CBattleEntity();						// конструктор
-    virtual ~CBattleEntity();						// деструктор
 
 private:
 

@@ -57,6 +57,13 @@ CBaseEntity::~CBaseEntity()
 	}
 }
 
+void CBaseEntity::Spawn()
+{
+    status = allegiance == ALLEGIANCE_MOB ? STATUS_MOB : STATUS_NORMAL;
+    ResetLocalVars();
+    PAI->Reset();
+}
+
 const int8* CBaseEntity::GetName()
 {
 	return name.c_str();
