@@ -482,8 +482,19 @@ namespace battleutils
                               // Quadav has it's own version
                               id = 866;
                           }
+                          else if(familyId == 171)
+                          {
+                              // Lamiae
+                              id = 1675;
+                          }
+                          else if(familyId == 246)
+                          {
+                              // Troll
+                              id = 1996;
+                          }
                           else
                           {
+                              // Defaulting to crappy goblin animation
                               id = 479;
                           }
                           break;
