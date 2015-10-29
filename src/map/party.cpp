@@ -1043,30 +1043,33 @@ void CParty::PushPacket(uint32 senderID, uint16 ZoneID, CBasicPacket* packet)
     delete packet;
 }
 
-void CParty::PushEffectsPacket()
+void CParty::PushEffectsPacket(CCharEntity* PChar)
 {
     auto info = GetPartyInfo();
 
     for (auto& PMember : members)
     {
-        auto PChar = static_cast<CCharEntity*>(PMember);
-        auto effects = std::make_unique<CPartyEffectsPacket>();
-        for (auto& memberinfo : info)
+        if (PMember->getZone() == PChar->getZone())
         {
-            if (memberinfo.partyid == m_PartyID && memberinfo.id != PChar->id)
+            auto PMemberChar = static_cast<CCharEntity*>(PMember);
+            auto effects = std::make_unique<CPartyEffectsPacket>();
+            for (auto& memberinfo : info)
             {
-                auto PPartyMember = zoneutils::GetChar(memberinfo.id);
-                if (PPartyMember)
+                if (memberinfo.partyid == m_PartyID && memberinfo.id != PMemberChar->id)
                 {
-                    effects->AddMemberEffects(PPartyMember);
-                }
-                else
-                {
-                    effects->AddMemberEffects(memberinfo.id);
+                    auto PPartyMember = zoneutils::GetChar(memberinfo.id);
+                    if (PPartyMember && PPartyMember->getZone() == PMemberChar->getZone())
+                    {
+                        effects->AddMemberEffects(PPartyMember);
+                    }
+                    else
+                    {
+                        effects->AddMemberEffects(memberinfo.id);
+                    }
                 }
             }
+            PMemberChar->pushPacket(effects.release());
         }
-        PChar->pushPacket(effects.release());
     }
 }
 

@@ -90,7 +90,7 @@ public:
     void SetPartyNumber(uint8 number);
 
     void PushPacket(uint32 senderID, uint16 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
-    void PushEffectsPacket();
+    void PushEffectsPacket(CCharEntity* PChar);
 	
 	CAlliance* m_PAlliance;
 
