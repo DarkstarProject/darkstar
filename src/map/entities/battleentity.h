@@ -30,6 +30,7 @@
 #include "../items/item_weapon.h"
 
 #include "baseentity.h"
+#include "../alliance.h"
 #include "../trait.h"
 #include "../modifier.h"
 #include "../party.h"
