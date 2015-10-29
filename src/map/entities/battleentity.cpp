@@ -1069,49 +1069,6 @@ uint16 CBattleEntity::GetSkill(uint16 SkillID)
     return 0;
 }
 
-void CBattleEntity::ForParty(std::function<void(CBattleEntity*)> func)
-{
-    if (PParty)
-    {
-        for (auto PMember : PParty->members)
-        {
-            func(PMember);
-        }
-    }
-    else
-    {
-        func(this);
-    }
-}
-
-void CBattleEntity::ForAlliance(std::function<void(CBattleEntity*)> func)
-{
-    if (PParty)
-    {
-        if (PParty->m_PAlliance)
-        {
-            for (auto PAllianceParty : PParty->m_PAlliance->partyList)
-            {
-                for (auto PMember : PAllianceParty->members)
-                {
-                    func(PMember);
-                }
-            }
-        }
-        else
-        {
-            for (auto PMember : PParty->members)
-            {
-                func(PMember);
-            }
-        }
-    }
-    else
-    {
-        func(this);
-    }
-}
-
 void CBattleEntity::addTrait(CTrait* PTrait)
 {
     TraitList.push_back(PTrait);
