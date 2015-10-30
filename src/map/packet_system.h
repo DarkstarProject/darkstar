@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 #define _PACKETSYSTEM_H
 
 #include "../common/cbasetypes.h"
+#include "packets/basic.h"
 
 #include "entities/charentity.h"
 
@@ -32,10 +33,9 @@ struct map_session_data_t;
 
 extern uint8 PacketSize[512];
 
-extern void(*PacketParser[512])(map_session_data_t*, CCharEntity*, int8*);
+extern void(*PacketParser[512])(map_session_data_t*, CCharEntity*, CBasicPacket);
 
-void PrintPacket(int8* data);
+void PrintPacket(CBasicPacket data);
 void PacketParserInitialize();
-bool ProcessPacket(uint16 size, uint16 type);
 
 #endif

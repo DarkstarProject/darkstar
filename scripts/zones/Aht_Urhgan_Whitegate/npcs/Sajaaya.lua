@@ -1,11 +1,13 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---  NPC:  Sajaaya
---  Type: Weather Checker
---  @pos -4.727 -6.999 -25.312 50
+-- Area: Aht Urhgan Whitegate
+-- NPC: Sajaaya
+-- Type: Weather Reporter
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -19,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x01f6);
+    player:startEvent(0x01F6,0,0,0,0,0,0,0,VanadielTime());
 end;
 
 -----------------------------------
@@ -27,8 +29,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -36,7 +38,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
-

@@ -24,13 +24,13 @@ function onTrigger(player,npc)
 	local ToBee = player:getQuestStatus(WINDURST,TO_BEE_OR_NOT_TO_BEE);
 	local ToBeeOrNotStatus = player:getVar("ToBeeOrNot_var");
 	
-	if(ToBeeOrNotStatus == 10 and ToBee == QUEST_AVAILABLE) then
+	if (ToBeeOrNotStatus == 10 and ToBee == QUEST_AVAILABLE) then
 		player:startEvent(0x0043); -- Quest Started - He gives you honey
-	elseif(ToBee == QUEST_ACCEPTED) then 
+	elseif (ToBee == QUEST_ACCEPTED) then 
 		player:startEvent(0x0044); -- After honey is given to player...... but before 5th hondy is given to Zayhi
-	elseif(ToBee == QUEST_COMPLETED and ToBeeOrNotStatus == 5) then
+	elseif (ToBee == QUEST_COMPLETED and ToBeeOrNotStatus == 5) then
 		player:startEvent(0x0050); -- Quest Finish - Gives Mulsum
-	elseif(ToBee == QUEST_COMPLETED and ToBeeOrNotStatus == 0 and player:needToZone()) then
+	elseif (ToBee == QUEST_COMPLETED and ToBeeOrNotStatus == 0 and player:needToZone()) then
 		player:startEvent(0x004F); -- After Quest but before zoning "it's certainly gotten quiet around here..."
 	else		
 		player:startEvent(0x0128);
@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
 printf("CSID: %u",csid);
 printf("RESULT: %u",option);
 
-	if(csid == 0x0043) then  
+	if (csid == 0x0043) then  
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4370); -- Cannot give Honey because player Inventory is full
 		else
@@ -70,7 +70,7 @@ printf("RESULT: %u",option);
 			player:addItem(4370);
 			player:messageSpecial(ITEM_OBTAINED, 4370); -- Gives player Honey x1
 		end
-	elseif(csid == 0x0050) then -- After Honey#5: ToBee quest Finish (tooth hurts from all the Honey)
+	elseif (csid == 0x0050) then -- After Honey#5: ToBee quest Finish (tooth hurts from all the Honey)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4156); -- Cannot give Mulsum because player Inventory is full
 		else

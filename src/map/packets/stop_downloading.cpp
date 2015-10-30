@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -35,11 +35,11 @@ CStopDownloadingPacket::CStopDownloadingPacket(CCharEntity* PChar, std::vector< 
 
 	for (int8 x = 0; x < blacklist.size(); x++)
 	{
-		uint32 offset = (0x04 + (20 * x)) - 4;
+		uint32 offset = (0x04 + (20 * x)) ;
 		WBUFL(data, offset) = blacklist[x].first;
 		memcpy(data + offset + 4, blacklist[x].second.c_str(), blacklist[x].second.size());
 	}
 
-	WBUFB(data, 0xF4 - 4) = 3; // Unknown but important!
-	WBUFB(data, 0xF5 - 4) = (int8)blacklist.size();
+	WBUFB(data, 0xF4 ) = 3; // Unknown but important!
+	WBUFB(data, 0xF5 ) = (int8)blacklist.size();
 }

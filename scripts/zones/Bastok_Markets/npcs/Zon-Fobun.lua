@@ -63,7 +63,7 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,CURSEPAPER);
 
 	elseif (csid == 0x00fc) then
-		if(player:getFreeSlotsCount() >= 1) then
+		if (player:getFreeSlotsCount() >= 1) then
 			player:delKeyItem(CURSEPAPER);
 			player:setVar("cCollectSilence",0);
 			player:setVar("cCollectCurse",0);

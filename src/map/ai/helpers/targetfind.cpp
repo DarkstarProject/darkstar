@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -50,17 +50,17 @@ void CTargetFind::reset()
     m_zone = 0;
     m_findFlags = FINDFLAGS_NONE;
 
-    m_APoint = NULL;
-    m_PRadiusAround = NULL;
-    m_PTarget = NULL;
-    m_PMasterTarget = NULL;
+    m_APoint = nullptr;
+    m_PRadiusAround = nullptr;
+    m_PTarget = nullptr;
+    m_PMasterTarget = nullptr;
 }
 
 void CTargetFind::findSingleTarget(CBattleEntity* PTarget, uint8 flags)
 {
     m_findFlags = flags;
     m_zone = m_PBattleEntity->getZone();
-    m_PTarget = NULL;
+    m_PTarget = nullptr;
     m_PRadiusAround = &PTarget->loc.p;
 
     addEntity(PTarget, false);
@@ -102,10 +102,10 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
             // players will never need to add whole alliance
             m_findType = FIND_PLAYER_PLAYER;
 
-            if (m_PMasterTarget->PParty != NULL)
+            if (m_PMasterTarget->PParty != nullptr)
             {
                 // player -ra spells should never hit whole alliance
-                if ((m_findFlags & FINDFLAGS_ALLIANCE) && m_PMasterTarget->PParty->m_PAlliance != NULL)
+                if ((m_findFlags & FINDFLAGS_ALLIANCE) && m_PMasterTarget->PParty->m_PAlliance != nullptr)
                 {
                     addAllInAlliance(m_PMasterTarget, withPet);
                 }
@@ -139,12 +139,13 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
         }
 
         // do not include pets in monster AoE buffs
-        if (m_findType == FIND_MONSTER_MONSTER && m_PTarget->PMaster == NULL)
+        if (m_findType == FIND_MONSTER_MONSTER && m_PTarget->PMaster == nullptr)
         {
             withPet = PETS_CAN_AOE_BUFF;
         }
 
-        if (m_findFlags & FINDFLAGS_HIT_ALL)
+        if (m_findFlags & FINDFLAGS_HIT_ALL ||
+            m_findType == FIND_MONSTER_PLAYER && ((CMobEntity*)m_PBattleEntity)->CalledForHelp())
         {
             addAllInZone(m_PMasterTarget, withPet);
         }
@@ -153,13 +154,13 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
             addAllInAlliance(m_PMasterTarget, withPet);
 
             // Is the monster casting on a player..
-			if (m_findType == FIND_MONSTER_PLAYER)
-			{
-				if (m_PMasterTarget->allegiance == ALLEGIANCE_PLAYER)
-					addAllInZone(m_PMasterTarget, withPet);
-				else
-					addAllInEnmityList();
-			}
+            if (m_findType == FIND_MONSTER_PLAYER)
+            {
+                if (m_PBattleEntity->allegiance == ALLEGIANCE_PLAYER)
+                    addAllInZone(m_PMasterTarget, withPet);
+                else
+                    addAllInEnmityList();
+            }
         }
     }
 }
@@ -203,7 +204,7 @@ void CTargetFind::findWithinCone(CBattleEntity* PTarget, float distance, float a
 void CTargetFind::addAllInMobList(CBattleEntity* PTarget, bool withPet)
 {
     CCharEntity* PChar = (CCharEntity*)findMaster(m_PBattleEntity);
-    CBattleEntity* PBattleTarget = NULL;
+    CBattleEntity* PBattleTarget = nullptr;
 
     for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
     {
@@ -233,7 +234,7 @@ void CTargetFind::addAllInZone(CBattleEntity* PTarget, bool withPet)
 
 void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
 {
-    CParty* party = NULL;
+    CParty* party = nullptr;
 
     PTarget->ForAlliance([this, withPet](CBattleEntity* PMember)
     {
@@ -273,7 +274,7 @@ void CTargetFind::addEntity(CBattleEntity* PTarget, bool withPet)
     }
 
     // add my pet too, if its allowed
-    if (withPet && PTarget->PPet != NULL && validEntity(PTarget->PPet))
+    if (withPet && PTarget->PPet != nullptr && validEntity(PTarget->PPet))
     {
         m_targets.push_back(PTarget->PPet);
     }
@@ -282,7 +283,7 @@ void CTargetFind::addEntity(CBattleEntity* PTarget, bool withPet)
 
 CBattleEntity* CTargetFind::findMaster(CBattleEntity* PTarget)
 {
-    if (PTarget->PMaster != NULL){
+    if (PTarget->PMaster != nullptr){
         return PTarget->PMaster;
     }
     return PTarget;
@@ -327,13 +328,18 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
         return false;
     }
 
+    if (m_PBattleEntity->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect())
+    {
+        return false;
+    }
+
     if (m_PTarget == PTarget || PTarget->getZone() != m_zone || PTarget->IsNameHidden())
     {
         return false;
     }
 
     // this is first target, always add him first
-    if (m_PTarget == NULL)
+    if (m_PTarget == nullptr)
     {
         return true;
     }
@@ -344,7 +350,7 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
 	}
 
     // shouldn't add if target is charmed by the enemy
-    if (PTarget->PMaster != NULL)
+    if (PTarget->PMaster != nullptr)
     {
         if (m_findType == FIND_MONSTER_PLAYER){
 
@@ -388,11 +394,11 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
 
 bool CTargetFind::checkIsPlayer(CBattleEntity* PTarget)
 {
-    if (PTarget == NULL) return false;
+    if (PTarget == nullptr) return false;
     if (PTarget->objtype == TYPE_PC) return true;
 
     // check if i'm owned by a pc
-    return PTarget->PMaster != NULL && PTarget->PMaster->objtype == TYPE_PC;
+    return PTarget->PMaster != nullptr && PTarget->PMaster->objtype == TYPE_PC;
 }
 
 bool CTargetFind::isWithinArea(position_t* pos)
@@ -448,29 +454,15 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
 
     CBattleEntity* PTarget = (CBattleEntity*)m_PBattleEntity->GetEntity(actionTargetID, TYPE_MOB | TYPE_PC | TYPE_PET);
 
-    if (PTarget == NULL)
+    if (PTarget == nullptr)
     {
-        return NULL;
+        return nullptr;
     }
 
-    if (validTargetFlags & TARGET_ENEMY)
+    if (m_PBattleEntity->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect())
     {
-        if (!PTarget->isDead())
-        {
-			if (PTarget->allegiance == (m_PBattleEntity->allegiance % 2 == 0 ? m_PBattleEntity->allegiance + 1 : m_PBattleEntity->allegiance - 1))
-			{
-                return PTarget;
-            }
-        }
+        return nullptr;
     }
-
-	if (validTargetFlags & TARGET_NPC)
-	{
-		if (PTarget->allegiance == m_PBattleEntity->allegiance)
-		{
-			return PTarget;
-		}
-	}
 
     if (PTarget->objtype == TYPE_PC)
     {
@@ -482,12 +474,12 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
         {
             return PTarget;
         }
-        if ((validTargetFlags & TARGET_PLAYER_PARTY) && (m_PBattleEntity->PParty != NULL && m_PBattleEntity->PParty == PTarget->PParty))
+        if ((validTargetFlags & TARGET_PLAYER_PARTY) && (m_PBattleEntity->PParty != nullptr && m_PBattleEntity->PParty == PTarget->PParty))
         {
             return PTarget;
         }
         if ((validTargetFlags & TARGET_PLAYER_PARTY_PIANISSIMO) && (m_PBattleEntity->StatusEffectContainer->HasStatusEffect(EFFECT_PIANISSIMO)) &&
-            (m_PBattleEntity->PParty != NULL && m_PBattleEntity->PParty == PTarget->PParty))
+            (m_PBattleEntity->PParty != nullptr && m_PBattleEntity->PParty == PTarget->PParty))
         {
             return PTarget;
         }
@@ -495,7 +487,7 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
         {
             return PTarget;
         }
-        return NULL;
+        return nullptr;
     }
 
 	if (PTarget->objtype == TYPE_MOB)
@@ -505,6 +497,27 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
 		{
 			return PTarget;
 		}
+
+        if (validTargetFlags & TARGET_NPC)
+        {
+            if (PTarget->allegiance == m_PBattleEntity->allegiance && (PTarget == m_PBattleEntity ||
+                !(((CMobEntity*)PTarget)->m_Behaviour & BEHAVIOUR_NOHELP)))
+            {
+                return PTarget;
+            }
+        }
 	}
-    return NULL;
+
+    if (validTargetFlags & TARGET_ENEMY)
+    {
+        if (!PTarget->isDead())
+        {
+            if (PTarget->allegiance == (m_PBattleEntity->allegiance % 2 == 0 ? m_PBattleEntity->allegiance + 1 : m_PBattleEntity->allegiance - 1))
+            {
+                return PTarget;
+            }
+        }
+    }
+
+    return nullptr;
 }

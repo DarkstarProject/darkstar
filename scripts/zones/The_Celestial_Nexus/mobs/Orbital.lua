@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option,target)
 --printf("RESULT: %u",option);
 
 
-	if(csid == 0x7d04) then
+	if (csid == 0x7d04) then
         if (GetMobByID(target:getID()-1):getName() == "Orbital") then
             DespawnMob(target:getID());
             DespawnMob(target:getID()-1);

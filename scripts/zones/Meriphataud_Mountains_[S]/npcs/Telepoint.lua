@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:hasKeyItem(MERIPHATAUD_GATE_CRYSTAL) == false) then
+	if (player:hasKeyItem(MERIPHATAUD_GATE_CRYSTAL) == false) then
 		player:addKeyItem(MERIPHATAUD_GATE_CRYSTAL);
 		player:messageSpecial(KEYITEM_OBTAINED,MERIPHATAUD_GATE_CRYSTAL);
 	else

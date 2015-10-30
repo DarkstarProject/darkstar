@@ -1,19 +1,28 @@
 -----------------------------------
 -- Ability: Chocobo jig
+-- Increases Movement Speed.
+-- Obtained: Dancer Level 55
+-- TP Required: 0
+-- Recast Time: 1:00
+-- Duration: 2:00
 -----------------------------------
  
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
 	return 0,0;
 end;
 
-function onUseAbility(player, target, ability)
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(player,target,ability)
 
    -- Increases movement speed by 25% for 120s
    -- AF feet and Relic legs increase duration by 30s each

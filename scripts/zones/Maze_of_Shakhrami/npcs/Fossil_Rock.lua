@@ -30,7 +30,7 @@ function onTrigger(player,npc)
 	local LostForWords_Status = player:getVar("MissionStatus");
 	local randfoss = player:getVar("MissionStatus_randfoss");
 
-	if((LostForWords_Status == 2 or LostForWords_Status == 3) and (player:getCurrentMission(WINDURST) == LOST_FOR_WORDS)) then
+	if ((LostForWords_Status == 2 or LostForWords_Status == 3) and (player:getCurrentMission(WINDURST) == LOST_FOR_WORDS)) then
 		if ((randfoss == 0) or (randfoss > 6)) then -- added a check to clear out old NPC IDs set on the Variable
 			local rand = math.random(1,6);
 			player:setVar("MissionStatus_randfoss",rand);
@@ -116,8 +116,8 @@ function onTrigger(player,npc)
 			end
 		end
 		
-	elseif((X > -97.281 and X < -85.281) and (Z > -110.974 and Z < -98.974)) then -- f-8 map 2
-		if(player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and GetMobAction(17588225) == 0 and player:hasItem(16511) == false) then
+	elseif ((X > -97.281 and X < -85.281) and (Z > -110.974 and Z < -98.974)) then -- f-8 map 2
+		if (player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and GetMobAction(17588225) == 0 and player:hasItem(16511) == false) then
 			SpawnMob(17588225);
 		else
 			player:messageSpecial(FOSSIL_EXTRACTED + 2); -- NM spawn point message.

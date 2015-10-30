@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Sauromugue Champaign	
+-- Area: Sauromugue Champaign
 -- NPC:  Verthandi
 -----------------------------------
 
@@ -9,7 +9,7 @@ require("scripts/globals/titles");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------

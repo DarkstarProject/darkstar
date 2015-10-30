@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -31,6 +31,6 @@ CShopBuyPacket::CShopBuyPacket(uint8 slotID, uint32 quantity)
 	this->type = 0x3F;
 	this->size = 0x06;
 
-	WBUFB(data,(0x04)-4) = slotID;
-	WBUFL(data,(0x08)-4) = quantity;
+	WBUFB(data,(0x04)) = slotID;
+	WBUFL(data,(0x08)) = quantity;
 }

@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@
 CMagicState::CMagicState(CBattleEntity* PEntity, CTargetFind* PTargetFind, float maxStartDistance, float maxFinishDistance)
 : CState(PEntity, PTargetFind)
 {
-	m_PSpell = NULL;
+	m_PSpell = nullptr;
 	m_enableCasting = true;
 	m_maxStartDistance = maxStartDistance;
 	m_maxFinishDistance = maxFinishDistance;
@@ -75,7 +75,7 @@ STATESTATUS CMagicState::CastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8
 
 bool CMagicState::CanCastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 flags)
 {
-	if(PSpell == NULL) return false;
+	if(PSpell == nullptr) return false;
 
 	if(!ValidCast(PSpell, PTarget))
 	{
@@ -88,12 +88,12 @@ bool CMagicState::CanCastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 fla
         // pc has special messages
         if(distanceValue > 25)
         {
-            PushError(MSGBASIC_TOO_FAR_AWAY, PSpell->getID());
+            PushError(MSGBASIC_TOO_FAR_AWAY, PSpell->getID(), 0, PTarget);
             return false;
         }
         else if(distanceValue > m_maxStartDistance)
         {
-            PushError(MSGBASIC_OUT_OF_RANGE_UNABLE_CAST, PSpell->getID());
+            PushError(MSGBASIC_OUT_OF_RANGE_UNABLE_CAST, PSpell->getID(), 0, PTarget);
             return false;
         }
     }
@@ -110,7 +110,7 @@ bool CMagicState::CanCastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 fla
 
     int32 msgID = luautils::OnMagicCastingCheck(m_PEntity, PTarget, PSpell);
 	if(msgID){
-        PushError((MSGBASIC_ID)msgID, PSpell->getID());
+        PushError((MSGBASIC_ID)msgID, PSpell->getID(), 0, PTarget);
 		return false;
 	}
 
@@ -160,14 +160,14 @@ void CMagicState::Clear()
 {
 	CState::Clear();
 
-	m_PSpell = NULL;
+	m_PSpell = nullptr;
 	m_interruptSpell = false;
     m_startTime = 0;
 }
 
 uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
 {
-    if(PSpell == NULL)
+    if(PSpell == nullptr)
     {
         return 0;
     }
@@ -175,6 +175,11 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
     bool applyArts = true;
     uint32 base = PSpell->getCastTime();
     uint32 cast = base;
+
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
+    {
+        cast = cast * 1.5f;
+    }
 
     if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
     {
@@ -218,7 +223,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
         else if (applyArts)
         {
             if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
-            {                
+            {
                 // Add any "Grimoire: Reduces spellcasting time" bonuses
                 cast = cast * (1.0f + (m_PEntity->getMod(MOD_WHITE_MAGIC_CAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f);
             }
@@ -240,7 +245,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_NIGHTINGALE))
         {
             if (m_PEntity->objtype == TYPE_PC &&
-                WELL512::irand() % 100 < ((CCharEntity*)m_PEntity)->PMeritPoints->GetMeritValue(MERIT_TROUBADOUR, (CCharEntity*)m_PEntity) - 25)
+                dsprand::GetRandomNumber(100) < ((CCharEntity*)m_PEntity)->PMeritPoints->GetMeritValue(MERIT_NIGHTINGALE, (CCharEntity*)m_PEntity) - 25)
             {
                 return 0;
             }
@@ -254,8 +259,17 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
         cast = cast * (1.0f - ((songcasting > 50 ? 50 : songcasting) / 100.0f));
     }
 
-    int16 fastCast = dsp_cap(m_PEntity->getMod(MOD_FASTCAST),-100,50);
-    int16 uncappedFastCast = dsp_cap(m_PEntity->getMod(MOD_UFASTCAST),-100,100);
+    int16 fastCast = dsp_cap(m_PEntity->getMod(MOD_FASTCAST), -100, 50);
+    if (PSpell->isCure()) // Cure cast time reductions
+    {
+        fastCast += m_PEntity->getMod(MOD_CURE_CAST_TIME);
+        if (m_PEntity->objtype == TYPE_PC)
+        {
+            fastCast += ((CCharEntity*)m_PEntity)->PMeritPoints->GetMeritValue(MERIT_CURE_CAST_TIME, (CCharEntity*)m_PEntity);
+        }
+        fastCast = dsp_cap(fastCast, -100, 80);
+    }
+    int16 uncappedFastCast = dsp_cap(m_PEntity->getMod(MOD_UFASTCAST), -100, 100);
     float sumFastCast = dsp_cap(fastCast + uncappedFastCast, -100, 100);
 
     return cast * ((100.0f - sumFastCast)/100.0f);
@@ -263,7 +277,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
 
 int16 CMagicState::CalculateMPCost(CSpell* PSpell)
 {
-    if(PSpell == NULL)
+    if(PSpell == nullptr)
     {
         ShowWarning("CMagicState::CalculateMPCost Spell is NULL\n");
         return 0;
@@ -318,12 +332,16 @@ int16 CMagicState::CalculateMPCost(CSpell* PSpell)
             cost += base * (m_PEntity->getMod(MOD_WHITE_MAGIC_COST)/100.0f);
         }
     }
+    if (dsprand::GetRandomNumber(100) < (m_PEntity->getMod(MOD_NO_SPELL_MP_DEPLETION)))
+    {
+        cost = 0;
+    }
     return dsp_cap(cost, 0, 9999);
 }
 
 uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
 {
-    if(PSpell == NULL)
+    if(PSpell == nullptr)
     {
         return 0;
     }
@@ -344,6 +362,10 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
     if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_COMPOSURE))
     {
         recast *= 1.25;
+    }
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
+    {
+        recast *= 1.5;
     }
 
     if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
@@ -375,13 +397,13 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
         if (applyArts)
         {
             if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_DARK_ARTS) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
-            {     
+            {
                 // Add any "Grimoire: Reduces spellcasting time" bonuses
-                recast *= (1.0f + (m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f); 
+                recast *= (1.0f + (m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f);
             }
             else
             {
-                recast *= (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)/100.0f); 
+                recast *= (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)/100.0f);
             }
         }
     }
@@ -414,13 +436,13 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
         if (applyArts)
         {
             if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
-            {     
+            {
                 // Add any "Grimoire: Reduces spellcasting time" bonuses
-                recast *= (1.0f + (m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f); 
+                recast *= (1.0f + (m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f);
             }
             else
             {
-                recast *= (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)/100.0f); 
+                recast *= (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)/100.0f);
             }
         }
     }
@@ -478,7 +500,11 @@ bool CMagicState::CheckInterrupt()
 
 bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
 {
-    if(!CheckValidTarget(PTarget)) return false;
+    if (!CheckValidTarget(PTarget))
+    {
+        PushError(MSGBASIC_CANNOT_ON_THAT_TARG, 0);
+        return false;
+    }
 
 	if(!m_enableCasting ||
 		m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
@@ -507,6 +533,12 @@ bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
         return false;
     }
 
+    if (!spell::CanUseSpell(m_PEntity, PSpell->getID()))
+    {
+        PushError(MSGBASIC_CANNOT_CAST_SPELL, PSpell->getID());
+        return false;
+    }
+
     if(PTarget->isDead() && !(PSpell->getValidTarget() & TARGET_PLAYER_DEAD))
     {
         return false;
@@ -522,7 +554,7 @@ bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
 
 void CMagicState::InterruptSpell()
 {
-    DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+    DSP_DEBUG_BREAK_IF(m_PSpell == nullptr);
     DSP_DEBUG_BREAK_IF(m_PEntity->PBattleAI->GetCurrentAction() != ACTION_MAGIC_INTERRUPT);
 
     apAction_t action;
@@ -542,7 +574,7 @@ void CMagicState::InterruptSpell()
 
 void CMagicState::FinishSpell()
 {
-    DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+    DSP_DEBUG_BREAK_IF(m_PSpell == nullptr);
 	DSP_DEBUG_BREAK_IF(m_PEntity->PBattleAI->GetCurrentAction() != ACTION_MAGIC_FINISH);
 
 	luautils::OnSpellPrecast(m_PEntity, m_PSpell);
@@ -640,16 +672,15 @@ void CMagicState::FinishSpell()
         }
         else
         {
-            if (PTarget->objtype == TYPE_MOB)
-            {
-                luautils::OnMagicHit(PTarget, m_PEntity, m_PSpell);
-            }
 			action.param = luautils::OnSpellCast(m_PEntity, PTarget, m_PSpell);
 
             // remove effects from damage
 			if (m_PSpell->canTargetEnemy() && action.param > 0 && m_PSpell->dealsDamage())
             {
                 PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+
+                // Check for bind breaking
+                battleutils::BindBreakCheck(m_PEntity, PTarget);
             }
 
             if(msg == 0)
@@ -663,7 +694,15 @@ void CMagicState::FinishSpell()
 
         }
 
+        if (action.animation == 122 && msg == 283) // teleport spells don't target unqualified members
+            continue;
+
         action.messageID = msg;
+
+        if (PTarget->objtype == TYPE_MOB && msg != 31) // If message isn't the shadow loss message, because I had to move this outside of the above check for it.
+        {
+            luautils::OnMagicHit(m_PEntity, PTarget, m_PSpell);
+        }
 
 		if (m_PSpell->getID() != 305) //I hate to do this, but there really is no other spell like Odin
             CharOnTarget(&action, ce, ve);
@@ -707,11 +746,14 @@ void CMagicState::CharOnTarget(apAction_t* action, int16 ce, int16 ve)
             ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
         }
 
-        ((CMobEntity*)PTarget)->m_OwnerID.id = m_PEntity->id;
-        ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PEntity->targid;
-        ((CMobEntity*)PTarget)->updatemask |= UPDATE_STATUS;
-        ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PEntity, ce, ve);
-        enmityApplied = true;
+        if (!(m_PSpell->isHeal()) || m_PSpell->tookEffect())  //can't claim mob with cure unless it does damage
+        {
+            ((CMobEntity*)PTarget)->m_OwnerID.id = m_PEntity->id;
+            ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PEntity->targid;
+            ((CMobEntity*)PTarget)->updatemask |= UPDATE_STATUS;
+            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PEntity, ce, ve);
+            enmityApplied = true;
+        }
     }
     else if (PTarget->allegiance == m_PEntity->allegiance)
     {
@@ -793,7 +835,7 @@ void CMagicState::CharAfterFinish()
     PChar->pushPacket(new CCharUpdatePacket(PChar));
 
     // make wyvern use breath
-    if(PChar->PPet!=NULL && ((CPetEntity*)PChar->PPet)->getPetType() == PETTYPE_WYVERN)
+    if(PChar->PPet!=nullptr && ((CPetEntity*)PChar->PPet)->getPetType() == PETTYPE_WYVERN)
     {
         ((CAIPetDummy*)PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_HEALING_BREATH;
         PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
@@ -821,7 +863,7 @@ bool CMagicState::TryHitInterrupt(CBattleEntity* PAttacker)
 
 bool CMagicState::IsCasting()
 {
-	return m_PSpell != NULL;
+	return m_PSpell != nullptr;
 }
 
 bool CMagicState::ValidCharCast(CSpell* PSpell)
@@ -852,7 +894,7 @@ bool CMagicState::ValidCharCast(CSpell* PSpell)
     }
 
     // check summoning
-    if (PSpell->getSpellGroup() == SPELLGROUP_SUMMONING && PChar->PPet != NULL)
+    if (PSpell->getSpellGroup() == SPELLGROUP_SUMMONING && PChar->PPet != nullptr)
     {
         PushError(MSGBASIC_ALREADY_HAS_A_PET, spellID);
         return false;
@@ -878,7 +920,7 @@ void CMagicState::SpendCost(CSpell* PSpell)
         // conserve mp
         int16 rate = m_PEntity->getMod(MOD_CONSERVE_MP);
 
-        if (WELL512::irand() % 100 < rate)
+        if (dsprand::GetRandomNumber(100) < rate)
         {
             cost = ConserveMP(cost);
         }
@@ -890,7 +932,7 @@ void CMagicState::SpendCost(CSpell* PSpell)
 
 int16 CMagicState::ConserveMP(int16 cost)
 {
-    return cost * ((float)(WELL512::irand() % 8 + 8.0f) / 16.0f);
+    return cost * (dsprand::GetRandomNumber(8.f,16.f) / 16.0f);
 }
 
 void CMagicState::SetRecast(CSpell* PSpell)

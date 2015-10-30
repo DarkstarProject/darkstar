@@ -5,13 +5,22 @@
 --  Type: Magical (Fire)
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
+  if(mob:getFamily() == 91) then
+    local mobSkin = mob:getModelId();
+
+    if (mobSkin == 1639) then
+        return 0;
+    else
+        return 1;
+    end
+  end
 	return 0;
 end;
 

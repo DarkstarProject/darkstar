@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ CBazaarPurchasePacket::CBazaarPurchasePacket(CCharEntity* PChar, bool result)
 	this->type = 0x06;  // 0x106
 	this->size = 0x0D;
 
-	WBUFB(data,(0x04)-4) = !result;
+	WBUFB(data,(0x04)) = !result;
 
-    memcpy(data+(0x08)-4, PChar->GetName(), PChar->name.size());
+    memcpy(data+(0x08), PChar->GetName(), PChar->name.size());
 }

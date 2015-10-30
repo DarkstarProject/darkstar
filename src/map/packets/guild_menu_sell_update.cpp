@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -37,10 +37,10 @@ CGuildMenuSellUpdatePacket::CGuildMenuSellUpdatePacket(CCharEntity* PChar, uint8
     this->type = 0x84;
     this->size = 0x04;
 
-    DSP_DEBUG_BREAK_IF(PChar == NULL);
+    DSP_DEBUG_BREAK_IF(PChar == nullptr);
 
-    WBUFW(data, (0x04)-4) = itemID;
-    WBUFB(data, (0x06)-4) = stock;
-    WBUFB(data, (0x07)-4) = quantity;
+    WBUFW(data, (0x04)) = itemID;
+    WBUFB(data, (0x06)) = stock;
+    WBUFB(data, (0x07)) = quantity;
 
 }

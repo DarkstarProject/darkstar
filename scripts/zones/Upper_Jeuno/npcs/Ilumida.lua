@@ -63,7 +63,7 @@ function onTrigger(player,npc)
 	elseif (player:getVar("SearchingForRightWords_postcs") == -1) then
 		player:startEvent(0x00c4);
 		
-	elseif(SearchingForWords == QUEST_COMPLETED) then
+	elseif (SearchingForWords == QUEST_COMPLETED) then
 		player:startEvent(0x00c8);
 		
 	else
@@ -87,14 +87,14 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if((csid == 0x00c0 and option == 1) or (csid == 0x00c1 and option == 1)) then --just start quest
+	if ((csid == 0x00c0 and option == 1) or (csid == 0x00c1 and option == 1)) then --just start quest
 		player:addQuest(JEUNO,A_CANDLELIGHT_VIGIL);
 		player:setVar("QuestACandlelightVigil_denied", 0);
 		
-	elseif(csid == 0x00c0 and option == 0) then --quest denied, special eventIDs available
+	elseif (csid == 0x00c0 and option == 0) then --quest denied, special eventIDs available
 		player:setVar("QuestACandlelightVigil_denied", 1);
 	
-	elseif(csid == 0x00c2) then --finish quest
+	elseif (csid == 0x00c2) then --finish quest
 		if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13094);
 		else
@@ -107,16 +107,16 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(JEUNO,A_CANDLELIGHT_VIGIL);
 		end
 		
-	elseif(csid == 0x00c5 and option == 0) then --quest denied, special eventIDs available
+	elseif (csid == 0x00c5 and option == 0) then --quest denied, special eventIDs available
 		player:setVar("QuestSearchRightWords_prereq", 0); --remove charVar from memory
 		player:setVar("QuestSearchRightWords_denied", 1);
 		
-	elseif((csid == 0x00c5 and option == 1) or (csid == 0x00c9 and option == 1)) then
+	elseif ((csid == 0x00c5 and option == 1) or (csid == 0x00c9 and option == 1)) then
 		player:setVar("QuestSearchRightWords_prereq", 0); --remove charVar from memory
 		player:setVar("QuestSearchRightWords_denied", 0);
 		player:addQuest(JEUNO,SEARCHING_FOR_THE_RIGHT_WORDS);
 		
-	elseif(csid == 0x00c6) then --finish quest, note: no title granted
+	elseif (csid == 0x00c6) then --finish quest, note: no title granted
 		if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4882);
 		else
@@ -128,7 +128,7 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(JEUNO,SEARCHING_FOR_THE_RIGHT_WORDS);
 			player:setVar("SearchingForRightWords_postcs", -2);
 		end
-	elseif(csid == 0x00c4) then
+	elseif (csid == 0x00c4) then
 		player:setVar("SearchingForRightWords_postcs", 0);
 	end
 end;

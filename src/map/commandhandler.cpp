@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
 
 void CCommandHandler::init(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(L == NULL);
+    DSP_DEBUG_BREAK_IF(L == nullptr);
     m_LState = L;
 }
 
@@ -40,7 +40,7 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
 
     if (!PChar)
     {
-        ShowError("cmdhandler::call: NULL character attempted to use command\n");
+        ShowError("cmdhandler::call: nullptr character attempted to use command\n");
         return -1;
     }
     if (cmdname.empty())
@@ -103,7 +103,7 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
     }
 
     const int8* parameters = luaL_checkstring(m_LState, -1);
-    if (parameters == NULL)
+    if (parameters == nullptr)
     {
         lua_pop(m_LState, -1);
         ShowError("cmdhandler::call: (%s): Invalid or no parameter field set in cmdprops\n", cmdname.c_str());

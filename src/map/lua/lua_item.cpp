@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,8 +35,9 @@ CLuaItem::CLuaItem(lua_State* L)
         m_PLuaItem = (CItem*)lua_touserdata(L, 1);
         lua_pop(L, 1);
     }
-    else{
-        m_PLuaItem = NULL;
+    else
+    {
+        m_PLuaItem = nullptr;
     }
 }
 
@@ -47,7 +48,7 @@ CLuaItem::CLuaItem(CItem* PItem)
 
 inline int32 CLuaItem::getID(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->getID());
     return 1;
@@ -55,7 +56,7 @@ inline int32 CLuaItem::getID(lua_State* L)
 
 inline int32 CLuaItem::getSubID(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->getSubID());
     return 1;
@@ -63,7 +64,7 @@ inline int32 CLuaItem::getSubID(lua_State* L)
 
 inline int32 CLuaItem::getFlag(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->getFlag());
     return 1;
@@ -71,7 +72,7 @@ inline int32 CLuaItem::getFlag(lua_State* L)
 
 inline int32 CLuaItem::getAHCat(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->getAHCat());
     return 1;
@@ -79,7 +80,7 @@ inline int32 CLuaItem::getAHCat(lua_State* L)
 
 inline int32 CLuaItem::getQuantity(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->getQuantity());
     return 1;
@@ -87,7 +88,7 @@ inline int32 CLuaItem::getQuantity(lua_State* L)
 
 inline int32 CLuaItem::getLocationID(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->getLocationID());
     return 1;
@@ -95,7 +96,7 @@ inline int32 CLuaItem::getLocationID(lua_State* L)
 
 inline int32 CLuaItem::getSlotID(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->getSlotID());
     return 1;
@@ -103,7 +104,7 @@ inline int32 CLuaItem::getSlotID(lua_State* L)
 
 inline int32 CLuaItem::getWornItem(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->m_extra[0]);
     return 1;
@@ -111,7 +112,7 @@ inline int32 CLuaItem::getWornItem(lua_State* L)
 
 inline int32 CLuaItem::isType(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     uint8 type = lua_tointeger(L, 1);
@@ -122,7 +123,7 @@ inline int32 CLuaItem::isType(lua_State* L)
 
 inline int32 CLuaItem::isSubType(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     uint8 subtype = lua_tointeger(L, 1);
@@ -133,7 +134,7 @@ inline int32 CLuaItem::isSubType(lua_State* L)
 
 inline int32 CLuaItem::getName(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushstring(L, m_PLuaItem->getName());
     return 1;
@@ -141,7 +142,7 @@ inline int32 CLuaItem::getName(lua_State* L)
 
 inline int32 CLuaItem::getMod(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
@@ -154,7 +155,7 @@ inline int32 CLuaItem::getMod(lua_State* L)
 
 inline int32 CLuaItem::addMod(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
@@ -169,7 +170,7 @@ inline int32 CLuaItem::addMod(lua_State* L)
 
 inline int32 CLuaItem::delMod(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
@@ -184,7 +185,7 @@ inline int32 CLuaItem::delMod(lua_State* L)
 
 inline int32 CLuaItem::getAugment(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
@@ -221,5 +222,5 @@ Lunar<CLuaItem>::Register_t CLuaItem::methods[] =
     LUNAR_DECLARE_METHOD(CLuaItem,addMod),
     LUNAR_DECLARE_METHOD(CLuaItem,delMod),
     LUNAR_DECLARE_METHOD(CLuaItem,getAugment),
-    {NULL,NULL}
+    {nullptr,nullptr}
 };

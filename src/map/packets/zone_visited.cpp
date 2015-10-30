@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -34,5 +34,5 @@ CZoneVisitedPacket::CZoneVisitedPacket(CCharEntity * PChar)
 	this->type = 0x08;
 	this->size = 0x1A;
 
-	memcpy(data, PChar->m_ZonesList, 36);
+	memcpy(data+4, PChar->m_ZonesList, 36);
 }

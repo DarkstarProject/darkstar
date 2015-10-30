@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -32,22 +32,22 @@
 
 class CLuaZone
 {
-	CZone* m_pLuaZone;
+    CZone* m_pLuaZone;
 public:
 
-	static const int8 className[];
-	static Lunar<CLuaZone>::Register_t methods[];
+    static const int8 className[];
+    static Lunar<CLuaZone>::Register_t methods[];
 
-	CLuaZone(lua_State*);
-	CLuaZone(CZone*);
+    CLuaZone(lua_State*);
+    CLuaZone(CZone*);
 
-	CZone* GetZone()const
-	{
-		return m_pLuaZone;
-	}
+    CZone* GetZone()const
+    {
+        return m_pLuaZone;
+    }
 
-	int32 levelRestriction(lua_State*);
-	int32 registerRegion(lua_State*);
+    int32 levelRestriction(lua_State*);
+    int32 registerRegion(lua_State*);
     int32 getPlayers(lua_State*);
     int32 getID(lua_State*);
     int32 getRegionID(lua_State*);

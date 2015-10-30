@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -40,8 +40,8 @@ CMessageTextPacket::CMessageTextPacket(CBaseEntity* PEntity, uint16 messageID, b
 		messageID += 0x8000;
 	}
 
-	WBUFL(data,(0x04)-4) = PEntity->id;
-	WBUFW(data,(0x08)-4) = PEntity->targid;
-	WBUFW(data,(0x0A)-4) = messageID;
-    WBUFB(data,(0x0C)-4) = mode;
+	WBUFL(data,(0x04)) = PEntity->id;
+	WBUFW(data,(0x08)) = PEntity->targid;
+	WBUFW(data,(0x0A)) = messageID;
+    WBUFB(data,(0x0C)) = mode;
 }

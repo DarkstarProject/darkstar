@@ -9,7 +9,7 @@ require("scripts/globals/titles");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(OURYU_OVERWHELMER);	
+	killer:addTitle(OURYU_OVERWHELMER);
 end;

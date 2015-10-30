@@ -1,10 +1,13 @@
 -----------------------------------
---  Area: Bastok Markets
---  NPC: Svana
---  Type: Weather Checker
---  @zone: 235
---  @pos -193.997 0.999 -139.086 
+-- Area: Bastok Markets
+-- NPC: Svana
+-- Type: Weather Reporter
 -----------------------------------
+package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -18,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0004);
+    player:startEvent(0x0004,0,0,0,0,0,0,0,VanadielTime());
 end;
 
 -----------------------------------
@@ -26,8 +29,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -35,7 +38,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
-

@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -232,6 +232,7 @@ int main (int argc, char **argv)
 		arg_v = argv;
 	}
 
+    log_init(argc, argv);
 	malloc_init();
 	set_server_type();
 	display_title();

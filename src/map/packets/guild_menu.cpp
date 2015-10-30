@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -34,19 +34,19 @@ CGuildMenuPacket::CGuildMenuPacket(GUILDSTATUS status, uint8 open, uint8 close, 
 
 	//DSP_DEBUG_BREAK_IF(open > close);
 
-	WBUFB(data,(0x04)-4) = status;
+	WBUFB(data,(0x04)) = status;
 
 	switch (status)
 	{
 		case GUILD_OPEN: 
 		case GUILD_CLOSE: 
 		{
-			packBitsBE(data+(0x08)-4, 0xFFFFFF, open, close-open);
+			packBitsBE(data+(0x08), 0xFFFFFF, open, close-open);
 		}
 		break;
 		case GUILD_HOLYDAY:
 		{
-			WBUFB(data,(0x08)-4) = holiday;
+			WBUFB(data,(0x08)) = holiday;
 		}
 		break;
 	}

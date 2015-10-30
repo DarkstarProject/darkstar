@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @reloadglobal
--- auth: TeoTwawki
 -- desc: Attempt to reload specified global lua without a restart.
 --
 -- Use with caution, some files ( like player.lua )

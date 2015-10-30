@@ -141,16 +141,16 @@ function onTrade(player,npc,trade)
       eventParams = getRelicParameters(itemid);
 
          -- Stage 1->2 or 2->3, 3 items + relic itself
-         if(count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(eventParams[2],1) and
+         if (count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(eventParams[2],1) and
             trade:hasItemQty(eventParams[3],1) and trade:hasItemQty(itemid,1)) then
                tradeOK = true;
 
          -- Stage 3->4, just check for attestation + relic itself
-         elseif(count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(itemid,1)) then
+         elseif (count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(itemid,1)) then
             tradeOK = true;
 
          -- Stage 4->5, Shard + Necropschye + relic itself
-         elseif(count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(eventParams[2],1) and trade:hasItemQty(itemid,1)) then
+         elseif (count == eventParams[4] and trade:hasItemQty(eventParams[1],1) and trade:hasItemQty(eventParams[2],1) and trade:hasItemQty(itemid,1)) then
             tradeOK = true;
          end
 
@@ -169,8 +169,8 @@ function onTrade(player,npc,trade)
    elseif (currentRelic ~= 0 and itemid ~= nil) then
       player:startEvent(87);
 
-   -- Has turned in a relic and items, has not turned in currency (no wait), so they must be bringing currency
-   elseif (currentRelic ~= 0 and relicWait == 0 and gil == 0) then
+   -- Has turned in a relic and items, has not turned in currency (no wait), so they must be bringing currency, but not 10,000 piece
+   elseif (currentRelic ~= 0 and relicWait == 0 and gil == 0 and itemid~=1451 and itemid~=1454 and itemid~=1457) then
       eventParams = getRelicParameters(currentRelic);
 
       -- Has currencyamount of currencytype, and nothing additional.  See below for Aegis, since it's different.
@@ -181,7 +181,9 @@ function onTrade(player,npc,trade)
       elseif (count == eventParams[6] * 3 and eventParams[5] == 0) then
          -- Has currencyamount of all three currencies
          if (trade:hasItemQty(1450,eventParams[6]) and trade:hasItemQty(1453,eventParams[6]) and trade:hasItemQty(1456,eventParams[6])) then
-            tradeOK = true;
+            if (eventParams[5] ~= 1451 and eventParams[5] ~= 1454 and eventParams[5] ~= 1457) then -- disallow trade of 10k piece, else the gob will eat it.
+               tradeOK = true;
+            end
          end
       end
 
@@ -337,8 +339,8 @@ function onEventFinish(player,csid,option)
    elseif (csid == 20 and option == 1) then
       player:setVar("RELIC_MAKE_ANOTHER",1);
 
-   -- Picking up a finished relic.
-   elseif ((csid == 16 or csid == 19 or csid == 52) and reward ~= 0) then
+   -- Picking up a finished relic stage 1>2 and 2>3.
+   elseif ((csid == 16 or csid == 19) and reward ~= 0) then
       if (player:getFreeSlotsCount() < 1) then
          player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,reward+1);
       else
@@ -348,6 +350,18 @@ function onEventFinish(player,csid,option)
          player:setVar("RELIC_DUE_AT",0);
          player:setVar("RELIC_MAKE_ANOTHER",0);
          player:setVar("RELIC_CONQUEST_WAIT",getConquestTally());
+      end
+   -- Picking up a finished relic stage 3>4.
+   elseif (csid == 52 and reward ~= 0) then
+      if (player:getFreeSlotsCount() < 1) then
+         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,reward+1);
+      else
+         player:addItem(reward+1);
+         player:messageSpecial(ITEM_OBTAINED,reward+1);
+         player:setVar("RELIC_IN_PROGRESS",0);
+         player:setVar("RELIC_DUE_AT",0);
+         player:setVar("RELIC_MAKE_ANOTHER",0);
+         player:setVar("RELIC_CONQUEST_WAIT",0);
       end
 
    -- Stage 4 cutscenes

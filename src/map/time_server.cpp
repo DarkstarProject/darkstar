@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -58,15 +58,6 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
         }
     }
 
-    if (CVanaTime::getInstance()->getHour() % 4 == 0 && CVanaTime::getInstance()->getMinute() == 30)
-    {
-        if (tick > (CVanaTime::getInstance()->lastWeatherUpdate + 4800))
-        {
-            zoneutils::UpdateWeather();
-            CVanaTime::getInstance()->lastWeatherUpdate = tick;
-        }
-    }
-
     if (CVanaTime::getInstance()->getMinute() == 0)
     {
         if (tick > (CVanaTime::getInstance()->lastVHourlyUpdate + 4800))
@@ -84,6 +75,16 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
             CVanaTime::getInstance()->lastVHourlyUpdate = tick;
         }
 
+    }
+
+    //Midnight
+    if (CVanaTime::getInstance()->getSysHour() == 0 && CVanaTime::getInstance()->getSysMinute() == 0)
+    {
+        if (tick > (CVanaTime::getInstance()->lastMidnight + 60000))
+        {
+            guildutils::UpdateGuildPointsPattern();
+            CVanaTime::getInstance()->lastMidnight = tick;
+        }
     }
 
     if (CVanaTime::getInstance()->getHour() == 0 && CVanaTime::getInstance()->getMinute() == 0)
@@ -110,7 +111,7 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
     {
         zoneutils::TOTDChange(VanadielTOTD);
 
-        if((VanadielTOTD == TIME_DAY) || (VanadielTOTD == TIME_DUSK) || (VanadielTOTD == TIME_NIGHT))
+        if ((VanadielTOTD == TIME_DAY) || (VanadielTOTD == TIME_DUSK) || (VanadielTOTD == TIME_NIGHT))
         {
 			zoneutils::ForEachZone([](CZone* PZone)
 			{

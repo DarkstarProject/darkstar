@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -75,6 +75,9 @@ public:
 
 	void LotItem(uint8 SlotID, uint16 Lot);
 	void LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot);
+        void PassItem(CCharEntity* PChar, uint8 SlotID);
+        bool HasLottedItem(CCharEntity* PChar, uint8 SlotID);
+        bool HasPassedItem(CCharEntity* PChar, uint8 SlotID);
 	void AddMember(CCharEntity* PChar);
 	void DelMember(CCharEntity* PChar);
 	void UpdatePool(CCharEntity* PChar);

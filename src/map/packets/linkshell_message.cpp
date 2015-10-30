@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -27,24 +27,28 @@
 
 #include <string.h>
 
-CLinkshellMessagePacket::CLinkshellMessagePacket(CLinkshell* PLinkshell)
+CLinkshellMessagePacket::CLinkshellMessagePacket(const int8* poster, const int8* message, const int8* lsname, uint32 posttime, bool ls1)
 {
-    this->type = 0xCC;
+    CBasicPacket::id(id);
 	this->size = 0x58;
 
-    WBUFB(data,(0x04)-4) = 0x03;
-	WBUFB(data,(0x05)-4) = 0x90;
+    ref<uint8>(0x04) = 0x03;
+    ref<uint8>(0x05) = 0x90;
 
-    if (PLinkshell != NULL)
+    ref<uint8>(0x04) = 0x70;
+    ref<uint8>(0x05) = 0x06;
+
+    if (!ls1)
     {
-        WBUFB(data,(0x04)-4) = 0x70;
-	    WBUFB(data,(0x05)-4) = 0x86; // +0x80 - show,  +0x40 - set
-
-        memcpy(data+(0x08)-4, PLinkshell->getMessage(), dsp_min(strlen(PLinkshell->getMessage()), 115));
-        memcpy(data+(0x8C)-4, PLinkshell->getPoster(), dsp_min(strlen(PLinkshell->getPoster()), 15));
-        memcpy(data+(0xA0)-4, PLinkshell->getName(), dsp_min(strlen(PLinkshell->getName()), 16));
-
-        WBUFL(data,(0x88)-4) = PLinkshell->getMessageTime();
+        ref<uint8>(0x05) |= 0x40; //LS2
     }
-    WBUFL(data,(0x9C)-4) = 0x01;
+    if (message)
+    {
+        memcpy(data + (0x08), message, dsp_min(strlen(message), 115));
+        memcpy(data + (0x8C), poster, dsp_min(strlen(poster), 15));
+        memcpy(data + (0xA0), lsname, dsp_min(strlen(lsname), 16));
+
+        ref<uint32>(0x88) = posttime;
+    }
+    ref<uint32>(0x9C) = 0x02;
 }

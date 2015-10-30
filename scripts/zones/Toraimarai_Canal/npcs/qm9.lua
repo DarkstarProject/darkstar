@@ -29,7 +29,7 @@ end;
 
 function onTrigger(player,npc)
 	if (player:getVar("rootProblem") == 2) then 
-		if(player:getVar("rootProblemQ1") <= 1) then
+		if (player:getVar("rootProblemQ1") <= 1) then
 			player:startEvent(0x2A);
 		else
 			player:startEvent(0x2A);

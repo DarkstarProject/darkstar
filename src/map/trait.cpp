@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -162,7 +162,7 @@ namespace traits
 		    while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 		    {				
 				int8* expansionCode;
-				Sql_GetData(SqlHandle, 6, &expansionCode, NULL);
+				Sql_GetData(SqlHandle, 6, &expansionCode, nullptr);
 
 				if (luautils::IsExpansionEnabled(expansionCode)==false){
 					continue;

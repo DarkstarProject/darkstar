@@ -6,7 +6,7 @@
 -----------------------------------------
 -- Enchantment: Synthesis image support
 -- Duration: 2Min
--- Leathercraft Skill +1
+-- Leathercraft Skill +3
 -----------------------------------------
  
 require("scripts/globals/status");
@@ -28,7 +28,7 @@ end;
 -----------------------------------------
  
 function onItemUse(target)
-        target:addStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY,53,0,120);
+        target:addStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY,3,0,120);
 end;
  
 -----------------------------------------

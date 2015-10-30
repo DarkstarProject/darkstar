@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -38,6 +38,6 @@ CTradeRequestPacket::CTradeRequestPacket(CCharEntity* PChar)
 	this->type = 0x21;
 	this->size = 0x06;
 	
-	WBUFL(data,(0x04)-4) = PChar->id;
-	WBUFW(data,(0x08)-4) = PChar->targid;
+	WBUFL(data,(0x04)) = PChar->id;
+	WBUFW(data,(0x08)) = PChar->targid;
 }

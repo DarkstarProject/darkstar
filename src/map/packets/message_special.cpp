@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -42,27 +42,27 @@ CMessageSpecialPacket::CMessageSpecialPacket(
 	this->type = 0x2A;
 	this->size = 0x10;
 
-	//DSP_DEBUG_BREAK_IF(PEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(PEntity == nullptr);
 
-	WBUFL(data,(0x04)-4) = PEntity->id;
+	WBUFL(data,(0x04)) = PEntity->id;
 
-	WBUFL(data,(0x08)-4) = param0;
-	WBUFL(data,(0x0C)-4) = param1;
-	WBUFL(data,(0x10)-4) = param2;
-	WBUFL(data,(0x14)-4) = param3;
+	WBUFL(data,(0x08)) = param0;
+	WBUFL(data,(0x0C)) = param1;
+	WBUFL(data,(0x10)) = param2;
+	WBUFL(data,(0x14)) = param3;
 
-	WBUFW(data,(0x18)-4) = PEntity->targid;
+	WBUFW(data,(0x18)) = PEntity->targid;
 
 	if (ShowName)
 	{
 		this->size = 0x18;
 
-		memcpy(data+(0x1E)-4, PEntity->GetName(), (PEntity->name.size() > 15 ? 15 : PEntity->name.size())); 
+		memcpy(data+(0x1E), PEntity->GetName(), (PEntity->name.size() > 15 ? 15 : PEntity->name.size())); 
 	}
 	else if (PEntity->objtype == TYPE_PC)
 	{
 		messageID += 0x8000;
 	}
 
-	WBUFW(data,(0x1A)-4) = messageID;
+	WBUFW(data,(0x1A)) = messageID;
 }

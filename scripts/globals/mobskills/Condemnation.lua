@@ -1,11 +1,11 @@
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     local zone = mob:getZoneID();
-    if(mob:isInDynamis() or zone == 5) then
+    if (mob:isInDynamis() or zone == 5) then
         return 0;
     end
     return 1;

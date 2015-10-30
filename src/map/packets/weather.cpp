@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -28,9 +28,9 @@
 
 CWeatherPacket::CWeatherPacket(uint32 ChangeTime, WEATHER WeatherEffect) 
 {
-	this->type = 0x57;
-	this->size = 0x06;
+    this->type = 0x57;
+    this->size = 0x06;
 
-	WBUFL(data,(0x04)-4) = ChangeTime;
-	WBUFW(data,(0x08)-4) = WeatherEffect;
+    WBUFL(data,(0x04)) = ChangeTime;
+    WBUFW(data,(0x08)) = WeatherEffect;
 }

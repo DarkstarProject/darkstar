@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,14 +35,14 @@ CBlacklistPacket::CBlacklistPacket(uint32 accid, const int8* targetName, int8 ac
 	{
 	case 0x00: // Added successfully..
 	case 0x01: // Removed successfully..
-		WBUFL(data, 0x04 - 4) = accid;
-		WBUFB(data, 0x18 - 4) = action;
-		memcpy(data + 0x08 - 4, targetName, strlen(targetName));
+		WBUFL(data, 0x04 ) = accid;
+		WBUFB(data, 0x18 ) = action;
+		memcpy(data + 0x08 , targetName, strlen(targetName));
 		break;
 
 	case 0x02: // Command error..
-		WBUFL(data, 0x04 - 4) = 0x00000000;
-		WBUFB(data, 0x18 - 4) = action;
+		WBUFL(data, 0x04 ) = 0x00000000;
+		WBUFB(data, 0x18 ) = action;
 		break;
 	}
 }

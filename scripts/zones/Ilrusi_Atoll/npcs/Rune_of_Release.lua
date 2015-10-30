@@ -32,7 +32,7 @@ function onTrigger(player,npc)
  
   local npcID = npc:getID();
  -- print(npcID);
-  if (npcID==17002655)then
+  if (npcID==17002655) then
     player:startEvent(0x0064,4);
 	
 
@@ -57,7 +57,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option)
- if (csid == 0x0064 and option==1)then
+ if (csid == 0x0064 and option==1) then
 
  local point =1000;
  	  ----------------RESPAWN COFFER NPC---------------------------------------
@@ -73,8 +73,8 @@ function onEventFinish(player,csid,option)
   SetServerVariable("correctcoffer",correctcoffer);
   printf("corect_golden_salvage_coffer: %u",correctcoffer);
   ---------------------------------------------------
-     if (player:hasCompletedMission(ASSAULT,GOLDEN_SALVAGE))then 
-          if(player:hasKeyItem(ASSAULT_ARMBAND))then 
+     if (player:hasCompletedMission(ASSAULT,GOLDEN_SALVAGE)) then 
+          if (player:hasKeyItem(ASSAULT_ARMBAND)) then 
 	      player:delKeyItem(ASSAULT_ARMBAND);
           point =1100;
           end	  

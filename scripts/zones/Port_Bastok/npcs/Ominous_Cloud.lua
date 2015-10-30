@@ -40,86 +40,86 @@ function onTrade(player,npc,trade)
 	local shikan 		= 	(trade:getItemQty(2972) / 99)
 	local chono 		= 	(trade:getItemQty(2973) / 99)
 	local tools = (uchitake + tsurara + kawahori + makibishi + hiraishin + mizu + shihei + jusatsu + kaginawa + sairui + kodoku + shinobi + sanjaku + soushi + kabenro + jinko + mokujin + inoshi + shikan + chono)
-	if(((tools * 99) + wijinruit) == trade:getItemCount()) then
-		if((tools == math.floor(tools)) and (tools == wijinruit) and (player:getFreeSlotsCount() >= wijinruit)) then
+	if (((tools * 99) + wijinruit) == trade:getItemCount()) then
+		if ((tools == math.floor(tools)) and (tools == wijinruit) and (player:getFreeSlotsCount() >= wijinruit)) then
 			player:tradeComplete();
-			if(uchitake > 0) then
+			if (uchitake > 0) then
 				player:addItem(5308,uchitake);
 				player:messageSpecial(ITEM_OBTAINED,5308);
 			end
-			if(tsurara > 0) then
+			if (tsurara > 0) then
 				player:addItem(5309,tsurara);
 				player:messageSpecial(ITEM_OBTAINED,5309);
 			end
-			if(kawahori > 0) then
+			if (kawahori > 0) then
 				player:addItem(5310,kawahori);
 				player:messageSpecial(ITEM_OBTAINED,5310);
 			end
-			if(makibishi > 0) then
+			if (makibishi > 0) then
 				player:addItem(5311,makibishi);
 				player:messageSpecial(ITEM_OBTAINED,5311);
 			end
-			if(hiraishin > 0) then
+			if (hiraishin > 0) then
 				player:addItem(5312,hiraishin);
 				player:messageSpecial(ITEM_OBTAINED,5312);
 			end
-			if(mizu > 0) then
+			if (mizu > 0) then
 				player:addItem(5313,mizu);
 				player:messageSpecial(ITEM_OBTAINED,5313);
 			end
-			if(shihei > 0) then
+			if (shihei > 0) then
 				player:addItem(5314,shihei);
 				player:messageSpecial(ITEM_OBTAINED,5314);
 			end
-			if(jusatsu > 0) then
+			if (jusatsu > 0) then
 			    player:addItem(5315,jusatsu);
 				player:messageSpecial(ITEM_OBTAINED,5315);
 			end
-			if(kaginawa > 0) then
+			if (kaginawa > 0) then
 				player:addItem(5316,kaginawa);
 				player:messageSpecial(ITEM_OBTAINED,5316);
 			end
-			if(sairui > 0) then
+			if (sairui > 0) then
 				player:addItem(5317,sairui);
 				player:messageSpecial(ITEM_OBTAINED,5317);
 			end
-			if(kodoku > 0) then
+			if (kodoku > 0) then
 				player:addItem(5318,kodoku);
 				player:messageSpecial(ITEM_OBTAINED,5318);
 			end
-			if(shinobi > 0) then
+			if (shinobi > 0) then
 				player:addItem(5319,shinobi);
 				player:messageSpecial(ITEM_OBTAINED,5319);
 			end
-			if(sanjaku > 0) then
+			if (sanjaku > 0) then
 				player:addItem(5417,sanjaku);
 				player:messageSpecial(ITEM_OBTAINED,5417);
 			end
-			if(soushi > 0) then
+			if (soushi > 0) then
 				player:addItem(5734,soushi);
 				player:messageSpecial(ITEM_OBTAINED,5734);
 			end
-			if(kabenro > 0) then
+			if (kabenro > 0) then
 				player:addItem(5863,kabenro);
 				player:messageSpecial(ITEM_OBTAINED,5863);
 			end
-			if(jinko > 0) then
+			if (jinko > 0) then
 				player:addItem(5864,jinko);
 				player:messageSpecial(ITEM_OBTAINED,5864);
 			end
-			if(mokujin > 0) then
+			if (mokujin > 0) then
 				player:addItem(5866,mokujin);
 				player:messageSpecial(ITEM_OBTAINED,5866);
 			end
-			if(inoshi > 0) then
+			if (inoshi > 0) then
 				player:addItem(5867,inoshi);
 				player:messageSpecial(ITEM_OBTAINED,5867);
 			end
-			if(shikan > 0) then
+			if (shikan > 0) then
 				player:addItem(5868,shikan);
 				player:messageSpecial(ITEM_OBTAINED,5868);
 			end
-			if(chono > 0) then
+			if (chono > 0) then
 				player:addItem(5869,chono);
 				player:messageSpecial(ITEM_OBTAINED,5869);
 			end

@@ -7,15 +7,15 @@
 --  Range: Self
 --  Notes: Only available during daytime.
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     -- only used during daytime
     local currentTime = VanadielHour();
-    if(currentTime >= 6 and currentTime <= 18) then
+    if (currentTime >= 6 and currentTime <= 18) then
         return 0;
     end
     return 1;

@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -28,37 +28,6 @@
 #include "../../common/lua/lunar.h"
 #include "../entities/charentity.h"
 
-/************************************************************************
-*  Used in GM command @addallspells                                     *
-*  A giant list of all VALID spell id's (Ignoring "." Spells from DB)   *
-*                                                                       *
-*  The DB contains many spell id's that have no spell value's           *
-*  and will just add a bunch of fullstops to the GM's spell list        *
-*                                                                       *
-*  556 spells in this list. DB contains around 150 dead spells          *
-************************************************************************/
-
-static uint16 ValidSpells[] =
-{
-    1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,
-    46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,86,87,88,89,
-    90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,
-    124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,
-    156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,
-    188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,
-    220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,245,246,247,248,249,250,251,252,253,
-    254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,
-    287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,312,318,320,321,322,323,324,325,326,327,328,329,330,331,
-    332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356,357,358,359,360,361,362,363,
-    364,365,366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,
-    396,397,398,399,400,401,402,403,404,405,406,407,408,409,410,411,412,413,414,415,416,417,418,419,420,421,422,423,424,425,426,427,
-    428,429,430,431,432,433,434,435,436,437,438,439,440,441,442,443,444,445,446,447,448,449,450,451,452,453,454,455,456,457,458,459,
-    460,461,462,463,464,465,466,467,468,469,477,478,504,513,515,517,519,521,522,524,527,529,530,531,532,533,534,535,536,537,538,539,
-    540,541,542,543,544,545,547,548,549,551,554,555,557,560,561,563,564,565,567,569,570,572,573,574,575,576,577,578,579,581,582,584,
-    585,587,588,589,591,592,593,594,595,596,597,598,599,603,604,605,606,608,610,611,612,613,614,615,616,617,618,620,621,622,623,626,
-    628,629,631,632,633,634,636,637,638,640,641,642,643,644,645,646,647,648,650,651,652,653
-};
-
 class CBaseEntity;
 
 class CLuaBaseEntity
@@ -84,6 +53,7 @@ public:
 
     int32 getID(lua_State *L);              // Gets Entity Id
     int32 getShortID(lua_State *L);
+    int32 fetchTargetsID(lua_State *L);     // Returns the ID any object under players in game cursor.
     int32 getName(lua_State *L);            // Gets Entity Name
 
     int32 getHPP(lua_State*);               // Returns Entity Health %
@@ -142,7 +112,7 @@ public:
     int32 setAnimation(lua_State*);         // Set Entity Animation
     int32 AnimationSub(lua_State*);         // get or set animationsub
     int32 costume(lua_State*);              // get or set user costume
-	int32 costume2(lua_State*);				// set monstrosity costume
+    int32 costume2(lua_State*);				// set monstrosity costume
     int32 canUseCostume(lua_State*);        // check to see if character can use costume, 0 if so
     int32 canUseChocobo(lua_State *L);      // check to see if character can use chocobo, 0 if so
     int32 canUsePet(lua_State *L);          // check to see if character can call pet, 0 if so
@@ -157,6 +127,8 @@ public:
     int32 getRace(lua_State*);              // Gets Race of Entity
     int32 getNation(lua_State*);            // Gets Nation of Entity
     int32 setNation(lua_State*);            // Sets Nation of Entity
+    int32 getCampaignAllegiance(lua_State*); // Gets Campaign Allegiance of Entity
+    int32 setCampaignAllegiance(lua_State*); // Sets Campaign Allegiance of Entity
 
     int32 addQuest(lua_State*);             // Add Quest to Entity Quest Log
     int32 delQuest(lua_State*);             // Remove quest from quest log (should be used for debugging only)
@@ -190,12 +162,12 @@ public:
     int32 delKeyItem(lua_State*);           // Removes key item from Entity key item collection
 
     int32 getSkillLevel(lua_State*);        // Get Current Skill Level
+    int32 setSkillLevel(lua_State*);        // Set Current Skill Level
     int32 getMaxSkillLevel(lua_State*);     // Get Skill Cap for skill and rank
     int32 getSkillRank(lua_State*);         // Get your current skill craft Rank
     int32 setSkillRank(lua_State*);         // Set new skill craft rank
     int32 getWeaponSkillLevel(lua_State*);  // Get Skill for equipped weapon
     int32 addSpell(lua_State*);             // Add spell to Entity spell list
-    int32 addAllSpells(lua_State*);         // Add all spells to GM char
     int32 hasSpell(lua_State*);             // Check to see if character has item in spell list
     int32 canLearnSpell(lua_State*);        // Check to see if character can learn spell, 0 if so
     int32 delSpell(lua_State*);             // Remove spell from Entity spell list
@@ -233,6 +205,8 @@ public:
 
     int32 sendMenu(lua_State*);             // Displays a menu (AH,Raise,Tractor,MH etc)
     int32 sendGuild(lua_State*);            // Sends guild shop menu
+    int32 getCurrentGPItem(lua_State*);     // Gets current GP item id and max points
+    int32 addGuildPoints(lua_State*);       // add guild points
 
     int32 bcnmRegister(lua_State*);                  //Attempts to register a bcnm battlefield (used by Dynamis and BCNM)
     int32 bcnmEnter(lua_State*);                     //Enter a bcnm battlefield (used by Dynamis and BCNM)
@@ -308,7 +282,7 @@ public:
     int32 getFameLevel(lua_State*);         // Gets Fame Level for specified nation
 
     int32 setStatus(lua_State*);            // Sets Character's Status
-	int32 getStatus(lua_State*);
+    int32 getStatus(lua_State*);
 
     int32 sendRaise(lua_State*);            // send raise request to char
     int32 sendReraise(lua_State*);          // send raise request to char
@@ -316,6 +290,7 @@ public:
     int32 SendRevision(lua_State*);         // send Git revision to char
 
     int32 updateEnmity(lua_State*);           // Adds Enmity to player for specified mob
+    int32 updateClaim(lua_State*);           // Adds Enmity to player for specified mob and claims
     int32 updateEnmityFromDamage(lua_State*); // Adds Enmity to player for specified mob for the damage specified
     int32 updateEnmityFromCure(lua_State*);
     int32 addEnmity(lua_State*);            // Add specified amount of enmity (target, CE, VE)
@@ -327,8 +302,6 @@ public:
     int32 rageMode(lua_State*);             // Add rage mode
     int32 isUndead(lua_State*);             // True if mob is undead
     int32 isMobType(lua_State*);            // True if mob is of type passed to function
-    int32 changeSkin(lua_State*);           // Change mob skin
-    int32 getSkinID(lua_State*);            // Get Skin ID (0 for base skin)
     int32 getSystem(lua_State*);
     int32 getFamily(lua_State*);
 
@@ -365,6 +338,10 @@ public:
     int32 getMod(lua_State*);                // Retrieves Modifier Value
     int32 delMod(lua_State*);                // Subtracts Modifier Value
     int32 setMod(lua_State*);                // Sets Modifier Value
+
+    int32 addPetMod(lua_State*);
+    int32 delPetMod(lua_State*);
+    int32 setPetMod(lua_State*);
 
     int32 getMobMod(lua_State*);
     int32 setMobMod(lua_State*);
@@ -431,6 +408,7 @@ public:
     int32 closeDoor(lua_State*);            // npc.closeDoor(timeToStayClosed)
     int32 showNPC(lua_State*);              // Show an NPC
     int32 hideNPC(lua_State*);              // hide an NPC
+    int32 updateNPCHideTime(lua_State*);    // Updates the length of time a NPC remains hidden, if shorter than the original hide time.
     int32 resetRecasts(lua_State*);         // Reset recasts for the caller
     int32 resetRecast(lua_State*);          // Reset one recast ID
 
@@ -474,8 +452,8 @@ public:
 
     int32 setDelay(lua_State*);             // sets a mobs weapon delay
     int32 setDamage(lua_State*);            // sets a mobs weapon damage
-    int32 castSpell(lua_State*);            // forces a mob to cast a spell (parameter = spellid, otherwise picks a spell from its list)
-    int32 useMobAbility(lua_State*);        // forces a mob to use a mobability (parameter = mobid, otherwise picks a spell from its list)
+    int32 castSpell(lua_State*);            // forces a mob to cast a spell (parameter = spell ID, otherwise picks a spell from its list)
+    int32 useMobAbility(lua_State*);        // forces a mob to use a mobability (parameter = skill ID)
     int32 actionQueueEmpty(lua_State*);     // returns whether the action queue is empty or not
     int32 actionQueueAbility(lua_State*);   // returns whether the action is from the action queue or not
 
@@ -546,7 +524,9 @@ public:
 
     int32 entityVisualPacket(lua_State* L);
     int32 entityAnimationPacket(lua_State* L);
+    int32 getPartyLeader(lua_State* L);
     int32 getParty(lua_State* L);
+    int32 getAlliance(lua_State* L);
     int32 messageText(lua_State* L);
     int32 instanceEntry(lua_State* L);
     int32 getInstance(lua_State* L);
@@ -556,7 +536,8 @@ public:
     int32 spawn(lua_State* L);
     int32 getCurrentAction(lua_State* L);
     int32 getAllegiance(lua_State* L);
-	int32 stun(lua_State* L);
+    int32 setAllegiance(lua_State* L);
+    int32 stun(lua_State* L);
     int32 weaknessTrigger(lua_State* L);
     int32 setBehaviour(lua_State* L);
     int32 getBehaviour(lua_State* L);
@@ -573,6 +554,15 @@ public:
     int32 addBurden(lua_State* L);
 
     int32 setElevator(lua_State* L);
+
+    int32 storeWithPorterMoogle(lua_State* L);
+    int32 getRetrievableItemsForSlip(lua_State *L);
+    int32 retrieveItemFromSlip(lua_State *L);
+
+    int32 getILvlMacc(lua_State *L);
+
+    int32 getConfrontationEffect(lua_State* L);
+    int32 copyConfrontationEffect(lua_State* L);    // copy confrontation effect, param = targetEntity:getShortID()
 };
 
 #endif

@@ -11,7 +11,7 @@ require("scripts/globals/quests");
 -- onMobSpawn
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 
 function onMobDeath(mob,killer)
 
-	if(killer:getVar("darkPuppetCS") >= 2) then
+	if (killer:getVar("darkPuppetCS") >= 2) then
 		killer:setVar("darkPuppetCS",3);
 	end
 

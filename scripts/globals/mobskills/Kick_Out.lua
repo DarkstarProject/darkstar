@@ -8,14 +8,14 @@
 --  Notes:  Only used when the Behemoth is attacking with it's tail.
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-	if(target:isBehind(mob, 48) == false) then
+	if (target:isBehind(mob, 48) == false) then
 		return 1;
     end
 	return 0;

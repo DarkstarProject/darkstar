@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -32,6 +32,6 @@ CInstanceEntryPacket::CInstanceEntryPacket(CBaseEntity* PEntrance, uint32 respon
 	this->type = 0xBF;
 	this->size = 0x0E;
 
-	WBUFB(data, (0x06) - 4) = response;
-	WBUFW(data, (0x0C) - 4) = PEntrance->targid;
+	WBUFB(data, (0x06) ) = response;
+	WBUFW(data, (0x0C) ) = PEntrance->targid;
 }

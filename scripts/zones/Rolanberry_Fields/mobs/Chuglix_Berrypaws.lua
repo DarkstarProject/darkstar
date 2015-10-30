@@ -14,7 +14,7 @@ require("scripts/zones/Rolanberry_Fields/TextIDs");
 -----------------------------------
 
 function onMobDeath(mob,killer)
-    if ( (killer:hasKeyItem(SEEDSPALL_CAERULUM) == false) and (player:hasKeyItem(VIRIDIAN_KEY) == false) ) then
+    if ( (killer:hasKeyItem(SEEDSPALL_CAERULUM) == false) and (killer:hasKeyItem(VIRIDIAN_KEY) == false) ) then
         killer:addKeyItem(SEEDSPALL_CAERULUM);
         killer:messageSpecial(KEYITEM_OBTAINED,SEEDSPALL_CAERULUM);
     end

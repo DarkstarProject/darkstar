@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -24,6 +24,8 @@
 #ifndef _MOBUTILS_H
 #define _MOBUTILS_H
 
+#include <unordered_map>
+
 #include "../../common/cbasetypes.h"
 #include "../../common/mmo.h"
 
@@ -39,13 +41,26 @@ typedef struct
 
 enum class WeaknessType {YELLOW, BLUE, RED, WHITE};
 
-typedef std::map<uint32,ModsList_t*> ModsMap_t;
+typedef std::unordered_map<uint32,ModsList_t*> ModsMap_t;
 
 namespace mobutils
 {
 	void	CalculateStats(CMobEntity* PMob);
-	void	AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl);
+        void  SetupJob(CMobEntity* PMob);
+        void  SetupRoaming(CMobEntity* PMob);
+        void  SetupDynamisMob(CMobEntity* PMob);
+        void  SetupBattlefieldMob(CMobEntity* PMob);
+        void  SetupDungeonMob(CMobEntity* PMob);
+        void  SetupEventMob(CMobEntity* PMob);
+        void  SetupNMMob(CMobEntity* PMob);
+	void  SetupMaat(CMobEntity* PMob);
+	void  SetupPetSkills(CMobEntity* PMob);
+
 	uint16	GetWeaponDamage(CMobEntity* PMob);
+        uint16  GetMagicEvasion(CMobEntity* PMob);
+        uint16  GetEvasion(CMobEntity* PMob);
+        uint16  GetBase(CMobEntity* PMob, uint8 rank);
+        uint16  GetBaseToRank(uint8 rank, uint16 level);
 	void    GetAvailableSpells(CMobEntity* PMob);
 	void	InitializeMob(CMobEntity* PMob, CZone* PZone);
 	void	LoadCustomMods();
@@ -56,9 +71,12 @@ namespace mobutils
 	ModsList_t* GetMobSpawnMods(uint32 mobId, bool create = false);
 
 	void  AddCustomMods(CMobEntity* PMob);
-	void  SetupMaat(CMobEntity* PMob, JOBTYPE job);
+
+        // Set job before spawn
+	void  InitializeMaat(CMobEntity* PMob, JOBTYPE job);
+
 	void  SetSpellList(CMobEntity*, uint16);
-	CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID);
+	CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* = nullptr);
     void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level);
 };
 

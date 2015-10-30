@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -34,12 +34,12 @@ CLockOnPacket::CLockOnPacket(CCharEntity* PChar, CBattleEntity* PTarget)
 	this->type = 0x58;
 	this->size = 0x08;
 
-	WBUFL(data,(0x04)-4) = PChar->id;
-	WBUFW(data,(0x0C)-4) = PChar->targid;
+	WBUFL(data,(0x04)) = PChar->id;
+	WBUFW(data,(0x0C)) = PChar->targid;
 
-	if (PTarget != NULL)
+	if (PTarget != nullptr)
 	{
-		WBUFL(data,(0x08)-4) = PTarget->id;
-		WBUFW(data,(0x0E)-4) = PTarget->targid;
+		WBUFL(data,(0x08)) = PTarget->id;
+		WBUFW(data,(0x0E)) = PTarget->targid;
 	}
 }

@@ -3,9 +3,9 @@
 -- Deals Wind damage to targets in a fan-shaped area of effect.
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 

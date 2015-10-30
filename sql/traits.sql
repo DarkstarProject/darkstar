@@ -1,3 +1,4 @@
+
 /*
 MySQL Data Transfer
 Source Host: localhost
@@ -173,7 +174,8 @@ INSERT INTO `traits` VALUES ('18','dual wield','19','40','2','259','15','ABYSSEA
 INSERT INTO `traits` VALUES ('18','dual wield','19','60','3','259','25','ABYSSEA');
 INSERT INTO `traits` VALUES ('18','dual wield','19','80','4','259','30','ABYSSEA');
 INSERT INTO `traits` VALUES ('19','treasure hunter','6','15','1','303','1',null);
-INSERT INTO `traits` VALUES ('20','gilfinder','6','5','1','0','0',null);
+INSERT INTO `traits` VALUES ('20','gilfinder','6','5','1','0','0',null); -- Not implemented. Remove this note when it is.
+INSERT INTO `traits` VALUES ('20','gilfinder','6','85','2','0','0','ABYSSEA'); -- 2nd tier does NOT have its own separate ID in client.
 INSERT INTO `traits` VALUES ('21','alertness','11','5','1','0','0',null);
 INSERT INTO `traits` VALUES ('22','stealth','13','5','1','358','3',null); -- ROTZ
 INSERT INTO `traits` VALUES ('23','martial arts','2','1','1','173','80',null);
@@ -310,8 +312,19 @@ INSERT INTO `traits` VALUES ('59','resist slow','19','20','1','250','2','WOTG');
 INSERT INTO `traits` VALUES ('59','resist slow','19','55','2','250','3','WOTG');
 INSERT INTO `traits` VALUES ('59','resist slow','19','81','3','250','5','ABYSSEA');
 INSERT INTO `traits` VALUES ('60','resist charm','0','0','1','252','2',null);
+INSERT INTO `traits` VALUES ('63','resist amnesia','9','15','1','253','2','SOA');
+INSERT INTO `traits` VALUES ('63','resist amnesia','9','35','2','253','3','SOA');
+INSERT INTO `traits` VALUES ('63','resist amnesia','9','55','3','253','5','SOA');
+INSERT INTO `traits` VALUES ('63','resist amnesia','9','75','4','253','6','SOA');
+INSERT INTO `traits` VALUES ('63','resist amnesia','17','30','1','253','2','SOA');
+INSERT INTO `traits` VALUES ('63','resist amnesia','17','50','2','253','3','SOA');
+INSERT INTO `traits` VALUES ('63','resist amnesia','17','70','3','253','5','SOA');
+INSERT INTO `traits` VALUES ('63','resist amnesia','18','15','1','253','2','SOA');
+INSERT INTO `traits` VALUES ('63','resist amnesia','18','35','2','253','3','SOA');
+INSERT INTO `traits` VALUES ('63','resist amnesia','18','55','3','253','5','SOA');
+INSERT INTO `traits` VALUES ('63','resist amnesia','18','75','4','253','6','SOA');
 INSERT INTO `traits` VALUES ('64','treasure hunter ii','6','45','2','303','1',null);
-INSERT INTO `traits` VALUES ('65','gilfinder ii','0','0','1','0','0',null);
+INSERT INTO `traits` VALUES ('65','treasure hunter iii','6','90','3','303','1','ABYSSEA');
 INSERT INTO `traits` VALUES ('66','kick attacks','2','51','1','292','10',null);
 INSERT INTO `traits` VALUES ('66','kick attacks','2','71','2','292','13',null);
 INSERT INTO `traits` VALUES ('66','kick attacks','2','96','3','292','15','ABYSSEA');

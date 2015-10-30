@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
 #include <string.h>
 
 #include "mobentity.h"
+#include "../utils/battleutils.h"
 
 CMobEntity::CMobEntity()
 {
@@ -47,9 +48,7 @@ CMobEntity::CMobEntity()
     m_roamFlags = ROAMFLAG_NONE;
     m_specialFlags = SPECIALFLAG_NONE;
     m_name_prefix = 0;
-
-    memset(m_mobModStat,0, sizeof(m_mobModStat));
-    memset(m_mobModStatSave,0, sizeof(m_mobModStatSave));
+    m_MobSkillList = 0;
 
     m_AllowRespawn = 0;
     m_DespawnTimer = 0;
@@ -64,11 +63,8 @@ CMobEntity::CMobEntity()
 	m_THLvl = 0;
 	m_ItemStolen = false;
     m_RageMode = 0;
-	m_NewSkin = 0;
-	m_SkinID = 0;
 
     strRank = 3;
-    defRank = 3;
     vitRank = 3;
     agiRank = 3;
     intRank = 3;
@@ -89,16 +85,12 @@ CMobEntity::CMobEntity()
 	m_battlefieldID = 0;
     m_bcnmID = 0;
 
-    m_maxRoamDistance = 10.0f;
+    m_maxRoamDistance = 20.0f;
     m_disableScent = false;
-
-    setMobMod(MOBMOD_SIGHT_RANGE, MOB_SIGHT_RANGE);
-    setMobMod(MOBMOD_SOUND_RANGE, MOB_SOUND_RANGE);
-    setMobMod(MOBMOD_ROAM_COOL, 45);
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 
-    m_SpellListContainer = NULL;
+    m_SpellListContainer = nullptr;
     PEnmityContainer = new CEnmityContainer(this);
     SpellContainer = new CMobSpellContainer(this);
 
@@ -153,7 +145,7 @@ uint32 CMobEntity::GetRandomGil()
             ShowWarning("CMobEntity::GetRandomGil Max value is set too low, defauting\n");
         }
 
-        return WELL512::irand() % (max - min) + min;
+        return dsprand::GetRandomNumber(min,max);
     }
 
     float gil = pow(GetMLevel(), 1.05f);
@@ -174,21 +166,16 @@ uint32 CMobEntity::GetRandomGil()
     }
 
     // randomize it
-    gil += WELL512::irand() % highGil;
-
-    // NMs get more gil
-    if((m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS){
-        gil *= 10;
-    }
-
-    // thfs drop more gil
-    if(GetMJob() == JOB_THF){
-        gil = (float)gil * 1.5;
-    }
+    gil += dsprand::GetRandomNumber(highGil);
 
     if(min && gil < min)
     {
         gil = min;
+    }
+
+    if (getMobMod(MOBMOD_GIL_BONUS) != 0)
+    {
+        gil = (float)gil * (getMobMod(MOBMOD_GIL_BONUS) / 100.0f);
     }
 
     return gil;
@@ -204,18 +191,39 @@ bool CMobEntity::CanDropGil()
         return true;
     }
 
-    return m_EcoSystem == SYSTEM_BEASTMEN;
+    return getMobMod(MOBMOD_GIL_BONUS) > 0;
+}
+
+bool CMobEntity::CanStealGil()
+{
+    // TODO: Some mobs cannot be mugged
+    return CanDropGil();
+}
+
+void CMobEntity::ResetGilPurse()
+{
+    uint32 purse = GetRandomGil() / ((dsprand::GetRandomNumber(4,7)));
+    if(purse == 0)
+        purse = GetRandomGil();
+    setMobMod(MOBMOD_MUG_GIL, purse);
 }
 
 bool CMobEntity::CanRoamHome()
 {
     if(speed == 0 && !(m_roamFlags & ROAMFLAG_WORM)) return false;
-    return getMobMod(MOBMOD_NO_DESPAWN);
+
+    if (getMobMod(MOBMOD_NO_DESPAWN) != 0 ||
+        map_config.mob_no_despawn)
+    {
+        return true;
+    }
+
+    return distance(m_SpawnPoint, loc.p) < MOB_ROAM_HOME_DISTANCE;
 }
 
 bool CMobEntity::CanRoam()
 {
-    return !(m_roamFlags & ROAMFLAG_EVENT) && PMaster == NULL && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM));
+    return !(m_roamFlags & ROAMFLAG_EVENT) && PMaster == nullptr && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM));
 }
 
 bool CMobEntity::CanLink(position_t* pos, int16 superLink)
@@ -304,122 +312,16 @@ bool CMobEntity::CanBeNeutral()
     return !(m_Type & MOBTYPE_NOTORIOUS);
 }
 
-bool CMobEntity::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
-{
-	if (PTarget->isDead() || m_Aggro == AGGRO_NONE || PTarget->animation == ANIMATION_CHOCOBO) return false;
-
-    float verticalDistance = abs(loc.p.y - PTarget->loc.p.y);
-
-    if(verticalDistance > 8)
-    {
-        return false;
-    }
-
-    float currentDistance = distance(PTarget->loc.p, loc.p) + PTarget->getMod(MOD_STEALTH);
-
-    bool detectSight = (m_Aggro & AGGRO_DETECT_SIGHT) || forceSight;
-
-    if (detectSight && !PTarget->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE) && currentDistance < getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(loc.p, PTarget->loc.p, 40))
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_TRUESIGHT) && currentDistance < getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(loc.p, PTarget->loc.p, 40))
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_TRUEHEARING) && currentDistance < getMobMod(MOBMOD_SOUND_RANGE))
-    {
-        return true;
-    }
-
-	if ((m_Behaviour & BEHAVIOUR_AGGRO_AMBUSH) && currentDistance < 3 && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_HEARING) && currentDistance < getMobMod(MOBMOD_SOUND_RANGE) && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
-    {
-        return true;
-    }
-
-    // everything below require distance to be below 20
-    if(currentDistance > 20)
-    {
-        return false;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_LOWHP) && PTarget->GetHPP() < 75)
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_MAGIC) && PTarget->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING && PTarget->PBattleAI->GetCurrentSpell()->hasMPCost())
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_WEAPONSKILL) && PTarget->PBattleAI->GetCurrentAction() == ACTION_WEAPONSKILL_FINISH)
-    {
-        return true;
-    }
-
-	if ((m_Aggro & AGGRO_DETECT_JOBABILITY) && PTarget->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH)
-    {
-        return true;
-    }
-
-    return false;
-}
-
-void CMobEntity::ChangeMJob(uint16 job)
-{
-    this->SetMJob(job);
-
-    // give him a spell list based on job
-    if(m_EcoSystem == SYSTEM_BEASTMEN || m_EcoSystem == SYSTEM_UNDEAD || m_EcoSystem == SYSTEM_HUMANOID){
-        uint16 spellList = 0;
-
-        switch(job){
-            case JOB_WHM:
-                spellList = 1;
-            break;
-            case JOB_BLM:
-                spellList = 2;
-            break;
-            case JOB_RDM:
-                spellList = 3;
-            break;
-            case JOB_PLD:
-                spellList = 4;
-            break;
-            case JOB_DRK:
-                spellList = 5;
-            break;
-            case JOB_BRD:
-                spellList = 6;
-            break;
-            case JOB_NIN:
-                spellList = 7;
-            break;
-            case JOB_BLU:
-                spellList = 8;
-            break;
-        }
-
-        m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
-    }
-
-    // give spells and proper traits
-    mobutils::CalculateStats(this);
-}
-
 uint8 CMobEntity::TPUseChance()
 {
-    if(health.tp < 1000) return 0;
+    auto& MobSkillList = battleutils::GetMobSkillList(getMobMod(MOBMOD_SKILL_LIST));
 
-    if(health.tp == 3000 || (GetHPP() <= 25 && health.tp >= 1000))
+    if (health.tp < 1000 || MobSkillList.empty() == true || !PBattleAI->GetMobAbilityEnabled())
+    {
+        return 0;
+    }
+
+    if (health.tp == 3000 || (GetHPP() <= 25 && health.tp >= 1000))
     {
         return 100;
     }
@@ -427,114 +329,32 @@ uint8 CMobEntity::TPUseChance()
     return getMobMod(MOBMOD_TP_USE_CHANCE);
 }
 
-/************************************************************************
-*                                                                       *
-*  Change Skin of the Mob                                               *
-*                                                                       *
-************************************************************************/
-
-void CMobEntity::SetMainSkin(uint32 mobid)
-{
-	if(m_NewSkin)
-	{
-		const int8* Query = "SELECT modelid \
-							 FROM mob_spawn_points, mob_groups, mob_pools \
-							 WHERE mob_spawn_points.mobid = %u \
-							 AND mob_groups.groupid = mob_spawn_points.groupid \
-							 AND mob_groups.poolid = mob_pools.poolid";
-
-		int32 ret = Sql_Query(SqlHandle, Query, mobid);
-
-		if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			memcpy(&look,Sql_GetData(SqlHandle,0),23);
-			m_NewSkin = false;
-			m_SkinID = 0;
-		}
-	}
-}
-
-void CMobEntity::SetNewSkin(uint8 skinid)
-{
-	const int8* Query = "SELECT skin_model FROM mob_change_skin WHERE skinid = %u";
-
-	int32 ret = Sql_Query(SqlHandle, Query, skinid);
-
-	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		memcpy(&look,Sql_GetData(SqlHandle,0),23);
-		m_NewSkin = true;
-		m_SkinID = skinid;
-	}
-}
-
-uint32 CMobEntity::GetSkinID()
-{
-	return m_SkinID;
-}
-
 void CMobEntity::setMobMod(uint16 type, int16 value)
 {
-    if (type < MAX_MOBMODIFIER)
-    {
-        m_mobModStat[type] = value;
-    }
-    else
-    {
-        ShowError("CMobEntity::setMobMod Trying to set value out of range (%d)\n", type);
-    }
+    m_mobModStat[type] = value;
 }
 
 int16 CMobEntity::getMobMod(uint16 type)
 {
-    if (type < MAX_MOBMODIFIER)
-    {
-        return m_mobModStat[type];
-    }
-    else
-    {
-        ShowError("CMobEntity::getMobMod Trying to get value out of range (%d)\n", type);
-        return -1;
-    }
+    return m_mobModStat[type];
 }
 
 void CMobEntity::addMobMod(uint16 type, int16 value)
 {
-    if (type < MAX_MOBMODIFIER)
-    {
-        m_mobModStat[type] += value;
-    }
-    else
-    {
-        ShowError("CMobEntity::addMobMod Trying to set value out of range (%d)\n", type);
-    }
+    m_mobModStat[type] += value;
 }
 
 void CMobEntity::defaultMobMod(uint16 type, int16 value)
 {
-    if (type < MAX_MOBMODIFIER)
+    if(m_mobModStat[type] == 0)
     {
-        if(m_mobModStat[type] == 0)
-        {
-            m_mobModStat[type] = value;
-        }
-    }
-    else
-    {
-        ShowError("CMobEntity::addMobMod Trying to set value out of range (%d)\n", type);
+        m_mobModStat[type] = value;
     }
 }
 
 void CMobEntity::resetMobMod(uint16 type)
 {
-    if (type < MAX_MOBMODIFIER)
-    {
-        m_mobModStat[type] = m_mobModStatSave[type];
-    }
-    else
-    {
-        ShowError("CMobEntity::addMobMod Trying to set value out of range (%d)\n", type);
-    }
+    m_mobModStat[type] = m_mobModStatSave[type];
 }
 
 int32 CMobEntity::getBigMobMod(uint16 type)
@@ -544,12 +364,12 @@ int32 CMobEntity::getBigMobMod(uint16 type)
 
 void CMobEntity::saveMobModifiers()
 {
-    memcpy(m_mobModStatSave, m_mobModStat, sizeof(m_mobModStat));
+    m_mobModStatSave = m_mobModStat;
 }
 
 void CMobEntity::restoreMobModifiers()
 {
-    memcpy(m_mobModStat, m_mobModStatSave, sizeof(m_mobModStatSave));
+    m_mobModStat = m_mobModStatSave;
 }
 
 void CMobEntity::HideModel(bool hide)
@@ -633,4 +453,14 @@ void CMobEntity::UpdateEntity()
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
         updatemask = 0;
     }
+}
+
+float CMobEntity::GetRoamDistance()
+{
+    return (float)getMobMod(MOBMOD_ROAM_DISTANCE) / 10.0f;
+}
+
+float CMobEntity::GetRoamRate()
+{
+    return (float)getMobMod(MOBMOD_ROAM_RATE) / 10.0f;
 }

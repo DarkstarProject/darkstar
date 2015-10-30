@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -97,13 +97,13 @@ void StartFishing(CCharEntity* PChar)
 		return;
 	}
 	
-	CItemWeapon* WeaponItem = NULL;
+	CItemWeapon* WeaponItem = nullptr;
 
 	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);	
 			
-	if ((WeaponItem == NULL) ||
+	if ((WeaponItem == nullptr) ||
 	   !(WeaponItem->isType(ITEM_WEAPON)) ||
-		(WeaponItem->getSkillType() != SKILL_FSH)) 
+		(WeaponItem->getSkillType() != SKILL_FISHING)) 
 	{													
 		// сообщение: "You can't fish without a rod in your hands"
 
@@ -114,9 +114,9 @@ void StartFishing(CCharEntity* PChar)
 
 	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);	
 							
-	if ((WeaponItem == NULL) ||
+	if ((WeaponItem == nullptr) ||
 	   !(WeaponItem->isType(ITEM_WEAPON)) ||
-		(WeaponItem->getSkillType() != SKILL_FSH))
+		(WeaponItem->getSkillType() != SKILL_FISHING))
 	{
 		// сообщение: "You can't fish without bait on the hook"	
 
@@ -125,7 +125,6 @@ void StartFishing(CCharEntity* PChar)
 		return;
 	}
 
-	PChar->status = STATUS_UPDATE;
 	PChar->animation = ANIMATION_FISHING_START;
     PChar->updatemask |= UPDATE_HP;
 
@@ -147,26 +146,26 @@ bool CheckFisherLuck(CCharEntity* PChar)
 		return false;
 	}
 
-	CItemFish* PFish = NULL;
-	CItemWeapon* WeaponItem = NULL;
+	CItemFish* PFish = nullptr;
+	CItemWeapon* WeaponItem = nullptr;
 
 	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);	
 
-	DSP_DEBUG_BREAK_IF(WeaponItem == NULL);
+	DSP_DEBUG_BREAK_IF(WeaponItem == nullptr);
 	DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
-	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FSH);
+	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FISHING);
 
 	uint16 RodID = WeaponItem->getID();
 
 	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);	
 							
-	DSP_DEBUG_BREAK_IF(WeaponItem == NULL);
+	DSP_DEBUG_BREAK_IF(WeaponItem == nullptr);
 	DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
-	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FSH);
+	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FISHING);
 
 	uint16 LureID = WeaponItem->getID();
 
-	int32 FishingChance = WELL512::irand()%100;
+	int32 FishingChance = dsprand::GetRandomNumber(100);
 
 	if (FishingChance <= 20)
 	{
@@ -239,7 +238,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 		if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
 			int32 FisherLuck = 0;
-			int32 FishingChance = WELL512::irand()%1000;
+            int32 FishingChance = dsprand::GetRandomNumber(1000);
 
 			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 			{
@@ -257,7 +256,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 		}
 	}
 
-	return (PFish != NULL);
+	return (PFish != nullptr);
 }
 
 /************************************************************************
@@ -270,9 +269,9 @@ bool LureLoss(CCharEntity* PChar, bool RemoveFly)
 {	
 	CItemWeapon* PLure = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
 
-	DSP_DEBUG_BREAK_IF(PLure == NULL);
+	DSP_DEBUG_BREAK_IF(PLure == nullptr);
 	DSP_DEBUG_BREAK_IF(PLure->isType(ITEM_WEAPON) == false);
-	DSP_DEBUG_BREAK_IF(PLure->getSkillType() != SKILL_FSH);
+	DSP_DEBUG_BREAK_IF(PLure->getSkillType() != SKILL_FISHING);
 
 	if (!RemoveFly &&
 	   ( PLure->getStackSize() == 1))
@@ -300,7 +299,7 @@ void RodBreaks(CCharEntity* PChar)
 	uint8  SlotID = PChar->equip[SLOT_RANGED];
 	CItem* PRod   = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
-	DSP_DEBUG_BREAK_IF(PRod == NULL);
+	DSP_DEBUG_BREAK_IF(PRod == nullptr);
 
 	uint16 BrokenRodID = 0;
 
@@ -369,7 +368,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				// сообщение: "You caught fish!"
 
 				DSP_DEBUG_BREAK_IF(PChar->UContainer->GetType() != UCONTAINER_FISHING);
-				DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == NULL);
+				DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == nullptr);
 
 				PChar->animation = ANIMATION_FISHING_CAUGHT;
                 PChar->updatemask |= UPDATE_HP;
@@ -440,8 +439,6 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 		}
 		break;
 	}
-
-	PChar->status = STATUS_UPDATE;
 			
 	PChar->pushPacket(new CCharUpdatePacket(PChar));
 	PChar->pushPacket(new CCharSyncPacket(PChar));

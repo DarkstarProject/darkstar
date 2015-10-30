@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@ CItemArmor::CItemArmor(uint16 id) : CItemUsable(id)
 	m_shieldSize   = 0;
 	m_scriptType   = 0;
 	m_reqLvl       = 255;
+    m_iLvl         = 0;
 	m_equipSlotID  = 255;
     m_absorption   = 0;
 }
@@ -70,6 +71,11 @@ uint8 CItemArmor::getReqLvl()
 	return m_reqLvl;
 }
 
+uint8 CItemArmor::getILvl()
+{
+    return m_iLvl;
+}
+
 uint32 CItemArmor::getJobs()
 {
 	return m_jobs;
@@ -78,6 +84,11 @@ uint32 CItemArmor::getJobs()
 void CItemArmor::setReqLvl(uint8 lvl)
 {
 	m_reqLvl = lvl;
+}
+
+void CItemArmor::setILvl(uint8 lvl)
+{
+    m_iLvl = lvl;
 }
 
 void CItemArmor::setJobs(uint32 jobs)
@@ -131,7 +142,7 @@ uint8 CItemArmor::getShieldAbsorption()
 
 bool CItemArmor::IsShield()
 {
-    return m_shieldSize > 0 && m_shieldSize < 6;
+    return m_shieldSize > 0 && m_shieldSize <= 6;
 }
 
 /************************************************************************
@@ -203,6 +214,11 @@ int16 CItemArmor::getModifier(uint16 mod)
 	return 0;
 }
 
+void CItemArmor::addPetModifier(CModifier* modifier)
+{
+    petModList.push_back(modifier);
+}
+
 void CItemArmor::addLatent(CLatentEffect* latent)
 {
 	latentList.push_back(latent);
@@ -266,7 +282,7 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
 
 
     // obtain augment info by querying the db
-    const int8* fmtQuery = "SELECT * FROM augments WHERE augmentId = %u";
+    const int8* fmtQuery = "SELECT augmentId, multiplier, modId, `value`, `type` FROM augments WHERE augmentId = %u";
 
     int32 ret = Sql_Query(SqlHandle, fmtQuery, type);
 
@@ -274,13 +290,22 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
         Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        uint32 multiplier = (uint32)Sql_GetUIntData(SqlHandle, 1);
+        uint8 multiplier = (uint8)Sql_GetUIntData(SqlHandle, 1);
         uint32 modId = (uint32)Sql_GetUIntData(SqlHandle, 2);
-        int32 modValue = (int32)Sql_GetIntData(SqlHandle, 3);
+        int16 modValue = (int16)Sql_GetIntData(SqlHandle, 3);
+        
+        // type is 0 unless mod is for pets
+        uint8 type = (uint8)Sql_GetUIntData(SqlHandle, 4);
 
         // apply modifier to item. increase modifier power by 'value' (default magnitude 1 for most augments) if multiplier isn't specified
         // otherwise increase modifier power using the multiplier
-        addModifier(new CModifier(modId, (multiplier > 0 ? modValue + (value * multiplier) : modValue + value)));
+        // check if we should be adding to or taking away from the mod power (handle scripted augments properly)
+        modValue = (modValue > 0 ? modValue + value : modValue - value) * (multiplier > 1 ? multiplier : 1);
+
+        if (!type)
+            addModifier(new CModifier(modId, modValue));
+        else
+            addPetModifier(new CModifier(modId, modValue));
     }
 }
 

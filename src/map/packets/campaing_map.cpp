@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -64,7 +64,7 @@ CCampaingPacket::CCampaingPacket(CCharEntity * PChar, uint8 number)
 
 	switch (number)
 	{
-		case 0: memcpy(data+(0x04)-4, &packet0, 200); break;
-		case 1: memcpy(data+(0x04)-4, &packet1, 200); break;
+		case 0: memcpy(data+(0x04), &packet0, 200); break;
+		case 1: memcpy(data+(0x04), &packet1, 200); break;
 	}
 }

@@ -9,7 +9,12 @@ require("scripts/globals/keyitems");
 local Maps = {MAP_OF_THE_SAN_DORIA_AREA, MAP_OF_THE_BASTOK_AREA, MAP_OF_THE_WINDURST_AREA, MAP_OF_THE_JEUNO_AREA, MAP_OF_ORDELLES_CAVES, MAP_OF_GHELSBA, MAP_OF_DAVOI, MAP_OF_CARPENTERS_LANDING, MAP_OF_THE_ZERUHN_MINES,
 	MAP_OF_THE_PALBOROUGH_MINES, MAP_OF_BEADEAUX, MAP_OF_GIDDEUS, MAP_OF_CASTLE_OZTROJA, MAP_OF_THE_MAZE_OF_SHAKHRAMI, MAP_OF_THE_LITELOR_REGION, MAP_OF_BIBIKI_BAY, MAP_OF_QUFIM_ISLAND, MAP_OF_THE_ELDIEME_NECROPOLIS,
 	MAP_OF_THE_GARLAIGE_CITADEL, MAP_OF_THE_ELSHIMO_REGIONS, MAP_OF_THE_NORTHLANDS_AREA, MAP_OF_KING_RANPERRES_TOMB, MAP_OF_THE_DANGRUF_WADI, MAP_OF_THE_HORUTOTO_RUINS, MAP_OF_BOSTAUNIEUX_OUBLIETTE,
-	MAP_OF_THE_TORAIMARAI_CANAL, MAP_OF_THE_GUSGEN_MINES, MAP_OF_THE_CRAWLERS_NEST, MAP_OF_THE_RANGUEMONT_PASS, MAP_OF_DELKFUTTS_TOWER, MAP_OF_FEIYIN, MAP_OF_CASTLE_ZVAHL};
+	MAP_OF_THE_TORAIMARAI_CANAL, MAP_OF_THE_GUSGEN_MINES, MAP_OF_THE_CRAWLERS_NEST, MAP_OF_THE_RANGUEMONT_PASS, MAP_OF_DELKFUTTS_TOWER, MAP_OF_FEIYIN, MAP_OF_CASTLE_ZVAHL, MAP_OF_THE_KUZOTZ_REGION,
+	MAP_OF_THE_RUAUN_GARDENS, MAP_OF_NORG, MAP_OF_THE_TEMPLE_OF_UGGALEPIH, MAP_OF_THE_DEN_OF_RANCOR, MAP_OF_THE_KORROLOKA_TUNNEL, MAP_OF_THE_KUFTAL_TUNNEL, MAP_OF_THE_BOYAHDA_TREE, MAP_OF_THE_VELUGANNON_PALACE,
+	MAP_OF_IFRITS_CAULDRON, MAP_OF_THE_QUICKSAND_CAVES, MAP_OF_THE_SEA_SERPENT_GROTTO, MAP_OF_THE_VOLLBOW_REGION, MAP_OF_THE_LABYRINTH_OF_ONZOZO, MAP_OF_THE_ULEGUERAND_RANGE, MAP_OF_THE_ATTOHWA_CHASM, MAP_OF_PSOXJA,
+	MAP_OF_OLDTON_MOVALPOLOS, MAP_OF_NEWTON_MOVALPOLOS, MAP_OF_TAVNAZIA, MAP_OF_THE_AQUEDUCTS, MAP_OF_THE_SACRARIUM, MAP_OF_CAPE_RIVERNE, MAP_OF_ALTAIEU, MAP_OF_HUXZOI, MAP_OF_RUHMET, MAP_OF_AL_ZAHBI, MAP_OF_NASHMAU,
+	MAP_OF_WAJAOM_WOODLANDS, MAP_OF_CAEDARVA_MIRE, MAP_OF_MOUNT_ZHAYOLM, MAP_OF_AYDEEWA_SUBTERRANE, MAP_OF_MAMOOK, MAP_OF_HALVUNG, MAP_OF_ARRAPAGO_REEF, MAP_OF_ALZADAAL_RUINS, MAP_OF_BHAFLAU_THICKETS,
+	MAP_OF_VUNKERL_INLET, MAP_OF_GRAUBERG, MAP_OF_FORT_KARUGONARUGO};
 
 local Uoption = {	--User option selected.
 	1,			--SanDoria Area
@@ -43,8 +48,49 @@ local Uoption = {	--User option selected.
 	1835009,	--Ranguemont Pass
 	1900545,	--Delkfutts Tower
 	1966081,	--Feiyin
-	2031617		--Castle Zvahl
+	2031617,	--Castle Zvahl
+	2097153,	--Kuzotz region
+	2162689,	--Ru'Aun Gardens
+	2228225,	--Norg
+	2293761,	--Temple of Uggalepih
+	2359297,	--Den of Rancor
+	2424833,	--Korroloka Tunnel
+	2490369,	--Kuftal Tunnel
+	2555905,	--Boyahda Tree
+	2621441,	--Ve'Lugannon Palace
+	2686977,	--Ifrit's Cauldron
+	2752513,	--Quicksand Caves
+	2818049,	--Sea Serpent Grotto
+	2883585,	--Vollbow region
+	2949121,	--Labyrinth of Onzozo
+	3014657,	--Uleguerand Range
+	3080193,	--Attohwa Chasm
+	3145729,	--Pso'Xja
+	3211265,	--Oldton Movalpolos
+	3276801,	--Newton Movalpolos
+	3342337,	--Tavnazia
+	3407873,	--Aqueducts
+	3473409,	--Sacrarium
+	3538945,	--Cape Riverne
+	3604481,	--Al'Taieu
+	3670017,	--Hu'Xzoi
+	3735553,	--Ru'Hmet
+	3801089,	--Al Zahbi
+	3866625,	--Nashmau
+	3932161,	--Wajaom Woodlands
+	3997697,	--Caedarva Mire
+	4063233,	--Mount Zhayolm
+	4128769,	--Aydeewa Subterrane
+	4194305,	--Mamook
+	4259841,	--Halvung
+	4325377,	--Arrapago Reef
+	4390913,	--Alzadall Ruins
+	4456449,	--Bhaflau Thickets
+	4521985,	--Vunkerl Inlet
+	4587521,	--Grauberg
+	4653057		--Fort Karugo-Narugo
 	};
+
 --Groups maps by price, based off the user option.
 local p2 = { --Maps that are price at 200 gil
 	Uoption[1],		--SanDoria Area
@@ -63,7 +109,8 @@ local p6 = { --Maps that are price at 600 gil
 	Uoption[22],	--King Ranperres Tomb
 	Uoption[23],	--Dangruf Wadi
 	Uoption[24],	--Horutoto Ruins
-	Uoption[27]		--Gusgen Mines
+	Uoption[27],	--Gusgen Mines
+	Uoption[59]		--Al Zahbi
 	};
 local p3 = {	--Maps that are price at 3000 gil
 	Uoption[7],		--Davoi
@@ -82,21 +129,78 @@ local p3 = {	--Maps that are price at 3000 gil
 	Uoption[29],	--Ranguemont Pass
 	Uoption[30],	--Delkfutts Tower
 	Uoption[31],	--Feiyin
-	Uoption[32]		--Castle Zvahl
-	}
-
+	Uoption[32],	--Castle Zvahl
+	Uoption[33],	--Kuzotz region
+	Uoption[34],	--Ru'Aun Gardens
+	Uoption[35],	--Norg
+	Uoption[36],	--Temple of Uggalepih
+	Uoption[37],	--Den of Rancor
+	Uoption[38],	--Korroloka Tunnel
+	Uoption[39],	--Kuftal Tunnel
+	Uoption[40],	--Boyahda Tree
+	Uoption[41],	--Ve'Lugannon Palace
+	Uoption[42],	--Ifrit's Cauldron
+	Uoption[43],	--Quicksand Caves
+	Uoption[44],	--Sea Serpent Grotto
+	Uoption[45],	--Vollbow region
+	Uoption[46],	--Labyrinth of Onzozo
+	Uoption[47],	--Uleguerand Range
+	Uoption[48],	--Attohwa Chasm
+	Uoption[49],	--Pso'Xja
+	Uoption[50],	--Oldton Movalpolos
+	Uoption[51],	--Newton Movalpolos
+	Uoption[52],	--Tavnazia
+	Uoption[53],	--Aqueducts
+	Uoption[54],	--Sacrarium
+	Uoption[55],	--Cape Riverne
+	Uoption[56],	--Al'Taieu
+	Uoption[57],	--Hu'Xzoi
+	Uoption[58],	--Ru'Hmet
+	Uoption[60],	--Nashmau
+	Uoption[61],	--Wajaom Woodlands
+	Uoption[62],	--Caedarva Mire
+	Uoption[63],	--Mount Zhayolm
+	Uoption[64],	--Aydeewa Subterrane
+	Uoption[65],	--Mamook
+	Uoption[66],	--Halvung
+	Uoption[67],	--Arrapago Reef
+	Uoption[68],	--Alzadall Ruins
+	Uoption[69]		--Bhaflau Thickets
+	};
+local p30 = { --Maps that are price at 30,000 gil
+	Uoption[70],	--Vunkerl Inlet
+	Uoption[71],	--Grauberg
+	Uoption[72]		--Fort Karugo-Narugo
+	};
+	
 function CheckMaps(player, npc, csid)
 	local i = 0;
-	local mapVar = 0;
+	local mapVar1 = 0;
+	local mapVar2 = 0;
+	local mapVar3 = 0;
 
 	while i <= 31 do
 		if player:hasKeyItem(Maps[i+1]) then
-			mapVar = bit.bor(mapVar, bit.lshift(1,i));
+			mapVar1 = bit.bor(mapVar1, bit.lshift(1,i));
+		end
+		i = i + 1;
+	end
+	
+	while i <= 63 do
+		if player:hasKeyItem(Maps[i+1]) then
+			mapVar2 = bit.bor(mapVar2, bit.lshift(1,i));
 		end
 		i = i + 1; 
 	end
-
-	player:startEvent(csid, mapVar);
+	
+	while i <= 71 do
+		if player:hasKeyItem(Maps[i+1]) then
+			mapVar3 = bit.bor(mapVar3, bit.lshift(1,i));
+		end
+		i = i + 1;
+	end
+	
+	player:startEvent(csid, mapVar1, mapVar2, mapVar3);
 end;
 
 function CheckMapsUpdate (player, option, NOT_HAVE_ENOUGH_GIL, KEYITEM_OBTAINED)
@@ -104,18 +208,22 @@ function CheckMapsUpdate (player, option, NOT_HAVE_ENOUGH_GIL, KEYITEM_OBTAINED)
 	local MadePurchase = false;
 	local KI = 0;
 	local i = 0;
-	local mapVar = 0; 
+	local mapVar1 = 0;
+	local mapVar2 = 0;
+	local mapVar3 = 0;
 
-	while i <= 31 do
+	while i <= 71 do
 		if (option == Uoption[i+1]) then
-			local x =1;
-			while x <= 17 do
+			local x = 1;
+			while x <= 53 do
 				if (x <= 4 and option == p2[x]) then
 					price = 200;
-				elseif (x <= 11 and option == p6[x]) then
+				elseif (x <= 12 and option == p6[x]) then
 					price = 600;
-				elseif (x <= 17 and option == p3[x]) then
+				elseif (x <= 53 and option == p3[x]) then
 					price = 3000;
+				elseif (x <= 3 and option == p30[x]) then
+					price = 30000;
 				end
 				x=x+1;
 			end
@@ -135,12 +243,28 @@ function CheckMapsUpdate (player, option, NOT_HAVE_ENOUGH_GIL, KEYITEM_OBTAINED)
 		player:addKeyItem(KI);
 		player:messageSpecial(KEYITEM_OBTAINED, KI);
 	end
+	
 	i=0;
 	while i <= 31 do
 		if player:hasKeyItem(Maps[i+1]) then
-			mapVar = bit.bor(mapVar, bit.lshift(1,i));
+			mapVar1 = bit.bor(mapVar1, bit.lshift(1,i));
 		end
 		i = i + 1;
 	end
-	player:updateEvent(mapVar);
+	
+	while i <= 63 do
+		if player:hasKeyItem(Maps[i+1]) then
+			mapVar2 = bit.bor(mapVar2, bit.lshift(1,i));
+		end
+		i = i + 1;
+	end
+	
+	while i <= 71 do
+		if player:hasKeyItem(Maps[i+1]) then
+			mapVar3 = bit.bor(mapVar3, bit.lshift(1,i));
+		end
+		i = i + 1;
+	end
+	
+	player:updateEvent(mapVar1, mapVar2, mapVar3);
 end;

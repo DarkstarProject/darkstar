@@ -3,9 +3,9 @@
 -- Additional effect: Enmity Down. Chance of effect varies with TP.
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 

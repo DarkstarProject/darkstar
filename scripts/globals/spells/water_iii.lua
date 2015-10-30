@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Water
+-- Spell: Water III
 -- Deals water damage to an enemy.
 -----------------------------------------
 
@@ -10,12 +10,22 @@ require("scripts/globals/status");
 -- OnSpellCast
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
-	return 0;
+function onMagicCastingCheck(caster, target, spell)
+    return 0;
 end;
 
-function onSpellCast(caster,target,spell)
-	--doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doElementalNuke(236,1.5,caster,spell,target,false,1.0);
-	return dmg;
+function onSpellCast(caster, target, spell)
+    local spellParams = {};
+    spellParams.hasMultipleTargetReduction = false;
+    spellParams.resistBonus = 1.0;
+    spellParams.V0 = 230;
+    spellParams.V50 = 415;
+    spellParams.V100 = 560;
+    spellParams.V200 = 755;
+    spellParams.M0 = 3.7;
+    spellParams.M50 = 2.9;
+    spellParams.M100 = 1.95;
+    spellParams.M200 = 1;
+
+    return doElementalNuke(caster, spell, target, spellParams);
 end;

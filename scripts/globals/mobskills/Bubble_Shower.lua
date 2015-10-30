@@ -3,9 +3,9 @@
 -- Deals Water damage in an area of effect. Additional effect: STR Down
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 

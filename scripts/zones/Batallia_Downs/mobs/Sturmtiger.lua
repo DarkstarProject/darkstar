@@ -9,7 +9,7 @@
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -17,7 +17,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player)
-	if(player:getVar("ChasingQuotas_Progress") == 5) then
+	if (player:getVar("ChasingQuotas_Progress") == 5) then
 		player:setVar("SturmtigerKilled",1);
 	end
 end;

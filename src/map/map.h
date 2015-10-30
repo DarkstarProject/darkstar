@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ struct map_config_t
 	const int8 *mysql_host;			// mysql addr     -> localhost:3306
 	uint16 mysql_port;				// mysql port     -> 3306
 	const int8 *mysql_login;		// mysql login    -> default root
-	const int8 *mysql_password;		// mysql pass     -> default NULL
+	const int8 *mysql_password;		// mysql pass     -> default nullptr
 	const int8 *mysql_database;		// mysql database -> default dspdb
 
     string_t server_message;
@@ -95,6 +95,7 @@ struct map_config_t
     bool   craft_direction_matters; // Enable/disable Compass direction factor in synthesis
 	float  mob_tp_multiplier;		// Multiplies the amount of TP mobs gain on any effect that would grant TP
 	float  player_tp_multiplier;	// Multiplies the amount of TP players gain on any effect that would grant TP
+        bool   mob_no_despawn;  // Toggle whether mobs roam home or despawn
     float  nm_hp_multiplier;        // Multiplier for max HP of NM.
 	float  mob_hp_multiplier;		// Multiplier for max HP pool of mob
 	float  player_hp_multiplier;	// Multiplier for max HP pool of player
@@ -152,7 +153,9 @@ struct map_session_data_t
 extern map_config_t map_config;
 extern uint32 map_amntplayers;
 extern int32 map_fd;
-extern Sql_t* SqlHandle;
+
+extern thread_local Sql_t* SqlHandle;
+
 extern CCommandHandler CmdHandler;
 
 typedef std::map<uint64,map_session_data_t*> map_session_list_t;

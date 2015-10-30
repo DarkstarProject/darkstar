@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -39,8 +39,8 @@
 class CLinkshellMessagePacket : public CBasicPacket
 {
 public:
-
-    CLinkshellMessagePacket(CLinkshell* PLinkshell);
+    static const uint16 id {0xCC};
+    CLinkshellMessagePacket(const int8* poster, const int8* message, const int8* lsname, uint32 posttime, bool ls1);
 };
 
 #endif

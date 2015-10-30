@@ -4,8 +4,8 @@
 -- Note: PH for Nue, Kirata
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
-require("/scripts/zones/Beaucedine_Glacier/MobIDs");
+require("scripts/globals/fieldsofvalor");	
+require("scripts/zones/Beaucedine_Glacier/MobIDs");
 	
 -----------------------------------	
 -- onMobDeath	

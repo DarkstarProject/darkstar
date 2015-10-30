@@ -4,8 +4,8 @@
 -- Note: Place Holder For Maighdean Uaine
 -----------------------------------	
 
-require("/scripts/zones/North_Gustaberg/MobIDs");
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/zones/North_Gustaberg/MobIDs");
+require("scripts/globals/fieldsofvalor");	
 	
 -----------------------------------	
 -- onMobDeath	

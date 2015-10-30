@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -25,6 +25,8 @@
 #include "entities/battleentity.h"
 #include "attackround.h"
 #include "attack.h"
+
+#include <math.h>
 
 /************************************************************************
 *																		*
@@ -240,6 +242,12 @@ uint8 CAttack::GetHitRate()
 		{
 			m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 0);
 		}
+
+        // Deciding this here because SA/TA wears on attack, before the 2nd+ hits go off.
+        if (m_hitRate == 100)
+        {
+            m_attackRound->SetSATA(true);
+        }
 	}
 	// Left hand hitrate
 	else if (m_attackDirection == LEFTATTACK && m_attackType != KICK_ATTACK)
@@ -251,12 +259,6 @@ uint8 CAttack::GetHitRate()
 		else
 		{
 			m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 1);
-		}
-
-		// Deciding this here because SA/TA wears on attack, before the 2nd+ hits go off.
-		if (m_hitRate = 100)
-		{
-			m_attackRound->SetSATA(true);
 		}
 	}
 	// Kick hit rate
@@ -307,9 +309,9 @@ void CAttack::ProcessDamage()
 	// Trick attack.
 	if (m_attacker->GetMJob() == JOB_THF && 
 		m_isFirstSwing && 
-		m_attackRound->GetTAEntity() != NULL)
+		m_attackRound->GetTAEntity() != nullptr)
 	{
-		m_trickAttackDamage += m_attacker->AGI();
+		m_trickAttackDamage += m_attacker->AGI() * (1 + m_attacker->getMod(MOD_TRICK_ATK_AGI)/100);
 	}
 
 	// H2H.
@@ -361,11 +363,17 @@ void CAttack::ProcessDamage()
 		m_damage += (m_damage * (float)m_attacker->getMod(MOD_CRIT_DMG_INCREASE) / 100);
 	}
 
-	// Try Null damage chance (The target)
-    if (m_victim->objtype == TYPE_PC && WELL512::irand() % 100 < m_victim->getMod(MOD_NULL_PHYSICAL_DAMAGE))
-	{
-		m_damage = 0;
-	}
+    // Apply Sneak Attack Augment Mod
+    if (m_attacker->getMod(MOD_AUGMENTS_SA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
+    {
+        m_damage += (m_damage * ((100+(m_attacker->getMod(MOD_AUGMENTS_SA)))/100));
+    }
+
+    // Apply Trick Attack Augment Mod
+    if (m_attacker->getMod(MOD_AUGMENTS_TA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+    {
+        m_damage += (m_damage * ((100+(m_attacker->getMod(MOD_AUGMENTS_TA)))/100));
+    }
 
 	// Try skill up.
 	if (m_damage > 0)

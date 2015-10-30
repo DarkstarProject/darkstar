@@ -20,10 +20,10 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 	
-	if(leavecode == 2 or leavecode == 3 or leavecode == 4) then
+	if (leavecode == 2 or leavecode == 3 or leavecode == 4) then
 	 --	player:setPos(0,0,0,0,0x00);
 	end
-	if(leavecode == 4) then
+	if (leavecode == 4) then
 		--SetServerVariable("[]UniqueID",0);
 	end
 	

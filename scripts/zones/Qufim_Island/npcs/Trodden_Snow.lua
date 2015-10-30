@@ -25,13 +25,13 @@ function onTrade(player,npc,trade)
 	local asaStatus = player:getVar("ASA_Status");
     					
     	-- TODO: Other Enfeebling Kits
-    	if(asaStatus == 0) then
+    	if (asaStatus == 0) then
     		item = 2779;
     	else
     		printf("Error: Unknown ASA Status Encountered <%u>", asaStatus);
 	end
     
-    	if(trade:getItemCount() == 1 and trade:hasItemQty(item,1)) then
+    	if (trade:getItemCount() == 1 and trade:hasItemQty(item,1)) then
     		player:tradeComplete();
 		player:startEvent(0x002c);
 	end
@@ -47,31 +47,31 @@ function onTrigger(player,npc)
 	if (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE) then
 		local completedSeals = 0;
 		
-		if(player:hasKeyItem(AMBER_COUNTERSEAL)) then
+		if (player:hasKeyItem(AMBER_COUNTERSEAL)) then
 			completedSeals = completedSeals + 1;
 		end;
 		
-		if(player:hasKeyItem(AZURE_COUNTERSEAL)) then
+		if (player:hasKeyItem(AZURE_COUNTERSEAL)) then
 			completedSeals = completedSeals + 1;
 		end;
 		
-		if(player:hasKeyItem(CERULEAN_COUNTERSEAL)) then
+		if (player:hasKeyItem(CERULEAN_COUNTERSEAL)) then
 			completedSeals = completedSeals + 1;
 		end;
 		
-		if(player:hasKeyItem(EMERALD_COUNTERSEAL)) then
+		if (player:hasKeyItem(EMERALD_COUNTERSEAL)) then
 			completedSeals = completedSeals + 1;
 		end;
 		
-		if(player:hasKeyItem(SCARLET_COUNTERSEAL)) then
+		if (player:hasKeyItem(SCARLET_COUNTERSEAL)) then
 			completedSeals = completedSeals + 1;
 		end;
 		
-		if(player:hasKeyItem(VIOLET_COUNTERSEAL)) then
+		if (player:hasKeyItem(VIOLET_COUNTERSEAL)) then
 			completedSeals = completedSeals + 1;
 		end;
 		
-		if(completedSeals >= 3) then
+		if (completedSeals >= 3) then
 			player:setVar("ASA_Status", completedSeals);
 			player:startEvent(0x002d);
 		end;
@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
     	-- printf("RESULT: %u",option);
     
- 	if(csid==0x002c) then
+ 	if (csid==0x002c) then
     		player:addKeyItem(DOMINAS_SCARLET_SEAL);
     		player:messageSpecial(KEYITEM_OBTAINED,DOMINAS_SCARLET_SEAL);
 	    	player:addKeyItem(DOMINAS_CERULEAN_SEAL);
@@ -119,17 +119,17 @@ function onEventFinish(player,csid,option)
 		player:setVar("ASA4_Emerald","0");
 		player:setVar("ASA4_Scarlet","0");
 		player:setVar("ASA4_Violet","0");
-	elseif(csid==0x002d) then
+	elseif (csid==0x002d) then
 	    	local completedSeals = player:getVar("ASA_Status");
 
 		-- Calculate Reward    	
-	    	if(completedSeals == 3) then
+	    	if (completedSeals == 3) then
 	    		player:addGil(GIL_RATE*3000);
-	    	elseif(completedSeals == 4) then
+	    	elseif (completedSeals == 4) then
 	    		player:addGil(GIL_RATE*10000);
-	    	elseif(completedSeals == 5) then
+	    	elseif (completedSeals == 5) then
 	    		player:addGil(GIL_RATE*30000);
-	       	elseif(completedSeals == 6) then
+	       	elseif (completedSeals == 6) then
 	    		player:addGil(GIL_RATE*50000);
 	    	end
 

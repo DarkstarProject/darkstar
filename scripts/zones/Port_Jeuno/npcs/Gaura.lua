@@ -28,9 +28,9 @@ function onTrigger(player,npc)
 		vHour = vHour - 6;
 	end
 
-	if(     vHour == -3) then vHour = 3;
-	elseif( vHour == -2) then vHour = 4;
-	elseif( vHour == -1) then vHour = 5;
+	if (     vHour == -3) then vHour = 3;
+	elseif ( vHour == -2) then vHour = 4;
+	elseif ( vHour == -1) then vHour = 5;
 	end
 
 	local seconds = math.floor(2.4 * ((vHour * 60) + vMin));

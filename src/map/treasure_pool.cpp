@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -77,7 +77,7 @@ TREASUREPOOLTYPE CTreasurePool::GetPoolType()
 
 void CTreasurePool::AddMember(CCharEntity* PChar)
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PChar == nullptr);
 	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
 	members.push_back(PChar);
@@ -100,7 +100,7 @@ void CTreasurePool::AddMember(CCharEntity* PChar)
 
 void CTreasurePool::DelMember(CCharEntity* PChar)
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PChar == nullptr);
 	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
 	//if(m_TreasurePoolType != TREASUREPOOL_ZONE){
@@ -122,12 +122,16 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
 	{
 		if (PChar == members.at(i))
 		{
-			PChar->PTreasurePool = NULL;
+			PChar->PTreasurePool = nullptr;
 			members.erase(members.begin()+i);
 			break;
 		}
 	}
-	if (m_TreasurePoolType != TREASUREPOOL_ZONE && members.empty())
+
+    if ((m_TreasurePoolType == TREASUREPOOL_PARTY || m_TreasurePoolType == TREASUREPOOL_ALLIANCE) && members.size() == 1)
+        m_TreasurePoolType = TREASUREPOOL_SOLO;
+
+    if (m_TreasurePoolType != TREASUREPOOL_ZONE && members.empty())
 	{
 		delete this;
 		return;
@@ -241,14 +245,14 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 
 void CTreasurePool::UpdatePool(CCharEntity* PChar)
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PChar == nullptr);
 	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
 	if (PChar->status != STATUS_DISAPPEAR)
 	{
 		for (uint8 i = 0; i < TREASUREPOOL_SIZE; ++i) 
 		{	
-			PChar->pushPacket(new CTreasureFindItemPacket(&m_PoolItems[i], NULL));
+			PChar->pushPacket(new CTreasureFindItemPacket(&m_PoolItems[i], nullptr));
 		}
 	}
 }
@@ -261,43 +265,93 @@ void CTreasurePool::UpdatePool(CCharEntity* PChar)
 
 void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot)
 {
-    DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
+    DSP_DEBUG_BREAK_IF(PChar == nullptr);
+    DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
     if (SlotID >= TREASUREPOOL_SIZE) return;
 
-	LotInfo li;
-	li.lot = Lot;
-	li.member = PChar;
-	bool hasLottedBefore = false;
+    LotInfo li;
+    li.lot = Lot;
+    li.member = PChar;
 
-	if(Lot==0){ //passed mask is FF FF
-		Lot = 65535;
-		//if this member has lotted on this item previously, set their lot to 0.
-		for(int i=0; i<m_PoolItems[SlotID].Lotters.size();i++){
-			if(m_PoolItems[SlotID].Lotters[i].member->id == PChar->id){
-				m_PoolItems[SlotID].Lotters[i].lot = 0;
-				hasLottedBefore = true;
-				break;
-			}
-		}
-	}
+    m_PoolItems[SlotID].Lotters.push_back(li);
 
-	if(!hasLottedBefore){
-		m_PoolItems[SlotID].Lotters.push_back(li);
-	}
+    //Player lots Item for XXX message
+    for (uint32 i = 0; i < members.size(); ++i)
+    {
+        members[i]->pushPacket(new CTreasureLotItemPacket(PChar,SlotID,Lot));
+    }
 
-	//Player lots Item for XXX message
-	for (uint32 i = 0; i < members.size(); ++i)
-	{
-		members[i]->pushPacket(new CTreasureLotItemPacket(PChar,SlotID,Lot));
-	}
+    //if all lotters have lotted, evaluate immediately.
+    if(m_PoolItems[SlotID].Lotters.size() == members.size()){
+        CheckTreasureItem(m_Tick,SlotID);
+    }
 
-	//if all lotters have lotted, evaluate immediately.
-	if(m_PoolItems[SlotID].Lotters.size() == members.size()){
-		CheckTreasureItem(m_Tick,SlotID);
-	}
+}
 
+void CTreasurePool::PassItem(CCharEntity* PChar, uint8 SlotID)
+{
+    DSP_DEBUG_BREAK_IF(PChar == nullptr);
+    DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
+
+    if (SlotID >= TREASUREPOOL_SIZE) return;
+
+    LotInfo li;
+    li.lot = 0;
+    li.member = PChar;
+    bool hasLottedBefore = false;
+
+    // if this member has lotted on this item previously, set their lot to 0.
+    for(int i=0; i<m_PoolItems[SlotID].Lotters.size();i++){
+        if(m_PoolItems[SlotID].Lotters[i].member->id == PChar->id){
+            m_PoolItems[SlotID].Lotters[i].lot = 0;
+            hasLottedBefore = true;
+            break;
+        }
+    }
+
+    if(!hasLottedBefore){
+        m_PoolItems[SlotID].Lotters.push_back(li);
+    }
+
+    uint16 PassedLot = 65535; // passed mask is FF FF
+    //Player lots Item for XXX message
+    for (uint32 i = 0; i < members.size(); ++i)
+    {
+        members[i]->pushPacket(new CTreasureLotItemPacket(PChar,SlotID,PassedLot));
+    }
+
+    //if all lotters have lotted, evaluate immediately.
+    if(m_PoolItems[SlotID].Lotters.size() == members.size()){
+        CheckTreasureItem(m_Tick,SlotID);
+    }
+
+}
+
+bool CTreasurePool::HasLottedItem(CCharEntity* PChar, uint8 SlotID)
+{
+    std::vector<LotInfo> lotters = m_PoolItems[SlotID].Lotters;
+
+    for(int i=0; i<lotters.size(); i++){
+        if(lotters[i].member->id == PChar->id){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool CTreasurePool::HasPassedItem(CCharEntity* PChar, uint8 SlotID)
+{
+    std::vector<LotInfo> lotters = m_PoolItems[SlotID].Lotters;
+
+    for(int i=0; i<lotters.size(); i++){
+        if(lotters[i].member->id == PChar->id){
+            return lotters[i].lot == 0;
+        }
+    }
+
+    return false;
 }
 
 /************************************************************************
@@ -340,7 +394,7 @@ void CTreasurePool::CheckTreasureItem(uint32 tick, uint8 SlotID)
 			//give item to highest lotter
 			LotInfo highestInfo;
 			highestInfo.lot = 0;
-			highestInfo.member = NULL;
+			highestInfo.member = nullptr;
 
 			for(uint8 i = 0; i < m_PoolItems[SlotID].Lotters.size(); i++){
 				LotInfo curInfo = m_PoolItems[SlotID].Lotters[i];
@@ -350,7 +404,7 @@ void CTreasurePool::CheckTreasureItem(uint32 tick, uint8 SlotID)
 			}
 
 			//sanity check
-			if(highestInfo.member != NULL && highestInfo.lot!=0){
+			if(highestInfo.member != nullptr && highestInfo.lot!=0){
 				if(highestInfo.member->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0){
 					//add item as they have room!
 					if (charutils::AddItem(highestInfo.member, LOC_INVENTORY, m_PoolItems[SlotID].ID, 1, true) != ERROR_SLOTID)
@@ -379,6 +433,9 @@ void CTreasurePool::CheckTreasureItem(uint32 tick, uint8 SlotID)
 						}
 					}
 
+                    if (charutils::HasItem(members[i], m_PoolItems[SlotID].ID) && itemutils::GetItem(m_PoolItems[SlotID].ID)->getFlag() & ITEM_FLAG_RARE)
+                        continue;
+
 					if (members[i]->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0 && !hasPassed) 
 					{
 						LotInfo templi;
@@ -393,7 +450,7 @@ void CTreasurePool::CheckTreasureItem(uint32 tick, uint8 SlotID)
 				}
 				else{
 					//select random member from this pool to give item to
-                    CCharEntity* PChar = tempLots.at(WELL512::irand() % tempLots.size()).member;
+                    CCharEntity* PChar = tempLots.at(dsprand::GetRandomNumber(tempLots.size())).member;
 					if (charutils::AddItem(PChar, LOC_INVENTORY, m_PoolItems[SlotID].ID, 1, true) != ERROR_SLOTID)
 					{
 						TreasureWon(PChar, SlotID);
@@ -417,7 +474,7 @@ void CTreasurePool::CheckTreasureItem(uint32 tick, uint8 SlotID)
             }
             if (!m_PoolItems[SlotID].Lotters.empty())
             {
-                CCharEntity* PChar = m_PoolItems[SlotID].Lotters.at(WELL512::irand() % m_PoolItems[SlotID].Lotters.size()).member;
+                CCharEntity* PChar = m_PoolItems[SlotID].Lotters.at(dsprand::GetRandomNumber(m_PoolItems[SlotID].Lotters.size())).member;
 
                 if (charutils::AddItem(PChar, LOC_INVENTORY, m_PoolItems[SlotID].ID, 1, true) != ERROR_SLOTID)
 		        {
@@ -440,7 +497,7 @@ void CTreasurePool::CheckTreasureItem(uint32 tick, uint8 SlotID)
 
 void CTreasurePool::TreasureWon(CCharEntity* winner, uint8 SlotID) 
 {
-    DSP_DEBUG_BREAK_IF(winner == NULL);
+    DSP_DEBUG_BREAK_IF(winner == nullptr);
 	DSP_DEBUG_BREAK_IF(winner->PTreasurePool != this);
     DSP_DEBUG_BREAK_IF(m_PoolItems[SlotID].ID == 0);
 
@@ -464,7 +521,7 @@ void CTreasurePool::TreasureWon(CCharEntity* winner, uint8 SlotID)
 
 void CTreasurePool::TreasureError(CCharEntity* winner, uint8 SlotID)
 {
-    DSP_DEBUG_BREAK_IF(winner == NULL);
+    DSP_DEBUG_BREAK_IF(winner == nullptr);
 	DSP_DEBUG_BREAK_IF(winner->PTreasurePool != this);
     DSP_DEBUG_BREAK_IF(m_PoolItems[SlotID].ID == 0);
 

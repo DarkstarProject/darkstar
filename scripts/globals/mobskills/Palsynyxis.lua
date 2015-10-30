@@ -6,9 +6,9 @@
 --  Utsusemi/Blink absorb: 1 shadows
 --  Range: Unknown radial
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)

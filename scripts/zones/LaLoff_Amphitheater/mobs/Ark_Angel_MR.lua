@@ -13,7 +13,7 @@ require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -29,7 +29,7 @@ function onMobEngaged(mob,target)
    local mobid = mob:getID()
 
    for member = mobid-1, mobid+6 do
-      if (GetMobAction(member) == 16) then 
+      if (GetMobAction(member) == 16) then
          GetMobByID(member):updateEnmity(target);
       end
    end
@@ -40,7 +40,7 @@ end;
 -----------------------------------
 function onMobFight(mob,target)
     local charm = mob:getLocalVar("Charm");
-    
+
     if (charm == 0 and mob:getHPP() <  50) then
         mob:useMobAbility(454);
         mob:setLocalVar("Charm",1);

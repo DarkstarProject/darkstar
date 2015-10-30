@@ -7,9 +7,9 @@
 --  Range: Melee
 --  Notes:
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
@@ -28,7 +28,7 @@ function onMobWeaponSkill(target, mob, skill)
 
 	local shadows = info.hitslanded;
 
-	if(isNM) then
+	if (isNM) then
 		shadows = MOBPARAM_IGNORE_SHADOWS;
 	end
 
@@ -37,7 +37,7 @@ function onMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_PARALYSIS;
 	local power = 20;
 
-	if(isNM) then
+	if (isNM) then
 		typeEffect = EFFECT_POISON;
 	end
 

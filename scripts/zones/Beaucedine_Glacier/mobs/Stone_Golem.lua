@@ -4,7 +4,7 @@
 --  Note: PH for Gargantua
 -----------------------------------
 
-require("/scripts/zones/Beaucedine_Glacier/MobIDs");
+require("scripts/zones/Beaucedine_Glacier/MobIDs");
 
 -----------------------------------
 -- onMobDeath

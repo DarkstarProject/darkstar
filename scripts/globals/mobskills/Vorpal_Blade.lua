@@ -6,9 +6,10 @@
 --  Shadow per hit
 --  Range: Melee
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
+require("scripts/zones/Throne_Room/TextIDs");
 
 ---------------------------------------------
 
@@ -18,16 +19,22 @@ require("/scripts/globals/monstertpmoves");
 -- if not in Paladin form, then ignore. 
 ---------------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    if((mob:getFamily() == 122 or mob:getFamily() == 123 or mob:getFamily() == 124) and mob:AnimationSub() ~= 1) then
+    if ((mob:getFamily() == 122 or mob:getFamily() == 123 or mob:getFamily() == 124) and mob:AnimationSub() ~= 1) then
 		return 1;
-	else
+	elseif (mob:getFamily() == 482) then
+		target:showText(mob,CANT_UNDERSTAND);
 		return 0;
+	else
+	return 0;
 	end
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
+	if (mob:getFamily() == 482) then
+	target:showText(mob,BLADE_ANSWER);
+	else
 	mob:messageBasic(43, 0, 687+256);
+	end
 	skill:setSkillchain(40);
     
 	local numhits = 4;

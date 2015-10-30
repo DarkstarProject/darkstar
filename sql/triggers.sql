@@ -37,7 +37,6 @@ CREATE TRIGGER session_delete
 	BEFORE DELETE ON accounts_sessions
 	FOR EACH ROW
 BEGIN
-	DELETE FROM `accounts_parties` WHERE `charid` = OLD.charid;
     UPDATE `char_stats` SET zoning = 0 WHERE `charid` = OLD.charid;
 END $$
 
@@ -77,4 +76,20 @@ BEGIN
 	INSERT INTO `char_profile`   SET `charid` = NEW.charid;
 	INSERT INTO `char_storage`   SET `charid` = NEW.charid;
 	INSERT INTO `char_inventory` SET `charid` = NEW.charid;
+END $$
+
+DROP TRIGGER IF EXISTS char_pos $$
+CREATE TRIGGER char_pos
+    BEFORE UPDATE ON chars
+    FOR EACH ROW
+BEGIN
+    SET @zoning := 0;
+    SELECT zoning INTO @zoning FROM char_stats WHERE charid = OLD.charid;
+    IF NOT @zoning = 0 THEN
+        SET NEW.pos_x = OLD.pos_x;
+        SET NEW.pos_y = OLD.pos_y;
+        SET NEW.pos_z = OLD.pos_z;
+        SET NEW.pos_rot = OLD.pos_rot;
+        SET NEW.pos_zone = OLD.pos_zone;
+    END IF;
 END $$

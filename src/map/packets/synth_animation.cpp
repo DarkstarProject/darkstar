@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -32,10 +32,10 @@ CSynthAnimationPacket::CSynthAnimationPacket(CCharEntity * PChar, uint16 effect,
 	this->type = 0x30;
 	this->size = 0x08;
 
-	WBUFL(data,(0x04)-4) = PChar->id;
-	WBUFW(data,(0x08)-4) = PChar->targid;
+	WBUFL(data,(0x04)) = PChar->id;
+	WBUFW(data,(0x08)) = PChar->targid;
 
-	WBUFW(data,(0x0A)-4) = effect;
-	WBUFB(data,(0x0C)-4) = param;
-	WBUFB(data,(0x0D)-4) = PChar->animation;
+	WBUFW(data,(0x0A)) = effect;
+	WBUFB(data,(0x0C)) = param;
+	WBUFB(data,(0x0D)) = PChar->animation;
 }

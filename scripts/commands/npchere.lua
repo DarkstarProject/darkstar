@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @npchere <npcId>
--- auth: TeoTwawki
 -- desc: Spawns an NPC and then moves it to the current position, if in same zone.
 --       Errors will despawn the mobID unless "noDepop" was specified (any value works).
 ---------------------------------------------------------------------------------------------------
@@ -12,6 +11,8 @@ cmdprops =
 };
 
 function onTrigger(player, npcId)
+    require("scripts/globals/status");
+
     if (npcId == nil) then
         player:PrintToPlayer("You must enter a valid npcId.");
         return;
@@ -23,10 +24,9 @@ function onTrigger(player, npcId)
         return;
     end
 
-    npc:setStatus(STATUS_NORMAL);
     if (player:getZoneID() == npc:getZoneID()) then
         npc:setPos( player:getXPos(), player:getYPos(), player:getZPos(), player:getRotPos(), player:getZoneID() );
-        npc:setStatus(STATUS_UPDATE);
+        npc:setStatus(STATUS_NORMAL);
     else
         if (noDepop == nil or noDepop == 0) then
             npc:setStatus(STATUS_DISAPPEAR);

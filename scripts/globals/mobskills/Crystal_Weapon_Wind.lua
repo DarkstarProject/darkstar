@@ -8,9 +8,9 @@
 --  Notes: Can be Fire, Earth, Wind, or Water element.  Functions even at a distance (outside of melee range).
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 

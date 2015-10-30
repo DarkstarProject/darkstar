@@ -6,7 +6,7 @@
 -----------------------------------------
 -- Enchantment: Synthesis image support
 -- Duration: 2Min
--- Woodworking Skill +1
+-- Woodworking Skill +3
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -28,7 +28,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_WOODWORKING_IMAGERY,49,0,120);
+	target:addStatusEffect(EFFECT_WOODWORKING_IMAGERY,3,0,120);
 end;
 
 -----------------------------------------

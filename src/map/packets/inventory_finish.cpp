@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -30,5 +30,5 @@ CInventoryFinishPacket::CInventoryFinishPacket()
 	this->type = 0x1D;
 	this->size = 0x04;
 
-	WBUFB(data,(0x04)-4) = 1;
+	WBUFB(data,(0x04)) = 1;
 }

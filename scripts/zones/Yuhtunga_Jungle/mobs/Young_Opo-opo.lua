@@ -3,7 +3,7 @@
 -- MOB:  Young Opo-opo	
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");	
 	
 -----------------------------------	
 -- onMobDeath	

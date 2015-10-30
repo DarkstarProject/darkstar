@@ -20,14 +20,14 @@ function onTrade(player,npc,trade)
 	questItem = player:getVar("ForgeYourDestiny_Event");
 	checkItem = testflag(tonumber(questItem),0x02);	
 	
-	if(checkItem == true) then
-		if(trade:hasItemQty(738,1) and trade:hasItemQty(737,2) and trade:getItemCount() == 3) then
+	if (checkItem == true) then
+		if (trade:hasItemQty(738,1) and trade:hasItemQty(737,2) and trade:getItemCount() == 3) then
 			player:startEvent(0x002b,0,0,738,737); -- Platinum Ore, Gold Ore
 		end
 	end
 	
-	if(player:getQuestStatus(OUTLANDS,THE_SACRED_KATANA) == QUEST_ACCEPTED and player:hasItem(17809) == false) then
-		if(trade:getGil() == 30000 and trade:getItemCount() == 1 and player:getFreeSlotsCount() >= 1) then
+	if (player:getQuestStatus(OUTLANDS,THE_SACRED_KATANA) == QUEST_ACCEPTED and player:hasItem(17809) == false) then
+		if (trade:getGil() == 30000 and trade:getItemCount() == 1 and player:getFreeSlotsCount() >= 1) then
 			player:startEvent(0x0091);
 		end
 	end
@@ -49,22 +49,22 @@ function onTrigger(player,npc)
 	
 	swordTimer = player:getVar("ForgeYourDestiny_timer")
 	
-	if(player:getQuestStatus(OUTLANDS,FORGE_YOUR_DESTINY) == QUEST_ACCEPTED and swordTimer == 0) then
-		if(player:hasItem(1153)) then
+	if (player:getQuestStatus(OUTLANDS,FORGE_YOUR_DESTINY) == QUEST_ACCEPTED and swordTimer == 0) then
+		if (player:hasItem(1153)) then
 			player:startEvent(0x0030,1153); -- Sacred Branch
-		elseif(player:hasItem(1198) == false) then
+		elseif (player:hasItem(1198) == false) then
 			questItem = player:getVar("ForgeYourDestiny_Event");
 			checkItem = testflag(tonumber(questItem),0x02);
 	
-			if(checkItem == false) then
+			if (checkItem == false) then
 				player:startEvent(0x0028,1153,1198); -- Sacred Branch, Sacred Sprig
-			elseif(checkItem == true) then
+			elseif (checkItem == true) then
 				player:startEvent(0x002a,0,0,738,737); -- Platinum Ore, Gold Ore
 			end
-		elseif(player:hasItem(1198)) then -- Sacred Sprig
+		elseif (player:hasItem(1198)) then -- Sacred Sprig
 			player:startEvent(0x0029);
 		end	
-	elseif(player:getQuestStatus(OUTLANDS,THE_SACRED_KATANA) == QUEST_ACCEPTED and player:hasItem(17809) == false) then
+	elseif (player:getQuestStatus(OUTLANDS,THE_SACRED_KATANA) == QUEST_ACCEPTED and player:hasItem(17809) == false) then
 		player:startEvent(0x0090);
 	else
 		player:startEvent(0x0044);
@@ -90,23 +90,23 @@ function onEventFinish(player,csid,option)
 
 	questItem = player:getVar("ForgeYourDestiny_Event");
 
-	if(csid == 0x0028) then
-		if(player:getFreeSlotsCount(0) >= 1) then
+	if (csid == 0x0028) then
+		if (player:getFreeSlotsCount(0) >= 1) then
 			player:addItem(1198);
 			player:messageSpecial(ITEM_OBTAINED, 1198); -- Sacred Sprig
 			player:setVar("ForgeYourDestiny_Event",questItem + 0x02);
 		else
 		   player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1151); -- Oriental Steel
 		end
-	elseif(csid == 0x002b) then
-		if(player:getFreeSlotsCount(0) >= 1) then
+	elseif (csid == 0x002b) then
+		if (player:getFreeSlotsCount(0) >= 1) then
 			player:tradeComplete();
 			player:addItem(1198);
 			player:messageSpecial(ITEM_OBTAINED, 1198); -- Sacred Sprig
 		else
 		   player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1198); -- Sacred Sprig
 		end
-	elseif(csid == 0x0091) then
+	elseif (csid == 0x0091) then
 		player:tradeComplete();
 		player:addItem(17809);
 		player:messageSpecial(ITEM_OBTAINED,17809); -- Mumeito

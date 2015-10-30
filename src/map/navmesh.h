@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -56,29 +56,37 @@ class CNavMesh
 {
   public:
     static const int8 ERROR_NEARESTPOLY = -2;
+    static void ToFFXIPos(position_t* pos, float* out);
+    static void ToFFXIPos(float* out);
+    static void ToFFXIPos(position_t* out);
+    static void ToDetourPos(position_t* pos, float* out);
+    static void ToDetourPos(float* out);
+    static void ToDetourPos(position_t* out);
 
   public:
-    CNavMesh();
+    CNavMesh(uint16 zoneID);
     ~CNavMesh();
 
     bool load(char* path);
     void unload();
 
     int16 findPath(position_t start, position_t end, position_t* path, uint16 pathSize);
-    int16 findRandomPath(position_t start, float maxRadius, position_t* path, uint16 pathSize);
-
-    // returns true if end point can be seen from start point
-    bool canSeePoint(position_t start, position_t end);
+    int16 findRandomPosition(position_t start, float maxRadius, position_t* randomPosition);
 
     // returns true if the point is in water
     bool inWater(position_t point);
 
-    // validate the integrity of the navmesh
-    bool test(uint16 zoneId);
+    // returns true if no wall was hit
+    bool raycast(position_t start, position_t end);
+
+    bool validPosition(position_t position);
 
   private:
     void outputError(uint32 status);
 
+    uint16 m_zoneID;
+    dtRaycastHit m_hit;
+    dtPolyRef m_hitPath[20];
     dtNavMesh* m_navMesh;
     dtNavMeshQuery* m_navMeshQuery;
     char* path;

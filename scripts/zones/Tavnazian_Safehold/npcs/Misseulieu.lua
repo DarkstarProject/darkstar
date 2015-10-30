@@ -28,7 +28,7 @@ stock = {0x3121,2485,		-- Brass Harness
 	 0x37ed,4042200,		-- Barone Cosciales (Available after COP Chapter 4 only)
 	 0x3bc9,25210200,		-- Barone Gambieras (Available after COP Chapter 4 only)
 	 0x3a00,7276200,		-- Barone Manopolas (Available after COP Chapter 4 only)
-	 0x15389,8000000,		-- Vir Subligar (Available after COP Chapter 4 only)
+	 0x3c1d,8000000,		-- Vir Subligar (Available after COP Chapter 4 only)
 	 0x3c1e,8000000}		-- Femina Subligar (Available after COP Chapter 4 only)
  
 showShop(player, STATIC, stock);

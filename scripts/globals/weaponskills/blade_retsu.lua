@@ -28,23 +28,28 @@ function onUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
+
+	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+		params.dex_wsc = 0.6;
+	end
+
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	if damage > 0 then
 		local tp = player:getTP();
 		local duration = (tp/100 * 30);
-		if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
+		if (target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
 			-- paralyze proc based on lvl difference
 			local power = 30 + (player:getMainLvl() - target:getMainLvl())*3;
-
-			if(power > 35) then
+			if (power > 35) then
 				power = 35;
 			end
-			if(power < 5) then
+			if (power < 5) then
 				power = 5;
 			end
 			target:addStatusEffect(EFFECT_PARALYSIS, power, 0, duration);
 		end
 	end
+	damage = damage * WEAPON_SKILL_POWER
 	return tpHits, extraHits, criticalHit, damage;
 
 end

@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)  
-    if (npc:getID() == 16908390) then -- First door..
+    if (npc:getID() == 16908420) then -- First door..
         player:startEvent(0x7D03, 1);
     end
 end;

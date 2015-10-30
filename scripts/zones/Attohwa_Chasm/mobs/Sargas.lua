@@ -3,8 +3,7 @@
 --  NM:  Sargas
 -----------------------------------
 require("scripts/globals/status");
------------------------------------
-
+require("scripts/globals/magic");
 
 -----------------------------------
 -- onMobInitialize Action
@@ -26,7 +25,7 @@ function onAdditionalEffect(mob,target,damage)
         return 0,0,0;
     else
         local duration = math.random(5,15);
-        target:addStatusEffect(EFFECT_STUN,5,3,duration);
+        target:addStatusEffect(EFFECT_STUN,5,0,duration);
         return SUBEFFECT_STUN,0,EFFECT_STUN;
     end
 
@@ -40,25 +39,23 @@ function onSpikesDamage(mob,target,damage)
     local INT_diff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
 
     if (INT_diff > 20) then
-        INT_diff = 20 + (INT_diff - 20) / 2;
+        INT_diff = 20 + ((INT_diff - 20)*0.5); -- INT above 20 is half as effective.
     end
 
-    local dmg = INT_diff+damage/2;
+    local dmg = ((damage+INT_diff)*0.5); -- INT adjustment and base damage averaged together.
     local params = {};
     params.bonusmab = 0;
     params.includemab = false;
     dmg = addBonusesAbility(mob, ELE_THUNDER, target, dmg, params);
     dmg = dmg * applyResistanceAddEffect(mob,target,ELE_THUNDER,0);
     dmg = adjustForTarget(target,dmg,ELE_THUNDER);
-
-    if (dmg < 0) then
-        dmg = 10
-    end
-    
     dmg = finalMagicNonSpellAdjustments(mob,target,ELE_THUNDER,dmg);
 
-    return SUBEFFECT_SHOCK_SPIKES,44,dmg;
+    if (dmg < 0) then
+        dmg = 0;
+    end   
 
+    return SUBEFFECT_SHOCK_SPIKES,44,dmg;
 end;
 
 -----------------------------------

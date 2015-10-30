@@ -244,7 +244,8 @@ INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,4,55,255);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,21,55,98);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,22,99,255);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,28,7,33);
-INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,29,34,255);
+INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,29,34,65);
+INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,30,66,255);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,43,10,29);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,44,30,49);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,45,50,69);
@@ -1357,6 +1358,86 @@ INSERT INTO `mob_spell_lists` VALUES ('Prishe', 129, 30, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Prishe', 129, 40, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Bedrock_Barry', 130, 238, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Tyrant', 131, 112, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Alastor_Antlion', 132, 54, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Alastor_Antlion', 132, 162, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Alastor_Antlion', 132, 191, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Alastor_Antlion', 132, 210, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Alastor_Antlion', 132, 365, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Race_Runner', 133, 53, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Race_Runner', 133, 158, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Race_Runner', 133, 186, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Race_Runner', 133, 216, 1, 255);
+
+-- Ajido-Marujido windurst 9-2
+INSERT INTO `mob_spell_lists` VALUES ('Ajido_Marujido', 134, 166, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Ajido_Marujido', 134, 167, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Ajido_Marujido', 134, 171, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Ajido_Marujido', 134, 172, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Ajido_Marujido', 134, 212, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Ajido_Marujido', 134, 214, 1, 255);
+
+-- Yali
+INSERT INTO `mob_spell_lists` VALUES ('Yali', 135, 357, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Yali', 135, 360, 1, 255);
+
+-- Aern's Wynav (Ix'DRG BRD pets)
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 382, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 376, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 372, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 392, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 397, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 400, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 422, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 462, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Aern_s_Wynav', 136, 466, 1, 255); -- Virelai (charm)
+
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 34, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 260, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 221, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 258, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 259, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 254, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 253, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 216, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 58, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 59, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 56, 1, 255);
+
+-- Jailer of Faith
+INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 162, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 191, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 357, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 365, 1, 255);
+
+-- Sarameya
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 146, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 147, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 175, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 176, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 204, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 205, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 249, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 235, 1, 255);
+
+-- Jailer of Hope
+INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Hope', 140, 196, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Hope', 140, 213, 1, 255);
+
+-- SMN Dynamis / Maat spell list
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 296, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 298, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 299, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 300, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 301, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 302, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 303, 1, 255);
+
+-- Prune
+INSERT INTO `mob_spell_lists` VALUES ('Charming_Trio', 142, 245, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Charming_Trio', 142, 247, 1, 255);
+
+INSERT INTO `mob_spell_lists` VALUES ('Onki', 143, 288, 1, 255);
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

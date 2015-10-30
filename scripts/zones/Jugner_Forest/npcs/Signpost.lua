@@ -4,8 +4,8 @@
 --  Involved in Quest: Grimy Signposts
 -------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/quests");
+require("scripts/globals/settings");
+require("scripts/globals/quests");
 
 ----------------------------------- 
 -- onTrade Action

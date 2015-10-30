@@ -89,6 +89,9 @@ INSERT INTO `bcnm_treasure_chests` VALUES ('129', '1', '17444884');
 INSERT INTO `bcnm_treasure_chests` VALUES ('129', '2', '17444891');
 INSERT INTO `bcnm_treasure_chests` VALUES ('129', '3', '17444898');
 
+-- Boneyard Gully
+INSERT INTO `bcnm_treasure_chests` VALUES ('673', '1', '16810019');
+
 -- Throne Room
 
 -- Chamber of Oracles

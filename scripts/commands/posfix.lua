@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 -- func: @posfix
--- auth: Link (as "resetplayer"), renamed by TeoTwawki.
 -- desc: Resets a targets account session and warps them to Jeuno.
 ---------------------------------------------------------------------------------------------------
 
@@ -11,6 +10,10 @@ cmdprops =
 };
 
 function onTrigger(player, target)
-    player:resetPlayer( targ );
-    player:PrintToPlayer("Done.");
+    if (target == nil) then
+        player:PrintToPlayer("An offline player name must be specified.");
+    else
+        player:resetPlayer( target );
+        player:PrintToPlayer("Done.");
+    end
 end;

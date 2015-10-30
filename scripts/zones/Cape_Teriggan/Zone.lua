@@ -18,23 +18,22 @@ require("scripts/globals/conquest");
 
 function onInitialize(zone)
     local manuals = {17240513,17240514};
-    
+
     SetFieldManual(manuals);
-    
+
     -- Kreutzet
     SetRespawnTime(17240413, 900, 10800);
-    
+
     SetRegionalConquestOverseers(zone:getRegionID())
-    
 end;
 
------------------------------------		
--- onConquestUpdate		
------------------------------------		
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
@@ -45,18 +44,17 @@ end;
 -----------------------------------
 
 function onZoneIn( player, prevZone)
+    local cs = -1;
 
-	local cs = -1;
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
+        player:setPos( 315.644, -1.517, -60.633, 108);
+    end
 
-	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-		player:setPos( 315.644, -1.517, -60.633, 108);
-	end
+    if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
+        cs = 0x0002;
+    end
 
-	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
-		cs = 0x0002;
-	end
-
-	return cs;
+    return cs;
 end;
 
 -----------------------------------
@@ -71,12 +69,11 @@ end;
 -----------------------------------
 
 function onEventUpdate( player, csid, option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-
-	if( csid == 0x0002) then
-		lightCutsceneUpdate( player);  -- Quest: I Can Hear A Rainbow
-	end
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x0002) then
+        lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
+    end
 end;
 
 -----------------------------------
@@ -84,20 +81,21 @@ end;
 -----------------------------------
 
 function onEventFinish( player, csid, option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-
-	if (csid == 0x0002) then
-		lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
-	end
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x0002) then
+        lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
+    end
 end;
 
+-----------------------------------
+-- onZoneWeatherChange
+-----------------------------------
+
 function onZoneWeatherChange(weather)
-	
-	if(GetMobAction(17240413) == 24 and (weather == WEATHER_WIND or weather == WEATHER_GALES)) then
-		SpawnMob(17240413); -- Kreutzet
-	elseif(GetMobAction(17240413) == 16 and (weather ~= WEATHER_WIND and weather ~= WEATHER_GALES)) then
-		DespawnMob(17240413);
-	end
-	
+    if (GetMobAction(17240413) == 24 and (weather == WEATHER_WIND or weather == WEATHER_GALES)) then
+        SpawnMob(17240413); -- Kreutzet
+    elseif (GetMobAction(17240413) == 16 and (weather ~= WEATHER_WIND and weather ~= WEATHER_GALES)) then
+        DespawnMob(17240413);
+    end
 end;

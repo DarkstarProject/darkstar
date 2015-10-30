@@ -3,7 +3,7 @@
 -- MOB:  Orcish Impaler	
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");	
 	
 -----------------------------------	
 -- onMobDeath	

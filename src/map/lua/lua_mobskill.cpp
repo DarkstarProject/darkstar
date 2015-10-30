@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -34,13 +34,15 @@
 
 CLuaMobSkill::CLuaMobSkill(lua_State *L)
 {
-	if( !lua_isnil(L,-1) )
-	{
-		m_PLuaMobSkill = (CMobSkill*)(lua_touserdata(L,-1));
-		lua_pop(L,1);
-	}else{
-		m_PLuaMobSkill = NULL;
-	}
+    if (!lua_isnil(L, -1))
+    {
+        m_PLuaMobSkill = (CMobSkill*)(lua_touserdata(L, -1));
+        lua_pop(L, 1);
+    }
+    else
+    {
+        m_PLuaMobSkill = nullptr;
+    }
 }
 
 /************************************************************************
@@ -51,7 +53,7 @@ CLuaMobSkill::CLuaMobSkill(lua_State *L)
 
 CLuaMobSkill::CLuaMobSkill(CMobSkill* PSkill)
 {
-	m_PLuaMobSkill = PSkill;
+    m_PLuaMobSkill = PSkill;
 }
 
 /************************************************************************
@@ -62,16 +64,16 @@ CLuaMobSkill::CLuaMobSkill(CMobSkill* PSkill)
 
 inline int32 CLuaMobSkill::setMsg(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaMobSkill->setMsg(lua_tointeger(L,-1));
-	return 0;
+    m_PLuaMobSkill->setMsg(lua_tointeger(L, -1));
+    return 0;
 }
 
 inline int32 CLuaMobSkill::setSkillchain(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
     m_PLuaMobSkill->setSkillchain(lua_tointeger(L, -1));
@@ -80,80 +82,88 @@ inline int32 CLuaMobSkill::setSkillchain(lua_State *L)
 
 inline int32 CLuaMobSkill::hasMissMsg(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
-    lua_pushboolean( L, m_PLuaMobSkill->hasMissMsg() );
+    lua_pushboolean(L, m_PLuaMobSkill->hasMissMsg());
     return 1;
 }
 
 inline int32 CLuaMobSkill::isSingle(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
-    lua_pushboolean( L, m_PLuaMobSkill->isSingle() );
+    lua_pushboolean(L, m_PLuaMobSkill->isSingle());
     return 1;
 }
 
 inline int32 CLuaMobSkill::isAoE(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
-    lua_pushboolean( L, m_PLuaMobSkill->isAoE() );
+    lua_pushboolean(L, m_PLuaMobSkill->isAoE());
     return 1;
 }
 
 inline int32 CLuaMobSkill::isConal(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
-    lua_pushboolean( L, m_PLuaMobSkill->isConal() );
+    lua_pushboolean(L, m_PLuaMobSkill->isConal());
     return 1;
 }
 
 inline int32 CLuaMobSkill::getTotalTargets(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
-    lua_pushinteger( L, m_PLuaMobSkill->getTotalTargets() );
+    lua_pushinteger(L, m_PLuaMobSkill->getTotalTargets());
     return 1;
 }
 
 inline int32 CLuaMobSkill::getMsg(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
-    lua_pushinteger( L, m_PLuaMobSkill->getMsg() );
+    lua_pushinteger(L, m_PLuaMobSkill->getMsg());
     return 1;
 }
 
 inline int32 CLuaMobSkill::getID(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
-	lua_pushinteger( L, m_PLuaMobSkill->getID() );
-	return 1;
+    lua_pushinteger(L, m_PLuaMobSkill->getID());
+    return 1;
 }
 
 inline int32 CLuaMobSkill::getParam(lua_State* L)
 {
-  DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
-  lua_pushinteger( L, m_PLuaMobSkill->getParam() );
-  return 1;
+    lua_pushinteger(L, m_PLuaMobSkill->getParam());
+    return 1;
 }
 
 /*************************************************************************
 
-			get the TP for calculations
+            get the TP for calculations
 
 **************************************************************************/
 
 inline int32 CLuaMobSkill::getTP(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
-	lua_pushnumber( L, (float)m_PLuaMobSkill->getTP() / 10.0f );
-	return 1;
+    lua_pushnumber(L, (float)m_PLuaMobSkill->getTP() / 10.0f);
+    return 1;
+}
+
+inline int32 CLuaMobSkill::getHPP(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
+
+    lua_pushinteger(L, m_PLuaMobSkill->getHPP());
+    return 1;
 }
 
 /************************************************************************
@@ -173,8 +183,9 @@ Lunar<CLuaMobSkill>::Register_t CLuaMobSkill::methods[] =
     LUNAR_DECLARE_METHOD(CLuaMobSkill,isSingle),
     LUNAR_DECLARE_METHOD(CLuaMobSkill,getParam),
   LUNAR_DECLARE_METHOD(CLuaMobSkill,getID),
-	LUNAR_DECLARE_METHOD(CLuaMobSkill,getTotalTargets),
-	LUNAR_DECLARE_METHOD(CLuaMobSkill,getTP),
-	LUNAR_DECLARE_METHOD(CLuaMobSkill,setSkillchain),
-	{NULL,NULL}
+    LUNAR_DECLARE_METHOD(CLuaMobSkill,getTotalTargets),
+    LUNAR_DECLARE_METHOD(CLuaMobSkill,getTP),
+    LUNAR_DECLARE_METHOD(CLuaMobSkill,getHPP),
+    LUNAR_DECLARE_METHOD(CLuaMobSkill,setSkillchain),
+    {nullptr,nullptr}
 };

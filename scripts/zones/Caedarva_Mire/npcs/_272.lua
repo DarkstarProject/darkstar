@@ -68,7 +68,7 @@ function onEventUpdate(player,csid,option,target)
     
     if (party ~= nil) then
         for i,v in ipairs(party) do
-            if (not (v:hasKeyItem(LEJAOAM_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
+            if (not (v:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
                 player:messageText(target,MEMBER_NO_REQS, false);
                 player:instanceEntry(target,1);
                 return;

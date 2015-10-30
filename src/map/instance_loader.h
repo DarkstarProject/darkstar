@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ class CZone;
 class CInstanceLoader
 {
 public:
-	CInstanceLoader(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester);
+	CInstanceLoader(uint8 instanceid, CZone* PZone, CCharEntity* PRequester);
 	~CInstanceLoader();
 
 	CInstance* GetInstance();

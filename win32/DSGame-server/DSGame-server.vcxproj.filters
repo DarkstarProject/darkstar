@@ -78,6 +78,9 @@
     <Filter Include="Header Files\utils">
       <UniqueIdentifier>{4809b9f1-e6f6-4976-a83b-e246e6dc5671}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\common\marshal">
+      <UniqueIdentifier>{e12005cb-3c26-42a1-9752-8898f7492816}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\map\ability.h">
@@ -105,9 +108,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\mob_modifier.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\npcentity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\packet_system.h">
@@ -473,9 +473,6 @@
     <ClInclude Include="..\..\src\map\packets\zone_visited.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\fishingutils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\universal_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -566,13 +563,13 @@
     <ClInclude Include="..\..\src\map\lua\lua_mobskill.h">
       <Filter>Header Files\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\jailutils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\ai\ai_char_prisoner.h">
       <Filter>Header Files\ai</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\lua\lua_ability.h">
+      <Filter>Header Files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\lua\lua_action.h">
       <Filter>Header Files\lua</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\recast_container.h">
@@ -827,6 +824,21 @@
     <ClInclude Include="..\..\src\map\ai\ai_automaton_dummy.h">
       <Filter>Header Files\ai</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\char_recast.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\guild.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\marshal\string.h">
+      <Filter>Header Files\common\marshal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\status_effects.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\party_effects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -980,9 +992,6 @@
       <Filter>Source Files\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\action.cpp">
-      <Filter>Source Files\packets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\packets\basic.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\bazaar_check.cpp">
@@ -1282,6 +1291,9 @@
     <ClCompile Include="..\..\src\map\lua\lua_ability.cpp">
       <Filter>Source Files\lua</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\map\lua\lua_action.cpp">
+      <Filter>Source Files\lua</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\map\recast_container.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1453,9 +1465,6 @@
     <ClCompile Include="..\..\src\map\ai\ai_ultimate_summon.cpp">
       <Filter>Source Files\ai</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\common\dsprand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\packets\synth_suggestion.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
@@ -1518,6 +1527,18 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\ai\ai_automaton_dummy.cpp">
       <Filter>Source Files\ai</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\char_recast.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\guild.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\status_effects.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\party_effects.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@ This file is part of DarkStar-server source code.
 #include <list>
 #include <deque>
 #include <mutex>
+#include <bitset>
 
 #include "battleentity.h"
 #include "../item_container.h"
@@ -66,8 +67,8 @@ enum QUESTAREA
 
 #define MAX_QUESTAREA	 11
 #define MAX_QUESTID     256
-#define MAX_MISSIONAREA	 13
-#define MAX_MISSIONID    95
+#define MAX_MISSIONAREA	 15
+#define MAX_MISSIONID    93
 
 struct jobs_t
 {
@@ -107,6 +108,7 @@ struct profile_t
     uint8 	   rank[3];			// рагн в трех государствах
     uint32	   rankpoints;	    // очки ранга в трех государствах
     location_t home_point;		// точка возрождения персонажа
+    uint8      campaign_allegiance;
 };
 
 
@@ -191,12 +193,12 @@ public:
     bool					m_EquipSwap;					// true if equipment was recently changed
     uint8					equip[18];						//      SlotID where equipment is
     uint8					equipLoc[18];					// ContainerID where equipment is
+    uint16                  styleItems[16];                 // Item IDs for items that are style locked.
 
     uint8					m_ZonesList[36];				// список посещенных персонажем зон
-    uint8					m_SpellList[128];				// список изученных заклинаний
-    uint8					m_EnabledSpellList[128];		// spell list of enabled spells
+    std::bitset<1024>	    m_SpellList;				    // список изученных заклинаний
     uint8					m_TitleList[94];				// список заслуженных завний
-    uint8					m_Abilities[46];				// список текущих способностей
+    uint8					m_Abilities[62];				// список текущих способностей
     uint8					m_LearnedAbilities[46];			// learnable abilities (corsair rolls)
     uint8					m_TraitList[16];				// список постянно активных способностей в виде битовой маски
     uint8					m_PetCommands[32];				// список доступных команд питомцу
@@ -230,11 +232,13 @@ public:
 
     uint8             GetGender();                  // узнаем пол персонажа
 
-    int32			  firstPacketSize();            // размер первого пакета в PacketList
     void              clearPacketList();            // отчистка PacketList
     void              pushPacket(CBasicPacket*);    // добавление копии пакета в PacketList
     bool			  isPacketListEmpty();          // проверка размера PacketList
     CBasicPacket*	  popPacket();                  // получение первого пакета из PacketList
+    PacketList_t      getPacketList();              // returns a COPY of packet list
+    size_t            getPacketCount();
+    void              erasePackets(uint8 num);      // erase num elements from front of packet list
 
     CLinkshell*       PLinkshell1;                  // linkshell, в которой общается персонаж
     CLinkshell*       PLinkshell2;                  // linkshell 2
@@ -323,6 +327,9 @@ public:
 
     void        UpdateEntity() override;
 
+    virtual void addTrait(CTrait*) override;
+    virtual void delTrait(CTrait*) override;
+
     CCharEntity();									// конструктор
     ~CCharEntity();									// деструктор
 
@@ -337,6 +344,7 @@ private:
     CItemContainer*	  m_Mogsack;
     CItemContainer*   m_Mogcase;
     CItemContainer*   m_Wardrobe;
+    CItemContainer*   m_Mogsafe2;
 
     bool			m_isWeaponSkillKill;
     bool			m_isMijinGakure;

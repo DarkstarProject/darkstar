@@ -11,7 +11,7 @@ require("scripts/globals/quests");
 -- onMobSpawn
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -20,10 +20,10 @@ end;
 
 function onMobDeath(mob, killer)
 
-	local UnbridledPassionCS = killer:getVar("unbridledPassion");		
+	local UnbridledPassionCS = killer:getVar("unbridledPassion");
 
 	if (UnbridledPassionCS == 4) then
-		killer:setVar("unbridledPassion",5);		
+		killer:setVar("unbridledPassion",5);
 	end
 
 end;

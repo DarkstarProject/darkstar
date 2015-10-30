@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,8 +30,8 @@ struct chat_message_t
 {
     uint64 dest;
     MSGSERVTYPE type;
-    zmq::message_t* data;
-    zmq::message_t* packet;
+    zmq::message_t data;
+    zmq::message_t packet;
 };
 
 void message_server_init();

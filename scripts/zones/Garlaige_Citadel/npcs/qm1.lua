@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 	local VirnageLetter = player:hasKeyItem(LETTER_FROM_VIRNAGE);
 	local DivinePaint = player:hasKeyItem(BUCKET_OF_DIVINE_PAINT);
 
-	if(AltanaSorrow == QUEST_ACCEPTED and VirnageLetter == false and DivinePaint == false) then
+	if (AltanaSorrow == QUEST_ACCEPTED and VirnageLetter == false and DivinePaint == false) then
 		player:addKeyItem(BUCKET_OF_DIVINE_PAINT);
 		player:messageSpecial(KEYITEM_OBTAINED,BUCKET_OF_DIVINE_PAINT);
 	else

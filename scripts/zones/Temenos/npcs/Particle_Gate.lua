@@ -1,7 +1,6 @@
 -----------------------------------
--- Area: temenos
+-- Area: Temenos
 -- NPC:  Particle_Gate
--- @pos 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
 -----------------------------------
@@ -22,94 +21,96 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-  GateID =  (npc:getID())-16929221;  
-  -- print("GateID" ..GateID);
-  
-  
- switch (GateID): caseof {
-         -- 100 a 106 inclut (Temenos -Northern Tower )
-        [450] = function (x)
+    local GateID =  npc:getID();  
+    local GateOffset = 16929221;
+    -- print("GateID " ..GateID);
+    -- player:PrintToPlayer(npc:getID());
+    
+    switch (GateID): caseof 
+    {
+         -- 100-106 : Northern Tower
+        [GateOffset] = function (x)
              player:startEvent(100);
-		end	, 
-		[451] = function (x)
+        end,
+        [GateOffset+1] = function (x)
              player:startEvent(101);
-		end	, 
-		[452] = function (x)
+        end,
+        [GateOffset+2] = function (x)
              player:startEvent(102);
-		end	, 
-		[453] = function (x)
+        end,
+        [GateOffset+3] = function (x)
              player:startEvent(103);
-		end	, 
-		[454] = function (x)
+        end,
+        [GateOffset+4] = function (x)
              player:startEvent(104);
-		end	, 
-		[455] = function (x)
+        end,
+        [GateOffset+5] = function (x)
              player:startEvent(105);
-		end	, 
-		[456] = function (x)
+        end,
+        [GateOffset+6] = function (x)
              player:startEvent(106);
-		end	, 
-		-- ------107 a 113-----------(Temenos - Eastern Tower)
-		[457] = function (x)
+        end,
+        -- 107-113 : Eastern Tower
+        [GateOffset+7] = function (x)
              player:startEvent(107);
-		end	, 
-		[458] = function (x)
+        end,
+        [GateOffset+8] = function (x)
              player:startEvent(108);
-		end	, 
-		[459] = function (x)
+        end,
+        [GateOffset+9] = function (x)
              player:startEvent(109);
-		end	, 
-		[460] = function (x)
+        end,
+        [GateOffset+10] = function (x)
              player:startEvent(110);
-		end	, 
-		[461] = function (x)
+        end,
+        [GateOffset+11] = function (x)
              player:startEvent(111);
-		end	, 
-		[462] = function (x)
+        end,
+        [GateOffset+12] = function (x)
              player:startEvent(112);
-		end	, 
-		[463] = function (x)
+        end,
+        [GateOffset+13] = function (x)
              player:startEvent(113);
-		end	, 
-		-- --------------------------(Temenos - Western Tower)-------
-		[464] = function (x)
+        end,
+        -- 114-120 Western Tower
+        [GateOffset+14] = function (x)
              player:startEvent(114);
-		end	, 
-		[465] = function (x)
+        end,
+        [GateOffset+15] = function (x)
              player:startEvent(115);
-		end	, 
-		[466] = function (x)
+        end,
+        [GateOffset+16] = function (x)
              player:startEvent(116);
-		end	, 
-		[467] = function (x)
+        end,
+        [GateOffset+17] = function (x)
              player:startEvent(117);
-		end	, 
-		[468] = function (x)
+        end,
+        [GateOffset+18] = function (x)
              player:startEvent(118);
-		end	, 
-		[469] = function (x)
+        end,
+        [GateOffset+19] = function (x)
              player:startEvent(119);
-		end	, 
-		[470] = function (x)
+        end,
+        [GateOffset+20] = function (x)
              player:startEvent(120);
-		end	, 
-		--
-		[471] = function (x)
+        end,
+        -- The rest of Temenos
+        [GateOffset+21] = function (x)
              player:startEvent(120);
-		end	,
-		[472] = function (x)
+        end,
+        [GateOffset+22] = function (x)
              player:startEvent(120);
-		end	,
-		[473] = function (x)
+        end,
+        [GateOffset+23] = function (x)
              player:startEvent(120);
-		end	,
-		[474] = function (x)
+        end,
+        [GateOffset+24] = function (x)
              player:startEvent(120);
-		end	,
-		[475] = function (x)
+        end,
+        [GateOffset+25] = function (x)
              player:startEvent(120);
-		end	,
-	                       	}
+        end,
+    }
 end;
 
 -----------------------------------

@@ -20,24 +20,8 @@ This file is part of DarkStar-server source code.
 #ifdef WIN32
 	#define WIN32_LEAN_AND_MEAN
 	#include <windows.h>
-
-	#ifdef DEBUGLOGMAP
-		#define DEBUGLOGPATH "log\\map-server.log"
-	#else
-		#ifdef DEBUGLOGLOGIN
-				#define DEBUGLOGPATH "log\\login-server.log"
-		#endif
-	#endif
 #else
 	#include <unistd.h>
-
-	#ifdef DEBUGLOGMAP
-		#define DEBUGLOGPATH "log/map-server.log"
-	#else
-		#ifdef DEBUGLOGLOGIN
-				#define DEBUGLOGPATH "log/login-server.log"
-		#endif
-	#endif
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -48,6 +32,8 @@ This file is part of DarkStar-server source code.
 int stdout_with_ansisequence = 0;
 
 int msg_silent = 0; //Specifies how silent the console is.
+
+std::string log_file;
 
 ///////////////////////////////////////////////////////////////////////////////
 /// static/dynamic buffer for the messages
@@ -658,9 +644,7 @@ int _vShowMessage(MSGTYPE flag,const char *string,va_list ap)
 {
 	char prefix[100];
 	va_list apcopy;
-#if defined(DEBUGLOGMAP) || defined(DEBUGLOGLOGIN)
-	FILE *fp;
-#endif
+    FILE *fp;
 	if( !string || !*string )
     {
 		ShowError("Empty string passed to _vShowMessage().\n");
@@ -727,11 +711,11 @@ int _vShowMessage(MSGTYPE flag,const char *string,va_list ap)
 		va_end(apcopy);
 		FFLUSH(STDOUT);
 	}
-#if defined(DEBUGLOGMAP) ||  defined(DEBUGLOGLOGIN)
-	if(strlen(DEBUGLOGPATH) > 0) {
-		fp=fopen(DEBUGLOGPATH,"a");
+
+	if(log_file.size() > 0) {
+		fp=fopen(log_file.c_str(),"a");
 		if (fp == NULL)	{
-			FPRINTF(STDERR, CL_RED"[ERROR]" CL_RESET": Could not open '" CL_WHITE"%s" CL_RESET"', access denied.\n", DEBUGLOGPATH);
+			FPRINTF(STDERR, CL_RED"[ERROR]" CL_RESET": Could not open '" CL_WHITE"%s" CL_RESET"', access denied.\n", log_file.c_str());
 			FFLUSH(STDERR);
 		} else {
 			fprintf(fp,"%s ", prefix);
@@ -740,11 +724,8 @@ int _vShowMessage(MSGTYPE flag,const char *string,va_list ap)
 			va_end(apcopy);
 			fclose(fp);
 		}
-	} else {
-		FPRINTF(STDERR, CL_RED"[ERROR]" CL_RESET": DEBUGLOGPATH not defined!\n");
-		FFLUSH(STDERR);
 	}
-#endif
+
 	return 0;
 }
 void ClearScreen(void)
@@ -753,6 +734,12 @@ void ClearScreen(void)
 	ShowMessage(CL_CLS);	// to prevent empty string passed messages
 #endif
 }
+
+void InitializeLog(std::string logFile)
+{
+    log_file = logFile;
+}
+
 int _ShowMessage(MSGTYPE flag, const char *string, ...)
 {
 	int ret;

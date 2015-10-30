@@ -4,7 +4,7 @@
 -- Note: Place holder Goblinsavior Heronox
 -----------------------------------
 
-require("/scripts/zones/Gustav_Tunnel/MobIDs");
+require("scripts/zones/Gustav_Tunnel/MobIDs");
 
 -----------------------------------
 -- onMobDeath

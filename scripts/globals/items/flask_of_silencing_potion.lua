@@ -19,7 +19,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if(target:hasStatusEffect(EFFECT_SILENCE) == false) then
+    if (target:hasStatusEffect(EFFECT_SILENCE) == false) then
         target:addStatusEffect(EFFECT_SILENCE,1,3,180);
     else
         target:messageBasic(423);

@@ -4,7 +4,7 @@
 -- Note: Place holder for Celphie
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");	
 require("scripts/zones/Western_Altepa_Desert/MobIDs");
 	
 -----------------------------------	

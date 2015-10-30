@@ -12,14 +12,14 @@ require("scripts/zones/Waughroon_Shrine/TextIDs");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
 -- onMobEngaged Action
 -----------------------------------
 
-function OnMobEngaged(mob,target)
+function onMobEngaged(mob,target)
 	target:showText(mob,YOU_DECIDED_TO_SHOW_UP);
 	-- printf("Maat Waughroon works");
 	-- When he take damage: target:showText(mob,THAT_LL_HURT_IN_THE_MORNING);

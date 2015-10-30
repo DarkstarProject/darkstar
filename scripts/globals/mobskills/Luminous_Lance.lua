@@ -1,10 +1,10 @@
 ---------------------------------------------
 --  Luminous Lance
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
-require("/scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
+require("scripts/zones/Empyreal_Paradox/TextIDs");
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     local lanceTime = mob:getLocalVar("lanceTime");
@@ -34,6 +34,8 @@ function onMobWeaponSkill(target, mob, skill)
     mob:setLocalVar("lanceTime", mob:getBattleTime())
     mob:setLocalVar("lanceOut", 0)
     target:AnimationSub(3);
+
+    -- Cannot be resisted
     target:addStatusEffect(EFFECT_STUN, 0, 0, 20);
     
     target:delHP(dmg);

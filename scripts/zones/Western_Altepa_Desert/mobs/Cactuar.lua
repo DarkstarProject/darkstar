@@ -4,7 +4,7 @@
 -- Note: Place holder for Cactuar_Cantautor
 -----------------------------------	
 	
-require("/scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");	
 require("scripts/zones/Western_Altepa_Desert/MobIDs");
   
 -----------------------------------	

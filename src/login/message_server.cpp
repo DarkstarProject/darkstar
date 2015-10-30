@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,8 +29,8 @@ This file is part of DarkStar-server source code.
 #include "login.h"
 
 zmq::context_t zContext;
-zmq::socket_t* zSocket = NULL;
-Sql_t* ChatSqlHandle = NULL;
+zmq::socket_t* zSocket = nullptr;
+Sql_t* ChatSqlHandle = nullptr;
 std::queue<chat_message_t> msg_queue;
 std::mutex queue_mutex;
 
@@ -42,13 +42,13 @@ void queue_message(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::mes
 
     msg.type = type;
 
-    msg.data = new zmq::message_t(extra->size());
-    memcpy(msg.data->data(), extra->data(), extra->size());
+    msg.data = zmq::message_t(extra->size());
+    memcpy(msg.data.data(), extra->data(), extra->size());
 
-    msg.packet = new zmq::message_t(packet->size());
-    memcpy(msg.packet->data(), packet->data(), packet->size());
+    msg.packet = zmq::message_t(packet->size());
+    memcpy(msg.packet.data(), packet->data(), packet->size());
 
-    msg_queue.push(msg);
+    msg_queue.push(std::move(msg));
 }
 
 void message_server_send(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet)
@@ -73,7 +73,7 @@ void message_server_send(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zm
     }
     catch (zmq::error_t e)
     {
-        ShowError("Message: %s", e.what());
+        ShowError("Message: %s\n", e.what());
     }
 }
 
@@ -192,9 +192,10 @@ void message_server_listen()
                     std::lock_guard<std::mutex>lk(queue_mutex);
                     while (!msg_queue.empty())
                     {
-                        chat_message_t msg = msg_queue.front();
+                        chat_message_t& msg = msg_queue.front();
+                        message_server_send(msg.dest, msg.type, &msg.data, &msg.packet);
+
                         msg_queue.pop();
-                        message_server_send(msg.dest, msg.type, msg.data, msg.packet);
                     }
                 }
                 continue;
@@ -219,7 +220,9 @@ void message_server_listen()
         }
         catch (zmq::error_t e)
         {
-            if (!zSocket)
+            // Context was terminated
+            // Exit loop
+            if (!zSocket || e.num() == 156384765)
             {
                 return;
             }
@@ -232,48 +235,50 @@ void message_server_listen()
 
 void message_server_init()
 {
-	ChatSqlHandle = Sql_Malloc();
+    ChatSqlHandle = Sql_Malloc();
 
-	if (Sql_Connect(ChatSqlHandle, login_config.mysql_login,
-		login_config.mysql_password,
-		login_config.mysql_host,
-		login_config.mysql_port,
-		login_config.mysql_database) == SQL_ERROR)
-	{
-		exit(EXIT_FAILURE);
-	}
-	Sql_Keepalive(ChatSqlHandle);
+    if (Sql_Connect(ChatSqlHandle, login_config.mysql_login,
+        login_config.mysql_password,
+        login_config.mysql_host,
+        login_config.mysql_port,
+        login_config.mysql_database) == SQL_ERROR)
+    {
+        exit(EXIT_FAILURE);
+    }
+    Sql_Keepalive(ChatSqlHandle);
 
-	zContext = zmq::context_t(1);
-	zSocket = new zmq::socket_t(zContext, ZMQ_ROUTER);
+    zContext = zmq::context_t(1);
+    zSocket = new zmq::socket_t(zContext, ZMQ_ROUTER);
 
     uint32 to = 500;
     zSocket->setsockopt(ZMQ_RCVTIMEO, &to, sizeof to);
 
-	string_t server = "tcp://";
+    string_t server = "tcp://";
     server.append(login_config.msg_server_ip);
-	server.append(":");
+    server.append(":");
     server.append(std::to_string(login_config.msg_server_port));
 
-	try
-	{
-		zSocket->bind(server.c_str());
-	}
-	catch (zmq::error_t err)
-	{
-		ShowFatalError("Unable to bind chat socket: %s\n", err.what());
-	}
+    try
+    {
+        zSocket->bind(server.c_str());
+    }
+    catch (zmq::error_t err)
+    {
+        ShowFatalError("Unable to bind chat socket: %s\n", err.what());
+    }
 
-	message_server_listen();
+    message_server_listen();
 }
 
 void message_server_close()
 {
+    Sql_Free(ChatSqlHandle);
+
     zContext.close();
     if (zSocket)
     {
         zSocket->close();
         delete zSocket;
-        zSocket = NULL;
+        zSocket = nullptr;
     }
 }

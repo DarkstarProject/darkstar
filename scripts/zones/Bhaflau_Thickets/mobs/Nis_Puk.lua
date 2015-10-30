@@ -4,7 +4,7 @@
 -- @pos -155.319 -15.959 -599.366 52
 -----------------------------------	
 
-require("/scripts/zones/Bhaflau_Thickets/MobIDs");
+require("scripts/zones/Bhaflau_Thickets/MobIDs");
 	
 -----------------------------------	
 -- onMobDeath	

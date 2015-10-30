@@ -1,35 +1,51 @@
 -----------------------------------------
 -- Spell: Stinking Gas
+-- Lowers Vitality of enemies within range
+-- Spell cost: 37 MP
+-- Monster Type: Undead
+-- Spell Type: Magical (Wind)
+-- Blue Magic Points: 2
+-- Stat Bonus: AGI+1
+-- Level: 44
+-- Casting Time: 4 seconds
+-- Recast Time: 60 seconds
+-- Magic Bursts on: Detonation, Fragmentation, and Light
+-- Combos: Auto Refresh
 -----------------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/bluemagic");
+
+-----------------------------------------
+-- OnMagicCastingCheck
+-----------------------------------------
+
+function onMagicCastingCheck(caster,target,spell)
+    return 0;
+end;
+
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
-	return 0;
-end;
-
 function onSpellCast(caster,target,spell)
-	local duration = 60;
 
-	local dINT = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
-	local resist = applyResistance(caster,spell,target,dINT,37);
-	if(resist > 0.0625) then
-		-- resisted!
-		spell:setMsg(85);
-		return 0;
-	end
+    local typeEffect = EFFECT_VIT_DOWN;
+    local dINT = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
+    local resist = applyResistance(caster,spell,target,dINT,BLUE_SKILL);
+    local duration = 60 * resist;
+    local power = 5;
 
-	if(target:hasStatusEffect(EFFECT_VIT_DOWN) == true) then
-		-- no effect
-		spell:setMsg(75);
-	else
-		target:addStatusEffect(EFFECT_VIT_DOWN,5,0,duration);
-		spell:setMsg(236);
-	end
+    if (resist > 0.5) then -- Do it!
+        if (target:addStatusEffect(typeEffect,power,0,duration)) then
+            spell:setMsg(236);
+        else
+            spell:setMsg(75);
+        end
+    else
+        spell:setMsg(85);
+    end;
 
-	return EFFECT_VIT_DOWN;
+    return typeEffect; 
 end;

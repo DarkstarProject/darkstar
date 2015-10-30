@@ -14,17 +14,17 @@ require("scripts/zones/Den_of_Rancor/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	local Lantern_ID = 17433044
+	local Lantern_ID = 17433047
 	local LSW = GetNPCByID(Lantern_ID):getAnimation();
 	local LNW = GetNPCByID(Lantern_ID+1):getAnimation();
 	local LNE = GetNPCByID(Lantern_ID+2):getAnimation();
 	local LSE = GetNPCByID(Lantern_ID+3):getAnimation(); 
 	
 	-- Trade Crimson Rancor Flame
-	if(trade:hasItemQty(1139,1) and trade:getItemCount() == 1) then
+	if (trade:hasItemQty(1139,1) and trade:getItemCount() == 1) then
 		if (LNW == 8) then
 		player:messageSpecial(LANTERN_OFFSET + 7); -- already lit
-		elseif(LNW == 9)then
+		elseif (LNW == 9) then
 		npc:openDoor(LANTERNS_STAY_LIT);
 		local ALL = LSW+LNE+LSE;
 		player:tradeComplete();

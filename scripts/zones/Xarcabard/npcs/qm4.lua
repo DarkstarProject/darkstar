@@ -25,8 +25,8 @@ end;
 
 function onTrigger(player,npc)
 	local BorealHound = GetMobAction(17236202);
-	if((OldSchoolG2 == false) or (BorealHound == ACTION_NONE or BorealHound == ACTION_SPAWN)) then
-		if(player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(TRIANGULAR_FRIGICITE) == false) then
+	if ((OldSchoolG2 == false) or (BorealHound == ACTION_NONE or BorealHound == ACTION_SPAWN)) then
+		if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(TRIANGULAR_FRIGICITE) == false) then
 			player:addKeyItem(TRIANGULAR_FRIGICITE);
 			player:messageSpecial(KEYITEM_OBTAINED, TRIANGULAR_FRIGICITE);
 		else

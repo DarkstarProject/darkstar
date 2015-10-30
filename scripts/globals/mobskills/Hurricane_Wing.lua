@@ -8,13 +8,13 @@
 --  Notes: Used only by Dragua, Fafnir, Nidhogg, Cynoprosopi, Wyrm, and Odzmanouk. The blinding effect does not last long
 --                but is very harsh. The attack is wide enough to generally hit an entire alliance.
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-	if(target:isBehind(mob, 48) == true) then
+	if (target:isBehind(mob, 48) == true) then
 		return 1;
     elseif (mob:AnimationSub() ~= 0) then
         return 1;

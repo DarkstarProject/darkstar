@@ -3,14 +3,14 @@
 -- Lower defense
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
+    if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
         return 0;
     end
     return 1;

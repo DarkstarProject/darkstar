@@ -9,7 +9,7 @@ require("scripts/globals/titles");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -18,7 +18,7 @@ end;
 
 function onMobDeath(mob, killer)
 	killer:addTitle(LICH_BANISHER);
-	if(killer:getQuestStatus(WINDURST,BLUE_RIBBON_BLUES) == QUEST_ACCEPTED) then
+	if (killer:getQuestStatus(WINDURST,BLUE_RIBBON_BLUES) == QUEST_ACCEPTED) then
 		killer:setVar("Lich_C_Magnus_Died",1);
 	end
 end;

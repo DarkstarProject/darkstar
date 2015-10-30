@@ -6,12 +6,22 @@
 --  
 --  Range: Self
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
+  if(mob:getFamily() == 316) then
+    local mobSkin = mob:getModelId();
+
+    if (mobSkin == 1796) then
+        return 0;
+    else
+        return 1;
+    end
+  end
+
    if (mob:AnimationSub() == 0) then
       return 0;
    else

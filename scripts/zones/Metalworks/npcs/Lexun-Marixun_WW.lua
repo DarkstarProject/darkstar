@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Lexun-Maxirun, W.W.
+--  NPC: Lexun-Maxirun, W.W.
 -- @pos 28 -16 28 237
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band
@@ -16,10 +16,10 @@ require("scripts/globals/conquest");
 require("scripts/globals/common");
 require("scripts/zones/Metalworks/TextIDs");
 
-guardnation = WINDURST; -- SANDORIA, BASTOK, WINDURST, JEUNO
-guardtype   = 2;        -- 1: city, 2: foreign, 3: outpost, 4: border
-size        = table.getn(WindInv);
-inventory   = WindInv;
+local guardnation = WINDURST; -- SANDORIA, BASTOK, WINDURST, JEUNO
+local guardtype   = 2;        -- 1: city, 2: foreign, 3: outpost, 4: border
+local size        = table.getn(WindInv);
+local inventory   = WindInv;
 
 -----------------------------------
 -- onTrade Action
@@ -37,21 +37,21 @@ function onTrigger(player,npc)
 
 	if (player:getNation() == guardnation and player:getVar("supplyQuest_started") > 0 and supplyRunFresh(player) == 0) then
 		player:showText(npc,CONQUEST + 40); -- "We will dispose of those unusable supplies."
-		region = player:getVar("supplyQuest_region");
+		local region = player:getVar("supplyQuest_region");
 		player:delKeyItem(getSupplyKey(region));
 		player:messageSpecial(KEYITEM_OBTAINED + 1,getSupplyKey(region));
 		player:setVar("supplyQuest_started",0);
 		player:setVar("supplyQuest_region",0);
 		player:setVar("supplyQuest_fresh",0);
 	else
-		Menu1 = getArg1(guardnation,player);
-		Menu2 = getExForceAvailable(guardnation,player);
-		Menu3 = conquestRanking();
-		Menu4 = getSupplyAvailable(guardnation,player);
-		Menu5 = player:getNationTeleport(guardnation);
-		Menu6 = getArg6(player);
-		Menu7 = player:getCP();
-		Menu8 = getRewardExForce(guardnation,player);
+		local Menu1 = getArg1(guardnation,player);
+		local Menu2 = getExForceAvailable(guardnation,player);
+		local Menu3 = conquestRanking();
+		local Menu4 = getSupplyAvailable(guardnation,player);
+		local Menu5 = player:getNationTeleport(guardnation);
+		local Menu6 = getArg6(player);
+		local Menu7 = player:getCP();
+		local Menu8 = getRewardExForce(guardnation,player);
 
 		player:startEvent(0x7ff7,Menu1,Menu2,Menu3,Menu4,Menu5,Menu6,Menu7,Menu8);
 	end
@@ -91,7 +91,9 @@ function onEventFinish(player,csid,option)
 	-- printf("onFinishOPTION: %u",option);
 
 	if (option == 1) then
-		duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;
+		local duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;
+		player:delStatusEffect(EFFECT_SIGIL);
+		player:delStatusEffect(EFFECT_SANCTION);
 		player:delStatusEffect(EFFECT_SIGNET);
 		player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
 	elseif (option >= 32768 and option <= 32944) then
@@ -132,7 +134,7 @@ function onEventFinish(player,csid,option)
 			end
 		end
 	elseif (option >= 65541 and option <= 65565) then -- player chose supply quest.
-		region = option - 65541;
+		local region = option - 65541;
 		player:addKeyItem(getSupplyKey(region));
 		player:messageSpecial(KEYITEM_OBTAINED,getSupplyKey(region));
 		player:setVar("supplyQuest_started",vanaDay());

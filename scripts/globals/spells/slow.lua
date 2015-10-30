@@ -18,11 +18,10 @@ end;
 
 function onSpellCast(caster,target,spell)
     local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
-    --local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
 
     --Power.
     local power = 150 + dMND * 2;
-    if(power > 300) then
+    if (power > 300) then
         power = 300;
     end
 	
@@ -32,14 +31,14 @@ function onSpellCast(caster,target,spell)
 
     --Duration, including resistance.
     local duration = 120 * applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_SLOW);
-    if(duration >= 60) then --Do it!
+    if (duration >= 60) then --Do it!
 	
 	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         duration = duration * 2;
     end
     caster:delStatusEffect(EFFECT_SABOTEUR);
 
-        if(target:addStatusEffect(EFFECT_SLOW,power,0,duration, 0, 1)) then
+        if (target:addStatusEffect(EFFECT_SLOW,power,0,duration, 0, 1)) then
             spell:setMsg(236);
         else
             spell:setMsg(75);

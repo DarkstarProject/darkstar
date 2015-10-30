@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -33,15 +33,15 @@ CMessageDebugPacket::CMessageDebugPacket(CBaseEntity* PSender, CBaseEntity* PTar
 	this->type = 0x2d;
 	this->size = 0x0e;
 
-	WBUFL(data,(0x04)-4) = PSender->id;
-	WBUFL(data,(0x08)-4) = PTarget->id;
+	WBUFL(data,(0x04)) = PSender->id;
+	WBUFL(data,(0x08)) = PTarget->id;
 
-	WBUFW(data,(0x0C)-4) = PSender->targid;
-	WBUFW(data,(0x0E)-4) = PTarget->targid;
+	WBUFW(data,(0x0C)) = PSender->targid;
+	WBUFW(data,(0x0E)) = PTarget->targid;
 
-	WBUFL(data,(0x10)-4) = param0;
-	WBUFL(data,(0x14)-4) = param1;
-	WBUFW(data,(0x18)-4) = messageID;
+	WBUFL(data,(0x10)) = param0;
+	WBUFL(data,(0x14)) = param1;
+	WBUFW(data,(0x18)) = messageID;
 
-	//WBUFB(data,(0x1A)-4) = 0x01;
+	//WBUFB(data,(0x1A)) = 0x01;
 }

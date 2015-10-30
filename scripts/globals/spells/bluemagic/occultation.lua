@@ -1,52 +1,57 @@
 -----------------------------------------
--- Bluemagic: Occultation
--- Creates shadow images that each absorb
--- a single attack directed at you.
--- VIT+3  CHR-2
--- Lvl.: 88 MP Cost: 138 Blue Points: 3
+-- Spell: Occultation
+-- Creates shadow images that each absorb a single attack directed at you
+-- Spell cost: 138 MP
+-- Monster Type: Seethers
+-- Spell Type: Magical (Wind)
+-- Blue Magic Points: 3
+-- Stat Bonus: VIT+3 CHR-2 
+-- Level: 88
+-- Casting Time: 2 seconds
+-- Recast Time: 1 minute, 30 seconds
+-- 
+-- Combos: Evasion Bonus
 -----------------------------------------
 
 require("scripts/globals/status");
 
 -----------------------------------------
--- onMagicCastingCheck
+-- OnMagicCastingCheck
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
-end;
-
------------------------------------------
+end;-----------------------------------------
 -- OnSpellCast
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
+
+    local typeEffect = EFFECT_BLINK;
     local skill = caster:getSkillLevel(BLUE_SKILL);
-    local shadows = 2;
+    local power = (skill / 50);
     local duration = 300;
 
     -- 400 skill = 8 shadows, 450 = 9 shadows, so I am assuming every 50 skill is a shadow.
     -- Also assuming minimum of 2 shadows.
     -- I've never seen the spell cast with under 100 skill, so I could be wrong.
-    if (skill > 100) then
-        shadows = (skill / 50);
-    end
+    if (skill < 100) then
+        power = 2;
+    end;
 
-    if(caster:hasStatusEffect(EFFECT_DIFFUSION)) then
+    if (caster:hasStatusEffect(EFFECT_DIFFUSION)) then
         local diffMerit = caster:getMerit(MERIT_DIFFUSION);
 
-        if(diffMerit > 0) then
+        if (diffMerit > 0) then
             duration = duration + (duration/100)* diffMerit;
-        end
+        end;
 
         caster:delStatusEffect(EFFECT_DIFFUSION);
-    end
+    end;
 
-    if(target:addStatusEffect(EFFECT_BLINK, shadows, 0, duration)) then
-        spell:setMsg(230);
-    else
+    if (target:addStatusEffect(typeEffect,power,0,duration) == false) then
         spell:setMsg(75);
-    end
+    end;
 
-    return EFFECT_BLINK;
+    return typeEffect;
 end;

@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:hasKeyItem(SILVER_BELL) and player:hasKeyItem(YAGUDO_TORCH) == false and player:getVar("YagudoTorchCS") == 0) then
+	if (player:hasKeyItem(SILVER_BELL) and player:hasKeyItem(YAGUDO_TORCH) == false and player:getVar("YagudoTorchCS") == 0) then
 		player:startEvent(0x0050);
 	else
 		player:startEvent(0x004f);
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x0050) then
+	if (csid == 0x0050) then
 		player:setVar("YagudoTorchCS",1);
 	end
 	

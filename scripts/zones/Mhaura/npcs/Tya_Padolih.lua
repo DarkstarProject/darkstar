@@ -32,7 +32,8 @@ stock = {0x126c,4147,  --Scroll of Regen
 		 0x1253,29030, --Scroll of Baramnesra
 		 0x1288,5523,  --Scroll of Invisible
 		 0x1289,2400,  --Scroll of Sneak
-		 0x128a,1243}  --Scroll of Deodorize
+		 0x128a,1243,  --Scroll of Deodorize
+		 0x1330,18032} --Scroll of Distract
  
 showShop(player, STATIC, stock);
 end; 

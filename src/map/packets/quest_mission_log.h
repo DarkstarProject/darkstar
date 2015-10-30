@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -84,6 +84,7 @@
 #define MISSION_SHANTOTTO_ASCENSION		0x17
 
 #define MISSION_ADOULIN					0x18
+#define MISSION_RHAPSODIES              0x19
 
 /************************************************************************
 *																		*
@@ -108,9 +109,8 @@ private:
 	void generateCompleteMissionPacket(CCharEntity* PChar);
 	void generateCurrentExpMissionPacket(CCharEntity* PChar); 
 	void generateCompleteExpMissionPacket(CCharEntity* PChar);
-	void generateCompleteCopMissionPacket(CCharEntity* PChar);
-	void generateCompaingUnMissionPacket(CCharEntity* PChar);
-	void generateCompaingDeuxMissionPacket(CCharEntity* PChar);
+	void generateFirstCampaignMissionPacket(CCharEntity* PChar);
+	void generateSecondCampaignMissionPacket(CCharEntity* PChar);
 	void generateAssaultMissionPacket(CCharEntity* PChar);
 };
 

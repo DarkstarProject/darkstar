@@ -27,8 +27,17 @@ function onEffectGain(target,effect)
         target:addMod(MOD_STORETP, 5);
     elseif (effect:getPower() == 5) then -- Dried Agaricus
         target:addMod(MOD_MND, 4);
-    elseif (effect:getPower() == 6) then -- Instant Rice 
+    elseif (effect:getPower() == 6) then -- Instant Rice
         target:addMod(MOD_CHR, 6);
+    elseif (effect:getPower() == 255) then -- ACP Seed Goblin Saucepan Attack
+        -- Based on info from http://www.bg-wiki.com/bg/Seed_Goblin
+        target:addMod(MOD_STR, -10);
+        target:addMod(MOD_DEX, -10);
+        target:addMod(MOD_VIT, -10);
+        target:addMod(MOD_AGI, -10);
+        target:addMod(MOD_INT, -10);
+        target:addMod(MOD_MND, -10);
+        target:addMod(MOD_CHR, -10);
     end
 end;
 
@@ -62,7 +71,16 @@ function onEffectLose(target,effect)
         target:delMod(MOD_STORETP, 5);
     elseif (effect:getPower() == 5) then -- Dried Agaricus
         target:delMod(MOD_MND, 4);
-    elseif (effect:getPower() == 6) then -- Instant Rice 
+    elseif (effect:getPower() == 6) then -- Instant Rice
         target:delMod(MOD_CHR, 6);
+    elseif (effect:getPower() == 255) then -- ACP Seed Goblin Saucepan Attack
+        -- Based on info from http://www.bg-wiki.com/bg/Seed_Goblin
+        target:delMod(MOD_STR, -10);
+        target:delMod(MOD_DEX, -10);
+        target:delMod(MOD_VIT, -10);
+        target:delMod(MOD_AGI, -10);
+        target:delMod(MOD_INT, -10);
+        target:delMod(MOD_MND, -10);
+        target:delMod(MOD_CHR, -10);
     end
 end;

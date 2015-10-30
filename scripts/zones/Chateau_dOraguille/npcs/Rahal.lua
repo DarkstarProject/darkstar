@@ -17,8 +17,8 @@ require("scripts/zones/Chateau_dOraguille/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
+	if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
@@ -37,12 +37,12 @@ function onTrigger(player,npc)
 	local StalkerProgress = player:getVar("KnightStalker_Progress");
 	local WildcatSandy = player:getVar("WildcatSandy");
 	
-	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,17) == false) then
+	if (player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,17) == false) then
 		player:startEvent(0x022f);
 	-- Need to speak with Rahal to get Dragon Curse Remedy
 	elseif (CrestProgress == 5 and RemedyKI == false) then
 		player:startEvent(0x003c); -- Gives key item
-	elseif(CrestProgress == 5 and RemedyKI == true) then
+	elseif (CrestProgress == 5 and RemedyKI == true) then
 		player:startEvent(122); -- Reminder to go to Gelsba
 	 -- Completed AF2, AF3 available, and currently on DRG.  No level check, since they cleared AF2.
 	elseif (player:getQuestStatus(SANDORIA,CHASING_QUOTAS) == QUEST_COMPLETED and Stalker_Quest == QUEST_AVAILABLE and player:getMainJob() == 14) then
@@ -55,20 +55,20 @@ function onTrigger(player,npc)
 		if (StalkerProgress == 0) then
 			player:startEvent(119); -- Reminder to go to Brugaire/Ceraulian
 		elseif (player:hasKeyItem(CHALLENGE_TO_THE_ROYAL_KNIGHTS) == true) then
-			if(StalkerProgress == 1) then
+			if (StalkerProgress == 1) then
 				player:startEvent(78); -- Reaction to challenge, go talk to Balasiel
-			elseif(StalkerProgress == 2) then
+			elseif (StalkerProgress == 2) then
 				player:startEvent(69); -- Reminder to talk to Balasiel
-			elseif(StalkerProgress == 3) then
+			elseif (StalkerProgress == 3) then
 				player:startEvent(110); -- To the south with you
 			end
 		end
 	elseif (player:getVar("KnightStalker_Option2") == 1) then
 		player:startEvent(118); -- Optional CS after Knight Stalker
 		-- Mission 8-2 San dOria --
-	elseif(player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("MissionStatus") == 1) then
+	elseif (player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("MissionStatus") == 1) then
 		player:startEvent(0x006A)
-	elseif(player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("MissionStatus") == 2) then
+	elseif (player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("MissionStatus") == 2) then
 		player:startEvent(0x006b);
 	else
 		player:startEvent(0x0211); -- standard dialogue
@@ -93,10 +93,10 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x003c) then
+	if (csid == 0x003c) then
 		player:addKeyItem(DRAGON_CURSE_REMEDY);
 		player:messageSpecial(KEYITEM_OBTAINED, DRAGON_CURSE_REMEDY);
-	elseif(csid == 0x022f) then
+	elseif (csid == 0x022f) then
 		player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",17,true);
 	elseif (csid == 121) then
 		if (option == 1) then
@@ -113,8 +113,8 @@ function onEventFinish(player,csid,option)
 		player:setVar("KnightStalker_Progress",4);
 	elseif (csid == 118) then
 		player:setVar("KnightStalker_Option2",0);
-	elseif(csid == 0x006A) then
-		if(player:hasKeyItem(CRYSTAL_DOWSER)) then
+	elseif (csid == 0x006A) then
+		if (player:hasKeyItem(CRYSTAL_DOWSER)) then
 			player:delKeyItem(CRYSTAL_DOWSER); -- To prevent them getting a message about already having the keyitem
 		else
 			player:setVar("MissionStatus",2);

@@ -18,7 +18,7 @@ result = 0
 	if (target:getRace() ~= 7) then
 		result = 247;
 	end
-	if(target:getMod(MOD_EAT_RAW_FISH) == 1) then
+	if (target:getMod(MOD_EAT_RAW_FISH) == 1) then
 		result = 0;
 	end
 	if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then

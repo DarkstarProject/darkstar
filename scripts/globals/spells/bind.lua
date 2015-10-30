@@ -15,7 +15,6 @@ function onSpellCast(caster,target,spell)
 
 	--Pull base stats.
 	local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-	--local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
 
 	--Duration, including resistance.  May need more research.
 	local duration = 60;
@@ -28,9 +27,9 @@ function onSpellCast(caster,target,spell)
 	--Resist
 	local resist = applyResistanceEffect(caster,spell,target,dINT,35,0,EFFECT_BIND);
 
-	if(resist >= 0.5) then --Do it!
+	if (resist >= 0.5) then --Do it!
 		--Try to erase a weaker bind.
-		if(target:addStatusEffect(EFFECT_BIND,target:speed(),0,duration*resist)) then
+		if (target:addStatusEffect(EFFECT_BIND,target:speed(),0,duration*resist)) then
 			spell:setMsg(236);
 		else
 			spell:setMsg(75);

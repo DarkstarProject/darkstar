@@ -7,8 +7,8 @@
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
-function OnMobDeath(mob, killer)
+function onMobDeath(mob, killer)
 end;

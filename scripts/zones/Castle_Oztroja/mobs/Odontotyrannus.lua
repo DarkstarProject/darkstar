@@ -7,7 +7,7 @@ require("scripts/globals/settings");
 -----------------------------------
 -- onMobSpawn
 -----------------------------------
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------

@@ -101,7 +101,7 @@ function onRegionEnter(player,region)
 		---------------------------------
 		[6] = function (x)
 		---------------------------------
-		if(player:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_ACCEPTED and player:getFreeSlotsCount() >= 1 and player:getVar("bladeOfEvilCS") == 1) then
+		if (player:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_ACCEPTED and player:getFreeSlotsCount() >= 1 and player:getVar("bladeOfEvilCS") == 1) then
 			player:startEvent(0x000e);
 		else
 			player:startEvent(7);
@@ -166,17 +166,17 @@ function onEventFinish(player,csid,option)
 --print("onFinishCSID: ",csid);
 --print("onFinishRESULT: ",option);
 	
-	if(csid <= 11 and option == 1) then
-		if(csid == 0) then
+	if (csid <= 11 and option == 1) then
+		if (csid == 0) then
 			player:setPos(412, -32, 80, 100, 184);
-		elseif(csid == 1) then
+		elseif (csid == 1) then
 			player:setPos(388, -32, -40, 231, 184);
-		elseif(csid == 2) then
+		elseif (csid == 2) then
 			player:setPos(540, -32, 20, 128, 184);
-		elseif(csid == 0xA) then
+		elseif (csid == 0xA) then
 			player:setPos(-355, -144, 91, 64, 158);
 		end
-	elseif(csid == 0x000e) then
+	elseif (csid == 0x000e) then
 		player:addItem(12516);
 		player:messageSpecial(ITEM_OBTAINED,12516); -- Chaos Burgeonet
 		player:addTitle(PARAGON_OF_DARK_KNIGHT_EXCELLENCE);

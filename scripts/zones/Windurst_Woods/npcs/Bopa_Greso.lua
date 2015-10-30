@@ -31,7 +31,7 @@ function onTrigger(player,npc)
 	thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES);
 	thickAsThievesCS = player:getVar("thickAsThievesCS");
 	
-	if(thickAsThieves == QUEST_ACCEPTED) then
+	if (thickAsThieves == QUEST_ACCEPTED) then
 		player:startEvent(0x01FA);
 			if (thickAsThievesCS == 1) then
 				player:setVar("thickAsThievesCS",2);

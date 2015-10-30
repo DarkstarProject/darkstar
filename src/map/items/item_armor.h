@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -57,6 +57,7 @@ public:
 	virtual ~CItemArmor();
 
 	uint8	getReqLvl();
+    uint8   getILvl();
 	uint32	getJobs();
 	uint16	getModelId();
 	uint16	getScriptType();
@@ -72,6 +73,7 @@ public:
     bool    IsShield();
 
 	void	setReqLvl(uint8 lvl);
+    void    setILvl(uint8 lvl);
 	void	setJobs(uint32 jobs);
 	void	setModelId(uint16 mdl);
 	void	setShieldSize(uint8 shield);
@@ -85,14 +87,17 @@ public:
     void    ApplyAugment(uint8 slot);
 
     void    addModifier(CModifier* modifier);
+    void    addPetModifier(CModifier* modifier);
 	void	addLatent(CLatentEffect* latent);
 
 	std::vector<CModifier*> modList;			// список модификаторов
+    std::vector<CModifier*> petModList;         // mod list for pets
 	std::vector<CLatentEffect*> latentList;     // contains latents
 
 private:
 
 	uint8	m_reqLvl;
+    uint8   m_iLvl;
 	uint32  m_jobs;
 	uint16	m_modelID;
 	uint16	m_scriptType;

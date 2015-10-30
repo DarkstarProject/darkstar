@@ -9,7 +9,7 @@
 -- onMobSpawn
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------

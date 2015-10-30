@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ CZoneInstance::~CZoneInstance()
 
 CCharEntity* CZoneInstance::GetCharByName(int8* name)
 {
-	CCharEntity* PEntity = NULL;
+	CCharEntity* PEntity = nullptr;
 	for (auto instance : instanceList)
 	{
 		PEntity = instance->GetCharByName(name);
@@ -60,7 +60,7 @@ CCharEntity* CZoneInstance::GetCharByName(int8* name)
 
 CCharEntity* CZoneInstance::GetCharByID(uint32 id)
 {
-	CCharEntity* PEntity = NULL;
+	CCharEntity* PEntity = nullptr;
 	for (auto instance : instanceList)
 	{
 		PEntity = instance->GetCharByID(id);
@@ -71,7 +71,7 @@ CCharEntity* CZoneInstance::GetCharByID(uint32 id)
 
 CBaseEntity* CZoneInstance::GetEntity(uint16 targid, uint8 filter)
 {
-	CBaseEntity* PEntity = NULL;
+	CBaseEntity* PEntity = nullptr;
 	if (filter & TYPE_PC)
 	{
 		for (auto instance : instanceList)
@@ -141,7 +141,7 @@ void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
 		instance->DespawnPC(PChar);
 		CharZoneOut(PChar);
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
-		PChar->PInstance = NULL;
+		PChar->PInstance = nullptr;
 
 		if (instance->CharListEmpty())
 		{
@@ -160,9 +160,9 @@ void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
 
 void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->loc.zone != NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != NULL);
+	DSP_DEBUG_BREAK_IF(PChar == nullptr);
+	DSP_DEBUG_BREAK_IF(PChar->loc.zone != nullptr);
+	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != nullptr);
 
 	//return char to instance (d/c or logout)
 	if (!PChar->PInstance)
@@ -174,7 +174,7 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 				PChar->PInstance = instance;
 			}
 		}
-		if (PChar->m_GMlevel > 0)
+		if (!PChar->PInstance && PChar->m_GMlevel > 0)
 		{
 			PChar->PInstance = new CInstance(this, 0);
 		}
@@ -191,8 +191,11 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 		}
 
 		PChar->PInstance->InsertPC(PChar);
+        luautils::OnInstanceZoneIn(PChar, PChar->PInstance);
 		CharZoneIn(PChar);
 
+        /* disabled until invalid packet error can be worked around (not sending all
+           level related stuff twice (before and after level sync)
         if (PChar->PInstance->GetLevelCap() > 0)
         {
             PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE | EFFECTFLAG_ON_ZONE);
@@ -202,7 +205,7 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
                 PChar->PInstance->GetLevelCap(), 
                 0, 0)
             );
-        }
+        }*/
 
 		if (!PChar->PInstance->CharRegistered(PChar))
 		{
@@ -215,7 +218,10 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 	{
 		//instance no longer exists: put them outside (at exit)
 		PChar->loc.prevzone = GetID();
-		zoneutils::GetZone(luautils::OnInstanceLoadFailed(this))->IncreaseZoneCounter(PChar);
+        
+        uint16 zoneid = luautils::OnInstanceLoadFailed(this);
+
+		zoneutils::GetZone(zoneid > MAX_ZONEID ? PChar->loc.prevzone : zoneid)->IncreaseZoneCounter(PChar);
 	}
 }
 

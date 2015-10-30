@@ -34,11 +34,11 @@ function onTrigger(player,npc)
         haveimperialIDtag = 0;
     end
     
-    if (rank > 0) then
+--[[    if (rank > 0) then
         player:startEvent(275,rank,haveimperialIDtag,assaultPoints,player:getCurrentAssault());
-    else
+    else]]
         player:startEvent(281); -- no rank
-	end
+	--end
 end;
 
 -----------------------------------

@@ -20,7 +20,7 @@ result = 0
 	elseif (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
 		result = 246;
 	end
-	if(target:getMod(MOD_EAT_RAW_FISH) == 1) then
+	if (target:getMod(MOD_EAT_RAW_FISH) == 1) then
 		result = 0;
 	end
 return result;

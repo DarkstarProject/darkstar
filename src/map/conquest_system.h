@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -53,6 +53,7 @@ namespace conquest
 {
 	void	UpdateConquestSystem();										// Update conquest information in the DB
 
+    void    UpdateInfluencePoints(int points, unsigned int nation, unsigned int region);
 	void	GainInfluencePoints(CCharEntity* PChar, uint32 points);		// Gain influence for player's nation (+1)
 	void	LoseInfluencePoints(CCharEntity* PChar);					// Lose influence for player's nation and gain for beastmen influence
 	

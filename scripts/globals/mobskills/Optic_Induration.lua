@@ -7,13 +7,13 @@
 --  Range: Unknown cone
 --  Notes: Charges up (three times) before actually being used (except Jailer of Temperance, who doesn't need to charge it up). The petrification lasts a very long time.
 ---------------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-	if(mob:AnimationSub() == 2 or mob:AnimationSub() == 3) then
+	if (mob:AnimationSub() == 2 or mob:AnimationSub() == 3) then
 		return 1;
 	end
 	return 0;

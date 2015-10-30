@@ -3,14 +3,14 @@
 -- Dispels a single buff at random which could be food.  Lowers Enmity.
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-	if(target:isBehind(mob, 48) == true) then
+	if (target:isBehind(mob, 48) == true) then
 		return 1;
     elseif (mob:AnimationSub() ~= 0) then
         return 1;
@@ -22,7 +22,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     local dispel =  target:dispelStatusEffect(bit.bor(EFFECTFLAG_DISPELABLE, EFFECTFLAG_FOOD));
 
-    if(dispel == EFFECT_NONE) then
+    if (dispel == EFFECT_NONE) then
         -- no effect
         skill:setMsg(MSG_NO_EFFECT); -- no effect
     else

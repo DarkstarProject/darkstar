@@ -4,22 +4,22 @@
 --  Type: Physical
 ---------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     -- maat can only use this at 70
-    if(mob:getMainLvl() < 70) then
+    if (mob:getMainLvl() < 70) then
         return 1;
     end
 	return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    if(target:getID() < 1000000) then target:showText(mob,TAKE_THAT_YOU_WHIPPERSNAPPER); end
+    if (target:getID() < 1000000) then target:showText(mob,TAKE_THAT_YOU_WHIPPERSNAPPER); end
 
 	local numhits = 8;
 	local accmod = 1;

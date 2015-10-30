@@ -6,7 +6,7 @@
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
-require("/scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/zones/Empyreal_Paradox/TextIDs");
 
 function onMobInitialize(mob)
     mob:addMod(MOD_REGAIN, 30);
@@ -65,10 +65,10 @@ function onMobRoam(mob)
             mob:messageText(mob, PRISHE_TEXT + 1);
             baseID = baseID + 1;
         end
-        mob:setLocalVar("ready", bit.band(baseID, 0xFFF));
+        mob:setLocalVar("ready", baseID);
         mob:setLocalVar("wait", 0);
     elseif (ready > 0) then
-        mob:addEnmity(GetMobByID(ready + bit.lshift(mob:getZoneID(), 12) + 0x1000000),0,1);
+        mob:addEnmity(GetMobByID(ready),0,1);
         mob:addStatusEffectEx(EFFECT_SILENCE,0,0,0,5)
     else
         mob:setLocalVar("wait", wait+3);

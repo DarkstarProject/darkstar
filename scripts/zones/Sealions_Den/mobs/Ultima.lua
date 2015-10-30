@@ -16,7 +16,7 @@ end;
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -24,5 +24,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(ULTIMA_UNDERTAKER);	
+	killer:addTitle(ULTIMA_UNDERTAKER);
 end;

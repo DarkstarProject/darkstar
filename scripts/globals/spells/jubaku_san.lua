@@ -19,19 +19,18 @@ function onSpellCast(caster,target,spell)
     local effect = EFFECT_PARALYSIS;
     -- Base Stats
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-    local bonus = AffinityBonus(caster, spell:getElement());
     --Duration Calculation
-    local duration = 420 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,bonus);
+    local duration = 420 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,0);
     --Paralyze base power is 35 and is not affected by resistaces.
     local power = 35;
 
     --Calculates resist chanve from Reist Blind
-    if(math.random(0,100) >= target:getMod(MOD_PARALYZERES)) then
-        if(duration >= 210) then
+    if (math.random(0,100) >= target:getMod(MOD_PARALYZERES)) then
+        if (duration >= 210) then
             -- Erases a weaker blind and applies the stronger one
             local paralysis = target:getStatusEffect(effect);
-            if(paralysis ~= nil) then
-                if(paralysis:getPower() < power) then
+            if (paralysis ~= nil) then
+                if (paralysis:getPower() < power) then
                     target:delStatusEffect(effect);
                     target:addStatusEffect(effect,power,0,duration);
                     spell:setMsg(237);

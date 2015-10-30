@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-Copyright (c) 2010-2014 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,6 +35,7 @@ This file is part of DarkStar-server source code.
 ************************************************************************/
 
 class CPetEntity;
+class CAutomatonEntity;
 
 class CAIAutomatonDummy : public CAIPetDummy
 {
@@ -47,7 +48,26 @@ protected:
 
 
 private:
+    CAutomatonEntity* m_PPet;
+
+    uint32 m_magicRecast;
+    uint32 m_magicEnfeebleRecast;
+    uint32 m_magicElementalRecast;
+    uint32 m_magicHealRecast;
+    uint32 m_magicEnhanceRecast;
+    uint32 m_magicStatusRecast;
+
+    uint32 m_LastRangedTime;
+
     void ActionFall();
+    void ActionAttack();
+
+    bool CheckSpellcast();
+    bool CheckTPMove();
+    bool CheckRangedAttack();
+
+    virtual void TransitionBack(bool skipWait = false) override;
+
 };
 
 #endif

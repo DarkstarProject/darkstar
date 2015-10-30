@@ -26,9 +26,9 @@ function onAdditionalEffect(player,target,damage)
         dmg = adjustForTarget(target,dmg,ELE_FIRE);
         dmg = finalMagicNonSpellAdjustments(player,target,ELE_FIRE,dmg);
 
-        local message = 163;
+        local message = MSGBASIC_ADD_EFFECT_DMG;
         if (dmg < 0) then
-            message = 167;
+            message = MSGBASIC_ADD_EFFECT_HEAL;
         end
 
         return SUBEFFECT_FIRE_DAMAGE,message,dmg;

@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -51,9 +51,10 @@ int32 connect_client_login(int32 listenfd);
 
 int32 login_parse(int32 fd);
 
-int8  login_datacheck(const char *,size_t,size_t);
+bool check_string(std::string const& str, std::size_t max_length);
+
 /*=============================================
 * login data close socket
 *-------------------------------------------*/
-int32 do_close_login(login_session_data_t *loginsd,int32 fd);
+int32 do_close_login(login_session_data_t *loginsd, int32 fd);
 #endif

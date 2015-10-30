@@ -3,14 +3,14 @@
 -- Deals damage to single target. Additional effect: Paralyze
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
+    if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
         return 1;
     end
     return 0;

@@ -3,9 +3,9 @@
 -- Causes Terror, which causes the victim to be stunned for the duration of the effect, this can not be removed.
 ---------------------------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
@@ -18,7 +18,7 @@ function onMobSkillCheck(target,mob,skill)
         return 1;
     elseif (mob:hasStatusEffect(EFFECT_BLOOD_WEAPON)) then
         return 1;
-	elseif(target:isBehind(mob, 48) == true) then
+	elseif (target:isBehind(mob, 48) == true) then
 		return 1;
     elseif (mob:AnimationSub() == 1) then
         return 1;

@@ -15,18 +15,19 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	
-	-- Trade quus
-	if(GetMobAction(17490231) == 0 and GetMobAction(17490232) == 0 and trade:hasItemQty(4514,1) and trade:getItemCount() == 1) then 
-		player:tradeComplete(); 
-		
-		if(math.random((1),(14)) <= 13) then
-			SpawnMob(17490232,180) -- Robber Crab
-		else 
-			SpawnMob(17490231,180) -- Cancer about 7% chance to pop per trade
-		end
-	end
+    
+    
+    -- Trade quus
+    if (GetMobAction(17490231) == 0 and GetMobAction(17490232) == 0 and trade:hasItemQty(4514,1) and trade:getItemCount() == 1) then 
+        player:tradeComplete(); 
+        
+        if (math.random((1),(14)) <= 13) then
+            SpawnMob(17490232,180) -- Robber Crab
+        else 
+            SpawnMob(Cancer,180) -- Cancer about 7% chance to pop per trade
+        end
+        npc:setStatus(STATUS_DISAPPEAR);
+    end
 end; 
 
 -----------------------------------
@@ -34,14 +35,5 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	if(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") >= 2) then
-		if(player:getVar("MissionStatus") == 2) then
-			SpawnMob(17489926, 180); -- Gordov's Ghost
-			SpawnMob(17489927, 180); -- Dervo's Ghost
-			SpawnMob(17489928, 180); -- Gizerl's Ghost
-		else
-			player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-		end
-	end
+player:messageSpecial(FISHBONES);
 end;

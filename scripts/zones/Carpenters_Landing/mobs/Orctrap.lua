@@ -4,7 +4,7 @@
 -- @pos 180.087 -5.484 -532.799 2
 -----------------------------------
 
-require("/scripts/zones/Carpenters_Landing/MobIDs");
+require("scripts/zones/Carpenters_Landing/MobIDs");
 	
 -----------------------------------	
 -- onMobDeath	

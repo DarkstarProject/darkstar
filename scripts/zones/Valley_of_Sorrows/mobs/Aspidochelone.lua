@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valley of Sorrows
--- NPC:  Aspidochelone
+--  HNM: Aspidochelone
 -----------------------------------
 
 require("scripts/globals/settings");

@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -37,8 +37,8 @@ CGuildMenuBuyPacket::CGuildMenuBuyPacket(CCharEntity* PChar, CItemContainer* PGu
 	this->type = 0x83;
 	this->size = 0x7C;
 
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PGuild == NULL);
+	DSP_DEBUG_BREAK_IF(PChar == nullptr);
+	DSP_DEBUG_BREAK_IF(PGuild == nullptr);
 
     uint8 ItemCount = 0;
     uint8 PacketCount = 0;
@@ -51,24 +51,24 @@ CGuildMenuBuyPacket::CGuildMenuBuyPacket(CCharEntity* PChar, CItemContainer* PGu
 		{
 			if (ItemCount == 30)
 			{
-                WBUFB(data,(0xF4)-4) = ItemCount;
-                WBUFB(data,(0xF5)-4) = (PacketCount == 0 ? 0x40 : PacketCount);
+                WBUFB(data,(0xF4)) = ItemCount;
+                WBUFB(data,(0xF5)) = (PacketCount == 0 ? 0x40 : PacketCount);
 
                 PChar->pushPacket(new CBasicPacket(*this));
 
                 ItemCount = 0;
                 PacketCount++;
 						
-                memset(data, 0, sizeof(data));
+                memset(data + 4, 0, PACKET_SIZE - 8);
 			}
-            WBUFW(data,(0x08*ItemCount+0x04)-4) = PItem->getID();
-            WBUFB(data,(0x08*ItemCount+0x06)-4) = PItem->getQuantity();
-            WBUFB(data,(0x08*ItemCount+0x07)-4) = PItem->getStackSize();
-            WBUFL(data,(0x08*ItemCount+0x08)-4) = PItem->getBasePrice();
+            WBUFW(data,(0x08*ItemCount+0x04)) = PItem->getID();
+            WBUFB(data,(0x08*ItemCount+0x06)) = PItem->getQuantity();
+            WBUFB(data,(0x08*ItemCount+0x07)) = PItem->getStackSize();
+            WBUFL(data,(0x08*ItemCount+0x08)) = PItem->getBasePrice();
 
             ItemCount++;
         }
     }
-    WBUFB(data,(0xF4)-4) = ItemCount;
-    WBUFB(data,(0xF5)-4) = PacketCount + 0xC0;
+    WBUFB(data,(0xF4)) = ItemCount;
+    WBUFB(data,(0xF5)) = PacketCount + 0xC0;
 }

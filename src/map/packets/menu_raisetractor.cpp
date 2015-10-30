@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -32,8 +32,8 @@ CRaiseTractorMenuPacket::CRaiseTractorMenuPacket(CCharEntity * PChar, REVIVAL_TY
 	this->type = 0xF9;
 	this->size = 0x06;
 
-	WBUFL(data,(0x04)-4) = PChar->id;
-	WBUFW(data,(0x08)-4) = PChar->targid;
+	WBUFL(data,(0x04)) = PChar->id;
+	WBUFW(data,(0x08)) = PChar->targid;
 
-	WBUFB(data,(0x0A)-4) = type;
+	WBUFB(data,(0x0A)) = type;
 }

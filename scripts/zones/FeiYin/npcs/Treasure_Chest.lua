@@ -28,30 +28,30 @@ function onTrade(player,npc,trade)
 	local questItemNeeded = 0;
 	
 	-- Player traded a key.
-	if((trade:hasItemQty(1037,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
+	if ((trade:hasItemQty(1037,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
 		local zone = player:getZoneID();
 		-- IMPORTANT ITEM: Sorcery of the North QUEST -----------
-		if(player:getQuestStatus(SANDORIA,SORCERY_OF_THE_NORTH) == QUEST_ACCEPTED and player:hasKeyItem(FEIYIN_MAGIC_TOME) == false) then 
+		if (player:getQuestStatus(SANDORIA,SORCERY_OF_THE_NORTH) == QUEST_ACCEPTED and player:hasKeyItem(FEIYIN_MAGIC_TOME) == false) then 
 			questItemNeeded = 1;
 		end
 		--------------------------------------
 		local pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
 		local success = 0;
-		if(pack[2] ~= nil) then
+		if (pack[2] ~= nil) then
 			player:messageSpecial(pack[2]);
 			success = pack[1];
 		else
 			success = pack[1];
 		end
 
-		if(success ~= -2) then
+		if (success ~= -2) then
 			player:tradeComplete();
 			
-			if(math.random() <= success) then
+			if (math.random() <= success) then
 				-- Succeded to open the coffer
 				player:messageSpecial(CHEST_UNLOCKED);
 
-				if(questItemNeeded == 1) then
+				if (questItemNeeded == 1) then
 					player:addKeyItem(FEIYIN_MAGIC_TOME);
 					player:messageSpecial(KEYITEM_OBTAINED,FEIYIN_MAGIC_TOME); -- Fei'yin Magic Tome
 				else
@@ -62,7 +62,7 @@ function onTrade(player,npc,trade)
 					-- print("[1]", loot[1]); -- debug
 					-- print("[2]", loot[2]); -- debug
 
-					if(loot[1]=="gil") then
+					if (loot[1]=="gil") then
 						player:addGil(loot[2]);
 						player:messageSpecial(GIL_OBTAINED,loot[2]);
 					else

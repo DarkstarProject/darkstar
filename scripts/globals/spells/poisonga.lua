@@ -27,12 +27,11 @@ function onSpellCast(caster,target,spell)
 		power = 6;
 	end
 
-    --local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
     local resist = applyResistanceEffect(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,0,effect);
-    if(resist == 1 or resist == 0.5) then -- effect taken
+    if (resist == 1 or resist == 0.5) then -- effect taken
         duration = duration * resist;
 
-        if(target:addStatusEffect(effect,power,3,duration)) then
+        if (target:addStatusEffect(effect,power,3,duration)) then
             spell:setMsg(236);
         else
             spell:setMsg(75);

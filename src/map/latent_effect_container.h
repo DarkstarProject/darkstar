@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2014 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -58,7 +58,7 @@ public:
 	void CheckLatentsPartyJobs();
 	void CheckLatentsPartyAvatar();
 	void CheckLatentsJobLevel();
-	void CheckLatentsPetType(PETTYPE petID);
+	void CheckLatentsPetType(uint8 petID);
 	void CheckLatentsTime();
 	void CheckLatentsWeaponBreak(uint8 slot);
 	void CheckLatentsZone();

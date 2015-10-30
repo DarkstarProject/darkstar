@@ -1,12 +1,16 @@
 -----------------------------------
 -- Ability: Fire Maneuver
+-- Enhances the effect of fire attachments. Must have animator equipped.
+-- Obtained: Puppetmaster level 1
+-- Recast Time: 10 seconds (shared with all maneuvers)
+-- Duration: 1 minute
 -----------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
 -----------------------------------
--- onUseAbility
+-- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -18,7 +22,11 @@ function onAbilityCheck(player,target,ability)
     end
 end;
 
-function onUseAbility(player, target, ability)
+-----------------------------------
+-- onUseAbility
+-----------------------------------
+
+function onUseAbility(player,target,ability)
 
     local burden = 15;
     if (target:getStat(MOD_STR) < target:getPet():getStat(MOD_STR)) then
@@ -26,7 +34,7 @@ function onUseAbility(player, target, ability)
     end
 
     local overload = target:addBurden(ELE_FIRE-1, burden);
-    
+
     if (overload ~= 0) then
         target:removeAllManeuvers();
         target:addStatusEffect(EFFECT_OVERLOAD, 0, 0, overload);
@@ -37,15 +45,15 @@ function onUseAbility(player, target, ability)
         else
             level = target:getSubLvl()
         end
-        
+
         local bonus = 1 + (level/15) + target:getMod(MOD_MANEUVER_BONUS);
-        
+
         if (target:getActiveManeuvers() == 3) then
             target:removeOldestManeuver();
         end
-        
+
         target:addStatusEffect(EFFECT_FIRE_MANEUVER, bonus, 0, 60);
     end
-    
+
     return EFFECT_FIRE_MANEUVER;
 end;
