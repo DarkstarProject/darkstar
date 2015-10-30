@@ -35,8 +35,7 @@ function onSpellCast(caster,target,spell)
     local divisor = 1;
     local constant = -6;
     local power = getCurePowerOld(caster);
-    local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,true);
-    
+
     if (power > 99) then
         divisor = 57;
         constant = 33.125;
@@ -44,6 +43,8 @@ function onSpellCast(caster,target,spell)
         divisor =  2;
         constant = 9;
     end
+
+    local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,true);
 
     final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
     
