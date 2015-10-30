@@ -1597,12 +1597,12 @@ INSERT INTO `mob_skills` VALUES (1548,1353,'Haymaker',4,12,2000,0,4,0,0,3);
 INSERT INTO `mob_skills` VALUES (1549,1354,'Incessant_Fists',0,7,2000,0,4,0,0,3);
 INSERT INTO `mob_skills` VALUES (1550,1355,'Arcane_Stomp',1,25,2000,0,1,0,0,3); -- corected ? to 1
 INSERT INTO `mob_skills` VALUES (1551,1356,'Pleiades_Ray',1,10,2000,0,4,0,0,3);
--- INSERT INTO `mob_skills` VALUES (1552,1552,'Petrifaction',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1552,1334,'Petrifaction',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1553,1335,'PW_Shadow_Thrust',0,10,2000,2000,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1554,1554,'Tail_Slap',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1554,1336,'Tail_Slap',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1555,1555,'.',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1556,1337,'PW_Pinning_Shot',2,15,2000,2000,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (1557,1334,'PW_Calcifying_Deluge',2,15,2000,2000,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1557,1338,'PW_Calcifying_Deluge',2,15,2000,2000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1558,1339,'PW_Gorgon_Dance',1,15,2000,2000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1559,1290,'Amber_scutum',0,10.0,2000,1000,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (1560,1291,'Vitriolic_spray',4,10.0,2000,1000,4,0,0,0);
