@@ -38,7 +38,7 @@ function onUseWeaponSkill(player, target, wsID)
         local drain = (damage * 0.4);
         player:addHP(drain);
     end
-    
+
     if ((player:getEquipID(SLOT_MAIN) == 18306) and (player:getMainJob() == JOB_DRK)) then
         if (damage > 0) then
             if (player:getTP() >= 100 and player:getTP() <200) then
