@@ -11,7 +11,6 @@
 -- 100%TP    200%TP    300%TP
 -- 5.00      5.00      5.00
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
@@ -26,7 +25,7 @@ function onUseWeaponSkill(player, target, wsID)
     params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
     params.canCrit = false;
     -- "Has a substantial Ranged Accuracy penalty at 100TP." https://www.bg-wiki.com/bg/Slug_Shot
-    params.acc100 = 0.5; params.acc200= 0.75; params.acc300= 1;
+    params.acc100 = 0.7; params.acc200= 0.85; params.acc300= 1;
     params.atkmulti = 1;
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
