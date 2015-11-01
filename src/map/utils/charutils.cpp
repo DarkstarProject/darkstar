@@ -771,7 +771,7 @@ namespace charutils
         {
             if (luautils::IsExpansionEnabled(expan))
             {
-                enabledExpansions += "\"";
+                enabledExpansions += ",\"";
                 enabledExpansions += expan;
                 enabledExpansions += "\"";
             }
