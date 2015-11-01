@@ -1841,7 +1841,7 @@ void CAIMobDummy::ActionAttack()
                                 else
                                 {
                                     int16 naturalh2hDMG = 0;
-                                    if (m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH || (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK))
+                                    if (m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H || (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK))
                                     {
                                         naturalh2hDMG = (float)(m_PBattleTarget->GetSkill(SKILL_H2H) * 0.11f) + 3;
                                     }

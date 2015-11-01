@@ -2163,14 +2163,14 @@ namespace battleutils
 
                 if (PChar->m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
                     PChar->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
-                    PChar->m_Weapons[slot]->getDmgType() != DAMAGE_HTH)
+                    PChar->m_Weapons[slot]->getSkillType() != SKILL_H2H)
                 {
                     delay /= 2;
                 }
 
                 float ratio = 1.0f;
 
-                if (PChar->m_Weapons[slot]->getDmgType() == DAMAGE_HTH)
+                if (PChar->m_Weapons[slot]->getSkillType() == SKILL_H2H)
                     ratio = 2.0f;
 
                 baseTp = CalculateBaseTP((delay * 60) / 1000) / ratio;
@@ -3891,7 +3891,7 @@ namespace battleutils
             numattacksLeftHand = battleutils::CheckMultiHits(PAttacker, PAttacker->m_Weapons[SLOT_SUB]);
 
         //h2h equipped
-        if (PAttacker->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH)
+        if (PAttacker->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H)
             numattacksLeftHand = battleutils::CheckMultiHits(PAttacker, PAttacker->m_Weapons[SLOT_MAIN]);
 
         // normal multi hit from left hand
@@ -3915,7 +3915,7 @@ namespace battleutils
                 if (PVictim->isDead())
                     break;
 
-                if (PAttacker->m_Weapons[SLOT_MAIN]->getDmgType() != DAMAGE_HTH && i >= numattacksRightHand)
+                if (PAttacker->m_Weapons[SLOT_MAIN]->getSkillType() != SKILL_H2H && i >= numattacksRightHand)
                 {
                     PWeapon = PAttacker->m_Weapons[SLOT_SUB];
                     fstrslot = SLOT_SUB;
@@ -3981,6 +3981,12 @@ namespace battleutils
         if (tier == 2 && PVictim->objtype == TYPE_MOB)
         {
             uint16 enmityReduction = PAttacker->getMod(MOD_HIGH_JUMP_ENMITY_REDUCTION) + 50;
+
+            // DRG sub has only 30% enmity removed instead of 50%.
+            if (PAttacker->GetSJob() == JOB_DRG)
+            {
+                enmityReduction = PAttacker->getMod(MOD_HIGH_JUMP_ENMITY_REDUCTION) + 30;
+            }
 
             // cap it
             if (enmityReduction > 100)
