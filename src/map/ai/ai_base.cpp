@@ -27,8 +27,6 @@ This file is part of DarkStar-server source code.
 #include "../entities/baseentity.h"
 #include "../packets/entity_animation.h"
 
-duration g_GCD = 2500ms;
-
 CAIBase::CAIBase(CBaseEntity* _PEntity) :
     CAIBase(_PEntity, nullptr, nullptr)
 {
@@ -87,13 +85,10 @@ void CAIBase::Tick(time_point _tick)
         Controller->Tick(_tick);
     }
 
-    if (!m_stateStack.empty())
+    while (!m_stateStack.empty() && m_stateStack.top()->DoUpdate(_tick))
     {
-        if (m_stateStack.top()->DoUpdate(_tick))
-        {
-            m_stateStack.top()->Cleanup(_tick);
-            m_stateStack.pop();
-        }
+        m_stateStack.top()->Cleanup(_tick);
+        m_stateStack.pop();
     }
 
     //make sure this AI hasn't been replaced by another
