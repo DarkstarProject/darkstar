@@ -293,7 +293,7 @@ List of known zones
   286 - 11E - 
   287 - 11F - 
   288 - 120 - Escha - Zi'Tah
-  289 - 121 - 
+  289 - 121 - Escha - Ru'Aun
   290 - 122 - 
   291 - 123 - 
   292 - 124 - 
