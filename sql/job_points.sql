@@ -7,7 +7,6 @@ Target Database: dspdb
 Date: ???
 */
 
-SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for job points
 -- ----------------------------
