@@ -156,9 +156,19 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
     {
         EnmityObject_t* PEnmityObject = new EnmityObject_t;
 
+        bool initial = true;
+        for (auto&& enmityObject : m_EnmityList)
+        {
+            if (enmityObject.second->CE > 0 || enmityObject.second->VE > 0)
+            {
+                initial = false;
+                break;
+            }
+        }
+        if (initial) CE += 200;
         float bonus = CalculateEnmityBonus(PEntity);
 
-        PEnmityObject->CE = dsp_cap(CE * bonus, 1, 10000);
+        PEnmityObject->CE = dsp_cap(CE * bonus, 0, 10000);
         PEnmityObject->VE = dsp_cap(VE * bonus, 0, 10000);
         PEnmityObject->PEnmityOwner = PEntity;
         PEnmityObject->isAggroEnmity = aggroEnmity;

@@ -36,7 +36,7 @@ struct ai_event_t
     std::string identifier;
     int lua_func;
 
-    ai_event_t(std::string _ident, int _lua_func) : 
+    ai_event_t(std::string _ident, int _lua_func) :
         identifier(_ident), lua_func(_lua_func) {}
 };
 
@@ -47,14 +47,14 @@ public:
     void removeListener(std::string eventname, std::string identifier = "");
 
     // calls event from core
-    template<class... Types>
-    void triggerListener(std::string& eventname, Types&&... args)
+    template<class... Args>
+    void triggerListener(std::string& eventname, Args&&... args)
     {
         for (auto&& event : eventListeners[eventname])
         {
             int nargs = sizeof...(args);
             luautils::pushFunc(event.lua_func);
-            pushArg(std::forward<Types&&...>(args)...);
+            pushArg(std::forward<Args&&>(args)...);
             luautils::callFunc(nargs);
         }
     }
@@ -74,11 +74,11 @@ private:
     // push parameters on lua stack
     template<class T>
     void pushArg(T&& arg) { luautils::pushArg(std::forward<T>(arg)); }
-    template<class T, class... Types>
-    void pushArg(T&& arg, Types&&... args) 
+    template<class T, class... Args>
+    void pushArg(T&& arg, Args&&... args)
     {
         pushArg(std::forward<T>(arg));
-        pushArg(std::forward<Types&&...>(args)...);
+        pushArg(std::forward<Args&&>(args)...);
     }
 };
 

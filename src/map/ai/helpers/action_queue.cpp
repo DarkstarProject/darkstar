@@ -57,9 +57,6 @@ void CAIActionQueue::checkAction(time_point tick)
             }
             actionQueue.pop();
         }
-        else
-        {
-            break;
-        }
+        else break;
     }
 }
