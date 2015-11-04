@@ -173,7 +173,7 @@ INSERT INTO `job_points` VALUES ('966', 'avatar/spirit_Mag._acc._bonus', '10', '
 INSERT INTO `job_points` VALUES ('968', 'elemental_siphon_effect', '10', '3', '175', '0', '0');
 INSERT INTO `job_points` VALUES ('970', 'avatar/spirit_physical_attack', '10', '2', '15', '0', '0');
 INSERT INTO `job_points` VALUES ('972', 'mana_cede_effect', '10', '50', '15', '0', '0');
-INSERT INTO `job_points` VALUES ('974', 'avatar's_favor_effect', '10', '3', '15', '0', '0');
+INSERT INTO `job_points` VALUES ('974', 'avatars_favor_effect', '10', '3', '15', '0', '0');
 INSERT INTO `job_points` VALUES ('976', 'avatar/spirit_Mag._Damage', '10', '5', '15', '0', '0');
 INSERT INTO `job_points` VALUES ('978', 'blood_pact_damage', '10', '3', '15', '0', '0');
 INSERT INTO `job_points` VALUES ('1024', 'azure_lore_effect', '10', '1', '16', '0', '0');
