@@ -1349,8 +1349,8 @@ namespace petutils
 			CCharEntity* PChar = (CCharEntity*)PMaster;
 			highestLvl += PChar->PMeritPoints->GetMeritValue(MERIT_BEAST_AFFINITY, PChar);
 
-            // 0-2 lvls lower
-            highestLvl -= dsprand::GetRandomNumber(3);
+            // 0-2 lvls lower, less Monster Gloves(+1/+2) bonus
+            highestLvl -= dsprand::GetRandomNumber(3 - dsp_cap(PChar->getMod(MOD_JUG_LEVEL_RANGE), 0, 2));
 
             PPet->SetMLevel(highestLvl);
             LoadJugStats(PPet, PPetData); //follow monster calcs (w/o SJ)
