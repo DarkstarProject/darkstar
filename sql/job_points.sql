@@ -121,7 +121,7 @@ INSERT INTO `job_points` VALUES ('642', 'minne_effect', '10', '1', '10', '0', '0
 INSERT INTO `job_points` VALUES ('644', 'clarion_call_effect', '10', '2', '10', '0', '0');
 INSERT INTO `job_points` VALUES ('646', 'minuet_effect', '10', '1', '10', '0', '0');
 INSERT INTO `job_points` VALUES ('648', 'pianissimo_effect', '10', '2', '10', '0', '0');
-INSERT INTO `job_points` VALUES ('650', 'Song Accuracy Bonus', '10', '1', '10', '0', '0');
+INSERT INTO `job_points` VALUES ('650', 'song_accuracy_bonus', '10', '1', '10', '0', '0');
 INSERT INTO `job_points` VALUES ('652', 'tenuto_effect', '10', '2', '10', '0', '0');
 INSERT INTO `job_points` VALUES ('654', 'lullaby_duration', '10', '1', '10', '0', '0');
 INSERT INTO `job_points` VALUES ('656', 'marcato_effect', '10', '1', '10', '0', '0');
@@ -165,11 +165,11 @@ INSERT INTO `job_points` VALUES ('906', 'wyvern_max_hp_bonus', '10', '10', '14',
 INSERT INTO `job_points` VALUES ('908', 'dragon_breaker_duration', '10', '10', '14', '0', '0');
 INSERT INTO `job_points` VALUES ('910', 'wyvern_breath_effect', '10', '0', '14', '1', '0');
 INSERT INTO `job_points` VALUES ('912', 'high_jump_effect', '10', '3', '14', '0', '0');
-INSERT INTO `job_points` VALUES ('914', 'wyvern_Attr._Increase_effect', '10', '10', '14', '0', '0');
+INSERT INTO `job_points` VALUES ('914', 'wyvern_attr._Increase_effect', '10', '10', '14', '0', '0');
 INSERT INTO `job_points` VALUES ('960', 'astral_flow_effect', '10', '5', '15', '0', '0');
 INSERT INTO `job_points` VALUES ('962', 'avatar/spirit_accuracy_bonus', '10', '1', '15', '0', '0');
 INSERT INTO `job_points` VALUES ('964', 'astral_conduit_effect', '10', '1', '15', '0', '0');
-INSERT INTO `job_points` VALUES ('966', 'avatar/spirit_Mag._acc._bonus', '10', '1', '15', '0', '0');
+INSERT INTO `job_points` VALUES ('966', 'avatar/spirit_mag._acc._bonus', '10', '1', '15', '0', '0');
 INSERT INTO `job_points` VALUES ('968', 'elemental_siphon_effect', '10', '3', '175', '0', '0');
 INSERT INTO `job_points` VALUES ('970', 'avatar/spirit_physical_attack', '10', '2', '15', '0', '0');
 INSERT INTO `job_points` VALUES ('972', 'mana_cede_effect', '10', '50', '15', '0', '0');
@@ -216,7 +216,7 @@ INSERT INTO `job_points` VALUES ('1228', 'jig_Duration', '10', '0', '19', '0', '
 INSERT INTO `job_points` VALUES ('1230', 'flourish_ii_effect', '10', '2', '19', '0', '0');
 INSERT INTO `job_points` VALUES ('1232', 'flourishes_iii_effect', '10', '1', '19', '0', '0');
 INSERT INTO `job_points` VALUES ('1234', 'contradance_effect', '10', '3', '19', '0', '0');
-INSERT INTO `job_points` VALUES ('1280', 'tabula_rasa_effect'', '10', '2', '20', '0', '0');
+INSERT INTO `job_points` VALUES ('1280', 'tabula_rasa_effect', '10', '2', '20', '0', '0');
 INSERT INTO `job_points` VALUES ('1282', 'light_arts_effect', '10', '3', '20', '0', '0');
 INSERT INTO `job_points` VALUES ('1284', 'caper_emissarius_effect', '10', '2', '20', '0', '0');
 INSERT INTO `job_points` VALUES ('1286', 'dark_arts_effect', '10', '3', '20', '0', '0');
@@ -235,7 +235,7 @@ INSERT INTO `job_points` VALUES ('1354', 'magic_accuracy_bonus', '10', '0', '21'
 INSERT INTO `job_points` VALUES ('1356', 'dematerialize_duration', '10', '1', '21', '0', '0');
 INSERT INTO `job_points` VALUES ('1358', 'theurgic_focus_effect', '10', '3', '21', '0', '0');
 INSERT INTO `job_points` VALUES ('1360', 'concentric_pulse_effect', '10', '1', '21', '0', '0');
-INSERT INTO `job_points` VALUES ('1362', 'indicolure_spell_effect dur.', '10', '2', '21', '0', '0');
+INSERT INTO `job_points` VALUES ('1362', 'indicolure_spell_effect_dur.', '10', '2', '21', '0', '0');
 INSERT INTO `job_points` VALUES ('1408', 'elemental_sforzo_effect', '10', '2', '22', '0', '0');
 INSERT INTO `job_points` VALUES ('1410', 'rune_enchantment_effect', '10', '1', '22', '0', '0');
 INSERT INTO `job_points` VALUES ('1412', 'odyllic_subterfuge_effect', '10', '2', '22', '0', '0');
