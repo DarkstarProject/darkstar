@@ -18,30 +18,30 @@ require("scripts/globals/utils");
 -----------------------------------
 
 function onUseWeaponSkill(player, target, wsID)
-	local HP = player:getHP();
-	local TP = player:getTP();
-	local WSC = 0;
-	if (TP == 300) then
-		WSC = HP * 0.46875;
-	elseif (TP >= 200) then
-		WSC = HP * ((TP - 200) / (100 / (0.46875 - 0.1875)));
-	elseif (TP >= 100) then
-		WSC = HP * ((TP - 100) / (100 / (0.1875 - 0.125)));
-	end
+    local HP = player:getHP();
+    local TP = player:getTP();
+    local WSC = 0;
+    if (TP == 300) then
+        WSC = HP * 0.46875;
+    elseif (TP >= 200) then
+        WSC = HP * ((TP - 200) / (100 / (0.46875 - 0.1875)));
+    elseif (TP >= 100) then
+        WSC = HP * ((TP - 100) / (100 / (0.1875 - 0.125)));
+    end
 
-	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
-		-- Damage calculations changed based on: http://www.bg-wiki.com/bg/Spirits_Within http://www.bluegartr.com/threads/121610-Rehauled-Weapon-Skills-tier-lists?p=6142188&viewfull=1#post6142188
-		if (TP == 300) then
-		WSC = HP;
-		elseif (TP >= 200) then
-		WSC = HP * .5
-		elseif (TP >= 100) then
-		WSC = HP * .125;
-		end
-	end
+    if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+        -- Damage calculations changed based on: http://www.bg-wiki.com/bg/Spirits_Within http://www.bluegartr.com/threads/121610-Rehauled-Weapon-Skills-tier-lists?p=6142188&viewfull=1#post6142188
+        if (TP == 300) then
+        WSC = HP;
+        elseif (TP >= 200) then
+        WSC = HP * .5
+        elseif (TP >= 100) then
+        WSC = HP * .125;
+        end
+    end
 
-	local damage = target:breathDmgTaken(WSC);
-	damage = damage * WEAPON_SKILL_POWER
-	return 1, 0, false, damage;
+    local damage = target:breathDmgTaken(WSC);
+    damage = damage * WEAPON_SKILL_POWER
+    return 1, 0, false, damage;
 
 end

@@ -30,6 +30,16 @@ function OnUseWeaponSkill(player, target, wsID)
     elseif (tp == 300) then
         drain = 100;
     end
+    
+    if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+        if (tp >= 100 and tp <=199) then
+            drain = 50;
+        elseif (tp >= 200 and tp <= 299) then
+            drain = 100;
+        elseif (tp == 300) then
+            drain = 160;
+        end
+    end
 
     local params = {};
     params.ftp100 = 2.75; params.ftp200 = 2.75; params.ftp300 = 2.75;
