@@ -24,7 +24,7 @@ function onUseWeaponSkill(player, target, wsID)
     params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
     params.canCrit = false;
     -- "Has a substantial Ranged Accuracy penalty at 100TP." https://www.bg-wiki.com/bg/Sidewinder
-    params.acc100 = 0.5; params.acc200= 0.75; params.acc300= 1;
+    params.acc100 = 0.8; params.acc200= 0.9; params.acc300= 1;
     params.atkmulti = 1;
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
