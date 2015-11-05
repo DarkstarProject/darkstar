@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Mount Zhayolm
 -- NPC:  HomePoint#1
--- @pos 
+-- @pos -540.844 -4.000 70.809 61
 -----------------------------------
 
 package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
@@ -24,6 +24,7 @@ end;
 function onTrigger(player,npc)
 
 	homepointMenu( player, 0x21fc, 90);
+    printf("CSID: %u",csid);
 end; 
 
 -----------------------------------

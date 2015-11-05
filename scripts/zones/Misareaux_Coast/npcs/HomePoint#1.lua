@@ -1,13 +1,13 @@
 -----------------------------------
--- Area: Caedarva Mire
---  NPC:  HomePoint#1
--- @pos -449 13.399 -497 79
+-- Area: Misareaux Coast
+-- NPC:  HomePoint#1
+-- @pos -65 -17.5 563 25
 -----------------------------------
 
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
+package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
 
 require("scripts/globals/settings");
-require("scripts/zones/Caedarva_Mire/TextIDs");
+require("scripts/zones/Misareaux_Coast/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------
@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-	homepointMenu( player, 0x21fc, 75);
+	homepointMenu( player, 0x21fd, 25);
 end; 
 
 -----------------------------------
@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
 
-	if (csid == 0x21fc) then
+	if (csid == 0x21fd) then
 
 		if (option == 1) then	
 			player:setHomePoint();

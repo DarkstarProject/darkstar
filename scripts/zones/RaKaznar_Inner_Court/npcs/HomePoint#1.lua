@@ -1,13 +1,13 @@
 -----------------------------------
--- Area: Caedarva Mire
---  NPC:  HomePoint#1
--- @pos -449 13.399 -497 79
+-- Area: RaKaznar_Inner_Court
+-- NPC:  HomePoint#1
+-- @pos 
 -----------------------------------
 
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
+package.loaded["scripts/zones/RaKaznar_Inner_Court/TextIDs"] = nil;
 
 require("scripts/globals/settings");
-require("scripts/zones/Caedarva_Mire/TextIDs");
+require("scripts/zones/RaKaznar_Inner_Court/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------
@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-	homepointMenu( player, 0x21fc, 75);
+	homepointMenu( player, 0x21fc, 116);
 end; 
 
 -----------------------------------

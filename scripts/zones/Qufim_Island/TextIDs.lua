@@ -7,6 +7,8 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item>. Come back 
        KEYITEM_OBTAINED = 6387; -- Obtained key item: <keyitem>.
         BEASTMEN_BANNER = 7124; -- There is a beastmen's banner.
  FISHING_MESSAGE_OFFSET = 7202; -- You can't fish here.
+HOMEPOINT_SET = 12678; -- Home point set!
+
 
 -- Conquest
 CONQUEST = 7366; -- You've earned conquest points!
