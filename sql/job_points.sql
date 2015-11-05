@@ -178,7 +178,7 @@ INSERT INTO `job_points` VALUES ('1026', 'blue_magic_point_bonus', '1', '16');
 INSERT INTO `job_points` VALUES ('1028', 'unbridled_wisdom_effect', '3', '16');
 INSERT INTO `job_points` VALUES ('1030', 'burst_affinity_bonus', '2', '16');
 INSERT INTO `job_points` VALUES ('1032', 'chain_affinity_effect', '1', '16');
-INSERT INTO `job_points` VALUES ('1034', 'phys._blue_magic_effect_acc.', '1', '16');
+INSERT INTO `job_points` VALUES ('1034', 'phys_blue_magic_effect_acc', '1', '16');
 INSERT INTO `job_points` VALUES ('1036', 'unbridled_learning _effect', '1', '16');
 INSERT INTO `job_points` VALUES ('1038', 'unbridled_learning _effect_ii', '1', '16');
 INSERT INTO `job_points` VALUES ('1040', 'efflux_effect', '1', '16');
