@@ -33,7 +33,7 @@ INSERT INTO `job_points` VALUES ('70', 'defender_effect', '10', '3', '1', '0', '
 INSERT INTO `job_points` VALUES ('72', 'warcry_effect', '10', '3', '1', '0', '0');
 INSERT INTO `job_points` VALUES ('74', 'aggressor_effect', '10', '1', '1', '0', '0');
 INSERT INTO `job_points` VALUES ('76', 'retaliation_effect', '10', '1', '1', '0', '0');
-INSERT INTO `job_points` VALUES ('78', 'restraint Effect', '10', '2', '1', '0', '0');
+INSERT INTO `job_points` VALUES ('78', 'restraint_effect', '10', '2', '1', '0', '0');
 INSERT INTO `job_points` VALUES ('80', 'blood_rage_effect', '10', '1', '1', '0', '0');
 INSERT INTO `job_points` VALUES ('82', 'double_attack_effect', '10', '1', '1', '0', '0');
 INSERT INTO `job_points` VALUES ('128', 'hundred_fists_effect', '10', '2', '2', '0', '0');
@@ -71,7 +71,7 @@ INSERT INTO `job_points` VALUES ('322', 'convert_effect', '10', '1', '5', '0', '
 INSERT INTO `job_points` VALUES ('324', 'stymie_effect', '10', '1', '5', '0', '0');
 INSERT INTO `job_points` VALUES ('326', 'magic_accuracy_bonus', '10', '1', '5', '0', '0');
 INSERT INTO `job_points` VALUES ('328', 'composure_effect', '10', '1', '5', '0', '0');
-INSERT INTO `job_points` VALUES ('330', 'magic_atk._bonus', '10', '1', '5', '0', '0');
+INSERT INTO `job_points` VALUES ('330', 'magic_atk_bonus', '10', '1', '5', '0', '0');
 INSERT INTO `job_points` VALUES ('332', 'saboteur_effect', '10', '2', '5', '0', '0');
 INSERT INTO `job_points` VALUES ('334', 'enfeebling_magic_duration', '10', '1', '5', '0', '0');
 INSERT INTO `job_points` VALUES ('336', 'quick_magic_effect', '10', '2', '5', '0', '0');
@@ -100,7 +100,7 @@ INSERT INTO `job_points` VALUES ('512', 'blood_weapon_effect', '10', '2', '8', '
 INSERT INTO `job_points` VALUES ('514', 'arcane_circle_effect', '10', '1', '8', '0', '0');
 INSERT INTO `job_points` VALUES ('516', 'soul_enslavement_effect', '10', '1', '8', '0', '0');
 INSERT INTO `job_points` VALUES ('518', 'last_resort_effect', '10', '2', '8', '0', '0');
-INSERT INTO `job_points` VALUES ('520', 'souleater_Duration', '10', '1', '8', '0', '0');
+INSERT INTO `job_points` VALUES ('520', 'souleater_duration', '10', '1', '8', '0', '0');
 INSERT INTO `job_points` VALUES ('522', 'weapon_bash_effect', '10', '10', '8', '0', '0');
 INSERT INTO `job_points` VALUES ('524', 'nether_void_effect', '10', '1', '8', '0', '0');
 INSERT INTO `job_points` VALUES ('526', 'arcane_crest_duration', '10', '1', '8', '0', '0');
@@ -141,7 +141,7 @@ INSERT INTO `job_points` VALUES ('770', 'warding_circle_effect', '10', '1', '12'
 INSERT INTO `job_points` VALUES ('772', 'yaegasumi_effect', '10', '30', '12', '0', '0');
 INSERT INTO `job_points` VALUES ('774', 'hasso_effect', '10', '1', '12', '0', '0');
 INSERT INTO `job_points` VALUES ('776', 'meditate_effect', '10', '5', '12', '0', '0');
-INSERT INTO `job_points` VALUES ('778', 'Seigan_effect', '10', '3', '12', '0', '0');
+INSERT INTO `job_points` VALUES ('778', 'seigan_effect', '10', '3', '12', '0', '0');
 INSERT INTO `job_points` VALUES ('780', 'konzen-ittai_effect', '10', '1', '12', '0', '0');
 INSERT INTO `job_points` VALUES ('782', 'hamanoha_duration', '10', '1', '12', '0', '0');
 INSERT INTO `job_points` VALUES ('784', 'hagakure_effect', '10', '1', '12', '0', '0');
@@ -174,7 +174,7 @@ INSERT INTO `job_points` VALUES ('968', 'elemental_siphon_effect', '10', '3', '1
 INSERT INTO `job_points` VALUES ('970', 'avatar/spirit_physical_attack', '10', '2', '15', '0', '0');
 INSERT INTO `job_points` VALUES ('972', 'mana_cede_effect', '10', '50', '15', '0', '0');
 INSERT INTO `job_points` VALUES ('974', 'avatars_favor_effect', '10', '3', '15', '0', '0');
-INSERT INTO `job_points` VALUES ('976', 'avatar/spirit_Mag._Damage', '10', '5', '15', '0', '0');
+INSERT INTO `job_points` VALUES ('976', 'avatar/spirit_mag_damage', '10', '5', '15', '0', '0');
 INSERT INTO `job_points` VALUES ('978', 'blood_pact_damage', '10', '3', '15', '0', '0');
 INSERT INTO `job_points` VALUES ('1024', 'azure_lore_effect', '10', '1', '16', '0', '0');
 INSERT INTO `job_points` VALUES ('1026', 'blue_magic_point_bonus', '10', '1', '16', '0', '0');
