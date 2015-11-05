@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: AlTaieu
 -- NPC:  HomePoint#1
--- @pos 
+-- @pos 7 0 709 33
 -----------------------------------
 
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Leafallia
 -- NPC:  HomePoint#1
--- @pos 
+-- @pos 5.539 -0.434 8.133 281
 -----------------------------------
 
 package.loaded["scripts/zones/Leafallia/TextIDs"] = nil;

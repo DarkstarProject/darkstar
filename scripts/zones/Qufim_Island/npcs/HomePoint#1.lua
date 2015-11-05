@@ -1,13 +1,13 @@
 -----------------------------------
--- Area: Caedarva Mire
---  NPC:  HomePoint#1
--- @pos -449 13.399 -497 79
+-- Area: Qufim Island
+-- NPC:  HomePoint#1
+-- @pos -212 -21 93 126
 -----------------------------------
 
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
+package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 
 require("scripts/globals/settings");
-require("scripts/zones/Caedarva_Mire/TextIDs");
+require("scripts/zones/Qufim_Island/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------
@@ -23,8 +23,8 @@ end;
 
 function onTrigger(player,npc)
 
-	homepointMenu( player, 0x21fc, 75);
-end; 
+	homepointMenu( player, 0x21fc, 115);
+end;  
 
 -----------------------------------
 -- onEventUpdate

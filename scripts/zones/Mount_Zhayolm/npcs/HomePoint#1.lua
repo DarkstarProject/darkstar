@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Mount Zhayolm
 -- NPC:  HomePoint#1
--- @pos 
+-- @pos -540.844 -4.000 70.809 61
 -----------------------------------
 
 package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
