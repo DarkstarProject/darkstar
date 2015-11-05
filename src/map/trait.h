@@ -143,8 +143,7 @@ enum TRAITTYPE
     TRAIT_SUPERIOR            = 124, 
     TRAIT_MAGIC_ACC_BONUS     = 125,
     TRAIT_MAGIC_EVA_BONUS     = 126
-    
-};
+  };
 
 #define MAX_TRAIT_ID    124
 
