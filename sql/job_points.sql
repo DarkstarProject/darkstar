@@ -99,7 +99,6 @@ INSERT INTO `job_points` VALUES ('516', 'soul_enslavement_effect', '1', '8');
 INSERT INTO `job_points` VALUES ('518', 'last_resort_effect', '2', '8');
 INSERT INTO `job_points` VALUES ('520', 'souleater_duration', '1', '8');
 INSERT INTO `job_points` VALUES ('522', 'weapon_bash_effect, '1', '8');
-INSERT INTO `job_points` VALUES ('528', 'scarlet_delirium_duration', '1', '8');
 INSERT INTO `job_points` VALUES ('530', 'arcane_circle_effect', '1', '8');
 INSERT INTO `job_points` VALUES ('576', 'familiar_effect', '3', '9');
 INSERT INTO `job_points` VALUES ('578', 'pet_accuracy_bonus', '1', '9');
