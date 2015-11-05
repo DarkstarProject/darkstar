@@ -324,6 +324,7 @@ enum MODIFIER
     MOD_REWARD_HP_BONUS           = 364, // Percent to add to reward HP healed. (364)
     MOD_CHARM_CHANCE              = 391, // extra chance to charm (light+apollo staff ect)
     MOD_FERAL_HOWL_DURATION       = 503, // +20% duration per merit when wearing augmented Monster Jackcoat +2
+    MOD_JUG_LEVEL_RANGE           = 564, // Decreases the level range of spawned jug pets. Maxes out at 2.
 
     // Bard
     MOD_MINNE_EFFECT              = 433, //
@@ -382,6 +383,7 @@ enum MODIFIER
     MOD_DAY_REDUCTION             = 373, // stores perpetuation reduction depending on day
     MOD_PERPETUATION_REDUCTION    = 346, // stores the MP/tick reduction from gear
     MOD_BP_DELAY                  = 357, // stores blood pact delay reduction
+    MOD_ENHANCES_ELEMENTAL_SIPHON = 540, // Bonus Base MP added to Elemental Siphon skill.
     MOD_BP_DELAY_II               = 541, // Blood Pact Delay Reduction II
 
     // Blue Mage
@@ -605,7 +607,7 @@ enum MODIFIER
     MOD_FORCE_LIGHT_DWBONUS       = 537, // Set to 1 to force light day/weather spell bonus/penalty. Do not have it total more than 1.
     MOD_FORCE_DARK_DWBONUS        = 538, // Set to 1 to force dark day/weather spell bonus/penalty. Do not have it total more than 1.
     MOD_STONESKIN_BONUS_HP        = 539, // Bonus "HP" granted to Stoneskin spell.
-    MOD_ENHANCES_ELEMENTAL_SIPHON = 540, // Bonus Base MP added to Elemental Siphon skill.
+
     // MOD_SPARE = 92, // stuff
     // MOD_SPARE = 93, // stuff
     // MOD_SPARE = 94, // stuff
@@ -615,8 +617,8 @@ enum MODIFIER
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 564, // stuff
     // MOD_SPARE = 565, // stuff
+    // MOD_SPARE = 566, // stuff
 
 };
 
