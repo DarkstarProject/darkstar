@@ -24,7 +24,6 @@ end;
 function onTrigger(player,npc)
 
 	homepointMenu( player, 0x21fc, 90);
-    printf("CSID: %u",csid);
 end; 
 
 -----------------------------------
