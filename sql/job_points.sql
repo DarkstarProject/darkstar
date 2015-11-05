@@ -224,7 +224,7 @@ INSERT INTO `job_points` VALUES ('1344', 'bolster_effect', '3', '21');
 INSERT INTO `job_points` VALUES ('1346', 'life_cycle_effect', '1', '21');
 INSERT INTO `job_points` VALUES ('1348', 'widened_compass_effect', '3', '21');
 INSERT INTO `job_points` VALUES ('1350', 'blaze_of_glory_effect', '1', '21');
-INSERT INTO `job_points` VALUES ('1352', 'magic_atk._bonus', '1', '21');
+INSERT INTO `job_points` VALUES ('1352', 'magic_atk_bonus', '1', '21');
 INSERT INTO `job_points` VALUES ('1354', 'magic_accuracy_bonus', '1', '21');
 INSERT INTO `job_points` VALUES ('1356', 'dematerialize_duration', '1', '21');
 INSERT INTO `job_points` VALUES ('1358', 'theurgic_focus_effect', '3', '21');
