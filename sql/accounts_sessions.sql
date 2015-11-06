@@ -41,4 +41,4 @@ CREATE TABLE IF NOT EXISTS `accounts_sessions` (
   `client_port` smallint(5) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`charid`),
   UNIQUE KEY `accid` (`accid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
