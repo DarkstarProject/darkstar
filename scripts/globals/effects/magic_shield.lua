@@ -21,7 +21,7 @@ function onEffectGain(target,effect)
         target:addMod(MOD_LIGHT_ABSORB, 100);
         target:addMod(MOD_DARK_ABSORB, 100);
     elseif (effect:getPower() < 2) then
-        target:addMod(MOD_UDMGMAGIC, -256);
+        target:addMod(MOD_UDMGMAGIC, -101);
     else
         target:addMod(MOD_MAGIC_ABSORB, 100);
     end;
@@ -49,7 +49,7 @@ function onEffectLose(target,effect)
         target:delMod(MOD_LIGHT_ABSORB, 100);
         target:delMod(MOD_DARK_ABSORB, 100);
     elseif (effect:getPower() < 2) then
-        target:delMod(MOD_UDMGMAGIC, -256);
+        target:delMod(MOD_UDMGMAGIC, -101);
     else
         target:delMod(MOD_MAGIC_ABSORB, 100);
     end;
