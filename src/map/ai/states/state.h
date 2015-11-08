@@ -52,6 +52,7 @@ public:
     virtual void Cleanup(time_point tick) = 0;
     //whether the state can be changed by normal means
     virtual bool CanChangeState() = 0;
+    bool IsCompleted();
 
 protected:
     //state logic done per tick - returns whether to exit the state or not
@@ -59,7 +60,8 @@ protected:
     virtual void UpdateTarget(uint16 targid);
 
     uint16 GetTargetID();
-    time_point getEntryTime();
+    void Complete();
+    time_point GetEntryTime();
 
     std::unique_ptr<CMessageBasicPacket> m_errorMsg;
 
@@ -67,6 +69,7 @@ protected:
     uint16 m_targid;
 private:
     CBaseEntity* m_PTarget;
+    bool m_completed {false};
     time_point m_entryTime {server_clock::now()};
 };
 

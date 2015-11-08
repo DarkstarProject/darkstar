@@ -33,6 +33,8 @@ CAttackState::CAttackState(CBattleEntity* PEntity, uint16 targid) :
     m_PEntity(PEntity),
     m_attackTime(1s)
 {
+    PEntity->animation = ANIMATION_ATTACK;
+    PEntity->updatemask |= UPDATE_HP;
     UpdateTarget();
 }
 

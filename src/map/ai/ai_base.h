@@ -89,6 +89,8 @@ protected:
 
     template<typename T, typename... Args>
     bool ChangeState(Args&&... args) { if (CanChangeState()) { m_stateStack.emplace(std::make_unique<T>(std::forward<Args>(args)...)); return true; } return false; }
+    template<typename T, typename... Args>
+    void ForceChangeState(Args&&... args) { m_stateStack.emplace(std::make_unique<T>(std::forward<Args>(args)...)); }
 
 private:
     std::stack<std::unique_ptr<CState>> m_stateStack;

@@ -41,7 +41,7 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid) :
 
 bool CMagicState::Update(time_point tick)
 {
-    if (tick > getEntryTime() + m_castTime && !m_used)
+    if (tick > GetEntryTime() + m_castTime && !IsCompleted())
     {
         m_interrupted = false;
         auto PTarget = m_PEntity->PAIBattle()->IsValidTarget(m_targid, m_PSpell->getValidTarget(), m_errorMsg);
@@ -73,9 +73,9 @@ bool CMagicState::Update(time_point tick)
             m_PEntity->PAIBattle()->OnCastFinished(*this,action);
         }
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
-        m_used = true;
+        Complete();
     }
-    else if (m_used && tick > getEntryTime() + m_castTime + std::chrono::milliseconds(m_PSpell->getAnimationTime()))
+    else if (IsCompleted() && tick > GetEntryTime() + m_castTime + std::chrono::milliseconds(m_PSpell->getAnimationTime()))
     {
         return true;
     }
@@ -84,7 +84,7 @@ bool CMagicState::Update(time_point tick)
 
 void CMagicState::Cleanup(time_point tick)
 {
-    if (!m_used)
+    if (!IsCompleted())
     {
         action_t action;
         m_PEntity->PAIBattle()->OnCastInterrupted(*this, action, MSGBASIC_IS_INTERRUPTED);

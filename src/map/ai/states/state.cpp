@@ -43,7 +43,12 @@ uint16 CState::GetTargetID()
     return m_targid;
 }
 
-time_point CState::getEntryTime()
+void CState::Complete()
+{
+    m_completed = true;
+}
+
+time_point CState::GetEntryTime()
 {
     return m_entryTime;
 }
@@ -71,4 +76,9 @@ bool CState::DoUpdate(time_point tick)
 {
     UpdateTarget(m_targid);
     return Update(tick);
+}
+
+bool CState::IsCompleted()
+{
+    return m_completed;
 }

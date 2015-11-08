@@ -236,6 +236,7 @@
     <ClInclude Include="..\..\src\map\ai\helpers\targetfind.h" />
     <ClInclude Include="..\..\src\map\ai\states\ability_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\attack_state.h" />
+    <ClInclude Include="..\..\src\map\ai\states\death_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\item_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\magic_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\mobskill_state.h" />
@@ -486,6 +487,7 @@
     <ClCompile Include="..\..\src\map\ai\helpers\targetfind.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\ability_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\attack_state.cpp" />
+    <ClCompile Include="..\..\src\map\ai\states\death_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\item_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\magic_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\mobskill_state.cpp" />

@@ -21,35 +21,32 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _CWEAPONSKILL_STATE_H
-#define _CWEAPONSKILL_STATE_H
+#include "death_state.h"
 
-#include "state.h"
+#include "../../entities/battleentity.h"
 
-class CWeaponSkill;
-class CMobSkill;
-
-class CWeaponSkillState : public CState
+CDeathState::CDeathState(CBattleEntity* PEntity, duration death_time) :
+    CState(PEntity, PEntity->targid),
+    m_PEntity(PEntity),
+    m_deathTime(death_time)
 {
-public:
-    CWeaponSkillState(CBattleEntity* PEntity, uint16 targid);
 
-    bool StartWeaponSkill(uint16 wsid);
-    bool StartMobSkill(uint16 mobskillid);
-    CWeaponSkill* GetWeaponSkill();
-    CMobSkill* GetMobSkill();
+}
 
-    void SpendCost();
-protected:
-    virtual bool CanChangeState() override { return false; }
-    virtual bool Update(time_point tick) override;
-    virtual void Cleanup(time_point tick) override;
+bool CDeathState::Update(time_point tick)
+{
+    if (tick > GetEntryTime() + m_deathTime)
+    {
+        Complete();
+    }
+    else if (IsCompleted())
+    {
+        return true;
+    }
+    return false;
+}
 
-private:
-    CBattleEntity* const m_PEntity;
-    std::unique_ptr<CWeaponSkill> m_PWeaponSkill;
-    std::unique_ptr<CMobSkill> m_PMobSkill;
-    time_point m_finishTime;
-};
+void CDeathState::Cleanup(time_point tick)
+{
 
-#endif
+}

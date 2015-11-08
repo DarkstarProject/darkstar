@@ -77,7 +77,7 @@ void CAbilityState::ApplyEnmity()
 
 bool CAbilityState::CanChangeState()
 {
-    return m_used;
+    return IsCompleted();
 }
 
 bool CAbilityState::Update(time_point tick)
@@ -87,10 +87,10 @@ bool CAbilityState::Update(time_point tick)
         action_t action;
         static_cast<CAIChar*>(m_PEntity->PAI.get())->OnAbility(*this, action);
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
-        m_used = true;
+        Complete();
     }
 
-    if (m_used && tick > getEntryTime() + m_PAbility->getAnimationTime())
+    if (IsCompleted() && tick > GetEntryTime() + m_PAbility->getAnimationTime())
     {
         return true;
     }

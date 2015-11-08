@@ -45,7 +45,7 @@ CDespawnState::CDespawnState(CBaseEntity* _PEntity) :
 
 bool CDespawnState::Update(time_point tick)
 {
-    if (m_spawnTime > 0s && tick > getEntryTime() + m_spawnTime)
+    if (m_spawnTime > 0s && tick > GetEntryTime() + m_spawnTime)
     {
         return true;
     }

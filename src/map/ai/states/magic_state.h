@@ -65,7 +65,6 @@ protected:
     position_t m_startPos;
     bool m_interrupted;
     uint8 m_flags;
-    bool m_used {false};
 };
 
 #endif

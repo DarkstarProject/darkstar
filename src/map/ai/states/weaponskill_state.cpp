@@ -115,16 +115,16 @@ void CWeaponSkillState::SpendCost()
 
 bool CWeaponSkillState::Update(time_point tick)
 {
-    if (tick > m_finishTime)
+    if (tick > m_finishTime && !IsCompleted())
     {
         action_t action;
         m_PEntity->PAIBattle()->OnWeaponSkillFinished(*this, action);
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
-        m_used = true;
+        Complete();
     }
     auto delay = (m_PWeaponSkill ? m_PWeaponSkill->getAnimationTime() : 0ms) + 
         std::chrono::milliseconds((m_PMobSkill ? m_PMobSkill->getAnimationTime() : 0));
-    if (tick > m_finishTime + delay)
+    if (IsCompleted() && tick > m_finishTime + delay)
     {
         return true;
     }

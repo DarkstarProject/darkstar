@@ -48,7 +48,6 @@ protected:
 private:
     CCharEntity* const m_PEntity;
     std::unique_ptr<CAbility> m_PAbility;
-    bool m_used {false};
 };
 
 

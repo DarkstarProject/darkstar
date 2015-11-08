@@ -21,35 +21,26 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _CWEAPONSKILL_STATE_H
-#define _CWEAPONSKILL_STATE_H
+#ifndef _CDEATH_STATE_H
+#define _CDEATH_STATE_H
 
 #include "state.h"
 
-class CWeaponSkill;
-class CMobSkill;
-
-class CWeaponSkillState : public CState
+class CDeathState : public CState
 {
 public:
-    CWeaponSkillState(CBattleEntity* PEntity, uint16 targid);
+    CDeathState(CBattleEntity* PEntity, duration death_time);
 
-    bool StartWeaponSkill(uint16 wsid);
-    bool StartMobSkill(uint16 mobskillid);
-    CWeaponSkill* GetWeaponSkill();
-    CMobSkill* GetMobSkill();
-
-    void SpendCost();
-protected:
-    virtual bool CanChangeState() override { return false; }
+    //state logic done per tick - returns whether to exit the state or not
     virtual bool Update(time_point tick) override;
+
     virtual void Cleanup(time_point tick) override;
+    //whether the state can be changed by normal means
+    virtual bool CanChangeState() override { return false; };
 
 private:
     CBattleEntity* const m_PEntity;
-    std::unique_ptr<CWeaponSkill> m_PWeaponSkill;
-    std::unique_ptr<CMobSkill> m_PMobSkill;
-    time_point m_finishTime;
+    duration m_deathTime;
 };
 
 #endif

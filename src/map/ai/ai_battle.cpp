@@ -113,12 +113,12 @@ bool CAIBattle::Internal_Engage(uint16 targetid)
     //#TODO: use valid target stuff from spell
     if (!m_battleTarget && PTarget && !PTarget->isDead())
     {
+        //#TODO: remove m_battleTarget if possible (need to check disengage)
         m_battleTarget = targetid;
-        PEntity->PAI->QueueAction(queueAction_t(0s, true, [this, targetid](CBaseEntity* PEntity) {
-            ChangeState<CAttackState>(static_cast<CBattleEntity*>(PEntity), targetid);
-        }));
-        PEntity->animation = ANIMATION_ATTACK;
-        PEntity->updatemask |= UPDATE_HP;
+        if (CanChangeState() || (GetCurrentState() && GetCurrentState()->IsCompleted()))
+        {
+            ForceChangeState<CAttackState>(static_cast<CBattleEntity*>(PEntity), targetid);
+        }
         return true;
     }
     return false;
