@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Southern_San_dOria_[S]
 -- NPC:  HomePoint#1
--- @pos 
+-- @pos -85.468 1.000 -66.454 80
 -----------------------------------
 
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Marjami Ravine
 -- NPC:  HomePoint#1
--- @pos  -23 0 174 50
+-- @pos  -23 0 174 266
 -----------------------------------
 
 package.loaded["scripts/zones/Marjami_Ravine/TextIDs"] = nil;

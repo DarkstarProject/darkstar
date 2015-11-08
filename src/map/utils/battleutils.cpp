@@ -2163,14 +2163,14 @@ namespace battleutils
 
                 if (PChar->m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
                     PChar->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
-                    PChar->m_Weapons[slot]->getDmgType() != DAMAGE_HTH)
+                    PChar->m_Weapons[slot]->getSkillType() != SKILL_H2H)
                 {
                     delay /= 2;
                 }
 
                 float ratio = 1.0f;
 
-                if (PChar->m_Weapons[slot]->getDmgType() == DAMAGE_HTH)
+                if (PChar->m_Weapons[slot]->getSkillType() == SKILL_H2H)
                     ratio = 2.0f;
 
                 baseTp = CalculateBaseTP((delay * 60) / 1000) / ratio;
@@ -3891,7 +3891,7 @@ namespace battleutils
             numattacksLeftHand = battleutils::CheckMultiHits(PAttacker, PAttacker->m_Weapons[SLOT_SUB]);
 
         //h2h equipped
-        if (PAttacker->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH)
+        if (PAttacker->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H)
             numattacksLeftHand = battleutils::CheckMultiHits(PAttacker, PAttacker->m_Weapons[SLOT_MAIN]);
 
         // normal multi hit from left hand
@@ -3915,7 +3915,7 @@ namespace battleutils
                 if (PVictim->isDead())
                     break;
 
-                if (PAttacker->m_Weapons[SLOT_MAIN]->getDmgType() != DAMAGE_HTH && i >= numattacksRightHand)
+                if (PAttacker->m_Weapons[SLOT_MAIN]->getSkillType() != SKILL_H2H && i >= numattacksRightHand)
                 {
                     PWeapon = PAttacker->m_Weapons[SLOT_SUB];
                     fstrslot = SLOT_SUB;
@@ -3981,6 +3981,12 @@ namespace battleutils
         if (tier == 2 && PVictim->objtype == TYPE_MOB)
         {
             uint16 enmityReduction = PAttacker->getMod(MOD_HIGH_JUMP_ENMITY_REDUCTION) + 50;
+
+            // DRG sub has only 30% enmity removed instead of 50%.
+            if (PAttacker->GetSJob() == JOB_DRG)
+            {
+                enmityReduction = PAttacker->getMod(MOD_HIGH_JUMP_ENMITY_REDUCTION) + 30;
+            }
 
             // cap it
             if (enmityReduction > 100)
@@ -4299,13 +4305,14 @@ namespace battleutils
 
     int32 BreathDmgTaken(CBattleEntity* PDefender, int32 damage)
     {
-        float resist = 1.0f + (PDefender->getMod(MOD_UDMGBREATH) / 100.0f);
+        float resist = 1.0f + floor( 256.0f * ( PDefender->getMod(MOD_UDMGBREATH) / 100.0f )  ) / 256.0f;
         resist = dsp_max(resist, 0);
         damage *= resist;
 
-        resist = 1.0f + (PDefender->getMod(MOD_DMGBREATH) / 100.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
-        resist = dsp_max(resist, 0.5f);
-        damage = damage * resist;
+        resist = 1.0f + ( floor( 256.0f * ( PDefender->getMod(MOD_DMGBREATH) / 100.0f ) ) / 256.0f )
+                      + ( floor( 256.0f * ( PDefender->getMod(MOD_DMG)       / 100.0f ) ) / 256.0f );
+        resist = dsp_cap(resist, 0.5f, 1.5f); //assuming if its floored at .5f its capped at 1.5f but who's stacking +dmgtaken equip anyway???
+        damage *= resist;
 
         if (dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_ABSORB_DMG_CHANCE))
             damage = -damage;
@@ -4325,13 +4332,14 @@ namespace battleutils
         MODIFIER absorb[8] = { MOD_FIRE_ABSORB, MOD_EARTH_ABSORB, MOD_WATER_ABSORB, MOD_WIND_ABSORB, MOD_ICE_ABSORB, MOD_LTNG_ABSORB, MOD_LIGHT_ABSORB, MOD_DARK_ABSORB };
         MODIFIER nullarray[8] = { MOD_FIRE_NULL, MOD_EARTH_NULL, MOD_WATER_NULL, MOD_WIND_NULL, MOD_ICE_NULL, MOD_LTNG_NULL, MOD_LIGHT_NULL, MOD_DARK_NULL };
 
-        float resist = (256 + PDefender->getMod(MOD_UDMGMAGIC)) / 256.0f;
+        float resist = 1.0f + floor( 256.0f * ( PDefender->getMod(MOD_UDMGMAGIC) / 100.0f )  ) / 256.0f;
         resist = dsp_max(resist, 0);
         damage *= resist;
 
-        resist = ((256 + PDefender->getMod(MOD_DMGMAGIC)) / 256.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
-        resist = dsp_max(resist, 0.5f);
-        damage = damage * resist;
+        resist = 1.0f + ( floor( 256.0f * ( PDefender->getMod(MOD_DMGMAGIC) / 100.0f ) ) / 256.0f )
+                      + ( floor( 256.0f * ( PDefender->getMod(MOD_DMG)      / 100.0f ) ) / 256.0f );
+        resist = dsp_cap(resist, 0.5f, 1.5f); //assuming if its floored at .5f its capped at 1.5f but who's stacking +dmgtaken equip anyway???
+        damage *= resist;
 
         if (dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
             (element && dsprand::GetRandomNumber(100) < PDefender->getMod(absorb[element - 1])) ||
@@ -4354,13 +4362,14 @@ namespace battleutils
 
     int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
     {
-        float resist = 1.0f + (PDefender->getMod(MOD_UDMGPHYS) / 100.0f);
+        float resist = 1.0f + floor( 256.0f * ( PDefender->getMod(MOD_UDMGPHYS) / 100.0f )  ) / 256.0f;
         resist = dsp_max(resist, 0);
         damage *= resist;
 
-        resist = 1.0f + (PDefender->getMod(MOD_DMGPHYS) / 100.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
-        resist = dsp_max(resist, 0.5f);
-        damage = damage * resist;
+        resist = 1.0f + ( floor( 256.0f * ( PDefender->getMod(MOD_DMGPHYS) / 100.0f ) ) / 256.0f )
+                      + ( floor( 256.0f * ( PDefender->getMod(MOD_DMG)     / 100.0f ) ) / 256.0f );
+        resist = dsp_cap(resist, 0.5f, 1.5f); //assuming if its floored at .5f its capped at 1.5f but who's stacking +dmgtaken equip anyway???
+        damage *= resist;
 
         if (dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
             dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_PHYS_ABSORB))
@@ -4381,13 +4390,14 @@ namespace battleutils
 
     int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     {
-        float resist = 1.0f + (PDefender->getMod(MOD_UDMGRANGE) / 100.0f);
+        float resist = 1.0f + floor( 256.0f * ( PDefender->getMod(MOD_UDMGRANGE) / 100.0f )  ) / 256.0f;
         resist = dsp_max(resist, 0);
         damage *= resist;
 
-        resist = 1.0f + (PDefender->getMod(MOD_DMGRANGE) / 100.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
-        resist = dsp_max(resist, 0.5f);
-        damage = damage * resist;
+        resist = 1.0f + ( floor( 256.0f * ( PDefender->getMod(MOD_DMGRANGE) / 100.0f ) ) / 256.0f )
+                      + ( floor( 256.0f * ( PDefender->getMod(MOD_DMG)      / 100.0f ) ) / 256.0f );
+        resist = dsp_cap(resist, 0.5f, 1.5f); //assuming if its floored at .5f its capped at 1.5f but who's stacking +dmgtaken equip anyway???
+        damage *= resist;
 
         if (dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_ABSORB_DMG_CHANCE) ||
             dsprand::GetRandomNumber(100) < PDefender->getMod(MOD_PHYS_ABSORB))

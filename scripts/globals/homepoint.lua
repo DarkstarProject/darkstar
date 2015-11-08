@@ -4,7 +4,7 @@ local homepoints = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,2
 		26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,
 		51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,
 		76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,
-		101,102,103,104,105,106,107,108,109,110,111,112,113};
+		101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116};
 
 --paramNum bit x y z rotation zone cost
 homepoints[0]   = { 1,  1, -85.554,      1, -64.554,  45, 230,  500}; -- Southern San d'Oria #1
@@ -97,7 +97,7 @@ homepoints[86]  = { 3, 23,    -532,      0,     447, 128,  33, 1000}; -- Al'Taie
 homepoints[87]  = { 3, 24,     569,      0,     410, 192,  33, 1000}; -- Al'Taieu #3               
 homepoints[88]  = { 3, 25,     -12,      0,    -288, 192,  34, 1000}; -- Grand Palace of Hu'Xzoi #1
 homepoints[89]  = { 3, 26,    -426,      0,     368, 224,  35, 1000}; -- The Garden of Ru'Hmet #1  
--- homepoints[90]  = { 3, 27,       0,      0,       0,   0,  61, 1000}; -- Mount Zhayolm #1  // No valid location
+homepoints[90]  = { 3, 27,       -540.844,      -4.000,       70.809,   74,  61, 1000}; -- Mount Zhayolm #1  // No valid location
 homepoints[91]  = { 3, 28,    -303,     -8,     526,   0, 113, 1000}; -- Cape Terrigan #1          
 homepoints[92]  = { 3, 29,      88,    -15,    -217,   0, 153, 1000}; -- The Boyahda Tree #1       
 homepoints[93]  = { 3, 30,     182,     34,     -62, 223, 160, 1000}; -- Den of Rancor #2
@@ -118,9 +118,13 @@ homepoints[107] = { 4, 12,    -108,     -6,     108, 192,  50,  500}; -- Aht Urh
 homepoints[108] = { 4, 13,     -99,      0,     -68,   0,  50,  500}; -- Aht Urhgan Whitegate #4 
 homepoints[109] = { 4, 14,      32,      0,    -164,  32, 256,  500}; -- Western Adoulin #2      
 homepoints[110] = { 4, 15,     -51,      0,     -96,  96, 257,  500}; -- Eastern Adoulin #2      
-homepoints[111] = { 4, 16,     223,    -13,    -254,   0, 137, 1000}; -- Xarcabard [S] #1        
--- homepoints[112] = { 4, 17,       0,      0,       0,   0, 281, 1000}; -- Leafallia #1  // No valid location
--- homepoints[113] = { 4, 18,       0,      0,       0,   0, 155, 1000}; -- *Castle Zvahl Keep [S] #1  // No valid location
+homepoints[111] = { 4, 16,     223,    -13,    -254,   0, 137, 1000}; -- Xarcabard [S] #1
+homepoints[112] = { 4, 17,       5.539,      -0.434,       8.133,   73, 281, 1000}; -- Leafallia #1  // on your right when you enter.
+homepoints[113] = { 4, 18,       66,      -70,       -554,   128, 155, 1000}; -- *Castle Zvahl Keep [S] #1  // same location as in the present
+homepoints[114] = { 4, 19,       -65,     -17.5, 563,   224, 25, 1000}; -- Misareaux Coast #1 
+homepoints[115] = { 4, 20,       -212,     -21,  93,    64, 126, 500}; -- Qufim Island #1
+-- homepoints[116]  = { 4,  21,       0,      0,       0,   0,  276,  1000}; -- Inner Ra'Kaznar #1    // next to the Sinister Reign NPC and Ra'Kaznar Turris
+
 
 local freeHpTeleGroups = { 1, 2, 3, 4, 5, 6, 7, 8};
 
