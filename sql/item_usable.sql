@@ -574,6 +574,7 @@ INSERT INTO `item_usable` VALUES (4626,'scroll_of_stona',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4627,'scroll_of_viruna',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4628,'scroll_of_cursna',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4629,'scroll_of_holy',1,1,11,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4630,'scroll_of_holy_ii',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4631,'scroll_of_dia',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4632,'scroll_of_dia_ii',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4636,'scroll_of_banish',1,1,11,5,0,0,0,0);
