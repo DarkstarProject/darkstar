@@ -1,12 +1,12 @@
 -----------------------------------
 --
--- Zone: Escha_RuAun (289)
+-- Zone: Reisenjima Sanctorium (293)
 --
 -----------------------------------
-package.loaded["scripts/zones/Escha_RuAun/TextIDs"] = nil;
+package.loaded["scripts/zones/Reisenjima_Sanctorium/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/zones/Escha_RuAun/TextIDs");
+require("scripts/zones/Reisenjima_Sanctorium/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
 
