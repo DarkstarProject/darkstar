@@ -1,12 +1,14 @@
 -----------------------------------
 --
--- Zone: Escha - Zi'Tah (288)
+-- Zone: Reisenjima (291)
 --
 -----------------------------------
-package.loaded["scripts/zones/Escha-ZiTah/TextIDs"] = nil;
+package.loaded["scripts/zones/Reisenjima/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/zones/Escha-ZiTah/TextIDs");
+require("scripts/zones/Reisenjima/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
@@ -19,7 +21,7 @@ end;
 -- onZoneIn
 -----------------------------------
 
-function onZoneIn( player, prevZone)
+function onZoneIn(player,prevZone)
     local cs = -1;
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
@@ -30,17 +32,24 @@ function onZoneIn( player, prevZone)
 end;
 
 -----------------------------------
+-- onConquestUpdate
+-----------------------------------
+
+function onConquestUpdate(zone, updatetype)
+end;
+
+-----------------------------------
 -- onRegionEnter
 -----------------------------------
 
-function onRegionEnter( player, region)
+function onRegionEnter(player,region)
 end;
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
-function onEventUpdate( player, csid, option)
+function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
@@ -49,7 +58,7 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish( player, csid, option)
+function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
