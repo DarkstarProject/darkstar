@@ -5,12 +5,12 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6384; -- Obtained: <item>
            GIL_OBTAINED = 6385; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6387; -- Obtained key item: <keyitem>
- FISHING_MESSAGE_OFFSET = 7216; -- You can't fish here.
+ FISHING_MESSAGE_OFFSET = 7226; -- You can't fish here.
 
 -- Shop Texts
-LOKHONG_SHOP_DIALOG = 7317; -- There's nothing like fishing to pass the time!
- CHHAYA_SHOP_DIALOG = 7318; -- May I offer you items to help you on your journey?
+LOKHONG_SHOP_DIALOG = 7327; -- There's nothing like fishing to pass the time!
+ CHHAYA_SHOP_DIALOG = 7328; -- May I offer you items to help you on your journey?
 
  -- Other
-    ON_WAY_TO_MHAURA = 7312; -- We're on our way to Mhaura
-ARRIVING_SOON_MHAURA = 7319; -- We will be arriving soon
+    ON_WAY_TO_MHAURA = 7322; -- We're on our way to Mhaura
+ARRIVING_SOON_MHAURA = 7329; -- We will be arriving soon
