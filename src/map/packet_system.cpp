@@ -2218,13 +2218,13 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 (PItem->getStackSize() == 1 ||
                 PItem->getStackSize() != PItem->getQuantity()))
             {
-                ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Incorrect quantity of item\n" CL_RESET);
+                ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Incorrect quantity of item %s\n" CL_RESET, PItem->getName());
                 PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
                 return;
             }
             if (PChar->m_ah_history.size() >= 7)
             {
-                ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Unable to put up more than 7 items\n" CL_RESET);
+				ShowDebug(CL_CYAN"%s already has 7 items on the AH\n" CL_RESET,PChar->GetName());
                 PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
                 return;
             }
@@ -2240,7 +2240,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 (uint32)time(nullptr),
                 price) == SQL_ERROR)
             {
-                ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot insert item to database\n" CL_RESET);
+				ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot insert item %s to database\n" CL_RESET, PItem->getName());
                 PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
                 return;
             }
