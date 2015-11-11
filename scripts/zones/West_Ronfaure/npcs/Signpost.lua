@@ -22,7 +22,7 @@ function onTrigger(player,npc)
 		player:startEvent(109);
 	elseif (npc:getID() == 17187471) then
 		player:startEvent(107);
-	elseif (npc:getID() == 17187472) then
+	elseif (npc:getID() == 17187466) then
 		player:startEvent(108);
 	elseif (npc:getID() == 17187473) then
 		player:startEvent(109);
