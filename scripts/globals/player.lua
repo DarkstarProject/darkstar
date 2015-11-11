@@ -281,6 +281,9 @@ function CharCreate(player)
        for i=2302,2305 do
           player:addKeyItem(i);
        end
+       for i=2307,2309 do
+          player:addKeyItem(i);
+       end
     end
 
     if (INITIAL_LEVEL_CAP ~= 50) then

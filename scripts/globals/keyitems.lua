@@ -2266,6 +2266,10 @@ MAP_OF_YORCIA_WEALD_U                    = 2303;
 MAP_OF_CIRDAS_CAVERNS_U                  = 2304;
 MAP_OF_OUTER_RAKAZNAR_U                  = 2305;
 
+MAP_OF_ESCHA_ZITAH                       = 2307
+MAP_OF_ESCHA_RUAUN                       = 2308
+MAP_OF_REISENJIMA                        = 2309
+
 MOG_KUPON_A_DEII                         = 2334;
 MOG_KUPON_A_DE                           = 2335;
 MOG_KUPON_A_SAL                          = 2336;
