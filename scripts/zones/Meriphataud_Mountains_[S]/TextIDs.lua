@@ -8,4 +8,4 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
 NOTHING_OUT_OF_ORDINARY = 6398; -- There is nothing out of the ordinary here.
 
 -- Other Texts
-ALREADY_OBTAINED_TELE = 7585; -- You already possess the gate crystal for this telepoint.
+ALREADY_OBTAINED_TELE = 7587; -- You already possess the gate crystal for this telepoint.
