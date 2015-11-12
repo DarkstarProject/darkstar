@@ -294,7 +294,8 @@ List of known zones
   287 - 11F - 
   288 - 120 - Escha - Zi'Tah
   289 - 121 - Escha - Ru'Aun
-  290 - 122 - 
-  291 - 123 - 
+  290 - 122 - Desuetia - Empyreal Paradox
+  291 - 123 - Reisenjima
   292 - 124 - 
-  293 - 125 - 
+  293 - 125 - Reisenjima Sanctorium
+
