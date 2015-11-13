@@ -1667,6 +1667,8 @@ INSERT INTO `item_usable` VALUES (5914,'orichalcum_bullet_pouch',1,1,55,0,0,0,0,
 INSERT INTO `item_usable` VALUES (5915,'adaman_bullet_pouch',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5922,'walnut_cookie',1,1,29,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5923,'juglan_jumble',1,1,29,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5932,'bottle_of_kitron_juice',1,1,26,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5933,'flask_of_dragon_fruit_au_lait',1,1,26,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5934,'chocobiscuit',1,1,29,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6041,'pyrohelix_schema',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6042,'hydrohelix_schema',1,1,12,5,0,0,0,0);
