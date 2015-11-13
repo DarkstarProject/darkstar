@@ -16,7 +16,7 @@ function onTrigger(player, mobId)
         player:PrintToPlayer(targ .. " despawned.");
     elseif (mobId ~= nil and (mobId ~= nil or tonumber(mobId) ~= nil or tonumber(mobId) ~= 0)) then
         DespawnMob(mobId);
-        player:PrintToPlayer(mobID .. " despawned.");
+        player:PrintToPlayer(mobId .. " despawned.");
     else
         player:PrintToPlayer("No target specified.");
     end;
