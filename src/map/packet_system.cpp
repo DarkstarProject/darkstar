@@ -1552,16 +1552,9 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         int8* fmtQuery;
 
-        if (boxtype == 1)
-        {
-            fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sent, extra, sender, charname FROM delivery_box WHERE charid = %u AND box = 1 AND slot < 8 ORDER BY slot;";
-        }
-        else
-        {
-            fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sent, extra, sender, charname FROM delivery_box WHERE senderid = %u AND box = 2 AND slot < 8 ORDER BY slot;";
-        }
+        fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sent, extra, sender, charname FROM delivery_box WHERE charid = %u AND box = %d AND slot < 8 ORDER BY slot;";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, boxtype);
 
         if (ret != SQL_ERROR)
         {
@@ -1640,15 +1633,15 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                 ret = Sql_Query(SqlHandle,
                     "INSERT INTO delivery_box(charid, charname, box, slot, itemid, itemsubid, quantity, extra, senderid, sender) VALUES(%u, '%s', 2, %u, %u, %u, %u, '%s', %u, '%s'); ",
-                    charid,
-                    data[0x10],
+                    PChar->id,
+                    PChar->GetName(),
                     slotID,
                     PItem->getID(),
                     PItem->getSubID(),
                     quantity,
                     extra,
-                    PChar->id,
-                    PChar->GetName());
+                    charid,
+                    data[0x10]);
 
                 if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1 && charutils::UpdateItem(PChar, LOC_INVENTORY, invslot, -(int32)quantity))
                 {
@@ -1692,7 +1685,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     {
                         uint32 charid = Sql_GetUIntData(SqlHandle, 0);
 
-                        ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET sent = 1 WHERE charid = %u AND senderid = %u AND slot = %u AND box = 2;", charid, PChar->id, slotID);
+                        ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET sent = 1 WHERE charid = %u AND senderid = %u AND slot = %u AND box = 2;", PChar->id, charid, slotID);
 
                         if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                         {
@@ -1746,7 +1739,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
                     uint32 charid = Sql_GetUIntData(SqlHandle, 0);
-                    ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET sent = 0 WHERE senderid = %u AND box = 2 AND slot = %u AND sent = 1 AND received = 0 LIMIT 1;", PChar->id, slotID);
+                    ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET sent = 0 WHERE charid = %u AND box = 2 AND slot = %u AND sent = 1 AND received = 0 LIMIT 1;", PChar->id, slotID);
 
                     if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                     {
@@ -1800,7 +1793,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         }
         else if (boxtype == 0x02)
         {
-            std::string Query = "SELECT charid FROM delivery_box WHERE senderid = %u AND received = 1 AND box = 2;";
+            std::string Query = "SELECT charid FROM delivery_box WHERE charid = %u AND received = 1 AND box = 2;";
             ret = Sql_Query(SqlHandle, Query.c_str(), PChar->id);
         }
 
@@ -1849,7 +1842,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                             PItem->setSlotID(slotID);
 
                             //the result of this query doesn't really matter, it can be sent from the auction house which has no sender record
-                            Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE charid = %u AND senderid = %u AND box = 2 AND received = 0 AND quantity = %u LIMIT 1;",
+                            Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE senderid = %u AND charid = %u AND box = 2 AND received = 0 AND quantity = %u LIMIT 1;",
                                 PChar->id, senderID, PItem->getQuantity());
 
                             Query = "UPDATE delivery_box SET slot = %u WHERE charid = %u AND box = 1 AND slot = 8;";
@@ -1906,7 +1899,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         }
         CItem* PItem = PChar->UContainer->GetItem(first_received);
 
-        int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE senderid = %u AND box = 2 AND slot = %u LIMIT 1;", PChar->id, first_received);
+        int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND box = 2 AND slot = %u LIMIT 1;", PChar->id, first_received);
 
         if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
         {
@@ -1974,7 +1967,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                             if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) > 0)
                             {
-                                ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE charid = %u AND senderid = %u AND box = 2 LIMIT 1;", PChar->id, senderID);
+                                ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE senderid = %u AND charid = %u AND box = 2 LIMIT 1;", PChar->id, senderID);
 
                                 if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                                 {
@@ -2029,7 +2022,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 }
                 else if (boxtype == 0x02)
                 {
-                    ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE senderid = %u AND sent = 0 AND slot = %u AND box = %u LIMIT 1", PChar->id, slotID, boxtype);
+                    ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND sent = 0 AND slot = %u AND box = %u LIMIT 1", PChar->id, slotID, boxtype);
                 }
 
                 if (ret != SQL_ERROR &&  Sql_AffectedRows(SqlHandle) != 0)
@@ -2225,13 +2218,13 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 (PItem->getStackSize() == 1 ||
                 PItem->getStackSize() != PItem->getQuantity()))
             {
-                ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Incorrect quantity of item\n" CL_RESET);
+                ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Incorrect quantity of item %s\n" CL_RESET, PItem->getName());
                 PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
                 return;
             }
             if (PChar->m_ah_history.size() >= 7)
             {
-                ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Unable to put up more than 7 items\n" CL_RESET);
+				ShowDebug(CL_CYAN"%s already has 7 items on the AH\n" CL_RESET,PChar->GetName());
                 PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
                 return;
             }
@@ -2247,7 +2240,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 (uint32)time(nullptr),
                 price) == SQL_ERROR)
             {
-                ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot insert item to database\n" CL_RESET);
+				ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot insert item %s to database\n" CL_RESET, PItem->getName());
                 PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
                 return;
             }
@@ -3860,7 +3853,10 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     {
                         PChar->m_LastYell = gettick() + (map_config.yell_cooldown * 1000);
                         // ShowDebug(CL_CYAN" LastYell: %u \n" CL_RESET, PChar->m_LastYell);
-                        message::send(MSG_CHAT_YELL, nullptr, 0, new CChatMessagePacket(PChar, MESSAGE_YELL, data[6]));
+                        int8 packetData[4] {};
+                        WBUFL(packetData, 0) = PChar->id;
+
+                        message::send(MSG_CHAT_YELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_YELL, data[6]));
                     }
                     else // You must wait longer to perform that action.
                     {
@@ -5598,7 +5594,7 @@ void PacketParserInitialize()
     PacketSize[0x05D] = 0x08; PacketParser[0x05D] = &SmallPacket0x05D;
     PacketSize[0x05E] = 0x0C; PacketParser[0x05E] = &SmallPacket0x05E;
     PacketSize[0x060] = 0x00; PacketParser[0x060] = &SmallPacket0x060;
-    PacketSize[0x061] = 0x02; PacketParser[0x061] = &SmallPacket0x061;
+    PacketSize[0x061] = 0x04; PacketParser[0x061] = &SmallPacket0x061;
     PacketSize[0x063] = 0x00; PacketParser[0x063] = &SmallPacket0x063;
     PacketSize[0x064] = 0x26; PacketParser[0x064] = &SmallPacket0x064;
     PacketSize[0x066] = 0x0A; PacketParser[0x066] = &SmallPacket0x066;

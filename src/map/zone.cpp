@@ -384,11 +384,6 @@ void CZone::LoadZoneSettings()
 
 void CZone::LoadNavMesh()
 {
-    // Cities don't have roaming mobs
-    if(m_zoneType == ZONETYPE_CITY){
-      return;
-    }
-
     if (m_navMesh == nullptr)
     {
         m_navMesh = new CNavMesh((uint16)GetID());

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Caedarva Mire
 --  NPC:  HomePoint#1
--- @pos 
+-- @pos -449 13.399 -497 79
 -----------------------------------
 
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;

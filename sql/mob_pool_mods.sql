@@ -277,6 +277,11 @@ INSERT INTO `mob_pool_mods` VALUES (3265,56,1,1);
 INSERT INTO `mob_pool_mods` VALUES (3268,56,1,1);
 INSERT INTO `mob_pool_mods` VALUES (1750,56,1,1);
 
+-- Cerberus
+INSERT INTO `mob_pool_mods` VALUES (680,1,322,0); -- 650 defense total
+INSERT INTO `mob_pool_mods` VALUES (680,31,200,0); -- 120 magic evasion boost recommended but 200 felt more retail
+INSERT INTO `mob_pool_mods` VALUES (680,251,-50,0); -- he shouldn't be so resistant to stun, tho this is a systemic stun problem, this is a hack
+
 /*!40000 ALTER TABLE `mob_pool_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

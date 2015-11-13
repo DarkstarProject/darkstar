@@ -90,7 +90,7 @@ public:
     void SetPartyNumber(uint8 number);
 
     void PushPacket(uint32 senderID, uint16 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
-    void PushEffectsPacket();
+    void PushEffectsPacket(CCharEntity* PChar);
 	
 	CAlliance* m_PAlliance;
 
@@ -114,6 +114,7 @@ private:
     void SetQuarterMaster(const char* MemberName);            // устанавливаем владельца сокровищ
 	void RemovePartyLeader(CBattleEntity* PEntity);     // лидер покидает группу
     std::vector<partyInfo_t> GetPartyInfo();
+    void RefreshFlags(std::vector<partyInfo_t>&);
 };
 
 #endif

@@ -941,6 +941,8 @@ MOD_UDMGRANGE         = 390
 MOD_CRITHITRATE       = 165
 MOD_CRIT_DMG_INCREASE = 421
 MOD_ENEMYCRITRATE     = 166
+MOD_MAGIC_CRITHITRATE = 562
+MOD_MAGIC_CRIT_DMG_INCREASE = 563
 MOD_HASTE_MAGIC       = 167
 MOD_SPELLINTERRUPT    = 168
 MOD_MOVE              = 169
@@ -1279,6 +1281,8 @@ MOD_AOE_NA             = 524 -- Set to 1 to make -na spells/erase always AoE w/ 
 MOD_AUGMENTS_CONVERT   = 525 -- Convert HP to MP Ratio Multiplier. Value = MP multiplier rate.
 MOD_AUGMENTS_SA        = 526 -- Adds Critical Attack Bonus to Sneak Attack, percentage based.
 MOD_AUGMENTS_TA        = 527 -- Adds Critical Attack Bonus to Trick Attack, percentage based.
+MOD_JUG_LEVEL_RANGE    = 564 -- Decreases the level range of spawned jug pets. Maxes out at 2.
+
 
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
@@ -1292,8 +1296,8 @@ MOD_AUGMENTS_TA        = 527 -- Adds Critical Attack Bonus to Trick Attack, perc
 -- MOD_SPARE = 98, -- stuff
 -- MOD_SPARE = 99, -- stuff
 -- MOD_SPARE = 100, -- stuff
--- MOD_SPARE = 543, -- stuff
--- MOD_SPARE = 544, -- stuff
+-- MOD_SPARE = 565, -- stuff
+-- MOD_SPARE = 566, -- stuff
 
 ------------------------------------
 -- Merit Definitions

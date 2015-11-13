@@ -13,13 +13,14 @@ require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	if (GetMobAction(17506667) == 0 and GetMobAction(17506668) == 0 and GetMobAction(17506669) == 0 and 
-	trade:hasItemQty(1195,1) and trade:getItemCount() == 1) then -- Trade Ro'Maeve Water
-		player:tradeComplete();
-		SpawnMob(17506667,180):updateClaim(player);
-	end
-	
+    
+    if (GetMobAction(17506667) == 0 and GetMobAction(17506668) == 0 and GetMobAction(17506669) == 0 and 
+    trade:hasItemQty(1195,1) and trade:getItemCount() == 1) then -- Trade Ro'Maeve Water
+        player:tradeComplete();
+        SpawnMob(17506667,180):updateClaim(player);
+        npc:setStatus(STATUS_DISAPPEAR);
+    end
+    
 end;
 
 -----------------------------------
@@ -27,7 +28,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(SMALL_HOLE_HERE);
+    player:messageSpecial(SMALL_HOLE_HERE);
 end;
 
 -----------------------------------

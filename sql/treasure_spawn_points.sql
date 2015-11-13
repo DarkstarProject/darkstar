@@ -85,18 +85,18 @@ INSERT INTO `treasure_spawn_points` VALUES (17359048,3,133,63.413,-0.081,11.611)
 INSERT INTO `treasure_spawn_points` VALUES (17359048,4,65,12.770,-0.383,36.825); -- Yughott Grotto
 INSERT INTO `treasure_spawn_points` VALUES (17359048,5,230,-12.144,-0.206,-63.396); -- Yughott Grotto
 INSERT INTO `treasure_spawn_points` VALUES (17359048,6,253,-151.230,-0.359,-21.489); -- Yughott Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17363366,0,227,250.037,-32.069,174.156); -- Palborough Mines
-INSERT INTO `treasure_spawn_points` VALUES (17363366,1,255,241.950,-31.769,59.927); -- Palborough Mines
-INSERT INTO `treasure_spawn_points` VALUES (17363366,2,190,259.068,-31.625,-71.901); -- Palborough Mines
-INSERT INTO `treasure_spawn_points` VALUES (17363366,3,60,219.331,-31.595,4.665); -- Palborough Mines
-INSERT INTO `treasure_spawn_points` VALUES (17363366,4,197,216.795,-31.527,-71.373); -- Palborough Mines
-INSERT INTO `treasure_spawn_points` VALUES (17363366,5,160,262.397,-32.202,87.518); -- Palborough Mines
-INSERT INTO `treasure_spawn_points` VALUES (17363366,6,190,179.993,-31.956,93.280); -- Palborough Mines
-INSERT INTO `treasure_spawn_points` VALUES (17363366,7,60,139.909,-31.957,146.845); -- Palborough Mines
-INSERT INTO `treasure_spawn_points` VALUES (17363366,8,209,99.115,-32.000,83.067); -- Palborough Mines
-INSERT INTO `treasure_spawn_points` VALUES (17363366,9,111,21.141,-31.944,81.473); -- Palborough Mines
-INSERT INTO `treasure_spawn_points` VALUES (17363366,10,60,59.776,-31.592,5.373); -- Palborough Mines
-INSERT INTO `treasure_spawn_points` VALUES (17363366,11,60,99.917,-32.000,-41.557); -- Palborough Mines
+INSERT INTO `treasure_spawn_points` VALUES (17363367,0,227,250.037,-32.069,174.156); -- Palborough Mines
+INSERT INTO `treasure_spawn_points` VALUES (17363367,1,255,241.950,-31.769,59.927); -- Palborough Mines
+INSERT INTO `treasure_spawn_points` VALUES (17363367,2,190,259.068,-31.625,-71.901); -- Palborough Mines
+INSERT INTO `treasure_spawn_points` VALUES (17363367,3,60,219.331,-31.595,4.665); -- Palborough Mines
+INSERT INTO `treasure_spawn_points` VALUES (17363367,4,197,216.795,-31.527,-71.373); -- Palborough Mines
+INSERT INTO `treasure_spawn_points` VALUES (17363367,5,160,262.397,-32.202,87.518); -- Palborough Mines
+INSERT INTO `treasure_spawn_points` VALUES (17363367,6,190,179.993,-31.956,93.280); -- Palborough Mines
+INSERT INTO `treasure_spawn_points` VALUES (17363367,7,60,139.909,-31.957,146.845); -- Palborough Mines
+INSERT INTO `treasure_spawn_points` VALUES (17363367,8,209,99.115,-32.000,83.067); -- Palborough Mines
+INSERT INTO `treasure_spawn_points` VALUES (17363367,9,111,21.141,-31.944,81.473); -- Palborough Mines
+INSERT INTO `treasure_spawn_points` VALUES (17363367,10,60,59.776,-31.592,5.373); -- Palborough Mines
+INSERT INTO `treasure_spawn_points` VALUES (17363367,11,60,99.917,-32.000,-41.557); -- Palborough Mines
 INSERT INTO `treasure_spawn_points` VALUES (17371604,0,52,-158.563,0.999,-226.058); -- Giddeus
 INSERT INTO `treasure_spawn_points` VALUES (17371604,1,150,-103.777,-0.900,-254.271); -- Giddeus
 INSERT INTO `treasure_spawn_points` VALUES (17371604,2,70,-242.625,0.935,-185.404); -- Giddeus

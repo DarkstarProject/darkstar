@@ -1098,7 +1098,7 @@ void CStatusEffectContainer::UpdateStatusIcons()
     PChar->pushPacket(new CStatusEffectPacket(PChar));
     if (PChar->PParty)
     {
-        PChar->PParty->PushEffectsPacket();
+        PChar->PParty->PushEffectsPacket(PChar);
     }
 }
 
@@ -1460,14 +1460,6 @@ void CStatusEffectContainer::CopyConfrontationEffect(CBattleEntity* PEntity)
         {
             PEntity->StatusEffectContainer->AddStatusEffect(new CStatusEffect(*PEffect));
         }
-    }
-}
-
-void CStatusEffectContainer::ForEachEffect(std::function<void(CStatusEffect*)> func)
-{
-    for (auto&& PEffect : m_StatusEffectList)
-    {
-        func(PEffect);
     }
 }
 

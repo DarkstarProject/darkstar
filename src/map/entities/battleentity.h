@@ -30,6 +30,7 @@
 #include "../items/item_weapon.h"
 
 #include "baseentity.h"
+#include "../alliance.h"
 #include "../trait.h"
 #include "../modifier.h"
 #include "../party.h"
@@ -295,17 +296,17 @@ enum SUBEFFECT
     SUBEFFECT_HASTE = 23,
 
     // SPIKES
-    SUBEFFECT_BLAZE_SPIKES  = 1,  // 01-1000    6
-    SUBEFFECT_ICE_SPIKES    = 2,  // 01-0100   10
-    SUBEFFECT_DREAD_SPIKES  = 3,  // 01-1100   14
-    SUBEFFECT_CURSE_SPIKES  = 4,  // 01-0010   18
-    SUBEFFECT_SHOCK_SPIKES  = 5,  // 01-1010   22
-    SUBEFFECT_REPRISAL      = 6,  // 01-0110   26
-    SUBEFFECT_WIND_SPIKES   = 7,  // Present in client but currently unused.
-    SUBEFFECT_STONE_SPIKES  = 8,  // Present in client but currently unused.
+    SUBEFFECT_BLAZE_SPIKES = 1,  // 01-1000    6
+    SUBEFFECT_ICE_SPIKES = 2,  // 01-0100   10
+    SUBEFFECT_DREAD_SPIKES = 3,  // 01-1100   14
+    SUBEFFECT_CURSE_SPIKES = 4,  // 01-0010   18
+    SUBEFFECT_SHOCK_SPIKES = 5,  // 01-1010   22
+    SUBEFFECT_REPRISAL = 6,  // 01-0110   26
+    SUBEFFECT_WIND_SPIKES = 7,  // Present in client but currently unused.
+    SUBEFFECT_STONE_SPIKES = 8,  // Present in client but currently unused.
     SUBEFFECT_DELUGE_SPIKES = 9,  // Present in client but currently unused.
-    SUBEFFECT_DEATH_SPIKES  = 10, // yes really: http://www.ffxiah.com/item/26944/
-    SUBEFFECT_COUNTER       = 63, // Also used by Retaliation
+    SUBEFFECT_DEATH_SPIKES = 10, // yes really: http://www.ffxiah.com/item/26944/
+    SUBEFFECT_COUNTER = 63, // Also used by Retaliation
 
     // SKILLCHAINS
     SUBEFFECT_LIGHT = 1,
@@ -322,6 +323,8 @@ enum SUBEFFECT
     SUBEFFECT_SCISSION = 12,
     SUBEFFECT_DETONATION = 13,
     SUBEFFECT_IMPACTION = 14,
+    SUBEFFECT_RADIANCE = 15,
+    SUBEFFECT_UMBRA = 16,
 
     SUBEFFECT_NONE = 0,
 
@@ -532,8 +535,39 @@ public:
     void            applyPetModifiers(CPetEntity* PPet);
     void            removePetModifiers(CPetEntity* PPet);
 
-    void            ForParty(std::function<void(CBattleEntity*)>);
-    void            ForAlliance(std::function<void(CBattleEntity*)>);
+    template        <typename F, typename... Args>
+    void            ForParty(F func, Args&&... args)
+    {
+        if (PParty) {
+            for (auto PMember : PParty->members) {
+                func(PMember, std::forward<Args>(args)...);
+            }
+        }
+        else {
+            func(this, std::forward<Args>(args)...);
+        }
+    }
+    template        <typename F, typename... Args>
+    void            ForAlliance(F func, Args&&... args)
+    {
+        if (PParty) {
+            if (PParty->m_PAlliance) {
+                for (auto PAllianceParty : PParty->m_PAlliance->partyList) {
+                    for (auto PMember : PAllianceParty->members) {
+                        func(PMember, std::forward<Args>(args)...);
+                    }
+                }
+            }
+            else {
+                for (auto PMember : PParty->members) {
+                    func(PMember, std::forward<Args>(args)...);
+                }
+            }
+        }
+        else {
+            func(this);
+        }
+    }
 
     virtual void    addTrait(CTrait*);
     virtual void    delTrait(CTrait*);

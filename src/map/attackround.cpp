@@ -150,7 +150,7 @@ CBattleEntity*	CAttackRound::GetTAEntity()
 ************************************************************************/
 bool CAttackRound::IsH2H()
 {
-    return m_attacker->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH ? true : false;
+    return m_attacker->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H ? true : false;
 }
 
 /************************************************************************
