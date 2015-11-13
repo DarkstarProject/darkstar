@@ -330,11 +330,11 @@ enum ZONEID : uint16
     ZONE_286                          = 286,
     ZONE_287                          = 287,
     ZONE_ESCHA_ZITAH                  = 288,
-    ZONE_289                          = 289,
-    ZONE_290                          = 290,
-    ZONE_291                          = 291,
+    ZONE_ESCHA_RUAUN                  = 289,
+    ZONE_DESUETIA_EMPYREAL_PARADOX    = 290,
+    ZONE_REISENJIMA                   = 291,
     ZONE_292                          = 292,
-    ZONE_293                          = 293
+    ZONE_REISENJIMA_SANCTORIUM        = 293
 };
 
 #define MAX_ZONEID 294

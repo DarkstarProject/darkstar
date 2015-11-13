@@ -96,7 +96,14 @@ public:
     uint16 GetConfrontationEffect(); // gets confrontation number (bcnm, confrontation, campaign, reive mark)
     void CopyConfrontationEffect(CBattleEntity* PEntity); // copies confrontation status (pet summoning, etc)
 
-    void ForEachEffect(std::function<void(CStatusEffect*)> func);
+    template<typename F, typename... Args>
+    void ForEachEffect(F func, Args&&... args)
+    {
+        for (auto&& PEffect : m_StatusEffectList)
+        {
+            func(PEffect, std::forward<Args>(args)...);
+        }
+    }
 
 	CStatusEffectContainer(CBattleEntity* PEntity);
 	~CStatusEffectContainer();

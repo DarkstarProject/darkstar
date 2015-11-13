@@ -5,7 +5,7 @@
              ITEM_OBTAINED = 7125; -- Obtained:
               GIL_OBTAINED = 7126; -- Obtained <<<Numeric Parameter 0>>> gil.
           KEYITEM_OBTAINED = 7128; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
-    FISHING_MESSAGE_OFFSET = 7352; -- You can't fish here.
+    FISHING_MESSAGE_OFFSET = 7362; -- You can't fish here.
 
 -- Other dialog
        STAIRWAY_LOCKED = 554; -- The door to the Starway Stairway is locked tight.

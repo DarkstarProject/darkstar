@@ -13,14 +13,20 @@ require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+    
+    local mobhp = mob:getHPP();
+    if (mobhp <= 25) then -- She's under 25%, it's okay to use this.
+        return 0;
+    else
+        return 1;
+    end;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_PETRIFICATION;
 
-    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, 60));
-
-	return typeEffect;
+    local typeEffect = EFFECT_PETRIFICATION;
+    skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, math.random(60,180)));
+    return typeEffect;
 end;

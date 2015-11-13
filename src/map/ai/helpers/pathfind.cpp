@@ -83,7 +83,7 @@ bool CPathFind::RoamAround(position_t point, float maxRadius, uint8 maxTurns, ui
 bool CPathFind::PathTo(position_t point, uint8 pathFlags, bool clear)
 {
     // don't follow a new path if the current path has script flag and new path doesn't
-    if (IsFollowingPath() && m_pathFlags & PATHFLAG_SCRIPT && !(pathFlags & PATHFLAG_SCRIPT))
+    if (IsFollowingPath() && (m_pathFlags & PATHFLAG_SCRIPT) && !(pathFlags & PATHFLAG_SCRIPT))
         return false;
 
     if (clear)

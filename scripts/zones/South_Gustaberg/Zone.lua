@@ -55,7 +55,7 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17216200,17216201};
+    local manuals = {17216207,17216208};
 
     SetFieldManual(manuals);
 end;

@@ -7,7 +7,7 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item>. Come back 
        KEYITEM_OBTAINED = 6387; -- Obtained key item: <keyitem>.
 
 -- Other dialog
-THE_MAGICITE_GLOWS_OMINOUSLY = 7096; -- The magicite glows ominously.
+THE_MAGICITE_GLOWS_OMINOUSLY = 7098; -- The magicite glows ominously.
 
 -- conquest Base
-CONQUEST_BASE = 7097; -- Tallying conquest results...
+CONQUEST_BASE = 7099; -- Tallying conquest results...

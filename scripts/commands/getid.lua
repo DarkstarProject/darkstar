@@ -11,7 +11,7 @@ cmdprops =
 };
 
 function onTrigger(player)
-    local targ = player:fetchTargetsID();
+    local targ = player:getTargetID();
     if (targ ~= nil) then
         player:PrintToPlayer(string.format("Selected Target's ID is: %u ", targ));
     else

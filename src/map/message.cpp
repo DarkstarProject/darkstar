@@ -149,15 +149,20 @@ namespace message
         }
         case MSG_CHAT_YELL:
         {
-            zoneutils::ForEachZone([&packet](CZone* PZone)
+            zoneutils::ForEachZone([&packet, &extra](CZone* PZone)
             {
                 if (PZone->CanUseMisc(MISC_YELL))
                 {
-                    PZone->ForEachChar([&packet](CCharEntity* PChar)
+                    PZone->ForEachChar([&packet, &extra](CCharEntity* PChar)
                     {
-                        CBasicPacket* newPacket = new CBasicPacket();
-                        memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
-                        PChar->pushPacket(newPacket);
+                        // don't push to sender
+                        if (PChar->id != RBUFL(extra->data(), 0))
+                        {
+                            CBasicPacket* newPacket = new CBasicPacket();
+                            memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
+
+                            PChar->pushPacket(newPacket);
+                        }
                     });
                 }
             });
