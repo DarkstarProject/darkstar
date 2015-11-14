@@ -849,7 +849,7 @@ namespace petutils
         CBattleEntity* PPet = PMaster->PPet;
         CCharEntity* PChar = (CCharEntity*)PMaster;
 
-        PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
+        PPet->PAIBattle()->Die();
 
         if (PPet->objtype == TYPE_MOB){
             CMobEntity* PMob = (CMobEntity*)PPet;
@@ -902,9 +902,9 @@ namespace petutils
             PMob->PBattleAI->SetLastActionTime(gettick());
 
             if (PMob->isDead())
-                PMob->PBattleAI->SetCurrentAction(ACTION_FALL);
+                PMob->PAIBattle()->Die();
             else
-                PMob->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+                PMob->PAIBattle()->Disengage();
 
         }
         else if (PPet->objtype == TYPE_PET){
@@ -952,7 +952,7 @@ namespace petutils
             delete PPet->PBattleAI;
             PPet->PBattleAI = new CAIMobDummy((CMobEntity*)PMaster);
             PPet->PBattleAI->SetLastActionTime(gettick());
-            PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
+            PPet->PAIBattle()->Die();
 
             ShowDebug("An ex charmed mob was not reset properly, Manually resetting it.\n");
             return;

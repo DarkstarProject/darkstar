@@ -54,6 +54,7 @@ public:
     virtual void Internal_ChangeTarget(uint16 targetid);
     virtual void Internal_Disengage();
     virtual bool Internal_WeaponSkill(uint16 targid, uint16 wsid);
+    virtual void Die() {}
 
     virtual void OnChangeTarget(CBattleEntity* PTarget);
     virtual void TryHitInterrupt(CBattleEntity* PAttacker);
@@ -70,6 +71,8 @@ public:
     virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg);
     /* Weaponskill */
     virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&);
+
+    virtual void OnDeathTimer();
 
     uint16 GetBattleTargetID();
     CTargetFind targetFind;

@@ -25,8 +25,10 @@ This file is part of DarkStar-server source code.
 #include "controllers/player_controller.h"
 #include "states/ability_state.h"
 #include "states/attack_state.h"
+#include "states/death_state.h"
 #include "states/weaponskill_state.h"
 #include "../ability.h"
+#include "../conquest_system.h"
 #include "../weapon_skill.h"
 #include "../entities/charentity.h"
 #include "../utils/battleutils.h"
@@ -35,6 +37,7 @@ This file is part of DarkStar-server source code.
 #include "../packets/lock_on.h"
 #include "../packets/char_recast.h"
 #include "../packets/char_update.h"
+#include "../packets/menu_raisetractor.h"
 #include "../packets/message_basic.h"
 
 CAIChar::CAIChar(CCharEntity* PChar) :
@@ -1066,4 +1069,54 @@ bool CAIChar::IsMobOwner(CBattleEntity* PBattleTarget)
     });
 
     return found;
+}
+
+void CAIChar::OnDeathTimer()
+{
+    //home point
+}
+
+void CAIChar::Die()
+{
+    auto PChar = static_cast<CCharEntity*>(PEntity);
+    if (GetBattleTargetID() == 0)
+    {
+        //falls to the ground
+        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PChar, 0, 0, 20));
+    }
+    else
+    {
+        auto PTarget = PChar->GetEntity(GetBattleTargetID());
+        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PTarget, 0, 0, 97));
+    }
+    Die(60min);
+    PChar->m_DeathCounter = 0;
+    PChar->m_DeathTimestamp = (uint32)time(nullptr);
+
+    //influence for conquest system
+    conquest::LoseInfluencePoints(PChar);
+
+    if (!PChar->getMijinGakure())
+        charutils::DelExperiencePoints(PChar, map_config.exp_retain);
+}
+
+void CAIChar::Die(duration _duration)
+{
+    auto PChar = static_cast<CCharEntity*>(PEntity);
+    ClearStateStack();
+    ChangeState<CDeathState>(static_cast<CBattleEntity*>(PEntity), _duration);
+    m_battleTarget = 0;
+    PChar->pushPacket(new CCharUpdatePacket(PChar));
+    PChar->pushPacket(new CRaiseTractorMenuPacket(PChar, TYPE_HOMEPOINT));
+    PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
+
+    // reraise modifiers
+    if (PChar->getMod(MOD_RERAISE_I) > 0)
+        PChar->m_hasRaise = 1;
+
+    if (PChar->getMod(MOD_RERAISE_II) > 0)
+        PChar->m_hasRaise = 2;
+
+    if (PChar->getMod(MOD_RERAISE_III) > 0)
+        PChar->m_hasRaise = 3;
 }

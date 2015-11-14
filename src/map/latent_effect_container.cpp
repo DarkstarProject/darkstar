@@ -1450,7 +1450,7 @@ void CLatentEffectContainer::CheckLatentsPartyAvatar()
                 CPetEntity* PPet = (CPetEntity*)m_POwner->PPet;
 
                 if (PPet->m_PetID == m_LatentEffectList.at(i)->GetConditionsValue() &&
-                    PPet->PBattleAI->GetCurrentAction() != ACTION_FALL)
+                    !PPet->isDead())
                 {
                     ActivateLatent = true;
                 }

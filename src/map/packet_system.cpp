@@ -59,6 +59,7 @@ This file is part of DarkStar-server source code.
 
 #include "ai/ai_npc.h"
 #include "ai/ai_char.h"
+#include "ai/states/death_state.h"
 
 #include "items/item_shop.h"
 
@@ -277,6 +278,8 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             PChar->m_DeathCounter = (uint32)Sql_GetUIntData(SqlHandle, 0);
             PChar->m_DeathTimestamp = (uint32)time(nullptr);
+            if (PChar->health.hp == 0)
+                static_cast<CAIChar*>(PChar->PAI.get())->Die(std::chrono::seconds(PChar->m_DeathCounter));
         }
 
         fmtQuery = "SELECT pos_prevzone FROM chars WHERE charid = %u";
@@ -686,7 +689,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x0B: // homepoint
     {
-        if (!PChar->isDead())
+        //if (!PChar->isDead())
             return;
         // remove weakness on homepoint
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_WEAKNESS);

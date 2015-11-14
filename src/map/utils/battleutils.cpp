@@ -4195,7 +4195,7 @@ namespace battleutils
 
             if (PEntity->isDead())
             {
-                PEntity->PBattleAI->SetCurrentAction(ACTION_FALL);
+                PEntity->PAIBattle()->Die();
             }
         }
         PEntity->updatemask |= UPDATE_HP;

@@ -476,7 +476,7 @@ int32 CBattleEntity::addHP(int32 hp)
             {
                 StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
             }
-            PBattleAI->SetCurrentAction(ACTION_FALL);
+            PAIBattle()->Die();
         }
         else
         {

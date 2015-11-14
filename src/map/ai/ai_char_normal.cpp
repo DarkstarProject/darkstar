@@ -407,41 +407,6 @@ void CAICharNormal::ActionDisengage()
 
 void CAICharNormal::ActionFall()
 {
-    m_ActionType = ACTION_DEATH;
-    m_ActionTargetID = 0;
-
-    m_LastActionTime = m_Tick;
-
-    if (m_PBattleSubTarget == nullptr)
-    {
-        //falls to the ground
-        m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 20));
-    }
-    else
-    {
-        m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, 97));
-    }
-
-    m_PSpell = nullptr;
-    m_PJobAbility = nullptr;
-    m_PWeaponSkill = nullptr;
-    m_PItemUsable = nullptr;
-    m_PBattleTarget = nullptr;
-    m_PBattleSubTarget = nullptr;
-
-    m_PChar->UContainer->Clean();
-
-    m_PChar->animation = ANIMATION_DEATH;
-    m_PChar->m_DeathCounter = 0;
-    m_PChar->m_DeathTimestamp = (uint32)time(nullptr);
-    m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
-    m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar, TYPE_HOMEPOINT));
-
-    //influence for conquest system
-    conquest::LoseInfluencePoints(m_PChar);
-
-    if (!m_PChar->getMijinGakure())
-        charutils::DelExperiencePoints(m_PChar, map_config.exp_retain);
 }
 
 /************************************************************************

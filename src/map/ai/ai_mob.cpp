@@ -22,6 +22,8 @@ This file is part of DarkStar-server source code.
 */
 
 #include "ai_mob.h"
+#include "states/death_state.h"
+#include "states/despawn_state.h"
 #include "states/weaponskill_state.h"
 #include "../mobskill.h"
 #include "../weapon_skill.h"
@@ -94,6 +96,18 @@ bool CAIMob::IsWeaponSkillEnabled()
 void CAIMob::SetWeaponSkillEnabled(bool enabled)
 {
     m_WeaponSkillEnabled = enabled;
+}
+
+void CAIMob::OnDeathTimer()
+{
+    auto PMob = static_cast<CMobEntity*>(PEntity);
+    PMob->PAIBattle()->Despawn();
+}
+
+void CAIMob::Die()
+{
+    ClearStateStack();
+    ChangeState<CDeathState>(static_cast<CBattleEntity*>(PEntity), 15s);
 }
 
 void CAIMob::OnDisengage()

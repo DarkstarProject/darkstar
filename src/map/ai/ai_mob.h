@@ -33,14 +33,17 @@ public:
 
     virtual void Internal_Disengage() override;
     virtual bool Internal_WeaponSkill(uint16 targid, uint16 wsid) override;
+    virtual void Die() override;
 
     virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
     virtual void OnDisengage() override;
+    virtual void OnDeathTimer() override;
 
     bool IsAutoAttackEnabled();
     void SetAutoAttackEnabled(bool);
     bool IsWeaponSkillEnabled();
     void SetWeaponSkillEnabled(bool);
+
 
 private:
     bool m_AutoAttackEnabled{ true };

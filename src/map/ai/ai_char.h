@@ -37,24 +37,25 @@ public:
     void Ability(uint16 targid, uint16 abilityid);
 
     virtual bool Internal_Ability(uint16 targetid, uint16 abilityid);
+    virtual void Die() override;
+    void Die(duration);
 
-    /* Attacking functions */
+    /* State callbacks */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
     virtual bool OnAttack(CAttackState&, action_t&) override;
     virtual CBattleEntity* IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
     virtual void OnChangeTarget(CBattleEntity* PNewTarget) override;
     virtual void OnDisengage() override;
-
-    /* Casting functions */
     virtual void OnCastFinished(CMagicState&, action_t&) override;
     virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg) override;
-
     virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
-
     virtual void OnAbility(CAbilityState&, action_t&);
+    virtual void OnDeathTimer() override;
 
 protected:
     bool IsMobOwner(CBattleEntity* PTarget);
+
+
 
     time_point m_errMsgTime;
 };

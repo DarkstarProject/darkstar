@@ -124,10 +124,6 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         VE = 0;
     }
 
-    // Crash fix, PEntity was in ACTION_FALL
-    if (PEntity->PBattleAI->GetCurrentAction() == ACTION_FALL)
-        return;
-
     EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEntity->id);
 
     // current highest enmity before this update
@@ -261,10 +257,6 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
             VE = 0;
         }
 
-        // Crash fix, PEntity was in ACTION_FALL
-        if (PEntity->PBattleAI->GetCurrentAction() == ACTION_FALL)
-            return;
-
         EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEntity->id);
 
         // current highest enmity before this update
@@ -359,10 +351,6 @@ void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percen
 
 void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Damage)
 {
-    // Crash fix, PEntity was in ACTION_FALL
-    if (PEntity->PBattleAI->GetCurrentAction() == ACTION_FALL)
-        return;
-
     Damage = (Damage < 1 ? 1 : Damage);
 
     uint16 mod = battleutils::GetEnmityModDamage(PEntity->GetMLevel()); //default fallback

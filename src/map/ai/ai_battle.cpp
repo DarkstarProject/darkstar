@@ -531,6 +531,9 @@ uint16 CAIBattle::GetBattleTargetID()
     return m_battleTarget;
 }
 
+void CAIBattle::OnDeathTimer()
+{}
+
 void CAIBattle::TryHitInterrupt(CBattleEntity* PAttacker)
 {
     if (GetCurrentState())

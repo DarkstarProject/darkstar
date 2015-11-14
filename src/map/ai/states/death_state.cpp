@@ -24,29 +24,37 @@ This file is part of DarkStar-server source code.
 #include "death_state.h"
 
 #include "../../entities/battleentity.h"
+#include "../../entities/charentity.h"
+#include "../../packets/menu_raisetractor.h"
 
 CDeathState::CDeathState(CBattleEntity* PEntity, duration death_time) :
     CState(PEntity, PEntity->targid),
     m_PEntity(PEntity),
     m_deathTime(death_time)
 {
-
+    m_PEntity->animation = ANIMATION_DEATH;
+    m_PEntity->updatemask |= UPDATE_HP;
 }
 
 bool CDeathState::Update(time_point tick)
 {
-    if (tick > GetEntryTime() + m_deathTime)
+    if (tick > GetEntryTime() + m_deathTime && !IsCompleted())
     {
         Complete();
+        m_PEntity->PAIBattle()->OnDeathTimer();
+    }
+    else if (m_PEntity->objtype == TYPE_PC && tick > GetEntryTime() + 8s && !IsCompleted() && !raiseSent)
+    {
+        auto PChar = static_cast<CCharEntity*>(m_PEntity);
+        if (PChar->m_hasRaise)
+        {
+            PChar->pushPacket(new CRaiseTractorMenuPacket(PChar, TYPE_RAISE));
+            raiseSent = true;
+        }
     }
     else if (IsCompleted())
     {
         return true;
     }
     return false;
-}
-
-void CDeathState::Cleanup(time_point tick)
-{
-
 }

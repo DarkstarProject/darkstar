@@ -155,5 +155,5 @@ void CAIBase::QueueAction(queueAction_t&& action)
 
 void CAIBase::Internal_Despawn(duration spawnTime)
 {
-    ChangeState<CDespawnState>(PEntity, spawnTime);
+    ForceChangeState<CDespawnState>(PEntity, spawnTime);
 }
