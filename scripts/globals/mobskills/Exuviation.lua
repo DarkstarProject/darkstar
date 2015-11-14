@@ -17,7 +17,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local heal = 300;
+    local baseHeal = 500;
+    local statusHeal = 300;
     local effectCount = 0;
     local dispel = mob:eraseStatusEffect();
     
@@ -27,11 +28,6 @@ function onMobWeaponSkill(target, mob, skill)
         dispel = mob:eraseStatusEffect();
     end;
 
-    if (effectCount > 0) then
-        skill:setMsg(MSG_SELF_HEAL);
-        return MobHealMove(mob, (heal * effectCount));
-    else
-        skill:setMsg(MSG_NO_EFFECT);
-        return 0;
-    end;
+    skill:setMsg(MSG_SELF_HEAL);
+    return MobHealMove(mob, (statusHeal * (effectCount) + baseHeal);
 end;
