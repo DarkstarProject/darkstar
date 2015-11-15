@@ -152,13 +152,13 @@ function getFoVregimeReward(regimeid)
        [143] = 1500,
        [144] = 1550,
        [145] = 1600,
-       [146] = 1600
+       [146] = 1600,
         
-    };
+    }
     if reward[regimeid] then
         return reward[regimeid];
     else
-        --print("Warning: Regime ID not found! Returning reward as 10."),
+        --print("Warning: Regime ID not found! Returning reward as 10.");
         return 10;
     end
     
@@ -247,7 +247,7 @@ function getGoVregimeReward(regimeid)
         [669] = 1840,
         [670] = 1850,
         [671] = 950,
-        [672] = 1030,
+        [672] = 1030;
         [673] = 1300,
         [674] = 1340,
         [675] = 1330,
@@ -257,7 +257,7 @@ function getGoVregimeReward(regimeid)
         [679] = 660,
         [680] = 800,
         [681] = 790,
-        [682] = 1050,
+        [682] = 1050
         [683] = 970,
         [684] = 1000,
         [685] = 1890,
@@ -267,7 +267,7 @@ function getGoVregimeReward(regimeid)
         [689] = 1280,
         [690] = 1300,
         [691] = 1340,
-        [692] = 1470,
+        [692] = 1470
         [693] = 2190,
         [694] = 2220,
         [695] = 550,
@@ -277,7 +277,7 @@ function getGoVregimeReward(regimeid)
         [699] = 820,
         [700] = 840,
         [701] = 1530,
-        [702] = 1830,
+        [702] = 1830;
         [704] = 1160,
         [705] = 1240,
         [706] = 1310,
@@ -286,7 +286,7 @@ function getGoVregimeReward(regimeid)
         [709] = 1840,
         [710] = 2220,
         [711] = 1180,
-        [712] = 1240,
+        [712] = 1240;
         [713] = 1310,
         [714] = 1310,
         [715] = 1340,
@@ -296,7 +296,7 @@ function getGoVregimeReward(regimeid)
         [719] = 1470,
         [720] = 1720,
         [721] = 1760,
-        [722] = 1770,
+        [722] = 1770;
         [723] = 1830,
         [724] = 1900,
         [725] = 1640,
@@ -333,7 +333,7 @@ function getGoVregimeReward(regimeid)
         [759] = 1380,
         [760] = 1380,-- Missing info on wiki
         [761] = 1650,
-        [762] = 1760,
+        [762] = 1760;
         [763] = 1040,
         [764] = 1230,
         [765] = 1490,
@@ -343,7 +343,7 @@ function getGoVregimeReward(regimeid)
         [769] = 1710,
         [770] = 2310,
         [771] = 1050,
-        [772] = 1070,
+        [772] = 1070;
         [773] = 1140,
         [774] = 1130,
         [775] = 1350,
@@ -360,7 +360,7 @@ function getGoVregimeReward(regimeid)
         [790] = 1450,
         [791] = 1450,-- Missing data on wiki
         [792] = 1450,-- Missing data on wiki
-        [793] = 1630,
+        [793] = 1630;
         [794] = 1650,
         [795] = 1660,
         [796] = 1370,
@@ -369,7 +369,7 @@ function getGoVregimeReward(regimeid)
         [799] = 1640,
         [800] = 550,
         [801] = 1690,
-        [802] = 1640,
+        [802] = 1640;
         [803] = 1790,
         [804] = 1040,
         [805] = 1050,
@@ -379,14 +379,14 @@ function getGoVregimeReward(regimeid)
         [809] = 1470,
         [810] = 1480,
         [811] = 1500,
-        [812] = 1310,
+        [812] = 1310;
         [813] = 1360,
         [814] = 1230,
         [815] = 1480,
         [816] = 1470,
         [817] = 1360,
-        [818] = 1570
-    };
+        [818] = 1570,
+}
     return reward[regimeid];
 end;
 
