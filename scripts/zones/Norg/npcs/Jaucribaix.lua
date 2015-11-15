@@ -154,7 +154,7 @@ function onEventFinish(player,csid,option)
 		player:addQuest(OUTLANDS,FORGE_YOUR_DESTINY);
 	elseif (csid == 0x001b) then
 		player:tradeComplete();
-		player:setVar("ForgeYourDestiny_timer", os.time() + 10368); --Add 3 game days
+		player:setVar("ForgeYourDestiny_timer", os.time() + 10800); --Add 3 game days
 	elseif (csid == 0x001d) then
 		player:tradeComplete();
 		player:addTitle(BUSHIDO_BLADE);
