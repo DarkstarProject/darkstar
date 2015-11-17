@@ -44,6 +44,8 @@ public:
     bool IsWeaponSkillEnabled();
     void SetWeaponSkillEnabled(bool);
 
+protected:
+    void DropItems();
 
 private:
     bool m_AutoAttackEnabled{ true };

@@ -34,6 +34,7 @@ CDeathState::CDeathState(CBattleEntity* PEntity, duration death_time) :
 {
     m_PEntity->animation = ANIMATION_DEATH;
     m_PEntity->updatemask |= UPDATE_HP;
+    m_PEntity->PAI->PathFind->Clear();
 }
 
 bool CDeathState::Update(time_point tick)

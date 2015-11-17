@@ -29,12 +29,14 @@ CDespawnState::CDespawnState(CBaseEntity* _PEntity, duration spawnTime) :
     CState(_PEntity, _PEntity->targid),
     m_spawnTime(spawnTime)
 {
+    //TODO: BEHAVIOUR_NO_DESPAWN
     if (_PEntity->PAI->IsSpawned())
     {
         _PEntity->loc.zone->PushPacket(_PEntity, CHAR_INRANGE, new CEntityAnimationPacket(_PEntity, CEntityAnimationPacket::Fade_Out));
         _PEntity->PAI->QueueAction(queueAction_t(3s, false, [](CBaseEntity* PEntity) {
             PEntity->status = STATUS_DISAPPEAR;
             //#event despawn
+            //luautils::OnMobDespawn(PEntity);
         }));
     }
 }
