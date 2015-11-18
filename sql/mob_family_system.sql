@@ -533,6 +533,7 @@ INSERT INTO `mob_family_system` VALUES (493,'Ashrakk',9,'Demon',1,40,90,140,6,3,
 INSERT INTO `mob_family_system` VALUES (494,'Sekhmet',6,'Beast',1,60,94,90,1,1,4,2,6,6,2,3,3,3,3,1,1,1,1,1,1,1,1.25,0.875,1,1,1,5);
 INSERT INTO `mob_family_system` VALUES (495,'Astral_Flow_Pet',5,'Avatar',0,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (496,'ChanequeMandragora',17,'Plantoid',0,40,107,120,3,3,4,5,4,4,2,3,3,3,3,1,1.25,1,1,1.25,1.25,1.25,1,1.25,1,0.875,1.25,4); -- for chaneque unique TP move
+INSERT INTO `mob_family_system` VALUES (497,'Cloud_of_Darkness',18,'Unclassified',3,40,120,140,1,1,1,1,1,1,1,3,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,0);
 
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
