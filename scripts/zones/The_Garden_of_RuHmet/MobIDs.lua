@@ -10,11 +10,8 @@ wynavA = 16921023;
 wynavB = 16921024;
 wynavC = 16921025;
 
--- The mob that spawns Ix'Aern (DRG)
-realAwAern_PH = 16920769; -- The actual PH mob.
-
 -- First Aw'Aerns in each group. Used to randomize the mobID as the new placeholder.
-AwAernGroups = {16920777,16920781,16920785,16920789};
+AwAernDRGGroups = {16920777,16920781,16920785,16920789};
 
 -----------------------------------
 

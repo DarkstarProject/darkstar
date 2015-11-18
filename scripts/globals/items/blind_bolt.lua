@@ -15,7 +15,7 @@ function onAdditionalEffect(player,target,damage)
         chance = chance - 5 * (target:getMainLvl() - player:getMainLvl())
         chance = utils.clamp(chance, 5, 95);
     end
-    if(target:hasImmunity(64)) then
+    if (target:hasImmunity(64)) then
         spell:setMsg(75);
     elseif (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_DARK,0) <= 0.5) then
         return 0,0,0;
@@ -24,6 +24,6 @@ function onAdditionalEffect(player,target,damage)
         if (not target:hasStatusEffect(EFFECT_BLINDNESS)) then
             target:addStatusEffect(EFFECT_BLINDNESS, 10, 0, 30);
         end
-        return SUBEFFECT_BLIND, 160, EFFECT_BLINDNESS;
+        return SUBEFFECT_BLIND, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_BLINDNESS;
     end
 end;

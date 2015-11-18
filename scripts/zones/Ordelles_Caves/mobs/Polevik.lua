@@ -18,7 +18,7 @@ end;
 
 function onMobDeath(mob, killer)
 
-	if(killer:getVar("sharpeningTheSwordCS") == 3) then
+	if (killer:getVar("sharpeningTheSwordCS") == 3) then
 		killer:setVar("PolevikKilled",1);
 		killer:setVar("Polevik_Timer",os.time());
 	end

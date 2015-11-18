@@ -20,13 +20,13 @@ function onSpellCast(caster,target,spell)
     local mCHR = target:getStat(MOD_CHR);
     local dCHR = (pCHR - mCHR);
     local resm = applyResistance(caster,spell,target,dCHR,SINGING_SKILL,0);
-    if(resm < 0.5) then
+    if (resm < 0.5) then
         spell:setMsg(85);--resist message
         return 1;
     end
 
     -- level 75 gets a bonus
-    if(caster:getMainLvl() >= 75) then
+    if (caster:getMainLvl() >= 75) then
         power = power + 1;
     end
 
@@ -46,7 +46,7 @@ function onSpellCast(caster,target,spell)
         duration = duration * 2;
     end
     -- Try to overwrite weaker slow / haste
-    if(canOverwrite(target, effect, power)) then
+    if (canOverwrite(target, effect, power)) then
         -- overwrite them
         target:delStatusEffect(effect);
         target:addStatusEffect(effect,power,3,duration);

@@ -21,7 +21,7 @@ function onSpellCast(caster,target,spell)
         duration = duration * 3;
     end
 
-   if(target:addStatusEffect(typeEffect,reflectedPercent, 0,duration, 0, maxReflectedDamage, 1)) then
+   if (target:addStatusEffect(typeEffect,reflectedPercent, 0,duration, 0, maxReflectedDamage, 1)) then
      spell:setMsg(230);
    else
      spell:setMsg(75);

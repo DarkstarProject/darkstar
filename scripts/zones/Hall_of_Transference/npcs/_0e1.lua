@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if(player:getCurrentMission(COP) > BELOW_THE_ARKS)then
+    if (player:getCurrentMission(COP) > BELOW_THE_ARKS) then
         player:startEvent(0x0096);
     else
         player:messageSpecial(NO_RESPONSE_OFFSET+1); -- The door is firmly shut.
@@ -46,7 +46,7 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-    if(csid == 0x0096 and option == 1) then
+    if (csid == 0x0096 and option == 1) then
         player:setPos(185.891, 0, -52.331, 128, 18); -- To Promyvion Dem {R}
     end
 end;

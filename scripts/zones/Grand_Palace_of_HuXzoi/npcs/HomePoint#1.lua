@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Grand Palace of Hu'Xzoi
 --  NPC:  HomePoint#3
---  @pos 
+--  @pos -12 0.5 -288 34
 -----------------------------------
 
 package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
 
-	if(csid == 0x21fc) then
+	if (csid == 0x21fc) then
 
 		if (option == 1) then	
 			player:setHomePoint();

@@ -33,17 +33,17 @@ function onUseAbility(player, target, ability)
     local chance = 90;
     damage = player:getMod(MOD_SHIELD_BASH);
 
-    if(shieldSize == 1 or shieldSize == 5) then
+    if (shieldSize == 1 or shieldSize == 5) then
         damage = 25 + damage;
-    elseif(shieldSize == 2) then
+    elseif (shieldSize == 2) then
         damage = 38 + damage;
-    elseif(shieldSize == 3) then
+    elseif (shieldSize == 3) then
         damage = 65 + damage;
-    elseif(shieldSize == 4) then
+    elseif (shieldSize == 4) then
         damage = 90 + damage;
     end
 
-    if(player:getMainJob() ~= JOB_PLD) then
+    if (player:getMainJob() ~= JOB_PLD) then
         damage = math.floor(damage / 2.5);
         chance = 60;
     else
@@ -52,7 +52,7 @@ function onUseAbility(player, target, ability)
 
     chance = chance + (player:getMainLvl() - target:getMainLvl())*5;
 
-    if(math.random()*100 < chance) then
+    if (math.random()*100 < chance) then
         target:addStatusEffect(EFFECT_STUN,1,0,6);
     end
 

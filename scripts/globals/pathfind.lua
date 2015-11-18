@@ -11,7 +11,7 @@ PATHFLAG_REVERSE = 4
 function pathfind.get(points, index)
     local pos = {};
 
-    if(index < 0) then
+    if (index < 0) then
     	index = (#points + index - 2) / 3;
     end
 
@@ -97,7 +97,7 @@ function pathfind.fromEnd(points, start)
 
     index = index + 3
 
-    if(i > 50) then
+    if (i > 50) then
         break;
     end
   end
@@ -108,7 +108,7 @@ end;
 -- continusly runs the path
 function pathfind.patrol(npc, points, flags)
 
-	if(npc:atPoint(pathfind.first(points)) or npc:atPoint(pathfind.last(points))) then
+	if (npc:atPoint(pathfind.first(points)) or npc:atPoint(pathfind.last(points))) then
 		npc:pathThrough(pathfind.fromStart(points), flags);
 	else
 
@@ -118,7 +118,7 @@ function pathfind.patrol(npc, points, flags)
 		-- i'm some where inbetween
 		while(i <= length) do
 
-			if(npc:atPoint(pathfind.get(points, i))) then
+			if (npc:atPoint(pathfind.get(points, i))) then
 				npc:pathThrough(pathfind.fromStart(points, i), flags);
 				break;
 			end

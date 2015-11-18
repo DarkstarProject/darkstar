@@ -19,14 +19,14 @@ require("scripts/zones/Gusgen_Mines/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getCurrentMission(BASTOK) == TO_THE_FORSAKEN_MINES and player:hasItem(563) == false) then
-		if(trade:hasItemQty(4358,1) and trade:getItemCount() == 1) then -- Trade Hare Meat
+	if (player:getCurrentMission(BASTOK) == TO_THE_FORSAKEN_MINES and player:hasItem(563) == false) then
+		if (trade:hasItemQty(4358,1) and trade:getItemCount() == 1) then -- Trade Hare Meat
 			player:tradeComplete();
 			SpawnMob(17580038,300):updateClaim(player);
 		end
 	end
-	if(player:getQuestStatus(BASTOK, BLADE_OF_DEATH) == QUEST_ACCEPTED and player:getVar("ChaosbringerKills") >= 200) then
-		if(trade:hasItemQty(16607,1) and trade:getItemCount() == 1) then -- Trade Chaosbringer
+	if (player:getQuestStatus(BASTOK, BLADE_OF_DEATH) == QUEST_ACCEPTED and player:getVar("ChaosbringerKills") >= 200) then
+		if (trade:hasItemQty(16607,1) and trade:getItemCount() == 1) then -- Trade Chaosbringer
 			player:tradeComplete();
 			player:startEvent(0x000a);
 		end

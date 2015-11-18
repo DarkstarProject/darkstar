@@ -18,7 +18,7 @@ function onMobWeaponSkill(target, mob, skill)
 
 	local potency = skill:getParam();
 
-    if(potency == 0) then
+    if (potency == 0) then
     	potency = 9;
     end
 

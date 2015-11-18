@@ -23,8 +23,8 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(player:getNation()) == 13 and player:hasKeyItem(MAGICITE_AURASTONE) == false) then
-		if(player:getVar("MissionStatus") < 4) then
+	if (player:getCurrentMission(player:getNation()) == 13 and player:hasKeyItem(MAGICITE_AURASTONE) == false) then
+		if (player:getVar("MissionStatus") < 4) then
 			player:startEvent(0x0000,1); -- play Lion part of the CS (this is first magicite)
 		else
 			player:startEvent(0x0000); -- don't play Lion part of the CS 
@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);	
 	
-	if(csid == 0x0000) then
+	if (csid == 0x0000) then
 		player:setVar("MissionStatus",4);
 		player:addKeyItem(MAGICITE_AURASTONE);
 		player:messageSpecial(KEYITEM_OBTAINED,MAGICITE_AURASTONE);

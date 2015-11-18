@@ -26,9 +26,9 @@ function onTrigger(player,npc)
 local currentMission = player:getCurrentMission(SANDORIA);
 	  MissionStatus = player:getVar("MissionStatus");
 	
-	if(currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 2) then
-		if(GetMobAction(17289653) == 0) then
-			if(player:getVar("Mission6-1MobKilled") == 1) then
+	if (currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 2) then
+		if (GetMobAction(17289653) == 0) then
+			if (player:getVar("Mission6-1MobKilled") == 1) then
 				player:addKeyItem(DREAMROSE);
 				player:messageSpecial(KEYITEM_OBTAINED,DREAMROSE);
 				player:setVar("Mission6-1MobKilled",0);

@@ -12,6 +12,15 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
+  if(mob:getFamily() == 91) then
+    local mobSkin = mob:getModelId();
+
+    if (mobSkin == 1680) then
+        return 0;
+    else
+        return 1;
+    end
+  end
 	return 0;
 end;
 
@@ -28,9 +37,9 @@ function onMobWeaponSkill(target, mob, skill)
     skill:setMsg(MSG_ENFEEB_IS);
 
     -- display silenced first, else blind
-    if(silenced == MSG_ENFEEB_IS) then
+    if (silenced == MSG_ENFEEB_IS) then
         typeEffect = EFFECT_DEFENSE_DOWN;
-    elseif(blinded == MSG_ENFEEB_IS) then
+    elseif (blinded == MSG_ENFEEB_IS) then
         typeEffect = EFFECT_MAGIC_DEF_DOWN;
     else
         skill:setMsg(MSG_MISS);

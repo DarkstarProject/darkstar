@@ -123,6 +123,9 @@ void do_final(int code)
     aFree((void*)login_config.mysql_password);
     aFree((void*)login_config.mysql_database);
 
+    aFree((void*)login_config.msg_server_ip);
+    aFree((void*)login_config.servername);
+
     message_server_close();
     if (messageThread.joinable())
     {

@@ -84,7 +84,7 @@ function onZoneIn( player, prevZone)
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 0x0003;
-    elseif(player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1)then
+    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
         cs = 0x0005; -- zone 4 buburimu no update (north)
     end
 
@@ -118,10 +118,10 @@ function onEventUpdate( player, csid, option)
     -- printf("RESULT: %u",option);
     if (csid == 0x0003) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x0005)then
-        if(player:getPreviousZone() == 213 or player:getPreviousZone() == 249)then
+    elseif (csid == 0x0005) then
+        if (player:getPreviousZone() == 213 or player:getPreviousZone() == 249) then
             player:updateEvent(0,0,0,0,0,7);
-        elseif(player:getPreviousZone() == 198)then
+        elseif (player:getPreviousZone() == 198) then
             player:updateEvent(0,0,0,0,0,6);
         end
     end

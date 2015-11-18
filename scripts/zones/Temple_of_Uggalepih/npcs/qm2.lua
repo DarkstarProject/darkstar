@@ -23,7 +23,7 @@ function onTrigger(player,npc)
 
 	respawn = GetServerVariable("[TEMP]Respawn_qm2_for_offering");
 	
-	if(player:hasItem(1183) == false and player:getFreeSlotsCount() >= 1 and respawn <= os.time(t)) then
+	if (player:hasItem(1183) == false and player:getFreeSlotsCount() >= 1 and respawn <= os.time(t)) then
 		player:addItem(1183);
 		player:messageSpecial(ITEM_OBTAINED,1183); -- Uggalepih Offering
 		SetServerVariable("[TEMP]Respawn_qm2_for_offering",os.time(t) + 7200); -- 2 hours

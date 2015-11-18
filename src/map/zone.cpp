@@ -142,7 +142,6 @@ CZone::CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)
     m_BattlefieldHandler = nullptr;
     m_Weather = WEATHER_NONE;
     m_WeatherChangeTime = 0;
-    m_useNavMesh = false;
     m_navMesh = nullptr;
     m_zoneEntities = new CZoneEntities(this);
 
@@ -343,7 +342,6 @@ void CZone::LoadZoneSettings()
           "zone.battlemulti,"
           "zone.tax,"
           "zone.misc,"
-          "zone.navmesh,"
           "zone.zonetype,"
           "bcnm.name "
         "FROM zone_settings AS zone "
@@ -366,11 +364,10 @@ void CZone::LoadZoneSettings()
         m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle,6);   // party battle music
         m_tax = (uint16)(Sql_GetFloatData(SqlHandle,7) * 100);      // tax for bazaar
         m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,8);
-        m_useNavMesh = (bool)Sql_GetIntData(SqlHandle,9);
 
-        m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 10);
+        m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 9);
 
-        if (Sql_GetData(SqlHandle,11) != nullptr) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
+        if (Sql_GetData(SqlHandle,10) != nullptr) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
         {
             m_BattlefieldHandler = new CBattlefieldHandler(m_zoneID);
         }
@@ -387,9 +384,6 @@ void CZone::LoadZoneSettings()
 
 void CZone::LoadNavMesh()
 {
-    // disable / enable maps navmesh in zone_settings.sql
-    if (!m_useNavMesh) return;
-
     if (m_navMesh == nullptr)
     {
         m_navMesh = new CNavMesh((uint16)GetID());
@@ -399,14 +393,8 @@ void CZone::LoadNavMesh()
     memset(file,0,sizeof(file));
     snprintf(file, sizeof(file), "navmeshes/%s.nav", GetName());
 
-    if (m_navMesh->load(file))
+    if (!m_navMesh->load(file))
     {
-        // verify it can find proper paths
-        m_navMesh->test((uint16)GetID());
-    }
-    else
-    {
-        m_useNavMesh = false;
         delete m_navMesh;
         m_navMesh = nullptr;
     }
@@ -519,7 +507,7 @@ void CZone::UpdateWeather()
     uint8 WeatherChance = 0;
 
     // Random time between 3 minutes and 30 minutes for the next weather change
-    WeatherNextUpdate = (WELL512::GetRandomNumber(180,1620));
+    WeatherNextUpdate = (dsprand::GetRandomNumber(180,1620));
 
     // Find the timestamp since the start of vanadiel
     WeatherDay = CVanaTime::getInstance()->getVanaTime();
@@ -532,7 +520,7 @@ void CZone::UpdateWeather()
     WeatherDay = WeatherDay % WEATHER_CYCLE;
 
     // Get a random number to determine which weather effect we will use
-    WeatherChance = WELL512::GetRandomNumber(100);
+    WeatherChance = dsprand::GetRandomNumber(100);
 
     zoneWeather_t&& weatherType = zoneWeather_t(0, 0, 0);
 
@@ -986,7 +974,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 
     if (PChar->PParty && PChar->loc.destination != 0 && PChar->m_moghouseID != 0)
     {
-        uint8 data[4];
+        uint8 data[4] {};
         WBUFL(data, 0) = PChar->PParty->GetPartyID();
         message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
     }

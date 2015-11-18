@@ -43,7 +43,7 @@ function onTrigger(player,npc)
 	
 	watersOfTheCheval = player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL);
 	if (watersOfTheCheval == QUEST_ACCEPTED) then
-		if(player:hasItem(602) == true) then
+		if (player:hasItem(602) == true) then
 			player:startEvent(0x0200);
 		else
 			player:startEvent(0x0207);

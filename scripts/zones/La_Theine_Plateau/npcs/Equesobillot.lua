@@ -23,26 +23,26 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL) then
+	if (player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL) then
 		local MissionStatus = player:getVar("MissionStatus");
 		
-		if(MissionStatus == 2) then
+		if (MissionStatus == 2) then
 			player:startEvent(0x0065);
-		elseif(MissionStatus == 3) then
+		elseif (MissionStatus == 3) then
 			player:showText(npc, RESCUE_DRILL + 3);
-		elseif(MissionStatus == 8) then
-			if(player:getVar("theRescueDrillRandomNPC") == 2) then
+		elseif (MissionStatus == 8) then
+			if (player:getVar("theRescueDrillRandomNPC") == 2) then
 				player:startEvent(0x0070);
 			else
 				player:showText(npc, RESCUE_DRILL + 21);
 			end
-		elseif(MissionStatus == 9) then
-			if(player:getVar("theRescueDrillRandomNPC") == 2) then
+		elseif (MissionStatus == 9) then
+			if (player:getVar("theRescueDrillRandomNPC") == 2) then
 				player:showText(npc, RESCUE_DRILL + 25);
 			else
 				player:showText(npc, RESCUE_DRILL + 26);
 			end
-		elseif(MissionStatus >= 10) then
+		elseif (MissionStatus >= 10) then
 			player:showText(npc, RESCUE_DRILL + 30);
 		else
 			player:showText(npc, RESCUE_DRILL);
@@ -70,10 +70,10 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x0065) then
+	if (csid == 0x0065) then
 		player:setVar("MissionStatus",3);
-	elseif(csid == 0x0070) then
-		if(player:getFreeSlotsCount() == 0) then 
+	elseif (csid == 0x0070) then
+		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16535); -- Bronze Sword
 		else
 			player:addItem(16535);

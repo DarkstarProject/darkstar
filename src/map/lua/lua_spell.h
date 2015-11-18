@@ -32,35 +32,36 @@
 
 class CLuaSpell
 {
-	CSpell *m_PLuaSpell;
+    CSpell *m_PLuaSpell;
 public:
 
-	static const int8 className[];
-	static Lunar<CLuaSpell>::Register_t methods[];
+    static const int8 className[];
+    static Lunar<CLuaSpell>::Register_t methods[];
 
-	CLuaSpell(lua_State*);
-	CLuaSpell(CSpell*);
+    CLuaSpell(lua_State*);
+    CLuaSpell(CSpell*);
 
-	CSpell* GetSpell() const
-	{
-		return m_PLuaSpell;
-	}
+    CSpell* GetSpell() const
+    {
+        return m_PLuaSpell;
+    }
 
     int32 setMsg(lua_State*);
-	int32 setAoE(lua_State*);
-	int32 setFlag(lua_State*);
-	int32 setRadius(lua_State*);
-	int32 setAnimation(lua_State*);
-	int32 setMPCost(lua_State*);
+    int32 setAoE(lua_State*);
+    int32 setFlag(lua_State*);
+    int32 setRadius(lua_State*);
+    int32 setAnimation(lua_State*);
+    int32 setMPCost(lua_State*);
     int32 canTargetEnemy(lua_State*);
     int32 isAoE(lua_State*);
     int32 tookEffect(lua_State*);
     int32 getTotalTargets(lua_State*);
     int32 getMagicBurstMessage(lua_State*);
-	int32 getElement(lua_State*);
-	int32 getID(lua_State*);
+    int32 getElement(lua_State*);
+    int32 getID(lua_State*);
+    int32 getSkillType(lua_State*);
     int32 getSpellGroup(lua_State*);
-	int32 getFlag(lua_State*);
+    int32 getFlag(lua_State*);
     int32 castTime(lua_State*);
 };
 

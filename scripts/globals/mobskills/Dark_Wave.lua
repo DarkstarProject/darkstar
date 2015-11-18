@@ -21,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
 
 	local cTime = VanadielHour();
 	local power = 8;
-	if(12 <= cTime) then
+	if (12 <= cTime) then
 		local power = 8 + (cTime - 11);
 	end
 

@@ -75,7 +75,7 @@ function onTrigger(player,npc)
 				player:startEvent(10090);
 			end
 		end
-	elseif(player:getCurrentMission(TOAU) >= 2)then
+	elseif (player:getCurrentMission(TOAU) >= 2) then
 		player:startEvent(10176);
 	else
 		player:startEvent(10092);
@@ -103,7 +103,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("WildcatJeuno",0);
 		player:addKeyItem(WHITE_SENTINEL_BADGE);
 		player:messageSpecial(KEYITEM_OBTAINED,WHITE_SENTINEL_BADGE);
-	elseif(csid == 10091) then
+	elseif (csid == 10091) then
 		player:completeQuest(JEUNO,LURE_OF_THE_WILDCAT_JEUNO);
 		player:addFame(JEUNO, JEUNO_FAME*150);
 		player:setVar("WildcatJeuno",0);
@@ -111,7 +111,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(WHITE_INVITATION_CARD);
 		player:messageSpecial(KEYITEM_LOST,WHITE_SENTINEL_BADGE);
 		player:messageSpecial(KEYITEM_OBTAINED,WHITE_INVITATION_CARD);
-	elseif(csid == 10177)then
+	elseif (csid == 10177) then
 		player:tradeComplete();
 		toAhtUrhganWhitegate(player);
 	end

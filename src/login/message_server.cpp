@@ -42,13 +42,13 @@ void queue_message(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::mes
 
     msg.type = type;
 
-    msg.data = new zmq::message_t(extra->size());
-    memcpy(msg.data->data(), extra->data(), extra->size());
+    msg.data = zmq::message_t(extra->size());
+    memcpy(msg.data.data(), extra->data(), extra->size());
 
-    msg.packet = new zmq::message_t(packet->size());
-    memcpy(msg.packet->data(), packet->data(), packet->size());
+    msg.packet = zmq::message_t(packet->size());
+    memcpy(msg.packet.data(), packet->data(), packet->size());
 
-    msg_queue.push(msg);
+    msg_queue.push(std::move(msg));
 }
 
 void message_server_send(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet)
@@ -73,7 +73,7 @@ void message_server_send(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zm
     }
     catch (zmq::error_t e)
     {
-        ShowError("Message: %s", e.what());
+        ShowError("Message: %s\n", e.what());
     }
 }
 
@@ -192,9 +192,10 @@ void message_server_listen()
                     std::lock_guard<std::mutex>lk(queue_mutex);
                     while (!msg_queue.empty())
                     {
-                        chat_message_t msg = msg_queue.front();
+                        chat_message_t& msg = msg_queue.front();
+                        message_server_send(msg.dest, msg.type, &msg.data, &msg.packet);
+
                         msg_queue.pop();
-                        message_server_send(msg.dest, msg.type, msg.data, msg.packet);
                     }
                 }
                 continue;
@@ -219,7 +220,9 @@ void message_server_listen()
         }
         catch (zmq::error_t e)
         {
-            if (!zSocket)
+            // Context was terminated
+            // Exit loop
+            if (!zSocket || e.num() == 156384765)
             {
                 return;
             }
@@ -269,6 +272,8 @@ void message_server_init()
 
 void message_server_close()
 {
+    Sql_Free(ChatSqlHandle);
+
     zContext.close();
     if (zSocket)
     {

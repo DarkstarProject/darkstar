@@ -100,10 +100,10 @@ void trackArrowUsageForScavenge(CItemWeapon* PAmmo, CCharEntity* m_PChar)
 }
 
 /************************************************************************
-*																		*
-*  Инициализируем владельца интеллекта (может добавить проверку на		*
-*  пустой указатель с выводом FatalError ?)								*
-*																		*
+*                                                                       *
+*  Инициализируем владельца интеллекта (может добавить проверку на      *
+*  пустой указатель с выводом FatalError ?)                             *
+*                                                                       *
 ************************************************************************/
 
 CAICharNormal::CAICharNormal(CCharEntity* PChar)
@@ -117,9 +117,9 @@ CAICharNormal::CAICharNormal(CCharEntity* PChar)
 }
 
 /************************************************************************
-*																		*
-*  Основная часть интеллекта - главный цикл								*
-*																		*
+*                                                                       *
+*  Основная часть интеллекта - главный цикл                             *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::CheckCurrentAction(uint32 tick)
@@ -139,30 +139,30 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 
     switch (m_ActionType)
     {
-    case ACTION_NONE:			  									break;
-    case ACTION_ATTACK:					ActionAttack();				break;
-    case ACTION_MAGIC_START:			ActionMagicStart();			break;
-    case ACTION_MAGIC_CASTING:			ActionMagicCasting();		break;
-    case ACTION_MAGIC_FINISH:			ActionMagicFinish();		break;
-    case ACTION_MAGIC_INTERRUPT:		ActionMagicInterrupt();		break;
-    case ACTION_ENGAGE:					ActionEngage();				break;
-    case ACTION_DISENGAGE:				ActionDisengage();	 		break;
-    case ACTION_FALL:					ActionFall();				break;
-    case ACTION_DEATH:					ActionDeath();				break;
-    case ACTION_RANGED_START:			ActionRangedStart();		break;
-    case ACTION_RANGED_FINISH:			ActionRangedFinish();		break;
-    case ACTION_RANGED_INTERRUPT:		ActionRangedInterrupt();	break;
-    case ACTION_ITEM_START:				ActionItemStart();			break;
-    case ACTION_ITEM_USING:				ActionItemUsing();			break;
-    case ACTION_ITEM_FINISH:			ActionItemFinish();			break;
-    case ACTION_ITEM_INTERRUPT:			ActionItemInterrupt();		break;
-    case ACTION_CHANGE_TARGET:	        ActionChangeBattleTarget(); break;
-    case ACTION_WEAPONSKILL_START:		ActionWeaponSkillStart();	break;
-    case ACTION_WEAPONSKILL_FINISH:		ActionWeaponSkillFinish();	break;
-    case ACTION_JOBABILITY_START:		ActionJobAbilityStart();	break;
-    case ACTION_JOBABILITY_FINISH:		ActionJobAbilityFinish();	break;
-    case ACTION_RAISE_MENU_SELECTION:	ActionRaiseMenuSelection(); break;
-    case ACTION_SLEEP:					ActionSleep();				break;
+    case ACTION_NONE:                                               break;
+    case ACTION_ATTACK:                 ActionAttack();             break;
+    case ACTION_MAGIC_START:            ActionMagicStart();         break;
+    case ACTION_MAGIC_CASTING:          ActionMagicCasting();       break;
+    case ACTION_MAGIC_FINISH:           ActionMagicFinish();        break;
+    case ACTION_MAGIC_INTERRUPT:        ActionMagicInterrupt();     break;
+    case ACTION_ENGAGE:                 ActionEngage();             break;
+    case ACTION_DISENGAGE:              ActionDisengage();          break;
+    case ACTION_FALL:                   ActionFall();               break;
+    case ACTION_DEATH:                  ActionDeath();              break;
+    case ACTION_RANGED_START:           ActionRangedStart();        break;
+    case ACTION_RANGED_FINISH:          ActionRangedFinish();       break;
+    case ACTION_RANGED_INTERRUPT:       ActionRangedInterrupt();    break;
+    case ACTION_ITEM_START:             ActionItemStart();          break;
+    case ACTION_ITEM_USING:             ActionItemUsing();          break;
+    case ACTION_ITEM_FINISH:            ActionItemFinish();         break;
+    case ACTION_ITEM_INTERRUPT:         ActionItemInterrupt();      break;
+    case ACTION_CHANGE_TARGET:          ActionChangeBattleTarget(); break;
+    case ACTION_WEAPONSKILL_START:      ActionWeaponSkillStart();   break;
+    case ACTION_WEAPONSKILL_FINISH:     ActionWeaponSkillFinish();  break;
+    case ACTION_JOBABILITY_START:       ActionJobAbilityStart();    break;
+    case ACTION_JOBABILITY_FINISH:      ActionJobAbilityFinish();   break;
+    case ACTION_RAISE_MENU_SELECTION:   ActionRaiseMenuSelection(); break;
+    case ACTION_SLEEP:                  ActionSleep();              break;
 
     default: DSP_DEBUG_BREAK_IF(true);
     }
@@ -214,8 +214,8 @@ void CAICharNormal::WeatherChange(WEATHER weather, uint8 element)
 }
 
 /************************************************************************
-* Checks to see if the action can be cast on self/player/party/dead		*
-* or mobs.																*
+* Checks to see if the action can be cast on self/player/party/dead     *
+* or mobs.                                                              *
 ************************************************************************/
 
 bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTarget)
@@ -321,9 +321,9 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 }
 
 /************************************************************************
-*																		*
-*  Персонаж переходит в боевую стойку, включается прежим атаки			*
-*																		*
+*                                                                       *
+*  Персонаж переходит в боевую стойку, включается прежим атаки          *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionEngage()
@@ -382,9 +382,9 @@ void CAICharNormal::ActionEngage()
 }
 
 /************************************************************************
-*																		*
-*  Персонаж меняет основную цель атаки									*
-*																		*
+*                                                                       *
+*  Персонаж меняет основную цель атаки                                  *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionChangeBattleTarget()
@@ -423,9 +423,9 @@ void CAICharNormal::ActionChangeBattleTarget()
 }
 
 /************************************************************************
-*																		*
-*  Персонаж выходит из режима атаки по каким-либо причинам				*
-*																		*
+*                                                                       *
+*  Персонаж выходит из режима атаки по каким-либо причинам              *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionDisengage()
@@ -534,9 +534,9 @@ void CAICharNormal::ActionDeath()
 }
 
 /************************************************************************
-*																		*
-*  316 - That action cannot be used in this area (costume)				*
-*																		*
+*                                                                       *
+*  316 - That action cannot be used in this area (costume)              *
+*                                                                       *
 ************************************************************************/
 
 // TODO: нет проверки на наличие зарядов у предмета (в случае использования экипировки)
@@ -611,9 +611,9 @@ void CAICharNormal::ActionItemStart()
 }
 
 /************************************************************************
-*																		*
-*  Процесс использовани предмета										*
-*																		*
+*                                                                       *
+*  Процесс использовани предмета                                        *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionItemUsing()
@@ -707,10 +707,10 @@ void CAICharNormal::ActionItemUsing()
 }
 
 /************************************************************************
-*																		*
-*  Окончание использования предмета.									*
-*  Сюда попадает копия предмета, которую нужно удалить.					*
-*																		*
+*                                                                       *
+*  Окончание использования предмета.                                    *
+*  Сюда попадает копия предмета, которую нужно удалить.                 *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionItemFinish()
@@ -757,9 +757,9 @@ void CAICharNormal::ActionItemFinish()
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionItemInterrupt()
@@ -792,15 +792,15 @@ void CAICharNormal::ActionItemInterrupt()
 }
 
 /************************************************************************
-*																		*
-*  Начало дальней атаки. Логика:										*
-*  - если цель мертва, то атака не начинается. никаких сообщений 		*
-*  - проверяем видимость цели (если не видим, то не можем определить 	*
-*    дистанцию до цели или узнать, в бою ли цель)						*
-*  - определяем в бою ли цель (нет смысла определять дистанцию, если 	*
-*    цель атакует другой персонаж)										*
-*  - и наконец определяем дистанцию до цели								*
-*																		*
+*                                                                       *
+*  Начало дальней атаки. Логика:                                        *
+*  - если цель мертва, то атака не начинается. никаких сообщений        *
+*  - проверяем видимость цели (если не видим, то не можем определить    *
+*    дистанцию до цели или узнать, в бою ли цель)                       *
+*  - определяем в бою ли цель (нет смысла определять дистанцию, если    *
+*    цель атакует другой персонаж)                                      *
+*  - и наконец определяем дистанцию до цели                             *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionRangedStart()
@@ -845,7 +845,7 @@ void CAICharNormal::ActionRangedStart()
         if (charutils::hasTrait(m_PChar, TRAIT_RAPID_SHOT))
         {
             uint16 chance = (m_PChar->getMod(MOD_RAPID_SHOT) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PChar));
-            if (WELL512::GetRandomNumber(100) < chance)
+            if (dsprand::GetRandomNumber(100) < chance)
             {
                 m_PChar->m_rangedDelay = 1;
                 m_PChar->isRapidShot = true;
@@ -958,9 +958,9 @@ void CAICharNormal::ActionRangedStart()
 }
 
 /************************************************************************
-*																		*
-*  Окончание дальней атаки												*
-*																		*
+*                                                                       *
+*  Окончание дальней атаки                                              *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionRangedFinish()
@@ -1006,8 +1006,8 @@ void CAICharNormal::ActionRangedFinish()
         m_PChar->m_ActionList.clear();
 
         Action.ActionTarget = m_PBattleSubTarget;
-        Action.reaction = REACTION_HIT;		//0x10
-        Action.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
+        Action.reaction = REACTION_HIT;     //0x10
+        Action.speceffect = SPECEFFECT_HIT;     //0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
         Action.animation = 0;
         Action.messageID = 352;
         Action.knockback = 0;
@@ -1030,9 +1030,9 @@ void CAICharNormal::ActionRangedFinish()
         }
 
         uint8 shadowsTaken = 0;
-        uint8 hitCount = 1;			// 1 hit by default
-        uint8 realHits = 0;			// to store the real number of hit for tp multipler
-        bool hitOccured = false;	// track if player hit mob at all
+        uint8 hitCount = 1;         // 1 hit by default
+        uint8 realHits = 0;         // to store the real number of hit for tp multipler
+        bool hitOccured = false;    // track if player hit mob at all
         bool isSange = false;
         bool isBarrage = m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE, 0);
 
@@ -1057,7 +1057,7 @@ void CAICharNormal::ActionRangedFinish()
                 Action.speceffect = SPECEFFECT_NONE;
                 i = hitCount; // end barrage, shot missed
             }
-            else if (WELL512::GetRandomNumber(100) < battleutils::GetRangedHitRate(m_PChar, m_PBattleSubTarget, isBarrage)) // hit!
+            else if (dsprand::GetRandomNumber(100) < battleutils::GetRangedHitRate(m_PChar, m_PBattleSubTarget, isBarrage)) // hit!
             {
                 // absorbed by shadow
                 if (battleutils::IsAbsorbByShadow(m_PBattleSubTarget))
@@ -1069,7 +1069,7 @@ void CAICharNormal::ActionRangedFinish()
                     float pdif = battleutils::GetRangedPDIF(m_PChar, m_PBattleSubTarget);
                     bool isCrit = false;
 
-                    if (WELL512::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PChar, m_PBattleSubTarget, true))
+                    if (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PChar, m_PBattleSubTarget, true))
                     {
                         pdif *= 1.25; //uncapped
                         int16 criticaldamage = m_PChar->getMod(MOD_CRIT_DMG_INCREASE);
@@ -1139,16 +1139,16 @@ void CAICharNormal::ActionRangedFinish()
                 recycleChance = 100;
             }
 
-            if (PAmmo != nullptr && WELL512::GetRandomNumber(100) > recycleChance)
+            if (PAmmo != nullptr && dsprand::GetRandomNumber(100) > recycleChance)
             {
                 if ((PAmmo->getQuantity() - 1) < 1) // ammo will run out after this shot, make sure we remove it from equip
                 {
                     trackArrowUsageForScavenge(PAmmo, m_PChar);
                     uint8 slot = m_PChar->equip[SLOT_AMMO];
-		    uint8 loc = m_PChar->equipLoc[SLOT_AMMO];
+            uint8 loc = m_PChar->equipLoc[SLOT_AMMO];
                     charutils::UnequipItem(m_PChar, SLOT_AMMO);
                     charutils::SaveCharEquip(m_PChar);
-		    charutils::UpdateItem(m_PChar, loc, slot, -1);
+            charutils::UpdateItem(m_PChar, loc, slot, -1);
                     i = hitCount; // end loop (if barrage), player is out of ammo
                     PAmmo = nullptr;
                 }
@@ -1229,7 +1229,7 @@ void CAICharNormal::ActionRangedFinish()
             uint16 power = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_SANGE)->GetPower();
 
             // remove shadows
-            while (realHits-- && WELL512::GetRandomNumber(100) <= power && battleutils::IsAbsorbByShadow(m_PChar));
+            while (realHits-- && dsprand::GetRandomNumber(100) <= power && battleutils::IsAbsorbByShadow(m_PChar));
 
             m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SANGE);
         }
@@ -1239,10 +1239,10 @@ void CAICharNormal::ActionRangedFinish()
 
         // Try to double shot
         // Will instantly trigger another ranged attack
-        if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_SHOT, 0) && !m_PChar->secondDoubleShotTaken &&	!isBarrage && !isSange)
+        if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_SHOT, 0) && !m_PChar->secondDoubleShotTaken &&    !isBarrage && !isSange)
         {
             uint16 doubleShotChance = m_PChar->getMod(MOD_DOUBLE_SHOT_RATE);
-            if (WELL512::GetRandomNumber(100) < doubleShotChance)
+            if (dsprand::GetRandomNumber(100) < doubleShotChance)
             {
                 m_PChar->secondDoubleShotTaken = true;
                 m_ActionType = ACTION_RANGED_FINISH;
@@ -1257,9 +1257,9 @@ void CAICharNormal::ActionRangedFinish()
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionRangedInterrupt()
@@ -1285,11 +1285,11 @@ void CAICharNormal::ActionRangedInterrupt()
 }
 
 /************************************************************************
-*																		*
-*  Inoshishinofuda														*
-*  Shikanofuda															*
-*  Chonofuda															*
-*																		*
+*                                                                       *
+*  Inoshishinofuda                                                      *
+*  Shikanofuda                                                          *
+*  Chonofuda                                                            *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionMagicStart()
@@ -1340,9 +1340,9 @@ void CAICharNormal::MagicStartError()
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionMagicCasting()
@@ -1366,9 +1366,9 @@ void CAICharNormal::ActionMagicCasting()
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionMagicFinish()
@@ -1563,7 +1563,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     if (m_PJobAbility->getMeritModID() > 0 && !(m_PJobAbility->getAddType() & ADDTYPE_MERIT))
     {
-        meritRecastReduction = m_PChar->PMeritPoints->GetMeritValue((Merit_t*)m_PChar->PMeritPoints->GetMerit((MERIT_TYPE)m_PJobAbility->getMeritModID()), m_PChar);
+        meritRecastReduction = m_PChar->PMeritPoints->GetMeritValue((MERIT_TYPE)m_PJobAbility->getMeritModID(), m_PChar);
     }
 
     uint32 RecastTime = (m_PJobAbility->getRecastTime() - meritRecastReduction);
@@ -1581,12 +1581,21 @@ void CAICharNormal::ActionJobAbilityFinish()
     }
     else if (m_PJobAbility->getID() >= ABILITY_HEALING_RUBY)
     {
-        if (m_PChar->getMod(MOD_BP_DELAY) > 15){
+        if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE))
+        {
+            RecastTime = 0;
+        }
+        else if (m_PChar->getMod(MOD_BP_DELAY) > 15)
+        {
             RecastTime -= 15;
         }
-        else{
+        else
+        {
             RecastTime -= m_PChar->getMod(MOD_BP_DELAY);
         }
+
+        // Blood Pact Delay II is separate from Blood Pact Delay. There is no reachable cap so far.
+        RecastTime -= m_PChar->getMod(MOD_BP_DELAY_II);
     }
 
     // check paralysis
@@ -1624,7 +1633,7 @@ void CAICharNormal::ActionJobAbilityFinish()
         if (m_PJobAbility->getID() >= ABILITY_FIGHTERS_ROLL && m_PJobAbility->getID() <= ABILITY_SCHOLARS_ROLL)
         {
             m_PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
-            uint8 roll = WELL512::GetRandomNumber(1,7);
+            uint8 roll = dsprand::GetRandomNumber(1,7);
             m_PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
                 EFFECT_DOUBLE_UP_CHANCE,
                 EFFECT_DOUBLE_UP_CHANCE,
@@ -1695,7 +1704,7 @@ void CAICharNormal::ActionJobAbilityFinish()
         }
         else if (m_PJobAbility->getID() == ABILITY_WILD_CARD)
         {
-            uint8 roll = WELL512::GetRandomNumber(1,7);
+            uint8 roll = dsprand::GetRandomNumber(1,7);
             uint16 AnimationId = 132 + (roll - 1);
 
             CAbility* rollAbility = ability::GetAbility(ABILITY_WILD_CARD);
@@ -1742,13 +1751,13 @@ void CAICharNormal::ActionJobAbilityFinish()
             if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_UP_CHANCE))
             {
                 //TODO: some reason cosair double up chance is sometimes null
-                uint8 roll = (WELL512::GetRandomNumber(1,7));
+                uint8 roll = (dsprand::GetRandomNumber(1,7));
                 CStatusEffect* doubleUpEffect = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DOUBLE_UP_CHANCE);
 
                 if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNAKE_EYE))
                 {
                     //check for instant 11 via Snake Eye merits
-                    if (doubleUpEffect->GetPower() >= 5 && WELL512::GetRandomNumber(100) < m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_SNAKE_EYE)->GetPower())
+                    if (doubleUpEffect->GetPower() >= 5 && dsprand::GetRandomNumber(100) < m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_SNAKE_EYE)->GetPower())
                     {
                         roll = 11 - doubleUpEffect->GetPower();
                     }
@@ -1874,9 +1883,16 @@ void CAICharNormal::ActionJobAbilityFinish()
                         m_PChar->addMP(-m_PChar->GetMLevel() * 2);
                     }
                 }
+                else if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE))
+                {
+                    m_PChar->addMP(-m_PJobAbility->getAnimationID() * 1.5);
+                }
                 else {
                     m_PChar->addMP(-m_PJobAbility->getAnimationID()); // TODO: ...
                 }
+                
+                // Remove Apogee effect
+                m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);  
                 m_PChar->m_ActionList.push_back(Action);
                 m_PChar->PPet->PBattleAI->SetBattleSubTarget(m_PBattleSubTarget);
 
@@ -1933,19 +1949,19 @@ void CAICharNormal::ActionJobAbilityFinish()
             uint16 damage = 0;
 
             Action.ActionTarget = m_PBattleSubTarget;
-            Action.reaction = REACTION_HIT;		//0x10
-            Action.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
+            Action.reaction = REACTION_HIT;     //0x10
+            Action.speceffect = SPECEFFECT_HIT;     //0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
             Action.animation = m_PJobAbility->getAnimationID();;
             Action.messageID = MSGBASIC_USES_JA_TAKE_DAMAGE;
 
-            bool hitOccured = false;	// track if player hit mob at all
+            bool hitOccured = false;    // track if player hit mob at all
             if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE, 0))
             {
                 Action.messageID = 32;
                 Action.reaction = REACTION_EVADE;
                 Action.speceffect = SPECEFFECT_NONE;
             }
-            else if (WELL512::GetRandomNumber(100) < battleutils::GetRangedHitRate(m_PChar, m_PBattleSubTarget, false)) // hit!
+            else if (dsprand::GetRandomNumber(100) < battleutils::GetRangedHitRate(m_PChar, m_PBattleSubTarget, false)) // hit!
             {
                 //check for shadow absorb
                 if (battleutils::IsAbsorbByShadow(m_PBattleSubTarget)) {
@@ -1960,7 +1976,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
                     float pdif = battleutils::GetRangedPDIF(m_PChar, m_PBattleSubTarget);
 
-                    if (WELL512::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PChar, m_PBattleSubTarget, true))
+                    if (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PChar, m_PBattleSubTarget, true))
                     {
                         pdif *= 1.25; //uncapped
                         Action.speceffect = SPECEFFECT_CRITICAL_HIT;
@@ -2004,17 +2020,17 @@ void CAICharNormal::ActionJobAbilityFinish()
                 recycleChance = 100;
             }
 
-            if (PAmmo != nullptr && WELL512::GetRandomNumber(100) > recycleChance)
+            if (PAmmo != nullptr && dsprand::GetRandomNumber(100) > recycleChance)
             {
 
                 if ((PAmmo->getQuantity() - 1) < 1) // ammo will run out after this shot, make sure we remove it from equip
                 {
                     trackArrowUsageForScavenge(PAmmo, m_PChar);
                     uint8 slot = m_PChar->equip[SLOT_AMMO];
-		    uint8 loc = m_PChar->equipLoc[SLOT_AMMO];
+            uint8 loc = m_PChar->equipLoc[SLOT_AMMO];
                     charutils::UnequipItem(m_PChar, SLOT_AMMO);
                     charutils::SaveCharEquip(m_PChar);
-		    charutils::UpdateItem(m_PChar, loc, slot, -1);
+            charutils::UpdateItem(m_PChar, loc, slot, -1);
                 }
                 else
                 {
@@ -2085,7 +2101,7 @@ void CAICharNormal::ActionJobAbilityFinish()
                 //Action.flag = 3;
 
                 uint16 shadowBindDuration = 30 + m_PChar->getMod(MOD_SHADOW_BIND_EXT);
-                if (WELL512::GetRandomNumber(100) >= m_PBattleSubTarget->getMod(MOD_BINDRES))
+                if (dsprand::GetRandomNumber(100) >= m_PBattleSubTarget->getMod(MOD_BINDRES))
                 {
                     // Shadow bind success!
                     m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID() + 16, 11, 277));
@@ -2248,18 +2264,19 @@ void CAICharNormal::ActionJobAbilityFinish()
 
         // TODO: все перенести в скрипты, т.к. система позволяет получать указатель на питомца
 
-        if (m_PJobAbility->getID() == ABILITY_CALL_BEAST || m_PJobAbility->getID() == ABILITY_REWARD)
+        if (m_PJobAbility->getID() == ABILITY_CALL_BEAST || m_PJobAbility->getID() == ABILITY_REWARD ||
+        m_PJobAbility->getID() == ABILITY_ANGON || m_PJobAbility->getID() == ABILITY_TOMAHAWK || m_PJobAbility->getID() == ABILITY_REPAIR)
         {
             CItemArmor* PAmmo = m_PChar->getEquip(SLOT_AMMO);
             uint8 slot = m_PChar->equip[SLOT_AMMO];
-	    uint8 loc = m_PChar->equipLoc[SLOT_AMMO];
+            uint8 loc = m_PChar->equipLoc[SLOT_AMMO];
             if (PAmmo->getQuantity() == 1)
             {
-		charutils::UnequipItem(m_PChar, SLOT_AMMO);
+                charutils::UnequipItem(m_PChar, SLOT_AMMO);
                 charutils::SaveCharEquip(m_PChar);
-		charutils::UpdateItem(m_PChar, loc, slot, -1);
             }
-            
+            charutils::UpdateItem(m_PChar, loc, slot, -1);
+
             m_PChar->pushPacket(new CInventoryFinishPacket());
         }
 
@@ -2379,11 +2396,11 @@ void CAICharNormal::ActionWeaponSkillStart()
             CItemWeapon* PItem = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
 
             // before allowing ranged weapon skill...
-            if (PItem == nullptr ||								// check item is not nullptr
+            if (PItem == nullptr ||                             // check item is not nullptr
                 !(PItem->isType(ITEM_WEAPON)) ||
-                !m_PChar->m_Weapons[SLOT_AMMO]->isRanged() ||		// make sure ammo item is a ranged item
-                !m_PChar->m_Weapons[SLOT_RANGED]->isRanged() ||	// make sure range weapon is a range weapon
-                m_PChar->equip[SLOT_AMMO] == 0)					// make sure ammo is equiped (the ammo qty checks the inventory slot and not the ammo slot)
+                !m_PChar->m_Weapons[SLOT_AMMO]->isRanged() ||       // make sure ammo item is a ranged item
+                !m_PChar->m_Weapons[SLOT_RANGED]->isRanged() || // make sure range weapon is a range weapon
+                m_PChar->equip[SLOT_AMMO] == 0)                 // make sure ammo is equiped (the ammo qty checks the inventory slot and not the ammo slot)
             {
                 WeaponSkillStartError(MSGBASIC_NO_RANGED_WEAPON); // You do not have an appropriate ranged weapon equipped
                 return;
@@ -2432,9 +2449,9 @@ void CAICharNormal::WeaponSkillStartError(uint16 error)
 }
 
 /************************************************************************
-*																		*
-*			End the weapon skill										*
-*																		*
+*                                                                       *
+*           End the weapon skill                                        *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionWeaponSkillFinish()
@@ -2632,7 +2649,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
     m_PTargetFind->reset();
     m_PChar->m_ActionList.clear();
 
-    uint8 wspoints = 0;
+    uint16 wspoints = 0;
 
     // try to skill up if ws hit
     if (Action.reaction == REACTION_HIT)
@@ -2659,15 +2676,15 @@ void CAICharNormal::ActionWeaponSkillFinish()
             luautils::OnAdditionalEffect(m_PChar, m_PBattleSubTarget, PAmmo, &Action, (uint32)damage);
             Action.additionalEffect = SUBEFFECT_NONE;
         }
-        if (PAmmo != nullptr && WELL512::GetRandomNumber(100) > recycleChance)
+        if (PAmmo != nullptr && dsprand::GetRandomNumber(100) > recycleChance)
         {
             if ((PAmmo->getQuantity() - 1) < 1) // ammo will run out after this shot, make sure we remove it from equip
             {
                 uint8 slot = m_PChar->equip[SLOT_AMMO];
-		uint8 loc = m_PChar->equipLoc[SLOT_AMMO];	
+        uint8 loc = m_PChar->equipLoc[SLOT_AMMO];   
                 charutils::UnequipItem(m_PChar, SLOT_AMMO);
                 charutils::SaveCharEquip(m_PChar);
-		charutils::UpdateItem(m_PChar, loc, slot, -1);
+        charutils::UpdateItem(m_PChar, loc, slot, -1);
             }
             else
             {
@@ -2823,9 +2840,9 @@ void CAICharNormal::ActionSleep()
 }
 
 /************************************************************************
-*																		*
-*  Auto Attack															*
-*																		*
+*                                                                       *
+*  Auto Attack                                                          *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionAttack()
@@ -3067,7 +3084,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
 
     uint16 xpReturned = ceil(expLost * ratioReturned);
 
-    if (!m_PChar->getMijinGakure())
+    if (!m_PChar->getMijinGakure() && m_PChar->GetMLevel() >= map_config.exp_loss_level)
     {
         charutils::AddExperiencePoints(true, m_PChar, m_PChar, xpReturned);
     }
@@ -3101,7 +3118,7 @@ void CAICharNormal::DoAttack()
     CAttackRound attackRound(m_PChar);
 
     /////////////////////////////////////////////////////////////////////////
-    //	Start of the attack loop.
+    //  Start of the attack loop.
     /////////////////////////////////////////////////////////////////////////
     while (attackRound.GetAttackSwingCount() && !(m_PBattleTarget->isDead()))
     {
@@ -3123,7 +3140,7 @@ void CAICharNormal::DoAttack()
             Action.reaction = REACTION_EVADE;
             Action.speceffect = SPECEFFECT_NONE;
         }
-        else if ((WELL512::GetRandomNumber(100) < attack.GetHitRate() || attackRound.GetSATAOccured()) &&
+        else if ((dsprand::GetRandomNumber(100) < attack.GetHitRate() || attackRound.GetSATAOccured()) &&
             !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
         {
             // attack hit, try to be absorbed by shadow unless it is a SATA attack round
@@ -3137,7 +3154,7 @@ void CAICharNormal::DoAttack()
             else
             {
                 // Set this attack's critical flag.
-                attack.SetCritical(WELL512::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, !attack.IsFirstSwing()));
+                attack.SetCritical(dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, !attack.IsFirstSwing()));
 
                 // Critical hit.
                 if (attack.IsCritical())
@@ -3221,8 +3238,8 @@ void CAICharNormal::DoAttack()
             zanshinChance = dsp_cap(zanshinChance, 0, 100);
             //zanshin may only proc on a missed/guarded/countered swing or as SAM main with hasso up (at 25% of the base zanshin rate)
             if (((Action.reaction == REACTION_EVADE || Action.reaction == REACTION_GUARD || 
-                Action.spikesEffect == SUBEFFECT_COUNTER) && WELL512::GetRandomNumber(100) < zanshinChance) || 
-                (m_PChar->GetMJob() == JOB_SAM && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) && WELL512::GetRandomNumber(100) < (zanshinChance / 4)))
+                Action.spikesEffect == SUBEFFECT_COUNTER) && dsprand::GetRandomNumber(100) < zanshinChance) || 
+                (m_PChar->GetMJob() == JOB_SAM && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) && dsprand::GetRandomNumber(100) < (zanshinChance / 4)))
             {
                 attack.SetAttackType(ZANSHIN_ATTACK);
                 attack.SetAsFirstSwing(false);

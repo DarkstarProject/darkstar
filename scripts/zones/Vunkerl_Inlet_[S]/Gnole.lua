@@ -18,11 +18,11 @@ function onMobRoam(mob)
 	local roamChance = math.random(1,100);
 	local roamMoonPhase = VanadielMoonPhase();
 	
-	if(roamChance > 100-roamMoonPhase) then
-		if(mob:AnimationSub() == 0 and os.time() - transformTime > 300) then
+	if (roamChance > 100-roamMoonPhase) then
+		if (mob:AnimationSub() == 0 and os.time() - transformTime > 300) then
 			mob:AnimationSub(1);
 			mob:setLocalVar("transformTime", os.time());
-		elseif(mob:AnimationSub() == 1 and os.time() - transformTime > 300) then
+		elseif (mob:AnimationSub() == 1 and os.time() - transformTime > 300) then
 			mob:AnimationSub(0);
 			mob:setLocalVar("transformTime", os.time());
 		end
@@ -39,11 +39,11 @@ function onMobEngaged(mob,target)
 	local chance = math.random(1,100);
 	local moonPhase = VanadielMoonPhase();
 	
-	if(chance > 100-moonPhase) then
-		if(mob:AnimationSub() == 0 and mob:getBattleTime() - changeTime > 45) then
+	if (chance > 100-moonPhase) then
+		if (mob:AnimationSub() == 0 and mob:getBattleTime() - changeTime > 45) then
 			mob:AnimationSub(1);
 			mob:setLocalVar("changeTime", mob:getBattleTime());
-		elseif(mob:AnimationSub() == 1 and mob:getBattleTime() - changeTime > 45) then
+		elseif (mob:AnimationSub() == 1 and mob:getBattleTime() - changeTime > 45) then
 			mob:AnimationSub(0);
 			mob:setLocalVar("changeTime", mob:getBattleTime());
 		end

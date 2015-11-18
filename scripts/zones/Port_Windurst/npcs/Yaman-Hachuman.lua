@@ -30,9 +30,9 @@ function onTrigger(player,npc)
 	
 	if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,16) == false) then
 		player:startEvent(0x0270);
-	elseif(WonderWands == QUEST_ACCEPTED) then
+	elseif (WonderWands == QUEST_ACCEPTED) then
 		player:startEvent(0x0100,0,0,0,17061);
-	elseif(WonderWands == QUEST_COMPLETED) then
+	elseif (WonderWands == QUEST_COMPLETED) then
 		player:startEvent(0x010c);
 	else
 		player:startEvent(0xe9);

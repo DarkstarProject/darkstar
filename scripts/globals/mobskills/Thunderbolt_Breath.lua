@@ -12,7 +12,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     -- not used in Uleguerand_Range
-    if(mob:getZoneID() == 5) then
+    if (mob:getZoneID() == 5) then
         return 1;
     end
     return 0;
@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     local dmgmod = MobBreathMove(mob, target, 0.333, 0.625, ELE_THUNDER, 500);
 
-    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_THUNDEr,MOBPARAM_IGNORE_SHADOWS);
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_THUNDER,MOBPARAM_IGNORE_SHADOWS);
 
     target:delHP(dmg);
     return dmg;

@@ -116,8 +116,7 @@ namespace battlefieldutils{
 							PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 
 							if(strcmp(PMob->GetName(),"Maat")==0){
-								mobutils::SetupMaat(PMob, (JOBTYPE)battlefield->getPlayerMainJob());
-								PMob->m_DropID = 4485; //Give Maat his stealable Warp Scroll 
+								mobutils::InitializeMaat(PMob, (JOBTYPE)battlefield->getPlayerMainJob());
 
 								// disable players subjob
 								battlefield->disableSubJob();
@@ -386,7 +385,7 @@ namespace battlefieldutils{
 	   if(maxloot!=0){
 		 for (uint8 group = 0; group <= maxloot; ++group){
 			uint16 maxRolls = getRollsPerGroup(battlefield,group);
-            uint16 groupRoll = WELL512::GetRandomNumber(maxRolls);
+            uint16 groupRoll = dsprand::GetRandomNumber(maxRolls);
 			uint16 itemRolls = 0;
 
 			for (uint8 item = 0; item < LootList->size(); ++item)

@@ -37,6 +37,10 @@
 // mobs will deaggro if player is out of range for this long
 #define MOB_DEAGGRO_TIME 25000
 
+// cool down time after attempting a mob skill or
+// after using one
+#define MOB_SKILL_COOL 4000
+
 // time a mob is neutral after disengaging
 #define MOB_NEUTRAL_TIME 10000
 
@@ -67,6 +71,7 @@ public:
 
     bool isActionQueueAttack();
 	void Stun(uint32 stunTime);
+    void Despawn();
 
     // time of day change, update mobs
     // TODO:
@@ -83,6 +88,7 @@ protected:
 	bool m_checkDespawn; // check and despawn if i'm too far from spawn
 	uint32 m_SpawnTime;
 	uint32 m_LastSpecialTime;
+	uint32 m_LastMobSkillTime;
 	uint32 m_LastStunTime;
 	uint32 m_StunTime;
 	uint32 m_DeaggroTime;
@@ -91,9 +97,6 @@ protected:
 	bool m_drawnIn;
 	bool m_mobskillattack;
 	bool m_actionqueueability;
-
-	bool  m_CanStandback;
-	uint32 m_LastStandbackTime;
 
 	void ActionRoaming();
 	void ActionEngage();
@@ -141,6 +144,7 @@ protected:
 
 	void Deaggro(); // deaggro targe
 	void OnTick();
+        bool CanMoveForward(float currentDistance);
 
 private:
 

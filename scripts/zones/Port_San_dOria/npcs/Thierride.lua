@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 	local count = trade:getItemCount();
 
 	if (trade:hasItemQty(4358, 5) and count == 5) then
-		if(player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT) == QUEST_ACCEPTED) then
+		if (player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT) == QUEST_ACCEPTED) then
 			player:startEvent(0x0210);
 		else
 			player:startEvent(0x020e);
@@ -48,7 +48,6 @@ function onTrigger(player,npc)
 	if (aTasteForMeat == QUEST_AVAILABLE and player:getVar("aTasteForMeat") == 1 or aTasteForMeat == QUEST_ACCEPTED) then
 		player:startEvent(0x020e);
 	else
-		player:delQuest(SANDORIA, A_TASTE_FOR_MEAT);
 		player:startEvent(0x020c);
 	end;
 	

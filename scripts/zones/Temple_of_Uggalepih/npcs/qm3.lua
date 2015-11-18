@@ -23,7 +23,7 @@ function onTrigger(player,npc)
 
 	respawn = GetServerVariable("[TEMP]Respawn_qm3_for_whistle");
 	
-	if(player:hasItem(1184) == false and player:getFreeSlotsCount() >= 1 and respawn <= os.time(t)) then
+	if (player:hasItem(1184) == false and player:getFreeSlotsCount() >= 1 and respawn <= os.time(t)) then
 		player:addItem(1184);
 		player:messageSpecial(ITEM_OBTAINED,1184); -- Uggalepih Whistle
 		SetServerVariable("[TEMP]Respawn_qm3_for_whistle",os.time(t) + 7200); -- 2 hours

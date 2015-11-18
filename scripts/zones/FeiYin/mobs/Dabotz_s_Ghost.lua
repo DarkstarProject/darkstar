@@ -18,7 +18,7 @@ end;
 
 function onMobDeath(mob, killer)
 
-	if(killer:hasKeyItem(AQUAFLORA3)) then
+	if (killer:hasKeyItem(AQUAFLORA3)) then
 		killer:setVar("DabotzKilled",1);
 	end
 

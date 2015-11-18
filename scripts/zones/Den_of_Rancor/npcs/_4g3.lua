@@ -22,10 +22,10 @@ function onTrade(player,npc,trade)
 
 	
 -- Trade Crimson Rancor Flame
-	if(trade:hasItemQty(1139,1) and trade:getItemCount() == 1) then
+	if (trade:hasItemQty(1139,1) and trade:getItemCount() == 1) then
 		if (LSW == 8) then
 			player:messageSpecial(LANTERN_OFFSET + 7); -- already lit
-		elseif(LSW == 9)then
+		elseif (LSW == 9) then
 			npc:openDoor(LANTERNS_STAY_LIT);
 		local ALL = LNW+LNE+LSE;
 			player:tradeComplete();

@@ -19,7 +19,7 @@ end;
 
 function onMobDeath(mob, killer)
 
-	if(killer:getQuestStatus(BASTOK,THE_TALEKEEPER_S_GIFT) == QUEST_ACCEPTED) then
+	if (killer:getQuestStatus(BASTOK,THE_TALEKEEPER_S_GIFT) == QUEST_ACCEPTED) then
 		killer:setVar("theTalekeepersGiftKilledNM",killer:getVar("theTalekeepersGiftKilledNM") + 1);
 	end
 

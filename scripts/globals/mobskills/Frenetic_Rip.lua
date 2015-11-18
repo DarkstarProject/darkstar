@@ -3,16 +3,19 @@
 --
 --  Description: Delivers a threefold attack. Damage varies with TP.
 --  Type: Physical (Blunt)
---
---
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+    if (mob:AnimationSub() == 0 and mob:getFamily() == 165) then -- Imps - with horn
+        return 1;
+    else
+        return 0;
+    end
 end;
 
 function onMobWeaponSkill(target, mob, skill)

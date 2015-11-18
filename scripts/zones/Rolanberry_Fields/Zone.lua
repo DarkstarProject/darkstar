@@ -79,13 +79,13 @@ end;
 function onZoneIn( player, prevZone)
 	local cs = -1;
     
-	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
+	if ( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos( -381.747, -31.068, -788.092, 211);
 	end
 
-	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
+	if ( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
 		cs = 0x0002;
-    elseif(player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1)then	
+    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then	
         cs = 0x0004; 
 	end
 
@@ -120,7 +120,7 @@ function onGameHour()
 	local VanadielHour = VanadielHour();
 	local SilkCaterpillar = 17227782;
 		
-	if(VanadielHour % 1 == 0 and GetMobAction( SilkCaterpillar ) == 16) then 
+	if (VanadielHour % 1 == 0 and GetMobAction( SilkCaterpillar ) == 16) then 
 		DespawnMob( SilkCaterpillar );
 	end
 	
@@ -136,7 +136,7 @@ function onEventUpdate( player, csid, option)
 	if ( csid == 0x0002) then
 		lightCutsceneUpdate( player);  -- Quest: I Can Hear A Rainbow
     elseif (csid == 0x0004) then
-        if(player:getZPos() <  75) then
+        if (player:getZPos() <  75) then
             player:updateEvent(0,0,0,0,0,1);
         else
             player:updateEvent(0,0,0,0,0,2);
@@ -151,7 +151,7 @@ end;
 function onEventFinish( player, csid, option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-	if( csid == 0x0002) then
+	if ( csid == 0x0002) then
 		lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
 	end
 end;

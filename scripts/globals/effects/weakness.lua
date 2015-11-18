@@ -19,7 +19,7 @@ function onEffectGain(target,effect)
     -- This is wrong, and players should be given a fixed 100% slow in the core so that all haste is ignored, but I am le tired.
     target:addMod(MOD_HASTE_MAGIC,-1024);
 
-    if(effect:getPower() == 2) then
+    if (effect:getPower() == 2) then
         -- handle double weakness
         target:addMod(MOD_RATTP,-100);
         target:addMod(MOD_RACCP,-100);
@@ -44,7 +44,7 @@ function onEffectLose(target,effect)
     target:delMod(MOD_MPP,-75);
     target:delMod(MOD_HASTE_MAGIC,-1024);
 
-    if(effect:getPower() == 2) then
+    if (effect:getPower() == 2) then
         -- handle double weakness
         target:delMod(MOD_RATTP,-100);
         target:delMod(MOD_RACCP,-100);

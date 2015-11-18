@@ -17,8 +17,8 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_3") == 1) then
-		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
+	if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_3") == 1) then
+		if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
 			player:setVar("ridingOnTheClouds_3",0);
 			player:tradeComplete();
 			player:addKeyItem(SOMBER_STONE);
@@ -33,7 +33,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if(player:getCurrentMission(COP) ==MORE_QUESTIONS_THAN_ANSWERS and player:getVar("PromathiaStatus")==2)then
+    if (player:getCurrentMission(COP) ==MORE_QUESTIONS_THAN_ANSWERS and player:getVar("PromathiaStatus")==2) then
 	    player:startEvent(0x2715);
 	else
 	    player:startEvent(0x00ab);
@@ -56,7 +56,7 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-   if(csid == 0x2715)then
+   if (csid == 0x2715) then
       player:setVar("PromathiaStatus",0);
 	  player:completeMission(COP,MORE_QUESTIONS_THAN_ANSWERS);
 	  player:addMission(COP,ONE_TO_BE_FEARED);

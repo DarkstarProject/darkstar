@@ -20,7 +20,7 @@ function onSpellCast(caster,target,spell)
 	duration = calculateDurationForLvl(duration, 7, target:getMainLvl());
 
     local typeEffect = EFFECT_PROTECT;
-	if(target:addStatusEffect(typeEffect, power, 0, duration)) then
+	if (target:addStatusEffect(typeEffect, power, 0, duration)) then
         spell:setMsg(230);
     else
 		spell:setMsg(75); -- no effect

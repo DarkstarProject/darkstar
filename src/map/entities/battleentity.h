@@ -30,6 +30,7 @@
 #include "../items/item_weapon.h"
 
 #include "baseentity.h"
+#include "../alliance.h"
 #include "../trait.h"
 #include "../modifier.h"
 #include "../party.h"
@@ -304,6 +305,7 @@ enum SUBEFFECT
     SUBEFFECT_WIND_SPIKES = 7,  // Present in client but currently unused.
     SUBEFFECT_STONE_SPIKES = 8,  // Present in client but currently unused.
     SUBEFFECT_DELUGE_SPIKES = 9,  // Present in client but currently unused.
+    SUBEFFECT_DEATH_SPIKES = 10, // yes really: http://www.ffxiah.com/item/26944/
     SUBEFFECT_COUNTER = 63, // Also used by Retaliation
 
     // SKILLCHAINS
@@ -321,6 +323,8 @@ enum SUBEFFECT
     SUBEFFECT_SCISSION = 12,
     SUBEFFECT_DETONATION = 13,
     SUBEFFECT_IMPACTION = 14,
+    SUBEFFECT_RADIANCE = 15,
+    SUBEFFECT_UMBRA = 16,
 
     SUBEFFECT_NONE = 0,
 
@@ -469,6 +473,7 @@ public:
     bool			isCharmed;					// is the battle entity charmed?
 
     bool		    isDead();					// проверяем, мертва ли сущность
+    bool		    isAlive();
     bool			isInDynamis();
     bool			hasImmunity(uint32 imID);
     bool			isAsleep();
@@ -530,8 +535,39 @@ public:
     void            applyPetModifiers(CPetEntity* PPet);
     void            removePetModifiers(CPetEntity* PPet);
 
-    void            ForParty(std::function<void(CBattleEntity*)>);
-    void            ForAlliance(std::function<void(CBattleEntity*)>);
+    template        <typename F, typename... Args>
+    void            ForParty(F func, Args&&... args)
+    {
+        if (PParty) {
+            for (auto PMember : PParty->members) {
+                func(PMember, std::forward<Args>(args)...);
+            }
+        }
+        else {
+            func(this, std::forward<Args>(args)...);
+        }
+    }
+    template        <typename F, typename... Args>
+    void            ForAlliance(F func, Args&&... args)
+    {
+        if (PParty) {
+            if (PParty->m_PAlliance) {
+                for (auto PAllianceParty : PParty->m_PAlliance->partyList) {
+                    for (auto PMember : PAllianceParty->members) {
+                        func(PMember, std::forward<Args>(args)...);
+                    }
+                }
+            }
+            else {
+                for (auto PMember : PParty->members) {
+                    func(PMember, std::forward<Args>(args)...);
+                }
+            }
+        }
+        else {
+            func(this);
+        }
+    }
 
     virtual void    addTrait(CTrait*);
     virtual void    delTrait(CTrait*);

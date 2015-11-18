@@ -27,7 +27,7 @@ function onTrigger(player,npc)
 	thickAsThievesCS = player:getVar("thickAsThievesCS");
 	
 	-- As Thick As Thieves (THF AF)
-	if(thickAsThieves == QUEST_ACCEPTED) then
+	if (thickAsThieves == QUEST_ACCEPTED) then
 		player:startEvent(0x01FB,0,17474);
 			if (thickAsThievesCS == 1) then
 				player:setVar("thickAsThievesCS",3);

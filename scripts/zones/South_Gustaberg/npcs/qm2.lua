@@ -21,8 +21,8 @@ function onTrade(player,npc,trade)
 
 	local SmokeOnTheMountain = player:getQuestStatus(BASTOK,SMOKE_ON_THE_MOUNTAIN);
 
-	if(SmokeOnTheMountain == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(4372,1) and trade:getItemCount() == 1) then
+	if (SmokeOnTheMountain == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(4372,1) and trade:getItemCount() == 1) then
 			if (player:getVar("SGusta_Sausage_Timer") == 0) then
 				-- player puts sheep meat on the fire
 				player:messageSpecial(FIRE_PUT, 4372);

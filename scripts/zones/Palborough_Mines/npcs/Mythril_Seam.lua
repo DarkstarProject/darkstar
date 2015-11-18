@@ -22,12 +22,12 @@ RRvar = player:getVar("rockracketeer_sold");
 	
 	--Rock Racketeer
 	if (trade:hasItemQty(605,1) and trade:getItemCount() == 1 and RRvar == 5) then
-		if(player:getFreeSlotsCount() >= 1) then
+		if (player:getFreeSlotsCount() >= 1) then
 			rand = math.random();
 			rand = math.random();
 			rand = math.random();
 			
-			if(rand <= 0.47) then -- 47%
+			if (rand <= 0.47) then -- 47%
 				
 				
 				player:startEvent(0x0033,12,598); -- Sharp Stone (598)
@@ -41,13 +41,13 @@ RRvar = player:getVar("rockracketeer_sold");
 			end
 		
 	-- Standard
-	elseif(trade:hasItemQty(605,1) and trade:getItemCount() == 1) then -- Trade Pickaxe
-		if(player:getFreeSlotsCount() >= 1) then
+	elseif (trade:hasItemQty(605,1) and trade:getItemCount() == 1) then -- Trade Pickaxe
+		if (player:getFreeSlotsCount() >= 1) then
 			rand = math.random();
 			rand = math.random();
 			rand = math.random();
 			
-			if(rand <= 0.47) then -- 47%
+			if (rand <= 0.47) then -- 47%
 				
 				
 				player:startEvent(0x002b,12,0,597); -- chunk of mine gravel (597)
@@ -90,7 +90,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x002b) then
+	if (csid == 0x002b) then
 		player:tradeComplete();
 		player:addItem(597);
 		player:messageSpecial(ITEM_OBTAINED,597); -- Mine Gravel

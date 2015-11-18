@@ -26,7 +26,7 @@ CREATE TABLE `mob_spawn_mods` (
   `mobid` int(10) unsigned NOT NULL,
   `modid` smallint(5) unsigned NOT NULL,
   `value` smallint(5) NOT NULL DEFAULT '0',
-  `type` smallint(5) NOT NULL DEFAULT '0',
+  `is_mob_mod` boolean NOT NULL DEFAULT '0',
   PRIMARY KEY (`mobid`,`modid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=13 PACK_KEYS=1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -72,8 +72,10 @@ INSERT INTO `mob_spawn_mods` VALUES (16887889,12,15,1);
 INSERT INTO `mob_spawn_mods` VALUES (17297441,12,25,1);
 INSERT INTO `mob_spawn_mods` VALUES (17408018,12,20,1);
 INSERT INTO `mob_spawn_mods` VALUES (16806227,12,8,1);
+INSERT INTO `mob_spawn_mods` VALUES (16806227,49,1,1); -- Tiamat scripted 2hr
 INSERT INTO `mob_spawn_mods` VALUES (16896161,12,15,1);
 INSERT INTO `mob_spawn_mods` VALUES (16797969,12,15,1);
+INSERT INTO `mob_spawn_mods` VALUES (16797969,49,1,1); -- Jormundgand scripted 2hr
 INSERT INTO `mob_spawn_mods` VALUES (16900314,12,15,1);
 INSERT INTO `mob_spawn_mods` VALUES (17309982,1,1500,1);
 INSERT INTO `mob_spawn_mods` VALUES (17309982,2,18000,1);
@@ -154,8 +156,8 @@ INSERT INTO `mob_spawn_mods` VALUES (17629430,1,1200,1);
 INSERT INTO `mob_spawn_mods` VALUES (17629430,2,3000,1);
 INSERT INTO `mob_spawn_mods` VALUES (16990474,1,5000,1);
 INSERT INTO `mob_spawn_mods` VALUES (16990474,2,7000,1);
-INSERT INTO `mob_spawn_mods` VALUES (17404333,1,20000,1);
-INSERT INTO `mob_spawn_mods` VALUES (17404333,2,24000,1);
+INSERT INTO `mob_spawn_mods` VALUES (17404331,1,20000,1);
+INSERT INTO `mob_spawn_mods` VALUES (17404331,2,24000,1);
 INSERT INTO `mob_spawn_mods` VALUES (17461478,1,3000,1);
 INSERT INTO `mob_spawn_mods` VALUES (17461478,2,9900,1);
 INSERT INTO `mob_spawn_mods` VALUES (17285460,1,379,1);
@@ -202,6 +204,75 @@ INSERT INTO `mob_spawn_mods` VALUES (16814432,9,80,1);
 INSERT INTO `mob_spawn_mods` VALUES (16814432,170,50,0);
 INSERT INTO `mob_spawn_mods` VALUES (16814432,168,2,0);
 INSERT INTO `mob_spawn_mods` VALUES (16814432,29,33,0);
+INSERT INTO `mob_spawn_mods` VALUES (16921015,387,-95,0); -- Jailer of Fortitude -95% phys damage mods
+INSERT INTO `mob_spawn_mods` VALUES (16921015,390,-95,0);
+INSERT INTO `mob_spawn_mods` VALUES (16921016,60,100,0); -- Kf'ghrah res mods
+INSERT INTO `mob_spawn_mods` VALUES (16921016,61,-100,0); 
+INSERT INTO `mob_spawn_mods` VALUES (16921017,60,-100,0);
+INSERT INTO `mob_spawn_mods` VALUES (16921017,61,100,0); 
+INSERT INTO `mob_spawn_mods` VALUES (16912838,407,150,0); -- Jailer of Hope fastcast, -ga chance, 2hr/2hr multi
+INSERT INTO `mob_spawn_mods` VALUES (16912838,7,60,1);
+INSERT INTO `mob_spawn_mods` VALUES (16912838,16,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (16912838,32,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (17572197,16,1,1); -- Enable standard 2hr for Jack cardians for Windurst 6-1
+INSERT INTO `mob_spawn_mods` VALUES (17572198,16,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (17572199,16,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (17572200,16,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (17621014,49,1,1); -- San d'Oria 9-2 BCNM scripted 2hrs
+INSERT INTO `mob_spawn_mods` VALUES (17621015,49,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (17621016,49,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (17621017,49,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (17453064,49,1,1); -- Bastok 9-2 BCNM scripted 2hr for second form Zeid
+INSERT INTO `mob_spawn_mods` VALUES (16904202,49,1,1); -- Ouryu (CoP 4-2) scripted 2hr
+INSERT INTO `mob_spawn_mods` VALUES (17506670,49,1,1); -- Kirin's scripted Astral Flow
+INSERT INTO `mob_spawn_mods` VALUES (16926464,49,1,1); -- Prishe in CoP 8-4
+INSERT INTO `mob_spawn_mods` VALUES (16916815,49,1,1); -- Ix'Aern MNK and helpers
+INSERT INTO `mob_spawn_mods` VALUES (16916816,49,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (16916817,49,1,1);
+
+INSERT INTO `mob_spawn_mods` VALUES (17326081,50,25,1); -- Angra_Mainyu chainspell at 25%
+
+INSERT INTO `mob_spawn_mods` VALUES (17293486,51,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (17293486,31,5,1);
+
+INSERT INTO `mob_spawn_mods` VALUES (17428812,17,1,1); -- Habetrot's Rumble Crawler
+INSERT INTO `mob_spawn_mods` VALUES (17428811,1,2000,1);
+INSERT INTO `mob_spawn_mods` VALUES (17428811,2,5625,1);
+
+INSERT INTO `mob_spawn_mods` VALUES (16986431,16,1,1); -- Tinnin 2hour
+
+-- Timers for mobs that depop when idle+unclaimed
+INSERT INTO `mob_spawn_mods` VALUES (16986428,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16986429,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16986430,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16986431,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16998871,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16998872,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16998873,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16998874,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16990473,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16990474,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17027471,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17027472,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17027473,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17027474,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17027485,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17031598,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17031599,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17031600,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17043887,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17043888,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17056157,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17056186,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17072171,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17072172,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17072178,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17072179,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17101202,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17101203,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17101204,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17101205,55,180,1);
+
 /*!40000 ALTER TABLE `mob_spawn_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

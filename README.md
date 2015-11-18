@@ -1,10 +1,12 @@
 [![Build Status](https://travis-ci.org/DarkstarProject/darkstar.svg?branch=master)](https://travis-ci.org/DarkstarProject/darkstar)
+[![Build status](https://ci.appveyor.com/api/projects/status/69bemc5htluv9ss3/branch/master?svg=true)](https://ci.appveyor.com/project/teschnei/darkstar/branch/master)
 Darkstar Project
 ========
 
 Welcome to the DarkStar project, an emulation server for FFXI.
 Visit our forums and IRC to keep in touch with the latest developments.
 
+**Roadmap:** https://trello.com/b/hBZnfihW
 **Forums:** https://forums.dspt.info/index.php
 
 **IRC Channel**
@@ -27,20 +29,11 @@ Bug reports should include steps to reproduce the bug.
 
 Pull Requests
 ========
-Commits should contain appropriate labels for the code you are modifying:
-* LOGIN/LOBBY (```darkstar/src/login```)
-* SEARCH (```darkstar/src/search```)
-* SCRIPTS (```darkstar/scripts```)
-* CORE (```darkstar/src/map```)
-* DATABASE/SQL (```darkstar/sql```)
-* CONF (```darkstar/conf```)
-* DOCS (```darkstar/documentation```)
-* PROJECT (anything that affects the build process - regardless of platform)
-
-e.g. ```SCRIPTS: added [something]``` or ```CORE: added lua bindings for [something]```
+Commits should contain a descriptive name for what you are modifying
 
 Remember to check back for any feedback, and drop a comment once requested changes have been made (if there are any).
 
+Also, rip out your tab key OR have your editor insert 4 spaces on indent/instead of tab character.
 
 Please *test your code* before committing changes/submitting a pull request.
 

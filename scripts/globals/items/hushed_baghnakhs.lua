@@ -19,7 +19,7 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(EFFECT_SILENCE, 5, 0, 30);
-        return SUBEFFECT_SILENCE, 160, EFFECT_SILENCE;
+        return SUBEFFECT_SILENCE, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_SILENCE;
     end
 end;
 

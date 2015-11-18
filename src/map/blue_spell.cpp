@@ -106,4 +106,3 @@ void CBlueSpell::addModifier(CModifier* modifier)
 {
     modList.push_back(modifier);
 }
-

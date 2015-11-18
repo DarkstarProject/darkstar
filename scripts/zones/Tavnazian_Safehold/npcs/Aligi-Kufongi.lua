@@ -49,16 +49,16 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid)
 	-- printf("RESULT: %u",option)
-	if(csid == 0x0156) then
-		if(option > 0 and option <29) then
+	if (csid == 0x0156) then
+		if (option > 0 and option <29) then
 			if (player:delGil(200)) then
 				player:setTitle( title2[option] )
 			end
-		elseif(option > 256 and option <285) then
+		elseif (option > 256 and option <285) then
 			if (player:delGil(300)) then
 				player:setTitle( title3[option - 256] )
 			end
-		elseif(option > 512 and option < 541) then
+		elseif (option > 512 and option < 541) then
 			if (player:delGil(400)) then
 				player:setTitle( title4[option - 512] )
 			end

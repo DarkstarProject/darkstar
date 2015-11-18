@@ -15,7 +15,7 @@ end;
 function onPetAbility(target, pet, skill)
 	local base = 28 + pet:getMainLvl()*4;
 
-	if(target:getHP()+base > target:getMaxHP()) then
+	if (target:getHP()+base > target:getMaxHP()) then
 		base = target:getMaxHP() - target:getHP(); --cap it
 	end
 	skill:setMsg(MSG_SELF_HEAL);

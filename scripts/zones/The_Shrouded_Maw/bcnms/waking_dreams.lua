@@ -18,7 +18,7 @@ function onBcnmRegister(player,instance)
 
 	local inst = player:getBattlefieldID();
 
-	if(inst == 1)then
+	if (inst == 1) then
 	
 		local TileOffset = 16818258;
 		
@@ -29,7 +29,7 @@ function onBcnmRegister(player,instance)
 			end
 		end
 
-	elseif(inst == 2)then
+	elseif (inst == 2) then
 	
 		local TileOffset = 16818266;
 		
@@ -40,7 +40,7 @@ function onBcnmRegister(player,instance)
 			end
 		end
 		
-	elseif(inst == 3)then
+	elseif (inst == 3) then
 	
 		local TileOffset = 16818274;
 		
@@ -69,8 +69,8 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
 	
-	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		if(player:hasKeyItem(VIAL_OF_DREAM_INCENSE)==true) then
+	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+		if (player:hasKeyItem(VIAL_OF_DREAM_INCENSE)==true) then
 		    player:addKeyItem(WHISPER_OF_DREAMS);
 			player:delKeyItem(VIAL_OF_DREAM_INCENSE);
 			player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_DREAMS);
@@ -78,7 +78,7 @@ function onBcnmLeave(player,instance,leavecode)
 		player:addTitle(HEIR_TO_THE_REALM_OF_DREAMS);
 		player:startEvent(0x7d02);
 		
-	elseif(leavecode == 4) then
+	elseif (leavecode == 4) then
 		player:startEvent(0x7d02);
 	end
 	

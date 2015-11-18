@@ -83,7 +83,7 @@ function SetExplorerMoogles(moogle)
     if (EXPLORER_MOOGLE == 1) then
         local npc = GetNPCByID(moogle);
         if (npc == nil) then
-            printf("'SetExplorerMoogles' Error trying to load undefined npc (%d)", Moogles[i]);
+            printf("'SetExplorerMoogles' Error trying to load undefined npc (%d)", moogle);
         else
             npc:setStatus(0);
         end
@@ -113,7 +113,7 @@ function SetGroundsTome(tome)
     if (GROUNDS_TOMES == 1) then
         for i,id in ipairs(tome) do
             local npc = GetNPCByID(id);
-            if(npc ~= nil) then
+            if (npc ~= nil) then
                 npc:setStatus(0);
             end
         end

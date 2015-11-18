@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 local MissionStatus = player:getVar("MissionStatus");
 
 	if (player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and (MissionStatus == 4 or MissionStatus == 5)) then
-		if(trade:hasItemQty(1181,1) == true) and (trade:getItemCount() == 1) then 
+		if (trade:hasItemQty(1181,1) == true) and (trade:getItemCount() == 1) then 
 			player:startEvent(0x000D);
 		end
 	end
@@ -63,7 +63,7 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-	if(csid == 0x000D) then
+	if (csid == 0x000D) then
 		player:setVar("MissionStatus",6);
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_ZONPAZIPPA);
 		player:addKeyItem(LETTER_FROM_ZONPAZIPPA);

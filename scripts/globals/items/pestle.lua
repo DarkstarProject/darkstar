@@ -31,6 +31,6 @@ function onAdditionalEffect(player,target,damage)
         end
 
         target:addMP(-drain);
-        return SUBEFFECT_MP_DRAIN, 162, player:addMP(drain);
+        return SUBEFFECT_MP_DRAIN, MSGBASIC_ADD_EFFECT_MP_DRAIN, player:addMP(drain);
     end
 end;

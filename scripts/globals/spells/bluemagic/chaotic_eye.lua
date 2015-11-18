@@ -29,34 +29,24 @@ end;
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
+    local typeEffect = EFFECT_SILENCE;
+    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local resist = applyResistanceEffect(caster,spell,target,dINT,BLUE_SKILL,0,typeEffect);
+    local duration = 180 * resist;
 
-    local effectType = EFFECT_SILENCE;
-
-    if(target:hasStatusEffect(effectType)) then
-        spell:setMsg(75); -- no effect
-        return effectType;
-    end
-
-    if(1000 * math.random() >= target:getMod(MOD_SILENCERES)) then
-        --Pull base stats.
-        local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-
-        --Duration, including resistance.  May need more research.
-        local duration = 180;
-
-        --Resist
-        local resist = applyResistanceEffect(caster,spell,target,dINT,BLUE_SKILL,0, EFFECT_SILENCE);
-        
-        if(resist >= 0.5) then --Do it!
-            target:addStatusEffect(effectType,1,0,duration * resist);
-            spell:setMsg(236);
+    if (resist > 0.5) then -- Do it!
+        if (target:isFacing(caster)) then
+            if (target:addStatusEffect(typeEffect,1,0,duration)) then
+                spell:setMsg(236);
+            else
+                spell:setMsg(75);
+            end;
         else
-            spell:setMsg(85);
-        end
+            spell:setMsg(75);
+        end;
     else
-        spell:setMsg(85); -- resist
-    end
+        spell:setMsg(85);
+    end;
 
-
-    return effectType;
+    return typeEffect;
 end;

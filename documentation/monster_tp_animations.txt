@@ -40,20 +40,26 @@ Creates by Lautan.
 962 - 964 - Jormungand breath/blast
 965 - 967 - Ouryu breath/blast
 968 - Vrtra breath
+973 - pugil jump
 
 979 - flash
 
 981 - gas released from head
 
 984 - red eyes and gaze hit
-987 - charm
 986 - supersonics?
+987 - charm Fragrant Breath?
+989 - magical 2 hour eagle eye shot
+
+995 - jumping around. Fission?
 
 1003 - weird defensive ball thing
 1009 - crazy strong effect, probably CoP boss
 1015 - CoP boss stuff
 1030 - chr up or defense boost?
 1036 - ninja ws
+
+1041 - sam WS
 
 1045 - poison gas thing
 1046 - goblin dice, probably for goblin in movopolis
@@ -70,6 +76,7 @@ Creates by Lautan.
 
 1304 - puppet ws
 
+8901 - player two hour animations
 
 These need to be used together.  Teleport out, change pos, teleport in.
 Used by mobs such as Ark Angel TT, which teleports around the battlefield instead of moving.  Target isn't lost on AA TT.

@@ -35,6 +35,7 @@ When a status effect is gained twice on a player. It can do one or more of the f
 #include "../common/timer.h"
 
 #include <string.h>
+#include <array>
 
 #include "lua/luautils.h"
 
@@ -43,6 +44,8 @@ When a status effect is gained twice on a player. It can do one or more of the f
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
 #include "packets/message_basic.h"
+#include "packets/party_effects.h"
+#include "packets/status_effects.h"
 
 #include "utils/charutils.h"
 #include "entities/battleentity.h"
@@ -95,7 +98,7 @@ namespace effects
         uint32    MinDuration;
     };
 
-    EffectParams_t EffectsParams[MAX_EFFECTID];
+    std::array<EffectParams_t, MAX_EFFECTID> EffectsParams;
 
     /************************************************************************
     *                                                                       *
@@ -611,7 +614,7 @@ EFFECT CStatusEffectContainer::EraseStatusEffect()
     }
     if (!erasableList.empty())
     {
-        uint16 rndIdx = WELL512::GetRandomNumber(erasableList.size());
+        uint16 rndIdx = dsprand::GetRandomNumber(erasableList.size());
         EFFECT result = m_StatusEffectList.at(erasableList.at(rndIdx))->GetStatusID();
         RemoveStatusEffect(erasableList.at(rndIdx));
         return result;
@@ -633,7 +636,7 @@ EFFECT CStatusEffectContainer::HealingWaltz()
    }
    if( !waltzableList.empty() )
    {
-       uint16 rndIdx = WELL512::GetRandomNumber(waltzableList.size());
+       uint16 rndIdx = dsprand::GetRandomNumber(waltzableList.size());
       EFFECT result = m_StatusEffectList.at(waltzableList.at(rndIdx))->GetStatusID();
       RemoveStatusEffect(waltzableList.at(rndIdx));
       return result;
@@ -680,7 +683,7 @@ EFFECT CStatusEffectContainer::DispelStatusEffect(EFFECTFLAG flag)
 	}
 	if (!dispelableList.empty())
 	{
-        uint16 rndIdx = WELL512::GetRandomNumber(dispelableList.size());
+        uint16 rndIdx = dsprand::GetRandomNumber(dispelableList.size());
 		EFFECT result = m_StatusEffectList.at(dispelableList.at(rndIdx))->GetStatusID();
 		RemoveStatusEffect(dispelableList.at(rndIdx), true);
 		return result;
@@ -1036,7 +1039,7 @@ CStatusEffect* CStatusEffectContainer::StealStatusEffect()
 	}
     if (!dispelableList.empty())
     {
-        uint16 rndIdx = WELL512::GetRandomNumber(dispelableList.size());
+        uint16 rndIdx = dsprand::GetRandomNumber(dispelableList.size());
         uint16 effectIndex = dispelableList.at(rndIdx);
 
         CStatusEffect* oldEffect = m_StatusEffectList.at(effectIndex);
@@ -1060,6 +1063,8 @@ CStatusEffect* CStatusEffectContainer::StealStatusEffect()
 void CStatusEffectContainer::UpdateStatusIcons()
 {
     if (m_POwner->objtype != TYPE_PC) return;
+
+    auto PChar = static_cast<CCharEntity*>(m_POwner);
 
     m_Flags = 0;
     memset(m_StatusIcons, EFFECT_NONE, sizeof(m_StatusIcons));
@@ -1087,9 +1092,14 @@ void CStatusEffectContainer::UpdateStatusIcons()
             if (++count == 32) break;
         }
 	}
-    ((CCharEntity*)m_POwner)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_POwner));
-    ((CCharEntity*)m_POwner)->pushPacket(new CCharJobExtraPacket((CCharEntity*)m_POwner, true));
-    ((CCharEntity*)m_POwner)->pushPacket(new CCharJobExtraPacket((CCharEntity*)m_POwner, false));
+    PChar->pushPacket(new CCharUpdatePacket(PChar));
+    PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+    PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
+    PChar->pushPacket(new CStatusEffectPacket(PChar));
+    if (PChar->PParty)
+    {
+        PChar->PParty->PushEffectsPacket(PChar);
+    }
 }
 
 /************************************************************************
@@ -1127,7 +1137,7 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
 
 
     //todo: find a better place to put this?
-    if(!m_POwner->isDead())
+    if(m_POwner->PBattleAI != nullptr && m_POwner->isAlive() && m_POwner->PBattleAI->IsInSleepableAction())
     {
         // this should actually go into a char charm AI
         if(m_POwner->PPet != nullptr && m_POwner->objtype == TYPE_PC)
@@ -1251,7 +1261,7 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
                 PStatusEffect->SetPower(m_POwner->getMod(MOD_STONESKIN));
             }
 
-            uint32 tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 100;
+            uint32 tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 1000;
             uint32 duration = PStatusEffect->GetDuration() == 0 ? 0 : realduration;
 
             Sql_Query(SqlHandle, Query,

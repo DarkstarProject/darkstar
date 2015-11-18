@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(520,1,23,5)) then
+	if (player:sendGuild(520,1,23,5)) then
 		player:showText(npc,RAJMONDA_SHOP_DIALOG);
 	end
 end; 

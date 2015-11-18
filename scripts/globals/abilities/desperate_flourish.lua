@@ -52,7 +52,7 @@ end;
 function onUseAbility(player,target,ability)
     
     local isSneakValid = player:hasStatusEffect(EFFECT_SNEAK_ATTACK);
-    if(isSneakValid and not player:isBehind(target))then
+    if (isSneakValid and not player:isBehind(target)) then
         isSneakValid = false;
     end
 

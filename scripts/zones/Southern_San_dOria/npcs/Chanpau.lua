@@ -36,9 +36,9 @@ end;
  
 function onTrigger(player,npc) 
 	
-	if(player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == QUEST_ACCEPTED) then
+	if (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == QUEST_ACCEPTED) then
 		player:startEvent(0x275);
-	elseif (player:getQuestStatus(SANDORIA, THE_BRUGAIRE_CONSORTIUM) == QUEST_COMPLETED)then
+	elseif (player:getQuestStatus(SANDORIA, THE_BRUGAIRE_CONSORTIUM) == QUEST_COMPLETED) then
 		Fired = player:getVar("Fired") 
 		if Fired == 1 then
 			player:startEvent(0x0237) -- i got fired in a day

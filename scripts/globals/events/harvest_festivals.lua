@@ -1,7 +1,6 @@
 ---------------------------------------------------------
 ---------------------------------------------------------
 ------------    Harvest Festivals    --------------------
-------------   Author: Metalfiiish   --------------------
 ---------------------------------------------------------
 ---------------------------------------------------------
 
@@ -16,14 +15,14 @@ function isHalloweenEnabled()
 	local option = 0;
 	local month = tonumber(os.date("%m"));
 	local day = tonumber(os.date("%d"));
-	if(month == 10 and day >= 20 or month == 11 and day == 1 or HALLOWEEN_YEAR_ROUND ~= 0) then -- According to wiki Harvest Fest is Oct 20 - Nov 1.
-		if(HALLOWEEN_2005 == 1) then
+	if (month == 10 and day >= 20 or month == 11 and day == 1 or HALLOWEEN_YEAR_ROUND ~= 0) then -- According to wiki Harvest Fest is Oct 20 - Nov 1.
+		if (HALLOWEEN_2005 == 1) then
 			option = 1;
-		elseif(HALLOWEEN_2008 == 1) then
+		elseif (HALLOWEEN_2008 == 1) then
 			option = 2;
-		elseif(HALLOWEEN_2009 == 1) then
+		elseif (HALLOWEEN_2009 == 1) then
 			option = 3;
-		elseif(HALLOWEEN_2010 == 1) then
+		elseif (HALLOWEEN_2010 == 1) then
 			option = 4;		
 		end
 	end
@@ -46,14 +45,14 @@ function halloweenItemsCheck(player)
 
 	-- Checks for HQ Upgrade
 	for ri = 1, table.getn(reward_list) do
-		if(headSlot == reward_list[ri] or mainHand == reward_list[ri]) then
-			if(headSlot == pumpkinHead and player:hasItem(13917) == false) then
+		if (headSlot == reward_list[ri] or mainHand == reward_list[ri]) then
+			if (headSlot == pumpkinHead and player:hasItem(13917) == false) then
 				reward = 13917; -- Horror Head
-			elseif(headSlot == pumpkinHead2 and player:hasItem(15177) == false) then
+			elseif (headSlot == pumpkinHead2 and player:hasItem(15177) == false) then
 				reward = 15177; -- Horror Head II
-			elseif(mainHand == trickStaff and player:hasItem(17566) == false) then
+			elseif (mainHand == trickStaff and player:hasItem(17566) == false) then
 				reward =  17566; -- Treat Staff
-			elseif(mainHand == trickStaff2 and player:hasItem(17588) == false) then
+			elseif (mainHand == trickStaff2 and player:hasItem(17588) == false) then
 				reward = 17588; -- Treat Staff II
 			end
 			return reward;
@@ -65,7 +64,7 @@ function halloweenItemsCheck(player)
 
 	while cnt ~= 0 do
 		local picked = reward_list[math.random(1,table.getn(reward_list))];
-		if(player:hasItem(picked) == false) then
+		if (player:hasItem(picked) == false) then
 			reward = picked;
 			cnt = 0;
 		else
@@ -87,7 +86,7 @@ function onHalloweenTrade(player,trade,npc)
 	-------------------
 	-- 2005 edition ---
 	-------------------
-	if(contentEnabled == 1) then
+	if (contentEnabled == 1) then
 		-----------------------------------
 		-- Treats allowed
 		-----------------------------------
@@ -137,11 +136,11 @@ function onHalloweenTrade(player,trade,npc)
 
 		for itemInList = 1, table.getn(treats_table)  do
 
-			if(item == treats_table[itemInList]) then
+			if (item == treats_table[itemInList]) then
 				local itemReward = halloweenItemsCheck(player);
 				local varName = "harvestFestTreats";
 				local harvestFestTreats;
-				if(itemInList < 32) then -- The size of the list is too big for int 32 used that stores the bit mask, as such there are two lists
+				if (itemInList < 32) then -- The size of the list is too big for int 32 used that stores the bit mask, as such there are two lists
 
 					harvestFestTreats = player:getVar(varName); 
                 else
@@ -152,13 +151,13 @@ function onHalloweenTrade(player,trade,npc)
 				end
 				
 				local AlreadyTradedChk = player:getMaskBit(harvestFestTreats,itemInList);
-				if(itemReward ~= 0 and player:getFreeSlotsCount() >= 1 and math.random(1,3) < 2) then -- Math.random added so you have 33% chance on getting item
+				if (itemReward ~= 0 and player:getFreeSlotsCount() >= 1 and math.random(1,3) < 2) then -- Math.random added so you have 33% chance on getting item
 
 					player:messageSpecial(HERE_TAKE_THIS);
 					player:addItem(itemReward);
 					player:messageSpecial(ITEM_OBTAINED,itemReward);
 
-				elseif(player:canUseCostume() and AlreadyTradedChk == false) then
+				elseif (player:canUseCostume() and AlreadyTradedChk == false) then
 				-- Other neat looking halloween type costumes
 				-- two dragon skins: @420/421
 				-- @422 dancing weapon
@@ -197,10 +196,10 @@ function onHalloweenTrade(player,trade,npc)
 
 					for zi = 1, table.getn(pitchForkCostumeList), 3 do
 
-						if(zone == pitchForkCostumeList[zi] and (costumePicked == pitchForkCostumeList[zi + 1] or zone == pitchForkCostumeList[zi] and costumePicked == pitchForkCostumeList[zi + 2])) then -- Gives special hint for pitch fork costume
+						if (zone == pitchForkCostumeList[zi] and (costumePicked == pitchForkCostumeList[zi + 1] or zone == pitchForkCostumeList[zi] and costumePicked == pitchForkCostumeList[zi + 2])) then -- Gives special hint for pitch fork costume
 							player:messageSpecial(IF_YOU_WEAR_THIS);
 
-						elseif(zi == 16) then
+						elseif (zi == 16) then
 							player:messageSpecial(THANK_YOU_TREAT);	
 
 						end
@@ -224,7 +223,7 @@ end;
 
 function applyHalloweenNpcCostumes(zoneid)
 
-    if(isHalloweenEnabled() ~= 0) then
+    if (isHalloweenEnabled() ~= 0) then
         -- npcID, skinID (skin ID can be found in mob_change_skin Sql table)
         local npc_costume_map = {
             [234] = {

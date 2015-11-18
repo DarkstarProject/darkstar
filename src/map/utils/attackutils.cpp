@@ -37,7 +37,7 @@ namespace attackutils
 ************************************************************************/
 uint8 getHitCount(uint8 hits)
 {
-    uint8 distribution = WELL512::GetRandomNumber(100);
+    uint8 distribution = dsprand::GetRandomNumber(100);
     uint8 num = 1;
 
 	switch (hits)
@@ -106,7 +106,7 @@ bool IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
     if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
     {
-        return (WELL512::GetRandomNumber(100) < battleutils::GetParryRate(PAttacker, PDefender));
+        return (dsprand::GetRandomNumber(100) < battleutils::GetParryRate(PAttacker, PDefender));
     }
     return false;
 }
@@ -120,7 +120,7 @@ bool IsGuarded(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
     if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
     {
-        return(WELL512::GetRandomNumber(100) < battleutils::GetGuardRate(PAttacker, PDefender));
+        return(dsprand::GetRandomNumber(100) < battleutils::GetGuardRate(PAttacker, PDefender));
     }
     return false;
 }
@@ -134,14 +134,14 @@ bool IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
 	if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
     {
-        return(WELL512::GetRandomNumber(100) < battleutils::GetBlockRate(PAttacker, PDefender));
+        return(dsprand::GetRandomNumber(100) < battleutils::GetBlockRate(PAttacker, PDefender));
     }
     return false;
 }
 
 /************************************************************************
 *                                                                       *
-*  Handles damage multiplier, relic weapons ect				            *
+*  Handles damage multiplier, relic weapons etc.                        *
 *                                                                       *
 ************************************************************************/
 uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, PHYSICAL_ATTACK_TYPE attackType)
@@ -154,22 +154,21 @@ uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32
 
 	if (PWeapon->getModifier(MOD_OCC_DO_EXTRA_DMG) > 0 && PWeapon->getModifier(MOD_EXTRA_DMG_CHANCE) > 0)
 	{
-		// Relic weapons have 16% (ffxiclopedia) chance to do x times damage, cannot proc with weapon skills
-		if (WELL512::GetRandomNumber(100) <= (PWeapon->getModifier(MOD_EXTRA_DMG_CHANCE)/10))
+		if (dsprand::GetRandomNumber(100) <= (PWeapon->getModifier(MOD_EXTRA_DMG_CHANCE)/10))
 		{
-			return (damage = (damage * (PWeapon->getModifier(MOD_OCC_DO_EXTRA_DMG)/100)));
+			return (damage = (damage * (PWeapon->getModifier(MOD_OCC_DO_EXTRA_DMG)/100.f)));
 		}
 	}
 
 	switch (attackType)
 	{
-		case ZANSHIN_ATTACK:	if (WELL512::GetRandomNumber(100) < PChar->getMod(MOD_ZANSHIN_DOUBLE_DAMAGE))		return originalDamage * 2;
-		case TRIPLE_ATTACK:		if (WELL512::GetRandomNumber(100) < PChar->getMod(MOD_TA_TRIPLE_DAMAGE))			return originalDamage * 3;
-		case DOUBLE_ATTACK:		if (WELL512::GetRandomNumber(100) < PChar->getMod(MOD_DA_DOUBLE_DAMAGE))			return originalDamage * 2;
-		case RAPID_SHOT_ATTACK:	if (WELL512::GetRandomNumber(100) < PChar->getMod(MOD_RAPID_SHOT_DOUBLE_DAMAGE))	return originalDamage * 2;
-		case SAMBA_ATTACK:		if (WELL512::GetRandomNumber(100) < PChar->getMod(MOD_SAMBA_DOUBLE_DAMAGE))		return originalDamage * 2;
+		case ZANSHIN_ATTACK:	if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_ZANSHIN_DOUBLE_DAMAGE))		return originalDamage * 2;
+		case TRIPLE_ATTACK:		if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_TA_TRIPLE_DAMAGE))			return originalDamage * 3;
+		case DOUBLE_ATTACK:		if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_DA_DOUBLE_DAMAGE))			return originalDamage * 2;
+		case RAPID_SHOT_ATTACK:	if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_RAPID_SHOT_DOUBLE_DAMAGE))	return originalDamage * 2;
+		case SAMBA_ATTACK:		if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_SAMBA_DOUBLE_DAMAGE))		return originalDamage * 2;
 		default: break;
-	}	
+	}
 	return originalDamage;
 }
 

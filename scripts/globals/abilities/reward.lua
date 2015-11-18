@@ -19,7 +19,7 @@ function onAbilityCheck(player,target,ability)
         return MSGBASIC_REQUIRES_A_PET,0;
     else
         local id = player:getEquipID(SLOT_AMMO);
-        if(id >= 17016 and id <= 17023) then
+        if (id >= 17016 and id <= 17023) then
             player:setBattleSubTarget(player:getPet());
             return 0,0;
         else
@@ -155,7 +155,7 @@ function onUseAbility(player,target,ability)
     
     local diff = petMaxHP - petCurrentHP;
 
-    if(diff < totalHealing) then
+    if (diff < totalHealing) then
         totalHealing = diff;
     end
 

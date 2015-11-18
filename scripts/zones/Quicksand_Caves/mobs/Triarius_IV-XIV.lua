@@ -17,7 +17,7 @@ end;
 -- onMobDeath Action
 -----------------------------------
 function onMobDeath(mob,killer)
-	if(killer:getCurrentMission(BASTOK) == THE_CHAINS_THAT_BIND_US) and (killer:getVar("MissionStatus") == 1) then
+	if (killer:getCurrentMission(BASTOK) == THE_CHAINS_THAT_BIND_US) and (killer:getVar("MissionStatus") == 1) then
 		SetServerVariable("Bastok8-1LastClear", os.time());
 	end
 end;
@@ -46,7 +46,7 @@ function onMobDespawn(mob)
 	local mobsup = GetServerVariable("BastokFight8_1");
 	SetServerVariable("BastokFight8_1",mobsup - 1);
 	
-	if(GetServerVariable("BastokFight8_1") == 0) then
+	if (GetServerVariable("BastokFight8_1") == 0) then
 		local npc = GetNPCByID(17629734); -- qm6
 		npc:setStatus(0); -- Reappear
 	end

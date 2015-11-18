@@ -9,7 +9,7 @@
 
 function onMobDeath(mob,killer)
 
-	if(math.random((1),(100)) <= 14) then -- Hardcoded "this or this item" drop rate until implemented.
+	if (math.random((1),(100)) <= 14) then -- Hardcoded "this or this item" drop rate until implemented.
 		SetDropRate(1936,16936,1000); -- Demonic Sword
 		SetDropRate(1936,16935,0);
 	else

@@ -27,7 +27,7 @@ local MY=mob:getYPos();
 local MZ=mob:getZPos();
 local distanceMin = 4;
 local distanceMax = 20;
-	if (CheckForDrawnIn(MX,MY,MZ,PX,PY,PZ,distanceMin,distanceMax)==true)then	
+	if (CheckForDrawnIn(MX,MY,MZ,PX,PY,PZ,distanceMin,distanceMax)==true) then	
 	target:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
 	end
 end;
@@ -46,7 +46,7 @@ function CheckForDrawnIn(centerX,centerY,centerZ,playerX,playerY,playerZ,Rayon,m
 	local Distance = math.sqrt( math.pow(difX,2) + math.pow(difY,2) + math.pow(difZ,2) );
 	
 	--print(Distance);
-    if(Distance > Rayon and Distance < maxRayon )then    
+    if (Distance > Rayon and Distance < maxRayon ) then    
 	return true;	
 	else	
 	return false;
