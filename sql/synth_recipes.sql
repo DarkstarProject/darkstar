@@ -60,54 +60,54 @@ CREATE TABLE `synth_recipes` (
 -- Dumping data for table `synth_recipes`
 --
 
--DELIMITER $$
--DROP TRIGGER IF EXISTS ensure_ingredients_are_ordered;
--CREATE TRIGGER ensure_ingredients_are_ordered
--     BEFORE INSERT ON synth_recipes FOR EACH ROW BEGIN
--          IF NEW.Ingredient2 > 0 AND NEW.Ingredient1 > NEW.Ingredient2
--          THEN
--            SIGNAL SQLSTATE VALUE '45000'
--            SET MESSAGE_TEXT = '[table:synth_recipes] - `Ingredient1` is larger than Ingredient2';
--          END IF;
--
--          IF NEW.Ingredient3 > 0 AND NEW.Ingredient2 > NEW.Ingredient3
--          THEN
--            SIGNAL SQLSTATE VALUE '45000'
--            SET MESSAGE_TEXT = '[table:synth_recipes] - `Ingredient2` is larger than Ingredient3';
--          END IF;
--
--          IF NEW.Ingredient4 > 0 AND NEW.Ingredient3 > NEW.Ingredient4
--          THEN
--            SIGNAL SQLSTATE VALUE '45000'
--            SET MESSAGE_TEXT = '[table:synth_recipes] - `Ingredient3` is larger than Ingredient4';
--          END IF;
--
--          IF NEW.Ingredient5 > 0 AND NEW.Ingredient4 > NEW.Ingredient5
--          THEN
--            SIGNAL SQLSTATE VALUE '45000'
--            SET MESSAGE_TEXT = '[table:synth_recipes] - `Ingredient4` is larger than Ingredient5';
--          END IF;
--
--          IF NEW.Ingredient6 > 0 AND NEW.Ingredient5 > NEW.Ingredient6
--          THEN
--            SIGNAL SQLSTATE VALUE '45000'
--            SET MESSAGE_TEXT = '[table:synth_recipes] - `Ingredient5` is larger than Ingredient6';
--          END IF;
--
--          IF NEW.Ingredient7 > 0 AND NEW.Ingredient6 > NEW.Ingredient7
--          THEN
--            SIGNAL SQLSTATE VALUE '45000'
--            SET MESSAGE_TEXT = '[table:synth_recipes] - `Ingredient6` is larger than Ingredient7';
--          END IF;
--
--          IF NEW.Ingredient8 > 0 AND NEW.Ingredient7 > NEW.Ingredient8
--          THEN
--            SIGNAL SQLSTATE VALUE '45000'
--            SET MESSAGE_TEXT = '[table:synth_recipes] - `Ingredient7` is larger than Ingredient8';
--          END IF;
--END$$
--
--DELIMITER;
+DELIMITER $$
+DROP TRIGGER IF EXISTS ensure_ingredients_are_ordered;
+CREATE TRIGGER ensure_ingredients_are_ordered
+     BEFORE INSERT ON synth_recipes FOR EACH ROW BEGIN
+          IF NEW.Ingredient2 > 0 AND NEW.Ingredient1 > NEW.Ingredient2
+          THEN
+            SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = '[table:synth_recipes] - `Ingredient1` is larger than Ingredient2';
+          END IF;
+
+          IF NEW.Ingredient3 > 0 AND NEW.Ingredient2 > NEW.Ingredient3
+          THEN
+            SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = '[table:synth_recipes] - `Ingredient2` is larger than Ingredient3';
+          END IF;
+
+          IF NEW.Ingredient4 > 0 AND NEW.Ingredient3 > NEW.Ingredient4
+          THEN
+            SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = '[table:synth_recipes] - `Ingredient3` is larger than Ingredient4';
+          END IF;
+
+          IF NEW.Ingredient5 > 0 AND NEW.Ingredient4 > NEW.Ingredient5
+          THEN
+            SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = '[table:synth_recipes] - `Ingredient4` is larger than Ingredient5';
+          END IF;
+
+          IF NEW.Ingredient6 > 0 AND NEW.Ingredient5 > NEW.Ingredient6
+          THEN
+            SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = '[table:synth_recipes] - `Ingredient5` is larger than Ingredient6';
+          END IF;
+
+          IF NEW.Ingredient7 > 0 AND NEW.Ingredient6 > NEW.Ingredient7
+          THEN
+            SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = '[table:synth_recipes] - `Ingredient6` is larger than Ingredient7';
+          END IF;
+
+          IF NEW.Ingredient8 > 0 AND NEW.Ingredient7 > NEW.Ingredient8
+          THEN
+            SIGNAL SQLSTATE VALUE '45000'
+            SET MESSAGE_TEXT = '[table:synth_recipes] - `Ingredient7` is larger than Ingredient8';
+          END IF;
+END$$
+
+DELIMITER;
 LOCK TABLES `synth_recipes` WRITE;
 /*!40000 ALTER TABLE `synth_recipes` DISABLE KEYS */;
 INSERT INTO `synth_recipes` VALUES (1,1,0,0,0,4,0,0,0,0,20,4099,4241,706,706,714,714,817,824,824,824,2,2,2,2,1,1,1,1);
@@ -3678,7 +3678,7 @@ INSERT INTO `synth_recipes` VALUES (3566,0,0,0,0,96,0,0,0,0,0,4100,4242,4026,402
 INSERT INTO `synth_recipes` VALUES (3567,0,0,0,0,97,0,0,0,0,0,4099,4241,4027,4027,4027,0,0,0,0,0,4028,4028,4028,4028,1,1,1,1);
 INSERT INTO `synth_recipes` VALUES (3568,0,0,0,76,0,0,0,0,0,0,4098,4240,760,1312,0,0,0,0,0,0,2744,2744,2744,2744,6,8,10,12);
 INSERT INTO `synth_recipes` VALUES (3569,0,0,0,76,0,0,0,0,0,0,4098,4240,760,1311,0,0,0,0,0,0,2744,2744,2744,2744,6,8,10,12);
-
+INSERT INTO `synth_recipes` VALUES (3570,0,0,41,0,78,0,0,0,0,0,4099,4241,816,823,1882,1882,1882,2304,0,0,2704,2704,2704,2704,1,1,1,1);
 /*!40000 ALTER TABLE `synth_recipes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
