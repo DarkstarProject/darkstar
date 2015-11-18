@@ -60,6 +60,7 @@ CREATE TABLE `synth_recipes` (
 -- Dumping data for table `synth_recipes`
 --
 
+
 DELIMITER $$
 DROP TRIGGER IF EXISTS ensure_ingredients_are_ordered;
 CREATE TRIGGER ensure_ingredients_are_ordered
@@ -107,7 +108,8 @@ CREATE TRIGGER ensure_ingredients_are_ordered
           END IF;
 END$$
 
-DELIMITER;
+DELIMITER ;
+
 LOCK TABLES `synth_recipes` WRITE;
 /*!40000 ALTER TABLE `synth_recipes` DISABLE KEYS */;
 INSERT INTO `synth_recipes` VALUES (1,1,0,0,0,4,0,0,0,0,20,4099,4241,706,706,714,714,817,824,824,824,2,2,2,2,1,1,1,1);
