@@ -33,8 +33,8 @@ function onUseWeaponSkill(player, target, wsID)
 
 	local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, params);
 
-	if((player:getEquipID(SLOT_MAIN) == 18999) and (player:getMainJob() == JOB_BST)) then
-		if(damage > 0) then
+	if ((player:getEquipID(SLOT_MAIN) == 18999) and (player:getMainJob() == JOB_BST)) then
+		if (damage > 0) then
 
 --		AFTERMATH LV1
 

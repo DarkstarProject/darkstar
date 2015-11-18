@@ -19,19 +19,11 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
---[[
-    power = 1;
-    tic = 0;
-    duration = 60;
-
-    typeEffect = EFFECT_NAME;
-    skill:setMsg(MSG_BUFF);
-    if(mob:hasStatusEffect(typeEffect) == true) then
-        oldEffect = mob:getStatusEffect(typeEffect);
-        oldEffect:setPower(power);
-        oldEffect:setDuration(duration);
-    else
-        mob:addStatusEffect(typeEffect,power,tic,duration);
+    
+    local duration = 300;
+    local typeEffect = EFFECT_MAGIC_SHIELD;
+    local msg = MobBuffMove(mob,typeEffect,3,0,duration);
+	
+    skill:setMsg(msg);
     return typeEffect;
-	]]
 end;

@@ -31,6 +31,7 @@ This file is part of DarkStar-server source code.
 #include <list>
 #include <deque>
 #include <mutex>
+#include <bitset>
 
 #include "battleentity.h"
 #include "../item_container.h"
@@ -66,8 +67,8 @@ enum QUESTAREA
 
 #define MAX_QUESTAREA	 11
 #define MAX_QUESTID     256
-#define MAX_MISSIONAREA	 13
-#define MAX_MISSIONID    95
+#define MAX_MISSIONAREA	 15
+#define MAX_MISSIONID    93
 
 struct jobs_t
 {
@@ -195,10 +196,9 @@ public:
     uint16                  styleItems[16];                 // Item IDs for items that are style locked.
 
     uint8					m_ZonesList[36];				// список посещенных персонажем зон
-    uint8					m_SpellList[128];				// список изученных заклинаний
-    uint8					m_EnabledSpellList[128];		// spell list of enabled spells
+    std::bitset<1024>	    m_SpellList;				    // список изученных заклинаний
     uint8					m_TitleList[94];				// список заслуженных завний
-    uint8					m_Abilities[46];				// список текущих способностей
+    uint8					m_Abilities[62];				// список текущих способностей
     uint8					m_LearnedAbilities[46];			// learnable abilities (corsair rolls)
     uint8					m_TraitList[16];				// список постянно активных способностей в виде битовой маски
     uint8					m_PetCommands[32];				// список доступных команд питомцу

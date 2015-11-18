@@ -117,7 +117,7 @@ function onEventFinish(player,csid,option,target)
      
     if (csid == 0x2728) then
         unionRepresentativeTriggerFinish(player, option, target, 8, "guild_cooking", keyitems, items);
-    elseif(csid == 0x2729) then
+    elseif (csid == 0x2729) then
         player:messageSpecial(GP_OBTAINED, option);
     end
 end;

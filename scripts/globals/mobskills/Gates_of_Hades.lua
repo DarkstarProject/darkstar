@@ -15,19 +15,34 @@ require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+  if(mob:getFamily() == 316) then
+    local mobSkin = mob:getModelId();
+
+    if (mobSkin == 1793) then
+        return 0;
+    else
+        return 1;
+    end
+  end
+    local result = 1;
+    local mobhp = mob:getHPP();
+
+    if (mobhp <= 25) then
+        result = 0;
+    end;
+
+    return result;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_BURN;
-	local power = ((resist * 10) - 5) * math.random(1,2) + 19; -- makes dot damage between 20 - 28, based off resistance and random variable.
+    local typeEffect = EFFECT_BURN;
+    local power = 21;
 
+    MobStatusEffectMove(mob, target, typeEffect, power, 3, 60);
 
-	MobStatusEffectMove(mob, target, typeEffect, power, 3, 60);
-
-	local dmgmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*6,ELE_FIRE,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
-	target:delHP(dmg);
-	return dmg;
+    local dmgmod = 1.8;
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*6,ELE_FIRE,dmgmod,TP_NO_EFFECT);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
+    target:delHP(dmg);
+    return dmg;
 end;

@@ -15,12 +15,12 @@ require("scripts/globals/titles");
 -----------------------------------
 
 -- For those who don't know
--- at the end of if(player:getQuestStatus(REGION,QUEST_NAME)
+-- at the end of if (player:getQuestStatus(REGION,QUEST_NAME)
 -- == 0 means QUEST_AVAILABLE
 -- == 1 means QUEST_ACCEPTED
 -- == 2 means QUEST_COMPLETED 
--- e.g. if(player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 0 
--- means if(player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == QUEST AVAILABLE
+-- e.g. if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 0 
+-- means if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == QUEST AVAILABLE
 
 -----------------------------------
 -- onTrade Action

@@ -70,10 +70,10 @@ function onUseAbility(player,target,ability)
     local base = weaponDamage + fstr
     local cratio, ccritratio = cMeleeRatio(player, target, params, 0);
     local isSneakValid = player:hasStatusEffect(EFFECT_SNEAK_ATTACK);
-    if(isSneakValid and not player:isBehind(target))then
+    if (isSneakValid and not player:isBehind(target)) then
         isSneakValid = false;
     end
-    local pdif = generatePdif(cratio[1], cratio[2], true);
+    local pdif = generatePdif (cratio[1], cratio[2], true);
     local hitrate = getHitRate(player,target,true);
     
     if (math.random() <= hitrate or isSneakValid) then

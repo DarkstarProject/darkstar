@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep [S]
 -- NPC:  HomePoint#1
--- @pos 
+-- @pos -554 -70 66 155
 -----------------------------------
 
 package.loaded["scripts/zones/Castle_Zvahl_Keep_[S]/TextIDs"] = nil;
@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
 
-	if(csid == 0x21fc) then
+	if (csid == 0x21fc) then
 
 		if (option == 1) then	
 			player:setHomePoint();

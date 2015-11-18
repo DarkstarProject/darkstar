@@ -12,8 +12,8 @@ require("scripts/globals/missions");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getCurrentMission(BASTOK) == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 2) then
-		if(trade:hasItemQty(1160,1) and trade:getItemCount() == 1) then -- Frag Rock
+	if (player:getCurrentMission(BASTOK) == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 2) then
+		if (trade:hasItemQty(1160,1) and trade:getItemCount() == 1) then -- Frag Rock
 			player:startEvent(0x0063); -- Bastok Mission 6-2
 		end
 	end
@@ -28,23 +28,23 @@ function onTrigger(player,npc)
 	
 	local ZilartMission = player:getCurrentMission(ZILART);
 	
-	if(ZilartMission == KAZAMS_CHIEFTAINESS) then
+	if (ZilartMission == KAZAMS_CHIEFTAINESS) then
 		player:startEvent(0x0007);
-	elseif(ZilartMission == THE_TEMPLE_OF_UGGALEPIH) then
+	elseif (ZilartMission == THE_TEMPLE_OF_UGGALEPIH) then
 		player:startEvent(0x0008);
-	elseif(ZilartMission == HEADSTONE_PILGRIMAGE) then
+	elseif (ZilartMission == HEADSTONE_PILGRIMAGE) then
 		player:startEvent(0x0009);
-	elseif(ZilartMission == RETURN_TO_DELKFUTTS_TOWER) then
+	elseif (ZilartMission == RETURN_TO_DELKFUTTS_TOWER) then
 		player:startEvent(0x000d);
-	elseif(ZilartMission == ROMAEVE) then
+	elseif (ZilartMission == ROMAEVE) then
 		player:startEvent(0x000b);
-	elseif(ZilartMission == THE_MITHRA_AND_THE_CRYSTAL) then
+	elseif (ZilartMission == THE_MITHRA_AND_THE_CRYSTAL) then
 		player:startEvent(0x00aa);
-	elseif(ZilartMission == ARK_ANGELS) then
+	elseif (ZilartMission == ARK_ANGELS) then
 		player:startEvent(0x00ab);
-    elseif(ZilartMission == THE_CELESTIAL_NEXUS) then
+    elseif (ZilartMission == THE_CELESTIAL_NEXUS) then
         player:startEvent(0x00ad);
-    elseif(ZilartMission == AWAKENING) then
+    elseif (ZilartMission == AWAKENING) then
         player:startEvent(0x00b1);
 	end
 	
@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 	
-	if(csid == 0x0063) then
+	if (csid == 0x0063) then
 		player:tradeComplete();
 		player:setVar("MissionStatus",3);
 	end

@@ -40,7 +40,7 @@ function onTrigger(player,npc)
 	NeedToZone = player:needToZone();
 	Fame       = player:getFameLevel(WINDURST);
 	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
-	if(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==5)then
+	if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==5) then
 		player:startEvent(0x036A);  --COP event
 	elseif ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),2) == false) then
 		player:startEvent(0x003b); -- Show Off Hat

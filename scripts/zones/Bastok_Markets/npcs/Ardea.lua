@@ -32,9 +32,9 @@ function onTrigger(player,npc)
 	-- Rock Racketeer
 	if (RockRacketeer == QUEST_ACCEPTED and player:hasKeyItem(SHARP_GRAY_STONE)) then
 		player:startEvent(0x0105);
-	elseif(Quotas_Status == 3) then
+	elseif (Quotas_Status == 3) then
 		player:startEvent(264); -- Someone was just asking about that earring.
-	elseif(Quotas_Status == 4) then
+	elseif (Quotas_Status == 4) then
 		player:startEvent(265); -- They'll be happy if you return it.
 	-- Standard dialog
 	else

@@ -127,7 +127,7 @@ function onEventFinish(player,csid,option,target)
      
     if (csid == 0xce) then
         unionRepresentativeTriggerFinish(player, option, target, 7, "guild_alchemy", keyitems, items);
-    elseif(csid == 0xcf) then
+    elseif (csid == 0xcf) then
         player:messageSpecial(GP_OBTAINED, option);
     end
 end;

@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getVar("Lakeside_Minuet_Progress") == 3 and player:hasKeyItem(STARDUST_PEBBLE) == false)then
+	if (player:getVar("Lakeside_Minuet_Progress") == 3 and player:hasKeyItem(STARDUST_PEBBLE) == false) then
 		player:startEvent(0x0064);
 		player:addKeyItem(STARDUST_PEBBLE);
 		player:messageSpecial(KEYITEM_OBTAINED,STARDUST_PEBBLE);

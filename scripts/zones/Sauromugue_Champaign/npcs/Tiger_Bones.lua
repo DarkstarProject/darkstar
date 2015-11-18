@@ -25,14 +25,14 @@ end;
 
 function onTrigger(player,npc)
 
-	if(player:getQuestStatus(WINDURST,THE_FANGED_ONE) == QUEST_ACCEPTED) then
+	if (player:getQuestStatus(WINDURST,THE_FANGED_ONE) == QUEST_ACCEPTED) then
 		deadTiger = player:getVar("TheFangedOne_Died");
 
-		if(deadTiger == 1 and player:hasKeyItem(OLD_TIGERS_FANG) == false) then
+		if (deadTiger == 1 and player:hasKeyItem(OLD_TIGERS_FANG) == false) then
 			player:addKeyItem(OLD_TIGERS_FANG);
 			player:messageSpecial(KEYITEM_OBTAINED, OLD_TIGERS_FANG);
-		elseif(deadTiger == 0) then
-			if(GetMobAction(17268808) == 0) then
+		elseif (deadTiger == 0) then
+			if (GetMobAction(17268808) == 0) then
 				SpawnMob(17268808):addStatusEffect(EFFECT_POISON,40,10,210);
 				player:messageSpecial(OLD_SABERTOOTH_DIALOG_I);
 				player:setVar("TheFangedOne_Died",1);

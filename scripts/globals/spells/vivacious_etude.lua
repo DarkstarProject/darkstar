@@ -21,17 +21,17 @@ function onSpellCast(caster,target,spell)
 
     if (sLvl+iLvl <= 181) then
         power = 3;
-    elseif((sLvl+iLvl >= 182) and (sLvl+iLvl <= 235)) then
+    elseif ((sLvl+iLvl >= 182) and (sLvl+iLvl <= 235)) then
         power = 4;
-    elseif((sLvl+iLvl >= 236) and (sLvl+iLvl <= 288)) then
+    elseif ((sLvl+iLvl >= 236) and (sLvl+iLvl <= 288)) then
         power = 5;
-    elseif((sLvl+iLvl >= 289) and (sLvl+iLvl <= 342)) then
+    elseif ((sLvl+iLvl >= 289) and (sLvl+iLvl <= 342)) then
         power = 6;
-    elseif((sLvl+iLvl >= 343) and (sLvl+iLvl <= 396)) then
+    elseif ((sLvl+iLvl >= 343) and (sLvl+iLvl <= 396)) then
         power = 7;
-    elseif((sLvl+iLvl >= 397) and (sLvl+iLvl <= 449)) then
+    elseif ((sLvl+iLvl >= 397) and (sLvl+iLvl <= 449)) then
         power = 8;
-    elseif(sLvl+iLvl >= 450) then
+    elseif (sLvl+iLvl >= 450) then
         power = 9;
     end
 

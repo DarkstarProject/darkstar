@@ -32,43 +32,43 @@ This file is part of DarkStar-server source code.
 
 class CLuaInstance
 {
-	CInstance* m_PLuaInstance;
+    CInstance* m_PLuaInstance;
 public:
 
-	static const int8 className[];
-	static Lunar<CLuaInstance>::Register_t methods[];
+    static const int8 className[];
+    static Lunar<CLuaInstance>::Register_t methods[];
 
-	CLuaInstance(lua_State*);
-	CLuaInstance(CInstance*);
+    CLuaInstance(lua_State*);
+    CLuaInstance(CInstance*);
 
-	CInstance* GetInstance() const
-	{
-		return m_PLuaInstance;
-	}
-	
+    CInstance* GetInstance() const
+    {
+        return m_PLuaInstance;
+    }
+
     int32 getID(lua_State*);
-	int32 getChars(lua_State*);
+    int32 getChars(lua_State*);
     int32 getMobs(lua_State*);
     int32 getNpcs(lua_State*);
     int32 getPets(lua_State*);
-	int32 getTimeLimit(lua_State*);
-	int32 getEntryPos(lua_State*);
-	int32 getLastTimeUpdate(lua_State*);
-	int32 getProgress(lua_State*);
-	int32 getWipeTime(lua_State*);
-	int32 getEntity(lua_State*);
-	int32 getStage(lua_State*);
+    int32 getTimeLimit(lua_State*);
+    int32 getEntryPos(lua_State*);
+    int32 getLastTimeUpdate(lua_State*);
+    int32 getProgress(lua_State*);
+    int32 getWipeTime(lua_State*);
+    int32 getEntity(lua_State*);
+    int32 getStage(lua_State*);
 
-	int32 setLevelCap(lua_State*);
-	int32 setLastTimeUpdate(lua_State*);
-	int32 setProgress(lua_State*);
-	int32 setWipeTime(lua_State*);
-	int32 setStage(lua_State*);
+    int32 setLevelCap(lua_State*);
+    int32 setLastTimeUpdate(lua_State*);
+    int32 setProgress(lua_State*);
+    int32 setWipeTime(lua_State*);
+    int32 setStage(lua_State*);
 
-	int32 fail(lua_State*);
-	int32 failed(lua_State*);
-	int32 complete(lua_State*);
-	int32 completed(lua_State*);
+    int32 fail(lua_State*);
+    int32 failed(lua_State*);
+    int32 complete(lua_State*);
+    int32 completed(lua_State*);
 
     int32 insertAlly(lua_State*);
 };

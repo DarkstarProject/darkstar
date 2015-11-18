@@ -44,13 +44,13 @@ function onTrigger(player,npc)
 
 if (player:getQuestStatus(OTHER_AREAS,HIS_NAME_IS_VALGEIR)==QUEST_ACCEPTED and player:hasKeyItem(90)) then -- if quest accepted and has pizza
 	player:startEvent(0x0064);-- His name is Valgeir quest
-elseif(player:getQuestStatus(OTHER_AREAS,EXPERTISE)==QUEST_ACCEPTED and player:getVar("QUEST_EXPERTISE_STATE_var")~=3) then
-	if(player:getVar("QUEST_EXPERTISE_STATE_var")==1) then --already asked	
+elseif (player:getQuestStatus(OTHER_AREAS,EXPERTISE)==QUEST_ACCEPTED and player:getVar("QUEST_EXPERTISE_STATE_var")~=3) then
+	if (player:getVar("QUEST_EXPERTISE_STATE_var")==1) then --already asked	
 		player:startEvent(0x0068);--still not found ingredients quest Expertise
-	elseif(player:getVar("QUEST_EXPERTISE_STATE_var")==2) then --have to wait 24 hours
+	elseif (player:getVar("QUEST_EXPERTISE_STATE_var")==2) then --have to wait 24 hours
 		Dayspassed=VanadielDayOfTheYear()-player:getVar("QuestExpertiseDayStarted_var");
 		TotalHourLeft=24-(VanadielHour()+Dayspassed*24)+player:getVar("QuestExpertiseHourStarted_var");
-		if(TotalHourLeft<0) then -- done waiting
+		if (TotalHourLeft<0) then -- done waiting
 			player:startEvent(0x0069);-- done cooking quest Expertise
 		else -- have to wait more
 			player:startEvent(0x008c);-- i am busy standar dialog

@@ -24,12 +24,12 @@ end;
  
 function onTrigger(player,npc) 
 
-	if(os.time() - player:getVar("SquiresTestII") <= 60 and player:hasKeyItem(STALACTITE_DEW) == false) then
+	if (os.time() - player:getVar("SquiresTestII") <= 60 and player:hasKeyItem(STALACTITE_DEW) == false) then
 		player:messageSpecial(A_SQUIRE_S_TEST_II_DIALOG_II);
 		player:addKeyItem(STALACTITE_DEW);
 		player:messageSpecial(KEYITEM_OBTAINED, STALACTITE_DEW);
 		player:setVar("SquiresTestII",0);
-	elseif(player:hasKeyItem(STALACTITE_DEW))then
+	elseif (player:hasKeyItem(STALACTITE_DEW)) then
 		player:messageSpecial(A_SQUIRE_S_TEST_II_DIALOG_III);
 	else
 		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);

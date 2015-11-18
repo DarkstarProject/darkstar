@@ -83,7 +83,7 @@ end;
 
 function onZoneWeatherChange(weather)
 
-	if(weather == WEATHER_WIND or weather == WEATHER_GALES) then
+	if (weather == WEATHER_WIND or weather == WEATHER_GALES) then
 		GetNPCByID(17490280):setAnimation(9); -- Rock Up
 	else
 		GetNPCByID(17490280):setAnimation(8); -- Rock Down

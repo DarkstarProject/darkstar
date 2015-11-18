@@ -27,7 +27,7 @@ end;
 function onTrigger(player,npc)
     local StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
 
-    if(player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 3) then
+    if (player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 3) then
         player:startEvent(0x00b6);
     elseif (StampHunt == QUEST_ACCEPTED and player:getMaskBit(player:getVar("StampHunt_Mask"),1) == false) then
         player:startEvent(0x0055);

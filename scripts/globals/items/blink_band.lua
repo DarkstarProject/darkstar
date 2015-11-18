@@ -20,7 +20,7 @@ end;
 
 function onItemUse(target)
 
-    if(target:hasStatusEffect(EFFECT_COPY_IMAGE) or target:hasStatusEffect(EFFECT_THIRD_EYE)) then
+    if (target:hasStatusEffect(EFFECT_COPY_IMAGE) or target:hasStatusEffect(EFFECT_THIRD_EYE)) then
         target:messageBasic(423);
     else
         target:addStatusEffect(EFFECT_BLINK, 3, 0, 300);

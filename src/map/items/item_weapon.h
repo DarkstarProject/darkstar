@@ -50,7 +50,7 @@ public:
 	uint16  getUnlockPoints();
     uint16  getCurrentUnlockPoints();
     void    resetDelay();
-    bool    addWsPoints(uint8 points);
+    bool    addWsPoints(uint16 points);
 
     bool    isRanged();
     bool    isThrowing();

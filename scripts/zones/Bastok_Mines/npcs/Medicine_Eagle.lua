@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 
-	if(player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 0) then
+	if (player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 0) then
 		player:startEvent(0x00b4);
 	else
 		player:startEvent(0x0019);
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x00b4) then
+	if (csid == 0x00b4) then
 		player:setVar("MissionStatus",1);
 	end
 	

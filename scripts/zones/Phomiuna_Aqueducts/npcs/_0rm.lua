@@ -26,7 +26,7 @@ function onTrigger(player,npc)
 	local DoorOffset = npc:getID() - 1;
    
 	if (GetNPCByID(DoorOffset):getAnimation() == 9) then
-		if(player:getZPos() < 84) then
+		if (player:getZPos() < 84) then
 			npc:openDoor(15); -- lamp animation
 			GetNPCByID(DoorOffset):openDoor(7); -- _0rf
 		end

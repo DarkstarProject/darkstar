@@ -53,6 +53,7 @@ public:
 	PETTYPE getPetType();
     bool isBstPet();
 	uint16 m_Family;
+	uint16 m_MobSkillList;
 	uint8 m_Element;
 	uint32 m_PetID;
 
@@ -61,7 +62,7 @@ public:
     WYVERNTYPE getWyvernType();
     void UpdateEntity() override;
 
-	std::vector<CMobSkill*> PetSkills;
+	std::vector<uint16> PetSkills;
 private:
 	PETTYPE m_PetType;					//the type of pet e.g. avatar/wyvern/jugpet etc
 };

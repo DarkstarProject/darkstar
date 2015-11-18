@@ -330,11 +330,11 @@ enum ZONEID : uint16
     ZONE_286                          = 286,
     ZONE_287                          = 287,
     ZONE_ESCHA_ZITAH                  = 288,
-    ZONE_289                          = 289,
-    ZONE_290                          = 290,
-    ZONE_291                          = 291,
+    ZONE_ESCHA_RUAUN                  = 289,
+    ZONE_DESUETIA_EMPYREAL_PARADOX    = 290,
+    ZONE_REISENJIMA                   = 291,
     ZONE_292                          = 292,
-    ZONE_293                          = 293
+    ZONE_REISENJIMA_SANCTORIUM        = 293
 };
 
 #define MAX_ZONEID 294
@@ -430,7 +430,6 @@ enum ZONEMISC
     MISC_COSTUME    = 0x0040,   // Ability to use a Costumes
     MISC_PET        = 0x0080,   // Ability to summon Pets
     MISC_TREASURE   = 0x0100,   // Presence in the global zone TreasurePool
-    MISC_PVP        = 0x0200,   // Ability to PvP
     MISC_YELL       = 0x0400    // Send and receive /yell commands
 };
 

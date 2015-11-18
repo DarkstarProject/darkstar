@@ -1,9 +1,8 @@
 ---------------------------------------------
 --  Chaos Breath
 --
---  Description: Deals fire damage to enemies within a fan-shaped area originating from the caster.
---  Type: Magical (Fire)
---
+--  Description: Deals dark damage to enemies within a fan-shaped area originating from the caster.
+--  Type: Magical (dark)
 --
 ---------------------------------------------
 require("scripts/globals/settings");
@@ -11,7 +10,7 @@ require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    return 1;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)

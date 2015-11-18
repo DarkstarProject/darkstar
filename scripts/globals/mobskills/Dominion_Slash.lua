@@ -32,7 +32,7 @@ function onMobWeaponSkill(target, mob, skill)
    -- Due to conflicting information, making the dispel resistable.  Correct/tweak if wrong.
    -- Dispel has no status effect or resistance gear, so 0s instead of nulls.
    local resist = applyPlayerResistance(mob,0,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),0,ELE_LIGHT);
-   if(resist > 0.0625) then
+   if (resist > 0.0625) then
       target:dispelStatusEffect();
    end
 

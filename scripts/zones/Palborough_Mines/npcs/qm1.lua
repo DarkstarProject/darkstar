@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getVar("theTalekeeperTruthCS") == 3) then
+	if (player:getVar("theTalekeeperTruthCS") == 3) then
 		player:messageSpecial(SENSE_OF_FOREBODING);
 		SpawnMob(17363318,180):updateClaim(player);
 	else

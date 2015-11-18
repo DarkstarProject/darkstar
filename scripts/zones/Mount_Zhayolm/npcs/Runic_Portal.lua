@@ -25,14 +25,14 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(TOAU)== IMMORTAL_SENTRIES) then
-		if (player:getVar("TOAUM2") == 1)then
+	if (player:getCurrentMission(TOAU)== IMMORTAL_SENTRIES) then
+		if (player:getVar("TOAUM2") == 1) then
 			player:startEvent(0x006F);
 		else
 			player:startEvent(0x006D);
 		end
-	elseif(player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES)then
-		if(hasRunicPortal(player,4) == 1) then
+	elseif (player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then
+		if (hasRunicPortal(player,4) == 1) then
 			player:startEvent(0x006D);
 		else
 			player:startEvent(0x006F);
@@ -59,13 +59,13 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x006F and option == 1) then
+	if (csid == 0x006F and option == 1) then
 		if (player:getVar("TOAUM2") == 1) then
 			player:setVar("TOAUM2",2);
 		end
 		player:addNationTeleport(AHTURHGAN,16);
 		toChamberOfPassage(player);
-	elseif(csid == 0x006D and option == 1) then
+	elseif (csid == 0x006D and option == 1) then
 		toChamberOfPassage(player);
 	end
 	

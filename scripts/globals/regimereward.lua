@@ -7,7 +7,7 @@
 -- ------------------------------------
 function getFoVregimeReward(regimeid)
     if (regimeid<=50) then
-        if(regimeid<=10) then
+        if (regimeid<=10) then
             if (regimeid==1) then
                 return 270;
             end

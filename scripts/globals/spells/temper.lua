@@ -25,19 +25,19 @@ function onSpellCast(caster,target,spell)
 		duration = duration * 3;
 	end
 	
-	if(enhskill<360) then
+	if (enhskill<360) then
 		final = 5;
-	elseif(enhskill>=360) then
+	elseif (enhskill>=360) then
 		final = math.floor( (enhskill - 300) / 10 ); 
 	else
 		print("Warning: Unknown enhancing magic skill for Temper.");
 	end
 	
-	if(final>20) then
+	if (final>20) then
 		final = 20;
 	end
 	
-	if(target:addStatusEffect(effect,final,0,duration)) then
+	if (target:addStatusEffect(effect,final,0,duration)) then
 		spell:setMsg(230);
 	else
 		spell:setMsg(75);

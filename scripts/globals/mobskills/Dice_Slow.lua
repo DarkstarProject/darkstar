@@ -22,9 +22,9 @@ function onMobWeaponSkill(target, mob, skill)
     sleeped = MobStatusEffectMove(mob, target, EFFECT_SLEEP_I, 1, 0, 30);
 
     skill:setMsg(MSG_ENFEEB_IS);
-    if(sleeped) then
+    if (sleeped) then
         return EFFECT_SLEEP_I;
-    elseif(slowed) then
+    elseif (slowed) then
         return EFFECT_SLOW;
     else
         skill:setMsg(MSG_MISS); -- no effect

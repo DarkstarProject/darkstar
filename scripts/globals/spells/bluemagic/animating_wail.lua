@@ -29,21 +29,23 @@ end;
 
 function onSpellCast(caster,target,spell)
 
+    local typeEffect = EFFECT_HASTE;
+    local power = 153;
     local duration = 300;
 
-    if(caster:hasStatusEffect(EFFECT_DIFFUSION)) then
+    if (caster:hasStatusEffect(EFFECT_DIFFUSION)) then
         local diffMerit = caster:getMerit(MERIT_DIFFUSION);
 
-        if(diffMerit > 0) then
+        if (diffMerit > 0) then
             duration = duration + (duration/100)* diffMerit;
-        end
+        end;
 
         caster:delStatusEffect(EFFECT_DIFFUSION);
-    end
+    end;
 
-    if(target:addStatusEffect(EFFECT_HASTE,153,0,duration) == false) then
+    if (target:addStatusEffect(typeEffect,power,0,duration) == false) then
         spell:setMsg(75);
-    end
+    end;
 
-    return EFFECT_HASTE;
+    return typeEffect;
 end;

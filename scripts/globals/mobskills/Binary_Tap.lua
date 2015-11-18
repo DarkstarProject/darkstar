@@ -24,14 +24,14 @@ function onMobWeaponSkill(target, mob, skill)
     local effectSecond = target:stealStatusEffect();
     local dmg = 0;
 
-    if(effectFirst ~= nil) then
+    if (effectFirst ~= nil) then
 
         local count = 1;
 
             -- add to myself
         mob:addStatusEffect(effectFirst:getType(), effectFirst:getPower(), effectFirst:getTickCount(), effectFirst:getDuration());
 
-        if(effectSecond ~= nil) then
+        if (effectSecond ~= nil) then
             count = count + 1;
                 -- add to myself
             mob:addStatusEffect(effectSecond:getType(), effectSecond:getPower(), effectSecond:getTickCount(), effectSecond:getDuration());
@@ -48,10 +48,7 @@ function onMobWeaponSkill(target, mob, skill)
         local power = math.random(0, 101) + 100;
         dmg = MobFinalAdjustments(power,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
 
-        target:delHP(dmg);
-        mob:addHP(dmg);
-
-        skill:setMsg(MSG_DRAIN_HP);
+        skill:setMsg(MobPhysicalDrainMove(mob, target, skill, MOBDRAIN_HP, dmg));
         return dmg;
     end
 

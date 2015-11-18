@@ -13,7 +13,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if(mob:getMobMod(MOBMOD_VAR) == 1) then
+    if (mob:getMobMod(MOBMOD_VAR) == 1) then
         return 0;
     end
     return 1;

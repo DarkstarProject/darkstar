@@ -29,9 +29,9 @@ end;
 
 function onTrigger(player,npc)
 	-- Curses, Foiled A_Golem!?
-	if(player:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
+	if (player:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
 		player:startEvent(0x000E); -- deliver spell
-	elseif(player:hasKeyItem(SHANTOTTOS_EXSPELL)) then
+	elseif (player:hasKeyItem(SHANTOTTOS_EXSPELL)) then
 		player:startEvent(0x000D); -- spell erased, try again!
 	
 	-- standard dialog
@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
 	-- printf("RESULT: %u",option);
 	
 	-- Curses, Foiled A_Golem!?
-	if(csid == 0x000E) then
+	if (csid == 0x000E) then
 		player:setVar("foiledagolemdeliverycomplete",1);
 		player:delKeyItem(SHANTOTTOS_NEW_SPELL); -- remove key item
 	end

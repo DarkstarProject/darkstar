@@ -17,7 +17,7 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-	if(mob:getHP() <= mob:getMaxHP()/2 and GetServerVariable("NM-SpecialWeepWillowSapSpawn") < 1) then
+	if (mob:getHP() <= mob:getMaxHP()/2 and GetServerVariable("NM-SpecialWeepWillowSapSpawn") < 1) then
 		SpawnMob(17207303,600):updateEnmity(target);
 		SpawnMob(17207304,600):updateEnmity(target);
 		SpawnMob(17207305,600):updateEnmity(target);

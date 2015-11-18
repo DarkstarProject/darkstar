@@ -74,11 +74,8 @@ const int8* MAP_CONF_FILENAME = nullptr;
 
 int8*  g_PBuff = nullptr;                // глобальный буфер обмена пакетами
 int8*  PTempBuff = nullptr;                // временный  буфер обмена пакетами
-#ifdef WIN32
-__declspec(thread) Sql_t* SqlHandle = nullptr; // SQL descriptor
-#else
+
 thread_local Sql_t* SqlHandle = nullptr;
-#endif
 
 int32  map_fd = 0;                      // main socket
 uint32 map_amntplayers = 0;             // map amnt unique players
@@ -142,7 +139,6 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 		ShowError(CL_RED"recv_parse: Invalid login attempt from %s\n" CL_RESET, ip2str(map_session_data->client_addr, nullptr));
 		return nullptr;
 	}
-    ShowInfo(CL_WHITE"mapsession" CL_RESET":" CL_WHITE"%s" CL_RESET":" CL_WHITE"%u" CL_RESET" is coming to world...\n", ip2str(map_session_data->client_addr, nullptr), map_session_data->client_port);
     return map_session_data;
 }
 
@@ -168,7 +164,7 @@ int32 do_init(int32 argc, int8** argv)
     MAP_CONF_FILENAME = "./conf/map_darkstar.conf";
 
     srand((uint32)time(nullptr));
-    WELL512::seed((uint32)time(nullptr));
+    dsprand::seed();
 
     map_config_default();
     map_config_read(MAP_CONF_FILENAME);
@@ -217,7 +213,6 @@ int32 do_init(int32 argc, int8** argv)
 
     guildutils::Initialize();
     charutils::LoadExpTable();
-    linkshell::LoadLinkshellList();
     traits::LoadTraitsList();
     effects::LoadEffectsParameters();
     battleutils::LoadSkillTable();
@@ -229,7 +224,7 @@ int32 do_init(int32 argc, int8** argv)
     petutils::LoadPetList();
     mobutils::LoadCustomMods();
 
-    ShowStatus("do_init: loading zones\n");
+    ShowStatus("do_init: loading zones");
     zoneutils::LoadZoneList();
     ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
@@ -273,7 +268,7 @@ void do_final(int code)
 
     itemutils::FreeItemList();
     battleutils::FreeWeaponSkillsList();
-    battleutils::FreeSkillChainDamageModifiers();
+    battleutils::FreeMobSkillList();
 
     petutils::FreePetList();
     zoneutils::FreeZoneList();
@@ -832,6 +827,8 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                         }
 
                         PChar->StatusEffectContainer->SaveStatusEffects(true);
+                        charutils::SaveCharPosition(PChar);
+
                         ShowDebug(CL_CYAN"map_cleanup: %s timed out, closing session\n" CL_RESET, PChar->GetName());
 
                         PChar->status = STATUS_SHUTDOWN;
@@ -1270,6 +1267,10 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "msg_server_ip") == 0)
         {
             map_config.msg_server_ip = aStrdup(w2);
+        }
+        else if (strcmp(w1, "mob_no_despawn") == 0)
+        {
+            map_config.mob_no_despawn = atoi(w2);
         }
         else
         {

@@ -1,33 +1,40 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
--- NPC:  Dynamis_Lord
+--  NM:  Dynamis_Lord
+-- 
+-- In OLD Dynamis, he is spawned by killing 15 Kindred NMs..
+-- ..NOT by killing Ying and Yang.
+--
+-- In Neo Dynamis, he is spawned by trading
+-- a Shrouded Bijou to the ??? in front of Castle Zvahl. 
+--
+-- Suggested method for old school Dyna: mask bits
+-- Duke Berith        bit 0
+-- Marquis Decarabia  bit 1
+-- Count Zaebos       bit 2
+-- Duke Gomory        bit 3
+-- Marquis Andras     bit 4
+-- Prince Seere       bit 5
+-- Count Raum         bit 6
+-- Marquis Nebiros    bit 7
+-- Marquis Sabnak     bit 8
+-- Duke Scox          bit 9
+-- Marquis Orias      bit 10
+-- Marquis Gamygyn    bit 11
+-- Count Vine         bit 12
+-- Marquis Cimeries   bit 13
+-- King Zagan         bit 14
+-- Mask full = pop Dyna Lord
 -----------------------------------
 
 require("scripts/globals/status");
-
------------------------------------
-
 require("scripts/globals/titles");
 
 -----------------------------------
 -- onMobInitialize Action
 -----------------------------------
 
-function onMobInitialize(mob,target)
-end;
-
------------------------------------
--- onMobRoam
------------------------------------
-
-function onMobRoam(mob)
-	--[[
-	if(mob:getExtraVar(1) <= os.time()) then
-		DespawnMob(17330177); -- Despawn after 30min
-		DespawnMob(17330183);
-		DespawnMob(17330184);
-	end
-	]]
+function onMobInitialize(mob)
 end;
 
 -----------------------------------
@@ -35,10 +42,6 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-	
-	SpawnMob(17330183):updateEnmity(target); -- Spawn Ying
-	SpawnMob(17330184):updateEnmity(target); -- Spawn Yang
-	
 end;
 
 -----------------------------------
@@ -46,22 +49,17 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-	
-	if(mob:getLocalVar("timeLimit") <= os.time()) then
-		DespawnMob(17330177); -- Despawn after 30min
-		DespawnMob(17330183);
-		DespawnMob(17330184);
-	end
-	
-	if(mob:getBattleTime() % 90 == 0) then
-		if(GetMobAction(17330183) == 0) then
-			SpawnMob(17330183):updateEnmity(target); -- Respawn Ying after 90sec
-		end
-		if(GetMobAction(17330184) == 0) then
-			SpawnMob(17330184):updateEnmity(target); -- Respawn Yang after 90sec
-		end
-	end
-	
+    local YingID = 17330183;
+    local YangID = 17330184;
+
+    if (mob:getBattleTime() % 90 == 0) then
+        if (GetMobAction(YingID) == ACTION_NONE) then
+            SpawnMob(YingID):updateEnmity(target); -- Respawn Ying after 90sec
+        end
+        if (GetMobAction(YangID) == ACTION_NONE) then
+            SpawnMob(YangID):updateEnmity(target); -- Respawn Yang after 90sec
+        end
+    end
 end;
 
 -----------------------------------
@@ -69,11 +67,8 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
-	killer:addTitle(LIFTER_OF_SHADOWS);
-	
-	local npc = GetNPCByID(17330778); -- Spawn ???
-	npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
-	npc:setStatus(0);
-	
+    local npc = GetNPCByID(17330778); -- ID of the '???' target.
+    killer:addTitle(LIFTER_OF_SHADOWS);
+    npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
+    npc:setStatus(0); -- Spawn the '???'
 end;

@@ -30,12 +30,12 @@ end;
 
 function onTrigger(player,npc)
 
-if(player:getQuestStatus(OTHER_AREAS,A_POTTER_S_PREFERENCE)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>5) then
+if (player:getQuestStatus(OTHER_AREAS,A_POTTER_S_PREFERENCE)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>5) then
 	player:startEvent(0x006f,569); -- start quest A Potter's Preference
-elseif(player:getQuestStatus(OTHER_AREAS,A_POTTER_S_PREFERENCE)==QUEST_ACCEPTED) then
+elseif (player:getQuestStatus(OTHER_AREAS,A_POTTER_S_PREFERENCE)==QUEST_ACCEPTED) then
 	player:startEvent(0x0072,569); --   get me dish_of_gusgen_clay  as soon as you can
-elseif(player:getQuestStatus(OTHER_AREAS,A_POTTER_S_PREFERENCE)==QUEST_COMPLETED) then
-	if(player:getVar("QuestAPotterPrefeCompDay_var")+7<VanadielDayOfTheYear() or player:getVar("QuestAPotterPrefeCompYear_var")<VanadielYear())then
+elseif (player:getQuestStatus(OTHER_AREAS,A_POTTER_S_PREFERENCE)==QUEST_COMPLETED) then
+	if (player:getVar("QuestAPotterPrefeCompDay_var")+7<VanadielDayOfTheYear() or player:getVar("QuestAPotterPrefeCompYear_var")<VanadielYear()) then
 	-- seven days after copletition, allow to do the quest again
 		player:startEvent(0x0070); -- repeat quest
 	else
@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 	if ((csid == 0x006f and option == 1)) then  --accept quest 
 		player:addQuest(OTHER_AREAS,A_POTTER_S_PREFERENCE);	
-	elseif(csid == 0x0071) then --quest completed
+	elseif (csid == 0x0071) then --quest completed
 		player:tradeComplete();
 		player:addFame(WINDURST,WIN_FAME*120);
 		player:addGil(GIL_RATE*2160);
@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("QuestAPotterPrefeCompDay_var",VanadielDayOfTheYear());
 		player:setVar("QuestAPotterPrefeCompYear_var",VanadielYear());
 		player:completeQuest(OTHER_AREAS,A_POTTER_S_PREFERENCE);
-	elseif(csid == 0x0070) then --repeat quest
+	elseif (csid == 0x0070) then --repeat quest
 		player:setVar("QuestAPotterPrefeRepeat_var",1);	
 	end;
 end;

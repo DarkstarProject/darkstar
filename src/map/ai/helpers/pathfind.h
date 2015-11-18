@@ -34,6 +34,7 @@ class CBaseEntity;
 
 // no path can be longer than this
 #define MAX_PATH_POINTS 50
+#define MAX_TURN_POINTS 5
 #define VERTICAL_PATH_LIMIT 3.5
 
 enum PATHFLAG {
@@ -41,7 +42,8 @@ enum PATHFLAG {
   PATHFLAG_RUN			= 0x01, // run twice the speed
   PATHFLAG_WALLHACK		= 0x02, // run through walls if path is too long
   PATHFLAG_REVERSE		= 0x04, // reverse the path
-  PATHFLAG_SCRIPT		= 0x08	// don't overwrite this path before completion (except via another script)
+  PATHFLAG_SCRIPT		= 0x08,	// don't overwrite this path before completion (except via another script)
+  PATHFLAG_SLIDE                = 0x10  // Slide to end point if close enough (so no over shoot)
 };
 
 class CPathFind
@@ -51,13 +53,13 @@ class CPathFind
     ~CPathFind();
 
     // move to a random point around given point
-    bool RoamAround(position_t point, float maxRadius, uint8 roamFlags = 0);
+    bool RoamAround(position_t point, float maxRadius, uint8 maxTurns, uint8 roamFlags = 0);
 
     // find and walk to the given point
-    bool PathTo(position_t point, uint8 pathFlags = 0);
+    bool PathTo(position_t point, uint8 pathFlags = 0, bool clear = true);
 
     // move some where around the point
-    bool PathAround(position_t point, float distance, uint8 pathFlags = 0);
+    bool PathAround(position_t point, float distanceFromPoint, uint8 pathFlags = 0);
 
     // walk through the given points. No new points made.
     bool PathThrough(position_t* points, uint8 totalPoints, uint8 pathFlags = 0);
@@ -86,7 +88,7 @@ class CPathFind
 
     // checks if mob is currently following a path
     bool IsFollowingPath();
-	bool IsFollowingScriptedPath();
+    bool IsFollowingScriptedPath();
 
     // calculate speed of mob with mode, mod_speed, etc
     float GetRealSpeed();
@@ -97,6 +99,8 @@ class CPathFind
     // clear current path
     void Clear();
     bool isNavMeshEnabled();
+
+    bool ValidPosition(position_t* pos);
 
     // checks if mob is at given point
     bool AtPoint(position_t* pos);
@@ -118,19 +122,26 @@ class CPathFind
     bool FindClosestPath(position_t* start, position_t* end);
 
     // finds a random path around the given point
-    bool FindRandomPath(position_t* start, float maxRadius);
+    bool FindRandomPath(position_t* start, float maxRadius, uint8 maxTurns, uint8 roamFlags);
 
     void AddPoints(position_t* points, uint8 totalPoints, bool reverse = false);
 
+    void FinishedPath();
+
     CBaseEntity* m_PTarget;
     position_t m_points[MAX_PATH_POINTS];
-    position_t* m_PLastPoint;
+    position_t m_turnPoints[MAX_TURN_POINTS];
+    position_t m_originalPoint;
+    float m_distanceFromPoint;
 
     uint8 m_pathFlags;
     uint16 m_roamFlags;
     bool m_onPoint;
     int16 m_currentPoint;
     int16 m_pathLength;
+
+    uint8 m_currentTurn;
+    uint8 m_turnLength;
 
     float m_distanceMoved;
     float m_maxDistance;

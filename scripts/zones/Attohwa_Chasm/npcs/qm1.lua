@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
 	
 	feelerAntlion:setSpawn(npcX-3,npcY-2,npcZ-1);
 
-	if(GetMobAction(feelerID) == 0 and trade:hasItemQty(1825,1) and trade:getItemCount() == 1) then 
+	if (GetMobAction(feelerID) == 0 and trade:hasItemQty(1825,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();		
 		SpawnMob(feelerID,120):updateClaim(player);
 	end

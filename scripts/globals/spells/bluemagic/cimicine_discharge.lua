@@ -35,7 +35,7 @@ function onSpellCast(caster,target,spell)
     local dINT = (pINT - mINT);
     local resist = applyResistance(caster,spell,target,dINT,BLUE_SKILL,0);
 
-    if(resist < 0.5) then
+    if (resist < 0.5) then
         spell:setMsg(85); --resist message
         return EFFECT_SLOW;
     end

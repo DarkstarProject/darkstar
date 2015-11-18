@@ -42,7 +42,7 @@ MineSweep = player:getQuestStatus(BASTOK,MINESWEEPER);
 		player:startEvent(0x006c);
 	else
 		rand = math.random(1,2);
-		if(rand == 1)then
+		if (rand == 1) then
 			player:startEvent(0x0016);
 		else
 			player:startEvent(0x0017);

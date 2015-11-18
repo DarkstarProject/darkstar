@@ -31,8 +31,8 @@ local CurrentMission = player:getCurrentMission(WINDURST);
 -- NOTE: MobAction is 25(ACTION_SPAWN) when they're dead/despawned and 16(ACTION_ROAMING) when spawned.
 --		 Not really sure why but this seems to work.
 --		 print("HingeOil 1 Action: "..GetMobAction(17469666));
-if(CurrentMission == THE_SIXTH_MINISTRY or player:hasCompletedMission(WINDURST,THE_SIXTH_MINISTRY)) then
-	if((GetMobAction(17469666) == 25) and
+if (CurrentMission == THE_SIXTH_MINISTRY or player:hasCompletedMission(WINDURST,THE_SIXTH_MINISTRY)) then
+	if ((GetMobAction(17469666) == 25) and
 	   (GetMobAction(17469667) == 25) and
 	   (GetMobAction(17469668) == 25) and
 	   (GetMobAction(17469669) == 25)) then

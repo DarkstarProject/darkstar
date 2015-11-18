@@ -17,7 +17,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getXPos() < 8) then
+	if (player:getXPos() < 8) then
 		player:startEvent(0x006a);
 	else
 		player:startEvent(0x006b);

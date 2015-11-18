@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(60430,6,21,0)) then
+	if (player:sendGuild(60430,6,21,0)) then
 		player:showText(npc,TATEN_BILTEN_SHOP_DIALOG);
 	end
 end;

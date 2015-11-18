@@ -14,7 +14,7 @@
 function onTrade(player,npc,trade)
 	
 	
-	if(GetMobAction(17146147) == 0 and trade:hasItemQty(2564,1) and trade:getItemCount() == 1) then
+	if (GetMobAction(17146147) == 0 and trade:hasItemQty(2564,1) and trade:getItemCount() == 1) then
 		player:tradeComplete();
 		SpawnMob(17146147,300):updateClaim(player); -- Kinepikwa
 	end

@@ -28,6 +28,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(EFFECT_PARALYSIS, 5, 0, 30);
-        return SUBEFFECT_PARALYSIS, 160, EFFECT_PARALYSIS;
+        return SUBEFFECT_PARALYSIS, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
     end
 end;

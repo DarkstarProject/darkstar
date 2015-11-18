@@ -31,17 +31,17 @@ function onTrigger(player,npc)
 local CurrentMission = player:getCurrentMission(WINDURST);
 local npcId = npc:getID();
 	
-	if(npcId == 17469828) then
-			if(CurrentMission == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 1) then
+	if (npcId == 17469828) then
+			if (CurrentMission == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 1) then
 		player:startEvent(0x0045);
 		end
-	elseif(npcId == 17469824) then
+	elseif (npcId == 17469824) then
 		player:startEvent(0x0041);
-	elseif(npcId == 17469825) then
+	elseif (npcId == 17469825) then
 		player:startEvent(0x0042);
-	elseif(npcId == 17469826) then
+	elseif (npcId == 17469826) then
 		player:startEvent(0x0043);		
-	elseif(npcId == 17469827) then
+	elseif (npcId == 17469827) then
 		player:startEvent(0x0044);		
 	end
 end;

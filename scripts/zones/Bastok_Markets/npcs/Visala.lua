@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(5272,8,23,4)) then
+	if (player:sendGuild(5272,8,23,4)) then
 		player:showText(npc, VISALA_SHOP_DIALOG);
 	end	
 end;

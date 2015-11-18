@@ -35,7 +35,8 @@ CLuaItem::CLuaItem(lua_State* L)
         m_PLuaItem = (CItem*)lua_touserdata(L, 1);
         lua_pop(L, 1);
     }
-    else{
+    else
+    {
         m_PLuaItem = nullptr;
     }
 }

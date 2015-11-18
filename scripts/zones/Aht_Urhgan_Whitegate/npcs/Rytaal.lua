@@ -32,9 +32,9 @@ function onTrigger(player,npc)
 	local currentassault = player:getCurrentAssault();
 	local haveimperialIDtag;
     
-	if(player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("TOAUM3") == 0)then
+	if (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("TOAUM3") == 0) then
 		player:startEvent(0x010D,0,0,0,0,0,0,0,0,0);
-	elseif(player:getCurrentMission(TOAU) <= IMMORTAL_SENTRIES or player:getMainLvl() <= 49) then 
+	elseif (player:getCurrentMission(TOAU) <= IMMORTAL_SENTRIES or player:getMainLvl() <= 49) then 
 		player:startEvent(0x010E);
     elseif ((currentassault ~= 0) and (hasAssaultOrders(player) == 0)) then
         if (player:getVar("AssaultComplete") == 1) then
@@ -45,20 +45,20 @@ function onTrigger(player,npc)
             player:addAssault(0);
         end
         player:setVar("AssaultComplete",0);
-	elseif((player:getCurrentMission(TOAU) > PRESIDENT_SALAHEEM) or (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("TOAUM3") >= 1))then
-		if (lastarmyIDtag == 0 )then -- first time you get the tag
+	elseif ((player:getCurrentMission(TOAU) > PRESIDENT_SALAHEEM) or (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("TOAUM3") >= 1)) then
+		if (lastarmyIDtag == 0 ) then -- first time you get the tag
 			player:setVar("REMAINING_IMPERIAL_ARMY_ID_TAG",3); currenttagnummber =3;
 			player:setVar("TIME_IMPERIAL_ARMY_ID_TAG",currentday);
-		elseif ( diffday > 0 )then  
+		elseif ( diffday > 0 ) then  
 			currenttagnummber = currenttagnummber + diffday ;
-			if (currenttagnummber > 3)then -- store 3 TAG max
+			if (currenttagnummber > 3) then -- store 3 TAG max
 				currenttagnummber = 3;
 			end
 			player:setVar("REMAINING_IMPERIAL_ARMY_ID_TAG",currenttagnummber);
 			player:setVar("TIME_IMPERIAL_ARMY_ID_TAG",currentday);
 		end
 
-        if(player:hasKeyItem(IMPERIAL_ARMY_ID_TAG))then
+        if (player:hasKeyItem(IMPERIAL_ARMY_ID_TAG)) then
             haveimperialIDtag = 1;
         else
             haveimperialIDtag = 0;
@@ -87,24 +87,24 @@ function onEventFinish(player,csid,option)
 	local currenttagnummber =  player:getVar("REMAINING_IMPERIAL_ARMY_ID_TAG");
 	local CurrentAssault = player:getCurrentAssault();
 
-	if(csid == 0x010D)then
+	if (csid == 0x010D) then
 		player:setVar("TOAUM3",1);
-	elseif(csid == 0x010C and option == 1 	and player:hasKeyItem(IMPERIAL_ARMY_ID_TAG)==false and currenttagnummber > 0)then
+	elseif (csid == 0x010C and option == 1 	and player:hasKeyItem(IMPERIAL_ARMY_ID_TAG)==false and currenttagnummber > 0) then
 		player:addKeyItem(IMPERIAL_ARMY_ID_TAG);
 		player:messageSpecial(KEYITEM_OBTAINED,IMPERIAL_ARMY_ID_TAG);
 		player:setVar("REMAINING_IMPERIAL_ARMY_ID_TAG",currenttagnummber - 1);
-	elseif(csid == 0x010C and option == 2 and player:hasKeyItem(IMPERIAL_ARMY_ID_TAG)==false and hasAssaultOrders(player) ~= 0)then
-        if(player:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS))then
+	elseif (csid == 0x010C and option == 2 and player:hasKeyItem(IMPERIAL_ARMY_ID_TAG)==false and hasAssaultOrders(player) ~= 0) then
+        if (player:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS)) then
             player:delKeyItem(LEUJAOAM_ASSAULT_ORDERS);
-        elseif(player:hasKeyItem(MAMOOL_JA_ASSAULT_ORDERS))then
+        elseif (player:hasKeyItem(MAMOOL_JA_ASSAULT_ORDERS)) then
             player:delKeyItem(MAMOOL_JA_ASSAULT_ORDERS);
-        elseif(player:hasKeyItem(LEBROS_ASSAULT_ORDERS))then
+        elseif (player:hasKeyItem(LEBROS_ASSAULT_ORDERS)) then
             player:delKeyItem(LEBROS_ASSAULT_ORDERS);
-        elseif(player:hasKeyItem(PERIQIA_ASSAULT_ORDERS))then
+        elseif (player:hasKeyItem(PERIQIA_ASSAULT_ORDERS)) then
             player:delKeyItem(PERIQIA_ASSAULT_ORDERS);
-        elseif(player:hasKeyItem(ILRUSI_ASSAULT_ORDERS ))then
+        elseif (player:hasKeyItem(ILRUSI_ASSAULT_ORDERS )) then
             player:delKeyItem(ILRUSI_ASSAULT_ORDERS);
-        elseif(player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS))then
+        elseif (player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS)) then
             player:delKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
         end
         player:addKeyItem(IMPERIAL_ARMY_ID_TAG);

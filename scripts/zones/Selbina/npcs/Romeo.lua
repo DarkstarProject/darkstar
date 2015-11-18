@@ -18,8 +18,8 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(player:getQuestStatus(OTHER_AREAS,DONATE_TO_RECYCLING) == QUEST_ACCEPTED) then
-		if((trade:hasItemQty(16482,5) == true or trade:hasItemQty(16483,5) == true or trade:hasItemQty(16534,5) == true or 
+	if (player:getQuestStatus(OTHER_AREAS,DONATE_TO_RECYCLING) == QUEST_ACCEPTED) then
+		if ((trade:hasItemQty(16482,5) == true or trade:hasItemQty(16483,5) == true or trade:hasItemQty(16534,5) == true or 
 			trade:hasItemQty(17068,5) == true or trade:hasItemQty(17104,5) == true) and trade:getGil() == 0 and trade:getItemCount() == 5) then 
 			player:startEvent(0x0015); -- Finish quest "Donate to Recycling"
 		end
@@ -33,9 +33,9 @@ end;
 function onTrigger(player,npc)
 	DonateToRecycling = player:getQuestStatus(OTHER_AREAS,DONATE_TO_RECYCLING);
 	
-	if(DonateToRecycling == QUEST_AVAILABLE) then
+	if (DonateToRecycling == QUEST_AVAILABLE) then
 		player:startEvent(0x0014); -- Start quest "Donate to Recycling"
-	elseif(DonateToRecycling == QUEST_ACCEPTED) then
+	elseif (DonateToRecycling == QUEST_ACCEPTED) then
 		player:startEvent(0x0016); -- During quest "Donate to Recycling"
 	else
 		player:startEvent(0x0017); -- Standard dialog
@@ -59,9 +59,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x0014) then
+	if (csid == 0x0014) then
 		player:addQuest(OTHER_AREAS,DONATE_TO_RECYCLING);
-	elseif(csid == 0x0015) then
+	elseif (csid == 0x0015) then
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,89);
 		else 

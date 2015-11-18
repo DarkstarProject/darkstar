@@ -122,7 +122,7 @@ function onEventFinish(player,csid,option,target)
      
     if (csid == 0x154) then
         unionRepresentativeTriggerFinish(player, option, target, 3, "guild_goldsmithing", keyitems, items);
-    elseif(csid == 0x155) then
+    elseif (csid == 0x155) then
         player:messageSpecial(GP_OBTAINED, option);
     end
 end;

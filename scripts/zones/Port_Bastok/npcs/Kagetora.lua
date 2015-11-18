@@ -25,18 +25,18 @@ end;
 
 function onTrigger(player,npc)
 
-	if(player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
+	if (player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
 		
 		AyameAndKaede = player:getVar("AyameAndKaede_Event");
 		
-		if(AyameAndKaede == 0) then
+		if (AyameAndKaede == 0) then
 			player:startEvent(0x00f1);
-		elseif(AyameAndKaede > 2) then
+		elseif (AyameAndKaede > 2) then
 			player:startEvent(0x00f4);
 		else
 			player:startEvent(0x0017);
 		end
-	elseif(player:getVar("twentyInPirateYearsCS") == 1) then
+	elseif (player:getVar("twentyInPirateYearsCS") == 1) then
 		player:startEvent(0x0105);
 	else
 		player:startEvent(0x0017);
@@ -61,9 +61,9 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x00f1) then
+	if (csid == 0x00f1) then
 		player:setVar("AyameAndKaede_Event",1);
-	elseif(csid == 0x0105) then
+	elseif (csid == 0x0105) then
 		player:setVar("twentyInPirateYearsCS",2);
 	end
 	

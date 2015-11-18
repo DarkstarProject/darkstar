@@ -16,8 +16,8 @@ require("scripts/zones/Ordelles_Caves/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(player:getVar("darkPuppetCS") >= 4) then
-		if(trade:hasItemQty(16940,1) and trade:getItemCount() == 1) then -- Trade Gerwitz's Sword
+	if (player:getVar("darkPuppetCS") >= 4) then
+		if (trade:hasItemQty(16940,1) and trade:getItemCount() == 1) then -- Trade Gerwitz's Sword
 			player:tradeComplete();
 			player:messageSpecial(GERWITZS_SOUL_DIALOG);
 			SpawnMob(17568137,180):updateClaim(player);

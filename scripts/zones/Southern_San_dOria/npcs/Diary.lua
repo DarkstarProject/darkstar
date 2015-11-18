@@ -29,11 +29,11 @@ function onTrigger(player,npc)
 	toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
 --	player:startEvent(0x02d2)  -- read page 4
 --	player:startEvent(0x02d3) read last page
-	if(toCureaCough == QUEST_AVAILABLE and player:getVar("DiaryPage") == 0)then
+	if (toCureaCough == QUEST_AVAILABLE and player:getVar("DiaryPage") == 0) then
 		player:startEvent(0x27F);  -- see diary, option to read
-	elseif(player:getVar("DiaryPage") == 1) then
+	elseif (player:getVar("DiaryPage") == 1) then
 		player:startEvent(0x280);  -- diary page 2
-	elseif(player:getVar("DiaryPage") >= 2 and medicineWoman == QUEST_COMPLETED) then
+	elseif (player:getVar("DiaryPage") >= 2 and medicineWoman == QUEST_COMPLETED) then
 		player:startEvent(0x281);  -- read page 3
 	end 
 end; 

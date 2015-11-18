@@ -33,13 +33,13 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 -- print(leave code ..leavecode);
 	
-	if(leavecode == 2) then --play end CS. Need time and battle id for record keeping + storage
-		if(player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_ACCEPTED) then
+	if (leavecode == 2) then --play end CS. Need time and battle id for record keeping + storage
+		if (player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_ACCEPTED) then
 			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0);
 		else
 			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,1);
 		end
-	elseif(leavecode == 4) then
+	elseif (leavecode == 4) then
 		player:startEvent(0x7d02);
 	end
 	
@@ -52,7 +52,7 @@ end;
 function onEventFinish(player,csid,option)
 -- print("bc finish csid: "..csid.."and option: "..option);
 	
-	if(csid == 0x7d01 and option ~= 0 and player:hasKeyItem(DRAGON_CURSE_REMEDY) == true) then
+	if (csid == 0x7d01 and option ~= 0 and player:hasKeyItem(DRAGON_CURSE_REMEDY) == true) then
 		player:addTitle(HEIR_TO_THE_HOLY_CREST);
 		player:delKeyItem(DRAGON_CURSE_REMEDY);
 		player:unlockJob(14);

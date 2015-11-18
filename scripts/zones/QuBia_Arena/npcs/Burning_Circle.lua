@@ -42,7 +42,7 @@ require("scripts/zones/QuBia_Arena/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(TradeBCNM(player,player:getZoneID(),trade,npc))then
+	if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
 		return;
 	end
 
@@ -54,12 +54,12 @@ end;
 
 function onTrigger(player,npc)
 
-	-- if(player:hasKeyItem(MARK_OF_SEED) and player:getCurrentMission(ACP) == THOSE_WHO_LURK_IN_SHADOWS_II) then
+	-- if (player:hasKeyItem(MARK_OF_SEED) and player:getCurrentMission(ACP) == THOSE_WHO_LURK_IN_SHADOWS_II) then
 		--player:startEvent(0x005);
-	--elseif(EventTriggerBCNM(player,npc)) then
+	--elseif (EventTriggerBCNM(player,npc)) then
 	-- Temp disabled pending fixes for the BCNM mobs.
 
-	if(EventTriggerBCNM(player,npc))then
+	if (EventTriggerBCNM(player,npc)) then
 		return;
 	end
 

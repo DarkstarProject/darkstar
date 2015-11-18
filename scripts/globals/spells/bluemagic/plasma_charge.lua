@@ -31,21 +31,24 @@ end;
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-        
-    local duration = 50;
 
-    if(caster:hasStatusEffect(EFFECT_DIFFUSION)) then
+    local typeEffect = EFFECT_SHOCK_SPIKES;
+    local power = 5;
+    local duration = 60;
+
+    if (caster:hasStatusEffect(EFFECT_DIFFUSION)) then
         local diffMerit = caster:getMerit(MERIT_DIFFUSION);
-        
-        if(diffMerit > 0) then
-            duration = duration + (duration/100)* diffMerit;
-        end
-        
-        caster:delStatusEffect(EFFECT_DIFFUSION);
-    end
-    
-        caster:addStatusEffect(EFFECT_SHOCK_SPIKES,5,0,duration);
-        spell:setMsg(230);
 
-    return EFFECT_DEFENSE_BOOST;
+        if (diffMerit > 0) then
+            duration = duration + (duration/100)* diffMerit;
+        end;
+
+        caster:delStatusEffect(EFFECT_DIFFUSION);
+    end;
+
+    if (target:addStatusEffect(typeEffect,power,0,duration) == false) then
+        spell:setMsg(75);
+    end;
+
+    return typeEffect;
 end;

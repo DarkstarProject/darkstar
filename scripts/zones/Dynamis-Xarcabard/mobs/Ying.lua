@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
--- NPC:  Ying
+--  NM:  Ying
 -----------------------------------
 
 require("scripts/globals/status");
@@ -17,12 +17,12 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-	
-	-- Spawn ying after 21sec if lord is not spawned, else he's respawned by dyna lord
-	if(mob:getBattleTime() % 21 == 0 and GetMobAction(17330184) == 0) then
-		SpawnMob(17330184):updateEnmity(target);
-	end
-	
+    local YangID = 17330184;
+    local YangToD = GetMobByID(YingID):getLocalVar("YangToD");
+    -- Repop Yang every 30 seconds if Ying is up and Yang is not.
+    if (mob:getBattleTime() > YangToD+30 and GetMobAction(YangID) == ACTION_NONE) then
+        SpawnMob(YangID):updateEnmity(target);
+    end
 end;
 
 -----------------------------------
@@ -30,10 +30,13 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
-	if(GetMobAction(17330177) == 0 and GetMobAction(17330184) == 0) then
-		GetMobByID(17330177):setLocalVar("timeLimit", os.time() + 1800); -- Time for the 30min limit
-		SpawnMob(17330177); -- Dynamis Lord
-	end
-	
+    local YangID = 17330184;
+    -- localVars clear on death, so setting it on its partner
+    GetMobByID(YangID):setLocalVar("YingToD", os.time());
+
+    -- This is not retail, this is not how you pop DynaLord:
+    if (GetMobAction(17330177) == ACTION_NONE and GetMobAction(YangID) == ACTION_NONE) then
+        -- GetMobByID(17330177):setLocalVar("timeLimit", os.time() + 1800); -- Time for the 30min limit
+        SpawnMob(17330177); -- Dynamis Lord
+    end
 end;

@@ -117,7 +117,7 @@ function onEventFinish(player,csid,option,target)
      
     if (csid == 0x02db) then
         unionRepresentativeTriggerFinish(player, option, target, 1, "guild_woodworking", keyitems, items);
-    elseif(csid == 0x02dc) then
+    elseif (csid == 0x02dc) then
         player:messageSpecial(GP_OBTAINED, option);
     end
 end;

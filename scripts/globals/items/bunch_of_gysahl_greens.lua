@@ -37,7 +37,7 @@ end;
 
 function onEffectGain(target,effect)
 	local power = effect:getPower();
-	if(power == 1) then
+	if (power == 1) then
 		chocoboShirt = 1;
 		target:addMod(MOD_AGI, 13);
 		target:addMod(MOD_VIT, -5);
@@ -52,7 +52,7 @@ end;
 -----------------------------------------
 function onEffectLose(target,effect)
 	local power = effect:getPower();
-	if(power == 1) then
+	if (power == 1) then
 		target:delMod(MOD_AGI, 13);
 		target:delMod(MOD_VIT, -5);
 	else

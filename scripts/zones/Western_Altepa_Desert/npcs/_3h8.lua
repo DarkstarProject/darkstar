@@ -28,14 +28,14 @@ function onTrigger(player,npc)
 	local Emerald = GetNPCByID(SapphireID-1):getAnimation();
 	local Sapphire = npc:getAnimation();
 
-	if(Sapphire ~= 8) then
+	if (Sapphire ~= 8) then
 		npc:setAnimation(8);
 		GetNPCByID(SapphireID-4):setAnimation(8);
 	else
 		player:messageSpecial(DOES_NOT_RESPOND);
 	end
 
-	if(Emerald == 8 and Ruby == 8 and Topaz == 8) then
+	if (Emerald == 8 and Ruby == 8 and Topaz == 8) then
 		local rand = math.random(15,30);
 		local timeDoor = rand * 60;
 

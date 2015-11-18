@@ -30,8 +30,8 @@ function onTrigger(player,npc)
 	local element = VanadielDayElement();
 	--printf("element: %u",element);
 	
-	if(element == 6 or element == 7)then -- lightday or darkday
-		if(GetNPCByID(DoorOffset-1):getAnimation() == 8)then -- lamp light open ?
+	if (element == 6 or element == 7) then -- lightday or darkday
+		if (GetNPCByID(DoorOffset-1):getAnimation() == 8) then -- lamp light open ?
 			GetNPCByID(DoorOffset-6):openDoor(15); -- Open Door _0rk
 		end
 	end

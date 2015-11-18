@@ -29,13 +29,13 @@ function onTrigger(player,npc)
 	local rusty = player:hasKeyItem(OLD_RUSTY_KEY);
 	local soul = player:hasKeyItem(PAINTBRUSH_OF_SOULS);
 
-	if(soul or rusty) then
+	if (soul or rusty) then
 		player:messageSpecial(NO_REASON_TO_INVESTIGATE);
-	elseif(npc:getID() == Book1) then
+	elseif (npc:getID() == Book1) then
 		player:startEvent(0x003D); -- First Book
-	elseif(npc:getID() == Book2) then
+	elseif (npc:getID() == Book2) then
 		player:startEvent(0x003E); -- Second Book
-	elseif(npc:getID() == Book3) then
+	elseif (npc:getID() == Book3) then
 		player:startEvent(0x003F); -- Third Book
 	end
 end;
@@ -58,15 +58,15 @@ function onEventFinish(player,csid,option)
 	-- printf("RESULT: %u",option);
 	local book = player:getVar("paintbrushOfSouls_book");
 
-	if(csid == 0x003d and option == 1 and (book == 0 or book == 2 or book == 4 or book == 6)) then
+	if (csid == 0x003d and option == 1 and (book == 0 or book == 2 or book == 4 or book == 6)) then
 		player:setVar("paintbrushOfSouls_book",book + 1);
-	elseif(csid == 0x003e and option == 1 and (book == 0 or book == 1 or book == 4 or book == 5)) then
+	elseif (csid == 0x003e and option == 1 and (book == 0 or book == 1 or book == 4 or book == 5)) then
 		player:setVar("paintbrushOfSouls_book",book + 2);
-	elseif(csid == 0x003f and option == 1 and (book == 0 or book == 1 or book == 2 or book == 3)) then
+	elseif (csid == 0x003f and option == 1 and (book == 0 or book == 1 or book == 2 or book == 3)) then
 		player:setVar("paintbrushOfSouls_book",book + 4);
 	end
 
-	if(player:getVar("paintbrushOfSouls_book") == 7) then
+	if (player:getVar("paintbrushOfSouls_book") == 7) then
 		player:messageSpecial(FALLS_FROM_THE_BOOK,OLD_RUSTY_KEY);
 		player:addKeyItem(OLD_RUSTY_KEY);
 		player:messageSpecial(KEYITEM_OBTAINED,OLD_RUSTY_KEY);

@@ -10,7 +10,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if(mob:hasPet() or mob:getPet() == nil) then
+    if (mob:hasPet() or mob:getPet() == nil) then
         return 1;
     end
     return 0;

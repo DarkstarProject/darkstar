@@ -62,11 +62,11 @@ function onRegionEnter(player,region)
 	{
 	[1] = function (x)
 	--player:setVar("porter_lock",1);
-	player:startEvent(1);
+	player:startEvent(0);
 	end,
 	[2] = function (x)
 	--player:setVar("porter_lock",1);
-	player:startEvent(2);
+	player:startEvent(1);
 	end,
 	}
 end;	
@@ -94,9 +94,9 @@ end;
 function onEventFinish(player,csid,option)		
 	--printf("CSID: %u",csid);	
 	--printf("RESULT: %u",option);	
-	if(csid == 1 and option == 1) then	
+	if (csid == 0 and option == 1) then	
 		player:setPos(-490, -130, 81, 231, 157);
-	elseif(csid == 2 and option == 1) then	
+	elseif (csid == 1 and option == 1) then	
 		player:setPos(-520 , 1 , -23, 192, 0xB3); -- to stellar fulcrum
 	end	
 end;

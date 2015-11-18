@@ -28,21 +28,21 @@ function onTrigger(player,npc)
 	local aCraftsmansWork = player:getQuestStatus(SANDORIA,A_CRAFTSMAN_S_WORK);
 	local Quotas_Status = player:getVar("ChasingQuotas_Progress");
 	
-	if(player:getMainJob() == 14 and player:getMainLvl() >= AF1_QUEST_LEVEL and aCraftsmansWork == QUEST_AVAILABLE) then
-		if(player:getVar("has_seen_drgaf1_quest_already") == 0) then
+	if (player:getMainJob() == 14 and player:getMainLvl() >= AF1_QUEST_LEVEL and aCraftsmansWork == QUEST_AVAILABLE) then
+		if (player:getVar("has_seen_drgaf1_quest_already") == 0) then
 			player:startEvent(0x0049);
 		else -- If player has seen the big cut scene, give them a smaller one.
 			player:startEvent(0x0047);
 		end
-	elseif(aCraftsmansWork == QUEST_ACCEPTED and player:hasKeyItem(ALTEPA_POLISHING_STONE) == false) then
+	elseif (aCraftsmansWork == QUEST_ACCEPTED and player:hasKeyItem(ALTEPA_POLISHING_STONE) == false) then
 		player:startEvent(0x0045);
-	elseif(aCraftsmansWork == QUEST_ACCEPTED) then
+	elseif (aCraftsmansWork == QUEST_ACCEPTED) then
 			player:startEvent(0x0046);
-	elseif(Quotas_Status == 2) then
+	elseif (Quotas_Status == 2) then
 		player:startEvent(67); -- I found this earring.
-	elseif(Quotas_Status == 3 or Quotas_Status == 4) then
+	elseif (Quotas_Status == 3 or Quotas_Status == 4) then
 		player:startEvent(68); -- Post-earring, move along.
-	elseif(Quotas_Status >= 5) then
+	elseif (Quotas_Status >= 5) then
 		player:startEvent(66); -- The earring was helpful?
 	else
 		player:startEvent(0x000b);
@@ -67,14 +67,14 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 	
-	if(csid == 0x0049 and option == 0) then -- first part of long CS -- declines questgiver
+	if (csid == 0x0049 and option == 0) then -- first part of long CS -- declines questgiver
 		player:setVar("has_seen_drgaf1_quest_already",1);
-	elseif((csid == 0x0049 or csid == 0x0047) and option == 1) then
+	elseif ((csid == 0x0049 or csid == 0x0047) and option == 1) then
 		player:addQuest(SANDORIA,A_CRAFTSMAN_S_WORK);
 		player:setVar("has_seen_drgaf1_quest_already",0);
 		player:setVar("aCraftsmanWork",1);
-	elseif(csid == 0x0046) then -- This is only if player has Altepa Polishing Stone
-		if(player:getFreeSlotsCount() == 0) then
+	elseif (csid == 0x0046) then -- This is only if player has Altepa Polishing Stone
+		if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16887);-- Peregrine (DRG AF1)
 		else
 			player:setVar("aCraftsmanWork",0);
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
 			player:addFame(SANDORIA,SAN_FAME*AF1_FAME);
 			player:completeQuest(SANDORIA,A_CRAFTSMAN_S_WORK);
 		end
-	elseif(csid == 67) then
+	elseif (csid == 67) then
 		player:addKeyItem(SHINY_EARRING);
 		player:messageSpecial(KEYITEM_OBTAINED,SHINY_EARRING);
 		player:setVar("ChasingQuotas_Progress",3);

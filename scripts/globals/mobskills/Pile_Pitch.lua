@@ -19,7 +19,7 @@ function onMobSkillCheck(target,mob,skill)
 
    if ((mobID == 16908294 or mobID ==16908301 or mobID ==16908308)and mobhp < 26 ) then  --omega       
       return 0;
-   elseif (mobID == 16933124 and mobhp > 70 )then -- omega first bipedform
+   elseif (mobID == 16933124 and mobhp > 70 ) then -- omega first bipedform
 	  return 0;
    end
    return 1;
@@ -33,7 +33,7 @@ function onMobWeaponSkill(target, mob, skill)
    	local typeEffect = EFFECT_BIND;
    	MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30);
 	
-      if(targetcurrentHP > hpset)then     
+      if (targetcurrentHP > hpset) then     
         dmg= targetcurrentHP - hpset;
       else
         dmg=0;

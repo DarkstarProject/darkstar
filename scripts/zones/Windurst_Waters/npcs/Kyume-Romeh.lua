@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 	local MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
 	local WildcatWindurst = player:getVar("WildcatWindurst");
 	
-	if(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==4)then
+	if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==4) then
 		player:startEvent(0x0369);
 	elseif (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,14) == false) then
 		player:startEvent(0x03ab);
@@ -85,7 +85,7 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x003c) then  -- Show Off Hat
 		player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+16);
 		player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
-	elseif(csid == 0x0369) then
+	elseif (csid == 0x0369) then
 		player:setVar("MEMORIES_OF_A_MAIDEN_Status",5);
 	elseif (csid == 0x03ab) then
 		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",14,true);

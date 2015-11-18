@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 9) then
+	if (player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 9) then
 		player:startEvent(0x004B);
 	else
 		player:messageSpecial(DOOR_FIRMLY_CLOSED);
@@ -44,7 +44,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x004B) then
+	if (csid == 0x004B) then
 		player:setVar("MissionStatus",10)
 	end
 end;

@@ -20,7 +20,7 @@ function onMobDeath(mob, killer)
 	local currentMission = killer:getCurrentMission(SANDORIA);
 	local MissionStatus = killer:getVar("MissionStatus");
 
-	if(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 1) then
+	if (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 1) then
 		killer:setVar("Mission6-2MobKilled",1);
 	end
 end;
