@@ -32,7 +32,7 @@ void CAIEventHandler::removeListener(std::string eventname, std::string identifi
 {
     eventListeners[eventname].erase(std::remove_if(eventListeners[eventname].begin(), eventListeners[eventname].end(), [&identifier](const ai_event_t& event)
     {
-        if (identifier == event.identifier || identifier == "")
+        if (identifier == event.identifier)
         {
             if (event.lua_func)
             {

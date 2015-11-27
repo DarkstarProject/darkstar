@@ -10052,18 +10052,12 @@ int32 CLuaBaseEntity::addListener(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isfunction(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isstring(L, 3));
 
     auto eventName = lua_tostring(L, 1);
+    auto identifier = lua_tostring(L, 3);
 
-    if (!lua_isnil(L, 3) && lua_isstring(L, 3))
-    {
-        auto identifier = lua_tostring(L, 3);
-        m_PBaseEntity->PAI->EventHandler.addListener(eventName, luautils::register_fp(2), identifier);
-    }
-    else
-    {
-        m_PBaseEntity->PAI->EventHandler.addListener(eventName, luautils::register_fp(2));
-    }
+    m_PBaseEntity->PAI->EventHandler.addListener(eventName, luautils::register_fp(2), identifier);
 
     return 0;
 }
@@ -10072,18 +10066,12 @@ int32 CLuaBaseEntity::removeListener(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isstring(L, 2));
 
     auto eventName = lua_tostring(L, 1);
+    auto identifier = lua_tostring(L, 2);
 
-    if (!lua_isnil(L, 2) && lua_isstring(L, 2))
-    {
-        auto identifier = lua_tostring(L, 2);
-        m_PBaseEntity->PAI->EventHandler.removeListener(eventName, identifier);
-    }
-    else
-    {
-        m_PBaseEntity->PAI->EventHandler.removeListener(eventName);
-    }
+    m_PBaseEntity->PAI->EventHandler.removeListener(eventName, identifier);
 
     return 0;
 }

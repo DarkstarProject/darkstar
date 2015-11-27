@@ -43,7 +43,7 @@ bool CWeaponSkillState::StartWeaponSkill(uint16 wsid)
     if (PWeaponskill)
     {
         m_PWeaponSkill = std::make_unique<CWeaponSkill>(*PWeaponskill);
-
+        m_PEntity->PAI->EventHandler.triggerListener("WEAPONSKILL_START", m_PEntity, wsid); //TODO: weaponskill lua object
         return true;
     }
 
@@ -78,6 +78,7 @@ bool CWeaponSkillState::StartMobSkill(uint16 mobskillid)
             actionTarget.messageID = PMobskill->getMsg() == 0 ? 0 : 43;
 
             m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+            m_PEntity->PAI->EventHandler.triggerListener("WEAPONSKILL_START", m_PEntity, mobskillid); //TODO: weaponskill lua object
         }
         m_finishTime = server_clock::now() + std::chrono::milliseconds(activationTime);
         return true;
@@ -126,6 +127,7 @@ bool CWeaponSkillState::Update(time_point tick)
         std::chrono::milliseconds((m_PMobSkill ? m_PMobSkill->getAnimationTime() : 0));
     if (IsCompleted() && tick > m_finishTime + delay)
     {
+        m_PEntity->PAI->EventHandler.triggerListener("WEAPONSKILL_STATE_EXIT", m_PEntity);
         return true;
     }
     return false;

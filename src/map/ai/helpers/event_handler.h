@@ -43,12 +43,12 @@ struct ai_event_t
 class CAIEventHandler
 {
 public:
-    void addListener(std::string eventname, int lua_func, std::string identifier = "");
-    void removeListener(std::string eventname, std::string identifier = "");
+    void addListener(std::string eventname, int lua_func, std::string identifier);
+    void removeListener(std::string eventname, std::string identifier);
 
     // calls event from core
     template<class... Args>
-    void triggerListener(std::string& eventname, Args&&... args)
+    void triggerListener(std::string eventname, Args&&... args)
     {
         for (auto&& event : eventListeners[eventname])
         {

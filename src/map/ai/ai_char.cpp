@@ -366,6 +366,7 @@ void CAIChar::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action)
     {
         PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PEntity, PEntity, 0, 0, MSGBASIC_TOO_FAR_AWAY));
     }
+    PChar->PAI->EventHandler.triggerListener("WEAPONSKILL_USE", PChar, PWeaponSkill->getID());
     charutils::UpdateHealth(PChar);
 }
 

@@ -77,8 +77,14 @@ bool CAIMob::Internal_WeaponSkill(uint16 targid, uint16 wsid)
     return false;
 }
 
-void CAIMob::OnWeaponSkillFinished(CWeaponSkillState&, action_t&)
+void CAIMob::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action)
 {
+    CAIBattle::OnWeaponSkillFinished(state, action);
+
+    auto PMobSkill = state.GetMobSkill();
+    auto PMob = static_cast<CMobEntity*>(PEntity);
+    auto PBattleTarget = static_cast<CBattleEntity*>(state.GetTarget());
+    PMob->PAI->EventHandler.triggerListener("WEAPONSKILL_USE", PMob, PMobSkill);
     //#TODO
 }
 

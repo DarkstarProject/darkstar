@@ -48,6 +48,7 @@ class CItem;
 class CMobSkill;
 class CRegion;
 class CStatusEffect;
+class CTradeContainer;
 class CItemPuppet;
 class CItemWeapon;
 class CInstance;
@@ -80,52 +81,76 @@ namespace luautils
         {};
 
         template<>
-        struct _Is_lua_type<CLuaAbility> 
-            : std::true_type {};
+        struct _Is_lua_type<CAbility> 
+            : std::true_type {
+            typedef CLuaAbility lua_class;
+        };
 
         template<>
-        struct _Is_lua_type<CLuaAction>
-            : std::true_type {};
+        struct _Is_lua_type<action_t>
+            : std::true_type {
+            typedef CLuaAction lua_class;
+        };
 
         template<>
-        struct _Is_lua_type<CLuaBaseEntity>
-            : std::true_type {};
+        struct _Is_lua_type<CBaseEntity>
+            : std::true_type {
+            typedef CLuaBaseEntity lua_class;
+        };
 
         template<>
-        struct _Is_lua_type<CLuaBattlefield>
-            : std::true_type {};
+        struct _Is_lua_type<CBattlefield>
+            : std::true_type {
+            typedef CLuaBattlefield lua_class;
+        };
 
         template<>
-        struct _Is_lua_type<CLuaInstance>
-            : std::true_type {};
+        struct _Is_lua_type<CInstance>
+            : std::true_type {
+            typedef CLuaInstance lua_class;
+        };
 
         template<>
-        struct _Is_lua_type<CLuaMobSkill>
-            : std::true_type {};
+        struct _Is_lua_type<CMobSkill>
+            : std::true_type {
+            typedef CLuaMobSkill lua_class;
+        };
 
         template<>
-        struct _Is_lua_type<CLuaRegion>
-            : std::true_type {};
+        struct _Is_lua_type<CRegion>
+            : std::true_type {
+            typedef CLuaRegion lua_class;
+        };
 
         template<>
-        struct _Is_lua_type<CLuaSpell>
-            : std::true_type {};
+        struct _Is_lua_type<CSpell>
+            : std::true_type {
+            typedef CLuaSpell lua_class;
+        };
 
         template<>
-        struct _Is_lua_type<CLuaStatusEffect>
-            : std::true_type {};
+        struct _Is_lua_type<CStatusEffect>
+            : std::true_type {
+            typedef CLuaStatusEffect lua_class;
+        };
 
         template<>
-        struct _Is_lua_type<CLuaTradeContainer>
-            : std::true_type {};
+        struct _Is_lua_type<CTradeContainer>
+            : std::true_type {
+            typedef CLuaTradeContainer lua_class;
+        };
 
         template<>
-        struct _Is_lua_type<CLuaZone>
-            : std::true_type {};
+        struct _Is_lua_type<CZone>
+            : std::true_type {
+            typedef CLuaZone lua_class;
+        };
 
         template<>
-        struct _Is_lua_type<CLuaItem>
-            : std::true_type {};
+        struct _Is_lua_type<CItem>
+            : std::true_type {
+            typedef CLuaItem lua_class;
+        };
 
         template<class T>
         struct is_lua_type
@@ -143,19 +168,11 @@ namespace luautils
     int32 prepFile(int8*, const char*);
 
     template<class T, class = std::enable_if_t<type_traits::is_lua_type<T>::value>>
-    void pushArg(T& arg) { Lunar<T>::push(LuaHandle, &arg); }
-
-    template<class T, class = std::enable_if_t<std::is_integral<T>::value>>
-    void pushArg(int arg) {}
-
-    template<class T, class = std::enable_if_t<std::is_floating_point<T>::value>>
-    void pushArg(float arg) {}
-
-    template<class T, class = std::enable_if_t<std::is_same<T, bool>::value>>
-    void pushArg(bool arg) {}
-
-    template<class T, class = std::enable_if_t<std::is_same<T, nullptr_t>::value>>
-    void pushArg(nullptr_t arg) {}
+    void pushArg(T& arg) { Lunar<type_traits::is_lua_type<T>::lua_class>::push(LuaHandle, type_traits::is_lua_type<T>::lua_class(&arg)); }
+    inline void pushArg(int arg) { lua_pushinteger(LuaHandle, arg); }
+    inline void pushArg(float arg) { lua_pushnumber(LuaHandle, arg); }
+    inline void pushArg(bool arg) { lua_pushboolean(LuaHandle, arg); }
+    inline void pushArg(nullptr_t arg) { lua_pushnil(LuaHandle); }
 
     void pushFunc(int lua_func, int index = 0);
     void callFunc(int nargs);

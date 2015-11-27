@@ -43,6 +43,7 @@ bool CAbilityState::StartAbility(uint16 abilityid)
     if (PAbility)
     {
         m_PAbility = std::make_unique<CAbility>(*PAbility);
+        m_PEntity->PAI->EventHandler.triggerListener("ABILITY_START", m_PEntity, PAbility);
         return true;
     }
     return false;
@@ -86,12 +87,14 @@ bool CAbilityState::Update(time_point tick)
     {
         action_t action;
         static_cast<CAIChar*>(m_PEntity->PAI.get())->OnAbility(*this, action);
+        m_PEntity->PAI->EventHandler.triggerListener("ABILITY_USE", m_PEntity, m_PAbility.get() /*,action*/);
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
         Complete();
     }
 
     if (IsCompleted() && tick > GetEntryTime() + m_PAbility->getAnimationTime())
     {
+        m_PEntity->PAI->EventHandler.triggerListener("ABILITY_STATE_EXIT", m_PEntity, m_PAbility.get());
         return true;
     }
 
