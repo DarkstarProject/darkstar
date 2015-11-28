@@ -81,7 +81,7 @@ namespace message
             }
             else
             {
-                PChar->status = STATUS_SHUTDOWN;
+                
                 //won't save their position (since this is the wrong thread) but not a huge deal
                 PChar->pushPacket(new CServerIPPacket(PChar, 1, 0));
             }

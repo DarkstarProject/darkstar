@@ -4605,6 +4605,11 @@ namespace charutils
 
     void SendToZone(CCharEntity* PChar, uint8 type, uint64 ipp)
     {
+        if (PChar->status == STATUS_SHUTDOWN || PChar->status == STATUS_DISAPPEAR)
+        {
+            ShowDebug("Player <%s> is already zoning. Unable to %s.\n", PChar->GetName(), PChar->status == STATUS_SHUTDOWN ? "shutdown" : "zone");
+            return;
+        }
         if (type == 2)
         {
             Sql_Query(SqlHandle, "UPDATE accounts_sessions SET server_addr = %u, server_port = %u WHERE charid = %u;",
