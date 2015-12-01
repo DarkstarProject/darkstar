@@ -8,7 +8,7 @@ require("scripts/globals/status");
 
 
 function onMobInitialise(mob)
-    mob:setMobMod(MOBMOD_STANDBACK_COOL,-1);
+    mob:setMobMod(MOBMOD_HP_STANDBACK,-1);
 end;
 
 -----------------------------------
