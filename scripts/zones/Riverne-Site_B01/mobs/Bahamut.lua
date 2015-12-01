@@ -6,6 +6,11 @@
 require("scripts/globals/quests");
 require("scripts/globals/status");
 
+
+function onMobInitialise(mob)
+    mob:setMobMod(MOBMOD_STANDBACK_COOL,-1);
+end;
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
