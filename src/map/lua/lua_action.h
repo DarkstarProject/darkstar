@@ -27,8 +27,8 @@
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
 
-#include "../packets/action.h"
-
+struct action_t;
+struct actionList_t;
 class CLuaAction
 {
     action_t* m_PLuaAction;

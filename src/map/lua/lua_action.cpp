@@ -22,6 +22,7 @@
 */
 
 #include "lua_action.h"
+#include "../packets/action.h"
 
 CLuaAction::CLuaAction(lua_State *L)
 {

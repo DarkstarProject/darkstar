@@ -30,6 +30,7 @@
 #include "lua_ability.h"
 #include "lua_baseentity.h"
 #include "lua_mobskill.h"
+#include "lua_action.h"
 #include "lua_battlefield.h"
 #include "lua_instance.h"
 #include "lua_mobskill.h"
