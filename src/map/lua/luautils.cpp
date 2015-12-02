@@ -30,9 +30,7 @@
 #include <cstdio>
 
 #include "luautils.h"
-#include "lua_ability.h"
 #include "lua_action.h"
-#include "lua_baseentity.h"
 #include "lua_battlefield.h"
 #include "lua_region.h"
 #include "lua_instance.h"
@@ -49,6 +47,7 @@
 #include "../entities/charentity.h"
 #include "../conquest_system.h"
 #include "../map.h"
+#include "../mobskill.h"
 #include "../entities/mobentity.h"
 #include "../spell.h"
 #include "../weapon_skill.h"
@@ -1122,7 +1121,7 @@ namespace luautils
         }
 
         CLuaZone LuaZone(PZone);
-        Lunar<CLuaZone>::push(LuaHandle, &LuaZone);
+        Lunar<CLuaZone>::push(LuaHandle, LuaZone);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -1155,7 +1154,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         lua_pushboolean(LuaHandle, PChar->GetPlayTime(false) == 0); // first login
         lua_pushboolean(LuaHandle, zoning);
@@ -1192,7 +1191,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         lua_pushinteger(LuaHandle, PChar->loc.prevzone);
 
@@ -1233,7 +1232,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -1271,9 +1270,9 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
         CLuaRegion LuaRegion(PRegion);
-        Lunar<CLuaRegion>::push(LuaHandle, &LuaRegion);
+        Lunar<CLuaRegion>::push(LuaHandle, LuaRegion);
 
         if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
         {
@@ -1310,9 +1309,9 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
         CLuaRegion LuaRegion(PRegion);
-        Lunar<CLuaRegion>::push(LuaHandle, &LuaRegion);
+        Lunar<CLuaRegion>::push(LuaHandle, LuaRegion);
 
         if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
         {
@@ -1372,10 +1371,10 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaBaseEntity LuaBaseEntityTarg(PNpc);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntityTarg);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntityTarg);
 
         if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
         {
@@ -1447,13 +1446,13 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         lua_pushinteger(LuaHandle, eventID);
         lua_pushinteger(LuaHandle, result);
 
         CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaTargetEntity);
 
         if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
         {
@@ -1502,13 +1501,13 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         lua_pushinteger(LuaHandle, PChar->m_event.EventID);
         lua_pushstring(LuaHandle, string);
 
         CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaTargetEntity);
 
         if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
         {
@@ -1562,13 +1561,13 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         lua_pushinteger(LuaHandle, eventID);
         lua_pushinteger(LuaHandle, result);
 
         CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaTargetEntity);
 
         if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
         {
@@ -1611,13 +1610,13 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaBaseEntity LuaBaseEntityTarg(PNpc);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntityTarg);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntityTarg);
 
         CLuaTradeContainer LuaTradeContainer(PChar->TradeContainer);
-        Lunar<CLuaTradeContainer>::push(LuaHandle, &LuaTradeContainer);
+        Lunar<CLuaTradeContainer>::push(LuaHandle, LuaTradeContainer);
 
         if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
         {
@@ -1646,7 +1645,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PNpc);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -1674,10 +1673,10 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PAttacker);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaBaseEntity LuaMobEntity(PDefender);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         lua_pushinteger(LuaHandle, damage);
 
@@ -1723,10 +1722,10 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PDefender);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaBaseEntity LuaMobEntity(PAttacker);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         lua_pushinteger(LuaHandle, damage);
 
@@ -1779,10 +1778,10 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PEntity);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaStatusEffect LuaStatusEffect(PStatusEffect);
-        Lunar<CLuaStatusEffect>::push(LuaHandle, &LuaStatusEffect);
+        Lunar<CLuaStatusEffect>::push(LuaHandle, LuaStatusEffect);
 
         if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
         {
@@ -1815,10 +1814,10 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PEntity);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaStatusEffect LuaStatusEffect(PStatusEffect);
-        Lunar<CLuaStatusEffect>::push(LuaHandle, &LuaStatusEffect);
+        Lunar<CLuaStatusEffect>::push(LuaHandle, LuaStatusEffect);
 
         if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
         {
@@ -1852,10 +1851,10 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PEntity);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaStatusEffect LuaStatusEffect(PStatusEffect);
-        Lunar<CLuaStatusEffect>::push(LuaHandle, &LuaStatusEffect);
+        Lunar<CLuaStatusEffect>::push(LuaHandle, LuaStatusEffect);
 
         if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
         {
@@ -1882,7 +1881,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PEntity);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         lua_pushinteger(LuaHandle, maneuvers);
 
@@ -1911,7 +1910,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PEntity);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         lua_pushinteger(LuaHandle, maneuvers);
 
@@ -1947,7 +1946,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         lua_pushinteger(LuaHandle, param);
 
@@ -2000,7 +1999,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -2034,7 +2033,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         lua_pushinteger(LuaHandle, 0);
 
@@ -2073,13 +2072,13 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaCasterEntity(PCaster);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaCasterEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaCasterEntity);
 
         CLuaBaseEntity LuaTargetEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaTargetEntity);
 
         CLuaSpell LuaSpell(PSpell);
-        Lunar<CLuaSpell>::push(LuaHandle, &LuaSpell);
+        Lunar<CLuaSpell>::push(LuaHandle, LuaSpell);
 
         if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
         {
@@ -2121,10 +2120,10 @@ namespace luautils
             }
 
             CLuaBaseEntity LuaCasterEntity(PCaster);
-            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaCasterEntity);
+            Lunar<CLuaBaseEntity>::push(LuaHandle, LuaCasterEntity);
 
             CLuaSpell LuaSpell(PSpell);
-            Lunar<CLuaSpell>::push(LuaHandle, &LuaSpell);
+            Lunar<CLuaSpell>::push(LuaHandle, LuaSpell);
 
             if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
             {
@@ -2154,10 +2153,10 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaMobEntity(PCaster);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         CLuaBaseEntity LuaTargetEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaTargetEntity);
 
 
         if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
@@ -2201,13 +2200,13 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaCasterEntity(PCaster);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaCasterEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaCasterEntity);
 
         CLuaBaseEntity LuaTargetEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaTargetEntity);
 
         CLuaSpell LuaSpell(PSpell);
-        Lunar<CLuaSpell>::push(LuaHandle, &LuaSpell);
+        Lunar<CLuaSpell>::push(LuaHandle, LuaSpell);
 
         if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
         {
@@ -2253,10 +2252,10 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaMobEntity(PMob);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         CLuaBaseEntity LuaBaseEntity(PAttacker);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         lua_pushinteger(LuaHandle, PWeaponskill);
 
@@ -2302,7 +2301,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaMobEntity(PMob);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -2333,7 +2332,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaMobEntity(PEntity);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -2377,8 +2376,8 @@ namespace luautils
             return -1;
         }
 
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaKillerEntity);
 
         if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
         {
@@ -2415,7 +2414,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaMobEntity(PMob);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         lua_pushinteger(LuaHandle, weather);
 
@@ -2455,8 +2454,8 @@ namespace luautils
             return -1;
         }
 
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaKillerEntity);
 
         if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
         {
@@ -2494,8 +2493,8 @@ namespace luautils
             return -1;
         }
 
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaKillerEntity);
 
         if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
         {
@@ -2525,7 +2524,7 @@ namespace luautils
             return -1;
         }
 
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -2574,8 +2573,8 @@ namespace luautils
                     bool isKillShot = PMember->id == PKiller->id;
                     bool isWeaponSkillKill = PChar->getWeaponSkillKill();
 
-                    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
-                    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
+                    Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
+                    Lunar<CLuaBaseEntity>::push(LuaHandle, LuaKillerEntity);
                     lua_pushboolean(LuaHandle, isKillShot);
                     lua_pushboolean(LuaHandle, isWeaponSkillKill);
                     // lua_pushboolean(LuaHandle, isMagicKill);
@@ -2625,11 +2624,11 @@ namespace luautils
                         return;
                     }
 
-                    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+                    Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
                     if (PMember)
                     {
                         CLuaBaseEntity LuaKillerEntity(PMember);
-                        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
+                        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaKillerEntity);
                     }
                     else
                     {
@@ -2678,7 +2677,7 @@ namespace luautils
                 return -1;
             }
 
-            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+            Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
             lua_pushnil(LuaHandle);
 
             if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
@@ -2717,7 +2716,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaMobEntity(PMob);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
@@ -2748,7 +2747,7 @@ namespace luautils
             return -1;
         }
 
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -2783,7 +2782,7 @@ namespace luautils
             return -1;
         }
 
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -2819,7 +2818,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaMobEntity(PMob);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -2962,10 +2961,10 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaBaseEntity LuaMobEntity(PMob);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
         {
@@ -3012,13 +3011,13 @@ namespace luautils
         if (!prepFile(File, "onMobWeaponSkill"))
         {
             CLuaBaseEntity LuaBaseEntity(PTarget);
-            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+            Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
             CLuaBaseEntity LuaMobEntity(PMob);
-            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+            Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
             CLuaMobSkill LuaMobSkill(PMobSkill);
-            Lunar<CLuaMobSkill>::push(LuaHandle, &LuaMobSkill);
+            Lunar<CLuaMobSkill>::push(LuaHandle, LuaMobSkill);
 
             if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
             {
@@ -3046,11 +3045,11 @@ namespace luautils
             return 0;
         }
         CLuaBaseEntity LuaBaseEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
         CLuaBaseEntity LuaMobEntity(PMob);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
         CLuaMobSkill LuaMobSkill(PMobSkill);
-        Lunar<CLuaMobSkill>::push(LuaHandle, &LuaMobSkill);
+        Lunar<CLuaMobSkill>::push(LuaHandle, LuaMobSkill);
 
         if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
         {
@@ -3090,13 +3089,13 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaBaseEntity LuaMobEntity(PMob);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         CLuaMobSkill LuaMobSkill(PMobSkill);
-        Lunar<CLuaMobSkill>::push(LuaHandle, &LuaMobSkill);
+        Lunar<CLuaMobSkill>::push(LuaHandle, LuaMobSkill);
 
         if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
         {
@@ -3130,13 +3129,13 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaBaseEntity LuaMobEntity(PAutomaton);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         CLuaMobSkill LuaMobSkill(PMobSkill);
-        Lunar<CLuaMobSkill>::push(LuaHandle, &LuaMobSkill);
+        Lunar<CLuaMobSkill>::push(LuaHandle, LuaMobSkill);
 
         if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
         {
@@ -3176,13 +3175,13 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaCharEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaCharEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaCharEntity);
 
         CLuaBaseEntity LuaBaseEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaSpell LuaSpell(PSpell);
-        Lunar<CLuaSpell>::push(LuaHandle, &LuaSpell);
+        Lunar<CLuaSpell>::push(LuaHandle, LuaSpell);
 
         if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
         {
@@ -3231,13 +3230,13 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaCharEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaCharEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaCharEntity);
 
         CLuaBaseEntity LuaBaseEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaAbility LuaAbility(PAbility);
-        Lunar<CLuaAbility>::push(LuaHandle, &LuaAbility);
+        Lunar<CLuaAbility>::push(LuaHandle, LuaAbility);
 
         if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
         {
@@ -3281,16 +3280,16 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaBaseEntity LuaMobEntity(PMob);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         CLuaMobSkill LuaMobSkill(PMobSkill);
-        Lunar<CLuaMobSkill>::push(LuaHandle, &LuaMobSkill);
+        Lunar<CLuaMobSkill>::push(LuaHandle, LuaMobSkill);
 
         CLuaBaseEntity LuaMasterEntity(PMobMaster);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMasterEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMasterEntity);
 
         if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
         {
@@ -3330,16 +3329,16 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaBaseEntity LuaMobEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         CLuaAbility LuaAbility(PAbility);
-        Lunar<CLuaAbility>::push(LuaHandle, &LuaAbility);
+        Lunar<CLuaAbility>::push(LuaHandle, LuaAbility);
 
         CLuaAction LuaAction(action, actionList);
-        Lunar<CLuaAction>::push(LuaHandle, &LuaAction);
+        Lunar<CLuaAction>::push(LuaHandle, LuaAction);
 
         if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
         {
@@ -3415,13 +3414,13 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaBaseEntity LuaMobEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
 
         CLuaAbility LuaAbility(PAbility);
-        Lunar<CLuaAbility>::push(LuaHandle, &LuaAbility);
+        Lunar<CLuaAbility>::push(LuaHandle, LuaAbility);
 
         lua_pushinteger(LuaHandle, total);
 
@@ -3452,10 +3451,10 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaEntity);
 
         CLuaInstance LuaInstance(PInstance);
-        Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
+        Lunar<CLuaInstance>::push(LuaHandle, LuaInstance);
 
         if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
         {
@@ -3486,7 +3485,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -3544,7 +3543,7 @@ namespace luautils
         }
 
         CLuaInstance LuaInstance(PInstance);
-        Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
+        Lunar<CLuaInstance>::push(LuaHandle, LuaInstance);
 
         lua_pushinteger(LuaHandle, time);
 
@@ -3573,7 +3572,7 @@ namespace luautils
         }
 
         CLuaInstance LuaInstance(PInstance);
-        Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
+        Lunar<CLuaInstance>::push(LuaHandle, LuaInstance);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -3626,15 +3625,15 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaTargetEntity);
 
         if (PInstance)
         {
             CLuaInstance LuaInstance(PInstance);
-            Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
+            Lunar<CLuaInstance>::push(LuaHandle, LuaInstance);
         }
         else
         {
@@ -3672,7 +3671,7 @@ namespace luautils
         }
 
         CLuaInstance LuaInstance(PInstance);
-        Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
+        Lunar<CLuaInstance>::push(LuaHandle, LuaInstance);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -3699,7 +3698,7 @@ namespace luautils
         }
 
         CLuaInstance LuaInstance(PInstance);
-        Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
+        Lunar<CLuaInstance>::push(LuaHandle, LuaInstance);
 
         lua_pushinteger(LuaHandle, PInstance->GetProgress());
 
@@ -3728,7 +3727,7 @@ namespace luautils
         }
 
         CLuaInstance LuaInstance(PInstance);
-        Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
+        Lunar<CLuaInstance>::push(LuaHandle, LuaInstance);
 
         lua_pushinteger(LuaHandle, PInstance->GetStage());
 
@@ -3757,7 +3756,7 @@ namespace luautils
         }
 
         CLuaInstance LuaInstance(PInstance);
-        Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
+        Lunar<CLuaInstance>::push(LuaHandle, LuaInstance);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -3854,7 +3853,7 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         lua_pushinteger(LuaHandle, TransportID);
 
@@ -3882,7 +3881,7 @@ namespace luautils
             return -1;
         }
         CLuaZone LuaZone(PZone);
-        Lunar<CLuaZone>::push(LuaHandle, &LuaZone);
+        Lunar<CLuaZone>::push(LuaHandle, LuaZone);
 
         lua_pushinteger(LuaHandle, type);
 
@@ -3917,10 +3916,10 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaBattlefield LuaBattlefieldEntity(PBattlefield);
-        Lunar<CLuaBattlefield>::push(LuaHandle, &LuaBattlefieldEntity);
+        Lunar<CLuaBattlefield>::push(LuaHandle, LuaBattlefieldEntity);
 
         if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
         {
@@ -3960,10 +3959,10 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaBattlefield LuaBattlefieldEntity(PBattlefield);
-        Lunar<CLuaBattlefield>::push(LuaHandle, &LuaBattlefieldEntity);
+        Lunar<CLuaBattlefield>::push(LuaHandle, LuaBattlefieldEntity);
 
         lua_pushinteger(LuaHandle, LeaveCode);
 
@@ -4006,10 +4005,10 @@ namespace luautils
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         CLuaBattlefield LuaBattlefieldEntity(PBattlefield);
-        Lunar<CLuaBattlefield>::push(LuaHandle, &LuaBattlefieldEntity);
+        Lunar<CLuaBattlefield>::push(LuaHandle, LuaBattlefieldEntity);
         if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
         {
             ShowError("luautils::onBcnmRegister: %s\n", lua_tostring(LuaHandle, -1));
@@ -4040,7 +4039,7 @@ namespace luautils
         }
 
         CLuaBattlefield LuaBattlefieldEntity(PBattlefield);
-        Lunar<CLuaBattlefield>::push(LuaHandle, &LuaBattlefieldEntity);
+        Lunar<CLuaBattlefield>::push(LuaHandle, LuaBattlefieldEntity);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -4356,7 +4355,7 @@ namespace luautils
             return -1;
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -4382,7 +4381,7 @@ namespace luautils
             return -1;
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
         {
@@ -4409,7 +4408,7 @@ namespace luautils
             return false;
 
         CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaBaseEntity);
 
         lua_pushboolean(LuaHandle, pre);
 

@@ -25,6 +25,7 @@
 
 #include "lua_battlefield.h"
 #include "lua_baseentity.h"
+#include "../battlefield.h"
 #include "../utils/mobutils.h"
 #include "../utils/zoneutils.h"
 

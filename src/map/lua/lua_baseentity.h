@@ -26,9 +26,9 @@
 
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
-#include "../entities/charentity.h"
 
 class CBaseEntity;
+class CCharEntity;
 
 class CLuaBaseEntity
 {

@@ -148,7 +148,7 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
     CLuaBaseEntity LuaCmdCaller(PChar);
     int32 cntparam = 0;
 
-    Lunar<CLuaBaseEntity>::push(m_LState, &LuaCmdCaller);
+    Lunar<CLuaBaseEntity>::push(m_LState, LuaCmdCaller);
     cntparam += 1;
 
     // Prepare parameters..

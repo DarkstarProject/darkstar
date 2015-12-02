@@ -47,7 +47,7 @@ void CAIActionQueue::checkAction(time_point tick)
             {
                 luautils::pushFunc(action.lua_func);
                 //CLuaBaseEntity luaEntity(PEntity);
-                luautils::pushArg(PEntity);
+                luautils::pushArg<CBaseEntity*>(PEntity);
                 luautils::callFunc(1);
                 luautils::unregister_fp(action.lua_func);
             }

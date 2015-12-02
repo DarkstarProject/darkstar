@@ -73,7 +73,7 @@ private:
 
     // push parameters on lua stack
     template<class T>
-    void pushArg(T&& arg) { luautils::pushArg(std::forward<T>(arg)); }
+    void pushArg(T&& arg) { luautils::pushArg<std::decay_t<T>>(std::forward<T>(arg)); }
     template<class T, class... Args>
     void pushArg(T&& arg, Args&&... args)
     {

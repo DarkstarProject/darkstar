@@ -27,7 +27,7 @@ This file is part of DarkStar-server source code.
 
 #include "lua_baseentity.h"
 #include "luautils.h"
-
+#include "../instance.h"
 #include "../utils/mobutils.h"
 
 

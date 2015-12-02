@@ -3,10 +3,10 @@
 /*Связыватель объектов C++ с объектами Lua*/
 template <typename T> class Lunar {
 
-  /*Структура инкапсулирования объекта C++ в объект Lua*/
+  /* User type - contains a wrapper object (CLuaType) to a real object */
   struct user_t
   {
-	  T *pT; 
+	  T pT; 
   };
 public:
   typedef int (T::*mfp)(lua_State *L);
@@ -117,32 +117,28 @@ public:
   }
 
   // Добавление в стек пользовательского типа данных, содержащего указатель на
-  // T *obj
-  static int push(lua_State *L, T *obj, bool gc=false) {
-    if (!obj) 
-	{ 
-		lua_pushnil(L); 
-		return 0; 
-	}
+  // T obj
+  static int push(lua_State *L, T obj) {
     luaL_getmetatable(L, T::className);  // поиск мета-таблицы в реестре.
     if (lua_isnil(L, -1)) luaL_error(L, "%s missing metatable", T::className);
     int mt = lua_gettop(L);
     subtable(L, mt, "userdata", "v");
     
 	user_t *ud =
-      static_cast<user_t*>(pushuserdata(L, obj, sizeof(user_t)));
+      static_cast<user_t*>(pushuserdata(L, &obj, sizeof(user_t)));
     if (ud) {
       ud->pT = obj;  // размещение указателя в user_t
       lua_pushvalue(L, mt);
       lua_setmetatable(L, -2);
-      if (gc == false) {
-        lua_checkstack(L, 3);
-        subtable(L, mt, "do not trash", "k");
-        lua_pushvalue(L, -2);
-        lua_pushboolean(L, 1);
-        lua_settable(L, -3);
-        lua_pop(L, 1);
-      }
+      //not needed with wrapper objects (they are not created on the heap)
+      //if (gc == false) {
+      //  lua_checkstack(L, 3);
+      //  subtable(L, mt, "do not trash", "k");
+      //  lua_pushvalue(L, -2);
+      //  lua_pushboolean(L, 1);
+      //  lua_settable(L, -3);
+      //  lua_pop(L, 1);
+      //}
     }
     lua_replace(L, mt);
     lua_settop(L, mt);
@@ -157,7 +153,7 @@ public:
         luaL_typerror(L, narg, T::className);
         return NULL;
     }
-    return ud->pT;  // pointer to T object
+    return &ud->pT;  // pointer to T object
   }
 
 private:
@@ -176,28 +172,27 @@ private:
   // Создание нового объекта и добавление его на вершину стека
   static int new_T(lua_State *L) {
     lua_remove(L, 1);   // удаление 'self'
-    T *obj = new T(L);  // Вызов конструктора
-    push(L, obj, true); // gc_T удалит этот объект когда надо
+    push(L, T(L)/*, false*/); 
     return 1;           
   }
 
-  // сборщик мусора
+  // not needed with wrapper objects (they are always destroyed by scope)
   static int gc_T(lua_State *L) {
-    if (luaL_getmetafield(L, 1, "do not trash")) {
-      lua_pushvalue(L, 1);  // dup userdata
-      lua_gettable(L, -2);
-      if (!lua_isnil(L, -1)) return 0;  // do not delete object
-    }
-    user_t *ud = static_cast<user_t*>(lua_touserdata(L, 1));
-    T *obj = ud->pT;
-    if (obj) delete obj;  
+    //if (luaL_getmetafield(L, 1, "do not trash")) {
+    //  lua_pushvalue(L, 1);  // dup userdata
+    //  lua_gettable(L, -2);
+    //  if (!lua_isnil(L, -1)) return 0;  // do not delete object
+    //}
+    //user_t *ud = static_cast<user_t*>(lua_touserdata(L, 1));
+    //T *obj = ud->pT;
+    //if (obj) delete obj;  
     return 0;
   }
 
   static int tostring_T (lua_State *L) {
     char buff[32];
     user_t *ud = static_cast<user_t*>(lua_touserdata(L, 1));
-    T *obj = ud->pT;
+    T *obj = &ud->pT;
     sprintf(buff, "%p", (void*)obj);
     lua_pushfstring(L, "%s (%s)", T::className, buff);
     return 1;
