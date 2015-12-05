@@ -19,7 +19,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function OnUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID)
     local tp = player:getTP();
     local drain = 0;
 

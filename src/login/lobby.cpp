@@ -446,13 +446,22 @@ int32 lobbyview_parse(int32 fd)
 
             string_t client_ver((char*)(buff + 0x74), 10);
 
-            if (version_info.Min_Client_Ver > client_ver)
+            if (version_info.Min_Client_Ver != client_ver)
             {
                 sendsize = 0x24;
                 LOBBBY_ERROR_MESSAGE(ReservePacket);
 
                 WBUFW(ReservePacket, 32) = 331;
                 memcpy(MainReservePacket, ReservePacket, sendsize);
+                ShowError("lobbyview_parse: Incorrect client version: got %s, expected %s\n", client_ver.c_str(), version_info.Min_Client_Ver.c_str());
+                if (version_info.Min_Client_Ver < client_ver)
+                {
+                    ShowError("lobbyview_parse: The server must be updated to support this client version\n");
+                }
+                else
+                {
+                    ShowError("lobbyview_parse: The client must be updated to support this server version\n");
+                }
             }
             else
             {

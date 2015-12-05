@@ -686,7 +686,7 @@ void CParty::ReloadParty()
                 PChar->ReloadPartyDec();
                 uint16 alliance = 0;
                 PChar->pushPacket(new CPartyDefinePacket(party));
-                auto effects = std::make_unique<CPartyEffectsPacket>();
+                //auto effects = std::make_unique<CPartyEffectsPacket>();
                 uint8 j = 0;
                 for (auto&& memberinfo : info)
                 {
@@ -699,8 +699,8 @@ void CParty::ReloadParty()
                     if (PPartyMember)
                     {
                         PChar->pushPacket(new CPartyMemberUpdatePacket(PPartyMember, j, memberinfo.flags, PChar->getZone()));
-                        if (memberinfo.partyid == party->GetPartyID() && PPartyMember != PChar)
-                            effects->AddMemberEffects(PChar);
+                        //if (memberinfo.partyid == party->GetPartyID() && PPartyMember != PChar)
+                        //    effects->AddMemberEffects(PChar);
                     }
                     else
                     {
@@ -708,12 +708,10 @@ void CParty::ReloadParty()
                         PChar->pushPacket(new CPartyMemberUpdatePacket(
                             memberinfo.id, memberinfo.name.c_str(),
                             memberinfo.flags, j, zoneid));
-                        if (memberinfo.partyid == party->GetPartyID())
-                            effects->AddMemberEffects(memberinfo.id);
                     }
                     j++;
                 }
-                PChar->pushPacket(effects.release());
+                //PChar->pushPacket(effects.release());
             }
         }
     }
@@ -730,7 +728,7 @@ void CParty::ReloadParty()
             PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
             PChar->ReloadPartyDec();
             PChar->pushPacket(new CPartyDefinePacket(this));
-            auto effects = std::make_unique<CPartyEffectsPacket>();
+            //auto effects = std::make_unique<CPartyEffectsPacket>();
             uint8 j = 0;
             for (auto&& memberinfo : info)
             {
@@ -738,8 +736,8 @@ void CParty::ReloadParty()
                 if (PPartyMember)
                 {
                     PChar->pushPacket(new CPartyMemberUpdatePacket(PPartyMember, j, memberinfo.flags, PChar->getZone()));
-                    if (PPartyMember != PChar)
-                        effects->AddMemberEffects(PChar);
+                    //if (PPartyMember != PChar)
+                    //    effects->AddMemberEffects(PChar);
                 }
                 else
                 {
@@ -747,11 +745,11 @@ void CParty::ReloadParty()
                     PChar->pushPacket(new CPartyMemberUpdatePacket(
                         memberinfo.id, memberinfo.name.c_str(),
                         memberinfo.flags, j, zoneid));
-                    effects->AddMemberEffects(memberinfo.id);
+                    //effects->AddMemberEffects(memberinfo.id);
                 }
                 j++;
             }
-            PChar->pushPacket(effects.release());
+            //PChar->pushPacket(effects.release());
         }
     }
 }
@@ -1061,10 +1059,6 @@ void CParty::PushEffectsPacket(CCharEntity* PChar)
                     if (PPartyMember && PPartyMember->getZone() == PMemberChar->getZone())
                     {
                         effects->AddMemberEffects(PPartyMember);
-                    }
-                    else
-                    {
-                        effects->AddMemberEffects(memberinfo.id);
                     }
                 }
             }
