@@ -18,6 +18,7 @@ itemid_bcnmid_map = {6, {0, 0}, -- Bearclaw_Pinnacle
                    19, {0, 0}, -- Spire of Dem
                    21, {0, 0}, -- Spire of Mea
                    23, {0, 0}, -- Spire of Vahzl
+                   29, {0, 0}, -- Riverne Site #B01
                    31, {0, 0}, -- Monarch Linn
                    32, {0, 0}, -- Sealion's Den
                    35, {0, 0}, -- The Garden of RuHmet
@@ -53,6 +54,7 @@ bcnmid_param_map = {6, {640, 0},
                   19, {800, 0},
                   21, {832, 0},
                   23, {864, 0},
+                  29, {896, 0},
                   31, {960, 0, 961, 1},
                   32, {992, 0, 993, 1},
                   35, {1024, 0},
@@ -448,6 +450,11 @@ function checkNonTradeBCNM(player, npc)
             mask = GetBattleBitmask(864, Zone, 1);
             player:setVar("trade_bcnmid", 864);
         end
+    elseif (Zone == 29) then -- Riverne Site #B01
+        if (player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar('StormsOfFate') == 2) then  -- Storms of Fate BCNM
+            mask = GetBattleBitmask(896, Zone, 1);
+            player:setVar("trade_bcnmid", 896);
+        end
     elseif (Zone == 31) then -- Monarch Linn
         if (player:getCurrentMission(COP) == ANCIENT_VOWS and player:getVar("PromathiaStatus") == 2) then  -- Ancient Vows bcnm
               mask = GetBattleBitmask(960, Zone, 1);
@@ -681,6 +688,10 @@ function CutsceneSkip(player, npc)
         end
     elseif (Zone == 23) then -- Spire of Vahzl
         if ((player:hasCompletedMission(COP, DESIRES_OF_EMPTINESS)) or (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus") > 8)) then -- desires of emptiness
+            skip = 1;
+        end
+    elseif (Zone == 29) then -- Riverne Site #B01
+        if ((player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_COMPLETED) or (player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar("StormsOfFate") > 2)) then -- Storms of Fate
             skip = 1;
         end
     elseif (Zone == 31) then -- Monarch Linn

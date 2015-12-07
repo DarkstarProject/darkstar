@@ -34,17 +34,11 @@ CPartyEffectsPacket::CPartyEffectsPacket()
 void CPartyEffectsPacket::AddMemberEffects(CBattleEntity* PMember)
 {
     DSP_DEBUG_BREAK_IF(members == 5);
+    //TODO: figure out why 5 members crashes client
+    if (members == 4) return;
     ref<uint32>(members * 0x30 + 0x04) = PMember->id;
     ref<uint16>(members * 0x30 + 0x08) = PMember->targid;
     ref<uint64>(members * 0x30 + 0x0C) = PMember->StatusEffectContainer->m_Flags;
     memcpy(data + (members * 0x30 + 0x14), PMember->StatusEffectContainer->m_StatusIcons, 32);
-    ++members;
-}
-
-void CPartyEffectsPacket::AddMemberEffects(uint32 id)
-{
-    DSP_DEBUG_BREAK_IF(members == 5);
-    ref<uint32>(members * 0x30 + 0x04) = id;
-    memset(data + (members * 0x30 + 0x14), 0xFF, 32);
     ++members;
 }

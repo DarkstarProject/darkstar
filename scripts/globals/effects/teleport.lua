@@ -26,8 +26,10 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-   local Teleport = effect:getPower();
-    if (Teleport == TELEPORT_DEM) then
+    local Teleport = effect:getPower();
+    if (target:isMob()) then
+        DespawnMob(target:getID())
+    elseif (Teleport == TELEPORT_DEM) then
         toDem(target);
     elseif (Teleport == TELEPORT_HOLLA) then
         toHolla(target);

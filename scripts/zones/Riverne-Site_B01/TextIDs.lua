@@ -13,6 +13,8 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
 SPACE_SEEMS_DISTORTED = 7579; -- The space around you seems oddly distorted and disrupted.
              MONUMENT = 7585; -- Something has been engraved on this stone, but the message is too difficult to make out.
    GROUND_GIVING_HEAT = 7587; -- The ground here is giving off heat.
+        BAHAMUT_TAUNT = 7655; -- Children of Vana'diel, what do you think to accomplish by fighting for your lives?
+                              -- You know your efforts are futile, yet still you resist... (+1/+2 for the next two taunts)
 
 NOTHING_OUT_OF_ORDINARY = 7555 -- There is nothing out of the ordinary here.
 

@@ -3061,9 +3061,18 @@ namespace charutils
         PChar->ForAlliance([&pcinzone, &PMob, &minlevel, &maxlevel](CBattleEntity* PMember) {
             if (PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
             {
-                if (PMember->PPet != nullptr && PMember->PPet->GetMLevel() > maxlevel) maxlevel = PMember->PPet->GetMLevel();
-                if (PMember->GetMLevel() > maxlevel) maxlevel = PMember->GetMLevel();
-                else if (PMember->GetMLevel() < minlevel) minlevel = PMember->GetMLevel();
+                if (PMember->PPet != nullptr && PMember->PPet->GetMLevel() > maxlevel && PMember->PPet->objtype != TYPE_PET) 
+                {
+                    maxlevel = PMember->PPet->GetMLevel();
+                }
+                if (PMember->GetMLevel() > maxlevel)
+                {
+                    maxlevel = PMember->GetMLevel();
+                }
+                else if (PMember->GetMLevel() < minlevel)
+                {
+                    minlevel = PMember->GetMLevel();
+                }
                 pcinzone++;
             }
         });
