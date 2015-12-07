@@ -29,6 +29,7 @@
 
 #include "../packets/basic.h"
 #include "../packets/char.h"
+#include "../packets/char_update.h"
 
 #include "charentity.h"
 #include "../spell.h"
@@ -405,6 +406,7 @@ void CCharEntity::UpdateEntity()
     if (loc.zone && updatemask && !m_isGMHidden)
     {
         loc.zone->PushPacket(this, CHAR_INRANGE, new CCharPacket(this, ENTITY_UPDATE, updatemask));
+        pushPacket(new CCharUpdatePacket(this));
         updatemask = 0;
     }
 }

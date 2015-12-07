@@ -482,7 +482,6 @@ void CAICharNormal::ActionFall()
     m_PChar->animation = ANIMATION_DEATH;
     m_PChar->m_DeathCounter = 0;
     m_PChar->m_DeathTimestamp = (uint32)time(nullptr);
-    m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
     m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar, TYPE_HOMEPOINT));
 
     //influence for conquest system
