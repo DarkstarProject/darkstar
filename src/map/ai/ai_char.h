@@ -39,6 +39,7 @@ public:
     virtual bool Internal_Ability(uint16 targetid, uint16 abilityid);
     virtual void Die() override;
     void Die(duration);
+    void Raise();
 
     /* State callbacks */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
@@ -51,6 +52,7 @@ public:
     virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
     virtual void OnAbility(CAbilityState&, action_t&);
     virtual void OnDeathTimer() override;
+    void OnRaise();
 
 protected:
     bool IsMobOwner(CBattleEntity* PTarget);

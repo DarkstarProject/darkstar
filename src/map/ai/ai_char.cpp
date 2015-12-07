@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "states/ability_state.h"
 #include "states/attack_state.h"
 #include "states/death_state.h"
+#include "states/raise_state.h"
 #include "states/weaponskill_state.h"
 #include "../ability.h"
 #include "../conquest_system.h"
@@ -1107,7 +1108,6 @@ void CAIChar::Die(duration _duration)
     ClearStateStack();
     ChangeState<CDeathState>(static_cast<CBattleEntity*>(PEntity), _duration);
     m_battleTarget = 0;
-    PChar->pushPacket(new CCharUpdatePacket(PChar));
     PChar->pushPacket(new CRaiseTractorMenuPacket(PChar, TYPE_HOMEPOINT));
     PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
 
@@ -1120,4 +1120,90 @@ void CAIChar::Die(duration _duration)
 
     if (PChar->getMod(MOD_RERAISE_III) > 0)
         PChar->m_hasRaise = 3;
+}
+
+void CAIChar::Raise()
+{
+    ForceChangeState<CRaiseState>(static_cast<CBattleEntity*>(PEntity));
+}
+
+void CAIChar::OnRaise()
+{
+    auto PChar = static_cast<CCharEntity*>(PEntity);
+    // TODO: Moghancement Experience needs to be factored in here somewhere.
+    if (PChar->m_hasRaise > 0)
+    {
+        uint8 weaknessLvl = 1;
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_WEAKNESS))
+        {
+            //double weakness!
+            weaknessLvl = 2;
+        }
+
+        //add weakness effect (75% reduction in HP/MP)
+        if (!PChar->getMijinGakure())
+        {
+            CStatusEffect* PWeaknessEffect = new CStatusEffect(EFFECT_WEAKNESS, EFFECT_WEAKNESS, weaknessLvl, 0, 300);
+            PChar->StatusEffectContainer->AddStatusEffect(PWeaknessEffect);
+        }
+
+        double ratioReturned = 0.0f;
+        uint16 hpReturned = 1;
+
+        action_t action;
+        action.id = PChar->id;
+        action.actiontype = ACTION_RAISE_MENU_SELECTION;
+        auto& list = action.getNewActionList();
+        auto& actionTarget = list.getNewActionTarget();
+
+        list.ActionTargetID = PChar->id;
+        if (PChar->m_hasRaise == 1)
+        {
+            actionTarget.animation = 511;
+            hpReturned = (PChar->getMijinGakure()) ? PChar->GetMaxHP()*0.5 : PChar->GetMaxHP()*0.1;
+            ratioReturned = 0.50f * (1 - map_config.exp_retain);
+        }
+        else if (PChar->m_hasRaise == 2)
+        {
+            actionTarget.animation = 512;
+            hpReturned = (PChar->getMijinGakure()) ? PChar->GetMaxHP()*0.5 : PChar->GetMaxHP()*0.25;
+            ratioReturned = ((PChar->GetMLevel() <= 50) ? 0.50f : 0.75f) * (1 - map_config.exp_retain);
+        }
+        else if (PChar->m_hasRaise == 3)
+        {
+            actionTarget.animation = 496;
+            hpReturned = PChar->GetMaxHP()*0.5;
+            ratioReturned = ((PChar->GetMLevel() <= 50) ? 0.50f : 0.90f) * (1 - map_config.exp_retain);
+        }
+        PChar->addHP(((hpReturned < 1) ? 1 : hpReturned));
+        PChar->updatemask |= UPDATE_HP;
+        actionTarget.speceffect = SPECEFFECT_RAISE;
+
+        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CActionPacket(action));
+
+        charutils::UpdateHealth(PChar);
+
+        uint8 mLevel = (PChar->m_LevelRestriction != 0 && PChar->m_LevelRestriction < PChar->GetMLevel()) ? PChar->m_LevelRestriction : PChar->GetMLevel();
+        uint16 expLost = mLevel <= 67 ? (charutils::GetExpNEXTLevel(mLevel) * 8) / 100 : 2400;
+
+        uint16 xpNeededToLevel = charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - PChar->jobs.exp[PChar->GetMJob()];
+
+        // Exp is enough to level you and (you're not under a level restriction, or the level restriction is higher than your current main level).
+        if (xpNeededToLevel < expLost && (PChar->m_LevelRestriction == 0 || PChar->GetMLevel() < PChar->m_LevelRestriction))
+        {
+            // Player probably leveled down when they died.  Give they xp for the next level.
+            expLost = PChar->GetMLevel() <= 67 ? (charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()] + 1) * 8) / 100 : 2400;
+        }
+
+        uint16 xpReturned = ceil(expLost * ratioReturned);
+
+        if (!PChar->getMijinGakure() && PChar->GetMLevel() >= map_config.exp_loss_level)
+        {
+            charutils::AddExperiencePoints(true, PChar, PChar, xpReturned);
+        }
+
+        PChar->setMijinGakure(false);
+
+        PChar->m_hasRaise = 0;
+    }
 }

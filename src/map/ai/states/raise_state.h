@@ -21,15 +21,15 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _CDEATH_STATE_H
-#define _CDEATH_STATE_H
+#ifndef _CRAISE_STATE_H
+#define _CRAISE_STATE_H
 
 #include "state.h"
 
-class CDeathState : public CState
+class CRaiseState : public CState
 {
 public:
-    CDeathState(CBattleEntity* PEntity, duration death_time);
+    CRaiseState(CBattleEntity* PEntity);
 
     //state logic done per tick - returns whether to exit the state or not
     virtual bool Update(time_point tick) override;
@@ -40,9 +40,6 @@ public:
 
 private:
     CBattleEntity* const m_PEntity;
-    duration m_deathTime;
-    bool m_raiseSent {false};
-    time_point m_raiseTime;
 };
 
 #endif

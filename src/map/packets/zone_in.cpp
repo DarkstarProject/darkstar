@@ -188,7 +188,7 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 
 	WBUFL(data,(0xA0)) = PChar->GetPlayTime();				// время, проведенное персонажем в игре с момента создания
 
-	uint32 pktTime = CVanaTime::getInstance()->getVanaTime() + 2; //buffering this by 2 prevents autohp
+    uint32 pktTime = CVanaTime::getInstance()->getVanaTime();
 
     WBUFL(data,(0x38)) = pktTime + VTIME_BASEDATE;
     WBUFL(data,(0x3C)) = pktTime;

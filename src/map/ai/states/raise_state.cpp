@@ -21,28 +21,31 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _CDEATH_STATE_H
-#define _CDEATH_STATE_H
+#include "raise_state.h"
 
-#include "state.h"
+#include "../ai_char.h"
+#include "../../entities/battleentity.h"
+#include "../../entities/charentity.h"
+#include "../../packets/menu_raisetractor.h"
 
-class CDeathState : public CState
+CRaiseState::CRaiseState(CBattleEntity* PEntity) :
+    CState(PEntity, PEntity->targid),
+    m_PEntity(PEntity)
 {
-public:
-    CDeathState(CBattleEntity* PEntity, duration death_time);
+}
 
-    //state logic done per tick - returns whether to exit the state or not
-    virtual bool Update(time_point tick) override;
-
-    virtual void Cleanup(time_point tick) override {}
-    //whether the state can be changed by normal means
-    virtual bool CanChangeState() override { return false; };
-
-private:
-    CBattleEntity* const m_PEntity;
-    duration m_deathTime;
-    bool m_raiseSent {false};
-    time_point m_raiseTime;
-};
-
-#endif
+bool CRaiseState::Update(time_point tick)
+{
+    if (!IsCompleted())
+    {
+        Complete();
+        static_cast<CAIChar*>(m_PEntity->PAI.get())->OnRaise();
+    }
+    else if (IsCompleted() && tick > GetEntryTime() + 2s)
+    {
+        m_PEntity->animation = ANIMATION_NONE;
+        m_PEntity->updatemask |= UPDATE_HP;
+        return true;
+    }
+    return false;
+}

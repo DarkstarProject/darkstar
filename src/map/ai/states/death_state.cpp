@@ -30,11 +30,15 @@ This file is part of DarkStar-server source code.
 CDeathState::CDeathState(CBattleEntity* PEntity, duration death_time) :
     CState(PEntity, PEntity->targid),
     m_PEntity(PEntity),
-    m_deathTime(death_time)
+    m_deathTime(death_time),
+    m_raiseTime(GetEntryTime())
 {
     m_PEntity->animation = ANIMATION_DEATH;
     m_PEntity->updatemask |= UPDATE_HP;
-    m_PEntity->PAI->PathFind->Clear();
+    if (m_PEntity->PAI->PathFind)
+    {
+        m_PEntity->PAI->PathFind->Clear();
+    }
 }
 
 bool CDeathState::Update(time_point tick)
@@ -44,16 +48,17 @@ bool CDeathState::Update(time_point tick)
         Complete();
         m_PEntity->PAIBattle()->OnDeathTimer();
     }
-    else if (m_PEntity->objtype == TYPE_PC && tick > GetEntryTime() + 8s && !IsCompleted() && !raiseSent)
+    else if (m_PEntity->objtype == TYPE_PC && tick > GetEntryTime() + 8s && !IsCompleted() && 
+        !m_raiseSent && m_PEntity->isDead())
     {
         auto PChar = static_cast<CCharEntity*>(m_PEntity);
         if (PChar->m_hasRaise)
         {
             PChar->pushPacket(new CRaiseTractorMenuPacket(PChar, TYPE_RAISE));
-            raiseSent = true;
+            m_raiseSent = true;
         }
     }
-    else if (IsCompleted())
+    else if (IsCompleted() || !m_PEntity->isDead())
     {
         return true;
     }

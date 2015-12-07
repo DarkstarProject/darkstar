@@ -689,7 +689,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x0B: // homepoint
     {
-        //if (!PChar->isDead())
+        if (!PChar->isDead())
             return;
         // remove weakness on homepoint
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_WEAKNESS);
@@ -722,7 +722,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             return;
         if (RBUFB(data, (0x0C)) == 0) //ACCEPTED RAISE
         {
-            PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
+            static_cast<CAIChar*>(PChar->PAI.get())->Raise();
         }
     }
     break;

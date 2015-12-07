@@ -887,6 +887,9 @@
     <ClInclude Include="..\..\src\map\ai\states\death_state.h">
       <Filter>Header Files\ai\states</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\states\raise_state.h">
+      <Filter>Header Files\ai\states</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1625,6 +1628,9 @@
       <Filter>Source Files\ai\states</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\ai\states\death_state.cpp">
+      <Filter>Source Files\ai\states</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\states\raise_state.cpp">
       <Filter>Source Files\ai\states</Filter>
     </ClCompile>
   </ItemGroup>
