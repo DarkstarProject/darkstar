@@ -1578,7 +1578,6 @@ namespace luautils
         int32 returns = lua_gettop(LuaHandle) - oldtop;
         if (PChar->m_event.Script.find("/bcnms/") > 0 && PChar->health.hp <= 0) { //for some reason the event doesnt enforce death afterwards
             PChar->animation = ANIMATION_DEATH;
-            PChar->pushPacket(new CCharUpdatePacket(PChar));
             PChar->pushPacket(new CRaiseTractorMenuPacket(PChar, TYPE_HOMEPOINT));
             PChar->updatemask |= UPDATE_HP;
         }

@@ -81,7 +81,6 @@ bool CPlayerController::Engage(uint16 targid)
                 {
                     PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(true);
                     PChar->pushPacket(new CLockOnPacket(PChar, PTarget));
-                    PChar->pushPacket(new CCharUpdatePacket(PChar));
                     return true;
                 }
             }

@@ -107,7 +107,6 @@ void CAIChar::OnDisengage()
     {
         PChar->pushPacket(state->GetErrorMsg());
     }
-    PChar->pushPacket(new CCharUpdatePacket(PChar));
     PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(false);
 }
 
