@@ -1,6 +1,10 @@
 ---------------------------------------------------
--- Dissipation
--- Dispels all buffs add terror effect
+--  Ion_Efflux
+--
+--  Description: 10'(?) cone  Paralysis, ignores Utsusemi
+--  Type: Magical
+--  
+--  Range: 10 yalms
 ---------------------------------------------------
 
 require("scripts/globals/settings");
@@ -10,20 +14,16 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
+    if (mob:AnimationSub() <= 1) then
+        return 0;
+    end
     return 1;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_TERROR;
-    MobStatusEffectMove(mob, target, typeEffect, 1, 0, 10)
-    
-    local count = target:dispelAllStatusEffect();
+    local typeEffect = EFFECT_PARALYSIS;
 
-    if (count == 0) then
-        skill:setMsg(MSG_NO_EFFECT);
-    else
-        skill:setMsg(MSG_DISAPPEAR_NUM);
-    end
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 20, 0, 60));
 
-    return count;
+    return typeEffect;
 end
