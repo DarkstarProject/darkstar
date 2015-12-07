@@ -353,7 +353,6 @@ void CAICharNormal::ActionEngage()
                     m_PChar->animation = ANIMATION_ATTACK;
                     m_PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(true);
                     m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
-                    m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
                     m_PChar->updatemask |= UPDATE_HP;
                     return;
                 }

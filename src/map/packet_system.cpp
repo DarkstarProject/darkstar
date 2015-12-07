@@ -811,7 +811,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PChar->animation = ANIMATION_NONE;
         PChar->updatemask |= UPDATE_HP;
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
-        PChar->pushPacket(new CCharUpdatePacket(PChar));
     }
     break;
     case 0x13: // tractor menu
@@ -4257,7 +4256,6 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     PChar->updatemask |= UPDATE_HP;
     PChar->pushPacket(new CMenuConfigPacket(PChar));
-    PChar->pushPacket(new CCharUpdatePacket(PChar));
     return;
 }
 
@@ -4670,7 +4668,6 @@ void SmallPacket0x0EA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     PChar->animation = (PChar->animation == ANIMATION_SIT ? ANIMATION_NONE : ANIMATION_SIT);
     PChar->updatemask |= UPDATE_HP;
-    PChar->pushPacket(new CCharUpdatePacket(PChar));
     return;
 }
 
@@ -5422,7 +5419,6 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             PTarget->updatemask |= UPDATE_HP;
             PTarget->nameflags.flags &= ~FLAG_BAZAAR;
-            PTarget->pushPacket(new CCharUpdatePacket(PTarget));
         }
         return;
     }
@@ -5448,7 +5444,6 @@ void SmallPacket0x109(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             PChar->nameflags.flags |= FLAG_BAZAAR;
             PChar->updatemask |= UPDATE_HP;
-            PChar->pushPacket(new CCharUpdatePacket(PChar));
             return;
         }
     }
@@ -5502,7 +5497,6 @@ void SmallPacket0x10B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     PChar->nameflags.flags &= ~FLAG_BAZAAR;
     PChar->updatemask |= UPDATE_HP;
-    PChar->pushPacket(new CCharUpdatePacket(PChar));
     return;
 }
 

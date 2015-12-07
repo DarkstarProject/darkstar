@@ -867,7 +867,6 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
         {
             PChar->nameflags.flags &= ~FLAG_DC;
             PChar->updatemask |= UPDATE_HP;
-            PChar->pushPacket(new CCharUpdatePacket(PChar));
 
             if (PChar->status == STATUS_NORMAL)
             {
