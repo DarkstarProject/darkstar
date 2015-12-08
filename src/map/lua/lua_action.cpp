@@ -29,51 +29,43 @@ CLuaAction::CLuaAction(lua_State *L)
     if (!lua_isnil(L, -1) && !lua_isnil(L, -2))
     {
         m_PLuaAction = (action_t*)(lua_touserdata(L, 1));
-        m_PLuaActionList = (actionList_t*)(lua_touserdata(L, 2));
         lua_pop(L, 2);
     }
     else
     {
         m_PLuaAction = nullptr;
-        m_PLuaActionList = nullptr;
     }
 }
 
-CLuaAction::CLuaAction(action_t* Action, actionList_t* actionList)
+CLuaAction::CLuaAction(action_t* Action)
 {
     m_PLuaAction = Action;
-    m_PLuaActionList = actionList;
 }
 
-inline int32 CLuaAction::setParam(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PLuaActionList == nullptr);
-    m_PLuaActionList->actionTargets[0].param = lua_tointeger(L, -1);
-    return 0;
-}
-
-inline int32 CLuaAction::setMessageID(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PLuaActionList == nullptr);
-
-    m_PLuaActionList->actionTargets[0].messageID = lua_tointeger(L, -1);;
-    return 0;
-}
-
-inline int32 CLuaAction::setAdditionalEffect(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PLuaActionList == nullptr);
-
-    m_PLuaActionList->actionTargets[0].additionalEffect = static_cast<SUBEFFECT>(lua_tointeger(L, -1));
-    return 0;
-}
-
-inline int32 CLuaAction::setAddEffectParam(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PLuaActionList == nullptr);
-    m_PLuaActionList->actionTargets[0].addEffectParam = lua_tointeger(L, -1);
-    return 0;
-}
+//#TODO move this all into a table
+//inline int32 CLuaAction::setParam(lua_State* L)
+//{
+//    m_PLuaActionList->actionTargets[0].param = lua_tointeger(L, -1);
+//    return 0;
+//}
+//
+//inline int32 CLuaAction::setMessageID(lua_State* L)
+//{
+//    m_PLuaActionList->actionTargets[0].messageID = lua_tointeger(L, -1);;
+//    return 0;
+//}
+//
+//inline int32 CLuaAction::setAdditionalEffect(lua_State* L)
+//{
+//    m_PLuaActionList->actionTargets[0].additionalEffect = static_cast<SUBEFFECT>(lua_tointeger(L, -1));
+//    return 0;
+//}
+//
+//inline int32 CLuaAction::setAddEffectParam(lua_State* L)
+//{
+//    m_PLuaActionList->actionTargets[0].addEffectParam = lua_tointeger(L, -1);
+//    return 0;
+//}
 
 
 // Initialize Lua Methods

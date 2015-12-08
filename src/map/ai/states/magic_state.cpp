@@ -72,11 +72,13 @@ bool CMagicState::Update(time_point tick)
         {
             m_PEntity->PAIBattle()->OnCastFinished(*this,action);
         }
+        m_PEntity->PAI->EventHandler.triggerListener("MAGIC_USE", m_PEntity, m_PSpell.get(), &action);
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
         Complete();
     }
     else if (IsCompleted() && tick > GetEntryTime() + m_castTime + std::chrono::milliseconds(m_PSpell->getAnimationTime()))
     {
+        m_PEntity->PAI->EventHandler.triggerListener("MAGIC_STATE_EXIT", m_PEntity, m_PSpell.get());
         return true;
     }
     return false;
@@ -308,6 +310,7 @@ bool CMagicState::CastSpell(uint16 spellid, uint8 flags)
         actionTarget.animation = 0;
         actionTarget.param = m_PSpell->getID();
         actionTarget.messageID = 327; // starts casting
+        m_PEntity->PAI->EventHandler.triggerListener("MAGIC_START", m_PEntity, m_PSpell.get(), &action); //TODO: weaponskill lua object
 
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
     }

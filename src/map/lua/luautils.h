@@ -94,7 +94,7 @@ namespace luautils
     template<class T>
     typename std::enable_if_t<std::is_pointer<T>::value> pushArg(CMobSkill* arg) { pushLuaType<CMobSkill, CLuaMobSkill>(arg); }
     template<class T>
-    typename std::enable_if_t<std::is_pointer<T>::value> pushArg(actionList_t* arg) { pushLuaType<actionList_t, CLuaAction>(arg); }
+    typename std::enable_if_t<std::is_pointer<T>::value> pushArg(action_t* arg) { pushLuaType<action_t, CLuaAction>(arg); }
     template<class T>
     typename std::enable_if_t<std::is_pointer<T>::value> pushArg(CBattlefield* arg) { pushLuaType<CBattlefield, CLuaBattlefield>(arg); }
     template<class T>

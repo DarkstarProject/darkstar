@@ -32,7 +32,6 @@ struct actionList_t;
 class CLuaAction
 {
     action_t* m_PLuaAction;
-    actionList_t* m_PLuaActionList;
 
 public:
 
@@ -42,7 +41,7 @@ public:
     CLuaAction(lua_State*);
     //TODO: need to have just action_t constructor and have the script handle the rest,
     // or have a specialization of pushArg for a premade CLuaAction
-    CLuaAction(action_t*, actionList_t*);
+    CLuaAction(action_t*);
 
     action_t* GetAction() const
     {
