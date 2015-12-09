@@ -1,20 +1,20 @@
------------------------------------	
--- Area: Valkurm Dunes	
--- MOB: Damselfly
--- Note: Place holder Valkurm Emperor 
------------------------------------	
+-----------------------------------
+-- Area: Valkurm Dunes
+--  MOB: Damselfly
+-- Note: Place holder Valkurm Emperor
+-----------------------------------
 
 require("scripts/zones/Valkurm_Dunes/MobIDs");
-require("scripts/globals/fieldsofvalor");	
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,9,1);
-	checkRegime(killer,mob,10,2);
-  
+require("scripts/globals/fieldsofvalor");
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+    checkRegime(ally,mob,9,1);
+    checkRegime(ally,mob,10,2);
+
     mob = mob:getID();
     if (Valkurm_Emperor_PH[mob] ~= nil) then
 
@@ -28,4 +28,4 @@ function onMobDeath(mob,killer)
             end
         end
     end
-end;	
+end;

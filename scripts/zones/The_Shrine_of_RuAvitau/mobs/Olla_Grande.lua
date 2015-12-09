@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
--- NPC:  Olla Grande
+--  MOB: Olla Grande
 -----------------------------------
 
 -----------------------------------
@@ -14,7 +14,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;
 
 -----------------------------------

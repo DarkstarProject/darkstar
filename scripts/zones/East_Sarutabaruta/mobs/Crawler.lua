@@ -1,20 +1,20 @@
------------------------------------	
--- Area: East Sarutabaruta	
--- MOB:  Crawler	
+-----------------------------------
+-- Area: East Sarutabaruta
+--  MOB: Crawler
 -- Note: PH for Spiny Spipi
------------------------------------	
-	
-require("scripts/globals/fieldsofvalor");	
+-----------------------------------
+
+require("scripts/globals/fieldsofvalor");
 require("scripts/zones/East_Sarutabaruta/MobIDs");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-    checkRegime(killer,mob,92,2);
-    checkRegime(killer,mob,93,2);
-    
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+    checkRegime(ally,mob,92,2);
+    checkRegime(ally,mob,93,2);
+
     mob = mob:getID();
     if (Spiny_Spipi_PH[mob] ~= nil) then
 
@@ -28,5 +28,5 @@ function onMobDeath(mob,killer)
             end
         end
     end
-    
-end;	
+
+end;

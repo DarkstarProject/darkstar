@@ -27,7 +27,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
    local mobID = mob:getID();	
    local mobX = mob:getXPos();
    local mobY = mob:getYPos();
@@ -46,11 +46,11 @@ function onMobDeath(mob,killer)
 		   GetNPCByID(16928768+360):setPos(mobX,mobY,mobZ);
            GetNPCByID(16928768+360):setStatus(STATUS_NORMAL);
 		end	, 
-		[16928870] = function (x)		   
+		[16928870] = function (x)   
 		   GetNPCByID(16928768+47):setPos(mobX,mobY,mobZ);
            GetNPCByID(16928768+47):setStatus(STATUS_NORMAL);
 		end	, 
-		[16929036] = function (x)		   
+		[16929036] = function (x)   
            if (IsMobDead(16929037)==false) then
 		     DespawnMob(16929037);
 			 SpawnMob(16929043);

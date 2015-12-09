@@ -18,8 +18,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-    killer:addTitle(FAFNIR_SLAYER);
+function onMobDeath(mob, killer, ally)
+    ally:addTitle(FAFNIR_SLAYER);
 end;
 
 -----------------------------------
@@ -38,7 +38,7 @@ function onMobDespawn(mob)
         if (LandKingSystem_NQ == 0) then
             DeterMob(Fafnir, true);
         end
-        
+
         DeterMob(Nidhogg, false);
         UpdateNMSpawnPoint(Nidhogg);
         GetMobByID(Nidhogg):setRespawnTime(math.random(75600,86400));

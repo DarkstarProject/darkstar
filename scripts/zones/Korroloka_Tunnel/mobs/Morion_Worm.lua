@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Korroloka Tunnel (173)
+-- Area: Korroloka Tunnel (173)
 --  Mob: Morion Worm
 -----------------------------------
 
@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)    
+function onMobDeath(mob,killer,ally)    
 end;
 
 -----------------------------------

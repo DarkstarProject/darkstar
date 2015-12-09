@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Korroloka Tunnel (173)
---   Mob: Bogy
+-- Area: Korroloka Tunnel (173)
+--  Mob: Bogy
 -----------------------------------
 
 -- require("scripts/zones/Korroloka_Tunnel/MobIDs");
@@ -9,9 +9,9 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-    checkGoVregime(killer,mob,732,1);
+    checkGoVregime(ally,mob,732,1);
 
     mob = mob:getID();
     if (Dame_Blanche_PH[mob] ~= nil) then

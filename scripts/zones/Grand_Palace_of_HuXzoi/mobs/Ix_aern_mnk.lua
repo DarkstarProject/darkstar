@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Grand Palace of HuXzoi
--- NPC:  Ix_aern_mnk
+--  MOB: Ix_aern_mnk
 -- ID: 16916815
 -----------------------------------
 
@@ -68,7 +68,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
     -- Despawn his minions if they are alive (Qn'aern)
     DespawnMob(mob:getID()+1);
     DespawnMob(mob:getID()+2);

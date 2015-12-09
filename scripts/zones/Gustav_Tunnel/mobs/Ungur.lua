@@ -1,14 +1,14 @@
-----------------------------------	
+----------------------------------
 -- Area: Gustav Tunnel
 --   NM: Ungur
------------------------------------	
-  
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-  
+-----------------------------------
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+
     -- Set Ungur's Window Open Time
     SetServerVariable("[POP]Ungur", os.time(t) + 7200); -- 2 hours
     DeterMob(mob:getID(), true);
@@ -18,5 +18,5 @@ function onMobDeath(mob,killer)
     SetServerVariable("[PH]Ungur", 0);
     DeterMob(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-  
+
 end;

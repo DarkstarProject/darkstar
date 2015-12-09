@@ -1,18 +1,18 @@
------------------------------------	
--- Area: Western Altepa Desert	
--- MOB:  Cactuar	
+-----------------------------------
+-- Area: Western Altepa Desert
+--  MOB: Cactuar
 -- Note: Place holder for Cactuar_Cantautor
------------------------------------	
-	
-require("scripts/globals/fieldsofvalor");	
+-----------------------------------
+
+require("scripts/globals/fieldsofvalor");
 require("scripts/zones/Western_Altepa_Desert/MobIDs");
-  
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-    checkRegime(killer,mob,136,2);
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+    checkRegime(ally,mob,136,2);
 
     mob = mob:getID();
     if (Cactuar_Cantautor_PH[mob] ~= nil) then
@@ -27,5 +27,5 @@ function onMobDeath(mob,killer)
             end
         end
     end
-  
-end;	
+
+end;

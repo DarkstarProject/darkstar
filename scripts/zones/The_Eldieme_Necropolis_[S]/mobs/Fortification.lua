@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: The Eldieme Necropolis (S) (175)
---   Mob: Fortification
+-- Area: The Eldieme Necropolis (S) (175)
+--  MOB: Fortification
 -----------------------------------
 
 -- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");
@@ -37,6 +37,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)	
+function onMobDeath(mob,killer,ally)	
 end;
-

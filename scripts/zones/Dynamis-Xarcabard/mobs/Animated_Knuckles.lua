@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
--- NPC:  Animated Knuckles
+--  MOB: Animated Knuckles
 -----------------------------------
 
 require("scripts/globals/status");
@@ -49,9 +49,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 	
-	killer:showText(mob,ANIMATED_KNUCKLES_DIALOG+1);
+	ally:showText(mob,ANIMATED_KNUCKLES_DIALOG+1);
 	
 	DespawnMob(17330309);
 	DespawnMob(17330310);

@@ -1,7 +1,6 @@
 -----------------------------------
--- Area: Apollyon Centrale
--- NPC:  Proto-Omega
-
+-- Area: Apollyon (Central)
+--  MOB: Proto-Omega
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 -----------------------------------
@@ -10,6 +9,7 @@ require("scripts/zones/Apollyon/TextIDs");
 require("scripts/globals/titles");
 require("scripts/globals/status");
 require("scripts/globals/magic");
+
 
 -----------------------------------
 -- onMobInitialize Action
@@ -37,7 +37,7 @@ end;
 function onMobFight(mob,target)
     local mobID = mob:getID();
     local formTime = mob:getLocalVar("formWait")
-    local lifePercent = mob:getHPP(); 
+    local lifePercent = mob:getHPP();
     local currentForm = mob:getLocalVar("form")
 
     if (lifePercent < 70 and currentForm < 1) then
@@ -59,8 +59,9 @@ function onMobFight(mob,target)
             end
             mob:setLocalVar("formWait", os.time() + 60);
         end
+
         if (lifePercent < 30) then
-            mob:AnimationSub(2); 
+            mob:AnimationSub(2);
             mob:setMod(MOD_UDMGPHYS, -50);
             mob:setMod(MOD_UDMGRANGE, -50);
             mob:setMod(MOD_UDMGMAGIC, -50);
@@ -70,18 +71,6 @@ function onMobFight(mob,target)
             mob:setLocalVar("form", currentForm)
         end
     end
-end;
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer)
-    killer:addTitle(APOLLYON_RAVAGER);
-    local mobX = mob:getXPos();
-    local mobY = mob:getYPos();
-    local mobZ = mob:getZPos();
-    GetNPCByID(16932864+39):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+39):setStatus(STATUS_NORMAL);
 end;
 
 -----------------------------------
@@ -94,11 +83,23 @@ function onAdditionalEffect(mob, player)
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else
-        local duration = 5;
-        duration = duration * resist;
+        local duration = 5 * resist;
         if (player:hasStatusEffect(EFFECT_STUN) == false) then
             player:addStatusEffect(EFFECT_STUN, 0, 0, duration);
         end
         return SUBEFFECT_STUN, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_STUN;
     end
+end;
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+    ally:addTitle(APOLLYON_RAVAGER);
+    local mobX = mob:getXPos();
+    local mobY = mob:getYPos();
+    local mobZ = mob:getZPos();
+    GetNPCByID(16932864+39):setPos(mobX,mobY,mobZ);
+    GetNPCByID(16932864+39):setStatus(STATUS_NORMAL);
 end;

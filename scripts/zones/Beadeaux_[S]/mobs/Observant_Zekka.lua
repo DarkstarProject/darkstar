@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beadeaux (S)
--- NPC: Observant Zekka
+--  MOB: Observant Zekka
 -- ID: 17154359
 -- @pos 128 0.4 161
 -----------------------------------
@@ -43,5 +43,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;

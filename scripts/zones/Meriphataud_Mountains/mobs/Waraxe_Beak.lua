@@ -1,17 +1,17 @@
 -----------------------------------
---  Area: Meriphataud Mountains (119)
---  Mob:  Waraxe_Beak
+-- Area: Meriphataud Mountains (119)
+--  NM:  Waraxe_Beak
 -----------------------------------
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)	
+function onMobDeath(mob,killer,ally)
 
     -- Set Waraxe_Beak's spawnpoint and respawn time (21-24 hours)
     UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random((75600),(86400)));
+    mob:setRespawnTime(math.random(75600,86400));
 
 end;
 

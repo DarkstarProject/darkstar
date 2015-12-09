@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
--- NM:   Boreal Tiger
+--  NM:  Boreal Tiger
 -- Involved in Quests: Atop the Highest Mountains
 -- @pos 341 -29 370 112
 -----------------------------------
@@ -13,23 +13,23 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onMobSpawn(mob)
-	-- Failsafe to make sure NPC is down when NM is up
-	local npc = GetNPCByID(17236304);
-	if (OldSchoolG2 == true) then
-		npc:showNPC(1);
-	end
+    -- Failsafe to make sure NPC is down when NM is up
+    local npc = GetNPCByID(17236304);
+    if (OldSchoolG2 == true) then
+        npc:showNPC(1);
+    end
 end;
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 
-	local npc = GetNPCByID(17236304);
-	if (killer:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and killer:hasKeyItem(ROUND_FRIGICITE) == false) then
-		killer:messageSpecial(BLOCKS_OF_ICE);
-	end
-	npc:showNPC(FrigiciteDuration);
+    local npc = GetNPCByID(17236304);
+    if (ally:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and ally:hasKeyItem(ROUND_FRIGICITE) == false) then
+        ally:messageSpecial(BLOCKS_OF_ICE);
+    end
+    npc:showNPC(FrigiciteDuration);
 
 end;

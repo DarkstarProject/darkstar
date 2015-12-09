@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawler's Nest
--- NPC:  Drone Crawler
+--  MOB: Drone Crawler
 -- @pos 4.045 -2.703 285.026 (Spawn 1)
 -- @pos -74.939 -2.606 244.139 197 (Spawn 2)
 -----------------------------------
@@ -29,5 +29,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 end;

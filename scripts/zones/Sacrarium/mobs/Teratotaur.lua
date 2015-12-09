@@ -1,10 +1,7 @@
-
 -----------------------------------
--- mob : Teratotaur
--- zone : Sacrarium
+-- Area: Sacrarium
+--  MOB: Teratotaur
 -----------------------------------
-
-
 
 
 -----------------------------------
@@ -18,10 +15,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
+    local kills = ally:getVar("FOMOR_HATE");
 
-	local kills = killer:getVar("FOMOR_HATE");
-	if (kills > 4) then
-		killer:setVar("FOMOR_HATE",kills -4);
-	end
+    if (kills > 4) then
+        ally:setVar("FOMOR_HATE",kills -4);
+    end
 end;

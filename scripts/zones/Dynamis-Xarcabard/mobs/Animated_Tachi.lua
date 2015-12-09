@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
--- NPC:  Animated Tachi
+--  MOB: Animated Tachi
 -----------------------------------
 
 require("scripts/globals/status");
@@ -49,9 +49,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 	
-	killer:showText(mob,ANIMATED_TACHI_DIALOG+1);
+	ally:showText(mob,ANIMATED_TACHI_DIALOG+1);
 	
 	DespawnMob(17330445);
 	DespawnMob(17330446);

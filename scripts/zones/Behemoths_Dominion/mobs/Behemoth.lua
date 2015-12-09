@@ -18,8 +18,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-    killer:addTitle(BEHEMOTHS_BANE);
+function onMobDeath(mob, killer, ally)
+    ally:addTitle(BEHEMOTHS_BANE);
 end;
 
 -----------------------------------

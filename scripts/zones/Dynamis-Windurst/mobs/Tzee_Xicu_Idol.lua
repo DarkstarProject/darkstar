@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Windurst
--- NPC:  Tzee Xicu Idol
+--  MOB: Tzee Xicu Idol
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -32,18 +32,18 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-	if (alreadyReceived(killer,8) == false) then
-		addDynamisList(killer,128);
+	if (alreadyReceived(ally,8) == false) then
+		addDynamisList(ally,128);
 
-		killer:addTitle(DYNAMISWINDURST_INTERLOPER); -- Add title
+		ally:addTitle(DYNAMISWINDURST_INTERLOPER); -- Add title
 
 		local npc = GetNPCByID(17543480); -- Spawn ???
 		npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
 		npc:setStatus(0);
 
-		killer:launchDynamisSecondPart(); -- Spawn dynamis second part
+		ally:launchDynamisSecondPart(); -- Spawn dynamis second part
 	end
 
 end;

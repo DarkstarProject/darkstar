@@ -1,8 +1,9 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
---  NPC: Suzaku
+--  NM:  Suzaku
 -----------------------------------
-
+package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/RuAun_Gardens/TextIDs");
 require("scripts/globals/status");
 
@@ -51,7 +52,7 @@ function onAdditionalEffect(mob, target, damage)
     local params = {};
     params.bonusmab = 0;
     params.includemab = false;
-    
+
     dmg = addBonusesAbility(mob, ELE_FIRE, target, dmg, params);
     dmg = dmg * applyResistanceAddEffect(mob,target,ELE_FIRE,0);
     dmg = adjustForTarget(target,dmg,ELE_FIRE);
@@ -64,8 +65,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-    killer:showText(mob,SKY_GOD_OFFSET + 8);
+function onMobDeath(mob, killer, ally)
+    ally:showText(mob,SKY_GOD_OFFSET + 8);
 end;
 
 -----------------------------------

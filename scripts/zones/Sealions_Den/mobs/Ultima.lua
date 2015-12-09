@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sealions Den
--- NPC:  Ultima
+--  MOB: Ultima
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -25,7 +25,6 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-
     -- Gains regain at under 25% HP
     if (mob:getHP() < (mob:getMaxHP() * 0.25)) then
         if (mob:hasStatusEffect(EFFECT_REGAIN) == false) then
@@ -33,14 +32,6 @@ function onMobFight(mob,target)
             mob:getStatusEffect(EFFECT_REGAIN):setFlag(32);
         end
     end
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer)
-    killer:addTitle(ULTIMA_UNDERTAKER);
 end;
 
 -----------------------------------
@@ -61,4 +52,12 @@ function onAdditionalEffect(mob, player)
         end
         return SUBEFFECT_PARALYSIS, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
     end
+end;
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, killer, ally)
+    ally:addTitle(ULTIMA_UNDERTAKER);
 end;

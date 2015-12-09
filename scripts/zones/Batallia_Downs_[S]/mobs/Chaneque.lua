@@ -18,7 +18,7 @@ end;
 -----------------------------------
 function onAdditionalEffect(mob,target,damage)
     local chance = 10;
-    
+
     if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
@@ -37,9 +37,9 @@ function onAdditionalEffect(mob,target,damage)
     end
 end;
 
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-end;	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+end;

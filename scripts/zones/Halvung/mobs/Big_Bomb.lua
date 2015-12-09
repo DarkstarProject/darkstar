@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Halvung
--- NPC:  Big Bomb
+--  MOB: Big Bomb
 -----------------------------------
 
 -----------------------------------
@@ -14,7 +14,7 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 end;
 
 -----------------------------------

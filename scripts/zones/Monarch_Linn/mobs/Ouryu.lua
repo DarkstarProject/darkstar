@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area:
--- NPC:  Ouryu
------------------------------------
+--  MOB: Ouryu
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -52,15 +51,15 @@ function onMobFight(mob,target)
             mob:SetMobSkillAttack(true);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         end
-	end
+    end
 end;
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 
-	killer:addTitle(MIST_MELTER);
+    ally:addTitle(MIST_MELTER);
 
 end;

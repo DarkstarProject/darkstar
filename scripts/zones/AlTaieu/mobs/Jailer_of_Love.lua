@@ -127,7 +127,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
     local AV_CHANCE = 25;
     if (AV_CHANCE > math.random(0,99)) then
         SpawnMob(16912876, 180);

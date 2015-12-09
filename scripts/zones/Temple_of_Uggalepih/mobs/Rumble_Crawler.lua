@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple Of Uggalepih
--- MOB:  Rumble Crawler
+--  MOB: Rumble Crawler
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,8 +9,8 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,791,2);
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,791,2);
 end;
 
 -----------------------------------

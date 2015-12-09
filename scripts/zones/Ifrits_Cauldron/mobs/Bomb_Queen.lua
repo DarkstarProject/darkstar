@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
--- NPC:  Bomb Queen
+--  MOB: Bomb Queen
 -----------------------------------
 
 -----------------------------------
@@ -14,7 +14,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;
 
 -----------------------------------

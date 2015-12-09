@@ -16,7 +16,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
     local JoL = GetMobByID(16912848);
     local XZOMITS = JoL:getLocalVar("JoL_Qn_xzomit_Killed");
     JoL:setLocalVar("JoL_Qn_xzomit_Killed", XZOMITS+1);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
--- NPC:  Duke Scox
+--  MOB: Duke Scox
 -----------------------------------
 
 require("scripts/globals/dynamis");
@@ -24,7 +24,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 	
 	local Animate_Trigger = GetServerVariable("[DynaXarcabard]Boss_Trigger");
 	
@@ -44,7 +44,7 @@ function onMobDeath(mob,killer)
 	end
 	
 	if (Animate_Trigger == 32767) then
-		killer:messageSpecial(PRISON_OF_SOULS_HAS_SET_FREE);
+		ally:messageSpecial(PRISON_OF_SOULS_HAS_SET_FREE);
 	end
 	
 end;

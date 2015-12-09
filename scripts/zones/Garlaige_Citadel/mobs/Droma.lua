@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
--- MOB:  Droma
+--  MOB: Droma
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,707,1);
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,707,1);
 end;
