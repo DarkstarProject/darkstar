@@ -21,7 +21,16 @@ end;
 
 function onZoneIn(player,prevZone)
 cs = -1;
-
+	if (prevZone == 95) then  
+	GetMobByID(17166720):setHP(0);
+	end
+	if (prevZone == 97) then
+	GetMobByID(17174888):setHP(0);
+	end
+	if (prevZone == 98) then
+	GetMobByID(17178901):setHP(0);	
+	
+	end
 return cs;
 end;
 
@@ -49,6 +58,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
 
 
 
