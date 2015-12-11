@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Beaucedine
--- NPC:  Angra Mainyu
+--  MOB: Angra Mainyu
 -- Mega Boss
 -----------------------------------
 
@@ -80,14 +80,14 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 	
-	killer:addTitle(DYNAMISBEAUCEDINE_INTERLOPER); -- Add title
-	killer:setVar("DynaBeaucedine_Win",1);
+	ally:addTitle(DYNAMISBEAUCEDINE_INTERLOPER); -- Add title
+	ally:setVar("DynaBeaucedine_Win",1);
 	
-	if (killer:hasKeyItem(HYDRA_CORPS_INSIGNIA) == false) then
-		killer:addKeyItem(HYDRA_CORPS_INSIGNIA);
-		killer:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_INSIGNIA);
+	if (ally:hasKeyItem(HYDRA_CORPS_INSIGNIA) == false) then
+		ally:addKeyItem(HYDRA_CORPS_INSIGNIA);
+		ally:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_INSIGNIA);
 	end
 	
 end;

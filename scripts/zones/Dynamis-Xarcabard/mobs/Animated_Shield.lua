@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
--- NPC:  Animated Shield
+--  MOB: Animated Shield
 -----------------------------------
 
 require("scripts/globals/status");
@@ -49,9 +49,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 	
-	killer:showText(mob,ANIMATED_SHIELD_DIALOG+1);
+	ally:showText(mob,ANIMATED_SHIELD_DIALOG+1);
 	
 	DespawnMob(17330290);
 	DespawnMob(17330291);

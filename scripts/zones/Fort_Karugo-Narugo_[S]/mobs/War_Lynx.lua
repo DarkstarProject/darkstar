@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fort Karugo-Narugo [S]
--- NPC:  War Lynx
+--  MOB: War Lynx
 -- The Tigress Strikes Fight
 -----------------------------------
 
@@ -17,11 +17,11 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-    if (killer:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_ACCEPTED) then
-        killer:needToZone(true);
-        killer:setVar("WarLynxKilled",1);
+    if (ally:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_ACCEPTED) then
+        ally:needToZone(true);
+        ally:setVar("WarLynxKilled",1);
     end
 
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Promyvion vahzl
--- NPC:  Provoker
+--  MOB: Provoker
 -----------------------------------
 
 
@@ -15,7 +15,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;
 
 -----------------------------------

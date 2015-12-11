@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Chamber of Oracles
--- NPC:  Maat
+--  MOB: Maat
 -- Genkai 5 Fight
 -----------------------------------
 package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil;
@@ -32,6 +32,6 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 	killer:showText(mob,YOUVE_COME_A_LONG_WAY);
 end;

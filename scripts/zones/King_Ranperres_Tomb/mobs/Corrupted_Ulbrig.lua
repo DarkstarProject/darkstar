@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
--- NPC:  Corrupted Ulbrig
+--  MOB: Corrupted Ulbrig
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -16,11 +16,11 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	local currentMission = killer:getCurrentMission(SANDORIA);
-	local MissionStatus = killer:getVar("MissionStatus");
+function onMobDeath(mob, killer, ally)
+    local currentMission = ally:getCurrentMission(SANDORIA);
+    local MissionStatus = ally:getVar("MissionStatus");
 
-	if (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 1) then
-		killer:setVar("Mission6-2MobKilled",1);
-	end
+    if (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 1) then
+        ally:setVar("Mission6-2MobKilled",1);
+    end
 end;

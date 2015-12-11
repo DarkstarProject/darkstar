@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Carpenters' Landing
--- Mob:  Mycophile
+--  MOB: Mycophile
 -----------------------------------
 
 -----------------------------------
@@ -14,7 +14,7 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 end;
 
 -----------------------------------

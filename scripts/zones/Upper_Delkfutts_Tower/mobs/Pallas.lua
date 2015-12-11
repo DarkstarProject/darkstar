@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
--- NPC:  Pallas
+--  MOB: Pallas
 -----------------------------------
 
 -----------------------------------
@@ -14,7 +14,7 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 end;
 
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Bastok
--- NPC:  Gu'Nhi Noondozer
+--  MOB: Gu'Nhi Noondozer
 -- Time Extender: 30min
 -----------------------------------
 
@@ -24,10 +24,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
 	if (alreadyReceived(killer,4) == false) then
-		killer:addTimeToDynamis(30);
+		ally:addTimeToDynamis(30);
 		addDynamisList(killer,8);
 	end
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Qufim
--- NPC:  Antaeus
+--  MOB: Antaeus
 
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Qufim/TextIDs"] = nil;
@@ -56,10 +56,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-  if (killer:hasKeyItem(DYNAMIS_QUFIM_SLIVER ) == false) then 
-       killer:addKeyItem(DYNAMIS_QUFIM_SLIVER);
-	   killer:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_QUFIM_SLIVER);
+function onMobDeath(mob,killer,ally)
+  if (ally:hasKeyItem(DYNAMIS_QUFIM_SLIVER ) == false) then 
+       ally:addKeyItem(DYNAMIS_QUFIM_SLIVER);
+	   ally:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_QUFIM_SLIVER);
   end
-       killer:addTitle(DYNAMISQUFIM_INTERLOPER);
+       ally:addTitle(DYNAMISQUFIM_INTERLOPER);
 end;

@@ -10,9 +10,9 @@ require("scripts/zones/Gustav_Tunnel/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-    checkGoVregime(killer,mob,768,2);
+    checkGoVregime(ally,mob,768,2);
 
     local mob = mob:getID();
     if (Amikiri_PH[mob] ~= nil) then

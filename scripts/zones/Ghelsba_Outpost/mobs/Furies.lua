@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba outpost
--- NPC:  Furies
+--  MOB: Furies
 -- BCNM20
 -----------------------------------
 
@@ -27,5 +27,5 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 end;

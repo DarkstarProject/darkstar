@@ -15,7 +15,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
 	local bossTrigger = GetServerVariable("[DynaWindurst]Boss_Trigger");
 

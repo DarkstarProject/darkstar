@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
--- NM: Cancer
+--  NM:  Cancer
 -----------------------------------
 
 -----------------------------------
@@ -14,7 +14,7 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 end;
 
 -----------------------------------

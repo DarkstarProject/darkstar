@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
--- NPC:  Tiamat
+--  MOB: Tiamat
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -35,6 +35,7 @@ function onMobFight(mob,target)
             mob:getStatusEffect(EFFECT_ATTACK_BOOST):setFlag(32);
         end;
     end;
+
     if (mob:hasStatusEffect(EFFECT_MIGHTY_STRIKES) == false and mob:actionQueueEmpty() == true) then
         local changeTime = mob:getLocalVar("changeTime")
         local twohourTime = mob:getLocalVar("twohourTime")
@@ -77,7 +78,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-    killer:addTitle(TIAMAT_TROUNCER);
-    mob:setRespawnTime(math.random((259200),(432000))); -- 3 to 5 days
+function onMobDeath(mob, killer, ally)
+    ally:addTitle(TIAMAT_TROUNCER);
+    mob:setRespawnTime(math.random(259200,432000)); -- 3 to 5 days
 end;

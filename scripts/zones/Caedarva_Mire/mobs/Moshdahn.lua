@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  Moshdahn
+--  MOB: Moshdahn
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
@@ -15,10 +15,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 
-	if (player:getQuestStatus(AHT_URHGAN,NOT_MEANT_TO_BE) == QUEST_ACCEPTED and killer:getVar("notmeanttobeCS") == 3 and killer:getVar("notmeanttobeMoshdahnKilled") < 1) then
-		killer:setVar("notmeanttobeMoshdahnKilled",1);
-	end
+    if (player:getQuestStatus(AHT_URHGAN,NOT_MEANT_TO_BE) == QUEST_ACCEPTED and ally:getVar("notmeanttobeCS") == 3 and ally:getVar("notmeanttobeMoshdahnKilled") < 1) then
+        ally:setVar("notmeanttobeMoshdahnKilled",1);
+    end
 
 end;

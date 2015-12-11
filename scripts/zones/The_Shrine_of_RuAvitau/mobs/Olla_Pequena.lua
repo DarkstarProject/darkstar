@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
--- NPC:  Olla Pequena
+--  MOB: Olla Pequena
 -----------------------------------
 
 -----------------------------------
@@ -14,7 +14,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
     SpawnMob(mob:getID() + 1,180):updateEnmity(killer);
 end;
 

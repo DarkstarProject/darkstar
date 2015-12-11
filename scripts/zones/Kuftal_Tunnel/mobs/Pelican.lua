@@ -7,10 +7,10 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
     -- Set Pelican's Window Open Time
-    local wait = math.random((10800),(43200)); -- 4-12 hours
+    local wait = math.random(10800,43200); -- 4-12 hours
     SetServerVariable("[POP]Pelican", os.time(t) + wait); -- 4-12 hours
     DeterMob(mob:getID(), true);
 

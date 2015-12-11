@@ -1,21 +1,21 @@
-----------------------------------	
--- Area: Gustav Tunnel	
+----------------------------------
+-- Area: Gustav Tunnel
 --  MOB: Doom Warlock
 -- Note: Place holder Taxim
------------------------------------	
+-----------------------------------
 
 require("scripts/zones/Gustav_Tunnel/MobIDs");
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-  
-	checkGoVregime(killer,mob,765,2);
-	checkGoVregime(killer,mob,766,1);
-	checkGoVregime(killer,mob,769,1);
-  
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+
+    checkGoVregime(ally,mob,765,2);
+    checkGoVregime(ally,mob,766,1);
+    checkGoVregime(ally,mob,769,1);
+
     local mob = mob:getID();
     if (Taxim_PH[mob] ~= nil) then
 
@@ -29,5 +29,5 @@ function onMobDeath(mob,killer)
             end
         end
     end
-  
-end;	
+
+end;

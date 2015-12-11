@@ -1,19 +1,19 @@
------------------------------------	
--- Area: West Ronfaure	
--- MOB:  Forest Hare	
------------------------------------	
-	
-require("scripts/globals/fieldsofvalor");	
+-----------------------------------
+-- Area: West Ronfaure
+--  MOB: Forest Hare
+-----------------------------------
+
+require("scripts/globals/fieldsofvalor");
 require("scripts/zones/West_Ronfaure/MobIDs");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-	checkRegime(killer,mob,2,1);
-    
+function onMobDeath(mob,killer,ally)
+
+    checkRegime(ally,mob,2,1);
+
     mob = mob:getID();
     if (Jaggedy_Eared_Jack_PH[mob] ~= nil) then
 
@@ -27,5 +27,5 @@ function onMobDeath(mob,killer)
             end
         end
     end
-    
-end;	
+
+end;

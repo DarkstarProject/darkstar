@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
--- MOB:  Goblin Robber
+--  MOB: Goblin Robber
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,7 +9,7 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,764,3);
-   checkGoVregime(killer,mob,765,3);
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,764,3);
+    checkGoVregime(ally,mob,765,3);
 end;

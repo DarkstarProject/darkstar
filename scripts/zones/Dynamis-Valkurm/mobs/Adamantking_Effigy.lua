@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Valkurm
--- NPC:  Adamantking_Effigy
+--  MOB: Adamantking_Effigy
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 -----------------------------------
@@ -28,12 +28,12 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 	
 	local mobID = mob:getID();
 	
 	if ( mobID == 16937233) then --hp
-		killer:messageBasic(024,(killer:getMaxHP()-killer:getHP()));
-	    killer:restoreHP(3000);
+		ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
+	    ally:restoreHP(3000);
 	end
 end;

@@ -9,9 +9,9 @@ require("scripts/zones/Korroloka_Tunnel/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-    checkGoVregime(killer,mob,279,1);
+    checkGoVregime(ally,mob,279,1);
 
     mob = mob:getID();
     if (Falcatus_Aranei_PH[mob] ~= nil) then

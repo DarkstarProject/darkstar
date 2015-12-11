@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
--- NPC:  Animated Horn
+--  MOB: Animated Horn
 -----------------------------------
 
 require("scripts/globals/status");
@@ -49,9 +49,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 	
-	killer:showText(mob,ANIMATED_HORN_DIALOG+1);
+	ally:showText(mob,ANIMATED_HORN_DIALOG+1);
 	
 	DespawnMob(17330495);
 	DespawnMob(17330496);

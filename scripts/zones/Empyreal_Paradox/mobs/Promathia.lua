@@ -1,11 +1,12 @@
 -----------------------------------
 -- Area: Empyreal Paradox
--- NPC:  Promathia
+--  MOB: Promathia
 -----------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/status");
+package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/globals/status");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onMobInitialize Action
@@ -39,32 +40,24 @@ end;
 -- onMobFight Action
 -----------------------------------
 
-function onMobFight(mob,target) 
+function onMobFight(mob,target)
     if (mob:AnimationSub() == 3 and not mob:hasStatusEffect(EFFECT_STUN)) then
         mob:AnimationSub(0);
         mob:stun(1500);
     end
-    
+
     local bcnmAllies = mob:getBattlefield():getAllies();
     for i,v in pairs(bcnmAllies) do
         if not v:getTarget() then
             v:addEnmity(mob,0,1);
         end
     end
-    
+
 end;
 
 -----------------------------------
--- onMobDeath
+-- onSpellPrecast
 -----------------------------------
-
-function onMobDeath(mob, killer)
-	
-    local battlefield = killer:getBattlefield();
-    killer:startEvent(0x7d04, battlefield:getBattlefieldNumber());
-   
-
-end;
 
 function onSpellPrecast(mob, spell)
     if (spell:getID() == 219) then
@@ -73,12 +66,21 @@ function onSpellPrecast(mob, spell)
 end;
 
 -----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, killer, ally)
+    local battlefield = ally:getBattlefield();
+    ally:startEvent(0x7d04, battlefield:getBattlefieldNumber());
+end;
+
+-----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("updateCSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("updateCSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -86,19 +88,18 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,target)
---printf("finishCSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("finishCSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
-	if (csid == 0x7d04) then
+    if (csid == 0x7d04) then
         DespawnMob(target:getID());
-		mob = SpawnMob(target:getID()+1);
+        mob = SpawnMob(target:getID()+1);
         local bcnmAllies = mob:getBattlefield():getAllies();
         for i,v in pairs(bcnmAllies) do
             v:resetLocalVars();
             local spawn = v:getSpawnPos();
             v:setPos(spawn.x, spawn.y, spawn.z, spawn.rot);
         end
-	end
+    end
 
 end;
-

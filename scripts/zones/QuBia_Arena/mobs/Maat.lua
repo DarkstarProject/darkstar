@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
--- NPC:  Maat
+--  MOB: Maat
 -- Genkai 5 Fight
 -----------------------------------
 package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
@@ -32,6 +32,6 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 	killer:showText(mob,YOUVE_COME_A_LONG_WAY);
 end;

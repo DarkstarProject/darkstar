@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
--- MOB:  Recluse Spider
+--  MOB: Recluse Spider
 -- Note: Place Holder for Arachne
 -----------------------------------
 
@@ -10,10 +10,10 @@ require("scripts/zones/Kuftal_Tunnel/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-    checkGoVregime(killer,mob,737,2);
-    checkGoVregime(killer,mob,739,2);
+    checkGoVregime(ally,mob,737,2);
+    checkGoVregime(ally,mob,739,2);
 
     local mob = mob:getID();
     if (Arachne_PH[mob] ~= nil) then

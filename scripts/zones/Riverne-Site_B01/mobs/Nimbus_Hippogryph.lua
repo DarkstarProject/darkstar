@@ -1,23 +1,23 @@
------------------------------------	
+-----------------------------------
 -- Area: Riverne - Site B01
--- MOB:  Nimbus Hippogryph
+--  MOB: Nimbus Hippogryph
 -- Note: Place holder Imdugud
------------------------------------	
+-----------------------------------
 
 require("scripts/zones/Riverne-Site_B01/MobIDs");
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
 
     -- Get Nimbus Hippogryph ID and check if it is a PH of Imdugud
-    local mob = mob:getID();
+    local mobID = mob:getID();
 
     -- Check if Nimbus Hippogryph is within the Imdugud_PH table
-    if (Imdugud_PH[mob] ~= nil) then
-        -- printf("%u is a PH",mob);
+    if (Imdugud_PH[mobID] ~= nil) then
+        -- printf("%u is a PH",mobID);
         -- Get Imdugud previous ToD
         local Imdugud_ToD = GetServerVariable("[POP]Imdugud");
 
@@ -29,11 +29,11 @@ function onMobDeath(mob,killer)
             if (math.random(1,10) == 5) then
                 -- printf("Imdugud will pop");
                 UpdateNMSpawnPoint(Imdugud);
-                GetMobByID(Imdugud):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Imdugud", mob);
-                DeterMob(mob, true);
+                GetMobByID(Imdugud):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Imdugud", mobID);
+                DeterMob(mobID, true);
             end
         end
     end
 
-end;	
+end;

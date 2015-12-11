@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba outpost
--- NPC:  Toadbolster
+--  MOB: Toadbolster
 -- BCNM30
 -----------------------------------
 
@@ -17,7 +17,6 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-
 	GetMobByID(17350936):updateEnmity(target);
 	GetMobByID(17350937):updateEnmity(target);
 	GetMobByID(17350939):updateEnmity(target);
@@ -28,5 +27,5 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 end;

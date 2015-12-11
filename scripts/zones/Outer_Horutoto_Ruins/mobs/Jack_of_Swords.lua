@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto Ruins
--- NPC:  Jack of Swords
+--  MOB: Jack of Swords
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -17,12 +17,11 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-local CurrentMission = killer:getCurrentMission(WINDURST);
-local MissionStatus = killer:getVar("MissionStatus");
+function onMobDeath(mob, killer, ally)
+    local CurrentMission = ally:getCurrentMission(WINDURST);
+    local MissionStatus = ally:getVar("MissionStatus");
 
-	if (CurrentMission == FULL_MOON_FOUNTAIN and MissionStatus == 1) then
-		killer:setVar("MissionStatus",2);
-	end
-
+    if (CurrentMission == FULL_MOON_FOUNTAIN and MissionStatus == 1) then
+        ally:setVar("MissionStatus",2);
+    end
 end;

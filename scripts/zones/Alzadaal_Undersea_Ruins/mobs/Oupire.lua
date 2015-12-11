@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:
--- NPC:  Oupire
+--  MOB: Oupire
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(OUPIRE_IMPALER);
+function onMobDeath(mob, killer, ally)
+    ally:addTitle(OUPIRE_IMPALER);
 end;

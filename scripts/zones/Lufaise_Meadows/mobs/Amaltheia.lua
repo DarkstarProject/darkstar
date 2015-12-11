@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise Meadows
--- NPC:  Amaltheia
+--  MOB: Amaltheia
 -- @pos 347.897 -10.895 264.382 24
 -----------------------------------
 
@@ -15,7 +15,7 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 end;
 
 -----------------------------------

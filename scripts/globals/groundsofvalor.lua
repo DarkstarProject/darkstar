@@ -152,10 +152,10 @@ GOV_EVENT_QUICKSAND_CAVES        = 15;
 
 function startGov(eventid,player)
     if (GROUNDS_TOMES == 1) then
-       local hasRegime = player:getVar("fov_regimeid");
-       local tabs = player:getCurrency("valor_point");
-       player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
-	end;
+        local hasRegime = player:getVar("fov_regimeid");
+        local tabs = player:getCurrency("valor_point");
+        player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
+    end;
 end
 
 ----------------------------------
@@ -470,39 +470,39 @@ function writeRegime(player,rid,msg_accept,msg_jobs,regrepeat)
 end
 
 -----------------------------------
--- killer, mob, regime ID, index in the list of mobs to kill that this mob corresponds to (1-4)
+-- player, mob, regime ID, index in the list of mobs to kill that this mob corresponds to (1-4)
 -----------------------------------
 
-function checkGoVregime(killer,mob,rid,index)
+function checkGoVregime(player,mob,rid,index)
     -- Dead people get no points
-    if (killer:getHP() == 0) then
+    if (player:getHP() == 0) then
         return;
     end
 
-    if (killer:getVar("fov_regimeid") == rid) then -- Player is doing this regime
+    if (player:getVar("fov_regimeid") == rid) then -- Player is doing this regime
         -- Need to add difference because a lvl1 can XP with a level 75 at Ro'Maeve
-        local difference = math.abs(mob:getMainLvl() - killer:getMainLvl());
+        local difference = math.abs(mob:getMainLvl() - player:getMainLvl());
 
-        if ((mob:checkBaseExp() and killer:checkDistance(mob) < 100 and difference <= 15) or killer:checkFovDistancePenalty() == 0) then
+        if ((mob:checkBaseExp() and player:checkDistance(mob) < 100 and difference <= 15) or player:checkFovDistancePenalty() == 0) then
             -- Get the number of mobs needed/killed
-            local needed = killer:getVar("fov_numneeded"..index);
-            local killed = killer:getVar("fov_numkilled"..index);
+            local needed = player:getVar("fov_numneeded"..index);
+            local killed = player:getVar("fov_numkilled"..index);
 
             if (killed < needed) then -- Increment killed number and save.
                 killed = killed+1;
-                killer:messageBasic(GOV_MSG_KILLED_TARGET,killed,needed);
-                killer:setVar("fov_numkilled"..index,killed);
+                player:messageBasic(GOV_MSG_KILLED_TARGET,killed,needed);
+                player:setVar("fov_numkilled"..index,killed);
 
                 if (killed == needed) then
                     local fov_info = getRegimeInfo(rid);
-                    local k1 = killer:getVar("fov_numkilled1");
-                    local k2 = killer:getVar("fov_numkilled2");
-                    local k3 = killer:getVar("fov_numkilled3");
-                    local k4 = killer:getVar("fov_numkilled4");
+                    local k1 = player:getVar("fov_numkilled1");
+                    local k2 = player:getVar("fov_numkilled2");
+                    local k3 = player:getVar("fov_numkilled3");
+                    local k4 = player:getVar("fov_numkilled4");
 
                     if (k1 == fov_info.n1 and k2 == fov_info.n2 and k3 == fov_info.n3 and k4 == fov_info.n4) then
                         -- Complete regime
-                        killer:messageBasic(GOV_MSG_COMPLETED_REGIME);
+                        player:messageBasic(GOV_MSG_COMPLETED_REGIME);
                         local reward = getGoVregimeReward(rid);
                         local RewardCAP = reward * 2;
                         local GoV_clears = 0;
@@ -513,24 +513,24 @@ function checkGoVregime(killer,mob,rid,index)
                         local ProwessMessage = 0; -- Dummy...Gets set proper below.
 
                         -- Set power of Prowess stuffs, cap at 11 boosts.
-                        if (killer:hasStatusEffect(RandomProwess) == true) then
+                        if (player:hasStatusEffect(RandomProwess) == true) then
                             if (RandomProwess == 780) then
-                                power = 1 + killer:getStatusEffect(RandomProwess):getPower();
+                                power = 1 + player:getStatusEffect(RandomProwess):getPower();
                                 if (power > 11) then
                                     power = 11;
                                 end
                             elseif (RandomProwess == 782) then
-                                power = 1 + killer:getStatusEffect(RandomProwess):getPower();
+                                power = 1 + player:getStatusEffect(RandomProwess):getPower();
                                 if (power > 14) then
                                     power = 14;
                                 end
                             elseif (RandomProwess == 787) then
-                                power = 2 + killer:getStatusEffect(RandomProwess):getPower();
+                                power = 2 + player:getStatusEffect(RandomProwess):getPower();
                                 if (power > 22) then
                                     power = 22;
                                 end
                             else
-                                power = 4 + killer:getStatusEffect(RandomProwess):getPower(); 
+                                power = 4 + player:getStatusEffect(RandomProwess):getPower();
                                 if (power > 44) then
                                     power = 44;
                                 end
@@ -548,17 +548,17 @@ function checkGoVregime(killer,mob,rid,index)
                         end
 
                         -- Apply repeat bonus and Prowess buffs
-                        if (killer:hasStatusEffect(EFFECT_PROWESS) == true) then
-                            GoV_clears = killer:getStatusEffect(EFFECT_PROWESS):getPower();
+                        if (player:hasStatusEffect(EFFECT_PROWESS) == true) then
+                            GoV_clears = player:getStatusEffect(EFFECT_PROWESS):getPower();
                             reward = reward * ((100+(GoV_clears*4))/100);
-                            killer:delStatusEffect(EFFECT_PROWESS);
-                            killer:delStatusEffect(RandomProwess);
-                            killer:addStatusEffect(EFFECT_PROWESS,(GoV_clears + 1),0,0);
-                            killer:addStatusEffectEx(RandomProwess,0,power,0,0);
+                            player:delStatusEffect(EFFECT_PROWESS);
+                            player:delStatusEffect(RandomProwess);
+                            player:addStatusEffect(EFFECT_PROWESS,(GoV_clears + 1),0,0);
+                            player:addStatusEffectEx(RandomProwess,0,power,0,0);
                             ProwessMessage = (RandomProwess - 152);
                         else
-                            killer:addStatusEffect(EFFECT_PROWESS,1,0,0);
-                            killer:addStatusEffectEx(RandomProwess,0,power,0,0);
+                            player:addStatusEffect(EFFECT_PROWESS,1,0,0);
+                            player:addStatusEffectEx(RandomProwess,0,power,0,0);
                             ProwessMessage = (RandomProwess - 168);
                         end
 
@@ -567,46 +567,46 @@ function checkGoVregime(killer,mob,rid,index)
                         end
 
                         -- Award gil and tabs once per day.
-                        if (killer:getVar("fov_LastReward") < VanadielEpoch) then
-                            killer:messageBasic(GOV_MSG_GET_GIL,reward);
-                            killer:addGil(reward);
-                            killer:addCurrency("valor_point", tabs);
-                            killer:messageBasic(GOV_MSG_GET_TABS,tabs,killer:getCurrency("valor_point")); -- Careful about order.
+                        if (player:getVar("fov_LastReward") < VanadielEpoch) then
+                            player:messageBasic(GOV_MSG_GET_GIL,reward);
+                            player:addGil(reward);
+                            player:addCurrency("valor_point", tabs);
+                            player:messageBasic(GOV_MSG_GET_TABS,tabs,player:getCurrency("valor_point")); -- Careful about order.
                             if (REGIME_WAIT == 1) then
-                                killer:setVar("fov_LastReward",VanadielEpoch);
+                                player:setVar("fov_LastReward",VanadielEpoch);
                             end
                         end
 
                         -- Give player the candy and inform which Prowess they got.
-                        killer:addExp(reward);
-                        killer:messageBasic(ProwessMessage);
-                        
+                        player:addExp(reward);
+                        player:messageBasic(ProwessMessage);
+
                         -- Debugging crap.
-                        -- killer:PrintToPlayer( string.format( "ProwessID: '%u' ", RandomProwess ) );
-                        -- killer:PrintToPlayer( string.format( "reward: '%u' ", reward ) );
-                        -- killer:PrintToPlayer( string.format( "RewardCAP: '%u' ", RewardCAP ) )
+                        -- player:PrintToPlayer( string.format( "ProwessID: '%u' ", RandomProwess ) );
+                        -- player:PrintToPlayer( string.format( "reward: '%u' ", reward ) );
+                        -- player:PrintToPlayer( string.format( "RewardCAP: '%u' ", RewardCAP ) )
 
                         -- Handle PlayerVars
                         if (k1 ~= 0) then
-                            killer:setVar("fov_numkilled1",0);
+                            player:setVar("fov_numkilled1",0);
                         end
                         if (k2 ~= 0) then
-                            killer:setVar("fov_numkilled2",0);
+                            player:setVar("fov_numkilled2",0);
                         end
                         if (k3 ~= 0) then
-                            killer:setVar("fov_numkilled3",0);
+                            player:setVar("fov_numkilled3",0);
                         end
                         if (k4 ~= 0) then
-                            killer:setVar("fov_numkilled4",0);
+                            player:setVar("fov_numkilled4",0);
                         end
-                        if (killer:getVar("fov_repeat") ~= 1) then
-                            killer:setVar("fov_regimeid",0);
-                            killer:setVar("fov_numneeded1",0);
-                            killer:setVar("fov_numneeded2",0);
-                            killer:setVar("fov_numneeded3",0);
-                            killer:setVar("fov_numneeded4",0);
+                        if (player:getVar("fov_repeat") ~= 1) then
+                            player:setVar("fov_regimeid",0);
+                            player:setVar("fov_numneeded1",0);
+                            player:setVar("fov_numneeded2",0);
+                            player:setVar("fov_numneeded3",0);
+                            player:setVar("fov_numneeded4",0);
                         else
-                            killer:messageBasic(GOV_MSG_BEGINS_ANEW);
+                            player:messageBasic(GOV_MSG_BEGINS_ANEW);
                         end
                     end
                 end
