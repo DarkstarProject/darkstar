@@ -10,6 +10,23 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
+	mob = mob:getID();
+	if (mob == 17129519) then
+	local mobids = {17129520,
+			17129521,
+			17129522,
+			17129523,
+			17129524,
+			17129525,
+			17129526,
+			17129527,
+			17129528,
+			17129529,
+			17129530,
+			17129531}
+	local mob = mobids[math.random(1, #mobids)];
+	SpawnMob(mob);
+	end;
 	return 0;
 end;
 
