@@ -49,5 +49,5 @@ end;
 -----------------------------------
 
 function onMobDespawn(mob)
-	mob:setRespawnTime(math.random(64,128));
+	mob:setRespawnTime(math.random(75600,86400));
 end;
