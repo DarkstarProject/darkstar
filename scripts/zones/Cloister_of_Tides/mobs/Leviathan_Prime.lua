@@ -40,7 +40,7 @@ end;
 
 function onMobSpawn(mob)
     -- ASA-4: Avatar is Unkillable Until Its Used Astral Flow At Least 5 times At Specified Intervals
-    if (mob:getBattlefield():getBcnmID() = =611) then
+    if (mob:getBattlefield():getBcnmID() == 611) then
         mob:setLocalVar("astralflows","0");
         mob:setUnkillable(true);
     end

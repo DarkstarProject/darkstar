@@ -10,7 +10,7 @@
 function onMobDeath(mob,killer,ally)	
 
     -- Set Demonic_Tiphia's Window Open Time
-    local wait = math.random(7200,28800));
+    local wait = math.random(7200,28800);
     SetServerVariable("[POP]Demonic_Tiphia", os.time(t) + wait); -- 2-8 hours
     DeterMob(mob:getID(), true);
     
