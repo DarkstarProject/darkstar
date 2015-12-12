@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Celestial Nexus
---  NPC: Eald'Narche - Phase 2
+--  MOB: Eald'Narche - Phase 2
 -- Zilart Mission 16 BCNM Fight
 -----------------------------------
 
@@ -39,5 +39,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
--- NPC:  Knight Crab
+--  MOB: Knight Crab
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -17,7 +17,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;
 
 -----------------------------------
@@ -29,6 +29,6 @@ function onMobDespawn(mob)
 
     if (GetServerVariable("[POP]King_Arthro") == 10) then
         SetServerVariable("[POP]King_Arthro",0);
-        SpawnMob(17203216,600); -- Pop King Arthro !
+        SpawnMob(17203216); -- Pop King Arthro !
     end
 end;

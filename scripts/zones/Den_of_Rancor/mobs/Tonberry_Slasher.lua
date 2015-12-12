@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
--- NPC:  Tonberry Slasher
+--  MOB: Tonberry Slasher
 -----------------------------------
 
 -----------------------------------
@@ -14,14 +14,14 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob,killer,ally)
 
-    checkGoVregime(killer,mob,798,1);
-    checkGoVregime(killer,mob,799,2);
-    checkGoVregime(killer,mob,800,2);
+    checkGoVregime(ally,mob,798,1);
+    checkGoVregime(ally,mob,799,2);
+    checkGoVregime(ally,mob,800,2);
 
-    kills = killer:getVar("EVERYONES_GRUDGE_KILLS");
+    local kills = ally:getVar("EVERYONES_GRUDGE_KILLS");
     if (kills < 480) then
-        killer:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
+        ally:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
     end
 end;

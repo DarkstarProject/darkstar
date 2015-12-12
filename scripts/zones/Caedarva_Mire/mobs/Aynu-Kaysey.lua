@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  Aynu Kasey
+--  MOB: Aynu Kasey
 -----------------------------------
+
 
 -----------------------------------
 -- onMobSpawn Action
@@ -48,6 +49,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-    mob:setRespawnTime(math.random((7200),(14400)));
+function onMobDeath(mob, killer, ally)
+    mob:setRespawnTime(math.random(7200,14400));
 end;

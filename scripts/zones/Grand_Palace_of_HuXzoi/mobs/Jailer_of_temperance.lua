@@ -1,7 +1,7 @@
-----------------------------------	
--- Area: Grand Palace of Hu'Xzoi	
--- NM:  Jailer of Temperance
------------------------------------	
+----------------------------------
+-- Area: Grand Palace of Hu'Xzoi
+--  NM:  Jailer of Temperance
+-----------------------------------
 
 require("scripts/globals/magic");
 require("scripts/globals/status");
@@ -24,28 +24,28 @@ function onMobSpawn(mob)
     mob:setMod(MOD_IMPACTRES,1000);
 	-- Set the magic resists. It always takes no damage from direct magic
 	for n =1,table.getn (resistMod),1 do
-		mob:setMod(resistMod[n],0); 
+		mob:setMod(resistMod[n],0);
 	end
 	for n =1,table.getn (defenseMod),1 do
 		mob:setMod(defenseMod[n],1000);
-	end 
+	end
 end;
 
 -----------------------------------
 -- onMobFight Action
--- Randomly change forms 
+-- Randomly change forms
 -----------------------------------
 
 function onMobFight(mob)
 	-- Forms: 0 = Pot  1 = Pot  2 = Poles  3 = Rings
 	local randomTime = math.random(30,180);
 	local changeTime = mob:getLocalVar("changeTime");
-	
+
 	-- If we're in a pot form, but going to change to either Rings/Poles
 	if ((mob:AnimationSub() == 0 or mob:AnimationSub() == 1) and mob:getBattleTime() - changeTime > randomTime) then
 		local aniChange = math.random(2,3);
 		mob:AnimationSub(aniChange);
-		
+
 		-- We changed to Poles. Make it only take piercing.
 		if (aniChange == 2) then
 			mob:setMod(MOD_HTHRES,0);
@@ -63,7 +63,7 @@ function onMobFight(mob)
 	-- We're in poles, but changing
 	elseif (mob:AnimationSub() == 2 and mob:getBattleTime() - changeTime > randomTime) then
 		local aniChange = math.random(0, 1);
-		
+
 		-- Changing to Pot, only take Blunt damage
 		if (aniChange == 0) then
 			mob:AnimationSub(0);
@@ -84,7 +84,7 @@ function onMobFight(mob)
 	elseif (mob:AnimationSub() == 3 and mob:getBattleTime() - changeTime > randomTime) then
 		local aniChange = math.random(0, 2);
 		mob:AnimationSub(aniChange);
-		
+
 		-- We're changing to pot form, only take blunt damage.
 		if (aniChange == 0 or aniChange == 1) then
 			mob:setMod(MOD_HTHRES,1000);
@@ -102,15 +102,15 @@ function onMobFight(mob)
 	end
 end;
 
------------------------------------	
--- onMobDeath	
------------------------------------	
-function onMobDeath(mob,killer)	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+function onMobDeath(mob,killer,ally)
 	SetServerVariable("[SEA]Jailer_of_Temperance_POP", os.time(t) + 900); -- 15 mins
 	DeterMob(mob:getID(), true);
-	
+
 	-- Set PH back to normal, then set respawn time
-	PH = GetServerVariable("[SEA]Jailer_of_Temperance_PH");
+	local PH = GetServerVariable("[SEA]Jailer_of_Temperance_PH");
 	SetServerVariable("[SEA]Jailer_of_Temperance_PH", 0);
 	DeterMob(PH, false);
 	GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));

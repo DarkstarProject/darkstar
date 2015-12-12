@@ -18,8 +18,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-    killer:addTitle(TORTOISE_TORTURER);
+function onMobDeath(mob, killer, ally)
+    ally:addTitle(TORTOISE_TORTURER);
 end;
 
 -----------------------------------

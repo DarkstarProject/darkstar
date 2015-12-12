@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
--- NPC:  Xolotl
------------------------------------
+--  MOB: Xolotl
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -18,8 +17,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(XOLOTL_XTRAPOLATOR);	
-	-- Do not respawn Xolotl for 21-24 hours
-	mob:setRespawnTime(math.random((75600),(86400)), true);
+function onMobDeath(mob, killer, ally)
+    ally:addTitle(XOLOTL_XTRAPOLATOR);
+    -- Do not respawn Xolotl for 21-24 hours
+    mob:setRespawnTime(math.random(75600,86400), true);
 end;

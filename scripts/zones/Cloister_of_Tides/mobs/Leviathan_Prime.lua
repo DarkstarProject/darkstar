@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Tides
--- NPC:  Leviathan Prime
+--  MOB: Leviathan Prime
 -- Involved in Quest: Trial by Water, Trial Size Trial by Water
 -- Involved in Mission: ASA-4 Sugar Coated Directive
 -----------------------------------
@@ -14,28 +14,24 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobFight(mob, target)
-	local mobId = mob:getID();
-    
-    	-- ASA-4: Astral Flow Behavior - Guaranteed to Use At Least 5 times before killable, at specified intervals.
-	if (mob:getBattlefield():getBcnmID()==611 and GetMobAction(mobId) == ACTION_ATTACK) then
-    		local astralFlows = mob:getLocalVar("astralflows");
-	        local hpPercent = math.floor(mob:getHP() / mob:getMaxHP() * 100);
-	        
-	        if ((astralFlows==0 and hpPercent <= 80) or
-	        (astralFlows==1 and hpPercent <= 60) or
-	        (astralFlows==2 and hpPercent <= 40) or
-	        (astralFlows==3 and hpPercent <= 20) or
-	        (astralFlows==4 and hpPercent <= 1)) then	        	
-	        	mob:useMobAbility(610);
-	        	astralFlows = astralFlows + 1;
-	        	mob:setLocalVar("astralflows",astralFlows);
-	        	
-	        	if (astralFlows>=5) then
-		       		mob:setUnkillable(false);
-	        	end
-	        end	    
-	end
-	
+    local mobId = mob:getID();
+
+    -- ASA-4: Astral Flow Behavior - Guaranteed to Use At Least 5 times before killable, at specified intervals.
+    if (mob:getBattlefield():getBcnmID() == 611 and GetMobAction(mobId) == ACTION_ATTACK) then
+        local astralFlows = mob:getLocalVar("astralflows");
+        if ((astralFlows == 0 and mob:getHPP() <= 80)
+        or (astralFlows == 1 and mob:getHPP() <= 60)
+        or (astralFlows == 2 and mob:getHPP() <= 40)
+        or (astralFlows == 3 and mob:getHPP() <= 20)
+        or (astralFlows == 4 and mob:getHPP() <= 1)) then
+            mob:setLocalVar("astralflows",astralFlows + 1);
+            mob:useMobAbility(610);
+            if (astralFlows >= 5) then
+                mob:setUnkillable(false);
+            end
+        end
+    end
+
 end;
 
 -----------------------------------
@@ -43,16 +39,16 @@ end;
 -----------------------------------
 
 function onMobSpawn(mob)
-	-- ASA-4: Avatar is Unkillable Until Its Used Astral Flow At Least 5 times At Specified Intervals
-	if (mob:getBattlefield():getBcnmID()==611) then
-		mob:setLocalVar("astralflows","0");
-		mob:setUnkillable(true);
-	end
+    -- ASA-4: Avatar is Unkillable Until Its Used Astral Flow At Least 5 times At Specified Intervals
+    if (mob:getBattlefield():getBcnmID() == 611) then
+        mob:setLocalVar("astralflows","0");
+        mob:setUnkillable(true);
+    end
 end;
 
 -----------------------------------
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Buburimu
--- NPC:  Apocalyptic_Beast
+--  MOB: Apocalyptic_Beast
 
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Buburimu/TextIDs"] = nil;
@@ -39,11 +39,11 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 		
-  if (killer:hasKeyItem(DYNAMIS_BUBURIMU_SLIVER ) == false) then 
-       killer:addKeyItem(DYNAMIS_BUBURIMU_SLIVER);
-	   killer:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_BUBURIMU_SLIVER);
+  if (ally:hasKeyItem(DYNAMIS_BUBURIMU_SLIVER ) == false) then 
+       ally:addKeyItem(DYNAMIS_BUBURIMU_SLIVER);
+	   ally:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_BUBURIMU_SLIVER);
   end
-       killer:addTitle(DYNAMISBUBURIMU_INTERLOPER);
+       ally:addTitle(DYNAMISBUBURIMU_INTERLOPER);
 end;

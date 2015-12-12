@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ilrusi Atoll
--- NPC: Imp
+--  MOB: Imp
 -----------------------------------
 
 require("scripts/globals/status");
@@ -41,5 +41,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;

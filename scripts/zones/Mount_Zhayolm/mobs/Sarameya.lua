@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mount Zhayolm
--- NPC: Sarameya
+--  MOB: Sarameya
 -- @pos 322 -14 -581 61
 -- Spawned with Buffalo Corpse: @additem 2583
 -- Wiki: http://ffxiclopedia.wikia.com/wiki/Sarameya
@@ -63,13 +63,13 @@ function onMobFight(mob, target)
         mob:setLocalVar("chainspell9",1);
         useChainspell = true;
     end;
-        
-    if (useChainspell == true) then  
+
+    if (useChainspell == true) then
         mob:useMobAbility(436); -- Chainspell
         mob:setMobMod(MOBMOD_GA_CHANCE, 100);
 
     end
-    
+
     -- Spams TP moves and -ga spells
     if (mob:hasStatusEffect(EFFECT_CHAINSPELL) == true) then
         mob:setTP(200);
@@ -116,5 +116,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;

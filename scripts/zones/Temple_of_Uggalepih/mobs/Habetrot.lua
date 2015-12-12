@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple Of Uggalepih
--- MOB:  Habetrot
+--  MOB: Habetrot
 -- @pos -60 -8 58 220
 -----------------------------------
 
@@ -8,7 +8,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 end;
 
 -----------------------------------

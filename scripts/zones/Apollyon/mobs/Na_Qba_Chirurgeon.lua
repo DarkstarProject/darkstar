@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon CS
--- NPC:  Na_Qba_Chirurgeon
+--  MOB: Na_Qba_Chirurgeon
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
@@ -62,9 +62,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
     if ((IsMobDead(16933129)==false or IsMobDead(16933144)==false) and alreadyReceived(killer,2,GetInstanceRegion(1294)) == false) then		  
-		     killer:addTimeToSpecialBattlefield(5,5);
+		     ally:addTimeToSpecialBattlefield(5,5);
 	         addLimbusList(killer,2,GetInstanceRegion(1294));
 	end
 end;

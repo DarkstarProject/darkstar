@@ -11,12 +11,14 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
- local mobID = mob:getID();   --(16908295 ,16908302 ,16908309 =omega ,          16928966=proto-ultima   )
- local mobhp = mob:getHPP();
-   if ((mobID == 16928966 and mobhp > 80) or(mobhp > 70 and(mobID == 16908295 or mobID == 16908302 or mobID == 16908309 ))) then 
-	  return 0;
-   end
-   return 1;
+    local mobID = mob:getID();   --(16908295 ,16908302 ,16908309 = ultima ,          16928966=proto-ultima   )
+    local mobhp = mob:getHPP();
+	local phase = mob:getLocalVar("battlePhase");
+
+	if ((mobID == 16928966 and phase < 2) or ((mobID == 16908295 or mobID == 16908302 or mobID == 16908309) and mobhp > 70)) then
+		return 0;
+	end
+    return 1;
 end;
 
 function onMobWeaponSkill(target, mob, skill)

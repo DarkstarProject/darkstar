@@ -14,8 +14,8 @@ function onMobSpawn(mob)
     mob:addStatusEffect(EFFECT_STONESKIN, math.random(30,40), 0, 300);
 end;
 
-function onMobDeath(mob,killer)
-    checkRegime(killer,mob,16,1);
+function onMobDeath(mob,killer,ally)
+    checkRegime(ally,mob,16,1);
     UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random((3600),(4200)));
 end;

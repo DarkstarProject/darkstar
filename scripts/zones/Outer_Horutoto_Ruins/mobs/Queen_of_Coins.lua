@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto Ruins
--- MOB:  Queen of Coins
+--  MOB: Queen of Coins
 -----------------------------------
 
 -----------------------------------
@@ -15,8 +15,8 @@ end
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	if (killer:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and killer:getVar("MissionStatus") == 4 and GetMobAction(17572201) == 0) then
-		killer:setVar("MissionStatus",5)
-	end
+function onMobDeath(mob,killer,ally)
+    if (ally:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and ally:getVar("MissionStatus") == 4 and GetMobAction(17572201) == 0) then
+        ally:setVar("MissionStatus",5)
+    end
 end;

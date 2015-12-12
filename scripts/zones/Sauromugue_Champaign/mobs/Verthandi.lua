@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
--- NPC:  Verthandi
+--  MOB: Verthandi
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(VERTHANDI_ENSNARER);
+function onMobDeath(mob, killer, ally)
+    ally:addTitle(VERTHANDI_ENSNARER);
 end;

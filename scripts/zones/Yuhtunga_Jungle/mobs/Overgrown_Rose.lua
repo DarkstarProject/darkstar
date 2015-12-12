@@ -1,10 +1,10 @@
------------------------------------	
+-----------------------------------
 -- Area: Yuhtunga Jungle
 -- MOB:  Overgrown Rose
------------------------------------	
-	
+-----------------------------------
+
 function onMobRoam(mob)
-	
+
 	local Rose_Garden = 17281357;
 	local Rose_Garden_PH = 0;
 	local Rose_Garden_PH_Table =
@@ -12,7 +12,7 @@ function onMobRoam(mob)
 		17281356
 	};
 	local Rose_Garden_ToD = GetMobByID(Rose_Garden):getLocalVar("1");
-	
+
 	if (Rose_Garden_ToD <= os.time()) then
 		Rose_Garden_PH = math.random((0), (table.getn(Rose_Garden_PH_Table)));
 		if (Rose_Garden_PH_Table[Rose_Garden_PH] ~= nil) then
@@ -25,22 +25,22 @@ function onMobRoam(mob)
 			end
 		end
 	end
-	
+
 end;
 
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob, killer)	
-	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, killer, ally)
+
 	local Overgrown_Rose = mob:getID();
 	local Rose_Garden = 17281357;
 	local Rose_Garden_PH_Table =
 	{
 		17281356
 	};
-		
+
 	for i = 1, table.getn(Rose_Garden_PH_Table), 1 do
 		if (Rose_Garden_PH_Table[i] ~= nil) then
 			if (Overgrown_Rose == Rose_Garden_PH_Table[i]) then
@@ -48,5 +48,5 @@ function onMobDeath(mob, killer)
 			end
 		end
 	end
-	
-end;	
+
+end;

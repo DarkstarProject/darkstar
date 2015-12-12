@@ -1,17 +1,17 @@
-----------------------------------	
--- Area: Kuftal Tunnel	
+----------------------------------
+-- Area: Kuftal Tunnel
 --   NM: Amemet
 -- ToDo: Amemet should walk in a big circle
------------------------------------	
-  
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
+-----------------------------------
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
 
     -- Set Amemet's Window Open Time
-    local wait = math.random((7200),(43200)); -- 2-12 hours
+    local wait = math.random(7200,43200); -- 2-12 hours
     SetServerVariable("[POP]Amemet", os.time(t) + wait);
     DeterMob(mob:getID(), true);
 
@@ -20,5 +20,5 @@ function onMobDeath(mob,killer)
     SetServerVariable("[PH]Amemet", 0);
     DeterMob(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-  
+
 end;

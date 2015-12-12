@@ -1,7 +1,7 @@
 -----------------------------------
---  Area:  Uleguerand_Range
---  NPC:   Geush Urvan
---  Notes: Spawned from qm1
+-- Area: Uleguerand_Range
+--  MOB: Geush Urvan
+-- Notes: Spawned from qm1
 -----------------------------------
 
 -----------------------------------
@@ -15,7 +15,7 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 end;
 
 -----------------------------------

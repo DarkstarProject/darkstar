@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
--- MOB:  Hellbound Warlock
+--  MOB: Hellbound Warlock
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,678,1);
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,678,1);
 end;

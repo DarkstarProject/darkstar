@@ -40,7 +40,7 @@ end;
 -----------------------------------
 -- onMobDeath
 -----------------------------------
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 mob:setLocalVar("2HOUR",0);
 mob:setLocalVar("2HGO",0);
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
--- NPC:  Om'Hpemde
+--  MOB: Om'Hpemde
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -41,8 +41,8 @@ end;
 -- onMobRoam Action
 -----------------------------------
 
-function onMobRoam(mob)    
-    if (mob:getHPP() == 100) then 
+function onMobRoam(mob)
+    if (mob:getHPP() == 100) then
         mob:setLocalVar("damaged", 0);
         mob:SetAutoAttackEnabled(false);
         mob:SetMobAbilityEnabled(false);
@@ -61,16 +61,16 @@ function onMobFight(mob, target)
             mob:SetMobAbilityEnabled(true);
             mob:setLocalVar("damaged", 1);
         end
-        
+
         local changeTime = mob:getLocalVar("changeTime");
-        
+
         if (mob:AnimationSub() == 6 and mob:getBattleTime() - changeTime > 30) then
             mob:AnimationSub(3); -- Mouth Open
             mob:addMod(MOD_ATTP, 100);
             mob:addMod(MOD_DEFP, -50);
             mob:addMod(MOD_DMGMAGIC, -50);
             mob:setLocalVar("changeTime", mob:getBattleTime());
-        
+
         elseif (mob:AnimationSub() == 3 and mob:getBattleTime() - changeTime > 30) then
             mob:AnimationSub(6); -- Mouth Closed
             mob:addMod(MOD_ATTP, -100);
@@ -85,5 +85,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;

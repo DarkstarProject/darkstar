@@ -78,6 +78,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-    killer:addTitle(ARCHMAGE_ASSASSIN);
+function onMobDeath(mob, killer, ally)
+    ally:addTitle(ARCHMAGE_ASSASSIN);
 end;

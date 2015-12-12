@@ -330,7 +330,7 @@ bool CPathFind::FindPath(position_t* start, position_t* end)
 
     if (m_pathLength <= 0)
     {
-        ShowError("CPathFind::FindPath Entity (%d) could not find path", m_PTarget->id);
+        ShowError("CPathFind::FindPath Entity (%d) could not find path\n", m_PTarget->id);
         return false;
     }
 
