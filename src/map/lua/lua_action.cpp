@@ -43,29 +43,29 @@ CLuaAction::CLuaAction(action_t* Action)
 }
 
 //#TODO move this all into a table
-//inline int32 CLuaAction::setParam(lua_State* L)
-//{
+inline int32 CLuaAction::setParam(lua_State* L)
+{
 //    m_PLuaActionList->actionTargets[0].param = lua_tointeger(L, -1);
-//    return 0;
-//}
-//
-//inline int32 CLuaAction::setMessageID(lua_State* L)
-//{
-//    m_PLuaActionList->actionTargets[0].messageID = lua_tointeger(L, -1);;
-//    return 0;
-//}
-//
-//inline int32 CLuaAction::setAdditionalEffect(lua_State* L)
-//{
-//    m_PLuaActionList->actionTargets[0].additionalEffect = static_cast<SUBEFFECT>(lua_tointeger(L, -1));
-//    return 0;
-//}
-//
-//inline int32 CLuaAction::setAddEffectParam(lua_State* L)
-//{
-//    m_PLuaActionList->actionTargets[0].addEffectParam = lua_tointeger(L, -1);
-//    return 0;
-//}
+    return 0;
+}
+
+inline int32 CLuaAction::setMessageID(lua_State* L)
+{
+ //   m_PLuaActionList->actionTargets[0].messageID = lua_tointeger(L, -1);;
+    return 0;
+}
+
+inline int32 CLuaAction::setAdditionalEffect(lua_State* L)
+{
+    //m_PLuaActionList->actionTargets[0].additionalEffect = static_cast<SUBEFFECT>(lua_tointeger(L, -1));
+    return 0;
+}
+
+inline int32 CLuaAction::setAddEffectParam(lua_State* L)
+{
+    //m_PLuaActionList->actionTargets[0].addEffectParam = lua_tointeger(L, -1);
+    return 0;
+}
 
 
 // Initialize Lua Methods
