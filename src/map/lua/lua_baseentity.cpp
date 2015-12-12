@@ -6345,6 +6345,23 @@ inline int32 CLuaBaseEntity::getTargetID(lua_State* L)
     return 1;
 }
 
+// Gets a mobs poolID
+inline int32 CLuaBaseEntity::getPool(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    if (m_PBaseEntity->objtype != TYPE_MOB)
+    {
+        lua_pushnil(L);
+    }
+    else
+    {
+        CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+        lua_pushinteger(L, PMob->m_Pool);
+        return 1;
+    }
+}
+
 /************************************************************************
 *                                                                       *
 *  Get Entity's name                                                    *
@@ -10024,6 +10041,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getShortID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTargetID),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPool),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getName),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHPP),
