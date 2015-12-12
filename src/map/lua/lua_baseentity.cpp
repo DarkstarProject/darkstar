@@ -6358,8 +6358,9 @@ inline int32 CLuaBaseEntity::getPool(lua_State *L)
     {
         CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
         lua_pushinteger(L, PMob->m_Pool);
-        return 1;
     }
+
+    return 1;
 }
 
 /************************************************************************
