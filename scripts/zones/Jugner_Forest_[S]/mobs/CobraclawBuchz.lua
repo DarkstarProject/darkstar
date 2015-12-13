@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest [S]
--- NPC:  Cobrawclaw Buchzvotch
+--  MOB: Cobrawclaw Buchzvotch
 -- Wrath of the Griffon Fight
 -----------------------------------
 
@@ -17,11 +17,9 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
-
-    if (killer:getQuestStatus(CRYSTAL_WAR, WRATH_OF_THE_GRIFFON) == QUEST_ACCEPTED) then
-        killer:needToZone(true);
-        killer:setVar("CobraClawKilled",1);
+function onMobDeath(mob,killer,ally)
+    if (ally:getQuestStatus(CRYSTAL_WAR, WRATH_OF_THE_GRIFFON) == QUEST_ACCEPTED) then
+        ally:needToZone(true);
+        ally:setVar("CobraClawKilled",1);
     end
-
 end;

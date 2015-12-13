@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon CS
--- NPC:  Dee_Wapa_the_Desolator
+--  MOB: Dee_Wapa_the_Desolator
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
@@ -64,9 +64,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
     if ((IsMobDead(16933129)==false or IsMobDead(16933137)==false) and alreadyReceived(killer,3,GetInstanceRegion(1294)) == false) then		  
-		     killer:addTimeToSpecialBattlefield(5,5);
+		     ally:addTimeToSpecialBattlefield(5,5);
 	         addLimbusList(killer,4,GetInstanceRegion(1294));
 	end
 end;

@@ -8,7 +8,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)	
+function onMobDeath(mob, killer, ally)	
 	
 	local Rose_Garden = 17281357;
 	local Rose_Garden_PH = GetServerVariable("Rose_Garden_PH");

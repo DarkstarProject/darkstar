@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lebros Cavern (Wamoura Farm Raid)
--- NPC:  Ranch Wamouracampa
+--  MOB: Ranch Wamouracampa
 -----------------------------------
 
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;
 
 -----------------------------------

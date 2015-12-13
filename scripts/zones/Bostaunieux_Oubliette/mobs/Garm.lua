@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Bostaunieux Oubliette (167)
---   Mob: Garm
+-- Area: Bostaunieux Oubliette (167)
+--  Mob: Garm
 -----------------------------------
 
 require("scripts/zones/Bostaunieux_Oubliette/MobIDs");
@@ -10,9 +10,9 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-    checkGoVregime(killer,mob,612,1);
+    checkGoVregime(ally,mob,612,1);
 
     local mob = mob:getID();
     if (Shii_PH[mob] ~= nil) then

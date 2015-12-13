@@ -34,18 +34,18 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
    local mobID = mob:getID();	
 	
 	 switch (mobID): caseof {
-		[16929031] = function (x)		   
+		[16929031] = function (x)   
           if (IsMobDead(16929030)==true and IsMobDead(16929032)==true ) then
         	GetNPCByID(16928768+77):setPos(0.5,-6,-459);
 	        GetNPCByID(16928768+77):setStatus(STATUS_NORMAL);
 	        GetNPCByID(16928768+472):setStatus(STATUS_NORMAL);
           end
 		end	, 
-		[16929032] = function (x)		   
+		[16929032] = function (x)   
           if (IsMobDead(16929030)==true and IsMobDead(16929031)==true ) then
         	GetNPCByID(16928768+77):setPos(0.5,-6,-459);
 	        GetNPCByID(16928768+77):setStatus(STATUS_NORMAL);

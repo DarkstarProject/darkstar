@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Promyvion vahzl
--- NPC:  Propagator
+--  MOB: Propagator
 -----------------------------------
 
 
@@ -17,8 +17,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
- if (killer:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and killer:getVar("PromathiaStatus")==1) then
-	killer:setVar("PromathiaStatus",2);
-  end
+function onMobDeath(mob, killer, ally)
+    if (ally:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and ally:getVar("PromathiaStatus")==1) then
+        ally:setVar("PromathiaStatus",2);
+    end
 end;

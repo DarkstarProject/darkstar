@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  Jazaraat
+--  MOB: Jazaraat
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
@@ -15,8 +15,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-
-	killer:setVar("TOAUM13",2);
-
+function onMobDeath(mob, killer, ally)
+    killer:setVar("TOAUM13",2);
 end;

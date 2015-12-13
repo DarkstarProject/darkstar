@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: FeiYin
--- MOB:  Ore Golem
+--  MOB: Ore Golem
 -----------------------------------
 
 require("scripts/globals/keyitems");
@@ -16,14 +16,14 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 
-    checkGoVregime(killer,mob,712,2);
+    checkGoVregime(ally,mob,712,2);
 
     -- Curses, Foiled A-Golem!?
-    if (killer:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
-        killer:delKeyItem(SHANTOTTOS_NEW_SPELL);
-        killer:addKeyItem(SHANTOTTOS_EXSPELL);
+    if (ally:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
+        ally:delKeyItem(SHANTOTTOS_NEW_SPELL);
+        ally:addKeyItem(SHANTOTTOS_EXSPELL);
     end
 
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
--- NPC:  Animated Dagger
+--  MOB: Animated Dagger
 -----------------------------------
 
 require("scripts/globals/status");
@@ -49,9 +49,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 	
-	killer:showText(mob,ANIMATED_DAGGER_DIALOG+1);
+	ally:showText(mob,ANIMATED_DAGGER_DIALOG+1);
 	
 	DespawnMob(17330306);
 	DespawnMob(17330307);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
--- MOB:  Sand Lizard
+--  MOB: Sand Lizard
 -- Note: Place Holder for Amemet
 -----------------------------------
 
@@ -10,9 +10,9 @@ require("scripts/zones/Kuftal_Tunnel/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-    checkGoVregime(killer,mob,735,2);
+    checkGoVregime(ally,mob,735,2);
 
     local mob = mob:getID();
     if (Amemet_PH[mob] ~= nil) then

@@ -1,19 +1,19 @@
------------------------------------	
--- Area: East Sarutabaruta	
--- MOB:  Savanna Rarab	
+-----------------------------------
+-- Area: East Sarutabaruta
+--  MOB: Savanna Rarab
 -- Note: PH for Sharp Eared Ropipi
------------------------------------	
-	
-require("scripts/globals/fieldsofvalor");	
+-----------------------------------
+
+require("scripts/globals/fieldsofvalor");
 require("scripts/zones/East_Sarutabaruta/MobIDs");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,91,1);
-    
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+    checkRegime(ally,mob,91,1);
+
     mob = mob:getID();
     if (Sharp_Eared_Ropipi_PH[mob] ~= nil) then
 
@@ -27,5 +27,5 @@ function onMobDeath(mob,killer)
             end
         end
     end
-    
-end;	
+
+end;

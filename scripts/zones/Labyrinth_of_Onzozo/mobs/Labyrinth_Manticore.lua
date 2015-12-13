@@ -10,9 +10,9 @@ require("scripts/zones/Labyrinth_of_Onzozo/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-    checkGoVregime(killer,mob,775,2);
+    checkGoVregime(ally,mob,775,2);
 
     local mob = mob:getID();
     if (Narasimha_PH[mob] ~= nil) then

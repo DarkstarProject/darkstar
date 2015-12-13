@@ -14,11 +14,11 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-    checkGoVregime(killer,mob,735,1);
-    checkGoVregime(killer,mob,736,1);
-    checkGoVregime(killer,mob,738,1);
+    checkGoVregime(ally,mob,735,1);
+    checkGoVregime(ally,mob,736,1);
+    checkGoVregime(ally,mob,738,1);
 end;
 
 -----------------------------------

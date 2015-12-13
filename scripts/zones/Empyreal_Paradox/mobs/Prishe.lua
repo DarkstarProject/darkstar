@@ -1,12 +1,16 @@
 -----------------------------------
 -- Area: Empyreal Paradox
--- NPC:  Prishe
+--  MOB: Prishe
 -- Chains of Promathia 8-4 BCNM Fight
 -----------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/zones/Empyreal_Paradox/TextIDs");
+
+-----------------------------------
+-- onMobInitialize Action
+-----------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(MOD_REGAIN, 30);
@@ -17,12 +21,46 @@ end
 -----------------------------------
 
 function onMobSpawn(mob)
-
 end;
+
+-----------------------------------
+-- onMobRoam
+-----------------------------------
+
+function onMobRoam(mob)
+    local wait = mob:getLocalVar("wait");
+    local ready = mob:getLocalVar("ready");
+    if (ready == 0 and wait > 240) then
+        local baseID = 16924673 + (mob:getBattlefield():getBattlefieldNumber() - 1) * 2
+        if (GetMobAction(baseID) ~= ACTION_NONE) then
+            mob:entityAnimationPacket("prov");
+            mob:messageText(mob, PRISHE_TEXT);
+        else
+            mob:entityAnimationPacket("prov");
+            mob:messageText(mob, PRISHE_TEXT + 1);
+            baseID = baseID + 1;
+        end
+        mob:setLocalVar("ready", baseID);
+        mob:setLocalVar("wait", 0);
+    elseif (ready > 0) then
+        mob:addEnmity(GetMobByID(ready),0,1);
+        mob:addStatusEffectEx(EFFECT_SILENCE,0,0,0,5)
+    else
+        mob:setLocalVar("wait", wait+3);
+    end
+end;
+
+-----------------------------------
+-- onMobEngaged Action
+-----------------------------------
 
 function onMobEngaged(mob, target)
     mob:useMobAbility(1231);
 end;
+
+-----------------------------------
+-- onMobFight Action
+-----------------------------------
 
 function onMobFight(mob, target)
     if (mob:getHPP() == 0 and mob:getLocalVar("Raise") == 1) then
@@ -48,29 +86,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
     mob:messageText(mob, PRISHE_TEXT + 2);
-end;
-
-function onMobRoam(mob)
-    local wait = mob:getLocalVar("wait");
-    local ready = mob:getLocalVar("ready");
-    if (ready == 0 and wait > 240) then
-        local baseID = 16924673 + (mob:getBattlefield():getBattlefieldNumber() - 1) * 2
-        if (GetMobAction(baseID) ~= ACTION_NONE) then
-            mob:entityAnimationPacket("prov");
-            mob:messageText(mob, PRISHE_TEXT);
-        else
-            mob:entityAnimationPacket("prov");
-            mob:messageText(mob, PRISHE_TEXT + 1);
-            baseID = baseID + 1;
-        end
-        mob:setLocalVar("ready", baseID);
-        mob:setLocalVar("wait", 0);
-    elseif (ready > 0) then
-        mob:addEnmity(GetMobByID(ready),0,1);
-        mob:addStatusEffectEx(EFFECT_SILENCE,0,0,0,5)
-    else
-        mob:setLocalVar("wait", wait+3);
-    end
 end;

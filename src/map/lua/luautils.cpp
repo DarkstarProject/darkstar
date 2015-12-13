@@ -73,9 +73,9 @@ namespace luautils
     std::unordered_map<std::string, bool> expansionEnabledMap;
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Инициализация lua, пользовательских классов и глобальных функций		*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 init()
@@ -153,9 +153,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Освобождение lua														*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 free()
@@ -196,11 +196,11 @@ namespace luautils
         luaL_unref(LuaHandle, LUA_REGISTRYINDEX, r);
     }
 
-/************************************************************************
-*																		*
-*  Переопределение официальной lua функции print						*
-*																		*
-************************************************************************/
+    /************************************************************************
+    *                                                                       *
+    *  Переопределение официальной lua функции print						*
+    *                                                                       *
+    ************************************************************************/
 
     int32 print(lua_State* LuaHandle)
     {
@@ -399,9 +399,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     * WeekUpdateConquest		*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 WeekUpdateConquest(lua_State* L)
@@ -439,9 +439,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     * Get Rank of Nations in Conquest		*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 getNationRank(lua_State* L)
@@ -483,9 +483,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     * SetRegionalConquestOverseers() used for updating conquest guards		*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 SetRegionalConquestOverseers(uint8 regionID)
@@ -544,9 +544,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Получаем текущее время суток Vana'diel								*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 VanadielTOTD(lua_State* L)
@@ -556,9 +556,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *	Return Vanadiel Year												*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 VanadielYear(lua_State* L)
@@ -569,9 +569,9 @@ namespace luautils
 
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *	Return Vanadiel Month												*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 VanadielMonth(lua_State* L)
@@ -581,9 +581,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *	Return Vanadiel Day of Year											*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 VanadielDayOfTheYear(lua_State* L)
@@ -599,9 +599,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *	Return Vanadiel Day	of the Month									*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 VanadielDayOfTheMonth(lua_State* L)
@@ -611,9 +611,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *	Return Vanadiel Hour												*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 VanadielHour(lua_State* L)
@@ -623,9 +623,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *	Return Vanadiel Minute												*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 VanadielMinute(lua_State* L)
@@ -635,9 +635,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *	Return Vanadiel Day element											*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 VanadielDayElement(lua_State* L)
@@ -647,9 +647,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *	Return Moon Phase													*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 VanadielMoonPhase(lua_State* L)
@@ -674,9 +674,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *	Return Moon Phasing Direction										*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 VanadielMoonDirection(lua_State* L)
@@ -686,9 +686,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *	Return RSE Race														*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 VanadielRSERace(lua_State* L)
@@ -698,9 +698,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *	Return RSE Location													*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 VanadielRSELocation(lua_State* L)
@@ -710,9 +710,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *	is new moon?														*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 IsMoonNew(lua_State* L)
@@ -751,9 +751,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *	is full moon?														*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 IsMoonFull(lua_State* L)
@@ -1102,11 +1102,11 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Запускаем скрипт инициализации зоны.									*
     *  Выполняется во время старта сервера при загрузке зон.				*
     *  При разделенных lua стеках необходимо создавать их здесь				*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnZoneInitialise(uint16 ZoneID)
@@ -1139,9 +1139,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Выполняем скрипт при входе персонажа в зону							*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnGameIn(CCharEntity* PChar, bool zoning)
@@ -1176,9 +1176,9 @@ namespace luautils
 
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Выполняем скрипт при входе персонажа в зону							*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnZoneIn(CCharEntity* PChar)
@@ -1250,9 +1250,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Персонаж входит в активный регион									*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion)
@@ -1290,9 +1290,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Персонаж покидает активный регион									*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnRegionLeave(CCharEntity* PChar, CRegion* PRegion)
@@ -1329,10 +1329,10 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Персонаж обращается к какому-либо npc. Пытаемся отреагировать на		*
     *  его действие															*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
@@ -1409,9 +1409,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Запущенное событие нуждается в дополнительных параметрах				*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
@@ -1525,9 +1525,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Событие завершилось, результат события хранится в result				*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
@@ -1590,9 +1590,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Персонаж пытается передать предмет npc								*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc)
@@ -1761,10 +1761,10 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Начало работы статус-эффекта. Возвращаемое значение 0 или номер		*
     *  сообщения															*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
@@ -1798,9 +1798,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Повторяемое действие в процессе работы статус-оффекта 				*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
@@ -1834,10 +1834,10 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Завершение работы статус-эффекта. Возвращаемое значение -1 или		*
     *  номер сообщения														*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
@@ -1929,10 +1929,10 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Проверяем возможность использования предмета. Если все хорошо, то    *
     *  возвращаемое значение - 0, в случае отказа - номер сообщения ошибки  *
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param)
@@ -1981,11 +1981,11 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Используем предмет. Возврадаемое значение - номер сообщения или 0.	*
     *  Так же необходимо как-то передавать параметр сообщения (например,	*
     *  количество восстановленных MP)										*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem)
@@ -2017,9 +2017,9 @@ namespace luautils
 
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  check for gear sets  (e.g Set: enhances haste effect)			    *
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 CheckForGearSet(CBaseEntity* PTarget)
@@ -2053,9 +2053,9 @@ namespace luautils
 
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Чтение заклинаний				 									*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell)
@@ -2102,9 +2102,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Чтение заклинаний				 									*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnSpellPrecast(CBattleEntity* PCaster, CSpell* PSpell)
@@ -2181,10 +2181,10 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Called when mob is targeted by a spell.                              *
     *  Note: does not differentiate between offensive and defensive spells  *
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell)
@@ -2349,7 +2349,7 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Сalled when a monster engages a target for the first time			*
     *		Added by request (for doing stuff when mobs first engage)		*
     ************************************************************************/
@@ -2394,9 +2394,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Calls a lua script when a mob has disengaged from a target	*		*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnMobDisengage(CBaseEntity* PMob)
@@ -2472,9 +2472,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Сalled every 3 sec when a player fight monster						*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget)
@@ -2541,9 +2541,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
-    *  Скрипт выполняется после смерти любого монстра в игре				*
-    *																		*
+    *                                                                       *
+    *  The script is executed after the death of any monster in the game    *
+    *                                                                       *
     ************************************************************************/
 
     int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
@@ -2567,19 +2567,18 @@ namespace luautils
                     }
 
                     CLuaBaseEntity LuaMobEntity(PMob);
-                    CLuaBaseEntity LuaKillerEntity(PMember);
+                    CLuaBaseEntity LuaKillerEntity(PChar);
+                    CLuaBaseEntity LuaAllyEntity(PMember);
 
-                    bool isKillShot = PMember->id == PKiller->id;
                     bool isWeaponSkillKill = PChar->getWeaponSkillKill();
 
                     Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
                     Lunar<CLuaBaseEntity>::push(LuaHandle, LuaKillerEntity);
-                    lua_pushboolean(LuaHandle, isKillShot);
+                    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaAllyEntity);
                     lua_pushboolean(LuaHandle, isWeaponSkillKill);
                     // lua_pushboolean(LuaHandle, isMagicKill);
                     // lua_pushboolean(LuaHandle, isPetKill);
-                    // Rather than use even more bools for this, I'm thinking it's better to replace isWeaponSkillKill with a "killType" value
-                    // Checking that sort of thing could also make Colibri mimic and Jailer of Fortitude reflect easier to do.
+                    // Upcoming AI rewrite will likely have a better way to handle it..
 
                     if (lua_pcall(LuaHandle, 4, 0, 0))
                     {
@@ -2603,7 +2602,8 @@ namespace luautils
                 if (PMember->getZone() == PChar->getZone())
                 {
                     CLuaBaseEntity LuaMobEntity(PMob);
-                    CLuaBaseEntity LuaKillerEntity(PMember);
+                    CLuaBaseEntity LuaKillerEntity(PChar);
+                    CLuaBaseEntity LuaAllyEntity(PMember);
 
                     PMember->m_event.reset();
                     PMember->m_event.Target = PMob;
@@ -2626,15 +2626,17 @@ namespace luautils
                     Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
                     if (PMember)
                     {
-                        CLuaBaseEntity LuaKillerEntity(PMember);
+                        CLuaBaseEntity LuaKillerEntity(PChar);
+                        CLuaBaseEntity LuaAllyEntity(PMember); 
                         Lunar<CLuaBaseEntity>::push(LuaHandle, LuaKillerEntity);
+                        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaAllyEntity);
                     }
                     else
                     {
                         lua_pushnil(LuaHandle);
                     }
 
-                    if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+                    if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
                     {
                         ShowError("luautils::onMobDeath: %s\n", lua_tostring(LuaHandle, -1));
                         lua_pop(LuaHandle, 1);
@@ -2678,8 +2680,9 @@ namespace luautils
 
             Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
             lua_pushnil(LuaHandle);
+            lua_pushnil(LuaHandle);
 
-            if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+            if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
             {
                 ShowError("luautils::onMobDeath: %s\n", lua_tostring(LuaHandle, -1));
                 lua_pop(LuaHandle, 1);
@@ -2763,9 +2766,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
-    *																		*
-    *																		*
+    *                                                                       *
+    *                                                                       *
+    *                                                                       *
     ************************************************************************/
 
     int32 OnMobRoam(CBaseEntity* PMob)
@@ -2837,7 +2840,7 @@ namespace luautils
     /************************************************************************
     *	OnGameDayAutomatisation()											*
     *   used for creating action of npc every game day						*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnGameDay(CZone* PZone)
@@ -2867,7 +2870,7 @@ namespace luautils
     /************************************************************************
     *	OnGameHourAutomatisation()											*
     *   used for creating action of npc every game hour						*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnGameHour(CZone* PZone)
@@ -2998,9 +3001,9 @@ namespace luautils
     }
 
     /***********************************************************************
-    *																		*
-    *																		*
-    *																		*
+    *                                                                       *
+    *                                                                       *
+    *                                                                       *
     ************************************************************************/
 
     int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill)
@@ -3073,9 +3076,9 @@ namespace luautils
     }
 
     /***********************************************************************
-    *																		*
-    *																		*
-    *																		*
+    *                                                                       *
+    *                                                                       *
+    *                                                                       *
     ************************************************************************/
 
     int32 OnMobSkillCheck(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill)
@@ -3159,9 +3162,9 @@ namespace luautils
     }
 
     /***********************************************************************
-    *																		*
-    *																		*
-    *																		*
+    *                                                                       *
+    *                                                                       *
+    *                                                                       *
     ************************************************************************/
 
     int32 OnMagicCastingCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CSpell* PSpell)
@@ -3205,9 +3208,9 @@ namespace luautils
     }
 
     /***********************************************************************
-    *																		*
-    *																		*
-    *																		*
+    *                                                                       *
+    *                                                                       *
+    *                                                                       *
     ************************************************************************/
 
     int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbility, CBaseEntity** PMsgTarget)
@@ -3264,9 +3267,9 @@ namespace luautils
     }
 
     /***********************************************************************
-    *																		*
-    *																		*
-    *																		*
+    *                                                                       *
+    *                                                                       *
+    *                                                                       *
     ************************************************************************/
 
     int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PMobMaster)
@@ -3589,9 +3592,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  When instance is created, let player know it's finished				*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnInstanceCreated(CCharEntity* PChar, CInstance* PInstance)
@@ -3655,9 +3658,9 @@ namespace luautils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  When instance is created, run setup script for instance				*
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 OnInstanceCreated(CInstance* PInstance)

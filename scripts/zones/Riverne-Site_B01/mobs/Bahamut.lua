@@ -38,7 +38,7 @@ function onMobFight(mob,target)
     if (GetMobAction(mob:getID()) == ACTION_MOBABILITY_START or GetMobAction(mob:getID()) == ACTION_MOBABILITY_USING or GetMobAction(mob:getID()) == ACTION_MOBABILITY_FINISH or GetMobAction(mob:getID()) == ACTION_MAGIC_START or GetMobAction(mob:getID()) == ACTION_MAGIC_CASTING or GetMobAction(mob:getID()) == ACTION_MAGIC_START) then
         isBusy = true; -- is set to true if Bahamut is in any stage of using a mobskill or casting a spell
     end;
-    
+
     if (mobHPP < 90 and MegaFlareTrigger < 1) then -- if Megaflare hasn't been set to be used this many times, increase the queue of Megaflares. This will allow it to use multiple Megaflares in a row if the HP is decreased quickly enough.
         mob:setLocalVar("MegaFlareTrigger", 1);
         mob:setLocalVar("MegaFlareQueue", MegaFlareQueue + 1);
@@ -84,8 +84,8 @@ function onMobFight(mob,target)
                         mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
                     end;
                     mob:useMobAbility(1295);
-                end;    
-            end;    
+                end;
+            end;
         elseif (MegaFlareQueue == 0 and mobHPP < 10 and GigaFlare < 1 and mob:checkDistance(target) <= 15) then  -- All of the scripted Megaflares are to happen before Gigaflare.
             if (tauntShown == 0) then
                 target:showText(mob,BAHAMUT_TAUNT + 2);
@@ -103,5 +103,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;

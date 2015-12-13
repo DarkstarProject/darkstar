@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  Tyger
+--  MOB: Tyger
 -- @pos -766 -12 632
 -- Spawn with Singed Buffalo: @additem 2593
 -----------------------------------
@@ -22,5 +22,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;

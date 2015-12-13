@@ -1,18 +1,18 @@
------------------------------------	
--- Area: South Gustaberg	
+-----------------------------------
+-- Area: South Gustaberg
 --  MOB: Rock Lizard
--- Note: Place holder Leaping Lizzy 
------------------------------------	
+-- Note: Place holder Leaping Lizzy
+-----------------------------------
 
 require("scripts/zones/South_Gustaberg/MobIDs");
-require("scripts/globals/fieldsofvalor");	
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-    checkRegime(killer,mob,80,1);
+require("scripts/globals/fieldsofvalor");
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+    checkRegime(ally,mob,80,1);
 
     -- Get Rock Lizard ID and check if it is a PH of LL
     mob = mob:getID();
@@ -38,4 +38,4 @@ function onMobDeath(mob,killer)
         end
     end
 
-end;	
+end;

@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Bostaunieux Oubliette (167)
---   Mob: Dark_Aspic
+-- Area: Bostaunieux Oubliette (167)
+--  Mob: Dark_Aspic
 -----------------------------------
 
 require("scripts/zones/Bostaunieux_Oubliette/MobIDs");
@@ -10,9 +10,9 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-    checkGoVregime(killer,mob,610,1); -- Check GOV Page
+    checkGoVregime(ally,mob,610,1); -- Check GOV Page
 
     local mob = mob:getID();
     if (Sewer_Syrup_PH[mob] ~= nil) then

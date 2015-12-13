@@ -1,19 +1,19 @@
------------------------------------	
--- Area: West Sarutabaruta	
--- MOB:  Carrion Crow	
+-----------------------------------
+-- Area: West Sarutabaruta
+--  MOB: Carrion Crow
 -- Note: PH for Nunyenunc
------------------------------------	
-	
-require("scripts/globals/fieldsofvalor");	
+-----------------------------------
+
+require("scripts/globals/fieldsofvalor");
 require("scripts/zones/West_Sarutabaruta/MobIDs");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,28,2);
-    
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+    checkRegime(ally,mob,28,2);
+
     mob = mob:getID();
     if (Nunyenunc_PH[mob] ~= nil) then
 
@@ -27,5 +27,5 @@ function onMobDeath(mob,killer)
             end
         end
     end
-    
-end;	
+
+end;

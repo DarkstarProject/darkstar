@@ -1,19 +1,19 @@
------------------------------------	
--- Area: Rolanberry Fields	
--- MOB:  Ochu	
+-----------------------------------
+-- Area: Rolanberry Fields
+--  MOB: Ochu
 -- Note: PH for Drooling Daisy
------------------------------------	
-	
-require("scripts/globals/fieldsofvalor");	
-require("scripts/zones/Rolanberry_Fields/MobIDs");
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
+-----------------------------------
 
-    checkRegime(killer,mob,88,1);
+require("scripts/globals/fieldsofvalor");
+require("scripts/zones/Rolanberry_Fields/MobIDs");
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+
+    checkRegime(ally,mob,88,1);
 
     mob = mob:getID();
     if (Drooling_Daisy_PH[mob] ~= nil) then
@@ -28,5 +28,5 @@ function onMobDeath(mob,killer)
             end
         end
     end
-  
-end;	
+
+end;
