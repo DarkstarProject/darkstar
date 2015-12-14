@@ -4978,15 +4978,10 @@ namespace battleutils
     *	Get the Snapshot shot time reduction                                *
     *                                                                       *
     ************************************************************************/
-    void GetSnapshotReduction(CCharEntity* m_PChar)
+    int16 GetSnapshotReduction(CCharEntity* m_PChar, int16 delay)
     {
-        // Set this to zero to start with
-        uint32 SnapShotReductionPercent = 0;
+        auto SnapShotReductionPercent {m_PChar->getMod(MOD_SNAP_SHOT)};
 
-        // Reduction from gear.
-        SnapShotReductionPercent += m_PChar->getMod(MOD_SNAP_SHOT);
-
-        // Reduction from merits.
         if (charutils::hasTrait(m_PChar, TRAIT_SNAPSHOT))
         {
             SnapShotReductionPercent += m_PChar->PMeritPoints->GetMeritValue(MERIT_SNAPSHOT, m_PChar);
@@ -4998,11 +4993,7 @@ namespace battleutils
             SnapShotReductionPercent += m_PChar->getMod(MOD_VELOCITY_SNAPSHOT_BONUS);
         }
 
-        // Only apply if we have snapshot bonus to offer.
-        if (SnapShotReductionPercent > 0)
-        {
-            //m_PChar->m_rangedDelay -= (float)(m_PChar->m_rangedDelay * ((float)SnapShotReductionPercent / 100));
-        }
+        return delay * (100 - SnapShotReductionPercent) / 100.f;
     }
 
     /************************************************************************

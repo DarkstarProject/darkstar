@@ -36,8 +36,7 @@ This file is part of DarkStar-server source code.
 #include "../../weapon_skill.h"
 
 CPlayerController::CPlayerController(CCharEntity* _PChar) :
-    CController(_PChar),
-    m_LastAttackTime(server_clock::now())
+    CController(_PChar)
 {
 }
 
@@ -114,6 +113,19 @@ void CPlayerController::Ability(uint16 targid, uint16 abilityid)
     }
 }
 
+void CPlayerController::RangedAttack(uint16 targid)
+{
+    auto PChar = static_cast<CCharEntity*>(POwner);
+    if (PChar->PAI->CanChangeState() && server_clock::now() > m_NextRangedTime)
+    {
+        static_cast<CAIChar*>(PChar->PAI.get())->Internal_RangedAttack(targid);
+    }
+    else
+    {
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
+    }
+}
+
 void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
@@ -180,4 +192,9 @@ void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
 void CPlayerController::setLastAttackTime(time_point _LastAttackTime)
 {
     m_LastAttackTime = _LastAttackTime;
+}
+
+void CPlayerController::setNextRangedTime(time_point _NextRangedTime)
+{
+    m_NextRangedTime = _NextRangedTime;
 }

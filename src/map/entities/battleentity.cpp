@@ -261,24 +261,16 @@ int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
         delay += ((PRange->getDelay() * 60) / 1000);
     }
 
-    if (PAmmo != nullptr && PAmmo->isThrowing())
-    {
-        // this is a throwing weapon
-        delay += ((PAmmo->getDelay() * 60) / 1000);
-    }
-
-    delay = (((delay - getMod(MOD_RANGED_DELAY)) * 1000) / 110);
+    delay = (((delay - getMod(MOD_RANGED_DELAY)) * 1000) / 120);
 
     //apply haste and delay reductions that don't affect tp
     if (!tp)
     {
         delay = delay * ((float)(100 + getMod(MOD_RANGED_DELAYP)) / 100);
     }
-    else {
-
-        if (PAmmo != nullptr && PAmmo->getDamage() != 0 && !PAmmo->isThrowing()) {
-            delay += ((PAmmo->getDelay() * 60) / 1000);
-        }
+    else
+    {
+        delay += ((PAmmo->getDelay() * 60) / 1000);
     }
     return delay;
 }
@@ -292,12 +284,7 @@ int16 CBattleEntity::GetAmmoDelay(bool tp)
         delay += ((PAmmo->getDelay() * 60) / 1000);
     }
 
-    delay = (((delay - getMod(MOD_RANGED_DELAY)) * 1000) / 110);
-    //don't think delay reduction affects cooldown time
-    //if (!tp)
-    //{
-    //	delay = delay * ((float)(100 + getMod(MOD_RANGED_DELAYP))/100);
-    //}
+    delay = ((delay * 1000) / 120);
     return delay;
 }
 

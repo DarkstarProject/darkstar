@@ -28,6 +28,7 @@ This file is part of DarkStar-server source code.
 
 class CCharEntity;
 class CAbilityState;
+class CRangeState;
 
 class CAIChar : public CAIBattle
 {
@@ -35,8 +36,10 @@ public:
     CAIChar(CCharEntity*);
 
     void Ability(uint16 targid, uint16 abilityid);
+    void RangedAttack(uint16 targid);
 
     virtual bool Internal_Ability(uint16 targetid, uint16 abilityid);
+    virtual bool Internal_RangedAttack(uint16 targetid);
     virtual void Die() override;
     void Die(duration);
     void Raise();
@@ -51,6 +54,7 @@ public:
     virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg) override;
     virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
     virtual void OnAbility(CAbilityState&, action_t&);
+    virtual void OnRangedAttack(CRangeState&, action_t&);
     virtual void OnDeathTimer() override;
     void OnRaise();
 

@@ -32,7 +32,6 @@ class CRangeState : public CState
 public:
     CRangeState(CCharEntity* PEntity, uint16 targid);
 
-    bool StartRangedAttack();
     void SpendCost();
 protected:
     virtual bool CanChangeState() override;
@@ -42,7 +41,9 @@ protected:
 
 private:
     CCharEntity* const m_PEntity;
-    time_point m_finishTime;
+    duration m_aimTime;
+    bool m_rapidShot {false};
+    position_t m_startPos;
 };
 
 #endif

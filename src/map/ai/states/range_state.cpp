@@ -30,20 +30,53 @@ This file is part of DarkStar-server source code.
 #include "../../weapon_skill.h"
 #include "../../items/item_weapon.h"
 #include "../../status_effect_container.h"
+#include "../../utils/charutils.h"
 
 CRangeState::CRangeState(CCharEntity* PEntity, uint16 targid) :
     CState(PEntity, targid),
     m_PEntity(PEntity)
-{}
-
-bool CRangeState::StartRangedAttack()
 {
     auto PTarget = m_PEntity->PAIBattle()->IsValidTarget(m_targid, TARGET_ENEMY, m_errorMsg);
+
+    if (!PTarget && m_errorMsg)
+    {
+        throw CStateInitException(std::move(m_errorMsg));
+    }
+
     if (!CanUseRangedAttack(PTarget))
     {
-        return false;
+        throw CStateInitException(std::move(m_errorMsg));
     }
-    return true;
+
+    auto delay = m_PEntity->GetRangedWeaponDelay(false);
+    delay = battleutils::GetSnapshotReduction(m_PEntity, delay);
+
+    if (charutils::hasTrait(m_PEntity, TRAIT_RAPID_SHOT))
+    {
+        auto chance {m_PEntity->getMod(MOD_RAPID_SHOT) + m_PEntity->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PEntity)};
+        if (dsprand::GetRandomNumber(100) < chance)
+        {
+            //reduce delay by 10%-50%
+            delay = delay * (10 - dsprand::GetRandomNumber(1, 6)) / 10.f;
+            m_rapidShot = true;
+        }
+    }
+    m_aimTime = std::chrono::milliseconds(delay);
+    m_startPos = m_PEntity->loc.p;
+
+    action_t action;
+    action.id = m_PEntity->id;
+    action.actiontype = ACTION_RANGED_START;
+
+    actionList_t& actionList = action.getNewActionList();
+    actionList.ActionTargetID = PTarget->id;
+
+    actionTarget_t& actionTarget = actionList.getNewActionTarget();
+
+    actionTarget.animation = ANIMATION_RANGED;
+    m_PEntity->PAI->EventHandler.triggerListener("RANGE_START", m_PEntity, &action); 
+
+    m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
 }
 
 void CRangeState::SpendCost()
@@ -57,7 +90,7 @@ bool CRangeState::CanChangeState()
 
 bool CRangeState::Update(time_point tick)
 {
-    if (tick > m_finishTime && !IsCompleted())
+    if (tick > GetEntryTime() + m_aimTime && !IsCompleted())
     {
         action_t action;
         //m_PEntity->PAIBattle()->OnWeaponSkillFinished(*this, action);
@@ -65,7 +98,7 @@ bool CRangeState::Update(time_point tick)
         Complete();
     }
 
-    if (IsCompleted() && tick > m_finishTime + 2s)
+    if (IsCompleted() && tick > GetEntryTime() + m_aimTime + 2s)
     {
         return true;
     }
@@ -79,6 +112,11 @@ void CRangeState::Cleanup(time_point tick)
 
 bool CRangeState::CanUseRangedAttack(CBattleEntity* PTarget)
 {
+    if (!PTarget)
+    {
+        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, 0, 0, MSGBASIC_CANNOT_ATTACK_TARGET);
+        return false;
+    }
     CItemWeapon* PRanged = (CItemWeapon*)m_PEntity->getEquip(SLOT_RANGED);
     CItemWeapon* PAmmo = (CItemWeapon*)m_PEntity->getEquip(SLOT_AMMO);
 
@@ -114,5 +152,17 @@ bool CRangeState::CanUseRangedAttack(CBattleEntity* PTarget)
             return false;
         }
     }
+
+    if (!isFaceing(m_PEntity->loc.p, PTarget->loc.p, 40))
+    {
+        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, 0, 0, MSGBASIC_CANNOT_SEE);
+        return false;
+    }
+    if (distance(m_PEntity->loc.p, PTarget->loc.p) > 25)
+    {
+        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY);
+        return false;
+    }
+
     return true;
 }

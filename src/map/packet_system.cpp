@@ -747,10 +747,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x10: // rangedattack
     {
-        if(PChar->StatusEffectContainer->HasPreventActionEffect())
-            return;
-
-        PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_START, TargID);
+        static_cast<CAIChar*>(PChar->PAI.get())->RangedAttack(TargID);
     }
     break;
     case 0x11: // chocobo digging

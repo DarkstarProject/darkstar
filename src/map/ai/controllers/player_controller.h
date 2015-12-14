@@ -42,11 +42,14 @@ public:
     virtual void WeaponSkill(uint16 targid, uint16 wsid) override;
 
     virtual void Ability(uint16 targid, uint16 abilityid);
+    virtual void RangedAttack(uint16 targid);
 
     void setLastAttackTime(time_point);
+    void setNextRangedTime(time_point);
 
 protected:
-    time_point m_LastAttackTime;
+    time_point m_LastAttackTime {server_clock::now()};
+    time_point m_NextRangedTime {server_clock::now()};
 };
 
 #endif // _PLAYERCONTROLLER

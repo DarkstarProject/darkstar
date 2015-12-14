@@ -27,6 +27,7 @@ This file is part of DarkStar-server source code.
 #include "states/attack_state.h"
 #include "states/death_state.h"
 #include "states/raise_state.h"
+#include "states/range_state.h"
 #include "states/weaponskill_state.h"
 #include "../ability.h"
 #include "../conquest_system.h"
@@ -63,9 +64,27 @@ void CAIChar::Ability(uint16 targid, uint16 abilityid)
     }
 }
 
+void CAIChar::RangedAttack(uint16 targid)
+{
+    auto PlayerController = static_cast<CPlayerController*>(Controller.get());
+    if (PlayerController)
+    {
+        PlayerController->RangedAttack(targid);
+    }
+    else
+    {
+        Internal_RangedAttack(targid);
+    }
+}
+
 bool CAIChar::Internal_Ability(uint16 targetid, uint16 abilityid)
 {
     return ChangeState<CAbilityState>(static_cast<CCharEntity*>(PEntity), targetid, abilityid);
+}
+
+bool CAIChar::Internal_RangedAttack(uint16 targetid)
+{
+    return ChangeState<CRangeState>(static_cast<CCharEntity*>(PEntity), targetid);
 }
 
 CBattleEntity* CAIChar::IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
@@ -1046,6 +1065,11 @@ void CAIChar::OnAbility(CAbilityState& state, action_t& action)
     {
         PChar->pushPacket(std::move(errMsg));
     }
+}
+
+void CAIChar::OnRangedAttack(CRangeState& state, action_t& action)
+{
+
 }
 
 bool CAIChar::IsMobOwner(CBattleEntity* PBattleTarget)

@@ -49,6 +49,11 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, uint16 spellid, 
     }
     auto PTarget = m_PEntity->PAIBattle()->IsValidTarget(m_targid, m_PSpell->getValidTarget(), m_errorMsg);
 
+    if (!PTarget && m_errorMsg)
+    {
+        throw CStateInitException(std::move(m_errorMsg));
+    }
+
     if (!CanCastSpell(PTarget))
     {
         throw CStateInitException(std::move(m_errorMsg));
