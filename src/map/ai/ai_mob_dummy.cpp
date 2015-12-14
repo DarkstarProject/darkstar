@@ -41,6 +41,7 @@
 #include "../attack.h"
 #include "../attackround.h"
 #include "../conquest_system.h"
+#include "../status_effect_container.h"
 
 #include "ai_mob_dummy.h"
 

@@ -36,6 +36,8 @@
 #include "../mob_spell_list.h"
 #include "../spell.h"
 #include "../ai/ai_mob_dummy.h"
+#include "../items/item_weapon.h"
+#include "../status_effect_container.h"
 #include <vector>
 #include "../packets/action.h"
 

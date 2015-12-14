@@ -72,10 +72,18 @@ This file is part of DarkStar-server source code.
 #include "../trait.h"
 #include "../vana_time.h"
 #include "../weapon_skill.h"
+#include "../item_container.h"
+#include "../recast_container.h"
+#include "../status_effect_container.h"
+#include "../linkshell.h"
+#include "../universal_container.h"
+#include "../latent_effect_container.h"
+#include "../treasure_pool.h"
 
 #include "../entities/charentity.h"
 #include "../entities/petentity.h"
 #include "../entities/mobentity.h"
+#include "../entities/automatonentity.h"
 
 #include "battleutils.h"
 #include "charutils.h"

@@ -36,12 +36,17 @@ This file is part of DarkStar-server source code.
 #include "petutils.h"
 #include "zoneutils.h"
 #include "../entities/mobentity.h"
+#include "../entities/automatonentity.h"
 #include "../ability.h"
+#include "../status_effect_container.h"
+#include "../latent_effect_container.h"
+#include "../items/item_weapon.h"
 
 #include "../ai/ai_automaton_dummy.h"
 #include "../ai/ai_pet_dummy.h"
 #include "../ai/ai_mob_dummy.h"
 #include "../ai/ai_ultimate_summon.h"
+#include "../ai/ai_battle.h"
 
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"

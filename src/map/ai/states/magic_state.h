@@ -38,7 +38,7 @@ enum MAGICFLAGS {
 class CMagicState : public CState
 {
 public:
-    CMagicState(CBattleEntity* PEntity, uint16 targid);
+    CMagicState(CBattleEntity* PEntity, uint16 targid, uint16 spellid, uint8 flags = 0);
     virtual bool Update(time_point tick) override;
     virtual void Cleanup(time_point tick) override;
     virtual bool CanChangeState() override;
@@ -50,8 +50,6 @@ public:
     uint32 GetRecast();
     void ApplyEnmity(CBattleEntity* PTarget, int ce, int ve);
 
-    //start spellcast on target
-    bool CastSpell(uint16 spellid, uint8 flags = 0);
 protected:
     bool CanCastSpell(CBattleEntity* PTarget);
 

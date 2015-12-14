@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "entities/charentity.h"
 #include "lua/luautils.h"
 #include "utils/zoneutils.h"
+#include "status_effect_container.h"
 
 /************************************************************************
 *																		*

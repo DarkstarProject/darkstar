@@ -33,17 +33,7 @@ This file is part of DarkStar-server source code.
 #include <bitset>
 
 #include "battleentity.h"
-#include "../item_container.h"
-#include "../linkshell.h"
 #include "petentity.h"
-#include "automatonentity.h"
-
-#include "../recast_container.h"
-#include "../latent_effect_container.h"
-#include "../trade_container.h"
-#include "../treasure_pool.h"
-#include "../merit.h"
-#include "../universal_container.h"
 
 // Quest Areas
 
@@ -167,6 +157,13 @@ struct GearSetMod_t
 ************************************************************************/
 
 class CBasicPacket;
+class CLinkshell;
+class CMeritPoints;
+class CRecastContainer;
+class CLatentEffectContainer;
+class CItemContainer;
+class CUContainer;
+class CItemArmor;
 
 typedef std::deque<CBasicPacket*> PacketList_t;
 typedef std::map<uint32, CBaseEntity*> SpawnIDList_t;
@@ -204,7 +201,6 @@ public:
     missionlog_t			m_missionLog[MAX_MISSIONAREA];	// список миссий
     assaultlog_t			m_assaultLog;					// список assault миссий
     campaignlog_t			m_campaignLog;					// список campaing миссий
-    uint32					m_rangedDelay;					// ranged attack delay (with timestamp for repeat attacks, hence 32bit)for items, abilities and magic
     uint32					m_lastBcnmTimePrompt;			// the last message prompt in seconds
     PetInfo_t				petZoningInfo;					// used to repawn dragoons pets ect on zone
     void					resetPetZoningInfo();			// reset pet zoning info (when changing job ect)
@@ -304,7 +300,6 @@ public:
     bool              getStyleLocked();
     void              setStyleLocked(bool isStyleLocked);
 
-    bool			  isRapidShot;										// Flag to track rapid shot
     bool			  secondDoubleShotTaken;							// Flag to track number of double shots taken
 
     int16 addTP(int16 tp) override;

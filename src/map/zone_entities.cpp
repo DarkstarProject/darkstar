@@ -23,6 +23,13 @@ This file is part of DarkStar-server source code.
 
 #include "zone_entities.h"
 
+#include "../common/utils.h"
+#include "party.h"
+#include "latent_effect_container.h"
+#include "status_effect_container.h"
+#include "recast_container.h"
+#include "treasure_pool.h"
+
 #include "ai/ai_mob_dummy.h"
 #include "ai/ai_battle.h"
 

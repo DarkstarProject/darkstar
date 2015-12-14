@@ -56,8 +56,7 @@ public:
 
 protected:
     bool IsMobOwner(CBattleEntity* PTarget);
-
-
+    virtual void HandleErrorMessage(CStateInitException&) override;
 
     time_point m_errMsgTime;
 };

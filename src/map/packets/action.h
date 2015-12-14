@@ -25,14 +25,12 @@
 #define _CACTIONPACKET_H
 
 #include "../../common/cbasetypes.h"
-
 #include "basic.h"
 
 #include "../entities/battleentity.h"
 #include "../spell.h"
 
 #define MAX_ACTION_TARGETS	16
-
 
 struct actionTarget_t
 {

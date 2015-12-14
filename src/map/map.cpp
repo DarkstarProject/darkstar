@@ -56,6 +56,7 @@ This file is part of DarkStar-server source code.
 #include "time_server.h"
 #include "transport.h"
 #include "vana_time.h"
+#include "status_effect_container.h"
 #include "utils/zoneutils.h"
 #include "conquest_system.h"
 #include "utils/mobutils.h"

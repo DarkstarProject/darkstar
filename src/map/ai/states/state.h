@@ -25,10 +25,19 @@
 #ifndef _CSTATE_H
 #define _CSTATE_H
 
+#include <stdexcept>
 #include "../ai_base.h"
 #include "../../packets/message_basic.h"
 
 class CBattleEntity;
+
+class CStateInitException : std::exception
+{
+public: 
+    CStateInitException(std::unique_ptr<CMessageBasicPacket> _msg) : std::exception(),
+        packet(std::move(_msg)) {}
+    std::unique_ptr<CMessageBasicPacket> packet;
+};
 
 class CState
 {

@@ -27,16 +27,11 @@
 #include <vector>
 #include <unordered_map>
 
-#include "../items/item_weapon.h"
-
 #include "baseentity.h"
-#include "../alliance.h"
-#include "../trait.h"
-#include "../modifier.h"
-#include "../party.h"
-#include "../status_effect_container.h"
 #include "../map.h"
-#include "../ai/ai_battle.h"
+#include "../trait.h"
+#include "../party.h"
+#include "../alliance.h"
 
 enum ECOSYSTEM
 {
@@ -440,6 +435,10 @@ struct health_t
 };
 
 typedef std::vector<apAction_t> ActionList_t;
+class CAIBattle;
+class CModifier;
+class CParty;
+class CStatusEffectContainer;
 class CPetEntity;
 class CBattleEntity : public CBaseEntity
 {

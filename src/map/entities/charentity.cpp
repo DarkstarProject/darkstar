@@ -36,6 +36,13 @@
 #include "../utils/charutils.h"
 #include "../utils/battleutils.h"
 #include "../ai/ai_char.h"
+#include "../item_container.h"
+#include "../trade_container.h"
+#include "../universal_container.h"
+#include "../recast_container.h"
+#include "../latent_effect_container.h"
+#include "../status_effect_container.h"
+#include "../treasure_pool.h"
 
 
 CCharEntity::CCharEntity()
@@ -102,7 +109,6 @@ CCharEntity::CCharEntity()
     m_missionLog[4].current = 0; // MISSION_TOAU
     m_missionLog[5].current = 0; // MISSION_WOTG
 
-    m_rangedDelay = 0;
     m_copCurrent = 0;
     m_acpCurrent = 0;
     m_mkeCurrent = 0;

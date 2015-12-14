@@ -22,13 +22,16 @@
 */
 
 #include <string.h>
+#include <array>
 
 #include "lua/luautils.h"
 
 #include "map.h"
 #include "spell.h"
 #include "blue_spell.h"
+#include "status_effect_container.h"
 #include "utils/blueutils.h"
+#include "items/item_weapon.h"
 
 
 CSpell::CSpell(uint16 id)

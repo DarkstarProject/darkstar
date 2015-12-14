@@ -25,18 +25,63 @@
 
 #include "../ai_battle.h"
 #include "../../spell.h"
+#include "../../status_effect_container.h"
 #include "../../entities/battleentity.h"
 #include "../../entities/mobentity.h"
 #include "../../lua/luautils.h"
 #include "../../utils/battleutils.h"
 #include "../../packets/action.h"
 #include "../../packets/message_basic.h"
+#include "../../../common/utils.h"
 
-CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid) :
+CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, uint16 spellid, uint8 flags) :
     CState(PEntity, targid),
     m_PEntity(PEntity),
     m_PSpell(nullptr)
 {
+    CSpell* PSpell = spell::GetSpell(spellid);
+
+    m_PSpell = PSpell->clone();
+
+    if (!m_PSpell)
+    {
+        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, m_PSpell->getID(), 0, MSGBASIC_CANNOT_CAST_SPELL));
+    }
+    auto PTarget = m_PEntity->PAIBattle()->IsValidTarget(m_targid, m_PSpell->getValidTarget(), m_errorMsg);
+
+    if (!CanCastSpell(PTarget))
+    {
+        throw CStateInitException(std::move(m_errorMsg));
+    }
+
+    auto errorMsg = luautils::OnMagicCastingCheck(m_PEntity, PTarget, GetSpell());
+    if (errorMsg)
+    {
+        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, errorMsg));
+    }
+
+    m_flags = flags;
+    m_castTime = std::chrono::milliseconds(battleutils::CalculateSpellCastTime(m_PEntity, GetSpell()));
+    m_startPos = m_PEntity->loc.p;
+
+    action_t action;
+    action.id = m_PEntity->id;
+    action.spellgroup = m_PSpell->getSpellGroup();
+    action.actiontype = ACTION_MAGIC_START;
+
+    actionList_t& actionList = action.getNewActionList();
+    actionList.ActionTargetID = PTarget->id;
+
+    actionTarget_t& actionTarget = actionList.getNewActionTarget();
+
+    actionTarget.reaction = REACTION_NONE;
+    actionTarget.speceffect = SPECEFFECT_NONE;
+    actionTarget.animation = 0;
+    actionTarget.param = m_PSpell->getID();
+    actionTarget.messageID = 327; // starts casting
+    m_PEntity->PAI->EventHandler.triggerListener("MAGIC_START", m_PEntity, m_PSpell.get(), &action); //TODO: weaponskill lua object
+
+    m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
 }
 
 bool CMagicState::Update(time_point tick)
@@ -110,13 +155,13 @@ bool CMagicState::CanCastSpell(CBattleEntity* PTarget)
 
     if (!ret)
     {
-        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_CANNOT_CAST_SPELL);
+        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, m_PSpell->getID(), 0, MSGBASIC_CANNOT_CAST_SPELL);
         return ret;
     }
     if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
         m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
     {
-        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_UNABLE_TO_CAST_SPELLS);
+        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, m_PSpell->getID(), 0, MSGBASIC_UNABLE_TO_CAST_SPELLS);
         return false;
     }
     if (!HasCost())
@@ -125,7 +170,7 @@ bool CMagicState::CanCastSpell(CBattleEntity* PTarget)
     }
     if (!PTarget)
     {
-        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_CANNOT_ON_THAT_TARG);
+        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, m_PSpell->getID(), 0, MSGBASIC_CANNOT_ON_THAT_TARG);
         return false;
     }
     if (distance(m_PEntity->loc.p, PTarget->loc.p) > 40)
@@ -267,56 +312,4 @@ void CMagicState::TryInterrupt(CBattleEntity* PAttacker)
     {
         m_interrupted = true;
     }
-}
-
-bool CMagicState::CastSpell(uint16 spellid, uint8 flags)
-{
-    CSpell* PSpell = spell::GetSpell(spellid);
-
-    m_PSpell = PSpell->clone();
-
-    if (m_PSpell)
-    {
-        auto PTarget = m_PEntity->PAIBattle()->IsValidTarget(m_targid, m_PSpell->getValidTarget(), m_errorMsg);
-
-        if (!CanCastSpell(PTarget))
-        {
-            return false;
-        }
-
-        auto errorMsg = luautils::OnMagicCastingCheck(m_PEntity, PTarget, GetSpell());
-        if (errorMsg)
-        {
-            m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, errorMsg);
-            return false;
-        }
-
-        m_flags = flags;
-        m_castTime = std::chrono::milliseconds(battleutils::CalculateSpellCastTime(m_PEntity, GetSpell()));
-        m_startPos = m_PEntity->loc.p;
-
-        action_t action;
-        action.id = m_PEntity->id;
-        action.spellgroup = m_PSpell->getSpellGroup();
-        action.actiontype = ACTION_MAGIC_START;
-
-        actionList_t& actionList = action.getNewActionList();
-        actionList.ActionTargetID = PTarget->id;
-
-        actionTarget_t& actionTarget = actionList.getNewActionTarget();
-
-        actionTarget.reaction = REACTION_NONE;
-        actionTarget.speceffect = SPECEFFECT_NONE;
-        actionTarget.animation = 0;
-        actionTarget.param = m_PSpell->getID();
-        actionTarget.messageID = 327; // starts casting
-        m_PEntity->PAI->EventHandler.triggerListener("MAGIC_START", m_PEntity, m_PSpell.get(), &action); //TODO: weaponskill lua object
-
-        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
-    }
-    else
-    {
-        return false;
-    }
-    return true;// m_State;
 }

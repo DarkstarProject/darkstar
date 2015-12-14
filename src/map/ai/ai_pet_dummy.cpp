@@ -32,6 +32,8 @@ This file is part of DarkStar-server source code.
 #include "../attack.h"
 #include "../attackround.h"
 #include "../mobskill.h"
+#include "../status_effect_container.h"
+#include "../items/item_weapon.h"
 #include "../utils/petutils.h"
 
 #include "../lua/luautils.h"

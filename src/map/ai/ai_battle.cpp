@@ -31,6 +31,7 @@ This file is part of DarkStar-server source code.
 #include "../spell.h"
 #include "../mobskill.h"
 #include "../weapon_skill.h"
+#include "../status_effect_container.h"
 #include "../entities/battleentity.h"
 #include "../utils/battleutils.h"
 #include "../lua/luautils.h"
@@ -323,14 +324,7 @@ CBattleEntity* CAIBattle::IsValidTarget(uint16 targid, uint8 validTargetFlags, s
 
 bool CAIBattle::Internal_Cast(uint16 targetid, uint16 spellid)
 {
-    if (CanChangeState())
-    {
-        if (ChangeState<CMagicState>(static_cast<CBattleEntity*>(PEntity), targetid))
-        {
-            return static_cast<CMagicState*>(GetCurrentState())->CastSpell(spellid);
-        }
-    }
-    return false;
+    return ChangeState<CMagicState>(static_cast<CBattleEntity*>(PEntity), targetid, spellid);
 }
 
 void CAIBattle::Internal_ChangeTarget(uint16 targetid)
@@ -345,14 +339,7 @@ void CAIBattle::Internal_Disengage()
 
 bool CAIBattle::Internal_WeaponSkill(uint16 targid, uint16 wsid)
 {
-    if (CanChangeState())
-    {
-        if (ChangeState<CWeaponSkillState>(static_cast<CBattleEntity*>(PEntity), targid))
-        {
-            return static_cast<CWeaponSkillState*>(GetCurrentState())->StartWeaponSkill(wsid);
-        }
-    }
-    return false;
+    return ChangeState<CWeaponSkillState>(static_cast<CBattleEntity*>(PEntity), targid, wsid);
 }
 
 void CAIBattle::OnCastFinished(CMagicState& state, action_t& action)
@@ -519,7 +506,7 @@ void CAIBattle::OnCastInterrupted(CMagicState& state, action_t& action, MSGBASIC
 
 void CAIBattle::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action)
 {
-    auto PWeaponskill = state.GetWeaponSkill();
+    auto PWeaponskill = state.GetSkill();
 
     action.id = PEntity->id;
     action.actiontype = ACTION_WEAPONSKILL_FINISH;

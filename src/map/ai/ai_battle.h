@@ -28,14 +28,16 @@ This file is part of DarkStar-server source code.
 #include "helpers/targetfind.h"
 #include "controllers/controller.h"
 #include "states/state.h"
+#include "states/weaponskill_state.h"
+#include "../weapon_skill.h"
+#include "../mobskill.h"
+#include "../packets/action.h"
 #include "../packets/message_basic.h"
 
 class CBattleEntity;
 class CAttackState;
-class CWeaponSkillState;
 class CMagicState;
 class CSpell;
-struct action_t;
 
 class CAIBattle : public CAIBase
 {
@@ -70,7 +72,7 @@ public:
     virtual void OnCastFinished(CMagicState&, action_t&);
     virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg);
     /* Weaponskill */
-    virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&);
+    virtual void OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action);
 
     virtual void OnDeathTimer();
 

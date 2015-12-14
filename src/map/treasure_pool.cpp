@@ -30,6 +30,8 @@
 #include "utils/charutils.h"
 #include "utils/itemutils.h"
 #include "treasure_pool.h"
+#include "recast_container.h"
+#include "item_container.h"
 
 
 #define TREASURE_CHECKTIME		  2500		// частота проверки контейнера - 2.5 секунд

@@ -28,6 +28,8 @@ This file is part of DarkStar-server source code.
 
 #include "party.h"
 #include "alliance.h"
+#include "linkshell.h"
+#include "status_effect_container.h"
 
 #include "entities/charentity.h"
 

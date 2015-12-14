@@ -35,6 +35,7 @@
 #include "../ability.h"
 #include "../mobskill.h"
 #include "../utils/battleutils.h"
+#include "../items/item_weapon.h"
 
 /************************************************************************
 *																		*

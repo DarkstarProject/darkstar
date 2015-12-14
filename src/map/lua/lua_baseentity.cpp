@@ -97,6 +97,7 @@
 #include "../map.h"
 #include "../alliance.h"
 #include "../entities/mobentity.h"
+#include "../entities/automatonentity.h"
 #include "../mobskill.h"
 #include "../entities/npcentity.h"
 #include "../entities/petentity.h"
@@ -106,6 +107,10 @@
 #include "../trade_container.h"
 #include "../utils/zoneutils.h"
 #include "../entities/charentity.h"
+#include "../status_effect_container.h"
+#include "../item_container.h"
+#include "../recast_container.h"
+#include "../latent_effect_container.h"
 
 #include "../ai/ai_npc_dummy.h"
 #include "../ai/ai_mob_dummy.h"

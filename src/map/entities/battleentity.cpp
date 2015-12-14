@@ -28,6 +28,9 @@
 
 #include "../alliance.h"
 #include "../utils/battleutils.h"
+#include "../items/item_weapon.h"
+#include "../status_effect_container.h"
+#include "../ai/ai_battle.h"
 
 CBattleEntity::CBattleEntity()
 {

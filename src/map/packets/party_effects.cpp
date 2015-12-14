@@ -24,6 +24,7 @@ This file is part of DarkStar-server source code.
 #include "party_effects.h"
 #include "../party.h"
 #include "../entities/battleentity.h"
+#include "../status_effect_container.h"
 
 CPartyEffectsPacket::CPartyEffectsPacket()
 {

@@ -35,6 +35,7 @@ This file is part of DarkStar-server source code.
 
 class CBaseEntity;
 class CState;
+class CStateInitException;
 
 class CAIBase
 {
@@ -87,10 +88,36 @@ protected:
     //entity who holds this AI
     CBaseEntity* PEntity;
 
+    virtual void HandleErrorMessage(CStateInitException&) = 0;
     template<typename T, typename... Args>
-    bool ChangeState(Args&&... args) { if (CanChangeState()) { m_stateStack.emplace(std::make_unique<T>(std::forward<Args>(args)...)); return true; } return false; }
+    bool ChangeState(Args&&... args)
+    {
+        if (CanChangeState())
+        {
+            try
+            {
+                m_stateStack.emplace(std::make_unique<T>(std::forward<Args>(args)...));
+                return true;
+            }
+            catch (CStateInitException& e)
+            {
+                HandleErrorMessage(e);
+            }
+        }
+        return false;
+    }
     template<typename T, typename... Args>
-    void ForceChangeState(Args&&... args) { m_stateStack.emplace(std::make_unique<T>(std::forward<Args>(args)...)); }
+    void ForceChangeState(Args&&... args)
+    {
+        try
+        {
+            m_stateStack.emplace(std::make_unique<T>(std::forward<Args>(args)...));
+        }
+        catch (CStateInitException& e)
+        {
+            HandleErrorMessage(e);
+        }
+    }
 
 private:
     std::stack<std::unique_ptr<CState>> m_stateStack;

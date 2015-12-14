@@ -24,6 +24,7 @@ This file is part of DarkStar-server source code.
 #include "status_effects.h"
 #include "../entities/charentity.h"
 #include "../../common/timer.h"
+#include "../status_effect_container.h"
 
 CStatusEffectPacket::CStatusEffectPacket(CCharEntity* PChar)
 {

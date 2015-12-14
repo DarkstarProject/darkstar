@@ -41,6 +41,7 @@
 
 #include "../ability.h"
 #include "../modifier.h"
+#include "../status_effect_container.h"
 #include "charutils.h"
 #include "battleutils.h"
 #include "attackutils.h"
@@ -48,6 +49,7 @@
 #include "../map.h"
 #include "../party.h"
 #include "../alliance.h"
+#include "../recast_container.h"
 #include "../spell.h"
 #include "../trait.h"
 #include "../weapon_skill.h"
@@ -56,6 +58,8 @@
 #include "../entities/petentity.h"
 #include "../enmity_container.h"
 #include "../items.h"
+#include "../item_container.h"
+#include "../items/item_weapon.h"
 #include "../packets/pet_sync.h"
 #include "../packets/char_sync.h"
 #include "../packets/position.h"
@@ -4997,7 +5001,7 @@ namespace battleutils
         // Only apply if we have snapshot bonus to offer.
         if (SnapShotReductionPercent > 0)
         {
-            m_PChar->m_rangedDelay -= (float)(m_PChar->m_rangedDelay * ((float)SnapShotReductionPercent / 100));
+            //m_PChar->m_rangedDelay -= (float)(m_PChar->m_rangedDelay * ((float)SnapShotReductionPercent / 100));
         }
     }
 

@@ -23,14 +23,16 @@ This file is part of DarkStar-server source code.
 
 #include "targetfind.h"
 
+#include <math.h>
 #include "../../entities/charentity.h"
 #include "../../entities/mobentity.h"
 #include "../../packets/action.h"
 #include "../../alliance.h"
-#include <math.h>
 #include "../../../common/mmo.h"
+#include "../../../common/utils.h"
 #include "../../utils/zoneutils.h"
 #include "../../enmity_container.h"
+#include "../../status_effect_container.h"
 
 #include "../../packets/action.h"
 

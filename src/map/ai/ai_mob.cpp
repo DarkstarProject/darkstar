@@ -28,8 +28,11 @@ This file is part of DarkStar-server source code.
 #include "../conquest_system.h"
 #include "../mobskill.h"
 #include "../weapon_skill.h"
+#include "../treasure_pool.h"
+#include "../status_effect_container.h"
 #include "../entities/mobentity.h"
 #include "../packets/entity_update.h"
+#include "../utils/battleutils.h"
 #include "../utils/blueutils.h"
 #include "../utils/charutils.h"
 #include "../utils/itemutils.h"
@@ -58,33 +61,14 @@ void CAIMob::Internal_Disengage()
     CAIBattle::Internal_Disengage();
 }
 
-bool CAIMob::Internal_WeaponSkill(uint16 targid, uint16 wsid)
-{
-    if (CanChangeState())
-    {
-        if (ChangeState<CWeaponSkillState>(static_cast<CBattleEntity*>(PEntity), targid))
-        {
-            if (PEntity->look.size == MODEL_EQUIPED)
-            {
-                return static_cast<CWeaponSkillState*>(GetCurrentState())->StartWeaponSkill(wsid);
-            }
-            else
-            {
-                return static_cast<CWeaponSkillState*>(GetCurrentState())->StartMobSkill(wsid);
-            }
-        }
-    }
-    return false;
-}
-
 void CAIMob::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action)
 {
     CAIBattle::OnWeaponSkillFinished(state, action);
 
-    auto PMobSkill = state.GetMobSkill();
+    auto PSkill = state.GetSkill();
     auto PMob = static_cast<CMobEntity*>(PEntity);
     auto PBattleTarget = static_cast<CBattleEntity*>(state.GetTarget());
-    PMob->PAI->EventHandler.triggerListener("WEAPONSKILL_USE", PMob, PMobSkill);
+    PMob->PAI->EventHandler.triggerListener("WEAPONSKILL_USE", PMob, PSkill->getID());
     //#TODO
 }
 

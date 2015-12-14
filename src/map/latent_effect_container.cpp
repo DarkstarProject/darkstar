@@ -28,6 +28,9 @@ This file is part of DarkStar-server source code.
 #include "entities/battleentity.h"
 #include "utils/zoneutils.h"
 #include "conquest_system.h"
+#include "modifier.h"
+#include "items/item_weapon.h"
+#include "status_effect_container.h"
 
 #include "time_server.h"
 

@@ -40,6 +40,12 @@ This file is part of DarkStar-server source code.
 #include "../vana_time.h"
 #include "../weapon_skill.h"
 #include "../zone.h"
+#include "../status_effect_container.h"
+#include "../latent_effect_container.h"
+#include "../universal_container.h"
+#include "../recast_container.h"
+
+#include "../items/item_weapon.h"
 
 #include "../lua/luautils.h"
 
@@ -724,16 +730,16 @@ void CAICharNormal::ActionRangedStart()
     DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != nullptr);
 
-    if (m_Tick < m_PChar->m_rangedDelay + m_PChar->GetAmmoDelay(false)){ //cooldown between shots
-        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_WAIT_LONGER));
-        TransitionBack();
-        m_ActionTargetID = 0;
-        m_PBattleSubTarget = nullptr;
-        return;
-    }
+    //if (m_Tick < m_PChar->m_rangedDelay + m_PChar->GetAmmoDelay(false)){ //cooldown between shots
+    //    m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_WAIT_LONGER));
+    //    TransitionBack();
+    //    m_ActionTargetID = 0;
+    //    m_PBattleSubTarget = nullptr;
+    //    return;
+    //}
 
-    m_PChar->isRapidShot = false;
-    m_PChar->secondDoubleShotTaken = false;
+    //m_PChar->isRapidShot = false;
+    //m_PChar->secondDoubleShotTaken = false;
 
     CItemWeapon* PRanged = (CItemWeapon*)m_PChar->getEquip(SLOT_RANGED);
     CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
@@ -750,28 +756,28 @@ void CAICharNormal::ActionRangedStart()
             SkillType = PRanged->getSkillType();
         }
 
-        //ranged weapon delay is stored in the db as offset from 240 for some reason.
-        m_PChar->m_rangedDelay = m_PChar->GetRangedWeaponDelay(false);
+        ////ranged weapon delay is stored in the db as offset from 240 for some reason.
+        //m_PChar->m_rangedDelay = m_PChar->GetRangedWeaponDelay(false);
 
-        // Get Snapshot reduction
-        battleutils::GetSnapshotReduction(m_PChar);
+        //// Get Snapshot reduction
+        //battleutils::GetSnapshotReduction(m_PChar);
 
-        // do chance for rapid shot
-        // TODO: random % reduction, not instant shot
-        if (charutils::hasTrait(m_PChar, TRAIT_RAPID_SHOT))
-        {
-            uint16 chance = (m_PChar->getMod(MOD_RAPID_SHOT) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PChar));
-            if (dsprand::GetRandomNumber(100) < chance)
-            {
-                m_PChar->m_rangedDelay = 1;
-                m_PChar->isRapidShot = true;
-            }
-        }
+        //// do chance for rapid shot
+        //// TODO: random % reduction, not instant shot
+        //if (charutils::hasTrait(m_PChar, TRAIT_RAPID_SHOT))
+        //{
+        //    uint16 chance = (m_PChar->getMod(MOD_RAPID_SHOT) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PChar));
+        //    if (dsprand::GetRandomNumber(100) < chance)
+        //    {
+        //        m_PChar->m_rangedDelay = 1;
+        //        m_PChar->isRapidShot = true;
+        //    }
+        //}
 
-        if (m_PChar->m_rangedDelay <= 0){
-            ShowError("ai_char_normal::ActionRangedStart ranged delay is lower than 1!\n");
-            m_PChar->m_rangedDelay = 1;
-        }
+        //if (m_PChar->m_rangedDelay <= 0){
+        //    ShowError("ai_char_normal::ActionRangedStart ranged delay is lower than 1!\n");
+        //    m_PChar->m_rangedDelay = 1;
+        //}
 
         switch (SkillType)
         {
@@ -911,266 +917,266 @@ void CAICharNormal::ActionRangedFinish()
         return;
     }
 
-    if (m_Tick >= m_LastActionTime + m_PChar->m_rangedDelay)
-    {
-        m_LastMeleeTime += (m_Tick - m_LastActionTime);
-        m_LastActionTime = m_Tick;
-        int32 damage = 0;
-        int32 totalDamage = 0;
+    //if (m_Tick >= m_LastActionTime + m_PChar->m_rangedDelay)
+    //{
+    //    m_LastMeleeTime += (m_Tick - m_LastActionTime);
+    //    m_LastActionTime = m_Tick;
+    //    int32 damage = 0;
+    //    int32 totalDamage = 0;
 
-        apAction_t Action;
-        m_PChar->m_ActionList.clear();
+    //    apAction_t Action;
+    //    m_PChar->m_ActionList.clear();
 
-        Action.ActionTarget = m_PBattleSubTarget;
-        Action.reaction = REACTION_HIT;		//0x10
-        Action.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
-        Action.animation = 0;
-        Action.messageID = 352;
-        Action.knockback = 0;
+    //    Action.ActionTarget = m_PBattleSubTarget;
+    //    Action.reaction = REACTION_HIT;		//0x10
+    //    Action.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
+    //    Action.animation = 0;
+    //    Action.messageID = 352;
+    //    Action.knockback = 0;
 
-        CItemWeapon* PItem = (CItemWeapon*)m_PChar->getEquip(SLOT_RANGED);
-        CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
+    //    CItemWeapon* PItem = (CItemWeapon*)m_PChar->getEquip(SLOT_RANGED);
+    //    CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
 
-        bool ammoThrowing = PAmmo ? PAmmo->isThrowing() : false;
-        bool rangedThrowing = PItem ? PItem->isThrowing() : false;
-        uint8 slot = SLOT_RANGED;
+    //    bool ammoThrowing = PAmmo ? PAmmo->isThrowing() : false;
+    //    bool rangedThrowing = PItem ? PItem->isThrowing() : false;
+    //    uint8 slot = SLOT_RANGED;
 
-        if (ammoThrowing)
-        {
-            slot = SLOT_AMMO;
-            PItem = nullptr;
-        }
-        if (rangedThrowing)
-        {
-            PAmmo = nullptr;
-        }
+    //    if (ammoThrowing)
+    //    {
+    //        slot = SLOT_AMMO;
+    //        PItem = nullptr;
+    //    }
+    //    if (rangedThrowing)
+    //    {
+    //        PAmmo = nullptr;
+    //    }
 
-        uint8 shadowsTaken = 0;
-        uint8 hitCount = 1;			// 1 hit by default
-        uint8 realHits = 0;			// to store the real number of hit for tp multipler
-        bool hitOccured = false;	// track if player hit mob at all
-        bool isSange = false;
-        bool isBarrage = m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE, 0);
+    //    uint8 shadowsTaken = 0;
+    //    uint8 hitCount = 1;			// 1 hit by default
+    //    uint8 realHits = 0;			// to store the real number of hit for tp multipler
+    //    bool hitOccured = false;	// track if player hit mob at all
+    //    bool isSange = false;
+    //    bool isBarrage = m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE, 0);
 
-        // if barrage is detected, getBarrageShotCount also checks for ammo count
-        if (!ammoThrowing && !rangedThrowing && isBarrage)
-        {
-            hitCount += battleutils::getBarrageShotCount(m_PChar);
-        }
-        else if (ammoThrowing && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANGE))
-        {
-            isSange = true;
-            hitCount += m_PChar->getMod(MOD_UTSUSEMI);
-        }
+    //    // if barrage is detected, getBarrageShotCount also checks for ammo count
+    //    if (!ammoThrowing && !rangedThrowing && isBarrage)
+    //    {
+    //        hitCount += battleutils::getBarrageShotCount(m_PChar);
+    //    }
+    //    else if (ammoThrowing && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANGE))
+    //    {
+    //        isSange = true;
+    //        hitCount += m_PChar->getMod(MOD_UTSUSEMI);
+    //    }
 
-        // loop for barrage hits, if a miss occurs, the loop will end
-        for (uint8 i = 0; i < hitCount; ++i)
-        {
-            if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE, 0))
-            {
-                Action.messageID = 32;
-                Action.reaction = REACTION_EVADE;
-                Action.speceffect = SPECEFFECT_NONE;
-                i = hitCount; // end barrage, shot missed
-            }
-            else if (dsprand::GetRandomNumber(100) < battleutils::GetRangedHitRate(m_PChar, m_PBattleSubTarget, isBarrage)) // hit!
-            {
-                // absorbed by shadow
-                if (battleutils::IsAbsorbByShadow(m_PBattleSubTarget))
-                {
-                    shadowsTaken++;
-                }
-                else
-                {
-                    float pdif = battleutils::GetRangedPDIF(m_PChar, m_PBattleSubTarget);
-                    bool isCrit = false;
+    //    // loop for barrage hits, if a miss occurs, the loop will end
+    //    for (uint8 i = 0; i < hitCount; ++i)
+    //    {
+    //        if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE, 0))
+    //        {
+    //            Action.messageID = 32;
+    //            Action.reaction = REACTION_EVADE;
+    //            Action.speceffect = SPECEFFECT_NONE;
+    //            i = hitCount; // end barrage, shot missed
+    //        }
+    //        else if (dsprand::GetRandomNumber(100) < battleutils::GetRangedHitRate(m_PChar, m_PBattleSubTarget, isBarrage)) // hit!
+    //        {
+    //            // absorbed by shadow
+    //            if (battleutils::IsAbsorbByShadow(m_PBattleSubTarget))
+    //            {
+    //                shadowsTaken++;
+    //            }
+    //            else
+    //            {
+    //                float pdif = battleutils::GetRangedPDIF(m_PChar, m_PBattleSubTarget);
+    //                bool isCrit = false;
 
-                    if (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PChar, m_PBattleSubTarget, true))
-                    {
-                        pdif *= 1.25; //uncapped
-                        int16 criticaldamage = m_PChar->getMod(MOD_CRIT_DMG_INCREASE);
-                        criticaldamage = dsp_cap(criticaldamage, 0, 100);
-                        pdif *= ((100 + criticaldamage) / 100.0f);
-                        Action.speceffect = SPECEFFECT_CRITICAL_HIT;
-                        Action.messageID = 353;
-                        isCrit = true;
-                    }
+    //                if (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_PChar, m_PBattleSubTarget, true))
+    //                {
+    //                    pdif *= 1.25; //uncapped
+    //                    int16 criticaldamage = m_PChar->getMod(MOD_CRIT_DMG_INCREASE);
+    //                    criticaldamage = dsp_cap(criticaldamage, 0, 100);
+    //                    pdif *= ((100 + criticaldamage) / 100.0f);
+    //                    Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+    //                    Action.messageID = 353;
+    //                    isCrit = true;
+    //                }
 
-                    // at least 1 hit occured
-                    hitOccured = true;
-                    realHits++;
+    //                // at least 1 hit occured
+    //                hitOccured = true;
+    //                realHits++;
 
-                    if (isSange)
-                    {
-                        // change message to sange
-                        Action.messageID = 77;
-                    }
+    //                if (isSange)
+    //                {
+    //                    // change message to sange
+    //                    Action.messageID = 77;
+    //                }
 
-                    damage = (m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar, m_PBattleSubTarget, slot)) * pdif;
+    //                damage = (m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar, m_PBattleSubTarget, slot)) * pdif;
 
-                    if (slot == SLOT_RANGED)
-                    {
-                        if (m_PChar->isRapidShot)
-                        {
-                            damage = attackutils::CheckForDamageMultiplier(m_PChar, PItem, damage, RAPID_SHOT_ATTACK);
-                        }
-                        else
-                        {
-                            damage = attackutils::CheckForDamageMultiplier(m_PChar, PItem, damage, RANGED_ATTACK);
-                        }
+    //                if (slot == SLOT_RANGED)
+    //                {
+    //                    if (m_PChar->isRapidShot)
+    //                    {
+    //                        damage = attackutils::CheckForDamageMultiplier(m_PChar, PItem, damage, RAPID_SHOT_ATTACK);
+    //                    }
+    //                    else
+    //                    {
+    //                        damage = attackutils::CheckForDamageMultiplier(m_PChar, PItem, damage, RANGED_ATTACK);
+    //                    }
 
-                        if (PItem != nullptr)
-                        {
-                            charutils::TrySkillUP(m_PChar, (SKILLTYPE)PItem->getSkillType(), m_PBattleSubTarget->GetMLevel());
-                        }
-                    }
-                    else if (slot == SLOT_AMMO && PAmmo != nullptr)
-                    {
-                        charutils::TrySkillUP(m_PChar, (SKILLTYPE)PAmmo->getSkillType(), m_PBattleSubTarget->GetMLevel());
-                    }
-                }
-            }
-            else //miss
-            {
-                Action.reaction = REACTION_EVADE;
-                Action.speceffect = SPECEFFECT_NONE;
-                Action.messageID = 354;
+    //                    if (PItem != nullptr)
+    //                    {
+    //                        charutils::TrySkillUP(m_PChar, (SKILLTYPE)PItem->getSkillType(), m_PBattleSubTarget->GetMLevel());
+    //                    }
+    //                }
+    //                else if (slot == SLOT_AMMO && PAmmo != nullptr)
+    //                {
+    //                    charutils::TrySkillUP(m_PChar, (SKILLTYPE)PAmmo->getSkillType(), m_PBattleSubTarget->GetMLevel());
+    //                }
+    //            }
+    //        }
+    //        else //miss
+    //        {
+    //            Action.reaction = REACTION_EVADE;
+    //            Action.speceffect = SPECEFFECT_NONE;
+    //            Action.messageID = 354;
 
-                battleutils::ClaimMob(m_PBattleSubTarget, m_PChar);
+    //            battleutils::ClaimMob(m_PBattleSubTarget, m_PChar);
 
-                i = hitCount; // end barrage, shot missed
-            }
+    //            i = hitCount; // end barrage, shot missed
+    //        }
 
-            // check for recycle chance
-            uint16 recycleChance = m_PChar->getMod(MOD_RECYCLE);
-            if (charutils::hasTrait(m_PChar, TRAIT_RECYCLE))
-            {
-                recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE, m_PChar);
-            }
+    //        // check for recycle chance
+    //        uint16 recycleChance = m_PChar->getMod(MOD_RECYCLE);
+    //        if (charutils::hasTrait(m_PChar, TRAIT_RECYCLE))
+    //        {
+    //            recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE, m_PChar);
+    //        }
 
-            // Only remove unlimited shot on hit
-            if (hitOccured && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
-            {
-                m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_UNLIMITED_SHOT);
-                recycleChance = 100;
-            }
+    //        // Only remove unlimited shot on hit
+    //        if (hitOccured && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
+    //        {
+    //            m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_UNLIMITED_SHOT);
+    //            recycleChance = 100;
+    //        }
 
-            if (PAmmo != nullptr && dsprand::GetRandomNumber(100) > recycleChance)
-            {
-                if ((PAmmo->getQuantity() - 1) < 1) // ammo will run out after this shot, make sure we remove it from equip
-                {
-                    trackArrowUsageForScavenge(PAmmo, m_PChar);
-                    uint8 slot = m_PChar->equip[SLOT_AMMO];
-		    uint8 loc = m_PChar->equipLoc[SLOT_AMMO];
-                    charutils::UnequipItem(m_PChar, SLOT_AMMO);
-                    charutils::SaveCharEquip(m_PChar);
-		    charutils::UpdateItem(m_PChar, loc, slot, -1);
-                    i = hitCount; // end loop (if barrage), player is out of ammo
-                    PAmmo = nullptr;
-                }
-                else
-                {
-                    trackArrowUsageForScavenge(PAmmo, m_PChar);
-                    charutils::UpdateItem(m_PChar, m_PChar->equipLoc[SLOT_AMMO], m_PChar->equip[SLOT_AMMO], -1);
-                }
-                m_PChar->pushPacket(new CInventoryFinishPacket());
-            }
-            totalDamage += damage;
-        }
+    //        if (PAmmo != nullptr && dsprand::GetRandomNumber(100) > recycleChance)
+    //        {
+    //            if ((PAmmo->getQuantity() - 1) < 1) // ammo will run out after this shot, make sure we remove it from equip
+    //            {
+    //                trackArrowUsageForScavenge(PAmmo, m_PChar);
+    //                uint8 slot = m_PChar->equip[SLOT_AMMO];
+		  //  uint8 loc = m_PChar->equipLoc[SLOT_AMMO];
+    //                charutils::UnequipItem(m_PChar, SLOT_AMMO);
+    //                charutils::SaveCharEquip(m_PChar);
+		  //  charutils::UpdateItem(m_PChar, loc, slot, -1);
+    //                i = hitCount; // end loop (if barrage), player is out of ammo
+    //                PAmmo = nullptr;
+    //            }
+    //            else
+    //            {
+    //                trackArrowUsageForScavenge(PAmmo, m_PChar);
+    //                charutils::UpdateItem(m_PChar, m_PChar->equipLoc[SLOT_AMMO], m_PChar->equip[SLOT_AMMO], -1);
+    //            }
+    //            m_PChar->pushPacket(new CInventoryFinishPacket());
+    //        }
+    //        totalDamage += damage;
+    //    }
 
-        // if a hit did occur (even without barrage)
-        if (hitOccured == true)
-        {
-            // any misses with barrage cause remaing shots to miss, meaning we must check Action.reaction
-            if (Action.reaction == REACTION_EVADE && (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE) || isSange))
-            {
-                Action.messageID = 352;
-                Action.reaction = REACTION_HIT;
-                Action.speceffect = SPECEFFECT_CRITICAL_HIT;
-            }
+    //    // if a hit did occur (even without barrage)
+    //    if (hitOccured == true)
+    //    {
+    //        // any misses with barrage cause remaing shots to miss, meaning we must check Action.reaction
+    //        if (Action.reaction == REACTION_EVADE && (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE) || isSange))
+    //        {
+    //            Action.messageID = 352;
+    //            Action.reaction = REACTION_HIT;
+    //            Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+    //        }
 
-            Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, totalDamage, false, slot, realHits, nullptr, true, true);
+    //        Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, totalDamage, false, slot, realHits, nullptr, true, true);
 
-            // lower damage based on shadows taken
-            if (shadowsTaken)
-                Action.param = Action.param * (1 - ((float)shadowsTaken / realHits));
+    //        // lower damage based on shadows taken
+    //        if (shadowsTaken)
+    //            Action.param = Action.param * (1 - ((float)shadowsTaken / realHits));
 
-            // absorb message
-            if (Action.param < 0)
-            {
-                Action.param = -(Action.param);
-                Action.messageID = 382;
-            }
+    //        // absorb message
+    //        if (Action.param < 0)
+    //        {
+    //            Action.param = -(Action.param);
+    //            Action.messageID = 382;
+    //        }
 
-            //add additional effects
-            //this should go AFTER damage taken
-            //or else sleep effect won't work
-            //battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
-            //TODO: move all hard coded additional effect ammo to scripts
-            //#TODO: fix call
-            if ((PAmmo != nullptr && PAmmo->getModifier(MOD_ADDITIONAL_EFFECT) > 0) || (PItem != nullptr && PItem->getModifier(MOD_ADDITIONAL_EFFECT) > 0)) {}
-                //luautils::OnAdditionalEffect(m_PChar, m_PBattleSubTarget, (PAmmo != nullptr ? PAmmo : PItem), &Action, totalDamage);
-        }
-        else if (shadowsTaken > 0)
-        {
-            // shadows took damage
-            Action.messageID = 0;
-            Action.reaction = REACTION_EVADE;
-            m_PBattleSubTarget->loc.zone->PushPacket(m_PBattleSubTarget, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleSubTarget, m_PBattleSubTarget, 0, shadowsTaken, MSGBASIC_SHADOW_ABSORB));
+    //        //add additional effects
+    //        //this should go AFTER damage taken
+    //        //or else sleep effect won't work
+    //        //battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
+    //        //TODO: move all hard coded additional effect ammo to scripts
+    //        //#TODO: fix call
+    //        if ((PAmmo != nullptr && PAmmo->getModifier(MOD_ADDITIONAL_EFFECT) > 0) || (PItem != nullptr && PItem->getModifier(MOD_ADDITIONAL_EFFECT) > 0)) {}
+    //            //luautils::OnAdditionalEffect(m_PChar, m_PBattleSubTarget, (PAmmo != nullptr ? PAmmo : PItem), &Action, totalDamage);
+    //    }
+    //    else if (shadowsTaken > 0)
+    //    {
+    //        // shadows took damage
+    //        Action.messageID = 0;
+    //        Action.reaction = REACTION_EVADE;
+    //        m_PBattleSubTarget->loc.zone->PushPacket(m_PBattleSubTarget, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleSubTarget, m_PBattleSubTarget, 0, shadowsTaken, MSGBASIC_SHADOW_ABSORB));
 
-            battleutils::ClaimMob(m_PBattleSubTarget, m_PChar);
-        }
+    //        battleutils::ClaimMob(m_PBattleSubTarget, m_PChar);
+    //    }
 
-        if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
-            Action.speceffect = SPECEFFECT_RECOIL;
+    //    if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
+    //        Action.speceffect = SPECEFFECT_RECOIL;
 
-        m_PChar->m_ActionList.push_back(Action);
-        m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+    //    m_PChar->m_ActionList.push_back(Action);
+    //    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
-        // TODO: что это ? ....
-        // если не ошибаюсь, то TREASURE_HUNTER работает лишь при последнем ударе
+    //    // TODO: что это ? ....
+    //    // если не ошибаюсь, то TREASURE_HUNTER работает лишь при последнем ударе
 
-        CMobEntity* Monster = (CMobEntity*)m_PBattleSubTarget;
+    //    CMobEntity* Monster = (CMobEntity*)m_PBattleSubTarget;
 
-        if (Monster->m_HiPCLvl < m_PChar->GetMLevel())
-        {
-            Monster->m_HiPCLvl = m_PChar->GetMLevel();
-        }
+    //    if (Monster->m_HiPCLvl < m_PChar->GetMLevel())
+    //    {
+    //        Monster->m_HiPCLvl = m_PChar->GetMLevel();
+    //    }
 
-        // remove barrage effect if present
-        if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE, 0)){
-            m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BARRAGE, 0);
-        }
-        else if (isSange)
-        {
-            uint16 power = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_SANGE)->GetPower();
+    //    // remove barrage effect if present
+    //    if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE, 0)){
+    //        m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BARRAGE, 0);
+    //    }
+    //    else if (isSange)
+    //    {
+    //        uint16 power = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_SANGE)->GetPower();
 
-            // remove shadows
-            while (realHits-- && dsprand::GetRandomNumber(100) <= power && battleutils::IsAbsorbByShadow(m_PChar));
+    //        // remove shadows
+    //        while (realHits-- && dsprand::GetRandomNumber(100) <= power && battleutils::IsAbsorbByShadow(m_PChar));
 
-            m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SANGE);
-        }
+    //        m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SANGE);
+    //    }
 
-        // only remove detectables
-        m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+    //    // only remove detectables
+    //    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
 
-        // Try to double shot
-        // Will instantly trigger another ranged attack
-        if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_SHOT, 0) && !m_PChar->secondDoubleShotTaken &&	!isBarrage && !isSange)
-        {
-            uint16 doubleShotChance = m_PChar->getMod(MOD_DOUBLE_SHOT_RATE);
-            if (dsprand::GetRandomNumber(100) < doubleShotChance)
-            {
-                m_PChar->secondDoubleShotTaken = true;
-                m_ActionType = ACTION_RANGED_FINISH;
-                m_PChar->m_rangedDelay = 0;
-                return;
-            }
-        }
+    //    // Try to double shot
+    //    // Will instantly trigger another ranged attack
+    //    if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_SHOT, 0) && !m_PChar->secondDoubleShotTaken &&	!isBarrage && !isSange)
+    //    {
+    //        uint16 doubleShotChance = m_PChar->getMod(MOD_DOUBLE_SHOT_RATE);
+    //        if (dsprand::GetRandomNumber(100) < doubleShotChance)
+    //        {
+    //            m_PChar->secondDoubleShotTaken = true;
+    //            m_ActionType = ACTION_RANGED_FINISH;
+    //            m_PChar->m_rangedDelay = 0;
+    //            return;
+    //        }
+    //    }
 
-        TransitionBack();
-        m_PChar->m_rangedDelay = m_Tick; //cooldown between shots
-    }
+    //    TransitionBack();
+    //    m_PChar->m_rangedDelay = m_Tick; //cooldown between shots
+    //}
 }
 
 /************************************************************************

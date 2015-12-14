@@ -27,8 +27,11 @@ This file is part of DarkStar-server source code.
 #include "../states/magic_state.h"
 #include "../states/weaponskill_state.h"
 #include "../../mobskill.h"
+#include "../../party.h"
+#include "../../status_effect_container.h"
 #include "../../entities/mobentity.h"
 #include "../../utils/battleutils.h"
+#include "../../../common/utils.h"
 
 CAIController::CAIController(CMobEntity* PEntity) :
     CController(PEntity, true),

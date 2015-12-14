@@ -32,6 +32,7 @@ This file is part of DarkStar-server source code.
 #include "entities/mobentity.h"
 #include "entities/npcentity.h"
 #include "lua/luautils.h"
+#include "items/item_weapon.h"
 
 CInstanceLoader::CInstanceLoader(uint8 instanceid, CZone* PZone, CCharEntity* PRequester)
 {

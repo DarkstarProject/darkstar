@@ -33,6 +33,8 @@ public:
 
     void InitPathfinding();
     void Trigger(uint16 targID);
+protected:
+    virtual void HandleErrorMessage(CStateInitException&) override {}
 };
 
 #endif

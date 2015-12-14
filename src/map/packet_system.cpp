@@ -56,6 +56,12 @@ This file is part of DarkStar-server source code.
 #include "zone.h"
 #include "utils/zoneutils.h"
 #include "message.h"
+#include "status_effect_container.h"
+#include "latent_effect_container.h"
+#include "treasure_pool.h"
+#include "item_container.h"
+#include "universal_container.h"
+#include "recast_container.h"
 
 #include "ai/ai_npc.h"
 #include "ai/ai_char.h"

@@ -32,6 +32,7 @@
 #include "../attack.h"
 #include "../attackround.h"
 #include "../mobskill.h"
+#include "../status_effect_container.h"
 #include "../utils/petutils.h"
 
 #include "../lua/luautils.h"

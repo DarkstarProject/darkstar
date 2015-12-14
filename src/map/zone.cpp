@@ -33,9 +33,13 @@
 #include <string.h>
 
 #include "enmity_container.h"
+#include "latent_effect_container.h"
+#include "linkshell.h"
 #include "map.h"
 #include "message.h"
+#include "party.h"
 #include "spell.h"
+#include "status_effect_container.h"
 #include "treasure_pool.h"
 #include "vana_time.h"
 #include "zone.h"

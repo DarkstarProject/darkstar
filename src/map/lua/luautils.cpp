@@ -48,6 +48,8 @@
 #include "../conquest_system.h"
 #include "../map.h"
 #include "../mobskill.h"
+#include "../party.h"
+#include "../alliance.h"
 #include "../entities/mobentity.h"
 #include "../spell.h"
 #include "../weapon_skill.h"
@@ -64,6 +66,7 @@
 #include "../utils/itemutils.h"
 #include "../conquest_system.h"
 #include "../weapon_skill.h"
+#include "../status_effect_container.h"
 
 namespace luautils
 {
@@ -2574,7 +2577,7 @@ namespace luautils
 
                     Lunar<CLuaBaseEntity>::push(LuaHandle, LuaMobEntity);
                     Lunar<CLuaBaseEntity>::push(LuaHandle, LuaKillerEntity);
-                    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaAllyEntity);
+                    Lunar<CLuaBaseEntity>::push(LuaHandle, LuaAllyEntity);
                     lua_pushboolean(LuaHandle, isWeaponSkillKill);
                     // lua_pushboolean(LuaHandle, isMagicKill);
                     // lua_pushboolean(LuaHandle, isPetKill);
@@ -2629,7 +2632,7 @@ namespace luautils
                         CLuaBaseEntity LuaKillerEntity(PChar);
                         CLuaBaseEntity LuaAllyEntity(PMember); 
                         Lunar<CLuaBaseEntity>::push(LuaHandle, LuaKillerEntity);
-                        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaAllyEntity);
+                        Lunar<CLuaBaseEntity>::push(LuaHandle, LuaAllyEntity);
                     }
                     else
                     {

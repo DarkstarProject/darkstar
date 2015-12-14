@@ -31,9 +31,8 @@ class CAbility;
 class CAbilityState : public CState
 {
 public:
-    CAbilityState(CCharEntity* PEntity, uint16 targid);
+    CAbilityState(CCharEntity* PEntity, uint16 targid, uint16 abilityid);
 
-    bool StartAbility(uint16 abilityid);
     CAbility* GetAbility();
 
     void ApplyEnmity();

@@ -37,6 +37,7 @@
 #include "../entities/npcentity.h"
 #include "zoneutils.h"
 #include "mobutils.h"
+#include "../items/item_weapon.h"
 #include "../mob_spell_list.h"
 #include "../packets/entity_update.h"
 #include "../zone_instance.h"

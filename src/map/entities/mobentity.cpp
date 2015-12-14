@@ -23,13 +23,13 @@
 
 #include "mobentity.h"
 
+#include <string.h>
 #include "../../common/timer.h"
+#include "../../common/utils.h"
+#include "../status_effect_container.h"
 #include "../packets/entity_update.h"
 #include "../ai/ai_mob.h"
 #include "../ai/controllers/ai_controller.h"
-
-#include <string.h>
-
 #include "../utils/battleutils.h"
 
 CMobEntity::CMobEntity()

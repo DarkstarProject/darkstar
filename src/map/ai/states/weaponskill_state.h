@@ -26,18 +26,12 @@ This file is part of DarkStar-server source code.
 
 #include "state.h"
 
-class CWeaponSkill;
-class CMobSkill;
-
 class CWeaponSkillState : public CState
 {
 public:
-    CWeaponSkillState(CBattleEntity* PEntity, uint16 targid);
+    CWeaponSkillState(CBattleEntity* PEntity, uint16 targid, uint16 wsid);
 
-    bool StartWeaponSkill(uint16 wsid);
-    bool StartMobSkill(uint16 mobskillid);
-    CWeaponSkill* GetWeaponSkill();
-    CMobSkill* GetMobSkill();
+    CWeaponSkill* GetSkill();
 
     void SpendCost();
 protected:
@@ -47,8 +41,7 @@ protected:
 
 private:
     CBattleEntity* const m_PEntity;
-    std::unique_ptr<CWeaponSkill> m_PWeaponSkill;
-    std::unique_ptr<CMobSkill> m_PMobSkill;
+    std::unique_ptr<CWeaponSkill> m_PSkill;
     time_point m_finishTime;
 };
 

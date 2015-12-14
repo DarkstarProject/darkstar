@@ -25,6 +25,8 @@
 #include "entities/battleentity.h"
 #include "attackround.h"
 #include "attack.h"
+#include "status_effect_container.h"
+#include "items/item_weapon.h"
 
 #include <math.h>
 

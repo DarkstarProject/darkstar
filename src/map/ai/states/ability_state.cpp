@@ -24,29 +24,26 @@ This file is part of DarkStar-server source code.
 #include "ability_state.h"
 #include "../ai_char.h"
 #include "../../ability.h"
+#include "../../recast_container.h"
+#include "../../status_effect_container.h"
 #include "../../entities/charentity.h"
 #include "../../entities/mobentity.h"
 #include "../../packets/action.h"
 #include "../../utils/battleutils.h"
+#include "../../../common/utils.h"
 
-CAbilityState::CAbilityState(CCharEntity* PEntity, uint16 targid) :
+CAbilityState::CAbilityState(CCharEntity* PEntity, uint16 targid, uint16 abilityid) :
     CState(PEntity, targid),
     m_PEntity(PEntity)
 {
-
-}
-
-bool CAbilityState::StartAbility(uint16 abilityid)
-{
     CAbility* PAbility = ability::GetAbility(abilityid);
 
-    if (PAbility)
+    if (!PAbility)
     {
-        m_PAbility = std::make_unique<CAbility>(*PAbility);
-        m_PEntity->PAI->EventHandler.triggerListener("ABILITY_START", m_PEntity, PAbility);
-        return true;
+        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
     }
-    return false;
+    m_PAbility = std::make_unique<CAbility>(*PAbility);
+    m_PEntity->PAI->EventHandler.triggerListener("ABILITY_START", m_PEntity, PAbility);
 }
 
 CAbility* CAbilityState::GetAbility()

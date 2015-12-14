@@ -32,6 +32,7 @@
 #include "conquest_system.h"
 #include "lua/luautils.h"
 #include "entities/charentity.h"
+#include "latent_effect_container.h"
 
 
 int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)

@@ -33,6 +33,9 @@ This file is part of DarkStar-server source code.
 
 #include "../packets/char.h"
 
+#include "../status_effect_container.h"
+#include "../items/item_weapon.h"
+
 #include "../utils/battleutils.h"
 #include "../packets/message_basic.h"
 

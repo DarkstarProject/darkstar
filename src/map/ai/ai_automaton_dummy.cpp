@@ -24,12 +24,15 @@ This file is part of DarkStar-server source code.
 #include "ai_automaton_dummy.h"
 
 #include "../mobskill.h"
+#include "../status_effect_container.h"
 
 #include "../entities/automatonentity.h"
 #include "../entities/mobentity.h"
 #include "../entities/petentity.h"
 
 #include "../lua/luautils.h"
+
+#include "../items/item_weapon.h"
 
 #include "../packets/pet_sync.h"
 

@@ -25,6 +25,7 @@
 #include "../entities/charentity.h"
 #include "../entities/mobentity.h"
 #include "../party.h"
+#include "../treasure_pool.h"
 #include "charutils.h"
 #include "../alliance.h"
 #include "zoneutils.h"

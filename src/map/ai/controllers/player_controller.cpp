@@ -25,10 +25,14 @@ This file is part of DarkStar-server source code.
 
 #include "../ai_char.h"
 #include "../../entities/charentity.h"
+#include "../../items/item_weapon.h"
 #include "../../packets/char_update.h"
 #include "../../packets/lock_on.h"
 #include "../../utils/battleutils.h"
 #include "../../utils/charutils.h"
+#include "../../recast_container.h"
+#include "../../latent_effect_container.h"
+#include "../../status_effect_container.h"
 #include "../../weapon_skill.h"
 
 CPlayerController::CPlayerController(CCharEntity* _PChar) :

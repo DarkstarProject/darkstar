@@ -31,7 +31,11 @@ This file is part of DarkStar-server source code.
 #include "../ability.h"
 #include "../conquest_system.h"
 #include "../weapon_skill.h"
+#include "../latent_effect_container.h"
+#include "../recast_container.h"
+#include "../status_effect_container.h"
 #include "../entities/charentity.h"
+#include "../entities/automatonentity.h"
 #include "../utils/battleutils.h"
 #include "../utils/charutils.h"
 #include "../packets/action.h"
@@ -61,14 +65,7 @@ void CAIChar::Ability(uint16 targid, uint16 abilityid)
 
 bool CAIChar::Internal_Ability(uint16 targetid, uint16 abilityid)
 {
-    if (CanChangeState())
-    {
-        if (ChangeState<CAbilityState>(static_cast<CCharEntity*>(PEntity), targetid))
-        {
-            return static_cast<CAbilityState*>(GetCurrentState())->StartAbility(abilityid);
-        }
-    }
-    return false;
+    return ChangeState<CAbilityState>(static_cast<CCharEntity*>(PEntity), targetid, abilityid);
 }
 
 CBattleEntity* CAIChar::IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
@@ -240,7 +237,7 @@ void CAIChar::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action)
 {
     CAIBattle::OnWeaponSkillFinished(state, action);
 
-    auto PWeaponSkill = state.GetWeaponSkill();
+    auto PWeaponSkill = state.GetSkill();
     auto PChar = static_cast<CCharEntity*>(PEntity);
     auto PBattleTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
@@ -1070,6 +1067,11 @@ bool CAIChar::IsMobOwner(CBattleEntity* PBattleTarget)
     });
 
     return found;
+}
+
+void CAIChar::HandleErrorMessage(CStateInitException& e)
+{
+    static_cast<CCharEntity*>(PEntity)->pushPacket(e.packet.release());
 }
 
 void CAIChar::OnDeathTimer()

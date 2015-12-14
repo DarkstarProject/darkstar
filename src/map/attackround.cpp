@@ -23,6 +23,8 @@
 
 #include "attackround.h"
 #include "packets/inventory_finish.h"
+#include "items/item_weapon.h"
+#include "status_effect_container.h"
 
 
 /************************************************************************

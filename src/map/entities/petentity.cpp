@@ -37,7 +37,7 @@ CPetEntity::CPetEntity(PETTYPE petType)
 	m_EcoSystem = SYSTEM_UNCLASSIFIED;
 	allegiance = ALLEGIANCE_PLAYER;
     m_MobSkillList = 0;
-    PAI = std::make_unique<CAIBattle>(this, std::make_unique<CPathFind>(this), nullptr);
+    //PAI = std::make_unique<CAIBattle>(this, std::make_unique<CPathFind>(this), nullptr);
 }
 
 CPetEntity::~CPetEntity()

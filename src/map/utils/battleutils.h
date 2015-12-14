@@ -26,6 +26,8 @@
 
 #include "../../common/cbasetypes.h"
 #include "../blue_spell.h"
+#include "../status_effect.h"
+#include "../merit.h"
 
 #include <list>
 

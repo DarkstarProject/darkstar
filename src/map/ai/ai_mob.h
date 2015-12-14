@@ -32,10 +32,10 @@ public:
     CAIMob(CBattleEntity*, std::unique_ptr<CPathFind>&&, std::unique_ptr<CController>&&);
 
     virtual void Internal_Disengage() override;
-    virtual bool Internal_WeaponSkill(uint16 targid, uint16 wsid) override;
     virtual void Die() override;
 
     virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
+    //virtual void OnMobSkillFinished(CMobSkillState&, action_t&) override;
     virtual void OnDisengage() override;
     virtual void OnDeathTimer() override;
 
@@ -46,6 +46,7 @@ public:
 
 protected:
     void DropItems();
+    virtual void HandleErrorMessage(CStateInitException&) override {}
 
 private:
     bool m_AutoAttackEnabled{ true };

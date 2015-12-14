@@ -36,6 +36,8 @@
 #include "party.h"
 #include "treasure_pool.h"
 #include "message.h"
+#include "latent_effect_container.h"
+#include "status_effect_container.h"
 
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
