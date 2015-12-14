@@ -47,20 +47,6 @@ void CPlayerController::Cast(uint16 targid, uint16 spellid)
     if (!PChar->PRecastContainer->HasRecast(RECAST_MAGIC, spellid))
     {
         CController::Cast(targid, spellid);
-
-        if (POwner)
-        {
-            auto state = POwner->PAIBattle()->GetCurrentState();
-
-            if (state && state->HasErrorMsg())
-            {
-                static_cast<CCharEntity*>(POwner)->pushPacket(state->GetErrorMsg());
-            }
-            else
-            {
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_CAST));
-            }
-        }
     }
     else
     {
@@ -133,6 +119,7 @@ void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
     auto PChar = static_cast<CCharEntity*>(POwner);
     if (PChar->PAI->CanChangeState())
     {
+        //#TODO: put all this in weaponskill_state
         CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(wsid);
 
         if (PWeaponSkill && !charutils::hasWeaponSkill(PChar, PWeaponSkill->getID()))

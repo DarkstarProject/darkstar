@@ -301,7 +301,6 @@ bool CAIBattle::OnAttack(CAttackState& state, action_t& action)
     /////////////////////////////////////////////////////////////////////////////////////////////
 
     PBattleEntity->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK | EFFECTFLAG_DETECTABLE);
-    PBattleEntity->loc.zone->PushPacket(PBattleEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
 
     return true;
 }
