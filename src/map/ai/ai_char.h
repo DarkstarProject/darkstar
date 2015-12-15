@@ -61,6 +61,7 @@ public:
 protected:
     bool IsMobOwner(CBattleEntity* PTarget);
     virtual void HandleErrorMessage(CStateInitException&) override;
+    void TrackArrowUsageForScavenge(CItemWeapon* PAmmo);
 
     time_point m_errMsgTime;
 };

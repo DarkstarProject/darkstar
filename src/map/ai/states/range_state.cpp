@@ -23,6 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "range_state.h"
 #include "../ai_battle.h"
+#include "../ai_char.h"
 #include "../../entities/charentity.h"
 #include "../../packets/action.h"
 #include "../../utils/battleutils.h"
@@ -72,8 +73,8 @@ CRangeState::CRangeState(CCharEntity* PEntity, uint16 targid) :
     actionList.ActionTargetID = PTarget->id;
 
     actionTarget_t& actionTarget = actionList.getNewActionTarget();
-
     actionTarget.animation = ANIMATION_RANGED;
+
     m_PEntity->PAI->EventHandler.triggerListener("RANGE_START", m_PEntity, &action); 
 
     m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
@@ -92,9 +93,33 @@ bool CRangeState::Update(time_point tick)
 {
     if (tick > GetEntryTime() + m_aimTime && !IsCompleted())
     {
+        auto PTarget = m_PEntity->PAIBattle()->IsValidTarget(m_targid, TARGET_ENEMY, m_errorMsg);
+
+        CanUseRangedAttack(PTarget);
+        if (m_startPos.x != m_PEntity->loc.p.x || m_startPos.y != m_PEntity->loc.p.y)
+        {
+            m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, 0, 0, MSGBASIC_MOVE_AND_INTERRUPT);
+        }
         action_t action;
-        //m_PEntity->PAIBattle()->OnWeaponSkillFinished(*this, action);
-        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+        if (m_errorMsg && m_errorMsg->getMessageID() != MSGBASIC_CANNOT_SEE)
+        {
+            action.id = m_PEntity->id;
+            action.actiontype = ACTION_RANGED_INTERRUPT;
+
+            actionList_t& actionList = action.getNewActionList();
+            actionList.ActionTargetID = PTarget->id;
+
+            actionTarget_t& actionTarget = actionList.getNewActionTarget();
+            actionTarget.animation = ANIMATION_RANGED;
+            m_PEntity->pushPacket(m_errorMsg.release());
+            m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+        }
+        else
+        {
+            m_errorMsg.reset();
+            static_cast<CAIChar*>(m_PEntity->PAI.get())->OnRangedAttack(*this, action);
+            m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+        }
         Complete();
     }
 

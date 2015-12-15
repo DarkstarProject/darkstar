@@ -275,7 +275,7 @@ int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
     return delay;
 }
 
-int16 CBattleEntity::GetAmmoDelay(bool tp)
+int16 CBattleEntity::GetAmmoDelay()
 {
     CItemWeapon* PAmmo = (CItemWeapon*)m_Weapons[SLOT_AMMO];
 

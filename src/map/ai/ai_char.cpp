@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
 Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -35,8 +35,10 @@ This file is part of DarkStar-server source code.
 #include "../latent_effect_container.h"
 #include "../recast_container.h"
 #include "../status_effect_container.h"
+#include "../items/item_weapon.h"
 #include "../entities/charentity.h"
 #include "../entities/automatonentity.h"
+#include "../utils/attackutils.h"
 #include "../utils/battleutils.h"
 #include "../utils/charutils.h"
 #include "../packets/action.h"
@@ -45,6 +47,7 @@ This file is part of DarkStar-server source code.
 #include "../packets/char_update.h"
 #include "../packets/menu_raisetractor.h"
 #include "../packets/message_basic.h"
+#include "../packets/inventory_finish.h"
 
 CAIChar::CAIChar(CCharEntity* PChar) :
     CAIBattle(PChar, nullptr, std::make_unique<CPlayerController>(PChar))
@@ -1069,7 +1072,260 @@ void CAIChar::OnAbility(CAbilityState& state, action_t& action)
 
 void CAIChar::OnRangedAttack(CRangeState& state, action_t& action)
 {
+    auto PChar = static_cast<CCharEntity*>(PEntity);
+    auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
+    int32 damage = 0;
+    int32 totalDamage = 0;
+
+    action.id = PChar->id;
+    action.actiontype = ACTION_RANGED_FINISH;
+
+    actionList_t& actionList = action.getNewActionList();
+    actionList.ActionTargetID = PTarget->id;
+
+    actionTarget_t& actionTarget = actionList.getNewActionTarget();
+    actionTarget.reaction = REACTION_HIT;		//0x10
+    actionTarget.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
+    actionTarget.messageID = 352;
+
+    CItemWeapon* PItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
+    CItemWeapon* PAmmo = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
+
+    bool ammoThrowing = PAmmo ? PAmmo->isThrowing() : false;
+    bool rangedThrowing = PItem ? PItem->isThrowing() : false;
+    uint8 slot = SLOT_RANGED;
+
+    if (ammoThrowing)
+    {
+        slot = SLOT_AMMO;
+        PItem = nullptr;
+    }
+    if (rangedThrowing)
+    {
+        PAmmo = nullptr;
+    }
+
+    uint8 shadowsTaken = 0;
+    uint8 hitCount = 1;			// 1 hit by default
+    uint8 realHits = 0;			// to store the real number of hit for tp multipler
+    bool hitOccured = false;	// track if player hit mob at all
+    bool isSange = false;
+    bool isBarrage = PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE, 0);
+
+    // if barrage is detected, getBarrageShotCount also checks for ammo count
+    if (!ammoThrowing && !rangedThrowing && isBarrage)
+    {
+        hitCount += battleutils::getBarrageShotCount(PChar);
+    }
+    else if (ammoThrowing && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANGE))
+    {
+        isSange = true;
+        hitCount += PChar->getMod(MOD_UTSUSEMI);
+    }
+
+    // loop for barrage hits, if a miss occurs, the loop will end
+    for (uint8 i = 0; i < hitCount; ++i)
+    {
+        if (PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE, 0))
+        {
+            actionTarget.messageID = 32;
+            actionTarget.reaction = REACTION_EVADE;
+            actionTarget.speceffect = SPECEFFECT_NONE;
+            i = hitCount; // end barrage, shot missed
+        }
+        else if (dsprand::GetRandomNumber(100) < battleutils::GetRangedHitRate(PChar, PTarget, isBarrage)) // hit!
+        {
+            // absorbed by shadow
+            if (battleutils::IsAbsorbByShadow(PTarget))
+            {
+                shadowsTaken++;
+            }
+            else
+            {
+                float pdif = battleutils::GetRangedPDIF(PChar, PTarget);
+                bool isCrit = false;
+
+                if (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(PChar, PTarget, true))
+                {
+                    pdif *= 1.25; //uncapped
+                    int16 criticaldamage = PChar->getMod(MOD_CRIT_DMG_INCREASE);
+                    criticaldamage = dsp_cap(criticaldamage, 0, 100);
+                    pdif *= ((100 + criticaldamage) / 100.0f);
+                    actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
+                    actionTarget.messageID = 353;
+                    isCrit = true;
+                }
+
+                // at least 1 hit occured
+                hitOccured = true;
+                realHits++;
+
+                if (isSange)
+                {
+                    // change message to sange
+                    actionTarget.messageID = 77;
+                }
+
+                damage = (PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(PChar, PTarget, slot)) * pdif;
+
+                if (slot == SLOT_RANGED)
+                {
+                    if (state.IsRapidShot())
+                    {
+                        damage = attackutils::CheckForDamageMultiplier(PChar, PItem, damage, RAPID_SHOT_ATTACK);
+                    }
+                    else
+                    {
+                        damage = attackutils::CheckForDamageMultiplier(PChar, PItem, damage, RANGED_ATTACK);
+                    }
+
+                    if (PItem != nullptr)
+                    {
+                        charutils::TrySkillUP(PChar, (SKILLTYPE)PItem->getSkillType(), PTarget->GetMLevel());
+                    }
+                }
+                else if (slot == SLOT_AMMO && PAmmo != nullptr)
+                {
+                    charutils::TrySkillUP(PChar, (SKILLTYPE)PAmmo->getSkillType(), PTarget->GetMLevel());
+                }
+            }
+        }
+        else //miss
+        {
+            actionTarget.reaction = REACTION_EVADE;
+            actionTarget.speceffect = SPECEFFECT_NONE;
+            actionTarget.messageID = 354;
+
+            battleutils::ClaimMob(PTarget, PChar);
+
+            i = hitCount; // end barrage, shot missed
+        }
+
+        // check for recycle chance
+        uint16 recycleChance = PChar->getMod(MOD_RECYCLE);
+        if (charutils::hasTrait(PChar, TRAIT_RECYCLE))
+        {
+            recycleChance += PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE, PChar);
+        }
+
+        // Only remove unlimited shot on hit
+        if (hitOccured && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
+        {
+            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_UNLIMITED_SHOT);
+            recycleChance = 100;
+        }
+
+        if (PAmmo != nullptr && dsprand::GetRandomNumber(100) > recycleChance)
+        {
+            if ((PAmmo->getQuantity() - 1) < 1) // ammo will run out after this shot, make sure we remove it from equip
+            {
+                TrackArrowUsageForScavenge(PAmmo);
+                uint8 slot = PChar->equip[SLOT_AMMO];
+                uint8 loc = PChar->equipLoc[SLOT_AMMO];
+                charutils::UnequipItem(PChar, SLOT_AMMO);
+                charutils::SaveCharEquip(PChar);
+                charutils::UpdateItem(PChar, loc, slot, -1);
+                i = hitCount; // end loop (if barrage), player is out of ammo
+                PAmmo = nullptr;
+            }
+            else
+            {
+                TrackArrowUsageForScavenge(PAmmo);
+                charutils::UpdateItem(PChar, PChar->equipLoc[SLOT_AMMO], PChar->equip[SLOT_AMMO], -1);
+            }
+            PChar->pushPacket(new CInventoryFinishPacket());
+        }
+        totalDamage += damage;
+    }
+
+    // if a hit did occur (even without barrage)
+    if (hitOccured == true)
+    {
+        // any misses with barrage cause remaing shots to miss, meaning we must check Action.reaction
+        if (actionTarget.reaction == REACTION_EVADE && (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE) || isSange))
+        {
+            actionTarget.messageID = 352;
+            actionTarget.reaction = REACTION_HIT;
+            actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
+        }
+
+        actionTarget.param = battleutils::TakePhysicalDamage(PChar, PTarget, totalDamage, false, slot, realHits, nullptr, true, true);
+
+        // lower damage based on shadows taken
+        if (shadowsTaken)
+            actionTarget.param = actionTarget.param * (1 - ((float)shadowsTaken / realHits));
+
+        // absorb message
+        if (actionTarget.param < 0)
+        {
+            actionTarget.param = -(actionTarget.param);
+            actionTarget.messageID = 382;
+        }
+
+        //add additional effects
+        //this should go AFTER damage taken
+        //or else sleep effect won't work
+        //battleutils::HandleRangedAdditionalEffect(PChar,PTarget,&Action);
+        //TODO: move all hard coded additional effect ammo to scripts
+        //#TODO: fix call
+        if ((PAmmo != nullptr && PAmmo->getModifier(MOD_ADDITIONAL_EFFECT) > 0) || (PItem != nullptr && PItem->getModifier(MOD_ADDITIONAL_EFFECT) > 0)) {}
+        //luautils::OnAdditionalEffect(PChar, PTarget, (PAmmo != nullptr ? PAmmo : PItem), &Action, totalDamage);
+    }
+    else if (shadowsTaken > 0)
+    {
+        // shadows took damage
+        actionTarget.messageID = 0;
+        actionTarget.reaction = REACTION_EVADE;
+        PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget, PTarget, 0, shadowsTaken, MSGBASIC_SHADOW_ABSORB));
+
+        battleutils::ClaimMob(PTarget, PChar);
+    }
+
+    if (actionTarget.speceffect == SPECEFFECT_HIT && actionTarget.param > 0)
+        actionTarget.speceffect = SPECEFFECT_RECOIL;
+
+    // TODO: что это ? ....
+    // если не ошибаюсь, то TREASURE_HUNTER работает лишь при последнем ударе
+
+    CMobEntity* Monster = (CMobEntity*)PTarget;
+
+    if (Monster->m_HiPCLvl < PChar->GetMLevel())
+    {
+        Monster->m_HiPCLvl = PChar->GetMLevel();
+    }
+
+    // remove barrage effect if present
+    if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE, 0)) {
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BARRAGE, 0);
+    }
+    else if (isSange)
+    {
+        uint16 power = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_SANGE)->GetPower();
+
+        // remove shadows
+        while (realHits-- && dsprand::GetRandomNumber(100) <= power && battleutils::IsAbsorbByShadow(PChar));
+
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SANGE);
+    }
+
+    // only remove detectables
+    PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+
+    // Try to double shot
+    //#TODO: figure out the packet structure of double/triple shot
+    //if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_SHOT, 0) && !PChar->secondDoubleShotTaken &&	!isBarrage && !isSange)
+    //{
+    //    uint16 doubleShotChance = PChar->getMod(MOD_DOUBLE_SHOT_RATE);
+    //    if (dsprand::GetRandomNumber(100) < doubleShotChance)
+    //    {
+    //        PChar->secondDoubleShotTaken = true;
+    //        m_ActionType = ACTION_RANGED_FINISH;
+    //        PChar->m_rangedDelay = 0;
+    //        return;
+    //    }
+    //}
+    static_cast<CPlayerController*>(Controller.get())->setNextRangedTime(server_clock::now() + 1s + std::chrono::milliseconds(PChar->GetAmmoDelay()));
 }
 
 bool CAIChar::IsMobOwner(CBattleEntity* PBattleTarget)
@@ -1230,5 +1486,32 @@ void CAIChar::OnRaise()
         PChar->setMijinGakure(false);
 
         PChar->m_hasRaise = 0;
+    }
+}
+void CAIChar::TrackArrowUsageForScavenge(CItemWeapon* PAmmo)
+{
+    // Check if local has been set yet
+    if (PEntity->GetLocalVar("ArrowsUsed") == 0)
+    {
+        // Local not set yet so set
+        PEntity->SetLocalVar("ArrowsUsed", PAmmo->getID() * 10000 + 1);
+    }
+    else
+    {
+        // Local exists now check if arrow used is same as last time
+        if ((floor(PEntity->GetLocalVar("ArrowsUsed") / 10000)) == PAmmo->getID())
+        {
+            // Same arrow used as last time now check that arrows used do not go above 1980
+            if (!floor(PEntity->GetLocalVar("ArrowsUsed") % 10000) >= 1980)
+            {
+                // Safe to increment arrows used
+                PEntity->SetLocalVar("ArrowsUsed", PEntity->GetLocalVar("ArrowsUsed") + 1);
+            }
+        }
+        else
+        {
+            // Different arrow is being used so remake local
+            PEntity->SetLocalVar("ArrowsUsed", PAmmo->getID() * 10000 + 1);
+        }
     }
 }

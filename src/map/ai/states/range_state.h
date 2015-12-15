@@ -33,6 +33,7 @@ public:
     CRangeState(CCharEntity* PEntity, uint16 targid);
 
     void SpendCost();
+    bool IsRapidShot() { return m_rapidShot; }
 protected:
     virtual bool CanChangeState() override;
     virtual bool Update(time_point tick) override;

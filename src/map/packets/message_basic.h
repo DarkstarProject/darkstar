@@ -145,6 +145,7 @@ class CMessageBasicPacket : public CBasicPacket
 public:
 
 	CMessageBasicPacket(CBaseEntity* PSender, CBaseEntity* PTarget, int32 param, int32 value, uint16 messageID);
+    uint16 getMessageID();
 };
 
 #endif
