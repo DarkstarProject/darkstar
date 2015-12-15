@@ -1899,8 +1899,6 @@ namespace battleutils
             {
                 switch (PAttacker->m_Weapons[slot]->getDmgType())
                 {
-                    case DAMAGE_CROSSBOW:
-                    case DAMAGE_GUN:
                     case DAMAGE_PIERCING: damage = (damage * (PDefender->getMod(MOD_PIERCERES))) / 1000; break;
                     case DAMAGE_SLASHING: damage = (damage * (PDefender->getMod(MOD_SLASHRES))) / 1000; break;
                     case DAMAGE_IMPACT:	  damage = (damage * (PDefender->getMod(MOD_IMPACTRES))) / 1000; break;
