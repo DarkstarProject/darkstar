@@ -21,7 +21,11 @@ end;
 
 function onZoneIn(player,prevZone)
 cs = -1;
-
+	if (prevZone == 95 or prevZone == 97 or prevZone == 98) then
+		GetMobByID(17166720):setHP(0);
+		GetMobByID(17174888):setHP(0);
+		GetMobByID(17178901):setHP(0);
+	end
 return cs;
 end;
 
