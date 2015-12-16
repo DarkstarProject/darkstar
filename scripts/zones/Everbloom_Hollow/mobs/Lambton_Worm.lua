@@ -18,4 +18,5 @@ end;
 
 function onMobDeath(mob, killer)
 	killer:addTitle(LAMBTON_WORM_DESEGMENTER);
+	killer:addItem(4181);
 end;
