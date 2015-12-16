@@ -48,7 +48,7 @@ end
 
 function onMobDeath(mob, killer)
 	killer:addTitle(SANDWORM_WRANGLER);
-	mob:setRespawnTime(math.random(64,128));
+	mob:setRespawnTime(math.random(75600,86400));
 
 end;
 -----------------------------------
