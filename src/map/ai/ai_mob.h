@@ -31,6 +31,7 @@ class CAIMob : public CAIBattle
 public:
     CAIMob(CBattleEntity*, std::unique_ptr<CPathFind>&&, std::unique_ptr<CController>&&);
 
+    virtual void HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) override {}
     virtual void Internal_Disengage() override;
     virtual void Die() override;
 
@@ -46,7 +47,6 @@ public:
 
 protected:
     void DropItems();
-    virtual void HandleErrorMessage(CStateInitException&) override {}
 
 private:
     bool m_AutoAttackEnabled{ true };

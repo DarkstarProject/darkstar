@@ -32,6 +32,7 @@ This file is part of DarkStar-server source code.
 #include "helpers/action_queue.h"
 #include "helpers/pathfind.h"
 #include "helpers/event_handler.h"
+#include "../packets/message_basic.h"
 
 class CBaseEntity;
 class CState;
@@ -47,6 +48,7 @@ public:
     CAIBase(const CAIBase&) = delete;
     CAIBase& operator=(const CAIBase&) = delete;
 
+    virtual void HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) = 0;
     virtual void Reset();
     void Tick(time_point _tick);
     CState* GetCurrentState();
@@ -88,7 +90,6 @@ protected:
     //entity who holds this AI
     CBaseEntity* PEntity;
 
-    virtual void HandleErrorMessage(CStateInitException&) = 0;
     template<typename T, typename... Args>
     bool ChangeState(Args&&... args)
     {
@@ -101,7 +102,7 @@ protected:
             }
             catch (CStateInitException& e)
             {
-                HandleErrorMessage(e);
+                HandleErrorMessage(e.packet);
             }
         }
         return false;
@@ -115,7 +116,7 @@ protected:
         }
         catch (CStateInitException& e)
         {
-            HandleErrorMessage(e);
+            HandleErrorMessage(e.packet);
         }
     }
 

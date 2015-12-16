@@ -64,6 +64,7 @@ public:
     /* State finish functions */
     /* Auto attack */
     virtual bool OnAttack(CAttackState&, action_t&);
+    virtual bool OnAttackError(CAttackState&) { return false; }
     /* Returns whether to call Attack or not (which includes error messages) */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg);
     virtual CBattleEntity* IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg);

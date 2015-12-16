@@ -35,6 +35,7 @@ class CAIChar : public CAIBattle
 public:
     CAIChar(CCharEntity*);
 
+    virtual void HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) override;
     void Ability(uint16 targid, uint16 abilityid);
     void RangedAttack(uint16 targid);
 
@@ -47,6 +48,7 @@ public:
     /* State callbacks */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
     virtual bool OnAttack(CAttackState&, action_t&) override;
+    virtual bool OnAttackError(CAttackState&) override;
     virtual CBattleEntity* IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
     virtual void OnChangeTarget(CBattleEntity* PNewTarget) override;
     virtual void OnDisengage() override;
@@ -60,8 +62,8 @@ public:
 
 protected:
     bool IsMobOwner(CBattleEntity* PTarget);
-    virtual void HandleErrorMessage(CStateInitException&) override;
     void TrackArrowUsageForScavenge(CItemWeapon* PAmmo);
+
 
     time_point m_errMsgTime;
 };

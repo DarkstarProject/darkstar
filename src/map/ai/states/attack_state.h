@@ -40,11 +40,12 @@ public:
 
 protected:
     virtual void UpdateTarget(uint16 = 0) override;
-    virtual bool CanAttack(CBattleEntity* PTarget);
+    bool CanAttack(CBattleEntity* PTarget);
 
+    bool AttackReady();
 private:
     CBattleEntity* const m_PEntity;
-    duration m_attackTime;
+    duration m_attackTime {2s};
 };
 
 #endif

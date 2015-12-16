@@ -162,15 +162,6 @@ bool CAIChar::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPac
 bool CAIChar::OnAttack(CAttackState& state, action_t& action)
 {
     auto PChar = static_cast<CCharEntity*>(PEntity);
-    if (GetCurrentState()->HasErrorMsg())
-    {
-        if (m_errMsgTime + std::chrono::milliseconds(PChar->GetWeaponDelay(false)) < getTick())
-        {
-            m_errMsgTime = getTick();
-            PChar->pushPacket(GetCurrentState()->GetErrorMsg());
-        }
-        return false;
-    }
     static_cast<CPlayerController*>(Controller.get())->setLastAttackTime(server_clock::now());
     auto ret = CAIBattle::OnAttack(state, action);
 
@@ -246,8 +237,7 @@ void CAIChar::OnCastInterrupted(CMagicState& state, action_t& action, MSGBASIC_I
 {
     CAIBattle::OnCastInterrupted(state, action, msg);
 
-    auto container = static_cast<CMagicState*>(GetCurrentState());
-    auto message = container->GetErrorMsg();
+    auto message = state.GetErrorMsg();
 
     if (message)
     {
@@ -1349,9 +1339,9 @@ bool CAIChar::IsMobOwner(CBattleEntity* PBattleTarget)
     return found;
 }
 
-void CAIChar::HandleErrorMessage(CStateInitException& e)
+void CAIChar::HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>& msg)
 {
-    static_cast<CCharEntity*>(PEntity)->pushPacket(e.packet.release());
+    static_cast<CCharEntity*>(PEntity)->pushPacket(msg.release());
 }
 
 void CAIChar::OnDeathTimer()
@@ -1502,7 +1492,7 @@ void CAIChar::TrackArrowUsageForScavenge(CItemWeapon* PAmmo)
         if ((floor(PEntity->GetLocalVar("ArrowsUsed") / 10000)) == PAmmo->getID())
         {
             // Same arrow used as last time now check that arrows used do not go above 1980
-            if (!floor(PEntity->GetLocalVar("ArrowsUsed") % 10000) >= 1980)
+            if (!(floor(PEntity->GetLocalVar("ArrowsUsed") % 10000) >= 1980))
             {
                 // Safe to increment arrows used
                 PEntity->SetLocalVar("ArrowsUsed", PEntity->GetLocalVar("ArrowsUsed") + 1);
@@ -1514,4 +1504,16 @@ void CAIChar::TrackArrowUsageForScavenge(CItemWeapon* PAmmo)
             PEntity->SetLocalVar("ArrowsUsed", PAmmo->getID() * 10000 + 1);
         }
     }
+}
+
+bool CAIChar::OnAttackError(CAttackState& state)
+{
+    auto PChar = static_cast<CCharEntity*>(PEntity);
+    if (m_errMsgTime + std::chrono::milliseconds(PChar->GetWeaponDelay(false)) < getTick())
+    {
+        m_errMsgTime = getTick();
+        PChar->pushPacket(state.GetErrorMsg());
+        return true;
+    }
+    return false;
 }

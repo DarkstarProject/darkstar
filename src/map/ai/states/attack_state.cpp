@@ -31,8 +31,7 @@ This file is part of DarkStar-server source code.
 
 CAttackState::CAttackState(CBattleEntity* PEntity, uint16 targid) :
     CState(PEntity, targid),
-    m_PEntity(PEntity),
-    m_attackTime(1s)
+    m_PEntity(PEntity)
 {
     PEntity->animation = ANIMATION_ATTACK;
     PEntity->updatemask |= UPDATE_HP;
@@ -46,17 +45,24 @@ bool CAttackState::Update(time_point tick)
     {
         return true;
     }
-    if (CanAttack(PTarget))
+    if (AttackReady())
     {
         //CanAttack may have set target id to 0 (disengage from out of range)
         if (m_PEntity->PAIBattle()->GetBattleTargetID() == 0)
         {
             return true;
         }
-        action_t action;
-        if (m_PEntity->PAIBattle()->OnAttack(*this, action))
+        if (CanAttack(PTarget))
         {
-            m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+            action_t action;
+            if (m_PEntity->PAIBattle()->OnAttack(*this, action))
+            {
+                m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+            }
+        }
+        else if (m_PEntity->PAIBattle()->OnAttackError(*this))
+        {
+            m_PEntity->PAI->HandleErrorMessage(m_errorMsg);
         }
         if (m_PEntity->PAIBattle()->GetBattleTargetID() == 0)
         {
@@ -99,17 +105,17 @@ void CAttackState::UpdateTarget(uint16 targid)
 
 bool CAttackState::CanAttack(CBattleEntity* PTarget)
 {
-    m_attackTime -= (m_PEntity->PAI->getTick() - m_PEntity->PAI->getPrevTick());
+    auto ret = m_PEntity->PAIBattle()->CanAttack(PTarget, m_errorMsg);
 
-    if (m_attackTime < 0ms)
+    if (ret && !m_errorMsg)
     {
-        auto ret = m_PEntity->PAIBattle()->CanAttack(PTarget, m_errorMsg);
-
-        if (ret && !m_errorMsg)
-        {
-            m_attackTime += std::chrono::milliseconds(m_PEntity->GetWeaponDelay(false));
-        }
-        return true;
+        m_attackTime += std::chrono::milliseconds(m_PEntity->GetWeaponDelay(false));
     }
-    return false;
+    return ret;
+}
+
+bool CAttackState::AttackReady()
+{
+    m_attackTime -= (m_PEntity->PAI->getTick() - m_PEntity->PAI->getPrevTick());
+    return m_attackTime < 0ms;
 }

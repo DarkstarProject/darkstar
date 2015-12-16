@@ -34,7 +34,7 @@ public:
     void InitPathfinding();
     void Trigger(uint16 targID);
 protected:
-    virtual void HandleErrorMessage(CStateInitException&) override {}
+    virtual void HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) override {}
 };
 
 #endif
