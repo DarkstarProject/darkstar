@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Bubble Shower
--- Deals Water damage in an area of effect. Additional effect: STR Down
+-- Deals Water damage in an area of effect. Additional effect: Spawns Adds on King Arthro Fight
 ---------------------------------------------------
 
 require("scripts/globals/settings");
@@ -9,7 +9,25 @@ require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function onMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill,zone)
+	mob = mob:getID();
+	if (mob == 17129519) then
+	local mobids = {17129520,   -- King Arthro's Knights
+		17129521,
+		17129522,
+		17129523,
+		17129524,
+		17129525,
+		17129526,
+		17129527,
+		17129528,
+		17129529,
+		17129530,
+		17129531}
+	local mob = mobids[math.random(1, #mobids)];
+	SpawnMob(mob);
+	end;
+	
 	return 0;
 end;
 
