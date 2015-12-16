@@ -72,4 +72,4 @@ function onEventFinish(player,csid,option)
         player:completeMission(WOTG, WHILE_THE_CAT_IS_AWAY);
         player:addMission(WOTG, A_TIMESWEPT_BUTTERFLY);
     end
-end;    
+end;
