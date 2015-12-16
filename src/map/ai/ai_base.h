@@ -32,11 +32,11 @@ This file is part of DarkStar-server source code.
 #include "helpers/action_queue.h"
 #include "helpers/pathfind.h"
 #include "helpers/event_handler.h"
+#include "states/state.h"
 #include "../packets/message_basic.h"
 
 class CBaseEntity;
 class CState;
-class CStateInitException;
 
 class CAIBase
 {
