@@ -5,18 +5,68 @@
 -----------------------------------
 
 require("scripts/globals/titles");
+-----------------------------------
+-- onMobInitialize
+-----------------------------------
 
+function onMobInitialize(mob)	
+	
+	
+end;
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
 
-function onMobSpawn(mob)
+function onMobSpawn(mob,player)
+		
+	DespawnMob(17138041); 
+	DespawnMob(17166720);
+	DespawnMob(17178901);
+	DespawnMob(17121693);
+	DespawnMob(17150317);
+	DespawnMob(17174888);		
+		
+		local random = 0;
+		random = math.random(10);
+		
+		if (random <=7) then
+		mob:setLocalVar("KingArthroFight",1);
+		end
+		if (random >=8) then
+		mob:setLocalVar("LambtonWormFight",1);
+		end
+	
 end;
+-----------------------------------
+-- onMobFight Action
+-----------------------------------
+
+function onMobFight(mob, target)
+	
+
+end;
+-----------------------------------
+-- onMobWeaponSkill
+-----------------------------------
+function onMobWeaponSkill(target, mob, skill)
+     if (mob:getHP() < ((mob:getMaxHP() / 10) * 2.5)) then
+	mob:useMobAbility(1936);
+	end
+end
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob,killer)
 	killer:addTitle(SANDWORM_WRANGLER);
+	mob:setRespawnTime(math.random(75600,86400));
+	
+end;
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+		
 end;
