@@ -220,7 +220,6 @@
     <ClInclude Include="..\..\src\map\ai\ai_char_gm.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_normal.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_prisoner.h" />
-    <ClInclude Include="..\..\src\map\ai\ai_common.h" />
     <ClInclude Include="..\..\src\map\ai\ai_general.h" />
     <ClInclude Include="..\..\src\map\ai\ai_mob.h" />
     <ClInclude Include="..\..\src\map\ai\ai_mob_dummy.h" />

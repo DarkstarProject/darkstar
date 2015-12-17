@@ -857,9 +857,6 @@
     <ClInclude Include="..\..\src\map\ai\helpers\action_queue.h">
       <Filter>Header Files\ai\helpers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\ai\ai_common.h">
-      <Filter>Header Files\ai</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\ai\ai_battle.h">
       <Filter>Header Files\ai</Filter>
     </ClInclude>
