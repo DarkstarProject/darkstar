@@ -26,7 +26,7 @@ This file is part of DarkStar-server source code.
 #include "../../entities/battleentity.h"
 #include "../../entities/charentity.h"
 #include "../../packets/menu_raisetractor.h"
-#include "../ai_battle.h"
+#include "../ai_base.h"
 
 CDeathState::CDeathState(CBattleEntity* PEntity, duration death_time) :
     CState(PEntity, PEntity->targid),
@@ -47,7 +47,7 @@ bool CDeathState::Update(time_point tick)
     if (tick > GetEntryTime() + m_deathTime && !IsCompleted())
     {
         Complete();
-        m_PEntity->PAIBattle()->OnDeathTimer();
+        m_PEntity->OnDeathTimer();
     }
     else if (m_PEntity->objtype == TYPE_PC && tick > GetEntryTime() + 8s && !IsCompleted() && 
         !m_raiseSent && m_PEntity->isDead())

@@ -166,6 +166,8 @@ class CItemContainer;
 class CUContainer;
 class CItemArmor;
 class CAutomatonEntity;
+class CAbilityState;
+class CRangeState;
 
 typedef std::deque<CBasicPacket*> PacketList_t;
 typedef std::map<uint32, CBaseEntity*> SpawnIDList_t;
@@ -235,6 +237,7 @@ public:
     PacketList_t      getPacketList();              // returns a COPY of packet list
     size_t            getPacketCount();
     void              erasePackets(uint8 num);      // erase num elements from front of packet list
+    virtual void      HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) override;
 
     CLinkshell*       PLinkshell1;                  // linkshell, в которой общается персонаж
     CLinkshell*       PLinkshell2;                  // linkshell 2
@@ -325,12 +328,34 @@ public:
     virtual void addTrait(CTrait*) override;
     virtual void delTrait(CTrait*) override;
 
-    bool IsMobOwner(CBattleEntity*);
     virtual bool ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags) override;
     virtual bool CanUseSpell(CSpell*) override;
 
+    virtual void Die() override;
+    void Die(duration);
+    void Raise();
+
+    /* State callbacks */
+    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
+    virtual bool OnAttack(CAttackState&, action_t&) override;
+    virtual bool OnAttackError(CAttackState&) override;
+    virtual CBattleEntity* IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
+    virtual void OnChangeTarget(CBattleEntity* PNewTarget) override;
+    virtual void OnDisengage(CAttackState&) override;
+    virtual void OnCastFinished(CMagicState&, action_t&) override;
+    virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg) override;
+    virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
+    virtual void OnAbility(CAbilityState&, action_t&);
+    virtual void OnRangedAttack(CRangeState&, action_t&);
+    virtual void OnDeathTimer() override;
+    virtual void OnRaise() override;
+
     CCharEntity();									// конструктор
     ~CCharEntity();									// деструктор
+
+protected:
+    bool IsMobOwner(CBattleEntity* PTarget);
+    void TrackArrowUsageForScavenge(CItemWeapon* PAmmo);
 
 private:
 

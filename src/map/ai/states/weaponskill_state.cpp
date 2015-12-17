@@ -22,7 +22,7 @@ This file is part of DarkStar-server source code.
 */
 
 #include "weaponskill_state.h"
-#include "../ai_battle.h"
+#include "../ai_base.h"
 #include "../../entities/charentity.h"
 #include "../../packets/action.h"
 #include "../../utils/battleutils.h"
@@ -68,7 +68,7 @@ bool CWeaponSkillState::Update(time_point tick)
     if (tick > m_finishTime && !IsCompleted())
     {
         action_t action;
-        m_PEntity->PAIBattle()->OnWeaponSkillFinished(*this, action);
+        m_PEntity->OnWeaponSkillFinished(*this, action);
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
         Complete();
     }

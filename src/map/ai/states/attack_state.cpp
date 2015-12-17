@@ -27,7 +27,7 @@ This file is part of DarkStar-server source code.
 
 #include "../../utils/battleutils.h"
 #include "../../packets/action.h"
-#include "../ai_battle.h"
+#include "../ai_base.h"
 
 CAttackState::CAttackState(CBattleEntity* PEntity, uint16 targid) :
     CState(PEntity, targid),
@@ -48,23 +48,23 @@ bool CAttackState::Update(time_point tick)
     if (AttackReady())
     {
         //CanAttack may have set target id to 0 (disengage from out of range)
-        if (m_PEntity->PAIBattle()->GetBattleTargetID() == 0)
+        if (m_PEntity->GetBattleTargetID() == 0)
         {
             return true;
         }
         if (CanAttack(PTarget))
         {
             action_t action;
-            if (m_PEntity->PAIBattle()->OnAttack(*this, action))
+            if (m_PEntity->OnAttack(*this, action))
             {
                 m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
             }
         }
-        else if (m_PEntity->PAIBattle()->OnAttackError(*this))
+        else if (m_PEntity->OnAttackError(*this))
         {
-            m_PEntity->PAI->HandleErrorMessage(m_errorMsg);
+            m_PEntity->HandleErrorMessage(m_errorMsg);
         }
-        if (m_PEntity->PAIBattle()->GetBattleTargetID() == 0)
+        if (m_PEntity->GetBattleTargetID() == 0)
         {
             return true;
         }
@@ -74,24 +74,24 @@ bool CAttackState::Update(time_point tick)
 
 void CAttackState::Cleanup(time_point tick)
 {
-    m_PEntity->PAIBattle()->OnDisengage();
+    m_PEntity->OnDisengage(*this);
 }
 
 void CAttackState::UpdateTarget(uint16 targid)
 {
     m_errorMsg.reset();
-    auto newTargid = m_PEntity->PAIBattle()->GetBattleTargetID();
-    auto PNewTarget = m_PEntity->PAIBattle()->IsValidTarget(newTargid, TARGET_ENEMY, m_errorMsg);
+    auto newTargid = m_PEntity->GetBattleTargetID();
+    auto PNewTarget = m_PEntity->IsValidTarget(newTargid, TARGET_ENEMY, m_errorMsg);
     if (!PNewTarget)
     {
-        m_PEntity->PAIBattle()->ChangeTarget(0);
+        m_PEntity->PAI->ChangeTarget(0);
         newTargid = 0;
     }
     if (targid != newTargid)
     {
         if (targid != 0)
         {
-            m_PEntity->PAIBattle()->OnChangeTarget(PNewTarget);
+            m_PEntity->OnChangeTarget(PNewTarget);
             SetTarget(newTargid);
             if (!PNewTarget)
             {
@@ -100,12 +100,12 @@ void CAttackState::UpdateTarget(uint16 targid)
             }
         }
     }
-    CState::UpdateTarget(m_PEntity->PAIBattle()->GetBattleTargetID());
+    CState::UpdateTarget(m_PEntity->GetBattleTargetID());
 }
 
 bool CAttackState::CanAttack(CBattleEntity* PTarget)
 {
-    auto ret = m_PEntity->PAIBattle()->CanAttack(PTarget, m_errorMsg);
+    auto ret = m_PEntity->CanAttack(PTarget, m_errorMsg);
 
     if (ret && !m_errorMsg)
     {

@@ -29,25 +29,48 @@ This file is part of DarkStar-server source code.
 
 #include "controllers/controller.h"
 #include "helpers/action_queue.h"
-#include "helpers/pathfind.h"
 #include "helpers/event_handler.h"
+#include "helpers/pathfind.h"
+#include "helpers/targetfind.h"
 #include "states/state.h"
 #include "../packets/message_basic.h"
 
 class CBaseEntity;
 class CState;
+class CPathFind;
+class CTargetFind;
 
 class CAIBase
 {
 public:
     CAIBase(CBaseEntity*);
-    CAIBase(CBaseEntity*, std::unique_ptr<CPathFind>&&, std::unique_ptr<CController>&&);
+    CAIBase(CBaseEntity*, std::unique_ptr<CPathFind>&&, std::unique_ptr<CController>&&,
+        std::unique_ptr<CTargetFind>&&);
 
     //no copy construct/assign (only move)
     CAIBase(const CAIBase&) = delete;
     CAIBase& operator=(const CAIBase&) = delete;
 
-    virtual void HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) = 0;
+    void Cast(uint16 targid, uint16 spellid);
+    void Engage(uint16 targid);
+    void ChangeTarget(uint16 targid);
+    void Disengage();
+    void WeaponSkill(uint16 targid, uint16 wsid);
+    void Ability(uint16 targid, uint16 abilityid);
+    void RangedAttack(uint16 targid);
+    void Trigger(uint16 targid);
+
+    /* Internal Controller functions */
+    bool Internal_Engage(uint16 targetid);
+    bool Internal_Cast(uint16 targetid, uint16 spellid);
+    void Internal_ChangeTarget(uint16 targetid);
+    void Internal_Disengage();
+    bool Internal_WeaponSkill(uint16 targid, uint16 wsid);
+    bool Internal_Ability(uint16 targetid, uint16 abilityid);
+    bool Internal_RangedAttack(uint16 targetid);
+    void Internal_Die(duration);
+    void Internal_Raise();
+
     virtual void Reset();
     void Tick(time_point _tick);
     CState* GetCurrentState();
@@ -65,6 +88,8 @@ public:
     //whether AI is currently able to change state from external means
     virtual bool CanChangeState();
 
+    CController* GetController();
+
     time_point getTick();
     time_point getPrevTick();
 
@@ -76,6 +101,7 @@ public:
 
     // stores all events and their associated lua callbacks
     CAIEventHandler EventHandler;
+    std::unique_ptr<CTargetFind> TargetFind;
 
     // pathfinder, not guaranteed to be implemented
     std::unique_ptr<CPathFind> PathFind;
@@ -101,7 +127,7 @@ protected:
             }
             catch (CStateInitException& e)
             {
-                HandleErrorMessage(e.packet);
+                PEntity->HandleErrorMessage(e.packet);
             }
         }
         return false;
@@ -115,7 +141,7 @@ protected:
         }
         catch (CStateInitException& e)
         {
-            HandleErrorMessage(e.packet);
+            PEntity->HandleErrorMessage(e.packet);
         }
     }
 

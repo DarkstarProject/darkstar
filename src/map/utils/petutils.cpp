@@ -46,7 +46,7 @@ This file is part of DarkStar-server source code.
 #include "../ai/ai_pet_dummy.h"
 #include "../ai/ai_mob_dummy.h"
 #include "../ai/ai_ultimate_summon.h"
-#include "../ai/ai_battle.h"
+#include "../ai/ai_base.h"
 
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
@@ -854,7 +854,7 @@ namespace petutils
         CBattleEntity* PPet = PMaster->PPet;
         CCharEntity* PChar = (CCharEntity*)PMaster;
 
-        PPet->PAIBattle()->Die();
+        PPet->Die();
 
         if (PPet->objtype == TYPE_MOB){
             CMobEntity* PMob = (CMobEntity*)PPet;
@@ -907,9 +907,9 @@ namespace petutils
             PMob->PBattleAI->SetLastActionTime(gettick());
 
             if (PMob->isDead())
-                PMob->PAIBattle()->Die();
+                PMob->Die();
             else
-                PMob->PAIBattle()->Disengage();
+                PMob->PAI->Disengage();
 
         }
         else if (PPet->objtype == TYPE_PET){
@@ -957,7 +957,7 @@ namespace petutils
             delete PPet->PBattleAI;
             PPet->PBattleAI = new CAIMobDummy((CMobEntity*)PMaster);
             PPet->PBattleAI->SetLastActionTime(gettick());
-            PPet->PAIBattle()->Die();
+            PPet->Die();
 
             ShowDebug("An ex charmed mob was not reset properly, Manually resetting it.\n");
             return;

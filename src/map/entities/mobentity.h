@@ -171,6 +171,14 @@ public:
     float     GetRoamRate();
     virtual bool ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags) override;
 
+    virtual void HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) override {}
+    virtual void Die() override;
+
+    virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
+    //virtual void OnMobSkillFinished(CMobSkillState&, action_t&) override;
+    virtual void OnDisengage(CAttackState&) override;
+    virtual void OnDeathTimer() override;
+
     virtual void Spawn() override;
 
     bool      m_AllowRespawn;             // if true, allow respawn
@@ -241,6 +249,10 @@ public:
 
     CMobSpellContainer* SpellContainer;                // retrieves spells for the mob
     uint8     m_HasSpellScript;                        // 1 if they have a spell script to use for working out what to cast.
+
+protected:
+
+    void DropItems();
 
 private:
 

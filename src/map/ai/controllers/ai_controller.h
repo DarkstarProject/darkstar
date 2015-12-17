@@ -42,6 +42,11 @@ public:
     virtual void Disengage() override;
     virtual void Despawn() override;
 
+    bool IsAutoAttackEnabled();
+    void SetAutoAttackEnabled(bool);
+    bool IsWeaponSkillEnabled();
+    void SetWeaponSkillEnabled(bool);
+
 protected:
     bool TryDeaggro();
     void TryLink();
@@ -71,6 +76,8 @@ private:
     time_point m_WaitTime;
 
     bool m_firstSpell{ true };
+    bool m_AutoAttackEnabled{ true };
+    bool m_WeaponSkillEnabled{ true };
 };
 
 #endif // _AI_CONTROLLER_H

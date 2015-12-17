@@ -64,7 +64,7 @@
 #include "../packets/char_sync.h"
 #include "../packets/position.h"
 #include "../packets/lock_on.h"
-#include "../ai/ai_battle.h"
+#include "../ai/ai_base.h"
 #include "../ai/ai_pet_dummy.h"
 #include "../ai/ai_char_charm.h"
 #include "../utils/petutils.h"
@@ -2021,7 +2021,7 @@ namespace battleutils
             if ((!isRanged)
                 && !((isBlocked) && (PDefender->objtype == TYPE_PC) && (charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY))))
             {
-                PDefender->PAIBattle()->TryHitInterrupt(PAttacker);
+                PDefender->TryHitInterrupt(PAttacker);
             }
 
             int16 baseTp = 0;
@@ -2145,7 +2145,7 @@ namespace battleutils
             }
 
             // try to interrupt spell
-            PDefender->PAIBattle()->TryHitInterrupt(PChar);
+            PDefender->TryHitInterrupt(PChar);
 
             int16 baseTp = 0;
 
@@ -4196,7 +4196,7 @@ namespace battleutils
 
             if (PEntity->isDead())
             {
-                PEntity->PAIBattle()->Die();
+                PEntity->Die();
             }
         }
         PEntity->updatemask |= UPDATE_HP;

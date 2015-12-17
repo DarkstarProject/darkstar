@@ -28,6 +28,7 @@
 #include <map>
 #include "../../common/cbasetypes.h"
 #include "../../common/mmo.h"
+#include "../packets/message_basic.h"
 
 enum ENTITYTYPE
 {
@@ -162,6 +163,8 @@ public:
 
     void            SetModelId(uint16 modelId);     // Set new modelid
     uint16          GetModelId();                   // Get the modelid
+
+    virtual void    HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) {};
 
     uint32			id;					// глобальный идентификатор, уникальный на сервере
     uint16			targid;				// локалный идентификатор, уникальный в зоне

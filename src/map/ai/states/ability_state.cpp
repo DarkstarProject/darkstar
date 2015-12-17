@@ -22,7 +22,7 @@ This file is part of DarkStar-server source code.
 */
 
 #include "ability_state.h"
-#include "../ai_char.h"
+#include "../ai_base.h"
 #include "../../ability.h"
 #include "../../recast_container.h"
 #include "../../status_effect_container.h"
@@ -83,7 +83,7 @@ bool CAbilityState::Update(time_point tick)
     if (CanUseAbility())
     {
         action_t action;
-        static_cast<CAIChar*>(m_PEntity->PAI.get())->OnAbility(*this, action);
+        m_PEntity->OnAbility(*this, action);
         m_PEntity->PAI->EventHandler.triggerListener("ABILITY_USE", m_PEntity, m_PAbility.get(), &action);
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
         Complete();
@@ -112,7 +112,7 @@ bool CAbilityState::CanUseAbility()
     }
     std::unique_ptr<CMessageBasicPacket> errMsg;
     auto PTarget = GetTarget();
-    if (m_PEntity->PAIBattle()->IsValidTarget(PTarget->targid, PAbility->getValidTarget(), errMsg))
+    if (m_PEntity->IsValidTarget(PTarget->targid, PAbility->getValidTarget(), errMsg))
     {
         if (m_PEntity != PTarget && distance(m_PEntity->loc.p, PTarget->loc.p) > PAbility->getRange())
         {

@@ -63,8 +63,8 @@ This file is part of DarkStar-server source code.
 #include "universal_container.h"
 #include "recast_container.h"
 
-#include "ai/ai_npc.h"
-#include "ai/ai_char.h"
+#include "ai/ai_base.h"
+#include "ai/ai_general.h"
 #include "ai/states/death_state.h"
 
 #include "items/item_shop.h"
@@ -285,7 +285,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->m_DeathCounter = (uint32)Sql_GetUIntData(SqlHandle, 0);
             PChar->m_DeathTimestamp = (uint32)time(nullptr);
             if (PChar->health.hp == 0)
-                static_cast<CAIChar*>(PChar->PAI.get())->Die(std::chrono::seconds(PChar->m_DeathCounter));
+                PChar->Die(std::chrono::seconds(PChar->m_DeathCounter));
         }
 
         fmtQuery = "SELECT pos_prevzone FROM chars WHERE charid = %u";
@@ -442,7 +442,6 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     charutils::SaveCharPoints(PChar);
 
     PChar->status = STATUS_DISAPPEAR;
-    PChar->PBattleAI->Reset();
     return;
 }
 
@@ -633,7 +632,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 10)
         {
-            static_cast<CAINpc*>(PNpc->PAI.get())->Trigger(TargID);
+            PNpc->PAI->Trigger(TargID);
         }
         if (PChar->m_event.EventID == -1)
         {
@@ -644,18 +643,18 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x02: // attack
     {
-        PChar->PAIBattle()->Engage(TargID);
+        PChar->PAI->Engage(TargID);
     }
     break;
     case 0x03: // spellcast
     {
         uint16 SpellID = RBUFW(data, (0x0C));
-        PChar->PAIBattle()->Cast(TargID, SpellID);
+        PChar->PAI->Cast(TargID, SpellID);
     }
     break;
     case 0x04: // disengage
     {
-        PChar->PAIBattle()->Disengage();
+        PChar->PAI->Disengage();
     }
     break;
     case 0x05: // call for help
@@ -668,7 +667,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             CMobEntity* MOB = (CMobEntity*)it->second;
 
             if (MOB->animation == ANIMATION_ATTACK &&
-                MOB->PBattleAI->GetBattleTarget() == PChar)
+                MOB->GetBattleTargetID() == PChar->id)
             {
                 MOB->CallForHelp(true);
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PChar, 0, 0, 19));
@@ -682,7 +681,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     case 0x07: // weaponskill
     {
         uint16 WSkillID = RBUFW(data, (0x0C));
-        PChar->PAIBattle()->WeaponSkill(TargID, WSkillID);
+        PChar->PAI->WeaponSkill(TargID, WSkillID);
     }
     break;
     case 0x09: // jobability
@@ -690,7 +689,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         uint16 JobAbilityID = RBUFW(data, (0x0C));
         //if ((JobAbilityID < 496 && !charutils::hasAbility(PChar, JobAbilityID - 16)) || JobAbilityID >= 496 && !charutils::hasPetAbility(PChar, JobAbilityID - 512))
         //    return;
-        static_cast<CAIChar*>(PChar->PAI.get())->Ability(TargID, JobAbilityID - 16);
+        PChar->PAI->Ability(TargID, JobAbilityID - 16);
     }
     break;
     case 0x0B: // homepoint
@@ -728,7 +727,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             return;
         if (RBUFB(data, (0x0C)) == 0) //ACCEPTED RAISE
         {
-            static_cast<CAIChar*>(PChar->PAI.get())->Raise();
+            PChar->Raise();
         }
     }
     break;
@@ -742,12 +741,12 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x0F: // change target
     {
-        PChar->PAIBattle()->ChangeTarget(TargID);
+        PChar->PAI->ChangeTarget(TargID);
     }
     break;
     case 0x10: // rangedattack
     {
-        static_cast<CAIChar*>(PChar->PAI.get())->RangedAttack(TargID);
+        PChar->PAI->RangedAttack(TargID);
     }
     break;
     case 0x11: // chocobo digging

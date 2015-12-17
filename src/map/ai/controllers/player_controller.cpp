@@ -23,7 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "player_controller.h"
 
-#include "../ai_char.h"
+#include "../ai_base.h"
 #include "../../entities/charentity.h"
 #include "../../items/item_weapon.h"
 #include "../../packets/char_update.h"
@@ -58,7 +58,7 @@ bool CPlayerController::Engage(uint16 targid)
     //#TODO: pet engage/disengage
     std::unique_ptr<CMessageBasicPacket> errMsg;
     auto PChar = static_cast<CCharEntity*>(POwner);
-    auto PTarget = PChar->PAIBattle()->IsValidTarget(targid, TARGET_ENEMY, errMsg);
+    auto PTarget = PChar->IsValidTarget(targid, TARGET_ENEMY, errMsg);
 
     if (PTarget)
     {
@@ -105,7 +105,7 @@ void CPlayerController::Ability(uint16 targid, uint16 abilityid)
     auto PChar = static_cast<CCharEntity*>(POwner);
     if (PChar->PAI->CanChangeState())
     {
-        static_cast<CAIChar*>(PChar->PAI.get())->Internal_Ability(targid, abilityid);
+        PChar->PAI->Internal_Ability(targid, abilityid);
     }
     else
     {
@@ -118,7 +118,7 @@ void CPlayerController::RangedAttack(uint16 targid)
     auto PChar = static_cast<CCharEntity*>(POwner);
     if (PChar->PAI->CanChangeState() && server_clock::now() > m_NextRangedTime)
     {
-        static_cast<CAIChar*>(PChar->PAI.get())->Internal_RangedAttack(targid);
+        PChar->PAI->Internal_RangedAttack(targid);
     }
     else
     {
@@ -166,7 +166,7 @@ void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
         }
 
         std::unique_ptr<CMessageBasicPacket> errMsg;
-        auto PTarget = PChar->PAIBattle()->IsValidTarget(targid, battleutils::isValidSelfTargetWeaponskill(wsid) ? TARGET_SELF : TARGET_ENEMY, errMsg);
+        auto PTarget = PChar->IsValidTarget(targid, battleutils::isValidSelfTargetWeaponskill(wsid) ? TARGET_SELF : TARGET_ENEMY, errMsg);
 
         if (PTarget)
         {
@@ -197,4 +197,14 @@ void CPlayerController::setLastAttackTime(time_point _LastAttackTime)
 void CPlayerController::setNextRangedTime(time_point _NextRangedTime)
 {
     m_NextRangedTime = _NextRangedTime;
+}
+
+void CPlayerController::setLastErrMsgTime(time_point _LastErrMsgTime)
+{
+    m_errMsgTime = _LastErrMsgTime;
+}
+
+time_point CPlayerController::getLastErrMsgTime()
+{
+    return m_errMsgTime;
 }

@@ -23,7 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "controller.h"
 
-#include "../ai_battle.h"
+#include "../ai_base.h"
 #include "../../entities/battleentity.h"
 
 CController::CController(CBattleEntity* _POwner, bool _canUpdate) :
@@ -43,7 +43,7 @@ void CController::Cast(uint16 targid, uint16 spellid)
 {
     if (POwner)
     {
-        POwner->PAIBattle()->Internal_Cast(targid, spellid);
+        POwner->PAI->Internal_Cast(targid, spellid);
     }
 }
 
@@ -51,7 +51,7 @@ bool CController::Engage(uint16 targid)
 {
     if (POwner)
     {
-        return POwner->PAIBattle()->Internal_Engage(targid);
+        return POwner->PAI->Internal_Engage(targid);
     }
     return false;
 }
@@ -60,7 +60,7 @@ void CController::ChangeTarget(uint16 targid)
 {
     if (POwner)
     {
-        POwner->PAIBattle()->Internal_ChangeTarget(targid);
+        POwner->PAI->Internal_ChangeTarget(targid);
     }
 }
 
@@ -68,7 +68,7 @@ void CController::Disengage()
 {
     if (POwner)
     {
-        POwner->PAIBattle()->Internal_Disengage();
+        POwner->PAI->Internal_Disengage();
     }
 }
 
@@ -76,6 +76,6 @@ void CController::WeaponSkill(uint16 targid, uint16 wsid)
 {
     if (POwner)
     {
-        POwner->PAIBattle()->Internal_WeaponSkill(targid, wsid);
+        POwner->PAI->Internal_WeaponSkill(targid, wsid);
     }
 }

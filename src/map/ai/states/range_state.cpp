@@ -22,8 +22,7 @@ This file is part of DarkStar-server source code.
 */
 
 #include "range_state.h"
-#include "../ai_battle.h"
-#include "../ai_char.h"
+#include "../ai_base.h"
 #include "../../entities/charentity.h"
 #include "../../packets/action.h"
 #include "../../utils/battleutils.h"
@@ -37,7 +36,7 @@ CRangeState::CRangeState(CCharEntity* PEntity, uint16 targid) :
     CState(PEntity, targid),
     m_PEntity(PEntity)
 {
-    auto PTarget = m_PEntity->PAIBattle()->IsValidTarget(m_targid, TARGET_ENEMY, m_errorMsg);
+    auto PTarget = m_PEntity->IsValidTarget(m_targid, TARGET_ENEMY, m_errorMsg);
 
     if (!PTarget && m_errorMsg)
     {
@@ -93,7 +92,7 @@ bool CRangeState::Update(time_point tick)
 {
     if (tick > GetEntryTime() + m_aimTime && !IsCompleted())
     {
-        auto PTarget = m_PEntity->PAIBattle()->IsValidTarget(m_targid, TARGET_ENEMY, m_errorMsg);
+        auto PTarget = m_PEntity->IsValidTarget(m_targid, TARGET_ENEMY, m_errorMsg);
 
         CanUseRangedAttack(PTarget);
         if (m_startPos.x != m_PEntity->loc.p.x || m_startPos.y != m_PEntity->loc.p.y)
@@ -117,7 +116,7 @@ bool CRangeState::Update(time_point tick)
         else
         {
             m_errorMsg.reset();
-            static_cast<CAIChar*>(m_PEntity->PAI.get())->OnRangedAttack(*this, action);
+            m_PEntity->OnRangedAttack(*this, action);
             m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
         }
         Complete();

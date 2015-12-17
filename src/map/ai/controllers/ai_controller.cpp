@@ -22,7 +22,8 @@ This file is part of DarkStar-server source code.
 */
 
 #include "ai_controller.h"
-#include "../ai_mob.h"
+#include "../ai_base.h"
+#include "../helpers/targetfind.h"
 #include "../states/ability_state.h"
 #include "../states/magic_state.h"
 #include "../states/weaponskill_state.h"
@@ -42,11 +43,11 @@ void CAIController::Tick(time_point tick)
 {
     if (tick > m_WaitTime)
     {
-        if (PMob->PAIBattle()->IsEngaged())
+        if (PMob->PAI->IsEngaged())
         {
             DoCombatTick(tick);
         }
-        else if (PMob->PAIBattle()->IsSpawned())
+        else if (PMob->PAI->IsSpawned())
         {
             DoRoamTick(tick);
         }
@@ -112,11 +113,11 @@ void CAIController::TryLink()
 
     //handle pet behaviour on the targets behalf (faster than in ai_pet_dummy)
     // Avatars defend masters by attacking mobs if the avatar isn't attacking anything currently (bodyguard behaviour)
-    if (PTarget->PPet != nullptr && PTarget->PPet->PBattleAI->GetBattleTarget() == nullptr)
+    if (PTarget->PPet != nullptr && PTarget->PPet->GetBattleTargetID() == 0)
     {
         if (PTarget->PPet->objtype == TYPE_PET && ((CPetEntity*)PTarget->PPet)->getPetType() == PETTYPE_AVATAR)
         {
-            PTarget->PPet->PBattleAI->SetBattleTarget(PMob);
+            PTarget->PPet->PAI->Engage(PMob->id);
         }
     }
 
@@ -140,7 +141,8 @@ void CAIController::TryLink()
                 if (PPartyMember->m_roamFlags & ROAMFLAG_IGNORE)
                 {
                     // force into attack action
-                    PPartyMember->PBattleAI->SetCurrentAction(ACTION_ENGAGE);
+                    //#TODO
+                    PPartyMember->PAI->Engage(PTarget->id);
                 }
             }
         }
@@ -214,7 +216,8 @@ bool CAIController::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
         return CanSeePoint(PTarget->loc.p);
     }
 
-    if ((aggro & AGGRO_DETECT_MAGIC) && PTarget->PAI->IsCurrentState<CMagicState>() && PTarget->PBattleAI->GetCurrentSpell()->hasMPCost())
+    if ((aggro & AGGRO_DETECT_MAGIC) && PTarget->PAI->IsCurrentState<CMagicState>() && 
+        static_cast<CMagicState*>(PTarget->PAI->GetCurrentState())->GetSpell()->hasMPCost())
     {
         return CanSeePoint(PTarget->loc.p);
     }
@@ -300,7 +303,7 @@ bool CAIController::TrySpecialSkill()
         return false;
     }
 
-    if (static_cast<CAIMob*>(PMob->PAI.get())->IsWeaponSkillEnabled())
+    if (IsWeaponSkillEnabled())
     {
         return false;
     }
@@ -447,13 +450,13 @@ void CAIController::CastSpell(uint16 spellid)
                     else if (dsprand::GetRandomNumber(2) == 0)
                     {
                         // chance to target party
-                        PMob->PAIBattle()->targetFind.reset();
-                        PMob->PAIBattle()->targetFind.findWithinArea(PMob, AOERADIUS_ATTACKER, PSpell->getMaxRange());
+                        PMob->PAI->TargetFind->reset();
+                        PMob->PAI->TargetFind->findWithinArea(PMob, AOERADIUS_ATTACKER, PSpell->getMaxRange());
 
-                        if (!PMob->PAIBattle()->targetFind.m_targets.empty())
+                        if (!PMob->PAI->TargetFind->m_targets.empty())
                         {
                             // randomly select a target
-                            PCastTarget = PMob->PAIBattle()->targetFind.m_targets[dsprand::GetRandomNumber(PMob->PAIBattle()->targetFind.m_targets.size())];
+                            PCastTarget = PMob->PAI->TargetFind->m_targets[dsprand::GetRandomNumber(PMob->PAI->TargetFind->m_targets.size())];
 
                             // only target if are on same action
                             if (PMob->PAI->IsEngaged() == PCastTarget->PAI->IsEngaged())
@@ -482,9 +485,9 @@ void CAIController::DoCombatTick(time_point tick)
     m_Tick = tick;
     if (PMob->getMobMod(MOBMOD_SHARE_TARGET) > 0 && PMob->loc.zone->GetEntity(PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB))
     {
-        ChangeTarget(static_cast<CMobEntity*>(PMob->loc.zone->GetEntity(PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB))->PAIBattle()->GetBattleTargetID());
+        ChangeTarget(static_cast<CMobEntity*>(PMob->loc.zone->GetEntity(PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB))->GetBattleTargetID());
 
-        if (!PMob->PAIBattle()->GetBattleTargetID())
+        if (!PMob->GetBattleTargetID())
         {
             auto PTarget {PMob->PEnmityContainer->GetHighestEnmity()};
             ChangeTarget(PTarget ? PTarget->targid : 0);
@@ -496,7 +499,7 @@ void CAIController::DoCombatTick(time_point tick)
         ChangeTarget(PTarget ? PTarget->targid : 0);
     }
 
-    PTarget = static_cast<CBattleEntity*>(PMob->loc.zone->GetEntity(PMob->PAIBattle()->GetBattleTargetID()));
+    PTarget = static_cast<CBattleEntity*>(PMob->loc.zone->GetEntity(PMob->GetBattleTargetID()));
 
     if (TryDeaggro())
     {
@@ -554,7 +557,7 @@ void CAIController::DoCombatTick(time_point tick)
     if (PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST))
     {
         auto WeaponDelay = std::chrono::milliseconds(PMob->GetWeaponDelay(false));
-        if (static_cast<CAIMob*>(PMob->PAI.get())->IsAutoAttackEnabled() && m_Tick > m_LastActionTime + WeaponDelay)
+        if (IsAutoAttackEnabled() && m_Tick > m_LastActionTime + WeaponDelay)
         {
             WeaponSkill(PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST));
         }
@@ -787,5 +790,38 @@ void CAIController::Disengage()
     //m_checkDespawn = true;
     m_NeutralTime = m_Tick;
 
+    PMob->PAI->PathFind->Clear();
+
+    if (PMob->getMobMod(MOBMOD_IDLE_DESPAWN))
+    {
+        PMob->SetDespawnTime(std::chrono::milliseconds(PMob->getMobMod(MOBMOD_IDLE_DESPAWN)));
+    }
+
+    PMob->delRageMode();
+    PMob->m_OwnerID.clean();
+    PMob->updatemask |= (UPDATE_STATUS | UPDATE_HP);
+    PMob->CallForHelp(false);
+    PMob->animation = ANIMATION_NONE;
+
     CController::Disengage();
+}
+
+bool CAIController::IsAutoAttackEnabled()
+{
+    return m_AutoAttackEnabled;
+}
+
+void CAIController::SetAutoAttackEnabled(bool enabled)
+{
+    m_AutoAttackEnabled = enabled;
+}
+
+bool CAIController::IsWeaponSkillEnabled()
+{
+    return m_WeaponSkillEnabled;
+}
+
+void CAIController::SetWeaponSkillEnabled(bool enabled)
+{
+    m_WeaponSkillEnabled = enabled;
 }

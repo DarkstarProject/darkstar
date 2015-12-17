@@ -23,7 +23,7 @@
 
 #include "magic_state.h"
 
-#include "../ai_battle.h"
+#include "../ai_base.h"
 #include "../../spell.h"
 #include "../../status_effect_container.h"
 #include "../../entities/battleentity.h"
@@ -47,7 +47,7 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, uint16 spellid, 
     {
         throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, m_PSpell->getID(), 0, MSGBASIC_CANNOT_CAST_SPELL));
     }
-    auto PTarget = m_PEntity->PAIBattle()->IsValidTarget(m_targid, m_PSpell->getValidTarget(), m_errorMsg);
+    auto PTarget = m_PEntity->IsValidTarget(m_targid, m_PSpell->getValidTarget(), m_errorMsg);
 
     if (!PTarget && m_errorMsg)
     {
@@ -94,7 +94,7 @@ bool CMagicState::Update(time_point tick)
     if (tick > GetEntryTime() + m_castTime && !IsCompleted())
     {
         m_interrupted = false;
-        auto PTarget = m_PEntity->PAIBattle()->IsValidTarget(m_targid, m_PSpell->getValidTarget(), m_errorMsg);
+        auto PTarget = m_PEntity->IsValidTarget(m_targid, m_PSpell->getValidTarget(), m_errorMsg);
         MSGBASIC_ID msg = MSGBASIC_IS_INTERRUPTED;
 
         action_t action;
@@ -116,11 +116,11 @@ bool CMagicState::Update(time_point tick)
 
         if (m_interrupted)
         {
-            m_PEntity->PAIBattle()->OnCastInterrupted(*this, action, msg);
+            m_PEntity->OnCastInterrupted(*this, action, msg);
         }
         else
         {
-            m_PEntity->PAIBattle()->OnCastFinished(*this,action);
+            m_PEntity->OnCastFinished(*this,action);
         }
         m_PEntity->PAI->EventHandler.triggerListener("MAGIC_USE", m_PEntity, m_PSpell.get(), &action);
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
@@ -139,7 +139,7 @@ void CMagicState::Cleanup(time_point tick)
     if (!IsCompleted())
     {
         action_t action;
-        m_PEntity->PAIBattle()->OnCastInterrupted(*this, action, MSGBASIC_IS_INTERRUPTED);
+        m_PEntity->OnCastInterrupted(*this, action, MSGBASIC_IS_INTERRUPTED);
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
     }
 }

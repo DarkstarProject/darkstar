@@ -23,7 +23,6 @@ This file is part of DarkStar-server source code.
 
 #include "raise_state.h"
 
-#include "../ai_char.h"
 #include "../../entities/battleentity.h"
 #include "../../entities/charentity.h"
 #include "../../packets/menu_raisetractor.h"
@@ -39,7 +38,7 @@ bool CRaiseState::Update(time_point tick)
     if (!IsCompleted())
     {
         Complete();
-        static_cast<CAIChar*>(m_PEntity->PAI.get())->OnRaise();
+        m_PEntity->OnRaise();
     }
     else if (IsCompleted() && tick > GetEntryTime() + 2s)
     {
