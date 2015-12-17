@@ -26,7 +26,8 @@
 #define _CSTATE_H
 
 #include <stdexcept>
-#include "../ai_base.h"
+#include <memory>
+#include "../../../common/mmo.h"
 #include "../../packets/message_basic.h"
 
 class CBattleEntity;

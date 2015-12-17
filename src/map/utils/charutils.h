@@ -33,6 +33,7 @@ This file is part of DarkStar-server source code.
 class CPetEntity;
 class CMobEntity;
 class CMeritPoints;
+class CAbility;
 
 namespace charutils
 {

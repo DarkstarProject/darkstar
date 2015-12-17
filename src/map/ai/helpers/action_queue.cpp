@@ -22,6 +22,7 @@ This file is part of DarkStar-server source code.
 */
 
 #include "action_queue.h"
+#include "../ai_base.h"
 #include "../../entities/baseentity.h"
 #include "../../lua/luautils.h"
 #include "../../lua/lua_baseentity.h"

@@ -25,6 +25,8 @@
 #include "baseentity.h"
 #include "../map.h"
 #include "../zone.h"
+#include "../ai/ai_base.h"
+#include "../instance.h"
 
 CBaseEntity::CBaseEntity()
 {

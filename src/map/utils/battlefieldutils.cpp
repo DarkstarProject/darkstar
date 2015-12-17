@@ -34,6 +34,7 @@
 #include "../battlefield.h"
 #include "../battlefield_handler.h"
 #include "../packets/entity_update.h"
+#include "../ai/ai_general.h"
 
 namespace battlefieldutils{
 	/***************************************************************

@@ -438,6 +438,9 @@ class CModifier;
 class CParty;
 class CStatusEffectContainer;
 class CPetEntity;
+class CSpell;
+class CItemWeapon;
+
 class CBattleEntity : public CBaseEntity
 {
 public:

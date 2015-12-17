@@ -26,6 +26,8 @@ This file is part of DarkStar-server source code.
 
 #include "state.h"
 
+class CWeaponSkill;
+
 class CWeaponSkillState : public CState
 {
 public:

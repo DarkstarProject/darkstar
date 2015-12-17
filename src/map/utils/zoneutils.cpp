@@ -28,6 +28,7 @@
 
 #include "../ai/ai_mob_dummy.h"
 #include "../ai/ai_npc_dummy.h"
+#include "../ai/ai_base.h"
 
 #include "../lua/luautils.h"
 

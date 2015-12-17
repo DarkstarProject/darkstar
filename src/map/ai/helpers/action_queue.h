@@ -26,8 +26,8 @@ This file is part of DarkStar-server source code.
 
 #include <queue>
 #include <functional>
-#include "../ai_common.h"
 #include "../../../common/cbasetypes.h"
+#include "../../../common/mmo.h"
 
 class CBaseEntity;
 

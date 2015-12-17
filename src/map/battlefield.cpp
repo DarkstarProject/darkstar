@@ -34,6 +34,7 @@
 #include "lua/luautils.h"
 #include "utils/zoneutils.h"
 #include "status_effect_container.h"
+#include "ai/ai_general.h"
 
 CBattlefield::CBattlefield(CBattlefieldHandler* hand, uint16 id, BATTLEFIELDTYPE type){
 	m_Type = type;

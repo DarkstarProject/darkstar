@@ -24,11 +24,10 @@
 #ifndef _BASEENTITY_H
 #define _BASEENTITY_H
 
+#include <memory>
+#include <map>
 #include "../../common/cbasetypes.h"
 #include "../../common/mmo.h"
-
-#include "../ai/ai_general.h"
-#include "../instance.h"
 
 enum ENTITYTYPE
 {
@@ -124,6 +123,11 @@ struct location_t
     bool		zoning;         // флаг сбрасывается при каждом входе в новую зону. необходим для реализации логики игровых задач ("quests")
     uint16		boundary;       // определенная область в зоне, в которой находится сущность (используется персонажами и транспортом)
 };
+
+class CAIGeneral;
+class CAIBase;
+class CInstance;
+class CBattlefield;
 
 /************************************************************************
 *																		*

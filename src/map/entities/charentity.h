@@ -161,9 +161,11 @@ class CLinkshell;
 class CMeritPoints;
 class CRecastContainer;
 class CLatentEffectContainer;
+class CTradeContainer;
 class CItemContainer;
 class CUContainer;
 class CItemArmor;
+class CAutomatonEntity;
 
 typedef std::deque<CBasicPacket*> PacketList_t;
 typedef std::map<uint32, CBaseEntity*> SpawnIDList_t;

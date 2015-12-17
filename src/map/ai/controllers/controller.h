@@ -24,8 +24,8 @@
 #ifndef _CONTROLLER_H
 #define _CONTROLLER_H
 
-#include "../ai_common.h"
 #include "../../../common/cbasetypes.h"
+#include "../../../common/mmo.h"
 
 class CBattleEntity;
 

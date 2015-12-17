@@ -35,7 +35,7 @@ This file is part of DarkStar-server source code.
 
 #include "../lua/luautils.h"
 
-#include "../alliance.h"
+#include "../ai/ai_general.h"
 
 #include "../packets/char_abilities.h"
 #include "../packets/char_appearance.h"
@@ -65,6 +65,7 @@ This file is part of DarkStar-server source code.
 #include "../packets/server_ip.h"
 
 #include "../ability.h"
+#include "../alliance.h"
 #include "../grades.h"
 #include "../conquest_system.h"
 #include "../map.h"

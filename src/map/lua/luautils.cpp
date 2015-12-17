@@ -67,6 +67,7 @@
 #include "../conquest_system.h"
 #include "../weapon_skill.h"
 #include "../status_effect_container.h"
+#include "../instance.h"
 
 namespace luautils
 {

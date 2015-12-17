@@ -31,6 +31,7 @@ This file is part of DarkStar-server source code.
 #include "modifier.h"
 #include "items/item_weapon.h"
 #include "status_effect_container.h"
+#include "ai/ai_general.h"
 
 #include "time_server.h"
 

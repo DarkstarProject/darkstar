@@ -29,6 +29,7 @@
 
 #include "../entities/battleentity.h"
 #include "../spell.h"
+#include "../ai/ai_general.h"
 
 #define MAX_ACTION_TARGETS	16
 

@@ -111,9 +111,11 @@
 #include "../item_container.h"
 #include "../recast_container.h"
 #include "../latent_effect_container.h"
+#include "../instance.h"
 
 #include "../ai/ai_npc_dummy.h"
 #include "../ai/ai_mob_dummy.h"
+#include "../ai/ai_base.h"
 
 #include "../transport.h"
 

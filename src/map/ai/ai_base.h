@@ -27,7 +27,6 @@ This file is part of DarkStar-server source code.
 #include <memory>
 #include <stack>
 
-#include "ai_common.h"
 #include "controllers/controller.h"
 #include "helpers/action_queue.h"
 #include "helpers/pathfind.h"

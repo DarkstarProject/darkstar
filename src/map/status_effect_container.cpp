@@ -39,6 +39,8 @@ When a status effect is gained twice on a player. It can do one or more of the f
 
 #include "lua/luautils.h"
 
+#include "ai/ai_general.h"
+
 #include "packets/char_health.h"
 #include "packets/char_job_extra.h"
 #include "packets/char_sync.h"
