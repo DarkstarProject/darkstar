@@ -16,9 +16,13 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
+	local mobID = mob:getID();
 	local numhits = 1;
 	local accmod = 1;
 	local dmgmod = 1.5;
+	if (mobID == 16912876) then 
+   	dmgmod = 10.5;
+    	end
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
 	target:delHP(dmg);
@@ -26,6 +30,9 @@ function onMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_PETRIFICATION;
 
 	MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 60);
+
+	
+		
 
 	return dmg;
 end;
