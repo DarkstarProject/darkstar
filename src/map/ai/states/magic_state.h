@@ -25,9 +25,9 @@
 #define _CMAGIC_STATE_H
 
 #include "state.h"
+#include "../../spell.h"
 
 struct action_t;
-class CSpell;
 
 enum MAGICFLAGS {
   MAGICFLAGS_NONE = 0,
