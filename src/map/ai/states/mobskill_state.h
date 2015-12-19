@@ -25,7 +25,7 @@ This file is part of DarkStar-server source code.
 #define _CMOBSKILL_TATE_H
 
 #include "state.h"
-#include "../mobskill.h"
+#include "../../mobskill.h"
 
 class CMobEntity;
 
