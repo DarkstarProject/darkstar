@@ -53,7 +53,8 @@ public:
 
     int32 getID(lua_State *L);              // Gets Entity Id
     int32 getShortID(lua_State *L);
-    int32 getTargetID(lua_State *L);     // Returns the ID any object under players in game cursor.
+    int32 getCursorTarget(lua_State *L);    // Returns the ID any object under players in game cursor.
+    int32 getPool(lua_State *L);            // Returns a mobs pool ID. If entity is not a mob, returns nil.
     int32 getName(lua_State *L);            // Gets Entity Name
 
     int32 getHPP(lua_State*);               // Returns Entity Health %
