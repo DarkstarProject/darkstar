@@ -23,7 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "controller.h"
 
-#include "../ai_base.h"
+#include "../ai_container.h"
 #include "../../entities/battleentity.h"
 
 CController::CController(CBattleEntity* _POwner, bool _canUpdate) :

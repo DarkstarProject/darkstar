@@ -22,7 +22,7 @@ This file is part of DarkStar-server source code.
 */
 
 #include "range_state.h"
-#include "../ai_base.h"
+#include "../ai_container.h"
 #include "../../entities/charentity.h"
 #include "../../packets/action.h"
 #include "../../utils/battleutils.h"

@@ -28,7 +28,7 @@
 #include "../mob_spell_list.h"
 #include "../packets/entity_update.h"
 #include "../packets/pet_sync.h"
-#include "../ai/ai_base.h"
+#include "../ai/ai_container.h"
 #include "../ai/controllers/pet_controller.h"
 #include "../ai/helpers/pathfind.h"
 #include "../ai/helpers/targetfind.h"
@@ -40,7 +40,7 @@ CPetEntity::CPetEntity(PETTYPE petType)
 	m_EcoSystem = SYSTEM_UNCLASSIFIED;
 	allegiance = ALLEGIANCE_PLAYER;
     m_MobSkillList = 0;
-    PAI = std::make_unique<CAIBase>(this, std::make_unique<CPathFind>(this), std::make_unique<CPetController>(this),
+    PAI = std::make_unique<CAIContainer>(this, std::make_unique<CPathFind>(this), std::make_unique<CPetController>(this),
         std::make_unique<CTargetFind>(this));
 }
 

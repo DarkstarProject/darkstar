@@ -48,7 +48,7 @@ This file is part of DarkStar-server source code.
 #include "../ai/ai_pet_dummy.h"
 #include "../ai/ai_mob_dummy.h"
 #include "../ai/ai_ultimate_summon.h"
-#include "../ai/ai_base.h"
+#include "../ai/ai_container.h"
 
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"

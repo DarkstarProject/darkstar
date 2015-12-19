@@ -23,7 +23,7 @@
 
 #include "magic_state.h"
 
-#include "../ai_base.h"
+#include "../ai_container.h"
 #include "../../spell.h"
 #include "../../status_effect_container.h"
 #include "../../enmity_container.h"

@@ -23,7 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "player_controller.h"
 
-#include "../ai_base.h"
+#include "../ai_container.h"
 #include "../../entities/charentity.h"
 #include "../../items/item_weapon.h"
 #include "../../packets/char_update.h"

@@ -22,7 +22,7 @@ This file is part of DarkStar-server source code.
 */
 
 #include "ai_controller.h"
-#include "../ai_base.h"
+#include "../ai_container.h"
 #include "../helpers/targetfind.h"
 #include "../states/ability_state.h"
 #include "../states/magic_state.h"

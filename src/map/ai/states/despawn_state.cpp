@@ -24,7 +24,7 @@ This file is part of DarkStar-server source code.
 #include "despawn_state.h"
 #include "../../entities/baseentity.h"
 #include "../../packets/entity_animation.h"
-#include "../ai_base.h"
+#include "../ai_container.h"
 #include "../../zone.h"
 
 CDespawnState::CDespawnState(CBaseEntity* _PEntity, duration spawnTime) :

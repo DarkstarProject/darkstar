@@ -22,7 +22,7 @@ This file is part of DarkStar-server source code.
 */
 
 #include "ability_state.h"
-#include "../ai_base.h"
+#include "../ai_container.h"
 #include "../../ability.h"
 #include "../../recast_container.h"
 #include "../../enmity_container.h"

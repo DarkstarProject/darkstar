@@ -82,6 +82,9 @@
     <OutDir>..\..\</OutDir>
     <TargetName>$(ProjectName)_64</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(WindowsSDK_IncludePath);$(VC_IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -213,7 +216,7 @@
     <ClInclude Include="..\..\src\common\zlib.h" />
     <ClInclude Include="..\..\src\map\ability.h" />
     <ClInclude Include="..\..\src\map\ai\ai_automaton_dummy.h" />
-    <ClInclude Include="..\..\src\map\ai\ai_base.h" />
+    <ClInclude Include="..\..\src\map\ai\ai_container.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_charm.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_gm.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_normal.h" />
@@ -462,7 +465,7 @@
     <ClCompile Include="..\..\src\common\zlib.cpp" />
     <ClCompile Include="..\..\src\map\ability.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_automaton_dummy.cpp" />
-    <ClCompile Include="..\..\src\map\ai\ai_base.cpp" />
+    <ClCompile Include="..\..\src\map\ai\ai_container.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_char_charm.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_char_gm.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_char_normal.cpp" />

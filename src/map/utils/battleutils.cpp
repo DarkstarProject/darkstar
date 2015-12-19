@@ -65,7 +65,7 @@
 #include "../packets/char_sync.h"
 #include "../packets/position.h"
 #include "../packets/lock_on.h"
-#include "../ai/ai_base.h"
+#include "../ai/ai_container.h"
 #include "../ai/ai_pet_dummy.h"
 #include "../ai/ai_char_charm.h"
 #include "../utils/petutils.h"

@@ -26,7 +26,7 @@ This file is part of DarkStar-server source code.
 #include "../../entities/battleentity.h"
 #include "../../entities/charentity.h"
 #include "../../packets/menu_raisetractor.h"
-#include "../ai_base.h"
+#include "../ai_container.h"
 
 CDeathState::CDeathState(CBattleEntity* PEntity, duration death_time) :
     CState(PEntity, PEntity->targid),

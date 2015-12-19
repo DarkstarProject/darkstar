@@ -27,7 +27,7 @@ This file is part of DarkStar-server source code.
 
 #include "../../utils/battleutils.h"
 #include "../../packets/action.h"
-#include "../ai_base.h"
+#include "../ai_container.h"
 
 CAttackState::CAttackState(CBattleEntity* PEntity, uint16 targid) :
     CState(PEntity, targid),

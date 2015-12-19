@@ -21,8 +21,8 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _AIBASE_H
-#define _AIBASE_H
+#ifndef _AI_H
+#define _AI_H
 
 #include <memory>
 #include <stack>
@@ -41,16 +41,16 @@ class CState;
 class CPathFind;
 class CTargetFind;
 
-class CAIBase
+class CAIContainer
 {
 public:
-    CAIBase(CBaseEntity*);
-    CAIBase(CBaseEntity*, std::unique_ptr<CPathFind>&&, std::unique_ptr<CController>&&,
+    CAIContainer(CBaseEntity*);
+    CAIContainer(CBaseEntity*, std::unique_ptr<CPathFind>&&, std::unique_ptr<CController>&&,
         std::unique_ptr<CTargetFind>&&);
 
     //no copy construct/assign (only move)
-    CAIBase(const CAIBase&) = delete;
-    CAIBase& operator=(const CAIBase&) = delete;
+    CAIContainer(const CAIContainer&) = delete;
+    CAIContainer& operator=(const CAIContainer&) = delete;
 
     void Cast(uint16 targid, uint16 spellid);
     void Engage(uint16 targid);

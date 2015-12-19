@@ -21,7 +21,7 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#include "ai_base.h"
+#include "ai_container.h"
 
 #include "states/ability_state.h"
 #include "states/attack_state.h"
@@ -41,12 +41,12 @@ This file is part of DarkStar-server source code.
 #include "../entities/mobentity.h"
 #include "../packets/entity_animation.h"
 
-CAIBase::CAIBase(CBaseEntity* _PEntity) :
-    CAIBase(_PEntity, nullptr, nullptr, nullptr)
+CAIContainer::CAIContainer(CBaseEntity* _PEntity) :
+    CAIContainer(_PEntity, nullptr, nullptr, nullptr)
 {
 }
 
-CAIBase::CAIBase(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _pathfind,
+CAIContainer::CAIContainer(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _pathfind,
     std::unique_ptr<CController>&& _controller, std::unique_ptr<CTargetFind>&& _targetfind) :
     m_Tick(server_clock::now()),
     m_PrevTick(server_clock::now()),
@@ -58,7 +58,7 @@ CAIBase::CAIBase(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _pathfind,
 {
 }
 
-void CAIBase::Cast(uint16 targid, uint16 spellid)
+void CAIContainer::Cast(uint16 targid, uint16 spellid)
 {
     if (Controller)
     {
@@ -70,7 +70,7 @@ void CAIBase::Cast(uint16 targid, uint16 spellid)
     }
 }
 
-void CAIBase::Engage(uint16 targid)
+void CAIContainer::Engage(uint16 targid)
 {
     if (Controller)
     {
@@ -82,7 +82,7 @@ void CAIBase::Engage(uint16 targid)
     }
 }
 
-void CAIBase::ChangeTarget(uint16 targid)
+void CAIContainer::ChangeTarget(uint16 targid)
 {
     if (Controller)
     {
@@ -94,7 +94,7 @@ void CAIBase::ChangeTarget(uint16 targid)
     }
 }
 
-void CAIBase::Disengage()
+void CAIContainer::Disengage()
 {
     if (Controller)
     {
@@ -106,7 +106,7 @@ void CAIBase::Disengage()
     }
 }
 
-void CAIBase::WeaponSkill(uint16 targid, uint16 wsid)
+void CAIContainer::WeaponSkill(uint16 targid, uint16 wsid)
 {
     if (Controller)
     {
@@ -118,7 +118,7 @@ void CAIBase::WeaponSkill(uint16 targid, uint16 wsid)
     }
 }
 
-void CAIBase::MobSkill(uint16 targid, uint16 wsid)
+void CAIContainer::MobSkill(uint16 targid, uint16 wsid)
 {
     auto AIController = dynamic_cast<CAIController*>(Controller.get());
     if (AIController)
@@ -131,7 +131,7 @@ void CAIBase::MobSkill(uint16 targid, uint16 wsid)
     }
 }
 
-void CAIBase::Ability(uint16 targid, uint16 abilityid)
+void CAIContainer::Ability(uint16 targid, uint16 abilityid)
 {
     auto PlayerController = dynamic_cast<CPlayerController*>(Controller.get());
     if (PlayerController)
@@ -144,7 +144,7 @@ void CAIBase::Ability(uint16 targid, uint16 abilityid)
     }
 }
 
-void CAIBase::RangedAttack(uint16 targid)
+void CAIContainer::RangedAttack(uint16 targid)
 {
     auto PlayerController = dynamic_cast<CPlayerController*>(Controller.get());
     if (PlayerController)
@@ -157,7 +157,7 @@ void CAIBase::RangedAttack(uint16 targid)
     }
 }
 
-void CAIBase::Trigger(uint16 targID)
+void CAIContainer::Trigger(uint16 targID)
 {
     if (CanChangeState())
     {
@@ -169,7 +169,7 @@ void CAIBase::Trigger(uint16 targID)
     }
 }
 
-bool CAIBase::Internal_Engage(uint16 targetid)
+bool CAIContainer::Internal_Engage(uint16 targetid)
 {
     //#TODO: pet engage/disengage
     auto PTarget {dynamic_cast<CBattleEntity*>(PEntity->GetEntity(targetid))};
@@ -189,7 +189,7 @@ bool CAIBase::Internal_Engage(uint16 targetid)
     return false;
 }
 
-bool CAIBase::Internal_Cast(uint16 targetid, uint16 spellid)
+bool CAIContainer::Internal_Cast(uint16 targetid, uint16 spellid)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
@@ -197,19 +197,19 @@ bool CAIBase::Internal_Cast(uint16 targetid, uint16 spellid)
     return false;
 }
 
-void CAIBase::Internal_ChangeTarget(uint16 targetid)
+void CAIContainer::Internal_ChangeTarget(uint16 targetid)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     entity->SetBattleTargetID(targetid);
 }
 
-void CAIBase::Internal_Disengage()
+void CAIContainer::Internal_Disengage()
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     entity->SetBattleTargetID(0);
 }
 
-bool CAIBase::Internal_WeaponSkill(uint16 targid, uint16 wsid)
+bool CAIContainer::Internal_WeaponSkill(uint16 targid, uint16 wsid)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
@@ -217,7 +217,7 @@ bool CAIBase::Internal_WeaponSkill(uint16 targid, uint16 wsid)
     return false;
 }
 
-bool CAIBase::Internal_MobSkill(uint16 targid, uint16 wsid)
+bool CAIContainer::Internal_MobSkill(uint16 targid, uint16 wsid)
 {
     auto entity {dynamic_cast<CMobEntity*>(PEntity)};
     if (entity)
@@ -225,7 +225,7 @@ bool CAIBase::Internal_MobSkill(uint16 targid, uint16 wsid)
     return false;
 }
 
-bool CAIBase::Internal_Ability(uint16 targetid, uint16 abilityid)
+bool CAIContainer::Internal_Ability(uint16 targetid, uint16 abilityid)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
@@ -233,7 +233,7 @@ bool CAIBase::Internal_Ability(uint16 targetid, uint16 abilityid)
     return false;
 }
 
-bool CAIBase::Internal_RangedAttack(uint16 targetid)
+bool CAIContainer::Internal_RangedAttack(uint16 targetid)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
@@ -241,14 +241,14 @@ bool CAIBase::Internal_RangedAttack(uint16 targetid)
     return false;
 }
 
-void CAIBase::Internal_Die(duration deathTime)
+void CAIContainer::Internal_Die(duration deathTime)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
         ChangeState<CDeathState>(entity, deathTime);
 }
 
-CState* CAIBase::GetCurrentState()
+CState* CAIContainer::GetCurrentState()
 {
     if (!m_stateStack.empty())
     {
@@ -257,24 +257,24 @@ CState* CAIBase::GetCurrentState()
     return nullptr;
 }
 
-bool CAIBase::CanChangeState()
+bool CAIContainer::CanChangeState()
 {
     return !GetCurrentState() || GetCurrentState()->CanChangeState();
 }
 
-CController* CAIBase::GetController()
+CController* CAIContainer::GetController()
 {
     return Controller.get();
 }
 
-void CAIBase::Internal_Raise()
+void CAIContainer::Internal_Raise()
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
         ForceChangeState<CRaiseState>(entity);
 }
 
-void CAIBase::Reset()
+void CAIContainer::Reset()
 {
     if (PathFind)
     {
@@ -282,7 +282,7 @@ void CAIBase::Reset()
     }
 }
 
-void CAIBase::Tick(time_point _tick)
+void CAIContainer::Tick(time_point _tick)
 {
     m_PrevTick = m_Tick;
     m_Tick = _tick;
@@ -315,12 +315,12 @@ void CAIBase::Tick(time_point _tick)
     }
 }
 
-bool CAIBase::IsStateStackEmpty()
+bool CAIContainer::IsStateStackEmpty()
 {
     return m_stateStack.empty();
 }
 
-void CAIBase::ClearStateStack()
+void CAIContainer::ClearStateStack()
 {
     while (!m_stateStack.empty())
     {
@@ -328,32 +328,32 @@ void CAIBase::ClearStateStack()
     }
 }
 
-bool CAIBase::IsSpawned()
+bool CAIContainer::IsSpawned()
 {
     return PEntity->status != STATUS_DISAPPEAR;
 }
 
-bool CAIBase::IsRoaming()
+bool CAIContainer::IsRoaming()
 {
     return PEntity->animation == ANIMATION_NONE;
 }
 
-bool CAIBase::IsEngaged()
+bool CAIContainer::IsEngaged()
 {
     return PEntity->animation == ANIMATION_ATTACK;
 }
 
-time_point CAIBase::getTick()
+time_point CAIContainer::getTick()
 {
     return m_Tick;
 }
 
-time_point CAIBase::getPrevTick()
+time_point CAIContainer::getPrevTick()
 {
     return m_PrevTick;
 }
 
-void CAIBase::Despawn()
+void CAIContainer::Despawn()
 {
     if (Controller)
     {
@@ -365,12 +365,12 @@ void CAIBase::Despawn()
     }
 }
 
-void CAIBase::QueueAction(queueAction_t&& action)
+void CAIContainer::QueueAction(queueAction_t&& action)
 {
     ActionQueue.pushAction(std::move(action));
 }
 
-void CAIBase::Internal_Despawn(duration spawnTime)
+void CAIContainer::Internal_Despawn(duration spawnTime)
 {
     ForceChangeState<CDespawnState>(PEntity, spawnTime);
 }

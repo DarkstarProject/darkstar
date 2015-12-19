@@ -25,7 +25,7 @@
 #include "baseentity.h"
 #include "../map.h"
 #include "../zone.h"
-#include "../ai/ai_base.h"
+#include "../ai/ai_container.h"
 #include "../ai/ai_general.h"
 #include "../instance.h"
 

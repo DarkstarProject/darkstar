@@ -24,7 +24,7 @@
 #include "../../common/taskmgr.h"
 
 #include "npcentity.h"
-#include "../ai/ai_base.h"
+#include "../ai/ai_container.h"
 #include "../utils/zoneutils.h"
 
 #include "../packets/entity_update.h"
@@ -101,7 +101,7 @@ CNpcEntity::CNpcEntity()
 	objtype = TYPE_NPC;
 	look.face = 0x32;
 	allegiance = ALLEGIANCE_MOB;
-    PAI = std::make_unique<CAIBase>(this);
+    PAI = std::make_unique<CAIContainer>(this);
 }
 
 CNpcEntity::~CNpcEntity()

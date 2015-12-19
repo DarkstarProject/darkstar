@@ -126,7 +126,7 @@ struct location_t
 };
 
 class CAIGeneral;
-class CAIBase;
+class CAIContainer;
 class CInstance;
 class CBattlefield;
 
@@ -184,7 +184,7 @@ public:
     uint8           updatemask;         // what to update next server tick to players nearby
 
     CAIGeneral*     PBattleAI;          // интеллект любой сущности
-    std::unique_ptr<CAIBase> PAI;       // AI container
+    std::unique_ptr<CAIContainer> PAI;       // AI container
     CBattlefield*	PBCNM;              // pointer to bcnm (if in one)
     CInstance*		PInstance;
 protected:

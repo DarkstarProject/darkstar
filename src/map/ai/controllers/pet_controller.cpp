@@ -23,7 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "pet_controller.h"
 
-#include "../ai_base.h"
+#include "../ai_container.h"
 #include "../../status_effect_container.h"
 #include "../../entities/petentity.h"
 #include "../../../common/utils.h"

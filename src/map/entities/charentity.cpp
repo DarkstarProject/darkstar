@@ -36,7 +36,7 @@
 #include "../packets/inventory_finish.h"
 #include "../packets/menu_raisetractor.h"
 
-#include "../ai/ai_base.h"
+#include "../ai/ai_container.h"
 #include "../ai/controllers/player_controller.h"
 #include "../ai/helpers/targetfind.h"
 #include "../ai/states/ability_state.h"
@@ -185,7 +185,7 @@ CCharEntity::CCharEntity()
     m_LastYell = 0;
     m_moghouseID = 0;
 
-    PAI = std::make_unique<CAIBase>(this, nullptr, std::make_unique<CPlayerController>(this),
+    PAI = std::make_unique<CAIContainer>(this, nullptr, std::make_unique<CPlayerController>(this),
         std::make_unique<CTargetFind>(this));
 }
 

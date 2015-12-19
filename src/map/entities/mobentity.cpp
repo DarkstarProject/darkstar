@@ -26,7 +26,7 @@
 #include <string.h>
 #include "../../common/timer.h"
 #include "../../common/utils.h"
-#include "../ai/ai_base.h"
+#include "../ai/ai_container.h"
 #include "../ai/controllers/ai_controller.h"
 #include "../ai/helpers/pathfind.h"
 #include "../ai/helpers/targetfind.h"
@@ -117,7 +117,7 @@ CMobEntity::CMobEntity()
     // For Dyna Stats
     m_StatPoppedMobs = false;
 
-    PAI = std::make_unique<CAIBase>(this, std::make_unique<CPathFind>(this), std::make_unique<CAIController>(this),
+    PAI = std::make_unique<CAIContainer>(this, std::make_unique<CPathFind>(this), std::make_unique<CAIController>(this),
         std::make_unique<CTargetFind>(this));
 }
 

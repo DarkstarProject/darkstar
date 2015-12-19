@@ -33,7 +33,7 @@ This file is part of DarkStar-server source code.
 #include "enmity_container.h"
 
 #include "ai/ai_mob_dummy.h"
-#include "ai/ai_base.h"
+#include "ai/ai_container.h"
 
 #include "entities/mobentity.h"
 #include "entities/npcentity.h"

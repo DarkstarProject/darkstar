@@ -31,7 +31,7 @@
 #include "../utils/battleutils.h"
 #include "../items/item_weapon.h"
 #include "../status_effect_container.h"
-#include "../ai/ai_base.h"
+#include "../ai/ai_container.h"
 #include "../ai/states/attack_state.h"
 #include "../ai/states/magic_state.h"
 #include "../ai/states/weaponskill_state.h"
