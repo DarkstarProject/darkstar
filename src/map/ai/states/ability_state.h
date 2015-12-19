@@ -25,8 +25,8 @@ This file is part of DarkStar-server source code.
 #define _CABILITY_STATE_H
 
 #include "state.h"
+#include "../../ability.h"
 
-class CAbility;
 class CCharEntity;
 
 class CAbilityState : public CState

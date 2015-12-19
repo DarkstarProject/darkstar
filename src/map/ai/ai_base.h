@@ -33,6 +33,7 @@ This file is part of DarkStar-server source code.
 #include "helpers/pathfind.h"
 #include "helpers/targetfind.h"
 #include "states/state.h"
+#include "../entities/baseentity.h"
 #include "../packets/message_basic.h"
 
 class CBaseEntity;
