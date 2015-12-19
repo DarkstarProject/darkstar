@@ -15,6 +15,17 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onInitialize(zone)
+
+	local mobids = {17109357,
+					17138041,
+					17166720,
+					17178901,
+					17121693,
+					17150317,
+					17174888}
+	local mob = mobids[math.random(1, #mobids)];
+	SpawnMob(mob);
+
 end;
 
 -----------------------------------     

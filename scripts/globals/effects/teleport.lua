@@ -87,5 +87,14 @@ function onEffectLose(target,effect)
         toExitPromDem(target);
     elseif (Teleport == TELEPORT_LUFAISE) then
         toLufaise(target);
+    elseif (Teleport == TELEPORT_RETRACE) then
+        local Allegiance = target:getCampaignAllegiance();
+        if (Allegiance == 1) then
+        retraceSandoria(target);
+        elseif (Allegiance == 2) then
+        retraceBastok(target);
+        elseif (Allegiance == 3) then
+        retraceWindurst(target);
+    end
     end
 end;
