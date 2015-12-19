@@ -35,17 +35,29 @@ CTriggerState::CTriggerState(CBaseEntity* PEntity, uint16 targid) :
 
 bool CTriggerState::Update(time_point tick)
 {
-    auto PChar = static_cast<CCharEntity*>(GetTarget());
-    if (PChar && luautils::OnTrigger(PChar, m_PEntity) == -1 && m_PEntity->animation == ANIMATION_CLOSE_DOOR)
+    if (!IsCompleted())
     {
-        m_PEntity->animation = ANIMATION_OPEN_DOOR;
-        PChar->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PEntity, ENTITY_UPDATE, UPDATE_COMBAT));
-        CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_door", /*tick +*/ 7000, m_PEntity, CTaskMgr::TASK_ONCE, close_door));
+        auto PChar = static_cast<CCharEntity*>(GetTarget());
+        if (PChar && luautils::OnTrigger(PChar, m_PEntity) == -1 && m_PEntity->animation == ANIMATION_CLOSE_DOOR)
+        {
+            m_PEntity->animation = ANIMATION_OPEN_DOOR;
+            PChar->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PEntity, ENTITY_UPDATE, UPDATE_COMBAT));
+        }
+        Complete();
     }
-    return true;
+    else if (tick > GetEntryTime() + 7s)
+    {
+        return true;
+    }
+    return false;
 }
 
 bool CTriggerState::CanChangeState()
+{
+    return false;
+}
+
+bool CTriggerState::CanFollowPath()
 {
     return false;
 }

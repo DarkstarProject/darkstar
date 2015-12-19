@@ -118,6 +118,7 @@ protected:
     //entity who holds this AI
     CBaseEntity* PEntity;
 
+    void CheckCompletedStates();
     template<typename T, typename... Args>
     bool ChangeState(Args&&... args)
     {
@@ -125,6 +126,7 @@ protected:
         {
             try
             {
+                CheckCompletedStates();
                 m_stateStack.emplace(std::make_unique<T>(std::forward<Args>(args)...));
                 return true;
             }
@@ -140,6 +142,7 @@ protected:
     {
         try
         {
+            CheckCompletedStates();
             m_stateStack.emplace(std::make_unique<T>(std::forward<Args>(args)...));
         }
         catch (CStateInitException& e)

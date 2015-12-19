@@ -62,6 +62,7 @@ public:
     virtual void Cleanup(time_point tick) = 0;
     //whether the state can be changed by normal means
     virtual bool CanChangeState() = 0;
+    virtual bool CanFollowPath() = 0;
     bool IsCompleted();
 
 protected:

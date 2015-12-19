@@ -36,7 +36,8 @@ public:
 
     virtual void Cleanup(time_point tick) override;
     //whether the state can be changed by normal means
-    virtual bool CanChangeState() override { return true; };
+    virtual bool CanChangeState() override { return true; }
+    virtual bool CanFollowPath() override { return true; }
 
 protected:
     virtual void UpdateTarget(uint16 = 0) override;

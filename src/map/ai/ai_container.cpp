@@ -292,7 +292,7 @@ void CAIContainer::Tick(time_point _tick)
     ActionQueue.checkAction(_tick);
 
     // check pathfinding
-    if (PathFind)
+    if (PathFind && (!GetCurrentState() || (GetCurrentState()->CanFollowPath())))
     {
         PathFind->FollowPath();
     }
@@ -373,4 +373,12 @@ void CAIContainer::QueueAction(queueAction_t&& action)
 void CAIContainer::Internal_Despawn(duration spawnTime)
 {
     ForceChangeState<CDespawnState>(PEntity, spawnTime);
+}
+
+void CAIContainer::CheckCompletedStates()
+{
+    while (!m_stateStack.empty() && m_stateStack.top()->IsCompleted())
+    {
+        m_stateStack.pop();
+    }
 }

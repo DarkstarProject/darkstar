@@ -36,7 +36,8 @@ public:
 
     virtual void Cleanup(time_point tick) override {}
     //whether the state can be changed by normal means
-    virtual bool CanChangeState() override { return false; };
+    virtual bool CanChangeState() override { return false; }
+    virtual bool CanFollowPath() override { return false; }
 
 private:
     CBattleEntity* const m_PEntity;
