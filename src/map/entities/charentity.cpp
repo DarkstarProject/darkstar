@@ -632,8 +632,9 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
     auto PWeaponSkill = state.GetSkill();
     auto PBattleTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    int16 tp = battleutils::CalculateWeaponSkillTP(this, PWeaponSkill);
-    state.SpendCost();
+    int16 tp = state.GetSpentTP();
+    tp = battleutils::CalculateWeaponSkillTP(this, PWeaponSkill, tp);
+
     PLatentEffectContainer->CheckLatentsTP(this->health.tp);
 
     if (distance(loc.p, PBattleTarget->loc.p) - PBattleTarget->m_ModelSize < PWeaponSkill->getRange())

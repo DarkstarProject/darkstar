@@ -41,6 +41,7 @@ public:
     virtual void Tick(time_point tick) override;
     virtual void Disengage() override;
     virtual void Despawn() override;
+    virtual void MobSkill(uint16 targid, uint16 wsid);
 
     bool IsAutoAttackEnabled();
     void SetAutoAttackEnabled(bool);
@@ -52,7 +53,7 @@ protected:
     void TryLink();
     bool CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false);
     bool CanSeePoint(position_t pos);
-    bool WeaponSkill(int list = 0);
+    bool MobSkill(int list = 0);
     bool TrySpecialSkill();
     bool TryCastSpell();
     bool CanCastSpells();

@@ -31,6 +31,7 @@ This file is part of DarkStar-server source code.
 #include "../../party.h"
 #include "../../status_effect_container.h"
 #include "../../entities/mobentity.h"
+#include "../../packets/entity_update.h"
 #include "../../utils/battleutils.h"
 #include "../../../common/utils.h"
 
@@ -245,7 +246,7 @@ bool CAIController::CanSeePoint(position_t pos)
     return true;
 }
 
-bool CAIController::WeaponSkill(int wsList)
+bool CAIController::MobSkill(int wsList)
 {
     /* #TODO: mob 2 hours, etc */
     if (!wsList) wsList = PMob->getMobMod(MOBMOD_SKILL_LIST);
@@ -283,7 +284,7 @@ bool CAIController::WeaponSkill(int wsList)
         {
             if (currentDistance <= PMobSkill->getDistance())
             {
-                CController::WeaponSkill(PTarget->targid, PMobSkill->getID());
+                MobSkill(PTarget->targid, PMobSkill->getID());
                 break;
             }
         }
@@ -338,7 +339,7 @@ bool CAIController::TrySpecialSkill()
 
     if (luautils::OnMobSkillCheck(PAbilityTarget, PMob, PSpecialSkill) == 0)
     {
-        CController::WeaponSkill(PAbilityTarget->targid, PSpecialSkill->getID());
+        MobSkill(PAbilityTarget->targid, PSpecialSkill->getID());
         return true;
     }
 
@@ -526,7 +527,7 @@ void CAIController::DoCombatTick(time_point tick)
     {
         return;
     }
-    else if (m_Tick >= m_LastMobSkillTime && dsprand::GetRandomNumber(100) < PMob->TPUseChance() && WeaponSkill())
+    else if (m_Tick >= m_LastMobSkillTime && dsprand::GetRandomNumber(100) < PMob->TPUseChance() && MobSkill())
     {
         return;
     }
@@ -546,7 +547,7 @@ void CAIController::DoCombatTick(time_point tick)
 
             if (teleportBegin)
             {
-                CController::WeaponSkill(PMob->targid, teleportBegin->getID());
+                MobSkill(PMob->targid, teleportBegin->getID());
             }
         }
     }
@@ -559,7 +560,7 @@ void CAIController::DoCombatTick(time_point tick)
         auto WeaponDelay = std::chrono::milliseconds(PMob->GetWeaponDelay(false));
         if (IsAutoAttackEnabled() && m_Tick > m_LastActionTime + WeaponDelay)
         {
-            WeaponSkill(PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST));
+            MobSkill(PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST));
         }
     }
 
@@ -585,7 +586,7 @@ void CAIController::DoCombatTick(time_point tick)
 
                 if (teleportBegin && currentDistance <= teleportBegin->getDistance())
                 {
-                    CController::WeaponSkill(PMob->targid, teleportBegin->getID());
+                    MobSkill(PMob->targid, teleportBegin->getID());
                     return;
                 }
             }
@@ -779,6 +780,21 @@ void CAIController::Despawn()
     if (PMob)
     {
         PMob->PAI->Internal_Despawn(std::chrono::milliseconds(PMob->m_RespawnTime));
+    }
+}
+
+void CAIController::MobSkill(uint16 targid, uint16 wsid)
+{
+    if (POwner)
+    {
+        if (POwner->look.size == MODEL_EQUIPED)
+        {
+            POwner->PAI->Internal_WeaponSkill(targid, wsid);
+        }
+        else
+        {
+            POwner->PAI->Internal_MobSkill(targid, wsid);
+        }
     }
 }
 

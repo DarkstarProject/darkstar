@@ -56,6 +56,7 @@ public:
     void ChangeTarget(uint16 targid);
     void Disengage();
     void WeaponSkill(uint16 targid, uint16 wsid);
+    void MobSkill(uint16 targid, uint16 wsid);
     void Ability(uint16 targid, uint16 abilityid);
     void RangedAttack(uint16 targid);
     void Trigger(uint16 targid);
@@ -66,6 +67,7 @@ public:
     void Internal_ChangeTarget(uint16 targetid);
     void Internal_Disengage();
     bool Internal_WeaponSkill(uint16 targid, uint16 wsid);
+    bool Internal_MobSkill(uint16 targid, uint16 wsid);
     bool Internal_Ability(uint16 targetid, uint16 abilityid);
     bool Internal_RangedAttack(uint16 targetid);
     void Internal_Die(duration);

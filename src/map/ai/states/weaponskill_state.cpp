@@ -23,7 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "weaponskill_state.h"
 #include "../ai_base.h"
-#include "../../entities/charentity.h"
+#include "../../entities/battleentity.h"
 #include "../../packets/action.h"
 #include "../../utils/battleutils.h"
 #include "../../weapon_skill.h"
@@ -38,7 +38,37 @@ CWeaponSkillState::CWeaponSkillState(CBattleEntity* PEntity, uint16 targid, uint
     {
         throw CStateInitException(std::make_unique<CMessageBasicPacket>(PEntity, PEntity, 0, 0, MSGBASIC_CANNOT_USE_WS));
     }
+
+    auto target_flags = battleutils::isValidSelfTargetWeaponskill(wsid) ? TARGET_SELF : TARGET_ENEMY;
+    auto PTarget = m_PEntity->IsValidTarget(m_targid, target_flags, m_errorMsg);
+
+    if (!PTarget && m_errorMsg)
+    {
+        throw CStateInitException(std::move(m_errorMsg));
+    }
+    SpendCost();
     m_PSkill = std::make_unique<CWeaponSkill>(*skill);
+
+    //m_castTime = std::chrono::milliseconds(m_PSkill->getActivationTime());
+
+    if (m_castTime > 0s)
+    {
+        action_t action;
+        action.id = m_PEntity->id;
+        action.actiontype = ACTION_WEAPONSKILL_START;
+
+        actionList_t& actionList = action.getNewActionList();
+        actionList.ActionTargetID = PTarget->id;
+
+        actionTarget_t& actionTarget = actionList.getNewActionTarget();
+
+        actionTarget.reaction = REACTION_NONE;
+        actionTarget.speceffect = SPECEFFECT_NONE;
+        actionTarget.animation = 0;
+        actionTarget.param = m_PSkill->getID();
+        actionTarget.messageID = 43;
+        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE, new CActionPacket(action));
+    }
 }
 
 CWeaponSkill* CWeaponSkillState::GetSkill()
@@ -48,32 +78,36 @@ CWeaponSkill* CWeaponSkillState::GetSkill()
 
 void CWeaponSkillState::SpendCost()
 {
+    auto tp = 0;
     if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
     {
-        m_PEntity->addTP(-1000);
+        tp = m_PEntity->addTP(-1000);
     }
     else if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI))
     {
-        m_PEntity->addTP(-1000);
+        tp = m_PEntity->addTP(-1000);
         m_PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
     }
     else
     {
+        tp = m_PEntity->health.tp;
         m_PEntity->health.tp = 0;
     }
+    m_spent = tp;
 }
 
 bool CWeaponSkillState::Update(time_point tick)
 {
-    if (tick > m_finishTime && !IsCompleted())
+    if (!IsCompleted())
     {
         action_t action;
         m_PEntity->OnWeaponSkillFinished(*this, action);
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+        auto delay = m_PSkill->getAnimationTime();
+        m_finishTime = tick + delay;
         Complete();
     }
-    auto delay = m_PSkill->getAnimationTime();
-    if (IsCompleted() && tick > m_finishTime + delay)
+    else if (tick > m_finishTime)
     {
         m_PEntity->PAI->EventHandler.triggerListener("WEAPONSKILL_STATE_EXIT", m_PEntity, m_PSkill->getID());
         return true;

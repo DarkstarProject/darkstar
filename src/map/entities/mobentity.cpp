@@ -31,7 +31,9 @@
 #include "../ai/helpers/pathfind.h"
 #include "../ai/helpers/targetfind.h"
 #include "../ai/states/weaponskill_state.h"
+#include "../ai/states/mobskill_state.h"
 #include "../entities/charentity.h"
+#include "../packets/action.h"
 #include "../packets/entity_update.h"
 #include "../utils/battleutils.h"
 #include "../utils/blueutils.h"
@@ -39,6 +41,7 @@
 #include "../utils/itemutils.h"
 #include "../status_effect_container.h"
 #include "../weapon_skill.h"
+#include "../mobskill.h"
 #include "../treasure_pool.h"
 #include "../conquest_system.h"
 
@@ -584,6 +587,136 @@ void CMobEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& actio
     //#TODO
 }
 
+
+void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
+{
+    auto PSkill = state.GetSkill();
+    auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+
+    PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+
+    // store the skill used
+    m_UsedSkillIds[PSkill->getID()] = GetMLevel();
+
+    PAI->TargetFind->reset();
+
+    float distance = PSkill->getDistance();
+    uint8 findFlags = 0;
+    if (PSkill->getFlag() & SKILLFLAG_HIT_ALL)
+    {
+        findFlags |= FINDFLAGS_HIT_ALL;
+    }
+
+    // Mob buff abilities also hit monster's pets
+    if(PSkill->getValidTargets() == TARGET_SELF)
+    {
+        findFlags |= FINDFLAGS_PET;
+    }
+
+    if (PAI->TargetFind->isWithinRange(&PTarget->loc.p, distance))
+    {
+        if (PSkill->isAoE())
+        {
+            PAI->TargetFind->findWithinArea(PTarget, (AOERADIUS)PSkill->getAoe(), PSkill->getRadius(), findFlags);
+        }
+        else if (PSkill->isConal())
+        {
+            float angle = 45.0f;
+            PAI->TargetFind->findWithinCone(PTarget, distance, angle, findFlags);
+        }
+        else
+        {
+            PAI->TargetFind->findSingleTarget(PTarget, findFlags);
+        }
+    }
+
+    uint16 actionsLength = PAI->TargetFind->m_targets.size();
+
+    PSkill->setTotalTargets(actionsLength);
+    PSkill->setTP(state.GetSpentTP());
+    PSkill->setHPP(GetHPP());
+
+    action.id = id;
+    action.actiontype = ACTION_MOBABILITY_FINISH;
+
+    uint16 msg = 0;
+    uint16 defaultMessage = PSkill->getMsg();
+
+    bool first {true};
+    for (auto&& PTarget : PAI->TargetFind->m_targets)
+    {
+        actionList_t& list = action.getNewActionList();
+
+        list.ActionTargetID = PTarget->id;
+        
+        actionTarget_t& target = list.getNewActionTarget();
+
+        list.ActionTargetID = PTarget->id;
+        target.reaction   = REACTION_HIT;
+        target.speceffect = SPECEFFECT_HIT;
+        target.animation  = PSkill->getAnimationID();
+        target.messageID  = PSkill->getMsg();
+
+
+        // reset the skill's message back to default
+        PSkill->setMsg(defaultMessage);
+
+        target.param = luautils::OnMobWeaponSkill(PTarget, this, PSkill);
+
+        if (msg == 0)
+        {
+            msg = PSkill->getMsg();
+        }
+        else
+        {
+            msg = PSkill->getAoEMsg();
+        }
+
+        target.messageID = msg;
+
+        if (PSkill->hasMissMsg())
+        {
+            target.reaction   = REACTION_MISS;
+            target.speceffect = SPECEFFECT_NONE;
+            if (msg = PSkill->getAoEMsg())
+                msg = 282;
+        }
+        else
+        {
+            target.reaction   = REACTION_HIT;
+        }
+
+        if (target.speceffect & SPECEFFECT_HIT)
+        {
+            target.speceffect = SPECEFFECT_RECOIL;
+            target.knockback = PSkill->getKnockback();
+            if (first && (PSkill->getSkillchain() != 0))
+            {
+                CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(PSkill->getSkillchain());
+                if (PWeaponSkill)
+                {
+                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PWeaponSkill);
+                    if (effect != SUBEFFECT_NONE)
+                    {
+                        int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param);
+                        if (skillChainDamage < 0)
+                        {
+                            target.addEffectParam = -skillChainDamage;
+                            target.addEffectMessage = 384 + effect;
+                        }
+                        else
+                        {
+                            target.addEffectParam = skillChainDamage;
+                            target.addEffectMessage = 287 + effect;
+                        }
+                        target.additionalEffect = effect;
+                    }
+                }
+                first = false;
+            }
+        }
+    }
+}
 
 void CMobEntity::DropItems()
 {

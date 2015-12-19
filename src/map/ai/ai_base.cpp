@@ -28,14 +28,17 @@ This file is part of DarkStar-server source code.
 #include "states/death_state.h"
 #include "states/despawn_state.h"
 #include "states/magic_state.h"
+#include "states/mobskill_state.h"
 #include "states/raise_state.h"
 #include "states/trigger_state.h"
 #include "states/weaponskill_state.h"
 #include "states/range_state.h"
 #include "controllers/player_controller.h"
+#include "controllers/ai_controller.h"
 #include "../entities/baseentity.h"
 #include "../entities/battleentity.h"
 #include "../entities/charentity.h"
+#include "../entities/mobentity.h"
 #include "../packets/entity_animation.h"
 
 CAIBase::CAIBase(CBaseEntity* _PEntity) :
@@ -112,6 +115,19 @@ void CAIBase::WeaponSkill(uint16 targid, uint16 wsid)
     else
     {
         Internal_WeaponSkill(targid, wsid);
+    }
+}
+
+void CAIBase::MobSkill(uint16 targid, uint16 wsid)
+{
+    auto AIController = dynamic_cast<CAIController*>(Controller.get());
+    if (AIController)
+    {
+        AIController->MobSkill(targid, wsid);
+    }
+    else
+    {
+        Internal_MobSkill(targid, wsid);
     }
 }
 
@@ -198,6 +214,14 @@ bool CAIBase::Internal_WeaponSkill(uint16 targid, uint16 wsid)
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
         return ChangeState<CWeaponSkillState>(entity, targid, wsid);
+    return false;
+}
+
+bool CAIBase::Internal_MobSkill(uint16 targid, uint16 wsid)
+{
+    auto entity {dynamic_cast<CMobEntity*>(PEntity)};
+    if (entity)
+        return ChangeState<CMobSkillState>(entity, targid, wsid);
     return false;
 }
 

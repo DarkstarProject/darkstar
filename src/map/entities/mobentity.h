@@ -111,6 +111,7 @@ enum BEHAVIOUR : uint16
     BEHAVIOUR_NO_TURN      = 0x400  // mob does not turn to face target
 };
 
+class CMobSkillState;
 
 /************************************************************************
 *                                                                       *
@@ -175,7 +176,7 @@ public:
     virtual void Die() override;
 
     virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
-    //virtual void OnMobSkillFinished(CMobSkillState&, action_t&) override;
+    virtual void OnMobSkillFinished(CMobSkillState&, action_t&);
     virtual void OnDisengage(CAttackState&) override;
     virtual void OnDeathTimer() override;
 

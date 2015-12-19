@@ -35,16 +35,20 @@ public:
 
     CWeaponSkill* GetSkill();
 
-    void SpendCost();
+    int16 GetSpentTP() { return m_spent; }
+
 protected:
     virtual bool CanChangeState() override { return false; }
     virtual bool Update(time_point tick) override;
     virtual void Cleanup(time_point tick) override;
+    void SpendCost();
 
 private:
     CBattleEntity* const m_PEntity;
     std::unique_ptr<CWeaponSkill> m_PSkill;
     time_point m_finishTime;
+    int16 m_spent;
+    duration m_castTime;
 };
 
 #endif

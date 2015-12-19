@@ -5399,10 +5399,10 @@ namespace battleutils
         return recast / 1000;
     }
 
-    int16 CalculateWeaponSkillTP(CBattleEntity* PEntity, CWeaponSkill* PWeaponSkill)
+    int16 CalculateWeaponSkillTP(CBattleEntity* PEntity, CWeaponSkill* PWeaponSkill, int16 spentTP)
     {
         //apply TP Bonus
-        int16 tp = PEntity->health.tp + PEntity->getMod(MOD_TP_BONUS);
+        int16 tp = spentTP + PEntity->getMod(MOD_TP_BONUS);
         
         if (PEntity->objtype == TYPE_PC)
         {
