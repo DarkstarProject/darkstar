@@ -47,7 +47,7 @@ INSERT INTO `guild_item_points` VALUES ('0', '4354', '3', '78', '2240', '6');
 INSERT INTO `guild_item_points` VALUES ('0', '4360', '0', '24', '1200', '0');
 INSERT INTO `guild_item_points` VALUES ('0', '4360', '0', '24', '1200', '2');
 INSERT INTO `guild_item_points` VALUES ('0', '4361', '2', '156', '2320', '2');
-INSERT INTO `guild_item_points` VALUES ('0', '4375', '4', '93', '2480', '7');
+INSERT INTO `guild_item_points` VALUES ('0', '4385', '4', '93', '2480', '7');
 INSERT INTO `guild_item_points` VALUES ('0', '4379', '1', '60', '1680', '3');
 INSERT INTO `guild_item_points` VALUES ('0', '4383', '4', '576', '3920', '2');
 INSERT INTO `guild_item_points` VALUES ('0', '4383', '4', '576', '3920', '5');
