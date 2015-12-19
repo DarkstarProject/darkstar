@@ -26,15 +26,11 @@
 
 #include <unordered_map>
 #include "battleentity.h"
-#include "../enmity_container.h"
-#include "../utils/mobutils.h"
-#include "../mob_modifier.h"
-
-#include "../mob_spell_container.h"
-#include "../mob_spell_list.h"
 
 // forward declaration
 class CMobSpellContainer;
+class CMobSpellList;
+class CEnmityContainer;
 
 #define MOB_ROAM_HOME_DISTANCE 30
 #define MOB_SOUND_RANGE 8

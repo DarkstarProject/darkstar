@@ -94,6 +94,7 @@
 #include "../utils/guildutils.h"
 #include "../utils/puppetutils.h"
 #include "../utils/jailutils.h"
+#include "../utils/mobutils.h"
 #include "../map.h"
 #include "../alliance.h"
 #include "../entities/mobentity.h"
@@ -112,6 +113,7 @@
 #include "../recast_container.h"
 #include "../latent_effect_container.h"
 #include "../instance.h"
+#include "../enmity_container.h"
 
 #include "../ai/ai_npc_dummy.h"
 #include "../ai/ai_mob_dummy.h"

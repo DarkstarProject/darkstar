@@ -40,6 +40,8 @@ This file is part of DarkStar-server source code.
 #include "../ability.h"
 #include "../status_effect_container.h"
 #include "../latent_effect_container.h"
+#include "../mob_spell_list.h"
+#include "../enmity_container.h"
 #include "../items/item_weapon.h"
 
 #include "../ai/ai_automaton_dummy.h"
@@ -1392,7 +1394,6 @@ namespace petutils
         }
 
 		FinalizePetStatistics(PMaster, PPet);
-		PPet->PetSkills = battleutils::GetMobSkillList(PPet->m_MobSkillList);
 		PPet->status = STATUS_NORMAL;
 		PPet->m_ModelSize += g_PPetList.at(PetID)->size;
 		PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;

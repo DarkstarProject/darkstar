@@ -25,6 +25,7 @@ This file is part of DarkStar-server source code.
 #include "../ai_base.h"
 #include "../../ability.h"
 #include "../../recast_container.h"
+#include "../../enmity_container.h"
 #include "../../status_effect_container.h"
 #include "../../entities/charentity.h"
 #include "../../entities/mobentity.h"

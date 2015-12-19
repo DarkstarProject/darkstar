@@ -29,6 +29,8 @@ This file is part of DarkStar-server source code.
 #include "status_effect_container.h"
 #include "recast_container.h"
 #include "treasure_pool.h"
+#include "mob_modifier.h"
+#include "enmity_container.h"
 
 #include "ai/ai_mob_dummy.h"
 #include "ai/ai_base.h"

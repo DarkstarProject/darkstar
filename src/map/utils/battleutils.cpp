@@ -49,6 +49,7 @@
 #include "../map.h"
 #include "../party.h"
 #include "../alliance.h"
+#include "../mob_modifier.h"
 #include "../recast_container.h"
 #include "../spell.h"
 #include "../trait.h"

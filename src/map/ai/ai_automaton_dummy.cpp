@@ -25,6 +25,7 @@ This file is part of DarkStar-server source code.
 
 #include "../mobskill.h"
 #include "../status_effect_container.h"
+#include "../enmity_container.h"
 
 #include "../entities/automatonentity.h"
 #include "../entities/mobentity.h"

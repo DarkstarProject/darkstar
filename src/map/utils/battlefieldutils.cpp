@@ -31,6 +31,7 @@
 #include "zoneutils.h"
 #include "itemutils.h"
 #include "battlefieldutils.h"
+#include "mobutils.h"
 #include "../battlefield.h"
 #include "../battlefield_handler.h"
 #include "../packets/entity_update.h"

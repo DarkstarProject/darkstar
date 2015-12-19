@@ -33,6 +33,8 @@ This file is part of DarkStar-server source code.
 #include "../attackround.h"
 #include "../mobskill.h"
 #include "../status_effect_container.h"
+#include "../mob_modifier.h"
+#include "../enmity_container.h"
 #include "../items/item_weapon.h"
 #include "../utils/petutils.h"
 
@@ -161,32 +163,32 @@ void CAIPetDummy::ActionAbilityStart()
     }
 
 
-    if (m_PPet->getPetType() == PETTYPE_JUG_PET) {
-        if (m_MasterCommand == MASTERCOMMAND_SIC && m_PPet->health.tp >= 1000 && m_PBattleTarget != nullptr) { //choose random tp move
-            m_MasterCommand = MASTERCOMMAND_NONE;
-            if (m_PPet->PetSkills.size() > 0) {
-                auto PMobSkill = battleutils::GetMobSkill(m_PPet->PetSkills.at(dsprand::GetRandomNumber(m_PPet->PetSkills.size())));
-                if (PMobSkill)
-                {
-                    SetCurrentMobSkill(PMobSkill);
-                    preparePetAbility(m_PBattleTarget);
-                    return;
-                }
-            }
-        }
-    }
-    else if (m_PPet->getPetType() == PETTYPE_AVATAR) {
-        for (int i = 0; i < m_PPet->PetSkills.size(); i++) {
-            auto PMobSkill = battleutils::GetMobSkill(m_PPet->PetSkills.at(i));
-            if (PMobSkill && PMobSkill->getAnimationTime() == m_MasterCommand) {
-                SetCurrentMobSkill(PMobSkill);
-                m_MasterCommand = MASTERCOMMAND_NONE;
-                preparePetAbility(m_PPet);
-                return;
-            }
-        }
-        m_MasterCommand = MASTERCOMMAND_NONE;
-    }
+    //if (m_PPet->getPetType() == PETTYPE_JUG_PET) {
+    //    if (m_MasterCommand == MASTERCOMMAND_SIC && m_PPet->health.tp >= 1000 && m_PBattleTarget != nullptr) { //choose random tp move
+    //        m_MasterCommand = MASTERCOMMAND_NONE;
+    //        if (m_PPet->PetSkills.size() > 0) {
+    //            auto PMobSkill = battleutils::GetMobSkill(m_PPet->PetSkills.at(dsprand::GetRandomNumber(m_PPet->PetSkills.size())));
+    //            if (PMobSkill)
+    //            {
+    //                SetCurrentMobSkill(PMobSkill);
+    //                preparePetAbility(m_PBattleTarget);
+    //                return;
+    //            }
+    //        }
+    //    }
+    //}
+    //else if (m_PPet->getPetType() == PETTYPE_AVATAR) {
+    //    for (int i = 0; i < m_PPet->PetSkills.size(); i++) {
+    //        auto PMobSkill = battleutils::GetMobSkill(m_PPet->PetSkills.at(i));
+    //        if (PMobSkill && PMobSkill->getAnimationTime() == m_MasterCommand) {
+    //            SetCurrentMobSkill(PMobSkill);
+    //            m_MasterCommand = MASTERCOMMAND_NONE;
+    //            preparePetAbility(m_PPet);
+    //            return;
+    //        }
+    //    }
+    //    m_MasterCommand = MASTERCOMMAND_NONE;
+    //}
     else if (m_PPet->getPetType() == PETTYPE_WYVERN) {
 
         WYVERNTYPE wyverntype = m_PPet->getWyvernType();
@@ -195,26 +197,26 @@ void CAIPetDummy::ActionAbilityStart()
             m_MasterCommand = MASTERCOMMAND_NONE;
 
             //offensive or multipurpose wyvern
-            if (m_PBattleTarget != nullptr) { //prepare elemental breaths
-                int skip = dsprand::GetRandomNumber(6);
-                int hasSkipped = 0;
+            //if (m_PBattleTarget != nullptr) { //prepare elemental breaths
+            //    int skip = dsprand::GetRandomNumber(6);
+            //    int hasSkipped = 0;
 
-                for (int i = 0; i < m_PPet->PetSkills.size(); i++) {
-                    auto PMobSkill = battleutils::GetMobSkill(m_PPet->PetSkills.at(i));
-                    if (PMobSkill && PMobSkill->getValidTargets() == TARGET_ENEMY) {
-                        if (hasSkipped == skip) {
-                            SetCurrentMobSkill(PMobSkill);
-                            break;
-                        }
-                        else {
-                            hasSkipped++;
-                        }
-                    }
-                }
+            //    for (int i = 0; i < m_PPet->PetSkills.size(); i++) {
+            //        auto PMobSkill = battleutils::GetMobSkill(m_PPet->PetSkills.at(i));
+            //        if (PMobSkill && PMobSkill->getValidTargets() == TARGET_ENEMY) {
+            //            if (hasSkipped == skip) {
+            //                SetCurrentMobSkill(PMobSkill);
+            //                break;
+            //            }
+            //            else {
+            //                hasSkipped++;
+            //            }
+            //        }
+            //    }
 
-                preparePetAbility(m_PBattleTarget);
-                return;
-            }
+            //    preparePetAbility(m_PBattleTarget);
+            //    return;
+            //}
 
         }
         else if (m_MasterCommand == MASTERCOMMAND_HEALING_BREATH && (wyverntype == WYVERNTYPE_DEFENSIVE || wyverntype == WYVERNTYPE_MULTIPURPOSE))
@@ -268,32 +270,32 @@ void CAIPetDummy::ActionAbilityStart()
                 }
             }
 
-            if (m_PBattleSubTarget != nullptr) { //target to heal
-                //get highest breath for wyverns level
-                m_PMobSkill = nullptr;
-                for (int i = 0; i < m_PPet->PetSkills.size(); i++) {
-                    auto PMobSkill = battleutils::GetMobSkill(m_PPet->PetSkills.at(i));
-                    if (PMobSkill && PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY) {
-                        if (PMobSkill->getID() == 638 &&
-                            m_PPet->PMaster->GetMLevel() < 20) { //can only using hb1
-                            SetCurrentMobSkill(PMobSkill);
-                            break;
-                        }
-                        else if (PMobSkill->getID() == 639 &&
-                            m_PPet->PMaster->GetMLevel() < 40) { //can only using hb2
-                            SetCurrentMobSkill(PMobSkill);
-                            break;
-                        }
-                        else if (PMobSkill->getID() == 640 &&
-                            m_PPet->PMaster->GetMLevel() >= 40) { //can only using hb3
-                            SetCurrentMobSkill(PMobSkill);
-                            break;
-                        }
-                    }
-                }
-                preparePetAbility(m_PBattleSubTarget);
-                return;
-            }
+            //if (m_PBattleSubTarget != nullptr) { //target to heal
+            //    //get highest breath for wyverns level
+            //    m_PMobSkill = nullptr;
+            //    for (int i = 0; i < m_PPet->PetSkills.size(); i++) {
+            //        auto PMobSkill = battleutils::GetMobSkill(m_PPet->PetSkills.at(i));
+            //        if (PMobSkill && PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY) {
+            //            if (PMobSkill->getID() == 638 &&
+            //                m_PPet->PMaster->GetMLevel() < 20) { //can only using hb1
+            //                SetCurrentMobSkill(PMobSkill);
+            //                break;
+            //            }
+            //            else if (PMobSkill->getID() == 639 &&
+            //                m_PPet->PMaster->GetMLevel() < 40) { //can only using hb2
+            //                SetCurrentMobSkill(PMobSkill);
+            //                break;
+            //            }
+            //            else if (PMobSkill->getID() == 640 &&
+            //                m_PPet->PMaster->GetMLevel() >= 40) { //can only using hb3
+            //                SetCurrentMobSkill(PMobSkill);
+            //                break;
+            //            }
+            //        }
+            //    }
+            //    preparePetAbility(m_PBattleSubTarget);
+            //    return;
+            //}
         }
     }
 
@@ -623,53 +625,6 @@ bool CAIPetDummy::PetIsHealing() {
 
 void CAIPetDummy::ActionRoaming()
 {
-    if (m_PPet->PMaster == nullptr || m_PPet->PMaster->isDead()) {
-        m_ActionType = ACTION_FALL;
-        ActionFall();
-        return;
-    }
-
-    //automaton, wyvern
-    if (m_PPet->getPetType() == PETTYPE_WYVERN || m_PPet->getPetType() == PETTYPE_AUTOMATON) {
-        if (PetIsHealing()) {
-            return;
-        }
-    }
-
-    if (m_PBattleTarget != nullptr) {
-        m_ActionType = ACTION_ENGAGE;
-        ActionEngage();
-        return;
-    }
-
-    float currentDistance = distance(m_PPet->loc.p, m_PPet->PMaster->loc.p);
-
-
-    // this is broken until pet / mob relationship gets fixed
-    // pets need to extend mob or be a mob because pet has no spell list!
-    if (m_PPet->getPetType() == PETTYPE_AVATAR && m_PPet->m_Family == 104 && m_Tick >= m_LastActionTime + 30000 && currentDistance < PET_ROAM_DISTANCE * 2)
-    {
-        int16 spellID = 108;
-        // define this so action picks it up
-        SetCurrentSpell(spellID);
-        m_PBattleSubTarget = m_PPet->PMaster;
-
-        m_ActionType = ACTION_MAGIC_START;
-        ActionMagicStart();
-        return;
-    }
-
-    if (currentDistance > PET_ROAM_DISTANCE)
-    {
-        if (currentDistance < 35.0f && m_PPathFind->PathAround(m_PPet->PMaster->loc.p, 2.0f, PATHFLAG_RUN | PATHFLAG_WALLHACK))
-        {
-            m_PPathFind->FollowPath();
-        }
-        else if (m_PPet->GetSpeed() > 0)
-        {
-            m_PPathFind->WarpTo(m_PPet->PMaster->loc.p, PET_ROAM_DISTANCE);
-        }
-    }
 }
 
 void CAIPetDummy::ActionEngage()

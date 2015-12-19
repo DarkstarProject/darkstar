@@ -102,5 +102,17 @@ bool CMobSkillState::Update(time_point tick)
 
 void CMobSkillState::Cleanup(time_point tick)
 {
-    //#TODO: interrupt an in progress ws
+    if (!IsCompleted())
+    {
+        action_t action;
+        action.id = m_PEntity->id;
+        action.actiontype = ACTION_MOBABILITY_INTERRUPT;
+
+        actionList_t& actionList = action.getNewActionList();
+        actionList.ActionTargetID = m_PEntity->id;
+
+        actionTarget_t& actionTarget = actionList.getNewActionTarget();
+
+        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE, new CActionPacket(action));
+    }
 }

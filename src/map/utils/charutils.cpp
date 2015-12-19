@@ -80,6 +80,7 @@ This file is part of DarkStar-server source code.
 #include "../universal_container.h"
 #include "../latent_effect_container.h"
 #include "../treasure_pool.h"
+#include "../mob_modifier.h"
 
 #include "../entities/charentity.h"
 #include "../entities/petentity.h"

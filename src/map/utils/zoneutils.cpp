@@ -42,6 +42,7 @@
 #include "../mob_spell_list.h"
 #include "../packets/entity_update.h"
 #include "../zone_instance.h"
+#include "../mob_modifier.h"
 
 
 std::map<uint16, CZone*> g_PZoneList;   // глобальный массив указателей на игровые зоны

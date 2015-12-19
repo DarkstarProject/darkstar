@@ -35,6 +35,7 @@
 #include "utils/zoneutils.h"
 #include "status_effect_container.h"
 #include "ai/ai_general.h"
+#include "enmity_container.h"
 
 CBattlefield::CBattlefield(CBattlefieldHandler* hand, uint16 id, BATTLEFIELDTYPE type){
 	m_Type = type;

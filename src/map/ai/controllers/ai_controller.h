@@ -59,8 +59,8 @@ protected:
     bool CanCastSpells();
     void CastSpell(uint16 spellid);
 
-    void DoCombatTick(time_point tick);
-    void DoRoamTick(time_point tick);
+    virtual void DoCombatTick(time_point tick);
+    virtual void DoRoamTick(time_point tick);
     void Wait(duration _duration);
 
 

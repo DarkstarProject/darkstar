@@ -98,15 +98,15 @@ void CAIUltimateSummon::ActionAbilityStart()
 		return;
 	}
 
-    if (m_PPet->PetSkills[0])
-    {
-        auto PMobSkill = battleutils::GetMobSkill(m_PPet->PetSkills[0]);
-        if (PMobSkill)
-        {
-            SetCurrentMobSkill(PMobSkill);
-            preparePetAbility(m_PPet);
-        }
-	}
+ //   if (m_PPet->PetSkills[0])
+ //   {
+ //       auto PMobSkill = battleutils::GetMobSkill(m_PPet->PetSkills[0]);
+ //       if (PMobSkill)
+ //       {
+ //           SetCurrentMobSkill(PMobSkill);
+ //           preparePetAbility(m_PPet);
+ //       }
+	//}
 }
 
 void CAIUltimateSummon::preparePetAbility(CBattleEntity* PTarg){
@@ -299,7 +299,7 @@ void CAIUltimateSummon::ActionAbilityFinish(){
 
         if(PTarget->objtype == TYPE_MOB && !m_PTargetFind->checkIsPlayer(PTarget) && m_PMobSkill->isDamageMsg())
         {
-            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PPet, Action.param);
+            //((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PPet, Action.param);
         }
 
 		m_PPet->m_ActionList.push_back(Action);

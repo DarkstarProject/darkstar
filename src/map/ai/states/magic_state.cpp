@@ -26,6 +26,7 @@
 #include "../ai_base.h"
 #include "../../spell.h"
 #include "../../status_effect_container.h"
+#include "../../enmity_container.h"
 #include "../../entities/battleentity.h"
 #include "../../entities/mobentity.h"
 #include "../../lua/luautils.h"
