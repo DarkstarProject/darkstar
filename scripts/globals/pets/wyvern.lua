@@ -14,15 +14,10 @@ function onMobSpawn(mob)
     end);
 
     master:addListener("ATTACK", "PET_WYVERN_ENGAGE", function(player, target, action)
-        if (mob:getTarget()) then
-        print(mob:getTarget():getID())
-        print(target:getID())
-        end
         if (mob:getTarget() == nil or target:getID() ~= mob:getTarget():getID()) then
             player:petAttack(target);
         end
     end);
-
 
     master:addListener("DISENGAGE", "PET_WYVERN_DISENGAGE", function(player)
         player:petRetreat();
