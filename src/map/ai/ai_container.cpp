@@ -27,6 +27,7 @@ This file is part of DarkStar-server source code.
 #include "states/attack_state.h"
 #include "states/death_state.h"
 #include "states/despawn_state.h"
+#include "states/item_state.h"
 #include "states/magic_state.h"
 #include "states/mobskill_state.h"
 #include "states/raise_state.h"
@@ -169,6 +170,19 @@ void CAIContainer::Trigger(uint16 targID)
     }
 }
 
+void CAIContainer::UseItem(uint16 targid, uint8 loc, uint8 slotid)
+{
+    auto PlayerController = dynamic_cast<CPlayerController*>(PEntity->PAI->GetController());
+    if (PlayerController)
+    {
+        PlayerController->UseItem(targid, loc, slotid);
+    }
+    else
+    {
+        Internal_UseItem(targid, loc, slotid);
+    }
+}
+
 bool CAIContainer::Internal_Engage(uint16 targetid)
 {
     //#TODO: pet engage/disengage
@@ -277,6 +291,13 @@ void CAIContainer::Internal_Raise()
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
         ForceChangeState<CRaiseState>(entity);
+}
+
+void CAIContainer::Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid)
+{
+    auto entity{ dynamic_cast<CBattleEntity*>(PEntity) };
+    if (entity)
+        ChangeState<CItemState>(entity, targetid, loc, slotid);
 }
 
 void CAIContainer::Reset()

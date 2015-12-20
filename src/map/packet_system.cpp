@@ -1242,33 +1242,11 @@ void SmallPacket0x037(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8  SlotID = RBUFB(data, (0x0E));
     uint8  StorageID = RBUFB(data, (0x10));
 
-    CItemUsable* PItem = (CItemUsable*)PChar->getStorage(StorageID)->GetItem(SlotID);
+    if (PChar->UContainer->GetType() != UCONTAINER_USEITEM)
+        PChar->PAI->UseItem(TargetID, StorageID, SlotID);
+    else
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 56));
 
-    if ((PItem != nullptr) && PItem->isType(ITEM_USABLE))
-    {
-        if (PItem->isType(ITEM_ARMOR))
-        {
-            //TODO: If item is locked, we need to check if its equipped..
-        }
-        else if (PItem->isSubType(ITEM_LOCKED))
-        {
-            return;
-        }
-        if (PChar->UContainer->GetType() == UCONTAINER_EMPTY)
-        {
-            PChar->UContainer->SetType(UCONTAINER_USEITEM);
-            PChar->UContainer->SetItem(0, PItem);
-
-            PChar->PBattleAI->SetCurrentAction(ACTION_ITEM_START, TargetID);
-
-            if (PChar->PBattleAI->GetCurrentAction() != ACTION_ITEM_START)
-            {
-                PChar->UContainer->Clean();
-                return;
-            }
-            PChar->PBattleAI->CheckCurrentAction(gettick());
-        }
-    }
     return;
 }
 

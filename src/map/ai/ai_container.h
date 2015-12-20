@@ -61,6 +61,7 @@ public:
     void Ability(uint16 targid, uint16 abilityid);
     void RangedAttack(uint16 targid);
     void Trigger(uint16 targid);
+    void UseItem(uint16 targid, uint8 loc, uint8 slotid);
 
     /* Internal Controller functions */
     bool Internal_Engage(uint16 targetid);
@@ -73,6 +74,7 @@ public:
     bool Internal_RangedAttack(uint16 targetid);
     void Internal_Die(duration);
     void Internal_Raise();
+    void Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid);
 
     virtual void Reset();
     void Tick(time_point _tick);
