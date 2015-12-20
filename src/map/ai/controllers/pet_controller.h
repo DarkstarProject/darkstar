@@ -42,6 +42,11 @@ public:
     virtual void DoRoamTick(time_point tick) override;
 protected:
     bool PetIsHealing();
+
+    virtual void HandleEnmity() override {}
+    virtual bool TryDeaggro() override;
+    virtual void TryLink() override {}
+
 private:
 
     CPetEntity* const PPet;

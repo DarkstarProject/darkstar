@@ -3677,7 +3677,6 @@ namespace battleutils
     void GenerateInRangeEnmity(CBattleEntity* PSource, int16 CE, int16 VE)
     {
         DSP_DEBUG_BREAK_IF(PSource == nullptr);
-        DSP_DEBUG_BREAK_IF(PSource->objtype != TYPE_PC);
 
         CCharEntity* PIterSource = nullptr;
 

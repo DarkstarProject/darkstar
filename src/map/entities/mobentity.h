@@ -254,7 +254,7 @@ protected:
 private:
 
     bool      m_RageMode;                              // Mode rage
-    time_point    m_DespawnTimer;                          // Despawn Timer to despawn mob after set duration
+    time_point    m_DespawnTimer {time_point::min()};  // Despawn Timer to despawn mob after set duration
     std::unordered_map<int, int16>     m_mobModStat;
     std::unordered_map<int, int16>     m_mobModStatSave;
 };

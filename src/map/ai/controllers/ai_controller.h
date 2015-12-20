@@ -49,8 +49,8 @@ public:
     void SetWeaponSkillEnabled(bool);
 
 protected:
-    bool TryDeaggro();
-    void TryLink();
+    virtual bool TryDeaggro();
+    virtual void TryLink();
     bool CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false);
     bool CanSeePoint(position_t pos);
     bool MobSkill(int list = 0);
@@ -60,12 +60,14 @@ protected:
     void CastSpell(uint16 spellid);
 
     virtual void DoCombatTick(time_point tick);
+
+    virtual void HandleEnmity();
+
     virtual void DoRoamTick(time_point tick);
     void Wait(duration _duration);
 
-
+    CBattleEntity* PTarget {nullptr};
 private:
-    CBattleEntity* PTarget;
 
     CMobEntity* const PMob;
 

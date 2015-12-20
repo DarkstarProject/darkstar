@@ -330,7 +330,7 @@ void CAIContainer::ClearStateStack()
 
 bool CAIContainer::IsSpawned()
 {
-    return PEntity->status != STATUS_DISAPPEAR;
+    return PEntity->status != STATUS_DISAPPEAR && !IsCurrentState<CDespawnState>();
 }
 
 bool CAIContainer::IsRoaming()

@@ -98,3 +98,21 @@ bool CPetController::PetIsHealing()
     }
     return isMasterHealing;
 }
+
+bool CPetController::TryDeaggro()
+{
+    if (PTarget == nullptr)
+    {
+        return true;
+    }
+
+    // target is no longer valid, so wipe them from our enmity list
+    if (PTarget->isDead() ||
+        PTarget->animation == ANIMATION_CHOCOBO ||
+        PTarget->loc.zone->GetID() != PPet->loc.zone->GetID() ||
+        PPet->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect())
+    {
+        return true;
+    }
+    return false;
+}

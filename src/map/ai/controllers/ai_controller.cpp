@@ -45,6 +45,7 @@ CAIController::CAIController(CMobEntity* PEntity) :
 
 void CAIController::Tick(time_point tick)
 {
+    m_Tick = tick;
     if (tick > m_WaitTime)
     {
         if (PMob->PAI->IsEngaged())
@@ -486,23 +487,7 @@ void CAIController::CastSpell(uint16 spellid)
 
 void CAIController::DoCombatTick(time_point tick)
 {
-    m_Tick = tick;
-    if (PMob->getMobMod(MOBMOD_SHARE_TARGET) > 0 && PMob->loc.zone->GetEntity(PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB))
-    {
-        ChangeTarget(static_cast<CMobEntity*>(PMob->loc.zone->GetEntity(PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB))->GetBattleTargetID());
-
-        if (!PMob->GetBattleTargetID())
-        {
-            auto PTarget {PMob->PEnmityContainer->GetHighestEnmity()};
-            ChangeTarget(PTarget ? PTarget->targid : 0);
-        }
-    }
-    else
-    {
-        auto PTarget {PMob->PEnmityContainer->GetHighestEnmity()};
-        ChangeTarget(PTarget ? PTarget->targid : 0);
-    }
-
+    HandleEnmity();
     PTarget = static_cast<CBattleEntity*>(PMob->loc.zone->GetEntity(PMob->GetBattleTargetID()));
 
     if (TryDeaggro())
@@ -511,9 +496,9 @@ void CAIController::DoCombatTick(time_point tick)
         return;
     }
 
-    float currentDistance = distance(PMob->loc.p, PTarget->loc.p);
-
     TryLink();
+
+    float currentDistance = distance(PMob->loc.p, PTarget->loc.p);
 
     if (!(PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
     {
@@ -602,6 +587,27 @@ void CAIController::DoCombatTick(time_point tick)
             }
         }
     }
+}
+
+void CAIController::HandleEnmity()
+{
+    if (PMob->getMobMod(MOBMOD_SHARE_TARGET) > 0 && PMob->loc.zone->GetEntity(PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB))
+    {
+        ChangeTarget(static_cast<CMobEntity*>(PMob->loc.zone->GetEntity(PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB))->GetBattleTargetID());
+
+        if (!PMob->GetBattleTargetID())
+        {
+            auto PTarget {PMob->PEnmityContainer->GetHighestEnmity()};
+            ChangeTarget(PTarget ? PTarget->targid : 0);
+        }
+    }
+    else
+    {
+        auto PTarget {PMob->PEnmityContainer->GetHighestEnmity()};
+        ChangeTarget(PTarget ? PTarget->targid : 0);
+    }
+
+
 }
 
 void CAIController::DoRoamTick(time_point tick)

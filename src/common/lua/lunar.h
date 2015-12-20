@@ -118,7 +118,7 @@ public:
 
   // Добавление в стек пользовательского типа данных, содержащего указатель на
   // T obj
-  static int push(lua_State *L, T obj) {
+  static int push(lua_State *L, T& obj) {
     luaL_getmetatable(L, T::className);  // поиск мета-таблицы в реестре.
     if (lua_isnil(L, -1)) luaL_error(L, "%s missing metatable", T::className);
     int mt = lua_gettop(L);
@@ -143,6 +143,28 @@ public:
     lua_replace(L, mt);
     lua_settop(L, mt);
     return mt;  // index  userdata содержит указатель на T *obj
+  }
+
+  static int push(lua_State *L, T&& obj) {
+      luaL_getmetatable(L, T::className);  // поиск мета-таблицы в реестре.
+      if (lua_isnil(L, -1)) luaL_error(L, "%s missing metatable", T::className);
+      int mt = lua_gettop(L);
+      subtable(L, mt, "userdata", "v");
+
+      user_t *ud = 0;
+      lua_checkstack(L, 3);
+      ud = static_cast<user_t*>(lua_newuserdata(L, sizeof(obj)));  // create new userdata
+      ud->pT = std::move(obj);  // размещение указателя в user_t
+      lua_pushlightuserdata(L, static_cast<void*>(&ud->pT));
+      lua_pushvalue(L, -2);  // dup userdata
+      lua_settable(L, -4);   // lookup[key] = userdata
+      if (ud) {
+          lua_pushvalue(L, mt);
+          lua_setmetatable(L, -2);
+      }
+      lua_replace(L, mt);
+      lua_settop(L, mt);
+      return mt;  // index  userdata содержит указатель на T *obj
   }
 
   // возврат T* из стека

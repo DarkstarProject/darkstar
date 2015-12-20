@@ -81,7 +81,7 @@ bool CAbilityState::CanChangeState()
 
 bool CAbilityState::Update(time_point tick)
 {
-    if (CanUseAbility())
+    if (!IsCompleted() && CanUseAbility())
     {
         action_t action;
         m_PEntity->OnAbility(*this, action);

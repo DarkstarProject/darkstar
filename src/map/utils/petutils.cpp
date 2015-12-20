@@ -263,9 +263,7 @@ namespace petutils
 
         if (!PPet->StatusEffectContainer->HasPreventActionEffect())
         {
-            PPet->PBattleAI->SetBattleTarget(PTarget);
-            if (!(PPet->objtype == TYPE_PET && ((CPetEntity*)PPet)->m_PetID == PETID_ODIN))
-                PPet->PBattleAI->SetCurrentAction(ACTION_ENGAGE);
+            PPet->PAI->Engage(PTarget->targid);
         }
     }
 
@@ -276,7 +274,7 @@ namespace petutils
 
         if (!PPet->StatusEffectContainer->HasPreventActionEffect())
         {
-            PPet->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+            PPet->PAI->Disengage();
         }
     }
 
