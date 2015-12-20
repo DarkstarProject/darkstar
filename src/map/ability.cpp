@@ -51,9 +51,19 @@ void CAbility::setID(uint16 id)
 	m_ID = id;
 }
 
+void CAbility::setMobSkillID(uint16 id)
+{
+    m_mobskillId = id;
+}
+
 uint16 CAbility::getID()
 {
 	return m_ID;
+}
+
+uint16 CAbility::getMobSkillID()
+{
+    return m_mobskillId;
 }
 
 void CAbility::setJob(JOBTYPE Job)
@@ -282,6 +292,7 @@ namespace ability
 	    const int8* Query =
             "SELECT "
               "abilityId,"
+              "IFNULL(min_id,0),"
               "name,"
               "job,"
               "level,"
@@ -299,7 +310,9 @@ namespace ability
               "meritModID, "
 			  "addType, "
 			  "required_expansion "
-            "FROM abilities  "
+            "FROM abilities LEFT JOIN (SELECT mob_skill_name, MIN(mob_skill_id) AS min_id "
+            "FROM mob_skills GROUP BY mob_skill_name) mob_skills_1 ON "
+            "abilities.name = mob_skills_1.mob_skill_name "
             "WHERE job > 0 AND job < %u AND abilityId < %u "
             "ORDER BY job, level ASC";
 
@@ -310,7 +323,7 @@ namespace ability
 		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 				int8* expansionCode;
-				Sql_GetData(SqlHandle, 16, &expansionCode, nullptr);
+				Sql_GetData(SqlHandle, 18, &expansionCode, nullptr);
 
 				if (luautils::IsExpansionEnabled(expansionCode) == false){
 					continue;
@@ -318,22 +331,23 @@ namespace ability
 
 			    CAbility* PAbility = new CAbility(Sql_GetIntData(SqlHandle,0));
 
-			    PAbility->setName(Sql_GetData(SqlHandle,1));
-			    PAbility->setJob((JOBTYPE)Sql_GetIntData(SqlHandle,2));
-			    PAbility->setLevel(Sql_GetIntData(SqlHandle,3));
-			    PAbility->setValidTarget(Sql_GetIntData(SqlHandle,4));
-			    PAbility->setRecastTime(Sql_GetIntData(SqlHandle,5));
-                PAbility->setMessage(Sql_GetIntData(SqlHandle,6));
-              //PAbility->setMessage(Sql_GetIntData(SqlHandle,7));
-			    PAbility->setAnimationID(Sql_GetIntData(SqlHandle,8));
-			    PAbility->setAnimationTime(std::chrono::milliseconds(Sql_GetUIntData(SqlHandle,9)));
-			    PAbility->setRange(Sql_GetFloatData(SqlHandle,10));
-			    PAbility->setAOE(Sql_GetIntData(SqlHandle,11));
-			    PAbility->setRecastId(Sql_GetIntData(SqlHandle,12));
-			    PAbility->setCE(Sql_GetIntData(SqlHandle,13));
-			    PAbility->setVE(Sql_GetIntData(SqlHandle,14));
-			    PAbility->setMeritModID(Sql_GetIntData(SqlHandle,15));
-				PAbility->setAddType(Sql_GetUIntData(SqlHandle,16));
+                PAbility->setMobSkillID(Sql_GetIntData(SqlHandle, 1));
+			    PAbility->setName(Sql_GetData(SqlHandle,2));
+			    PAbility->setJob((JOBTYPE)Sql_GetIntData(SqlHandle,3));
+			    PAbility->setLevel(Sql_GetIntData(SqlHandle,4));
+			    PAbility->setValidTarget(Sql_GetIntData(SqlHandle,5));
+			    PAbility->setRecastTime(Sql_GetIntData(SqlHandle,6));
+                PAbility->setMessage(Sql_GetIntData(SqlHandle,7));
+              //PAbility->setMessage(Sql_GetIntData(SqlHandle,8));
+			    PAbility->setAnimationID(Sql_GetIntData(SqlHandle,9));
+			    PAbility->setAnimationTime(std::chrono::milliseconds(Sql_GetIntData(SqlHandle,10)));
+			    PAbility->setRange(Sql_GetFloatData(SqlHandle,11));
+			    PAbility->setAOE(Sql_GetIntData(SqlHandle,12));
+			    PAbility->setRecastId(Sql_GetIntData(SqlHandle,13));
+			    PAbility->setCE(Sql_GetIntData(SqlHandle,14));
+			    PAbility->setVE(Sql_GetIntData(SqlHandle,15));
+			    PAbility->setMeritModID(Sql_GetIntData(SqlHandle,16));
+				PAbility->setAddType(Sql_GetUIntData(SqlHandle,17));
 
 			    PAbilityList[PAbility->getID()] = PAbility;
 			    PAbilitiesList[PAbility->getJob()].push_back(PAbility);
