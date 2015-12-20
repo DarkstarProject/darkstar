@@ -1304,6 +1304,7 @@ void CBattleEntity::OnDisengage(CAttackState& s)
         animation = ANIMATION_NONE;
     }
     updatemask |= UPDATE_HP;
+    PAI->EventHandler.triggerListener("DISENGAGE", this);
 }
 
 void CBattleEntity::OnChangeTarget(CBattleEntity* PTarget)
@@ -1466,6 +1467,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
             break;
         }
     }
+    PAI->EventHandler.triggerListener("ATTACK", this, PTarget, &action);
     /////////////////////////////////////////////////////////////////////////////////////////////
     // End of attack loop
     /////////////////////////////////////////////////////////////////////////////////////////////

@@ -206,8 +206,7 @@ private:
   // Создание нового объекта и добавление его на вершину стека
   static int new_T(lua_State *L) {
     lua_remove(L, 1);   // удаление 'self'
-    T *obj = new T(L);  // Вызов конструктора
-    push(L, obj, true); // gc_T удалит этот объект когда надо
+    push(L, T(L)); 
     return 1;           
   }
 

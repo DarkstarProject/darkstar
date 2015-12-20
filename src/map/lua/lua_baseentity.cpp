@@ -8540,13 +8540,15 @@ inline int32 CLuaBaseEntity::getTarget(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    if (((CBattleEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget())
+
+    auto PBattleTarget {m_PBaseEntity->GetEntity(static_cast<CBattleEntity*>(m_PBaseEntity)->GetBattleTargetID())};
+    if (PBattleTarget)
     {
         lua_getglobal(L, CLuaBaseEntity::className);
         lua_pushstring(L, "new");
         lua_gettable(L, -2);
         lua_insert(L, -2);
-        lua_pushlightuserdata(L, ((CBattleEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget());
+        lua_pushlightuserdata(L, PBattleTarget);
         lua_pcall(L, 2, 1, 0);
         return 1;
     }
@@ -10075,13 +10077,13 @@ int32 CLuaBaseEntity::addListener(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isfunction(L, 2));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isstring(L, 3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isstring(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isfunction(L, 3));
 
     auto eventName = lua_tostring(L, 1);
-    auto identifier = lua_tostring(L, 3);
+    auto identifier = lua_tostring(L, 2);
 
-    m_PBaseEntity->PAI->EventHandler.addListener(eventName, luautils::register_fp(2), identifier);
+    m_PBaseEntity->PAI->EventHandler.addListener(eventName, luautils::register_fp(3), identifier);
 
     return 0;
 }

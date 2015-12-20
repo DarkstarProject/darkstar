@@ -36,6 +36,7 @@ CAttackState::CAttackState(CBattleEntity* PEntity, uint16 targid) :
     PEntity->animation = ANIMATION_ATTACK;
     PEntity->updatemask |= UPDATE_HP;
     UpdateTarget();
+    m_PEntity->PAI->EventHandler.triggerListener("ENGAGE", m_PEntity, GetTarget());
 }
 
 bool CAttackState::Update(time_point tick)

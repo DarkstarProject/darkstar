@@ -175,8 +175,13 @@ bool CAIContainer::Internal_Engage(uint16 targetid)
     auto PTarget {dynamic_cast<CBattleEntity*>(PEntity->GetEntity(targetid))};
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
 
+    if (entity->GetBattleTargetID())
+    {
+        ChangeTarget(targetid);
+        return true;
+    }
     //#TODO: use valid target stuff from spell
-    if (entity && !entity->GetBattleTargetID() && PTarget && !PTarget->isDead())
+    if (entity && PTarget && !PTarget->isDead())
     {
         //#TODO: remove m_battleTarget if possible (need to check disengage)
         entity->SetBattleTargetID(targetid);

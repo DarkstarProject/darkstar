@@ -70,7 +70,7 @@ bool CAIController::TryDeaggro()
     }
 
     // target is no longer valid, so wipe them from our enmity list
-    if (PTarget->isDead() ||
+    if (!PTarget || PTarget->isDead() ||
         PTarget->animation == ANIMATION_CHOCOBO ||
         PTarget->loc.zone->GetID() != PMob->loc.zone->GetID() ||
         PMob->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect())
