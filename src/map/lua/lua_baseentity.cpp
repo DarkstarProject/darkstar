@@ -7402,7 +7402,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
         case 5: actiontype = ACTION_ITEM_FINISH; break;
         case 6: actiontype = ACTION_JOBABILITY_FINISH; break;
         case 11: actiontype = ACTION_MOBABILITY_FINISH; break;
-        case 13: actiontype = ACTION_RAISE_MENU_SELECTION; break;
+        case 13: actiontype = ACTION_PET_MOBABILITY_FINISH; break;
         case 14: actiontype = ACTION_DANCE; break;
     }
 
@@ -7417,7 +7417,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
     Action.messageID = 0;
 
     // If you use ACTION_MOBABILITY_FINISH, the first param = anim, the second param = skill id.
-    if (actiontype == ACTION_MOBABILITY_FINISH || actiontype == ACTION_RAISE_MENU_SELECTION)
+    if (actiontype == ACTION_MOBABILITY_FINISH || actiontype == ACTION_PET_MOBABILITY_FINISH)
     {
         CBattleEntity* PTarget = (CBattleEntity*)PChar->loc.zone->GetEntity(PChar->m_TargID);
         if (PTarget == nullptr)

@@ -109,6 +109,7 @@ CActionPacket::CActionPacket(action_t& action)
     }
     break;
     case ACTION_MOBABILITY_FINISH:
+    case ACTION_PET_MOBABILITY_FINISH:
     {
         uint16 id = action.actionid;
 

@@ -591,13 +591,13 @@ void SetupJob(CMobEntity* PMob)
                 // only used while at range
                 PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
                 // catapult
-                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 402);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 658);
             }
             else
             {
                 // all other rangers
                 PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
-                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 16);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
                 PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 8);
             }
 
@@ -606,7 +606,7 @@ void SetupJob(CMobEntity* PMob)
             break;
         case JOB_NIN:
             PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 9);
-            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 16);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
             PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
@@ -615,10 +615,10 @@ void SetupJob(CMobEntity* PMob)
             break;
         case JOB_BST:
             PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 70);
-            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 761);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1017);
             break;
         case JOB_PUP:
-            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1645);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1901);
             PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 720);
             break;
         case JOB_BLM:
@@ -684,7 +684,7 @@ void SetupRoaming(CMobEntity* PMob)
 
     if(PMob->m_roamFlags & ROAMFLAG_AMBUSH)
     {
-        PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 22);
+        PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 278);
         PMob->setMobMod(MOBMOD_SPECIAL_COOL, 1);
         PMob->m_specialFlags |= SPECIALFLAG_HIDDEN;
         // always stay close to spawn
@@ -880,13 +880,13 @@ void SetupMaat(CMobEntity* PMob)
         case JOB_DRK:
         case JOB_PLD:
             // Give shield bash
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 780);
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1036);
             PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
             PMob->setMobMod(MOBMOD_SPECIAL_DELAY, 40);
             break;
         case JOB_BST:
             // Call beast skill
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 761);
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1017);
             PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
             break;
     }

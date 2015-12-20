@@ -652,6 +652,7 @@ public:
     bool        isConal();
 
     uint16      getID();
+    uint16      getMobSkillID();
     JOBTYPE     getJob();
     uint8       getLevel();
     uint16      getAnimationID();
@@ -669,6 +670,7 @@ public:
     uint16      getMeritModID();
 
     void        setID(uint16 id);
+    void        setMobSkillID(uint16 id);
     void        setJob(JOBTYPE Job);
     void        setLevel(uint8 level);
     void        setAnimationID(uint16 animationID);
@@ -705,6 +707,7 @@ private:
     uint16      m_VE;
     uint16      m_meritModID;
     string_t    m_name;
+    uint16      m_mobskillId;
 };
 
 /************************************************************************

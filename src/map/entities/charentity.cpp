@@ -1131,11 +1131,8 @@ m_ActionList.push_back(Action);
                 else {
                     addMP(-PAbility->getAnimationID()); // TODO: ...
                 }
-                //this->PPet->PBattleAI->SetBattleSubTarget(PTarget);
-
-                //((CAIPetDummy*)this->PPet->PBattleAI)->m_MasterCommand = PAbility->getID();
                 //#TODO: probably needs to be in a script, since the pet abilities actually have their own IDs
-                PPet->PAI->WeaponSkill(PTarget->targid, PAbility->getID());
+                PPet->PAI->MobSkill(PTarget->targid, PAbility->getMobSkillID());
 
                 charutils::UpdateHealth(this);
             }

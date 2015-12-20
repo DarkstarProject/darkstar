@@ -642,7 +642,8 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     PSkill->setHPP(GetHPP());
 
     action.id = id;
-    action.actiontype = ACTION_MOBABILITY_FINISH;
+    action.actiontype = objtype == TYPE_PET ? ACTION_PET_MOBABILITY_FINISH : ACTION_MOBABILITY_FINISH;
+    action.actionid = PSkill->getID();
 
     uint16 msg = 0;
     uint16 defaultMessage = PSkill->getMsg();
@@ -666,7 +667,15 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         // reset the skill's message back to default
         PSkill->setMsg(defaultMessage);
 
-        target.param = luautils::OnMobWeaponSkill(PTarget, this, PSkill);
+        if (objtype == TYPE_PET)
+        {
+            target.animation = PSkill->getPetAnimationID();
+            target.param = luautils::OnPetAbility(PTarget, this, PSkill, PMaster);
+        }
+        else
+        {
+            target.param = luautils::OnMobWeaponSkill(PTarget, this, PSkill);
+        }
 
         if (msg == 0)
         {

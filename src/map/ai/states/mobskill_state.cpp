@@ -38,7 +38,7 @@ CMobSkillState::CMobSkillState(CMobEntity* PEntity, uint16 targid, uint16 wsid) 
         throw CStateInitException(nullptr);
     }
 
-    auto PTarget = m_PEntity->IsValidTarget(m_targid, m_PSkill->getValidTargets(), m_errorMsg);
+    auto PTarget = m_PEntity->IsValidTarget(m_targid, skill->getValidTargets(), m_errorMsg);
 
     if (!PTarget && m_errorMsg)
     {
@@ -53,7 +53,7 @@ CMobSkillState::CMobSkillState(CMobEntity* PEntity, uint16 targid, uint16 wsid) 
     {
         action_t action;
         action.id = m_PEntity->id;
-        action.actiontype = ACTION_WEAPONSKILL_START;
+        action.actiontype = ACTION_MOBABILITY_START;
 
         actionList_t& actionList = action.getNewActionList();
         actionList.ActionTargetID = PTarget->id;
@@ -83,7 +83,7 @@ void CMobSkillState::SpendCost()
 
 bool CMobSkillState::Update(time_point tick)
 {
-    if (tick > m_finishTime && !IsCompleted())
+    if (tick > GetEntryTime() + m_castTime && !IsCompleted())
     {
         action_t action;
         m_PEntity->OnMobSkillFinished(*this, action);
