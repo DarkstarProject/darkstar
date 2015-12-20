@@ -41,9 +41,6 @@
 #include "lua_zone.h"
 #include "lua_item.h"
 
-#define lua_prepscript(n,...) int8 File[255]; int32 oldtop = lua_gettop(LuaHandle); \
-                              snprintf( File, sizeof(File), n, ##__VA_ARGS__);
-
 /************************************************************************
 *																		*
 *																		*
@@ -117,6 +114,8 @@ namespace luautils
     typename std::enable_if_t<std::is_floating_point<T>::value> pushArg(T arg) { lua_pushnumber(LuaHandle, arg); }
     template<class T>
     typename std::enable_if_t<std::is_same<bool, T>::value> pushArg(T arg) { lua_pushboolean(LuaHandle, arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_same<nullptr_t, T>::value> pushArg(T arg) { lua_pushnil(LuaHandle); }
 
     void pushFunc(int lua_func, int index = 0);
     void callFunc(int nargs);

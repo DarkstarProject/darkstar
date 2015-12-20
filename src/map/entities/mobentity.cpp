@@ -580,6 +580,7 @@ void CMobEntity::Spawn()
             }
         }
     }
+    luautils::OnMobSpawn(this);
 }
 
 void CMobEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action)
@@ -891,6 +892,8 @@ void CMobEntity::Die()
     {
         PPet->Die();
     }
+    luautils::OnMobDeath(this, nullptr);
+    CBattleEntity::Die();
 }
 
 void CMobEntity::OnDisengage(CAttackState& state)

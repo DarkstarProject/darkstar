@@ -5874,7 +5874,7 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
         PPet->m_SpawnPoint = nearPosition(PMob->loc.p, 2.2f, M_PI);
 
         // setup AI
-        PPet->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+        PPet->Spawn();
 
     }
     return 0;
@@ -10090,12 +10090,10 @@ int32 CLuaBaseEntity::removeListener(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isstring(L, 2));
 
-    auto eventName = lua_tostring(L, 1);
-    auto identifier = lua_tostring(L, 2);
+    auto identifier = lua_tostring(L, 1);
 
-    m_PBaseEntity->PAI->EventHandler.removeListener(eventName, identifier);
+    m_PBaseEntity->PAI->EventHandler.removeListener(identifier);
 
     return 0;
 }

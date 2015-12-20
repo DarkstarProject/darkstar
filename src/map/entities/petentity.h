@@ -34,7 +34,8 @@ enum PETTYPE
 	PETTYPE_CHARMED_MOB       = 3,
 	PETTYPE_AUTOMATON         = 4,
 	PETTYPE_ADVENTURING_FELLOW= 5,
-	PETTYPE_CHOCOBO           = 6
+	PETTYPE_CHOCOBO           = 6,
+    PETTYPE_TRUST             = 7
 };
 
 enum WYVERNTYPE
@@ -54,6 +55,7 @@ public:
     bool isBstPet();
 	uint8 m_Element;
 	uint32 m_PetID;
+    std::string GetScriptName();
 
     WYVERNTYPE getWyvernType();
     void UpdateEntity() override;

@@ -65,6 +65,7 @@ void CBaseEntity::Spawn()
     status = allegiance == ALLEGIANCE_MOB ? STATUS_MOB : STATUS_NORMAL;
     ResetLocalVars();
     PAI->Reset();
+    PAI->EventHandler.triggerListener("SPAWN", this);
 }
 
 const int8* CBaseEntity::GetName()

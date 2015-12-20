@@ -504,15 +504,6 @@ void LoadMOBList()
                 mobutils::InitializeMob(PMob, GetZone(ZoneID));
 
                 GetZone(ZoneID)->InsertMOB(PMob);
-
-                if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
-                {
-                    PMob->Spawn();
-                }
-                else
-                {
-                    PMob->PAI->Despawn();
-                }
             }
         }
     }
@@ -525,6 +516,15 @@ void LoadMOBList()
             luautils::OnMobInitialize(PMob);
             PMob->saveModifiers();
             PMob->saveMobModifiers();
+
+            if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
+            {
+                PMob->Spawn();
+            }
+            else
+            {
+                PMob->PAI->Despawn();
+            }
         });
     });
 

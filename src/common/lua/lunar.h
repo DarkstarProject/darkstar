@@ -3,7 +3,7 @@
 /*Связыватель объектов C++ с объектами Lua*/
 template <typename T> class Lunar {
 
-  /* User type - contains a wrapper object (CLuaType) to a real object */
+  /*Структура инкапсулирования объекта C++ в объект Lua*/
   struct user_t
   {
 	  T pT; 
@@ -117,50 +117,62 @@ public:
   }
 
   // Добавление в стек пользовательского типа данных, содержащего указатель на
-  // T obj
-  static int push(lua_State *L, T& obj) {
+  // T *obj
+  static int push(lua_State *L, T *obj, bool gc=false) {
+    if (!obj) 
+	{ 
+		lua_pushnil(L); 
+		return 0; 
+	}
     luaL_getmetatable(L, T::className);  // поиск мета-таблицы в реестре.
     if (lua_isnil(L, -1)) luaL_error(L, "%s missing metatable", T::className);
     int mt = lua_gettop(L);
     subtable(L, mt, "userdata", "v");
     
 	user_t *ud =
-      static_cast<user_t*>(pushuserdata(L, &obj, sizeof(user_t)));
+      static_cast<user_t*>(pushuserdata(L, obj));
     if (ud) {
-      ud->pT = obj;  // размещение указателя в user_t
       lua_pushvalue(L, mt);
       lua_setmetatable(L, -2);
-      //not needed with wrapper objects (they are not created on the heap)
-      //if (gc == false) {
-      //  lua_checkstack(L, 3);
-      //  subtable(L, mt, "do not trash", "k");
-      //  lua_pushvalue(L, -2);
-      //  lua_pushboolean(L, 1);
-      //  lua_settable(L, -3);
-      //  lua_pop(L, 1);
-      //}
+      if (gc == false) {
+        lua_checkstack(L, 3);
+        subtable(L, mt, "do not trash", "k");
+        lua_pushvalue(L, -2);
+        lua_pushboolean(L, 1);
+        lua_settable(L, -3);
+        lua_pop(L, 1);
+      }
     }
     lua_replace(L, mt);
     lua_settop(L, mt);
     return mt;  // index  userdata содержит указатель на T *obj
   }
 
-  static int push(lua_State *L, T&& obj) {
+  static int push(lua_State *L, T&& obj, bool gc = false) {
       luaL_getmetatable(L, T::className);  // поиск мета-таблицы в реестре.
       if (lua_isnil(L, -1)) luaL_error(L, "%s missing metatable", T::className);
       int mt = lua_gettop(L);
       subtable(L, mt, "userdata", "v");
 
-      user_t *ud = 0;
       lua_checkstack(L, 3);
-      ud = static_cast<user_t*>(lua_newuserdata(L, sizeof(obj)));  // create new userdata
-      ud->pT = std::move(obj);  // размещение указателя в user_t
-      lua_pushlightuserdata(L, static_cast<void*>(&ud->pT));
-      lua_pushvalue(L, -2);  // dup userdata
-      lua_settable(L, -4);   // lookup[key] = userdata
+      user_t* ud = static_cast<user_t*>(lua_newuserdata(L, sizeof(user_t)));  // create new userdata
+
       if (ud) {
+          ud->pT = std::move(obj);
+          lua_pushlightuserdata(L, &ud->pT);
+          lua_pushvalue(L, -2);  // dup userdata
+          lua_settable(L, -4);   // lookup[key] = userdata
+
           lua_pushvalue(L, mt);
           lua_setmetatable(L, -2);
+          if (gc == false) {
+              lua_checkstack(L, 3);
+              subtable(L, mt, "do not trash", "k");
+              lua_pushvalue(L, -2);
+              lua_pushboolean(L, 1);
+              lua_settable(L, -3);
+              lua_pop(L, 1);
+          }
       }
       lua_replace(L, mt);
       lua_settop(L, mt);
@@ -194,17 +206,18 @@ private:
   // Создание нового объекта и добавление его на вершину стека
   static int new_T(lua_State *L) {
     lua_remove(L, 1);   // удаление 'self'
-    push(L, T(L)/*, false*/); 
+    T *obj = new T(L);  // Вызов конструктора
+    push(L, obj, true); // gc_T удалит этот объект когда надо
     return 1;           
   }
 
-  // not needed with wrapper objects (they are always destroyed by scope)
+  // сборщик мусора
   static int gc_T(lua_State *L) {
-    //if (luaL_getmetafield(L, 1, "do not trash")) {
-    //  lua_pushvalue(L, 1);  // dup userdata
-    //  lua_gettable(L, -2);
-    //  if (!lua_isnil(L, -1)) return 0;  // do not delete object
-    //}
+    if (luaL_getmetafield(L, 1, "do not trash")) {
+      lua_pushvalue(L, 1);  // dup userdata
+      lua_gettable(L, -2);
+      if (!lua_isnil(L, -1)) return 0;  // do not delete object
+    }
     //user_t *ud = static_cast<user_t*>(lua_touserdata(L, 1));
     //T *obj = ud->pT;
     //if (obj) delete obj;  
@@ -248,15 +261,16 @@ private:
     }
   }
 
-  static void *pushuserdata(lua_State *L, void *key, size_t sz) {
-    void *ud = 0;
+  static void *pushuserdata(lua_State *L, T *key) {
+    user_t *ud = 0;
     lua_pushlightuserdata(L, key);
     lua_gettable(L, -2);     // lookup[key]
     if (lua_isnil(L, -1)) {
       lua_pop(L, 1);         // drop nil
       lua_checkstack(L, 3);
-      ud = lua_newuserdata(L, sz);  // create new userdata
-      lua_pushlightuserdata(L, key);
+      ud = static_cast<user_t*>(lua_newuserdata(L, sizeof(user_t)));  // create new userdata
+      ud->pT = *key;
+      lua_pushlightuserdata(L, &ud->pT);
       lua_pushvalue(L, -2);  // dup userdata
       lua_settable(L, -4);   // lookup[key] = userdata
     }

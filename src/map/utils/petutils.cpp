@@ -758,13 +758,12 @@ namespace petutils
         {
             PPet->PBattleAI = new CAIPetDummy(PPet);
         }
-        PPet->PBattleAI->SetLastActionTime(gettick());
-        PPet->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 
         PMaster->PPet = PPet;
         PPet->PMaster = PMaster;
 
         PMaster->loc.zone->InsertPET(PPet);
+        PPet->Spawn();
         if (PMaster->objtype == TYPE_PC)
         {
             charutils::BuildingCharPetAbilityTable((CCharEntity*)PMaster, PPet, PetID);
@@ -783,9 +782,6 @@ namespace petutils
             PPet->health.tp = ((CCharEntity*)PMaster)->petZoningInfo.petTP;
             PPet->health.hp = ((CCharEntity*)PMaster)->petZoningInfo.petHP;
         }
-
-
-
     }
 
     void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)

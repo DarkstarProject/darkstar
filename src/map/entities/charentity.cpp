@@ -531,10 +531,12 @@ bool CCharEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasi
     else if (!isFaceing(this->loc.p, PTarget->loc.p, 40))
     {
         errMsg = std::make_unique<CMessageBasicPacket>(this, PTarget, 0, 0, MSGBASIC_UNABLE_TO_SEE_TARG);
+        return false;
     }
     else if (dist > PTarget->m_ModelSize)
     {
         errMsg = std::make_unique<CMessageBasicPacket>(this, PTarget, 0, 0, MSGBASIC_TARG_OUT_OF_RANGE);
+        return false;
     }
     return true;
 }
@@ -1715,7 +1717,8 @@ bool CCharEntity::IsMobOwner(CBattleEntity* PBattleTarget)
 
 void CCharEntity::HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>& msg)
 {
-    pushPacket(msg.release());
+    if (msg)
+        pushPacket(msg.release());
 }
 
 void CCharEntity::OnDeathTimer()
@@ -1864,6 +1867,7 @@ void CCharEntity::Die(duration _duration)
 
     if (this->getMod(MOD_RERAISE_III) > 0)
         m_hasRaise = 3;
+    CBattleEntity::Die();
 }
 
 void CCharEntity::Raise()

@@ -38,7 +38,8 @@ CDespawnState::CDespawnState(CBaseEntity* _PEntity, duration spawnTime) :
         _PEntity->PAI->QueueAction(queueAction_t(3s, false, [](CBaseEntity* PEntity) {
             PEntity->status = STATUS_DISAPPEAR;
             //#event despawn
-            //luautils::OnMobDespawn(PEntity);
+            luautils::OnMobDespawn(PEntity);
+            PEntity->PAI->EventHandler.triggerListener("DESPAWN", PEntity);
         }));
     }
 }

@@ -34,6 +34,7 @@
 #include "../ai/ai_container.h"
 #include "../ai/states/attack_state.h"
 #include "../ai/states/magic_state.h"
+#include "../ai/states/death_state.h"
 #include "../ai/states/weaponskill_state.h"
 #include "../attackround.h"
 #include "../weapon_skill.h"
@@ -86,12 +87,12 @@ CBattleEntity::~CBattleEntity()
 
 bool CBattleEntity::isDead()
 {
-    return (health.hp <= 0 || status == STATUS_DISAPPEAR);
+    return (health.hp <= 0 || status == STATUS_DISAPPEAR || PAI->IsCurrentState<CDeathState>());
 }
 
 bool CBattleEntity::isAlive()
 {
-    return !(health.hp <= 0 || status == STATUS_DISAPPEAR);
+    return !isDead();
 }
 
 bool CBattleEntity::isInDynamis()
@@ -1105,6 +1106,12 @@ void CBattleEntity::Spawn()
     animation = ANIMATION_NONE;
     m_OwnerID.clean();
     HideName(false);
+}
+
+void CBattleEntity::Die()
+{
+    //#TODO - get killer
+    PAI->EventHandler.triggerListener("DEATH", this, nullptr);
 }
 
 void CBattleEntity::OnDeathTimer()

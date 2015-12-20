@@ -58,6 +58,40 @@ bool CPetEntity::isBstPet()
   return getPetType()==PETTYPE_JUG_PET || objtype == TYPE_MOB;
 }
 
+std::string CPetEntity::GetScriptName()
+{
+    switch (getPetType())
+    {
+        case PETTYPE_AVATAR:
+            return "avatar";
+            break;
+        case PETTYPE_WYVERN:
+            return "wyvern";
+            break;
+        case PETTYPE_JUG_PET:
+            return "jug";
+            break;
+        case PETTYPE_CHARMED_MOB:
+            return "charmed";
+            break;
+        case PETTYPE_AUTOMATON:
+            return "automaton";
+            break;
+        case PETTYPE_ADVENTURING_FELLOW:
+            return "fellow";
+            break;
+        case PETTYPE_CHOCOBO:
+            return "chocobo";
+            break;
+        case PETTYPE_TRUST:
+            return GetName();
+            break;
+        default:
+            return "";
+            break;
+    }
+}
+
 WYVERNTYPE CPetEntity::getWyvernType()
 {
   DSP_DEBUG_BREAK_IF(PMaster == nullptr);

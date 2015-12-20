@@ -569,7 +569,7 @@ public:
     virtual bool    CanUseSpell(CSpell*);
 
     virtual void    Spawn() override;
-    virtual void    Die() {}
+    virtual void    Die();
     uint16 GetBattleTargetID();
     void SetBattleTargetID(uint16 id) { m_battleTarget = id; }
 

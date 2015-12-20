@@ -99,6 +99,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
         }
         break;
         case TYPE_MOB:
+        case TYPE_PET:
         {
             CMobEntity* PMob = (CMobEntity*)PEntity;
 
@@ -121,10 +122,12 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
                     WBUFB(data, (0x1F)) = PEntity->animation;
                     WBUFB(data, (0x2A)) = PEntity->animationsub;
                     WBUFL(data, (0x21)) = PMob->m_flags;
+                    WBUFB(data, (0x25)) = PMob->health.hp > 0 ? 0x08 : 0;
                     WBUFB(data, (0x27)) = PMob->m_name_prefix;
                     if (PMob->PMaster != nullptr && PMob->PMaster->objtype == TYPE_PC)
                         WBUFB(data, (0x27)) |= 0x08;
                     WBUFB(data, (0x28)) |= (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR) ? 0x10 : 0x00);
+                    WBUFB(data, (0x28)) = PMob->health.hp > 0 && PMob->animation == ANIMATION_DEATH ? 0x08 : 0;
                     WBUFB(data, (0x29)) = PEntity->allegiance;
                     WBUFB(data, (0x2B)) = PEntity->namevis;
                 }
@@ -138,37 +141,6 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
                 //depending on size of name, this can be 0x20, 0x22, or 0x24
                 this->size = 0x24;
                 memcpy(data + (0x34), PEntity->GetName(), (PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
-            }
-        }
-        break;
-        case TYPE_PET:
-        {
-            //if(((CPetEntity*)PEntity)->PBattleAI->GetCurrentAction()==ACTION_FALL){
-            //	WBUFB(data,(0x21)) = 0x99;
-            //  WBUFB(data,(0x25)) = 0x08;
-            //  WBUFB(data,(0x27)) = 0x08 | ((CPetEntity*)PEntity)->m_name_prefix;
-            //	WBUFB(data,(0x29)) = PEntity->allegiance;
-            //  WBUFB(data,(0x28)) = (((CBattleEntity*)PEntity)->health.hp > 0 ? 0x08 : 0x00);
-            //	WBUFB(data,(0x1E)) = 0x00; //0% HP
-            //	WBUFB(data,(0x1F)) = ANIMATION_DEATH;
-            //	WBUFB(data,(0x20)) = STATUS_NORMAL;
-            //}
-            //else
-            {
-                if (updatemask & UPDATE_HP)
-                {
-                    WBUFB(data, (0x1E)) = ((CPetEntity*)PEntity)->GetHPP();
-                    WBUFB(data, (0x1F)) = PEntity->animation;
-                    WBUFB(data, (0x2A)) = PEntity->animationsub;
-                    WBUFB(data, (0x27)) = 0x08 | ((CPetEntity*)PEntity)->m_name_prefix;
-                    WBUFB(data, (0x28)) |= (((CPetEntity*)PEntity)->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR) ? 0x10 : 0x00);
-                    WBUFB(data, (0x29)) = PEntity->allegiance;
-                }
-                if (updatemask & UPDATE_NAME)
-                {
-                    this->size = 0x24;
-                    memcpy(data + (0x34), PEntity->GetName(), (PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
-                }
             }
         }
         break;

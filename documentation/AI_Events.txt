@@ -11,3 +11,7 @@ WEAPONSKILL_STATE_EXIT - Entity, Skillid
 MAGIC_START - Entity, Spell, action
 MAGIC_USE - Entity, Spell, action
 MAGIC_STATE_EXIT - Entity, Spell
+
+SPAWN - Entity
+DESPAWN - Entity
+DEATH - Entity, Killer

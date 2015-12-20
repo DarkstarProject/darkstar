@@ -28,23 +28,21 @@ void CAIEventHandler::addListener(std::string eventname, int lua_func, std::stri
     eventListeners[eventname].emplace_back(identifier, lua_func);
 }
 
-void CAIEventHandler::removeListener(std::string eventname, std::string identifier)
+void CAIEventHandler::removeListener(std::string identifier)
 {
-    eventListeners[eventname].erase(std::remove_if(eventListeners[eventname].begin(), eventListeners[eventname].end(), [&identifier](const ai_event_t& event)
+    for (auto&& eventListener : eventListeners)
     {
-        if (identifier == event.identifier)
+        eventListener.second.erase(std::remove_if(eventListener.second.begin(), eventListener.second.end(), [&identifier](const ai_event_t& event)
         {
-            if (event.lua_func)
+            if (identifier == event.identifier)
             {
-                luautils::unregister_fp(event.lua_func);
+                if (event.lua_func)
+                {
+                    luautils::unregister_fp(event.lua_func);
+                }
+                return true;
             }
-            return true;
-        }
-        return false;
-    }), eventListeners[eventname].end());
-
-    if (eventListeners[eventname].empty())
-    {
-        eventListeners.erase(eventname);
+            return false;
+        }), eventListener.second.end());
     }
 }
