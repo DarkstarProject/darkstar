@@ -10,15 +10,15 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
 
     -- Pull base stats.
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-	
-	-- Base power.  May need more research.
+    
+    -- Base power.  May need more research.
     local power = 35;
 
     -- Duration, including resistance.  Unconfirmed.

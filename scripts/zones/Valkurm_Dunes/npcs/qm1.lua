@@ -22,12 +22,12 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:getFreeSlotsCount() > 0 and player:hasItem(503) == false) then
-		player:addItem(503);
-		player:messageSpecial(ITEM_OBTAINED,503);
-	else
-		player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,503);
-	end
+    if (player:getFreeSlotsCount() > 0 and player:hasItem(503) == false) then
+        player:addItem(503);
+        player:messageSpecial(ITEM_OBTAINED,503);
+    else
+        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,503);
+    end
 
 end;
 

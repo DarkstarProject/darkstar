@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC:  Five of Clubs
---	Working 100%
+--    Area: Port Windurst
+--    NPC:  Five of Clubs
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0xdd);
+    player:startEvent(0xdd);
 end;
 
 -----------------------------------

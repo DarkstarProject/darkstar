@@ -24,13 +24,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then
-		if (player:sendGuild(60431, 1, 23, 7)) then
-			player:showText(npc,TSUTSUROON_SHOP_DIALOG);
-		end
-	else
-		-- player:startEvent(0x0096);
-	end
+    if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then
+        if (player:sendGuild(60431, 1, 23, 7)) then
+            player:showText(npc,TSUTSUROON_SHOP_DIALOG);
+        end
+    else
+        -- player:startEvent(0x0096);
+    end
 end;
 
 -----------------------------------

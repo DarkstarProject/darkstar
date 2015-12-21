@@ -15,8 +15,8 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-	local dis = target:dispelStatusEffect();
-	local dis2 = target:dispelStatusEffect();
+    local dis = target:dispelStatusEffect();
+    local dis2 = target:dispelStatusEffect();
     local num = 0;
 
     if (dis ~= EFFECT_NONE) then
@@ -32,6 +32,6 @@ function onMobWeaponSkill(target, mob, skill)
         skill:setMsg(MSG_NO_EFFECT);
     end
 
-	return num;
+    return num;
 
 end

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4651
---	Scroll of Protect
---	Teaches the white magic Protect
+--    ID: 4651
+--    Scroll of Protect
+--    Teaches the white magic Protect
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(43);
+    return target:canLearnSpell(43);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(43);
+    target:addSpell(43);
 end;

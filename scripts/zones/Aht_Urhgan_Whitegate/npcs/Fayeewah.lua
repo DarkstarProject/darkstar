@@ -21,11 +21,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+    
 player:showText(npc,FAYEEWAH_SHOP_DIALOG);
 
-stock = {0x15c2,68,		-- Cup of Chai
-	 0x15c4,2075}		-- Irmik Helvasi
+stock = {0x15c2,68,        -- Cup of Chai
+     0x15c4,2075}        -- Irmik Helvasi
  
 showShop(player, STATIC, stock);
 end; 

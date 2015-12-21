@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Southern San d'Oria
---	NPC: Katharina
+--    Area: Southern San d'Oria
+--    NPC: Katharina
 --  General Info NPC
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 require("scripts/globals/settings");
 function onTrigger(player,npc)
-	player:startEvent(0x377);
+    player:startEvent(0x377);
 end;
 
 -----------------------------------

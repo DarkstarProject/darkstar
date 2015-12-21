@@ -1,8 +1,8 @@
 -----------------------------------
---	Area: Windurst Waters
---	NPC:  Machitata
---	Involved in Quest: Hat in Hand
---	Working 100%
+--    Area: Windurst Waters
+--    NPC:  Machitata
+--    Involved in Quest: Hat in Hand
+--    Working 100%
 --  @zone = 238
 --  @pos = 163 0 -22
 -----------------------------------
@@ -27,15 +27,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	function testflag(set,flag)
-		return (set % (2*flag) >= flag)
-	end
-	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
-	if ((hatstatus == 1  or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),1) == false) then
-		player:messageSpecial(7121); -- Show Off Hat
-		player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+1);
-		player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
-	end
+    function testflag(set,flag)
+        return (set % (2*flag) >= flag)
+    end
+    hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
+    if ((hatstatus == 1  or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),1) == false) then
+        player:messageSpecial(7121); -- Show Off Hat
+        player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+1);
+        player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
+    end
 end; 
 
 -----------------------------------

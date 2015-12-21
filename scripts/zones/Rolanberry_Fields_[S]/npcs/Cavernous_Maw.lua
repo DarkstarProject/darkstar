@@ -64,6 +64,6 @@ function onEventFinish(player,csid,option)
         if (hasMawActivated(player,0) == false) then
             player:addNationTeleport(MAW,2);
         end
-        toMaw(player,4);		
+        toMaw(player,4);        
     end
 end;

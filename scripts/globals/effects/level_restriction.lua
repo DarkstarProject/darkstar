@@ -1,7 +1,7 @@
 -----------------------------------
 --  
--- 	EFFECT_LEVEL_RESTRICTION
--- 	
+--     EFFECT_LEVEL_RESTRICTION
+--     
 -----------------------------------
 
 -----------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:levelRestriction(effect:getPower());
+    target:levelRestriction(effect:getPower());
 end;
 
 -----------------------------------
@@ -24,5 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:levelRestriction(0);
+    target:levelRestriction(0);
 end;

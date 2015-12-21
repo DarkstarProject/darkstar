@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Temenos N T	
+-- Area: Temenos N T    
 -- NPC:  Telchines_Dragoon
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-		
+        
 end;
 
 -----------------------------------
@@ -27,5 +27,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-	GetNPCByID(16928770+453):setStatus(STATUS_NORMAL);
+    GetNPCByID(16928770+453):setStatus(STATUS_NORMAL);
 end;

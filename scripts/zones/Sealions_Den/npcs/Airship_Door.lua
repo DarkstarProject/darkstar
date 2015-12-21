@@ -31,7 +31,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	
+    
 end;
 
 -----------------------------------

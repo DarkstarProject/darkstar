@@ -13,13 +13,13 @@ require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_MAX_HP_DOWN;
+    local typeEffect = EFFECT_MAX_HP_DOWN;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 30, 0, 60));
 
-	return typeEffect;
+    return typeEffect;
 end;

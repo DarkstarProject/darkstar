@@ -30,30 +30,30 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-	
-	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		if (player:hasCompleteQuest(OUTLANDS,TRIAL_BY_FIRE)) then
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
-		else
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
-		end
-	elseif (leavecode == 4) then
-		player:startEvent(0x7d02);
-	end
-	
+    
+    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+        if (player:hasCompleteQuest(OUTLANDS,TRIAL_BY_FIRE)) then
+            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
+        else
+            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
+        end
+    elseif (leavecode == 4) then
+        player:startEvent(0x7d02);
+    end
+    
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-	
+    
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-	
-	if (csid == 0x7d01) then
-		player:delKeyItem(TUNING_FORK_OF_FIRE);
-		player:addKeyItem(WHISPER_OF_FLAMES);
-		player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_FLAMES);
-	end
-	
+    
+    if (csid == 0x7d01) then
+        player:delKeyItem(TUNING_FORK_OF_FIRE);
+        player:addKeyItem(WHISPER_OF_FLAMES);
+        player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_FLAMES);
+    end
+    
 end;

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4183
---	Konron Hassen
---	A fountain-type firework appears on the ground
+--    ID: 4183
+--    Konron Hassen
+--    A fountain-type firework appears on the ground
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------

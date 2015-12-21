@@ -41,17 +41,17 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 
-	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-	
-		if (player:hasCompletedMission(ZILART,ARK_ANGELS)) then
-			player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,4,1);		-- winning CS (allow player to skip)
-		else
-			player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,4,0);		-- winning CS (allow player to skip)
-		end
-		
-	elseif (leavecode == 4) then
-		player:startEvent(0x7d02, 0, 0, 0, 0, 0, instance:getEntrance(), 180);	-- player lost
-	end
+    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+    
+        if (player:hasCompletedMission(ZILART,ARK_ANGELS)) then
+            player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,4,1);        -- winning CS (allow player to skip)
+        else
+            player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,4,0);        -- winning CS (allow player to skip)
+        end
+        
+    elseif (leavecode == 4) then
+        player:startEvent(0x7d02, 0, 0, 0, 0, 0, instance:getEntrance(), 180);    -- player lost
+    end
 end;
 
 function onEventUpdate(player,csid,option)

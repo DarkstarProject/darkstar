@@ -21,11 +21,11 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local message = MSG_MISS;
-	local typeEffect = EFFECT_AMNESIA;
-	local power = 1;
-	local duration = 60;
+    local message = MSG_MISS;
+    local typeEffect = EFFECT_AMNESIA;
+    local power = 1;
+    local duration = 60;
 
-	skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
-	return typeEffect;
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
+    return typeEffect;
 end;

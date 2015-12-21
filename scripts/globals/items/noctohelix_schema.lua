@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 6048
---	Noctohelix Schema
---	Teaches the black magic Noctohelix
+--    ID: 6048
+--    Noctohelix Schema
+--    Teaches the black magic Noctohelix
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(284);
+    return target:canLearnSpell(284);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(284);
+    target:addSpell(284);
 end;

@@ -27,17 +27,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	OldGauntlets = player:hasKeyItem(OLD_GAUNTLETS);
-	ShadowFlames = player:hasKeyItem(SHADOW_FLAMES);
-	BorghertzCS = player:getVar("BorghertzCS");
-	
-	if (OldGauntlets == true and ShadowFlames == false and BorghertzCS == 1) then 
-		player:startEvent(0x0014);
-	elseif (OldGauntlets == true and ShadowFlames == false and BorghertzCS == 2) then 
-		player:startEvent(0x0031);
-	elseif (OldGauntlets == true and ShadowFlames == true) then 
-		player:startEvent(0x0030);
-	end
+    OldGauntlets = player:hasKeyItem(OLD_GAUNTLETS);
+    ShadowFlames = player:hasKeyItem(SHADOW_FLAMES);
+    BorghertzCS = player:getVar("BorghertzCS");
+    
+    if (OldGauntlets == true and ShadowFlames == false and BorghertzCS == 1) then 
+        player:startEvent(0x0014);
+    elseif (OldGauntlets == true and ShadowFlames == false and BorghertzCS == 2) then 
+        player:startEvent(0x0031);
+    elseif (OldGauntlets == true and ShadowFlames == true) then 
+        player:startEvent(0x0030);
+    end
 end;
 
 -----------------------------------
@@ -56,22 +56,22 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x0014 and option == 1) then 
-		player:setVar("BorghertzCS",2);
-	elseif (csid == 0x0030) then 
-		NumQuest = 43 + player:getVar("BorghertzAlreadyActiveWithJob");
-		NumHands = 13960 + player:getVar("BorghertzAlreadyActiveWithJob");
-		if (player:getFreeSlotsCount() == 0) then 
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,NumHands);
-		else 
-			player:addItem(NumHands);
-			player:messageSpecial(ITEM_OBTAINED,NumHands);
-			player:delKeyItem(OLD_GAUNTLETS);
-			player:delKeyItem(SHADOW_FLAMES);
-			player:setVar("BorghertzCS",0);
-			player:setVar("BorghertzAlreadyActiveWithJob",0);
-			player:addFame(JEUNO,30);
-			player:completeQuest(JEUNO,NumQuest);
-		end
-	end
+    if (csid == 0x0014 and option == 1) then 
+        player:setVar("BorghertzCS",2);
+    elseif (csid == 0x0030) then 
+        NumQuest = 43 + player:getVar("BorghertzAlreadyActiveWithJob");
+        NumHands = 13960 + player:getVar("BorghertzAlreadyActiveWithJob");
+        if (player:getFreeSlotsCount() == 0) then 
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,NumHands);
+        else 
+            player:addItem(NumHands);
+            player:messageSpecial(ITEM_OBTAINED,NumHands);
+            player:delKeyItem(OLD_GAUNTLETS);
+            player:delKeyItem(SHADOW_FLAMES);
+            player:setVar("BorghertzCS",0);
+            player:setVar("BorghertzAlreadyActiveWithJob",0);
+            player:addFame(JEUNO,30);
+            player:completeQuest(JEUNO,NumQuest);
+        end
+    end
 end;

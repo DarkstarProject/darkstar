@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4829
---	Scroll of Poison II
---	Teaches the black magic Poison II
+--    ID: 4829
+--    Scroll of Poison II
+--    Teaches the black magic Poison II
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(221);
+    return target:canLearnSpell(221);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(221);
+    target:addSpell(221);
 end;

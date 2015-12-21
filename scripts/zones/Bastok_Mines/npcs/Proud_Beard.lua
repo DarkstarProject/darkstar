@@ -14,7 +14,7 @@ require("scripts/globals/events/harvest_festivals");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	onHalloweenTrade(player,trade,npc)
+    onHalloweenTrade(player,trade,npc)
 end;
 
 -----------------------------------

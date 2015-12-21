@@ -16,6 +16,6 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer, ally)
-	--SetServerVariable("[PH]Ix_aern_drk", 0);
+    --SetServerVariable("[PH]Ix_aern_drk", 0);
 
 end;

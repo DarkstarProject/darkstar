@@ -16,15 +16,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:getXPos() < 8) then
-		player:startEvent(0x006a);
-	else
-		player:startEvent(0x006b);
-	end
-	
-	return 1;
-	
+    
+    if (player:getXPos() < 8) then
+        player:startEvent(0x006a);
+    else
+        player:startEvent(0x006b);
+    end
+    
+    return 1;
+    
 end;
 
 -----------------------------------

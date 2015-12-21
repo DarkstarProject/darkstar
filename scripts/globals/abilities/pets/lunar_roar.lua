@@ -13,8 +13,8 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onPetAbility(target, pet, skill)
-	target:dispelStatusEffect();
-	target:dispelStatusEffect();
-	skill:setMsg(0);
-	return 0;
+    target:dispelStatusEffect();
+    target:dispelStatusEffect();
+    skill:setMsg(0);
+    return 0;
 end

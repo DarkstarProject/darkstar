@@ -1,7 +1,7 @@
 -----------------------------------
 --
--- 	EFFECT_HELIX
--- 	
+--     EFFECT_HELIX
+--     
 -----------------------------------
 
 require("scripts/globals/status");
@@ -21,16 +21,16 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-	local dmg = utils.stoneskin(target, effect:getPower());
+    local dmg = utils.stoneskin(target, effect:getPower());
 
-	if (dmg > 0) then
-		target:delHP(dmg);
-		target:wakeUp();
-	end
+    if (dmg > 0) then
+        target:delHP(dmg);
+        target:wakeUp();
+    end
 
-	if (effect:getTick() == 3000) then
-		effect:setTick(9000);
-	end
+    if (effect:getTick() == 3000) then
+        effect:setTick(9000);
+    end
 end;
 
 -----------------------------------

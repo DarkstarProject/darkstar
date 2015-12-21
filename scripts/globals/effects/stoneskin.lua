@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:setMod(MOD_STONESKIN, effect:getPower());
+    target:setMod(MOD_STONESKIN, effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:setMod(MOD_STONESKIN, 0);
+    target:setMod(MOD_STONESKIN, 0);
 end;

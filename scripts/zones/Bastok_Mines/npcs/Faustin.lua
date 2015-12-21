@@ -15,7 +15,7 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	onHalloweenTrade(player,trade,npc)
+    onHalloweenTrade(player,trade,npc)
 end;
 
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4886
---	Scroll of Absorb-ACC
---	Teaches the black magic Absorb-ACC
+--    ID: 4886
+--    Scroll of Absorb-ACC
+--    Teaches the black magic Absorb-ACC
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(242);
+    return target:canLearnSpell(242);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(242);
+    target:addSpell(242);
 end;

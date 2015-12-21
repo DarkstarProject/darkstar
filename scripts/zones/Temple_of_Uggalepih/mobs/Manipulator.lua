@@ -62,18 +62,18 @@ local path =
 };
 
 function onMobSpawn(mob)
-	onMobRoam(mob);
+    onMobRoam(mob);
 end;
 
 function onPath(mob)
-	pathfind.patrol(mob, path);
+    pathfind.patrol(mob, path);
 end;
 
 function onMobRoam(mob)
-	-- move to start position if not moving
-	if (mob:isFollowingPath() == false) then
-		mob:pathThrough(pathfind.first(path));
-	end
+    -- move to start position if not moving
+    if (mob:isFollowingPath() == false) then
+        mob:pathThrough(pathfind.first(path));
+    end
 end;
 
 function onMobDeath(mob,killer,ally)

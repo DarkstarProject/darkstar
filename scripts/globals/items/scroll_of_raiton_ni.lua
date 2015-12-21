@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4941
---	Scroll of Raiton: Ni
---	Teaches the ninjutsu Raiton: Ni
+--    ID: 4941
+--    Scroll of Raiton: Ni
+--    Teaches the ninjutsu Raiton: Ni
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(333);
+    return target:canLearnSpell(333);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(333);
+    target:addSpell(333);
 end;

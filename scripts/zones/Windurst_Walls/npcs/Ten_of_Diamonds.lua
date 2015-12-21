@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Walls
---	NPC:  Ten of Diamonds
---	Working 100%
+--    Area: Windurst Walls
+--    NPC:  Ten of Diamonds
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x106);
+    player:startEvent(0x106);
 end;
 
 -----------------------------------

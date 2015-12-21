@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4931
---	Scroll of Hyoton: Ichi
---	Teaches the ninjutsu Hyoton: Ichi
+--    ID: 4931
+--    Scroll of Hyoton: Ichi
+--    Teaches the ninjutsu Hyoton: Ichi
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(323);
+    return target:canLearnSpell(323);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(323);
+    target:addSpell(323);
 end;

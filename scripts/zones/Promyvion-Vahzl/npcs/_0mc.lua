@@ -23,12 +23,12 @@ end;
 function onTrigger(player,npc) 
 
     if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==1) then
-		SpawnMob(16867330,240):updateClaim(player);
-	elseif (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==2) then	
-		player:startEvent(0x0033);
-	else
-		player:messageSpecial(OVERFLOWING_MEMORIES);  
-	end
+        SpawnMob(16867330,240):updateClaim(player);
+    elseif (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==2) then    
+        player:startEvent(0x0033);
+    else
+        player:messageSpecial(OVERFLOWING_MEMORIES);  
+    end
 end;
 
 -----------------------------------
@@ -44,8 +44,8 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)	
+function onEventFinish(player,csid,option)    
     if (csid == 0x0033) then
-	  player:setVar("PromathiaStatus",3);
-	end
+      player:setVar("PromathiaStatus",3);
+    end
 end;

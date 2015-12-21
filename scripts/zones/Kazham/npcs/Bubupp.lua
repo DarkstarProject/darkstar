@@ -59,7 +59,7 @@ function onTrigger(player,npc)
         elseif (progress >= 6 or failed >= 7) then
             player:startEvent(0x00F7); -- happy with giant fish bones
         end
-	else
+    else
         player:startEvent(0x00CA);
     end
 end;

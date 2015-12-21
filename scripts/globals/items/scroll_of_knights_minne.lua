@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4997
---	Scroll of Knights Minne
---	Teaches the song Mages Ballad
+--    ID: 4997
+--    Scroll of Knights Minne
+--    Teaches the song Mages Ballad
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(389);
+    return target:canLearnSpell(389);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(389);
+    target:addSpell(389);
 end;

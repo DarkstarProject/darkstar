@@ -22,24 +22,24 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	Mission = player:getCurrentMission(player:getNation());
-	MissionStatus = player:getVar("MissionStatus");
-	
-	if (Mission == JOURNEY_TO_BASTOK and MissionStatus == 3 or 
-	   Mission == JOURNEY_TO_BASTOK2 and MissionStatus == 8) then
-		player:startEvent(0x0163);
-	elseif (Mission == THE_THREE_KINGDOMS_BASTOK and MissionStatus == 3 or 
-		   Mission == THE_THREE_KINGDOMS_BASTOK2 and MissionStatus == 8) then
-		player:startEvent(0x0163,1);
-	elseif (Mission == JOURNEY_TO_BASTOK or 
-		   Mission == JOURNEY_TO_BASTOK2 or 
-		   Mission == THE_THREE_KINGDOMS_BASTOK2 and MissionStatus < 11) then
-		player:startEvent(0x0164);
-	else
-		player:startEvent(0x015e);
-	end
-	
+    
+    Mission = player:getCurrentMission(player:getNation());
+    MissionStatus = player:getVar("MissionStatus");
+    
+    if (Mission == JOURNEY_TO_BASTOK and MissionStatus == 3 or 
+       Mission == JOURNEY_TO_BASTOK2 and MissionStatus == 8) then
+        player:startEvent(0x0163);
+    elseif (Mission == THE_THREE_KINGDOMS_BASTOK and MissionStatus == 3 or 
+           Mission == THE_THREE_KINGDOMS_BASTOK2 and MissionStatus == 8) then
+        player:startEvent(0x0163,1);
+    elseif (Mission == JOURNEY_TO_BASTOK or 
+           Mission == JOURNEY_TO_BASTOK2 or 
+           Mission == THE_THREE_KINGDOMS_BASTOK2 and MissionStatus < 11) then
+        player:startEvent(0x0164);
+    else
+        player:startEvent(0x015e);
+    end
+    
 end;
 
 -----------------------------------
@@ -58,13 +58,13 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-	
-	if (csid == 0x0163) then
-		if (player:getVar("MissionStatus") == 3) then
-			player:setVar("MissionStatus",4);
-		else
-			player:setVar("MissionStatus",9);
-		end
-	end
-	
+    
+    if (csid == 0x0163) then
+        if (player:getVar("MissionStatus") == 3) then
+            player:setVar("MissionStatus",4);
+        else
+            player:setVar("MissionStatus",9);
+        end
+    end
+    
 end;

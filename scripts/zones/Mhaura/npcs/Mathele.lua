@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Mhaura
---	NPC: Mathele
---	Standard Info NPC
+--    Area: Mhaura
+--    NPC: Mathele
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0130);
+    player:startEvent(0x0130);
 end;
 
 -----------------------------------

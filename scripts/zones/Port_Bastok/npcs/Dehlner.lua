@@ -26,11 +26,11 @@ function onTrigger(player,npc)
 
 ForemansBestFriend = player:getQuestStatus(BASTOK,A_FOREMAN_S_BEST_FRIEND);
 
-	if (ForemansBestFriend == QUEST_ACCEPTED) then
-		player:startEvent(0x006f);
-	else 
-		player:startEvent(0x002e);
-	end
+    if (ForemansBestFriend == QUEST_ACCEPTED) then
+        player:startEvent(0x006f);
+    else 
+        player:startEvent(0x002e);
+    end
 end; 
 
 

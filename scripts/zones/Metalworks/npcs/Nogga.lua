@@ -21,13 +21,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+    
 player:showText(npc,NOGGA_SHOP_DIALOG);
 
-stock = {0x43A4,675,2,		-- Bomb Arm
+stock = {0x43A4,675,2,        -- Bomb Arm
 
-	 0x43A1,1083,3,		-- Grenade
-	 0x0ae8,92,3}		-- Catalytic Oil
+     0x43A1,1083,3,        -- Grenade
+     0x0ae8,92,3}        -- Catalytic Oil
  
 showNationShop(player, BASTOK, stock);
 end; 

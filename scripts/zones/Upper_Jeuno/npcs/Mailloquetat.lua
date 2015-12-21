@@ -25,11 +25,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getFameLevel(JEUNO) >= 4 and player:getVar("saveMySisterVar") == 1) then 
-		player:startEvent(0x009f); -- For "Save my Sister" quest
-	else
-		player:startEvent(0x0019); -- Standard dialog
-	end
+    if (player:getFameLevel(JEUNO) >= 4 and player:getVar("saveMySisterVar") == 1) then 
+        player:startEvent(0x009f); -- For "Save my Sister" quest
+    else
+        player:startEvent(0x0019); -- Standard dialog
+    end
 end; 
 
 -----------------------------------
@@ -48,9 +48,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x009f) then 
-		player:setVar("saveMySisterVar", 2);
-	end
+    if (csid == 0x009f) then 
+        player:setVar("saveMySisterVar", 2);
+    end
 end;
 
 

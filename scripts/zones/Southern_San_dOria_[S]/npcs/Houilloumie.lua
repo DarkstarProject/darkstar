@@ -18,7 +18,7 @@ end;
 
 function onTrigger(player,npc)
 player:startEvent(0x67); -- it says player:startEvent(0x67)
-	-- the player:startEvent basically means start CutScene
+    -- the player:startEvent basically means start CutScene
 end;
 
 -----------------------------------

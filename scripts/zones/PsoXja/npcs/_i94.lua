@@ -23,17 +23,17 @@ end;
 
 function onTrigger(player,npc) 
 
-	local Z=player:getZPos();
-	
-	if (Z >= -261) then
-		if (player:hasKeyItem(595)==true) then -- Blue Bracelet
-			player:startEvent(0x003d);
-		else
-			player:messageSpecial(ARCH_GLOW_BLUE);	
-		end	
-	elseif (Z <= -262) then
-		player:messageSpecial(CANNOT_OPEN_SIDE);
-	end
+    local Z=player:getZPos();
+    
+    if (Z >= -261) then
+        if (player:hasKeyItem(595)==true) then -- Blue Bracelet
+            player:startEvent(0x003d);
+        else
+            player:messageSpecial(ARCH_GLOW_BLUE);    
+        end    
+    elseif (Z <= -262) then
+        player:messageSpecial(CANNOT_OPEN_SIDE);
+    end
 
 end;
 
@@ -50,5 +50,5 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option,npc)	
+function onEventFinish(player,csid,option,npc)    
 end;

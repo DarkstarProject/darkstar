@@ -73,12 +73,12 @@ function onTrigger(player,npc)
             for coffer = 1, table.getn (ARMOURY_CRATES_LIST_TEMENOS), 2 do
                 if (ARMOURY_CRATES_LIST_TEMENOS[coffer+1][5] == MimicID) then
                     GetNPCByID(16928768+ARMOURY_CRATES_LIST_TEMENOS[coffer]):setStatus(STATUS_DISAPPEAR);
-                end	  
+                end      
             end
         else
             player:BCNMSetLoot(lootID, InstanceRegion, CofferID);
             player:getBCNMloot();
-        end	
+        end    
     elseif (CofferType == cRESTORE) then 
         player:RestoreAndHealOnBattlefield(InstanceRegion);
     elseif (CofferType == cMIMIC) then 

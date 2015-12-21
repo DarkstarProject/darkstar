@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Woods
---	NPC:  Chihpi Kapirapehro
---	Working 100%
+--    Area: Windurst Woods
+--    NPC:  Chihpi Kapirapehro
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x1ad);
+    player:startEvent(0x1ad);
 end;
 
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC: Blank Card
---	Working 100%
+--    Area: Port Windurst
+--    NPC: Blank Card
+--    Working 100%
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;

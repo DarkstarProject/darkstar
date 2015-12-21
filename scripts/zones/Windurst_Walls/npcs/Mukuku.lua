@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Walls
---	NPC:  Mukuku
---	Working 100%
+--    Area: Windurst Walls
+--    NPC:  Mukuku
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x141);
+    player:startEvent(0x141);
 end;
 
 -----------------------------------

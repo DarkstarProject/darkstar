@@ -21,14 +21,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+    
 player:showText(npc,BAJAHB_SHOP_DIALOG);
 
-stock = {0x3088,10260,	--Iron Mask
-	0x3108,15840,	--Chainmail
-	0x3188,8460,	--Chain Mittens
-	0x3208,12600,	--Chain Hose
-	0x3288,7740}	--Greaves
+stock = {0x3088,10260,    --Iron Mask
+    0x3108,15840,    --Chainmail
+    0x3188,8460,    --Chain Mittens
+    0x3208,12600,    --Chain Hose
+    0x3288,7740}    --Greaves
  
 showShop(player, STATIC, stock);
 end; 

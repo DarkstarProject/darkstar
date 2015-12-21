@@ -26,8 +26,8 @@ function onSpellCast(caster,target,spell)
     if (potency > 350) then
         potency = 350;
     end
-	
-	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+    
+        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         potency = potency * 2;
     end
 
@@ -40,8 +40,8 @@ function onSpellCast(caster,target,spell)
     local duration = 180 * applyResistanceEffect(caster,spell,target,dMND,35,merits*2,EFFECT_SLOW);
 
     if (duration >= 60) then --Do it!
-	
-	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+    
+        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         duration = duration * 2;
     end
     caster:delStatusEffect(EFFECT_SABOTEUR);

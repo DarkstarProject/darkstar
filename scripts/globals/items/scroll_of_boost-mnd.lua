@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5099
---	Scroll of Boost-MND
---	Teaches the white magic Boost-MND
+--    ID: 5099
+--    Scroll of Boost-MND
+--    Teaches the white magic Boost-MND
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(484);
+    return target:canLearnSpell(484);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(484);
+    target:addSpell(484);
 end;

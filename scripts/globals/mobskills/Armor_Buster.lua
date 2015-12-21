@@ -13,7 +13,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-	local phase = mob:getLocalVar("battlePhase");
+    local phase = mob:getLocalVar("battlePhase");
 
     if (phase >= 3) then -- only proto-ultima has the var at a value other than 0. Note that the phase values range from 0-4 for the five phases.
         return 0;

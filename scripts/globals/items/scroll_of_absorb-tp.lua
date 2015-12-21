@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4883
---	Scroll of Absorb-TP
---	Teaches the black magic Absorb-TP
+--    ID: 4883
+--    Scroll of Absorb-TP
+--    Teaches the black magic Absorb-TP
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(275);
+    return target:canLearnSpell(275);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(275);
+    target:addSpell(275);
 end;

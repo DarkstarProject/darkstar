@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Apollyon NE	
+-- Area: Apollyon NE    
 -- NPC:  Troglodyte Dhalmel 
 
 -----------------------------------
@@ -28,11 +28,11 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
- local mobID = mob:getID();	
+ local mobID = mob:getID();    
  -- print(mobID);
-  	local mobX = mob:getXPos();
-	local mobY = mob:getYPos();
-	local mobZ = mob:getZPos();
+      local mobX = mob:getXPos();
+    local mobY = mob:getYPos();
+    local mobZ = mob:getZPos();
  
  
   if (IsMobDead(16933115)==true and 
@@ -45,7 +45,7 @@ function onMobDeath(mob,killer,ally)
      IsMobDead(16933122)==true 
     ) then
      -- item
-   	GetNPCByID(16932864+178):setPos(mobX,mobY,mobZ);
-	GetNPCByID(16932864+178):setStatus(STATUS_NORMAL);
+       GetNPCByID(16932864+178):setPos(mobX,mobY,mobZ);
+    GetNPCByID(16932864+178):setStatus(STATUS_NORMAL);
    end
 end;

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4679
---	Scroll of Barwatera
---	Teaches the white magic Barwatera
+--    ID: 4679
+--    Scroll of Barwatera
+--    Teaches the white magic Barwatera
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(71);
+    return target:canLearnSpell(71);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(71);
+    target:addSpell(71);
 end;

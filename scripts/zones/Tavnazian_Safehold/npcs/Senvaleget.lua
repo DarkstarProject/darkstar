@@ -17,11 +17,11 @@ end;
 -- onTrigger Action
 -----------------------------------
 
-function onTrigger(player,npc)	
-	if (player:hasCompletedMission(COP,DARKNESS_NAMED)) then
-		player:sendMenu(3);
-	end
-	
+function onTrigger(player,npc)    
+    if (player:hasCompletedMission(COP,DARKNESS_NAMED)) then
+        player:sendMenu(3);
+    end
+    
 end; 
 
 -----------------------------------

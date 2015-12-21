@@ -15,12 +15,12 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_INT_DOWN;
-	skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 10, 3, 120));
+    local typeEffect = EFFECT_INT_DOWN;
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 10, 3, 120));
 
-	return typeEffect;
+    return typeEffect;
 end;

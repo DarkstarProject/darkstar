@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(MONSTERS_KILLED_ADVENTURERS);
+    player:messageSpecial(MONSTERS_KILLED_ADVENTURERS);
 end;
 
 -----------------------------------

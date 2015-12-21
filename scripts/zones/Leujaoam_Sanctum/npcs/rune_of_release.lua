@@ -17,15 +17,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	local instance = npc:getInstance();
+    
+    local instance = npc:getInstance();
 
     if (instance:completed()) then
         player:startEvent(100,0);
     end
-	
-	return 1;
-	
+    
+    return 1;
+    
 end;
 
 -----------------------------------

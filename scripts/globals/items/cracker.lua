@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4167
---	Cracker
---	Creates a simple puff of smoke with a "crack" noise
+--    ID: 4167
+--    Cracker
+--    Creates a simple puff of smoke with a "crack" noise
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------

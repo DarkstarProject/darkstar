@@ -22,9 +22,9 @@ end;
 function onZoneIn(player,prevZone)
     local cs = -1;
 
-	player:setVar("PlayerMainJob",player:getMainJob());
-	player:eraseStatusEffect(true);
-	player:setPos(0,0,0,192);
+    player:setVar("PlayerMainJob",player:getMainJob());
+    player:eraseStatusEffect(true);
+    player:setPos(0,0,0,192);
 
     return cs;
 end;

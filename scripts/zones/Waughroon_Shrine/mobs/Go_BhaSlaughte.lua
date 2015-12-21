@@ -8,7 +8,7 @@
 -----------------------------------
 
 function onMobSpawn(mob)
-	--print(mob:getName());
+    --print(mob:getName());
 end;
 
 -----------------------------------

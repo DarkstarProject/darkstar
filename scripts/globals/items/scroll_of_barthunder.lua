@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4672
---	Scroll of Barthunder
---	Teaches the white magic Barthunder
+--    ID: 4672
+--    Scroll of Barthunder
+--    Teaches the white magic Barthunder
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(64);
+    return target:canLearnSpell(64);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(64);
+    target:addSpell(64);
 end;

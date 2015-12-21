@@ -1,15 +1,15 @@
-----------------------------------	
+----------------------------------    
 -- Area: North Gustaberg
 --  NM:  Maighdean Uaine
------------------------------------	
+-----------------------------------    
 
-require("scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");    
 
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer,ally)	
+-----------------------------------    
+-- onMobDeath    
+-----------------------------------    
+    
+function onMobDeath(mob,killer,ally)    
 
     -- Set Maighdean_Uaine's Window Open Time
     local wait = math.random(900,10800)

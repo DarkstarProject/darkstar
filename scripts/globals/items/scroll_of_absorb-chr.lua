@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4880
---	Scroll of Absorb-CHR
---	Teaches the black magic Absorb-CHR
+--    ID: 4880
+--    Scroll of Absorb-CHR
+--    Teaches the black magic Absorb-CHR
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(272);
+    return target:canLearnSpell(272);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(272);
+    target:addSpell(272);
 end;

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4750
---	Scroll of Reraise III
---	Teaches the white magic Reraise III
+--    ID: 4750
+--    Scroll of Reraise III
+--    Teaches the white magic Reraise III
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(142);
+    return target:canLearnSpell(142);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(142);
+    target:addSpell(142);
 end;

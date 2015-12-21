@@ -16,10 +16,10 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	local power = effect:getPower();
-	local subpower = effect:getSubPower();
-	target:addMod(MOD_REGEN_DOWN, power);
-	target:addMod(MOD_DEFP,-subpower);
+    local power = effect:getPower();
+    local subpower = effect:getSubPower();
+    target:addMod(MOD_REGEN_DOWN, power);
+    target:addMod(MOD_DEFP,-subpower);
 end;
 
 -----------------------------------
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	local power = effect:getPower();
-	local subpower = effect:getSubPower();
-	target:delMod(MOD_REGEN_DOWN, power);
-	target:delMod(MOD_DEFP,-subpower);
+    local power = effect:getPower();
+    local subpower = effect:getSubPower();
+    target:delMod(MOD_REGEN_DOWN, power);
+    target:delMod(MOD_DEFP,-subpower);
 end;

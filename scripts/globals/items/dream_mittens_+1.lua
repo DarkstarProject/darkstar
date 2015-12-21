@@ -14,7 +14,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if (not target:hasStatusEffect(EFFECT_INVISIBLE)) then
-		target:addStatusEffect(EFFECT_INVISIBLE,0,10,200);
-	end
+    if (not target:hasStatusEffect(EFFECT_INVISIBLE)) then
+        target:addStatusEffect(EFFECT_INVISIBLE,0,10,200);
+    end
 end;

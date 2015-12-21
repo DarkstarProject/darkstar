@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)	
+function onMobDeath(mob,killer,ally)    
 
     -- Set Centurio XII-I's spawnpoint and respawn time (21-24 hours)
     UpdateNMSpawnPoint(mob:getID());

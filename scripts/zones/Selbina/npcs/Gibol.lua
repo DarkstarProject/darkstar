@@ -23,9 +23,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:sendGuild(516,6,21,0)) then
-		player:showText(npc,CLOTHCRAFT_SHOP_DIALOG);
-	end
+    if (player:sendGuild(516,6,21,0)) then
+        player:showText(npc,CLOTHCRAFT_SHOP_DIALOG);
+    end
 end; 
 
 -----------------------------------

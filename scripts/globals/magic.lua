@@ -802,7 +802,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 
     if (spell:getID() >= 245 and spell:getID() <= 248) then -- Drain/Aspir (II)
         mabbonus = 1 + caster:getMod(MOD_ENH_DRAIN_ASPIR)/100;
-		-- print(mabbonus);
+        -- print(mabbonus);
     else
         local mab = caster:getMod(MOD_MATT) + bonusmab;
 

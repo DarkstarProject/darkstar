@@ -30,15 +30,15 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		if (player:hasKeyItem(NEW_FEIYIN_SEAL)) then
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
-		else -- Gives skip dialogue if previously completed
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
-		end
-	elseif (leavecode == 4) then
-		player:startEvent(0x7d02);
-	end
+    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+        if (player:hasKeyItem(NEW_FEIYIN_SEAL)) then
+            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
+        else -- Gives skip dialogue if previously completed
+            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
+        end
+    elseif (leavecode == 4) then
+        player:startEvent(0x7d02);
+    end
 end;
 
 function onEventUpdate(player,csid,option)
@@ -48,13 +48,13 @@ end;
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
         
-	if (csid == 0x7d01) then
-		if (player:hasKeyItem(NEW_FEIYIN_SEAL)) then
-			player:addKeyItem(BURNT_SEAL);
-			player:messageSpecial(KEYITEM_OBTAINED,BURNT_SEAL);
-			player:setVar("MissionStatus",12);
-			player:delKeyItem(NEW_FEIYIN_SEAL);
-		end;
-	end;
-	
+    if (csid == 0x7d01) then
+        if (player:hasKeyItem(NEW_FEIYIN_SEAL)) then
+            player:addKeyItem(BURNT_SEAL);
+            player:messageSpecial(KEYITEM_OBTAINED,BURNT_SEAL);
+            player:setVar("MissionStatus",12);
+            player:delKeyItem(NEW_FEIYIN_SEAL);
+        end;
+    end;
+    
 end;

@@ -11,7 +11,7 @@ require("scripts/zones/Dynamis-Qufim/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
-	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------
@@ -27,11 +27,11 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-	
-	--local mobID = mob:getID();
-	
+    
+    --local mobID = mob:getID();
+    
 
 
-	
-	
+    
+    
 end;

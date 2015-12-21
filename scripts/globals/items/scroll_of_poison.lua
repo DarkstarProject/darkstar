@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4828
---	Scroll of Poison
---	Teaches the black magic Poison
+--    ID: 4828
+--    Scroll of Poison
+--    Teaches the black magic Poison
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(220);
+    return target:canLearnSpell(220);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(220);
+    target:addSpell(220);
 end;

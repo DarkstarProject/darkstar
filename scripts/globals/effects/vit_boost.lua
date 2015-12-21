@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_VIT,effect:getPower());
+    target:addMod(MOD_VIT,effect:getPower());
 end;
 
 -----------------------------------
@@ -19,12 +19,12 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-	-- the effect loses vitality of 1 every 3 ticks depending on the source of the boost
-	local boostVIT_effect_size = effect:getPower();
-	if (boostVIT_effect_size > 0) then
-		effect:setPower(boostVIT_effect_size - 1)
-		target:delMod(MOD_VIT,1); 
-	end
+    -- the effect loses vitality of 1 every 3 ticks depending on the source of the boost
+    local boostVIT_effect_size = effect:getPower();
+    if (boostVIT_effect_size > 0) then
+        effect:setPower(boostVIT_effect_size - 1)
+        target:delMod(MOD_VIT,1); 
+    end
 end;
 
 -----------------------------------
@@ -32,8 +32,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	local boostVIT_effect_size = effect:getPower();
-	if (boostVIT_effect_size > 0) then
-		target:delMod(MOD_VIT,boostVIT_effect_size);
-	end
+    local boostVIT_effect_size = effect:getPower();
+    if (boostVIT_effect_size > 0) then
+        target:delMod(MOD_VIT,boostVIT_effect_size);
+    end
 end;

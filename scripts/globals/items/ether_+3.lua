@@ -20,5 +20,5 @@ end;
 
 function onItemUse(target)
         target:addMP(40*ITEM_POWER);
-	target:messageBasic(25,0,40);
+    target:messageBasic(25,0,40);
 end;

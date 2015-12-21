@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Mhaura
---	NPC: Itzha Delavhitta
---	Standard Info NPC
+--    Area: Mhaura
+--    NPC: Itzha Delavhitta
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------

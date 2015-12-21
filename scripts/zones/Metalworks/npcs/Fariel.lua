@@ -36,17 +36,17 @@ local path = {
 41.680725, -14.000000, 7.693455,
 41.396103, -14.000000, 6.599321,
 41.349224, -14.000000, 5.512603,
-41.340771, -14.000000, 4.424644	
+41.340771, -14.000000, 4.424644    
 };
 
 function onSpawn(npc)
     npc:initNpcAi();
-	npc:setPos(pathfind.first(path));
-	onPath(npc);
+    npc:setPos(pathfind.first(path));
+    onPath(npc);
 end;
 
 function onPath(npc)
-	pathfind.patrol(npc, path);
+    pathfind.patrol(npc, path);
 end;
 
 -----------------------------------
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x02C2);
-	npc:wait(-1);
+    player:startEvent(0x02C2);
+    npc:wait(-1);
 end; 
 
 -----------------------------------
@@ -81,7 +81,7 @@ end;
 function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	npc:wait(0);
+    npc:wait(0);
 end;
 
 

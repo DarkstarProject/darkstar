@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Southern San d'Oria
---	NPC: Leuveret
+--    Area: Southern San d'Oria
+--    NPC: Leuveret
 --  General Info NPC
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -32,7 +32,7 @@ function onTrade(player,npc,trade)
 -----------------------------------
  
 function onTrigger(player,npc) 
-	player:startEvent(0x26D);
+    player:startEvent(0x26D);
 end; 
 
 -----------------------------------

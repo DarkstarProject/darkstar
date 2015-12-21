@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4702
---	Scroll of Sacrifice
---	Teaches the white magic Sacrifice
+--    ID: 4702
+--    Scroll of Sacrifice
+--    Teaches the white magic Sacrifice
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(94);
+    return target:canLearnSpell(94);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(94);
+    target:addSpell(94);
 end;

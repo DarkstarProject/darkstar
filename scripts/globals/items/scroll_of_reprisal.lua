@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4715
---	Scroll of Reprisal
---	Teaches the white magic Reprisal
+--    ID: 4715
+--    Scroll of Reprisal
+--    Teaches the white magic Reprisal
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(97);
+    return target:canLearnSpell(97);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(97);
+    target:addSpell(97);
 end;

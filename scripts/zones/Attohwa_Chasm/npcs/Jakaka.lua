@@ -17,10 +17,10 @@ require("scripts/globals/settings");
 
 function onTrade(player,npc,trade)
     -- Trade Parradamo Stones
-	if (trade:hasItemQty(1778,1) and trade:getItemCount() == 1) then
-		player:tradeComplete();
-		player:startEvent(12);
-	end
+    if (trade:hasItemQty(1778,1) and trade:getItemCount() == 1) then
+        player:tradeComplete();
+        player:startEvent(12);
+    end
 end;
 
 -----------------------------------
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,13 +61,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 12) then
-		player:addKeyItem(MIASMA_FILTER);
-		player:messageSpecial(KEYITEM_OBTAINED,MIASMA_FILTER);
-		player:setVar("[ENM]MiasmaFilter",os.time(t)+86400*MIASMA_FILTER_COOLDOWN); -- Current time + 1dayInSeconds*MIASMA_FILTER_COOLDOWN
-	elseif (csid == 13) then
+        player:addKeyItem(MIASMA_FILTER);
+        player:messageSpecial(KEYITEM_OBTAINED,MIASMA_FILTER);
+        player:setVar("[ENM]MiasmaFilter",os.time(t)+86400*MIASMA_FILTER_COOLDOWN); -- Current time + 1dayInSeconds*MIASMA_FILTER_COOLDOWN
+    elseif (csid == 13) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1777); -- Flaxen Pouch
             return;

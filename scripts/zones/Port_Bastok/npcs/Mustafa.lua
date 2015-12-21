@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(MUSTAFA_DIALOG); 
+    player:messageSpecial(MUSTAFA_DIALOG); 
 end; 
 
 -----------------------------------

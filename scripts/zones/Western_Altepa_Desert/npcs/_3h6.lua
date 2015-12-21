@@ -21,32 +21,32 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	local TopazID = npc:getID();
-	local Ruby = GetNPCByID(TopazID-1):getAnimation();
-	local Topaz = npc:getAnimation();
-	local Emerald = GetNPCByID(TopazID+1):getAnimation();
-	local Sapphire = GetNPCByID(TopazID+2):getAnimation();
+    
+    local TopazID = npc:getID();
+    local Ruby = GetNPCByID(TopazID-1):getAnimation();
+    local Topaz = npc:getAnimation();
+    local Emerald = GetNPCByID(TopazID+1):getAnimation();
+    local Sapphire = GetNPCByID(TopazID+2):getAnimation();
 
-	if (Topaz ~= 8) then
-		npc:setAnimation(8);
-		GetNPCByID(TopazID-4):setAnimation(8);
-	else
-		player:messageSpecial(DOES_NOT_RESPOND);
-	end
+    if (Topaz ~= 8) then
+        npc:setAnimation(8);
+        GetNPCByID(TopazID-4):setAnimation(8);
+    else
+        player:messageSpecial(DOES_NOT_RESPOND);
+    end
 
-	if (Emerald == 8 and Ruby == 8 and Sapphire == 8) then
-		local rand = math.random(15,30);
-		local timeDoor = rand * 60;
+    if (Emerald == 8 and Ruby == 8 and Sapphire == 8) then
+        local rand = math.random(15,30);
+        local timeDoor = rand * 60;
 
-		-- Add timer for the door
-		GetNPCByID(TopazID-6):openDoor(timeDoor);
-		-- Add same timer for the 4 center lights
-		GetNPCByID(TopazID-5):openDoor(timeDoor);
-		GetNPCByID(TopazID-4):openDoor(timeDoor);
-		GetNPCByID(TopazID-3):openDoor(timeDoor);
-		GetNPCByID(TopazID-2):openDoor(timeDoor);
-	end
+        -- Add timer for the door
+        GetNPCByID(TopazID-6):openDoor(timeDoor);
+        -- Add same timer for the 4 center lights
+        GetNPCByID(TopazID-5):openDoor(timeDoor);
+        GetNPCByID(TopazID-4):openDoor(timeDoor);
+        GetNPCByID(TopazID-3):openDoor(timeDoor);
+        GetNPCByID(TopazID-2):openDoor(timeDoor);
+    end
 end;
 
 -----------------------------------

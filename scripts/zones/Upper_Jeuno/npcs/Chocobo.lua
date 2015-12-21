@@ -24,15 +24,15 @@ function onTrade(player,npc,trade)
     if (ChocobosWounds == 0) then
         player:startEvent(0x003e);
     elseif (ChocobosWounds == 1) then
-		count = trade:getItemCount();
-		gil = trade:getGil();
+        count = trade:getItemCount();
+        gil = trade:getGil();
 
         if (trade:hasItemQty(4545,1)) then
-        	player:startEvent(0x004c);
+            player:startEvent(0x004c);
         elseif (trade:hasItemQty(534,1) and gil == 0 and count == 1) then
-			--Check feeding status.
-			feed = player:getVar("ChocobosWounds_Event");
-			feedMin = player:getVar("ChocobosWounds_Min");
+            --Check feeding status.
+            feed = player:getVar("ChocobosWounds_Event");
+            feedMin = player:getVar("ChocobosWounds_Min");
              feedReady = (feedMin <= os.time())
 
             if (feed == 1) then
@@ -50,15 +50,15 @@ function onTrade(player,npc,trade)
                     player:startEvent(0x0040);
                 end
             else
-            	if (feed > 2) then
-                	player:startEvent(0x0049);
+                if (feed > 2) then
+                    player:startEvent(0x0049);
                 end
             end
         end
     else
         if (trade:hasItemQty(4545,1)) then
-     	   player:startEvent(0x0026);
-     	end
+            player:startEvent(0x0026);
+         end
     end
 end;
 
@@ -126,7 +126,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ChocobosWounds_Event", 4);
         player:setVar("ChocobosWounds_Min",os.time() + 60);
         player:tradeComplete();
-		player:startEvent(0x0063);
+        player:startEvent(0x0063);
     elseif (csid == 0x003c) then
         player:setVar("ChocobosWounds_Event", 5);
         player:setVar("ChocobosWounds_Min",os.time() + 60);
@@ -141,9 +141,9 @@ function onEventFinish(player,csid,option)
         player:addTitle(CHOCOBO_TRAINER);
         player:setVar("ChocobosWounds_Event", 0);
         player:setVar("ChocobosWounds_Min", 0);
-		player:addFame(JEUNO,30);
+        player:addFame(JEUNO,30);
         player:tradeComplete();
-		player:completeQuest(JEUNO,CHOCOBO_S_WOUNDS);
+        player:completeQuest(JEUNO,CHOCOBO_S_WOUNDS);
     end
 end;
 

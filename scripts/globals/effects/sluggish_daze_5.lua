@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_DEFP, -13);
+    target:addMod(MOD_DEFP, -13);
 end;
 
 -----------------------------------
@@ -24,5 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_DEFP, -13);
+    target:delMod(MOD_DEFP, -13);
 end;

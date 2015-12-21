@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
     -- skillList 729 = Proto-Ultima
     local skillList = mob:getMobMod(MOBMOD_SKILL_LIST);
     local mobhp = mob:getHPP();
-	local phase = mob:getLocalVar("battlePhase");
+    local phase = mob:getLocalVar("battlePhase");
 
     if ((skillList == 729 and phase >= 1 and phase <= 2) or (skillList == 728 and mobhp < 70 and mobhp >= 40)) then
         return 0;  
