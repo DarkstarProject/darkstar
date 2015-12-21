@@ -42,26 +42,24 @@ This file is part of DarkStar-server source code.
 #include "../../../common/utils.h"
 
 
-CItemState::CItemState(CBattleEntity* PEntity, uint16 targid, uint8 loc, uint8 slotid) :
+CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slotid) :
     CState(PEntity, targid),
     m_PEntity(PEntity),
     m_PItem(nullptr)
 {
-    auto PChar = static_cast<CCharEntity*>(m_PEntity);
-    auto PItem = dynamic_cast<CItemUsable*>(PChar->getStorage(loc)->GetItem(slotid));
+    auto PItem = dynamic_cast<CItemUsable*>(m_PEntity->getStorage(loc)->GetItem(slotid));
 
-    if (PItem && PItem->isType(ITEM_USABLE))
+    if (PItem && PItem->isType(ITEM_USABLE) && !PItem->isSubType(ITEM_LOCKED))
     {
         if (PItem->isType(ITEM_ARMOR))
         {
             // todo: if item is locked, check if its equipped
         }
-        else if (PItem->isSubType(ITEM_LOCKED))
-        {
-            return;
-        }
-
         m_PItem = PItem;
+    }
+    else
+    {
+        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, m_PItem->getID(), 0, 56));
     }
 
     auto PTarget = m_PEntity->IsValidTarget(targid, PItem->getValidTarget(), m_errorMsg);
@@ -72,15 +70,15 @@ CItemState::CItemState(CBattleEntity* PEntity, uint16 targid, uint8 loc, uint8 s
         throw CStateInitException(std::move(m_errorMsg));
     }
 
-    if (!m_PItem || error || m_PEntity->StatusEffectContainer->HasPreventActionEffect())
+    if (error || m_PEntity->StatusEffectContainer->HasPreventActionEffect())
     {
         auto param = PItem->getFlag() & ITEM_FLAG_SCROLL ? PItem->getSubID() : PItem->getID();
 
         throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, param, 0, error == -1 ? 56 : error));
     }
 
-    PChar->UContainer->SetType(UCONTAINER_USEITEM);
-    PChar->UContainer->SetItem(0, m_PItem);
+    m_PEntity->UContainer->SetType(UCONTAINER_USEITEM);
+    m_PEntity->UContainer->SetItem(0, m_PItem);
 
     UpdateTarget(m_targid);
 
@@ -88,7 +86,7 @@ CItemState::CItemState(CBattleEntity* PEntity, uint16 targid, uint8 loc, uint8 s
     m_castTime = std::chrono::milliseconds(PItem->getActivationTime());
 
     action_t action;
-    action.id = PChar->id;
+    action.id = m_PEntity->id;
     action.actiontype = ACTION_ITEM_START;
 
     actionList_t& actionList = action.getNewActionList();
@@ -103,13 +101,13 @@ CItemState::CItemState(CBattleEntity* PEntity, uint16 targid, uint8 loc, uint8 s
     actionTarget.messageID = 28;
     actionTarget.knockback = 0;
 
-    PChar->PAI->EventHandler.triggerListener("ITEM_START", PTarget, m_PItem, &action);
-    PChar->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+    m_PEntity->PAI->EventHandler.triggerListener("ITEM_START", PTarget, m_PItem, &action);
+    m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
 
     m_PItem->setSubType(ITEM_LOCKED);
 
-    PChar->pushPacket(new CInventoryAssignPacket(m_PItem, INV_NOSELECT));
-    PChar->pushPacket(new CInventoryFinishPacket());
+    m_PEntity->pushPacket(new CInventoryAssignPacket(m_PItem, INV_NOSELECT));
+    m_PEntity->pushPacket(new CInventoryFinishPacket());
 }
 
 bool CItemState::Update(time_point tick)
@@ -144,12 +142,10 @@ bool CItemState::Update(time_point tick)
 
 void CItemState::Cleanup(time_point tick)
 {
-    auto PChar = static_cast<CCharEntity*>(m_PEntity);
-
-    PChar->UContainer->Clean();
+    m_PEntity->UContainer->Clean();
 
     m_PItem->setSubType(ITEM_UNLOCKED);
-    PChar->pushPacket(new CInventoryFinishPacket());
+    m_PEntity->pushPacket(new CInventoryFinishPacket());
 }
 
 bool CItemState::CanChangeState()
@@ -198,7 +194,7 @@ CItemUsable* CItemState::GetItem()
 
 void CItemState::InterruptItem(action_t& action)
 {
-    TryInterrupt(dynamic_cast<CBattleEntity*>(GetTarget()));
+    TryInterrupt(static_cast<CBattleEntity*>(GetTarget()));
 
     if (m_interrupted)
     {
@@ -217,83 +213,16 @@ void CItemState::InterruptItem(action_t& action)
         actionTarget.messageID = 0;
         actionTarget.knockback = 0;
 
-        auto PChar = static_cast<CCharEntity*>(m_PEntity);
-        PChar->pushPacket(m_errorMsg.release());
+        m_PEntity->pushPacket(m_errorMsg.release());
 
-        PChar->pushPacket(new CInventoryAssignPacket(m_PItem, INV_NORMAL));
-        PChar->pushPacket(new CInventoryItemPacket(m_PItem, m_PItem->getLocationID(), m_PItem->getSlotID()));
+        m_PEntity->pushPacket(new CInventoryAssignPacket(m_PItem, INV_NORMAL));
+        m_PEntity->pushPacket(new CInventoryItemPacket(m_PItem, m_PItem->getLocationID(), m_PItem->getSlotID()));
     }
 }
 
 void CItemState::FinishItem(action_t& action)
 {
-    auto PTarget = static_cast<CBattleEntity*>(GetTarget());
-    auto PChar = static_cast<CCharEntity*>(m_PEntity);
-
-    if (m_PItem->getAoE())
-    {
-        PTarget->ForParty([this, PChar, PTarget](CBattleEntity* PMember)
-        {
-            if (!PMember->isDead() && distance(PTarget->loc.p, PMember->loc.p) <= 10)
-            {
-                luautils::OnItemUse(PMember, GetItem());
-            }
-        });
-    }
-    else
-    {
-        luautils::OnItemUse(PTarget, m_PItem);
-    }
-
-    if (m_PItem->isType(ITEM_ARMOR))
-    {
-        if (m_PItem->getMaxCharges() > 1)
-        {
-            m_PItem->setCurrentCharges(m_PItem->getCurrentCharges() - 1);
-        }
-        m_PItem->setLastUseTime(CVanaTime::getInstance()->getVanaTime());
-
-        int8 extra[sizeof(m_PItem->m_extra) * 2 + 1];
-        Sql_EscapeStringLen(SqlHandle, extra, (const char*)m_PItem->m_extra, sizeof(m_PItem->m_extra));
-
-        const int8* Query =
-            "UPDATE char_inventory "
-            "SET extra = '%s' "
-            "WHERE charid = %u AND location = %u AND slot = %u;";
-
-        Sql_Query(
-            SqlHandle,
-            Query,
-            extra,
-            PChar->id,
-            m_PItem->getLocationID(),
-            m_PItem->getSlotID());
-
-        if (m_PItem->getCurrentCharges() != 0)
-        {
-            PChar->PRecastContainer->Add(RECAST_ITEM, m_PItem->getSlotID(), m_PItem->getReuseTime() / 1000);
-        }
-    }
-    else // разблокируем все предметы, кроме экипирвоки
-    {
-        m_PItem->setSubType(ITEM_UNLOCKED);
-
-        charutils::UpdateItem(PChar, m_PItem->getLocationID(), m_PItem->getSlotID(), -1);
-    }
-
-    action.actionid = m_PEntity->id;
-    action.actiontype = ACTION_ITEM_FINISH;
-
-    actionList_t& actionList = action.getNewActionList();
-    actionList.ActionTargetID = PTarget->id;
-
-    actionTarget_t& actionTarget = actionList.getNewActionTarget();
-    actionTarget.reaction = REACTION_NONE;
-    actionTarget.speceffect = SPECEFFECT_NONE;
-    actionTarget.animation = m_PItem->getAnimationID();
-    actionTarget.param = 0;
-    actionTarget.messageID = 0;
-    actionTarget.knockback = 0;
+    m_PEntity->OnItemFinish(*this, action);
 }
 
 bool CItemState::HasMoved()

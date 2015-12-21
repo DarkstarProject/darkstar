@@ -25,14 +25,17 @@
 #define _CITEM_STATE_H
 
 #include "state.h"
-#include "../../items/item_usable.h"
+
+class CBattleEntity;
+class CCharEntity;
+class CItemUsable;
 
 struct action_t;
 
 class CItemState : public CState
 {
 public:
-    CItemState(CBattleEntity* PEntity, uint16 targid, uint8 loc, uint8 slotid);
+    CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slotid);
     virtual bool Update(time_point tick) override;
     virtual void Cleanup(time_point tick) override;
     virtual bool CanChangeState() override;
@@ -48,7 +51,7 @@ public:
 protected:
     bool HasMoved();
 
-    CBattleEntity* const m_PEntity;
+    CCharEntity* m_PEntity;
     CItemUsable* m_PItem;
     duration m_castTime;
     position_t m_startPos;

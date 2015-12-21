@@ -177,10 +177,6 @@ void CAIContainer::UseItem(uint16 targid, uint8 loc, uint8 slotid)
     {
         PlayerController->UseItem(targid, loc, slotid);
     }
-    else
-    {
-        Internal_UseItem(targid, loc, slotid);
-    }
 }
 
 bool CAIContainer::Internal_Engage(uint16 targetid)
@@ -297,7 +293,7 @@ void CAIContainer::Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid)
 {
     auto entity{ dynamic_cast<CBattleEntity*>(PEntity) };
     if (entity)
-        ChangeState<CItemState>(entity, targetid, loc, slotid);
+        ChangeState<CItemState>(static_cast<CCharEntity*>(entity), targetid, loc, slotid);
 }
 
 void CAIContainer::Reset()
