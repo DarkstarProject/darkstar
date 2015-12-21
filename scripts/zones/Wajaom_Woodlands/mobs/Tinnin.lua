@@ -18,6 +18,8 @@ function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_GIL_MIN, 12000);
     mob:setMobMod(MOBMOD_GIL_MAX, 30000);
     mob:setMobMod(MOBMOD_MUG_GIL, 8000);
+    mob:setMobMod(MOBMOD_DRAW_IN, 1);
+    mob:setMod(MOD_UDMGBREATH, 0); -- immune to breath damage
 
 end;
 
@@ -28,9 +30,7 @@ end;
 function onMobSpawn(mob)
     mob:setHP(mob:getMaxHP()/2);
     mob:setUnkillable(true);
-    mob:setMod(MOD_REGAIN, 50);
-    mob:setMod(MOD_REGEN, 90);
-    mob:AnimationSub(2);
+    mob:setMod(MOD_REGEN, 50);
 
     -- Regen Head every 1.5-4 minutes 90-240
     mob:setLocalVar("headTimer", os.time() + math.random(60,190));
@@ -54,7 +54,6 @@ function onMobRoam(mob)
         -- First time it regens second head, 25%. Reduced afterwards.
         if (mob:getLocalVar("secondHead") == 0) then
             mob:addHP(mob:getMaxHP() * .25);
-            mob:setMod(MOD_REGEN, 60);
             mob:setLocalVar("secondHead", 1);
         else
             mob:addHP(mob:getMaxHP() * .05);
@@ -67,7 +66,7 @@ function onMobRoam(mob)
         -- First time it regens third head, 25%. Reduced afterwards.
         if (mob:getLocalVar("thirdHead") == 0) then
             mob:addHP(mob:getMaxHP() * .25);
-            mob:setMod(MOD_REGEN, 30);
+            mob:setMod(MOD_REGEN, 10);
             mob:setLocalVar("thirdHead", 1);
             mob:setUnkillable(false); -- It can be killed now that has all his heads
         else
@@ -84,7 +83,6 @@ function onMobFight(mob, target)
     local headTimer = mob:getLocalVar("headTimer");
     if (mob:AnimationSub() == 2 and os.time() > headTimer) then
         mob:AnimationSub(1);
-        mob:setMod(MOD_REGEN, 60);
         mob:setLocalVar("headTimer", os.time() + math.random(60,190));
 
         -- First time it regens second head, 25%. Reduced afterwards.
@@ -94,24 +92,31 @@ function onMobFight(mob, target)
         else
             mob:addHP(mob:getMaxHP() * .05);
         end
+        if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
+            mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
+        end
         mob:useMobAbility(1576); -- Barofield
-        mob:useMobAbility(1572); -- Pyric Blast
+        mob:useMobAbility(1574); -- Polar Blast
 
     elseif (mob:AnimationSub() == 1 and os.time() > headTimer) then
         mob:AnimationSub(0);
-        mob:setMod(MOD_REGEN, 30);
         mob:setLocalVar("headTimer", os.time() + math.random(60,190));
 
         -- First time it regens third head, 25%. Reduced afterwards.
         if (mob:getLocalVar("thirdHead") == 0) then
+            mob:setMod(MOD_REGEN, 10);
             mob:addHP(mob:getMaxHP() * .25);
             mob:setLocalVar("thirdHead", 1);
             mob:setUnkillable(false); -- It can be killed now that has all his heads
         else
             mob:addHP(mob:getMaxHP() * .05);
         end
+        if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
+            mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
+        end
         mob:useMobAbility(1576); -- Barofield
         mob:useMobAbility(1574); -- Polar Blast
+        mob:useMobAbility(1572); -- Pyric Blast
     end
 end;
 
@@ -125,11 +130,9 @@ function onCriticalHit(mob)
     if ((critNum+1) > mob:getLocalVar("CritToTheFace")) then  -- Lose a head
         if (mob:AnimationSub() == 0) then
             mob:AnimationSub(1);
-            mob:setMod(MOD_REGEN, 60);
             mob:setLocalVar("headTimer", os.time() + math.random(60,190));
         elseif (mob:AnimationSub() == 1) then
             mob:AnimationSub(2);
-            mob:setMod(MOD_REGEN, 90);
             mob:setLocalVar("headTimer", os.time() + math.random(60,190));
         else
             -- Meh
@@ -146,10 +149,11 @@ function onCriticalHit(mob)
 end;
 
 -----------------------------------
--- onMagicHit
+-- onMobDrawIn
 -----------------------------------
 
-function onMagicHit(caster, mob, spell)
+function onMobDrawIn(mob, target)
+    mob:addTP(300); -- Uses a mobskill upon drawing in a player. Not necessarily on the person drawn in.
 end;
 
 -----------------------------------
