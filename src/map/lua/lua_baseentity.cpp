@@ -6325,7 +6325,7 @@ inline int32 CLuaBaseEntity::getShortID(lua_State *L)
 }
 
 // For use in GM command @getid to get the ID of MOBs, NPCs, and even Players.
-inline int32 CLuaBaseEntity::getTargetID(lua_State* L)
+inline int32 CLuaBaseEntity::getCursorTarget(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -6339,7 +6339,30 @@ inline int32 CLuaBaseEntity::getTargetID(lua_State* L)
     }
     else
     {
-        lua_pushinteger(L, PTarget->id);
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, PTarget);
+        lua_pcall(L, 2, 1, 0);
+    }
+
+    return 1;
+}
+
+// Gets a mobs poolID
+inline int32 CLuaBaseEntity::getPool(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    if (m_PBaseEntity->objtype != TYPE_MOB)
+    {
+        lua_pushnil(L);
+    }
+    else
+    {
+        CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+        lua_pushinteger(L, PMob->m_Pool);
     }
 
     return 1;
@@ -10023,7 +10046,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,leavegame),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getShortID),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTargetID),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCursorTarget),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPool),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getName),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHPP),
