@@ -51,14 +51,14 @@ function onMobFight(mob,target)
             mob:AnimationSub(2); -- Puts on the bracers! He gonna fuck you up now.
             mob:addMod(MOD_ATT, 200);
             mob:addMod(MOD_HASTE_ABILITY, 150);
-            mob:useMobAbility(3155); -- Hundred Fists
+            mob:useMobAbility(3411); -- Hundred Fists
             
             -- Force minions to 2hour
             if (GetMobAction(mob:getID()+1) ~= 0) then
-                GetMobByID(mob:getID()+1):useMobAbility(3156); -- Chainspell
+                GetMobByID(mob:getID()+1):useMobAbility(3412); -- Chainspell
             end
             if (GetMobAction(mob:getID()+2) ~= 0) then
-                GetMobByID(mob:getID()+2):useMobAbility(3157); -- Benediction
+                GetMobByID(mob:getID()+2):useMobAbility(3413); -- Benediction
             end
         end;
     end;

@@ -29,7 +29,7 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob, killer)
-    mob:useMobAbility(22); -- Pit Ambush
+    mob:useMobAbility(278); -- Pit Ambush
 end;
 
 -----------------------------------

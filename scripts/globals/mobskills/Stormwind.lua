@@ -46,7 +46,7 @@ function onMobWeaponSkill(target, mob, skill)
         elseif (mob:actionQueueAbility() == false) then    
             for i = 0, 1 do -- Stormwind 3 times per use. Gets stronger each use. 
                 -- TODO: Should be some sort of delay here between ws's..
-                mob:useMobAbility(670);
+                mob:useMobAbility(926);
                 mob:setLocalVar("Stormwind", 0); 
             end
         end

@@ -49,10 +49,10 @@ function onMobFight(mob,target)
     local mghp = mob:getLocalVar("Mijin");
 
     if (battletime > mstime + 150) then
-        mob:useMobAbility(432);
+        mob:useMobAbility(688);
         mob:setLocalVar("Mighty", battletime);
     elseif (mob:getHPP() < mghp) then
-        mob:useMobAbility(475);
+        mob:useMobAbility(731);
         mob:setLocalVar("Mijin", 0);
     end
 

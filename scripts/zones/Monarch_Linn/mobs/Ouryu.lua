@@ -30,7 +30,7 @@ function onMobFight(mob,target)
         end
 
         if (mob:AnimationSub() == 2 and mob:getBattleTime()/15 > twohourTime) then
-            mob:useMobAbility(438);
+            mob:useMobAbility(694);
             mob:setLocalVar("twohourTime", math.random((mob:getBattleTime()/15)+12, (mob:getBattleTime()/15)+16));
         elseif (mob:AnimationSub() == 0 and mob:getBattleTime() - changeTime > 60) then
             mob:AnimationSub(1);
@@ -41,7 +41,7 @@ function onMobFight(mob,target)
         -- subanimation 1 is flight, so check if he should land
         elseif (mob:AnimationSub() == 1 and
                 mob:getBattleTime() - changeTime > 120) then
-            mob:useMobAbility(1046);
+            mob:useMobAbility(1302);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         -- subanimation 2 is grounded mode, so check if he should take off
         elseif (mob:AnimationSub() == 2 and

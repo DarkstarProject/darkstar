@@ -91,7 +91,7 @@ function onMobFight(mob,target)
             GetMobByID(petIDs[i]):setModelId(1841);
         end
         if (TP <= 5) then
-            mob:useMobAbility(1858);
+            mob:useMobAbility(2114);
             mob:setLocalVar("TP", 6)
         end
     elseif (mobHPP <= 38 and change == 10) then -- Hydra and Co.
@@ -113,7 +113,7 @@ function onMobFight(mob,target)
             GetMobByID(petIDs[i]):setModelId(1841);
         end
         if (TP <= 4) then
-            mob:useMobAbility(1860);
+            mob:useMobAbility(2116);
             mob:setLocalVar("TP", 5)
         end
     elseif (mobHPP <= 50 and change == 8) then -- Cerb and Co.
@@ -135,7 +135,7 @@ function onMobFight(mob,target)
             GetMobByID(petIDs[i]):setModelId(1841);
         end
         if (TP <= 3) then
-            mob:useMobAbility(1861);
+            mob:useMobAbility(2117);
             mob:setLocalVar("TP", 4)
         end
     elseif (mobHPP <= 62 and change == 6) then -- Troll and Co.
@@ -157,7 +157,7 @@ function onMobFight(mob,target)
             GetMobByID(petIDs[i]):setModelId(1841);
         end
         if (TP <= 2) then
-            mob:useMobAbility(1862);
+            mob:useMobAbility(2118);
             mob:setLocalVar("TP", 3)
         end
     elseif (mobHPP <= 74 and change == 4) then -- Lamia and Co.
@@ -179,7 +179,7 @@ function onMobFight(mob,target)
             GetMobByID(petIDs[i]):setModelId(1841);
         end
         if (TP <= 1) then
-            mob:useMobAbility(1863);
+            mob:useMobAbility(2119);
             mob:setLocalVar("TP", 2)
         end
     elseif (mobHPP <= 86 and change == 2) then -- Mamool and Co.
@@ -201,7 +201,7 @@ function onMobFight(mob,target)
             GetMobByID(petIDs[i]):setModelId(1841);
         end
         if (TP <= 0) then
-            mob:useMobAbility(1857);
+            mob:useMobAbility(2113);
             mob:setLocalVar("TP", 1)
         end
     elseif (mobHPP <= 98 and change == 0) then -- Chariots
@@ -267,7 +267,7 @@ function onMobFight(mob,target)
             local avatar = GetMobByID(i);
             avatar:changeSkin(23 + rannum); -- Random avatar skin
             SpawnMob(i):updateEnmity(target);
-            avatar:useMobAbility(656);
+            avatar:useMobAbility(912);
             DespawnMob(i);
         end
         PWardenAstralFlows = PWardenAstralFlows + 4;
@@ -288,7 +288,7 @@ function onMobFight(mob,target)
             local avatar = GetMobByID(i);
             avatar:changeSkin(23 + rannum); -- Random avatar skin
             SpawnMob(i):updateEnmity(target);
-            avatar:useMobAbility(656);
+            avatar:useMobAbility(912);
             DespawnMob(i);
         end
         PWardenAstralFlows = PWardenAstralFlows + 2;
@@ -298,7 +298,7 @@ function onMobFight(mob,target)
             local avatar = GetMobByID(i);
             avatar:changeSkin(23 + rannum); -- Random avatar skin
             SpawnMob(i):updateEnmity(target);
-            avatar:useMobAbility(656);
+            avatar:useMobAbility(912);
             DespawnMob(i);
         end
         PWardenAstralFlows = PWardenAstralFlows + 1;
