@@ -42,7 +42,7 @@ class CStatusEffectContainer
 public:
 
     uint64	m_Flags {0};											// биты переполнения байтов m_StatusIcons (по два бита на каждый эффект)
-    uint8 m_StatusIcons[32] {255};                  // иконки статус-эффектов
+    uint8 m_StatusIcons[32];                  // иконки статус-эффектов
 
     bool ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs);
     bool CanGainStatusEffect(EFFECT statusEffect, uint16 power); // returns true if the status effect will take effect

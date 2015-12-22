@@ -158,6 +158,7 @@ CStatusEffectContainer::CStatusEffectContainer(CBattleEntity* PEntity)
     m_POwner = PEntity;
     DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
 
+    memset(m_StatusIcons, 0xFF, sizeof(m_StatusIcons));
     m_StatusEffectList.reserve(32);
 }
 
