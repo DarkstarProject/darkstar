@@ -33,7 +33,7 @@ class CPlayerController : public CController
 public:
     CPlayerController(CCharEntity*);
 
-    virtual void Tick(time_point) override {}
+    virtual void Tick(time_point) override;
 
     virtual void Cast(uint16 targid, uint16 spellid) override;
     virtual bool Engage(uint16 targid) override;

@@ -49,21 +49,6 @@ void CPetController::DoRoamTick(time_point tick)
 
     float currentDistance = distance(PPet->loc.p, PPet->PMaster->loc.p);
 
-
-    // this is broken until pet / mob relationship gets fixed
-    // pets need to extend mob or be a mob because pet has no spell list!
-    //if (PPet->getPetType() == PETTYPE_AVATAR && PPet->m_Family == 104 && m_Tick >= m_LastActionTime + 30000 && currentDistance < PET_ROAM_DISTANCE * 2)
-    //{
-    //    int16 spellID = 108;
-    //    // define this so action picks it up
-    //    SetCurrentSpell(spellID);
-    //    m_PBattleSubTarget = PPet->PMaster;
-
-    //    m_ActionType = ACTION_MAGIC_START;
-    //    ActionMagicStart();
-    //    return;
-    //}
-
     if (currentDistance > PetRoamDistance)
     {
         if (currentDistance < 35.0f && PPet->PAI->PathFind->PathAround(PPet->PMaster->loc.p, 2.0f, PATHFLAG_RUN | PATHFLAG_WALLHACK))

@@ -26,9 +26,8 @@ This file is part of DarkStar-server source code.
 #include "../ai_container.h"
 #include "../../entities/battleentity.h"
 
-CController::CController(CBattleEntity* _POwner, bool _canUpdate) :
-    POwner(_POwner),
-    canUpdate(_canUpdate)
+CController::CController(CBattleEntity* _POwner) :
+    POwner(_POwner)
 {}
 
 void CController::Despawn()

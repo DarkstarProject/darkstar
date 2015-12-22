@@ -289,7 +289,7 @@ void CAIContainer::Tick(time_point _tick)
     m_PrevTick = m_Tick;
     m_Tick = _tick;
     CBaseEntity* PreEntity = PEntity;
-    
+
     //#TODO: check this in the controller instead maybe? (might not want to check every tick) - same for pathfind
     ActionQueue.checkAction(_tick);
 

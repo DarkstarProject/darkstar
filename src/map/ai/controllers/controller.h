@@ -32,7 +32,7 @@ class CBattleEntity;
 class CController
 {
 public:
-    CController(CBattleEntity* _POwner, bool _canUpdate = false);
+    CController(CBattleEntity* _POwner);
     virtual void Tick(time_point tick) = 0;
     virtual void Despawn();
     virtual void Cast(uint16 targid, uint16 spellid);
@@ -48,7 +48,7 @@ public:
     bool IsMagicCastingEnabled();
     void SetMagicCastingEnabled(bool);
 
-    bool canUpdate;
+    bool canUpdate {true};
 
 protected:
     time_point m_Tick;

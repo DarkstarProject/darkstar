@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "../helpers/targetfind.h"
 #include "../states/ability_state.h"
 #include "../states/magic_state.h"
+#include "../states/death_state.h"
 #include "../states/weaponskill_state.h"
 #include "../../mobskill.h"
 #include "../../party.h"
@@ -39,13 +40,19 @@ This file is part of DarkStar-server source code.
 #include "../../../common/utils.h"
 
 CAIController::CAIController(CMobEntity* PEntity) :
-    CController(PEntity, true),
+    CController(PEntity),
     PMob(PEntity)
 {}
 
 void CAIController::Tick(time_point tick)
 {
     m_Tick = tick;
+
+    if (PMob->health.hp == 0 && PMob->PAI->IsSpawned() && !PMob->PAI->IsCurrentState<CDeathState>())
+    {
+        PMob->Die();
+    }
+
     if (tick > m_WaitTime)
     {
         if (PMob->isAlive())

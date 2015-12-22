@@ -466,21 +466,6 @@ int32 CBattleEntity::addHP(int32 hp)
         updatemask |= UPDATE_HP;
     }
 
-    if (health.hp == 0)
-    {
-        if (!m_unkillable)
-        {
-            if (animation == ANIMATION_CHOCOBO)
-            {
-                StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
-            }
-            Die();
-        }
-        else
-        {
-            health.hp = 1;
-        }
-    }
     return abs(hp);
 }
 
