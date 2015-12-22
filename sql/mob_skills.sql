@@ -1050,7 +1050,7 @@ INSERT INTO `mob_skills` VALUES (1000,874,'Empty_Crush',0,7.0,2000,1500,4,0,0,0)
 INSERT INTO `mob_skills` VALUES (1002,876,'Lamentation',1,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1003,944,'Wire_Cutter',0,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1004,945,'Antimatter',0,10.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1005,946,'Equalizer',2,10.0,2000,1500,4,1,0,0);
+INSERT INTO `mob_skills` VALUES (1005,946,'Equalizer',2,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1006,947,'Flame_Thrower',4,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1007,948,'Cryo_Jet',4,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1008,949,'Turbofan',4,10.0,2000,1500,4,0,0,0);

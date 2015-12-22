@@ -26,12 +26,12 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect0 = EFFECT_ELEGY;
-    local typeEffect1 = EFFECT_SLOW;
+    local typeEffectOne = EFFECT_ELEGY;
+    local typeEffectTwo = EFFECT_SLOW;
 
-    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect0, 1, 0,30));
-    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect1, 1, 0,30));
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffectOne, 512, 0, 120));
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffectTwo, 512, 0, 120));
 
     -- This likely doesn't behave like retail.
-    return typeEffect1;
+    return typeEffectTwo;
 end;
