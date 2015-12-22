@@ -242,17 +242,17 @@ bool CAIContainer::Internal_MobSkill(uint16 targid, uint16 wsid)
 
 bool CAIContainer::Internal_Ability(uint16 targetid, uint16 abilityid)
 {
-    auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
+    auto entity {dynamic_cast<CCharEntity*>(PEntity)};
     if (entity)
-        return ChangeState<CAbilityState>(static_cast<CCharEntity*>(PEntity), targetid, abilityid);
+        return ChangeState<CAbilityState>(entity, targetid, abilityid);
     return false;
 }
 
 bool CAIContainer::Internal_RangedAttack(uint16 targetid)
 {
-    auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
+    auto entity {dynamic_cast<CCharEntity*>(PEntity)};
     if (entity)
-        return ChangeState<CRangeState>(static_cast<CCharEntity*>(PEntity), targetid);
+        return ChangeState<CRangeState>(entity, targetid);
     return false;
 }
 
@@ -261,6 +261,20 @@ void CAIContainer::Internal_Die(duration deathTime)
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
         ChangeState<CDeathState>(entity, deathTime);
+}
+
+void CAIContainer::Internal_Raise()
+{
+    auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
+    if (entity)
+        ForceChangeState<CRaiseState>(entity);
+}
+
+void CAIContainer::Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid)
+{
+    auto entity {dynamic_cast<CCharEntity*>(PEntity)};
+    if (entity)
+        ChangeState<CItemState>(entity, targetid, loc, slotid);
 }
 
 CState* CAIContainer::GetCurrentState()
@@ -282,19 +296,6 @@ CController* CAIContainer::GetController()
     return Controller.get();
 }
 
-void CAIContainer::Internal_Raise()
-{
-    auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
-    if (entity)
-        ForceChangeState<CRaiseState>(entity);
-}
-
-void CAIContainer::Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid)
-{
-    auto entity{ dynamic_cast<CBattleEntity*>(PEntity) };
-    if (entity)
-        ChangeState<CItemState>(static_cast<CCharEntity*>(entity), targetid, loc, slotid);
-}
 
 void CAIContainer::Reset()
 {
