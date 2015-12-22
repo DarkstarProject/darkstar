@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,12 +54,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-	if (csid == 0x0020) then
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x0020) then
         player:setPos(-116,-119,-620,253,13);
-	elseif (csid == 0x0022) then  
+    elseif (csid == 0x0022) then  
         player:setVar("COP_Louverance_s_Path",8);
-	end
+    end
 end;
 

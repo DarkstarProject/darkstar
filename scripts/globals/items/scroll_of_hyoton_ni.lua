@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4931
---	Scroll of Hyoton: Ni
---	Teaches the ninjutsu Hyoton: Ni
+--    ID: 4931
+--    Scroll of Hyoton: Ni
+--    Teaches the ninjutsu Hyoton: Ni
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(324);
+    return target:canLearnSpell(324);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(324);
+    target:addSpell(324);
 end;

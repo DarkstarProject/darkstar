@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC:  Satata
---	Working 100%
+--    Area: Port Windurst
+--    NPC:  Satata
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0xeb);
+    player:startEvent(0xeb);
 end;
 
 -----------------------------------

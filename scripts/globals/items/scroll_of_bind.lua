@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4866
---	Scroll of Bind
---	Teaches the black magic Bind
+--    ID: 4866
+--    Scroll of Bind
+--    Teaches the black magic Bind
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(258);
+    return target:canLearnSpell(258);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(258);
+    target:addSpell(258);
 end;

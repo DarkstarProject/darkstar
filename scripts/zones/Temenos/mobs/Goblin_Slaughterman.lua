@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Temenos N T	
+-- Area: Temenos N T    
 -- NPC:  Goblin_Slaughterman
 
 -----------------------------------
@@ -27,16 +27,16 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
- local mobID = mob:getID();	
+ local mobID = mob:getID();    
  -- print(mobID);
-  	local mobX = mob:getXPos();
-	local mobY = mob:getYPos();
-	local mobZ = mob:getZPos();
+      local mobX = mob:getXPos();
+    local mobY = mob:getYPos();
+    local mobZ = mob:getZPos();
  
  if (mobID ==16928773) then
-   	GetNPCByID(16928768+18):setPos(330,70,468);
-	GetNPCByID(16928768+18):setStatus(STATUS_NORMAL);
+       GetNPCByID(16928768+18):setPos(330,70,468);
+    GetNPCByID(16928768+18):setStatus(STATUS_NORMAL);
   elseif (mobID ==16928772) then
-  	GetNPCByID(16928770+450):setStatus(STATUS_NORMAL);  
+      GetNPCByID(16928770+450):setStatus(STATUS_NORMAL);  
  end
 end;

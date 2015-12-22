@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Chocobo_Circuit
---	NPC: Gustavo
---	Standard Info NPC
+--    Area: Chocobo_Circuit
+--    NPC: Gustavo
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Chocobo_Circuit/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x00E2);
+    player:startEvent(0x00E2);
 end;
 
 -----------------------------------

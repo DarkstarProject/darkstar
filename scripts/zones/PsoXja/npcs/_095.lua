@@ -23,26 +23,26 @@ end;
 
 function onTrigger(player,npc) 
 
-	local X=player:getXPos();
-	
-	if (npc:getAnimation() == 9) then	
-		if (X >= 299) then
-			if (GetMobAction(16814086) == 0) then
-				local Rand = math.random(1,10);
-				if (Rand <=9) then -- Spawn Gargoyle
-					player:messageSpecial(TRAP_ACTIVATED); 
-					SpawnMob(16814086,120):updateClaim(player); -- Gargoyle
-				else
-					player:messageSpecial(TRAP_FAILS);
-					npc:openDoor(30);
-				end	
-			else
-				player:messageSpecial(DOOR_LOCKED);
-			end	
-		elseif (X <= 298) then
-			player:startEvent(0x001A);
-		end
-	end
+    local X=player:getXPos();
+    
+    if (npc:getAnimation() == 9) then    
+        if (X >= 299) then
+            if (GetMobAction(16814086) == 0) then
+                local Rand = math.random(1,10);
+                if (Rand <=9) then -- Spawn Gargoyle
+                    player:messageSpecial(TRAP_ACTIVATED); 
+                    SpawnMob(16814086,120):updateClaim(player); -- Gargoyle
+                else
+                    player:messageSpecial(TRAP_FAILS);
+                    npc:openDoor(30);
+                end    
+            else
+                player:messageSpecial(DOOR_LOCKED);
+            end    
+        elseif (X <= 298) then
+            player:startEvent(0x001A);
+        end
+    end
 
 end;
 
@@ -60,7 +60,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	if (csid == 0x001A and option == 1) then
-		player:setPos(260,-0.25,-20,254,111);
-	end
+    if (csid == 0x001A and option == 1) then
+        player:setPos(260,-0.25,-20,254,111);
+    end
 end;

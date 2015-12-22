@@ -1,7 +1,7 @@
 -----------------------------------
 --
--- 	EFFECT_COSTUME
--- 	
+--     EFFECT_COSTUME
+--     
 -----------------------------------
 
 -----------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:costume(effect:getPower());
+    target:costume(effect:getPower());
 end;
 
 -----------------------------------
@@ -24,5 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:costume(0);
+    target:costume(0);
 end;

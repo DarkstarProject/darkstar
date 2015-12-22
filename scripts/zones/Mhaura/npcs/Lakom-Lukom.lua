@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Mhaura
---	NPC: Lakom-Lukom 
---	Standard Info NPC
+--    Area: Mhaura
+--    NPC: Lakom-Lukom 
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- 	EFFECT_SIGNET
+--     EFFECT_SIGNET
 --
 --   Signet is a a beneficial Status Effect that allows the acquisition of Conquest Points and Crystals 
 --   from defeated enemies that grant Experience Points.
@@ -18,8 +18,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_DEF,15);
-	target:addMod(MOD_EVA,15);
+    target:addMod(MOD_DEF,15);
+    target:addMod(MOD_EVA,15);
 end;
 
 -----------------------------------
@@ -34,6 +34,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_DEF,15);
-	target:delMod(MOD_EVA,15);
+    target:delMod(MOD_DEF,15);
+    target:delMod(MOD_EVA,15);
 end;

@@ -1,7 +1,7 @@
 -----------------------------------
 --  
--- 	EFFECT_LEVEL_SYNC
--- 	
+--     EFFECT_LEVEL_SYNC
+--     
 -----------------------------------
 
 -----------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:levelRestriction(effect:getPower());
+    target:levelRestriction(effect:getPower());
 end;
 
 -----------------------------------
@@ -24,6 +24,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:levelRestriction(0);
-	target:disableLevelSync();
+    target:levelRestriction(0);
+    target:disableLevelSync();
 end;

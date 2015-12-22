@@ -33,7 +33,7 @@ function onTrigger(player,npc)
         (player:getQuestStatus(CRYSTAL_WAR, CLAWS_OF_THE_GRIFFON) == QUEST_COMPLETED or
          player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_COMPLETED or
          player:getQuestStatus(CRYSTAL_WAR, FIRES_OF_DISCONTENT) == QUEST_COMPLETED)) then
-		player:startEvent(501);
+        player:startEvent(501);
         else
         player:startEvent(904);
         end
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 501) then
         player:completeMission(WOTG, BACK_TO_THE_BEGINNING);
         player:addMission(WOTG, CAIT_SITH);
-        player:addTitle(CAIT_SITHS_ASSISTANT);	
+        player:addTitle(CAIT_SITHS_ASSISTANT);    
         toMaw(player,5);
     end;
 end;

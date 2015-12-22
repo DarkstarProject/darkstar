@@ -12,5 +12,5 @@ package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
 -----------------------------------
 
 function onTrigger(player,npc)
-	return 1;
+    return 1;
 end;

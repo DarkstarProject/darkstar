@@ -23,15 +23,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local POWER_SANDALS = 13012;
-	
-	-- Give Player Power Sandals if they don't have them
-	if (player:hasItem(POWER_SANDALS) == false) then
-		player:addItem(POWER_SANDALS);
-		player:messageSpecial(ITEM_OBTAINED, POWER_SANDALS);
-	else
-		player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY);
-	end
+    local POWER_SANDALS = 13012;
+    
+    -- Give Player Power Sandals if they don't have them
+    if (player:hasItem(POWER_SANDALS) == false) then
+        player:addItem(POWER_SANDALS);
+        player:messageSpecial(ITEM_OBTAINED, POWER_SANDALS);
+    else
+        player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY);
+    end
 end;
 
 -----------------------------------

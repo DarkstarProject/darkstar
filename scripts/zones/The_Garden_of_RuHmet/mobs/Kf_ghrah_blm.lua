@@ -24,7 +24,7 @@ end;
 
 function onMobRoam(mob)
     local roamTime = mob:getLocalVar("roamTime");
-	local roamForm;
+    local roamForm;
     if (os.time() - roamTime > 60) then
         roamForm = math.random(1,3) -- forms 2 and 3 are spider and bird; can change forms at will
         if (roamForm == 1) then

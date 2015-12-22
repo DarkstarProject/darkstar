@@ -16,9 +16,9 @@ require("scripts/zones/Bastok_Markets/TextIDs");
 ----------------------------------- 
 
 function onTrade(player,npc,trade) 
-	if (trade:getItemCount() == 1 and trade:hasItemQty(536,1) == true) then
-		player:startEvent(0x0006);
-	end
+    if (trade:getItemCount() == 1 and trade:hasItemQty(536,1) == true) then
+        player:startEvent(0x0006);
+    end
 end;
 
 ----------------------------------- 
@@ -26,7 +26,7 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc) 
-	player:startEvent(0x0005);
+    player:startEvent(0x0005);
 end; 
 
 -----------------------------------
@@ -45,9 +45,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x0006) then
-		player:tradeComplete();
-		player:addGil(GIL_RATE*50);
-		player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
+    if (csid == 0x0006) then
+        player:tradeComplete();
+        player:addGil(GIL_RATE*50);
+        player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
     end
 end;

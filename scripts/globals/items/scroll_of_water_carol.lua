@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5051
---	Scroll of Water Carol
---	Teaches the song Water Carol
+--    ID: 5051
+--    Scroll of Water Carol
+--    Teaches the song Water Carol
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(443);
+    return target:canLearnSpell(443);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(443);
+    target:addSpell(443);
 end;

@@ -46,70 +46,70 @@ colorsAvailable[125] = { true,  false, true,  false, false, false, false}; -- We
 -----------------------------------
 
 function triggerLightCutscene( player)
-	local cutsceneTriggered = false;
-	local RED    = 1;
-	local ORANGE = 2;
-	local YELLOW = 3;
-	local GREEN  = 4;
-	local BLUE   = 5;
-	local INDIGO = 6;
-	local VIOLET = 7;
-	local zone   = player:getZoneID();
-	local weather = player:getWeather();
+    local cutsceneTriggered = false;
+    local RED    = 1;
+    local ORANGE = 2;
+    local YELLOW = 3;
+    local GREEN  = 4;
+    local BLUE   = 5;
+    local INDIGO = 6;
+    local VIOLET = 7;
+    local zone   = player:getZoneID();
+    local weather = player:getWeather();
 
-	if (player:hasItem( 1125, 0)) then -- Player has Carbuncle's Ruby?
-		if (player:getQuestStatus( WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
-			if (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),0) == false and (weather == WEATHER_HOT_SPELL or weather == WEATHER_HEAT_WAVE)) then
-				if (colorsAvailable[zone][RED]) then
-					cutsceneTriggered = true;
-					player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",0,true);
-					player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
-				end
-			elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),1) == false and (weather == WEATHER_NONE or weather == WEATHER_SUNSHINE)) then
-				if (colorsAvailable[zone][ORANGE]) then
-					cutsceneTriggered = true;
-					player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",1,true);
-					player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
-				end
-			elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),2) == false and (weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM)) then
-				if (colorsAvailable[zone][YELLOW]) then
-					cutsceneTriggered = true;
-					player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",2,true);
-					player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
-				end
-			elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),3)  == false and (weather == WEATHER_WIND or weather == WEATHER_GALES)) then
-				if (colorsAvailable[zone][GREEN]) then
-					cutsceneTriggered = true;
-					player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",3,true);
-					player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
-				end
-			elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),4)   == false and (weather == WEATHER_RAIN or weather == WEATHER_SQUALL)) then
-				if (colorsAvailable[zone][BLUE]) then
-					cutsceneTriggered = true;
-					player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",4,true);
-					player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
-				end
-			elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),5) == false and (weather == WEATHER_SNOW or weather == WEATHER_BLIZZARDS)) then
-				if (colorsAvailable[zone][INDIGO]) then
-					cutsceneTriggered = true;
-					player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",5,true);
-					player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
-				end
-			elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),6) == false and (weather == WEATHER_THUNDER or weather == WEATHER_THUNDERSTORMS)) then
-				if (colorsAvailable[zone][VIOLET]) then
-					cutsceneTriggered = true;
-					player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",6,true);
-					player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
-				end
-			end
+    if (player:hasItem( 1125, 0)) then -- Player has Carbuncle's Ruby?
+        if (player:getQuestStatus( WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
+            if (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),0) == false and (weather == WEATHER_HOT_SPELL or weather == WEATHER_HEAT_WAVE)) then
+                if (colorsAvailable[zone][RED]) then
+                    cutsceneTriggered = true;
+                    player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",0,true);
+                    player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
+                end
+            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),1) == false and (weather == WEATHER_NONE or weather == WEATHER_SUNSHINE)) then
+                if (colorsAvailable[zone][ORANGE]) then
+                    cutsceneTriggered = true;
+                    player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",1,true);
+                    player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
+                end
+            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),2) == false and (weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM)) then
+                if (colorsAvailable[zone][YELLOW]) then
+                    cutsceneTriggered = true;
+                    player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",2,true);
+                    player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
+                end
+            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),3)  == false and (weather == WEATHER_WIND or weather == WEATHER_GALES)) then
+                if (colorsAvailable[zone][GREEN]) then
+                    cutsceneTriggered = true;
+                    player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",3,true);
+                    player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
+                end
+            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),4)   == false and (weather == WEATHER_RAIN or weather == WEATHER_SQUALL)) then
+                if (colorsAvailable[zone][BLUE]) then
+                    cutsceneTriggered = true;
+                    player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",4,true);
+                    player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
+                end
+            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),5) == false and (weather == WEATHER_SNOW or weather == WEATHER_BLIZZARDS)) then
+                if (colorsAvailable[zone][INDIGO]) then
+                    cutsceneTriggered = true;
+                    player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",5,true);
+                    player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
+                end
+            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),6) == false and (weather == WEATHER_THUNDER or weather == WEATHER_THUNDERSTORMS)) then
+                if (colorsAvailable[zone][VIOLET]) then
+                    cutsceneTriggered = true;
+                    player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",6,true);
+                    player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
+                end
+            end
 
-			if (cutsceneTriggered) then
-				fixChocoboBug(player);
-			end
-		end
-	end
+            if (cutsceneTriggered) then
+                fixChocoboBug(player);
+            end
+        end
+    end
 
-	return cutsceneTriggered;
+    return cutsceneTriggered;
 end;
 
 -----------------------------------
@@ -117,17 +117,17 @@ end;
 -----------------------------------
 
 function lightCutsceneUpdate( player)
-	local weather = player:getVar( "I_CAN_HEAR_A_RAINBOW_Weather");
+    local weather = player:getVar( "I_CAN_HEAR_A_RAINBOW_Weather");
 
-	if (weather == WEATHER_SUNSHINE) then -- In some zones the light cutscene does not handle WEATHER_SUNSHINE properly
-		weather = WEATHER_NONE;
-	end
+    if (weather == WEATHER_SUNSHINE) then -- In some zones the light cutscene does not handle WEATHER_SUNSHINE properly
+        weather = WEATHER_NONE;
+    end
 
-	if (player:getVar( "I_CAN_HEAR_A_RAINBOW") < 127) then
-		player:updateEvent( 0, 0, weather);
-	else
-		player:updateEvent( 0, 0, weather, 6);
-	end
+    if (player:getVar( "I_CAN_HEAR_A_RAINBOW") < 127) then
+        player:updateEvent( 0, 0, weather);
+    else
+        player:updateEvent( 0, 0, weather, 6);
+    end
 end;
 
 -----------------------------------
@@ -135,8 +135,8 @@ end;
 -----------------------------------
 
 function lightCutsceneFinish( player)
-	fixChocoboBug(player);
-	player:setVar("I_CAN_HEAR_A_RAINBOW_Weather", 0);
+    fixChocoboBug(player);
+    player:setVar("I_CAN_HEAR_A_RAINBOW_Weather", 0);
 end;
 
 -----------------------------------
@@ -144,11 +144,11 @@ end;
 -----------------------------------
 
 function fixChocoboBug( player)
-	if (player:hasStatusEffect(EFFECT_CHOCOBO)) then
-		if (player:getAnimation() == 5) then
-			player:setAnimation( 0);
-		elseif (player:getAnimation() == 0) then
-			player:setAnimation( 5);
-		end
-	end
+    if (player:hasStatusEffect(EFFECT_CHOCOBO)) then
+        if (player:getAnimation() == 5) then
+            player:setAnimation( 0);
+        elseif (player:getAnimation() == 0) then
+            player:setAnimation( 5);
+        end
+    end
 end;

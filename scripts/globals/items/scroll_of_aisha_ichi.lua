@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4965
---	Scroll of Aisha: Ichi
---	Teaches the ninjutsu Aisha: Ichi
+--    ID: 4965
+--    Scroll of Aisha: Ichi
+--    Teaches the ninjutsu Aisha: Ichi
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(319);
+    return target:canLearnSpell(319);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(319);
+    target:addSpell(319);
 end;

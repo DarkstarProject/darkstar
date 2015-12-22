@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4898
---	Air Spirit Pact
---	Teaches the summoning magic Air Spirit
+--    ID: 4898
+--    Air Spirit Pact
+--    Teaches the summoning magic Air Spirit
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(290);
+    return target:canLearnSpell(290);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(290);
+    target:addSpell(290);
 end;

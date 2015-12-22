@@ -14,7 +14,7 @@ require("scripts/zones/Dynamis-Buburimu/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
-	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------
@@ -27,7 +27,7 @@ end;
 
 
                      
-					
+                    
 
 
 
@@ -36,13 +36,13 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-	local mobID = mob:getID();
+    local mobID = mob:getID();
 
-	if ( mobID == 16941135 or mobID == 16941411) then --hp
-		ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
-	    ally:restoreHP(3000);
+    if ( mobID == 16941135 or mobID == 16941411) then --hp
+        ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
+        ally:restoreHP(3000);
      elseif (mobID == 16941137 or mobID == 16941412) then --mp
-		ally:messageBasic(025,(ally:getMaxMP()-ally:getMP()));
-		ally:restoreMP(3000);		
-	end
+        ally:messageBasic(025,(ally:getMaxMP()-ally:getMP()));
+        ally:restoreMP(3000);        
+    end
 end;

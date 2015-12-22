@@ -30,13 +30,13 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 print("leave code "..leavecode);
-	
+    
 if (leavecode == 2) then 
-	if (player:getCurrentMission(BASTOK) == WHERE_TWO_PATHS_CONVERGE) then
-	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0);
-	else
-	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
-	end
+    if (player:getCurrentMission(BASTOK) == WHERE_TWO_PATHS_CONVERGE) then
+    player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0);
+    else
+    player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
+    end
 elseif (leavecode == 4) then
 player:startEvent(0x7d02);
 end
@@ -45,7 +45,7 @@ end;
 function onEventUpdate(player,csid,option)
 print("bc update csid "..csid.." and option "..option);
 end;
-	
+    
 function onEventFinish(player,csid,option)
 print("bc finish csid "..csid.." and option "..option);
 player:setVar("BASTOK92",2);

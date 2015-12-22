@@ -15,9 +15,9 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_VIT_DOWN;
+    local typeEffect = EFFECT_VIT_DOWN;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 10, 3, 120));
 
-	return typeEffect;
+    return typeEffect;
 end;

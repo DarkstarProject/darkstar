@@ -10,7 +10,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
@@ -27,7 +27,7 @@ function onSpellCast(caster,target,spell)
 
     if (power > 20) then
         power = 20;
-	end
+    end
 
     if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         power = power * 2;

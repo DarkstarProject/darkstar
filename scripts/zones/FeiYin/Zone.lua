@@ -34,9 +34,9 @@ end;
 
 function onZoneIn(player,prevZone)
     local pNation = player:getNation();
-	local currentMission = player:getCurrentMission(pNation);
-	local MissionStatus = player:getVar("MissionStatus");
-	local cs = -1;
+    local currentMission = player:getCurrentMission(pNation);
+    local MissionStatus = player:getVar("MissionStatus");
+    local cs = -1;
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(99.98,-1.768,275.993,70);

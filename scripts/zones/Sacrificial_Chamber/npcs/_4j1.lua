@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(DOOR_SHUT);
+    player:messageSpecial(DOOR_SHUT);
 end;
 
 -----------------------------------

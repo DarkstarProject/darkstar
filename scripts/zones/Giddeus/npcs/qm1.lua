@@ -18,16 +18,16 @@ require("scripts/zones/Giddeus/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	darkLegacyCS = player:getVar("darkLegacyCS");
-	
-	if (darkLegacyCS == 3 or darkLegacyCS == 4) then
-		if (trade:hasItemQty(4445,1) and trade:getItemCount() == 1) then -- Trade Yagudo Cherries
-			player:tradeComplete();
-			player:messageSpecial(SENSE_OF_FOREBODING);
-			SpawnMob(17371579,180):updateClaim(player);
-		end
-	end
+    
+    darkLegacyCS = player:getVar("darkLegacyCS");
+    
+    if (darkLegacyCS == 3 or darkLegacyCS == 4) then
+        if (trade:hasItemQty(4445,1) and trade:getItemCount() == 1) then -- Trade Yagudo Cherries
+            player:tradeComplete();
+            player:messageSpecial(SENSE_OF_FOREBODING);
+            SpawnMob(17371579,180):updateClaim(player);
+        end
+    end
 
 end;
 
@@ -36,14 +36,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:getVar("darkLegacyCS") == 5 and player:hasKeyItem(DARKSTEEL_FORMULA) == false) then
-		player:addKeyItem(DARKSTEEL_FORMULA);
-		player:messageSpecial(KEYITEM_OBTAINED,DARKSTEEL_FORMULA);
-	else
-		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-	end
-	
+    
+    if (player:getVar("darkLegacyCS") == 5 and player:hasKeyItem(DARKSTEEL_FORMULA) == false) then
+        player:addKeyItem(DARKSTEEL_FORMULA);
+        player:messageSpecial(KEYITEM_OBTAINED,DARKSTEEL_FORMULA);
+    else
+        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    end
+    
 end;
 
 -----------------------------------

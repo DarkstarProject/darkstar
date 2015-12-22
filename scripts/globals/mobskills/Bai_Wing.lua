@@ -16,17 +16,17 @@ function onMobSkillCheck(target,mob,skill)
     if (mob:AnimationSub() ~= 1) then
         return 1;
     end
-	return 0;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_SLOW;
+    local typeEffect = EFFECT_SLOW;
 
-	MobStatusEffectMove(mob, target, typeEffect, 300, 0, 120);
+    MobStatusEffectMove(mob, target, typeEffect, 300, 0, 120);
 
-	local dmgmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*5,ELE_EARTH,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS);
-	target:delHP(dmg);
-	return dmg;
+    local dmgmod = 1;
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*5,ELE_EARTH,dmgmod,TP_NO_EFFECT);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS);
+    target:delHP(dmg);
+    return dmg;
 end;

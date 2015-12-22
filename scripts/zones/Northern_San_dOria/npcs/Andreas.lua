@@ -27,7 +27,7 @@ local keyitems = {
         rank = 3,
         cost = 10000 
     },
-	 [3] = {
+     [3] = {
         id = BOLTMAKER,
         rank = 3,
         cost = 10000 
@@ -95,7 +95,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 1, 0x02db, "guild_woodworking", keyitems);
+    unionRepresentativeTrigger(player, 1, 0x02db, "guild_woodworking", keyitems);
 end;
 
 -----------------------------------
@@ -103,8 +103,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -112,8 +112,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,target)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
      
     if (csid == 0x02db) then
         unionRepresentativeTriggerFinish(player, option, target, 1, "guild_woodworking", keyitems, items);

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4716
---	Scroll of Regen
---	Teaches the white magic Regen
+--    ID: 4716
+--    Scroll of Regen
+--    Teaches the white magic Regen
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(108);
+    return target:canLearnSpell(108);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(108);
+    target:addSpell(108);
 end;

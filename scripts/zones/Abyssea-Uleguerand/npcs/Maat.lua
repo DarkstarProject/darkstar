@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Abyssea_Uleguerand
---	NPC: Maat
---	Standard Info NPC
+--    Area: Abyssea_Uleguerand
+--    NPC: Maat
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Uleguerand/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0163);
+    player:startEvent(0x0163);
 end;
 
 -----------------------------------

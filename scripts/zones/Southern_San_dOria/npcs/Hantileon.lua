@@ -25,15 +25,15 @@ end;
 function onTrigger(player,npc)
 
 
-	local chocoboOnTheLoose = player:getVar("ChocoboOnTheLoose");
+    local chocoboOnTheLoose = player:getVar("ChocoboOnTheLoose");
 
-	if (chocoboOnTheLoose == 3 or chocoboOnTheLoose == 4) then
-		player:startEvent(0x0335);
-	elseif (chocoboOnTheLoose == 5) then
-		player:startEvent(0x0336);
-	else
-		player:startEvent(0x0331);
-	end
+    if (chocoboOnTheLoose == 3 or chocoboOnTheLoose == 4) then
+        player:startEvent(0x0335);
+    elseif (chocoboOnTheLoose == 5) then
+        player:startEvent(0x0336);
+    else
+        player:startEvent(0x0331);
+    end
 end;
 
 -----------------------------------
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,12 +50,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
-	if (csid == 0x0335) then
-		player:setVar("ChocoboOnTheLoose", 5);
-	elseif (csid == 0x0336) then
-		player:setVar("ChocoboOnTheLoose", 6);
-	end
+    if (csid == 0x0335) then
+        player:setVar("ChocoboOnTheLoose", 5);
+    elseif (csid == 0x0336) then
+        player:setVar("ChocoboOnTheLoose", 6);
+    end
 end;

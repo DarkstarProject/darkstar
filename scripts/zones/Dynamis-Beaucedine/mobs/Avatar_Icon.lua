@@ -15,7 +15,7 @@ require("scripts/zones/Dynamis-Beaucedine/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
-	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------
@@ -31,23 +31,23 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-	
-	local mobID = mob:getID();
-	-- Time Bonus: 010 020
-	if (mobID == 17326839 and mob:isInBattlefieldList() == false) then
-		ally:addTimeToDynamis(15);
-		mob:addInBattlefieldList();
-	elseif (mobID == 17326849 and mob:isInBattlefieldList() == false) then
-		ally:addTimeToDynamis(15);
-		mob:addInBattlefieldList();
-	-- HP Bonus: 005 013 018 023 028 030
-	elseif (mobID == 17326834 or mobID == 17326842 or mobID == 17326847 or mobID == 17326852 or mobID == 17326857 or mobID == 17326859) then 
-		ally:restoreHP(2000);
-		ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
-	-- MP Bonus: 012 019 022 025 027 106
-	elseif (mobID == 17326841 or mobID == 17326848 or mobID == 17326851 or mobID == 17326854 or mobID == 17326856 or mobID == 17326935) then 
-		ally:restoreMP(2000);
-		ally:messageBasic(025,(ally:getMaxMP()-ally:getMP()));
-	end
-	
+    
+    local mobID = mob:getID();
+    -- Time Bonus: 010 020
+    if (mobID == 17326839 and mob:isInBattlefieldList() == false) then
+        ally:addTimeToDynamis(15);
+        mob:addInBattlefieldList();
+    elseif (mobID == 17326849 and mob:isInBattlefieldList() == false) then
+        ally:addTimeToDynamis(15);
+        mob:addInBattlefieldList();
+    -- HP Bonus: 005 013 018 023 028 030
+    elseif (mobID == 17326834 or mobID == 17326842 or mobID == 17326847 or mobID == 17326852 or mobID == 17326857 or mobID == 17326859) then 
+        ally:restoreHP(2000);
+        ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
+    -- MP Bonus: 012 019 022 025 027 106
+    elseif (mobID == 17326841 or mobID == 17326848 or mobID == 17326851 or mobID == 17326854 or mobID == 17326856 or mobID == 17326935) then 
+        ally:restoreMP(2000);
+        ally:messageBasic(025,(ally:getMaxMP()-ally:getMP()));
+    end
+    
 end;

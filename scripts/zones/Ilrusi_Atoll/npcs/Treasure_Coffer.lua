@@ -44,7 +44,7 @@ function onTrigger(player,npc)
      for ID=17002505,17002516,1 do
      if (GetMobAction(ID) > 0) then DespawnMob(npcID);printf("mobdespawn: %u",ID);  end--despawn mimic
      end
-	GetNPCByID(npcID):setAnimation(89);--coffer open anim
+    GetNPCByID(npcID):setAnimation(89);--coffer open anim
    else
    SpawnMob(npcID);
    end

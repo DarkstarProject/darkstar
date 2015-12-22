@@ -309,9 +309,9 @@ local path = {
 -----------------------------------
 
 function onSpawn(npc)
-	npc:initNpcAi();
-	npc:setPos(pathfind.first(path));
-	onPath(npc);
+    npc:initNpcAi();
+    npc:setPos(pathfind.first(path));
+    onPath(npc);
 end;
 
 -----------------------------------
@@ -320,14 +320,14 @@ end;
 
 function onPath(npc)
 
-	if (npc:atPoint(pathfind.get(path, 45))) then
-		local Gachemage = GetNPCByID(npc:getID() + 3);
-		Gachemage:showText(npc, PALCOMONDAU_REPORT);
-		-- small delay after path finish
-		npc:wait(8000);
-	end
+    if (npc:atPoint(pathfind.get(path, 45))) then
+        local Gachemage = GetNPCByID(npc:getID() + 3);
+        Gachemage:showText(npc, PALCOMONDAU_REPORT);
+        -- small delay after path finish
+        npc:wait(8000);
+    end
 
-	pathfind.patrol(npc, path);
+    pathfind.patrol(npc, path);
 
 end;
 
@@ -343,8 +343,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc, PALCOMONDAU_DIALOG);
-	--npc:wait(1500);
+    player:showText(npc, PALCOMONDAU_DIALOG);
+    --npc:wait(1500);
 end;
 
 -----------------------------------
@@ -352,8 +352,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -361,6 +361,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

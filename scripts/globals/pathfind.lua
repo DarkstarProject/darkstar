@@ -12,7 +12,7 @@ function pathfind.get(points, index)
     local pos = {};
 
     if (index < 0) then
-    	index = (#points + index - 2) / 3;
+        index = (#points + index - 2) / 3;
     end
 
     pos[1] = points[index*3-2];
@@ -89,7 +89,7 @@ function pathfind.fromEnd(points, start)
     local index = 1;
 
   for i=start,1,-1 do
-  	local pt = pathfind.get(points, i);
+      local pt = pathfind.get(points, i);
 
     t2[index] = pt[1]
     t2[index+1] = pt[2]
@@ -108,24 +108,24 @@ end;
 -- continusly runs the path
 function pathfind.patrol(npc, points, flags)
 
-	if (npc:atPoint(pathfind.first(points)) or npc:atPoint(pathfind.last(points))) then
-		npc:pathThrough(pathfind.fromStart(points), flags);
-	else
+    if (npc:atPoint(pathfind.first(points)) or npc:atPoint(pathfind.last(points))) then
+        npc:pathThrough(pathfind.fromStart(points), flags);
+    else
 
-		local length = #points / 3;
-		local currentLength = 0;
-		local i = 51;
-		-- i'm some where inbetween
-		while(i <= length) do
+        local length = #points / 3;
+        local currentLength = 0;
+        local i = 51;
+        -- i'm some where inbetween
+        while(i <= length) do
 
-			if (npc:atPoint(pathfind.get(points, i))) then
-				npc:pathThrough(pathfind.fromStart(points, i), flags);
-				break;
-			end
+            if (npc:atPoint(pathfind.get(points, i))) then
+                npc:pathThrough(pathfind.fromStart(points, i), flags);
+                break;
+            end
 
-			i = i + 50;
-		end
-		
-	end
+            i = i + 50;
+        end
+        
+    end
 
 end;

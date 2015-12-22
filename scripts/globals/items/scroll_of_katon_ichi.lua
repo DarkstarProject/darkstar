@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4928
---	Scroll of Katon: Ichi
---	Teaches the ninjutsu Katon: Ichi
+--    ID: 4928
+--    Scroll of Katon: Ichi
+--    Teaches the ninjutsu Katon: Ichi
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(320);
+    return target:canLearnSpell(320);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(320);
+    target:addSpell(320);
 end;

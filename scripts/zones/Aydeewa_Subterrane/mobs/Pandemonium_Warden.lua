@@ -226,11 +226,11 @@ function onMobFight(mob,target)
     end
 
     -- Repops pets sets model and sets them agro..
-	-- This is TeoTwawki's loop for respawning pets, I left it here in case
-	-- someone ever wants it
+    -- This is TeoTwawki's loop for respawning pets, I left it here in case
+    -- someone ever wants it
     -- if (mob:getLocalVar("repopPets") == 1) then
         -- for i = 1, 8 do
-            -- if petStatus[i] == 0 then					
+            -- if petStatus[i] == 0 then                    
                 -- SpawnMob(petIDs[i]):updateEnmity(target);
             -- end
 

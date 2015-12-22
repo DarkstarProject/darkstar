@@ -24,11 +24,11 @@ end;
 
 function onTrigger(player,npc)
 
-	-- rng af2
-	local FireAndBrimstoneCS = player:getVar("fireAndBrimstone");	
-	if (FireAndBrimstoneCS == 3) then
-		player:startEvent(0x0005);
-	end
+    -- rng af2
+    local FireAndBrimstoneCS = player:getVar("fireAndBrimstone");    
+    if (FireAndBrimstoneCS == 3) then
+        player:startEvent(0x0005);
+    end
 
 end;
 -- 
@@ -49,8 +49,8 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 5) then
-		player:setVar("fireAndBrimstone",4);		
-	end
+    if (csid == 5) then
+        player:setVar("fireAndBrimstone",4);        
+    end
 
 end;

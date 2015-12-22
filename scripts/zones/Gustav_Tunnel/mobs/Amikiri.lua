@@ -1,13 +1,13 @@
-----------------------------------	
+----------------------------------    
 -- Area: Gustav Tunnel
 --   NM: Amikiri
------------------------------------	
+-----------------------------------    
   
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer,ally)	
+-----------------------------------    
+-- onMobDeath    
+-----------------------------------    
+    
+function onMobDeath(mob,killer,ally)    
   
     -- Set Amikiri's Window Open Time
     local wait = math.random(7,9) * 3600;

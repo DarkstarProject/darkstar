@@ -8,7 +8,7 @@ require("scripts/globals/limbus");
 -- onTrade Action
 -----------------------------------
 
-function onTrade(player,npc,trade)	
+function onTrade(player,npc,trade)    
 end;
 
 -----------------------------------

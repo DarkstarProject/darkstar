@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5091
---	Scroll of Gain-INT
---	Teaches the white magic Gain-INT
+--    ID: 5091
+--    Scroll of Gain-INT
+--    Teaches the white magic Gain-INT
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(490);
+    return target:canLearnSpell(490);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(490);
+    target:addSpell(490);
 end;

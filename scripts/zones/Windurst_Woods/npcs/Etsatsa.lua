@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Windurst Woods
---	NPC:  Etsatsa
+--    Area: Windurst Woods
+--    NPC:  Etsatsa
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -17,7 +17,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0xfc);
+    player:startEvent(0xfc);
 end;
 
 -----------------------------------

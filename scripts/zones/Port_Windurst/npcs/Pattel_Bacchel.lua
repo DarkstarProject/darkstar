@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC: Pattel_Bacchel
---	Standard Info NPC
+--    Area: Port Windurst
+--    NPC: Pattel_Bacchel
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x036C);
+    player:startEvent(0x036C);
 end;
 
 -----------------------------------

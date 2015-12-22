@@ -13,7 +13,7 @@ require("scripts/globals/status");
 -- OnItemCheck
 -----------------------------------------
 function onItemCheck(target)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if (not target:hasStatusEffect(EFFECT_SNEAK)) then
-		target:addStatusEffect(EFFECT_SNEAK,1,10,200);
-	end
+    if (not target:hasStatusEffect(EFFECT_SNEAK)) then
+        target:addStatusEffect(EFFECT_SNEAK,1,10,200);
+    end
 end;

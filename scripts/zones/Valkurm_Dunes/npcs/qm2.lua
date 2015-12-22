@@ -23,13 +23,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:getQuestStatus(SANDORIA,MESSENGER_FROM_BEYOND) == QUEST_ACCEPTED and player:hasItem(1096) == false) then
-		SpawnMob(17199566,300):updateClaim(player);
-	else
-		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-	end
-	
+    
+    if (player:getQuestStatus(SANDORIA,MESSENGER_FROM_BEYOND) == QUEST_ACCEPTED and player:hasItem(1096) == false) then
+        SpawnMob(17199566,300):updateClaim(player);
+    else
+        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    end
+    
 end;
 
 -----------------------------------

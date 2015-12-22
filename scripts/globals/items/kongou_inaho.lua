@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4184
---	Kongou Inaho
---	A sparkler-type firework appears in the user's hand
+--    ID: 4184
+--    Kongou Inaho
+--    A sparkler-type firework appears in the user's hand
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------

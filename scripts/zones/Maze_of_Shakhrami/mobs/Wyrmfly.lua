@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer, ally)
-	if (ally:getQuestStatus(WINDURST,ECO_WARRIOR_WIN) ~= QUEST_AVAILABLE and ally:getVar("ECO_WARRIOR_ACTIVE") == 238 and ally:hasStatusEffect(EFFECT_LEVEL_RESTRICTION)) then
-		ally:setVar("ECOR_WAR_WIN-NMs_killed",1);
-	end
+    if (ally:getQuestStatus(WINDURST,ECO_WARRIOR_WIN) ~= QUEST_AVAILABLE and ally:getVar("ECO_WARRIOR_ACTIVE") == 238 and ally:hasStatusEffect(EFFECT_LEVEL_RESTRICTION)) then
+        ally:setVar("ECOR_WAR_WIN-NMs_killed",1);
+    end
 end;

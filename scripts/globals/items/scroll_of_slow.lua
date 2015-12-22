@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4664
---	Scroll of Slow
---	Teaches the white magic Slow
+--    ID: 4664
+--    Scroll of Slow
+--    Teaches the white magic Slow
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(56);
+    return target:canLearnSpell(56);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(56);
+    target:addSpell(56);
 end;

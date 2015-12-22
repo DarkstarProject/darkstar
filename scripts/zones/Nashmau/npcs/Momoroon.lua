@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Nashmau
---	NPC:  Momoroon
+--    Area: Nashmau
+--    NPC:  Momoroon
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:sendMenu(3);
+    player:sendMenu(3);
 end; 
 
 -----------------------------------

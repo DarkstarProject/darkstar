@@ -18,9 +18,9 @@ end;
 
 function onMobDeath(mob, killer, ally)
 
-	if (ally:getVar("sharpeningTheSwordCS") == 3) then
-		ally:setVar("PolevikKilled",1);
-		ally:setVar("Polevik_Timer",os.time());
-	end
+    if (ally:getVar("sharpeningTheSwordCS") == 3) then
+        ally:setVar("PolevikKilled",1);
+        ally:setVar("Polevik_Timer",os.time());
+    end
 
 end;

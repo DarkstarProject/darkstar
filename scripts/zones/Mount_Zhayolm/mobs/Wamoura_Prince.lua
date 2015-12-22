@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobSpawn(mob)
-	mob:setLocalVar("formTime", os.time() + math.random(43,47));
+    mob:setLocalVar("formTime", os.time() + math.random(43,47));
 end;
 
 -----------------------------------

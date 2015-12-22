@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4654
---	Scroll of Protect IV
---	Teaches the white magic Protect IV
+--    ID: 4654
+--    Scroll of Protect IV
+--    Teaches the white magic Protect IV
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(46);
+    return target:canLearnSpell(46);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(46);
+    target:addSpell(46);
 end;

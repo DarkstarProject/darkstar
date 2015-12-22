@@ -1,7 +1,7 @@
 -----------------------------------
 --
--- 	EFFECT_HASTE
--- 	
+--     EFFECT_HASTE
+--     
 -----------------------------------
 
 require("scripts/globals/status");

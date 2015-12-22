@@ -20,14 +20,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+    
 player:showText(npc,MAZUROOOZURO_SHOP_DIALOG);
 
-stock = {0x426d,108,		-- Lufaise Fly
-	 0x43e7,2640,		-- Clothespole
-	 0x02b0,200,		-- Arrowwood Log
-	 0x02b2,7800,		-- Elm Log
-	 0x0b37,10000}		-- Safehold Waystone
+stock = {0x426d,108,        -- Lufaise Fly
+     0x43e7,2640,        -- Clothespole
+     0x02b0,200,        -- Arrowwood Log
+     0x02b2,7800,        -- Elm Log
+     0x0b37,10000}        -- Safehold Waystone
  
 showShop(player, STATIC, stock);
 end; 

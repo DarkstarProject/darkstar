@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC:  Mefa Euron
---	Working 100%
+--    Area: Port Windurst
+--    NPC:  Mefa Euron
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x15b);
+    player:startEvent(0x15b);
 end;
 
 -----------------------------------

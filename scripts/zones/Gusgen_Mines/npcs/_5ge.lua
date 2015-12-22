@@ -20,18 +20,18 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	--local nID = npc:getID();
-	--printf("id: %u", nID);
-	
-	local Lever = npc:getID();	
-	
-	npc:openDoor(2); -- Lever animation	
-	if (GetNPCByID(Lever-6):getAnimation() == 9) then
-		GetNPCByID(Lever-7):setAnimation(9);--close door F
-		GetNPCByID(Lever-6):setAnimation(8);--open door E
-		GetNPCByID(Lever-5):setAnimation(9);--close door D
-	end
-	
+    --local nID = npc:getID();
+    --printf("id: %u", nID);
+    
+    local Lever = npc:getID();    
+    
+    npc:openDoor(2); -- Lever animation    
+    if (GetNPCByID(Lever-6):getAnimation() == 9) then
+        GetNPCByID(Lever-7):setAnimation(9);--close door F
+        GetNPCByID(Lever-6):setAnimation(8);--open door E
+        GetNPCByID(Lever-5):setAnimation(9);--close door D
+    end
+    
 end;
 
 -----------------------------------

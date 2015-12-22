@@ -15,10 +15,10 @@ function onEffectGain(target,effect)
     if (fanDanceMerits >5) then
         target:addMod(MOD_WALTZ_RECAST, (fanDanceMerits-5));
     end
-	target:delStatusEffect(EFFECT_HASTE_SAMBA);
-	target:delStatusEffect(EFFECT_ASPIR_SAMBA);
-	target:delStatusEffect(EFFECT_DRAIN_SAMBA);
-	target:delStatusEffect(EFFECT_SABER_DANCE);
+    target:delStatusEffect(EFFECT_HASTE_SAMBA);
+    target:delStatusEffect(EFFECT_ASPIR_SAMBA);
+    target:delStatusEffect(EFFECT_DRAIN_SAMBA);
+    target:delStatusEffect(EFFECT_SABER_DANCE);
     target:addMod(MOD_ENMITY, 15);
 end;
 

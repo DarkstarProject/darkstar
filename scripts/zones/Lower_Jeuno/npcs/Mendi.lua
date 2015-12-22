@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0052, player:getFame(JEUNO));
+    player:startEvent(0x0052, player:getFame(JEUNO));
 end; 
 
 -----------------------------------

@@ -1,8 +1,8 @@
 -----------------------------------
---	Area: East Sarutabaruta
--- 	NPC:  Sama Gohjima
+--    Area: East Sarutabaruta
+--     NPC:  Sama Gohjima
 --  Involved in Mission: The Horutoto Ruins Experiment (optional)
---	@pos 377 -13 98 116
+--    @pos 377 -13 98 116
 -----------------------------------
 package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------
@@ -22,15 +22,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 1) then
-		player:showText(npc,SAMA_GOHJIMA_PREDIALOG);
-	elseif (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") ~= 1) then
-		player:messageSpecial(SAMA_GOHJIMA_POSTDIALOG);
-	else
-		player:startEvent(0x002b);
-	end
-	
+    
+    if (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 1) then
+        player:showText(npc,SAMA_GOHJIMA_PREDIALOG);
+    elseif (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") ~= 1) then
+        player:messageSpecial(SAMA_GOHJIMA_POSTDIALOG);
+    else
+        player:startEvent(0x002b);
+    end
+    
 end; 
  
 -----------------------------------

@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0001);
+    player:startEvent(0x0001);
 end;
 
 -----------------------------------
@@ -27,8 +27,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -36,11 +36,11 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,npc)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-	if (csid == 0x0001 and option == 0) then
-		local DoorID = npc:getID()+1;
-		GetNPCByID(DoorID):openDoor(10);
-	end
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x0001 and option == 0) then
+        local DoorID = npc:getID()+1;
+        GetNPCByID(DoorID):openDoor(10);
+    end
 end;
 

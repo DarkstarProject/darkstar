@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC:  Deigai
---	Working 100%
+--    Area: Port Windurst
+--    NPC:  Deigai
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x163);
+    player:startEvent(0x163);
 end;
 
 -----------------------------------

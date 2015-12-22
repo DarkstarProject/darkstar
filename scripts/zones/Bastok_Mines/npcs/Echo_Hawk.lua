@@ -25,17 +25,17 @@ end;
 
 function onTrigger(player,npc)
 
-	local SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
+    local SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
 
-	local WildcatBastok = player:getVar("WildcatBastok");
-	
-	if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,17) == false) then
-		player:startEvent(0x01f9);
-	elseif (SirensTear == QUEST_AVAILABLE) then
-		player:startEvent(0x0005);
-	else
-		player:startEvent(0x000d);
-	end
+    local WildcatBastok = player:getVar("WildcatBastok");
+    
+    if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,17) == false) then
+        player:startEvent(0x01f9);
+    elseif (SirensTear == QUEST_AVAILABLE) then
+        player:startEvent(0x0005);
+    else
+        player:startEvent(0x000d);
+    end
 end; 
 
 
@@ -57,8 +57,8 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x01f9) then
-		player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",17,true);
-	end
+    if (csid == 0x01f9) then
+        player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",17,true);
+    end
 
 end;

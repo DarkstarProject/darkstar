@@ -23,15 +23,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local TREMORSTONE = 2796;
-	
-	-- Give Player a Tremorstone if they don't have one
-	if (player:hasItem(TREMORSTONE) == false) then
-		player:addItem(TREMORSTONE);
-		player:messageSpecial(ITEM_OBTAINED, TREMORSTONE);
-	else
-		player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY);
-	end
+    local TREMORSTONE = 2796;
+    
+    -- Give Player a Tremorstone if they don't have one
+    if (player:hasItem(TREMORSTONE) == false) then
+        player:addItem(TREMORSTONE);
+        player:messageSpecial(ITEM_OBTAINED, TREMORSTONE);
+    else
+        player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY);
+    end
 end;
 
 -----------------------------------

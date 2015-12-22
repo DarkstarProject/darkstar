@@ -31,12 +31,12 @@ local path = {
 
 function onSpawn(npc)
     npc:initNpcAi();
-	npc:setPos(pathfind.first(path));
-	onPath(npc);
+    npc:setPos(pathfind.first(path));
+    onPath(npc);
 end;
 
 function onPath(npc)
-	pathfind.patrol(npc, path);
+    pathfind.patrol(npc, path);
 end;
 
 -----------------------------------
@@ -86,7 +86,7 @@ function onTrigger(player,npc)
     if (player:getVar("BathedInScent") == 1 and OpoOpoAndIStatus == QUEST_AVAILABLE) then
         player:startEvent(0x00D9, 0, 483)  -- 483 broken mithran fishing rod
         npc:wait(-1);
-	elseif (OpoOpoAndIStatus == QUEST_ACCEPTED) then
+    elseif (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if retry == 1 then  
             player:startEvent(0x00EF); -- gave 1st NPC wrong item instead of "Broken Mithran Fishing Rod"
         elseif retry == 2 then
@@ -123,8 +123,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -132,8 +132,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,npc)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x00D9 and option == 1)  then                   -- Opo Opo and I quest start CS
         player:addQuest(OUTLANDS, THE_OPO_OPO_AND_I);
     elseif (csid == 0x00DB) then

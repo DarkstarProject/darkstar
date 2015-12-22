@@ -24,13 +24,13 @@ end;
 
 function onTrigger(player,npc)
 
-	local hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
+    local hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
 
-	if (hittingTheMarquisateHagainCS == 2) then 
-		player:messageSpecial(PRESENCE_FROM_CEILING);
-		player:setVar("hittingTheMarquisateHagainCS",3);		
-	end
-	
+    if (hittingTheMarquisateHagainCS == 2) then 
+        player:messageSpecial(PRESENCE_FROM_CEILING);
+        player:setVar("hittingTheMarquisateHagainCS",3);        
+    end
+    
 end;
 
 -----------------------------------

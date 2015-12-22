@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5040
---	Scroll of Uncanny Etude
---	Teaches the song Uncanny Etude
+--    ID: 5040
+--    Scroll of Uncanny Etude
+--    Teaches the song Uncanny Etude
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(432);
+    return target:canLearnSpell(432);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(432);
+    target:addSpell(432);
 end;

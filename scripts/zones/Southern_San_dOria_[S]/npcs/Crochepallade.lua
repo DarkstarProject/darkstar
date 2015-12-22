@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: Crochepallade 				-- Name is Moogle for some reason
+-- NPC: Crochepallade                 -- Name is Moogle for some reason
 -- @zone 80
 -- @pos -46 2 -8
 -----------------------------------

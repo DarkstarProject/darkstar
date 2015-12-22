@@ -27,8 +27,8 @@ end;
 
 function onMobDeath(mob,killer,ally)
 
-	if (ally:getCurrentMission(SANDORIA) == COMING_OF_AGE and ally:getVar("MissionStatus") == 2) then
-		ally:setVar("MissionStatus",3);
-	end
+    if (ally:getCurrentMission(SANDORIA) == COMING_OF_AGE and ally:getVar("MissionStatus") == 2) then
+        ally:setVar("MissionStatus",3);
+    end
 
 end;
