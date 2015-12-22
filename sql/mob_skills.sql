@@ -1618,9 +1618,9 @@ INSERT INTO `mob_skills` VALUES (1568,1286,'Amorphic_spikes',0,7.0,2000,1500,4,0
 -- INSERT INTO `mob_skills` VALUES (1570,1570,'Synergism',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1571,1571,'Metastasis',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1572,1308,'Pyric_Blast',4,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (1573,1319,'Polar_Bulwark',0,7.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skills` VALUES (1573,1319,'Pyric_Bulwark',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (1574,1309,'Polar_Blast',4,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (1575,1318,'Pyric_Bulwark',0,7.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skills` VALUES (1575,1318,'Polar_Bulwark',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (1576,1313,'Barofield',4,15.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1577,1577,'.',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1578,1310,'Trembling',1,10.0,2000,1500,4,0,0,0);
