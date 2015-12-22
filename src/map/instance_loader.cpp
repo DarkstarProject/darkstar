@@ -27,7 +27,6 @@ This file is part of DarkStar-server source code.
 #include "instance_loader.h"
 #include "zone_instance.h"
 
-#include "ai/ai_mob_dummy.h"
 #include "entities/charentity.h"
 #include "entities/mobentity.h"
 #include "entities/npcentity.h"
@@ -204,13 +203,6 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 			// Setup HP / MP Stat Percentage Boost
 			PMob->HPscale = Sql_GetFloatData(SqlInstanceHandle, 52);
 			PMob->MPscale = Sql_GetFloatData(SqlInstanceHandle, 53);
-
-			PMob->PBattleAI = new CAIMobDummy(PMob);
-
-			if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
-			{
-				PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-			}
 
 			// Check if we should be looking up scripts for this mob
 			PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlInstanceHandle, 54);

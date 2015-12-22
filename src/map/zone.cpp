@@ -45,8 +45,6 @@
 #include "zone.h"
 #include "zone_entities.h"
 
-#include "ai/ai_mob_dummy.h"
-
 #include "entities/npcentity.h"
 #include "entities/petentity.h"
 
@@ -80,7 +78,7 @@
 *                                                                       *
 ************************************************************************/
 
-int32 zone_server(uint32 tick, CTaskMgr::CTask* PTask)
+int32 zone_server(time_point tick, CTaskMgr::CTask* PTask)
 {
     ((CZone*)PTask->m_data)->ZoneServer(tick);
     return 0;
@@ -93,11 +91,11 @@ int32 zone_server(uint32 tick, CTaskMgr::CTask* PTask)
 *                                                                       *
 ************************************************************************/
 
-int32 zone_server_region(uint32 tick, CTaskMgr::CTask* PTask)
+int32 zone_server_region(time_point tick, CTaskMgr::CTask* PTask)
 {
     CZone* PZone = (CZone*)PTask->m_data;
 
-    if ((tick - PZone->m_RegionCheckTime) < 1000)
+    if ((tick - PZone->m_RegionCheckTime) < 1s)
     {
         PZone->ZoneServer(tick);
     }
@@ -115,7 +113,7 @@ int32 zone_server_region(uint32 tick, CTaskMgr::CTask* PTask)
 *                                                                       *
 ************************************************************************/
 
-int32 zone_update_weather(uint32 tick, CTaskMgr::CTask* PTask)
+int32 zone_update_weather(time_point tick, CTaskMgr::CTask* PTask)
 {
     CZone* PZone = (CZone*)PTask->m_data;
 
@@ -142,7 +140,6 @@ CZone::CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)
     m_regionID = RegionID;
     m_continentID = ContinentID;
     m_TreasurePool = 0;
-    m_RegionCheckTime = 0;
     m_BattlefieldHandler = nullptr;
     m_Weather = WEATHER_NONE;
     m_WeatherChangeTime = 0;
@@ -568,7 +565,8 @@ void CZone::UpdateWeather()
 
     //ShowDebug(CL_YELLOW"Zone::zone_update_weather: Weather of %s updated to %u\n" CL_RESET, PZone->GetName(), Weather);
 
-    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("zone_update_weather", gettick() + (WeatherNextUpdate * 1000), this, CTaskMgr::TASK_ONCE, zone_update_weather));
+    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("zone_update_weather", 
+        server_clock::now() + std::chrono::seconds(WeatherNextUpdate), this, CTaskMgr::TASK_ONCE, zone_update_weather));
 }
 
 /************************************************************************
@@ -776,7 +774,7 @@ void CZone::WideScan(CCharEntity* PChar, uint16 radius)
 *                                                                       *
 ************************************************************************/
 
-void CZone::ZoneServer(uint32 tick)
+void CZone::ZoneServer(time_point tick)
 {
     m_zoneEntities->ZoneServer(tick);
 
@@ -795,7 +793,7 @@ void CZone::ZoneServer(uint32 tick)
 *                                                                       *
 ************************************************************************/
 
-void CZone::ZoneServerRegion(uint32 tick)
+void CZone::ZoneServerRegion(time_point tick)
 {
     m_zoneEntities->ZoneServerRegion(tick);
 }
@@ -844,11 +842,11 @@ void CZone::createZoneTimer()
 {
     ZoneTimer = CTaskMgr::getInstance()->AddTask(
         m_zoneName,
-        gettick(),
+        server_clock::now(),
         this,
         CTaskMgr::TASK_INTERVAL,
         m_regionList.empty() ? zone_server : zone_server_region,
-        500);
+        500ms);
 }
 
 void CZone::CharZoneIn(CCharEntity* PChar)

@@ -55,6 +55,7 @@
 #include "../trait.h"
 #include "../weapon_skill.h"
 #include "../mobskill.h"
+#include "../entities/battleentity.h"
 #include "../entities/mobentity.h"
 #include "../entities/petentity.h"
 #include "../enmity_container.h"
@@ -66,8 +67,9 @@
 #include "../packets/position.h"
 #include "../packets/lock_on.h"
 #include "../ai/ai_container.h"
-#include "../ai/ai_pet_dummy.h"
-#include "../ai/ai_char_charm.h"
+#include "../ai/controllers/pet_controller.h"
+#include "../ai/controllers/player_controller.h"
+#include "../ai/controllers/player_charm_controller.h"
 #include "../utils/petutils.h"
 #include "zoneutils.h"
 
@@ -1641,7 +1643,7 @@ namespace battleutils
         return x;
     }
 
-    bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender) {
+    bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender, CSpell* PSpell) {
 
         // cannot interrupt when manafont is active
         if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
@@ -1664,17 +1666,17 @@ namespace battleutils
         if (PDefender->objtype == TYPE_PC) { //Check player's skill.
             //For mobs, we can assume their skill is capped at their level, so this term is 1 anyway.
             CCharEntity* PChar = (CCharEntity*)PDefender;
-            float skill = PChar->GetSkill(PChar->PBattleAI->GetCurrentSpell()->getSkillType());
+            float skill = PChar->GetSkill(PSpell->getSkillType());
             if (skill <= 0) {
                 skill = 1;
             }
 
-            float cap = GetMaxSkill((SKILLTYPE)PChar->PBattleAI->GetCurrentSpell()->getSkillType(), PChar->GetMJob(), PChar->GetMLevel());
+            float cap = GetMaxSkill((SKILLTYPE)PSpell->getSkillType(), PChar->GetMJob(), PChar->GetMLevel());
 
             //if cap is 0 then player is using a spell from their subjob
             if (cap == 0)
             {
-                cap = GetMaxSkill((SKILLTYPE)PChar->PBattleAI->GetCurrentSpell()->getSkillType(), PChar->GetSJob(),
+                cap = GetMaxSkill((SKILLTYPE)PSpell->getSkillType(), PChar->GetSJob(),
                     PChar->GetSLevel()); // << this might be GetMLevel, however this leaves no chance of avoiding interuption
             }
 
@@ -1781,7 +1783,7 @@ namespace battleutils
     {
         CItemWeapon* PWeapon = GetEntityWeapon(PDefender, SLOT_MAIN);
         if ((PWeapon != nullptr && PWeapon->getID() != 0 && PWeapon->getID() != 65535 &&
-            PWeapon->getSkillType() != SKILL_H2H) && battleutils::IsEngauged(PDefender))
+            PWeapon->getSkillType() != SKILL_H2H) && PDefender->PAI->IsEngaged())
         {
             JOBTYPE job = PDefender->GetMJob();
 
@@ -1839,7 +1841,7 @@ namespace battleutils
             validWeapon = PDefender->GetMJob() == JOB_MNK || PDefender->GetMJob() == JOB_PUP;
         }
 
-        if (validWeapon && battleutils::IsEngauged(PDefender))
+        if (validWeapon && PDefender->PAI->IsEngaged())
         {
             // assuming this is like parry
             float skill = PDefender->GetSkill(SKILL_GRD) + PDefender->getMod(MOD_GUARD);
@@ -2980,7 +2982,7 @@ namespace battleutils
             // Chainbound active on target
             if (PCBEffect)
             {
-                if (PCBEffect->GetStartTime() + 3000 < gettick())
+                if (PCBEffect->GetStartTime() + 3s < server_clock::now())
                 {
                     //Konzen-Ittai
                     if (PCBEffect->GetPower() > 1)
@@ -3012,7 +3014,7 @@ namespace battleutils
                 // Previous effect is an opening effect, meaning the power is
                 // actually the ID of the opening weaponskill.  We need all 3
                 // of the possible skillchain properties on the initial link.
-                if (PSCEffect->GetStartTime() + 3000 < gettick())
+                if (PSCEffect->GetStartTime() + 3s < server_clock::now())
                 {
                     if (PSCEffect->GetPower())
                     {
@@ -3039,7 +3041,7 @@ namespace battleutils
 
             if (skillchain != SC_NONE)
             {
-                PSCEffect->SetStartTime(gettick());
+                PSCEffect->SetStartTime(server_clock::now());
                 //   ShowDebug("duration: %d", PSCEffect->GetDuration());
                 PSCEffect->SetDuration(PSCEffect->GetDuration() - 1000);
                 PSCEffect->SetTier(GetSkillchainTier((SKILLCHAIN_ELEMENT)skillchain));
@@ -3049,7 +3051,7 @@ namespace battleutils
                 return (SUBEFFECT)GetSkillchainSubeffect((SKILLCHAIN_ELEMENT)skillchain);
             }
 
-            PSCEffect->SetStartTime(gettick());
+            PSCEffect->SetStartTime(server_clock::now());
             PSCEffect->SetDuration(10000);
             PSCEffect->SetTier(0);
             PSCEffect->SetPower(PWeaponSkill->getID());
@@ -3082,7 +3084,7 @@ namespace battleutils
             // Chainbound active on target
             if (PCBEffect)
             {
-                if (PCBEffect->GetStartTime() + 3000 < gettick())
+                if (PCBEffect->GetStartTime() + 3s < server_clock::now())
                 {
                     //Konzen-Ittai
                     if (PCBEffect->GetPower() > 1)
@@ -3113,7 +3115,7 @@ namespace battleutils
                 // Previous effect is an opening effect, meaning the power is
                 // actually the ID of the opening weaponskill.  We need all 3
                 // of the possible skillchain properties on the initial link.
-                if (PSCEffect->GetStartTime() + 3000 < gettick())
+                if (PSCEffect->GetStartTime() + 3s < server_clock::now())
                 {
                     if (PSCEffect->GetPower())
                     {
@@ -3140,7 +3142,7 @@ namespace battleutils
 
             if (skillchain != SC_NONE)
             {
-                PSCEffect->SetStartTime(gettick());
+                PSCEffect->SetStartTime(server_clock::now());
                 PSCEffect->SetDuration(PSCEffect->GetDuration() - 1000);
                 PSCEffect->SetTier(GetSkillchainTier((SKILLCHAIN_ELEMENT)skillchain));
                 PSCEffect->SetPower(skillchain);
@@ -3149,7 +3151,7 @@ namespace battleutils
                 return (SUBEFFECT)GetSkillchainSubeffect((SKILLCHAIN_ELEMENT)skillchain);
             }
 
-            PSCEffect->SetStartTime(gettick());
+            PSCEffect->SetStartTime(server_clock::now());
             PSCEffect->SetDuration(10000);
             PSCEffect->SetTier(0);
             PSCEffect->SetSubPower(PSpell->getID());
@@ -3389,16 +3391,6 @@ namespace battleutils
                 PPlayer->updatemask |= UPDATE_HP;
             }
         }
-    }
-
-    bool IsEngauged(CBattleEntity* PEntity)
-    {
-        DSP_DEBUG_BREAK_IF(PEntity == nullptr);
-
-        return (PEntity->animation == ANIMATION_ATTACK &&
-            PEntity->PBattleAI != nullptr &&
-            PEntity->PBattleAI->GetBattleTarget() != nullptr &&
-            PEntity->status != STATUS_DISAPPEAR);
     }
 
     /************************************************************************
@@ -4117,10 +4109,10 @@ namespace battleutils
             }
         }
 
-        applyCharm(PCharmer, PVictim, CharmTime);
+        applyCharm(PCharmer, PVictim, std::chrono::milliseconds(CharmTime));
     }
 
-    void applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 charmTime)
+    void applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, duration charmTime)
     {
         PVictim->isCharmed = true;
 
@@ -4130,30 +4122,21 @@ namespace battleutils
             PCharmer->PPet = PVictim;
 
             //make the mob disengage
-            if (PCharmer->PPet->PBattleAI != nullptr && PCharmer->PPet->PBattleAI->GetCurrentAction() == ACTION_ENGAGE) {
-                PCharmer->PPet->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+            if (PCharmer->PPet->PAI->IsEngaged())
+            {
+                PCharmer->PPet->PAI->Disengage();
             }
 
             //clear the victims emnity list
             ((CMobEntity*)PVictim)->PEnmityContainer->Clear();
 
-            //cancel the mobs mobBattle ai
-            delete PCharmer->PPet->PBattleAI;
-
             //set the mobs ai to petAi
-            PCharmer->PPet->PBattleAI = new CAIPetDummy((CPetEntity*)PVictim);
-            PCharmer->PPet->PBattleAI->SetLastActionTime(gettick());
-            PCharmer->PPet->charmTime = gettick() + charmTime;
+            PCharmer->PPet->PAI->SetController(std::make_unique<CPetController>(static_cast<CPetEntity*>(PCharmer->PPet)));
+            PCharmer->PPet->charmTime = server_clock::now() + charmTime;
 
             // this will make him transition back to roaming if sleeping
             PCharmer->PPet->animation = ANIMATION_NONE;
             PCharmer->updatemask |= UPDATE_HP;
-
-            // only move to roaming action if not asleep
-            if (!PCharmer->PPet->StatusEffectContainer->HasPreventActionEffect())
-            {
-                PCharmer->PPet->PBattleAI->SetCurrentAction(ACTION_ROAMING);
-            }
 
             charutils::BuildingCharPetAbilityTable((CCharEntity*)PCharmer, (CPetEntity*)PVictim, PVictim->id);
             ((CCharEntity*)PCharmer)->pushPacket(new CCharUpdatePacket((CCharEntity*)PCharmer));
@@ -4169,16 +4152,9 @@ namespace battleutils
             {
                 petutils::DespawnPet(PVictim);
             }
-            delete PVictim->PBattleAI;
-            PVictim->PBattleAI = new CAICharCharm((CCharEntity*)PVictim);
+            PCharmer->PPet->PAI->SetController(std::make_unique<CPlayerCharmController>(static_cast<CCharEntity*>(PVictim)));
 
             PVictim->PMaster = PCharmer;
-
-            if (PCharmer->objtype == TYPE_MOB)
-            {
-                ((CMobEntity*)PCharmer)->PEnmityContainer->Clear(PVictim->id);
-                PCharmer->PBattleAI->SetBattleTarget(((CMobEntity*)PCharmer)->PEnmityContainer->GetHighestEnmity());
-            }
         }
         PVictim->updatemask |= UPDATE_HP;
     }
@@ -4188,8 +4164,7 @@ namespace battleutils
         if (PEntity->objtype == TYPE_PC)
         {
             PEntity->isCharmed = false;
-            delete PEntity->PBattleAI;
-            PEntity->PBattleAI = new CAICharNormal((CCharEntity*)PEntity);
+            PEntity->PAI->SetController(std::make_unique<CPlayerController>(static_cast<CCharEntity*>(PEntity)));
             PEntity->animation = ANIMATION_NONE;
 
             PEntity->PMaster = nullptr;
@@ -4645,10 +4620,11 @@ namespace battleutils
                     PChar->pushPacket(new CLockOnPacket(PChar, EntityToLockon));
                 }
             }
-            else if (PlayerToAssist->PBattleAI != nullptr && PlayerToAssist->PBattleAI->GetBattleTarget() != nullptr)
+            else if (PlayerToAssist->GetBattleTargetID() != 0)
             {
                 // lock on to the new target!
-                PChar->pushPacket(new CLockOnPacket(PChar, PlayerToAssist->PBattleAI->GetBattleTarget()));
+                auto PTarget {static_cast<CBattleEntity*>(PChar->GetEntity(TargID))};
+                PChar->pushPacket(new CLockOnPacket(PChar, PTarget));
             }
         }
     }
@@ -4820,7 +4796,7 @@ namespace battleutils
         position_t nearEntity = nearPosition(*pos, offset, M_PI);
 
         // validate the drawin position before continuing
-        if (!PMob->PBattleAI->m_PPathFind->ValidPosition(pos))
+        if (!PMob->PAI->PathFind->ValidPosition(pos))
         {
             return false;
         }

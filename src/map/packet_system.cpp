@@ -64,7 +64,6 @@ This file is part of DarkStar-server source code.
 #include "recast_container.h"
 
 #include "ai/ai_container.h"
-#include "ai/ai_general.h"
 #include "ai/states/death_state.h"
 
 #include "items/item_shop.h"
@@ -317,7 +316,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (!PChar->loc.zoning)
         PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
 
-    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
+    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", server_clock::now() + 500ms, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
     return;
 }
 
@@ -4574,19 +4573,15 @@ void SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         if (PChar->PPet == nullptr ||
             (PChar->PPet->m_EcoSystem != SYSTEM_AVATAR &&
-            PChar->PPet->m_EcoSystem != SYSTEM_ELEMENTAL))
+            PChar->PPet->m_EcoSystem != SYSTEM_ELEMENTAL ) &&
+            !PChar->PAI->IsEngaged())
         {
-            switch (PChar->PBattleAI->GetCurrentAction())
-            {
-            case ACTION_ITEM_USING:        PChar->PBattleAI->SetCurrentAction(ACTION_ITEM_INTERRUPT);    break;
-            case ACTION_MAGIC_CASTING:    PChar->PBattleAI->SetCurrentAction(ACTION_MAGIC_INTERRUPT);    break;
-            }
+            PChar->PAI->ClearStateStack();
             if (PChar->PPet && PChar->PPet->objtype == TYPE_PET &&
                 ((CPetEntity*)PChar->PPet)->getPetType() == PETTYPE_AUTOMATON)
             {
-                PChar->PPet->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+                PChar->PPet->PAI->Disengage();
             }
-            PChar->PBattleAI->CheckCurrentAction(gettick());
             PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING, 0, 0, 10, 0));
             return;
         }

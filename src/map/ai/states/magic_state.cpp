@@ -314,7 +314,7 @@ bool CMagicState::HasMoved()
 
 void CMagicState::TryInterrupt(CBattleEntity* PAttacker)
 {
-    if (battleutils::TryInterruptSpell(PAttacker, m_PEntity))
+    if (battleutils::TryInterruptSpell(PAttacker, m_PEntity, m_PSpell.get()))
     {
         m_interrupted = true;
     }

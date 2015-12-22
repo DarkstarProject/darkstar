@@ -41,11 +41,21 @@ public:
     virtual void Disengage();
     virtual void WeaponSkill(uint16 targid, uint16 wsid);
 
+    bool IsAutoAttackEnabled();
+    void SetAutoAttackEnabled(bool);
+    bool IsWeaponSkillEnabled();
+    void SetWeaponSkillEnabled(bool);
+    bool IsMagicCastingEnabled();
+    void SetMagicCastingEnabled(bool);
+
     bool canUpdate;
 
 protected:
     time_point m_Tick;
     CBattleEntity* POwner;
+    bool m_AutoAttackEnabled {true};
+    bool m_WeaponSkillEnabled {true};
+    bool m_MagicCastingEnabled {true};
 };
 
 #endif

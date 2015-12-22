@@ -39,6 +39,8 @@ public:
     virtual bool CanChangeState() override { return true; }
     virtual bool CanFollowPath() override { return true; }
 
+    void ResetAttackTimer();
+
 protected:
     virtual void UpdateTarget(uint16 = 0) override;
     bool CanAttack(CBattleEntity* PTarget);

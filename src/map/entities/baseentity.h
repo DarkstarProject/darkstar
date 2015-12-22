@@ -125,7 +125,6 @@ struct location_t
     uint16		boundary;       // определенная область в зоне, в которой находится сущность (используется персонажами и транспортом)
 };
 
-class CAIGeneral;
 class CAIContainer;
 class CInstance;
 class CBattlefield;
@@ -183,7 +182,6 @@ public:
     uint8			allegiance;			// what types of targets the entity can fight
     uint8           updatemask;         // what to update next server tick to players nearby
 
-    CAIGeneral*     PBattleAI;          // интеллект любой сущности
     std::unique_ptr<CAIContainer> PAI;       // AI container
     CBattlefield*	PBCNM;              // pointer to bcnm (if in one)
     CInstance*		PInstance;

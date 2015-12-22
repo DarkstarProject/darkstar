@@ -572,6 +572,7 @@ public:
     virtual void    Die();
     uint16 GetBattleTargetID();
     void SetBattleTargetID(uint16 id) { m_battleTarget = id; }
+    CBattleEntity* GetBattleTarget();
 
     /* State callbacks */
     /* Auto attack */
@@ -592,6 +593,9 @@ public:
     virtual void OnRaise() {}
     virtual void TryHitInterrupt(CBattleEntity* PAttacker);
 
+    void SetBattleStartTime(time_point);
+    duration GetBattleTime();
+
     health_t	    health;						// hp,mp,tp
     stats_t		    stats;						// атрибуты STR,DEX,VIT,AGI,INT,MND,CHR
     skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
@@ -600,7 +604,7 @@ public:
     uint8			m_enmityRange;              // only get enmity from entities this close
     bool            m_unkillable;               // entity is not able to die (probably until some action removes this flag)
 
-    uint32			charmTime;					// to hold the time entity is charmed
+    time_point  	charmTime;					// to hold the time entity is charmed
     bool			isCharmed;					// is the battle entity charmed?
 
     uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
@@ -627,6 +631,7 @@ private:
     uint8		m_mlvl;						// ТЕКУЩИЙ уровень главной профессии
     uint8		m_slvl;						// ТЕКУЩИЙ уровень дополнительной профессии
     uint16      m_battleTarget {0};
+    time_point  m_battleStartTime;
 
     std::unordered_map<uint16, int16>		m_modStat;	// массив модификаторов
     std::unordered_map<uint16, int16>		m_modStatSave;	// saved state

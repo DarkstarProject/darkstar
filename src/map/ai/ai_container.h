@@ -62,6 +62,7 @@ public:
     void RangedAttack(uint16 targid);
     void Trigger(uint16 targid);
     void UseItem(uint16 targid, uint8 loc, uint8 slotid);
+    void Inactive(duration _duration);
 
     /* Internal Controller functions */
     bool Internal_Engage(uint16 targetid);
@@ -75,6 +76,7 @@ public:
     void Internal_Die(duration);
     void Internal_Raise();
     void Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid);
+    virtual void Internal_Despawn(duration spawnTime);
 
     virtual void Reset();
     void Tick(time_point _tick);
@@ -85,7 +87,7 @@ public:
     template<typename State>
     bool PopState() { if (IsCurrentState<State>()) m_stateStack.pop(); }
     /* Or have each state return a static number/string that Lua can use as well, in case this is not sufficient */
-    template<typename State>
+    template<typename State, typename = std::enable_if_t<std::is_base_of<CState, State>::value>>
     bool IsCurrentState() { return dynamic_cast<State*>(GetCurrentState()); }
     bool IsSpawned();
     bool IsRoaming();
@@ -93,6 +95,7 @@ public:
     //whether AI is currently able to change state from external means
     virtual bool CanChangeState();
 
+    void SetController(std::unique_ptr<CController> controller);
     CController* GetController();
 
     time_point getTick();
@@ -101,8 +104,7 @@ public:
     void Despawn();
 
     virtual void QueueAction(queueAction_t&&);
-
-    virtual void Internal_Despawn(duration spawnTime);
+    bool QueueEmpty();
 
     // stores all events and their associated lua callbacks
     CAIEventHandler EventHandler;

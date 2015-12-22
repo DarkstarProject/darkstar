@@ -44,6 +44,7 @@ void CAIActionQueue::checkAction(time_point tick)
         if (tick > action.start_time + action.delay && 
             (!action.checkState || PEntity->PAI->CanChangeState()))
         {
+            PEntity->SetLocalVar("actionQueueAction", 1);
             if (action.lua_func)
             {
                 luautils::pushFunc(action.lua_func);
@@ -56,8 +57,14 @@ void CAIActionQueue::checkAction(time_point tick)
             {
                 action.func(PEntity);
             }
+            PEntity->SetLocalVar("actionQueueAction", 0);
             actionQueue.pop();
         }
         else break;
     }
+}
+
+bool CAIActionQueue::isEmpty()
+{
+    return actionQueue.empty();
 }

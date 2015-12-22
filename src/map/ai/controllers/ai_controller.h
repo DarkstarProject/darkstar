@@ -42,20 +42,17 @@ public:
     virtual void Disengage() override;
     virtual void Despawn() override;
     virtual void MobSkill(uint16 targid, uint16 wsid);
+    bool MobSkill(int list = 0);
+    bool TryCastSpell();
+    bool TrySpecialSkill();
 
-    bool IsAutoAttackEnabled();
-    void SetAutoAttackEnabled(bool);
-    bool IsWeaponSkillEnabled();
-    void SetWeaponSkillEnabled(bool);
+    bool CanAggroTarget(CBattleEntity*);
 
 protected:
     virtual bool TryDeaggro();
     virtual void TryLink();
     bool CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false);
     bool CanSeePoint(position_t pos);
-    bool MobSkill(int list = 0);
-    bool TrySpecialSkill();
-    bool TryCastSpell();
     bool CanCastSpells();
     void CastSpell(uint16 spellid);
 
@@ -79,8 +76,7 @@ private:
     time_point m_WaitTime;
 
     bool m_firstSpell{ true };
-    bool m_AutoAttackEnabled{ true };
-    bool m_WeaponSkillEnabled{ true };
+
 };
 
 #endif // _AI_CONTROLLER_H

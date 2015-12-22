@@ -425,7 +425,7 @@ bool CAIController::CanCastSpells()
         }
     }
 
-    return true;
+    return IsMagicCastingEnabled();
 }
 
 void CAIController::CastSpell(uint16 spellid)
@@ -834,22 +834,25 @@ void CAIController::Disengage()
     CController::Disengage();
 }
 
-bool CAIController::IsAutoAttackEnabled()
-{
-    return m_AutoAttackEnabled;
-}
 
-void CAIController::SetAutoAttackEnabled(bool enabled)
-{
-    m_AutoAttackEnabled = enabled;
-}
 
-bool CAIController::IsWeaponSkillEnabled()
+bool CAIController::CanAggroTarget(CBattleEntity* PTarget)
 {
-    return m_WeaponSkillEnabled;
-}
+    // don't aggro i'm neutral
+    if (PMob->m_neutral || PMob->isDead())
+    {
+        return false;
+    }
 
-void CAIController::SetWeaponSkillEnabled(bool enabled)
-{
-    m_WeaponSkillEnabled = enabled;
+    if (PTarget->isDead() || PTarget->animation == ANIMATION_CHOCOBO)
+    {
+        return false;
+    }
+
+    if (PMob->PMaster == nullptr && PMob->PAI->IsSpawned() && !PMob->PAI->IsEngaged() && CanDetectTarget(PTarget))
+    {
+        return true;
+    }
+
+    return false;
 }

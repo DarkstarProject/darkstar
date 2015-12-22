@@ -472,7 +472,6 @@ public:
 
     int32 hasValidJugPetItem(lua_State*);
     int32 getTarget(lua_State*);
-    int32 setBattleSubTarget(lua_State*);
     int32 hasTPMoves(lua_State*);
     int32 getMaster(lua_State*);
 

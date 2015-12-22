@@ -26,7 +26,6 @@
 #include "../map.h"
 #include "../zone.h"
 #include "../ai/ai_container.h"
-#include "../ai/ai_general.h"
 #include "../instance.h"
 
 CBaseEntity::CBaseEntity()
@@ -34,7 +33,6 @@ CBaseEntity::CBaseEntity()
 	m_TargID = 0;
 	namevis = 1;
 
-    PBattleAI = nullptr;
     PAI = nullptr;
 	PBCNM = nullptr;
 	PInstance = nullptr;
@@ -54,10 +52,6 @@ CBaseEntity::CBaseEntity()
 
 CBaseEntity::~CBaseEntity()
 {
-	if(PBattleAI != nullptr)
-	{
-	    delete PBattleAI;
-	}
 }
 
 void CBaseEntity::Spawn()

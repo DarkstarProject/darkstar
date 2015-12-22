@@ -29,9 +29,37 @@
 
 #include "../entities/battleentity.h"
 #include "../spell.h"
-#include "../ai/ai_general.h"
 
 #define MAX_ACTION_TARGETS	16
+
+enum ACTIONTYPE : uint8
+{
+    ACTION_NONE = 0,
+    ACTION_ATTACK = 1,
+    ACTION_RANGED_FINISH = 2,
+    ACTION_WEAPONSKILL_FINISH = 3,
+    ACTION_MAGIC_FINISH = 4,
+    ACTION_ITEM_FINISH = 5,
+    ACTION_JOBABILITY_FINISH = 6,
+    ACTION_WEAPONSKILL_START = 7,
+    ACTION_MAGIC_START = 8,
+    ACTION_ITEM_START = 9,
+    ACTION_JOBABILITY_START = 10,
+    ACTION_MOBABILITY_FINISH = 11,
+    ACTION_RANGED_START = 12,
+    ACTION_PET_MOBABILITY_FINISH = 13,
+    ACTION_DANCE = 14,
+    ACTION_UNKNOWN_15 = 15,
+
+    //these aren't actual action packet IDs - they exist for simplicity
+    // because we are too lazy to figure out 0x0A - 0x0F in the action packet
+    ACTION_ITEM_INTERRUPT		= 29,
+    ACTION_MAGIC_INTERRUPT		= 31,
+    ACTION_RANGED_INTERRUPT		= 32,
+    ACTION_MOBABILITY_START		= 33,
+    ACTION_MOBABILITY_INTERRUPT = 35,
+    ACTION_RAISE_MENU_SELECTION = 37
+};
 
 struct actionTarget_t
 {

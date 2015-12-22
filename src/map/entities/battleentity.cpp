@@ -35,6 +35,7 @@
 #include "../ai/states/attack_state.h"
 #include "../ai/states/magic_state.h"
 #include "../ai/states/death_state.h"
+#include "../ai/states/inactive_state.h"
 #include "../ai/states/weaponskill_state.h"
 #include "../attackround.h"
 #include "../weapon_skill.h"
@@ -75,7 +76,6 @@ CBattleEntity::CBattleEntity()
     m_modStat[MOD_IMPACTRES] = 1000;
 
     m_Immunity = 0;
-    charmTime = 0;
     isCharmed = false;
     m_unkillable = false;
 }
@@ -115,7 +115,7 @@ bool CBattleEntity::hasImmunity(uint32 imID)
 
 bool CBattleEntity::isAsleep()
 {
-    return (PBattleAI->GetCurrentAction() == ACTION_SLEEP);
+    return PAI->IsCurrentState<CInactiveState>();
 }
 
 /************************************************************************
@@ -1311,6 +1311,11 @@ void CBattleEntity::OnChangeTarget(CBattleEntity* PTarget)
 {
 }
 
+CBattleEntity* CBattleEntity::GetBattleTarget()
+{
+    return static_cast<CBattleEntity*>(GetEntity(GetBattleTargetID()));
+}
+
 bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
 {
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
@@ -1489,6 +1494,16 @@ void CBattleEntity::TryHitInterrupt(CBattleEntity* PAttacker)
 {
     if (PAI->GetCurrentState())
         PAI->GetCurrentState()->TryInterrupt(PAttacker);
+}
+
+void CBattleEntity::SetBattleStartTime(time_point time)
+{
+    m_battleStartTime = time;
+}
+
+duration CBattleEntity::GetBattleTime()
+{
+    return m_battleStartTime - server_clock::now();
 }
 
 uint16 CBattleEntity::GetBattleTargetID()

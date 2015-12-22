@@ -28,6 +28,7 @@ This file is part of DarkStar-server source code.
 #include "states/death_state.h"
 #include "states/despawn_state.h"
 #include "states/item_state.h"
+#include "states/inactive_state.h"
 #include "states/magic_state.h"
 #include "states/mobskill_state.h"
 #include "states/raise_state.h"
@@ -65,10 +66,6 @@ void CAIContainer::Cast(uint16 targid, uint16 spellid)
     {
         Controller->Cast(targid, spellid);
     }
-    else
-    {
-        Internal_Cast(targid, spellid);
-    }
 }
 
 void CAIContainer::Engage(uint16 targid)
@@ -76,10 +73,6 @@ void CAIContainer::Engage(uint16 targid)
     if (Controller)
     {
         Controller->Engage(targid);
-    }
-    else
-    {
-        Internal_Engage(targid);
     }
 }
 
@@ -89,10 +82,6 @@ void CAIContainer::ChangeTarget(uint16 targid)
     {
         Controller->ChangeTarget(targid);
     }
-    else
-    {
-        Internal_ChangeTarget(targid);
-    }
 }
 
 void CAIContainer::Disengage()
@@ -101,10 +90,6 @@ void CAIContainer::Disengage()
     {
         Controller->Disengage();
     }
-    else
-    {
-        Internal_Disengage();
-    }
 }
 
 void CAIContainer::WeaponSkill(uint16 targid, uint16 wsid)
@@ -112,10 +97,6 @@ void CAIContainer::WeaponSkill(uint16 targid, uint16 wsid)
     if (Controller)
     {
         Controller->WeaponSkill(targid, wsid);
-    }
-    else
-    {
-        Internal_WeaponSkill(targid, wsid);
     }
 }
 
@@ -126,10 +107,6 @@ void CAIContainer::MobSkill(uint16 targid, uint16 wsid)
     {
         AIController->MobSkill(targid, wsid);
     }
-    else
-    {
-        Internal_MobSkill(targid, wsid);
-    }
 }
 
 void CAIContainer::Ability(uint16 targid, uint16 abilityid)
@@ -139,10 +116,6 @@ void CAIContainer::Ability(uint16 targid, uint16 abilityid)
     {
         PlayerController->Ability(targid, abilityid);
     }
-    else
-    {
-        Internal_Ability(targid, abilityid);
-    }
 }
 
 void CAIContainer::RangedAttack(uint16 targid)
@@ -151,10 +124,6 @@ void CAIContainer::RangedAttack(uint16 targid)
     if (PlayerController)
     {
         PlayerController->RangedAttack(targid);
-    }
-    else
-    {
-        Internal_RangedAttack(targid);
     }
 }
 
@@ -179,13 +148,18 @@ void CAIContainer::UseItem(uint16 targid, uint8 loc, uint8 slotid)
     }
 }
 
+void CAIContainer::Inactive(duration _duration)
+{
+    ChangeState<CInactiveState>(PEntity, _duration);
+}
+
 bool CAIContainer::Internal_Engage(uint16 targetid)
 {
     //#TODO: pet engage/disengage
     auto PTarget {dynamic_cast<CBattleEntity*>(PEntity->GetEntity(targetid))};
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
 
-    if (entity->GetBattleTargetID())
+    if (entity && entity->GetBattleTargetID())
     {
         ChangeTarget(targetid);
         return true;
@@ -291,11 +265,15 @@ bool CAIContainer::CanChangeState()
     return !GetCurrentState() || GetCurrentState()->CanChangeState();
 }
 
+void CAIContainer::SetController(std::unique_ptr<CController> controller)
+{
+    Controller = std::move(controller);
+}
+
 CController* CAIContainer::GetController()
 {
     return Controller.get();
 }
-
 
 void CAIContainer::Reset()
 {
@@ -392,6 +370,11 @@ void CAIContainer::Despawn()
 void CAIContainer::QueueAction(queueAction_t&& action)
 {
     ActionQueue.pushAction(std::move(action));
+}
+
+bool CAIContainer::QueueEmpty()
+{
+    return ActionQueue.isEmpty();
 }
 
 void CAIContainer::Internal_Despawn(duration spawnTime)

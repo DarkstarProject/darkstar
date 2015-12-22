@@ -20,3 +20,4 @@ DEATH - Entity, Killer
 ITEM_START - Entity, Item, action
 ITEM_USE - Entity, Item, action
 ITEM_STATE_EXIT - Entity, Item
+WEATHER_CHANGE - Entity, weather, weather element

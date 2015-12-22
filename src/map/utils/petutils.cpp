@@ -44,11 +44,10 @@ This file is part of DarkStar-server source code.
 #include "../enmity_container.h"
 #include "../items/item_weapon.h"
 
-#include "../ai/ai_automaton_dummy.h"
-#include "../ai/ai_pet_dummy.h"
-#include "../ai/ai_mob_dummy.h"
-#include "../ai/ai_ultimate_summon.h"
 #include "../ai/ai_container.h"
+#include "../ai/controllers/ai_controller.h"
+#include "../ai/controllers/pet_controller.h"
+#include "../ai/states/ability_state.h"
 
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
@@ -746,19 +745,6 @@ namespace petutils
         PPet->allegiance = PMaster->allegiance;
         PMaster->StatusEffectContainer->CopyConfrontationEffect(PPet);
 
-        if (PetID == PETID_ALEXANDER || PetID == PETID_ODIN)
-        {
-            PPet->PBattleAI = new CAIUltimateSummon(PPet);
-        }
-        else if (PetID >= PETID_HARLEQUINFRAME && PetID <= PETID_STORMWAKERFRAME)
-        {
-            PPet->PBattleAI = new CAIAutomatonDummy(PPet);
-        }
-        else
-        {
-            PPet->PBattleAI = new CAIPetDummy(PPet);
-        }
-
         PMaster->PPet = PPet;
         PPet->PMaster = PMaster;
 
@@ -856,11 +842,6 @@ namespace petutils
             CMobEntity* PMob = (CMobEntity*)PPet;
 
             if (!PMob->isDead()){
-                // mobs charm wears off whist fighting another mob. Both mobs now attack player since mobs are no longer enemies
-                if (PMob->PBattleAI != nullptr && PMob->PBattleAI->GetBattleTarget() != nullptr && PMob->PBattleAI->GetBattleTarget()->objtype == TYPE_MOB){
-                    ((CMobEntity*)PMob->PBattleAI->GetBattleTarget())->PEnmityContainer->Clear();
-                    ((CMobEntity*)PMob->PBattleAI->GetBattleTarget())->PEnmityContainer->UpdateEnmity(PChar, 0, 0);
-                }
 
                 //clear the ex-charmed mobs enmity
                 PMob->PEnmityContainer->Clear();
@@ -879,9 +860,9 @@ namespace petutils
                 // dirty exp if not full
                 PMob->m_giveExp = PMob->GetHPP() == 100;
 
-                CAIPetDummy* PPetAI = (CAIPetDummy*)PPet->PBattleAI;
                 //master using leave command
-                if (PMaster->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH && PMaster->PBattleAI->GetCurrentJobAbility()->getID() == 55 || PChar->loc.zoning || PChar->isDead()){
+                auto state = dynamic_cast<CAbilityState*>(PMaster->PAI->GetCurrentState());
+                if (state && state->GetAbility()->getID() == ABILITY_LEAVE || PChar->loc.zoning || PChar->isDead()){
                     PMob->PEnmityContainer->Clear();
                     PMob->m_OwnerID.clean();
                     PMob->updatemask |= UPDATE_STATUS;
@@ -895,12 +876,10 @@ namespace petutils
 
             PMob->isCharmed = false;
             PMob->allegiance = ALLEGIANCE_MOB;
-            PMob->charmTime = 0;
+            PMob->charmTime = time_point::min();
             PMob->PMaster = nullptr;
 
-            delete PMob->PBattleAI;
-            PMob->PBattleAI = new CAIMobDummy(PMob);
-            PMob->PBattleAI->SetLastActionTime(gettick());
+            PMob->PAI->SetController(std::make_unique<CAIController>(PMob));
 
             if (PMob->isDead())
                 PMob->Die();
@@ -942,34 +921,17 @@ namespace petutils
 
         CBattleEntity* PPet = PMaster->PPet;
 
-
-        // mob was not reset properly on death/uncharm
-        // reset manually
-        if (PPet->isCharmed && PMaster->objtype == TYPE_MOB)
-        {
-            PPet->isCharmed = false;
-            PMaster->charmTime = 0;
-
-            delete PPet->PBattleAI;
-            PPet->PBattleAI = new CAIMobDummy((CMobEntity*)PMaster);
-            PPet->PBattleAI->SetLastActionTime(gettick());
-            PPet->Die();
-
-            ShowDebug("An ex charmed mob was not reset properly, Manually resetting it.\n");
-            return;
-        }
-
         petutils::DetachPet(PMaster);
     }
 
     void MakePetStay(CBattleEntity* PMaster)
     {
-
         CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
 
         if (PPet != nullptr && !PPet->StatusEffectContainer->HasPreventActionEffect())
         {
-            PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
+            //#TODO: just disable pathfind?
+            //PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
         }
     }
 
@@ -1097,7 +1059,7 @@ namespace petutils
         {
             // increase charm duration
             // 30 mins - 1-5 mins
-            PPet->charmTime += 1800000 - dsprand::GetRandomNumber(300000u);
+            PPet->charmTime += 30min - std::chrono::milliseconds(dsprand::GetRandomNumber(300000u));
         }
 
         float rate = 0.10f;
@@ -1245,7 +1207,7 @@ namespace petutils
         PPet->loc = PMaster->loc;
 
         // spawn me randomly around master
-        PPet->loc.p = nearPosition(PMaster->loc.p, PET_ROAM_DISTANCE, M_PI);
+        PPet->loc.p = nearPosition(PMaster->loc.p, CPetController::PetRoamDistance, M_PI);
 
         if (petType != PETTYPE_AUTOMATON)
         {

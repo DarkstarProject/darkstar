@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:SetMobSkillAttack(false); -- resetting so it doesn't respawn in flight mode.
+    mob:SetMobSkillAttack(0); -- resetting so it doesn't respawn in flight mode.
     mob:AnimationSub(0); -- subanim 0 is only used when it spawns until first flight.
 end;
 
@@ -42,7 +42,7 @@ function onMobFight(mob,target)
         elseif (mob:AnimationSub() == 0 and mob:getBattleTime() - changeTime > 60) then
             mob:AnimationSub(1);
             mob:addStatusEffectEx(EFFECT_ALL_MISS, 0, 1, 0, 0);
-            mob:SetMobSkillAttack(true);
+            mob:SetMobSkillAttack(732);
             -- and record the time this phase was started
             mob:setLocalVar("changeTime", mob:getBattleTime());
         -- subanimation 1 is flight, so check if he should land
@@ -54,7 +54,7 @@ function onMobFight(mob,target)
         elseif (mob:AnimationSub() == 2 and mob:getBattleTime() - changeTime > 60) then
             mob:AnimationSub(1);
             mob:addStatusEffectEx(EFFECT_ALL_MISS, 0, 1, 0, 0);
-            mob:SetMobSkillAttack(true);
+            mob:SetMobSkillAttack(732);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         end
     end

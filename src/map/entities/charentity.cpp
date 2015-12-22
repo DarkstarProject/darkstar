@@ -46,6 +46,7 @@
 #include "../ai/states/raise_state.h"
 #include "../ai/states/range_state.h"
 #include "../ai/states/weaponskill_state.h"
+#include "../ai/states/magic_state.h"
 
 #include "charentity.h"
 #include "automatonentity.h"

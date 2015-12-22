@@ -79,3 +79,33 @@ void CController::WeaponSkill(uint16 targid, uint16 wsid)
         POwner->PAI->Internal_WeaponSkill(targid, wsid);
     }
 }
+
+bool CController::IsAutoAttackEnabled()
+{
+    return m_AutoAttackEnabled;
+}
+
+void CController::SetAutoAttackEnabled(bool enabled)
+{
+    m_AutoAttackEnabled = enabled;
+}
+
+bool CController::IsWeaponSkillEnabled()
+{
+    return m_WeaponSkillEnabled;
+}
+
+void CController::SetWeaponSkillEnabled(bool enabled)
+{
+    m_WeaponSkillEnabled = enabled;
+}
+
+bool CController::IsMagicCastingEnabled()
+{
+    return m_MagicCastingEnabled;
+}
+
+void CController::SetMagicCastingEnabled(bool enabled)
+{
+    m_MagicCastingEnabled = enabled;
+}

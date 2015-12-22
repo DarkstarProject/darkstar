@@ -60,8 +60,8 @@ public:
     virtual void	TOTDChange(TIMETYPE TOTD) override;										// обработка реакции мира на смену времени суток
     virtual void	PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*) override;	// отправляем глобальный пакет в пределах зоны
 
-    virtual void	ZoneServer(uint32 tick) override;
-    virtual void	ZoneServerRegion(uint32 tick) override;
+    virtual void	ZoneServer(time_point tick) override;
+    virtual void	ZoneServerRegion(time_point tick) override;
 
     virtual void	ForEachChar(std::function<void(CCharEntity*)> func) override;
     virtual void	ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> func) override;

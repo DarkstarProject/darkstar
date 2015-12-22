@@ -35,7 +35,6 @@
 #include "../mob_modifier.h"
 #include "../mob_spell_list.h"
 #include "../spell.h"
-#include "../ai/ai_mob_dummy.h"
 #include "../items/item_weapon.h"
 #include "../status_effect_container.h"
 #include "../mob_spell_container.h"
@@ -1348,8 +1347,6 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 			// Setup HP / MP Stat Percentage Boost
 			PMob->HPscale = Sql_GetFloatData(SqlHandle, 48);
 			PMob->MPscale = Sql_GetFloatData(SqlHandle, 49);
-
-			PMob->PBattleAI = new CAIMobDummy(PMob);
 
 			// Check if we should be looking up scripts for this mob
 			PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle, 50);

@@ -78,6 +78,11 @@ void CAttackState::Cleanup(time_point tick)
     m_PEntity->OnDisengage(*this);
 }
 
+void CAttackState::ResetAttackTimer()
+{
+    m_attackTime = std::chrono::milliseconds(m_PEntity->GetWeaponDelay(false));
+}
+
 void CAttackState::UpdateTarget(uint16 targid)
 {
     m_errorMsg.reset();

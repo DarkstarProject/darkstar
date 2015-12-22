@@ -68,6 +68,18 @@
 #include "../weapon_skill.h"
 #include "../status_effect_container.h"
 #include "../instance.h"
+#include "../ai/ai_container.h"
+#include "../ai/states/attack_state.h"
+#include "../ai/states/death_state.h"
+#include "../ai/states/despawn_state.h"
+#include "../ai/states/inactive_state.h"
+#include "../ai/states/raise_state.h"
+#include "../ai/states/item_state.h"
+#include "../ai/states/range_state.h"
+#include "../ai/states/weaponskill_state.h"
+#include "../ai/states/ability_state.h"
+#include "../ai/states/mobskill_state.h"
+#include "../ai/states/magic_state.h"
 
 namespace luautils
 {
@@ -831,26 +843,18 @@ namespace luautils
                 {
                     PMob->m_RespawnTime = (uint32)lua_tointeger(L, 3) * 1000;
                     PMob->m_AllowRespawn = true;
-                    PMob->PBattleAI->SetLastActionTime(gettick());
-                    if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE)
-                    {
-                        PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-                    }
                 }
                 else
                 {
-                    if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
-                        PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN)
+                    if (!PMob->PAI->IsSpawned())
                     {
-                        PMob->PBattleAI->SetLastActionTime(0);
-                        PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+                        PMob->Spawn();
                     }
                     else
                     {
                         ShowDebug(CL_CYAN"SpawnMob: <%s> is already spawned\n" CL_RESET, PMob->GetName());
                     }
                 }
-                PMob->PBattleAI->CheckCurrentAction(gettick());
                 lua_getglobal(L, CLuaBaseEntity::className);
                 lua_pushstring(L, "new");
                 lua_gettable(L, -2);
@@ -890,8 +894,7 @@ namespace luautils
                 }
                 else
                 {
-                    PMob->PBattleAI->SetLastActionTime(gettick() - 12500);
-                    PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
+                    PMob->PAI->Despawn();
                 }
             }
             return 0;
@@ -917,12 +920,7 @@ namespace luautils
             if (PMob != nullptr)
             {
                 //if mob is in battle, do not warp it
-                if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
-                    PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN ||
-                    PMob->PBattleAI->GetCurrentAction() == ACTION_ROAMING ||
-                    PMob->PBattleAI->GetCurrentAction() == ACTION_DEATH ||
-                    PMob->PBattleAI->GetCurrentAction() == ACTION_FADE_OUT ||
-                    PMob->PBattleAI->GetCurrentAction() == ACTION_DESPAWN)
+                if (!PMob->PAI->IsEngaged())
                 {
                     if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
                         PMob->loc.p.x = (float)lua_tonumber(L, 2);
@@ -982,6 +980,7 @@ namespace luautils
 
     /************************************************************************
     *                                                                       *
+    *  ** DEPRECATED **                                                     *
     *  Get Current Mob Action by Mob ID.                                    *
     *                                                                       *
     ************************************************************************/
@@ -995,8 +994,58 @@ namespace luautils
         CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB | TYPE_PET);
         if (PMob != nullptr)
         {
-            int32 CurrentAction = (int32)PMob->PBattleAI->GetCurrentAction();
-            lua_pushinteger(L, CurrentAction);
+            if (PMob->PAI->IsStateStackEmpty())
+            {
+                lua_pushinteger(L, 16);
+            }
+            else if (PMob->PAI->IsCurrentState<CDespawnState>())
+            {
+                lua_pushinteger(L, 0);
+            }
+            else if (PMob->PAI->IsCurrentState<CAttackState>())
+            {
+                lua_pushinteger(L, 1);
+            }
+            else if (PMob->PAI->IsCurrentState<CRangeState>())
+            {
+                lua_pushinteger(L, 12);
+            }
+            else if (PMob->PAI->IsCurrentState<CWeaponSkillState>())
+            {
+                lua_pushinteger(L, 3);
+            }
+            else if (PMob->PAI->IsCurrentState<CMagicState>())
+            {
+                lua_pushinteger(L, 30);
+            }
+            else if (PMob->PAI->IsCurrentState<CItemState>())
+            {
+                lua_pushinteger(L, 28);
+            }
+            else if (PMob->PAI->IsCurrentState<CAbilityState>())
+            {
+                lua_pushinteger(L, 6);
+            }
+            else if (PMob->PAI->IsCurrentState<CInactiveState>())
+            {
+                lua_pushinteger(L, 27);
+            }
+            else if (PMob->PAI->IsCurrentState<CDeathState>())
+            {
+                lua_pushinteger(L, 22);
+            }
+            else if (PMob->PAI->IsCurrentState<CRaiseState>())
+            {
+                lua_pushinteger(L, 37);
+            }
+            else if (PMob->PAI->IsCurrentState<CMobSkillState>())
+            {
+                lua_pushinteger(L, 34);
+            }
+            else
+            {
+                lua_pushnil(L);
+            }
             return 1;
         }
         ShowError(CL_RED"luautils::GetMobAction: mob <%u> was not found\n" CL_RESET, mobid);
@@ -1223,7 +1272,7 @@ namespace luautils
         return retVal;
     }
 
-    int32 AfterZoneIn(uint32 tick, CTaskMgr::CTask *PTask)
+    int32 AfterZoneIn(time_point tick, CTaskMgr::CTask *PTask)
     {
         CCharEntity* PChar = zoneutils::GetChar((uintptr)PTask->m_data);
 
@@ -3463,7 +3512,7 @@ namespace luautils
         return 0;
     }
 
-    int32 AfterInstanceRegister(uint32 tick, CTaskMgr::CTask *PTask)
+    int32 AfterInstanceRegister(time_point tick, CTaskMgr::CTask *PTask)
     {
         CCharEntity* PChar = (CCharEntity*)PTask->m_data;
 

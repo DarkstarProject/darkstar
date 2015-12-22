@@ -34,8 +34,8 @@
 #include "item_container.h"
 
 
-#define TREASURE_CHECKTIME		  2500		// частота проверки контейнера - 2.5 секунд
-#define TREASURE_LIVETIME		300000		// время жизни предметов в контейнере - 5 минут
+#define TREASURE_CHECKTIME		  3		// частота проверки контейнера - 3 секунд
+#define TREASURE_LIVETIME		300		// время жизни предметов в контейнере - 5 минут
 
 /************************************************************************
 *                                                                       *
@@ -45,7 +45,6 @@
 
 CTreasurePool::CTreasurePool(TREASUREPOOLTYPE PoolType)
 {
-    m_Tick  = 0;
     m_count = 0;
 	m_TreasurePoolType = PoolType;
 
@@ -216,12 +215,12 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 	if (SlotID == 10)
 	{
 		m_PoolItems[FreeSlotID].TimeStamp = 0;
-		CheckTreasureItem(gettick(), FreeSlotID);
+		CheckTreasureItem(time_t(0), FreeSlotID);
 	}
 
     m_count++;
     m_PoolItems[FreeSlotID].ID = ItemID;
-	m_PoolItems[FreeSlotID].TimeStamp = gettick() - 2500;
+	m_PoolItems[FreeSlotID].TimeStamp = time_t(0) - 3;
 	
 	for (uint32 i = 0; i < members.size(); ++i)
 	{
@@ -229,7 +228,7 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 	}
     if (m_TreasurePoolType == TREASUREPOOL_SOLO)
     {
-        CheckTreasureItem(gettick(), FreeSlotID);
+        CheckTreasureItem(time_t(0), FreeSlotID);
     }
 	return m_count;
 }
@@ -359,8 +358,9 @@ bool CTreasurePool::HasPassedItem(CCharEntity* PChar, uint8 SlotID)
 *                                                                       *
 ************************************************************************/
 
-void CTreasurePool::CheckItems(uint32 tick) 
+void CTreasurePool::CheckItems() 
 {	
+    auto tick = time_t(0);
     if (m_count != 0)
     {
         if ((tick - m_Tick > TREASURE_CHECKTIME))

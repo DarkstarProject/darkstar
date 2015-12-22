@@ -69,7 +69,7 @@ public:
 
 	//bcnm related functions
 	uint16		getID();
-	uint32		getTimeLimit();
+	duration		getTimeLimit();
 	BATTLEFIELDTYPE		getType();
 	const int8* getBcnmName();
 	uint16		getZoneId();
@@ -78,18 +78,18 @@ public:
 	uint8		getMaxPlayerInBCNM();
 	uint8		getLevelCap();
 	uint16		getLootId();
-	uint32		getStartTime();
-	uint32		getDeadTime();
+    time_point		getStartTime();
+    time_point		getDeadTime();
 	uint8		getEntrance();
 
-	void		setTimeLimit(uint32 time);
+	void		setTimeLimit(duration time);
 	void		setBcnmName(int8* name);
 	void		setZoneId(uint16 zone);
 	void		setBattlefieldNumber(uint8 battlefield);
 	void		setMaxParticipants(uint8 max);
 	void		setLevelCap(uint8 cap);
 	void		setLootId(uint16 id);
-	void		setDeadTime(uint32 time);
+	void		setDeadTime(time_point time);
 	void		setEntrance(uint8 entrance);
 
 	//player related functions
@@ -135,7 +135,7 @@ public:
 	void		setDynaUniqueID();										// set unique ID in dynamis battlefield
 	uint16		getDynaUniqueID();										// get unique ID in dynamis battlefield
 	bool		addPlayerToDynamis(CCharEntity* PChar);					// add player to the dynamis
-	void		addTimeLimit(uint32 time);								// add time in dynamis
+	void		addTimeLimit(duration time);								// add time in dynamis
 	bool		finishDynamis();										// finish dynamis
 	void		cleanupDynamis();										// cleanup all mobs in dynamis
 	bool		delPlayerFromDynamis(CCharEntity* PChar);				// delete player in m_PlayerList
@@ -145,8 +145,8 @@ public:
 	bool		locked;
 	string_t	m_FastestName;
 	uint32		m_FastestTime;
-	uint32		lastTick;
-	uint32      fightTick;
+	time_point		lastTick;
+    time_point      fightTick;
 
 	bool		lost();
 	bool		won();
@@ -166,9 +166,9 @@ private:
 	uint16			m_ZoneID;
 	BATTLEFIELDTYPE m_Type;
 	uint8			m_BattlefieldNumber;
-	uint32			m_StartTime;
-	uint32			m_AllDeadTime;											// time when every pt member has fallen
-	uint32			m_TimeLimit;
+	time_point			m_StartTime;
+    time_point			m_AllDeadTime;											// time when every pt member has fallen
+	duration			m_TimeLimit;
 	uint32			m_LootId;
 	uint8			m_LevelCap;
 	uint8			m_MaxParticipants;										// 1,3,6,12,18,zone

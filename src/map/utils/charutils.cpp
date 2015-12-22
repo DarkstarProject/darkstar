@@ -35,7 +35,8 @@ This file is part of DarkStar-server source code.
 
 #include "../lua/luautils.h"
 
-#include "../ai/ai_general.h"
+#include "../ai/ai_container.h"
+#include "../ai/states/attack_state.h"
 
 #include "../packets/char_abilities.h"
 #include "../packets/char_appearance.h"
@@ -1538,7 +1539,6 @@ namespace charutils
                     {
                         PChar->look.ranged = 0;
                     }
-                    PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_INTERRUPT);
                     UpdateWeaponStyle(PChar, equipSlotID, nullptr);
                 }
                 break;
@@ -1548,7 +1548,6 @@ namespace charutils
                     {
                         PChar->look.ranged = 0;
                     }
-                    PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_INTERRUPT);
                     PChar->health.tp = 0;
                     BuildingCharWeaponSkills(PChar);
                     UpdateWeaponStyle(PChar, equipSlotID, nullptr);
@@ -1564,9 +1563,10 @@ namespace charutils
                         }
                     }
 
-                    if (PChar->PBattleAI->GetCurrentAction() == ACTION_ATTACK)
+                    if (PChar->PAI->IsEngaged())
                     {
-                        PChar->PBattleAI->SetLastActionTime(gettick());
+                        auto state = dynamic_cast<CAttackState*>(PChar->PAI->GetCurrentState());
+                        if (state) state->ResetAttackTimer();
                     }
 
                     // If main hand is empty, figure out which UnarmedItem to give the player.
@@ -1687,9 +1687,10 @@ namespace charutils
                             }
                             break;
                         }
-                        if (PChar->PBattleAI->GetCurrentAction() == ACTION_ATTACK)
+                        if (PChar->PAI->IsEngaged())
                         {
-                            PChar->PBattleAI->SetLastActionTime(gettick());
+                            auto state = dynamic_cast<CAttackState*>(PChar->PAI->GetCurrentState());
+                            if (state) state->ResetAttackTimer();
                         }
                         PChar->m_Weapons[SLOT_MAIN] = (CItemWeapon*)PItem;
 

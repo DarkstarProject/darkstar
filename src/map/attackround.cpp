@@ -25,7 +25,7 @@
 #include "packets/inventory_finish.h"
 #include "items/item_weapon.h"
 #include "status_effect_container.h"
-#include "ai/ai_general.h"
+#include "ai/ai_container.h"
 
 /************************************************************************
 *																		*
@@ -46,7 +46,7 @@ CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
     }
 
     // Grab a trick attack assistant.
-    m_taEntity = battleutils::getAvailableTrickAttackChar(attacker, attacker->PBattleAI->GetBattleTarget());
+    m_taEntity = battleutils::getAvailableTrickAttackChar(attacker, attacker->GetBattleTarget());
 
     // Build main weapon attacks.
     CreateAttacks(attacker->m_Weapons[SLOT_MAIN], RIGHTATTACK);

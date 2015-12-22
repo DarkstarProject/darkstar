@@ -173,7 +173,7 @@ namespace luautils
 
     int32 OnGameIn(CCharEntity* PChar, bool zoning);							//
     int32 OnZoneIn(CCharEntity* PChar);											// triggers when a player zones into a zone
-    int32 AfterZoneIn(uint32 tick, CTaskMgr::CTask *PTask);						// triggers after a player has finished zoning in
+    int32 AfterZoneIn(time_point tick, CTaskMgr::CTask *PTask);						// triggers after a player has finished zoning in
     int32 OnZoneInitialise(uint16 ZoneID);										// triggers when zone is loaded
     int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion);					// when player enters a region of a zone
     int32 OnRegionLeave(CCharEntity* PChar, CRegion* Pregion);					// when player leaves a region of a zone
@@ -237,7 +237,7 @@ namespace luautils
     int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, uint8 total);			// triggers on corsair roll
 
     int32 OnInstanceZoneIn(CCharEntity* PChar, CInstance* PInstance);           // triggered on zone in to instance
-    int32 AfterInstanceRegister(uint32 tick, CTaskMgr::CTask *PTask);			// triggers after a character is registered and zoned into an instance (the first time)
+    int32 AfterInstanceRegister(time_point tick, CTaskMgr::CTask *PTask);			// triggers after a character is registered and zoned into an instance (the first time)
     int32 OnInstanceLoadFailed(CZone* PZone);									// triggers when an instance load is failed (ie. instance no longer exists)
     int32 OnInstanceTimeUpdate(CZone* PZone, CInstance* PInstance, uint32 time);// triggers every second for an instance
     int32 OnInstanceFailure(CInstance* PInstance);								// triggers when an instance is failed

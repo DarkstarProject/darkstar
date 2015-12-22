@@ -63,6 +63,7 @@ public:
 
     void pushAction(queueAction_t&&);
     void checkAction(time_point tick);
+    bool isEmpty();
 private:
     CBaseEntity* PEntity;
     std::priority_queue<queueAction_t> actionQueue;

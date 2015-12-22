@@ -34,7 +34,7 @@
 #include "lua/luautils.h"
 #include "utils/zoneutils.h"
 #include "status_effect_container.h"
-#include "ai/ai_general.h"
+#include "ai/ai_container.h"
 #include "enmity_container.h"
 
 CBattlefield::CBattlefield(CBattlefieldHandler* hand, uint16 id, BATTLEFIELDTYPE type){
@@ -45,7 +45,6 @@ CBattlefield::CBattlefield(CBattlefieldHandler* hand, uint16 id, BATTLEFIELDTYPE
 	m_FastestTime = 3600;
 	m_DynaUniqueID = 0;
 	treasureChestSpawned = false;
-	fightTick = 0;
 	m_entrance = 0;
 	m_lost = false;
 	m_won = false;
@@ -59,7 +58,7 @@ uint8 CBattlefield::getBattlefieldNumber(){
 	return m_BattlefieldNumber;
 }
 
-uint32 CBattlefield::getTimeLimit(){
+duration CBattlefield::getTimeLimit(){
 	return m_TimeLimit;
 }
 
@@ -88,11 +87,11 @@ uint16 CBattlefield::getLootId(){
 	return m_LootId;
 }
 
-uint32 CBattlefield::getStartTime(){
+time_point CBattlefield::getStartTime(){
 	return m_StartTime;
 }
 
-uint32 CBattlefield::getDeadTime(){
+time_point CBattlefield::getDeadTime(){
 	return m_AllDeadTime;
 }
 
@@ -109,11 +108,11 @@ void CBattlefield::setBcnmName(int8* name){
 	m_name.insert(0,name);
 }
 
-void CBattlefield::setTimeLimit(uint32 time){
+void CBattlefield::setTimeLimit(duration time){
 	m_TimeLimit = time;
 }
 
-void CBattlefield::setDeadTime(uint32 time){
+void CBattlefield::setDeadTime(time_point time){
 	m_AllDeadTime = time;
 }
 
@@ -258,7 +257,7 @@ bool CBattlefield::delPlayerFromBcnm(CCharEntity* PChar){
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_SJ_RESTRICTION);
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_BATTLEFIELD);
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
-			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+            PChar->PAI->Disengage();
 			clearPlayerEnmity(PChar);
 			m_PlayerList.erase(m_PlayerList.begin()+i);
 			return true;
@@ -316,8 +315,8 @@ void CBattlefield::lockBcnm(){
 void CBattlefield::init(){
 	//reload from sql
 	battlefieldutils::spawnMonstersForBcnm(this);
-	m_StartTime = gettick();
-	m_AllDeadTime = 0;
+	m_StartTime = server_clock::now();
+	m_AllDeadTime = time_point::min();
 }
 
 void CBattlefield::addEnemy(CMobEntity* PMob, uint8 condition){
@@ -342,12 +341,11 @@ void CBattlefield::addNpc(CBaseEntity* PNpc){
 
 bool CBattlefield::allEnemiesDefeated(){
 	bool allDefeated = true;
-	for(int i=0; i<m_EnemyVictoryList.size(); i++){
-                uint8 currentAction = m_EnemyVictoryList.at(i).MobEntity->PBattleAI->GetCurrentAction();
-		if(currentAction >= 20 && currentAction <= 23){
-			m_EnemyVictoryList.at(i).killed = true;
+	for(auto&& Condition : m_EnemyVictoryList){
+        if (Condition.MobEntity->isDead()){
+            Condition.killed = true;
 		}
-		if(m_EnemyVictoryList.at(i).killed == false){
+		if(Condition.killed == false){
 			allDefeated = false;
 		}
 	}
@@ -372,7 +370,7 @@ void CBattlefield::cleanup(){
 	ShowDebug("bcnm cleanup id:%i inst:%i \n",this->getID(),this->getBattlefieldNumber());
 	//wipe enmity from all mobs in list if needed
 	for(int i=0; i<m_EnemyList.size(); i++){
-		m_EnemyList.at(i)->PBattleAI->SetCurrentAction(ACTION_DESPAWN);
+        m_EnemyList.at(i)->PAI->Despawn();
 		m_EnemyList.at(i)->status = STATUS_DISAPPEAR;
 		m_EnemyList.at(i)->PBCNM = nullptr;
 	}
@@ -458,7 +456,8 @@ bool CBattlefield::isEnemyBelowHPP(uint8 hpp){
 
 //Create dynamis unique ID for player can't cheat by leaving a dynamis before the end and enter the next
 void CBattlefield::setDynaUniqueID(){
-	m_DynaUniqueID = m_BcnmID + m_StartTime;
+    //#TODO maybe, or just get rid of the entire dynamis functions section
+    //m_DynaUniqueID = m_BcnmID + m_StartTime;
 	printf("uniqueid core: %u",m_DynaUniqueID);
 }
 
@@ -485,7 +484,7 @@ bool CBattlefield::addPlayerToDynamis(CCharEntity* PChar){
 }
 
 //Add time on dynamis battlefield
-void CBattlefield::addTimeLimit(uint32 time){
+void CBattlefield::addTimeLimit(duration time){
 	m_TimeLimit += time;
 }
 
@@ -518,8 +517,8 @@ void CBattlefield::cleanupDynamis(){
 			uint32 mobid = Sql_GetUIntData(SqlHandle,0);
 			CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
-			if(PMob != nullptr)
-				PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
+            if (PMob != nullptr)
+                PMob->PAI->Despawn();
 		}
 	}
 
@@ -540,7 +539,7 @@ bool CBattlefield::delPlayerFromDynamis(CCharEntity* PChar){
 		if(m_PlayerList.at(i)->id == PChar->id){
 			PChar->PBCNM = nullptr;
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_DYNAMIS);
-			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+            PChar->PAI->Disengage();
 			m_PlayerList.erase(m_PlayerList.begin()+i);
 			return true;
 		}

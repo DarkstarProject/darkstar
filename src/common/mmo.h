@@ -29,7 +29,6 @@
 #include <string>
 #include <time.h>
 #include <stdlib.h>
-#include <chrono>
 
 #define FIFOSIZE_SERVERLINK	256*1024
 
@@ -92,11 +91,6 @@ enum MSGSERVTYPE : uint8
 };
 
 typedef std::string string_t;
-
-using namespace std::chrono_literals;
-using server_clock = std::chrono::steady_clock;
-using time_point = server_clock::time_point;
-using duration = server_clock::duration;
 
 // для персонажей в size хранится рост, 
 // для npc и монстров что-то вроде типа используемой модели

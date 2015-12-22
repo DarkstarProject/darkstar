@@ -153,7 +153,7 @@ void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
 			}
 			else
 			{
-				instance->SetWipeTime(instance->GetElapsedTime(gettick()));
+                instance->SetWipeTime(server_clock::now());
 			}
 		}
 	}
@@ -212,7 +212,7 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 		{
 			PChar->PInstance->RegisterChar(PChar);
 			PChar->loc.p = PChar->PInstance->GetEntryLoc();
-			CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterInstanceRegister", gettick() + 500, PChar, CTaskMgr::TASK_ONCE, luautils::AfterInstanceRegister));
+			CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterInstanceRegister", server_clock::now() + 500ms, PChar, CTaskMgr::TASK_ONCE, luautils::AfterInstanceRegister));
 		}
 	}
 	else
@@ -310,7 +310,7 @@ void CZoneInstance::WideScan(CCharEntity* PChar, uint16 radius)
 
 
 
-void CZoneInstance::ZoneServer(uint32 tick)
+void CZoneInstance::ZoneServer(time_point tick)
 {
 	auto it = instanceList.begin();
 	while (it != instanceList.end())
@@ -330,7 +330,7 @@ void CZoneInstance::ZoneServer(uint32 tick)
 	}
 }
 
-void CZoneInstance::ZoneServerRegion(uint32 tick)
+void CZoneInstance::ZoneServerRegion(time_point tick)
 {
 	for (auto instance : instanceList)
 	{
