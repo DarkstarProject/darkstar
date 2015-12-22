@@ -655,7 +655,7 @@ void CAIController::DoRoamTick(time_point tick)
 
     if (PMob->PAI->PathFind->IsFollowingPath())
     {
-        PMob->PAI->PathFind->FollowPath();
+        FollowRoamPath();
     }
     else if (m_Tick >= m_LastActionTime + std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_ROAM_COOL)))
     {
@@ -695,7 +695,7 @@ void CAIController::DoRoamTick(time_point tick)
                 PMob->PAI->PathFind->LimitDistance(10.0f);
 
                 //#TODO: pathfind's responsibility!
-                PMob->PAI->PathFind->FollowPath();
+                FollowRoamPath();
 
                 // move back every 5 seconds
                 m_LastActionTime = m_Tick - std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME);
@@ -764,7 +764,7 @@ void CAIController::DoRoamTick(time_point tick)
                 }
                 else
                 {
-                    PMob->PAI->PathFind->FollowPath();
+                    FollowRoamPath();
                 }
             }
             else
@@ -784,6 +784,47 @@ void CAIController::Wait(duration _duration)
     else
     {
         m_WaitTime += _duration;
+    }
+}
+
+void CAIController::FollowRoamPath()
+{
+    PMob->PAI->PathFind->FollowPath();
+
+    CBattleEntity* PPet = PMob->PPet;
+    if (PPet != nullptr && !PPet->PAI->IsEngaged())
+    {
+        // pet should follow me if roaming
+        position_t targetPoint = nearPosition(PMob->loc.p, 2.1f, M_PI);
+
+        PPet->PAI->PathFind->StepTo(&targetPoint);
+    }
+
+    // if I just finished reset my last action time
+    if (!PMob->PAI->PathFind->IsFollowingPath())
+    {
+        uint16 roamRandomness = (float)PMob->getBigMobMod(MOBMOD_ROAM_COOL) / PMob->GetRoamRate();
+        m_LastActionTime = m_Tick - std::chrono::milliseconds(dsprand::GetRandomNumber(roamRandomness));
+
+        // i'm a worm pop back up
+        if (PMob->m_roamFlags & ROAMFLAG_WORM)
+        {
+            PMob->animationsub = 0;
+            PMob->HideName(false);
+        }
+
+        // face spawn rotation if I just moved back to spawn
+        // used by dynamis mobs, bcnm mobs etc
+        if ((PMob->m_roamFlags & ROAMFLAG_EVENT) &&
+            distance(PMob->loc.p, PMob->m_SpawnPoint) <= PMob->m_maxRoamDistance)
+        {
+            PMob->loc.p.rotation = PMob->m_SpawnPoint.rotation;
+        }
+    }
+
+
+    if (PMob->PAI->PathFind->OnPoint()) {
+        luautils::OnPath(PMob);
     }
 }
 

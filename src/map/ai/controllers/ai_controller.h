@@ -62,6 +62,7 @@ protected:
 
     virtual void DoRoamTick(time_point tick);
     void Wait(duration _duration);
+    void FollowRoamPath();
 
     CBattleEntity* PTarget {nullptr};
 private:
