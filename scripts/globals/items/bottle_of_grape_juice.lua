@@ -19,10 +19,10 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if (target:hasStatusEffect(EFFECT_REFRESH) == false) then
-		target:addStatusEffect(EFFECT_REFRESH,2,3,90);
-	else
-		target:messageBasic(423);
-	end
+    if (target:hasStatusEffect(EFFECT_REFRESH) == false) then
+        target:addStatusEffect(EFFECT_REFRESH,2,3,90);
+    else
+        target:messageBasic(423);
+    end
 end;
 

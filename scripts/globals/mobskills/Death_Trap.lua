@@ -17,19 +17,19 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_POISON;
-	local duration = 60;
-	local power = mob:getMainLvl() / 3;
+    local typeEffect = EFFECT_POISON;
+    local duration = 60;
+    local power = mob:getMainLvl() / 3;
 
-	if (math.random() <= 0.5) then
-		-- stun
-		typeEffect = EFFECT_STUN;
-		duration = 10;
-		power = 1;
-	end
+    if (math.random() <= 0.5) then
+        -- stun
+        typeEffect = EFFECT_STUN;
+        duration = 10;
+        power = 1;
+    end
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
 
-	mob:resetEnmity(target);
-	return typeEffect;
+    mob:resetEnmity(target);
+    return typeEffect;
 end;

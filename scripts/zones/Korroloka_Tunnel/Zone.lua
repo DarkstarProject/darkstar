@@ -20,9 +20,9 @@ function onInitialize(zone)
     SetGroundsTome(tomes);
     
     -- Waterfalls (RegionID, X, Radius, Z)
-	zone:registerRegion(1,   -87, 4, -105, 0,0,0); -- Left pool
-	zone:registerRegion(2, 	-101, 7, -114, 0,0,0); -- Center Pool
-	zone:registerRegion(3, 	-112, 3, -103, 0,0,0); -- Right Pool
+    zone:registerRegion(1,   -87, 4, -105, 0,0,0); -- Left pool
+    zone:registerRegion(2,     -101, 7, -114, 0,0,0); -- Center Pool
+    zone:registerRegion(3,     -112, 3, -103, 0,0,0); -- Right Pool
     
 end;
 
@@ -78,16 +78,16 @@ end;
     
 
 
------------------------------------		
--- OnRegionLeave		
------------------------------------		
+-----------------------------------        
+-- OnRegionLeave        
+-----------------------------------        
 
 function onRegionLeave(player,region)
 
-	local RegionID = region:GetRegionID();
-	local pooltime = (os.time() - player:getLocalVar("POOL_TIME"));
+    local RegionID = region:GetRegionID();
+    local pooltime = (os.time() - player:getLocalVar("POOL_TIME"));
     
-	if(RegionID <= 3 and player:getVar("BathedInScent") == 1) then
+    if(RegionID <= 3 and player:getVar("BathedInScent") == 1) then
         if pooltime >= 300 then
             player:messageSpecial(LEFT_SPRING_CLEAN);
             player:setLocalVar("POOL_TIME", 0);

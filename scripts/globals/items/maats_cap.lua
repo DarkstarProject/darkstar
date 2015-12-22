@@ -5,9 +5,9 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return 0;
+    return 0;
 end;
 
 function onItemUse(target)
-	target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_MAAT,0,1);
+    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_MAAT,0,1);
 end;

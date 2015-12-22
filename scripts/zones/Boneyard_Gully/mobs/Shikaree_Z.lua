@@ -19,15 +19,15 @@ end;
 
 function onMobEngaged(mob,target)
 
-	local MobID = mob:getID();
+    local MobID = mob:getID();
 
-	if (MobID == 16809985) then
-		SpawnMob(MobID+3);
-	elseif (MobID == 16809990) then
-		SpawnMob(MobID+3);
-	elseif (MobID == 16809995) then
-		SpawnMob(MobID+3);
-	end
+    if (MobID == 16809985) then
+        SpawnMob(MobID+3);
+    elseif (MobID == 16809990) then
+        SpawnMob(MobID+3);
+    elseif (MobID == 16809995) then
+        SpawnMob(MobID+3);
+    end
 end;
 
 -----------------------------------

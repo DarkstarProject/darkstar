@@ -22,15 +22,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	Z = player:getZPos();
-	
-	if (Z >= -20 and Z <= -16) then
-		player:startEvent(0x0042);
-	else
-		player:startEvent(0x0079);
-	end
-	
+    
+    Z = player:getZPos();
+    
+    if (Z >= -20 and Z <= -16) then
+        player:startEvent(0x0042);
+    else
+        player:startEvent(0x0079);
+    end
+    
 end;
 -----------------------------------
 -- onEventUpdate

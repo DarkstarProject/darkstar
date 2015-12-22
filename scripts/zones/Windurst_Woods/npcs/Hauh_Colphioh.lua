@@ -22,12 +22,12 @@ local keyitems = {
         rank = 3,
         cost = 40000 
     },
-	[2] = {
+    [2] = {
         id = SPINNING,
         rank = 3,
         cost = 10000 
     },
-	[3] = {
+    [3] = {
         id = FLETCHING,
         rank = 3,
         cost = 10000 
@@ -65,17 +65,17 @@ local items = {
         rank = 9,
         cost = 200000
     },
-	[7] = {
+    [7] = {
         id = 15822, -- Tailor's Ring
         rank = 6,
         cost = 80000
     },
-	[8] = {
+    [8] = {
         id = 3665, -- Spinning Wheel
         rank = 7,
         cost = 50000
     },
-	[9] = {
+    [9] = {
         id = 3327, -- Weavers' Emblem
         rank = 9,
         cost = 15000
@@ -95,7 +95,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 4, 0x2728, "guild_weaving", keyitems);
+    unionRepresentativeTrigger(player, 4, 0x2728, "guild_weaving", keyitems);
 end;
 
 -----------------------------------
@@ -103,8 +103,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -112,8 +112,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,target)
-	 -- printf("CSID: %u",csid);
-	 -- printf("RESULT: %u",option);
+     -- printf("CSID: %u",csid);
+     -- printf("RESULT: %u",option);
      
     if (csid == 0x2728) then
         unionRepresentativeTriggerFinish(player, option, target, 4, "guild_weaving", keyitems, items);

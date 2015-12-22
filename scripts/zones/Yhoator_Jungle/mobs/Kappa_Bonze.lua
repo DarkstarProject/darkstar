@@ -19,8 +19,8 @@ end;
 
 function onMobDeath(mob,killer,ally)
 
-	if (ally:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED) then
-		ally:setVar("trueWillKilledNM",ally:getVar("trueWillKilledNM") + 1);
-	end
+    if (ally:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED) then
+        ally:setVar("trueWillKilledNM",ally:getVar("trueWillKilledNM") + 1);
+    end
 
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- 	EFFECT_COPY_IMAGE
+--     EFFECT_COPY_IMAGE
 --
 -----------------------------------
 
@@ -25,5 +25,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:setMod(MOD_UTSUSEMI,0);
+    target:setMod(MOD_UTSUSEMI,0);
 end;

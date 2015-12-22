@@ -13,7 +13,7 @@ require("scripts/zones/Dynamis-Valkurm/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
-	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------
@@ -29,11 +29,11 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-	
-	local mobID = mob:getID();
-	
-	if ( mobID == 16937233) then --hp
-		ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
-	    ally:restoreHP(3000);
-	end
+    
+    local mobID = mob:getID();
+    
+    if ( mobID == 16937233) then --hp
+        ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
+        ally:restoreHP(3000);
+    end
 end;

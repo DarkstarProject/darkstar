@@ -35,16 +35,16 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-	
-	local mobID = mob:getID();
-	
-	-- Time Bonus: 143 150
-	if (mobID == 17330912 and mob:isInBattlefieldList() == false) then
-		ally:addTimeToDynamis(30);
-		mob:addInBattlefieldList();
-	elseif (mobID == 17330919 and mob:isInBattlefieldList() == false) then
-		ally:addTimeToDynamis(30);
-		mob:addInBattlefieldList();
-	end
-	
+    
+    local mobID = mob:getID();
+    
+    -- Time Bonus: 143 150
+    if (mobID == 17330912 and mob:isInBattlefieldList() == false) then
+        ally:addTimeToDynamis(30);
+        mob:addInBattlefieldList();
+    elseif (mobID == 17330919 and mob:isInBattlefieldList() == false) then
+        ally:addTimeToDynamis(30);
+        mob:addInBattlefieldList();
+    end
+    
 end;

@@ -21,9 +21,9 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
 local result = 0;
-	if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-		result = 246;
-	end
+    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+        result = 246;
+    end
 return result;
 end;
 
@@ -32,7 +32,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_FOOD,0,0,14400,4349);
+    target:addStatusEffect(EFFECT_FOOD,0,0,14400,4349);
 end;
 
 -----------------------------------------
@@ -40,14 +40,14 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_HP, 10);
-	target:addMod(MOD_STR, 2);
-	target:addMod(MOD_VIT, 2);
-	target:addMod(MOD_INT, -1);
-	target:addMod(MOD_FOOD_ATTP, 30);
-	target:addMod(MOD_FOOD_ATT_CAP, 25);
-	target:addMod(MOD_FOOD_RATTP, 30);
-	target:addMod(MOD_FOOD_RATT_CAP, 25);
+    target:addMod(MOD_HP, 10);
+    target:addMod(MOD_STR, 2);
+    target:addMod(MOD_VIT, 2);
+    target:addMod(MOD_INT, -1);
+    target:addMod(MOD_FOOD_ATTP, 30);
+    target:addMod(MOD_FOOD_ATT_CAP, 25);
+    target:addMod(MOD_FOOD_RATTP, 30);
+    target:addMod(MOD_FOOD_RATT_CAP, 25);
 end;
 
 -----------------------------------------
@@ -55,12 +55,12 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_HP, 10);
-	target:delMod(MOD_STR, 2);
-	target:delMod(MOD_VIT, 2);
-	target:delMod(MOD_INT, -1);
-	target:delMod(MOD_FOOD_ATTP, 30);
-	target:delMod(MOD_FOOD_ATT_CAP, 25);
-	target:delMod(MOD_FOOD_RATTP, 30);
-	target:delMod(MOD_FOOD_RATT_CAP, 25);
+    target:delMod(MOD_HP, 10);
+    target:delMod(MOD_STR, 2);
+    target:delMod(MOD_VIT, 2);
+    target:delMod(MOD_INT, -1);
+    target:delMod(MOD_FOOD_ATTP, 30);
+    target:delMod(MOD_FOOD_ATT_CAP, 25);
+    target:delMod(MOD_FOOD_RATTP, 30);
+    target:delMod(MOD_FOOD_RATT_CAP, 25);
 end;

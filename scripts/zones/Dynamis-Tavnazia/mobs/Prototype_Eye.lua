@@ -23,11 +23,11 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-local mobID = mob:getID();	
-	if (mobID == 16949380 and mob:isInBattlefieldList() == false) then
-	    ally:addTimeToDynamis(20);
-		--print("addtime 20min");
-		mob:addInBattlefieldList();
-	end
+local mobID = mob:getID();    
+    if (mobID == 16949380 and mob:isInBattlefieldList() == false) then
+        ally:addTimeToDynamis(20);
+        --print("addtime 20min");
+        mob:addInBattlefieldList();
+    end
 
 end;

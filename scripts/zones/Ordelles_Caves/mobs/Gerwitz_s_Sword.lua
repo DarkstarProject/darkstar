@@ -20,8 +20,8 @@ end;
 
 function onMobDeath(mob,killer,ally)
 
-	if (ally:getVar("darkPuppetCS") >= 3) then
-		ally:setVar("darkPuppetCS",4);
-	end
+    if (ally:getVar("darkPuppetCS") >= 3) then
+        ally:setVar("darkPuppetCS",4);
+    end
 
 end;

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4706
---	Scroll of Enlight
---	Teaches the white magic Enlight
+--    ID: 4706
+--    Scroll of Enlight
+--    Teaches the white magic Enlight
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(310);
+    return target:canLearnSpell(310);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(310);
+    target:addSpell(310);
 end;

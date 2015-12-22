@@ -51,10 +51,10 @@ Port Windurst (West to East)
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then 
-		-- Needs a check for at least traded an invitation card to Naja Salaheem
-		player:startEvent(0x031a);
-	end
+    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then 
+        -- Needs a check for at least traded an invitation card to Naja Salaheem
+        player:startEvent(0x031a);
+    end
 end;
 
 -----------------------------------
@@ -62,25 +62,25 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local LureWindurst = player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST);
-	local WildcatWindurst = player:getVar("WildcatWindurst");
-	if (LureWindurst ~= QUEST_COMPLETED and ENABLE_TOAU == 1) then
-		if (LureWindurst == QUEST_AVAILABLE) then
-			player:startEvent(0x02e0);
-		else
-			if (WildcatWindurst == 0) then
-				player:startEvent(0x02e1);
-			elseif (player:isMaskFull(WildcatWindurst,20) == true) then
-				player:startEvent(0x02e3);
-			else
-				player:startEvent(0x02e2);
-			end
-		end
-	elseif (player:getCurrentMission(TOAU) >= 2) then
-		player:startEvent(0x0319);
-	else
-		player:startEvent(0x02e4);
-	end
+    local LureWindurst = player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST);
+    local WildcatWindurst = player:getVar("WildcatWindurst");
+    if (LureWindurst ~= QUEST_COMPLETED and ENABLE_TOAU == 1) then
+        if (LureWindurst == QUEST_AVAILABLE) then
+            player:startEvent(0x02e0);
+        else
+            if (WildcatWindurst == 0) then
+                player:startEvent(0x02e1);
+            elseif (player:isMaskFull(WildcatWindurst,20) == true) then
+                player:startEvent(0x02e3);
+            else
+                player:startEvent(0x02e2);
+            end
+        end
+    elseif (player:getCurrentMission(TOAU) >= 2) then
+        player:startEvent(0x0319);
+    else
+        player:startEvent(0x02e4);
+    end
 end;
 
 -----------------------------------
@@ -99,21 +99,21 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x02e0) then
-		player:addQuest(WINDURST,LURE_OF_THE_WILDCAT_WINDURST);
-		player:setVar("WildcatWindurst",0);
-		player:addKeyItem(GREEN_SENTINEL_BADGE);
-		player:messageSpecial(KEYITEM_OBTAINED,GREEN_SENTINEL_BADGE);
-	elseif (csid == 0x02e3) then
-		player:completeQuest(WINDURST,LURE_OF_THE_WILDCAT_WINDURST);
-		player:addFame(WINDURST,150);
-		player:setVar("WildcatWindurst",0);
-		player:delKeyItem(GREEN_SENTINEL_BADGE);
-		player:addKeyItem(GREEN_INVITATION_CARD);
-		player:messageSpecial(KEYITEM_LOST,GREEN_SENTINEL_BADGE);
-		player:messageSpecial(KEYITEM_OBTAINED,GREEN_INVITATION_CARD);
-	elseif (csid == 0x031a) then
-		player:tradeComplete();
-		toAhtUrhganWhitegate(player);
-	end
+    if (csid == 0x02e0) then
+        player:addQuest(WINDURST,LURE_OF_THE_WILDCAT_WINDURST);
+        player:setVar("WildcatWindurst",0);
+        player:addKeyItem(GREEN_SENTINEL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED,GREEN_SENTINEL_BADGE);
+    elseif (csid == 0x02e3) then
+        player:completeQuest(WINDURST,LURE_OF_THE_WILDCAT_WINDURST);
+        player:addFame(WINDURST,150);
+        player:setVar("WildcatWindurst",0);
+        player:delKeyItem(GREEN_SENTINEL_BADGE);
+        player:addKeyItem(GREEN_INVITATION_CARD);
+        player:messageSpecial(KEYITEM_LOST,GREEN_SENTINEL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED,GREEN_INVITATION_CARD);
+    elseif (csid == 0x031a) then
+        player:tradeComplete();
+        toAhtUrhganWhitegate(player);
+    end
 end;

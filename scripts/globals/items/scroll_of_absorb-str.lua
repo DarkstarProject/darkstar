@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4874
---	Scroll of Absorb-STR
---	Teaches the black magic Absorb-STR
+--    ID: 4874
+--    Scroll of Absorb-STR
+--    Teaches the black magic Absorb-STR
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(266);
+    return target:canLearnSpell(266);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(266);
+    target:addSpell(266);
 end;

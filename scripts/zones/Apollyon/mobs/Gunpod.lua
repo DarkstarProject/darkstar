@@ -27,9 +27,9 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-  	local mobX = mob:getXPos();
-	local mobY = mob:getYPos();
-	local mobZ = mob:getZPos();
+      local mobX = mob:getXPos();
+    local mobY = mob:getYPos();
+    local mobZ = mob:getZPos();
     GetNPCByID(16932864+259):setPos(mobX,mobY,mobZ);
-	GetNPCByID(16932864+259):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+259):setStatus(STATUS_NORMAL);
 end;

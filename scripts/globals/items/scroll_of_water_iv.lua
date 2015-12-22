@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4780
---	Scroll of Water IV
---	Teaches the black magic Water IV
+--    ID: 4780
+--    Scroll of Water IV
+--    Teaches the black magic Water IV
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(172);
+    return target:canLearnSpell(172);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(172);
+    target:addSpell(172);
 end;

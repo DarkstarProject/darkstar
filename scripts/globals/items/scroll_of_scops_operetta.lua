@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5017
---	Scroll of Scops Operetta
---	Teaches the song Scops Operetta
+--    ID: 5017
+--    Scroll of Scops Operetta
+--    Teaches the song Scops Operetta
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(409);
+    return target:canLearnSpell(409);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(409);
+    target:addSpell(409);
 end;

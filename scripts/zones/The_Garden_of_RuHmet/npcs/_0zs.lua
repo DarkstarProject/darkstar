@@ -22,8 +22,8 @@ end;
 
 function onTrigger(player,npc)
     if (player:hasCompletedMission(COP,WHEN_ANGELS_FALL)) then
-	   player:startEvent(0x0070);
-	end
+       player:startEvent(0x0070);
+    end
   return 1;
 end;
 

@@ -25,7 +25,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x000c); -- i have nothing to say to you standar dialog
+    player:startEvent(0x000c); -- i have nothing to say to you standar dialog
 end;
 
 -----------------------------------

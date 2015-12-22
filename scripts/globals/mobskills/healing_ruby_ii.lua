@@ -17,7 +17,7 @@ function onMobWeaponSkill(target, mob, skill)
     local potency = skill:getParam();
 
     if (potency == 0) then
-    	potency = 25;
+        potency = 25;
     end
 
     potency = potency - math.random(0, potency/4);

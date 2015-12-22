@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4964
---	Scroll of Monomi: Ichi
---	Teaches the ninjutsu Monomi: Ichi
+--    ID: 4964
+--    Scroll of Monomi: Ichi
+--    Teaches the ninjutsu Monomi: Ichi
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(318);
+    return target:canLearnSpell(318);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(318);
+    target:addSpell(318);
 end;

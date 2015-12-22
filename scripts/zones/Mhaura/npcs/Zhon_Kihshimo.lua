@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Mhaura
---	NPC:  Zhon Kihshimo
+--    Area: Mhaura
+--    NPC:  Zhon Kihshimo
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x19);
+    player:startEvent(0x19);
 end;
 
 -----------------------------------

@@ -20,7 +20,7 @@ end;
 
 function onTrigger(player,npc)
 
-	player:messageSpecial(CUMETOUFLAIX_DIALOG);
+    player:messageSpecial(CUMETOUFLAIX_DIALOG);
 end;
 
 -----------------------------------

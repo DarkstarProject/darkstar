@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 6049
---	Firestorm Schema
---	Teaches the white magic Firestorm
+--    ID: 6049
+--    Firestorm Schema
+--    Teaches the white magic Firestorm
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(115);
+    return target:canLearnSpell(115);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(115);
+    target:addSpell(115);
 end;

@@ -36,22 +36,22 @@ end;
 function onTrigger(player,npc)
 
 local Unforgiven = player:getQuestStatus(OTHER_AREAS,UNFORGIVEN);
-	if (Unforgiven == 0) then
-		player:startEvent(0x00C8); -- Quest Start Dialogue
-	
-	elseif (Unforgiven == 1 and player:getVar("UnforgivenVar") == 1) then
-		player:startEvent(0x00CB); -- Dialogue if player hasn't talked to Pradiulot (2nd stage of Quest)
-	
-	elseif (Unforgiven == 1 and player:hasKeyItem(609) == false) then
-		player:startEvent(0x00C9); -- Dialogue if player doesn't have keyitem
-	
-	elseif (Unforgiven == 1 and player:hasKeyItem(609) == true) then
-		player:startEvent(0x00CA); -- Dialogue if player has keyitem (1st stage of Quest)
-	
-	else
-		player:startEvent(0x00BE);
-		
-		end
+    if (Unforgiven == 0) then
+        player:startEvent(0x00C8); -- Quest Start Dialogue
+    
+    elseif (Unforgiven == 1 and player:getVar("UnforgivenVar") == 1) then
+        player:startEvent(0x00CB); -- Dialogue if player hasn't talked to Pradiulot (2nd stage of Quest)
+    
+    elseif (Unforgiven == 1 and player:hasKeyItem(609) == false) then
+        player:startEvent(0x00C9); -- Dialogue if player doesn't have keyitem
+    
+    elseif (Unforgiven == 1 and player:hasKeyItem(609) == true) then
+        player:startEvent(0x00CA); -- Dialogue if player has keyitem (1st stage of Quest)
+    
+    else
+        player:startEvent(0x00BE);
+        
+        end
 end;
 -----------------------------------
 -- onEventUpdate
@@ -70,10 +70,10 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 if (csid == 0x00C8) then
-	player:addQuest(OTHER_AREAS,UNFORGIVEN);
+    player:addQuest(OTHER_AREAS,UNFORGIVEN);
 
 elseif (csid == 0x00CA) then
-	player:setVar("UnforgivenVar",1); -- SET THE VAR
+    player:setVar("UnforgivenVar",1); -- SET THE VAR
 end
 
 end;

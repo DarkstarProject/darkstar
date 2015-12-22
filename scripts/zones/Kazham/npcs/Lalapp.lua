@@ -16,12 +16,12 @@ local path = {
 
 function onSpawn(npc)
     npc:initNpcAi();
-	npc:setPos(pathfind.first(path));
-	onPath(npc);
+    npc:setPos(pathfind.first(path));
+    onPath(npc);
 end;
 
 function onPath(npc)
-	pathfind.patrol(npc, path);
+    pathfind.patrol(npc, path);
 end;
 
 -----------------------------------
@@ -77,7 +77,7 @@ function onTrigger(player,npc)
         elseif (progress >= 9 or failed >= 10) then
             player:startEvent(0x00FA); -- happy with ancient salt
         end
-	else
+    else
         player:startEvent(0x00CD);
         npc:wait(-1);
     end

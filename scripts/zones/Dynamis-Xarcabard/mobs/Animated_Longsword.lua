@@ -12,20 +12,20 @@ require("scripts/zones/Dynamis-Xarcabard/TextIDs");
 
 function onMobEngaged(mob,target)
 
-	if (mob:AnimationSub() == 3) then
-		SetDropRate(111,1573,1000);
-	else
-		SetDropRate(111,1573,0);
-	end
-	
-	target:showText(mob,ANIMATED_LONGSWORD_DIALOG);
-	
-	SpawnMob(17330355,120):updateEnmity(target);
-	SpawnMob(17330356,120):updateEnmity(target);
-	SpawnMob(17330357,120):updateEnmity(target);
-	SpawnMob(17330362,120):updateEnmity(target);
-	SpawnMob(17330363,120):updateEnmity(target);
-	SpawnMob(17330364,120):updateEnmity(target);
+    if (mob:AnimationSub() == 3) then
+        SetDropRate(111,1573,1000);
+    else
+        SetDropRate(111,1573,0);
+    end
+    
+    target:showText(mob,ANIMATED_LONGSWORD_DIALOG);
+    
+    SpawnMob(17330355,120):updateEnmity(target);
+    SpawnMob(17330356,120):updateEnmity(target);
+    SpawnMob(17330357,120):updateEnmity(target);
+    SpawnMob(17330362,120):updateEnmity(target);
+    SpawnMob(17330363,120):updateEnmity(target);
+    SpawnMob(17330364,120):updateEnmity(target);
 
 end;
 
@@ -34,7 +34,7 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-	-- TODO: add battle dialog
+    -- TODO: add battle dialog
 end;
 
 -----------------------------------
@@ -42,7 +42,7 @@ end;
 -----------------------------------
 
 function onMobDisengage(mob)
-	mob:showText(mob,ANIMATED_LONGSWORD_DIALOG+2);
+    mob:showText(mob,ANIMATED_LONGSWORD_DIALOG+2);
 end;
 
 -----------------------------------
@@ -50,14 +50,14 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-	
-	ally:showText(mob,ANIMATED_LONGSWORD_DIALOG+1);
-	
-	DespawnMob(17330355);
-	DespawnMob(17330356);
-	DespawnMob(17330357);
-	DespawnMob(17330362);
-	DespawnMob(17330363);
-	DespawnMob(17330364);
-	
+    
+    ally:showText(mob,ANIMATED_LONGSWORD_DIALOG+1);
+    
+    DespawnMob(17330355);
+    DespawnMob(17330356);
+    DespawnMob(17330357);
+    DespawnMob(17330362);
+    DespawnMob(17330363);
+    DespawnMob(17330364);
+    
 end;

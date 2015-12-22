@@ -10,5 +10,5 @@ require("scripts/globals/fieldsofvalor");
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-	checkRegime(ally,mob,84,1);
+    checkRegime(ally,mob,84,1);
 end;

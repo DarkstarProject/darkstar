@@ -17,28 +17,28 @@ end;
 -- onMobDisengage Action
 -----------------------------------
 function onMobDisengage(mob)
-	local self = mob:getID();
-	DespawnMob(self, 120);
+    local self = mob:getID();
+    DespawnMob(self, 120);
 end;
 
 -----------------------------------
 -- onMobDeath Action
 -----------------------------------
 function onMobDeath(mob,killer,ally)
-	if (ally:getCurrentMission(BASTOK) == THE_CHAINS_THAT_BIND_US and ally:getVar("MissionStatus") == 1) then
-		SetServerVariable("Bastok8-1LastClear", os.time());
-	end
+    if (ally:getCurrentMission(BASTOK) == THE_CHAINS_THAT_BIND_US and ally:getVar("MissionStatus") == 1) then
+        SetServerVariable("Bastok8-1LastClear", os.time());
+    end
 end;
 
 -----------------------------------
 -- onMobDespawn Action
 -----------------------------------
 function onMobDespawn(mob)
-	local mobsup = GetServerVariable("BastokFight8_1");
-	SetServerVariable("BastokFight8_1",mobsup - 1);
+    local mobsup = GetServerVariable("BastokFight8_1");
+    SetServerVariable("BastokFight8_1",mobsup - 1);
 
-	if (GetServerVariable("BastokFight8_1") == 0) then
-		local npc = GetNPCByID(17629734); -- qm6
-		npc:setStatus(0); -- Reappear
-	end
+    if (GetServerVariable("BastokFight8_1") == 0) then
+        local npc = GetNPCByID(17629734); -- qm6
+        npc:setStatus(0); -- Reappear
+    end
 end;

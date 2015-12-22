@@ -6,7 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6385; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6387; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7204; -- You can't fish here
-  	  BITS_OF_VEGETABLE = 7490; -- Bits of vegetable matter are strewn around. They appear to have been gnawed on by insects...
+        BITS_OF_VEGETABLE = 7490; -- Bits of vegetable matter are strewn around. They appear to have been gnawed on by insects...
 
 -- Treasure Coffer/Chest Dialog
 CHEST_UNLOCKED = 7306; -- You unlock the chest!

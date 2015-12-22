@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5027
---	Scroll of Advancing March
---	Teaches the song Advancing March
+--    ID: 5027
+--    Scroll of Advancing March
+--    Teaches the song Advancing March
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(419);
+    return target:canLearnSpell(419);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(419);
+    target:addSpell(419);
 end;

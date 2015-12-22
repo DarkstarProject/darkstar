@@ -20,7 +20,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-	--[[
+    --[[
     power = 1;
     tic = 0;
     duration = 60;
@@ -41,5 +41,5 @@ function onMobWeaponSkill(target, mob, skill)
         skill:setMsg(MSG_MISS);
     end
     return typeEffect;
-	]]
+    ]]
 end;

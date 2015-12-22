@@ -15,18 +15,18 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onTrigger(player,npc)
-	
--- To be implemented (This is temporary)	
-	
-	local DoorID = npc:getID() - 2;		
-	local DoorA = GetNPCByID(DoorID):getAnimation();
-	
-	if (DoorA == 9 and npc:getAnimation() == 9) then
-		npc:openDoor(8);
-		-- Should be a 1 second delay here before the door opens
-		GetNPCByID(DoorID):openDoor(6); 
-	end 		
-	
+    
+-- To be implemented (This is temporary)    
+    
+    local DoorID = npc:getID() - 2;        
+    local DoorA = GetNPCByID(DoorID):getAnimation();
+    
+    if (DoorA == 9 and npc:getAnimation() == 9) then
+        npc:openDoor(8);
+        -- Should be a 1 second delay here before the door opens
+        GetNPCByID(DoorID):openDoor(6); 
+    end         
+    
 end;
 
 -----------------------------------

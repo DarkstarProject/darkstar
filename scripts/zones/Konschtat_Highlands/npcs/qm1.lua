@@ -24,14 +24,14 @@ end;
 
 function onTrigger(player,npc)
 
-	local PastPerfect = player:getQuestStatus(BASTOK,PAST_PERFECT);
+    local PastPerfect = player:getQuestStatus(BASTOK,PAST_PERFECT);
 
-	if (PastPerfect == QUEST_ACCEPTED) then
-		player:addKeyItem(0x6d);
-		player:messageSpecial(KEYITEM_OBTAINED,0x6d); -- Tattered Mission Orders
-	else
-		player:messageSpecial(FIND_NOTHING);
-	end
+    if (PastPerfect == QUEST_ACCEPTED) then
+        player:addKeyItem(0x6d);
+        player:messageSpecial(KEYITEM_OBTAINED,0x6d); -- Tattered Mission Orders
+    else
+        player:messageSpecial(FIND_NOTHING);
+    end
 end;
 
 -----------------------------------

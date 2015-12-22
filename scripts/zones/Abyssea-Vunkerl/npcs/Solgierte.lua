@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Abyssea_Vunkeral
---	NPC: Solgierte
---	Standard Info NPC
+--    Area: Abyssea_Vunkeral
+--    NPC: Solgierte
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Vunkerl/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x044A);
+    player:startEvent(0x044A);
 end;
 
 -----------------------------------

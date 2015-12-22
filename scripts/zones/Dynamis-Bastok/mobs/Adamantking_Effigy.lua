@@ -16,8 +16,8 @@ require("scripts/zones/Dynamis-Bastok/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
-	-- this is my super id and all my children will have the same number
-	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    -- this is my super id and all my children will have the same number
+    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------

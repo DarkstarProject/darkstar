@@ -16,7 +16,7 @@ require("scripts/zones/Dynamis-Jeuno/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
-	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------
@@ -32,25 +32,25 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-	
-	mobID = mob:getID();
-	
-	-- Time Bonus (30min): 002
-	if (mobID == 17547531 and mob:isInBattlefieldList() == false) then
-		ally:addTimeToDynamis(30);
-		mob:addInBattlefieldList();
-	-- Time Bonus (30min): 004
-	elseif (mobID == 17547533 and mob:isInBattlefieldList() == false) then
-		ally:addTimeToDynamis(30);
-		mob:addInBattlefieldList();
-	-- Time Bonus (30min): 029
-	elseif (mobID == 17547558 and mob:isInBattlefieldList() == false) then
-		ally:addTimeToDynamis(30);
-		mob:addInBattlefieldList();
-	-- Time Bonus (30min): 045
-	elseif (mobID == 17547574 and mob:isInBattlefieldList() == false) then
-		ally:addTimeToDynamis(30);
-		mob:addInBattlefieldList();
-	end
+    
+    mobID = mob:getID();
+    
+    -- Time Bonus (30min): 002
+    if (mobID == 17547531 and mob:isInBattlefieldList() == false) then
+        ally:addTimeToDynamis(30);
+        mob:addInBattlefieldList();
+    -- Time Bonus (30min): 004
+    elseif (mobID == 17547533 and mob:isInBattlefieldList() == false) then
+        ally:addTimeToDynamis(30);
+        mob:addInBattlefieldList();
+    -- Time Bonus (30min): 029
+    elseif (mobID == 17547558 and mob:isInBattlefieldList() == false) then
+        ally:addTimeToDynamis(30);
+        mob:addInBattlefieldList();
+    -- Time Bonus (30min): 045
+    elseif (mobID == 17547574 and mob:isInBattlefieldList() == false) then
+        ally:addTimeToDynamis(30);
+        mob:addInBattlefieldList();
+    end
 
 end;

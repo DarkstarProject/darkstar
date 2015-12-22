@@ -12,7 +12,7 @@ require("scripts/globals/monstertpmoves");
 
 function onMobSkillCheck(target,mob,skill)
 
-	if (mob:getZoneID() == 135 or mob:getZoneID() == 111) then
+    if (mob:getZoneID() == 135 or mob:getZoneID() == 111) then
         return 0;
     end
 
@@ -21,11 +21,11 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-	local dmgmod = 1;
+    local dmgmod = 1;
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 4,ELE_ICE,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_ICE,MOBPARAM_IGNORE_SHADOWS);
 
-	target:delHP(dmg);
+    target:delHP(dmg);
 
-	return dmg;
+    return dmg;
 end;

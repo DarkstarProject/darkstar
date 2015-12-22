@@ -13,13 +13,13 @@ require("scripts/zones/Castle_Oztroja/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:hasKeyItem(OLD_RING) == false) then
-		player:addKeyItem(OLD_RING);
-		player:messageSpecial(KEYITEM_OBTAINED,OLD_RING);
-	end
-	if (npc:getAnimation() == 9) then
-		npc:openDoor();
-	end	
+    if(player:hasKeyItem(OLD_RING) == false) then
+        player:addKeyItem(OLD_RING);
+        player:messageSpecial(KEYITEM_OBTAINED,OLD_RING);
+    end
+    if (npc:getAnimation() == 9) then
+        npc:openDoor();
+    end    
 end;
 
 -----------------------------------

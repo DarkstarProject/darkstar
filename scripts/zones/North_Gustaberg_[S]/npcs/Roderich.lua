@@ -23,13 +23,13 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:getQuestStatus(CRYSTAL_WAR,THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:getVar("THE_FIGHTING_FOURTH") == 1) then
-		player:startEvent(0x0068)
-	elseif (player:getQuestStatus(CRYSTAL_WAR,THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:getVar("THE_FIGHTING_FOURTH") == 3) then
-		player:startEvent(0x006D)
-	else
-		player:startEvent(0x006F)
-	end
+    if (player:getQuestStatus(CRYSTAL_WAR,THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:getVar("THE_FIGHTING_FOURTH") == 1) then
+        player:startEvent(0x0068)
+    elseif (player:getQuestStatus(CRYSTAL_WAR,THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:getVar("THE_FIGHTING_FOURTH") == 3) then
+        player:startEvent(0x006D)
+    else
+        player:startEvent(0x006F)
+    end
 end;
 
 -----------------------------------
@@ -40,7 +40,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x0068) then
-		player:setVar("THE_FIGHTING_FOURTH",2);
-	end		
+    if (csid == 0x0068) then
+        player:setVar("THE_FIGHTING_FOURTH",2);
+    end        
 end;

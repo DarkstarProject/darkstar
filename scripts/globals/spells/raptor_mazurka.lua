@@ -10,14 +10,14 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
 
     local power = 12;
     
-	local iBoost = caster:getMod(MOD_MAZURKA_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    local iBoost = caster:getMod(MOD_MAZURKA_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
     
     local duration = 120;
     
@@ -34,10 +34,10 @@ function onSpellCast(caster,target,spell)
         duration = duration * 2;
     end
     
-	if not (target:addBardSong(caster,EFFECT_MAZURKA,power,0,duration,caster:getID(), 0, 1)) then
+    if not (target:addBardSong(caster,EFFECT_MAZURKA,power,0,duration,caster:getID(), 0, 1)) then
         spell:setMsg(75);
     end
 
-	return EFFECT_MAZURKA;
+    return EFFECT_MAZURKA;
 end;
 

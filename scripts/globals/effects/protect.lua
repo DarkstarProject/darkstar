@@ -1,7 +1,7 @@
 -----------------------------------
 --
--- 	EFFECT_PROTECT
--- 	
+--     EFFECT_PROTECT
+--     
 -----------------------------------
 
 require("scripts/globals/status");

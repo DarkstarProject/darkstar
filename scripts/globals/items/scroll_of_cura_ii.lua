@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5082
---	Scroll of Cura II
---	Teaches the white magic Cura II
+--    ID: 5082
+--    Scroll of Cura II
+--    Teaches the white magic Cura II
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(474);
+    return target:canLearnSpell(474);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(474);
+    target:addSpell(474);
 end;

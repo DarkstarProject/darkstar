@@ -17,12 +17,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:hasKeyItem(BRAND_OF_TWILIGHT)==false) then
-		player:startEvent(0x006F);
-	end
-	
-	return 1;
+    
+    if (player:hasKeyItem(BRAND_OF_TWILIGHT)==false) then
+        player:startEvent(0x006F);
+    end
+    
+    return 1;
 end;
 
 -----------------------------------
@@ -43,6 +43,6 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
   if (csid == 0x006F and option==1) then
       player:messageSpecial(KEYITEM_OBTAINED,BRAND_OF_TWILIGHT);
-	  player:addKeyItem(BRAND_OF_TWILIGHT);
+      player:addKeyItem(BRAND_OF_TWILIGHT);
   end
 end;

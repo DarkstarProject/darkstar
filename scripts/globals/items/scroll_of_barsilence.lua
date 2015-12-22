@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4684
---	Scroll of Barsilence
---	Teaches the white magic Barsilence
+--    ID: 4684
+--    Scroll of Barsilence
+--    Teaches the white magic Barsilence
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(76);
+    return target:canLearnSpell(76);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(76);
+    target:addSpell(76);
 end;

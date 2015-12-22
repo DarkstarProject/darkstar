@@ -10,7 +10,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
@@ -23,12 +23,12 @@ function onSpellCast(caster,target,spell)
     local duration = 120 * applyResistanceEffect(caster,spell,target,dINT,35,0,EFFECT_WEIGHT);
 
     if (duration >= 30) then --Do it!
-	
-	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+    
+        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         duration = duration * 2;
     end
     caster:delStatusEffect(EFFECT_SABOTEUR);
-	
+    
         if (target:addStatusEffect(EFFECT_WEIGHT,power,0,duration)) then
             spell:setMsg(236);
         else

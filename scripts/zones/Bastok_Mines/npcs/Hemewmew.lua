@@ -12,10 +12,10 @@ require("scripts/globals/crafting");
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 local keyitems = {
-	[0] = {
+    [0] = {
         id = ANIMA_SYNTHESIS,
         rank = 3,
-		cost = 20000
+        cost = 20000
     },
     [1] = {
         id = ALCHEMIC_PURIFICATION,
@@ -32,17 +32,17 @@ local keyitems = {
         rank = 3,
         cost = 10000 
     },
-	[4] = {
+    [4] = {
         id = CONCOCTION,
         rank = 3,
         cost = 20000 
     },
-	[5] = {
+    [5] = {
         id = IATROCHEMISTRY,
         rank = 3,
         cost = 10000 
     },
-	[6] = {
+    [6] = {
         id = WAY_OF_THE_ALCHEMIST,
         rank = 9,
         cost = 20000 
@@ -50,7 +50,7 @@ local keyitems = {
 };
 
 local items = {
-	[2] = {
+    [2] = {
         id = 15450, -- Alchemist's Belt
         rank = 4,
         cost = 10000 
@@ -80,10 +80,10 @@ local items = {
         rank = 6,
         cost = 80000 
     },
-	[8] = {
-		id = 3674, -- Alembic
-		rank = 7,
-		cost = 50000
+    [8] = {
+        id = 3674, -- Alembic
+        rank = 7,
+        cost = 50000
     },
     [9] = {
         id = 3332, -- Alchemist's Emblem
@@ -105,7 +105,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 7, 0xce, "guild_alchemy", keyitems);
+    unionRepresentativeTrigger(player, 7, 0xce, "guild_alchemy", keyitems);
 end;
 
 -----------------------------------
@@ -113,8 +113,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -122,8 +122,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,target)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
      
     if (csid == 0xce) then
         unionRepresentativeTriggerFinish(player, option, target, 7, "guild_alchemy", keyitems, items);

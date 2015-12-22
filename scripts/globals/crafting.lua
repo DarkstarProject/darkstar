@@ -1,5 +1,5 @@
 -------------------------------------------------
---	Crafting functions
+--    Crafting functions
 --  Info from:
 --      http://wiki.ffxiclopedia.org/wiki/Crafts_%26_Hobbies
 -------------------------------------------------
@@ -71,21 +71,21 @@ local HQCrystals = {
 
 function isGuildMember(player,guild)
 
-	local guildOK = player:getVar("Guild_Member");
-	local bit = {};
+    local guildOK = player:getVar("Guild_Member");
+    local bit = {};
 
-	for i = 12,1,-1 do
-		twop = 2^i
+    for i = 12,1,-1 do
+        twop = 2^i
 
-		if (guildOK >= twop) then
-			bit[i]=1; guildOK = guildOK - twop;
-		else
-			bit[i]=0;
-		end
-		--printf("bit %u: %u",i,bit[i]);
-	end;
+        if (guildOK >= twop) then
+            bit[i]=1; guildOK = guildOK - twop;
+        else
+            bit[i]=0;
+        end
+        --printf("bit %u: %u",i,bit[i]);
+    end;
 
-	return bit[guild];
+    return bit[guild];
 
 end;
 
@@ -94,7 +94,7 @@ end;
 -----------------------------------
 
 function signupGuild(player,nbr)
-	player:setVar("Guild_Member",player:getVar("Guild_Member") + nbr);
+    player:setVar("Guild_Member",player:getVar("Guild_Member") + nbr);
 end;
 
 -----------------------------------
@@ -103,24 +103,24 @@ end;
 
 function getTestItem(player,npc,craftID)
 
-	local TItemList = {};
-	local NextRank = player:getSkillRank(craftID) + 1;
+    local TItemList = {};
+    local NextRank = player:getSkillRank(craftID) + 1;
 
-	switch (npc:getName()): caseof
-	{
-		["Abd-al-Raziq"] = function (x) 	TItemList = TI_Alchemy; end,
-		["Peshi_Yohnts"] = function (x) 	TItemList = TI_Bonecraft; end,
-		["Ponono"] = function (x) 			TItemList = TI_Clothcraft; end,
-		["Piketo-Puketo"] = function (x) 	TItemList = TI_Cooking; end,
-		["Thubu_Parohren"] = function (x) 	TItemList = TI_Fishing; end,
-		["Reinberta"] = function (x) 		TItemList = TI_Goldsmithing; end,
-		["Faulpie"] = function (x) 			TItemList = TI_Leathercraft; end,
-		["Mevreauche"] = function (x) 		TItemList = TI_Smithing; end,
-		["Ghemp"] = function (x) 			TItemList = TI_Smithing; end,
-		["Cheupirudaux"] = function (x) 	TItemList = TI_Woodworking; end,
-	}
+    switch (npc:getName()): caseof
+    {
+        ["Abd-al-Raziq"] = function (x)     TItemList = TI_Alchemy; end,
+        ["Peshi_Yohnts"] = function (x)     TItemList = TI_Bonecraft; end,
+        ["Ponono"] = function (x)             TItemList = TI_Clothcraft; end,
+        ["Piketo-Puketo"] = function (x)     TItemList = TI_Cooking; end,
+        ["Thubu_Parohren"] = function (x)     TItemList = TI_Fishing; end,
+        ["Reinberta"] = function (x)         TItemList = TI_Goldsmithing; end,
+        ["Faulpie"] = function (x)             TItemList = TI_Leathercraft; end,
+        ["Mevreauche"] = function (x)         TItemList = TI_Smithing; end,
+        ["Ghemp"] = function (x)             TItemList = TI_Smithing; end,
+        ["Cheupirudaux"] = function (x)     TItemList = TI_Woodworking; end,
+    }
 
-	return TItemList[NextRank];
+    return TItemList[NextRank];
 end;
 
 -----------------------------------
@@ -129,24 +129,24 @@ end;
 
 function canGetNewRank(player,skillLvL,craftID)
 
-	local Rank = player:getSkillRank(craftID) + 1;
-	local canGet = 0;
+    local Rank = player:getSkillRank(craftID) + 1;
+    local canGet = 0;
 
-	-- 0 fonctionne pas en lua donc rank + 1
-	if (Rank == 1 and skillLvL >= 256 or
-	   Rank == 2 and skillLvL >= 577 or
-	   Rank == 3 and skillLvL >= 898 or
-	   Rank == 4 and skillLvL >= 1219 or
-	   Rank == 5 and skillLvL >= 1540 or
-	   Rank == 6 and skillLvL >= 1861 or
-	   Rank == 7 and skillLvL >= 2182 or
-	   Rank == 8 and skillLvL >= 2503 or
-	   Rank == 9 and skillLvL >= 2824 or
-	   Rank == 10 and skillLvL >= 3145) then
-			canGet = 1;
-	end
+    -- 0 fonctionne pas en lua donc rank + 1
+    if (Rank == 1 and skillLvL >= 256 or
+       Rank == 2 and skillLvL >= 577 or
+       Rank == 3 and skillLvL >= 898 or
+       Rank == 4 and skillLvL >= 1219 or
+       Rank == 5 and skillLvL >= 1540 or
+       Rank == 6 and skillLvL >= 1861 or
+       Rank == 7 and skillLvL >= 2182 or
+       Rank == 8 and skillLvL >= 2503 or
+       Rank == 9 and skillLvL >= 2824 or
+       Rank == 10 and skillLvL >= 3145) then
+            canGet = 1;
+    end
 
-	return canGet;
+    return canGet;
 
 end;
 
@@ -168,7 +168,7 @@ function tradeTestItem(player,npc,trade,craftID)
         player:setVar('[GUILD]daily_points',-1);
     end
 
-	return newRank;
+    return newRank;
 
 end;
 

@@ -10,7 +10,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
@@ -24,8 +24,8 @@ function onSpellCast(caster,target,spell)
 
     --Calculates Resist Chance
     if (resist >= 0.125) then
-    	local duration = 180 * resist;
-    	
+        local duration = 180 * resist;
+        
         if (duration >= 50) then
             -- Erases a weaker inhibit tp and applies the stronger one
             local inhibit_tp = target:getStatusEffect(effect);

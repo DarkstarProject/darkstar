@@ -23,7 +23,7 @@ function onItemUse(target)
     local curse = target:getStatusEffect(EFFECT_CURSE_I);
     local curse2 = target:getStatusEffect(EFFECT_CURSE_II);
     local bane = target:getStatusEffect(EFFECT_BANE);
-	local final = 0;
+    local final = 0;
 
     if (curse ~= nil and curse2 ~= nil and bane ~= nil) then
         target:delStatusEffect(EFFECT_CURSE_I);

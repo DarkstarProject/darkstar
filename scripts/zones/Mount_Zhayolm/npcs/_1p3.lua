@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:hasKeyItem(LEBROS_ASSAULT_ORDERS)) then
+    if (player:hasKeyItem(LEBROS_ASSAULT_ORDERS)) then
         local assaultid = player:getCurrentAssault();
         local recommendedLevel = getRecommendedAssaultLevel(assaultid);
         local armband = 0;

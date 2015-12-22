@@ -12,7 +12,7 @@ require("scripts/globals/summon");
 
 function onMagicCastingCheck(caster,target,spell)
     if (not caster:canUsePet()) then
-		return MSGBASIC_CANT_BE_USED_IN_AREA;
+        return MSGBASIC_CANT_BE_USED_IN_AREA;
     elseif (caster:hasPet()) then
         return 1;
     else
@@ -21,7 +21,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	caster:spawnPet(PET_CARBUNCLE);
+    caster:spawnPet(PET_CARBUNCLE);
 
-	return 0;
+    return 0;
 end;

@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Woods
---	NPC:  Cocchi Ryojhbon
---	Working 100%
+--    Area: Windurst Woods
+--    NPC:  Cocchi Ryojhbon
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x1a2);
+    player:startEvent(0x1a2);
 end;
 
 -----------------------------------

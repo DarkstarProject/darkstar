@@ -28,41 +28,41 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-	
-	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
-			player:startEvent(0x7d01,1,1,1,0,1,0,0);
-		else
-			player:startEvent(0x7d01,1,1,1,0,1,1,0);
-		end
-	elseif (leavecode == 4) then
-		player:startEvent(0x7d02);
-	end
-	
+    
+    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+        if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
+            player:startEvent(0x7d01,1,1,1,0,1,0,0);
+        else
+            player:startEvent(0x7d01,1,1,1,0,1,1,0);
+        end
+    elseif (leavecode == 4) then
+        player:startEvent(0x7d02);
+    end
+    
 end;
 
 function onEventUpdate(player,csid,option)
-	-- print("bc update csid "..csid.." and option "..option);
+    -- print("bc update csid "..csid.." and option "..option);
 end;
 
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-	
-	if (csid == 0x7d01) then
-		player:addTitle(BEARER_OF_THE_WISEWOMANS_HOPE);
-		if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
-			player:startEvent(0x0007);
-		end
-	elseif (csid == 0x0007) then
-		player:startEvent(0x0008);
-	elseif (csid == 0x0008) then
-		if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
-			player:delKeyItem(SACRIFICIAL_CHAMBER_KEY);
-			player:addKeyItem(DARK_FRAGMENT);
-			player:messageSpecial(KEYITEM_OBTAINED,DARK_FRAGMENT);
-			player:completeMission(ZILART,THE_TEMPLE_OF_UGGALEPIH);
-			player:addMission(ZILART,HEADSTONE_PILGRIMAGE);
-		end
-	end
-	
+    
+    if (csid == 0x7d01) then
+        player:addTitle(BEARER_OF_THE_WISEWOMANS_HOPE);
+        if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
+            player:startEvent(0x0007);
+        end
+    elseif (csid == 0x0007) then
+        player:startEvent(0x0008);
+    elseif (csid == 0x0008) then
+        if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
+            player:delKeyItem(SACRIFICIAL_CHAMBER_KEY);
+            player:addKeyItem(DARK_FRAGMENT);
+            player:messageSpecial(KEYITEM_OBTAINED,DARK_FRAGMENT);
+            player:completeMission(ZILART,THE_TEMPLE_OF_UGGALEPIH);
+            player:addMission(ZILART,HEADSTONE_PILGRIMAGE);
+        end
+    end
+    
 end;

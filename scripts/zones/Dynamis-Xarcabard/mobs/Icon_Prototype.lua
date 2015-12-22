@@ -35,21 +35,21 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-	
-	local mobID = mob:getID();
-	
-	-- Time Bonus: 043
-	if (mobID == 17330814 and mob:isInBattlefieldList() == false) then
-		ally:addTimeToDynamis(30);
-		mob:addInBattlefieldList();
-	-- HP Bonus: 052
-	elseif (mobID == 17330533) then
-		ally:restoreHP(2000);
-		ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
-	-- HP Bonus: 073
-	elseif (mobID == 17330843) then
-		ally:restoreMP(2000);
-		ally:messageBasic(025,(ally:getMaxMP()-ally:getMP()));
-	end
-	
+    
+    local mobID = mob:getID();
+    
+    -- Time Bonus: 043
+    if (mobID == 17330814 and mob:isInBattlefieldList() == false) then
+        ally:addTimeToDynamis(30);
+        mob:addInBattlefieldList();
+    -- HP Bonus: 052
+    elseif (mobID == 17330533) then
+        ally:restoreHP(2000);
+        ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
+    -- HP Bonus: 073
+    elseif (mobID == 17330843) then
+        ally:restoreMP(2000);
+        ally:messageBasic(025,(ally:getMaxMP()-ally:getMP()));
+    end
+    
 end;

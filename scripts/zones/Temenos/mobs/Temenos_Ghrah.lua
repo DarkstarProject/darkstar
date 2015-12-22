@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Temenos 	
+-- Area: Temenos     
 -- NPC: Temenos_Ghrah
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-	GetNPCByID(16928770+475):setStatus(STATUS_NORMAL);
+    GetNPCByID(16928770+475):setStatus(STATUS_NORMAL);
 end;

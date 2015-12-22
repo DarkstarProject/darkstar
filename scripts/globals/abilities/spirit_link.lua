@@ -32,9 +32,9 @@ function onUseAbility(player,target,ability)
 
     local playerHP = player:getHP();
     local drainamount = (math.random(25,35) / 100) * playerHP;
-	if (player:getPet():getHP() == player:getPet():getMaxHP()) then
-		drainamount = 0; -- Prevents player HP lose if wyvern is at full HP
-	end
+    if (player:getPet():getHP() == player:getPet():getMaxHP()) then
+        drainamount = 0; -- Prevents player HP lose if wyvern is at full HP
+    end
     
     if (player:hasStatusEffect(EFFECT_STONESKIN)) then
         local skin = player:getMod(MOD_STONESKIN);

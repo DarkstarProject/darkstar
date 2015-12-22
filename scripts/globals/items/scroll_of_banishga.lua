@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4646
---	Scroll of Banishga
---	Teaches the white magic Banishga
+--    ID: 4646
+--    Scroll of Banishga
+--    Teaches the white magic Banishga
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(38);
+    return target:canLearnSpell(38);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(38);
+    target:addSpell(38);
 end;

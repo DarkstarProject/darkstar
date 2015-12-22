@@ -33,8 +33,8 @@ function onTrigger(player,npc)
                player:startEvent(0x03); -- Show final CS  
            end  
        end
-	 else
-    	player:messageSpecial(ALTAR)     
+     else
+        player:messageSpecial(ALTAR)     
    end
 end;
 

@@ -1,8 +1,8 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC:  Goltata
+--    Area: Port Windurst
+--    NPC:  Goltata
 --  Involved in Quests: Wonder Wands
---	Working 100%
+--    Working 100%
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -26,13 +26,13 @@ end;
 
 function onTrigger(player,npc)
 WonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS);
-	if (WonderWands == QUEST_ACCEPTED) then
-		player:startEvent(0x0101,0,0,17091);
-	elseif (WonderWands == QUEST_COMPLETED) then
-		player:startEvent(0x010d);
-	else
-		player:startEvent(0xe8);
-	end
+    if (WonderWands == QUEST_ACCEPTED) then
+        player:startEvent(0x0101,0,0,17091);
+    elseif (WonderWands == QUEST_COMPLETED) then
+        player:startEvent(0x010d);
+    else
+        player:startEvent(0xe8);
+    end
 end;
 
 -----------------------------------

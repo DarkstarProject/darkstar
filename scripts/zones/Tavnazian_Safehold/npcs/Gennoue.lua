@@ -1,4 +1,4 @@
-	-----------------------------------
+    -----------------------------------
 -- Area: Tavnazian Safehold
 -- NPC: Gennoue
 -- Type: Weather Reporter

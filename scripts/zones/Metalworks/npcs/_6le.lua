@@ -20,8 +20,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(ITS_LOCKED);
-	return 1;
+    player:messageSpecial(ITS_LOCKED);
+    return 1;
 end; 
 
 -----------------------------------

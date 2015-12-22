@@ -27,7 +27,7 @@ local keyitems = {
         rank = 9,
         cost = 115000 
     },
-	 [3] = {
+     [3] = {
         id = ANGLERS_ALMANAC,
         rank = 9,
         cost = 20000 
@@ -40,7 +40,7 @@ local items = {
         rank = 3,
         cost = 1500 
     },
-	[3] = {
+    [3] = {
         id = 15452, -- Fisherman's Belt
         rank = 4,
         cost = 10000 
@@ -90,7 +90,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 0, 0x2724, "guild_fishing", keyitems);
+    unionRepresentativeTrigger(player, 0, 0x2724, "guild_fishing", keyitems);
 end;
 
 -----------------------------------
@@ -98,8 +98,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -107,8 +107,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,target)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
      
     if (csid == 0x2724) then
         unionRepresentativeTriggerFinish(player, option, target, 0, "guild_Fishing", keyitems, items);

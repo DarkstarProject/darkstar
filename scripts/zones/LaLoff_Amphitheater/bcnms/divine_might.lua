@@ -29,7 +29,7 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
-	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,1);
+    player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,1);
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -43,12 +43,12 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 
-	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		if (player:hasCompletedMission(ZILART,ARK_ANGELS)) then
-			player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,5,1);		-- winning CS (allow player to skip)
-		else
-			player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,5,0);		-- winning CS (allow player to skip)
-		end
+    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+        if (player:hasCompletedMission(ZILART,ARK_ANGELS)) then
+            player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,5,1);        -- winning CS (allow player to skip)
+        else
+            player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,5,0);        -- winning CS (allow player to skip)
+        end
 
     --[[ caps:
         7d01, 0, 529, 1, 950, 180, 6, 0, 0 --Neo AA HM
@@ -58,9 +58,9 @@ function onBcnmLeave(player,instance,leavecode)
         7d02, 0, 80, 1, 512, 4, 4, 180 -- Neo DM (lose)
     ]]
         
-	elseif (leavecode == 4) then
-		player:startEvent(0x7d02, 0, 0, 0, 0, 0, instance:getEntrance(), 180);	-- player lost
-	end
+    elseif (leavecode == 4) then
+        player:startEvent(0x7d02, 0, 0, 0, 0, 0, instance:getEntrance(), 180);    -- player lost
+    end
 end;
 
 function onEventUpdate(player,csid,option)

@@ -20,5 +20,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer, ally)
-	ally:setVar("TheFangedOne_Died",0);
+    ally:setVar("TheFangedOne_Died",0);
 end;

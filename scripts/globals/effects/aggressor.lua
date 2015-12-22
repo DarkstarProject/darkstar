@@ -1,7 +1,7 @@
 -----------------------------------
 --
--- 	EFFECT_AGGRESSOR
--- 	
+--     EFFECT_AGGRESSOR
+--     
 -----------------------------------
 
 require("scripts/globals/status");

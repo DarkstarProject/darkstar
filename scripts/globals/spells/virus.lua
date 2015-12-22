@@ -1,5 +1,5 @@
 -----------------------------------------
---	Spell: Virus
+--    Spell: Virus
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -10,19 +10,19 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
-	local effect = EFFECT_PLAGUE;
-	
-	local duration = 60;
+    local effect = EFFECT_PLAGUE;
+    
+    local duration = 60;
 
-	local pINT = caster:getStat(MOD_INT);
-	local mINT = target:getStat(MOD_INT);
+    local pINT = caster:getStat(MOD_INT);
+    local mINT = target:getStat(MOD_INT);
 
-	local dINT = (pINT - mINT);
-		
+    local dINT = (pINT - mINT);
+        
     local resist = applyResistanceEffect(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,0,effect);
     if (resist >= 0.5) then -- effect taken
         duration = duration * resist;

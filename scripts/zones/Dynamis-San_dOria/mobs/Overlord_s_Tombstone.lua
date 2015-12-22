@@ -19,12 +19,12 @@ end;
 
 function onMobEngaged(mob,target)
 
-	SpawnMob(17535350):updateEnmity(target); -- 110
-	SpawnMob(17535351):updateEnmity(target); -- 111
-	SpawnMob(17535352):updateEnmity(target); -- 112
-	SpawnMob(17535354):updateEnmity(target); -- 114
-	SpawnMob(17534978):updateEnmity(target); -- Battlechoir Gitchfotch
-	SpawnMob(17534979):updateEnmity(target); -- Soulsender Fugbrag
+    SpawnMob(17535350):updateEnmity(target); -- 110
+    SpawnMob(17535351):updateEnmity(target); -- 111
+    SpawnMob(17535352):updateEnmity(target); -- 112
+    SpawnMob(17535354):updateEnmity(target); -- 114
+    SpawnMob(17534978):updateEnmity(target); -- Battlechoir Gitchfotch
+    SpawnMob(17534979):updateEnmity(target); -- Soulsender Fugbrag
 
 end;
 
@@ -34,22 +34,22 @@ end;
 
 function onMobDeath(mob,killer,ally)
 
-	if (alreadyReceived(killer,8) == false) then
-		addDynamisList(killer,128);
+    if (alreadyReceived(killer,8) == false) then
+        addDynamisList(killer,128);
 
-		ally:addTitle(DYNAMISSAN_DORIA_INTERLOPER); -- Add title
+        ally:addTitle(DYNAMISSAN_DORIA_INTERLOPER); -- Add title
 
-		local npc = GetNPCByID(17535224); -- Spawn ???
-		npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
-		npc:setStatus(0);
+        local npc = GetNPCByID(17535224); -- Spawn ???
+        npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
+        npc:setStatus(0);
 
-		ally:launchDynamisSecondPart(); -- Spawn dynamis second part
-	end
+        ally:launchDynamisSecondPart(); -- Spawn dynamis second part
+    end
 
-	for i = 17534978, 17534979 do
+    for i = 17534978, 17534979 do
       if (GetMobAction(i) ~= 0) then
          DespawnMob(i);
       end
-	end
+    end
 
 end;

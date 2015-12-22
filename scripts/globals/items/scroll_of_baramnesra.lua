@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4691
---	Scroll of Baramnesra
---	Teaches the white magic Baramnesra
+--    ID: 4691
+--    Scroll of Baramnesra
+--    Teaches the white magic Baramnesra
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(85);
+    return target:canLearnSpell(85);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(85);
+    target:addSpell(85);
 end;

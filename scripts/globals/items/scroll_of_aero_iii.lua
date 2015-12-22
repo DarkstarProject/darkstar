@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4764
---	Scroll of Aero III
---	Teaches the black magic Aero III
+--    ID: 4764
+--    Scroll of Aero III
+--    Teaches the black magic Aero III
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(156);
+    return target:canLearnSpell(156);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(156);
+    target:addSpell(156);
 end;

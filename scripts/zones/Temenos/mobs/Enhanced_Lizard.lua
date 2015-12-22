@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Temenos W T	
+-- Area: Temenos W T    
 -- NPC: Enhanced_Lizard
 
 -----------------------------------
@@ -30,11 +30,11 @@ end;
 function onMobDeath(mob,killer,ally)
 local cofferID=Randomcoffer(4,GetInstanceRegion(1298));
     local mobX = mob:getXPos();
-	local mobY = mob:getYPos();
-	local mobZ = mob:getZPos();
+    local mobY = mob:getYPos();
+    local mobZ = mob:getZPos();
    GetNPCByID(16929238):setStatus(STATUS_NORMAL);
   if (cofferID~=0) then
-   	GetNPCByID(16928768+cofferID):setPos(mobX,mobY,mobZ);
-	GetNPCByID(16928768+cofferID):setStatus(STATUS_NORMAL);
+       GetNPCByID(16928768+cofferID):setPos(mobX,mobY,mobZ);
+    GetNPCByID(16928768+cofferID):setStatus(STATUS_NORMAL);
   end
 end;
