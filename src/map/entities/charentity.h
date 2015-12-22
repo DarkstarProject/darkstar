@@ -168,6 +168,8 @@ class CItemArmor;
 class CAutomatonEntity;
 class CAbilityState;
 class CRangeState;
+class CItemState;
+class CItemUsable;
 
 typedef std::deque<CBasicPacket*> PacketList_t;
 typedef std::map<uint32, CBaseEntity*> SpawnIDList_t;
@@ -349,6 +351,7 @@ public:
     virtual void OnRangedAttack(CRangeState&, action_t&);
     virtual void OnDeathTimer() override;
     virtual void OnRaise() override;
+    virtual void OnItemFinish(CItemState&, action_t&);
 
     CCharEntity();									// конструктор
     ~CCharEntity();									// деструктор

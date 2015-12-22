@@ -43,6 +43,7 @@ public:
 
     virtual void Ability(uint16 targid, uint16 abilityid);
     virtual void RangedAttack(uint16 targid);
+    virtual void UseItem(uint16 targid, uint8 loc, uint8 slotid);
 
     void setLastAttackTime(time_point);
     void setNextRangedTime(time_point);

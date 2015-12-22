@@ -15,3 +15,8 @@ MAGIC_STATE_EXIT - Entity, Spell
 SPAWN - Entity
 DESPAWN - Entity
 DEATH - Entity, Killer
+
+
+ITEM_START - Entity, Item, action
+ITEM_USE - Entity, Item, action
+ITEM_STATE_EXIT - Entity, Item

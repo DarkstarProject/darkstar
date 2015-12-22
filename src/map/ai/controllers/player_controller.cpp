@@ -126,6 +126,15 @@ void CPlayerController::RangedAttack(uint16 targid)
     }
 }
 
+void CPlayerController::UseItem(uint16 targid, uint8 loc, uint8 slotid)
+{
+    auto PChar = static_cast<CCharEntity*>(POwner);
+    if (PChar->PAI->CanChangeState())
+    {
+        PChar->PAI->Internal_UseItem(targid, loc, slotid);
+    }
+}
+
 void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);

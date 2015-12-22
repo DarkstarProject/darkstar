@@ -42,6 +42,7 @@
 #include "../ai/states/ability_state.h"
 #include "../ai/states/attack_state.h"
 #include "../ai/states/death_state.h"
+#include "../ai/states/item_state.h"
 #include "../ai/states/raise_state.h"
 #include "../ai/states/range_state.h"
 #include "../ai/states/weaponskill_state.h"
@@ -56,6 +57,7 @@
 #include "../utils/battleutils.h"
 #include "../item_container.h"
 #include "../items/item_weapon.h"
+#include "../items/item_usable.h"
 #include "../trade_container.h"
 #include "../universal_container.h"
 #include "../recast_container.h"
@@ -1804,6 +1806,77 @@ void CCharEntity::OnRaise()
 
         m_hasRaise = 0;
     }
+}
+
+void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
+{
+    auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+    auto PItem = static_cast<CItemUsable*>(state.GetItem());
+
+    if (PItem->getAoE())
+    {
+        PTarget->ForParty([PItem, PTarget](CBattleEntity* PMember)
+        {
+            if (!PMember->isDead() && distance(PTarget->loc.p, PMember->loc.p) <= 10)
+            {
+                luautils::OnItemUse(PMember, PItem);
+            }
+        });
+    }
+    else
+    {
+        luautils::OnItemUse(PTarget, PItem);
+    }
+
+    if (PItem->isType(ITEM_ARMOR))
+    {
+        if (PItem->getMaxCharges() > 1)
+        {
+            PItem->setCurrentCharges(PItem->getCurrentCharges() - 1);
+        }
+        PItem->setLastUseTime(CVanaTime::getInstance()->getVanaTime());
+
+        int8 extra[sizeof(PItem->m_extra) * 2 + 1];
+        Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItem->m_extra, sizeof(PItem->m_extra));
+
+        const int8* Query =
+            "UPDATE char_inventory "
+            "SET extra = '%s' "
+            "WHERE charid = %u AND location = %u AND slot = %u;";
+
+        Sql_Query(
+            SqlHandle,
+            Query,
+            extra,
+            this->id,
+            PItem->getLocationID(),
+            PItem->getSlotID());
+
+        if (PItem->getCurrentCharges() != 0)
+        {
+            this->PRecastContainer->Add(RECAST_ITEM, PItem->getSlotID(), PItem->getReuseTime() / 1000);
+        }
+    }
+    else // разблокируем все предметы, кроме экипирвоки
+    {
+        PItem->setSubType(ITEM_UNLOCKED);
+
+        charutils::UpdateItem(this, PItem->getLocationID(), PItem->getSlotID(), -1);
+    }
+
+    action.id = this->id;
+    action.actiontype = ACTION_ITEM_FINISH;
+
+    actionList_t& actionList = action.getNewActionList();
+    actionList.ActionTargetID = PTarget->id;
+
+    actionTarget_t& actionTarget = actionList.getNewActionTarget();
+    actionTarget.reaction = REACTION_NONE;
+    actionTarget.speceffect = SPECEFFECT_NONE;
+    actionTarget.animation = PItem->getAnimationID();
+    actionTarget.param = 0;
+    actionTarget.messageID = 0;
+    actionTarget.knockback = 0;
 }
 
 CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
