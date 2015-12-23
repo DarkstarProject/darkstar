@@ -48,18 +48,15 @@ void CAIController::Tick(time_point tick)
 {
     m_Tick = tick;
 
-    if (tick > m_WaitTime)
+    if (PMob->isAlive())
     {
-        if (PMob->isAlive())
+        if (PMob->PAI->IsEngaged())
         {
-            if (PMob->PAI->IsEngaged())
-            {
-                DoCombatTick(tick);
-            }
-            else if (PMob->PAI->IsSpawned())
-            {
-                DoRoamTick(tick);
-            }
+            DoCombatTick(tick);
+        }
+        else if (PMob->PAI->IsSpawned())
+        {
+            DoRoamTick(tick);
         }
     }
 }
