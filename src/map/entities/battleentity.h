@@ -596,6 +596,8 @@ public:
     void SetBattleStartTime(time_point);
     duration GetBattleTime();
 
+    virtual void Tick(time_point) override;
+
     health_t	    health;						// hp,mp,tp
     stats_t		    stats;						// атрибуты STR,DEX,VIT,AGI,INT,MND,CHR
     skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем

@@ -353,12 +353,15 @@ public:
     virtual void OnRaise() override;
     virtual void OnItemFinish(CItemState&, action_t&);
 
+    virtual void Tick(time_point) override;
+
     CCharEntity();									// конструктор
     ~CCharEntity();									// деструктор
 
 protected:
     bool IsMobOwner(CBattleEntity* PTarget);
     void TrackArrowUsageForScavenge(CItemWeapon* PAmmo);
+
 
 private:
 

@@ -43,10 +43,13 @@ public:
     bool        IsHPHidden();
     void        Untargetable(bool untargetable);
     bool        IsUntargetable();
-    void        UpdateEntity() override;
+    virtual void UpdateEntity() override;
+    virtual void Tick(time_point) override {}
 
 	 CNpcEntity();				// конструктор
 	~CNpcEntity();				// деструктор
+
+
 private:
 };
 

@@ -29,8 +29,6 @@ This file is part of DarkStar-server source code.
 #include "../../items/item_weapon.h"
 #include "../../packets/char_update.h"
 #include "../../packets/lock_on.h"
-#include "../../packets/char_appearance.h"
-#include "../../packets/char_health.h"
 #include "../../utils/battleutils.h"
 #include "../../utils/charutils.h"
 #include "../../recast_container.h"
@@ -44,21 +42,7 @@ CPlayerController::CPlayerController(CCharEntity* _PChar) :
 }
 
 void CPlayerController::Tick(time_point)
-{
-    auto PChar = static_cast<CCharEntity*>(POwner);
-    if (PChar->m_EquipSwap)
-    {
-        PChar->pushPacket(new CCharAppearancePacket(PChar));
-        PChar->pushPacket(new CCharUpdatePacket(PChar));
-
-        PChar->pushPacket(new CCharHealthPacket(PChar));
-        PChar->m_EquipSwap = false;
-    }
-    if (PChar->health.hp == 0 && PChar->PAI->IsSpawned() && !PChar->PAI->IsCurrentState<CDeathState>())
-    {
-        PChar->Die();
-    }
-}
+{}
 
 void CPlayerController::Cast(uint16 targid, uint16 spellid)
 {

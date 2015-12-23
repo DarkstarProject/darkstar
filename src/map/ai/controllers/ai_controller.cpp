@@ -48,11 +48,6 @@ void CAIController::Tick(time_point tick)
 {
     m_Tick = tick;
 
-    if (PMob->health.hp == 0 && PMob->PAI->IsSpawned() && !PMob->PAI->IsCurrentState<CDeathState>())
-    {
-        PMob->Die();
-    }
-
     if (tick > m_WaitTime)
     {
         if (PMob->isAlive())

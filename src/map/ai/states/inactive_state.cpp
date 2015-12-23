@@ -22,13 +22,17 @@ This file is part of DarkStar-server source code.
 */
 
 #include "inactive_state.h"
+#include "../ai_container.h"
 #include "../../entities/battleentity.h"
 #include "../../status_effect_container.h"
 
 CInactiveState::CInactiveState(CBaseEntity* PEntity, duration _duration) :
     CState(PEntity, 0),
     m_duration(_duration)
-{}
+{
+    m_couldUpdate = m_PEntity->PAI->GetController()->canUpdate;
+    m_PEntity->PAI->GetController()->canUpdate = false;
+}
 
 bool CInactiveState::Update(time_point tick)
 {
@@ -52,4 +56,9 @@ bool CInactiveState::Update(time_point tick)
     }
 
     return false;
+}
+
+void CInactiveState::Cleanup(time_point tick)
+{
+    m_PEntity->PAI->GetController()->canUpdate = m_couldUpdate;
 }

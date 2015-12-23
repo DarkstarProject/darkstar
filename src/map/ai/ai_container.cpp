@@ -290,6 +290,8 @@ void CAIContainer::Tick(time_point _tick)
     m_Tick = _tick;
     CBaseEntity* PreEntity = PEntity;
 
+    PEntity->Tick(_tick);
+
     //#TODO: check this in the controller instead maybe? (might not want to check every tick) - same for pathfind
     ActionQueue.checkAction(_tick);
 
@@ -326,6 +328,7 @@ void CAIContainer::ClearStateStack()
 {
     while (!m_stateStack.empty())
     {
+        m_stateStack.top()->Cleanup(server_clock::now());
         m_stateStack.pop();
     }
 }
@@ -386,6 +389,7 @@ void CAIContainer::CheckCompletedStates()
 {
     while (!m_stateStack.empty() && m_stateStack.top()->IsCompleted())
     {
+        m_stateStack.top()->Cleanup(server_clock::now());
         m_stateStack.pop();
     }
 }

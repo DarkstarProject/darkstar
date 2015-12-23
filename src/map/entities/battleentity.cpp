@@ -1491,6 +1491,14 @@ duration CBattleEntity::GetBattleTime()
     return m_battleStartTime - server_clock::now();
 }
 
+void CBattleEntity::Tick(time_point)
+{
+    if (health.hp == 0 && PAI->IsSpawned() && !PAI->IsCurrentState<CDeathState>())
+    {
+        Die();
+    }
+}
+
 uint16 CBattleEntity::GetBattleTargetID()
 {
     return m_battleTarget;

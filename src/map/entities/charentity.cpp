@@ -35,6 +35,8 @@
 #include "../packets/lock_on.h"
 #include "../packets/inventory_finish.h"
 #include "../packets/menu_raisetractor.h"
+#include "../packets/char_health.h"
+#include "../packets/char_appearance.h"
 
 #include "../ai/ai_container.h"
 #include "../ai/controllers/player_controller.h"
@@ -1975,6 +1977,19 @@ void CCharEntity::TrackArrowUsageForScavenge(CItemWeapon* PAmmo)
             this->SetLocalVar("ArrowsUsed", PAmmo->getID() * 10000 + 1);
         }
     }
+}
+
+void CCharEntity::Tick(time_point _tick)
+{
+    if (m_EquipSwap)
+    {
+        pushPacket(new CCharAppearancePacket(this));
+        pushPacket(new CCharUpdatePacket(this));
+
+        pushPacket(new CCharHealthPacket(this));
+        m_EquipSwap = false;
+    }
+    CBattleEntity::Tick(_tick);
 }
 
 bool CCharEntity::OnAttackError(CAttackState& state)

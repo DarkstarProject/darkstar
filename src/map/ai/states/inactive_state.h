@@ -35,9 +35,10 @@ protected:
     virtual bool CanChangeState() override { return false; }
     virtual bool CanFollowPath() override { return false; }
     virtual bool Update(time_point tick) override;
-    virtual void Cleanup(time_point tick) override {}
+    virtual void Cleanup(time_point tick) override;
 private:
     duration m_duration;
+    bool m_couldUpdate {true};
 };
 
 
