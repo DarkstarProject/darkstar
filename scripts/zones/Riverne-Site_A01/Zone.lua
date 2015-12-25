@@ -16,6 +16,7 @@ require("scripts/globals/settings");
 
 function onInitialize(zone)
     SetServerVariable("Heliodromos_ToD", (os.time() + math.random((43200), (54000))));
+    SetServerVariable("[NM]Carmine_Dobsonflies_Killed", 0);
 end;
 
 -----------------------------------        
