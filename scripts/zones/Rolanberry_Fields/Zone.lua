@@ -67,9 +67,6 @@ function onInitialize(zone)
     -- Simurgh
     SetRespawnTime(17228242, 900, 10800);
 
-    -- Spawns Silk Caterpillar (temporary until someone implements a way to make it spawn properly)
-    SpawnMob(17227782,300,660);
-
 end;
 
 -----------------------------------
@@ -117,13 +114,15 @@ end;
 
 function onGameHour()
 
-    local VanadielHour = VanadielHour();
-    local SilkCaterpillar = 17227782;
-        
-    if (VanadielHour % 1 == 0 and GetMobAction( SilkCaterpillar ) == 16) then 
-        DespawnMob( SilkCaterpillar );
+    local vanadielHour = VanadielHour();
+    local silkCaterpillarId = 17227782;
+    --Silk Caterpillar should spawn every 6 hours from 03:00
+    --this is approximately when the Jeuno-Bastok airship is flying overhead towards Jeuno.
+    if (vanadielHour % 6 == 3 and GetMobAction(silkCaterpillarId) == ACTION_NONE) then
+        -- Despawn set to 210 seconds (3.5 minutes, approx when the Jeuno-Bastok airship is flying back over to Bastok).
+        SpawnMob(silkCaterpillarId, 210);
     end
-    
+ 
 end;
 
 -----------------------------------
