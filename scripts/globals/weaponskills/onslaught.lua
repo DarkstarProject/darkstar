@@ -34,26 +34,13 @@ function onUseWeaponSkill(player, target, wsID)
     end
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+    -- TODO: Whoever codes those level 85 weapons with the latent that grants this WS needs to code a check to not give the aftermath effect.
+    if (damage > 0) then
+        local amDuration = 20 * math.floor(player:getTP()/100);
+        player:addStatusEffect(EFFECT_AFTERMATH, 10, 0, amDuration, 0, 4);
+        target:addStatusEffect(EFFECT_ACCURACY_DOWN, 20, 0, 60);
+    end
 
-    if damage > 0 then
-        local tp = player:getTP();
-        local duration = (tp/100 * 20);
-        if (target:hasStatusEffect(EFFECT_ACCURACY_DOWN) == false) then
-            target:addStatusEffect(EFFECT_ACCURACY_DOWN, 20, 0, duration);
-        end
-    end
-    if ((player:getEquipID(SLOT_MAIN) == 18288) and (player:getMainJob() == JOB_BST)) then
-        if (damage > 0) then
-            if (player:getTP() >= 100 and player:getTP() < 200) then
-                player:addStatusEffect(EFFECT_AFTERMATH, 10, 0, 20, 0, 4);
-            elseif (player:getTP() >= 200 and player:getTP() < 300) then
-                player:addStatusEffect(EFFECT_AFTERMATH, 10, 0, 40, 0, 4);
-            elseif (player:getTP() == 300) then
-                player:addStatusEffect(EFFECT_AFTERMATH, 10, 0, 60, 0, 4);
-            end
-        end
-    end
     damage = damage * WEAPON_SKILL_POWER
     return tpHits, extraHits, criticalHit, damage;
-
 end
