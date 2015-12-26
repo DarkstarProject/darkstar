@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Onslaught
 --
---  Description: Lowers target's accuracy. Additional effect: temporarily increases Attack. 
+--  Description: Lowers target's accuracy. Guttler/Ogre Killer: Temporarily increases Attack. 
 --  Type: Physical
 --  Range: Melee
 ---------------------------------------------
@@ -25,16 +25,11 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,3,3,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
     
-    local duration = 20;
-    
-    if (mob:getTP() == 300) then
-        duration = 60;
-    elseif (mob:getTP() >= 200) then
-        duration = 40;
-    end
-    
-    MobStatusEffectMove(mob, target, EFFECT_ACCURACY_DOWN, 30, 0, duration);
-    MobBuffMove(mob, EFFECT_ATTACK_BOOST, 10, 0, duration);
+    local duration = 60;
+    local typeEffect = EFFECT_ACCURACY_DOWN;
+    local power = 30;
+
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 0, duration);
 
     -- About 300-400 to a DD.
     target:delHP(dmg);
