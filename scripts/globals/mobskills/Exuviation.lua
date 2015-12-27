@@ -3,6 +3,7 @@
 --  Family: Wamoura
 --  Type: Healing and Full Erase
 --  Range: Self
+--  Utsusemi/Blink absorb: N/A
 --  Notes: Erases all negative effects on the mob and heals an amount for each removed.
 ---------------------------------------------
 
@@ -17,8 +18,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local baseHeal = 500;
-    local statusHeal = 300;
+    local baseHeal = 400;
+    local statusHeal = 650;
     local effectCount = 0;
     local dispel = mob:eraseStatusEffect();
     
@@ -29,5 +30,5 @@ function onMobWeaponSkill(target, mob, skill)
     end;
 
     skill:setMsg(MSG_SELF_HEAL);
-    return MobHealMove(mob, (statusHeal * (effectCount) + baseHeal);
+    return MobHealMove(mob, (statusHeal * (effectCount) + baseHeal));
 end;

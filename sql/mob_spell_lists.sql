@@ -1456,6 +1456,17 @@ INSERT INTO `mob_spell_lists` VALUES ('Dobsonfly', 145, 57, 1, 255);  -- Haste
 INSERT INTO `mob_spell_lists` VALUES ('Dobsonfly', 145, 155, 1, 255);  -- Aero II
 INSERT INTO `mob_spell_lists` VALUES ('Dobsonfly', 145, 357, 1, 255);  -- Slowga
 
+-- Achamoth
+INSERT INTO `mob_spell_lists` VALUES ('Achamoth', 146, 10, 1, 255);  -- Curaga IV
+INSERT INTO `mob_spell_lists` VALUES ('Achamoth', 146, 14, 1, 255);  -- Poisona
+INSERT INTO `mob_spell_lists` VALUES ('Achamoth', 146, 15, 1, 255);  -- Paralyna
+INSERT INTO `mob_spell_lists` VALUES ('Achamoth', 146, 16, 1, 255);  -- Blindna
+INSERT INTO `mob_spell_lists` VALUES ('Achamoth', 146, 19, 1, 255);  -- Viruna
+INSERT INTO `mob_spell_lists` VALUES ('Achamoth', 146, 20, 1, 255);  -- Cursna
+INSERT INTO `mob_spell_lists` VALUES ('Achamoth', 146, 129, 1, 255);  -- Protectra V
+INSERT INTO `mob_spell_lists` VALUES ('Achamoth', 146, 134, 1, 255);  -- Shellra V
+INSERT INTO `mob_spell_lists` VALUES ('Achamoth', 146, 358, 1, 255);  -- Hastega
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

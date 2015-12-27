@@ -17,10 +17,13 @@ function onSpellCast(caster,target,spell)
     local meritBonus = caster:getMerit(MERIT_PROTECTRA_V);
     local duration = 1800;
     --Base Power is actually 175, but you have to have at least 1 merit and they're each +5
-    
+
     local power = 170 + meritBonus;
+    if (meritBonus == 0) then -- for mobs
+        power = 175;
+    end
     --printf("Protectra V Power: %d", power);
-    
+
     duration = calculateDurationForLvl(duration, 75, target:getMainLvl());
 
     local typeEffect = EFFECT_PROTECT;

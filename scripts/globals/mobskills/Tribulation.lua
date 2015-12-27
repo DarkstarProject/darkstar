@@ -24,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
     local bio = false;
 
     blinded = MobStatusEffectMove(mob, target, EFFECT_BLINDNESS, 20, 0, 120);
-    bio = MobStatusEffectMove(mob, target, EFFECT_BIO, 39, 0, 120);
+    bio = MobStatusEffectMove(mob, target, EFFECT_BIO, 39, 0, 120, FLAG_ERASABLE, 15);
 
     skill:setMsg(MSG_ENFEEB_IS);
 
