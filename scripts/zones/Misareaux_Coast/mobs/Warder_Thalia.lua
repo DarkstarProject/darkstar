@@ -1,4 +1,3 @@
-
 -----------------------------------
 -- Area: Misareaux Coast
 --  Mob: Warder_Thalia
