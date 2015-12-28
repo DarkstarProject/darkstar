@@ -131,12 +131,37 @@ INSERT INTO `mob_family_mods` VALUES (124,389,-32,0);
 INSERT INTO `mob_family_mods` VALUES (175,389,-128,0);
 INSERT INTO `mob_family_mods` VALUES (171,389,-32,0);
 
--- Demons and fomors are highly resistant to lullaby
+-- Demons and fomors are somewhat resistant to lullaby
 INSERT INTO `mob_family_mods` VALUES (358,254,25,0);
 INSERT INTO `mob_family_mods` VALUES (169,254,25,0);
 INSERT INTO `mob_family_mods` VALUES (115,254,25,0);
 INSERT INTO `mob_family_mods` VALUES (359,254,25,0);
-INSERT INTO `mob_family_mods` VALUES (359,240,25,0);
+
+-- Most undead, Rocs, and Hecteyes are highly resistant to sleep, 
+-- Kindred and bat(s) are fairly resistant
+INSERT INTO `mob_family_mods` VALUES (47,240,50,0);
+INSERT INTO `mob_family_mods` VALUES (48,240,50,0);
+INSERT INTO `mob_family_mods` VALUES (52,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (74,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (86,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (88,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (89,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (115,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (121,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (125,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (139,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (142,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (143,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (169,240,50,0);
+INSERT INTO `mob_family_mods` VALUES (203,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (204,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (205,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (221,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (222,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (223,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (227,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (358,240,50,0);
+INSERT INTO `mob_family_mods` VALUES (359,240,100,0);
 
 -- Immunities
 INSERT INTO `mob_family_mods` VALUES (92,23,2047,1);
