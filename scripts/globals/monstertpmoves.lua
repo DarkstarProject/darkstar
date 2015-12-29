@@ -687,7 +687,7 @@ function MobDrainStatusEffectMove(mob, target)
 end;
 
 -- Adds a status effect to a target
-function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
+function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration, flags, subpower)
 
     if (target:canGainStatusEffect(typeEffect, power)) then
         local statmod = MOD_INT;
@@ -698,7 +698,7 @@ function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
         if (resist >= 0.25) then
 
             local totalDuration = utils.clamp(duration * resist, 1);
-            target:addStatusEffect(typeEffect, power, tick, totalDuration);
+            target:addStatusEffect(typeEffect, power, tick, totalDuration, flags, subpower);
 
             return MSG_ENFEEB_IS;
         end
@@ -709,19 +709,19 @@ function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
 end;
 
 -- similar to status effect move except, this will not land if the attack missed
-function MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, tick, duration)
+function MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, tick, duration, flags, subpower)
 
     if (MobPhysicalHit(skill)) then
-        return MobStatusEffectMove(mob, target, typeEffect, power, tick, duration);
+        return MobStatusEffectMove(mob, target, typeEffect, power, tick, duration, flags, subpower);
     end
 
     return MSG_MISS;
 end;
 
 -- similar to statuseffect move except it will only take effect if facing
-function MobGazeMove(mob, target, typeEffect, power, tick, duration)
+function MobGazeMove(mob, target, typeEffect, power, tick, duration, flags, subpower)
     if (target:isFacing(mob)) then
-        return MobStatusEffectMove(mob, target, typeEffect, power, tick, duration);
+        return MobStatusEffectMove(mob, target, typeEffect, power, tick, duration, flags, subpower);
     end
     return MSG_NO_EFFECT;
 end;
