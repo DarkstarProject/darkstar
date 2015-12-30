@@ -63,8 +63,8 @@ function onEventFinish(player,csid,option)
             player:completeQuest(CRYSTAL_WAR,SEEING_SPOTS);
         else
             player:addTitle(LADY_KILLER);
-            player:addGil(GIL_RATE*1500);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
+            player:addGil(GIL_RATE*3000);
+            player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
         end
     end
 end;
