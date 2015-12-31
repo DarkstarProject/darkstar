@@ -152,10 +152,10 @@ GOV_EVENT_QUICKSAND_CAVES        = 15;
 
 function startGov(eventid,player)
     if (GROUNDS_TOMES == 1) then
-        local hasRegime = player:getVar("fov_regimeid");
-        local tabs = player:getCurrency("valor_point");
-        player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
-    end;
+       local hasRegime = player:getVar("fov_regimeid");
+       local tabs = player:getCurrency("valor_point");
+       player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
+	end;
 end
 
 ----------------------------------
@@ -165,63 +165,63 @@ end
 function updateGov(player,csid,menuchoice,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10)
     if (menuchoice == GOV_MENU_PAGE_1) then
         local info = getRegimeInfo(r1);
-        player:updateEvent(info.n1,info.n2,info.n3,info.n4,0,info.sl,info.el,r1);
+        player:updateEvent(info[1],info[2],info[3],info[4],0,info[5],info[6],r1);
     elseif (menuchoice == GOV_MENU_PAGE_2) then
         local info = getRegimeInfo(r2);
-        player:updateEvent(info.n1,info.n2,info.n3,info.n4,0,info.sl,info.el,r2);
+        player:updateEvent(info[1],info[2],info[3],info[4],0,info[5],info[6],r2);
     elseif (menuchoice == GOV_MENU_PAGE_3) then
         local info = getRegimeInfo(r3);
-        player:updateEvent(info.n1,info.n2,info.n3,info.n4,0,info.sl,info.el,r3);
+        player:updateEvent(info[1],info[2],info[3],info[4],0,info[5],info[6],r3);
     elseif (menuchoice == GOV_MENU_PAGE_4) then
         local info = getRegimeInfo(r4);
-        player:updateEvent(info.n1,info.n2,info.n3,info.n4,0,info.sl,info.el,r4);
+        player:updateEvent(info[1],info[2],info[3],info[4],0,info[5],info[6],r4);
     elseif (menuchoice == GOV_MENU_PAGE_5) then
         local info = getRegimeInfo(r5);
-        player:updateEvent(info.n1,info.n2,info.n3,info.n4,0,info.sl,info.el,r5);
+        player:updateEvent(info[1],info[2],info[3],info[4],0,info[5],info[6],r5);
     elseif (menuchoice == GOV_MENU_PAGE_6) then
         local info = getRegimeInfo(r6);
-        player:updateEvent(info.n1,info.n2,info.n3,info.n4,0,info.sl,info.el,r6);
+        player:updateEvent(info[1],info[2],info[3],info[4],0,info[5],info[6],r6);
     elseif (menuchoice == GOV_MENU_PAGE_7) then
         local info = getRegimeInfo(r7);
-        player:updateEvent(info.n1,info.n2,info.n3,info.n4,0,info.sl,info.el,r7);
+        player:updateEvent(info[1],info[2],info[3],info[4],0,info[5],info[6],r7);
     elseif (menuchoice == GOV_MENU_PAGE_8) then
         local info = getRegimeInfo(r8);
-        player:updateEvent(info.n1,info.n2,info.n3,info.n4,0,info.sl,info.el,r8);
+        player:updateEvent(info[1],info[2],info[3],info[4],0,info[5],info[6],r8);
     elseif (menuchoice == GOV_MENU_PAGE_9) then
         local info = getRegimeInfo(r9);
-        player:updateEvent(info.n1,info.n2,info.n3,info.n4,0,info.sl,info.el,r9);
+        player:updateEvent(info[1],info[2],info[3],info[4],0,info[5],info[6],r9);
     elseif (menuchoice == GOV_MENU_PAGE_10) then
         local info = getRegimeInfo(r10);
-        player:updateEvent(info.n1,info.n2,info.n3,info.n4,0,info.sl,info.el,r10);
+        player:updateEvent(info[1],info[2],info[3],info[4],0,info[5],info[6],r10);
     elseif (menuchoice == GOV_MENU_VIEW_REGIME) then -- View Regime (this option is only available if they have a regime active!)
         -- Get regime ID and numbers killed...
         local regid = player:getVar("fov_regimeid");
         local info = getRegimeInfo(regid);
-        if (info.n1 ~= 0) then
+        if (info[1] ~= 0) then
             n1 = player:getVar("fov_numkilled1");
         else
             n1 = 0;
         end;
-        if (info.n2 ~= 0) then
+        if (info[2] ~= 0) then
             n2 = player:getVar("fov_numkilled2");
         else
             n2 = 0;
         end;
-        if (info.n3 ~= 0) then
+        if (info[3] ~= 0) then
             n3 = player:getVar("fov_numkilled3");
         else
             n3 = 0;
         end;
-        if (info.n4 ~= 0) then
+        if (info[4] ~= 0) then
             n4 = player:getVar("fov_numkilled4");
         else
             n4 = 0;
         end;
-        player:updateEvent(info.n1,info.n2,info.n3,info.n4,n1,n2,n3,n4);
+        player:updateEvent(info[1],info[2],info[3],info[4],n1,n2,n3,n4);
     elseif (menuchoice == GOV_MENU_LEVEL_RANGE) then -- Level range and training area on View Regime...
         local regid = player:getVar("fov_regimeid");
         local info = getRegimeInfo(regid);
-        player:updateEvent(0,0,0,0,0,info.sl,info.el,0);
+        player:updateEvent(0,0,0,0,0,info[5],info[6],0);
     elseif (menuchoice == GOV_MENU_REVIEW_PROWESS) then
         local part1 = 0;
         local part2 = 0;
@@ -304,13 +304,13 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
             -- Work out how much def to give (highest tier dependent on level)
             local def = 0;
             if (player:getMainLvl()<27) then -- Before protect 2, give protect 1
-                def=15;
+                def = 15;
             elseif (player:getMainLvl()<47) then -- After p2, before p3
-                def=40;
+                def = 40;
             elseif (player:getMainLvl()<63) then -- After p3, before p4
-                def=75;
+                def = 75;
             else -- After p4
-                def=120;
+                def = 120;
             end
             -- Add protect
             player:addStatusEffect(EFFECT_PROTECT,def,0,1800);
@@ -324,13 +324,13 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
             -- values taken from Shell scripts by Tenjou.
             local def = 0;
             if (player:getMainLvl()<37) then -- Before shell 2, give shell 1
-                def=24;
+                def = 24;
             elseif (player:getMainLvl()<57) then -- After s2, before s3
-                def=36;
+                def = 36;
             elseif (player:getMainLvl()<68) then -- After s3, before s4
-                def=48;
+                def = 48;
             else -- After s4
-                def=56;
+                def = 56;
             end
             -- Add shell
             player:addStatusEffect(EFFECT_SHELL,def,0,1800);
@@ -460,10 +460,10 @@ function writeRegime(player,rid,msg_accept,msg_jobs,regrepeat)
     player:setVar("fov_numkilled3",0);
     player:setVar("fov_numkilled4",0);
     local info = getRegimeInfo(rid);
-    player:setVar("fov_numneeded1",info.n1);
-    player:setVar("fov_numneeded2",info.n2);
-    player:setVar("fov_numneeded3",info.n3);
-    player:setVar("fov_numneeded4",info.n4);
+    player:setVar("fov_numneeded1",info[1]);
+    player:setVar("fov_numneeded2",info[2]);
+    player:setVar("fov_numneeded3",info[3]);
+    player:setVar("fov_numneeded4",info[4]);
 
     player:showText(player,msg_accept);
     player:showText(player,msg_jobs);
@@ -500,7 +500,7 @@ function checkGoVregime(player,mob,rid,index)
                     local k3 = player:getVar("fov_numkilled3");
                     local k4 = player:getVar("fov_numkilled4");
 
-                    if (k1 == fov_info.n1 and k2 == fov_info.n2 and k3 == fov_info.n3 and k4 == fov_info.n4) then
+                    if (k1 == fov_info[1] and k2 == fov_info[2] and k3 == fov_info[3] and k4 == fov_info[4]) then
                         -- Complete regime
                         player:messageBasic(GOV_MSG_COMPLETED_REGIME);
                         local reward = getGoVregimeReward(rid);
@@ -530,7 +530,7 @@ function checkGoVregime(player,mob,rid,index)
                                     power = 22;
                                 end
                             else
-                                power = 4 + player:getStatusEffect(RandomProwess):getPower();
+                                power = 4 + player:getStatusEffect(RandomProwess):getPower(); 
                                 if (power > 44) then
                                     power = 44;
                                 end
@@ -580,25 +580,19 @@ function checkGoVregime(player,mob,rid,index)
                         -- Give player the candy and inform which Prowess they got.
                         player:addExp(reward);
                         player:messageBasic(ProwessMessage);
-
+                        
                         -- Debugging crap.
                         -- player:PrintToPlayer( string.format( "ProwessID: '%u' ", RandomProwess ) );
                         -- player:PrintToPlayer( string.format( "reward: '%u' ", reward ) );
                         -- player:PrintToPlayer( string.format( "RewardCAP: '%u' ", RewardCAP ) )
 
                         -- Handle PlayerVars
-                        if (k1 ~= 0) then
-                            player:setVar("fov_numkilled1",0);
+                        for i = 1, 4 do
+                            if player:getVar("fov_numkilled"..i) ~= 0 then
+                                player:setVar("fov_numkilled"..i, 0);
+                            end
                         end
-                        if (k2 ~= 0) then
-                            player:setVar("fov_numkilled2",0);
-                        end
-                        if (k3 ~= 0) then
-                            player:setVar("fov_numkilled3",0);
-                        end
-                        if (k4 ~= 0) then
-                            player:setVar("fov_numkilled4",0);
-                        end
+                        
                         if (player:getVar("fov_repeat") ~= 1) then
                             player:setVar("fov_regimeid",0);
                             player:setVar("fov_numneeded1",0);

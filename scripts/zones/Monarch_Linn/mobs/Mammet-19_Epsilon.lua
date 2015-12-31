@@ -11,7 +11,6 @@ require("scripts/globals/status");
 
 function onMobSpawn(mob)
     mob:SetMagicCastingEnabled(false);
-    mob:addMod(MOD_REGAIN, 30);
 end;
 
 -----------------------------------

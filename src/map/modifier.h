@@ -607,6 +607,11 @@ enum MODIFIER
     MOD_FORCE_LIGHT_DWBONUS       = 537, // Set to 1 to force light day/weather spell bonus/penalty. Do not have it total more than 1.
     MOD_FORCE_DARK_DWBONUS        = 538, // Set to 1 to force dark day/weather spell bonus/penalty. Do not have it total more than 1.
     MOD_STONESKIN_BONUS_HP        = 539, // Bonus "HP" granted to Stoneskin spell.
+    MOD_DAY_NUKE_BONUS            = 565, // Bonus damage from "Elemental magic affected by day" (Sorc. Tonban)
+    MOD_IRIDESCENCE               = 566, // Iridesecnce trait (additional weather damage/penalty)
+    MOD_BARSPELL_AMOUNT           = 567, // Additional elemental resistance granted by bar- spells
+    MOD_RAPTURE_AMOUNT            = 568, // Bonus amount added to Rapture effect
+    MOD_EBULLIENCE_AMOUNT         = 569, // Bonus amount added to Ebullience effect
 
     // MOD_SPARE = 92, // stuff
     // MOD_SPARE = 93, // stuff
@@ -617,8 +622,8 @@ enum MODIFIER
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 565, // stuff
-    // MOD_SPARE = 566, // stuff
+    // MOD_SPARE = 570, // stuff
+    // MOD_SPARE = 571, // stuff
 
 };
 

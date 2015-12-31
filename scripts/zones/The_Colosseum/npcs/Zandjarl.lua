@@ -80,12 +80,14 @@ function onEventFinish(player,csid,option)
             [197121] = {itemID = 16137, price = 5000, QTY = 1}  -- Cacaroon's Hood
         }
         local result = shop[option];
-        if (result.itemID ~= nil) then
-            if (player:addItem(result.itemID, result.QTY)) then
-                player:delCurrency("jetton", result.price);
-                player:messageSpecial(ITEM_OBTAINED,result.itemID);
-            else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,result.itemID);
+        if (result ~= nil) then
+            if (result.itemID ~= nil) then
+                if (player:addItem(result.itemID, result.QTY)) then
+                    player:delCurrency("jetton", result.price);
+                    player:messageSpecial(ITEM_OBTAINED,result.itemID);
+                else
+                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,result.itemID);
+                end
             end
         end
     end

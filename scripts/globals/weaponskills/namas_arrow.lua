@@ -29,18 +29,12 @@ function onUseWeaponSkill(player, target, wsID)
     params.atkmulti = 1;
 
     local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
-        if ((player:getEquipID(SLOT_RANGED) == 18348) and (player:getMainJob() == JOB_RNG or JOB_SAM)) then
-        if (damage > 0) then
-            if (player:getTP() >= 100 and player:getTP() < 200) then
-                player:addStatusEffect(EFFECT_AFTERMATH, 20, 0, 20, 0, 12);
-            elseif (player:getTP() >= 200 and player:getTP() < 300) then
-                player:addStatusEffect(EFFECT_AFTERMATH, 20, 0, 40, 0, 12);
-            elseif (player:getTP() == 300) then
-                player:addStatusEffect(EFFECT_AFTERMATH, 20, 0, 60, 0, 12);
-            end
-        end
+    -- TODO: Whoever codes those level 85 weapons with the latent that grants this WS needs to code a check to not give the aftermath effect.
+    if (damage > 0) then
+        local amDuration = 20 * math.floor(player:getTP()/100);
+        player:addStatusEffect(EFFECT_AFTERMATH, 20, 0, amDuration, 0, 12);
     end
+
     damage = damage * WEAPON_SKILL_POWER
     return tpHits, extraHits, criticalHit, damage;
-
 end;
