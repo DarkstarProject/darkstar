@@ -360,6 +360,7 @@ bool CAIController::TryCastSpell()
     }
 
     int chosenSpellId = -1;
+    m_LastMagicTime = m_Tick;
 
     if (PMob->m_HasSpellScript)
     {
@@ -393,9 +394,6 @@ bool CAIController::TryCastSpell()
             return true;
         }
     }
-
-    // the script doesn't want to cast a spell at the moment, but it should still be treated as a magic attempt
-    m_LastMagicTime = m_Tick;
     return false;
 }
 
