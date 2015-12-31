@@ -281,6 +281,10 @@ void CAIContainer::Reset()
     {
         PathFind->Clear();
     }
+    while (!m_stateStack.empty())
+    {
+        m_stateStack.pop();
+    }
 }
 
 void CAIContainer::Tick(time_point _tick)
