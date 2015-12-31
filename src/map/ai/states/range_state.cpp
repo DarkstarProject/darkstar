@@ -38,7 +38,7 @@ CRangeState::CRangeState(CCharEntity* PEntity, uint16 targid) :
 {
     auto PTarget = m_PEntity->IsValidTarget(m_targid, TARGET_ENEMY, m_errorMsg);
 
-    if (!PTarget && m_errorMsg)
+    if (!PTarget || m_errorMsg)
     {
         throw CStateInitException(std::move(m_errorMsg));
     }

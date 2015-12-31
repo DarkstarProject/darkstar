@@ -43,6 +43,12 @@ CAbilityState::CAbilityState(CCharEntity* PEntity, uint16 targid, uint16 ability
     {
         throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
     }
+    auto PTarget = m_PEntity->IsValidTarget(m_targid, TARGET_ENEMY, m_errorMsg);
+
+    if (!PTarget || m_errorMsg)
+    {
+        throw CStateInitException(std::move(m_errorMsg));
+    }
     m_PAbility = std::make_unique<CAbility>(*PAbility);
     m_PEntity->PAI->EventHandler.triggerListener("ABILITY_START", m_PEntity, PAbility);
 }

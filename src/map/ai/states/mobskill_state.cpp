@@ -40,7 +40,7 @@ CMobSkillState::CMobSkillState(CMobEntity* PEntity, uint16 targid, uint16 wsid) 
 
     auto PTarget = m_PEntity->IsValidTarget(m_targid, skill->getValidTargets(), m_errorMsg);
 
-    if (!PTarget && m_errorMsg)
+    if (!PTarget || m_errorMsg)
     {
         throw CStateInitException(std::move(m_errorMsg));
     }

@@ -42,7 +42,7 @@ CWeaponSkillState::CWeaponSkillState(CBattleEntity* PEntity, uint16 targid, uint
     auto target_flags = battleutils::isValidSelfTargetWeaponskill(wsid) ? TARGET_SELF : TARGET_ENEMY;
     auto PTarget = m_PEntity->IsValidTarget(m_targid, target_flags, m_errorMsg);
 
-    if (!PTarget && m_errorMsg)
+    if (!PTarget || m_errorMsg)
     {
         throw CStateInitException(std::move(m_errorMsg));
     }
