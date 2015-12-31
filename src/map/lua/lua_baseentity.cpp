@@ -8353,7 +8353,7 @@ inline int32 CLuaBaseEntity::castSpell(lua_State* L)
             PTarget = (CBattleEntity*)PLuaBaseEntity->m_PBaseEntity;
         }
 
-        m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [&PTarget, &spellid](auto PEntity) {
+        m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [PTarget, spellid](auto PEntity) {
             if (PTarget)
                 PEntity->PAI->Cast(PTarget->targid, spellid);
             else if (dynamic_cast<CMobEntity*>(PEntity))
@@ -8365,7 +8365,7 @@ inline int32 CLuaBaseEntity::castSpell(lua_State* L)
         m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [](auto PEntity) {
             if (dynamic_cast<CMobEntity*>(PEntity))
                 static_cast<CAIController*>(PEntity->PAI->GetController())->TryCastSpell();
-        }));;
+        }));
     }
     return 0;
 }
@@ -8385,7 +8385,7 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
             PTarget = (CBattleEntity*)PLuaBaseEntity->m_PBaseEntity;
         }
 
-        m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [&PTarget, &skillid](auto PEntity) {
+        m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [PTarget, skillid](auto PEntity) {
             if (PTarget)
                 PEntity->PAI->MobSkill(PTarget->targid, skillid);
             else if (dynamic_cast<CMobEntity*>(PEntity))
@@ -8397,7 +8397,7 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
         m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [](auto PEntity) {
             if (dynamic_cast<CMobEntity*>(PEntity))
                 static_cast<CAIController*>(PEntity->PAI->GetController())->MobSkill();
-        }));;
+        }));
     };
 
     return 0;
