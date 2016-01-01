@@ -309,11 +309,14 @@ void CAIContainer::Tick(time_point _tick)
     {
         Controller->Tick(_tick);
     }
-
-    while (!m_stateStack.empty() && m_stateStack.top()->DoUpdate(_tick))
+    CState* top = nullptr;
+    while (!m_stateStack.empty() && (top = m_stateStack.top().get())->DoUpdate(_tick))
     {
-        m_stateStack.top()->Cleanup(_tick);
-        m_stateStack.pop();
+        if (top == GetCurrentState())
+        {
+            m_stateStack.top()->Cleanup(_tick);
+            m_stateStack.pop();
+        }
     }
 
     //make sure this AI hasn't been replaced by another
