@@ -1392,7 +1392,15 @@ void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level)
         animationID = 1946;
         break;
     }
-    PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, new CActionPacket(PTarget->id, PTarget->id, ACTION_MOBABILITY_FINISH, 2582, 0, animationID));
+    action_t action;
+    action.actiontype = ACTION_MOBABILITY_FINISH;
+    action.id = PTarget->id;
+    actionList_t& list = action.getNewActionList();
+    list.ActionTargetID = PTarget->id;
+    actionTarget_t& target = list.getNewActionTarget();
+    target.animation = animationID;
+    target.param = 2582;
+    PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, new CActionPacket(action));
 }
 
 }; // namespace mobutils
