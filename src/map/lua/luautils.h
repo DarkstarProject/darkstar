@@ -81,7 +81,7 @@ namespace luautils
     int32 prepFile(int8*, const char*);
 
     template<class T, class L>
-    void pushLuaType(T* obj) { Lunar<L>::push(LuaHandle, L(obj)); }
+    void pushLuaType(T* obj) { Lunar<L>::push(LuaHandle, new L(obj), true); }
 
     //TODO: if the classes themselves held the lua method declarations, this voodoo to get the wrappers wouldn't be needed!
     template<class T>
