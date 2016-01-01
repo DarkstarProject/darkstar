@@ -39,8 +39,6 @@ public:
     static Lunar<CLuaAction>::Register_t methods[];
 
     CLuaAction(lua_State*);
-    //TODO: need to have just action_t constructor and have the script handle the rest,
-    // or have a specialization of pushArg for a premade CLuaAction
     CLuaAction(action_t*);
 
     action_t* GetAction() const
@@ -48,10 +46,13 @@ public:
         return m_PLuaAction;
     }
 
-    int32 setParam(lua_State*);
-    int32 setMessageID(lua_State*);
-    int32 setAddEffectParam(lua_State*);
-    int32 setAdditionalEffect(lua_State*);
+    int32 param(lua_State*);
+    int32 messageID(lua_State*);
+    int32 animation(lua_State*);
+    int32 speceffect(lua_State*);
+    int32 addEffectParam(lua_State*);
+    int32 addEffectMessage(lua_State*);
+    int32 additionalEffect(lua_State*);
 };
 
 #endif

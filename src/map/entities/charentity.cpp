@@ -1113,7 +1113,7 @@ m_ActionList.push_back(Action);
         }*/
 
         action.id = this->id;
-        action.actiontype = ACTION_JOBABILITY_FINISH;
+        action.actiontype = PAbility->getActionType();
         action.actionid = PAbility->getID();
 
         // #TODO: get rid of this to script, too
@@ -1163,7 +1163,7 @@ m_ActionList.push_back(Action);
                 actionTarget.speceffect = SPECEFFECT_NONE;
                 actionTarget.animation = PAbility->getAnimationID();
                 actionTarget.messageID = PAbility->getMessage();
-                actionTarget.param = luautils::OnUseAbility(this, PTarget, PAbility, &action, &actionList);
+                actionTarget.param = luautils::OnUseAbility(this, PTarget, PAbility, &action);
 
                 if (msg == 0) {
                     msg = PAbility->getMessage();
@@ -1190,9 +1190,10 @@ m_ActionList.push_back(Action);
             actionTarget.speceffect = SPECEFFECT_RECOIL;
             actionTarget.animation = PAbility->getAnimationID();
             actionTarget.param = 0;
+            auto prevMsg = actionTarget.messageID;
 
-            int32 value = luautils::OnUseAbility(this, PTarget, PAbility, &action, &actionList);
-            actionTarget.messageID = PAbility->getMessage();
+            int32 value = luautils::OnUseAbility(this, PTarget, PAbility, &action);
+            if (prevMsg == actionTarget.messageID) actionTarget.messageID = PAbility->getMessage();
             actionTarget.param = value;
 
             if (value < 0)

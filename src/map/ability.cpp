@@ -24,7 +24,6 @@
 #include "lua/luautils.h"
 #include "ability.h"
 
-
 CAbility::CAbility(uint16 id)
 {
 	m_ID = id;
@@ -74,6 +73,11 @@ void CAbility::setJob(JOBTYPE Job)
 void CAbility::setMeritModID(uint16 value)
 {
 	m_meritModID = value;
+}
+
+void CAbility::setActionType(ACTIONTYPE type)
+{
+    m_actionType = type;
 }
 
 JOBTYPE	CAbility::getJob()
@@ -144,6 +148,11 @@ uint16 CAbility::getRecastTime()
 uint16 CAbility::getMeritModID()
 {
 	return m_meritModID;
+}
+
+ACTIONTYPE CAbility::getActionType()
+{
+    return m_actionType;
 }
 
 void CAbility::setValidTarget(uint8 validTarget)
@@ -302,6 +311,7 @@ namespace ability
               "message2, "
               "animation,"
               "animationTime,"
+              "actionType,"
               "`range`,"
               "isAOE,"
               "recastId,"
@@ -341,13 +351,14 @@ namespace ability
               //PAbility->setMessage(Sql_GetIntData(SqlHandle,8));
 			    PAbility->setAnimationID(Sql_GetIntData(SqlHandle,9));
 			    PAbility->setAnimationTime(std::chrono::milliseconds(Sql_GetIntData(SqlHandle,10)));
-			    PAbility->setRange(Sql_GetFloatData(SqlHandle,11));
-			    PAbility->setAOE(Sql_GetIntData(SqlHandle,12));
-			    PAbility->setRecastId(Sql_GetIntData(SqlHandle,13));
-			    PAbility->setCE(Sql_GetIntData(SqlHandle,14));
-			    PAbility->setVE(Sql_GetIntData(SqlHandle,15));
-			    PAbility->setMeritModID(Sql_GetIntData(SqlHandle,16));
-				PAbility->setAddType(Sql_GetUIntData(SqlHandle,17));
+                PAbility->setActionType(static_cast<ACTIONTYPE>(Sql_GetUIntData(SqlHandle, 11)));
+			    PAbility->setRange(Sql_GetFloatData(SqlHandle,12));
+			    PAbility->setAOE(Sql_GetIntData(SqlHandle,13));
+			    PAbility->setRecastId(Sql_GetIntData(SqlHandle,14));
+			    PAbility->setCE(Sql_GetIntData(SqlHandle,15));
+			    PAbility->setVE(Sql_GetIntData(SqlHandle,16));
+			    PAbility->setMeritModID(Sql_GetIntData(SqlHandle,17));
+				PAbility->setAddType(Sql_GetUIntData(SqlHandle,18));
 
 			    PAbilityList[PAbility->getID()] = PAbility;
 			    PAbilitiesList[PAbility->getJob()].push_back(PAbility);

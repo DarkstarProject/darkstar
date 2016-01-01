@@ -26,6 +26,7 @@
 
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
+#include "packets/action.h"
 
 #include "entities/battleentity.h"
 
@@ -668,6 +669,7 @@ public:
     uint16      getCE();
     uint16      getVE();
     uint16      getMeritModID();
+    ACTIONTYPE  getActionType();
 
     void        setID(uint16 id);
     void        setMobSkillID(uint16 id);
@@ -685,6 +687,7 @@ public:
     void        setCE(uint16 CE);
     void        setVE(uint16 VE);
     void        setMeritModID(uint16 value);
+    void        setActionType(ACTIONTYPE type);
 
     const int8* getName();
     void        setName(int8* name);
@@ -708,6 +711,7 @@ private:
     uint16      m_meritModID;
     string_t    m_name;
     uint16      m_mobskillId;
+    ACTIONTYPE  m_actionType;
 };
 
 /************************************************************************
