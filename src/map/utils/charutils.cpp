@@ -1452,6 +1452,7 @@ namespace charutils
                 ShowDebug(CL_CYAN"Removing %s from %s's inventory\n" CL_RESET, PItem->getName(), PChar->GetName());
                 UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), -PItem->getReserve());
                 PItem->setReserve(0);
+                PChar->UContainer->ClearSlot(slotid);
             }
         }
     }
