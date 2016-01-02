@@ -52,6 +52,7 @@ bool CDespawnState::Update(time_point tick)
 {
     if (m_spawnTime > 0s && tick > GetEntryTime() + m_spawnTime)
     {
+        m_PEntity->Spawn();
         return true;
     }
     return false;
@@ -59,7 +60,6 @@ bool CDespawnState::Update(time_point tick)
 
 void CDespawnState::Cleanup(time_point tick)
 {
-    m_PEntity->Spawn();
 }
 
 bool CDespawnState::CanChangeState()
