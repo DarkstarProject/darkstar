@@ -14,14 +14,14 @@ require("scripts/zones/East_Sarutabaruta/MobIDs");
 function onMobDeath(mob,killer,ally)
     checkRegime(ally,mob,92,1);
 
-    mob = mob:getID();
-    if (Duke_Decapod_PH[mob] ~= nil) then
+    local mobid = mob:getID();
+    if (Duke_Decapod_PH[mobid] ~= nil) then
         local ToD = GetServerVariable("[POP]Duke_Decapod");
         if (ToD <= os.time(t) and GetMobAction(Duke_Decapod) == 0) then
             UpdateNMSpawnPoint(Duke_Decapod);
-            GetMobByID(Duke_Decapod):setRespawnTime(GetMobRespawnTime(mob));
-            SetServerVariable("[PH]Duke_Decapod", mob);
-            DeterMob(mob, true);
+            GetMobByID(Duke_Decapod):setRespawnTime(GetMobRespawnTime(mobid));
+            SetServerVariable("[PH]Duke_Decapod", mobid);
+            DeterMob(mobid, true);
         end
     end
 end;
