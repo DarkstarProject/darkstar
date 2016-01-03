@@ -46,7 +46,6 @@ CPetEntity::CPetEntity(PETTYPE petType)
 
 CPetEntity::~CPetEntity()
 {
-
 }
 
 PETTYPE CPetEntity::getPetType(){
@@ -137,4 +136,18 @@ void CPetEntity::UpdateEntity()
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
         updatemask = 0;
     }
+}
+
+void CPetEntity::FadeOut()
+{
+    CMobEntity::FadeOut();
+    loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_DESPAWN, UPDATE_NONE));
+}
+
+void CPetEntity::Die()
+{
+    PAI->ClearStateStack();
+    PAI->Internal_Die(0s);
+    luautils::OnMobDeath(this, nullptr);
+    CBattleEntity::Die();
 }

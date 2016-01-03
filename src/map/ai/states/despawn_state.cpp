@@ -32,11 +32,11 @@ CDespawnState::CDespawnState(CBaseEntity* _PEntity, duration spawnTime) :
     m_spawnTime(spawnTime)
 {
     //TODO: BEHAVIOUR_NO_DESPAWN
-    if (_PEntity->PAI->IsSpawned())
+    if (_PEntity->status != STATUS_DISAPPEAR)
     {
         _PEntity->loc.zone->PushPacket(_PEntity, CHAR_INRANGE, new CEntityAnimationPacket(_PEntity, CEntityAnimationPacket::Fade_Out));
         _PEntity->PAI->QueueAction(queueAction_t(3s, false, [](CBaseEntity* PEntity) {
-            PEntity->status = STATUS_DISAPPEAR;
+            PEntity->FadeOut();
             //#event despawn
             luautils::OnMobDespawn(PEntity);
             PEntity->PAI->EventHandler.triggerListener("DESPAWN", PEntity);

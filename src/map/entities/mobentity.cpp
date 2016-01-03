@@ -877,6 +877,12 @@ void CMobEntity::DropItems()
     }));
 }
 
+void CMobEntity::FadeOut()
+{
+    CBaseEntity::FadeOut();
+    PEnmityContainer->Clear();
+}
+
 void CMobEntity::OnDeathTimer()
 {
     PAI->Despawn();

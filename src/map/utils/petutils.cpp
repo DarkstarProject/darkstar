@@ -836,7 +836,6 @@ namespace petutils
         CBattleEntity* PPet = PMaster->PPet;
         CCharEntity* PChar = (CCharEntity*)PMaster;
 
-        PPet->Die();
 
         if (PPet->objtype == TYPE_MOB){
             CMobEntity* PMob = (CMobEntity*)PPet;
@@ -888,6 +887,7 @@ namespace petutils
 
         }
         else if (PPet->objtype == TYPE_PET){
+            PPet->Die();
             CPetEntity* PPetEnt = (CPetEntity*)PPet;
 
             if (PPetEnt->getPetType() == PETTYPE_AVATAR)

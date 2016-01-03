@@ -57,9 +57,16 @@ CBaseEntity::~CBaseEntity()
 void CBaseEntity::Spawn()
 {
     status = allegiance == ALLEGIANCE_MOB ? STATUS_MOB : STATUS_NORMAL;
+    updatemask |= UPDATE_HP;
     ResetLocalVars();
     PAI->Reset();
     PAI->EventHandler.triggerListener("SPAWN", this);
+}
+
+void CBaseEntity::FadeOut()
+{
+    status = STATUS_DISAPPEAR;
+    updatemask |= UPDATE_HP;
 }
 
 const int8* CBaseEntity::GetName()

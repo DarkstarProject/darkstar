@@ -177,6 +177,7 @@ public:
     virtual void OnDeathTimer() override;
 
     virtual void Spawn() override;
+    virtual void FadeOut() override;
 
     bool      m_AllowRespawn;             // if true, allow respawn
     uint32    m_RespawnTime;              // respawn time

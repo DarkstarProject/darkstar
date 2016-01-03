@@ -31,6 +31,8 @@ This file is part of DarkStar-server source code.
 CPetController::CPetController(CPetEntity* _PPet) :
     CAIController(_PPet), PPet(_PPet)
 {
+    //#TODO: this probably will have to depend on pet type (automaton does WS on its own..)
+    SetWeaponSkillEnabled(false);
 }
 
 void CPetController::DoRoamTick(time_point tick)

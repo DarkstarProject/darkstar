@@ -58,7 +58,9 @@ public:
     std::string GetScriptName();
 
     WYVERNTYPE getWyvernType();
-    void UpdateEntity() override;
+    virtual void UpdateEntity() override;
+    virtual void FadeOut() override;
+    virtual void Die() override;
 
 private:
 	PETTYPE m_PetType;					//the type of pet e.g. avatar/wyvern/jugpet etc

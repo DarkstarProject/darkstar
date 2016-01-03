@@ -289,7 +289,6 @@ void CAIContainer::Reset()
 
 void CAIContainer::Tick(time_point _tick)
 {
-    DSP_DEBUG_BREAK_IF(m_stateStack.size() > 10);
     m_PrevTick = m_Tick;
     m_Tick = _tick;
     CBaseEntity* PreEntity = PEntity;

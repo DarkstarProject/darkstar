@@ -143,6 +143,7 @@ public:
     virtual ~CBaseEntity();				// деструктор
 
     virtual void    Spawn();
+    virtual void    FadeOut();
     virtual const int8* GetName();      // имя сущности
     uint16			getZone();			// текущая зона
     float			GetXPos();			// позиция по координате X
