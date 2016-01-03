@@ -691,7 +691,6 @@ void CAIController::DoRoamTick(time_point tick)
                 // else we'll move straight back to spawn
                 PMob->PAI->PathFind->LimitDistance(10.0f);
 
-                //#TODO: pathfind's responsibility!
                 FollowRoamPath();
 
                 // move back every 5 seconds
