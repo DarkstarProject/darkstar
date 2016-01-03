@@ -16,7 +16,7 @@ function onMobDeath(mob,killer,ally)
 
     mob = mob:getID();
     if (Duke_Decapod_PH[mob] ~= nil) then
-        ToD = GetServerVariable("[POP]Duke_Decapod");
+        local ToD = GetServerVariable("[POP]Duke_Decapod");
         if (ToD <= os.time(t) and GetMobAction(Duke_Decapod) == 0) then
             if (math.random((1),(15)) == 5) then
                 UpdateNMSpawnPoint(Duke_Decapod);
