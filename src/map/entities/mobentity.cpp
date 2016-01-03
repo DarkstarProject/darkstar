@@ -52,18 +52,18 @@
 
 CMobEntity::CMobEntity()
 {
-	objtype = TYPE_MOB;
+    objtype = TYPE_MOB;
 
-	m_DropID = 0;
+    m_DropID = 0;
 
-	m_minLevel = 1;
-	m_maxLevel = 1;
+    m_minLevel = 1;
+    m_maxLevel = 1;
 
     HPscale = 1.0;
     MPscale = 1.0;
     m_flags = 0;
 
-	allegiance = ALLEGIANCE_MOB;
+    allegiance = ALLEGIANCE_MOB;
 
     // default to normal roaming
     m_roamFlags = ROAMFLAG_NONE;
@@ -73,15 +73,15 @@ CMobEntity::CMobEntity()
 
     m_AllowRespawn = 0;
     m_DropItemTime = 0;
-	m_Family = 0;
-	m_Type      = MOBTYPE_NORMAL;
-	m_Behaviour = BEHAVIOUR_NONE;
-	m_SpawnType = SPAWNTYPE_NORMAL;
-	m_EcoSystem = SYSTEM_UNCLASSIFIED;
-	m_Element = 0;
-	m_HiPCLvl = 0;
-	m_THLvl = 0;
-	m_ItemStolen = false;
+    m_Family = 0;
+    m_Type = MOBTYPE_NORMAL;
+    m_Behaviour = BEHAVIOUR_NONE;
+    m_SpawnType = SPAWNTYPE_NORMAL;
+    m_EcoSystem = SYSTEM_UNCLASSIFIED;
+    m_Element = 0;
+    m_HiPCLvl = 0;
+    m_THLvl = 0;
+    m_ItemStolen = false;
     m_RageMode = 0;
 
     strRank = 3;
@@ -95,20 +95,20 @@ CMobEntity::CMobEntity()
     accRank = 3;
     evaRank = 3;
 
-	m_dmgMult = 100;
+    m_dmgMult = 100;
 
     m_giveExp = false;
     m_neutral = false;
-	m_Aggro = AGGRO_NONE;
+    m_Aggro = AGGRO_NONE;
     m_Link = 0;
 
-	m_battlefieldID = 0;
+    m_battlefieldID = 0;
     m_bcnmID = 0;
 
     m_maxRoamDistance = 20.0f;
     m_disableScent = false;
 
-	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
+    memset(&m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 
     m_SpellListContainer = nullptr;
     PEnmityContainer = new CEnmityContainer(this);
@@ -129,7 +129,7 @@ void CMobEntity::setMobFlags(uint32 MobFlags)
 CMobEntity::~CMobEntity()
 {
     delete PEnmityContainer;
-	delete SpellContainer;
+    delete SpellContainer;
 }
 
 /************************************************************************
@@ -140,7 +140,7 @@ CMobEntity::~CMobEntity()
 
 time_point CMobEntity::GetDespawnTime()
 {
-	return m_DespawnTimer;
+    return m_DespawnTimer;
 }
 
 void CMobEntity::SetDespawnTime(duration _duration)
@@ -161,44 +161,44 @@ uint32 CMobEntity::GetRandomGil()
     int16 min = getMobMod(MOBMOD_GIL_MIN);
     int16 max = getMobMod(MOBMOD_GIL_MAX);
 
-    if(min && max)
+    if (min && max)
     {
         // make sure divide won't crash server
-        if(max <= min)
+        if (max <= min)
         {
-            max = min+2;
+            max = min + 2;
         }
 
-        if(max-min < 2)
+        if (max - min < 2)
         {
-            max = min+2;
+            max = min + 2;
             ShowWarning("CMobEntity::GetRandomGil Max value is set too low, defauting\n");
         }
 
-        return dsprand::GetRandomNumber(min,max);
+        return dsprand::GetRandomNumber(min, max);
     }
 
     float gil = pow(GetMLevel(), 1.05f);
 
-    if(gil < 1){
+    if (gil < 1) {
         gil = 1;
     }
 
     uint16 highGil = (float)(gil) / 3 + 4;
 
-    if(max)
+    if (max)
     {
         highGil = max;
     }
 
-    if(highGil < 2){
+    if (highGil < 2) {
         highGil = 2;
     }
 
     // randomize it
     gil += dsprand::GetRandomNumber(highGil);
 
-    if(min && gil < min)
+    if (min && gil < min)
     {
         gil = min;
     }
@@ -214,9 +214,9 @@ uint32 CMobEntity::GetRandomGil()
 bool CMobEntity::CanDropGil()
 {
     // smaller than 0 means drop no gil
-    if(getMobMod(MOBMOD_GIL_MAX) < 0) return false;
+    if (getMobMod(MOBMOD_GIL_MAX) < 0) return false;
 
-    if(getMobMod(MOBMOD_GIL_MIN) > 0 || getMobMod(MOBMOD_GIL_MAX))
+    if (getMobMod(MOBMOD_GIL_MIN) > 0 || getMobMod(MOBMOD_GIL_MAX))
     {
         return true;
     }
@@ -232,15 +232,15 @@ bool CMobEntity::CanStealGil()
 
 void CMobEntity::ResetGilPurse()
 {
-    uint32 purse = GetRandomGil() / ((dsprand::GetRandomNumber(4,7)));
-    if(purse == 0)
+    uint32 purse = GetRandomGil() / ((dsprand::GetRandomNumber(4, 7)));
+    if (purse == 0)
         purse = GetRandomGil();
     setMobMod(MOBMOD_MUG_GIL, purse);
 }
 
 bool CMobEntity::CanRoamHome()
 {
-    if(speed == 0 && !(m_roamFlags & ROAMFLAG_WORM)) return false;
+    if (speed == 0 && !(m_roamFlags & ROAMFLAG_WORM)) return false;
 
     if (getMobMod(MOBMOD_NO_DESPAWN) != 0 ||
         map_config.mob_no_despawn)
@@ -259,21 +259,21 @@ bool CMobEntity::CanRoam()
 bool CMobEntity::CanLink(position_t* pos, int16 superLink)
 {
     // handle super linking
-    if(superLink && getMobMod(MOBMOD_SUPERLINK) == superLink)
+    if (superLink && getMobMod(MOBMOD_SUPERLINK) == superLink)
     {
         return true;
     }
 
     // can't link right now
-    if(m_neutral)
+    if (m_neutral)
     {
         return false;
     }
 
     // link only if I see him
-	if ((m_Aggro & AGGRO_DETECT_SIGHT) || (m_Aggro & AGGRO_DETECT_TRUESIGHT)){
+    if ((m_Aggro & AGGRO_DETECT_SIGHT) || (m_Aggro & AGGRO_DETECT_TRUESIGHT)) {
 
-       if(!isFaceing(loc.p, *pos, 40)) return false;
+        if (!isFaceing(loc.p, *pos, 40)) return false;
     }
 
     // link if close enough
@@ -288,7 +288,7 @@ bool CMobEntity::CanLink(position_t* pos, int16 superLink)
 
 bool CMobEntity::CanDeaggro()
 {
-	return !(m_Type & MOBTYPE_NOTORIOUS || m_Type & MOBTYPE_BATTLEFIELD);
+    return !(m_Type & MOBTYPE_NOTORIOUS || m_Type & MOBTYPE_BATTLEFIELD);
 }
 
 /************************************************************************
@@ -299,22 +299,22 @@ bool CMobEntity::CanDeaggro()
 
 bool CMobEntity::hasRageMode()
 {
-	return m_RageMode;
+    return m_RageMode;
 }
 
 void CMobEntity::addRageMode()
 {
     if (!m_RageMode)
     {
-	    stats.AGI *= 10;
-	    stats.CHR *= 10;
-	    stats.DEX *= 10;
-	    stats.INT *= 10;
-	    stats.MND *= 10;
-	    stats.STR *= 10;
-	    stats.VIT *= 10;
+        stats.AGI *= 10;
+        stats.CHR *= 10;
+        stats.DEX *= 10;
+        stats.INT *= 10;
+        stats.MND *= 10;
+        stats.STR *= 10;
+        stats.VIT *= 10;
     }
-	m_RageMode = true;
+    m_RageMode = true;
 }
 
 void CMobEntity::delRageMode()
@@ -376,7 +376,7 @@ void CMobEntity::addMobMod(uint16 type, int16 value)
 
 void CMobEntity::defaultMobMod(uint16 type, int16 value)
 {
-    if(m_mobModStat[type] == 0)
+    if (m_mobModStat[type] == 0)
     {
         m_mobModStat[type] = value;
     }
@@ -404,7 +404,7 @@ void CMobEntity::restoreMobModifiers()
 
 void CMobEntity::HideModel(bool hide)
 {
-    if(hide)
+    if (hide)
     {
         // I got this from ambush antlion
         // i'm not sure if this is right
@@ -614,7 +614,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     }
 
     // Mob buff abilities also hit monster's pets
-    if(PSkill->getValidTargets() == TARGET_SELF)
+    if (PSkill->getValidTargets() == TARGET_SELF)
     {
         findFlags |= FINDFLAGS_PET;
     }
@@ -655,14 +655,14 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         actionList_t& list = action.getNewActionList();
 
         list.ActionTargetID = PTarget->id;
-        
+
         actionTarget_t& target = list.getNewActionTarget();
 
         list.ActionTargetID = PTarget->id;
-        target.reaction   = REACTION_HIT;
+        target.reaction = REACTION_HIT;
         target.speceffect = SPECEFFECT_HIT;
-        target.animation  = PSkill->getAnimationID();
-        target.messageID  = PSkill->getMsg();
+        target.animation = PSkill->getAnimationID();
+        target.messageID = PSkill->getMsg();
 
 
         // reset the skill's message back to default
@@ -691,14 +691,14 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
 
         if (PSkill->hasMissMsg())
         {
-            target.reaction   = REACTION_MISS;
+            target.reaction = REACTION_MISS;
             target.speceffect = SPECEFFECT_NONE;
             if (msg = PSkill->getAoEMsg())
                 msg = 282;
         }
         else
         {
-            target.reaction   = REACTION_HIT;
+            target.reaction = REACTION_HIT;
         }
 
         if (target.speceffect & SPECEFFECT_HIT)
@@ -735,85 +735,83 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
 
 void CMobEntity::DropItems()
 {
-    PAI->QueueAction(queueAction_t(std::chrono::milliseconds(m_DropItemTime), false, [=](CBaseEntity* PEntity)
+    CCharEntity* PChar = (CCharEntity*)GetEntity(m_OwnerID.targid, TYPE_PC);
+
+    if (PChar != nullptr && PChar->id == m_OwnerID.id)
     {
-        CCharEntity* PChar = (CCharEntity*)GetEntity(m_OwnerID.targid, TYPE_PC);
 
-        if (PChar != nullptr && PChar->id == m_OwnerID.id)
+        loc.zone->PushPacket(this, CHAR_INRANGE, new CMessageBasicPacket(PChar, this, 0, 0, MSGBASIC_DEFEATS_TARG));
+
+        if (!CalledForHelp())
         {
+            blueutils::TryLearningSpells(PChar, this);
+            m_UsedSkillIds.clear();
 
-            loc.zone->PushPacket(this, CHAR_INRANGE, new CMessageBasicPacket(PChar,this,0,0, MSGBASIC_DEFEATS_TARG));
-
-            if (!CalledForHelp())
+            if (m_giveExp)
             {
-                blueutils::TryLearningSpells(PChar, this);
-                m_UsedSkillIds.clear();
+                charutils::DistributeExperiencePoints(PChar, this);
+            }
 
-                if (m_giveExp)
+            DropList_t* DropList = itemutils::GetDropList(m_DropID);
+            //ShowDebug(CL_CYAN"DropID: %u dropping with TH Level: %u\n" CL_RESET, PMob->m_DropID, PMob->m_THLvl);
+
+            if (DropList != nullptr && !getMobMod(MOBMOD_NO_DROPS) && DropList->size())
+            {
+                for (uint8 i = 0; i < DropList->size(); ++i)
                 {
-                    charutils::DistributeExperiencePoints(PChar, this);
-                }
-
-                DropList_t* DropList = itemutils::GetDropList(m_DropID);
-                //ShowDebug(CL_CYAN"DropID: %u dropping with TH Level: %u\n" CL_RESET, PMob->m_DropID, PMob->m_THLvl);
-
-                if (DropList != nullptr && !getMobMod(MOBMOD_NO_DROPS) && DropList->size())
-                {
-                    for (uint8 i = 0; i < DropList->size(); ++i)
+                    //THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
+                    uint8 tries = 0;
+                    uint8 maxTries = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
+                    uint8 bonus = (m_THLvl > 2 ? (m_THLvl - 2) * 10 : 0);
+                    while (tries < maxTries)
                     {
-                        //THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
-                        uint8 tries = 0;
-                        uint8 maxTries = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
-                        uint8 bonus = (m_THLvl > 2 ? (m_THLvl - 2)*10 : 0);
-                        while (tries < maxTries)
+                        if (dsprand::GetRandomNumber(1000) < DropList->at(i).DropRate * map_config.drop_rate_multiplier + bonus)
                         {
-                            if (dsprand::GetRandomNumber(1000) < DropList->at(i).DropRate * map_config.drop_rate_multiplier + bonus)
-                            {
-                                PChar->PTreasurePool->AddItem(DropList->at(i).ItemID, this);
-                                break;
-                            }
-                            tries++;
+                            PChar->PTreasurePool->AddItem(DropList->at(i).ItemID, this);
+                            break;
                         }
+                        tries++;
                     }
                 }
+            }
 
-                // check for gil (beastmen drop gil, some NMs drop gil)
-                if (CanDropGil() || (map_config.all_mobs_gil_bonus > 0 && getMobMod(MOBMOD_GIL_MAX) >= 0)) // Negative value of MOBMOD_GIL_MAX is used to prevent gil drops in Dynamis/Limbus.
+            // check for gil (beastmen drop gil, some NMs drop gil)
+            if (CanDropGil() || (map_config.all_mobs_gil_bonus > 0 && getMobMod(MOBMOD_GIL_MAX) >= 0)) // Negative value of MOBMOD_GIL_MAX is used to prevent gil drops in Dynamis/Limbus.
+            {
+                charutils::DistributeGil(PChar, this); // TODO: REALISATION MUST BE IN TREASUREPOOL
+            }
+            //check for seal drops
+            /* MobLvl >= 1 = Beastmen Seals ID=1126
+                      >= 50 = Kindred Seals ID=1127
+                      >= 75 = Kindred Crests ID=2955
+                      >= 90 = High Kindred Crests ID=2956
+            */
+
+            uint16 Pzone = PChar->getZone();
+
+            bool validZone = ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255));
+
+            if (validZone && charutils::GetRealExp(PChar->GetMLevel(), GetMLevel()) > 0)
+            {
+                if (((PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && conquest::GetInfluenceGraphics(PChar->loc.zone->GetRegionID()) < 64) ||
+                    (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION) && PChar->loc.zone->GetRegionID() >= 28 && PChar->loc.zone->GetRegionID() <= 32) ||
+                    (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGIL) && PChar->loc.zone->GetRegionID() >= 33 && PChar->loc.zone->GetRegionID() <= 40)) &&
+                    m_Element > 0 && dsprand::GetRandomNumber(100) < 20) // Need to move to CRYSTAL_CHANCE constant
                 {
-                    charutils::DistributeGil(PChar, this); // TODO: REALISATION MUST BE IN TREASUREPOOL
+                    PChar->PTreasurePool->AddItem(4095 + m_Element, this);
                 }
-                //check for seal drops
-                /* MobLvl >= 1 = Beastmen Seals ID=1126
-                          >= 50 = Kindred Seals ID=1127
-                          >= 75 = Kindred Crests ID=2955
-                          >= 90 = High Kindred Crests ID=2956
-                */
 
-                uint16 Pzone = PChar->getZone();
+                // Todo: Avatarite and Geode drops during day/weather. Much higher chance during weather than day.
+                // Item element matches day/weather element, not mob crystal. Lv80+ xp mobs can drop Avatarite.
+                // Wiki's have conflicting info on mob lv required for Geodes. One says 50 the other 75. I think 50 is correct.
 
-                bool validZone = ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255));
-
-                if (validZone && charutils::GetRealExp(PChar->GetMLevel(),GetMLevel()) > 0)
+                if (dsprand::GetRandomNumber(100) < 20 && PChar->PTreasurePool->CanAddSeal() && !getMobMod(MOBMOD_NO_DROPS))
                 {
-                    if (((PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && conquest::GetInfluenceGraphics(PChar->loc.zone->GetRegionID()) < 64) ||
-                       (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION) && PChar->loc.zone->GetRegionID() >= 28 && PChar->loc.zone->GetRegionID() <= 32) ||
-                       (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGIL) && PChar->loc.zone->GetRegionID() >= 33 && PChar->loc.zone->GetRegionID() <= 40)) &&
-                        m_Element > 0 && dsprand::GetRandomNumber(100) < 20) // Need to move to CRYSTAL_CHANCE constant
+                    //RULES: Only 1 kind may drop per mob
+                    if (GetMLevel() >= 75 && luautils::IsExpansionEnabled("ABYSSEA")) //all 4 types
                     {
-                        PChar->PTreasurePool->AddItem(4095 + m_Element, this);
-                    }
-
-                    // Todo: Avatarite and Geode drops during day/weather. Much higher chance during weather than day.
-                    // Item element matches day/weather element, not mob crystal. Lv80+ xp mobs can drop Avatarite.
-                    // Wiki's have conflicting info on mob lv required for Geodes. One says 50 the other 75. I think 50 is correct.
-
-                    if (dsprand::GetRandomNumber(100) < 20 && PChar->PTreasurePool->CanAddSeal() && !getMobMod(MOBMOD_NO_DROPS))
-                    {
-                        //RULES: Only 1 kind may drop per mob
-                        if (GetMLevel() >= 75 && luautils::IsExpansionEnabled("ABYSSEA")) //all 4 types
+                        switch (dsprand::GetRandomNumber(4))
                         {
-                            switch (dsprand::GetRandomNumber(4))
-                            {
                             case 0:
                                 PChar->PTreasurePool->AddItem(1126, this);
                                 break;
@@ -826,12 +824,12 @@ void CMobEntity::DropItems()
                             case 3:
                                 PChar->PTreasurePool->AddItem(2956, this);
                                 break;
-                            }
                         }
-                        else if (GetMLevel() >= 70 && luautils::IsExpansionEnabled("ABYSSEA")) //b.seal & k.seal & k.crest
+                    }
+                    else if (GetMLevel() >= 70 && luautils::IsExpansionEnabled("ABYSSEA")) //b.seal & k.seal & k.crest
+                    {
+                        switch (dsprand::GetRandomNumber(3))
                         {
-                            switch (dsprand::GetRandomNumber(3))
-                            {
                             case 0:
                                 PChar->PTreasurePool->AddItem(1126, this);
                                 break;
@@ -841,40 +839,39 @@ void CMobEntity::DropItems()
                             case 2:
                                 PChar->PTreasurePool->AddItem(2955, this);
                                 break;
-                            }
                         }
-                        else if (GetMLevel() >= 50) //b.seal & k.seal only
+                    }
+                    else if (GetMLevel() >= 50) //b.seal & k.seal only
+                    {
+                        if (dsprand::GetRandomNumber(2) == 0)
                         {
-                            if (dsprand::GetRandomNumber(2) == 0)
-                            {
-                                PChar->PTreasurePool->AddItem(1126, this);
-                            }
-                            else
-                            {
-                                PChar->PTreasurePool->AddItem(1127, this);
-                            }
+                            PChar->PTreasurePool->AddItem(1126, this);
                         }
                         else
                         {
-                            //b.seal only
-                            PChar->PTreasurePool->AddItem(1126, this);
+                            PChar->PTreasurePool->AddItem(1127, this);
                         }
+                    }
+                    else
+                    {
+                        //b.seal only
+                        PChar->PTreasurePool->AddItem(1126, this);
                     }
                 }
             }
-
-            PChar->setWeaponSkillKill(false);
-            StatusEffectContainer->KillAllStatusEffect();
-
-            // NOTE: this is called for all alliance / party members!
-            luautils::OnMobDeath(this, PChar);
-
         }
-        else
-        {
-            luautils::OnMobDeath(this, nullptr);
-        }
-    }));
+
+        PChar->setWeaponSkillKill(false);
+        StatusEffectContainer->KillAllStatusEffect();
+
+        // NOTE: this is called for all alliance / party members!
+        luautils::OnMobDeath(this, PChar);
+
+    }
+    else
+    {
+        luautils::OnMobDeath(this, nullptr);
+    }
 }
 
 void CMobEntity::FadeOut()
@@ -893,13 +890,15 @@ void CMobEntity::Die()
     m_THLvl = PEnmityContainer->GetHighestTH();
     PEnmityContainer->Clear();
     PAI->ClearStateStack();
-    PAI->Internal_Die(15s);
     if (PPet != nullptr && PPet->isAlive() && GetMJob() == JOB_SMN)
     {
         PPet->Die();
     }
-    luautils::OnMobDeath(this, nullptr);
+    PAI->Internal_Die(15s);
     CBattleEntity::Die();
+    PAI->QueueAction(queueAction_t(std::chrono::milliseconds(m_DropItemTime), false, [this](CBaseEntity* PEntity) {
+        DropItems();
+    }));
 }
 
 void CMobEntity::OnDisengage(CAttackState& state)

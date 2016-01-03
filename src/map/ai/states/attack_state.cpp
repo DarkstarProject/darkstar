@@ -75,7 +75,7 @@ bool CAttackState::Update(time_point tick)
 
 void CAttackState::Cleanup(time_point tick)
 {
-    m_PEntity->OnDisengage(*this);
+    if (!m_PEntity->isDead()) m_PEntity->OnDisengage(*this);
 }
 
 void CAttackState::ResetAttackTimer()
