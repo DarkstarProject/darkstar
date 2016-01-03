@@ -47,11 +47,6 @@ struct queueAction_t
         delay(_ms),
         func(_func),
         checkState(_checkstate) {}
-
-    queueAction_t(const queueAction_t&) = delete;
-    queueAction_t& operator=(const queueAction_t&) = delete;
-    queueAction_t(queueAction_t&&) = default;
-    queueAction_t& operator=(queueAction_t&&) = default;
 };
 
 inline bool operator< (const queueAction_t& lhs, const queueAction_t& rhs) { return lhs.start_time + lhs.delay < rhs.start_time + rhs.delay; }
@@ -63,10 +58,14 @@ public:
 
     void pushAction(queueAction_t&&);
     void checkAction(time_point tick);
+
+    void handleAction(queueAction_t &action);
+
     bool isEmpty();
 private:
     CBaseEntity* PEntity;
     std::priority_queue<queueAction_t> actionQueue;
+    std::priority_queue<queueAction_t> timerQueue;
 };
 
 #endif

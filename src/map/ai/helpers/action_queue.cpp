@@ -33,38 +33,61 @@ CAIActionQueue::CAIActionQueue(CBaseEntity* _PEntity) :
 
 void CAIActionQueue::pushAction(queueAction_t&& action)
 {
-    actionQueue.push(std::move(action));
+    if (action.checkState)
+    {
+        actionQueue.push(std::move(action));
+    }
+    else
+    {
+        timerQueue.push(std::move(action));
+    }
 }
 
 void CAIActionQueue::checkAction(time_point tick)
 {
+    while (!timerQueue.empty())
+    {
+        auto& topaction = timerQueue.top();
+        if (tick > topaction.start_time + topaction.delay)
+        {
+            queueAction_t action = timerQueue.top();
+            timerQueue.pop();
+            handleAction(action);
+        }
+        else break;
+    }
     while (!actionQueue.empty())
     {
-        auto& action = actionQueue.top();
-        if (tick > action.start_time + action.delay && 
-            (!action.checkState || PEntity->PAI->CanChangeState()))
+        auto& topaction = actionQueue.top();
+        if (tick > topaction.start_time + topaction.delay && 
+            (!topaction.checkState || PEntity->PAI->CanChangeState()))
         {
-            PEntity->SetLocalVar("actionQueueAction", 1);
-            if (action.lua_func)
-            {
-                luautils::pushFunc(action.lua_func);
-                //CLuaBaseEntity luaEntity(PEntity);
-                luautils::pushArg<CBaseEntity*>(PEntity);
-                luautils::callFunc(1);
-                luautils::unregister_fp(action.lua_func);
-            }
-            if (action.func)
-            {
-                action.func(PEntity);
-            }
-            PEntity->SetLocalVar("actionQueueAction", 0);
+            auto action = actionQueue.top();
             actionQueue.pop();
+            handleAction(action);
         }
         else break;
     }
 }
 
+void CAIActionQueue::handleAction(queueAction_t& action)
+{
+    PEntity->SetLocalVar("actionQueueAction", 1);
+    if (action.lua_func)
+    {
+        luautils::pushFunc(action.lua_func);
+        luautils::pushArg<CBaseEntity*>(PEntity);
+        luautils::callFunc(1);
+        luautils::unregister_fp(action.lua_func);
+    }
+    if (action.func)
+    {
+        action.func(PEntity);
+    }
+    PEntity->SetLocalVar("actionQueueAction", 0);
+}
+
 bool CAIActionQueue::isEmpty()
 {
-    return actionQueue.empty();
+    return actionQueue.empty() && timerQueue.empty();
 }
