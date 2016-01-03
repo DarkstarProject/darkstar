@@ -473,11 +473,7 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
     {
         return true;
     }
-    if ((targetFlags & TARGET_SELF) &&
-        this == PInitiator)
-    {
-        return true;
-    }
+
     if (targetFlags & TARGET_PLAYER)
     {
         return true;

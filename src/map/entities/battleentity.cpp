@@ -1076,7 +1076,11 @@ bool CBattleEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
             }
         }
     }
-
+    if ((targetFlags & TARGET_SELF) &&
+        this == PInitiator)
+    {
+        return true;
+    }
     return false;
 }
 
