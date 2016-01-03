@@ -469,6 +469,7 @@ public:
     int32 resetLocalVars(lua_State*);
 
     int32 setSpellList(lua_State*);
+    int32 hasSpellList(lua_State*);
 
     int32 hasValidJugPetItem(lua_State*);
     int32 getTarget(lua_State*);

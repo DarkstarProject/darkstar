@@ -114,6 +114,7 @@
 #include "../latent_effect_container.h"
 #include "../instance.h"
 #include "../enmity_container.h"
+#include "../mob_spell_container.h"
 
 #include "../ai/ai_container.h"
 #include "../ai/controllers/ai_controller.h"
@@ -8537,6 +8538,16 @@ inline int32 CLuaBaseEntity::setSpellList(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::hasSpellList(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    lua_pushboolean(L, ((CMobEntity*)m_PBaseEntity)->SpellContainer->HasSpells());
+
+    return 1;
+}
+
 inline int32 CLuaBaseEntity::hasValidJugPetItem(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -10511,6 +10522,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setLocalVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetLocalVars),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpellList),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasSpellList),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasValidJugPetItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTarget),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTPMoves),
