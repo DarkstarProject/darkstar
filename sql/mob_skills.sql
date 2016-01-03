@@ -978,7 +978,7 @@ INSERT INTO `mob_skills` VALUES (918,392,'PL_Petro_Eyes',4,9.5,2000,1500,4,0,0,0
 -- INSERT INTO `mob_skills` VALUES (930,930,'Thornsong',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (931,931,'Lodesong',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (932,793,'Final_Heaven',0,7.0,2000,1500,4,0,0,0);         -- Animated_Knuckles
-INSERT INTO `mob_skills` VALUES (933,797,'Mercy_Stroke',0,7.0,2000,1500,4,0,0,0);         -- Animated_Dagger
+INSERT INTO `mob_skills` VALUES (933,794,'Mercy_Stroke',0,7.0,2000,1500,4,0,0,0);         -- Animated_Dagger
 INSERT INTO `mob_skills` VALUES (934,792,'Knights_of_Round',0,7.0,2000,1500,4,0,0,0);     -- Animated_Longsword
 INSERT INTO `mob_skills` VALUES (935,799,'Scourge',0,7.0,2000,1500,4,0,0,0);              -- Animated_Claymore
 INSERT INTO `mob_skills` VALUES (936,795,'Onslaught',0,7.0,2000,1500,4,0,0,0);             -- Animated_Tabar
@@ -987,7 +987,7 @@ INSERT INTO `mob_skills` VALUES (938,796,'Catastrophe',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (939,800,'Geirskogul',0,7.0,2000,1500,4,0,0,0);           -- Animated_Spear
 INSERT INTO `mob_skills` VALUES (940,802,'Blade_Metsu',0,7.0,2000,1500,4,0,0,0);          -- Animated_Kunai
 INSERT INTO `mob_skills` VALUES (941,803,'Tachi_Kaiten',0,7.0,2000,1500,4,0,0,0);         -- Animated_Tachi
-INSERT INTO `mob_skills` VALUES (942,794,'Randgrith',0,7.0,2000,1500,4,0,0,0);             -- Animated_Hammer
+INSERT INTO `mob_skills` VALUES (942,797,'Randgrith',0,7.0,2000,1500,4,0,0,0);             -- Animated_Hammer
 INSERT INTO `mob_skills` VALUES (943,801,'Gate_of_Tartarus',0,7.0,2000,1500,4,0,0,0);     -- Animated_Staff
 INSERT INTO `mob_skills` VALUES (944,804,'Namas_Arrow',0,18.0,2000,1500,4,0,0,0);          -- Animated_Longbow
 INSERT INTO `mob_skills` VALUES (945,805,'Coronach',0,18.0,2000,1500,4,0,0,0);            -- Animated_Gun
