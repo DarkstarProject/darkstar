@@ -18,12 +18,10 @@ function onMobDeath(mob,killer,ally)
     if (Duke_Decapod_PH[mob] ~= nil) then
         local ToD = GetServerVariable("[POP]Duke_Decapod");
         if (ToD <= os.time(t) and GetMobAction(Duke_Decapod) == 0) then
-            if (math.random((1),(15)) == 5) then
-                UpdateNMSpawnPoint(Duke_Decapod);
-                GetMobByID(Duke_Decapod):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Duke_Decapod", mob);
-                DeterMob(mob, true);
-            end
+            UpdateNMSpawnPoint(Duke_Decapod);
+            GetMobByID(Duke_Decapod):setRespawnTime(GetMobRespawnTime(mob));
+            SetServerVariable("[PH]Duke_Decapod", mob);
+            DeterMob(mob, true);
         end
     end
 end;
