@@ -265,6 +265,11 @@ bool CAIContainer::CanChangeState()
     return !GetCurrentState() || GetCurrentState()->CanChangeState();
 }
 
+bool CAIContainer::CanFollowPath()
+{
+    return PathFind && (!GetCurrentState() || GetCurrentState()->CanChangeState());
+}
+
 void CAIContainer::SetController(std::unique_ptr<CController> controller)
 {
     Controller = std::move(controller);
@@ -299,9 +304,12 @@ void CAIContainer::Tick(time_point _tick)
     ActionQueue.checkAction(_tick);
 
     // check pathfinding
-    if (PathFind && (!GetCurrentState() || (GetCurrentState()->CanFollowPath())))
+    if (!Controller && CanFollowPath())
     {
         PathFind->FollowPath();
+        if (PathFind->OnPoint()) {
+            luautils::OnPath(PEntity);
+        }
     }
 
     if (Controller && Controller->canUpdate)

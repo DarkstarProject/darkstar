@@ -2375,30 +2375,25 @@ namespace luautils
     int32 OnPath(CBaseEntity* PEntity)
     {
         DSP_DEBUG_BREAK_IF(PEntity == nullptr);
-        DSP_DEBUG_BREAK_IF(PEntity->objtype == TYPE_PC)
 
+        if (PEntity->objtype != TYPE_PC)
+        {
             lua_prepscript("scripts/zones/%s/%s/%s.lua", PEntity->loc.zone->GetName(), (PEntity->objtype == TYPE_MOB ? "mobs" : "npcs"), PEntity->GetName());
 
+            if (prepFile(File, "onPath"))
+            {
+                return -1;
+            }
 
-        if (prepFile(File, "onPath"))
-        {
-            return -1;
-        }
+            CLuaBaseEntity LuaMobEntity(PEntity);
+            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
 
-        CLuaBaseEntity LuaMobEntity(PEntity);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
-
-        if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
-        {
-            ShowError("luautils::onPath: %s\n", lua_tostring(LuaHandle, -1));
-            lua_pop(LuaHandle, 1);
-            return -1;
-        }
-        int32 returns = lua_gettop(LuaHandle) - oldtop;
-        if (returns > 0)
-        {
-            ShowError("luautils::onPath (%s): 0 returns expected, got %d\n", File, returns);
-            lua_pop(LuaHandle, returns);
+            if (lua_pcall(LuaHandle, 1, 0, 0))
+            {
+                ShowError("luautils::onPath: %s\n", lua_tostring(LuaHandle, -1));
+                lua_pop(LuaHandle, 1);
+                return -1;
+            }
         }
         return 0;
     }

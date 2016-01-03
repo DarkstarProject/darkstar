@@ -76,9 +76,9 @@ public:
     void Internal_Die(duration);
     void Internal_Raise();
     void Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid);
-    virtual void Internal_Despawn(duration spawnTime);
+    void Internal_Despawn(duration spawnTime);
 
-    virtual void Reset();
+    void Reset();
     void Tick(time_point _tick);
     CState* GetCurrentState();
     bool IsStateStackEmpty();
@@ -93,7 +93,8 @@ public:
     bool IsRoaming();
     bool IsEngaged();
     //whether AI is currently able to change state from external means
-    virtual bool CanChangeState();
+    bool CanChangeState();
+    bool CanFollowPath();
 
     void SetController(std::unique_ptr<CController> controller);
     CController* GetController();
@@ -103,7 +104,7 @@ public:
 
     void Despawn();
 
-    virtual void QueueAction(queueAction_t&&);
+    void QueueAction(queueAction_t&&);
     bool QueueEmpty();
 
     // stores all events and their associated lua callbacks

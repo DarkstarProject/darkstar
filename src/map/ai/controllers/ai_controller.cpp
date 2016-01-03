@@ -520,7 +520,7 @@ void CAIController::DoCombatTick(time_point tick)
         return;
     }
 
-    if (PMob->PAI->PathFind->IsFollowingScriptedPath())
+    if (PMob->PAI->PathFind->IsFollowingScriptedPath() && PMob->PAI->CanFollowPath())
     {
         PMob->PAI->PathFind->FollowPath();
         return;
@@ -540,7 +540,7 @@ void CAIController::DoCombatTick(time_point tick)
         }
     }
 
-    bool move = PMob->PAI->PathFind->IsFollowingPath();
+    bool move = PMob->PAI->PathFind->IsFollowingPath() && PMob->PAI->CanFollowPath();
 
     //If using mobskills instead of attacks, calculate distance to move and ability to use here
     if (PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST))
@@ -786,42 +786,45 @@ void CAIController::Wait(duration _duration)
 
 void CAIController::FollowRoamPath()
 {
-    PMob->PAI->PathFind->FollowPath();
-
-    CBattleEntity* PPet = PMob->PPet;
-    if (PPet != nullptr && !PPet->PAI->IsEngaged())
+    if (PMob->PAI->CanFollowPath())
     {
-        // pet should follow me if roaming
-        position_t targetPoint = nearPosition(PMob->loc.p, 2.1f, M_PI);
+        PMob->PAI->PathFind->FollowPath();
 
-        PPet->PAI->PathFind->StepTo(&targetPoint);
-    }
-
-    // if I just finished reset my last action time
-    if (!PMob->PAI->PathFind->IsFollowingPath())
-    {
-        uint16 roamRandomness = (float)PMob->getBigMobMod(MOBMOD_ROAM_COOL) / PMob->GetRoamRate();
-        m_LastActionTime = m_Tick - std::chrono::milliseconds(dsprand::GetRandomNumber(roamRandomness));
-
-        // i'm a worm pop back up
-        if (PMob->m_roamFlags & ROAMFLAG_WORM)
+        CBattleEntity* PPet = PMob->PPet;
+        if (PPet != nullptr && !PPet->PAI->IsEngaged())
         {
-            PMob->animationsub = 0;
-            PMob->HideName(false);
+            // pet should follow me if roaming
+            position_t targetPoint = nearPosition(PMob->loc.p, 2.1f, M_PI);
+
+            PPet->PAI->PathFind->StepTo(&targetPoint);
         }
 
-        // face spawn rotation if I just moved back to spawn
-        // used by dynamis mobs, bcnm mobs etc
-        if ((PMob->m_roamFlags & ROAMFLAG_EVENT) &&
-            distance(PMob->loc.p, PMob->m_SpawnPoint) <= PMob->m_maxRoamDistance)
+        // if I just finished reset my last action time
+        if (!PMob->PAI->PathFind->IsFollowingPath())
         {
-            PMob->loc.p.rotation = PMob->m_SpawnPoint.rotation;
+            uint16 roamRandomness = (float)PMob->getBigMobMod(MOBMOD_ROAM_COOL) / PMob->GetRoamRate();
+            m_LastActionTime = m_Tick - std::chrono::milliseconds(dsprand::GetRandomNumber(roamRandomness));
+
+            // i'm a worm pop back up
+            if (PMob->m_roamFlags & ROAMFLAG_WORM)
+            {
+                PMob->animationsub = 0;
+                PMob->HideName(false);
+            }
+
+            // face spawn rotation if I just moved back to spawn
+            // used by dynamis mobs, bcnm mobs etc
+            if ((PMob->m_roamFlags & ROAMFLAG_EVENT) &&
+                distance(PMob->loc.p, PMob->m_SpawnPoint) <= PMob->m_maxRoamDistance)
+            {
+                PMob->loc.p.rotation = PMob->m_SpawnPoint.rotation;
+            }
         }
-    }
 
 
-    if (PMob->PAI->PathFind->OnPoint()) {
-        luautils::OnPath(PMob);
+        if (PMob->PAI->PathFind->OnPoint()) {
+            luautils::OnPath(PMob);
+        }
     }
 }
 
