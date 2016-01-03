@@ -1401,23 +1401,6 @@ m_ActionList.push_back(Action);
         //    this->pushPacket(new CInventoryFinishPacket());
         //}
 
-        //#TODO: command pet from script
-        //if (PAbility->getID() == ABILITY_SIC && this->PPet != nullptr) {//Sic
-
-        //    CAIPetDummy* PPetAI = (CAIPetDummy*)this->PPet->PBattleAI;
-
-        //    if (this->PPet->health.tp >= 1000)
-        //    {
-        //        PPetAI->m_MasterCommand = MASTERCOMMAND_SIC;
-        //        PPetAI->SetCurrentAction(ACTION_MOBABILITY_START);
-        //    }
-        //    else
-        //    {
-        //        // queue sic and use when ready
-        //        PPetAI->m_queueSic = true;
-        //    }
-        //}
-
         uint32 chargeTime = 0;
         uint8 maxCharges = 0;
         Charge_t* charge = ability::GetCharge(this, PAbility->getRecastId());

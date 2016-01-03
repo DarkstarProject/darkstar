@@ -34,4 +34,16 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
+    local function doSic(mob)
+        if mob:getTP() > 100 then
+            mob:useMobAbility()
+        elseif mob:hasSpellList() then
+            mob:castSpell()
+        else
+            mob:queue(0,doSic)
+        end
+
+    end
+
+    player:getPet():queue(0, doSic)
 end;
