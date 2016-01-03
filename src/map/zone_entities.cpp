@@ -896,7 +896,6 @@ void CZoneEntities::ZoneServer(time_point tick)
 		CMobEntity* PMob = (CMobEntity*)it->second;
 
 		PMob->StatusEffectContainer->CheckEffects(tick);
-		//PMob->PBattleAI->CheckCurrentAction(tick);
         PMob->PAI->Tick(tick);
 		PMob->StatusEffectContainer->CheckRegen(tick);
 	}
@@ -916,6 +915,7 @@ void CZoneEntities::ZoneServer(time_point tick)
         PPet->PAI->Tick(tick);
 		PPet->StatusEffectContainer->CheckRegen(tick);
 		if (PPet->status == STATUS_DISAPPEAR){
+            delete pit->second;
 			m_petList.erase(pit++);
 		}
 		else{
@@ -931,7 +931,6 @@ void CZoneEntities::ZoneServer(time_point tick)
 		{
 			PChar->PRecastContainer->Check();
 			PChar->StatusEffectContainer->CheckEffects(tick);
-			//PChar->PBattleAI->CheckCurrentAction(tick);
             PChar->PAI->Tick(tick);
 			PChar->PTreasurePool->CheckItems();
 			PChar->StatusEffectContainer->CheckRegen(tick);
@@ -946,7 +945,6 @@ void CZoneEntities::ZoneServerRegion(time_point tick)
 		CMobEntity* PMob = (CMobEntity*)it->second;
 
 		PMob->StatusEffectContainer->CheckEffects(tick);
-		//PMob->PBattleAI->CheckCurrentAction(tick);
         PMob->PAI->Tick(tick);
 	}
 
