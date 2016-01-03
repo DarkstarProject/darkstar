@@ -1252,7 +1252,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 		mob_pools.familyid, name_prefix, flags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-		allegiance, namevis, aggro, mob_pools.skill_list_id, \
+		allegiance, namevis, aggro, mob_pools.skill_list_id \
 		FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE mob_groups.groupid = %u";
