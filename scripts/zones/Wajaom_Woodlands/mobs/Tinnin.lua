@@ -95,8 +95,8 @@ function onMobFight(mob, target)
         if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
             mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
         end
-        mob:useMobAbility(1576); -- Barofield
-        mob:useMobAbility(1574); -- Polar Blast
+        mob:useMobAbility(1832); -- Barofield
+        mob:useMobAbility(1830); -- Polar Blast
 
     elseif (mob:AnimationSub() == 1 and os.time() > headTimer) then
         mob:AnimationSub(0);
@@ -114,9 +114,9 @@ function onMobFight(mob, target)
         if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
             mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
         end
-        mob:useMobAbility(1576); -- Barofield
-        mob:useMobAbility(1574); -- Polar Blast
-        mob:useMobAbility(1572); -- Pyric Blast
+        mob:useMobAbility(1832); -- Barofield
+        mob:useMobAbility(1830); -- Polar Blast
+        mob:useMobAbility(1828); -- Pyric Blast
     end
 end;
 

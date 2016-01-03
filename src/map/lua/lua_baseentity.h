@@ -26,9 +26,9 @@
 
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
-#include "../entities/charentity.h"
 
 class CBaseEntity;
+class CCharEntity;
 
 class CLuaBaseEntity
 {
@@ -469,10 +469,10 @@ public:
     int32 resetLocalVars(lua_State*);
 
     int32 setSpellList(lua_State*);
+    int32 hasSpellList(lua_State*);
 
     int32 hasValidJugPetItem(lua_State*);
     int32 getTarget(lua_State*);
-    int32 setBattleSubTarget(lua_State*);
     int32 hasTPMoves(lua_State*);
     int32 getMaster(lua_State*);
 
@@ -564,6 +564,13 @@ public:
 
     int32 getConfrontationEffect(lua_State* L);
     int32 copyConfrontationEffect(lua_State* L);    // copy confrontation effect, param = targetEntity:getShortID()
+
+    int32 queue(lua_State* L);
+    int32 timer(lua_State* L); //execute lua closure after some time
+
+    int32 addListener(lua_State* L);
+    int32 removeListener(lua_State* L);
+    int32 triggerListener(lua_State* L);
 };
 
 #endif

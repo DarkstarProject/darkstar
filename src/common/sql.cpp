@@ -199,7 +199,7 @@ int32 Sql_Ping(Sql_t* self)
 
 // @private
 
-static int32 Sql_P_KeepaliveTimer(uint32 tick,CTaskMgr::CTask* PTask)
+static int32 Sql_P_KeepaliveTimer(time_point tick,CTaskMgr::CTask* PTask)
 {
 	Sql_t* self = (Sql_t*)PTask->m_data;
 	ShowInfo("Pinging SQL server to keep connection alive...\n");
@@ -231,7 +231,7 @@ int32 Sql_Keepalive(Sql_t* self)
 	}
 	// establish keepalive
 	ping_interval = timeout - 30; // 30-second reserve
-	CTaskMgr::getInstance()->AddTask("Sql_P_KeepAliveTimer",gettick()+ping_interval*1000,self,CTaskMgr::TASK_INTERVAL,Sql_P_KeepaliveTimer,ping_interval*1000);
+	CTaskMgr::getInstance()->AddTask("Sql_P_KeepAliveTimer",server_clock::now()+std::chrono::seconds(ping_interval),self,CTaskMgr::TASK_INTERVAL,Sql_P_KeepaliveTimer,std::chrono::seconds(ping_interval));
 	return 0;
 }
 

@@ -28,10 +28,12 @@ This file is part of DarkStar-server source code.
 
 #include "../trait.h"
 #include "../entities/charentity.h"
+#include "../items/item_armor.h"
 
 class CPetEntity;
 class CMobEntity;
 class CMeritPoints;
+class CAbility;
 
 namespace charutils
 {
@@ -172,6 +174,7 @@ namespace charutils
     int32   GetPoints(CCharEntity* PChar, const char* type);
     std::string GetConquestPointsName(CCharEntity* PChar);
     void    SendToZone(CCharEntity* PChar, uint8 type, uint64 ipp);
+    void    AddWeaponSkillPoints(CCharEntity*, SLOTTYPE, int);
 
     int32   GetVar(CCharEntity* PChar, const char* var);
 };

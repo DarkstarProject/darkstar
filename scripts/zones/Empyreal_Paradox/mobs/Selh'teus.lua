@@ -46,7 +46,7 @@ function onMobFight(mob, target)
     local rejuv = mob:getLocalVar("rejuv");
     if (mob:getHPP() < 30 and rejuv == 0 and target:getFamily() == 478) then
         mob:messageText(mob, SELHTEUS_TEXT + 2);
-        mob:useMobAbility(1253);
+        mob:useMobAbility(1509);
         mob:setLocalVar("rejuv", 1);
     elseif lanceTime + 50 < mob:getBattleTime() and lanceOut == 0 then
         mob:entityAnimationPacket("sp00");

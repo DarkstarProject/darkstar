@@ -62,8 +62,8 @@ public:
 	void			WeatherChange(WEATHER weather);
 	void			PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*);	// отправляем глобальный пакет в пределах зоны
 
-	void			ZoneServer(uint32 tick);
-	void			ZoneServerRegion(uint32 tick);
+	void			ZoneServer(time_point tick);
+	void			ZoneServerRegion(time_point tick);
 
 	EntityList_t	GetCharList();
 	bool			CharListEmpty();

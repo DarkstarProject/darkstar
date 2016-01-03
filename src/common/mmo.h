@@ -37,7 +37,7 @@
 
 // флаги перед именем персонажа
 
-enum FLAGTYPE
+enum FLAGTYPE : uint32
 {
     FLAG_INEVENT        = 0x00000002,
     FLAG_CHOCOBO        = 0x00000040,

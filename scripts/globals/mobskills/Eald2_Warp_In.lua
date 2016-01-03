@@ -14,7 +14,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    mob:useMobAbility(733);
+    mob:useMobAbility(989);
     skill:setMsg(0);
     return 0;
 end;

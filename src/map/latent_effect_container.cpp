@@ -28,6 +28,10 @@ This file is part of DarkStar-server source code.
 #include "entities/battleentity.h"
 #include "utils/zoneutils.h"
 #include "conquest_system.h"
+#include "modifier.h"
+#include "items/item_weapon.h"
+#include "status_effect_container.h"
+#include "ai/ai_container.h"
 
 #include "time_server.h"
 
@@ -1437,7 +1441,7 @@ void CLatentEffectContainer::CheckLatentsPartyAvatar()
                         CPetEntity* PPet = (CPetEntity*)PMember->PPet;
 
                         if (PPet->m_PetID == m_LatentEffectList.at(i)->GetConditionsValue() &&
-                            PPet->PBattleAI->GetCurrentAction() != ACTION_DESPAWN)
+                            PPet->PAI->IsSpawned())
                         {
                             ActivateLatent = true;
                             break;
@@ -1450,7 +1454,7 @@ void CLatentEffectContainer::CheckLatentsPartyAvatar()
                 CPetEntity* PPet = (CPetEntity*)m_POwner->PPet;
 
                 if (PPet->m_PetID == m_LatentEffectList.at(i)->GetConditionsValue() &&
-                    PPet->PBattleAI->GetCurrentAction() != ACTION_FALL)
+                    !PPet->isDead())
                 {
                     ActivateLatent = true;
                 }

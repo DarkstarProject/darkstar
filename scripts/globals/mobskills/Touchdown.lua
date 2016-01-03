@@ -19,7 +19,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,MOBPARAM_WIPE_SHADOWS);
     target:delHP(dmg);
     mob:delStatusEffect(EFFECT_ALL_MISS);
-    mob:SetMobSkillAttack(false);
+    mob:SetMobSkillAttack(0);
     mob:AnimationSub(2);
     return dmg;
 end;

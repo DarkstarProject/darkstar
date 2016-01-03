@@ -25,7 +25,7 @@
 #include "attackutils.h"
 #include "battleutils.h"
 #include "../attack.h"
-
+#include "../items/item_weapon.h"
 
 namespace attackutils
 {

@@ -58,7 +58,7 @@ function onMobFight(mob,target)
             elseif (mob:AnimationSub() == 1 and (mob:getHP() <= changeHP - 1000 or
                     mob:getBattleTime() - changeTime > 300)) then
                 -- and use an ability before changing
-                mob:useMobAbility(417);
+                mob:useMobAbility(673);
                 mob:AnimationSub(2);
                 mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
                 mob:addStatusEffectEx(EFFECT_PHYSICAL_SHIELD, 0, 1, 0, 0);
@@ -72,7 +72,7 @@ function onMobFight(mob,target)
     else
         -- second phase AI: Implode every 9 seconds
         if (mob:getBattleTime() % 9 == 0) then
-            mob:useMobAbility(413);
+            mob:useMobAbility(669);
         end
     end
 end;

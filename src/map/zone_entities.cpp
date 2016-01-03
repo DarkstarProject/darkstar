@@ -23,7 +23,17 @@ This file is part of DarkStar-server source code.
 
 #include "zone_entities.h"
 
-#include "ai/ai_mob_dummy.h"
+#include "../common/utils.h"
+#include "party.h"
+#include "latent_effect_container.h"
+#include "status_effect_container.h"
+#include "recast_container.h"
+#include "treasure_pool.h"
+#include "mob_modifier.h"
+#include "enmity_container.h"
+
+#include "ai/ai_container.h"
+#include "ai/controllers/ai_controller.h"
 
 #include "entities/mobentity.h"
 #include "entities/npcentity.h"
@@ -199,7 +209,7 @@ void CZoneEntities::WeatherChange(WEATHER weather)
 	{
 		CMobEntity* PCurrentMob = (CMobEntity*)it->second;
 
-		PCurrentMob->PBattleAI->WeatherChange(weather, zoneutils::GetWeatherElement(weather));
+        PCurrentMob->PAI->EventHandler.triggerListener("WEATHER_CHANGE", PCurrentMob, static_cast<int>(weather), zoneutils::GetWeatherElement(weather));
 	}
 
 	for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
@@ -229,7 +239,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 		}
 		// It may have been nullptred by DespawnPet
 		if (PChar->PPet != nullptr) {
-			PChar->PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
+            PChar->PPet->PAI->Disengage();
 			DeletePET(PChar->PPet);//remove the TID for this pet
 
 			for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
@@ -296,15 +306,6 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 		}
 	}
 
-    for (auto PCharIt : m_charList)
-    {
-        CCharEntity* PCurrentChar = (CCharEntity*)PCharIt.second;
-        if (PCurrentChar->PBattleAI->m_PMagicState->GetTarget() == PChar)
-        {
-            PCurrentChar->PBattleAI->m_PMagicState->ClearTarget();
-        }
-    }
-
 	for (auto PMobIt : m_mobList)
 	{
         CMobEntity* PCurrentMob = (CMobEntity*)PMobIt.second;
@@ -314,27 +315,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 			PCurrentMob->m_OwnerID.clean();
             PCurrentMob->updatemask |= UPDATE_STATUS;
 		}
-        if (PCurrentMob->PBattleAI->m_PMagicState->GetTarget() == PChar)
-        {
-            PCurrentMob->PBattleAI->m_PMagicState->ClearTarget();
-        }
-        if (PCurrentMob->PBattleAI->GetBattleSubTarget() == PChar)
-        {
-            PCurrentMob->PBattleAI->SetBattleSubTarget(nullptr);
-        }
 	}
-    for (auto PPetIt : m_petList)
-    {
-        CPetEntity* PCurrentPet = (CPetEntity*)PPetIt.second;
-        if (PCurrentPet->PBattleAI->m_PMagicState->GetTarget() == PChar)
-        {
-            PCurrentPet->PBattleAI->m_PMagicState->ClearTarget();
-        }
-        if (PCurrentPet->PBattleAI->GetBattleSubTarget() == PChar)
-        {
-            PCurrentPet->PBattleAI->SetBattleSubTarget(nullptr);
-        }
-    }
 
 	// TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
 
@@ -403,11 +384,11 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
 
 			uint16 expGain = (uint16)charutils::GetRealExp(PChar->GetMLevel(), PCurrentMob->GetMLevel());
 
-			CAIMobDummy* PAIMob = (CAIMobDummy*)PCurrentMob->PBattleAI;
+			CAIController* PController = static_cast<CAIController*>(PCurrentMob->PAI->GetController());
 
 			bool validAggro = expGain > 50 || PChar->animation == ANIMATION_HEALING || PCurrentMob->getMobMod(MOBMOD_ALWAYS_AGGRO);
 
-			if (validAggro && PAIMob->CanAggroTarget(PChar))
+			if (validAggro && PController->CanAggroTarget(PChar))
 			{
 				PCurrentMob->PEnmityContainer->AddAggroEnmity(PChar);
 			}
@@ -639,7 +620,7 @@ void CZoneEntities::TOTDChange(TIMETYPE TOTD)
 
 				if (PMob->m_SpawnType == SPAWNTYPE_ATNIGHT)
 				{
-					PMob->SetDespawnTimer(1);
+					PMob->SetDespawnTime(1ms);
 					PMob->m_AllowRespawn = false;
 				}
 			}
@@ -655,7 +636,7 @@ void CZoneEntities::TOTDChange(TIMETYPE TOTD)
 
 				if (PMob->m_SpawnType == SPAWNTYPE_ATEVENING)
 				{
-					PMob->SetDespawnTimer(1);
+					PMob->SetDespawnTime(1ms);
 					PMob->m_AllowRespawn = false;
 				}
 			}
@@ -681,9 +662,9 @@ void CZoneEntities::TOTDChange(TIMETYPE TOTD)
 
 				if (PMob->m_SpawnType == SPAWNTYPE_ATEVENING)
 				{
-					PMob->SetDespawnTimer(0);
+					PMob->SetDespawnTime(0s);
 					PMob->m_AllowRespawn = true;
-					PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+                    PMob->Spawn();
 				}
 			}
 		}
@@ -696,9 +677,9 @@ void CZoneEntities::TOTDChange(TIMETYPE TOTD)
 
 				if (PMob->m_SpawnType == SPAWNTYPE_ATNIGHT)
 				{
-					PMob->SetDespawnTimer(0);
+					PMob->SetDespawnTime(0s);
 					PMob->m_AllowRespawn = true;
-					PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+                    PMob->Spawn();
 				}
 			}
 		}
@@ -908,14 +889,14 @@ void CZoneEntities::WideScan(CCharEntity* PChar, uint16 radius)
 	PChar->pushPacket(new CWideScanPacket(WIDESCAN_END));
 }
 
-void CZoneEntities::ZoneServer(uint32 tick)
+void CZoneEntities::ZoneServer(time_point tick)
 {
 	for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
 	{
 		CMobEntity* PMob = (CMobEntity*)it->second;
 
 		PMob->StatusEffectContainer->CheckEffects(tick);
-		PMob->PBattleAI->CheckCurrentAction(tick);
+        PMob->PAI->Tick(tick);
 		PMob->StatusEffectContainer->CheckRegen(tick);
 	}
 
@@ -923,14 +904,7 @@ void CZoneEntities::ZoneServer(uint32 tick)
 	{
 		CNpcEntity* PNpc = (CNpcEntity*)it->second;
 
-		if (PNpc->PBattleAI != nullptr)
-		{
-			PNpc->PBattleAI->CheckCurrentAction(tick);
-		}
-        else
-        {
-            PNpc->UpdateEntity();
-        }
+        PNpc->PAI->Tick(server_clock::now());
 	}
 
 	EntityList_t::const_iterator pit = m_petList.begin();
@@ -938,9 +912,10 @@ void CZoneEntities::ZoneServer(uint32 tick)
 	{
 		CPetEntity* PPet = (CPetEntity*)pit->second;
 		PPet->StatusEffectContainer->CheckEffects(tick);
-		PPet->PBattleAI->CheckCurrentAction(tick);
+        PPet->PAI->Tick(tick);
 		PPet->StatusEffectContainer->CheckRegen(tick);
 		if (PPet->status == STATUS_DISAPPEAR){
+            delete pit->second;
 			m_petList.erase(pit++);
 		}
 		else{
@@ -956,21 +931,21 @@ void CZoneEntities::ZoneServer(uint32 tick)
 		{
 			PChar->PRecastContainer->Check();
 			PChar->StatusEffectContainer->CheckEffects(tick);
-			PChar->PBattleAI->CheckCurrentAction(tick);
-			PChar->PTreasurePool->CheckItems(tick);
+            PChar->PAI->Tick(tick);
+			PChar->PTreasurePool->CheckItems();
 			PChar->StatusEffectContainer->CheckRegen(tick);
 		}
 	}
 }
 
-void CZoneEntities::ZoneServerRegion(uint32 tick)
+void CZoneEntities::ZoneServerRegion(time_point tick)
 {
 	for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
 	{
 		CMobEntity* PMob = (CMobEntity*)it->second;
 
 		PMob->StatusEffectContainer->CheckEffects(tick);
-		PMob->PBattleAI->CheckCurrentAction(tick);
+        PMob->PAI->Tick(tick);
 	}
 
 	for (EntityList_t::const_iterator it = m_petList.begin(); it != m_petList.end(); ++it)
@@ -978,7 +953,7 @@ void CZoneEntities::ZoneServerRegion(uint32 tick)
 		CPetEntity* PPet = (CPetEntity*)it->second;
 
 		PPet->StatusEffectContainer->CheckEffects(tick);
-		PPet->PBattleAI->CheckCurrentAction(tick);
+        PPet->PAI->Tick(tick);
 	}
 
 	for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
@@ -989,8 +964,8 @@ void CZoneEntities::ZoneServerRegion(uint32 tick)
 		{
 			PChar->PRecastContainer->Check();
 			PChar->StatusEffectContainer->CheckEffects(tick);
-			PChar->PBattleAI->CheckCurrentAction(tick);
-			PChar->PTreasurePool->CheckItems(tick);
+            PChar->PAI->Tick(tick);
+			PChar->PTreasurePool->CheckItems();
 
 			m_zone->CheckRegions(PChar);
 		}

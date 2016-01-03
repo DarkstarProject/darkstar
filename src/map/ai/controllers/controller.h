@@ -21,38 +21,41 @@
 ===========================================================================
 */
 
-#ifndef _CAINPCDUMMY_H
-#define _CAINPCDUMMY_H
+#ifndef _CONTROLLER_H
+#define _CONTROLLER_H
 
-/*
-The AINpcPatrol allows npcs to use lua pathfind bindings and patrol around areas.
-*/
+#include "../../../common/cbasetypes.h"
+#include "../../../common/mmo.h"
 
-#include "ai_general.h"
+class CBattleEntity;
 
-class CNpcEntity;
-
-class CAINpcDummy : public CAIGeneral
+class CController
 {
 public:
+    CController(CBattleEntity* _POwner);
+    virtual void Tick(time_point tick) = 0;
+    virtual void Despawn();
+    virtual void Cast(uint16 targid, uint16 spellid);
+    virtual bool Engage(uint16 targid);
+    virtual void ChangeTarget(uint16 targid);
+    virtual void Disengage();
+    virtual void WeaponSkill(uint16 targid, uint16 wsid);
 
-  virtual void CheckCurrentAction(uint32 tick);
-  virtual void WeatherChange(WEATHER weather, uint8 element);
+    bool IsAutoAttackEnabled();
+    void SetAutoAttackEnabled(bool);
+    bool IsWeaponSkillEnabled();
+    void SetWeaponSkillEnabled(bool);
+    bool IsMagicCastingEnabled();
+    void SetMagicCastingEnabled(bool);
 
-  CAINpcDummy(CNpcEntity* PNpc);
-
+    bool canUpdate {true};
 
 protected:
-  virtual void TransitionBack(bool skipWait = false);
-
-  CNpcEntity* m_PNpc;
-
-  void ActionRoaming();
-  void ActionSpawn();
-  void ActionWait();
-
-private:
-
+    time_point m_Tick;
+    CBattleEntity* POwner;
+    bool m_AutoAttackEnabled {true};
+    bool m_WeaponSkillEnabled {true};
+    bool m_MagicCastingEnabled {true};
 };
 
 #endif

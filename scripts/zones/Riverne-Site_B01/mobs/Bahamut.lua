@@ -83,7 +83,7 @@ function onMobFight(mob,target)
                     if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- default behaviour
                         mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
                     end;
-                    mob:useMobAbility(1295);
+                    mob:useMobAbility(1551);
                 end;
             end;
         elseif (MegaFlareQueue == 0 and mobHPP < 10 and GigaFlare < 1 and mob:checkDistance(target) <= 15) then  -- All of the scripted Megaflares are to happen before Gigaflare.
@@ -94,7 +94,7 @@ function onMobFight(mob,target)
             if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- default behaviour
                 mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
             end;
-            mob:useMobAbility(1296);
+            mob:useMobAbility(1552);
         end;
     end;
 end;

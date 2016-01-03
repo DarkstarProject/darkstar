@@ -49,10 +49,10 @@ function onMobFight(mob,target)
     local bhp = mob:getLocalVar("Benediction");
 
     if (battletime > invtime + 150) then
-        mob:useMobAbility(438);
+        mob:useMobAbility(694);
         mob:setLocalVar("Invincible", battletime);
     elseif (mob:getHPP() < bhp) then
-        mob:useMobAbility(433);
+        mob:useMobAbility(689);
         mob:setLocalVar("Benediction", 0);
     end
 

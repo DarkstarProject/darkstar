@@ -35,7 +35,8 @@ This file is part of DarkStar-server source code.
 
 #include "../lua/luautils.h"
 
-#include "../alliance.h"
+#include "../ai/ai_container.h"
+#include "../ai/states/attack_state.h"
 
 #include "../packets/char_abilities.h"
 #include "../packets/char_appearance.h"
@@ -65,6 +66,7 @@ This file is part of DarkStar-server source code.
 #include "../packets/server_ip.h"
 
 #include "../ability.h"
+#include "../alliance.h"
 #include "../grades.h"
 #include "../conquest_system.h"
 #include "../map.h"
@@ -72,10 +74,19 @@ This file is part of DarkStar-server source code.
 #include "../trait.h"
 #include "../vana_time.h"
 #include "../weapon_skill.h"
+#include "../item_container.h"
+#include "../recast_container.h"
+#include "../status_effect_container.h"
+#include "../linkshell.h"
+#include "../universal_container.h"
+#include "../latent_effect_container.h"
+#include "../treasure_pool.h"
+#include "../mob_modifier.h"
 
 #include "../entities/charentity.h"
 #include "../entities/petentity.h"
 #include "../entities/mobentity.h"
+#include "../entities/automatonentity.h"
 
 #include "battleutils.h"
 #include "charutils.h"
@@ -1529,7 +1540,6 @@ namespace charutils
                     {
                         PChar->look.ranged = 0;
                     }
-                    PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_INTERRUPT);
                     UpdateWeaponStyle(PChar, equipSlotID, nullptr);
                 }
                 break;
@@ -1539,7 +1549,6 @@ namespace charutils
                     {
                         PChar->look.ranged = 0;
                     }
-                    PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_INTERRUPT);
                     PChar->health.tp = 0;
                     BuildingCharWeaponSkills(PChar);
                     UpdateWeaponStyle(PChar, equipSlotID, nullptr);
@@ -1555,9 +1564,10 @@ namespace charutils
                         }
                     }
 
-                    if (PChar->PBattleAI->GetCurrentAction() == ACTION_ATTACK)
+                    if (PChar->PAI->IsEngaged())
                     {
-                        PChar->PBattleAI->SetLastActionTime(gettick());
+                        auto state = dynamic_cast<CAttackState*>(PChar->PAI->GetCurrentState());
+                        if (state) state->ResetAttackTimer();
                     }
 
                     // If main hand is empty, figure out which UnarmedItem to give the player.
@@ -1678,9 +1688,10 @@ namespace charutils
                             }
                             break;
                         }
-                        if (PChar->PBattleAI->GetCurrentAction() == ACTION_ATTACK)
+                        if (PChar->PAI->IsEngaged())
                         {
-                            PChar->PBattleAI->SetLastActionTime(gettick());
+                            auto state = dynamic_cast<CAttackState*>(PChar->PAI->GetCurrentState());
+                            if (state) state->ResetAttackTimer();
                         }
                         PChar->m_Weapons[SLOT_MAIN] = (CItemWeapon*)PItem;
 
@@ -4639,6 +4650,26 @@ namespace charutils
         }
 
         PChar->pushPacket(new CServerIPPacket(PChar, type, ipp));
+    }
+
+    void AddWeaponSkillPoints(CCharEntity* PChar, SLOTTYPE slotid, int wspoints)
+    {
+        CItemWeapon* PWeapon = (CItemWeapon*)PChar->m_Weapons[slotid];
+
+        if (PWeapon && PWeapon->isUnlockable() && !PWeapon->isUnlocked())
+        {
+            if (PWeapon->addWsPoints(wspoints))
+            {
+                // weapon is now broken
+                PChar->PLatentEffectContainer->CheckLatentsWeaponBreak(slotid);
+                PChar->pushPacket(new CCharStatsPacket(PChar));
+            }
+            int8 extra[sizeof(PWeapon->m_extra) * 2 + 1];
+            Sql_EscapeStringLen(SqlHandle, extra, (const char*)PWeapon->m_extra, sizeof(PWeapon->m_extra));
+
+            const int8* Query = "UPDATE char_inventory SET extra = '%s' WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
+            Sql_Query(SqlHandle, Query, extra, PChar->id, PWeapon->getLocationID(), PWeapon->getSlotID());
+        }
     }
 
     int32 GetVar(CCharEntity* PChar, const char* var)

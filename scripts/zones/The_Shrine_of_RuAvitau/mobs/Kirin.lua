@@ -31,7 +31,7 @@ end
 
 function onMobFight( mob, target )
     if (mob:getHPP() < math.random(50,60) and mob:getLocalVar("astralFlow") == 0) then
-        mob:useMobAbility(478);
+        mob:useMobAbility(734);
         -- Spawn Avatar
         mob:spawnPet();
         mob:setLocalVar("astralFlow", 1);

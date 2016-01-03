@@ -37,7 +37,7 @@ function onMobFight(mob, target)
     local HPP = mob:getHPP();
     if (mob:getLocalVar("usedees") == 0) then
         if (HPP <= mob:getLocalVar("eeshpp")) then
-            mob:useMobAbility(1675); -- Eagle Eye Shot
+            mob:useMobAbility(1931); -- Eagle Eye Shot
             mob:setLocalVar("usedees", 1);
         end
     end

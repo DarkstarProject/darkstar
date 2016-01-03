@@ -56,12 +56,10 @@ This file is part of DarkStar-server source code.
 #include "time_server.h"
 #include "transport.h"
 #include "vana_time.h"
+#include "status_effect_container.h"
 #include "utils/zoneutils.h"
 #include "conquest_system.h"
 #include "utils/mobutils.h"
-
-#include "ai/ai_char_gm.h"
-#include "ai/ai_char_normal.h"
 
 #include "lua/luautils.h"
 
@@ -240,9 +238,9 @@ int32 do_init(int32 argc, int8** argv)
 
     CTransportHandler::getInstance()->InitializeTransport();
 
-    CTaskMgr::getInstance()->AddTask("time_server", gettick(), nullptr, CTaskMgr::TASK_INTERVAL, time_server, 2400);
-    CTaskMgr::getInstance()->AddTask("map_cleanup", gettick(), nullptr, CTaskMgr::TASK_INTERVAL, map_cleanup, 5000);
-    CTaskMgr::getInstance()->AddTask("garbage_collect", gettick(), nullptr, CTaskMgr::TASK_INTERVAL, map_garbage_collect, 15 * 60 * 1000);
+    CTaskMgr::getInstance()->AddTask("time_server", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, time_server, 2400ms);
+    CTaskMgr::getInstance()->AddTask("map_cleanup", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, map_cleanup, 5s);
+    CTaskMgr::getInstance()->AddTask("garbage_collect", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, map_garbage_collect, 15min);
 
     CREATE(g_PBuff, int8, map_config.buffer_size + 20);
     CREATE(PTempBuff, int8, map_config.buffer_size + 20);
@@ -319,14 +317,14 @@ void set_server_type()
 *                                                                       *
 ************************************************************************/
 
-int32 do_sockets(fd_set* rfd, int32 next)
+int32 do_sockets(fd_set* rfd, duration next)
 {
     struct timeval timeout;
     int32 ret;
     memcpy(rfd, &readfds, sizeof(*rfd));
 
-    timeout.tv_sec = next / 1000;
-    timeout.tv_usec = next % 1000 * 1000;
+    timeout.tv_sec = std::chrono::duration_cast<std::chrono::seconds>(next).count();
+    timeout.tv_usec = std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
 
     ret = sSelect(fd_max, rfd, nullptr, nullptr, &timeout);
 
@@ -394,7 +392,7 @@ int32 do_sockets(fd_set* rfd, int32 next)
             }
             if (map_session_data->shuttingDown > 0)
             {
-                map_close_session(gettick(), map_session_data);
+                map_close_session(server_clock::now(), map_session_data);
             }
         }
     }
@@ -513,7 +511,6 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
             // наверное создание персонажа лучше вынести в метод charutils::LoadChar() и загрузку инвентаря туда же сунуть
             CCharEntity* PChar = new CCharEntity();
             PChar->id = CharID;
-            PChar->PBattleAI = new CAICharNormal(PChar);
 
             charutils::LoadChar(PChar);
 
@@ -611,7 +608,6 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
             ShowWarning("Bad packet size %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, RBUFW(SmallPD_ptr, 2), RBUFW(buff, 2), SmallPD_Size, PChar->GetName());
         }
     }
-    ((CAICharNormal*)PChar->PBattleAI)->CheckActionAfterReceive(gettick());
     map_session_data->client_packet_id = SmallPD_Code;
 
     // здесь мы проверяем, получил ли клиент предыдущий пакет
@@ -734,7 +730,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 *                                                                       *
 ************************************************************************/
 
-int32 map_close_session(uint32 tick, map_session_data_t* map_session_data)
+int32 map_close_session(time_point tick, map_session_data_t* map_session_data)
 {
     if (map_session_data != nullptr &&
         map_session_data->server_packet_data != nullptr &&
@@ -773,7 +769,7 @@ int32 map_close_session(uint32 tick, map_session_data_t* map_session_data)
 *                                                                       *
 ************************************************************************/
 
-int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
+int32 map_cleanup(time_point tick, CTaskMgr::CTask* PTask)
 {
     map_session_list_t::iterator it = map_session_list.begin();
 
@@ -1324,7 +1320,7 @@ int32 map_config_read(const int8* cfgName)
     return 0;
 }
 
-int32 map_garbage_collect(uint32 tick, CTaskMgr::CTask* PTask)
+int32 map_garbage_collect(time_point tick, CTaskMgr::CTask* PTask)
 {
     luautils::garbageCollect();
     return 0;

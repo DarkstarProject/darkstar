@@ -29,16 +29,15 @@
 #include "alliance.h"
 #include "entities/battleentity.h"
 #include "utils/charutils.h"
-#include "conquest_system.h"
-#include "utils/battleutils.h"
 #include "utils/blueutils.h"
 #include "utils/jailutils.h"
-#include "utils/petutils.h"
 #include "utils/zoneutils.h"
 #include "map.h"
 #include "party.h"
 #include "treasure_pool.h"
 #include "message.h"
+#include "latent_effect_container.h"
+#include "status_effect_container.h"
 
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
@@ -48,6 +47,7 @@
 #include "packets/party_define.h"
 #include "packets/party_effects.h"
 #include "packets/party_member_update.h"
+#include "packets/message_basic.h"
 
 //should have brace-or-equal initializers when MSVC supports it
 struct CParty::partyInfo_t
@@ -144,7 +144,7 @@ void CParty::DisbandParty(bool playerInitiated)
             if (sync && sync->GetDuration() == 0)
             {
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 30, 553));
-                sync->SetStartTime(gettick());
+                sync->SetStartTime(server_clock::now());
                 sync->SetDuration(30000);
             }
             Sql_Query(SqlHandle, "DELETE FROM accounts_parties WHERE charid = %u;", PChar->id);
@@ -261,7 +261,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
                         if (sync && sync->GetDuration() == 0)
                         {
                             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 30, 553));
-                            sync->SetStartTime(gettick());
+                            sync->SetStartTime(server_clock::now());
                             sync->SetDuration(30000);
                         }
                         DisableSync();
@@ -274,7 +274,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
                             if (sync && sync->GetDuration() == 0)
                             {
                                 PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 30, 553));
-                                sync->SetStartTime(gettick());
+                                sync->SetStartTime(server_clock::now());
                                 sync->SetDuration(30000);
                             }
                         }
@@ -339,7 +339,7 @@ void CParty::DelMember(CBattleEntity* PEntity)
                         if (sync && sync->GetDuration() == 0)
                         {
                             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 30, 553));
-                            sync->SetStartTime(gettick());
+                            sync->SetStartTime(server_clock::now());
                             sync->SetDuration(30000);
                         }
                         DisableSync();
@@ -352,7 +352,7 @@ void CParty::DelMember(CBattleEntity* PEntity)
                             if (sync && sync->GetDuration() == 0)
                             {
                                 PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 30, 553));
-                                sync->SetStartTime(gettick());
+                                sync->SetStartTime(server_clock::now());
                                 sync->SetDuration(30000);
                             }
                         }
@@ -980,7 +980,7 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
                         if (sync && sync->GetDuration() == 0)
                         {
                             member->pushPacket(new CMessageBasicPacket(member, member, 10, 30, message));
-                            sync->SetStartTime(gettick());
+                            sync->SetStartTime(server_clock::now());
                             sync->SetDuration(30000);
                         }
                     }

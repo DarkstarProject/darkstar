@@ -94,9 +94,11 @@
 #include "../utils/guildutils.h"
 #include "../utils/puppetutils.h"
 #include "../utils/jailutils.h"
+#include "../utils/mobutils.h"
 #include "../map.h"
 #include "../alliance.h"
 #include "../entities/mobentity.h"
+#include "../entities/automatonentity.h"
 #include "../mobskill.h"
 #include "../entities/npcentity.h"
 #include "../entities/petentity.h"
@@ -106,11 +108,30 @@
 #include "../trade_container.h"
 #include "../utils/zoneutils.h"
 #include "../entities/charentity.h"
+#include "../status_effect_container.h"
+#include "../item_container.h"
+#include "../recast_container.h"
+#include "../latent_effect_container.h"
+#include "../instance.h"
+#include "../enmity_container.h"
+#include "../mob_spell_container.h"
 
-#include "../ai/ai_npc_dummy.h"
-#include "../ai/ai_mob_dummy.h"
+#include "../ai/ai_container.h"
+#include "../ai/controllers/ai_controller.h"
+#include "../ai/states/weaponskill_state.h"
+#include "../ai/states/despawn_state.h"
+#include "../ai/states/inactive_state.h"
+#include "../ai/states/item_state.h"
+#include "../ai/states/death_state.h"
+#include "../ai/states/raise_state.h"
+#include "../ai/states/mobskill_state.h"
+#include "../ai/states/attack_state.h"
+#include "../ai/states/range_state.h"
+#include "../ai/states/ability_state.h"
+#include "../ai/states/magic_state.h"
 
 #include "../transport.h"
+#include "../mob_modifier.h"
 
 CLuaBaseEntity::CLuaBaseEntity(lua_State* L)
 {
@@ -5865,7 +5886,7 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
         PPet->m_SpawnPoint = nearPosition(PMob->loc.p, 2.2f, M_PI);
 
         // setup AI
-        PPet->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+        PPet->Spawn();
 
     }
     return 0;
@@ -6050,7 +6071,7 @@ inline int32 CLuaBaseEntity::getBattleTime(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    lua_pushinteger(L, ((CBattleEntity*)m_PBaseEntity)->PBattleAI->GetBattleTime());
+    lua_pushinteger(L, std::chrono::duration_cast<std::chrono::seconds>(((CBattleEntity*)m_PBaseEntity)->GetBattleTime()).count());
     return 1;
 }
 
@@ -6527,13 +6548,13 @@ inline int32 CLuaBaseEntity::getWSSkillchainProp(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    CWeaponSkill* WSkill = ((CCharEntity*)m_PBaseEntity)->PBattleAI->GetCurrentWeaponSkill();
+    auto state = dynamic_cast<CWeaponSkillState*>(m_PBaseEntity->PAI->GetCurrentState());
 
-    if (WSkill)
+    if (state)
     {
-        lua_pushinteger(L, WSkill->getPrimarySkillchain());
-        lua_pushinteger(L, WSkill->getSecondarySkillchain());
-        lua_pushinteger(L, WSkill->getTertiarySkillchain());
+        lua_pushinteger(L, state->GetSkill()->getPrimarySkillchain());
+        lua_pushinteger(L, state->GetSkill()->getSecondarySkillchain());
+        lua_pushinteger(L, state->GetSkill()->getTertiarySkillchain());
 
         return 3;
     }
@@ -7059,15 +7080,15 @@ inline int32 CLuaBaseEntity::getSpecialBattlefieldLeftTime(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
-    uint16 Leftime = 0;
+    duration Leftime;
 
 
     if (PZone != nullptr && PZone->m_BattlefieldHandler != nullptr)
     {
-        Leftime = PZone->m_BattlefieldHandler->SpecialBattlefieldLeftTime(lua_tointeger(L, 1), gettick());
+        Leftime = PZone->m_BattlefieldHandler->SpecialBattlefieldLeftTime(lua_tointeger(L, 1), server_clock::now());
     }
 
-    lua_pushinteger(L, Leftime);
+    lua_pushinteger(L, std::chrono::duration_cast<std::chrono::seconds>(Leftime).count());
     return 1;
 }
 // Add time on your Special battlefield
@@ -7081,7 +7102,7 @@ inline int32 CLuaBaseEntity::addTimeToSpecialBattlefield(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
-    PZone->m_BattlefieldHandler->GiveTimeToBattlefield(lua_tointeger(L, 1), lua_tointeger(L, 2));
+    PZone->m_BattlefieldHandler->GiveTimeToBattlefield(lua_tointeger(L, 1), std::chrono::seconds(lua_tointeger(L, 2)));
 
     return 1;
 }
@@ -7146,12 +7167,6 @@ inline int32 CLuaBaseEntity::setRespawnTime(lua_State* L)
 
         if (!lua_isnil(L, 2) && lua_isboolean(L, 2) && lua_toboolean(L, 2)) //set optional parameter to true to only modify the timer
             return 0;
-
-        PMob->PBattleAI->SetLastActionTime(gettick());
-        if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE)
-        {
-            PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-        }
     }
     else
     {
@@ -7350,7 +7365,8 @@ inline int32 CLuaBaseEntity::openDoor(lua_State *L)
         m_PBaseEntity->animation = ANIMATION_OPEN_DOOR;
         m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE, UPDATE_COMBAT));
 
-        CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_door", gettick() + OpenTime, m_PBaseEntity, CTaskMgr::TASK_ONCE, close_door));
+        CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_door",
+            server_clock::now() + std::chrono::milliseconds(OpenTime), m_PBaseEntity, CTaskMgr::TASK_ONCE, close_door));
     }
     return 0;
 }
@@ -7365,7 +7381,7 @@ inline int32 CLuaBaseEntity::closeDoor(lua_State *L)
         uint32 CloseTime = (!lua_isnil(L, 1) && lua_isnumber(L, 1)) ? (uint32)lua_tointeger(L, 1) * 1000 : 7000;
         m_PBaseEntity->animation = ANIMATION_CLOSE_DOOR;
         m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE, UPDATE_COMBAT));
-        CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("open_door", gettick() + CloseTime, m_PBaseEntity, CTaskMgr::TASK_ONCE, open_door));
+        CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("open_door", server_clock::now() + std::chrono::milliseconds(CloseTime), m_PBaseEntity, CTaskMgr::TASK_ONCE, open_door));
     }
     return 0;
 }
@@ -7393,22 +7409,17 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
         case 5: actiontype = ACTION_ITEM_FINISH; break;
         case 6: actiontype = ACTION_JOBABILITY_FINISH; break;
         case 11: actiontype = ACTION_MOBABILITY_FINISH; break;
-        case 13: actiontype = ACTION_RAISE_MENU_SELECTION; break;
+        case 13: actiontype = ACTION_PET_MOBABILITY_FINISH; break;
         case 14: actiontype = ACTION_DANCE; break;
     }
 
-    apAction_t Action;
-    PChar->m_ActionList.clear();
+    action_t Action;
 
-    Action.ActionTarget = PChar;
-    Action.reaction = REACTION_NONE;
-    Action.speceffect = SPECEFFECT_NONE;
-    Action.animation = anim;
-    Action.param = 10;
-    Action.messageID = 0;
+    Action.id = PChar->id;
+    Action.actionid = 1;
 
     // If you use ACTION_MOBABILITY_FINISH, the first param = anim, the second param = skill id.
-    if (actiontype == ACTION_MOBABILITY_FINISH || actiontype == ACTION_RAISE_MENU_SELECTION)
+    if (actiontype == ACTION_MOBABILITY_FINISH || actiontype == ACTION_PET_MOBABILITY_FINISH)
     {
         CBattleEntity* PTarget = (CBattleEntity*)PChar->loc.zone->GetEntity(PChar->m_TargID);
         if (PTarget == nullptr)
@@ -7422,35 +7433,27 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
             return 0;
         }
         CMobEntity* PMob = (CMobEntity*)PTarget;
-        PMob->m_ActionList.clear();
 
-        ACTIONTYPE oldAction = PMob->PBattleAI->GetCurrentAction();
-        PMob->PBattleAI->SetCurrentAction(actiontype);
-        // we have to make a fake mob skill for this to work.
-        CMobSkill* skill = new CMobSkill(1);
-        skill->setAnimationID(anim);
-        Action.animation = anim;
-        skill->setMsg(185); // takes damage default msg
-        Action.messageID = 185;
-        PMob->PBattleAI->SetCurrentMobSkill(skill);
-        PMob->m_ActionList.push_back(Action);
-        PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CActionPacket(PMob));
-        PMob->PBattleAI->SetCurrentAction(oldAction);
-        PMob->PBattleAI->SetCurrentMobSkill(nullptr);
-        delete skill;
-        skill = nullptr;
+        Action.actiontype = actiontype;
+        actionList_t& list = Action.getNewActionList();
+        list.ActionTargetID = PTarget->id;
+        actionTarget_t& target = list.getNewActionTarget();
+        target.animation = anim;
+        target.param = 10;
+        target.messageID = 185;
+        PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CActionPacket(Action));
         return 0;
     }
 
-    ACTIONTYPE oldAction = PChar->PBattleAI->GetCurrentAction();
-    PChar->PBattleAI->SetCurrentSpell(1);
-    PChar->PBattleAI->SetCurrentJobAbility(1);
-    PChar->PBattleAI->SetCurrentWeaponSkill(1);
-    PChar->PBattleAI->SetCurrentAction(actiontype);
+    Action.actiontype = actiontype;
+    actionList_t& list = Action.getNewActionList();
+    list.ActionTargetID = PChar->id;
+    actionTarget_t& target = list.getNewActionTarget();
+    target.animation = anim;
+    target.param = 10;
+    target.messageID = 185;
 
-    PChar->m_ActionList.push_back(Action);
-    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CActionPacket(PChar));
-    PChar->PBattleAI->SetCurrentAction(oldAction);
+    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CActionPacket(Action));
 
     return 0;
 }
@@ -7530,7 +7533,7 @@ inline int32 CLuaBaseEntity::showNPC(lua_State *L)
     m_PBaseEntity->status = STATUS_NORMAL;
     m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE, UPDATE_COMBAT));
 
-    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("disappear_npc", gettick() + OpenTime, m_PBaseEntity, CTaskMgr::TASK_ONCE, disappear_npc));
+    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("disappear_npc", server_clock::now() + std::chrono::milliseconds(OpenTime), m_PBaseEntity, CTaskMgr::TASK_ONCE, disappear_npc));
 
     return 0;
 }
@@ -7553,7 +7556,7 @@ inline int32 CLuaBaseEntity::hideNPC(lua_State *L)
         m_PBaseEntity->status = STATUS_DISAPPEAR;
         m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_DESPAWN, UPDATE_NONE));
 
-        CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", gettick() + OpenTime, m_PBaseEntity, CTaskMgr::TASK_ONCE, reappear_npc));
+        CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", server_clock::now() + std::chrono::milliseconds(OpenTime), m_PBaseEntity, CTaskMgr::TASK_ONCE, reappear_npc));
     }
     return 0;
 }
@@ -7567,7 +7570,7 @@ inline int32 CLuaBaseEntity::updateNPCHideTime(lua_State *L)
     {
         uint32 OpenTime = (!lua_isnil(L, 1) && lua_isnumber(L, 1)) ? (uint32)lua_tointeger(L, 1) * 1000 : 15000;
 
-        CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", gettick() + OpenTime, m_PBaseEntity, CTaskMgr::TASK_ONCE, reappear_npc));
+        CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", server_clock::now() + std::chrono::milliseconds(OpenTime), m_PBaseEntity, CTaskMgr::TASK_ONCE, reappear_npc));
     }
     return 0;
 }
@@ -8342,25 +8345,28 @@ inline int32 CLuaBaseEntity::castSpell(lua_State* L)
 
     if (lua_isnumber(L, 1))
     {
-        quAction_t action;
-        action.action = ACTION_MAGIC_START;
-        action.param = lua_tointeger(L, 1);
+        auto spellid {lua_tointeger(L, 1)};
+        CBattleEntity* PTarget {nullptr};
 
         if (!lua_isnil(L, 1) && lua_isuserdata(L, 1))
         {
             CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-            action.target = (CBattleEntity*)PLuaBaseEntity->m_PBaseEntity;
-        }
-        else
-        {
-            action.target = nullptr;
+            PTarget = (CBattleEntity*)PLuaBaseEntity->m_PBaseEntity;
         }
 
-        ((CMobEntity*)m_PBaseEntity)->PBattleAI->m_actionQueue.push(action);
+        m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [PTarget, spellid](auto PEntity) {
+            if (PTarget)
+                PEntity->PAI->Cast(PTarget->targid, spellid);
+            else if (dynamic_cast<CMobEntity*>(PEntity))
+                PEntity->PAI->Cast(static_cast<CMobEntity*>(PEntity)->GetBattleTargetID(), spellid);
+        }));
     }
     else
     {
-        ((CMobEntity*)m_PBaseEntity)->PBattleAI->SetLastMagicTime(0);
+        m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [](auto PEntity) {
+            if (dynamic_cast<CMobEntity*>(PEntity))
+                static_cast<CAIController*>(PEntity->PAI->GetController())->TryCastSpell();
+        }));
     }
     return 0;
 }
@@ -8369,11 +8375,31 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-    quAction_t action;
-    action.action = ACTION_MOBABILITY_START;
-    action.param = (lua_isnumber(L, 1) ? lua_tointeger(L, 1) : 0);
-    action.target = nullptr;
-    ((CMobEntity*)m_PBaseEntity)->PBattleAI->m_actionQueue.push(action);
+    if (lua_isnumber(L, 1))
+    {
+        auto skillid {lua_tointeger(L, 1)};
+        CBattleEntity* PTarget {nullptr};
+
+        if (!lua_isnil(L, 1) && lua_isuserdata(L, 1))
+        {
+            CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+            PTarget = (CBattleEntity*)PLuaBaseEntity->m_PBaseEntity;
+        }
+
+        m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [PTarget, skillid](auto PEntity) {
+            if (PTarget)
+                PEntity->PAI->MobSkill(PTarget->targid, skillid);
+            else if (dynamic_cast<CMobEntity*>(PEntity))
+                PEntity->PAI->MobSkill(static_cast<CMobEntity*>(PEntity)->GetBattleTargetID(), skillid);
+        }));
+    }
+    else
+    {
+        m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [](auto PEntity) {
+            if (dynamic_cast<CMobEntity*>(PEntity))
+                static_cast<CAIController*>(PEntity->PAI->GetController())->MobSkill();
+        }));
+    };
 
     return 0;
 }
@@ -8382,7 +8408,7 @@ inline int32 CLuaBaseEntity::actionQueueEmpty(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
 
-    lua_pushboolean(L, m_PBaseEntity->PBattleAI->m_actionQueue.empty());
+    lua_pushboolean(L, m_PBaseEntity->PAI->QueueEmpty());
 
     return 1;
 }
@@ -8392,7 +8418,7 @@ inline int32 CLuaBaseEntity::actionQueueAbility(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-    lua_pushboolean(L, ((CAIMobDummy*)(m_PBaseEntity->PBattleAI))->isActionQueueAttack());
+    lua_pushboolean(L, m_PBaseEntity->GetLocalVar("actionQueueAction"));
 
     return 1;
 }
@@ -8402,7 +8428,7 @@ inline int32 CLuaBaseEntity::SetAutoAttackEnabled(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
 
-    ((CBattleEntity*)m_PBaseEntity)->PBattleAI->SetAutoAttackEnabled(lua_toboolean(L, 1));
+    m_PBaseEntity->PAI->GetController()->SetAutoAttackEnabled(lua_toboolean(L, 1));
 
     return 0;
 }
@@ -8412,7 +8438,7 @@ inline int32 CLuaBaseEntity::SetMagicCastingEnabled(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
 
-    ((CBattleEntity*)m_PBaseEntity)->PBattleAI->SetMagicCastingEnabled(lua_toboolean(L, 1));
+    m_PBaseEntity->PAI->GetController()->SetMagicCastingEnabled(lua_toboolean(L, 1));
 
     return 0;
 }
@@ -8422,7 +8448,7 @@ inline int32 CLuaBaseEntity::SetMobAbilityEnabled(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
 
-    ((CBattleEntity*)m_PBaseEntity)->PBattleAI->SetMobAbilityEnabled(lua_toboolean(L, 1));
+    m_PBaseEntity->PAI->GetController()->SetWeaponSkillEnabled(lua_toboolean(L, 1));
 
     return 0;
 }
@@ -8430,10 +8456,10 @@ inline int32 CLuaBaseEntity::SetMobAbilityEnabled(lua_State* L)
 inline int32 CLuaBaseEntity::SetMobSkillAttack(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-    ((CAIMobDummy*)m_PBaseEntity->PBattleAI)->setMobSkillAttack(lua_toboolean(L, 1));
+    static_cast<CMobEntity*>(m_PBaseEntity)->setMobMod(MOBMOD_ATTACK_SKILL_LIST, lua_tointeger(L, 1));
 
     return 0;
 }
@@ -8443,7 +8469,12 @@ inline int32 CLuaBaseEntity::updateTarget(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-    ((CMobEntity*)m_PBaseEntity)->PBattleAI->SetBattleTarget(((CMobEntity*)m_PBaseEntity)->PEnmityContainer->GetHighestEnmity());
+    auto PTarget {((CMobEntity*)m_PBaseEntity)->PEnmityContainer->GetHighestEnmity()};
+
+    if (PTarget)
+    {
+        ((CMobEntity*)m_PBaseEntity)->PAI->ChangeTarget(PTarget->targid);
+    }
 
     return 0;
 }
@@ -8507,6 +8538,16 @@ inline int32 CLuaBaseEntity::setSpellList(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::hasSpellList(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    lua_pushboolean(L, ((CMobEntity*)m_PBaseEntity)->SpellContainer->HasSpells());
+
+    return 1;
+}
+
 inline int32 CLuaBaseEntity::hasValidJugPetItem(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -8531,13 +8572,15 @@ inline int32 CLuaBaseEntity::getTarget(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    if (((CBattleEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget())
+
+    auto PBattleTarget {m_PBaseEntity->GetEntity(static_cast<CBattleEntity*>(m_PBaseEntity)->GetBattleTargetID())};
+    if (PBattleTarget)
     {
         lua_getglobal(L, CLuaBaseEntity::className);
         lua_pushstring(L, "new");
         lua_gettable(L, -2);
         lua_insert(L, -2);
-        lua_pushlightuserdata(L, ((CBattleEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget());
+        lua_pushlightuserdata(L, PBattleTarget);
         lua_pcall(L, 2, 1, 0);
         return 1;
     }
@@ -8546,19 +8589,6 @@ inline int32 CLuaBaseEntity::getTarget(lua_State* L)
         lua_pushnil(L);
         return 1;
     }
-}
-
-inline int32 CLuaBaseEntity::setBattleSubTarget(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1));
-
-    CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    CBattleEntity* PTarget = (CBattleEntity*)PLuaBaseEntity->GetBaseEntity();
-
-    ((CBattleEntity*)m_PBaseEntity)->PBattleAI->SetBattleSubTarget(PTarget);
-
-    return 0;
 }
 
 inline int32 CLuaBaseEntity::hasTPMoves(lua_State* L)
@@ -8804,9 +8834,8 @@ inline int32 CLuaBaseEntity::pathThrough(lua_State* L)
 
     CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
 
-    if (PBattle->PBattleAI->m_PPathFind->PathThrough(points, pos, flags))
+    if (PBattle->PAI->PathFind->PathThrough(points, pos, flags))
     {
-        PBattle->PBattleAI->SetCurrentAction(ACTION_ROAMING);
         lua_pushboolean(L, true);
     }
     else
@@ -8910,9 +8939,8 @@ inline int32 CLuaBaseEntity::isFollowingPath(lua_State* L)
 
     CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
 
-    lua_pushboolean(L, PBattle->PBattleAI != nullptr &&
-        PBattle->PBattleAI->m_PPathFind != nullptr &&
-        PBattle->PBattleAI->m_PPathFind->IsFollowingPath());
+    lua_pushboolean(L, PBattle->PAI->PathFind != nullptr &&
+        PBattle->PAI->PathFind->IsFollowingPath());
 
     return 1;
 }
@@ -8923,11 +8951,10 @@ Clears the current path and stops moving.
 inline int32 CLuaBaseEntity::clearPath(lua_State* L)
 {
     CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
-    DSP_DEBUG_BREAK_IF(PBattle->PBattleAI == nullptr);
 
-    if (PBattle->PBattleAI->m_PPathFind != nullptr)
+    if (PBattle->PAI->PathFind != nullptr)
     {
-        PBattle->PBattleAI->m_PPathFind->Clear();
+        PBattle->PAI->PathFind->Clear();
     }
 
     return 0;
@@ -8946,16 +8973,13 @@ inline int32 CLuaBaseEntity::wait(lua_State* L)
 
     CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
 
-    DSP_DEBUG_BREAK_IF(PBattle->PBattleAI == nullptr);
-
     int32 waitTime = 4000;
 
     if (lua_isnumber(L, 1))
     {
         waitTime = lua_tonumber(L, 1);
     }
-
-    PBattle->PBattleAI->Wait(waitTime);
+    PBattle->PAI->Inactive(std::chrono::milliseconds(waitTime));
 
     return 0;
 }
@@ -8973,9 +8997,9 @@ inline int32 CLuaBaseEntity::pathTo(lua_State* L)
     point.y = (float)lua_tonumber(L, 2);
     point.z = (float)lua_tonumber(L, 3);
 
-    if (m_PBaseEntity->PBattleAI && m_PBaseEntity->PBattleAI->m_PPathFind)
+    if (m_PBaseEntity->PAI->PathFind)
     {
-        m_PBaseEntity->PBattleAI->m_PPathFind->PathTo(point, PATHFLAG_RUN | PATHFLAG_WALLHACK | PATHFLAG_SCRIPT);
+        m_PBaseEntity->PAI->PathFind->PathTo(point, PATHFLAG_RUN | PATHFLAG_WALLHACK | PATHFLAG_SCRIPT);
     }
 
     return 0;
@@ -9055,8 +9079,7 @@ inline int32 CLuaBaseEntity::initNpcAi(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
 
-    m_PBaseEntity->PBattleAI = new CAINpcDummy((CNpcEntity*)m_PBaseEntity);
-    m_PBaseEntity->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+    m_PBaseEntity->PAI = std::make_unique<CAIContainer>(m_PBaseEntity, std::make_unique<CPathFind>(m_PBaseEntity), nullptr, nullptr);
     return 0;
 }
 
@@ -9552,26 +9575,19 @@ inline int32 CLuaBaseEntity::spawn(lua_State* L)
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        PMob->SetDespawnTimer((uint32)lua_tointeger(L, 2));
+        PMob->SetDespawnTime(std::chrono::milliseconds(lua_tointeger(L, 2)));
     }
 
     if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
     {
         PMob->m_RespawnTime = (uint32)lua_tointeger(L, 3) * 1000;
         PMob->m_AllowRespawn = true;
-        PMob->PBattleAI->SetLastActionTime(gettick());
-        if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE)
-        {
-            PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-        }
     }
     else
     {
-        if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
-            PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN)
+        if (!PMob->PAI->IsSpawned())
         {
-            PMob->PBattleAI->SetLastActionTime(0);
-            PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+            PMob->Spawn();
         }
         else
         {
@@ -9586,7 +9602,58 @@ inline int32 CLuaBaseEntity::getCurrentAction(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    lua_pushinteger(L, ((CBattleEntity*)m_PBaseEntity)->PBattleAI->GetCurrentAction());
+    if (m_PBaseEntity->PAI->IsStateStackEmpty())
+    {
+        lua_pushinteger(L, 16);
+    }
+    else if (m_PBaseEntity->PAI->IsCurrentState<CDespawnState>())
+    {
+        lua_pushinteger(L, 0);
+    }
+    else if (m_PBaseEntity->PAI->IsCurrentState<CAttackState>())
+    {
+        lua_pushinteger(L, 1);
+    }
+    else if (m_PBaseEntity->PAI->IsCurrentState<CRangeState>())
+    {
+        lua_pushinteger(L, 12);
+    }
+    else if (m_PBaseEntity->PAI->IsCurrentState<CWeaponSkillState>())
+    {
+        lua_pushinteger(L, 3);
+    }
+    else if (m_PBaseEntity->PAI->IsCurrentState<CMagicState>())
+    {
+        lua_pushinteger(L, 30);
+    }
+    else if (m_PBaseEntity->PAI->IsCurrentState<CItemState>())
+    {
+        lua_pushinteger(L, 28);
+    }
+    else if (m_PBaseEntity->PAI->IsCurrentState<CAbilityState>())
+    {
+        lua_pushinteger(L, 6);
+    }
+    else if (m_PBaseEntity->PAI->IsCurrentState<CInactiveState>())
+    {
+        lua_pushinteger(L, 27);
+    }
+    else if (m_PBaseEntity->PAI->IsCurrentState<CDeathState>())
+    {
+        lua_pushinteger(L, 22);
+    }
+    else if (m_PBaseEntity->PAI->IsCurrentState<CRaiseState>())
+    {
+        lua_pushinteger(L, 37);
+    }
+    else if (m_PBaseEntity->PAI->IsCurrentState<CMobSkillState>())
+    {
+        lua_pushinteger(L, 34);
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
 
     return 1;
 }
@@ -9617,7 +9684,7 @@ inline int32 CLuaBaseEntity::stun(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    ((CAIMobDummy*)m_PBaseEntity->PBattleAI)->Stun(lua_tointeger(L, 1));
+    m_PBaseEntity->PAI->Inactive(std::chrono::milliseconds(lua_tointeger(L, 1)));
 
     return 0;
 }
@@ -9753,8 +9820,7 @@ inline int32 CLuaBaseEntity::instantiateMob(lua_State* L)
 
     newMob->loc.p = m_PBaseEntity->loc.p;
     newMob->m_SpawnPoint = newMob->loc.p;
-    newMob->PBattleAI->SetLastActionTime(0);
-    newMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+    newMob->Spawn();
 
     return 0;
 }
@@ -10034,6 +10100,72 @@ inline int32 CLuaBaseEntity::copyConfrontationEffect(lua_State* L)
 
     lua_pushinteger(L, power);
     return 1;
+}
+
+int32 CLuaBaseEntity::queue(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isfunction(L, 2));
+
+    auto ms = lua_tointeger(L, 1);
+
+    m_PBaseEntity->PAI->QueueAction(queueAction_t(ms, true, luautils::register_fp(2)));
+
+    return 0;
+}
+
+int32 CLuaBaseEntity::timer(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isfunction(L, 2));
+
+    auto ms = lua_tointeger(L, 1);
+
+    m_PBaseEntity->PAI->QueueAction(queueAction_t(ms, false, luautils::register_fp(2)));
+
+    return 0;
+}
+
+int32 CLuaBaseEntity::addListener(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isstring(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isfunction(L, 3));
+
+    auto eventName = lua_tostring(L, 1);
+    auto identifier = lua_tostring(L, 2);
+
+    m_PBaseEntity->PAI->EventHandler.addListener(eventName, luautils::register_fp(3), identifier);
+
+    return 0;
+}
+
+int32 CLuaBaseEntity::removeListener(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+
+    auto identifier = lua_tostring(L, 1);
+
+    m_PBaseEntity->PAI->EventHandler.removeListener(identifier);
+
+    return 0;
+}
+
+int32 CLuaBaseEntity::triggerListener(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+
+    auto eventName = lua_tostring(L, 1);
+    auto top = lua_gettop(L);
+
+    m_PBaseEntity->PAI->EventHandler.triggerListener(eventName, top - 1);
+
+    return 0;
 }
 //==========================================================//
 
@@ -10390,9 +10522,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setLocalVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetLocalVars),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpellList),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasSpellList),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasValidJugPetItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTarget),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setBattleSubTarget),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTPMoves),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaster),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateAbilitiesTable),
@@ -10474,5 +10606,10 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPetMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delPetMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPetMod),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,queue),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,timer),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addListener),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeListener),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,triggerListener),
     {nullptr,nullptr}
 };

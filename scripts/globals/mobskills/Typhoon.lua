@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     if (mob:getName() == "Faust") then
         if (mob:getLocalVar("Typhoon") == 0) then
-            mob:useMobAbility(283);
+            mob:useMobAbility(539);
             mob:setLocalVar("Typhoon", 1); 
         else
             mob:setLocalVar("Typhoon", 0); 

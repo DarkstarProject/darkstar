@@ -29,7 +29,7 @@
 
 #include "../entities/charentity.h"
 #include "../utils/itemutils.h"
-
+#include "../status_effect_container.h"
 
 CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemask)
 {

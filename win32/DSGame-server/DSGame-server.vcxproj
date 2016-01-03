@@ -82,6 +82,9 @@
     <OutDir>..\..\</OutDir>
     <TargetName>$(ProjectName)_64</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(WindowsSDK_IncludePath);$(VC_IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -212,25 +215,28 @@
     <ClInclude Include="..\..\src\common\version.h" />
     <ClInclude Include="..\..\src\common\zlib.h" />
     <ClInclude Include="..\..\src\map\ability.h" />
-    <ClInclude Include="..\..\src\map\ai\ai_automaton_dummy.h" />
-    <ClInclude Include="..\..\src\map\ai\ai_char_charm.h" />
-    <ClInclude Include="..\..\src\map\ai\ai_char_gm.h" />
-    <ClInclude Include="..\..\src\map\ai\ai_char_normal.h" />
-    <ClInclude Include="..\..\src\map\ai\ai_char_prisoner.h" />
-    <ClInclude Include="..\..\src\map\ai\ai_general.h" />
-    <ClInclude Include="..\..\src\map\ai\ai_mob_dummy.h" />
-    <ClInclude Include="..\..\src\map\ai\ai_npc_dummy.h" />
-    <ClInclude Include="..\..\src\map\ai\ai_pet_dummy.h" />
-    <ClInclude Include="..\..\src\map\ai\ai_ultimate_summon.h" />
+    <ClInclude Include="..\..\src\map\ai\ai_container.h" />
+    <ClInclude Include="..\..\src\map\ai\controllers\ai_controller.h" />
+    <ClInclude Include="..\..\src\map\ai\controllers\controller.h" />
+    <ClInclude Include="..\..\src\map\ai\controllers\pet_controller.h" />
+    <ClInclude Include="..\..\src\map\ai\controllers\player_charm_controller.h" />
+    <ClInclude Include="..\..\src\map\ai\controllers\player_controller.h" />
+    <ClInclude Include="..\..\src\map\ai\helpers\action_queue.h" />
+    <ClInclude Include="..\..\src\map\ai\helpers\event_handler.h" />
     <ClInclude Include="..\..\src\map\ai\helpers\pathfind.h" />
     <ClInclude Include="..\..\src\map\ai\helpers\targetfind.h" />
     <ClInclude Include="..\..\src\map\ai\states\ability_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\attack_state.h" />
+    <ClInclude Include="..\..\src\map\ai\states\death_state.h" />
+    <ClInclude Include="..\..\src\map\ai\states\inactive_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\item_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\magic_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\mobskill_state.h" />
+    <ClInclude Include="..\..\src\map\ai\states\raise_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\range_state.h" />
+    <ClInclude Include="..\..\src\map\ai\states\despawn_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\state.h" />
+    <ClInclude Include="..\..\src\map\ai\states\trigger_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\weaponskill_state.h" />
     <ClInclude Include="..\..\src\map\alliance.h" />
     <ClInclude Include="..\..\src\map\blue_spell.h" />
@@ -450,25 +456,28 @@
     <ClCompile Include="..\..\src\common\utils.cpp" />
     <ClCompile Include="..\..\src\common\zlib.cpp" />
     <ClCompile Include="..\..\src\map\ability.cpp" />
-    <ClCompile Include="..\..\src\map\ai\ai_automaton_dummy.cpp" />
-    <ClCompile Include="..\..\src\map\ai\ai_char_charm.cpp" />
-    <ClCompile Include="..\..\src\map\ai\ai_char_gm.cpp" />
-    <ClCompile Include="..\..\src\map\ai\ai_char_normal.cpp" />
-    <ClCompile Include="..\..\src\map\ai\ai_char_prisoner.cpp" />
-    <ClCompile Include="..\..\src\map\ai\ai_general.cpp" />
-    <ClCompile Include="..\..\src\map\ai\ai_mob_dummy.cpp" />
-    <ClCompile Include="..\..\src\map\ai\ai_npc_dummy.cpp" />
-    <ClCompile Include="..\..\src\map\ai\ai_pet_dummy.cpp" />
-    <ClCompile Include="..\..\src\map\ai\ai_ultimate_summon.cpp" />
+    <ClCompile Include="..\..\src\map\ai\ai_container.cpp" />
+    <ClCompile Include="..\..\src\map\ai\controllers\ai_controller.cpp" />
+    <ClCompile Include="..\..\src\map\ai\controllers\controller.cpp" />
+    <ClCompile Include="..\..\src\map\ai\controllers\pet_controller.cpp" />
+    <ClCompile Include="..\..\src\map\ai\controllers\player_charm_controller.cpp" />
+    <ClCompile Include="..\..\src\map\ai\controllers\player_controller.cpp" />
+    <ClCompile Include="..\..\src\map\ai\helpers\action_queue.cpp" />
+    <ClCompile Include="..\..\src\map\ai\helpers\event_handler.cpp" />
     <ClCompile Include="..\..\src\map\ai\helpers\pathfind.cpp" />
     <ClCompile Include="..\..\src\map\ai\helpers\targetfind.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\ability_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\attack_state.cpp" />
+    <ClCompile Include="..\..\src\map\ai\states\death_state.cpp" />
+    <ClCompile Include="..\..\src\map\ai\states\inactive_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\item_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\magic_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\mobskill_state.cpp" />
+    <ClCompile Include="..\..\src\map\ai\states\raise_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\range_state.cpp" />
+    <ClCompile Include="..\..\src\map\ai\states\despawn_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\state.cpp" />
+    <ClCompile Include="..\..\src\map\ai\states\trigger_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\weaponskill_state.cpp" />
     <ClCompile Include="..\..\src\map\alliance.cpp" />
     <ClCompile Include="..\..\src\map\blue_spell.cpp" />

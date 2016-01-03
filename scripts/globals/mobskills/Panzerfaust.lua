@@ -36,7 +36,7 @@ function onMobWeaponSkill(target, mob, skill)
         if (mob:actionQueueAbility() == false) then    
             local rand = math.random(1,4); -- Panzerfaust 3-6 times
             for i = 0,rand do
-                mob:useMobAbility(280);
+                mob:useMobAbility(536);
             end
         end
     end
