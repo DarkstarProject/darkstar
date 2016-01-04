@@ -145,7 +145,7 @@ function onEventUpdate(player,csid,option)
 
     if (csid == 49 or csid == 53) then
         -- Display Loafers
-        if     (option == 2) then
+        if (option == 2) then
             player:updateEvent(option,RAFFLESIA_DREAMSPIT,DROGAROGAN_BONEMEAL,0,0,0,0,0);
 
         -- Display Pants

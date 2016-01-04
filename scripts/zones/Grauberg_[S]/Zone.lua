@@ -3,8 +3,9 @@
 -- Zone: Grauberg_[S] (89)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Grauberg_[S]/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/weather");

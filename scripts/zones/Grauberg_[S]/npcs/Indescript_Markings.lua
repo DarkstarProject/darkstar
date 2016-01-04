@@ -3,8 +3,9 @@
 --  NPC: Indescript Markings
 --  Type: Quest
 -----------------------------------
-
 package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Grauberg_[S]/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/npc_util");
@@ -59,8 +60,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

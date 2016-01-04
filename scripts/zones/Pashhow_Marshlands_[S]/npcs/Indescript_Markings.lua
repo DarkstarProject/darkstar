@@ -3,8 +3,9 @@
 --  NPC: Indescript Markings
 -- NOTE: There are 3 Indescript Markings
 -----------------------------------
-
 package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
