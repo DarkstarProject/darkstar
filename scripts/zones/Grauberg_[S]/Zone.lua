@@ -3,11 +3,12 @@
 -- Zone: Grauberg_[S] (89)
 --
 -----------------------------------
-package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;
------------------------------------
 
-require("scripts/globals/settings");
+package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;
 require("scripts/zones/Grauberg_[S]/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/weather");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onInitialize
@@ -33,6 +34,22 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
+end;
+
+-----------------------------------
+-- onZoneWeatherChange
+-----------------------------------
+
+function onZoneWeatherChange(weather)
+
+    local npc = GetNPCByID(17142582); -- Indescript Markings
+    if (npc ~= nil) then
+        if (weather == WEATHER_WIND or weather == WEATHER_GALES) then
+            npc:setStatus(STATUS_NORMAL);
+        else
+            npc:setStatus(STATUS_DISAPPEAR);
+        end
+    end
 end;
 
 -----------------------------------
