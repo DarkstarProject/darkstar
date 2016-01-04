@@ -70,6 +70,10 @@ bool CAttackState::Update(time_point tick)
             return true;
         }
     }
+    else
+    {
+        m_attackTime -= (m_PEntity->PAI->getTick() - m_PEntity->PAI->getPrevTick());
+    }
     return false;
 }
 
@@ -122,6 +126,5 @@ bool CAttackState::CanAttack(CBattleEntity* PTarget)
 
 bool CAttackState::AttackReady()
 {
-    m_attackTime -= (m_PEntity->PAI->getTick() - m_PEntity->PAI->getPrevTick());
     return m_attackTime < 0ms;
 }

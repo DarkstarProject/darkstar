@@ -154,7 +154,7 @@ CCharEntity::CCharEntity()
     m_EquipFlag = 0;
     m_EquipBlock = 0;
     m_EquipSwap = false;
-
+    m_ModelSize = 0;
 
     MeritMode = false;
 
@@ -685,7 +685,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
 
             if (!battleutils::isValidSelfTargetWeaponskill(PWeaponSkill->getID()))
             {
-                damage = battleutils::TakeWeaponskillDamage(this, PBattleTarget, damage, damslot, tpHitsLanded, taChar);
+                damage = battleutils::TakeWeaponskillDamage(this, PTarget, damage, damslot, tpHitsLanded, taChar);
                 actionTarget.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
                 actionTarget.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
                 addTP(extraHitsLanded * 10);
