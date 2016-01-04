@@ -20,14 +20,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:hasKeyItem(PASHHOW_GATE_CRYSTAL) == false) then
-		player:addKeyItem(PASHHOW_GATE_CRYSTAL);
-		player:messageSpecial(KEYITEM_OBTAINED,PASHHOW_GATE_CRYSTAL);
-	else
-		player:messageSpecial(ALREADY_OBTAINED_TELE);
-	end
-	
+    
+    if (player:hasKeyItem(PASHHOW_GATE_CRYSTAL) == false) then
+        player:addKeyItem(PASHHOW_GATE_CRYSTAL);
+        player:messageSpecial(KEYITEM_OBTAINED,PASHHOW_GATE_CRYSTAL);
+    else
+        player:messageSpecial(ALREADY_OBTAINED_TELE);
+    end
+    
 end;
 
 -----------------------------------

@@ -27,8 +27,7 @@
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
 
-#include "../ability.h"
-
+class CAbility;
 
 class CLuaAbility
 {

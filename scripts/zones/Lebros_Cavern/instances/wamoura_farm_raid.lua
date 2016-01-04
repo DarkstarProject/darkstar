@@ -14,7 +14,7 @@ function afterInstanceRegister(player)
     local instance = player:getInstance();
     player:messageSpecial(Lebros.text.ASSAULT_27_START, 27);
     player:messageSpecial(Lebros.text.TIME_TO_COMPLETE, instance:getTimeLimit());
-end;	
+end;    
 
 -----------------------------------
 -- onInstanceCreated

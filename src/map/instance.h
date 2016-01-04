@@ -43,22 +43,22 @@ public:
 	uint8 GetLevelCap();
 	const int8* GetName();
 	position_t GetEntryLoc();								// Get entry location
-	uint32 GetTimeLimit();									// Get instance time limit
-	uint32 GetLastTimeUpdate();								// Get last time a "Time Remaining:" message was displayed
+	duration GetTimeLimit();								// Get instance time limit
+	time_point GetLastTimeUpdate();							// Get last time a "Time Remaining:" message was displayed
 	CZone* GetZone();										// Return parent CZone
 	uint32 GetProgress();									// Tracks the progress through the current stage
 	uint32 GetStage();										// Tracks the progress through the instance (eg. floor #)
-	uint32 GetWipeTime();									// Stores elapsed time when a wipe is detected
-	uint32 GetElapsedTime(uint32 tick);						// Get elapsed time so far
+	time_point GetWipeTime();									// Stores elapsed time when a wipe is detected
+	duration GetElapsedTime(time_point tick);					// Get elapsed time so far
 
 	void SetLevelCap(uint8 cap);
 	void SetEntryLoc(float x, float y, float z, float rot); // Set entry location
-	void SetLastTimeUpdate(uint32 time);					// Set last time a "Time Remaining:" message was displayed
+	void SetLastTimeUpdate(time_point time);				// Set last time a "Time Remaining:" message was displayed
 	void SetProgress(uint32 progress);						// Set progress through current stage
 	void SetStage(uint32 stage);							// Set current stage (eg. floor #)
-	void SetWipeTime(uint32 time);							// Set elapsed time when a wipe is detected
+	void SetWipeTime(time_point time);							// Set elapsed time when a wipe is detected
 
-	void CheckTime(uint32 tick);							// Check time limit (run instance time script)
+	void CheckTime(time_point tick);							// Check time limit (run instance time script)
 	bool CharRegistered(CCharEntity* PChar);				// Check if PChar is registered to this instance
 	void Fail();											// Fails the instance (onInstanceFailure)
 	bool Failed();											// Checks if instance is failed
@@ -72,21 +72,21 @@ public:
 private:
 	void LoadInstance();
 
-	CZone* m_zone;
-	uint8 m_instanceid;
-	uint16 m_entrance;
+    CZone* m_zone {nullptr};
+    uint8 m_instanceid {0};
+    uint16 m_entrance {0};
 	string_t m_instanceName;
-	uint32 m_commander;
-	uint8 m_levelcap;
-	uint8 m_timeLimit;
-	uint32 m_startTime;
-	uint32 m_lastTimeUpdate;
-	uint32 m_lastTimeCheck;
-	uint32 m_wipeTimer;
-	uint32 m_progress;
-	uint32 m_stage;
+    uint32 m_commander {0};
+    uint8 m_levelcap {0};
+    duration m_timeLimit {0};
+	time_point m_startTime;
+	time_point m_lastTimeUpdate;
+    time_point m_lastTimeCheck;
+    time_point m_wipeTimer;
+    uint32 m_progress {0};
+    uint32 m_stage {0};
 	position_t m_entryloc;
-	INSTANCE_STATUS m_status;
+    INSTANCE_STATUS m_status {INSTANCE_NORMAL};
 	std::vector<uint32> m_registeredChars;
 };
 

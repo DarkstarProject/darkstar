@@ -21,8 +21,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	npc:openDoor(3); -- lever animation
-	RunElevator(ELEVATOR_DAVOI_LIFT); -- elevator @450 (actual npc script is _454)
+    npc:openDoor(3); -- lever animation
+    RunElevator(ELEVATOR_DAVOI_LIFT); -- elevator @450 (actual npc script is _454)
 end;
 
 -----------------------------------

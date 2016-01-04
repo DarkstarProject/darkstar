@@ -32,7 +32,8 @@
 #include "lua/luautils.h"
 #include "packets/char_recast.h"
 #include "packets/char_skills.h"
-
+#include "packets/message_basic.h"
+#include "recast_container.h"
 
 CBattlefieldHandler::CBattlefieldHandler(uint16 zoneid)
 {
@@ -61,7 +62,7 @@ CBattlefieldHandler::CBattlefieldHandler(uint16 zoneid)
     memset(&m_Battlefields, 0, sizeof(m_Battlefields));
 }
 
-void CBattlefieldHandler::handleBattlefields(uint32 tick){
+void CBattlefieldHandler::handleBattlefields(time_point tick){
 	for(int i=0; i<m_MaxBattlefields; i++){
 		if(m_Battlefields[i]!=nullptr){ //handle it!
 			CBattlefield* PBattlefield = m_Battlefields[i];
@@ -71,28 +72,28 @@ void CBattlefieldHandler::handleBattlefields(uint32 tick){
 			if(instzone > 184 && instzone < 189 || instzone > 133 && instzone < 136 || instzone > 38  && instzone < 43){
 				//handle death time
 				if(PBattlefield->allPlayersDead()){//set dead time
-					if(PBattlefield->getDeadTime()==0){
+					if(PBattlefield->getDeadTime()==time_point::min()){
 						PBattlefield->setDeadTime(tick);
 						ShowDebug("Dynamis %i battlefield %i : All players have fallen.\n",PBattlefield->getID(),PBattlefield->getBattlefieldNumber());
 					}
 				}
 				else{
-					if(PBattlefield->getDeadTime()!=0){
-						PBattlefield->setDeadTime(0); //reset dead time when people are alive
+					if(PBattlefield->getDeadTime()!=time_point::min()){
+						PBattlefield->setDeadTime(time_point::min()); //reset dead time when people are alive
 						ShowDebug("Dynamis %i battlefield %i : Death counter reset as a player is now alive.\n",PBattlefield->getID(),PBattlefield->getBattlefieldNumber());
 					}
 				}
 
 				//handle time remaining prompts (since its useful!) Prompts every minute
-				int Tremaining = (tick - PBattlefield->getStartTime())/1000;
+                auto Tremaining = std::chrono::duration_cast<std::chrono::seconds>(tick - PBattlefield->getStartTime());
 
 				//New message (in yellow) at the end of dynamis (5min before the end)
-				if((Tremaining % 60) == 0 && (PBattlefield->getTimeLimit() - Tremaining) <= 300){
-					PBattlefield->pushMessageToAllInBcnm(449,((PBattlefield->getTimeLimit()-Tremaining)/60));
+				if((Tremaining % 60) == 0s && (PBattlefield->getTimeLimit() - Tremaining) <= 5min){
+					PBattlefield->pushMessageToAllInBcnm(449,((PBattlefield->getTimeLimit()-Tremaining).count()/60));
 				}
 				else{
-					if(((tick - PBattlefield->getStartTime())/1000) % 60 == 0){
-						PBattlefield->pushMessageToAllInBcnm(202,(PBattlefield->getTimeLimit()-Tremaining));
+					if(Tremaining % 60 == 0s){
+						PBattlefield->pushMessageToAllInBcnm(202,(PBattlefield->getTimeLimit()-Tremaining).count());
 					}
 				}
 
@@ -106,22 +107,22 @@ void CBattlefieldHandler::handleBattlefields(uint32 tick){
 				if(instzone == 37 || instzone == 38){ //limbus ///////////////////////////////////////////////////////////
 								//handle death time
 				      if(PBattlefield->allPlayersDead()){//set dead time
-					       if(PBattlefield->getDeadTime()==0){
+					       if(PBattlefield->getDeadTime()==time_point::min()){
 						     PBattlefield->setDeadTime(tick);
 						     ShowDebug("Limbus %i battlefield %i : All players have fallen.\n",PBattlefield->getID(),PBattlefield->getBattlefieldNumber());
 					       }
 				      }
 				      else{
-					       if(PBattlefield->getDeadTime()!=0){
-						     PBattlefield->setDeadTime(0); //reset dead time when people are alive
+					       if(PBattlefield->getDeadTime()!=time_point::min()){
+						     PBattlefield->setDeadTime(time_point::min()); //reset dead time when people are alive
 						     ShowDebug("Limbus %i battlefield %i : Death counter reset as a player is now alive.\n",PBattlefield->getID(),PBattlefield->getBattlefieldNumber());
 					       }
 				      }
 					  //handle time remaining prompts (since its useful!) Prompts every minute
-				      int Tremaining = (tick - PBattlefield->getStartTime())/1000;
+                auto Tremaining = std::chrono::duration_cast<std::chrono::seconds>(tick - PBattlefield->getStartTime());
 
-				if(((tick - PBattlefield->getStartTime())/1000) % 60 == 0){
-						PBattlefield->pushMessageToAllInBcnm(202,((PBattlefield->getTimeLimit()-Tremaining)/60));
+				if(Tremaining % 60 == 0s){
+						PBattlefield->pushMessageToAllInBcnm(202,((PBattlefield->getTimeLimit()-Tremaining).count()/60));
 				}
 
 				//if the time is finished, exiting Limbus
@@ -142,20 +143,21 @@ void CBattlefieldHandler::handleBattlefields(uint32 tick){
 				}
 				//handle death time
 				if(PBattlefield->allPlayersDead()){//set dead time
-					if(PBattlefield->getDeadTime()==0){
+					if(PBattlefield->getDeadTime()==time_point::min()){
 						PBattlefield->setDeadTime(tick);
 						ShowDebug("BCNM %i battlefield %i : All players have fallen.\n",PBattlefield->getID(),PBattlefield->getBattlefieldNumber());
 					}
 				}
 				else{
-					if(PBattlefield->getDeadTime()!=0){
-						PBattlefield->setDeadTime(0); //reset dead time when people are alive
+					if(PBattlefield->getDeadTime()!=time_point::min()){
+						PBattlefield->setDeadTime(time_point::min()); //reset dead time when people are alive
 						ShowDebug("BCNM %i battlefield %i : Death counter reset as a player is now alive.\n",PBattlefield->getID(),PBattlefield->getBattlefieldNumber());
 					}
 				}
 				//handle time remaining prompts (since its useful!) Prompts every minute
-				if(((tick - PBattlefield->getStartTime())/1000) % 60 == 0){
-					PBattlefield->pushMessageToAllInBcnm(202,(PBattlefield->getTimeLimit()-((tick - PBattlefield->getStartTime())/1000)));
+                auto Tremaining = std::chrono::duration_cast<std::chrono::seconds>(tick - PBattlefield->getStartTime());
+				if(Tremaining % 60 == 0s){
+					PBattlefield->pushMessageToAllInBcnm(202,(PBattlefield->getTimeLimit()-Tremaining).count()/60);
 				}
 
 				//handle win conditions
@@ -539,23 +541,23 @@ int playermaxHP = 0;
 	    }
     }
 }
-int CBattlefieldHandler::SpecialBattlefieldLeftTime(uint16 id,uint32 tick){ //reserved for special battlefield like limbus
+duration CBattlefieldHandler::SpecialBattlefieldLeftTime(uint16 id,time_point tick){ //reserved for special battlefield like limbus
 
   if(id <= m_MaxBattlefields &&  id>0){
 
 	 if(m_Battlefields[id-1] != nullptr){
-	    int Tremaining = (tick -  m_Battlefields[id-1]->getStartTime())/1000;  //66
-	    int timelimit =  m_Battlefields[id-1]->getTimeLimit();		  	 ///3600
-					 return (timelimit-Tremaining)/60 ;
+	    auto Tremaining = (tick -  m_Battlefields[id-1]->getStartTime());  //66
+	    auto timelimit =  m_Battlefields[id-1]->getTimeLimit();		  	 ///3600
+					 return (timelimit-Tremaining) ;
 	  }
    }
- return 0;
+ return 0s;
 }
-int CBattlefieldHandler::GiveTimeToBattlefield(uint16 id, uint16 Time){
+int CBattlefieldHandler::GiveTimeToBattlefield(uint16 id, duration Time){
    if(id <= m_MaxBattlefields &&  id>0){
 	  if(m_Battlefields[id-1] != nullptr){
 	          CBattlefield* PBattlefield = m_Battlefields[id-1];
-	          PBattlefield->addTimeLimit(Time*60);
+	          PBattlefield->addTimeLimit(Time);
 	  }
    }
   return 1;
@@ -683,7 +685,7 @@ int CBattlefieldHandler::dynamisMessage(uint16 Param1, uint16 Param2){
 
 	CBattlefield* PBattlefield = m_Battlefields[0];
 
-	PBattlefield->addTimeLimit(Param2*60);
+	PBattlefield->addTimeLimit(std::chrono::minutes(Param2));
 	PBattlefield->pushMessageToAllInBcnm(Param1,Param2);
 
 	return 1;

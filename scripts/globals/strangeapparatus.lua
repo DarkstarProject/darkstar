@@ -52,133 +52,133 @@ strAppDrop[198] = {0x42C5, 0.0400, 1, 0x4435, 0.0800, 1, 0x46A4, 0.1200, 1, 0x43
 
 function strAppPass(player) 
 
-	local zone = player:getZoneID();
-	local name = string.lower(player:getName());
+    local zone = player:getZoneID();
+    local name = string.lower(player:getName());
 
-	return string.format("%02d%02d%02d%02d", letterValue(string.sub(name, 1, 1)) + strAppData[zone][2],letterValue(string.sub(name, 2, 2)) + strAppData[zone][2],letterValue(string.sub(name, 3, 3)) + strAppData[zone][2],string.sub(letterValue(string.sub(name, 1, 1)) + letterValue(string.sub(name, 2, 2)) + letterValue(string.sub(name, 3, 3)) + strAppData[zone][2]*4, -2, -1));
+    return string.format("%02d%02d%02d%02d", letterValue(string.sub(name, 1, 1)) + strAppData[zone][2],letterValue(string.sub(name, 2, 2)) + strAppData[zone][2],letterValue(string.sub(name, 3, 3)) + strAppData[zone][2],string.sub(letterValue(string.sub(name, 1, 1)) + letterValue(string.sub(name, 2, 2)) + letterValue(string.sub(name, 3, 3)) + strAppData[zone][2]*4, -2, -1));
 end;
 
 -- Function used by strAppPass()
 
 function letterValue( letter)
-	for x = 1, 26 do
-		if ( letter == string.sub("abcdefghijklmnopqrstuvwxyz", x, x)) then
-			return x - 1;
-		end
-	end
+    for x = 1, 26 do
+        if ( letter == string.sub("abcdefghijklmnopqrstuvwxyz", x, x)) then
+            return x - 1;
+        end
+    end
 end;
 
 -- Grants doctor status to player for 48 hours
 
 function giveStrAppDocStatus(player)
 
-	player:setVar("StrangeApparatusDoctorStatus" .. strAppData[player:getZoneID()][1], os.time() + 172800);
+    player:setVar("StrangeApparatusDoctorStatus" .. strAppData[player:getZoneID()][1], os.time() + 172800);
 
-	return;
+    return;
 end;
 
 -- Removes doctor status from player
 
 function delStrAppDocStatus(player)
 
-	player:setVar("StrangeApparatusDoctorStatus" .. strAppData[player:getZoneID()][1], 0);
+    player:setVar("StrangeApparatusDoctorStatus" .. strAppData[player:getZoneID()][1], 0);
 
-	return;
+    return;
 end;
 
 -- Determines if player has doctor status
 
 function hasStrAppDocStatus(player)
 
-	local docStatusExpires = player:getVar("StrangeApparatusDoctorStatus" .. strAppData[player:getZoneID()][1]);
+    local docStatusExpires = player:getVar("StrangeApparatusDoctorStatus" .. strAppData[player:getZoneID()][1]);
 
-	if (docStatusExpires ~= 0) then
-		if (os.time() <= docStatusExpires) then
-			return true;
-		else
-			player:setVar("StrangeApparatusDoctorStatus" .. strAppData[player:getZoneID()][1], 0);
-		end
-	end
+    if (docStatusExpires ~= 0) then
+        if (os.time() <= docStatusExpires) then
+            return true;
+        else
+            player:setVar("StrangeApparatusDoctorStatus" .. strAppData[player:getZoneID()][1], 0);
+        end
+    end
 
-	return false;
+    return false;
 end;
 
 -- Handles onTrade(), returns nil if trade is not valid
 
 function tradeToStrApp(player, trade)
 
-	if (trade:hasItemQty(INFINITY_CORE,1) and trade:getItemCount() == 2) then -- Traded infinity core and at least one other item
+    if (trade:hasItemQty(INFINITY_CORE,1) and trade:getItemCount() == 2) then -- Traded infinity core and at least one other item
 
-		local zone = player:getZoneID();
+        local zone = player:getZoneID();
 
-		local getChip = nil;
-		for chip = RED_CHIP, BLACK_CHIP do
+        local getChip = nil;
+        for chip = RED_CHIP, BLACK_CHIP do
 
-			if (trade:hasItemQty( chip, 1)) then
+            if (trade:hasItemQty( chip, 1)) then
 
-				if ( chip ~= strAppData[zone][3]) then
-					player:tradeComplete();
-					player:addItem(INFINITY_CORE, 1); --player loses the chip, but not the core
+                if ( chip ~= strAppData[zone][3]) then
+                    player:tradeComplete();
+                    player:addItem(INFINITY_CORE, 1); --player loses the chip, but not the core
 
-					return chip;
-				else
-					getChip = chip;
-				end
-			end
-		end
+                    return chip;
+                else
+                    getChip = chip;
+                end
+            end
+        end
 
-		if (getChip ~= nil) then
+        if (getChip ~= nil) then
 
-			player:tradeComplete();	
-			getStrAppDrop(player,zone);
+            player:tradeComplete();    
+            getStrAppDrop(player,zone);
 
-			return 1;
-		end
-	end
+            return 1;
+        end
+    end
 
-	return nil;
+    return nil;
 end;
 
 -- Used to determine item and quantity created by strange apparatus
 
 function getStrAppDrop(player,zone)
 
-	local zone = player:getZoneID();
-	local rate = math.random();
+    local zone = player:getZoneID();
+    local rate = math.random();
 
-	local item = nil;
-	local qty  = nil;
-	
-	for drop = 1, table.getn(strAppDrop[zone]), 3 do
-		if (rate <= strAppDrop[zone][drop + 1]) then
-			item = strAppDrop[zone][drop];
-			qty  = strAppDrop[zone][drop + 2];
-			break;			
-		end
-	end
+    local item = nil;
+    local qty  = nil;
+    
+    for drop = 1, table.getn(strAppDrop[zone]), 3 do
+        if (rate <= strAppDrop[zone][drop + 1]) then
+            item = strAppDrop[zone][drop];
+            qty  = strAppDrop[zone][drop + 2];
+            break;            
+        end
+    end
 
-	if (hasStrAppDocStatus(player) == false) then
-	
-		rate = math.random();
-		
-		if (rate <= 0.5) then -- Crystal Cluster
-			item = strAppData[zone][4];
-			qty  = 2;
-		end
-	end
+    if (hasStrAppDocStatus(player) == false) then
+    
+        rate = math.random();
+        
+        if (rate <= 0.5) then -- Crystal Cluster
+            item = strAppData[zone][4];
+            qty  = 2;
+        end
+    end
 
-	player:setLocalVar("strAppDrop", item);
-	player:setLocalVar("strAppDropQty", qty);
-	
-	return;
+    player:setLocalVar("strAppDrop", item);
+    player:setLocalVar("strAppDropQty", qty);
+    
+    return;
 end;
 
 -- Used to spawn elemental nm
 
 function spawnElementalNM(player)
 
-	local zone = player:getZoneID();
-	local mob = GetMobByID(strAppData[zone][5]);
-	
-	SpawnMob(strAppData[zone][5],300):updateEnmity(player);
+    local zone = player:getZoneID();
+    local mob = GetMobByID(strAppData[zone][5]);
+    
+    SpawnMob(strAppData[zone][5],300):updateEnmity(player);
 end;

@@ -1,7 +1,7 @@
 -----------------------------------
 --
--- 	EFFECT_DODGE
--- 	
+--     EFFECT_DODGE
+--     
 -----------------------------------
 
 require("scripts/globals/status");
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_EVA,effect:getPower());
+    target:addMod(MOD_EVA,effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_EVA,effect:getPower());
+    target:delMod(MOD_EVA,effect:getPower());
 end;

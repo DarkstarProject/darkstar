@@ -23,13 +23,13 @@ end;
 
 function onTrigger(player,npc)
 
-	local WildcatBastok = player:getVar("WildcatBastok");
-	
-	if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,13) == false) then
-		player:startEvent(0x01b0);
-	else
-		player:startEvent(0x0169);
-	end
+    local WildcatBastok = player:getVar("WildcatBastok");
+    
+    if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,13) == false) then
+        player:startEvent(0x01b0);
+    else
+        player:startEvent(0x0169);
+    end
 end;
 
 -----------------------------------
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -46,12 +46,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-	
-	if (csid == 0x01b0) then
-		player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",13,true);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    
+    if (csid == 0x01b0) then
+        player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",13,true);
     end
-	
+    
 end;
 

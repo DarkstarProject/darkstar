@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Mhaura
---	NPC:  Explorer Moogle
+--    Area: Mhaura
+--    NPC:  Explorer Moogle
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -22,16 +22,16 @@ end;
  
 function onTrigger(player,npc) 
 
-	local accept = 0;
-	local event  = 0x014e;
-	
-	if (player:getGil() < 300) then
-		accept = 1;
-	end
-	if (player:getMainLvl() < EXPLORER_MOOGLE_LEVELCAP) then
-		event = event + 1;
-	end
-	player:startEvent(event,player:getZoneID(),0,accept);
+    local accept = 0;
+    local event  = 0x014e;
+    
+    if (player:getGil() < 300) then
+        accept = 1;
+    end
+    if (player:getMainLvl() < EXPLORER_MOOGLE_LEVELCAP) then
+        event = event + 1;
+    end
+    player:startEvent(event,player:getZoneID(),0,accept);
 end;
 
 -----------------------------------
@@ -53,17 +53,17 @@ function onEventFinish(player,csid,option)
 
     local price = 300;
     
-	if (csid == 0x014e) then
-		if (option == 1 and player:delGil(price)) then		
-			toExplorerMoogle(player,231);
-		elseif (option == 2 and player:delGil(price)) then	
-			toExplorerMoogle(player,234);
-		elseif (option == 3 and player:delGil(price)) then	
-			toExplorerMoogle(player,240);
-		elseif (option == 4 and player:delGil(price)) then	
-			toExplorerMoogle(player,248);
-		elseif (option == 5 and player:delGil(price)) then	
-			toExplorerMoogle(player,249);
-		end
-	end
+    if (csid == 0x014e) then
+        if (option == 1 and player:delGil(price)) then        
+            toExplorerMoogle(player,231);
+        elseif (option == 2 and player:delGil(price)) then    
+            toExplorerMoogle(player,234);
+        elseif (option == 3 and player:delGil(price)) then    
+            toExplorerMoogle(player,240);
+        elseif (option == 4 and player:delGil(price)) then    
+            toExplorerMoogle(player,248);
+        elseif (option == 5 and player:delGil(price)) then    
+            toExplorerMoogle(player,249);
+        end
+    end
 end;

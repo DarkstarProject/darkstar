@@ -1,17 +1,17 @@
-----------------------------------	
--- Area: Kuftal Tunnel	
+----------------------------------
+-- Area: Kuftal Tunnel
 --   NM: Sabotender Mariachi
 -- ToDo: Auto-Regen during the day
------------------------------------	
-  
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
+-----------------------------------
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
 
     -- Set Sabotender Mariachi's Window Open Time
-    local wait = math.random((10800),(28800)); -- 3-8 hours
+    local wait = math.random(10800,28800); -- 3-8 hours
     SetServerVariable("[POP]Sabotender_Mariachi", os.time(t) + wait); -- 3-8 hours
     DeterMob(mob:getID(), true);
 
@@ -20,5 +20,5 @@ function onMobDeath(mob,killer)
     SetServerVariable("[PH]Sabotender_Mariachi", 0);
     DeterMob(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-  
+
 end;

@@ -28,6 +28,8 @@ This file is part of DarkStar-server source code.
 
 #include "party.h"
 #include "alliance.h"
+#include "linkshell.h"
+#include "status_effect_container.h"
 
 #include "entities/charentity.h"
 
@@ -35,9 +37,9 @@ This file is part of DarkStar-server source code.
 #include "packets/party_invite.h"
 #include "packets/server_ip.h"
 
-#include "utils/charutils.h"
 #include "utils/zoneutils.h"
 #include "utils/jailutils.h"
+#include "items/item_linkshell.h"
 
 namespace message
 {
@@ -149,15 +151,20 @@ namespace message
         }
         case MSG_CHAT_YELL:
         {
-            zoneutils::ForEachZone([&packet](CZone* PZone)
+            zoneutils::ForEachZone([&packet, &extra](CZone* PZone)
             {
                 if (PZone->CanUseMisc(MISC_YELL))
                 {
-                    PZone->ForEachChar([&packet](CCharEntity* PChar)
+                    PZone->ForEachChar([&packet, &extra](CCharEntity* PChar)
                     {
-                        CBasicPacket* newPacket = new CBasicPacket();
-                        memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
-                        PChar->pushPacket(newPacket);
+                        // don't push to sender
+                        if (PChar->id != RBUFL(extra->data(), 0))
+                        {
+                            CBasicPacket* newPacket = new CBasicPacket();
+                            memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
+
+                            PChar->pushPacket(newPacket);
+                        }
                     });
                 }
             });

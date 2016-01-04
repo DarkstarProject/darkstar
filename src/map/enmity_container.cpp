@@ -115,7 +115,7 @@ float CEnmityContainer::CalculateEnmityBonus(CBattleEntity* PEntity){
 *                                                                       *
 ************************************************************************/
 
-void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster)
+void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster, bool aggroEnmity)
 {
     // you're too far away so i'm ignoring you
     if (!IsWithinEnmityRange(PEntity))
@@ -123,10 +123,6 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         CE = 0;
         VE = 0;
     }
-
-    // Crash fix, PEntity was in ACTION_FALL
-    if (PEntity->PBattleAI->GetCurrentAction() == ACTION_FALL)
-        return;
 
     EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEntity->id);
 
@@ -141,12 +137,13 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         if (PEnmity->second->CE == 0 && CE + VE <= 0)
             return;
 
-        int newCE = PEnmity->second->CE + (CE > 0) ? CE * bonus : CE;
-        int newVE = PEnmity->second->VE + (VE > 0) ? VE * bonus : VE;
+        int newCE = PEnmity->second->CE + ((CE > 0) ? CE * bonus : CE);
+        int newVE = PEnmity->second->VE + ((VE > 0) ? VE * bonus : VE);
 
         //Check for cap limit
         PEnmity->second->CE = dsp_cap(newCE, 1, 10000);
         PEnmity->second->VE = dsp_cap(newVE, 0, 10000);
+        PEnmity->second->isAggroEnmity = aggroEnmity;
 
         if (CE + VE > 0 && PEntity->getMod(MOD_TREASURE_HUNTER) > PEnmity->second->maxTH)
             PEnmity->second->maxTH = (uint8)(PEntity->getMod(MOD_TREASURE_HUNTER));
@@ -155,11 +152,22 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
     {
         EnmityObject_t* PEnmityObject = new EnmityObject_t;
 
+        bool initial = true;
+        for (auto&& enmityObject : m_EnmityList)
+        {
+            if (enmityObject.second->CE > 0 || enmityObject.second->VE > 0)
+            {
+                initial = false;
+                break;
+            }
+        }
+        if (initial) CE += 200;
         float bonus = CalculateEnmityBonus(PEntity);
 
-        PEnmityObject->CE = dsp_cap(CE * bonus, 1, 10000);
+        PEnmityObject->CE = dsp_cap(CE * bonus, 0, 10000);
         PEnmityObject->VE = dsp_cap(VE * bonus, 0, 10000);
         PEnmityObject->PEnmityOwner = PEntity;
+        PEnmityObject->isAggroEnmity = aggroEnmity;
 
         if (CE + VE > 0)
             PEnmityObject->maxTH = (uint8)(PEntity->getMod(MOD_TREASURE_HUNTER));
@@ -201,14 +209,19 @@ void CEnmityContainer::AddPartyEnmity(CCharEntity* PChar)
 
 void CEnmityContainer::AddLinkEnmity(CBattleEntity* PEntity)
 {
-    UpdateEnmity(PEntity, 0, 0, false);
+    UpdateEnmity(PEntity, 0, 0, false, true);
+}
+
+void CEnmityContainer::AddAggroEnmity(CBattleEntity* PEntity)
+{
+    UpdateEnmity(PEntity, 0, 0, true, true);
 }
 
 bool CEnmityContainer::HasTargetID(uint32 TargetID){
     EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(TargetID);
 
     if (PEnmity != m_EnmityList.end() &&
-        !m_EnmityList.key_comp()(TargetID, PEnmity->first) && PEnmity->second->CE > 0)
+        !m_EnmityList.key_comp()(TargetID, PEnmity->first) && PEnmity->second->isAggroEnmity == false)
     {
         return true;
     }
@@ -243,10 +256,6 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
             CE = 0;
             VE = 0;
         }
-
-        // Crash fix, PEntity was in ACTION_FALL
-        if (PEntity->PBattleAI->GetCurrentAction() == ACTION_FALL)
-            return;
 
         EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEntity->id);
 
@@ -342,10 +351,6 @@ void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percen
 
 void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Damage)
 {
-    // Crash fix, PEntity was in ACTION_FALL
-    if (PEntity->PBattleAI->GetCurrentAction() == ACTION_FALL)
-        return;
-
     Damage = (Damage < 1 ? 1 : Damage);
 
     uint16 mod = battleutils::GetEnmityModDamage(PEntity->GetMLevel()); //default fallback

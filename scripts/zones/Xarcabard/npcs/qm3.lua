@@ -24,17 +24,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local BorealCoeurl = GetMobAction(17236203);
-	if ((OldSchoolG2 == false) or (BorealCoeurl == ACTION_NONE or BorealCoeurl == ACTION_SPAWN)) then
-		if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(SQUARE_FRIGICITE) == false) then
-			player:addKeyItem(SQUARE_FRIGICITE);
-			player:messageSpecial(KEYITEM_OBTAINED, SQUARE_FRIGICITE);
-		else
-			player:messageSpecial(ONLY_SHARDS);
-		end
-	else
-		player:messageSpecial(ONLY_SHARDS);
-	end
+    local BorealCoeurl = GetMobAction(17236203);
+    if ((OldSchoolG2 == false) or (BorealCoeurl == ACTION_NONE or BorealCoeurl == ACTION_SPAWN)) then
+        if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(SQUARE_FRIGICITE) == false) then
+            player:addKeyItem(SQUARE_FRIGICITE);
+            player:messageSpecial(KEYITEM_OBTAINED, SQUARE_FRIGICITE);
+        else
+            player:messageSpecial(ONLY_SHARDS);
+        end
+    else
+        player:messageSpecial(ONLY_SHARDS);
+    end
 end;
 
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4686
---	Scroll of Barvirus
---	Teaches the white magic Barvirus
+--    ID: 4686
+--    Scroll of Barvirus
+--    Teaches the white magic Barvirus
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(78);
+    return target:canLearnSpell(78);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(78);
+    target:addSpell(78);
 end;

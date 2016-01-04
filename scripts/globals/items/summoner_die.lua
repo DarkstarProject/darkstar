@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5477
---	Warrior Die
---	Teaches the job ability Fighter's Roll
+--    ID: 5477
+--    Warrior Die
+--    Teaches the job ability Fighter's Roll
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnAbility(96);
+    return target:canLearnAbility(96);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addLearnedAbility(96);
+    target:addLearnedAbility(96);
 end;

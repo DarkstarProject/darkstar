@@ -8,7 +8,7 @@ package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 
 require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/missions");
-
+require("scripts/globals/quests");
 -----------------------------------
 -- onInitialize
 -----------------------------------
@@ -56,20 +56,29 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
+    
     local regionID = region:GetRegionID();
     -- printf("regionID: %u",regionID);
-
-    if (regionID==1 and player:getCurrentMission(COP) ==A_VESSEL_WITHOUT_A_CAPTAIN and player:getVar("PromathiaStatus")==1) then
-        player:startEvent(0x0041,player:getNation());
-    elseif (regionID==1 and player:getCurrentMission(COP) ==A_PLACE_TO_RETURN and player:getVar("PromathiaStatus")==0) then
-        player:startEvent(0x2740);
-    elseif (regionID==1 and player:getCurrentMission(COP) ==FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus")==2) then
-        player:startEvent(0x2743);
-    elseif (regionID==1 and player:getCurrentMission(COP) == DAWN ) then
-        if (player:getVar("COP_3-taru_story") == 2 and player:getVar("COP_shikarees_story") == 1 and player:getVar("COP_louverance_story") == 3 and player:getVar("COP_tenzen_story") == 1 and player:getVar("COP_jabbos_story") == 1) then
-            player:startEvent(0x007A);
+    
+    if (regionID == 1) then
+        if (player:getCurrentMission(COP) == A_VESSEL_WITHOUT_A_CAPTAIN and player:getVar("PromathiaStatus")== 1) then
+            player:startEvent(0x0041,player:getNation());
+        elseif (player:getCurrentMission(COP) == A_PLACE_TO_RETURN and player:getVar("PromathiaStatus")== 0) then
+            player:startEvent(0x2740);
+        elseif (player:getCurrentMission(COP) == FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus")== 2) then
+            player:startEvent(0x2743);
+        elseif (player:getCurrentMission(COP) == DAWN) then
+            if (player:getVar("COP_3-taru_story") == 2 and player:getVar("COP_shikarees_story") == 1 and player:getVar("COP_louverance_story") == 3 and player:getVar("COP_tenzen_story") == 1 and player:getVar("COP_jabbos_story") == 1) then
+                player:startEvent(0x007A);
+            elseif (player:getVar("PromathiaStatus") == 7) then
+                if (player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_AVAILABLE) then
+                    player:startEvent(0x008E);
+                elseif (player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar('StormsOfFate') == 3) then
+                    player:startEvent(0x008F);
+                end
+            end
         end
-    elseif (player:getCurrentMission(TOAU) == EASTERLY_WINDS) then
+    elseif (player:getCurrentMission(TOAU) == EASTERLY_WINDS) then  -- cleaned up but the original doesn't have a regionID check. is this correct?
         player:startEvent(0x276E);
     end
 end;
@@ -125,17 +134,22 @@ function onEventFinish(player,csid,option)
         if (option ==1) then
             if (player:getFreeSlotsCount() == 0) then 
                 player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
-		player:completeMission(TOAU,EASTERLY_WINDS);
-		player:addMission(TOAU,WESTERLY_WINDS);
-	    else
+                player:completeMission(TOAU,EASTERLY_WINDS);
+                player:addMission(TOAU,WESTERLY_WINDS);
+            else
                 player:addItem(2184,10);
                 player:messageSpecial(ITEM_OBTAINED,2184);
                 player:completeMission(TOAU,EASTERLY_WINDS);
                 player:addMission(TOAU,WESTERLY_WINDS);
-	    end
+            end
         else
             player:completeMission(TOAU,EASTERLY_WINDS);
             player:addMission(TOAU,WESTERLY_WINDS);
         end
+    elseif (csid == 0x008E) then
+        player:addQuest(JEUNO,STORMS_OF_FATE);
+    elseif (csid == 0x008F) then
+        player:completeQuest(JEUNO,STORMS_OF_FATE);
+        player:setVar('StormsOfFate',0);
     end
 end;

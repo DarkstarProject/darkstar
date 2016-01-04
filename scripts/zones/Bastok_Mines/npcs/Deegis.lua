@@ -39,7 +39,7 @@ function onTrigger(player,npc)
         0x3120,   230,3,     --Bronze Harness
         0x3108, 14256,3,     --Chainmail
         0x31A0,   126,3,     --Bronze Mittens
-        0x3188,  7614,3	     --Chain Mittens
+        0x3188,  7614,3         --Chain Mittens
     }
     showNationShop(player, BASTOK, stock);
 

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4799
---	Scroll of Stonega III
---	Teaches the black magic Stonega III
+--    ID: 4799
+--    Scroll of Stonega III
+--    Teaches the black magic Stonega III
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(191);
+    return target:canLearnSpell(191);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(191);
+    target:addSpell(191);
 end;

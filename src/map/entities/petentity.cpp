@@ -28,7 +28,10 @@
 #include "../mob_spell_list.h"
 #include "../packets/entity_update.h"
 #include "../packets/pet_sync.h"
-
+#include "../ai/ai_container.h"
+#include "../ai/controllers/pet_controller.h"
+#include "../ai/helpers/pathfind.h"
+#include "../ai/helpers/targetfind.h"
 
 CPetEntity::CPetEntity(PETTYPE petType)
 {
@@ -36,12 +39,13 @@ CPetEntity::CPetEntity(PETTYPE petType)
 	m_PetType = petType;
 	m_EcoSystem = SYSTEM_UNCLASSIFIED;
 	allegiance = ALLEGIANCE_PLAYER;
-        m_MobSkillList = 0;
+    m_MobSkillList = 0;
+    PAI = std::make_unique<CAIContainer>(this, std::make_unique<CPathFind>(this), std::make_unique<CPetController>(this),
+        std::make_unique<CTargetFind>(this));
 }
 
 CPetEntity::~CPetEntity()
 {
-
 }
 
 PETTYPE CPetEntity::getPetType(){
@@ -51,6 +55,40 @@ PETTYPE CPetEntity::getPetType(){
 bool CPetEntity::isBstPet()
 {
   return getPetType()==PETTYPE_JUG_PET || objtype == TYPE_MOB;
+}
+
+std::string CPetEntity::GetScriptName()
+{
+    switch (getPetType())
+    {
+        case PETTYPE_AVATAR:
+            return "avatar";
+            break;
+        case PETTYPE_WYVERN:
+            return "wyvern";
+            break;
+        case PETTYPE_JUG_PET:
+            return "jug";
+            break;
+        case PETTYPE_CHARMED_MOB:
+            return "charmed";
+            break;
+        case PETTYPE_AUTOMATON:
+            return "automaton";
+            break;
+        case PETTYPE_ADVENTURING_FELLOW:
+            return "fellow";
+            break;
+        case PETTYPE_CHOCOBO:
+            return "chocobo";
+            break;
+        case PETTYPE_TRUST:
+            return GetName();
+            break;
+        default:
+            return "";
+            break;
+    }
 }
 
 WYVERNTYPE CPetEntity::getWyvernType()
@@ -98,4 +136,18 @@ void CPetEntity::UpdateEntity()
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
         updatemask = 0;
     }
+}
+
+void CPetEntity::FadeOut()
+{
+    CMobEntity::FadeOut();
+    loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_DESPAWN, UPDATE_NONE));
+}
+
+void CPetEntity::Die()
+{
+    PAI->ClearStateStack();
+    PAI->Internal_Die(0s);
+    luautils::OnMobDeath(this, nullptr);
+    CBattleEntity::Die();
 }

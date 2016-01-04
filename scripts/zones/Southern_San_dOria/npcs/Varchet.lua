@@ -19,14 +19,14 @@ local GAME_TIE = 3;
 
 function onTrade(player,npc,trade)
 
-	if (npcUtil.tradeHas(trade, nil, 5)) then
-		player:tradeComplete();
-		local vdie1 = math.random(1,6);
-		local vdie2 = math.random(1,6);
-		local vtotal = vdie1 + vdie2;
-		local pdie1 = math.random(1,6);
-		local pdie2 = math.random(1,6);
-		local ptotal = pdie1 + pdie2;
+    if (npcUtil.tradeHas(trade, nil, 5)) then
+        player:tradeComplete();
+        local vdie1 = math.random(1,6);
+        local vdie2 = math.random(1,6);
+        local vtotal = vdie1 + vdie2;
+        local pdie1 = math.random(1,6);
+        local pdie2 = math.random(1,6);
+        local ptotal = pdie1 + pdie2;
 
            if (ptotal > vtotal) then
               player:startEvent(0x0207,vdie1,vdie2,vtotal,pdie1,pdie2,ptotal,GAME_WON);
@@ -37,9 +37,9 @@ function onTrade(player,npc,trade)
            else
               printf("Results Varchet's Roll : %u, Player's Roll : %u", vtotal, ptotal);
            end
-	else
-	    player:startEvent(0x0260);
-	end
+    else
+        player:startEvent(0x0260);
+    end
 end;
 
 -----------------------------------
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("U CSID: %u",csid);
-	-- printf("U RESULT: %u",option);
+    -- printf("U CSID: %u",csid);
+    -- printf("U RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -71,13 +71,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	--printf("F CSID: %u",csid);
-	--printf("F RESULT: %u",option);
+    --printf("F CSID: %u",csid);
+    --printf("F RESULT: %u",option);
 
-	local exitTheGambler = player:getQuestStatus(SANDORIA,EXIT_THE_GAMBLER);
-	local npc = player:getEventTarget();
+    local exitTheGambler = player:getQuestStatus(SANDORIA,EXIT_THE_GAMBLER);
+    local npc = player:getEventTarget();
 
-	if (csid == 519) then
+    if (csid == 519) then
           if (option == GAME_WON) then
             npc.giveGil(player, 10, {rate=false});
         if (exitTheGambler == QUEST_ACCEPTED) then
@@ -86,7 +86,7 @@ function onEventFinish(player,csid,option)
         end
           elseif (option == GAME_TIE) then
             npc.giveGil(player, 5, {rate=false});
-  	    player:showText(npc,7622);
+          player:showText(npc,7622);
           else
             player:showText(npc,7620);
           end

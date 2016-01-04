@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Walls
---	NPC:  Keir
---	Working 100%
+--    Area: Windurst Walls
+--    NPC:  Keir
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x10e);
+    player:startEvent(0x10e);
 end;
 
 -----------------------------------

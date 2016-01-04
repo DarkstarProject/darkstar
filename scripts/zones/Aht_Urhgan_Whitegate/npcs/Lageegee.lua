@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local rank = getMercenaryRank(player);
+    local rank = getMercenaryRank(player);
     local haveimperialIDtag;
     local assaultPoints = player:getAssaultPoint(PERIQIA_ASSAULT_POINT);
     
@@ -34,11 +34,11 @@ function onTrigger(player,npc)
         haveimperialIDtag = 0;
     end
     
-    if (rank > 0) then
+--[[    if (rank > 0) then
         player:startEvent(276,rank,haveimperialIDtag,assaultPoints,player:getCurrentAssault());
-    else
+    else]]
         player:startEvent(282); -- no rank
-	end
+    --end
 end;
 
 -----------------------------------
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 276) then
         local selectiontype = bit.band(option, 0xF);
         if (selectiontype == 1) then

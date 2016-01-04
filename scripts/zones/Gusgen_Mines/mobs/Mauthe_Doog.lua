@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
--- MOB:  Mauthe Doog
+--  MOB: Mauthe Doog
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,682,3);
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,682,3);
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
--- MOB:  Gigas Gatekeeper
+--  MOB: Gigas Gatekeeper
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,778,2);
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,778,2);
 end;

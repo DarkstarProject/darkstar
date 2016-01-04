@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Grand Palace of HuXzoi
--- NPC:  Ix_aern_mnk
+--  MOB: Ix_aern_mnk
 -- ID: 16916815
 -----------------------------------
 
@@ -51,14 +51,14 @@ function onMobFight(mob,target)
             mob:AnimationSub(2); -- Puts on the bracers! He gonna fuck you up now.
             mob:addMod(MOD_ATT, 200);
             mob:addMod(MOD_HASTE_ABILITY, 150);
-            mob:useMobAbility(3155); -- Hundred Fists
+            mob:useMobAbility(3411); -- Hundred Fists
             
             -- Force minions to 2hour
             if (GetMobAction(mob:getID()+1) ~= 0) then
-                GetMobByID(mob:getID()+1):useMobAbility(3156); -- Chainspell
+                GetMobByID(mob:getID()+1):useMobAbility(3412); -- Chainspell
             end
             if (GetMobAction(mob:getID()+2) ~= 0) then
-                GetMobByID(mob:getID()+2):useMobAbility(3157); -- Benediction
+                GetMobByID(mob:getID()+2):useMobAbility(3413); -- Benediction
             end
         end;
     end;
@@ -68,7 +68,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
     -- Despawn his minions if they are alive (Qn'aern)
     DespawnMob(mob:getID()+1);
     DespawnMob(mob:getID()+2);
@@ -82,4 +82,6 @@ function onMobDespawn(mob)
     -- Despawn his minions if they are alive (Qn'aern)
     DespawnMob(mob:getID()+1);
     DespawnMob(mob:getID()+2);
+    local QuestionMark = 16916819; -- The ??? that spawned this mob.
+    QuestionMark:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

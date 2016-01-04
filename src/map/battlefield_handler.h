@@ -38,7 +38,7 @@ class CBattlefieldHandler
 public:
 
 	CBattlefieldHandler(uint16 zoneid);
-	void	handleBattlefields(uint32 tick);							// called every tick to handle win/lose conditions, locking the bcnm, etc
+	void	handleBattlefields(time_point tick);							// called every tick to handle win/lose conditions, locking the bcnm, etc
 	int		registerBcnm(uint16 bcnmid, CCharEntity* PChar);		// returns the battlefield id of the registration, -1 if no free bcnm.
 																	// also registers all people in the characters PT, etc.
 
@@ -51,8 +51,8 @@ public:
 	bool	hasFreeBattlefield();										// returns true if there is a free battlefield available
 	bool	hasFreeSpecialBattlefield(uint16 id);	
 	bool    hasSpecialBattlefieldEmpty(uint16 id);                     // return 1 if one or more player is still on the special battlefield
-	int     SpecialBattlefieldLeftTime(uint16 id,uint32 tick);         //return left Time of the specific battlefield
-	int     GiveTimeToBattlefield(uint16 id,uint16 Time);              // give time to specific battlefield
+	duration     SpecialBattlefieldLeftTime(uint16 id,time_point tick);         //return left Time of the specific battlefield
+	int     GiveTimeToBattlefield(uint16 id,duration Time);              // give time to specific battlefield
 	void    SetLootToBCNM(uint16 LootID,uint16 id,uint32 npcID); 	
 	void    RestoreOnBattlefield(uint16 id);                          //restor MP HP ability on a specific battlefield
 	uint32	pollTimeLeft(uint16 bcnmid);							// returns the shortest time left of all 3 battlefields of the given BCNM ID

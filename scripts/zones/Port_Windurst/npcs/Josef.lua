@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC:  Josef
---	Standard Info Npc
+--    Area: Port Windurst
+--    NPC:  Josef
+--    Standard Info Npc
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x002d);
+    player:startEvent(0x002d);
 end;
 
 -----------------------------------

@@ -21,14 +21,14 @@ function onMobWeaponSkill(target, mob, skill)
 
    -- TODO: Can skillchain?  Unknown property.
 
-	local numhits = 2;
-	local accmod = 1;
-	local dmgmod = 4;
-	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_2_SHADOW);
+    local numhits = 2;
+    local accmod = 1;
+    local dmgmod = 4;
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_2_SHADOW);
 
    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_STUN, 1, 0, 4);
 
    target:delHP(dmg);
-	return dmg;
+    return dmg;
 end;

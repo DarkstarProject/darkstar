@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Giddeus (145)
---   Mob: Yagudo_Piper
+-- Area: Giddeus (145)
+--  MOB: Yagudo_Piper
 -----------------------------------
 
 require("scripts/zones/Giddeus/MobIDs");
@@ -9,18 +9,18 @@ require("scripts/zones/Giddeus/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-    mob = mob:getID();
-    if (Vuu_Puqu_the_Beguiler_PH[mob] ~= nil) then
+    local mobID = mob:getID();
+    if (Vuu_Puqu_the_Beguiler_PH[mobID] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Vuu_Puqu_the_Beguiler");
+        local ToD = GetServerVariable("[POP]Vuu_Puqu_the_Beguiler");
         if (ToD <= os.time(t) and GetMobAction(Vuu_Puqu_the_Beguiler) == 0) then
-            if (math.random((1),(20)) == 5) then
+            if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Vuu_Puqu_the_Beguiler);
-                GetMobByID(Vuu_Puqu_the_Beguiler):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Vuu_Puqu_the_Beguiler", mob);
-                DeterMob(mob, true);
+                GetMobByID(Vuu_Puqu_the_Beguiler):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Vuu_Puqu_the_Beguiler", mobID);
+                DeterMob(mobID, true);
             end
         end
     end

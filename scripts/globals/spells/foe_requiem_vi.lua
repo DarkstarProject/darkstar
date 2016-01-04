@@ -8,7 +8,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
@@ -30,7 +30,7 @@ function onSpellCast(caster,target,spell)
         power = power + 1;
     end
 
-	local iBoost = caster:getMod(MOD_REQUIEM_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    local iBoost = caster:getMod(MOD_REQUIEM_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
     power = power + iBoost;
     
     if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then

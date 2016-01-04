@@ -26,9 +26,9 @@ function onTrigger(player,npc)
     local badges = { 0, 780, 783, 784, 794, 795, 825, 826, 827, 894, 900, 909 };
     local rank = 1;
 
-	while player:hasKeyItem(badges[rank + 1]) == true do
-		rank = rank + 1;
-	end;
+    while player:hasKeyItem(badges[rank + 1]) == true do
+        rank = rank + 1;
+    end;
 
     player:startEvent(0x0096,rank-1,badges[rank],player:getCurrency("imperial_standing"),0,39183,10577,4095,0,0); -- Unsure of what other params mean
 end;
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,npc)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     local Quantity = bit.rshift(option, 8);
     local CoinType = bit.band(option, 255);

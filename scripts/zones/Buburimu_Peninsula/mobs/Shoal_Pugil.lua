@@ -1,18 +1,18 @@
------------------------------------	
--- Area: Buburimu Peninsula	
--- MOB:  Shoal Pugil	
------------------------------------	
-	
-require("scripts/globals/fieldsofvalor");	
+-----------------------------------
+-- Area: Buburimu Peninsula
+--  MOB: Shoal Pugil
+-----------------------------------
+
+require("scripts/globals/fieldsofvalor");
 require("scripts/zones/Buburimu_Peninsula/MobIDs");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-    checkRegime(killer,mob,62,1);
-    
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+    checkRegime(ally,mob,62,1);
+
     local mob = mob:getID();
     if (Buburimboo_PH[mob] ~= nil) then
 
@@ -26,4 +26,4 @@ function onMobDeath(mob,killer)
             end
         end
     end
-end;	
+end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise Meadows
--- NPC:  Amaltheia
+--  MOB: Amaltheia
 -- @pos 347.897 -10.895 264.382 24
 -----------------------------------
 
@@ -15,6 +15,13 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	GetNPCByID(16875889):hideNPC(900);
+function onMobDeath(mob,killer,ally)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    GetNPCByID(16875890):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

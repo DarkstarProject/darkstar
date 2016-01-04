@@ -23,9 +23,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:sendGuild(530,5,20,7)) then
-		player:showText(npc,KOPOPO_SHOP_DIALOG);
-	end
+    if (player:sendGuild(530,5,20,7)) then
+        player:showText(npc,KOPOPO_SHOP_DIALOG);
+    end
 end; 
 
 -----------------------------------

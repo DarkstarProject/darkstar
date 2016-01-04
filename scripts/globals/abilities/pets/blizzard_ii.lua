@@ -14,22 +14,17 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onPetAbility(target, pet, skill)
-	local spell = getSpell(150);
-	--calculate raw damage
-	local dmg = calculateMagicDamage(155,1,pet,spell,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);
-	--get resist multiplier (1x if no resist)
-	local resist = applyPlayerResistance(pet,-1,target,pet:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL, ELE_ICE);
-	--get the resisted damage
-	dmg = dmg*resist;
-	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-	dmg = mobAddBonuses(pet,spell,target,dmg, 5);
-	--add on TP bonuses
-	local tp = skill:getTP();
-	if tp < 100 then
-		tp = 100;
-	end
-	dmg = dmg * tp / 100;
-	--add in final adjustments
-	dmg = finalMagicAdjustments(pet,target,spell,dmg);
-	return dmg;
+    local dINT = math.floor(pet:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local tp = skill:getTP();
+
+    local damage = math.floor(45 + 0.25*(tp));
+    damage = damage + (dINT * 1.5);
+    damage = MobMagicalMove(pet,target,skill,damage,ELE_ICE,1,TP_NO_EFFECT,0);
+    damage = mobAddBonuses(pet, nil, target, damage.dmg, ELE_ICE);
+    damage = AvatarFinalAdjustments(damage,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1);
+
+    target:delHP(damage);
+    target:updateEnmityFromDamage(pet,damage);
+
+    return damage;
 end

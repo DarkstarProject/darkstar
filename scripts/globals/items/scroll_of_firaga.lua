@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4782
---	Scroll of Firaga
---	Teaches the black magic Firaga
+--    ID: 4782
+--    Scroll of Firaga
+--    Teaches the black magic Firaga
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(174);
+    return target:canLearnSpell(174);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(174);
+    target:addSpell(174);
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Sauromugue Champaign (120)
---  HNM:  Roc
+-- Area: Sauromugue Champaign (120)
+--  HNM: Roc
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -16,13 +16,12 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)	
+function onMobDeath(mob,killer,ally)
 
-    killer:addTitle(ROC_STAR);
+    ally:addTitle(ROC_STAR);
 
     -- Set Roc's spawnpoint and respawn time (21-24 hours)
     UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random((75600),(86400)));
+    mob:setRespawnTime(math.random(75600,86400));
 
 end;
-

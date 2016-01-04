@@ -22,12 +22,12 @@ end;
 -----------------------------------
 
 function onMobSpawn(mob)
-	mob:addStatusEffectEx(EFFECT_SHOCK_SPIKES,0,60,0,0); -- ~60 damage
-	-- TODO: Effect can be stolen, giving a THF (Aura Steal) or BLU (Voracious Trunk) a 60 minute shock spikes effect (unknown potency).
-	-- If effect is stolen, he will recast it instantly. 
-	
-	-- TODO: Additional Effect for ~100 damage (theme suggests enthunder)
-	-- Unknown if this can be stolen/dispelled like spikes.  Isn't mentioned, probably not	
+    mob:addStatusEffectEx(EFFECT_SHOCK_SPIKES,0,60,0,0); -- ~60 damage
+    -- TODO: Effect can be stolen, giving a THF (Aura Steal) or BLU (Voracious Trunk) a 60 minute shock spikes effect (unknown potency).
+    -- If effect is stolen, he will recast it instantly. 
+    
+    -- TODO: Additional Effect for ~100 damage (theme suggests enthunder)
+    -- Unknown if this can be stolen/dispelled like spikes.  Isn't mentioned, probably not    
 end;
 
 -----------------------------------
@@ -36,25 +36,25 @@ end;
 function onMobFight(mob, target)
    -- Keep pets linked
    
-	local MotherGlobe = mob:getID();
+    local MotherGlobe = mob:getID();
    
-	for i = MotherGlobe+1, MotherGlobe+6 do
-		if (GetMobAction(i) == 16) then
-			GetMobByID(i):updateEnmity(target);
-		end
-	end
+    for i = MotherGlobe+1, MotherGlobe+6 do
+        if (GetMobAction(i) == 16) then
+            GetMobByID(i):updateEnmity(target);
+        end
+    end
 
    -- Summons a single orb every 30 seconds.  Needs to be last, so other code runs.
    -- TODO: Should have a SMN casting effect for ~3-5 seconds while calling.
-	if (mob:getBattleTime() % 30 == 0 and mob:getBattleTime() > 3) then
-		for i = MotherGlobe+1, MotherGlobe+6 do
-			if (GetMobAction(i) == 0) then -- My Orb is deeaaaaaad!
-				SpawnMob(i):updateEnmity(target);
-				GetMobByID(i):setPos(mob:getXPos()+1, mob:getYPos(), mob:getZPos()+1);
-				return;
-			end
-		end
-	end
+    if (mob:getBattleTime() % 30 == 0 and mob:getBattleTime() > 3) then
+        for i = MotherGlobe+1, MotherGlobe+6 do
+            if (GetMobAction(i) == 0) then -- My Orb is deeaaaaaad!
+                SpawnMob(i):updateEnmity(target);
+                GetMobByID(i):setPos(mob:getXPos()+1, mob:getYPos(), mob:getZPos()+1);
+                return;
+            end
+        end
+    end
 end;
 
 -----------------------------------
@@ -62,13 +62,13 @@ end;
 -----------------------------------
 function onMobDeath( mob, killer )
 
-	local MotherGlobe = mob:getID();
+    local MotherGlobe = mob:getID();
 
-	mob:setRespawnTime(math.random((10800),(21600))); -- respawn 3-6 hrs
+    mob:setRespawnTime(math.random((10800),(21600))); -- respawn 3-6 hrs
 
-	for i = MotherGlobe+1, MotherGlobe+6 do
-		if (GetMobAction(i) ~= 0) then
-			DespawnMob(i);
-		end
-	end
+    for i = MotherGlobe+1, MotherGlobe+6 do
+        if (GetMobAction(i) ~= 0) then
+            DespawnMob(i);
+        end
+    end
 end;

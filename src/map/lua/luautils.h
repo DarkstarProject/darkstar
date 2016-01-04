@@ -25,12 +25,21 @@
 #define _LUAUTILS_H
 
 #include "../../common/cbasetypes.h"
-
-#include "../entities/battleentity.h"
-#include "../conquest_system.h"
-
-#define lua_prepscript(n,...) int8 File[255]; int32 oldtop = lua_gettop(LuaHandle); \
-                              snprintf( File, sizeof(File), n, ##__VA_ARGS__);
+#include "../../common/lua/lunar.h"
+#include "../../common/taskmgr.h"
+#include "lua_ability.h"
+#include "lua_baseentity.h"
+#include "lua_mobskill.h"
+#include "lua_action.h"
+#include "lua_battlefield.h"
+#include "lua_instance.h"
+#include "lua_mobskill.h"
+#include "lua_region.h"
+#include "lua_spell.h"
+#include "lua_statuseffect.h"
+#include "lua_trade_container.h"
+#include "lua_zone.h"
+#include "lua_item.h"
 
 /************************************************************************
 *																		*
@@ -49,7 +58,15 @@ class CItem;
 class CMobSkill;
 class CRegion;
 class CStatusEffect;
+class CTradeContainer;
 class CItemPuppet;
+class CItemWeapon;
+class CInstance;
+class CWeaponSkill;
+class CZone;
+struct action_t;
+struct actionList_t;
+enum ConquestUpdate : uint8;
 
 namespace luautils
 {
@@ -58,8 +75,50 @@ namespace luautils
     int32 init();
     int32 free();
     int32 garbageCollect(); // performs a full garbage collecting cycle
+    int register_fp(int index);
+    void unregister_fp(int);
     int32 print(lua_State*);
     int32 prepFile(int8*, const char*);
+
+    template<class T, class L>
+    void pushLuaType(T* obj) { Lunar<L>::push(LuaHandle, new L(obj), true); }
+
+    //TODO: if the classes themselves held the lua method declarations, this voodoo to get the wrappers wouldn't be needed!
+    template<class T>
+    typename std::enable_if_t<std::is_pointer<T>::value> pushArg(CBaseEntity* arg) { pushLuaType<CBaseEntity, CLuaBaseEntity>(arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_pointer<T>::value> pushArg(CAbility* arg) { pushLuaType<CAbility, CLuaAbility>(arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_pointer<T>::value> pushArg(CMobSkill* arg) { pushLuaType<CMobSkill, CLuaMobSkill>(arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_pointer<T>::value> pushArg(action_t* arg) { pushLuaType<action_t, CLuaAction>(arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_pointer<T>::value> pushArg(CBattlefield* arg) { pushLuaType<CBattlefield, CLuaBattlefield>(arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_pointer<T>::value> pushArg(CInstance* arg) { pushLuaType<CInstance, CLuaInstance>(arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_pointer<T>::value> pushArg(CRegion* arg) { pushLuaType<CRegion, CLuaRegion>(arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_pointer<T>::value> pushArg(CSpell* arg) { pushLuaType<CSpell, CLuaSpell>(arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_pointer<T>::value> pushArg(CStatusEffect* arg) { pushLuaType<CStatusEffect, CLuaStatusEffect>(arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_pointer<T>::value> pushArg(CTradeContainer* arg) { pushLuaType<CTradeContainer, CLuaTradeContainer>(arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_pointer<T>::value> pushArg(CZone* arg) { pushLuaType<CZone, CLuaZone>(arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_pointer<T>::value> pushArg(CItem* arg) { pushLuaType<CItem, CLuaItem>(arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_integral<T>::value> pushArg(T arg) { lua_pushinteger(LuaHandle, arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_floating_point<T>::value> pushArg(T arg) { lua_pushnumber(LuaHandle, arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_same<bool, T>::value> pushArg(T arg) { lua_pushboolean(LuaHandle, arg); }
+    template<class T>
+    typename std::enable_if_t<std::is_same<nullptr_t, T>::value> pushArg(T arg) { lua_pushnil(LuaHandle); }
+
+    void pushFunc(int lua_func, int index = 0);
+    void callFunc(int nargs);
 
     int32 SendEntityVisualPacket(lua_State*);                                    // временное решение для работы гейзеров в Dangruf_Wadi
 
@@ -114,7 +173,7 @@ namespace luautils
 
     int32 OnGameIn(CCharEntity* PChar, bool zoning);							//
     int32 OnZoneIn(CCharEntity* PChar);											// triggers when a player zones into a zone
-    int32 AfterZoneIn(uint32 tick, CTaskMgr::CTask *PTask);						// triggers after a player has finished zoning in
+    int32 AfterZoneIn(time_point tick, CTaskMgr::CTask *PTask);						// triggers after a player has finished zoning in
     int32 OnZoneInitialise(uint16 ZoneID);										// triggers when zone is loaded
     int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion);					// when player enters a region of a zone
     int32 OnRegionLeave(CCharEntity* PChar, CRegion* Pregion);					// when player leaves a region of a zone
@@ -173,12 +232,12 @@ namespace luautils
 
     int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbility, CBaseEntity** PMsgTarget);	// triggers when a player attempts to use a job ability or roll
     int32 OnPetAbility(CBaseEntity* PPet, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PPetMaster);		// triggers when pet uses an ability
-    int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLanded, uint16* extraHitsLanded);	// triggers when weapon skill is used
-    int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, apAction_t* action);		    // triggers when job ability is used
+    std::tuple<int32, uint8, uint8> OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill);// returns: damage, tphits landed, extra hits landed
+    int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, action_t* action);		    // triggers when job ability is used
     int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, uint8 total);			// triggers on corsair roll
 
     int32 OnInstanceZoneIn(CCharEntity* PChar, CInstance* PInstance);           // triggered on zone in to instance
-    int32 AfterInstanceRegister(uint32 tick, CTaskMgr::CTask *PTask);			// triggers after a character is registered and zoned into an instance (the first time)
+    int32 AfterInstanceRegister(time_point tick, CTaskMgr::CTask *PTask);			// triggers after a character is registered and zoned into an instance (the first time)
     int32 OnInstanceLoadFailed(CZone* PZone);									// triggers when an instance load is failed (ie. instance no longer exists)
     int32 OnInstanceTimeUpdate(CZone* PZone, CInstance* PInstance, uint32 time);// triggers every second for an instance
     int32 OnInstanceFailure(CInstance* PInstance);								// triggers when an instance is failed
@@ -195,8 +254,8 @@ namespace luautils
     int32 UpdateTreasureSpawnPoint(lua_State* L);                               // Update the spawn point of an Treasure
     int32 UpdateServerMessage(lua_State*);										// update server message, first modify in conf and update
 
-    int32 OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, apAction_t* Action, uint32 damage); // for items with additional effects
-    int32 OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, apAction_t* Action, uint32 damage);                         // for mobs with spikes
+    //int32 OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, apAction_t* Action, uint32 damage); // for items with additional effects
+    //int32 OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, apAction_t* Action, uint32 damage);                         // for mobs with spikes
 
     int32 nearLocation(lua_State*);
 

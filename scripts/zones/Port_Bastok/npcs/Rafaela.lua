@@ -43,9 +43,9 @@ function onEventFinish(player,csid,option)
 
 PastPerfectVar = player:getVar("PastPerfectVar");
 
-	if (csid == 0x0016 and PastPerfectVar == 1) then
-		player:setVar("PastPerfectVar",2);
-	end
+    if (csid == 0x0016 and PastPerfectVar == 1) then
+        player:setVar("PastPerfectVar",2);
+    end
 
 end;
 

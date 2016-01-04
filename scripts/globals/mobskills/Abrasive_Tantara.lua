@@ -13,15 +13,19 @@ require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+    if (mob:AnimationSub() == 1 and mob:getFamily() == 165) then -- Imps without horn
+        return 1;
+    else
+        return 0;
+    end
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local message = MSG_MISS;
-	local typeEffect = EFFECT_AMNESIA;
-	local power = 1;
-	local duration = 60;
+    local message = MSG_MISS;
+    local typeEffect = EFFECT_AMNESIA;
+    local power = 1;
+    local duration = 60;
 
-	skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
-	return typeEffect;
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
+    return typeEffect;
 end;

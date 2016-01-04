@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: West Ronfaure
---	NPC:  Laillera
---	@pos -127.297 -62.000 266.800 100
+--    Area: West Ronfaure
+--    NPC:  Laillera
+--    @pos -127.297 -62.000 266.800 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
@@ -22,13 +22,13 @@ end;
 
 function onTrigger(player,npc)
 
-	local thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
+    local thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
 
-	if (thePickpocket > 0) then
-		player:showText(npc, 7264);
-	else
-		player:showText(npc, LAILLERA_DIALOG);
-	end
+    if (thePickpocket > 0) then
+        player:showText(npc, 7264);
+    else
+        player:showText(npc, LAILLERA_DIALOG);
+    end
 end;
 
 -----------------------------------

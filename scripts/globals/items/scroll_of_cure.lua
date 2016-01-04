@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4608,4609
---	Scroll of Cure
---	Teaches the white magic Cure
+--    ID: 4608,4609
+--    Scroll of Cure
+--    Teaches the white magic Cure
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(1);
+    return target:canLearnSpell(1);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(1);
+    target:addSpell(1);
 end;

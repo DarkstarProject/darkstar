@@ -36,7 +36,7 @@ local slipItems = {
 -- desc : Checks if the supplied item is a Moogle Storage Slip.
 ----------------------------------------------------------------------
 local function isSlip(itemId)
-	return (slipItems[itemId] ~= nil);
+    return (slipItems[itemId] ~= nil);
 end
 
 ----------------------------------------------------------------------
@@ -226,9 +226,9 @@ end
 function porterMoogleTrade(player, trade, e)
     local slipId, slipCount = getSlipId(trade);
     if (slipId == 0 or slipCount > 1) then return; end;
-	
+    
     local storableItemIds = getStorableItems(player, trade, slipId);
-	
+    
     if (#storableItemIds > 0) then
         storeItems(player, storableItemIds, slipId, e);
     else

@@ -25,6 +25,8 @@
 #include "entities/battleentity.h"
 #include "attackround.h"
 #include "attack.h"
+#include "status_effect_container.h"
+#include "items/item_weapon.h"
 
 #include <math.h>
 
@@ -33,10 +35,11 @@
 *  Constructor.															*
 *																		*
 ************************************************************************/
-CAttack::CAttack(CBattleEntity* attacker, PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIRECTION direction, CAttackRound* attackRound)
+CAttack::CAttack(CBattleEntity* attacker, CBattleEntity* defender, PHYSICAL_ATTACK_TYPE type, 
+                 PHYSICAL_ATTACK_DIRECTION direction, CAttackRound* attackRound)
 {
 	m_attacker = attacker;
-	m_victim = attacker->PBattleAI->GetBattleTarget();
+    m_victim = defender;
 	m_attackRound = attackRound;
 	m_attackType = type;
 	m_attackDirection = direction;

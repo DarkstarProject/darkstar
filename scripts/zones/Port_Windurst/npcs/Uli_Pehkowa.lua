@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         0x0284,  1840,1,     --Mythril Ore
         0x0343,   230,1,     --Flax Flower
         0x02BB,  5814,1,     --Oak Log
-		
+        
         0x02BA,    87,2,     --Ash Log
         0x02B6,  2599,2,     --Chestnut Log
         0x0280,    11,2,     --Copper Ore

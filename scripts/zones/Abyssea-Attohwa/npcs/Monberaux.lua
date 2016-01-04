@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Abyssea-Attohwa
---	NPC: Monberaux
---	Standard Info NPC
+--    Area: Abyssea-Attohwa
+--    NPC: Monberaux
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Attohwa/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x017D);
+    player:startEvent(0x017D);
 end;
 
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4677
---	Scroll of Barstonra
---	Teaches the white magic Barstonra
+--    ID: 4677
+--    Scroll of Barstonra
+--    Teaches the white magic Barstonra
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(69);
+    return target:canLearnSpell(69);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(69);
+    target:addSpell(69);
 end;

@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Abyssea_Altepa
---	NPC: Honoi-Gomoi
---	Standard Info NPC
+--    Area: Abyssea_Altepa
+--    NPC: Honoi-Gomoi
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Altepa/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x014B);
+    player:startEvent(0x014B);
 end;
 
 -----------------------------------

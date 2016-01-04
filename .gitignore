@@ -36,6 +36,7 @@ x64/
 *.vspscc
 *.vssscc
 .builds
+*.pyc
 
 # Visual C++ cache files
 ipch/
@@ -48,6 +49,9 @@ ipch/
 *.psess
 *.vsp
 *.vspx
+
+# Visual Studio Analyzer
+*.lastcodeanalysis*
 
 # Guidance Automation Toolkit
 *.gpState

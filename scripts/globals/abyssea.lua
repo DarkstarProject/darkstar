@@ -1,6 +1,6 @@
 -----------------------------------
 -- Abyssea functions, vars, tables
--- DO NOT mess with the order 
+-- DO NOT mess with the order
 -- or change things to "elseif"!
 -----------------------------------
 
@@ -211,6 +211,7 @@ end;
 
 function getDemiluneAbyssite(player)
     local Demilune = 0;
+    -- Todo: change this into proper bitmask
     if (player:hasKeyItem(CLEAR_DEMILUNE_ABYSSITE)) then
         Demilune = Demilune + 1;
     end

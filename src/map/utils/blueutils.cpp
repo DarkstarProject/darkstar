@@ -36,6 +36,7 @@
 #include "charutils.h"
 #include "../grades.h"
 #include "blueutils.h"
+#include "../party.h"
 #include "../merit.h"
 #include "../modifier.h"
 #include "../spell.h"
@@ -132,7 +133,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
                 if (dsprand::GetRandomNumber(100) < 33) {
 					if (charutils::addSpell(PBlueMage, PSpell->getID())) {
 						PBlueMage->pushPacket(new CMessageBasicPacket(PBlueMage, PBlueMage, PSpell->getID(), 0, MSGBASIC_LEARNS_SPELL));
-						charutils::SaveSpells(PBlueMage);
+						charutils::SaveSpell(PBlueMage, PSpell->getID());
 						PBlueMage->pushPacket(new CCharSpellsPacket(PBlueMage));
 					}
 				}

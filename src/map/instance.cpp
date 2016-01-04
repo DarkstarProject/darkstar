@@ -34,21 +34,11 @@ This file is part of DarkStar-server source code.
 
 CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone)
 {
-	m_zone = zone;
-	m_instanceid = instanceid;
-	m_commander = 0;
-	m_levelcap = 0;
-	m_lastTimeUpdate = 0;
-	m_lastTimeCheck = 0;
-	m_wipeTimer = 0;
-	m_status = INSTANCE_NORMAL;
-	m_progress = 0;
-	m_stage = 0;
 	memset(&m_entryloc, 0, sizeof m_entryloc);
 
 	LoadInstance();
 
-	m_startTime = gettick();
+	m_startTime = server_clock::now();
 }
 
 CInstance::~CInstance()
@@ -114,7 +104,7 @@ void CInstance::LoadInstance()
 	{
 		m_instanceName.insert(0, Sql_GetData(SqlHandle, 0));
 
-		m_timeLimit = Sql_GetUIntData(SqlHandle, 1);
+		m_timeLimit = std::chrono::minutes(Sql_GetUIntData(SqlHandle, 1));
 		m_entrance = Sql_GetUIntData(SqlHandle, 2);
 		m_entryloc.x = Sql_GetFloatData(SqlHandle, 3);
 		m_entryloc.y = Sql_GetFloatData(SqlHandle, 4);
@@ -158,22 +148,22 @@ position_t CInstance::GetEntryLoc()
 	return m_entryloc;
 }
 
-uint32 CInstance::GetTimeLimit()
+duration CInstance::GetTimeLimit()
 {
 	return m_timeLimit;
 }
 
-uint32 CInstance::GetLastTimeUpdate()
+time_point CInstance::GetLastTimeUpdate()
 {
 	return m_lastTimeUpdate;
 }
 
-uint32 CInstance::GetWipeTime()
+time_point CInstance::GetWipeTime()
 {
 	return m_wipeTimer;
 }
 
-uint32 CInstance::GetElapsedTime(uint32 tick)
+duration CInstance::GetElapsedTime(time_point tick)
 {
 	return tick - m_startTime;
 }
@@ -191,7 +181,7 @@ void CInstance::SetEntryLoc(float x, float y, float z, float rot)
 	m_entryloc.rotation = rot;
 }
 
-void CInstance::SetLastTimeUpdate(uint32 lastTime)
+void CInstance::SetLastTimeUpdate(time_point lastTime)
 {
 	m_lastTimeUpdate = lastTime;
 }
@@ -207,7 +197,7 @@ void CInstance::SetStage(uint32 stage)
 	m_stage = stage;
 }
 
-void CInstance::SetWipeTime(uint32 time)
+void CInstance::SetWipeTime(time_point time)
 {
 	m_wipeTimer = time;
 }
@@ -218,11 +208,11 @@ void CInstance::SetWipeTime(uint32 time)
 *                                                                       *
 ************************************************************************/
 
-void CInstance::CheckTime(uint32 tick)
+void CInstance::CheckTime(time_point tick)
 {
-	if (m_lastTimeCheck + 1000 <= tick && !Failed())
+	if (m_lastTimeCheck + 1s <= tick && !Failed())
 	{
-		luautils::OnInstanceTimeUpdate(m_zone, this, GetElapsedTime(tick));
+		luautils::OnInstanceTimeUpdate(m_zone, this, GetElapsedTime(tick).count());
 		m_lastTimeCheck = tick;
 	}
 }

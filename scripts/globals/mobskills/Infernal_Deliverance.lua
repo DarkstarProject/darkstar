@@ -11,9 +11,9 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-	local typeEffect = EFFECT_STUN;
+    local typeEffect = EFFECT_STUN;
 
-	MobStatusEffectMove(mob, target, typeEffect, 0, 0, 10);
+    MobStatusEffectMove(mob, target, typeEffect, 0, 0, 10);
 
     local numhits = 1;
     local accmod = 1;

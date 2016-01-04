@@ -59,7 +59,7 @@ function onTrigger(player,npc)
         elseif (progress >= 5 or failed >= 6) then
             player:startEvent(0x00F6); -- happy with wandering bulb
         end
-	else
+    else
         player:startEvent(0x00C9);
     end
 end;

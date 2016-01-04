@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC: Synergy Enthusiast
---	Standard Info NPC
+--    Area: Port Windurst
+--    NPC: Synergy Enthusiast
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x2EE1);
+    player:startEvent(0x2EE1);
 end;
 
 -----------------------------------

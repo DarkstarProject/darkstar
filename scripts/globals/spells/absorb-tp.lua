@@ -12,13 +12,13 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
 
-	local dmg = math.random();
-	dmg = math.random();
+    local dmg = math.random();
+    dmg = math.random();
     dmg = math.random(10, 80);
     --get resist multiplier (1x if no resist)
     local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),DARK_MAGIC_SKILL,1.0);

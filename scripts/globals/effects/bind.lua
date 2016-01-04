@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- 	EFFECT_BIND
+--     EFFECT_BIND
 --
 -----------------------------------
 
@@ -9,8 +9,8 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-	effect:setPower(target:speed());
-	target:speed(0);
+    effect:setPower(target:speed());
+    target:speed(0);
 end;
 
 -----------------------------------
@@ -25,5 +25,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:speed(effect:getPower());
+    target:speed(effect:getPower());
 end;

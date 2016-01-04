@@ -13,7 +13,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -21,9 +21,9 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if (target:hasStatusEffect(EFFECT_ENCHANTMENT) == false) then
-		target:addStatusEffect(EFFECT_ENCHANTMENT,0,0,3600,11403);
-	end;
+    if (target:hasStatusEffect(EFFECT_ENCHANTMENT) == false) then
+        target:addStatusEffect(EFFECT_ENCHANTMENT,0,0,3600,11403);
+    end;
 end;
 
 -----------------------------------------
@@ -31,7 +31,7 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_MOVE, 15);
+    target:addMod(MOD_MOVE, 15);
 end;
 
 -----------------------------------------
@@ -39,5 +39,5 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_MOVE, 15);
+    target:delMod(MOD_MOVE, 15);
 end;

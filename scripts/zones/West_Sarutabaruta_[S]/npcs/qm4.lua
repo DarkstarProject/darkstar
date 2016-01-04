@@ -22,10 +22,10 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STIRS)==QUEST_ACCEPTED and player:hasKeyItem(SMALL_STARFRUIT)==false) then
-		player:addKeyItem(SMALL_STARFRUIT);
-		player:messageSpecial(KEYITEM_OBTAINED, SMALL_STARFRUIT);
-	end
+    if (player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STIRS)==QUEST_ACCEPTED and player:hasKeyItem(SMALL_STARFRUIT)==false) then
+        player:addKeyItem(SMALL_STARFRUIT);
+        player:messageSpecial(KEYITEM_OBTAINED, SMALL_STARFRUIT);
+    end
 
 end;
 

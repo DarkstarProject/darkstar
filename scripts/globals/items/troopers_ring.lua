@@ -11,7 +11,7 @@ require("scripts/globals/settings");
 -----------------------------------------
 
 function onItemCheck(target)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -19,12 +19,12 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	local hpHeal = math.random(100,115);
+    local hpHeal = math.random(100,115);
 
-	local dif = target:getMaxHP() - target:getHP();
-	if (hpHeal > dif) then
-		hpHeal = dif;
-	end
-	target:addHP(hpHeal);
-	target:messageBasic(263,0,hpHeal);
+    local dif = target:getMaxHP() - target:getHP();
+    if (hpHeal > dif) then
+        hpHeal = dif;
+    end
+    target:addHP(hpHeal);
+    target:messageBasic(263,0,hpHeal);
 end;

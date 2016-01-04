@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
--- NPC:  Icon Prototype
+--  MOB: Icon Prototype
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Xarcabard/TextIDs"] = nil;
 -----------------------------------
@@ -34,22 +34,22 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	
-	local mobID = mob:getID();
-	
-	-- Time Bonus: 043
-	if (mobID == 17330814 and mob:isInBattlefieldList() == false) then
-		killer:addTimeToDynamis(30);
-		mob:addInBattlefieldList();
-	-- HP Bonus: 052
-	elseif (mobID == 17330533) then
-		killer:restoreHP(2000);
-		killer:messageBasic(024,(killer:getMaxHP()-killer:getHP()));
-	-- HP Bonus: 073
-	elseif (mobID == 17330843) then
-		killer:restoreMP(2000);
-		killer:messageBasic(025,(killer:getMaxMP()-killer:getMP()));
-	end
-	
+function onMobDeath(mob,killer,ally)
+    
+    local mobID = mob:getID();
+    
+    -- Time Bonus: 043
+    if (mobID == 17330814 and mob:isInBattlefieldList() == false) then
+        ally:addTimeToDynamis(30);
+        mob:addInBattlefieldList();
+    -- HP Bonus: 052
+    elseif (mobID == 17330533) then
+        ally:restoreHP(2000);
+        ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
+    -- HP Bonus: 073
+    elseif (mobID == 17330843) then
+        ally:restoreMP(2000);
+        ally:messageBasic(025,(ally:getMaxMP()-ally:getMP()));
+    end
+    
 end;

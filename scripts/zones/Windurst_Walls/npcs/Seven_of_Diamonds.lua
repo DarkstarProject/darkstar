@@ -19,11 +19,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if player:hasKeyItem(267) then
-		player:startEvent(0x0186);
-	else
-		player:startEvent(0x0108);
-	end
+    if player:hasKeyItem(267) then
+        player:startEvent(0x0186);
+    else
+        player:startEvent(0x0108);
+    end
 end;
 
 -----------------------------------
@@ -31,8 +31,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -40,7 +40,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 

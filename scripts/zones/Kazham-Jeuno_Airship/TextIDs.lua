@@ -8,7 +8,7 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
 
 -- Other
 
-     WILL_REACH_JEUNO = 7043; -- The airship will reach Jeuno in Multiple Choice (Parameter 1)[less than an hour/about 1 hour/about 2 hours/about 3 hours/about 4 hours/about 5 hours/about 6 hours/about 7 hours] ( Singular/Plural Choice (Parameter 0)[minute/minutes] in Earth time). 
-    WILL_REACH_KAZHAM = 7044; -- The airship will reach Kazham in Multiple Choice (Parameter 1)[less than an hour/about 1 hour/about 2 hours/about 3 hours/about 4 hours/about 5 hours/about 6 hours/about 7 hours] ( Singular/Plural Choice (Parameter 0)[minute/minutes] in Earth time). 
-  N_JEUNO_MOMENTARILY = 7045; -- We will be arriving in Jeuno momentarily.
-IN_KAZHAM_MOMENTARILY = 7046; -- We will be arriving in Kazham momentarily.
+     WILL_REACH_JEUNO = 7045; -- The airship will reach Jeuno in Multiple Choice (Parameter 1)[less than an hour/about 1 hour/about 2 hours/about 3 hours/about 4 hours/about 5 hours/about 6 hours/about 7 hours] ( Singular/Plural Choice (Parameter 0)[minute/minutes] in Earth time). 
+    WILL_REACH_KAZHAM = 7046; -- The airship will reach Kazham in Multiple Choice (Parameter 1)[less than an hour/about 1 hour/about 2 hours/about 3 hours/about 4 hours/about 5 hours/about 6 hours/about 7 hours] ( Singular/Plural Choice (Parameter 0)[minute/minutes] in Earth time). 
+  N_JEUNO_MOMENTARILY = 7047; -- We will be arriving in Jeuno momentarily.
+IN_KAZHAM_MOMENTARILY = 7048; -- We will be arriving in Kazham momentarily.

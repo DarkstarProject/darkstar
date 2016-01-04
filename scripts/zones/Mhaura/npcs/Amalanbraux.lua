@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Mhaura
---	NPC:  Amalanbraux
+--    Area: Mhaura
+--    NPC:  Amalanbraux
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x2bc);
+    player:startEvent(0x2bc);
 end;
 
 -----------------------------------

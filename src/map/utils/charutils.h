@@ -28,16 +28,19 @@ This file is part of DarkStar-server source code.
 
 #include "../trait.h"
 #include "../entities/charentity.h"
+#include "../items/item_armor.h"
 
 class CPetEntity;
 class CMobEntity;
 class CMeritPoints;
+class CAbility;
 
 namespace charutils
 {
 
     void	LoadExpTable();
     void	LoadChar(CCharEntity* PChar);
+    void        LoadSpells(CCharEntity* PChar);
     void	LoadInventory(CCharEntity* PChar);
     void    LoadEquip(CCharEntity* PChar);
 
@@ -96,7 +99,6 @@ namespace charutils
     int32	hasSpell(CCharEntity* PChar, uint16 SpellID);		        // проверяем наличие заклинания
     int32	addSpell(CCharEntity* PChar, uint16 SpellID);		        // добавляем заклинание
     int32	delSpell(CCharEntity* PChar, uint16 SpellID);		        // улаляем заклинание
-    void    filterEnabledSpells(CCharEntity* PChar);                    // Calculates a View of a Char's Spell List filtering out spells that are disabled.
 
     int32	hasLearnedAbility(CCharEntity* PChar, uint16 AbilityID);	// проверяем наличие заклинания
     int32	addLearnedAbility(CCharEntity* PChar, uint16 AbilityID);	// добавляем заклинание
@@ -134,7 +136,8 @@ namespace charutils
     void	SaveZonesVisited(CCharEntity* PChar);				        // сохраняем посещенные зоны
     void	SaveKeyItems(CCharEntity* PChar);					        // сохраняем ключевые предметы
     void	SaveCharInventoryCapacity(CCharEntity* PChar);              // Save Character inventory capacity
-    void	SaveSpells(CCharEntity* PChar);						        // сохраняем выученные заклинания
+    void	SaveSpell(CCharEntity* PChar, uint16 spellID);						        // сохраняем выученные заклинания
+    void	DeleteSpell(CCharEntity* PChar, uint16 spellID);
     void	SaveLearnedAbilities(CCharEntity* PChar);					// saved learned abilities (corsair rolls)
     void    SaveTitles(CCharEntity* PChar);						        // сохраняем заслуженные звания
     void	SaveCharStats(CCharEntity* PChar);					        // сохраняем флаги, текущие значения жихней, маны и профессий
@@ -171,6 +174,7 @@ namespace charutils
     int32   GetPoints(CCharEntity* PChar, const char* type);
     std::string GetConquestPointsName(CCharEntity* PChar);
     void    SendToZone(CCharEntity* PChar, uint8 type, uint64 ipp);
+    void    AddWeaponSkillPoints(CCharEntity*, SLOTTYPE, int);
 
     int32   GetVar(CCharEntity* PChar, const char* var);
 };

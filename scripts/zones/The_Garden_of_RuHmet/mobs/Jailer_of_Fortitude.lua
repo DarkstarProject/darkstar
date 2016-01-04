@@ -13,7 +13,7 @@ require("scripts/globals/magic");
 function onMobSpawn(mob)
     -- Give it two hour
     mob:setMobMod(MOBMOD_MAIN_2HOUR, 1);
-	mob:setMobMod(MOBMOD_2HOUR_MULTI, 1);
+    mob:setMobMod(MOBMOD_2HOUR_MULTI, 1);
     -- Change animation to humanoid w/ prismatic core
     mob:AnimationSub(1);
     mob:setModelId(1169);
@@ -70,9 +70,16 @@ function onMobDeath(mob, killer, npc)
     -- Despawn the pets if alive
     DespawnMob(Kf_Ghrah_WHM);
     DespawnMob(Kf_Ghrah_BLM);
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     -- Set 15 mins respawn
     local qm1 = GetNPCByID(Jailer_of_Fortitude_QM);
-    qm1:hideNPC(900);
+    qm1:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 
     -- Move it to a random location
     local qm1position = math.random(1,5);

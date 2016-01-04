@@ -23,17 +23,17 @@ end;
 
 function onTrigger(player,npc)
 
-	local guardian = GetMobByID(17428494);
+    local guardian = GetMobByID(17428494);
 
-	if ( npc:getAnimation() == 9) then
-		player:messageSpecial(PROTECTED_BY_UNKNOWN_FORCE);
-	end
-	
-	if (guardian ~= nil and guardian:getHP() > 0 and guardian:getTarget() == nil) then
-		guardian:updateClaim(player);
-	end
-	
-	return 1;
+    if ( npc:getAnimation() == 9) then
+        player:messageSpecial(PROTECTED_BY_UNKNOWN_FORCE);
+    end
+    
+    if (guardian ~= nil and guardian:getHP() > 0 and guardian:getTarget() == nil) then
+        guardian:updateClaim(player);
+    end
+    
+    return 1;
 end; 
 
 -----------------------------------

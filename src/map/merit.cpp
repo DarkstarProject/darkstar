@@ -396,8 +396,6 @@ void CMeritPoints::RaiseMerit(MERIT_TYPE merit)
 {
     Merit_t* PMerit = GetMeritPointer(merit);
 
-    ShowDebug("Merit ID: %d\n", merit);
-
     if (m_MeritPoints >= PMerit->next)
     {
         m_MeritPoints -= PMerit->next;
@@ -407,7 +405,7 @@ void CMeritPoints::RaiseMerit(MERIT_TYPE merit)
         {
             if (charutils::addSpell(m_PChar, PMerit->spellid))
             {
-                charutils::SaveSpells(m_PChar);
+                charutils::SaveSpell(m_PChar, PMerit->spellid);
                 m_PChar->pushPacket(new CCharSpellsPacket(m_PChar));
             }
         }
@@ -433,7 +431,7 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
     {
         if (charutils::delSpell(m_PChar, PMerit->spellid))
         {
-            charutils::SaveSpells(m_PChar);
+            charutils::DeleteSpell(m_PChar, PMerit->spellid);
             m_PChar->pushPacket(new CCharSpellsPacket(m_PChar));
         }
     }

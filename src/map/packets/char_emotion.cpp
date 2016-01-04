@@ -27,7 +27,8 @@
 
 #include "char_emotion.h"
 #include "../entities/charentity.h"
-
+#include "../item_container.h"
+#include "../items/item_weapon.h"
 
 CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint8* buff) 
 {

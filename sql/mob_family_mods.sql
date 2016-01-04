@@ -71,8 +71,29 @@ INSERT INTO `mob_family_mods` VALUES (184,10,5,1);
 INSERT INTO `mob_family_mods` VALUES (59,10,5,1);
 INSERT INTO `mob_family_mods` VALUES (253,10,6,1);
 INSERT INTO `mob_family_mods` VALUES (254,10,6,1);
+INSERT INTO `mob_family_mods` VALUES (289,10,6,1);
+INSERT INTO `mob_family_mods` VALUES (307,10,6,1);
 INSERT INTO `mob_family_mods` VALUES (212,10,7,1);
 INSERT INTO `mob_family_mods` VALUES (362,10,7,1);
+INSERT INTO `mob_family_mods` VALUES (213,10,8,1);
+INSERT INTO `mob_family_mods` VALUES (285,10,8,1);
+INSERT INTO `mob_family_mods` VALUES (176,10,8,1);
+INSERT INTO `mob_family_mods` VALUES (246,10,9,1);
+INSERT INTO `mob_family_mods` VALUES (308,10,9,1);
+INSERT INTO `mob_family_mods` VALUES (326,10,9,1);
+INSERT INTO `mob_family_mods` VALUES (171,10,10,1);
+INSERT INTO `mob_family_mods` VALUES (182,10,10,1);
+INSERT INTO `mob_family_mods` VALUES (310,10,10,1);
+INSERT INTO `mob_family_mods` VALUES (469,10,10,1);
+INSERT INTO `mob_family_mods` VALUES (233,10,11,1);
+INSERT INTO `mob_family_mods` VALUES (311,10,11,1);
+INSERT INTO `mob_family_mods` VALUES (199,10,12,1);
+INSERT INTO `mob_family_mods` VALUES (288,10,12,1);
+INSERT INTO `mob_family_mods` VALUES (165,10,13,1);
+INSERT INTO `mob_family_mods` VALUES (166,10,13,1);
+INSERT INTO `mob_family_mods` VALUES (301,10,13,1);
+INSERT INTO `mob_family_mods` VALUES (27,10,14,1);
+INSERT INTO `mob_family_mods` VALUES (294,10,14,1);
 
 INSERT INTO `mob_family_mods` VALUES (169,11,15,1);
 INSERT INTO `mob_family_mods` VALUES (358,11,15,1);
@@ -92,7 +113,10 @@ INSERT INTO `mob_family_mods` VALUES (274,23,256,1);
 INSERT INTO `mob_family_mods` VALUES (273,23,256,1);
 INSERT INTO `mob_family_mods` VALUES (234,37,1,1);
 INSERT INTO `mob_family_mods` VALUES (72,29,10,0);
-INSERT INTO `mob_family_mods` VALUES (72,69,20,0);
+INSERT INTO `mob_family_mods` VALUES (72,68,20,0);
+INSERT INTO `mob_family_mods` VALUES (139,68,10,0);
+INSERT INTO `mob_family_mods` VALUES (176,68,10,0);
+INSERT INTO `mob_family_mods` VALUES (285,68,10,0);
 INSERT INTO `mob_family_mods` VALUES (57,3,50,1);
 INSERT INTO `mob_family_mods` VALUES (72,3,50,1);
 INSERT INTO `mob_family_mods` VALUES (140,3,50,1);
@@ -104,8 +128,8 @@ INSERT INTO `mob_family_mods` VALUES (194,3,50,1);
 INSERT INTO `mob_family_mods` VALUES (271,3,50,1);
 INSERT INTO `mob_family_mods` VALUES (135,4,4,1);
 INSERT INTO `mob_family_mods` VALUES (373,16,1,1);
-INSERT INTO `mob_family_mods` VALUES (394,41,732,1);
-INSERT INTO `mob_family_mods` VALUES (394,42,733,1);
+INSERT INTO `mob_family_mods` VALUES (394,41,988,1);
+INSERT INTO `mob_family_mods` VALUES (394,42,989,1);
 INSERT INTO `mob_family_mods` VALUES (394,43,2,1);
 INSERT INTO `mob_family_mods` VALUES (150,4,30,1);
 INSERT INTO `mob_family_mods` VALUES (394,4,30,1);
@@ -125,12 +149,37 @@ INSERT INTO `mob_family_mods` VALUES (124,389,-32,0);
 INSERT INTO `mob_family_mods` VALUES (175,389,-128,0);
 INSERT INTO `mob_family_mods` VALUES (171,389,-32,0);
 
--- Demons and fomors are highly resistant to lullaby
+-- Demons and fomors are somewhat resistant to lullaby
 INSERT INTO `mob_family_mods` VALUES (358,254,25,0);
 INSERT INTO `mob_family_mods` VALUES (169,254,25,0);
 INSERT INTO `mob_family_mods` VALUES (115,254,25,0);
 INSERT INTO `mob_family_mods` VALUES (359,254,25,0);
-INSERT INTO `mob_family_mods` VALUES (359,240,25,0);
+
+-- Most undead, Rocs, and Hecteyes are highly resistant to sleep, 
+-- Kindred and bat(s) are fairly resistant
+INSERT INTO `mob_family_mods` VALUES (47,240,50,0);
+INSERT INTO `mob_family_mods` VALUES (48,240,50,0);
+INSERT INTO `mob_family_mods` VALUES (52,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (74,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (86,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (88,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (89,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (115,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (121,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (125,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (139,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (142,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (143,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (169,240,50,0);
+INSERT INTO `mob_family_mods` VALUES (203,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (204,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (205,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (221,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (222,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (223,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (227,240,100,0);
+INSERT INTO `mob_family_mods` VALUES (358,240,50,0);
+INSERT INTO `mob_family_mods` VALUES (359,240,100,0);
 
 -- Immunities
 INSERT INTO `mob_family_mods` VALUES (92,23,2047,1);
@@ -564,19 +613,19 @@ INSERT INTO `mob_family_mods` VALUES (59,@roam_cool,50,1);
 INSERT INTO `mob_family_mods` VALUES (59,@roam_rate,30,1);
 INSERT INTO `mob_family_mods` VALUES (59,@roam_turns,2,1);
 
-INSERT INTO `mob_family_mods` VALUES (126,54,18,1);
-INSERT INTO `mob_family_mods` VALUES (127,54,18,1);
-INSERT INTO `mob_family_mods` VALUES (128,54,18,1);
-INSERT INTO `mob_family_mods` VALUES (129,54,18,1);
-INSERT INTO `mob_family_mods` VALUES (130,54,18,1);
-INSERT INTO `mob_family_mods` VALUES (328,54,18,1);
+INSERT INTO `mob_family_mods` VALUES (126,54,180,1);
+INSERT INTO `mob_family_mods` VALUES (127,54,180,1);
+INSERT INTO `mob_family_mods` VALUES (128,54,180,1);
+INSERT INTO `mob_family_mods` VALUES (129,54,180,1);
+INSERT INTO `mob_family_mods` VALUES (130,54,180,1);
+INSERT INTO `mob_family_mods` VALUES (328,54,180,1);
 
-INSERT INTO `mob_family_mods` VALUES (169,54,12,1);
-INSERT INTO `mob_family_mods` VALUES (358,54,12,1);
+INSERT INTO `mob_family_mods` VALUES (169,54,120,1);
+INSERT INTO `mob_family_mods` VALUES (358,54,120,1);
 
-INSERT INTO `mob_family_mods` VALUES (87,54,100,1);
-INSERT INTO `mob_family_mods` VALUES (115,54,10,1);
-INSERT INTO `mob_family_mods` VALUES (359,54,10,1);
+INSERT INTO `mob_family_mods` VALUES (87,54,1000,1);
+INSERT INTO `mob_family_mods` VALUES (115,54,100,1);
+INSERT INTO `mob_family_mods` VALUES (359,54,100,1);
 
 -- All animated weapons have MP
 INSERT INTO `mob_family_mods` VALUES (7,3,50,1);
@@ -611,25 +660,36 @@ INSERT INTO `mob_family_mods` VALUES (59,63,20,0);
 INSERT INTO `mob_family_mods` VALUES (213,20,128,0);
 
 -- Never standback
-INSERT INTO `mob_family_mods` VALUES (32,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (33,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (34,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (35,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (36,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (37,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (38,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (39,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (40,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (41,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (42,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (43,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (44,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (45,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (495,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (92,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (93,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (94,56,1,1);
-INSERT INTO `mob_family_mods` VALUES (95,56,1,1);
+INSERT INTO `mob_family_mods` VALUES (32,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (33,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (34,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (35,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (36,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (37,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (38,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (39,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (40,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (41,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (42,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (43,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (44,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (45,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (495,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (92,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (93,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (94,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (95,56,-1,1);
+-- elementals don't standback
+INSERT INTO `mob_family_mods` VALUES (99,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (100,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (101,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (102,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (103,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (104,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (105,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (106,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (4,56,-1,1);
+INSERT INTO `mob_family_mods` VALUES (139,56,-1,1);
 
 -- Weapon bonus damage
 INSERT INTO `mob_family_mods` VALUES (57,59,125,1);
@@ -660,6 +720,7 @@ INSERT INTO `mob_family_mods` VALUES (264,59,125,1);
 INSERT INTO `mob_family_mods` VALUES (169,59,120,1);
 INSERT INTO `mob_family_mods` VALUES (358,59,120,1);
 INSERT INTO `mob_family_mods` VALUES (371,59,125,1);
+INSERT INTO `mob_family_mods` VALUES (165,29,24,0); -- Imp MDEF 24
 
 /*!40000 ALTER TABLE `mob_family_mods` ENABLE KEYS */;
 UNLOCK TABLES;

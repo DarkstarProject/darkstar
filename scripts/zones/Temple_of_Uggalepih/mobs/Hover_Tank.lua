@@ -1,14 +1,14 @@
------------------------------------   
+-----------------------------------
 -- Area: Temple Of Uggalepih
--- MOB:  Hover Tank   
------------------------------------   
+--  MOB: Hover Tank
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");   
+require("scripts/globals/groundsofvalor");
 
------------------------------------   
--- onMobDeath   
------------------------------------   
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)   
-   checkGoVregime(killer,mob,794,2);
-end;   
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,794,2);
+end;

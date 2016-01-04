@@ -7,13 +7,13 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 
 local path = {
-	-539, 0, -481,
-	-556, 0, -478,
-	-581, 0, -475,
-	-579, -3, -460,
-	-572, 2, -433,
-	-545, 1, -440,
-	-532, 0, -466
+    -539, 0, -481,
+    -556, 0, -478,
+    -581, 0, -475,
+    -579, -3, -460,
+    -572, 2, -433,
+    -545, 1, -440,
+    -532, 0, -466
 };
 
 -----------------------------------
@@ -28,7 +28,7 @@ end;
 -----------------------------------
 
 function onMobSpawn(mob)
-	onMobRoam(mob);
+    onMobRoam(mob);
 end;
 
 -----------------------------------
@@ -37,7 +37,7 @@ end;
 
 function onMobRoamAction(mob)
 
-	pathfind.patrol(mob, path, PATHFLAG_REVERSE);
+    pathfind.patrol(mob, path, PATHFLAG_REVERSE);
 
 end;
 
@@ -46,10 +46,10 @@ end;
 -----------------------------------
 
 function onMobRoam(mob)
-	-- move to start position if not moving
-	if (mob:isFollowingPath() == false) then
-		mob:pathThrough(pathfind.first(path));
-	end
+    -- move to start position if not moving
+    if (mob:isFollowingPath() == false) then
+        mob:pathThrough(pathfind.first(path));
+    end
 end;
 
 -----------------------------------
@@ -70,5 +70,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;

@@ -1,3 +1,4 @@
+require("scripts/globals/status")
 
 utils = {};
 
@@ -246,3 +247,104 @@ function utils.getMobSkillLvl(rank, level)
     return 0;
 end;
 
+-- Returns 1 if attacker has a bonus
+-- Returns 0 no bonus
+-- Returns -1 if weak against
+function utils.getSystemStrengthBonus(attacker, defender)
+    local attackerSystem = attacker:getSystem();
+    local defenderSystem = defender:getSystem();
+
+    if (attackerSystem == SYSTEM_BEAST) then
+        if (defenderSystem == SYSTEM_LIZARD) then
+            return 1;
+        elseif (defenderSystem == SYSTEM_PLANTOID) then
+            return -1;
+        end
+    end
+
+    if (attackerSystem == SYSTEM_LIZARD) then
+        if (defenderSystem == SYSTEM_VERMIN) then
+            return 1;
+        elseif (defenderSystem == SYSTEM_BEAST) then
+            return -1;
+        end
+    end
+
+    if (attackerSystem == SYSTEM_VERMIN) then
+        if (defenderSystem == SYSTEM_PLANTOID) then
+            return 1;
+        elseif (defenderSystem == SYSTEM_LIZARD) then
+            return -1;
+        end
+    end
+
+    if (attackerSystem == SYSTEM_PLANTOID) then
+        if (defenderSystem == SYSTEM_BEAST) then
+            return 1;
+        elseif (defenderSystem == SYSTEM_VERMIN) then
+            return -1;
+        end
+    end
+
+    if (attackerSystem == SYSTEM_AQUAN) then
+        if (defenderSystem == SYSTEM_AMORPH) then
+            return 1;
+        elseif (defenderSystem == SYSTEM_BIRD) then
+            return -1;
+        end
+    end
+
+    if (attackerSystem == SYSTEM_AMORPH) then
+        if (defenderSystem == SYSTEM_BIRD) then
+            return 1;
+        elseif (defenderSystem == SYSTEM_AQUAN) then
+            return -1;
+        end
+    end
+
+    if (attackerSystem == SYSTEM_BIRD) then
+        if (defenderSystem == SYSTEM_AQUAN) then
+            return 1;
+        elseif (defenderSystem == SYSTEM_AMORPH) then
+            return -1;
+        end
+    end
+
+    if (attackerSystem == SYSTEM_UNDEAD) then
+        if (defenderSystem == SYSTEM_ARCANA) then
+            return 1;
+        end
+    end
+
+    if (attackerSystem == SYSTEM_ARCANA) then
+        if (defenderSystem == SYSTEM_UNDEAD) then
+            return 1;
+        end
+    end
+
+    if (attackerSystem == SYSTEM_DRAGON) then
+        if (defenderSystem == SYSTEM_DEMON) then
+            return 1;
+        end
+    end
+
+    if (attackerSystem == SYSTEM_DEMON) then
+        if (defenderSystem == SYSTEM_DRAGON) then
+            return 1;
+        end
+    end
+
+    if (attackerSystem == SYSTEM_LUMORIAN) then
+        if (defenderSystem == SYSTEM_LUMINION) then
+            return 1;
+        end
+    end
+
+    if (attackerSystem == SYSTEM_LUMINION) then
+        if (defenderSystem == SYSTEM_LUMORIAN) then
+            return 1;
+        end
+    end
+
+    return 0;
+end;

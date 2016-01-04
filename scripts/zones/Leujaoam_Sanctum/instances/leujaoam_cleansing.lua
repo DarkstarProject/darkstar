@@ -14,7 +14,7 @@ function afterInstanceRegister(player)
     local instance = player:getInstance();
     player:messageSpecial(Leujaoam.text.ASSAULT_01_START, 1);
     player:messageSpecial(Leujaoam.text.TIME_TO_COMPLETE, instance:getTimeLimit());
-end;	
+end;    
 
 -----------------------------------
 -- onInstanceCreated

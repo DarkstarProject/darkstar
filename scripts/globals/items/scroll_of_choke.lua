@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4845
---	Scroll of Choke
---	Teaches the black magic Choke
+--    ID: 4845
+--    Scroll of Choke
+--    Teaches the black magic Choke
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(237);
+    return target:canLearnSpell(237);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(237);
+    target:addSpell(237);
 end;

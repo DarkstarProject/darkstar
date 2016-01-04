@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
--- NPC:  Carmine-tailed Janberry
+--  NM:  Carmine-tailed Janberry
 -----------------------------------
 
 -----------------------------------
@@ -14,9 +14,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	kills = killer:getVar("EVERYONES_GRUDGE_KILLS");
-	if (kills < 480) then
-		killer:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
-	end
+function onMobDeath(mob,killer,ally)
+    local kills = ally:getVar("EVERYONES_GRUDGE_KILLS");
+    if (kills < 480) then
+        ally:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
+    end
 end;

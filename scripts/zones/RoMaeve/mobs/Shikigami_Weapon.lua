@@ -1,8 +1,8 @@
------------------------------------	
--- Area: RoMaeve	
--- MOB:  Shikigami Weapon 
------------------------------------	
-	
+-----------------------------------
+-- Area: RoMaeve
+--  MOB: Shikigami Weapon
+-----------------------------------
+
 
 local path = {
 -47, -4, -37,
@@ -11,14 +11,14 @@ local path = {
 -59, -4, -43,
 -67, -3.7, -50.6,
 -76, -1.4, -60,
--87, -1, -69, 
+-87, -1, -69,
 -104, -3, -58,
 -118, -3, -46,
 -112, -3.5, -28,
 -98, -6, -16,
 -84, -6, -9,
 -64, -6, 1.1,
--40, -6, 9.6, 
+-40, -6, 9.6,
 -20, -6, 12,
 -10, -6.2, 11,
 31, -6, 11,
@@ -43,24 +43,24 @@ local path = {
 -----------------------------------
 
 function onMobSpawn(mob)
-	onMobRoam(mob);
+    onMobRoam(mob);
 end;
 
 function onPath(mob)
-	pathfind.patrol(mob, path, PATHFLAG_RUN);
+    pathfind.patrol(mob, path, PATHFLAG_RUN);
 end;
 
 function onMobRoam(mob)
-	-- move to start position if not moving
-	if (mob:isFollowingPath() == false) then
-		mob:pathThrough(pathfind.first(path), PATHFLAG_RUN);
-	end
+    -- move to start position if not moving
+    if (mob:isFollowingPath() == false) then
+        mob:pathThrough(pathfind.first(path), PATHFLAG_RUN);
+    end
 end;
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,119,2);
-end;	
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+    checkRegime(ally,mob,119,2);
+end;

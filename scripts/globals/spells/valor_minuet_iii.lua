@@ -10,25 +10,25 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
 
-	local sLvl = caster:getSkillLevel(SKILL_SNG); -- Gets skill level of Singing
+    local sLvl = caster:getSkillLevel(SKILL_SNG); -- Gets skill level of Singing
     local iLvl = caster:getWeaponSkillLevel(SLOT_RANGED);
 
-	local power = 24;
+    local power = 24;
 
     if (sLvl+iLvl > 200) then
         power = power + math.floor((sLvl+iLvl-200) / 6);
     end
     
-	if (power >= 48) then
-		power = 48;
-	end
+    if (power >= 48) then
+        power = 48;
+    end
     
-	local iBoost = caster:getMod(MOD_MINUET_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    local iBoost = caster:getMod(MOD_MINUET_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
     if (iBoost > 0) then
         power = power + 1 + (iBoost-1)*4;
     end
@@ -49,9 +49,9 @@ function onSpellCast(caster,target,spell)
         duration = duration * 2;
     end
     
-	if not (target:addBardSong(caster,EFFECT_MINUET,power,0,duration,caster:getID(), 0, 3)) then
+    if not (target:addBardSong(caster,EFFECT_MINUET,power,0,duration,caster:getID(), 0, 3)) then
         spell:setMsg(75);
     end
 
-	return EFFECT_MINUET;
+    return EFFECT_MINUET;
 end;

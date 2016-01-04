@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4976
---	Scroll of Foe Requiem
---	Teaches the song Foe Requiem
+--    ID: 4976
+--    Scroll of Foe Requiem
+--    Teaches the song Foe Requiem
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(368);
+    return target:canLearnSpell(368);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(368);
+    target:addSpell(368);
 end;

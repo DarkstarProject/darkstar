@@ -14,7 +14,7 @@ require("scripts/zones/Dynamis-Tavnazia/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
-	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------
@@ -29,6 +29,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	
+function onMobDeath(mob,killer,ally)
+    
 end;

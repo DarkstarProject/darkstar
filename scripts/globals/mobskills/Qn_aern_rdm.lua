@@ -2,7 +2,6 @@
 -- Chainspell
 -- Meant for Qn'aern (RDM) with Ix'Aern encounter
 ---------------------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
@@ -10,12 +9,11 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:getID() == 16916816) then
-        if (mob:getHPP() <= 70) then
-            return 0;
-        end
-    end;
-    return 1;
+    if (mob:getPool() == 3269 and mob:getHPP() <= 70) then
+        return 0;
+    else
+        return 1;
+    end
 end;
 
 function onMobWeaponSkill(target, mob, skill)

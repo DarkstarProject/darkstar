@@ -25,22 +25,22 @@ end;
 
 function onTrigger(player,npc)
 
-	local gates = player:getQuestStatus(SANDORIA,GATES_TO_PARADISE);
-	if (gates == QUEST_COMPLETED) then	
-		player:showText(npc, FAURBELLANT_4);
-	elseif (gates == QUEST_ACCEPTED) then
-		if (player:hasKeyItem(SCRIPTURE_OF_WIND) == true) then 
-			player:showText(npc, FAURBELLANT_2, 0, SCRIPTURE_OF_WIND);
-			player:delKeyItem(SCRIPTURE_OF_WIND);
-			player:addKeyItem(SCRIPTURE_OF_WATER);
-			player:messageSpecial(KEYITEM_OBTAINED, SCRIPTURE_OF_WATER)
-		else
-			player:showText(npc, FAURBELLANT_3, SCRIPTURE_OF_WATER);
-		end;
-	else
-		player:showText(npc, FAURBELLANT_1);
-	end;
-	
+    local gates = player:getQuestStatus(SANDORIA,GATES_TO_PARADISE);
+    if (gates == QUEST_COMPLETED) then    
+        player:showText(npc, FAURBELLANT_4);
+    elseif (gates == QUEST_ACCEPTED) then
+        if (player:hasKeyItem(SCRIPTURE_OF_WIND) == true) then 
+            player:showText(npc, FAURBELLANT_2, 0, SCRIPTURE_OF_WIND);
+            player:delKeyItem(SCRIPTURE_OF_WIND);
+            player:addKeyItem(SCRIPTURE_OF_WATER);
+            player:messageSpecial(KEYITEM_OBTAINED, SCRIPTURE_OF_WATER)
+        else
+            player:showText(npc, FAURBELLANT_3, SCRIPTURE_OF_WATER);
+        end;
+    else
+        player:showText(npc, FAURBELLANT_1);
+    end;
+    
 end; 
 
 

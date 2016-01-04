@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0022);
+    player:startEvent(0x0022);
 end; 
 
 -----------------------------------
@@ -31,8 +31,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -40,9 +40,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-	if (csid == 0x0022 and option == 1) then
-		player:setPos(-39.846,-179.334,-19.921,131,274);
-	end
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x0022 and option == 1) then
+        player:setPos(-39.846,-179.334,-19.921,131,274);
+    end
 end;

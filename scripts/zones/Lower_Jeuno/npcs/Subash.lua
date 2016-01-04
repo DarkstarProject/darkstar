@@ -3,7 +3,7 @@
 --  NPC: Subash
 --  Type: Item Deliverer
 --  @zone: 245
---  @pos -19.84	-0.101	-38.081
+--  @pos -19.84    -0.101    -38.081
 --
 -----------------------------------
 
@@ -22,8 +22,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc, ITEM_DELIVERY_DIALOG);
-	player:openSendBox();
+    player:showText(npc, ITEM_DELIVERY_DIALOG);
+    player:openSendBox();
 end;
 
 -----------------------------------

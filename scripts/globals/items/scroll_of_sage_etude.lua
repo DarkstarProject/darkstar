@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5043
---	Scroll of Sage Etude
---	Teaches the song Sage Etude
+--    ID: 5043
+--    Scroll of Sage Etude
+--    Teaches the song Sage Etude
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(435);
+    return target:canLearnSpell(435);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(435);
+    target:addSpell(435);
 end;

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4814
---	Scroll of Freeze
---	Teaches the black magic Freeze
+--    ID: 4814
+--    Scroll of Freeze
+--    Teaches the black magic Freeze
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(206);
+    return target:canLearnSpell(206);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(206);
+    target:addSpell(206);
 end;

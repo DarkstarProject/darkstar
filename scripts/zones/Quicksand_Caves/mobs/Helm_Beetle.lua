@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
--- MOB:  Helm Beetle
+--  MOB: Helm Beetle
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,813,1);
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,813,1);
 end;

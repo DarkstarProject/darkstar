@@ -30,13 +30,13 @@ function onTrigger(player,npc)
 local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED);
 local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress");
 
-	if (player:getMainLvl() >= ADVANCED_JOB_LEVEL and NoStringsAttached == QUEST_AVAILABLE) then
-		player:startEvent(0x01b2); -- initial cs to start the quest, go and see Iruki-Waraki at Whitegate
-	elseif (NoStringsAttachedProgress == 1) then
-		player:startEvent(0x01b3); -- reminder to go see Iruki-Waraki at Whitegate
-	else
-		player:startEvent(0x01b1);
-	end;
+    if (player:getMainLvl() >= ADVANCED_JOB_LEVEL and NoStringsAttached == QUEST_AVAILABLE) then
+        player:startEvent(0x01b2); -- initial cs to start the quest, go and see Iruki-Waraki at Whitegate
+    elseif (NoStringsAttachedProgress == 1) then
+        player:startEvent(0x01b3); -- reminder to go see Iruki-Waraki at Whitegate
+    else
+        player:startEvent(0x01b1);
+    end;
 end;
 
 -----------------------------------
@@ -55,10 +55,10 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-	
-	if (csid == 0x01b2) then
-		player:setVar("NoStringsAttachedProgress",1);
-		player:addQuest(AHT_URHGAN,NO_STRINGS_ATTACHED);
-	end;
+    
+    if (csid == 0x01b2) then
+        player:setVar("NoStringsAttachedProgress",1);
+        player:addQuest(AHT_URHGAN,NO_STRINGS_ATTACHED);
+    end;
 end;
 

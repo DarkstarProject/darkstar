@@ -30,35 +30,35 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-	
-	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		if (player:hasCompletedMission(ZILART,THE_CELESTIAL_NEXUS)) then
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
-		else
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
-		end
-	elseif (leavecode == 4) then
-		player:startEvent(0x7d02);
-	end
-	
+    
+    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+        if (player:hasCompletedMission(ZILART,THE_CELESTIAL_NEXUS)) then
+            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
+        else
+            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
+        end
+    elseif (leavecode == 4) then
+        player:startEvent(0x7d02);
+    end
+    
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-	
+    
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-	
-	if (csid == 0x7d01) then
-		if (player:getCurrentMission(ZILART) == THE_CELESTIAL_NEXUS) then
+    
+    if (csid == 0x7d01) then
+        if (player:getCurrentMission(ZILART) == THE_CELESTIAL_NEXUS) then
             player:completeMission(ZILART,THE_CELESTIAL_NEXUS);
-			player:addMission(ZILART,AWAKENING);
+            player:addMission(ZILART,AWAKENING);
             player:addTitle(BURIER_OF_THE_ILLUSION);
             player:setVar("ZilartStatus",0);
-		end
-		-- You will be transported to the Hall of the Gods
-		player:setPos(0,-18,137,64,251);
-	end
-	
+        end
+        -- You will be transported to the Hall of the Gods
+        player:setPos(0,-18,137,64,251);
+    end
+    
 end;

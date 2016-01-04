@@ -108,7 +108,7 @@ function onEventUpdate(player,csid,option)
     if (csid == 0x0015) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 0x0017) then
-        if (player:getYPos() >= -22) then	
+        if (player:getYPos() >= -22) then    
             player:updateEvent(0,0,0,0,0,7);
         else
             player:updateEvent(0,0,0,0,0,6);

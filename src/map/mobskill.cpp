@@ -38,6 +38,7 @@ CMobSkill::CMobSkill(uint16 id)
 	m_Message = 0;
     m_Param = 0;
     m_skillchain = 0;
+    m_HPP = 0;
 }
 
 bool CMobSkill::hasMissMsg()
@@ -117,6 +118,11 @@ void CMobSkill::setTP(int16 tp)
 	m_TP = tp;
 }
 
+void CMobSkill::setHPP(uint8 hpp)
+{
+    m_HPP = hpp;
+}
+
 void CMobSkill::setAnimationTime(uint16 AnimationTime)
 {
     m_AnimationTime = AnimationTime;
@@ -188,7 +194,12 @@ uint16 CMobSkill::getPetAnimationID()
 
 int16 CMobSkill::getTP()
 {
-	return m_TP;
+    return m_TP;
+}
+
+uint8 CMobSkill::getHPP()
+{
+    return m_HPP;
 }
 
 uint16 CMobSkill::getTotalTargets()
@@ -198,26 +209,12 @@ uint16 CMobSkill::getTotalTargets()
 
 uint16 CMobSkill::getMsg()
 {
-	return m_Message;
+    return m_Message;
 }
 
 uint16 CMobSkill::getMsgForAction()
 {
-  uint16 id = getID();
-    uint16 messageid = 256 + id;
-    uint8 flag = getFlag();
-    if (flag == SKILLFLAG_WS)
-    {
-        // Fomor weaponskills
-        // the actual message is a player ability
-        // messageid for 3825 should be 241
-        // so 3825 - 3584 = 241, etc
-        if (id >= 3825)
-            messageid = id - 3584;
-        else
-            messageid = id;
-    }
-    return messageid;
+    return getID();
 }
 
 uint16 CMobSkill::getAoEMsg()

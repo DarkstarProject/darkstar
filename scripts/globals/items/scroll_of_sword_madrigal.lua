@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5007
---	Scroll of Sword Madrigal
---	Teaches the song Sword Madrigal
+--    ID: 5007
+--    Scroll of Sword Madrigal
+--    Teaches the song Sword Madrigal
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(399);
+    return target:canLearnSpell(399);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(399);
+    target:addSpell(399);
 end;

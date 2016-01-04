@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "../utils/charutils.h"
 #include "inventory_size.h"
 #include "../entities/charentity.h"
+#include "../item_container.h"
 
 /************************************************************************
 *																		*

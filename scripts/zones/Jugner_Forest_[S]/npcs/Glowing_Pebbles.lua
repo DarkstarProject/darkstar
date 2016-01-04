@@ -23,11 +23,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getVar("Lakeside_Minuet_Progress") == 3 and player:hasKeyItem(STARDUST_PEBBLE) == false) then
-		player:startEvent(0x0064);
-		player:addKeyItem(STARDUST_PEBBLE);
-		player:messageSpecial(KEYITEM_OBTAINED,STARDUST_PEBBLE);
-	end
+    if (player:getVar("Lakeside_Minuet_Progress") == 3 and player:hasKeyItem(STARDUST_PEBBLE) == false) then
+        player:startEvent(0x0064);
+        player:addKeyItem(STARDUST_PEBBLE);
+        player:messageSpecial(KEYITEM_OBTAINED,STARDUST_PEBBLE);
+    end
 end;
 
 -----------------------------------
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -44,7 +44,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 

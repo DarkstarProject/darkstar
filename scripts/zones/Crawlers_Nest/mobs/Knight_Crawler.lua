@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
--- MOB:  Knight Crawler
+--  MOB: Knight Crawler
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,692,2);
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,692,2);
 end;

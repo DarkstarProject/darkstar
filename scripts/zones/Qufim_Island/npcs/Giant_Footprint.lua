@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(GIGANTIC_FOOTPRINT);
+    player:messageSpecial(GIGANTIC_FOOTPRINT);
 end;
 
 -----------------------------------

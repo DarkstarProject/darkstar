@@ -1,19 +1,19 @@
-----------------------------------	
--- Area: Gustav Tunnel	
+----------------------------------
+-- Area: Gustav Tunnel
 --  MOB: Typhoon Wyvern
 -- Note: Place holder Ungur
------------------------------------	
+-----------------------------------
 
 require("scripts/zones/Gustav_Tunnel/MobIDs");
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-  
-	checkGoVregime(killer,mob,769,2);
-  
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+
+    checkGoVregime(ally,mob,769,2);
+
     local mob = mob:getID();
     if (Ungur_PH[mob] ~= nil) then
 
@@ -27,5 +27,5 @@ function onMobDeath(mob,killer)
             end
         end
     end
-  
-end;	
+
+end;

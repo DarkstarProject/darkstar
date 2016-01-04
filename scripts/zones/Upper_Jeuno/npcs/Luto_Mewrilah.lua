@@ -23,12 +23,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local WildcatJeuno = player:getVar("WildcatJeuno");
-	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,7) == false) then
-		player:startEvent(10085);
-	else
-		player:startEvent(0x2732); -- Standard dialog
-	end
+    local WildcatJeuno = player:getVar("WildcatJeuno");
+    if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,7) == false) then
+        player:startEvent(10085);
+    else
+        player:startEvent(0x2732); -- Standard dialog
+    end
 end;
 
 -- 0x272f  0x2730  0x2731  0x2732  0x2737  0x2739  0x273c  0x273a  0x2740  0x273d  0x273f  0x2757  0x2745  0x2741  
@@ -52,7 +52,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 10085) then
-		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",7,true);
-	end
+    if (csid == 10085) then
+        player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",7,true);
+    end
 end;

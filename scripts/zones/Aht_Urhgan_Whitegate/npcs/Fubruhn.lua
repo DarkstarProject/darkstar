@@ -102,7 +102,7 @@ function onTrigger(player,npc)
     -- if < mission 2 then 
     --      player:startEvent(0x0258); 
     -- else
-    if (player:getCurrentMission(TOAU) >= 2) then	
+    if (player:getCurrentMission(TOAU) >= 2) then    
         local accessType = getMogLockerAccessType(player);
         local mogLockerExpiryTimestamp = getMogLockerExpiryTimestamp(player); 
     
@@ -118,8 +118,8 @@ function onTrigger(player,npc)
         MOGLOCKER_ALLAREAS_VALID_DAYS);
     else
         player:startEvent(0x0258);
-	end
-	
+    end
+    
 end; 
 
 -----------------------------------

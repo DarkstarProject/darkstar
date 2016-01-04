@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(MONUMENT);
+    player:messageSpecial(MONUMENT);
 end;
 
 -----------------------------------

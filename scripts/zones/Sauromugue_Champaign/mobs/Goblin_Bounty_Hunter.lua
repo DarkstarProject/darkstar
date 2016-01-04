@@ -14,15 +14,15 @@ require("scripts/zones/Sauromugue_Champaign/TextIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)	
-    checkRegime(killer,mob,97,2);
-    checkRegime(killer,mob,98,2);
+function onMobDeath(mob,killer,ally)
+    checkRegime(ally,mob,97,2);
+    checkRegime(ally,mob,98,2);
 
-    if (ENABLE_ACP == 1 and (killer:hasKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB) == false) and killer:getCurrentMission(ACP) >= THE_ECHO_AWAKENS) then
+    if (ENABLE_ACP == 1 and (ally:hasKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB) == false) and ally:getCurrentMission(ACP) >= THE_ECHO_AWAKENS) then
         -- Guesstimating 15% chance
         if (math.random(1,100) >= 85) then
-            killer:addKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB);
-            killer:messageSpecial(KEYITEM_OBTAINED,CHUNK_OF_SMOKED_GOBLIN_GRUB);
+            ally:addKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB);
+            ally:messageSpecial(KEYITEM_OBTAINED,CHUNK_OF_SMOKED_GOBLIN_GRUB);
         end
     end
 

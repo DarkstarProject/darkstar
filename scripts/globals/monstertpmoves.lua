@@ -4,18 +4,18 @@ require("scripts/globals/status")
 require("scripts/globals/utils")
 
 -- Foreword: A lot of this is good estimating since the FFXI playerbase has not found all of info for individual moves.
---			What is known is that they roughly follow player Weaponskill calculations (pDIF, dMOD, ratio, etc) so this is what
---			this set of functions emulates.
+--            What is known is that they roughly follow player Weaponskill calculations (pDIF, dMOD, ratio, etc) so this is what
+--            this set of functions emulates.
 
 -- mob types
 -- used in mob:isMobType()
-MOBTYPE_NORMAL			= 0x00;
-MOBTYPE_PCSPAWNED		= 0x01;
-MOBTYPE_NOTORIOUS		= 0x02;
-MOBTYPE_FISHED			= 0x04;
-MOBTYPE_CALLED			= 0x08;
-MOBTYPE_BATTLEFIELD		= 0x10;
-MOBTYPE_EVENT			= 0x20;
+MOBTYPE_NORMAL            = 0x00;
+MOBTYPE_PCSPAWNED        = 0x01;
+MOBTYPE_NOTORIOUS        = 0x02;
+MOBTYPE_FISHED            = 0x04;
+MOBTYPE_CALLED            = 0x08;
+MOBTYPE_BATTLEFIELD        = 0x10;
+MOBTYPE_EVENT            = 0x20;
 
 --skilltype
 MOBSKILL_PHYSICAL = 0;
@@ -90,8 +90,8 @@ MSG_DISAPPEAR_NUM = 231; -- <num> of <target>'s effects disappear!
 BOMB_TOSS_HPP = 1;
 
 function MobRangedMove(mob,target,skill,numberofhits,accmod,dmgmod, tpeffect)
-	-- this will eventually contian ranged attack code
-	return MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod, TP_RANGED);
+    -- this will eventually contian ranged attack code
+    return MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod, TP_RANGED);
 end;
 
 -- PHYSICAL MOVE FUNCTION
@@ -450,32 +450,26 @@ function MobBreathMove(mob, target, percent, base, element, cap)
     local damage = (mob:getHP() * percent) + (mob:getMainLvl() / base);
 
     if (cap == nil) then
-        -- super cap for high health mobs
-        if (damage > 700) then
-            damage = 700 + math.random(200);
-        end
-
         -- cap max damage
-        if (damage > mob:getHP()/5) then
-            damage = math.floor(mob:getHP()/5);
-        end
-    else
-        if (damage > cap) then
-            damage = cap;
-        end
+        cap = math.floor(mob:getHP()/5);
     end
+
+    -- Deal bonus damage vs mob ecosystem
+    local systemBonus = utils.getSystemStrengthBonus(mob, target);
+    damage = damage + (damage * (systemBonus * 0.25));
 
     -- elemental resistence
     if (element ~= nil and element > 0) then
         -- no skill available, pass nil
-        -- breath moves get a bonus accuracy because they are hard to resist
-        local resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),mob:getMainLvl(),element);
+        local resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),0,element);
 
         -- get elemental damage reduction
         local defense = getElementalDamageReduction(target, element)
 
         damage = damage * resist * defense;
     end
+
+    damage = utils.clamp(damage, 1, cap);
 
     return damage;
 end;

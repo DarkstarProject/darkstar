@@ -1,13 +1,13 @@
 -----------------------------------
---  Area: Eastern Altepa Desert (114)
---    NM: Centurio_XII-I
+-- Area: Eastern Altepa Desert (114)
+--   NM: Centurio_XII-I
 -----------------------------------
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)	
+function onMobDeath(mob,killer,ally)    
 
     -- Set Centurio XII-I's spawnpoint and respawn time (21-24 hours)
     UpdateNMSpawnPoint(mob:getID());

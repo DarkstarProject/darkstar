@@ -14,16 +14,20 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-	checkGoVregime(killer,mob,735,1);
-	checkGoVregime(killer,mob,736,1);
-	checkGoVregime(killer,mob,738,1);
+    checkGoVregime(ally,mob,735,1);
+    checkGoVregime(ally,mob,736,1);
+    checkGoVregime(ally,mob,738,1);
+end;
 
-	local mobID = mob:getID();
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
 
-	if (mobID == 17490232) then -- Crab for Cancer spawn
-		GetNPCByID(17490254):hideNPC(900); -- qm2 in npc_list
-	end
-
+function onMobDespawn(mob)
+    local mobID = mob:getID();
+    if (mobID == 17490232) then -- Crab for Cancer spawn
+        GetNPCByID(17490254):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    end
 end;

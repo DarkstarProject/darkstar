@@ -27,8 +27,7 @@
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
 
-#include "../battlefield.h"
-
+class CBattlefield;
 
 class CLuaBattlefield
 {

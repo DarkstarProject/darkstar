@@ -16,9 +16,9 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-	local typeEffect = EFFECT_PHYSICAL_SHIELD;
+    local typeEffect = EFFECT_PHYSICAL_SHIELD;
 
-	mob:addStatusEffect(EFFECT_PHYSICAL_SHIELD, 0, 0, 0);
+    mob:addStatusEffect(EFFECT_PHYSICAL_SHIELD, 0, 0, 0);
     mob:AnimationSub(1);
     
     skill:setMsg(MSG_BUFF);

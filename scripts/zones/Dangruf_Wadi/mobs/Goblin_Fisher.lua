@@ -1,14 +1,14 @@
------------------------------------   
--- Area: Dangruf Wadi   
--- MOB:  Goblin Fisher
------------------------------------   
+-----------------------------------
+-- Area: Dangruf Wadi
+--  MOB: Goblin Fisher
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");   
+require("scripts/globals/groundsofvalor");
 
------------------------------------   
--- onMobDeath   
------------------------------------   
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)   
-   checkGoVregime(killer,mob,640,1);
-end;   
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,640,1);
+end;

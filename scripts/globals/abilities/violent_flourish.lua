@@ -49,7 +49,7 @@ end;
 -- onUseAbility
 -----------------------------------
 
-function onUseAbility(player,target,ability)
+function onUseAbility(player,target,ability,action)
     local hit = 4;
     --get fstr
     local fstr = fSTR(player:getStat(MOD_STR),target:getStat(MOD_VIT),player:getWeaponDmgRank());
@@ -95,7 +95,9 @@ function onUseAbility(player,target,ability)
         target:delHP(dmg);
         target:updateEnmityFromDamage(player,dmg);
         
-        return dmg, getFlourishAnimation(player:getWeaponSkillType(SLOT_MAIN)), hit;
+        action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(SLOT_MAIN)))
+        action:speceffect(target:getID(), hit)
+        return dmg
     else
         ability:setMsg(158);
         return 0;

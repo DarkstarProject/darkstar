@@ -36,12 +36,18 @@ This file is part of DarkStar-server source code.
 #include "petutils.h"
 #include "zoneutils.h"
 #include "../entities/mobentity.h"
+#include "../entities/automatonentity.h"
 #include "../ability.h"
+#include "../status_effect_container.h"
+#include "../latent_effect_container.h"
+#include "../mob_spell_list.h"
+#include "../enmity_container.h"
+#include "../items/item_weapon.h"
 
-#include "../ai/ai_automaton_dummy.h"
-#include "../ai/ai_pet_dummy.h"
-#include "../ai/ai_mob_dummy.h"
-#include "../ai/ai_ultimate_summon.h"
+#include "../ai/ai_container.h"
+#include "../ai/controllers/ai_controller.h"
+#include "../ai/controllers/pet_controller.h"
+#include "../ai/states/ability_state.h"
 
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
@@ -79,6 +85,7 @@ struct Pet_t
     uint8        chrRank;
     uint8        attRank;
     uint8        defRank;
+    uint8        evaRank;
     uint8        accRank;
 
     uint16       m_MobSkillList;
@@ -153,6 +160,7 @@ namespace petutils
                 mob_family_system.DEF,\
                 mob_family_system.ATT,\
                 mob_family_system.ACC, \
+                mob_family_system.EVA, \
                 hasSpellScript, spellList, \
                 Slash, Pierce, H2H, Impact, \
                 Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, \
@@ -193,16 +201,17 @@ namespace petutils
                 Pet->defRank = (uint8)Sql_GetIntData(SqlHandle, 20);
                 Pet->attRank = (uint8)Sql_GetIntData(SqlHandle, 21);
                 Pet->accRank = (uint8)Sql_GetIntData(SqlHandle, 22);
+                Pet->evaRank = (uint8)Sql_GetIntData(SqlHandle, 23);
 
-                Pet->hasSpellScript = (bool)Sql_GetIntData(SqlHandle, 23);
+                Pet->hasSpellScript = (bool)Sql_GetIntData(SqlHandle, 24);
 
-                Pet->spellList = (uint8)Sql_GetIntData(SqlHandle, 24);
+                Pet->spellList = (uint8)Sql_GetIntData(SqlHandle, 25);
 
                 // resistances
-                Pet->slashres = (uint16)(Sql_GetFloatData(SqlHandle, 25) * 1000);
-                Pet->pierceres = (uint16)(Sql_GetFloatData(SqlHandle, 26) * 1000);
-                Pet->hthres = (uint16)(Sql_GetFloatData(SqlHandle, 27) * 1000);
-                Pet->impactres = (uint16)(Sql_GetFloatData(SqlHandle, 28) * 1000);
+                Pet->slashres = (uint16)(Sql_GetFloatData(SqlHandle, 26) * 1000);
+                Pet->pierceres = (uint16)(Sql_GetFloatData(SqlHandle, 27) * 1000);
+                Pet->hthres = (uint16)(Sql_GetFloatData(SqlHandle, 28) * 1000);
+                Pet->impactres = (uint16)(Sql_GetFloatData(SqlHandle, 29) * 1000);
 
                 Pet->firedef = 0;
                 Pet->icedef = 0;
@@ -213,18 +222,18 @@ namespace petutils
                 Pet->lightdef = 0;
                 Pet->darkdef = 0;
 
-                Pet->fireres = (uint16)((Sql_GetFloatData(SqlHandle, 29) - 1) * -100);
-                Pet->iceres = (uint16)((Sql_GetFloatData(SqlHandle, 30) - 1) * -100);
-                Pet->windres = (uint16)((Sql_GetFloatData(SqlHandle, 31) - 1) * -100);
-                Pet->earthres = (uint16)((Sql_GetFloatData(SqlHandle, 32) - 1) * -100);
-                Pet->thunderres = (uint16)((Sql_GetFloatData(SqlHandle, 33) - 1) * -100);
-                Pet->waterres = (uint16)((Sql_GetFloatData(SqlHandle, 34) - 1) * -100);
-                Pet->lightres = (uint16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100);
-                Pet->darkres = (uint16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100);
+                Pet->fireres = (uint16)((Sql_GetFloatData(SqlHandle, 30) - 1) * -100);
+                Pet->iceres = (uint16)((Sql_GetFloatData(SqlHandle, 31) - 1) * -100);
+                Pet->windres = (uint16)((Sql_GetFloatData(SqlHandle, 32) - 1) * -100);
+                Pet->earthres = (uint16)((Sql_GetFloatData(SqlHandle, 33) - 1) * -100);
+                Pet->thunderres = (uint16)((Sql_GetFloatData(SqlHandle, 34) - 1) * -100);
+                Pet->waterres = (uint16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100);
+                Pet->lightres = (uint16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100);
+                Pet->darkres = (uint16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100);
 
-                Pet->cmbDelay = (uint16)Sql_GetIntData(SqlHandle, 37);
-                Pet->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 38);
-                Pet->m_MobSkillList = (uint16)Sql_GetUIntData(SqlHandle, 39);
+                Pet->cmbDelay = (uint16)Sql_GetIntData(SqlHandle, 38);
+                Pet->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 39);
+                Pet->m_MobSkillList = (uint16)Sql_GetUIntData(SqlHandle, 40);
 
                 g_PPetList.push_back(Pet);
             }
@@ -253,9 +262,7 @@ namespace petutils
 
         if (!PPet->StatusEffectContainer->HasPreventActionEffect())
         {
-            PPet->PBattleAI->SetBattleTarget(PTarget);
-            if (!(PPet->objtype == TYPE_PET && ((CPetEntity*)PPet)->m_PetID == PETID_ODIN))
-                PPet->PBattleAI->SetCurrentAction(ACTION_ENGAGE);
+            PPet->PAI->Engage(PTarget->targid);
         }
     }
 
@@ -266,7 +273,7 @@ namespace petutils
 
         if (!PPet->StatusEffectContainer->HasPreventActionEffect())
         {
-            PPet->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+            PPet->PAI->Disengage();
         }
     }
 
@@ -384,10 +391,8 @@ namespace petutils
         PMob->health.hp = PMob->GetMaxHP();
         PMob->health.mp = PMob->GetMaxMP();
 
-        uint16 evaRank = battleutils::GetSkillRank(SKILL_EVA, PMob->GetMJob());
-
         PMob->setModifier(MOD_DEF, GetJugBase(PMob, petStats->defRank));
-        PMob->setModifier(MOD_EVA, GetJugBase(PMob, evaRank));
+        PMob->setModifier(MOD_EVA, GetJugBase(PMob, petStats->evaRank));
         PMob->setModifier(MOD_ATT, GetJugBase(PMob, petStats->attRank));
         PMob->setModifier(MOD_ACC, GetJugBase(PMob, petStats->accRank));
 
@@ -740,25 +745,11 @@ namespace petutils
         PPet->allegiance = PMaster->allegiance;
         PMaster->StatusEffectContainer->CopyConfrontationEffect(PPet);
 
-        if (PetID == PETID_ALEXANDER || PetID == PETID_ODIN)
-        {
-            PPet->PBattleAI = new CAIUltimateSummon(PPet);
-        }
-        else if (PetID >= PETID_HARLEQUINFRAME && PetID <= PETID_STORMWAKERFRAME)
-        {
-            PPet->PBattleAI = new CAIAutomatonDummy(PPet);
-        }
-        else
-        {
-            PPet->PBattleAI = new CAIPetDummy(PPet);
-        }
-        PPet->PBattleAI->SetLastActionTime(gettick());
-        PPet->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-
         PMaster->PPet = PPet;
         PPet->PMaster = PMaster;
 
         PMaster->loc.zone->InsertPET(PPet);
+        PPet->Spawn();
         if (PMaster->objtype == TYPE_PC)
         {
             charutils::BuildingCharPetAbilityTable((CCharEntity*)PMaster, PPet, PetID);
@@ -777,9 +768,6 @@ namespace petutils
             PPet->health.tp = ((CCharEntity*)PMaster)->petZoningInfo.petTP;
             PPet->health.hp = ((CCharEntity*)PMaster)->petZoningInfo.petHP;
         }
-
-
-
     }
 
     void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)
@@ -848,17 +836,11 @@ namespace petutils
         CBattleEntity* PPet = PMaster->PPet;
         CCharEntity* PChar = (CCharEntity*)PMaster;
 
-        PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
 
         if (PPet->objtype == TYPE_MOB){
             CMobEntity* PMob = (CMobEntity*)PPet;
 
             if (!PMob->isDead()){
-                // mobs charm wears off whist fighting another mob. Both mobs now attack player since mobs are no longer enemies
-                if (PMob->PBattleAI != nullptr && PMob->PBattleAI->GetBattleTarget() != nullptr && PMob->PBattleAI->GetBattleTarget()->objtype == TYPE_MOB){
-                    ((CMobEntity*)PMob->PBattleAI->GetBattleTarget())->PEnmityContainer->Clear();
-                    ((CMobEntity*)PMob->PBattleAI->GetBattleTarget())->PEnmityContainer->UpdateEnmity(PChar, 0, 0);
-                }
 
                 //clear the ex-charmed mobs enmity
                 PMob->PEnmityContainer->Clear();
@@ -877,9 +859,9 @@ namespace petutils
                 // dirty exp if not full
                 PMob->m_giveExp = PMob->GetHPP() == 100;
 
-                CAIPetDummy* PPetAI = (CAIPetDummy*)PPet->PBattleAI;
                 //master using leave command
-                if (PMaster->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH && PMaster->PBattleAI->GetCurrentJobAbility()->getID() == 55 || PChar->loc.zoning || PChar->isDead()){
+                auto state = dynamic_cast<CAbilityState*>(PMaster->PAI->GetCurrentState());
+                if (state && state->GetAbility()->getID() == ABILITY_LEAVE || PChar->loc.zoning || PChar->isDead()){
                     PMob->PEnmityContainer->Clear();
                     PMob->m_OwnerID.clean();
                     PMob->updatemask |= UPDATE_STATUS;
@@ -893,20 +875,19 @@ namespace petutils
 
             PMob->isCharmed = false;
             PMob->allegiance = ALLEGIANCE_MOB;
-            PMob->charmTime = 0;
+            PMob->charmTime = time_point::min();
             PMob->PMaster = nullptr;
 
-            delete PMob->PBattleAI;
-            PMob->PBattleAI = new CAIMobDummy(PMob);
-            PMob->PBattleAI->SetLastActionTime(gettick());
+            PMob->PAI->SetController(std::make_unique<CAIController>(PMob));
 
             if (PMob->isDead())
-                PMob->PBattleAI->SetCurrentAction(ACTION_FALL);
+                PMob->Die();
             else
-                PMob->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+                PMob->PAI->Disengage();
 
         }
         else if (PPet->objtype == TYPE_PET){
+            PPet->Die();
             CPetEntity* PPetEnt = (CPetEntity*)PPet;
 
             if (PPetEnt->getPetType() == PETTYPE_AVATAR)
@@ -940,34 +921,17 @@ namespace petutils
 
         CBattleEntity* PPet = PMaster->PPet;
 
-
-        // mob was not reset properly on death/uncharm
-        // reset manually
-        if (PPet->isCharmed && PMaster->objtype == TYPE_MOB)
-        {
-            PPet->isCharmed = false;
-            PMaster->charmTime = 0;
-
-            delete PPet->PBattleAI;
-            PPet->PBattleAI = new CAIMobDummy((CMobEntity*)PMaster);
-            PPet->PBattleAI->SetLastActionTime(gettick());
-            PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
-
-            ShowDebug("An ex charmed mob was not reset properly, Manually resetting it.\n");
-            return;
-        }
-
         petutils::DetachPet(PMaster);
     }
 
     void MakePetStay(CBattleEntity* PMaster)
     {
-
         CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
 
         if (PPet != nullptr && !PPet->StatusEffectContainer->HasPreventActionEffect())
         {
-            PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
+            //#TODO: just disable pathfind?
+            //PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
         }
     }
 
@@ -1095,7 +1059,7 @@ namespace petutils
         {
             // increase charm duration
             // 30 mins - 1-5 mins
-            PPet->charmTime += 1800000 - dsprand::GetRandomNumber(300000u);
+            PPet->charmTime += 30min - std::chrono::milliseconds(dsprand::GetRandomNumber(300000u));
         }
 
         float rate = 0.10f;
@@ -1243,7 +1207,7 @@ namespace petutils
         PPet->loc = PMaster->loc;
 
         // spawn me randomly around master
-        PPet->loc.p = nearPosition(PMaster->loc.p, PET_ROAM_DISTANCE, M_PI);
+        PPet->loc.p = nearPosition(PMaster->loc.p, CPetController::PetRoamDistance, M_PI);
 
         if (petType != PETTYPE_AUTOMATON)
         {
@@ -1348,8 +1312,8 @@ namespace petutils
 			CCharEntity* PChar = (CCharEntity*)PMaster;
 			highestLvl += PChar->PMeritPoints->GetMeritValue(MERIT_BEAST_AFFINITY, PChar);
 
-            // 0-2 lvls lower
-            highestLvl -= dsprand::GetRandomNumber(3);
+            // 0-2 lvls lower, less Monster Gloves(+1/+2) bonus
+            highestLvl -= dsprand::GetRandomNumber(3 - dsp_cap(PChar->getMod(MOD_JUG_LEVEL_RANGE), 0, 2));
 
             PPet->SetMLevel(highestLvl);
             LoadJugStats(PPet, PPetData); //follow monster calcs (w/o SJ)
@@ -1386,7 +1350,6 @@ namespace petutils
         }
 
 		FinalizePetStatistics(PMaster, PPet);
-		PPet->PetSkills = battleutils::GetMobSkillList(PPet->m_MobSkillList);
 		PPet->status = STATUS_NORMAL;
 		PPet->m_ModelSize += g_PPetList.at(PetID)->size;
 		PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;

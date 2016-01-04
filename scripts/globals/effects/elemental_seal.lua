@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- 	EFFECT_ELEMENTAL_SEAL
+--     EFFECT_ELEMENTAL_SEAL
 --
 -----------------------------------
 
@@ -27,7 +27,7 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_MACC,256);
+    target:delMod(MOD_MACC,256);
 end;
 
 

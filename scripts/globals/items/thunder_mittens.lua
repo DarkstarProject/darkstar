@@ -1,6 +1,6 @@
 -----------------------------------------
---	ID: 14987
---	Thunder Mittens
+--    ID: 14987
+--    Thunder Mittens
 --  Enchantment: "Enthunder"
 -----------------------------------------
 
@@ -9,13 +9,13 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return 0;
+    return 0;
 end;
 -----------------------------------------
 -- OnItemUse
 -----------------------------------------
 
 function onItemUse(target)
-	local effect = EFFECT_ENTHUNDER;
-	doEnspell(target,target,nil,effect);
+    local effect = EFFECT_ENTHUNDER;
+    doEnspell(target,target,nil,effect);
 end;

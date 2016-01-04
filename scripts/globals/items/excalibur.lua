@@ -21,7 +21,7 @@ function onAdditionalEffect(player,target,damage)
             finalDMG = finalDMG*physicalResist;
             finalDMG = target:physicalDmgTaken(finalDMG);
             finalDMG = finalDMG - target:getMod(MOD_PHALANX);
-            utils.clamp(finalDMG, 0, 99999);
+            finalDMG = utils.clamp(finalDMG, 0, 99999);
             finalDMG = utils.stoneskin(target, finalDMG);
             target:delHP(finalDMG);
             return SUBEFFECT_LIGHT_DAMAGE, MSGBASIC_ADD_EFFECT_DMG, finalDMG;

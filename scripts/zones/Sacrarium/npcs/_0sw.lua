@@ -11,12 +11,12 @@
 
 function onTrigger(player,npc)
 
-	if (player:getZPos() < 52) then
-	  player:messageSpecial(STURDY_GATE);	
-	else
-	  player:messageSpecial(KEYHOLE_DAMAGED);			
-	end	
-	
+    if (player:getZPos() < 52) then
+      player:messageSpecial(STURDY_GATE);    
+    else
+      player:messageSpecial(KEYHOLE_DAMAGED);            
+    end    
+    
 end;
 
 -----------------------------------

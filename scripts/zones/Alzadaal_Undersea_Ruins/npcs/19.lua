@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(DEVICE_MALFUNCTIONING);
+    player:messageSpecial(DEVICE_MALFUNCTIONING);
 end;
 
 -----------------------------------

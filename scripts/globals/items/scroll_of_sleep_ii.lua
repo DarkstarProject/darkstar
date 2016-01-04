@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4867
---	Scroll of Sleep II
---	Teaches the black magic Sleep II
+--    ID: 4867
+--    Scroll of Sleep II
+--    Teaches the black magic Sleep II
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(259);
+    return target:canLearnSpell(259);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(259);
+    target:addSpell(259);
 end;

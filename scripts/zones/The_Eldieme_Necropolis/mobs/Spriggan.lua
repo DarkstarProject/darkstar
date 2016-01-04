@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
--- MOB:  Spriggan
+--  MOB: Spriggan
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,7 +9,7 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,672,1);
-   checkGoVregime(killer,mob,673,1);
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,672,1);
+    checkGoVregime(ally,mob,673,1);
 end;

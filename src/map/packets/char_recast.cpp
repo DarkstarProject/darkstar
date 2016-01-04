@@ -29,6 +29,7 @@ This file is part of DarkStar-server source code.
 #include "../entities/charentity.h"
 
 #include "char_recast.h"
+#include "../recast_container.h"
 
 
 CCharRecastPacket::CCharRecastPacket(CCharEntity* PChar)

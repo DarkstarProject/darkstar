@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Temenos E T	
+-- Area: Temenos E T    
 -- NPC: Fire_Elemental
 
 -----------------------------------
@@ -27,33 +27,33 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   local mobID = mob:getID();	
+function onMobDeath(mob,killer,ally)
+   local mobID = mob:getID();    
    local mobX = mob:getXPos();
    local mobY = mob:getYPos();
-   local mobZ = mob:getZPos();		
-	 switch (mobID): caseof {
+   local mobZ = mob:getZPos();        
+     switch (mobID): caseof {
         [16928840] = function (x)
-		   GetNPCByID(16928768+173):setPos(mobX,mobY,mobZ);
+           GetNPCByID(16928768+173):setPos(mobX,mobY,mobZ);
            GetNPCByID(16928768+173):setStatus(STATUS_NORMAL);
-		end	, 
-		[16928841] = function (x)
-		   GetNPCByID(16928768+215):setPos(mobX,mobY,mobZ);
+        end    , 
+        [16928841] = function (x)
+           GetNPCByID(16928768+215):setPos(mobX,mobY,mobZ);
            GetNPCByID(16928768+215):setStatus(STATUS_NORMAL);
-		end	, 
-		[16928842] = function (x)
-		   GetNPCByID(16928768+284):setPos(mobX,mobY,mobZ);
+        end    , 
+        [16928842] = function (x)
+           GetNPCByID(16928768+284):setPos(mobX,mobY,mobZ);
            GetNPCByID(16928768+284):setStatus(STATUS_NORMAL);
-		end	, 
-		[16928843] = function (x)		   
-		   GetNPCByID(16928768+40):setPos(mobX,mobY,mobZ);
+        end    , 
+        [16928843] = function (x)   
+           GetNPCByID(16928768+40):setPos(mobX,mobY,mobZ);
            GetNPCByID(16928768+40):setStatus(STATUS_NORMAL);
-		end	, 
-		[16929033] = function (x)		   
+        end    , 
+        [16929033] = function (x)   
            if (IsMobDead(16929034)==false) then -- ice
-		     DespawnMob(16929034);
-			 SpawnMob(16929040);
-		   end
-		end	,
-	 }
+             DespawnMob(16929034);
+             SpawnMob(16929040);
+           end
+        end    ,
+     }
 end;

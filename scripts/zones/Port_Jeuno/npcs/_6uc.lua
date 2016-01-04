@@ -20,8 +20,8 @@ end;
 
 function onTrigger(player,npc)
 
-	player:startEvent(0x34);
-	return 1;
+    player:startEvent(0x34);
+    return 1;
 
 end; 
 

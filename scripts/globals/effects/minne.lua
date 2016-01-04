@@ -1,6 +1,6 @@
 -----------------------------------
---	
---	EFFECT_MINNE
+--    
+--    EFFECT_MINNE
 --
 -----------------------------------
 require("scripts/globals/status");

@@ -19,5 +19,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:messageBasic(24,0,target:addHP(50*ITEM_POWER));
+    target:messageBasic(24,0,target:addHP(50*ITEM_POWER));
 end;

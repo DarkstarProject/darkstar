@@ -2,7 +2,7 @@
 --  Area: Mhaura
 --  NPC: Panoru-Kanoru
 --  Type: Item Deliverer
---  @pos 5.241	-4.035	93.891 249
+--  @pos 5.241    -4.035    93.891 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -21,8 +21,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc, PANORU_DELIVERY_DIALOG);
-	player:openSendBox();
+    player:showText(npc, PANORU_DELIVERY_DIALOG);
+    player:openSendBox();
 end;
 
 -----------------------------------
@@ -30,8 +30,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,7 +39,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 

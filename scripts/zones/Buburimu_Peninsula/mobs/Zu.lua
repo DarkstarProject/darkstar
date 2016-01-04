@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Buburimu Peninsula (118)
---   Mob: Zu
+-- Area: Buburimu Peninsula (118)
+--  MOB: Zu
 -----------------------------------
 
 require("scripts/zones/Buburimu_Peninsula/MobIDs");
@@ -9,21 +9,21 @@ require("scripts/zones/Buburimu_Peninsula/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)	
+function onMobDeath(mob,killer,ally)
 
-    local mob = mob:getID();
-    if (Helldiver_PH[mob] ~= nil) then
+    local mobID = mob:getID();
+    if (Helldiver_PH[mobID] ~= nil) then
 
         local ToD = GetServerVariable("[POP]Helldiver");
         if (ToD <= os.time(t) and GetMobAction(Helldiver) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Helldiver);
-                GetMobByID(Helldiver):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Helldiver", mob);
-                DeterMob(mob, true);
+                GetMobByID(Helldiver):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Helldiver", mobID);
+                DeterMob(mobID, true);
             end
         end
     end
-    
+
 end;
 

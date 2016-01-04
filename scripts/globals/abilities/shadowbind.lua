@@ -22,4 +22,7 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
+    if (player:getWeaponSkillType(SLOT_RANGED) == SKILL_MRK) then
+        action:animation(action:animation() + 1);
+    end
 end;

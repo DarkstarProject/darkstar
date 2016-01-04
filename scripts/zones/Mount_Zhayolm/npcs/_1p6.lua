@@ -18,13 +18,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:hasKeyItem(SILVER_SEA_SALT)) then
-		player:startEvent(0x000c);
-	else
-		player:startEvent(0x000e);
-	end
-	
+    
+    if (player:hasKeyItem(SILVER_SEA_SALT)) then
+        player:startEvent(0x000c);
+    else
+        player:startEvent(0x000e);
+    end
+    
 end;
 
 -----------------------------------
@@ -43,9 +43,9 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-	
-	if (csid == 0x000c and option == 1) then
-		player:delKeyItem(SILVER_SEA_SALT);
-	end
-	
+    
+    if (csid == 0x000c and option == 1) then
+        player:delKeyItem(SILVER_SEA_SALT);
+    end
+    
 end;

@@ -16,13 +16,13 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 -----------------------------------------
 
 function onItemCheck(target)
-	local result = 0;
-	if (target:hasStatusEffect(EFFECT_FOOD)) then
-		result = 246;
-	end
-	if (target:getFreeSlotsCount() == 0) then
-		result = 308;
-	end
+    local result = 0;
+    if (target:hasStatusEffect(EFFECT_FOOD)) then
+        result = 246;
+    end
+    if (target:getFreeSlotsCount() == 0) then
+        result = 308;
+    end
 return result;
 end;
 

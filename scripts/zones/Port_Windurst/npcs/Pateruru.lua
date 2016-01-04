@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC:  Pateruru
---	Working 100%
+--    Area: Port Windurst
+--    NPC:  Pateruru
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x14a);
+    player:startEvent(0x14a);
 end;
 
 -----------------------------------

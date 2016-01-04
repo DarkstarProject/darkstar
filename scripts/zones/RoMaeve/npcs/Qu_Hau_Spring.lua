@@ -18,14 +18,14 @@ function onTrade(player,npc,trade)
     local DMRepeat = player:getQuestStatus(OUTLANDS,DIVINE_MIGHT_REPEAT);
     local Hour = VanadielHour();
 
-    if (player:getWeather() == 0 and Hour >= 0 and Hour <= 3 and IsMoonFull() == true) then
+    if (player:getWeather() == 1 and Hour >= 0 and Hour <= 2 and IsMoonFull() == true) then -- Yes, sunshine weather, as Ro'Maeve can't have clear. Misconception on the wiki.
         if (DMfirst == QUEST_ACCEPTED or DMRepeat == QUEST_ACCEPTED) then -- allow for Ark Pentasphere on both first and repeat quests
             if (trade:hasItemQty(1408,1) and trade:hasItemQty(917,1) and trade:getItemCount() == 2) then
                 player:startEvent(7,917,1408); -- Ark Pentasphere Trade
+            elseif (DMRepeat == QUEST_ACCEPTED and trade:hasItemQty(1261,1) and trade:getItemCount() == 1 and player:hasKeyItem(MOONLIGHT_ORE) == false) then
+                player:startEvent(8); -- Moonlight Ore trade
             end
-        elseif (DMRepeat == QUEST_ACCEPTED and trade:hasItemQty(1261,1) and trade:getItemCount() == 1 and player:hasKeyItem(MOONLIGHT_ORE) == false) then
-            player:startEvent(8); -- Moonlight Ore trade
-       end
+        end
     end
 end;
 

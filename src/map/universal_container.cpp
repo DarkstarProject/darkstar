@@ -204,6 +204,14 @@ void CUContainer::SetSize(uint8 size)
     m_PItem.resize(size, nullptr);
 }
 
+void CUContainer::ClearSlot(uint8 slotID)
+{
+    if (slotID < m_PItem.size())
+    {
+        m_PItem[slotID] = nullptr;
+    }
+}
+
 /************************************************************************
 *                                                                       *
 *  Узнаем количество предметов, находящихся в контейнере                *

@@ -26,11 +26,12 @@
 
 #include "../../common/cbasetypes.h"
 #include "../blue_spell.h"
+#include "../status_effect.h"
+#include "../merit.h"
 
 #include <list>
 
 #include "../entities/battleentity.h"
-#include "../merit.h"
 
 class CAbility;
 class CItemWeapon;
@@ -106,7 +107,7 @@ namespace battleutils
     uint8			getHitCount(uint8 hits);
     uint8			CheckMobMultiHits(CBattleEntity* PEntity);
 
-    void			GetSnapshotReduction(CCharEntity* m_PChar);
+    int16			GetSnapshotReduction(CCharEntity* m_PChar, int16 delay);
     int32			GetRangedAttackBonuses(CBattleEntity* battleEntity);
     int32			GetRangedAccuracyBonuses(CBattleEntity* battleEntity);
 
@@ -151,7 +152,7 @@ namespace battleutils
     int32				TakeWeaponskillDamage(CCharEntity* PChar, CBattleEntity* PDefender, int32 damage, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar);
     int32				TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 lastSkillDamage);
 
-    bool                TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+    bool                TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender, CSpell* PSpell);
     float				GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     void				HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action);
     uint16              CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint16 damageTaken);
@@ -173,14 +174,13 @@ namespace battleutils
     CItemArmor*			GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot);
 
     void				MakeEntityStandUp(CBattleEntity* PEntity);
-    bool				IsEngauged(CBattleEntity* PEntity);
     CBattleEntity*		getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity* PMob);
 
     bool				HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool);
 
     bool				TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base);
     void				tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim);
-    void                applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 charmTime = 0);
+    void                applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, duration charmTime = 0s);
     void                unCharm(CBattleEntity* PEntity);
 
     uint16				doSoulEaterEffect(CCharEntity* m_PChar, uint32 damage);
@@ -228,6 +228,13 @@ namespace battleutils
     void				DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll);
     void                AddTraits(CBattleEntity* PEntity, TraitList_t* TraitList, uint8 level);
     bool                HasClaim(CBattleEntity* PEntity, CBattleEntity* PTarget);
+
+    uint32              CalculateSpellCastTime(CBattleEntity*, CSpell*);
+    uint16              CalculateSpellCost(CBattleEntity*, CSpell*);
+    uint32              CalculateSpellRecastTime(CBattleEntity*, CSpell*);
+    int16               CalculateWeaponSkillTP(CBattleEntity*, CWeaponSkill*, int16);
+    void                RemoveAmmo(CCharEntity*);
+    int32               GetMeritValue(CBattleEntity*, MERIT_TYPE);
 };
 
 #endif

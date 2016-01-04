@@ -32,32 +32,32 @@ end;
 -- from the core when a player disconnects or the time limit is up, etc
 
 function onBcnmLeave(player,instance,leavecode)
-	--print("leave code "..leavecode);
-	local currentMission = player:getCurrentMission(SANDORIA);
-	if (leavecode == 2) then 
-		--printf("win");
-		if (currentMission == THE_HEIR_TO_THE_LIGHT)	then
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,0);
-		else
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,1);
-		end
-	elseif (leavecode == 4) then
-		player:startEvent(0x7d02);
-	end
+    --print("leave code "..leavecode);
+    local currentMission = player:getCurrentMission(SANDORIA);
+    if (leavecode == 2) then 
+        --printf("win");
+        if (currentMission == THE_HEIR_TO_THE_LIGHT)    then
+            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,0);
+        else
+            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,1);
+        end
+    elseif (leavecode == 4) then
+        player:startEvent(0x7d02);
+    end
 end;
 
 function onEventUpdate(player,csid,option)
-	--print("bc update csid "..csid.." and option "..option);
+    --print("bc update csid "..csid.." and option "..option);
 end;
-	
+    
 function onEventFinish(player,csid,option)
-	--print("bc finish csid "..csid.." and option "..option);
-	local currentMission = player:getCurrentMission(SANDORIA);
-	local MissionStatus = player:getVar("MissionStatus");
+    --print("bc finish csid "..csid.." and option "..option);
+    local currentMission = player:getCurrentMission(SANDORIA);
+    local MissionStatus = player:getVar("MissionStatus");
 
-	if (csid == 0x7d01) then 
-		if (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 3)	then
-			player:setVar("MissionStatus",4);
-		end
-	end
+    if (csid == 0x7d01) then 
+        if (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 3)    then
+            player:setVar("MissionStatus",4);
+        end
+    end
 end;

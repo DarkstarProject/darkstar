@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Aht Urhgan Whitegate
---	NPC:  Auction Counter
+--    Area: Aht Urhgan Whitegate
+--    NPC:  Auction Counter
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:sendMenu(3);
+    player:sendMenu(3);
 end; 
 
 -----------------------------------
