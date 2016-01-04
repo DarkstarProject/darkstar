@@ -1930,3 +1930,36 @@ INSERT INTO `guild_shops` VALUES ('60431', '1475', '579', '1188', '255', '48', '
 INSERT INTO `guild_shops` VALUES ('60431', '5164', '1945', '2854', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('60431', '1652', '150', '160', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('60431', '5235', '187', '200', '255', '48', '100');
+
+
+
+-- Gathweeda (Alchemy Guild) Aht Urhgan Whitegate
+INSERT INTO `guild_shops` VALUES ('60432', '16430', '4464', '22652', '165', '0', '65');
+INSERT INTO `guild_shops` VALUES ('60432', '2459', '2325', '68062', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('60432', '4171', '180', '16772', '2970', '0', '1188');
+INSERT INTO `guild_shops` VALUES ('60432', '4128', '3889', '10523', '30', '0', '12');
+INSERT INTO `guild_shops` VALUES ('60432', '943', '120', '704', '2970', '0', '1188');
+INSERT INTO `guild_shops` VALUES ('60432', '932', '1020', '1080', '165', '0', '65');
+INSERT INTO `guild_shops` VALUES ('60432', '931', '1020', '1080', '165', '0', '65');
+INSERT INTO `guild_shops` VALUES ('60432', '4443', '147', '10', '2970', '594', '1188');
+INSERT INTO `guild_shops` VALUES ('60432', '929','1875', '5600', '80', '0', '32');
+INSERT INTO `guild_shops` VALUES ('60425', '621', '21', '50', '255', '48', '100');
+INSERT INTO `guild_shops` VALUES ('60425', '622', '37', '86', '255', '48', '100');
+INSERT INTO `guild_shops` VALUES ('60425', '636', '106', '234', '255', '48', '100');
+INSERT INTO `guild_shops` VALUES ('60425', '638', '138', '156', '255', '48', '100');
+INSERT INTO `guild_shops` VALUES ('60425', '914', '1125', '3375', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('60425', '920', '1084', '3000', '165', '35', '65');
+INSERT INTO `guild_shops` VALUES ('60425', '933', '660', '1992', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('60425', '951', '90', '216', '255', '48', '100');
+INSERT INTO `guild_shops` VALUES ('60425', '1108', '573', '826', '255', '48', '100');
+INSERT INTO `guild_shops` VALUES ('60425', '2131', '75', '242', '255', '48', '100');
+INSERT INTO `guild_shops` VALUES ('60425', '2175', '644', '644', '80', '0', '32');
+INSERT INTO `guild_shops` VALUES ('60425', '2229', '1080', '3000', '80', '16', '32');
+INSERT INTO `guild_shops` VALUES ('60425', '2309', '963', '963', '80', '16', '32');
+INSERT INTO `guild_shops` VALUES ('60425', '2316', '9', '9', '255', '48', '100');
+INSERT INTO `guild_shops` VALUES ('60425', '4443', '76', '147', '255', '48', '100');
+INSERT INTO `guild_shops` VALUES ('60425', '4509', '40', '55', '375', '75', '150');
+INSERT INTO `guild_shops` VALUES ('60425', '17041', '18000', '24000', '20', '0', '0');
+INSERT INTO `guild_shops` VALUES ('60425', '18228', '114', '114', '2970', '594', '1188');
+INSERT INTO `guild_shops` VALUES ('60425', '18232', '114', '114', '2970', '594', '1188');
+INSERT INTO `guild_shops` VALUES ('60425', '18236', '21', '21', '2970', '594', '1188');
