@@ -1738,6 +1738,15 @@ INSERT INTO `guild_shops` VALUES ('60425', '17041', '18000', '24000', '20', '0',
 INSERT INTO `guild_shops` VALUES ('60425', '18228', '114', '114', '2970', '594', '1188');
 INSERT INTO `guild_shops` VALUES ('60425', '18232', '114', '114', '2970', '594', '1188');
 INSERT INTO `guild_shops` VALUES ('60425', '18236', '21', '21', '2970', '594', '1188');
+INSERT INTO `guild_shops` VALUES ('60425', '16430', '4464', '22652', '165', '0', '65');
+INSERT INTO `guild_shops` VALUES ('60425', '2459', '2325', '68062', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('60425', '4171', '180', '16772', '2970', '0', '1188');
+INSERT INTO `guild_shops` VALUES ('60425', '4128', '3889', '10523', '30', '0', '12');
+INSERT INTO `guild_shops` VALUES ('60425', '943', '120', '704', '2970', '0', '1188');
+INSERT INTO `guild_shops` VALUES ('60425', '932', '1020', '1080', '165', '0', '65');
+INSERT INTO `guild_shops` VALUES ('60425', '931', '1020', '1080', '165', '0', '65');
+INSERT INTO `guild_shops` VALUES ('60425', '4443', '147', '10', '2970', '594', '1188');
+INSERT INTO `guild_shops` VALUES ('60425', '929','1875', '5600', '80', '0', '32');
 
 -- Wahnid (Fishing Guild) Aht Urhgan Whitegate
 INSERT INTO `guild_shops` VALUES ('60426', '2216', '615', '615', '255', '0', '100');
