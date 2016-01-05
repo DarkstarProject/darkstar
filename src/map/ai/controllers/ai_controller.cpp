@@ -27,6 +27,7 @@ This file is part of DarkStar-server source code.
 #include "../states/ability_state.h"
 #include "../states/magic_state.h"
 #include "../states/death_state.h"
+#include "../states/despawn_state.h"
 #include "../states/weaponskill_state.h"
 #include "../../mobskill.h"
 #include "../../party.h"
@@ -46,6 +47,7 @@ CAIController::CAIController(CMobEntity* PEntity) :
 
 void CAIController::Tick(time_point tick)
 {
+    DSP_DEBUG_BREAK_IF(PMob->status != STATUS_DISAPPEAR && PMob->PAI->IsCurrentState<CDespawnState>() && PMob->PAI->QueueEmpty());
     m_Tick = tick;
 
     if (PMob->isAlive())
@@ -223,7 +225,7 @@ bool CAIController::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
         return CanSeePoint(PTarget->loc.p);
     }
 
-    if ((aggro & AGGRO_DETECT_MAGIC) && PTarget->PAI->IsCurrentState<CMagicState>() && 
+    if ((aggro & AGGRO_DETECT_MAGIC) && PTarget->PAI->IsCurrentState<CMagicState>() &&
         static_cast<CMagicState*>(PTarget->PAI->GetCurrentState())->GetSpell()->hasMPCost())
     {
         return CanSeePoint(PTarget->loc.p);
@@ -435,46 +437,38 @@ void CAIController::CastSpell(uint16 spellid)
     else
     {
         CBattleEntity* PCastTarget = nullptr;
-        if (PTarget == nullptr)
+        // check valid targets
+        if (PSpell->getValidTarget() & TARGET_SELF)
         {
-            // find my own target
-            // check valid targets
-            if (PSpell->getValidTarget() & TARGET_SELF)
+            PCastTarget = PMob;
+
+            // only buff other targets if i'm roaming
+            if ((PSpell->getValidTarget() & TARGET_PLAYER_PARTY))
             {
-                PCastTarget = PMob;
-
-                // only buff other targets if i'm roaming
-                if ((PSpell->getValidTarget() & TARGET_PLAYER_PARTY))
+                // chance to target my master
+                if (PMob->PMaster != nullptr && dsprand::GetRandomNumber(2) == 0)
                 {
-                    // chance to target my master
-                    if (PMob->PMaster != nullptr && dsprand::GetRandomNumber(2) == 0)
-                    {
-                        // target my master
-                        PCastTarget = PMob->PMaster;
-                    }
-                    else if (dsprand::GetRandomNumber(2) == 0)
-                    {
-                        // chance to target party
-                        PMob->PAI->TargetFind->reset();
-                        PMob->PAI->TargetFind->findWithinArea(PMob, AOERADIUS_ATTACKER, PSpell->getMaxRange());
+                    // target my master
+                    PCastTarget = PMob->PMaster;
+                }
+                else if (dsprand::GetRandomNumber(2) == 0)
+                {
+                    // chance to target party
+                    PMob->PAI->TargetFind->reset();
+                    PMob->PAI->TargetFind->findWithinArea(PMob, AOERADIUS_ATTACKER, PSpell->getMaxRange());
 
-                        if (!PMob->PAI->TargetFind->m_targets.empty())
+                    if (!PMob->PAI->TargetFind->m_targets.empty())
+                    {
+                        // randomly select a target
+                        PCastTarget = PMob->PAI->TargetFind->m_targets[dsprand::GetRandomNumber(PMob->PAI->TargetFind->m_targets.size())];
+
+                        // only target if are on same action
+                        if (PMob->PAI->IsEngaged() == PCastTarget->PAI->IsEngaged())
                         {
-                            // randomly select a target
-                            PCastTarget = PMob->PAI->TargetFind->m_targets[dsprand::GetRandomNumber(PMob->PAI->TargetFind->m_targets.size())];
-
-                            // only target if are on same action
-                            if (PMob->PAI->IsEngaged() == PCastTarget->PAI->IsEngaged())
-                            {
-                                PCastTarget = PMob;
-                            }
+                            PCastTarget = PMob;
                         }
                     }
                 }
-            }
-            else
-            {
-                PCastTarget = PTarget;
             }
         }
         else
@@ -707,7 +701,7 @@ void CAIController::DoRoamTick(time_point tick)
         else
         {
             if (PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 &&
-                m_Tick >= m_LastSpecialTime + std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)) && 
+                m_Tick >= m_LastSpecialTime + std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)) &&
                 TrySpecialSkill())
             {
                 // I spawned a pet
