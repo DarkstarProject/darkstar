@@ -27,7 +27,6 @@ This file is part of DarkStar-server source code.
 #include "../states/ability_state.h"
 #include "../states/magic_state.h"
 #include "../states/death_state.h"
-#include "../states/despawn_state.h"
 #include "../states/weaponskill_state.h"
 #include "../../mobskill.h"
 #include "../../party.h"
@@ -47,7 +46,6 @@ CAIController::CAIController(CMobEntity* PEntity) :
 
 void CAIController::Tick(time_point tick)
 {
-    DSP_DEBUG_BREAK_IF(PMob->status != STATUS_DISAPPEAR && PMob->PAI->IsCurrentState<CDespawnState>() && PMob->PAI->QueueEmpty());
     m_Tick = tick;
 
     if (PMob->isAlive())
