@@ -1278,7 +1278,7 @@ void CBattleEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& ac
 
 bool CBattleEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg)
 {
-    if (distance(loc.p, PTarget->loc.p) > PTarget->m_ModelSize + m_ModelSize)
+    if (distance(loc.p, PTarget->loc.p) > m_ModelSize)
     {
         return false;
     }

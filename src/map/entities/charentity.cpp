@@ -154,7 +154,6 @@ CCharEntity::CCharEntity()
     m_EquipFlag = 0;
     m_EquipBlock = 0;
     m_EquipSwap = false;
-    m_ModelSize = 0;
 
     MeritMode = false;
 

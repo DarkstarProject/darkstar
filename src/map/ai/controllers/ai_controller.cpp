@@ -541,6 +541,7 @@ void CAIController::DoCombatTick(time_point tick)
     }
 
     bool move = PMob->PAI->PathFind->IsFollowingPath() && PMob->PAI->CanFollowPath();
+    std::unique_ptr<CMessageBasicPacket> err;
 
     //If using mobskills instead of attacks, calculate distance to move and ability to use here
     if (PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST))
@@ -557,7 +558,7 @@ void CAIController::DoCombatTick(time_point tick)
         CMobEntity* posShare = (CMobEntity*)PMob->GetEntity(PMob->getMobMod(MOBMOD_SHARE_POS) + PMob->targid, TYPE_MOB);
         PMob->loc = posShare->loc;
     }
-    else if (currentDistance > PMob->m_ModelSize + PTarget->m_ModelSize || move)
+    else if (PMob->CanAttack(PTarget, err) || move)
     {
         //#TODO: can this be moved to scripts entirely?
         if (PMob->getMobMod(MOBMOD_DRAW_IN) > 0)
