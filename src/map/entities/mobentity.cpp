@@ -580,6 +580,7 @@ void CMobEntity::Spawn()
             }
         }
     }
+    m_DespawnTimer = time_point::min();
     luautils::OnMobSpawn(this);
 }
 
