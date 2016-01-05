@@ -112,6 +112,7 @@ void CMobSkillState::Cleanup(time_point tick)
         actionList.ActionTargetID = m_PEntity->id;
 
         actionTarget_t& actionTarget = actionList.getNewActionTarget();
+        actionTarget.animation = m_PSkill->getID();
 
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE, new CActionPacket(action));
     }
