@@ -557,7 +557,7 @@ void CAIController::DoCombatTick(time_point tick)
         CMobEntity* posShare = (CMobEntity*)PMob->GetEntity(PMob->getMobMod(MOBMOD_SHARE_POS) + PMob->targid, TYPE_MOB);
         PMob->loc = posShare->loc;
     }
-    else if (currentDistance > PMob->m_ModelSize || move)
+    else if (currentDistance > PMob->m_ModelSize + PTarget->m_ModelSize || move)
     {
         //#TODO: can this be moved to scripts entirely?
         if (PMob->getMobMod(MOBMOD_DRAW_IN) > 0)
@@ -691,7 +691,6 @@ void CAIController::DoRoamTick(time_point tick)
                 // else we'll move straight back to spawn
                 PMob->PAI->PathFind->LimitDistance(10.0f);
 
-                //#TODO: pathfind's responsibility!
                 FollowRoamPath();
 
                 // move back every 5 seconds

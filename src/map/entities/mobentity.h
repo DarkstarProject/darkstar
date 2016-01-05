@@ -32,10 +32,6 @@ class CMobSpellContainer;
 class CMobSpellList;
 class CEnmityContainer;
 
-#define MOB_ROAM_HOME_DISTANCE 30
-#define MOB_SOUND_RANGE 8
-#define MOB_SIGHT_RANGE 15
-
 enum SPAWNTYPE
 {
     SPAWNTYPE_NORMAL    = 0x00, // 00:00-24:00
@@ -248,6 +244,9 @@ public:
     CMobSpellContainer* SpellContainer;                // retrieves spells for the mob
     uint8     m_HasSpellScript;                        // 1 if they have a spell script to use for working out what to cast.
 
+    static constexpr float sound_range {8.f};
+    static constexpr float sight_range {15.f};
+
 protected:
 
     void DropItems();
@@ -258,6 +257,7 @@ private:
     time_point    m_DespawnTimer {time_point::min()};  // Despawn Timer to despawn mob after set duration
     std::unordered_map<int, int16>     m_mobModStat;
     std::unordered_map<int, int16>     m_mobModStatSave;
+    static constexpr float roam_home_distance {60.f};
 };
 
 #endif

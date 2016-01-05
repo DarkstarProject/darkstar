@@ -951,8 +951,8 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
     PMob->defaultMobMod(MOBMOD_LINK_RADIUS, 10);
     PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, 30);
     PMob->defaultMobMod(MOBMOD_2HOUR_PROC, 60);
-    PMob->defaultMobMod(MOBMOD_SIGHT_RANGE, MOB_SIGHT_RANGE);
-    PMob->defaultMobMod(MOBMOD_SOUND_RANGE, MOB_SOUND_RANGE);
+    PMob->defaultMobMod(MOBMOD_SIGHT_RANGE, CMobEntity::sight_range);
+    PMob->defaultMobMod(MOBMOD_SOUND_RANGE, CMobEntity::sound_range);
 
 
     // Killer Effect

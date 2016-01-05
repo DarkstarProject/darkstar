@@ -105,7 +105,7 @@ CMobEntity::CMobEntity()
     m_battlefieldID = 0;
     m_bcnmID = 0;
 
-    m_maxRoamDistance = 20.0f;
+    m_maxRoamDistance = 50.0f;
     m_disableScent = false;
 
     memset(&m_SpawnPoint, 0, sizeof(m_SpawnPoint));
@@ -248,7 +248,7 @@ bool CMobEntity::CanRoamHome()
         return true;
     }
 
-    return distance(m_SpawnPoint, loc.p) < MOB_ROAM_HOME_DISTANCE;
+    return distance(m_SpawnPoint, loc.p) < roam_home_distance;
 }
 
 bool CMobEntity::CanRoam()
