@@ -653,7 +653,14 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
 
         PAI->TargetFind->reset();
         //#TODO: revise parameters
-        PAI->TargetFind->findWithinArea(PBattleTarget, AOERADIUS_TARGET, 10);
+        if (PWeaponSkill->isAoE())
+        {
+            PAI->TargetFind->findWithinArea(PBattleTarget, AOERADIUS_TARGET, 10);
+        }
+        else
+        {
+            PAI->TargetFind->findSingleTarget(PBattleTarget);
+        }
 
         for (auto&& PTarget : PAI->TargetFind->m_targets)
         {
