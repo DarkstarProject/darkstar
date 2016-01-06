@@ -3626,8 +3626,6 @@ namespace charutils
         const int8* Query =
             "UPDATE chars "
             "SET "
-            "pos_zone = %u,"
-            "pos_prevzone = %u,"
             "pos_rot = %u,"
             "pos_x = %.3f,"
             "pos_y = %.3f,"
@@ -3636,8 +3634,6 @@ namespace charutils
             "WHERE charid = %u;";
 
         Sql_Query(SqlHandle, Query,
-            PChar->m_moghouseID ? 0 : PChar->getZone(),
-            PChar->loc.prevzone,
             PChar->loc.p.rotation,
             PChar->loc.p.x,
             PChar->loc.p.y,
