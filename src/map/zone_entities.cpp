@@ -205,11 +205,46 @@ void CZoneEntities::TransportDepart(uint16 boundary, uint16 zone)
 
 void CZoneEntities::WeatherChange(WEATHER weather)
 {
+    auto element = zoneutils::GetWeatherElement(weather);
 	for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
 	{
 		CMobEntity* PCurrentMob = (CMobEntity*)it->second;
 
-        PCurrentMob->PAI->EventHandler.triggerListener("WEATHER_CHANGE", PCurrentMob, static_cast<int>(weather), zoneutils::GetWeatherElement(weather));
+        PCurrentMob->PAI->EventHandler.triggerListener("WEATHER_CHANGE", PCurrentMob, static_cast<int>(weather), element);
+        // can't detect by scent in this weather
+        if (PCurrentMob->m_Aggro & AGGRO_SCENT)
+        {
+            PCurrentMob->m_disableScent = (weather == WEATHER_RAIN || weather == WEATHER_SQUALL || weather == WEATHER_BLIZZARDS);
+        }
+
+        if (PCurrentMob->m_EcoSystem == SYSTEM_ELEMENTAL && PCurrentMob->PMaster == nullptr && PCurrentMob->m_SpawnType == SPAWNTYPE_WEATHER)
+        {
+            if (PCurrentMob->m_Element == element)
+            {
+                PCurrentMob->SetDespawnTime(0s);
+                PCurrentMob->m_AllowRespawn = true;
+                PCurrentMob->Spawn();
+            }
+            else
+            {
+                PCurrentMob->SetDespawnTime(1s);
+                PCurrentMob->m_AllowRespawn = false;
+            }
+        }
+        else if (PCurrentMob->m_SpawnType == SPAWNTYPE_FOG)
+        {
+            if (weather == WEATHER_FOG)
+            {
+                PCurrentMob->SetDespawnTime(0s);
+                PCurrentMob->m_AllowRespawn = true;
+                PCurrentMob->Spawn();
+            }
+            else
+            {
+                PCurrentMob->SetDespawnTime(1s);
+                PCurrentMob->m_AllowRespawn = false;
+            }
+        }
 	}
 
 	for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
@@ -217,6 +252,7 @@ void CZoneEntities::WeatherChange(WEATHER weather)
 		CCharEntity* PChar = (CCharEntity*)it->second;
 
 		PChar->PLatentEffectContainer->CheckLatentsZone();
+        PChar->PAI->EventHandler.triggerListener("WEATHER_CHANGE", PChar, static_cast<int>(weather), element);
 	}
 }
 
