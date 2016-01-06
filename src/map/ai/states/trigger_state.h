@@ -34,6 +34,8 @@ public:
     virtual void Cleanup(time_point tick) override {}
     virtual bool CanChangeState() override;
     virtual bool CanFollowPath() override;
+private:
+    bool close {false};
 };
 
 #endif

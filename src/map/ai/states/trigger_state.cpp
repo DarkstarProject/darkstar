@@ -23,6 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "trigger_state.h"
 
+#include "../ai_container.h"
 #include "../../lua/luautils.h"
 #include "../../entities/charentity.h"
 #include "../../entities/npcentity.h"
@@ -40,13 +41,19 @@ bool CTriggerState::Update(time_point tick)
         auto PChar = static_cast<CCharEntity*>(GetTarget());
         if (PChar && luautils::OnTrigger(PChar, m_PEntity) == -1 && m_PEntity->animation == ANIMATION_CLOSE_DOOR)
         {
+            close = true;
             m_PEntity->animation = ANIMATION_OPEN_DOOR;
-            PChar->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PEntity, ENTITY_UPDATE, UPDATE_COMBAT));
+            m_PEntity->updatemask |= UPDATE_HP;
         }
         Complete();
     }
     else if (tick > GetEntryTime() + 7s)
     {
+        if (close)
+        {
+            m_PEntity->animation = ANIMATION_CLOSE_DOOR;
+            m_PEntity->updatemask |= UPDATE_HP;
+        }
         return true;
     }
     return false;
