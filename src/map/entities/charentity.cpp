@@ -758,7 +758,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                 charutils::AddWeaponSkillPoints(this, (SLOTTYPE)damslot, wspoints);
             }
         }
-        health.tp = prevTP;
+        health.tp = prevTP + (health.tp - tp);
     }
     else
     {
