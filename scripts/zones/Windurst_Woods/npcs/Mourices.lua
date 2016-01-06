@@ -5,21 +5,19 @@
 -- @zone 241
 -- @pos -50.646 -0.501 -27.642
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Windurst_Woods/TextIDs");
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     MissionStatus = player:getVar("MissionStatus");
-    
+
     if (player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST and trade:hasItemQty(12298,2) and trade:getItemCount() == 2) then -- Trade 2 Parana Shield
         if (MissionStatus == 5) then
             player:startEvent(0x1c7); -- before deliver shield to the yagudo
@@ -27,7 +25,7 @@ function onTrade(player,npc,trade)
             player:startEvent(0x01c9); -- after deliver...Finish part of this quest
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -35,10 +33,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     MissionStatus = player:getVar("MissionStatus");
-    
-    if (player:getCurrentMission(SANDORIA) == JOURNEY_ABROAD) then 
+
+    if (player:getCurrentMission(SANDORIA) == JOURNEY_ABROAD) then
         -- San d'Oria Mission 2-3 Part I - Windurst > Bastok
         if (MissionStatus == 2) then
             player:startEvent(0x01c0);
@@ -85,7 +83,7 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x01c0) then
         player:addMission(SANDORIA,JOURNEY_TO_WINDURST);
         player:setVar("MissionStatus",3);
@@ -102,7 +100,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(KINDRED_CREST);
         player:setVar("MissionStatus",11);
         player:addKeyItem(KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,KINDRED_REPORT);
     end
-    
+
 end;

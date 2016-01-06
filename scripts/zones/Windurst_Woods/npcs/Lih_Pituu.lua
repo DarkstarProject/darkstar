@@ -4,10 +4,8 @@
 -- Type: Bonecraft Adv. Image Support
 -- @pos -5.471 -6.25 -141.211 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Windurst_Woods/TextIDs");
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 require("scripts/globals/status");
 require("scripts/globals/crafting");
 
@@ -58,7 +56,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x2722 and option == 1) then
         player:delGil(Cost);
-        player:messageSpecial(IMAGE_SUPPORT,0,6,0);
+        player:messageSpecial(text.IMAGE_SUPPORT,0,6,0);
         player:addStatusEffect(EFFECT_BONECRAFT_IMAGERY,3,0,480);
     end
 end;

@@ -13,7 +13,7 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -23,11 +23,11 @@ function onTrigger(player,npc)
     local BlueRibbonBlues = player:getQuestStatus(WINDURST,BLUE_RIBBON_BLUES);
     if (BlueRibbonBlues == QUEST_ACCEPTED) then
         local blueRibbonProg = player:getVar("BlueRibbonBluesProg");
-        
+
         if (blueRibbonProg >= 2 and player:hasItem(13569)) then
             player:startEvent(0x017c);
         elseif (player:hasItem(13569)) then
-            player:startEvent(0x017b); 
+            player:startEvent(0x017b);
         elseif (player:hasItem(13569) == false) then
             if (blueRibbonProg == 1 or blueRibbonProg == 3) then
                 player:startEvent(0x0179,0,13569); -- replaces ribbon if lost
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x1b4);
         end
-    
+
     else
         player:startEvent(0x1b4);
     end
@@ -68,12 +68,9 @@ function onEventFinish(player,csid,option)
                 player:setVar("BlueRibbonBluesProg",4);
             end
             player:addItem(13569);
-            player:messageSpecial(ITEM_OBTAINED,13569);
+            player:messageSpecial(text.ITEM_OBTAINED,13569);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13569);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13569);
         end
     end
 end;
-
-
-

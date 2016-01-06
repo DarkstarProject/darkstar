@@ -3,14 +3,13 @@
 -- Zone: East_Sarutabaruta (116)
 --
 -----------------------------------
-package.loaded[ "scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
 package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/icanheararainbow");
-require("scripts/zones/East_Sarutabaruta/TextIDs");
+local text = require("scripts/zones/East_Sarutabaruta/TextIDs");
 require("scripts/globals/zone");
 require("scripts/globals/chocobo_digging");
 
@@ -43,7 +42,7 @@ local itemMap = {
                     { 572, 100, DIGREQ_NIGHT },
                 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { text.DIG_THROW_AWAY, text.FIND_NOTHING, text.ITEM_OBTAINED };
 
 -----------------------------------
 -- onChocoboDig
@@ -96,7 +95,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

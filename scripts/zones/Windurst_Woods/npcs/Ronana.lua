@@ -4,12 +4,10 @@
 -- Type: Bonecraft Image Support
 -- @pos -1.540 -6.25 -144.517 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Windurst_Woods/TextIDs");
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -55,7 +53,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x2723 and option == 1) then
-        player:messageSpecial(IMAGE_SUPPORT,0,6,1);
+        player:messageSpecial(text.IMAGE_SUPPORT,0,6,1);
         player:addStatusEffect(EFFECT_BONECRAFT_IMAGERY,1,0,120);
     end
 end;

@@ -4,19 +4,18 @@
 --    Working 100%
 --  Involved in quest: A Greeting Cardian
 -----------------------------------
+package.loaded["scripts/globals/quests"] = nil;
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-require("scripts/zones/Windurst_Woods/TextIDs");
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -25,7 +24,7 @@ end;
 function onTrigger(player,npc)
     AGreetingCardian = player:getQuestStatus(WINDURST,A_GREETING_CARDIAN);
     local AGCcs = player:getVar("AGreetingCardian_Event");
-    
+
     if (AGreetingCardian == QUEST_ACCEPTED and AGCcs == 2) then
         player:startEvent(0x0127); -- A Greeting Cardian step two
     else player:startEvent(0x118); -- standard dialog
@@ -52,6 +51,3 @@ function onEventFinish(player,csid,option)
         player:setVar("AGreetingCardian_Event",3);
         end
 end;
-
-
-

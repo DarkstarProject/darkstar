@@ -7,8 +7,8 @@
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-require("scripts/zones/Windurst_Woods/TextIDs");
+
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,10 +23,10 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(ZULKHEIM);
-    if (RegionOwner ~= WINDURST) then 
-        player:showText(npc,BIN_STEJIHNA_CLOSED_DIALOG);
+    if (RegionOwner ~= WINDURST) then
+        player:showText(npc,text.BIN_STEJIHNA_CLOSED_DIALOG);
     else
-        player:showText(npc,BIN_STEJIHNA_OPEN_DIALOG);
+        player:showText(npc,text.BIN_STEJIHNA_OPEN_DIALOG);
 
         rank = getNationRank(BASTOK);
         if (rank ~= 3) then
@@ -48,7 +48,7 @@ function onTrigger(player,npc)
 
     end
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

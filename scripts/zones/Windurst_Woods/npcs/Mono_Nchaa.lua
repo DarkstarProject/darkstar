@@ -6,22 +6,21 @@
 -----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-require("scripts/zones/Windurst_Woods/TextIDs");
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,MONONCHAA_SHOP_DIALOG);
+    player:showText(npc,text.MONONCHAA_SHOP_DIALOG);
 
     stock = {
         0x43A6,     3,2,     --Wooden Arrow
@@ -34,7 +33,7 @@ function onTrigger(player,npc)
     }
     showNationShop(player, WINDURST, stock);
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

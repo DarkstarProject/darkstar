@@ -6,12 +6,12 @@
 -------------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-require("scripts/zones/Windurst_Woods/TextIDs");
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -23,13 +23,13 @@ AdventurerCoupon = trade:hasItemQty(536,1);
     end
 end;
 
------------------------------------ 
--- onTrigger Action 
 -----------------------------------
- 
-function onTrigger(player,npc) 
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
     player:startEvent(0x2719,0,4);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -50,8 +50,5 @@ function onEventFinish(player,csid,option)
     if (csid == 0x271a) then
         player:tradeComplete();
         player:addGil(GIL_RATE*50);
-    end 
+    end
 end;
-
-
-

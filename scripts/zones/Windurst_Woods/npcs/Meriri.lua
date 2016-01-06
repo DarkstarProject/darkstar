@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Windurst Woods
 -- NPC: Meriri
--- Guild Merchant NPC: Clothcrafting Guild 
+-- Guild Merchant NPC: Clothcrafting Guild
 -- @pos -76.471 -3.55 -128.341 241
------------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Windurst_Woods/TextIDs");
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(515,6,21,0)) then
-        player:showText(npc,MERIRI_DIALOG);
+        player:showText(npc,text.MERIRI_DIALOG);
     end
 end;
 
@@ -45,4 +43,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

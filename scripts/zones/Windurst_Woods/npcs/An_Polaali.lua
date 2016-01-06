@@ -23,8 +23,8 @@ function onTrigger(player,npc)
         player:startEvent(0x0197);
     elseif (player:getVar("CHASING_TALES_TRACK_BOOK") == 1) then
         player:startEvent(0x0194); -- Neeed CS here
-            
-    else    
+
+    else
         player:startEvent(0x2c);
     end
 end;

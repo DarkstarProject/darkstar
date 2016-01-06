@@ -4,12 +4,10 @@
 -- Type: Clothcraft Guild Master
 -- @pos -38.243 -2.25 -120.954 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Windurst_Woods/TextIDs");
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -59,10 +57,10 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 0x271b and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4099);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4099);
         else
             player:addItem(4099);
-            player:messageSpecial(ITEM_OBTAINED,4099);
+            player:messageSpecial(text.ITEM_OBTAINED,4099);
             signupGuild(player,8);
         end
     end

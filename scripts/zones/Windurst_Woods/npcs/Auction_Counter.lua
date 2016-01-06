@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -17,7 +17,7 @@ end;
 
 function onTrigger(player,npc)
     player:sendMenu(3);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -36,6 +36,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

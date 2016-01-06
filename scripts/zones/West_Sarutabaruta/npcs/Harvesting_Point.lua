@@ -1,12 +1,10 @@
 -----------------------------------
 --  Area: West Sarutabaruta
 --  NPC:  Harvesting Point
------------------------------------
-package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/harvesting");
-require("scripts/zones/West_Sarutabaruta/TextIDs");
+local text = require("scripts/zones/West_Sarutabaruta/TextIDs");
 
 -----------------------------------
 -- onTrade
@@ -21,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(HARVESTING_IS_POSSIBLE_HERE,1020);
+    player:messageSpecial(text.HARVESTING_IS_POSSIBLE_HERE,1020);
 end;
 
 -----------------------------------

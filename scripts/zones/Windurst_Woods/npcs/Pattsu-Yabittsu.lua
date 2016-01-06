@@ -3,10 +3,8 @@
 --    NPC: Pattsu-Yabittsu
 --    Warps players to Windurst Waters
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Windurst_Woods/TextIDs");
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -21,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     player:startEvent(0x19b);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -43,6 +41,3 @@ function onEventFinish(player,csid,option)
         player:setPos(-2.203,-1.5,103.226,196,238); -- Retail packet capped
     end
 end;
-
-
-

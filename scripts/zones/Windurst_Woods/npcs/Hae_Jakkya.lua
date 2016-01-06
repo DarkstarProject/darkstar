@@ -23,15 +23,15 @@ function onTrigger(player,npc)
     if (player:hasKeyItem(126) ==true) then
         player:startEvent(0x0196);
     elseif (player:getVar("CHASING_TALES_TRACK_BOOK") == 1) then
-        player:startEvent(0x0193); 
-        
+        player:startEvent(0x0193);
+
     elseif (player:hasKeyItem(149)) then
         player:startEvent(0x0192); -- Neeed CS here
-        
-    else    
+
+    else
         player:startEvent(0x29);
-    end    
-        
+    end
+
 end;
 
 -----------------------------------
@@ -52,5 +52,5 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
     if (csid == 0x0192) then
         player:setVar("CHASING_TALES_TRACK_BOOK",1);
-    end        
+    end
 end;

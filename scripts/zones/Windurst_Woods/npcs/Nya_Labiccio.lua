@@ -7,8 +7,7 @@
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-require("scripts/zones/Windurst_Woods/TextIDs");
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,10 +22,10 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(GUSTABERG);
-    if (RegionOwner ~= WINDURST) then 
-        player:showText(npc,NYALABICCIO_CLOSED_DIALOG);
+    if (RegionOwner ~= WINDURST) then
+        player:showText(npc,text.NYALABICCIO_CLOSED_DIALOG);
     else
-        player:showText(npc,NYALABICCIO_OPEN_DIALOG);
+        player:showText(npc,text.NYALABICCIO_OPEN_DIALOG);
 
         stock = {
             0x0454,   703,   --Sulfur
@@ -38,7 +37,7 @@ function onTrigger(player,npc)
 
     end
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

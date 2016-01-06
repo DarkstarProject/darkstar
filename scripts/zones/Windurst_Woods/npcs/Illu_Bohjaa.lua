@@ -2,15 +2,13 @@
 --    Area: Windurst Woods
 --    NPC:  Illu Bohjaa
 --    Starts the repeatable quest "Creepy Crawlies"
---    Working 100% 
------------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/settings");
-require("scripts/zones/Windurst_Woods/TextIDs");
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -40,7 +38,7 @@ CrepyCrawlies = player:getQuestStatus(WINDURST,CREEPY_CRAWLIES);
             player:startEvent(0x014f,GIL_RATE*600,816,938,1156);
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -78,7 +76,3 @@ function onEventFinish(player,csid,option)
         player:addQuest(WINDURST,CREEPY_CRAWLIES);
     end
 end;
-
-
-
-

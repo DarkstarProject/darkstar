@@ -8,8 +8,7 @@
 require("scripts/globals/events/harvest_festivals")
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-require("scripts/zones/Windurst_Woods/TextIDs");
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -26,10 +25,10 @@ end;
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(KUZOTZ);
     if (RegionOwner ~= WINDURST) then
-        player:showText(npc,NHOBI_ZALKIA_CLOSED_DIALOG);
+        player:showText(npc,text.NHOBI_ZALKIA_CLOSED_DIALOG);
     else
-        player:showText(npc,NHOBI_ZALKIA_OPEN_DIALOG);
-       
+        player:showText(npc,text.NHOBI_ZALKIA_OPEN_DIALOG);
+
         stock = {
             0x0394,   855,   --Cactuar Needle
             0x113C,   299,   --Thundermelon

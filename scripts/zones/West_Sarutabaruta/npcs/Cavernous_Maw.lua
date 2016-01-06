@@ -4,14 +4,12 @@
 -- Teleports Players to West Sarutabaruta [S]
 -- @pos -2.229 0.001 -162.715 115
 -----------------------------------
-package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
-require("scripts/zones/West_Sarutabaruta/TextIDs");
+local text = require("scripts/zones/West_Sarutabaruta/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -28,7 +26,7 @@ function onTrigger(player,npc)
     if (ENABLE_WOTG == 1 and player:hasKeyItem(PURE_WHITE_FEATHER) and hasMawActivated(player,8)) then
         player:startEvent(0x0388);
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(text.NOTHING_HAPPENS);
     end
 end;
 

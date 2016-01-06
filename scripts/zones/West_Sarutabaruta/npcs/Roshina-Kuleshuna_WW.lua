@@ -4,11 +4,9 @@
 -- Type: Outpost Conquest Guards
 -- @pos -11.322 -13.459 317.696 115
 -----------------------------------
-package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/conquest");
-require("scripts/zones/West_Sarutabaruta/TextIDs");
+local text = require("scripts/zones/West_Sarutabaruta/TextIDs");
 
 local guardnation = WINDURST; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;        -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -33,9 +31,9 @@ function onTrigger(player,npc)
         if (supplyRunFresh(player) == 1) then
             player:startEvent(csid,16,0,0,0,1,0,0,255); -- you have brought us supplies !
         else
-            player:showText(npc, CONQUEST - 1); -- "Hmm... These supplies you have brought us are too old to be of any use."
+            player:showText(npc, text.CONQUEST - 1); -- "Hmm... These supplies you have brought us are too old to be of any use."
             player:delKeyItem(getSupplyKey(region));
-            player:messageSpecial(KEYITEM_OBTAINED + 1, getSupplyKey(region));
+            player:messageSpecial(text.KEYITEM_OBTAINED + 1, getSupplyKey(region));
             player:setVar("supplyQuest_region",0);
         end
     else
@@ -75,7 +73,7 @@ function onEventFinish(player,csid,option)
     elseif (option == 2) then
         player:delKeyItem(getSupplyKey(region));
         player:addCP(supplyReward[region + 1])
-        player:messageSpecial(CONQUEST); -- "You've earned conquest points!"
+        player:messageSpecial(text.CONQUEST); -- "You've earned conquest points!"
         if (hasOutpost(player, region+5) == 0) then
             local supply_quests = 2^(region+5);
             player:addNationTeleport(guardnation,supply_quests);
@@ -84,9 +82,9 @@ function onEventFinish(player,csid,option)
     elseif (option == 4) then
         if (player:delGil(giltosetHP(guardnation,player))) then
             player:setHomePoint();
-            player:messageSpecial(CONQUEST + 94); -- "Your home point has been set."
+            player:messageSpecial(text.CONQUEST + 94); -- "Your home point has been set."
         else
-            player:messageSpecial(CONQUEST + 95); -- "You do not have enough gil to set your home point here."
+            player:messageSpecial(text.CONQUEST + 95); -- "You do not have enough gil to set your home point here."
         end
     end
 

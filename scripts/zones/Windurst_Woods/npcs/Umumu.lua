@@ -4,13 +4,11 @@
 --  Involved In Quest: Making Headlines
 --  @pos 32.575 -5.250 141.372 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/zones/Windurst_Woods/TextIDs");
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -27,7 +25,7 @@ function onTrigger(player,npc)
     function testflag(set,flag)
         return (set % (2*flag) >= flag)
     end
-    
+
     local MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
     local WildcatWindurst = player:getVar("WildcatWindurst");
 
@@ -42,16 +40,16 @@ function onTrigger(player,npc)
         --    8 = Umumu
         --    16 = Mahogany Door
         if (testflag(tonumber(prog),16) == true) then
-            player:startEvent(0x017f); -- Advised to go to Naiko        
+            player:startEvent(0x017f); -- Advised to go to Naiko
         elseif (testflag(tonumber(prog),8) == false) then
             player:startEvent(0x017d); -- Get scoop and asked to validate
-        else 
+        else
             player:startEvent(0x017e); -- Reminded to validate
         end
     elseif (MakingHeadlines == 2) then
-    
+
         local rand = math.random(1,3);
-        
+
         if (rand == 1) then
             player:startEvent(0x0181); -- Conversation after quest completed
         elseif (rand == 2) then
@@ -62,7 +60,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x019e); -- Standard Conversation
     end
-end;     
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -83,12 +81,9 @@ function onEventFinish(player,csid,option)
     if (csid == 0x017d) then
         prog = player:getVar("QuestMakingHeadlines_var");
         player:addKeyItem(WINDURST_WOODS_SCOOP);
-        player:messageSpecial(KEYITEM_OBTAINED,WINDURST_WOODS_SCOOP);
+        player:messageSpecial(text.KEYITEM_OBTAINED,WINDURST_WOODS_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+8);
     elseif (csid == 0x02db) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",3,true);
     end
 end;
-
-
-

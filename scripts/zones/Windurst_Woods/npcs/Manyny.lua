@@ -6,22 +6,22 @@
 -----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-require("scripts/zones/Windurst_Woods/TextIDs");
+
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,MANYNY_SHOP_DIALOG);
+    player:showText(npc,text.MANYNY_SHOP_DIALOG);
 
     stock = {
         0x13A8,  3112,       --Sinewy Etude
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
         0x13AE,   990        --Enchanting Etude
     }
     showShop(player, STATIC, stock);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

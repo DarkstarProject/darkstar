@@ -7,13 +7,11 @@
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Windurst_Woods/TextIDs");
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -30,7 +28,7 @@ function onTrigger(player,npc)
 
     thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES);
     thickAsThievesCS = player:getVar("thickAsThievesCS");
-    
+
     if (thickAsThieves == QUEST_ACCEPTED) then
         player:startEvent(0x01FA);
             if (thickAsThievesCS == 1) then
@@ -44,7 +42,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x004d); -- standard cs
     end
-    
+
 end;
 
 -----------------------------------
@@ -64,4 +62,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

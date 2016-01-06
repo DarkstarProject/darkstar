@@ -3,12 +3,10 @@
 -- NPC: Tesch_Garanjy
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/armorstorage");
-require("scripts/zones/Windurst_Woods/TextIDs");
+local text = require("scripts/zones/Windurst_Woods/TextIDs");
 
 Deposit = 0x272b;
 Withdrawl = 0x272c;
@@ -48,7 +46,7 @@ function onTrade(player,npc,trade)
                if (T2 == true and T3 == true and T4 == true and T5 == true) then
                   player:startEvent(Deposit,0,0,0,0,0,StorageArray[SetId + 9]);
                   player:addKeyItem(StorageArray[SetId + 10]);
-                  player:messageSpecial(KEYITEM_OBTAINED,StorageArray[SetId + 10]);
+                  player:messageSpecial(text.KEYITEM_OBTAINED,StorageArray[SetId + 10]);
                   break;
                end;
             end;
@@ -78,7 +76,7 @@ function onTrigger(player,npc)
       end;
    end;
    player:startEvent(Withdrawl,G1,G2,G3,G4,CurrGil,G5);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -104,7 +102,7 @@ function onEventFinish(player,csid,option)
             for Item = 2,6,1 do
                if (StorageArray[option * 11 - Item] > 0) then
                   player:addItem(StorageArray[option * 11 - Item],1);
-                  player:messageSpecial(ITEM_OBTAINED,StorageArray[option * 11 - Item]);
+                  player:messageSpecial(text.ITEM_OBTAINED,StorageArray[option * 11 - Item]);
                end;
             end;
             player:delKeyItem(StorageArray[option * 11]);
@@ -112,11 +110,11 @@ function onEventFinish(player,csid,option)
          else
             for Item = 2,6,1 do
                if (StorageArray[option * 11 - Item] > 0) then
-                  player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,StorageArray[option * 11 - Item]);
+                  player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,StorageArray[option * 11 - Item]);
                end;
             end;
          end;
-      end;        
+      end;
    end;
    if (csid == Deposit) then
       player:tradeComplete();
