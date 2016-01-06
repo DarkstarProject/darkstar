@@ -568,6 +568,18 @@ bool CCharEntity::OnAttack(CAttackState& state, action_t& action)
             }
         }
     }
+    if (ret)
+    {
+        if (PTarget->objtype == TYPE_MOB)
+        {
+            CMobEntity* Monster = (CMobEntity*)PTarget;
+
+            if (Monster->m_HiPCLvl < GetMLevel())
+            {
+                Monster->m_HiPCLvl = GetMLevel();
+            }
+        }
+    }
     return ret;
 }
 
@@ -578,14 +590,14 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
     auto PSpell = state.GetSpell();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    static_cast<CCharEntity*>(this)->PRecastContainer->Add(RECAST_MAGIC, PSpell->getID(), action.recast);
+    PRecastContainer->Add(RECAST_MAGIC, PSpell->getID(), action.recast);
 
     for (auto&& actionList : action.actionLists)
     {
         for (auto&& actionTarget : actionList.actionTargets)
         {
             if (actionTarget.param > 0 && PSpell->dealsDamage() && PSpell->getSpellGroup() == SPELLGROUP_BLUE &&
-                static_cast<CBattleEntity*>(this)->StatusEffectContainer->HasStatusEffect(EFFECT_CHAIN_AFFINITY) &&
+                StatusEffectContainer->HasStatusEffect(EFFECT_CHAIN_AFFINITY) &&
                 static_cast<CBlueSpell*>(PSpell)->getPrimarySkillchain() != 0)
             {
 
@@ -599,17 +611,34 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
                     actionTarget.additionalEffect = effect;
 
                 }
-                if (static_cast<CBattleEntity*>(this)->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI) ||
-                    static_cast<CBattleEntity*>(this)->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
+                if (StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI) ||
+                    StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
                 {
-                    static_cast<CBattleEntity*>(this)->health.tp = (static_cast<CBattleEntity*>(this)->health.tp > 1000 ? static_cast<CBattleEntity*>(this)->health.tp - 1000 : 0);
+                    health.tp = (health.tp > 1000 ? health.tp - 1000 : 0);
                 }
                 else
                 {
-                    static_cast<CBattleEntity*>(this)->health.tp = 0;
+                    health.tp = 0;
                 }
 
-                static_cast<CBattleEntity*>(this)->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHAIN_AFFINITY);
+                StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHAIN_AFFINITY);
+            }
+        }
+    }
+    charutils::RemoveStratagems(this, PSpell);
+    if (PSpell->tookEffect())
+    {
+        charutils::TrySkillUP(this, (SKILLTYPE)PSpell->getSkillType(), PTarget->GetMLevel());
+        if (PSpell->getSkillType() == SKILL_SNG)
+        {
+            CItemWeapon* PItem = static_cast<CItemWeapon*>(getEquip(SLOT_RANGED));
+            if (PItem && PItem->isType(ITEM_ARMOR))
+            {
+                SKILLTYPE Skilltype = (SKILLTYPE)PItem->getSkillType();
+                if (Skilltype == SKILL_STR || Skilltype == SKILL_WND || Skilltype == SKILL_SNG)
+                {
+                    charutils::TrySkillUP(this, Skilltype, PTarget->GetMLevel());
+                }
             }
         }
     }
@@ -711,6 +740,16 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                     if (primary && PBattleTarget->objtype == TYPE_MOB)
                     {
                         luautils::OnWeaponskillHit(PBattleTarget, this, PWeaponSkill->getID());
+                    }
+                }
+
+                if (PTarget->objtype == TYPE_MOB)
+                {
+                    CMobEntity* Monster = (CMobEntity*)PTarget;
+
+                    if (Monster->m_HiPCLvl < GetMLevel())
+                    {
+                        Monster->m_HiPCLvl = GetMLevel();
                     }
                 }
             }
@@ -1645,11 +1684,14 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
     // TODO: что это ? ....
     // если не ошибаюсь, то TREASURE_HUNTER работает лишь при последнем ударе
 
-    CMobEntity* Monster = (CMobEntity*)PTarget;
-
-    if (Monster->m_HiPCLvl < this->GetMLevel())
+    if (PTarget->objtype == TYPE_MOB)
     {
-        Monster->m_HiPCLvl = GetMLevel();
+        CMobEntity* Monster = (CMobEntity*)PTarget;
+
+        if (Monster->m_HiPCLvl < GetMLevel())
+        {
+            Monster->m_HiPCLvl = GetMLevel();
+        }
     }
 
     // remove barrage effect if present
