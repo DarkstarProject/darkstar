@@ -13,8 +13,8 @@ NOTHING_OUT_OF_ORDINARY = 6398; -- There is nothing out of the ordinary here.
        CANNOT_OPEN_SIDE = 7234; -- The door cannot be opened from this side.
          TRAP_ACTIVATED = 7236; -- A trap connected to it has been activated!
              TRAP_FAILS = 7237; -- The trap connected to it fails to activate.
-   DISCOVER_DISARM_FAIL = 7238; -- <player> discovers a trap connected to the door, but fails to disarm it!
-DISCOVER_DISARM_SUCCESS = 7239; -- <player> discovers a trap connected to the door and succeeds in disarming it!
+   DISCOVER_DISARM_FAIL = 7238; -- discovers a trap connected to the door, but fails to disarm it!
+DISCOVER_DISARM_SUCCESS = 7239; -- discovers a trap connected to the door and succeeds in disarming it!
           HOMEPOINT_SET = 7471; -- Home point set!
 
 -- Treasure Coffer/Chest Dialog
