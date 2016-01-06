@@ -496,9 +496,9 @@ class CZoneEntities;
 typedef std::list<CRegion*> regionList_t;
 typedef std::list<zoneLine_t*> zoneLineList_t;
 
-typedef std::map<uint16,zoneWeather_t> weatherVector_t;
+typedef std::map<uint16, zoneWeather_t> weatherVector_t;
 
-typedef std::map<uint16,CBaseEntity*> EntityList_t;
+typedef std::map<uint16, CBaseEntity*> EntityList_t;
 
 int32 zone_update_weather(uint32 tick, CTaskMgr::CTask *PTask);
 
