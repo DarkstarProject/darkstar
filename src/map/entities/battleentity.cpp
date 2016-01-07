@@ -1100,6 +1100,7 @@ void CBattleEntity::Spawn()
 void CBattleEntity::Die()
 {
     //#TODO - get killer
+    SetBattleTargetID(0);
     PAI->EventHandler.triggerListener("DEATH", this, nullptr);
 }
 

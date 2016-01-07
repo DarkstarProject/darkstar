@@ -1958,7 +1958,6 @@ void CCharEntity::Die(duration _duration)
 {
     PAI->ClearStateStack();
     PAI->Internal_Die(_duration);
-    SetBattleTargetID(0);
     pushPacket(new CRaiseTractorMenuPacket(this, TYPE_HOMEPOINT));
     StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
 
