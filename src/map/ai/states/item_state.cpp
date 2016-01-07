@@ -84,6 +84,7 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
 
     m_startPos = m_PEntity->loc.p;
     m_castTime = std::chrono::milliseconds(PItem->getActivationTime());
+    m_animationTime = std::chrono::milliseconds(PItem->getAnimationTime());
 
     action_t action;
     action.id = m_PEntity->id;
@@ -132,7 +133,7 @@ bool CItemState::Update(time_point tick)
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
         Complete();
     }
-    else if (IsCompleted() && tick > GetEntryTime() + m_castTime + std::chrono::milliseconds(m_PItem->getAnimationTime()))
+    else if (IsCompleted() && tick > GetEntryTime() + m_castTime + m_animationTime)
     {
         m_PEntity->PAI->EventHandler.triggerListener("ITEM_STATE_EXIT", m_PEntity, m_PItem);
         return true;

@@ -54,8 +54,9 @@ protected:
     CCharEntity* m_PEntity;
     CItemUsable* m_PItem;
     duration m_castTime;
+    duration m_animationTime;
     position_t m_startPos;
-    bool m_interrupted;
+    bool m_interrupted {false};
 };
 
 #endif

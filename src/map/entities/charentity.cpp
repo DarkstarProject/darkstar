@@ -1844,6 +1844,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
     auto PItem = static_cast<CItemUsable*>(state.GetItem());
 
+    //#TODO: I'm sure this is supposed to be in the action packet... (animation, message)
     if (PItem->getAoE())
     {
         PTarget->ForParty([PItem, PTarget](CBattleEntity* PMember)
@@ -1858,6 +1859,15 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
     {
         luautils::OnItemUse(PTarget, PItem);
     }
+
+    action.id = this->id;
+    action.actiontype = ACTION_ITEM_FINISH;
+
+    actionList_t& actionList = action.getNewActionList();
+    actionList.ActionTargetID = PTarget->id;
+
+    actionTarget_t& actionTarget = actionList.getNewActionTarget();
+    actionTarget.animation = PItem->getAnimationID();
 
     if (PItem->isType(ITEM_ARMOR))
     {
@@ -1894,20 +1904,6 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
 
         charutils::UpdateItem(this, PItem->getLocationID(), PItem->getSlotID(), -1);
     }
-
-    action.id = this->id;
-    action.actiontype = ACTION_ITEM_FINISH;
-
-    actionList_t& actionList = action.getNewActionList();
-    actionList.ActionTargetID = PTarget->id;
-
-    actionTarget_t& actionTarget = actionList.getNewActionTarget();
-    actionTarget.reaction = REACTION_NONE;
-    actionTarget.speceffect = SPECEFFECT_NONE;
-    actionTarget.animation = PItem->getAnimationID();
-    actionTarget.param = 0;
-    actionTarget.messageID = 0;
-    actionTarget.knockback = 0;
 }
 
 CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
