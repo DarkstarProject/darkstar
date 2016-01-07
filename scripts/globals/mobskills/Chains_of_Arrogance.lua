@@ -24,14 +24,14 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-	local typeEffect = EFFECT_TERROR;
-	local power = 30;
-	local duration = 30;
+    local typeEffect = EFFECT_TERROR;
+    local power = 30;
+    local duration = 30;
 
     if target:isPC() and ((target:getRace() == 3 or target:getRace() == 4) and not target:hasKeyItem(LIGHT_OF_MEA)) then
         skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
     else
         skill:setMsg(MSG_NO_EFFECT);
     end
-	return typeEffect;
+    return typeEffect;
 end;

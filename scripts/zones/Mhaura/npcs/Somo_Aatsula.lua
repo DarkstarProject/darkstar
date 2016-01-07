@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Mhaura
---	NPC:  Standing Bear
+--    Area: Mhaura
+--    NPC:  Standing Bear
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x23);
+    player:startEvent(0x23);
 end;
 
 -----------------------------------

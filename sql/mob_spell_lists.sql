@@ -1438,6 +1438,27 @@ INSERT INTO `mob_spell_lists` VALUES ('Charming_Trio', 142, 247, 1, 255);
 
 INSERT INTO `mob_spell_lists` VALUES ('Onki', 143, 288, 1, 255);
 
+-- Bahamut
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 5, 1, 255);  -- Cure V
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 106, 1, 255); -- Phalanx
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 54, 1, 255);  -- Stoneskin
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 47, 1, 255);  -- Protect V
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 52, 1, 255);  -- Shell V
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 148, 1, 255);  -- Fire V
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 205, 1, 255);  -- Flare II
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 177, 1, 255);  -- Firaga IV
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 359, 1, 255);  -- Silencega
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 360, 1, 255);  -- Dispelga
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 366, 1, 255);  -- Graviga
+
+-- Carmine Dobsonfly
+INSERT INTO `mob_spell_lists` VALUES ('Dobsonfly', 145, 57, 1, 255);  -- Haste
+INSERT INTO `mob_spell_lists` VALUES ('Dobsonfly', 145, 155, 1, 255);  -- Aero II
+INSERT INTO `mob_spell_lists` VALUES ('Dobsonfly', 145, 357, 1, 255);  -- Slowga
+
+-- Duke Decapod
+INSERT INTO `mob_spell_lists` VALUES ('Duke_Decapod', 146, 169, 1, 10);  -- Water
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

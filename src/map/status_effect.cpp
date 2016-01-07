@@ -25,6 +25,7 @@
 
 #include "entities/battleentity.h"
 #include "status_effect.h"
+#include "status_effect_container.h"
 
 
 CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, uint32 tick, uint32 duration, uint32 subid, uint16 subPower, uint16 tier)
@@ -115,12 +116,12 @@ uint32 CStatusEffect::GetDuration()
 	return m_Duration;
 }
 
-uint32 CStatusEffect::GetStartTime()
+time_point CStatusEffect::GetStartTime()
 {
 	return m_StartTime;
 }
 
-uint32 CStatusEffect::GetLastTick()
+time_point CStatusEffect::GetLastTick()
 {
 	return m_LastTick;
 }
@@ -168,13 +169,13 @@ void CStatusEffect::SetDuration(uint32 Duration)
 	m_Duration = Duration;
 }
 
-void CStatusEffect::SetStartTime(uint32 StartTime)
+void CStatusEffect::SetStartTime(time_point StartTime)
 {
 	m_LastTick  = StartTime;
 	m_StartTime = StartTime;
 }
 
-void CStatusEffect::SetLastTick(uint32 LastTick)
+void CStatusEffect::SetLastTick(time_point LastTick)
 {
 	m_LastTick = LastTick;
 }

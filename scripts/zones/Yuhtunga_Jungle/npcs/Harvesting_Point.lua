@@ -13,7 +13,7 @@ require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startHarvesting(player,player:getZoneID(),npc,trade,0x00CE);
+    startHarvesting(player,player:getZoneID(),npc,trade,0x00CE);
 end;
 
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(HARVESTING_IS_POSSIBLE_HERE,1020);
+    player:messageSpecial(HARVESTING_IS_POSSIBLE_HERE,1020);
 end;
 
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
--- NPC:  Grav'Iton
+--  MOB: Grav'Iton
 -- Zilart Mission 4 BCNM Fight
 -----------------------------------
 
@@ -16,23 +16,23 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-	local mobid = mob:getID();
+    local mobid = mob:getID();
 
-	for i=mobid+1,mobid+3 do
-		GetMobByID(i):updateEnmity(target);
-	end
+    for i=mobid+1,mobid+3 do
+        GetMobByID(i):updateEnmity(target);
+    end
 end;
 
 -----------------------------------
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-	local kills = killer:getVar("EVERYONES_GRUDGE_KILLS");
+    local kills = ally:getVar("EVERYONES_GRUDGE_KILLS");
 
-	if (kills < 480) then
-		killer:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
-	end
+    if (kills < 480) then
+        ally:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
+    end
 
 end;

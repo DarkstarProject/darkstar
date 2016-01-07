@@ -25,6 +25,7 @@
 
 #include "synth_message.h"
 #include "../entities/charentity.h"
+#include "../trade_container.h"
 
 
 CSynthMessagePacket::CSynthMessagePacket(CCharEntity * PChar, SYNTH_MESSAGE messageID, uint16 itemID, uint8 quantity)

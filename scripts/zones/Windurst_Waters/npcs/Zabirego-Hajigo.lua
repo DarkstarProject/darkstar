@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Waters
---	NPC:  Zabirego-Hajigo
---	Working 100%
+--    Area: Windurst Waters
+--    NPC:  Zabirego-Hajigo
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,14 +18,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+    
 fame = player:getFameLevel(2);
 
-	if (fame == 9) then
-		player:startEvent(0x310);
-	else
-		player:startEvent(0x2AF + fame);
-	end
+    if (fame == 9) then
+        player:startEvent(0x310);
+    else
+        player:startEvent(0x2AF + fame);
+    end
 end; 
 
 -----------------------------------

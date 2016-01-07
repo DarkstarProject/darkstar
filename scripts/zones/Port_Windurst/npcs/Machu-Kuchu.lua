@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x152);
+    player:startEvent(0x152);
 end;
 
 -----------------------------------
@@ -39,9 +39,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (option == 1) then
-		player:setPos(65.534,-7.5,-49.935,59,239); -- Retail packet capped
-	end
+    if (option == 1) then
+        player:setPos(65.534,-7.5,-49.935,59,239); -- Retail packet capped
+    end
 end;
 
 

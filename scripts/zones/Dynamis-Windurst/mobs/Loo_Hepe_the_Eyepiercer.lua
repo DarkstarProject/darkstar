@@ -15,12 +15,12 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-	-- If last boss trigger is killed -> pop the boss
-	if (GetServerVariable("[DynaWindurst]Boss_Trigger") == 8) then
-		SpawnMob(17543169);
-		SetServerVariable("[DynaWindurst]Boss_Trigger",16);
-	end
+    -- If last boss trigger is killed -> pop the boss
+    if (GetServerVariable("[DynaWindurst]Boss_Trigger") == 8) then
+        SpawnMob(17543169);
+        SetServerVariable("[DynaWindurst]Boss_Trigger",16);
+    end
 
 end;

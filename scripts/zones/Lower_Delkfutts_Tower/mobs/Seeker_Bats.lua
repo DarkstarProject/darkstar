@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
--- MOB:  Seeker Bats
+--  MOB: Seeker Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,10 +9,10 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,777,1);
-   checkGoVregime(killer,mob,778,1);
-   checkGoVregime(killer,mob,779,1);
-   checkGoVregime(killer,mob,780,1);
-   checkGoVregime(killer,mob,781,1);
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,777,1);
+    checkGoVregime(ally,mob,778,1);
+    checkGoVregime(ally,mob,779,1);
+    checkGoVregime(ally,mob,780,1);
+    checkGoVregime(ally,mob,781,1);
 end;

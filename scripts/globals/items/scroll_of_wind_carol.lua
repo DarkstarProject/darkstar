@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5048
---	Scroll of Wind Carol
---	Teaches the song Wind Carol
+--    ID: 5048
+--    Scroll of Wind Carol
+--    Teaches the song Wind Carol
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(440);
+    return target:canLearnSpell(440);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(440);
+    target:addSpell(440);
 end;

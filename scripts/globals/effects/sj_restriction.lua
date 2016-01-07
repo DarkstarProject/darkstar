@@ -10,7 +10,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:sjRestriction(effect:getPower(),true);
+    target:sjRestriction(effect:getPower(),true);
 end;
 
 -----------------------------------
@@ -31,5 +31,5 @@ function onEffectLose(target,effect)
         power = 0;
     end
 
-	target:sjRestriction(power,false);
+    target:sjRestriction(power,false);
 end;

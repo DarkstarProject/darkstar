@@ -1,8 +1,9 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
---  NPC: Genbu
+--  NM:  Genbu
 -----------------------------------
-
+package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/RuAun_Gardens/TextIDs");
 require("scripts/globals/status");
 
@@ -22,15 +23,6 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer)
-    killer:showText(mob,SKY_GOD_OFFSET + 6);
-    GetNPCByID(17310098):hideNPC(120);
-end;
-
------------------------------------
 -- onAdditionalEffect
 -----------------------------------
 
@@ -39,11 +31,27 @@ function onAdditionalEffect(mob, target, damage)
     local params = {};
     params.bonusmab = 0;
     params.includemab = false;
-    
+
     dmg = addBonusesAbility(mob, ELE_WATER, target, dmg, params);
     dmg = dmg * applyResistanceAddEffect(mob,target,ELE_WATER,0);
     dmg = adjustForTarget(target,dmg,ELE_WATER);
     dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WATER,dmg);
 
     return SUBEFFECT_WATER_DAMAGE, MSGBASIC_ADD_EFFECT_DMG, dmg;
+end;
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, killer, ally)
+    ally:showText(mob,SKY_GOD_OFFSET + 6);
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    GetNPCByID(17310099):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

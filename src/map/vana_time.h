@@ -88,11 +88,11 @@ public:
 
 	void	 setCustomOffset(int32 offset);
 	
-	uint32   lastConquestUpdate;
-	uint32   lastVHourlyUpdate;
-	uint32   lastVDailyUpdate;
-    uint32   lastConquestTally;
-    uint32   lastMidnight;
+	time_point   lastConquestUpdate;
+    time_point   lastVHourlyUpdate;
+    time_point   lastVDailyUpdate;
+    time_point   lastConquestTally;
+    time_point   lastMidnight;
 
 private:
 

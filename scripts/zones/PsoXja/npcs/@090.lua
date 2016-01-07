@@ -15,7 +15,7 @@ function onSpawn(npc)
                         id = 0,                      -- id is usually 0
                         lowerDoor = npc:getID() + 2, -- lowerDoor's npcid
                         upperDoor = npc:getID() + 1, -- upperDoor usually has a smaller id than lowerDoor
-                        elevator = npc:getID(), 	 -- actual elevator npc's id is usually the smallest
+                        elevator = npc:getID(),      -- actual elevator npc's id is usually the smallest
                         started = 1,                 -- is the elevator already running
                         regime = 1,                  -- 
                      }

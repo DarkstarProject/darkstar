@@ -20,13 +20,13 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
-	local effect = EFFECT_MIGAWARI;
-	local ninjutsu = target:getSkillLevel(NINJUTSU_SKILL);
-	local negationThreshold = math.floor(100 * ((ninjutsu / 5) / 100));
-	caster:addStatusEffect(effect,negationThreshold,0,60,0,100);
-	return effect;
+    local effect = EFFECT_MIGAWARI;
+    local ninjutsu = target:getSkillLevel(NINJUTSU_SKILL);
+    local negationThreshold = math.floor(100 * ((ninjutsu / 5) / 100));
+    caster:addStatusEffect(effect,negationThreshold,0,60,0,100);
+    return effect;
 end;

@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0e);
+    player:startEvent(0x0e);
 end;
 
 -----------------------------------
@@ -42,8 +42,8 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x0e) then
-		player:setPos(-73, 0, 60, 1, 0xac);
-	end
+    if (csid == 0x0e) then
+        player:setPos(-73, 0, 60, 1, 0xac);
+    end
    
 end;

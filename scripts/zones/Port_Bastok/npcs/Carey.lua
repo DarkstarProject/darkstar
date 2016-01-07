@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(CAREY_DIALOG); 
+    player:messageSpecial(CAREY_DIALOG); 
 end; 
 
 -----------------------------------

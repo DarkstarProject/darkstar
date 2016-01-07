@@ -150,15 +150,15 @@ void set_server_type()
     SERVER_TYPE = DARKSTAR_SERVER_LOGIN;
 }
 
-int do_sockets(fd_set* rfd, int next)
+int do_sockets(fd_set* rfd, duration next)
 {
     struct timeval timeout;
     int ret, i;
 
 
     // can timeout until the next tick
-    timeout.tv_sec = next / 1000;
-    timeout.tv_usec = next % 1000 * 1000;
+    timeout.tv_sec = std::chrono::duration_cast<std::chrono::seconds>(next).count();
+    timeout.tv_usec = std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
 
 
     memcpy(rfd, &readfds, sizeof(*rfd));

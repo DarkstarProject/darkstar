@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x00D2 + player:getFameLevel(BASTOK));
+    player:startEvent(0x00D2 + player:getFameLevel(BASTOK));
 end;
 
 -----------------------------------

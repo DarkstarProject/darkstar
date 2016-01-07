@@ -79,7 +79,7 @@ local startToChoice1 = {
 
 function onSpawn(npc)
     npc:initNpcAi();
-	npc:pathThrough(start, PATHFLAG_REPEAT);
+    npc:pathThrough(start, PATHFLAG_REPEAT);
 end;
 
 function onPath(npc)
@@ -110,8 +110,8 @@ function onPath(npc)
         end
     end
 
-	-- go back and forth the set path
-	-- pathfind.patrol(npc, path);
+    -- go back and forth the set path
+    -- pathfind.patrol(npc, path);
 
 end;
 

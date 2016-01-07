@@ -1,17 +1,18 @@
 -----------------------------------
 -- Area: Dynamis Buburimu
--- NPC:  Manifest_Icon
+--  MOB: Manifest_Icon
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Buburimu/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Buburimu/TextIDs");
+require("scripts/globals/dynamis");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
-	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------
@@ -26,18 +27,16 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	
-	--local mobID = mob:getID();
-		local mobID = mob:getID();
+function onMobDeath(mob,killer,ally)
 
-	if ( mobID == 16941208 or mobID == 16941485) then --hp
-		killer:messageBasic(024,(killer:getMaxHP()-killer:getHP()));
-	    killer:restoreHP(3000);
-     elseif (mobID == 16941190 or mobID == 16941192 or 16941486) then --mp
-		killer:messageBasic(025,(killer:getMaxMP()-killer:getMP()));
-		killer:restoreMP(3000);		
-	end
-	
-	
+    local mobID = mob:getID();
+
+    if ( mobID == 16941208 or mobID == 16941485) then -- hp
+        ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
+        ally:restoreHP(3000);
+     elseif (mobID == 16941190 or mobID == 16941192 or 16941486) then -- mp
+        ally:messageBasic(025,(ally:getMaxMP()-ally:getMP()));
+        ally:restoreMP(3000);
+    end
+
 end;

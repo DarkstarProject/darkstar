@@ -1,13 +1,13 @@
 -----------------------------------
--- 	Game Table
--- 	Basic Chat Text
+--     Game Table
+--     Basic Chat Text
 -----------------------------------
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 function onTrigger(player,npc)
-	player:startEvent(0x2759);
+    player:startEvent(0x2759);
 end; 
  
 

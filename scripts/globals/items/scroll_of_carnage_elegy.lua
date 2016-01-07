@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5030
---	Scroll of Carnage Elegy
---	Teaches the song Carnage Elegy
+--    ID: 5030
+--    Scroll of Carnage Elegy
+--    Teaches the song Carnage Elegy
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(422);
+    return target:canLearnSpell(422);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(422);
+    target:addSpell(422);
 end;

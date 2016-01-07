@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4615
---	Scroll of Curaga
---	Teaches the white magic Curaga
+--    ID: 4615
+--    Scroll of Curaga
+--    Teaches the white magic Curaga
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(7);
+    return target:canLearnSpell(7);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(7);
+    target:addSpell(7);
 end;

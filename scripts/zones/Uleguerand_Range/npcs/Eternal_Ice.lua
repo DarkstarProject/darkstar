@@ -25,10 +25,10 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:hasKeyItem(MYSTIC_ICE) == false) then
-		player:addKeyItem(MYSTIC_ICE);
-		player:messageSpecial(KEYITEM_OBTAINED,MYSTIC_ICE);
-	else
-		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-	end
+    if (player:hasKeyItem(MYSTIC_ICE) == false) then
+        player:addKeyItem(MYSTIC_ICE);
+        player:messageSpecial(KEYITEM_OBTAINED,MYSTIC_ICE);
+    else
+        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    end
 end;

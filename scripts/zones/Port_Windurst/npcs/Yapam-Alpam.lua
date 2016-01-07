@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC:  Yapam-Alpam
---	Working 100%
+--    Area: Port Windurst
+--    NPC:  Yapam-Alpam
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x146);
+    player:startEvent(0x146);
 end;
 
 -----------------------------------

@@ -24,16 +24,16 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local HealingTheLand = player:getQuestStatus(SANDORIA,HEALING_THE_LAND);
+    local HealingTheLand = player:getQuestStatus(SANDORIA,HEALING_THE_LAND);
 
-	if (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(SEAL_OF_BANISHING) == true) then 
-		player:delKeyItem(SEAL_OF_BANISHING);
-		player:messageSpecial(FOUND_LOCATION_SEAL, SEAL_OF_BANISHING);
-	elseif (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(SEAL_OF_BANISHING) == false) then 
-		player:messageSpecial(IS_ON_THIS_SEAL, SEAL_OF_BANISHING);
-	else 
-		player:messageSpecial(LETTERS_IS_WRITTEN_HERE);
-	end
+    if (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(SEAL_OF_BANISHING) == true) then 
+        player:delKeyItem(SEAL_OF_BANISHING);
+        player:messageSpecial(FOUND_LOCATION_SEAL, SEAL_OF_BANISHING);
+    elseif (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(SEAL_OF_BANISHING) == false) then 
+        player:messageSpecial(IS_ON_THIS_SEAL, SEAL_OF_BANISHING);
+    else 
+        player:messageSpecial(LETTERS_IS_WRITTEN_HERE);
+    end
 end;
 
 -----------------------------------

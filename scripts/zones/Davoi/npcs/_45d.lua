@@ -24,16 +24,16 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (npc:getAnimation() == 9) then
-		if (player:hasKeyItem(CRIMSON_ORB)) then
-			player:startEvent(0x002a);
-		else
-			player:messageSpecial(CAVE_HAS_BEEN_SEALED_OFF);
-			player:messageSpecial(MAY_BE_SOME_WAY_TO_BREAK);
-			player:setVar("miniQuestForORB_CS",99);
-		end
-	end	
+    
+    if (npc:getAnimation() == 9) then
+        if (player:hasKeyItem(CRIMSON_ORB)) then
+            player:startEvent(0x002a);
+        else
+            player:messageSpecial(CAVE_HAS_BEEN_SEALED_OFF);
+            player:messageSpecial(MAY_BE_SOME_WAY_TO_BREAK);
+            player:setVar("miniQuestForORB_CS",99);
+        end
+    end    
 end;
 
 -----------------------------------
@@ -53,9 +53,9 @@ function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x002a and option == 0) then
-		player:messageSpecial(POWER_OF_THE_ORB_ALLOW_PASS);
-		npc:openDoor(12); -- needs retail timing
-	end
+    if (csid == 0x002a and option == 0) then
+        player:messageSpecial(POWER_OF_THE_ORB_ALLOW_PASS);
+        npc:openDoor(12); -- needs retail timing
+    end
 
 end;

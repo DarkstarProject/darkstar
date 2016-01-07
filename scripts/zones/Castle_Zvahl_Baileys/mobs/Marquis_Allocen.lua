@@ -1,16 +1,16 @@
 -----------------------------------
---  Area: Castle Zvahl Baileys (161)
---    NM: Marquis_Allocen
+-- Area: Castle Zvahl Baileys (161)
+--   NM: Marquis_Allocen
 -----------------------------------
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)	
+function onMobDeath(mob,killer,ally)
 
     -- Set Marquis_Allocen's spawnpoint and respawn time (21-24 hours)
     UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random((75600),(86400)));
+    mob:setRespawnTime(math.random(75600,86400));
 
 end;

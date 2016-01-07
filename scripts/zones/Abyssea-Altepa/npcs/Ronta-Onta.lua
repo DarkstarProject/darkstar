@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Abyssea_Altepa
---	NPC:Ronta-Onta
---	Standard Info NPC
+--    Area: Abyssea_Altepa
+--    NPC:Ronta-Onta
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Altepa/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0158);
+    player:startEvent(0x0158);
 end;
 
 -----------------------------------

@@ -30,6 +30,7 @@
 #include "packets/conquest_map.h"
 
 #include "lua/luautils.h"
+#include "latent_effect_container.h"
 
 /************************************************************************
 *                                                                       *

@@ -22,12 +22,12 @@ end;
 
 function onTrigger(player,npc)
     
-	if (player:getCurrentMission(COP) == DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 2) then
+    if (player:getCurrentMission(COP) == DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 2) then
         player:startEvent(0x0024);
     else
-    	player:messageSpecial(NOTHING_OUT_HERE);
+        player:messageSpecial(NOTHING_OUT_HERE);
     end
-	
+    
 end; 
 
 -----------------------------------
@@ -46,9 +46,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
-	if (csid == 0x0024) then
-		player:setVar("PromathiaStatus",3);
-	end
-	
+    
+    if (csid == 0x0024) then
+        player:setVar("PromathiaStatus",3);
+    end
+    
 end;

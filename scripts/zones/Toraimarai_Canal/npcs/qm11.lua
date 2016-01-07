@@ -28,13 +28,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getVar("rootProblem") == 2) then
-		if (player:getVar("rootProblemQ1") == 2 and player:getVar("rootProblemQ2") == 2) then
-			player:startEvent(0x30);
-		end
-	elseif (player:getVar("rootProblem") == 3) then
-		player:startEvent(0x37);
-	end
+    if (player:getVar("rootProblem") == 2) then
+        if (player:getVar("rootProblemQ1") == 2 and player:getVar("rootProblemQ2") == 2) then
+            player:startEvent(0x30);
+        end
+    elseif (player:getVar("rootProblem") == 3) then
+        player:startEvent(0x37);
+    end
 end;
 
 -----------------------------------
@@ -55,9 +55,9 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x30 and option ~= 0) then
-		SpawnMob(17469516,180):updateClaim(player);
-	end
+    if (csid == 0x30 and option ~= 0) then
+        SpawnMob(17469516,180):updateClaim(player);
+    end
 
 end;
 

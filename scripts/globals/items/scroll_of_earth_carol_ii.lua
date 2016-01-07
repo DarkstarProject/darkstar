@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5057
---	Scroll of Earth Carol II
---	Teaches the song Earth Carol II
+--    ID: 5057
+--    Scroll of Earth Carol II
+--    Teaches the song Earth Carol II
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(449);
+    return target:canLearnSpell(449);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(449);
+    target:addSpell(449);
 end;

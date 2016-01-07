@@ -14,7 +14,7 @@ require("scripts/globals/strangeapparatus");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	player:startEvent(0x000D, 0, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
+    player:startEvent(0x000D, 0, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
 end;
 
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x000B, 0, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
+    player:startEvent(0x000B, 0, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
 end;
 
 -----------------------------------
@@ -30,8 +30,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,6 +39,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

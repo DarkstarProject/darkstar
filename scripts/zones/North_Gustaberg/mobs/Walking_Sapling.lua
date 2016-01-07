@@ -1,18 +1,18 @@
------------------------------------	
--- Area: North Gustaberg	
--- MOB:  Walking Sapling	
+-----------------------------------
+-- Area: North Gustaberg
+--  MOB: Walking Sapling
 -- Note: Place Holder For Maighdean Uaine
------------------------------------	
+-----------------------------------
 
 require("scripts/zones/North_Gustaberg/MobIDs");
-require("scripts/globals/fieldsofvalor");	
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-    checkRegime(killer,mob,18,2);
+require("scripts/globals/fieldsofvalor");
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+    checkRegime(ally,mob,18,2);
     mob = mob:getID();
     if (Maighdean_Uaine_PH[mob] ~= nil) then
 
@@ -26,4 +26,4 @@ function onMobDeath(mob,killer)
             end
         end
     end
-end;	
+end;

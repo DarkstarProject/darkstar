@@ -38,11 +38,14 @@
 #include "../packets/synth_message.h"
 #include "../packets/synth_result.h"
 
+#include "../item_container.h"
+#include "../map.h"
+#include "../trade_container.h"
+#include "../vana_time.h"
+
 #include "charutils.h"
 #include "itemutils.h"
-#include "../map.h"
 #include "synthutils.h"
-#include "../vana_time.h"
 #include "zoneutils.h"
 
 //#define _DSP_SYNTH_DEBUG_MESSAGES_ // включаем отладочные сообщения

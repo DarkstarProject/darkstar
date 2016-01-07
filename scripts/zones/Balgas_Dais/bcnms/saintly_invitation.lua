@@ -30,33 +30,33 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-	
-	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		if (player:hasCompletedMission(WINDURST,SAINTLY_INVITATION)) then
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,1);
-		else
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,0);
-		end
-	elseif (leavecode == 4) then
-		player:startEvent(0x7d02);
-	end
-	
+    
+    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+        if (player:hasCompletedMission(WINDURST,SAINTLY_INVITATION)) then
+            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,1);
+        else
+            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,0);
+        end
+    elseif (leavecode == 4) then
+        player:startEvent(0x7d02);
+    end
+    
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-	
+    
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-	
-	if (csid == 0x7d01) then
-		if (player:getCurrentMission(WINDURST) == SAINTLY_INVITATION) then
-			player:addTitle(VICTOR_OF_THE_BALGA_CONTEST);
-			player:addKeyItem(BALGA_CHAMPION_CERTIFICATE);
-			player:messageSpecial(KEYITEM_OBTAINED,BALGA_CHAMPION_CERTIFICATE);
-			player:setVar("MissionStatus",2);
-		end
-	end
-	
+    
+    if (csid == 0x7d01) then
+        if (player:getCurrentMission(WINDURST) == SAINTLY_INVITATION) then
+            player:addTitle(VICTOR_OF_THE_BALGA_CONTEST);
+            player:addKeyItem(BALGA_CHAMPION_CERTIFICATE);
+            player:messageSpecial(KEYITEM_OBTAINED,BALGA_CHAMPION_CERTIFICATE);
+            player:setVar("MissionStatus",2);
+        end
+    end
+    
 end;

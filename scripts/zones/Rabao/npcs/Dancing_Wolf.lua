@@ -31,7 +31,7 @@ player:startEvent(0x0068);
 elseif (player:getVar("BASTOK91") == 4) then
 player:startEvent(0x0069);
 else
-player:startEvent(0x006A);	
+player:startEvent(0x006A);    
 end
 end;
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

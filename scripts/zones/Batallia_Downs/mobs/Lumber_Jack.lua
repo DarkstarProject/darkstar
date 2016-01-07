@@ -1,15 +1,25 @@
 -----------------------------------
---  Area: Batallia Downs (105)
---   Mob: Lumber Jack
+-- Area: Batallia Downs (105)
+--  MOB: Lumber Jack
 -----------------------------------
+
+require("scripts/globals/status");
+
+-----------------------------------
+-- onMobInitialize Action
+-----------------------------------
+
+function onMobInitialize(mob)
+    mob:setMobMod(MOBMOD_IDLE_DESPAWN, 600);
+end;
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
     -- Set Weeping Willow's respawn time (21-24 hours)
-    GetMobByID(17207302):setRespawnTime(math.random((75600),(86400)));
+    GetMobByID(mob:getID() -6):setRespawnTime(math.random(75600,86400));
 
 end;

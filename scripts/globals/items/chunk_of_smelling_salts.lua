@@ -12,12 +12,12 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-	result = 0;
-	pet = target:getPet();
-	if (pet:hasStatusEffect(EFFECT_MEDICINE)) then
-		result = 111;
-	end
-	return result;
+    result = 0;
+    pet = target:getPet();
+    if (pet:hasStatusEffect(EFFECT_MEDICINE)) then
+        result = 111;
+    end
+    return result;
 end;
 
 -----------------------------------------
@@ -25,13 +25,13 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if (target:addStatusEffect(EFFECT_MEDICINE,0,0,180,5320)) then
-		target:messageBasic(205);
-		pet:delStatusEffect(EFFECT_SLEEP_I);
-		pet:delStatusEffect(EFFECT_SLEEP_II);
-		pet:delStatusEffect(EFFECT_LULLABY);
-	else
-        	target:messageBasic(423); -- no effect
+    if (target:addStatusEffect(EFFECT_MEDICINE,0,0,180,5320)) then
+        target:messageBasic(205);
+        pet:delStatusEffect(EFFECT_SLEEP_I);
+        pet:delStatusEffect(EFFECT_SLEEP_II);
+        pet:delStatusEffect(EFFECT_LULLABY);
+    else
+            target:messageBasic(423); -- no effect
         end
 end;
 

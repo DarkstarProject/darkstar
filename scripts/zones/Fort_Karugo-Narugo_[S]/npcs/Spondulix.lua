@@ -20,12 +20,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+    
 player:showText(npc,SPONDULIX_SHOP_DIALOG);
 
-stock = {0x1014,4500,		-- Hi-Potion
-	 0x1024,28000,		-- Hi-Ether
-	 0x0A03,3035}		-- Karugo Clay
+stock = {0x1014,4500,        -- Hi-Potion
+     0x1024,28000,        -- Hi-Ether
+     0x0A03,3035}        -- Karugo Clay
  
 showShop(player, STATIC, stock);
 end; 

@@ -1,18 +1,18 @@
------------------------------------	
--- Area: North Gustaberg	
--- MOB:  Maneating Hornet	
+-----------------------------------
+-- Area: North Gustaberg
+--  MOB: Maneating Hornet
 -- Note: Place Holder For Stinging Sophie
------------------------------------	
+-----------------------------------
 
-require("scripts/zones/North_Gustaberg/MobIDs");	
-require("scripts/globals/fieldsofvalor");	
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-    checkRegime(killer,mob,17,1);
+require("scripts/zones/North_Gustaberg/MobIDs");
+require("scripts/globals/fieldsofvalor");
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+    checkRegime(ally,mob,17,1);
     mob = mob:getID();
     if (Stinging_Sophie_PH[mob] ~= nil) then
 
@@ -26,4 +26,4 @@ function onMobDeath(mob,killer)
             end
         end
     end
-end;	
+end;

@@ -40,7 +40,7 @@ function onTrigger(player,npc)
         0x3130,  2470,3,     --Doublet
         0x31B0,  1363,3,     --Gloves
         0x3230,  1899,3,     --Brais
-        0x32B0,  1269,3	     --Gaiters
+        0x32B0,  1269,3         --Gaiters
     }
     showNationShop(player, BASTOK, stock);
 

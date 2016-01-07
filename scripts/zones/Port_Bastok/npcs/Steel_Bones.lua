@@ -31,7 +31,7 @@ function onTrigger(player,npc)
   if (GuestofHauteur == QUEST_ACCEPTED and player:getVar("GuestofHauteur_Event") ~= 1 and (itemEquipped == 17045 or itemEquipped == 17426)) then -- Maul / Replica Maul
     player:startEvent(0x39);
   else
-  	player:startEvent(0x01d);
+      player:startEvent(0x01d);
   end
 end;
 
@@ -57,5 +57,5 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(LETTERS_FROM_DOMIEN);
         player:messageSpecial(KEYITEM_OBTAINED,LETTERS_FROM_DOMIEN);        
     end
-	
+    
 end;

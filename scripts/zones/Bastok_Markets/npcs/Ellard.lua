@@ -100,7 +100,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 3, 0x154, "guild_goldsmithing", keyitems);
+    unionRepresentativeTrigger(player, 3, 0x154, "guild_goldsmithing", keyitems);
 end;
 
 -----------------------------------
@@ -108,8 +108,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -117,8 +117,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,target)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
      
     if (csid == 0x154) then
         unionRepresentativeTriggerFinish(player, option, target, 3, "guild_goldsmithing", keyitems, items);

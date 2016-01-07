@@ -24,11 +24,11 @@
 #ifndef _BASEENTITY_H
 #define _BASEENTITY_H
 
+#include <memory>
+#include <map>
 #include "../../common/cbasetypes.h"
 #include "../../common/mmo.h"
-
-#include "../ai/ai_general.h"
-#include "../instance.h"
+#include "../packets/message_basic.h"
 
 enum ENTITYTYPE
 {
@@ -125,6 +125,10 @@ struct location_t
     uint16		boundary;       // определенная область в зоне, в которой находится сущность (используется персонажами и транспортом)
 };
 
+class CAIContainer;
+class CInstance;
+class CBattlefield;
+
 /************************************************************************
 *																		*
 *  Базовый класс для всех сущностей в игре								*
@@ -134,6 +138,34 @@ struct location_t
 class CBaseEntity
 {
 public:
+
+    CBaseEntity();						// конструктор
+    virtual ~CBaseEntity();				// деструктор
+
+    virtual void    Spawn();
+    virtual void    FadeOut();
+    virtual const int8* GetName();      // имя сущности
+    uint16			getZone();			// текущая зона
+    float			GetXPos();			// позиция по координате X
+    float			GetYPos();			// позиция по координате Y
+    float			GetZPos();			// позиция по координате Z
+    uint8			GetRotPos();
+    void			HideName(bool hide); // hide / show name
+    bool			IsNameHidden();		// checks if name is hidden
+
+    CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);
+
+    void            ResetLocalVars();
+    uint32          GetLocalVar(const char* var);
+    void            SetLocalVar(const char* var, uint32 val);
+
+    virtual void    UpdateEntity() = 0;
+
+    void            SetModelId(uint16 modelId);     // Set new modelid
+    uint16          GetModelId();                   // Get the modelid
+
+    virtual void    HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) {};
+    virtual void    Tick(time_point) = 0;
 
     uint32			id;					// глобальный идентификатор, уникальный на сервере
     uint16			targid;				// локалный идентификатор, уникальный в зоне
@@ -152,35 +184,9 @@ public:
     uint8			allegiance;			// what types of targets the entity can fight
     uint8           updatemask;         // what to update next server tick to players nearby
 
-
-    virtual const int8* GetName();      // имя сущности
-
-    uint16			getZone();			// текущая зона
-    float			GetXPos();			// позиция по координате X
-    float			GetYPos();			// позиция по координате Y
-    float			GetZPos();			// позиция по координате Z
-    uint8			GetRotPos();
-    void			HideName(bool hide); // hide / show name
-    bool			IsNameHidden();		// checks if name is hidden
-
-    CAIGeneral*     PBattleAI;          // интеллект любой сущности
-    CBattlefield*	PBCNM;				// pointer to bcnm (if in one)
+    std::unique_ptr<CAIContainer> PAI;       // AI container
+    CBattlefield*	PBCNM;              // pointer to bcnm (if in one)
     CInstance*		PInstance;
-
-    CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);
-
-    void            ResetLocalVars();
-    uint32          GetLocalVar(const char* var);
-    void            SetLocalVar(const char* var, uint32 val);
-
-    virtual void    UpdateEntity() = 0;
-
-    void            SetModelId(uint16 modelId);     // Set new modelid
-    uint16          GetModelId();                   // Get the modelid
-
-    CBaseEntity();						// конструктор
-    virtual ~CBaseEntity();				// деструктор
-private:
 protected:
     std::map<std::string, uint32> m_localVars;
 };

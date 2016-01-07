@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bibiki Bay
--- NPC:  Shen
+--  MOB: Shen
 -----------------------------------
 
 -----------------------------------
@@ -16,15 +16,15 @@ end;
 
 function onMobFight(mob,target)
 
-	local Shen = mob:getID();
+    local Shen = mob:getID();
 
-	if (mob:getBattleTime() % 45 == 0) then
-		if (GetMobAction(Shen+1) == 0) then
-			SpawnMob(Shen+1,300):updateEnmity(target);
-		elseif (GetMobAction(Shen+2) == 0) then
-			SpawnMob(Shen+2,300):updateEnmity(target);
-		end
-	end
+    if (mob:getBattleTime() % 45 == 0) then
+        if (GetMobAction(Shen+1) == 0) then
+            SpawnMob(Shen+1,300):updateEnmity(target);
+        elseif (GetMobAction(Shen+2) == 0) then
+            SpawnMob(Shen+2,300):updateEnmity(target);
+        end
+    end
 
 end;
 
@@ -32,7 +32,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;
 
 -----------------------------------
@@ -41,7 +41,7 @@ end;
 
 function onMonsterMagicPrepare(mob,target)
 
-	-- casts Water IV, Waterga III, Flood, Drown
+    -- casts Water IV, Waterga III, Flood, Drown
     rnd = math.random();
 
     if (rnd < 0.5) then

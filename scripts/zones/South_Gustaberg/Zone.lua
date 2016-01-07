@@ -55,7 +55,7 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17216200,17216201};
+    local manuals = {17216207,17216208};
 
     SetFieldManual(manuals);
 end;
@@ -75,7 +75,7 @@ function onZoneIn(player,prevZone)
         cs= 0x038A;
     elseif (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 0x0385;
-    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then	
+    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then    
         cs = 0x0025;
     end
 
@@ -118,7 +118,7 @@ function onEventUpdate(player,csid,option)
             else
             player:updateEvent(0,0,0,0,0,7);
             end
-        end	
+        end    
     end
 end;
 

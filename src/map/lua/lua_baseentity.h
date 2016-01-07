@@ -26,9 +26,9 @@
 
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
-#include "../entities/charentity.h"
 
 class CBaseEntity;
+class CCharEntity;
 
 class CLuaBaseEntity
 {
@@ -53,7 +53,8 @@ public:
 
     int32 getID(lua_State *L);              // Gets Entity Id
     int32 getShortID(lua_State *L);
-    int32 fetchTargetsID(lua_State *L);     // Returns the ID any object under players in game cursor.
+    int32 getCursorTarget(lua_State *L);    // Returns the ID any object under players in game cursor.
+    int32 getPool(lua_State *L);            // Returns a mobs pool ID. If entity is not a mob, returns nil.
     int32 getName(lua_State *L);            // Gets Entity Name
 
     int32 getHPP(lua_State*);               // Returns Entity Health %
@@ -408,6 +409,7 @@ public:
     int32 closeDoor(lua_State*);            // npc.closeDoor(timeToStayClosed)
     int32 showNPC(lua_State*);              // Show an NPC
     int32 hideNPC(lua_State*);              // hide an NPC
+    int32 updateNPCHideTime(lua_State*);    // Updates the length of time a NPC remains hidden, if shorter than the original hide time.
     int32 resetRecasts(lua_State*);         // Reset recasts for the caller
     int32 resetRecast(lua_State*);          // Reset one recast ID
 
@@ -467,10 +469,10 @@ public:
     int32 resetLocalVars(lua_State*);
 
     int32 setSpellList(lua_State*);
+    int32 hasSpellList(lua_State*);
 
     int32 hasValidJugPetItem(lua_State*);
     int32 getTarget(lua_State*);
-    int32 setBattleSubTarget(lua_State*);
     int32 hasTPMoves(lua_State*);
     int32 getMaster(lua_State*);
 
@@ -562,6 +564,13 @@ public:
 
     int32 getConfrontationEffect(lua_State* L);
     int32 copyConfrontationEffect(lua_State* L);    // copy confrontation effect, param = targetEntity:getShortID()
+
+    int32 queue(lua_State* L);
+    int32 timer(lua_State* L); //execute lua closure after some time
+
+    int32 addListener(lua_State* L);
+    int32 removeListener(lua_State* L);
+    int32 triggerListener(lua_State* L);
 };
 
 #endif

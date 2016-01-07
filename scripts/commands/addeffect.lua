@@ -6,10 +6,10 @@
 cmdprops =
 {
     permission = 1,
-    parameters = "siii"
+    parameters = "siiiii"
 };
 
-function onTrigger(player, target, id, power, duration)
+function onTrigger(player, target, id, power, duration, subid, subPower)
 
     -- Ensure a target is set..
     if (target == nil) then
@@ -22,6 +22,18 @@ function onTrigger(player, target, id, power, duration)
     -- check if target name was entered
     local num = tonumber(target)
     if (type(num) == "number") then
+        if (subid == 0 or subid == nil) then
+            subPower = 0;
+        else
+            subPower = subid;
+        end
+
+        if (duration == 0 or duration == nil) then
+            subid = 0;
+        else
+            subid = duration;
+        end
+
         if (power == 0 or power == nil) then
             duration = 60;
         else
@@ -51,6 +63,14 @@ function onTrigger(player, target, id, power, duration)
             duration = 60;
         end
 
+        if (subid == nil) then
+            subid = 0;
+        end
+
+        if (subPower == nil) then
+            subPower = 0;
+        end
+
         if (id == 0 or id == nil) then
             id = 1;
         end
@@ -61,7 +81,7 @@ function onTrigger(player, target, id, power, duration)
         return;
     end
 
-    if (effectTarget:addStatusEffect(id, power, 3, duration)) then
+    if (effectTarget:addStatusEffect(id, power, 3, duration, subid, subPower)) then
         effectTarget:messagePublic(280, effectTarget, id, id);
     else
         effectTarget:messagePublic(283, effectTarget, id);

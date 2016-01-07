@@ -10,28 +10,28 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
-	local effect = EFFECT_POISON;
+    local effect = EFFECT_POISON;
 
-	local duration = 120;
-	
-	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+    local duration = 120;
+    
+        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         duration = duration * 2;
     end
 
-	local pINT = caster:getStat(MOD_INT);
-	local mINT = target:getStat(MOD_INT);
+    local pINT = caster:getStat(MOD_INT);
+    local mINT = target:getStat(MOD_INT);
 
-	local dINT = (pINT - mINT);
-	local power = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 20 + 1;
-	if power > 10 then
-		power = 10;
-	end
-	
-	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+    local dINT = (pINT - mINT);
+    local power = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 20 + 1;
+    if power > 10 then
+        power = 10;
+    end
+    
+        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         power = power * 2;
     end
     caster:delStatusEffect(EFFECT_SABOTEUR);

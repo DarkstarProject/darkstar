@@ -19,9 +19,9 @@ require("scripts/zones/Cloister_of_Storms/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
-		return;
-	end
+    if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
+        return;
+    end
 end;
 
 -----------------------------------
@@ -30,13 +30,13 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:getVar("ASA4_Violet") == 1) then
-		player:startEvent(0x0002);
-	elseif (EventTriggerBCNM(player,npc)) then
-		return;
-	else
-		player:messageSpecial(PROTOCRYSTAL);			
-	end
+    if (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:getVar("ASA4_Violet") == 1) then
+        player:startEvent(0x0002);
+    elseif (EventTriggerBCNM(player,npc)) then
+        return;
+    else
+        player:messageSpecial(PROTOCRYSTAL);            
+    end
 end;
 
 -----------------------------------
@@ -44,12 +44,12 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	--printf("onUpdate CSID: %u",csid);
-	--printf("onUpdate RESULT: %u",option);
+    --printf("onUpdate CSID: %u",csid);
+    --printf("onUpdate RESULT: %u",option);
 
-	if (EventUpdateBCNM(player,csid,option)) then
-		return;
-	end
+    if (EventUpdateBCNM(player,csid,option)) then
+        return;
+    end
 end;
 
 -----------------------------------
@@ -57,15 +57,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	--printf("onFinish CSID: %u",csid);
-	--printf("onFinish RESULT: %u",option);
+    --printf("onFinish CSID: %u",csid);
+    --printf("onFinish RESULT: %u",option);
 
-	if (csid==0x0002) then
-		player:delKeyItem(DOMINAS_VIOLET_SEAL);
-		player:addKeyItem(VIOLET_COUNTERSEAL);
-		player:messageSpecial(KEYITEM_OBTAINED,VIOLET_COUNTERSEAL);
-		player:setVar("ASA4_Violet","2");
-	elseif (EventFinishBCNM(player,csid,option)) then
-		return;
-	end
+    if (csid==0x0002) then
+        player:delKeyItem(DOMINAS_VIOLET_SEAL);
+        player:addKeyItem(VIOLET_COUNTERSEAL);
+        player:messageSpecial(KEYITEM_OBTAINED,VIOLET_COUNTERSEAL);
+        player:setVar("ASA4_Violet","2");
+    elseif (EventFinishBCNM(player,csid,option)) then
+        return;
+    end
 end;

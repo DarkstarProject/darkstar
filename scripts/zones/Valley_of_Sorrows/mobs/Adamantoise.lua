@@ -18,8 +18,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-    killer:addTitle(TORTOISE_TORTURER);
+function onMobDeath(mob, killer, ally)
+    ally:addTitle(TORTOISE_TORTURER);
 end;
 
 -----------------------------------
@@ -27,26 +27,26 @@ end;
 -----------------------------------
 
 function onMobDespawn(mob)
-    local Adamantoise  = mob:getID();
-    local Aspidochelone = 17301538;
-    local ToD     = GetServerVariable("[POP]Aspidochelone");
-    local kills   = GetServerVariable("[PH]Aspidochelone");
-    if (LandKingSystem_HQ == 0 or LandKingSystem_HQ == 2) then
-        if (ToD <= os.time(t) and GetMobAction(Aspidochelone) == 0) then
-            if (math.random((1),(5)) == 3 or kills > 6) then
-                DeterMob(Adamantoise, true);
-                DeterMob(Aspidochelone, false);
-                UpdateNMSpawnPoint(Aspidochelone);
-                GetMobByID(Aspidochelone):setRespawnTime(math.random((75600),(86400)));
-            elseif (LandKingSystem_NQ == 0 or LandKingSystem_NQ == 2) then
-                UpdateNMSpawnPoint(Adamantoise);
-                mob:setRespawnTime(math.random((75600),(86400)));
-                SetServerVariable("[PH]Aspidochelone", kills + 1);
-            end
+    local Adamantoise = mob:getID();
+    local Aspidochelone = mob:getID()+1;
+    local ToD = GetServerVariable("[POP]Aspidochelone");
+    local kills = GetServerVariable("[PH]Aspidochelone");
+    local popNow = (math.random(1,5) == 3 or kills > 6);
+
+    if (LandKingSystem_HQ ~= 1 and ToD <= os.time(t) and popNow == true) then
+        -- 0 = timed spawn, 1 = force pop only, 2 = BOTH
+        if (LandKingSystem_NQ == 0) then
+            DeterMob(Adamantoise, true);
         end
-    elseif (LandKingSystem_NQ == 0 or LandKingSystem_NQ == 2) then
-        UpdateNMSpawnPoint(Adamantoise);
-        mob:setRespawnTime(math.random((75600),(86400)));
-        SetServerVariable("[PH]Aspidochelone", kills + 1);
+
+        DeterMob(Aspidochelone, false);
+        UpdateNMSpawnPoint(Aspidochelone);
+        GetMobByID(Aspidochelone):setRespawnTime(math.random(75600,86400));
+    else
+        if (LandKingSystem_NQ ~= 1) then
+            UpdateNMSpawnPoint(Adamantoise);
+            mob:setRespawnTime(math.random(75600,86400));
+            SetServerVariable("[PH]Aspidochelone", kills + 1);
+        end
     end
 end;

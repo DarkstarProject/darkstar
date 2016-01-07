@@ -22,20 +22,20 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	local currentMission = player:getCurrentMission(WINDURST);
-	local MissionStatus = player:getVar("MissionStatus");
-	
-	if (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
-		player:startEvent(0x006B);
-	elseif (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 2) then
-		player:startEvent(0x006C);
-	elseif (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 4) then
-		player:startEvent(0x0072);
-	else
-		player:startEvent(0x005d);
-	end
-	
+    
+    local currentMission = player:getCurrentMission(WINDURST);
+    local MissionStatus = player:getVar("MissionStatus");
+    
+    if (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
+        player:startEvent(0x006B);
+    elseif (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 2) then
+        player:startEvent(0x006C);
+    elseif (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 4) then
+        player:startEvent(0x0072);
+    else
+        player:startEvent(0x005d);
+    end
+    
 end;
 
 -----------------------------------
@@ -54,11 +54,11 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 printf("RESULT: %u",option);
-	
-	if (csid == 0x006B) then
-		player:setVar("MissionStatus",2);
-	elseif (csid == 0x0072) then
-		finishMissionTimeline(player,2,csid,option);
-	end
-	
+    
+    if (csid == 0x006B) then
+        player:setVar("MissionStatus",2);
+    elseif (csid == 0x0072) then
+        finishMissionTimeline(player,2,csid,option);
+    end
+    
 end;

@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Woods
---	NPC:  Mul Betreh
---	Working 100%
+--    Area: Windurst Woods
+--    NPC:  Mul Betreh
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x1af);
+    player:startEvent(0x1af);
 end;
 
 -----------------------------------

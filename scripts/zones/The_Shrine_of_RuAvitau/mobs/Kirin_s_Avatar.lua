@@ -35,14 +35,14 @@ function onMobEngaged(mob, target)
     
     switch (modelId) : caseof
     {
-        [791] = function (x) abilityId = 656; end, -- Carbuncle
-        [792] = function (x) abilityId = 583; end, -- Fenrir
-        [793] = function (x) abilityId = 592; end, -- Ifrit
-        [794] = function (x) abilityId = 601; end, -- Titan
-        [795] = function (x) abilityId = 610; end, -- Leviathan
-        [796] = function (x) abilityId = 619; end, -- Garuda
-        [797] = function (x) abilityId = 628; end, -- Shiva
-        [798] = function (x) abilityId = 637; end, -- Ramuh
+        [791] = function (x) abilityId = 912; end, -- Carbuncle
+        [792] = function (x) abilityId = 839; end, -- Fenrir
+        [793] = function (x) abilityId = 848; end, -- Ifrit
+        [794] = function (x) abilityId = 857; end, -- Titan
+        [795] = function (x) abilityId = 866; end, -- Leviathan
+        [796] = function (x) abilityId = 875; end, -- Garuda
+        [797] = function (x) abilityId = 884; end, -- Shiva
+        [798] = function (x) abilityId = 893; end, -- Ramuh
     }
     
     if (abilityId ~= nil) then

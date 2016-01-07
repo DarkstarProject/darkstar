@@ -1,18 +1,18 @@
------------------------------------	
--- Area: Cape Teriggan	
--- MOB:  Greater Manticore	
+-----------------------------------
+-- Area: Cape Teriggan
+--  MOB: Greater Manticore
 -- Note: Place Holder for Frostmane
------------------------------------	
+-----------------------------------
 
 require("scripts/zones/Cape_Teriggan/MobIDs");
-require("scripts/globals/fieldsofvalor");	
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-    checkRegime(killer,mob,108,2);
+require("scripts/globals/fieldsofvalor");
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+    checkRegime(ally,mob,108,2);
     local mob = mob:getID();
     if (Frostmane_PH[mob] ~= nil) then
 
@@ -26,4 +26,4 @@ function onMobDeath(mob,killer)
             end
         end
     end
-end;	
+end;

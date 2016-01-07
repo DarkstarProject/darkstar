@@ -25,6 +25,7 @@ This file is part of DarkStar-server source code.
 #include "../../zone.h"
 #include "../../entities/baseentity.h"
 #include "../../entities/mobentity.h"
+#include "../../../common/utils.h"
 
 CPathFind::CPathFind(CBaseEntity* PTarget)
 {
@@ -83,7 +84,7 @@ bool CPathFind::RoamAround(position_t point, float maxRadius, uint8 maxTurns, ui
 bool CPathFind::PathTo(position_t point, uint8 pathFlags, bool clear)
 {
     // don't follow a new path if the current path has script flag and new path doesn't
-    if (IsFollowingPath() && m_pathFlags & PATHFLAG_SCRIPT && !(pathFlags & PATHFLAG_SCRIPT))
+    if (IsFollowingPath() && (m_pathFlags & PATHFLAG_SCRIPT) && !(pathFlags & PATHFLAG_SCRIPT))
         return false;
 
     if (clear)
@@ -265,6 +266,7 @@ void CPathFind::FollowPath()
         }
 
         m_onPoint = true;
+        //#event onPoint event
     }
 }
 
@@ -283,6 +285,9 @@ void CPathFind::StepTo(position_t* pos, bool run)
 
     float stepDistance = ((float)speed / 10) / 2;
     float distanceTo = distance(m_PTarget->loc.p, *pos);
+
+    // face point mob is moving towards
+    LookAt(*pos);
 
     if (distanceTo <= stepDistance ||
         (m_pathFlags & PATHFLAG_SLIDE) && distance(m_originalPoint, m_PTarget->loc.p) < m_distanceFromPoint)
@@ -308,8 +313,6 @@ void CPathFind::StepTo(position_t* pos, bool run)
 
     }
 
-    // face point mob is moving towards
-    LookAt(*pos);
 
     m_PTarget->loc.p.moving += ((0x36 * ((float)m_PTarget->speed / 0x28)) - (0x14 * (mode - 1)));
 
@@ -329,7 +332,7 @@ bool CPathFind::FindPath(position_t* start, position_t* end)
 
     if (m_pathLength <= 0)
     {
-        ShowError("CPathFind::FindPath Entity (%d) could not find path", m_PTarget->id);
+        ShowError("CPathFind::FindPath Entity (%d) could not find path\n", m_PTarget->id);
         return false;
     }
 

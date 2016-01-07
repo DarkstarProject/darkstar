@@ -16,9 +16,9 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
 local result = 0;
-	if (target:hasStatusEffect(EFFECT_DEDICATION) == true) then
-		result = 56;
-	end
+    if (target:hasStatusEffect(EFFECT_DEDICATION) == true) then
+        result = 56;
+    end
 return result;
 end;
 
@@ -27,5 +27,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_DEDICATION,50,0,43200,0,15000);
+    target:addStatusEffect(EFFECT_DEDICATION,50,0,43200,0,15000);
 end;

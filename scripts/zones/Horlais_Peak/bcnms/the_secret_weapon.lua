@@ -41,32 +41,32 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-	
-	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		if (player:hasCompletedMission(SANDORIA,THE_SECRET_WEAPON)) then
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,1);
-		else
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,0);
-		end
-	elseif (leavecode == 4) then
-		player:startEvent(0x7d02);
-	end
-	
+    
+    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+        if (player:hasCompletedMission(SANDORIA,THE_SECRET_WEAPON)) then
+            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,1);
+        else
+            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,0);
+        end
+    elseif (leavecode == 4) then
+        player:startEvent(0x7d02);
+    end
+    
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-	
+    
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-	
-	if (csid == 0x7d01) then
-		if (player:getCurrentMission(SANDORIA) == THE_SECRET_WEAPON) then
-			player:addKeyItem(CRYSTAL_DOWSER);
-			player:messageSpecial(KEYITEM_OBTAINED,CRYSTAL_DOWSER);
-			player:setVar("SecretWeaponStatus",3)
-		end
-	end
-	
+    
+    if (csid == 0x7d01) then
+        if (player:getCurrentMission(SANDORIA) == THE_SECRET_WEAPON) then
+            player:addKeyItem(CRYSTAL_DOWSER);
+            player:messageSpecial(KEYITEM_OBTAINED,CRYSTAL_DOWSER);
+            player:setVar("SecretWeaponStatus",3)
+        end
+    end
+    
 end;

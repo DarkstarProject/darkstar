@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4966
---	Scroll of Myoshu: Ichi
---	Teaches the ninjutsu Myoshu: Ichi
+--    ID: 4966
+--    Scroll of Myoshu: Ichi
+--    Teaches the ninjutsu Myoshu: Ichi
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(507);
+    return target:canLearnSpell(507);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(507);
+    target:addSpell(507);
 end;

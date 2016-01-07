@@ -27,12 +27,12 @@ local keyitems = {
         rank = 3,
         cost = 8000 
     },
-	[3] = {
+    [3] = {
         id = STEWPOT_MASTERY,
         rank = 3,
         cost = 30000 
     },
-	[4] = {
+    [4] = {
         id = WAY_OF_THE_CULINARIAN,
         rank = 9,
         cost = 20000 
@@ -40,7 +40,7 @@ local keyitems = {
 };
 
 local items = {
-	[2] = {
+    [2] = {
         id = 15451, -- Culinarian's Belt
         rank = 4,
         cost = 10000 
@@ -70,10 +70,10 @@ local items = {
         rank = 6,
         cost = 80000 
     },
-	[8] = {
-		id = 3667, -- Brass Crock
-		rank = 7,
-		cost = 50000 
+    [8] = {
+        id = 3667, -- Brass Crock
+        rank = 7,
+        cost = 50000 
     },
     [9] = {
         id = 3328, -- Culinarian's Emblem
@@ -95,7 +95,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 8, 0x2728, "guild_cooking", keyitems);
+    unionRepresentativeTrigger(player, 8, 0x2728, "guild_cooking", keyitems);
 end;
 
 -----------------------------------
@@ -103,8 +103,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -112,8 +112,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,target)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
      
     if (csid == 0x2728) then
         unionRepresentativeTriggerFinish(player, option, target, 8, "guild_cooking", keyitems, items);

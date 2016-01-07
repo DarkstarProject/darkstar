@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4658
---	Scroll of Shell III
---	Teaches the white magic Shell III
+--    ID: 4658
+--    Scroll of Shell III
+--    Teaches the white magic Shell III
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(50);
+    return target:canLearnSpell(50);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(50);
+    target:addSpell(50);
 end;

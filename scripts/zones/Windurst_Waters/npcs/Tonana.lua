@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Waters
---	NPC: Tonana
---	Warps players to Windurst Woods
+--    Area: Windurst Waters
+--    NPC: Tonana
+--    Warps players to Windurst Woods
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x23b);
+    player:startEvent(0x23b);
 end;
 
 -----------------------------------
@@ -39,9 +39,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (option == 1) then
-		player:setPos(108.744,-4.999,-134.094,222,241); -- (Retail packet captured)
-	end
+    if (option == 1) then
+        player:setPos(108.744,-4.999,-134.094,222,241); -- (Retail packet captured)
+    end
 end;
 
 

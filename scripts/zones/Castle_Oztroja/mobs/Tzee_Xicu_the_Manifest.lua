@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Castle Oztroja
--- NPC:  Tzee Xicu the Manifest
+--  MOB: Tzee Xicu the Manifest
 -----------------------------------
-
-require("scripts/globals/titles");
+package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Castle_Oztroja/TextIDs");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -18,27 +19,27 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
--- target:showText(mob,YAGUDO_KING_ENGAGE);
+    -- Needs to be zone wide message
+    -- mob:messagePublic(mob,YAGUDO_KING_ENGAGE);
 end;
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-
-		killer:addTitle(DEITY_DEBUNKER);
--- killer:showText(mob,YAGUDO_KING_DEATH);
+function onMobDeath(mob, killer, ally)
+    ally:addTitle(DEITY_DEBUNKER);
+    -- Needs to be zone wide message
+    -- mob:messagePublic(mob,YAGUDO_KING_DEATH);
 
     -- Set Tzee_Xicu_the_Manifest's Window Open Time
-    wait = 72 * 3600
-    SetServerVariable("[POP]Tzee_Xicu_the_Manifest", os.time(t) + wait); -- 3 days
+    SetServerVariable("[POP]Tzee_Xicu_the_Manifest", os.time(t) + 72 * 3600); -- 3 days
 
     -- Set Yagudo_Avatar's spawnpoint and respawn time (21-24 hours)
     SetServerVariable("[PH]Tzee_Xicu_the_Manifest", 0);
     Yagudo_Avatar = 17396134;
     DeterMob(Yagudo_Avatar, false);
     UpdateNMSpawnPoint(Yagudo_Avatar);
-    GetMobByID(Yagudo_Avatar):setRespawnTime(math.random((75600),(86400)));
+    GetMobByID(Yagudo_Avatar):setRespawnTime(math.random(75600,86400));
 
 end;

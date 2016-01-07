@@ -21,8 +21,8 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-	local typeEffect = EFFECT_DEFENSE_BOOST;
-	skill:setMsg(MobBuffMove(mob, typeEffect, 75, 0, 60));
+    local typeEffect = EFFECT_DEFENSE_BOOST;
+    skill:setMsg(MobBuffMove(mob, typeEffect, 75, 0, 60));
 
-	return typeEffect;
+    return typeEffect;
 end;

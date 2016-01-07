@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5023
---	Scroll of Goblin Gavotte
---	Teaches the song Goblin Gavotte
+--    ID: 5023
+--    Scroll of Goblin Gavotte
+--    Teaches the song Goblin Gavotte
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(415);
+    return target:canLearnSpell(415);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(415);
+    target:addSpell(415);
 end;

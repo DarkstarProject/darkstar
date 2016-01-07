@@ -14,6 +14,6 @@ function onMobWeaponSkill(target, mob, skill)
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 3, 0, 180));
 
-	return typeEffect;
+    return typeEffect;
 
 end

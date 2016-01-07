@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4628
---	Scroll of Cursna
---	Teaches the white magic Cursna
+--    ID: 4628
+--    Scroll of Cursna
+--    Teaches the white magic Cursna
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(20);
+    return target:canLearnSpell(20);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(20);
+    target:addSpell(20);
 end;

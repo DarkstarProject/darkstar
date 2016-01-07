@@ -22,14 +22,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local missionStatus = player:getVar("MissionStatus");
+    local missionStatus = player:getVar("MissionStatus");
 
-	if (player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and missionStatus == 1) then
-		player:startEvent(0x00c);
-	else
-		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-	end
-	
+    if (player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and missionStatus == 1) then
+        player:startEvent(0x00c);
+    else
+        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    end
+    
 end; 
 
 -----------------------------------
@@ -50,10 +50,10 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 
-	if (option == 0) then
-		if (csid == 0x00c) then
-			player:setVar("MissionStatus",2);
-			player:messageSpecial(FELL);
-		end	
-	end
+    if (option == 0) then
+        if (csid == 0x00c) then
+            player:setVar("MissionStatus",2);
+            player:messageSpecial(FELL);
+        end    
+    end
 end;

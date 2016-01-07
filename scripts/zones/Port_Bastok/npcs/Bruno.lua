@@ -21,24 +21,24 @@ end;
 
 function onTrigger(player,npc)
 
-	local vHour = VanadielHour();
-	local vMin  = VanadielMinute();
+    local vHour = VanadielHour();
+    local vMin  = VanadielMinute();
 
-	while vHour >= 0 do
-		vHour = vHour - 6;
-	end
+    while vHour >= 0 do
+        vHour = vHour - 6;
+    end
 
-	if (     vHour == -6) then vHour = 0;
-	elseif ( vHour == -5) then vHour = 1;
-	elseif ( vHour == -4) then vHour = 2;
-	elseif ( vHour == -3) then vHour = 3;
-	elseif ( vHour == -2) then vHour = 4;
-	elseif ( vHour == -1) then vHour = 5;
-	end
+    if (     vHour == -6) then vHour = 0;
+    elseif ( vHour == -5) then vHour = 1;
+    elseif ( vHour == -4) then vHour = 2;
+    elseif ( vHour == -3) then vHour = 3;
+    elseif ( vHour == -2) then vHour = 4;
+    elseif ( vHour == -1) then vHour = 5;
+    end
 
-	local seconds = math.floor(2.4 * ((vHour * 60) + vMin));
+    local seconds = math.floor(2.4 * ((vHour * 60) + vMin));
 
-	player:startEvent( 0x016C, seconds, 0, 0, 0, 0, 0, 0, 0);
+    player:startEvent( 0x016C, seconds, 0, 0, 0, 0, 0, 0, 0);
 end; 
 
 -----------------------------------
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,6 +55,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

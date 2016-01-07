@@ -35,8 +35,11 @@
 #include "../mob_modifier.h"
 #include "../mob_spell_list.h"
 #include "../spell.h"
-#include "../ai/ai_mob_dummy.h"
+#include "../items/item_weapon.h"
+#include "../status_effect_container.h"
+#include "../mob_spell_container.h"
 #include <vector>
+#include "../packets/action.h"
 
 namespace mobutils
 {
@@ -587,13 +590,13 @@ void SetupJob(CMobEntity* PMob)
                 // only used while at range
                 PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
                 // catapult
-                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 402);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 658);
             }
             else
             {
                 // all other rangers
                 PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
-                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 16);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
                 PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 8);
             }
 
@@ -602,7 +605,7 @@ void SetupJob(CMobEntity* PMob)
             break;
         case JOB_NIN:
             PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 9);
-            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 16);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
             PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
@@ -611,10 +614,10 @@ void SetupJob(CMobEntity* PMob)
             break;
         case JOB_BST:
             PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 70);
-            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 761);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1017);
             break;
         case JOB_PUP:
-            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1645);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1901);
             PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 720);
             break;
         case JOB_BLM:
@@ -680,7 +683,7 @@ void SetupRoaming(CMobEntity* PMob)
 
     if(PMob->m_roamFlags & ROAMFLAG_AMBUSH)
     {
-        PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 22);
+        PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 278);
         PMob->setMobMod(MOBMOD_SPECIAL_COOL, 1);
         PMob->m_specialFlags |= SPECIALFLAG_HIDDEN;
         // always stay close to spawn
@@ -762,7 +765,7 @@ void SetupDynamisMob(CMobEntity* PMob)
     PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
 
     // never despawn
-    PMob->SetDespawnTimer(0);
+    PMob->SetDespawnTime(0s);
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
 
     // do not roam around
@@ -792,7 +795,7 @@ void SetupBattlefieldMob(CMobEntity* PMob)
     PMob->setMobMod(MOBMOD_MUG_GIL, -1);
 
     // never despawn
-    PMob->SetDespawnTimer(0);
+    PMob->SetDespawnTime(0s);
     // do not roam around
     PMob->m_roamFlags |= ROAMFLAG_EVENT;
     PMob->m_maxRoamDistance = 0.5f;
@@ -876,13 +879,13 @@ void SetupMaat(CMobEntity* PMob)
         case JOB_DRK:
         case JOB_PLD:
             // Give shield bash
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 780);
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1036);
             PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
             PMob->setMobMod(MOBMOD_SPECIAL_DELAY, 40);
             break;
         case JOB_BST:
             // Call beast skill
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 761);
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1017);
             PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
             break;
     }
@@ -948,8 +951,8 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
     PMob->defaultMobMod(MOBMOD_LINK_RADIUS, 10);
     PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, 30);
     PMob->defaultMobMod(MOBMOD_2HOUR_PROC, 60);
-    PMob->defaultMobMod(MOBMOD_SIGHT_RANGE, MOB_SIGHT_RANGE);
-    PMob->defaultMobMod(MOBMOD_SOUND_RANGE, MOB_SOUND_RANGE);
+    PMob->defaultMobMod(MOBMOD_SIGHT_RANGE, CMobEntity::sight_range);
+    PMob->defaultMobMod(MOBMOD_SOUND_RANGE, CMobEntity::sound_range);
 
 
     // Killer Effect
@@ -1249,7 +1252,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 		mob_pools.familyid, name_prefix, flags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-		allegiance, namevis, aggro, mob_pools.skill_list_id, \
+		allegiance, namevis, aggro, mob_pools.skill_list_id \
 		FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE mob_groups.groupid = %u";
@@ -1345,8 +1348,6 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 			PMob->HPscale = Sql_GetFloatData(SqlHandle, 48);
 			PMob->MPscale = Sql_GetFloatData(SqlHandle, 49);
 
-			PMob->PBattleAI = new CAIMobDummy(PMob);
-
 			// Check if we should be looking up scripts for this mob
 			PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle, 50);
 
@@ -1391,7 +1392,15 @@ void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level)
         animationID = 1946;
         break;
     }
-    PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, new CActionPacket(PTarget->id, PTarget->id, ACTION_MOBABILITY_FINISH, 2582, 0, animationID));
+    action_t action;
+    action.actiontype = ACTION_MOBABILITY_FINISH;
+    action.id = PTarget->id;
+    actionList_t& list = action.getNewActionList();
+    list.ActionTargetID = PTarget->id;
+    actionTarget_t& target = list.getNewActionTarget();
+    target.animation = animationID;
+    target.param = 2582;
+    PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, new CActionPacket(action));
 }
 
 }; // namespace mobutils

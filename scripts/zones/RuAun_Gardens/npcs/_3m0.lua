@@ -21,11 +21,11 @@ end;
 
 function onTrigger(player,npc)
 
-	local DoorID = npc:getID();
+    local DoorID = npc:getID();
 
-	GetNPCByID(DoorID):openDoor(7);
-	GetNPCByID(DoorID+1):openDoor(7);
-	GetNPCByID(DoorID+2):openDoor(7);
+    GetNPCByID(DoorID):openDoor(7);
+    GetNPCByID(DoorID+1):openDoor(7);
+    GetNPCByID(DoorID+2):openDoor(7);
 end; 
 
 -----------------------------------

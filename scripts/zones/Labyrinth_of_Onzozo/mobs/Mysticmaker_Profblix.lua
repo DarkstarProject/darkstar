@@ -7,11 +7,11 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-    checkGoVregime(killer,mob,771,2);
-    checkGoVregime(killer,mob,772,2);
-    checkGoVregime(killer,mob,774,2);
+    checkGoVregime(ally,mob,771,2);
+    checkGoVregime(ally,mob,772,2);
+    checkGoVregime(ally,mob,774,2);
 
     -- Set Mysticmaker's spawnpoint and respawn time (2-2.5 hours)
     UpdateNMSpawnPoint(mob:getID());

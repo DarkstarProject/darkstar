@@ -24,18 +24,16 @@ function onTrade(player,npc,trade)
     if (ChocobosWounds == 0) then
         player:startEvent(0x003e);
     elseif (ChocobosWounds == 1) then
-		count = trade:getItemCount();
-		gil = trade:getGil();
+        count = trade:getItemCount();
+        gil = trade:getGil();
 
         if (trade:hasItemQty(4545,1)) then
-        	player:startEvent(0x004c);
+            player:startEvent(0x004c);
         elseif (trade:hasItemQty(534,1) and gil == 0 and count == 1) then
-			--Check feeding status.
-			feed = player:getVar("ChocobosWounds_Event");
-			feedDay = player:getVar("ChocobosWounds_Day");
-			feedYear = player:getVar("ChocobosWounds_Year");
-			currentDay = VanadielDayOfTheYear();
-			feedReady = ((feedDay < currentDay) or (feedDay > currentDay and feedYear < VanadielYear()))
+            --Check feeding status.
+            feed = player:getVar("ChocobosWounds_Event");
+            feedMin = player:getVar("ChocobosWounds_Min");
+             feedReady = (feedMin <= os.time())
 
             if (feed == 1) then
                 player:startEvent(0x0039);
@@ -52,15 +50,15 @@ function onTrade(player,npc,trade)
                     player:startEvent(0x0040);
                 end
             else
-            	if (feed > 2) then
-                	player:startEvent(0x0049);
+                if (feed > 2) then
+                    player:startEvent(0x0049);
                 end
             end
         end
     else
         if (trade:hasItemQty(4545,1)) then
-     	   player:startEvent(0x0026);
-     	end
+            player:startEvent(0x0026);
+         end
     end
 end;
 
@@ -120,38 +118,32 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x0039) then
         player:setVar("ChocobosWounds_Event", 2);
-        player:setVar("ChocobosWounds_Day",VanadielDayOfTheYear());
-        player:setVar("ChocobosWounds_Year",VanadielYear());
+        player:setVar("ChocobosWounds_Min",os.time() + 60);
     elseif (csid == 0x003a) then
         player:setVar("ChocobosWounds_Event", 3);
-        player:setVar("ChocobosWounds_Day",VanadielDayOfTheYear());
-        player:setVar("ChocobosWounds_Year",VanadielYear());
+        player:setVar("ChocobosWounds_Min",os.time() + 60);
     elseif (csid == 0x003b) then
         player:setVar("ChocobosWounds_Event", 4);
-        player:setVar("ChocobosWounds_Day",VanadielDayOfTheYear());
-        player:setVar("ChocobosWounds_Year",VanadielYear());
+        player:setVar("ChocobosWounds_Min",os.time() + 60);
         player:tradeComplete();
-		player:startEvent(0x0063);
+        player:startEvent(0x0063);
     elseif (csid == 0x003c) then
         player:setVar("ChocobosWounds_Event", 5);
-        player:setVar("ChocobosWounds_Day",VanadielDayOfTheYear());
-        player:setVar("ChocobosWounds_Year",VanadielYear());
+        player:setVar("ChocobosWounds_Min",os.time() + 60);
         player:tradeComplete();
     elseif (csid == 0x003f) then
         player:setVar("ChocobosWounds_Event", 6);
-        player:setVar("ChocobosWounds_Day",VanadielDayOfTheYear());
-        player:setVar("ChocobosWounds_Year",VanadielYear());
+        player:setVar("ChocobosWounds_Min",os.time() + 60);
         player:tradeComplete();
     elseif (csid == 0x0040) then
         player:addKeyItem(CHOCOBO_LICENSE);
         player:messageSpecial(KEYITEM_OBTAINED, CHOCOBO_LICENSE);
         player:addTitle(CHOCOBO_TRAINER);
         player:setVar("ChocobosWounds_Event", 0);
-        player:setVar("ChocobosWounds_Day", 0);
-        player:setVar("ChocobosWounds_Year",0);
-		player:addFame(JEUNO,30);
+        player:setVar("ChocobosWounds_Min", 0);
+        player:addFame(JEUNO,30);
         player:tradeComplete();
-		player:completeQuest(JEUNO,CHOCOBO_S_WOUNDS);
+        player:completeQuest(JEUNO,CHOCOBO_S_WOUNDS);
     end
 end;
 

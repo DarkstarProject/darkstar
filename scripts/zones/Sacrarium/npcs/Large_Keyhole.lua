@@ -7,7 +7,7 @@
 package.loaded["scripts/zones/Sacrarium/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/zones/Sacrarium/TextIDs");	
+require("scripts/zones/Sacrarium/TextIDs");    
 
 -----------------------------------
 -- onTrigger Action

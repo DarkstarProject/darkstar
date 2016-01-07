@@ -22,8 +22,8 @@ end;
 
 function onTrigger(player,npc)
 
-	-- Each boat comes every 1152 seconds/8 game hours, 4 hour offset between Selbina and Aht Urghan
-	-- Original timer: local timer = 1152 - ((os.time() - 1009810584)%1152);
+    -- Each boat comes every 1152 seconds/8 game hours, 4 hour offset between Selbina and Aht Urghan
+    -- Original timer: local timer = 1152 - ((os.time() - 1009810584)%1152);
    local timer = 1152 - ((os.time() - 1009810802)%1152);
    local destination = 0; -- Selbina, set to 1 for Al Zhabi
    local direction = 0; -- Arrive, 1 for depart

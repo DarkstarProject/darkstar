@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
--- MOB:  Onryo
+--  MOB: Onryo
 -- Involved in Quest: Yomi Okuri
 -----------------------------------
 
@@ -17,10 +17,10 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-	if (killer:hasKeyItem(YOMOTSU_HIRASAKA)) then
-		killer:setVar("OkuriNMKilled",killer:getVar("OkuriNMKilled") + 1);
-	end
+    if (ally:hasKeyItem(YOMOTSU_HIRASAKA)) then
+        ally:setVar("OkuriNMKilled",ally:getVar("OkuriNMKilled") + 1);
+    end
 
 end;

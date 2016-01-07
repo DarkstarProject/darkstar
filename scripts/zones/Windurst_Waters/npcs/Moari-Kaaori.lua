@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Waters
---	NPC:  Moari-Kaaori
---	Working 100%
+--    Area: Windurst Waters
+--    NPC:  Moari-Kaaori
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/quests");

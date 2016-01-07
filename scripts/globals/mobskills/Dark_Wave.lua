@@ -13,23 +13,23 @@ require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_BIO;
+    local typeEffect = EFFECT_BIO;
 
-	local cTime = VanadielHour();
-	local power = 8;
-	if (12 <= cTime) then
-		local power = 8 + (cTime - 11);
-	end
+    local cTime = VanadielHour();
+    local power = 8;
+    if (12 <= cTime) then
+        local power = 8 + (cTime - 11);
+    end
 
-	MobStatusEffectMove(mob, target, typeEffect, power, 3, 60);
+    MobStatusEffectMove(mob, target, typeEffect, power, 3, 60);
 
-	local dmgmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*5,ELE_DARK,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
-	target:delHP(dmg);
-	return dmg;
+    local dmgmod = 1;
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*5,ELE_DARK,dmgmod,TP_NO_EFFECT);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
+    target:delHP(dmg);
+    return dmg;
 end;

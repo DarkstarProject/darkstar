@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
--- NPC:  Keremet
+--  MOB: Keremet
 -----------------------------------
 
 require("scripts/globals/keyitems");
@@ -19,15 +19,15 @@ end;
 
 function onMobFight(mob,target)
 
-	local Keremet = mob:getID();
+    local Keremet = mob:getID();
 
--- Send spawned skeleton "pets" to Keremet's target
+    -- Send spawned skeleton "pets" to Keremet's target
 
-	for i = Keremet+1, Keremet+12 do
-		if (GetMobAction(i) == 16) then
-			GetMobByID(i):updateEnmity(target);
-		end
-	end
+    for i = Keremet+1, Keremet+12 do
+        if (GetMobAction(i) == 16) then
+            GetMobByID(i):updateEnmity(target);
+        end
+    end
 
 end;
 
@@ -35,8 +35,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	if (killer:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and killer:getVar("PromathiaStatus") == 3 and  killer:hasKeyItem(RELIQUIARIUM_KEY)==false) then
-		killer:setVar("PromathiaStatus",4);
-	end
+function onMobDeath(mob, killer, ally)
+    if (ally:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and ally:getVar("PromathiaStatus") == 3 and  ally:hasKeyItem(RELIQUIARIUM_KEY)==false) then
+        ally:setVar("PromathiaStatus",4);
+    end
 end;

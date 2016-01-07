@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5009
---	Scroll of Hunters Prelude
---	Teaches the song Hunters Prelude
+--    ID: 5009
+--    Scroll of Hunters Prelude
+--    Teaches the song Hunters Prelude
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(401);
+    return target:canLearnSpell(401);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(401);
+    target:addSpell(401);
 end;

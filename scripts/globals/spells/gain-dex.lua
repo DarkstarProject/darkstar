@@ -1,6 +1,6 @@
 --------------------------------------
--- 	Spell: Gain-DEX
--- 	Boosts DEX for the Caster
+--     Spell: Gain-DEX
+--     Boosts DEX for the Caster
 --------------------------------------
  
 require("scripts/globals/settings");
@@ -12,11 +12,11 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
-	local effect = EFFECT_DEX_BOOST;
-	doBoostGain(caster,target,spell,effect);
-	return effect;
+    local effect = EFFECT_DEX_BOOST;
+    doBoostGain(caster,target,spell,effect);
+    return effect;
 end;

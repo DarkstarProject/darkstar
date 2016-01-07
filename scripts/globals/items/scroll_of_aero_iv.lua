@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4765
---	Scroll of Aero IV
---	Teaches the black magic Aero IV
+--    ID: 4765
+--    Scroll of Aero IV
+--    Teaches the black magic Aero IV
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(157);
+    return target:canLearnSpell(157);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(157);
+    target:addSpell(157);
 end;

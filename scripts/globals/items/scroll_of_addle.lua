@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: Unknown
---	Scroll of Addle
---	Teaches the magic Addle
+--    ID: Unknown
+--    Scroll of Addle
+--    Teaches the magic Addle
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(286);
+    return target:canLearnSpell(286);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(286);
+    target:addSpell(286);
 end;

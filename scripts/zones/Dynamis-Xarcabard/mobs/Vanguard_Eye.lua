@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onMobSpawn(mob)
-	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------
@@ -34,28 +34,49 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	
-	local mobID = mob:getID();
-	
-	-- 035 039: spawn 043 when defeated
-	if (mobID == 17326536) then
-		SpawnMob(17326553);
-	-- 058: spawn 60 when defeated
-	elseif (mobID == 17326661 and GetMobAction(17326668) == 0 and GetMobAction(17326673) == 0 or 
-		   mobID == 17326668 and GetMobAction(17326661) == 0 and GetMobAction(17326673) == 0 or 
-		   mobID == 17326673 and GetMobAction(17326661) == 0 and GetMobAction(17326668) == 0) then
-		SpawnMob(17326706);
-	-- 114: spawn 112 when defeated
-	elseif (mobID == 17326790) then
-		SpawnMob(17326086);
-	-- 144-149: spawn 150 when defeated
-	elseif (mobID >= 17330913 and mobID <= 17330918) then
-		SetServerVariable("[DynaXarcabard]TE150_Trigger",GetServerVariable("[DynaXarcabard]TE150_Trigger") + (mobID - 17330912) ^ 2);
-	end
-	
-	if (GetServerVariable("[DynaXarcabard]TE150_Trigger") == 63) then
-		SpawnMob(17330919); -- 150
-	end
-	
+function onMobDeath(mob,killer,ally)
+    
+    local mobID = mob:getID();
+    
+    -- 035 039: spawn 043 when defeated
+    if (mobID == 17330718 or mobID == 17330756) then
+        local southTE = GetServerVariable("[DynaXarcabard]TE43_Trigger");
+        local mobOffset = 0;
+        if (mobID == 17330756) then -- since the mobIDs aren't sequential there isn't an easy way to handle them outside of ID checks...
+            mobOffset = 1;
+        end
+        if (bit.band(southTE, bit.lshift(1, mobOffset)) == 0) then
+            southTE = bit.bor(southTE, bit.lshift(1, mobOffset));
+            if (southTE == 3) then
+                SpawnMob(17330814); -- 43
+                southTE = 0;
+            end
+            SetServerVariable("[DynaXarcabard]TE43_Trigger", southTE);
+        end
+    -- 057-059: spawn 60 when defeated
+    elseif (mobID >= 17330827 and mobID <= 17330829) then
+        local northTE = GetServerVariable("[DynaXarcabard]TE60_Trigger");
+        if (bit.band(northTE, bit.lshift(1, (mobID - 17330827))) == 0) then
+            northTE = bit.bor(northTE, bit.lshift(1, (mobID - 17330827)));
+            if (northTE == 7) then
+                SpawnMob(17330830); -- 60
+                northTE = 0;
+            end
+            SetServerVariable("[DynaXarcabard]TE60_Trigger", northTE);
+        end
+    -- 114: spawn 112 when defeated
+    elseif (mobID == 17326790) then
+        SpawnMob(17326086);
+    -- 144-149: spawn 150 when defeated
+    elseif (mobID >= 17330913 and mobID <= 17330918) then
+        local wallTE = GetServerVariable("[DynaXarcabard]TE150_Trigger");
+        if (bit.band(wallTE, bit.lshift(1, (mobID - 17330913))) == 0) then
+            wallTE = bit.bor(wallTE, bit.lshift(1, (mobID - 17330913)));
+            if (wallTE == 63) then
+                SpawnMob(17330919); -- 150
+                wallTE = 0;
+            end
+            SetServerVariable("[DynaXarcabard]TE150_Trigger", wallTE);
+        end
+    end
 end;

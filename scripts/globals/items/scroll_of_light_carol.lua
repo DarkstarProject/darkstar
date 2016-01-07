@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5052
---	Scroll of Light Carol
---	Teaches the song Light Carol
+--    ID: 5052
+--    Scroll of Light Carol
+--    Teaches the song Light Carol
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(444);
+    return target:canLearnSpell(444);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(444);
+    target:addSpell(444);
 end;

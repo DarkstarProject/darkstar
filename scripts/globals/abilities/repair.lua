@@ -72,9 +72,9 @@ function onUseAbility(player,target,ability)
         
     -- Now calculating the bonus based on gear.
     local feet = player:getEquipID(SLOT_FEET);
-    local earring1 = player:getEquipID(SLOT_EAR1);	
+    local earring1 = player:getEquipID(SLOT_EAR1);    
     local earring2 = player:getEquipID(SLOT_EAR2);
-	
+    
     if (feet == 11387 or feet == 15686 or feet == 28240 or feet == 28261) then
         -- This will remove most debuffs from the automaton.
         -- Checks for Puppetry Babouches, + 1, Foire Babouches, + 1
@@ -108,11 +108,11 @@ function onUseAbility(player,target,ability)
         pet:delStatusEffect(EFFECT_MAGIC_ACC_DOWN);
         pet:delStatusEffect(EFFECT_MAGIC_ATK_DOWN);
     end
-	
+    
     if (earring1 == 15999 or earring2 == 15999) then  --Check for Guignol Earring
         regenAmount = regenAmount + 0.2 * regenAmount;
     end
-		
+        
     local diff = petMaxHP - petCurrentHP;
 
     if (diff < totalHealing) then

@@ -22,7 +22,7 @@ local keyitems = {
         rank = 3,
         cost = 40000 
     },
-	[2] = {
+    [2] = {
         id = FILING,
         rank = 3,
         cost = 10000 
@@ -60,17 +60,17 @@ local items = {
         rank = 9,
         cost = 200000
     },
-	[7] = {
+    [7] = {
         id = 15824, -- Bonecrafter's Ring
         rank = 6,
         cost = 80000
     },
-	[8] = {
+    [8] = {
         id = 3663, -- Bonecraft Tools
         rank = 7,
         cost = 50000
     },
-	[9] = {
+    [9] = {
         id = 3326, -- Boneworker's Emblem
         rank = 9,
         cost = 15000
@@ -90,7 +90,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	unionRepresentativeTrigger(player, 6, 0x2726, "guild_bonecraft", keyitems);
+    unionRepresentativeTrigger(player, 6, 0x2726, "guild_bonecraft", keyitems);
 end;
 
 -----------------------------------
@@ -98,8 +98,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -107,8 +107,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,target)
-	 -- printf("CSID: %u",csid);
-	 -- printf("RESULT: %u",option);
+     -- printf("CSID: %u",csid);
+     -- printf("RESULT: %u",option);
      
     if (csid == 0x2726) then
         unionRepresentativeTriggerFinish(player, option, target, 6, "guild_bonecraft", keyitems, items);

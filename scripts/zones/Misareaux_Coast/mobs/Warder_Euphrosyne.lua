@@ -9,8 +9,8 @@ require("scripts/globals/missions");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-   if (killer:getCurrentMission(COP) == A_PLACE_TO_RETURN and killer:getVar("PromathiaStatus") == 1) then 
-      killer:setVar("Warder_Euphrosyne_KILL",1);
-   end  
+function onMobDeath(mob, killer, ally)
+    if (ally:getCurrentMission(COP) == A_PLACE_TO_RETURN and ally:getVar("PromathiaStatus") == 1) then
+        ally:setVar("Warder_Euphrosyne_KILL",1);
+    end
 end;

@@ -14,7 +14,7 @@ require("scripts/zones/Batallia_Downs/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0384);
+    player:startEvent(0x0384);
 end;
 
 -----------------------------------
@@ -22,12 +22,12 @@ end;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if (trade:getItemCount() == 1 and trade:hasItemQty(571,1)) then
-		player:tradeComplete();
-		player:addItem(570);
-		player:messageSpecial(ITEM_OBTAINED,570);
-		player:setVar("anExplorer-CurrentTablet",0x10000);
-	end
+    if (trade:getItemCount() == 1 and trade:hasItemQty(571,1)) then
+        player:tradeComplete();
+        player:addItem(570);
+        player:messageSpecial(ITEM_OBTAINED,570);
+        player:setVar("anExplorer-CurrentTablet",0x10000);
+    end
 end;
 
 -----------------------------------

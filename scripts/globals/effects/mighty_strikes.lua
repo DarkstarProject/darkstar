@@ -1,7 +1,7 @@
 -----------------------------------
 --
--- 	EFFECT_MIGHTY_STRIKES
--- 	
+--     EFFECT_MIGHTY_STRIKES
+--     
 -----------------------------------
 
 require("scripts/globals/status");

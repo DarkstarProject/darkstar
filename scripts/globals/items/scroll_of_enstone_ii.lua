@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4725
---	Scroll of Enstone II
---	Teaches the white magic Enstone II
+--    ID: 4725
+--    Scroll of Enstone II
+--    Teaches the white magic Enstone II
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(315);
+    return target:canLearnSpell(315);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(315);
+    target:addSpell(315);
 end;

@@ -25,6 +25,7 @@
 
 #include "lua_battlefield.h"
 #include "lua_baseentity.h"
+#include "../battlefield.h"
 #include "../utils/mobutils.h"
 #include "../utils/zoneutils.h"
 
@@ -77,7 +78,7 @@ inline int32 CLuaBattlefield::getTimeLimit(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
-    lua_pushinteger(L, m_PLuaBattlefield->getTimeLimit());
+    lua_pushinteger(L, std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->getTimeLimit()).count());
     return 1;
 }
 
@@ -91,7 +92,7 @@ inline int32 CLuaBattlefield::getBcnmID(lua_State* L)
 
 inline int32 CLuaBattlefield::getTimeInside(lua_State* L) {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
-    uint32 duration = (m_PLuaBattlefield->lastTick - m_PLuaBattlefield->getStartTime()) / 1000;
+    uint32 duration = std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->lastTick - m_PLuaBattlefield->getStartTime()).count();
     lua_pushinteger(L, duration);
     return 1;
 }

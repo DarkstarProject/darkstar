@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: VeLugannon Palace
--- MOB:  Detector
+--  MOB: Detector
 -----------------------------------
 
 -----------------------------------
@@ -74,9 +74,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 
-    checkGoVregime(killer,mob,743,1);
+    checkGoVregime(ally,mob,743,1);
 
     local Detector = mob:getID();
     local Caretaker = mob:getID() + 1;

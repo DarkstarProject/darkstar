@@ -21,11 +21,11 @@ function onMobSkillCheck(target,mob,skill)
         return 1;
     end
   end
-	return 0;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_DEFENSE_DOWN;
+    local typeEffect = EFFECT_DEFENSE_DOWN;
 
     local silenced = false;
     local blinded = false;
@@ -45,5 +45,5 @@ function onMobWeaponSkill(target, mob, skill)
         skill:setMsg(MSG_MISS);
     end
 
-	return typeEffect;
+    return typeEffect;
 end;

@@ -23,24 +23,24 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	local runicpass = 0;
+    
+    local runicpass = 0;
     if (player:hasKeyItem(RUNIC_PORTAL_USE_PERMIT)) then
         runicpass = 1;
     end
     
-	local cost = 200 -- 200 IS to get a permit
-	
-	if (getMercenaryRank(player) == 11) then
-		captain = 1;
-	else
-		captain = 0;
-	end;
-	
-	local merc = 2 -- Probably could be done, but not really important atm
-	
-	player:startEvent(0x008C,0,merc,runicpass,player:getCurrency("imperial_standing"),getAstralCandescence(),cost,captain);
-	
+    local cost = 200 -- 200 IS to get a permit
+    
+    if (getMercenaryRank(player) == 11) then
+        captain = 1;
+    else
+        captain = 0;
+    end;
+    
+    local merc = 2 -- Probably could be done, but not really important atm
+    
+    player:startEvent(0x008C,0,merc,runicpass,player:getCurrency("imperial_standing"),getAstralCandescence(),cost,captain);
+    
 end;
 
 -----------------------------------
@@ -59,14 +59,14 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-	
-	if (csid == 0x008C and option == 1) then
-		player:addKeyItem(RUNIC_PORTAL_USE_PERMIT);
-		player:messageSpecial(KEYITEM_OBTAINED,RUNIC_PORTAL_USE_PERMIT);
-		player:delCurrency("imperial_standing", 200);
-	elseif (csid == 0x008C and option == 2) then
-		player:addKeyItem(RUNIC_PORTAL_USE_PERMIT);
-		player:messageSpecial(KEYITEM_OBTAINED,RUNIC_PORTAL_USE_PERMIT);
-	end
-	
+    
+    if (csid == 0x008C and option == 1) then
+        player:addKeyItem(RUNIC_PORTAL_USE_PERMIT);
+        player:messageSpecial(KEYITEM_OBTAINED,RUNIC_PORTAL_USE_PERMIT);
+        player:delCurrency("imperial_standing", 200);
+    elseif (csid == 0x008C and option == 2) then
+        player:addKeyItem(RUNIC_PORTAL_USE_PERMIT);
+        player:messageSpecial(KEYITEM_OBTAINED,RUNIC_PORTAL_USE_PERMIT);
+    end
+    
 end;

@@ -36,25 +36,25 @@ function onZoneIn(player,prevZone)
 
     if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         player:setPos(274,-82,-62 ,180);
-	
+    
     elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then
-		if (player:getVar("cspromy3") == 1) then
-			if prevZone == 102 then
-		        if (player:hasKeyItem(LIGHT_OF_DEM) and player:hasKeyItem(LIGHT_OF_MEA) and not(player:hasKeyItem(LIGHT_OF_HOLLA))) then
-		            cs = 0x009B;
-				end
-		    elseif prevZone == 108 then
-			    if (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_MEA) and not(player:hasKeyItem(LIGHT_OF_DEM))) then
+        if (player:getVar("cspromy3") == 1) then
+            if prevZone == 102 then
+                if (player:hasKeyItem(LIGHT_OF_DEM) and player:hasKeyItem(LIGHT_OF_MEA) and not(player:hasKeyItem(LIGHT_OF_HOLLA))) then
                     cs = 0x009B;
-			    end
+                end
+            elseif prevZone == 108 then
+                if (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_MEA) and not(player:hasKeyItem(LIGHT_OF_DEM))) then
+                    cs = 0x009B;
+                end
             elseif prevZone == 117 then
                 if (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_DEM) and not(player:hasKeyItem(LIGHT_OF_MEA))) then
-		            cs = 0x009B;
-			    end
+                    cs = 0x009B;
+                end
             -- cs you got when you enter hall of transference for the last promyvion
             end
         end
-	end
+    end
 
     return cs;
 end;
@@ -147,14 +147,14 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 103 and option == 1) then
-        player:setPos(340.082, 19.103, -59.979, 127, 102); 	-- To La Theine Plateau {R}
+        player:setPos(340.082, 19.103, -59.979, 127, 102);     -- To La Theine Plateau {R}
     elseif (csid == 104 and option == 1) then
-        player:setPos(179.92, 35.15, 260.137, 64, 117);	    -- To Tahrongi Canyon {R}
+        player:setPos(179.92, 35.15, 260.137, 64, 117);        -- To Tahrongi Canyon {R}
     elseif (csid == 105 and option == 1) then
-        player:setPos(139.974, 19.103, 219.989, 128, 108); 	-- To Konschtat Highlands {R}
+        player:setPos(139.974, 19.103, 219.989, 128, 108);     -- To Konschtat Highlands {R}
     elseif (csid == 155) then
-		player:setVar("cspromy3",0)
-		player:setVar("cslastpromy",1)
+        player:setVar("cspromy3",0)
+        player:setVar("cslastpromy",1)
         if (not(player:hasKeyItem(LIGHT_OF_DEM))) then
             -- print("shouldbezonedtodem")
             player:setPos(185.891, 0, -52.331, 128, 18); -- To Promyvion Dem {R}

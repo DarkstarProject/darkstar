@@ -12,19 +12,19 @@ require("scripts/globals/bcnm");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	local result = 0;
-	if (caster:getObjType() == TYPE_PC) then
-		result = avatarMiniFightCheck(caster);
-	elseif (caster:hasPet()) then
+    local result = 0;
+    if (caster:getObjType() == TYPE_PC) then
+        result = avatarMiniFightCheck(caster);
+    elseif (caster:hasPet()) then
         result = 1;
     elseif (not caster:canUsePet()) then
-		result = MSGBASIC_CANT_BE_USED_IN_AREA;
+        result = MSGBASIC_CANT_BE_USED_IN_AREA;
     end
-	return result;
+    return result;
 end;
 
 function onSpellCast(caster,target,spell)
-	caster:spawnPet(PET_AIR_SPIRIT);
+    caster:spawnPet(PET_AIR_SPIRIT);
 
-	return 0;
+    return 0;
 end;

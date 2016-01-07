@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC: Laughing Lizard
---	Standard Info NPC (fishing)
+--    Area: Port Windurst
+--    NPC: Laughing Lizard
+--    Standard Info NPC (fishing)
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x026A);
+    player:startEvent(0x026A);
 end;
 
 -----------------------------------

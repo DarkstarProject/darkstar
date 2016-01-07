@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4896
---	Fire Spirit Pact
---	Teaches the summoning magicFire Spirit
+--    ID: 4896
+--    Fire Spirit Pact
+--    Teaches the summoning magicFire Spirit
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(288);
+    return target:canLearnSpell(288);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(288);
+    target:addSpell(288);
 end;

@@ -19,8 +19,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0014); -- missing walk-through animation, but it's the best I could find.
-	return 1;
+    player:startEvent(0x0014); -- missing walk-through animation, but it's the best I could find.
+    return 1;
 end;
   
 -----------------------------------
@@ -28,8 +28,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	--print("CSID:",csid);
-	--print("RESULT:",option);
+    --print("CSID:",csid);
+    --print("RESULT:",option);
 end;
 
 -----------------------------------
@@ -37,10 +37,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	--print("CSID:",csid);
-	--print("RESULT:",option);
+    --print("CSID:",csid);
+    --print("RESULT:",option);
 
-	if (csid == 0x0014 and option == 1) then
-		player:setPos(313, 16, 20, 128, 0x9E);	-- to Upper Delkfutt's Tower
-	end
+    if (csid == 0x0014 and option == 1) then
+        player:setPos(313, 16, 20, 128, 0x9E);    -- to Upper Delkfutt's Tower
+    end
 end;

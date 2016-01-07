@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	npc:showText(npc, CHOCOBO_HAPPY);
+    npc:showText(npc, CHOCOBO_HAPPY);
 end; 
 
 -----------------------------------

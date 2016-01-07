@@ -18,19 +18,19 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (npc:getID() == 17187473) then
-		player:startEvent(109);
-	elseif (npc:getID() == 17187471) then
-		player:startEvent(107);
-	elseif (npc:getID() == 17187472) then
-		player:startEvent(108);
-	elseif (npc:getID() == 17187473) then
-		player:startEvent(109);
-	elseif (npc:getID() == 17187474) then
-		player:startEvent(110);
-	elseif (npc:getID() == 17187475) then
-		player:startEvent(115);
-	end
+    if (npc:getID() == 17187473) then
+        player:startEvent(109);
+    elseif (npc:getID() == 17187471) then
+        player:startEvent(107);
+    elseif (npc:getID() == 17187466) then
+        player:startEvent(108);
+    elseif (npc:getID() == 17187473) then
+        player:startEvent(109);
+    elseif (npc:getID() == 17187474) then
+        player:startEvent(110);
+    elseif (npc:getID() == 17187475) then
+        player:startEvent(115);
+    end
 end;
 
 -----------------------------------
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,7 +47,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 

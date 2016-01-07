@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------

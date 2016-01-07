@@ -13,12 +13,12 @@ require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	if (GetMobAction(17506418) == 0 and trade:hasItemQty(2388,1) and trade:getItemCount() == 1) then -- Trade Diorite
-		player:tradeComplete();
-		SpawnMob(17506418,180):updateClaim(player);
-	end
-	
+    
+    if (GetMobAction(17506418) == 0 and trade:hasItemQty(2388,1) and trade:getItemCount() == 1) then -- Trade Diorite
+        player:tradeComplete();
+        SpawnMob(17506418,180):updateClaim(player);
+        npc:setStatus(STATUS_DISAPPEAR);
+    end
 end;
 
 -----------------------------------
@@ -26,7 +26,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 end;
 
 -----------------------------------

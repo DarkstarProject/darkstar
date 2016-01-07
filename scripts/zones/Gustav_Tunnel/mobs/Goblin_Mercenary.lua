@@ -10,10 +10,10 @@ require("scripts/zones/Gustav_Tunnel/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-    checkGoVregime(killer,mob,764,3);
-    checkGoVregime(killer,mob,765,3);
+    checkGoVregime(ally,mob,764,3);
+    checkGoVregime(ally,mob,765,3);
 
     local mob = mob:getID();
     if (Wyvernpoacher_Drachlox_PH[mob] ~= nil) then

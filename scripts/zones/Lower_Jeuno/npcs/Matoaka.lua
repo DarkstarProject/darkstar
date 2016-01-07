@@ -20,12 +20,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+    
 player:showText(npc,MATOAKA_SHOP_DIALOG);
 
 stock = {0x340F,1250, -- Silver Earring
-	 0x3490,1250, -- Silver Ring
-	 0x3410,4140} -- Mythril Earring 
+     0x3490,1250, -- Silver Ring
+     0x3410,4140} -- Mythril Earring 
  
 showShop(player, STATIC, stock);
 end; 

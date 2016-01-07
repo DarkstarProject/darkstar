@@ -28,7 +28,7 @@ function onMobWeaponSkill(target, mob, skill)
     else
         msg = MSG_DISAPPEAR_NUM;
     end
-	
+    
     skill:setMsg(msg);
 
     return dispel;

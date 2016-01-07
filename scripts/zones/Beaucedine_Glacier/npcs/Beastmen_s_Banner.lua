@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(BEASTMEN_BANNER);
+    player:messageSpecial(BEASTMEN_BANNER);
 end;
 
 -----------------------------------

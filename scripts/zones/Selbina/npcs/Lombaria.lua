@@ -31,7 +31,7 @@ end;
 
 function onEventUpdate(player,csid,option)
     if (csid == 0x01f4) then
-	CheckMapsUpdate(player, option, NOT_HAVE_ENOUGH_GIL, KEYITEM_OBTAINED);
+    CheckMapsUpdate(player, option, NOT_HAVE_ENOUGH_GIL, KEYITEM_OBTAINED);
     end
 end;
 

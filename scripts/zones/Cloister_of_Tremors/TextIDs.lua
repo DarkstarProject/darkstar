@@ -7,12 +7,12 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6387; -- Obtained key item: <keyitem>
 
 -- Quest dialog
-YOU_CANNOT_ENTER_THE_BATTLEFIELD = 7204; -- You cannot enter the battlefield at present.
-          TITAN_UNLOCKED = 7562; -- You are now able to summon
+YOU_CANNOT_ENTER_THE_BATTLEFIELD = 7206; -- You cannot enter the battlefield at present.
+          TITAN_UNLOCKED = 7564; -- You are now able to summon
 
 -- Other
 NOTHING_OUT_OF_THE_ORDINARY = 6398; -- There is nothing out of the ordinary here.
-               PROTOCRYSTAL = 7228; -- It is a giant crystal.
+               PROTOCRYSTAL = 7230; -- It is a giant crystal.
 
 -- conquest Base
-CONQUEST_BASE = 7043; -- Tallying conquest results...
+CONQUEST_BASE = 7045; -- Tallying conquest results...

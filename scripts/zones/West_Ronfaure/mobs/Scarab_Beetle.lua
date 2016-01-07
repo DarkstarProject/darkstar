@@ -1,20 +1,20 @@
------------------------------------	
+-----------------------------------
 -- Area: West Ronfaure(100)
--- MOB:  Scarab Beetle	
+--  MOB: Scarab Beetle
 -- Note: Place holder for Fungus Beetle
------------------------------------	
+-----------------------------------
 
-require("scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");
 require("scripts/zones/West_Ronfaure/MobIDs");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-    checkRegime(killer,mob,3,1);
-    checkRegime(killer,mob,4,2);
-    
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+    checkRegime(ally,mob,3,1);
+    checkRegime(ally,mob,4,2);
+
     mob = mob:getID();
     if (Fungus_Beetle_PH[mob] ~= nil) then
         printf("Action:%u:%u",Fungus_Beetle,GetMobAction(Fungus_Beetle));
@@ -28,4 +28,4 @@ function onMobDeath(mob,killer)
             end
         end
     end
-end;	
+end;

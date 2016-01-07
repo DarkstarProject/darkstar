@@ -56,6 +56,15 @@ This file is part of DarkStar-server source code.
 #include "zone.h"
 #include "utils/zoneutils.h"
 #include "message.h"
+#include "status_effect_container.h"
+#include "latent_effect_container.h"
+#include "treasure_pool.h"
+#include "item_container.h"
+#include "universal_container.h"
+#include "recast_container.h"
+
+#include "ai/ai_container.h"
+#include "ai/states/death_state.h"
 
 #include "items/item_shop.h"
 
@@ -274,6 +283,8 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             PChar->m_DeathCounter = (uint32)Sql_GetUIntData(SqlHandle, 0);
             PChar->m_DeathTimestamp = (uint32)time(nullptr);
+            if (PChar->health.hp == 0)
+                PChar->Die(std::chrono::seconds(PChar->m_DeathCounter));
         }
 
         fmtQuery = "SELECT pos_prevzone FROM chars WHERE charid = %u";
@@ -305,7 +316,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (!PChar->loc.zoning)
         PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
 
-    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
+    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", server_clock::now() + 500ms, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
     return;
 }
 
@@ -430,7 +441,6 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     charutils::SaveCharPoints(PChar);
 
     PChar->status = STATUS_DISAPPEAR;
-    PChar->PBattleAI->Reset();
     return;
 }
 
@@ -603,7 +613,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 TargID = RBUFW(data, (0x08));
     uint8  action = RBUFB(data, (0x0A));
 
-
     switch (action)
     {
     case 0x00: // trigger
@@ -622,12 +631,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 10)
         {
-            if (luautils::OnTrigger(PChar, PNpc) == -1 && PNpc->animation == ANIMATION_CLOSE_DOOR)
-            {
-                PNpc->animation = ANIMATION_OPEN_DOOR;
-                PChar->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_UPDATE, UPDATE_COMBAT));
-                CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_door", gettick() + 7000, PNpc, CTaskMgr::TASK_ONCE, close_door));
-            }
+            PNpc->PAI->Trigger(PChar->targid);
         }
         if (PChar->m_event.EventID == -1)
         {
@@ -638,38 +642,18 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x02: // attack
     {
-        if(PChar->StatusEffectContainer->HasPreventActionEffect())
-            return;
-
-        if (PChar->isDead() == false)
-        {
-            PChar->PBattleAI->SetCurrentAction(ACTION_ENGAGE, TargID);
-
-            if (PChar->PBattleAI->GetCurrentAction() == ACTION_ENGAGE)
-            {
-                if (PChar->animation == ANIMATION_CHOCOBO)
-                {
-                    PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
-                }
-            }
-        }
+        PChar->PAI->Engage(TargID);
     }
     break;
     case 0x03: // spellcast
     {
         uint16 SpellID = RBUFW(data, (0x0C));
-        if (!charutils::hasSpell(PChar, SpellID))
-            return;
-        if(PChar->StatusEffectContainer->HasPreventActionEffect())
-            return;
-
-        PChar->PBattleAI->SetCurrentSpell(SpellID);
-        PChar->PBattleAI->SetCurrentAction(ACTION_MAGIC_START, TargID);
+        PChar->PAI->Cast(TargID, SpellID);
     }
     break;
     case 0x04: // disengage
     {
-        PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+        PChar->PAI->Disengage();
     }
     break;
     case 0x05: // call for help
@@ -682,7 +666,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             CMobEntity* MOB = (CMobEntity*)it->second;
 
             if (MOB->animation == ANIMATION_ATTACK &&
-                MOB->PBattleAI->GetBattleTarget() == PChar)
+                MOB->GetBattleTargetID() == PChar->id)
             {
                 MOB->CallForHelp(true);
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PChar, 0, 0, 19));
@@ -696,25 +680,15 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     case 0x07: // weaponskill
     {
         uint16 WSkillID = RBUFW(data, (0x0C));
-        if (!charutils::hasWeaponSkill(PChar, WSkillID))
-            return;
-        if(PChar->StatusEffectContainer->HasPreventActionEffect())
-            return;
-
-        PChar->PBattleAI->SetCurrentWeaponSkill(WSkillID);
-        PChar->PBattleAI->SetCurrentAction(ACTION_WEAPONSKILL_START, TargID);
+        PChar->PAI->WeaponSkill(TargID, WSkillID);
     }
     break;
     case 0x09: // jobability
     {
         uint16 JobAbilityID = RBUFW(data, (0x0C));
-        if ((JobAbilityID < 496 && !charutils::hasAbility(PChar, JobAbilityID - 16)) || JobAbilityID >= 496 && !charutils::hasPetAbility(PChar, JobAbilityID - 512))
-            return;
-        if(PChar->StatusEffectContainer->HasPreventActionEffect())
-            return;
-
-        PChar->PBattleAI->SetCurrentJobAbility(JobAbilityID - 16);
-        PChar->PBattleAI->SetCurrentAction(ACTION_JOBABILITY_START, TargID);
+        //if ((JobAbilityID < 496 && !charutils::hasAbility(PChar, JobAbilityID - 16)) || JobAbilityID >= 496 && !charutils::hasPetAbility(PChar, JobAbilityID - 512))
+        //    return;
+        PChar->PAI->Ability(TargID, JobAbilityID - 16);
     }
     break;
     case 0x0B: // homepoint
@@ -752,7 +726,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             return;
         if (RBUFB(data, (0x0C)) == 0) //ACCEPTED RAISE
         {
-            PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
+            PChar->Raise();
         }
     }
     break;
@@ -766,15 +740,12 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x0F: // change target
     {
-        PChar->PBattleAI->SetCurrentAction(ACTION_CHANGE_TARGET, TargID);
+        PChar->PAI->ChangeTarget(TargID);
     }
     break;
     case 0x10: // rangedattack
     {
-        if(PChar->StatusEffectContainer->HasPreventActionEffect())
-            return;
-
-        PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_START, TargID);
+        PChar->PAI->RangedAttack(TargID);
     }
     break;
     case 0x11: // chocobo digging
@@ -811,7 +782,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PChar->animation = ANIMATION_NONE;
         PChar->updatemask |= UPDATE_HP;
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
-        PChar->pushPacket(new CCharUpdatePacket(PChar));
     }
     break;
     case 0x13: // tractor menu
@@ -1271,33 +1241,11 @@ void SmallPacket0x037(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8  SlotID = RBUFB(data, (0x0E));
     uint8  StorageID = RBUFB(data, (0x10));
 
-    CItemUsable* PItem = (CItemUsable*)PChar->getStorage(StorageID)->GetItem(SlotID);
+    if (PChar->UContainer->GetType() != UCONTAINER_USEITEM)
+        PChar->PAI->UseItem(TargetID, StorageID, SlotID);
+    else
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 56));
 
-    if ((PItem != nullptr) && PItem->isType(ITEM_USABLE))
-    {
-        if (PItem->isType(ITEM_ARMOR))
-        {
-            //TODO: If item is locked, we need to check if its equipped..
-        }
-        else if (PItem->isSubType(ITEM_LOCKED))
-        {
-            return;
-        }
-        if (PChar->UContainer->GetType() == UCONTAINER_EMPTY)
-        {
-            PChar->UContainer->SetType(UCONTAINER_USEITEM);
-            PChar->UContainer->SetItem(0, PItem);
-
-            PChar->PBattleAI->SetCurrentAction(ACTION_ITEM_START, TargetID);
-
-            if (PChar->PBattleAI->GetCurrentAction() != ACTION_ITEM_START)
-            {
-                PChar->UContainer->Clean();
-                return;
-            }
-            PChar->PBattleAI->CheckCurrentAction(gettick());
-        }
-    }
     return;
 }
 
@@ -1552,16 +1500,9 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         int8* fmtQuery;
 
-        if (boxtype == 1)
-        {
-            fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sent, extra, sender, charname FROM delivery_box WHERE charid = %u AND box = 1 AND slot < 8 ORDER BY slot;";
-        }
-        else
-        {
-            fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sent, extra, sender, charname FROM delivery_box WHERE senderid = %u AND box = 2 AND slot < 8 ORDER BY slot;";
-        }
+        fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sent, extra, sender, charname FROM delivery_box WHERE charid = %u AND box = %d AND slot < 8 ORDER BY slot;";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, boxtype);
 
         if (ret != SQL_ERROR)
         {
@@ -1640,15 +1581,15 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                 ret = Sql_Query(SqlHandle,
                     "INSERT INTO delivery_box(charid, charname, box, slot, itemid, itemsubid, quantity, extra, senderid, sender) VALUES(%u, '%s', 2, %u, %u, %u, %u, '%s', %u, '%s'); ",
-                    charid,
-                    data[0x10],
+                    PChar->id,
+                    PChar->GetName(),
                     slotID,
                     PItem->getID(),
                     PItem->getSubID(),
                     quantity,
                     extra,
-                    PChar->id,
-                    PChar->GetName());
+                    charid,
+                    data[0x10]);
 
                 if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1 && charutils::UpdateItem(PChar, LOC_INVENTORY, invslot, -(int32)quantity))
                 {
@@ -1692,7 +1633,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     {
                         uint32 charid = Sql_GetUIntData(SqlHandle, 0);
 
-                        ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET sent = 1 WHERE charid = %u AND senderid = %u AND slot = %u AND box = 2;", charid, PChar->id, slotID);
+                        ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET sent = 1 WHERE charid = %u AND senderid = %u AND slot = %u AND box = 2;", PChar->id, charid, slotID);
 
                         if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                         {
@@ -1746,7 +1687,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
                     uint32 charid = Sql_GetUIntData(SqlHandle, 0);
-                    ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET sent = 0 WHERE senderid = %u AND box = 2 AND slot = %u AND sent = 1 AND received = 0 LIMIT 1;", PChar->id, slotID);
+                    ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET sent = 0 WHERE charid = %u AND box = 2 AND slot = %u AND sent = 1 AND received = 0 LIMIT 1;", PChar->id, slotID);
 
                     if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                     {
@@ -1800,7 +1741,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         }
         else if (boxtype == 0x02)
         {
-            std::string Query = "SELECT charid FROM delivery_box WHERE senderid = %u AND received = 1 AND box = 2;";
+            std::string Query = "SELECT charid FROM delivery_box WHERE charid = %u AND received = 1 AND box = 2;";
             ret = Sql_Query(SqlHandle, Query.c_str(), PChar->id);
         }
 
@@ -1849,7 +1790,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                             PItem->setSlotID(slotID);
 
                             //the result of this query doesn't really matter, it can be sent from the auction house which has no sender record
-                            Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE charid = %u AND senderid = %u AND box = 2 AND received = 0 AND quantity = %u LIMIT 1;",
+                            Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE senderid = %u AND charid = %u AND box = 2 AND received = 0 AND quantity = %u LIMIT 1;",
                                 PChar->id, senderID, PItem->getQuantity());
 
                             Query = "UPDATE delivery_box SET slot = %u WHERE charid = %u AND box = 1 AND slot = 8;";
@@ -1906,7 +1847,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         }
         CItem* PItem = PChar->UContainer->GetItem(first_received);
 
-        int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE senderid = %u AND box = 2 AND slot = %u LIMIT 1;", PChar->id, first_received);
+        int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND box = 2 AND slot = %u LIMIT 1;", PChar->id, first_received);
 
         if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
         {
@@ -1974,7 +1915,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                             if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) > 0)
                             {
-                                ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE charid = %u AND senderid = %u AND box = 2 LIMIT 1;", PChar->id, senderID);
+                                ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE senderid = %u AND charid = %u AND box = 2 LIMIT 1;", PChar->id, senderID);
 
                                 if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                                 {
@@ -2029,7 +1970,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 }
                 else if (boxtype == 0x02)
                 {
-                    ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE senderid = %u AND sent = 0 AND slot = %u AND box = %u LIMIT 1", PChar->id, slotID, boxtype);
+                    ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND sent = 0 AND slot = %u AND box = %u LIMIT 1", PChar->id, slotID, boxtype);
                 }
 
                 if (ret != SQL_ERROR &&  Sql_AffectedRows(SqlHandle) != 0)
@@ -2225,13 +2166,13 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 (PItem->getStackSize() == 1 ||
                 PItem->getStackSize() != PItem->getQuantity()))
             {
-                ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Incorrect quantity of item\n" CL_RESET);
+                ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Incorrect quantity of item %s\n" CL_RESET, PItem->getName());
                 PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
                 return;
             }
             if (PChar->m_ah_history.size() >= 7)
             {
-                ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Unable to put up more than 7 items\n" CL_RESET);
+				ShowDebug(CL_CYAN"%s already has 7 items on the AH\n" CL_RESET,PChar->GetName());
                 PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
                 return;
             }
@@ -2247,7 +2188,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 (uint32)time(nullptr),
                 price) == SQL_ERROR)
             {
-                ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot insert item to database\n" CL_RESET);
+				ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot insert item %s to database\n" CL_RESET, PItem->getName());
                 PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
                 return;
             }
@@ -2919,7 +2860,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 //make sure invitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
                 if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != nullptr)
                 {
-					ShowDebug(CL_CYAN"%s is dead, in prision, has a pending invite, or is already in a party\n" CL_RESET, PInvitee->GetName());
+					ShowDebug(CL_CYAN"%s is dead, in jail, has a pending invite, or is already in a party\n" CL_RESET, PInvitee->GetName());
                     PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
                     break;
                 }
@@ -2975,7 +2916,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 ||
                     PInvitee->PParty == nullptr || PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)
                 {
-					ShowDebug(CL_CYAN"%s is dead, in prision, has a pending invite, or is already in a party/alliance\n" CL_RESET, PInvitee->GetName());
+					ShowDebug(CL_CYAN"%s is dead, in jail, has a pending invite, or is already in a party/alliance\n" CL_RESET, PInvitee->GetName());
                     PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
                     break;
                 }
@@ -3860,7 +3801,10 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     {
                         PChar->m_LastYell = gettick() + (map_config.yell_cooldown * 1000);
                         // ShowDebug(CL_CYAN" LastYell: %u \n" CL_RESET, PChar->m_LastYell);
-                        message::send(MSG_CHAT_YELL, nullptr, 0, new CChatMessagePacket(PChar, MESSAGE_YELL, data[6]));
+                        int8 packetData[4] {};
+                        WBUFL(packetData, 0) = PChar->id;
+
+                        message::send(MSG_CHAT_YELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_YELL, data[6]));
                     }
                     else // You must wait longer to perform that action.
                     {
@@ -4261,7 +4205,6 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     PChar->updatemask |= UPDATE_HP;
     PChar->pushPacket(new CMenuConfigPacket(PChar));
-    PChar->pushPacket(new CCharUpdatePacket(PChar));
     return;
 }
 
@@ -4630,19 +4573,15 @@ void SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         if (PChar->PPet == nullptr ||
             (PChar->PPet->m_EcoSystem != SYSTEM_AVATAR &&
-            PChar->PPet->m_EcoSystem != SYSTEM_ELEMENTAL))
+            PChar->PPet->m_EcoSystem != SYSTEM_ELEMENTAL ) &&
+            !PChar->PAI->IsEngaged())
         {
-            switch (PChar->PBattleAI->GetCurrentAction())
-            {
-            case ACTION_ITEM_USING:        PChar->PBattleAI->SetCurrentAction(ACTION_ITEM_INTERRUPT);    break;
-            case ACTION_MAGIC_CASTING:    PChar->PBattleAI->SetCurrentAction(ACTION_MAGIC_INTERRUPT);    break;
-            }
+            PChar->PAI->ClearStateStack();
             if (PChar->PPet && PChar->PPet->objtype == TYPE_PET &&
                 ((CPetEntity*)PChar->PPet)->getPetType() == PETTYPE_AUTOMATON)
             {
-                PChar->PPet->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+                PChar->PPet->PAI->Disengage();
             }
-            PChar->PBattleAI->CheckCurrentAction(gettick());
             PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING, 0, 0, 10, 0));
             return;
         }
@@ -4674,7 +4613,6 @@ void SmallPacket0x0EA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     PChar->animation = (PChar->animation == ANIMATION_SIT ? ANIMATION_NONE : ANIMATION_SIT);
     PChar->updatemask |= UPDATE_HP;
-    PChar->pushPacket(new CCharUpdatePacket(PChar));
     return;
 }
 
@@ -5426,7 +5364,6 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             PTarget->updatemask |= UPDATE_HP;
             PTarget->nameflags.flags &= ~FLAG_BAZAAR;
-            PTarget->pushPacket(new CCharUpdatePacket(PTarget));
         }
         return;
     }
@@ -5452,7 +5389,6 @@ void SmallPacket0x109(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             PChar->nameflags.flags |= FLAG_BAZAAR;
             PChar->updatemask |= UPDATE_HP;
-            PChar->pushPacket(new CCharUpdatePacket(PChar));
             return;
         }
     }
@@ -5506,7 +5442,6 @@ void SmallPacket0x10B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     PChar->nameflags.flags &= ~FLAG_BAZAAR;
     PChar->updatemask |= UPDATE_HP;
-    PChar->pushPacket(new CCharUpdatePacket(PChar));
     return;
 }
 
@@ -5598,7 +5533,7 @@ void PacketParserInitialize()
     PacketSize[0x05D] = 0x08; PacketParser[0x05D] = &SmallPacket0x05D;
     PacketSize[0x05E] = 0x0C; PacketParser[0x05E] = &SmallPacket0x05E;
     PacketSize[0x060] = 0x00; PacketParser[0x060] = &SmallPacket0x060;
-    PacketSize[0x061] = 0x02; PacketParser[0x061] = &SmallPacket0x061;
+    PacketSize[0x061] = 0x04; PacketParser[0x061] = &SmallPacket0x061;
     PacketSize[0x063] = 0x00; PacketParser[0x063] = &SmallPacket0x063;
     PacketSize[0x064] = 0x26; PacketParser[0x064] = &SmallPacket0x064;
     PacketSize[0x066] = 0x0A; PacketParser[0x066] = &SmallPacket0x066;

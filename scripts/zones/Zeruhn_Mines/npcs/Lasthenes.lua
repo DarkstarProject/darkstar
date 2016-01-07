@@ -1,7 +1,7 @@
 -----------------------------------
---	Area:  Zeruhn Mines
---	NPC:   Lasthenes
---	Notes: Opens Gate
+--    Area:  Zeruhn Mines
+--    NPC:   Lasthenes
+--    Notes: Opens Gate
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,11 +18,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getXPos() > -79.5 ) then
-		player:startEvent(0x00B4);
-	else
-		player:startEvent(0x00B5);
-	end
+    if (player:getXPos() > -79.5 ) then
+        player:startEvent(0x00B4);
+    else
+        player:startEvent(0x00B5);
+    end
 end;
 
 -----------------------------------

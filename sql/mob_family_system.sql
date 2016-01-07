@@ -126,7 +126,7 @@ INSERT INTO `mob_family_system` VALUES (58,'Bugard',14,'Lizard',1,40,115,110,1,2
 INSERT INTO `mob_family_system` VALUES (59,'Bugbear',7,'Beastmen',1,40,125,90,3,2,1,6,6,4,5,3,2,3,3,1,1,1,1,1,1,1,1,1,1,1.25,1,5);
 INSERT INTO `mob_family_system` VALUES (60,'CaitSith',18,'Unclassified',0,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (61,'Cardian',3,'Arcana',0,40,109,140,1,3,1,3,1,1,3,3,3,3,3,1,1,1,1,0.75,0.75,0.75,0.75,0.75,0.75,0.875,0.75,6);
-INSERT INTO `mob_family_system` VALUES (62,'Cerberus',6,'Beast',3,40,100,90,1,3,4,3,6,6,5,3,2,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1);
+INSERT INTO `mob_family_system` VALUES (62,'Cerberus',6,'Beast',3,80,100,90,1,3,4,3,6,1,1,3,1,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1);
 INSERT INTO `mob_family_system` VALUES (63,'Chariot',4,'ArchaicMachine',3,40,90,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1.125,1,1.125,0.875,1,0.875,1,0);
 INSERT INTO `mob_family_system` VALUES (64,'Chigoe',20,'Vermin',0,40,120,90,3,2,1,6,6,4,5,3,3,3,3,1,1,1,1,1.125,1.125,1,1,1,1,1,1,4);
 INSERT INTO `mob_family_system` VALUES (65,'Clionid',21,'Voragean',0,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
@@ -392,7 +392,7 @@ INSERT INTO `mob_family_system` VALUES (325,'Avatar-Fenrir',5,'Avatar',1,40,100,
 INSERT INTO `mob_family_system` VALUES (326,'TrollGurfurlur',7,'Beastmen',2,40,120,120,1,2,1,3,3,3,3,3,2,3,3,1,1,1,1,0.875,1,1,1,1,1.125,1,1,1);
 INSERT INTO `mob_family_system` VALUES (327,'Goblin',7,'Beastmen',0,40,91,120,2,3,4,3,3,3,1,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1.25,1,1);
 INSERT INTO `mob_family_system` VALUES (328,'Gigas',7,'Beastmen',1,40,125,100,1,2,2,2,5,4,5,3,2,3,3,1,1,1,1,1,0.875,1,1.125,0.5,1,1,1,2);
-INSERT INTO `mob_family_system` VALUES (329,'AbsoluteVirtue',15,'Luminian',0,40,120,140,1,1,1,1,1,1,1,3,3,3,3,1,1,1,1,1,1,1,1,1,1,0.5,1,0);
+INSERT INTO `mob_family_system` VALUES (329,'AbsoluteVirtue',15,'Luminian',0,40,120,140,4,2,3,2,4,1,1,4,3,3,3,1,1,1,1,1,1,1,1,1,1,0.5,1,0); -- Modified his attributes to reflect his appropriate damage/toughness 
 INSERT INTO `mob_family_system` VALUES (330,'PetGenbu',14,'Lizard',5,30,120,90,2,5,1,6,6,4,3,3,3,3,3,1,1,1,1,0.75,1,1,0.5,1.125,0.5,1,1,4);
 INSERT INTO `mob_family_system` VALUES (331,'PetSeiryu',10,'Dragon',3,60,109,90,1,2,1,3,6,3,3,3,3,3,3,1,1,1,1,0.5,1.125,0.5,1,1,1,1,0,7);
 INSERT INTO `mob_family_system` VALUES (332,'PetByakko',6,'Beast',3,60,111,120,1,1,4,2,3,6,5,3,3,3,3,1,1,1,1,1,0.875,1,1,1,1,0.5,1.25,5);
@@ -533,6 +533,7 @@ INSERT INTO `mob_family_system` VALUES (493,'Ashrakk',9,'Demon',1,40,90,140,6,3,
 INSERT INTO `mob_family_system` VALUES (494,'Sekhmet',6,'Beast',1,60,94,90,1,1,4,2,6,6,2,3,3,3,3,1,1,1,1,1,1,1,1.25,0.875,1,1,1,5);
 INSERT INTO `mob_family_system` VALUES (495,'Astral_Flow_Pet',5,'Avatar',0,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (496,'ChanequeMandragora',17,'Plantoid',0,40,107,120,3,3,4,5,4,4,2,3,3,3,3,1,1.25,1,1,1.25,1.25,1.25,1,1.25,1,0.875,1.25,4); -- for chaneque unique TP move
+INSERT INTO `mob_family_system` VALUES (497,'Cloud_of_Darkness',18,'Unclassified',3,40,120,140,1,1,1,1,1,1,1,3,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,0);
 
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;

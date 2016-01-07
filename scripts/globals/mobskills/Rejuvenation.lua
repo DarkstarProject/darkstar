@@ -13,7 +13,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
 
     local hp = target:getMaxHP() - target:getHP();
-	target:addHP(hp);
+    target:addHP(hp);
     target:addMP(target:getMaxMP() - target:getMP());
     target:addTP(300 - target:getTP());
     
