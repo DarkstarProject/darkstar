@@ -23,6 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "despawn_state.h"
 #include "../../entities/baseentity.h"
+#include "../../entities/mobentity.h"
 #include "../../packets/entity_animation.h"
 #include "../ai_container.h"
 #include "../../zone.h"
@@ -50,6 +51,22 @@ CDespawnState::CDespawnState(CBaseEntity* _PEntity) :
 
 bool CDespawnState::Update(time_point tick)
 {
+    //make sure that the respawn time is up to date
+    auto PMob = dynamic_cast<CMobEntity*>(m_PEntity);
+    if (PMob)
+    {
+        if (!PMob->m_AllowRespawn)
+        {
+            if (m_spawnTime > 0s)
+            {
+                m_spawnTime = 0s;
+            }
+        }
+        else
+        {
+            m_spawnTime = std::chrono::milliseconds(PMob->m_RespawnTime);
+        }
+    }
     if (m_spawnTime > 0s && tick > GetEntryTime() + m_spawnTime)
     {
         m_PEntity->Spawn();
