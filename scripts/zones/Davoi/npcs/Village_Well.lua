@@ -19,6 +19,8 @@ function onTrade(player,npc,trade)
     if (trade:hasItemQty(1095,1) and player:getVar("UnderOathCS") == 5) then
         player:startEvent(0x0071);
         player:tradeComplete();
+    else
+        player:messageSpecial(A_WELL);
     end
 end; 
 
