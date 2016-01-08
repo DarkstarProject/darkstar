@@ -135,7 +135,7 @@ void timer_final(void)
 {
 }
 
-time_point get_start_time(void)
+time_point get_server_start_time(void)
 {
     return start_time;
 }

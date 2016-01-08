@@ -58,7 +58,7 @@ struct TreasurePoolItem
 {
     uint16 ID;
     uint8  SlotID;
-    uint32 TimeStamp;
+    time_point TimeStamp;
 
     std::vector<LotInfo> Lotters;
 };
@@ -82,7 +82,7 @@ public:
     void DelMember(CCharEntity* PChar);
     void UpdatePool(CCharEntity* PChar);
 
-    void CheckItems();
+    void CheckItems(time_point);
 
     void TreasureWon(CCharEntity* winner, uint8 SlotID);
     void TreasureError(CCharEntity* winner, uint8 SlotID);
@@ -92,12 +92,12 @@ public:
 
 private:
 
-    uint32 m_Tick;
+    time_point m_Tick;
     uint8  m_count;
 
     TREASUREPOOLTYPE m_TreasurePoolType;
 
-    void CheckTreasureItem(uint32 tick, uint8 SlotID);
+    void CheckTreasureItem(time_point tick, uint8 SlotID);
 
     TreasurePoolItem m_PoolItems[TREASUREPOOL_SIZE];
 
