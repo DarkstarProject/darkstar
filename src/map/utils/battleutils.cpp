@@ -652,7 +652,7 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint16 damageTaken)
+    uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, uint16 damageTaken)
     {
         uint16 damage = Action->spikesParam;
         int16 intStat = PDefender->INT();
@@ -671,7 +671,7 @@ namespace battleutils
         return damage;
     }
 
-    bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, int32 damage)
+    bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, int32 damage)
     {
         Action->spikesEffect = (SUBEFFECT)PDefender->getMod(MOD_SPIKES);
         Action->spikesMessage = 44;
@@ -933,7 +933,7 @@ namespace battleutils
         return false;
     }
 
-    bool HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 damage, SUBEFFECT spikesType, uint8 chance)
+    bool HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, uint8 damage, SUBEFFECT spikesType, uint8 chance)
     {
         int lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5) * 2;
 
@@ -958,12 +958,12 @@ namespace battleutils
         return false;
     }
 
-    void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action)
+    void HandleSpikesStatusEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action)
     {
         int lvlDiff = 0;
-        if (Action->ActionTarget)
+        if (PDefender)
         {
-            lvlDiff = dsp_cap((Action->ActionTarget->GetMLevel() - PAttacker->GetMLevel()), -5, 5) * 2;
+            lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5) * 2;
         }
         switch (Action->spikesEffect)
         {
@@ -1000,7 +1000,7 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, bool isFirstSwing, CItemWeapon* weapon, int32 finaldamage)
+    void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, bool isFirstSwing, CItemWeapon* weapon, int32 finaldamage)
     {
         CCharEntity* PChar = nullptr;
 
@@ -1130,9 +1130,8 @@ namespace battleutils
             }
         }
         //check weapon for additional effects
-        //#TODO: fix
         else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0 && PAttacker->GetMLevel() >= weapon->getReqLvl() &&
-                 /*luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage)*/0 == 0 && Action->additionalEffect)
+                 luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
         {
             if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
             {
@@ -1141,7 +1140,7 @@ namespace battleutils
         }
         else if (PAttacker->objtype == TYPE_MOB && ((CMobEntity*)PAttacker)->getMobMod(MOBMOD_ADD_EFFECT) > 0)
         {
-            //luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
+            luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
         }
         else
         {
