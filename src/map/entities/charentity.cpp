@@ -1902,7 +1902,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
     {
         PItem->setSubType(ITEM_UNLOCKED);
 
-        charutils::UpdateItem(this, PItem->getLocationID(), PItem->getSlotID(), -1);
+        charutils::UpdateItem(this, PItem->getLocationID(), PItem->getSlotID(), -1, true);
     }
 }
 
