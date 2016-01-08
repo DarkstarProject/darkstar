@@ -2021,7 +2021,6 @@ bool CCharEntity::OnAttackError(CAttackState& state)
     if (controller->getLastErrMsgTime() + std::chrono::milliseconds(this->GetWeaponDelay(false)) < PAI->getTick())
     {
         controller->setLastErrMsgTime(PAI->getTick());
-        pushPacket(state.GetErrorMsg());
         return true;
     }
     return false;
