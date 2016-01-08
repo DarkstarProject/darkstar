@@ -48,22 +48,38 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
     m_PItem(nullptr)
 {
     auto PItem = dynamic_cast<CItemUsable*>(m_PEntity->getStorage(loc)->GetItem(slotid));
-
-    if (PItem && PItem->isType(ITEM_USABLE) && !PItem->isSubType(ITEM_LOCKED))
+    m_PItem = PItem;
+    
+    if (m_PItem && m_PItem->isType(ITEM_USABLE))
     {
-        if (PItem->isType(ITEM_ARMOR))
+        if (m_PItem->isType(ITEM_ARMOR))
         {
-            // todo: if item is locked, check if its equipped
+            // check if this item is equipped
+            bool found = false;
+            for (auto equipslot = 0; equipslot < 18; ++equipslot)
+            {
+                if (m_PEntity->getEquip((SLOTTYPE)equipslot) == m_PItem && m_PItem->getCurrentCharges() > 0)
+                {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+                m_PItem = nullptr;
         }
-        m_PItem = PItem;
+        else if (m_PItem->isSubType(ITEM_LOCKED))
+        {
+            m_PItem = nullptr;
+        }
     }
-    else
+
+    if (!m_PItem)
     {
         throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, PItem->getID(), 0, 56));
     }
 
-    auto PTarget = m_PEntity->IsValidTarget(targid, PItem->getValidTarget(), m_errorMsg);
-    auto error = luautils::OnItemCheck(PTarget, PItem);
+    auto PTarget = m_PEntity->IsValidTarget(targid, m_PItem->getValidTarget(), m_errorMsg);
+    auto error = luautils::OnItemCheck(PTarget, m_PItem);
 
     if (!PTarget || m_errorMsg)
     {
@@ -72,7 +88,7 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
 
     if (error || m_PEntity->StatusEffectContainer->HasPreventActionEffect())
     {
-        auto param = PItem->getFlag() & ITEM_FLAG_SCROLL ? PItem->getSubID() : PItem->getID();
+        auto param = m_PItem->getFlag() & ITEM_FLAG_SCROLL ? m_PItem->getSubID() : m_PItem->getID();
 
         throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, param, 0, error == -1 ? 56 : error));
     }
@@ -83,7 +99,6 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
     UpdateTarget(m_targid);
 
     m_startPos = m_PEntity->loc.p;
-    m_castTime = std::chrono::milliseconds(PItem->getActivationTime());
     m_animationTime = std::chrono::milliseconds(PItem->getAnimationTime());
 
     action_t action;
@@ -120,11 +135,9 @@ bool CItemState::Update(time_point tick)
 
         action_t action;
 
-        m_PItem->setSubType(ITEM_UNLOCKED);
-
         // attempt to interrupt
         InterruptItem(action);
-        
+
         if (!m_interrupted)
         {
             FinishItem(action);
@@ -145,7 +158,11 @@ void CItemState::Cleanup(time_point tick)
 {
     m_PEntity->UContainer->Clean();
 
-    m_PItem->setSubType(ITEM_UNLOCKED);
+    if (m_interrupted && !m_PItem->isType(ITEM_ARMOR))
+        m_PItem->setSubType(ITEM_UNLOCKED);
+
+    m_PEntity->pushPacket(new CInventoryAssignPacket(m_PItem, INV_NORMAL));
+    m_PEntity->pushPacket(new CInventoryItemPacket(m_PItem, m_PItem->getLocationID(), m_PItem->getSlotID()));
     m_PEntity->pushPacket(new CInventoryFinishPacket());
 }
 
@@ -215,9 +232,6 @@ void CItemState::InterruptItem(action_t& action)
         actionTarget.knockback = 0;
 
         m_PEntity->pushPacket(m_errorMsg.release());
-
-        m_PEntity->pushPacket(new CInventoryAssignPacket(m_PItem, INV_NORMAL));
-        m_PEntity->pushPacket(new CInventoryItemPacket(m_PItem, m_PItem->getLocationID(), m_PItem->getSlotID()));
     }
 }
 

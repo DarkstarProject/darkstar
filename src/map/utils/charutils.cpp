@@ -37,6 +37,7 @@ This file is part of DarkStar-server source code.
 
 #include "../ai/ai_container.h"
 #include "../ai/states/attack_state.h"
+#include "../ai/states/item_state.h"
 
 #include "../packets/char_abilities.h"
 #include "../packets/char_appearance.h"
@@ -1331,6 +1332,18 @@ namespace charutils
         {
             ShowDebug("UpdateItem: Trying to move too much quantity\n");
             return 0;
+        }
+
+        // don't touch this item, it's being used
+        if (PItem->isSubType(ITEM_LOCKED))
+            return 0;
+
+        if (dynamic_cast<CItemState*>(PChar->PAI->GetCurrentState()))
+        {
+            CItem* item = static_cast<CItemState*>(PChar->PAI->GetCurrentState())->GetItem();
+
+            if (item && item->getSlotID() == PItem->getSlotID() && item->getLocationID() == PItem->getLocationID())
+                return 0;
         }
 
         uint32 ItemID = PItem->getID();
