@@ -720,10 +720,16 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
 
             if (!battleutils::isValidSelfTargetWeaponskill(PWeaponSkill->getID()))
             {
+                health.tp = prevTP;
+                if (!primary) {
+                    tpHitsLanded = 0; extraHitsLanded = 0;
+                }
                 damage = battleutils::TakeWeaponskillDamage(this, PTarget, damage, damslot, tpHitsLanded, taChar);
                 actionTarget.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
                 actionTarget.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
                 addTP(extraHitsLanded * 10);
+                prevTP = health.tp;
+                health.tp = tp;
 
                 if (actionTarget.reaction == REACTION_EVADE)
                     actionTarget.messageID = primary ? 188 : 282; //but misses
@@ -810,7 +816,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                 }
             }
         }
-        health.tp = prevTP + (health.tp - tp);
+        health.tp = prevTP;
     }
     else
     {
