@@ -890,12 +890,12 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             meritRecastReduction = PMeritPoints->GetMeritValue((MERIT_TYPE)PAbility->getMeritModID(), this);
         }
 
-        uint32 RecastTime = (PAbility->getRecastTime() - meritRecastReduction);
+        action.recast = (PAbility->getRecastTime() - meritRecastReduction);
 
         if (PAbility->getID() == ABILITY_LIGHT_ARTS || PAbility->getID() == ABILITY_DARK_ARTS || PAbility->getRecastId() == 231) //stratagems
         {
             if (this->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
-                RecastTime = 0;
+                action.recast = 0;
         }
         else if (PAbility->getID() == ABILITY_DEACTIVATE && PAutomaton && PAutomaton->health.hp == PAutomaton->GetMaxHP())
         {
@@ -906,10 +906,10 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         else if (PAbility->getID() >= ABILITY_HEALING_RUBY)
         {
             if (this->getMod(MOD_BP_DELAY) > 15) {
-                RecastTime -= 15;
+                action.recast -= 15;
             }
             else {
-                RecastTime -= getMod(MOD_BP_DELAY);
+                action.recast -= getMod(MOD_BP_DELAY);
             }
         }
 
@@ -931,7 +931,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             if (PItem && (PItem->getID() == 15157 || PItem->getID() == 15158 || PItem->getID() == 16104 || PItem->getID() == 16105)) {
                 //TODO: Transform this into an item MOD_REWARD_RECAST perhaps ?
                 //The Bison/Brave's Warbonnet & Khimaira/Stout Bonnet reduces recast time by 10 seconds.
-                RecastTime -= 10;   // remove 10 seconds
+                action.recast -= 10;   // remove 10 seconds
             }
         }
 
@@ -1469,9 +1469,8 @@ m_ActionList.push_back(Action);
             chargeTime = charge->chargeTime;
             maxCharges = charge->maxCharges;
         }
-        PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), RecastTime, chargeTime, maxCharges);
+        PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), action.recast, chargeTime, maxCharges);
         pushPacket(new CCharRecastPacket(this));
-        action.recast = RecastTime;
 
         //#TODO: refactor 
         //if (this->getMijinGakure())
