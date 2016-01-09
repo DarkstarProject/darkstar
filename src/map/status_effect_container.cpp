@@ -1267,7 +1267,7 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
             }
 
             uint32 tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 1000;
-            uint32 duration = PStatusEffect->GetDuration() == 0 ? 0 : std::chrono::duration_cast<std::chrono::seconds>(realduration).count();
+            uint32 duration = PStatusEffect->GetDuration() == 0 ? 0 : std::chrono::duration_cast<std::chrono::milliseconds>(realduration).count();
 
             Sql_Query(SqlHandle, Query,
                 m_POwner->id,
@@ -1296,7 +1296,7 @@ void CStatusEffectContainer::CheckEffects(time_point tick)
 
     if (!m_POwner->isDead())
     {
-        if ((tick - m_EffectCheckTime) < 1s)
+        if ((tick - m_EffectCheckTime) < 1s && (tick - m_EffectCheckTime > 0s))
         {
             return;
         }

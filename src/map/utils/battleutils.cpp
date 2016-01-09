@@ -652,7 +652,7 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint16 damageTaken)
+    uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, uint16 damageTaken)
     {
         uint16 damage = Action->spikesParam;
         int16 intStat = PDefender->INT();
@@ -671,7 +671,7 @@ namespace battleutils
         return damage;
     }
 
-    bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, int32 damage)
+    bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, int32 damage)
     {
         Action->spikesEffect = (SUBEFFECT)PDefender->getMod(MOD_SPIKES);
         Action->spikesMessage = 44;
@@ -933,7 +933,7 @@ namespace battleutils
         return false;
     }
 
-    bool HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 damage, SUBEFFECT spikesType, uint8 chance)
+    bool HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, uint8 damage, SUBEFFECT spikesType, uint8 chance)
     {
         int lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5) * 2;
 
@@ -958,12 +958,12 @@ namespace battleutils
         return false;
     }
 
-    void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action)
+    void HandleSpikesStatusEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action)
     {
         int lvlDiff = 0;
-        if (Action->ActionTarget)
+        if (PDefender)
         {
-            lvlDiff = dsp_cap((Action->ActionTarget->GetMLevel() - PAttacker->GetMLevel()), -5, 5) * 2;
+            lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5) * 2;
         }
         switch (Action->spikesEffect)
         {
@@ -1000,7 +1000,7 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, bool isFirstSwing, CItemWeapon* weapon, int32 finaldamage)
+    void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, bool isFirstSwing, CItemWeapon* weapon, int32 finaldamage)
     {
         CCharEntity* PChar = nullptr;
 
@@ -1130,9 +1130,8 @@ namespace battleutils
             }
         }
         //check weapon for additional effects
-        //#TODO: fix
         else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0 && PAttacker->GetMLevel() >= weapon->getReqLvl() &&
-                 /*luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage)*/0 == 0 && Action->additionalEffect)
+                 luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
         {
             if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
             {
@@ -1141,7 +1140,7 @@ namespace battleutils
         }
         else if (PAttacker->objtype == TYPE_MOB && ((CMobEntity*)PAttacker)->getMobMod(MOBMOD_ADD_EFFECT) > 0)
         {
-            //luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
+            luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
         }
         else
         {
@@ -2892,69 +2891,66 @@ namespace battleutils
         return tiers[skillchain];
     }
 
-    SKILLCHAIN_ELEMENT FormSkillchain(std::list<SKILLCHAIN_ELEMENT> resonance, std::list<SKILLCHAIN_ELEMENT> skill)
+    static const std::map<std::pair<SKILLCHAIN_ELEMENT, SKILLCHAIN_ELEMENT>, SKILLCHAIN_ELEMENT> skillchain_map = {
+        // Level 3 Pairs
+        {{SC_LIGHT, SC_LIGHT},SC_LIGHT_II},
+        {{SC_DARKNESS, SC_DARKNESS}, SC_DARKNESS_II},
+
+        // Level 2 Pairs
+        {{SC_GRAVITATION, SC_DISTORTION}, SC_DARKNESS},
+        {{SC_GRAVITATION, SC_FRAGMENTATION}, SC_FRAGMENTATION},
+
+        {{SC_DISTORTION, SC_GRAVITATION}, SC_DARKNESS},
+        {{SC_DISTORTION, SC_FUSION}, SC_FUSION},
+
+        {{SC_FUSION, SC_GRAVITATION}, SC_GRAVITATION},
+        {{SC_FUSION, SC_FRAGMENTATION}, SC_LIGHT},
+
+        {{SC_FRAGMENTATION, SC_DISTORTION}, SC_DISTORTION},
+        {{SC_FRAGMENTATION, SC_FUSION}, SC_LIGHT},
+
+            // Level 1 Pairs
+        {{SC_TRANSFIXION, SC_COMPRESSION}, SC_COMPRESSION},
+        {{SC_TRANSFIXION, SC_SCISSION}, SC_DISTORTION},
+        {{SC_TRANSFIXION, SC_REVERBERATION}, SC_REVERBERATION},
+
+        {{SC_COMPRESSION, SC_TRANSFIXION}, SC_TRANSFIXION},
+        {{SC_COMPRESSION, SC_DETONATION}, SC_DETONATION},
+
+        {{SC_LIQUEFACTION, SC_SCISSION}, SC_SCISSION},
+        {{SC_LIQUEFACTION, SC_IMPACTION}, SC_FUSION},
+
+        {{SC_SCISSION, SC_LIQUEFACTION}, SC_LIQUEFACTION},
+        {{SC_SCISSION, SC_REVERBERATION}, SC_REVERBERATION},
+        {{SC_SCISSION, SC_DETONATION}, SC_DETONATION},
+
+        {{SC_REVERBERATION, SC_INDURATION}, SC_INDURATION},
+        {{SC_REVERBERATION, SC_IMPACTION}, SC_IMPACTION},
+
+        {{SC_DETONATION, SC_COMPRESSION}, SC_GRAVITATION},
+        {{SC_DETONATION, SC_SCISSION}, SC_SCISSION},
+
+        {{SC_INDURATION, SC_COMPRESSION}, SC_COMPRESSION},
+        {{SC_INDURATION, SC_REVERBERATION}, SC_FRAGMENTATION},
+        {{SC_INDURATION, SC_IMPACTION}, SC_IMPACTION},
+
+        {{SC_IMPACTION, SC_LIQUEFACTION}, SC_LIQUEFACTION},
+        {{SC_IMPACTION, SC_DETONATION}, SC_DETONATION}
+    };
+
+    SKILLCHAIN_ELEMENT FormSkillchain(const std::list<SKILLCHAIN_ELEMENT>& resonance, const std::list<SKILLCHAIN_ELEMENT>& skill)
     {
-        SKILLCHAIN_ELEMENT result = SC_NONE;
-
-        for (std::list<SKILLCHAIN_ELEMENT>::iterator i = skill.begin(); i != skill.end(); i++)
+        for (auto& skill_element : skill)
         {
-            for (std::list<SKILLCHAIN_ELEMENT>::iterator j = resonance.begin(); j != resonance.end(); j++)
+            for (auto& resonance_element : resonance)
             {
-                // TODO: This could probably be implemented as a composite key lookup map.  For now I like the way this looks.
-
-                switch (PAIR((*j), (*i)))
+                try
                 {
-
-                    // Level 3 Pairs
-                    case PAIR(SC_LIGHT, SC_LIGHT): return SC_LIGHT_II;      break; // -> Lv4
-                    case PAIR(SC_DARKNESS, SC_DARKNESS): return SC_DARKNESS_II;   break; // -> Lv4
-
-                    // Level 2 Pairs
-                    case PAIR(SC_GRAVITATION, SC_DISTORTION): return SC_DARKNESS;      break; // -> Lv3
-                    case PAIR(SC_GRAVITATION, SC_FRAGMENTATION): return SC_FRAGMENTATION; break;
-
-                    case PAIR(SC_DISTORTION, SC_GRAVITATION): return SC_DARKNESS;      break; // -> Lv3
-                    case PAIR(SC_DISTORTION, SC_FUSION): return SC_FUSION;        break;
-
-                    case PAIR(SC_FUSION, SC_GRAVITATION): return SC_GRAVITATION;   break;
-                    case PAIR(SC_FUSION, SC_FRAGMENTATION): return SC_LIGHT;         break; // -> Lv3
-
-                    case PAIR(SC_FRAGMENTATION, SC_DISTORTION): return SC_DISTORTION;    break;
-                    case PAIR(SC_FRAGMENTATION, SC_FUSION): return SC_LIGHT;         break; // -> Lv3
-
-                    // Level 1 Pairs
-                    case PAIR(SC_TRANSFIXION, SC_COMPRESSION): return SC_COMPRESSION;   break;
-                    case PAIR(SC_TRANSFIXION, SC_SCISSION): return SC_DISTORTION;    break; // -> Lv2
-                    case PAIR(SC_TRANSFIXION, SC_REVERBERATION): return SC_REVERBERATION; break;
-
-                    case PAIR(SC_COMPRESSION, SC_TRANSFIXION): return SC_TRANSFIXION;   break;
-                    case PAIR(SC_COMPRESSION, SC_DETONATION): return SC_DETONATION;    break;
-
-                    case PAIR(SC_LIQUEFACTION, SC_SCISSION): return SC_SCISSION;      break;
-                    case PAIR(SC_LIQUEFACTION, SC_IMPACTION): return SC_FUSION;        break; // -> Lv2
-
-                    case PAIR(SC_SCISSION, SC_LIQUEFACTION): return SC_LIQUEFACTION;  break;
-                    case PAIR(SC_SCISSION, SC_REVERBERATION): return SC_REVERBERATION; break;
-                    case PAIR(SC_SCISSION, SC_DETONATION): return SC_DETONATION;    break;
-
-                    case PAIR(SC_REVERBERATION, SC_INDURATION): return SC_INDURATION;    break;
-                    case PAIR(SC_REVERBERATION, SC_IMPACTION): return SC_IMPACTION;     break;
-
-                    case PAIR(SC_DETONATION, SC_COMPRESSION): return SC_GRAVITATION;   break; // -> Lv2
-                    case PAIR(SC_DETONATION, SC_SCISSION): return SC_SCISSION;      break;
-
-                    case PAIR(SC_INDURATION, SC_COMPRESSION): return SC_COMPRESSION;   break;
-                    case PAIR(SC_INDURATION, SC_REVERBERATION): return SC_FRAGMENTATION; break; // -> Lv2
-                    case PAIR(SC_INDURATION, SC_IMPACTION): return SC_IMPACTION;     break;
-
-                    case PAIR(SC_IMPACTION, SC_LIQUEFACTION): return SC_LIQUEFACTION;  break;
-                    case PAIR(SC_IMPACTION, SC_DETONATION): return SC_DETONATION;    break;
-
-                    default: break;
+                    return skillchain_map.at({resonance_element, skill_element});
                 }
+                catch (std::out_of_range&) {}
             }
         }
-
         return SC_NONE;
     }
 
@@ -5448,7 +5444,6 @@ namespace battleutils
 
     void RemoveAmmo(CCharEntity* PChar)
     {
-        //ranged WS IDs
         CItemWeapon* PAmmo = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
 
         uint16 recycleChance = PChar->getMod(MOD_RECYCLE) + PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE, PChar);

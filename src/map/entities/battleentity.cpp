@@ -1427,9 +1427,8 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
 
         if (actionTarget.reaction != REACTION_EVADE && actionTarget.reaction != REACTION_PARRY)
         {
-            //#TODO
-            //battleutils::HandleEnspell(this, PTarget, &Action, attack.IsFirstSwing(), (CItemWeapon*)this->m_Weapons[attack.GetWeaponSlot()], attack.GetDamage());
-            //battleutils::HandleSpikesDamage(this, PTarget, &Action, attack.GetDamage());
+            battleutils::HandleEnspell(this, PTarget, &actionTarget, attack.IsFirstSwing(), (CItemWeapon*)this->m_Weapons[attack.GetWeaponSlot()], attack.GetDamage());
+            battleutils::HandleSpikesDamage(this, PTarget, &actionTarget, attack.GetDamage());
         }
 
         if (actionTarget.speceffect == SPECEFFECT_HIT && actionTarget.param > 0)

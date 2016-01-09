@@ -968,7 +968,7 @@ void CZoneEntities::ZoneServer(time_point tick)
             PChar->PRecastContainer->Check();
             PChar->StatusEffectContainer->CheckEffects(tick);
             PChar->PAI->Tick(tick);
-            PChar->PTreasurePool->CheckItems();
+            PChar->PTreasurePool->CheckItems(tick);
             PChar->StatusEffectContainer->CheckRegen(tick);
         }
     }
@@ -1001,7 +1001,7 @@ void CZoneEntities::ZoneServerRegion(time_point tick)
             PChar->PRecastContainer->Check();
             PChar->StatusEffectContainer->CheckEffects(tick);
             PChar->PAI->Tick(tick);
-            PChar->PTreasurePool->CheckItems();
+            PChar->PTreasurePool->CheckItems(tick);
 
             m_zone->CheckRegions(PChar);
         }

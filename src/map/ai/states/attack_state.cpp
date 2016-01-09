@@ -48,13 +48,13 @@ bool CAttackState::Update(time_point tick)
     }
     if (AttackReady())
     {
-        //CanAttack may have set target id to 0 (disengage from out of range)
-        if (m_PEntity->GetBattleTargetID() == 0)
-        {
-            return true;
-        }
         if (CanAttack(PTarget))
         {
+            //CanAttack may have set target id to 0 (disengage from out of range)
+            if (m_PEntity->GetBattleTargetID() == 0)
+            {
+                return true;
+            }
             action_t action;
             if (m_PEntity->OnAttack(*this, action))
             {

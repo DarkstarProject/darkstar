@@ -46,7 +46,6 @@ CWeaponSkillState::CWeaponSkillState(CBattleEntity* PEntity, uint16 targid, uint
     {
         throw CStateInitException(std::move(m_errorMsg));
     }
-    SpendCost();
     m_PSkill = std::make_unique<CWeaponSkill>(*skill);
 
     //m_castTime = std::chrono::milliseconds(m_PSkill->getActivationTime());
@@ -100,6 +99,7 @@ bool CWeaponSkillState::Update(time_point tick)
 {
     if (!IsCompleted())
     {
+        SpendCost();
         action_t action;
         m_PEntity->OnWeaponSkillFinished(*this, action);
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));

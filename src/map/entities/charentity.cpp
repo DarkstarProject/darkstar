@@ -668,13 +668,13 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
 
     PLatentEffectContainer->CheckLatentsTP(this->health.tp);
 
+    SLOTTYPE damslot = SLOT_MAIN;
     if (distance(loc.p, PBattleTarget->loc.p) - PBattleTarget->m_ModelSize < PWeaponSkill->getRange())
     {
         //WS scripts currently rely on user:getTP() to get the tp
         int16 prevTP = health.tp;
         health.tp = tp;
 
-        uint8 damslot = SLOT_MAIN;
         if (PWeaponSkill->getID() >= 192 && PWeaponSkill->getID() <= 221)
         {
             damslot = SLOT_RANGED;
@@ -720,10 +720,16 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
 
             if (!battleutils::isValidSelfTargetWeaponskill(PWeaponSkill->getID()))
             {
+                health.tp = prevTP;
+                if (!primary) {
+                    tpHitsLanded = 0; extraHitsLanded = 0;
+                }
                 damage = battleutils::TakeWeaponskillDamage(this, PTarget, damage, damslot, tpHitsLanded, taChar);
                 actionTarget.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
                 actionTarget.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
                 addTP(extraHitsLanded * 10);
+                prevTP = health.tp;
+                health.tp = tp;
 
                 if (actionTarget.reaction == REACTION_EVADE)
                     actionTarget.messageID = primary ? 188 : 282; //but misses
@@ -767,37 +773,50 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                 {
                     battleutils::RemoveAmmo(this);
                 }
-                int wspoints = 1;
-                if (actionTarget.reaction == REACTION_HIT && PWeaponSkill->getPrimarySkillchain() != 0 || PBattleTarget->isDead())
+                if (actionTarget.reaction == REACTION_HIT)
                 {
-                    // NOTE: GetSkillChainEffect is INSIDE this if statement because it
-                    //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
-                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill);
-                    if (effect != SUBEFFECT_NONE)
+                    if (getEquip(damslot)->getModifier(MOD_ADDITIONAL_EFFECT))
                     {
-                        actionTarget.addEffectParam = battleutils::TakeSkillchainDamage(this, PBattleTarget, damage);
-                        if (actionTarget.addEffectParam < 0)
-                        {
-                            actionTarget.addEffectParam = -actionTarget.addEffectParam;
-                            actionTarget.addEffectMessage = 384 + effect;
-                        }
-                        else
-                            actionTarget.addEffectMessage = 287 + effect;
-                        actionTarget.additionalEffect = effect;
-
-                        if (effect >= 7)
-                            wspoints += 1;
-                        else if (effect >= 3)
-                            wspoints += 2;
-                        else
-                            wspoints += 4;
+                        actionTarget_t dummy;
+                        luautils::OnAdditionalEffect(this, PTarget, static_cast<CItemWeapon*>(getEquip(damslot)), &dummy, damage);
                     }
+                    else if (damslot == SLOT_RANGED && getEquip(SLOT_AMMO) && getEquip(SLOT_AMMO)->getModifier(MOD_ADDITIONAL_EFFECT))
+                    {
+                        actionTarget_t dummy;
+                        luautils::OnAdditionalEffect(this, PTarget, static_cast<CItemWeapon*>(getEquip(SLOT_AMMO)), &dummy, damage);
+                    }
+                    int wspoints = 1;
+                    if (PWeaponSkill->getPrimarySkillchain() != 0)
+                    {
+                        // NOTE: GetSkillChainEffect is INSIDE this if statement because it
+                        //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
+                        SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill);
+                        if (effect != SUBEFFECT_NONE)
+                        {
+                            actionTarget.addEffectParam = battleutils::TakeSkillchainDamage(this, PBattleTarget, damage);
+                            if (actionTarget.addEffectParam < 0)
+                            {
+                                actionTarget.addEffectParam = -actionTarget.addEffectParam;
+                                actionTarget.addEffectMessage = 384 + effect;
+                            }
+                            else
+                                actionTarget.addEffectMessage = 287 + effect;
+                            actionTarget.additionalEffect = effect;
+
+                            if (effect >= 7)
+                                wspoints += 1;
+                            else if (effect >= 3)
+                                wspoints += 2;
+                            else
+                                wspoints += 4;
+                        }
+                    }
+                    // check for ws points
+                    charutils::AddWeaponSkillPoints(this, damslot, wspoints);
                 }
-                // check for ws points
-                charutils::AddWeaponSkillPoints(this, (SLOTTYPE)damslot, wspoints);
             }
         }
-        health.tp = prevTP + (health.tp - tp);
+        health.tp = prevTP;
     }
     else
     {
@@ -871,12 +890,12 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             meritRecastReduction = PMeritPoints->GetMeritValue((MERIT_TYPE)PAbility->getMeritModID(), this);
         }
 
-        uint32 RecastTime = (PAbility->getRecastTime() - meritRecastReduction);
+        action.recast = (PAbility->getRecastTime() - meritRecastReduction);
 
         if (PAbility->getID() == ABILITY_LIGHT_ARTS || PAbility->getID() == ABILITY_DARK_ARTS || PAbility->getRecastId() == 231) //stratagems
         {
             if (this->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
-                RecastTime = 0;
+                action.recast = 0;
         }
         else if (PAbility->getID() == ABILITY_DEACTIVATE && PAutomaton && PAutomaton->health.hp == PAutomaton->GetMaxHP())
         {
@@ -887,10 +906,10 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         else if (PAbility->getID() >= ABILITY_HEALING_RUBY)
         {
             if (this->getMod(MOD_BP_DELAY) > 15) {
-                RecastTime -= 15;
+                action.recast -= 15;
             }
             else {
-                RecastTime -= getMod(MOD_BP_DELAY);
+                action.recast -= getMod(MOD_BP_DELAY);
             }
         }
 
@@ -912,7 +931,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             if (PItem && (PItem->getID() == 15157 || PItem->getID() == 15158 || PItem->getID() == 16104 || PItem->getID() == 16105)) {
                 //TODO: Transform this into an item MOD_REWARD_RECAST perhaps ?
                 //The Bison/Brave's Warbonnet & Khimaira/Stout Bonnet reduces recast time by 10 seconds.
-                RecastTime -= 10;   // remove 10 seconds
+                action.recast -= 10;   // remove 10 seconds
             }
         }
 
@@ -1450,9 +1469,8 @@ m_ActionList.push_back(Action);
             chargeTime = charge->chargeTime;
             maxCharges = charge->maxCharges;
         }
-        PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), RecastTime, chargeTime, maxCharges);
+        PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), action.recast, chargeTime, maxCharges);
         pushPacket(new CCharRecastPacket(this));
-        action.recast = RecastTime;
 
         //#TODO: refactor 
         //if (this->getMijinGakure())
@@ -1664,9 +1682,8 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
         //or else sleep effect won't work
         //battleutils::HandleRangedAdditionalEffect(this,PTarget,&Action);
         //TODO: move all hard coded additional effect ammo to scripts
-        //#TODO: fix call
         if ((PAmmo != nullptr && PAmmo->getModifier(MOD_ADDITIONAL_EFFECT) > 0) || (PItem != nullptr && PItem->getModifier(MOD_ADDITIONAL_EFFECT) > 0)) {}
-        //luautils::OnAdditionalEffect(this, PTarget, (PAmmo != nullptr ? PAmmo : PItem), &Action, totalDamage);
+        luautils::OnAdditionalEffect(this, PTarget, (PAmmo != nullptr ? PAmmo : PItem), &actionTarget, totalDamage);
     }
     else if (shadowsTaken > 0)
     {
@@ -1902,7 +1919,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
     {
         PItem->setSubType(ITEM_UNLOCKED);
 
-        charutils::UpdateItem(this, PItem->getLocationID(), PItem->getSlotID(), -1);
+        charutils::UpdateItem(this, PItem->getLocationID(), PItem->getSlotID(), -1, true);
     }
 }
 
@@ -2021,7 +2038,6 @@ bool CCharEntity::OnAttackError(CAttackState& state)
     if (controller->getLastErrMsgTime() + std::chrono::milliseconds(this->GetWeaponDelay(false)) < PAI->getTick())
     {
         controller->setLastErrMsgTime(PAI->getTick());
-        pushPacket(state.GetErrorMsg());
         return true;
     }
     return false;

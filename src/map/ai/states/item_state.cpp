@@ -99,6 +99,7 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
     UpdateTarget(m_targid);
 
     m_startPos = m_PEntity->loc.p;
+    m_castTime = std::chrono::milliseconds(m_PItem->getActivationTime());
     m_animationTime = std::chrono::milliseconds(PItem->getAnimationTime());
 
     action_t action;

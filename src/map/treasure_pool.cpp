@@ -34,8 +34,8 @@
 #include "item_container.h"
 
 
-#define TREASURE_CHECKTIME		  3		// частота проверки контейнера - 3 секунд
-#define TREASURE_LIVETIME		300		// время жизни предметов в контейнере - 5 минут
+static constexpr duration treasure_checktime = 3s;
+static constexpr duration treasure_livetime = 5min;
 
 /************************************************************************
 *                                                                       *
@@ -146,7 +146,7 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 {	
 	uint8  SlotID;
 	uint8  FreeSlotID = -1;
-	uint32 oldest = -1;
+	time_point oldest = time_point::min();
 
     switch (ItemID)
     {
@@ -175,7 +175,7 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 		for (SlotID = 0; SlotID < 10; ++SlotID)
 		{
 			CItem* PItem = itemutils::GetItemPointer(m_PoolItems[SlotID].ID);
-			if (!(PItem->getFlag() & (ITEM_FLAG_RARE | ITEM_FLAG_EX)) && m_PoolItems[SlotID].TimeStamp < oldest)
+			if (!(PItem->getFlag() & (ITEM_FLAG_RARE | ITEM_FLAG_EX)) && m_PoolItems[SlotID].TimeStamp > oldest)
 			{
 				FreeSlotID = SlotID;
 				oldest = m_PoolItems[SlotID].TimeStamp;
@@ -187,7 +187,7 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 			for (SlotID = 0; SlotID < 10; ++SlotID)
 			{
 				CItem* PItem = itemutils::GetItemPointer(m_PoolItems[SlotID].ID);
-				if (!(PItem->getFlag() & (ITEM_FLAG_EX)) && m_PoolItems[SlotID].TimeStamp < oldest)
+				if (!(PItem->getFlag() & (ITEM_FLAG_EX)) && m_PoolItems[SlotID].TimeStamp > oldest)
 				{
 					FreeSlotID = SlotID;
 					oldest = m_PoolItems[SlotID].TimeStamp;
@@ -198,7 +198,7 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 				//find the oldest item
 				for (SlotID = 0; SlotID < 10; ++SlotID)
 				{
-					if (m_PoolItems[SlotID].TimeStamp < oldest)
+					if (m_PoolItems[SlotID].TimeStamp > oldest)
 					{
 						FreeSlotID = SlotID;
 						oldest = m_PoolItems[SlotID].TimeStamp;
@@ -214,13 +214,13 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 	}
 	if (SlotID == 10)
 	{
-		m_PoolItems[FreeSlotID].TimeStamp = 0;
-		CheckTreasureItem(time_t(0), FreeSlotID);
+		m_PoolItems[FreeSlotID].TimeStamp = get_server_start_time();
+		CheckTreasureItem(server_clock::now(), FreeSlotID);
 	}
 
     m_count++;
     m_PoolItems[FreeSlotID].ID = ItemID;
-	m_PoolItems[FreeSlotID].TimeStamp = time_t(0) - 3;
+	m_PoolItems[FreeSlotID].TimeStamp = server_clock::now() - treasure_checktime;
 	
 	for (uint32 i = 0; i < members.size(); ++i)
 	{
@@ -228,12 +228,10 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 	}
     if (m_TreasurePoolType == TREASUREPOOL_SOLO)
     {
-        CheckTreasureItem(time_t(0), FreeSlotID);
+        CheckTreasureItem(server_clock::now(), FreeSlotID);
     }
 	return m_count;
 }
-
-
 
 /************************************************************************
 *                                                                       *
@@ -358,12 +356,11 @@ bool CTreasurePool::HasPassedItem(CCharEntity* PChar, uint8 SlotID)
 *                                                                       *
 ************************************************************************/
 
-void CTreasurePool::CheckItems() 
+void CTreasurePool::CheckItems(time_point tick) 
 {	
-    auto tick = time_t(0);
     if (m_count != 0)
     {
-        if ((tick - m_Tick > TREASURE_CHECKTIME))
+        if ((tick - m_Tick > treasure_checktime))
         {
             for (uint8 i = 0; i < TREASUREPOOL_SIZE; ++i) 
 	        {
@@ -380,11 +377,11 @@ void CTreasurePool::CheckItems()
 *                                                                       *
 ************************************************************************/
 
-void CTreasurePool::CheckTreasureItem(uint32 tick, uint8 SlotID) 
+void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID) 
 {
 	if (m_PoolItems[SlotID].ID == 0) return;
     
-    if ((tick - m_PoolItems[SlotID].TimeStamp) > TREASURE_LIVETIME ||
+    if ((tick - m_PoolItems[SlotID].TimeStamp) > treasure_livetime ||
         (m_TreasurePoolType == TREASUREPOOL_SOLO && members[0]->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0) ||
 		m_PoolItems[SlotID].Lotters.size() == members.size()) 
 	{
@@ -500,7 +497,7 @@ void CTreasurePool::TreasureWon(CCharEntity* winner, uint8 SlotID)
 	DSP_DEBUG_BREAK_IF(winner->PTreasurePool != this);
     DSP_DEBUG_BREAK_IF(m_PoolItems[SlotID].ID == 0);
 
-    m_PoolItems[SlotID].TimeStamp = 0;
+    m_PoolItems[SlotID].TimeStamp = get_server_start_time();
 
 	for (uint32 i = 0; i < members.size(); ++i)
 	{
@@ -524,7 +521,7 @@ void CTreasurePool::TreasureError(CCharEntity* winner, uint8 SlotID)
 	DSP_DEBUG_BREAK_IF(winner->PTreasurePool != this);
     DSP_DEBUG_BREAK_IF(m_PoolItems[SlotID].ID == 0);
 
-    m_PoolItems[SlotID].TimeStamp = 0;
+    m_PoolItems[SlotID].TimeStamp = get_server_start_time();
 
     for (uint32 i = 0; i < members.size(); ++i)
 	{
@@ -546,7 +543,7 @@ void CTreasurePool::TreasureLost(uint8 SlotID)
 {
     DSP_DEBUG_BREAK_IF(m_PoolItems[SlotID].ID == 0);
 
-    m_PoolItems[SlotID].TimeStamp = 0;
+    m_PoolItems[SlotID].TimeStamp = get_server_start_time();
 
 	for (uint32 i = 0; i < members.size(); ++i)
 	{

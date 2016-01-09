@@ -111,7 +111,7 @@ inline int32 CLuaStatusEffect::getStartTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
-    auto time = std::chrono::duration_cast<std::chrono::milliseconds>(m_PLuaStatusEffect->GetStartTime() - get_start_time()).count();
+    auto time = std::chrono::duration_cast<std::chrono::milliseconds>(m_PLuaStatusEffect->GetStartTime() - get_server_start_time()).count();
 
     lua_pushinteger(L, time);
     return 1;
@@ -279,7 +279,7 @@ inline int32 CLuaStatusEffect::setStartTime(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
 
-    m_PLuaStatusEffect->SetStartTime(get_start_time() + std::chrono::milliseconds(lua_tointeger(L, 1)));
+    m_PLuaStatusEffect->SetStartTime(get_server_start_time() + std::chrono::milliseconds(lua_tointeger(L, 1)));
     return 0;
 }
 

@@ -1318,7 +1318,7 @@ namespace charutils
     *																		*
     ************************************************************************/
 
-    uint32 UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quantity)
+    uint32 UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quantity, bool force)
     {
         CItem* PItem = PChar->getStorage(LocationID)->GetItem(slotID);
 
@@ -1334,15 +1334,12 @@ namespace charutils
             return 0;
         }
 
-        // don't touch this item, it's being used
-        if (PItem->isSubType(ITEM_LOCKED))
-            return 0;
-
-        if (dynamic_cast<CItemState*>(PChar->PAI->GetCurrentState()))
+        auto PState = dynamic_cast<CItemState*>(PChar->PAI->GetCurrentState());
+        if (PState)
         {
-            CItem* item = static_cast<CItemState*>(PChar->PAI->GetCurrentState())->GetItem();
+            CItem* item = PState->GetItem();
 
-            if (item && item->getSlotID() == PItem->getSlotID() && item->getLocationID() == PItem->getLocationID())
+            if (item && item->getSlotID() == PItem->getSlotID() && item->getLocationID() == PItem->getLocationID() && !force)
                 return 0;
         }
 
