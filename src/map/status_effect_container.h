@@ -118,8 +118,8 @@ private:
 
     void OverwriteStatusEffect(CStatusEffect* StatusEffect);
 
-	time_point m_EffectCheckTime {time_point::min()};
-    time_point m_RegenCheckTime {time_point::min()};
+	time_point m_EffectCheckTime {server_clock::now()};
+    time_point m_RegenCheckTime {server_clock::now()};
 
 	std::vector<CStatusEffect*>	m_StatusEffectList;
 };

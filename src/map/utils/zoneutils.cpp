@@ -647,8 +647,6 @@ void LoadZoneList()
 
     for (auto PZone : g_PZoneList)
     {
-        PZone.second->ZoneServer(time_point::min());
-
         if (PZone.second->GetIP() != 0)
             luautils::OnZoneInitialise(PZone.second->GetID());
     }
