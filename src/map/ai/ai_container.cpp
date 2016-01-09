@@ -159,7 +159,7 @@ bool CAIContainer::Internal_Engage(uint16 targetid)
     auto PTarget {dynamic_cast<CBattleEntity*>(PEntity->GetEntity(targetid))};
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
 
-    if (entity && entity->GetBattleTargetID())
+    if (entity && entity->GetBattleTargetID() && entity->GetBattleTargetID() != targetid)
     {
         ChangeTarget(targetid);
         return true;
@@ -189,13 +189,20 @@ bool CAIContainer::Internal_Cast(uint16 targetid, uint16 spellid)
 void CAIContainer::Internal_ChangeTarget(uint16 targetid)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
-    entity->SetBattleTargetID(targetid);
+    if (entity)
+    {
+        if (IsEngaged())
+            entity->SetBattleTargetID(targetid);
+        else
+            Engage(targetid);
+    }
 }
 
 void CAIContainer::Internal_Disengage()
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
-    entity->SetBattleTargetID(0);
+    if (entity)
+        entity->SetBattleTargetID(0);
 }
 
 bool CAIContainer::Internal_WeaponSkill(uint16 targid, uint16 wsid)
