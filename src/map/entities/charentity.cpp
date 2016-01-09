@@ -668,13 +668,13 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
 
     PLatentEffectContainer->CheckLatentsTP(this->health.tp);
 
+    SLOTTYPE damslot = SLOT_MAIN;
     if (distance(loc.p, PBattleTarget->loc.p) - PBattleTarget->m_ModelSize < PWeaponSkill->getRange())
     {
         //WS scripts currently rely on user:getTP() to get the tp
         int16 prevTP = health.tp;
         health.tp = tp;
 
-        uint8 damslot = SLOT_MAIN;
         if (PWeaponSkill->getID() >= 192 && PWeaponSkill->getID() <= 221)
         {
             damslot = SLOT_RANGED;
@@ -767,34 +767,47 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                 {
                     battleutils::RemoveAmmo(this);
                 }
-                int wspoints = 1;
-                if (actionTarget.reaction == REACTION_HIT && PWeaponSkill->getPrimarySkillchain() != 0 || PBattleTarget->isDead())
+                if (actionTarget.reaction == REACTION_HIT)
                 {
-                    // NOTE: GetSkillChainEffect is INSIDE this if statement because it
-                    //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
-                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill);
-                    if (effect != SUBEFFECT_NONE)
+                    if (getEquip(damslot)->getModifier(MOD_ADDITIONAL_EFFECT))
                     {
-                        actionTarget.addEffectParam = battleutils::TakeSkillchainDamage(this, PBattleTarget, damage);
-                        if (actionTarget.addEffectParam < 0)
-                        {
-                            actionTarget.addEffectParam = -actionTarget.addEffectParam;
-                            actionTarget.addEffectMessage = 384 + effect;
-                        }
-                        else
-                            actionTarget.addEffectMessage = 287 + effect;
-                        actionTarget.additionalEffect = effect;
-
-                        if (effect >= 7)
-                            wspoints += 1;
-                        else if (effect >= 3)
-                            wspoints += 2;
-                        else
-                            wspoints += 4;
+                        actionTarget_t dummy;
+                        luautils::OnAdditionalEffect(this, PTarget, static_cast<CItemWeapon*>(getEquip(damslot)), &dummy, damage);
                     }
+                    else if (damslot == SLOT_RANGED && getEquip(SLOT_AMMO) && getEquip(SLOT_AMMO)->getModifier(MOD_ADDITIONAL_EFFECT))
+                    {
+                        actionTarget_t dummy;
+                        luautils::OnAdditionalEffect(this, PTarget, static_cast<CItemWeapon*>(getEquip(SLOT_AMMO)), &dummy, damage);
+                    }
+                    int wspoints = 1;
+                    if (PWeaponSkill->getPrimarySkillchain() != 0)
+                    {
+                        // NOTE: GetSkillChainEffect is INSIDE this if statement because it
+                        //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
+                        SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill);
+                        if (effect != SUBEFFECT_NONE)
+                        {
+                            actionTarget.addEffectParam = battleutils::TakeSkillchainDamage(this, PBattleTarget, damage);
+                            if (actionTarget.addEffectParam < 0)
+                            {
+                                actionTarget.addEffectParam = -actionTarget.addEffectParam;
+                                actionTarget.addEffectMessage = 384 + effect;
+                            }
+                            else
+                                actionTarget.addEffectMessage = 287 + effect;
+                            actionTarget.additionalEffect = effect;
+
+                            if (effect >= 7)
+                                wspoints += 1;
+                            else if (effect >= 3)
+                                wspoints += 2;
+                            else
+                                wspoints += 4;
+                        }
+                    }
+                    // check for ws points
+                    charutils::AddWeaponSkillPoints(this, damslot, wspoints);
                 }
-                // check for ws points
-                charutils::AddWeaponSkillPoints(this, (SLOTTYPE)damslot, wspoints);
             }
         }
         health.tp = prevTP + (health.tp - tp);
@@ -1664,9 +1677,8 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
         //or else sleep effect won't work
         //battleutils::HandleRangedAdditionalEffect(this,PTarget,&Action);
         //TODO: move all hard coded additional effect ammo to scripts
-        //#TODO: fix call
         if ((PAmmo != nullptr && PAmmo->getModifier(MOD_ADDITIONAL_EFFECT) > 0) || (PItem != nullptr && PItem->getModifier(MOD_ADDITIONAL_EFFECT) > 0)) {}
-        //luautils::OnAdditionalEffect(this, PTarget, (PAmmo != nullptr ? PAmmo : PItem), &Action, totalDamage);
+        luautils::OnAdditionalEffect(this, PTarget, (PAmmo != nullptr ? PAmmo : PItem), &actionTarget, totalDamage);
     }
     else if (shadowsTaken > 0)
     {

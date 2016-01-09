@@ -5444,7 +5444,6 @@ namespace battleutils
 
     void RemoveAmmo(CCharEntity* PChar)
     {
-        //ranged WS IDs
         CItemWeapon* PAmmo = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
 
         uint16 recycleChance = PChar->getMod(MOD_RECYCLE) + PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE, PChar);
