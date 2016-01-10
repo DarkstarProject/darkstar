@@ -45,9 +45,6 @@ end;
 -----------------------------------
 
 function onUseAbilityRoll(caster,target,ability,total)
-    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
-    local effectpowers = {8, 10, 32, 12, 14, 16, 4, 20, 22, 24, 40, 11}
-    local effectpower = effectpowers[total]
     local jobBonus = caster:getLocalVar("MNK_roll_bonus");
 
     if (total < 12) then -- see chaos_roll.lua for comments
@@ -66,12 +63,21 @@ function onUseAbilityRoll(caster,target,ability,total)
         end
     end
 
+end;
+
+function applyRoll(caster,target,ability,action,total)
+    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
+    local effectpowers = {8, 10, 32, 12, 14, 16, 4, 20, 22, 24, 40, 11}
+    local effectpower = effectpowers[total];
     if (caster:getMainJob() == JOB_COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
     elseif (caster:getSubJob() == JOB_COR and caster:getSubLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
     if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT_MONKS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_SUBTLE_BLOW) == false) then
-        ability:setMsg(423);
+        ability:setMsg(422);
+    elseif total > 11 then
+        ability:setMsg(426);
     end
-end;
+    return total;
+end
