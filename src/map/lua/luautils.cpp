@@ -2984,8 +2984,10 @@ namespace luautils
 
         CLuaBaseEntity LuaMobEntity(PMob);
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        
+        lua_pushinteger(LuaHandle, wskill->getID());
 
-        if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+        if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
         {
             ShowError("luautils::onUseWeaponSkill: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
