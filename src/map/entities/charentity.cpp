@@ -721,11 +721,11 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
             if (!battleutils::isValidSelfTargetWeaponskill(PWeaponSkill->getID()))
             {
                 health.tp = prevTP;
+                actionTarget.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
                 if (!primary) {
                     tpHitsLanded = 0; extraHitsLanded = 0;
                 }
                 damage = battleutils::TakeWeaponskillDamage(this, PTarget, damage, damslot, tpHitsLanded, taChar);
-                actionTarget.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
                 actionTarget.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
                 addTP(extraHitsLanded * 10);
                 prevTP = health.tp;
