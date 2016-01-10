@@ -28,7 +28,6 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
-package.loaded["scripts/globals/ability"] = nil;
 require("scripts/globals/ability");
 
 -----------------------------------
@@ -51,7 +50,7 @@ end;
 
 function onUseAbility(caster,target,ability,action)
     if (caster:getID() == target:getID()) then
-        corsairSetup(caster, ability, action, EFFECT_CORSAIRS_ROLL);
+        corsairSetup(caster, ability, action, EFFECT_CORSAIRS_ROLL, JOB_COR);
     end
     local total = caster:getLocalVar("corsairRollTotal")
     return applyRoll(caster,target,ability,action,total)

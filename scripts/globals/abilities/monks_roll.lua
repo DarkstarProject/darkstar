@@ -24,6 +24,7 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/ability");
 
 -----------------------------------
 -- onAbilityCheck
@@ -35,7 +36,6 @@ function onAbilityCheck(player,target,ability)
     if (player:hasStatusEffect(effectID) or player:hasBustEffect(effectID)) then
         return MSGBASIC_ROLL_ALREADY_ACTIVE,0;
     else
-        player:setLocalVar("MNK_roll_bonus", 0);
         return 0,0;
     end
 end;
@@ -44,31 +44,21 @@ end;
 -- onUseAbilityRoll
 -----------------------------------
 
-function onUseAbilityRoll(caster,target,ability,total)
-    local jobBonus = caster:getLocalVar("MNK_roll_bonus");
-
-    if (total < 12) then -- see chaos_roll.lua for comments
-        if (jobBonus == 0) then
-            if (caster:hasPartyJob(JOB_MNK) or math.random(0, 99) < caster:getMod(MOD_JOB_BONUS_CHANCE)) then
-                jobBonus = 1;
-            else
-                jobBonus = 2;
-            end
-        end
-        if (jobBonus == 1) then
-            effectpower = effectpower + 10;
-        end
-        if (target:getID() == caster:getID()) then
-            caster:setLocalVar("MNK_roll_bonus", jobBonus);
-        end
+function onUseAbility(caster,target,ability,action)
+    if (caster:getID() == target:getID()) then
+        corsairSetup(caster, ability, action, EFFECT_MONKS_ROLL, JOB_MNK);
     end
-
+    local total = caster:getLocalVar("corsairRollTotal")
+    return applyRoll(caster,target,ability,action,total)
 end;
 
 function applyRoll(caster,target,ability,action,total)
     local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
     local effectpowers = {8, 10, 32, 12, 14, 16, 4, 20, 22, 24, 40, 11}
     local effectpower = effectpowers[total];
+    if (caster:getLocalVar("corsairRollBonus") == 1 and total < 12) then
+        effectpower = effectpower + 10
+    end
     if (caster:getMainJob() == JOB_COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
     elseif (caster:getSubJob() == JOB_COR and caster:getSubLvl() < target:getMainLvl()) then

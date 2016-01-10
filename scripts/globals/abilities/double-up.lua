@@ -32,6 +32,7 @@ function onUseAbility(caster,target,ability,action)
         local du_effect = caster:getStatusEffect(EFFECT_DOUBLE_UP_CHANCE);
         local prev_roll = caster:getStatusEffect(du_effect:getSubPower());
         local roll = prev_roll:getSubPower();
+        local job = du_effect:getTier()
         caster:setLocalVar("corsairActiveRoll", du_effect:getSubType())
         local snake_eye = caster:getStatusEffect(EFFECT_SNAKE_EYE);
         if (snake_eye) then
@@ -51,6 +52,7 @@ function onUseAbility(caster,target,ability,action)
         end
         caster:setLocalVar("corsairRollTotal", roll)
         action:speceffect(caster:getID(),roll-prev_roll:getSubPower())
+        checkForJobBonus(caster, job)
     end
     local total = caster:getLocalVar("corsairRollTotal")
     local prev_ability = getAbility(caster:getLocalVar("corsairActiveRoll"));
