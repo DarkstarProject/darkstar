@@ -2228,10 +2228,9 @@ namespace charutils
 
         //add in melee ws
         uint8 skill = PChar->m_Weapons[SLOT_MAIN]->getSkillType();
-        std::list<CWeaponSkill*>& WeaponSkillList = battleutils::GetWeaponSkills(skill);
-        for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
+        auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
+        for (auto&& PSkill : WeaponSkillList)
         {
-            CWeaponSkill* PSkill = *it;
             if (PChar->GetSkill(skill) >= PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly())
                 || PSkill->getID() == main_ws
                 || isInDynamis && (PSkill->getID() == main_ws_dyn))
@@ -2245,10 +2244,9 @@ namespace charutils
         if (PItem != nullptr && PItem->isType(ITEM_WEAPON) && PItem->getSkillType() != SKILL_THR)
         {
             skill = PChar->m_Weapons[SLOT_RANGED]->getSkillType();
-            std::list<CWeaponSkill*>& WeaponSkillList = battleutils::GetWeaponSkills(skill);
-            for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
+            auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
+            for (auto&& PSkill : WeaponSkillList)
             {
-                CWeaponSkill* PSkill = *it;
                 if (PChar->GetSkill(skill) >= PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly())
                     || PSkill->getID() == range_ws
                     || isInDynamis && (PSkill->getID() == range_ws_dyn))
@@ -2656,16 +2654,13 @@ namespace charutils
         {
             return;
         }
-        std::list<CWeaponSkill*> WeaponSkillList;
-        WeaponSkillList = battleutils::GetWeaponSkills(skill);
+        auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
         uint16 curSkill = PChar->RealSkills.skill[skill] / 10;
         JOBTYPE curMainJob = PChar->GetMJob();
         JOBTYPE curSubJob = PChar->GetSJob();
 
-        for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
+        for (auto&& PSkill : WeaponSkillList)
         {
-            CWeaponSkill* PSkill = *it;
-
             if (curSkill == PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0))
             {
                 addWeaponSkill(PChar, PSkill->getID());

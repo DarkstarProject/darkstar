@@ -367,7 +367,7 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill)
+    const std::list<CWeaponSkill*>& GetWeaponSkills(uint8 skill)
     {
         DSP_DEBUG_BREAK_IF(skill >= MAX_SKILLTYPE);
 
