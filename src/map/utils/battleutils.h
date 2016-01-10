@@ -236,6 +236,8 @@ namespace battleutils
     int16               CalculateWeaponSkillTP(CBattleEntity*, CWeaponSkill*, int16);
     void                RemoveAmmo(CCharEntity*);
     int32               GetMeritValue(CBattleEntity*, MERIT_TYPE);
+
+    int32               GetScaledItemModifier(CBattleEntity*, CItemArmor*, MODIFIER);
 };
 
 #endif

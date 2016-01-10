@@ -813,112 +813,21 @@ namespace battleutils
             if (PDefender->objtype == TYPE_PC)
             {
                 CCharEntity* PCharDef = (CCharEntity*)PDefender;
-                bool activate = false;
-                uint8 chance;
 
-                // SHIELD
-                CItem* PItem = PCharDef->getEquip(SLOT_SUB);
-
-                if (PItem)
+                for (auto&& slot : {SLOT_SUB, SLOT_BODY, SLOT_LEGS, SLOT_HEAD, SLOT_HANDS, SLOT_FEET})
                 {
+                    CItemArmor* PItem = PCharDef->getEquip(slot);
+                    uint8 chance;
+
                     Action->spikesEffect = (SUBEFFECT)0;
-                    if (((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE) < 7)
+                    auto spikes_type = battleutils::GetScaledItemModifier(PDefender, PItem, MOD_ITEM_SPIKES_TYPE);
+                    if (spikes_type > 0 && spikes_type < 7)
                     {
-                        Action->spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE);
+                        Action->spikesEffect = (SUBEFFECT)spikes_type;
                     }
 
-                    Action->spikesParam = ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_DMG);
-                    chance = ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_CHANCE);
-
-                    if (Action->spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, Action->spikesParam, Action->spikesEffect, chance))
-                        return true;
-                }
-
-                // BODY
-                PItem = PCharDef->getEquip(SLOT_BODY);
-
-                if (PItem)
-                {
-                    Action->spikesEffect = (SUBEFFECT)0;
-                    if (((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE) < 7)
-                    {
-                        Action->spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE);
-                    }
-
-                    Action->spikesParam = ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_DMG);
-                    chance = ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_CHANCE);
-
-                    if (Action->spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, Action->spikesParam, Action->spikesEffect, chance))
-                        return true;
-                }
-
-                // LEGS
-                PItem = PCharDef->getEquip(SLOT_LEGS);
-
-                if (PItem)
-                {
-                    Action->spikesEffect = (SUBEFFECT)0;
-                    if (((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE) < 7)
-                    {
-                        Action->spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE);
-                    }
-
-                    Action->spikesParam = ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_DMG);
-                    chance = ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_CHANCE);
-
-                    if (Action->spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, Action->spikesParam, Action->spikesEffect, chance))
-                        return true;
-                }
-
-                // HEAD
-                PItem = PCharDef->getEquip(SLOT_HEAD);
-
-                if (PItem)
-                {
-                    Action->spikesEffect = (SUBEFFECT)0;
-                    if (((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE) < 7)
-                    {
-                        Action->spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE);
-                    }
-
-                    Action->spikesParam = ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_DMG);
-                    chance = ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_CHANCE);
-
-                    if (Action->spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, Action->spikesParam, Action->spikesEffect, chance))
-                        return true;
-                }
-
-                // HANDS
-                PItem = PCharDef->getEquip(SLOT_HANDS);
-
-                if (PItem)
-                {
-                    Action->spikesEffect = (SUBEFFECT)0;
-                    if (((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE) < 7)
-                    {
-                        Action->spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE);
-                    }
-
-                    Action->spikesParam = ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_DMG);
-                    chance = ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_CHANCE);
-
-                    if (Action->spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, Action->spikesParam, Action->spikesEffect, chance))
-                        return true;
-                }
-
-                // FEET
-                PItem = PCharDef->getEquip(SLOT_FEET);
-
-                if (PItem)
-                {
-                    Action->spikesEffect = (SUBEFFECT)0;
-                    if (((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE) < 7)
-                    {
-                        Action->spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_TYPE);
-                    }
-
-                    Action->spikesParam = ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_DMG);
-                    chance = ((CItemArmor*)PItem)->getModifier(MOD_ITEM_SPIKES_CHANCE);
+                    Action->spikesParam = battleutils::GetScaledItemModifier(PDefender, PItem, MOD_ITEM_SPIKES_DMG);
+                    chance = battleutils::GetScaledItemModifier(PDefender, PItem, MOD_ITEM_SPIKES_CHANCE);
 
                     if (Action->spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, Action->spikesParam, Action->spikesEffect, chance))
                         return true;
@@ -1130,7 +1039,7 @@ namespace battleutils
             }
         }
         //check weapon for additional effects
-        else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0 && PAttacker->GetMLevel() >= weapon->getReqLvl() &&
+        else if (PAttacker->objtype == TYPE_PC && battleutils::GetScaledItemModifier(PAttacker, weapon, MOD_ADDITIONAL_EFFECT) > 0 && 
                  luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
         {
             if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
@@ -5388,15 +5297,7 @@ namespace battleutils
             //remove TP Bonus from offhand weapon
             if (PChar->equip[SLOT_SUB] != 0)
             {
-                std::vector<CModifier*>::iterator modIterator;
-                std::vector<CModifier*> modList = ((CItemArmor*)PChar->getEquip(SLOT_SUB))->modList;
-
-                for (modIterator = modList.begin(); modIterator != modList.end(); modIterator++)
-                {
-                    if ((*modIterator)->getModID() == MOD_TP_BONUS) {
-                        tp -= (*modIterator)->getModAmount();
-                    }
-                }
+                tp -= battleutils::GetScaledItemModifier(PEntity, PChar->m_Weapons[SLOT_SUB], MOD_TP_BONUS);
             }
 
             //if ranged WS, remove TP bonus from mainhand weapon
@@ -5404,16 +5305,7 @@ namespace battleutils
             {
                 if (PChar->equip[SLOT_MAIN] != 0)
                 {
-                    std::vector<CModifier*>::iterator modIterator;
-                    std::vector<CModifier*> modList = ((CItemArmor*)PChar->getEquip(SLOT_MAIN))->modList;
-
-                    for (modIterator = modList.begin(); modIterator != modList.end(); modIterator++)
-                    {
-                        if ((*modIterator)->getModID() == MOD_TP_BONUS)
-                        {
-                            tp -= (*modIterator)->getModAmount();
-                        }
-                    }
+                    tp -= battleutils::GetScaledItemModifier(PEntity, PChar->m_Weapons[SLOT_MAIN], MOD_TP_BONUS);
                 }
             }
             else
@@ -5421,16 +5313,7 @@ namespace battleutils
                 //if melee WS, remove TP bonus from ranged weapon
                 if (PChar->equip[SLOT_RANGED] != 0)
                 {
-                    std::vector<CModifier*>::iterator modIterator;
-                    std::vector<CModifier*> modList = ((CItemArmor*)PChar->getEquip(SLOT_RANGED))->modList;
-
-                    for (modIterator = modList.begin(); modIterator != modList.end(); modIterator++)
-                    {
-                        if ((*modIterator)->getModID() == MOD_TP_BONUS)
-                        {
-                            tp -= (*modIterator)->getModAmount();
-                        }
-                    }
+                    tp -= battleutils::GetScaledItemModifier(PEntity, PChar->m_Weapons[SLOT_RANGED], MOD_TP_BONUS);
                 }
             }
         }
@@ -5479,6 +5362,51 @@ namespace battleutils
             return static_cast<CCharEntity*>(PEntity)->PMeritPoints->GetMeritValue(merit, static_cast<CCharEntity*>(PEntity));
         }
         return 0;
+    }
+
+    int32 GetScaledItemModifier(CBattleEntity* PEntity, CItemArmor* PItem, MODIFIER mod)
+    {
+        if (PEntity->GetMLevel() > PItem->getReqLvl())
+        {
+            return PItem->getModifier(mod);
+        }
+        else
+        {
+            auto modAmount = PItem->getModifier(mod);
+            switch (mod)
+            {
+                case MOD_DEF:
+                case MOD_MAIN_DMG_RATING:
+                case MOD_SUB_DMG_RATING:
+                case MOD_RANGED_DMG_RATING:
+                    modAmount *= 3;
+                    modAmount /= 4;
+                    break;
+                case MOD_HP:
+                case MOD_MP:
+                    modAmount /= 2;
+                    break;
+                case MOD_STR:
+                case MOD_DEX:
+                case MOD_VIT:
+                case MOD_AGI:
+                case MOD_INT:
+                case MOD_MND:
+                case MOD_CHR:
+                case MOD_ATT:
+                case MOD_RATT:
+                case MOD_ACC:
+                case MOD_RACC:
+                case MOD_MATT:
+                case MOD_MACC:
+                    modAmount /= 3;
+                    break;
+                default:
+                    modAmount = 0;
+                    break;
+            }
+            return modAmount / PItem->getReqLvl();
+        }
     }
 };
 

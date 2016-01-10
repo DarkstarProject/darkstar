@@ -151,12 +151,13 @@ uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32
 		return damage;
 	}
 	uint32 originalDamage = damage;
-
-	if (PWeapon->getModifier(MOD_OCC_DO_EXTRA_DMG) > 0 && PWeapon->getModifier(MOD_EXTRA_DMG_CHANCE) > 0)
+    auto occ_extra_dmg = battleutils::GetScaledItemModifier(PChar, PWeapon, MOD_OCC_DO_EXTRA_DMG);
+    auto occ_extra_dmg_chance = battleutils::GetScaledItemModifier(PChar, PWeapon, MOD_EXTRA_DMG_CHANCE);
+	if (occ_extra_dmg > 0 && occ_extra_dmg_chance > 0)
 	{
-		if (dsprand::GetRandomNumber(100) <= (PWeapon->getModifier(MOD_EXTRA_DMG_CHANCE)/10))
+		if (dsprand::GetRandomNumber(100) <= (occ_extra_dmg_chance/10))
 		{
-			return (damage = (damage * (PWeapon->getModifier(MOD_OCC_DO_EXTRA_DMG)/100.f)));
+			return (damage = (damage * (occ_extra_dmg/100.f)));
 		}
 	}
 

@@ -2208,42 +2208,33 @@ namespace charutils
         JOBTYPE curSubJob = PChar->GetSJob();
 
         CItemWeapon* PItem;
-        int16 wsIDs[3] = {0};
-        int16 wsDynIDs[3] = {0};
+        int main_ws = 0;
+        int range_ws = 0;
+        int main_ws_dyn = 0;
+        int range_ws_dyn = 0;
 
         bool isInDynamis = PChar->isInDynamis();
 
-        for (int i = 0; i < 3; ++i)
+        for (auto&& slot : {std::forward_as_tuple(SLOT_MAIN, main_ws, main_ws_dyn), std::forward_as_tuple(SLOT_RANGED, range_ws, range_ws_dyn)})
         {
-            if (PChar->equip[i])
+            if (PChar->m_Weapons[std::get<0>(slot)])
             {
-                PItem = (CItemWeapon*)PChar->getEquip((SLOTTYPE)i);
+                PItem = PChar->m_Weapons[std::get<0>(slot)];
 
-                for (std::vector<CModifier*>::iterator it = PItem->modList.begin(); it != PItem->modList.end(); ++it)
-                {
-                    if ((*it)->getModID() == MOD_ADDS_WEAPONSKILL)
-                    {
-                        wsIDs[i] = (*it)->getModAmount();
-                        break;
-                    }
-                    if ((*it)->getModID() == MOD_ADDS_WEAPONSKILL_DYN)
-                    {
-                        wsDynIDs[i] = (*it)->getModAmount();
-                        break;
-                    }
-                }
+                std::get<1>(slot) = battleutils::GetScaledItemModifier(PChar, PItem, MOD_ADDS_WEAPONSKILL);
+                std::get<2>(slot) = battleutils::GetScaledItemModifier(PChar, PItem, MOD_ADDS_WEAPONSKILL_DYN);
             }
         }
 
         //add in melee ws
         uint8 skill = PChar->m_Weapons[SLOT_MAIN]->getSkillType();
-        std::list<CWeaponSkill*>&& WeaponSkillList = battleutils::GetWeaponSkills(skill);
+        std::list<CWeaponSkill*>& WeaponSkillList = battleutils::GetWeaponSkills(skill);
         for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
         {
             CWeaponSkill* PSkill = *it;
             if (PChar->GetSkill(skill) >= PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly())
-                || PSkill->getID() == wsIDs[SLOT_MAIN] || PSkill->getID() == wsIDs[SLOT_SUB]
-                || isInDynamis && (PSkill->getID() == wsDynIDs[SLOT_MAIN] || PSkill->getID() == wsDynIDs[SLOT_SUB]))
+                || PSkill->getID() == main_ws
+                || isInDynamis && (PSkill->getID() == main_ws_dyn))
             {
                 addWeaponSkill(PChar, PSkill->getID());
             }
@@ -2254,13 +2245,13 @@ namespace charutils
         if (PItem != nullptr && PItem->isType(ITEM_WEAPON) && PItem->getSkillType() != SKILL_THR)
         {
             skill = PChar->m_Weapons[SLOT_RANGED]->getSkillType();
-            std::list<CWeaponSkill*>&& WeaponSkillList = battleutils::GetWeaponSkills(skill);
+            std::list<CWeaponSkill*>& WeaponSkillList = battleutils::GetWeaponSkills(skill);
             for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
             {
                 CWeaponSkill* PSkill = *it;
                 if (PChar->GetSkill(skill) >= PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly())
-                    || PSkill->getID() == wsIDs[SLOT_RANGED]
-                    || isInDynamis && (PSkill->getID() == wsDynIDs[SLOT_RANGED]))
+                    || PSkill->getID() == range_ws
+                    || isInDynamis && (PSkill->getID() == range_ws_dyn))
                 {
                     addWeaponSkill(PChar, PSkill->getID());
                 }
