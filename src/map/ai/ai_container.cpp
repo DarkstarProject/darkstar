@@ -148,9 +148,9 @@ void CAIContainer::UseItem(uint16 targid, uint8 loc, uint8 slotid)
     }
 }
 
-void CAIContainer::Inactive(duration _duration)
+void CAIContainer::Inactive(duration _duration, bool canChangeState)
 {
-    ChangeState<CInactiveState>(PEntity, _duration);
+    ChangeState<CInactiveState>(PEntity, _duration, canChangeState);
 }
 
 bool CAIContainer::Internal_Engage(uint16 targetid)

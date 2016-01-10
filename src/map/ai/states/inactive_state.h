@@ -29,16 +29,17 @@ This file is part of DarkStar-server source code.
 class CInactiveState : public CState
 {
 public:
-    CInactiveState(CBaseEntity* PEntity, duration _duration);
+    CInactiveState(CBaseEntity* PEntity, duration _duration, bool canChangeState);
 
 protected:
-    virtual bool CanChangeState() override { return false; }
+    virtual bool CanChangeState() override { return m_canChangeState; }
     virtual bool CanFollowPath() override { return false; }
     virtual bool Update(time_point tick) override;
     virtual void Cleanup(time_point tick) override;
 private:
     duration m_duration;
     bool m_couldUpdate {true};
+    bool m_canChangeState {false};
 };
 
 

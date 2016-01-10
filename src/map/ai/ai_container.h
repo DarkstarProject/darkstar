@@ -62,7 +62,7 @@ public:
     void RangedAttack(uint16 targid);
     void Trigger(uint16 targid);
     void UseItem(uint16 targid, uint8 loc, uint8 slotid);
-    void Inactive(duration _duration);
+    void Inactive(duration _duration, bool canChangeState);
 
     /* Internal Controller functions */
     bool Internal_Engage(uint16 targetid);

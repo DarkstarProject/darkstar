@@ -1163,7 +1163,7 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
                 StatusEffect->SetIcon(EFFECT_SLEEP);
             }
 
-            m_POwner->PAI->Inactive(0ms);
+            m_POwner->PAI->Inactive(0ms, false);
         }
     }
 }

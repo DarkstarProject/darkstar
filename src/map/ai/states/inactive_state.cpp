@@ -26,9 +26,10 @@ This file is part of DarkStar-server source code.
 #include "../../entities/battleentity.h"
 #include "../../status_effect_container.h"
 
-CInactiveState::CInactiveState(CBaseEntity* PEntity, duration _duration) :
+CInactiveState::CInactiveState(CBaseEntity* PEntity, duration _duration, bool canChangeState) :
     CState(PEntity, 0),
-    m_duration(_duration)
+    m_duration(_duration),
+    m_canChangeState(canChangeState)
 {
     m_couldUpdate = m_PEntity->PAI->GetController() && m_PEntity->PAI->GetController()->canUpdate;
     if (m_PEntity->PAI->GetController()) m_PEntity->PAI->GetController()->canUpdate = false;

@@ -9002,7 +9002,7 @@ inline int32 CLuaBaseEntity::wait(lua_State* L)
     {
         waitTime = lua_tonumber(L, 1);
     }
-    PBattle->PAI->Inactive(std::chrono::milliseconds(waitTime));
+    PBattle->PAI->Inactive(std::chrono::milliseconds(waitTime), true);
 
     return 0;
 }
@@ -9707,7 +9707,7 @@ inline int32 CLuaBaseEntity::stun(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PBaseEntity->PAI->Inactive(std::chrono::milliseconds(lua_tointeger(L, 1)));
+    m_PBaseEntity->PAI->Inactive(std::chrono::milliseconds(lua_tointeger(L, 1)), false);
 
     return 0;
 }
